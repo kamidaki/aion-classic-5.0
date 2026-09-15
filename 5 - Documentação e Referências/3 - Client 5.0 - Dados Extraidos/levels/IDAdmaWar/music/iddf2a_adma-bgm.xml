@@ -1,0 +1,67 @@
+<MusicThemeLibrary Name="iddf2a_adma-bgm">
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{792FED22-2EC3-46C4-9E8A-DF9147D9E5BE}" Name="mute">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="Sounds\music\BGM_Mute.ogg" LayeringVolume="255" Name="Pattern0" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{453D7172-2A6B-474C-84B5-DA4624115844}" Name="field1">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="0" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="Sounds\music\iddf2a_adma-01.ogg" LayeringVolume="255" Name="Pattern1" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{62577253-E7E2-48D9-9A6F-CFF18D03E3B2}" Name="field2">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="Sounds\music\iddf2a_adma-03.ogg" LayeringVolume="255" Name="Pattern2" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{3B549A56-D27C-4067-B7EE-7E3644E8362E}" Name="named">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="Sounds\music\iddf2a_adma-02.ogg" LayeringVolume="255" Name="Pattern3" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{D8620064-1768-4DB4-9633-0BF591DC8059}" Name="boss">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="Sounds\music\id_battle-bgm.ogg" LayeringVolume="255" Name="Pattern4" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+</MusicThemeLibrary>

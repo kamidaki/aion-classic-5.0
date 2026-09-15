@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300530000">
-		<!-- IDArena_pvp02_InviNPC_1 -->
+		<!-- NPC_207033 -->
 		<spawn npc_id="207033" respawn_time="295">
 			<spot x="1571.3833" y="365.0954" z="205.2388" h="0"/>
 			<spot x="1571.3833" y="365.0954" z="205.2388" h="0"/>
@@ -9,21 +9,21 @@
 			<spot x="1571.3833" y="365.0954" z="205.2388" h="0"/>
 			<spot x="1571.3833" y="365.0954" z="205.2388" h="0"/>
 		</spawn>
-		<!-- IDArena_pvp01_InviNPC_8 -->
+		<!-- NPC_207049 -->
 		<spawn npc_id="207049" respawn_time="295">
 			<spot x="499.7514" y="1773.8922" z="171.157" h="0"/>
 			<spot x="499.7514" y="1773.8922" z="171.157" h="0"/>
 			<spot x="499.7514" y="1773.8922" z="171.157" h="0"/>
 			<spot x="499.7514" y="1773.8922" z="171.157" h="0"/>
 		</spawn>
-		<!-- IDArena_pvp01_InviNPC_9 -->
+		<!-- NPC_207050 -->
 		<spawn npc_id="207050" respawn_time="295">
 			<spot x="501.1699" y="1777.8212" z="171.157" h="0"/>
 			<spot x="501.1699" y="1777.8212" z="171.157" h="0"/>
 			<spot x="501.1699" y="1777.8212" z="171.157" h="0"/>
 			<spot x="501.1699" y="1777.8212" z="171.157" h="0"/>
 		</spawn>
-		<!-- IDArena_pvp01_InviNPC_10 -->
+		<!-- NPC_207051 -->
 		<spawn npc_id="207051" respawn_time="295">
 			<spot x="1848.5768" y="1743.9952" z="305.125" h="0"/>
 			<spot x="1848.5768" y="1743.9952" z="305.125" h="0"/>
@@ -106,35 +106,52 @@
 			<spot x="529.5792" y="1780.8058" z="153.6571" h="0"/>
 			<spot x="464.1622" y="1801.0581" z="177.327" h="0"/>
 		</spawn>
+		<!-- Relic of Restoration -->
+		<spawn npc_id="207102" respawn_time="295">
+			<spot x="1542.7887" y="371.5511" z="199.3528" h="0"/>
+			<spot x="479.6086" y="387.6217" z="221.0628" h="0"/>
+			<spot x="1571.475" y="359.3044" z="204.9632" h="0"/>
+			<spot x="1581.2941" y="349.9125" z="199.4182" h="0"/>
+			<spot x="496.2444" y="399.915" z="183.487" h="0"/>
+			<spot x="491.8075" y="422.2727" z="211.3136" h="0"/>
+		</spawn>
 		<!-- Crater -->
 		<spawn npc_id="207105" respawn_time="295">
 			<spot x="1550.5076" y="361.9555" z="198.25" h="0"/>
 			<spot x="1587.2059" y="366.8799" z="198.25" h="0"/>
 		</spawn>
-		<!-- IDArena_Team01_S2_Noshown_for_track_open -->
+		<!-- NPC_207106 -->
 		<spawn npc_id="207106" respawn_time="295">
 			<spot x="498.2446" y="1790.5735" z="169.7353" h="0"/>
 		</spawn>
-		<!-- IDArena_Team01_S2_Noshown_for_track_close -->
+		<!-- NPC_207107 -->
 		<spawn npc_id="207107" respawn_time="295">
 			<spot x="469.0275" y="1781.2261" z="163.8116" h="0"/>
 			<spot x="517.3068" y="1781.9104" z="163.8116" h="0"/>
 		</spawn>
-		<!-- IDArena_Team01_S2_Noshown_for_track_set -->
+		<!-- NPC_207110 -->
 		<spawn npc_id="207110" respawn_time="295">
 			<spot x="494.0877" y="1790.8406" z="169.6426" h="0"/>
 		</spawn>
-		<!-- IDArena_Team01_S1_Noshown_for_lever_open -->
+		<!-- NPC_207113 -->
 		<spawn npc_id="207113" respawn_time="295">
 			<spot x="1854.7028" y="1743.1283" z="311.3114" h="0"/>
 		</spawn>
-		<!-- IDArena_Team01_S1_Noshown_for_lever_close -->
+		<!-- NPC_207114 -->
 		<spawn npc_id="207114" respawn_time="295">
 			<spot x="1842.3353" y="1736.1937" z="310.3235" h="0"/>
 		</spawn>
-		<!-- IDArena_Team01_S1_Noshown_for_lever_set -->
+		<!-- NPC_207115 -->
 		<spawn npc_id="207115" respawn_time="295">
 			<spot x="1844.6798" y="1743.0077" z="311.1429" h="0"/>
+		</spawn>
+		<!-- Paralyser (Ground Floor Outdoors) -->
+		<spawn npc_id="207116" respawn_time="295">
+			<spot x="1876.0594" y="1760.6831" z="310.2102" h="0"/>
+		</spawn>
+		<!-- Paralyser (Ground Floor Indoors) -->
+		<spawn npc_id="207117" respawn_time="295">
+			<spot x="1826.3043" y="1712.3375" z="310.2102" h="0"/>
 		</spawn>
 		<!-- Paralyser (Ground Floor Outdoors) -->
 		<spawn npc_id="207118" respawn_time="295">
@@ -203,6 +220,61 @@
 			<spot x="1846.6294" y="1725.9829" z="305.125" h="0"/>
 			<spot x="1847.0085" y="1742.5115" z="305.125" h="0"/>
 			<spot x="1840.5994" y="1741.1429" z="305.125" h="0"/>
+		</spawn>
+		<!-- Arena Treasure Chest -->
+		<spawn npc_id="219068" respawn_time="295">
+			<spot x="1830.2291" y="1150.3005" z="218.8984" h="0"/>
+			<spot x="1851.624" y="1137.6168" z="232.421" h="0"/>
+			<spot x="1851.8521" y="1179.765" z="231.5853" h="0"/>
+			<spot x="1816.8364" y="1734.166" z="311.2495" h="0"/>
+			<spot x="1848.9794" y="1771.7496" z="311.2172" h="0"/>
+			<spot x="1833.7242" y="1173.4512" z="218.3703" h="0"/>
+		</spawn>
+		<!-- Volcanic Heart Crystal -->
+		<spawn npc_id="219094" respawn_time="295">
+			<spot x="1552.7791" y="367.57" z="198.8085" h="0"/>
+			<spot x="1548.6801" y="355.3476" z="198.7891" h="0"/>
+			<spot x="1585.3311" y="372.1372" z="199.0776" h="0"/>
+			<spot x="1579.1322" y="364.9623" z="198.9338" h="0"/>
+		</spawn>
+		<!-- Volcanic Cyclops -->
+		<spawn npc_id="219095" respawn_time="295">
+			<spot x="1547.9806" y="385.589" z="205.3716" h="60"/>
+			<spot x="1574.84" y="377.7373" z="204.2363" h="0"/>
+			<spot x="1573.4233" y="342.6342" z="205.0812" h="30"/>
+		</spawn>
+		<!-- Gran Volcan -->
+		<spawn npc_id="219096" respawn_time="295">
+			<spot x="1564.4677" y="364.2271" z="203.7829" h="0"/>
+		</spawn>
+		<!-- Ruins Needletooth -->
+		<spawn npc_id="219097" respawn_time="295">
+			<spot x="1810.6987" y="1176.5928" z="218.4106" h="90"/>
+			<spot x="1850.7114" y="1148.538" z="218.4786" h="90"/>
+		</spawn>
+		<!-- Shock Aether -->
+		<spawn npc_id="219098" respawn_time="295">
+			<spot x="495.2348" y="1768.7341" z="176.5306" h="0"/>
+			<spot x="494.3278" y="1802.4974" z="162.6689" h="0"/>
+			<spot x="538.1978" y="1778.9984" z="157.7597" h="0"/>
+			<spot x="495.2589" y="1759.1063" z="162.843" h="0"/>
+			<spot x="481.4114" y="1800.0477" z="148.9378" h="0"/>
+			<spot x="495.2348" y="1791.5541" z="176.5306" h="0"/>
+			<spot x="515.2239" y="1780.2656" z="175.9438" h="0"/>
+			<spot x="450.6126" y="1782.3124" z="157.7597" h="0"/>
+			<spot x="515.8977" y="1780.5023" z="152.4728" h="0"/>
+			<spot x="481.4114" y="1760.4656" z="148.9378" h="0"/>
+			<spot x="472.5491" y="1780.5325" z="151.8221" h="0"/>
+			<spot x="473.7124" y="1780.2981" z="175.9438" h="0"/>
+		</spawn>
+		<!-- Aether Explosion -->
+		<spawn npc_id="219099" respawn_time="295">
+			<spot x="484.7343" y="1762.1692" z="153.1951" h="0"/>
+			<spot x="475.9515" y="1761.9174" z="138.4368" h="0"/>
+			<spot x="504.3533" y="1776.132" z="176.1036" h="0"/>
+			<spot x="520.1926" y="1799.5516" z="178.6339" h="0"/>
+			<spot x="537.249" y="1793.4799" z="157.7597" h="0"/>
+			<spot x="466.8595" y="1762.2043" z="176.6272" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

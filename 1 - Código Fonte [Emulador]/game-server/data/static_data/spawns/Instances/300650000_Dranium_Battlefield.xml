@@ -1,84 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300650000">
-		<!-- Siel's Energy Pack -->
+		<!-- NPC_800534 -->
 		<spawn npc_id="800534" respawn_time="295">
 			<spot x="483.045" y="327.2818" z="265.375" h="0"/>
 			<spot x="497.9242" y="720.6047" z="269" h="0"/>
+			<spot x="483.52" y="327.44" z="266.79" h="0"/>
+			<spot x="498.4" y="720.76" z="270.16" h="0"/>
+		</spawn>
+		<!-- Red Team Dranium Battlefield Legate -->
+		<spawn npc_id="801584" respawn_time="295">
+			<spot x="697.86" y="694.87" z="263.03" h="0"/>
+			<spot x="297.56" y="356.81" z="258.95" h="0"/>
+			<spot x="689.14" y="363.3" z="257.96" h="0"/>
+			<spot x="303.68" y="701.01" z="258.64" h="0"/>
+		</spawn>
+		<!-- Red Team Dranium Battle Searcher -->
+		<spawn npc_id="801585" respawn_time="295">
+			<spot x="658.52" y="368.88" z="263.55" h="0"/>
+			<spot x="337.7" y="679.88" z="263.98" h="0"/>
+			<spot x="327.81" y="364.69" z="264.44" h="0"/>
+			<spot x="668.08" y="702.2" z="263.95" h="0"/>
+		</spawn>
+		<!-- Red Team Dranium Battle Scout -->
+		<spawn npc_id="801586" respawn_time="295">
+			<spot x="702.03" y="345.59" z="260.83" h="0"/>
+			<spot x="702.08" y="667.18" z="266.57" h="0"/>
+			<spot x="280.66" y="350.46" z="262.45" h="0"/>
+			<spot x="291.61" y="670.76" z="262.22" h="0"/>
+		</spawn>
+		<!-- Red Team Dranium Battle Combat Mage -->
+		<spawn npc_id="801587" respawn_time="295">
+			<spot x="272.89" y="702.84" z="264.73" h="0"/>
+			<spot x="707.8" y="389.8" z="264.4" h="0"/>
+			<spot x="287.98" y="388.22" z="264.43" h="0"/>
+			<spot x="723.76" y="700.61" z="266.79" h="0"/>
+		</spawn>
+		<!-- Red Team Dranium Battle General -->
+		<spawn npc_id="801588" respawn_time="295">
+			<spot x="894.059" y="509.1761" z="269.1459" h="60"/>
+			<spot x="893.84" y="509.03" z="269.15" h="0"/>
+		</spawn>
+		<!-- Blue Team Dranium Battlefield Legate -->
+		<spawn npc_id="801589" respawn_time="295">
+			<spot x="697.918" y="695.1094" z="263.0307" h="30"/>
+			<spot x="697.86" y="694.87" z="263.03" h="0"/>
+			<spot x="297.56" y="356.81" z="258.95" h="0"/>
+			<spot x="689.14" y="363.3" z="257.96" h="0"/>
+			<spot x="303.68" y="701.01" z="258.64" h="0"/>
+		</spawn>
+		<!-- Blue Team Dranium Battle Searcher -->
+		<spawn npc_id="801590" respawn_time="295">
+			<spot x="668.1368" y="702.442" z="263.9464" h="0"/>
+			<spot x="658.5831" y="369.1224" z="263.5509" h="0"/>
+			<spot x="327.8695" y="364.9293" z="264.4448" h="0"/>
+			<spot x="658.52" y="368.88" z="263.55" h="0"/>
+			<spot x="337.7" y="679.88" z="263.98" h="0"/>
+			<spot x="327.81" y="364.69" z="264.44" h="0"/>
+			<spot x="668.08" y="702.2" z="263.95" h="0"/>
+		</spawn>
+		<!-- Blue Team Dranium Battle Scout -->
+		<spawn npc_id="801591" respawn_time="295">
+			<spot x="263.8222" y="358.0331" z="264.9811" h="60"/>
+			<spot x="714.9758" y="341.7874" z="263.3849" h="60"/>
+			<spot x="697.9276" y="681.4401" z="263.6662" h="60"/>
+			<spot x="303.7506" y="687.5871" z="259.4437" h="60"/>
+			<spot x="706.348" y="653.4073" z="269.4753" h="60"/>
+			<spot x="297.623" y="343.3806" z="259.9284" h="60"/>
+			<spot x="702.03" y="345.59" z="260.83" h="0"/>
+			<spot x="702.08" y="667.18" z="266.57" h="0"/>
+			<spot x="280.66" y="350.46" z="262.45" h="0"/>
+			<spot x="291.61" y="670.76" z="262.22" h="0"/>
+		</spawn>
+		<!-- Blue Team Dranium Battle Combat Mage -->
+		<spawn npc_id="801592" respawn_time="295">
+			<spot x="272.9516" y="703.0819" z="264.7266" h="60"/>
+			<spot x="723.8157" y="700.8568" z="266.7919" h="60"/>
+			<spot x="272.89" y="702.84" z="264.73" h="0"/>
+			<spot x="707.8" y="389.8" z="264.4" h="0"/>
+			<spot x="287.98" y="388.22" z="264.43" h="0"/>
+			<spot x="723.76" y="700.61" z="266.79" h="0"/>
+		</spawn>
+		<!-- Blue Team Dranium Battle General -->
+		<spawn npc_id="801593" respawn_time="295">
+			<spot x="99.4804" y="533.1786" z="270.983" h="0"/>
+			<spot x="99.26" y="533.03" z="270.98" h="0"/>
+		</spawn>
+		<!-- NPC_801630 -->
+		<spawn npc_id="801630" respawn_time="295">
+			<spot x="695.8715" y="688.7215" z="259.0971" h="0"/>
 		</spawn>
 		<!-- Battlefield Outpost Teleporter -->
 		<spawn npc_id="801641" respawn_time="295">
 			<spot x="832.4709" y="269.889" z="269.6358" h="0"/>
 			<spot x="710.6668" y="268.0829" z="293.3523" h="0"/>
+			<spot x="710.64" y="267.87" z="293.35" h="0"/>
+			<spot x="832.44" y="269.68" z="269.64" h="0"/>
 		</spawn>
 		<!-- Battlefield Outpost Teleporter -->
 		<spawn npc_id="801643" respawn_time="295">
 			<spot x="151.2207" y="761.7479" z="268.3494" h="0"/>
 			<spot x="276.4325" y="775.5234" z="293.9822" h="0"/>
+			<spot x="276.4" y="775.31" z="293.98" h="0"/>
+			<spot x="151.19" y="761.54" z="268.35" h="0"/>
 		</spawn>
 		<!-- Dranium Processing Camp -->
 		<spawn npc_id="801665" respawn_time="295">
 			<spot x="498.2789" y="720.4695" z="269" h="0"/>
 			<spot x="483.0267" y="327.1716" z="265.375" h="0"/>
 			<spot x="483.0267" y="327.1716" z="265.375" h="0"/>
+			<spot x="483.5" y="327.33" z="267.25" h="0"/>
+			<spot x="498.75" y="720.62" z="271.3" h="0"/>
 		</spawn>
 		<!-- Riana -->
 		<spawn npc_id="801674" respawn_time="295">
 			<spot x="831.2964" y="253.4287" z="270.7834" h="0"/>
+			<spot x="831.19" y="253.39" z="270.78" h="0"/>
 		</spawn>
 		<!-- Ellix -->
 		<spawn npc_id="801675" respawn_time="295">
 			<spot x="157.4765" y="777.3177" z="267.3519" h="0"/>
+			<spot x="157.37" y="777.28" z="267.35" h="0"/>
 		</spawn>
-		<!-- Archon Prefect's Sabatons -->
+		<!-- NPC_801718 -->
 		<spawn npc_id="801718" respawn_time="295">
 			<spot x="183.5444" y="531.7567" z="262.6465" h="0"/>
 			<spot x="809.2817" y="509.3828" z="264.7391" h="0"/>
+			<spot x="183.37" y="531.78" z="262.65" h="0"/>
+			<spot x="809.11" y="509.4" z="264.74" h="0"/>
+		</spawn>
+		<!-- NPC_801746 -->
+		<spawn npc_id="801746" respawn_time="295">
+			<spot x="471.1499" y="518.9774" z="248.9655" h="0"/>
+		</spawn>
+		<!-- Red Team Outpost Legate -->
+		<spawn npc_id="801777" respawn_time="295">
+			<spot x="825.1377" y="515.3539" z="267.5365" h="60"/>
+			<spot x="851.8952" y="488.8963" z="269.1459" h="60"/>
+			<spot x="825.3178" y="502.3668" z="267.7394" h="60"/>
+			<spot x="876.607" y="524.335" z="267.1459" h="60"/>
+			<spot x="851.607" y="529.335" z="269.1459" h="60"/>
+			<spot x="850.74" y="513.2" z="268.14" h="0"/>
+		</spawn>
+		<!-- Red Team Outpost Searcher -->
+		<spawn npc_id="801778" respawn_time="295">
+			<spot x="851.5043" y="533.6694" z="269.1459" h="60"/>
+			<spot x="851.9393" y="484.1431" z="269.1459" h="60"/>
+			<spot x="876.9393" y="492.1431" z="267.1459" h="60"/>
+			<spot x="857.56" y="508.81" z="268.48" h="0"/>
+		</spawn>
+		<!-- Red Team Outpost Scout -->
+		<spawn npc_id="801779" respawn_time="295">
+			<spot x="857.4559" y="520.0548" z="269.1459" h="60"/>
+			<spot x="857.23" y="519.91" z="269.15" h="0"/>
+		</spawn>
+		<!-- Red Team Outpost Battle Mage -->
+		<spawn npc_id="801780" respawn_time="295">
+			<spot x="857.9133" y="498.2054" z="269.1459" h="60"/>
+			<spot x="857.69" y="498.06" z="269.15" h="0"/>
+		</spawn>
+		<!-- Blue Team Outpost Legate -->
+		<spawn npc_id="801781" respawn_time="295">
+			<spot x="166.9481" y="526.3206" z="266.0775" h="0"/>
+			<spot x="167.2817" y="539.7264" z="265.7438" h="0"/>
+			<spot x="114.5296" y="516.8251" z="265.2253" h="0"/>
+			<spot x="142.4265" y="512.1251" z="271.2253" h="0"/>
+			<spot x="142.5296" y="553.8251" z="270.2253" h="0"/>
+			<spot x="140.68" y="528.13" z="267.7" h="0"/>
+		</spawn>
+		<!-- Blue Team Outpost Searcher -->
+		<spawn npc_id="801782" respawn_time="295">
+			<spot x="134.7292" y="545.7618" z="270.2253" h="0"/>
+			<spot x="134.8375" y="519.8154" z="271.2253" h="0"/>
+			<spot x="114.8375" y="548.8154" z="265.2253" h="0"/>
+			<spot x="124.62" y="534.17" z="268.89" h="0"/>
+		</spawn>
+		<!-- Blue Team Outpost Scout -->
+		<spawn npc_id="801783" respawn_time="295">
+			<spot x="142.6746" y="557.6157" z="271.2253" h="0"/>
+			<spot x="142.45" y="557.47" z="271.23" h="0"/>
+		</spawn>
+		<!-- Blue Team Outpost Battle Mage -->
+		<spawn npc_id="801784" respawn_time="295">
+			<spot x="142.5854" y="508.0683" z="271.2253" h="30"/>
+			<spot x="142.36" y="507.92" z="271.23" h="0"/>
 		</spawn>
 		<!-- Massive Dranium Ore -->
 		<spawn npc_id="801785" respawn_time="295">
 			<spot x="472.7664" y="513.8498" z="595.06" h="0"/>
 			<spot x="472.7664" y="513.8498" z="595.06" h="0"/>
+			<spot x="473.24" y="514.01" z="594.77" h="0"/>
 		</spawn>
-		<!-- Archon Prefect's Sash -->
+		<!-- NPC_801790 -->
 		<spawn npc_id="801790" respawn_time="295">
 			<spot x="421.7217" y="492.46" z="254.4599" h="0"/>
+			<spot x="422.11" y="492.28" z="255.89" h="0"/>
 		</spawn>
-		<!-- Guardian Battle Commander's Corundum Earring -->
+		<!-- NPC_801791 -->
 		<spawn npc_id="801791" respawn_time="295">
 			<spot x="421.6788" y="492.6606" z="259.7542" h="0"/>
+			<spot x="422.06" y="492.48" z="259.75" h="0"/>
 		</spawn>
-		<!-- Guardian Battle Commander's Turquoise Earring -->
+		<!-- NPC_801792 -->
 		<spawn npc_id="801792" respawn_time="295">
 			<spot x="422.315" y="492.6006" z="261.5341" h="0"/>
 			<spot x="422.315" y="492.6006" z="261.5341" h="0"/>
+			<spot x="422.7" y="492.42" z="261.96" h="0"/>
 		</spawn>
-		<!-- Archon Battle Commander's Corundum Earring -->
+		<!-- NPC_801793 -->
 		<spawn npc_id="801793" respawn_time="295">
 			<spot x="421.1397" y="492.5157" z="262.3854" h="0"/>
 			<spot x="421.1397" y="492.5157" z="262.3854" h="0"/>
+			<spot x="421.53" y="492.34" z="261.96" h="0"/>
 		</spawn>
-		<!-- Archon Battle Commander's Turquoise Earring -->
+		<!-- NPC_801794 -->
 		<spawn npc_id="801794" respawn_time="295">
 			<spot x="421.9839" y="492.6035" z="263.8171" h="0"/>
+			<spot x="422.37" y="492.43" z="263.82" h="0"/>
 		</spawn>
-		<!-- Guardian Battle Commander's Corundum Necklace -->
+		<!-- NPC_801795 -->
 		<spawn npc_id="801795" respawn_time="295">
 			<spot x="421.4706" y="500.9895" z="253.875" h="0"/>
+			<spot x="421.86" y="500.81" z="255.26" h="0"/>
 		</spawn>
-		<!-- Guardian Battle Commander's Turquoise Necklace -->
+		<!-- NPC_801796 -->
 		<spawn npc_id="801796" respawn_time="295">
 			<spot x="421.1664" y="501.1013" z="253.875" h="0"/>
 			<spot x="421.1664" y="501.1013" z="253.875" h="0"/>
+			<spot x="421.55" y="500.93" z="255.74" h="0"/>
 		</spawn>
-		<!-- Archon Battle Commander's Corundum Necklace -->
+		<!-- NPC_801797 -->
 		<spawn npc_id="801797" respawn_time="295">
 			<spot x="421.1505" y="500.8489" z="258.0429" h="0"/>
+			<spot x="421.54" y="500.67" z="258.04" h="0"/>
 		</spawn>
-		<!-- Archon Battle Commander's Turquoise Necklace -->
+		<!-- NPC_801798 -->
 		<spawn npc_id="801798" respawn_time="295">
 			<spot x="420.9509" y="500.7882" z="259.0014" h="0"/>
 			<spot x="420.9509" y="500.7882" z="259.0014" h="0"/>
+			<spot x="421.34" y="500.61" z="258.52" h="0"/>
 		</spawn>
 		<!-- Battlefield Outpost Teleporter -->
 		<spawn npc_id="801800" respawn_time="295">

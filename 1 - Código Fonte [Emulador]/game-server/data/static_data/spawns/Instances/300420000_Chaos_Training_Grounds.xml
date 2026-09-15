@@ -1,494 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300420000">
-		<!-- Acid Sprayer -->
-		<spawn npc_id="207047" respawn_time="30">
-			<spot x="1874.5068" y="1218.3684" z="271.531" h="60" aerial_spawn="true"/>
-			<spot x="1881.2476" y="1224.7767" z="271.244" aerial_spawn="true"/>
-			<spot x="1979.8861" y="1191.1479" z="274.541" h="90" aerial_spawn="true"/>
-			<spot x="1984.6962" y="1195.3582" z="274.724" h="30" aerial_spawn="true"/>
-		</spawn>
-		<!-- Aether Vortex -->
-		<spawn npc_id="701183" respawn_time="30" difficult_id="1">
-			<spot x="659.3111" y="1768.9792" z="201.500" h="90" aerial_spawn="true"/>
-			<spot x="688.0611" y="1798.2292" z="198.500" h="110" aerial_spawn="true"/>
-			<spot x="693.0611" y="1752.4792" z="186.750" h="50" aerial_spawn="true"/>
-		</spawn>
-		<!-- Aether Vortex -->
-		<spawn npc_id="701197" respawn_time="30" difficult_id="2">
-			<spot x="659.3111" y="1768.9792" z="201.500" h="90" aerial_spawn="true"/>
-			<spot x="688.0611" y="1798.2292" z="198.500" h="110" aerial_spawn="true"/>
-			<spot x="693.0611" y="1752.4792" z="186.750" h="50" aerial_spawn="true"/>
-		</spawn>
-		<!-- Aether Vortex -->
-		<spawn npc_id="701211" respawn_time="30" difficult_id="3">
-			<spot x="659.3111" y="1768.9792" z="201.500" h="90" aerial_spawn="true"/>
-			<spot x="688.0611" y="1798.2292" z="198.500" h="110" aerial_spawn="true"/>
-			<spot x="693.0611" y="1752.4792" z="186.75" h="0"/>
-		</spawn>
-		<!-- Black Claw Scratcher -->
-		<spawn npc_id="218683" respawn_time="30" difficult_id="1">
-			<spot x="1328.881" y="1039.994" z="339.766"/>
-			<spot x="1366.265" y="1077.497" z="339.479"/>
-		</spawn>
-		<!-- Black Claw Scratcher -->
-		<spawn npc_id="218696" respawn_time="30" difficult_id="2">
-			<spot x="1328.881" y="1039.994" z="339.766"/>
-			<spot x="1366.265" y="1077.497" z="339.479"/>
-		</spawn>
-		<!-- Black Claw Scratcher -->
-		<spawn npc_id="218709" respawn_time="30" difficult_id="3">
-			<spot x="1328.881" y="1039.994" z="339.766"/>
-			<spot x="1366.265" y="1077.497" z="339.479"/>
-		</spawn>
-		<!-- Blessed Relics -->
-		<spawn npc_id="701317" respawn_time="45" difficult_id="1">
-			<spot x="663.5542" y="266.000" z="512.847"/>
-		</spawn>
-		<!-- Blessed Relics -->
-		<spawn npc_id="701318" respawn_time="45" difficult_id="2">
-			<spot x="663.5542" y="266.000" z="512.847"/>
-		</spawn>
-		<!-- Blessed Relics -->
-		<spawn npc_id="701319" respawn_time="45" difficult_id="3">
-			<spot x="663.5542" y="266.000" z="512.847"/>
-		</spawn>
-		<!-- Casus Manor Butler -->
-		<spawn npc_id="218701" respawn_time="60" difficult_id="1">
-			<spot x="1916.140" y="963.972" z="230.412" h="118"/>
-			<spot x="1932.114" y="946.354" z="230.350"/>
-			<spot x="1966.370" y="946.332" z="230.350" h="60"/>
-			<spot x="1970.082" y="973.124" z="230.483" h="30"/>
-		</spawn>
-		<!-- Casus Manor Butler -->
-		<spawn npc_id="218688" respawn_time="60" difficult_id="2">
-			<spot x="1916.140" y="963.972" z="230.412" h="118"/>
-			<spot x="1932.114" y="946.354" z="230.350"/>
-			<spot x="1966.370" y="946.332" z="230.350" h="60"/>
-			<spot x="1970.082" y="973.124" z="230.483" h="30"/>
-		</spawn>
-		<!-- Casus Manor Butler -->
-		<spawn npc_id="218714" respawn_time="60" difficult_id="3">
-			<spot x="1916.140" y="963.972" z="230.412" h="118"/>
-			<spot x="1932.114" y="946.354" z="230.350"/>
-			<spot x="1966.370" y="946.332" z="230.350" h="60"/>
-			<spot x="1970.082" y="973.124" z="230.483" h="30"/>
-		</spawn>
-		<!-- Casus Manor Guard -->
-		<spawn npc_id="218685" respawn_time="105" difficult_id="1">
-			<spot x="1942.478" y="927.320" z="222.562" h="30"/>
-			<spot x="1942.479" y="964.353" z="222.562" h="90"/>
-			<spot x="1949.626" y="927.296" z="222.562" h="30"/>
-			<spot x="1949.627" y="964.211" z="222.562" h="90"/>
-			<spot x="1956.887" y="927.213" z="222.562" h="30"/>
-			<spot x="1956.889" y="964.104" z="222.562" h="90"/>
-		</spawn>
-		<!-- Casus Manor Guard -->
-		<spawn npc_id="218698" respawn_time="105" difficult_id="2">
-			<spot x="1942.478" y="927.320" z="222.562" h="30"/>
-			<spot x="1942.479" y="964.353" z="222.562" h="90"/>
-			<spot x="1949.626" y="927.296" z="222.562" h="30"/>
-			<spot x="1949.627" y="964.211" z="222.562" h="90"/>
-			<spot x="1956.887" y="927.213" z="222.562" h="30"/>
-			<spot x="1956.889" y="964.104" z="222.562" h="90"/>
-		</spawn>
-		<!-- Casus Manor Guard -->
-		<spawn npc_id="218711" respawn_time="105" difficult_id="3">
-			<spot x="1942.478" y="927.320" z="222.562" h="30"/>
-			<spot x="1942.479" y="964.353" z="222.562" h="90"/>
-			<spot x="1949.626" y="927.296" z="222.562" h="30"/>
-			<spot x="1949.627" y="964.211" z="222.562" h="90"/>
-			<spot x="1956.887" y="927.213" z="222.562" h="30"/>
-			<spot x="1956.889" y="964.104" z="222.562" h="90"/>
-		</spawn>
-		<!-- Casus Manor Maid -->
-		<spawn npc_id="218687" respawn_time="90" difficult_id="1">
-			<spot x="1947.697" y="944.159" z="223.827" h="31"/>
-			<spot x="1947.761" y="941.574" z="223.827" h="30"/>
-			<spot x="1950.780" y="946.527" z="223.827" h="91"/>
-			<spot x="1950.892" y="950.601" z="223.827" h="90"/>
-		</spawn>
-		<!-- Casus Manor Maid -->
-		<spawn npc_id="218700" respawn_time="90" difficult_id="2">
-			<spot x="1947.697" y="944.159" z="223.827" h="31"/>
-			<spot x="1947.761" y="941.574" z="223.827" h="30"/>
-			<spot x="1950.780" y="946.527" z="223.827" h="91"/>
-			<spot x="1950.892" y="950.601" z="223.827" h="90"/>
-		</spawn>
-		<!-- Casus Manor Maid -->
-		<spawn npc_id="218713" respawn_time="90" difficult_id="3">
-			<spot x="1947.761" y="941.574" z="223.827" h="30"/>
-			<spot x="1947.761" y="941.574" z="223.827" h="30"/>
-			<spot x="1950.892" y="950.601" z="223.827" h="90"/>
-			<spot x="1950.892" y="950.601" z="223.827" h="90"/>
-		</spawn>
-		<!-- Casus Manor Maidservant -->
-		<spawn npc_id="218686" respawn_time="105" difficult_id="1">
-			<spot x="1896.031" y="985.247" z="230.569" h="30"/>
-			<spot x="1903.003" y="963.648" z="230.338"/>
-			<spot x="1908.240" y="994.783" z="230.542" h="30"/>
-			<spot x="1922.002" y="963.132" z="230.377"/>
-			<spot x="1922.539" y="932.241" z="230.338" h="90"/>
-			<spot x="1926.180" y="927.003" z="230.344" h="115"/>
-			<spot x="1970.003" y="968.644" z="230.338" h="90"/>
-			<spot x="1976.382" y="963.869" z="230.338" h="51"/>
-			<spot x="1989.953" y="928.174" z="230.392"/>
-			<spot x="1991.136" y="898.990" z="230.543" h="30"/>
-			<spot x="2001.787" y="909.296" z="230.543" h="30"/>
-		</spawn>
-		<!-- Casus Manor Maidservant -->
-		<spawn npc_id="218699" respawn_time="105" difficult_id="2">
-			<spot x="1896.031" y="985.247" z="230.569" h="30"/>
-			<spot x="1903.003" y="963.648" z="230.338"/>
-			<spot x="1908.240" y="994.783" z="230.542" h="30"/>
-			<spot x="1922.002" y="963.132" z="230.377"/>
-			<spot x="1922.539" y="932.241" z="230.338" h="90"/>
-			<spot x="1926.180" y="927.003" z="230.344" h="115"/>
-			<spot x="1970.003" y="968.644" z="230.338" h="90"/>
-			<spot x="1976.382" y="963.869" z="230.338" h="51"/>
-			<spot x="1989.953" y="928.174" z="230.392"/>
-			<spot x="1991.136" y="898.990" z="230.543" h="30"/>
-			<spot x="2001.787" y="909.296" z="230.543" h="30"/>
-		</spawn>
-		<!-- Casus Manor Maidservant -->
-		<spawn npc_id="218712" respawn_time="105" difficult_id="3">
-			<spot x="1889.077" y="1004.081" z="230.542" h="37"/>
-			<spot x="1891.694" y="1003.782" z="230.542" h="53"/>
-			<spot x="1923.507" y="929.329" z="230.338" h="34"/>
-			<spot x="1969.389" y="928.722" z="230.338"/>
-			<spot x="1970.003" y="968.644" z="230.338" h="90"/>
-			<spot x="1991.136" y="898.990" z="230.543" h="30"/>
-			<spot x="2001.787" y="909.296" z="230.543" h="30"/>
-		</spawn>
-		<!-- Casus Manor Matron -->
-		<spawn npc_id="218806" respawn_time="90" difficult_id="1">
-			<spot x="1946.844" y="946.139" z="223.827"/>
-		</spawn>
-		<!-- Casus Manor Matron -->
-		<spawn npc_id="218807" respawn_time="90" difficult_id="2">
-			<spot x="1946.844" y="946.139" z="223.827"/>
-		</spawn>
-		<!-- Casus Manor Matron -->
-		<spawn npc_id="218808" respawn_time="90" difficult_id="3">
-			<spot x="1945.232" y="946.257" z="223.827" h="90"/>
-		</spawn>
-		<!-- Casus Manor Noble -->
-		<spawn npc_id="218689" respawn_time="60" difficult_id="1">
-			<spot x="1899.863" y="978.339" z="230.542" h="51"/>
-			<spot x="1908.593" y="1000.789" z="230.542" h="30"/>
-			<spot x="1997.199" y="915.206" z="230.543" h="5"/>
-		</spawn>
-		<!-- Casus Manor Noble -->
-		<spawn npc_id="218702" respawn_time="60" difficult_id="2">
-			<spot x="1899.863" y="978.339" z="230.542" h="51"/>
-			<spot x="1908.593" y="1000.789" z="230.542" h="30"/>
-			<spot x="1997.199" y="915.206" z="230.543" h="5"/>
-		</spawn>
-		<!-- Casus Manor Noble -->
-		<spawn npc_id="218715" respawn_time="60" difficult_id="3">
-			<spot x="1908.593" y="1000.789" z="230.542" h="30"/>
-			<spot x="1989.704" y="892.913" z="230.543" h="30"/>
-			<spot x="1989.704" y="892.913" z="230.543" h="30"/>
-		</spawn>
-		<!-- Corrupt Casus -->
-		<spawn npc_id="218691" respawn_time="30" difficult_id="1">
-			<spot x="1960.953" y="1003.345" z="230.387" h="90"/>
-		</spawn>
-		<!-- Corrupt Casus -->
-		<spawn npc_id="218704" respawn_time="30" difficult_id="2">
-			<spot x="1960.953" y="1003.345" z="230.387" h="90"/>
-		</spawn>
-		<!-- Corrupt Casus -->
-		<spawn npc_id="218717" respawn_time="105" difficult_id="3">
-			<spot x="1964.273" y="1000.202" z="230.391" h="113"/>
-		</spawn>
-		<!-- Crater -->
-		<spawn npc_id="701180" respawn_time="30" difficult_id="1">
-			<spot x="652.6998" y="1800.2784" z="172.753" aerial_spawn="true"/>
-			<spot x="667.3234" y="1809.099" z="156.223" aerial_spawn="true"/>
-			<spot x="700.406" y="1755.928" z="162.541"/>
-		</spawn>
-		<!-- Crater -->
-		<spawn npc_id="701194" respawn_time="30" difficult_id="2">
-			<spot x="652.6998" y="1800.2784" z="172.753" aerial_spawn="true"/>
-			<spot x="667.3234" y="1809.099" z="156.223" aerial_spawn="true"/>
-			<spot x="700.4062" y="1755.9277" z="162.541" aerial_spawn="true"/>
-		</spawn>
-		<!-- Crater -->
-		<spawn npc_id="701208" respawn_time="30" difficult_id="3">
-			<spot x="652.6998" y="1800.2784" z="172.753" aerial_spawn="true"/>
-			<spot x="667.3234" y="1809.099" z="156.223" aerial_spawn="true"/>
-			<spot x="700.406" y="1755.928" z="162.541"/>
-		</spawn>
-		<!-- Cursed Relics -->
-		<spawn npc_id="701181" respawn_time="105" difficult_id="1">
-			<spot x="674.5168" y="1778.428" z="204.693" aerial_spawn="true"/>
-		</spawn>
-		<!-- Cursed Relics -->
-		<spawn npc_id="701195" respawn_time="105" difficult_id="2">
-			<spot x="674.5168" y="1778.428" z="204.693" aerial_spawn="true"/>
-		</spawn>
-		<!-- Cursed Relics -->
-		<spawn npc_id="701209" respawn_time="105" difficult_id="3">
-			<spot x="674.5168" y="1778.428" z="204.693" aerial_spawn="true"/>
-		</spawn>
-		<!-- Flame Loop -->
-		<spawn npc_id="701184" respawn_time="30" difficult_id="1">
-			<spot x="664.16" y="1761.9331" z="171.504" h="40" aerial_spawn="true"/>
-			<spot x="674.8413" y="1793.0646" z="150.964" h="15" aerial_spawn="true"/>
-			<spot x="688.4103" y="1769.6112" z="150.964" aerial_spawn="true"/>
-		</spawn>
-		<!-- Flame Loop -->
-		<spawn npc_id="701198" respawn_time="30" difficult_id="2">
-			<spot x="664.16" y="1761.9331" z="171.504" h="40" aerial_spawn="true"/>
-			<spot x="674.8413" y="1793.0646" z="150.964" h="15" aerial_spawn="true"/>
-			<spot x="688.4103" y="1769.6112" z="150.964" aerial_spawn="true"/>
-		</spawn>
-		<!-- Flame Loop -->
-		<spawn npc_id="701212" respawn_time="30" difficult_id="3">
-			<spot x="664.16" y="1761.9331" z="171.504" h="40" aerial_spawn="true"/>
-			<spot x="674.8413" y="1793.0646" z="150.964" h="15" aerial_spawn="true"/>
-			<spot x="688.4103" y="1769.6112" z="150.964" aerial_spawn="true"/>
-		</spawn>
-		<!-- Flame Thrower -->
-		<spawn npc_id="701175" respawn_time="30">
-			<spot x="1797.0779" y="1727.1171" z="302.436" h="5" aerial_spawn="true"/>
-			<spot x="1808.1569" y="1702.7572" z="302.436" h="15" aerial_spawn="true"/>
-		</spawn>
-		<!-- Flame Thrower -->
-		<spawn npc_id="701176" respawn_time="30">
-			<spot x="1812.6342" y="1767.8353" z="302.436" h="103" aerial_spawn="true"/>
-			<spot x="1837.0978" y="1778.9443" z="302.436" h="93" aerial_spawn="true"/>
-		</spawn>
-		<!-- Flame Thrower -->
-		<spawn npc_id="701177" respawn_time="30">
-			<spot x="1848.6361" y="1686.8569" z="302.436" h="31" aerial_spawn="true"/>
-			<spot x="1873.1646" y="1697.8634" z="302.428" h="45" aerial_spawn="true"/>
-		</spawn>
-		<!-- Flame Thrower -->
-		<spawn npc_id="701178" respawn_time="30">
-			<spot x="1877.6713" y="1763.0237" z="302.436" h="75" aerial_spawn="true"/>
-			<spot x="1888.8634" y="1738.5781" z="302.436" h="65" aerial_spawn="true"/>
-		</spawn>
-		<!-- Flame Thrower -->
-		<spawn npc_id="701189" respawn_time="30">
-			<spot x="1796.9579" y="1727.2123" z="300.418" h="5"/>
-			<spot x="1807.45" y="1702.28" z="300.426" h="15"/>
-		</spawn>
-		<!-- Flame Thrower -->
-		<spawn npc_id="701190" respawn_time="30">
-			<spot x="1812.4598" y="1767.8878" z="300.420" h="103"/>
-			<spot x="1837.4291" y="1778.8398" z="300.419" h="93"/>
-		</spawn>
-		<!-- Flame Thrower -->
-		<spawn npc_id="701191" respawn_time="30">
-			<spot x="1848.65" y="1686.72" z="300.422" h="31"/>
-			<spot x="1873.48" y="1697.42" z="300.427" h="45"/>
-		</spawn>
-		<!-- Flame Thrower -->
-		<spawn npc_id="701192" respawn_time="30">
-			<spot x="1877.92" y="1763.2" z="300.420" h="75"/>
-			<spot x="1889.1896" y="1738.5748" z="300.425" h="65"/>
-		</spawn>
-		<!-- Lava Floor -->
-		<spawn npc_id="701179" respawn_time="30" difficult_id="1">
-			<spot x="628.601" y="1775.8153" z="145.500" aerial_spawn="true"/>
-			<spot x="651.785" y="1776.684" z="145.500" aerial_spawn="true"/>
-			<spot x="664.0611" y="1766.2292" z="145.500" aerial_spawn="true"/>
-			<spot x="682.85" y="1747.5546" z="145.500" aerial_spawn="true"/>
-			<spot x="686.5842" y="1809.775" z="145.500" aerial_spawn="true"/>
-			<spot x="688.3028" y="1794.0865" z="145.750" aerial_spawn="true"/>
-			<spot x="701.3496" y="1777.5194" z="145.750" aerial_spawn="true"/>
-			<spot x="715.9991" y="1777.7321" z="145.750" aerial_spawn="true"/>
-		</spawn>
-		<!-- Lava Floor -->
-		<spawn npc_id="701193" respawn_time="30" difficult_id="2">
-			<spot x="628.601" y="1775.8153" z="145.500" aerial_spawn="true"/>
-			<spot x="651.785" y="1776.684" z="145.500" aerial_spawn="true"/>
-			<spot x="664.0611" y="1766.2292" z="145.500" aerial_spawn="true"/>
-			<spot x="682.85" y="1747.5546" z="145.500" aerial_spawn="true"/>
-			<spot x="686.5842" y="1809.775" z="145.500" aerial_spawn="true"/>
-			<spot x="688.3028" y="1794.0865" z="145.750" aerial_spawn="true"/>
-			<spot x="701.3496" y="1777.5194" z="145.750" aerial_spawn="true"/>
-			<spot x="715.9991" y="1777.7321" z="145.750" aerial_spawn="true"/>
-		</spawn>
-		<!-- Lava Floor -->
-		<spawn npc_id="701207" respawn_time="30" difficult_id="3">
-			<spot x="628.601" y="1775.8153" z="145.500" aerial_spawn="true"/>
-			<spot x="651.785" y="1776.684" z="145.500" aerial_spawn="true"/>
-			<spot x="664.0611" y="1766.2292" z="145.500" aerial_spawn="true"/>
-			<spot x="682.85" y="1747.5546" z="145.500" aerial_spawn="true"/>
-			<spot x="686.5842" y="1809.775" z="145.500" aerial_spawn="true"/>
-			<spot x="688.3028" y="1794.0865" z="145.750" aerial_spawn="true"/>
-			<spot x="701.3496" y="1777.5194" z="145.750" aerial_spawn="true"/>
-			<spot x="715.9991" y="1777.7321" z="145.750" aerial_spawn="true"/>
-		</spawn>
-		<!-- MuMu Rake Gatherer -->
-		<spawn npc_id="218682" respawn_time="105" difficult_id="1">
-			<spot x="1313.593" y="1056.350" z="337.400"/>
-			<spot x="1314.494" y="1093.471" z="337.500"/>
-			<spot x="1314.830" y="1098.899" z="337.500"/>
-			<spot x="1344.862" y="1094.798" z="337.625"/>
-			<spot x="1345.415" y="1060.410" z="337.154"/>
-			<spot x="1347.901" y="1054.008" z="337.369"/>
-			<spot x="1349.373" y="1096.931" z="337.625"/>
-			<spot x="1352.471" y="1090.433" z="337.625"/>
-			<spot x="1352.883" y="1057.614" z="337.265"/>
-		</spawn>
-		<!-- MuMu Rake Gatherer -->
-		<spawn npc_id="218695" respawn_time="105" difficult_id="2">
-			<spot x="1313.593" y="1056.350" z="337.400"/>
-			<spot x="1314.494" y="1093.471" z="337.500"/>
-			<spot x="1314.830" y="1098.899" z="337.500"/>
-			<spot x="1344.862" y="1094.798" z="337.625"/>
-			<spot x="1345.415" y="1060.410" z="337.154"/>
-			<spot x="1347.901" y="1054.008" z="337.369"/>
-			<spot x="1349.373" y="1096.931" z="337.625"/>
-			<spot x="1352.471" y="1090.433" z="337.625"/>
-			<spot x="1352.883" y="1057.614" z="337.265"/>
-		</spawn>
-		<!-- MuMu Rake Gatherer -->
-		<spawn npc_id="218708" respawn_time="105" difficult_id="3">
-			<spot x="1313.593" y="1056.350" z="337.400"/>
-			<spot x="1314.313" y="1061.943" z="337.499"/>
-			<spot x="1314.494" y="1093.471" z="337.500"/>
-			<spot x="1320.670" y="1094.325" z="337.500"/>
-			<spot x="1345.415" y="1060.410" z="337.154"/>
-			<spot x="1347.901" y="1054.008" z="337.369"/>
-			<spot x="1349.373" y="1096.931" z="337.625"/>
-			<spot x="1351.101" y="1062.350" z="337.306"/>
-			<spot x="1352.471" y="1090.433" z="337.625"/>
-		</spawn>
-		<!-- Mutated Drakan Fighter -->
-		<spawn npc_id="218684" respawn_time="30" difficult_id="1">
-			<spot x="1878.344" y="1233.532" z="269.896" h="91"/>
-			<spot x="1940.458" y="1232.869" z="270.026" h="59"/>
-		</spawn>
-		<!-- Mutated Drakan Fighter -->
-		<spawn npc_id="218697" respawn_time="30" difficult_id="2">
-			<spot x="1878.344" y="1233.532" z="269.896" h="91"/>
-			<spot x="1940.458" y="1232.869" z="270.026" h="59"/>
-		</spawn>
-		<!-- Mutated Drakan Fighter -->
-		<spawn npc_id="218710" respawn_time="30" difficult_id="3">
-			<spot x="1878.344" y="1233.532" z="269.896" h="91"/>
-			<spot x="1940.458" y="1232.869" z="270.026" h="59"/>
-		</spawn>
-		<!-- Pale Carmina -->
-		<spawn npc_id="218690" respawn_time="105" difficult_id="1">
-			<spot x="1927.183" y="869.697" z="231.432" h="30"/>
-		</spawn>
-		<!-- Pale Carmina -->
-		<spawn npc_id="218703" respawn_time="105" difficult_id="2">
-			<spot x="1927.183" y="869.697" z="231.432" h="30"/>
-		</spawn>
-		<!-- Pale Carmina -->
-		<spawn npc_id="218716" respawn_time="105" difficult_id="3">
-			<spot x="1927.183" y="869.697" z="231.432" h="30"/>
-		</spawn>
-		<!-- Plaza Flame Thrower -->
-		<spawn npc_id="701171" respawn_time="30">
-			<spot x="1859.5831" y="1693.7319" z="311.185" h="96"/>
-		</spawn>
-		<!-- Plaza Flame Thrower -->
-		<spawn npc_id="701169" respawn_time="30">
-			<spot x="1803.4758" y="1716.9131" z="311.239" h="68"/>
-		</spawn>
-		<!-- Plaza Flame Thrower -->
-		<spawn npc_id="701172" respawn_time="30">
-			<spot x="1882.8734" y="1749.3282" z="311.195" h="6"/>
-		</spawn>
-		<!-- Plaza Flame Thrower -->
-		<spawn npc_id="701170" respawn_time="30">
-			<spot x="1826.5898" y="1773.0803" z="311.185" h="38"/>
-		</spawn>
-		<!-- Rideable Antiaircraft Gun -->
-		<spawn npc_id="701321" respawn_time="30" difficult_id="1">
-			<spot x="646.7557" y="1777.5199" z="184.750"/>
-		</spawn>
-		<!-- Rideable Antiaircraft Gun -->
-		<spawn npc_id="701322" respawn_time="30" difficult_id="2">
-			<spot x="646.7557" y="1777.5199" z="184.750"/>
-		</spawn>
-		<!-- Rideable Antiaircraft Gun -->
-		<spawn npc_id="701323" respawn_time="30" difficult_id="3">
-			<spot x="646.7557" y="1777.5199" z="184.750"/>
-		</spawn>
-		<!-- Rideable Antiaircraft Gun -->
-		<spawn npc_id="701185" respawn_time="30" difficult_id="1">
-			<spot x="705.6896" y="1777.4969" z="174.598" h="60"/>
-		</spawn>
-		<!-- Rideable Antiaircraft Gun -->
-		<spawn npc_id="701199" respawn_time="30" difficult_id="2">
-			<spot x="705.6896" y="1777.4969" z="174.598" h="60"/>
-		</spawn>
-		<!-- Rideable Antiaircraft Gun -->
-		<spawn npc_id="701213" respawn_time="30" difficult_id="3">
-			<spot x="705.6896" y="1777.4969" z="174.598" h="60"/>
-		</spawn>
-		<!-- Treasure Box -->
-		<spawn npc_id="218788" respawn_time="105">
-			<spot x="1330.460" y="1053.429" z="339.255" h="68"/>
-		</spawn>
-		<!-- Treasure Box -->
-		<spawn npc_id="218783" respawn_time="105">
-			<spot x="1868.005" y="1703.709" z="300.302" h="68"/>
-		</spawn>
-		<!-- Treasure Box -->
-		<spawn npc_id="218809" respawn_time="105">
-			<spot x="1872.255" y="1758.209" z="300.307" h="68"/>
-		</spawn>
-		<!-- Treasure Box -->
-		<spawn npc_id="218791" respawn_time="105">
-			<spot x="1913.327" y="998.536" z="230.542"/>
-			<spot x="1985.227" y="896.245" z="230.543"/>
-		</spawn>
-		<!-- Treasure Box -->
-		<spawn npc_id="218785" respawn_time="105">
-			<spot x="670.628" y="1784.521" z="169.871"/>
-		</spawn>
-		<!-- Treasure Box -->
-		<spawn npc_id="218786" respawn_time="105">
-			<spot x="685.878" y="1783.771" z="184.408"/>
-		</spawn>
-		<!-- Treasure Box -->
-		<spawn npc_id="218810" respawn_time="105">
-			<spot x="682.878" y="1771.271" z="198.895"/>
-		</spawn>
-		<!-- Treasure Box -->
-		<spawn npc_id="218789" respawn_time="105">
-			<spot x="1967.368" y="1270.823" z="286.072" h="68"/>
-		</spawn>
-		<!-- Treasure Box -->
-		<spawn npc_id="218790" respawn_time="105">
-			<spot x="1932.118" y="1248.323" z="288.662" h="68"/>
-		</spawn>
-		<!-- Treasure Box -->
-		<spawn npc_id="218812" respawn_time="105">
-			<spot x="1932.368" y="1216.073" z="280.711" h="68"/>
-		</spawn>
-		<!-- Treasure Box -->
-		<spawn npc_id="218793" respawn_time="105">
-			<spot x="630.584" y="249.670" z="507.137" h="68"/>
-		</spawn>
-		<!-- Treasure Box -->
-		<spawn npc_id="218787" respawn_time="105">
-			<spot x="1330.460" y="1079.429" z="339.728" h="68"/>
-		</spawn>
-		<!--   -->
-		<spawn npc_id="207035">
+		<!-- NPC_207035 -->
+		<spawn npc_id="207035" respawn_time="295">
 			<spot x="676.2744" y="1777.856" z="151.3225" h="0"/>
 			<spot x="676.2744" y="1777.856" z="151.3225" h="0"/>
 			<spot x="676.2744" y="1777.856" z="151.3225" h="0"/>
 		</spawn>
-		<!--   -->
-		<spawn npc_id="207036">
+		<!-- NPC_207036 -->
+		<spawn npc_id="207036" respawn_time="295">
 			<spot x="673.6248" y="1777.9973" z="170.1221" h="0"/>
 			<spot x="673.6248" y="1777.9973" z="170.1221" h="0"/>
 			<spot x="673.6248" y="1777.9973" z="170.1221" h="0"/>
 		</spawn>
-		<!--   -->
-		<spawn npc_id="207037">
+		<!-- NPC_207037 -->
+		<spawn npc_id="207037" respawn_time="295">
 			<spot x="680.4077" y="240.6867" z="512.059" h="0"/>
 			<spot x="680.5858" y="287.5709" z="513.1063" h="0"/>
 			<spot x="684.9349" y="287.2614" z="514.9878" h="0"/>
@@ -550,33 +76,573 @@
 			<spot x="1989.5944" y="1192.9753" z="273.9944" h="0"/>
 			<spot x="2006.5878" y="891.7708" z="232.5315" h="0"/>
 		</spawn>
-		<!--   -->
+		<!-- Acid Sprayer -->
+		<spawn npc_id="207047" respawn_time="30">
+			<spot x="1874.5068" y="1218.3684" z="271.531" h="60" aerial_spawn="true"/>
+			<spot x="1881.2476" y="1224.7767" z="271.244" h="0" aerial_spawn="true"/>
+			<spot x="1979.8861" y="1191.1479" z="274.541" h="90" aerial_spawn="true"/>
+			<spot x="1984.6962" y="1195.3582" z="274.724" h="30" aerial_spawn="true"/>
+		</spawn>
+		<!-- NPC_207051 -->
 		<spawn npc_id="207051" respawn_time="295">
 			<spot x="1842.293" y="1730.8589" z="299.5" h="0"/>
 		</spawn>
-		<!-- blessed relics -->
-		<spawn npc_id="701173">
+		<!-- MuMu Rake Gatherer -->
+		<spawn npc_id="218682" respawn_time="105">
+			<spot x="1313.593" y="1056.350" z="337.400" h="0"/>
+			<spot x="1314.494" y="1093.471" z="337.500" h="0"/>
+			<spot x="1314.830" y="1098.899" z="337.500" h="0"/>
+			<spot x="1344.862" y="1094.798" z="337.625" h="0"/>
+			<spot x="1345.415" y="1060.410" z="337.154" h="0"/>
+			<spot x="1347.901" y="1054.008" z="337.369" h="0"/>
+			<spot x="1349.373" y="1096.931" z="337.625" h="0"/>
+			<spot x="1352.471" y="1090.433" z="337.625" h="0"/>
+			<spot x="1352.883" y="1057.614" z="337.265" h="0"/>
+		</spawn>
+		<!-- Black Claw Scratcher -->
+		<spawn npc_id="218683" respawn_time="30">
+			<spot x="1328.881" y="1039.994" z="339.766" h="0"/>
+			<spot x="1366.265" y="1077.497" z="339.479" h="0"/>
+		</spawn>
+		<!-- Mutated Drakan Fighter -->
+		<spawn npc_id="218684" respawn_time="30">
+			<spot x="1878.344" y="1233.532" z="269.896" h="91"/>
+			<spot x="1940.458" y="1232.869" z="270.026" h="59"/>
+		</spawn>
+		<!-- Casus Manor Guard -->
+		<spawn npc_id="218685" respawn_time="105">
+			<spot x="1942.478" y="927.320" z="222.562" h="30"/>
+			<spot x="1942.479" y="964.353" z="222.562" h="90"/>
+			<spot x="1949.626" y="927.296" z="222.562" h="30"/>
+			<spot x="1949.627" y="964.211" z="222.562" h="90"/>
+			<spot x="1956.887" y="927.213" z="222.562" h="30"/>
+			<spot x="1956.889" y="964.104" z="222.562" h="90"/>
+		</spawn>
+		<!-- Casus Manor Maidservant -->
+		<spawn npc_id="218686" respawn_time="105">
+			<spot x="1896.031" y="985.247" z="230.569" h="30"/>
+			<spot x="1903.003" y="963.648" z="230.338" h="0"/>
+			<spot x="1908.240" y="994.783" z="230.542" h="30"/>
+			<spot x="1922.002" y="963.132" z="230.377" h="0"/>
+			<spot x="1922.539" y="932.241" z="230.338" h="90"/>
+			<spot x="1926.180" y="927.003" z="230.344" h="115"/>
+			<spot x="1970.003" y="968.644" z="230.338" h="90"/>
+			<spot x="1976.382" y="963.869" z="230.338" h="51"/>
+			<spot x="1989.953" y="928.174" z="230.392" h="0"/>
+			<spot x="1991.136" y="898.990" z="230.543" h="30"/>
+			<spot x="2001.787" y="909.296" z="230.543" h="30"/>
+		</spawn>
+		<!-- Casus Manor Maid -->
+		<spawn npc_id="218687" respawn_time="90">
+			<spot x="1947.697" y="944.159" z="223.827" h="31"/>
+			<spot x="1947.761" y="941.574" z="223.827" h="30"/>
+			<spot x="1950.780" y="946.527" z="223.827" h="91"/>
+			<spot x="1950.892" y="950.601" z="223.827" h="90"/>
+		</spawn>
+		<!-- Casus Manor Butler -->
+		<spawn npc_id="218688" respawn_time="60">
+			<spot x="1916.140" y="963.972" z="230.412" h="118"/>
+			<spot x="1932.114" y="946.354" z="230.350" h="0"/>
+			<spot x="1966.370" y="946.332" z="230.350" h="60"/>
+			<spot x="1970.082" y="973.124" z="230.483" h="30"/>
+		</spawn>
+		<!-- Casus Manor Noble -->
+		<spawn npc_id="218689" respawn_time="60">
+			<spot x="1899.863" y="978.339" z="230.542" h="51"/>
+			<spot x="1908.593" y="1000.789" z="230.542" h="30"/>
+			<spot x="1997.199" y="915.206" z="230.543" h="5"/>
+		</spawn>
+		<!-- Pale Carmina -->
+		<spawn npc_id="218690" respawn_time="105">
+			<spot x="1927.183" y="869.697" z="231.432" h="30"/>
+		</spawn>
+		<!-- Corrupt Casus -->
+		<spawn npc_id="218691" respawn_time="30">
+			<spot x="1960.953" y="1003.345" z="230.387" h="90"/>
+		</spawn>
+		<!-- MuMu Rake Gatherer -->
+		<spawn npc_id="218695" respawn_time="105">
+			<spot x="1313.593" y="1056.350" z="337.400" h="0"/>
+			<spot x="1314.494" y="1093.471" z="337.500" h="0"/>
+			<spot x="1314.830" y="1098.899" z="337.500" h="0"/>
+			<spot x="1344.862" y="1094.798" z="337.625" h="0"/>
+			<spot x="1345.415" y="1060.410" z="337.154" h="0"/>
+			<spot x="1347.901" y="1054.008" z="337.369" h="0"/>
+			<spot x="1349.373" y="1096.931" z="337.625" h="0"/>
+			<spot x="1352.471" y="1090.433" z="337.625" h="0"/>
+			<spot x="1352.883" y="1057.614" z="337.265" h="0"/>
+		</spawn>
+		<!-- Black Claw Scratcher -->
+		<spawn npc_id="218696" respawn_time="30">
+			<spot x="1328.881" y="1039.994" z="339.766" h="0"/>
+			<spot x="1366.265" y="1077.497" z="339.479" h="0"/>
+		</spawn>
+		<!-- Mutated Drakan Fighter -->
+		<spawn npc_id="218697" respawn_time="30">
+			<spot x="1878.344" y="1233.532" z="269.896" h="91"/>
+			<spot x="1940.458" y="1232.869" z="270.026" h="59"/>
+		</spawn>
+		<!-- Casus Manor Guard -->
+		<spawn npc_id="218698" respawn_time="105">
+			<spot x="1942.478" y="927.320" z="222.562" h="30"/>
+			<spot x="1942.479" y="964.353" z="222.562" h="90"/>
+			<spot x="1949.626" y="927.296" z="222.562" h="30"/>
+			<spot x="1949.627" y="964.211" z="222.562" h="90"/>
+			<spot x="1956.887" y="927.213" z="222.562" h="30"/>
+			<spot x="1956.889" y="964.104" z="222.562" h="90"/>
+		</spawn>
+		<!-- Casus Manor Maidservant -->
+		<spawn npc_id="218699" respawn_time="105">
+			<spot x="1896.031" y="985.247" z="230.569" h="30"/>
+			<spot x="1903.003" y="963.648" z="230.338" h="0"/>
+			<spot x="1908.240" y="994.783" z="230.542" h="30"/>
+			<spot x="1922.002" y="963.132" z="230.377" h="0"/>
+			<spot x="1922.539" y="932.241" z="230.338" h="90"/>
+			<spot x="1926.180" y="927.003" z="230.344" h="115"/>
+			<spot x="1970.003" y="968.644" z="230.338" h="90"/>
+			<spot x="1976.382" y="963.869" z="230.338" h="51"/>
+			<spot x="1989.953" y="928.174" z="230.392" h="0"/>
+			<spot x="1991.136" y="898.990" z="230.543" h="30"/>
+			<spot x="2001.787" y="909.296" z="230.543" h="30"/>
+		</spawn>
+		<!-- Casus Manor Maid -->
+		<spawn npc_id="218700" respawn_time="90">
+			<spot x="1947.697" y="944.159" z="223.827" h="31"/>
+			<spot x="1947.761" y="941.574" z="223.827" h="30"/>
+			<spot x="1950.780" y="946.527" z="223.827" h="91"/>
+			<spot x="1950.892" y="950.601" z="223.827" h="90"/>
+		</spawn>
+		<!-- Casus Manor Butler -->
+		<spawn npc_id="218701" respawn_time="60">
+			<spot x="1916.140" y="963.972" z="230.412" h="118"/>
+			<spot x="1932.114" y="946.354" z="230.350" h="0"/>
+			<spot x="1966.370" y="946.332" z="230.350" h="60"/>
+			<spot x="1970.082" y="973.124" z="230.483" h="30"/>
+		</spawn>
+		<!-- Casus Manor Noble -->
+		<spawn npc_id="218702" respawn_time="60">
+			<spot x="1899.863" y="978.339" z="230.542" h="51"/>
+			<spot x="1908.593" y="1000.789" z="230.542" h="30"/>
+			<spot x="1997.199" y="915.206" z="230.543" h="5"/>
+		</spawn>
+		<!-- Pale Carmina -->
+		<spawn npc_id="218703" respawn_time="105">
+			<spot x="1927.183" y="869.697" z="231.432" h="30"/>
+		</spawn>
+		<!-- Corrupt Casus -->
+		<spawn npc_id="218704" respawn_time="30">
+			<spot x="1960.953" y="1003.345" z="230.387" h="90"/>
+		</spawn>
+		<!-- MuMu Rake Gatherer -->
+		<spawn npc_id="218708" respawn_time="105">
+			<spot x="1313.593" y="1056.350" z="337.400" h="0"/>
+			<spot x="1314.313" y="1061.943" z="337.499" h="0"/>
+			<spot x="1314.494" y="1093.471" z="337.500" h="0"/>
+			<spot x="1320.670" y="1094.325" z="337.500" h="0"/>
+			<spot x="1345.415" y="1060.410" z="337.154" h="0"/>
+			<spot x="1347.901" y="1054.008" z="337.369" h="0"/>
+			<spot x="1349.373" y="1096.931" z="337.625" h="0"/>
+			<spot x="1351.101" y="1062.350" z="337.306" h="0"/>
+			<spot x="1352.471" y="1090.433" z="337.625" h="0"/>
+		</spawn>
+		<!-- Black Claw Scratcher -->
+		<spawn npc_id="218709" respawn_time="30">
+			<spot x="1328.881" y="1039.994" z="339.766" h="0"/>
+			<spot x="1366.265" y="1077.497" z="339.479" h="0"/>
+		</spawn>
+		<!-- Mutated Drakan Fighter -->
+		<spawn npc_id="218710" respawn_time="30">
+			<spot x="1878.344" y="1233.532" z="269.896" h="91"/>
+			<spot x="1940.458" y="1232.869" z="270.026" h="59"/>
+			<spot x="1957.0762" y="1176.9271" z="273.3039" h="0"/>
+		</spawn>
+		<!-- Casus Manor Guard -->
+		<spawn npc_id="218711" respawn_time="105">
+			<spot x="1942.478" y="927.320" z="222.562" h="30"/>
+			<spot x="1942.479" y="964.353" z="222.562" h="90"/>
+			<spot x="1949.626" y="927.296" z="222.562" h="30"/>
+			<spot x="1949.627" y="964.211" z="222.562" h="90"/>
+			<spot x="1956.887" y="927.213" z="222.562" h="30"/>
+			<spot x="1956.889" y="964.104" z="222.562" h="90"/>
+		</spawn>
+		<!-- Casus Manor Maidservant -->
+		<spawn npc_id="218712" respawn_time="105">
+			<spot x="1889.077" y="1004.081" z="230.542" h="37"/>
+			<spot x="1891.694" y="1003.782" z="230.542" h="53"/>
+			<spot x="1923.507" y="929.329" z="230.338" h="34"/>
+			<spot x="1969.389" y="928.722" z="230.338" h="0"/>
+			<spot x="1970.003" y="968.644" z="230.338" h="90"/>
+			<spot x="1991.136" y="898.990" z="230.543" h="30"/>
+			<spot x="2001.787" y="909.296" z="230.543" h="30"/>
+			<spot x="1908.2402" y="994.7831" z="231.3624" h="30"/>
+			<spot x="1922.5392" y="932.241" z="231.3624" h="90"/>
+			<spot x="1896.0309" y="985.2475" z="231.3624" h="30"/>
+			<spot x="1903.0031" y="963.6475" z="231.3624" h="0"/>
+		</spawn>
+		<!-- Casus Manor Maid -->
+		<spawn npc_id="218713" respawn_time="90">
+			<spot x="1947.761" y="941.574" z="223.827" h="30"/>
+			<spot x="1947.761" y="941.574" z="223.827" h="30"/>
+			<spot x="1950.892" y="950.601" z="223.827" h="90"/>
+			<spot x="1950.892" y="950.601" z="223.827" h="90"/>
+		</spawn>
+		<!-- Casus Manor Butler -->
+		<spawn npc_id="218714" respawn_time="60">
+			<spot x="1916.140" y="963.972" z="230.412" h="118"/>
+			<spot x="1932.114" y="946.354" z="230.350" h="0"/>
+			<spot x="1966.370" y="946.332" z="230.350" h="60"/>
+			<spot x="1970.082" y="973.124" z="230.483" h="30"/>
+		</spawn>
+		<!-- Casus Manor Noble -->
+		<spawn npc_id="218715" respawn_time="60">
+			<spot x="1908.593" y="1000.789" z="230.542" h="30"/>
+			<spot x="1989.704" y="892.913" z="230.543" h="30"/>
+			<spot x="1989.704" y="892.913" z="230.543" h="30"/>
+		</spawn>
+		<!-- Pale Carmina -->
+		<spawn npc_id="218716" respawn_time="105">
+			<spot x="1927.183" y="869.697" z="231.432" h="30"/>
+		</spawn>
+		<!-- Corrupt Casus -->
+		<spawn npc_id="218717" respawn_time="105">
+			<spot x="1964.273" y="1000.202" z="230.391" h="113"/>
+			<spot x="1960.9525" y="1003.3453" z="231.3624" h="90"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218783" respawn_time="105">
+			<spot x="1868.005" y="1703.709" z="300.302" h="68"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218785" respawn_time="105">
+			<spot x="670.628" y="1784.521" z="169.871" h="0"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218786" respawn_time="105">
+			<spot x="685.878" y="1783.771" z="184.408" h="0"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218787" respawn_time="105">
+			<spot x="1330.460" y="1079.429" z="339.728" h="68"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218788" respawn_time="105">
+			<spot x="1330.460" y="1053.429" z="339.255" h="68"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218789" respawn_time="105">
+			<spot x="1967.368" y="1270.823" z="286.072" h="68"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218790" respawn_time="105">
+			<spot x="1932.118" y="1248.323" z="288.662" h="68"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218791" respawn_time="105">
+			<spot x="1913.327" y="998.536" z="230.542" h="0"/>
+			<spot x="1985.227" y="896.245" z="230.543" h="0"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218793" respawn_time="105">
+			<spot x="630.584" y="249.670" z="507.137" h="68"/>
+		</spawn>
+		<!-- Casus Manor Chief Maid -->
+		<spawn npc_id="218806" respawn_time="90">
+			<spot x="1946.844" y="946.139" z="223.827" h="0"/>
+		</spawn>
+		<!-- Casus Manor Chief Maid -->
+		<spawn npc_id="218807" respawn_time="90">
+			<spot x="1946.844" y="946.139" z="223.827" h="0"/>
+		</spawn>
+		<!-- Casus Manor Chief Maid -->
+		<spawn npc_id="218808" respawn_time="90">
+			<spot x="1945.232" y="946.257" z="223.827" h="90"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218809" respawn_time="105">
+			<spot x="1872.255" y="1758.209" z="300.307" h="68"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218810" respawn_time="105">
+			<spot x="682.878" y="1771.271" z="198.895" h="0"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218812" respawn_time="105">
+			<spot x="1932.368" y="1216.073" z="280.711" h="68"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218832" respawn_time="295">
+			<spot x="1868.0051" y="1703.7086" z="301.2895" h="68"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218833" respawn_time="295">
+			<spot x="1804.2551" y="1728.2086" z="301.2895" h="68"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218834" respawn_time="295">
+			<spot x="1872.2551" y="1758.2086" z="301.0395" h="68"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218835" respawn_time="295">
+			<spot x="670.6277" y="1784.5215" z="171.4121" h="0"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218836" respawn_time="295">
+			<spot x="685.8777" y="1783.7715" z="185.4121" h="0"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218837" respawn_time="295">
+			<spot x="682.8777" y="1771.2715" z="199.9121" h="0"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218838" respawn_time="295">
+			<spot x="1330.46" y="1079.4294" z="341.4765" h="68"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218839" respawn_time="295">
+			<spot x="1330.46" y="1053.4294" z="341.4765" h="68"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218840" respawn_time="295">
+			<spot x="1331.46" y="1103.4294" z="341.4765" h="68"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218841" respawn_time="295">
+			<spot x="1967.3679" y="1270.8226" z="286.5883" h="68"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218842" respawn_time="295">
+			<spot x="1932.1179" y="1248.3226" z="289.3383" h="68"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218843" respawn_time="295">
+			<spot x="1932.3679" y="1216.0726" z="281.5883" h="68"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218847" respawn_time="295">
+			<spot x="630.5837" y="249.6696" z="508.3443" h="68"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218848" respawn_time="295">
+			<spot x="655.0837" y="290.9196" z="508.3443" h="68"/>
+		</spawn>
+		<!-- Treasure Box -->
+		<spawn npc_id="218849" respawn_time="295">
+			<spot x="660.8337" y="238.9196" z="508.3443" h="68"/>
+		</spawn>
+		<!-- Plaza Flame Thrower -->
+		<spawn npc_id="701169" respawn_time="30">
+			<spot x="1803.4758" y="1716.9131" z="311.239" h="68"/>
+		</spawn>
+		<!-- Plaza Flame Thrower -->
+		<spawn npc_id="701170" respawn_time="30">
+			<spot x="1826.5898" y="1773.0803" z="311.185" h="38"/>
+		</spawn>
+		<!-- Plaza Flame Thrower -->
+		<spawn npc_id="701171" respawn_time="30">
+			<spot x="1859.5831" y="1693.7319" z="311.185" h="96"/>
+		</spawn>
+		<!-- Plaza Flame Thrower -->
+		<spawn npc_id="701172" respawn_time="30">
+			<spot x="1882.8734" y="1749.3282" z="311.195" h="6"/>
+		</spawn>
+		<!-- Blessed Relics -->
+		<spawn npc_id="701173" respawn_time="295">
 			<spot x="1841.9509" y="1733.9681" z="299.5" h="0"/>
 		</spawn>
-		<!-- blessed relics -->
-		<spawn npc_id="701187">
+		<!-- Cursed Relics -->
+		<spawn npc_id="701174" respawn_time="295">
 			<spot x="1841.9509" y="1733.9681" z="299.5" h="0"/>
 		</spawn>
-		<!-- blessed relics -->
-		<spawn npc_id="701201">
+		<!-- Flame Thrower -->
+		<spawn npc_id="701175" respawn_time="30">
+			<spot x="1797.0779" y="1727.1171" z="302.436" h="5" aerial_spawn="true"/>
+			<spot x="1808.1569" y="1702.7572" z="302.436" h="15" aerial_spawn="true"/>
+		</spawn>
+		<!-- Flame Thrower -->
+		<spawn npc_id="701176" respawn_time="30">
+			<spot x="1812.6342" y="1767.8353" z="302.436" h="103" aerial_spawn="true"/>
+			<spot x="1837.0978" y="1778.9443" z="302.436" h="93" aerial_spawn="true"/>
+		</spawn>
+		<!-- Flame Thrower -->
+		<spawn npc_id="701177" respawn_time="30">
+			<spot x="1848.6361" y="1686.8569" z="302.436" h="31" aerial_spawn="true"/>
+			<spot x="1873.1646" y="1697.8634" z="302.428" h="45" aerial_spawn="true"/>
+		</spawn>
+		<!-- Flame Thrower -->
+		<spawn npc_id="701178" respawn_time="30">
+			<spot x="1877.6713" y="1763.0237" z="302.436" h="75" aerial_spawn="true"/>
+			<spot x="1888.8634" y="1738.5781" z="302.436" h="65" aerial_spawn="true"/>
+		</spawn>
+		<!-- Lava Floor -->
+		<spawn npc_id="701179" respawn_time="30">
+			<spot x="628.601" y="1775.8153" z="145.500" h="0" aerial_spawn="true"/>
+			<spot x="651.785" y="1776.684" z="145.500" h="0" aerial_spawn="true"/>
+			<spot x="664.0611" y="1766.2292" z="145.500" h="0" aerial_spawn="true"/>
+			<spot x="682.85" y="1747.5546" z="145.500" h="0" aerial_spawn="true"/>
+			<spot x="686.5842" y="1809.775" z="145.500" h="0" aerial_spawn="true"/>
+			<spot x="688.3028" y="1794.0865" z="145.750" h="0" aerial_spawn="true"/>
+			<spot x="701.3496" y="1777.5194" z="145.750" h="0" aerial_spawn="true"/>
+			<spot x="715.9991" y="1777.7321" z="145.750" h="0" aerial_spawn="true"/>
+		</spawn>
+		<!-- Crater -->
+		<spawn npc_id="701180" respawn_time="30">
+			<spot x="652.6998" y="1800.2784" z="172.753" h="0" aerial_spawn="true"/>
+			<spot x="667.3234" y="1809.099" z="156.223" h="0" aerial_spawn="true"/>
+			<spot x="700.406" y="1755.928" z="162.541" h="0"/>
+		</spawn>
+		<!-- Cursed Relics -->
+		<spawn npc_id="701181" respawn_time="105">
+			<spot x="674.5168" y="1778.428" z="204.693" h="0" aerial_spawn="true"/>
+		</spawn>
+		<!-- Aether Vortex -->
+		<spawn npc_id="701183" respawn_time="30">
+			<spot x="659.3111" y="1768.9792" z="201.500" h="90" aerial_spawn="true"/>
+			<spot x="688.0611" y="1798.2292" z="198.500" h="110" aerial_spawn="true"/>
+			<spot x="693.0611" y="1752.4792" z="186.750" h="50" aerial_spawn="true"/>
+		</spawn>
+		<!-- Flame Loop -->
+		<spawn npc_id="701184" respawn_time="30">
+			<spot x="664.16" y="1761.9331" z="171.504" h="40" aerial_spawn="true"/>
+			<spot x="674.8413" y="1793.0646" z="150.964" h="15" aerial_spawn="true"/>
+			<spot x="688.4103" y="1769.6112" z="150.964" h="0" aerial_spawn="true"/>
+		</spawn>
+		<!-- Empty Air Defence Artillery -->
+		<spawn npc_id="701185" respawn_time="30">
+			<spot x="705.6896" y="1777.4969" z="174.598" h="60"/>
+		</spawn>
+		<!-- Blessed Relics -->
+		<spawn npc_id="701187" respawn_time="295">
 			<spot x="1841.9509" y="1733.9681" z="299.5" h="0"/>
 		</spawn>
-		<!-- cursed relics -->
-		<spawn npc_id="701174">
+		<!-- Cursed Relics -->
+		<spawn npc_id="701188" respawn_time="295">
 			<spot x="1841.9509" y="1733.9681" z="299.5" h="0"/>
 		</spawn>
-		<!-- cursed relics -->
-		<spawn npc_id="701188">
+		<!-- Flame Thrower -->
+		<spawn npc_id="701189" respawn_time="30">
+			<spot x="1796.9579" y="1727.2123" z="300.418" h="5"/>
+			<spot x="1807.45" y="1702.28" z="300.426" h="15"/>
+		</spawn>
+		<!-- Flame Thrower -->
+		<spawn npc_id="701190" respawn_time="30">
+			<spot x="1812.4598" y="1767.8878" z="300.420" h="103"/>
+			<spot x="1837.4291" y="1778.8398" z="300.419" h="93"/>
+		</spawn>
+		<!-- Flame Thrower -->
+		<spawn npc_id="701191" respawn_time="30">
+			<spot x="1848.65" y="1686.72" z="300.422" h="31"/>
+			<spot x="1873.48" y="1697.42" z="300.427" h="45"/>
+		</spawn>
+		<!-- Flame Thrower -->
+		<spawn npc_id="701192" respawn_time="30">
+			<spot x="1877.92" y="1763.2" z="300.420" h="75"/>
+			<spot x="1889.1896" y="1738.5748" z="300.425" h="65"/>
+		</spawn>
+		<!-- Lava Floor -->
+		<spawn npc_id="701193" respawn_time="30">
+			<spot x="628.601" y="1775.8153" z="145.500" h="0" aerial_spawn="true"/>
+			<spot x="651.785" y="1776.684" z="145.500" h="0" aerial_spawn="true"/>
+			<spot x="664.0611" y="1766.2292" z="145.500" h="0" aerial_spawn="true"/>
+			<spot x="682.85" y="1747.5546" z="145.500" h="0" aerial_spawn="true"/>
+			<spot x="686.5842" y="1809.775" z="145.500" h="0" aerial_spawn="true"/>
+			<spot x="688.3028" y="1794.0865" z="145.750" h="0" aerial_spawn="true"/>
+			<spot x="701.3496" y="1777.5194" z="145.750" h="0" aerial_spawn="true"/>
+			<spot x="715.9991" y="1777.7321" z="145.750" h="0" aerial_spawn="true"/>
+		</spawn>
+		<!-- Crater -->
+		<spawn npc_id="701194" respawn_time="30">
+			<spot x="652.6998" y="1800.2784" z="172.753" h="0" aerial_spawn="true"/>
+			<spot x="667.3234" y="1809.099" z="156.223" h="0" aerial_spawn="true"/>
+			<spot x="700.4062" y="1755.9277" z="162.541" h="0" aerial_spawn="true"/>
+		</spawn>
+		<!-- Cursed Relics -->
+		<spawn npc_id="701195" respawn_time="105">
+			<spot x="674.5168" y="1778.428" z="204.693" h="0" aerial_spawn="true"/>
+		</spawn>
+		<!-- Aether Vortex -->
+		<spawn npc_id="701197" respawn_time="30">
+			<spot x="659.3111" y="1768.9792" z="201.500" h="90" aerial_spawn="true"/>
+			<spot x="688.0611" y="1798.2292" z="198.500" h="110" aerial_spawn="true"/>
+			<spot x="693.0611" y="1752.4792" z="186.750" h="50" aerial_spawn="true"/>
+		</spawn>
+		<!-- Flame Loop -->
+		<spawn npc_id="701198" respawn_time="30">
+			<spot x="664.16" y="1761.9331" z="171.504" h="40" aerial_spawn="true"/>
+			<spot x="674.8413" y="1793.0646" z="150.964" h="15" aerial_spawn="true"/>
+			<spot x="688.4103" y="1769.6112" z="150.964" h="0" aerial_spawn="true"/>
+		</spawn>
+		<!-- Empty Air Defence Artillery -->
+		<spawn npc_id="701199" respawn_time="30">
+			<spot x="705.6896" y="1777.4969" z="174.598" h="60"/>
+		</spawn>
+		<!-- Blessed Relics -->
+		<spawn npc_id="701201" respawn_time="295">
 			<spot x="1841.9509" y="1733.9681" z="299.5" h="0"/>
 		</spawn>
-		<!-- cursed relics -->
-		<spawn npc_id="701202">
+		<!-- Cursed Relics -->
+		<spawn npc_id="701202" respawn_time="295">
 			<spot x="1841.9509" y="1733.9681" z="299.5" h="0"/>
+		</spawn>
+		<!-- Lava Floor -->
+		<spawn npc_id="701207" respawn_time="30">
+			<spot x="628.601" y="1775.8153" z="145.500" h="0" aerial_spawn="true"/>
+			<spot x="651.785" y="1776.684" z="145.500" h="0" aerial_spawn="true"/>
+			<spot x="664.0611" y="1766.2292" z="145.500" h="0" aerial_spawn="true"/>
+			<spot x="682.85" y="1747.5546" z="145.500" h="0" aerial_spawn="true"/>
+			<spot x="686.5842" y="1809.775" z="145.500" h="0" aerial_spawn="true"/>
+			<spot x="688.3028" y="1794.0865" z="145.750" h="0" aerial_spawn="true"/>
+			<spot x="701.3496" y="1777.5194" z="145.750" h="0" aerial_spawn="true"/>
+			<spot x="715.9991" y="1777.7321" z="145.750" h="0" aerial_spawn="true"/>
+		</spawn>
+		<!-- Crater -->
+		<spawn npc_id="701208" respawn_time="30">
+			<spot x="652.6998" y="1800.2784" z="172.753" h="0" aerial_spawn="true"/>
+			<spot x="667.3234" y="1809.099" z="156.223" h="0" aerial_spawn="true"/>
+			<spot x="700.406" y="1755.928" z="162.541" h="0"/>
+		</spawn>
+		<!-- Cursed Relics -->
+		<spawn npc_id="701209" respawn_time="105">
+			<spot x="674.5168" y="1778.428" z="204.693" h="0" aerial_spawn="true"/>
+		</spawn>
+		<!-- Aether Vortex -->
+		<spawn npc_id="701211" respawn_time="30">
+			<spot x="659.3111" y="1768.9792" z="201.500" h="90" aerial_spawn="true"/>
+			<spot x="688.0611" y="1798.2292" z="198.500" h="110" aerial_spawn="true"/>
+			<spot x="693.0611" y="1752.4792" z="186.75" h="0"/>
+		</spawn>
+		<!-- Flame Loop -->
+		<spawn npc_id="701212" respawn_time="30">
+			<spot x="664.16" y="1761.9331" z="171.504" h="40" aerial_spawn="true"/>
+			<spot x="674.8413" y="1793.0646" z="150.964" h="15" aerial_spawn="true"/>
+			<spot x="688.4103" y="1769.6112" z="150.964" h="0" aerial_spawn="true"/>
+		</spawn>
+		<!-- Empty Air Defence Artillery -->
+		<spawn npc_id="701213" respawn_time="30">
+			<spot x="705.6896" y="1777.4969" z="174.598" h="60"/>
+		</spawn>
+		<!-- Blessed Relics -->
+		<spawn npc_id="701317" respawn_time="45">
+			<spot x="663.5542" y="266.000" z="512.847" h="0"/>
+		</spawn>
+		<!-- Blessed Relics -->
+		<spawn npc_id="701318" respawn_time="45">
+			<spot x="663.5542" y="266.000" z="512.847" h="0"/>
+		</spawn>
+		<!-- Blessed Relics -->
+		<spawn npc_id="701319" respawn_time="45">
+			<spot x="663.5542" y="266.000" z="512.847" h="0"/>
+		</spawn>
+		<!-- Empty Air Defence Artillery -->
+		<spawn npc_id="701321" respawn_time="30">
+			<spot x="646.7557" y="1777.5199" z="184.750" h="0"/>
+		</spawn>
+		<!-- Empty Air Defence Artillery -->
+		<spawn npc_id="701322" respawn_time="30">
+			<spot x="646.7557" y="1777.5199" z="184.750" h="0"/>
+		</spawn>
+		<!-- Empty Air Defence Artillery -->
+		<spawn npc_id="701323" respawn_time="30">
+			<spot x="646.7557" y="1777.5199" z="184.750" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

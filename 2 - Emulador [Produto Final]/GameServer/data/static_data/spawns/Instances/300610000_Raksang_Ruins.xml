@@ -1,134 +1,442 @@
-<?xml version='1.0' encoding='utf-8'?>
-<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300610000">
-		<!-- Ancient Drakan's Treasure Box -->
-		<spawn npc_id="701372">
-			<spot x="372.788" y="815.622" z="160.854" static_id="102" />
+		<!-- Classroom -->
+		<spawn npc_id="206253" respawn_time="295">
+			<spot x="562" y="451" z="226.5" h="0"/>
 		</spawn>
-		<!-- Arza's Corridor -->
-		<spawn npc_id="730450">
-			<spot x="860.723" y="946.104" z="1206.705" h="60" />
+		<!-- Fledgling Hall -->
+		<spawn npc_id="206254" respawn_time="295">
+			<spot x="659.6826" y="533.7823" z="169.5198" h="0"/>
 		</spawn>
-		<!-- Boss Chamber Teleport Door -->
-		<!-- Boss Chamber Teleport Door -->
-		<!-- Boss Chamber Teleport Door-->
-		<!-- Classified Drill Camp Instructor -->
-		<!-- Draconute Combatant -->
-		<!-- Drill Camp Assasin -->
-		<!-- Draconute Scout -->
-		<!-- Drill Camp Guard -->
-		<!-- Drill Instructor Diplito -->
-		<!-- Drill Instructor Pratica-->
-		<!-- Execution Ground Entrance -->
-		<spawn npc_id="730441">
-			<spot x="829.653" y="904.918" z="784.287" static_id="146" />
+		<!-- Training Area -->
+		<spawn npc_id="206255" respawn_time="295">
+			<spot x="647.1826" y="376.2823" z="169.5" h="0"/>
 		</spawn>
-		<!-- Interrogation Room Entrance -->
-		<spawn npc_id="730438">
-			<spot x="628.132" y="187.505" z="924.860" static_id="280" />
+		<!-- Hall of Valour -->
+		<spawn npc_id="206256" respawn_time="295">
+			<spot x="600.0143" y="528.9001" z="169.5" h="0"/>
 		</spawn>
-		<!-- Mandali Flower -->
-		<spawn npc_id="701115">
-			<spot x="985.747" y="903.929" z="762.558" h="110" />
-		</spawn>
-		<!-- Reviver Nasto -->
-		<!-- Sealed Key Box -->
-		<spawn npc_id="701369">
-			<spot x="602.514" y="664.853" z="1183.356" static_id="108" />
-		</spawn>
-		<!-- Sealed Key Box -->
-		<spawn npc_id="701370">
-			<spot x="572.063" y="218.895" z="927.991" static_id="92" />
-		</spawn>
-		<!-- Sensory NPC near collapsing pathway -->
-		<!-- Sensory NPC Hellway First -->
-		<!-- Sensory NPC Hellway Second -->
-		<!-- Supplies Box -->
-		<!-- Tombstone of Liberation -->
-		<!-- Tombstone of Liberation -->
-		<!-- Tombstone of Liberation -->
-		<!-- Tombstone of Liberation -->
-		<!-- Tombstone of Liberation -->
-		<!-- Tombstone of Liberation -->
-		<!-- Trained Clodworm -->
-		<!-- Trained Fierce Lapilima -->
-		<!-- Trained Lava Petrahulk -->
-		<!-- Trained Vespine -->
-		<!-- 1st Corridor Connection Device -->
-		<spawn npc_id="701447">
-			<spot x="339.286" y="430.4197" z="326.0208" h="0"/>
-		</spawn>
-		<!-- 2nd Corridor Connection Device -->
-		<spawn npc_id="701448">
-			<spot x="299.6445" y="429.9106" z="326.0208" h="0"/>
+		<!-- Hall of Bravery -->
+		<spawn npc_id="206257" respawn_time="295">
+			<spot x="599.9822" y="396.1035" z="169.5" h="0"/>
 		</spawn>
 		<!-- 3.0_권성미션_린디아나 호위 센서리 에어리어1 -->
-		<spawn npc_id="206258">
+		<spawn npc_id="206258" respawn_time="295">
 			<spot x="597.4294" y="370.5139" z="169.5" h="0"/>
 		</spawn>
 		<!-- 3.0_권성미션_린디아나 호위 센서리 에어리어2 -->
-		<spawn npc_id="206259">
+		<spawn npc_id="206259" respawn_time="295">
 			<spot x="598.2432" y="392.0221" z="169.5" h="0"/>
 		</spawn>
 		<!-- 3.0_권성미션_린디아나 호위 센서리 에어리어3: 종점 -->
-		<spawn npc_id="206260">
+		<spawn npc_id="206260" respawn_time="295">
 			<spot x="578.8162" y="411.3756" z="169.5" h="0"/>
 		</spawn>
+		<!-- Hall -->
+		<spawn npc_id="206261" respawn_time="295">
+			<spot x="555.2286" y="365.4503" z="169.5" h="0"/>
+			<spot x="555.23" y="365.45" z="171.0" h="0"/>
+		</spawn>
+		<!-- High-Security Zone Passageway -->
+		<spawn npc_id="206262" respawn_time="295">
+			<spot x="480" y="467" z="328" h="0"/>
+		</spawn>
+		<!-- Central Archive -->
+		<spawn npc_id="206264" respawn_time="295">
+			<spot x="440.5" y="380" z="328" h="0"/>
+		</spawn>
+		<!-- Refuse Depot -->
+		<spawn npc_id="206265" respawn_time="295">
+			<spot x="451.5" y="525" z="328" h="0"/>
+		</spawn>
+		<!-- Training Lab -->
+		<spawn npc_id="206266" respawn_time="295">
+			<spot x="372.5" y="380" z="328" h="0"/>
+		</spawn>
+		<!-- Control Room -->
+		<spawn npc_id="206267" respawn_time="295">
+			<spot x="401.665" y="523.8038" z="331.4192" h="0"/>
+		</spawn>
+		<!-- High-Security Zone Level 1 -->
+		<spawn npc_id="206268" respawn_time="295">
+			<spot x="286.25" y="450.25" z="328" h="0"/>
+		</spawn>
+		<!-- Cockroach -->
+		<spawn npc_id="214714" respawn_time="295">
+			<spot x="641.62" y="564.43" z="171.53" h="0"/>
+			<spot x="436.22" y="470.49" z="329.86" h="0"/>
+			<spot x="640.53" y="363.69" z="171.46" h="0"/>
+		</spawn>
+		<!-- Caustic Klaw -->
+		<spawn npc_id="220088" respawn_time="295">
+			<spot x="606.0" y="358.0" z="170.0" h="0"/>
+			<spot x="609.0" y="568.4329" z="170.0" h="0"/>
+			<spot x="612.0" y="388.0" z="170.0" h="0"/>
+			<spot x="592.033" y="416.2027" z="170.0" h="0"/>
+			<spot x="617.0" y="534.0" z="170.0" h="0"/>
+			<spot x="614.0" y="551.0" z="170.0" h="0"/>
+			<spot x="593.9881" y="510.0061" z="170.0" h="0"/>
+			<spot x="598.52" y="387.6" z="170.0" h="0"/>
+			<spot x="600.99" y="539.72" z="170.0" h="0"/>
+		</spawn>
+		<!-- Hot-Blooded Klaw -->
+		<spawn npc_id="220089" respawn_time="295">
+			<spot x="586.0" y="542.0" z="169.5" h="0"/>
+			<spot x="619.0" y="367.0" z="169.5" h="0"/>
+			<spot x="602.1385" y="478.2942" z="169.5" h="0"/>
+			<spot x="624.0" y="552.0" z="169.5" h="0"/>
+			<spot x="618.5" y="367.5" z="169.5" h="0"/>
+			<spot x="601.64" y="478.79" z="169.5" h="0"/>
+			<spot x="604.5" y="547.5" z="169.5" h="0"/>
+		</spawn>
+		<!-- Battle Klaw -->
+		<spawn npc_id="220090" respawn_time="295">
+			<spot x="585.0" y="356.0" z="169.5" h="30"/>
+		</spawn>
+		<!-- Prison Inspector -->
+		<spawn npc_id="220091" respawn_time="295">
+			<spot x="397.171" y="449.1511" z="328.75" h="90"/>
+			<spot x="468.921" y="432.6511" z="328.75" h="90"/>
+			<spot x="408.171" y="450.9011" z="325.75" h="90"/>
+			<spot x="469.671" y="475.6511" z="328.75" h="90"/>
+			<spot x="427.171" y="459.4011" z="325.75" h="90"/>
+			<spot x="469.67" y="475.65" z="328.75" h="0" walker_id="BB1D9DBDE3606B5C16E6002EFF0225BC1D36D93F"/>
+			<spot x="468.92" y="432.65" z="328.75" h="0" walker_id="49D323DA151A50115186546D74AC45862183EA2D"/>
+			<spot x="397.17" y="449.15" z="328.75" h="0" walker_id="2D21EF75C10E701F449C1F8A8387EDFAA54C8250"/>
+		</spawn>
+		<!-- Archivist -->
+		<spawn npc_id="220092" respawn_time="295">
+			<spot x="430.921" y="378.6511" z="328.75" h="60"/>
+			<spot x="430.92" y="378.65" z="328.75" h="0"/>
+		</spawn>
+		<!-- Lab Director -->
+		<spawn npc_id="220093" respawn_time="295">
+			<spot x="371.421" y="378.9011" z="328.75" h="60"/>
+		</spawn>
+		<!-- High-Security Lab Technician -->
+		<spawn npc_id="220094" respawn_time="295">
+			<spot x="383.171" y="386.4011" z="328.75" h="30"/>
+		</spawn>
+		<!-- Lab Technician -->
+		<spawn npc_id="220095" respawn_time="295">
+			<spot x="392.921" y="378.4011" z="328.75" h="0"/>
+		</spawn>
+		<!-- Depot Cleaner -->
+		<spawn npc_id="220096" respawn_time="295">
+			<spot x="458.421" y="523.1511" z="328.75" h="60"/>
+			<spot x="458.42" y="523.15" z="328.75" h="0"/>
+		</spawn>
+		<!-- Depot Worker -->
+		<spawn npc_id="220097" respawn_time="295">
+			<spot x="453.0402" y="515.957" z="328.75" h="30"/>
+			<spot x="452.586" y="532.35" z="328.75" h="90"/>
+			<spot x="452.81" y="524.15" z="328.75" h="0"/>
+		</spawn>
+		<!-- Depot Master -->
+		<spawn npc_id="220098" respawn_time="295">
+			<spot x="443.921" y="523.6511" z="328.75" h="60"/>
+			<spot x="443.92" y="523.65" z="328.75" h="0"/>
+		</spawn>
+		<!-- Braggin Kumanka -->
+		<spawn npc_id="220103" respawn_time="295">
+			<spot x="292.921" y="450.4011" z="330.75" h="60"/>
+		</spawn>
+		<!-- Pretty Fungie -->
+		<spawn npc_id="220104" respawn_time="295">
+			<spot x="660.94" y="462.05" z="170.0" h="0"/>
+		</spawn>
+		<!-- Pretty Fungie -->
+		<spawn npc_id="220105" respawn_time="295">
+			<spot x="650.749" y="433.3178" z="170.0" h="0"/>
+			<spot x="679.594" y="461.2892" z="170.0" h="0"/>
+			<spot x="633.8331" y="461.0457" z="170.0" h="0"/>
+			<spot x="677.5378" y="489.6428" z="170.0" h="0"/>
+			<spot x="660.94" y="462.05" z="170.0" h="0"/>
+		</spawn>
+		<!-- Garden Sylphen -->
+		<spawn npc_id="220106" respawn_time="295">
+			<spot x="668.97" y="363.61" z="170.6" h="0"/>
+		</spawn>
+		<!-- Shy Arachna -->
+		<spawn npc_id="220107" respawn_time="295">
+			<spot x="694.6055" y="318.1927" z="171.1961" h="0"/>
+			<spot x="644.2624" y="365.0117" z="170.0" h="0"/>
+			<spot x="710.6707" y="342.1315" z="171.1961" h="0"/>
+			<spot x="697.9646" y="329.9985" z="171.1961" h="0"/>
+			<spot x="664.5512" y="362.5158" z="170.0" h="0"/>
+			<spot x="649.756" y="407.8914" z="170.0" h="0"/>
+			<spot x="668.97" y="363.61" z="170.6" h="0"/>
+		</spawn>
+		<!-- Shy Arachna -->
+		<spawn npc_id="220108" respawn_time="295">
+			<spot x="615.43" y="360.96" z="171.2" h="0"/>
+			<spot x="601.94" y="548.07" z="171.2" h="0"/>
+		</spawn>
+		<!-- Bee -->
+		<spawn npc_id="220109" respawn_time="295">
+			<spot x="668.2" y="571.73" z="171.84" h="0"/>
+		</spawn>
+		<!-- Bee -->
+		<spawn npc_id="220110" respawn_time="295">
+			<spot x="618.6386" y="360.3905" z="171.1961" h="0"/>
+			<spot x="615.43" y="360.96" z="171.2" h="0"/>
+		</spawn>
+		<!-- Shiny Sparkle -->
+		<spawn npc_id="220111" respawn_time="295">
+			<spot x="701.9933" y="620.5275" z="172.8933" h="0"/>
+			<spot x="666.3115" y="584.1299" z="171.1961" h="0"/>
+			<spot x="672.3577" y="629.2283" z="172.8933" h="0"/>
+			<spot x="690.6992" y="550.7113" z="171.1961" h="0"/>
+			<spot x="658.3668" y="514.5632" z="171.1961" h="0"/>
+			<spot x="662.006" y="534.9409" z="171.1961" h="0"/>
+			<spot x="705.6355" y="539.2866" z="171.1961" h="0"/>
+			<spot x="690.9396" y="564.9707" z="171.1961" h="0"/>
+			<spot x="646.2559" y="622.1557" z="172.8933" h="0"/>
+			<spot x="668.2" y="571.73" z="171.84" h="0"/>
+		</spawn>
+		<!-- Shiny Sparkle -->
+		<spawn npc_id="220112" respawn_time="295">
+			<spot x="590.6201" y="560.1568" z="171.1961" h="0"/>
+			<spot x="594.2267" y="531.6392" z="171.1961" h="0"/>
+			<spot x="623.9752" y="543.4127" z="171.1961" h="0"/>
+			<spot x="601.94" y="548.07" z="171.2" h="0"/>
+		</spawn>
+		<!-- Weathered Door -->
+		<spawn npc_id="701115" respawn_time="295">
+			<spot x="985.747" y="903.929" z="762.558" h="110"/>
+		</spawn>
+		<!-- Infiltration Entrance -->
+		<spawn npc_id="701369" respawn_time="295">
+			<spot x="602.514" y="664.853" z="1183.356" h="0" static_id="108"/>
+		</spawn>
+		<!-- Infiltration Entrance -->
+		<spawn npc_id="701370" respawn_time="295">
+			<spot x="572.063" y="218.895" z="927.991" h="0" static_id="92"/>
+		</spawn>
+		<!-- Infiltration Entrance -->
+		<spawn npc_id="701372" respawn_time="295">
+			<spot x="372.788" y="815.622" z="160.854" h="0" static_id="102"/>
+		</spawn>
+		<!-- Rucksack -->
+		<spawn npc_id="701435" respawn_time="295">
+			<spot x="586.8403" y="541.0294" z="169.5" h="0"/>
+			<spot x="608.0197" y="541.2675" z="169.5" h="0"/>
+			<spot x="621.8389" y="554.4986" z="169.5" h="0"/>
+			<spot x="604.34" y="547.76" z="169.5" h="0"/>
+		</spawn>
+		<!-- First-Aid Kit -->
+		<spawn npc_id="701436" respawn_time="295">
+			<spot x="591.1077" y="558.786" z="169.5" h="0"/>
+			<spot x="610.5817" y="530.1311" z="169.5" h="0"/>
+			<spot x="614.5367" y="555.0294" z="169.5" h="0"/>
+			<spot x="624.3298" y="542.0409" z="169.5" h="0"/>
+			<spot x="606.73" y="548.46" z="169.5" h="0"/>
+		</spawn>
+		<!-- Zone 1 Access Card -->
+		<spawn npc_id="701437" respawn_time="295">
+			<spot x="382.4671" y="523.7414" z="329.4876" h="0"/>
+		</spawn>
+		<!-- Down Pillow -->
+		<spawn npc_id="701438" respawn_time="295">
+			<spot x="707.9811" y="499.7036" z="169.5" h="0"/>
+		</spawn>
+		<!-- Refinement Tank -->
+		<spawn npc_id="701439" respawn_time="295">
+			<spot x="384.0707" y="369.2918" z="329.4633" h="0"/>
+		</spawn>
+		<!-- Drana Pellets -->
+		<spawn npc_id="701440" respawn_time="295">
+			<spot x="374.5155" y="369.1972" z="329.6801" h="0"/>
+		</spawn>
+		<!-- Potion Mixer -->
+		<spawn npc_id="701441" respawn_time="295">
+			<spot x="382.7736" y="369.5179" z="329.4633" h="0"/>
+		</spawn>
+		<!-- Potion Recipe -->
+		<spawn npc_id="701442" respawn_time="295">
+			<spot x="369.8929" y="378.7239" z="329.6801" h="0"/>
+		</spawn>
+		<!-- Ticking Time Bomb -->
+		<spawn npc_id="701443" respawn_time="295">
+			<spot x="292.2529" y="456.0857" z="330.0446" h="0"/>
+			<spot x="292.2529" y="456.0857" z="330.0446" h="0"/>
+			<spot x="292.2529" y="456.0857" z="330.0446" h="0"/>
+			<spot x="292.25" y="456.08" z="330.02" h="0"/>
+		</spawn>
+		<!-- Steel Door -->
+		<spawn npc_id="701444" respawn_time="295">
+			<spot x="436.98" y="452.45" z="328.87" h="0"/>
+		</spawn>
+		<!-- Furnace -->
+		<spawn npc_id="701445" respawn_time="295">
+			<spot x="464.98" y="522.95" z="329.35" h="0"/>
+		</spawn>
+		<!-- 1st Corridor Connection Device -->
+		<spawn npc_id="701447" respawn_time="295">
+			<spot x="339.286" y="430.4197" z="326.0208" h="0"/>
+		</spawn>
+		<!-- 2nd Corridor Connection Device -->
+		<spawn npc_id="701448" respawn_time="295">
+			<spot x="299.6445" y="429.9106" z="326.0208" h="0"/>
+		</spawn>
 		<!-- 3rd Corridor Connection Device -->
-		<spawn npc_id="701449">
+		<spawn npc_id="701449" respawn_time="295">
 			<spot x="339.4553" y="470.3331" z="326.0208" h="0"/>
+			<spot x="339.45" y="470.32" z="326.02" h="0"/>
 		</spawn>
 		<!-- 4th Corridor Connection Device -->
-		<spawn npc_id="701451">
+		<spawn npc_id="701451" respawn_time="295">
 			<spot x="299.8405" y="470.1793" z="326.0208" h="0"/>
 		</spawn>
 		<!-- 5th Corridor Connection Device -->
-		<spawn npc_id="701452">
+		<spawn npc_id="701452" respawn_time="295">
 			<spot x="288.4397" y="450.3652" z="330.737" h="0"/>
 		</spawn>
-		<!-- Aramu -->
-		<spawn npc_id="801431">
-			<spot x="383.3816" y="468.6186" z="339.5165" h="0"/>
+		<!-- Locked Door -->
+		<spawn npc_id="701453" respawn_time="295">
+			<spot x="692.98" y="502.14" z="171.85" h="0"/>
 		</spawn>
-		<!-- Area Supervisor -->
-		<spawn npc_id="801271">
-			<spot x="650" y="423" z="169.5625" h="0"/>
+		<!-- Entrance to 1st Ordeal Room -->
+		<spawn npc_id="730438" respawn_time="295">
+			<spot x="628.132" y="187.505" z="924.860" h="0" static_id="280"/>
 		</spawn>
-		<!-- Arrest Warrant No. 1 -->
-		<spawn npc_id="730555">
-			<spot x="477.2512" y="491.6085" z="330.1717" h="0"/>
+		<!-- Entrance to 2nd Ordeal Room -->
+		<spawn npc_id="730441" respawn_time="295">
+			<spot x="829.653" y="904.918" z="784.287" h="0" static_id="146"/>
 		</spawn>
-		<!-- Arrest Warrant No. 2 -->
-		<spawn npc_id="730557">
-			<spot x="388.5882" y="470.9467" z="326.839" h="0"/>
+		<!-- Tartarus Exit -->
+		<spawn npc_id="730450" respawn_time="295">
+			<spot x="860.723" y="946.104" z="1206.705" h="60"/>
 		</spawn>
-		<!-- Arrest Warrant No. 3 -->
-		<spawn npc_id="730556">
-			<spot x="476.8056" y="434.698" z="330.5824" h="0"/>
+		<!-- Free Access Card -->
+		<spawn npc_id="730549" respawn_time="295">
+			<spot x="703" y="505.9101" z="169.5" h="0"/>
+		</spawn>
+		<!-- The Truth of the Cataclysm -->
+		<spawn npc_id="730550" respawn_time="295">
+			<spot x="566.4428" y="442.5591" z="227.7191" h="0"/>
 		</spawn>
 		<!-- Atreia’s Aetheric Field -->
-		<spawn npc_id="730551">
+		<spawn npc_id="730551" respawn_time="295">
 			<spot x="566.7333" y="439.1047" z="226.7199" h="0"/>
 		</spawn>
+		<!-- Who’s Who in Atreia -->
+		<spawn npc_id="730552" respawn_time="295">
+			<spot x="560.6646" y="437.2532" z="227.7901" h="0"/>
+			<spot x="560.66" y="437.25" z="227.79" h="0"/>
+		</spawn>
+		<!-- Dimensional Gate Theory -->
+		<spawn npc_id="730553" respawn_time="295">
+			<spot x="557.0664" y="437.5607" z="226.8186" h="0"/>
+		</spawn>
 		<!-- Book of Encryption -->
-		<spawn npc_id="730554">
+		<spawn npc_id="730554" respawn_time="295">
 			<spot x="553.4456" y="446.6863" z="226.8186" h="0"/>
+			<spot x="553.45" y="446.69" z="226.82" h="0"/>
 		</spawn>
-		<!-- Breathless Lindiana -->
-		<spawn npc_id="801245">
-			<spot x="576" y="409" z="169.5" h="0"/>
+		<!-- Arrest Warrant No. 1 -->
+		<spawn npc_id="730555" respawn_time="295">
+			<spot x="477.2512" y="491.6085" z="330.1717" h="0"/>
+			<spot x="477.25" y="491.61" z="330.17" h="0"/>
 		</spawn>
-		<!-- Central Archive -->
-		<spawn npc_id="206264">
-			<spot x="440.5" y="380" z="328" h="0"/>
+		<!-- Arrest Warrant No. 3 -->
+		<spawn npc_id="730556" respawn_time="295">
+			<spot x="476.8056" y="434.698" z="330.5824" h="0"/>
 		</spawn>
-		<!-- Classroom -->
-		<spawn npc_id="206253">
-			<spot x="562" y="451" z="226.5" h="0"/>
+		<!-- Arrest Warrant No. 2 -->
+		<spawn npc_id="730557" respawn_time="295">
+			<spot x="388.5882" y="470.9467" z="326.839" h="0"/>
 		</spawn>
-		<!-- Classroom Supervisor -->
-		<spawn npc_id="801267">
-			<spot x="582.5" y="461.25" z="169.25" h="0"/>
+		<!-- Daeva Penal Record, Vol. 1 -->
+		<spawn npc_id="730558" respawn_time="295">
+			<spot x="452.2677" y="390.021" z="328.4309" h="0"/>
+		</spawn>
+		<!-- Daeva Penal Record, Vol. 2 -->
+		<spawn npc_id="730559" respawn_time="295">
+			<spot x="455.219" y="370.923" z="328.4826" h="0"/>
+		</spawn>
+		<!-- Daeva Penal Record, Vol. 3 -->
+		<spawn npc_id="730560" respawn_time="295">
+			<spot x="443.166" y="367.8875" z="328.5587" h="0"/>
+		</spawn>
+		<!-- Setan’s Corpse -->
+		<spawn npc_id="730561" respawn_time="295">
+			<spot x="459.7341" y="529.2685" z="328.5385" h="0"/>
+		</spawn>
+		<!-- Lindiana’s Corpse -->
+		<spawn npc_id="730562" respawn_time="295">
+			<spot x="465.4999" y="515.7175" z="328.4839" h="0"/>
+		</spawn>
+		<!-- Warm Chalice -->
+		<spawn npc_id="730563" respawn_time="295">
+			<spot x="702.1382" y="505.8732" z="169.5" h="0"/>
+		</spawn>
+		<!-- Rapid Tornado -->
+		<spawn npc_id="800753" respawn_time="295">
+			<spot x="445.3915" y="455.1635" z="328" h="0"/>
+			<spot x="626.8823" y="461.6883" z="169.5" h="0" random_walk="8"/>
+		</spawn>
+		<!-- NPC_801220 -->
+		<spawn npc_id="801220" respawn_time="295">
+			<spot x="485.4553" y="467.3945" z="329.7557" h="0"/>
+			<spot x="485.4553" y="467.3945" z="329.7557" h="0"/>
+			<spot x="545.9459" y="441.7076" z="226.8186" h="0"/>
+			<spot x="570" y="461.5" z="226" h="0"/>
+			<spot x="581" y="461.5" z="169.25" h="0"/>
+			<spot x="600" y="526.5" z="169.5" h="0"/>
+			<spot x="600" y="526.5" z="169.5" h="0"/>
+			<spot x="600.5" y="399" z="169.5" h="0"/>
+			<spot x="646" y="505" z="169.5" h="0"/>
+			<spot x="646" y="505" z="169.5" h="0"/>
+			<spot x="650" y="420" z="169.5" h="0"/>
+			<spot x="650" y="420" z="169.5" h="0"/>
+			<spot x="707.9811" y="499.7036" z="169.5" h="0"/>
+			<spot x="485.45" y="467.39" z="329.76" h="0"/>
+			<spot x="602.66" y="462.76" z="182.63" h="0"/>
+		</spawn>
+		<!-- NPC_801221 -->
+		<spawn npc_id="801221" respawn_time="295">
+			<spot x="666.0" y="454.5" z="169.5" h="0"/>
+		</spawn>
+		<!-- NPC_801222 -->
+		<spawn npc_id="801222" respawn_time="295">
+			<spot x="666.0" y="459.0" z="169.5" h="0"/>
+		</spawn>
+		<!-- Friend Setan -->
+		<spawn npc_id="801230" respawn_time="295">
+			<spot x="699" y="506.5" z="169.5312" h="0"/>
+		</spawn>
+		<!-- Friend Lindiana -->
+		<spawn npc_id="801231" respawn_time="295">
+			<spot x="707.5" y="503" z="169.5" h="0"/>
+		</spawn>
+		<!-- Dyad -->
+		<spawn npc_id="801232" respawn_time="295">
+			<spot x="553.4178" y="459.2541" z="226.8186" h="0"/>
+			<spot x="553.42" y="459.25" z="226.82" h="0"/>
+		</spawn>
+		<!-- Julman -->
+		<spawn npc_id="801233" respawn_time="295">
+			<spot x="638.4208" y="462.8092" z="169.5" h="0" random_walk="8"/>
+		</spawn>
+		<!-- Suffering Setan -->
+		<spawn npc_id="801234" respawn_time="295">
+			<spot x="657" y="590" z="169.5" h="0"/>
+			<spot x="657.09" y="590.07" z="171.0" h="0"/>
+		</spawn>
+		<!-- Suffering Lindiana -->
+		<spawn npc_id="801235" respawn_time="295">
+			<spot x="649.7666" y="590" z="169.5" h="0"/>
+			<spot x="649.81" y="590.16" z="171.0" h="0"/>
+		</spawn>
+		<!-- Suffering Setan -->
+		<spawn npc_id="801236" respawn_time="295">
+			<spot x="663.2733" y="346.6483" z="169.5" h="0"/>
+		</spawn>
+		<!-- Suffering Lindiana -->
+		<spawn npc_id="801237" respawn_time="295">
+			<spot x="663.1645" y="349.2" z="169.5" h="0"/>
 		</spawn>
 		<!-- Combat-Ready Student -->
 		<spawn npc_id="801238" respawn_time="295">
@@ -144,6 +452,7 @@
 			<spot x="695.3115" y="370.2246" z="170.082" h="0"/>
 			<spot x="701.3458" y="336.7852" z="170.465" h="0"/>
 			<spot x="703.3458" y="335.7852" z="170.2909" h="0"/>
+			<spot x="680.33" y="354.5" z="170.58" h="0"/>
 		</spawn>
 		<!-- Combat-Ready Student -->
 		<spawn npc_id="801239" respawn_time="295">
@@ -151,317 +460,111 @@
 			<spot x="656.8196" y="356.1627" z="169.5" h="0"/>
 			<spot x="669.9322" y="336.8286" z="169.5042" h="0"/>
 			<spot x="669.9322" y="372.8286" z="169.5475" h="0"/>
+			<spot x="664.18" y="354.83" z="171.0" h="0"/>
 		</spawn>
-		<!-- Control Room -->
-		<spawn npc_id="206267">
-			<spot x="401.665" y="523.8038" z="331.4192" h="0"/>
-		</spawn>
-		<!-- Crazy Daeva -->
-		<spawn npc_id="801251">
-			<spot x="385.171" y="470.6511" z="328.75" h="0"/>
-		</spawn>
-		<!-- Daeva Penal Record, Vol. 1 -->
-		<spawn npc_id="730558">
-			<spot x="452.2677" y="390.021" z="328.4309" h="0"/>
-		</spawn>
-		<!-- Daeva Penal Record, Vol. 2 -->
-		<spawn npc_id="730559">
-			<spot x="455.219" y="370.923" z="328.4826" h="0"/>
-		</spawn>
-		<!-- Daeva Penal Record, Vol. 3 -->
-		<spawn npc_id="730560">
-			<spot x="443.166" y="367.8875" z="328.5587" h="0"/>
-		</spawn>
-		<!-- Dimensional Gate Theory -->
-		<spawn npc_id="730553">
-			<spot x="557.0664" y="437.5607" z="226.8186" h="0"/>
-		</spawn>
-		<!-- Down Pillow -->
-		<spawn npc_id="701438">
-			<spot x="707.9811" y="499.7036" z="169.5" h="0"/>
-		</spawn>
-		<!-- Drana Pellets -->
-		<spawn npc_id="701440">
-			<spot x="374.5155" y="369.1972" z="329.6801" h="0"/>
-		</spawn>
-		<!-- Dyad -->
-		<spawn npc_id="801232" respawn_time="295">
-			<spot x="553.4178" y="459.2541" z="226.8186" h="0"/>
-		</spawn>
-		<!-- Dyad -->
-		<spawn npc_id="801255">
-			<spot x="382.6358" y="520.7788" z="329.5747" h="0"/>
-		</spawn>
-		<!-- Fallen Setan -->
-		<spawn npc_id="801242" respawn_time="295">
-			<spot x="613.5" y="543" z="169.5" h="0"/>
-		</spawn>
-		<!-- First-Aid Kit -->
-		<spawn npc_id="701436">
-			<spot x="591.1077" y="558.786" z="169.5" h="0"/>
-			<spot x="610.5817" y="530.1311" z="169.5" h="0"/>
-			<spot x="614.5367" y="555.0294" z="169.5" h="0"/>
-			<spot x="624.3298" y="542.0409" z="169.5" h="0"/>
-		</spawn>
-		<!-- Fledgling Hall -->
-		<spawn npc_id="206254">
-			<spot x="659.6826" y="533.7823" z="169.5198" h="0"/>
-		</spawn>
-		<!-- Fledgling Hall Access Administrator -->
-		<spawn npc_id="801270">
-			<spot x="646" y="509" z="169.5" h="0"/>
-		</spawn>
-		<!-- Free Access Card -->
-		<spawn npc_id="730549">
-			<spot x="703" y="505.9101" z="169.5" h="0"/>
-		</spawn>
-		<!-- Friend Lindiana -->
-		<spawn npc_id="801231" respawn_time="295">
-			<spot x="707.5" y="503" z="169.5" h="0"/>
-		</spawn>
-		<!-- Friend Setan -->
-		<spawn npc_id="801230" respawn_time="295">
-			<spot x="699" y="506.5" z="169.5312" h="0"/>
-		</spawn>
-		<!-- Hall -->
-		<spawn npc_id="206261">
-			<spot x="555.2286" y="365.4503" z="169.5" h="0"/>
-		</spawn>
-		<!-- Hall of Bravery -->
-		<spawn npc_id="206257">
-			<spot x="599.9822" y="396.1035" z="169.5" h="0"/>
-		</spawn>
-		<!-- Hall of Valour -->
-		<spawn npc_id="206256">
-			<spot x="600.0143" y="528.9001" z="169.5" h="0"/>
-		</spawn>
-		<!-- Hall Supervisor -->
-		<spawn npc_id="801269">
-			<spot x="646" y="502" z="169.5" h="0"/>
-		</spawn>
-		<!-- High-Security Zone Level 1 -->
-		<spawn npc_id="206268">
-			<spot x="286.25" y="450.25" z="328" h="0"/>
-		</spawn>
-		<!-- High-Security Zone Passageway -->
-		<spawn npc_id="206262">
-			<spot x="480" y="467" z="328" h="0"/>
-		</spawn>
-		<!-- Hogomu -->
-		<spawn npc_id="801436" respawn_time="295">
-			<spot x="482.7137" y="424.4185" z="340.2116" h="0"/>
-		</spawn>
-		<!-- Imprisoned Daeva -->
-		<spawn npc_id="801305">
-			<spot x="384.3968" y="428.9187" z="328.75" h="0"/>
-			<spot x="397.033" y="491.0103" z="328.75" h="0"/>
-			<spot x="443.6861" y="494.0425" z="328.75" h="0"/>
-			<spot x="479.832" y="489.7208" z="328.75" h="0"/>
-			<spot x="480" y="481" z="328.75" h="0"/>
-		</spawn>
-		<!-- Imprisoned Daeva -->
-		<spawn npc_id="801306">
-			<spot x="394.2829" y="491.8803" z="328.75" h="0"/>
-			<spot x="440.6915" y="495.3361" z="328.75" h="0"/>
-			<spot x="443.5" y="496.5" z="328.75" h="0"/>
-			<spot x="452" y="523.25" z="328.75" h="0"/>
-			<spot x="467.25" y="533" z="328.75" h="0"/>
-			<spot x="480.3074" y="495.6773" z="328.75" h="0"/>
-			<spot x="480.4754" y="482.8908" z="328.75" h="0"/>
-		</spawn>
-		<!-- Imprisoned Daeva -->
-		<spawn npc_id="801307">
-			<spot x="383.7964" y="430.858" z="328.75" h="0"/>
-			<spot x="385.8034" y="482.1465" z="328.75" h="0"/>
-			<spot x="444.8394" y="495.8335" z="328.75" h="0"/>
-			<spot x="479.6496" y="477.7207" z="328.75" h="0"/>
-			<spot x="480.9854" y="491.5117" z="328.75" h="0"/>
-		</spawn>
-		<!-- Imprisoned Daeva -->
-		<spawn npc_id="801308">
-			<spot x="396.3703" y="491.9218" z="328.75" h="0"/>
-			<spot x="478.1224" y="424.1387" z="328.75" h="0"/>
-			<spot x="480.25" y="449.75" z="328.75" h="0"/>
-			<spot x="480.3967" y="414.4672" z="328.75" h="0"/>
-			<spot x="481.0208" y="436.4222" z="328.75" h="0"/>
-		</spawn>
-		<!-- Imprisoned Daeva -->
-		<spawn npc_id="801309">
-			<spot x="382.4671" y="427.9422" z="328.75" h="0"/>
-			<spot x="384.4741" y="479.2307" z="328.75" h="0"/>
-			<spot x="480.1841" y="451.686" z="328.75" h="0"/>
-			<spot x="480.2299" y="434.5079" z="328.75" h="0"/>
-			<spot x="480.3212" y="428.0565" z="328.75" h="0"/>
-			<spot x="481.0111" y="411.9247" z="328.75" h="0"/>
-		</spawn>
-		<!-- Imprisoned Daeva -->
-		<spawn npc_id="801310">
-			<spot x="382.3392" y="430.876" z="328.75" h="0"/>
-			<spot x="384.3463" y="482.1645" z="328.75" h="0"/>
-			<spot x="478.6211" y="409.4825" z="328.75" h="0"/>
-			<spot x="480.0563" y="448.1079" z="328.75" h="0"/>
-			<spot x="480.102" y="437.4417" z="328.75" h="0"/>
-			<spot x="480.1934" y="421.4212" z="328.75" h="0"/>
-		</spawn>
-		<!-- Injured Lindiana -->
-		<spawn npc_id="801243" respawn_time="295">
-			<spot x="585.0571" y="352.5937" z="169.5" h="0"/>
-		</spawn>
-		<!-- Insonu -->
-		<spawn npc_id="801435" respawn_time="295">
-			<spot x="483.0298" y="427.9572" z="340.2116" h="0"/>
-		</spawn>
-		<!-- Jie -->
-		<spawn npc_id="801434" respawn_time="295">
-			<spot x="483.2972" y="493.5918" z="340.2116" h="0"/>
-		</spawn>
-		<!-- Jinishu -->
-		<spawn npc_id="801438" respawn_time="295">
-			<spot x="405.3598" y="494.2517" z="340.2116" h="0"/>
-		</spawn>
-		<!-- Julman -->
-		<spawn npc_id="801233" respawn_time="295">
-			<spot x="638.4208" y="462.8092" z="169.5" h="0" random_walk="8"/>
+		<!-- Kumanka -->
+		<spawn npc_id="801240" respawn_time="295">
+			<spot x="671.429" y="351.2845" z="176.7235" h="0"/>
 		</spawn>
 		<!-- Julman -->
 		<spawn npc_id="801241" respawn_time="295">
 			<spot x="638.4208" y="462.8092" z="177.5" h="0" random_walk="8"/>
 		</spawn>
-		<!-- Junus -->
-		<spawn npc_id="801437" respawn_time="295">
-			<spot x="483.3127" y="421.7823" z="340.2116" h="0"/>
+		<!-- Fallen Setan -->
+		<spawn npc_id="801242" respawn_time="295">
+			<spot x="613.5" y="543" z="169.5" h="0"/>
 		</spawn>
-		<!-- Kaias -->
-		<spawn npc_id="801439" respawn_time="295">
-			<spot x="408.959" y="494.3213" z="340.2116" h="0"/>
+		<!-- Injured Lindiana -->
+		<spawn npc_id="801243" respawn_time="295">
+			<spot x="585.0571" y="352.5937" z="169.5" h="0"/>
 		</spawn>
-		<!-- Kumanka -->
-		<spawn npc_id="801240" respawn_time="295">
-			<spot x="671.429" y="351.2845" z="176.7235" h="0"/>
+		<!-- Breathless Lindiana -->
+		<spawn npc_id="801245" respawn_time="295">
+			<spot x="576" y="409" z="169.5" h="0"/>
+			<spot x="575.92" y="409.01" z="169.5" h="0"/>
 		</spawn>
 		<!-- Kumanka -->
 		<spawn npc_id="801246" respawn_time="295">
 			<spot x="559.5" y="365.595" z="169.5" h="0"/>
 			<spot x="559.5" y="365.595" z="169.5" h="0"/>
 		</spawn>
-		<!-- Lepharist Daeva -->
-		<spawn npc_id="801252">
-			<spot x="385.0067" y="466.6484" z="328.75" h="0"/>
-		</spawn>
-		<!-- liberated elyos -->
-		<spawn npc_id="801277">
-			<spot x="533.1616" y="441.6841" z="225.5201" h="0"/>
-		</spawn>
-		<!-- Lindiana’s Corpse -->
-		<spawn npc_id="730562">
-			<spot x="465.4999" y="515.7175" z="328.4839" h="0"/>
-		</spawn>
-		<!-- Lueta -->
-		<spawn npc_id="801411" respawn_time="295">
-			<spot x="382.6358" y="518.5288" z="329.5747" h="0"/>
-			<spot x="553.4178" y="460.5041" z="226.8186" h="0"/>
-		</spawn>
-		<!-- mezaina -->
-		<spawn npc_id="801220" respawn_time="295">
-			<spot x="485.4553" y="467.3945" z="329.7557" h="0"/>
-			<spot x="485.4553" y="467.3945" z="329.7557" h="0"/>
-			<spot x="545.9459" y="441.7076" z="226.8186" h="0"/>
-			<spot x="570" y="461.5" z="226" h="0"/>
-			<spot x="581" y="461.5" z="169.25" h="0"/>
-			<spot x="600" y="526.5" z="169.5" h="0"/>
-			<spot x="600" y="526.5" z="169.5" h="0"/>
-			<spot x="600.5" y="399" z="169.5" h="0"/>
-			<spot x="646" y="505" z="169.5" h="0"/>
-			<spot x="646" y="505" z="169.5" h="0"/>
-			<spot x="650" y="420" z="169.5" h="0"/>
-			<spot x="650" y="420" z="169.5" h="0"/>
-			<spot x="707.9811" y="499.7036" z="169.5" h="0"/>
-		</spawn>
-		<!-- Mino -->
-		<spawn npc_id="801430">
-			<spot x="382.858" y="466.6512" z="339.5165" h="0"/>
+		<!-- Unexpected Daeva -->
+		<spawn npc_id="801247" respawn_time="295">
+			<spot x="559.5" y="365.595" z="170.4742" h="30"/>
 		</spawn>
 		<!-- Mysterious Helper -->
-		<spawn npc_id="801249">
+		<spawn npc_id="801249" respawn_time="295">
 			<spot x="566" y="450.5" z="227" h="0"/>
 		</spawn>
 		<!-- Mysterious Helper -->
-		<spawn npc_id="801250">
+		<spawn npc_id="801250" respawn_time="295">
 			<spot x="482.25" y="467.6115" z="328" h="0"/>
 		</spawn>
-		<!-- Mysterious Helper -->
-		<spawn npc_id="801254">
-			<spot x="388.9742" y="460.7505" z="329.57" h="0"/>
+		<!-- Crazy Daeva -->
+		<spawn npc_id="801251" respawn_time="295">
+			<spot x="385.171" y="470.6511" z="328.75" h="0"/>
+			<spot x="385.17" y="470.65" z="328.75" h="0"/>
 		</spawn>
-		<!-- Mysterious Helper -->
-		<spawn npc_id="801256">
-			<spot x="292.0804" y="455.4089" z="330.3773" h="0" random_walk="8"/>
-			<spot x="292.0804" y="455.4089" z="330.3773" h="0" random_walk="8"/>
-			<spot x="292.0804" y="455.4089" z="330.3773" h="0" random_walk="8"/>
-		</spawn>
-		<!-- Mysterious Helper -->
-		<spawn npc_id="801405" respawn_time="295">
-			<spot x="292.0804" y="455.4089" z="329.6273" h="0" random_walk="8"/>
-			<spot x="292.0804" y="455.4089" z="329.6273" h="0" random_walk="8"/>
-			<spot x="292.0804" y="455.4089" z="329.6273" h="0" random_walk="8"/>
-		</spawn>
-		<!-- omurinrinerk -->
-		<spawn npc_id="801300">
-			<spot x="630.75" y="436" z="169.5" h="0"/>
-			<spot x="657" y="433.75" z="169.5" h="0"/>
-			<spot x="662" y="489.25" z="169.5" h="0"/>
-		</spawn>
-		<!-- poporonerk -->
-		<spawn npc_id="801304">
-			<spot x="454.25" y="530" z="328.75" h="0"/>
-			<spot x="457.25" y="515" z="328.75" h="0"/>
-			<spot x="592" y="364.25" z="169.5" h="0"/>
-			<spot x="592.75" y="490.25" z="169.5" h="0"/>
-			<spot x="601" y="436" z="169.5" h="0"/>
-			<spot x="601" y="516" z="169.5" h="0"/>
-			<spot x="614.25" y="536.5" z="169.5" h="0"/>
-		</spawn>
-		<!-- Potion Mixer -->
-		<spawn npc_id="701441">
-			<spot x="382.7736" y="369.5179" z="329.4633" h="0"/>
-		</spawn>
-		<!-- Potion Recipe -->
-		<spawn npc_id="701442">
-			<spot x="369.8929" y="378.7239" z="329.6801" h="0"/>
-		</spawn>
-		<!-- Rapid Tornado -->
-		<spawn npc_id="800753" respawn_time="295">
-			<spot x="445.3915" y="455.1635" z="328" h="0"/>
-			<spot x="626.8823" y="461.6883" z="169.5" h="0" random_walk="8"/>
+		<!-- Lepharist Daeva -->
+		<spawn npc_id="801252" respawn_time="295">
+			<spot x="385.0067" y="466.6484" z="328.75" h="0"/>
 		</spawn>
 		<!-- Rational Daeva -->
-		<spawn npc_id="801253">
+		<spawn npc_id="801253" respawn_time="295">
 			<spot x="384.25" y="468.5" z="327.2511" h="0"/>
 		</spawn>
-		<!-- Refinement Tank -->
-		<spawn npc_id="701439">
-			<spot x="384.0707" y="369.2918" z="329.4633" h="0"/>
+		<!-- Mysterious Helper -->
+		<spawn npc_id="801254" respawn_time="295">
+			<spot x="388.9742" y="460.7505" z="329.57" h="0"/>
+			<spot x="388.97" y="460.89" z="329.57" h="0"/>
 		</spawn>
-		<!-- Refuse Depot -->
-		<spawn npc_id="206265">
-			<spot x="451.5" y="525" z="328" h="0"/>
+		<!-- Dyad -->
+		<spawn npc_id="801255" respawn_time="295">
+			<spot x="382.6358" y="520.7788" z="329.5747" h="0"/>
 		</spawn>
-		<!-- Rucksack -->
-		<spawn npc_id="701435">
-			<spot x="586.8403" y="541.0294" z="169.5" h="0"/>
-			<spot x="608.0197" y="541.2675" z="169.5" h="0"/>
-			<spot x="621.8389" y="554.4986" z="169.5" h="0"/>
+		<!-- Mysterious Helper -->
+		<spawn npc_id="801256" respawn_time="295">
+			<spot x="292.0804" y="455.4089" z="330.3773" h="0" random_walk="8"/>
+			<spot x="292.0804" y="455.4089" z="330.3773" h="0" random_walk="8"/>
+			<spot x="292.0804" y="455.4089" z="330.3773" h="0" random_walk="8"/>
 		</spawn>
-		<!-- Setan’s Corpse -->
-		<spawn npc_id="730561">
-			<spot x="459.7341" y="529.2685" z="328.5385" h="0"/>
+		<!-- Training Dummy -->
+		<spawn npc_id="801264" respawn_time="295">
+			<spot x="710.9674" y="585.6205" z="171.0" h="60"/>
+			<spot x="710.9674" y="573.6205" z="171.0" h="60"/>
+			<spot x="710.9674" y="595.6205" z="171.0" h="60"/>
+			<spot x="680.92" y="584.62" z="171.0" h="0"/>
 		</spawn>
-		<!-- Sojeni -->
-		<spawn npc_id="801433" respawn_time="295">
-			<spot x="483.5996" y="496.6879" z="340.2116" h="0"/>
+		<!-- Classroom Supervisor -->
+		<spawn npc_id="801267" respawn_time="295">
+			<spot x="582.5" y="461.25" z="169.25" h="0"/>
+		</spawn>
+		<!-- NPC_801268 -->
+		<spawn npc_id="801268" respawn_time="295">
+			<spot x="570.0428" y="462.1291" z="226.8186" h="0"/>
+		</spawn>
+		<!-- Hall Supervisor -->
+		<spawn npc_id="801269" respawn_time="295">
+			<spot x="646" y="502" z="169.5" h="0"/>
+		</spawn>
+		<!-- Fledgling Hall Access Administrator -->
+		<spawn npc_id="801270" respawn_time="295">
+			<spot x="646" y="509" z="169.5" h="0"/>
+		</spawn>
+		<!-- Area Supervisor -->
+		<spawn npc_id="801271" respawn_time="295">
+			<spot x="650" y="423" z="169.5625" h="0"/>
+		</spawn>
+		<!-- Training Area Access Administrator -->
+		<spawn npc_id="801272" respawn_time="295">
+			<spot x="650" y="416" z="169.625" h="0"/>
+		</spawn>
+		<!-- NPC_801277 -->
+		<spawn npc_id="801277" respawn_time="295">
+			<spot x="533.1616" y="441.6841" z="225.5201" h="0"/>
 		</spawn>
 		<!-- Sparring Partner -->
-		<spawn npc_id="801299">
+		<spawn npc_id="801299" respawn_time="295">
 			<spot x="643.25" y="447.9195" z="169.5" h="0" random_walk="8"/>
 			<spot x="643.25" y="447.9195" z="169.5" h="0" random_walk="8"/>
 			<spot x="643.25" y="447.9195" z="169.5" h="0" random_walk="8"/>
@@ -481,9 +584,31 @@
 			<spot x="679.25" y="602.25" z="169.5" h="0"/>
 			<spot x="697.75" y="602.25" z="169.5" h="0"/>
 			<spot x="708.75" y="573.25" z="169.5938" h="0"/>
+			<spot x="661.27" y="352.94" z="171.0" h="0"/>
+			<spot x="694.09" y="587.82" z="171.0" h="0"/>
+			<spot x="649.34" y="463.78" z="171.06" h="0"/>
+		</spawn>
+		<!-- NPC_801300 -->
+		<spawn npc_id="801300" respawn_time="295">
+			<spot x="630.75" y="436" z="169.5" h="0"/>
+			<spot x="657" y="433.75" z="169.5" h="0"/>
+			<spot x="662" y="489.25" z="169.5" h="0"/>
+			<spot x="662.09" y="489.32" z="171.0" h="0"/>
+			<spot x="643.96" y="434.94" z="171.0" h="0"/>
+		</spawn>
+		<!-- NPC_801301 -->
+		<spawn npc_id="801301" respawn_time="295">
+			<spot x="585" y="560.75" z="169.5" h="0"/>
+			<spot x="590.25" y="459.25" z="169.3906" h="0"/>
+			<spot x="594" y="414" z="169.5" h="0"/>
+			<spot x="605.25" y="533" z="169.5469" h="0"/>
+			<spot x="608.25" y="364" z="169.5" h="0"/>
+			<spot x="613" y="561.25" z="169.5" h="0"/>
+			<spot x="599.32" y="549.97" z="169.5" h="0"/>
+			<spot x="599.38" y="411.75" z="169.5" h="0"/>
 		</spawn>
 		<!-- Sparring Partner -->
-		<spawn npc_id="801302">
+		<spawn npc_id="801302" respawn_time="295">
 			<spot x="643.0156" y="475.1675" z="169.5" h="0" random_walk="8"/>
 			<spot x="643.0156" y="475.1675" z="169.5" h="0" random_walk="8"/>
 			<spot x="643.0156" y="475.1675" z="169.5" h="0" random_walk="8"/>
@@ -496,79 +621,155 @@
 			<spot x="695.5" y="377.25" z="170" h="0"/>
 			<spot x="708.25" y="351.5" z="170.7812" h="0"/>
 			<spot x="708.25" y="595.5" z="169.625" h="0"/>
+			<spot x="708.34" y="595.57" z="171.0" h="0"/>
+			<spot x="698.78" y="362.87" z="171.0" h="0"/>
+			<spot x="662.02" y="461.16" z="171.04" h="0"/>
 		</spawn>
-		<!-- Suffering Lindiana -->
-		<spawn npc_id="801235" respawn_time="295">
-			<spot x="649.7666" y="590" z="169.5" h="0"/>
+		<!-- NPC_801303 -->
+		<spawn npc_id="801303" respawn_time="295">
+			<spot x="630.75" y="438" z="169.5" h="0"/>
+			<spot x="658.5" y="433.75" z="169.5" h="0"/>
+			<spot x="662" y="491.25" z="169.5" h="0"/>
+			<spot x="662.09" y="491.32" z="171.0" h="0"/>
+			<spot x="644.71" y="435.94" z="170.75" h="0"/>
 		</spawn>
-		<!-- Suffering Lindiana -->
-		<spawn npc_id="801237" respawn_time="295">
-			<spot x="663.1645" y="349.2" z="169.5" h="0"/>
+		<!-- NPC_801304 -->
+		<spawn npc_id="801304" respawn_time="295">
+			<spot x="454.25" y="530" z="328.75" h="0"/>
+			<spot x="457.25" y="515" z="328.75" h="0"/>
+			<spot x="592" y="364.25" z="169.5" h="0"/>
+			<spot x="592.75" y="490.25" z="169.5" h="0"/>
+			<spot x="601" y="436" z="169.5" h="0"/>
+			<spot x="601" y="516" z="169.5" h="0"/>
+			<spot x="614.25" y="536.5" z="169.5" h="0"/>
+			<spot x="592.13" y="364.38" z="169.5" h="0"/>
+			<spot x="601.13" y="436.13" z="169.5" h="0"/>
+			<spot x="455.75" y="522.5" z="328.75" h="0"/>
+			<spot x="603.63" y="513.5" z="169.5" h="0"/>
 		</spawn>
-		<!-- Suffering Setan -->
-		<spawn npc_id="801234" respawn_time="295">
-			<spot x="657" y="590" z="169.5" h="0"/>
+		<!-- Imprisoned Daeva -->
+		<spawn npc_id="801305" respawn_time="295">
+			<spot x="384.3968" y="428.9187" z="328.75" h="0"/>
+			<spot x="397.033" y="491.0103" z="328.75" h="0"/>
+			<spot x="443.6861" y="494.0425" z="328.75" h="0"/>
+			<spot x="479.832" y="489.7208" z="328.75" h="0"/>
+			<spot x="480" y="481" z="328.75" h="0"/>
+			<spot x="438.52" y="486.01" z="328.75" h="0"/>
 		</spawn>
-		<!-- Suffering Setan -->
-		<spawn npc_id="801236">
-			<spot x="663.2733" y="346.6483" z="169.5" h="0"/>
+		<!-- Imprisoned Daeva -->
+		<spawn npc_id="801306" respawn_time="295">
+			<spot x="394.2829" y="491.8803" z="328.75" h="0"/>
+			<spot x="440.6915" y="495.3361" z="328.75" h="0"/>
+			<spot x="443.5" y="496.5" z="328.75" h="0"/>
+			<spot x="452" y="523.25" z="328.75" h="0"/>
+			<spot x="467.25" y="533" z="328.75" h="0"/>
+			<spot x="480.3074" y="495.6773" z="328.75" h="0"/>
+			<spot x="480.4754" y="482.8908" z="328.75" h="0"/>
+			<spot x="438.55" y="498.63" z="328.75" h="0"/>
+		</spawn>
+		<!-- Imprisoned Daeva -->
+		<spawn npc_id="801307" respawn_time="295">
+			<spot x="383.7964" y="430.858" z="328.75" h="0"/>
+			<spot x="385.8034" y="482.1465" z="328.75" h="0"/>
+			<spot x="444.8394" y="495.8335" z="328.75" h="0"/>
+			<spot x="479.6496" y="477.7207" z="328.75" h="0"/>
+			<spot x="480.9854" y="491.5117" z="328.75" h="0"/>
+			<spot x="462.24" y="486.78" z="328.75" h="0"/>
+			<spot x="384.8" y="456.5" z="328.75" h="0"/>
+		</spawn>
+		<!-- Imprisoned Daeva -->
+		<spawn npc_id="801308" respawn_time="295">
+			<spot x="396.3703" y="491.9218" z="328.75" h="0"/>
+			<spot x="478.1224" y="424.1387" z="328.75" h="0"/>
+			<spot x="480.25" y="449.75" z="328.75" h="0"/>
+			<spot x="480.3967" y="414.4672" z="328.75" h="0"/>
+			<spot x="481.0208" y="436.4222" z="328.75" h="0"/>
+			<spot x="480.32" y="432.11" z="328.75" h="0"/>
+		</spawn>
+		<!-- Imprisoned Daeva -->
+		<spawn npc_id="801309" respawn_time="295">
+			<spot x="382.4671" y="427.9422" z="328.75" h="0"/>
+			<spot x="384.4741" y="479.2307" z="328.75" h="0"/>
+			<spot x="480.1841" y="451.686" z="328.75" h="0"/>
+			<spot x="480.2299" y="434.5079" z="328.75" h="0"/>
+			<spot x="480.3212" y="428.0565" z="328.75" h="0"/>
+			<spot x="481.0111" y="411.9247" z="328.75" h="0"/>
+			<spot x="480.6" y="431.81" z="328.75" h="0"/>
+			<spot x="383.47" y="453.59" z="328.75" h="0"/>
+		</spawn>
+		<!-- Imprisoned Daeva -->
+		<spawn npc_id="801310" respawn_time="295">
+			<spot x="382.3392" y="430.876" z="328.75" h="0"/>
+			<spot x="384.3463" y="482.1645" z="328.75" h="0"/>
+			<spot x="478.6211" y="409.4825" z="328.75" h="0"/>
+			<spot x="480.0563" y="448.1079" z="328.75" h="0"/>
+			<spot x="480.102" y="437.4417" z="328.75" h="0"/>
+			<spot x="480.1934" y="421.4212" z="328.75" h="0"/>
+			<spot x="479.34" y="428.8" z="328.75" h="0"/>
+			<spot x="383.34" y="456.52" z="328.75" h="0"/>
+		</spawn>
+		<!-- Mysterious Helper -->
+		<spawn npc_id="801405" respawn_time="295">
+			<spot x="292.0804" y="455.4089" z="329.6273" h="0" random_walk="8"/>
+			<spot x="292.0804" y="455.4089" z="329.6273" h="0" random_walk="8"/>
+			<spot x="292.0804" y="455.4089" z="329.6273" h="0" random_walk="8"/>
+		</spawn>
+		<!-- Lueta -->
+		<spawn npc_id="801411" respawn_time="295">
+			<spot x="382.6358" y="518.5288" z="329.5747" h="0"/>
+			<spot x="553.4178" y="460.5041" z="226.8186" h="0"/>
+		</spawn>
+		<!-- Mino -->
+		<spawn npc_id="801430" respawn_time="295">
+			<spot x="382.858" y="466.6512" z="339.5165" h="0"/>
+			<spot x="382.85" y="466.64" z="339.52" h="0"/>
+		</spawn>
+		<!-- Aramu -->
+		<spawn npc_id="801431" respawn_time="295">
+			<spot x="383.3816" y="468.6186" z="339.5165" h="0"/>
 		</spawn>
 		<!-- Suhenn -->
 		<spawn npc_id="801432" respawn_time="295">
 			<spot x="382.9814" y="470.0324" z="339.5165" h="0"/>
 		</spawn>
-		<!-- supply box -->
-		<spawn npc_id="801268">
-			<spot x="570.0428" y="462.1291" z="226.8186" h="0"/>
+		<!-- Sojeni -->
+		<spawn npc_id="801433" respawn_time="295">
+			<spot x="483.5996" y="496.6879" z="340.2116" h="0"/>
 		</spawn>
-		<!-- The Truth of the Cataclysm -->
-		<spawn npc_id="730550">
-			<spot x="566.4428" y="442.5591" z="227.7191" h="0"/>
+		<!-- Jie -->
+		<spawn npc_id="801434" respawn_time="295">
+			<spot x="483.2972" y="493.5918" z="340.2116" h="0"/>
+			<spot x="483.0298" y="427.9572" z="340.2116" h="60"/>
+			<spot x="483.3127" y="421.7824" z="340.2116" h="60"/>
 		</spawn>
-		<!-- Ticking Time Bomb -->
-		<spawn npc_id="701443">
-			<spot x="292.2529" y="456.0857" z="330.0446" h="0"/>
-			<spot x="292.2529" y="456.0857" z="330.0446" h="0"/>
-			<spot x="292.2529" y="456.0857" z="330.0446" h="0"/>
+		<!-- Insonu -->
+		<spawn npc_id="801435" respawn_time="295">
+			<spot x="483.0298" y="427.9572" z="340.2116" h="0"/>
+			<spot x="483.03" y="427.95" z="340.21" h="0"/>
 		</spawn>
-		<!-- tobirinerk -->
-		<spawn npc_id="801301">
-			<spot x="585" y="560.75" z="169.5" h="0"/>
-			<spot x="590.25" y="459.25" z="169.3906" h="0"/>
-			<spot x="594" y="414" z="169.5" h="0"/>
-			<spot x="605.25" y="533" z="169.5469" h="0"/>
-			<spot x="608.25" y="364" z="169.5" h="0"/>
-			<spot x="613" y="561.25" z="169.5" h="0"/>
+		<!-- Hogomu -->
+		<spawn npc_id="801436" respawn_time="295">
+			<spot x="482.7137" y="424.4185" z="340.2116" h="0"/>
 		</spawn>
-		<!-- Training Area -->
-		<spawn npc_id="206255">
-			<spot x="647.1826" y="376.2823" z="169.5" h="0"/>
+		<!-- Junus -->
+		<spawn npc_id="801437" respawn_time="295">
+			<spot x="483.3127" y="421.7823" z="340.2116" h="0"/>
 		</spawn>
-		<!-- Training Area Access Administrator -->
-		<spawn npc_id="801272">
-			<spot x="650" y="416" z="169.625" h="0"/>
+		<!-- Jinishu -->
+		<spawn npc_id="801438" respawn_time="295">
+			<spot x="405.3598" y="494.2517" z="340.2116" h="0"/>
+			<spot x="405.36" y="494.24" z="340.21" h="0"/>
 		</spawn>
-		<!-- Training Lab -->
-		<spawn npc_id="206266">
-			<spot x="372.5" y="380" z="328" h="0"/>
+		<!-- Kaias -->
+		<spawn npc_id="801439" respawn_time="295">
+			<spot x="408.959" y="494.3213" z="340.2116" h="0"/>
+			<spot x="408.95" y="494.31" z="340.21" h="0"/>
 		</spawn>
-		<!-- Warm Chalice -->
-		<spawn npc_id="730563">
-			<spot x="702.1382" y="505.8732" z="169.5" h="0"/>
-		</spawn>
-		<!-- Who’s Who in Atreia -->
-		<spawn npc_id="730552">
-			<spot x="560.6646" y="437.2532" z="227.7901" h="0"/>
-		</spawn>
-		<!-- yanrunrunerk -->
-		<spawn npc_id="801303">
-			<spot x="630.75" y="438" z="169.5" h="0"/>
-			<spot x="658.5" y="433.75" z="169.5" h="0"/>
-			<spot x="662" y="491.25" z="169.5" h="0"/>
-		</spawn>
-		<!-- Zone 1 Access Card -->
-		<spawn npc_id="701437">
-			<spot x="382.4671" y="523.7414" z="329.4876" h="0"/>
+		<!-- NPC_801545 -->
+		<spawn npc_id="801545" respawn_time="295">
+			<spot x="554.7805" y="378.9494" z="171.5" h="0"/>
+			<spot x="543.4782" y="583.7452" z="173.5" h="0"/>
+			<spot x="657.1965" y="479.5132" z="171.5" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

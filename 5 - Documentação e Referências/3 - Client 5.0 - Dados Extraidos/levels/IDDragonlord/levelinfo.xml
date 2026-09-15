@@ -1,0 +1,5 @@
+<LevelInfo HeightmapXSize="1024" HeightmapYSize="1024" LightMapPath="Levels\IDDragonlord\" Name="Levels\IDDragonlord" Version="{93F6C753-2722-4BA8-9FF9-25724D85356F}">
+	<Missions>
+		<Mission Description="" Name="Mission0"/>
+	</Missions>
+</LevelInfo>

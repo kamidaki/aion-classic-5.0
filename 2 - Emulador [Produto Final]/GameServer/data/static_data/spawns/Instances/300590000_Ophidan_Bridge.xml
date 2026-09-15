@@ -1,139 +1,399 @@
-<?xml version='1.0' encoding='utf-8'?>
-<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300590000">
-		<!-- Steel Wall -->
-		<!-- Hakara -->
-		<!-- Zubala -->
-		<!-- Visha -->
-		<!-- Bahapa -->
-		<!-- Escapee Asachin -->
-		<!-- Access Route Corridor -->
-		<!-- North Defense Drakenclaw -->
-		<!-- South Defense Drakenclaw -->
-		<!-- Post Defense Drakenclaw -->
-		<!-- Post Defense Drakenclaw -->
-		<!-- Defense Swiftrunner -->
-		<!-- Post Defense Swiftrunner -->
-		<!-- Defense Spelltongue -->
-		<!-- Post Defense Spelltongue-->
-		<!-- South Defense Spelltongue -->
-		<!-- North Defense Ironscale -->
-		<!-- South Defense Ironscale -->
-		<!-- North Defense Hidestitcher -->
-		<!-- Post Defense Hidestitcher -->
-		<!-- South Defense Hidestitcher -->
-		<!-- Post Defense Gunner -->
-		<!-- South Defense Bard -->
-		<!-- Post Defense Bard -->
-		<!-- Barricade Sentinel -->
-		<!-- Barricade Sentinel -->
-		<!-- TODO: Find out how they work -->
-		<!-- idf5_u01_t_n_runaway_as_65_ah_s_p1 -->
-		<!-- <spawn npc_id="235785">
-			<spot x="580.58" y="562.43" z="595.36" h="22" walker_id="idldf5_under_01_PathRunway_Path05"/>
-			<spot x="674.68" y="508.6" z="599.49" h="22" walker_id="idldf5_under_01_PathRunway_Path04"/>
-			<spot x="750.86" y="511.67" z="582.11" h="22" walker_id="idldf5_under_01_PathRunway_Path01"/>
-			<spot x="662.34" y="446.09" z="603.5" h="22" walker_id="idldf5_under_01_PathRunway_Path02"/>
-			<spot x="535.88" y="462.84" z="621.12" h="22" walker_id="idldf5_under_01_PathRunway_Path03"/>
-		</spawn>-->
-		<!-- idf5_u01_t_n_runaway_pr_65_ah_s_p1 -->
-		<!-- <spawn npc_id="235784">
-			<spot x="580.58" y="562.43" z="595.36" h="22" walker_id="idldf5_under_01_PathRunway_Path05"/>
-			<spot x="674.68" y="508.6" z="599.49" h="22" walker_id="idldf5_under_01_PathRunway_Path04"/>
-			<spot x="750.86" y="511.67" z="582.11" h="22" walker_id="idldf5_under_01_PathRunway_Path01"/>
-			<spot x="662.34" y="446.09" z="603.5" h="22" walker_id="idldf5_under_01_PathRunway_Path02"/>
-			<spot x="535.88" y="462.84" z="621.12" h="22" walker_id="idldf5_under_01_PathRunway_Path03"/>
-		</spawn>-->
-		<!-- idf5_u01_t_n_runaway_wi_65_ah_s_p1 -->
-		<!-- <spawn npc_id="235783">
-			<spot x="580.58" y="562.43" z="595.36" h="22" walker_id="idldf5_under_01_PathRunway_Path05"/>
-			<spot x="674.68" y="508.6" z="599.49" h="22" walker_id="idldf5_under_01_PathRunway_Path04"/>
-			<spot x="750.86" y="511.67" z="582.11" h="22" walker_id="idldf5_under_01_PathRunway_Path01"/>
-			<spot x="662.34" y="446.09" z="603.5" h="22" walker_id="idldf5_under_01_PathRunway_Path02"/>
-			<spot x="535.88" y="462.84" z="621.12" h="22" walker_id="idldf5_under_01_PathRunway_Path03"/>
-		</spawn>-->
-		<!-- idf5_u01_n_p1_runaway_as_65_ah -->
-		<!-- <spawn npc_id="235764">
-			<spot x="675.59" y="472.95" z="601.14" h="22"/>
-		</spawn>-->
-		<!-- idf5_u01_n_p1_runaway_pr_65_ah -->
-		<!-- <spawn npc_id="235760">
-			<spot x="675.59" y="472.95" z="601.14" h="22"/>
-		</spawn>-->
-		<!-- idf5_u01_n_p1_runaway_wi_65_ah -->
-		<!-- <spawn npc_id="235756">
-			<spot x="675.59" y="472.95" z="601.14" h="22"/>
-		</spawn>-->
-		<!-- idf5_u01_n_p2_1_runaway_as_65_ah -->
-		<!-- <spawn npc_id="235765">
-			<spot x="530.26" y="439.66" z="622.4" h="22"/>
-		</spawn>-->
-		<!-- idf5_u01_n_p2_1_runaway_pr_65_ah -->
-		<!-- <spawn npc_id="235761">
-			<spot x="530.26" y="439.66" z="622.4" h="22"/>
-		</spawn>-->
-		<!-- idf5_u01_n_p2_1_runaway_wi_65_ah -->
-		<!-- <spawn npc_id="235757">
-			<spot x="530.26" y="439.66" z="622.4" h="22"/>
-		</spawn>-->
-		<!-- idf5_u01_n_p2_2_runaway_as_65_ah -->
-		<!-- <spawn npc_id="235789">
-			<spot x="607.41" y="558.42" z="592.25" h="22"/>
-		</spawn>-->
-		<!-- idf5_u01_n_p2_2_runaway_pr_65_ah -->
-		<!-- <spawn npc_id="235788">
-			<spot x="607.41" y="558.42" z="592.25" h="22"/>
-		</spawn>-->
-		<!-- idf5_u01_n_p2_2_runaway_wi_65_ah -->
-		<!-- <spawn npc_id="235787">
-			<spot x="607.41" y="558.42" z="592.25" h="22"/>
-		</spawn>-->
-		<!-- idf5_u01_n_p3_runaway_as_65_ah -->
-		<!-- <spawn npc_id="235766">
-			<spot x="479.21" y="524.01" z="599.79" h="22"/>
-		</spawn>-->
-		<!-- idf5_u01_n_p3_runaway_pr_65_ah -->
-		<!-- <spawn npc_id="235762">
-			<spot x="479.21" y="524.01" z="599.79" h="22"/>
-		</spawn>-->
-		<!-- idf5_u01_n_p3_runaway_wi_65_ah -->
-		<!-- <spawn npc_id="235758">
-			<spot x="479.21" y="524.01" z="599.79" h="22"/>
-		</spawn>-->
-		<!-- bidf5_u01_t_random_runaway_npc -->
-		<!-- <spawn npc_id="856054">
-			<spot x="752.91" y="529.42" z="578.55" h="22"/>
-		</spawn>-->
-		<!-- arza's corridor -->
-		<spawn npc_id="730450">
-			<spot x="860.7228" y="946.1044" z="1206.7048" h="0"/>
+		<!-- Chantra Fighter -->
+		<spawn npc_id="217388" respawn_time="295">
+			<spot x="828.4941" y="870.1153" z="1207.5529" h="13"/>
+			<spot x="773.1557" y="871.6384" z="1196.924" h="43"/>
+			<spot x="794.2414" y="879.8405" z="1208.3755" h="103"/>
+			<spot x="773.18" y="871.67" z="1196.92" h="0" walker_id="1D7BA7F8C59A4C67A1AE1BC0E6CBD93D39D1166B"/>
+			<spot x="811.38" y="874.97" z="1207.96" h="0"/>
 		</spawn>
-		<!-- Burned to Ashes Entrance -->
-		<spawn npc_id="801087">
-			<spot x="802.8051" y="964.8775" z="792.5537" h="0"/>
+		<!-- Chantra Spellshot -->
+		<spawn npc_id="217390" respawn_time="295">
+			<spot x="823.4984" y="840.3557" z="1208.3755" h="43"/>
+			<spot x="803.0176" y="846.1248" z="1208.3755" h="15"/>
+		</spawn>
+		<!-- Gatekeeper Melkennis -->
+		<spawn npc_id="217392" respawn_time="295">
+			<spot x="606.07" y="687.63" z="1198.1" h="0"/>
+		</spawn>
+		<!-- Scout Ksellid -->
+		<spawn npc_id="217393" respawn_time="295">
+			<spot x="685.89" y="723.73" z="1189.0" h="0" walker_id="4926A24D2CBF4E92600D25ED10CC2B66B4370D06"/>
+			<spot x="660.08" y="754.32" z="1189.0" h="0" walker_id="CE32F257C736A9A49C510132CCA529EA3746F858"/>
+			<spot x="704.97" y="791.6" z="1190.0" h="0" walker_id="20C869955440B262A0ACC3652E8D8AA22928215B"/>
+			<spot x="729.18" y="763.26" z="1190.0" h="0" walker_id="A7B3ACB5D8DC01110A9FA883619E08CDCF8C0981"/>
+		</spawn>
+		<!-- Chantra Guardian -->
+		<spawn npc_id="217395" respawn_time="295">
+			<spot x="668.4429" y="717.0297" z="1189.6167" h="13"/>
+			<spot x="635.0171" y="731.9424" z="1189.1361" h="13"/>
+			<spot x="685.89" y="723.73" z="1189.0" h="0" walker_id="4926A24D2CBF4E92600D25ED10CC2B66B4370D06"/>
+			<spot x="660.08" y="754.32" z="1189.0" h="0" walker_id="CE32F257C736A9A49C510132CCA529EA3746F858"/>
+			<spot x="704.97" y="791.6" z="1190.0" h="0" walker_id="20C869955440B262A0ACC3652E8D8AA22928215B"/>
+			<spot x="729.18" y="763.26" z="1190.0" h="0" walker_id="A7B3ACB5D8DC01110A9FA883619E08CDCF8C0981"/>
+			<spot x="651.76" y="724.48" z="1189.38" h="0"/>
+		</spawn>
+		<!-- Chantra Elite Searcher -->
+		<spawn npc_id="217397" respawn_time="295">
+			<spot x="756.0716" y="824.7933" z="1190.1919" h="13"/>
+			<spot x="722.45" y="784.54" z="1190.0" h="103"/>
+			<spot x="688.5081" y="754.5835" z="1189.0" h="13"/>
+			<spot x="690.6293" y="752.1035" z="1189.0" h="13"/>
+			<spot x="727.25" y="778.64" z="1190.0" h="103"/>
+			<spot x="737.9539" y="778.975" z="1189.5111" h="13"/>
+			<spot x="763.857" y="814.6341" z="1190.0" h="13"/>
+			<spot x="724.4361" y="795.136" z="1189.5111" h="13"/>
+			<spot x="727.28" y="778.64" z="1190.0" h="0" walker_id="43C9EB8ED8FC0351A7116E8E018343D7EAD3E824"/>
+			<spot x="723.38" y="788.45" z="1189.54" h="0"/>
+		</spawn>
+		<!-- Ancient Raksang Bloodwing -->
+		<spawn npc_id="217410" respawn_time="295">
+			<spot x="479.9087" y="388.8096" z="928.4907" h="15"/>
+			<spot x="478.75" y="386.84" z="928.49" h="0"/>
+		</spawn>
+		<!-- Insane Drakan Captive -->
+		<spawn npc_id="217412" respawn_time="295">
+			<spot x="576.2012" y="231.7069" z="928.4907" h="15"/>
+			<spot x="513.5952" y="328.218" z="930.4684" h="15"/>
+			<spot x="577.3115" y="239.762" z="928.4907" h="15"/>
+			<spot x="523.2325" y="316.1436" z="930.4684" h="15"/>
+			<spot x="576.87" y="235.85" z="928.49" h="0"/>
+			<spot x="520.11" y="320.76" z="930.47" h="0"/>
+		</spawn>
+		<!-- Furious Drakan Convict -->
+		<spawn npc_id="217414" respawn_time="295">
+			<spot x="580.4776" y="235.6238" z="928.4907" h="15"/>
+			<spot x="580.24" y="235.92" z="928.49" h="0"/>
+			<spot x="518.58" y="322.02" z="930.47" h="0"/>
+		</spawn>
+		<!-- Petrified Drakan Skeleton -->
+		<spawn npc_id="217416" respawn_time="295">
+			<spot x="627.8536" y="193.6701" z="926.0" h="43"/>
+			<spot x="466.065" y="357.4425" z="928.4907" h="15"/>
+			<spot x="494.4941" y="395.714" z="928.4907" h="13"/>
+			<spot x="622.4932" y="189.4228" z="926.0" h="43"/>
+			<spot x="585.2009" y="254.2237" z="928.7162" h="73"/>
+			<spot x="466.01" y="357.33" z="928.49" h="0" walker_id="E533770B7C9E9A61F4E9B11201416AB46952E1E2"/>
+			<spot x="585.27" y="254.2" z="928.72" h="0"/>
+			<spot x="625.51" y="191.81" z="926.0" h="0"/>
+		</spawn>
+		<!-- Innocent Drakan Captive -->
+		<spawn npc_id="217418" respawn_time="295">
+			<spot x="517.4915" y="292.6643" z="930.2543" h="43"/>
+			<spot x="564.4702" y="221.4474" z="928.9305" h="15"/>
+			<spot x="490.9165" y="321.9777" z="929.664" h="43"/>
+			<spot x="515.8037" y="265.1897" z="930.6516" h="15"/>
+			<spot x="516.11" y="265.38" z="930.65" h="0" walker_id="0AFD856D447AE0B9B5CF4A5590428336F5C504E6"/>
+			<spot x="504.2" y="307.07" z="929.96" h="0"/>
+		</spawn>
+		<!-- Ereshkigal Gladiator Spirit -->
+		<spawn npc_id="217420" respawn_time="295">
+			<spot x="522.9387" y="297.5457" z="929.9672" h="15"/>
+			<spot x="535.327" y="274.1417" z="929.7363" h="43"/>
+			<spot x="523.16" y="297.49" z="929.97" h="0" walker_id="D6ABFF394232EAAF9AB8448E35A6B549AEF76E78"/>
+			<spot x="535.47" y="274.15" z="929.74" h="0"/>
+		</spawn>
+		<!-- Ereshkigal Brigade General -->
+		<spawn npc_id="217423" respawn_time="295">
+			<spot x="550.3248" y="259.041" z="929.8063" h="43"/>
+			<spot x="550.35" y="259.04" z="929.81" h="0"/>
+		</spawn>
+		<!-- Sharik -->
+		<spawn npc_id="217425" respawn_time="295">
+			<spot x="738.065" y="311.6064" z="911.7108" h="53"/>
+		</spawn>
+		<!-- Gruesome Drake -->
+		<spawn npc_id="217429" respawn_time="295">
+			<spot x="1008.2307" y="890.2081" z="766.4564" h="76"/>
+			<spot x="1013.2388" y="885.6082" z="764.5896" h="76"/>
+			<spot x="1002.5419" y="895.1025" z="764.5896" h="76"/>
+			<spot x="976.7451" y="912.7023" z="764.5896" h="76"/>
+			<spot x="997.6042" y="899.615" z="766.4564" h="76"/>
+			<spot x="971.6912" y="917.9414" z="764.4627" h="76"/>
+			<spot x="992.7" y="901.72" z="765.19" h="0"/>
+		</spawn>
+		<!-- Ancient Ksellid -->
+		<spawn npc_id="217433" respawn_time="295">
+			<spot x="889.4088" y="816.4283" z="730.4193" h="53"/>
+			<spot x="893.15" y="816.99" z="730.42" h="0"/>
+		</spawn>
+		<!-- Flame Drakan Deserter -->
+		<spawn npc_id="217437" respawn_time="295">
+			<spot x="886.4659" y="838.1976" z="734.0048" h="53"/>
+			<spot x="881.2237" y="841.8138" z="733.1641" h="53"/>
+			<spot x="883.6" y="839.64" z="733.58" h="0"/>
+		</spawn>
+		<!-- Flame Drakan Convict -->
+		<spawn npc_id="217439" respawn_time="295">
+			<spot x="915.777" y="833.4085" z="732.158" h="53"/>
+			<spot x="909.1086" y="836.879" z="732.4539" h="53"/>
+			<spot x="889.2888" y="841.9658" z="732.7357" h="53"/>
+			<spot x="902.71" y="837.54" z="732.45" h="0"/>
+		</spawn>
+		<!-- Ereshkigal Defender Spirit -->
+		<spawn npc_id="217441" respawn_time="295">
+			<spot x="972.7857" y="772.4648" z="734.7447" h="33"/>
+			<spot x="939.1119" y="905.2803" z="769.9911" h="53"/>
+			<spot x="833.9111" y="903.2875" z="785.4239" h="96"/>
+			<spot x="827.953" y="901.2134" z="785.4239" h="96"/>
+			<spot x="969.5346" y="771.2635" z="734.7447" h="33"/>
+			<spot x="939.16" y="905.37" z="769.99" h="0" walker_id="457499C3BFF2DD9F33EA95D90B26C50CC38BC2A2"/>
+			<spot x="970.8" y="772.11" z="734.74" h="0"/>
+			<spot x="831.57" y="902.24" z="785.42" h="0"/>
+		</spawn>
+		<!-- Ereshkigal Mutant -->
+		<spawn npc_id="217443" respawn_time="295">
+			<spot x="1010.7252" y="774.185" z="742.1353" h="53"/>
+			<spot x="934.996" y="809.4062" z="736.3787" h="30"/>
+			<spot x="1017.9799" y="824.6585" z="752.4193" h="53"/>
+			<spot x="1017.78" y="824.6" z="752.42" h="0" walker_id="855E174237EF41168DA678A110F27B3ECD779D86"/>
+			<spot x="934.92" y="809.47" z="736.38" h="0" walker_id="537B29FCF9E4E3A86FB1E6363637DB2F8D46A2C3"/>
+			<spot x="1010.87" y="774.22" z="742.14" h="0" walker_id="DF4177E63E2D5A82218B8F693969D412E133CE7A"/>
+		</spawn>
+		<!-- Ereshkigal Special Gladiator Spirit -->
+		<spawn npc_id="217445" respawn_time="295">
+			<spot x="987.2551" y="893.7351" z="764.0086" h="105"/>
+			<spot x="984.1881" y="889.99" z="764.0086" h="105"/>
+			<spot x="1008.3568" y="802.0549" z="749.1232" h="0"/>
+			<spot x="1008.61" y="802.42" z="749.12" h="0"/>
+			<spot x="985.36" y="892.11" z="764.01" h="0"/>
+		</spawn>
+		<!-- Ereshkigal Special Medic Spirit -->
+		<spawn npc_id="217447" respawn_time="295">
+			<spot x="878.5764" y="858.7851" z="734.0466" h="93"/>
+			<spot x="866.7742" y="853.3753" z="734.7839" h="93"/>
+			<spot x="846.1318" y="892.9266" z="784.2585" h="63"/>
+			<spot x="869.202" y="865.9678" z="734.7839" h="63"/>
+			<spot x="846.11" y="892.99" z="784.26" h="0" walker_id="9B2C93960F4A13517F30841FC545BDA0CAA96E01"/>
+			<spot x="871.24" y="859.06" z="734.54" h="0"/>
+		</spawn>
+		<!-- The Flamelord -->
+		<spawn npc_id="217451" respawn_time="295">
+			<spot x="805.3673" y="959.9803" z="793.9826" h="96"/>
+			<spot x="805.01" y="960.22" z="793.98" h="0"/>
+		</spawn>
+		<!-- Prison Ashulagen -->
+		<spawn npc_id="217452" respawn_time="295">
+			<spot x="598.36" y="587.6" z="936.52" h="0" walker_id="96F30FB72BAF4D00A73358D08DDE0D78BF43127F"/>
+			<spot x="673.64" y="661.04" z="761.16" h="0" walker_id="9B3F55BD23FE92D2D8CA5DA6B14385E62BA1E1EA"/>
+			<spot x="570.49" y="647.69" z="999.54" h="0" walker_id="5DD4FEEA72B3CF268A27ADCF53918450D15918E2"/>
+			<spot x="643.95" y="689.22" z="699.29" h="0" walker_id="36FB3D391FBE81D45124D0D850586CE554E618A3"/>
+			<spot x="596.85" y="604.76" z="955.73" h="0" walker_id="340F5D1C9BAC2A1D79622257E4955C816B1335F5"/>
+			<spot x="598.4" y="632.64" z="960.32" h="0" walker_id="331BC95E034F1F25A71ED5AD92BFC45572FFA621"/>
+			<spot x="587.93" y="645.59" z="1138.4" h="0" walker_id="AF0DEE331211D7E537E12C941A05AA6D764FB173"/>
+			<spot x="617.05" y="682.79" z="877.34" h="0" walker_id="A4D91BEA5F70A9AF6341C5E8D99CEA6CB382B830"/>
+			<spot x="622.85" y="653.52" z="624.89" h="0" walker_id="8291548DD9861091F9ED0CB66282BE8275C68FE1"/>
+			<spot x="707.66" y="655.23" z="820.05" h="0" walker_id="2A0D6522994FEF845A7AB4AB79A6F3684176D76A"/>
+			<spot x="589.26" y="645.55" z="1080.47" h="0" walker_id="02D3C44B5C13152BC39A4A05CA0DCAA1D4763401"/>
+			<spot x="626.2" y="681.38" z="639.27" h="0" walker_id="2D001703EEF44D4B45D30E8EF7759DDEFAB44EDA"/>
+			<spot x="603.48" y="669.74" z="965.86" h="0" walker_id="1586F2E181ED42E46DCEB97CDE0963C69194857F"/>
+			<spot x="558.22" y="625.67" z="922.99" h="0" walker_id="4C07E19C2B6C4C7AC5D7A9C0A2892E1D91392083"/>
+			<spot x="611.52" y="681.42" z="732.55" h="0" walker_id="4BBC6EDACC4DBC34BED2865C981721BAD353C2D8"/>
+			<spot x="602.8" y="677.83" z="935.27" h="0" walker_id="49A058A8D1C0D0347995FB100DF0E48761BC9BB7"/>
+			<spot x="630.52" y="667.2" z="711.02" h="0" walker_id="39D830F2995D6AE6AB2AC90E6D277119C5903E1F"/>
+			<spot x="587.9" y="657.91" z="1018.95" h="0" walker_id="CE0508961241A72C99EFF17FD125DA6369D27A4D"/>
+			<spot x="586.08" y="595.44" z="989.89" h="0" walker_id="FAAB86047E3B7BA69FD01726616D4FB938089ED2"/>
+			<spot x="671.5" y="592.87" z="852.31" h="0" walker_id="B230498F060B77682AB72D02DEB784CF4EE7A894"/>
+			<spot x="614.7" y="612.59" z="925.29" h="0" walker_id="6C7116D9D5801864B3459BFBB203637A89FB53F3"/>
+			<spot x="712.9" y="679.73" z="765.31" h="0" walker_id="FBA414D920A45499C66EFF381E3DE8756400279A"/>
+			<spot x="647.91" y="639.75" z="917.74" h="0" walker_id="67982B18E48E6EAA3DB4436BC2035DC092178E64"/>
+			<spot x="583.84" y="745.04" z="854.66" h="0" walker_id="8379452129E45DCA6B89B58869BC823AD6682443"/>
+			<spot x="720.76" y="679.15" z="811.96" h="0" walker_id="609764378F70CC27365D27E08EC0F698D2AC6183"/>
+			<spot x="663.7" y="635.42" z="798.4" h="0" walker_id="9A47BA57463031FF989A597B475C311EF2558D23"/>
+			<spot x="710.89" y="618.01" z="838.19" h="0" walker_id="F2FD06291449B1635B2460B1ACDF6200B9573C0C"/>
+			<spot x="717.99" y="659.35" z="867.58" h="0" walker_id="66D3553EDC4B738FEBD8E6D7171A490BD2D1E4D2"/>
+			<spot x="584.98" y="695.74" z="893.36" h="0" walker_id="6DB95B824818A71DD9D02081D7449B483A0352D7"/>
+			<spot x="557.02" y="606.34" z="964.2" h="0" walker_id="94C5407509FD18392B0CDE93359FFE9B45CCE379"/>
+			<spot x="719.8" y="665.83" z="831.97" h="0" walker_id="53279CAC78BBB6A3CB0B4DF24F542ADF66F0C52D"/>
+			<spot x="586.18" y="643.4" z="1116.76" h="0" walker_id="C81C7FC3E458647BB66837CA2FC40251E77F9912"/>
+			<spot x="711.01" y="688.76" z="790.4" h="0" walker_id="C0C61341C002599C7DD49FEABB372D1CA89BA8D7"/>
+			<spot x="632.41" y="676.35" z="651.03" h="0" walker_id="BC618471B170F41BDC94BCF727FCF032A9DE12D6"/>
+			<spot x="566.63" y="611.06" z="943.19" h="0" walker_id="713C4456A7B517C6D4A7D5FE13C28FCDEC804D83"/>
+			<spot x="676.04" y="674.21" z="860.35" h="0" walker_id="4EF51BB58CEAACDED73DD7D19A537A96A5018C43"/>
+			<spot x="554.64" y="644.63" z="952.12" h="0" walker_id="F79E10B2406FB233022DDEACBA5506420DC66971"/>
+			<spot x="624.09" y="765.07" z="752.79" h="0" walker_id="49EC66215C4A4D87A116D4C07FA2E5A460FAFED8"/>
+			<spot x="691.42" y="714.46" z="900.12" h="0" walker_id="452C3748F3035B224DC90944D59D0B509AD9AF07"/>
+			<spot x="583.6" y="652.43" z="1035.54" h="0" walker_id="406E64D98DB8ADF29205DC2FC7A46A616B53564C"/>
+			<spot x="583.35" y="592.45" z="971.63" h="0" walker_id="E1D96F53CDF51DDCFFD9CA9603A18AFDBF7CCB48"/>
+			<spot x="657.46" y="724.9" z="763.17" h="0" walker_id="9F56DBB394FEE6B88DCC5090F5FF35C7B61B922B"/>
+			<spot x="611.1" y="720.48" z="741.99" h="0" walker_id="C48398D0D4BE3C5D0B957E816ABA17E8A5C26D89"/>
+			<spot x="683.76" y="689.78" z="776.71" h="0" walker_id="74040527F54D20DEC22A7AEC1F55E2C3C5ED8793"/>
+			<spot x="693.7" y="590.93" z="924.81" h="0" walker_id="FDD096FF2A7A5C7814DBA7D29ADAFBD87C41A2CC"/>
+			<spot x="647.42" y="701.7" z="746.28" h="0" walker_id="0A17E29CF120D62B3285A70197398300F34B0367"/>
+		</spawn>
+		<!-- Informer Ashulagen -->
+		<spawn npc_id="217455" respawn_time="295">
+			<spot x="598.36" y="587.6" z="936.52" h="0" walker_id="96F30FB72BAF4D00A73358D08DDE0D78BF43127F"/>
+			<spot x="673.64" y="661.04" z="761.16" h="0" walker_id="9B3F55BD23FE92D2D8CA5DA6B14385E62BA1E1EA"/>
+			<spot x="622.85" y="653.52" z="624.89" h="0" walker_id="8291548DD9861091F9ED0CB66282BE8275C68FE1"/>
+			<spot x="611.52" y="681.42" z="732.55" h="0" walker_id="4BBC6EDACC4DBC34BED2865C981721BAD353C2D8"/>
+			<spot x="586.08" y="595.44" z="989.89" h="0" walker_id="FAAB86047E3B7BA69FD01726616D4FB938089ED2"/>
+			<spot x="710.89" y="618.01" z="838.19" h="0" walker_id="F2FD06291449B1635B2460B1ACDF6200B9573C0C"/>
+		</spawn>
+		<!-- Paruam Sealguard -->
+		<spawn npc_id="217456" respawn_time="295">
+			<spot x="615.0811" y="640.6599" z="526.9002" h="26"/>
+			<spot x="615.08" y="640.59" z="526.9" h="0"/>
+		</spawn>
+		<!-- Guard Leader Sumeda -->
+		<spawn npc_id="217469" respawn_time="295">
+			<spot x="309.6018" y="629.382" z="151.7328" h="106"/>
+			<spot x="309.63" y="629.48" z="151.73" h="0"/>
+		</spawn>
+		<!-- Soul Gargoyle -->
+		<spawn npc_id="217471" respawn_time="295">
+			<spot x="1086.9399" y="953.55" z="141.62" h="47"/>
+			<spot x="1086.53" y="953.34" z="141.62" h="0"/>
+		</spawn>
+		<!-- Sapping Gargoyle -->
+		<spawn npc_id="217472" respawn_time="295">
+			<spot x="1048.49" y="956.38" z="141.62" h="10"/>
+			<spot x="1048.29" y="956.34" z="141.62" h="0"/>
+		</spawn>
+		<!-- Magic Gargoyle -->
+		<spawn npc_id="217473" respawn_time="295">
+			<spot x="1067.0186" y="946.022" z="140.4781" h="29"/>
+			<spot x="1066.97" y="946.35" z="140.48" h="0"/>
+		</spawn>
+		<!-- Collapsed Debris -->
+		<spawn npc_id="217474" respawn_time="295">
+			<spot x="352.0033" y="875.7512" z="161.2981" h="20"/>
+			<spot x="352.36" y="875.94" z="161.3" h="0"/>
+		</spawn>
+		<!-- Ereshkigal Special Soldier Soul -->
+		<spawn npc_id="217641" respawn_time="295">
+			<spot x="251.6309" y="726.5906" z="144.781" h="76"/>
+			<spot x="251.54" y="726.84" z="144.78" h="0"/>
+		</spawn>
+		<!-- Vasharti Tracker Device -->
+		<spawn npc_id="217642" respawn_time="295">
+			<spot x="250.112" y="702.3853" z="153.5148" h="0"/>
+			<spot x="350.0866" y="593.684" z="142.5893" h="46"/>
+		</spawn>
+		<!-- Ereshkigal Special Attacker Soul -->
+		<spawn npc_id="217643" respawn_time="295">
+			<spot x="403.5018" y="816.7853" z="164.12" h="66"/>
+			<spot x="341.3553" y="787.397" z="148.2722" h="46"/>
+			<spot x="335.6186" y="778.374" z="148.2722" h="46"/>
+			<spot x="406.2088" y="812.2437" z="164.12" h="66"/>
+			<spot x="404.89" y="814.5" z="164.12" h="0"/>
+			<spot x="338.52" y="782.9" z="148.27" h="0"/>
+		</spawn>
+		<!-- 58th Naga Warlock Spirit -->
+		<spawn npc_id="217644" respawn_time="295">
+			<spot x="265.2245" y="663.1179" z="149.9768" h="93"/>
+			<spot x="265.26" y="663.28" z="149.98" h="0" walker_id="54085422BDF143858605D9AB5E2AD14122710EB6"/>
+		</spawn>
+		<!-- Synthral Legionary Spirit -->
+		<spawn npc_id="217645" respawn_time="295">
+			<spot x="324.3302" y="489.8649" z="124.4795" h="6"/>
+		</spawn>
+		<!-- 58th Naga Legionary Spirit -->
+		<spawn npc_id="217646" respawn_time="295">
+			<spot x="327.2423" y="509.2462" z="125.9063" h="6"/>
+			<spot x="267.3365" y="717.2623" z="149.7364" h="60"/>
+			<spot x="267.37" y="717.26" z="149.74" h="0"/>
+			<spot x="327.83" y="508.71" z="125.91" h="0"/>
+		</spawn>
+		<!-- 51st Drakan Seal Protector -->
+		<spawn npc_id="217657" respawn_time="295">
+			<spot x="745.7402" y="806.4713" z="1190.4204" h="43"/>
+			<spot x="745.77" y="806.47" z="1190.42" h="0"/>
+		</spawn>
+		<!-- 51st Drakan Seal Protector -->
+		<spawn npc_id="217658" respawn_time="295">
+			<spot x="750.7955" y="800.3994" z="1190.4204" h="103"/>
+		</spawn>
+		<!-- 51st Drakan Seal Protector -->
+		<spawn npc_id="217659" respawn_time="295">
+			<spot x="660.4239" y="777.4127" z="1190.1243" h="13"/>
+			<spot x="710.14" y="717.09" z="1190.12" h="0"/>
+			<spot x="660.45" y="777.38" z="1190.12" h="0"/>
+		</spawn>
+		<!-- 51st Drakan Seal Protector -->
+		<spawn npc_id="217660" respawn_time="295">
+			<spot x="654.4792" y="772.2649" z="1189.9817" h="73"/>
+			<spot x="704.1611" y="711.9817" z="1189.9817" h="73"/>
+		</spawn>
+		<!-- Vasuki Lifespark -->
+		<spawn npc_id="217760" respawn_time="295">
+			<spot x="842.1666" y="902.4129" z="1207.4397" h="30"/>
+		</spawn>
+		<!-- Vasuki Lifespark -->
+		<spawn npc_id="217761" respawn_time="295">
+			<spot x="582.5503" y="660.7074" z="1175.5564" h="73"/>
+		</spawn>
+		<!-- Vasuki Lifespark -->
+		<spawn npc_id="217762" respawn_time="295">
+			<spot x="766.1956" y="310.7071" z="911.2956" h="90"/>
+		</spawn>
+		<!-- Vasuki Lifespark -->
+		<spawn npc_id="217763" respawn_time="295">
+			<spot x="322.4324" y="562.4392" z="133.255" h="88"/>
+			<spot x="322.46" y="562.44" z="133.26" h="0"/>
+		</spawn>
+		<!-- Vasuki Lifespark -->
+		<spawn npc_id="217764" respawn_time="295">
+			<spot x="1068.8606" y="975.0518" z="142.2756" h="30"/>
+			<spot x="1068.89" y="975.05" z="142.28" h="0"/>
+		</spawn>
+		<!-- Ereshkigal Trapper Spirit -->
+		<spawn npc_id="217767" respawn_time="295">
+			<spot x="882.8695" y="912.2457" z="781.1742" h="90"/>
+			<spot x="855.828" y="838.5626" z="734.4586" h="63"/>
+			<spot x="963.9047" y="892.5763" z="768.8132" h="10"/>
+			<spot x="920.3529" y="897.538" z="770.1509" h="30"/>
+			<spot x="1015.5269" y="771.1876" z="745.0874" h="50"/>
+			<spot x="1015.2308" y="835.3901" z="755.0549" h="0"/>
+			<spot x="1015.84" y="771.24" z="745.09" h="0"/>
+			<spot x="923.37" y="902.47" z="773.38" h="0"/>
+			<spot x="935.68" y="837.03" z="744.76" h="0"/>
+		</spawn>
+		<!-- Ereshkigal Special Trapper -->
+		<spawn npc_id="217771" respawn_time="295">
+			<spot x="335.8602" y="579.3607" z="137.2013" h="70"/>
+			<spot x="373.8641" y="795.8576" z="163.9918" h="73"/>
+		</spawn>
+		<!-- Ereshkigal Healer Spirit -->
+		<spawn npc_id="217773" respawn_time="295">
+			<spot x="596.0525" y="244.7269" z="929.2264" h="66"/>
+			<spot x="571.4485" y="219.911" z="928.5931" h="26"/>
+			<spot x="496.4929" y="315.8511" z="932.1547" h="15"/>
+			<spot x="496.7" y="315.84" z="932.15" h="0" walker_id="CB5A2F1A1D1768692AE8E888008D79E549D33575"/>
+			<spot x="583.79" y="232.34" z="928.84" h="0"/>
+		</spawn>
+		<!-- Ereshkigal Special Healer Spirit -->
+		<spawn npc_id="217777" respawn_time="295">
+			<spot x="352.1392" y="499.9434" z="123.4947" h="66"/>
+			<spot x="312.5675" y="485.3785" z="121.7089" h="6"/>
+			<spot x="273.3455" y="774.3518" z="148.71" h="73"/>
+			<spot x="273.38" y="774.35" z="148.71" h="0" walker_id="8F977EA9D9E47473694B4F93FD5FE35E94D38C1C"/>
+			<spot x="332.36" y="492.56" z="122.6" h="0"/>
+		</spawn>
+		<!-- Insane Drakan Captive -->
+		<spawn npc_id="219854" respawn_time="295">
+			<spot x="322.5614" y="558.2938" z="133.255" h="88"/>
+			<spot x="319.9975" y="558.0486" z="133.255" h="88"/>
+			<spot x="324.7441" y="556.8815" z="133.255" h="88"/>
+			<spot x="322.4" y="557.46" z="133.26" h="0"/>
 		</spawn>
 		<!-- Divine Spring -->
-		<spawn npc_id="282984">
+		<spawn npc_id="282984" respawn_time="295">
 			<spot x="1094.2755" y="922.4459" z="139.0715" h="0"/>
+			<spot x="1035.4902" y="925.1296" z="138.9948" h="0"/>
+			<spot x="1065.4" y="924.36" z="139.03" h="0"/>
 		</spawn>
-		<!-- Dungeon Exit -->
-		<spawn npc_id="801115">
-			<spot x="526.1379" y="432.8611" z="928.5375" h="0"/>
-		</spawn>
-		<!-- Dungeon Exit -->
-		<spawn npc_id="801116">
-			<spot x="805.9454" y="827.4349" z="736.4009" h="0"/>
-		</spawn>
-		<!-- execution ground entrance -->
-		<spawn npc_id="730441">
-			<spot x="829.6531" y="904.9179" z="786.7615" h="0"/>
-		</spawn>
-		<!-- execution ground exit -->
-		<spawn npc_id="730442">
-			<spot x="752.7946" y="931.01" z="790.3591" h="0"/>
+		<!-- Seal Connector -->
+		<spawn npc_id="282999" respawn_time="295">
+			<spot x="734.7936" y="308.1245" z="911.7108" h="53"/>
+			<spot x="802.4075" y="957.3036" z="792.6457" h="53"/>
+			<spot x="766.6384" y="308.445" z="911.7108" h="53"/>
+			<spot x="750.72" y="308.29" z="911.71" h="0"/>
 		</spawn>
 		<!-- Flaming Inferno -->
-		<spawn npc_id="283009">
+		<spawn npc_id="283009" respawn_time="295">
 			<spot x="777.7031" y="960.6443" z="792.4542" h="0"/>
 			<spot x="777.9097" y="969.4955" z="792.4542" h="0"/>
 			<spot x="779.4633" y="956.972" z="792.4542" h="0"/>
@@ -166,9 +426,10 @@
 			<spot x="797.2253" y="971.8487" z="792.4542" h="0"/>
 			<spot x="797.8417" y="965.1177" z="792.4542" h="0"/>
 			<spot x="798.9382" y="968.1514" z="792.4542" h="0"/>
+			<spot x="784.88" y="971.66" z="792.45" h="0"/>
 		</spawn>
 		<!-- Flaming Inferno -->
-		<spawn npc_id="283010">
+		<spawn npc_id="283010" respawn_time="295">
 			<spot x="794.1001" y="988.4525" z="792.5699" h="0"/>
 			<spot x="795.8261" y="984.7004" z="792.5699" h="0"/>
 			<spot x="797.6271" y="981.0043" z="792.5699" h="0"/>
@@ -201,9 +462,10 @@
 			<spot x="820.838" y="975.4328" z="792.5699" h="0"/>
 			<spot x="822.8074" y="980.7697" z="792.5699" h="0"/>
 			<spot x="824.5373" y="977.075" z="792.5699" h="0"/>
+			<spot x="809.36" y="982.71" z="792.57" h="0"/>
 		</spawn>
 		<!-- Flaming Inferno -->
-		<spawn npc_id="283011">
+		<spawn npc_id="283011" respawn_time="295">
 			<spot x="806.847" y="961.6782" z="792.5699" h="0"/>
 			<spot x="807.9897" y="964.7562" z="792.5699" h="0"/>
 			<spot x="808.5999" y="958.0162" z="792.5699" h="0"/>
@@ -236,9 +498,10 @@
 			<spot x="826.4147" y="973.0936" z="792.5699" h="0"/>
 			<spot x="827.8931" y="960.347" z="792.5699" h="0"/>
 			<spot x="828.1085" y="969.3184" z="792.5699" h="0"/>
+			<spot x="820.94" y="958.18" z="792.57" h="0"/>
 		</spawn>
 		<!-- Flaming Inferno -->
-		<spawn npc_id="283012">
+		<spawn npc_id="283012" respawn_time="295">
 			<spot x="781.4926" y="952.6591" z="792.5699" h="0"/>
 			<spot x="783.2251" y="949.0794" z="792.5699" h="0"/>
 			<spot x="785.1035" y="954.3074" z="792.5699" h="0"/>
@@ -271,94 +534,218 @@
 			<spot x="807.8983" y="948.7904" z="792.5699" h="0"/>
 			<spot x="809.6215" y="945.154" z="792.5699" h="0"/>
 			<spot x="811.3468" y="941.5369" z="792.5699" h="0"/>
+			<spot x="796.46" y="947.04" z="792.57" h="0"/>
 		</spawn>
 		<!-- Flaming Inferno -->
-		<spawn npc_id="283026">
+		<spawn npc_id="283021" respawn_time="295">
+			<spot x="638.6978" y="709.0568" z="1189.4852" h="106"/>
+		</spawn>
+		<!-- Summoning Mirror -->
+		<spawn npc_id="283022" respawn_time="295">
+			<spot x="738.8436" y="312.3519" z="912.1387" h="0"/>
+			<spot x="738.84" y="312.34" z="912.14" h="0"/>
+		</spawn>
+		<!-- Summoning Mirror -->
+		<spawn npc_id="283023" respawn_time="295">
+			<spot x="736.0247" y="271.1469" z="912.1387" h="0"/>
+		</spawn>
+		<!-- Flaming Inferno -->
+		<spawn npc_id="283026" respawn_time="295">
 			<spot x="588.6212" y="666.0057" z="1180.4451" h="0"/>
 		</spawn>
-		<!-- hellpath entrance -->
-		<spawn npc_id="730443">
+		<!-- Entrance to 1st Ordeal Room -->
+		<spawn npc_id="730438" respawn_time="295">
+			<spot x="628.1315" y="187.5052" z="926.317" h="0"/>
+		</spawn>
+		<!-- Execution Ground Exit -->
+		<spawn npc_id="730439" respawn_time="295">
+			<spot x="766.6851" y="327.5196" z="912.3344" h="0"/>
+		</spawn>
+		<!-- Entrance to 2nd Ordeal Room -->
+		<spawn npc_id="730441" respawn_time="295">
+			<spot x="829.6531" y="904.9179" z="786.7615" h="0"/>
+			<spot x="829.65" y="904.92" z="786.76" h="0"/>
+		</spawn>
+		<!-- Execution Ground Exit -->
+		<spawn npc_id="730442" respawn_time="295">
+			<spot x="752.7946" y="931.01" z="790.3591" h="0"/>
+		</spawn>
+		<!-- Entrance to Hellpath -->
+		<spawn npc_id="730443" respawn_time="295">
 			<spot x="614.5259" y="633.7761" z="526.9127" h="0"/>
 		</spawn>
+		<!-- Sealed Area Entrance -->
+		<spawn npc_id="730444" respawn_time="295">
+			<spot x="448.8664" y="842.5774" z="167.7791" h="0"/>
+		</spawn>
+		<!-- Mirror of Life -->
+		<spawn npc_id="730446" respawn_time="295">
+			<spot x="738.83" y="317.82" z="911.9" h="0"/>
+		</spawn>
+		<!-- Mirror of Life -->
+		<spawn npc_id="730447" respawn_time="295">
+			<spot x="735.9" y="265.7" z="911.9" h="0"/>
+		</spawn>
+		<!-- Mirror of Reflection -->
+		<spawn npc_id="730448" respawn_time="295">
+			<spot x="729.0703" y="295.4579" z="912.1387" h="0"/>
+			<spot x="729.07" y="295.45" z="912.14" h="0"/>
+		</spawn>
+		<!-- Mirror of Reflection -->
+		<spawn npc_id="730449" respawn_time="295">
+			<spot x="728.6782" y="288.1132" z="912.4149" h="0"/>
+		</spawn>
+		<!-- Tartarus Exit -->
+		<spawn npc_id="730450" respawn_time="295">
+			<spot x="860.7228" y="946.1044" z="1206.7048" h="0"/>
+			<spot x="1062.2809" y="897.4768" z="141.6702" h="29"/>
+			<spot x="860.76" y="946.1" z="1207.98" h="0"/>
+		</spawn>
+		<!-- Maduka’s Spirit -->
+		<spawn npc_id="799429" respawn_time="295">
+			<spot x="510.6658" y="418.8216" z="927.9529" h="0"/>
+		</spawn>
+		<!-- Tartarus Treasure Chest -->
+		<spawn npc_id="800522" respawn_time="295">
+			<spot x="1065.0" y="922.0" z="139.196" h="30"/>
+		</spawn>
+		<!-- Time Generator -->
+		<spawn npc_id="801063" respawn_time="295">
+			<spot x="326.7134" y="623.684" z="146.7791" h="100"/>
+			<spot x="327.09" y="623.02" z="146.78" h="0"/>
+		</spawn>
+		<!-- Raksang Ground Passage -->
+		<spawn npc_id="801071" respawn_time="295">
+			<spot x="550.8695" y="698.3726" z="733.9846" h="0"/>
+			<spot x="551.04" y="698.3" z="733.98" h="0"/>
+		</spawn>
 		<!-- IDRaksha_SensoryArea_02 -->
-		<spawn npc_id="801073">
+		<spawn npc_id="801073" respawn_time="295">
 			<spot x="827.2953" y="922.371" z="1208.012" h="0"/>
+			<spot x="827.47" y="922.3" z="1208.01" h="0"/>
 		</spawn>
 		<!-- IDRaksha_SensoryArea_03 -->
-		<spawn npc_id="801074">
+		<spawn npc_id="801074" respawn_time="295">
 			<spot x="321.6784" y="554.8714" z="132.8196" h="0"/>
+			<spot x="321.85" y="554.8" z="132.82" h="0"/>
 		</spawn>
 		<!-- IDRaksha_SensoryArea_04 -->
-		<spawn npc_id="801075">
+		<spawn npc_id="801075" respawn_time="295">
 			<spot x="635.9981" y="707.4836" z="1186.7133" h="0"/>
+			<spot x="636.17" y="707.34" z="1190.54" h="0"/>
 		</spawn>
 		<!-- IDRaksha_SensoryArea_05 -->
-		<spawn npc_id="801076">
+		<spawn npc_id="801076" respawn_time="295">
 			<spot x="1062.193" y="931.7722" z="141.9446" h="0"/>
+			<spot x="1062.36" y="931.7" z="141.94" h="0"/>
+		</spawn>
+		<!-- IDRaksha_SensoryArea_06 -->
+		<spawn npc_id="801077" respawn_time="295">
+			<spot x="1063.443" y="933.3314" z="141.9446" h="0"/>
+			<spot x="1063.61" y="933.33" z="141.94" h="0"/>
 		</spawn>
 		<!-- IDRaksha_SensoryArea_07 -->
-		<spawn npc_id="801078">
+		<spawn npc_id="801078" respawn_time="295">
 			<spot x="821.4838" y="863.4365" z="1208.3451" h="0"/>
+			<spot x="821.65" y="863.36" z="1208.35" h="0"/>
+		</spawn>
+		<!-- Burned to Ashes Entrance -->
+		<spawn npc_id="801087" respawn_time="295">
+			<spot x="802.8051" y="964.8775" z="792.5537" h="0"/>
 		</spawn>
 		<!-- Inferno Brazier -->
-		<spawn npc_id="801088">
+		<spawn npc_id="801088" respawn_time="295">
 			<spot x="783.4047" y="972.0368" z="792.5537" h="0"/>
 		</spawn>
 		<!-- Inferno Brazier -->
-		<spawn npc_id="801089">
+		<spawn npc_id="801089" respawn_time="295">
 			<spot x="810.0673" y="984.5186" z="792.5537" h="0"/>
 		</spawn>
 		<!-- Inferno Brazier -->
-		<spawn npc_id="801090">
+		<spawn npc_id="801090" respawn_time="295">
 			<spot x="822.4836" y="957.66" z="792.5537" h="0"/>
 		</spawn>
 		<!-- Inferno Brazier -->
-		<spawn npc_id="801091">
+		<spawn npc_id="801091" respawn_time="295">
 			<spot x="795.7557" y="945.4396" z="792.5537" h="0"/>
 		</spawn>
-		<!-- interrogation room entrance -->
-		<spawn npc_id="730438">
-			<spot x="628.1315" y="187.5052" z="926.317" h="0"/>
+		<!-- Thick Dust -->
+		<spawn npc_id="801094" respawn_time="295">
+			<spot x="1068.68" y="967.21" z="138.79" h="0"/>
 		</spawn>
-		<!-- interrogation room exit -->
-		<spawn npc_id="730439">
-			<spot x="766.6851" y="327.5196" z="912.3344" h="0"/>
-		</spawn>
-		<!-- maduka's spirit -->
-		<spawn npc_id="799429">
-			<spot x="510.6658" y="418.8216" z="927.9529" h="0"/>
-		</spawn>
-		<!-- Mandali Flower -->
-		<spawn npc_id="801100">
-			<spot x="985.7469" y="903.9288" z="763.8378" h="0"/>
-		</spawn>
-		<!-- mirror of projection -->
-		<spawn npc_id="730448">
-			<spot x="729.0703" y="295.4579" z="912.1387" h="0"/>
-		</spawn>
-		<!-- mirror of projection -->
-		<spawn npc_id="730449">
-			<spot x="728.6782" y="288.1132" z="912.4149" h="0"/>
+		<!-- Thick Dust -->
+		<spawn npc_id="801095" respawn_time="295">
+			<spot x="312.11" y="572.58" z="133.77" h="0"/>
 		</spawn>
 		<!-- Raksha Sealing Wall -->
-		<spawn npc_id="801099">
+		<spawn npc_id="801099" respawn_time="295">
 			<spot x="1063.5601" y="875.89" z="108.15" h="0"/>
+			<spot x="1063.64" y="875.96" z="108.15" h="0"/>
 		</spawn>
-		<!-- sealed area entrance -->
-		<spawn npc_id="730444">
-			<spot x="448.8664" y="842.5774" z="167.7791" h="0"/>
+		<!-- Mandali Flower -->
+		<spawn npc_id="801100" respawn_time="295">
+			<spot x="985.7469" y="903.9288" z="763.8378" h="0"/>
+			<spot x="985.78" y="903.93" z="763.84" h="0"/>
 		</spawn>
-		<!-- Summoning Mirror -->
-		<spawn npc_id="283022">
-			<spot x="738.8436" y="312.3519" z="912.1387" h="0"/>
+		<!-- Alpha Seal Generator -->
+		<spawn npc_id="801111" respawn_time="295">
+			<spot x="793.63" y="856.9" z="1208.63" h="0"/>
 		</spawn>
-		<!-- Summoning Mirror -->
-		<spawn npc_id="283023">
-			<spot x="736.0247" y="271.1469" z="912.1387" h="0"/>
+		<!-- Beta Seal Generator -->
+		<spawn npc_id="801112" respawn_time="295">
+			<spot x="750.08" y="804.17" z="1192.38" h="0"/>
+		</spawn>
+		<!-- Gamma Seal Generator -->
+		<spawn npc_id="801113" respawn_time="295">
+			<spot x="659.19" y="775.95" z="1192.19" h="0"/>
+		</spawn>
+		<!-- Delta Seal Generator -->
+		<spawn npc_id="801114" respawn_time="295">
+			<spot x="708.85" y="715.81" z="1190.26" h="0"/>
+		</spawn>
+		<!-- Dungeon Exit -->
+		<spawn npc_id="801115" respawn_time="295">
+			<spot x="526.1379" y="432.8611" z="928.5375" h="0"/>
+		</spawn>
+		<!-- Dungeon Exit -->
+		<spawn npc_id="801116" respawn_time="295">
+			<spot x="805.9454" y="827.4349" z="736.4009" h="0"/>
+		</spawn>
+		<!-- Tartarus Treasure Chest -->
+		<spawn npc_id="801148" respawn_time="295">
+			<spot x="612.0729" y="681.1252" z="1184.9287" h="15"/>
+			<spot x="611.0729" y="688.1252" z="1184.9287" h="15"/>
+			<spot x="605.0729" y="690.1252" z="1184.9287" h="15"/>
+			<spot x="615.0729" y="674.1252" z="1184.9287" h="15"/>
+			<spot x="599.0729" y="694.1252" z="1185.9287" h="15"/>
+			<spot x="605.0729" y="683.1252" z="1184.9287" h="15"/>
+		</spawn>
+		<!-- Tartarus Treasure Chest -->
+		<spawn npc_id="801149" respawn_time="295">
+			<spot x="609.1884" y="667.5605" z="522.2153" h="30"/>
+			<spot x="627.2603" y="663.5837" z="522.2365" h="30"/>
+		</spawn>
+		<!-- Tartarus Treasure Chest -->
+		<spawn npc_id="801150" respawn_time="295">
+			<spot x="1078.0" y="904.0" z="139.196" h="30"/>
+			<spot x="1050.0" y="904.0" z="139.196" h="30"/>
+		</spawn>
+		<!-- Tartarus Treasure Chest -->
+		<spawn npc_id="801151" respawn_time="295">
+			<spot x="726.2859" y="313.5596" z="910.9228" h="30"/>
+		</spawn>
+		<!-- Tartarus Treasure Chest -->
+		<spawn npc_id="801152" respawn_time="295">
+			<spot x="796.0033" y="961.7065" z="792.7339" h="66"/>
+		</spawn>
+		<!-- Tartarus Treasure Chest -->
+		<spawn npc_id="801153" respawn_time="295">
+			<spot x="349.0" y="886.0" z="161.1812" h="30"/>
 		</spawn>
 		<!-- Teleporter -->
-		<spawn npc_id="801154">
+		<spawn npc_id="801154" respawn_time="295">
 			<spot x="355.7436" y="883.9431" z="161.2818" h="0"/>
+			<spot x="356.15" y="883.59" z="161.28" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

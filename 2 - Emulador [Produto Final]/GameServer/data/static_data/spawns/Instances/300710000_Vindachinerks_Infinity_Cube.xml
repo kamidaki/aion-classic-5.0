@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300710000">
 		<!-- Ideology Cube -->
 		<spawn npc_id="222099" respawn_time="295">
@@ -323,6 +323,7 @@
 			<spot x="1744.4907" y="1181.8773" z="638.6191" h="0"/>
 			<spot x="1642.444" y="1156.8846" z="808.4467" h="0"/>
 			<spot x="1740.75" y="1170.8" z="660.75" h="0"/>
+			<spot x="1554.3467" y="1160.7594" z="891.4587" h="0"/>
 		</spawn>
 		<!-- Ideology Cube -->
 		<spawn npc_id="222100" respawn_time="295">
@@ -535,27 +536,54 @@
 			<spot x="1744.4907" y="1181.8773" z="638.6191" h="0"/>
 			<spot x="1642.444" y="1156.8846" z="808.4467" h="0"/>
 		</spawn>
-		<!-- Vindachinerk's Phantom -->
+		<!-- Vindachinerk’s Phantom -->
 		<spawn npc_id="701583" respawn_time="295">
 			<spot x="1721.1024" y="316.2241" z="684.6642" h="0"/>
+			<spot x="1643.3" y="316.9" z="676.55" h="105"/>
+			<spot x="1649.1907" y="283.65" z="695.3223" h="105"/>
+			<spot x="1611.9" y="293.3" z="679.3" h="105"/>
+			<spot x="1617.8047" y="296.7487" z="679.77" h="105"/>
+			<spot x="1674.4805" y="283.5534" z="704.8735" h="105"/>
+			<spot x="1639.6" y="336.368" z="684.3444" h="105"/>
+			<spot x="1639.6" y="327.1825" z="684.3444" h="105"/>
+			<spot x="1635.5" y="345.5" z="678.8" h="105"/>
+			<spot x="1611.4" y="301.8" z="679.3" h="105"/>
+			<spot x="1624.744" y="345.6" z="679.3" h="105"/>
+			<spot x="1692.8483" y="306.7637" z="683.48" h="105"/>
+			<spot x="1626.5" y="304.0" z="679.6528" h="105"/>
+			<spot x="1685.1003" y="296.0534" z="710.3735" h="105"/>
+			<spot x="1652.9293" y="306.9715" z="677.21" h="105"/>
+			<spot x="1684.8503" y="324.3034" z="713.6235" h="105"/>
+			<spot x="1639.6" y="317.9194" z="684.3444" h="105"/>
+			<spot x="1635.8" y="311.9" z="677.02" h="105"/>
+			<spot x="1710.0109" y="306.7637" z="683.48" h="105"/>
+			<spot x="1639.7" y="302.2" z="689.2851" h="105"/>
+			<spot x="1639.6" y="294.1256" z="695.3267" h="105"/>
+			<spot x="1685.1003" y="283.5534" z="704.8735" h="105"/>
+			<spot x="1660.8503" y="283.8034" z="704.8735" h="105"/>
+			<spot x="1639.6" y="308.5576" z="686.5975" h="105"/>
+			<spot x="1611.4" y="317.4986" z="679.3" h="105"/>
+			<spot x="1638.8" y="344.3" z="678.8" h="105"/>
+			<spot x="1684.8503" y="310.3034" z="710.3735" h="105"/>
+			<spot x="1611.5" y="338.0" z="679.3" h="105"/>
 		</spawn>
-		<!-- Vindachinerk's Phantom -->
+		<!-- Vindachinerk’s Phantom -->
 		<spawn npc_id="701584" respawn_time="295">
 			<spot x="1535.5322" y="397.4077" z="783.7209" h="0"/>
 		</spawn>
-		<!-- Vindachinerk's Phantom -->
+		<!-- Vindachinerk’s Phantom -->
 		<spawn npc_id="701585" respawn_time="295">
 			<spot x="577.9138" y="404.183" z="585.6" h="0"/>
 		</spawn>
-		<!-- Vindachinerk's Phantom -->
+		<!-- Vindachinerk’s Phantom -->
 		<spawn npc_id="701586" respawn_time="295">
 			<spot x="235.4252" y="405.7996" z="568.1564" h="0"/>
 		</spawn>
-		<!-- Vindachinerk's Phantom -->
+		<!-- Vindachinerk’s Phantom -->
 		<spawn npc_id="701587" respawn_time="295">
 			<spot x="1794.5132" y="1180.4133" z="592.9184" h="0"/>
 		</spawn>
-		<!-- Vindachinerk's Phantom -->
+		<!-- Vindachinerk’s Phantom -->
 		<spawn npc_id="701588" respawn_time="295">
 			<spot x="1552.3436" y="1174.4235" z="921.2504" h="0"/>
 		</spawn>
@@ -609,7 +637,7 @@
 			<spot x="1719.6537" y="306.428" z="648.5267" h="0"/>
 			<spot x="1545.5322" y="1170.4077" z="913.8713" h="0"/>
 		</spawn>
-		<!-- Archon Band -->
+		<!-- NPC_701593 -->
 		<spawn npc_id="701593" respawn_time="295">
 			<spot x="806" y="1101" z="1181" h="0"/>
 		</spawn>
@@ -625,15 +653,15 @@
 		<spawn npc_id="701596" respawn_time="295">
 			<spot x="490.8598" y="336.0085" z="585.6" h="0"/>
 		</spawn>
-		<!-- Morheim Belt -->
+		<!-- NPC_701600 -->
 		<spawn npc_id="701600" respawn_time="295">
 			<spot x="1728.1108" y="316.2081" z="684.6642" h="0"/>
 		</spawn>
-		<!-- Morheim Band -->
+		<!-- NPC_701601 -->
 		<spawn npc_id="701601" respawn_time="295">
 			<spot x="591.5178" y="380.5049" z="591.9407" h="0"/>
 		</spawn>
-		<!-- Invader's Belt -->
+		<!-- NPC_701602 -->
 		<spawn npc_id="701602" respawn_time="295">
 			<spot x="1808.4243" y="1156.9076" z="591.9407" h="0"/>
 		</spawn>

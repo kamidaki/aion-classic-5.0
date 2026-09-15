@@ -1,124 +1,118 @@
-<?xml version='1.0' encoding='utf-8'?>
-<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="120020000">
-		<!-- Psyros -->
-		<spawn npc_id="798707" respawn_time="295">
-			<spot x="1545.6733" y="1367.5385" z="271.4065" h="10" />
-		</spawn>
-		<!-- Gartigel -->
-		<!-- Louizze -->
-		<spawn npc_id="798803" respawn_time="295">
-			<spot x="1558.8568" y="1367.4342" z="271.4236" h="40" />
-		</spawn>
-		<!-- Eldsul -->
-		<spawn npc_id="798708" respawn_time="295">
-			<spot x="1544.5259" y="1369.8889" z="271.4065" h="10" />
-		</spawn>
-		<!-- Hodorski -->
-		<spawn npc_id="798705" respawn_time="295">
-			<spot x="1550.62" y="1362.8" z="271.4236" h="40" />
-		</spawn>
-		<!-- Deltandra -->
-		<spawn npc_id="798706" respawn_time="295">
-			<spot x="1552.2015" y="1363.7659" z="271.4236" h="40" />
-		</spawn>
-		<!-- Leokev -->
-		<spawn npc_id="798802" respawn_time="295">
-			<spot x="1560.3971" y="1368.2263" z="271.4236" h="40" />
-		</spawn>
-		<!-- Heszti -->
-		<spawn npc_id="798703" respawn_time="295">
-			<spot x="1529.9896" y="1397.2684" z="269.6164" h="20" />
+		<!-- Pandaemonium Teleport Statue -->
+		<spawn npc_id="730269" respawn_time="295">
+			<spot x="1559.2072" y="1429.3711" z="265.6849" h="0" static_id="12"/>
 		</spawn>
 		<!-- Angulof -->
 		<spawn npc_id="798700" respawn_time="295">
-			<spot x="1516.7" y="1402.1" z="271.8239" h="10" />
-		</spawn>
-		<!-- Kijan -->
-		<spawn npc_id="798804" respawn_time="295">
-			<spot x="1518.58" y="1398.3599" z="271.7242" h="10" />
+			<spot x="1516.7" y="1402.1" z="271.8239" h="10"/>
 		</spawn>
 		<!-- Garvan -->
 		<spawn npc_id="798701" respawn_time="295">
-			<spot x="1540.132" y="1395.219" z="266.0138" h="36" />
+			<spot x="1540.132" y="1395.219" z="266.0138" h="36"/>
 		</spawn>
-		<!-- Gylfir -->
-		<!-- Kratyr -->
-		<!-- Printigel -->
-		<!-- Rapidfire Rita -->
-		<spawn npc_id="801224" respawn_time="295">
-			<spot x="1551.7469" y="1405.5956" z="266.0138" h="10" />
+		<!-- Hongerverth -->
+		<spawn npc_id="798702" respawn_time="295">
+			<spot x="1525.9556" y="1421.9636" z="266.0416" h="100"/>
+		</spawn>
+		<!-- Heszti -->
+		<spawn npc_id="798703" respawn_time="295">
+			<spot x="1529.9896" y="1397.2684" z="269.6164" h="20"/>
 		</spawn>
 		<!-- Margel -->
 		<spawn npc_id="798704" respawn_time="295">
-			<spot x="1521.8862" y="1412.2446" z="269.6164" />
+			<spot x="1521.8862" y="1412.2446" z="269.6164" h="0"/>
 		</spawn>
-		<!-- Yonakur -->
-		<!-- Hongerverth -->
-		<spawn npc_id="798702" respawn_time="295">
-			<spot x="1525.9556" y="1421.9636" z="266.0416" h="100" />
+		<!-- Hodorski -->
+		<spawn npc_id="798705" respawn_time="295">
+			<spot x="1550.62" y="1362.8" z="271.4236" h="40"/>
 		</spawn>
-		<!-- Dezanti -->
-		<spawn npc_id="799880" respawn_time="295">
-			<spot x="1553.3732" y="1439.0609" z="264.7567" h="76" />
+		<!-- Deltandra -->
+		<spawn npc_id="798706" respawn_time="295">
+			<spot x="1552.2015" y="1363.7659" z="271.4236" h="40"/>
 		</spawn>
-		<!-- Petrarca -->
-		<spawn npc_id="799874" respawn_time="295">
-			<spot x="1543.6200" y="1437.0400" z="264.7715" h="100" />
+		<!-- Psyros -->
+		<spawn npc_id="798707" respawn_time="295">
+			<spot x="1545.6733" y="1367.5385" z="271.4065" h="10"/>
 		</spawn>
-		<!-- Pandaemonium Teleport Statue -->
-		<spawn npc_id="730269" respawn_time="295">
-			<spot x="1559.2072" y="1429.3711" z="265.6849" static_id="12" />
-		</spawn>
-		<!-- Navaro -->
-		<spawn npc_id="799878" respawn_time="295">
-			<spot x="1549.8500" y="1439.6300" z="264.7682" h="92" />
-		</spawn>
-		<!-- Hoargo -->
-		<spawn npc_id="801225" respawn_time="295">
-			<spot x="1541.0310" y="1425.7001" z="266.0138" h="10" />
-		</spawn>
-		<!-- Godelier -->
-		<spawn npc_id="799877" respawn_time="295">
-			<spot x="1547.2900" y="1439.3500" z="264.7732" h="93" />
-		</spawn>
-		<!-- Vilnus -->
-		<spawn npc_id="798711" respawn_time="295">
-			<spot x="1561.5146" y="1426.4908" z="265.6849" h="100" />
-		</spawn>
-		<!-- Hallas -->
-		<spawn npc_id="799916" respawn_time="295">
-			<spot x="1555.6981" y="1436.5098" z="264.73892" h="77" />
-		</spawn>
-		<!-- Bredren -->
-		<spawn npc_id="798712" respawn_time="295">
-			<spot x="1564.0424" y="1421.6063" z="265.6849" h="40" />
-		</spawn>
-		<!-- Fjoersvith -->
-		<spawn npc_id="798713" respawn_time="295">
-			<spot x="1542.7832" y="1413.5222" z="266.0338" h="10" />
-		</spawn>
-		<!-- Gesmar -->
-		<spawn npc_id="799875" respawn_time="295">
-			<spot x="1541.6814" y="1435.0800" z="264.7672" />
+		<!-- Eldsul -->
+		<spawn npc_id="798708" respawn_time="295">
+			<spot x="1544.5259" y="1369.8889" z="271.4065" h="10"/>
 		</spawn>
 		<!-- Rodrigo -->
 		<spawn npc_id="798709" respawn_time="295">
-			<spot x="1506.9711" y="1449.3676" z="271.4236" h="100" />
+			<spot x="1506.9711" y="1449.3676" z="271.4236" h="100"/>
+			<spot x="1513.9135" y="1453.0848" z="272.0" h="100"/>
 		</spawn>
-		<!-- Eriu -->
 		<!-- Imever -->
 		<spawn npc_id="798710" respawn_time="295">
-			<spot x="1515.2999" y="1453.8978" z="271.4236" h="100" />
+			<spot x="1515.2999" y="1453.8978" z="271.4236" h="100"/>
 		</spawn>
-		<!-- Fairev -->
-		<!-- Nunor -->
-		<spawn npc_id="798801" respawn_time="295">
-			<spot x="1506.2876" y="1448.9426" z="271.4236" h="100" />
+		<!-- Vilnus -->
+		<spawn npc_id="798711" respawn_time="295">
+			<spot x="1561.5146" y="1426.4908" z="265.6849" h="100"/>
+		</spawn>
+		<!-- Bredren -->
+		<spawn npc_id="798712" respawn_time="295">
+			<spot x="1564.0424" y="1421.6063" z="265.6849" h="40"/>
+		</spawn>
+		<!-- Fjoersvith -->
+		<spawn npc_id="798713" respawn_time="295">
+			<spot x="1542.7832" y="1413.5222" z="266.0338" h="10"/>
 		</spawn>
 		<!-- Agehia -->
 		<spawn npc_id="798800" respawn_time="295">
-			<spot x="1516.2635" y="1399.6068" z="271.8872" h="10" />
+			<spot x="1516.2635" y="1399.6068" z="271.8872" h="10"/>
+		</spawn>
+		<!-- Nunor -->
+		<spawn npc_id="798801" respawn_time="295">
+			<spot x="1506.2876" y="1448.9426" z="271.4236" h="100"/>
+		</spawn>
+		<!-- Leokev -->
+		<spawn npc_id="798802" respawn_time="295">
+			<spot x="1560.3971" y="1368.2263" z="271.4236" h="40"/>
+		</spawn>
+		<!-- Louizze -->
+		<spawn npc_id="798803" respawn_time="295">
+			<spot x="1558.8568" y="1367.4342" z="271.4236" h="40"/>
+		</spawn>
+		<!-- Kijan -->
+		<spawn npc_id="798804" respawn_time="295">
+			<spot x="1518.58" y="1398.3599" z="271.7242" h="10"/>
+		</spawn>
+		<!-- Petrarca -->
+		<spawn npc_id="799874" respawn_time="295">
+			<spot x="1543.6200" y="1437.0400" z="264.7715" h="100"/>
+		</spawn>
+		<!-- Gesmar -->
+		<spawn npc_id="799875" respawn_time="295">
+			<spot x="1541.6814" y="1435.0800" z="264.7672" h="0"/>
+		</spawn>
+		<!-- Godelier -->
+		<spawn npc_id="799877" respawn_time="295">
+			<spot x="1547.2900" y="1439.3500" z="264.7732" h="93"/>
+		</spawn>
+		<!-- Navaro -->
+		<spawn npc_id="799878" respawn_time="295">
+			<spot x="1549.8500" y="1439.6300" z="264.7682" h="92"/>
+		</spawn>
+		<!-- Dezanti -->
+		<spawn npc_id="799880" respawn_time="295">
+			<spot x="1553.3732" y="1439.0609" z="264.7567" h="76"/>
+		</spawn>
+		<!-- Hallas -->
+		<spawn npc_id="799916" respawn_time="295">
+			<spot x="1555.6981" y="1436.5098" z="264.73892" h="77"/>
+		</spawn>
+		<!-- Scared Child -->
+		<spawn npc_id="801224" respawn_time="295">
+			<spot x="1551.7469" y="1405.5956" z="266.0138" h="10"/>
+		</spawn>
+		<!-- Collapsed Villager -->
+		<spawn npc_id="801225" respawn_time="295">
+			<spot x="1541.0310" y="1425.7001" z="266.0138" h="10"/>
 		</spawn>
 	</spawn_map>
 </spawns>

@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
-	<spawn_map map_id="300350000">
-		<!-- Ore of Life (1250 Points) -->
-		<!-- Ore of Mind (1250 Points) -->
-	</spawn_map>
-</spawns>

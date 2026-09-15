@@ -1,37 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300670000">
-		<!-- IDDokkaebi_noshow_npc4 -->
+		<!-- Evil Sae -->
+		<spawn npc_id="220350" respawn_time="295">
+			<spot x="353.9475" y="268.4807" z="328.7326" h="0"/>
+			<spot x="436.888" y="590.6681" z="303.8156" h="0"/>
+			<spot x="366.3562" y="249.5643" z="341.0384" h="0"/>
+			<spot x="381.7809" y="232.7574" z="334.5009" h="0"/>
+			<spot x="264.9525" y="295.9806" z="331.2966" h="0"/>
+			<spot x="267.1643" y="341.5731" z="338.9055" h="0"/>
+			<spot x="630.6426" y="490.6465" z="280.7411" h="0"/>
+			<spot x="749.3292" y="408.8351" z="316.2882" h="0"/>
+			<spot x="713.2321" y="417.2186" z="307.3646" h="30"/>
+			<spot x="412.968" y="322.4951" z="332.9106" h="0"/>
+			<spot x="426.4666" y="271.0848" z="323.875" h="0"/>
+			<spot x="639.6118" y="433.3966" z="298.5667" h="0"/>
+			<spot x="455.3263" y="663.1951" z="311.3074" h="0"/>
+			<spot x="464.2808" y="500.3025" z="310.3786" h="0"/>
+			<spot x="318.7474" y="340.2561" z="325.488" h="0"/>
+			<spot x="430.0658" y="528.504" z="302.6695" h="0"/>
+			<spot x="451.7695" y="277.8564" z="322.2307" h="0"/>
+			<spot x="868.1039" y="425.931" z="284.3705" h="0"/>
+			<spot x="691.4644" y="446.2581" z="294.5359" h="0"/>
+			<spot x="449.3539" y="299.2394" z="321.797" h="0"/>
+			<spot x="308.8306" y="382.3166" z="293.8691" h="0"/>
+			<spot x="308.95" y="382.55" z="293.87" h="0" walker_id="BAABA6CE5F42283C5B68993B1187FE1390CDAAB4"/>
+			<spot x="352.18" y="268.19" z="328.73" h="0" walker_id="88ED814CA3CDDA592A13373695E09C6EF24FD582"/>
+			<spot x="437.0" y="590.55" z="303.82" h="0"/>
+			<spot x="455.44" y="663.08" z="311.31" h="0"/>
+			<spot x="868.2" y="425.58" z="284.37" h="0"/>
+			<spot x="731.45" y="413.23" z="311.83" h="0"/>
+			<spot x="447.7" y="514.21" z="306.52" h="0"/>
+			<spot x="634.92" y="460.41" z="289.65" h="0"/>
+			<spot x="359.75" y="309.63" z="330.23" h="0"/>
+		</spawn>
+		<!-- Shade Dae -->
+		<spawn npc_id="220383" respawn_time="295">
+			<spot x="709.2404" y="451.3625" z="295.5586" h="0"/>
+			<spot x="739.1659" y="453.1449" z="291.0376" h="0"/>
+			<spot x="679.8198" y="507.362" z="299.3029" h="0"/>
+			<spot x="724.9551" y="451.8782" z="291.4371" h="0"/>
+			<spot x="675.9356" y="517.8448" z="301.7798" h="0"/>
+			<spot x="700.999" y="529.8374" z="304.247" h="0"/>
+			<spot x="695.4763" y="431.2473" z="298.9365" h="0"/>
+			<spot x="694.6727" y="506.6506" z="303.6497" h="0"/>
+			<spot x="706.54" y="472.59" z="297.95" h="0" walker_id="671F764DB5BF7041AC8C49277D9C22AA30949141"/>
+			<spot x="701.79" y="494.26" z="297.71" h="0" walker_id="DF7DF936D5928FE0FFCA0BF7670C32A01FC0E0A4"/>
+			<spot x="678.81" y="491.81" z="297.33" h="0" walker_id="C05C1620E3A66257D560EAEE37B24248ABDFD283"/>
+			<spot x="688.93" y="473.93" z="298.27" h="0"/>
+		</spawn>
+		<!-- NPC_220411 -->
 		<spawn npc_id="220411" respawn_time="295">
 			<spot x="158.2028" y="690.4163" z="298.0448" h="0"/>
+			<spot x="158.29" y="690.5" z="298.04" h="0"/>
+		</spawn>
+		<!-- Haettoda -->
+		<spawn npc_id="283044" respawn_time="295">
+			<spot x="523.0917" y="539.4806" z="325.1177" h="75"/>
+			<spot x="523.29" y="542.64" z="325.12" h="0"/>
+		</spawn>
+		<!-- Enraged Gangcheol -->
+		<spawn npc_id="283045" respawn_time="295">
+			<spot x="157.5134" y="692.6147" z="300.9057" h="6"/>
+			<spot x="159.03" y="691.06" z="300.75" h="0"/>
+		</spawn>
+		<!-- Gangcheol -->
+		<spawn npc_id="283050" respawn_time="295">
+			<spot x="159.03" y="691.06" z="300.75" h="0"/>
+		</spawn>
+		<!-- Namu Tree -->
+		<spawn npc_id="701457" respawn_time="295">
+			<spot x="611.81" y="380.16" z="306.22" h="0"/>
+		</spawn>
+		<!-- Nacre Trinket Box -->
+		<spawn npc_id="701458" respawn_time="295">
+			<spot x="516.0" y="231.0" z="316.0" h="0"/>
+		</spawn>
+		<!-- Gwisin Thorn -->
+		<spawn npc_id="701459" respawn_time="295">
+			<spot x="318.97" y="750.74" z="316.04" h="0"/>
+			<spot x="419.77" y="421.96" z="276.0" h="0"/>
+			<spot x="486.82" y="283.81" z="310.58" h="0"/>
+			<spot x="727.58" y="467.89" z="287.76" h="0"/>
+			<spot x="401.07" y="575.03" z="287.17" h="0"/>
+			<spot x="744.09" y="410.54" z="315.99" h="0"/>
 		</spawn>
 		<!-- Ghost Stories: Chapter 1 -->
 		<spawn npc_id="730588" respawn_time="295">
 			<spot x="491.9104" y="567.5641" z="317" h="0" walker_id="85B8D5F65D3D43006E0FAEE543FE275F839A696D" walker_index="2"/>
+			<spot x="491.96" y="567.58" z="318.23" h="0"/>
 		</spawn>
 		<!-- Ghost Stories: Chapter 4 -->
 		<spawn npc_id="730589" respawn_time="295">
 			<spot x="496.1471" y="572.5608" z="317" h="0" walker_id="85B8D5F65D3D43006E0FAEE543FE275F839A696D" walker_index="2"/>
+			<spot x="496.17" y="572.54" z="317.51" h="0"/>
 		</spawn>
 		<!-- Ghost Stories: Chapter 11 -->
 		<spawn npc_id="730590" respawn_time="295">
 			<spot x="503.7312" y="580.5718" z="316.9107" h="0"/>
+			<spot x="503.75" y="580.55" z="317.63" h="0"/>
 		</spawn>
 		<!-- Ghost Stories: Chapter 17 -->
 		<spawn npc_id="730591" respawn_time="295">
 			<spot x="499.9378" y="567.6495" z="315.5" h="0" walker_id="85B8D5F65D3D43006E0FAEE543FE275F839A696D" walker_index="2"/>
+			<spot x="499.99" y="567.66" z="316.33" h="0"/>
 		</spawn>
 		<!-- Ghost Stories: Chapter 23 -->
 		<spawn npc_id="730592" respawn_time="295">
 			<spot x="497.4352" y="566.8707" z="315.5706" h="0" walker_id="85B8D5F65D3D43006E0FAEE543FE275F839A696D" walker_index="2"/>
+			<spot x="497.49" y="566.88" z="317.4" h="0"/>
 		</spawn>
 		<!-- Ghost Stories: Chapter 52 -->
 		<spawn npc_id="730593" respawn_time="295">
 			<spot x="497.3476" y="574.5303" z="317" h="0" walker_id="85B8D5F65D3D43006E0FAEE543FE275F839A696D" walker_index="2"/>
+			<spot x="497.42" y="574.5" z="318.13" h="0"/>
 		</spawn>
 		<!-- Ghost Stories: Chapter 68 -->
 		<spawn npc_id="730594" respawn_time="295">
 			<spot x="503.5935" y="577.314" z="317" h="0"/>
+			<spot x="503.49" y="577.2" z="317.7" h="0"/>
 		</spawn>
 		<!-- Ghost Stories: Chapter 87 -->
 		<spawn npc_id="730595" respawn_time="295">
@@ -40,17 +127,74 @@
 		<!-- Ghost Stories: Chapter 94 -->
 		<spawn npc_id="730596" respawn_time="295">
 			<spot x="500.8026" y="580.2286" z="317" h="0" walker_id="85B8D5F65D3D43006E0FAEE543FE275F839A696D" walker_index="1"/>
+			<spot x="500.86" y="580.24" z="317.76" h="0"/>
 		</spawn>
 		<!-- Ghost Stories: Chapter 98 -->
 		<spawn npc_id="730597" respawn_time="295">
 			<spot x="507.5293" y="583.1168" z="316.9448" h="0"/>
+			<spot x="507.43" y="583.01" z="317.65" h="0"/>
+		</spawn>
+		<!-- Klidik -->
+		<spawn npc_id="780074" respawn_time="295">
+			<spot x="158.3175" y="688.0859" z="299.1847" h="30"/>
+		</spawn>
+		<!-- Klidik -->
+		<spawn npc_id="780075" respawn_time="295">
+			<spot x="158.2632" y="688.0609" z="300.3442" h="30"/>
 		</spawn>
 		<!-- Dokkaebi Realm Exit -->
 		<spawn npc_id="801744" respawn_time="295">
 			<spot x="152.2915" y="680.9398" z="297.75" h="0"/>
 			<spot x="983.2183" y="305.9543" z="303.6494" h="0" walker_id="A2BAC7D7CC3FFB037C5621298018A551B18DC2FD" walker_index="1"/>
+			<spot x="983.31" y="306.13" z="306.09" h="0"/>
+			<spot x="152.25" y="680.81" z="300.59" h="0"/>
 		</spawn>
-		<!-- Archon Battle Officer's Turquoise Earring -->
+		<!-- Terrified Woman -->
+		<spawn npc_id="801748" respawn_time="295">
+			<spot x="521.9005" y="258.5142" z="312.4229" h="15"/>
+			<spot x="505.3098" y="323.7363" z="301.9882" h="70"/>
+			<spot x="524.5461" y="248.2038" z="314.9978" h="33"/>
+			<spot x="480.3919" y="273.9389" z="312.6156" h="10"/>
+			<spot x="522.4391" y="230.6889" z="316.2383" h="60"/>
+		</spawn>
+		<!-- Terrified Man -->
+		<spawn npc_id="801749" respawn_time="295">
+			<spot x="511.6625" y="280.1989" z="310.9143" h="113"/>
+			<spot x="496.4883" y="240.9411" z="316.2703" h="33"/>
+			<spot x="511.0837" y="256.6028" z="312.7912" h="25"/>
+			<spot x="499.1877" y="288.9716" z="310.1592" h="66"/>
+			<spot x="487.6582" y="256.3259" z="313.534" h="6"/>
+			<spot x="487.8213" y="313.8851" z="304.3949" h="106"/>
+		</spawn>
+		<!-- Hwaseon -->
+		<spawn npc_id="801750" respawn_time="295">
+			<spot x="511.5" y="244.75" z="315.25" h="23"/>
+		</spawn>
+		<!-- Imoog -->
+		<spawn npc_id="801751" respawn_time="295">
+			<spot x="964.9397" y="301.8371" z="303.7534" h="0"/>
+		</spawn>
+		<!-- Great Lady of the Totem Pole -->
+		<spawn npc_id="801754" respawn_time="295">
+			<spot x="345.0718" y="310.0968" z="317.062" h="116"/>
+		</spawn>
+		<!-- NPC_801757 -->
+		<spawn npc_id="801757" respawn_time="295">
+			<spot x="362.8134" y="304.6202" z="317.062" h="0"/>
+		</spawn>
+		<!-- NPC_801758 -->
+		<spawn npc_id="801758" respawn_time="295">
+			<spot x="492.4801" y="278.7371" z="309.8293" h="0"/>
+		</spawn>
+		<!-- NPC_801760 -->
+		<spawn npc_id="801760" respawn_time="295">
+			<spot x="526.5641" y="519.7834" z="317.879" h="0"/>
+		</spawn>
+		<!-- NPC_801761 -->
+		<spawn npc_id="801761" respawn_time="295">
+			<spot x="867.0754" y="405.3779" z="304.0" h="0"/>
+		</spawn>
+		<!-- NPC_801762 -->
 		<spawn npc_id="801762" respawn_time="295">
 			<spot x="325.3193" y="753.8024" z="316.2405" h="0" walker_id="88FBB06B52C6453DEBA3CB290296C9CEBD07B644" walker_index="6"/>
 			<spot x="325.3193" y="753.8024" z="316.2405" h="0" walker_id="88FBB06B52C6453DEBA3CB290296C9CEBD07B644" walker_index="6"/>
@@ -58,31 +202,146 @@
 			<spot x="404.3961" y="582.3299" z="287.2611" h="0" walker_id="63477FFD31E41277780CA96462994A5E4ADDC67E" walker_index="7"/>
 			<spot x="404.3961" y="582.3299" z="287.2611" h="0" walker_id="63477FFD31E41277780CA96462994A5E4ADDC67E" walker_index="7"/>
 			<spot x="445.1414" y="617.9326" z="312.4337" h="0"/>
+			<spot x="523.21" y="539.54" z="315.58" h="0"/>
+			<spot x="325.34" y="753.72" z="317.52" h="0"/>
+			<spot x="424.8" y="600.08" z="297.3" h="0"/>
 		</spawn>
-		<!-- Humble Ancestors' Table -->
+		<!-- Humble Ancestors’ Table -->
 		<spawn npc_id="801763" respawn_time="295">
 			<spot x="325.3193" y="753.8024" z="316.2405" h="0" walker_id="88FBB06B52C6453DEBA3CB290296C9CEBD07B644" walker_index="6"/>
 			<spot x="404.3961" y="582.3299" z="287.2611" h="0" walker_id="63477FFD31E41277780CA96462994A5E4ADDC67E" walker_index="7"/>
+			<spot x="404.45" y="582.24" z="288.57" h="0"/>
+			<spot x="325.34" y="753.72" z="317.52" h="0"/>
+		</spawn>
+		<!-- Bhulrasan Treasure Box -->
+		<spawn npc_id="801764" respawn_time="295">
+			<spot x="348.8406" y="305.6381" z="318.1724" h="116"/>
 		</spawn>
 		<!-- Sealed Bhulrasan Treasure Chest -->
 		<spawn npc_id="801766" respawn_time="295">
 			<spot x="421.5435" y="422.2227" z="275.3405" h="0"/>
+			<spot x="421.57" y="422.31" z="275.34" h="0"/>
 		</spawn>
-		<!-- Archon Prefect's Chain Helm -->
+		<!-- Weathered Treasure Box -->
+		<spawn npc_id="801768" respawn_time="295">
+			<spot x="348.8374" y="307.7912" z="318.1724" h="116"/>
+		</spawn>
+		<!-- Censer -->
+		<spawn npc_id="801787" respawn_time="295">
+			<spot x="238.74" y="189.68" z="332.38" h="0"/>
+		</spawn>
+		<!-- Wayfinder Imoog -->
+		<spawn npc_id="801789" respawn_time="295">
+			<spot x="233.5059" y="736.4134" z="308.9098" h="0"/>
+		</spawn>
+		<!-- NPC_801821 -->
 		<spawn npc_id="801821" respawn_time="295">
 			<spot x="522.8041" y="548.7933" z="319.6765" h="0"/>
+			<spot x="523.21" y="549.28" z="319.68" h="0"/>
 		</spawn>
 		<!-- Makdong -->
 		<spawn npc_id="801830" respawn_time="295">
 			<spot x="504.3736" y="313.387" z="301.75" h="0" walker_id="62E1417E8675F3710FA2AB0A122F49C793529EC4" walker_index="5"/>
+			<spot x="504.34" y="313.36" z="302.38" h="0"/>
+		</spawn>
+		<!-- NPC_801836 -->
+		<spawn npc_id="801836" respawn_time="295">
+			<spot x="771.9181" y="414.6068" z="318.8329" h="100"/>
+		</spawn>
+		<!-- NPC_801837 -->
+		<spawn npc_id="801837" respawn_time="295">
+			<spot x="772.9161" y="412.3289" z="318.7829" h="40"/>
 		</spawn>
 		<!-- Started Janggi Board -->
 		<spawn npc_id="801838" respawn_time="295">
 			<spot x="772.3553" y="413.4102" z="318.8329" h="0"/>
 		</spawn>
+		<!-- Shining Mirror -->
+		<spawn npc_id="801839" respawn_time="295">
+			<spot x="507.9579" y="285.5627" z="311.0657" h="30"/>
+			<spot x="479.4651" y="260.2163" z="312.6205" h="90"/>
+			<spot x="476.4104" y="268.785" z="313.0961" h="15"/>
+			<spot x="513.3729" y="240.6897" z="315.4468" h="30"/>
+			<spot x="497.8889" y="317.2976" z="302.5692" h="90"/>
+			<spot x="505.84" y="279.92" z="310.9" h="0"/>
+		</spawn>
 		<!-- Dokkaebi Hat -->
 		<spawn npc_id="801840" respawn_time="295">
 			<spot x="919.715" y="298.2711" z="301.9679" h="0" walker_id="A2BAC7D7CC3FFB037C5621298018A551B18DC2FD" walker_index="4"/>
+			<spot x="853.0352" y="390.64" z="287.3171" h="0"/>
+			<spot x="812.6896" y="448.5808" z="276.1717" h="0"/>
+			<spot x="876.9636" y="423.6284" z="288.8853" h="0"/>
+			<spot x="806.299" y="406.3476" z="280.0986" h="0"/>
+			<spot x="856.401" y="413.6589" z="283.8968" h="0"/>
+			<spot x="792.5965" y="396.3799" z="287.2993" h="0"/>
+			<spot x="834.74" y="410.13" z="283.94" h="0"/>
+		</spawn>
+		<!-- Red Bean Paste -->
+		<spawn npc_id="801859" respawn_time="295">
+			<spot x="475.2805" y="278.3436" z="312.1962" h="0"/>
+			<spot x="490.4724" y="322.5836" z="302.3212" h="0"/>
+			<spot x="502.8321" y="331.8238" z="302.0944" h="0"/>
+			<spot x="944.2866" y="310.7704" z="304.0245" h="0"/>
+			<spot x="481.4911" y="269.177" z="312.475" h="0"/>
+			<spot x="362.5232" y="562.2476" z="282.1955" h="0"/>
+			<spot x="584.8766" y="298.2886" z="320.0009" h="0"/>
+			<spot x="495.2707" y="317.3383" z="302.702" h="0"/>
+			<spot x="571.1885" y="388.2875" z="300.7651" h="0"/>
+			<spot x="496.868" y="584.3256" z="317.4501" h="0"/>
+			<spot x="795.9597" y="437.733" z="277.305" h="0"/>
+			<spot x="863.137" y="406.5142" z="285.9663" h="0"/>
+			<spot x="986.0258" y="311.1294" z="305.1128" h="0"/>
+			<spot x="805.793" y="458.7719" z="276.1241" h="0"/>
+			<spot x="804.2988" y="391.1681" z="276.5405" h="0"/>
+			<spot x="504.4828" y="228.3417" z="315.315" h="0"/>
+			<spot x="478.3473" y="259.1941" z="312.0" h="0"/>
+			<spot x="899.6971" y="310.3887" z="300.8708" h="0"/>
+			<spot x="928.9933" y="312.9912" z="304.0493" h="0"/>
+			<spot x="879.6842" y="445.7195" z="279.774" h="0"/>
+			<spot x="650.7939" y="406.6505" z="301.7552" h="0"/>
+			<spot x="757.4526" y="452.7371" z="286.3135" h="0"/>
+			<spot x="475.7862" y="271.8443" z="312.7412" h="0"/>
+		</spawn>
+		<!-- Wayfinder Imoog -->
+		<spawn npc_id="801864" respawn_time="295">
+			<spot x="233.5059" y="736.4134" z="310.4135" h="0"/>
+		</spawn>
+		<!-- NPC_802450 -->
+		<spawn npc_id="802450" respawn_time="295">
+			<spot x="160.4937" y="694.7753" z="299.5005" h="0"/>
+		</spawn>
+		<!-- Soonshim -->
+		<spawn npc_id="802555" respawn_time="295">
+			<spot x="494.3366" y="268.7956" z="311.8204" h="5"/>
+		</spawn>
+		<!-- Gwangsang’s Lucky Chest -->
+		<spawn npc_id="803061" respawn_time="295">
+			<spot x="745.8883" y="401.7745" z="317.0368" h="10"/>
+		</spawn>
+		<!-- Murmuring Gwisin’s Lucky Chest -->
+		<spawn npc_id="803062" respawn_time="295">
+			<spot x="649.2484" y="425.9908" z="299.2959" h="10"/>
+		</spawn>
+		<!-- Mirror Gwisin’s Lucky Chest -->
+		<spawn npc_id="803063" respawn_time="295">
+			<spot x="495.6924" y="285.4183" z="309.6142" h="60"/>
+		</spawn>
+		<!-- Water Gwisin’s Lucky Chest -->
+		<spawn npc_id="803064" respawn_time="295">
+			<spot x="425.2712" y="421.6278" z="275.5019" h="60"/>
+		</spawn>
+		<!-- Haettoda’s Lucky Chest -->
+		<spawn npc_id="803065" respawn_time="295">
+			<spot x="514.674" y="527.8737" z="315.5709" h="15"/>
+		</spawn>
+		<!-- Roof Tile Gwisin’s Lucky Chest -->
+		<spawn npc_id="803066" respawn_time="295">
+			<spot x="406.624" y="576.984" z="288.5712" h="100"/>
+			<spot x="323.7531" y="749.5784" z="315.3809" h="83"/>
+		</spawn>
+		<!-- NPC_803076 -->
+		<spawn npc_id="803076" respawn_time="295">
+			<spot x="867.5939" y="387.9354" z="304.0" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

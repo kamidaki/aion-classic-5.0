@@ -1,347 +1,144 @@
-<?xml version='1.0' encoding='utf-8'?>
-<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300440000">
-		<!-- Air Captain Misalus -->
-		<!-- Armory Maintenance Surkana -->
-		<spawn npc_id="701441">
-			<spot x="418.672" y="282.123" z="409.731" static_id="21" />
+		<!-- Tiamat’s Fighter -->
+		<spawn npc_id="218871" respawn_time="295">
+			<spot x="701.18" y="619.64" z="148.68" h="0" walker_id="8BBC40E0092690CA5A036CB26A3700ABC65AE277"/>
+			<spot x="689.18" y="692.14" z="148.18" h="0" walker_id="5D678581B09590DA0A20FED4608B4EDDA814486D"/>
+			<spot x="712.68" y="437.64" z="152.68" h="0" walker_id="DBFB59FC0E1FEA29E9A1FAF77FEE1D3741B34DB5"/>
+			<spot x="701.68" y="535.64" z="148.68" h="0" walker_id="FC88D0EBBA6507A28FFB478E79F7A350CA33F86E"/>
+			<spot x="689.18" y="460.64" z="147.68" h="0" walker_id="EDC28E7119D537433BDC1E48814121229E426339"/>
+			<spot x="712.68" y="715.64" z="152.68" h="0" walker_id="3E25B4B559C8BDA7B012F699F5800FCA212C8A3A"/>
+			<spot x="769.5" y="642.24" z="142.41" h="0"/>
+			<spot x="773.0" y="514.25" z="142.41" h="0"/>
 		</spawn>
-		<!-- Armory Maintenance Surkana -->
-		<spawn npc_id="701442">
-			<spot x="553.611" y="279.138" z="409.731" static_id="30" />
+		<!-- Tiamat’s Raider -->
+		<spawn npc_id="218872" respawn_time="295">
+			<spot x="740.0" y="579.5" z="139.0" h="0" walker_id="AB60FAB5BD38DC7329664B262B2D2064A502E5FE"/>
+			<spot x="706.0" y="515.5" z="148.0" h="0"/>
+			<spot x="706.5" y="643.5" z="148.0" h="0"/>
 		</spawn>
-		<!-- Assistant Navigator Kurta -->
-		<!-- Balaur Supplies -->
-		<spawn npc_id="701440">
-			<spot x="377.825" y="710.003" z="402.216" static_id="139" />
-			<spot x="380.430" y="697.048" z="402.204" static_id="141" />
-			<spot x="388.336" y="724.501" z="403.254" static_id="142" />
-			<spot x="404.028" y="696.010" z="402.207" static_id="138" />
-			<spot x="405.496" y="715.082" z="402.256" static_id="143" />
-			<spot x="409.333" y="708.526" z="402.210" static_id="140" />
-			<spot x="562.332" y="699.238" z="403.141" static_id="15" />
-			<spot x="562.511" y="713.702" z="403.141" static_id="93" />
-			<spot x="568.471" y="696.483" z="402.209" static_id="109" />
-			<spot x="584.417" y="723.497" z="402.222" static_id="114" />
-			<spot x="589.201" y="701.296" z="402.223" static_id="6" />
-			<spot x="589.994" y="715.907" z="402.239" static_id="108" />
+		<!-- Tiamat’s Seeker -->
+		<spawn npc_id="218873" respawn_time="295">
+			<spot x="700.5" y="515.5" z="148.0" h="0"/>
+			<spot x="701.0" y="643.5" z="148.0" h="0"/>
 		</spawn>
-		<!-- Bridge Power Surkana -->
-		<spawn npc_id="701453">
-			<spot x="485.331" y="881.629" z="405.018" static_id="27" />
+		<!-- Tiamat’s Medic -->
+		<spawn npc_id="218874" respawn_time="295">
+			<spot x="701.5" y="577.5" z="149.0" h="0" walker_id="C720147DB0306F7BFCBF478FC8F057F1DBC2FA8F"/>
+			<spot x="716.5" y="488.97" z="147.5" h="0" walker_id="2F5F3A462F6835FB6A1558909AB7F9C77AAAD79F"/>
+			<spot x="716.5" y="664.47" z="148.0" h="0" walker_id="07A3F725E59FA8D42704BE313D3F40FADA3AF67D"/>
+			<spot x="762.5" y="492.0" z="154.0" h="0"/>
+			<spot x="763.0" y="662.47" z="154.0" h="0"/>
 		</spawn>
-		<!-- Cabin Power Surkana -->
-		<spawn npc_id="701454">
-			<spot x="485.167" y="817.515" z="416.672" static_id="26" />
+		<!-- Tiamat’s Destroyer -->
+		<spawn npc_id="218875" respawn_time="295">
+			<spot x="560.0" y="575.96" z="136.4" h="0"/>
+			<spot x="655.25" y="576.22" z="140.64" h="0"/>
 		</spawn>
-		<!-- Cannon Control Surkana -->
-		<spawn npc_id="701446">
-			<spot x="393.661" y="567.365" z="408.916" static_id="25" />
+		<!-- Tiamat’s Rascal -->
+		<spawn npc_id="218876" respawn_time="295">
+			<spot x="568.5" y="650.47" z="139.5" h="0" walker_id="C8B6C9E60530CF88F5AFEF1C7EBEFC7F68EA4E76"/>
+			<spot x="614.5" y="683.97" z="119.5" h="0" walker_id="D0A36C8D4BF50264705219B38255A7AD686AE710"/>
+			<spot x="558.21" y="577.19" z="150.0" h="0" walker_id="8B7E9FBAA0CCF1E563C8906559800EDFE2A642D8"/>
+			<spot x="568.5" y="501.47" z="139.5" h="0" walker_id="F850DC76A33822A30DB346B4C6B3B3A125EC7E6B"/>
+			<spot x="614.5" y="468.47" z="119.5" h="0" walker_id="0176BE7AB27284843F3AB51068B911282CD137AD"/>
+			<spot x="479.74" y="660.9" z="146.6" h="0" walker_id="C54DAC96E19BE7A2BFC031C187287B49835FC7DD"/>
+			<spot x="479.74" y="492.4" z="146.6" h="0" walker_id="EF4C6C63B8D5EF00A97A5F6BE274F85EDF04E5C0"/>
+			<spot x="558.18" y="574.69" z="150.0" h="0" walker_id="DE89DFDE244863868DCFF216897265953E9789B1"/>
 		</spawn>
-		<!-- Cannon Control Surkana -->
-		<spawn npc_id="701447">
-			<spot x="580.173" y="566.600" z="408.835" static_id="31" />
+		<!-- Tiamat’s Tracker -->
+		<spawn npc_id="218877" respawn_time="295">
+			<spot x="637.0" y="468.01" z="153.5" h="0"/>
+			<spot x="707.5" y="426.97" z="152.25" h="0"/>
+			<spot x="637.5" y="684.47" z="153.5" h="0"/>
+			<spot x="707.5" y="724.97" z="152.25" h="0"/>
+			<spot x="583.0" y="575.97" z="140.5" h="0"/>
 		</spawn>
-		<!-- Chief Navigator Adhari -->
-		<!-- Drop Authority Surkana -->
-		<spawn npc_id="701448">
-			<spot x="412.804" y="490.648" z="393.674" static_id="23" />
+		<!-- Tiamat’s Rampager -->
+		<spawn npc_id="218878" respawn_time="295">
+			<spot x="550.21" y="578.47" z="150.0" h="0"/>
+			<spot x="640.5" y="523.47" z="141.5" h="0"/>
+			<spot x="641.0" y="628.47" z="141.5" h="0"/>
 		</spawn>
-		<!-- Drop Authority Surkana -->
-		<spawn npc_id="701449">
-			<spot x="556.084" y="491.189" z="393.679" static_id="32" />
+		<!-- Tiamat’s Apothecary -->
+		<spawn npc_id="218879" respawn_time="295">
+			<spot x="611.0" y="618.47" z="128.5" h="0" walker_id="4D1CB47D243100FE7F47F33D9A851DE15964E5EC"/>
+			<spot x="611.0" y="533.47" z="128.5" h="0" walker_id="8EBFFCED277E0E323E93622868E1A0D8314C9727"/>
+			<spot x="545.0" y="575.72" z="139.0" h="0"/>
+			<spot x="655.25" y="576.22" z="143.9" h="0"/>
 		</spawn>
-		<!-- Engineer Tapisha -->
-		<!-- First Mate Kamital -->
-		<!-- Flywheel Surkana -->
-		<spawn npc_id="701451">
-			<spot x="392.193" y="710.692" z="401.770" static_id="29" />
+		<!-- Tiamat’s Supervisor -->
+		<spawn npc_id="218880" respawn_time="295">
+			<spot x="684.72" y="510.21" z="148.0" h="0" walker_id="9C223D0EC248B16D645AADD2AC247F688DA384A0"/>
+			<spot x="684.72" y="642.71" z="148.0" h="0" walker_id="5B258414DD229CA163F1E9265FDAED199B05A7AF"/>
+			<spot x="472.22" y="526.21" z="145.75" h="0"/>
+			<spot x="472.22" y="625.21" z="145.75" h="0"/>
+			<spot x="534.72" y="575.96" z="148.75" h="0"/>
 		</spawn>
-		<!-- Flywheel Surkana -->
-		<spawn npc_id="701452">
-			<spot x="578.015" y="711.120" z="401.770" static_id="24" />
+		<!-- Tiamat’s Inspector -->
+		<spawn npc_id="218881" respawn_time="295">
+			<spot x="583.49" y="594.11" z="132.9" h="0" walker_id="0DAA239FE32A333B1652B003612839B7756EEE15"/>
+			<spot x="555.41" y="476.24" z="136.0" h="0"/>
+			<spot x="556.72" y="676.06" z="136.0" h="0"/>
 		</spawn>
-		<!-- Gatekeeper Payad -->
-		<!-- Gravity Control Surkana -->
-		<spawn npc_id="701443">
-			<spot x="485.233" y="292.728" z="402.250" static_id="19" />
+		<!-- Tiamat’s Informant -->
+		<spawn npc_id="218882" respawn_time="295">
+			<spot x="620.5" y="552.97" z="134.5" h="0" walker_id="F8DC75D869E15EE53AE18FBCFD94C5ECA619ACF0"/>
+			<spot x="620.5" y="598.97" z="134.5" h="0" walker_id="FF5DB637EDC92F165B55F8917BA5DD4E9A3F23EE"/>
+			<spot x="513.0" y="575.97" z="149.0" h="0"/>
 		</spawn>
-		<!-- Gun Captain Pahala -->
-		<!-- Master at Arms Vandukar -->
-		<!-- Port Bulkhead -->
-		<spawn npc_id="730574">
-			<spot x="445.887" y="323.601" z="403.225" static_id="95" />
+		<!-- Tiamat’s Scientist -->
+		<spawn npc_id="218883" respawn_time="295">
+			<spot x="498.86" y="571.97" z="146.0" h="0" walker_id="6A408007B25AC2C99855BB5F500862E70CDA1702"/>
+			<spot x="498.86" y="580.47" z="146.0" h="0" walker_id="3C204FE7B30F19928BEC811524D34B5831D2D969"/>
+			<spot x="575.21" y="533.9" z="134.0" h="0"/>
+			<spot x="735.5" y="578.97" z="129.0" h="0"/>
+			<spot x="575.16" y="617.11" z="134.0" h="0"/>
 		</spawn>
-		<!-- Port Defense Shield Generator -->
-		<spawn npc_id="730572">
-			<spot x="363.530" y="571.790" z="413.191" static_id="16" />
+		<!-- Tiamat’s Examiner -->
+		<spawn npc_id="218884" respawn_time="295">
+			<spot x="555.33" y="544.21" z="133.5" h="0" walker_id="9D895D1997D193105597DDAFC111245234961CA3"/>
+			<spot x="478.72" y="526.21" z="145.75" h="0"/>
+			<spot x="532.22" y="575.96" z="149.0" h="0"/>
+			<spot x="678.0" y="447.47" z="148.5" h="0"/>
+			<spot x="478.47" y="625.21" z="145.75" h="0"/>
+			<spot x="678.0" y="707.47" z="148.5" h="0"/>
 		</spawn>
-		<!-- Port Teleporter Generator -->
-		<spawn npc_id="730570">
-			<spot x="466.312" y="585.606" z="391.578" static_id="40" />
+		<!-- Abnormal Fighter -->
+		<spawn npc_id="218885" respawn_time="295">
+			<spot x="671.63" y="516.75" z="148.5" h="0"/>
+			<spot x="684.88" y="637.25" z="148.5" h="0"/>
+			<spot x="714.25" y="420.5" z="153.0" h="0"/>
+			<spot x="701.13" y="731.5" z="153.14" h="0"/>
 		</spawn>
-		<!-- Port Thrust Control Surkana -->
-		<spawn npc_id="701444">
-			<spot x="346.226" y="414.895" z="410.574" static_id="20" />
+		<!-- Abnormal Raider -->
+		<spawn npc_id="218886" respawn_time="295">
+			<spot x="703.38" y="483.24" z="151.67" h="0"/>
+			<spot x="690.44" y="665.31" z="151.59" h="0"/>
 		</spawn>
-		<!-- Quartermaster Gashar -->
-		<!-- Shulack Drudge -->
-		<spawn npc_id="800323">
-			<spot x="380.93" y="706.45" z="402.22354" h="108" walker_id="7A2D18740E0B9A6F387F0D68A6163D088C4952F7" />
-			<spot x="381.44" y="707.49" z="402.22354" h="100" walker_id="5093F44B4EC1C06E630A6890C42FB15AFFD39FBC" />
-			<spot x="404.4" y="713.43" z="402.2708" h="57" walker_id="6B38A3047F1AFE9E4F0962D297C566C50437AF28" />
-			<spot x="405.44" y="711.31" z="402.34213" h="65" walker_id="7E820830C6553FED11AA007C899FCFA272CB1292" />
-			<spot x="564.99" y="699.98" z="402.20923" h="117" walker_id="3C040A35475B079C4A219FE18FD9C2C396447C9B" />
-			<spot x="565.45" y="701.53" z="402.21262" h="109" walker_id="A732CC63FE416EBB8BC0E1A352591C97FD597C51" />
-			<spot x="588.2" y="713.44" z="402.22894" h="31" walker_id="B1CD578F1C1AF858E33135FA3D5BD8B231D31E69" />
-			<spot x="589.0" y="711.31" z="402.22366" h="31" walker_id="F8FF295063F516BE1B458395B196D41A07FCCEF7" />
+		<!-- Abnormal Seeker -->
+		<spawn npc_id="218887" respawn_time="295">
+			<spot x="699.0" y="420.25" z="153.25" h="0"/>
+			<spot x="672.5" y="637.0" z="149.0" h="0"/>
+			<spot x="723.0" y="731.75" z="153.25" h="0"/>
+			<spot x="709.63" y="517.25" z="150.76" h="0"/>
 		</spawn>
-		<!-- Starboard Bulkhead -->
-		<spawn npc_id="730575">
-			<spot x="523.678" y="321.918" z="403.200" static_id="98" />
+		<!-- Abnormal Battle Mage -->
+		<spawn npc_id="218888" respawn_time="295">
+			<spot x="661.13" y="506.61" z="148.5" h="0"/>
+			<spot x="661.88" y="659.53" z="148.5" h="0"/>
+			<spot x="674.13" y="420.5" z="153.0" h="0"/>
+			<spot x="660.63" y="731.5" z="153.14" h="0"/>
+			<spot x="745.75" y="454.13" z="153.25" h="0"/>
 		</spawn>
-		<!-- Starboard Defense Shield Generator -->
-		<spawn npc_id="730573">
-			<spot x="604.813" y="569.787" z="411.464" static_id="7" />
-		</spawn>
-		<!-- Starboard Teleporter Generator -->
-		<spawn npc_id="730571">
-			<spot x="503.749" y="586.580" z="391.578" static_id="41" />
-		</spawn>
-		<!-- Starboard Thrust Control Surkana -->
-		<spawn npc_id="701445">
-			<spot x="625.578" y="411.963" z="410.525" static_id="28" />
-		</spawn>
-		<!-- Supply Captain Marahane -->
-		<!-- Terath Archer -->
-		<!-- Terath Bloodletter -->
-		<!-- Terath Executioner -->
-		<!-- Terath Fleshmender -->
-		<!-- Terath Magician -->
-		<!-- Terath Medic -->
-		<!-- Terath Physician -->
-		<!-- Terath Prowler -->
-		<!-- Terath Sentinel -->
-		<!-- Terath Stalker -->
-		<!-- Terath Thaumaturge -->
-		<!-- Terath Vanquisher -->
-		<!-- Terath Warmonger -->
-		<!-- Terath Worldwarper -->
-		<!-- Vice Air Captain Lukar -->
-		<!-- Vice Gun Captain Faniran -->
-		<!-- Weapons Charge Surkana -->
-		<spawn npc_id="701450">
-			<spot x="466.594" y="607.591" z="391.578" static_id="22" />
-		</spawn>
-		<!-- Weapons Locker -->
-		<spawn npc_id="701439">
-			<spot x="402.273" y="282.720" z="410.507" static_id="148" />
-			<spot x="407.848" y="266.263" z="410.176" static_id="149" />
-			<spot x="416.921" y="299.162" z="410.232" static_id="147" />
-			<spot x="428.620" y="263.606" z="410.106" static_id="144" />
-			<spot x="431.029" y="291.764" z="410.232" static_id="146" />
-			<spot x="432.118" y="278.172" z="410.232" static_id="145" />
-			<spot x="538.372" y="289.941" z="410.176" static_id="137" />
-			<spot x="538.681" y="277.068" z="410.379" static_id="136" />
-			<spot x="540.637" y="265.607" z="410.258" static_id="135" />
-			<spot x="554.198" y="298.936" z="410.070" static_id="118" />
-			<spot x="568.080" y="269.344" z="410.390" static_id="134" />
-			<spot x="570.769" y="287.464" z="410.874" static_id="131" />
-		</spawn>
-		<!-- Blue Shulack Captain -->
-		<spawn npc_id="800192">
-			<spot x="822.5" y="690.5" z="161.125" h="0"/>
-		</spawn>
-		<!-- Failed Daeva Subject -->
-		<spawn npc_id="218894">
-			<spot x="656.3983" y="490.8839" z="161.5" h="0" random_walk="8"/>
-			<spot x="656.3983" y="490.8839" z="161.5" h="0" random_walk="8"/>
-			<spot x="656.3983" y="490.8839" z="161.5" h="0" random_walk="8"/>
-			<spot x="657.7375" y="657.1996" z="161.75" h="0" random_walk="8"/>
-			<spot x="657.7375" y="657.1996" z="161.75" h="0" random_walk="8"/>
-			<spot x="657.7375" y="657.1996" z="161.75" h="0" random_walk="8"/>
-			<spot x="659.5" y="704.7761" z="152.5" h="0"/>
-			<spot x="659.5" y="704.7761" z="152.5" h="0"/>
-			<spot x="696.5" y="728.2761" z="153" h="0"/>
-			<spot x="696.5" y="728.2761" z="153" h="0"/>
-			<spot x="725.2375" y="733.3171" z="165.25" h="0" random_walk="8"/>
-			<spot x="726.7375" y="736.0671" z="165.25" h="0" random_walk="8"/>
-			<spot x="728.2375" y="733.5671" z="165.25" h="0" random_walk="8"/>
-			<spot x="729.9875" y="735.8171" z="165.25" h="0" random_walk="8"/>
-			<spot x="731.2375" y="733.5671" z="165.25" h="0" random_walk="8"/>
-			<spot x="732.9875" y="735.8171" z="165.25" h="0" random_walk="8"/>
-			<spot x="737.9875" y="417.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="737.9875" y="417.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="737.9875" y="417.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="737.9875" y="417.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="737.9875" y="417.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="746.75" y="430.5261" z="152.5" h="0"/>
-			<spot x="746.75" y="430.5261" z="152.5" h="0"/>
-		</spawn>
-		<!-- Failed Daeva Subject -->
-		<spawn npc_id="218895">
-			<spot x="655.4875" y="692.3171" z="166.25" h="0" random_walk="8"/>
-			<spot x="655.4875" y="692.3171" z="166.25" h="0" random_walk="8"/>
-			<spot x="657.9875" y="661.6996" z="161.75" h="0" random_walk="8"/>
-			<spot x="657.9875" y="661.6996" z="161.75" h="0" random_walk="8"/>
-			<spot x="657.9875" y="661.6996" z="161.75" h="0" random_walk="8"/>
-			<spot x="658.5" y="721.2761" z="152.5" h="0"/>
-			<spot x="658.5" y="721.2761" z="152.5" h="0"/>
-			<spot x="658.6483" y="494.1339" z="161.5" h="0" random_walk="8"/>
-			<spot x="658.6483" y="494.1339" z="161.5" h="0" random_walk="8"/>
-			<spot x="658.6483" y="494.1339" z="161.5" h="0" random_walk="8"/>
-			<spot x="659" y="719.7761" z="152.5" h="0"/>
-			<spot x="725.2375" y="733.3171" z="165.25" h="0" random_walk="8"/>
-			<spot x="726.7375" y="736.0671" z="165.25" h="0" random_walk="8"/>
-			<spot x="726.9875" y="417.0671" z="165.75" h="0" random_walk="8"/>
-			<spot x="728.2375" y="733.5671" z="165.25" h="0" random_walk="8"/>
-			<spot x="729.2375" y="417.0671" z="165.75" h="0" random_walk="8"/>
-			<spot x="729.4875" y="418.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="729.9875" y="735.8171" z="165.25" h="0" random_walk="8"/>
-			<spot x="731.2375" y="733.5671" z="165.25" h="0" random_walk="8"/>
-			<spot x="731.7375" y="417.0671" z="165.75" h="0" random_walk="8"/>
-			<spot x="732.9875" y="735.8171" z="165.25" h="0" random_walk="8"/>
-			<spot x="743.7375" y="416.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="743.7375" y="416.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="743.7375" y="416.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="743.7375" y="416.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="743.7375" y="416.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="745.25" y="462.5261" z="152.5" h="0"/>
-			<spot x="746.9875" y="469.0671" z="166.25" h="0" random_walk="8"/>
-			<spot x="746.9875" y="469.0671" z="166.25" h="0" random_walk="8"/>
-		</spawn>
-		<!-- Failed Daeva Subject -->
-		<spawn npc_id="218896">
-			<spot x="656.4875" y="697.8171" z="166.25" h="0" random_walk="8"/>
-			<spot x="656.4875" y="697.8171" z="166.25" h="0" random_walk="8"/>
-			<spot x="656.8983" y="497.6339" z="161.5" h="0" random_walk="8"/>
-			<spot x="656.8983" y="497.6339" z="161.5" h="0" random_walk="8"/>
-			<spot x="656.8983" y="497.6339" z="161.5" h="0" random_walk="8"/>
-			<spot x="658" y="704.2761" z="152.5" h="0"/>
-			<spot x="659.4875" y="659.1996" z="161.75" h="0" random_walk="8"/>
-			<spot x="659.4875" y="659.1996" z="161.75" h="0" random_walk="8"/>
-			<spot x="659.4875" y="659.1996" z="161.75" h="0" random_walk="8"/>
-			<spot x="695" y="727.7761" z="153" h="0"/>
-			<spot x="725.2375" y="733.3171" z="165.25" h="0" random_walk="8"/>
-			<spot x="726.7375" y="736.0671" z="165.25" h="0" random_walk="8"/>
-			<spot x="726.9875" y="417.0671" z="165.75" h="0" random_walk="8"/>
-			<spot x="728.2375" y="733.5671" z="165.25" h="0" random_walk="8"/>
-			<spot x="729.2375" y="417.0671" z="165.75" h="0" random_walk="8"/>
-			<spot x="729.4875" y="418.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="729.9875" y="735.8171" z="165.25" h="0" random_walk="8"/>
-			<spot x="731.2375" y="733.5671" z="165.25" h="0" random_walk="8"/>
-			<spot x="731.7375" y="417.0671" z="165.75" h="0" random_walk="8"/>
-			<spot x="732.9875" y="735.8171" z="165.25" h="0" random_walk="8"/>
-			<spot x="740.2375" y="418.5671" z="165.75" h="0" random_walk="8"/>
-			<spot x="740.2375" y="418.5671" z="165.75" h="0" random_walk="8"/>
-			<spot x="740.2375" y="418.5671" z="165.75" h="0" random_walk="8"/>
-			<spot x="740.2375" y="418.5671" z="165.75" h="0" random_walk="8"/>
-			<spot x="740.2375" y="418.5671" z="165.75" h="0" random_walk="8"/>
-			<spot x="745.25" y="430.0261" z="152.5" h="0"/>
-			<spot x="745.25" y="462.5261" z="152.5" h="0"/>
-			<spot x="745.25" y="462.5261" z="152.5" h="0"/>
-			<spot x="747.9875" y="474.5671" z="166.25" h="0" random_walk="8"/>
-			<spot x="747.9875" y="474.5671" z="166.25" h="0" random_walk="8"/>
-		</spawn>
-		<!-- Failed Porgus Subject -->
-		<spawn npc_id="218893">
-			<spot x="656.6483" y="503.8892" z="161.5" h="0" random_walk="8"/>
-			<spot x="656.6483" y="503.8892" z="161.5" h="0" random_walk="8"/>
-			<spot x="656.9875" y="733.5671" z="165.25" h="0" random_walk="8"/>
-			<spot x="658" y="438.5261" z="153" h="0"/>
-			<spot x="658.2375" y="417.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="658.25" y="440.5261" z="153" h="0"/>
-			<spot x="658.7375" y="735.5671" z="165.25" h="0" random_walk="8"/>
-			<spot x="659.7375" y="733.3171" z="165.25" h="0" random_walk="8"/>
-			<spot x="660.7375" y="418.0671" z="165.75" h="0" random_walk="8"/>
-			<spot x="662.2375" y="416.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="662.2375" y="735.3171" z="165.25" h="0" random_walk="8"/>
-			<spot x="663.9875" y="417.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="664.4875" y="733.0671" z="165.25" h="0" random_walk="8"/>
-			<spot x="670.25" y="489.0261" z="148.75" h="0" random_walk="8"/>
-			<spot x="670.5" y="490.5261" z="148.5" h="0"/>
-			<spot x="670.5" y="490.5261" z="148.5" h="0"/>
-			<spot x="691.25" y="509.5261" z="148.75" h="0" random_walk="8"/>
-			<spot x="693.5" y="732.2761" z="153" h="0" random_walk="8"/>
-			<spot x="693.5" y="732.2761" z="156.5" h="0" random_walk="8"/>
-			<spot x="741.7375" y="417.0671" z="165.75" h="0" random_walk="8"/>
-			<spot x="741.7375" y="417.0671" z="165.75" h="0" random_walk="8"/>
-			<spot x="741.7375" y="417.0671" z="165.75" h="0" random_walk="8"/>
-			<spot x="741.7375" y="417.0671" z="165.75" h="0" random_walk="8"/>
-			<spot x="741.7375" y="417.0671" z="165.75" h="0" random_walk="8"/>
-			<spot x="745.5" y="639.7761" z="153" h="0" random_walk="8"/>
-			<spot x="745.5" y="715.7761" z="153" h="0"/>
-		</spawn>
-		<!-- Failed Worg Subject -->
-		<spawn npc_id="218891">
-			<spot x="656.8983" y="509.8892" z="161.5" h="0" random_walk="8"/>
-			<spot x="656.8983" y="509.8892" z="161.5" h="0" random_walk="8"/>
-			<spot x="669.4875" y="733.5671" z="165.25" h="0" random_walk="8"/>
-			<spot x="671.2375" y="736.0671" z="165.25" h="0" random_walk="8"/>
-			<spot x="672.2375" y="733.8171" z="165.25" h="0" random_walk="8"/>
-			<spot x="674.2375" y="735.5671" z="165.25" h="0" random_walk="8"/>
-			<spot x="675.4875" y="733.8171" z="165.25" h="0" random_walk="8"/>
-			<spot x="676.9875" y="735.8171" z="165.25" h="0" random_walk="8"/>
-			<spot x="691.6024" y="503.1531" z="148.5" h="0" random_walk="8"/>
-			<spot x="695.7375" y="418.3171" z="165.75" h="0" random_walk="8"/>
-			<spot x="697.7375" y="417.0671" z="165.75" h="0" random_walk="8"/>
-			<spot x="698.9875" y="418.5671" z="165.75" h="0" random_walk="8"/>
-			<spot x="700.9875" y="416.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="701.9875" y="418.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="737.7375" y="733.0671" z="165.25" h="0" random_walk="8"/>
-			<spot x="738.9875" y="735.5671" z="165.25" h="0" random_walk="8"/>
-			<spot x="740.7375" y="733.3171" z="165.25" h="0" random_walk="8"/>
-			<spot x="742.4875" y="735.5671" z="165.25" h="0" random_walk="8"/>
-			<spot x="743.1024" y="635.6531" z="152.5" h="0" random_walk="8"/>
-			<spot x="743.7375" y="418.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="743.7375" y="418.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="743.7375" y="418.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="743.7375" y="418.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="743.7375" y="418.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="743.9875" y="733.5671" z="165.25" h="0" random_walk="8"/>
-			<spot x="745.4875" y="733.3171" z="165.25" h="0" random_walk="8"/>
-			<spot x="745.4875" y="735.8171" z="165.25" h="0" random_walk="8"/>
-		</spawn>
-		<!-- Porgus Subject -->
-		<spawn npc_id="218892">
-			<spot x="656.9875" y="733.5671" z="165.25" h="0" random_walk="8"/>
-			<spot x="658.2375" y="417.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="658.7375" y="735.5671" z="165.25" h="0" random_walk="8"/>
-			<spot x="659.7375" y="733.3171" z="165.25" h="0" random_walk="8"/>
-			<spot x="660.7375" y="418.0671" z="165.75" h="0" random_walk="8"/>
-			<spot x="662.2375" y="416.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="662.2375" y="735.3171" z="165.25" h="0" random_walk="8"/>
-			<spot x="663.9875" y="417.8171" z="165.75" h="0" random_walk="8"/>
-			<spot x="664.4875" y="733.0671" z="165.25" h="0" random_walk="8"/>
-			<spot x="668.6483" y="517.7014" z="161.5" h="0" random_walk="8"/>
-			<spot x="669.6483" y="520.2014" z="161.5" h="0" random_walk="8"/>
-			<spot x="670.2375" y="634.8171" z="161.75" h="0" random_walk="8"/>
-			<spot x="671.7589" y="633.9092" z="161.75" h="0" random_walk="8"/>
-			<spot x="672.5" y="670.2761" z="148" h="0"/>
-			<spot x="672.5" y="670.2761" z="148" h="0"/>
-			<spot x="673.1483" y="518.2014" z="161.5" h="0" random_walk="8"/>
-			<spot x="673.5272" y="670.1967" z="148" h="0"/>
-			<spot x="673.5272" y="670.1967" z="148" h="0"/>
-			<spot x="673.8301" y="634.8017" z="161.75" h="0" random_walk="8"/>
-			<spot x="674.8983" y="519.7014" z="161.5" h="0" random_walk="8"/>
-			<spot x="675.6637" y="634.1925" z="161.75" h="0" random_walk="8"/>
-			<spot x="693.5" y="641.7761" z="148" h="0" random_walk="8"/>
-			<spot x="693.5" y="641.7761" z="148" h="0" random_walk="8"/>
-			<spot x="693.5" y="641.7761" z="148" h="0" random_walk="8"/>
-			<spot x="693.5" y="641.7761" z="148" h="0" random_walk="8"/>
-			<spot x="718" y="707.2761" z="149.5" h="0"/>
-			<spot x="718" y="707.2761" z="149.5" h="0"/>
-			<spot x="719.0272" y="707.1967" z="149.5" h="0"/>
-			<spot x="719.0272" y="707.1967" z="149.5" h="0"/>
-			<spot x="724.8983" y="520.4514" z="164.75" h="0" random_walk="8"/>
-			<spot x="724.8983" y="520.4514" z="164.75" h="0" random_walk="8"/>
-		</spawn>
-		<!-- Red Shulack Captain -->
-		<spawn npc_id="800187">
-			<spot x="817" y="457.5" z="161.5312" h="0"/>
+		<!-- Abnormal Physician -->
+		<spawn npc_id="218889" respawn_time="295">
+			<spot x="701.25" y="731.75" z="153.25" h="0"/>
+			<spot x="695.75" y="420.38" z="153.38" h="0"/>
 		</spawn>
 		<!-- Worg Subject -->
-		<spawn npc_id="218890">
+		<spawn npc_id="218890" respawn_time="295">
 			<spot x="668.6483" y="517.7014" z="161.5" h="0" random_walk="8"/>
 			<spot x="669.4875" y="733.5671" z="165.25" h="0" random_walk="8"/>
 			<spot x="669.6483" y="520.2014" z="161.5" h="0" random_walk="8"/>
@@ -383,6 +180,913 @@
 			<spot x="743.9875" y="733.5671" z="165.25" h="0" random_walk="8"/>
 			<spot x="745.4875" y="733.3171" z="165.25" h="0" random_walk="8"/>
 			<spot x="745.4875" y="735.8171" z="165.25" h="0" random_walk="8"/>
+			<spot x="698.7" y="417.4" z="165.75" h="0"/>
+			<spot x="697.2" y="520.03" z="154.75" h="0"/>
+			<spot x="702.01" y="660.82" z="151.55" h="0"/>
+			<spot x="707.45" y="734.53" z="165.25" h="0"/>
+		</spawn>
+		<!-- Failed Worg Subject -->
+		<spawn npc_id="218891" respawn_time="295">
+			<spot x="656.8983" y="509.8892" z="161.5" h="0" random_walk="8"/>
+			<spot x="656.8983" y="509.8892" z="161.5" h="0" random_walk="8"/>
+			<spot x="669.4875" y="733.5671" z="165.25" h="0" random_walk="8"/>
+			<spot x="671.2375" y="736.0671" z="165.25" h="0" random_walk="8"/>
+			<spot x="672.2375" y="733.8171" z="165.25" h="0" random_walk="8"/>
+			<spot x="674.2375" y="735.5671" z="165.25" h="0" random_walk="8"/>
+			<spot x="675.4875" y="733.8171" z="165.25" h="0" random_walk="8"/>
+			<spot x="676.9875" y="735.8171" z="165.25" h="0" random_walk="8"/>
+			<spot x="691.6024" y="503.1531" z="148.5" h="0" random_walk="8"/>
+			<spot x="695.7375" y="418.3171" z="165.75" h="0" random_walk="8"/>
+			<spot x="697.7375" y="417.0671" z="165.75" h="0" random_walk="8"/>
+			<spot x="698.9875" y="418.5671" z="165.75" h="0" random_walk="8"/>
+			<spot x="700.9875" y="416.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="701.9875" y="418.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="737.7375" y="733.0671" z="165.25" h="0" random_walk="8"/>
+			<spot x="738.9875" y="735.5671" z="165.25" h="0" random_walk="8"/>
+			<spot x="740.7375" y="733.3171" z="165.25" h="0" random_walk="8"/>
+			<spot x="742.4875" y="735.5671" z="165.25" h="0" random_walk="8"/>
+			<spot x="743.1024" y="635.6531" z="152.5" h="0" random_walk="8"/>
+			<spot x="743.7375" y="418.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="743.7375" y="418.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="743.7375" y="418.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="743.7375" y="418.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="743.7375" y="418.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="743.9875" y="733.5671" z="165.25" h="0" random_walk="8"/>
+			<spot x="745.4875" y="733.3171" z="165.25" h="0" random_walk="8"/>
+			<spot x="745.4875" y="735.8171" z="165.25" h="0" random_walk="8"/>
+			<spot x="673.1483" y="518.2014" z="161.5" h="0"/>
+			<spot x="669.6483" y="520.2014" z="161.5" h="0"/>
+			<spot x="668.6483" y="517.7014" z="161.5" h="0"/>
+			<spot x="674.8983" y="519.7014" z="161.5" h="0"/>
+			<spot x="743.1" y="635.65" z="152.5" h="0"/>
+			<spot x="674.65" y="505.0" z="155.0" h="0"/>
+			<spot x="719.95" y="417.4" z="165.75" h="0"/>
+			<spot x="707.45" y="734.53" z="165.25" h="0"/>
+		</spawn>
+		<!-- Porgus Subject -->
+		<spawn npc_id="218892" respawn_time="295">
+			<spot x="656.9875" y="733.5671" z="165.25" h="0" random_walk="8"/>
+			<spot x="658.2375" y="417.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="658.7375" y="735.5671" z="165.25" h="0" random_walk="8"/>
+			<spot x="659.7375" y="733.3171" z="165.25" h="0" random_walk="8"/>
+			<spot x="660.7375" y="418.0671" z="165.75" h="0" random_walk="8"/>
+			<spot x="662.2375" y="416.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="662.2375" y="735.3171" z="165.25" h="0" random_walk="8"/>
+			<spot x="663.9875" y="417.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="664.4875" y="733.0671" z="165.25" h="0" random_walk="8"/>
+			<spot x="668.6483" y="517.7014" z="161.5" h="0" random_walk="8"/>
+			<spot x="669.6483" y="520.2014" z="161.5" h="0" random_walk="8"/>
+			<spot x="670.2375" y="634.8171" z="161.75" h="0" random_walk="8"/>
+			<spot x="671.7589" y="633.9092" z="161.75" h="0" random_walk="8"/>
+			<spot x="672.5" y="670.2761" z="148" h="0"/>
+			<spot x="672.5" y="670.2761" z="148" h="0"/>
+			<spot x="673.1483" y="518.2014" z="161.5" h="0" random_walk="8"/>
+			<spot x="673.5272" y="670.1967" z="148" h="0"/>
+			<spot x="673.5272" y="670.1967" z="148" h="0"/>
+			<spot x="673.8301" y="634.8017" z="161.75" h="0" random_walk="8"/>
+			<spot x="674.8983" y="519.7014" z="161.5" h="0" random_walk="8"/>
+			<spot x="675.6637" y="634.1925" z="161.75" h="0" random_walk="8"/>
+			<spot x="693.5" y="641.7761" z="148" h="0" random_walk="8"/>
+			<spot x="693.5" y="641.7761" z="148" h="0" random_walk="8"/>
+			<spot x="693.5" y="641.7761" z="148" h="0" random_walk="8"/>
+			<spot x="693.5" y="641.7761" z="148" h="0" random_walk="8"/>
+			<spot x="718" y="707.2761" z="149.5" h="0"/>
+			<spot x="718" y="707.2761" z="149.5" h="0"/>
+			<spot x="719.0272" y="707.1967" z="149.5" h="0"/>
+			<spot x="719.0272" y="707.1967" z="149.5" h="0"/>
+			<spot x="724.8983" y="520.4514" z="164.75" h="0" random_walk="8"/>
+			<spot x="724.8983" y="520.4514" z="164.75" h="0" random_walk="8"/>
+			<spot x="661.2" y="417.4" z="165.75" h="0"/>
+			<spot x="697.2" y="520.03" z="163.13" h="0"/>
+			<spot x="673.25" y="685.19" z="152.25" h="0"/>
+		</spawn>
+		<!-- Failed Porgus Subject -->
+		<spawn npc_id="218893" respawn_time="295">
+			<spot x="656.6483" y="503.8892" z="161.5" h="0" random_walk="8"/>
+			<spot x="656.6483" y="503.8892" z="161.5" h="0" random_walk="8"/>
+			<spot x="656.9875" y="733.5671" z="165.25" h="0" random_walk="8"/>
+			<spot x="658" y="438.5261" z="153" h="0"/>
+			<spot x="658.2375" y="417.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="658.25" y="440.5261" z="153" h="0"/>
+			<spot x="658.7375" y="735.5671" z="165.25" h="0" random_walk="8"/>
+			<spot x="659.7375" y="733.3171" z="165.25" h="0" random_walk="8"/>
+			<spot x="660.7375" y="418.0671" z="165.75" h="0" random_walk="8"/>
+			<spot x="662.2375" y="416.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="662.2375" y="735.3171" z="165.25" h="0" random_walk="8"/>
+			<spot x="663.9875" y="417.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="664.4875" y="733.0671" z="165.25" h="0" random_walk="8"/>
+			<spot x="670.25" y="489.0261" z="148.75" h="0" random_walk="8"/>
+			<spot x="670.5" y="490.5261" z="148.5" h="0"/>
+			<spot x="670.5" y="490.5261" z="148.5" h="0"/>
+			<spot x="691.25" y="509.5261" z="148.75" h="0" random_walk="8"/>
+			<spot x="693.5" y="732.2761" z="153" h="0" random_walk="8"/>
+			<spot x="693.5" y="732.2761" z="156.5" h="0" random_walk="8"/>
+			<spot x="741.7375" y="417.0671" z="165.75" h="0" random_walk="8"/>
+			<spot x="741.7375" y="417.0671" z="165.75" h="0" random_walk="8"/>
+			<spot x="741.7375" y="417.0671" z="165.75" h="0" random_walk="8"/>
+			<spot x="741.7375" y="417.0671" z="165.75" h="0" random_walk="8"/>
+			<spot x="741.7375" y="417.0671" z="165.75" h="0" random_walk="8"/>
+			<spot x="745.5" y="639.7761" z="153" h="0" random_walk="8"/>
+			<spot x="745.5" y="715.7761" z="153" h="0"/>
+			<spot x="703.1" y="725.09" z="156.94" h="0"/>
+			<spot x="699.45" y="462.12" z="155.64" h="0"/>
+		</spawn>
+		<!-- Failed Daeva Subject -->
+		<spawn npc_id="218894" respawn_time="295">
+			<spot x="656.3983" y="490.8839" z="161.5" h="0" random_walk="8"/>
+			<spot x="656.3983" y="490.8839" z="161.5" h="0" random_walk="8"/>
+			<spot x="656.3983" y="490.8839" z="161.5" h="0" random_walk="8"/>
+			<spot x="657.7375" y="657.1996" z="161.75" h="0" random_walk="8"/>
+			<spot x="657.7375" y="657.1996" z="161.75" h="0" random_walk="8"/>
+			<spot x="657.7375" y="657.1996" z="161.75" h="0" random_walk="8"/>
+			<spot x="659.5" y="704.7761" z="152.5" h="0"/>
+			<spot x="659.5" y="704.7761" z="152.5" h="0"/>
+			<spot x="696.5" y="728.2761" z="153" h="0"/>
+			<spot x="696.5" y="728.2761" z="153" h="0"/>
+			<spot x="725.2375" y="733.3171" z="165.25" h="0" random_walk="8"/>
+			<spot x="726.7375" y="736.0671" z="165.25" h="0" random_walk="8"/>
+			<spot x="728.2375" y="733.5671" z="165.25" h="0" random_walk="8"/>
+			<spot x="729.9875" y="735.8171" z="165.25" h="0" random_walk="8"/>
+			<spot x="731.2375" y="733.5671" z="165.25" h="0" random_walk="8"/>
+			<spot x="732.9875" y="735.8171" z="165.25" h="0" random_walk="8"/>
+			<spot x="737.9875" y="417.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="737.9875" y="417.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="737.9875" y="417.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="737.9875" y="417.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="737.9875" y="417.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="746.75" y="430.5261" z="152.5" h="0"/>
+			<spot x="746.75" y="430.5261" z="152.5" h="0"/>
+			<spot x="671.2375" y="736.0671" z="165.25" h="75"/>
+			<spot x="664.4875" y="733.0671" z="165.25" h="75"/>
+			<spot x="658.7375" y="735.5671" z="165.25" h="75"/>
+			<spot x="672.2375" y="733.8171" z="165.25" h="75"/>
+			<spot x="656.9875" y="733.5671" z="165.25" h="75"/>
+			<spot x="674.2375" y="735.5671" z="165.25" h="75"/>
+			<spot x="676.9875" y="735.8171" z="165.25" h="75"/>
+			<spot x="675.4875" y="733.8171" z="165.25" h="75"/>
+			<spot x="662.2375" y="735.3171" z="165.25" h="75"/>
+			<spot x="740.7375" y="733.3171" z="165.25" h="75"/>
+			<spot x="745.4875" y="733.3171" z="165.25" h="75"/>
+			<spot x="669.4875" y="733.5671" z="165.25" h="75"/>
+			<spot x="742.4875" y="735.5671" z="165.25" h="75"/>
+			<spot x="659.7375" y="733.3171" z="165.25" h="75"/>
+			<spot x="745.4875" y="735.8171" z="165.25" h="75"/>
+			<spot x="737.7375" y="733.0671" z="165.25" h="75"/>
+			<spot x="738.9875" y="735.5671" z="165.25" h="75"/>
+			<spot x="743.9875" y="733.5671" z="165.25" h="75"/>
+			<spot x="657.7" y="494.34" z="161.5" h="0"/>
+			<spot x="743.98" y="423.96" z="159.13" h="0"/>
+			<spot x="693.95" y="696.97" z="158.13" h="0"/>
+		</spawn>
+		<!-- Failed Daeva Subject -->
+		<spawn npc_id="218895" respawn_time="295">
+			<spot x="655.4875" y="692.3171" z="166.25" h="0" random_walk="8"/>
+			<spot x="655.4875" y="692.3171" z="166.25" h="0" random_walk="8"/>
+			<spot x="657.9875" y="661.6996" z="161.75" h="0" random_walk="8"/>
+			<spot x="657.9875" y="661.6996" z="161.75" h="0" random_walk="8"/>
+			<spot x="657.9875" y="661.6996" z="161.75" h="0" random_walk="8"/>
+			<spot x="658.5" y="721.2761" z="152.5" h="0"/>
+			<spot x="658.5" y="721.2761" z="152.5" h="0"/>
+			<spot x="658.6483" y="494.1339" z="161.5" h="0" random_walk="8"/>
+			<spot x="658.6483" y="494.1339" z="161.5" h="0" random_walk="8"/>
+			<spot x="658.6483" y="494.1339" z="161.5" h="0" random_walk="8"/>
+			<spot x="659" y="719.7761" z="152.5" h="0"/>
+			<spot x="725.2375" y="733.3171" z="165.25" h="0" random_walk="8"/>
+			<spot x="726.7375" y="736.0671" z="165.25" h="0" random_walk="8"/>
+			<spot x="726.9875" y="417.0671" z="165.75" h="0" random_walk="8"/>
+			<spot x="728.2375" y="733.5671" z="165.25" h="0" random_walk="8"/>
+			<spot x="729.2375" y="417.0671" z="165.75" h="0" random_walk="8"/>
+			<spot x="729.4875" y="418.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="729.9875" y="735.8171" z="165.25" h="0" random_walk="8"/>
+			<spot x="731.2375" y="733.5671" z="165.25" h="0" random_walk="8"/>
+			<spot x="731.7375" y="417.0671" z="165.75" h="0" random_walk="8"/>
+			<spot x="732.9875" y="735.8171" z="165.25" h="0" random_walk="8"/>
+			<spot x="743.7375" y="416.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="743.7375" y="416.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="743.7375" y="416.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="743.7375" y="416.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="743.7375" y="416.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="745.25" y="462.5261" z="152.5" h="0"/>
+			<spot x="746.9875" y="469.0671" z="166.25" h="0" random_walk="8"/>
+			<spot x="746.9875" y="469.0671" z="166.25" h="0" random_walk="8"/>
+			<spot x="657.7" y="494.34" z="161.5" h="0"/>
+			<spot x="729.2" y="734.4" z="165.25" h="0"/>
+			<spot x="738.39" y="444.78" z="162.56" h="0"/>
+			<spot x="658.6" y="690.4" z="158.25" h="0"/>
+		</spawn>
+		<!-- Failed Daeva Subject -->
+		<spawn npc_id="218896" respawn_time="295">
+			<spot x="656.4875" y="697.8171" z="166.25" h="0" random_walk="8"/>
+			<spot x="656.4875" y="697.8171" z="166.25" h="0" random_walk="8"/>
+			<spot x="656.8983" y="497.6339" z="161.5" h="0" random_walk="8"/>
+			<spot x="656.8983" y="497.6339" z="161.5" h="0" random_walk="8"/>
+			<spot x="656.8983" y="497.6339" z="161.5" h="0" random_walk="8"/>
+			<spot x="658" y="704.2761" z="152.5" h="0"/>
+			<spot x="659.4875" y="659.1996" z="161.75" h="0" random_walk="8"/>
+			<spot x="659.4875" y="659.1996" z="161.75" h="0" random_walk="8"/>
+			<spot x="659.4875" y="659.1996" z="161.75" h="0" random_walk="8"/>
+			<spot x="695" y="727.7761" z="153" h="0"/>
+			<spot x="725.2375" y="733.3171" z="165.25" h="0" random_walk="8"/>
+			<spot x="726.7375" y="736.0671" z="165.25" h="0" random_walk="8"/>
+			<spot x="726.9875" y="417.0671" z="165.75" h="0" random_walk="8"/>
+			<spot x="728.2375" y="733.5671" z="165.25" h="0" random_walk="8"/>
+			<spot x="729.2375" y="417.0671" z="165.75" h="0" random_walk="8"/>
+			<spot x="729.4875" y="418.8171" z="165.75" h="0" random_walk="8"/>
+			<spot x="729.9875" y="735.8171" z="165.25" h="0" random_walk="8"/>
+			<spot x="731.2375" y="733.5671" z="165.25" h="0" random_walk="8"/>
+			<spot x="731.7375" y="417.0671" z="165.75" h="0" random_walk="8"/>
+			<spot x="732.9875" y="735.8171" z="165.25" h="0" random_walk="8"/>
+			<spot x="740.2375" y="418.5671" z="165.75" h="0" random_walk="8"/>
+			<spot x="740.2375" y="418.5671" z="165.75" h="0" random_walk="8"/>
+			<spot x="740.2375" y="418.5671" z="165.75" h="0" random_walk="8"/>
+			<spot x="740.2375" y="418.5671" z="165.75" h="0" random_walk="8"/>
+			<spot x="740.2375" y="418.5671" z="165.75" h="0" random_walk="8"/>
+			<spot x="745.25" y="430.0261" z="152.5" h="0"/>
+			<spot x="745.25" y="462.5261" z="152.5" h="0"/>
+			<spot x="745.25" y="462.5261" z="152.5" h="0"/>
+			<spot x="747.9875" y="474.5671" z="166.25" h="0" random_walk="8"/>
+			<spot x="747.9875" y="474.5671" z="166.25" h="0" random_walk="8"/>
+			<spot x="698.9875" y="418.5671" z="165.75" h="75"/>
+			<spot x="658.2375" y="417.8171" z="165.75" h="75"/>
+			<spot x="701.9875" y="418.8171" z="165.75" h="75"/>
+			<spot x="695.7375" y="418.3171" z="165.75" h="75"/>
+			<spot x="663.9875" y="417.8171" z="165.75" h="75"/>
+			<spot x="700.9875" y="416.8171" z="165.75" h="75"/>
+			<spot x="660.7375" y="418.0671" z="165.75" h="75"/>
+			<spot x="697.7375" y="417.0671" z="165.75" h="75"/>
+			<spot x="662.2375" y="416.8171" z="165.75" h="75"/>
+			<spot x="693.95" y="696.97" z="159.75" h="0"/>
+			<spot x="699.45" y="455.87" z="160.71" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Grunt -->
+		<spawn npc_id="218897" respawn_time="295">
+			<spot x="680.0" y="546.5" z="129.0" h="0"/>
+			<spot x="680.5" y="606.75" z="129.0" h="0"/>
+			<spot x="712.5" y="567.25" z="129.0" h="0"/>
+			<spot x="729.0" y="590.75" z="129.0" h="0"/>
+			<spot x="697.47" y="576.44" z="129.0" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Gatherer -->
+		<spawn npc_id="218898" respawn_time="295">
+			<spot x="688.2504" y="615.2234" z="129.0" h="0"/>
+			<spot x="690.54" y="579.87" z="129.0" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Leader -->
+		<spawn npc_id="218899" respawn_time="295">
+			<spot x="766.0" y="541.75" z="129.0" h="0"/>
+			<spot x="686.0" y="558.25" z="129.0" h="0"/>
+			<spot x="696.0" y="574.75" z="129.0" h="0"/>
+		</spawn>
+		<!-- Nether Mucus -->
+		<spawn npc_id="218900" respawn_time="295">
+			<spot x="849.75" y="600.75" z="128.0" h="0"/>
+			<spot x="832.8862" y="512.6066" z="158.0" h="0"/>
+			<spot x="844.75" y="565.25" z="126.0" h="0"/>
+			<spot x="805.75" y="559.25" z="128.0" h="0"/>
+			<spot x="844.2546" y="640.2605" z="158.0" h="0"/>
+			<spot x="818.25" y="606.75" z="128.0" h="0"/>
+			<spot x="838.63" y="576.39" z="137.67" h="0"/>
+		</spawn>
+		<!-- Nether Malodor -->
+		<spawn npc_id="218901" respawn_time="295">
+			<spot x="831.0" y="615.75" z="126.5" h="75"/>
+			<spot x="796.0" y="535.25" z="129.5" h="30"/>
+			<spot x="803.0" y="648.75" z="158.5" h="30"/>
+			<spot x="786.0" y="622.25" z="128.0" h="90"/>
+			<spot x="839.5" y="586.75" z="124.5" h="90"/>
+			<spot x="837.5" y="536.75" z="126.0" h="30"/>
+			<spot x="779.5" y="503.25" z="157.0" h="90"/>
+			<spot x="791.25" y="576.0" z="135.71" h="0"/>
+		</spawn>
+		<!-- Cave Moonflower -->
+		<spawn npc_id="218902" respawn_time="295">
+			<spot x="705.0" y="556.75" z="129.0" h="105"/>
+			<spot x="778.5" y="533.75" z="129.0" h="30"/>
+			<spot x="763.5" y="621.25" z="129.0" h="105"/>
+			<spot x="735.5" y="603.75" z="129.0" h="105"/>
+			<spot x="669.0" y="618.25" z="129.0" h="105"/>
+			<spot x="723.75" y="576.0" z="129.0" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Spaller -->
+		<spawn npc_id="218903" respawn_time="295">
+			<spot x="733.0" y="548.75" z="129.0" h="105"/>
+			<spot x="673.5" y="558.75" z="129.0" h="45"/>
+			<spot x="720.5" y="605.75" z="129.0" h="0"/>
+			<spot x="722.0" y="549.25" z="129.0" h="105"/>
+			<spot x="759.5" y="568.75" z="129.5" h="83"/>
+			<spot x="716.5" y="578.0" z="129.08" h="0"/>
+		</spawn>
+		<!-- Central Control Unit -->
+		<spawn npc_id="218907" respawn_time="295">
+			<spot x="453.0" y="576.0" z="147.0" h="0"/>
+			<spot x="452.8" y="576.0" z="147.0" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Fighter -->
+		<spawn npc_id="218908" respawn_time="295">
+			<spot x="701.18" y="619.64" z="148.68" h="0" walker_id="8BBC40E0092690CA5A036CB26A3700ABC65AE277"/>
+			<spot x="689.18" y="692.14" z="148.18" h="0" walker_id="5D678581B09590DA0A20FED4608B4EDDA814486D"/>
+			<spot x="712.68" y="437.64" z="152.68" h="0" walker_id="DBFB59FC0E1FEA29E9A1FAF77FEE1D3741B34DB5"/>
+			<spot x="701.68" y="535.64" z="148.68" h="0" walker_id="FC88D0EBBA6507A28FFB478E79F7A350CA33F86E"/>
+			<spot x="689.18" y="460.64" z="147.68" h="0" walker_id="EDC28E7119D537433BDC1E48814121229E426339"/>
+			<spot x="712.68" y="715.64" z="152.68" h="0" walker_id="3E25B4B559C8BDA7B012F699F5800FCA212C8A3A"/>
+			<spot x="769.5" y="642.24" z="142.41" h="0"/>
+			<spot x="773.0" y="514.25" z="142.41" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Raider -->
+		<spawn npc_id="218909" respawn_time="295">
+			<spot x="740.0" y="579.5" z="139.0" h="0" walker_id="AB60FAB5BD38DC7329664B262B2D2064A502E5FE"/>
+			<spot x="706.0" y="515.5" z="148.0" h="0"/>
+			<spot x="706.5" y="643.5" z="148.0" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Seeker -->
+		<spawn npc_id="218910" respawn_time="295">
+			<spot x="700.5" y="515.5" z="148.0" h="0"/>
+			<spot x="701.0" y="643.5" z="148.0" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Medic -->
+		<spawn npc_id="218911" respawn_time="295">
+			<spot x="701.5" y="577.5" z="149.0" h="0" walker_id="C720147DB0306F7BFCBF478FC8F057F1DBC2FA8F"/>
+			<spot x="716.5" y="488.97" z="147.5" h="0" walker_id="2F5F3A462F6835FB6A1558909AB7F9C77AAAD79F"/>
+			<spot x="716.5" y="664.47" z="148.0" h="0" walker_id="07A3F725E59FA8D42704BE313D3F40FADA3AF67D"/>
+			<spot x="762.5" y="492.0" z="154.0" h="0"/>
+			<spot x="763.0" y="662.47" z="154.0" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Destroyer -->
+		<spawn npc_id="218912" respawn_time="295">
+			<spot x="560.0" y="575.96" z="136.4" h="0"/>
+			<spot x="655.25" y="576.22" z="140.64" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Rascal -->
+		<spawn npc_id="218913" respawn_time="295">
+			<spot x="568.5" y="650.47" z="139.5" h="0" walker_id="C8B6C9E60530CF88F5AFEF1C7EBEFC7F68EA4E76"/>
+			<spot x="614.5" y="683.97" z="119.5" h="0" walker_id="D0A36C8D4BF50264705219B38255A7AD686AE710"/>
+			<spot x="558.21" y="577.19" z="150.0" h="0" walker_id="8B7E9FBAA0CCF1E563C8906559800EDFE2A642D8"/>
+			<spot x="568.5" y="501.47" z="139.5" h="0" walker_id="F850DC76A33822A30DB346B4C6B3B3A125EC7E6B"/>
+			<spot x="614.5" y="468.47" z="119.5" h="0" walker_id="0176BE7AB27284843F3AB51068B911282CD137AD"/>
+			<spot x="479.74" y="660.9" z="146.6" h="0" walker_id="C54DAC96E19BE7A2BFC031C187287B49835FC7DD"/>
+			<spot x="479.74" y="492.4" z="146.6" h="0" walker_id="EF4C6C63B8D5EF00A97A5F6BE274F85EDF04E5C0"/>
+			<spot x="558.18" y="574.69" z="150.0" h="0" walker_id="DE89DFDE244863868DCFF216897265953E9789B1"/>
+		</spawn>
+		<!-- Tiamat’s Tracker -->
+		<spawn npc_id="218914" respawn_time="295">
+			<spot x="637.0" y="468.01" z="153.5" h="0"/>
+			<spot x="707.5" y="426.97" z="152.25" h="0"/>
+			<spot x="637.5" y="684.47" z="153.5" h="0"/>
+			<spot x="707.5" y="724.97" z="152.25" h="0"/>
+			<spot x="583.0" y="575.97" z="140.5" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Rampager -->
+		<spawn npc_id="218915" respawn_time="295">
+			<spot x="550.21" y="578.47" z="150.0" h="0"/>
+			<spot x="640.5" y="523.47" z="141.5" h="0"/>
+			<spot x="641.0" y="628.47" z="141.5" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Apothecary -->
+		<spawn npc_id="218916" respawn_time="295">
+			<spot x="611.0" y="618.47" z="128.5" h="0" walker_id="4D1CB47D243100FE7F47F33D9A851DE15964E5EC"/>
+			<spot x="611.0" y="533.47" z="128.5" h="0" walker_id="8EBFFCED277E0E323E93622868E1A0D8314C9727"/>
+			<spot x="545.0" y="575.72" z="139.0" h="0"/>
+			<spot x="655.25" y="576.22" z="143.9" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Supervisor -->
+		<spawn npc_id="218917" respawn_time="295">
+			<spot x="684.72" y="510.21" z="148.0" h="0" walker_id="9C223D0EC248B16D645AADD2AC247F688DA384A0"/>
+			<spot x="684.72" y="642.71" z="148.0" h="0" walker_id="5B258414DD229CA163F1E9265FDAED199B05A7AF"/>
+			<spot x="472.22" y="526.21" z="145.75" h="0"/>
+			<spot x="472.22" y="625.21" z="145.75" h="0"/>
+			<spot x="534.72" y="575.96" z="148.75" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Inspector -->
+		<spawn npc_id="218918" respawn_time="295">
+			<spot x="583.49" y="594.11" z="132.9" h="0" walker_id="0DAA239FE32A333B1652B003612839B7756EEE15"/>
+			<spot x="555.41" y="476.24" z="136.0" h="0"/>
+			<spot x="556.72" y="676.06" z="136.0" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Informant -->
+		<spawn npc_id="218919" respawn_time="295">
+			<spot x="620.5" y="552.97" z="134.5" h="0" walker_id="F8DC75D869E15EE53AE18FBCFD94C5ECA619ACF0"/>
+			<spot x="620.5" y="598.97" z="134.5" h="0" walker_id="FF5DB637EDC92F165B55F8917BA5DD4E9A3F23EE"/>
+			<spot x="513.0" y="575.97" z="149.0" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Scientist -->
+		<spawn npc_id="218920" respawn_time="295">
+			<spot x="498.86" y="571.97" z="146.0" h="0" walker_id="6A408007B25AC2C99855BB5F500862E70CDA1702"/>
+			<spot x="498.86" y="580.47" z="146.0" h="0" walker_id="3C204FE7B30F19928BEC811524D34B5831D2D969"/>
+			<spot x="575.21" y="533.9" z="134.0" h="0"/>
+			<spot x="735.5" y="578.97" z="129.0" h="0"/>
+			<spot x="575.16" y="617.11" z="134.0" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Examiner -->
+		<spawn npc_id="218921" respawn_time="295">
+			<spot x="555.33" y="544.21" z="133.5" h="0" walker_id="9D895D1997D193105597DDAFC111245234961CA3"/>
+			<spot x="478.72" y="526.21" z="145.75" h="0"/>
+			<spot x="532.22" y="575.96" z="149.0" h="0"/>
+			<spot x="678.0" y="447.47" z="148.5" h="0"/>
+			<spot x="478.47" y="625.21" z="145.75" h="0"/>
+			<spot x="678.0" y="707.47" z="148.5" h="0"/>
+		</spawn>
+		<!-- Abnormal Fighter -->
+		<spawn npc_id="218922" respawn_time="295">
+			<spot x="671.63" y="516.75" z="148.5" h="0"/>
+			<spot x="684.88" y="637.25" z="148.5" h="0"/>
+			<spot x="714.25" y="420.5" z="153.0" h="0"/>
+			<spot x="701.13" y="731.5" z="153.14" h="0"/>
+		</spawn>
+		<!-- Abnormal Raider -->
+		<spawn npc_id="218923" respawn_time="295">
+			<spot x="703.38" y="483.24" z="151.67" h="0"/>
+			<spot x="690.44" y="665.31" z="151.59" h="0"/>
+		</spawn>
+		<!-- Abnormal Seeker -->
+		<spawn npc_id="218924" respawn_time="295">
+			<spot x="699.0" y="420.25" z="153.25" h="0"/>
+			<spot x="672.5" y="637.0" z="149.0" h="0"/>
+			<spot x="723.0" y="731.75" z="153.25" h="0"/>
+			<spot x="709.63" y="517.25" z="150.76" h="0"/>
+		</spawn>
+		<!-- Abnormal Battle Mage -->
+		<spawn npc_id="218925" respawn_time="295">
+			<spot x="661.13" y="506.61" z="148.5" h="0"/>
+			<spot x="661.88" y="659.53" z="148.5" h="0"/>
+			<spot x="674.13" y="420.5" z="153.0" h="0"/>
+			<spot x="660.63" y="731.5" z="153.14" h="0"/>
+			<spot x="745.75" y="454.13" z="153.25" h="0"/>
+		</spawn>
+		<!-- Abnormal Physician -->
+		<spawn npc_id="218926" respawn_time="295">
+			<spot x="701.25" y="731.75" z="153.25" h="0"/>
+			<spot x="695.75" y="420.38" z="153.38" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Fighter -->
+		<spawn npc_id="218927" respawn_time="295">
+			<spot x="763.0" y="665.9704" z="154.0" h="0"/>
+			<spot x="776.0" y="618.5" z="130.8125" h="60"/>
+			<spot x="762.5" y="488.5" z="154.0" h="0"/>
+			<spot x="783.5" y="540.0" z="130.8125" h="60"/>
+			<spot x="701.6848" y="535.6379" z="148.678" h="0"/>
+			<spot x="712.6848" y="437.6379" z="152.678" h="0"/>
+			<spot x="689.1848" y="692.1379" z="148.178" h="0"/>
+			<spot x="701.1848" y="619.6379" z="148.678" h="0"/>
+			<spot x="689.1848" y="460.6379" z="147.678" h="0"/>
+			<spot x="712.6848" y="715.6379" z="152.678" h="0"/>
+			<spot x="769.5" y="642.24" z="142.41" h="0"/>
+			<spot x="773.0" y="514.25" z="142.41" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Raider -->
+		<spawn npc_id="218928" respawn_time="295">
+			<spot x="706.5" y="643.5" z="148.0" h="30"/>
+			<spot x="740.0" y="579.5" z="139.0" h="30"/>
+			<spot x="706.0" y="515.5" z="148.0" h="90"/>
+		</spawn>
+		<!-- Tiamat’s Seeker -->
+		<spawn npc_id="218929" respawn_time="295">
+			<spot x="701.0" y="643.5" z="148.0" h="30"/>
+			<spot x="700.5" y="515.5" z="148.0" h="90"/>
+		</spawn>
+		<!-- Tiamat’s Medic -->
+		<spawn npc_id="218930" respawn_time="295">
+			<spot x="716.5" y="664.4704" z="148.0" h="60"/>
+			<spot x="716.5" y="488.9704" z="147.5" h="60"/>
+			<spot x="701.5" y="577.5" z="149.0" h="90"/>
+			<spot x="763.0" y="662.4704" z="154.0" h="0"/>
+			<spot x="762.5" y="492.0" z="154.0" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Destroyer -->
+		<spawn npc_id="218931" respawn_time="295">
+			<spot x="560.0" y="510.7089" z="132.5" h="30"/>
+			<spot x="547.0" y="556.2089" z="133.5" h="115"/>
+			<spot x="639.5" y="583.7089" z="132.5" h="60"/>
+			<spot x="547.0" y="595.2089" z="133.5" h="5"/>
+			<spot x="655.5" y="477.4704" z="152.5" h="0"/>
+			<spot x="638.5" y="631.4704" z="141.5" h="30"/>
+			<spot x="655.0" y="674.9704" z="152.5" h="0"/>
+			<spot x="551.7139" y="575.7089" z="150.0" h="0"/>
+			<spot x="639.5" y="568.2089" z="132.5" h="60"/>
+			<spot x="661.5" y="578.9704" z="131.5" h="0"/>
+			<spot x="638.0" y="520.4704" z="141.5" h="90"/>
+			<spot x="560.0" y="641.2089" z="132.5" h="90"/>
+			<spot x="560.0" y="575.96" z="136.4" h="0"/>
+			<spot x="655.25" y="576.22" z="140.64" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Rascal -->
+		<spawn npc_id="218932" respawn_time="295">
+			<spot x="558.179" y="574.6945" z="150.0" h="0"/>
+			<spot x="568.5" y="501.4704" z="139.5" h="105"/>
+			<spot x="614.5" y="683.9704" z="119.5" h="90"/>
+			<spot x="479.7433" y="660.8982" z="146.5998" h="15"/>
+			<spot x="614.5" y="468.4704" z="119.5" h="30"/>
+			<spot x="568.5" y="650.4704" z="139.5" h="15"/>
+			<spot x="558.179" y="577.1945" z="150.0" h="0"/>
+			<spot x="479.7433" y="492.3982" z="146.5998" h="105"/>
+		</spawn>
+		<!-- Tiamat’s Tracker -->
+		<spawn npc_id="218933" respawn_time="295">
+			<spot x="583.0" y="580.4704" z="140.5" h="15"/>
+			<spot x="637.5" y="684.4704" z="153.5" h="105"/>
+			<spot x="707.5" y="724.9704" z="152.25" h="0"/>
+			<spot x="637.0" y="467.9704" z="153.5" h="15"/>
+			<spot x="707.5" y="426.9704" z="152.25" h="0"/>
+			<spot x="583.0" y="571.4704" z="140.5" h="105"/>
+			<spot x="583.0" y="575.97" z="140.5" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Rampager -->
+		<spawn npc_id="218934" respawn_time="295">
+			<spot x="641.0" y="628.4704" z="141.5" h="30"/>
+			<spot x="640.5" y="523.4704" z="141.5" h="90"/>
+			<spot x="550.21" y="578.47" z="150.0" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Apothecary -->
+		<spawn npc_id="218935" respawn_time="295">
+			<spot x="611.0" y="533.4704" z="128.5" h="90"/>
+			<spot x="661.5" y="574.9704" z="131.5" h="0"/>
+			<spot x="636.0" y="628.4704" z="141.5" h="30"/>
+			<spot x="655.5" y="473.4704" z="152.5" h="0"/>
+			<spot x="655.0" y="678.9704" z="152.5" h="0"/>
+			<spot x="635.5" y="523.4704" z="141.5" h="90"/>
+			<spot x="550.2139" y="572.9704" z="150.0" h="0"/>
+			<spot x="545.0" y="604.4704" z="133.5" h="5"/>
+			<spot x="611.0" y="618.4704" z="128.5" h="90"/>
+			<spot x="545.0" y="546.9704" z="133.5" h="115"/>
+			<spot x="545.0" y="575.72" z="139.0" h="0"/>
+			<spot x="655.25" y="576.22" z="143.9" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Supervisor -->
+		<spawn npc_id="218936" respawn_time="295">
+			<spot x="534.7167" y="572.7089" z="148.75" h="0"/>
+			<spot x="472.2167" y="526.2089" z="145.75" h="90"/>
+			<spot x="684.7167" y="642.7089" z="148.0" h="60"/>
+			<spot x="684.7167" y="510.2089" z="148.0" h="60"/>
+			<spot x="534.7167" y="579.2089" z="148.75" h="0"/>
+			<spot x="472.2167" y="625.2089" z="145.75" h="30"/>
+			<spot x="534.72" y="575.96" z="148.75" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Inspector -->
+		<spawn npc_id="218937" respawn_time="295">
+			<spot x="583.4915" y="594.1054" z="132.8982" h="30"/>
+			<spot x="555.407" y="476.2401" z="136.0" h="0"/>
+			<spot x="556.7167" y="676.0644" z="136.0" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Informant -->
+		<spawn npc_id="218938" respawn_time="295">
+			<spot x="513.0" y="578.7204" z="149.0" h="0"/>
+			<spot x="513.0" y="573.2204" z="149.0" h="0"/>
+			<spot x="620.5" y="552.97" z="134.5" h="0" walker_id="F8DC75D869E15EE53AE18FBCFD94C5ECA619ACF0"/>
+			<spot x="620.5" y="598.97" z="134.5" h="0" walker_id="FF5DB637EDC92F165B55F8917BA5DD4E9A3F23EE"/>
+			<spot x="513.0" y="575.97" z="149.0" h="0"/>
+		</spawn>
+		<!-- Tiamat’s Scientist -->
+		<spawn npc_id="218939" respawn_time="295">
+			<spot x="575.2082" y="533.8887" z="134.0" h="90"/>
+			<spot x="498.8583" y="580.4704" z="146.0" h="30"/>
+			<spot x="575.1576" y="617.1118" z="134.0" h="30"/>
+			<spot x="498.8583" y="571.9704" z="146.0" h="90"/>
+			<spot x="735.5" y="578.9704" z="129.0" h="60"/>
+		</spawn>
+		<!-- Tiamat’s Examiner -->
+		<spawn npc_id="218940" respawn_time="295">
+			<spot x="555.3333" y="544.2089" z="133.5" h="0"/>
+			<spot x="532.2167" y="575.9589" z="149.0" h="0"/>
+			<spot x="678.0" y="447.4704" z="148.5" h="30"/>
+			<spot x="478.7167" y="526.2089" z="145.75" h="30"/>
+			<spot x="478.4667" y="625.2089" z="145.75" h="30"/>
+			<spot x="678.0" y="707.4704" z="148.5" h="90"/>
+		</spawn>
+		<!-- Abnormal Fighter -->
+		<spawn npc_id="218941" respawn_time="295">
+			<spot x="671.63" y="516.75" z="148.5" h="0"/>
+			<spot x="684.88" y="637.25" z="148.5" h="0"/>
+			<spot x="714.25" y="420.5" z="153.0" h="0"/>
+			<spot x="701.13" y="731.5" z="153.14" h="0"/>
+		</spawn>
+		<!-- Abnormal Raider -->
+		<spawn npc_id="218942" respawn_time="295">
+			<spot x="703.38" y="483.24" z="151.67" h="0"/>
+			<spot x="690.44" y="665.31" z="151.59" h="0"/>
+		</spawn>
+		<!-- Abnormal Seeker -->
+		<spawn npc_id="218943" respawn_time="295">
+			<spot x="699.0" y="420.25" z="153.25" h="0"/>
+			<spot x="672.5" y="637.0" z="149.0" h="0"/>
+			<spot x="723.0" y="731.75" z="153.25" h="0"/>
+			<spot x="709.63" y="517.25" z="150.76" h="0"/>
+		</spawn>
+		<!-- Abnormal Battle Mage -->
+		<spawn npc_id="218944" respawn_time="295">
+			<spot x="661.13" y="506.61" z="148.5" h="0"/>
+			<spot x="661.88" y="659.53" z="148.5" h="0"/>
+			<spot x="674.13" y="420.5" z="153.0" h="0"/>
+			<spot x="660.63" y="731.5" z="153.14" h="0"/>
+			<spot x="745.75" y="454.13" z="153.25" h="0"/>
+		</spawn>
+		<!-- Abnormal Physician -->
+		<spawn npc_id="218945" respawn_time="295">
+			<spot x="701.25" y="731.75" z="153.25" h="0"/>
+			<spot x="695.75" y="420.38" z="153.38" h="0"/>
+		</spawn>
+		<!-- Observed Marabata -->
+		<spawn npc_id="218946" respawn_time="295">
+			<spot x="589.1372" y="501.2491" z="137.9543" h="60"/>
+		</spawn>
+		<!-- Observed Spaller Echtra -->
+		<spawn npc_id="218947" respawn_time="295">
+			<spot x="589.6" y="650.73" z="137.95" h="0"/>
+		</spawn>
+		<!-- Refinement Tank -->
+		<spawn npc_id="701439" respawn_time="295">
+			<spot x="402.273" y="282.720" z="410.507" h="0" static_id="148"/>
+			<spot x="407.848" y="266.263" z="410.176" h="0" static_id="149"/>
+			<spot x="416.921" y="299.162" z="410.232" h="0" static_id="147"/>
+			<spot x="428.620" y="263.606" z="410.106" h="0" static_id="144"/>
+			<spot x="431.029" y="291.764" z="410.232" h="0" static_id="146"/>
+			<spot x="432.118" y="278.172" z="410.232" h="0" static_id="145"/>
+			<spot x="538.372" y="289.941" z="410.176" h="0" static_id="137"/>
+			<spot x="538.681" y="277.068" z="410.379" h="0" static_id="136"/>
+			<spot x="540.637" y="265.607" z="410.258" h="0" static_id="135"/>
+			<spot x="554.198" y="298.936" z="410.070" h="0" static_id="118"/>
+			<spot x="568.080" y="269.344" z="410.390" h="0" static_id="134"/>
+			<spot x="570.769" y="287.464" z="410.874" h="0" static_id="131"/>
+		</spawn>
+		<!-- Drana Pellets -->
+		<spawn npc_id="701440" respawn_time="295">
+			<spot x="377.825" y="710.003" z="402.216" h="0" static_id="139"/>
+			<spot x="380.430" y="697.048" z="402.204" h="0" static_id="141"/>
+			<spot x="388.336" y="724.501" z="403.254" h="0" static_id="142"/>
+			<spot x="404.028" y="696.010" z="402.207" h="0" static_id="138"/>
+			<spot x="405.496" y="715.082" z="402.256" h="0" static_id="143"/>
+			<spot x="409.333" y="708.526" z="402.210" h="0" static_id="140"/>
+			<spot x="562.332" y="699.238" z="403.141" h="0" static_id="15"/>
+			<spot x="562.511" y="713.702" z="403.141" h="0" static_id="93"/>
+			<spot x="568.471" y="696.483" z="402.209" h="0" static_id="109"/>
+			<spot x="584.417" y="723.497" z="402.222" h="0" static_id="114"/>
+			<spot x="589.201" y="701.296" z="402.223" h="0" static_id="6"/>
+			<spot x="589.994" y="715.907" z="402.239" h="0" static_id="108"/>
+		</spawn>
+		<!-- Potion Mixer -->
+		<spawn npc_id="701441" respawn_time="295">
+			<spot x="418.672" y="282.123" z="409.731" h="0" static_id="21"/>
+		</spawn>
+		<!-- Potion Recipe -->
+		<spawn npc_id="701442" respawn_time="295">
+			<spot x="553.611" y="279.138" z="409.731" h="0" static_id="30"/>
+		</spawn>
+		<!-- Ticking Time Bomb -->
+		<spawn npc_id="701443" respawn_time="295">
+			<spot x="485.233" y="292.728" z="402.250" h="0" static_id="19"/>
+		</spawn>
+		<!-- Steel Door -->
+		<spawn npc_id="701444" respawn_time="295">
+			<spot x="346.226" y="414.895" z="410.574" h="0" static_id="20"/>
+		</spawn>
+		<!-- Furnace -->
+		<spawn npc_id="701445" respawn_time="295">
+			<spot x="625.578" y="411.963" z="410.525" h="0" static_id="28"/>
+		</spawn>
+		<!-- Power Bomb -->
+		<spawn npc_id="701446" respawn_time="295">
+			<spot x="393.661" y="567.365" z="408.916" h="0" static_id="25"/>
+		</spawn>
+		<!-- 1st Corridor Connection Device -->
+		<spawn npc_id="701447" respawn_time="295">
+			<spot x="580.173" y="566.600" z="408.835" h="0" static_id="31"/>
+		</spawn>
+		<!-- 2nd Corridor Connection Device -->
+		<spawn npc_id="701448" respawn_time="295">
+			<spot x="412.804" y="490.648" z="393.674" h="0" static_id="23"/>
+		</spawn>
+		<!-- 3rd Corridor Connection Device -->
+		<spawn npc_id="701449" respawn_time="295">
+			<spot x="556.084" y="491.189" z="393.679" h="0" static_id="32"/>
+		</spawn>
+		<!-- 3.0_권성미션_제4 막_F2a 차원문 유지장치 (연출용) -->
+		<spawn npc_id="701450" respawn_time="295">
+			<spot x="466.594" y="607.591" z="391.578" h="0" static_id="22"/>
+		</spawn>
+		<!-- 4th Corridor Connection Device -->
+		<spawn npc_id="701451" respawn_time="295">
+			<spot x="392.193" y="710.692" z="401.770" h="0" static_id="29"/>
+		</spawn>
+		<!-- 5th Corridor Connection Device -->
+		<spawn npc_id="701452" respawn_time="295">
+			<spot x="578.015" y="711.120" z="401.770" h="0" static_id="24"/>
+		</spawn>
+		<!-- Locked Door -->
+		<spawn npc_id="701453" respawn_time="295">
+			<spot x="485.331" y="881.629" z="405.018" h="0" static_id="27"/>
+		</spawn>
+		<!-- Reian Corpse -->
+		<spawn npc_id="701454" respawn_time="295">
+			<spot x="485.167" y="817.515" z="416.672" h="0" static_id="26"/>
+		</spawn>
+		<!-- NPC_730570 -->
+		<spawn npc_id="730570" respawn_time="295">
+			<spot x="466.312" y="585.606" z="391.578" h="0" static_id="40"/>
+		</spawn>
+		<!-- Secret Compartment -->
+		<spawn npc_id="730571" respawn_time="295">
+			<spot x="503.749" y="586.580" z="391.578" h="0" static_id="41"/>
+		</spawn>
+		<!-- Secret Safe -->
+		<spawn npc_id="730572" respawn_time="295">
+			<spot x="363.530" y="571.790" z="413.191" h="0" static_id="16"/>
+		</spawn>
+		<!-- Inggison Coin Fountain -->
+		<spawn npc_id="730573" respawn_time="295">
+			<spot x="604.813" y="569.787" z="411.464" h="0" static_id="7"/>
+		</spawn>
+		<!-- Inggison Coin Fountain -->
+		<spawn npc_id="730574" respawn_time="295">
+			<spot x="445.887" y="323.601" z="403.225" h="0" static_id="95"/>
+		</spawn>
+		<!-- Inggison Coin Fountain -->
+		<spawn npc_id="730575" respawn_time="295">
+			<spot x="523.678" y="321.918" z="403.200" h="0" static_id="98"/>
+		</spawn>
+		<!-- NPC_800049 -->
+		<spawn npc_id="800049" respawn_time="295">
+			<spot x="776.0" y="396.5" z="203.0" h="0"/>
+		</spawn>
+		<!-- NPC_800050 -->
+		<spawn npc_id="800050" respawn_time="295">
+			<spot x="778.9153" y="396.4892" z="203.0" h="0"/>
+		</spawn>
+		<!-- NPC_800051 -->
+		<spawn npc_id="800051" respawn_time="295">
+			<spot x="798.3334" y="397.5696" z="199.625" h="0"/>
+		</spawn>
+		<!-- NPC_800052 -->
+		<spawn npc_id="800052" respawn_time="295">
+			<spot x="784.4052" y="396.5464" z="203.0" h="0"/>
+		</spawn>
+		<!-- NPC_800054 -->
+		<spawn npc_id="800054" respawn_time="295">
+			<spot x="583.0" y="501.0" z="140.0" h="0"/>
+		</spawn>
+		<!-- NPC_800055 -->
+		<spawn npc_id="800055" respawn_time="295">
+			<spot x="581.2659" y="650.7355" z="137.941" h="0"/>
+		</spawn>
+		<!-- NPC_800056 -->
+		<spawn npc_id="800056" respawn_time="295">
+			<spot x="775.8312" y="406.1402" z="203.0" h="0"/>
+		</spawn>
+		<!-- NPC_800057 -->
+		<spawn npc_id="800057" respawn_time="295">
+			<spot x="486.0" y="670.0" z="147.0" h="0"/>
+			<spot x="807.0" y="579.0" z="129.0" h="0"/>
+			<spot x="746.0" y="579.0" z="134.0" h="0"/>
+			<spot x="490.0" y="484.0" z="147.0" h="0"/>
+		</spawn>
+		<!-- NPC_800078 -->
+		<spawn npc_id="800078" respawn_time="295">
+			<spot x="678.1168" y="451.7518" z="150.0" h="0"/>
+		</spawn>
+		<!-- NPC_800079 -->
+		<spawn npc_id="800079" respawn_time="295">
+			<spot x="677.363" y="703.5156" z="150.0" h="0"/>
+		</spawn>
+		<!-- NPC_800080 -->
+		<spawn npc_id="800080" respawn_time="295">
+			<spot x="733.9253" y="579.4943" z="130.0" h="0"/>
+		</spawn>
+		<!-- NPC_800081 -->
+		<spawn npc_id="800081" respawn_time="295">
+			<spot x="575.8268" y="529.5629" z="133.5" h="0"/>
+		</spawn>
+		<!-- NPC_800082 -->
+		<spawn npc_id="800082" respawn_time="295">
+			<spot x="575.3917" y="621.472" z="133.5" h="0"/>
+		</spawn>
+		<!-- NPC_800137 -->
+		<spawn npc_id="800137" respawn_time="295">
+			<spot x="817.0" y="454.0" z="162.0" h="90"/>
+		</spawn>
+		<!-- NPC_800138 -->
+		<spawn npc_id="800138" respawn_time="295">
+			<spot x="822.5" y="693.5" z="162.0" h="90"/>
+		</spawn>
+		<!-- NPC_800139 -->
+		<spawn npc_id="800139" respawn_time="295">
+			<spot x="816.0" y="491.5" z="161.5" h="30"/>
+		</spawn>
+		<!-- NPC_800140 -->
+		<spawn npc_id="800140" respawn_time="295">
+			<spot x="823.5" y="660.5" z="161.5" h="30"/>
+		</spawn>
+		<!-- Red Shulack Captain -->
+		<spawn npc_id="800187" respawn_time="295">
+			<spot x="817" y="457.5" z="161.5312" h="0"/>
+		</spawn>
+		<!-- Red Shulack Soldier -->
+		<spawn npc_id="800189" respawn_time="295">
+			<spot x="824.0" y="459.5" z="161.5" h="90"/>
+		</spawn>
+		<!-- Red Shulack Soldier -->
+		<spawn npc_id="800190" respawn_time="295">
+			<spot x="826.5" y="458.0" z="161.5" h="90"/>
+		</spawn>
+		<!-- Red Shulack Soldier -->
+		<spawn npc_id="800191" respawn_time="295">
+			<spot x="829.0" y="459.5" z="161.5" h="90"/>
+		</spawn>
+		<!-- Blue Shulack Captain -->
+		<spawn npc_id="800192" respawn_time="295">
+			<spot x="822.5" y="690.5" z="161.125" h="0"/>
+		</spawn>
+		<!-- Blue Shulack Soldier -->
+		<spawn npc_id="800194" respawn_time="295">
+			<spot x="830.0" y="690.0" z="162.0" h="30"/>
+		</spawn>
+		<!-- Blue Shulack Soldier -->
+		<spawn npc_id="800195" respawn_time="295">
+			<spot x="833.0" y="691.0" z="162.0" h="30"/>
+		</spawn>
+		<!-- Blue Shulack Soldier -->
+		<spawn npc_id="800196" respawn_time="295">
+			<spot x="836.0" y="690.0" z="162.0" h="30"/>
+		</spawn>
+		<!-- Red Teleporter -->
+		<spawn npc_id="800211" respawn_time="295">
+			<spot x="838.0879" y="434.2891" z="161.8856" h="40"/>
+		</spawn>
+		<!-- Blue Teleporter -->
+		<spawn npc_id="800212" respawn_time="295">
+			<spot x="823.636" y="711.2681" z="162.1356" h="90"/>
+		</spawn>
+		<!-- Red Teleporter -->
+		<spawn npc_id="800213" respawn_time="295">
+			<spot x="833.3379" y="433.0391" z="161.8856" h="35"/>
+		</spawn>
+		<!-- Blue Teleporter -->
+		<spawn npc_id="800214" respawn_time="295">
+			<spot x="828.386" y="713.0181" z="162.1356" h="90"/>
+		</spawn>
+		<!-- Red Teleporter -->
+		<spawn npc_id="800215" respawn_time="295">
+			<spot x="828.0879" y="431.7891" z="161.8856" h="30"/>
+		</spawn>
+		<!-- Blue Teleporter -->
+		<spawn npc_id="800216" respawn_time="295">
+			<spot x="833.386" y="714.0181" z="162.1356" h="90"/>
+		</spawn>
+		<!-- Red Teleporter -->
+		<spawn npc_id="800217" respawn_time="295">
+			<spot x="822.5879" y="432.5391" z="161.8856" h="25"/>
+		</spawn>
+		<!-- Blue Teleporter -->
+		<spawn npc_id="800218" respawn_time="295">
+			<spot x="838.386" y="713.0181" z="162.1356" h="90"/>
+		</spawn>
+		<!-- Red Teleporter -->
+		<spawn npc_id="800219" respawn_time="295">
+			<spot x="817.3379" y="434.2891" z="161.8856" h="20"/>
+		</spawn>
+		<!-- Blue Teleporter -->
+		<spawn npc_id="800220" respawn_time="295">
+			<spot x="843.136" y="711.2681" z="162.1356" h="90"/>
+		</spawn>
+		<!-- NPC_800323 -->
+		<spawn npc_id="800323" respawn_time="295">
+			<spot x="380.93" y="706.45" z="402.22354" h="108" walker_id="7A2D18740E0B9A6F387F0D68A6163D088C4952F7"/>
+			<spot x="381.44" y="707.49" z="402.22354" h="100" walker_id="5093F44B4EC1C06E630A6890C42FB15AFFD39FBC"/>
+			<spot x="404.4" y="713.43" z="402.2708" h="57" walker_id="6B38A3047F1AFE9E4F0962D297C566C50437AF28"/>
+			<spot x="405.44" y="711.31" z="402.34213" h="65" walker_id="7E820830C6553FED11AA007C899FCFA272CB1292"/>
+			<spot x="564.99" y="699.98" z="402.20923" h="117" walker_id="3C040A35475B079C4A219FE18FD9C2C396447C9B"/>
+			<spot x="565.45" y="701.53" z="402.21262" h="109" walker_id="A732CC63FE416EBB8BC0E1A352591C97FD597C51"/>
+			<spot x="588.2" y="713.44" z="402.22894" h="31" walker_id="B1CD578F1C1AF858E33135FA3D5BD8B231D31E69"/>
+			<spot x="589.0" y="711.31" z="402.22366" h="31" walker_id="F8FF295063F516BE1B458395B196D41A07FCCEF7"/>
+		</spawn>
+		<!-- NPC_802061 -->
+		<spawn npc_id="802061" respawn_time="295">
+			<spot x="789.4052" y="397.5464" z="203.0" h="0"/>
+		</spawn>
+		<!-- NPC_802062 -->
+		<spawn npc_id="802062" respawn_time="295">
+			<spot x="792.4052" y="397.5464" z="203.0" h="0"/>
+		</spawn>
+		<!-- Gold Porgus -->
+		<spawn npc_id="802065" respawn_time="295">
+			<spot x="621.714" y="575.5496" z="148.0404" h="30"/>
+		</spawn>
+		<!-- Gold Porgus Baby -->
+		<spawn npc_id="802066" respawn_time="295">
+			<spot x="623.0579" y="573.0394" z="134.2692" h="0"/>
+			<spot x="629.0616" y="588.8388" z="134.2692" h="0"/>
+			<spot x="630.7312" y="578.101" z="134.2692" h="0"/>
+			<spot x="620.5662" y="564.577" z="134.2692" h="0"/>
+			<spot x="618.0055" y="587.985" z="134.2692" h="0"/>
+			<spot x="606.6744" y="584.5847" z="134.2692" h="0"/>
+			<spot x="630.7126" y="563.6346" z="134.2692" h="0"/>
+			<spot x="605.5536" y="573.9341" z="134.2692" h="0"/>
+			<spot x="614.7287" y="577.8143" z="134.2692" h="0"/>
+			<spot x="607.9261" y="564.4121" z="134.2692" h="0"/>
+		</spawn>
+		<!-- Rescue Gold Porgus Teleporter -->
+		<spawn npc_id="802071" respawn_time="295">
+			<spot x="823.3565" y="481.7963" z="155.805" h="30"/>
+		</spawn>
+		<!-- Rescue Gold Porgus Teleporter -->
+		<spawn npc_id="802072" respawn_time="295">
+			<spot x="831.0439" y="669.0273" z="156.2401" h="90"/>
 		</spawn>
 	</spawn_map>
 </spawns>

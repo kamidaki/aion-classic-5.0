@@ -1,161 +1,121 @@
-<?xml version='1.0' encoding='utf-8'?>
-<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300620000">
-		<!-- Kuhara the Volatile -->
-		<!-- Ambusher Kiriana -->
-		<!-- Archmagus Upadi -->
-		<!-- Ariana -->
-		<!-- Ariana -->
-		<!-- Ariana's Jewelry Box -->
-		<!-- Beanskim -->
-		<!-- BIDYun_BarricadeBroken -->
-		<!-- BIDYun_Check_Race -->
-		<!-- BIDYun_Door_Open -->
-		<!-- BIDYun_Rasta_Event_Die -->
-		<!-- BIDYun_User_Check -->
-		<!-- Brigade General Vasharti -->
-		<!-- Collapsed Stone Wall -->
-		<spawn npc_id="701097">
-			<spot x="243.4088" y="717.4462" z="164.4402" static_id="34" />
-		</spawn>
-		<!-- Collapsed Reian Building -->
-		<!-- Dancing Blue Flame -->
-		<spawn npc_id="282999">
-			<spot x="208.580" y="410.710" z="262.540" />
-		</spawn>
-		<!-- Dancing Red Flame -->
-		<spawn npc_id="282998">
-			<spot x="167.600" y="418.220" z="262.540" />
-		</spawn>
-		<!-- Destroyed Building -->
-		<!-- Exhausted Vasharti Combat Officer -->
-		<!-- Exhausted Vasharti Combatant -->
-		<!-- Exhausted Vasharti Pagati Combatant -->
-		<!-- Exhausted Vasharti Swiftshot -->
-		<!-- Fortress Bridge Barrier -->
-		<!-- Siege Cannon -->
-		<!-- Siege Cannon -->
-		<!-- Siege Cannon -->
-		<!-- Siege Cannon -->
-		<!-- Siege Cannon -->
-		<!-- Siege Cannon -->
-		<!-- Fallen Reian -->
-		<!-- Fallen Reian Craftsman -->
-		<spawn npc_id="701035">
-			<spot x="109.6336" y="277.92636" z="252.62" h="100" />
-			<spot x="118.46849" y="241.52808" z="252.62" h="10" />
-			<spot x="125.26117" y="377.35147" z="259.41422" h="17" />
-			<spot x="126.55222" y="313.4097" z="252.62" h="27" />
-			<spot x="131.09616" y="338.01144" z="252.62" h="93" />
-			<spot x="145.29892" y="320.5835" z="210.91496" h="97" />
-			<spot x="158.84677" y="231.69112" z="252.62" h="17" />
-			<spot x="163.79193" y="357.21371" z="209.29456" h="7" />
-			<spot x="165.13864" y="346.42444" z="252.86" h="107" />
-			<spot x="174.64224" y="337.95743" z="252.86" h="77" />
-			<spot x="187.59407" y="261.73425" z="252.62" h="50" />
-			<spot x="188.90488" y="311.9873" z="252.62" h="100" />
-			<spot x="193.49365" y="359.94046" z="259.41422" h="100" />
-			<spot x="197.61612" y="330.46857" z="207.50983" h="93" />
-			<spot x="198.69785" y="294.40652" z="209.29456" h="43" />
-			<spot x="199.00891" y="237.91545" z="254.91449" h="100" />
-			<spot x="209.92354" y="316.66293" z="252.62" h="43" />
-			<spot x="216.47101" y="354.05154" z="209.29456" h="40" />
-		</spawn>
-		<!-- Find Oil -->
-		<!-- Imprisoned Reian -->
-		<!-- Imprisoned Reian -->
 		<!-- Lition -->
-		<spawn npc_id="205438">
-			<spot x="537.92352" y="580.43591" z="151.67749" h="15" />
+		<spawn npc_id="205438" respawn_time="295">
+			<spot x="537.92352" y="580.43591" z="151.67749" h="15"/>
+		</spawn>
+		<!-- Tiamat’s Ragnarok -->
+		<spawn npc_id="217298" respawn_time="295">
+			<spot x="959.66144" y="628.0014" z="187.173" h="97" aerial_spawn="true"/>
+			<spot x="985.60291" y="608.10974" z="195.76822" h="53" aerial_spawn="true"/>
+		</spawn>
+		<!-- Tyrn Butcher -->
+		<spawn npc_id="217331" respawn_time="295">
+			<spot x="271.80066" y="763.96533" z="193" h="70" aerial_spawn="true"/>
+		</spawn>
+		<!-- Strange Object -->
+		<spawn npc_id="282998" respawn_time="295">
+			<spot x="167.600" y="418.220" z="262.540" h="0"/>
+		</spawn>
+		<!-- Seal Connector -->
+		<spawn npc_id="282999" respawn_time="295">
+			<spot x="208.580" y="410.710" z="262.540" h="0"/>
+		</spawn>
+		<!-- Reian Corpse -->
+		<spawn npc_id="701035" respawn_time="295">
+			<spot x="109.6336" y="277.92636" z="252.62" h="100"/>
+			<spot x="118.46849" y="241.52808" z="252.62" h="10"/>
+			<spot x="125.26117" y="377.35147" z="259.41422" h="17"/>
+			<spot x="126.55222" y="313.4097" z="252.62" h="27"/>
+			<spot x="131.09616" y="338.01144" z="252.62" h="93"/>
+			<spot x="145.29892" y="320.5835" z="210.91496" h="97"/>
+			<spot x="158.84677" y="231.69112" z="252.62" h="17"/>
+			<spot x="163.79193" y="357.21371" z="209.29456" h="7"/>
+			<spot x="165.13864" y="346.42444" z="252.86" h="107"/>
+			<spot x="174.64224" y="337.95743" z="252.86" h="77"/>
+			<spot x="187.59407" y="261.73425" z="252.62" h="50"/>
+			<spot x="188.90488" y="311.9873" z="252.62" h="100"/>
+			<spot x="193.49365" y="359.94046" z="259.41422" h="100"/>
+			<spot x="197.61612" y="330.46857" z="207.50983" h="93"/>
+			<spot x="198.69785" y="294.40652" z="209.29456" h="43"/>
+			<spot x="199.00891" y="237.91545" z="254.91449" h="100"/>
+			<spot x="209.92354" y="316.66293" z="252.62" h="43"/>
+			<spot x="216.47101" y="354.05154" z="209.29456" h="40"/>
+		</spawn>
+		<!-- Building Debris -->
+		<spawn npc_id="701097" respawn_time="295">
+			<spot x="243.4088" y="717.4462" z="164.4402" h="0" static_id="34"/>
+		</spawn>
+		<!-- Toppled Column -->
+		<spawn npc_id="701098" respawn_time="295">
+			<spot x="453.4" y="531.41" z="139.5" h="0" static_id="195"/>
+		</spawn>
+		<!-- Torn Scroll -->
+		<spawn npc_id="701099" respawn_time="295">
+			<spot x="142.58" y="300.69" z="210.7014" h="13" static_id="130"/>
+		</spawn>
+		<!-- Old Incense Burner -->
+		<spawn npc_id="701100" respawn_time="295">
+			<spot x="508.71" y="613.87" z="158.6869" h="0" static_id="1"/>
 		</spawn>
 		<!-- Paios -->
-		<spawn npc_id="799536">
-			<spot x="453.20001" y="529.92999" z="141" h="87" />
-		</spawn>
-		<!-- Reian Craftsman -->
-		<!-- Reian Priest -->
-		<!-- Reian Priest -->
-		<!-- Reian Prisoner -->
-		<!-- Reian Prisoner -->
-		<!-- Reian Ranger -->
-		<!-- Reian Ranger -->
-		<spawn npc_id="800286">
-			<spot x="527.23486" y="580.20575" z="148.91336" h="87" />
-		</spawn>
-		<!-- Reian Ranger -->
-		<spawn npc_id="800289">
-			<spot x="530.24664" y="577.66278" z="149.23796" h="87" />
-		</spawn>
-		<!-- Reian Ranger -->
-		<spawn npc_id="800292">
-			<spot x="530.24664" y="580.6712" z="148.94051" h="87" />
-		</spawn>
-		<!-- Reian Ranger -->
-		<!-- Reian Warrior -->
-		<spawn npc_id="799648">
-			<spot x="393.52423" y="474.43185" z="139.00435" h="53" />
-			<spot x="416.56897" y="470.80557" z="138.31" />
-		</spawn>
-		<!-- Reian Warrior -->
-		<!-- Reian Warrior -->
-		<spawn npc_id="800285">
-			<spot x="536.23657" y="584.54657" z="152.6282" h="105" />
-			<spot x="538.91101" y="564.2345" z="148.86482" h="47" />
-		</spawn>
-		<!-- Reian Warrior -->
-		<spawn npc_id="800288">
-			<spot x="541.38782" y="562.58655" z="149.05444" h="47" />
-			<spot x="547.02808" y="574.24475" z="152.81783" h="47" />
-		</spawn>
-		<!-- Reian Warrior -->
-		<spawn npc_id="800291">
-			<spot x="538.58636" y="586.87866" z="152.82985" h="105" />
-			<spot x="541.2608" y="566.56659" z="149.06647" h="47" />
-		</spawn>
-		<!-- Reian Warrior -->
-		<!-- Reian Warrior -->
-		<!-- Torn Scroll -->
-		<spawn npc_id="701099">
-			<spot x="142.58" y="300.69" z="210.7014" h="13" static_id="130" />
+		<spawn npc_id="799536" respawn_time="295">
+			<spot x="453.20001" y="529.92999" z="141" h="87"/>
 		</spawn>
 		<!-- Rodelion -->
-		<spawn npc_id="799541">
-			<spot x="226.80038" y="712.85278" z="166" h="13" />
+		<spawn npc_id="799541" respawn_time="295">
+			<spot x="226.80038" y="712.85278" z="166" h="13"/>
 		</spawn>
-		<!-- Tori's Master -->
-		<!-- Umatha the Crazed -->
-		<!-- Vasharti Assassin -->
-		<!-- Vasharti Elite Watch Officer -->
-		<!-- Vasharti Elite Watcher -->
-		<!-- Vasharti Legatus -->
-		<!-- Vasharti Mage -->
-		<!-- Vasharti Swiftshot -->
-		<spawn npc_id="217298">
-			<spot x="959.66144" y="628.0014" z="187.173" h="97" aerial_spawn="true" />
-			<spot x="985.60291" y="608.10974" z="195.76822" h="53" aerial_spawn="true" />
+		<!-- Reian Warrior -->
+		<spawn npc_id="799648" respawn_time="295">
+			<spot x="393.52423" y="474.43185" z="139.00435" h="53"/>
+			<spot x="416.56897" y="470.80557" z="138.31" h="0"/>
 		</spawn>
-		<!-- Vasharti Swiftshot -->
-		<!-- Vasharti Swiftshot -->
-		<spawn npc_id="217331">
-			<spot x="271.80066" y="763.96533" z="193" h="70" aerial_spawn="true" />
+		<!-- NPC_800285 -->
+		<spawn npc_id="800285" respawn_time="295">
+			<spot x="536.23657" y="584.54657" z="152.6282" h="105"/>
+			<spot x="538.91101" y="564.2345" z="148.86482" h="47"/>
 		</spawn>
-		<!-- Vasharti Swiftshot -->
-		<!-- Old Incense Burner -->
-		<spawn npc_id="701100">
-			<spot x="508.71" y="613.87" z="158.6869" static_id="1" />
+		<!-- NPC_800286 -->
+		<spawn npc_id="800286" respawn_time="295">
+			<spot x="527.23486" y="580.20575" z="148.91336" h="87"/>
 		</spawn>
-		<!-- Building Debris -->
-		<spawn npc_id="701098">
-			<spot x="453.4" y="531.41" z="139.5" static_id="195" />
+		<!-- NPC_800288 -->
+		<spawn npc_id="800288" respawn_time="295">
+			<spot x="541.38782" y="562.58655" z="149.05444" h="47"/>
+			<spot x="547.02808" y="574.24475" z="152.81783" h="47"/>
 		</spawn>
-		<!-- Building Debris -->
-		<!--   -->
-		<spawn npc_id="801262">
-			<spot x="498.8692" y="500.2058" z="305.0866" h="0"/>
+		<!-- NPC_800289 -->
+		<spawn npc_id="800289" respawn_time="295">
+			<spot x="530.24664" y="577.66278" z="149.23796" h="87"/>
 		</spawn>
-		<!-- nania -->
+		<!-- NPC_800291 -->
+		<spawn npc_id="800291" respawn_time="295">
+			<spot x="538.58636" y="586.87866" z="152.82985" h="105"/>
+			<spot x="541.2608" y="566.56659" z="149.06647" h="47"/>
+		</spawn>
+		<!-- NPC_800292 -->
+		<spawn npc_id="800292" respawn_time="295">
+			<spot x="530.24664" y="580.6712" z="148.94051" h="87"/>
+		</spawn>
+		<!-- NPC_800534 -->
 		<spawn npc_id="800534" respawn_time="295">
 			<spot x="497.6383" y="500.1072" z="302.6021" h="0"/>
+			<spot x="497.41" y="500.1" z="302.6" h="0"/>
+		</spawn>
+		<!-- NPC_801262 -->
+		<spawn npc_id="801262" respawn_time="295">
+			<spot x="498.8692" y="500.2058" z="305.0866" h="0"/>
+			<spot x="498.64" y="500.2" z="305.09" h="0"/>
+		</spawn>
+		<!-- Ariel in Conversation -->
+		<spawn npc_id="801297" respawn_time="295">
+			<spot x="505.7003" y="507.0637" z="305.0866" h="73"/>
+		</spawn>
+		<!-- Azphel in Conversation -->
+		<spawn npc_id="801298" respawn_time="295">
+			<spot x="491.9962" y="507.1336" z="305.0866" h="106"/>
 		</spawn>
 	</spawn_map>
 </spawns>

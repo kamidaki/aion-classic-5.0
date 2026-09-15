@@ -1,12 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300690000">
 		<!-- Omne Solum -->
 		<spawn npc_id="802204" respawn_time="295">
 			<spot x="528.683" y="759.8904" z="203.0623" h="0"/>
 			<spot x="569.2823" y="838.0389" z="203.0623" h="0"/>
 		</spawn>
-		<!-- Upon opening, you receive one of many different items.\nDouble-click to open. -->
+		<!-- NPC_802205 -->
+		<spawn npc_id="802205" respawn_time="295">
+			<spot x="546.5281" y="845.4059" z="207.3592" h="0"/>
+		</spawn>
+		<!-- NPC_802206 -->
+		<spawn npc_id="802206" respawn_time="295">
+			<spot x="546.5411" y="848.2695" z="207.3592" h="0"/>
+		</spawn>
+		<!-- NPC_802207 -->
+		<spawn npc_id="802207" respawn_time="295">
+			<spot x="529.87" y="785.95" z="200.0" h="0"/>
+		</spawn>
+		<!-- Ancient Treasure Box -->
+		<spawn npc_id="802208" respawn_time="295">
+			<spot x="496.8766" y="882.46" z="201.1105" h="103"/>
+			<spot x="559.3974" y="882.4638" z="201.9437" h="76"/>
+			<spot x="570.3286" y="869.8105" z="200.8214" h="70"/>
+			<spot x="511.6465" y="891.0832" z="200.837" h="96"/>
+			<spot x="544.5829" y="891.199" z="201.898" h="83"/>
+			<spot x="479.9486" y="853.5258" z="201.4179" h="116"/>
+			<spot x="485.4599" y="869.6964" z="200.2217" h="110"/>
+			<spot x="528.4724" y="894.1384" z="202.0138" h="90"/>
+			<spot x="576.8061" y="853.7576" z="201.1452" h="63"/>
+		</spawn>
+		<!-- Ancient Treasure Box -->
+		<spawn npc_id="802209" respawn_time="295">
+			<spot x="576.46" y="837.34" z="200.0" h="56"/>
+		</spawn>
+		<!-- Greater Treasure Chest -->
+		<spawn npc_id="802382" respawn_time="295">
+			<spot x="485.7722" y="820.696" z="201.3323" h="10"/>
+			<spot x="480.0411" y="836.5477" z="201.1181" h="3"/>
+		</spawn>
+		<!-- NPC_803076 -->
+		<spawn npc_id="803076" respawn_time="295">
+			<spot x="536.5939" y="833.9354" z="209.0" h="0"/>
+		</spawn>
+		<!-- NPC_803712 -->
 		<spawn npc_id="803712" respawn_time="295">
 			<spot x="522.287" y="843.4989" z="199.9011" h="0"/>
 		</spawn>

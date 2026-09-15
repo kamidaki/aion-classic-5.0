@@ -1,104 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300110000">
-		<!-- Adjutant Kundhan -->
-		<spawn npc_id="215085">
-			<spot x="464.307" y="605.245" z="391.578" h="77"/>
-		</spawn>
-		<!-- Air Captain Girana -->
-		<spawn npc_id="215089">
-			<spot x="414.794" y="492.802" z="393.677" h="43"/>
-		</spawn>
-		<!-- Armory Maintenance Surkana -->
-		<spawn npc_id="700485">
-			<spot x="553.403" y="279.284" z="409.749" static_id="30"/>
-		</spawn>
-		<!-- Armory Maintenance Surkana -->
-		<spawn npc_id="700486">
-			<spot x="418.588" y="281.89" z="409.692" static_id="21"/>
-		</spawn>
-		<!-- Assistant Malakun -->
-		<spawn npc_id="215084">
-			<spot x="623.987" y="410.763" z="410.626" h="12"/>
-		</spawn>
-		<!-- Auditor Nirshaka -->
-		<spawn npc_id="215390">
-			<spot x="460.611" y="877.786" z="405.045" h="76"/>
-		</spawn>
-		<!-- Baranath Aetherguard -->
-		<spawn npc_id="214817">
-			<spot x="404.85" y="482.84" z="393.4907" h="62" walker_id="8FADB7C9C0FF9B7D7811B08955D67257279D1407"/>
-			<spot x="547.88" y="477.47" z="393.12283" h="26" walker_id="36B05D8F80ADFF46F9F8BA377E685798D9CB97EF"/>
-		</spawn>
-		<!-- Baranath Aionguard -->
-		<spawn npc_id="214818">
-			<spot x="558.58" y="506.99" z="393.72308" h="79" walker_id="17E66717D186A94B5AC36BE8A6382FC3E2759C93"/>
-		</spawn>
-		<!-- Baranath Churl -->
-		<spawn npc_id="216852">
-			<spot x="426.61" y="249.57" z="412.46185" h="93" walker_id="2A4286145154FF69E97C1F16352CD6BA1B394A4E"/>
-		</spawn>
-		<!-- Baranath Churl -->
-		<spawn npc_id="216853">
-			<spot x="544.05" y="254.18" z="411.2578" h="93" walker_id="3684803D4BD9C90AB50FA8F91A9EDD5D46B74F92"/>
-		</spawn>
-		<!-- Baranath Curatus -->
-		<spawn npc_id="214822">
-			<spot x="394.843" y="700.823" z="402.22" h="23"/>
-			<spot x="477.48" y="826.14" z="416.64426" h="112" walker_id="EDD807BE89B75B06C2327B831D5C2EA0C017BE9E"/>
-			<spot x="575.256" y="701.594" z="402.221" h="19"/>
-		</spawn>
-		<!-- Baranath Fleshmender -->
-		<spawn npc_id="214814">
-			<spot x="347.039" y="392.627" z="412.154" h="77"/>
-			<spot x="367.82" y="389.82" z="412.40836" h="88" walker_id="FB7856AA5B3545D858FA59831AB8B2831A8E7F5D"/>
-			<spot x="407.63" y="277.14" z="409.7311" h="58" walker_id="F4C7A3103B526A2160BABFFEFA781D0ECB5FCD7D"/>
-			<spot x="480.16" y="756.17" z="388.6469" h="50" walker_id="347DBED11D4537D096BEAAAA91D36C58CA6499D5"/>
-			<spot x="484.4" y="527.49" z="397.2087" h="29" walker_id="FB40FD58E18BD1253F5320CE92F8B71FC70371C6"/>
-			<spot x="490.35" y="305.78" z="403.04532" h="54" walker_id="A37F1811F70D8E8EAC9BA2E4730E4526FD7D14B8"/>
-			<spot x="500.439" y="510.793" z="399.11" h="25"/>
-			<spot x="562.63" y="277.16" z="409.7311" h="16" walker_id="16B09A1D4904B84F4782CF36E1642E990DF9B19F"/>
-			<spot x="604.22" y="393.58" z="411.99838" h="29" walker_id="74B01A16BD674CE36502C121335293C472879872"/>
-			<spot x="627.976" y="387.571" z="412.936" h="76"/>
-		</spawn>
-		<!-- Baranath Legatus -->
-		<spawn npc_id="214819">
-			<spot x="361.243" y="562.004" z="409.398" h="49"/>
-			<spot x="383.06" y="553.18" z="409.49335" h="45" walker_id="45D99C4EB7C7DCEFC6BA66C96E84188D52C8D314" walker_index="1"/>
-			<spot x="461.554" y="809.519" z="416.652" h="62"/>
-			<spot x="474.328" y="868.996" z="405.571" h="60"/>
-			<spot x="479.853" y="653.588" z="387.961" h="114"/>
-			<spot x="479.986" y="691.072" z="387.601" h="11"/>
-			<spot x="480.226" y="617.9" z="390.398" h="66"/>
-			<spot x="480.564" y="733.558" z="387.328" h="62"/>
-			<spot x="481.231" y="767.156" z="388.667" h="39"/>
-			<spot x="488.614" y="766.913" z="388.666" h="10"/>
-			<spot x="490.013" y="690.775" z="387.598" h="18"/>
-			<spot x="490.249" y="733.291" z="387.328" h="84"/>
-			<spot x="490.361" y="653.376" z="388.047" h="100"/>
-			<spot x="490.5" y="617.684" z="390.398" h="16"/>
-			<spot x="493.65" y="825.99" z="416.64413" h="100" walker_id="31AB4E400E2E5F404CD6182F5787436272B0F25B"/>
-			<spot x="496.238" y="868.54" z="405.571" h="75"/>
-			<spot x="534.617" y="790.169" z="413.517" h="86"/>
-			<spot x="570.41" y="578.14" z="408.97006" h="21" walker_id="05E11BD13257C2423034E38D00FFCBA919FD6CDF" walker_index="1"/>
-			<spot x="608.86" y="564.718" z="409.167" h="91"/>
-		</spawn>
-		<!-- Baranath Magus -->
-		<spawn npc_id="214821">
-			<spot x="375.844" y="575.533" z="413.975" h="33"/>
-			<spot x="395.05" y="549.88" z="409.80908" h="53" walker_id="77A9A3CA7DD0B4247CCA5505F9B6A333438CED19"/>
-			<spot x="405.431" y="705.859" z="402.215" h="64"/>
-			<spot x="411.31" y="576.3" z="410.42328" h="39" walker_id="E8180A23C18B1BA175C813E3BE6B1FB1CFF59D85"/>
-			<spot x="435.523" y="790.631" z="413.517" h="60"/>
-			<spot x="496.14" y="607.67" z="390.39767" h="93" walker_id="0C6373D70A874A113C43F8067F1C2521A28F40B1"/>
-			<spot x="508.358" y="809.945" z="416.654" h="43"/>
-			<spot x="559.66" y="566.07" z="410.3283" h="35" walker_id="4C08E217B84E47159CF9DAA17A4390F00973D511"/>
-			<spot x="565.076" y="708.257" z="402.273" h="98"/>
-			<spot x="585.26" y="546.7" z="410.13318" h="4" walker_id="27BBC69667E006BF060136E5D261EDD9865B58C4"/>
-			<spot x="598.445" y="575.656" z="409.20154" h="101"/>
-		</spawn>
-		<!-- Baranath Mariner -->
-		<spawn npc_id="214806">
+		<!-- 45th Draconute Superior Mariner -->
+		<spawn npc_id="214806" respawn_time="295">
 			<spot x="332.71" y="412.4" z="411.59827" h="73" walker_id="6F3CA6F5E5F1FFA5A59E72066CA4C542B251D9A3"/>
 			<spot x="422.34" y="266.55" z="409.93646" h="120" walker_id="ADC6316DBA4DE561A6F073482C32DFBFA964E0F6"/>
 			<spot x="456.49" y="889.06" z="405.28107" h="60" walker_id="087E6FAF9F33ACB12BB5F5C9171805CD4D6D61EC"/>
@@ -110,19 +14,64 @@
 			<spot x="515.168" y="310.926" z="404.072" h="106"/>
 			<spot x="547.99" y="266.65" z="409.7311" h="88" walker_id="5CACE58DC9F6953F0B3087B64DF7581BFFF48EA0"/>
 			<spot x="611.84" y="409.74" z="410.5673" h="93" walker_id="11CFB3C59F5E080EFCDA595798DBC61D8D076001"/>
+			<spot x="335.1874" y="405.9617" z="414.0" h="0"/>
+			<spot x="462.0267" y="317.0276" z="405.0" h="0"/>
+			<spot x="426.77" y="267.6257" z="412.0" h="0"/>
+			<spot x="460.0306" y="895.3574" z="410.0" h="0"/>
+			<spot x="543.8329" y="267.9109" z="412.0" h="0"/>
+			<spot x="335.11" y="405.98" z="414.0" h="0" walker_id="506AB6883AFA0375379276C510E5076D0CDB760F"/>
+			<spot x="461.93" y="317.09" z="405.0" h="0" walker_id="831497E10EF6299A8D775A194C79857D27529280"/>
+			<spot x="426.72" y="267.64" z="412.0" h="0" walker_id="B141901C6FB9ADC8F0198F9F63FDD0DAB97788D4"/>
+			<spot x="614.06" y="403.34" z="414.0" h="0" walker_id="A82B0FFA59C9B4C6F63286CB512D9B82B62E3C00"/>
+			<spot x="515.07" y="310.99" z="405.0" h="0"/>
+			<spot x="484.77" y="527.4" z="401.0" h="0"/>
+			<spot x="485.71" y="467.64" z="401.0" h="0"/>
 		</spawn>
-		<!-- Baranath Medic -->
-		<spawn npc_id="214810">
+		<!-- 45th Draconute Trooper -->
+		<spawn npc_id="214807" respawn_time="295">
+			<spot x="485.96" y="463.88" z="398.4259" h="91" walker_id="4FBF1BFCCDB7C1581D47C294F2F656B148C086C3"/>
+			<spot x="486.06" y="469.26" z="402.0" h="0" walker_id="6F62645A82F20C4B3BF46A9D12679E59764E1DAF"/>
+		</spawn>
+		<!-- 45th Draconute Superior Trooper -->
+		<spawn npc_id="214808" respawn_time="295">
+			<spot x="345.86" y="396.71" z="411.77356" h="51" walker_id="0BA0F56034B18715BA596A51729FF82FF8F5D42B"/>
+			<spot x="426.77" y="267.626" z="410.105" h="117"/>
+			<spot x="455.917" y="310.925" z="404.073" h="58"/>
+			<spot x="509.043" y="314.112" z="403.619" h="70"/>
+			<spot x="513.61" y="889.49" z="405.2301" h="73" walker_id="A225DBA7FFB33238C39242CC0CB253034F4FE34A"/>
+			<spot x="625.05" y="393.57" z="412.52435" h="62" walker_id="9CDB9F28FE36CB9142ADA6507A070BD96BA7CC76"/>
+			<spot x="354.3867" y="398.2208" z="414.0" h="0"/>
+			<spot x="509.9998" y="895.0094" z="410.0" h="0"/>
+			<spot x="508.1295" y="316.3963" z="405.0" h="0"/>
+			<spot x="633.34" y="394.99" z="414.0" h="0" walker_id="BE597C4855CDD9F2BB23AF448D922F361A82992D"/>
+			<spot x="509.95" y="895.02" z="410.0" h="0" walker_id="2B344D24DB7D4622EFEDFC47CB5B8141B486F4EE"/>
+			<spot x="354.34" y="398.24" z="414.0" h="0" walker_id="1226948E0E431C0F66DC7AC09B41E4FBCD3287D5"/>
+		</spawn>
+		<!-- 45th Draconute Medic -->
+		<spawn npc_id="214810" respawn_time="295">
 			<spot x="404.55" y="304.32" z="409.80533" h="84" walker_id="32F2530E059BF420788837FA509C6E83D4EB2BED"/>
 			<spot x="564.82" y="304.9" z="409.38132" h="32" walker_id="B8651322C502404B4683D064946CA5DDB4E2F32F"/>
+			<spot x="405.37" y="301.31" z="413.0" h="0" walker_id="BD0DCDF0954D05C0892E8C37E868A3E2348491B2"/>
+			<spot x="564.72" y="301.83" z="413.0" h="0" walker_id="A5B19497377E343E4A64789173D6D429E5664C85"/>
 		</spawn>
-		<!-- Baranath Priest -->
-		<spawn npc_id="214812">
+		<!-- 45th Nagarant Superior Warrior -->
+		<spawn npc_id="214811" respawn_time="295">
+			<spot x="395.751" y="568.564" z="409.202" h="114"/>
+			<spot x="473.78" y="883.195" z="405.533" h="97"/>
+			<spot x="505.021" y="505.892" z="399.001" h="45"/>
+			<spot x="582.037" y="565.15" z="408.826" h="17"/>
+			<spot x="582.0374" y="565.1502" z="413.0" h="43"/>
+			<spot x="395.7" y="568.6" z="413.0" h="0"/>
+			<spot x="473.73" y="883.23" z="406.0" h="0"/>
+		</spawn>
+		<!-- 45th Naga Superior Acolyte -->
+		<spawn npc_id="214812" respawn_time="295">
 			<spot x="466.492" y="508.993" z="399.178" h="80"/>
 			<spot x="497.125" y="882.96" z="405.521" h="41"/>
+			<spot x="466.44" y="509.01" z="401.0" h="0"/>
 		</spawn>
-		<!-- Baranath Scourge -->
-		<spawn npc_id="214813">
+		<!-- 45th Nagarant Superior Tormentor -->
+		<spawn npc_id="214813" respawn_time="295">
 			<spot x="324.435" y="426.592" z="411.619" h="83"/>
 			<spot x="329.23" y="398.517" z="411.694" h="11"/>
 			<spot x="338.32" y="448.87" z="409.1156" h="36" walker_id="81987A34196BE39EDC5E9C467B948F0E16B88EDD"/>
@@ -147,16 +96,112 @@
 			<spot x="630.23" y="448.87" z="409.0353" h="32" walker_id="292F382485299FBCDFC1C610443F2410B9C5F4FD"/>
 			<spot x="643.416" y="394.988" z="410.987" h="18"/>
 			<spot x="646.089" y="424.831" z="411.749" h="61"/>
+			<spot x="376.0839" y="422.2878" z="414.0" h="0"/>
+			<spot x="475.3113" y="318.8619" z="405.0" h="0"/>
+			<spot x="329.0938" y="398.2204" z="414.0" h="20"/>
+			<spot x="643.5789" y="394.861" z="414.0" h="45"/>
+			<spot x="405.37" y="301.31" z="413.0" h="0" walker_id="BD0DCDF0954D05C0892E8C37E868A3E2348491B2"/>
+			<spot x="376.11" y="422.21" z="414.0" h="0" walker_id="BC502716FA02BAC12099D27E9E679A59EAEEB3FE"/>
+			<spot x="629.97" y="444.22" z="413.0" h="0" walker_id="4882683058BC1CCBC505A2051C7C401084535A1E"/>
+			<spot x="564.72" y="301.83" z="413.0" h="0" walker_id="A5B19497377E343E4A64789173D6D429E5664C85"/>
+			<spot x="600.46" y="420.76" z="414.0" h="0" walker_id="BDF8161643C8D1B740E90E17CAE11D6A7F0AF5C4"/>
+			<spot x="486.06" y="469.26" z="402.0" h="0" walker_id="6F62645A82F20C4B3BF46A9D12679E59764E1DAF"/>
+			<spot x="338.11" y="443.46" z="413.0" h="0" walker_id="9D0A727A1198E775133C46DBF978A3B2486EC861"/>
+			<spot x="642.29" y="409.99" z="413.83" h="0"/>
+			<spot x="332.67" y="413.35" z="414.0" h="0"/>
+			<spot x="485.48" y="295.65" z="409.8" h="0"/>
 		</spawn>
-		<!-- Baranath Serpentguard -->
-		<spawn npc_id="214811">
-			<spot x="395.751" y="568.564" z="409.202" h="114"/>
-			<spot x="473.78" y="883.195" z="405.533" h="97"/>
-			<spot x="505.021" y="505.892" z="399.001" h="45"/>
-			<spot x="582.037" y="565.15" z="408.826" h="17"/>
+		<!-- 45th Naga Superior Healer -->
+		<spawn npc_id="214814" respawn_time="295">
+			<spot x="347.039" y="392.627" z="412.154" h="77"/>
+			<spot x="367.82" y="389.82" z="412.40836" h="88" walker_id="FB7856AA5B3545D858FA59831AB8B2831A8E7F5D"/>
+			<spot x="407.63" y="277.14" z="409.7311" h="58" walker_id="F4C7A3103B526A2160BABFFEFA781D0ECB5FCD7D"/>
+			<spot x="480.16" y="756.17" z="388.6469" h="50" walker_id="347DBED11D4537D096BEAAAA91D36C58CA6499D5"/>
+			<spot x="484.4" y="527.49" z="397.2087" h="29" walker_id="FB40FD58E18BD1253F5320CE92F8B71FC70371C6"/>
+			<spot x="490.35" y="305.78" z="403.04532" h="54" walker_id="A37F1811F70D8E8EAC9BA2E4730E4526FD7D14B8"/>
+			<spot x="500.439" y="510.793" z="399.11" h="25"/>
+			<spot x="562.63" y="277.16" z="409.7311" h="16" walker_id="16B09A1D4904B84F4782CF36E1642E990DF9B19F"/>
+			<spot x="604.22" y="393.58" z="411.99838" h="29" walker_id="74B01A16BD674CE36502C121335293C472879872"/>
+			<spot x="627.976" y="387.571" z="412.936" h="76"/>
+			<spot x="563.9849" y="282.0257" z="412.0" h="0"/>
+			<spot x="405.5017" y="282.3402" z="412.0" h="0"/>
+			<spot x="367.8642" y="389.9138" z="414.0" h="0"/>
+			<spot x="347.0363" y="392.5205" z="414.0" h="26"/>
+			<spot x="494.5582" y="310.2932" z="405.0" h="0"/>
+			<spot x="604.24" y="393.52" z="414.0" h="0" walker_id="84C45E97435FBE27656D32223859A9E59FB72B62"/>
+			<spot x="367.97" y="389.82" z="414.0" h="0" walker_id="1CAE7D627A5E77C65A11ED61CF43FA38B004721B"/>
+			<spot x="563.94" y="282.04" z="412.0" h="0" walker_id="9CCB5CDEA410B49FE3D7C0375D680D4135E5369C"/>
+			<spot x="483.86" y="521.35" z="399.0" h="0" walker_id="B99F78938A32AAC910D3C1FFB119457AE7C79A4B"/>
+			<spot x="494.51" y="310.31" z="405.0" h="0" walker_id="2FDAEFABEE2CCD46A13B90AE1B26EDE41AC22CEF"/>
+			<spot x="485.05" y="756.12" z="392.78" h="0" walker_id="8BC886C3EC3797759ABAD0FF6887BF2670DF3E24"/>
+			<spot x="405.45" y="282.35" z="412.0" h="0" walker_id="2A6F3B4AD673629DB3B882B017ABF5F77D7978FA"/>
+			<spot x="627.97" y="387.47" z="414.0" h="0"/>
+			<spot x="347.03" y="392.42" z="414.0" h="0"/>
 		</spawn>
-		<!-- Baranath Triaris -->
-		<spawn npc_id="214820">
+		<!-- Baranath Veteran Crusader -->
+		<spawn npc_id="214815" respawn_time="295">
+			<spot x="403.85" y="503.65" z="393.29797" h="62" walker_id="F4F620C176329528C2DB384AD3710C9ACAB04B5A"/>
+			<spot x="428.59" y="496.39" z="393.36877" h="77" walker_id="27AFC2F074693BAA96AAE857EF5D24CA580704B2"/>
+			<spot x="580.6" y="507.16" z="393.3712" h="93" walker_id="CE1B4A62503C0A7E7D99EBC5B2C9DC4FEB60E5C2"/>
+			<spot x="580.67" y="507.1" z="395.0" h="0" walker_id="07963480D79C32B6DD5715CFE6C001EBFDE0F069"/>
+			<spot x="403.94" y="503.51" z="395.0" h="0" walker_id="B8F8EDD6A410202E3F1F27DCC6DB2A247303C29D"/>
+			<spot x="554.59" y="485.96" z="395.0" h="0"/>
+			<spot x="404.27" y="479.36" z="395.0" h="0"/>
+		</spawn>
+		<!-- Baranath Bowguard -->
+		<spawn npc_id="214816" respawn_time="295">
+			<spot x="582.87" y="499.02" z="395.0" h="0"/>
+			<spot x="389.4" y="501.94" z="395.0" h="0"/>
+		</spawn>
+		<!-- Baranath Aetherguard -->
+		<spawn npc_id="214817" respawn_time="295">
+			<spot x="404.85" y="482.84" z="393.4907" h="62" walker_id="8FADB7C9C0FF9B7D7811B08955D67257279D1407"/>
+			<spot x="547.88" y="477.47" z="393.12283" h="26" walker_id="36B05D8F80ADFF46F9F8BA377E685798D9CB97EF"/>
+			<spot x="404.72" y="482.83" z="395.0" h="0" walker_id="BD0A4590B1E8332474006A4FCD0E7F2C9F34B1BB"/>
+			<spot x="547.67" y="477.75" z="395.0" h="0" walker_id="C1D93AFCB1058F81BF962CE94128EEF8F4923EE0"/>
+		</spawn>
+		<!-- Baranath Aionguard -->
+		<spawn npc_id="214818" respawn_time="295">
+			<spot x="558.58" y="506.99" z="393.72308" h="79" walker_id="17E66717D186A94B5AC36BE8A6382FC3E2759C93"/>
+			<spot x="558.65" y="507.08" z="395.0" h="0" walker_id="D6BA436F1C7BE1B414B14D635C2B27920E23E1F0"/>
+			<spot x="412.54" y="509.67" z="395.0" h="0"/>
+		</spawn>
+		<!-- 45th Drakan Superior Legate -->
+		<spawn npc_id="214819" respawn_time="295">
+			<spot x="361.243" y="562.004" z="409.398" h="49"/>
+			<spot x="383.06" y="553.18" z="409.49335" h="45" walker_id="45D99C4EB7C7DCEFC6BA66C96E84188D52C8D314" walker_index="1"/>
+			<spot x="461.554" y="809.519" z="416.652" h="62"/>
+			<spot x="474.328" y="868.996" z="405.571" h="60"/>
+			<spot x="479.853" y="653.588" z="387.961" h="114"/>
+			<spot x="479.986" y="691.072" z="387.601" h="11"/>
+			<spot x="480.226" y="617.9" z="390.398" h="66"/>
+			<spot x="480.564" y="733.558" z="387.328" h="62"/>
+			<spot x="481.231" y="767.156" z="388.667" h="39"/>
+			<spot x="488.614" y="766.913" z="388.666" h="10"/>
+			<spot x="490.013" y="690.775" z="387.598" h="18"/>
+			<spot x="490.249" y="733.291" z="387.328" h="84"/>
+			<spot x="490.361" y="653.376" z="388.047" h="100"/>
+			<spot x="490.5" y="617.684" z="390.398" h="16"/>
+			<spot x="493.65" y="825.99" z="416.64413" h="100" walker_id="31AB4E400E2E5F404CD6182F5787436272B0F25B"/>
+			<spot x="496.238" y="868.54" z="405.571" h="75"/>
+			<spot x="534.617" y="790.169" z="413.517" h="86"/>
+			<spot x="570.41" y="578.14" z="408.97006" h="21" walker_id="05E11BD13257C2423034E38D00FFCBA919FD6CDF" walker_index="1"/>
+			<spot x="608.86" y="564.718" z="409.167" h="91"/>
+			<spot x="567.4014" y="575.0807" z="413.0" h="0"/>
+			<spot x="487.9918" y="827.4516" z="420.0" h="0"/>
+			<spot x="360.9773" y="561.9136" z="412.0" h="3"/>
+			<spot x="380.2506" y="556.2261" z="413.0" h="0"/>
+			<spot x="629.97" y="444.22" z="413.0" h="0" walker_id="4882683058BC1CCBC505A2051C7C401084535A1E"/>
+			<spot x="380.2" y="556.24" z="413.0" h="0" walker_id="21A0D51D3ACE07F2E8314F1A6116851AD51F5542"/>
+			<spot x="487.94" y="827.47" z="420.0" h="0" walker_id="1C71E2553CD1709B847EA95383BAAC7D651F28CB"/>
+			<spot x="338.11" y="443.46" z="413.0" h="0" walker_id="9D0A727A1198E775133C46DBF978A3B2486EC861"/>
+			<spot x="360.93" y="561.93" z="412.0" h="0"/>
+			<spot x="608.82" y="564.73" z="412.0" h="0"/>
+			<spot x="485.23" y="868.78" z="406.0" h="0"/>
+			<spot x="470.36" y="692.36" z="394.55" h="0"/>
+		</spawn>
+		<!-- 45th Drakan Superior Triaris -->
+		<spawn npc_id="214820" respawn_time="295">
 			<spot x="393.166" y="717.535" z="402.224" h="53"/>
 			<spot x="410.12" y="785.0" z="413.16153" h="60" walker_id="10ECF621CA484E9D820355936C923718E0011381"/>
 			<spot x="428.794" y="797.876" z="413.46" h="117"/>
@@ -167,198 +212,330 @@
 			<spot x="541.676" y="798.034" z="413.456" h="86"/>
 			<spot x="559.5" y="784.5" z="413.17548" h="58" walker_id="A27420C9FC20D0C570B913333AF9019BA05D0E65"/>
 			<spot x="575.147" y="718.516" z="402.224" h="72"/>
+			<spot x="558.6303" y="784.6914" z="414.375" h="0"/>
+			<spot x="489.202" y="876.1209" z="408.0" h="0"/>
+			<spot x="412.9045" y="785.9495" z="414.5" h="0"/>
+			<spot x="412.82" y="785.92" z="414.5" h="0" walker_id="FCCE210173833DB2FD09A4DD76AF1C4A0237B624"/>
+			<spot x="558.54" y="784.67" z="414.38" h="0" walker_id="9950C80252C0D3F70F8FACE36EBCD3A48432AF3A"/>
+			<spot x="483.86" y="521.35" z="399.0" h="0" walker_id="B99F78938A32AAC910D3C1FFB119457AE7C79A4B"/>
+			<spot x="481.78" y="590.07" z="393.0" h="0" walker_id="810D45BB665958FD41A2EF4B1910E3D8CBE28CB1"/>
+			<spot x="485.15" y="797.94" z="416.5" h="0"/>
+			<spot x="484.15" y="717.99" z="404.0" h="0"/>
 		</spawn>
-		<!-- Baranath Trooper -->
-		<spawn npc_id="214808">
-			<spot x="345.86" y="396.71" z="411.77356" h="51" walker_id="0BA0F56034B18715BA596A51729FF82FF8F5D42B"/>
-			<spot x="426.77" y="267.626" z="410.105" h="117"/>
-			<spot x="455.917" y="310.925" z="404.073" h="58"/>
-			<spot x="509.043" y="314.112" z="403.619" h="70"/>
-			<spot x="513.61" y="889.49" z="405.2301" h="73" walker_id="A225DBA7FFB33238C39242CC0CB253034F4FE34A"/>
-			<spot x="625.05" y="393.57" z="412.52435" h="62" walker_id="9CDB9F28FE36CB9142ADA6507A070BD96BA7CC76"/>
+		<!-- 45th Drakan Superior Mage -->
+		<spawn npc_id="214821" respawn_time="295">
+			<spot x="375.844" y="575.533" z="413.975" h="33"/>
+			<spot x="395.05" y="549.88" z="409.80908" h="53" walker_id="77A9A3CA7DD0B4247CCA5505F9B6A333438CED19"/>
+			<spot x="405.431" y="705.859" z="402.215" h="64"/>
+			<spot x="411.31" y="576.3" z="410.42328" h="39" walker_id="E8180A23C18B1BA175C813E3BE6B1FB1CFF59D85"/>
+			<spot x="435.523" y="790.631" z="413.517" h="60"/>
+			<spot x="496.14" y="607.67" z="390.39767" h="93" walker_id="0C6373D70A874A113C43F8067F1C2521A28F40B1"/>
+			<spot x="508.358" y="809.945" z="416.654" h="43"/>
+			<spot x="559.66" y="566.07" z="410.3283" h="35" walker_id="4C08E217B84E47159CF9DAA17A4390F00973D511"/>
+			<spot x="565.076" y="708.257" z="402.273" h="98"/>
+			<spot x="585.26" y="546.7" z="410.13318" h="4" walker_id="27BBC69667E006BF060136E5D261EDD9865B58C4"/>
+			<spot x="598.445" y="575.656" z="409.20154" h="101"/>
+			<spot x="375.6913" y="575.6428" z="412.0" h="106"/>
+			<spot x="562.0744" y="561.3101" z="413.0" h="0"/>
+			<spot x="590.5112" y="546.7385" z="413.0" h="0"/>
+			<spot x="410.3291" y="581.4846" z="413.0" h="0"/>
+			<spot x="399.7776" y="552.605" z="413.0" h="0"/>
+			<spot x="590.46" y="546.75" z="413.0" h="0" walker_id="17985D8717C7C7BA572F5BCC21D254315FC59881"/>
+			<spot x="399.73" y="552.62" z="413.0" h="0" walker_id="4E869B474E6E2FB6AC68DD54E09FF44AAD3883B9"/>
+			<spot x="485.05" y="756.12" z="392.78" h="0" walker_id="8BC886C3EC3797759ABAD0FF6887BF2670DF3E24"/>
+			<spot x="502.54" y="610.73" z="393.0" h="0" walker_id="ECF5DF1DB883D40CFC9068422924FA8C4D9F5657"/>
+			<spot x="562.03" y="561.32" z="413.0" h="0" walker_id="E7CD31E6F542A6C0AB629B59AF7345E8FD78ACA2"/>
+			<spot x="508.31" y="809.96" z="418.0" h="0"/>
+			<spot x="375.45" y="575.42" z="412.0" h="0"/>
+			<spot x="565.14" y="708.11" z="404.0" h="0"/>
 		</spawn>
-		<!-- Baranath Vanguard -->
-		<spawn npc_id="214807">
-			<spot x="485.96" y="463.88" z="398.4259" h="91" walker_id="4FBF1BFCCDB7C1581D47C294F2F656B148C086C3"/>
+		<!-- 45th Drakan Superior Curatus -->
+		<spawn npc_id="214822" respawn_time="295">
+			<spot x="394.843" y="700.823" z="402.22" h="23"/>
+			<spot x="477.48" y="826.14" z="416.64426" h="112" walker_id="EDD807BE89B75B06C2327B831D5C2EA0C017BE9E"/>
+			<spot x="575.256" y="701.594" z="402.221" h="19"/>
+			<spot x="483.2606" y="827.4677" z="420.0" h="0"/>
+			<spot x="483.21" y="827.48" z="420.0" h="0" walker_id="48DE61E76B79BE367992273399622CAE8AD39715"/>
+			<spot x="575.24" y="701.54" z="404.0" h="0"/>
+			<spot x="394.78" y="700.64" z="404.0" h="0"/>
+			<spot x="479.87" y="579.45" z="393.0" h="0"/>
 		</spawn>
-		<!-- Baranath Veteran Crusader -->
-		<spawn npc_id="214815">
-			<spot x="403.85" y="503.65" z="393.29797" h="62" walker_id="F4F620C176329528C2DB384AD3710C9ACAB04B5A"/>
-			<spot x="428.59" y="496.39" z="393.36877" h="77" walker_id="27AFC2F074693BAA96AAE857EF5D24CA580704B2"/>
-			<spot x="580.6" y="507.16" z="393.3712" h="93" walker_id="CE1B4A62503C0A7E7D99EBC5B2C9DC4FEB60E5C2"/>
+		<!-- Captain Adhati -->
+		<spawn npc_id="214823" respawn_time="295">
+			<spot x="485.2116" y="807.4688" z="418.0" h="30"/>
+		</spawn>
+		<!-- Technician Sarpa -->
+		<spawn npc_id="215082" respawn_time="295">
+			<spot x="485.184" y="296.883" z="402.204" h="71"/>
+			<spot x="487.34" y="317.91" z="404.96" h="0"/>
+		</spawn>
+		<!-- Navigator Nevikah -->
+		<spawn npc_id="215083" respawn_time="295">
+			<spot x="344.306" y="416.233" z="410.399" h="61"/>
+			<spot x="342.14" y="411.04" z="413.82" h="0"/>
+		</spawn>
+		<!-- Assistant Malakun -->
+		<spawn npc_id="215084" respawn_time="295">
+			<spot x="623.987" y="410.763" z="410.626" h="12"/>
+			<spot x="628.17" y="406.66" z="413.8" h="0"/>
+		</spawn>
+		<!-- Adjutant Kundhan -->
+		<spawn npc_id="215085" respawn_time="295">
+			<spot x="464.307" y="605.245" z="391.578" h="77"/>
+			<spot x="485.43" y="598.28" z="393.06" h="0"/>
+		</spawn>
+		<!-- First Mate Aznaya -->
+		<spawn npc_id="215086" respawn_time="295">
+			<spot x="485.095" y="883.913" z="405.02" h="60"/>
+			<spot x="486.37" y="884.83" z="407.75" h="0"/>
+		</spawn>
+		<!-- Sentinel Garkusa -->
+		<spawn npc_id="215087" respawn_time="295">
+			<spot x="387.823" y="696.407" z="402.213" h="108"/>
+		</spawn>
+		<!-- Prison Guard Mahnena -->
+		<spawn npc_id="215088" respawn_time="295">
+			<spot x="580.765" y="697.232" z="402.214" h="18"/>
+		</spawn>
+		<!-- Air Captain Girana -->
+		<spawn npc_id="215089" respawn_time="295">
+			<spot x="414.794" y="492.802" z="393.677" h="43"/>
+			<spot x="401.6" y="491.75" z="395.0" h="0"/>
+		</spawn>
+		<!-- Vice Air Captain Kai -->
+		<spawn npc_id="215090" respawn_time="295">
+			<spot x="556.174" y="488.715" z="393.585" h="36"/>
+			<spot x="566.56" y="489.97" z="395.01" h="0"/>
+		</spawn>
+		<!-- Vice Gun Captain Zha -->
+		<spawn npc_id="215091" respawn_time="295">
+			<spot x="391.251" y="564.982" z="408.922" h="98"/>
+			<spot x="383.12" y="571.12" z="412.71" h="0"/>
+		</spawn>
+		<!-- Gun Captain Ankrana -->
+		<spawn npc_id="215092" respawn_time="295">
+			<spot x="577.797" y="568.371" z="408.846" h="85"/>
+			<spot x="583.36" y="572.38" z="412.71" h="0"/>
+		</spawn>
+		<!-- Adjutant Kalanadi -->
+		<spawn npc_id="215093" respawn_time="295">
+			<spot x="485.4173" y="319.0986" z="405.0" h="90"/>
+		</spawn>
+		<!-- Auditor Nirshaka -->
+		<spawn npc_id="215390" respawn_time="295">
+			<spot x="460.611" y="877.786" z="405.045" h="76"/>
+		</spawn>
+		<!-- Quartermaster Vujara -->
+		<spawn npc_id="215391" respawn_time="295">
+			<spot x="415.277" y="282.022" z="409.731" h="118"/>
+			<spot x="556.535" y="279.292" z="409.731" h="33"/>
+		</spawn>
+		<!-- Supervisor Lakhane -->
+		<spawn npc_id="215427" respawn_time="295">
+			<spot x="504.502" y="607.622" z="394.73" h="33"/>
+			<spot x="504.45" y="607.64" z="393.73" h="0"/>
+		</spawn>
+		<!-- 45th Draconute Guard -->
+		<spawn npc_id="216852" respawn_time="295">
+			<spot x="426.61" y="249.57" z="412.46185" h="93" walker_id="2A4286145154FF69E97C1F16352CD6BA1B394A4E"/>
+			<spot x="424.7457" y="257.1987" z="412.0" h="0"/>
+		</spawn>
+		<!-- 45th Draconute Guard -->
+		<spawn npc_id="216853" respawn_time="295">
+			<spot x="544.05" y="254.18" z="411.2578" h="93" walker_id="3684803D4BD9C90AB50FA8F91A9EDD5D46B74F92"/>
+			<spot x="545.9343" y="261.7842" z="412.0" h="0"/>
+		</spawn>
+		<!-- Armoury Maintenance Surkana -->
+		<spawn npc_id="700485" respawn_time="295">
+			<spot x="553.403" y="279.284" z="409.749" h="0" static_id="30"/>
+			<spot x="418.8" y="281.99" z="412.0" h="0"/>
+		</spawn>
+		<!-- Armoury Maintenance Surkana -->
+		<spawn npc_id="700486" respawn_time="295">
+			<spot x="418.588" y="281.89" z="409.692" h="0" static_id="21"/>
+			<spot x="553.63" y="279.36" z="412.0" h="0"/>
+		</spawn>
+		<!-- Gravity Control Surkana -->
+		<spawn npc_id="700487" respawn_time="295">
+			<spot x="484.983" y="292.944" z="402.191" h="0" static_id="19"/>
+			<spot x="485.14" y="293.13" z="404.0" h="0"/>
+		</spawn>
+		<!-- Nuclear Control Surkana -->
+		<spawn npc_id="700488" respawn_time="295">
+			<spot x="346.135" y="414.725" z="410.529" h="0" static_id="20"/>
+			<spot x="346.31" y="414.89" z="413.0" h="0"/>
+		</spawn>
+		<!-- Nuclear Control Surkana -->
+		<spawn npc_id="700489" respawn_time="295">
+			<spot x="625.68" y="412.059" z="410.482" h="0" static_id="28"/>
+			<spot x="625.84" y="412.22" z="413.5" h="0"/>
+		</spawn>
+		<!-- Main Cannon Control Surkana -->
+		<spawn npc_id="700490" respawn_time="295">
+			<spot x="393.523" y="567.063" z="408.934" h="0" static_id="25"/>
+			<spot x="393.61" y="567.35" z="411.0" h="0"/>
+		</spawn>
+		<!-- Main Cannon Control Surkana -->
+		<spawn npc_id="700491" respawn_time="295">
+			<spot x="579.933" y="566.644" z="408.833" h="0" static_id="31"/>
+			<spot x="580.09" y="566.78" z="411.0" h="0"/>
+		</spawn>
+		<!-- Altitude Jump Device Surkana -->
+		<spawn npc_id="700492" respawn_time="295">
+			<spot x="413.064" y="490.797" z="393.621" h="0" static_id="23"/>
+			<spot x="413.26" y="490.92" z="395.0" h="0"/>
+		</spawn>
+		<!-- Altitude Jump Device Surkana -->
+		<spawn npc_id="700493" respawn_time="295">
+			<spot x="555.762" y="491.239" z="393.544" h="0" static_id="32"/>
+			<spot x="555.88" y="491.43" z="395.0" h="0"/>
+		</spawn>
+		<!-- Fighter Enhancing Surkana -->
+		<spawn npc_id="700494" respawn_time="295">
+			<spot x="466.019" y="607.222" z="391.615" h="0" static_id="22"/>
+			<spot x="466.04" y="607.31" z="393.0" h="0"/>
+		</spawn>
+		<!-- Brig Power Surkana -->
+		<spawn npc_id="700495" respawn_time="295">
+			<spot x="392.206" y="710.76" z="401.789" h="0" static_id="29"/>
+			<spot x="392.33" y="710.94" z="403.0" h="0"/>
+		</spawn>
+		<!-- Brig Power Surkana -->
+		<spawn npc_id="700496" respawn_time="295">
+			<spot x="577.821" y="711.19" z="401.76" h="0" static_id="24"/>
+			<spot x="577.93" y="711.35" z="403.0" h="0"/>
 		</spawn>
 		<!-- Bridge Power Surkana -->
-		<spawn npc_id="700497">
-			<spot x="485" y="881.682" z="404.955" static_id="27"/>
-		</spawn>
-		<!-- Brig Power Surkana -->
-		<spawn npc_id="700495">
-			<spot x="392.206" y="710.76" z="401.789" static_id="29"/>
-		</spawn>
-		<!-- Brig Power Surkana -->
-		<spawn npc_id="700496">
-			<spot x="577.821" y="711.19" z="401.76" static_id="24"/>
+		<spawn npc_id="700497" respawn_time="295">
+			<spot x="485" y="881.682" z="404.955" h="0" static_id="27"/>
+			<spot x="485.11" y="881.83" z="407.0" h="0"/>
 		</spawn>
 		<!-- Captain's Cabin Power Surkana -->
-		<spawn npc_id="700498">
-			<spot x="485.341" y="817.6" z="416.688" static_id="26"/>
+		<spawn npc_id="700498" respawn_time="295">
+			<spot x="485.341" y="817.6" z="416.688" h="0" static_id="26"/>
+			<spot x="485.6" y="817.81" z="418.0" h="0"/>
 		</spawn>
-		<!-- Captured Archon -->
-		<spawn npc_id="798328">
-			<spot x="380.0082" y="697.2482" z="404.07" h="59"/>
+		<!-- Portside Defence Shield -->
+		<spawn npc_id="700501" respawn_time="295">
+			<spot x="448.64" y="493.63" z="395.94" h="0"/>
 		</spawn>
-		<!-- Captured Asmodian Scholar -->
-		<spawn npc_id="798330">
-			<spot x="591.7817" y="711.6214" z="403.969" h="107"/>
+		<!-- Starboard Defence Shield -->
+		<spawn npc_id="700502" respawn_time="295">
+			<spot x="520.85" y="493.58" z="396.35" h="0"/>
 		</spawn>
-		<!-- Captured Elyos Scholar -->
-		<spawn npc_id="798326">
-			<spot x="589.8936" y="697.2634" z="403.962" h="54"/>
+		<!-- Portside Door of Captain's Cabin -->
+		<spawn npc_id="700503" respawn_time="295">
+			<spot x="457.06" y="812.46" z="419.0" h="0"/>
 		</spawn>
-		<!-- Captured Guardian -->
-		<spawn npc_id="798324">
-			<spot x="378.5201" y="712.3478" z="404.101" h="59"/>
+		<!-- Starboard Door of Captain's Cabin -->
+		<spawn npc_id="700504" respawn_time="295">
+			<spot x="456.71" y="812.317" z="416.724" h="35" static_id="5"/>
+			<spot x="512.873" y="812.523" z="416.639" h="112" static_id="1"/>
+			<spot x="512.69" y="812.2" z="419.0" h="0"/>
 		</spawn>
-		<!-- Drop Device Surkana -->
-		<spawn npc_id="700492">
-			<spot x="413.064" y="490.797" z="393.621" static_id="23"/>
+		<!-- Portside Teleporter Generator -->
+		<spawn npc_id="700505" respawn_time="295">
+			<spot x="466.6" y="585.97" z="393.0" h="0"/>
 		</spawn>
-		<!-- Drop Device Surkana -->
-		<spawn npc_id="700493">
-			<spot x="555.762" y="491.239" z="393.544" static_id="32"/>
+		<!-- Starboard Teleporter Generator -->
+		<spawn npc_id="700506" respawn_time="295">
+			<spot x="467.425" y="586.231" z="391.578" h="78" static_id="131"/>
+			<spot x="503.453" y="586.9" z="392.517" h="37" static_id="133"/>
+			<spot x="504.59" y="586.47" z="393.0" h="0"/>
+		</spawn>
+		<!-- Portside Defence Shield Generator -->
+		<spawn npc_id="700507" respawn_time="295">
+			<spot x="458.02" y="310.56" z="405.15" h="0"/>
+		</spawn>
+		<!-- Starboard Defence Shield Generator -->
+		<spawn npc_id="700508" respawn_time="295">
+			<spot x="458.01" y="310.14" z="404.08" h="8" static_id="7"/>
+			<spot x="513" y="310.22" z="404.085" h="58" static_id="6"/>
+			<spot x="513.32" y="310.76" z="405.37" h="0"/>
+		</spawn>
+		<!-- Port Bulkhead -->
+		<spawn npc_id="700598" respawn_time="295">
+			<spot x="445.526" y="322.475" z="402.476" h="0" static_id="95"/>
+			<spot x="446.71" y="321.97" z="403.69" h="0"/>
+		</spawn>
+		<!-- Starboard Bulkhead -->
+		<spawn npc_id="700599" respawn_time="295">
+			<spot x="524.68" y="322.537" z="402.407" h="0" static_id="98"/>
+			<spot x="524.29" y="322.25" z="403.64" h="0"/>
+		</spawn>
+		<!-- Portside Central Teleporter -->
+		<spawn npc_id="730187" respawn_time="295">
+			<spot x="398.3614" y="160.2706" z="433.9405" h="0"/>
+		</spawn>
+		<!-- Starboard Central Teleporter -->
+		<spawn npc_id="730188" respawn_time="295">
+			<spot x="571.887" y="160.7908" z="433.9293" h="0"/>
 		</spawn>
 		<!-- Exhausted Shugo -->
-		<spawn npc_id="730196">
+		<spawn npc_id="730196" respawn_time="295">
 			<spot x="388.7658" y="173.5897" z="432.574" h="52"/>
 			<spot x="583.1348" y="172.481" z="432.594" h="56"/>
 		</spawn>
-		<!-- Fighter Enhancing Surkana -->
-		<spawn npc_id="700494">
-			<spot x="466.019" y="607.222" z="391.615" static_id="22"/>
+		<!-- Captain's Cabin Teleport Device -->
+		<spawn npc_id="730197" respawn_time="295">
+			<spot x="484.9489" y="761.5105" z="389.8377" h="0"/>
+			<spot x="484.97" y="761.56" z="389.84" h="0"/>
 		</spawn>
-		<!-- First Mate Aznaya -->
-		<spawn npc_id="215086">
-			<spot x="485.095" y="883.913" z="405.02" h="60"/>
-		</spawn>
-		<!-- Gravity Control Surkana -->
-		<spawn npc_id="700487">
-			<spot x="484.983" y="292.944" z="402.191" static_id="19"/>
-		</spawn>
-		<!-- Gun Captain Ankrana -->
-		<spawn npc_id="215092">
-			<spot x="577.797" y="568.371" z="408.846" h="85"/>
-		</spawn>
-		<!-- Main Cannon Control Surkana -->
-		<spawn npc_id="700490">
-			<spot x="393.523" y="567.063" z="408.934" static_id="25"/>
-		</spawn>
-		<!-- Main Cannon Control Surkana -->
-		<spawn npc_id="700491">
-			<spot x="579.933" y="566.644" z="408.833" static_id="31"/>
-		</spawn>
-		<!-- Navigator Nevikah -->
-		<spawn npc_id="215083">
-			<spot x="344.306" y="416.233" z="410.399" h="61"/>
+		<!-- No. 1 Nuclear Control Room Teleporter -->
+		<spawn npc_id="730213" respawn_time="295">
+			<spot x="402.3323" y="175.0037" z="433.9405" h="0"/>
 		</spawn>
 		<!-- No. 2 Nuclear Control Room Teleporter -->
-		<spawn npc_id="730214">
+		<spawn npc_id="730214" respawn_time="295">
 			<spot x="398.457" y="160.152" z="432.284" h="20" static_id="10"/>
 			<spot x="402.334" y="175.117" z="432.285" h="41" static_id="64"/>
 			<spot x="484.72" y="761.42" z="388.655" h="29" static_id="91"/>
 			<spot x="567.3602" y="175.2826" z="432.285" h="64" static_id="65"/>
 			<spot x="571.88" y="160.62" z="432.285" h="112" static_id="9"/>
 		</spawn>
-		<!-- Nuclear Control Surkana -->
-		<spawn npc_id="700488">
-			<spot x="346.135" y="414.725" z="410.529" static_id="20"/>
-		</spawn>
-		<!-- Nuclear Control Surkana -->
-		<spawn npc_id="700489">
-			<spot x="625.68" y="412.059" z="410.482" static_id="28"/>
-		</spawn>
-		<!-- Port Bulkhead -->
-		<spawn npc_id="700598">
-			<spot x="445.526" y="322.475" z="402.476" static_id="95"/>
-		</spawn>
-		<!-- Prison Guard Mahnena -->
-		<spawn npc_id="215088">
-			<spot x="580.765" y="697.232" z="402.214" h="18"/>
-		</spawn>
-		<!-- Quartermaster Vujara -->
-		<spawn npc_id="215391">
-			<spot x="415.277" y="282.022" z="409.731" h="118"/>
-			<spot x="556.535" y="279.292" z="409.731" h="33"/>
-		</spawn>
-		<!-- Sentinel Garkusa -->
-		<spawn npc_id="215087">
-			<spot x="387.823" y="696.407" z="402.213" h="108"/>
-		</spawn>
-		<!-- Starboard Bulkhead -->
-		<spawn npc_id="700599">
-			<spot x="524.68" y="322.537" z="402.407" static_id="98"/>
-		</spawn>
-		<!-- Starboard Defense Shield Generator -->
-		<spawn npc_id="700508">
-			<spot x="458.01" y="310.14" z="404.08" h="8" static_id="7"/>
-			<spot x="513" y="310.22" z="404.085" h="58" static_id="6"/>
-		</spawn>
-		<!-- Starboard Door of Captain's Cabin -->
-		<spawn npc_id="700504">
-			<spot x="456.71" y="812.317" z="416.724" h="35" static_id="5"/>
-			<spot x="512.873" y="812.523" z="416.639" h="112" static_id="1"/>
-		</spawn>
-		<!-- Starboard Teleporter Generator -->
-		<spawn npc_id="700506">
-			<spot x="467.425" y="586.231" z="391.578" h="78" static_id="131"/>
-			<spot x="503.453" y="586.9" z="392.517" h="37" static_id="133"/>
-		</spawn>
-		<!-- Supervisor Lakhane -->
-		<spawn npc_id="215427">
-			<spot x="504.502" y="607.622" z="394.73" h="33"/>
-		</spawn>
-		<!-- Technician Sarpa -->
-		<spawn npc_id="215082">
-			<spot x="485.184" y="296.883" z="402.204" h="71"/>
-		</spawn>
-		<!-- Vice Air Captain Kai -->
-		<spawn npc_id="215090">
-			<spot x="556.174" y="488.715" z="393.585" h="36"/>
-		</spawn>
-		<!-- Vice Gun Captain Zha -->
-		<spawn npc_id="215091">
-			<spot x="391.251" y="564.982" z="408.922" h="98"/>
-		</spawn>
-		<!-- captain's cabin teleport device -->
-		<spawn npc_id="730197">
-			<spot x="484.9489" y="761.5105" z="389.8377" h="0"/>
-		</spawn>
-		<!-- captured archon -->
-		<spawn npc_id="798329">
-			<spot x="591.7817" y="711.6214" z="405.9453" h="0"/>
-		</spawn>
-		<!-- captured asmodian scholar -->
-		<spawn npc_id="798327">
-			<spot x="380.0082" y="697.2482" z="405.9453" h="0"/>
-		</spawn>
-		<!-- captured elyos scholar -->
-		<spawn npc_id="798323">
+		<!-- Captured Elyos Scholar -->
+		<spawn npc_id="798323" respawn_time="295">
 			<spot x="378.5201" y="712.3478" z="405.9453" h="0"/>
+			<spot x="592.53" y="704.35" z="404.73" h="0"/>
+			<spot x="378.08" y="708.55" z="405.05" h="0"/>
 		</spawn>
-		<!-- captured guardian -->
-		<spawn npc_id="798325">
+		<!-- Captured Guardian -->
+		<spawn npc_id="798324" respawn_time="295">
+			<spot x="378.5201" y="712.3478" z="404.101" h="59"/>
+			<spot x="592.53" y="704.35" z="404.73" h="0"/>
+			<spot x="378.08" y="708.55" z="405.05" h="0"/>
+		</spawn>
+		<!-- Captured Guardian -->
+		<spawn npc_id="798325" respawn_time="295">
 			<spot x="589.8936" y="697.2634" z="405.9453" h="0"/>
+			<spot x="589.84" y="697.28" z="405.95" h="0"/>
 		</spawn>
-		<!-- no. 1 nuclear control room teleporter -->
-		<spawn npc_id="730213">
-			<spot x="402.3323" y="175.0037" z="433.9405" h="0"/>
+		<!-- Captured Elyos Scholar -->
+		<spawn npc_id="798326" respawn_time="295">
+			<spot x="589.8936" y="697.2634" z="403.962" h="54"/>
+			<spot x="589.84" y="697.28" z="405.95" h="0"/>
 		</spawn>
-		<!-- portside central teleporter -->
-		<spawn npc_id="730187">
-			<spot x="398.3614" y="160.2706" z="433.9405" h="0"/>
+		<!-- Captured Asmodian Scholar -->
+		<spawn npc_id="798327" respawn_time="295">
+			<spot x="380.0082" y="697.2482" z="405.9453" h="0"/>
+			<spot x="592.53" y="704.35" z="404.73" h="0"/>
+			<spot x="378.82" y="701.0" z="405.05" h="0"/>
 		</spawn>
-		<!-- starboard central teleporter -->
-		<spawn npc_id="730188">
-			<spot x="571.887" y="160.7908" z="433.9293" h="0"/>
+		<!-- Captured Archon -->
+		<spawn npc_id="798328" respawn_time="295">
+			<spot x="380.0082" y="697.2482" z="404.07" h="59"/>
+			<spot x="592.53" y="704.35" z="404.73" h="0"/>
+			<spot x="378.82" y="701.0" z="405.05" h="0"/>
+		</spawn>
+		<!-- Captured Archon -->
+		<spawn npc_id="798329" respawn_time="295">
+			<spot x="591.7817" y="711.6214" z="405.9453" h="0"/>
+			<spot x="591.73" y="711.64" z="405.95" h="0"/>
+		</spawn>
+		<!-- Captured Asmodian Scholar -->
+		<spawn npc_id="798330" respawn_time="295">
+			<spot x="591.7817" y="711.6214" z="403.969" h="107"/>
+			<spot x="591.73" y="711.64" z="405.95" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

@@ -1,10 +1,37 @@
-<?xml version='1.0' encoding='utf-8'?>
-<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300200000">
-		<!-- Amethyst -->
-		<!-- Crystal -->
-		<!-- Rose Quartz -->
 		<!-- Silver -->
+		<spawn npc_id="400101" respawn_time="295">
+			<spot x="212.6215" y="350.6507" z="142.4529" h="0"/>
+			<spot x="213.3339" y="359.1852" z="140.225" h="0"/>
+			<spot x="246.4372" y="364.1123" z="138.1698" h="0"/>
+		</spawn>
 		<!-- Iron -->
+		<spawn npc_id="400202" respawn_time="295">
+			<spot x="93.4669" y="83.3656" z="143.5152" h="0"/>
+			<spot x="69.5883" y="93.2732" z="139.9115" h="0"/>
+			<spot x="86.3678" y="96.1942" z="140.4834" h="0"/>
+			<spot x="78.9733" y="126.4459" z="141.3323" h="0"/>
+			<spot x="100.6021" y="113.5289" z="139.9056" h="0"/>
+		</spawn>
+		<!-- Rose Quartz -->
+		<spawn npc_id="400301" respawn_time="295">
+			<spot x="326.1701" y="322.9721" z="89.5445" h="0"/>
+			<spot x="326.8951" y="352.1644" z="90.0598" h="0"/>
+			<spot x="347.4811" y="323.3425" z="87.7529" h="0"/>
+		</spawn>
+		<!-- Amethyst -->
+		<spawn npc_id="400302" respawn_time="295">
+			<spot x="323.9715" y="415.1262" z="91.5714" h="0"/>
+			<spot x="300.7166" y="429.7041" z="93.4617" h="0"/>
+			<spot x="256.169" y="399.1061" z="91.8902" h="0"/>
+		</spawn>
+		<!-- Crystal -->
+		<spawn npc_id="400303" respawn_time="295">
+			<spot x="367.2909" y="376.065" z="96.5474" h="0"/>
+			<spot x="386.9062" y="282.6625" z="93.3255" h="0"/>
+			<spot x="382.1428" y="316.1317" z="88.3009" h="0"/>
+		</spawn>
 	</spawn_map>
 </spawns>

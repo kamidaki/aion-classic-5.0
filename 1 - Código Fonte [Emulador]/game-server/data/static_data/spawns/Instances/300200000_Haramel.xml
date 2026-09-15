@@ -1,152 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300200000">
-		<!-- Aether Cart -->
-		<spawn npc_id="700950">
-			<spot x="85.3618" y="83.4812" z="142.271" static_id="31"/>
-			<spot x="142.375" y="80.1527" z="143.956" static_id="116"/>
-			<spot x="151.935" y="88.8851" z="143.956" static_id="111"/>
-		</spawn>
-		<!-- Bossman Nukiti -->
-		<spawn npc_id="216915">
-			<spot x="220.945" y="298.836" z="141.892"/>
-		</spawn>
-		<!-- Brainwashed Dukaki Peon -->
-		<spawn npc_id="216921">
-			<spot x="214.353" y="322.118" z="141.892" h="100"/>
-			<spot x="223.632" y="318.622" z="141.892" h="90"/>
-			<spot x="227.035" y="314.607" z="141.892" h="86"/>
-			<spot x="232.062" y="322.117" z="141.892" h="80"/>
-		</spawn>
-		<!-- Brainwashed Dukaki Weakarm -->
-		<spawn npc_id="216920">
-			<spot x="216.867" y="318.527" z="141.892" h="100"/>
-			<spot x="220.562" y="314.492" z="141.892" h="93"/>
-			<spot x="220.814" y="323.291" z="141.892" h="93"/>
-			<spot x="233.462" y="312.915" z="141.892" h="80"/>
-		</spawn>
-		<!-- Brainwashed MuMu Worker -->
-		<spawn npc_id="217067">
-			<spot x="215.002" y="313.186" z="141.892" h="100"/>
-			<spot x="226.562" y="323.022" z="141.892" h="90"/>
-			<spot x="230.758" y="317.672" z="141.892" h="76"/>
-		</spawn>
-		<!-- Captured Black Claw Informer -->
-		<spawn npc_id="216914">
-			<spot x="184.019" y="303.546" z="142.766" h="10"/>
-			<spot x="187.39" y="307.816" z="142.766"/>
-			<spot x="262.291" y="332.48" z="142.766" h="60"/>
-		</spawn>
-		<!-- Captured Tursin Guard -->
-		<spawn npc_id="216913">
-			<spot x="186.95" y="332.899" z="142.766" h="113"/>
-			<spot x="261.397" y="305.369" z="142.766" h="60"/>
-			<spot x="262.251" y="310.862" z="142.766" h="73"/>
+		<!-- Rooty -->
+		<spawn npc_id="210595" respawn_time="295">
+			<spot x="351.87" y="330.001" z="85.6659" h="47"/>
+			<spot x="362.112" y="365.129" z="90.7278" h="9"/>
+			<spot x="387.652" y="329.609" z="86.4389" h="37"/>
+			<spot x="349.9502" y="328.0051" z="91.0" h="0"/>
+			<spot x="381.5321" y="324.7008" z="91.0" h="0"/>
+			<spot x="358.1391" y="357.7828" z="91.0" h="0"/>
+			<spot x="366.87" y="339.01" z="90.95" h="0"/>
 		</spawn>
 		<!-- Drudgelord Kakiti -->
-		<spawn npc_id="216897">
+		<spawn npc_id="216897" respawn_time="295">
 			<spot x="181.139" y="81.2397" z="145.429" h="60"/>
 		</spawn>
-		<!-- Dukaki Digger -->
-		<spawn npc_id="216904">
-			<spot x="70.9049" y="99.98" z="138.129" h="40"/>
-			<spot x="81.2197" y="124.55" z="139.811" h="60"/>
-			<spot x="97.8194" y="109.461" z="139.051"/>
-		</spawn>
-		<!-- Dukaki Jailer -->
-		<spawn npc_id="216919">
-			<spot x="224.14" y="348.689" z="141.692" h="30"/>
-			<spot x="246.77" y="306.45" z="142.7657" h="30" walker_id="ED2A519A81A11417FA28A635D0399CAD67ACC2C7"/>
-		</spawn>
-		<!-- Dukaki Lifter -->
-		<spawn npc_id="216905">
-			<spot x="225.498" y="217.759" z="139.82" h="60"/>
-		</spawn>
 		<!-- Dukaki Peon -->
-		<spawn npc_id="216898">
+		<spawn npc_id="216898" respawn_time="295">
 			<spot x="175.217" y="63.6435" z="144.308" h="100"/>
 			<spot x="175.233" y="101.93" z="144.313" h="100"/>
 			<spot x="183.685" y="96.1323" z="150.772" h="15"/>
 			<spot x="183.75" y="52.0294" z="148.541" h="27"/>
-		</spawn>
-		<!-- Dukaki Protector -->
-		<spawn npc_id="216902">
-			<spot x="129.022" y="71.781" z="144.309"/>
-			<spot x="147.36" y="83.88" z="143.79619" h="100" walker_id="E0225B669326709504208907E5031E55B60392FE"/>
-			<spot x="151.61" y="144.946" z="144.246" h="103"/>
-			<spot x="201.425" y="222.132" z="87.6821" h="55"/>
-			<spot x="242.784" y="206.224" z="87.7082"/>
-		</spawn>
-		<!-- Dukaki Screamer -->
-		<spawn npc_id="216916">
-			<spot x="200.24" y="307.32" z="142.7657" h="30" walker_id="9242407665869A9E487D0647AAFC3C12C3FB97D1"/>
+			<spot x="183.7511" y="58.1039" z="151.1018" h="15"/>
+			<spot x="179.43" y="80.04" z="148.25" h="0"/>
 		</spawn>
 		<!-- Dukaki Seeker -->
-		<spawn npc_id="216899">
+		<spawn npc_id="216899" respawn_time="295">
 			<spot x="129.478" y="96.9962" z="144.311" h="110"/>
 			<spot x="177.61" y="146.19" z="141.70174" h="59" walker_id="ACA8D5843C879D6F28ED37AC6C76C0CD2FD4A256"/>
 			<spot x="178.505" y="50.813" z="145.889" h="59"/>
+			<spot x="177.4642" y="146.2072" z="145.0" h="0"/>
 		</spawn>
 		<!-- Dukaki Watchman -->
-		<spawn npc_id="216901">
+		<spawn npc_id="216901" respawn_time="295">
 			<spot x="141.76" y="104.12" z="144.38634" h="30" walker_id="8B17E52418DC89B7B6A2E8C233944E0299169EAF"/>
-			<spot x="150.24" y="58.04" z="143.79619" walker_id="9DFEA4E393982D7BF64065767E5186C2F8FE5CCA"/>
+			<spot x="150.24" y="58.04" z="143.79619" h="0" walker_id="9DFEA4E393982D7BF64065767E5186C2F8FE5CCA"/>
 			<spot x="221.29" y="148.12" z="137.05313" h="88" walker_id="10317C9AA75E0FC996461274B797BAA8383E0210"/>
+			<spot x="149.65" y="58.0412" z="146.0" h="0"/>
+			<spot x="221.1808" y="148.3728" z="141.0" h="43"/>
+			<spot x="141.4981" y="104.1064" z="145.0" h="30"/>
+			<spot x="141.43" y="104.17" z="145.0" h="0" walker_id="4BE047C3921806D052E207C98452D068953967DF"/>
+			<spot x="149.71" y="58.07" z="146.0" h="0" walker_id="BD7ACD446C51ED427D9B3D9B13C4C19C9FF5A5E3"/>
+		</spawn>
+		<!-- Dukaki Protector -->
+		<spawn npc_id="216902" respawn_time="295">
+			<spot x="129.022" y="71.781" z="144.309" h="0"/>
+			<spot x="147.36" y="83.88" z="143.79619" h="100" walker_id="E0225B669326709504208907E5031E55B60392FE"/>
+			<spot x="151.61" y="144.946" z="144.246" h="103"/>
+			<spot x="201.425" y="222.132" z="87.6821" h="55"/>
+			<spot x="242.784" y="206.224" z="87.7082" h="0"/>
+			<spot x="147.6258" y="84.1529" z="145.0" h="100"/>
+			<spot x="207.8867" y="220.4964" z="90.2504" h="60"/>
+			<spot x="147.69" y="84.19" z="145.0" h="0" walker_id="550F314426695768DBE907712A4E7441730FF457"/>
+			<spot x="129.09" y="71.82" z="145.23" h="0"/>
+			<spot x="151.67" y="144.99" z="145.0" h="0"/>
+			<spot x="225.4" y="213.4" z="90.25" h="0"/>
 		</spawn>
 		<!-- Dukaki Weakarm -->
-		<spawn npc_id="216903">
+		<spawn npc_id="216903" respawn_time="295">
 			<spot x="73.997" y="102.104" z="138.384" h="43"/>
 			<spot x="86.141" y="124.877" z="140.008" h="23"/>
 			<spot x="88.8624" y="78.1367" z="142.724" h="100"/>
 			<spot x="100.371" y="102.102" z="139.299" h="10"/>
+			<spot x="87.59" y="101.67" z="141.02" h="0"/>
 		</spawn>
-		<!-- Fine Odium -->
-		<spawn npc_id="700833">
-			<spot x="121.6466" y="100.5348" z="146.297" static_id="94"/>
-			<spot x="122.4959" y="60.7915" z="145.661" static_id="123"/>
-			<spot x="122.9833" y="111.5135" z="148.111" static_id="118"/>
-			<spot x="132.3863" y="112.4379" z="146.053" static_id="48"/>
-			<spot x="135.4069" y="60.9233" z="145.661" static_id="131"/>
+		<!-- Dukaki Digger -->
+		<spawn npc_id="216904" respawn_time="295">
+			<spot x="70.9049" y="99.98" z="138.129" h="40"/>
+			<spot x="81.2197" y="124.55" z="139.811" h="60"/>
+			<spot x="97.8194" y="109.461" z="139.051" h="0"/>
+			<spot x="81.2197" y="124.5503" z="140.5249" h="60"/>
+			<spot x="82.78" y="109.64" z="140.24" h="0"/>
 		</spawn>
-		<!-- Gestanerk -->
-		<spawn npc_id="799524">
-			<spot x="289.776" y="422.4531" z="89.5563" h="90"/>
-		</spawn>
-		<!-- Hamerun the Bleeder -->
-		<spawn npc_id="216922">
-			<spot x="224.127" y="275.123" z="144.776" h="30"/>
-		</spawn>
-		<!-- Haramel Exit -->
-		<spawn npc_id="730320">
-			<spot x="185.7381" y="20.1436" z="144.224" static_id="117"/>
-		</spawn>
-		<!-- Huge Cauldron -->
-		<spawn npc_id="730359">
-			<spot x="293.9993" y="295.6115" z="90.6128" static_id="169"/>
-		</spawn>
-		<!-- Keymaster MuMu Dang -->
-		<spawn npc_id="217025">
-			<spot x="218.062" y="213.348" z="89.2787" h="60"/>
-		</spawn>
-		<!-- Moofrenerk -->
-		<spawn npc_id="799523">
-			<spot x="228.4156" y="160.8762" z="137.059" h="60"/>
-		</spawn>
-		<!-- Moorilerk -->
-		<spawn npc_id="799522">
-			<spot x="141.7758" y="21.4674" z="144.245"/>
-		</spawn>
-		<!-- MuMu Assistant -->
-		<spawn npc_id="216908">
-			<spot x="289.982" y="289.979" z="90.0806" h="106"/>
-			<spot x="298.11" y="299.039" z="90.0806" h="106"/>
+		<!-- Dukaki Lifter -->
+		<spawn npc_id="216905" respawn_time="295">
+			<spot x="225.498" y="217.759" z="139.82" h="60"/>
+			<spot x="225.55" y="217.8" z="140.47" h="0"/>
 		</spawn>
 		<!-- MuMu Carrier -->
-		<spawn npc_id="216906">
+		<spawn npc_id="216906" respawn_time="295">
 			<spot x="225.246" y="209.263" z="139.82" h="60"/>
+			<spot x="225.32" y="209.32" z="140.14" h="0"/>
+		</spawn>
+		<!-- MuMu Ham the Grey -->
+		<spawn npc_id="216907" respawn_time="295">
+			<spot x="283.064" y="275.719" z="90.1018" h="116"/>
+		</spawn>
+		<!-- MuMu Assistant -->
+		<spawn npc_id="216908" respawn_time="295">
+			<spot x="289.982" y="289.979" z="90.0806" h="106"/>
+			<spot x="298.11" y="299.039" z="90.0806" h="106"/>
+			<spot x="294.11" y="294.55" z="90.72" h="0"/>
+		</spawn>
+		<!-- MuMu Fighter -->
+		<spawn npc_id="216909" respawn_time="295">
+			<spot x="207.996" y="205.162" z="87.2759" h="60"/>
+			<spot x="242.943" y="221.758" z="87.7079" h="0"/>
+			<spot x="293.468" y="258.486" z="90.0806" h="10"/>
+			<spot x="308.855" y="258.71" z="89.0267" h="90"/>
+			<spot x="314.645" y="300.667" z="89.0267" h="90"/>
+			<spot x="325.82" y="254.05" z="90.08059" h="30" walker_id="ED7088F90ED47C5FCFFB45609C7F06E046E159C9"/>
+			<spot x="333.249" y="287.606" z="90.0806" h="90"/>
+			<spot x="325.77" y="250.71" z="91.459" h="43"/>
+			<spot x="325.74" y="250.65" z="91.46" h="0" walker_id="921EB2AEDF68DB058F24AF1475CEB7F180920441"/>
+			<spot x="270.69" y="246.42" z="90.68" h="0"/>
+		</spawn>
+		<!-- MuMu Lookout -->
+		<spawn npc_id="216910" respawn_time="295">
+			<spot x="308.636" y="283.63" z="89.0267" h="90"/>
+			<spot x="332.975" y="271.731" z="90.0806" h="53"/>
+			<spot x="320.84" y="277.7" z="91.05" h="0"/>
 		</spawn>
 		<!-- MuMu Farmer -->
-		<spawn npc_id="216911">
+		<spawn npc_id="216911" respawn_time="295">
 			<spot x="331.292" y="336.776" z="87.5671" h="97"/>
 			<spot x="337.775" y="323.904" z="88.1384" h="94"/>
 			<spot x="343.938" y="337.597" z="86.6425" h="60"/>
@@ -155,94 +121,203 @@
 			<spot x="372.928" y="295.157" z="87.9714" h="78"/>
 			<spot x="379.785" y="338.845" z="86.3768" h="106"/>
 			<spot x="387.258" y="309.637" z="88.6193" h="77"/>
-		</spawn>
-		<!-- MuMu Fighter -->
-		<spawn npc_id="216909">
-			<spot x="207.996" y="205.162" z="87.2759" h="60"/>
-			<spot x="242.943" y="221.758" z="87.7079"/>
-			<spot x="293.468" y="258.486" z="90.0806" h="10"/>
-			<spot x="308.855" y="258.71" z="89.0267" h="90"/>
-			<spot x="314.645" y="300.667" z="89.0267" h="90"/>
-			<spot x="325.82" y="254.05" z="90.08059" h="30" walker_id="ED7088F90ED47C5FCFFB45609C7F06E046E159C9"/>
-			<spot x="333.249" y="287.606" z="90.0806" h="90"/>
-		</spawn>
-		<!-- MuMu Ham the Grey -->
-		<spawn npc_id="216907">
-			<spot x="283.064" y="275.719" z="90.1018" h="116"/>
-		</spawn>
-		<!-- MuMu Lookout -->
-		<spawn npc_id="216910">
-			<spot x="308.636" y="283.63" z="89.0267" h="90"/>
-			<spot x="332.975" y="271.731" z="90.0806" h="53"/>
-		</spawn>
-		<!-- MuMu Mechanic -->
-		<spawn npc_id="217108">
-			<spot x="222.4" y="235.52" z="87.69642" h="64" walker_id="3895BEF6829CC31C4FD9FBFE72B43075C666AC54"/>
-			<spot x="229.41" y="191.03" z="87.68485" h="115" walker_id="0D41E6A3B700C6140B0B0404A9A27E0EDD860C0C"/>
-			<spot x="235.771" y="214.002" z="89.2787" h="4"/>
+			<spot x="346.6179" y="317.1685" z="88.0562" h="30"/>
+			<spot x="351.5979" y="367.756" z="92.8934" h="0"/>
+			<spot x="382.3854" y="315.3373" z="91.2034" h="20"/>
+			<spot x="379.5177" y="293.0677" z="91.2034" h="20"/>
+			<spot x="332.834" y="341.9998" z="91.2034" h="20"/>
+			<spot x="333.065" y="329.8705" z="91.2034" h="20"/>
+			<spot x="365.58" y="330.31" z="89.97" h="0"/>
 		</spawn>
 		<!-- MuMu Porter -->
-		<spawn npc_id="216912">
+		<spawn npc_id="216912" respawn_time="295">
 			<spot x="303.61" y="214.87" z="88.145256" h="73" walker_id="ECF66316C616A1442C26B67F204E2217C1A924EE"/>
 			<spot x="311.55" y="401.41" z="86.48563" h="38" walker_id="91EE87BC6737F77B7CE8528158439C6637D35C21"/>
 			<spot x="357.66" y="341.56" z="86.195" h="44" walker_id="5EA03725CF648128DED889AAA5BC33CF1CF217E2"/>
+			<spot x="306.4701" y="215.5388" z="90.0" h="60"/>
+			<spot x="358.05" y="341.34" z="92.0" h="0"/>
+			<spot x="311.6468" y="401.4501" z="90.0" h="40"/>
+			<spot x="358.11" y="341.38" z="92.0" h="0" walker_id="A95ECB72ABD99A9DAFA6B7EF0D62999F7091928D"/>
+			<spot x="311.71" y="401.49" z="90.0" h="0" walker_id="31FBA48B112F78BCC95C5C48D928E143939E28C5"/>
+			<spot x="306.53" y="215.58" z="90.0" h="0" walker_id="23CB7A8752940A0B2DE2D4365158B76AF2321C65"/>
 		</spawn>
-		<!-- Odella -->
-		<spawn npc_id="700834">
-			<spot x="333.8173" y="345.0841" z="86.9499" static_id="17"/>
-			<spot x="339.157" y="323.2185" z="88.0086" static_id="115"/>
-			<spot x="350.9222" y="366.0133" z="90.1839" static_id="50"/>
-			<spot x="365.3721" y="357.3652" z="89.4211" static_id="53"/>
-			<spot x="373.48" y="330.55" z="85.4616" static_id="54"/>
+		<!-- Captured Tursin Guard -->
+		<spawn npc_id="216913" respawn_time="295">
+			<spot x="186.95" y="332.899" z="142.766" h="113"/>
+			<spot x="261.397" y="305.369" z="142.766" h="60"/>
+			<spot x="262.251" y="310.862" z="142.766" h="73"/>
+			<spot x="186.9502" y="332.8993" z="144.0" h="113"/>
+			<spot x="261.89" y="308.16" z="144.0" h="0"/>
 		</spawn>
-		<!-- Prison Door -->
-		<spawn npc_id="700855">
-			<spot x="189.402" y="332.434" z="142.766" static_id="119"/>
-			<spot x="189.482" y="307.181" z="142.766" static_id="114"/>
-			<spot x="258.965" y="332.233" z="142.766" static_id="55"/>
-			<spot x="259.073" y="307.284" z="142.766" static_id="52"/>
+		<!-- Captured Black Claw Informer -->
+		<spawn npc_id="216914" respawn_time="295">
+			<spot x="184.019" y="303.546" z="142.766" h="10"/>
+			<spot x="187.39" y="307.816" z="142.766" h="0"/>
+			<spot x="262.291" y="332.48" z="142.766" h="60"/>
+			<spot x="262.35" y="332.53" z="144.0" h="0"/>
+			<spot x="185.77" y="305.72" z="144.0" h="0"/>
 		</spawn>
-		<!-- Processed Odella -->
-		<spawn npc_id="700953">
-			<spot x="294.0466" y="250.0263" z="90.1643" static_id="285"/>
-			<spot x="314.0401" y="288.4178" z="89.0267" static_id="283"/>
-			<spot x="314.0671" y="263.2599" z="89.0267" static_id="282"/>
+		<!-- Overseer Nukiti -->
+		<spawn npc_id="216915" respawn_time="295">
+			<spot x="220.945" y="298.836" z="141.892" h="0"/>
+			<spot x="223.4824" y="298.9204" z="146.0" h="0"/>
 		</spawn>
-		<!-- Raw Odium -->
-		<spawn npc_id="700951">
-			<spot x="82.9601" y="88.3994" z="141.745" static_id="245"/>
-			<spot x="87.2192" y="99.919" z="138.926" static_id="137"/>
-			<spot x="90.2555" y="112.1743" z="139.197" static_id="177"/>
-			<spot x="95.8721" y="76.1201" z="143.515" static_id="171"/>
-			<spot x="116.2833" y="83.0092" z="144.198" static_id="246"/>
+		<!-- Dukaki Screamer -->
+		<spawn npc_id="216916" respawn_time="295">
+			<spot x="200.24" y="307.32" z="142.7657" h="30" walker_id="9242407665869A9E487D0647AAFC3C12C3FB97D1"/>
+			<spot x="200.1653" y="306.7253" z="144.0" h="30"/>
+			<spot x="200.23" y="306.77" z="144.0" h="0" walker_id="2F2F88629D2C8A85476029B059780F6E0615B164"/>
 		</spawn>
-		<!-- Rooty -->
-		<spawn npc_id="210595">
-			<spot x="351.87" y="330.001" z="85.6659" h="47"/>
-			<spot x="362.112" y="365.129" z="90.7278" h="9"/>
-			<spot x="387.652" y="329.609" z="86.4389" h="37"/>
+		<!-- Dukaki Jailer -->
+		<spawn npc_id="216919" respawn_time="295">
+			<spot x="224.14" y="348.689" z="141.692" h="30"/>
+			<spot x="246.77" y="306.45" z="142.7657" h="30" walker_id="ED2A519A81A11417FA28A635D0399CAD67ACC2C7"/>
+			<spot x="246.6105" y="306.2336" z="143.0" h="30"/>
+			<spot x="246.89" y="306.18" z="143.0" h="0" walker_id="5DDD751D38E05FC000AB7023B71A34DD6A4B9B96"/>
+			<spot x="224.15" y="348.55" z="143.0" h="0"/>
 		</spawn>
-		<!-- Severely Rusted Box -->
-		<spawn npc_id="700853">
-			<spot x="231.031" y="223.0911" z="139.82"/>
+		<!-- Brainwashed Dukaki Weakarm -->
+		<spawn npc_id="216920" respawn_time="295">
+			<spot x="216.867" y="318.527" z="141.892" h="100"/>
+			<spot x="220.562" y="314.492" z="141.892" h="93"/>
+			<spot x="220.814" y="323.291" z="141.892" h="93"/>
+			<spot x="233.462" y="312.915" z="141.892" h="80"/>
+			<spot x="225.23" y="315.76" z="146.0" h="0"/>
 		</spawn>
-		<!-- Tower Lift -->
-		<spawn npc_id="730321">
-			<spot x="220.8683" y="213.2629" z="89.2787" static_id="79"/>
+		<!-- Brainwashed Dukaki Peon -->
+		<spawn npc_id="216921" respawn_time="295">
+			<spot x="214.353" y="322.118" z="141.892" h="100"/>
+			<spot x="223.632" y="318.622" z="141.892" h="90"/>
+			<spot x="227.035" y="314.607" z="141.892" h="86"/>
+			<spot x="232.062" y="322.117" z="141.892" h="80"/>
+			<spot x="223.27" y="322.16" z="146.03" h="0"/>
+		</spawn>
+		<!-- Hamerun the Bleeder -->
+		<spawn npc_id="216922" respawn_time="295">
+			<spot x="224.127" y="275.123" z="144.776" h="30"/>
 		</spawn>
 		<!-- Treasure Box -->
-		<spawn npc_id="216925">
+		<spawn npc_id="216925" respawn_time="295">
 			<spot x="91.9721" y="97.7749" z="139.24" h="30"/>
 			<spot x="217.752" y="378.405" z="85" h="80"/>
 			<spot x="310.619" y="302.382" z="89.0267" h="90"/>
 		</spawn>
+		<!-- Keymaster MuMu Dang -->
+		<spawn npc_id="217025" respawn_time="295">
+			<spot x="218.062" y="213.348" z="89.2787" h="60"/>
+			<spot x="218.13" y="213.39" z="90.11" h="0"/>
+		</spawn>
+		<!-- Brainwashed MuMu Worker -->
+		<spawn npc_id="217067" respawn_time="295">
+			<spot x="215.002" y="313.186" z="141.892" h="100"/>
+			<spot x="226.562" y="323.022" z="141.892" h="90"/>
+			<spot x="230.758" y="317.672" z="141.892" h="76"/>
+			<spot x="222.84" y="315.8" z="146.0" h="0"/>
+		</spawn>
+		<!-- MuMu Mechanic -->
+		<spawn npc_id="217108" respawn_time="295">
+			<spot x="222.4" y="235.52" z="87.69642" h="64" walker_id="3895BEF6829CC31C4FD9FBFE72B43075C666AC54"/>
+			<spot x="229.41" y="191.03" z="87.68485" h="115" walker_id="0D41E6A3B700C6140B0B0404A9A27E0EDD860C0C"/>
+			<spot x="235.771" y="214.002" z="89.2787" h="4"/>
+			<spot x="218.0178" y="234.4802" z="89.4211" h="90"/>
+			<spot x="233.4561" y="213.4103" z="91.4044" h="0"/>
+			<spot x="229.3201" y="191.3903" z="89.2928" h="40"/>
+			<spot x="229.39" y="191.43" z="89.29" h="0" walker_id="5E7DB4684AB135F67D039608CAF9B965B3F833CE"/>
+			<spot x="218.07" y="234.48" z="89.42" h="0" walker_id="1EB65CA7EF6DCD2F784F52FB884193C20848CF24"/>
+		</spawn>
+		<!-- Fine Odium -->
+		<spawn npc_id="700833" respawn_time="295">
+			<spot x="121.6466" y="100.5348" z="146.297" h="0" static_id="94"/>
+			<spot x="122.4959" y="60.7915" z="145.661" h="0" static_id="123"/>
+			<spot x="122.9833" y="111.5135" z="148.111" h="0" static_id="118"/>
+			<spot x="132.3863" y="112.4379" z="146.053" h="0" static_id="48"/>
+			<spot x="135.4069" y="60.9233" z="145.661" h="0" static_id="131"/>
+			<spot x="128.92" y="86.42" z="146.95" h="0"/>
+		</spawn>
+		<!-- Odella -->
+		<spawn npc_id="700834" respawn_time="295">
+			<spot x="333.8173" y="345.0841" z="86.9499" h="0" static_id="17"/>
+			<spot x="339.157" y="323.2185" z="88.0086" h="0" static_id="115"/>
+			<spot x="350.9222" y="366.0133" z="90.1839" h="0" static_id="50"/>
+			<spot x="365.3721" y="357.3652" z="89.4211" h="0" static_id="53"/>
+			<spot x="373.48" y="330.55" z="85.4616" h="0" static_id="54"/>
+			<spot x="352.85" y="342.5" z="88.72" h="0"/>
+		</spawn>
+		<!-- Severely Rusted Box -->
+		<spawn npc_id="700853" respawn_time="295">
+			<spot x="231.031" y="223.0911" z="139.82" h="0"/>
+		</spawn>
+		<!-- Prison Door -->
+		<spawn npc_id="700855" respawn_time="295">
+			<spot x="189.402" y="332.434" z="142.766" h="0" static_id="119"/>
+			<spot x="189.482" y="307.181" z="142.766" h="0" static_id="114"/>
+			<spot x="258.965" y="332.233" z="142.766" h="0" static_id="55"/>
+			<spot x="259.073" y="307.284" z="142.766" h="0" static_id="52"/>
+			<spot x="259.03" y="319.74" z="143.04" h="0"/>
+			<spot x="189.45" y="319.79" z="142.9" h="0"/>
+		</spawn>
+		<!-- Aether Cart -->
+		<spawn npc_id="700950" respawn_time="295">
+			<spot x="85.3618" y="83.4812" z="142.271" h="0" static_id="31"/>
+			<spot x="142.375" y="80.1527" z="143.956" h="0" static_id="116"/>
+			<spot x="151.935" y="88.8851" z="143.956" h="0" static_id="111"/>
+			<spot x="85.48" y="83.55" z="142.78" h="0"/>
+			<spot x="147.27" y="84.59" z="144.98" h="0"/>
+		</spawn>
+		<!-- Raw Odium -->
+		<spawn npc_id="700951" respawn_time="295">
+			<spot x="82.9601" y="88.3994" z="141.745" h="0" static_id="245"/>
+			<spot x="87.2192" y="99.919" z="138.926" h="0" static_id="137"/>
+			<spot x="90.2555" y="112.1743" z="139.197" h="0" static_id="177"/>
+			<spot x="95.8721" y="76.1201" z="143.515" h="0" static_id="171"/>
+			<spot x="116.2833" y="83.0092" z="144.198" h="0" static_id="246"/>
+			<spot x="100.77" y="95.33" z="141.87" h="0"/>
+		</spawn>
+		<!-- Processed Odella -->
+		<spawn npc_id="700953" respawn_time="295">
+			<spot x="294.0466" y="250.0263" z="90.1643" h="0" static_id="285"/>
+			<spot x="314.0401" y="288.4178" z="89.0267" h="0" static_id="283"/>
+			<spot x="314.0671" y="263.2599" z="89.0267" h="0" static_id="282"/>
+			<spot x="304.27" y="269.26" z="89.77" h="0"/>
+		</spawn>
 		<!-- Well-Dried Ginseng -->
-		<spawn npc_id="700954">
-			<spot x="321.2726" y="255.1678" z="90.0806" static_id="102"/>
-			<spot x="321.5738" y="250.8363" z="92.0757" static_id="100"/>
-			<spot x="322.3952" y="255.4808" z="90.0806" static_id="101"/>
-			<spot x="324.9276" y="261.0701" z="90.0806" static_id="103"/>
-			<spot x="327.2246" y="243.4624" z="90.5051" static_id="99"/>
+		<spawn npc_id="700954" respawn_time="295">
+			<spot x="321.2726" y="255.1678" z="90.0806" h="0" static_id="102"/>
+			<spot x="321.5738" y="250.8363" z="92.0757" h="0" static_id="100"/>
+			<spot x="322.3952" y="255.4808" z="90.0806" h="0" static_id="101"/>
+			<spot x="324.9276" y="261.0701" z="90.0806" h="0" static_id="103"/>
+			<spot x="327.2246" y="243.4624" z="90.5051" h="0" static_id="99"/>
+			<spot x="326.07" y="252.34" z="91.13" h="0"/>
+		</spawn>
+		<!-- Haramel Exit -->
+		<spawn npc_id="730320" respawn_time="295">
+			<spot x="185.7381" y="20.1436" z="144.224" h="0" static_id="117"/>
+			<spot x="185.7" y="20.18" z="144.73" h="0"/>
+		</spawn>
+		<!-- Tower Lift -->
+		<spawn npc_id="730321" respawn_time="295">
+			<spot x="220.8683" y="213.2629" z="89.2787" h="0" static_id="79"/>
+			<spot x="220.79" y="213.4" z="89.58" h="0"/>
+		</spawn>
+		<!-- Huge Cauldron -->
+		<spawn npc_id="730359" respawn_time="295">
+			<spot x="293.9993" y="295.6115" z="90.6128" h="0" static_id="169"/>
+			<spot x="294.22" y="295.65" z="91.16" h="0"/>
+		</spawn>
+		<!-- Moorilerk -->
+		<spawn npc_id="799522" respawn_time="295">
+			<spot x="141.7758" y="21.4674" z="144.245" h="0"/>
+			<spot x="141.82" y="21.33" z="144.25" h="0"/>
+		</spawn>
+		<!-- Moofrenerk -->
+		<spawn npc_id="799523" respawn_time="295">
+			<spot x="228.4156" y="160.8762" z="137.059" h="60"/>
+			<spot x="228.46" y="160.74" z="137.43" h="0"/>
+		</spawn>
+		<!-- Gestanerk -->
+		<spawn npc_id="799524" respawn_time="295">
+			<spot x="289.776" y="422.4531" z="89.5563" h="90"/>
+			<spot x="289.82" y="422.32" z="91.72" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

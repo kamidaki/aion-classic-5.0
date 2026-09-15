@@ -1,0 +1,113 @@
+<MusicThemeLibrary Name="IDDragonLord-BGM">
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{501D50E0-D134-4917-A8B4-F04099E8BDC8}" Name="BGM_Mute">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\BGM_Mute.ogg" LayeringVolume="255" Name="Pattern0" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{48CEAE46-8587-4167-BAFF-5CDEDAE45DD6}" Name="Floor1">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="1" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\4.5v\IDDragonLord_1_Venirung.ogg" LayeringVolume="255" Name="Pattern1" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\4.5v\IDDragonLord_1_Aphsar.ogg" LayeringVolume="255" Name="Pattern3" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{D9D70C9F-78C9-4B39-9531-30D3A9D07967}" Name="Floor1_Boss">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\4.5v\IDDragonLord_1_Boss.ogg" LayeringVolume="255" Name="Pattern2" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{A9A62C60-6FBE-4B76-849F-6ADF73AA97AD}" Name="Floor2">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\4.5v\IDDragonLord_2.ogg" LayeringVolume="255" Name="Pattern4" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{2A90520B-1704-420A-8B15-71C319FA7A51}" Name="Floor2_Boss">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\4.5v\IDDragonLord_2_Boss.ogg" LayeringVolume="255" Name="Pattern5" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{B1B28BE8-CAB2-4917-A1ED-856D8B26DA8D}" Name="Floor3">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\4.5v\IDDragonLord_3.ogg" LayeringVolume="255" Name="Pattern6" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{6AE2E658-6A13-4855-8655-D1B56879347B}" Name="Floor3_Boss">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\4.5v\IDDragonLord_3_Boss.ogg" LayeringVolume="255" Name="Pattern7" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{B87E9F8A-A90E-4414-B12D-1781B41DF71B}" Name="Floor4">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\4.5v\IDDragonLord_4.ogg" LayeringVolume="255" Name="Pattern8" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+</MusicThemeLibrary>

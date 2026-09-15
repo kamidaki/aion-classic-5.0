@@ -1,0 +1,5 @@
+<LevelInfo HeightmapXSize="1024" HeightmapYSize="1024" LightMapPath="Levels\IDCubeQ\" Name="Levels\IDCubeQ" Version="{00000000-0000-0000-0000-000000000000}">
+	<Missions>
+		<Mission Description="" Name="Mission0"/>
+	</Missions>
+</LevelInfo>
