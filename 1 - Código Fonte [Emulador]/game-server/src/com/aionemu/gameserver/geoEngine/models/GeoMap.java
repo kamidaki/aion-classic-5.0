@@ -94,6 +94,14 @@ public class GeoMap extends Node {
 	}
 
 	private Node getOrCreateChunk(Spatial child) {
+		// Guard against null worldBound (e.g. Geometry with 0 vertices / empty stub mesh)
+		if (child.getWorldBound() == null) {
+            return chunkById.computeIfAbsent(-1, k -> {
+                Node n = new Node("");
+                super.attachChild(n);
+                return n;
+            });
+		}
 		int chunkId = RegionUtil.get2DRegionId(NODE_CHUNK_SIZE, child.getWorldBound().getCenter().x, child.getWorldBound().getCenter().y);
 		Node node = chunkById.get(chunkId);
 		if (node == null) {

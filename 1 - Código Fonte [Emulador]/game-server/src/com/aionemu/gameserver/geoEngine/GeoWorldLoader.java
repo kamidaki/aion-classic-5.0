@@ -148,6 +148,7 @@ public class GeoWorldLoader {
 					if (modelCount == 1)
 						singleChildMaterialId = m.getMaterialId();
 					node.attachChild(new Geometry(name, m));
+
 				}
 				node.setCollisionIntentions(intentions);
 				node.setMaterialId((byte) singleChildMaterialId);
@@ -248,7 +249,11 @@ public class GeoWorldLoader {
 		Spatial nodeClone = node.clone();
 		nodeClone.setTransform(matrix, location, scale);
 		nodeClone.updateModelBound();
-		map.attachChild(nodeClone);
+		// Skip nodes with no geometry (e.g. stub entries with modelCount=0) to avoid NPE
+		// in GeoMap.getOrCreateChunk when worldBound is null.
+		if (nodeClone.getWorldBound() != null) {
+			map.attachChild(nodeClone);
+		}
 		return nodeClone;
 	}
 
