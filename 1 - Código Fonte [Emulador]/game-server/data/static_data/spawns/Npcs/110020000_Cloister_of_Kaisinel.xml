@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="110020000">
-		<!-- Sanctum Teleport Statue -->
+		<!-- Estátua do Teleport Santuário Elyos -->
 		<spawn npc_id="730266" respawn_time="295">
 			<spot x="2154.074" y="1567.0145" z="1204.8970" h="10" static_id="17"/>
 		</spawn>
@@ -98,7 +98,7 @@
 		<spawn npc_id="799898" respawn_time="295">
 			<spot x="2164.8967" y="1612.6300" z="1212.0787" h="100"/>
 		</spawn>
-		<!-- Parisa -->
+		<!-- Paris é Paris -->
 		<spawn npc_id="799899" respawn_time="295">
 			<spot x="2167.2644" y="1612.3689" z="1212.0771" h="87"/>
 		</spawn>

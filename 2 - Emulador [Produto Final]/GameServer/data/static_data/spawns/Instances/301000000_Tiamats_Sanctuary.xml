@@ -1,203 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="301000000">
-		<!-- Brigade General Terath -->
+		<!-- Cirurgião da 11ª tropa de ocupação -->
 		<spawn npc_id="224223" respawn_time="295">
-			<spot x="1274.6698" y="852.9832" z="315.0371" h="0" walker_id="EF3E31823D4CFA5E45F7D736F95BAA0D75578630" walker_index="1"/>
-			<spot x="1293.8862" y="839.9969" z="314.9176" h="0" walker_id="267A9C94737189859FA38635FFE7ACADB2547187" walker_index="1"/>
-			<spot x="1278.3269" y="848.8232" z="314.9176" h="0" walker_id="2BDBB6470205B83508CC35B44400B0D3EE96DC38" walker_index="1"/>
-			<spot x="1286.1066" y="844.4101" z="314.9176" h="0" walker_id="8CCEBB8FEA810A94D3CD3AF233059EADE6BEFA57" walker_index="1"/>
-			<spot x="1321.8981" y="850.1996" z="315.3527" h="0" walker_id="6B4006410D073BAC1B61ADAF3743430206B75DA2" walker_index="1"/>
-			<spot x="1308.2836" y="842.4764" z="315.3527" h="0" walker_id="A8272BA317B001B94C370696D03F5954085D9019" walker_index="1"/>
-			<spot x="1282.2167" y="846.6166" z="314.9176" h="0" walker_id="8BCDC33FBE3308B680E2C21A09D6F27BE9211C8B" walker_index="1"/>
-			<spot x="1291.9413" y="841.1002" z="314.9176" h="0" walker_id="C6B22DC9663D7EEFD754D2178ED85EADCBEC1F21" walker_index="1"/>
-			<spot x="1288.0515" y="843.3068" z="314.9176" h="0" walker_id="4440E923854BF892303D4C1C0FA646168B01D831" walker_index="1"/>
-			<spot x="1274.6698" y="866.9832" z="315.0371" h="0" walker_id="3609BE42E650BC5A464789D30E7A5198FB7A73B8" walker_index="1"/>
-			<spot x="1318.2732" y="881.663" z="314.9586" h="0" walker_id="F6EEAF46AF42434820F299B6DC995881B21EEE13" walker_index="1"/>
-			<spot x="1300.5039" y="838.0632" z="315.3527" h="0" walker_id="39C618893F8ADB224F91F92EBEC2E20C8887394A" walker_index="1"/>
-			<spot x="1324.1631" y="878.4564" z="314.9586" h="0" walker_id="C06109F2D682997724FABF41C1093E388ACE105E" walker_index="1"/>
-			<spot x="1324.1631" y="878.4564" z="314.9586" h="0" walker_id="C06109F2D682997724FABF41C1093E388ACE105E" walker_index="1"/>
-			<spot x="1324.1631" y="878.4564" z="314.9586" h="0" walker_id="C06109F2D682997724FABF41C1093E388ACE105E" walker_index="1"/>
-			<spot x="1323.7695" y="856.8659" z="315.1252" h="0" walker_id="3E36D644F190F6C92BA588C52A83C3DB60EF778F" walker_index="2"/>
-			<spot x="1274.6698" y="856.9832" z="315.0371" h="0" walker_id="3E36D644F190F6C92BA588C52A83C3DB60EF778F" walker_index="1"/>
-			<spot x="1323.7695" y="876.8659" z="315.1252" h="0" walker_id="0CBFAFB0F9957C931E6156D4B0586F8F874B5ED9" walker_index="2"/>
-			<spot x="1323.7695" y="878.8659" z="315.1252" h="0" walker_id="27A40C0CDF19C6990EF2541551590B0E935081C7" walker_index="2"/>
-			<spot x="1323.7695" y="878.8659" z="315.1252" h="0" walker_id="27A40C0CDF19C6990EF2541551590B0E935081C7" walker_index="2"/>
-			<spot x="1297.7761" y="837.7903" z="314.9176" h="0" walker_id="CE2BE9634A6F49868EC0CFF29E004D1A662E9ED1" walker_index="1"/>
-			<spot x="1316.0632" y="846.8896" z="315.3527" h="0" walker_id="29BB49698296C9B3CDD8535A694DDBB5B28D0C38" walker_index="1"/>
-			<spot x="1318.0082" y="847.9929" z="315.3527" h="0" walker_id="20A8A3F4C20DFE32485023ECE85AF486B480CDE1" walker_index="1"/>
-			<spot x="1323.7695" y="862.8659" z="315.1252" h="0" walker_id="00B73E8AB2B8D1A84EDF91B09A9168ED6DA60001" walker_index="2"/>
-			<spot x="1302.449" y="839.1666" z="315.3527" h="0" walker_id="EE4324E46B36A15AD5505EA0AC864B96D9CE57F0" walker_index="1"/>
-			<spot x="1276.697" y="880.439" z="315.2645" h="0" walker_id="86C116C4FB344A75B31B33E6058576F54CF06B9C" walker_index="1"/>
-			<spot x="1274.6698" y="864.9832" z="315.0371" h="0" walker_id="0A37B004A73A76D490E3AE6DBA8577F29BD063E6" walker_index="1"/>
-			<spot x="1274.6698" y="876.9832" z="315.0371" h="0" walker_id="0CBFAFB0F9957C931E6156D4B0586F8F874B5ED9" walker_index="1"/>
-			<spot x="1310.2286" y="843.5798" z="315.3527" h="0" walker_id="E674A7978D634A202C9EE21D32F0C9E9E4A0F2C6" walker_index="1"/>
-			<spot x="1274.6698" y="858.9832" z="315.0371" h="0" walker_id="83F13EE7B830CC3DED1A0D74421523D3B5C58CB3" walker_index="1"/>
-			<spot x="1274.6698" y="868.9832" z="315.0371" h="0" walker_id="73EEB42068BEF2A16E012DD40200DD3A102185A7" walker_index="1"/>
-			<spot x="1284.5526" y="884.7158" z="315.2645" h="0" walker_id="09522D60D6BB857D5E892AD7322EB221323AE681" walker_index="1"/>
-			<spot x="1323.7695" y="874.8659" z="315.1252" h="0" walker_id="0C8C113B27EFCCBF41CC5D1C3E7E80E1735E3D5E" walker_index="2"/>
-			<spot x="1314.1183" y="845.7863" z="315.3527" h="0" walker_id="21EB9FF91CD029C654C3777C51C6360B86DC3326" walker_index="1"/>
-			<spot x="1323.7695" y="854.8659" z="315.1252" h="0" walker_id="DB85C589231CE04AB020117941A67CFB39DD3A84" walker_index="2"/>
-			<spot x="1295.8312" y="838.8936" z="314.9176" h="0" walker_id="5BDA2391E1F17147F71F192EA832230FB5E74CFB" walker_index="1"/>
-			<spot x="1290.4442" y="887.9233" z="315.2645" h="0" walker_id="D187B9F0C28A5D630A690B2B003E9FA77D6D2C37" walker_index="1"/>
-			<spot x="1300.7689" y="891.5927" z="314.9586" h="0" walker_id="6A6612EE4F0F9FF94BDE898A8DA6C4DD8B44B285" walker_index="1"/>
-			<spot x="1323.7695" y="868.8659" z="315.1252" h="0" walker_id="73EEB42068BEF2A16E012DD40200DD3A102185A7" walker_index="2"/>
-			<spot x="1323.7695" y="872.8659" z="315.1252" h="0" walker_id="F9248CC9C6300DFB93869510372CEFBDE043981C" walker_index="2"/>
-			<spot x="1323.7695" y="850.8659" z="315.1252" h="0" walker_id="2AE4B02A750B90A7351A577D796A59B23A4AF71A" walker_index="2"/>
-			<spot x="1323.7695" y="850.8659" z="315.1252" h="0" walker_id="2AE4B02A750B90A7351A577D796A59B23A4AF71A" walker_index="2"/>
-			<spot x="1274.6698" y="850.9832" z="315.0371" h="0" walker_id="A5289A3996C49BEE98A6883736F93D06F8FEF709" walker_index="1"/>
-			<spot x="1274.6698" y="850.9832" z="315.0371" h="0" walker_id="A5289A3996C49BEE98A6883736F93D06F8FEF709" walker_index="1"/>
-			<spot x="1274.7332" y="879.3698" z="315.2645" h="0" walker_id="27A40C0CDF19C6990EF2541551590B0E935081C7" walker_index="1"/>
-			<spot x="1274.7332" y="879.3698" z="315.2645" h="0" walker_id="27A40C0CDF19C6990EF2541551590B0E935081C7" walker_index="1"/>
-			<spot x="1280.6249" y="882.5774" z="315.2645" h="0" walker_id="C6AB3B091C4393D28168BC96ED61B916205CF846" walker_index="1"/>
-			<spot x="1308.5486" y="887.1795" z="314.9586" h="0" walker_id="8754B2EFA3FC190D0A88C487806AD3EE11F3BE24" walker_index="1"/>
-			<spot x="1298.2998" y="892.2001" z="315.2645" h="0" walker_id="661E69B7193853F7B01FE9AFBF2A91905062B177" walker_index="1"/>
-			<spot x="1298.2998" y="892.2001" z="315.2645" h="0" walker_id="661E69B7193853F7B01FE9AFBF2A91905062B177" walker_index="1"/>
-			<spot x="1312.4385" y="884.9728" z="314.9586" h="0" walker_id="6D5F926FB2EA8E69643FD17F0FCAF0C7F408F89C" walker_index="1"/>
-			<spot x="1274.6698" y="874.9832" z="315.0371" h="0" walker_id="0C8C113B27EFCCBF41CC5D1C3E7E80E1735E3D5E" walker_index="1"/>
-			<spot x="1274.6698" y="860.9832" z="315.0371" h="0" walker_id="497269E821A7D7734FCF027FBC4F376EF4153D44" walker_index="1"/>
-			<spot x="1274.6698" y="870.9832" z="315.0371" h="0" walker_id="65DDD5EFFADBFDD761D496E7F8C0D0AE49517C05" walker_index="1"/>
-			<spot x="1296.3359" y="891.1309" z="315.2645" h="0" walker_id="9888E34F9882338E99ED3F3F0D5F567DF0DBBB80" walker_index="1"/>
-			<spot x="1320.2181" y="880.5597" z="314.9586" h="0" walker_id="003894464012C2CC9E23815D68C732A345B185D0" walker_index="1"/>
-			<spot x="1274.6698" y="862.9832" z="315.0371" h="0" walker_id="00B73E8AB2B8D1A84EDF91B09A9168ED6DA60001" walker_index="1"/>
-			<spot x="1294.3719" y="890.0617" z="315.2645" h="0" walker_id="AAEC499BE8491E78FBDC67B4C432AED09C09386A" walker_index="1"/>
-			<spot x="1274.6698" y="854.9832" z="315.0371" h="0" walker_id="DB85C589231CE04AB020117941A67CFB39DD3A84" walker_index="1"/>
-			<spot x="1314.3833" y="883.8696" z="314.9586" h="0" walker_id="0AAB78C662AF75BBE5278FABDC483180CAA2338D" walker_index="1"/>
-			<spot x="1306.6038" y="888.2828" z="314.9586" h="0" walker_id="5B7F561BAFC1B540674983AE9F60DF193A57CEF1" walker_index="1"/>
-			<spot x="1284.1616" y="845.5134" z="314.9176" h="0" walker_id="CE21033BD25B007291468FCDA058C31A565BC035" walker_index="1"/>
-			<spot x="1323.8431" y="851.3029" z="315.3527" h="0" walker_id="3E6CDF3AD07A3574B9553171F83E9498E01875E1" walker_index="1"/>
-			<spot x="1323.8431" y="851.3029" z="315.3527" h="0" walker_id="3E6CDF3AD07A3574B9553171F83E9498E01875E1" walker_index="1"/>
-			<spot x="1319.9532" y="849.0963" z="315.3527" h="0" walker_id="04D4DD7F03E4D75D6548DDA28F8D4817A50A2D96" walker_index="1"/>
-			<spot x="1286.5165" y="885.785" z="315.2645" h="0" walker_id="0917A916E874F1603649015A1DF0B94F415278E0" walker_index="1"/>
-			<spot x="1274.6698" y="878.9832" z="315.0371" h="0" walker_id="27A40C0CDF19C6990EF2541551590B0E935081C7" walker_index="1"/>
-			<spot x="1274.6698" y="878.9832" z="315.0371" h="0" walker_id="27A40C0CDF19C6990EF2541551590B0E935081C7" walker_index="1"/>
-			<spot x="1304.3938" y="840.2698" z="315.3527" h="0" walker_id="30FC8841897F49E486DA8664984D9AB0677DE0E0" walker_index="1"/>
-			<spot x="1323.7695" y="860.8659" z="315.1252" h="0" walker_id="497269E821A7D7734FCF027FBC4F376EF4153D44" walker_index="2"/>
-			<spot x="1323.7695" y="852.8659" z="315.1252" h="0" walker_id="EF3E31823D4CFA5E45F7D736F95BAA0D75578630" walker_index="2"/>
-			<spot x="1323.7695" y="852.8659" z="315.1252" h="0" walker_id="EF3E31823D4CFA5E45F7D736F95BAA0D75578630" walker_index="2"/>
-			<spot x="1323.7695" y="866.8659" z="315.1252" h="0" walker_id="3609BE42E650BC5A464789D30E7A5198FB7A73B8" walker_index="2"/>
-			<spot x="1304.6588" y="889.3861" z="314.9586" h="0" walker_id="2AFBEA3DCAF9FA06413498F2B308F52F8B0C86E2" walker_index="1"/>
-			<spot x="1323.7695" y="870.8659" z="315.1252" h="0" walker_id="65DDD5EFFADBFDD761D496E7F8C0D0AE49517C05" walker_index="2"/>
-			<spot x="1298.824" y="892.696" z="314.9586" h="0" walker_id="65573AE1471B09E859C3FF7A621FA8E1F9198028" walker_index="1"/>
-			<spot x="1298.824" y="892.696" z="314.9586" h="0" walker_id="65573AE1471B09E859C3FF7A621FA8E1F9198028" walker_index="1"/>
-			<spot x="1292.4081" y="888.9926" z="315.2645" h="0" walker_id="D97B88DF4DFC04B57C900FD92456100918A01B0D" walker_index="1"/>
-			<spot x="1288.4803" y="886.8542" z="315.2645" h="0" walker_id="0FC231D3534E23F8CC58882FD376E0EACBC2D6E6" walker_index="1"/>
-			<spot x="1310.4935" y="886.0762" z="314.9586" h="0" walker_id="84806FB6A84F7CE475CBAA6B288464EC0D06068E" walker_index="1"/>
-			<spot x="1278.661" y="881.5082" z="315.2645" h="0" walker_id="182E507885BADC219FDBE5245BEE1A6E2C82A592" walker_index="1"/>
-			<spot x="1302.7139" y="890.4894" z="314.9586" h="0" walker_id="F2788C0BC49B5422245C58FCA80C641E97903A76" walker_index="1"/>
-			<spot x="1276.382" y="849.9266" z="314.9176" h="0" walker_id="28C0D7BDF893388BE2EE7EDD663E66403A9FED84" walker_index="1"/>
-			<spot x="1316.3282" y="882.7662" z="314.9586" h="0" walker_id="3FEF9C9532E5F576725F54303501AE05B2292803" walker_index="1"/>
-			<spot x="1322.1631" y="879.4564" z="314.9586" h="0" walker_id="C09993F8BB950E714491DFBD749A58EB79CA6F90" walker_index="1"/>
-			<spot x="1322.1631" y="879.4564" z="314.9586" h="0" walker_id="C09993F8BB950E714491DFBD749A58EB79CA6F90" walker_index="1"/>
-			<spot x="1323.7695" y="858.8659" z="315.1252" h="0" walker_id="83F13EE7B830CC3DED1A0D74421523D3B5C58CB3" walker_index="2"/>
-			<spot x="1274.6698" y="872.9832" z="315.0371" h="0" walker_id="F9248CC9C6300DFB93869510372CEFBDE043981C" walker_index="1"/>
-			<spot x="1306.3389" y="841.3732" z="315.3527" h="0" walker_id="DEB7BD546AEE874692A332EB20D0C4D6340ED65D" walker_index="1"/>
-			<spot x="1312.1735" y="844.683" z="315.3527" h="0" walker_id="B3E6DCC0DD9B4B1B184FE16D6008BAB67E894544" walker_index="1"/>
-			<spot x="1289.9963" y="842.2035" z="314.9176" h="0" walker_id="101E93815E512875F73F8B0CA28346FC968A05D8" walker_index="1"/>
-			<spot x="1323.7695" y="864.8659" z="315.1252" h="0" walker_id="0A37B004A73A76D490E3AE6DBA8577F29BD063E6" walker_index="2"/>
-			<spot x="1280.2717" y="847.72" z="314.9176" h="0" walker_id="50D79FBF3849C25083A285BCC81FB6ABDE139B09" walker_index="1"/>
-			<spot x="1282.5887" y="883.6466" z="315.2645" h="0" walker_id="740FF821F2DD42E238717FE8E72BF7A2893BB919" walker_index="1"/>
-			<spot x="1274.437" y="851.0298" z="314.9176" h="0" walker_id="A5289A3996C49BEE98A6883736F93D06F8FEF709" walker_index="1"/>
-			<spot x="1274.437" y="851.0298" z="314.9176" h="0" walker_id="A5289A3996C49BEE98A6883736F93D06F8FEF709" walker_index="1"/>
-			<spot x="1274.57" y="853.02" z="315.04" h="0" walker_id="B67F921E9F1DC8C09D3AFF3A7207AA5BBA3F35AC"/>
-			<spot x="1293.82" y="839.96" z="314.92" h="0" walker_id="6AFEDEE290F3E81161A9B6CB96408E8F68173DC2"/>
-			<spot x="1286.04" y="844.38" z="314.92" h="0" walker_id="46B73D1A08ADE93986760BD8C83CCCF853F7E20E"/>
-			<spot x="1321.94" y="849.81" z="315.35" h="0" walker_id="0C37587C3AF890A375A6B03D58483F00CF3F7D9C"/>
-			<spot x="1308.32" y="842.09" z="315.35" h="0" walker_id="5C085CD35E510B944F574D12B5179C053C9AD4AD"/>
-			<spot x="1287.98" y="843.27" z="314.92" h="0" walker_id="5160EB51E6B49AABDE8099F13A76572A09F0416B"/>
-			<spot x="1274.57" y="867.02" z="315.04" h="0" walker_id="B48E99C22F30F18575458F42AB88BE6364F0915A"/>
-			<spot x="1318.36" y="881.73" z="314.96" h="0" walker_id="004DD1D7FCED0FA48B345A367CE6C04A17DD764E"/>
-			<spot x="1300.54" y="837.67" z="315.35" h="0" walker_id="4A0018C07E017077F6B26B9F4829D96027DF6E64"/>
-			<spot x="1323.87" y="856.83" z="315.13" h="0" walker_id="180A9ECB1DE6329FC6D29034E9FCD3151AD7D4E3"/>
-			<spot x="1274.57" y="857.02" z="315.04" h="0" walker_id="2CD5C1003DC71F504704DF194373F2C39FF1AE75"/>
-			<spot x="1323.87" y="876.83" z="315.13" h="0" walker_id="5FA855CDD44ABD9CF2DFAA5DEFFD3564058269DD"/>
-			<spot x="1323.87" y="878.83" z="315.04" h="0" walker_id="AAB209B065C250443DD27D44EDB87B4D693FC351"/>
-			<spot x="1297.71" y="837.76" z="314.92" h="0" walker_id="ADACB7A645BFA70E47CB68F53F177015E3C82B54"/>
-			<spot x="1316.1" y="846.5" z="315.35" h="0" walker_id="F7D28A8BDA33B1AA2FAFCA087BA79DC630C40644"/>
-			<spot x="1318.05" y="847.6" z="315.35" h="0" walker_id="12256E881A799F839E8EF8841CBB2CDDBF6F62A3"/>
-			<spot x="1323.87" y="862.83" z="315.13" h="0" walker_id="932AB196C7842F3FF3A85A496A186A99783038AE"/>
-			<spot x="1302.49" y="838.78" z="315.35" h="0" walker_id="95CFA740BBAF71ACA95FF8663BB45D07992E6BFF"/>
-			<spot x="1276.67" y="880.54" z="315.26" h="0" walker_id="FAF0492360BE433670B3A6704768CDAA079EB18A"/>
-			<spot x="1274.57" y="865.02" z="315.04" h="0" walker_id="3BF5F7B668680845499709C2A9D9F7751A4F5479"/>
-			<spot x="1274.57" y="877.02" z="315.04" h="0" walker_id="599A234D4706939CAF9E821731D90DE58A96C2F6"/>
-			<spot x="1310.27" y="843.19" z="315.35" h="0" walker_id="2E41C82618BCAC084D9AB9110AD612C01750BC58"/>
-			<spot x="1274.57" y="859.02" z="315.04" h="0" walker_id="28A0E6E08C7F6D504F2E7332005B361F3A2DF854"/>
-			<spot x="1274.57" y="869.02" z="315.04" h="0" walker_id="CA11B142FFD179A9CE752F271E0C27B091DF8AF9"/>
-			<spot x="1284.53" y="884.82" z="315.26" h="0" walker_id="9D55244B1D47C6BF66DFA536D8D208D9878DE142"/>
-			<spot x="1323.87" y="874.83" z="315.13" h="0" walker_id="F1C1703705EB3F62706A7FA4075C32049C032BC1"/>
-			<spot x="1314.16" y="845.4" z="315.35" h="0" walker_id="5FDB25C8223479061A395EB50281BD2EF547493B"/>
-			<spot x="1323.87" y="854.83" z="315.13" h="0" walker_id="598F7056B27070F02E0954038AA5A7789D3E1F90"/>
-			<spot x="1290.42" y="888.02" z="315.26" h="0" walker_id="70215C57301E60F8D7FE23288954FE5D6E8F3AFD"/>
-			<spot x="1300.85" y="891.66" z="314.96" h="0" walker_id="860F769265AC082C00E8277DD5B32A3D74D5E61B"/>
-			<spot x="1323.87" y="868.83" z="315.13" h="0" walker_id="5FA5244AE3D12BF3AF968A44A4997FAAC6727609"/>
-			<spot x="1323.87" y="872.83" z="315.13" h="0" walker_id="59823B04DDB66DA4693BDFC233F670E7B8F5D301"/>
-			<spot x="1323.87" y="850.83" z="315.24" h="0" walker_id="140AC1CF97E875C75EBF3E273B91BF1427C6937E"/>
-			<spot x="1274.57" y="851.02" z="314.98" h="0" walker_id="56D72AD0AAC2A5BDE8ADA840F0DFCAB39049D8A6"/>
-			<spot x="1274.71" y="879.47" z="315.15" h="0" walker_id="7B1751571437E9A9508DFB1427C6559A1ABA852A"/>
-			<spot x="1280.6" y="882.68" z="315.26" h="0" walker_id="8690A7FF1BB0D45CD6BEF6154D387AFE84774B60"/>
-			<spot x="1308.63" y="887.24" z="314.96" h="0" walker_id="53B39525B4D946599E8249A13FC21DFE5E0F0B24"/>
-			<spot x="1298.27" y="892.3" z="315.11" h="0" walker_id="78D1277566E2FE127FC831ED3113BF796C77ED17"/>
-			<spot x="1312.52" y="885.04" z="314.96" h="0" walker_id="6B83ABE34C1083C04428C1C744587FA8550B6F0A"/>
-			<spot x="1274.57" y="875.02" z="315.04" h="0" walker_id="8F7D95740E60FCFE59D050BBA65B5B754FDDC3DF"/>
-			<spot x="1274.57" y="861.02" z="315.04" h="0" walker_id="CBCE6FFBC57AB2692C7240884E6BB740A3B39CFA"/>
-			<spot x="1274.57" y="871.02" z="315.04" h="0" walker_id="17606E897FAEC0F6E555833078B8D76CF3C63335"/>
-			<spot x="1296.31" y="891.23" z="315.26" h="0" walker_id="95DDA2934AFBDDE593D092814DDD9CB2E8CF6B27"/>
-			<spot x="1320.3" y="880.62" z="314.96" h="0" walker_id="A6FB2DC26C93A323DD7AA4FF90CCEF16642F239F"/>
-			<spot x="1274.57" y="863.02" z="315.04" h="0" walker_id="873C39BD85A4764CA5C6B1395A59836B1B3DCCC9"/>
-			<spot x="1294.35" y="890.16" z="315.26" h="0" walker_id="2986F440ED2C86BE52FACB5A5D92EAB1C3083839"/>
-			<spot x="1274.57" y="855.02" z="315.04" h="0" walker_id="B22CF83557195009858C3E52406A72B76C15CD23"/>
-			<spot x="1314.47" y="883.93" z="314.96" h="0" walker_id="BE4ECB6E1CA76FD707AEC84170BDD81C95A47843"/>
-			<spot x="1306.69" y="888.35" z="314.96" h="0" walker_id="DFE189D2229C110D39D188529A0D2B2E571CF9DC"/>
-			<spot x="1284.09" y="845.48" z="314.92" h="0" walker_id="B5D1B39AFB6424E28BF8B4440C96C81F6E89D231"/>
-			<spot x="1323.88" y="850.91" z="315.24" h="0" walker_id="86B0462847CC73D534BC1C62F113A452E0871BAA"/>
-			<spot x="1319.99" y="848.71" z="315.35" h="0" walker_id="B7BFA3FE3AB7E966E1B683158B24E7BCEE804704"/>
-			<spot x="1286.49" y="885.89" z="315.26" h="0" walker_id="B57F0E3EB2AA2EC90D3C37B39961E93E1C7081BB"/>
-			<spot x="1274.57" y="879.02" z="315.15" h="0" walker_id="2FC706E5261669232FDAC8E99F79669852E4A36F"/>
-			<spot x="1304.43" y="839.88" z="315.35" h="0" walker_id="D1432399258F3F7783B33FBE991485E9872DEE31"/>
-			<spot x="1323.87" y="860.83" z="315.13" h="0" walker_id="12E3A977E6B04CE84F17A650AFB30F8B1BBF63EE"/>
-			<spot x="1323.87" y="852.83" z="315.24" h="0" walker_id="82BDB39E44A57E43F7B7566AC9A933B054F0255B"/>
-			<spot x="1323.87" y="866.83" z="315.13" h="0" walker_id="E21630FEA17CAD299366307A652E29385255FD86"/>
-			<spot x="1304.74" y="889.45" z="314.96" h="0" walker_id="7F5FC9213B6535906061A8E54933A8E18A7242F1"/>
-			<spot x="1323.87" y="870.83" z="315.13" h="0" walker_id="245DE73A583B59879BF9A8DDDD3846E4FCEDDCE4"/>
-			<spot x="1298.91" y="892.76" z="315.11" h="0" walker_id="E04B2AC057F5ADF48BAFAC242D95868D1CAF6DF4"/>
-			<spot x="1292.38" y="889.09" z="315.26" h="0" walker_id="DB837510E7B7F0FB5C1845C8426841F639853EFD"/>
-			<spot x="1288.46" y="886.96" z="315.26" h="0" walker_id="127AE8B8EA9574B1CC6B41BF032DC466E72A6DD0"/>
-			<spot x="1310.58" y="886.14" z="314.96" h="0" walker_id="5FDB8DA9A65DAC74E4B52B15721D568E2A87D149"/>
-			<spot x="1278.64" y="881.61" z="315.26" h="0" walker_id="B5FF642B323C5AED99D0CE46845B749FBD7E5C31"/>
-			<spot x="1302.8" y="890.55" z="314.96" h="0" walker_id="945CA8408401DCC24AC084AAF23F72959D95877C"/>
-			<spot x="1276.31" y="849.89" z="314.92" h="0" walker_id="AC7F2A719E1F94CD02A2287ED7C7B330FD96B19B"/>
-			<spot x="1316.41" y="882.83" z="314.96" h="0" walker_id="A1B83BD7C2D6153629BEC6ED84D6832175328DC7"/>
-			<spot x="1323.87" y="858.83" z="315.13" h="0" walker_id="5E40F3F83C2037310984844CA9F58D205DFFBCA8"/>
-			<spot x="1274.57" y="873.02" z="315.04" h="0" walker_id="F9133DC00C26DAE458701B46D9E19E23776A4D38"/>
-			<spot x="1306.38" y="840.98" z="315.35" h="0" walker_id="45649B467648B4BA35D5FE5A1476818968037083"/>
-			<spot x="1312.21" y="844.29" z="315.35" h="0" walker_id="E7DB997426398A428A4589A2B2CE9542B7D2F7DA"/>
-			<spot x="1289.93" y="842.17" z="314.92" h="0" walker_id="3C02A3D51571D480233AF334D910B60C9D28241D"/>
-			<spot x="1323.87" y="864.83" z="315.13" h="0" walker_id="91CAB1280DC81E26A292F6D51EE666241F423A4B"/>
-			<spot x="1280.2" y="847.69" z="314.92" h="0" walker_id="B9094A7DAF699886E35C7A7E6E548D0A44B5462B"/>
-			<spot x="1282.56" y="883.75" z="315.26" h="0" walker_id="9C0C36D8A704742B9056A78ED33889E157DF5BCA"/>
+			<spot x="1274.6698" y="852.9832" z="315.0371" h="0" walker_index="1"/>
+			<spot x="1293.8862" y="839.9969" z="314.9176" h="0" walker_index="1"/>
+			<spot x="1278.3269" y="848.8232" z="314.9176" h="0" walker_index="1"/>
+			<spot x="1286.1066" y="844.4101" z="314.9176" h="0" walker_index="1"/>
+			<spot x="1321.8981" y="850.1996" z="315.3527" h="0" walker_index="1"/>
+			<spot x="1308.2836" y="842.4764" z="315.3527" h="0" walker_index="1"/>
+			<spot x="1282.2167" y="846.6166" z="314.9176" h="0" walker_index="1"/>
+			<spot x="1291.9413" y="841.1002" z="314.9176" h="0" walker_index="1"/>
+			<spot x="1288.0515" y="843.3068" z="314.9176" h="0" walker_index="1"/>
+			<spot x="1274.6698" y="866.9832" z="315.0371" h="0" walker_index="1"/>
+			<spot x="1318.2732" y="881.663" z="314.9586" h="0" walker_index="1"/>
+			<spot x="1300.5039" y="838.0632" z="315.3527" h="0" walker_index="1"/>
+			<spot x="1324.1631" y="878.4564" z="314.9586" h="0" walker_index="1"/>
+			<spot x="1324.1631" y="878.4564" z="314.9586" h="0" walker_index="1"/>
+			<spot x="1324.1631" y="878.4564" z="314.9586" h="0" walker_index="1"/>
+			<spot x="1323.7695" y="856.8659" z="315.1252" h="0" walker_index="2"/>
+			<spot x="1274.6698" y="856.9832" z="315.0371" h="0" walker_index="1"/>
+			<spot x="1323.7695" y="876.8659" z="315.1252" h="0" walker_index="2"/>
+			<spot x="1323.7695" y="878.8659" z="315.1252" h="0" walker_index="2"/>
+			<spot x="1323.7695" y="878.8659" z="315.1252" h="0" walker_index="2"/>
+			<spot x="1297.7761" y="837.7903" z="314.9176" h="0" walker_index="1"/>
+			<spot x="1316.0632" y="846.8896" z="315.3527" h="0" walker_index="1"/>
+			<spot x="1318.0082" y="847.9929" z="315.3527" h="0" walker_index="1"/>
+			<spot x="1323.7695" y="862.8659" z="315.1252" h="0" walker_index="2"/>
+			<spot x="1302.449" y="839.1666" z="315.3527" h="0" walker_index="1"/>
+			<spot x="1276.697" y="880.439" z="315.2645" h="0" walker_index="1"/>
+			<spot x="1274.6698" y="864.9832" z="315.0371" h="0" walker_index="1"/>
+			<spot x="1274.6698" y="876.9832" z="315.0371" h="0" walker_index="1"/>
+			<spot x="1310.2286" y="843.5798" z="315.3527" h="0" walker_index="1"/>
+			<spot x="1274.6698" y="858.9832" z="315.0371" h="0" walker_index="1"/>
+			<spot x="1274.6698" y="868.9832" z="315.0371" h="0" walker_index="1"/>
+			<spot x="1284.5526" y="884.7158" z="315.2645" h="0" walker_index="1"/>
+			<spot x="1323.7695" y="874.8659" z="315.1252" h="0" walker_index="2"/>
+			<spot x="1314.1183" y="845.7863" z="315.3527" h="0" walker_index="1"/>
+			<spot x="1323.7695" y="854.8659" z="315.1252" h="0" walker_index="2"/>
+			<spot x="1295.8312" y="838.8936" z="314.9176" h="0" walker_index="1"/>
+			<spot x="1290.4442" y="887.9233" z="315.2645" h="0" walker_index="1"/>
+			<spot x="1300.7689" y="891.5927" z="314.9586" h="0" walker_index="1"/>
+			<spot x="1323.7695" y="868.8659" z="315.1252" h="0" walker_index="2"/>
+			<spot x="1323.7695" y="872.8659" z="315.1252" h="0" walker_index="2"/>
+			<spot x="1323.7695" y="850.8659" z="315.1252" h="0" walker_index="2"/>
+			<spot x="1323.7695" y="850.8659" z="315.1252" h="0" walker_index="2"/>
+			<spot x="1274.6698" y="850.9832" z="315.0371" h="0" walker_index="1"/>
+			<spot x="1274.6698" y="850.9832" z="315.0371" h="0" walker_index="1"/>
+			<spot x="1274.7332" y="879.3698" z="315.2645" h="0" walker_index="1"/>
+			<spot x="1274.7332" y="879.3698" z="315.2645" h="0" walker_index="1"/>
+			<spot x="1280.6249" y="882.5774" z="315.2645" h="0" walker_index="1"/>
+			<spot x="1308.5486" y="887.1795" z="314.9586" h="0" walker_index="1"/>
+			<spot x="1298.2998" y="892.2001" z="315.2645" h="0" walker_index="1"/>
+			<spot x="1298.2998" y="892.2001" z="315.2645" h="0" walker_index="1"/>
+			<spot x="1312.4385" y="884.9728" z="314.9586" h="0" walker_index="1"/>
+			<spot x="1274.6698" y="874.9832" z="315.0371" h="0" walker_index="1"/>
+			<spot x="1274.6698" y="860.9832" z="315.0371" h="0" walker_index="1"/>
+			<spot x="1274.6698" y="870.9832" z="315.0371" h="0" walker_index="1"/>
+			<spot x="1296.3359" y="891.1309" z="315.2645" h="0" walker_index="1"/>
+			<spot x="1320.2181" y="880.5597" z="314.9586" h="0" walker_index="1"/>
+			<spot x="1274.6698" y="862.9832" z="315.0371" h="0" walker_index="1"/>
+			<spot x="1294.3719" y="890.0617" z="315.2645" h="0" walker_index="1"/>
+			<spot x="1274.6698" y="854.9832" z="315.0371" h="0" walker_index="1"/>
+			<spot x="1314.3833" y="883.8696" z="314.9586" h="0" walker_index="1"/>
+			<spot x="1306.6038" y="888.2828" z="314.9586" h="0" walker_index="1"/>
+			<spot x="1284.1616" y="845.5134" z="314.9176" h="0" walker_index="1"/>
+			<spot x="1323.8431" y="851.3029" z="315.3527" h="0" walker_index="1"/>
+			<spot x="1323.8431" y="851.3029" z="315.3527" h="0" walker_index="1"/>
+			<spot x="1319.9532" y="849.0963" z="315.3527" h="0" walker_index="1"/>
+			<spot x="1286.5165" y="885.785" z="315.2645" h="0" walker_index="1"/>
+			<spot x="1274.6698" y="878.9832" z="315.0371" h="0" walker_index="1"/>
+			<spot x="1274.6698" y="878.9832" z="315.0371" h="0" walker_index="1"/>
+			<spot x="1304.3938" y="840.2698" z="315.3527" h="0" walker_index="1"/>
+			<spot x="1323.7695" y="860.8659" z="315.1252" h="0" walker_index="2"/>
+			<spot x="1323.7695" y="852.8659" z="315.1252" h="0" walker_index="2"/>
+			<spot x="1323.7695" y="852.8659" z="315.1252" h="0" walker_index="2"/>
+			<spot x="1323.7695" y="866.8659" z="315.1252" h="0" walker_index="2"/>
+			<spot x="1304.6588" y="889.3861" z="314.9586" h="0" walker_index="1"/>
+			<spot x="1323.7695" y="870.8659" z="315.1252" h="0" walker_index="2"/>
+			<spot x="1298.824" y="892.696" z="314.9586" h="0" walker_index="1"/>
+			<spot x="1298.824" y="892.696" z="314.9586" h="0" walker_index="1"/>
+			<spot x="1292.4081" y="888.9926" z="315.2645" h="0" walker_index="1"/>
+			<spot x="1288.4803" y="886.8542" z="315.2645" h="0" walker_index="1"/>
+			<spot x="1310.4935" y="886.0762" z="314.9586" h="0" walker_index="1"/>
+			<spot x="1278.661" y="881.5082" z="315.2645" h="0" walker_index="1"/>
+			<spot x="1302.7139" y="890.4894" z="314.9586" h="0" walker_index="1"/>
+			<spot x="1276.382" y="849.9266" z="314.9176" h="0" walker_index="1"/>
+			<spot x="1316.3282" y="882.7662" z="314.9586" h="0" walker_index="1"/>
+			<spot x="1322.1631" y="879.4564" z="314.9586" h="0" walker_index="1"/>
+			<spot x="1322.1631" y="879.4564" z="314.9586" h="0" walker_index="1"/>
+			<spot x="1323.7695" y="858.8659" z="315.1252" h="0" walker_index="2"/>
+			<spot x="1274.6698" y="872.9832" z="315.0371" h="0" walker_index="1"/>
+			<spot x="1306.3389" y="841.3732" z="315.3527" h="0" walker_index="1"/>
+			<spot x="1312.1735" y="844.683" z="315.3527" h="0" walker_index="1"/>
+			<spot x="1289.9963" y="842.2035" z="314.9176" h="0" walker_index="1"/>
+			<spot x="1323.7695" y="864.8659" z="315.1252" h="0" walker_index="2"/>
+			<spot x="1280.2717" y="847.72" z="314.9176" h="0" walker_index="1"/>
+			<spot x="1282.5887" y="883.6466" z="315.2645" h="0" walker_index="1"/>
+			<spot x="1274.437" y="851.0298" z="314.9176" h="0" walker_index="1"/>
+			<spot x="1274.437" y="851.0298" z="314.9176" h="0" walker_index="1"/>
 		</spawn>
-		<!-- Trap Circle -->
+		<!-- Protetor da 41ª tropa de ocupação -->
 		<spawn npc_id="283214" respawn_time="295">
-			<spot x="1604.78" y="885.4301" z="308" h="0" walker_id="CD53E23FF6B75C81C3B0268645057D7C2425709F" walker_index="4"/>
-			<spot x="1627.1272" y="425.174" z="248" h="0" walker_id="13223E0C13B9146B6F3306B8776CFA2932746A71" walker_index="3"/>
-			<spot x="1543.78" y="200.43" z="271" h="0" walker_id="615AB802C8C4A3786A58462E4661A5098F8F9F1F" walker_index="2"/>
+			<spot x="1604.78" y="885.4301" z="308" h="0" walker_index="4"/>
+			<spot x="1627.1272" y="425.174" z="248" h="0" walker_index="3"/>
+			<spot x="1543.78" y="200.43" z="271" h="0" walker_index="2"/>
 			<spot x="1680.78" y="365.43" z="243.1831" h="0"/>
-			<spot x="1680.8" y="365.33" z="243.18" h="0"/>
-			<spot x="1627.15" y="425.07" z="248.0" h="0"/>
-			<spot x="1543.8" y="200.33" z="271.0" h="0"/>
-			<spot x="1604.8" y="885.33" z="308.0" h="0"/>
 		</spawn>
-		<!-- 1221_Temporary Door -->
+		<!-- 1221_Temporary Porta -->
 		<spawn npc_id="700545" respawn_time="295">
 			<spot x="1456.0782" y="1047.5848" z="387.3368" h="0"/>
 			<spot x="1456.0782" y="1047.5848" z="387.3368" h="0"/>
 			<spot x="1456.0782" y="1047.5848" z="387.3368" h="0"/>
 		</spawn>
-		<!-- Heart of the Sanctuary -->
+		<!-- &amp;lt;Fortaleza Caretaker&amp;gt; -->
 		<spawn npc_id="701612" respawn_time="295">
 			<spot x="1582.2925" y="475.0986" z="262.7366" h="0"/>
 		</spawn>
-		<!-- Trap Trigger -->
+		<!-- &amp;lt;Chefe de gabinete da fortaleza&amp;gt; -->
 		<spawn npc_id="701613" respawn_time="295">
 			<spot x="1433.1237" y="1056.5338" z="387.36" h="0"/>
 			<spot x="1480.7903" y="1047.5967" z="387.36" h="0"/>
@@ -209,36 +129,33 @@
 			<spot x="1474.8179" y="1063.0671" z="387.36" h="0"/>
 			<spot x="1443.9205" y="1026.1132" z="387.36" h="0"/>
 		</spawn>
-		<!-- Heart of the Sanctuary -->
+		<!-- &amp;lt;Fortaleza Caretaker&amp;gt; -->
 		<spawn npc_id="701615" respawn_time="295">
 			<spot x="1665.2104" y="534.0594" z="245.4124" h="0"/>
 		</spawn>
-		<!-- Heart of the Sanctuary -->
+		<!-- &amp;lt;Fortaleza Caretaker&amp;gt; -->
 		<spawn npc_id="701616" respawn_time="295">
 			<spot x="1603.3096" y="276.2177" z="268.8404" h="0"/>
 		</spawn>
-		<!-- Heart of the Sanctuary -->
+		<!-- &amp;lt;Fortaleza Caretaker&amp;gt; -->
 		<spawn npc_id="701617" respawn_time="295">
 			<spot x="1601.4243" y="184.8296" z="270.28" h="0"/>
 		</spawn>
-		<!-- Heart of the Sanctuary -->
+		<!-- &amp;lt;Fortaleza Caretaker&amp;gt; -->
 		<spawn npc_id="701618" respawn_time="295">
 			<spot x="1441.2047" y="368.8948" z="268.4565" h="0"/>
 		</spawn>
 		<!-- NPC_803800 -->
 		<spawn npc_id="803800" respawn_time="295">
 			<spot x="1680.3422" y="246.9361" z="241.8657" h="0"/>
-			<spot x="1680.42" y="246.88" z="241.87" h="0"/>
 		</spawn>
 		<!-- NPC_803802 -->
 		<spawn npc_id="803802" respawn_time="295">
 			<spot x="1424.4261" y="237.3017" z="273.8246" h="0"/>
-			<spot x="1424.5" y="237.24" z="273.82" h="0"/>
 		</spawn>
 		<!-- NPC_803803 -->
 		<spawn npc_id="803803" respawn_time="295">
 			<spot x="1424.4261" y="237.3017" z="273.8246" h="0"/>
-			<spot x="1424.5" y="237.24" z="273.82" h="0"/>
 		</spawn>
 		<!-- NPC_803807 -->
 		<spawn npc_id="803807" respawn_time="295">
@@ -255,17 +172,14 @@
 		<!-- NPC_803811 -->
 		<spawn npc_id="803811" respawn_time="295">
 			<spot x="1438.6151" y="1044.5304" z="387.7063" h="0"/>
-			<spot x="1438.59" y="1044.63" z="387.71" h="0"/>
 		</spawn>
-		<!-- Circle Sector Trap -->
+		<!-- Glorea -->
 		<spawn npc_id="803812" respawn_time="295">
 			<spot x="1438.6549" y="1050.2515" z="387.7063" h="0"/>
-			<spot x="1438.61" y="1050.35" z="387.71" h="0"/>
 		</spawn>
 		<!-- NPC_803820 -->
 		<spawn npc_id="803820" respawn_time="295">
 			<spot x="1684.8927" y="365.4798" z="241.3634" h="0"/>
-			<spot x="1684.97" y="365.42" z="241.36" h="0"/>
 		</spawn>
 		<!-- NPC_803821 -->
 		<spawn npc_id="803821" respawn_time="295">
@@ -273,55 +187,43 @@
 			<spot x="1601.8927" y="887.4799" z="308" h="0"/>
 			<spot x="1542.8927" y="202.4798" z="269" h="0"/>
 			<spot x="1623.8927" y="423.4798" z="251" h="0"/>
-			<spot x="1542.97" y="202.42" z="269.0" h="0"/>
-			<spot x="1623.97" y="423.42" z="251.0" h="0"/>
-			<spot x="1680.97" y="365.42" z="241.0" h="0"/>
-			<spot x="1601.97" y="887.42" z="308.0" h="0"/>
 		</spawn>
 		<!-- NPC_803822 -->
 		<spawn npc_id="803822" respawn_time="295">
-			<spot x="99.7716" y="512.1029" z="273.25" h="0" walker_id="00BA653578287302015C561C87FF56528C85EB98" walker_index="5"/>
-			<spot x="99.7716" y="512.1029" z="273.25" h="0" walker_id="00BA653578287302015C561C87FF56528C85EB98" walker_index="5"/>
-			<spot x="99.69" y="512.29" z="276.52" h="0"/>
+			<spot x="99.7716" y="512.1029" z="273.25" h="0" walker_index="5"/>
+			<spot x="99.7716" y="512.1029" z="273.25" h="0" walker_index="5"/>
 		</spawn>
 		<!-- NPC_803823 -->
 		<spawn npc_id="803823" respawn_time="295">
 			<spot x="1628.8927" y="423.4798" z="251.3634" h="0"/>
-			<spot x="1628.97" y="423.42" z="251.36" h="0"/>
 		</spawn>
 		<!-- NPC_803824 -->
 		<spawn npc_id="803824" respawn_time="295">
 			<spot x="1542.8927" y="197.4798" z="269.3634" h="0"/>
-			<spot x="1542.97" y="197.42" z="269.36" h="0"/>
 		</spawn>
 		<!-- NPC_803825 -->
 		<spawn npc_id="803825" respawn_time="295">
 			<spot x="1606.8927" y="887.4799" z="308.3634" h="0"/>
-			<spot x="1606.97" y="887.42" z="308.36" h="0"/>
 		</spawn>
 		<!-- NPC_803826 -->
 		<spawn npc_id="803826" respawn_time="295">
 			<spot x="815.5516" y="292.4182" z="193.9368" h="0"/>
-			<spot x="815.47" y="292.61" z="193.94" h="0"/>
 		</spawn>
 		<!-- NPC_803831 -->
 		<spawn npc_id="803831" respawn_time="295">
 			<spot x="1455.9572" y="1047.8568" z="387.6015" h="0"/>
 			<spot x="1455.9572" y="1047.8568" z="387.6015" h="0"/>
 			<spot x="1455.9572" y="1047.8568" z="387.6015" h="0"/>
-			<spot x="1447.3462" y="1045.8401" z="391.1429" h="0" walker_id="F6E5C1659C35E158C0F7F55E846E50F9CE09AB21" walker_index="13"/>
-			<spot x="1451.68" y="1046.87" z="389.33" h="0"/>
+			<spot x="1447.3462" y="1045.8401" z="391.1429" h="0" walker_index="13"/>
 		</spawn>
 		<!-- NPC_803833 -->
 		<spawn npc_id="803833" respawn_time="295">
 			<spot x="1685.3591" y="938.7789" z="312.2017" h="0"/>
-			<spot x="1685.44" y="938.72" z="312.2" h="0"/>
 		</spawn>
 		<!-- NPC_803835 -->
 		<spawn npc_id="803835" respawn_time="295">
 			<spot x="1289.8821" y="406.1343" z="278.7636" h="0"/>
 			<spot x="1289.8821" y="406.1343" z="278.7636" h="0"/>
-			<spot x="1289.96" y="406.07" z="278.75" h="0"/>
 		</spawn>
 		<!-- NPC_803836 -->
 		<spawn npc_id="803836" respawn_time="295">
@@ -330,7 +232,6 @@
 		<!-- NPC_803837 -->
 		<spawn npc_id="803837" respawn_time="295">
 			<spot x="763.5742" y="587.7177" z="185.4808" h="0"/>
-			<spot x="627.05" y="1584.19" z="252.75" h="0"/>
 		</spawn>
 		<!-- NPC_803838 -->
 		<spawn npc_id="803838" respawn_time="295">
@@ -341,87 +242,72 @@
 		<!-- NPC_803839 -->
 		<spawn npc_id="803839" respawn_time="295">
 			<spot x="1294.9282" y="406.1198" z="278.9305" h="0"/>
-			<spot x="1295.01" y="406.06" z="278.93" h="0"/>
 		</spawn>
-		<!-- Exit from Tiamat’s Sanctuary -->
+		<!-- Região de alarme -->
 		<spawn npc_id="803851" respawn_time="295">
 			<spot x="858.6309" y="268.2288" z="195.3413" h="0"/>
 			<spot x="1430.9181" y="749.0978" z="301.1051" h="0"/>
 			<spot x="1680.3301" y="235.3974" z="241.5146" h="0"/>
 			<spot x="895.2723" y="1254.979" z="349.8815" h="0"/>
-			<spot x="327.4882" y="470.6659" z="256.285" h="0" walker_id="2CDEC341C664BA916A308C68BA400B358C189ACB" walker_index="9"/>
-			<spot x="858.5" y="268.29" z="195.34" h="0"/>
-			<spot x="1680.41" y="235.34" z="241.51" h="0"/>
-			<spot x="327.36" y="470.73" z="259.75" h="0"/>
-			<spot x="895.14" y="1255.04" z="349.88" h="0"/>
-			<spot x="1430.79" y="749.16" z="301.11" h="0"/>
+			<spot x="327.4882" y="470.6659" z="256.75" h="0" walker_index="9"/>
 		</spawn>
-		<!-- 2nd Level Teleporter -->
+		<!-- &amp;lt;Reforços despachados&amp;gt; -->
 		<spawn npc_id="803855" respawn_time="295">
 			<spot x="1290.035" y="475.6286" z="270.1505" h="0"/>
 			<spot x="1689.6233" y="244.4194" z="240.715" h="0"/>
-			<spot x="1690.01" y="244.49" z="240.72" h="0"/>
-			<spot x="1290.01" y="475.48" z="270.15" h="0"/>
 		</spawn>
-		<!-- 3rd Level Teleporter -->
+		<!-- &amp;lt;Alma liberada&amp;gt; -->
 		<spawn npc_id="803856" respawn_time="295">
 			<spot x="1279.165" y="865.3997" z="313.2457" h="0"/>
 			<spot x="1689.7683" y="248.7206" z="240.4602" h="0"/>
-			<spot x="1690.15" y="248.79" z="240.46" h="0"/>
-			<spot x="1279.23" y="865.34" z="313.25" h="0"/>
 		</spawn>
-		<!-- 4th Level Teleporter -->
+		<!-- No entanto -->
 		<spawn npc_id="803857" respawn_time="295">
 			<spot x="100.7258" y="455.8722" z="330.7286" h="0"/>
-			<spot x="100.65" y="456.06" z="330.73" h="0"/>
 		</spawn>
-		<!-- Teleporter to 1st Level -->
+		<!-- Venir -->
 		<spawn npc_id="803859" respawn_time="295">
 			<spot x="1379.1925" y="236.8052" z="277.2989" h="0"/>
-			<spot x="1379.27" y="236.42" z="277.3" h="0"/>
 		</spawn>
-		<!-- Teleporter to 2nd Level -->
+		<!-- Setanos -->
 		<spawn npc_id="803860" respawn_time="295">
 			<spot x="1482.8333" y="1047.4175" z="439.6799" h="0"/>
-			<spot x="1482.91" y="1047.36" z="439.68" h="0"/>
 		</spawn>
-		<!-- Teleporter to 3rd Level -->
+		<!-- Uma rede -->
 		<spawn npc_id="803861" respawn_time="295">
 			<spot x="736.1371" y="587.3255" z="185.2458" h="0"/>
-			<spot x="736.06" y="587.51" z="185.25" h="0"/>
 		</spawn>
-		<!-- Shaborkan’s Chest -->
+		<!-- Banuan -->
 		<spawn npc_id="803863" respawn_time="295">
 			<spot x="1290.1794" y="469.1019" z="269.812" h="90"/>
 		</spawn>
-		<!-- Terath’s Chest -->
+		<!-- Salonte -->
 		<spawn npc_id="803864" respawn_time="295">
 			<spot x="1259.343" y="861.6799" z="314.614" h="0"/>
 		</spawn>
-		<!-- Tahabata’s Chest -->
+		<!-- É um ano -->
 		<spawn npc_id="803865" respawn_time="295">
 			<spot x="743.9139" y="607.2897" z="184.7512" h="103"/>
 		</spawn>
-		<!-- Tiamat’s Chest -->
+		<!-- Yivatu -->
 		<spawn npc_id="803866" respawn_time="295">
 			<spot x="884.6388" y="1269.1992" z="351.05" h="100"/>
 		</spawn>
-		<!-- Bonus Treasure Chest -->
+		<!-- Comandante Anoha -->
 		<spawn npc_id="803868" respawn_time="295">
 			<spot x="1302.5292" y="462.2057" z="266.597" h="90"/>
 		</spawn>
-		<!-- Bonus Treasure Chest -->
+		<!-- Pitágoras -->
 		<spawn npc_id="803869" respawn_time="295">
 			<spot x="876.5103" y="1264.3564" z="349.9875" h="0"/>
 		</spawn>
-		<!-- Bonus Treasure Chest -->
+		<!-- Maroling -->
 		<spawn npc_id="803870" respawn_time="295">
 			<spot x="1259.4142" y="870.2071" z="315.0042" h="0"/>
 		</spawn>
 		<!-- NPC_803880 -->
 		<spawn npc_id="803880" respawn_time="295">
 			<spot x="1533.7843" y="1022.1567" z="297.5877" h="0"/>
-			<spot x="1533.84" y="1022.08" z="297.59" h="0"/>
 		</spawn>
 		<!-- NPC_803882 -->
 		<spawn npc_id="803882" respawn_time="295">
@@ -442,14 +328,12 @@
 			<spot x="1446.8049" y="1064.1346" z="388.0894" h="0"/>
 			<spot x="1470.155" y="1035.8741" z="388.6111" h="0"/>
 			<spot x="1452.661" y="1066.3408" z="387.6576" h="0"/>
-			<spot x="1456.12" y="1047.93" z="388.22" h="0"/>
 		</spawn>
 		<!-- NPC_803884 -->
 		<spawn npc_id="803884" respawn_time="295">
 			<spot x="1455.2028" y="1055.1815" z="387.7063" h="0"/>
-			<spot x="1455.18" y="1055.28" z="387.71" h="0"/>
 		</spawn>
-		<!-- 5th Dragon Lord Tiamat -->
+		<!-- Cirurgião da 11ª tropa de ocupação -->
 		<spawn npc_id="803887" respawn_time="295">
 			<spot x="782.3159" y="1807.9929" z="188.7885" h="0"/>
 			<spot x="782.3159" y="1807.9929" z="188.7885" h="0"/>
@@ -457,27 +341,24 @@
 			<spot x="792.8541" y="1415.236" z="313.0551" h="0"/>
 			<spot x="792.8541" y="1415.236" z="313.0551" h="0"/>
 			<spot x="627.0189" y="1584.1254" z="251.115" h="0"/>
-			<spot x="627.13" y="1584.65" z="251.11" h="0"/>
-			<spot x="782.26" y="1807.59" z="188.37" h="0"/>
-			<spot x="792.72" y="1415.3" z="312.9" h="0"/>
 		</spawn>
-		<!-- Bonus Treasure Chest -->
+		<!-- Comandante Anoha -->
 		<spawn npc_id="803892" respawn_time="295">
 			<spot x="1296.5128" y="462.1032" z="266.5336" h="90"/>
 		</spawn>
-		<!-- Bonus Treasure Chest -->
+		<!-- Comandante Anoha -->
 		<spawn npc_id="803893" respawn_time="295">
 			<spot x="1290.4767" y="462.1043" z="266.679" h="90"/>
 		</spawn>
-		<!-- Bonus Treasure Chest -->
+		<!-- Comandante Anoha -->
 		<spawn npc_id="803894" respawn_time="295">
 			<spot x="1284.4603" y="462.1189" z="266.6981" h="90"/>
 		</spawn>
-		<!-- Bonus Treasure Chest -->
+		<!-- Comandante Anoha -->
 		<spawn npc_id="803895" respawn_time="295">
 			<spot x="1278.4504" y="462.0439" z="266.7169" h="90"/>
 		</spawn>
-		<!-- Dragon Lord Secret Chest -->
+		<!-- Naftil -->
 		<spawn npc_id="803900" respawn_time="295">
 			<spot x="1598.2395" y="199.2304" z="268.0158" h="0"/>
 			<spot x="1680.7379" y="530.5846" z="243.9062" h="0"/>
@@ -485,7 +366,7 @@
 			<spot x="1566.9343" y="471.0284" z="261.4378" h="0"/>
 			<spot x="1444.0542" y="383.2257" z="266.7037" h="0"/>
 		</spawn>
-		<!-- Dragon Lord Secret Chest -->
+		<!-- Nicolas -->
 		<spawn npc_id="803905" respawn_time="295">
 			<spot x="1501.9552" y="816.4172" z="297.931" h="0"/>
 			<spot x="1560.903" y="938.8926" z="305.5614" h="0"/>
@@ -494,7 +375,7 @@
 			<spot x="1618.4247" y="773.4394" z="299.3241" h="0"/>
 			<spot x="1581.3652" y="1002.1022" z="298.5101" h="0"/>
 		</spawn>
-		<!-- Dragon Lord Secret Chest -->
+		<!-- Mercador de Consumiveis -->
 		<spawn npc_id="803910" respawn_time="295">
 			<spot x="788.7972" y="263.4064" z="185.1025" h="0"/>
 			<spot x="733.7813" y="315.4015" z="185.0389" h="0"/>
@@ -502,64 +383,55 @@
 			<spot x="815.1045" y="276.7448" z="187.4785" h="0"/>
 			<spot x="735.7555" y="446.2353" z="185.2764" h="0"/>
 		</spawn>
-		<!-- Dragon Lord Secret Chest -->
+		<!-- Lethanhia -->
 		<spawn npc_id="803915" respawn_time="295">
-			<spot x="265.7459" y="657.3185" z="261.1755" h="0"/>
-			<spot x="315.7086" y="543.0532" z="256.9681" h="0"/>
-			<spot x="100.1794" y="516.4234" z="275.4029" h="0"/>
-			<spot x="137.4511" y="653.4828" z="258.1352" h="0"/>
-			<spot x="315.2644" y="475.625" z="258.4572" h="0"/>
+			<spot x="265.7459" y="657.3185" z="258.625" h="0"/>
+			<spot x="315.7086" y="543.0532" z="253.0" h="0"/>
+			<spot x="100.1794" y="516.4234" z="273.25" h="0"/>
+			<spot x="137.4511" y="653.4828" z="234.5" h="0"/>
+			<spot x="315.2644" y="475.625" z="257.25" h="0"/>
 		</spawn>
 		<!-- NPC_803920 -->
 		<spawn npc_id="803920" respawn_time="295">
-			<spot x="100.6979" y="441.4116" z="332.0249" h="0"/>
-			<spot x="100.7" y="441.55" z="332.02" h="0"/>
+			<spot x="100.6979" y="441.4116" z="307.625" h="0"/>
 		</spawn>
 		<!-- NPC_803922 -->
 		<spawn npc_id="803922" respawn_time="295">
 			<spot x="1680" y="284" z="244" h="0"/>
-			<spot x="1680.0" y="284.14" z="244.0" h="0"/>
 		</spawn>
 		<!-- NPC_803923 -->
 		<spawn npc_id="803923" respawn_time="295">
 			<spot x="1563.6852" y="394.6907" z="266.4323" h="0"/>
-			<spot x="1563.69" y="394.83" z="266.43" h="0"/>
 		</spawn>
 		<!-- NPC_803924 -->
 		<spawn npc_id="803924" respawn_time="295">
 			<spot x="1502.3084" y="738.4647" z="316.7789" h="0"/>
-			<spot x="1502.31" y="738.6" z="316.78" h="0"/>
 		</spawn>
 		<!-- NPC_803925 -->
 		<spawn npc_id="803925" respawn_time="295">
 			<spot x="813.6041" y="291.0191" z="197.8362" h="0"/>
-			<spot x="813.6" y="291.15" z="197.84" h="0"/>
 		</spawn>
 		<!-- NPC_803926 -->
 		<spawn npc_id="803926" respawn_time="295">
 			<spot x="817.1348" y="1332.2351" z="348.9659" h="0"/>
-			<spot x="817.13" y="1332.37" z="348.97" h="0"/>
 		</spawn>
 		<!-- NPC_803927 -->
 		<spawn npc_id="803927" respawn_time="295">
 			<spot x="1491.4978" y="323.0571" z="267.1428" h="0"/>
-			<spot x="1491.5" y="323.19" z="267.14" h="0"/>
 		</spawn>
 		<!-- NPC_803928 -->
 		<spawn npc_id="803928" respawn_time="295">
 			<spot x="822.6041" y="290.0191" z="197.8362" h="0"/>
-			<spot x="822.6" y="290.15" z="197.84" h="0"/>
 		</spawn>
 		<!-- NPC_803929 -->
 		<spawn npc_id="803929" respawn_time="295">
 			<spot x="1464.1562" y="1047.8939" z="389.9903" h="0"/>
-			<spot x="1464.16" y="1047.84" z="389.99" h="0"/>
 		</spawn>
-		<!-- Dragon Lord Secret Chest -->
+		<!-- Jerikel -->
 		<spawn npc_id="803930" respawn_time="295">
 			<spot x="1448.3904" y="1047.4622" z="388.354" h="60"/>
 		</spawn>
-		<!-- Trap Trigger -->
+		<!-- &amp;lt;Chefe de gabinete da fortaleza&amp;gt; -->
 		<spawn npc_id="803931" respawn_time="295">
 			<spot x="1478.9757" y="1038.9368" z="387.36" h="0"/>
 			<spot x="1437.3773" y="1063.4513" z="387.36" h="0"/>
@@ -574,51 +446,43 @@
 		<!-- NPC_803932 -->
 		<spawn npc_id="803932" respawn_time="295">
 			<spot x="99.6041" y="513.0191" z="273.25" h="0"/>
-			<spot x="99.6" y="513.15" z="276.84" h="0"/>
 		</spawn>
 		<!-- NPC_803934 -->
 		<spawn npc_id="803934" respawn_time="295">
 			<spot x="1260.5967" y="865.9847" z="314.4056" h="0"/>
-			<spot x="1260.67" y="865.92" z="314.41" h="0"/>
 		</spawn>
 		<!-- NPC_803935 -->
 		<spawn npc_id="803935" respawn_time="295">
 			<spot x="1362.0143" y="865.9509" z="316.2146" h="0"/>
-			<spot x="1362.09" y="865.89" z="316.21" h="0"/>
 		</spawn>
-		<!-- Bonus Treasure Chest -->
+		<!-- Comandante Anoha -->
 		<spawn npc_id="803950" respawn_time="295">
 			<spot x="878.7462" y="1268.3315" z="350.8507" h="100"/>
 		</spawn>
-		<!-- Bonus Treasure Chest -->
+		<!-- Comandante Anoha -->
 		<spawn npc_id="803951" respawn_time="295">
 			<spot x="887.7236" y="1274.9329" z="349.8231" h="100"/>
 		</spawn>
-		<!-- Courtyard of Annihilation Teleporter -->
+		<!-- Obelisco no assentamento -->
 		<spawn npc_id="803954" respawn_time="295">
 			<spot x="782.489" y="1818.0621" z="188.17" h="0"/>
-			<spot x="782.43" y="1817.66" z="188.17" h="0"/>
 		</spawn>
-		<!-- Teleporter to 3rd Level Entrance -->
+		<!-- Bola -->
 		<spawn npc_id="803956" respawn_time="295">
-			<spot x="334.0911" y="484.3509" z="257.1469" h="0" walker_id="2CDEC341C664BA916A308C68BA400B358C189ACB" walker_index="9"/>
-			<spot x="333.96" y="484.41" z="260.4" h="0"/>
+			<spot x="334.0911" y="484.3509" z="257.125" h="0" walker_index="9"/>
 		</spawn>
 		<!-- NPC_803957 -->
 		<spawn npc_id="803957" respawn_time="295">
 			<spot x="626.4417" y="1584.3729" z="253.1925" h="0"/>
 			<spot x="626.4417" y="1584.3729" z="253.1925" h="0"/>
-			<spot x="626.52" y="1584.31" z="252.75" h="0"/>
 		</spawn>
 		<!-- NPC_803958 -->
 		<spawn npc_id="803958" respawn_time="295">
 			<spot x="782.1665" y="1807.7446" z="190.2186" h="0"/>
-			<spot x="782.11" y="1808.32" z="190.22" h="0"/>
 		</spawn>
-		<!-- 4th Level Teleporter -->
+		<!-- No entanto -->
 		<spawn npc_id="803961" respawn_time="295">
 			<spot x="1670.7201" y="244.8005" z="240.5285" h="0"/>
-			<spot x="1671.1" y="244.87" z="240.53" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

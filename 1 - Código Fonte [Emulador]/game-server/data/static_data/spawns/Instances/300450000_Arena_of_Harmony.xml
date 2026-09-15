@@ -21,11 +21,11 @@
 		<spawn npc_id="207051" respawn_time="105">
 			<spot x="1848.5768" y="1743.9952" z="305.2044" h="56"/>
 		</spawn>
-		<!-- Sleepmaker (First Floor) -->
+		<!-- Arinerk -->
 		<spawn npc_id="207099" respawn_time="105">
 			<spot x="1851.3745" y="1736.6553" z="306.1605" h="0"/>
 		</spawn>
-		<!-- Sleepmaker (First Floor) -->
+		<!-- Karutonerk -->
 		<spawn npc_id="207100" respawn_time="105">
 			<spot x="1816.2144" y="1741.4384" z="310.2519" h="20"/>
 			<spot x="1816.5493" y="1728.8157" z="310.2520" h="100"/>
@@ -61,7 +61,7 @@
 			<spot x="1885.6326" y="1726.9789" z="310.2520" h="80"/>
 			<spot x="1886.5244" y="1731.4417" z="310.2519" h="86"/>
 		</spawn>
-		<!-- Heavenly Chains -->
+		<!-- Verarinerk -->
 		<spawn npc_id="207101" respawn_time="105">
 			<spot x="450.1526" y="1771.6342" z="154.4948" h="45" aerial_spawn="true"/>
 			<spot x="451.9798" y="1789.6945" z="154.4945" h="15" aerial_spawn="true"/>
@@ -100,7 +100,7 @@
 			<spot x="539.3393" y="1791.3956" z="154.9766" h="45" aerial_spawn="true"/>
 			<spot x="539.5499" y="1767.9496" z="154.2043" h="15" aerial_spawn="true"/>
 		</spawn>
-		<!-- Relic of Restoration -->
+		<!-- Yorinrinerk -->
 		<spawn npc_id="207102" respawn_time="105">
 			<spot x="465.6128" y="1106.2267" z="446.9266" h="0"/>
 			<spot x="466.1965" y="1174.0183" z="433.0802" h="0"/>
@@ -113,7 +113,7 @@
 			<spot x="1571.4750" y="359.3044" z="204.0539" h="0"/>
 			<spot x="1581.2941" y="349.9125" z="198.6813" h="0"/>
 		</spawn>
-		<!-- Crater -->
+		<!-- Irinerk -->
 		<spawn npc_id="207105" respawn_time="105">
 			<spot x="1550.5076" y="361.9555" z="198.6615" h="0"/>
 			<spot x="1587.2059" y="366.8799" z="198.7352" h="0"/>
@@ -143,15 +143,15 @@
 		<spawn npc_id="207115" respawn_time="105">
 			<spot x="1844.6798" y="1743.0077" z="311.1429" h="0" aerial_spawn="true"/>
 		</spawn>
-		<!-- Paralyser (Ground Floor Outdoors) -->
+		<!-- Owendi -->
 		<spawn npc_id="207116" respawn_time="105">
 			<spot x="1876.0594" y="1760.6831" z="308.8514" h="0"/>
 		</spawn>
-		<!-- Paralyser (Ground Floor Indoors) -->
+		<!-- Cidadela de doces em colapso -->
 		<spawn npc_id="207117" respawn_time="295">
 			<spot x="1826.3043" y="1712.3375" z="310.2102" h="0"/>
 		</spawn>
-		<!-- Paralyser (Ground Floor Outdoors) -->
+		<!-- Cidadela de doces em colapso -->
 		<spawn npc_id="207118" respawn_time="105">
 			<spot x="1832.3096" y="1737.8484" z="305.2799" h="0"/>
 			<spot x="1832.3358" y="1741.9607" z="305.1786" h="0"/>
@@ -183,7 +183,7 @@
 			<spot x="1870.7975" y="1736.0439" z="305.2795" h="0"/>
 			<spot x="1870.8256" y="1740.0302" z="305.1787" h="0"/>
 		</spawn>
-		<!-- Paralyser (Ground Floor Indoors) -->
+		<!-- Blithel -->
 		<spawn npc_id="207119" respawn_time="105">
 			<spot x="1839.0355" y="1736.7001" z="305.1960" h="0"/>
 			<spot x="1840.5684" y="1731.6216" z="305.1977" h="0"/>
@@ -221,7 +221,7 @@
 			<spot x="1841.4484" y="1736.2626" z="307.7112" h="0"/>
 			<spot x="1843.5947" y="1731.48" z="307.7112" h="0"/>
 		</spawn>
-		<!-- Arena Treasure Chest -->
+		<!-- Hunter de protetorado -->
 		<spawn npc_id="219068" respawn_time="295">
 			<spot x="1830.2291" y="1150.3005" z="218.8984" h="0"/>
 			<spot x="1851.624" y="1137.6168" z="232.421" h="0"/>
@@ -230,29 +230,29 @@
 			<spot x="1848.9794" y="1771.7496" z="311.2172" h="0"/>
 			<spot x="1833.7242" y="1173.4512" z="218.3703" h="0"/>
 		</spawn>
-		<!-- Volcanic Heart Crystal -->
+		<!-- &amp;lt;Tribo de insetos de areia&amp;gt; -->
 		<spawn npc_id="219094" respawn_time="295">
 			<spot x="1552.7791" y="367.57" z="198.8085" h="0"/>
 			<spot x="1548.6801" y="355.3476" z="198.7891" h="0"/>
 			<spot x="1585.3311" y="372.1372" z="199.0776" h="0"/>
 			<spot x="1579.1322" y="364.9623" z="198.9338" h="0"/>
 		</spawn>
-		<!-- Volcanic Cyclops -->
+		<!-- Protetorado Corpman -->
 		<spawn npc_id="219095" respawn_time="295">
 			<spot x="1547.9806" y="385.589" z="205.3716" h="60"/>
 			<spot x="1574.84" y="377.7373" z="204.2363" h="0"/>
 			<spot x="1573.4233" y="342.6342" z="205.0812" h="30"/>
 		</spawn>
-		<!-- Gran Volcan -->
+		<!-- Lutador de protetorado -->
 		<spawn npc_id="219096" respawn_time="295">
 			<spot x="1564.4677" y="364.2271" z="203.7829" h="0"/>
 		</spawn>
-		<!-- Ruins Needletooth -->
+		<!-- Protetorado pesquisador -->
 		<spawn npc_id="219097" respawn_time="295">
 			<spot x="1810.6987" y="1176.5928" z="218.4106" h="90"/>
 			<spot x="1850.7114" y="1148.538" z="218.4786" h="90"/>
 		</spawn>
-		<!-- Shock Aether -->
+		<!-- Mago protetorado -->
 		<spawn npc_id="219098" respawn_time="295">
 			<spot x="495.2348" y="1768.7341" z="176.5306" h="0"/>
 			<spot x="494.3278" y="1802.4974" z="162.6689" h="0"/>
@@ -267,7 +267,7 @@
 			<spot x="472.5491" y="1780.5325" z="151.8221" h="0"/>
 			<spot x="473.7124" y="1780.2981" z="175.9438" h="0"/>
 		</spawn>
-		<!-- Aether Explosion -->
+		<!-- Protetorado de thaumaturge -->
 		<spawn npc_id="219099" respawn_time="295">
 			<spot x="484.7343" y="1762.1692" z="153.1951" h="0"/>
 			<spot x="475.9515" y="1761.9174" z="138.4368" h="0"/>
@@ -276,14 +276,14 @@
 			<spot x="537.249" y="1793.4799" z="157.7597" h="0"/>
 			<spot x="466.8595" y="1762.2043" z="176.6272" h="0"/>
 		</spawn>
-		<!-- Cursed Earth Mau Soldier -->
+		<!-- Slink de laboratório -->
 		<spawn npc_id="219272" respawn_time="105">
 			<spot x="1830.2291" y="1150.3005" z="217.6914" h="0"/>
 			<spot x="1851.8521" y="1179.7650" z="230.5344" h="0"/>
 			<spot x="1854.1764" y="1701.6035" z="310.2712" h="30"/>
 			<spot x="1885.3942" y="1737.7886" z="310.2767" h="60"/>
 		</spawn>
-		<!-- Cursed Earth Mau Warrior -->
+		<!-- &amp;lt;Evento-teste&amp;gt; -->
 		<spawn npc_id="219274" respawn_time="105">
 			<spot x="466.8595" y="1762.2043" z="176.6272" h="0" aerial_spawn="true"/>
 			<spot x="475.9515" y="1761.9174" z="138.4368" h="0" aerial_spawn="true"/>
@@ -292,34 +292,34 @@
 			<spot x="520.1926" y="1799.5516" z="178.6339" h="0" aerial_spawn="true"/>
 			<spot x="537.2490" y="1793.4799" z="157.7597" h="0" aerial_spawn="true"/>
 		</spawn>
-		<!-- Cursed Earth Mau Warrior -->
+		<!-- &amp;lt;Evento-teste&amp;gt; -->
 		<spawn npc_id="219277" respawn_time="105">
 			<spot x="1573.4233" y="342.6342" z="202.3725" h="0"/>
 			<spot x="1547.9806" y="385.5891" z="203.7188" h="0"/>
 		</spawn>
-		<!-- Cursed Earth Mau Ruffian -->
+		<!-- Lobnite trabalhador -->
 		<spawn npc_id="219278" respawn_time="105">
 			<spot x="1573.4233" y="342.6342" z="202.3725" h="0"/>
 			<spot x="1547.9806" y="385.5891" z="203.7188" h="0"/>
 		</spawn>
-		<!-- Cursed Earth Mau Ruffian -->
+		<!-- Lobnite trabalhador -->
 		<spawn npc_id="219279" respawn_time="105">
 			<spot x="1573.4233" y="342.6342" z="202.3725" h="0"/>
 			<spot x="1547.9806" y="385.5891" z="203.7188" h="0"/>
 		</spawn>
-		<!-- Cursed Earth Mau Ruffian -->
+		<!-- Lobnite trabalhador -->
 		<spawn npc_id="219280" respawn_time="105">
 			<spot x="1564.4677" y="364.2271" z="199.1643" h="0"/>
 		</spawn>
-		<!-- Cursed Earth Mau Ruffian -->
+		<!-- Lobnite trabalhador -->
 		<spawn npc_id="219281" respawn_time="105">
 			<spot x="1564.4677" y="364.2271" z="199.1643" h="0"/>
 		</spawn>
-		<!-- Cursed Earth Mau Ruffian -->
+		<!-- Lobnite trabalhador -->
 		<spawn npc_id="219282" respawn_time="105">
 			<spot x="1564.4677" y="364.2271" z="199.1643" h="0"/>
 		</spawn>
-		<!-- Cursed Earth Mau Priest -->
+		<!-- &amp;lt;Tiamat Deerter&amp;gt; -->
 		<spawn npc_id="219283" respawn_time="105">
 			<spot x="1809.6660" y="1150.4698" z="217.4545" h="30"/>
 			<spot x="1810.3248" y="1162.9425" z="217.4545" h="30"/>
@@ -328,7 +328,7 @@
 			<spot x="1851.5396" y="1141.2166" z="217.4248" h="30"/>
 			<spot x="1852.3782" y="1133.2284" z="217.5058" h="30"/>
 		</spawn>
-		<!-- Cursed Earth Mau Priest -->
+		<!-- &amp;lt;Tiamat Deerter&amp;gt; -->
 		<spawn npc_id="219284" respawn_time="105">
 			<spot x="1809.6660" y="1150.4698" z="217.4545" h="30"/>
 			<spot x="1810.3248" y="1162.9425" z="217.4545" h="30"/>
@@ -337,7 +337,7 @@
 			<spot x="1851.5396" y="1141.2166" z="217.4248" h="30"/>
 			<spot x="1852.3782" y="1133.2284" z="217.5058" h="30"/>
 		</spawn>
-		<!-- Cursed Earth Mau Priest -->
+		<!-- &amp;lt;Tiamat Deerter&amp;gt; -->
 		<spawn npc_id="219285" respawn_time="105">
 			<spot x="1809.6660" y="1150.4698" z="217.4545" h="30"/>
 			<spot x="1810.3248" y="1162.9425" z="217.4545" h="30"/>
@@ -346,7 +346,7 @@
 			<spot x="1851.5396" y="1141.2166" z="217.4248" h="30"/>
 			<spot x="1852.3782" y="1133.2284" z="217.5058" h="30"/>
 		</spawn>
-		<!-- Disruptive Nagolem -->
+		<!-- Minha namorada é muito mais forte e melhor que você. -->
 		<spawn npc_id="219328" respawn_time="105">
 			<spot x="1835.0461" y="1160.0795" z="218.6294" h="0" static_id="396"/>
 		</spawn>
@@ -364,19 +364,19 @@
 			<spot x="1579.1322" y="364.9623" z="198.2500" h="0"/>
 			<spot x="1585.3311" y="372.1372" z="198.2500" h="0"/>
 		</spawn>
-		<!-- Mutant Mine High Priest -->
+		<!-- Mutant Mine High Sacerdote -->
 		<spawn npc_id="219486" respawn_time="105">
 			<spot x="1548.6801" y="355.3476" z="198.2500" h="0"/>
 			<spot x="1552.7791" y="367.5700" z="198.2500" h="0"/>
 			<spot x="1579.1322" y="364.9623" z="198.2500" h="0"/>
 			<spot x="1585.3311" y="372.1372" z="198.2500" h="0"/>
 		</spawn>
-		<!-- Mutant Watch Sorcerer -->
+		<!-- Mutant Watch Feiticeiro -->
 		<spawn npc_id="219648" respawn_time="105">
 			<spot x="1573.4233" y="342.6342" z="202.3725" h="0"/>
 			<spot x="1547.9806" y="385.5891" z="203.7188" h="0"/>
 		</spawn>
-		<!-- Mutant Watch Mage -->
+		<!-- Mutant Watch Mago -->
 		<spawn npc_id="219649" respawn_time="105">
 			<spot x="1564.4677" y="364.2271" z="199.1643" h="0"/>
 		</spawn>
@@ -396,7 +396,7 @@
 			<spot x="1579.1322" y="364.9623" z="198.2500" h="0"/>
 			<spot x="1585.3311" y="372.1372" z="198.2500" h="0"/>
 		</spawn>
-		<!-- Haorunerk's Bag -->
+		<!-- Bolsa de Haorunerk -->
 		<spawn npc_id="700522" respawn_time="295">
 			<spot x="401.7416" y="502.9903" z="886.3228" h="0"/>
 		</spawn>

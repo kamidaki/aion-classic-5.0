@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="320100000">
-		<!-- Merciless Fire Spirit -->
+		<!-- Espírito de fogo impiedoso -->
 		<spawn npc_id="212783" respawn_time="295">
-			<spot x="152.53" y="363.53" z="145.09843" h="84" walker_id="187B5FB382CCD714857CBB9EB179132D50E46984"/>
+			<spot x="152.53" y="363.53" z="145.09843" h="84"/>
 			<spot x="155.901" y="359.04" z="145.053" h="97"/>
 			<spot x="172.044" y="370.787" z="144.66" h="55"/>
 			<spot x="188.313" y="382.858" z="144.342" h="43"/>
 			<spot x="199.314" y="377.35" z="144.693" h="61"/>
 			<spot x="210.631" y="354.416" z="145.197" h="60"/>
 			<spot x="229.099" y="254.812" z="121.604" h="31"/>
-			<spot x="158.18" y="431.94" z="145.25" h="0" walker_id="45654BCC25DB9D64892836E8A49AF93D7BB62448"/>
-			<spot x="194.25" y="349.74" z="147.25" h="0" walker_id="CB1B0EA2A47F0FC34D33BD38D4FDAFBD7415FCE6"/>
-			<spot x="223.87" y="258.89" z="124.25" h="0" walker_id="7C87151829E1C88268C8EBC02188EDCA0633D9A7"/>
-			<spot x="207.65" y="380.5" z="148.25" h="0" walker_id="C21E212DD99231FD47CC8BDDBA86198133C6BA1E"/>
-			<spot x="152.32" y="363.86" z="148.25" h="0" walker_id="29CF1ECBA4575B01C219C6FD645C7C4AB5794C54"/>
-			<spot x="218.79" y="260.73" z="125.5" h="0"/>
-			<spot x="181.88" y="391.81" z="147.11" h="0"/>
 		</spawn>
-		<!-- Flame Spirit -->
+		<!-- Espírito de chama -->
 		<spawn npc_id="212784" respawn_time="295">
 			<spot x="152.713" y="358.716" z="145.145" h="15"/>
 			<spot x="174.559" y="369.819" z="144.534" h="30"/>
@@ -30,78 +23,52 @@
 			<spot x="210.482" y="357.126" z="145.229" h="60"/>
 			<spot x="228.034" y="279.585" z="127.373" h="46"/>
 			<spot x="229.632" y="258.466" z="122.298" h="60"/>
-			<spot x="218.71" y="294.34" z="130.0" h="0" walker_id="E7444FD4051AC3C2484A21CE59BA80022E1D98A7"/>
-			<spot x="199.09" y="314.51" z="139.77" h="0"/>
 		</spawn>
-		<!-- Blue Gem Kalgolem -->
+		<!-- Geme azul kalgolem -->
 		<spawn npc_id="212785" respawn_time="295">
 			<spot x="203.93" y="219.941" z="111.745" h="16"/>
 			<spot x="205.795" y="204.541" z="108.184" h="76"/>
-			<spot x="205.19" y="212.51" z="115.25" h="0"/>
 		</spawn>
-		<!-- Red Gem Kalgolem -->
+		<!-- GEM RED KALGOLEM -->
 		<spawn npc_id="212786" respawn_time="295">
 			<spot x="176.451" y="225.118" z="110.536" h="100"/>
 			<spot x="185.963" y="209.203" z="110.199" h="15"/>
-			<spot x="192.9" y="213.17" z="112.75" h="0"/>
 		</spawn>
-		<!-- Fire Temple Mugolem -->
-		<spawn npc_id="212787" respawn_time="295">
-			<spot x="228.97" y="178.17" z="113.25" h="0"/>
-		</spawn>
-		<!-- Lurker Gargoyle -->
+		<!-- Gargoyle -->
 		<spawn npc_id="212788" respawn_time="295">
-			<spot x="204.01" y="178.68" z="109.13182" h="106" walker_id="9622C81F3ACCDBE590B914553B0829713EC9A381"/>
+			<spot x="204.01" y="178.68" z="109.13182" h="106"/>
 			<spot x="207.175" y="174.391" z="109.686" h="30"/>
 			<spot x="263.598" y="195.171" z="118.995" h="56"/>
 			<spot x="269.551" y="216.292" z="118.716" h="83"/>
 			<spot x="272.402" y="240.127" z="120.101" h="0"/>
 			<spot x="285.55" y="212.27" z="119.63933" h="35"/>
-			<spot x="302.72" y="182.95" z="118.07573" h="66" walker_id="8968177709E9B7E8FC155044C909507DB5A0DCEB"/>
-			<spot x="313.43" y="225.04" z="119.2945" h="110" walker_id="22936B9CA564C67C1EE2E6C4FFB1BD1FBAB80F64"/>
+			<spot x="302.72" y="182.95" z="118.07573" h="66"/>
+			<spot x="313.43" y="225.04" z="119.2945" h="110"/>
 			<spot x="334.1807" y="205.5315" z="122.0" h="53"/>
 			<spot x="313.7909" y="224.7533" z="122.0" h="60"/>
 			<spot x="278.004" y="191.8242" z="121.0" h="46"/>
-			<spot x="248.97" y="196.7" z="119.25" h="0" walker_id="FB6D91A590D7D740011439189DC9B601903E5424"/>
-			<spot x="302.89" y="182.99" z="122.0" h="0" walker_id="01A9C435641ECA49D3DE2167AD6AA4671C033ACF"/>
-			<spot x="204.07" y="178.78" z="112.25" h="0" walker_id="F92A7F8FAEEB273E4F619DFB5A8C422A2034E011"/>
-			<spot x="313.94" y="224.8" z="122.0" h="0" walker_id="3D30C8638599E1DA223C4B2084BCACB1D0CC5B52"/>
-			<spot x="214.05" y="179.8" z="113.0" h="0" walker_id="FA8B60A184DAE90D7BD3E71CDE4530336A763B14"/>
-			<spot x="285.76" y="212.49" z="122.25" h="0" walker_id="90B6C351364EBF90187AAC75B261D8780AEE8B10"/>
-			<spot x="206.89" y="174.72" z="112.0" h="0"/>
-			<spot x="334.33" y="205.57" z="122.0" h="0"/>
-			<spot x="275.35" y="216.02" z="121.75" h="0"/>
 		</spawn>
 		<!-- Power Kalgolem -->
 		<spawn npc_id="212789" respawn_time="295">
 			<spot x="120.62" y="201.224" z="99.7" h="0"/>
 			<spot x="140.278" y="193.078" z="102.717" h="0"/>
-			<spot x="142.45" y="183.29" z="102.2244" h="91" walker_id="9C71CFFDA293AFAD0EAFD316669814834221B70B"/>
+			<spot x="142.45" y="183.29" z="102.2244" h="91"/>
 			<spot x="154.091" y="170.459" z="103.24" h="43"/>
 			<spot x="178.485" y="225.723" z="110.75" h="100"/>
 			<spot x="188.88" y="207.315" z="109.679" h="15"/>
-			<spot x="205.98" y="232.2" z="114.01814" h="14" walker_id="E5B8425CF077885BBEA8760544CF070C9428BF55"/>
-			<spot x="146.48" y="184.16" z="107.0" h="0" walker_id="BB909FE449DF468D7562C18C5548F44418F60AD0"/>
-			<spot x="206.67" y="232.88" z="119.0" h="0" walker_id="4E17B6FB6010B9DD5CE9D981402FF95F805263A7"/>
-			<spot x="154.64" y="204.27" z="108.4" h="0"/>
+			<spot x="205.98" y="232.2" z="114.01814" h="14"/>
 		</spawn>
 		<!-- Power Kalgolem -->
 		<spawn npc_id="212790" respawn_time="295">
 			<spot x="126.089" y="267.711" z="123.432" h="0"/>
 			<spot x="129.402" y="174.601" z="99.7135" h="15"/>
-			<spot x="132.26" y="273.75" z="122.33775" h="8" walker_id="C0EF4A6DFD54E25B8B75D3487A6BBB1DC6275B4C"/>
-			<spot x="144.17" y="291.05" z="123.21577" h="15" walker_id="B5ABC3F6598F7F261F76CCC87552A266FE20DDA9"/>
-			<spot x="149.03" y="231.31" z="112.70212" h="77" walker_id="47EEF0EF924FA3BD4268E7967A2B2541A52CB96A"/>
-			<spot x="150.81" y="280.61" z="123.071434" h="28" walker_id="07BA709F961A2F95ABB499F9003808519A1B13D5" walker_index="1"/>
+			<spot x="132.26" y="273.75" z="122.33775" h="8"/>
+			<spot x="144.17" y="291.05" z="123.21577" h="15"/>
+			<spot x="149.03" y="231.31" z="112.70212" h="77"/>
+			<spot x="150.81" y="280.61" z="123.071434" h="28" walker_index="1"/>
 			<spot x="157.145" y="172.704" z="104.071" h="60"/>
-			<spot x="149.29" y="231.16" z="115.0" h="0" walker_id="8899E0B823E4221BE6E8A804EE3AA1266D764BE6"/>
-			<spot x="132.45" y="273.39" z="126.0" h="0" walker_id="39924340BD5784623288C97784E1D60F385AC477"/>
-			<spot x="144.25" y="291.0" z="126.0" h="0" walker_id="C7D1A2FEF0E182A67888C47A474738BF8F323C11"/>
-			<spot x="150.74" y="280.53" z="126.0" h="0" walker_id="7A0A971CC244452F5E8F7CD07C24D6D22B6D94F8"/>
-			<spot x="126.22" y="267.68" z="126.0" h="0"/>
-			<spot x="143.47" y="173.46" z="104.5" h="0"/>
 		</spawn>
-		<!-- Aetheric Kalgolem -->
+		<!-- Kalgolem Aetico -->
 		<spawn npc_id="212792" respawn_time="295">
 			<spot x="131.02" y="313.461" z="123.724" h="96"/>
 			<spot x="131.881" y="249.395" z="120.49" h="110"/>
@@ -111,15 +78,13 @@
 			<spot x="149.079" y="289.152" z="123.281" h="83"/>
 			<spot x="159.051" y="174.555" z="104.732" h="46"/>
 			<spot x="164.982" y="200.826" z="108.975" h="26"/>
-			<spot x="145.49" y="244.35" z="115.22" h="0"/>
 		</spawn>
-		<!-- Invincible Kalgolem -->
+		<!-- Kalgolem invencível -->
 		<spawn npc_id="212793" respawn_time="295">
 			<spot x="132.531" y="295.624" z="123.862" h="110"/>
 			<spot x="134.692" y="312.502" z="123.299" h="96"/>
 			<spot x="155.789" y="301.272" z="122.978" h="30"/>
 			<spot x="168.684" y="279.177" z="124.672" h="46"/>
-			<spot x="151.65" y="295.37" z="125.88" h="0"/>
 		</spawn>
 		<!-- Kalgolem of Magic -->
 		<spawn npc_id="212794" respawn_time="295">
@@ -127,49 +92,37 @@
 			<spot x="148.389" y="318.703" z="122.658" h="90"/>
 			<spot x="165.968" y="319.829" z="122.593" h="83"/>
 			<spot x="173.182" y="279.216" z="124.497" h="50"/>
-			<spot x="145.88" y="295.59" z="126.0" h="0"/>
 		</spawn>
-		<!-- Vindictive Obscura -->
+		<!-- Obscura vingativo -->
 		<spawn npc_id="212795" respawn_time="295">
-			<spot x="272.85" y="313.56" z="128.19846" h="15" walker_id="FAED7EC82A0A064C145CE8FF26361DA9F8AEB4E4"/>
+			<spot x="272.85" y="313.56" z="128.19846" h="15"/>
 			<spot x="294.275" y="269.561" z="127.655" h="60"/>
-			<spot x="297.24" y="311.64" z="130.11157" h="29" walker_id="9D105497061B1CDBFFEF705809C6E28BD7675822"/>
+			<spot x="297.24" y="311.64" z="130.11157" h="29"/>
 			<spot x="301.138" y="348.048" z="133.842" h="80"/>
 			<spot x="315.285" y="325.985" z="133.005" h="60"/>
 			<spot x="327.287" y="372.926" z="141.767" h="80"/>
 			<spot x="333.424" y="348.945" z="143.232" h="50"/>
-			<spot x="338.0" y="327.76" z="136.3422" h="50" walker_id="18467BC3DEC56C62E544025E8BB7DCD9E92B94E3"/>
-			<spot x="338.22" y="327.93" z="141.0" h="0" walker_id="352D71D9B0B3203E3981099353889D070444C824"/>
-			<spot x="273.13" y="313.71" z="130.0" h="0" walker_id="B737225E2142BA36EF1FDEF40972394F8A0B3834"/>
-			<spot x="297.66" y="311.92" z="135.0" h="0" walker_id="24B52F89942564C9F4AA10F6B7A90DEAF41F778C"/>
-			<spot x="276.86" y="302.44" z="131.0" h="0" walker_id="FC773E94E9B5238F9E74287BC539ABE9682FEC58"/>
-			<spot x="341.77" y="355.56" z="148.0" h="0" walker_id="EE866001FD62F2F8E163ED8A9A581459C45AB313"/>
-			<spot x="311.02" y="321.27" z="138.67" h="0"/>
+			<spot x="338.0" y="327.76" z="136.3422" h="50"/>
 		</spawn>
-		<!-- Vindictive Obscura -->
+		<!-- Obscura vingativo -->
 		<spawn npc_id="212796" respawn_time="295">
 			<spot x="268.559" y="311.644" z="127.802" h="0"/>
 			<spot x="270.895" y="418.431" z="132.24" h="90"/>
 			<spot x="272.558" y="356.871" z="134.896" h="100"/>
-			<spot x="279.55" y="388.74" z="133.47476" h="29" walker_id="B470F59D5A518E74E9CB7B0B31D30B1E5173892E"/>
+			<spot x="279.55" y="388.74" z="133.47476" h="29"/>
 			<spot x="295.594" y="388.036" z="134.234" h="30"/>
 			<spot x="295.939" y="415.395" z="133.049" h="83"/>
 			<spot x="317.517" y="404.182" z="133.336" h="60"/>
 			<spot x="317.828" y="293.155" z="132.156" h="50"/>
-			<spot x="305.37" y="418.85" z="137.0" h="0" walker_id="073A537FDCFEC9D35AE5E90888EE0A8E569A747B"/>
-			<spot x="302.1" y="422.49" z="137.0" h="0" walker_id="FF5E1156793E2E4B278B6BE10CB43D5F1414CADC"/>
-			<spot x="279.9" y="388.76" z="137.0" h="0" walker_id="547DC0078178050C6199533C5939432A9701D7B8"/>
-			<spot x="294.31" y="355.7" z="136.33" h="0"/>
 		</spawn>
-		<!-- Terror Obscura -->
+		<!-- Terror escuro -->
 		<spawn npc_id="212797" respawn_time="295">
 			<spot x="270.867" y="415.46" z="132.289" h="0"/>
 			<spot x="272.505" y="390.633" z="134.041" h="90"/>
 			<spot x="291.719" y="439.468" z="133.505" h="100"/>
 			<spot x="318.965" y="433.704" z="134.389" h="80"/>
-			<spot x="295.81" y="412.0" z="137.0" h="0"/>
 		</spawn>
-		<!-- Howling Obscura -->
+		<!-- Uivando obscura -->
 		<spawn npc_id="212798" respawn_time="295">
 			<spot x="240.65" y="324.769" z="101.571" h="50"/>
 			<spot x="266.385" y="313.704" z="127.714" h="0"/>
@@ -179,11 +132,8 @@
 			<spot x="321.22" y="355.958" z="136.136" h="90"/>
 			<spot x="327.312" y="315.283" z="134.222" h="50"/>
 			<spot x="335.482" y="345.454" z="143.913" h="15"/>
-			<spot x="276.86" y="302.44" z="131.0" h="0" walker_id="FC773E94E9B5238F9E74287BC539ABE9682FEC58"/>
-			<spot x="341.77" y="355.56" z="148.0" h="0" walker_id="EE866001FD62F2F8E163ED8A9A581459C45AB313"/>
-			<spot x="307.83" y="314.4" z="136.71" h="0"/>
 		</spawn>
-		<!-- Howling Obscura -->
+		<!-- Uivando obscura -->
 		<spawn npc_id="212799" respawn_time="295">
 			<spot x="268.948" y="389.873" z="134.55" h="90"/>
 			<spot x="281.43" y="361.2" z="134.254" h="90"/>
@@ -191,57 +141,39 @@
 			<spot x="315.359" y="290.138" z="131.945" h="46"/>
 			<spot x="331.275" y="368.998" z="142.101" h="73"/>
 			<spot x="343.497" y="321.771" z="136.537" h="50"/>
-			<spot x="305.37" y="418.85" z="137.0" h="0" walker_id="073A537FDCFEC9D35AE5E90888EE0A8E569A747B"/>
-			<spot x="302.1" y="422.49" z="137.0" h="0" walker_id="FF5E1156793E2E4B278B6BE10CB43D5F1414CADC"/>
-			<spot x="292.16" y="340.35" z="138.67" h="0"/>
 		</spawn>
-		<!-- Havoc Obscura -->
+		<!-- Havoc obscura -->
 		<spawn npc_id="212800" respawn_time="295">
 			<spot x="289.939" y="437.065" z="133.452" h="0"/>
 			<spot x="297.44" y="413.251" z="133.018" h="80"/>
 			<spot x="317.775" y="406.791" z="133.408" h="60"/>
-			<spot x="303.8" y="421.95" z="137.0" h="0"/>
 		</spawn>
-		<!-- Lurker Gargoyle -->
+		<!-- Gargoyle -->
 		<spawn npc_id="212801" respawn_time="295">
-			<spot x="277.39" y="89.26" z="129.13657" h="36" walker_id="29898B89EB44CE8AC6658C39543CC5BAAC02CAA1"/>
+			<spot x="277.39" y="89.26" z="129.13657" h="36"/>
 			<spot x="281.09" y="167.423" z="119.073" h="15"/>
 			<spot x="303.092" y="234.224" z="118.525" h="90"/>
 			<spot x="321.475" y="115.138" z="126.542" h="70"/>
-			<spot x="356.15" y="250.0" z="114.953156" h="91" walker_id="6F44E3CB785FA9168927D3377BE6DBD1962A3053"/>
-			<spot x="363.03" y="245.02" z="115.41982" h="45" walker_id="EC0249C19F300AA061AA235541BC0A3B871617B8"/>
-			<spot x="369.71" y="287.14" z="109.95304" h="68" walker_id="AF46522474DE5E2C14EC3266CC86930D0BE72684"/>
-			<spot x="382.73" y="199.15" z="114.39791" h="58" walker_id="D9114677F1EDB0EFAAE04DA2DBEB724616E419EE"/>
+			<spot x="356.15" y="250.0" z="114.953156" h="91"/>
+			<spot x="363.03" y="245.02" z="115.41982" h="45"/>
+			<spot x="369.71" y="287.14" z="109.95304" h="68"/>
+			<spot x="382.73" y="199.15" z="114.39791" h="58"/>
 			<spot x="385.1021" y="78.9626" z="122.0" h="15"/>
 			<spot x="300.1475" y="116.7463" z="131.0" h="30"/>
 			<spot x="277.2239" y="89.1129" z="131.0" h="15"/>
 			<spot x="353.7672" y="129.819" z="124.0" h="46"/>
 			<spot x="306.8654" y="146.2263" z="131.0" h="80"/>
 			<spot x="305.6733" y="152.5123" z="131.0" h="46"/>
-			<spot x="369.54" y="286.89" z="113.1" h="0" walker_id="4DF1843606B9138AFF2C90BA9D61C277121B9F54"/>
-			<spot x="277.47" y="89.25" z="131.0" h="0" walker_id="F07FF31E234BDB4FFFCEAB1380F3DAEA11133984"/>
-			<spot x="353.92" y="129.86" z="124.0" h="0" walker_id="B77980478D2981C70F9F49B6BB9D8A281C47A718"/>
-			<spot x="355.98" y="249.98" z="117.1" h="0" walker_id="C08293551B824755EBF55E8CF364367CBF8D017E"/>
-			<spot x="305.82" y="152.55" z="131.0" h="0" walker_id="637C2CCBFF3AC80A63B1C01430C756A494AD866A"/>
-			<spot x="382.71" y="199.39" z="123.1" h="0" walker_id="21213483858416C6DF20759C91DAA5A7DF4C0D2D"/>
-			<spot x="363.07" y="245.18" z="119.0" h="0" walker_id="6BBB014121AE82D5FF2533B7972348C3DF701D97"/>
-			<spot x="307.01" y="146.27" z="131.0" h="0" walker_id="68A48CF201E430DE2789E58FF07B3FA9B71F1DA6"/>
-			<spot x="385.25" y="79.0" z="122.0" h="0"/>
-			<spot x="303.24" y="234.27" z="122.25" h="0"/>
-			<spot x="301.48" y="141.37" z="128.67" h="0"/>
 		</spawn>
-		<!-- Aetheric Mugolem -->
+		<!-- MUGOLEM AMERÊNICO -->
 		<spawn npc_id="212802" respawn_time="295">
 			<spot x="286.364" y="202.152" z="118.999" h="60"/>
-			<spot x="269.74" y="201.85" z="121.0" h="0"/>
 		</spawn>
-		<!-- Aetheric Mugolem -->
+		<!-- MUGOLEM AMERÊNICO -->
 		<spawn npc_id="212803" respawn_time="295">
 			<spot x="348.146" y="227.699" z="116.829" h="60"/>
 			<spot x="366.923" y="252.417" z="116.738" h="60"/>
 			<spot x="297.0811" y="115.6022" z="131.0" h="26"/>
-			<spot x="296.56" y="116.15" z="131.0" h="0"/>
-			<spot x="357.34" y="240.28" z="119.03" h="0"/>
 		</spawn>
 		<!-- Sentry Mugolem -->
 		<spawn npc_id="212806" respawn_time="295">
@@ -249,10 +181,8 @@
 			<spot x="382.151" y="221.181" z="117.548" h="46"/>
 			<spot x="386.51" y="196.615" z="116.221" h="40"/>
 			<spot x="306.9899" y="149.0424" z="131.0" h="30"/>
-			<spot x="307.07" y="149.44" z="131.0" h="0"/>
-			<spot x="383.64" y="234.28" z="117.06" h="0"/>
 		</spawn>
-		<!-- Crouching Gargoyle -->
+		<!-- Gárgula agachada -->
 		<spawn npc_id="212807" respawn_time="295">
 			<spot x="266.682" y="99.0784" z="128.143" h="15"/>
 			<spot x="282.417" y="129.766" z="128.656" h="0"/>
@@ -266,7 +196,7 @@
 			<spot x="389.38" y="128.19" z="117.14834" h="67"/>
 			<spot x="396.674" y="223.19" z="120.072" h="60"/>
 			<spot x="396.749" y="265.805" z="110.844" h="80"/>
-			<spot x="400.07" y="128.92" z="117.19401" h="116" walker_id="AF645203C6188530BDE0C40890BA2716A65399F2" walker_index="1"/>
+			<spot x="400.07" y="128.92" z="117.19401" h="116" walker_index="1"/>
 			<spot x="402.062" y="72.6587" z="117.194" h="23"/>
 			<spot x="415.608" y="125.782" z="117.184" h="66"/>
 			<spot x="426.727" y="105.618" z="117.194" h="50"/>
@@ -274,13 +204,6 @@
 			<spot x="374.8214" y="88.1673" z="120.0" h="20"/>
 			<spot x="352.3785" y="124.2452" z="122.0" h="15"/>
 			<spot x="389.4465" y="128.3135" z="122.0" h="60"/>
-			<spot x="400.23" y="128.9" z="122.0" h="0" walker_id="17A6C504DE73A2D31F32E8A400CD757907E873D2"/>
-			<spot x="416.28" y="97.28" z="122.0" h="0" walker_id="64D64FC8180911A4F7C1460444582E272435DAB6"/>
-			<spot x="389.6" y="128.36" z="122.0" h="0" walker_id="EAB062D8E3E51830D2E10EED8D81F954D1CA2AFF"/>
-			<spot x="377.33" y="89.83" z="122.0" h="0" walker_id="1BD1B39C16B7D62F7CA561BF1B72A6F4BF77DFD2"/>
-			<spot x="274.79" y="114.6" z="131.0" h="0"/>
-			<spot x="387.98" y="109.06" z="121.67" h="0"/>
-			<spot x="376.46" y="249.54" z="115.71" h="0"/>
 		</spawn>
 		<!-- Temple Caryatid -->
 		<spawn npc_id="212808" respawn_time="295">
@@ -290,9 +213,8 @@
 			<spot x="394.9322" y="112.7738" z="117.0" h="75"/>
 			<spot x="407.102" y="97.4169" z="119.0" h="16"/>
 			<spot x="375.5502" y="114.0926" z="117.0" h="16"/>
-			<spot x="393.2" y="109.62" z="117.67" h="0"/>
 		</spawn>
-		<!-- Blue Crystal Molgat -->
+		<!-- Molgat de cristal azul -->
 		<spawn npc_id="212839" respawn_time="295">
 			<spot x="127.1218" y="176.1912" z="103.042" h="15"/>
 		</spawn>
@@ -300,57 +222,54 @@
 		<spawn npc_id="212840" respawn_time="295">
 			<spot x="153.0038" y="299.7786" z="126.0" h="30"/>
 		</spawn>
-		<!-- Flame Branch Flavi -->
+		<!-- Flavi Flavi -->
 		<spawn npc_id="212841" respawn_time="295">
 			<spot x="350.9276" y="351.7389" z="149.0228" h="45"/>
 		</spawn>
-		<!-- Black Smoke Asparn -->
+		<!-- Fumaça preta asparn -->
 		<spawn npc_id="212842" respawn_time="295">
 			<spot x="322.3193" y="431.2696" z="136.526" h="80"/>
 		</spawn>
-		<!-- Tough Sipus -->
+		<!-- Navegação difícil -->
 		<spawn npc_id="212843" respawn_time="295">
 			<spot x="296.6911" y="201.9092" z="123.0" h="15"/>
 		</spawn>
-		<!-- Silver Blade Rotan -->
+		<!-- Lâmina prateada rotan -->
 		<spawn npc_id="212844" respawn_time="295">
 			<spot x="226.526" y="182.06592" z="109.94931" h="8" walker_id="3201000001"/>
 		</spawn>
-		<!-- Broken Wing Kutisen -->
+		<!-- Asa quebrada Kutisen -->
 		<spawn npc_id="212845" respawn_time="295">
 			<spot x="296.7579" y="92.9624" z="131.0" h="23"/>
 		</spawn>
-		<!-- Kromede the Corrupt -->
+		<!-- Kromede, o corrupto -->
 		<spawn npc_id="212846" respawn_time="295">
 			<spot x="421.9935" y="93.1891" z="122.0052" h="46"/>
 		</spawn>
-		<!-- Goblet Guard Denlavis -->
+		<!-- Guard de cálice Denlavis -->
 		<spawn npc_id="212878" respawn_time="295">
 			<spot x="386.6365" y="242.7465" z="110.601" h="45"/>
-			<spot x="386.79" y="242.79" z="113.48" h="0"/>
 		</spawn>
-		<!-- Treasure Box -->
+		<!-- Caixa de tesouro -->
 		<spawn npc_id="212948" respawn_time="295">
 			<spot x="163.902" y="178.898" z="105.724" h="77"/>
 		</spawn>
-		<!-- Flame Spirit -->
+		<!-- Espírito de chama -->
 		<spawn npc_id="212977" respawn_time="295">
 			<spot x="153.506" y="391.564" z="143.83" h="100"/>
 			<spot x="164.559" y="430.133" z="140.21" h="60"/>
 			<spot x="189.554" y="384.877" z="144.571" h="43"/>
 			<spot x="216.825" y="390.132" z="145.046" h="76"/>
-			<spot x="185.48" y="403.41" z="147.06" h="0"/>
 		</spawn>
-		<!-- Bloodfist Gargoyle -->
+		<!-- Gargoga de Bloodfist -->
 		<spawn npc_id="214094" respawn_time="295">
 			<spot x="265.344" y="214.906" z="118.59" h="90"/>
 			<spot x="279.271" y="171.767" z="119.33" h="16"/>
 			<spot x="284.009" y="133.058" z="128.673" h="0"/>
 			<spot x="298.673" y="233.982" z="118.414" h="83"/>
 			<spot x="298.7095" y="89.4224" z="131.0" h="15"/>
-			<spot x="298.85" y="161.97" z="125.65" h="0"/>
 		</spawn>
-		<!-- Bloodfist Gargoyle -->
+		<!-- Gargoga de Bloodfist -->
 		<spawn npc_id="214095" respawn_time="295">
 			<spot x="266.357" y="102.864" z="127.715" h="0"/>
 			<spot x="273.199" y="245.559" z="120.604" h="100"/>
@@ -361,12 +280,8 @@
 			<spot x="403.711" y="281.718" z="110.844" h="60"/>
 			<spot x="414.633" y="82.152" z="117.194" h="50"/>
 			<spot x="399.278" y="86.6402" z="120.0" h="40"/>
-			<spot x="266.39" y="102.69" z="131.0" h="0"/>
-			<spot x="273.27" y="245.96" z="123.0" h="0"/>
-			<spot x="407.06" y="84.55" z="121.0" h="0"/>
-			<spot x="366.27" y="246.38" z="114.83" h="0"/>
 		</spawn>
-		<!-- Lurking Bloodfist -->
+		<!-- Espreitando o Bloodfist -->
 		<spawn npc_id="214096" respawn_time="295">
 			<spot x="323.657" y="110.994" z="126.566" h="60"/>
 			<spot x="326.954" y="137.445" z="125.397" h="43"/>
@@ -375,91 +290,24 @@
 			<spot x="398.078" y="219.567" z="119.764" h="53"/>
 			<spot x="406.2975" y="120.4276" z="122.0" h="76"/>
 			<spot x="423.1929" y="118.191" z="122.0" h="73"/>
-			<spot x="414.89" y="119.35" z="122.0" h="0"/>
-			<spot x="325.38" y="124.62" z="130.0" h="0"/>
-			<spot x="393.79" y="255.57" z="115.73" h="0"/>
 		</spawn>
-		<!-- Bloodfist Gargoyle -->
-		<spawn npc_id="219142" respawn_time="295">
-			<spot x="265.42" y="215.31" z="121.25" h="0"/>
-		</spawn>
-		<!-- Bloodfist Gargoyle -->
-		<spawn npc_id="219143" respawn_time="295">
-			<spot x="346.91" y="211.99" z="118.59" h="0"/>
-		</spawn>
-		<!-- Merciless Fire Spirit -->
-		<spawn npc_id="219144" respawn_time="295">
-			<spot x="223.87" y="258.89" z="124.25" h="0" walker_id="2381404B9265562DECF5DE1AE0D453E56725FCFF"/>
-			<spot x="207.65" y="380.5" z="148.25" h="0" walker_id="F45E53126229B901C38CB078F002877642D486D3"/>
-			<spot x="194.25" y="349.74" z="147.25" h="0" walker_id="73B0364FC2C4681349CBE15589502726D0BE4D13"/>
-			<spot x="152.32" y="363.86" z="148.25" h="0" walker_id="3B3B9DD8796D8841399DB07F2D7B278B1130932B"/>
-			<spot x="158.18" y="431.94" z="145.25" h="0" walker_id="3E3D2023E49BB6F4C7F19FE5217E0559FA5C3D80"/>
-			<spot x="157.1" y="374.8" z="147.58" h="0"/>
-		</spawn>
-		<!-- Flame Spirit -->
-		<spawn npc_id="219145" respawn_time="295">
-			<spot x="189.95" y="385.09" z="148.25" h="0"/>
-		</spawn>
-		<!-- Flame Spirit -->
-		<spawn npc_id="219146" respawn_time="295">
-			<spot x="210.52" y="357.1" z="147.25" h="0"/>
-			<spot x="227.96" y="279.35" z="130.25" h="0"/>
-		</spawn>
-		<!-- Crouching Gargoyle -->
-		<spawn npc_id="219147" respawn_time="295">
-			<spot x="385.62" y="244.58" z="115.75" h="0"/>
-		</spawn>
-		<!-- Lurker Gargoyle -->
-		<spawn npc_id="219148" respawn_time="295">
-			<spot x="285.76" y="212.49" z="122.25" h="0" walker_id="F94206C97FF4063CD1DD44BB826DEF56D92F0464"/>
-			<spot x="248.97" y="196.7" z="119.25" h="0" walker_id="020F06881FACC233B2349EBD2C9AF342F40506B2"/>
-			<spot x="204.07" y="178.78" z="112.25" h="0" walker_id="82152C149A90E8580E29BC6953F9AB04D7568FAD"/>
-		</spawn>
-		<!-- Lurker Gargoyle -->
-		<spawn npc_id="219149" respawn_time="295">
-			<spot x="382.71" y="199.39" z="123.1" h="0" walker_id="E1F446BBE654CD074729FA73B5B37866100EDEC2"/>
-			<spot x="355.98" y="249.98" z="117.1" h="0" walker_id="81F8A5064602F5D4A8EE9640D4AC6D8B342DDB63"/>
-			<spot x="369.54" y="286.89" z="113.1" h="0" walker_id="06BB3F55D97EA7F2BE23ACF0BFC1E7B06B43AC28"/>
-			<spot x="303.24" y="234.27" z="122.25" h="0"/>
-		</spawn>
-		<!-- Fire Temple Mugolem -->
-		<spawn npc_id="219150" respawn_time="295">
-			<spot x="228.97" y="178.17" z="113.25" h="0"/>
-		</spawn>
-		<!-- Aetheric Mugolem -->
-		<spawn npc_id="219151" respawn_time="295">
-			<spot x="347.95" y="227.92" z="119.06" h="0"/>
-		</spawn>
-		<!-- Sentry Mugolem -->
-		<spawn npc_id="219152" respawn_time="295">
-			<spot x="381.41" y="246.71" z="115.59" h="0"/>
-		</spawn>
-		<!-- Red Gem Kalgolem -->
-		<spawn npc_id="219153" respawn_time="295">
-			<spot x="185.62" y="209.18" z="114.25" h="0"/>
-		</spawn>
-		<!-- Blue Gem Kalgolem -->
-		<spawn npc_id="219154" respawn_time="295">
-			<spot x="205.19" y="212.51" z="115.25" h="0"/>
-		</spawn>
-		<!-- Goblet Guard Denlavis -->
+		<!-- Guard de cálice Denlavis -->
 		<spawn npc_id="219155" respawn_time="295">
 			<spot x="386.6365" y="242.7465" z="113.5647" h="0"/>
 			<spot x="386.6365" y="242.7465" z="113.5647" h="0"/>
-			<spot x="386.79" y="242.79" z="113.48" h="0"/>
 		</spawn>
-		<!-- Sacred Chalice -->
+		<!-- Cálice sagrado -->
 		<spawn npc_id="700236" respawn_time="295">
 			<spot x="393.6034" y="237.5583" z="112.196" h="0" static_id="3"/>
 		</spawn>
-		<!-- Sacred Chalice -->
+		<!-- Cálice sagrado -->
 		<spawn npc_id="700237" respawn_time="295">
 			<spot x="390.242" y="235.622" z="110.973" h="0" static_id="7"/>
 			<spot x="392.513" y="236.303" z="111.959" h="0" static_id="4"/>
 			<spot x="393.488" y="239.68" z="111.573" h="0" static_id="99"/>
 			<spot x="394.607" y="238.505" z="112.096" h="0" static_id="98"/>
 		</spawn>
-		<!-- Ancient Treasure Chest -->
+		<!-- Baú do tesouro antigo -->
 		<spawn npc_id="700252" respawn_time="295">
 			<spot x="131.6208" y="296.0446" z="124.618" h="0" static_id="27"/>
 			<spot x="139.0776" y="167.8605" z="100.297" h="0" static_id="29"/>
@@ -491,31 +339,26 @@
 			<spot x="406.912" y="285.3081" z="110.873" h="0" static_id="38"/>
 			<spot x="415.576" y="116.9754" z="117.22" h="0" static_id="10"/>
 			<spot x="211.6678" y="371.6512" z="145.5" h="0"/>
-			<spot x="283.6" y="244.29" z="124.56" h="0"/>
 		</spawn>
-		<!-- Fire Temple Exit -->
+		<!-- Fire a saída do templo -->
 		<spawn npc_id="730048" respawn_time="295">
 			<spot x="148.8546" y="465.9351" z="138.756" h="0" static_id="647"/>
-			<spot x="148.83" y="466.05" z="142.06" h="0"/>
 		</spawn>
-		<!-- Talking Mirror -->
+		<!-- Espelho falante -->
 		<spawn npc_id="730051" respawn_time="295">
 			<spot x="423.6388" y="91.9462" z="117.337" h="0" static_id="9"/>
-			<spot x="423.65" y="91.95" z="118.0" h="0"/>
 		</spawn>
-		<!-- Omne Solum (Fire Temple) -->
+		<!-- Elite arqueiro da 1ª vanguarda -->
 		<spawn npc_id="730539" respawn_time="295">
 			<spot x="395.5966" y="249.2835" z="113.5647" h="0"/>
-			<spot x="395.75" y="249.33" z="113.56" h="0"/>
 		</spawn>
 		<!-- Liurerk -->
 		<spawn npc_id="798109" respawn_time="295">
 			<spot x="144.581" y="162.128" z="100.931" h="23"/>
 		</spawn>
-		<!-- Fire Temple Emergency Rift -->
+		<!-- Fundos de treinamento do 43º Exército -->
 		<spawn npc_id="801698" respawn_time="295">
 			<spot x="432.3066" y="112.6189" z="117.3761" h="0"/>
-			<spot x="432.46" y="112.66" z="117.38" h="0"/>
 		</spawn>
 		<!-- NPC_801700 -->
 		<spawn npc_id="801700" respawn_time="295">

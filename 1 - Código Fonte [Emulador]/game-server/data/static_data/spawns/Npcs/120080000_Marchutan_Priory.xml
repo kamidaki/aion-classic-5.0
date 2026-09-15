@@ -8,7 +8,6 @@
 		<!-- Anja -->
 		<spawn npc_id="205321" respawn_time="295">
 			<spot x="550" y="241.94" z="93.52" h="90"/>
-			<spot x="550.0" y="242.01" z="94.48" h="0"/>
 		</spawn>
 		<!-- Reigar -->
 		<spawn npc_id="205323" respawn_time="295">
@@ -27,7 +26,6 @@
 		<spawn npc_id="205326" respawn_time="295">
 			<spot x="469.5556" y="296.4665" z="93.43999" h="0"/>
 			<spot x="477.5556" y="286.4739" z="94.2999" h="30"/>
-			<spot x="477.48" y="286.45" z="94.3" h="0"/>
 		</spawn>
 		<!-- Felder -->
 		<spawn npc_id="205327" respawn_time="295">
@@ -44,17 +42,14 @@
 		<!-- Adumra -->
 		<spawn npc_id="205330" respawn_time="295">
 			<spot x="574.5567" y="265.3545" z="93.48075" h="90"/>
-			<spot x="574.55" y="265.34" z="94.3" h="0"/>
 		</spawn>
 		<!-- Gerd -->
 		<spawn npc_id="205447" respawn_time="295">
 			<spot x="485.5641" y="186.4108" z="93.42" h="30"/>
-			<spot x="485.59" y="186.35" z="94.3" h="0"/>
 		</spawn>
 		<!-- Duinna -->
 		<spawn npc_id="205448" respawn_time="295">
 			<spot x="502.3558" y="202.738" z="93.42999" h="60"/>
-			<spot x="502.48" y="202.69" z="94.3" h="0"/>
 		</spawn>
 		<!-- Iselin -->
 		<spawn npc_id="205452" respawn_time="295">
@@ -64,7 +59,7 @@
 		<spawn npc_id="205460" respawn_time="295">
 			<spot x="534.5516" y="267.5899" z="93.48001" h="0"/>
 		</spawn>
-		<!-- Renen -->
+		<!-- A rena -->
 		<spawn npc_id="205472" respawn_time="295">
 			<spot x="534.5516" y="272.3399" z="94.2999" h="0"/>
 		</spawn>
@@ -112,60 +107,53 @@
 		<spawn npc_id="207093" respawn_time="295">
 			<spot x="548.5716" y="346.471" z="93.4828" h="90"/>
 			<spot x="553.71" y="345.0" z="94.77" h="90"/>
-			<spot x="553.7" y="345.08" z="94.77" h="0"/>
 		</spawn>
-		<!-- Gagaff -->
+		<!-- Comerciante de mercadorias mistas -->
 		<spawn npc_id="207122" respawn_time="295">
 			<spot x="549.9138" y="346.5175" z="93.4828" h="90"/>
 			<spot x="544.5252" y="345.0046" z="94.7662" h="90"/>
-			<spot x="544.52" y="345.08" z="94.77" h="0"/>
 		</spawn>
-		<!-- Pandaemonium Teleport Statue -->
+		<!-- Estátua do Teleport de Pandaemonium -->
 		<spawn npc_id="730427" respawn_time="295">
 			<spot x="542.4336" y="200.7023" z="93.47958" h="0" static_id="328"/>
 		</spawn>
-		<!-- Teleporter to Gelkmaros -->
+		<!-- Gelkmaros Teleporter -->
 		<spawn npc_id="730428" respawn_time="295">
 			<spot x="549.2467" y="213.8778" z="93.64215" h="0" static_id="1601"/>
-			<spot x="549.23" y="213.85" z="94.3" h="0"/>
 		</spawn>
-		<!-- Empyrean Crucible Entrance -->
+		<!-- Entrada do Crisol Empíreo -->
 		<spawn npc_id="730431" respawn_time="295">
 			<spot x="578.1455" y="260.474" z="93.49181" h="0" static_id="1"/>
 		</spawn>
-		<!-- Crucible Challenge Entrance -->
+		<!-- Entrada do Desafio do Crisol -->
 		<spawn npc_id="730462" respawn_time="295">
 			<spot x="578.9547" y="239.2771" z="93.67241" h="0" static_id="3"/>
-			<spot x="578.89" y="239.26" z="95.81" h="0"/>
 		</spawn>
-		<!-- Arena of Chaos Gate -->
+		<!-- Arena do portão do caos -->
 		<spawn npc_id="730482" respawn_time="295">
 			<spot x="534.7064" y="340.7762" z="93.4828" h="0" static_id="254"/>
-			<spot x="534.81" y="340.66" z="96.11" h="0"/>
 		</spawn>
-		<!-- Arena of Discipline Gate -->
+		<!-- Arena de Gate de Disciplina -->
 		<spawn npc_id="730484" respawn_time="295">
 			<spot x="562.1624" y="342.4925" z="93.4828" h="0" static_id="255"/>
-			<spot x="562.26" y="342.38" z="96.11" h="0"/>
 		</spawn>
-		<!-- Entrance to the Arena of Glory -->
+		<!-- Letra -->
 		<spawn npc_id="730488" respawn_time="295">
 			<spot x="564.0755" y="313.2925" z="94.2999" h="0"/>
 		</spawn>
-		<!-- Entrance to the Arena of Cooperation -->
+		<!-- &amp;lt;Rabbiterk&amp;gt; -->
 		<spawn npc_id="730544" respawn_time="295">
 			<spot x="534.6518" y="313.1476" z="96.1064" h="0"/>
-			<spot x="534.75" y="313.03" z="96.11" h="0"/>
 		</spawn>
-		<!-- Sanctum Coin Fountain -->
+		<!-- Faerie do outro mundo -->
 		<spawn npc_id="730577" respawn_time="295">
 			<spot x="535.3947" y="314.2587" z="93.4828" h="0" static_id="256"/>
 		</spawn>
-		<!-- Mia -->
+		<!-- Tempestade do caos -->
 		<spawn npc_id="730645" respawn_time="295">
 			<spot x="563.1566" y="313.9923" z="93.48281" h="0" static_id="268"/>
 		</spawn>
-		<!-- Crucible Guard -->
+		<!-- Guarda cadinho -->
 		<spawn npc_id="799634" respawn_time="295">
 			<spot x="577.1282" y="236.6414" z="93.50441" h="60"/>
 			<spot x="577.1358" y="258.2187" z="93.49354" h="60"/>
@@ -173,10 +161,8 @@
 			<spot x="534.0871" y="315.823" z="93.4328" h="0"/>
 			<spot x="537.2908" y="342.7779" z="93.4328" h="0"/>
 			<spot x="561.0738" y="313.1879" z="94.2999" h="0"/>
-			<spot x="577.13" y="247.42" z="94.3" h="0"/>
-			<spot x="548.9" y="328.09" z="93.65" h="0"/>
 		</spawn>
-		<!-- Crucible Guard -->
+		<!-- Guarda cadinho -->
 		<spawn npc_id="799635" respawn_time="295">
 			<spot x="577.1289" y="241.7952" z="93.50441" h="60"/>
 			<spot x="577.1365" y="263.3724" z="93.48666" h="60"/>
@@ -188,37 +174,30 @@
 			<spot x="564.0125" y="339.8497" z="93.4828" h="75"/>
 			<spot x="537.3069" y="343.1154" z="93.4828" h="105"/>
 			<spot x="560.751" y="343.7315" z="93.4828" h="75"/>
-			<spot x="555.41" y="290.45" z="93.87" h="0"/>
 		</spawn>
-		<!-- Oriki -->
+		<!-- Tereisa -->
 		<spawn npc_id="800179" respawn_time="295">
 			<spot x="503.576" y="300.612" z="94.4357" h="0"/>
-			<spot x="503.53" y="300.58" z="94.44" h="0"/>
 		</spawn>
-		<!-- Roliaz -->
+		<!-- Printigel -->
 		<spawn npc_id="800180" respawn_time="295">
 			<spot x="503.5901" y="302.4701" z="94.4249" h="0"/>
-			<spot x="503.54" y="302.45" z="94.42" h="0"/>
 		</spawn>
-		<!-- Neillia -->
+		<!-- &amp;lt;Oficial Aumentador&amp;gt; -->
 		<spawn npc_id="800182" respawn_time="295">
 			<spot x="490.4967" y="314.7528" z="94.2999" h="0"/>
-			<spot x="490.48" y="314.73" z="94.3" h="0"/>
 		</spawn>
-		<!-- Aeyren -->
+		<!-- Badelran -->
 		<spawn npc_id="800257" respawn_time="295">
 			<spot x="488.4967" y="314.7528" z="94.2999" h="0"/>
-			<spot x="488.48" y="314.73" z="94.3" h="0"/>
 		</spawn>
-		<!-- Baeksaek -->
+		<!-- Gallam -->
 		<spawn npc_id="800499" respawn_time="295">
 			<spot x="469.5556" y="296.2238" z="94.2999" h="0"/>
-			<spot x="469.48" y="296.2" z="94.3" h="0"/>
 		</spawn>
 		<!-- Mendia -->
 		<spawn npc_id="800501" respawn_time="295">
 			<spot x="469.5556" y="298.7238" z="94.2999" h="0"/>
-			<spot x="469.48" y="298.7" z="94.3" h="0"/>
 		</spawn>
 		<!-- Chloyl -->
 		<spawn npc_id="800502" respawn_time="295">
@@ -228,25 +207,24 @@
 		<spawn npc_id="800503" respawn_time="295">
 			<spot x="562.5295" y="211.6532" z="93.47958" h="60"/>
 			<spot x="469.5556" y="301.2239" z="94.2999" h="0"/>
-			<spot x="469.48" y="301.2" z="94.3" h="0"/>
 		</spawn>
-		<!-- Test Function -->
+		<!-- Função de teste -->
 		<spawn npc_id="802214" respawn_time="295">
 			<spot x="371.1755" y="238.6054" z="97.05445" h="56"/>
 		</spawn>
-		<!-- Stealth Ring -->
+		<!-- Elia -->
 		<spawn npc_id="802217" respawn_time="295">
 			<spot x="403.7529" y="256.0393" z="93.11253" h="90"/>
 		</spawn>
-		<!-- Flight Ring -->
+		<!-- Melis -->
 		<spawn npc_id="802218" respawn_time="295">
 			<spot x="367.8601" y="262.7087" z="97.05444" h="63"/>
 		</spawn>
-		<!-- Flight Ring -->
+		<!-- Lã -->
 		<spawn npc_id="802439" respawn_time="295">
 			<spot x="391.5464" y="247.075" z="93.12942" h="0"/>
 		</spawn>
-		<!-- Awakening Ring -->
+		<!-- Dubans -->
 		<spawn npc_id="802440" respawn_time="295">
 			<spot x="387.7284" y="254.8186" z="93.12943" h="75"/>
 		</spawn>
@@ -254,7 +232,7 @@
 		<spawn npc_id="802542" respawn_time="295">
 			<spot x="395.3881" y="241.077" z="93.11252" h="0"/>
 		</spawn>
-		<!-- Inquin Tree -->
+		<!-- Goldrinyerk Overer -->
 		<spawn npc_id="802543" respawn_time="295">
 			<spot x="395.448" y="259.8458" z="93.11253" h="0"/>
 		</spawn>

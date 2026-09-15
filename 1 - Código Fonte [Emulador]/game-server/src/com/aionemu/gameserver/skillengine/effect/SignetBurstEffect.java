@@ -37,7 +37,20 @@ public class SignetBurstEffect extends DamageEffect {
 
 		int effectProb = 0;
 		int signetLvl = Math.min(signetlvl, signetEffect == null ? 0 : signetEffect.getSkillLevel());
-		SignetData signetData = DataManager.SIGNET_DATA_TEMPLATES.getSignetData(SignetEnum.valueOf(signet), signetLvl);
+		SignetEnum signetEnum = null;
+		if (signet != null) {
+			if ("SYSTEM_SKILL_SIGNET1".equalsIgnoreCase(signet)) {
+				signetEnum = SignetEnum.SIGNET1;
+			} else if ("SYSTEM_SKILL_SIGNET2".equalsIgnoreCase(signet)) {
+				signetEnum = SignetEnum.SIGNET2;
+			} else {
+				try {
+					signetEnum = SignetEnum.valueOf(signet);
+				} catch (IllegalArgumentException ignored) {
+				}
+			}
+		}
+		SignetData signetData = signetEnum != null ? DataManager.SIGNET_DATA_TEMPLATES.getSignetData(signetEnum, signetLvl) : null;
 		if (signetData != null) {
 			valueWithDelta *= signetData.getDamageMultiplier();
 			effectProb = signetData.getAddEffectProb() * addEffectProbMultiplier;

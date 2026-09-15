@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300690000">
-		<!-- Omne Solum -->
+		<!-- &amp;lt;Two Bass Fortaleza&amp;gt; -->
 		<spawn npc_id="802204" respawn_time="295">
 			<spot x="528.683" y="759.8904" z="203.0623" h="0"/>
 			<spot x="569.2823" y="838.0389" z="203.0623" h="0"/>
@@ -18,7 +18,7 @@
 		<spawn npc_id="802207" respawn_time="295">
 			<spot x="529.87" y="785.95" z="200.0" h="0"/>
 		</spawn>
-		<!-- Ancient Treasure Box -->
+		<!-- Caixa de tesouro antigo -->
 		<spawn npc_id="802208" respawn_time="295">
 			<spot x="496.8766" y="882.46" z="201.1105" h="103"/>
 			<spot x="559.3974" y="882.4638" z="201.9437" h="76"/>
@@ -30,11 +30,11 @@
 			<spot x="528.4724" y="894.1384" z="202.0138" h="90"/>
 			<spot x="576.8061" y="853.7576" z="201.1452" h="63"/>
 		</spawn>
-		<!-- Ancient Treasure Box -->
+		<!-- Caixa de tesouro antigo -->
 		<spawn npc_id="802209" respawn_time="295">
 			<spot x="576.46" y="837.34" z="200.0" h="56"/>
 		</spawn>
-		<!-- Greater Treasure Chest -->
+		<!-- Batismal -->
 		<spawn npc_id="802382" respawn_time="295">
 			<spot x="485.7722" y="820.696" z="201.3323" h="10"/>
 			<spot x="480.0411" y="836.5477" z="201.1181" h="3"/>

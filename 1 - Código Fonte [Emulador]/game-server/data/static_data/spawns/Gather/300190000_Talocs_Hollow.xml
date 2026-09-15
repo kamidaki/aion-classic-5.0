@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300190000">
-		<!-- Voluspar -->
+		<!-- Casal de volus -->
 		<spawn npc_id="400111" respawn_time="295">
 			<spot x="379.078" y="958.057" z="1248.0632" h="0"/>
 			<spot x="314.2659" y="860.497" z="1252.4167" h="0"/>
@@ -37,7 +37,7 @@
 			<spot x="416.9395" y="899.9245" z="1265.7181" h="0"/>
 			<spot x="488.7359" y="838.747" z="1272.1176" h="0"/>
 		</spawn>
-		<!-- Magical Aether -->
+		<!-- Éter mágico -->
 		<spawn npc_id="401041" respawn_time="295">
 			<spot x="235.9819" y="741.2007" z="1174.3477" h="0"/>
 			<spot x="238.8407" y="374.1994" z="1160.5189" h="0"/>
@@ -48,7 +48,7 @@
 			<spot x="319.5388" y="516.1528" z="1169.2391" h="0"/>
 			<spot x="318.6492" y="547.6689" z="1171.3656" h="0"/>
 		</spawn>
-		<!-- Magical Aether -->
+		<!-- Éter mágico -->
 		<spawn npc_id="401042" respawn_time="295">
 			<spot x="284.3963" y="442.0208" z="1174.4531" h="0"/>
 			<spot x="257.0015" y="418.7473" z="1165.4502" h="0"/>
@@ -63,7 +63,7 @@
 			<spot x="665.2163" y="804.4008" z="1304.0724" h="0"/>
 			<spot x="507.7793" y="871.0282" z="1275.6285" h="0"/>
 		</spawn>
-		<!-- Magical Aether -->
+		<!-- Éter mágico -->
 		<spawn npc_id="401043" respawn_time="295">
 			<spot x="688.605" y="829.8503" z="1306.9789" h="0"/>
 			<spot x="387.1229" y="844.0107" z="1271.8749" h="0"/>

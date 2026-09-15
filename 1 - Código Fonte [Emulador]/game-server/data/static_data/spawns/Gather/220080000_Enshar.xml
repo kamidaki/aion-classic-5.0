@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="220080000">
+		<!-- Jurak -->
+		<!-- Chersnip -->
+		<!-- Ralloc -->
+		<!-- Malevite Miasma -->
+		<!-- Drenite -->
+		<!-- Corundum -->
+		<!-- Turquoise -->
+		<!-- Elatrite -->
+		<!-- Korie Log -->
+		<!-- Hoca -->
+		<!-- Plia -->
+		<!-- Liconsis -->
+		<!-- Manzu -->
+		<!-- Drupa -->
+		<!-- Stria -->
+		<!-- Nokara -->
+		<!-- Poma -->
+		<!-- Gorocle -->
+		<!-- Ancient Aether -->
+		<!-- Magical Aether -->
+		<!-- Magical Aether -->
+		<!-- Magical Aether -->
+		<!-- Magical Aether -->
+		<!-- Huge Korie Log -->
+		<!-- Huge Drenite -->
+		<!-- Huge Corundum -->
+		<!-- Huge Elatrite -->
+		<!-- Giant Turquoise -->
+	</spawn_map>
+</spawns>

@@ -420,49 +420,7 @@
 		<npc_skill id="18952" lv="1" prob="0" />
 		<npc_skill id="18883" lv="3" prob="0" />
 		<npc_skill id="18949" lv="3" prob="0" />
-		<npc_skill id="20197" lv="8" prob="0" />
-	</npc_skills>
-	<npc_skills npc_ids="201062">
-		<npc_skill id="20405" lv="9" prob="18" />
-		<npc_skill id="20279" lv="9" prob="18" />
-		<npc_skill id="20287" lv="9" prob="27" />
-		<npc_skill id="20291" lv="9" prob="18" />
-		<npc_skill id="20295" lv="9" prob="9" />
-		<npc_skill id="20299" lv="9" prob="9" />
-	</npc_skills>
-	<npc_skills npc_ids="201063">
-		<npc_skill id="20279" lv="5" prob="28" />
-		<npc_skill id="20299" lv="5" prob="39" />
-		<npc_skill id="20287" lv="5" prob="28" />
-		<npc_skill id="20271" lv="5" prob="6" />
-	</npc_skills>
-	<npc_skills npc_ids="201064">
-		<npc_skill id="20292" lv="7" prob="25" min_hp="95" />
-		<npc_skill id="20304" lv="7" prob="25" min_hp="88" />
-		<npc_skill id="20336" lv="7" prob="25" min_hp="95" />
-	</npc_skills>
-	<npc_skills npc_ids="201065">
-		<npc_skill id="20296" lv="2" prob="0" />
-		<npc_skill id="20300" lv="7" prob="25" />
-		<npc_skill id="20272" lv="7" prob="25" />
-		<npc_skill id="20280" lv="7" prob="25" />
-		<npc_skill id="20288" lv="2" prob="0" />
-		<npc_skill id="20312" lv="7" prob="25" />
-		<npc_skill id="20404" lv="2" prob="0" />
-		<npc_skill id="20292" lv="2" prob="0" />
-		<npc_skill id="20304" lv="2" prob="0" />
-		<npc_skill id="20336" lv="2" prob="0" />
-	</npc_skills>
-	<npc_skills npc_ids="201067">
-		<npc_skill id="20297" lv="1" prob="4" />
-		<npc_skill id="20301" lv="1" prob="8" />
-		<npc_skill id="20282" lv="1" prob="6" />
-		<npc_skill id="20274" lv="1" prob="3" />
-		<npc_skill id="20337" lv="1" prob="2" />
-		<npc_skill id="20294" lv="1" prob="1" />
-		<npc_skill id="20290" lv="5" prob="29" />
-		<npc_skill id="20305" lv="5" prob="6" />
-	</npc_skills>
+		</npc_skills>
 	<npc_skills npc_ids="201070">
 		<npc_skill id="21000" lv="3" prob="25" min_hp="95" />
 		<npc_skill id="21016" lv="3" prob="25" min_hp="95" />
@@ -478,8 +436,7 @@
 	</npc_skills>
 	<npc_skills npc_ids="201073">
 		<npc_skill id="21026" lv="1" prob="5" />
-		<npc_skill id="21021" lv="1" prob="3" />
-	</npc_skills>
+		</npc_skills>
 	<npc_skills npc_ids="203175">
 		<npc_skill id="16434" lv="10" prob="25" />
 	</npc_skills>
@@ -2544,7 +2501,7 @@
 		<npc_skill id="17065" lv="60" prob="45" />
 		<npc_skill id="17230" lv="60" prob="55" />
 	</npc_skills>
-	<!-- Eltnen Elite Templar -->
+	
 	<npc_skills npc_ids="209524">
 		<npc_skill id="18315" lv="60" prob="100" min_hp="5" max_hp="50" cd="150000" />
 		<npc_skill id="18317" lv="60" prob="1" min_hp="10" max_hp="25" cd="600000" />
@@ -2555,7 +2512,7 @@
 		<npc_skill id="18322" lv="60" prob="17" cd="30000" />
 		<npc_skill id="18323" lv="60" prob="17" cd="30000" />
 	</npc_skills>
-	<!-- Eltnen Elite Sorcerer -->
+	
 	<npc_skills npc_ids="209527">
 		<npc_skill id="17111" lv="60" prob="4" />
 		<npc_skill id="17113" lv="60" prob="50" cd="30000" />
@@ -2565,7 +2522,7 @@
 		<npc_skill id="17119" lv="60" prob="100" cd="60000" />
 		<npc_skill id="17120" lv="4" prob="35" cd="600000" />
 	</npc_skills>
-	<!-- Heiron Elite Templar -->
+	
 	<npc_skills npc_ids="209529">
 		<npc_skill id="18315" lv="60" prob="100" min_hp="5" max_hp="50" cd="150000" />
 		<npc_skill id="18317" lv="60" prob="1" min_hp="10" max_hp="25" cd="600000" />
@@ -2576,7 +2533,7 @@
 		<npc_skill id="18322" lv="60" prob="17" cd="30000" />
 		<npc_skill id="18323" lv="60" prob="17" cd="30000" />
 	</npc_skills>
-	<!-- Heiron Elite Sorcerer -->
+	
 	<npc_skills npc_ids="209532">
 		<npc_skill id="17111" lv="60" prob="4" />
 		<npc_skill id="17113" lv="60" prob="50" cd="30000" />
@@ -2586,7 +2543,7 @@
 		<npc_skill id="17119" lv="60" prob="100" cd="60000" />
 		<npc_skill id="17120" lv="4" prob="35" cd="600000" />
 	</npc_skills>
-	<!-- Inggison Elite Templar -->
+	
 	<npc_skills npc_ids="209534">
 		<npc_skill id="18315" lv="60" prob="100" min_hp="5" max_hp="50" cd="150000" />
 		<npc_skill id="18317" lv="60" prob="1" min_hp="10" max_hp="25" cd="600000" />
@@ -2597,7 +2554,7 @@
 		<npc_skill id="18322" lv="60" prob="17" cd="30000" />
 		<npc_skill id="18323" lv="60" prob="17" cd="30000" />
 	</npc_skills>
-	<!-- Inggison Elite Sorcerer -->
+	
 	<npc_skills npc_ids="209537">
 		<npc_skill id="17111" lv="60" prob="4" />
 		<npc_skill id="17113" lv="60" prob="50" cd="30000" />
@@ -2607,7 +2564,7 @@
 		<npc_skill id="17119" lv="60" prob="100" cd="60000" />
 		<npc_skill id="17120" lv="4" prob="35" cd="600000" />
 	</npc_skills>
-	<!-- Morheim Elite Templar -->
+	
 	<npc_skills npc_ids="209539">
 		<npc_skill id="18315" lv="60" prob="100" min_hp="5" max_hp="50" cd="150000" />
 		<npc_skill id="18317" lv="60" prob="1" min_hp="10" max_hp="25" cd="600000" />
@@ -2618,7 +2575,7 @@
 		<npc_skill id="18322" lv="60" prob="17" cd="30000" />
 		<npc_skill id="18323" lv="60" prob="17" cd="30000" />
 	</npc_skills>
-	<!-- Morheim Elite Sorcerer -->
+	
 	<npc_skills npc_ids="209542">
 		<npc_skill id="17111" lv="60" prob="4" />
 		<npc_skill id="17113" lv="60" prob="50" cd="30000" />
@@ -2628,7 +2585,7 @@
 		<npc_skill id="17119" lv="60" prob="100" cd="60000" />
 		<npc_skill id="17120" lv="4" prob="35" cd="600000" />
 	</npc_skills>
-	<!-- Beluslan Elite Templar -->
+	
 	<npc_skills npc_ids="209544">
 		<npc_skill id="18315" lv="60" prob="100" min_hp="5" max_hp="50" cd="150000" />
 		<npc_skill id="18317" lv="60" prob="1" min_hp="10" max_hp="25" cd="600000" />
@@ -2639,7 +2596,7 @@
 		<npc_skill id="18322" lv="60" prob="17" cd="30000" />
 		<npc_skill id="18323" lv="60" prob="17" cd="30000" />
 	</npc_skills>
-	<!-- Beluslan Elite Sorcerer -->
+	
 	<npc_skills npc_ids="209547">
 		<npc_skill id="17111" lv="60" prob="4" />
 		<npc_skill id="17113" lv="60" prob="50" cd="30000" />
@@ -2649,7 +2606,7 @@
 		<npc_skill id="17119" lv="60" prob="100" cd="60000" />
 		<npc_skill id="17120" lv="4" prob="35" cd="600000" />
 	</npc_skills>
-	<!-- Gelkmaros Elite Templar -->
+	
 	<npc_skills npc_ids="209549">
 		<npc_skill id="18315" lv="60" prob="100" min_hp="5" max_hp="50" cd="150000" />
 		<npc_skill id="18317" lv="60" prob="1" min_hp="10" max_hp="25" cd="600000" />
@@ -2660,7 +2617,7 @@
 		<npc_skill id="18322" lv="60" prob="17" cd="30000" />
 		<npc_skill id="18323" lv="60" prob="17" cd="30000" />
 	</npc_skills>
-	<!-- Gelkmaros Elite Sorcerer -->
+	
 	<npc_skills npc_ids="209552">
 		<npc_skill id="17111" lv="60" prob="4" />
 		<npc_skill id="17113" lv="60" prob="50" cd="30000" />
@@ -4374,7 +4331,7 @@
 		<npc_skill id="16740" lv="19" prob="25" />
 		<npc_skill id="16742" lv="19" prob="25" />
 	</npc_skills>
-	<!-- Kaidan Wallarm -->
+	
 	<npc_skills npc_ids="210839 235481">
 		<npc_skill id="16602" lv="19" prob="25" />
 		<npc_skill id="16606" lv="19" prob="25" />
@@ -4382,7 +4339,7 @@
 		<npc_skill id="16611" lv="19" prob="25" />
 		<npc_skill id="16614" lv="19" prob="25" />
 	</npc_skills>
-	<!-- Kaidan Sharpeye -->
+	
 	<npc_skills npc_ids="210840 235480">
 		<npc_skill id="16656" lv="19" prob="25" />
 		<npc_skill id="16745" lv="19" prob="25" />
@@ -4473,7 +4430,7 @@
 		<npc_skill id="16738" lv="20" prob="25" />
 		<npc_skill id="16740" lv="20" prob="25" />
 	</npc_skills>
-	<!-- Kaidan Charger -->
+	
 	<npc_skills npc_ids="210867 235482">
 		<npc_skill id="16602" lv="20" prob="25" />
 		<npc_skill id="16606" lv="20" prob="25" />
@@ -4481,7 +4438,7 @@
 		<npc_skill id="16611" lv="20" prob="25" />
 		<npc_skill id="16614" lv="20" prob="25" />
 	</npc_skills>
-	<!-- Kaidan Plantygrunt -->
+	
 	<npc_skills npc_ids="210869 235476">
 		<npc_skill id="16565" lv="20" prob="25" />
 		<npc_skill id="16633" lv="20" prob="25" />
@@ -4536,7 +4493,7 @@
 		<npc_skill id="16531" lv="21" prob="25" />
 		<npc_skill id="16808" lv="21" prob="25" />
 	</npc_skills>
-	<!-- Crack Kaidan Plantygrunt -->
+	
 	<npc_skills npc_ids="210892 235477">
 		<npc_skill id="16565" lv="21" prob="25" />
 		<npc_skill id="16628" lv="21" prob="25" />
@@ -7167,14 +7124,14 @@
 	<npc_skills npc_ids="211829">
 		<npc_skill id="16516" lv="19" prob="25" />
 	</npc_skills>
-	<!-- Veteran Kaidan Scout -->
+	
 	<npc_skills npc_ids="211830 235478">
 		<npc_skill id="16623" lv="19" prob="25" />
 		<npc_skill id="16656" lv="19" prob="25" />
 		<npc_skill id="16768" lv="19" prob="25" />
 		<npc_skill id="16770" lv="19" prob="25" />
 	</npc_skills>
-	<!-- Veteran Kaidan Scout -->
+	
 	<npc_skills npc_ids="211831 235479">
 		<npc_skill id="16623" lv="20" prob="25" />
 		<npc_skill id="16656" lv="20" prob="25" />
@@ -8037,47 +7994,47 @@
 		<npc_skill id="16529" lv="25" prob="25" />
 		<npc_skill id="16531" lv="25" prob="25" />
 	</npc_skills>
-	<!-- Crack Kaidan Charger -->
+	
 	<npc_skills npc_ids="212058 235459">
 		<npc_skill id="16606" lv="20" prob="25" />
 		<npc_skill id="16608" lv="20" prob="25" />
 		<npc_skill id="16616" lv="20" prob="25" />
 		<npc_skill id="16735" lv="20" prob="25" />
 	</npc_skills>
-	<!-- Crack Kaidan Charger -->
+	
 	<npc_skills npc_ids="212059 235460">
 		<npc_skill id="16606" lv="21" prob="25" />
 		<npc_skill id="16608" lv="21" prob="25" />
 		<npc_skill id="16616" lv="21" prob="25" />
 		<npc_skill id="16735" lv="21" prob="25" />
 	</npc_skills>
-	<!-- Crack Kaidan Wallarm -->
+	
 	<npc_skills npc_ids="212060 235461">
 		<npc_skill id="16605" lv="20" prob="25" />
 		<npc_skill id="16614" lv="20" prob="25" />
 		<npc_skill id="16735" lv="20" prob="25" />
 		<npc_skill id="16606" lv="20" prob="25" />
 	</npc_skills>
-	<!-- Crack Kaidan Wallarm -->
+	
 	<npc_skills npc_ids="212061 235462">
 		<npc_skill id="16605" lv="21" prob="25" />
 		<npc_skill id="16614" lv="21" prob="25" />
 		<npc_skill id="16735" lv="21" prob="25" />
 	</npc_skills>
-	<!-- Veteran Smackstopper -->
+	
 	<npc_skills npc_ids="212062">
 		<npc_skill id="16605" lv="19" prob="25" />
 		<npc_skill id="16738" lv="19" prob="25" />
 		<npc_skill id="16742" lv="19" prob="25" />
 		<npc_skill id="16741" lv="19" prob="25" />
 	</npc_skills>
-	<!-- Veteran Smackstopper -->
+	
 	<npc_skills npc_ids="212063 235463">
 		<npc_skill id="16605" lv="20" prob="25" />
 		<npc_skill id="16738" lv="20" prob="25" />
 		<npc_skill id="16742" lv="20" prob="25" />
 	</npc_skills>
-	<!-- Crack Kaidan Grappler -->
+	
 	<npc_skills npc_ids="212064 235464">
 		<npc_skill id="16739" lv="20" prob="25" />
 		<npc_skill id="16741" lv="20" prob="25" />
@@ -8085,7 +8042,7 @@
 		<npc_skill id="16737" lv="20" prob="25" />
 		<npc_skill id="16742" lv="20" prob="25" />
 	</npc_skills>
-	<!-- Crack Kaidan Grappler -->
+	
 	<npc_skills npc_ids="212065 235465">
 		<npc_skill id="16605" lv="21" prob="25" />
 		<npc_skill id="16737" lv="21" prob="25" />
@@ -8093,59 +8050,59 @@
 		<npc_skill id="16741" lv="21" prob="25" />
 		<npc_skill id="16742" lv="21" prob="25" />
 	</npc_skills>
-	<!-- Crack Kaidan Slicer -->
+	
 	<npc_skills npc_ids="212066 235466">
 		<npc_skill id="16763" lv="20" prob="25" />
 		<npc_skill id="16765" lv="20" prob="25" />
 		<npc_skill id="16766" lv="20" prob="25" />
 		<npc_skill id="16770" lv="20" prob="25" />
 	</npc_skills>
-	<!-- Crack Kaidan Slicer -->
+	
 	<npc_skills npc_ids="212067 235467">
 		<npc_skill id="16763" lv="21" prob="25" />
 		<npc_skill id="16766" lv="21" prob="25" />
 		<npc_skill id="16770" lv="21" prob="25" />
 		<npc_skill id="16765" lv="21" prob="25" />
 	</npc_skills>
-	<!-- Crack Kaidan Snapper -->
+	
 	<npc_skills npc_ids="212068 235468">
 		<npc_skill id="16759" lv="20" prob="25" />
 		<npc_skill id="16760" lv="20" prob="25" />
 		<npc_skill id="16761" lv="20" prob="25" />
 	</npc_skills>
-	<!-- Crack Kaidan Snapper -->
+	
 	<npc_skills npc_ids="212069 235469">
 		<npc_skill id="16759" lv="21" prob="25" />
 		<npc_skill id="16760" lv="21" prob="25" />
 		<npc_skill id="16761" lv="21" prob="25" />
 	</npc_skills>
-	<!-- Crack Kaidan Loudmouth -->
+	
 	<npc_skills npc_ids="212070 235470">
 		<npc_skill id="16656" lv="20" prob="25" />
 		<npc_skill id="16745" lv="20" prob="25" />
 		<npc_skill id="16748" lv="20" prob="25" />
 	</npc_skills>
-	<!-- Crack Kaidan Loudmouth -->
+	
 	<npc_skills npc_ids="212071 235471">
 		<npc_skill id="16656" lv="21" prob="25" />
 		<npc_skill id="16745" lv="21" prob="25" />
 		<npc_skill id="16748" lv="21" prob="25" />
 	</npc_skills>
-	<!-- Kaidan Special Shaman -->
+	
 	<npc_skills npc_ids="212072 235472">
 		<npc_skill id="16775" lv="21" prob="25" />
 		<npc_skill id="16777" lv="21" prob="25" />
 		<npc_skill id="16776" lv="21" prob="25" />
 		<npc_skill id="16778" lv="21" prob="25" />
 	</npc_skills>
-	<!-- Crack Kaidan Witchdoctor -->
+	
 	<npc_skills npc_ids="212074 235474">
 		<npc_skill id="16643" lv="20" prob="25" />
 		<npc_skill id="16644" lv="20" prob="25" />
 		<npc_skill id="16780" lv="20" prob="25" />
 		<npc_skill id="16781" lv="20" prob="25" />
 	</npc_skills>
-	<!-- Crack Kaidan Witchdoctor -->
+	
 	<npc_skills npc_ids="212075 235475">
 		<npc_skill id="16780" lv="21" prob="25" />
 	</npc_skills>
@@ -26534,26 +26491,26 @@
 		<npc_skill id="18641" lv="46" prob="20" min_hp="20" max_hp="65" />
 		<npc_skill id="18642" lv="46" prob="25" />
 	</npc_skills>
-	<!-- Debilkarim The Maker -->
+	
 	<npc_skills npc_ids="215795">
 		<npc_skill id="18630" lv="1" prob="0" is_post_spawn="true" />
-		<!-- Strong Shock Tolerance -->
+		
 		<npc_skill id="18631" lv="1" prob="100" chain_id="1" cd="300000" next_skill_time="0" />
-		<!-- Strong Magic Tolerance -->
+		
 		<npc_skill id="18632" lv="46" prob="100" max_hp="80" cd="18000" />
-		<!-- Seismic Wave -->
+		
 		<npc_skill id="18633" lv="46" prob="100" cd="10000" />
-		<!-- Rockfall -->
+		
 		<npc_skill id="18634" lv="46" prob="100" cd="23000" />
-		<!-- Stone Curse -->
+		
 		<npc_skill id="18635" lv="46" prob="100" cd="30000" />
-		<!-- Wave of Fear -->
+		
 		<npc_skill id="18636" lv="46" prob="100" prio="1" max_hp="50" cd="300000" next_skill_time="0" next_chain_id="1" />
-		<!-- Invoke Energy (Heal) -->
+		
 		<npc_skill id="18637" lv="46" prob="100" max_hp="70" cd="30000" />
-		<!-- Temblor -->
+		
 		<npc_skill id="19000" lv="46" prob="100" prio="4" max_hp="10" cd="60000" />
-		<!-- Infernal Rift -->
+		
 	</npc_skills>
 	<npc_skills npc_ids="215796">
 		<npc_skill id="18638" lv="46" prob="25" />
@@ -28048,7 +28005,7 @@
 	</npc_skills>
 	<npc_skills npc_ids="216167">
 		<npc_skill id="19091" lv="50" prob="35" />
-		<!--<npc_skill id="18741" lv="50" prob="35" /> -->
+		
 		<npc_skill id="18740" lv="50" prob="35" max_hp="80" />
 		<npc_skill id="19160" lv="55" prob="35" />
 		<npc_skill id="19092" lv="50" prob="35" />
@@ -28490,7 +28447,7 @@
 	</npc_skills>
 	<npc_skills npc_ids="216248">
 		<npc_skill id="18740" lv="46" prob="25" />
-		<!--<npc_skill id="18741" lv="50" prob="35" /> -->
+		
 		<npc_skill id="18742" lv="46" prob="25" />
 		<npc_skill id="19091" lv="46" prob="25" />
 		<npc_skill id="19092" lv="46" prob="25" />
@@ -32872,43 +32829,7 @@
 		<npc_skill id="19312" lv="60" prob="0" />
 		<npc_skill id="19315" lv="60" prob="0" />
 	</npc_skills>
-	<npc_skills npc_ids="217255">
-		<npc_skill id="20349" lv="60" prob="25" min_hp="91" />
-		<npc_skill id="20232" lv="60" prob="25" min_hp="24" max_hp="42" />
-	</npc_skills>
-	<npc_skills npc_ids="217257">
-		<npc_skill id="20350" lv="60" prob="50" />
-		<npc_skill id="20232" lv="60" prob="42" />
-		<npc_skill id="20245" lv="60" prob="8" />
-	</npc_skills>
-	<npc_skills npc_ids="217258">
-		<npc_skill id="20234" lv="60" prob="25" min_hp="65" max_hp="70" />
-	</npc_skills>
-	<npc_skills npc_ids="217259">
-		<npc_skill id="20246" lv="60" prob="0" />
-		<npc_skill id="20232" lv="60" prob="43" />
-		<npc_skill id="20247" lv="60" prob="57" />
-	</npc_skills>
-	<npc_skills npc_ids="217260">
-		<npc_skill id="20234" lv="60" prob="25" max_hp="44" />
-		<npc_skill id="20246" lv="60" prob="25" max_hp="0" />
-	</npc_skills>
-	<npc_skills npc_ids="217261">
-		<npc_skill id="20242" lv="60" prob="31" />
-		<npc_skill id="20234" lv="60" prob="69" />
-		<npc_skill id="20250" lv="60" prob="0" />
-	</npc_skills>
-	<npc_skills npc_ids="217262">
-		<npc_skill id="20242" lv="60" prob="33" />
-		<npc_skill id="20232" lv="60" prob="58" />
-		<npc_skill id="20250" lv="60" prob="8" />
-	</npc_skills>
-	<npc_skills npc_ids="217264">
-		<npc_skill id="20234" lv="60" prob="25" />
-	</npc_skills>
 	<npc_skills npc_ids="217265">
-		<npc_skill id="20233" lv="60" prob="47" />
-		<npc_skill id="20232" lv="60" prob="40" />
 		<npc_skill id="19456" lv="60" prob="13" />
 	</npc_skills>
 	<npc_skills npc_ids="217277">
@@ -33008,24 +32929,10 @@
 		<npc_skill id="19661" lv="60" prob="23" />
 		<npc_skill id="19662" lv="60" prob="20" />
 	</npc_skills>
-	<!-- Brigade General Vasharti -->
+	
 	<npc_skills npc_ids="217313">
 		<npc_skill id="19667" lv="60" prob="70" cd="25000" next_skill_time="12000" />
 		<npc_skill id="19668" lv="60" prob="70" cd="30000" next_skill_time="12000" />
-	</npc_skills>
-	<npc_skills npc_ids="217315">
-		<npc_skill id="20245" lv="60" prob="50" />
-		<npc_skill id="20232" lv="60" prob="40" />
-		<npc_skill id="20248" lv="60" prob="10" />
-	</npc_skills>
-	<npc_skills npc_ids="217316">
-		<npc_skill id="20240" lv="60" prob="15" />
-		<npc_skill id="20237" lv="60" prob="15" />
-		<npc_skill id="20246" lv="60" prob="8" />
-	</npc_skills>
-	<npc_skills npc_ids="217317">
-		<npc_skill id="20353" lv="60" prob="13" />
-		<npc_skill id="20354" lv="60" prob="25" />
 	</npc_skills>
 	<npc_skills npc_ids="217325">
 		<npc_skill id="19913" lv="60" prob="25" min_hp="23" max_hp="28" />
@@ -33129,9 +33036,6 @@
 	<npc_skills npc_ids="217388">
 		<npc_skill id="17291" lv="47" prob="25" min_hp="75" />
 	</npc_skills>
-	<npc_skills npc_ids="217390">
-		<npc_skill id="20402" lv="47" prob="25" min_hp="93" />
-	</npc_skills>
 	<npc_skills npc_ids="217392">
 		<npc_skill id="19953" lv="46" prob="18" />
 		<npc_skill id="19988" lv="46" prob="12" />
@@ -33153,7 +33057,6 @@
 		<npc_skill id="17294" lv="47" prob="0" />
 	</npc_skills>
 	<npc_skills npc_ids="217397">
-		<npc_skill id="20402" lv="47" prob="25" min_hp="95" />
 		<npc_skill id="17317" lv="47" prob="25" min_hp="54" max_hp="59" />
 	</npc_skills>
 	<npc_skills npc_ids="217400">
@@ -34070,60 +33973,18 @@
 	<npc_skills npc_ids="217898">
 		<npc_skill id="19880" lv="1" prob="25" min_hp="95" />
 	</npc_skills>
-	<npc_skills npc_ids="217904">
-		<npc_skill id="20128" lv="1" prob="7" />
-	</npc_skills>
 	<npc_skills npc_ids="217923">
 		<npc_skill id="19880" lv="1" prob="25" min_hp="95" />
 	</npc_skills>
-	<npc_skills npc_ids="217934">
-		<npc_skill id="20079" lv="1" prob="33" />
-	</npc_skills>
-	<npc_skills npc_ids="217938">
-		<npc_skill id="20077" lv="1" prob="25" min_hp="95" />
-	</npc_skills>
-	<npc_skills npc_ids="217952">
-		<npc_skill id="20077" lv="1" prob="25" min_hp="95" />
-		<npc_skill id="20073" lv="1" prob="25" min_hp="95" />
-	</npc_skills>
-	<npc_skills npc_ids="217955">
-		<npc_skill id="20077" lv="1" prob="25" min_hp="95" />
-	</npc_skills>
-	<npc_skills npc_ids="217958">
-		<npc_skill id="20074" lv="1" prob="25" min_hp="95" />
-	</npc_skills>
 	<npc_skills npc_ids="217992">
-		<npc_skill id="20089" lv="1" prob="10" />
-		<npc_skill id="20085" lv="1" prob="10" />
-		<npc_skill id="20084" lv="1" prob="10" />
 		<npc_skill id="19828" lv="1" prob="10" />
-		<npc_skill id="20083" lv="1" is_post_spawn="true" />
-	</npc_skills>
+		</npc_skills>
 	<npc_skills npc_ids="217994">
 		<npc_skill id="19830" lv="1" prob="25" min_hp="95" />
 	</npc_skills>
-	<npc_skills npc_ids="217995">
-		<npc_skill id="20081" lv="1" prob="25" max_hp="0" />
-		<npc_skill id="20078" lv="1" prob="25" min_hp="79" max_hp="84" />
-	</npc_skills>
 	<npc_skills npc_ids="217996">
-		<npc_skill id="20089" lv="1" prob="17" />
-		<npc_skill id="20085" lv="1" prob="17" />
 		<npc_skill id="19828" lv="1" prob="17" />
-		<npc_skill id="20083" lv="1" prob="50" />
-	</npc_skills>
-	<npc_skills npc_ids="217998">
-		<npc_skill id="20082" lv="1" prob="25" />
-	</npc_skills>
-	<npc_skills npc_ids="218039">
-		<npc_skill id="20180" lv="1" prob="25" min_hp="95" />
-	</npc_skills>
-	<npc_skills npc_ids="218090">
-		<npc_skill id="20131" lv="1" prob="25" min_hp="95" />
-	</npc_skills>
-	<npc_skills npc_ids="218091">
-		<npc_skill id="20131" lv="1" prob="100" />
-	</npc_skills>
+		</npc_skills>
 	<npc_skills npc_ids="218092">
 		<npc_skill id="19863" lv="1" prob="25" min_hp="83" max_hp="88" />
 	</npc_skills>
@@ -34170,22 +34031,12 @@
 	<npc_skills npc_ids="218168">
 		<npc_skill id="19828" lv="1" prob="25" max_hp="7" />
 	</npc_skills>
-	<npc_skills npc_ids="218216">
-		<npc_skill id="20249" lv="49" prob="25" />
-		<npc_skill id="20241" lv="49" prob="25" min_hp="55" max_hp="60" />
-	</npc_skills>
-	<npc_skills npc_ids="218224">
-		<npc_skill id="20232" lv="49" prob="25" min_hp="95" />
-	</npc_skills>
 	<npc_skills npc_ids="218230">
 		<npc_skill id="19039" lv="40" prob="25" min_hp="95" />
 		<npc_skill id="16516" lv="40" prob="25" min_hp="95" />
 	</npc_skills>
 	<npc_skills npc_ids="218237">
 		<npc_skill id="17313" lv="40" prob="33" />
-	</npc_skills>
-	<npc_skills npc_ids="218242">
-		<npc_skill id="20241" lv="60" prob="25" min_hp="84" max_hp="89" />
 	</npc_skills>
 	<npc_skills npc_ids="218243">
 		<npc_skill id="19721" lv="60" prob="25" min_hp="37" max_hp="42" />
@@ -34196,34 +34047,7 @@
 	<npc_skills npc_ids="218245">
 		<npc_skill id="20514" lv="60" prob="25" min_hp="11" max_hp="16" />
 	</npc_skills>
-	<npc_skills npc_ids="218311">
-		<npc_skill id="20246" lv="60" prob="11" />
-		<npc_skill id="20234" lv="60" prob="6" />
-	</npc_skills>
-	<npc_skills npc_ids="218358">
-		<npc_skill id="20232" lv="49" prob="25" min_hp="59" max_hp="64" />
-	</npc_skills>
-	<npc_skills npc_ids="218429">
-		<npc_skill id="20239" lv="51" prob="20" />
-	</npc_skills>
-	<npc_skills npc_ids="218467">
-		<npc_skill id="20238" lv="51" prob="25" min_hp="95" />
-	</npc_skills>
 	<npc_skills npc_ids="218492">
-		<npc_skill id="20212" lv="60" prob="0" />
-		<npc_skill id="20213" lv="60" prob="0" />
-		<npc_skill id="20214" lv="60" prob="0" />
-		<npc_skill id="20215" lv="60" prob="0" />
-		<npc_skill id="20216" lv="60" prob="0" />
-		<npc_skill id="20217" lv="60" prob="0" />
-		<npc_skill id="20218" lv="60" prob="30" />
-		<npc_skill id="20219" lv="60" prob="30" />
-		<npc_skill id="20220" lv="60" prob="30" />
-		<npc_skill id="20221" lv="60" prob="30" />
-		<npc_skill id="20222" lv="60" prob="30" />
-		<npc_skill id="20223" lv="60" prob="0" />
-		<npc_skill id="20224" lv="60" prob="0" />
-		<npc_skill id="20225" lv="60" prob="0" />
 		<npc_skill id="20480" lv="60" prob="0" />
 		<npc_skill id="20481" lv="60" prob="0" />
 		<npc_skill id="20482" lv="60" prob="70" />
@@ -34234,22 +34058,16 @@
 	<npc_skills npc_ids="218553">
 		<npc_skill id="20649" lv="60" prob="25" max_hp="50" />
 		<npc_skill id="20650" lv="60" prob="25" />
-		<npc_skill id="20430" lv="51" prob="10" />
-	</npc_skills>
+		</npc_skills>
 	<npc_skills npc_ids="218577">
 		<npc_skill id="19887" lv="45" prob="25" />
 	</npc_skills>
 	<npc_skills npc_ids="218606">
 		<npc_skill id="19884" lv="1" prob="54" />
-		<npc_skill id="20151" lv="1" prob="46" />
-	</npc_skills>
+		</npc_skills>
 	<npc_skills npc_ids="218607">
 		<npc_skill id="19884" lv="1" prob="57" />
-		<npc_skill id="20151" lv="1" prob="43" />
-	</npc_skills>
-	<npc_skills npc_ids="218610">
-		<npc_skill id="20021" lv="60" prob="25" min_hp="95" />
-	</npc_skills>
+		</npc_skills>
 	<npc_skills npc_ids="218611">
 		<npc_skill id="20027" lv="60" prob="100" />
 	</npc_skills>
@@ -34258,9 +34076,6 @@
 	</npc_skills>
 	<npc_skills npc_ids="218669">
 		<npc_skill id="19849" lv="1" prob="25" min_hp="95" />
-	</npc_skills>
-	<npc_skills npc_ids="218739">
-		<npc_skill id="20240" lv="49" prob="25" min_hp="95" />
 	</npc_skills>
 	<npc_skills npc_ids="218756">
 		<npc_skill id="18725" lv="48" prob="30" />
@@ -34281,7 +34096,6 @@
 		<npc_skill id="19891" lv="2" prob="70" min_hp="25" max_hp="50" />
 		<npc_skill id="19898" lv="2" prob="0" />
 		<npc_skill id="19889" lv="2" prob="70" max_hp="50" />
-		<npc_skill id="20089" lv="2" prob="0" />
 		<npc_skill id="20499" lv="2" prob="0" />
 		<npc_skill id="19893" lv="2" prob="0" />
 		<npc_skill id="19897" lv="2" prob="0" />
@@ -34291,20 +34105,15 @@
 		<npc_skill id="19912" lv="60" prob="71" max_hp="65" />
 		<npc_skill id="19914" lv="60" prob="29" min_hp="63" max_hp="68" />
 	</npc_skills>
-	<npc_skills npc_ids="218911">
-		<npc_skill id="20233" lv="60" prob="1" />
-	</npc_skills>
 	<npc_skills npc_ids="218928">
 		<npc_skill id="20506" lv="60" prob="15" />
 		<npc_skill id="20507" lv="60" prob="31" />
 		<npc_skill id="20504" lv="60" prob="27" />
-		<npc_skill id="20247" lv="60" prob="15" />
 		<npc_skill id="20505" lv="60" prob="12" />
 	</npc_skills>
 	<npc_skills npc_ids="218931">
 		<npc_skill id="20507" lv="60" prob="28" />
 		<npc_skill id="20504" lv="60" prob="30" />
-		<npc_skill id="20247" lv="60" prob="13" />
 		<npc_skill id="20505" lv="60" prob="16" />
 		<npc_skill id="20506" lv="60" prob="14" />
 	</npc_skills>
@@ -34327,10 +34136,6 @@
 		<npc_skill id="19428" lv="1" prob="100" prio="1" cd="180000" next_skill_time="2000" next_chain_id="1" />
 		<npc_skill id="19425" lv="49" prob="100" chain_id="1" />
 	</npc_skills>
-	<npc_skills npc_ids="219203">
-		<npc_skill id="20242" lv="60" prob="25" min_hp="92" />
-		<npc_skill id="20234" lv="60" prob="25" min_hp="83" max_hp="88" />
-	</npc_skills>
 	<npc_skills npc_ids="219299">
 		<npc_skill id="20575" lv="60" prob="25" />
 		<npc_skill id="20576" lv="60" prob="61" />
@@ -34349,8 +34154,7 @@
 	<npc_skills npc_ids="219311">
 		<npc_skill id="20649" lv="60" prob="25" max_hp="50" />
 		<npc_skill id="20650" lv="60" prob="25" />
-		<npc_skill id="20430" lv="51" prob="10" />
-	</npc_skills>
+		</npc_skills>
 	<npc_skills npc_ids="219352">
 		<npc_skill id="20716" lv="47" prob="10" />
 		<npc_skill id="20723" lv="47" prob="10" />
@@ -35022,7 +34826,7 @@
 		<npc_skill id="17294" lv="56" prob="55" />
 		<npc_skill id="17295" lv="56" prob="5" />
 	</npc_skills>
-	<!-- roaring kamara -->
+	
 	<npc_skills npc_ids="231196">
 		<npc_skill id="21146" lv="1" prob="60" max_hp="10" cd="300000" />
 		<npc_skill id="19555" lv="25" prob="70" cd="35000" />
@@ -35665,39 +35469,11 @@
 		<npc_skill id="16837" lv="42" prob="25" />
 		<npc_skill id="16838" lv="42" prob="25" />
 	</npc_skills>
-	<npc_skills npc_ids="233740 234686">
-		<npc_skill id="21525" lv="1" prob="25" cd="25000" />
-		<npc_skill id="21526" lv="1" prob="25" cd="25000" />
-		<npc_skill id="21528" lv="1" prob="25" cd="25000" />
-		<npc_skill id="21527" lv="1" prob="25" cd="40000" />
-		<npc_skill id="21533" lv="1" prob="25" cd="40000" />
-		<npc_skill id="21529" lv="1" prob="40" max_hp="50" next_chain_id="1" next_skill_time="0" cd="120000" target="RANDOM" />
-		<npc_skill id="21530" lv="1" prob="100" chain_id="1" next_skill_time="10000" target="NONE" />
-		<npc_skill id="21531" lv="1" prob="70" min_hp="50" next_chain_id="2" next_skill_time="0" cd="40000" />
-		<npc_skill id="21532" lv="1" chain_id="2" prob="100" cd="10000" next_skill_time="10000" />
-		<npc_skill id="21532" lv="1" prob="70" max_hp="50" next_chain_id="3" next_skill_time="0" cd="40000" />
-		<npc_skill id="21531" lv="1" chain_id="3" prob="100" next_skill_time="10000" cd="10000" />
-	</npc_skills>
-	<npc_skills npc_ids="235064">
-		<npc_skill id="21773" lv="65" prob="50" cd="20000" max_hp="95" />
-		<npc_skill id="21774" lv="65" prob="50" cd="40000" max_hp="95" />
-		<npc_skill id="21775" lv="65" prob="50" cd="60000" max_hp="95" />
-		<npc_skill id="21776" lv="65" prob="50" cd="50000" max_hp="95" />
-		<npc_skill id="21777" lv="65" prob="50" cd="90000" max_hp="50" />
-	</npc_skills>
-	<npc_skills npc_ids="235065">
-		<npc_skill id="21773" lv="65" prob="50" cd="20000" max_hp="95" />
-		<npc_skill id="21774" lv="65" prob="50" cd="40000" max_hp="95" />
-		<npc_skill id="21775" lv="65" prob="50" cd="60000" max_hp="95" />
-		<npc_skill id="21776" lv="65" prob="50" cd="50000" max_hp="95" />
-		<npc_skill id="21777" lv="65" prob="50" cd="90000" max_hp="50" />
-	</npc_skills>
-	<!-- Mitrakand Drakie -->
 	<npc_skills npc_ids="236435">
 		<npc_skill id="16570" lv="65" prob="25" />
 		<npc_skill id="19055" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Mitrakand Drakan Destroyer -->
+	
 	<npc_skills npc_ids="236436 236452 236453 236454 236455">
 		<npc_skill id="16519" lv="65" prob="25" />
 		<npc_skill id="16608" lv="65" prob="25" />
@@ -35707,7 +35483,7 @@
 		<npc_skill id="18166" lv="65" prob="25" />
 		<npc_skill id="19125" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Mitrakand Raider -->
+	
 	<npc_skills npc_ids="236437 236456 236457 236458 236459">
 		<npc_skill id="16540" lv="65" prob="25" />
 		<npc_skill id="16608" lv="65" prob="25" />
@@ -35717,7 +35493,7 @@
 		<npc_skill id="18160" lv="65" prob="25" />
 		<npc_skill id="19125" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Mitrakand Hunterkiller -->
+	
 	<npc_skills npc_ids="236438 236460 236461 236462 236463">
 		<npc_skill id="16543" lv="65" prob="25" />
 		<npc_skill id="16674" lv="65" prob="25" />
@@ -35728,7 +35504,7 @@
 		<npc_skill id="18178" lv="65" prob="25" />
 		<npc_skill id="19125" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Mitrakand Gallowglass -->
+	
 	<npc_skills npc_ids="236439 236464 236465 236466 236467">
 		<npc_skill id="16570" lv="65" prob="25" />
 		<npc_skill id="16775" lv="65" prob="25" />
@@ -35738,7 +35514,7 @@
 		<npc_skill id="18175" lv="65" prob="25" />
 		<npc_skill id="19125" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Mitrakand Lifekeeper -->
+	
 	<npc_skills npc_ids="236440 236468 236469 236470 236471">
 		<npc_skill id="16638" lv="65" prob="25" />
 		<npc_skill id="17008" lv="65" prob="25" />
@@ -35747,13 +35523,13 @@
 		<npc_skill id="16563" lv="65" prob="25" />
 		<npc_skill id="16566" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Pincer's Prime -->
+	
 	<npc_skills npc_ids="236446">
 		<npc_skill id="16522" lv="65" prob="25" />
 		<npc_skill id="16523" lv="65" prob="25" />
 		<npc_skill id="16531" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Hashak the Plough -->
+	
 	<npc_skills npc_ids="236448">
 		<npc_skill id="16519" lv="65" prob="25" />
 		<npc_skill id="16608" lv="65" prob="25" />
@@ -35763,7 +35539,7 @@
 		<npc_skill id="18167" lv="65" prob="25" />
 		<npc_skill id="19135" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Elder Malekor -->
+	
 	<npc_skills npc_ids="236449">
 		<npc_skill id="17294" lv="65" prob="25" />
 		<npc_skill id="17337" lv="65" prob="25" />
@@ -35774,7 +35550,7 @@
 		<npc_skill id="16837" lv="65" prob="25" />
 		<npc_skill id="17360" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Hanarkand Thrasher -->
+	
 	<npc_skills npc_ids="236472 236500 236501">
 		<npc_skill id="16519" lv="65" prob="25" />
 		<npc_skill id="16608" lv="65" prob="25" />
@@ -35784,7 +35560,7 @@
 		<npc_skill id="18166" lv="65" prob="25" />
 		<npc_skill id="19135" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Hanarkand Elite Raider -->
+	
 	<npc_skills npc_ids="236473 236502 236503">
 		<npc_skill id="16540" lv="65" prob="25" />
 		<npc_skill id="16608" lv="65" prob="25" />
@@ -35794,7 +35570,7 @@
 		<npc_skill id="18160" lv="65" prob="25" />
 		<npc_skill id="19125" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Hanarkand Seeker -->
+	
 	<npc_skills npc_ids="236474 236504 236505">
 		<npc_skill id="16543" lv="65" prob="25" />
 		<npc_skill id="16674" lv="65" prob="25" />
@@ -35805,7 +35581,7 @@
 		<npc_skill id="18178" lv="65" prob="25" />
 		<npc_skill id="19125" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Hanarkand Mystic -->
+	
 	<npc_skills npc_ids="236475 236506 236507">
 		<npc_skill id="16775" lv="65" prob="25" />
 		<npc_skill id="16797" lv="65" prob="25" />
@@ -35815,7 +35591,7 @@
 		<npc_skill id="18175" lv="65" prob="25" />
 		<npc_skill id="19135" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Hanarkand Boneminder -->
+	
 	<npc_skills npc_ids="236476 236508 236509">
 		<npc_skill id="16565" lv="65" prob="25" />
 		<npc_skill id="16566" lv="65" prob="25" />
@@ -35826,7 +35602,7 @@
 		<npc_skill id="19135" lv="65" prob="25" />
 		<npc_skill id="16563" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Hanarkand Legatus -->
+	
 	<npc_skills npc_ids="236477 236510 236511">
 		<npc_skill id="16519" lv="65" prob="25" />
 		<npc_skill id="16608" lv="65" prob="25" />
@@ -35836,7 +35612,7 @@
 		<npc_skill id="18167" lv="65" prob="25" />
 		<npc_skill id="19135" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Hanarkand Rustler -->
+	
 	<npc_skills npc_ids="236478 236512 236513">
 		<npc_skill id="16540" lv="65" prob="25" />
 		<npc_skill id="16608" lv="65" prob="25" />
@@ -35845,7 +35621,7 @@
 		<npc_skill id="18167" lv="65" prob="25" />
 		<npc_skill id="19135" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Hanarkand Triaris -->
+	
 	<npc_skills npc_ids="236479 236514 236515">
 		<npc_skill id="16543" lv="65" prob="25" />
 		<npc_skill id="16812" lv="65" prob="25" />
@@ -35854,7 +35630,7 @@
 		<npc_skill id="18173" lv="65" prob="25" />
 		<npc_skill id="19135" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Hanarkand Diabolist -->
+	
 	<npc_skills npc_ids="236480 236516 236517">
 		<npc_skill id="16570" lv="65" prob="25" />
 		<npc_skill id="16775" lv="65" prob="25" />
@@ -35864,7 +35640,7 @@
 		<npc_skill id="18175" lv="65" prob="25" />
 		<npc_skill id="19135" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Hanarkand Curatus -->
+	
 	<npc_skills npc_ids="236481 236518 236519">
 		<npc_skill id="16563" lv="65" prob="10" />
 		<npc_skill id="16565" lv="65" prob="25" />
@@ -35875,19 +35651,19 @@
 		<npc_skill id="17450" lv="65" prob="25" />
 		<npc_skill id="19135" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Hanarkand Laborer -->
+	
 	<npc_skills npc_ids="236482">
 		<npc_skill id="16516" lv="65" prob="25" />
 		<npc_skill id="16742" lv="65" prob="25" />
 		<npc_skill id="16931" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Hanarkand Worker -->
+	
 	<npc_skills npc_ids="236483">
 		<npc_skill id="16516" lv="65" prob="25" />
 		<npc_skill id="16538" lv="65" prob="25" />
 		<npc_skill id="16564" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Elder Zanuta -->
+	
 	<npc_skills npc_ids="236492">
 		<npc_skill id="16775" lv="65" prob="25" />
 		<npc_skill id="17039" lv="65" prob="25" />
@@ -35897,7 +35673,7 @@
 		<npc_skill id="16570" lv="65" prob="25" />
 		<npc_skill id="19135" lv="65" prob="25" />
 	</npc_skills>
-	<!-- Sukana the Learned -->
+	
 	<npc_skills npc_ids="236493">
 		<npc_skill id="16570" lv="65" prob="25" />
 		<npc_skill id="16775" lv="65" prob="25" />
@@ -35907,7 +35683,7 @@
 		<npc_skill id="18175" lv="65" prob="25" />
 		<npc_skill id="19135" lv="1" prob="25" />
 	</npc_skills>
-	<!-- Head Priest Nashuma -->
+	
 	<npc_skills npc_ids="236494">
 		<npc_skill id="16826" lv="65" prob="25" />
 		<npc_skill id="16837" lv="65" prob="25" />
@@ -35919,14 +35695,12 @@
 		<npc_skill id="19135" lv="65" prob="25" />
 	</npc_skills>
 	<npc_skills npc_ids="237174">
-		<npc_skill id="22717" lv="65" prob="75" />
-		<!-- High-speed Freeze -->
 		<npc_skill id="19009" lv="60" prob="100" />
-		<!-- Wide Area Pull -->
+		
 		<npc_skill id="19155" lv="60" prob="100" />
-		<!-- Aether Storm -->
+		
 		<npc_skill id="19134" lv="60" prob="100" cd="10000" />
-		<!-- Arcane Thunderbolt -->
+		
 	</npc_skills>
 	<npc_skills npc_ids="251001">
 		<npc_skill id="17829" lv="42" prob="25" />
@@ -41051,82 +40825,6 @@
 		<npc_skill id="17692" lv="46" prob="25" />
 		<npc_skill id="17693" lv="46" prob="25" />
 		<npc_skill id="17694" lv="46" prob="25" />
-	</npc_skills>
-	<npc_skills npc_ids="258280">
-		<npc_skill id="20374" lv="65" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="258281">
-		<npc_skill id="20373" lv="65" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="258313">
-		<npc_skill id="20374" lv="65" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="258314">
-		<npc_skill id="20373" lv="65" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="259011">
-		<npc_skill id="20147" lv="60" prob="10" />
-		<npc_skill id="20146" lv="60" prob="10" />
-		<npc_skill id="20105" lv="60" prob="10" />
-		<npc_skill id="20168" lv="60" prob="10" />
-		<npc_skill id="20169" lv="60" prob="10" />
-		<npc_skill id="20170" lv="60" prob="10" />
-	</npc_skills>
-	<npc_skills npc_ids="259014">
-		<npc_skill id="20147" lv="60" prob="10" />
-		<npc_skill id="20146" lv="60" prob="10" />
-		<npc_skill id="20105" lv="60" prob="10" />
-		<npc_skill id="20168" lv="60" prob="10" />
-		<npc_skill id="20169" lv="60" prob="10" />
-		<npc_skill id="20170" lv="60" prob="10" />
-	</npc_skills>
-	<npc_skills npc_ids="259211">
-		<npc_skill id="20147" lv="60" prob="10" />
-		<npc_skill id="20146" lv="60" prob="10" />
-		<npc_skill id="20105" lv="60" prob="10" />
-		<npc_skill id="20155" lv="60" prob="10" />
-		<npc_skill id="20156" lv="60" prob="10" />
-		<npc_skill id="20157" lv="60" prob="10" />
-	</npc_skills>
-	<npc_skills npc_ids="259214">
-		<npc_skill id="20147" lv="60" prob="10" />
-		<npc_skill id="20146" lv="60" prob="10" />
-		<npc_skill id="20105" lv="60" prob="10" />
-		<npc_skill id="20155" lv="60" prob="10" />
-		<npc_skill id="20156" lv="60" prob="10" />
-		<npc_skill id="20157" lv="60" prob="10" />
-	</npc_skills>
-	<npc_skills npc_ids="259411">
-		<npc_skill id="20147" lv="60" prob="10" />
-		<npc_skill id="20146" lv="60" prob="10" />
-		<npc_skill id="20105" lv="60" prob="10" />
-		<npc_skill id="20166" lv="60" prob="10" />
-		<npc_skill id="20167" lv="60" prob="10" />
-		<npc_skill id="20162" lv="60" prob="10" />
-	</npc_skills>
-	<npc_skills npc_ids="259414">
-		<npc_skill id="20147" lv="60" prob="10" />
-		<npc_skill id="20146" lv="60" prob="10" />
-		<npc_skill id="20105" lv="60" prob="10" />
-		<npc_skill id="20166" lv="60" prob="10" />
-		<npc_skill id="20167" lv="60" prob="10" />
-		<npc_skill id="20162" lv="60" prob="10" />
-	</npc_skills>
-	<npc_skills npc_ids="259611">
-		<npc_skill id="20147" lv="60" prob="10" />
-		<npc_skill id="20146" lv="60" prob="10" />
-		<npc_skill id="20105" lv="60" prob="10" />
-		<npc_skill id="20159" lv="60" prob="10" />
-		<npc_skill id="20160" lv="60" prob="10" />
-		<npc_skill id="20161" lv="60" prob="10" />
-	</npc_skills>
-	<npc_skills npc_ids="259614">
-		<npc_skill id="20147" lv="60" prob="10" />
-		<npc_skill id="20146" lv="60" prob="10" />
-		<npc_skill id="20105" lv="60" prob="10" />
-		<npc_skill id="20159" lv="60" prob="10" />
-		<npc_skill id="20160" lv="60" prob="10" />
-		<npc_skill id="20161" lv="60" prob="10" />
 	</npc_skills>
 	<npc_skills npc_ids="260016">
 		<npc_skill id="17065" lv="1" prob="25" />
@@ -54743,14 +54441,14 @@
 		<npc_skill id="17379" lv="41" prob="25" />
 		<npc_skill id="17705" lv="41" prob="25" />
 	</npc_skills>
-	<!-- Dux Sillus -->
+	
 	<npc_skills npc_ids="272000">
-		<!-- 10m range -->
+		
 		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55" />
 		<npc_skill id="19101" lv="46" prob="100" chain_id="1" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
-		<!-- 20m range-->
+		
 		<npc_skill id="17992" lv="1" prob="25" next_chain_id="2" next_skill_time="0" cd="120000" max_hp="50" />
 		<npc_skill id="17995" lv="1" prob="100" chain_id="2" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
@@ -54769,17 +54467,17 @@
 		<npc_skill id="19113" lv="46" prob="25" max_hp="70" cd="60000" />
 		<npc_skill id="18009" lv="46" prob="20" max_hp="50" cd="180000" target="RANDOM" />
 		<npc_skill id="18010" lv="1" prob="20" max_hp="30" cd="220000" />
-		<!-- Summon Illusion Gate; deactivated for now -->
-		<!--<npc_skill id="18003" lv="1" prob="25" /> -->
+		
+		
 	</npc_skills>
-	<!-- Stallari Sillus -->
+	
 	<npc_skills npc_ids="272005">
-		<!-- 10m range -->
+		
 		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55" />
 		<npc_skill id="19101" lv="46" prob="100" chain_id="1" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
-		<!-- 20m range-->
+		
 		<npc_skill id="17992" lv="1" prob="25" next_chain_id="2" next_skill_time="0" cd="120000" max_hp="50" />
 		<npc_skill id="17995" lv="1" prob="100" chain_id="2" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
@@ -54798,17 +54496,17 @@
 		<npc_skill id="19113" lv="46" prob="25" max_hp="70" cd="60000" />
 		<npc_skill id="18009" lv="46" prob="20" max_hp="50" cd="180000" target="RANDOM" />
 		<npc_skill id="18010" lv="1" prob="20" max_hp="30" cd="220000" />
-		<!-- Summon Illusion Gate; deactivated for now -->
-		<!--<npc_skill id="18003" lv="1" prob="25" /> -->
+		
+		
 	</npc_skills>
-	<!-- Ulsaruk Sillus -->
+	
 	<npc_skills npc_ids="272010">
-		<!-- 10m range -->
+		
 		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55" />
 		<npc_skill id="19101" lv="46" prob="100" chain_id="1" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
-		<!-- 20m range-->
+		
 		<npc_skill id="17992" lv="1" prob="25" next_chain_id="2" next_skill_time="0" cd="120000" max_hp="50" />
 		<npc_skill id="17995" lv="1" prob="100" chain_id="2" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
@@ -54827,17 +54525,17 @@
 		<npc_skill id="19113" lv="46" prob="25" max_hp="70" cd="60000" />
 		<npc_skill id="18009" lv="46" prob="20" max_hp="50" cd="180000" target="RANDOM" />
 		<npc_skill id="18010" lv="1" prob="20" max_hp="30" cd="220000" />
-		<!-- Summon Illusion Gate; deactivated for now -->
-		<!--<npc_skill id="18003" lv="1" prob="25" /> -->
+		
+		
 	</npc_skills>
-	<!-- Dux Silona -->
+	
 	<npc_skills npc_ids="272502">
-		<!-- 10m range -->
+		
 		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55" />
 		<npc_skill id="19101" lv="46" prob="100" chain_id="1" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
-		<!-- 20m range-->
+		
 		<npc_skill id="17992" lv="1" prob="25" next_chain_id="2" next_skill_time="0" cd="120000" max_hp="50" />
 		<npc_skill id="17995" lv="1" prob="100" chain_id="2" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
@@ -54856,17 +54554,17 @@
 		<npc_skill id="19113" lv="46" prob="25" max_hp="70" cd="60000" />
 		<npc_skill id="18009" lv="46" prob="20" max_hp="50" cd="180000" target="RANDOM" />
 		<npc_skill id="18010" lv="1" prob="20" max_hp="30" cd="220000" />
-		<!-- Summon Illusion Gate; deactivated for now -->
-		<!--<npc_skill id="18003" lv="1" prob="25" /> -->
+		
+		
 	</npc_skills>
-	<!-- Stallari Silon -->
+	
 	<npc_skills npc_ids="272507">
-		<!-- 10m range -->
+		
 		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55" />
 		<npc_skill id="19101" lv="46" prob="100" chain_id="1" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
-		<!-- 20m range-->
+		
 		<npc_skill id="17992" lv="1" prob="25" next_chain_id="2" next_skill_time="0" cd="120000" max_hp="50" />
 		<npc_skill id="17995" lv="1" prob="100" chain_id="2" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
@@ -54885,17 +54583,17 @@
 		<npc_skill id="19113" lv="46" prob="25" max_hp="70" cd="60000" />
 		<npc_skill id="18009" lv="46" prob="20" max_hp="50" cd="180000" target="RANDOM" />
 		<npc_skill id="18010" lv="1" prob="20" max_hp="30" cd="220000" />
-		<!-- Summon Illusion Gate; deactivated for now -->
-		<!--<npc_skill id="18003" lv="1" prob="25" /> -->
+		
+		
 	</npc_skills>
-	<!-- Ulsaruk Silona -->
+	
 	<npc_skills npc_ids="272512">
-		<!-- 10m range -->
+		
 		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55" />
 		<npc_skill id="19101" lv="46" prob="100" chain_id="1" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
-		<!-- 20m range-->
+		
 		<npc_skill id="17992" lv="1" prob="25" next_chain_id="2" next_skill_time="0" cd="120000" max_hp="50" />
 		<npc_skill id="17995" lv="1" prob="100" chain_id="2" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
@@ -54914,17 +54612,17 @@
 		<npc_skill id="19113" lv="46" prob="25" max_hp="70" cd="60000" />
 		<npc_skill id="18009" lv="46" prob="20" max_hp="50" cd="180000" target="RANDOM" />
 		<npc_skill id="18010" lv="1" prob="20" max_hp="30" cd="220000" />
-		<!-- Summon Illusion Gate; deactivated for now -->
-		<!--<npc_skill id="18003" lv="1" prob="25" /> -->
+		
+		
 	</npc_skills>
-	<!-- Dux Pradeth -->
+	
 	<npc_skills npc_ids="273000">
-		<!-- 10m range -->
+		
 		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55" />
 		<npc_skill id="19101" lv="46" prob="100" chain_id="1" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
-		<!-- 20m range-->
+		
 		<npc_skill id="17992" lv="1" prob="25" next_chain_id="2" next_skill_time="0" cd="120000" max_hp="50" />
 		<npc_skill id="17995" lv="1" prob="100" chain_id="2" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
@@ -54943,17 +54641,17 @@
 		<npc_skill id="19113" lv="46" prob="25" max_hp="70" cd="60000" />
 		<npc_skill id="18009" lv="46" prob="20" max_hp="50" cd="180000" target="RANDOM" />
 		<npc_skill id="18010" lv="1" prob="20" max_hp="30" cd="220000" />
-		<!-- Summon Illusion Gate; deactivated for now -->
-		<!--<npc_skill id="18003" lv="1" prob="25" /> -->
+		
+		
 	</npc_skills>
-	<!-- Stallari Pradeth -->
+	
 	<npc_skills npc_ids="273005">
-		<!-- 10m range -->
+		
 		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55" />
 		<npc_skill id="19101" lv="46" prob="100" chain_id="1" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
-		<!-- 20m range-->
+		
 		<npc_skill id="17992" lv="1" prob="25" next_chain_id="2" next_skill_time="0" cd="120000" max_hp="50" />
 		<npc_skill id="17995" lv="1" prob="100" chain_id="2" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
@@ -54972,17 +54670,17 @@
 		<npc_skill id="19113" lv="46" prob="25" max_hp="70" cd="60000" />
 		<npc_skill id="18009" lv="46" prob="20" max_hp="50" cd="180000" target="RANDOM" />
 		<npc_skill id="18010" lv="1" prob="20" max_hp="30" cd="220000" />
-		<!-- Summon Illusion Gate; deactivated for now -->
-		<!--<npc_skill id="18003" lv="1" prob="25" /> -->
+		
+		
 	</npc_skills>
-	<!-- Ulsaruk Pradeth -->
+	
 	<npc_skills npc_ids="273010">
-		<!-- 10m range -->
+		
 		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55" />
 		<npc_skill id="19101" lv="46" prob="100" chain_id="1" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
-		<!-- 20m range-->
+		
 		<npc_skill id="17992" lv="1" prob="25" next_chain_id="2" next_skill_time="0" cd="120000" max_hp="50" />
 		<npc_skill id="17995" lv="1" prob="100" chain_id="2" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
@@ -55001,8 +54699,8 @@
 		<npc_skill id="19113" lv="46" prob="25" max_hp="70" cd="60000" />
 		<npc_skill id="18009" lv="46" prob="20" max_hp="50" cd="180000" target="RANDOM" />
 		<npc_skill id="18010" lv="1" prob="20" max_hp="30" cd="220000" />
-		<!-- Summon Illusion Gate; deactivated for now -->
-		<!--<npc_skill id="18003" lv="1" prob="25" /> -->
+		
+		
 	</npc_skills>
 	<npc_skills npc_ids="273334">
 		<npc_skill id="17293" lv="46" prob="25" />
@@ -58945,21 +58643,6 @@
 	<npc_skills npc_ids="282604">
 		<npc_skill id="19971" lv="60" prob="100" />
 	</npc_skills>
-	<npc_skills npc_ids="282626">
-		<npc_skill id="20088" lv="60" prob="25" max_hp="0" />
-	</npc_skills>
-	<npc_skills npc_ids="282721">
-		<npc_skill id="20348" lv="60" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="282722">
-		<npc_skill id="20409" lv="60" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="282723">
-		<npc_skill id="20442" lv="60" prob="25" min_hp="95" />
-	</npc_skills>
-	<npc_skills npc_ids="282744">
-		<npc_skill id="20214" lv="60" prob="40" />
-	</npc_skills>
 	<npc_skills npc_ids="282950">
 		<npc_skill id="20477" lv="60" prob="25" min_hp="95" />
 	</npc_skills>
@@ -58986,7 +58669,7 @@
 	<npc_skills npc_ids="283002">
 		<npc_skill id="20533" lv="60" prob="25" min_hp="95" />
 	</npc_skills>
-	<!-- Brigade General Vasharti -->
+	
 	<npc_skills npc_ids="236300">
 		<npc_skill id="19667" lv="65" prob="70" cd="25000" next_skill_time="12000" />
 		<npc_skill id="19668" lv="65" prob="70" cd="30000" next_skill_time="12000" />
@@ -60238,9 +59921,6 @@
 	<npc_skills npc_ids="701152">
 		<npc_skill id="19910" lv="60" prob="25" min_hp="95" />
 	</npc_skills>
-	<npc_skills npc_ids="701431">
-		<npc_skill id="20411" lv="60" prob="100" />
-	</npc_skills>
 	<npc_skills npc_ids="701647">
 		<npc_skill id="21435" lv="60" prob="25" min_hp="95" />
 	</npc_skills>
@@ -60283,18 +59963,6 @@
 	<npc_skills npc_ids="702528">
 		<npc_skill id="17083" lv="46" prob="100" />
 	</npc_skills>
-	<npc_skills npc_ids="702651">
-		<npc_skill id="21789" lv="65" prob="25" />
-	</npc_skills>
-	<npc_skills npc_ids="702652">
-		<npc_skill id="21789" lv="65" prob="25" />
-	</npc_skills>
-	<npc_skills npc_ids="702653">
-		<npc_skill id="21789" lv="65" prob="25" />
-	</npc_skills>
-	<npc_skills npc_ids="702654">
-		<npc_skill id="21789" lv="65" prob="25" />
-	</npc_skills>
 	<npc_skills npc_ids="730397">
 		<npc_skill id="19520" lv="51" prob="25" min_hp="95" />
 	</npc_skills>
@@ -60309,12 +59977,6 @@
 	</npc_skills>
 	<npc_skills npc_ids="730715">
 		<npc_skill id="21127" lv="20" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="731533">
-		<npc_skill id="21807" lv="65" prob="25" />
-	</npc_skills>
-	<npc_skills npc_ids="731534">
-		<npc_skill id="21808" lv="65" prob="100" />
 	</npc_skills>
 	<npc_skills npc_ids="749018">
 		<npc_skill id="17501" lv="1" prob="25" />
@@ -60733,45 +60395,6 @@
 	<npc_skills npc_ids="749232">
 		<npc_skill id="17590" lv="4" prob="25" />
 	</npc_skills>
-	<npc_skills npc_ids="749233">
-		<npc_skill id="20061" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="749234">
-		<npc_skill id="20226" lv="6" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="749235">
-		<npc_skill id="20226" lv="6" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="749236">
-		<npc_skill id="20227" lv="3" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="749237">
-		<npc_skill id="20227" lv="3" prob="25" />
-	</npc_skills>
-	<npc_skills npc_ids="749238">
-		<npc_skill id="20228" lv="5" prob="10" />
-	</npc_skills>
-	<npc_skills npc_ids="749239">
-		<npc_skill id="20228" lv="5" prob="10" />
-	</npc_skills>
-	<npc_skills npc_ids="749240">
-		<npc_skill id="20229" lv="4" prob="10" />
-	</npc_skills>
-	<npc_skills npc_ids="749241">
-		<npc_skill id="20229" lv="4" prob="10" />
-	</npc_skills>
-	<npc_skills npc_ids="749242">
-		<npc_skill id="20230" lv="3" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="749243">
-		<npc_skill id="20230" lv="3" prob="25" min_hp="95" />
-	</npc_skills>
-	<npc_skills npc_ids="749244">
-		<npc_skill id="8737" lv="2" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="749245">
-		<npc_skill id="8738" lv="2" prob="100" />
-	</npc_skills>
 	<npc_skills npc_ids="749248">
 		<npc_skill id="20829" lv="1" prob="10" />
 	</npc_skills>
@@ -60794,16 +60417,13 @@
 	</npc_skills>
 	<npc_skills npc_ids="749254">
 		<npc_skill id="20831" lv="1" prob="100" />
-		<npc_skill id="22038" lv="1" prob="100" />
-	</npc_skills>
+		</npc_skills>
 	<npc_skills npc_ids="749255">
 		<npc_skill id="20831" lv="1" prob="100" />
-		<npc_skill id="22038" lv="1" prob="100" />
-	</npc_skills>
+		</npc_skills>
 	<npc_skills npc_ids="749262">
 		<npc_skill id="20999" lv="5" prob="100" />
-		<npc_skill id="21929" lv="5" prob="100" />
-	</npc_skills>
+		</npc_skills>
 	<npc_skills npc_ids="749263 749264 749265 749266">
 		<npc_skill id="19985" lv="1" prob="100" />
 	</npc_skills>
@@ -60883,9 +60503,6 @@
 	</npc_skills>
 	<npc_skills npc_ids="749301">
 		<npc_skill id="21490" lv="1" prob="25" />
-	</npc_skills>
-	<npc_skills npc_ids="749302">
-		<npc_skill id="21843" lv="1" prob="100" />
 	</npc_skills>
 	<npc_skills npc_ids="749303">
 		<npc_skill id="20832" lv="1" prob="100" />
@@ -61598,12 +61215,6 @@
 	<npc_skills npc_ids="830233">
 		<npc_skill id="4159" lv="4" prob="25" max_hp="65" />
 	</npc_skills>
-	<npc_skills npc_ids="830234">
-		<npc_skill id="20269" lv="3" prob="100" min_hp="95" />
-	</npc_skills>
-	<npc_skills npc_ids="830235">
-		<npc_skill id="20270" lv="3" prob="100" />
-	</npc_skills>
 	<npc_skills npc_ids="831025">
 		<npc_skill id="20950" lv="1" prob="100" min_hp="95" />
 	</npc_skills>
@@ -61640,27 +61251,7 @@
 	<npc_skills npc_ids="831754">
 		<npc_skill id="21466" lv="1" prob="100" />
 	</npc_skills>
-	<!-- Berserk Anoha -->
-	<npc_skills npc_ids="855263">
-		<npc_skill id="21761" lv="1" prob="70" cd="25000" next_skill_time="6000" />
-		<!-- Heat Wave -->
-		<npc_skill id="21762" lv="1" prob="70" cd="30000" next_skill_time="6500" />
-		<!-- Eruption -->
-		<npc_skill id="21763" lv="1" prob="70" cd="40000" next_skill_time="7500" />
-		<!-- Flame Churn -->
-		<npc_skill id="21764" lv="1" prob="70" cd="25000" next_skill_time="6000" />
-		<!-- Fire Strike -->
-		<npc_skill id="21765" lv="1" prob="70" max_hp="75" cd="30000" next_skill_time="8500">
-			<!-- Infernal Flame -->
-		</npc_skill>
-		<npc_skill id="21766" lv="65" prob="70" cd="30000" next_skill_time="7500" />
-		<!-- Suffocating Heat -->
-	</npc_skills>
-	<npc_skills npc_ids="855265">
-		<npc_skill id="21767" lv="1" prob="100" min_hp="95">
-			<cond delay="2000" can_die="false" despawn_time="6000" />
-		</npc_skill>
-	</npc_skills>
+	
 	<npc_skills npc_ids="833061">
 		<npc_skill id="17515" lv="1" prob="100" />
 	</npc_skills>
@@ -61706,12 +61297,6 @@
 	<npc_skills npc_ids="833076">
 		<npc_skill id="17590" lv="4" prob="100" />
 	</npc_skills>
-	<npc_skills npc_ids="833077">
-		<npc_skill id="21954" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833078">
-		<npc_skill id="21954" lv="1" prob="100" />
-	</npc_skills>
 	<npc_skills npc_ids="833079">
 		<npc_skill id="17441" lv="1" prob="100" />
 	</npc_skills>
@@ -61723,55 +61308,6 @@
 	</npc_skills>
 	<npc_skills npc_ids="833082">
 		<npc_skill id="17587" lv="4" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833083">
-		<npc_skill id="20228" lv="5" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833084">
-		<npc_skill id="21961" lv="6" prob="100" />
-		<npc_skill id="21965" lv="6" prob="100" />
-		<npc_skill id="21966" lv="6" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833085">
-		<npc_skill id="21962" lv="7" prob="100" />
-		<npc_skill id="21965" lv="7" prob="100" />
-		<npc_skill id="21966" lv="7" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833086">
-		<npc_skill id="21963" lv="8" prob="100" />
-		<npc_skill id="21965" lv="8" prob="100" />
-		<npc_skill id="21966" lv="8" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833087">
-		<npc_skill id="21964" lv="9" prob="100" />
-		<npc_skill id="21965" lv="9" prob="100" />
-		<npc_skill id="21966" lv="9" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833088">
-		<npc_skill id="21956" lv="1" prob="100" />
-		<npc_skill id="21957" lv="1" prob="100" />
-		<npc_skill id="21958" lv="1" prob="100" />
-		<npc_skill id="21959" lv="1" prob="100" />
-		<npc_skill id="21960" lv="1" prob="100" />
-		<npc_skill id="21961" lv="1" prob="100" />
-		<npc_skill id="21962" lv="1" prob="100" />
-		<npc_skill id="21963" lv="1" prob="100" />
-		<npc_skill id="21964" lv="1" prob="100" />
-		<npc_skill id="21965" lv="1" prob="100" />
-		<npc_skill id="21966" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833089">
-		<npc_skill id="21956" lv="1" prob="100" />
-		<npc_skill id="21957" lv="1" prob="100" />
-		<npc_skill id="21958" lv="1" prob="100" />
-		<npc_skill id="21959" lv="1" prob="100" />
-		<npc_skill id="21960" lv="1" prob="100" />
-		<npc_skill id="21961" lv="1" prob="100" />
-		<npc_skill id="21962" lv="1" prob="100" />
-		<npc_skill id="21963" lv="1" prob="100" />
-		<npc_skill id="21964" lv="1" prob="100" />
-		<npc_skill id="21965" lv="1" prob="100" />
-		<npc_skill id="21966" lv="1" prob="100" />
 	</npc_skills>
 	<npc_skills npc_ids="833090">
 		<npc_skill id="17441" lv="1" prob="100" />
@@ -61785,150 +61321,17 @@
 	<npc_skills npc_ids="833093">
 		<npc_skill id="17587" lv="4" prob="100" />
 	</npc_skills>
-	<npc_skills npc_ids="833094">
-		<npc_skill id="20228" lv="5" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833095">
-		<npc_skill id="21961" lv="6" prob="100" />
-		<npc_skill id="21965" lv="6" prob="100" />
-		<npc_skill id="21966" lv="6" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833096">
-		<npc_skill id="21962" lv="7" prob="100" />
-		<npc_skill id="21965" lv="7" prob="100" />
-		<npc_skill id="21966" lv="7" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833097">
-		<npc_skill id="21963" lv="8" prob="100" />
-		<npc_skill id="21965" lv="8" prob="100" />
-		<npc_skill id="21966" lv="8" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833098">
-		<npc_skill id="21964" lv="9" prob="100" />
-		<npc_skill id="21965" lv="9" prob="100" />
-		<npc_skill id="21966" lv="9" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833099">
-		<npc_skill id="21956" lv="1" prob="100" />
-		<npc_skill id="21957" lv="1" prob="100" />
-		<npc_skill id="21958" lv="1" prob="100" />
-		<npc_skill id="21959" lv="1" prob="100" />
-		<npc_skill id="21960" lv="1" prob="100" />
-		<npc_skill id="21961" lv="1" prob="100" />
-		<npc_skill id="21962" lv="1" prob="100" />
-		<npc_skill id="21963" lv="1" prob="100" />
-		<npc_skill id="21964" lv="1" prob="100" />
-		<npc_skill id="21965" lv="1" prob="100" />
-		<npc_skill id="21966" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833100">
-		<npc_skill id="21956" lv="1" prob="100" />
-		<npc_skill id="21957" lv="1" prob="100" />
-		<npc_skill id="21958" lv="1" prob="100" />
-		<npc_skill id="21959" lv="1" prob="100" />
-		<npc_skill id="21960" lv="1" prob="100" />
-		<npc_skill id="21961" lv="1" prob="100" />
-		<npc_skill id="21962" lv="1" prob="100" />
-		<npc_skill id="21963" lv="1" prob="100" />
-		<npc_skill id="21964" lv="1" prob="100" />
-		<npc_skill id="21965" lv="1" prob="100" />
-		<npc_skill id="21966" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833101">
-		<npc_skill id="21967" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833102">
-		<npc_skill id="21968" lv="2" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833103">
-		<npc_skill id="21969" lv="3" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833104">
-		<npc_skill id="21970" lv="4" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833105">
-		<npc_skill id="21971" lv="5" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833106">
-		<npc_skill id="21972" lv="6" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833107">
-		<npc_skill id="21973" lv="7" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833108">
-		<npc_skill id="21974" lv="8" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833109">
-		<npc_skill id="21967" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833110">
-		<npc_skill id="21968" lv="2" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833111">
-		<npc_skill id="21969" lv="3" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833112">
-		<npc_skill id="21970" lv="4" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833113">
-		<npc_skill id="21971" lv="5" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833114">
-		<npc_skill id="21972" lv="6" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833115">
-		<npc_skill id="21973" lv="7" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833116">
-		<npc_skill id="21974" lv="8" prob="100" />
-	</npc_skills>
 	<npc_skills npc_ids="833117">
 		<npc_skill id="20045" lv="1" prob="100" />
 	</npc_skills>
 	<npc_skills npc_ids="833118">
 		<npc_skill id="21044" lv="2" prob="100" />
 	</npc_skills>
-	<npc_skills npc_ids="833119">
-		<npc_skill id="21977" lv="3" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833120">
-		<npc_skill id="21978" lv="4" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833121">
-		<npc_skill id="21979" lv="5" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833122">
-		<npc_skill id="21980" lv="6" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833123">
-		<npc_skill id="21981" lv="7" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833124">
-		<npc_skill id="21982" lv="8" prob="100" />
-	</npc_skills>
 	<npc_skills npc_ids="833125">
 		<npc_skill id="20045" lv="1" prob="100" />
 	</npc_skills>
 	<npc_skills npc_ids="833126">
 		<npc_skill id="21044" lv="2" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833127">
-		<npc_skill id="21977" lv="3" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833128">
-		<npc_skill id="21978" lv="4" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833129">
-		<npc_skill id="21979" lv="5" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833130">
-		<npc_skill id="21980" lv="6" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833131">
-		<npc_skill id="21981" lv="7" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833132">
-		<npc_skill id="21982" lv="8" prob="100" />
 	</npc_skills>
 	<npc_skills npc_ids="833133">
 		<npc_skill id="17807" lv="1" prob="100" />
@@ -61945,34 +61348,6 @@
 	<npc_skills npc_ids="833137">
 		<npc_skill id="21039" lv="5" prob="100" />
 	</npc_skills>
-	<npc_skills npc_ids="833138">
-		<npc_skill id="21988" lv="6" prob="100" />
-		<npc_skill id="21992" lv="6" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833139">
-		<npc_skill id="21989" lv="7" prob="100" />
-		<npc_skill id="21992" lv="7" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833140">
-		<npc_skill id="21990" lv="8" prob="100" />
-		<npc_skill id="21992" lv="8" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833141">
-		<npc_skill id="21991" lv="9" prob="100" />
-		<npc_skill id="21992" lv="9" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833142">
-		<npc_skill id="21983" lv="1" prob="100" />
-		<npc_skill id="21984" lv="1" prob="100" />
-		<npc_skill id="21985" lv="1" prob="100" />
-		<npc_skill id="21986" lv="1" prob="100" />
-		<npc_skill id="21987" lv="1" prob="100" />
-		<npc_skill id="21988" lv="1" prob="100" />
-		<npc_skill id="21989" lv="1" prob="100" />
-		<npc_skill id="21990" lv="1" prob="100" />
-		<npc_skill id="21991" lv="1" prob="100" />
-		<npc_skill id="21992" lv="1" prob="100" />
-	</npc_skills>
 	<npc_skills npc_ids="833143">
 		<npc_skill id="17807" lv="1" prob="100" />
 	</npc_skills>
@@ -61988,34 +61363,6 @@
 	<npc_skills npc_ids="833147">
 		<npc_skill id="21039" lv="5" prob="100" />
 	</npc_skills>
-	<npc_skills npc_ids="833148">
-		<npc_skill id="21988" lv="6" prob="100" />
-		<npc_skill id="21992" lv="6" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833149">
-		<npc_skill id="21989" lv="7" prob="100" />
-		<npc_skill id="21992" lv="7" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833150">
-		<npc_skill id="21990" lv="8" prob="100" />
-		<npc_skill id="21992" lv="8" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833151">
-		<npc_skill id="21991" lv="9" prob="100" />
-		<npc_skill id="21992" lv="9" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833152">
-		<npc_skill id="21983" lv="1" prob="100" />
-		<npc_skill id="21984" lv="1" prob="100" />
-		<npc_skill id="21985" lv="1" prob="100" />
-		<npc_skill id="21986" lv="1" prob="100" />
-		<npc_skill id="21987" lv="1" prob="100" />
-		<npc_skill id="21988" lv="1" prob="100" />
-		<npc_skill id="21989" lv="1" prob="100" />
-		<npc_skill id="21990" lv="1" prob="100" />
-		<npc_skill id="21991" lv="1" prob="100" />
-		<npc_skill id="21992" lv="1" prob="100" />
-	</npc_skills>
 	<npc_skills npc_ids="833153">
 		<npc_skill id="17503" lv="1" prob="100" />
 	</npc_skills>
@@ -62024,18 +61371,6 @@
 	</npc_skills>
 	<npc_skills npc_ids="833155">
 		<npc_skill id="21040" lv="3" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833156">
-		<npc_skill id="21996" lv="4" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833157">
-		<npc_skill id="21997" lv="5" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833158">
-		<npc_skill id="21998" lv="6" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833159">
-		<npc_skill id="21999" lv="7" prob="100" />
 	</npc_skills>
 	<npc_skills npc_ids="833160">
 		<npc_skill id="19132" lv="1" prob="100" />
@@ -62046,71 +61381,17 @@
 	<npc_skills npc_ids="833162">
 		<npc_skill id="21041" lv="3" prob="100" />
 	</npc_skills>
-	<npc_skills npc_ids="833163">
-		<npc_skill id="21996" lv="4" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833164">
-		<npc_skill id="21997" lv="5" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833165">
-		<npc_skill id="21998" lv="6" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833166">
-		<npc_skill id="21999" lv="7" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833167">
-		<npc_skill id="22000" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833168">
-		<npc_skill id="22001" lv="2" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833169">
-		<npc_skill id="22002" lv="3" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833170">
-		<npc_skill id="22000" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833171">
-		<npc_skill id="22001" lv="2" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833172">
-		<npc_skill id="22002" lv="3" prob="100" />
-	</npc_skills>
 	<npc_skills npc_ids="833173">
 		<npc_skill id="17511" lv="1" prob="100" />
 	</npc_skills>
 	<npc_skills npc_ids="833174">
 		<npc_skill id="17589" lv="2" prob="100" />
 	</npc_skills>
-	<npc_skills npc_ids="833175">
-		<npc_skill id="20230" lv="3" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833176">
-		<npc_skill id="22006" lv="4" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833177">
-		<npc_skill id="22007" lv="5" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833178">
-		<npc_skill id="22008" lv="6" prob="100" />
-	</npc_skills>
 	<npc_skills npc_ids="833179">
 		<npc_skill id="17511" lv="1" prob="100" />
 	</npc_skills>
 	<npc_skills npc_ids="833180">
 		<npc_skill id="17589" lv="2" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833181">
-		<npc_skill id="20230" lv="3" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833182">
-		<npc_skill id="22006" lv="4" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833183">
-		<npc_skill id="22007" lv="5" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833184">
-		<npc_skill id="22008" lv="6" prob="100" />
 	</npc_skills>
 	<npc_skills npc_ids="833185">
 		<npc_skill id="17510" lv="1" prob="100" />
@@ -62123,60 +61404,6 @@
 	</npc_skills>
 	<npc_skills npc_ids="833188">
 		<npc_skill id="17810" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833189">
-		<npc_skill id="22010" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833190">
-		<npc_skill id="22010" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833191">
-		<npc_skill id="22012" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833192">
-		<npc_skill id="22013" lv="2" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833193">
-		<npc_skill id="22014" lv="3" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833194">
-		<npc_skill id="22015" lv="4" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833195">
-		<npc_skill id="22016" lv="5" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833196">
-		<npc_skill id="22017" lv="6" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833197">
-		<npc_skill id="22018" lv="7" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833198">
-		<npc_skill id="22019" lv="8" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833199">
-		<npc_skill id="22012" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833200">
-		<npc_skill id="22013" lv="2" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833201">
-		<npc_skill id="22014" lv="3" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833202">
-		<npc_skill id="22015" lv="4" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833203">
-		<npc_skill id="22016" lv="5" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833204">
-		<npc_skill id="22017" lv="6" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833205">
-		<npc_skill id="22018" lv="7" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833206">
-		<npc_skill id="22019" lv="8" prob="100" />
 	</npc_skills>
 	<npc_skills npc_ids="833209">
 		<npc_skill id="17500" lv="1" prob="100" />
@@ -62192,17 +61419,7 @@
 	</npc_skills>
 	<npc_skills npc_ids="833213">
 		<npc_skill id="20999" lv="5" prob="100" />
-		<npc_skill id="21929" lv="5" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833214">
-		<npc_skill id="22025" lv="6" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833215">
-		<npc_skill id="22026" lv="7" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833216">
-		<npc_skill id="22027" lv="8" prob="100" />
-	</npc_skills>
+		</npc_skills>
 	<npc_skills npc_ids="833217">
 		<npc_skill id="17500" lv="1" prob="100" />
 	</npc_skills>
@@ -62217,273 +61434,21 @@
 	</npc_skills>
 	<npc_skills npc_ids="833221">
 		<npc_skill id="20999" lv="5" prob="100" />
-		<npc_skill id="21929" lv="5" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833222">
-		<npc_skill id="22025" lv="6" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833223">
-		<npc_skill id="22026" lv="7" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833224">
-		<npc_skill id="22027" lv="8" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833225">
-		<npc_skill id="22028" lv="1" prob="100" />
-		<npc_skill id="22029" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833226">
-		<npc_skill id="22028" lv="1" prob="100" />
-		<npc_skill id="22029" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833232">
-		<npc_skill id="22030" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833233">
-		<npc_skill id="22031" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833234">
-		<npc_skill id="22032" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833235">
-		<npc_skill id="22033" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833236">
-		<npc_skill id="22034" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833237">
-		<npc_skill id="22035" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833238">
-		<npc_skill id="22036" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833239">
-		<npc_skill id="22037" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833240">
-		<npc_skill id="22030" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833241">
-		<npc_skill id="22031" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833242">
-		<npc_skill id="22032" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833243">
-		<npc_skill id="22033" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833244">
-		<npc_skill id="22034" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833245">
-		<npc_skill id="22035" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833246">
-		<npc_skill id="22036" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833247">
-		<npc_skill id="22037" lv="1" prob="100" />
-	</npc_skills>
+		</npc_skills>
 	<npc_skills npc_ids="833249">
 		<npc_skill id="20831" lv="1" prob="100" />
-		<npc_skill id="22038" lv="1" prob="100" />
-	</npc_skills>
+		</npc_skills>
 	<npc_skills npc_ids="833250">
 		<npc_skill id="20831" lv="1" prob="100" />
-		<npc_skill id="22038" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833258">
-		<npc_skill id="22052" lv="1" prob="60" />
-		<npc_skill id="22040" lv="1" prob="40" />
-	</npc_skills>
-	<npc_skills npc_ids="833412">
-		<npc_skill id="21934" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833414">
-		<npc_skill id="21935" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833416">
-		<npc_skill id="21936" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833452">
-		<npc_skill id="22654" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833453">
-		<npc_skill id="22654" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833454">
-		<npc_skill id="22655" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833455">
-		<npc_skill id="22655" lv="1" prob="100" />
-	</npc_skills>
+		</npc_skills>
 	<npc_skills npc_ids="833456">
 		<npc_skill id="17586" lv="2" prob="100" />
 	</npc_skills>
 	<npc_skills npc_ids="833457">
 		<npc_skill id="17586" lv="2" prob="100" />
 	</npc_skills>
-	<npc_skills npc_ids="833458">
-		<npc_skill id="22657" lv="3" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833459">
-		<npc_skill id="22657" lv="3" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833072">
-		<npc_skill id="21940" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833449">
-		<npc_skill id="21953" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833437">
-		<npc_skill id="21947" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833415">
-		<npc_skill id="21936" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833405">
-		<npc_skill id="21931" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833439">
-		<npc_skill id="21948" lv="1" prob="100" />
-	</npc_skills>
-	<!-- Taunting Spirit (1) -->
-	<npc_skills npc_ids="833403">
-		<npc_skill id="21930" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833404">
-		<npc_skill id="21930" lv="1" prob="100" />
-	</npc_skills>
-	<!-- Taunting Spirit (2) -->
-	<npc_skills npc_ids="833478">
-		<npc_skill id="22665" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833479">
-		<npc_skill id="22665" lv="1" prob="100" />
-	</npc_skills>
-	<!-- Taunting Spirit (3) -->
-	<npc_skills npc_ids="833480">
-		<npc_skill id="22666" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833481">
-		<npc_skill id="22666" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833419">
-		<npc_skill id="21938" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833441">
-		<npc_skill id="21949" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833417">
-		<npc_skill id="21937" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833407">
-		<npc_skill id="21932" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833421">
-		<npc_skill id="21939" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833423">
-		<npc_skill id="21940" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833409">
-		<npc_skill id="21933" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833443">
-		<npc_skill id="21950" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833425">
-		<npc_skill id="21941" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833445">
-		<npc_skill id="21951" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833427">
-		<npc_skill id="21942" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833411">
-		<npc_skill id="21934" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833447">
-		<npc_skill id="21952" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833429">
-		<npc_skill id="21943" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833431">
-		<npc_skill id="21944" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833413">
-		<npc_skill id="21935" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833433">
-		<npc_skill id="21945" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833435">
-		<npc_skill id="21946" lv="1" prob="100" />
-	</npc_skills>
 	<npc_skills npc_ids="831029">
 		<npc_skill id="20950" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833418">
-		<npc_skill id="21937" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833440">
-		<npc_skill id="21948" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833406">
-		<npc_skill id="21931" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833420">
-		<npc_skill id="21938" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833442">
-		<npc_skill id="21949" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833422">
-		<npc_skill id="21939" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833444">
-		<npc_skill id="21950" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833408">
-		<npc_skill id="21932" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833424">
-		<npc_skill id="21940" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833446">
-		<npc_skill id="21951" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833426">
-		<npc_skill id="21941" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833448">
-		<npc_skill id="21952" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833410">
-		<npc_skill id="21933" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833428">
-		<npc_skill id="21942" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833450">
-		<npc_skill id="21953" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833430">
-		<npc_skill id="21943" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833432">
-		<npc_skill id="21944" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833434">
-		<npc_skill id="21945" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833436">
-		<npc_skill id="21946" lv="1" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="833438">
-		<npc_skill id="21947" lv="1" prob="100" />
 	</npc_skills>
 	<npc_skills npc_ids="855419">
 		<npc_skill id="19498" lv="49" prob="100" />
@@ -62513,9 +61478,6 @@
 	<npc_skills npc_ids="855428">
 		<npc_skill id="19495" lv="1" prob="100" />
 	</npc_skills>
-	<npc_skills npc_ids="855429">
-		<npc_skill id="21804" lv="1" prob="100" />
-	</npc_skills>
 	<npc_skills npc_ids="855854">
 		<npc_skill id="18120" lv="1" prob="100" />
 	</npc_skills>
@@ -62540,241 +61502,13 @@
 	<npc_skills npc_ids="856065">
 		<npc_skill id="19428" lv="1" prob="25" />
 	</npc_skills>
-	<!-- Invasion Bosses -->
-	<!-- Level 20 (hero) -->
-	<!-- Benoid (sandworm) -->
-	<npc_skills npc_ids="234560 234561">
-		<npc_skill id="21692" lv="20" prob="35" cd="30000" />
-		<npc_skill id="21694" lv="20" prob="35" cd="30000" />
-		<npc_skill id="21695" lv="20" prob="35" cd="30000" />
-	</npc_skills>
-	<!-- Eiter -->
-	<npc_skills npc_ids="234558 234562">
-		<npc_skill id="21710" lv="20" prob="35" cd="35000" />
-		<npc_skill id="21711" lv="20" prob="35" cd="35000" />
-		<npc_skill id="21714" lv="20" prob="35" cd="30000" />
-	</npc_skills>
-	<!-- Tumon -->
-	<npc_skills npc_ids="234559 234563">
-		<npc_skill id="21737" lv="65" prob="35" cd="40000" />
-		<npc_skill id="21701" lv="65" prob="35" cd="30000" />
-		<npc_skill id="21703" lv="65" prob="35" cd="30000" />
-		<npc_skill id="21704" lv="65" prob="35" cd="30000" />
-	</npc_skills>
-	<!-- Level 30 (hero) -->
-	<!-- Tarmat (dynatum) -->
-	<npc_skills npc_ids="234564 234565 234567 234569">
-		<npc_skill id="21665" lv="30" prob="45" cd="35000" />
-		<npc_skill id="21667" lv="30" prob="45" cd="35000" />
-		<npc_skill id="21668" lv="30" prob="45" cd="35000" />
-		<npc_skill id="21669" lv="30" prob="45" cd="35000" />
-		<npc_skill id="21670" lv="30" prob="45" cd="35000" />
-	</npc_skills>
-	<!-- Eiter -->
-	<npc_skills npc_ids="234566 234568">
-		<npc_skill id="21710" lv="30" prob="45" cd="30000" />
-		<npc_skill id="21711" lv="30" prob="45" cd="30000" />
-		<npc_skill id="21712" lv="30" prob="45" cd="30000" />
-		<npc_skill id="21714" lv="30" prob="45" cd="30000" />
-	</npc_skills>
-	<!-- Level 40 (hero) -->
-	<!-- Benoid (sandworm) -->
-	<npc_skills npc_ids="234572 234575">
-		<npc_skill id="21692" lv="40" prob="55" cd="35000" />
-		<npc_skill id="21693" lv="40" prob="55" cd="35000" />
-		<npc_skill id="21694" lv="40" prob="55" cd="35000" />
-		<npc_skill id="21695" lv="40" prob="55" cd="35000" />
-		<npc_skill id="21698" lv="40" prob="55" cd="35000" target="ME" />
-	</npc_skills>
-	<!-- Eiter -->
-	<npc_skills npc_ids="234571 234574">
-		<npc_skill id="21710" lv="40" prob="55" cd="35000" />
-		<npc_skill id="21711" lv="40" prob="55" cd="35000" />
-		<npc_skill id="21712" lv="40" prob="55" cd="35000" />
-		<npc_skill id="21713" lv="40" prob="55" cd="35000" />
-		<npc_skill id="21714" lv="40" prob="55" cd="35000" />
-	</npc_skills>
-	<!-- Magnorion (hyperion) -->
-	<npc_skills npc_ids="234570 234573">
-		<npc_skill id="21683" lv="40" prob="55" cd="35000" />
-		<npc_skill id="21684" lv="40" prob="55" cd="35000" />
-		<npc_skill id="21685" lv="40" prob="55" cd="35000" />
-		<npc_skill id="21686" lv="40" prob="55" cd="35000" />
-		<npc_skill id="21687" lv="40" prob="55" cd="35000" />
-		<npc_skill id="21688" lv="40" prob="55" cd="35000" />
-	</npc_skills>
-	<!-- Level 50 (hero) -->
-	<!-- Benoid (sandworm) -->
-	<npc_skills npc_ids="234576 234579">
-		<npc_skill id="21692" lv="50" prob="65" cd="30000" />
-		<npc_skill id="21693" lv="50" prob="65" cd="30000" />
-		<npc_skill id="21694" lv="50" prob="65" cd="30000" />
-		<npc_skill id="21695" lv="50" prob="65" cd="30000" />
-		<npc_skill id="21697" lv="50" prob="65" cd="30000" />
-		<npc_skill id="21698" lv="50" prob="65" cd="30000" target="ME" />
-	</npc_skills>
-	<!-- Eiter -->
-	<npc_skills npc_ids="234578 234580">
-		<npc_skill id="21710" lv="50" prob="65" cd="30000" />
-		<npc_skill id="21711" lv="50" prob="65" cd="30000" />
-		<npc_skill id="21712" lv="50" prob="65" cd="30000" />
-		<npc_skill id="21713" lv="50" prob="65" cd="30000" />
-		<npc_skill id="21714" lv="50" prob="65" cd="30000" />
-	</npc_skills>
-	<!-- Magnorion (hyperion) -->
-	<npc_skills npc_ids="234577 234581">
-		<npc_skill id="21683" lv="50" prob="65" cd="30000" />
-		<npc_skill id="21684" lv="50" prob="65" cd="30000" />
-		<npc_skill id="21685" lv="50" prob="65" cd="30000" />
-		<npc_skill id="21686" lv="50" prob="65" cd="30000" />
-		<npc_skill id="21687" lv="50" prob="65" cd="30000" />
-		<npc_skill id="21688" lv="50" prob="65" cd="30000" />
-		<npc_skill id="21690" lv="50" prob="65" cd="35000" />
-	</npc_skills>
-	<!-- Level 55 (hero) -->
-	<!-- Elite Benoid (sandworm) -->
-	<npc_skills npc_ids="234582 234585">
-		<npc_skill id="21692" lv="55" prob="70" cd="30000" />
-		<npc_skill id="21693" lv="55" prob="70" cd="30000" />
-		<npc_skill id="21694" lv="55" prob="70" cd="30000" />
-		<npc_skill id="21695" lv="55" prob="70" cd="30000" />
-		<npc_skill id="21696" lv="55" prob="70" cd="30000" next_skill_time="0" next_chain_id="1" />
-		<npc_skill id="21697" lv="55" prob="100" chain_id="1" cd="30000" />
-		<npc_skill id="21698" lv="55" prob="70" cd="30000" target="ME" />
-	</npc_skills>
-	<!-- Elite Eiter -->
-	<npc_skills npc_ids="234583 234586">
-		<npc_skill id="21710" lv="55" prob="70" cd="30000" />
-		<npc_skill id="21711" lv="55" prob="70" cd="30000" />
-		<npc_skill id="21712" lv="55" prob="70" cd="30000" />
-		<npc_skill id="21713" lv="55" prob="70" cd="30000" />
-		<npc_skill id="21714" lv="55" prob="70" cd="30000" />
-	</npc_skills>
-	<!-- Elite Magnorion (hyperion) -->
-	<npc_skills npc_ids="234584 234587">
-		<npc_skill id="21683" lv="55" prob="70" cd="30000" />
-		<npc_skill id="21684" lv="55" prob="70" cd="30000" />
-		<npc_skill id="21685" lv="55" prob="70" cd="30000" />
-		<npc_skill id="21686" lv="55" prob="70" cd="30000" />
-		<npc_skill id="21687" lv="55" prob="70" cd="30000" />
-		<npc_skill id="21688" lv="55" prob="70" cd="30000" />
-		<npc_skill id="21689" lv="55" prob="70" cd="200000" target="ME" />
-		<npc_skill id="21690" lv="55" prob="70" cd="35000" />
-		<npc_skill id="21691" lv="55" prob="70" cd="30000" />
-	</npc_skills>
-	<!-- Level 65 (legendary) -->
-	<!-- Prime Eiter -->
-	<npc_skills npc_ids="220000 220003 234593 234596 234600 234602 234614">
-		<npc_skill id="21710" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21711" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21712" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21713" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21714" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21715" lv="65" prob="80" max_hp="50" prio="1" next_chain_id="1" next_skill_time="0" cd="30000" target="RANDOM" />
-		<npc_skill id="21716" lv="65" prob="100" chain_id="1" next_skill_time="7000" cd="20000" target="NONE" />
-		<npc_skill id="21717" lv="65" prob="80" cd="25000" />
-	</npc_skills>
-	<!-- Prime Benoid (sandworm) -->
-	<npc_skills npc_ids="219999 220002 234588 234595 234598 234606 234612 234613">
-		<npc_skill id="21692" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21693" lv="65" prob="80" cd="30000" />
-		<npc_skill id="21694" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21695" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21698" lv="65" prob="80" next_chain_id="1" cd="40000" next_skill_time="0" target="ME" />
-		<npc_skill id="21698" lv="65" prob="100" chain_id="1" next_chain_id="2" cd="20000" next_skill_time="0" target="ME" />
-		<npc_skill id="21698" lv="65" prob="100" chain_id="2" cd="20000" next_skill_time="7000" target="ME" />
-		<npc_skill id="21696" lv="65" prob="80" next_chain_id="3" cd="35000" next_skill_time="0" />
-		<npc_skill id="21697" lv="65" prob="100" chain_id="3" next_chain_id="4" cd="20000" next_skill_time="1000" target="RANDOM" />
-		<npc_skill id="21697" lv="65" prob="100" chain_id="4" next_chain_id="5" cd="20000" next_skill_time="1000" target="RANDOM" />
-		<npc_skill id="21697" lv="65" prob="100" chain_id="5" cd="20000" next_skill_time="7000" target="RANDOM" />
-		<npc_skill id="21699" lv="65" prob="100" next_chain_id="6" cd="180000" next_skill_time="0" min_hp="45" max_hp="50" prio="1" target="ME" />
-		<npc_skill id="21718" lv="65" prob="100" chain_id="6" cd="60000" next_skill_time="0" target="ME" />
-	</npc_skills>
-	<!-- Prime Magnorion (hyperion) -->
-	<npc_skills npc_ids="234599 234611">
-		<npc_skill id="21683" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21684" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21685" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21686" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21687" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21688" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21689" lv="65" prob="80" cd="180000" target="ME" />
-		<npc_skill id="21690" lv="65" prob="80" cd="30000" />
-		<npc_skill id="21691" lv="65" prob="80" cd="25000" />
-	</npc_skills>
-	<!-- Prime Raedon -->
-	<npc_skills npc_ids="234589 234590 234594 234597 234601 234608 234609">
-		<npc_skill id="21673" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21674" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21675" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21676" lv="65" prob="80" cd="80000" />
-		<npc_skill id="21677" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21678" lv="65" prob="80" cd="60000" />
-		<npc_skill id="21680" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21681" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21682" lv="65" prob="80" cd="25000" />
-	</npc_skills>
-	<!-- Prime Tarmat (dynatum) -->
-	<npc_skills npc_ids="219998 220001 234604 234610">
-		<npc_skill id="21727" lv="65" prob="80" cd="35000" />
-		<npc_skill id="21665" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21666" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21667" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21668" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21669" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21670" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21671" lv="65" is_post_spawn="true" />
-		<npc_skill id="21672" lv="65" prob="80" cd="25000" />
-	</npc_skills>
-	<!-- Prime Tumon -->
-	<npc_skills npc_ids="234591 234592 234603 234605 234615">
-		<npc_skill id="21737" lv="65" prob="80" cd="35000" />
-		<npc_skill id="21701" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21702" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21703" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21704" lv="65" prob="80" cd="25000" />
-		<npc_skill id="21705" lv="65" prob="80" cd="25000" />
-	</npc_skills>
-	<!-- Shugo Emperors Vault -->
-	<npc_skills npc_ids="235660">
-		<npc_skill id="21863" lv="1" prob="100" max_hp="40" cd="180000" />
-		<npc_skill id="21871" lv="1" prob="100" max_hp="70" cd="10000" />
-	</npc_skills>
-	<npc_skills npc_ids="235634">
-		<npc_skill id="21835" lv="1" prob="100" max_hp="60" cd="10000" />
-	</npc_skills>
-	<npc_skills npc_ids="235640">
-		<npc_skill id="21839" lv="1" prob="100" max_hp="40" cd="180000" />
-		<npc_skill id="21840" lv="1" prob="100" max_hp="50" cd="15000" />
-	</npc_skills>
-	<npc_skills npc_ids="235685">
-		<npc_skill id="21869" lv="1" prob="100" cd="10000" />
-	</npc_skills>
-	<npc_skills npc_ids="235684">
-		<npc_skill id="21915" lv="1" prob="100" max_hp="55" cd="20000" />
-		<npc_skill id="21870" lv="1" prob="100" max_hp="45" cd="10000" />
-	</npc_skills>
-	<npc_skills npc_ids="235683">
-		<npc_skill id="21867" lv="1" prob="100" max_hp="25" cd="180000" />
-		<npc_skill id="21916" lv="1" prob="100" cd="15000" />
-		<npc_skill id="21915" lv="1" prob="100" max_hp="65" cd="15000" />
-		<npc_skill id="21917" lv="1" prob="100" max_hp="25" cd="30000" />
-	</npc_skills>
-	<npc_skills npc_ids="235647">
-		<npc_skill id="21868" lv="1" prob="100" max_hp="20" cd="180000" />
-		<npc_skill id="21915" lv="1" prob="100" max_hp="90" cd="30000" />
-		<npc_skill id="21912" lv="1" prob="100" max_hp="55" cd="90000" />
-		<npc_skill id="21916" lv="1" prob="100" max_hp="35" cd="30000" />
-	</npc_skills>
-	<!-- Vocolith Summons -->
+	
+	
+	
 	<npc_skills npc_ids="235217">
-		<npc_skill id="21781" lv="65" prob="100" cd="15000" target="RANDOM" />
 		<npc_skill id="18770" lv="65" prob="100" cd="30000" target="ME" />
 		<npc_skill id="16519" lv="65" prob="100" cd="30000" target="RANDOM" />
-		<npc_skill id="21790" lv="65" prob="100" cd="30000" target="RANDOM" />
-		<npc_skill id="21783" lv="65" prob="100" cd="30000" target="ME" />
-		<npc_skill id="21782" lv="65" prob="100" max_hp="50" cd="15000" target="RANDOM" />
-	</npc_skills>
+		</npc_skills>
 	<npc_skills npc_ids="235218">
 		<npc_skill id="19549" lv="40" prob="80" cd="15000" target="RANDOM" />
 		<npc_skill id="19549" lv="60" prob="100" max_hp="55" cd="60000" target="RANDOM" />
@@ -62783,13 +61517,9 @@
 		<npc_skill id="19553" lv="25" prob="100" max_hp="50" chain_id="1" cd="35000" prio="1">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
-		<npc_skill id="21780" lv="65" prob="80" cd="10000" target="RANDOM" />
-	</npc_skills>
+		</npc_skills>
 	<npc_skills npc_ids="235219">
-		<npc_skill id="21785" lv="65" prob="80" cd="20000" target="ME" />
 		<npc_skill id="18770" lv="65" prob="80" cd="20000" target="ME" />
-		<npc_skill id="21786" lv="65" prob="100" max_hp="80" cd="30000" target="RANDOM" />
-		<npc_skill id="21784" lv="65" prob="100" max_hp="65" cd="30000" />
 		<npc_skill id="16519" lv="65" prob="100" cd="30000" />
 	</npc_skills>
 	<npc_skills npc_ids="235220">
@@ -62802,8 +61532,8 @@
 		<npc_skill id="19562" lv="25" prob="100" cd="35000" target="RANDOM" />
 		<npc_skill id="19563" lv="20" prob="100" max_hp="40" cd="35000" target="RANDOM" />
 	</npc_skills>
-	<!-- Tiamaranta's Eye -->
-	<!-- Ranger -->
+	
+	
 	<npc_skills npc_ids="219188">
 		<npc_skill id="19721" lv="65" prob="100" cd="42000" prio="1" next_chain_id="1" next_skill_time="2000" />
 		<npc_skill id="19722" lv="65" prob="100" cd="42000" chain_id="1" next_chain_id="2" next_skill_time="2000" />
@@ -62826,7 +61556,7 @@
 		<npc_skill id="19728" lv="65" prob="100" cd="42000" chain_id="7" next_skill_time="3000" />
 		<npc_skill id="19730" lv="65" prob="100" cd="35000" next_skill_time="35000" />
 	</npc_skills>
-	<!-- Cleric -->
+	
 	<npc_skills npc_ids="218547">
 		<npc_skill id="20517" lv="65" prob="90" cd="15000" next_chain_id="1" next_skill_time="2000" />
 		<npc_skill id="20518" lv="65" prob="100" cd="15000" chain_id="1" next_chain_id="2" next_skill_time="2000" />
@@ -62857,14 +61587,14 @@
 		<npc_skill id="20519" lv="65" prob="100" cd="15000" chain_id="2" next_skill_time="2000" />
 		<npc_skill id="20515" lv="65" prob="70" cd="15000" next_skill_time="6000" />
 	</npc_skills>
-	<!-- keymaster chookuri (cleric, normal) -->
+	
 	<npc_skills npc_ids="219218">
 		<npc_skill id="20517" lv="65" prob="90" cd="15000" next_chain_id="1" next_skill_time="2000" />
 		<npc_skill id="20518" lv="65" prob="100" cd="15000" chain_id="1" next_chain_id="2" next_skill_time="2000" />
 		<npc_skill id="20519" lv="65" prob="100" cd="15000" chain_id="2" next_skill_time="2000" />
 		<npc_skill id="20515" lv="65" prob="70" cd="15000" next_skill_time="6000" />
 	</npc_skills>
-	<!-- Assassin -->
+	
 	<npc_skills npc_ids="218545">
 		<npc_skill id="20522" lv="65" prob="100" cd="20000" next_chain_id="1" next_skill_time="1000" />
 		<npc_skill id="20523" lv="65" prob="100" cd="20000" chain_id="1" next_chain_id="2" next_skill_time="1000" />
@@ -62892,7 +61622,7 @@
 		<npc_skill id="20526" lv="65" prob="100" cd="20000" chain_id="4" next_skill_time="4000" />
 		<npc_skill id="20527" lv="65" prob="100" cd="20000" next_skill_time="5000" />
 	</npc_skills>
-	<!-- keymaster zumita (assa, elite) -->
+	
 	<npc_skills npc_ids="219192">
 		<npc_skill id="20522" lv="65" prob="100" cd="20000" next_chain_id="1" next_skill_time="1000" />
 		<npc_skill id="20523" lv="65" prob="100" cd="20000" chain_id="1" next_chain_id="2" next_skill_time="1000" />
@@ -62902,7 +61632,7 @@
 		<npc_skill id="20526" lv="65" prob="100" cd="20000" chain_id="4" next_skill_time="4000" />
 		<npc_skill id="20527" lv="65" prob="100" cd="20000" next_skill_time="5000" />
 	</npc_skills>
-	<!-- Fighter -->
+	
 	<npc_skills npc_ids="218544">
 		<npc_skill id="20504" lv="65" prob="100" cd="20000" next_skill_time="5000" />
 		<npc_skill id="20505" lv="65" prob="100" cd="20000" next_chain_id="1" next_skill_time="0" />
@@ -62945,7 +61675,7 @@
 		<npc_skill id="20507" lv="65" prob="100" cd="20000" chain_id="2" next_chain_id="3" next_skill_time="0" />
 		<npc_skill id="20507" lv="65" prob="100" cd="20000" chain_id="3" next_skill_time="6000" />
 	</npc_skills>
-	<!-- keymaster niksi (fighter, elite) -->
+	
 	<npc_skills npc_ids="219191">
 		<npc_skill id="20504" lv="65" prob="100" cd="20000" next_skill_time="5000" />
 		<npc_skill id="20505" lv="65" prob="100" cd="20000" next_chain_id="1" next_skill_time="0" />
@@ -62953,7 +61683,7 @@
 		<npc_skill id="20507" lv="65" prob="100" cd="20000" chain_id="2" next_chain_id="3" next_skill_time="0" />
 		<npc_skill id="20507" lv="65" prob="100" cd="20000" chain_id="3" next_skill_time="6000" />
 	</npc_skills>
-	<!-- Mage -->
+	
 	<npc_skills npc_ids="218546">
 		<npc_skill id="20508" lv="65" prob="100" cd="15000" prio="1" />
 		<npc_skill id="20511" lv="65" prob="100" cd="15000" prio="1" />
@@ -62979,13 +61709,13 @@
 		<npc_skill id="20511" lv="65" prob="100" cd="15000" prio="1" />
 		<npc_skill id="20513" lv="65" prob="100" cd="35000" next_skill_time="35000" />
 	</npc_skills>
-	<!-- keymaster dabra (mage, hero) -->
+	
 	<npc_skills npc_ids="219193">
 		<npc_skill id="20508" lv="60" prob="100" cd="15000" prio="1" />
 		<npc_skill id="20511" lv="60" prob="100" cd="15000" prio="1" />
 		<npc_skill id="20513" lv="65" prob="100" cd="50000" next_skill_time="35000" />
 	</npc_skills>
-	<!-- Assault Leader -->
+	
 	<npc_skills npc_ids="219202">
 		<npc_skill id="20545" lv="65" prob="100" cd="20000" next_chain_id="1" next_skill_time="0" />
 		<npc_skill id="20546" lv="65" prob="100" cd="10000" chain_id="1" />
@@ -62993,147 +61723,21 @@
 		<npc_skill id="20544" lv="65" prob="100" cd="60000" max_hp="50" prio="1" />
 		<npc_skill id="20543" lv="65" prob="100" cd="60000" max_hp="10" prio="2" />
 	</npc_skills>
-	<!-- Some Basic Class Skill-Lists -->
-	<!-- ASMODIANS -->
-	<!-- Ranger -->
-	<!-- NOT FINISHED YET.
-	<npc_skills npc_ids="234082">
-		<npc_skill id="17098" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17099" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17100" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17101" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17102" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17103" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17104" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17105" lv="65" prob="70" cd="15000" />
-	</npc_skills> -->
-	<!-- WITCH -->
-	<!--
-	<npc_skills npc_ids="234085">
-		<npc_skill id="17107" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17108" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17109" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17110" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17111" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17112" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17113" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17114" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17115" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17117" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17118" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17119" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17120" lv="65" prob="70" cd="15000" />
-	</npc_skills> -->
-	<!-- PRIEST -->
-	<!--
-	<npc_skills npc_ids="234088">
-		<npc_skill id="17121" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17122" lv="65" prob="70" cd="15000" />
-		<npc_skill id="17123" lv="65" prob="70" cd="30000" target="NONE">
-			<cond cond_type="TARGET_IS_PHYSICAL_CLASS" />
-		</npc_skill>
-		<npc_skill id="17124" lv="65" prob="70" cd="30000" target="NONE">
-			<cond cond_type="TARGET_IS_PHYSICAL_CLASS" />
-		</npc_skill>
-		<npc_skill id="17126" lv="65" prob="100" max_hp="60" cd="15000" prio="2" target="ME" />
-		<npc_skill id="17126" lv="65" prob="100" cd="15000" prio="1" target="NONE">
-			<cond cond_type="HELP_FRIEND" hp_below="60" range="35" />
-		</npc_skill>
-		<npc_skill id="17130" lv="65" prob="100" cd="15000" prio="1" target="NONE">
-			<cond cond_type="HELP_FRIEND" hp_below="60" range="10" />
-		</npc_skill>
-		<npc_skill id="17131" lv="65" prob="70" cd="20000" />
-		<npc_skill id="17132" lv="65" prob="70" cd="20000" />
-		<npc_skill id="17133" lv="65" prob="70" cd="20000" />
-		<npc_skill id="17134" lv="65" prob="70" cd="20000" />
-		<npc_skill id="17135" lv="65" prob="70" cd="20000" />
-		<npc_skill id="17136" lv="65" prob="70" cd="20000" />
-	</npc_skills> -->
-	<!-- FIGHTER -->
-	<!--
-	<npc_skills npc_ids="234079">
-		<npc_skill id="17066" lv="65" prob="80" next_chain_id="1" next_skill_time="0" cd="30000" />
-		<npc_skill id="17067" lv="65" prob="100" chain_id="1" cd="10000" target="NONE">
-			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
-		</npc_skill>
-		<npc_skill id="17058" lv="65" prob="50" cd="20000" />
-		<npc_skill id="17059" lv="65" prob="50" cd="20000" />
-		<npc_skill id="17060" lv="65" prob="50" cd="20000" />
-		<npc_skill id="17061" lv="65" prob="50" cd="20000" />
-		<npc_skill id="17062" lv="65" prob="50" cd="20000" />
-		<npc_skill id="17064" lv="65" prob="50" cd="20000" />
-		<npc_skill id="17077" lv="65" prob="50" cd="20000" />
-		<npc_skill id="17078" lv="65" prob="50" cd="20000" />
-		<npc_skill id="17079" lv="65" prob="50" cd="20000" />
-		<npc_skill id="17081" lv="65" prob="50" cd="20000" />
-		<npc_skill id="17082" lv="65" prob="50" cd="20000" />
-		<npc_skill id="17083" lv="65" prob="50" cd="20000" />
-		<npc_skill id="17084" lv="65" prob="50" cd="20000" />
-	</npc_skills> -->
-	<!-- KNIGHT -->
-	<!--
-	<npc_skills npc_ids="234076">
-		<npc_skill id="18314" lv="65" prob="50" cd="20000" />
-		<npc_skill id="18315" lv="65" prob="100" prio="2" max_hp="50" cd="60000" />
-		<npc_skill id="18316" lv="65" prob="70" min_hp="55" cd="25000" />
-		<npc_skill id="18317" lv="65" prob="100" prio="3" max_hp="15" cd="120000" />
-		<npc_skill id="18318" lv="65" prob="50" next_chain_id="1" next_skill_time="0" cd="25000" />
-		<npc_skill id="18319" lv="65" prob="100" chain_id="1" cd="10000" />
-		<npc_skill id="18320" lv="65" prob="50" cd="30000" />
-		<npc_skill id="18321" lv="65" prob="60" cd="20000" />
-		<npc_skill id="18322" lv="65" prob="50" cd="30000" />
-		<npc_skill id="18323" lv="65" prob="50" cd="20000" />
-		<npc_skill id="18324" lv="65" prob="100" cd="80000" prio="1" next_skill_time="0" next_chain_id="2" target="NONE">
-			<cond cond_type="HELP_FRIEND" hp_below="60" range="26" />
-		</npc_skill>
-		<npc_skill id="18315" lv="65" prob="100" chain_id="2" cd="60000" />
-		<npc_skill id="18325" lv="65" prob="50" cd="20000" />
-	</npc_skills> -->
-	<!-- ASSASSIN -->
-	<!--
-	<npc_skills npc_ids="235205">
-		<npc_skill id="17166" lv="65" prob="50" cd="20000" />
-		<npc_skill id="17167" lv="65" prob="50" cd="20000" />
-		<npc_skill id="17168" lv="65" prob="50" cd="20000" />
-		<npc_skill id="17173" lv="65" prob="50" cd="20000" target="NONE">
-			<cond cond_type="TARGET_IS_PHYSICAL_CLASS" />
-		</npc_skill>
-		<npc_skill id="17176" lv="65" prob="50" cd="20000" />
-		<npc_skill id="17177" lv="65" prob="50" next_chain_id="1" next_skill_time="0" cd="20000" />
-		<npc_skill id="17178" lv="65" prob="100" chain_id="1" cd="10000" />
-		<npc_skill id="17179" lv="65" prob="50" next_chain_id="2" next_skill_time="0" cd="40000" />
-		<npc_skill id="17181" lv="65" prob="100" chain_id="2" cd="20000" />
-		<npc_skill id="17180" lv="65" prob="50" next_chain_id="3" next_skill_time="0" cd="40000" />
-		<npc_skill id="17182" lv="65" prob="100" chain_id="3" cd="20000" />
-		<npc_skill id="17183" lv="65" prob="50" next_chain_id="4" next_skill_time="2000" cd="20000" />
-		<npc_skill id="17184" lv="65" prob="100" chain_id="4" next_chain_id="5" next_skill_time="2000" cd="10000" />
-		<npc_skill id="17185" lv="65" prob="100" chain_id="5" cd="10000" />
-		<npc_skill id="17192" lv="65" prob="100" chain_id="5" cd="25000" />
-		<npc_skill id="17193" lv="65" prob="100" chain_id="5" cd="35000" />
-		<npc_skill id="17191" lv="65" prob="50" cd="10000" />
-	</npc_skills>-->
-	<!-- Ahserion (PvP Map | Old) -->
-	<npc_skills npc_ids="297189">
-		<npc_skill id="21562" lv="65" prob="85" next_chain_id="1" cd="24000" next_skill_time="0" target="RANDOM" />
-		<npc_skill id="21565" lv="65" prob="100" chain_id="1" next_chain_id="2" cd="10000" next_skill_time="0" target="RANDOM" />
-		<npc_skill id="21565" lv="65" prob="100" chain_id="2" cd="10000" next_skill_time="7000" target="RANDOM" />
-		<npc_skill id="21563" lv="65" prob="80" cd="24000" target="RANDOM" />
-		<npc_skill id="21564" lv="65" prob="60" cd="24000" target="RANDOM" />
-		<npc_skill id="21566" lv="65" prob="80" cd="20000" target="RANDOM" />
-		<npc_skill id="21567" lv="65" prob="60" cd="20000" target="RANDOM" />
-		<npc_skill id="21568" lv="65" prob="70" cd="20000" target="RANDOM" />
-		<npc_skill id="21569" lv="65" prob="80" max_hp="50" cd="24000" target="ME" />
-		<npc_skill id="21570" lv="65" prob="100" cd="24000" target="RANDOM" />
-		<npc_skill id="21573" lv="65" max_hp="75" prob="70" cd="24000" target="RANDOM" next_skill_time="9500" />
-		<npc_skill id="21574" lv="65" prob="100" max_hp="35" prio="1" cd="60000" target="ME" next_skill_time="10000">
-			</npc_skill>
-	</npc_skills>
-	<npc_skills npc_ids="297195">
-		<npc_skill id="21575" lv="65" prob="100">
-			<cond despawn_time="3000" can_die="false" delay="1000" />
-		</npc_skill>
-	</npc_skills>
-	<!-- Gunner -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<npc_skills npc_ids="297193">
 		<npc_skill id="20700" lv="65" prob="0" is_post_spawn="true" />
 		<npc_skill id="20713" lv="65" prob="50" cd="15000" />
@@ -63143,7 +61747,7 @@
 		<npc_skill id="21219" lv="65" prob="70" cd="15000" />
 		<npc_skill id="20858" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- Cleric -->
+	
 	<npc_skills npc_ids="297194">
 		<npc_skill id="20700" lv="65" prob="0" is_post_spawn="true" />
 		<npc_skill id="20517" lv="65" prob="70" cd="14000" next_chain_id="1" next_skill_time="2000" />
@@ -63152,96 +61756,31 @@
 		<npc_skill id="20515" lv="65" prob="70" cd="20000" />
 		<npc_skill id="17366" lv="65" prob="70" cd="15000" prio="1" />
 	</npc_skills>
-	<!-- Stonespear Reach Instance -->
-	<!-- Vision of Kaliga -->
-	<npc_skills npc_ids="855776">
-		<npc_skill id="21701" lv="65" prob="70" prio="1" cd="20000" next_skill_time="4000" />
-		<npc_skill id="21702" lv="65" prob="60" cd="20000" next_skill_time="4000" />
-		<npc_skill id="22663" lv="1" prob="60" cd="40000" target="ME" next_skill_time="7000" max_hp="90" />
-		<npc_skill id="21708" lv="65" prob="60" cd="108000000" target="ME" next_skill_time="6000" max_hp="50">
-			</npc_skill>
-		<npc_skill id="21708" lv="65" prob="60" cd="108000000" target="ME" next_skill_time="6000" max_hp="50">
-			</npc_skill>
-		<npc_skill id="21765" lv="65" prob="50" cd="50000" target="ME" next_skill_time="6000" max_hp="90">
-			</npc_skill>
-		<npc_skill id="21765" lv="65" prob="50" cd="50000" target="ME" next_skill_time="6000" max_hp="90">
-			</npc_skill>
-	</npc_skills>
-	<!-- Apparition of Lanmark-->
+	
+	
 	<npc_skills npc_ids="855799">
 		<npc_skill id="17179" lv="65" prob="60" cd="15000" next_chain_id="1" next_skill_time="0" target="RANDOM" />
 		<npc_skill id="17182" lv="65" prob="100" cd="5000" chain_id="1" next_skill_time="5000">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
 	</npc_skills>
-	<!-- Vision of Rudra -->
+	
 	<npc_skills npc_ids="855822">
 		<npc_skill id="18613" lv="15" prob="60" cd="30000" next_chain_id="1" next_skill_time="5000" />
 		<npc_skill id="18614" lv="15" prob="60" cd="10000" chain_id="2" next_skill_time="6000" />
 		<npc_skill id="18615" lv="15" prob="60" cd="30000" next_skill_time="5000" />
 		<npc_skill id="18616" lv="25" prob="60" cd="10000" chain_id="1" next_chain_id="2" next_skill_time="5000" />
 	</npc_skills>
-	<!-- Vision of Guardian General -->
-	<npc_skills npc_ids="855843">
-		<npc_skill id="21750" lv="65" prob="60" cd="25000" />
-		<npc_skill id="21751" lv="65" prob="60" cd="35000" />
-		<npc_skill id="21752" lv="65" prob="60" cd="55000" />
-		<npc_skill id="21753" lv="65" prob="60" next_chain_id="2" next_skill_time="9000" cd="35000" />
-		<npc_skill id="21754" lv="65" prob="100" chain_id="2" next_chain_id="3" next_skill_time="9000" cd="20000" />
-		<npc_skill id="21753" lv="65" prob="100" chain_id="3" next_chain_id="4" next_skill_time="9000" cd="20000" max_hp="75" />
-		<npc_skill id="21754" lv="65" prob="100" chain_id="4" next_skill_time="9000" cd="20000" max_hp="50" />
-		<npc_skill id="21758" lv="65" prob="60" cd="40000" />
-		<npc_skill id="21756" lv="65" prob="60" next_chain_id="1" next_skill_time="0" max_hp="25" cd="30000" target="RANDOM_EXCEPT_CURRENT_TARGET" />
-		<npc_skill id="21757" lv="65" prob="100" chain_id="1" next_skill_time="8000" target="NONE" />
-		<npc_skill id="21759" lv="65" prob="60" cd="20000" max_hp="35" />
-		<!-- this skill spawns 855262, who use 21760 and despawn. -->
-		<npc_skill id="21755" lv="65" prob="70" cd="30000" max_hp="70">
-			</npc_skill>
-	</npc_skills>
-	<!-- Prectaz -->
+	
 	<npc_skills npc_ids="219934">
-		<npc_skill id="21913" lv="65" prob="60" cd="50000" />
-		<npc_skill id="21845" lv="65" prob="60" cd="25000" target="ME" />
-		<npc_skill id="21846" lv="65" prob="60" cd="35000" target="ME" />
-		<npc_skill id="21847" lv="65" prob="60" cd="30000" target="ME" />
 		<npc_skill id="19780" lv="65" prob="60" cd="20000" target="ME" />
 	</npc_skills>
-	<!-- Gatekeeper Fox -->
+	
 	<npc_skills npc_ids="235975">
-		<npc_skill id="21824" lv="3" prob="60" cd="25000" next_chain_id="1" next_skill_time="0" target="ME" />
-		<npc_skill id="21824" lv="3" prob="100" cd="10000" chain_id="1" next_skill_time="6000" target="ME" />
-		<npc_skill id="21825" lv="10" prob="60" cd="25000" />
 		<npc_skill id="21300" lv="65" prob="60" cd="20000" />
 		<npc_skill id="21301" lv="65" prob="60" cd="25000" max_hp="50" />
 	</npc_skills>
-	<!-- Arcticore Aizenka -->
-	<npc_skills npc_ids="219933">
-		<npc_skill id="21848" lv="65" prob="60" cd="25000" target="ME" />
-		<npc_skill id="21849" lv="65" prob="60" cd="25000" target="ME" />
-		<npc_skill id="21850" lv="65" prob="60" cd="30000" next_chain_id="1" next_skill_time="7000" target="ME" />
-		<npc_skill id="21850" lv="65" prob="50" cd="10000" chain_id="1" target="ME" />
-		<npc_skill id="21851" lv="65" prob="60" cd="35000" target="RANDOM" max_hp="55" />
-		<npc_skill id="21852" lv="65" prob="60" cd="40000" target="ME" max_hp="40">
-			</npc_skill>
-	</npc_skills>
-	<!-- Frost Bomb -->
-	<npc_skills npc_ids="855913">
-		<npc_skill id="21853" lv="65" prob="100" cd="10000" target="ME">
-			<cond delay="5000" despawn_time="5000" />
-		</npc_skill>
-	</npc_skills>
-	<!-- Machine Spirit Tottal -->
-	<npc_skills npc_ids="235971">
-		<npc_skill id="21848" lv="65" prob="60" cd="25000" target="ME" />
-		<npc_skill id="21849" lv="65" prob="60" cd="25000" target="ME" />
-		<npc_skill id="21850" lv="65" prob="60" cd="30000" next_chain_id="1" next_skill_time="7000" target="ME" />
-		<npc_skill id="21850" lv="65" prob="50" cd="10000" chain_id="1" target="ME" />
-		<npc_skill id="21851" lv="65" prob="60" cd="35000" target="RANDOM" max_hp="55" />
-		<npc_skill id="21852" lv="65" prob="60" cd="40000" target="ME" max_hp="40">
-			</npc_skill>
-	</npc_skills>
-	<!-- Seized Danuar Sanctuary -->
-	<!-- Warmage Suyaroka -->
+	
 	<npc_skills npc_ids="235619">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="17335" lv="65" prob="70" cd="25000" target="RANDOM" />
@@ -63249,10 +61788,8 @@
 		<npc_skill id="21421" lv="65" prob="100" cd="26000" target="ME" min_hp="45" max_hp="70" prio="1" next_chain_id="1" next_skill_time="2000" />
 		<npc_skill id="21288" lv="65" prob="100" cd="30000" max_hp="70" chain_id="1" />
 		<npc_skill id="20179" lv="65" prob="40" cd="50000" max_hp="65" />
-		<npc_skill id="21799" lv="65" prob="100" cd="40000" max_hp="40" next_skill_time="0" next_chain_id="2" prio="2" target="ME" />
-		<npc_skill id="21798" lv="65" prob="100" cd="5000" target="ME" chain_id="2" />
-	</npc_skills>
-	<!-- Chief Medic Tagnu -->
+		</npc_skills>
+	
 	<npc_skills npc_ids="235620">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="17121" lv="65" prob="60" cd="12000" next_chain_id="3" next_skill_time="4000" />
@@ -63262,24 +61799,22 @@
 		<npc_skill id="21189" lv="65" prob="100" cd="30000" max_hp="75" prio="1" target="ME">
 			</npc_skill>
 		<npc_skill id="17700" lv="65" prob="70" cd="30000" max_hp="70" target="RANDOM" />
-		<npc_skill id="21799" lv="65" prob="100" cd="35000" max_hp="30" prio="2" next_chain_id="1" next_skill_time="0" target="ME" />
 		<npc_skill id="21184" lv="65" prob="100" cd="5000" chain_id="1" next_chain_id="2" next_skill_time="0">
 			</npc_skill>
-		<npc_skill id="21778" lv="65" prob="100" cd="5000" chain_id="2" target="ME" />
-	</npc_skills>
-	<!-- Tagnu's Slashblade -->
+		</npc_skills>
+	
 	<npc_skills npc_ids="235622">
 		<npc_skill id="17294" lv="65" prob="60" cd="20000" />
 		<npc_skill id="21284" lv="65" prob="60" cd="20000" />
 	</npc_skills>
-	<!-- Tagnu's Assassine -->
+	
 	<npc_skills npc_ids="235623">
 		<npc_skill id="21289" lv="65" prob="70" cd="20000" />
 		<npc_skill id="17320" lv="65" prob="50" cd="30000" />
 		<npc_skill id="17321" lv="65" prob="70" cd="20000" />
 		<npc_skill id="17322" lv="65" prob="60" cd="30000" />
 	</npc_skills>
-	<!-- Virulent Ukahim -->
+	
 	<npc_skills npc_ids="235621">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="17332" lv="65" prob="70" cd="25000" next_chain_id="1" next_skill_time="3000" />
@@ -63291,120 +61826,118 @@
 		<npc_skill id="20706" lv="65" prob="100" cd="5000" target="ME" chain_id="4" />
 		<npc_skill id="21286" lv="65" prob="60" cd="30000" target="RANDOM" />
 		<npc_skill id="21290" lv="65" prob="60" cd="30000" max_hp="50" />
-		<npc_skill id="21800" lv="65" prob="60" cd="30000" target="RANDOM" prio="1" max_hp="25" next_chain_id="5" next_skill_time="0" />
-		<npc_skill id="21801" lv="65" prob="100" cd="35000" target="ME" chain_id="5" />
-	</npc_skills>
-	<!-- Research Team Veteran Outrider | Research Team Elite Assassin -->
+		</npc_skills>
+	
 	<npc_skills npc_ids="235577 235581">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="17320" lv="65" prob="70" cd="15000" />
 		<npc_skill id="17321" lv="65" prob="70" cd="15000" />
 		<npc_skill id="17322" lv="65" prob="60" cd="30000" />
 	</npc_skills>
-	<!-- research team elite sorcerer -->
+	
 	<npc_skills npc_ids="235576">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="16909" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- research team veteran watchman -->
+	
 	<npc_skills npc_ids="235583">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="17294" lv="65" prob="70" cd="15000" />
 		<npc_skill id="21284" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- research team elite mage -->
+	
 	<npc_skills npc_ids="235582">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="20179" lv="65" prob="70" cd="20000" target="RANDOM" />
 		<npc_skill id="17722" lv="65" prob="70" cd="15000" />
 		<npc_skill id="16909" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- shulack mercenary veteran assaulter -->
+	
 	<npc_skills npc_ids="235569">
 		<npc_skill id="16532" lv="65" prob="70" cd="15000" />
 		<npc_skill id="19780" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- shulack mercenary elite outrider -->
+	
 	<npc_skills npc_ids="235568">
 		<npc_skill id="16794" lv="65" prob="70" cd="15000" />
 		<npc_skill id="18159" lv="65" prob="70" cd="15000" />
 		<npc_skill id="19780" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- shulack mercenary elite sorcerer -->
+	
 	<npc_skills npc_ids="235567">
 		<npc_skill id="18157" lv="65" prob="70" cd="15000" />
 		<npc_skill id="16987" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- shulack mercenary veteran medic -->
+	
 	<npc_skills npc_ids="235566">
 		<npc_skill id="18814" lv="65" prob="70" cd="15000" />
 		<npc_skill id="18751" lv="65" prob="80" cd="30000" max_hp="40" />
 		<npc_skill id="18779" lv="65" prob="80" cd="30000" min_hp="50" max_hp="90" />
 	</npc_skills>
-	<!-- shulack mercenary watcher -->
+	
 	<npc_skills npc_ids="235565">
 		<npc_skill id="16794" lv="65" prob="70" cd="15000" />
 		<npc_skill id="18159" lv="65" prob="70" cd="15000" />
 		<npc_skill id="19780" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- shulack mercenary elite scout -->
+	
 	<npc_skills npc_ids="235570">
 		<npc_skill id="16543" lv="65" prob="70" cd="15000" />
 		<npc_skill id="16674" lv="65" prob="60" cd="15000" />
 		<npc_skill id="18248" lv="65" prob="60" cd="15000" />
 	</npc_skills>
-	<!-- shulack mercenary elite medic -->
+	
 	<npc_skills npc_ids="235571">
 		<npc_skill id="18814" lv="65" prob="70" cd="15000" />
 		<npc_skill id="18751" lv="65" prob="80" cd="30000" max_hp="40" />
 		<npc_skill id="18779" lv="65" prob="80" cd="30000" min_hp="50" max_hp="90" />
 	</npc_skills>
-	<!-- shulack mercenary cannon chief -->
+	
 	<npc_skills npc_ids="235574">
 		<npc_skill id="16794" lv="65" prob="70" cd="15000" />
 		<npc_skill id="16525" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- Bodyguard Girakin -->
+	
 	<npc_skills npc_ids="235656">
 		<npc_skill id="17006" lv="65" prob="70" cd="30000" />
 		<npc_skill id="19780" lv="65" prob="70" cd="13000" />
 		<npc_skill id="16678" lv="65" prob="70" cd="20000" />
 	</npc_skills>
-	<!-- Unscrupulous Sachirunerk -->
+	
 	<npc_skills npc_ids="235654">
 		<npc_skill id="16696" lv="65" prob="100" cd="30000" />
 		<npc_skill id="16570" lv="65" prob="70" cd="15000" />
 		<npc_skill id="18157" lv="65" prob="70" cd="15000" />
 		<npc_skill id="16987" lv="65" prob="60" cd="15000" />
 	</npc_skills>
-	<!-- Bodyguard Yatakin -->
+	
 	<npc_skills npc_ids="235655">
 		<npc_skill id="21212" lv="65" prob="70" cd="20000" />
 		<npc_skill id="21213" lv="65" prob="70" cd="20000" />
 		<npc_skill id="21214" lv="65" prob="70" cd="20000" />
 		<npc_skill id="21215" lv="65" prob="70" cd="20000" />
 	</npc_skills>
-	<!-- dukaki peon -->
+	
 	<npc_skills npc_ids="235589">
 		<npc_skill id="19780" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- Seized Danuar Sanctuary Miner -->
+	
 	<npc_skills npc_ids="235588">
 		<npc_skill id="19780" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- ruins babel -->
+	
 	<npc_skills npc_ids="235585">
 		<npc_skill id="17968" lv="65" prob="60" cd="15000" />
 	</npc_skills>
-	<!-- ruins clodworm swarm -->
+	
 	<npc_skills npc_ids="235586">
 		<npc_skill id="17558" lv="65" prob="60" cd="25000" max_hp="80" />
 	</npc_skills>
-	<!-- guardian angolem -->
+	
 	<npc_skills npc_ids="235590">
 		<npc_skill id="16472" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- Archon/Guardian Veteran Combatant -->
+	
 	<npc_skills npc_ids="233126 233129">
 		<npc_skill id="17077" lv="65" prob="70" cd="20000" />
 		<npc_skill id="17078" lv="65" prob="70" cd="20000" />
@@ -63414,7 +61947,7 @@
 		<npc_skill id="17083" lv="65" prob="70" cd="20000" />
 		<npc_skill id="17084" lv="65" prob="70" cd="20000" />
 	</npc_skills>
-	<!-- Archon/Guardian Veteran Healer -->
+	
 	<npc_skills npc_ids="233128 233131">
 		<npc_skill id="17121" lv="65" prob="70" cd="20000" />
 		<npc_skill id="17134" lv="65" prob="70" cd="20000" />
@@ -63422,7 +61955,7 @@
 		<npc_skill id="17136" lv="65" prob="70" cd="20000" />
 		<npc_skill id="17127" lv="65" prob="70" cd="20000" max_hp="80" target="ME" />
 	</npc_skills>
-	<!-- Archon/Guardian Veteran Spellcaster -->
+	
 	<npc_skills npc_ids="233127 233130">
 		<npc_skill id="17107" lv="65" prob="70" cd="20000" />
 		<npc_skill id="17108" lv="65" prob="70" cd="20000" />
@@ -63438,9 +61971,9 @@
 		<npc_skill id="17119" lv="65" prob="70" cd="20000" />
 		<npc_skill id="17120" lv="65" prob="70" cd="20000" />
 	</npc_skills>
-	<!-- END Seized Danuar Sanctuary -->
-	<!-- Danuar Sanctuary -->
-	<!-- Warmage Suyaroka -->
+	
+	
+	
 	<npc_skills npc_ids="235624">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="17335" lv="65" prob="70" cd="25000" target="RANDOM" />
@@ -63448,10 +61981,8 @@
 		<npc_skill id="21421" lv="65" prob="100" cd="26000" target="ME" min_hp="45" max_hp="70" prio="1" next_chain_id="1" next_skill_time="2000" />
 		<npc_skill id="21288" lv="65" prob="100" cd="30000" max_hp="70" chain_id="1" />
 		<npc_skill id="20179" lv="65" prob="40" cd="50000" max_hp="65" />
-		<npc_skill id="21799" lv="65" prob="100" cd="40000" max_hp="40" next_skill_time="0" next_chain_id="2" prio="2" target="ME" />
-		<npc_skill id="21798" lv="65" prob="100" cd="5000" target="ME" chain_id="2" />
-	</npc_skills>
-	<!-- Chief Medic Tagnu -->
+		</npc_skills>
+	
 	<npc_skills npc_ids="235625">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="17121" lv="65" prob="60" cd="12000" next_chain_id="3" next_skill_time="4000" />
@@ -63461,24 +61992,22 @@
 		<npc_skill id="21189" lv="65" prob="100" cd="30000" max_hp="75" prio="1" target="ME">
 			</npc_skill>
 		<npc_skill id="17700" lv="65" prob="70" cd="30000" max_hp="70" target="RANDOM" />
-		<npc_skill id="21799" lv="65" prob="100" cd="35000" max_hp="30" prio="2" next_chain_id="1" next_skill_time="0" target="ME" />
 		<npc_skill id="21184" lv="65" prob="100" cd="5000" chain_id="1" next_chain_id="2" next_skill_time="0">
 			</npc_skill>
-		<npc_skill id="21778" lv="65" prob="100" cd="5000" chain_id="2" target="ME" />
-	</npc_skills>
-	<!-- Tagnu's Slashblade -->
+		</npc_skills>
+	
 	<npc_skills npc_ids="235627">
 		<npc_skill id="17294" lv="65" prob="60" cd="20000" />
 		<npc_skill id="21284" lv="65" prob="60" cd="20000" />
 	</npc_skills>
-	<!-- Tagnu's Assassine -->
+	
 	<npc_skills npc_ids="235628">
 		<npc_skill id="21289" lv="65" prob="70" cd="20000" />
 		<npc_skill id="17320" lv="65" prob="50" cd="30000" />
 		<npc_skill id="17321" lv="65" prob="70" cd="20000" />
 		<npc_skill id="17322" lv="65" prob="60" cd="30000" />
 	</npc_skills>
-	<!-- Virulent Ukahim -->
+	
 	<npc_skills npc_ids="235626">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="17332" lv="65" prob="70" cd="25000" next_chain_id="1" next_skill_time="3000" />
@@ -63490,144 +62019,142 @@
 		<npc_skill id="20706" lv="65" prob="100" cd="5000" target="ME" chain_id="4" />
 		<npc_skill id="21286" lv="65" prob="60" cd="30000" target="RANDOM" />
 		<npc_skill id="21290" lv="65" prob="60" cd="30000" max_hp="50" />
-		<npc_skill id="21800" lv="65" prob="60" cd="30000" target="RANDOM" prio="1" max_hp="25" next_chain_id="5" next_skill_time="0" />
-		<npc_skill id="21801" lv="65" prob="100" cd="35000" target="ME" chain_id="5" />
-	</npc_skills>
-	<!-- Research Team Scaleraider -->
+		</npc_skills>
+	
 	<npc_skills npc_ids="235603">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="17320" lv="65" prob="70" cd="15000" />
 		<npc_skill id="17321" lv="65" prob="70" cd="15000" />
 		<npc_skill id="17322" lv="65" prob="60" cd="30000" />
 	</npc_skills>
-	<!-- Research Team Swiftclaw -->
+	
 	<npc_skills npc_ids="235607">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="17320" lv="65" prob="70" cd="15000" />
 		<npc_skill id="17321" lv="65" prob="70" cd="15000" />
 		<npc_skill id="17322" lv="65" prob="60" cd="30000" />
 	</npc_skills>
-	<!-- Research Team Drakencaster -->
+	
 	<npc_skills npc_ids="235602">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="16909" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- Research Team Scalebalde -->
+	
 	<npc_skills npc_ids="235609">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="17294" lv="65" prob="70" cd="15000" />
 		<npc_skill id="21284" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- Research Team Veteran Scalemage -->
+	
 	<npc_skills npc_ids="235608">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="20179" lv="65" prob="70" cd="20000" target="RANDOM" />
 		<npc_skill id="17722" lv="65" prob="70" cd="15000" />
 		<npc_skill id="16909" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- Shulack Mercenary Assaulter -->
+	
 	<npc_skills npc_ids="235595">
 		<npc_skill id="16532" lv="65" prob="70" cd="15000" />
 		<npc_skill id="19780" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- Shulack Mercenary Watcher -->
+	
 	<npc_skills npc_ids="235591">
 		<npc_skill id="16794" lv="65" prob="70" cd="15000" />
 		<npc_skill id="18159" lv="65" prob="70" cd="15000" />
 		<npc_skill id="19780" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- Shulack Mercenary Sorcerer -->
+	
 	<npc_skills npc_ids="235593">
 		<npc_skill id="18157" lv="65" prob="70" cd="15000" />
 		<npc_skill id="16987" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- Shulack Mercenary Healer -->
+	
 	<npc_skills npc_ids="235597">
 		<npc_skill id="18814" lv="65" prob="70" cd="15000" />
 		<npc_skill id="18751" lv="65" prob="80" cd="30000" max_hp="40" />
 		<npc_skill id="18779" lv="65" prob="80" cd="30000" min_hp="50" max_hp="90" />
 	</npc_skills>
-	<!-- Shulack Mercenary Outrider -->
+	
 	<npc_skills npc_ids="235594">
 		<npc_skill id="16794" lv="65" prob="70" cd="15000" />
 		<npc_skill id="18159" lv="65" prob="70" cd="15000" />
 		<npc_skill id="19780" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- Shulack Mercenary Scout -->
+	
 	<npc_skills npc_ids="235596">
 		<npc_skill id="16543" lv="65" prob="70" cd="15000" />
 		<npc_skill id="16674" lv="65" prob="60" cd="15000" />
 		<npc_skill id="18248" lv="65" prob="60" cd="15000" />
 	</npc_skills>
-	<!-- Shulack Mercenary Medic -->
+	
 	<npc_skills npc_ids="235592">
 		<npc_skill id="18814" lv="65" prob="70" cd="15000" />
 		<npc_skill id="18751" lv="65" prob="80" cd="30000" max_hp="40" />
 		<npc_skill id="18779" lv="65" prob="80" cd="30000" min_hp="50" max_hp="90" />
 	</npc_skills>
-	<!-- shulack mercenary cannon chief -->
+	
 	<npc_skills npc_ids="235600">
 		<npc_skill id="16794" lv="65" prob="70" cd="15000" />
 		<npc_skill id="16525" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- Bodyguard Girakin -->
+	
 	<npc_skills npc_ids="235659">
 		<npc_skill id="17006" lv="65" prob="70" cd="30000" />
 		<npc_skill id="19780" lv="65" prob="70" cd="13000" />
 		<npc_skill id="16678" lv="65" prob="70" cd="20000" />
 	</npc_skills>
-	<!-- Unscrupulous Sachirunerk -->
+	
 	<npc_skills npc_ids="235657">
 		<npc_skill id="16696" lv="65" prob="100" cd="30000" />
 		<npc_skill id="16570" lv="65" prob="70" cd="15000" />
 		<npc_skill id="18157" lv="65" prob="70" cd="15000" />
 		<npc_skill id="16987" lv="65" prob="60" cd="15000" />
 	</npc_skills>
-	<!-- Bodyguard Yatakin -->
+	
 	<npc_skills npc_ids="235658">
 		<npc_skill id="21212" lv="65" prob="70" cd="20000" />
 		<npc_skill id="21213" lv="65" prob="70" cd="20000" />
 		<npc_skill id="21214" lv="65" prob="70" cd="20000" />
 		<npc_skill id="21215" lv="65" prob="70" cd="20000" />
 	</npc_skills>
-	<!-- dukaki peon -->
+	
 	<npc_skills npc_ids="235615">
 		<npc_skill id="19780" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- Danuar Sanctuary Worker -->
+	
 	<npc_skills npc_ids="235614">
 		<npc_skill id="19780" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- Ancient Bloodwing -->
+	
 	<npc_skills npc_ids="235611">
 		<npc_skill id="17968" lv="65" prob="60" cd="15000" />
 	</npc_skills>
-	<!-- Ancient Clodworm -->
+	
 	<npc_skills npc_ids="235612">
 		<npc_skill id="17558" lv="65" prob="60" cd="25000" max_hp="80" />
 	</npc_skills>
-	<!-- Sanctioner Angolem -->
+	
 	<npc_skills npc_ids="235616">
 		<npc_skill id="16472" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- END Danuar Sanctuary -->
-	<!-- Conquest Offering Npcs -->
-	<!-- Inggison -->
+	
+	
+	
 	<npc_skills npc_ids="236308 236310 236311 236313 236316 236317 236318 236320 236325 236326 236327 236330 236332 236334 236336 236338 236339 236341 236344 236345 236346 236348 236353 236354 236355 236358 236360 236362">
 		<npc_skill id="21922" lv="4" prob="0" cd="0" is_post_spawn="true" />
 	</npc_skills>
 	<npc_skills npc_ids="236307 236309 236312 236314 236315 236319 236321 236322 236323 236324 236328 236329 236331 236333 236335 236337 236340 236342 236343 236347 236349 236350 236351 236352 236356 236357 236359 236361">
 		<npc_skill id="21923" lv="4" prob="0" cd="0" is_post_spawn="true" />
 	</npc_skills>
-	<!-- Gelkmaros -->
+	
 	<npc_skills npc_ids="236363 236364 236367 236369 236371 236373 236376 236378 236380 236382 236383 236386 236387 236390 236391 236392 236395 236397 236399 236401 236404 236406 236408 236410 236411 236414 236415 236418">
 		<npc_skill id="21923" lv="1" prob="0" cd="0" is_post_spawn="true" />
 	</npc_skills>
 	<npc_skills npc_ids="236365 236366 236368 236370 236372 236374 236375 236377 236379 236381 236384 236385 236388 236389 236393 236394 236396 236398 236400 236402 236403 236405 236407 236409 236412 236413 236416 236417">
 		<npc_skill id="21922" lv="1" prob="0" cd="0" is_post_spawn="true" />
 	</npc_skills>
-	<!-- Ophidan Bridge -->
-	<!-- Spirited Velkur -->
+	
+	
 	<npc_skills npc_ids="235768">
 		<npc_skill id="17335" lv="65" prob="60" cd="40000" next_chain_id="1" next_skill_time="6000" />
 		<npc_skill id="17722" lv="65" prob="100" cd="100000" chain_id="1" next_chain_id="2" next_skill_time="6000" />
@@ -63635,9 +62162,8 @@
 		<npc_skill id="17722" lv="65" prob="100" cd="100000" chain_id="1" next_chain_id="2" next_skill_time="6000" target="RANDOM" />
 		<npc_skill id="21175" lv="65" prob="100" cd="10000" chain_id="2" next_chain_id="3" next_skill_time="6000" />
 		<npc_skill id="17900" lv="65" prob="100" cd="10000" chain_id="3" next_skill_time="7000" />
-		<npc_skill id="21759" lv="1" prob="60" cd="35000" max_hp="25" />
-	</npc_skills>
-	<!-- Velkur Aethercaster -->
+		</npc_skills>
+	
 	<npc_skills npc_ids="235769">
 		<npc_skill id="17335" lv="65" prob="60" cd="50000" next_chain_id="1" next_skill_time="6000" />
 		<npc_skill id="17722" lv="65" prob="100" cd="100000" chain_id="1" next_chain_id="2" next_skill_time="6000" />
@@ -63645,14 +62171,12 @@
 		<npc_skill id="17722" lv="65" prob="100" cd="100000" chain_id="1" next_chain_id="2" next_skill_time="6000" target="RANDOM" />
 		<npc_skill id="21175" lv="65" prob="100" cd="10000" chain_id="2" next_chain_id="3" next_skill_time="6000" />
 		<npc_skill id="17900" lv="65" prob="100" cd="10000" chain_id="3" next_skill_time="7000" />
-		<npc_skill id="21759" lv="1" prob="60" cd="40000" max_hp="25" />
-		<npc_skill id="21758" lv="65" prob="70" cd="30000" />
 		<npc_skill id="18114" lv="65" prob="70" cd="30000" />
 		<npc_skill id="20682" lv="65" prob="70" cd="30000" />
 		<npc_skill id="19053" lv="15" prob="70" cd="30000" prio="1">
 			</npc_skill>
 	</npc_skills>
-	<!-- Velkur Aetherpriest -->
+	
 	<npc_skills npc_ids="235770">
 		<npc_skill id="17335" lv="65" prob="60" cd="50000" next_chain_id="1" next_skill_time="6000" />
 		<npc_skill id="17722" lv="65" prob="100" cd="100000" chain_id="1" next_chain_id="2" next_skill_time="6000" />
@@ -63660,14 +62184,12 @@
 		<npc_skill id="17722" lv="65" prob="100" cd="100000" chain_id="1" next_chain_id="2" next_skill_time="6000" target="RANDOM" />
 		<npc_skill id="21175" lv="65" prob="100" cd="10000" chain_id="2" next_chain_id="3" next_skill_time="6000" />
 		<npc_skill id="17900" lv="65" prob="100" cd="10000" chain_id="3" next_skill_time="7000" />
-		<npc_skill id="21759" lv="1" prob="60" cd="40000" max_hp="25" />
-		<npc_skill id="21758" lv="65" prob="70" cd="30000" />
 		<npc_skill id="18114" lv="65" prob="70" cd="30000" />
 		<npc_skill id="20682" lv="65" prob="70" cd="30000" />
 		<npc_skill id="19053" lv="15" prob="70" cd="30000" prio="1">
 			</npc_skill>
 	</npc_skills>
-	<!-- Velkur Aetherknife-->
+	
 	<npc_skills npc_ids="235771">
 		<npc_skill id="17335" lv="65" prob="60" cd="50000" next_chain_id="1" next_skill_time="6000" />
 		<npc_skill id="17722" lv="65" prob="100" cd="100000" chain_id="1" next_chain_id="2" next_skill_time="6000" />
@@ -63675,14 +62197,12 @@
 		<npc_skill id="17722" lv="65" prob="100" cd="100000" chain_id="1" next_chain_id="2" next_skill_time="6000" target="RANDOM" />
 		<npc_skill id="21175" lv="65" prob="100" cd="10000" chain_id="2" next_chain_id="3" next_skill_time="6000" />
 		<npc_skill id="17900" lv="65" prob="100" cd="10000" chain_id="3" next_skill_time="7000" />
-		<npc_skill id="21759" lv="1" prob="60" cd="40000" max_hp="25" />
-		<npc_skill id="21758" lv="65" prob="70" cd="30000" />
 		<npc_skill id="18114" lv="65" prob="70" cd="30000" />
 		<npc_skill id="20682" lv="65" prob="70" cd="30000" />
 		<npc_skill id="19053" lv="15" prob="70" cd="30000" prio="1">
 			</npc_skill>
 	</npc_skills>
-	<!-- Hakara -->
+	
 	<npc_skills npc_ids="235772">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="17255" lv="65" prob="60" cd="40000" />
@@ -63691,7 +62211,7 @@
 		<npc_skill id="17332" lv="65" prob="80" cd="40000" />
 		<npc_skill id="17900" lv="65" prob="70" cd="40000" />
 	</npc_skills>
-	<!-- Zubala -->
+	
 	<npc_skills npc_ids="235773">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="17255" lv="65" prob="60" cd="40000" />
@@ -63701,17 +62221,16 @@
 		<npc_skill id="18176" lv="65" prob="70" cd="40000" />
 		<npc_skill id="20575" lv="65" prob="70" cd="40000" />
 	</npc_skills>
-	<!-- Visha -->
+	
 	<npc_skills npc_ids="235774">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="17255" lv="65" prob="60" cd="40000" />
 		<npc_skill id="21286" lv="65" prob="60" cd="40000" />
 		<npc_skill id="17005" lv="65" prob="60" cd="40000" />
 		<npc_skill id="17332" lv="65" prob="80" cd="40000" />
-		<npc_skill id="20085" lv="65" prob="70" cd="40000" />
 		<npc_skill id="21145" lv="65" prob="70" cd="40000" />
 	</npc_skills>
-	<!-- Bahapa -->
+	
 	<npc_skills npc_ids="235775">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="17255" lv="65" prob="60" cd="40000" />
@@ -63721,7 +62240,7 @@
 		<npc_skill id="16923" lv="65" prob="70" cd="40000" />
 		<npc_skill id="17250" lv="65" prob="70" cd="40000" />
 	</npc_skills>
-	<!-- Fugitive Mazikin Leader -->
+	
 	<npc_skills npc_ids="235759">
 		<npc_skill id="17174" lv="65" prob="70" cd="35000" target="RANDOM" />
 		<npc_skill id="21134" lv="65" prob="100" cd="25000" prio="1">
@@ -63731,51 +62250,45 @@
 		<npc_skill id="21288" lv="65" prob="70" cd="30000" />
 		<npc_skill id="16696" lv="65" prob="70" cd="40000" />
 	</npc_skills>
-	<!-- Runaway Hirakiki Leader -->
+	
 	<npc_skills npc_ids="235763">
 		<npc_skill id="17340" lv="65" prob="70" cd="25000" />
 		<npc_skill id="17365" lv="65" prob="70" cd="40000" />
 		<npc_skill id="17860" lv="65" prob="70" cd="25000" target="RANDOM" />
 		<npc_skill id="19075" lv="65" prob="100" cd="25000" />
-		<npc_skill id="21799" lv="65" prob="70" cd="35000" prio="1">
-			</npc_skill>
-	</npc_skills>
-	<!-- Escapee Asachin Leader -->
+		</npc_skills>
+	
 	<npc_skills npc_ids="235767">
-		<npc_skill id="20078" lv="65" prob="70" cd="25000" />
 		<npc_skill id="17124" lv="65" prob="70" cd="25000" />
 		<npc_skill id="21290" lv="65" prob="70" cd="25000" />
 		<npc_skill id="17332" lv="65" prob="70" cd="25000" />
 		<npc_skill id="18032" lv="65" prob="70" cd="100000" target="RANDOM" />
-		<npc_skill id="21801" lv="65" prob="70" cd="50000" prio="1">
-			</npc_skill>
-	</npc_skills>
-	<!-- Escapee Asachin -->
+		</npc_skills>
+	
 	<npc_skills npc_ids="235764">
-		<npc_skill id="20078" lv="65" prob="70" cd="20000" />
 		<npc_skill id="17124" lv="65" prob="70" cd="20000" />
 		<npc_skill id="17332" lv="65" prob="70" cd="20000" />
 	</npc_skills>
-	<!-- (Post/South) Defense Spelltongue -->
+	
 	<npc_skills npc_ids="235726 235740 235747">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="17722" lv="65" prob="70" cd="15000" />
 		<npc_skill id="16909" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- (North/South/Post) Defense Drakenclaw | Barricade Sentinel -->
+	
 	<npc_skills npc_ids="235721 235728 235735 235742 235749">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="17294" lv="65" prob="70" cd="15000" />
 		<npc_skill id="21284" lv="65" prob="70" cd="15000" />
 	</npc_skills>
-	<!-- Barricade Sentinel | (Post) Defense Swiftrunner -->
+	
 	<npc_skills npc_ids="235755 235727 235748">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="17320" lv="65" prob="70" cd="15000" />
 		<npc_skill id="17321" lv="65" prob="70" cd="15000" />
 		<npc_skill id="17322" lv="65" prob="60" cd="30000" />
 	</npc_skills>
-	<!-- North/South Defense Ironscale -->
+	
 	<npc_skills npc_ids="235730 235737">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="21297" lv="65" prob="70" cd="20000" />
@@ -63784,7 +62297,7 @@
 		<npc_skill id="20648" lv="65" prob="70" cd="20000" />
 		<npc_skill id="20704" lv="65" prob="70" cd="20000" />
 	</npc_skills>
-	<!-- (South/Post) Defense Bard -->
+	
 	<npc_skills npc_ids="235736 235743">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="20715" lv="65" prob="70" cd="20000" />
@@ -63792,7 +62305,7 @@
 		<npc_skill id="20959" lv="65" prob="70" cd="20000" />
 		<npc_skill id="20714" lv="65" prob="70" cd="20000" />
 	</npc_skills>
-	<!-- Post Defense Gunner -->
+	
 	<npc_skills npc_ids="235746">
 		<npc_skill id="20700" lv="65" prob="0" cd="10000" is_post_spawn="true" />
 		<npc_skill id="17314" lv="65" prob="60" cd="30000" />
@@ -63803,10 +62316,4 @@
 		<npc_skill id="17319" lv="65" prob="60" cd="30000" />
 		<npc_skill id="17393" lv="65" prob="60" cd="30000" />
 	</npc_skills>
-	<npc_skills npc_ids="279644 279546 279448">
-		<npc_skill id="20373" lv="65" prob="100" />
-	</npc_skills>
-	<npc_skills npc_ids="279252 279154 279350">
-		<npc_skill id="20374" lv="65" prob="100" />
-	</npc_skills>
-</npc_skill_templates>
+	</npc_skill_templates>

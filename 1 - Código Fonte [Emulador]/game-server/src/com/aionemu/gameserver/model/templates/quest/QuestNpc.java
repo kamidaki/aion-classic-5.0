@@ -59,7 +59,6 @@ public class QuestNpc {
 	public void addOnKillEvent(int questId) {
 		if (!onKillEvent.contains(questId)) {
 			onKillEvent.add(questId);
-			QuestEngine.getInstance().registerCanAct(questId, npcId);
 		}
 	}
 
@@ -70,7 +69,6 @@ public class QuestNpc {
 	public void addOnTalkEvent(int questId) {
 		if (!onTalkEvent.contains(questId)) {
 			onTalkEvent.add(questId);
-			QuestEngine.getInstance().registerCanAct(questId, npcId);
 		}
 	}
 
@@ -81,7 +79,6 @@ public class QuestNpc {
 	public void addOnAddAggroListEvent(int questId) {
 		if (!onAddAggroListEvent.contains(questId)) {
 			onAddAggroListEvent.add(questId);
-			QuestEngine.getInstance().registerCanAct(questId, npcId);
 		}
 	}
 
@@ -92,7 +89,6 @@ public class QuestNpc {
 	public void addOnAtDistanceEvent(int questId) {
 		if (!onAtDistanceEvent.contains(questId)) {
 			onAtDistanceEvent.add(questId);
-			QuestEngine.getInstance().registerCanAct(questId, npcId);
 		}
 	}
 

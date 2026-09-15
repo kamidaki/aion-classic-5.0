@@ -6,12 +6,13 @@ sync_all_50_spawns.py
 Sincronização Completa de Spawns entre o Cliente Oficial Aion Classic 5.0 e o Emulador Java 25.
 Audit e extração de:
   1. Coletas (Gather) a partir de HSP e SP em mission_mission0.xml e gather_src.xml.
-  2. NPCs e Monstros a partir de SP em mission_mission0.xml, source_sphere.csv e client_world_*.xml.
+  2. NPCs e Monstros a partir de SP em mission_mission0.xml e client_npcs.xml.
   3. Mapeamento de todos os mapas para Npcs, Instances e Gather.
-  4. Resolução de terreno Z com heightmaps 16-bit (geo/*.png).
+  4. Resolução de terreno Z com heightmaps 16-bit (geo/*.png) indexados corretamente [xi, yi].
   5. Conversão de rotação CryEngine para heading H (0..119).
   6. Garantia de unicidade de spawn por npc_id (compatível com spawns.xsd).
-  7. Publicação atômica em Código Fonte e Produto Final.
+  7. Isolamento de NPCs de Siege em spawns/Sieges/ para prevenir ClassCastException.
+  8. Publicação atômica em Código Fonte e Produto Final.
 """
 
 import os
@@ -19,7 +20,6 @@ import sys
 import glob
 import math
 import re
-import hashlib
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 
@@ -44,7 +44,7 @@ SRC_STATIC = os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "game-se
 PROD_STATIC = os.path.join(PROJECT_ROOT, "2 - Emulador [Produto Final]", "GameServer", "data", "static_data")
 GEO_DIR = os.path.join(PROJECT_ROOT, "2 - Emulador [Produto Final]", "GameServer", "data", "geo")
 
-# Mapas que não devem ser modificados (solicitação prévia)
+# Mapas que não devem ser modificados
 IGNORED_MAPS = {110030000, 120030000}
 
 
@@ -77,12 +77,13 @@ class Terrenos:
             self.cache = {}
             self.files = {}
             if os.path.isdir(geo_dir):
-                for p in glob.glob(os.path.join(geo_dir, "*.png")):
-                    base = os.path.basename(p)[:-4]
-                    if not base.endswith("_materials"):
-                        for mid in base.split(","):
-                            if mid.isdigit():
-                                self.files[int(mid)] = p
+                for fname in os.listdir(geo_dir):
+                    if fname.endswith(".png"):
+                        base = fname[:-4]
+                        if not base.endswith("_materials"):
+                            for mid in base.split(","):
+                                if mid.isdigit():
+                                    self.files[int(mid)] = os.path.join(geo_dir, fname)
             print(f"[*] Terrenos: carregados mapeamentos de {len(self.files)} mapas de terreno.")
         except Exception as e:
             print(f"[!] Terrenos desativado: {e}")
@@ -106,16 +107,16 @@ class Terrenos:
             return None
         xi, yi = int(x // 2), int(y // 2)
         h, w = arr.shape
-        if xi < 0 or xi >= w or yi < 0 or yi >= h:
+        if xi < 0 or xi >= h or yi < 0 or yi >= w:
             return None
-        val = int(arr[yi, xi])  # [row, col]
-        if val == 0xFFFF:
+        val = int(arr[xi, yi])  # [xi, yi] corresponde à indexação em Terrain.java
+        if val in (0xFFFF, 65535, -1):
             return None
         return val * 2048.0 / 65536.0
 
 
 def load_strings():
-    print("[1/8] Carregando tabelas de strings...")
+    print("[1/7] Carregando tabelas de strings...")
     str_map = {}
     pattern = re.compile(r'<string>(.*?)</string>', re.DOTALL)
     xml_files = glob.glob(os.path.join(STRINGS_DIR, "*.xml"))
@@ -143,7 +144,7 @@ def load_strings():
 
 
 def load_npcs_and_gathers(str_map):
-    print("[2/8] Indexando templates de NPCs e Coletas...")
+    print("[2/7] Indexando templates de NPCs e Coletas...")
     # 1. Gather
     gather_path = os.path.join(DATA_DIR, "Gather", "gather_src.xml")
     g_raw = open(gather_path, "rb").read()
@@ -193,15 +194,22 @@ def load_npcs_and_gathers(str_map):
                 npc_by_name[name] = info
             npc_by_id[nid] = info
 
-    # 3. Validar templates conhecidos no emulador
+    # 3. Validar templates conhecidos no emulador e segregar NPCs de Siege
     valid_npc_ids = set()
+    siege_npc_ids = set()
     emu_npc_tmpl = os.path.join(SRC_STATIC, "npcs", "npc_templates.xml")
     if os.path.exists(emu_npc_tmpl):
         for _, elem in ET.iterparse(emu_npc_tmpl, events=("start",)):
             if elem.tag == "npc_template":
                 tid = elem.get("npc_id")
                 if tid and tid.isdigit():
-                    valid_npc_ids.add(int(tid))
+                    nid = int(tid)
+                    ai = (elem.get("ai") or "").lower()
+                    abyss = (elem.get("abyss_type") or "").upper()
+                    if "siege" in ai or "shield" in ai or abyss in ('SHIELDNPC_OFF', 'SHIELDNPC_ON', 'DEFENDER', 'BOSS', 'DOOR', 'ARTIFACT'):
+                        siege_npc_ids.add(nid)
+                    else:
+                        valid_npc_ids.add(nid)
 
     valid_gather_ids = set()
     emu_gather_tmpl = os.path.join(SRC_STATIC, "gatherables", "gatherable_templates.xml")
@@ -213,12 +221,12 @@ def load_npcs_and_gathers(str_map):
                     valid_gather_ids.add(int(gid))
 
     print(f"      {len(gather_by_name)} recursos de coleta ({len(valid_gather_ids)} válidos no emulador).")
-    print(f"      {len(npc_by_name)} templates de NPC ({len(valid_npc_ids)} válidos no emulador).")
-    return gather_by_name, gather_by_id, npc_by_name, npc_by_id, valid_npc_ids, valid_gather_ids
+    print(f"      {len(npc_by_name)} templates de NPC ({len(valid_npc_ids)} válidos, {len(siege_npc_ids)} sieges isolados).")
+    return gather_by_name, gather_by_id, npc_by_name, npc_by_id, valid_npc_ids, siege_npc_ids, valid_gather_ids
 
 
 def load_world_mappings():
-    print("[3/8] Mapeando mundos e zonas...")
+    print("[3/7] Mapeando mundos e zonas...")
     wid_path = os.path.join(DATA_DIR, "world", "WorldId.xml")
     raw = open(wid_path, "rb").read()
     xml_str = aion_bxml.decodifica(raw)
@@ -246,7 +254,7 @@ def load_world_mappings():
                     120010000, 120020000, 120030000, 120040000, 120080000,
                     210010000, 210020000, 210030000, 210040000, 210050000, 210060000, 210070000, 210080000,
                     220010000, 220020000, 220030000, 220040000, 220050000, 220070000, 220080000, 220090000,
-                    400010000, 800010000, 800020000, 800030000, 800040000, 800060000):
+                    400010000, 600010000, 800010000, 800020000, 800030000, 800040000, 800060000):
             category = "Npcs"
         elif is_instance:
             category = "Instances"
@@ -265,8 +273,8 @@ def load_world_mappings():
     return folder_to_id, maps_info
 
 
-def load_existing_spawns(mid, category):
-    """Carrega spawns existentes preservando atributos de servidor."""
+def load_existing_spawns(mid, category, siege_npc_ids=None, terrenos=None):
+    """Carrega spawns existentes preservando atributos de servidor e ajustando elevação."""
     existing_file = None
     target_dir = os.path.join(SRC_STATIC, "spawns", category)
     if os.path.exists(target_dir):
@@ -287,6 +295,9 @@ def load_existing_spawns(mid, category):
                 if not nid_str or not nid_str.isdigit():
                     continue
                 nid = int(nid_str)
+                # Não carregar NPCs de Siege nos arquivos de spawn padrão
+                if siege_npc_ids and nid in siege_npc_ids:
+                    continue
                 sp_attrib = dict(sp.attrib)
                 
                 spots = []
@@ -296,15 +307,30 @@ def load_existing_spawns(mid, category):
                         x = float(st_attrib.get("x", "0"))
                         y = float(st_attrib.get("y", "0"))
                         z = float(st_attrib.get("z", "0"))
+
+                        # Remove walker_id inválido gerado por hash SHA1
+                        wid = st_attrib.get("walker_id")
+                        if wid and len(wid) == 40 and all(c in "0123456789ABCDEFabcdef" for c in wid):
+                            del st_attrib["walker_id"]
+
+                        # Ajusta elevação Z com o heightmap real do terreno se estiver flutuando
+                        if terrenos and not st_attrib.get("fly") and not st_attrib.get("aerial_spawn"):
+                            terr_z = terrenos.get_z(mid, x, y)
+                            if terr_z is not None and not math.isnan(terr_z):
+                                if -1.5 <= (z - terr_z) <= 35.0:
+                                    z = terr_z
+                                    st_attrib["z"] = str(round(z, 4))
+
                         coords_set.add((nid, round(x, 1), round(y, 1)))
                         spots.append(st_attrib)
                     except Exception:
                         continue
 
-                if nid not in npc_spawns:
-                    npc_spawns[nid] = {"attrib": sp_attrib, "spots": spots}
-                else:
-                    npc_spawns[nid]["spots"].extend(spots)
+                if spots:
+                    if nid not in npc_spawns:
+                        npc_spawns[nid] = {"attrib": sp_attrib, "spots": spots}
+                    else:
+                        npc_spawns[nid]["spots"].extend(spots)
         except Exception as e:
             print(f"      [AVISO] Erro ao ler spawn existente {existing_file}: {e}")
 
@@ -342,8 +368,8 @@ def parse_mission_objects(mid, folder_name, gather_by_name, npc_by_name, valid_n
             # Altura Z pelo heightmap de terreno se disponível
             terr_z = terrenos.get_z(mid, x, y)
             if terr_z is not None and not math.isnan(terr_z):
-                # Se o marcador CryEngine está até 4m acima do chão, ajusta ao piso
-                if -1.0 <= (z - terr_z) <= 5.0:
+                # Se o marcador CryEngine está até 35m acima do solo (elevação de editor), ajusta ao piso real
+                if -1.5 <= (z - terr_z) <= 35.0:
                     z = terr_z
 
             h = angle_to_heading(obj.get("Angles"))
@@ -373,37 +399,6 @@ def parse_mission_objects(mid, folder_name, gather_by_name, npc_by_name, valid_n
         print(f"      [AVISO] Erro ao analisar {m_path}: {e}")
 
     return gather_spots, npc_spots
-
-
-def load_source_spheres():
-    print("[4/8] Carregando source_sphere.csv...")
-    spheres_by_zone = defaultdict(list)
-    ss_path = os.path.join(DATA_DIR, "world", "source_sphere.csv")
-    if os.path.exists(ss_path):
-        with open(ss_path, "r", encoding="utf-8", errors="ignore") as f:
-            for line in f:
-                parts = line.strip().split(",")
-                if len(parts) >= 6:
-                    name = parts[0].strip().lower()
-                    stype = parts[1].strip().lower()
-                    zone = parts[2].strip().lower()
-                    try:
-                        x = float(parts[3])
-                        y = float(parts[4])
-                        z = float(parts[5])
-                        wp = parts[7].strip() if len(parts) > 7 else ""
-                        spheres_by_zone[zone].append({
-                            "name": name,
-                            "type": stype,
-                            "x": x,
-                            "y": y,
-                            "z": z,
-                            "wp": wp
-                        })
-                    except Exception:
-                        continue
-    print(f"      {sum(len(v) for v in spheres_by_zone.values())} esferas de spawn em {len(spheres_by_zone)} zonas.")
-    return spheres_by_zone
 
 
 def write_spawn_file(filepath, map_id, spawns_dict, id_to_name, default_respawn=295):
@@ -459,11 +454,10 @@ def main():
 
     terrenos = Terrenos(GEO_DIR)
     str_map = load_strings()
-    gather_by_name, gather_by_id, npc_by_name, npc_by_id, valid_npc_ids, valid_gather_ids = load_npcs_and_gathers(str_map)
+    gather_by_name, gather_by_id, npc_by_name, npc_by_id, valid_npc_ids, siege_npc_ids, valid_gather_ids = load_npcs_and_gathers(str_map)
     folder_to_id, maps_info = load_world_mappings()
-    spheres_by_zone = load_source_spheres()
 
-    print("[5/8] Processando sincronização por mapa...")
+    print("[4/7] Processando sincronização por mapa...")
 
     total_npcs_added = 0
     total_gathers_added = 0
@@ -485,24 +479,22 @@ def main():
         cname = minfo["cname"]
         category = minfo["category"]
 
-        # -------------------------------------------------------------
-        # A. Sincronização de Gather
-        # -------------------------------------------------------------
-        existing_gathers, g_coords = load_existing_spawns(mid, "Gather")
-        initial_g_spots = sum(len(d["spots"]) for d in existing_gathers.values())
-
         # Procura pasta de level correspondente
         level_folders = [cname]
         for f, wid in folder_to_id.items():
             if wid == mid and f not in level_folders:
                 level_folders.append(f)
 
+        # -------------------------------------------------------------
+        # A. Sincronização de Gather
+        # -------------------------------------------------------------
+        existing_gathers, g_coords = load_existing_spawns(mid, "Gather", terrenos=terrenos)
+        initial_g_spots = sum(len(d["spots"]) for d in existing_gathers.values())
         g_added = 0
-        n_added = 0
 
         # Spawns de mission_mission0.xml
         for lf in level_folders:
-            g_spots, n_spots = parse_mission_objects(mid, lf, gather_by_name, npc_by_name, valid_npc_ids, valid_gather_ids, terrenos)
+            g_spots, _ = parse_mission_objects(mid, lf, gather_by_name, npc_by_name, valid_npc_ids, valid_gather_ids, terrenos)
 
             # Adiciona Gathers
             for gid, spot, _ in g_spots:
@@ -527,10 +519,11 @@ def main():
         # -------------------------------------------------------------
         # B. Sincronização de NPCs e Monstros (Npcs ou Instances)
         # -------------------------------------------------------------
-        existing_npcs, n_coords = load_existing_spawns(mid, category)
+        existing_npcs, n_coords = load_existing_spawns(mid, category, siege_npc_ids=siege_npc_ids, terrenos=terrenos)
         initial_n_spots = sum(len(d["spots"]) for d in existing_npcs.values())
+        n_added = 0
 
-        # 1. De mission_mission0.xml
+        # Spawns de mission_mission0.xml
         for lf in level_folders:
             _, n_spots = parse_mission_objects(mid, lf, gather_by_name, npc_by_name, valid_npc_ids, valid_gather_ids, terrenos)
             for nid, spot, _ in n_spots:
@@ -541,35 +534,6 @@ def main():
                         existing_npcs[nid] = {"attrib": {"npc_id": str(nid), "respawn_time": "295"}, "spots": []}
                     existing_npcs[nid]["spots"].append(spot)
                     n_added += 1
-
-        # 2. De source_sphere.csv
-        for lf in level_folders:
-            spheres = spheres_by_zone.get(lf, [])
-            for sph in spheres:
-                s_name = sph["name"]
-                if s_name in npc_by_name:
-                    nid = npc_by_name[s_name]["id"]
-                    if nid in valid_npc_ids:
-                        sx, sy, sz = sph["x"], sph["y"], sph["z"]
-                        terr_z = terrenos.get_z(mid, sx, sy)
-                        if terr_z is not None and not math.isnan(terr_z) and -1.0 <= (sz - terr_z) <= 5.0:
-                            sz = terr_z
-                        coord_key = (nid, round(sx, 1), round(sy, 1))
-                        if coord_key not in n_coords:
-                            n_coords.add(coord_key)
-                            spot = {
-                                "x": round(sx, 4),
-                                "y": round(sy, 4),
-                                "z": round(sz, 4),
-                                "h": 0
-                            }
-                            if sph.get("wp"):
-                                wp_hash = hashlib.sha1(sph["wp"].encode("utf-8")).hexdigest().upper()
-                                spot["walker_id"] = wp_hash
-                            if nid not in existing_npcs:
-                                existing_npcs[nid] = {"attrib": {"npc_id": str(nid), "respawn_time": "295"}, "spots": []}
-                            existing_npcs[nid]["spots"].append(spot)
-                            n_added += 1
 
         # Grava NPC/Instance se houver spots
         total_n_spots = sum(len(d["spots"]) for d in existing_npcs.values())

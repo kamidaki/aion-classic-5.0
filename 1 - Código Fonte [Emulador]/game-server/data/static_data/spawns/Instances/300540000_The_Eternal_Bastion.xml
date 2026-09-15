@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300540000">
-		<!-- Drakan Adjutant -->
+		<!-- FX Teste de monstro tipo de ataque -->
 		<spawn npc_id="219345" respawn_time="295">
 			<spot x="236.0813" y="253.4541" z="211.0" h="0"/>
 		</spawn>
-		<!-- Drakan Tiaris -->
+		<!-- Rei do Granker de nariz vermelho -->
 		<spawn npc_id="219346" respawn_time="295">
 			<spot x="258.0813" y="235.4541" z="211.0" h="0"/>
 			<spot x="270.0813" y="270.4541" z="211.0" h="0"/>
 			<spot x="259.0813" y="253.4541" z="209.0" h="0"/>
 			<spot x="245.0813" y="270.4541" z="211.0" h="0"/>
 		</spawn>
-		<!-- Drakan Legate -->
+		<!-- Segundo de Granker King -->
 		<spawn npc_id="219347" respawn_time="295">
 			<spot x="270.0813" y="235.4541" z="211.0" h="0"/>
 			<spot x="245.0813" y="235.4541" z="211.0" h="0"/>
 			<spot x="258.0813" y="270.4541" z="211.0" h="0"/>
 		</spawn>
-		<!-- Tiamat’s Fast Throw -->
+		<!-- Imperatriz Relic -->
 		<spawn npc_id="701415" respawn_time="295">
 			<spot x="228.95" y="253.79" z="213.2864" h="0" random_walk="8"/>
 			<spot x="228.95" y="253.79" z="213.2864" h="0" random_walk="8"/>
@@ -32,7 +32,7 @@
 		<spawn npc_id="801268" respawn_time="295">
 			<spot x="750.168" y="330.497" z="233.816" h="40" static_id="331"/>
 		</spawn>
-		<!-- Hall Supervisor -->
+		<!-- Altar sagrado da imperatriz -->
 		<spawn npc_id="801269" respawn_time="295">
 			<spot x="746.884" y="329.019" z="233.816" h="40" static_id="330"/>
 		</spawn>

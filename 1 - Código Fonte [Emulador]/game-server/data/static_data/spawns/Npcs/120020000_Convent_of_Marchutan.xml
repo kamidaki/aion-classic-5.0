@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="120020000">
-		<!-- Pandaemonium Teleport Statue -->
+		<!-- Estátua do Teleport de Pandaemonium -->
 		<spawn npc_id="730269" respawn_time="295">
 			<spot x="1559.2072" y="1429.3711" z="265.6849" h="0" static_id="12"/>
 		</spawn>
@@ -106,11 +106,11 @@
 		<spawn npc_id="799916" respawn_time="295">
 			<spot x="1555.6981" y="1436.5098" z="264.73892" h="77"/>
 		</spawn>
-		<!-- Scared Child -->
+		<!-- Relíquia abençoada -->
 		<spawn npc_id="801224" respawn_time="295">
 			<spot x="1551.7469" y="1405.5956" z="266.0138" h="10"/>
 		</spawn>
-		<!-- Collapsed Villager -->
+		<!-- &amp;lt;Comerciante Especial de Design de Consumíveis&amp;gt; -->
 		<spawn npc_id="801225" respawn_time="295">
 			<spot x="1541.0310" y="1425.7001" z="266.0138" h="10"/>
 		</spawn>

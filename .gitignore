@@ -94,3 +94,8 @@ cache/
 
 # 9. Backup de Seguranca de Strings Originais
 **/Strings_ORIGINAL_BACKUP/
+
+# 10. Proteção de Credenciais e Configurações de Banco de Dados
+**/database.properties
+database.properties
+

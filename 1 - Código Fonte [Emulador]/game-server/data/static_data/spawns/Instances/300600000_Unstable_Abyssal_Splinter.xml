@@ -18,7 +18,7 @@
 		</spawn>
 		<!-- Mutant Gloomy Spectre -->
 		<spawn npc_id="219547" respawn_time="295">
-			<spot x="534.35" y="666.26" z="426.174" h="0" static_id="78" walker_id="8AE2C4F2BDE907BF79BB9331C19165E1F45A2B2F"/>
+			<spot x="534.35" y="666.26" z="426.174" h="0" static_id="78"/>
 			<spot x="565.0715" y="621.3477" z="419.6656" h="89"/>
 			<spot x="581.05" y="640.2924" z="419.8894" h="60"/>
 			<spot x="522.2446" y="666.4486" z="427.9431" h="113"/>
@@ -29,14 +29,14 @@
 		</spawn>
 		<!-- Mutant Anair Spiritmage -->
 		<spawn npc_id="219549" respawn_time="295">
-			<spot x="790.75" y="656.64" z="452.78162" h="0" walker_id="5B4EE494D9D6D1129E5F1F10C73F9A407620A987"/>
-			<spot x="737.50" y="645.28" z="439.23276" h="0" walker_id="7F3CB60F7B5F5659DB6D0AE7F85D32C522B8A018"/>
+			<spot x="790.75" y="656.64" z="452.78162" h="0"/>
+			<spot x="737.50" y="645.28" z="439.23276" h="0"/>
 		</spawn>
 		<!-- Mutant Frost Agrint -->
 		<spawn npc_id="219550" respawn_time="295">
-			<spot x="808.18" y="647.51" z="454.8155" h="96" walker_id="D27F46DA44D94DF1F306CC5303FC3DA5BC9CFF68"/>
-			<spot x="796.89" y="617.22" z="455.28043" h="106" walker_id="934333BE62E29B8CE5903F68064329CB7822C348"/>
-			<spot x="756.64" y="648.51" z="445.75342" h="6" walker_id="0FA349227F68EA9E502AD2FCC8EDB0C884C4D597"/>
+			<spot x="808.18" y="647.51" z="454.8155" h="96"/>
+			<spot x="796.89" y="617.22" z="455.28043" h="106"/>
+			<spot x="756.64" y="648.51" z="445.75342" h="6"/>
 		</spawn>
 		<!-- Mutant Frost Lobnite -->
 		<spawn npc_id="219553" respawn_time="295">
@@ -48,17 +48,17 @@
 		</spawn>
 		<!-- Mutant Ice Ribbit -->
 		<spawn npc_id="219560" respawn_time="295">
-			<spot x="807.04" y="630.01" z="454.5897" h="100" walker_id="51EE14337303BC33A670F05D1E9E836FBF87A764"/>
-			<spot x="762.52" y="605.41" z="461.67227" h="40" walker_id="FDA8CA3EFAC4AF61BFB3E6AB3C42F904D3393DD4"/>
+			<spot x="807.04" y="630.01" z="454.5897" h="100"/>
+			<spot x="762.52" y="605.41" z="461.67227" h="40"/>
 		</spawn>
 		<!-- Mutant Frost Lobnite -->
 		<spawn npc_id="219561" respawn_time="295">
-			<spot x="780.35" y="651.83" z="449.6864" h="0" walker_id="0484DFAF4890199218D1972975495DDF4DAB6B3B"/>
+			<spot x="780.35" y="651.83" z="449.6864" h="0"/>
 		</spawn>
 		<!-- Mutant Ice Lake Crasaur -->
 		<spawn npc_id="219562" respawn_time="295">
-			<spot x="707.61" y="619.79" z="430.36194" h="14" walker_id="5D3362983430627E52A9B1F5F376492E901D208F"/>
-			<spot x="756.76" y="600.93" z="462.77676" h="0" walker_id="36F2F3011475C7A48FC834581BAA573EC6A15152"/>
+			<spot x="707.61" y="619.79" z="430.36194" h="14"/>
+			<spot x="756.76" y="600.93" z="462.77676" h="0"/>
 		</spawn>
 		<!-- Mutant Obsidian Kalgolem -->
 		<spawn npc_id="219564" respawn_time="295">
@@ -97,12 +97,11 @@
 			<spot x="648.9009" y="160.9725" z="447.9388" h="13"/>
 			<spot x="657.9028" y="144.1364" z="448.7755" h="0"/>
 		</spawn>
-		<!-- Doomed Samael -->
+		<!-- Arqueiro de alto escalão da tropa Elyos Strike -->
 		<spawn npc_id="219835" respawn_time="295">
 			<spot x="900.0026" y="1071.8192" z="153.6676" h="90"/>
-			<spot x="900.38" y="1071.56" z="153.72" h="0"/>
 		</spawn>
-		<!-- 38th Drakan Special Prefect -->
+		<!-- Ranx Vindicator -->
 		<spawn npc_id="281920" respawn_time="295">
 			<spot x="641.5420" y="151.0970" z="447.3923" h="114"/>
 			<spot x="641.9771" y="153.3460" z="447.5465" h="95"/>
@@ -111,18 +110,18 @@
 			<spot x="646.7925" y="146.6156" z="447.6143" h="45"/>
 			<spot x="648.1770" y="144.2580" z="447.8127" h="0"/>
 		</spawn>
-		<!-- 38th Drakan Special Magus -->
+		<!-- Ranx HighMagus -->
 		<spawn npc_id="281921" respawn_time="295">
 			<spot x="646.0072" y="154.4628" z="447.5803" h="0"/>
 			<spot x="648.1384" y="147.954" z="447.6975" h="0"/>
 			<spot x="646.6024" y="143.1012" z="447.7108" h="0"/>
 			<spot x="647.2216" y="151.446" z="447.4834" h="75"/>
 		</spawn>
-		<!-- Death Reception -->
+		<!-- Recepção da morte -->
 		<spawn npc_id="282013" respawn_time="295">
 			<spot x="447.2670" y="695.3739" z="433.2287" h="113"/>
 		</spawn>
-		<!-- Electric Chain -->
+		<!-- Reforços da tropa de reconhecimento do 40º Exército -->
 		<spawn npc_id="283034" respawn_time="295">
 			<spot x="891" y="1062" z="153.6496" h="0"/>
 			<spot x="891" y="1062" z="153.6496" h="0"/>
@@ -226,10 +225,8 @@
 			<spot x="910" y="1079" z="153.6496" h="0"/>
 			<spot x="910" y="1081" z="153.6496" h="0"/>
 			<spot x="910" y="1081" z="153.6496" h="0"/>
-			<spot x="900.56" y="1072.95" z="153.65" h="0"/>
-			<spot x="901.0" y="1064.45" z="153.65" h="0"/>
 		</spawn>
-		<!-- Gigantic Lightning Rod -->
+		<!-- Outrorider da tropa de reconhecimento do 40º Exército -->
 		<spawn npc_id="283036" respawn_time="295">
 			<spot x="896.0" y="1077.0" z="154.1342" h="0"/>
 			<spot x="905.0" y="1067.0" z="154.1342" h="0"/>
@@ -241,7 +238,7 @@
 			<spot x="334.001" y="707.736" z="197.779" h="32"/>
 			<spot x="362.192" y="741.592" z="197.301" h="67"/>
 		</spawn>
-		<!-- Sand of the 5th Awakening Order -->
+		<!-- Pilgrims descanso -->
 		<spawn npc_id="701574" respawn_time="295">
 			<spot x="270.4710" y="743.9896" z="319.3749" h="106"/>
 			<spot x="280.9925" y="767.5568" z="287.4333" h="66"/>
@@ -256,19 +253,19 @@
 			<spot x="368.2921" y="771.3032" z="347.4754" h="0"/>
 			<spot x="389.8283" y="763.1230" z="274.2615" h="40"/>
 		</spawn>
-		<!-- Luciferin of Sentiment -->
+		<!-- Agairon Village -->
 		<spawn npc_id="701589" respawn_time="295">
 			<spot x="326.1492" y="766.9335" z="203.1832" h="0" static_id="60"/>
 		</spawn>
-		<!-- Abyssal Splinter Exit -->
+		<!-- Saída de lasca abissal -->
 		<spawn npc_id="730317" respawn_time="295">
 			<spot x="719.756" y="161.833" z="449.343" h="40"/>
 		</spawn>
-		<!-- Klidik -->
+		<!-- Estátua de Teleport Poeta -->
 		<spawn npc_id="780074" respawn_time="295">
 			<spot x="899.8433" y="1052.0427" z="155.3004" h="30"/>
 		</spawn>
-		<!-- Klidik -->
+		<!-- Estátua de Teleport Poeta -->
 		<spawn npc_id="780075" respawn_time="295">
 			<spot x="899.7091" y="1051.9259" z="157.7497" h="30"/>
 		</spawn>
@@ -289,20 +286,16 @@
 			<spot x="923.3313" y="1071.7773" z="156.1116" h="0"/>
 			<spot x="923.3313" y="1071.7773" z="156.5353" h="0"/>
 			<spot x="923.3313" y="1071.7773" z="156.5353" h="0"/>
-			<spot x="888.82" y="1083.33" z="155.49" h="0"/>
-			<spot x="911.78" y="1060.63" z="155.82" h="0"/>
 		</spawn>
 		<!-- NPC_801146 -->
 		<spawn npc_id="801146" respawn_time="295">
 			<spot x="900.0026" y="1072.8192" z="153.6676" h="0"/>
 			<spot x="900.0026" y="1072.8192" z="153.6676" h="0"/>
 			<spot x="900.0026" y="1072.8192" z="153.6676" h="0"/>
-			<spot x="900.38" y="1072.56" z="153.72" h="0"/>
 		</spawn>
-		<!-- Omne Solum -->
+		<!-- Kerasys -->
 		<spawn npc_id="801228" respawn_time="295">
 			<spot x="903.2024" y="860.2957" z="175.4533" h="0"/>
-			<spot x="903.13" y="860.36" z="175.45" h="0"/>
 		</spawn>
 		<!-- NPC_801348 -->
 		<spawn npc_id="801348" respawn_time="295">
@@ -310,12 +303,10 @@
 			<spot x="899.9206" y="1070.7874" z="153.8336" h="0"/>
 			<spot x="899.9206" y="1070.7874" z="153.8336" h="0"/>
 			<spot x="899.9206" y="1070.7874" z="153.8336" h="0"/>
-			<spot x="900.3" y="1070.53" z="153.83" h="0"/>
 		</spawn>
 		<!-- NPC_801349 -->
 		<spawn npc_id="801349" respawn_time="295">
 			<spot x="905.1843" y="1072.4122" z="153.6597" h="0"/>
-			<spot x="905.57" y="1072.15" z="153.66" h="0"/>
 		</spawn>
 		<!-- NPC_803076 -->
 		<spawn npc_id="803076" respawn_time="295">

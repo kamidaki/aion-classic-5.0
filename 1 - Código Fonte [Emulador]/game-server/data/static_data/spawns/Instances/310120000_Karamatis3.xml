@@ -9,7 +9,7 @@
 		<spawn npc_id="205119" respawn_time="295">
 			<spot x="85.0" y="191" z="231.65344" h="95"/>
 		</spawn>
-		<!-- Draconute Raider -->
+		<!-- Raider -->
 		<spawn npc_id="215396" respawn_time="295">
 			<spot x="223.521" y="288.263" z="207.507" h="0"/>
 			<spot x="224.101" y="284.945" z="206.846" h="0"/>
@@ -58,7 +58,7 @@
 			<spot x="307.061" y="263.551" z="205.228" h="0"/>
 			<spot x="306.8192" y="234.7499" z="214.1152" h="60"/>
 		</spawn>
-		<!-- Draconute Legionary -->
+		<!-- Grunhido -->
 		<spawn npc_id="215397" respawn_time="295">
 			<spot x="225.387" y="287.144" z="207.174" h="0"/>
 			<spot x="232.541" y="265.005" z="206.423" h="0"/>
@@ -95,7 +95,7 @@
 			<spot x="303.884" y="234.711" z="206.185" h="0"/>
 			<spot x="304.857" y="266.186" z="205.376" h="0"/>
 		</spawn>
-		<!-- Draconute Archer -->
+		<!-- Arqueiro -->
 		<spawn npc_id="215398" respawn_time="295">
 			<spot x="222.007" y="281.617" z="206.471" h="0"/>
 			<spot x="225.926" y="283.825" z="206.728" h="0"/>
@@ -133,7 +133,7 @@
 			<spot x="304.023" y="239.836" z="206.371" h="0"/>
 			<spot x="307.035" y="266.267" z="205.342" h="0"/>
 		</spawn>
-		<!-- Draconute Bloodbinder -->
+		<!-- Curador -->
 		<spawn npc_id="215399" respawn_time="295">
 			<spot x="222.266" y="285.996" z="206.971" h="0"/>
 			<spot x="234.718" y="271.7" z="206.664" h="0"/>
@@ -162,7 +162,7 @@
 			<spot x="304.884" y="263.471" z="205.209" h="0"/>
 			<spot x="265.2124" y="241.8504" z="214.3072" h="90"/>
 		</spawn>
-		<!-- Artefact of Memory -->
+		<!-- Artefato de memória -->
 		<spawn npc_id="700552" respawn_time="295">
 			<spot x="305.7166" y="293.8427" z="206.45227" h="0" static_id="82"/>
 		</spawn>

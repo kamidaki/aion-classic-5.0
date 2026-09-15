@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="320120000">
-		<!-- Poison Slime -->
+		<!-- Lodo de veneno -->
 		<spawn npc_id="214342" respawn_time="295">
 			<spot x="546.967" y="445.613" z="202.983" h="0"/>
 			<spot x="548.26" y="453.598" z="202.983" h="45"/>
@@ -32,12 +32,12 @@
 			<spot x="587.1398" y="524.4426" z="207.3768" h="90"/>
 			<spot x="587.1803" y="517.7264" z="207.3768" h="90"/>
 		</spawn>
-		<!-- Skeleton Guard -->
+		<!-- Guarda do esqueleto -->
 		<spawn npc_id="214345" respawn_time="295">
 			<spot x="587.258" y="479.724" z="202.974" h="90"/>
 			<spot x="596.323" y="479.564" z="202.974" h="90"/>
 		</spawn>
-		<!-- Unfest Guard Captain -->
+		<!-- Capitão da Guarda Impelida -->
 		<spawn npc_id="214347" respawn_time="295">
 			<spot x="548.485" y="450.844" z="202.983" h="109"/>
 		</spawn>
@@ -54,12 +54,12 @@
 			<spot x="506.6576" y="590.5807" z="222.4864" h="90"/>
 			<spot x="516.0013" y="590.1918" z="222.4864" h="90"/>
 		</spawn>
-		<!-- Dyspeptic Karnif -->
+		<!-- Karnif dispéptico -->
 		<spawn npc_id="214349" respawn_time="295">
 			<spot x="511.3" y="593.961" z="222.486" h="87"/>
 			<spot x="511.507" y="596.9389" z="224.1076" h="90"/>
 		</spawn>
-		<!-- Insane Tayga -->
+		<!-- Tayga insana -->
 		<spawn npc_id="214350" respawn_time="295">
 			<spot x="507.483" y="517.281" z="222.501" h="90"/>
 			<spot x="508.073" y="510.517" z="222.501" h="25"/>
@@ -71,12 +71,12 @@
 			<spot x="515.6796" y="518.3419" z="222.4864" h="30"/>
 			<spot x="506.8565" y="518.9145" z="222.4864" h="30"/>
 		</spawn>
-		<!-- Dyspepsic Tayga -->
+		<!-- Tayga dispepsico -->
 		<spawn npc_id="214351" respawn_time="295">
 			<spot x="511.538" y="516.648" z="222.501" h="118"/>
 			<spot x="511.1999" y="514.2819" z="224.0622" h="30"/>
 		</spawn>
-		<!-- Tamed Snowy Mosbear -->
+		<!-- Declamado Snowy Mosbear -->
 		<spawn npc_id="214352" respawn_time="295">
 			<spot x="437.075" y="557.9" z="225.59" h="114"/>
 			<spot x="437.099" y="551.367" z="225.59" h="2"/>
@@ -93,14 +93,14 @@
 		<spawn npc_id="214353" respawn_time="295">
 			<spot x="441.837" y="551.056" z="225.59" h="78"/>
 		</spawn>
-		<!-- Troll Prison Guard -->
+		<!-- Guarda da prisão troll -->
 		<spawn npc_id="214354" respawn_time="295">
 			<spot x="496.508" y="549.397" z="222.492" h="1"/>
 			<spot x="496.682" y="558.625" z="222.492" h="1"/>
 			<spot x="484.5284" y="558.8823" z="226.6407" h="0"/>
 			<spot x="484.7004" y="549.4215" z="226.6407" h="0"/>
 		</spawn>
-		<!-- Gladiator Wraith -->
+		<!-- Gladiador Wraith -->
 		<spawn npc_id="214355" respawn_time="295">
 			<spot x="365.332" y="479.276" z="242.005" h="106"/>
 			<spot x="369.435" y="475.821" z="242.005" h="104"/>
@@ -110,17 +110,17 @@
 			<spot x="363.4009" y="479.704" z="243.6406" h="0"/>
 			<spot x="371.9709" y="479.2769" z="243.6406" h="0"/>
 		</spawn>
-		<!-- Sorcerer Wraith -->
+		<!-- Feiticeiro Wraith -->
 		<spawn npc_id="214356" respawn_time="295">
 			<spot x="364.468" y="470.599" z="242.005" h="102"/>
 			<spot x="363.1702" y="469.9202" z="243.6406" h="0"/>
 		</spawn>
-		<!-- Cleric Wraith -->
+		<!-- Wraith Clérigo -->
 		<spawn npc_id="214357" respawn_time="295">
 			<spot x="365.376" y="475.168" z="242.005" h="84"/>
 			<spot x="363.7201" y="475.0981" z="245.0529" h="0"/>
 		</spawn>
-		<!-- Gladiator Spirit -->
+		<!-- Espírito Gladiador -->
 		<spawn npc_id="214358" respawn_time="295">
 			<spot x="441.887" y="470.646" z="242.019" h="72"/>
 			<spot x="448.865" y="475.376" z="242.019" h="21"/>
@@ -131,17 +131,17 @@
 			<spot x="451.6901" y="479.7306" z="242.9322" h="60"/>
 			<spot x="448.2981" y="474.9286" z="242.9322" h="60"/>
 		</spawn>
-		<!-- Captive Sorcerer Spirit -->
+		<!-- Espírito de feiticeiro em cativeiro -->
 		<spawn npc_id="214359" respawn_time="295">
 			<spot x="441.016" y="477.119" z="242.019" h="75"/>
 			<spot x="441.8589" y="477.1159" z="242.9322" h="60"/>
 		</spawn>
-		<!-- Ranger Spirit -->
+		<!-- Espírito Arqueiro -->
 		<spawn npc_id="214360" respawn_time="295">
 			<spot x="447.61" y="478.914" z="242.019" h="31"/>
 			<spot x="450.3705" y="474.8044" z="243.9434" h="60"/>
 		</spawn>
-		<!-- Slaver Guard Spirit -->
+		<!-- Espírito de guarda escravidão -->
 		<spawn npc_id="214361" respawn_time="295">
 			<spot x="402.833" y="399.248" z="245.108" h="89"/>
 			<spot x="403.921" y="408.057" z="245.108" h="12"/>
@@ -150,23 +150,23 @@
 			<spot x="402.5916" y="399.3747" z="245.1077" h="30"/>
 			<spot x="407.1815" y="402.7429" z="245.1077" h="30"/>
 		</spawn>
-		<!-- Slavehunter Spirit -->
+		<!-- Espírito Slavehunter -->
 		<spawn npc_id="214362" respawn_time="295">
 			<spot x="409.768" y="408.508" z="245.108" h="38"/>
 			<spot x="412.167" y="399.303" z="245.108" h="46"/>
 			<spot x="410.4018" y="407.9124" z="245.1077" h="30"/>
 		</spawn>
-		<!-- Prison Guard -->
+		<!-- Guarda prisional -->
 		<spawn npc_id="214530" respawn_time="295">
 			<spot x="401.782" y="458.696" z="242.01" h="30"/>
 			<spot x="401.9907" y="446.9922" z="243.1217" h="30"/>
 		</spawn>
-		<!-- Prison Guard -->
+		<!-- Guarda prisional -->
 		<spawn npc_id="214531" respawn_time="295">
 			<spot x="412.544" y="456.385" z="242.01" h="30"/>
 			<spot x="413.4871" y="446.9598" z="243.1217" h="30"/>
 		</spawn>
-		<!-- Underground Arena Exit -->
+		<!-- Saída de arena subterrânea -->
 		<spawn npc_id="700369" respawn_time="295">
 			<spot x="407.5443" y="396.794" z="245.108" h="29" static_id="3"/>
 		</spawn>

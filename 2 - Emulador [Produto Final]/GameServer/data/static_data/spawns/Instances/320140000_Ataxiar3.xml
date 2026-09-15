@@ -10,7 +10,7 @@
 		<spawn npc_id="205118" respawn_time="295">
 			<spot x="200" y="251" z="203" h="0"/>
 		</spawn>
-		<!-- Guardian Elite Fighter -->
+		<!-- Lutador de elite guardião -->
 		<spawn npc_id="798342" respawn_time="295">
 			<spot x="224.429" y="229.389" z="207.151" h="0"/>
 			<spot x="224.973" y="225.385" z="207.267" h="0"/>
@@ -58,7 +58,7 @@
 			<spot x="230.0018" y="253.4046" z="212.4302" h="0"/>
 			<spot x="230.0303" y="248.9659" z="212.4302" h="0"/>
 		</spawn>
-		<!-- Guardian Elite Raider -->
+		<!-- Raider de Elite Guardian -->
 		<spawn npc_id="798343" respawn_time="295">
 			<spot x="226.157" y="231.25" z="206.858" h="0"/>
 			<spot x="227.861" y="232.91" z="206.565" h="0"/>
@@ -141,7 +141,7 @@
 			<spot x="304.117" y="250.79" z="205.939" h="0"/>
 			<spot x="305.282" y="227.946" z="208.073" h="0"/>
 		</spawn>
-		<!-- Guardian Elite Healer -->
+		<!-- Curador de elite do Guardian -->
 		<spawn npc_id="798345" respawn_time="295">
 			<spot x="226.876" y="227.084" z="206.892" h="0"/>
 			<spot x="229.466" y="276.08" z="205.86" h="0"/>
@@ -169,7 +169,7 @@
 			<spot x="227.6965" y="248.9558" z="212.4302" h="0"/>
 			<spot x="230.0018" y="251.0045" z="212.4302" h="0"/>
 		</spawn>
-		<!-- Archon Legionary -->
+		<!-- Arconte Legionário -->
 		<spawn npc_id="798347" respawn_time="295">
 			<spot x="336.9947" y="306.5163" z="203.5" h="0" random_walk="8"/>
 			<spot x="345.9947" y="271.5163" z="209.5" h="0" random_walk="8"/>
@@ -179,49 +179,49 @@
 			<spot x="484.5" y="448.25" z="225" h="0" random_walk="8"/>
 			<spot x="486.5" y="444.25" z="225" h="0" random_walk="8"/>
 		</spawn>
-		<!-- Archon Legionary -->
+		<!-- Arconte Legionário -->
 		<spawn npc_id="798348" respawn_time="295">
 			<spot x="334.9947" y="310.5163" z="203.5" h="0" random_walk="8"/>
 			<spot x="411.9947" y="394.0163" z="228" h="0" random_walk="8"/>
 			<spot x="428.9947" y="360.7663" z="227.25" h="0" random_walk="8"/>
 		</spawn>
-		<!-- Archon Legionary -->
+		<!-- Arconte Legionário -->
 		<spawn npc_id="798349" respawn_time="295">
 			<spot x="343.9947" y="275.5163" z="209.5" h="0" random_walk="8"/>
 			<spot x="478" y="431.25" z="225" h="0" random_walk="8"/>
 			<spot x="480" y="427.25" z="225" h="0" random_walk="8"/>
 			<spot x="486.5" y="452.25" z="225" h="0" random_walk="8"/>
 		</spawn>
-		<!-- Archon Legionary -->
+		<!-- Arconte Legionário -->
 		<spawn npc_id="798350" respawn_time="295">
 			<spot x="336.9947" y="314.5163" z="203.5" h="0" random_walk="8"/>
 			<spot x="345.9947" y="279.5163" z="209.5" h="0" random_walk="8"/>
 			<spot x="411.9947" y="386.0163" z="228" h="0" random_walk="8"/>
 			<spot x="426.9947" y="356.7663" z="227.25" h="0" random_walk="8"/>
 		</spawn>
-		<!-- Archon Legionary -->
+		<!-- Arconte Legionário -->
 		<spawn npc_id="798351" respawn_time="295">
 			<spot x="341.2447" y="305.0163" z="203.75" h="0"/>
 			<spot x="392.9947" y="339.0163" z="234.5" h="0" random_walk="8"/>
 			<spot x="424.4947" y="372.5163" z="224" h="0"/>
 		</spawn>
-		<!-- Archon Legionary -->
+		<!-- Arconte Legionário -->
 		<spawn npc_id="798352" respawn_time="295">
 			<spot x="366.7447" y="353.2663" z="216.25" h="0"/>
 			<spot x="380.4947" y="338.0163" z="217.5" h="0"/>
 		</spawn>
-		<!-- Archon Legionary -->
+		<!-- Arconte Legionário -->
 		<spawn npc_id="798353" respawn_time="295">
 			<spot x="348.4947" y="341.2663" z="209.75" h="0"/>
 			<spot x="351.4947" y="301.2663" z="201.75" h="0"/>
 			<spot x="419.7447" y="361.0163" z="231.75" h="0"/>
 		</spawn>
-		<!-- Archon Legionary -->
+		<!-- Arconte Legionário -->
 		<spawn npc_id="798354" respawn_time="295">
 			<spot x="380.7447" y="314.2663" z="221" h="0"/>
 			<spot x="387.7447" y="355.2663" z="229.75" h="0"/>
 		</spawn>
-		<!-- Legionary -->
+		<!-- Legionário -->
 		<spawn npc_id="798355" respawn_time="295">
 			<spot x="339.2447" y="308.0163" z="203.75" h="0"/>
 			<spot x="369.7447" y="354.7663" z="216.25" h="0"/>
@@ -229,7 +229,7 @@
 			<spot x="393.7447" y="343.0163" z="234.5" h="0"/>
 			<spot x="425.9947" y="376.2663" z="224" h="0"/>
 		</spawn>
-		<!-- Legionary -->
+		<!-- Legionário -->
 		<spawn npc_id="798356" respawn_time="295">
 			<spot x="345.9947" y="345.0163" z="209.75" h="0"/>
 			<spot x="354.4947" y="304.7663" z="201.75" h="0"/>

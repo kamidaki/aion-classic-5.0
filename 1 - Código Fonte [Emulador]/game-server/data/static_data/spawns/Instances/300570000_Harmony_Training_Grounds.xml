@@ -17,7 +17,7 @@
 		<spawn npc_id="207051" respawn_time="295">
 			<spot x="1848.5768" y="1743.9952" z="307.5938" h="0"/>
 		</spawn>
-		<!-- Sleepmaker (First Floor) -->
+		<!-- Karutonerk -->
 		<spawn npc_id="207100" respawn_time="295">
 			<spot x="1816.214355" y="1741.438354" z="311.108002" h="0"/>
 			<spot x="1816.549316" y="1728.815674" z="310.890259" h="0"/>
@@ -54,7 +54,7 @@
 			<spot x="1885.632568" y="1726.978882" z="312.039368" h="0"/>
 			<spot x="1886.524414" y="1731.441650" z="311.204742" h="0"/>
 		</spawn>
-		<!-- Heavenly Chains -->
+		<!-- Verarinerk -->
 		<spawn npc_id="207101" respawn_time="295">
 			<spot x="450.152557" y="1771.634155" z="154.494843" h="0" aerial_spawn="true"/>
 			<spot x="451.979797" y="1789.694458" z="154.494476" h="0" aerial_spawn="true"/>
@@ -94,7 +94,7 @@
 			<spot x="539.339294" y="1791.395630" z="154.976578" h="0" aerial_spawn="true"/>
 			<spot x="539.549866" y="1767.949585" z="154.204330" h="0" aerial_spawn="true"/>
 		</spawn>
-		<!-- Relic of Restoration -->
+		<!-- Yorinrinerk -->
 		<spawn npc_id="207102" respawn_time="295">
 			<spot x="1542.7887" y="371.5511" z="199.3528" h="0"/>
 			<spot x="479.6086" y="387.6217" z="221.0628" h="0"/>
@@ -103,7 +103,7 @@
 			<spot x="496.2444" y="399.915" z="183.487" h="0"/>
 			<spot x="491.8075" y="422.2727" z="211.3136" h="0"/>
 		</spawn>
-		<!-- Crater -->
+		<!-- Irinerk -->
 		<spawn npc_id="207105" respawn_time="295">
 			<spot x="1550.507568" y="361.955505" z="198.897552" h="0"/>
 			<spot x="1587.205933" y="366.879913" z="199.119217" h="0"/>
@@ -133,15 +133,15 @@
 		<spawn npc_id="207115" respawn_time="295">
 			<spot x="1844.6798" y="1743.0077" z="311.1429" h="0"/>
 		</spawn>
-		<!-- Paralyser (Ground Floor Outdoors) -->
+		<!-- Owendi -->
 		<spawn npc_id="207116" respawn_time="295">
 			<spot x="1876.0594" y="1760.6831" z="310.2102" h="0"/>
 		</spawn>
-		<!-- Paralyser (Ground Floor Indoors) -->
+		<!-- Cidadela de doces em colapso -->
 		<spawn npc_id="207117" respawn_time="295">
 			<spot x="1826.3043" y="1712.3375" z="310.2102" h="0"/>
 		</spawn>
-		<!-- Paralyser (Ground Floor Outdoors) -->
+		<!-- Cidadela de doces em colapso -->
 		<spawn npc_id="207118" respawn_time="295">
 			<spot x="1832.309570" y="1737.848389" z="307.590424" h="0"/>
 			<spot x="1832.335815" y="1741.960693" z="307.590424" h="0"/>
@@ -173,7 +173,7 @@
 			<spot x="1870.797485" y="1736.043945" z="307.590424" h="0"/>
 			<spot x="1870.825562" y="1740.030151" z="307.590424" h="0"/>
 		</spawn>
-		<!-- Paralyser (Ground Floor Indoors) -->
+		<!-- Blithel -->
 		<spawn npc_id="207119" respawn_time="295">
 			<spot x="1839.035522" y="1736.700073" z="307.590424" h="0"/>
 			<spot x="1840.568359" y="1731.621582" z="307.590424" h="0"/>
@@ -210,7 +210,7 @@
 			<spot x="1843.7875" y="1731.4255" z="307.7112" h="0"/>
 			<spot x="1847.9797" y="1745.3113" z="307.5904" h="0"/>
 		</spawn>
-		<!-- Arena Treasure Chest -->
+		<!-- Hunter de protetorado -->
 		<spawn npc_id="219068" respawn_time="295">
 			<spot x="1830.2291" y="1150.3005" z="218.8984" h="0"/>
 			<spot x="1851.624" y="1137.6168" z="232.421" h="0"/>
@@ -219,29 +219,29 @@
 			<spot x="1848.9794" y="1771.7496" z="311.2172" h="0"/>
 			<spot x="1833.7242" y="1173.4512" z="218.3703" h="0"/>
 		</spawn>
-		<!-- Volcanic Heart Crystal -->
+		<!-- &amp;lt;Tribo de insetos de areia&amp;gt; -->
 		<spawn npc_id="219094" respawn_time="295">
 			<spot x="1552.7791" y="367.57" z="198.8085" h="0"/>
 			<spot x="1548.6801" y="355.3476" z="198.7891" h="0"/>
 			<spot x="1585.3311" y="372.1372" z="199.0776" h="0"/>
 			<spot x="1579.1322" y="364.9623" z="198.9338" h="0"/>
 		</spawn>
-		<!-- Volcanic Cyclops -->
+		<!-- Protetorado Corpman -->
 		<spawn npc_id="219095" respawn_time="295">
 			<spot x="1547.9806" y="385.589" z="205.3716" h="60"/>
 			<spot x="1574.84" y="377.7373" z="204.2363" h="0"/>
 			<spot x="1573.4233" y="342.6342" z="205.0812" h="30"/>
 		</spawn>
-		<!-- Gran Volcan -->
+		<!-- Lutador de protetorado -->
 		<spawn npc_id="219096" respawn_time="295">
 			<spot x="1564.4677" y="364.2271" z="203.7829" h="0"/>
 		</spawn>
-		<!-- Ruins Needletooth -->
+		<!-- Protetorado pesquisador -->
 		<spawn npc_id="219097" respawn_time="295">
 			<spot x="1810.6987" y="1176.5928" z="218.4106" h="90"/>
 			<spot x="1850.7114" y="1148.538" z="218.4786" h="90"/>
 		</spawn>
-		<!-- Shock Aether -->
+		<!-- Mago protetorado -->
 		<spawn npc_id="219098" respawn_time="295">
 			<spot x="495.2348" y="1768.7341" z="176.5306" h="0"/>
 			<spot x="494.3278" y="1802.4974" z="162.6689" h="0"/>
@@ -256,7 +256,7 @@
 			<spot x="472.5491" y="1780.5325" z="151.8221" h="0"/>
 			<spot x="473.7124" y="1780.2981" z="175.9438" h="0"/>
 		</spawn>
-		<!-- Aether Explosion -->
+		<!-- Protetorado de thaumaturge -->
 		<spawn npc_id="219099" respawn_time="295">
 			<spot x="484.7343" y="1762.1692" z="153.1951" h="0"/>
 			<spot x="475.9515" y="1761.9174" z="138.4368" h="0"/>
@@ -265,14 +265,14 @@
 			<spot x="537.249" y="1793.4799" z="157.7597" h="0"/>
 			<spot x="466.8595" y="1762.2043" z="176.6272" h="0"/>
 		</spawn>
-		<!-- Lava Floor -->
+		<!-- Piso de lava -->
 		<spawn npc_id="701218" respawn_time="295">
 			<spot x="688.432373" y="1823.055420" z="164.225037" h="0"/>
 			<spot x="688.910583" y="1833.786499" z="164.018997" h="0"/>
 			<spot x="699.720947" y="1828.440552" z="164.016785" h="0"/>
 			<spot x="708.149597" y="1835.761475" z="163.949814" h="0"/>
 		</spawn>
-		<!-- Crater -->
+		<!-- Cratera -->
 		<spawn npc_id="701219" respawn_time="295">
 			<spot x="676.549500" y="1822.440552" z="164.022110" h="0" aerial_spawn="true"/>
 			<spot x="680.711182" y="1823.528931" z="164.022110" h="0" aerial_spawn="true"/>
@@ -289,14 +289,14 @@
 			<spot x="707.664490" y="1824.565552" z="164.188965" h="0" aerial_spawn="true"/>
 			<spot x="711.760620" y="1829.170776" z="177.998108" h="0" aerial_spawn="true"/>
 		</spawn>
-		<!-- Lava Floor -->
+		<!-- Piso de lava -->
 		<spawn npc_id="701223" respawn_time="295">
 			<spot x="688.432373" y="1823.055420" z="164.225037" h="0"/>
 			<spot x="688.910583" y="1833.786499" z="164.018997" h="0"/>
 			<spot x="699.720947" y="1828.440552" z="164.016785" h="0"/>
 			<spot x="708.149597" y="1835.761475" z="163.949814" h="0"/>
 		</spawn>
-		<!-- Crater -->
+		<!-- Cratera -->
 		<spawn npc_id="701224" respawn_time="295">
 			<spot x="676.549500" y="1822.440552" z="164.022110" h="0" aerial_spawn="true"/>
 			<spot x="680.711182" y="1823.528931" z="164.022110" h="0" aerial_spawn="true"/>
@@ -313,14 +313,14 @@
 			<spot x="707.664490" y="1824.565552" z="164.188965" h="0" aerial_spawn="true"/>
 			<spot x="711.760620" y="1829.170776" z="177.998108" h="0" aerial_spawn="true"/>
 		</spawn>
-		<!-- Lava Floor -->
+		<!-- Piso de lava -->
 		<spawn npc_id="701228" respawn_time="295">
 			<spot x="688.432373" y="1823.055420" z="164.225037" h="0"/>
 			<spot x="688.910583" y="1833.786499" z="164.018997" h="0"/>
 			<spot x="699.720947" y="1828.440552" z="164.016785" h="0"/>
 			<spot x="708.149597" y="1835.761475" z="163.949814" h="0"/>
 		</spawn>
-		<!-- Crater -->
+		<!-- Cratera -->
 		<spawn npc_id="701229" respawn_time="295">
 			<spot x="676.549500" y="1822.440552" z="164.022110" h="0" aerial_spawn="true"/>
 			<spot x="680.711182" y="1823.528931" z="164.022110" h="0" aerial_spawn="true"/>
@@ -337,15 +337,15 @@
 			<spot x="707.664490" y="1824.565552" z="164.188965" h="0" aerial_spawn="true"/>
 			<spot x="711.760620" y="1829.170776" z="177.998108" h="0" aerial_spawn="true"/>
 		</spawn>
-		<!-- Blessed Relics -->
+		<!-- Relíquias abençoadas -->
 		<spawn npc_id="701317" respawn_time="295">
 			<spot x="1622.278564" y="258.622314" z="513.901123" h="0"/>
 		</spawn>
-		<!-- Blessed Relics -->
+		<!-- Relíquias abençoadas -->
 		<spawn npc_id="701318" respawn_time="295">
 			<spot x="1622.278564" y="258.622314" z="513.901123" h="0"/>
 		</spawn>
-		<!-- Blessed Relics -->
+		<!-- Relíquias abençoadas -->
 		<spawn npc_id="701319" respawn_time="295">
 			<spot x="1622.278564" y="258.622314" z="513.901123" h="0"/>
 		</spawn>

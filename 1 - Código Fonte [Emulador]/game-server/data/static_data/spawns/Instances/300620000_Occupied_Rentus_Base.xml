@@ -5,24 +5,24 @@
 		<spawn npc_id="205438" respawn_time="295">
 			<spot x="537.92352" y="580.43591" z="151.67749" h="15"/>
 		</spawn>
-		<!-- Tiamat’s Ragnarok -->
+		<!-- Vasharticlone Ragnarok -->
 		<spawn npc_id="217298" respawn_time="295">
 			<spot x="959.66144" y="628.0014" z="187.173" h="97" aerial_spawn="true"/>
 			<spot x="985.60291" y="608.10974" z="195.76822" h="53" aerial_spawn="true"/>
 		</spawn>
-		<!-- Tyrn Butcher -->
+		<!-- Elite Vasharti Pagati Combatant -->
 		<spawn npc_id="217331" respawn_time="295">
 			<spot x="271.80066" y="763.96533" z="193" h="70" aerial_spawn="true"/>
 		</spawn>
-		<!-- Strange Object -->
+		<!-- Objeto estranho -->
 		<spawn npc_id="282998" respawn_time="295">
 			<spot x="167.600" y="418.220" z="262.540" h="0"/>
 		</spawn>
-		<!-- Seal Connector -->
+		<!-- Oficial de convocação de alto escalão da tropa Elyos Strike -->
 		<spawn npc_id="282999" respawn_time="295">
 			<spot x="208.580" y="410.710" z="262.540" h="0"/>
 		</spawn>
-		<!-- Reian Corpse -->
+		<!-- Artesão de Reian caído -->
 		<spawn npc_id="701035" respawn_time="295">
 			<spot x="109.6336" y="277.92636" z="252.62" h="100"/>
 			<spot x="118.46849" y="241.52808" z="252.62" h="10"/>
@@ -43,23 +43,23 @@
 			<spot x="209.92354" y="316.66293" z="252.62" h="43"/>
 			<spot x="216.47101" y="354.05154" z="209.29456" h="40"/>
 		</spawn>
-		<!-- Building Debris -->
+		<!-- Detritos de construção -->
 		<spawn npc_id="701097" respawn_time="295">
 			<spot x="243.4088" y="717.4462" z="164.4402" h="0" static_id="34"/>
 		</spawn>
-		<!-- Toppled Column -->
+		<!-- Detritos de construção -->
 		<spawn npc_id="701098" respawn_time="295">
 			<spot x="453.4" y="531.41" z="139.5" h="0" static_id="195"/>
 		</spawn>
-		<!-- Torn Scroll -->
+		<!-- Rolagem rasgada -->
 		<spawn npc_id="701099" respawn_time="295">
 			<spot x="142.58" y="300.69" z="210.7014" h="13" static_id="130"/>
 		</spawn>
-		<!-- Old Incense Burner -->
+		<!-- Velho queimador de incenso -->
 		<spawn npc_id="701100" respawn_time="295">
 			<spot x="508.71" y="613.87" z="158.6869" h="0" static_id="1"/>
 		</spawn>
-		<!-- Paios -->
+		<!-- Os outros -->
 		<spawn npc_id="799536" respawn_time="295">
 			<spot x="453.20001" y="529.92999" z="141" h="87"/>
 		</spawn>
@@ -67,7 +67,7 @@
 		<spawn npc_id="799541" respawn_time="295">
 			<spot x="226.80038" y="712.85278" z="166" h="13"/>
 		</spawn>
-		<!-- Reian Warrior -->
+		<!-- Reian Guerreiro -->
 		<spawn npc_id="799648" respawn_time="295">
 			<spot x="393.52423" y="474.43185" z="139.00435" h="53"/>
 			<spot x="416.56897" y="470.80557" z="138.31" h="0"/>
@@ -102,18 +102,16 @@
 		<!-- NPC_800534 -->
 		<spawn npc_id="800534" respawn_time="295">
 			<spot x="497.6383" y="500.1072" z="302.6021" h="0"/>
-			<spot x="497.41" y="500.1" z="302.6" h="0"/>
 		</spawn>
 		<!-- NPC_801262 -->
 		<spawn npc_id="801262" respawn_time="295">
 			<spot x="498.8692" y="500.2058" z="305.0866" h="0"/>
-			<spot x="498.64" y="500.2" z="305.09" h="0"/>
 		</spawn>
-		<!-- Ariel in Conversation -->
+		<!-- Teleporter subterrâneo de Katalam -->
 		<spawn npc_id="801297" respawn_time="295">
 			<spot x="505.7003" y="507.0637" z="305.0866" h="73"/>
 		</spawn>
-		<!-- Azphel in Conversation -->
+		<!-- Teleporter subterrâneo de Katalam -->
 		<spawn npc_id="801298" respawn_time="295">
 			<spot x="491.9962" y="507.1336" z="305.0866" h="106"/>
 		</spawn>

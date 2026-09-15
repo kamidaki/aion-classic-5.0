@@ -172,34 +172,6 @@
             <point x="2071.9722" y="2749.9097"/>
         </points>
     </zone>
-    <zone mapid="220070000" name="ARTIFACT_RESULT_AREA_30111_220070000" siege_id="3011 3012 3014 3013" area_type="POLYGON" zone_type="ARTIFACT" flags="55">
-        <points bottom="252.36102" top="402.36102">
-            <point x="1203.9752" y="714.74146"/>
-            <point x="1100.8954" y="748.9828"/>
-            <point x="1084.3615" y="806.4941"/>
-            <point x="1087.779" y="914.9867"/>
-            <point x="1055.9484" y="1040.1119"/>
-            <point x="1074.0228" y="1090.1775"/>
-            <point x="1309.9725" y="1094.5121"/>
-            <point x="1339.6653" y="984.5308"/>
-            <point x="1331.0211" y="905.0153"/>
-            <point x="1324.0642" y="800.95667"/>
-        </points>
-    </zone>
-    <zone mapid="220070000" name="ARTIFACT_RESULT_AREA_30211_220070000" siege_id="3022 3023 3021 3024" area_type="POLYGON" zone_type="ARTIFACT" flags="55">
-        <points bottom="306.2785" top="456.2785">
-            <point x="1858.7362" y="958.31805"/>
-            <point x="1740.6415" y="1038.432"/>
-            <point x="1741.8438" y="1187.5868"/>
-            <point x="1750.5419" y="1294.371"/>
-            <point x="1818.15" y="1320.5112"/>
-            <point x="1919.7952" y="1322.0675"/>
-            <point x="1970.8673" y="1294.5486"/>
-            <point x="1999.5345" y="1260.6482"/>
-            <point x="1999.6035" y="1171.7108"/>
-            <point x="1986.5703" y="1015.95886"/>
-        </points>
-    </zone>
     <zone mapid="220070000" name="AZURE_GULLY_220070000" area_type="POLYGON" zone_type="SUB" priority="13" flags="55">
         <points bottom="30.0" top="330.0">
             <point x="983.13" y="1579.67"/>

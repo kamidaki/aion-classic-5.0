@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300040000">
-		<!-- Huge Vine -->
+		<!-- Vinha enorme -->
 		<spawn npc_id="401111" respawn_time="295">
-			<spot x="663.9791" y="1169.7542" z="143.6045" h="0"/>
+			<spot x="663.9791" y="1169.7542" z="143.25" h="0"/>
 		</spawn>
 		<!-- Nex -->
 		<spawn npc_id="401112" respawn_time="295">

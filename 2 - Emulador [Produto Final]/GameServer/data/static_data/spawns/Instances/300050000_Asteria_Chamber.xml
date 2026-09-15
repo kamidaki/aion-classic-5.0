@@ -3,216 +3,153 @@
 	<spawn_map map_id="300050000">
 		<!-- NPC_206087 -->
 		<spawn npc_id="206087" respawn_time="295">
-			<spot x="479.5888" y="567.7067" z="202.1067" h="109"/>
-			<spot x="479.54" y="567.76" z="205.12" h="0"/>
+			<spot x="479.5888" y="567.7067" z="202.125" h="109"/>
 		</spawn>
-		<!-- 33rd Draconute Superior Lookout -->
+		<!-- Dakaer Sentinel -->
 		<spawn npc_id="214752" respawn_time="295">
-			<spot x="500.79" y="564.15" z="198.875" h="32" walker_id="AEFA0BE398324246507C96C11473D230A1148F1B"/>
-			<spot x="524.72" y="592.16" z="199.55836" h="30" walker_id="799A9289433335ABD8F8E26F518937FB8C75D0F6"/>
-			<spot x="531.69" y="549.49" z="198.85562" h="28" walker_id="6C2DE92D9F3B54A1B24CC7F18DCFDE626267A867" walker_index="2"/>
-			<spot x="547.5" y="567.06" z="198.875" h="83" walker_id="8361DF322C908A577CF38873B6B7C3475BE9DDAD" walker_index="1"/>
-			<spot x="536.1047" y="553.5209" z="200.0" h="0"/>
-			<spot x="524.76" y="592.33" z="201.0" h="0" walker_id="1B60D1E4B056BEE254B6C07E8D37FBA5277D9389"/>
-			<spot x="500.66" y="563.99" z="200.38" h="0" walker_id="3DFC17B8DF9CCCE727B85293083A273960A00313"/>
-			<spot x="525.56" y="566.37" z="200.0" h="0" walker_id="1365BF1AFBB8160FE20C6B88EFBDEA85894D1813"/>
-			<spot x="547.06" y="566.85" z="202.38" h="0" walker_id="0F63F3A10385C21D69C3B55D9419B3BE85936818"/>
-			<spot x="524.72" y="631.08" z="193.71" h="0"/>
+			<spot x="500.79" y="564.15" z="198.875" h="32"/>
+			<spot x="524.72" y="592.16" z="199.0" h="30"/>
+			<spot x="531.69" y="549.49" z="198.75" h="28" walker_index="2"/>
+			<spot x="547.5" y="567.06" z="199.0" h="83" walker_index="1"/>
+			<spot x="536.1047" y="553.5209" z="198.875" h="0"/>
 		</spawn>
-		<!-- 33rd Draconute Superior Trooper -->
+		<!-- Trooper Dakaer -->
 		<spawn npc_id="214753" respawn_time="295">
-			<spot x="500.79" y="564.15" z="198.875" h="32" walker_id="AEFA0BE398324246507C96C11473D230A1148F1B"/>
-			<spot x="517.81" y="582.05" z="198.64" h="55" walker_id="185A712696C22B516E25130B10D0B26BB3DF1159" walker_index="2"/>
-			<spot x="524.72" y="592.16" z="199.55836" h="30" walker_id="799A9289433335ABD8F8E26F518937FB8C75D0F6"/>
-			<spot x="547.5" y="567.06" z="198.875" h="83" walker_id="8361DF322C908A577CF38873B6B7C3475BE9DDAD" walker_index="1"/>
-			<spot x="512.6229" y="578.6124" z="200.0" h="0"/>
-			<spot x="524.76" y="592.33" z="201.0" h="0" walker_id="1B60D1E4B056BEE254B6C07E8D37FBA5277D9389"/>
-			<spot x="500.66" y="563.99" z="200.38" h="0" walker_id="3DFC17B8DF9CCCE727B85293083A273960A00313"/>
-			<spot x="525.56" y="566.37" z="200.0" h="0" walker_id="957F968BE28C75263762357A8B12C8B016DB5BDC"/>
-			<spot x="547.06" y="566.85" z="202.38" h="0" walker_id="0F63F3A10385C21D69C3B55D9419B3BE85936818"/>
-			<spot x="524.72" y="631.08" z="193.71" h="0"/>
+			<spot x="500.79" y="564.15" z="198.875" h="32"/>
+			<spot x="517.81" y="582.05" z="198.75" h="55" walker_index="2"/>
+			<spot x="524.72" y="592.16" z="199.0" h="30"/>
+			<spot x="547.5" y="567.06" z="199.0" h="83" walker_index="1"/>
+			<spot x="512.6229" y="578.6124" z="198.875" h="0"/>
 		</spawn>
-		<!-- 33rd Draconute Superior Watcher -->
+		<!-- Dakaer Sentinel -->
 		<spawn npc_id="214754" respawn_time="295">
-			<spot x="500.79" y="564.15" z="198.875" h="32" walker_id="AEFA0BE398324246507C96C11473D230A1148F1B"/>
+			<spot x="500.79" y="564.15" z="198.875" h="32"/>
 			<spot x="516.874" y="672.555" z="190.308" h="102"/>
 			<spot x="516.875" y="663.845" z="190.308" h="10"/>
 			<spot x="521.353" y="641.369" z="190.308" h="61"/>
-			<spot x="521.653" y="589.004" z="199.562" h="59"/>
-			<spot x="524.72" y="592.16" z="199.55836" h="30" walker_id="799A9289433335ABD8F8E26F518937FB8C75D0F6"/>
-			<spot x="527.517" y="588.955" z="199.515" h="96"/>
+			<spot x="521.653" y="589.004" z="199.5" h="59"/>
+			<spot x="524.72" y="592.16" z="199.0" h="30"/>
+			<spot x="527.517" y="588.955" z="199.375" h="96"/>
 			<spot x="527.863" y="641.433" z="190.308" h="45"/>
 			<spot x="532.216" y="672.619" z="190.308" h="104"/>
 			<spot x="532.217" y="663.909" z="190.308" h="119"/>
-			<spot x="539.91" y="574.21" z="198.66013" h="112" walker_id="1BF924C124FF95F03DA6BFE0EF5F517F3AC004D6" walker_index="2"/>
-			<spot x="547.5" y="567.06" z="198.875" h="83" walker_id="8361DF322C908A577CF38873B6B7C3475BE9DDAD" walker_index="1"/>
-			<spot x="500.6526" y="563.9957" z="200.3804" h="90"/>
-			<spot x="547.057" y="566.853" z="202.3804" h="30"/>
-			<spot x="524.7541" y="592.3328" z="201.0023" h="30"/>
-			<spot x="536.012" y="578.6328" z="200.0" h="0"/>
-			<spot x="525.56" y="566.37" z="200.0" h="0" walker_id="0B96259BD7BE0BACAD584ABB9D71EF9087A245B1"/>
-			<spot x="524.72" y="631.08" z="193.71" h="0"/>
+			<spot x="539.91" y="574.21" z="198.125" h="112" walker_index="2"/>
+			<spot x="547.5" y="567.06" z="199.0" h="83" walker_index="1"/>
+			<spot x="500.6526" y="563.9957" z="198.875" h="90"/>
+			<spot x="547.057" y="566.853" z="199.0" h="30"/>
+			<spot x="524.7541" y="592.3328" z="199.0" h="30"/>
+			<spot x="536.012" y="578.6328" z="198.5" h="0"/>
 		</spawn>
-		<!-- 33rd Draconute Superior Geomancer -->
+		<!-- Dakaer Geomancer -->
 		<spawn npc_id="214755" respawn_time="295">
-			<spot x="500.79" y="564.15" z="198.875" h="32" walker_id="AEFA0BE398324246507C96C11473D230A1148F1B"/>
-			<spot x="508.6" y="558.58" z="198.81375" h="87" walker_id="1176984767E64D4C77340FE481023E398C5CAC9A" walker_index="2"/>
-			<spot x="524.72" y="592.16" z="199.55836" h="30" walker_id="799A9289433335ABD8F8E26F518937FB8C75D0F6"/>
-			<spot x="547.5" y="567.06" z="198.875" h="83" walker_id="8361DF322C908A577CF38873B6B7C3475BE9DDAD" walker_index="1"/>
-			<spot x="512.4427" y="553.4877" z="200.0" h="0"/>
-			<spot x="524.76" y="592.33" z="201.0" h="0" walker_id="1B60D1E4B056BEE254B6C07E8D37FBA5277D9389"/>
-			<spot x="500.66" y="563.99" z="200.38" h="0" walker_id="3DFC17B8DF9CCCE727B85293083A273960A00313"/>
-			<spot x="525.56" y="566.37" z="200.0" h="0" walker_id="395A5D57B6D20E37C69BD47AC38D3A58C6EC0823"/>
-			<spot x="547.06" y="566.85" z="202.38" h="0" walker_id="0F63F3A10385C21D69C3B55D9419B3BE85936818"/>
-			<spot x="524.72" y="631.08" z="193.71" h="0"/>
+			<spot x="500.79" y="564.15" z="198.875" h="32"/>
+			<spot x="508.6" y="558.58" z="199.0" h="87" walker_index="2"/>
+			<spot x="524.72" y="592.16" z="199.0" h="30"/>
+			<spot x="547.5" y="567.06" z="199.0" h="83" walker_index="1"/>
+			<spot x="512.4427" y="553.4877" z="198.875" h="0"/>
 		</spawn>
-		<!-- 33rd Draconute Superior Scout -->
+		<!-- Escoteiro Dakaer -->
 		<spawn npc_id="214756" respawn_time="295">
-			<spot x="509.69" y="476.25" z="198.88869" h="91" walker_id="DF874297E405E3727BEF26332950D6F1723E6949"/>
-			<spot x="521.9" y="536.15" z="199.23654" h="88" walker_id="DE1CFBF3CEA512016CBB4DCC1D7376431106384B"/>
-			<spot x="534.92" y="441.59" z="198.88867" h="30" walker_id="98217E747FB7EAD3302EB7224D03CAEEBA39E23B"/>
-			<spot x="509.54" y="476.75" z="199.93" h="0" walker_id="05F8A3A8419A62E87CB97674448238992352C7BE"/>
-			<spot x="535.05" y="441.71" z="199.93" h="0" walker_id="3779F75B6058FB8C0EA6B9ACFD9C2A9A61FE69B4"/>
-			<spot x="521.75" y="536.62" z="201.0" h="0" walker_id="D541F04EAEF1A1D1BBA2BEE970FDCB5F2CDF787C"/>
-			<spot x="522.24" y="497.14" z="199.24" h="0"/>
+			<spot x="509.69" y="476.25" z="198.88869" h="91"/>
+			<spot x="521.9" y="536.15" z="198.625" h="88"/>
+			<spot x="534.92" y="441.59" z="198.88867" h="30"/>
 		</spawn>
-		<!-- 33rd Draconute Superior Trapper -->
+		<!-- Ambarro de Dakaer -->
 		<spawn npc_id="214757" respawn_time="295">
-			<spot x="509.69" y="476.25" z="198.88869" h="91" walker_id="DF874297E405E3727BEF26332950D6F1723E6949"/>
-			<spot x="521.9" y="536.15" z="199.23654" h="88" walker_id="DE1CFBF3CEA512016CBB4DCC1D7376431106384B"/>
-			<spot x="534.92" y="441.59" z="198.88867" h="30" walker_id="98217E747FB7EAD3302EB7224D03CAEEBA39E23B"/>
-			<spot x="509.54" y="476.75" z="199.93" h="0" walker_id="05F8A3A8419A62E87CB97674448238992352C7BE"/>
-			<spot x="535.05" y="441.71" z="199.93" h="0" walker_id="3779F75B6058FB8C0EA6B9ACFD9C2A9A61FE69B4"/>
-			<spot x="521.75" y="536.62" z="201.0" h="0" walker_id="D541F04EAEF1A1D1BBA2BEE970FDCB5F2CDF787C"/>
-			<spot x="522.24" y="497.14" z="199.24" h="0"/>
+			<spot x="509.69" y="476.25" z="198.88869" h="91"/>
+			<spot x="521.9" y="536.15" z="198.625" h="88"/>
+			<spot x="534.92" y="441.59" z="198.88867" h="30"/>
 		</spawn>
-		<!-- 33rd Draconute Superior Sniper -->
+		<!-- Sniper Dakaer -->
 		<spawn npc_id="214758" respawn_time="295">
-			<spot x="509.69" y="476.25" z="198.88869" h="91" walker_id="DF874297E405E3727BEF26332950D6F1723E6949"/>
+			<spot x="509.69" y="476.25" z="198.88869" h="91"/>
 			<spot x="514.467" y="455.332" z="198.169" h="88"/>
 			<spot x="514.508" y="464.034" z="198.169" h="76"/>
-			<spot x="518.425" y="539.418" z="198.839" h="39"/>
+			<spot x="518.425" y="539.418" z="198.75" h="39"/>
 			<spot x="518.925" y="485.981" z="198.169" h="13"/>
-			<spot x="521.9" y="536.15" z="199.23654" h="88" walker_id="DE1CFBF3CEA512016CBB4DCC1D7376431106384B"/>
-			<spot x="524.768" y="539.589" z="198.875" h="105"/>
+			<spot x="521.9" y="536.15" z="198.625" h="88"/>
+			<spot x="524.768" y="539.589" z="198.5" h="105"/>
 			<spot x="525.435" y="486.028" z="198.169" h="44"/>
 			<spot x="529.942" y="455.32" z="198.169" h="21"/>
 			<spot x="529.983" y="464.022" z="198.169" h="77"/>
-			<spot x="534.92" y="441.59" z="198.88867" h="30" walker_id="98217E747FB7EAD3302EB7224D03CAEEBA39E23B"/>
-			<spot x="521.75" y="536.6216" z="201.0023" h="30"/>
+			<spot x="534.92" y="441.59" z="198.88867" h="30"/>
+			<spot x="521.75" y="536.6216" z="198.625" h="30"/>
 			<spot x="535.0434" y="441.706" z="199.927" h="30"/>
 			<spot x="509.5326" y="476.7559" z="199.927" h="90"/>
-			<spot x="522.24" y="497.14" z="199.24" h="0"/>
 		</spawn>
-		<!-- 33rd Draconute Superior Medic -->
+		<!-- Dakaer Bloodbinder -->
 		<spawn npc_id="214759" respawn_time="295">
-			<spot x="509.69" y="476.25" z="198.88869" h="91" walker_id="DF874297E405E3727BEF26332950D6F1723E6949"/>
-			<spot x="521.9" y="536.15" z="199.23654" h="88" walker_id="DE1CFBF3CEA512016CBB4DCC1D7376431106384B"/>
-			<spot x="534.92" y="441.59" z="198.88867" h="30" walker_id="98217E747FB7EAD3302EB7224D03CAEEBA39E23B"/>
-			<spot x="509.54" y="476.75" z="199.93" h="0" walker_id="05F8A3A8419A62E87CB97674448238992352C7BE"/>
-			<spot x="535.05" y="441.71" z="199.93" h="0" walker_id="3779F75B6058FB8C0EA6B9ACFD9C2A9A61FE69B4"/>
-			<spot x="521.75" y="536.62" z="201.0" h="0" walker_id="D541F04EAEF1A1D1BBA2BEE970FDCB5F2CDF787C"/>
-			<spot x="522.24" y="497.14" z="199.24" h="0"/>
+			<spot x="509.69" y="476.25" z="198.88869" h="91"/>
+			<spot x="521.9" y="536.15" z="198.625" h="88"/>
+			<spot x="534.92" y="441.59" z="198.88867" h="30"/>
 		</spawn>
-		<!-- 33rd Nagarant Superior Protector -->
-		<spawn npc_id="214760" respawn_time="295">
-			<spot x="524.55" y="701.41" z="192.21" h="0"/>
-		</spawn>
-		<!-- 33rd Naga Spiritist -->
-		<spawn npc_id="214761" respawn_time="295">
-			<spot x="524.55" y="701.41" z="192.21" h="0"/>
-		</spawn>
-		<!-- 33rd Naga Shepherd -->
+		<!-- Dakaer canta -->
 		<spawn npc_id="214762" respawn_time="295">
 			<spot x="524.581" y="701.294" z="191.898" h="94"/>
 			<spot x="524.5425" y="701.3567" z="192.2066" h="90"/>
 		</spawn>
-		<!-- Dakaer Drakemaster -->
-		<spawn npc_id="214764" respawn_time="295">
-			<spot x="522.31" y="426.29" z="199.84" h="0"/>
-		</spawn>
-		<!-- Dakaer Tactician -->
+		<!-- Tactico Dakaer -->
 		<spawn npc_id="214766" respawn_time="295">
 			<spot x="522.305" y="426.24" z="199.759" h="83"/>
-			<spot x="522.31" y="426.29" z="199.84" h="0"/>
 		</spawn>
-		<!-- 33rd Draconute Special Scout -->
+		<!-- Reconhecedor de Dakaer -->
 		<spawn npc_id="215439" respawn_time="295">
-			<spot x="602.39" y="565.13" z="205.12793" h="59" walker_id="7FE2207760E74E75893A24C7CD24C5FE18F74BAE"/>
-			<spot x="618.71" y="570.78" z="204.04141" h="0" walker_id="D046FEAAF6EFC57124DC04B1D8A082D5CD4AF797"/>
-			<spot x="646.74" y="559.62" z="204.04143" h="61" walker_id="6F926A43811DF978C2516DF979AA313CF101BD73"/>
-			<spot x="602.37" y="565.21" z="205.39" h="0" walker_id="D168E7A6A762C6026101910ED5D04D6422C9B363"/>
-			<spot x="647.1" y="559.1" z="205.46" h="0" walker_id="CBDDA6814FF4C23822329E8F5595290D3376D363"/>
-			<spot x="618.77" y="571.35" z="205.46" h="0" walker_id="FC8193CCFFD1806DC4E4B7BD45B7039E0DB750DA"/>
-			<spot x="602.16" y="564.96" z="204.06" h="0"/>
+			<spot x="602.39" y="565.13" z="189.625" h="59"/>
+			<spot x="618.71" y="570.78" z="204.04141" h="0"/>
+			<spot x="646.74" y="559.62" z="204.04143" h="61"/>
 		</spawn>
-		<!-- 33rd Draconute Special Trapper -->
+		<!-- Dakas Lurk -->
 		<spawn npc_id="215440" respawn_time="295">
-			<spot x="602.39" y="565.13" z="205.12793" h="59" walker_id="7FE2207760E74E75893A24C7CD24C5FE18F74BAE"/>
-			<spot x="618.71" y="570.78" z="204.04141" h="0" walker_id="D046FEAAF6EFC57124DC04B1D8A082D5CD4AF797"/>
-			<spot x="646.74" y="559.62" z="204.04143" h="61" walker_id="6F926A43811DF978C2516DF979AA313CF101BD73"/>
-			<spot x="602.37" y="565.21" z="205.39" h="0" walker_id="D168E7A6A762C6026101910ED5D04D6422C9B363"/>
-			<spot x="647.1" y="559.1" z="205.46" h="0" walker_id="CBDDA6814FF4C23822329E8F5595290D3376D363"/>
-			<spot x="618.77" y="571.35" z="205.46" h="0" walker_id="FC8193CCFFD1806DC4E4B7BD45B7039E0DB750DA"/>
-			<spot x="602.16" y="564.96" z="204.06" h="0"/>
+			<spot x="602.39" y="565.13" z="189.625" h="59"/>
+			<spot x="618.71" y="570.78" z="204.04141" h="0"/>
+			<spot x="646.74" y="559.62" z="204.04143" h="61"/>
 		</spawn>
-		<!-- 33rd Draconute Special Sniper -->
+		<!-- DAKAER SHOTSHOOTER -->
 		<spawn npc_id="215441" respawn_time="295">
-			<spot x="553.4" y="568.168" z="198.825" h="47"/>
-			<spot x="553.477" y="562.092" z="198.658" h="8"/>
+			<spot x="553.4" y="568.168" z="199.0" h="47"/>
+			<spot x="553.477" y="562.092" z="198.75" h="8"/>
 			<spot x="582.842" y="562.198" z="203.157" h="110"/>
 			<spot x="582.847" y="566.991" z="203.365" h="112"/>
-			<spot x="602.39" y="565.13" z="205.12793" h="59" walker_id="7FE2207760E74E75893A24C7CD24C5FE18F74BAE"/>
+			<spot x="602.39" y="565.13" z="189.625" h="59"/>
 			<spot x="607.16" y="561.819" z="204.954" h="79"/>
 			<spot x="607.195" y="568.494" z="204.954" h="112"/>
-			<spot x="618.71" y="570.78" z="204.04141" h="0" walker_id="D046FEAAF6EFC57124DC04B1D8A082D5CD4AF797"/>
+			<spot x="618.71" y="570.78" z="204.04141" h="0"/>
 			<spot x="621.338" y="550.125" z="204.041" h="68"/>
 			<spot x="621.551" y="580.58" z="204.041" h="31"/>
 			<spot x="635.076" y="545.725" z="204.041" h="103"/>
 			<spot x="635.152" y="584.838" z="204.041" h="37"/>
-			<spot x="646.74" y="559.62" z="204.04143" h="61" walker_id="6F926A43811DF978C2516DF979AA313CF101BD73"/>
+			<spot x="646.74" y="559.62" z="204.04143" h="61"/>
 			<spot x="648.701" y="579.815" z="204.041" h="104"/>
 			<spot x="649" y="551.087" z="204.041" h="33"/>
-			<spot x="602.3681" y="565.2142" z="205.3931" h="60"/>
+			<spot x="602.3681" y="565.2142" z="189.625" h="60"/>
 			<spot x="618.7636" y="571.3558" z="205.4604" h="30"/>
 			<spot x="647.0991" y="559.1018" z="205.4604" h="90"/>
-			<spot x="602.16" y="564.96" z="204.06" h="0"/>
 		</spawn>
-		<!-- 33rd Draconute Special Medic -->
+		<!-- Dakaer Boneter -->
 		<spawn npc_id="215442" respawn_time="295">
-			<spot x="602.39" y="565.13" z="205.12793" h="59" walker_id="7FE2207760E74E75893A24C7CD24C5FE18F74BAE"/>
-			<spot x="618.71" y="570.78" z="204.04141" h="0" walker_id="D046FEAAF6EFC57124DC04B1D8A082D5CD4AF797"/>
-			<spot x="646.74" y="559.62" z="204.04143" h="61" walker_id="6F926A43811DF978C2516DF979AA313CF101BD73"/>
-			<spot x="602.37" y="565.21" z="205.39" h="0" walker_id="D168E7A6A762C6026101910ED5D04D6422C9B363"/>
-			<spot x="647.1" y="559.1" z="205.46" h="0" walker_id="CBDDA6814FF4C23822329E8F5595290D3376D363"/>
-			<spot x="618.77" y="571.35" z="205.46" h="0" walker_id="FC8193CCFFD1806DC4E4B7BD45B7039E0DB750DA"/>
-			<spot x="602.16" y="564.96" z="204.06" h="0"/>
-		</spawn>
-		<!-- Treasurer Manonasa -->
-		<spawn npc_id="215443" respawn_time="295">
-			<spot x="666.66" y="565.26" z="206.69" h="0"/>
+			<spot x="602.39" y="565.13" z="189.625" h="59"/>
+			<spot x="618.71" y="570.78" z="204.04141" h="0"/>
+			<spot x="646.74" y="559.62" z="204.04143" h="61"/>
 		</spawn>
 		<!-- Ebonlord Kiriel -->
 		<spawn npc_id="215444" respawn_time="295">
 			<spot x="666.655" y="565.212" z="206.145" h="81"/>
-			<spot x="666.66" y="565.26" z="206.69" h="0"/>
 		</spawn>
-		<!-- Beautiful Landscape Painting -->
+		<!-- Bela pintura de paisagem -->
 		<spawn npc_id="700461" respawn_time="295">
 			<spot x="461.7051" y="567.3436" z="205.751" h="0" static_id="33"/>
-			<spot x="461.65" y="567.37" z="205.75" h="0"/>
 		</spawn>
-		<!-- Golden Abyss Crate -->
+		<!-- Crate de Golden Abismo -->
 		<spawn npc_id="700475" respawn_time="295">
 			<spot x="524.535" y="705.136" z="191.898" h="34"/>
 			<spot x="524.5648" y="706.177" z="192.6267" h="90"/>
 		</spawn>
-		<!-- Jeweled Abyss Crate -->
+		<!-- Jóias Abismo Crate -->
 		<spawn npc_id="700476" respawn_time="295">
 			<spot x="522.255" y="422.553" z="199.759" h="30"/>
 			<spot x="522.2972" y="421.4237" z="200.667" h="30"/>
 		</spawn>
-		<!-- Magic Abyss Crate -->
+		<!-- Magic Abismo Crate -->
 		<spawn npc_id="700477" respawn_time="295">
 			<spot x="669.98" y="565.114" z="206.145" h="60"/>
 			<spot x="671.4528" y="565.1686" z="207.3198" h="60"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="310030000">
-		<!-- Draconute Fighter -->
+		<!-- Cruzado -->
 		<spawn npc_id="211624" respawn_time="295">
 			<spot x="222.612" y="242.562" z="223.246" h="89"/>
 			<spot x="234.906" y="221.324" z="213.342" h="98"/>
@@ -17,26 +17,26 @@
 			<spot x="244.4517" y="206.4964" z="210.0" h="50"/>
 			<spot x="249.9392" y="243.2934" z="225.0" h="96"/>
 		</spawn>
-		<!-- Draconute Blade Master -->
+		<!-- Draconute Vaegir -->
 		<spawn npc_id="211625" respawn_time="295">
 			<spot x="258.055" y="241.453" z="219.08" h="94"/>
 			<spot x="264.054" y="215.517" z="210.201" h="95"/>
 			<spot x="263.1821" y="247.9994" z="226.0" h="95"/>
 			<spot x="253.3633" y="222.9162" z="215.0" h="96"/>
 		</spawn>
-		<!-- Abyss Gate -->
+		<!-- ABYSS GATE -->
 		<spawn npc_id="700141" respawn_time="295">
 			<spot x="250.752" y="271.369" z="230.283" h="93" static_id="17"/>
 		</spawn>
-		<!-- Abyss Gate Guardian Stone -->
+		<!-- Pedra do Guardião do Portão Abismo -->
 		<spawn npc_id="700142" respawn_time="295">
 			<spot x="261.4184" y="229.5311" z="213.927" h="35"/>
 		</spawn>
-		<!-- Abyss Gate -->
+		<!-- ABYSS GATE -->
 		<spawn npc_id="700143" respawn_time="295">
 			<spot x="250.9115" y="270.455" z="235" h="0"/>
 		</spawn>
-		<!-- Dimension Exit -->
+		<!-- Dimensão Sair -->
 		<spawn npc_id="700186" respawn_time="295">
 			<spot x="276.1247" y="161.6532" z="208.0833" h="0"/>
 		</spawn>

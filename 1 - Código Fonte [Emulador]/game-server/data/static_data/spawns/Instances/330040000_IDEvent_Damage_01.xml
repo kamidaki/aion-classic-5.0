@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="330040000">
-		<!-- Inferneos -->
+		<!-- Guerreiro da 11ª tropa de ocupação -->
 		<spawn npc_id="283244" respawn_time="295">
 			<spot x="270.7643" y="214.861" z="203.2532" h="73"/>
 		</spawn>
-		<!-- Fire Storm -->
+		<!-- Tempestade de fogo -->
 		<spawn npc_id="749022" respawn_time="295">
 			<spot x="262.7528" y="225.3801" z="202.9826" h="0"/>
 			<spot x="276.753" y="202.5241" z="202.9826" h="0"/>
@@ -29,7 +29,7 @@
 		<spawn npc_id="803553" respawn_time="295">
 			<spot x="226.2213" y="151.0963" z="202.9826" h="0"/>
 		</spawn>
-		<!-- Light Crystal -->
+		<!-- Dispositivo de convocação -->
 		<spawn npc_id="803555" respawn_time="295">
 			<spot x="788.9731" y="286.8678" z="399.75" h="0"/>
 		</spawn>
@@ -41,7 +41,7 @@
 		<spawn npc_id="803567" respawn_time="295">
 			<spot x="272.9396" y="207.9227" z="202.8248" h="0"/>
 		</spawn>
-		<!-- Entrance to the Arena of Fate -->
+		<!-- Vila de Rhonnam Refugee -->
 		<spawn npc_id="803569" respawn_time="295">
 			<spot x="210.3902" y="126.4899" z="202.9826" h="0"/>
 			<spot x="273.5069" y="218.5949" z="202.9826" h="0"/>

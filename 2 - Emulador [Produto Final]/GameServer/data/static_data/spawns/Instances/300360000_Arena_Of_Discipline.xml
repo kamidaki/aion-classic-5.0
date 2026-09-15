@@ -10,58 +10,58 @@
 		</spawn>
 		<!-- NPC_207040 -->
 		<spawn npc_id="207040" respawn_time="295">
-			<spot x="691.3658" y="1772.6449" z="163" h="0"/>
-			<spot x="691.3658" y="1772.6449" z="163" h="0"/>
-			<spot x="691.3658" y="1772.6449" z="163" h="0"/>
+			<spot x="691.3658" y="1772.6449" z="163.0" h="0"/>
+			<spot x="691.3658" y="1772.6449" z="163.0" h="0"/>
+			<spot x="691.3658" y="1772.6449" z="163.0" h="0"/>
 		</spawn>
 		<!-- NPC_207051 -->
 		<spawn npc_id="207051" respawn_time="295">
-			<spot x="1859.5789" y="1055.35" z="335.9156" h="0"/>
-			<spot x="1859.5789" y="1055.35" z="335.9156" h="0"/>
-			<spot x="1859.5789" y="1055.35" z="335.9156" h="0"/>
-			<spot x="1859.5789" y="1055.35" z="335.9156" h="0"/>
+			<spot x="1859.5789" y="1055.35" z="335.875" h="0"/>
+			<spot x="1859.5789" y="1055.35" z="335.875" h="0"/>
+			<spot x="1859.5789" y="1055.35" z="335.875" h="0"/>
+			<spot x="1859.5789" y="1055.35" z="335.875" h="0"/>
 		</spawn>
 		<!-- Red Sand Tog -->
 		<spawn npc_id="218693" respawn_time="105">
-			<spot x="1856.197" y="1071.305" z="337.287" h="90"/>
+			<spot x="1856.197" y="1071.305" z="336.875" h="90"/>
 		</spawn>
 		<!-- Red Sand Tog -->
 		<spawn npc_id="218706" respawn_time="105">
-			<spot x="1856.197" y="1071.305" z="337.287" h="90"/>
+			<spot x="1856.197" y="1071.305" z="336.875" h="90"/>
 		</spawn>
 		<!-- Red Sand Tog -->
 		<spawn npc_id="218719" respawn_time="105">
-			<spot x="1856.197" y="1071.305" z="337.287" h="90"/>
+			<spot x="1856.197" y="1071.305" z="336.875" h="90"/>
 		</spawn>
-		<!-- Tog Bowl -->
+		<!-- Pegou manjedoura -->
 		<spawn npc_id="218757" respawn_time="105">
-			<spot x="1853.310" y="1072.531" z="337.734" h="0"/>
+			<spot x="1853.310" y="1072.531" z="337.75" h="0"/>
 		</spawn>
-		<!-- Treasure Box -->
+		<!-- Caixa de tesouro -->
 		<spawn npc_id="218799" respawn_time="295">
 			<spot x="297.3073" y="1239.45" z="270.6746" h="0"/>
 		</spawn>
-		<!-- Treasure Box -->
+		<!-- Caixa de tesouro -->
 		<spawn npc_id="218802" respawn_time="105">
 			<spot x="297.641" y="1239.489" z="267.572" h="0"/>
 		</spawn>
-		<!-- Blessed Relics -->
+		<!-- Relíquias abençoadas -->
 		<spawn npc_id="701215" respawn_time="105">
-			<spot x="1848.1729" y="1737.1951" z="305.182" h="0"/>
+			<spot x="1848.1729" y="1737.1951" z="302.875" h="0"/>
 		</spawn>
-		<!-- Blessed Relics -->
+		<!-- Relíquias abençoadas -->
 		<spawn npc_id="701216" respawn_time="105">
 			<spot x="692.663" y="1770.740" z="219.014" h="0" aerial_spawn="true"/>
 			<spot x="707.409" y="1779.437" z="165.419" h="0" aerial_spawn="true"/>
 		</spawn>
-		<!-- Lava Floor -->
+		<!-- Piso de lava -->
 		<spawn npc_id="701218" respawn_time="30">
-			<spot x="687.8877" y="1766.8588" z="163.000" h="0"/>
-			<spot x="688.3659" y="1777.5898" z="163.000" h="0"/>
-			<spot x="699.1763" y="1772.2439" z="163.000" h="0"/>
-			<spot x="707.6049" y="1779.5648" z="163" h="0"/>
+			<spot x="687.8877" y="1766.8588" z="163.0" h="0"/>
+			<spot x="688.3659" y="1777.5898" z="163.0" h="0"/>
+			<spot x="699.1763" y="1772.2439" z="163.0" h="0"/>
+			<spot x="707.6049" y="1779.5648" z="163.0" h="0"/>
 		</spawn>
-		<!-- Crater -->
+		<!-- Cratera -->
 		<spawn npc_id="701219" respawn_time="30">
 			<spot x="676.0048" y="1766.2439" z="171.897" h="0" aerial_spawn="true"/>
 			<spot x="680.1665" y="1767.3323" z="164.170" h="0" aerial_spawn="true"/>
@@ -78,23 +78,23 @@
 			<spot x="707.1198" y="1768.3689" z="164.189" h="0" aerial_spawn="true"/>
 			<spot x="711.2159" y="1772.9741" z="164.674" h="0" aerial_spawn="true"/>
 		</spawn>
-		<!-- Blessed Relics -->
+		<!-- Relíquias abençoadas -->
 		<spawn npc_id="701220" respawn_time="105">
-			<spot x="1848.1729" y="1737.1951" z="305.182" h="0"/>
+			<spot x="1848.1729" y="1737.1951" z="302.875" h="0"/>
 		</spawn>
-		<!-- Blessed Relics -->
+		<!-- Relíquias abençoadas -->
 		<spawn npc_id="701221" respawn_time="105">
 			<spot x="692.663" y="1770.740" z="219.014" h="0" aerial_spawn="true"/>
 			<spot x="707.409" y="1779.437" z="165.419" h="0" aerial_spawn="true"/>
 		</spawn>
-		<!-- Lava Floor -->
+		<!-- Piso de lava -->
 		<spawn npc_id="701223" respawn_time="30">
-			<spot x="687.8877" y="1766.8588" z="163.000" h="0"/>
-			<spot x="688.3659" y="1777.5898" z="163.000" h="0"/>
-			<spot x="699.1763" y="1772.2439" z="163.000" h="0"/>
-			<spot x="707.6049" y="1779.5648" z="163" h="0"/>
+			<spot x="687.8877" y="1766.8588" z="163.0" h="0"/>
+			<spot x="688.3659" y="1777.5898" z="163.0" h="0"/>
+			<spot x="699.1763" y="1772.2439" z="163.0" h="0"/>
+			<spot x="707.6049" y="1779.5648" z="163.0" h="0"/>
 		</spawn>
-		<!-- Crater -->
+		<!-- Cratera -->
 		<spawn npc_id="701224" respawn_time="30">
 			<spot x="676.0048" y="1766.2439" z="171.897" h="0" aerial_spawn="true"/>
 			<spot x="680.1665" y="1767.3323" z="164.170" h="0" aerial_spawn="true"/>
@@ -111,23 +111,23 @@
 			<spot x="707.1198" y="1768.3689" z="164.189" h="0" aerial_spawn="true"/>
 			<spot x="711.2159" y="1772.9741" z="164.674" h="0" aerial_spawn="true"/>
 		</spawn>
-		<!-- Blessed Relics -->
+		<!-- Relíquias abençoadas -->
 		<spawn npc_id="701225" respawn_time="105">
-			<spot x="1848.1729" y="1737.1951" z="305.182" h="0"/>
+			<spot x="1848.1729" y="1737.1951" z="302.875" h="0"/>
 		</spawn>
-		<!-- Blessed Relics -->
+		<!-- Relíquias abençoadas -->
 		<spawn npc_id="701226" respawn_time="105">
 			<spot x="692.663" y="1770.740" z="219.014" h="0" aerial_spawn="true"/>
 			<spot x="707.409" y="1779.437" z="165.419" h="0" aerial_spawn="true"/>
 		</spawn>
-		<!-- Lava Floor -->
+		<!-- Piso de lava -->
 		<spawn npc_id="701228" respawn_time="30">
-			<spot x="687.8877" y="1766.8588" z="163.000" h="0"/>
-			<spot x="688.3659" y="1777.5898" z="163.000" h="0"/>
-			<spot x="699.1763" y="1772.2439" z="163.000" h="0"/>
-			<spot x="707.6049" y="1779.5648" z="163" h="0"/>
+			<spot x="687.8877" y="1766.8588" z="163.0" h="0"/>
+			<spot x="688.3659" y="1777.5898" z="163.0" h="0"/>
+			<spot x="699.1763" y="1772.2439" z="163.0" h="0"/>
+			<spot x="707.6049" y="1779.5648" z="163.0" h="0"/>
 		</spawn>
-		<!-- Crater -->
+		<!-- Cratera -->
 		<spawn npc_id="701229" respawn_time="30">
 			<spot x="676.0048" y="1766.2439" z="171.897" h="0" aerial_spawn="true"/>
 			<spot x="680.1665" y="1767.3323" z="164.170" h="0" aerial_spawn="true"/>

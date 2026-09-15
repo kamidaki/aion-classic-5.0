@@ -502,7 +502,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 	}
 
 	public boolean isChangingDirection() {
-		return currentStep.getStepIndex() == 0;
+		return currentStep != null && currentStep.getStepIndex() == 0;
 	}
 
 	@Override

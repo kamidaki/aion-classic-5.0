@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300220000">
-		<!-- Drenite -->
+		<!-- Drenita -->
 		<spawn npc_id="409071" respawn_time="295">
 			<spot x="358.8888" y="688.9672" z="235.3014" h="0"/>
 			<spot x="287.674" y="714.413" z="198.2017" h="0"/>
@@ -15,7 +15,7 @@
 			<spot x="344.1062" y="644.3723" z="214.535" h="0"/>
 			<spot x="389.5926" y="700.0727" z="234.7794" h="0"/>
 		</spawn>
-		<!-- Turquoise -->
+		<!-- Turquesa -->
 		<spawn npc_id="409072" respawn_time="295">
 			<spot x="385.8186" y="640.4816" z="224.4528" h="0"/>
 			<spot x="292.2376" y="690.632" z="198.4137" h="0"/>

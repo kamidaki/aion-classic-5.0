@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300710000">
-		<!-- Ideology Cube -->
+		<!-- Guardião Geral da Ilusão -->
 		<spawn npc_id="222099" respawn_time="295">
 			<spot x="1653.944" y="1165.6346" z="772.4467" h="0"/>
 			<spot x="1762.2407" y="1183.8773" z="616.1191" h="0"/>
@@ -325,7 +325,7 @@
 			<spot x="1740.75" y="1170.8" z="660.75" h="0"/>
 			<spot x="1554.3467" y="1160.7594" z="891.4587" h="0"/>
 		</spawn>
-		<!-- Ideology Cube -->
+		<!-- Guardião Geral da Ilusão -->
 		<spawn npc_id="222100" respawn_time="295">
 			<spot x="1653.944" y="1165.6346" z="772.4467" h="0"/>
 			<spot x="1762.2407" y="1183.8773" z="616.1191" h="0"/>
@@ -536,7 +536,7 @@
 			<spot x="1744.4907" y="1181.8773" z="638.6191" h="0"/>
 			<spot x="1642.444" y="1156.8846" z="808.4467" h="0"/>
 		</spawn>
-		<!-- Vindachinerk’s Phantom -->
+		<!-- Fortaleza de Eltnen -->
 		<spawn npc_id="701583" respawn_time="295">
 			<spot x="1721.1024" y="316.2241" z="684.6642" h="0"/>
 			<spot x="1643.3" y="316.9" z="676.55" h="105"/>
@@ -567,27 +567,27 @@
 			<spot x="1684.8503" y="310.3034" z="710.3735" h="105"/>
 			<spot x="1611.5" y="338.0" z="679.3" h="105"/>
 		</spawn>
-		<!-- Vindachinerk’s Phantom -->
+		<!-- Fortaleza de Eltnen -->
 		<spawn npc_id="701584" respawn_time="295">
 			<spot x="1535.5322" y="397.4077" z="783.7209" h="0"/>
 		</spawn>
-		<!-- Vindachinerk’s Phantom -->
+		<!-- Fortaleza de Eltnen -->
 		<spawn npc_id="701585" respawn_time="295">
 			<spot x="577.9138" y="404.183" z="585.6" h="0"/>
 		</spawn>
-		<!-- Vindachinerk’s Phantom -->
+		<!-- Fortaleza de Eltnen -->
 		<spawn npc_id="701586" respawn_time="295">
 			<spot x="235.4252" y="405.7996" z="568.1564" h="0"/>
 		</spawn>
-		<!-- Vindachinerk’s Phantom -->
+		<!-- Fortaleza de Eltnen -->
 		<spawn npc_id="701587" respawn_time="295">
 			<spot x="1794.5132" y="1180.4133" z="592.9184" h="0"/>
 		</spawn>
-		<!-- Vindachinerk’s Phantom -->
+		<!-- Fortaleza de Eltnen -->
 		<spawn npc_id="701588" respawn_time="295">
 			<spot x="1552.3436" y="1174.4235" z="921.2504" h="0"/>
 		</spawn>
-		<!-- Luciferin of Sentiment -->
+		<!-- Agairon Village -->
 		<spawn npc_id="701589" respawn_time="295">
 			<spot x="1624.744" y="345.6" z="679.3" h="0"/>
 			<spot x="1639.7" y="302.2" z="689.2851" h="0"/>
@@ -624,15 +624,15 @@
 			<spot x="1639.6" y="294.1256" z="695.3267" h="0"/>
 			<spot x="1684.8503" y="310.3034" z="710.3735" h="0"/>
 		</spawn>
-		<!-- Teleporter of Ignorance -->
+		<!-- Posto avançado de Kuriulu -->
 		<spawn npc_id="701590" respawn_time="295">
 			<spot x="1530.5322" y="390.4077" z="783.7209" h="0"/>
 		</spawn>
-		<!-- Teleporter of Prejudice -->
+		<!-- Fortaleza de gelo de Morheim -->
 		<spawn npc_id="701591" respawn_time="295">
 			<spot x="227.9936" y="392.4738" z="571.4875" h="0"/>
 		</spawn>
-		<!-- Infinity Cube Exit -->
+		<!-- Cabine de Kellan -->
 		<spawn npc_id="701592" respawn_time="295">
 			<spot x="1719.6537" y="306.428" z="648.5267" h="0"/>
 			<spot x="1545.5322" y="1170.4077" z="913.8713" h="0"/>
@@ -641,15 +641,15 @@
 		<spawn npc_id="701593" respawn_time="295">
 			<spot x="806" y="1101" z="1181" h="0"/>
 		</spawn>
-		<!-- Cube Shape Modifier -->
+		<!-- Novo portão HION -->
 		<spawn npc_id="701594" respawn_time="295">
 			<spot x="469.037" y="335.7473" z="585.6" h="0"/>
 		</spawn>
-		<!-- Cube Shape Modifier -->
+		<!-- Novo portão HION -->
 		<spawn npc_id="701595" respawn_time="295">
 			<spot x="362.6372" y="399.8501" z="585.6" h="0"/>
 		</spawn>
-		<!-- Cube Shape Modifier -->
+		<!-- Novo portão HION -->
 		<spawn npc_id="701596" respawn_time="295">
 			<spot x="490.8598" y="336.0085" z="585.6" h="0"/>
 		</spawn>
@@ -665,7 +665,7 @@
 		<spawn npc_id="701602" respawn_time="295">
 			<spot x="1808.4243" y="1156.9076" z="591.9407" h="0"/>
 		</spawn>
-		<!-- Rapid Tornado -->
+		<!-- &amp;lt;Mão do Senhor&amp;gt; -->
 		<spawn npc_id="800753" respawn_time="295">
 			<spot x="505.9779" y="342.8404" z="585.6" h="0"/>
 			<spot x="355.7539" y="392.4972" z="585.6" h="0"/>

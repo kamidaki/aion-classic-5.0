@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300560000">
-		<!-- Tiamat -->
+		<!-- Idf2a Solo Draco Hunter -->
 		<spawn npc_id="219368" respawn_time="295">
 			<spot x="1036.0" y="1030.0" z="344.1952" h="30"/>
 		</spawn>
-		<!-- Tiamat -->
+		<!-- Idf2a Solo Draco Hunter -->
 		<spawn npc_id="219396" respawn_time="295">
-			<spot x="1106.5785" y="1287.283" z="325.368" h="15"/>
+			<spot x="1106.5785" y="1287.283" z="323.75" h="15"/>
 		</spawn>
-		<!-- Tiamat -->
+		<!-- Passagem Especial (A.3) -->
 		<spawn npc_id="282976" respawn_time="295" pool="436">
 			<spot x="1005" y="1026" z="383" h="0"/>
 			<spot x="1005" y="1026" z="383" h="0"/>
@@ -2191,27 +2191,17 @@
 			<spot x="1065.0801" y="1028" z="383" h="0"/>
 			<spot x="1065.0801" y="1028" z="383" h="0"/>
 			<spot x="1065.0801" y="1028" z="383" h="0"/>
-			<spot x="1033.65" y="1031.36" z="363.22" h="0"/>
-		</spawn>
-		<!-- Iron Dragon’s Tooth -->
-		<spawn npc_id="701430" respawn_time="295">
-			<spot x="1127.37" y="1313.49" z="291.0" h="0"/>
 		</spawn>
 		<!-- NPC_800534 -->
 		<spawn npc_id="800534" respawn_time="295">
-			<spot x="1124.3567" y="1307.0505" z="288.588" h="0" random_walk="8"/>
-			<spot x="1124.2" y="1307.22" z="289.18" h="0"/>
+			<spot x="1124.3567" y="1307.0505" z="288.5" h="0" random_walk="8"/>
 		</spawn>
-		<!-- Omne Solum (Emergency Exit) -->
+		<!-- Skill Box02 -->
 		<spawn npc_id="800724" respawn_time="295">
 			<spot x="1036" y="1030" z="401" h="0"/>
 			<spot x="1102.9406" y="1286.1525" z="366.5229" h="0"/>
 			<spot x="1158.9406" y="1374.1525" z="366.5229" h="0"/>
-			<spot x="1976.9054" y="791.3495" z="226.997" h="0"/>
-			<spot x="1977.41" y="790.85" z="230.2" h="0"/>
-			<spot x="1103.44" y="1285.65" z="366.52" h="0"/>
-			<spot x="1159.44" y="1373.65" z="366.52" h="0"/>
-			<spot x="1036.0" y="1029.5" z="401.0" h="0"/>
+			<spot x="1976.9054" y="791.3495" z="227.375" h="0"/>
 		</spawn>
 		<!-- NPC_800733 -->
 		<spawn npc_id="800733" respawn_time="295">

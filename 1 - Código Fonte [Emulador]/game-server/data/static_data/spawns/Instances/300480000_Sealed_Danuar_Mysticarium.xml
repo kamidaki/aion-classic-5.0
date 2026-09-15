@@ -5,93 +5,75 @@
 		<spawn npc_id="206214" respawn_time="295">
 			<spot x="759.9973" y="431.5216" z="322" h="0"/>
 		</spawn>
-		<!-- Bakarma Dragoon Outlaw -->
-		<spawn npc_id="219012" respawn_time="295">
-			<spot x="816.0" y="498.0" z="328.0" h="0" walker_id="BBD1C2A8E49D3EB6A8D8C4662487DC80216F7193"/>
-			<spot x="777.0" y="401.0" z="322.0" h="0" walker_id="02FE328CCC62BE8D4B2649E7974240B7D0D61315"/>
-			<spot x="843.0" y="519.0" z="328.0" h="0" walker_id="5A7544E84CA9E88E4864EA88FCC54E08D6A89C5D"/>
-		</spawn>
-		<!-- Bakarma Dragoon Supplicants -->
-		<spawn npc_id="219013" respawn_time="295">
-			<spot x="816.0" y="498.0" z="328.0" h="0" walker_id="BBD1C2A8E49D3EB6A8D8C4662487DC80216F7193"/>
-			<spot x="777.0" y="401.0" z="322.0" h="0" walker_id="02FE328CCC62BE8D4B2649E7974240B7D0D61315"/>
-			<spot x="843.0" y="519.0" z="328.0" h="0" walker_id="5A7544E84CA9E88E4864EA88FCC54E08D6A89C5D"/>
-		</spawn>
-		<!-- Bakarma Dragoon Necromancer -->
-		<spawn npc_id="219014" respawn_time="295">
-			<spot x="816.0" y="498.0" z="328.0" h="0" walker_id="BBD1C2A8E49D3EB6A8D8C4662487DC80216F7193"/>
-			<spot x="777.0" y="401.0" z="322.0" h="0" walker_id="02FE328CCC62BE8D4B2649E7974240B7D0D61315"/>
-			<spot x="843.0" y="519.0" z="328.0" h="0" walker_id="5A7544E84CA9E88E4864EA88FCC54E08D6A89C5D"/>
-		</spawn>
-		<!-- Deputy Brigade General Yavant -->
+		<!-- Indratu Crusader -->
 		<spawn npc_id="219015" respawn_time="295">
 			<spot x="777.0" y="463.0" z="322.0" h="90"/>
 		</spawn>
-		<!-- General Bakarma -->
+		<!-- Soldado Covert Indratu -->
 		<spawn npc_id="219016" respawn_time="295">
 			<spot x="777.0757" y="431.1508" z="323.8942" h="15"/>
 		</spawn>
-		<!-- Bakarma Dragoon Infantry -->
+		<!-- Líder de Sentry Indratu -->
 		<spawn npc_id="219020" respawn_time="295">
 			<spot x="760.0" y="485.0" z="320.0" h="90"/>
 		</spawn>
-		<!-- Bakarma Dragoon Trooper -->
+		<!-- Oficial Médico Indratu -->
 		<spawn npc_id="219021" respawn_time="295">
 			<spot x="757.0" y="484.0" z="320.0" h="90"/>
 		</spawn>
-		<!-- Bakarma Dragoon Guard -->
+		<!-- Indratu Avançou o guarda -->
 		<spawn npc_id="219022" respawn_time="295">
 			<spot x="759.0" y="487.0" z="320.0" h="90"/>
 		</spawn>
-		<!-- Bakarma Dragoon Healer -->
+		<!-- Indratu Avançou o guarda -->
 		<spawn npc_id="219023" respawn_time="295">
 			<spot x="756.0" y="486.0" z="320.0" h="90"/>
 		</spawn>
-		<!-- Bakarma Dragoon Infantry -->
+		<!-- Líder de Sentry Indratu -->
 		<spawn npc_id="219024" respawn_time="295">
 			<spot x="726.0" y="452.0" z="320.0" h="0"/>
 		</spawn>
-		<!-- Bakarma Dragoon Trooper -->
+		<!-- Oficial Médico Indratu -->
 		<spawn npc_id="219025" respawn_time="295">
 			<spot x="725.0" y="448.0" z="320.0" h="0"/>
 		</spawn>
-		<!-- Bakarma Dragoon Guard -->
+		<!-- Indratu Avançou o guarda -->
 		<spawn npc_id="219026" respawn_time="295">
 			<spot x="724.0" y="454.0" z="320.0" h="0"/>
 		</spawn>
-		<!-- Bakarma Dragoon Healer -->
+		<!-- Indratu Avançou o guarda -->
 		<spawn npc_id="219027" respawn_time="295">
 			<spot x="723.0" y="450.0" z="320.0" h="0"/>
 		</spawn>
-		<!-- Bakarma Dragoon Infantry -->
+		<!-- Líder de Sentry Indratu -->
 		<spawn npc_id="219028" respawn_time="295">
 			<spot x="746.0" y="382.0" z="320.0" h="20"/>
 		</spawn>
-		<!-- Bakarma Dragoon Trooper -->
+		<!-- Oficial Médico Indratu -->
 		<spawn npc_id="219029" respawn_time="295">
 			<spot x="749.0" y="379.0" z="320.0" h="20"/>
 		</spawn>
-		<!-- Bakarma Dragoon Guard -->
+		<!-- Indratu Avançou o guarda -->
 		<spawn npc_id="219030" respawn_time="295">
 			<spot x="744.0" y="380.0" z="320.0" h="20"/>
 		</spawn>
-		<!-- Bakarma Dragoon Healer -->
+		<!-- Indratu Avançou o guarda -->
 		<spawn npc_id="219031" respawn_time="295">
 			<spot x="747.0" y="377.0" z="320.0" h="20"/>
 		</spawn>
-		<!-- Bakarma Dragoon Infantry -->
+		<!-- Líder de Sentry Indratu -->
 		<spawn npc_id="219032" respawn_time="295">
 			<spot x="801.0" y="385.0" z="320.0" h="30"/>
 		</spawn>
-		<!-- Bakarma Dragoon Trooper -->
+		<!-- Oficial Médico Indratu -->
 		<spawn npc_id="219033" respawn_time="295">
 			<spot x="804.0" y="386.0" z="320.0" h="30"/>
 		</spawn>
-		<!-- Bakarma Dragoon Guard -->
+		<!-- Indratu Avançou o guarda -->
 		<spawn npc_id="219034" respawn_time="295">
 			<spot x="803.0" y="383.0" z="320.0" h="30"/>
 		</spawn>
-		<!-- Bakarma Dragoon Healer -->
+		<!-- Indratu Avançou o guarda -->
 		<spawn npc_id="219035" respawn_time="295">
 			<spot x="806.0" y="384.0" z="320.0" h="30"/>
 		</spawn>
