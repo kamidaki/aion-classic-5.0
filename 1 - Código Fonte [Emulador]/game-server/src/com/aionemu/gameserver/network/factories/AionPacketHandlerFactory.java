@@ -99,7 +99,7 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_PLAYER_LISTENER.class, 0xCA, State.IN_GAME); // 0x0038 MOVE_OBJECT
 		addPacket(CM_BUILDER_COMMAND.class, 0xC8, State.IN_GAME); // 0x003A GM_COMMAND
 		addPacket(CM_EMOTION.class, 0xC9, State.IN_GAME); // 0x003B EMOTION
-		addPacket(CM_BROKER_SEARCH.class, 0x136, State.IN_GAME); // 0x003C BROKER_SEARCH
+		addPacket(CM_REMOVE_STIGMA.class, 0x136, State.IN_GAME); // 0x003C REMOVE_STIGMA (4 bytes [D itemObjId], 5.0 Classic)
 		addPacket(CM_BROKER_REGISTERED.class, 0x137, State.IN_GAME); // 0x003D BROKER_REGISTERED
 		addPacket(CM_BUY_BROKER_ITEM.class, 0x134, State.IN_GAME); // 0x003E BUY_BROKER_ITEM
 		addPacket(CM_REGISTER_BROKER_ITEM.class, 0x135, State.IN_GAME); // 0x003F REGISTER_BROKER_ITEM

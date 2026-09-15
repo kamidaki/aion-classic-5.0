@@ -19,10 +19,28 @@
 		<xs:attribute name="nonbreakcount" type="xs:int"/>
 	</xs:complexType>
 	<xs:complexType name="Stigma">
-		<xs:attribute name="gain_skill_group1" type="xs:string"/>
-		<xs:attribute name="gain_skill_group2" type="xs:string"/>
+		<xs:attribute name="kind" type="StigmaKind" use="required"/>
+		<xs:attribute name="shard" type="xs:int" default="0"/>
+		<xs:attribute name="gain_skill1" type="xs:int"/>
+		<xs:attribute name="gain_level1" type="xs:int" default="1"/>
+		<xs:attribute name="gain_skill2" type="xs:int"/>
+		<xs:attribute name="gain_level2" type="xs:int" default="1"/>
+		<xs:attribute name="require_skill1" type="StigmaSkillList"/>
+		<xs:attribute name="require_skill1_lv" type="xs:int" default="1"/>
+		<xs:attribute name="require_skill2" type="StigmaSkillList"/>
+		<xs:attribute name="require_skill2_lv" type="xs:int" default="1"/>
 		<xs:attribute name="chargeable" type="xs:boolean"/>
 	</xs:complexType>
+	<xs:simpleType name="StigmaKind">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NORMAL"/>
+			<xs:enumeration value="GREATER"/>
+			<xs:enumeration value="META"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StigmaSkillList">
+		<xs:list itemType="xs:int"/>
+	</xs:simpleType>
 	<xs:complexType name="WeaponStats">
 		<xs:attribute name="min_damage" type="xs:int"/>
 		<xs:attribute name="max_damage" type="xs:int"/>

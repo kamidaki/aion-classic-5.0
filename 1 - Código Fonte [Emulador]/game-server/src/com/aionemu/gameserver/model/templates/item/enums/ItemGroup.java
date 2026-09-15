@@ -69,7 +69,7 @@ public enum ItemGroup {
 	NECKLACE(ItemSlot.NECKLACE.getSlotIdMask(), ArmorType.ACCESSORY),
 	BELT(ItemSlot.WAIST.getSlotIdMask(), ArmorType.ACCESSORY),
 	WING(ItemSlot.WINGS.getSlotIdMask(), ItemSubType.WING),
-	PLUME(ItemSlot.PLUME.getSlotIdMask(), ItemSubType.PLUME),
+	PLUME(0, ItemSubType.PLUME), // the Classic 5.0 client has no plume slot (bit 28 is a greater stigma slot)
 	ARCAMANT(ItemSlot.ARCAMANT.getSlotIdMask(), ItemSubType.NONE),
 
 	HEAD(ItemSlot.HELMET.getSlotIdMask(), ArmorType.ACCESSORY),

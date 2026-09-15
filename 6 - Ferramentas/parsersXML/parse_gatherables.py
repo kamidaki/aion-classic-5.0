@@ -30,6 +30,19 @@ def parse_gatherables():
     added_count = 0
     updated_count = 0
     
+    # Carrega mapa de itens para resolver materiais textuais do cliente para item_id numérico
+    print("  -> Indexando itens para resolução de materiais de coleta...")
+    _, s_items_root = common_bxml.read_server_xml("items/item_templates.xml")
+    item_lookup = {}
+    for it in s_items_root.findall("item_template"):
+        it_id = it.get("id")
+        it_name = it.get("name")
+        it_cname = it.get("cName")
+        if it_name:
+            item_lookup[it_name.lower()] = it_id
+        if it_cname:
+            item_lookup[it_cname.lower()] = it_id
+
     for c_g in c_gather_root:
         g_id = c_g.findtext("id")
         if not g_id:
@@ -41,7 +54,15 @@ def parse_gatherables():
         real_name = common_bxml.resolve_body(desc_str, code_name)
         source_type = c_g.findtext("source_type", "VEGETABLE").upper()
         skill_level = c_g.findtext("skill_level", "1")
-        harvest_skill = c_g.findtext("harvestskill", "30002")
+        harvest_skill_raw = (c_g.findtext("harvestskill") or "").strip().lower()
+        if harvest_skill_raw.isdigit():
+            harvest_skill = harvest_skill_raw
+        elif harvest_skill_raw == "gathering_a":
+            harvest_skill = "30001"
+        elif harvest_skill_raw in ["aerial_gathering", "extract_aether", "aether"]:
+            harvest_skill = "30003"
+        else:
+            harvest_skill = "30002" # Essencetapping (gathering_b, gathering, etc.)
         harvest_count = c_g.findtext("harvest_count", "3")
         
         if g_id in s_gathers:
@@ -52,6 +73,13 @@ def parse_gatherables():
             elem.set("skillLevel", skill_level)
             elem.set("harvestSkill", harvest_skill)
             elem.set("harvestCount", harvest_count)
+            # Corrige materiais existentes se tiverem IDs textuais
+            for mat_elem in elem.findall(".//material"):
+                cur_iid = mat_elem.get("itemid", "")
+                if cur_iid and not cur_iid.isdigit():
+                    res = item_lookup.get(cur_iid.lower())
+                    if res:
+                        mat_elem.set("itemid", res)
             updated_count += 1
         else:
             elem = ET.SubElement(s_gather_root, "gatherable_template")
@@ -71,9 +99,10 @@ def parse_gatherables():
                 mat_id = c_g.findtext(f"material{i}")
                 rate = c_g.findtext(f"normal_rate{i}", "100")
                 if mat_id and mat_id != "0":
+                    res_id = mat_id if mat_id.isdigit() else item_lookup.get(mat_id.lower(), mat_id)
                     mat_elem = ET.SubElement(materials, "material")
-                    mat_elem.set("itemid", mat_id)
-                    mat_elem.set("name", f"mat_{mat_id}")
+                    mat_elem.set("itemid", res_id)
+                    mat_elem.set("name", f"mat_{res_id}")
                     mat_elem.set("rate", rate)
                     
             added_count += 1

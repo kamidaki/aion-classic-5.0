@@ -376,6 +376,10 @@ public class ItemTemplate extends VisibleObjectTemplate {
 		return stigma != null;
 	}
 
+	public boolean isGreaterStigma() {
+		return stigma != null && stigma.getKind() == Stigma.StigmaKind.GREATER;
+	}
+
 	public int getCastingDelay() {
 		return castingDelay;
 	}

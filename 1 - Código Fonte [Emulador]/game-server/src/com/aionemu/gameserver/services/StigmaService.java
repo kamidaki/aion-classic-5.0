@@ -1,6 +1,5 @@
 package com.aionemu.gameserver.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -10,78 +9,155 @@ import com.aionemu.commons.utils.Rnd;
 import com.aionemu.gameserver.configs.main.MembershipConfig;
 import com.aionemu.gameserver.controllers.observer.ItemUseObserver;
 import com.aionemu.gameserver.dataholders.DataManager;
-import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.TaskId;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.Persistable.PersistentState;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.items.ItemSlot;
-import com.aionemu.gameserver.model.skill.PlayerSkillEntry;
-import com.aionemu.gameserver.model.templates.item.ItemQuality;
 import com.aionemu.gameserver.model.templates.item.Stigma;
+import com.aionemu.gameserver.model.templates.item.Stigma.RequiredSkillGroup;
+import com.aionemu.gameserver.model.templates.item.Stigma.StigmaKind;
+import com.aionemu.gameserver.model.templates.item.Stigma.StigmaSkill;
+import com.aionemu.gameserver.model.templates.item.enums.ItemGroup;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_INVENTORY_UPDATE_ITEM;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ITEM_USAGE_ANIMATION;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
-import com.aionemu.gameserver.questEngine.model.QuestState;
-import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.services.item.ItemPacketService;
-import com.aionemu.gameserver.services.trade.PricesService;
+import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
 import com.aionemu.gameserver.skillengine.model.SkillLearnTemplate;
 import com.aionemu.gameserver.skillengine.model.SkillTemplate;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
-import com.aionemu.gameserver.utils.audit.AuditLogger;
 
 /**
+ * Classic 5.0 stigma rules, measured on the official Stigma/Stigma2 captures and the EU 3.7 patch notes:
+ * <ul>
+ * <li>12 slots per page: normal area (bits 20-25) and greater area (bits 27-32); a greater stigma only fits the greater area, normal and meta
+ * stigmas fit anywhere</li>
+ * <li>equipping consumes the stone's shards, event shards first; removing is free</li>
+ * <li>a greater stigma needs one skill of each required group granted by another equipped stone, and a stone that is still required cannot
+ * be removed</li>
+ * <li>the stone teaches exactly its gain skills</li>
+ * </ul>
+ *
  * @author Lost Academy Team & Durak
  */
 public class StigmaService {
 
 	private static final Logger log = LoggerFactory.getLogger(StigmaService.class);
 
-	public static boolean notifyEquipAction(Player player, Item resultItem, long slot) {
-		if (resultItem.getItemTemplate().isStigma()) {
-			Stigma stigmaInfo = resultItem.getItemTemplate().getStigma();
-			int stigmaLevel = resultItem.getEnchantLevel();
-			String stigmaName = resultItem.getItemName().replace(" ", "").toUpperCase();
-			boolean replace = false;
-			for (Item i : player.getEquipment().getEquippedItemsAllStigma()) {
-				if (i.getEquipmentSlot() == slot) {
-					if (!stigmaName.equals(i.getItemName().replace(" ", "").toUpperCase()))
-						return false;
-					removeStigmaSkills(player, i.getItemTemplate().getStigma(), i.getEnchantLevel(), i.getEnchantLevel() > resultItem.getEnchantLevel());
-					replace = true;
-					break;
-				}
-			}
-			if (!replace) {
-				// check the number of stigma wearing
-				if (ItemSlot.isRegularStigma(slot) && getPossibleStigmaCount(player) <= player.getEquipment().getEquippedItemsRegularStigma().size()) {
-					AuditLogger.log(player, "tried to equip stigma, exceeding the socket limit");
-					return false;
-				} else if (ItemSlot.isAdvancedStigma(slot)
-					&& getPossibleAdvancedStigmaCount(player) <= player.getEquipment().getEquippedItemsAdvancedStigma().size()) {
-					AuditLogger.log(player, "tried to equip advanced stigma, exceeding the socket limit");
-					return false;
-				}
-			}
+	private static final int STIGMA_SHARD = 141000001;
+	private static final int EVENT_STIGMA_SHARD = 141000002;
 
-			long kinahcount = 25000;
-			// Sets the price for equipping stigma during mission in Space of Destiny [ID: 320070000] and Sliver of darkness [ID: 310070000]
-			if ((player.getRace() == Race.ASMODIANS && player.getWorldId() == 320070000)
-				|| (player.getRace() == Race.ELYOS && player.getWorldId() == 310070000))
-				kinahcount = 1000;
-			else if (resultItem.getItemTemplate().getItemQuality().equals(ItemQuality.LEGEND)
-				|| resultItem.getItemTemplate().getItemQuality().equals(ItemQuality.LEGENDARY))
-				kinahcount = 50000;
-			else if (resultItem.getItemTemplate().getItemQuality().equals(ItemQuality.UNIQUE))
-				kinahcount = 100000;
-
-			if (!player.getInventory().tryDecreaseKinah(PricesService.getPriceForService(kinahcount, player.getRace()))) {
-				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_STIGMA_NOT_ENOUGH_MONEY());
+	/**
+	 * Validates a stigma equip request before the item is moved. Non-stigma items are always accepted here.
+	 */
+	public static boolean checkEquip(Player player, Item item, long slot) {
+		if (item.getItemTemplate().getItemGroup() != ItemGroup.STIGMA)
+			return true;
+		Stigma stigma = item.getItemTemplate().getStigma();
+		if (stigma == null) {
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_STIGMA_CANNOT_EQUIP_STONE());
+			return false;
+		}
+		if (stigma.getKind() == StigmaKind.GREATER && !ItemSlot.isAdvancedStigma(slot)) {
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_STIGMA_TOO_HIGH_STONE_RANK_FOR_SLOT(item.getL10n()));
+			return false;
+		}
+		List<Item> equippedStigmas = player.getEquipment().getEquippedItemsAllStigma();
+		for (Item equipped : equippedStigmas) {
+			if (equipped.getEquipmentSlot() == slot) {
+				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_STIGMA_SLOT_IS_NOT_OPENED());
 				return false;
 			}
-			addStigmaSkills(player, stigmaInfo, stigmaLevel);
+			Stigma equippedStigma = equipped.getItemTemplate().getStigma();
+			if (equipped.getItemId() == item.getItemId()
+				|| equippedStigma != null && stigma.getGainSkills().stream().anyMatch(s -> equippedStigma.grantsSkill(s.skillId()))) {
+				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_STIGMA_ALREADY_EQUIP_STONE());
+				return false;
+			}
+		}
+		if (!hasRequiredSkills(stigma, item, equippedStigmas, null)) {
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_STIGMA_TO_EQUIP_STONE_LEARN_PRESKILL(item.getL10n()));
+			return false;
+		}
+		if (getShardCount(player) < stigma.getShard()) {
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_STIGMA_CANNT_EQUIP_STONE_OUT_OF_AVAILABLE_STIGMA_POINT(String.valueOf(stigma.getShard())));
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Called after the stone was moved into its slot (official order: S 0x1D with the slot, then S 0x2C with the skills, then the shard count).
+	 */
+	public static void onEquip(Player player, Item item) {
+		Stigma stigma = item.getItemTemplate().getStigma();
+		if (stigma == null)
+			return;
+		addStigmaSkills(player, stigma, item.getEnchantLevel());
+		consumeShards(player, stigma.getShard());
+	}
+
+	public static int getStigmaSlotIndex(long mask) {
+		if (mask >= (1L << 20) && mask <= (1L << 25)) {
+			return Long.numberOfTrailingZeros(mask) - 20; // 0..5 (regular stigmas)
+		}
+		if (mask >= (1L << 27) && mask <= (1L << 32)) {
+			return Long.numberOfTrailingZeros(mask) - 20; // 7..12 (greater stigmas: bit 27 -> slot 7, bit 32 -> slot 12)
+		}
+		return 0;
+	}
+
+	public static long getStigmaSlotMask(int slotIndex) {
+		if (slotIndex >= 0 && slotIndex <= 5) {
+			return 1L << (20 + slotIndex);
+		}
+		if (slotIndex >= 7 && slotIndex <= 12) {
+			return 1L << (20 + slotIndex);
+		}
+		if (slotIndex >= 6 && slotIndex <= 11) {
+			return 1L << (27 + (slotIndex - 6));
+		}
+		return 0;
+	}
+
+	public static long findFreeStigmaSlot(Player player, boolean isGreater) {
+		java.util.Set<Long> usedSlots = new java.util.HashSet<>();
+		for (Item eq : player.getEquipment().getEquippedItemsAllStigma()) {
+			usedSlots.add(eq.getEquipmentSlot());
+		}
+
+		if (!isGreater) {
+			for (int i = 0; i < 6; i++) {
+				long mask = 1L << (20 + i);
+				if (!usedSlots.contains(mask))
+					return mask;
+			}
+		}
+		for (int i = 0; i < 6; i++) {
+			long mask = 1L << (27 + i);
+			if (!usedSlots.contains(mask))
+				return mask;
+		}
+		return 0;
+	}
+
+	/**
+	 * Validates a player's request to remove a stone: it is refused while another equipped stone still needs one of its skills.
+	 */
+	public static boolean checkUnequip(Player player, Item item) {
+		if (item.getItemTemplate().getStigma() == null)
+			return true;
+		List<Item> equippedStigmas = player.getEquipment().getEquippedItemsAllStigma();
+		for (Item other : equippedStigmas) {
+			Stigma otherStigma = other.getItemTemplate().getStigma();
+			if (other == item || otherStigma == null || otherStigma.getRequiredSkillGroups().isEmpty())
+				continue;
+			if (hasRequiredSkills(otherStigma, other, equippedStigmas, null) && !hasRequiredSkills(otherStigma, other, equippedStigmas, item)) {
+				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_STIGMA_CANT_UNEQUIP_STONE_FOR_AFTERSKILL(item.getL10n(), other.getL10n()));
+				return false;
+			}
 		}
 		return true;
 	}
@@ -97,42 +173,30 @@ public class StigmaService {
 			return;
 		}
 
-		mainLoop:
 		for (Item item : player.getEquipment().getEquippedItemsAllStigma()) {
-			if (!item.getItemTemplate().isStigma()) {
+			Stigma stigma = item.getItemTemplate().getStigma();
+			String problem = null;
+			if (stigma == null)
+				problem = "has no Classic 5.0 stigma data";
+			else if (!item.getItemTemplate().isClassSpecific(player.getPlayerClass()))
+				problem = "is not for his class";
+			else if (stigma.getKind() == StigmaKind.GREATER && !ItemSlot.isAdvancedStigma(item.getEquipmentSlot()))
+				problem = "is a greater stigma outside the greater stigma slots";
+			if (problem != null) {
 				player.getEquipment().unEquipItem(item.getObjectId(), false);
-				log.warn("Unequipped stigma: " + item.getItemId() + ", stigma info missing for item (possibly pre-4.8 stigma)");
-				continue;
+				log.warn("Unequipped stigma " + item.getItemId() + " of " + player + " on login: it " + problem);
 			}
-
-			if (!isPossibleEquippedStigma(player, item)) {
-				player.getEquipment().unEquipItem(item.getObjectId(), false);
-				AuditLogger.log(player, "had more equipped stigmas on login than allowed");
-				continue;
-			}
-
-			if (!item.getItemTemplate().isClassSpecific(player.getPlayerClass())) {
-				player.getEquipment().unEquipItem(item.getObjectId(), false);
-				AuditLogger.log(player, "had an equipped stigma on login which was not for his class");
-				continue;
-			}
-
-			// check for double stigmas equipped into the same slot
-			for (Item checkStigma : player.getEquipment().getEquippedItemsAllStigma()) {
-				if (checkStigma.getEquipmentSlot() == item.getEquipmentSlot() && checkStigma.getItemId() != item.getItemId()) {
-					player.getEquipment().unEquipItem(item.getObjectId(), false);
-					AuditLogger.log(player, "had two stigmas equipped in the same slot on login");
-					continue mainLoop;
-				}
-			}
-
-			addStigmaSkills(player, item.getItemTemplate().getStigma(), item.getEnchantLevel());
 		}
-
+		List<Item> equippedStigmas = player.getEquipment().getEquippedItemsAllStigma();
+		for (Item item : equippedStigmas) {
+			if (!hasRequiredSkills(item.getItemTemplate().getStigma(), item, equippedStigmas, null)) {
+				player.getEquipment().unEquipItem(item.getObjectId(), false);
+				log.warn("Unequipped stigma " + item.getItemId() + " of " + player + " on login: its required stigma skills are not equipped");
+			}
+		}
+		for (Item item : player.getEquipment().getEquippedItemsAllStigma())
+			addStigmaSkills(player, item.getItemTemplate().getStigma(), item.getEnchantLevel());
 	}
-
-
-
 
 	public static boolean isEquipped(Player player, int itemId) {
 		if (player.getEquipment().getEquippedItemsByItemId(itemId) != null)
@@ -148,93 +212,37 @@ public class StigmaService {
 		return equippedCount == neededCount;
 	}
 
-	private static int getPossibleStigmaCount(Player player) {
-		if (player.hasPermission(MembershipConfig.STIGMA_SLOT_QUEST))
-			return 3;
-		int playerLevel = player.getLevel();
-		boolean isCompleteQuest = isCompleteQuest(player);
-		if (isCompleteQuest) {
-			if (playerLevel < 30)
-				return 1;
-			else if (playerLevel < 40)
-				return 2;
-			else
-				return 3;
+	/**
+	 * @param ignored
+	 *          - stone treated as not equipped (the one the player wants to remove), may be null
+	 * @return True if each required skill group of the stigma is satisfied by another equipped stone.
+	 */
+	private static boolean hasRequiredSkills(Stigma stigma, Item self, List<Item> equippedStigmas, Item ignored) {
+		for (RequiredSkillGroup group : stigma.getRequiredSkillGroups()) {
+			boolean satisfied = equippedStigmas.stream()
+				.filter(other -> other != self && other != ignored && other.getItemTemplate().getStigma() != null)
+				.flatMap(other -> other.getItemTemplate().getStigma().getGainSkills().stream())
+				.anyMatch(skill -> group.skillIds().contains(skill.skillId()) && skill.level() >= group.level());
+			if (!satisfied)
+				return false;
 		}
-		return 0;
+		return true;
 	}
 
-	private static boolean isCompleteQuest(Player player) {
-		// Stigma Quest Elyos: 1929, Asmodians: 2900
-		boolean isCompleteQuest = false;
-
-		if (player.getRace() == Race.ELYOS) {
-			QuestState qs = player.getQuestStateList().getQuestState(1929);
-			if (qs != null)
-				isCompleteQuest = player.isCompleteQuest(1929) || (qs.getStatus() == QuestStatus.START && qs.getQuestVars().getQuestVars() == 98);
-			else
-				isCompleteQuest = player.isCompleteQuest(1929);
-		} else {
-			QuestState qs = player.getQuestStateList().getQuestState(2900);
-			if (qs != null)
-				isCompleteQuest = player.isCompleteQuest(2900) || (qs.getStatus() == QuestStatus.START && qs.getQuestVars().getQuestVars() == 99);
-			else
-				isCompleteQuest = player.isCompleteQuest(2900);
-		}
-		return isCompleteQuest;
+	private static long getShardCount(Player player) {
+		return player.getInventory().getItemCountByItemId(EVENT_STIGMA_SHARD) + player.getInventory().getItemCountByItemId(STIGMA_SHARD);
 	}
 
-	private static int getPossibleAdvancedStigmaCount(Player player) {
-		if (player.hasPermission(MembershipConfig.STIGMA_SLOT_QUEST))
-			return 3;
-		int playerLevel = player.getLevel();
-		boolean isCompleteQuest = isCompleteQuest(player);
-		if (isCompleteQuest) {
-			if (playerLevel >= 55)
-				return 3;
-			else if (playerLevel >= 50)
-				return 2;
-			else if (playerLevel >= 45)
-				return 1;
-		}
-		return 0;
-	}
-
-	private static boolean isPossibleEquippedStigma(Player player, Item item) {
-		if (!item.getItemTemplate().isStigma())
-			return false;
-
-		long itemSlotToEquip = item.getEquipmentSlot();
-
-		// Stigma
-		if (ItemSlot.isRegularStigma(itemSlotToEquip)) {
-			int stigmaCount = getPossibleStigmaCount(player);
-			if (stigmaCount > 0) {
-				if (stigmaCount == 1) {
-					if (itemSlotToEquip == ItemSlot.STIGMA1.getSlotIdMask())
-						return true;
-				} else if (stigmaCount == 2) {
-					if (itemSlotToEquip == ItemSlot.STIGMA1.getSlotIdMask() || itemSlotToEquip == ItemSlot.STIGMA2.getSlotIdMask())
-						return true;
-				} else if (stigmaCount == 3)
-					return true;
+	private static void consumeShards(Player player, long count) {
+		for (int shardId : new int[] { EVENT_STIGMA_SHARD, STIGMA_SHARD }) { // event shards are consumed first (client STR_STIGMA_CONFIRM_EQUIP)
+			for (Item shard : player.getInventory().getItemsByItemId(shardId)) {
+				if (count <= 0)
+					return;
+				long taken = Math.min(count, shard.getItemCount());
+				player.getInventory().decreaseItemCount(shard, taken, ItemUpdateType.DEC_STIGMA_USE);
+				count -= taken;
 			}
 		}
-		// Advanced Stigma
-		else if (ItemSlot.isAdvancedStigma(itemSlotToEquip)) {
-			int advStigmaCount = getPossibleAdvancedStigmaCount(player);
-			if (advStigmaCount > 0) {
-				if (advStigmaCount == 1) {
-					if (itemSlotToEquip == ItemSlot.ADV_STIGMA1.getSlotIdMask())
-						return true;
-				} else if (advStigmaCount == 2) {
-					if (itemSlotToEquip == ItemSlot.ADV_STIGMA1.getSlotIdMask() || itemSlotToEquip == ItemSlot.ADV_STIGMA2.getSlotIdMask())
-						return true;
-				} else if (advStigmaCount == 3)
-					return true;
-			}
-		}
-		return false;
 	}
 
 	public static void chargeStigma(Player player, Item stigma, Item chargeStone) {
@@ -279,7 +287,7 @@ public class StigmaService {
 				} else {
 					stigma.setEnchantLevel(stigma.getEnchantLevel() + 1);
 					if (stigma.isEquipped()) {
-						removeStigmaSkills(player, stigmaInfo, stigma.getEnchantLevel() - 1, false);
+						removeStigmaSkills(player, stigma, false);
 						addStigmaSkills(player, stigmaInfo, stigma.getEnchantLevel());
 					}
 					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_STIGMA_ENCHANT_SUCCESS(stigma.getL10n()));
@@ -297,25 +305,25 @@ public class StigmaService {
 		}, 5000));
 	}
 
-	private static void addStigmaSkills(Player player, Stigma stigma, int stigmaLevel) {
-		for (String skillGroup : stigma.getGainSkillGroups())
-			for (SkillTemplate st : DataManager.SKILL_DATA.getSkillTemplatesByGroup(skillGroup))
-				for (SkillLearnTemplate skill : DataManager.SKILL_TREE_DATA.getTemplatesForSkill(st.getSkillId(), player.getPlayerClass(), player.getRace()))
-					if (player.getLevel() >= skill.getMinLevel())
-						SkillLearnService.learnTemporarySkill(player, skill.getSkillId(), stigmaLevel + 1);
+	private static void addStigmaSkills(Player player, Stigma stigma, int enchantLevel) {
+		for (StigmaSkill skill : stigma.getGainSkills())
+			SkillLearnService.learnTemporarySkill(player, skill.skillId(), skill.level() + enchantLevel);
 	}
 
-	public static void removeStigmaSkills(Player player, Stigma stigma, int stigmaLevel, boolean notifyPlayer) {
-		List<String> notifiedSkillL10ns = new ArrayList<>();
-		for (String skillGroup : stigma.getGainSkillGroups()) {
-			for (SkillTemplate st : DataManager.SKILL_DATA.getSkillTemplatesByGroup(skillGroup)) {
-				if (notifyPlayer && st.getL10n() != null && !notifiedSkillL10ns.contains(st.getL10n())) {
-					notifiedSkillL10ns.add(st.getL10n());
-					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_STIGMA_YOU_CANNOT_USE_THIS_SKILL_AFTER_UNEQUIP_STIGMA_STONE(st.getL10n()));
-				}
-				for (SkillLearnTemplate skill : DataManager.SKILL_TREE_DATA.getTemplatesForSkill(st.getSkillId(), player.getPlayerClass(), player.getRace()))
-					SkillLearnService.removeSkill(player, skill.getSkillId());
-			}
+	/**
+	 * Removes the skills taught by the stone (official order after S 0x1D: the "cannot use" message, then S 0x2D, for each skill).
+	 */
+	public static void removeStigmaSkills(Player player, Item stigmaItem, boolean notifyPlayer) {
+		Stigma stigma = stigmaItem.getItemTemplate().getStigma();
+		if (stigma == null)
+			return;
+		for (StigmaSkill skill : stigma.getGainSkills()) {
+			if (!player.getSkillList().isSkillPresent(skill.skillId()))
+				continue;
+			SkillTemplate template = DataManager.SKILL_DATA.getSkillTemplate(skill.skillId());
+			if (notifyPlayer && template != null && template.getL10n() != null)
+				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_STIGMA_YOU_CANNOT_USE_THIS_SKILL_AFTER_UNEQUIP_STIGMA_STONE(template.getL10n()));
+			SkillLearnService.removeSkill(player, skill.skillId());
 		}
 	}
 }

@@ -26,7 +26,6 @@ public enum ItemSlot {
 	WAIST(1L << 16),
 	MAIN_OFF_HAND(1L << 17),
 	SUB_OFF_HAND(1L << 18),
-	PLUME(1L << 28),
 	ARCAMANT(1L << 19),
 
 	// combo
@@ -53,17 +52,24 @@ public enum ItemSlot {
 					| WINGS.slotIdMask,
 					true), // rings were designed to be visible (at the players thumbs), but they have no skins
 
-	// STIGMA slots
-	STIGMA1(1L << 30),
-	STIGMA2(1L << 31),
-	STIGMA3(1L << 32),
+	// STIGMA slots (Classic 5.0, official captures: 6 normal + 6 greater slots per stigma page, window position = bit - 20)
+	STIGMA1(1L << 20),
+	STIGMA2(1L << 21),
+	STIGMA3(1L << 22),
+	STIGMA4(1L << 23),
+	STIGMA5(1L << 24),
+	STIGMA6(1L << 25),
 
-	REGULAR_STIGMAS(STIGMA1.slotIdMask | STIGMA2.slotIdMask | STIGMA3.slotIdMask, true),
-	ADV_STIGMA1(1L << 33),
-	ADV_STIGMA2(1L << 34),
-	ADV_STIGMA3(1L << 35),
+	REGULAR_STIGMAS(STIGMA1.slotIdMask | STIGMA2.slotIdMask | STIGMA3.slotIdMask | STIGMA4.slotIdMask | STIGMA5.slotIdMask | STIGMA6.slotIdMask, true),
+	ADV_STIGMA1(1L << 27),
+	ADV_STIGMA2(1L << 28),
+	ADV_STIGMA3(1L << 29),
+	ADV_STIGMA4(1L << 30),
+	ADV_STIGMA5(1L << 31),
+	ADV_STIGMA6(1L << 32),
 
-	ADVANCED_STIGMAS(ADV_STIGMA1.slotIdMask | ADV_STIGMA2.slotIdMask | ADV_STIGMA3.slotIdMask, true),
+	ADVANCED_STIGMAS(ADV_STIGMA1.slotIdMask | ADV_STIGMA2.slotIdMask | ADV_STIGMA3.slotIdMask | ADV_STIGMA4.slotIdMask | ADV_STIGMA5.slotIdMask
+		| ADV_STIGMA6.slotIdMask, true),
 
 	ALL_STIGMA(REGULAR_STIGMAS.slotIdMask | ADVANCED_STIGMAS.slotIdMask, true);
 

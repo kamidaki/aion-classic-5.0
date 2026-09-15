@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='utf-8'?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="800040000">
+		<!-- Tiamaranta Middle Tower 03 (Base 4413) -->
+		<base_spawn id="4413">
+			<occupier_template occupier="BALAUR">
+				<!-- Drakan Tower Flag -->
+				<spawn handler="FLAG" npc_id="802315">
+					<spot h="5" x="806.8389" y="2781.3525" z="267.5193" />
+				</spawn>
+				<!-- Drakan Watching Eye Core / Boss at Platform Top (Official 5.0 PCAP) -->
+				<spawn handler="BOSS" npc_id="274218">
+					<spot h="57" x="808.9779" y="2783.3589" z="338.9162" />
+				</spawn>
+				<!-- Drakan Chief Priest / Seeker at Platform Top -->
+				<spawn handler="SENTINEL" npc_id="274233" respawn_time="60">
+					<spot h="24" x="808.3000" y="2788.9000" z="339.0000" />
+				</spawn>
+				<!-- Windbox (Ascent geyser) and Mist -->
+				<spawn handler="MERCHANT" npc_id="802282">
+					<spot h="109" x="809.7103" y="2781.0024" z="267.5193" />
+				</spawn>
+				<spawn handler="MERCHANT" npc_id="802366">
+					<spot h="29" x="806.8730" y="2781.1350" z="267.5193" />
+				</spawn>
+				<!-- Drakan Guards: Fighters -->
+				<spawn handler="SENTINEL" npc_id="274228" respawn_time="60">
+					<spot h="24" x="793.7500" y="2780.0625" z="267.4004" />
+					<spot h="24" x="805.0865" y="2771.7681" z="267.4281" />
+					<spot h="24" x="805.1765" y="2793.8513" z="267.4280" />
+					<spot h="24" x="825.1227" y="2780.1941" z="261.8597" />
+					<spot h="24" x="800.5153" y="2785.9121" z="338.7912" />
+					<spot h="24" x="817.6887" y="2779.9917" z="338.7912" />
+				</spawn>
+				<!-- Drakan Guards: Priests -->
+				<spawn handler="SENTINEL" npc_id="274229" respawn_time="60">
+					<spot h="25" x="795.7500" y="2778.3440" z="266.5508" />
+					<spot h="25" x="812.7991" y="2768.8643" z="267.4281" />
+					<spot h="25" x="812.8890" y="2798.1975" z="267.4281" />
+					<spot h="25" x="823.1227" y="2773.3262" z="261.8702" />
+					<spot h="25" x="800.4458" y="2779.8433" z="338.7910" />
+				</spawn>
+				<!-- Drakan Guards: Wizards -->
+				<spawn handler="SENTINEL" npc_id="274230" respawn_time="60">
+					<spot h="25" x="795.7500" y="2790.1582" z="267.6526" />
+					<spot h="25" x="809.0000" y="2773.3125" z="267.5295" />
+					<spot h="25" x="809.0000" y="2788.4375" z="267.5295" />
+					<spot h="25" x="823.1227" y="2788.0071" z="261.8528" />
+					<spot h="25" x="817.6473" y="2785.8950" z="338.7912" />
+				</spawn>
+				<!-- Drakan Guards: Assassins -->
+				<spawn handler="SENTINEL" npc_id="274227" respawn_time="60">
+					<spot h="24" x="846.4758" y="2778.7222" z="258.2537" />
+					<spot h="24" x="847.3073" y="2781.8171" z="258.1685" />
+					<spot h="24" x="855.9433" y="2775.7969" z="256.3625" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Asmo Tower Flag -->
+				<spawn handler="FLAG" npc_id="802314">
+					<spot h="5" x="806.8389" y="2781.3525" z="267.5193" />
+				</spawn>
+				<!-- Asmo Watching Eye Core / Boss at Platform Top -->
+				<spawn handler="BOSS" npc_id="274213">
+					<spot h="57" x="808.9779" y="2783.3589" z="338.9162" />
+				</spawn>
+				<!-- Asmo Commander / Seeker at Platform Top -->
+				<spawn handler="SENTINEL" npc_id="274232" respawn_time="60">
+					<spot h="26" x="802.8435" y="2780.6953" z="338.9734" />
+				</spawn>
+				<!-- Teleport device, Windbox, Mist, Grave -->
+				<spawn handler="MERCHANT" npc_id="802456">
+					<spot h="71" x="790.5000" y="2780.7190" z="338.9572" />
+				</spawn>
+				<spawn handler="MERCHANT" npc_id="802282">
+					<spot h="109" x="809.7103" y="2781.0024" z="267.5193" />
+				</spawn>
+				<spawn handler="MERCHANT" npc_id="802366">
+					<spot h="29" x="806.8730" y="2781.1350" z="267.5193" />
+				</spawn>
+				<spawn handler="MERCHANT" npc_id="802222">
+					<spot h="81" x="808.7628" y="2768.6831" z="267.8321" />
+					<spot h="81" x="808.9446" y="2792.7283" z="267.8367" />
+				</spawn>
+				<!-- Asmo Guards: Fighters -->
+				<spawn handler="SENTINEL" npc_id="274224" respawn_time="60">
+					<spot h="23" x="793.7500" y="2780.6875" z="267.4004" />
+					<spot h="23" x="805.0865" y="2771.7681" z="267.4281" />
+					<spot h="23" x="805.1765" y="2793.7263" z="267.4280" />
+					<spot h="23" x="825.1227" y="2780.8191" z="261.8597" />
+					<spot h="23" x="800.5153" y="2785.5371" z="338.7912" />
+					<spot h="23" x="817.6887" y="2779.7417" z="338.7912" />
+				</spawn>
+				<!-- Asmo Guards: Priests -->
+				<spawn handler="SENTINEL" npc_id="274225" respawn_time="60">
+					<spot h="23" x="795.7500" y="2778.3440" z="266.5508" />
+					<spot h="23" x="812.7991" y="2768.3643" z="267.4281" />
+					<spot h="23" x="812.8890" y="2798.3225" z="267.4281" />
+					<spot h="23" x="823.1227" y="2773.3262" z="261.8702" />
+					<spot h="23" x="800.4458" y="2779.7183" z="338.7910" />
+				</spawn>
+				<!-- Asmo Guards: Wizards -->
+				<spawn handler="SENTINEL" npc_id="274226" respawn_time="60">
+					<spot h="23" x="795.7500" y="2790.6582" z="267.6526" />
+					<spot h="23" x="809.0000" y="2773.8125" z="267.5295" />
+					<spot h="23" x="809.0000" y="2788.1875" z="267.5295" />
+					<spot h="23" x="823.1227" y="2788.0071" z="261.8528" />
+					<spot h="23" x="817.6473" y="2785.6450" z="338.7912" />
+				</spawn>
+				<!-- Asmo Guards: Assassins -->
+				<spawn handler="SENTINEL" npc_id="274223" respawn_time="60">
+					<spot h="22" x="791.0283" y="2796.5906" z="268.7663" />
+					<spot h="22" x="791.3207" y="2767.1628" z="265.7477" />
+					<spot h="22" x="830.2500" y="2780.8125" z="260.9102" />
+					<spot h="22" x="846.3868" y="2778.6506" z="258.2626" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="ELYOS">
+				<!-- Elyos Tower Flag -->
+				<spawn handler="FLAG" npc_id="802313">
+					<spot h="5" x="806.8389" y="2781.3525" z="267.5193" />
+				</spawn>
+				<!-- Elyos Watching Eye Core / Boss at Platform Top -->
+				<spawn handler="BOSS" npc_id="274208">
+					<spot h="57" x="808.9779" y="2783.3589" z="338.9162" />
+				</spawn>
+				<!-- Elyos Commander / Seeker at Platform Top -->
+				<spawn handler="SENTINEL" npc_id="274231" respawn_time="60">
+					<spot h="26" x="802.8435" y="2780.6953" z="338.9734" />
+				</spawn>
+				<!-- Teleport device and Windbox -->
+				<spawn handler="MERCHANT" npc_id="802456">
+					<spot h="71" x="790.5000" y="2780.7190" z="338.9572" />
+				</spawn>
+				<spawn handler="MERCHANT" npc_id="802282">
+					<spot h="109" x="809.7103" y="2781.0024" z="267.5193" />
+				</spawn>
+				<spawn handler="MERCHANT" npc_id="802366">
+					<spot h="29" x="806.8730" y="2781.1350" z="267.5193" />
+				</spawn>
+				<!-- Elyos Guards: Fighters -->
+				<spawn handler="SENTINEL" npc_id="274220" respawn_time="60">
+					<spot h="23" x="793.7500" y="2780.6875" z="267.4004" />
+					<spot h="23" x="805.0865" y="2771.7681" z="267.4281" />
+					<spot h="23" x="805.1765" y="2793.7263" z="267.4280" />
+					<spot h="23" x="825.1227" y="2780.8191" z="261.8597" />
+					<spot h="23" x="800.5153" y="2785.5371" z="338.7912" />
+					<spot h="23" x="817.6887" y="2779.7417" z="338.7912" />
+				</spawn>
+				<!-- Elyos Guards: Priests -->
+				<spawn handler="SENTINEL" npc_id="274221" respawn_time="60">
+					<spot h="23" x="795.7500" y="2778.3440" z="266.5508" />
+					<spot h="23" x="812.7991" y="2768.3643" z="267.4281" />
+					<spot h="23" x="812.8890" y="2798.3225" z="267.4281" />
+					<spot h="23" x="823.1227" y="2773.3262" z="261.8702" />
+					<spot h="23" x="800.4458" y="2779.7183" z="338.7910" />
+				</spawn>
+				<!-- Elyos Guards: Wizards -->
+				<spawn handler="SENTINEL" npc_id="274222" respawn_time="60">
+					<spot h="23" x="795.7500" y="2790.6582" z="267.6526" />
+					<spot h="23" x="809.0000" y="2773.8125" z="267.5295" />
+					<spot h="23" x="809.0000" y="2788.1875" z="267.5295" />
+					<spot h="23" x="823.1227" y="2788.0071" z="261.8528" />
+					<spot h="23" x="817.6473" y="2785.6450" z="338.7912" />
+				</spawn>
+				<!-- Elyos Guards: Assassins -->
+				<spawn handler="SENTINEL" npc_id="274219" respawn_time="60">
+					<spot h="22" x="791.0283" y="2796.5906" z="268.7663" />
+					<spot h="22" x="791.3207" y="2767.1628" z="265.7477" />
+					<spot h="22" x="830.2500" y="2780.8125" z="260.9102" />
+					<spot h="22" x="846.3868" y="2778.6506" z="258.2626" />
+				</spawn>
+			</occupier_template>
+		</base_spawn>
+	</spawn_map>
+</spawns>

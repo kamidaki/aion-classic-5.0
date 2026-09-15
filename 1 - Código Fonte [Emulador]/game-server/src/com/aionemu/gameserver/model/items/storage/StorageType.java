@@ -20,6 +20,8 @@ public enum StorageType {
 	CASH_PET_BAG_26(41, 26, 6),
 	CASH_PET_BAG_32(42, 32, 6),
 	CASH_PET_BAG_34(43, 34, 6),
+	STIGMA(58, 12, 1), // Classic 5.0 Stigma window slots (6 normal + 6 greater)
+	STIGMA_ENCHANT(59, 2, 1), // Classic 5.0 Stigma enchant / synthesis slots
 	HOUSE_STORAGE_01(60, 9, 9), // Plain 1-Drawer Cabinet
 	HOUSE_STORAGE_02(61, 9, 9), // Simple 1-Drawer Cabinet
 	HOUSE_STORAGE_03(62, 9, 9), // Clean 1-Drawer Cabinet

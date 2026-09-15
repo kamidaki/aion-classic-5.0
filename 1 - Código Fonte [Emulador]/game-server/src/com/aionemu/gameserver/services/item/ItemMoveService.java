@@ -5,14 +5,22 @@ import static com.aionemu.gameserver.services.item.ItemPacketService.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import com.aionemu.gameserver.GameServer;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.Persistable.PersistentState;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.items.storage.IStorage;
 import com.aionemu.gameserver.model.items.storage.StorageType;
+import com.aionemu.gameserver.model.templates.item.Stigma;
+import com.aionemu.gameserver.model.templates.item.Stigma.StigmaKind;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_UPDATE_PLAYER_APPEARANCE;
 import com.aionemu.gameserver.services.LegionService;
+import com.aionemu.gameserver.services.StigmaService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
 /**
@@ -23,6 +31,68 @@ public class ItemMoveService {
 	private static final Logger log = LoggerFactory.getLogger(ItemMoveService.class);
 
 	public static void moveItem(Player player, int itemObjId, byte sourceStorageType, byte destinationStorageType, short slot) {
+		if (player.isTrading() || GameServer.isShuttingDownSoon()) {
+			if (GameServer.isShuttingDownSoon())
+				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_DISABLE("Shutdown Progress"));
+			return;
+		}
+
+		// Classic 5.0 Stigma window move: Cube (0) -> Stigma (58)
+		if (destinationStorageType == StorageType.STIGMA.getId()) {
+			Item item = player.getInventory().getItemByObjId(itemObjId);
+			if (item == null)
+				return;
+			if (!item.getItemTemplate().isStigma()) {
+				log.warn(player + " tried to move non-stigma item " + itemObjId + " to STIGMA storage");
+				sendItemUnlockPacket(player, item);
+				return;
+			}
+			long slotMask = getStigmaSlotMask(player, item, slot);
+			if (slotMask == 0) {
+				log.warn(player + " no available or valid stigma slot for item " + itemObjId + " (requested slot: " + slot + ")");
+				sendItemUnlockPacket(player, item);
+				return;
+			}
+			Item equipped = player.getEquipment().equipItem(itemObjId, slotMask);
+			if (equipped == null) {
+				sendItemUnlockPacket(player, item);
+			} else {
+				PacketSendUtility.broadcastPacket(player,
+					new SM_UPDATE_PLAYER_APPEARANCE(player.getObjectId(), player.getEquipment().getEquippedForAppearance()), true);
+			}
+			return;
+		}
+
+		// Classic 5.0 Stigma window move: Stigma (58) -> Cube (0) or between Stigma slots
+		if (sourceStorageType == StorageType.STIGMA.getId()) {
+			Item item = player.getEquipment().getEquippedItemByObjId(itemObjId);
+			if (item == null)
+				return;
+			if (destinationStorageType == StorageType.CUBE.getId()) {
+				if (!StigmaService.checkUnequip(player, item))
+					return;
+				Item resultItem = player.getEquipment().unEquipItem(itemObjId, item.getEquipmentSlot(), (byte) 0);
+				if (resultItem == null && player.getInventory().isFull()) {
+					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_UI_INVENTORY_FULL());
+					return;
+				}
+				PacketSendUtility.broadcastPacket(player,
+					new SM_UPDATE_PLAYER_APPEARANCE(player.getObjectId(), player.getEquipment().getEquippedForAppearance()), true);
+			} else if (destinationStorageType == StorageType.STIGMA.getId()) {
+				long targetMask = getStigmaSlotMask(player, item, slot);
+				if (targetMask != 0 && targetMask != item.getEquipmentSlot()) {
+					if (!StigmaService.checkUnequip(player, item))
+						return;
+					player.getEquipment().unEquipItem(itemObjId, item.getEquipmentSlot(), (byte) 0);
+					Item reequipped = player.getEquipment().equipItem(itemObjId, targetMask);
+					if (reequipped != null) {
+						PacketSendUtility.broadcastPacket(player,
+							new SM_UPDATE_PLAYER_APPEARANCE(player.getObjectId(), player.getEquipment().getEquippedForAppearance()), true);
+					}
+				}
+			}
+			return;
+		}
 		IStorage sourceStorage = player.getStorage(sourceStorageType);
 		if (sourceStorage == null) {
 			log.error(player + " tried to move itemObjId " + itemObjId + " from unknown sourceStorageType: " + sourceStorageType);
@@ -141,5 +211,19 @@ public class ItemMoveService {
 		sendItemDeletePacket(player, replaceStorage.getStorageType(), replaceItem, ItemDeleteType.MOVE);
 		sourceStorage.add(replaceItem);
 		replaceStorage.add(sourceItem);
+	}
+
+	private static long getStigmaSlotMask(Player player, Item item, short slot) {
+		Stigma stigma = item.getItemTemplate().getStigma();
+		boolean isGreater = stigma != null && stigma.getKind() == StigmaKind.GREATER;
+
+		if (slot >= 0 && slot <= 12) {
+			long requestedMask = StigmaService.getStigmaSlotMask(slot);
+			if (requestedMask != 0 && player.getEquipment().getEquippedItemBySlot(requestedMask) == null) {
+				return requestedMask;
+			}
+		}
+
+		return StigmaService.findFreeStigmaSlot(player, isGreater);
 	}
 }

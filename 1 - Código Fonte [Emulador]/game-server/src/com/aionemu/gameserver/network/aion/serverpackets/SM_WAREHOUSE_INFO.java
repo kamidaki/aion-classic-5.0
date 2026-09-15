@@ -54,6 +54,10 @@ public class SM_WAREHOUSE_INFO extends AionServerPacket {
 		ItemInfoBlob itemInfoBlob = ItemInfoBlob.getFullBlob(player, item);
 		itemInfoBlob.writeMe(getBuf());
 
-		writeH((int) (item.getEquipmentSlot() & 0xFFFF)); // 5.0: sem o byte de isCloth no item de warehouse
+		int slot = (int) (item.getEquipmentSlot() & 0xFFFF);
+		if (warehouseType == StorageType.STIGMA.getId()) {
+			slot = com.aionemu.gameserver.services.StigmaService.getStigmaSlotIndex(item.getEquipmentSlot());
+		}
+		writeH(slot); // 5.0: sem o byte de isCloth no item de warehouse
 	}
 }

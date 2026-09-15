@@ -16,8 +16,7 @@ Gerado: atributos (nome, texto, nivel, qualidade, preco, mask, grupo, restricoes
 modifiers (stats do equipamento e da manastone), weapon_stats, godstone e as acoes skilluse, dye, craftlearn,
 decompose, titleadd e cosmetic.
 NAO gerado e listado no relatorio:
-  - stigma: o StigmaService busca as skills pelo atributo group, que os skill_templates da 5.0 nao tem;
-    gerar hoje criaria stigmas que equipam sem conceder skill.
+  - stigma: gerado pelo fix_50_stigma.py (gain skills, requires e fragmentos do client_items); aqui ele e so preservado.
   - enchant (acao das manastones): o count varia pelo nivel e nao existe no cliente; o encaixe nao depende dele.
   - skilllearn, queststart, expandinventory, remodel, charge/improve, toypetspawn, adoptpet, assemble,
     instancetimeclear, uselimits, acquisition, disposition, tradein_list, inventory, idian: sem fonte confiavel.

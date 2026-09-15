@@ -127,9 +127,6 @@ public class Preview extends PlayerCommand {
 		if (previewItems.stream().anyMatch(item -> item.getEquipmentSlot() == ItemSlot.HELMET.getSlotIdMask())) {
 			display &= ~SM_CUSTOM_SETTINGS.HIDE_HELMET;
 		}
-		if (previewItems.stream().anyMatch(item -> item.getEquipmentSlot() == ItemSlot.PLUME.getSlotIdMask())) {
-			display &= ~SM_CUSTOM_SETTINGS.HIDE_PLUME;
-		}
 		PacketSendUtility.sendPacket(player, new SM_CUSTOM_SETTINGS(player.getObjectId(), 1, display, player.getPlayerSettings().getDeny()));
 		PacketSendUtility.sendPacket(player, new SM_UPDATE_PLAYER_APPEARANCE(player.getObjectId(), previewItems));
 		int switchRobotAnimationSeconds = 0;

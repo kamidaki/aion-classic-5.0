@@ -28988,6 +28988,20 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DEVAPASS_REWARD_INVENTORY_FULL = new SM_SYSTEM_MESSAGE(1401424);
 
+	/**
+	 * The Legion %1 from %0 has conquered %2.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_CAMP_GUILD_WIN_FORT(String raceName, String legionName, String baseName) {
+		return new SM_SYSTEM_MESSAGE(1403775, raceName, legionName, baseName);
+	}
+
+	/**
+	 * The Legion %2 from %1 has taken %0 from you.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_CAMP_GUILD_LOSE_FORT(String baseName, String raceName, String legionName) {
+		return new SM_SYSTEM_MESSAGE(1403776, baseName, raceName, legionName);
+	}
+
 	private int msgId;
 	private byte chatType;
 	private int senderObjId;

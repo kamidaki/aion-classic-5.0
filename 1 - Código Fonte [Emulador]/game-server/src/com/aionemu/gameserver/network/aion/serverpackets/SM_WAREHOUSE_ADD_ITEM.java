@@ -51,6 +51,10 @@ public class SM_WAREHOUSE_ADD_ITEM extends AionServerPacket {
 
 		ItemInfoBlob.getFullBlob(player, item).writeMe(getBuf());
 
-		writeH((int) (item.getEquipmentSlot() & 0xFFFF));
+		int slot = (int) (item.getEquipmentSlot() & 0xFFFF);
+		if (warehouseType == com.aionemu.gameserver.model.items.storage.StorageType.STIGMA.getId()) {
+			slot = com.aionemu.gameserver.services.StigmaService.getStigmaSlotIndex(item.getEquipmentSlot());
+		}
+		writeH(slot);
 	}
 }

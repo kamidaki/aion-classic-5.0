@@ -23,7 +23,7 @@ public class CasualBase extends Base<BaseLocation> {
 
 	@Override
 	protected int getBossSpawnDelay() {
-		return Rnd.get(100, 200) * 6000;
+		return 1000;
 	}
 
 	@Override

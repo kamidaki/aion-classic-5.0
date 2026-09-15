@@ -613,7 +613,7 @@ public class PlayerCommonData extends CreatureTemplate {
 		this.wardrobeSlot = wardrobeSlot;
 	}
 
-	private int advencedStigmaSlotSize = 11;
+	private int advencedStigmaSlotSize = 6;
 
 	public int getAdvencedStigmaSlotSize() {
 		return advencedStigmaSlotSize;

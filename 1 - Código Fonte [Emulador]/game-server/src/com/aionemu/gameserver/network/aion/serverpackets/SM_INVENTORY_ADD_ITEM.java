@@ -1,5 +1,6 @@
 package com.aionemu.gameserver.network.aion.serverpackets;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.aionemu.gameserver.model.gameobjects.Item;
@@ -19,6 +20,10 @@ public class SM_INVENTORY_ADD_ITEM extends AionServerPacket {
 	private final List<Item> items;
 	private Player player;
 	private ItemAddType addType;
+
+	public SM_INVENTORY_ADD_ITEM(Item item, Player player, ItemAddType addType) {
+		this(Collections.singletonList(item), player, addType);
+	}
 
 	public SM_INVENTORY_ADD_ITEM(List<Item> items, Player player, ItemAddType addType) {
 		this.player = player;

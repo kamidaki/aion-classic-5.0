@@ -12,4 +12,6 @@
 	<!-- Beluslan -->
 	<base_location id="2240" type="CASUAL" world="220040000" />
 	<base_location id="2241" type="CASUAL" world="220040000" />
+	<!-- Tiamaranta Mesa -->
+	<base_location id="4413" type="CASUAL" world="800040000" default_occupier="BALAUR" />
 </base_locations>

@@ -353,6 +353,10 @@ public final class PlayerEnterWorldService {
 			}
 			client.sendPacket(new SM_WAREHOUSE_INFO(null, i, 0, false, player));
 		}
+		// 5.0 Classic: Inicializa a janela de estigmas (Storage 58) e o slot de síntese/enchant (Storage 59)
+		List<Item> stigmaItems = player.getEquipment().getEquippedItemsAllStigma();
+		client.sendPacket(new SM_WAREHOUSE_INFO(stigmaItems, StorageType.STIGMA.getId(), 0, true, player));
+		client.sendPacket(new SM_WAREHOUSE_INFO(null, StorageType.STIGMA_ENCHANT.getId(), 0, true, player));
 	}
 
 	private static void sendItemInfos(AionConnection client, Player player) {

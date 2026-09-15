@@ -205,7 +205,7 @@ O emulador conta com um sistema de alta segurança integrado ao núcleo de rede 
 | `0x00CD` | `0x0037` | `CM_TARGET_SELECT` | Seleção ou troca de alvo em mira |
 | `0x00C8` | `0x003A` | `CM_GM_COMMAND_SEND` | Execução de comando administrativo |
 | `0x00C9` | `0x003B` | `CM_EMOTION` | Execução de emote, descanso ou sentar |
-| `0x0136` | `0x003C` | `CM_BROKER_SEARCH` | Pesquisa de itens no corretor de comércio |
+| `0x0136` | `0x003C` | `CM_REMOVE_STIGMA`| Desequipar / remover pedra de estigma (4 bytes) |
 | `0x01F3` | `0x0101` | `CM_GLOBAL_TRADE` | Comércio global unificado 5.0 |
 | `0x0222` | `0x0150` | `CM_CLIENT_PING_STATE`| Heartbeat contínuo de latência do cliente |
 

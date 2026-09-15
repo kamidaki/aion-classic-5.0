@@ -82,7 +82,21 @@ public class Equipment implements Persistable {
 
 		// Default slot if none specified
 		if (slot == 0) {
-			slot = itemTemplate.getItemSlot();
+			if (itemTemplate.isStigma()) {
+				slot = StigmaService.findFreeStigmaSlot(owner, itemTemplate.isGreaterStigma());
+				if (slot == 0) {
+					PacketSendUtility.sendPacket(owner, STR_STIGMA_SLOT_IS_NOT_OPENED());
+					return null;
+				}
+			} else {
+				slot = itemTemplate.getItemSlot();
+			}
+		} else if (itemTemplate.isStigma() && Long.bitCount(slot) > 1) {
+			slot = StigmaService.findFreeStigmaSlot(owner, itemTemplate.isGreaterStigma());
+			if (slot == 0) {
+				PacketSendUtility.sendPacket(owner, STR_STIGMA_SLOT_IS_NOT_OPENED());
+				return null;
+			}
 		}
 
 		// Resolve combo slot masks to specific single slots:
@@ -230,7 +244,7 @@ public class Equipment implements Persistable {
 			return null;
 		}
 
-		if (!StigmaService.notifyEquipAction(owner, item, slot))
+		if (!StigmaService.checkEquip(owner, item, slot))
 			return null;
 
 		if (itemTemplate.isSoulBound() && !item.isSoulBound()) {
@@ -275,6 +289,13 @@ public class Equipment implements Persistable {
 			item.setEquipped(true);
 			item.setEquipmentSlot(itemSlotToEquip);
 			ItemPacketService.updateItemAfterEquip(owner, item);
+			if (item.getItemTemplate().isStigma()) {
+				// Classic 5.0: ao equipar estigma, remove visualmente do Cubo e adiciona na janela de Estigmas (Storage 58)
+				PacketSendUtility.sendPacket(owner, new SM_DELETE_ITEM(item.getObjectId(), ItemDeleteType.MOVE));
+				PacketSendUtility.sendPacket(owner, new SM_WAREHOUSE_ADD_ITEM(item, StorageType.STIGMA.getId(), owner, ItemAddType.ALL_SLOT));
+				PacketSendUtility.sendPacket(owner, SM_CUBE_UPDATE.cubeSize(StorageType.CUBE, owner));
+				StigmaService.onEquip(owner, item);
+			}
 
 			// update stats
 			notifyItemEquipped(item);
@@ -413,10 +434,15 @@ public class Equipment implements Persistable {
 				PacketSendUtility.sendPacket(owner, new SM_EMOTION(owner, EmotionType.POWERSHARD_OFF, 0, 0));
 			}
 
-			if (itemToUnequip.getItemTemplate().isStigma())
-				StigmaService.removeStigmaSkills(owner, itemToUnequip.getItemTemplate().getStigma(), itemToUnequip.getEnchantLevel(), true);
-
 			unEquip(itemToUnequip.getEquipmentSlot());
+
+			if (itemToUnequip.getItemTemplate().isStigma()) { // official order: S 0x1D with the empty slot, then the skill messages and removals
+				PacketSendUtility.sendPacket(owner, new SM_DELETE_WAREHOUSE_ITEM(StorageType.STIGMA.getId(), itemToUnequip.getObjectId(), ItemDeleteType.MOVE));
+				PacketSendUtility.sendPacket(owner, new SM_INVENTORY_ADD_ITEM(itemToUnequip, owner, ItemAddType.ALL_SLOT));
+				PacketSendUtility.sendPacket(owner, new SM_INVENTORY_UPDATE_ITEM(owner, itemToUnequip, ItemUpdateType.EQUIP_UNEQUIP));
+				PacketSendUtility.sendPacket(owner, SM_CUBE_UPDATE.cubeSize(StorageType.CUBE, owner));
+				StigmaService.removeStigmaSkills(owner, itemToUnequip, true);
+			}
 
 			return itemToUnequip;
 		}
@@ -632,6 +658,10 @@ public class Equipment implements Persistable {
 		return false;
 	}
 
+	public Item getEquippedItemBySlot(long slot) {
+		return equipment.get(slot);
+	}
+
 	public Item getEquippedItemByObjId(int itemObjId) {
 		synchronized (equipment) {
 			for (Item item : equipment.values()) {
@@ -760,6 +790,11 @@ public class Equipment implements Persistable {
 			return;
 		}
 		if (!checkDualWieldRestriction(item, item.getEquipmentSlot())) {
+			putItemBackToInventory(item);
+			return;
+		}
+		if (item.getEquipmentSlot() == 0 || ItemSlot.getSlotsFor(item.getEquipmentSlot()).length == 0) { // e.g. stigmas saved in the 4.8 slot bits
+			log.warn("Unknown equipment slot " + item.getEquipmentSlot() + " for " + item + " of " + owner);
 			putItemBackToInventory(item);
 			return;
 		}

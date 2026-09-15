@@ -13,6 +13,7 @@ import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_UPDATE_PLAYER_APPEARANCE;
 import com.aionemu.gameserver.restrictions.PlayerRestrictions;
+import com.aionemu.gameserver.services.StigmaService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
 /**
@@ -60,8 +61,11 @@ public class CM_EQUIP_ITEM extends AionClientPacket {
 				resultItem = equipment.equipItem(itemObjId, slotRead, subSlot);
 				break;
 			case 1:
+				Item toUnequip = equipment.getEquippedItemByObjId(itemObjId);
+				if (toUnequip != null && toUnequip.getItemTemplate().isStigma() && !StigmaService.checkUnequip(activePlayer, toUnequip))
+					break;
 				resultItem = equipment.unEquipItem(itemObjId, slotRead, subSlot);
-				if (resultItem == null)
+				if (resultItem == null && activePlayer.getInventory().isFull())
 					PacketSendUtility.sendPacket(activePlayer, SM_SYSTEM_MESSAGE.STR_UI_INVENTORY_FULL());
 				break;
 			case 2:
