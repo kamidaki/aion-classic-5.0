@@ -48,7 +48,16 @@ public class SummonSkillAreaEffect extends SummonServantEffect {
 					tickDelay = 5000;
 					spawnDuration = 9;
 				}
+				case "RB_LIGHT_ICEAGE", "RB_DARK_ICEAGE", "RB_ICEAGE" -> {
+					spawnDuration = 10;
+					tickDelay = 2000;
+				}
 			}
+		}
+		String stack = effect.getSkillTemplate().getStack();
+		if (stack != null && (stack.contains("ICEAGE") || stack.contains("IceAge"))) {
+			spawnDuration = 10;
+			tickDelay = 2000;
 		}
 
 		Servant servant = spawnServant(effect, spawnDuration, NpcObjectType.SKILLAREA, x, y, z);

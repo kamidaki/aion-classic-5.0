@@ -456,8 +456,8 @@ public abstract class AbstractQuestHandler {
 					QuestState qs2 = player.getQuestStateList().getQuestState(questId);
 					if (qs2 != null && qs2.getStatus() == QuestStatus.REWARD) { // TODO make sure that this npc is the end npc
 						env.setQuestId(questId);
-						env.setDialogActionId(DialogAction.USE_OBJECT); // show default dialog (reward selection for next quest)
-						return QuestEngine.getInstance().onDialog(new QuestEnv(npc, player, questId, DialogAction.USE_OBJECT));
+						env.setDialogActionId(DialogAction.QUEST_SELECT); // show default dialog (reward selection for next quest)
+						return QuestEngine.getInstance().onDialog(new QuestEnv(npc, player, questId, DialogAction.QUEST_SELECT));
 					} else if (!npcHasActiveQuest && qs2 != null && qs2.getStatus() == QuestStatus.START) {
 						boolean isQuestStartNpc = questNpc.getOnQuestStart().contains(questId);
 						if (!isQuestStartNpc || DataManager.QUEST_DATA.getQuestById(questId).isMission() && qs2.getQuestVars().getQuestVars() == 0)
@@ -491,6 +491,10 @@ public abstract class AbstractQuestHandler {
 				case SET_SUCCEED: // report to pre-end npc (another npc is actually responsible for rewarding, so close this window)
 					return closeDialogWindow(env);
 				case USE_OBJECT: // start talking to npc
+					// Classic 5.0 captures: talking to a dialog npc always answers its menu (page 10), which lists this quest next to the npc
+					// functions; the reward page only opens when the player picks the quest (QUEST_SELECT)
+					if (env.getVisibleObject() instanceof Npc talkedNpc && talkedNpc.getObjectTemplate().isDialogNpc())
+						return false;
 				case QUEST_SELECT: // start talking to npc
 				case SELECT_QUEST_REWARD: // report to end npc
 				case CHECK_USER_HAS_QUEST_ITEM: // report to end npc with collect item checks

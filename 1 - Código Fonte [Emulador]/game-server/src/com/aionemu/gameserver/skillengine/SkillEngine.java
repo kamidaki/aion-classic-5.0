@@ -56,8 +56,16 @@ public class SkillEngine {
 	public Skill getSkillFor(Player player, SkillTemplate template, VisibleObject firstTarget) {
 		// player doesn't have such skill and ist not provoked
 		if (template.getActivationAttribute() != ActivationAttribute.PROVOKED) {
-			if (!player.getSkillList().isSkillPresent(template.getSkillId()))
+			if (!player.getSkillList().isSkillPresent(template.getSkillId())) {
+				if (template.isContextOrForteSkill()) {
+					SkillTemplate baseTemplate = template.getBaseContextSkillTemplate();
+					if (baseTemplate != null && player.getSkillList().isSkillPresent(baseTemplate.getSkillId())) {
+						int baseLevel = player.getSkillList().getSkillLevel(baseTemplate.getSkillId());
+						return getSkillFor(player, template, firstTarget, baseLevel > 0 ? baseLevel : 1);
+					}
+				}
 				return null;
+			}
 		}
 
 		Creature target = null;

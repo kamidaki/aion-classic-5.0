@@ -1,127 +1,124 @@
 Corpo gerado para skill_templates vazios a partir do client_skills 5.0, medido no gabarito (metade de teste).
 
-Estrutura: properties 67.3% | startconditions 87.6% | useconditions 97.7% | actions 98.2% | motion (nome) 98.9%
-85 de 829 stubs ganham corpo (jogaveis 52/231 | ALL 0/27 | fora da arvore 33/571).
+Estrutura: properties 67.7% | startconditions 87.8% | useconditions 97.7% | actions 98.2% | motion (nome) 99.0%
+11 de 744 stubs ganham corpo (jogaveis 2/179 | ALL 0/27 | fora da arvore 9/538).
 Limiares por tipo de efeito: enums+stats >= 85%, presenca >= 70%, numeros >= 70%.
 
 tipo de efeito (cliente)           elemento                teste  enums+stats  presenca  numeros  usado
-statup                             statup                   1310       95.5%    97.1%   98.5%  sim (stubs com esse tipo: 283)
-blending                           -                           0        0.0%     0.0%    0.0%  sim (stubs com esse tipo: 95)
-spellatk_instant                   spellatkinstant           927       99.8%    97.4%   96.6%  sim (stubs com esse tipo: 92)
-statdown                           statdown                  293       98.0%    98.0%   98.9%  sim (stubs com esse tipo: 89)
-shapechange                        polymorph                 175      100.0%    97.7%   94.1%  sim (stubs com esse tipo: 85)
-boostskillcastingtime              boostskillcastingtime      16       56.2%    81.2%   89.8%  nao (stubs com esse tipo: 78)
+statup                             statup                   1319       93.9%    97.4%   98.7%  sim (stubs com esse tipo: 275)
+shapechange                        polymorph                 180       99.4%    95.0%   94.4%  sim (stubs com esse tipo: 85)
+boostskillcastingtime              boostskillcastingtime      17       70.6%    82.4%   89.1%  nao (stubs com esse tipo: 78)
 summontrap                         summontrap                 35      100.0%     5.7%  100.0%  nao (stubs com esse tipo: 59)
-provoker                           provoker                  130       99.2%    94.6%   99.2%  sim (stubs com esse tipo: 52)
-procheal_instant                   prochealinstant             6      100.0%   100.0%   28.6%  nao (stubs com esse tipo: 46)
-procmpheal_instant                 procmphealinstant           9      100.0%    55.6%   64.3%  nao (stubs com esse tipo: 37)
-deboosthealamount                  deboostheal                12        0.0%    58.3%  100.0%  nao (stubs com esse tipo: 34)
-noreducespellatk_instant           noreducespellatk            9       77.8%    22.2%  100.0%  nao (stubs com esse tipo: 33)
-skillatk_instant                   skillatk                  991      100.0%    95.2%   94.8%  sim (stubs com esse tipo: 32)
+spellatk_instant                   spellatkinstant           912       99.7%    97.8%   96.4%  sim (stubs com esse tipo: 50)
+procheal_instant                   prochealinstant            11      100.0%    45.5%   28.6%  nao (stubs com esse tipo: 46)
+procmpheal_instant                 procmphealinstant           7      100.0%     0.0%  100.0%  nao (stubs com esse tipo: 37)
+statdown                           statdown                  387       97.2%    97.9%   99.1%  sim (stubs com esse tipo: 36)
+deboosthealamount                  deboostheal                13        0.0%    38.5%  100.0%  nao (stubs com esse tipo: 34)
+provoker                           provoker                  139      100.0%    92.1%   98.8%  sim (stubs com esse tipo: 34)
+noreducespellatk_instant           noreducespellatk           10       80.0%    50.0%   87.5%  nao (stubs com esse tipo: 33)
+skillatk_instant                   skillatk                  991      100.0%    95.6%   94.9%  sim (stubs com esse tipo: 32)
 weaponstatboost                    weaponstatboost             4       75.0%    50.0%  100.0%  nao (stubs com esse tipo: 24)
-sanctuary                          sanctuary                  14       85.7%    50.0%   77.8%  nao (stubs com esse tipo: 20)
+sanctuary                          sanctuary                  13       69.2%    61.5%   40.0%  nao (stubs com esse tipo: 20)
 drboost                            drboost                     2        0.0%     0.0%  100.0%  nao (stubs com esse tipo: 19)
-spellatk                           spellatk                  153      100.0%    96.1%   98.4%  sim (stubs com esse tipo: 18)
-mpattack_instant                   mpattackinstant            28      100.0%    89.3%   96.9%  sim (stubs com esse tipo: 17)
-deform                             deform                     57       98.2%    96.5%   97.7%  sim (stubs com esse tipo: 16)
-xpboost                            xpboost                     7        0.0%    85.7%  100.0%  nao (stubs com esse tipo: 16)
-statboost                          statboost                 189       96.3%    99.5%   99.8%  sim (stubs com esse tipo: 15)
-hide                               hide                       22       18.2%    81.8%   99.0%  nao (stubs com esse tipo: 15)
-movelocation                       -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 15)
+mpattack_instant                   mpattackinstant            31      100.0%    71.0%  100.0%  sim (stubs com esse tipo: 17)
+deform                             deform                     67       97.0%    91.0%   97.8%  sim (stubs com esse tipo: 16)
+spellatk                           spellatk                  164      100.0%    95.7%   98.6%  sim (stubs com esse tipo: 16)
+xpboost                            xpboost                     7        0.0%   100.0%  100.0%  nao (stubs com esse tipo: 16)
+statboost                          statboost                 183       96.2%    99.5%   99.8%  sim (stubs com esse tipo: 15)
+hide                               hide                       19       26.3%    73.7%   94.9%  nao (stubs com esse tipo: 15)
+movelocation                       movelocation                0        0.0%     0.0%  100.0%  nao (stubs com esse tipo: 15)
 onetimeboostskillattack            onetimeboostskillattack      3      100.0%    33.3%   78.6%  nao (stubs com esse tipo: 15)
-fear                               fear                       13      100.0%    46.2%   95.0%  nao (stubs com esse tipo: 14)
-snare                              snare                     171      100.0%    95.9%   97.8%  sim (stubs com esse tipo: 13)
-shield                             shield                    125       92.8%    70.4%   89.6%  sim (stubs com esse tipo: 13)
-polymorph                          polymorph                  10       80.0%    60.0%   93.9%  nao (stubs com esse tipo: 13)
-delayedskill                       delayedskill                1        0.0%     0.0%  100.0%  nao (stubs com esse tipo: 12)
+blending                           blending                   38      100.0%    94.7%  100.0%  sim (stubs com esse tipo: 15)
+fear                               fear                       29       48.3%    37.9%   94.9%  nao (stubs com esse tipo: 14)
+snare                              snare                     163      100.0%    96.9%   99.1%  sim (stubs com esse tipo: 13)
+shield                             shield                    112       93.8%    69.6%   91.1%  nao (stubs com esse tipo: 13)
+polymorph                          polymorph                   7       85.7%    42.9%  100.0%  nao (stubs com esse tipo: 13)
+delayedskill                       delayedskill                0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 12)
 1                                  -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 12)
 backdashatk                        backdash                    3      100.0%    66.7%  100.0%  nao (stubs com esse tipo: 11)
-skilllauncher                      skilllauncher              77      100.0%    98.7%  100.0%  sim (stubs com esse tipo: 11)
-search                             search                      7      100.0%    28.6%  100.0%  nao (stubs com esse tipo: 11)
-openaerial                         openaerial                  2       50.0%     0.0%  100.0%  nao (stubs com esse tipo: 11)
+skilllauncher                      skilllauncher              79      100.0%    97.5%  100.0%  sim (stubs com esse tipo: 11)
+search                             search                      5      100.0%    80.0%   94.1%  sim (stubs com esse tipo: 11)
+openaerial                         openaerial                  0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 11)
 absolutesnare                      -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 10)
 apboost                            -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 10)
-convertheal                        convertheal                 0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 10)
+convertheal                        -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 10)
 summontotem                        summontotem                 2      100.0%     0.0%  100.0%  nao (stubs com esse tipo: 10)
-mpheal                             mpheal                     22      100.0%    90.9%   88.9%  sim (stubs com esse tipo: 10)
+mpheal                             mpheal                     24      100.0%    95.8%   90.5%  sim (stubs com esse tipo: 10)
 summonservant                      summonservant              20      100.0%     0.0%  100.0%  nao (stubs com esse tipo: 10)
 statsynergy                        -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 10)
 boosthate                          hostileup                   6       83.3%     0.0%  100.0%  nao (stubs com esse tipo: 9)
 control                            -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 9)
 summonskillarea                    summonskillarea             6       83.3%    83.3%   77.3%  nao (stubs com esse tipo: 9)
-silence                            silence                    46      100.0%   100.0%   99.6%  sim (stubs com esse tipo: 8)
-bind                               bind                       32      100.0%    96.9%  100.0%  sim (stubs com esse tipo: 8)
+silence                            silence                    37      100.0%    94.6%   97.7%  sim (stubs com esse tipo: 8)
+bind                               bind                       25      100.0%    96.0%   98.3%  sim (stubs com esse tipo: 8)
 extractgatherpointboost            -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 8)
-stun                               stun                      209      100.0%    96.2%   98.8%  sim (stubs com esse tipo: 7)
+stun                               stun                      208      100.0%    97.1%   98.6%  sim (stubs com esse tipo: 7)
 onetimeboostskillcritical          onetimeboostskillcritical      4      100.0%    50.0%  100.0%  nao (stubs com esse tipo: 7)
 mpatkdrain_instant                 -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 7)
-heal                               heal                       70       95.7%    81.4%   95.8%  sim (stubs com esse tipo: 7)
+heal                               heal                       68       97.1%    80.9%   97.1%  sim (stubs com esse tipo: 7)
 gatherpointboost                   -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 7)
-boostdroprate                      boostdroprate               9        0.0%   100.0%  100.0%  nao (stubs com esse tipo: 7)
+boostdroprate                      boostdroprate               9        0.0%    88.9%  100.0%  nao (stubs com esse tipo: 7)
 blinkatk                           -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 6)
-boostcontextskill                  -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 6)
+boostcontextskill                  boostcontextskill           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 6)
 evade                              evade                       0        0.0%     0.0%  100.0%  nao (stubs com esse tipo: 5)
 boostskillcost                     boostskillcost              1      100.0%   100.0%  100.0%  nao (stubs com esse tipo: 5)
 boostspellattackeffect             boostspellattack            4        0.0%    25.0%  100.0%  nao (stubs com esse tipo: 5)
-mpheal_instant                     mphealinstant              57      100.0%    98.2%   91.8%  sim (stubs com esse tipo: 4)
-wpn_mastery                        wpnmastery                 45       95.6%    91.1%  100.0%  sim (stubs com esse tipo: 4)
-dispel                             dispel                     70       98.6%    98.6%  100.0%  sim (stubs com esse tipo: 4)
-dispelbuffcounteratk               dispelbuffcounteratk        6       50.0%   100.0%  100.0%  nao (stubs com esse tipo: 4)
-curse                              curse                       8        0.0%    50.0%   91.7%  nao (stubs com esse tipo: 4)
+wpn_mastery                        wpnmastery                 44       95.5%    90.9%  100.0%  sim (stubs com esse tipo: 4)
+dispel                             dispel                     70      100.0%    91.4%  100.0%  sim (stubs com esse tipo: 4)
+dispelbuffcounteratk               dispelbuffcounteratk        8       37.5%    75.0%  100.0%  nao (stubs com esse tipo: 4)
+curse                              curse                       7        0.0%    71.4%   97.1%  nao (stubs com esse tipo: 4)
 radarangle                         -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 4)
 deathtrialstate                    -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 4)
 combinepointboost                  -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 4)
-summonfunctionalnpc                summonfunctionalnpc         3       33.3%   100.0%  100.0%  nao (stubs com esse tipo: 4)
+summonfunctionalnpc                summonfunctionalnpc         2        0.0%   100.0%  100.0%  nao (stubs com esse tipo: 4)
 questexpboost                      -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 4)
-alwaysresist                       alwaysresist               11      100.0%   100.0%   90.7%  sim (stubs com esse tipo: 3)
+alwaysresist                       alwaysresist               12      100.0%   100.0%   91.5%  sim (stubs com esse tipo: 3)
 flyboost                           -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 3)
 recall_instant                     recallinstant               0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 3)
-dpheal_instant                     dphealinstant               2      100.0%   100.0%  100.0%  sim (stubs com esse tipo: 3)
-heal_instant                       healinstant               142       99.3%    97.9%   89.2%  sim (stubs com esse tipo: 3)
+mpheal_instant                     mphealinstant              65       98.5%    98.5%   92.0%  sim (stubs com esse tipo: 3)
 onetimeboosthealeffect             -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 3)
-slow                               slow                       47      100.0%    91.5%   99.2%  sim (stubs com esse tipo: 3)
-movebehindatk                      movebehind                  8      100.0%   100.0%   87.5%  sim (stubs com esse tipo: 3)
-procatk_instant                    procatk_instant            52      100.0%    94.2%   95.5%  sim (stubs com esse tipo: 3)
-dispelnpcbuff                      dispelnpcbuff               3      100.0%    66.7%  100.0%  nao (stubs com esse tipo: 3)
-targetteleport                     targetteleport              3       66.7%    33.3%  100.0%  nao (stubs com esse tipo: 3)
+slow                               slow                       49      100.0%    95.9%   99.6%  sim (stubs com esse tipo: 3)
+movebehindatk                      movebehind                  4      100.0%   100.0%  100.0%  sim (stubs com esse tipo: 3)
+procatk_instant                    procatk_instant            49      100.0%   100.0%   96.5%  sim (stubs com esse tipo: 3)
+dispelnpcbuff                      dispelnpcbuff               4      100.0%    25.0%  100.0%  nao (stubs com esse tipo: 3)
+targetteleport                     targetteleport              3       33.3%    66.7%  100.0%  nao (stubs com esse tipo: 3)
 intervalskill                      -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 2)
 dummy                              -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 2)
-root                               root                       68      100.0%    72.1%  100.0%  sim (stubs com esse tipo: 2)
+root                               root                       72      100.0%    65.3%  100.0%  sim (stubs com esse tipo: 2)
 caseheal                           -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 2)
-skillcooltimereset                 skillcooltimereset         22      100.0%    86.4%  100.0%  sim (stubs com esse tipo: 2)
 resurrectbase                      resurrectbase               0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 2)
-paralyze                           paralyze                   52      100.0%    82.7%   96.0%  sim (stubs com esse tipo: 2)
-magiccounteratk                    magiccounteratk             2      100.0%   100.0%  100.0%  sim (stubs com esse tipo: 2)
-weaponstatup                       weaponstatup               16      100.0%    75.0%   89.5%  sim (stubs com esse tipo: 2)
+paralyze                           paralyze                   44      100.0%    88.6%   97.4%  sim (stubs com esse tipo: 2)
+weaponstatup                       weaponstatup               14      100.0%    78.6%   90.2%  sim (stubs com esse tipo: 2)
 deathtriggerbuff                   -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 2)
-spellatkdrain                      spellatkdrain               1      100.0%     0.0%  100.0%  nao (stubs com esse tipo: 2)
-noresurrectpenalty                 -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 2)
-nodeathpenalty                     -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 2)
+heal_instant                       healinstant               150      100.0%    98.0%   90.3%  sim (stubs com esse tipo: 2)
+spellatkdrain                      spellatkdrain               0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 2)
+noresurrectpenalty                 noresurrectpenalty          0        0.0%     0.0%  100.0%  nao (stubs com esse tipo: 2)
+nodeathpenalty                     nodeathpenalty              0        0.0%     0.0%  100.0%  nao (stubs com esse tipo: 2)
 stumble                            -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 2)
-mpattack                           mpattack                   16       75.0%    75.0%   99.0%  nao (stubs com esse tipo: 2)
-fpheal_instant                     fphealinstant               2      100.0%   100.0%  100.0%  sim (stubs com esse tipo: 2)
+mpattack                           mpattack                   19       63.2%    78.9%   95.8%  nao (stubs com esse tipo: 2)
 dptransfer                         -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
 cannon                             -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
 activate_enslave                   -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
 petrification                      -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
 absoluteslow                       -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
-blind                              blind                      34       97.1%    85.3%   97.3%  sim (stubs com esse tipo: 1)
-dispelbuff                         dispelbuff                 15      100.0%    40.0%  100.0%  nao (stubs com esse tipo: 1)
+blind                              blind                      35      100.0%    88.6%   96.4%  sim (stubs com esse tipo: 1)
+dispelbuff                         dispelbuff                 12      100.0%    83.3%  100.0%  sim (stubs com esse tipo: 1)
 shadowmove                         shadowmove                  0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
 buffbind                           buffbind                    0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
 buffsilence                        buffsilence                 0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
 condskilllauncher                  condskilllauncher           1      100.0%   100.0%  100.0%  nao (stubs com esse tipo: 1)
-hostileup                          hostileup                  63      100.0%   100.0%   95.5%  sim (stubs com esse tipo: 1)
+hostileup                          hostileup                  58      100.0%   100.0%   95.2%  sim (stubs com esse tipo: 1)
 classpointheal_instant             classpointhealinstant       3      100.0%   100.0%  100.0%  sim (stubs com esse tipo: 1)
 targetlock                         -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
 stagger                            -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
 procdpheal_instant                 -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
 procmpatkdrain_instant             -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
-dashatk                            dash                       33      100.0%    97.0%  100.0%  sim (stubs com esse tipo: 1)
-dispeldebuff                       dispeldebuff               26      100.0%    88.5%  100.0%  sim (stubs com esse tipo: 1)
-spellatkdrain_instant              spellatkdraininstant       54       96.3%    87.0%   94.6%  sim (stubs com esse tipo: 1)
-fpheal                             fpheal                      0        0.0%     0.0%  100.0%  nao (stubs com esse tipo: 1)
-dpheal                             dpheal                      0        0.0%     0.0%  100.0%  nao (stubs com esse tipo: 1)
+dashatk                            dash                       38      100.0%    97.4%  100.0%  sim (stubs com esse tipo: 1)
+dispeldebuff                       dispeldebuff               19      100.0%    94.7%  100.0%  sim (stubs com esse tipo: 1)
+fpheal_instant                     fphealinstant               4       50.0%    75.0%  100.0%  nao (stubs com esse tipo: 1)
+fpheal                             fpheal                      0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
+dpheal_instant                     dphealinstant               2      100.0%    50.0%   66.7%  nao (stubs com esse tipo: 1)
+dpheal                             dpheal                      0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
 
 Stubs que continuam vazios, por tipo que faltou:
      77  boostskillcastingtime
@@ -139,11 +136,11 @@ Stubs que continuam vazios, por tipo que faltou:
      15  movelocation
      15  onetimeboostskillattack
      14  fear
+     13  shield
      13  polymorph
      12  delayedskill
      12  1
      11  backdashatk
-     11  search
      11  openaerial
      10  apboost
      10  convertheal
@@ -191,7 +188,6 @@ Stubs que continuam vazios, por tipo que faltou:
       2  stumble
       1  dptransfer
       1  cannon
-      1  dispelbuff
       1  shadowmove
       1  buffbind
       1  buffsilence
@@ -206,91 +202,19 @@ Stubs que continuam vazios, por tipo que faltou:
       1  absoluteslow
       1  snare (stat ou valor que o gabarito nao tem)
       1  fpheal
+      1  fpheal_instant
       1  dpheal
+      1  dpheal_instant
 
 Skills que ganharam corpo:
-    2702  SkillCooltimeReset_TEST              fora da arvore  skillcooltimereset dpheal_instant heal_instant mpheal_instant
-    3221  LU_BlendA_G1                         jogavel         spellatk_instant statdown blending
-    3222  LU_BlendA_G2                         jogavel         spellatk_instant statdown blending
-    3223  LU_BlendA_G3                         jogavel         spellatk_instant statdown blending
-    3224  LU_BlendA_G4                         jogavel         spellatk_instant statdown blending
-    3225  LU_BlendA_G5                         jogavel         spellatk_instant statdown blending
-    3226  LU_BlendA_G6                         jogavel         spellatk_instant statdown blending
-    3227  LU_BlendB_G1                         jogavel         spellatk_instant statdown blending
-    3228  LU_BlendB_G2                         jogavel         spellatk_instant statdown blending
-    3229  LU_BlendB_G3                         jogavel         spellatk_instant statdown blending
-    3230  LU_BlendB_G4                         jogavel         spellatk_instant statdown blending
-    3231  LU_BlendB_G5                         jogavel         spellatk_instant statdown blending
-    3232  LU_BlendB_G6                         jogavel         spellatk_instant statdown blending
-    3233  LU_BlendC_G1                         jogavel         spellatk_instant statdown blending
-    3234  LU_BlendC_G2                         jogavel         spellatk_instant statdown blending
-    3235  LU_BlendC_G3                         jogavel         spellatk_instant statdown blending
-    3236  LU_BlendC_G4                         jogavel         spellatk_instant statdown blending
-    3237  LU_BlendC_G5                         jogavel         spellatk_instant statdown blending
-    3238  LU_BlendC_G6                         jogavel         spellatk_instant statdown blending
-    3239  LU_BlendE_G1                         jogavel         spellatk_instant statdown blending
-    3240  LU_BlendE_G2                         jogavel         spellatk_instant statdown blending
-    3241  LU_BlendE_G3                         jogavel         spellatk_instant statdown blending
-    3242  LU_BlendE_G4                         jogavel         spellatk_instant statdown blending
-    3243  LU_BlendE_G5                         jogavel         spellatk_instant statdown blending
-    3244  LU_BlendE_G6                         jogavel         spellatk_instant statdown blending
-    3245  LU_BurstE_G1                         jogavel         spellatk_instant statdown blending
-    3246  LU_BurstE_G2                         jogavel         spellatk_instant statdown blending
-    3247  LU_BurstE_G3                         jogavel         spellatk_instant statdown blending
-    3248  LU_BurstE_G4                         jogavel         spellatk_instant statdown blending
-    3249  LU_BurstE_G5                         jogavel         spellatk_instant statdown blending
-    3250  LU_BurstE_G6                         jogavel         spellatk_instant statdown blending
-    3621  EL_PlagueSwam_G3                     jogavel         spellatk_instant spellatk magiccounteratk
-    3638  WI_CounterMagic_G4                   jogavel         magiccounteratk
-    3748  LU_BlendA_G7                         jogavel         spellatk_instant statdown blending
-    3749  LU_BlendB_G7                         jogavel         spellatk_instant statdown blending
-    3750  LU_BlendC_G7                         jogavel         spellatk_instant statdown blending
-    3751  LU_BlendE_G7                         jogavel         spellatk_instant statdown blending
-    3752  LU_BurstE_G7                         jogavel         spellatk_instant statdown blending
-    3842  SkillSkin_LU_BlendA_G7               jogavel         spellatk_instant statdown blending
-    4266  LU_BlendB_G8                         jogavel         spellatk_instant statdown blending
-    4267  LU_BlendA_G8                         jogavel         spellatk_instant statdown blending
-    4362  LU_BlendA_Start_G1                   fora da arvore  spellatk_instant statdown blending
-    4446  RB_Heal_G1                           jogavel         provoker blending
-    4447  RB_ArAllUp_G1                        jogavel         provoker blending
-    4450  RB_Dark_Weakening_G1                 jogavel         provoker blending
-    4451  RB_Silence_G1                        jogavel         provoker blending
-    4454  RB_Dispel_G1                         jogavel         provoker blending
-    4455  RB_Bind_G1                           jogavel         provoker blending
-    4462  RB_Heal_G2                           jogavel         provoker blending
-    4463  RB_ArAllUp_G2                        jogavel         provoker blending
-    4466  RB_Dark_Weakening_G2                 jogavel         provoker blending
-    4467  RB_Silence_G2                        jogavel         provoker blending
-    4470  RB_Dispel_G2                         jogavel         provoker blending
-    4471  RB_Bind_G2                           jogavel         provoker blending
-    4478  RB_Heal_G3                           fora da arvore  provoker blending
-    4479  RB_ArAllUp_G3                        fora da arvore  provoker blending
-    4482  RB_Dark_Weakening_G3                 fora da arvore  provoker blending
-    4483  RB_Silence_G3                        fora da arvore  provoker blending
-    4486  RB_Dispel_G3                         fora da arvore  provoker blending
-    4487  RB_Bind_G3                           fora da arvore  provoker blending
-    9135  item_skill_proc_ArmorBreak_e1_60a    fora da arvore  statdown blending
-    9185  GU_ArcaneDischarge_G1_Proc           fora da arvore  statup blending
-    9187  GU_ArcaneDischarge_G2_Proc           fora da arvore  statup blending
-    9189  GU_ArcaneDischarge_G3_Proc           fora da arvore  statup blending
-    9644  RB_Proc_Stonebody                    fora da arvore  statup blending
-   19918  IDDragonlord_Tahabata_PowerATK       fora da arvore  spellatk_instant statdown blending
-   19945  IDDragonlord_NoShowNPC_Tahabata_Poin fora da arvore  spellatk_instant spellatk blending
-   20586  LDF3_01_FP_plus                      fora da arvore  fpheal_instant
-   20907  Twin_Dragon_Salvation1               fora da arvore  statdown blending
-   20912  Twin_Dragon_Salvation2               fora da arvore  statdown blending
-   20913  Twin_Dragon_Salvation3               fora da arvore  statdown blending
-   20914  Twin_Dragon_Salvation4               fora da arvore  statdown blending
-   20931  Twin_Dragon_Salvation_e              fora da arvore  statdown blending
-   20932  Twin_Dragon_Salvation_w              fora da arvore  statdown blending
-   20933  Twin_Dragon_Salvation_s              fora da arvore  statdown blending
-   20934  Twin_Dragon_Salvation_n              fora da arvore  statdown blending
-   20988  IDDokkaebi_D2_AreaFire2              fora da arvore  statdown blending
-   20996  IDDokkaebi_bloodcut                  fora da arvore  statdown blending
-   21000  IDDokkaebi_bloodcut2                 fora da arvore  statdown blending
-   21002  IDEvent_DrainDeQooSDHPTA_Po_Nc       fora da arvore  spellatkdrain_instant statup blending
-   21015  IDDokkaebi_D2_AreaFire2_sp           fora da arvore  statdown blending
-   21017  IDDokkaebi_SkillCooltimeReset        fora da arvore  skillcooltimereset dpheal_instant
-   21019  BLDF4b_bossHexad_statup1             fora da arvore  statup blending
-   21024  Twin_Dragon_TA_boost                 fora da arvore  statup blending
-   21038  Twin_Dragon_TA_pcboost               fora da arvore  statup blending
+    3949  AS_Re_SixSense_G1                    jogavel         search
+    4004  Gu_MagicalSearchEye_G1               jogavel         search
+   10661  item_seed_of_search2                 fora da arvore  search
+   10663  potion_of_search_01                  fora da arvore  search
+   10664  potion_of_search_02                  fora da arvore  search
+   10774  item_iddokkaebi_dokkaebigamtu_01     fora da arvore  search
+   19829  Pallow_Zaif_Plant_Search             fora da arvore  search
+   19831  Pallow_Kuillus_Dyn_Mini_Search       fora da arvore  search
+   19833  Pallow_Kuillus_Dyn_PD_Search         fora da arvore  search
+   21258  LDF4b_D2_Search_WakeUp               fora da arvore  search
+   21267  LDF4b_GoldenTatar_Search             fora da arvore  spellatk_instant spellatk provoker search

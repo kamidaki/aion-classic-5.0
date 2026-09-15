@@ -51,7 +51,7 @@
 		<xs:attribute name="skill_category" type="skillCategory" default="NONE" />
 		<xs:attribute name="pvp_damage" type="xs:int" />
 		<xs:attribute name="pvp_duration" type="xs:int" />
-		<xs:attribute name="chain_skill_prob" type="xs:int" default="0" />
+		<xs:attribute name="chain_skill_prob" type="xs:int" default="100" />
 		<xs:attribute name="cancel_rate" type="xs:int" default="0" />
 		<xs:attribute name="stance" type="xs:boolean" default="false" />
 		<xs:attribute name="avatar" type="xs:boolean" default="false" />
@@ -160,6 +160,8 @@
 				<xs:element name="pulled" type="PulledEffect" />
 				<xs:element name="movebehind" type="MoveBehindEffect" />
 				<xs:element name="rebirth" type="RebirthEffect" />
+				<xs:element name="deathtriggerbuff" type="DeathTriggerBuffEffect" />
+				<xs:element name="deathtrialstate" type="DeathTrialStateEffect" />
 				<xs:element name="boostskillcost" type="BoostSkillCostEffect" />
 				<xs:element name="protect" type="ProtectEffect" />
 				<xs:element name="resurrectbase" type="ResurrectBaseEffect" />
@@ -580,7 +582,7 @@
 	<xs:complexType name="ProvokerEffect">
 		<xs:complexContent>
 			<xs:extension base="ShieldEffect">
-				<xs:attribute name="provoke_target" type="ProvokeTarget" />
+				<xs:attribute name="provoke_target" type="ProvokeTarget" use="required" />
 				<xs:attribute name="skill_id" type="xs:int" />
 			</xs:extension>
 		</xs:complexContent>
@@ -649,7 +651,7 @@
 	<xs:complexType name="WeaponMasteryEffect">
 		<xs:complexContent>
 			<xs:extension base="BufEffect">
-				<xs:attribute name="weapon" type="ItemGroup" />
+				<xs:attribute name="weapon" type="ItemGroup" use="required" />
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -1142,6 +1144,21 @@
 		<xs:complexContent>
 			<xs:extension base="Effect">
 				<xs:attribute name="resurrect_percent" type="xs:int" />
+				<xs:attribute name="skill_id" type="xs:int" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DeathTriggerBuffEffect">
+		<xs:complexContent>
+			<xs:extension base="Effect">
+				<xs:attribute name="skill_id" type="xs:int" use="required" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DeathTrialStateEffect">
+		<xs:complexContent>
+			<xs:extension base="Effect">
+				<xs:attribute name="checktime" type="xs:int" use="required" />
 				<xs:attribute name="skill_id" type="xs:int" />
 			</xs:extension>
 		</xs:complexContent>

@@ -40,7 +40,14 @@ public class ProvokerEffect extends ShieldEffect {
 	@Override
 	public void startEffect(Effect effect) {
 		Creature effector = effect.getEffector();
-		ObserverType observerType = hitType == HitType.NMLATK || hitType == HitType.BACKATK ? ObserverType.ATTACK : ObserverType.ATTACKED;
+		ObserverType observerType;
+		if (hitType == HitType.NMLATK || hitType == HitType.BACKATK) {
+			observerType = ObserverType.ATTACK;
+		} else if (hitType == HitType.EVERYHIT || hitType == null) {
+			observerType = ObserverType.ATTACK_DEFEND;
+		} else {
+			observerType = ObserverType.ATTACKED;
+		}
 		effect.addObserver(effect.getEffected(), new ActionObserver(observerType) {
 
 			@Override
@@ -70,11 +77,14 @@ public class ProvokerEffect extends ShieldEffect {
 			return false;
 		if (radius > 0 && !PositionUtil.isInRange(effector, target, radius, false))
 			return false;
-		if (Rnd.chance() >= hitTypeProb)
+		float chance = hitTypeProb > 100 ? hitTypeProb / 10f : hitTypeProb;
+		if (Rnd.chance() >= chance)
 			return false;
+		if (hitType == null || hitType == HitType.EVERYHIT)
+			return true;
 		return switch (hitType) {
-			case PHHIT -> attackSkillId == 0 || DataManager.SKILL_DATA.getSkillTemplate(attackSkillId).getType() == SkillType.PHYSICAL;
-			case MAHIT -> attackSkillId != 0 && DataManager.SKILL_DATA.getSkillTemplate(attackSkillId).getType() == SkillType.MAGICAL;
+			case PHHIT -> attackSkillId == 0 || (DataManager.SKILL_DATA.getSkillTemplate(attackSkillId) != null && DataManager.SKILL_DATA.getSkillTemplate(attackSkillId).getType() == SkillType.PHYSICAL);
+			case MAHIT -> attackSkillId != 0 && DataManager.SKILL_DATA.getSkillTemplate(attackSkillId) != null && DataManager.SKILL_DATA.getSkillTemplate(attackSkillId).getType() == SkillType.MAGICAL;
 			case BACKATK -> PositionUtil.isBehind(effector, target);
 			default -> true;
 		};

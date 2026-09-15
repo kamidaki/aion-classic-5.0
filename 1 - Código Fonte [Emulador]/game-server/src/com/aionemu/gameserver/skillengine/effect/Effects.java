@@ -19,7 +19,7 @@ public class Effects {
 	private static final Set<EffectType> CONFLICT_TYPES = EnumSet.of(SHIELD, PROTECT, REFLECTOR, MPSHIELD);
 	private static final Set<EffectType> ALWAYS_NO_RESIST = EnumSet.of(ABSOLUTESTATTOPCBUFF, ALWAYSBLOCK, ALWAYSDODGE, ALWAYSPARRY, ALWAYSRESIST,
 		ARMORMASTERY, APBOOST, AURA, BLENDING, BOOSTCONTEXTSKILL, BOOSTHATE, BOOSTHEAL, BOOSTSKILLCASTINGTIME, BOOSTSKILLCOST, BOOSTSPELLATTACK, CASEHEAL,
-		CHANGEHATEONATTACKED, CLASSPOINTHEALINSTANT, CONDSKILLLAUNCHER, CONVERTHEAL, DISPELDEBUFF, DISPELDEBUFFMENTAL, DISPELDEBUFFPHYSICAL, DISPELNPCDEBUFF, DPHEAL, DPHEALINSTANT, DPTRANSFER,
+		CHANGEHATEONATTACKED, CLASSPOINTHEALINSTANT, CONDSKILLLAUNCHER, CONVERTHEAL, DEATHTRIALSTATE, DEATHTRIGGERBUFF, DISPELDEBUFF, DISPELDEBUFFMENTAL, DISPELDEBUFFPHYSICAL, DISPELNPCDEBUFF, DPHEAL, DPHEALINSTANT, DPTRANSFER,
 		DRBOOST, ESCAPE, EXTENDAURARANGE, FPHEAL, FPHEALINSTANT, HEAL, HEALINSTANT, HIDE, HIPASS, HOSTILEUP, INVULNERABLEWING, SKILLXPBOOST, MPHEAL,
 		MPHEALINSTANT, MPSHIELD, NODEATHPENALTY, NORESURRECTPENALTY, ONETIMEBOOSTHEAL, ONETIMEBOOSTSKILLATTACK, ONETIMEBOOSTSKILLCRITICAL,
 		PETORDERUSEULTRASKILL, POLYMORPH, PROCDPHEALINSTANT, PROCFPHEALINSTANT, PROCHEALINSTANT, PROCMPHEALINSTANT, PROCVPHEALINSTANT, PROTECT,
@@ -78,6 +78,7 @@ public class Effects {
 		@XmlElement(name = "skilllauncher", type = SkillLauncherEffect.class), @XmlElement(name = "pulled", type = PulledEffect.class),
 		@XmlElement(name = "fear", type = FearEffect.class), @XmlElement(name = "movebehind", type = MoveBehindEffect.class),
 		@XmlElement(name = "rebirth", type = RebirthEffect.class), @XmlElement(name = "boostskillcost", type = BoostSkillCostEffect.class),
+		@XmlElement(name = "deathtriggerbuff", type = DeathTriggerBuffEffect.class), @XmlElement(name = "deathtrialstate", type = DeathTrialStateEffect.class),
 		@XmlElement(name = "protect", type = ProtectEffect.class), @XmlElement(name = "magiccounteratk", type = MagicCounterAtkEffect.class),
 		@XmlElement(name = "randommoveloc", type = RandomMoveLocEffect.class), @XmlElement(name = "recallinstant", type = RecallInstantEffect.class),
 		@XmlElement(name = "summonhoming", type = SummonHomingEffect.class),

@@ -1,5 +1,8 @@
 package com.aionemu.gameserver.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.PlayerClass;
 import com.aionemu.gameserver.model.Race;
@@ -19,6 +22,8 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
  */
 public class SkillLearnService {
 
+	private static final Logger log = LoggerFactory.getLogger(SkillLearnService.class);
+
 	public static void onLearnSkill(Player player, int skillId, int skillLevel, boolean isNew) {
 		PlayerSkillEntry skill = player.getSkillList().getSkillEntry(skillId);
 		if (skill.isProfessionSkill())
@@ -32,8 +37,14 @@ public class SkillLearnService {
 			if (player.isSpawned())
 				sendPacket(player, skill, isNew);
 			SkillTemplate skillTemplate = DataManager.SKILL_DATA.getSkillTemplate(skillId);
-			if (skillTemplate.isPassive())
-				SkillEngine.getInstance().applyEffectDirectly(skillTemplate, skillLevel, player, player);
+			if (skillTemplate.isPassive()) {
+				try {
+					SkillEngine.getInstance().applyEffectDirectly(skillTemplate, skillLevel, player, player);
+				} catch (RuntimeException e) {
+					// passiva com template quebrado não pode impedir o login (que ensina as automáticas que faltam) nem a subida de nível
+					log.error("Could not apply passive skill " + skillId + " to " + player, e);
+				}
+			}
 			if (skill.isProfessionSkill() && (skill.getSkillLevel() == 399 || skill.getSkillLevel() == 499))
 				player.getController().updateNearbyQuests();
 		}

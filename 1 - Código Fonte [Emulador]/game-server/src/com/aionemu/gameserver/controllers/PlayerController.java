@@ -450,6 +450,14 @@ public class PlayerController extends CreatureController<Player> {
 			if (panel != null && panel.canUseSkill(template.getSkillId(), skillLevel)) {
 				skill = SkillEngine.getInstance().getSkillFor(player, template, player.getTarget(), skillLevel);
 			}
+		} else if (skill == null && template.isContextOrForteSkill()) {
+			SkillTemplate baseTemplate = template.getBaseContextSkillTemplate();
+			if (baseTemplate != null && player.getSkillList().isSkillPresent(baseTemplate.getSkillId())) {
+				int baseLevel = player.getSkillList().getSkillLevel(baseTemplate.getSkillId());
+				skill = SkillEngine.getInstance().getSkillFor(player, template, player.getTarget(), baseLevel > 0 ? baseLevel : skillLevel);
+			} else if (player.getSkillList().isSkillPresent(template.getSkillId()) || player.isStaff()) {
+				skill = SkillEngine.getInstance().getSkillFor(player, template, player.getTarget(), skillLevel);
+			}
 		}
 
 		if (skill != null) {

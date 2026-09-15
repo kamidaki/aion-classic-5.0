@@ -68,6 +68,9 @@ public class BlendingEffect extends EffectTemplate {
 
 		// 2. Registrar nota no BlendingState do jogador e resolver combo
 		if (effect.getEffector() instanceof Player player) {
+			if (player.getPlayerClass() != com.aionemu.gameserver.model.PlayerClass.LUMINESS) {
+				return;
+			}
 			BlendingNote blendingNote = BlendingNote.fromString(note);
 			if (blendingNote != null) {
 				player.getBlendingState().recordNote(blendingNote);

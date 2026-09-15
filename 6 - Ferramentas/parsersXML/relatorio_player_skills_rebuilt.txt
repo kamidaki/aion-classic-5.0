@@ -1,0 +1,194 @@
+====================================================================================================
+RELATÓRIO DE RECONSTRUÇÃO DAS HABILIDADES DE JOGADORES (STUBS) — AION CLASSIC 5.0
+====================================================================================================
+
+Total de stubs reconstruídos com sucesso: 187
+
+LISTAGEM DAS HABILIDADES ATUALIZADAS:
+  2568  | RA_QuickSetting_UP_G1          | DIRETO_50                 | Classes: RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER
+  2570  | WI_Hibernation_UP_G1           | DIRETO_50                 | Classes: SORCERER, SORCERER, SORCERER, SORCERER, SORCERER, SORCERER, SORCERER, SORCERER, SORCERER, SORCERER, SORCERER, SORCERER, SORCERER, SORCERER
+  2662  | AS_Stigma_ShadowWalk_pvp       | DIRETO_50                 | Classes: ASSASSIN, BRAWLER, CHANTER, CLERIC, GLADIATOR, MAGE, MONK, PRIEST, RANGER, REVENANT, SCOUT, SORCERER, SPIRIT_MASTER, TEMPLAR, THUNDERER, WARRIOR
+  2664  | EL_FireFear_pvp                | DIRETO_50                 | Classes: ASSASSIN, BRAWLER, CHANTER, CLERIC, GLADIATOR, MAGE, MONK, PRIEST, RANGER, REVENANT, SCOUT, SORCERER, SPIRIT_MASTER, TEMPLAR, THUNDERER, WARRIOR
+  2669  | ALL_FlyBoost_G1                | DIRETO_50                 | Classes: ALL
+  2670  | ALL_GlideATK_FI                | DIRETO_50                 | Classes: GLADIATOR, TEMPLAR, WARRIOR
+  2671  | ALL_GlideATK_KN                | DIRETO_50                 | Classes: TEMPLAR
+  2672  | ALL_GlideATK_RA                | DIRETO_50                 | Classes: RANGER
+  2673  | ALL_GlideATK_AS                | DIRETO_50                 | Classes: ASSASSIN
+  2674  | ALL_GlideATK_WI                | DIRETO_50                 | Classes: SORCERER
+  2675  | ALL_GlideATK_EL                | DIRETO_50                 | Classes: SPIRIT_MASTER
+  2676  | ALL_GlideATK_PR_Light          | DIRETO_50                 | Classes: CHANTER, CLERIC, PRIEST
+  2677  | ALL_GlideATK_PR_Dark           | DIRETO_50                 | Classes: CHANTER, CLERIC, PRIEST
+  2678  | ALL_GlideATK_CH                | DIRETO_50                 | Classes: CHANTER
+  2679  | ALL_GlideATK_TH                | DIRETO_50                 | Classes: REVENANT, THUNDERER
+  2703  | TH_ReturnShadow_new_G1         | DIRETO_50                 | Classes: REVENANT, THUNDERER
+  2728  | P_EQUIP_Gauntlet_G1            | DIRETO_50                 | Classes: BRAWLER
+  2729  | ST_BattleMastersGift_G1        | DIRETO_50                 | Classes: BRAWLER
+  2731  | ALL_GlideATK_BM                | DIRETO_50                 | Classes: BRAWLER
+  2906  | ST_bspin_G1                    | DIRETO_50                 | Classes: BRAWLER
+  2907  | ST_bspin_G2                    | DIRETO_50                 | Classes: BRAWLER
+  2908  | ST_bspin_G3                    | DIRETO_50                 | Classes: BRAWLER
+  2909  | ST_bspin_G4                    | DIRETO_50                 | Classes: BRAWLER
+  2910  | ST_bspin_G5                    | DIRETO_50                 | Classes: BRAWLER
+  2911  | ST_bspin_G6                    | DIRETO_50                 | Classes: BRAWLER
+  2927  | ST_critical_G1                 | DIRETO_50                 | Classes: BRAWLER
+  2928  | ST_SuperCritical_G1            | DIRETO_50                 | Classes: BRAWLER
+  3004  | AS_AttackRoar_L_G2             | CLONADO_AS_ATTACKROAR_L_G1 | Classes: ASSASSIN
+  3005  | AS_AttackRoar_D_G2             | CLONADO_AS_ATTACKROAR_D_G1 | Classes: ASSASSIN
+  3041  | RA_CrisisCounter_G2            | CLONADO_RA_CRISISCOUNTER_G1 | Classes: RANGER
+  3042  | RA_ScreamShot_G2               | CLONADO_RA_SCREAMSHOT_G1  | Classes: RANGER
+  3047  | RA_Light_SnakeBiteTrap_G1      | DIRETO_50                 | Classes: RANGER
+  3048  | RA_Dark_SnakeBiteTrap_G1       | DIRETO_50                 | Classes: RANGER
+  3054  | KN_DefendShield_G2             | CLONADO_KN_DEFENDSHIELD_G1 | Classes: TEMPLAR
+  3066  | PR_PainLinks_G5                | CLONADO_PR_PAINLINKS_G4   | Classes: CHANTER, CLERIC, PRIEST
+  3067  | PR_MemoryBlur_G5               | CLONADO_PR_MEMORYBLUR_G4  | Classes: CHANTER, CLERIC, PRIEST
+  3076  | PR_InvinsibleVeill_G2          | CLONADO_PR_INVINSIBLEVEILL_G1 | Classes: CHANTER, CLERIC, PRIEST
+  3078  | PR_BlessedShield_G2            | CLONADO_PR_BLESSEDSHIELD_G1 | Classes: CHANTER, CLERIC, PRIEST
+  3079  | PR_HealLife_G2                 | CLONADO_PR_HEALLIFE_G1    | Classes: CHANTER, CLERIC, PRIEST
+  3082  | PR_OffensiveMode_G1            | DIRETO_50                 | Classes: CHANTER, CLERIC, PRIEST
+  3102  | CH_PhoenixStep_G1              | DIRETO_50                 | Classes: CHANTER
+  3118  | EL_ManaReverse_G5              | CLONADO_EL_MANAREVERSE_G4 | Classes: SPIRIT_MASTER
+  3121  | EL_EnchantmentBurst_G7         | CLONADO_EL_ENCHANTMENTBURST_G6 | Classes: SPIRIT_MASTER
+  3122  | EL_EnervationCurse_G2          | CLONADO_EL_ENERVATIONCURSE_G1 | Classes: SPIRIT_MASTER
+  3126  | EL_DispelExplosion_G1          | DIRETO_50                 | Classes: SPIRIT_MASTER, SPIRIT_MASTER, SPIRIT_MASTER, SPIRIT_MASTER, SPIRIT_MASTER, SPIRIT_MASTER, SPIRIT_MASTER, SPIRIT_MASTER, SPIRIT_MASTER, SPIRIT_MASTER, SPIRIT_MASTER, SPIRIT_MASTER, SPIRIT_MASTER, SPIRIT_MASTER
+  3135  | TH_Overload_G2                 | CLONADO_TH_OVERLOAD_G1    | Classes: REVENANT, THUNDERER
+  3172  | BM_Control_G1                  | DIRETO_50                 | Classes: BRAWLER
+  3173  | CH_Control_G1                  | DIRETO_50                 | Classes: CHANTER
+  3178  | EL_TerrorSpirit_pvp            | DIRETO_50                 | Classes: ASSASSIN, BRAWLER, CHANTER, CLERIC, GLADIATOR, MAGE, MONK, PRIEST, RANGER, REVENANT, SCOUT, SORCERER, SPIRIT_MASTER, TEMPLAR, THUNDERER, WARRIOR
+  3180  | ALL_FlyBoost_G2                | DIRETO_50                 | Classes: ALL
+  3181  | CH_Control_pvp                 | DIRETO_50                 | Classes: ASSASSIN, BRAWLER, CHANTER, CLERIC, GLADIATOR, MAGE, MONK, PRIEST, RANGER, REVENANT, SCOUT, SORCERER, SPIRIT_MASTER, TEMPLAR, THUNDERER, WARRIOR
+  3186  | EL_HellFlame_G1                | DIRETO_50                 | Classes: SPIRIT_MASTER
+  3436  | AS_AttackRoar_L_forte_G1       | DIRETO_50                 | Classes: ASSASSIN
+  3437  | AS_AttackRoar_L_forte_G2       | DIRETO_50                 | Classes: ASSASSIN
+  3438  | AS_AttackRoar_D_forte_G1       | DIRETO_50                 | Classes: ASSASSIN
+  3439  | AS_AttackRoar_D_forte_G2       | DIRETO_50                 | Classes: ASSASSIN
+  3446  | EL_TerrorSpirit_forte_G1       | DIRETO_50                 | Classes: SPIRIT_MASTER
+  3450  | WI_ManaBoost_forte_G1          | DIRETO_50                 | Classes: SORCERER
+  3455  | PR_OffensiveMode_forte_G1      | DIRETO_50                 | Classes: CHANTER, CLERIC, PRIEST
+  3533  | KN_BrainBreak_G5               | CLONADO_KN_BRAINBREAK_G4  | Classes: TEMPLAR, TEMPLAR, TEMPLAR, TEMPLAR, TEMPLAR, TEMPLAR, TEMPLAR, TEMPLAR, TEMPLAR, TEMPLAR, TEMPLAR, TEMPLAR, TEMPLAR, TEMPLAR
+  3562  | RA_WoundingArrow_G3            | CLONADO_RA_WOUNDINGARROW_G2 | Classes: RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER
+  3570  | RA_BreezeofCalm_G4             | CLONADO_RA_BREEZEOFCALM_G3 | Classes: RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER, RANGER
+  3598  | EL_ManaReverse_G6              | CLONADO_EL_MANAREVERSE_G4 | Classes: SPIRIT_MASTER
+  3635  | WI_Light_FrostPillar_G5        | CLONADO_WI_LIGHT_FROSTPILLAR_G4 | Classes: SORCERER
+  3636  | WI_Dark_FrostPillar_G5         | CLONADO_WI_DARK_FROSTPILLAR_G4 | Classes: SORCERER
+  3653  | PR_PainLinks_G6                | CLONADO_PR_PAINLINKS_G4   | Classes: CHANTER, CLERIC, PRIEST
+  3661  | PR_Light_HolyServent_G5        | CLONADO_PR_LIGHT_HOLYSERVENT_G4 | Classes: CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST
+  3662  | PR_Dark_HolyServent_G5         | CLONADO_PR_DARK_HOLYSERVENT_G4 | Classes: CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST
+  3663  | PR_Light_HealingServent_G3     | CLONADO_PR_LIGHT_HEALINGSERVENT_G2 | Classes: CHANTER, CLERIC, PRIEST
+  3664  | PR_Dark_HealingServent_G3      | CLONADO_PR_DARK_HEALINGSERVENT_G2 | Classes: CHANTER, CLERIC, PRIEST
+  3671  | PR_BlessedShield_G3            | CLONADO_PR_BLESSEDSHIELD_G1 | Classes: CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST
+  3674  | PR_GodsVoice_G3                | CLONADO_PR_GODSVOICE_G2   | Classes: CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CHANTER, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, CLERIC, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST, PRIEST
+  3698  | TH_Overload_G3                 | CLONADO_TH_OVERLOAD_G1    | Classes: REVENANT, THUNDERER
+  3742  | ST_bspin_G7                    | DIRETO_50                 | Classes: BRAWLER
+  3778  | RA_SealingArrow_G1             | DIRETO_50                 | Classes: RANGER
+  3808  | PR_RaiseRepentance_G1          | DIRETO_50                 | Classes: CHANTER, CLERIC, PRIEST
+  3817  | PR_SagesWisdom_new_G1          | DIRETO_50                 | Classes: CHANTER, CLERIC, PRIEST
+  3827  | CH_PhoenixStep_new_G1          | DIRETO_50                 | Classes: CHANTER
+  3828  | WI_ArcaneBoost_new_G1          | DIRETO_50                 | Classes: SORCERER
+  3829  | SC_TrueShotMind_new_G1         | DIRETO_50                 | Classes: RANGER
+  3834  | EL_TerrorSpirit_AD_G1          | DIRETO_50                 | Classes: SPIRIT_MASTER
+  3835  | EL_TerrorSpirit_forte_AD_G1    | DIRETO_50                 | Classes: SPIRIT_MASTER
+  3837  | SC_TrueShotMind_AD_G1          | DIRETO_50                 | Classes: RANGER
+  3841  | ST_bspin_AD_G1                 | DIRETO_50                 | Classes: BRAWLER
+  3847  | PR_HealingGrace_AD_G1          | DIRETO_50                 | Classes: CHANTER, CLERIC, PRIEST
+  3889  | All_P_Physical_G10             | CLONADO_ALL_P_PHYSICAL_G9 | Classes: ALL
+  3937  | All_P_Defense_G10              | CLONADO_ALL_P_DEFENSE_G9  | Classes: ALL
+  3938  | All_P_Rader_180                | DIRETO_50                 | Classes: ALL
+  3939  | All_P_Rader_240                | DIRETO_50                 | Classes: ALL
+  3940  | All_P_Rader_300                | DIRETO_50                 | Classes: ALL
+  3941  | All_P_Rader_360                | DIRETO_50                 | Classes: ALL
+  3948  | AS_Re_Stigma_ShadowWalk_G1     | DIRETO_50                 | Classes: ASSASSIN
+  3957  | AS_Re_AttackRoar_L_G1          | DIRETO_50                 | Classes: ASSASSIN
+  3958  | AS_Re_AttackRoar_D_G1          | DIRETO_50                 | Classes: ASSASSIN
+  3959  | AS_Re_AttackRoar_L_forte_G1    | DIRETO_50                 | Classes: ASSASSIN
+  3960  | AS_Re_AttackRoar_D_forte_G1    | DIRETO_50                 | Classes: ASSASSIN
+  3964  | New_AS_Re_AttackRoar_L_G1      | DIRETO_50                 | Classes: ASSASSIN
+  3965  | New_AS_Re_AttackRoar_D_G1      | DIRETO_50                 | Classes: ASSASSIN
+  3966  | New_AS_Re_AttackRoar_L_forte_G1 | DIRETO_50                 | Classes: ASSASSIN
+  3967  | New_AS_Re_AttackRoar_D_forte_G1 | DIRETO_50                 | Classes: ASSASSIN
+  3985  | ST_flyingkick_AD_G1            | DIRETO_50                 | Classes: BRAWLER
+  3996  | EL_ElementalCall_AD_G1         | DIRETO_50                 | Classes: SPIRIT_MASTER
+  4044  | Gu_ArmorBreak_G1               | DIRETO_50                 | Classes: PHOENIX
+  4060  | Gu_EmpowerAmmo_G1              | DIRETO_50                 | Classes: PHOENIX
+  4063  | Gu_FireChainRefresh_G1         | DIRETO_50                 | Classes: PHOENIX
+  4132  | Gu_MentalicRapidFire_G1        | DIRETO_50                 | Classes: PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX
+  4133  | Gu_MentalicRapidFire_G2        | DIRETO_50                 | Classes: PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX
+  4134  | Gu_MentalicRapidFire_G3        | DIRETO_50                 | Classes: PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX
+  4138  | Gu_BreakingFireChain_G1        | DIRETO_50                 | Classes: PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX
+  4139  | Gu_BreakingFireChain_G2        | DIRETO_50                 | Classes: PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX
+  4140  | Gu_BreakingFireChain_G3        | DIRETO_50                 | Classes: PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX
+  4141  | Gu_BreakingFireChain_G4        | DIRETO_50                 | Classes: PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX
+  4167  | Gu_BacksteppingSnipe_G1        | DIRETO_50                 | Classes: PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX
+  4168  | Gu_BacksteppingSnipe_G2        | DIRETO_50                 | Classes: PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX
+  4169  | Gu_BacksteppingSnipe_G3        | DIRETO_50                 | Classes: PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX, PHOENIX
+  4187  | Gu_Light_CannonServant_G1      | DIRETO_50                 | Classes: PHOENIX
+  4188  | Gu_Dark_CannonServant_G1       | DIRETO_50                 | Classes: PHOENIX
+  4190  | Gu_Light_BlackHall_G1          | DIRETO_50                 | Classes: PHOENIX
+  4191  | Gu_Dark_BlackHall_G1           | DIRETO_50                 | Classes: PHOENIX
+  4233  | TH_Overload_AD_G1              | DIRETO_50                 | Classes: REVENANT, THUNDERER
+  4235  | ST_SuperCritical_AD_G1         | DIRETO_50                 | Classes: BRAWLER
+  4239  | P_EQUIP_Gauntlet_AD_G1         | DIRETO_50                 | Classes: BRAWLER
+  4244  | Gu_RapidStance_AD_G1           | DIRETO_50                 | Classes: PHOENIX
+  4245  | Gu_MindReading_AD_G1           | DIRETO_50                 | Classes: PHOENIX
+  4249  | WI_ManaBoost_AD_G1             | DIRETO_50                 | Classes: SORCERER
+  4404  | RB_BladeAssault_G1             | DIRETO_50                 | Classes: SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER
+  4405  | RB_BladeAssault_G2             | DIRETO_50                 | Classes: SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER
+  4406  | RB_BladeAssault_G3             | DIRETO_50                 | Classes: SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER
+  4407  | RB_BladeAssault_G4             | DIRETO_50                 | Classes: SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER
+  4408  | RB_BladeAssault_G5             | DIRETO_50                 | Classes: SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER
+  4419  | RB_SoulDevour_G1               | DIRETO_50                 | Classes: SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER
+  4420  | RB_SoulDevour_G2               | DIRETO_50                 | Classes: SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER
+  4421  | RB_SoulDevour_G3               | DIRETO_50                 | Classes: SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER
+  4422  | RB_SoulDevour_G4               | DIRETO_50                 | Classes: SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER
+  4423  | RB_SoulDevour_G5               | DIRETO_50                 | Classes: SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER
+  4432  | RB_Execution_G1                | DIRETO_50                 | Classes: SOUL_REAPER
+  4433  | RB_Execution_G2                | DIRETO_50                 | Classes: SOUL_REAPER
+  4434  | RB_Execution_G3                | DIRETO_50                 | Classes: SOUL_REAPER
+  4435  | RB_SoulRemnant_G1              | DIRETO_50                 | Classes: SOUL_REAPER
+  4437  | RB_SoulRemnant_G2              | DIRETO_50                 | Classes: SOUL_REAPER
+  4439  | RB_SoulDevourShock_G1          | DIRETO_50                 | Classes: SOUL_REAPER
+  4440  | RB_Isolation_G1                | DIRETO_50                 | Classes: SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER, SOUL_REAPER
+  4448  | RB_P_MaxHpUp_G1                | DIRETO_50                 | Classes: SOUL_REAPER
+  4452  | RB_P_MagicalSkillBoostUp_G1    | DIRETO_50                 | Classes: SOUL_REAPER
+  4456  | RB_P_PhyAttackUp_G1            | DIRETO_50                 | Classes: SOUL_REAPER
+  4464  | RB_P_MaxHpUp_G2                | DIRETO_50                 | Classes: SOUL_REAPER
+  4468  | RB_P_MagicalSkillBoostUp_G2    | DIRETO_50                 | Classes: SOUL_REAPER
+  4472  | RB_P_PhyAttackUp_G2            | DIRETO_50                 | Classes: SOUL_REAPER
+  4490  | P_EQUIP_RuneSword_AD_G1        | DIRETO_50                 | Classes: SOUL_REAPER
+  4491  | RB_P_MaxHpUp_AD_G1             | DIRETO_50                 | Classes: SOUL_REAPER
+  4492  | RB_Light_HellFire_G1           | DIRETO_50                 | Classes: SOUL_REAPER
+  4493  | RB_Dark_HellFire_G1            | DIRETO_50                 | Classes: SOUL_REAPER
+  4499  | EL_TerrorSpirit_AD_G1_EVT      | DIRETO_50                 | Classes: SPIRIT_MASTER
+  4501  | SC_TrueShotMind_AD_G1_EVT      | DIRETO_50                 | Classes: RANGER
+  4505  | ST_bspin_AD_G1_EVT             | DIRETO_50                 | Classes: BRAWLER
+  4509  | PR_HealingGrace_AD_G1_EVT      | DIRETO_50                 | Classes: CHANTER, CLERIC, PRIEST
+  4517  | TH_Overload_AD_G1_EVT          | DIRETO_50                 | Classes: REVENANT, THUNDERER
+  4518  | ST_SuperCritical_AD_G1_EVT     | DIRETO_50                 | Classes: BRAWLER
+  4520  | P_EQUIP_Gauntlet_AD_G1_EVT     | DIRETO_50                 | Classes: BRAWLER
+  4525  | Gu_RapidStance_AD_G1_EVT       | DIRETO_50                 | Classes: PHOENIX
+  4526  | Gu_MindReading_AD_G1_EVT       | DIRETO_50                 | Classes: PHOENIX
+  4530  | WI_ManaBoost_AD_G1_EVT         | DIRETO_50                 | Classes: SORCERER
+  4534  | All_P_Physical_G10_EVT         | DIRETO_50                 | Classes: ALL
+  4536  | All_P_Defense_G10_EVT          | DIRETO_50                 | Classes: ALL
+  4537  | RB_Light_HellFire_G2           | DIRETO_50                 | Classes: SOUL_REAPER
+  4538  | RB_Dark_HellFire_G2            | DIRETO_50                 | Classes: SOUL_REAPER
+  4543  | RB_Light_IceAge_G1             | DIRETO_50                 | Classes: SOUL_REAPER
+  4544  | RB_Dark_IceAge_G1              | DIRETO_50                 | Classes: SOUL_REAPER
+  4545  | RB_Light_IceAge_G2             | DIRETO_50                 | Classes: SOUL_REAPER
+  4546  | RB_Dark_IceAge_G2              | DIRETO_50                 | Classes: SOUL_REAPER
+  10827 | Classic_Wind_ShoulderFlySpeed_G1 | DIRETO_50                 | Classes: ALL
+  10839 | Classic_Wind_ShoulderFlySpeed_G2 | DIRETO_50                 | Classes: ALL
+  10840 | Classic_Wind_ShoulderFlySpeed_G3 | DIRETO_50                 | Classes: ALL
+  10979 | Classic_Wind_ShoulderFlySpeed_glove_G1 | DIRETO_50                 | Classes: ALL
+  10980 | Classic_Wind_ShoulderFlySpeed_torso_G1 | DIRETO_50                 | Classes: ALL
+  10981 | Classic_Wind_ShoulderFlySpeed_pants_G1 | DIRETO_50                 | Classes: ALL
+  10982 | Classic_Wind_ShoulderFlySpeed_shoes_G1 | DIRETO_50                 | Classes: ALL
+  10983 | Classic_Wind_ShoulderFlySpeed_glove_G2 | DIRETO_50                 | Classes: ALL
+  10984 | Classic_Wind_ShoulderFlySpeed_torso_G2 | DIRETO_50                 | Classes: ALL
+  10985 | Classic_Wind_ShoulderFlySpeed_pants_G2 | DIRETO_50                 | Classes: ALL
+  10986 | Classic_Wind_ShoulderFlySpeed_shoes_G2 | DIRETO_50                 | Classes: ALL
+  10987 | Classic_Wind_ShoulderFlySpeed_glove_G3 | DIRETO_50                 | Classes: ALL
+  10988 | Classic_Wind_ShoulderFlySpeed_torso_G3 | DIRETO_50                 | Classes: ALL
+  10989 | Classic_Wind_ShoulderFlySpeed_pants_G3 | DIRETO_50                 | Classes: ALL
+  10990 | Classic_Wind_ShoulderFlySpeed_shoes_G3 | DIRETO_50                 | Classes: ALL
+  11648 | Item_Skill_gunner_belt_01      | DIRETO_50                 | Classes: ALL
+  11649 | Item_Skill_zikel_belt_01       | DIRETO_50                 | Classes: ALL

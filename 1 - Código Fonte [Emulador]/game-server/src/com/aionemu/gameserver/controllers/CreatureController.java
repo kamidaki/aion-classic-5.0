@@ -43,6 +43,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.services.item.ItemPacketService;
 import com.aionemu.gameserver.skillengine.SkillEngine;
 import com.aionemu.gameserver.skillengine.condition.SkillChargeCondition;
+import com.aionemu.gameserver.skillengine.effect.DeathTrialStateEffect;
 import com.aionemu.gameserver.skillengine.model.*;
 import com.aionemu.gameserver.skillengine.model.Skill.SkillMethod;
 import com.aionemu.gameserver.skillengine.properties.Properties.CastState;
@@ -165,6 +166,9 @@ public abstract class CreatureController<T extends Creature> extends VisibleObje
 			if (o instanceof Creature creature)
 				creature.getAggroList().stopHating(getOwner());
 		});
+		// Soul Rest (Soul Pact do Soul Reaper): o golpe final numa criatura encerra o estado
+		if (lastAttacker.getMaster() instanceof Player killer && !killer.equals(getOwner()))
+			DeathTrialStateEffect.onKill(killer);
 	}
 
 	/**

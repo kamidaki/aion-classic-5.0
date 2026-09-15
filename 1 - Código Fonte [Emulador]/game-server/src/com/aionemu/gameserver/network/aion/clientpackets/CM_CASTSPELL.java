@@ -16,7 +16,8 @@ import com.aionemu.gameserver.utils.audit.AuditLogger;
  */
 public class CM_CASTSPELL extends AionClientPacket {
 
-	private final long receiveTime = System.currentTimeMillis();
+	// preenchido no readImpl: o handler clona o pacote de um protótipo criado na subida, e um inicializador de campo guardava a hora da subida
+	private long receiveTime;
 	private int spellid;
 	// 0 - obj id, 1 - point location, 2 - unk, 3 - object not in sight(skill 1606)? 4 - unk
 	private int targetType;
@@ -35,6 +36,7 @@ public class CM_CASTSPELL extends AionClientPacket {
 
 	@Override
 	protected void readImpl() {
+		receiveTime = System.currentTimeMillis();
 		spellid = readUH();
 		level = readUC();
 

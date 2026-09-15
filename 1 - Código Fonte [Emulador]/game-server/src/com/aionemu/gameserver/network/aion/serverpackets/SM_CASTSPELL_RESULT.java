@@ -113,6 +113,7 @@ public class SM_CASTSPELL_RESULT extends AionServerPacket {
 				case 3:
 				case 4:
 				case 6:
+				case 8:
 					writeC(skill.getH());
 					writeF(skill.getX());
 					writeF(skill.getY());

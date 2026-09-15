@@ -17,6 +17,8 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_STATUPDATE_HP;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_STATUPDATE_MP;
 import com.aionemu.gameserver.services.LifeStatsRestoreService;
 import com.aionemu.gameserver.skillengine.SkillEngine;
+import com.aionemu.gameserver.skillengine.effect.DeathTriggerBuffEffect;
+import com.aionemu.gameserver.skillengine.model.Effect;
 import com.aionemu.gameserver.taskmanager.tasks.TeamStatUpdater;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
@@ -66,6 +68,16 @@ public class PlayerLifeStats extends CreatureLifeStats<Player> {
 				triggerFpRestore();
 		}
 		super.onHpChanged(previousHp, newHp, effector);
+	}
+
+	@Override
+	protected Effect findDeathTrigger() {
+		return DeathTriggerBuffEffect.findActive(owner);
+	}
+
+	@Override
+	protected void onDeathTriggered(Effect deathTrigger) {
+		DeathTriggerBuffEffect.trigger(owner, deathTrigger);
 	}
 
 	@Override

@@ -40,7 +40,11 @@ public class RandomMoveLocEffect extends EffectTemplate {
 	@Override
 	public void calculate(Effect effect) {
 		effect.addSuccessEffect(this);
-		DashStatus ds = reserved5 == 1 ? DashStatus.RANDOMMOVELOC_NEW : DashStatus.RANDOMMOVELOC;
+		DashStatus ds = switch (reserved5) {
+			case 1 -> DashStatus.RANDOMMOVELOC_NEW;
+			case 2 -> DashStatus.RANDOMMOVELOC_DASH;
+			default -> DashStatus.RANDOMMOVELOC;
+		};
 		effect.setDashStatus(ds);
 
 		Creature effector = effect.getEffector();

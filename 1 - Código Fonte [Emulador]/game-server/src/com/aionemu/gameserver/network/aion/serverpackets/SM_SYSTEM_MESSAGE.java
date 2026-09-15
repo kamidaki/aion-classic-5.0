@@ -462,6 +462,20 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	}
 
 	/**
+	 * The effect [%SkillName] was triggered and caused the Soul Residue state.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_SKILL_SUCC_DeathTrialState_ME_TO_SELF(String skillname) {
+		return new SM_SYSTEM_MESSAGE(1404353, skillname);
+	}
+
+	/**
+	 * Killing a creature ended the Soul Residue state.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_SKILL_SUCC_DeathTrialState_END_ME_TO_SELF() {
+		return new SM_SYSTEM_MESSAGE(1404355);
+	}
+
+	/**
 	 * You became confused after using [%SkillName].
 	 */
 	public static SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Confuse_ME_TO_SELF(String skillname) {

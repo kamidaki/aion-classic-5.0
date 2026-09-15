@@ -49,6 +49,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_ENTER_WORLD_CHECK.Ms
 import com.aionemu.gameserver.services.*;
 import com.aionemu.gameserver.services.instance.InstanceService;
 import com.aionemu.gameserver.services.LegionService;
+import com.aionemu.gameserver.services.SkillLearnService;
 import com.aionemu.gameserver.services.mail.MailService;
 import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.services.toypet.PetService;
@@ -153,6 +154,9 @@ public final class PlayerEnterWorldService {
 				validateVortexZone(player);
 
 			player.getController().onLevelChange(PlayerDAO.getOldCharacterLevel(player.getObjectId()), player.getLevel());
+			// o onLevelChange só ensina os níveis novos; skill que virou autoLearn depois (as _high do Brawler eram skillBook) nunca chegava a quem
+			// já estava no nível. Antes do spawn não sai mensagem, e o SM_SKILL_LIST logo abaixo já leva as novas
+			SkillLearnService.learnNewSkills(player, 1, player.getLevel());
 
 			if (pcd.getLastOnline() != null) {
 				long secondsOffline = (System.currentTimeMillis() - pcd.getLastOnline().getTime()) / 1000;

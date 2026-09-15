@@ -182,7 +182,7 @@ public class SkillTemplate implements L10n {
 	}
 
 	public SkillTargetSlot getTargetSlot() {
-		return targetSlot;
+		return targetSlot != null ? targetSlot : SkillTargetSlot.NONE;
 	}
 
 	public int getTargetSlotLevel() {
@@ -271,7 +271,7 @@ public class SkillTemplate implements L10n {
 	}
 
 	public int getChainSkillProb() {
-		return chainSkillProb;
+		return chainSkillProb > 0 ? chainSkillProb : 100;
 	}
 
 	public int getCancelRate() {
@@ -384,6 +384,34 @@ public class SkillTemplate implements L10n {
 				return true;
 		}
 		return false;
+	}
+
+	public ContextSkillCondition getContextSkillCondition() {
+		if (startconditions != null) {
+			for (Condition cond : startconditions.getConditions()) {
+				if (cond instanceof ContextSkillCondition)
+					return (ContextSkillCondition) cond;
+			}
+		}
+		return null;
+	}
+
+	public boolean isContextOrForteSkill() {
+		return getContextSkillCondition() != null || isForteSkill();
+	}
+
+	public SkillTemplate getBaseContextSkillTemplate() {
+		if (stack != null) {
+			String upper = stack.toUpperCase();
+			if (upper.contains("_HIGH_") || upper.contains("_FORTE_")) {
+				String baseStack = stack.replaceFirst("(?i)_HIGH_", "_").replaceFirst("(?i)_FORTE_", "_");
+				java.util.List<SkillTemplate> templates = DataManager.SKILL_DATA.getSkillTemplatesByStack(baseStack);
+				if (templates != null && !templates.isEmpty()) {
+					return templates.get(0);
+				}
+			}
+		}
+		return null;
 	}
 
 	public ChainCondition getChainCondition() {

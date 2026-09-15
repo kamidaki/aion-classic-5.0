@@ -20,6 +20,7 @@ public abstract class CreatureLifeStats<T extends Creature> {
 	private int currentHp;
 	private int currentMp;
 	private int killingBlow; // for long animation skills that will kill - last damage
+	private Effect claimedDeathTrigger; // o último efeito de findDeathTrigger() que já salvou a criatura
 	protected final T owner;
 	protected final Object restoreLock = new Object();
 	protected Future<?> lifeRestoreTask;
@@ -88,17 +89,28 @@ public abstract class CreatureLifeStats<T extends Creature> {
 			return currentHp;
 		}
 
+		// procurado fora do lock e só quando o golpe pode matar
+		Effect deathTrigger = type != TYPE.USED_HP && value >= currentHp ? findDeathTrigger() : null;
+		boolean deathTriggered = false;
 		int previousHp, newHp;
 		synchronized (this) {
 			if (isDead())
 				return 0;
 
 			previousHp = currentHp;
-			int minHp = type == TYPE.USED_HP ? 1 : 0; // a skill cost drains its caster down to 1 hp, it never kills him
-			currentHp = newHp = Math.clamp(currentHp - value, minHp, currentHp);
-			if (isDead()) {
-				currentMp = 0;
+			if (deathTrigger != null && value >= currentHp) {
+				// o golpe fatal deixa 1 de HP; golpes simultâneos contra o mesmo efeito não o disparam de novo
+				currentHp = newHp = 1;
 				unsetIsAboutToDie();
+				deathTriggered = deathTrigger != claimedDeathTrigger;
+				claimedDeathTrigger = deathTrigger;
+			} else {
+				int minHp = type == TYPE.USED_HP ? 1 : 0; // a skill cost drains its caster down to 1 hp, it never kills him
+				currentHp = newHp = Math.clamp(currentHp - value, minHp, currentHp);
+				if (isDead()) {
+					currentMp = 0;
+					unsetIsAboutToDie();
+				}
 			}
 		}
 
@@ -106,7 +118,22 @@ public abstract class CreatureLifeStats<T extends Creature> {
 			sendAttackStatusPacketUpdate(type, previousHp - newHp, skillId, log);
 		if (newHp != previousHp)
 			onHpChanged(previousHp, newHp, attacker);
+		if (deathTriggered)
+			onDeathTriggered(deathTrigger);
 		return newHp;
+	}
+
+	/**
+	 * @return O efeito que impede a morte pelo próximo golpe fatal (Soul Pact do Soul Reaper), ou null
+	 */
+	protected Effect findDeathTrigger() {
+		return null;
+	}
+
+	/**
+	 * Chamado fora do lock, uma vez por efeito de {@link #findDeathTrigger()}, depois que o golpe fatal deixou a criatura com 1 de HP.
+	 */
+	protected void onDeathTriggered(Effect deathTrigger) {
 	}
 
 	/**
