@@ -24,122 +24,141 @@ static bool s_gfxEnabled = false;
 static void BypassCountryCheckInModule(HMODULE hMod) {
     if (!hMod) return;
 
-    PIMAGE_DOS_HEADER dos = (PIMAGE_DOS_HEADER)hMod;
-    if (dos->e_magic != IMAGE_DOS_SIGNATURE) return;
+    __try {
+        PIMAGE_DOS_HEADER dos = (PIMAGE_DOS_HEADER)hMod;
+        if (dos->e_magic != IMAGE_DOS_SIGNATURE) return;
+        if (dos->e_lfanew <= 0 || dos->e_lfanew > 0x10000000) return;
 
-    PIMAGE_NT_HEADERS nt = (PIMAGE_NT_HEADERS)((BYTE*)hMod + dos->e_lfanew);
-    if (nt->Signature != IMAGE_NT_SIGNATURE) return;
+        PIMAGE_NT_HEADERS nt = (PIMAGE_NT_HEADERS)((BYTE*)hMod + dos->e_lfanew);
+        if (nt->Signature != IMAGE_NT_SIGNATURE) return;
 
-    BYTE* base = (BYTE*)hMod;
-    PIMAGE_SECTION_HEADER sec = IMAGE_FIRST_SECTION(nt);
-    for (WORD i = 0; i < nt->FileHeader.NumberOfSections; i++, sec++) {
-        if (!(sec->Characteristics & IMAGE_SCN_MEM_EXECUTE))
-            continue;
+        BYTE* base = (BYTE*)hMod;
+        PIMAGE_SECTION_HEADER sec = IMAGE_FIRST_SECTION(nt);
+        for (WORD i = 0; i < nt->FileHeader.NumberOfSections; i++, sec++) {
+            if (!(sec->Characteristics & IMAGE_SCN_MEM_EXECUTE))
+                continue;
 
-        BYTE* s = base + sec->VirtualAddress;
-        DWORD sz = sec->Misc.VirtualSize;
-        if (sz < 32) continue;
-        BYTE* s_end = s + sz - 20;
+            BYTE* s = base + sec->VirtualAddress;
+            DWORD sz = sec->Misc.VirtualSize;
+            if (sz < 32) continue;
+            BYTE* s_end = s + sz - 20;
 
-        for (BYTE* p = s; p <= s_end; p++) {
-            // Match \x3b\xc1\x0f\x85 (cmp eax, ecx; jne ...)
-            if (p[0] == 0x3B && p[1] == 0xC1 && p[2] == 0x0F && p[3] == 0x85) {
-                // Check if \x83\xf8\x02 (cmp eax, 2) appears in previous 30 bytes
-                BYTE* pre_start = (p - 30 >= s) ? (p - 30) : s;
-                bool has_cmp = false;
-                for (BYTE* q = pre_start; q < p; q++) {
-                    if (q[0] == 0x83 && q[1] == 0xF8 && q[2] == 0x02) {
-                        has_cmp = true;
-                        break;
+            for (BYTE* p = s; p <= s_end; p++) {
+                // Match \x3b\xc1\x0f\x85 (cmp eax, ecx; jne ...)
+                if (p[0] == 0x3B && p[1] == 0xC1 && p[2] == 0x0F && p[3] == 0x85) {
+                    // Check if \x83\xf8\x02 (cmp eax, 2) appears in previous 30 bytes
+                    BYTE* pre_start = (p - 30 >= s) ? (p - 30) : s;
+                    bool has_cmp = false;
+                    for (BYTE* q = pre_start; q < p; q++) {
+                        if (q[0] == 0x83 && q[1] == 0xF8 && q[2] == 0x02) {
+                            has_cmp = true;
+                            break;
+                        }
                     }
-                }
-                if (!has_cmp) continue;
+                    if (!has_cmp) continue;
 
-                int32_t disp = *(int32_t*)(p + 4);
-                BYTE* err_target = p + 8 + disp;
-                if (err_target >= base && err_target < base + nt->OptionalHeader.SizeOfImage - 6) {
-                    // Check if error block starts with 41 B9 10 (mov r9d, 0x10)
-                    if (err_target[0] == 0x41 && err_target[1] == 0xB9 && err_target[2] == 0x10) {
-                        DWORD oldProtect = 0;
-                        // Patch 1: NOP the jne (6 bytes: 0x0F 0x85 [disp32])
-                        if (VirtualProtect(p + 2, 6, PAGE_EXECUTE_READWRITE, &oldProtect)) {
-                            memset(p + 2, 0x90, 6);
-                            VirtualProtect(p + 2, 6, oldProtect, &oldProtect);
-                        }
-
-                        // Patch 2: Search within next 16 bytes for 0x0F 0x84 (je ...) and NOP it
-                        for (int k = 8; k < 20 && (p + k + 6 <= s_end); k++) {
-                            if (p[k] == 0x0F && p[k + 1] == 0x84) {
-                                if (VirtualProtect(p + k, 6, PAGE_EXECUTE_READWRITE, &oldProtect)) {
-                                    memset(p + k, 0x90, 6);
-                                    VirtualProtect(p + k, 6, oldProtect, &oldProtect);
-                                }
-                                break;
+                    int32_t disp = *(int32_t*)(p + 4);
+                    BYTE* err_target = p + 8 + disp;
+                    if (err_target >= base && err_target < base + nt->OptionalHeader.SizeOfImage - 6) {
+                        // Check if error block starts with 41 B9 10 (mov r9d, 0x10)
+                        if (err_target[0] == 0x41 && err_target[1] == 0xB9 && err_target[2] == 0x10) {
+                            DWORD oldProtect = 0;
+                            // Patch 1: NOP the jne (6 bytes: 0x0F 0x85 [disp32])
+                            if (VirtualProtect(p + 2, 6, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+                                memset(p + 2, 0x90, 6);
+                                VirtualProtect(p + 2, 6, oldProtect, &oldProtect);
                             }
-                        }
 
-                        // Patch 3: At err_target, patch with ret (0xC3) so it can never trigger exit
-                        if (VirtualProtect(err_target, 1, PAGE_EXECUTE_READWRITE, &oldProtect)) {
-                            err_target[0] = 0xC3; // ret
-                            VirtualProtect(err_target, 1, oldProtect, &oldProtect);
+                            // Patch 2: Search within next 16 bytes for 0x0F 0x84 (je ...) and NOP it
+                            for (int k = 8; k < 20 && (p + k + 6 <= s_end); k++) {
+                                if (p[k] == 0x0F && p[k + 1] == 0x84) {
+                                    if (VirtualProtect(p + k, 6, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+                                        memset(p + k, 0x90, 6);
+                                        VirtualProtect(p + k, 6, oldProtect, &oldProtect);
+                                    }
+                                    break;
+                                }
+                            }
+
+                            // Patch 3: At err_target, patch with ret (0xC3) so it can never trigger exit
+                            if (VirtualProtect(err_target, 1, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+                                err_target[0] = 0xC3; // ret
+                                VirtualProtect(err_target, 1, oldProtect, &oldProtect);
+                            }
                         }
                     }
                 }
             }
         }
     }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
 }
 
 static void PatchLanguageTableInModule(HMODULE hMod) {
     if (!hMod) return;
 
-    PIMAGE_DOS_HEADER dos = (PIMAGE_DOS_HEADER)hMod;
-    if (dos->e_magic != IMAGE_DOS_SIGNATURE) return;
+    __try {
+        PIMAGE_DOS_HEADER dos = (PIMAGE_DOS_HEADER)hMod;
+        if (dos->e_magic != IMAGE_DOS_SIGNATURE) return;
+        if (dos->e_lfanew <= 0 || dos->e_lfanew > 0x10000000) return;
 
-    PIMAGE_NT_HEADERS nt = (PIMAGE_NT_HEADERS)((BYTE*)hMod + dos->e_lfanew);
-    if (nt->Signature != IMAGE_NT_SIGNATURE) return;
+        PIMAGE_NT_HEADERS nt = (PIMAGE_NT_HEADERS)((BYTE*)hMod + dos->e_lfanew);
+        if (nt->Signature != IMAGE_NT_SIGNATURE) return;
 
-    const char pattern[] = "KOR\0ENU\0ENG\0DEU\0FRA\0ITA\0ESN\0PLK\0";
-    const size_t patternLen = 32;
+        const char p1_prefix[] = "KOR\0ENU\0ENG\0DEU\0FRA\0ITA\0ESN\0"; // 28 bytes
+        const char p2_suffix[] = "ESN\0ITA\0FRA\0DEU\0ENG\0ENU\0KOR\0"; // 28 bytes
+        const size_t patternLen = 32;
 
-    BYTE* base = (BYTE*)hMod;
-    PIMAGE_SECTION_HEADER sec = IMAGE_FIRST_SECTION(nt);
-    for (WORD i = 0; i < nt->FileHeader.NumberOfSections; i++, sec++) {
-        if (!(sec->Characteristics & (IMAGE_SCN_MEM_READ | IMAGE_SCN_CNT_INITIALIZED_DATA | IMAGE_SCN_CNT_CODE)))
-            continue;
+        BYTE* base = (BYTE*)hMod;
+        PIMAGE_SECTION_HEADER sec = IMAGE_FIRST_SECTION(nt);
+        for (WORD i = 0; i < nt->FileHeader.NumberOfSections; i++, sec++) {
+            if (!(sec->Characteristics & (IMAGE_SCN_MEM_READ | IMAGE_SCN_CNT_INITIALIZED_DATA | IMAGE_SCN_CNT_CODE)))
+                continue;
 
-        BYTE* s = base + sec->VirtualAddress;
-        DWORD sz = sec->Misc.VirtualSize;
-        if (sz < 8) continue;
-        BYTE* s_end = s + sz - 8;
+            BYTE* s = base + sec->VirtualAddress;
+            DWORD sz = sec->Misc.VirtualSize;
+            if (sz < 8) continue;
+            BYTE* s_end = s + sz - 8;
 
-        for (BYTE* p = s; p <= s_end; p++) {
-            // Check primary 32-byte pattern (Aion.bin, CrySystem, CryFont, CrySoundSystem, XRenderD3D9)
-            if (p + patternLen <= base + sec->VirtualAddress + sz && p[0] == 'K' && memcmp(p, pattern, patternLen) == 0) {
-                BYTE* plk = p + 28;
-                DWORD oldProtect = 0;
-                if (VirtualProtect(plk, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
-                    memcpy(plk, "BRA\0", 4);
-                    VirtualProtect(plk, 4, oldProtect, &oldProtect);
+            for (BYTE* p = s; p <= s_end; p++) {
+                // Check Classic pattern: PLK\0 + ESN\0ITA\0FRA\0DEU\0ENG\0ENU\0KOR\0
+                if (p + patternLen <= base + sec->VirtualAddress + sz && p[0] == 'P' && memcmp(p, "PLK\0", 4) == 0 && memcmp(p + 4, p2_suffix, 28) == 0) {
+                    DWORD oldProtect = 0;
+                    if (VirtualProtect(p, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+                        memcpy(p, "BRA\0", 4);
+                        VirtualProtect(p, 4, oldProtect, &oldProtect);
+                    }
                 }
-            }
-            // Check Game.dll pattern: PLK\0ESN\0 or PLK\0TRK\0
-            else if (memcmp(p, "PLK\0ESN\0", 8) == 0 || memcmp(p, "PLK\0TRK\0", 8) == 0) {
-                DWORD oldProtect = 0;
-                if (VirtualProtect(p, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
-                    memcpy(p, "BRA\0", 4);
-                    VirtualProtect(p, 4, oldProtect, &oldProtect);
+                // Check primary 32-byte 5.0+ pattern (KOR...PLK)
+                else if (p + patternLen <= base + sec->VirtualAddress + sz && p[0] == 'K' && memcmp(p, p1_prefix, 28) == 0 && memcmp(p + 28, "PLK\0", 4) == 0) {
+                    BYTE* plk = p + 28;
+                    DWORD oldProtect = 0;
+                    if (VirtualProtect(plk, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+                        memcpy(plk, "BRA\0", 4);
+                        VirtualProtect(plk, 4, oldProtect, &oldProtect);
+                    }
                 }
-            }
-            // Check CryMovie.dll pattern: ITA\0PLK\0 or ESN\0PLK\0
-            else if (memcmp(p, "ITA\0PLK\0", 8) == 0 || memcmp(p, "ESN\0PLK\0", 8) == 0) {
-                DWORD oldProtect = 0;
-                if (VirtualProtect(p + 4, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
-                    memcpy(p + 4, "BRA\0", 4);
-                    VirtualProtect(p + 4, 4, oldProtect, &oldProtect);
+                // Check Game.dll / short pattern: PLK\0ESN\0, PLK\0TRK\0, PLK\0ITA\0
+                else if (memcmp(p, "PLK\0ESN\0", 8) == 0 || memcmp(p, "PLK\0TRK\0", 8) == 0 || memcmp(p, "PLK\0ITA\0", 8) == 0) {
+                    DWORD oldProtect = 0;
+                    if (VirtualProtect(p, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+                        memcpy(p, "BRA\0", 4);
+                        VirtualProtect(p, 4, oldProtect, &oldProtect);
+                    }
+                }
+                // Check CryMovie.dll pattern: ITA\0PLK\0 or ESN\0PLK\0
+                else if (memcmp(p, "ITA\0PLK\0", 8) == 0 || memcmp(p, "ESN\0PLK\0", 8) == 0) {
+                    DWORD oldProtect = 0;
+                    if (VirtualProtect(p + 4, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+                        memcpy(p + 4, "BRA\0", 4);
+                        VirtualProtect(p + 4, 4, oldProtect, &oldProtect);
+                    }
                 }
             }
         }
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
     }
 }
 
@@ -151,7 +170,8 @@ static void PatchAllLoadedLanguageModules() {
         GetModuleHandleW(L"crymovie.dll"),
         GetModuleHandleW(L"crysoundsystem.dll"),
         GetModuleHandleW(L"game.dll"),
-        GetModuleHandleW(L"xrenderd3d9.dll")
+        GetModuleHandleW(L"xrenderd3d9.dll"),
+        GetModuleHandleW(L"SendLogClient.exe")
     };
     for (HMODULE h : mods) {
         if (h) {
@@ -266,6 +286,31 @@ static LPSTR WINAPI zzGetCommandLineA() {
     if (s_hookedCmdA.empty()) {
         LPSTR cmd = real_GetCommandLineA();
         s_hookedCmdA = cmd ? cmd : "";
+        size_t p = 0;
+        while ((p = s_hookedCmdA.find("-LANG:", p)) != std::string::npos) {
+            s_hookedCmdA.replace(p, 6, "-lang:");
+            p += 6;
+        }
+        p = 0;
+        while ((p = s_hookedCmdA.find("-Lang:", p)) != std::string::npos) {
+            s_hookedCmdA.replace(p, 6, "-lang:");
+            p += 6;
+        }
+        p = 0;
+        while ((p = s_hookedCmdA.find("-lang:bra", p)) != std::string::npos) {
+            s_hookedCmdA.replace(p, 9, "-lang:BRA");
+            p += 9;
+        }
+        if (s_hookedCmdA.find("-lang:BRA") != std::string::npos) {
+            p = s_hookedCmdA.find("-cc:1");
+            if (p != std::string::npos) {
+                s_hookedCmdA.replace(p, 5, "-cc:2");
+            }
+            p = s_hookedCmdA.find("-CC:1");
+            if (p != std::string::npos) {
+                s_hookedCmdA.replace(p, 5, "-cc:2");
+            }
+        }
         if (s_hookedCmdA.find("-classic") == std::string::npos) {
             s_hookedCmdA += " -noweb -classic -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu -dwsm -probability -nospamcheck";
         }
@@ -279,6 +324,31 @@ static LPWSTR WINAPI zzGetCommandLineW() {
     if (s_hookedCmdW.empty()) {
         LPWSTR cmd = real_GetCommandLineW();
         s_hookedCmdW = cmd ? cmd : L"";
+        size_t p = 0;
+        while ((p = s_hookedCmdW.find(L"-LANG:", p)) != std::wstring::npos) {
+            s_hookedCmdW.replace(p, 6, L"-lang:");
+            p += 6;
+        }
+        p = 0;
+        while ((p = s_hookedCmdW.find(L"-Lang:", p)) != std::wstring::npos) {
+            s_hookedCmdW.replace(p, 6, L"-lang:");
+            p += 6;
+        }
+        p = 0;
+        while ((p = s_hookedCmdW.find(L"-lang:bra", p)) != std::wstring::npos) {
+            s_hookedCmdW.replace(p, 9, L"-lang:BRA");
+            p += 9;
+        }
+        if (s_hookedCmdW.find(L"-lang:BRA") != std::wstring::npos) {
+            p = s_hookedCmdW.find(L"-cc:1");
+            if (p != std::wstring::npos) {
+                s_hookedCmdW.replace(p, 5, L"-cc:2");
+            }
+            p = s_hookedCmdW.find(L"-CC:1");
+            if (p != std::wstring::npos) {
+                s_hookedCmdW.replace(p, 5, L"-cc:2");
+            }
+        }
         if (s_hookedCmdW.find(L"-classic") == std::wstring::npos) {
             s_hookedCmdW += L" -noweb -classic -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu -dwsm -probability -nospamcheck";
         }
@@ -362,6 +432,7 @@ static void InstallPatch() {
 
     PatchLanguageTableInModule(GetModuleHandleW(nullptr));
     BypassCountryCheckInModule(GetModuleHandleW(nullptr));
+    PatchAllLoadedLanguageModules();
 
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
@@ -391,6 +462,23 @@ BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID l
     if (fdwReason == DLL_PROCESS_ATTACH) {
         DisableThreadLibraryCalls(hinstDLL);
         InstallPatch();
+
+        // Spawn early high-frequency language monitor thread immediately
+        HANDLE hLangThread = CreateThread(nullptr, 0, [](LPVOID) -> DWORD {
+            for (int i = 0; i < 4000; i++) {
+                PatchAllLoadedLanguageModules();
+                if (GetModuleHandleW(L"crysystem.dll") && GetModuleHandleW(L"cryfont.dll") && GetModuleHandleW(L"crysoundsystem.dll")) {
+                    PatchAllLoadedLanguageModules();
+                    break;
+                }
+                Sleep(5);
+            }
+            return 0;
+        }, nullptr, 0, nullptr);
+        if (hLangThread) {
+            CloseHandle(hLangThread);
+        }
     }
     return TRUE;
 }
+
