@@ -65,6 +65,8 @@ cache/
 *.DDS
 *.dat
 *.DAT
+!**/data/native-path/**
+!**/data/native-path/**/*.dat
 *.tga
 *.bmp
 *.wav

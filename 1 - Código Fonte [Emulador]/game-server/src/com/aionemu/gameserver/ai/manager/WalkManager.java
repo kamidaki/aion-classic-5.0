@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 
 import com.lostacademy.nav.NavData;
 import com.lostacademy.nav.NavService;
+import com.lostacademy.nativepath.NativePathConfig;
+import com.lostacademy.nativepath.NativePathService;
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.gameserver.ai.AIState;
 import com.aionemu.gameserver.ai.AISubState;
@@ -232,6 +234,14 @@ public class WalkManager {
             int diameter = randomWalkRange * 2;
             float nextX = Rnd.nextFloat(diameter) - randomWalkRange + owner.getSpawn().getX();
             float nextY = Rnd.nextFloat(diameter) - randomWalkRange + owner.getSpawn().getY();
+            if (NativePathConfig.NATIVE_PATH_ENABLE && NativePathService.getInstance().hasMap(owner.getWorldId())) {
+                float[][] navPath = NativePathService.getInstance().navigateToLocation(owner, nextX, nextY, owner.getZ());
+                float[] navTarget = selectNextNavPoint(owner, navPath, diameter);
+                if (navTarget != null) {
+                    owner.getMoveController().moveToPoint(navTarget[0], navTarget[1], navTarget[2]);
+                    return;
+                }
+            }
             boolean navEnabled = GeoDataConfig.GEO_NAV_ENABLE && NavData.getInstance().getNavMap(owner.getWorldId()) != null;
             if (navEnabled) {
                 float[][] navPath = NavService.getInstance().navigateToLocation(owner, nextX, nextY, owner.getZ());

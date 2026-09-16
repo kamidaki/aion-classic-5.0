@@ -11,6 +11,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.lostacademy.nav.NavData;
+import com.lostacademy.nativepath.NativePathData;
 import com.aionemu.gameserver.configs.administration.AdminConfig;
 import com.aionemu.gameserver.configs.main.GSConfig;
 import com.aionemu.gameserver.configs.main.PeriodicSaveConfig;
@@ -149,6 +151,8 @@ public final class PlayerEnterWorldService {
 			pcd.setInEditMode(false);
 
 			World.getInstance().storeObject(player);
+			NavData.getInstance().onPlayerEnterMap(player.getWorldId());
+			NativePathData.getInstance().onPlayerEnterMap(player.getWorldId());
 
 			if (validateFortressZone(player))
 				validateVortexZone(player);

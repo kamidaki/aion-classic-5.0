@@ -88,6 +88,33 @@ O emulador conta com um sistema de alta segurança integrado ao núcleo de rede 
 
 ---
 
+## Subsistema de Navegação e Pathfinding (CryEngine Native-Path)
+
+O emulador adota como motor primário de navegação tridimensional o pacote `com.lostacademy.nativepath`, que consome diretamente os arquivos compilados da CryEngine (`*-path.dat`) extraídos das pastas `Levels/` do cliente oficial GameForge 5.0.
+
+### 1. Cadeia de 4 Camadas de Fallback
+```text
+[Camada 1: Native-Path (CryEngine .dat)]
+         │
+         ▼ (falha / sem arquivo / desativado)
+[Camada 2: NavMesh (.nav Recast)]
+         │
+         ▼ (falha / sem malha / desativado)
+[Camada 3: Eleanor (Geometria / Raycast LoS)]
+         │
+         ▼ (falha / sem rota transitável)
+[Camada 4: Vanilla / Comportamento Normal (GeoService direto)]
+```
+
+### 2. Características do Subsistema
+- **Precisão Espacial**: Grade de resolução 0.5m por célula nativa da CryEngine.
+- **Mapeamento 3D Completo**: Suporte nativo a camadas verticais (pontes, túneis e rampas) e conexões de adjacência pré-calculadas.
+- **Algoritmo A***: Busca heurística 3D de alta performance com fila de prioridade e alisamento via *string-pulling raycasting*.
+- **Gerenciamento de Memória LRU**: Indexação dinâmica por prefixo numérico `{worldId}_*`, carregamento assíncrono sob demanda na entrada de jogadores e liberação automática de mapas inativos (`NativePathData`).
+- **Compatibilidade 5.0**: 118 mapas indexados diretamente do cliente oficial em `data/native-path/`.
+
+---
+
 ## Estrutura Oficial de Diretórios do Projeto
 
 ```text
