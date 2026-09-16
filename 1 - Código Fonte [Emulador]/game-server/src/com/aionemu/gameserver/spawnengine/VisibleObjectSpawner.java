@@ -51,7 +51,7 @@ public class VisibleObjectSpawner {
 		int npcId = spawn.getNpcId();
 		NpcTemplate npcTemplate = DataManager.NPC_DATA.getNpcTemplate(npcId);
 		if (npcTemplate == null) {
-			log.error("No template for NPC {}", npcId);
+			log.debug("No template for NPC {}", npcId);
 			return null;
 		}
 		Npc npc = new Npc(new NpcController(), spawn, npcTemplate);
@@ -75,7 +75,7 @@ public class VisibleObjectSpawner {
 		int npcId = spawn.getNpcId();
 		NpcTemplate npcTemplate = DataManager.NPC_DATA.getNpcTemplate(npcId);
 		if (npcTemplate == null) {
-			log.warn("No template for House NPC {}", npcId);
+			log.debug("No template for House NPC {}", npcId);
 			return null;
 		}
 		SummonedHouseNpc npc = new SummonedHouseNpc(new NpcController(), spawn, creator);
@@ -91,7 +91,7 @@ public class VisibleObjectSpawner {
 		int npcId = spawn.getNpcId();
 		NpcTemplate npcTemplate = DataManager.NPC_DATA.getNpcTemplate(npcId);
 		if (npcTemplate == null) {
-			log.error("No template for NPC {}", npcId);
+			log.debug("No template for NPC {}", npcId);
 			return null;
 		}
 		Npc npc;
@@ -115,7 +115,7 @@ public class VisibleObjectSpawner {
 
 		NpcTemplate npcTemplate = DataManager.NPC_DATA.getNpcTemplate(spawn.getNpcId());
 		if (npcTemplate == null) {
-			log.error("No template for NPC {}", spawn.getNpcId());
+			log.debug("No template for NPC {}", spawn.getNpcId());
 			return null;
 		}
 		Npc npc = new SiegeNpc(new NpcController(), spawn, npcTemplate);
@@ -132,7 +132,7 @@ public class VisibleObjectSpawner {
 
 		NpcTemplate npcTemplate = DataManager.NPC_DATA.getNpcTemplate(spawn.getNpcId());
 		if (npcTemplate == null) {
-			log.error("No template for NPC {}", spawn.getNpcId());
+			log.debug("No template for NPC {}", spawn.getNpcId());
 			return null;
 		}
 		Npc npc = new Npc(new NpcController(), spawn, npcTemplate);
@@ -173,6 +173,10 @@ public class VisibleObjectSpawner {
 	public static Npc spawnPostman(final Player owner) {
 		int npcId = owner.getRace() == Race.ELYOS ? 798100 : 798101;
 		NpcTemplate template = DataManager.NPC_DATA.getNpcTemplate(npcId);
+		if (template == null) {
+			log.debug("No template for Postman NPC {}", npcId);
+			return null;
+		}
 		double radian = Math.toRadians(PositionUtil.convertHeadingToAngle(owner.getHeading()));
 		Vector3f pos = GeoService.getInstance().getClosestCollision(owner, owner.getX() + (float) (Math.cos(radian) * 7),
 			owner.getY() + (float) (Math.sin(radian) * 7), owner.getZ());
@@ -189,6 +193,10 @@ public class VisibleObjectSpawner {
 
 	public static Npc spawnFunctionalNpc(final Player owner, int npcId, SummonOwner summonOwner) {
 		NpcTemplate template = DataManager.NPC_DATA.getNpcTemplate(npcId);
+		if (template == null) {
+			log.debug("No template for Functional NPC {}", npcId);
+			return null;
+		}
 		double radian = Math.toRadians(PositionUtil.convertHeadingToAngle(owner.getHeading()));
 		Vector3f pos = GeoService.getInstance().getClosestCollision(owner, owner.getX() + (float) (Math.cos(radian) * 1),
 			owner.getY() + (float) (Math.sin(radian) * 1), owner.getZ());

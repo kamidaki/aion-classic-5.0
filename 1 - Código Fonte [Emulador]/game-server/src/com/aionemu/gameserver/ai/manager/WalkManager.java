@@ -43,7 +43,7 @@ public class WalkManager {
 	public static void fallbackToRandomWalk(Npc npc, String walkerId) {
 		if (npc == null || npc.getSpawn() == null || walkerId == null)
 			return;
-		log.info("Missing walker template '{}' for NPC {} ({}) at map {}. Falling back to random walk.",
+		log.debug("Missing walker template '{}' for NPC {} ({}) at map {}. Falling back to random walk.",
 			walkerId, npc.getNpcId(), npc.getName(), npc.getWorldId());
 		if (npc.getSpawn().getRandomWalkRange() <= 0) {
 			npc.getSpawn().setRandomWalk(DEFAULT_FALLBACK_RANDOM_WALK);
