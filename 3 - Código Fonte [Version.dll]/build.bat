@@ -68,33 +68,17 @@ if exist "src\Release\version.dll" (
     )
 )
 
-if exist "lib\dxvk\x64\d3d9.dll" (
-    copy /y "lib\dxvk\x64\d3d9.dll" "%PATCH_DIR%\bin64\d3d9.dll" >nul
-    if exist "%CLIENT_DIR%\bin64" (
-        copy /y "lib\dxvk\x64\d3d9.dll" "%CLIENT_DIR%\bin64\d3d9.dll" >nul
-        echo   [OK] bin64\d3d9.dll ^(DXVK Sarek Vulkan^) instalado em Client Patch e Jogo Real 5.0!
-    )
-)
-
-if exist "lib\dxvk\x32\d3d9.dll" (
-    copy /y "lib\dxvk\x32\d3d9.dll" "%PATCH_DIR%\bin32\d3d9.dll" >nul
-    if exist "%CLIENT_DIR%\bin32" (
-        copy /y "lib\dxvk\x32\d3d9.dll" "%CLIENT_DIR%\bin32\d3d9.dll" >nul
-        echo   [OK] bin32\d3d9.dll ^(DXVK Sarek Vulkan^) instalado em Client Patch e Jogo Real 5.0!
-    )
-)
-
-if exist "%PATCH_DIR%\Start_Classic.bat" (
+if exist "%PATCH_DIR%\Start x64 - INGLÊS.bat" (
     if exist "%CLIENT_DIR%" (
-        copy /y "%PATCH_DIR%\Start_Classic.bat" "%CLIENT_DIR%\Start_Classic.bat" >nul
-        echo   [OK] Start_Classic.bat sincronizado no cliente 5.0!
+        copy /y "%PATCH_DIR%\Start x64 - INGLÊS.bat" "%CLIENT_DIR%\Start x64 - INGLÊS.bat" >nul
+        echo   [OK] Start x64 - INGLES.bat sincronizado no cliente 5.0!
     )
 )
 
-if exist "%PATCH_DIR%\Start_Classic_32.bat" (
+if exist "%PATCH_DIR%\Start x64 - PORTUGUÊS BRASIL.bat" (
     if exist "%CLIENT_DIR%" (
-        copy /y "%PATCH_DIR%\Start_Classic_32.bat" "%CLIENT_DIR%\Start_Classic_32.bat" >nul
-        echo   [OK] Start_Classic_32.bat sincronizado no cliente 5.0!
+        copy /y "%PATCH_DIR%\Start x64 - PORTUGUÊS BRASIL.bat" "%CLIENT_DIR%\Start x64 - PORTUGUÊS BRASIL.bat" >nul
+        echo   [OK] Start x64 - PORTUGUES BRASIL.bat sincronizado no cliente 5.0!
     )
 )
 

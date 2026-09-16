@@ -99,3 +99,10 @@ cache/
 **/database.properties
 database.properties
 
+# 11. Patch Client - Mídias e Arquivos Binários Pesados (> 50MB)
+4 - Patch para o Client 5.0/l10n/BRA/sounds/
+4 - Patch para o Client 5.0/l10n/BRA/Textures/
+4 - Patch para o Client 5.0/bin32/
+4 - Patch para o Client 5.0/bin64/Aion.bin
+
+

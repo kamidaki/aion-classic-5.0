@@ -1,8 +1,6 @@
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #include <winsock2.h>
 #include <windows.h>
-#include <stdio.h>
-#include <stdarg.h>
 #include <stdint.h>
 #include <string>
 #include <algorithm>
@@ -14,69 +12,224 @@
 // =========================================================================
 //  Features:
 //  1. Graphics quality unlock (4096x4096 resolution support in CrySystem).
-//  2. Camera stutter fix for Windows 10/11.
-//  3. Preloading DXVK / Vulkan Direct3D9 translation layer.
-//  4. High core-count CPU affinity stability fix (32+ cores).
-//  5. Window sizing / border adjustments for modern resolutions.
-//  6. Official IP spoofing for private emulator connectivity.
-//  7. Clean command line bypasses for official-only telemetry/shops.
+//  2. High core-count CPU affinity stability fix (32+ cores).
+//  3. Window sizing / border adjustments for modern resolutions.
+//  4. Official IP spoofing for private emulator connectivity.
+//  5. Clean command line bypasses for official-only telemetry/shops.
+//  6. Native L10N BRA (Portuguese-Brazil) language support injection.
 // =========================================================================
 
 static bool s_gfxEnabled = false;
 
-void VersionLog(const char* fmt, ...) {
-    static CRITICAL_SECTION s_cs;
-    static bool s_csInit = false;
-    if (!s_csInit) {
-        InitializeCriticalSection(&s_cs);
-        s_csInit = true;
+static void BypassCountryCheckInModule(HMODULE hMod) {
+    if (!hMod) return;
+
+    PIMAGE_DOS_HEADER dos = (PIMAGE_DOS_HEADER)hMod;
+    if (dos->e_magic != IMAGE_DOS_SIGNATURE) return;
+
+    PIMAGE_NT_HEADERS nt = (PIMAGE_NT_HEADERS)((BYTE*)hMod + dos->e_lfanew);
+    if (nt->Signature != IMAGE_NT_SIGNATURE) return;
+
+    BYTE* base = (BYTE*)hMod;
+    PIMAGE_SECTION_HEADER sec = IMAGE_FIRST_SECTION(nt);
+    for (WORD i = 0; i < nt->FileHeader.NumberOfSections; i++, sec++) {
+        if (!(sec->Characteristics & IMAGE_SCN_MEM_EXECUTE))
+            continue;
+
+        BYTE* s = base + sec->VirtualAddress;
+        DWORD sz = sec->Misc.VirtualSize;
+        if (sz < 32) continue;
+        BYTE* s_end = s + sz - 20;
+
+        for (BYTE* p = s; p <= s_end; p++) {
+            // Match \x3b\xc1\x0f\x85 (cmp eax, ecx; jne ...)
+            if (p[0] == 0x3B && p[1] == 0xC1 && p[2] == 0x0F && p[3] == 0x85) {
+                // Check if \x83\xf8\x02 (cmp eax, 2) appears in previous 30 bytes
+                BYTE* pre_start = (p - 30 >= s) ? (p - 30) : s;
+                bool has_cmp = false;
+                for (BYTE* q = pre_start; q < p; q++) {
+                    if (q[0] == 0x83 && q[1] == 0xF8 && q[2] == 0x02) {
+                        has_cmp = true;
+                        break;
+                    }
+                }
+                if (!has_cmp) continue;
+
+                int32_t disp = *(int32_t*)(p + 4);
+                BYTE* err_target = p + 8 + disp;
+                if (err_target >= base && err_target < base + nt->OptionalHeader.SizeOfImage - 6) {
+                    // Check if error block starts with 41 B9 10 (mov r9d, 0x10)
+                    if (err_target[0] == 0x41 && err_target[1] == 0xB9 && err_target[2] == 0x10) {
+                        DWORD oldProtect = 0;
+                        // Patch 1: NOP the jne (6 bytes: 0x0F 0x85 [disp32])
+                        if (VirtualProtect(p + 2, 6, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+                            memset(p + 2, 0x90, 6);
+                            VirtualProtect(p + 2, 6, oldProtect, &oldProtect);
+                        }
+
+                        // Patch 2: Search within next 16 bytes for 0x0F 0x84 (je ...) and NOP it
+                        for (int k = 8; k < 20 && (p + k + 6 <= s_end); k++) {
+                            if (p[k] == 0x0F && p[k + 1] == 0x84) {
+                                if (VirtualProtect(p + k, 6, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+                                    memset(p + k, 0x90, 6);
+                                    VirtualProtect(p + k, 6, oldProtect, &oldProtect);
+                                }
+                                break;
+                            }
+                        }
+
+                        // Patch 3: At err_target, patch with ret (0xC3) so it can never trigger exit
+                        if (VirtualProtect(err_target, 1, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+                            err_target[0] = 0xC3; // ret
+                            VirtualProtect(err_target, 1, oldProtect, &oldProtect);
+                        }
+                    }
+                }
+            }
+        }
     }
-    EnterCriticalSection(&s_cs);
-    FILE* f = nullptr;
-    fopen_s(&f, "version_hook.log", "a");
-    if (f) {
-        SYSTEMTIME st;
-        GetLocalTime(&st);
-        fprintf(f, "[%04d-%02d-%02d %02d:%02d:%02d.%03d] [version.dll] ",
-            st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond, st.wMilliseconds);
-        va_list args;
-        va_start(args, fmt);
-        vfprintf(f, fmt, args);
-        va_end(args);
-        fprintf(f, "\n");
-        fflush(f);
-        fclose(f);
+}
+
+static void PatchLanguageTableInModule(HMODULE hMod) {
+    if (!hMod) return;
+
+    PIMAGE_DOS_HEADER dos = (PIMAGE_DOS_HEADER)hMod;
+    if (dos->e_magic != IMAGE_DOS_SIGNATURE) return;
+
+    PIMAGE_NT_HEADERS nt = (PIMAGE_NT_HEADERS)((BYTE*)hMod + dos->e_lfanew);
+    if (nt->Signature != IMAGE_NT_SIGNATURE) return;
+
+    const char pattern[] = "KOR\0ENU\0ENG\0DEU\0FRA\0ITA\0ESN\0PLK\0";
+    const size_t patternLen = 32;
+
+    BYTE* base = (BYTE*)hMod;
+    PIMAGE_SECTION_HEADER sec = IMAGE_FIRST_SECTION(nt);
+    for (WORD i = 0; i < nt->FileHeader.NumberOfSections; i++, sec++) {
+        if (!(sec->Characteristics & (IMAGE_SCN_MEM_READ | IMAGE_SCN_CNT_INITIALIZED_DATA | IMAGE_SCN_CNT_CODE)))
+            continue;
+
+        BYTE* s = base + sec->VirtualAddress;
+        DWORD sz = sec->Misc.VirtualSize;
+        if (sz < 8) continue;
+        BYTE* s_end = s + sz - 8;
+
+        for (BYTE* p = s; p <= s_end; p++) {
+            // Check primary 32-byte pattern (Aion.bin, CrySystem, CryFont, CrySoundSystem, XRenderD3D9)
+            if (p + patternLen <= base + sec->VirtualAddress + sz && p[0] == 'K' && memcmp(p, pattern, patternLen) == 0) {
+                BYTE* plk = p + 28;
+                DWORD oldProtect = 0;
+                if (VirtualProtect(plk, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+                    memcpy(plk, "BRA\0", 4);
+                    VirtualProtect(plk, 4, oldProtect, &oldProtect);
+                }
+            }
+            // Check Game.dll pattern: PLK\0ESN\0 or PLK\0TRK\0
+            else if (memcmp(p, "PLK\0ESN\0", 8) == 0 || memcmp(p, "PLK\0TRK\0", 8) == 0) {
+                DWORD oldProtect = 0;
+                if (VirtualProtect(p, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+                    memcpy(p, "BRA\0", 4);
+                    VirtualProtect(p, 4, oldProtect, &oldProtect);
+                }
+            }
+            // Check CryMovie.dll pattern: ITA\0PLK\0 or ESN\0PLK\0
+            else if (memcmp(p, "ITA\0PLK\0", 8) == 0 || memcmp(p, "ESN\0PLK\0", 8) == 0) {
+                DWORD oldProtect = 0;
+                if (VirtualProtect(p + 4, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+                    memcpy(p + 4, "BRA\0", 4);
+                    VirtualProtect(p + 4, 4, oldProtect, &oldProtect);
+                }
+            }
+        }
     }
-    LeaveCriticalSection(&s_cs);
+}
+
+static void PatchAllLoadedLanguageModules() {
+    HMODULE mods[] = {
+        GetModuleHandleW(nullptr),
+        GetModuleHandleW(L"crysystem.dll"),
+        GetModuleHandleW(L"cryfont.dll"),
+        GetModuleHandleW(L"crymovie.dll"),
+        GetModuleHandleW(L"crysoundsystem.dll"),
+        GetModuleHandleW(L"game.dll"),
+        GetModuleHandleW(L"xrenderd3d9.dll")
+    };
+    for (HMODULE h : mods) {
+        if (h) {
+            PatchLanguageTableInModule(h);
+            BypassCountryCheckInModule(h);
+        }
+    }
+}
+
+static decltype(LoadLibraryA)* real_LoadLibraryA = LoadLibraryA;
+static HMODULE WINAPI zzLoadLibraryA(LPCSTR lpLibFileName) {
+    HMODULE h = real_LoadLibraryA(lpLibFileName);
+    if (h) {
+        PatchLanguageTableInModule(h);
+        BypassCountryCheckInModule(h);
+    }
+    return h;
+}
+
+static decltype(LoadLibraryExA)* real_LoadLibraryExA = LoadLibraryExA;
+static HMODULE WINAPI zzLoadLibraryExA(LPCSTR lpLibFileName, HANDLE hFile, DWORD dwFlags) {
+    HMODULE h = real_LoadLibraryExA(lpLibFileName, hFile, dwFlags);
+    if (h && !(dwFlags & (LOAD_LIBRARY_AS_DATAFILE | LOAD_LIBRARY_AS_IMAGE_RESOURCE))) {
+        PatchLanguageTableInModule(h);
+        BypassCountryCheckInModule(h);
+    }
+    return h;
+}
+
+static decltype(LoadLibraryW)* real_LoadLibraryW = LoadLibraryW;
+static HMODULE WINAPI zzLoadLibraryW(LPCWSTR lpLibFileName) {
+    HMODULE h = real_LoadLibraryW(lpLibFileName);
+    if (h) {
+        PatchLanguageTableInModule(h);
+        BypassCountryCheckInModule(h);
+    }
+    return h;
+}
+
+static decltype(LoadLibraryExW)* real_LoadLibraryExW = LoadLibraryExW;
+static HMODULE WINAPI zzLoadLibraryExW(LPCWSTR lpLibFileName, HANDLE hFile, DWORD dwFlags) {
+    HMODULE h = real_LoadLibraryExW(lpLibFileName, hFile, dwFlags);
+    if (h && !(dwFlags & (LOAD_LIBRARY_AS_DATAFILE | LOAD_LIBRARY_AS_IMAGE_RESOURCE))) {
+        PatchLanguageTableInModule(h);
+        BypassCountryCheckInModule(h);
+    }
+    return h;
+}
+
+static decltype(MessageBoxA)* real_MessageBoxA = MessageBoxA;
+static int WINAPI zzMessageBoxA(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT uType) {
+    if (lpText && strstr(lpText, "unavailable in your country")) {
+        return IDOK;
+    }
+    return real_MessageBoxA(hWnd, lpText, lpCaption, uType);
+}
+
+static decltype(MessageBoxW)* real_MessageBoxW = MessageBoxW;
+static int WINAPI zzMessageBoxW(HWND hWnd, LPCWSTR lpText, LPCWSTR lpCaption, UINT uType) {
+    if (lpText && wcsstr(lpText, L"unavailable in your country")) {
+        return IDOK;
+    }
+    return real_MessageBoxW(hWnd, lpText, lpCaption, uType);
 }
 
 static void EnableHighQualityGraphicsOptions() {
     HMODULE hCry = GetModuleHandleW(L"crysystem");
-    if (!hCry) {
-        VersionLog("[GRAPHICS] crysystem module not found/loaded yet.");
-        return;
-    }
+    if (!hCry) return;
 
     MEMORY_BASIC_INFORMATION mbi = {};
-    if (!VirtualQuery((char*)hCry + 0x1000, &mbi, sizeof(mbi))) {
-        VersionLog("[GRAPHICS] VirtualQuery on crysystem failed.");
-        return;
-    }
-
-    if (!(mbi.AllocationProtect & 0xF0)) {
-        VersionLog("[GRAPHICS] crysystem memory is not executable.");
-        return;
-    }
+    if (!VirtualQuery((char*)hCry + 0x1000, &mbi, sizeof(mbi))) return;
+    if (!(mbi.AllocationProtect & 0xF0)) return;
 
     DWORD oldProtect;
-    if (!VirtualProtect(mbi.BaseAddress, mbi.RegionSize, PAGE_EXECUTE_READWRITE, &oldProtect)) {
-        VersionLog("[GRAPHICS] VirtualProtect on crysystem failed.");
-        return;
-    }
+    if (!VirtualProtect(mbi.BaseAddress, mbi.RegionSize, PAGE_EXECUTE_READWRITE, &oldProtect)) return;
 
     char* c = (char*)mbi.BaseAddress;
     char* end = c + mbi.RegionSize - sizeof(DWORD);
-    bool patched = false;
 
     for (; c < end; c++) {
         DWORD* d = (DWORD*)c;
@@ -92,17 +245,13 @@ static void EnableHighQualityGraphicsOptions() {
                     break;
                 }
             }
-            patched = true;
             break;
         }
     }
 
     VirtualProtect(mbi.BaseAddress, mbi.RegionSize, oldProtect, &oldProtect);
-    VersionLog("[GRAPHICS] High quality graphics resolution limits unlocked to 4096x4096: %s",
-        patched ? "SUCCESS" : "ALREADY_APPLIED/NOT_FOUND");
 }
 
-void InstallOrUpdateCameraFix(HWND hWnd);
 void InstallIpFix();
 void InstallShaderFix();
 void Install64BitStackFix();
@@ -120,7 +269,6 @@ static LPSTR WINAPI zzGetCommandLineA() {
         if (s_hookedCmdA.find("-classic") == std::string::npos) {
             s_hookedCmdA += " -noweb -classic -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu -dwsm -probability -nospamcheck";
         }
-        VersionLog("[CMDLINE] Hooked GetCommandLineA: %s", s_hookedCmdA.c_str());
     }
     return const_cast<LPSTR>(s_hookedCmdA.c_str());
 }
@@ -134,7 +282,6 @@ static LPWSTR WINAPI zzGetCommandLineW() {
         if (s_hookedCmdW.find(L"-classic") == std::wstring::npos) {
             s_hookedCmdW += L" -noweb -classic -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu -dwsm -probability -nospamcheck";
         }
-        VersionLog("[CMDLINE] Hooked GetCommandLineW: %ls", s_hookedCmdW.c_str());
     }
     return const_cast<LPWSTR>(s_hookedCmdW.c_str());
 }
@@ -147,7 +294,6 @@ static HWND WINAPI zzCreateWindowExA(DWORD dwExStyle, LPCSTR lpClassName, LPCSTR
             AdjustWindowRectEx(&rect, dwStyle, FALSE, dwExStyle);
             nWidth = rect.right - rect.left;
             nHeight = rect.bottom - rect.top;
-            VersionLog("[GRAPHICS] CreateWindowExA adjusted window size to %dx%d", nWidth, nHeight);
         }
     }
     return real_CreateWindowExA(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
@@ -161,7 +307,6 @@ static HWND WINAPI zzCreateWindowExW(DWORD dwExStyle, LPCWSTR lpClassName, LPCWS
             AdjustWindowRectEx(&rect, dwStyle, FALSE, dwExStyle);
             nWidth = rect.right - rect.left;
             nHeight = rect.bottom - rect.top;
-            VersionLog("[GRAPHICS] CreateWindowExW adjusted window size to %dx%d", nWidth, nHeight);
         }
     }
     return real_CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
@@ -186,7 +331,6 @@ static BOOL WINAPI zzSetWindowPos(HWND hWnd, HWND hWndInsertAfter, int X, int Y,
                 AdjustWindowRectEx(&rect, style, FALSE, exStyle);
                 cx = rect.right - rect.left;
                 cy = rect.bottom - rect.top;
-                VersionLog("[GRAPHICS] SetWindowPos adjusted window size to %dx%d (client: %dx%d)", cx, cy, rect.right, rect.bottom);
             }
         }
     }
@@ -197,84 +341,42 @@ static decltype(SetWindowLongA)* real_SetWindowLongA = SetWindowLongA;
 static LONG WINAPI zzSetWindowLongA(_In_ HWND hWnd, _In_ int nIndex, _In_ LONG dwNewLong) {
     if (!s_gfxEnabled) {
         EnableHighQualityGraphicsOptions();
+        PatchAllLoadedLanguageModules();
         s_gfxEnabled = true;
     }
-    InstallOrUpdateCameraFix(hWnd);
     return real_SetWindowLongA(hWnd, nIndex, dwNewLong);
-}
-
-static void PreloadDXVK() {
-    VersionLog("[VULKAN/DXVK] Preloading Direct3D9 translation layer (d3d9.dll)...");
-    HMODULE hD3D9 = LoadLibraryW(L"d3d9.dll");
-    if (hD3D9) {
-        typedef const char* (*PFN_dxvkGetVersion)();
-        PFN_dxvkGetVersion pfnDxvkVer = (PFN_dxvkGetVersion)GetProcAddress(hD3D9, "dxvkGetVersion");
-        if (pfnDxvkVer) {
-            VersionLog("[VULKAN/DXVK] DXVK Translation Layer Version: %s", pfnDxvkVer());
-        } else {
-            VersionLog("[VULKAN/DXVK] Direct3D9 (DXVK/Native) translation active at %p", hD3D9);
-        }
-    } else {
-        DWORD err = GetLastError();
-        VersionLog("[VULKAN/DXVK] d3d9.dll not found in local path (Error %u) - falling back to system DirectX", err);
-    }
-
-    // Inspect Vulkan Runtime
-    HMODULE hVk = LoadLibraryW(L"vulkan-1.dll");
-    if (hVk) {
-        typedef uint32_t (*PFN_vkEnumerateInstanceVersion)(uint32_t* pApiVersion);
-        PFN_vkEnumerateInstanceVersion pfnEnumVer = 
-            (PFN_vkEnumerateInstanceVersion)GetProcAddress(hVk, "vkEnumerateInstanceVersion");
-        if (pfnEnumVer) {
-            uint32_t apiVer = 0;
-            if (pfnEnumVer(&apiVer) == 0) {
-                uint32_t major = (apiVer >> 22);
-                uint32_t minor = (apiVer >> 12) & 0x3FF;
-                uint32_t patch = apiVer & 0xFFF;
-                VersionLog("[VULKAN] Vulkan Runtime detected: vulkan-1.dll at %p, Vulkan API Version %u.%u.%u",
-                    hVk, major, minor, patch);
-            } else {
-                VersionLog("[VULKAN] Vulkan Runtime detected: vulkan-1.dll at %p", hVk);
-            }
-        } else {
-            VersionLog("[VULKAN] Vulkan Runtime detected (Vulkan 1.0) at %p", hVk);
-        }
-    } else {
-        VersionLog("[VULKAN] vulkan-1.dll not present in system search path.");
-    }
-}
-
-static void InstallGraphicsOptionsFixAndCameraFix() {
-    DetourAttach(&(PVOID&)real_SetWindowLongA, zzSetWindowLongA);
-    VersionLog("[INIT] Graphics Options & Camera Fix attached.");
 }
 
 static void FixClientStartupWithHighCoreCountCpus() {
     SYSTEM_INFO info;
     GetSystemInfo(&info);
-    VersionLog("[CPU] System detected %u logical processor cores.", info.dwNumberOfProcessors);
     if (info.dwNumberOfProcessors >= 32) {
         int maxCpu = min(64, (int)info.dwNumberOfProcessors) - 1;
         DWORD_PTR mask = (1ULL << maxCpu) - 1;
         SetProcessAffinityMask(GetCurrentProcess(), mask);
-        VersionLog("[CPU] Process affinity set to %d cores (Mask: 0x%llX) for CryEngine stability.",
-            maxCpu, (unsigned long long)mask);
     }
 }
 
 static void InstallPatch() {
     SetProcessDPIAware();
-    PreloadDXVK();
+
+    PatchLanguageTableInModule(GetModuleHandleW(nullptr));
+    BypassCountryCheckInModule(GetModuleHandleW(nullptr));
 
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
     InstallIpFix();
-    InstallGraphicsOptionsFixAndCameraFix();
     InstallShaderFix();
 #if defined(_M_AMD64)
     Install64BitStackFix();
-    VersionLog("[INIT] 64-bit Stack Fix installed.");
 #endif
+    DetourAttach(&(PVOID&)real_SetWindowLongA, zzSetWindowLongA);
+    DetourAttach(&(PVOID&)real_LoadLibraryA, zzLoadLibraryA);
+    DetourAttach(&(PVOID&)real_LoadLibraryExA, zzLoadLibraryExA);
+    DetourAttach(&(PVOID&)real_LoadLibraryW, zzLoadLibraryW);
+    DetourAttach(&(PVOID&)real_LoadLibraryExW, zzLoadLibraryExW);
+    DetourAttach(&(PVOID&)real_MessageBoxA, zzMessageBoxA);
+    DetourAttach(&(PVOID&)real_MessageBoxW, zzMessageBoxW);
     DetourAttach(&(PVOID&)real_GetCommandLineA, zzGetCommandLineA);
     DetourAttach(&(PVOID&)real_GetCommandLineW, zzGetCommandLineW);
     DetourAttach(&(PVOID&)real_CreateWindowExA, zzCreateWindowExA);
@@ -288,20 +390,7 @@ static void InstallPatch() {
 BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID lpvReserved) {
     if (fdwReason == DLL_PROCESS_ATTACH) {
         DisableThreadLibraryCalls(hinstDLL);
-
-        wchar_t exePath[MAX_PATH] = {0};
-        GetModuleFileNameW(nullptr, exePath, MAX_PATH);
-        LPCWSTR cmdLine = GetCommandLineW();
-
-        VersionLog("================================================================================");
-        VersionLog("[STARTUP] version.dll attached to Process PID=%u", GetCurrentProcessId());
-        VersionLog("[STARTUP] Executable: %ls", exePath);
-        VersionLog("[STARTUP] Command Line: %ls", cmdLine ? cmdLine : L"(none)");
-        VersionLog("================================================================================");
-
         InstallPatch();
-    } else if (fdwReason == DLL_PROCESS_DETACH) {
-        VersionLog("[SHUTDOWN] version.dll detached from Process PID=%u", GetCurrentProcessId());
     }
     return TRUE;
 }

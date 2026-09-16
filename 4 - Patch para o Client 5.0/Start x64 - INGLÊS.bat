@@ -1,4 +1,5 @@
 @echo off
+cd /d "%~dp0"
 
 REM =========================================================================================
 REM  Aion Classic EU - Script de Inicializacao (Start_Classic.bat)
