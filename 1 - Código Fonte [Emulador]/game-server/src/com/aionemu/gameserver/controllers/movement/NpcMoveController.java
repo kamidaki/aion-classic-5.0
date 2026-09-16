@@ -451,7 +451,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 	public void setWalkerTemplate(WalkerTemplate walkerTemplate, int stepIndex) {
 		this.walkerTemplate = walkerTemplate;
-		this.currentStep = walkerTemplate.getRouteStep(stepIndex);
+		this.currentStep = walkerTemplate != null ? walkerTemplate.getRouteStep(stepIndex) : null;
 	}
 
 	public void setRouteStep(RouteStep step) {
@@ -486,14 +486,18 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 		}
 		if (walkerTemplate == null) {
 			WalkManager.stopWalking((NpcAI) owner.getAi());
+			if (owner.getSpawn().getWalkerId() == null)
+				return false;
 			if (WalkerFormator.processClusteredNpc(owner, owner.getWorldId(), owner.getInstanceId()))
 				return false;
 
-			setWalkerTemplate(DataManager.WALKER_DATA.getWalkerTemplate(owner.getSpawn().getWalkerId()), 0);
-			if (walkerTemplate == null) {
-				log.warn("Bad Walker Id: " + owner.getSpawn().getWalkerId() + " - point: " + currentStep.getStepIndex());
+			WalkerTemplate template = DataManager.WALKER_DATA.getWalkerTemplate(owner.getSpawn().getWalkerId());
+			if (template == null) {
+				WalkManager.fallbackToRandomWalk(owner, owner.getSpawn().getWalkerId());
+				WalkManager.startWalking((NpcAI) owner.getAi());
 				return false;
 			}
+			setWalkerTemplate(template, 0);
 		}
 		List<RouteStep> routeSteps = walkerTemplate.getRouteSteps();
 		RouteStep nextStep = currentStep.isLastStep() ? routeSteps.get(0) : routeSteps.get(currentStep.getStepIndex() + 1);
