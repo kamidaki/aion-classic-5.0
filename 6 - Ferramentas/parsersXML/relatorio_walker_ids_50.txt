@@ -1,0 +1,155 @@
+restore_50_walker_ids.py --commit 1929e30c0 -- APLICADO
+
+====================================================================================================
+ARVORE fonte: referencia 12830 spots com walker_id, 5240 com rota existente
+  Instances/300030000_Nochsana_Training_Camp.xml               +7 walker_id, +0 membros de grupo
+  Instances/300040000_Dark_Poeta.xml                           +104 walker_id, +0 membros de grupo
+  Instances/300050000_Asteria_Chamber.xml                      +40 walker_id, +0 membros de grupo
+  Instances/300060000_Sulfur_Tree_Nest.xml                     +10 walker_id, +0 membros de grupo
+  Instances/300070000_Chamber_of_Roah.xml                      +36 walker_id, +0 membros de grupo
+  Instances/300080000_Left_Wing_Chamber.xml                    +16 walker_id, +0 membros de grupo
+  Instances/300090000_Right_Wing_Chamber.xml                   +25 walker_id, +0 membros de grupo
+  Instances/300100000_Steel Rake.xml                           +64 walker_id, +5 membros de grupo
+  Instances/300100000_Steel_Rake.xml                           +66 walker_id, +5 membros de grupo
+  Instances/300110000_Dredgion.xml                             +48 walker_id, +0 membros de grupo
+  Instances/300120000_Kysis_Chamber.xml                        +51 walker_id, +2 membros de grupo
+  Instances/300130000_Miren Chamber.xml                        +44 walker_id, +0 membros de grupo
+  Instances/300130000_Miren_Chamber.xml                        +44 walker_id, +0 membros de grupo
+  Instances/300140000_Krotan_Chamber.xml                       +39 walker_id, +0 membros de grupo
+  Instances/300150000_Udas_Temple.xml                          +27 walker_id, +0 membros de grupo
+  Instances/300160000_Lower_Udas_Temple.xml                    +66 walker_id, +10 membros de grupo
+  Instances/300170000_Beshmundir_Temple.xml                    +47 walker_id, +0 membros de grupo
+  Instances/300190000_Taloc's_Hollow.xml                       +32 walker_id, +0 membros de grupo
+  Instances/300190000_Talocs_Hollow.xml                        +32 walker_id, +0 membros de grupo
+  Instances/300200000_Haramel.xml                              +13 walker_id, +0 membros de grupo
+  Instances/300210000_Chantra_Dredgion.xml                     +48 walker_id, +0 membros de grupo
+  Instances/300220000_Abyssal_Splinter.xml                     +11 walker_id, +0 membros de grupo
+  Instances/300230000_Kromede's_Trial.xml                      +39 walker_id, +0 membros de grupo
+  Instances/300230000_Kromedes_Trial.xml                       +39 walker_id, +0 membros de grupo
+  Instances/300240000_Aturam_Sky_Fortress.xml                  +19 walker_id, +0 membros de grupo
+  Instances/300250000_Esoterrace.xml                           +36 walker_id, +0 membros de grupo
+  Instances/300440000_Terath_Dredgion.xml                      +4 walker_id, +0 membros de grupo
+  Instances/300460000_Steel_Rake_Cabin.xml                     +13 walker_id, +0 membros de grupo
+  Instances/300510000_Tiamat_Stronghold.xml                    +38 walker_id, +0 membros de grupo
+  Instances/300600000_Unstable_Abyssal_Splinter.xml            +11 walker_id, +0 membros de grupo
+  Instances/300670000_Dokkaebi_Realm.xml                       +14 walker_id, +2 membros de grupo
+  Instances/300700000_The_Hexway.xml                           +15 walker_id, +0 membros de grupo
+  Instances/301000000_Tiamats_Sanctuary.xml                    +40 walker_id, +4 membros de grupo
+  Instances/310050000_Aetherogenetics_Lab.xml                  +22 walker_id, +3 membros de grupo
+  Instances/310090000_Indratu_Fortress.xml                     +42 walker_id, +1 membros de grupo
+  Instances/310100000_Azoturan_Fortress.xml                    +43 walker_id, +0 membros de grupo
+  Instances/310110000_Theobomos_Lab.xml                        +39 walker_id, +4 membros de grupo
+  Instances/320030000_Bregirun.xml                             +1 walker_id, +0 membros de grupo
+  Instances/320050000_Sky_Temple_Interior.xml                  +56 walker_id, +4 membros de grupo
+  Instances/320080000_Draupnir_Cave.xml                        +70 walker_id, +2 membros de grupo
+  Instances/320100000_Fire_Temple.xml                          +20 walker_id, +0 membros de grupo
+  Instances/320110000_Alquimia_Research_Center.xml             +13 walker_id, +0 membros de grupo
+  Instances/320130000_Adma_Stronghold.xml                      +30 walker_id, +0 membros de grupo
+  Instances/330020000_Punishing_Aster.xml                      +29 walker_id, +27 membros de grupo
+  Instances/330030000_Bloody_Aster.xml                         +26 walker_id, +13 membros de grupo
+  Npcs/110010000_Sanctum.xml                                   +25 walker_id, +0 membros de grupo
+  Npcs/120010000_Pandaemonium.xml                              +28 walker_id, +0 membros de grupo
+  Npcs/210010000_Poeta.xml                                     +38 walker_id, +1 membros de grupo
+  Npcs/210020000_Eltnen.xml                                    +323 walker_id, +25 membros de grupo
+  Npcs/210030000_Verteron.xml                                  +166 walker_id, +2 membros de grupo
+  Npcs/210040000_Heiron.xml                                    +386 walker_id, +27 membros de grupo
+  Npcs/210050000_Inggison.xml                                  +246 walker_id, +9 membros de grupo
+  Npcs/210060000_Theobomos.xml                                 +254 walker_id, +3 membros de grupo
+  Npcs/220010000_Ishalgen.xml                                  +65 walker_id, +8 membros de grupo
+  Npcs/220020000_Morheim.xml                                   +544 walker_id, +8 membros de grupo
+  Npcs/220030000_Altgard.xml                                   +145 walker_id, +3 membros de grupo
+  Npcs/220040000_Beluslan.xml                                  +315 walker_id, +18 membros de grupo
+  Npcs/220050000_Brusthonin.xml                                +201 walker_id, +1 membros de grupo
+  Npcs/220070000_Gelkmaros.xml                                 +173 walker_id, +5 membros de grupo
+  Npcs/400010000_Reshanta.xml                                  +128 walker_id, +1 membros de grupo
+  Npcs/600010000_Silentera_Canyon.xml                          +60 walker_id, +0 membros de grupo
+  Npcs/800030000_Laphsaran.xml                                 +94 walker_id, +22 membros de grupo
+  Npcs/800040000_Tiamaranta_Mesa.xml                           +133 walker_id, +0 membros de grupo
+  Npcs/800060000_Teva.xml                                      +3 walker_id, +0 membros de grupo
+  repostos 4856, membros de grupo repostos 215, random_walk retirado de 4, fora: {'spot nao encontrado a <= 3 m': 169}
+  grupos de rota com parte dos membros (formacao incompleta): 8
+    00B73E8AB2B8D1A84EDF91B09A9168ED6DA60001: 1 de 2
+    174F98F897CF49ADD54C5A555EC66426BB6B4E6B: 1 de 2
+    3609BE42E650BC5A464789D30E7A5198FB7A73B8: 1 de 2
+    6EC594927C10D9CCDC51B42AE23F49499E0398A8: 1 de 2
+    83F13EE7B830CC3DED1A0D74421523D3B5C58CB3: 1 de 2
+    DB85C589231CE04AB020117941A67CFB39DD3A84: 1 de 2
+    E34447F71447C6E217EF80D31C4A833C6D74CDC4: 1 de 2
+    EF3E31823D4CFA5E45F7D736F95BAA0D75578630: 1 de 3
+
+====================================================================================================
+ARVORE produto: referencia 12830 spots com walker_id, 5240 com rota existente
+  Instances/300030000_Nochsana_Training_Camp.xml               +7 walker_id, +0 membros de grupo
+  Instances/300040000_Dark_Poeta.xml                           +104 walker_id, +0 membros de grupo
+  Instances/300050000_Asteria_Chamber.xml                      +40 walker_id, +0 membros de grupo
+  Instances/300060000_Sulfur_Tree_Nest.xml                     +10 walker_id, +0 membros de grupo
+  Instances/300070000_Chamber_of_Roah.xml                      +36 walker_id, +0 membros de grupo
+  Instances/300080000_Left_Wing_Chamber.xml                    +16 walker_id, +0 membros de grupo
+  Instances/300090000_Right_Wing_Chamber.xml                   +25 walker_id, +0 membros de grupo
+  Instances/300100000_Steel Rake.xml                           +64 walker_id, +5 membros de grupo
+  Instances/300100000_Steel_Rake.xml                           +66 walker_id, +5 membros de grupo
+  Instances/300110000_Dredgion.xml                             +48 walker_id, +0 membros de grupo
+  Instances/300120000_Kysis_Chamber.xml                        +51 walker_id, +2 membros de grupo
+  Instances/300130000_Miren Chamber.xml                        +44 walker_id, +0 membros de grupo
+  Instances/300130000_Miren_Chamber.xml                        +44 walker_id, +0 membros de grupo
+  Instances/300140000_Krotan_Chamber.xml                       +39 walker_id, +0 membros de grupo
+  Instances/300150000_Udas_Temple.xml                          +27 walker_id, +0 membros de grupo
+  Instances/300160000_Lower_Udas_Temple.xml                    +66 walker_id, +10 membros de grupo
+  Instances/300170000_Beshmundir_Temple.xml                    +47 walker_id, +0 membros de grupo
+  Instances/300190000_Taloc's_Hollow.xml                       +32 walker_id, +0 membros de grupo
+  Instances/300190000_Talocs_Hollow.xml                        +32 walker_id, +0 membros de grupo
+  Instances/300200000_Haramel.xml                              +13 walker_id, +0 membros de grupo
+  Instances/300210000_Chantra_Dredgion.xml                     +48 walker_id, +0 membros de grupo
+  Instances/300220000_Abyssal_Splinter.xml                     +11 walker_id, +0 membros de grupo
+  Instances/300230000_Kromede's_Trial.xml                      +39 walker_id, +0 membros de grupo
+  Instances/300230000_Kromedes_Trial.xml                       +39 walker_id, +0 membros de grupo
+  Instances/300240000_Aturam_Sky_Fortress.xml                  +19 walker_id, +0 membros de grupo
+  Instances/300250000_Esoterrace.xml                           +36 walker_id, +0 membros de grupo
+  Instances/300440000_Terath_Dredgion.xml                      +4 walker_id, +0 membros de grupo
+  Instances/300460000_Steel_Rake_Cabin.xml                     +13 walker_id, +0 membros de grupo
+  Instances/300510000_Tiamat_Stronghold.xml                    +38 walker_id, +0 membros de grupo
+  Instances/300600000_Unstable_Abyssal_Splinter.xml            +11 walker_id, +0 membros de grupo
+  Instances/300670000_Dokkaebi_Realm.xml                       +14 walker_id, +2 membros de grupo
+  Instances/300700000_The_Hexway.xml                           +15 walker_id, +0 membros de grupo
+  Instances/301000000_Tiamats_Sanctuary.xml                    +40 walker_id, +4 membros de grupo
+  Instances/310050000_Aetherogenetics_Lab.xml                  +22 walker_id, +3 membros de grupo
+  Instances/310090000_Indratu_Fortress.xml                     +42 walker_id, +1 membros de grupo
+  Instances/310100000_Azoturan_Fortress.xml                    +43 walker_id, +0 membros de grupo
+  Instances/310110000_Theobomos_Lab.xml                        +39 walker_id, +4 membros de grupo
+  Instances/320030000_Bregirun.xml                             +1 walker_id, +0 membros de grupo
+  Instances/320050000_Sky_Temple_Interior.xml                  +56 walker_id, +4 membros de grupo
+  Instances/320080000_Draupnir_Cave.xml                        +70 walker_id, +2 membros de grupo
+  Instances/320100000_Fire_Temple.xml                          +20 walker_id, +0 membros de grupo
+  Instances/320110000_Alquimia_Research_Center.xml             +13 walker_id, +0 membros de grupo
+  Instances/320130000_Adma_Stronghold.xml                      +30 walker_id, +0 membros de grupo
+  Instances/330020000_Punishing_Aster.xml                      +29 walker_id, +27 membros de grupo
+  Instances/330030000_Bloody_Aster.xml                         +26 walker_id, +13 membros de grupo
+  Npcs/110010000_Sanctum.xml                                   +25 walker_id, +0 membros de grupo
+  Npcs/120010000_Pandaemonium.xml                              +28 walker_id, +0 membros de grupo
+  Npcs/210010000_Poeta.xml                                     +38 walker_id, +1 membros de grupo
+  Npcs/210020000_Eltnen.xml                                    +323 walker_id, +25 membros de grupo
+  Npcs/210030000_Verteron.xml                                  +166 walker_id, +2 membros de grupo
+  Npcs/210040000_Heiron.xml                                    +386 walker_id, +27 membros de grupo
+  Npcs/210050000_Inggison.xml                                  +246 walker_id, +9 membros de grupo
+  Npcs/210060000_Theobomos.xml                                 +254 walker_id, +3 membros de grupo
+  Npcs/220010000_Ishalgen.xml                                  +65 walker_id, +8 membros de grupo
+  Npcs/220020000_Morheim.xml                                   +544 walker_id, +8 membros de grupo
+  Npcs/220030000_Altgard.xml                                   +145 walker_id, +3 membros de grupo
+  Npcs/220040000_Beluslan.xml                                  +315 walker_id, +18 membros de grupo
+  Npcs/220050000_Brusthonin.xml                                +201 walker_id, +1 membros de grupo
+  Npcs/220070000_Gelkmaros.xml                                 +173 walker_id, +5 membros de grupo
+  Npcs/400010000_Reshanta.xml                                  +128 walker_id, +1 membros de grupo
+  Npcs/600010000_Silentera_Canyon.xml                          +60 walker_id, +0 membros de grupo
+  Npcs/800030000_Laphsaran.xml                                 +94 walker_id, +22 membros de grupo
+  Npcs/800040000_Tiamaranta_Mesa.xml                           +133 walker_id, +0 membros de grupo
+  Npcs/800060000_Teva.xml                                      +3 walker_id, +0 membros de grupo
+  repostos 4856, membros de grupo repostos 215, random_walk retirado de 4, fora: {'spot nao encontrado a <= 3 m': 169}
+  grupos de rota com parte dos membros (formacao incompleta): 8
+    00B73E8AB2B8D1A84EDF91B09A9168ED6DA60001: 1 de 2
+    174F98F897CF49ADD54C5A555EC66426BB6B4E6B: 1 de 2
+    3609BE42E650BC5A464789D30E7A5198FB7A73B8: 1 de 2
+    6EC594927C10D9CCDC51B42AE23F49499E0398A8: 1 de 2
+    83F13EE7B830CC3DED1A0D74421523D3B5C58CB3: 1 de 2
+    DB85C589231CE04AB020117941A67CFB39DD3A84: 1 de 2
+    E34447F71447C6E217EF80D31C4A833C6D74CDC4: 1 de 2
+    EF3E31823D4CFA5E45F7D736F95BAA0D75578630: 1 de 3

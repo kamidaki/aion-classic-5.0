@@ -26,7 +26,7 @@ from collections import defaultdict
 # Console UTF-8
 sys.stdout.reconfigure(encoding="utf-8")
 
-PROJECT_ROOT = r"D:\AION CLASSIC 5.0 - EMULADOR"
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 TOOLS_DIR = os.path.join(PROJECT_ROOT, "6 - Ferramentas")
 PARSERS_DIR = os.path.join(TOOLS_DIR, "parsersXML")
 
@@ -46,6 +46,20 @@ GEO_DIR = os.path.join(PROJECT_ROOT, "2 - Emulador [Produto Final]", "GameServer
 
 # Mapas que não devem ser modificados
 IGNORED_MAPS = {110030000, 120030000}
+
+_ROTAS = None
+
+
+def rotas_existentes():
+    """route_id de todo walker_template da fonte. Todo route_id e o SHA-1 do nome da rota: o formato nao diz nada."""
+    global _ROTAS
+    if _ROTAS is None:
+        _ROTAS = set()
+        pasta = os.path.join(SRC_STATIC, "npc_walker")
+        for f in os.listdir(pasta):
+            if f.endswith(".xml"):
+                _ROTAS.update(re.findall(r'route_id="([^"]+)"', open(os.path.join(pasta, f), encoding="utf-8").read()))
+    return _ROTAS
 
 
 def angle_to_heading(angle_str):
@@ -308,10 +322,12 @@ def load_existing_spawns(mid, category, siege_npc_ids=None, terrenos=None):
                         y = float(st_attrib.get("y", "0"))
                         z = float(st_attrib.get("z", "0"))
 
-                        # Remove walker_id inválido gerado por hash SHA1
+                        # Remove so walker_id sem walker_template. Testar o formato (40 hex) apagava as rotas validas
+                        # tambem: em 2026-09-15 os spots com rota cairam de 12.830 para 42.
                         wid = st_attrib.get("walker_id")
-                        if wid and len(wid) == 40 and all(c in "0123456789ABCDEFabcdef" for c in wid):
+                        if wid and wid not in rotas_existentes():
                             del st_attrib["walker_id"]
+                            st_attrib.pop("walker_index", None)
 
                         # Ajusta elevação Z com o heightmap real do terreno se estiver flutuando
                         if terrenos and not st_attrib.get("fly") and not st_attrib.get("aerial_spawn"):

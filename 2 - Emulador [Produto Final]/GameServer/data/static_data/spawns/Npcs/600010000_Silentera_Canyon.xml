@@ -19,17 +19,17 @@
 		</spawn>
 		
 		<spawn npc_id="209051" respawn_time="295">
-			<spot x="472.91" y="458.75" z="329.86063" h="100" />
-			<spot x="479.05" y="381.31" z="325.75" h="21" />
-			<spot x="490.26" y="271.21" z="308.5" h="117" />
+			<spot x="472.91" y="458.75" z="329.86063" h="100" walker_id="D29CD3E1FE1C83AB9E379BAD303C40D6ABF3FDEA" />
+			<spot x="479.05" y="381.31" z="325.75" h="21" walker_id="6645E8BDF5950CA28E472BDE5C366429B325D340" />
+			<spot x="490.26" y="271.21" z="308.5" h="117" walker_id="5E67C52A365320ACF57E94854FB9F03ABCA3894E" />
 			<spot x="495.332" y="414.424" z="324.125" h="105" />
 			<spot x="504.030" y="420.436" z="325.0" h="98" />
-			<spot x="508.46" y="400.47" z="324.125" h="20" />
-			<spot x="540.29" y="322.66" z="299.875" h="79" />
-			<spot x="548.52" y="325.79" z="299.875" h="61" />
-			<spot x="667.29" y="474.05" z="317.625" h="1" />
-			<spot x="667.76" y="460.25" z="315.875" h="29" />
-			<spot x="692.89" y="425.71" z="315.125" h="0" />
+			<spot x="508.46" y="400.47" z="324.125" h="20" walker_id="873AD0108579D1C2E4CFFC30C685DC4180849AEE" />
+			<spot x="540.29" y="322.66" z="299.875" h="79" walker_id="A8F7DF3A1161721475177F5613612B9AB8EC4F1A" />
+			<spot x="548.52" y="325.79" z="299.875" h="61" walker_id="D2FC0BEA3723DB5F412CE8F2A66990662290910B" />
+			<spot x="667.29" y="474.05" z="317.625" h="1" walker_id="54F267F7389CE1FFE3B59AED1CB4B737F69B6613" />
+			<spot x="667.76" y="460.25" z="315.875" h="29" walker_id="50F49C05B1D56AC82CD19C88016000DC6F2B20EF" />
+			<spot x="692.89" y="425.71" z="315.125" h="0" walker_id="6D866B8B5557663779858DFE6C627EC7FD09E324" />
 			</spawn>
 		
 		<spawn npc_id="209056" respawn_time="295">
@@ -43,15 +43,15 @@
 			</spawn>
 		
 		<spawn npc_id="209251" respawn_time="295">
-			<spot x="473.43" y="1082.45" z="335.46573" h="82" />
+			<spot x="473.43" y="1082.45" z="335.46573" h="82" walker_id="F71832391635EFBB3A1A161D67FF598DA965E9F6" />
 			<spot x="491.679" y="1131.986" z="330.875" h="20" />
 			<spot x="501.843" y="1126.478" z="332.125" h="20" />
-			<spot x="538.6" y="1129.39" z="331.0" h="67" />
-			<spot x="535.31" y="1210.45" z="303.0" h="37" />
-			<spot x="538.89" y="1146.06" z="330.75" h="77" />
-			<spot x="542.45" y="1210.51" z="303.375" h="62" />
-			<spot x="675.04" y="1069.98" z="314.625" h="0" />
-			<spot x="676.68" y="1084.19" z="314.625" h="91" />
+			<spot x="538.6" y="1129.39" z="331.0" h="67" walker_id="9824613D0FAF5A93B9C2BE4F832F0B82407E083C" />
+			<spot x="535.31" y="1210.45" z="303.0" h="37" walker_id="E4CE7FFEBBA8BEBD670A3EF83828EEA38594483C" />
+			<spot x="538.89" y="1146.06" z="330.75" h="77" walker_id="2F09DAC249EDAEB22980A5AEA64072D7E812A6A9" />
+			<spot x="542.45" y="1210.51" z="303.375" h="62" walker_id="F957BF460EC3EAFA1D41324D8B404BEFD04D3A72" />
+			<spot x="675.04" y="1069.98" z="314.625" h="0" walker_id="B255F443F5B81C3AE249BE2DFE6E9281DA3AF99D" />
+			<spot x="676.68" y="1084.19" z="314.625" h="91" walker_id="FBE0AA841E8785227C0B5B2B18164A8F9E6AB9E5" />
 			</spawn>
 		
 		<spawn npc_id="209256" respawn_time="295">
@@ -75,29 +75,29 @@
 		</spawn>
 		
 		<spawn npc_id="216354" respawn_time="295">
-			<spot x="794.33" y="1023.04" z="322.0" h="91" />
+			<spot x="794.33" y="1023.04" z="322.0" h="91" walker_id="1F491A97B418571D034AAC4D80576F848FF25D89" />
 			<spot x="946.766" y="1085.808" z="309.0" h="60" />
 			</spawn>
 		
 		<spawn npc_id="216355" respawn_time="295">
-			<spot x="833.79" y="987.77" z="320.125" h="61" walker_index="1" />
-			<spot x="882.96" y="1044.26" z="320.125" h="30" walker_index="1" />
-			<spot x="887.65" y="1094.53" z="309.0" h="59" walker_index="1" />
+			<spot x="833.79" y="987.77" z="320.125" h="61" walker_id="A20C4785FF5EBB95A5011A1A7ED60D4A21D1D1DF" walker_index="1" />
+			<spot x="882.96" y="1044.26" z="320.125" h="30" walker_id="6582462C6EE90FCB838674A2F754E2E325749EE8" walker_index="1" />
+			<spot x="887.65" y="1094.53" z="309.0" h="59" walker_id="93304D7F7222A2F0BEE46D381BA39539EF070FCD" walker_index="1" />
 			<spot x="897.842" y="1111.026" z="309.0" h="30" />
 			<spot x="543.263" y="875.7786" z="323.75" h="30" />
 			<spot x="543.8498" y="660.7183" z="324.75" h="30" />
 		</spawn>
 		
 		<spawn npc_id="216356" respawn_time="295">
-			<spot x="887.65" y="1094.53" z="309.0" h="59" />
+			<spot x="887.65" y="1094.53" z="309.0" h="59" walker_id="93304D7F7222A2F0BEE46D381BA39539EF070FCD" />
 		</spawn>
 		
 		<spawn npc_id="216357" respawn_time="295">
-			<spot x="759.06" y="1030.39" z="320.125" h="30" />
-			<spot x="833.79" y="987.77" z="320.125" h="60" />
-			<spot x="882.96" y="1044.26" z="320.125" h="30" />
-			<spot x="896.85" y="430.78" z="309.0" h="0" />
-			<spot x="973.07" y="429.62" z="309.0" h="0" />
+			<spot x="759.06" y="1030.39" z="320.125" h="30" walker_id="434F0BC8B130B8DB823BC3BEFBD80D41FC51029E" />
+			<spot x="833.79" y="987.77" z="320.125" h="60" walker_id="A20C4785FF5EBB95A5011A1A7ED60D4A21D1D1DF" />
+			<spot x="882.96" y="1044.26" z="320.125" h="30" walker_id="6582462C6EE90FCB838674A2F754E2E325749EE8" />
+			<spot x="896.85" y="430.78" z="309.0" h="0" walker_id="C0C4A8E35C9634586BCE59C4520C6635A013D30E" />
+			<spot x="973.07" y="429.62" z="309.0" h="0" walker_id="BEA895976478FC55D39F949838433CA65CE8F1DE" />
 			<spot x="445.9894" y="809.7718" z="310.625" h="30" />
 		</spawn>
 		
@@ -158,9 +158,9 @@
 		</spawn>
 		
 		<spawn npc_id="216363" respawn_time="295">
-			<spot x="896.85" y="430.78" z="309.0" h="0" walker_index="1" />
-			<spot x="973.07" y="429.62" z="309.0" h="0" walker_index="1" />
-			<spot x="1116.23" y="477.77" z="309.625" h="91" walker_index="1" />
+			<spot x="896.85" y="430.78" z="309.0" h="0" walker_id="C0C4A8E35C9634586BCE59C4520C6635A013D30E" walker_index="1" />
+			<spot x="973.07" y="429.62" z="309.0" h="0" walker_id="BEA895976478FC55D39F949838433CA65CE8F1DE" walker_index="1" />
+			<spot x="1116.23" y="477.77" z="309.625" h="91" walker_id="1450F06A99FAAE94AF6335522D122104DC173F59" walker_index="1" />
 		</spawn>
 		
 		<spawn npc_id="216364" respawn_time="295">
@@ -233,15 +233,15 @@
 		</spawn>
 		
 		<spawn npc_id="216367" respawn_time="295">
-			<spot x="364.24" y="1121.43" z="302.125" h="30" />
-			<spot x="366.73" y="402.97" z="300.125" h="91" />
+			<spot x="364.24" y="1121.43" z="302.125" h="30" walker_id="97AEAA237F7AF5FB0F483C5939E6AE1B0F18B05E" />
+			<spot x="366.73" y="402.97" z="300.125" h="91" walker_id="F53ABFC05C9BEEDFAD6DA5B6727FF4BCAFED777B" />
 			<spot x="619.112" y="747.734" z="289.75" h="0" />
 			<spot x="619.307" y="786.937" z="289.75" h="0" />
 			<spot x="632.215" y="895.133" z="294.5" h="60" />
 			<spot x="713.232" y="833.945" z="289.625" h="90" />
 			<spot x="714.546" y="700.408" z="289.25" h="30" />
 			<spot x="785.756" y="769.056" z="289.5" h="65" />
-			<spot x="941.19" y="723.82" z="296.375" h="0" />
+			<spot x="941.19" y="723.82" z="296.375" h="0" walker_id="D77257ADA0361D16530B81DBB058831203217721" />
 			<spot x="944.4397" y="720.762" z="296.0" h="60" />
 			<spot x="353.3396" y="964.1199" z="306.5" h="90" />
 			<spot x="625.8901" y="888.3437" z="294.875" h="0" />
@@ -304,8 +304,8 @@
 			<spot x="1120.461" y="836.735" z="300.875" h="30" />
 			<spot x="1154.425" y="836.331" z="299.75" h="30" />
 			<spot x="1154.671" y="697.763" z="300.0" h="90" />
-			<spot x="1191.58" y="779.99" z="299.75" h="61" />
-			<spot x="1192.17" y="754.77" z="299.75" h="0" />
+			<spot x="1191.58" y="779.99" z="299.75" h="61" walker_id="B00E6E4733A0C8A48DDD07A4578FE66D7D71F3D6" />
+			<spot x="1192.17" y="754.77" z="299.75" h="0" walker_id="85467134E406E1FCCC20EBCFA5D32844A5451ADC" />
 			<spot x="1296.668" y="747.616" z="299.75" h="60" />
 			<spot x="1296.83" y="787.062" z="299.75" h="60" />
 			<spot x="1346.67" y="781.02" z="305.125" h="90" />
@@ -319,14 +319,14 @@
 		</spawn>
 		
 		<spawn npc_id="216375" respawn_time="295">
-			<spot x="1217.56" y="880.64" z="301.25" h="60" />
-			<spot x="1217.84" y="654.66" z="301.375" h="0" />
-			<spot x="1234.78" y="794.97" z="299.75" h="80" />
-			<spot x="1235.388" y="739.988" z="299.75" h="103" random_walk="8" />
-			<spot x="1279.75" y="763.09" z="299.75" h="60" />
-			<spot x="1279.8" y="772.53" z="299.75" h="60" />
-			<spot x="1289.33" y="706.86" z="299.75" h="30" />
-			<spot x="1291.21" y="824.18" z="299.75" h="91" />
+			<spot x="1217.56" y="880.64" z="301.25" h="60" walker_id="31054233530A83A1F83EE5BCD881EBFC1BED73A2" />
+			<spot x="1217.84" y="654.66" z="301.375" h="0" walker_id="F7A983D64688AF104E9189FC2AB451D47D106357" />
+			<spot x="1234.78" y="794.97" z="299.75" h="80" walker_id="28AA90CD6FE861D5B6E32C04A9F1DAC0B2A5D833" />
+			<spot x="1235.388" y="739.988" z="299.75" h="103" walker_id="43DEC08389AB0960F430F9C53EAB769DA2B094C1" />
+			<spot x="1279.75" y="763.09" z="299.75" h="60" walker_id="33E808C0A567CAC3E55CDFDA757C7150D792C868" />
+			<spot x="1279.8" y="772.53" z="299.75" h="60" walker_id="A3A525F69C569790A320C4A3E9A8390BA91A5B48" />
+			<spot x="1289.33" y="706.86" z="299.75" h="30" walker_id="ECD14322D73C4D09844E284098211AAACC2246F8" />
+			<spot x="1291.21" y="824.18" z="299.75" h="91" walker_id="D152BF6F0B57F7E5259FDFCC30D5FCE3D5C36AA7" />
 			<spot x="446.9411" y="743.3823" z="309.0" h="90" />
 		</spawn>
 		
@@ -350,11 +350,11 @@
 		</spawn>
 		
 		<spawn npc_id="216378" respawn_time="295">
-			<spot x="981.83" y="1110.83" z="309.0" h="60" />
+			<spot x="981.83" y="1110.83" z="309.0" h="60" walker_id="ACE0639D25CAD64E66192B6CC22F0E4E6CF9DE5F" />
 			</spawn>
 		
 		<spawn npc_id="216379" respawn_time="295">
-			<spot x="1051.87" y="1117.91" z="307.75" h="31" />
+			<spot x="1051.87" y="1117.91" z="307.75" h="31" walker_id="166F3110A160B3171163F9B0189F9770165C698E" />
 			</spawn>
 		
 		<spawn npc_id="216380" respawn_time="295">
@@ -363,22 +363,22 @@
 		</spawn>
 		
 		<spawn npc_id="216381" respawn_time="295">
-			<spot x="863.24" y="1045.6" z="320.125" h="61" />
-			<spot x="1045.23" y="415.64" z="309.0" h="30" />
-			<spot x="1116.23" y="477.77" z="309.625" h="91" />
+			<spot x="863.24" y="1045.6" z="320.125" h="61" walker_id="DFBC2042F54C4A730717F24C395F16242FD47C23" />
+			<spot x="1045.23" y="415.64" z="309.0" h="30" walker_id="BD088498BA989FC729B3AB2631F8E6A7A8639AE2" />
+			<spot x="1116.23" y="477.77" z="309.625" h="91" walker_id="1450F06A99FAAE94AF6335522D122104DC173F59" />
 			</spawn>
 		
 		<spawn npc_id="216382" respawn_time="295">
-			<spot x="827.57" y="510.27" z="320.125" h="30" />
+			<spot x="827.57" y="510.27" z="320.125" h="30" walker_id="6ACDCA812B05FC849A00BD8A149BDB91F40BFF9F" />
 			</spawn>
 		
 		<spawn npc_id="216383" respawn_time="295">
-			<spot x="863.24" y="1045.6" z="320.125" h="61" walker_index="1" />
-			<spot x="1116.05" y="1113.47" z="305.25" h="81" walker_index="1" />
+			<spot x="863.24" y="1045.6" z="320.125" h="61" walker_id="DFBC2042F54C4A730717F24C395F16242FD47C23" walker_index="1" />
+			<spot x="1116.05" y="1113.47" z="305.25" h="81" walker_id="1E5F423B2A1F1B1E0FB4CBD8C2836702DC0E5F5F" walker_index="1" />
 		</spawn>
 		
 		<spawn npc_id="216386" respawn_time="295">
-			<spot x="1120.75" y="504.03" z="311.25" h="90" />
+			<spot x="1120.75" y="504.03" z="311.25" h="90" walker_id="C99564C33ED7BDF5967DA41ABB6EC0E419BEB815" />
 			</spawn>
 		
 		<spawn npc_id="216387" respawn_time="295">
@@ -387,15 +387,15 @@
 			</spawn>
 		
 		<spawn npc_id="216388" respawn_time="295">
-			<spot x="738.82" y="489.3" z="320.125" h="61" />
+			<spot x="738.82" y="489.3" z="320.125" h="61" walker_id="24D265B478E9513707ACB407BDF9CBA56E2883C6" />
 			</spawn>
 		
 		<spawn npc_id="216389" respawn_time="295">
-			<spot x="1116.05" y="1113.47" z="305.25" h="104" />
+			<spot x="1116.05" y="1113.47" z="305.25" h="104" walker_id="1E5F423B2A1F1B1E0FB4CBD8C2836702DC0E5F5F" />
 		</spawn>
 		
 		<spawn npc_id="216390" respawn_time="295">
-			<spot x="1103.36" y="1073.85" z="305.98486" h="54" />
+			<spot x="1103.36" y="1073.85" z="305.98486" h="54" walker_id="06D6FCE0070F2B9AF6129E8A8F5937D042394211" />
 			</spawn>
 		
 		<spawn npc_id="216392" respawn_time="295">
@@ -407,7 +407,7 @@
 		
 		<spawn npc_id="216393" respawn_time="295">
 			<spot x="739.906" y="511.755" z="320.125" h="60" />
-			<spot x="900.62" y="497.77" z="320.125" h="0" />
+			<spot x="900.62" y="497.77" z="320.125" h="0" walker_id="6DF27832A9A4170708265ADBDF7AC31D3AAFBF29" />
 			</spawn>
 		
 		<spawn npc_id="216394" respawn_time="295">
@@ -422,13 +422,13 @@
 		
 		<spawn npc_id="216396" respawn_time="295">
 			<spot x="875.802" y="444.15" z="309.0" h="80" random_walk="8" />
-			<spot x="1136.03" y="447.68" z="311.1667" h="0" />
+			<spot x="1136.03" y="447.68" z="311.1667" h="0" walker_id="61935E9521E32F7C380192B665854BF11D772B40" />
 			<spot x="1137.209" y="447.9041" z="313.9916" h="60" />
 		</spawn>
 		
 		<spawn npc_id="216397" respawn_time="295">
-			<spot x="860.99" y="483.08" z="312.125" h="30" />
-			<spot x="998.19" y="443.44" z="309.0" h="91" />
+			<spot x="860.99" y="483.08" z="312.125" h="30" walker_id="2A1E9B9F961C1642A93A5B6425855ADEA56DF8D8" />
+			<spot x="998.19" y="443.44" z="309.0" h="91" walker_id="4DB8A660D71C94432753AD44BB95AF01C73BD8A0" />
 			</spawn>
 		
 		<spawn npc_id="216399" respawn_time="295">
@@ -438,7 +438,7 @@
 		</spawn>
 		
 		<spawn npc_id="216401" respawn_time="295">
-			<spot x="774.44" y="512.43" z="320.125" h="86" />
+			<spot x="774.44" y="512.43" z="320.125" h="86" walker_id="0DCBCFA2706B4517BD7A2860D517189A7EF33063" />
 			<spot x="866.369" y="529.864" z="320.125" h="50" />
 			<spot x="869.689" y="529.8591" z="320.125" h="0" />
 			<spot x="442.8927" y="721.8429" z="309.0" h="0" />
@@ -529,7 +529,7 @@
 		</spawn>
 		
 		<spawn npc_id="217120" respawn_time="295">
-			<spot x="483.13" y="767.61" z="293.5" h="30" />
+			<spot x="483.13" y="767.61" z="293.5" h="30" walker_id="B0110D36368E45BF862CEC9E9591DE2268883FE1" />
 		</spawn>
 		
 		<spawn npc_id="219197" respawn_time="295">
