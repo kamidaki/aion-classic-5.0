@@ -140,8 +140,8 @@
 	<item_collecting id="35046" end_npc_ids="799800 799801"/>
 	<item_collecting id="35047" end_npc_ids="799800 799801"/>
 	<item_collecting id="35048" end_npc_ids="799800 799801"/>
-	<item_collecting id="35053" end_npc_ids="804941"/>
-	<item_collecting id="35054" end_npc_ids="804941"/>
+	<!-- Obsolete 4.8 quest disabled for Classic 5.0: <item_collecting id="35053" end_npc_ids="804941"/> -->
+	<!-- Obsolete 4.8 quest disabled for Classic 5.0: <item_collecting id="35054" end_npc_ids="804941"/> -->
 	
 	<!-- HUNTING QUESTS -->
 	<monster_hunt id="35009" end_npc_ids="799805"/>

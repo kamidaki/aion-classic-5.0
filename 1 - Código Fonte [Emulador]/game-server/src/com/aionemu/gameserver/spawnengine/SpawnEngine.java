@@ -161,15 +161,15 @@ public class SpawnEngine {
 						SpawnTemplate template = spawn.reserveRandomFreePoolSpot(instance.getInstanceId());
 						if (template == null)
 							break;
-						spawnObject(template, instance.getInstanceId());
-						spawnedCounter++;
+						if (spawnObject(template, instance.getInstanceId()) != null)
+							spawnedCounter++;
 					}
 				} else {
 					for (SpawnTemplate template : spawn.getSpawnTemplates()) {
 						if (template.getTemporarySpawn() != null && !template.getTemporarySpawn().isInSpawnTime())
 							continue;
-						spawnObject(template, instance.getInstanceId());
-						spawnedCounter++;
+						if (spawnObject(template, instance.getInstanceId()) != null)
+							spawnedCounter++;
 					}
 				}
 			}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
 	<spawn_map map_id="320090000">
-		<!-- Mage Spirit -->
+		<!-- Espírito do mago -->
 		<spawn npc_id="213584">
 			<spot x="231.461" y="239.409" z="158.881"/>
 			<spot x="234.935" y="243.298" z="158.881"/>
@@ -10,11 +10,11 @@
 			<spot x="276.437" y="171.526" z="161.984" h="30"/>
 			<spot x="276.52" y="164.007" z="161.984" h="30"/>
 		</spawn>
-		<!-- Underground Arena Exit -->
+		<!-- Saída de arena subterrânea -->
 		<spawn npc_id="730067">
 			<spot x="275.897" y="295.6943" z="163.531" h="90" static_id="26"/>
 		</spawn>
-		<!-- Warrior Spirit -->
+		<!-- Espírito Guerreiro -->
 		<spawn npc_id="213583">
 			<spot x="272.746" y="169.891" z="161.984" h="30"/>
 			<spot x="279.983" y="169.829" z="161.984" h="30"/>

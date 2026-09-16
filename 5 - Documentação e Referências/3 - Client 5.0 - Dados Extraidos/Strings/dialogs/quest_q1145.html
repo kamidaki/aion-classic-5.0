@@ -1,178 +1,55 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<HtmlPages>
-
-  <HtmlPage name="select1">
-    <Contents cdata="true">
-        <html>
-        <body>
-          <p>Ã‰ inÃºtil, nÃ£o hÃ¡ nada que eu possa fazer.</p>
-          <p> </p>
-          <p>NÃ£o consigo colher frutas nas florestas por causa dos Frillnecks, nÃ£o consigo pegar comida na fazenda por causa dos ladrÃµes. Temos que escolher o que pudermos ao longo da estrada.</p>
-          <p> </p>
-          <p>Eu disse a [%dic:STR_DIC_N_Eradis] na vila de Tolbas que iria buscar para ele alguns [%dic:STR_DIC_I_vegetable_n_c_10a]. Mas parece que terei que voltar de mÃ£os vazias.</p>
-        </body>
-        </html>
-    </Contents>
-    <Selects>
-      <Act href="HACTION_SELECT1_1">"O que Ã© Kukuru?"</Act>
-    </Selects>
-  </HtmlPage>
-
-  <HtmlPage name="select1_1">
-    <Contents cdata="true">
-        <html>
-        <body>
-          <p>Apenas o vegetal mais saboroso do mundo!</p>
-          <p> </p>
-          <p>Bom e doce, e muito saboroso com manteiga e pimenta.</p>
-          <p> </p>
-          <p>Belbua estava cultivando uma pequena colheita, mas agora aqueles ladrÃµes lefaristas tomaram conta da fazenda.</p>
-        </body>
-        </html>
-    </Contents>
-    <Selects>
-      <Act href="HACTION_ASK_QUEST_ACCEPT">"Parece uma situaÃ§Ã£o ruim."</Act>
-    </Selects>
-  </HtmlPage>
-
-  <HtmlPage name="ask_quest_accept">
-    <Contents cdata="true">
-        <html>
-        <body>
-          <p>Olha, Daeva, odeio presumir, mas vocÃª poderia me ajudar a cumprir minha palavra com Eradis?</p>
-          <p> </p>
-          <p>Ele cozinha para toda a aldeia e nÃ£o quero vÃª-los passar fome.</p>
-          <p> </p>
-          <p>Se vocÃª lutar contra esses ladrÃµes, poderÃ¡ me trazer de volta alguns [%dic:STR_DIC_I_vegetable_n_c_10a].</p>
-        </body>
-        </html>
-    </Contents>
-    <Selects>
-      <Act href="HACTION_QUEST_ACCEPT_1">Aceite.</Act>
-      <Act href="HACTION_QUEST_REFUSE_1">DeclÃ­nio.</Act>
-    </Selects>
-  </HtmlPage>
-
-  <HtmlPage name="quest_accept_1">
-    <Contents cdata="true">
-        <html>
-        <body>
-          <p>Ã“timo! VÃ¡ atÃ© o campo em [%dic:STR_DIC_FLA24] e vocÃª deverÃ¡ encontrar bastante [%dic:STR_DIC_I_vegetable_n_c_10a].</p>
-          <p> </p>
-          <p>Quatro grandes e bonitos devem ser suficientes.</p>
-          <p> </p>
-          <p> </p>
-        </body>
-        </html>
-    </Contents>
-    <Selects>
-      <Act href="HACTION_FINISH_DIALOG">"Eu voltarei com o seu Kukuru."</Act>
-    </Selects>
-  </HtmlPage>
-
-  <HtmlPage name="quest_refuse_1">
-    <Contents cdata="true">
-        <html>
-        <body>
-          <p>Ah.</p>
-          <p> </p>
-          <p>Ah, droga. Parece que vou ter que quebrar minha palavra.</p>
-          <p> </p>
-          <p>Acho que teremos que comeÃ§ar a comer grama e galhos.</p>
-        </body>
-        </html>
-    </Contents>
-    <Selects>
-      <Act href="HACTION_FINISH_DIALOG">"Desculpe."</Act>
-    </Selects>
-  </HtmlPage>
-
-  <HtmlPage name="select5">
-    <Contents cdata="true">
-        <html>
-        <body>
-          <p>Apenas continue olhando... ignore o estÃ´mago roncando... continue procurando...</p>
-          <p> </p>
-          <p>Daeva! VocÃª encontrou algum [%dic:STR_DIC_I_vegetable_n_c_10a]?</p>
-          <p> </p>
-          <p>Esses Lefaristas nÃ£o saquearam tudo, nÃ£o Ã©?</p>   
-        </body>
-        </html>
-    </Contents>
-    <Selects>
-      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">"Eu encontrei alguns."</Act>
-    </Selects>
-  </HtmlPage>
-
-  <HtmlPage name="select6">
-    <Contents cdata="true">
-        <html>
-        <body>
-          <p>Isso Ã© uma piada?</p>
-          <p> </p>
-          <p>NÃ£o sei se vocÃª me ouviu, mas aquela vila conta com vocÃª.</p>
-          <p> </p>
-          <p>Por favor, busque alguns [%dic:STR_DIC_I_vegetable_n_c_10a].</p>  
-        </body>
-        </html>
-    </Contents>
-    <Selects>
-      <Act href="HACTION_FINISH_DIALOG">"Estou cuidando disso."</Act>
-    </Selects>
-  </HtmlPage>
-
-  <HtmlPage name="select_quest_reward1">
-    <Contents cdata="true">
-        <html>
-        <body>
-          <p>Muito bem, [%username]!</p>
-          <p> </p>
-          <p>Deixe-os comigo. Vou levÃ¡-los para Eradis quando terminar.</p>
-          <p> </p>
-          <p>Obrigado por dedicar seu tempo para ajudar. VocÃª realmente fez a diferenÃ§a.</p>
-        </body>
-        </html>
-    </Contents>
-  </HtmlPage>
-
-   <HtmlPage name="quest_summary">
-    <Contents cdata="true">
-        <html>
-        <body>
-    <steps>
-               <step><p visible="[%0]"><font color="[%1]">Colete [%dic:STR_DIC_I_vegetable_n_c_10a] e leve-o para [%dic:STR_DIC_N_Ondanius].</font></p>[%collectitem]</step>
-    </steps>
-          <p><font font_xml="quest_summary">[%dic:STR_DIC_N_Ondanius] pediu para vocÃª colher Kukuru. DesÃ§a atÃ© o campo na Fazenda Belbua e colete alguns.</font></p>
-          <p/>
-        </body>
-        </html>
-    </Contents>
-  </HtmlPage>
-
-  <HtmlPage name="quest_complete">
-    <Contents cdata="true">
-        <html>
-        <body>
-          <p>Ondanius concordou em coletar alguns Kukuru, mas os Lefaristas da fazenda o impediram.</p>
-          <p> </p>
-          <p>VocÃª reuniu alguns Kukuru da Fazenda Belbua e trouxe para ele.</p>  
-        </body>
-        </html>
-    </Contents>
-  </HtmlPage>
-
-  <HtmlPage name="select_acqusitive_quest_desc">
-    <Selects>
-      <Act>Nova missÃ£o: [%questname]</Act>
-    </Selects>
-  </HtmlPage>
-
-  <HtmlPage name="select_progressive_quest_desc">
-    <Selects>
-      <Act>Em andamento: [%questname]</Act>
-    </Selects>
-  </HtmlPage>
-
-</HtmlPages>
-
-
+b` “¢Šì‡ğ†ğû}2ro¸®îã.=22`Fÿ¬>òs-ªvç½&¹[³R§O²N¸C´:úw:¶!ëÿ"±ßIŞZÓ0Ê%Ç+Æ>;brº¯×î #Z W0V0KB¿úş93njê§—æV}da)úù7±vL«<âø¼ó
+õğù{`²&ï®.ùc1š1—>–(‹l‚F£¾Öó=*tg½¦üÛáÒ‡Ï²Î²Ã©ºñ÷36hk®¢Ä_~^xS|J`G|F!»òğ/¯ni£8Úv×cÖVË}ÂD?½~|³=êô'½f|›a’,)1ƒ1zª·×ö<+}bDŸ½¼“½Š´‡½† û?2ko¹®åãc^}|}Dÿ½>üs=ªtç½&ü[áR´OãN•C©:³w.¶<ë¨"—ßxŞpÓxÊgÇnÆ0;}rğ¯µîy#/Z1WzV/K}B
+¿òş(3uj½§óæ;}}?<úú7ıvx«2âJ¡³í
+ª—¼{}²$ïı.¼c}št—}–|‹}‚Xí¾âó=*hg²¦¬ÛãÒÎÏıÎüÃıº´÷}6<kı¢Ä_=^<S!JdG#F_»<òê/únh£}Ú$×4Ö?Ë6ÂD?û~.³hê½'éf|›4’*}(ƒ5zñ·ıöz+2bŸøï“éŠç‡½†şû82go¼®éã.1}3;Dÿé>´sxªtçÛ&®[´R¨O±N²C¸:÷w6¶oëñ"Äß~Ş}ÓsÊ3ÇiÆ<;:rá¯©î<#;Z;W2V8K}B¿ïş33pjô§éæ48d;=/úù7ıv~«8âüéî
+ñ½ó{;²$ï©.ôc8št—)–4‹4‚ë¾¹ón*zg½¦‹Û¸ÒãÏ«Î¹Ãıºó÷26hkı¢_r^<SmJ}G~Fw»}òó/µn}£)Út×*Ö9Ë}Â?ü~2³=ê²'ïf3›0’d<0ƒ2zú·ºö<+)bŸø¼“ïŠû‡ü†øûs28oò®ìãc^}|}Dÿ½>üs=ªtç½&ü[áR´OãNüCá:»w-¶"ë×"Äß=Ş<Ó=Ê4Ç=Æ<;}r¤¯ıî #-ZjWV|K)B¿ñş83=j§¸æ84'g	úÆ7‚vX«â'ÂÒÂ
+Ñïı{9²mï®.Ác}š=—3–|‹	‚ñ¾¾ó|*'g½¦ŠÛ´Ò¨Ï±Î½Ãººñ÷}6Ukú¢€_=^zSxJ`G~Ft»}òì/´nq£}Ú'×2Ö1Ë8ÂD?Æ~y³yê½'şff›’ƒzİ·öC+b;Ÿëù“úŠñ‡é†ıû?2ho¸®Ãã3>lTÿü>s3ªtçß&©[©RäO´N¨Cı:øw2¶së¶"—ß=ŞpÓtÊÇxÆ<;r£¯°î<#:Z;W3V2K<BD¿õş=3kj±§½æ(2d:3}úö7¼v«6âDøñí
+àä±{5²eï³.øc8š0—s–`‹r‚£¾Öó=*tg½¦üÛıÒäÏıÎüÃáº»÷?6sk¹¢_#^S=J4G=F<»}ò¤/ın<£aÚ{×5Ö(Ë0Â?£~V³=êô'½f|›a’k3ƒ3zà·¸ör+)bŸ£–“½Š´‡½†¼ûa2Wo¸®ğã87)/cnÿ½>üs=ªtç½&ü[áR…O¾N¨Cı:üw/¶yë»"Ùß?ŞTÓ\ÊWÇIÆU;rÊ¯‚îO#ZWVK	BU¿Âşm3?jê§¿æ5%){.ú´7–vi«6âïé¢
+¶¡³{²gï©.¢cWšt—}–|‹}‚X²¾óx*8gø¦¿Û©Ò·ÏãÎÖÃıº´÷a63k•¢_p^pSMJuGzFy»cò/×n<£}Úh×Ö(Ë0Â?Í~=³zê±'½f2›<’)8aƒzç·¸öp+8bŸé­“ÂŠ¥‡¿†¢ûW2$oı®¼ã}h33ÿø>²siª'ç½&¿[¹R¥O©N½Cà:¶w)¶në¨"ß?Ş"ÓÊ4Ç=Æ<;}r¤¯ıî<#}ZhW5V(K0B¿£şV3=jô§½æ|}d}|aúö7²vx«$âZ—¼½
+´½¼{}²$ïı.¼c}šh—-–b‹‚
+ñ¾¥ó=* gõ¦¹ÛıÒ°Ï¼Î¯Ã©ºı÷86ok©¢Ä_k^ySzJqGiF}»?òè/¸n<£4Ú:×}Ö(Ë5Â?½~+³rê¦'ñf8›|’xr,ƒcz·ıö<+}bDŸ½¼“½Š´‡½†¼ûa2toã®¼ãa{-bWDÿ½>üs=ªtç½&ü[ıRäOıNàC­:ªw¶së²"€ß=Ş}ÓsÊpÇ=Æo;*rá¯¸îh#qZtW<V2K9BD¿ğş53zj¼§éæ%}0</)úí7ıvk«4âõ¼ÿ
+áéè{8²vïı.ıc3š0—}–,‹8‚í¾¹óo*zg¡¦óÛ­ÒúÏ×ÎüÃıº´÷}6<kı¢Ä_=^<S=J(GmF"»}ò¸/ònl£cÚ^×}Ö|Ë}ÂD?½~|³=êô'½f|›a’4cƒ8zø·¿öi+<bDŸêı“îŠ´‡ú†îû22so´®òã:t<|.	ÿü>°sqªtçş&®[²R´OñNüC¿:áw)¶<ë³"‹ßjŞ<ÓiÊ|ÇrÆo;8r¤¯‘îy#-Z<W<V.K4B¿éş|3ij¼§ôæ9+!.|5úõ7«vy«}âü÷ø
+ú½ó{+²aï¯.¼c)š<—8–|‹;‚ï¾±ó3*hg²¦¬ÛãÒÎÏıÎüÃıº´÷}6<kı¢Ä_!^3SJ{GyFe»cò/ın<£}Út×}Ö|Ë}ÂD?¡~s³uê 'ğf0›c’N}|ƒ}z´·áö3+bŸóè“øŠú‡é†ïûc2oı®¼ã}ta8ÿø>¿siª'ç£&Ö[ıRäOıNüCı:´wa¶]ë¾"ß=ŞtÓoÊqÇ{Æ!;rÌ¯œî_#	ZWVKB%¿Îş3Bj…§Èæú×7˜vL«	âF£¾Î
+ûèò{9²wïı.ğc4š?—8–|‹<‚Dÿ¾½óy*tgî¦µÛ©Ò±Ï¼Î¨Ã´ºû÷362kÿ¢Ø_2^]S~J`G#F»}ò¤/ın<£aÚ{×Ö9Ë1Â?ş~(³nêê'—f|›}’xrƒ)zù·±öL+<bŸø¢“—Š‡½†¼ûa2Lo©®ñã1<;8Dÿó>½spª1ç &ş[¼R·O¶NƒC¬:áw8¶oë©"»ß|ŞÓ~ÊqÇmÆh;rº¯×î<#}ZtW}V`KB¿óş(3xjº§éæ/}'9=)úõ7àv>«)âèù¿
+ª—¼{}²$ïı.¼c}št—}–`‹5‚ğ¾°ó#*^g½¦üÛıÒäÏıÎüÃıº´÷a6~k²¢€_d^"SJ4G=F<»}ò¤/ın<£}Út×}Ö`Ë-ÂZ?Ñ~3³rê¿'±f|›’%8*ƒ<z¸·ıöU+}bŸüè“øŠ´‡é†óû}2to¯®ùã.!09qDÿÿ>©siªtçê&³[¨R¨O¹NüC¤:ûw(¶<ëµ"ßqŞlÓ=ÊyÇxÆ<;6rá¯¸îl#}Z9W$V|K*B¿ïş83=j §òæ|6<84úç7âv «râ£–½
+´½¼{}²$ïı.¼c}št—a–,‹c‚D¡¾óóm*jg—¦üÛıÒäÏıÎüÃıº´÷}6<kı¢Ø_m^"SUJqG=F»2òë/¶no£}Ú2×2Ö.Ë}Â?õ~9³=ê£'õf3›1’!}*ƒ4zø·±ö}+:bŸ±¼“üŠú‡ù†¼û2$o¹®óã3s)|*ÿó>¨s=ª çò&ü[®R¡O¸NüC©:üw8¶qëı"ƒßrŞ<ÓuÊaÇsÆ{;/rı¯óî #rZ$WcVVK}BD¿½ş|3=jô§½æ|}da,cú´7áv3«-âZ—¼½
+´½¼{}²$ïı.¼c}šh—-–b‹‚½¾¥ór*!g½¦ºÛ´Ò£ÏµÎ¨Ãıºà÷56sk®¢_=^hSuJ}GxFj»8ò÷/ñn<£$Ú;×(Ö|Ë>Â?è~0³yêô'ÿf.›4’*:|ƒ0zñ·ıö~+<bŸö¼“îŠû‡ğ†ùû}2_oø®øã47g	6ÿÂ>˜sTªçÂ&•[‚R²O¸N»C¸:àw<¶~ë±"ßBŞrÓBÊwÇBÆ-;mrå¯€î2#aZ{W-VbKWBD¿½ş|3=jô§½æ|}xr>2úğ7¤v"«WâD½¼½
+´½¼{}²8ïò.ôc)š9—1–b‹W‚D½¾üó=*hg²¦ŸÛ²ÒªÏ©Î¹Ã³ºà÷.6"k×¢Ä_=^<S=J(GNFy»1òá/¾nh£.Új×WÖ|Ë}ÂD?½~|³=êè'Üf?›)’d5.ƒ8zò·àö>+b%ŸŞÈ“ÔŠÛ‡Ó†Ãû2Qo˜®Ïã	!ÿÍ>ˆsBªeç¿&â[œR§O¾N¹C­:àws¶ ëò"¥ß~ŞhÓ#ÊÇ=Æ<;}r¤¯ıî<#aZW>V(K}B¿ïş93{jé§¿æ	úÚ7‚vM«â!ÎÈÂ
+ÆØÚ{²Wï˜.Ãclšv—c–‹8‚ñ¾µós*1g³¦àÛòÒ…Ï¾Î¨Ããº÷}6<kı¢Ä_!^3SNJqGqFy»>òğ/®n"£WÚt×}Ö`ËrÂ,?é~1³qê„'üf;›8’zWVƒ}z´·áöT+)b	ŸñÌ“üŠó‡ø†¼û32eo°®ùã`v,)8ÿé>ƒs|ª7çş&¹[­R°O‚NíCÿ:ªwW¶<ëı"Äß=Ş Ó^Ê{ÇsÆh;8rê¯©îo#}Z7W9V=K)B¿ ş~3ij¦§èæ9zW|}ú´7ıv<«}âD½ õ
+àğğ{c²ïı.¼c}št—}–|‹}‚D¡¾¾ór*0gä¦âÛ×ÒäÏıÎüÃıº´÷}6<kı¢Ä_=^ SmJ*GZFn»8òå/©n=£}Ú×2Ö|Ë9Â?ê~2³=ê 'òf|›)’,8|ƒ;zı·¸öp+9bDŸôò“½ŠÏ‡¸†øû42goç®Ïã	'ÿÂ>šsQªç¯&è[€RèOıN½C³:ğw}¶eë²"‘ß=ŞoÓuÊ{ÇhÆp;9r¤¯»îu#3Z0W}V,K1B¿óş(3djô§òæ:}x84ú÷7çvO«	â6ÂØÔ
+×ÂÕ{²rï¸.ûc8š —<–>‹1‚Â¾²óB*7gÂ¦íÛíÒ¥Ï€ÎòÃáº»÷-6"k×¢Ä_=^<S=J4G=F<»}ò¤/ın £-Új×}Ö`ËrÂ?£~V³=êô'½f|›}’d}|ƒ}z´·áöl+cb"Ÿòé“ïŠ´‡ó†õû>2aoı®şã43}33ÿî>üsnª<çò&©[±R OıN¾C¸:´w8¶rë²"‘ßzŞtÓ3Ê(Ç2Æl;cr¯ıî<#}ZtW}V|K}BD¿½ş|3!j¤§£æ|ak-bWú´7ıv<«}âD½¼½
+´½ {-²:ïá.³c-šj—W–|‹}‚D½¾üó=*tg½¦àÛòÒ¦Ï²Î¸Ã¤ºª÷W6<kı¢Ä_=^<S=J4G=F »ròì/©nq£1Új×WÖ|Ë}ÂD?½~`³2ê—'òf2›)’!3(ƒ.zª·×ö<+}bDŸ½ “ÎŠñ‡ñ†ùû>2po®®¢ãWt}|}Dÿ½>às\ª7çé&ü[µR¶O¸NºCà:¶w¶]ë"°ßTŞSÓSÊKÇ[ÆU;rÍ¯îT#ZWVKB+¿Úş~3#jö§Ôæ{1(}>8ú´7¿v}«>â½ëô
+àõ¼{$²kï¨.îc}š—(–7‹(‚è¾òó?*hg²¦Û¾Ò°ÏãÎÖÃıº´÷}6<ká¢Ë_N^ySqJqG~Fh».òº/×n<£}Úh×rÖË)Â	?ñ~³|ê³'øfb›W’N}|ƒazÜ·©öq+1b4Ÿüû“øŠ´‡ó†ıû02aoà®¾ã,!8/);ÿï>¹s{ª!çî&¹[‚RõOÿNâC×:´w}¶<ëı"Øß^ŞsÓsÊ`ÇxÆr;)r÷¯ıî#9Z5W)V=K`BF¿éş.3hj±§¿æbWd}|}ú´7ıv<«}âXõèğ
+ø£–{}²$ïı.¼c}št—}–|‹a‚ò¾¸ód*jg—¦üÛıÒäÏıÎüÃıº´÷}6<kı¢Ø_m^"S\J|G3F »ròô/ãn£}Út×}Ö|Ë}ÂD?½~|³=êô'¡f,›c’dasƒ-zª·×ö<+}bDŸ½¼“½Š´‡½†¼û}28o­®¢ã#q|?ÿü>¯siªtçô&¨[óRäO‘N³C²:ÿw.¶<ë±"ßvŞyÓ=Ê]Ç:Æq;}rã¯²îr#3Z5W}V4K<B¿øş|3ij»§½æ>/!<7}úù7¤v<«*âïø³
+¨²ì{c²ïı.¼c}št—}–|‹}‚D½¾üó!*$g£¦üÛáÒëÏ­ÎâÃ×º´÷}6<kı¢Ä_=^<S=J4G=F »-òº/šni£8Ú'×.Ö|Ë*Â?º~.³xêô'úf3›3’*<|ƒ5zõ·«öy+}bŸò¼“îŠà‡ü†îû)2$o¸®ıã)=3;}ÿï>½snª'ç½&½[³R OıN¨Cª:ıw:¶oëó"Øß2ŞlÓ#ÊÇ=Æ<;}r¤¯ıî<#}ZtWaVsK?B¿ùş%3#jŞ§½æ|}d}|}ú´7áv3«5âğğ£
+½¼{}²$ïá.³cš;—3–(‹8‚
+é¾¯ó#*^g½¦üÛıÒäÏáÎÃ¸ºø÷86k©¢—_#^S=J4G=F<»}ò¤/án]£>Ú ×}Ö4Ë/Â?û~a³?êœ'Üf›	’ƒzÒ·”öR+b7ŸÕÃ“ÙŠİ‡Ü†Ğû2Coÿ®¢ã2./ÿ³>şs!ª{çÜ&¿[©RúO×NüCı:´w}¶ ëò"·ßxŞpÓxÊwÇiÆo;cr¯ıî<#aZ{WV(K0B¿Íş=3zj±§£æVWd}`úà7°vp«âúù½
+úüñ{8²9ïÿ.ïc8š8—8–?‹)‚Q¿¾âó*tg½¦üÛıÒøÏÎ³Ã³ºà÷86rk©¢—_=^SyJuGiF}»`ò¦/©nn£(Ú1×ÖbËWÂD?½~|³=êô'½f|›}’x5(ƒ0zø·ãö+}bDŸ½¼“½Š´‡½†¼ûa2fo²®øã$jW|}Dÿ½>üs=ªtç½&ü[ıRøO­NâC—:áw.¶hëı"ßxŞyÓmÊ4ÇqÆs;2rï¯´îr#:ZzWsVrK4B¿óş33oj±§½æ(5!}.(úù7¿vp«4â
+ú¼î
+àòñ{<²gïµ.²csšz—6–9‹8‚½¾°ór*;gö¦µÛ³Ò£ÏóÎòÃóº¨÷r6lkã¢î_=^<S=J4G=F<»}ò¤/ın<£aÚ$×cÖ|ËaÂK?í~b³êô'½f|›}’d}|ƒ}z´·ıö +-bZŸÙı“øŠâ‡ü†½û}2@o´®øã}-2)}ÿô>²syªtçü&²[¤RäO†NùC¹:ıw>¶&ë"°ßOŞCÓYÊ]Ç^ÆC;rÛ¯«îy#:Z1W)V=K?B¿øş3sj‹§şælt<bú¨7òvl«cân½¼½
+´½¼{}²$ïı.¼caš$—c–|‹a‚Kí¾âó*tg½¦üÛıÒäÏıÎüÃıº´÷}6 k­¢Ú_I^tSrJgGxF<»òá/­nt£<Ú&×4Ö/Ë)Â?½~4³|ê¢'øf2›z’0}0ƒ2zû·©öy+9bDŸüğ“ñŠ´‡ò†úû}2mo©®°ã}<<*8Dÿé>´sxª-ç¢&à[òR´OãNüCı:´wW¶<ëı"Äß=Ş<Ó=Ê4Ç=Æ ;rræ¯²îx#$ZjWWV|K}BD¿½ş|3=jô§½æ`r,)11úª7×v<«}âD½ ²
+×òò{)²aï³.èc.šj—W–|‹}‚D½¾àóN*1gñ¦¹Û¾Ò°Ï®ÎâÃ×º´÷}6<kı¢Ä_=^ S\JwGiF<»5òö/¸nz£`Úv×ÖËÂ0?Ô~³Sê‹'Şf›’ƒzÇ·˜öN+b,ŸÜÏ“ÂŠÅ‡È†Ùû2Po‚®Õã	~cFÿÔ>üs{ª;çè&²[¹RäO®N³C°:ñws¶>ëá"Ëß\ŞÓiÊ*ÇÆ<;}r¤¯ıî #rZW8V0K8B¿éş/3#jŞ§½æ|ak(0úø7v}«:â£–—
+´½ {²pï°.ğcš5—:–9‹}‚
+ü¾±óx*ig¿¦¯Û¸Ò¨Ï¸Î¿Ã©º¢÷6"k×¢Ä_=^<S=J(G^Fs»3òğ/¸nr£)Ú'×}Ö?Ë9Â?é~=³ êö'éf.›(’!bƒWz´·ıö<+}bDŸ½¼“½Š¨‡õ†èû02hoã®–ã}t}|}Dÿ½>üs!ª6çò&¸[¤RúO×NüCı:´w}¶<ëı"Äß=Ş<Ó=Ê(ÇmÆ";r÷¯ıîh#5Z=W.V|K<BD¿÷ş33vj±§¢æ`r4cV}ú´7ıv<«}âD½¼½
+´¡ì{c²$ïá.³c-šj—W–|‹}‚D½¾üó=*tg½¦üÛıÒøÏ­ÎâÃ”º´÷96sk³¢Ã_i^<SvJzGrFk»}òí/»n<£$Ú;×(Ö|Ë5Â?ü~.³yêô'ğf9›q’d?)ƒ)z´·©öt+<bŸ½ê“ôŠø‡ñ†ıû:2aoı®õã.t>3(
+ÿé>µssª3ç½&³[³RäO¤N³C¨:ºwa¶3ë­"ÚßŞ<Ó=Ê4Ç=Æ<;}r¤¯ıî<#}ZhW-VbK}BX¿²ş,3#jŞ§½æ|}d}|}ú´7ıv<«aâ£Ìñ
+ñüï{8²$ï».ùc)š7—5–|‹.‚ğ¾¹ó=*g¸¦¸Û´Ò§ÏçÎÃ‰ºÆ÷6Xk”¢§_B^USBJbGxF{»8òğ/¼n~£1Ú1×Ö2ËÂ?Â~m³-êµ'Àfr›a’k-bƒ}z´·×ö<+}bDŸ½¼“½Š´‡½† ûr2fo²®øã$jW|}Dÿ½>üs=ªtç½&à[òR¬O©N±C±:ªwW¶<ëı"Äß=Ş Ó2ÊWÇrÆr;)rá¯³îh#.ZjWWV|K}BD¿½ş`3Nj±§ñæ9>0.bWú´7ıv<«}âD½ Ü
+÷é¼{5²vï¸.úc`šv—–‹‚0Ô¾“óS*gÛ¦•Û“ÒÏÎ”Ã‚ºĞ÷6]k‘¢«_Z^>S#J6GTF;»0ò¤/²nr£}Ú=×)ÖrËÂX?²~³~ê '£fV›}’d}|ƒaz»·öy+1bŸşè“îŠª‡—†¼û}28oò®Ôã)91<ÿø>âsª^ç½&ü[áRŒO©N±C±:Äw<¶{ë¸"ÄßsŞ}ÓpÊqÇ Æ>;.rá¯±îy#>Z WV-K(B¿îş(3Bj¦§øæ+<69múª7×v<«}âD½ Ş
+ûóè{8²jï©.ïc}š7—9–=‹)‚ ¾şói*&gè¦¹ÛÿÒúÏ×ÎüÃıº´÷}6<kı¢Ä_=^ SuJ`GpFp»cò/ın<£}Út×}Ö|Ë}ÂD?¡~>³rê°'äfb›W’d}|ƒ}z´·ıö<+}bDŸ½ “íŠª‡Ê†ùû12hoı®øã2:8p}?ÿ¸>©snª1çï&²[¼R©O¸NCü:¨wr¶lëã"îß=Ş<Ó=Ê4Ç=Æ<;}r¤¯ıî<#aZ$WcV|KaBK¿íşb3jô§½æ|}d}|}ú´7ıv «-âZÑùü
+âø¼{)²lï¸.ñc}š#—4–(‹5‚Dğ¾¹ó3*tgÔ¦ûÛ±Ò¨ÏıÎ¨Ã¼ºÿ÷86<k©¢Œ_x^qS=J`GrF<»òö/¼nx£4Ú'×}Ö+Ë5Â?ó~|³Têó'ğf|›9’+39ƒsz¨·òöl+cbnŸ½¼“½Š´‡½†¼û}2$oı®¼ãa$c|aKÿí>âsªtç½&ü[ıRäOıNüCı:´w}¶ ë­"ÚßIŞtÓ|ÊzÇvÆo;}râ¯²în#}Z W<V7K4B
+¿úş|3ij¼§øæ|)-09}úà7²v<«5âñì³
+´Äó{(²$ï¯.ùc<š8—1–%‹}‚	ü¾¸óx*tgü¦üÛ¹Ò­Ï»ÎºÃ¸ºæ÷86rk¾¢_3^ S2JdG#F»}ò¤/ın<£}Út×}Ö|ËaÂK?ÿ~3³yê­'£fV›}’d}|ƒ}z´·ıö<+abKŸõè“ğŠø‡£†–û}2$oı®¼ãa{33ÿø>²siª'ç£&Ö[ıRäOáNóC•:àw0¶pë"…ßzŞyÓ#ÊÇÆ<;}r¤¯áîT#)Z9W1VK<B¿øş|3sjµ§ğæ9`f,)8úç7©vC«.âğñü
+æä¾{c²ïı.¼c}št—a–‹2‚
+é¾¹ós* gî¦üÛ¾Ò Ï¼Î¨Ã¼º©÷6hk¯¢‘_x^>S#JG=F<»}ò¤/ın<£}Út×aÖ4Ë)Â	?ñ~b³êô'½f|›}’d}|ƒ}z¨·¿ös+9bŸ£–“½Š´‡½†¼ûa2wo©®ùã-'cV}Dÿ½>üs=ªtç½&ü[ıRäOıNüCı:´w}¶ ë®"ßxŞlÓ#Ê(ÇmÆ<;+rí¯®îu#?Z8W8VaKB?¿¸şl3@jö§£æ`;+3(}ú÷7²vp«2â ¾Æ
+±¬Á{²:ï.óc1š8—8–?‹)‚DÆ¾ùóy*=gş¦æÛÒÏÎƒÃ™ºİ÷6Ck”¢»_k^ySzJqGiF}»?òè/¸nC£3Ú×>ÖËlÂT?ü~³=êµ'óf8›}’&/5ƒ3zó·ıöu+)bDŸéó“½ŠÏ‡¸†øû42goç®Ïã	'ÿÂ>’sBªçó&¸[¼RªO´N©C®:Éws¶ ëò"‚ßrŞrÓiÊ*Ç!Æ3;-rº¯†î9#>Z;W1V0K8B¿éş53ij±§ğæak.(8úä7ãv«}âD½¼¡
+»îè{8²tï®.¢cWšt—}–|‹}‚D½¾üó=*tg½¦àÛ­ÒúÏáÎºÃ²ºú÷)6<k»¢‹_s^hSBJlGpFp»`ò¦/¬ni£8Ú'×)ÖË.Â?ğ~1³|ê¦'äf~›c’x8ƒ4z÷·çöO+	b6ŸÂØ“ÔŠ×‡Â†Òû2Ko³®øã<:4).9ÿ½>½snª?çø&¸[ıR½O²N©Cı:àw2¶<ëµ"…ßoŞjÓxÊgÇiÆ<;rñ¯¶îi#/Z!WsV|KB¿½ş83rj£§óæ|)+}(5úñ7ıvz«4âñø½
+ıó¼{²aï±.şc(š5—z–/‹}‚"ü¾®óp*tgü¦²Û¹ÒäÏºÎ½Ã©ºü÷86nkı¢—_r^qSxJ:G!F3»;òë/³nh£cÚh×rÖ,ËcÂn?½~|³=êô'½f|›}’dasƒ?zû·¹öe+cbnŸ½¼“½Š´‡½†¼û}2$oá®³ã5 00cnÿ½>üs=ªtç¡&ó[R«O³N¨C¸:úw)¶oëã"îß=Ş<Ó!Ê;ÇUÆh;0rè¯î}#:Z1WcVVKWBD¿½ş`3Uj §ğæ0%:9}úú7¼vq«8âY¿íè
+ñîè{²gï².ñc-š8—8–(‹8‚F£¾Öó=*tg½¦üÛáÒ‡Ï²Î²Ã©ºñ÷36hk®¢Ä_~^xS|J`G|F!»òğ/¯ni£8Úv×cÖVË}ÂD?½~|³=êô'½f|›a’,)1ƒ1zª·×ö<+}bDŸ½¼“½Š´‡½† û?2ko¹®åãc^}|}Dÿ½>üs=ªtç½&ü[áR´OãN“C³:ğw<¶rë´"‘ßnŞ<ÓuÊuÇyÆ<;<rã¯¯îy#8Z0W}V(K2BD¿şş33qj¸§øæ?)d.30úñ7ıvW«(âèîè
+¸½ş{(²pïı.èc5š1—}–‹8‚õ¾½óo*=gî¦¨Û®ÒäÏ¼Î¨Ãıºà÷56ykı¢‚_|^nSpJ4GjFy»/òá/ıno£)Ú;×-Ö,Ë4Â
+?ú~|³uê½'ğfr›a’k-bƒWz´·ıö<+}bDŸ½¼“½Š´‡½† û-2:oı® ãr$cV}Dÿ½>üs=ªtç½&ü[ıRäOáN¬Cã:Íw2¶iëı"ƒß|ŞhÓuÊqÇoÆy;9r¤¯®îs#0Z1W}VK(B¿èş.3hjô§ûæ.2)}8úø7¿vi«<âCî¼Û
+õïñ{}²eï³.øc}š6—/–3‹(‚õ¾¨ó=*=gé¦üÛ©Ò«ÏıÎ´Ã´ºù÷s6 kò¢”_#^<S=JG=F<»}ò¤/ın<£}Út×aÖsË?Â?ù~%³#êŞ'½f|›}’d}|ƒ}z´·áö3+5bŸğğ“£Š‡½†¼û}2$oá®³ã;3(8
+ÿé>¯s#ª^ç½&ü[áRëO•N¨C°:øw¶}ëº"ß#ŞÓÊ4Ç=Æ ;rğ¯°îp#Z5W:V9K}B
+¿üş13xjé§¿æ/8(8?)úË7¼v«,âîõé
+ıëù{²uï¨.ùc.š —–8‹8‚ş¾şó#*^g½¦üÛıÒäÏáÎÃ¸ºø÷86k©¢—_#^S=J4G=F<»}ò¤/án]£>Ú ×cÖË8Â?½~-³hê±'îf(›g’dyƒ,zá·¸öo+)b
+Ÿüñ“øŠÉ‡¡†³û2go©®¢ãWt}|}Xÿ²>sxª8çø&¿[©R·OãNÖCı:´wa¶3ë•"ßpŞpÓMÊuÇzÆy;cr¯×î<#}ZhWV(K0B¿Íş=3zj±§½æ2<)8aúç7¸vp«8âéÃí
+æòû{/²aï®.ïc4š"—8–‹,‚ø¾¯ói*gù¦¹Û®Ò§ÏÿÎâÃ×º´÷}6<kı¢Ø_N^ySqJqG~Fh».òº/×n<£}Út×}Ö|Ë}ÂX?Ü~?³iêê'Ôf2›}’4/3ƒ:zæ·¸öo+.b^Ÿ½Ç“¸Šå‡è†ùû.2po³®ıã01 `r%ÿş>¨s#ª^ç½&ü[ıRäOáNóC:ñw1¶yë¾"ßnŞ"ÓÊ4Ç=Æ ;rrÌ¯©îq#1ZW<V;K8BZ¿—şV3!jû§Õæ(0(=:úñ7®v"«Wâi—

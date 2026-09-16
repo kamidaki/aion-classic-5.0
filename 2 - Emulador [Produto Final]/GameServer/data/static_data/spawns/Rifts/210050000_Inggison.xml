@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
 	<spawn_map map_id="210050000">
-		<!-- Rift -->
+		<!-- Fenda -->
 		<spawn npc_id="700137" handler="RIFT">
 			<spot x="2269.9521" y="1440.8226" z="202.2073" h="30" anchor="INGGISON_AM" />
 			<!-- id 2150 -->
@@ -38,9 +38,8 @@
 		<rift_spawn id="2272" />
 		<!-- INGGISON_DS -->
 		<rift_spawn id="2273">
-			<!-- Barricade -->
-			<spawn npc_id="219596">
-				<!-- AS -->
+			<!-- Mutant Cruel Tayga -->
+			<spawn npc_id="219596"> <!-- Mutant Cruel Tayga -->
 				<spot x="1090.4175" y="1840.0291" z="330.2129" static_id="4049" />
 				<spot x="1090.7874" y="1849.6725" z="329.5879" static_id="4051" />
 				<spot x="1179.5349" y="1894.9706" z="319.9395" static_id="3616" />

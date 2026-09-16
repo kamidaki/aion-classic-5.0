@@ -3,6 +3,7 @@ package com.aionemu.gameserver.spawnengine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.aionemu.gameserver.ai.manager.WalkManager;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.templates.walker.WalkerTemplate;
@@ -26,7 +27,7 @@ public class WalkerFormator {
 		if (walkerId != null) {
 			WalkerTemplate template = DataManager.WALKER_DATA.getWalkerTemplate(walkerId);
 			if (template == null) {
-				log.warn("Missing walker ID: " + walkerId);
+				WalkManager.fallbackToRandomWalk(npc, walkerId);
 				return false;
 			}
 			if (template.getPool() < 2)

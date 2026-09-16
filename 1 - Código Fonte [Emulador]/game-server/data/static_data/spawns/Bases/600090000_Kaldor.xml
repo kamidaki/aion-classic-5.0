@@ -27,19 +27,19 @@
 				<spawn npc_id="802371" handler="MERCHANT" respawn_time="295">
 					<spot x="630.99011" y="1355.65759" z="150.41344" />
 				</spawn>
-				<!-- Liana(LDF5_Fortress_v01_L_seller_good) -->
+				<!-- Nelater -->
 				<spawn npc_id="802385" handler="MERCHANT" respawn_time="295">
 					<spot x="267.02676" y="1143.21216" z="128.82576" h="30" />
 				</spawn>
-				<!-- Imira(LDF5_Fortress_v01_L_seller_food) -->
+				<!-- A partir do momento -->
 				<spawn npc_id="802387" handler="MERCHANT" respawn_time="295">
 					<spot x="263.73010" y="1143.14624" z="128.89099" h="15" />
 				</spawn>
-				<!-- Seis(LDF5_Fortress_v01_L_warehouse) -->
+				<!-- Plataforma -->
 				<spawn npc_id="802389" handler="MERCHANT" respawn_time="295">
 					<spot x="239.80052" y="1156.43018" z="129.34312" />
 				</spawn>
-				<!-- Batiron(LDF5_Fortress_v01_L_APseller_good) -->
+				<!-- Sacerdote especial dos reforços do Pandaemonium -->
 				<spawn npc_id="802393" handler="MERCHANT" respawn_time="295">
 					<spot x="240.03220" y="1152.80469" z="128.91791" h="8" />
 				</spawn>
@@ -76,19 +76,19 @@
 				<spawn npc_id="802372" handler="MERCHANT" respawn_time="295">
 					<spot x="630.99011" y="1355.65759" z="150.41344" />
 				</spawn>
-				<!-- Taboran(LDF5_Fortress_v01_D_seller_good) -->
+				<!-- Shun -->
 				<spawn npc_id="802386" handler="MERCHANT" respawn_time="295">
 					<spot x="267.02676" y="1143.21216" z="128.82576" h="30" />
 				</spawn>
-				<!-- Yanol(LDF5_Fortress_v01_D_seller_food) -->
+				<!-- Bidemir -->
 				<spawn npc_id="802388" handler="MERCHANT" respawn_time="295">
 					<spot x="263.73010" y="1143.14624" z="128.89099" h="15" />
 				</spawn>
-				<!-- Irusil(LDF5_Fortress_v01_D_warehouse) -->
+				<!-- Imposto -->
 				<spawn npc_id="802390" handler="MERCHANT" respawn_time="295">
 					<spot x="239.80052" y="1156.43018" z="129.34312" />
 				</spawn>
-				<!-- Kashian(LDF5_Fortress_v01_D_APseller_good) -->
+				<!-- Gladiador especial dos reforços da Guilda da Grada de Griffon -->
 				<spawn npc_id="802394" handler="MERCHANT" respawn_time="295">
 					<spot x="240.03220" y="1152.80469" z="128.91791" h="8" />
 				</spawn>
@@ -150,19 +150,19 @@
 				<spawn npc_id="802377" handler="MERCHANT" respawn_time="295">
 					<spot x="932.84442" y="1228.99438" z="143.70779" />
 				</spawn>
-				<!-- Patiom(LDF5_Fortress_v02_L_seller_good) -->
+				<!-- Sacerdote especial dos reforços da Guilda da Grada de Griffon -->
 				<spawn npc_id="802395" handler="MERCHANT" respawn_time="295">
 					<spot x="1344.94971" y="1154.45715" z="184.69469" h="90" />
 				</spawn>
-				<!-- Minoz(LDF5_Fortress_v02_L_seller_food) -->
+				<!-- Surt -->
 				<spawn npc_id="802397" handler="MERCHANT" respawn_time="295">
 					<spot x="1348.00256" y="1152.94324" z="184.69550" h="75" />
 				</spawn>
-				<!-- Miria(LDF5_Fortress_v02_L_warehouse) -->
+				<!-- <Potencializadores Extra> -->
 				<spawn npc_id="802399" handler="MERCHANT" respawn_time="295">
 					<spot x="1368.12085" y="1131.56982" z="184.40944" h="60" />
 				</spawn>
-				<!-- Liyana(LDF5_Fortress_v02_L_APseller_good) -->
+				<!-- <Irmãos de Warrick> -->
 				<spawn npc_id="802403" handler="MERCHANT" respawn_time="295">
 					<spot x="1369.64380" y="1135.19617" z="184.68321" h="60" />
 				</spawn>
@@ -200,19 +200,19 @@
 				<spawn npc_id="802375" handler="MERCHANT" respawn_time="295">
 					<spot x="932.84442" y="1228.99438" z="143.70779" />
 				</spawn>
-				<!-- Zamoia(LDF5_Fortress_v02_D_seller_good) -->
+				<!-- Brusthonin Clérigo Special -->
 				<spawn npc_id="802396" handler="MERCHANT" respawn_time="295">
 					<spot x="1344.94971" y="1154.45715" z="184.69469" h="90" />
 				</spawn>
-				<!-- Nodos(LDF5_Fortress_v02_D_seller_food) -->
+				<!-- Giel -->
 				<spawn npc_id="802398" handler="MERCHANT" respawn_time="295">
 					<spot x="1348.00256" y="1152.94324" z="184.69550" h="75" />
 				</spawn>
-				<!-- Uron(LDF5_Fortress_v02_D_warehouse) -->
+				<!-- Windton, o Womanizer -->
 				<spawn npc_id="802400" handler="MERCHANT" respawn_time="295">
 					<spot x="1368.12085" y="1131.56982" z="184.40944" h="60" />
 				</spawn>
-				<!-- Heidrun(LDF5_Fortress_v02_D_APseller_good) -->
+				<!-- <Alquimista das chamas> -->
 				<spawn npc_id="802404" handler="MERCHANT" respawn_time="295">
 					<spot x="1369.64380" y="1135.19617" z="184.68321" h="60" />
 				</spawn>
@@ -220,7 +220,7 @@
 				<spawn npc_id="804475" handler="MERCHANT" respawn_time="295">
 					<spot x="1368.32495" y="1139.94507" z="184.75803" h="66" />
 				</spawn>
-				<!-- Tortius(LDF5_Fortress_Village_Guard02_D) -->
+				<!-- Bebê -->
 				<spawn npc_id="802430" handler="MERCHANT" respawn_time="295">
 					<spot x="1359.08240" y="1132.95520" z="184.68234" h="66" />
 				</spawn>

@@ -4,7 +4,13 @@ import java.util.Set;
 
 import com.aionemu.gameserver.configs.administration.AdminConfig;
 import com.aionemu.gameserver.configs.main.EventsConfig;
+import com.aionemu.gameserver.configs.main.GeoDataConfig;
 import com.aionemu.gameserver.dataholders.DataManager;
+import com.aionemu.gameserver.model.templates.world.WorldMapTemplate;
+import com.aionemu.gameserver.utils.PacketSendUtility;
+import com.lostacademy.nativepath.NativePathConfig;
+import com.lostacademy.nativepath.NativePathData;
+import com.lostacademy.nav.NavData;
 import com.aionemu.gameserver.model.animations.ArrivalAnimation;
 import com.aionemu.gameserver.model.gameobjects.Pet;
 import com.aionemu.gameserver.model.gameobjects.Summon;
@@ -83,6 +89,20 @@ public class CM_LEVEL_READY extends AionClientPacket {
 		}
 		// Spawn player into the world.
 		World.getInstance().spawn(activePlayer);
+
+		WorldMapTemplate templateMaps = DataManager.WORLD_MAPS_DATA.getTemplate(activePlayer.getWorldId());
+		String mapName = templateMaps != null && templateMaps.getName() != null ? templateMaps.getName() : "ID " + activePlayer.getWorldId();
+		boolean hasNativePath = NativePathConfig.NATIVE_PATH_ENABLE && NativePathData.getInstance().hasMap(activePlayer.getWorldId());
+		boolean hasNavMesh = GeoDataConfig.GEO_NAV_ENABLE && NavData.getInstance().getNavMap(activePlayer.getWorldId()) != null;
+		String navMessage;
+		if (hasNativePath) {
+			navMessage = String.format("\uE0D0Mapa: %s | Navegação NPC: CryEngine Nativo \uE0CB", mapName);
+		} else if (hasNavMesh) {
+			navMessage = String.format("\uE0D0Mapa: %s | Navegação NPC: NavMesh (.nav) \uE0CB", mapName);
+		} else {
+			navMessage = String.format("\uE0D0 Mapa: %s | Navegação NPC: Sem dados disponíveis \uE0CD", mapName);
+		}
+		PacketSendUtility.sendMessage(activePlayer, navMessage);
 
 		if (activePlayer.isInFlyState(FlyState.FLYING)) // notify client if we are still flying (client always ends flying after teleport)
 			activePlayer.getFlyController().startFly(true, true);

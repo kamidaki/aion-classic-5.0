@@ -72,6 +72,8 @@ public abstract class AbstractQuestHandler {
 		for (QuestDrop drop : template.getQuestDrop()) {
 			if (drop.getNpcId() / 100000 != 7)
 				continue;
+			if (DataManager.NPC_DATA.getNpcTemplate(drop.getNpcId()) == null)
+				continue;
 			if (actionItems == null)
 				actionItems = new HashSet<>();
 			actionItems.add(drop.getNpcId());

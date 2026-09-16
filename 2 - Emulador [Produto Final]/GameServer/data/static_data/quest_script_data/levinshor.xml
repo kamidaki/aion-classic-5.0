@@ -107,13 +107,13 @@
 	-->
 	
 	<!-- COLLECTING QUESTS -->
-	<item_collecting id="13706" start_npc_ids="802329"/>
+	<!-- Obsolete 4.8 quest disabled for Classic 5.0: <item_collecting id="13706" start_npc_ids="802329"/> -->
 	<item_collecting id="13712" start_npc_ids="802565"/>
 	<item_collecting id="13714" start_npc_ids="802610"/>
 	<item_collecting id="13741" start_npc_ids="802350"/>
 	<item_collecting id="13742" start_npc_ids="802350"/>
 	<item_collecting id="13743" start_npc_ids="802350"/>
-	<item_collecting id="23706" start_npc_ids="802349"/>
+	<!-- Obsolete 4.8 quest disabled for Classic 5.0: <item_collecting id="23706" start_npc_ids="802349"/> -->
 	<item_collecting id="23712" start_npc_ids="802579"/>
 	<item_collecting id="23714" start_npc_ids="802596"/>
 	<item_collecting id="23741" start_npc_ids="802353"/>

@@ -75,11 +75,11 @@
 				<spawn npc_id="802352" handler="SENTINEL" respawn_time="295">
 					<spot x="543.1124" y="579.8049" z="265.375" h="60" />
 				</spawn>
-				<!-- Stella -->
+				<!-- Atirador -->
 				<spawn npc_id="802557" handler="MERCHANT" respawn_time="295">
 					<spot x="539.0778" y="577.549" z="265.375" h="45" />
 				</spawn>
-				<!-- Camelia -->
+				<!-- <Two Bass Fortaleza> -->
 				<spawn npc_id="802564" handler="MERCHANT" respawn_time="295">
 					<spot x="531.7267" y="589.9037" z="265.2552" h="110" />
 				</spawn>
@@ -98,11 +98,11 @@
 				<!-- Archon Aggressor -->
 				<!-- Archon Nightblade -->
 				<!-- Archon Sentry -->
-				<!-- Widena -->
+				<!-- Capitão do meio do meio do esquadrão de infiltração da 45ª -->
 				<spawn npc_id="802571" handler="SENTINEL" respawn_time="295">
 					<spot x="539.07776" y="577.54901" z="265.25113" h="45" />
 				</spawn>
-				<!-- Ketide -->
+				<!-- Atirador -->
 				<spawn npc_id="802578" handler="SENTINEL" respawn_time="295">
 					<spot x="531.72668" y="589.90375" z="264.86246" h="110" />
 				</spawn>
@@ -137,15 +137,15 @@
 				<spawn npc_id="802331" handler="MERCHANT" respawn_time="295">
 					<spot x="380.78894" y="993.42743" z="248.375" h="75" />
 				</spawn>
-				<!-- Panses -->
+				<!-- Tempestade do caos -->
 				<spawn npc_id="802559" handler="MERCHANT" respawn_time="295">
 					<spot x="381.32571" y="983.50977" z="248.32654" h="60" />
 				</spawn>
-				<!-- Ariantos -->
+				<!-- Atirador -->
 				<spawn npc_id="802565" handler="MERCHANT" respawn_time="295">
 					<spot x="360.67563" y="993.1745" z="248.3828" />
 				</spawn>
-				<!-- Anemone -->
+				<!-- Gibs -->
 				<spawn npc_id="802570" handler="MERCHANT" respawn_time="295">
 					<spot x="383.17896" y="986.17712" z="248.375" h="60" />
 				</spawn>
@@ -169,15 +169,15 @@
 				<spawn npc_id="802339" handler="MERCHANT" respawn_time="295">
 					<spot x="380.78894" y="993.42743" z="248.375" h="75" />
 				</spawn>
-				<!-- Varco -->
+				<!-- Tempestade do caos -->
 				<spawn npc_id="802584" handler="MERCHANT" respawn_time="295">
 					<spot x="383.17896" y="986.17712" z="248.375" h="60" />
 				</spawn>
-				<!-- Nivena -->
+				<!-- Suspicious Teleporter -->
 				<spawn npc_id="802573" handler="MERCHANT" respawn_time="295">
 					<spot x="381.32571" y="983.50977" z="248.32654" h="60" />
 				</spawn>
-				<!-- Abeorn -->
+				<!-- Tempestade do caos -->
 				<spawn npc_id="802579" handler="MERCHANT" respawn_time="295">
 					<spot x="360.67563" y="993.1745" z="248.3828" />
 				</spawn>
@@ -214,16 +214,16 @@
 				<spawn npc_id="802329" handler="MERCHANT" respawn_time="295">
 					<spot x="508.18683" y="1156.55" z="276.6104" h="60" />
 				</spawn>
-				<!-- Dalia -->
+				<!-- Gibs -->
 				<spawn npc_id="802563" handler="MERCHANT" respawn_time="295">
 					<spot x="480.77573" y="1148.5426" z="276.5" h="15" />
 				</spawn>
 				<!-- Advance Corridor -->
-				<!-- Categion -->
+				<!-- Atirador -->
 				<spawn npc_id="802568" handler="MERCHANT" respawn_time="295">
 					<spot x="481.86017" y="1208.6219" z="277.06323" h="105" />
 				</spawn>
-				<!-- Pygme -->
+				<!-- <Território do Belus> -->
 				<spawn npc_id="802621" handler="MERCHANT" respawn_time="295">
 					<spot x="478.08047" y="1202.0717" z="276.37500" h="105" />
 				</spawn>
@@ -248,11 +248,11 @@
 					<spot x="508.18683" y="1156.55" z="276.6104" h="60" />
 				</spawn>
 				<!-- Advance Corridor -->
-				<!-- Drins -->
+				<!-- Suspicious Teleporter -->
 				<spawn npc_id="802577" handler="MERCHANT" respawn_time="295">
 					<spot x="480.77573" y="1148.5426" z="276.5" h="15" />
 				</spawn>
-				<!-- Anmir -->
+				<!-- Atirador -->
 				<spawn npc_id="802582" handler="MERCHANT" respawn_time="295">
 					<spot x="481.86017" y="1208.6219" z="277.06323" h="105" />
 				</spawn>
@@ -292,11 +292,11 @@
 				<spawn npc_id="802332" handler="MERCHANT" respawn_time="295">
 					<spot x="892.56335" y="1857.2535" z="229.42825" h="105" />
 				</spawn>
-				<!-- Melly -->
+				<!-- Portão do território -->
 				<spawn npc_id="802614" handler="MERCHANT" respawn_time="295">
 					<spot x="892.21436" y="1850.1084" z="229.42825" h="52" />
 				</spawn>
-				<!-- Antos -->
+				<!-- Atirador -->
 				<spawn npc_id="802558" handler="MERCHANT" respawn_time="295">
 					<spot x="878.75586" y="1860.849" z="229.23175" />
 				</spawn>
@@ -320,11 +320,11 @@
 				<spawn npc_id="802340" handler="MERCHANT" respawn_time="295">
 					<spot x="892.56335" y="1857.2535" z="229.42825" h="105" />
 				</spawn>
-				<!-- Niberus -->
+				<!-- Capitão de alto escalão do 45º esquadrão de infiltração -->
 				<spawn npc_id="802572" handler="MERCHANT" respawn_time="295">
 					<spot x="878.75586" y="1860.849" z="229.23175" />
 				</spawn>
-				<!-- Valdmark -->
+				<!-- Tempestade do caos -->
 				<spawn npc_id="802583" handler="MERCHANT" respawn_time="295">
 					<spot x="892.21436" y="1850.1084" z="229.42825" h="52" />
 				</spawn>
@@ -362,11 +362,11 @@
 				<spawn npc_id="802333" handler="MERCHANT" respawn_time="295">
 					<spot x="537.7369" y="1559.062" z="234.625" h="15" />
 				</spawn>
-				<!-- Nymphaia -->
+				<!-- Atirador -->
 				<spawn npc_id="802560" handler="MERCHANT" respawn_time="295">
 					<spot x="552.5982" y="1562.286" z="234.5" h="60" />
 				</spawn>
-				<!-- Craneia -->
+				<!-- Atirador -->
 				<spawn npc_id="802567" handler="MERCHANT" respawn_time="295">
 					<spot x="535.9156" y="1565.105" z="234.4339" />
 				</spawn>
@@ -391,11 +391,11 @@
 				<spawn npc_id="802341" handler="MERCHANT" respawn_time="295">
 					<spot x="537.73688" y="1559.0624" z="234.49362" h="15" />
 				</spawn>
-				<!-- Gafyr -->
+				<!-- Suspicious Teleporter -->
 				<spawn npc_id="802574" handler="MERCHANT" respawn_time="295">
 					<spot x="552.5982" y="1562.286" z="234.5" h="60" />
 				</spawn>
-				<!-- Engor -->
+				<!-- Tempestade do caos -->
 				<spawn npc_id="802581" handler="MERCHANT" respawn_time="295">
 					<spot x="535.9156" y="1565.105" z="234.4339" />
 				</spawn>
@@ -432,15 +432,15 @@
 				<spawn npc_id="802335" handler="MERCHANT" respawn_time="295">
 					<spot x="1901.731" y="807.8081" z="237.875" h="60" />
 				</spawn>
-				<!-- Ariantos -->
+				<!-- Atirador -->
 				<spawn npc_id="802565" handler="MERCHANT" respawn_time="295">
 					<spot x="1895.251" y="802.4997" z="237.8633" h="30" />
 				</spawn>
-				<!-- Craneia -->
+				<!-- Atirador -->
 				<spawn npc_id="802567" handler="MERCHANT" respawn_time="295">
 					<spot x="1897.313" y="799.8699" z="237.875" h="21" />
 				</spawn>
-				<!-- Rotos -->
+				<!-- Portão de saída do território -->
 				<spawn npc_id="802615" handler="MERCHANT" respawn_time="295">
 					<spot x="1894.93" y="822.0237" z="237.8082" h="105" />
 				</spawn>
@@ -463,15 +463,15 @@
 				<spawn npc_id="802343" handler="MERCHANT" respawn_time="295">
 					<spot x="1901.731" y="807.8081" z="237.875" h="60" />
 				</spawn>
-				<!-- Atald -->
+				<!-- <Bruxa Cursed> -->
 				<spawn npc_id="802594" handler="MERCHANT" respawn_time="295">
 					<spot x="1897.313" y="799.8699" z="237.875" h="21" />
 				</spawn>
-				<!-- Legen -->
+				<!-- Joker Secret Box -->
 				<spawn npc_id="802596" handler="MERCHANT" respawn_time="295">
 					<spot x="1895.251" y="802.4997" z="237.8633" h="30" />
 				</spawn>
-				<!-- Hljod -->
+				<!-- ROIRUNKER -->
 				<spawn npc_id="802601" handler="MERCHANT" respawn_time="295">
 					<spot x="1894.93" y="822.0237" z="237.8082" h="105" />
 				</spawn>
@@ -509,11 +509,11 @@
 					<spot x="1414.35" y="867.9044" z="258.0972" />
 				</spawn>
 				<!-- Advance Corridor -->
-				<!-- Elia -->
+				<!-- Portão do território -->
 				<spawn npc_id="802613" handler="MERCHANT" respawn_time="295">
 					<spot x="1444.612" y="870.0577" z="258.25" h="60" />
 				</spawn>
-				<!-- Konos -->
+				<!-- Portão de saída do território -->
 				<spawn npc_id="802616" handler="MERCHANT" respawn_time="295">
 					<spot x="1433.678" y="819.8065" z="258.125" h="45" />
 				</spawn>
@@ -543,7 +543,7 @@
 					<spot x="1414.35" y="867.9044" z="258.0972" />
 				</spawn>
 				<!-- Advance Corridor -->
-				<!-- Himinn -->
+				<!-- Baú do tesouro -->
 				<spawn npc_id="802599" handler="MERCHANT" respawn_time="295">
 					<spot x="1444.612" y="870.0577" z="258.25" h="60" />
 				</spawn>
@@ -583,11 +583,11 @@
 				<!-- Guardian Warrior -->
 				<!-- Guardian Enforcer -->
 				<!-- Guardian Patrol -->
-				<!-- Amigdale -->
+				<!-- Trindade -->
 				<spawn npc_id="802604" handler="MERCHANT" respawn_time="295">
 					<spot x="1633.021" y="1552.508" z="247.8595" h="45" />
 				</spawn>
-				<!-- Secalin -->
+				<!-- Portão do território -->
 				<spawn npc_id="802609" handler="MERCHANT" respawn_time="295">
 					<spot x="1618.363" y="1563.365" z="247.608" h="105" />
 				</spawn>
@@ -610,11 +610,11 @@
 				<spawn npc_id="802354" handler="MERCHANT" respawn_time="295">
 					<spot x="1619.645" y="1559.977" z="247.6017" h="10" />
 				</spawn>
-				<!-- Salvita -->
+				<!-- Tempestade do caos -->
 				<spawn npc_id="802590" handler="MERCHANT" respawn_time="295">
 					<spot x="1633.021" y="1552.508" z="247.8595" h="45" />
 				</spawn>
-				<!-- Foir -->
+				<!-- Baú do tesouro -->
 				<spawn npc_id="802595" handler="MERCHANT" respawn_time="295">
 					<spot x="1618.363" y="1563.365" z="247.608" h="105" />
 				</spawn>
@@ -649,11 +649,11 @@
 				<spawn npc_id="802336" handler="MERCHANT" respawn_time="295">
 					<spot x="1165.077" y="253.3601" z="239.125" />
 				</spawn>
-				<!-- Ananas -->
+				<!-- Trindade -->
 				<spawn npc_id="802603" handler="MERCHANT" respawn_time="295">
 					<spot x="1165.745" y="260.2341" z="239.1543" h="105" />
 				</spawn>
-				<!-- Melly -->
+				<!-- Portão do território -->
 				<spawn npc_id="802614" handler="MERCHANT" respawn_time="295">
 					<spot x="1178.191" y="242.5566" z="239.2032" h="45" />
 				</spawn>
@@ -681,11 +681,11 @@
 				<spawn npc_id="802355" handler="MERCHANT" respawn_time="295">
 					<spot x="1177.817" y="246.859" z="239.417" h="60" />
 				</spawn>
-				<!-- Minfyr -->
+				<!-- Atirador -->
 				<spawn npc_id="802589" handler="MERCHANT" respawn_time="295">
 					<spot x="1165.745" y="260.2341" z="239.1543" h="105" />
 				</spawn>
-				<!-- Rhein -->
+				<!-- <Honor Merchant> -->
 				<spawn npc_id="802600" handler="MERCHANT" respawn_time="295">
 					<spot x="1178.191" y="242.5566" z="239.2032" h="45" />
 				</spawn>
@@ -723,11 +723,11 @@
 				<spawn npc_id="802337" handler="MERCHANT" respawn_time="295">
 					<spot x="1671.74" y="232.4037" z="251.75" h="45" />
 				</spawn>
-				<!-- Phumius -->
+				<!-- Portão do território -->
 				<spawn npc_id="802605" handler="MERCHANT" respawn_time="295">
 					<spot x="1666.58" y="247.9582" z="251.625" h="90" />
 				</spawn>
-				<!-- Phoenis -->
+				<!-- Portão de saída do território -->
 				<spawn npc_id="802612" handler="MERCHANT" respawn_time="295">
 					<spot x="1665.161" y="226.3457" z="251.375" h="30" />
 				</spawn>
@@ -752,11 +752,11 @@
 				<spawn npc_id="802345" handler="MERCHANT" respawn_time="295">
 					<spot x="1671.74" y="232.40367" z="253.25974" h="45" />
 				</spawn>
-				<!-- Illadil -->
+				<!-- Atirador -->
 				<spawn npc_id="802591" handler="MERCHANT" respawn_time="295">
 					<spot x="1666.5803" y="247.95821" z="253.05057" h="90" />
 				</spawn>
-				<!-- Vidblainn -->
+				<!-- Baú do tesouro -->
 				<spawn npc_id="802598" handler="MERCHANT" respawn_time="295">
 					<spot x="1665.1614" y="226.34572" z="251.5" h="30" />
 				</spawn>
@@ -793,7 +793,7 @@
 				<spawn npc_id="802338" handler="MERCHANT" respawn_time="295">
 					<spot x="1256.097" y="1445.76" z="275.3487" />
 				</spawn>
-				<!-- Percicos -->
+				<!-- <Lendário Colecionador de Cartas> -->
 				<spawn npc_id="802602" handler="MERCHANT" respawn_time="295">
 					<spot x="1269.725" y="1426.393" z="274.7288" h="30" />
 				</spawn>
@@ -821,7 +821,7 @@
 				<spawn npc_id="802346" handler="MERCHANT" respawn_time="295">
 					<spot x="1256.0966" y="1445.7599" z="275.2316" />
 				</spawn>
-				<!-- Aramilda -->
+				<!-- Tempestade do caos -->
 				<spawn npc_id="802588" handler="MERCHANT" respawn_time="295">
 					<spot x="1269.7251" y="1426.3931" z="274.7081" h="30" />
 				</spawn>

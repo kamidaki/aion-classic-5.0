@@ -8,6 +8,7 @@ O **melhor e único emulador Aion Classic 5.0 do mundo**, totalmente construído
 
 - **100% Java 25 (LTS)**: Compilado nativamente com javac release 25, aproveitando as mais modernas otimizações da JVM.
 - **Purga Total do Javolution**: Substituição integral por coleções nativas de alta performance (`java.util` e `java.util.concurrent`), reduzindo overhead e consumo de heap.
+- **Subsistema Native-Path CryEngine (4 Camadas de Navegação)**: Motor primário de pathfinding de altíssima fidelidade utilizando diretamente as malhas compiladas da CryEngine (`*-path.dat`) com resolução de 0.5m do cliente oficial GameForge 5.0, com fallback hierárquico para NavMesh (.nav Recast), Eleanor e Vanilla.
 - **Firewall GeoIP Integrado**: Filtro geográfico nativo no socket NIO que bloqueia imediatamente conexões não autorizadas de países não permitidos antes de alocar memória ou processar pacotes.
 - **Validação e Integridade Estática Completa**: Tabelas XML de skills, itens, NPCs, quests e motions 100% alinhadas com os esquemas XSD oficiais e dados extraídos do cliente 5.0.
 
@@ -57,6 +58,35 @@ O emulador integra nativamente no pacote `com.aionemu.commons.network.GeoIPFilte
    - `geo.firewall.world_ip_range_dir`: Pasta com as tabelas de ranges IP por país.
    - `geo.firewall.allowed_countries`: Países liberados (ex: `BR,PT`).
    - `geo.firewall.manual_whitelist_ips`: IPs individuais autorizados.
+
+---
+
+## Subsistema de Navegação e Pathfinding (CryEngine Native-Path)
+
+O emulador conta com um motor primário de navegação de alta fidelidade e resolução tridimensional (`com.lostacademy.nativepath`), consumindo diretamente os arquivos nativos de navegação compilados da CryEngine (`*-path.dat`) extraídos das pastas de mapas do cliente oficial GameForge 5.0 (`Levels/`).
+
+### Cadeia de 4 Camadas de Fallback:
+1. **Camada 1: Native-Path (CryEngine `*-path.dat`)**:
+   - Resolução ultraprecisa de 0.5m por célula.
+   - Algoritmo A* heurístico tridimensional com fila de prioridade e suavização de trajetórias via *string-pulling raycasting*.
+   - Suporte nativo a desníveis verticais, pontes, túneis e conexões de adjacência pré-calculadas.
+2. **Camada 2: NavMesh (.nav Recast)**:
+   - Malhas trianguladas 3D carregadas sob demanda via `NavService` como primeira rota de contingência.
+3. **Camada 3: Eleanor (Geometria / Line-of-Sight)**:
+   - Rastreamento dinâmico ponto a ponto via `FollowMotor` com checagens de linha de visão e detecção de obstáculos.
+4. **Camada 4: Vanilla / Comportamento Normal**:
+   - Movimentação direta com ajuste de elevação Z via `GeoService.getZ`.
+
+### Configuração (`geodata.properties`):
+```properties
+gameserver.nativepath.enable = true
+gameserver.nativepath.dir = data/native-path/
+gameserver.nativepath.max_cached_maps = 15
+gameserver.nativepath.inactive_timeout_ms = 300000
+gameserver.nativepath.cleanup_interval_ms = 180000
+gameserver.nativepath.max_search_nodes = 4000
+gameserver.nativepath.debug = false
+```
 
 ---
 

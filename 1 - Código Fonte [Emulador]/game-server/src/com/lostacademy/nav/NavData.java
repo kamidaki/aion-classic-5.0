@@ -23,7 +23,6 @@ import com.aionemu.gameserver.geoEngine.models.GeoMap;
 import com.aionemu.gameserver.geoEngine.scene.NavGeometry;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.WorldMapType;
-import com.lostacademy.Utilidades.CityMapUtil;
 
 /**
  * Sistema de gerenciamento de NavMeshes com cache LRU e liberação de memória.
@@ -63,9 +62,6 @@ public class NavData {
 		if (!GeoDataConfig.GEO_NAV_ENABLE)
 			return;
 
-		if (CityMapUtil.isDefaultPathfinding(worldId))
-			return;
-
 		MapActivity activity = getOrCreateActivity(worldId);
 		activity.incrementPlayerCount();
 
@@ -75,9 +71,6 @@ public class NavData {
 	}
 
 	public void onPlayerLeaveMap(int worldId) {
-		if (CityMapUtil.isDefaultPathfinding(worldId))
-			return;
-
 		MapActivity activity = mapActivity.get(worldId);
 		if (activity != null) {
 			activity.decrementPlayerCount();
@@ -87,10 +80,6 @@ public class NavData {
 	public GeoMap getNavMap(int worldId) {
 		if (!GeoDataConfig.GEO_NAV_ENABLE)
 			return null;
-
-		if (CityMapUtil.isDefaultPathfinding(worldId)) {
-			return null;
-		}
 
 		MapActivity activity = mapActivity.get(worldId);
 		if (activity == null || activity.getPlayerCount() <= 0) {

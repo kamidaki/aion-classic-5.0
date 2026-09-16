@@ -61,7 +61,7 @@ public class HouseController extends VisibleObjectController<House> {
 		HouseAddress address = getOwner().getAddress();
 		List<HouseSpawn> templates = DataManager.HOUSE_NPCS_DATA.getSpawnsByAddress(address.getId());
 		if (templates == null) {
-			log.warn("Missing npc spawns for house " + address.getId());
+			log.debug("Missing npc spawns for house {}", address.getId());
 			return;
 		}
 		for (HouseSpawn spawn : templates) {
@@ -82,7 +82,7 @@ public class HouseController extends VisibleObjectController<House> {
 				VisibleObject vo = SpawnEngine.spawnObject(t, getOwner().getInstanceId());
 				npc = vo instanceof Npc ? (Npc) vo : null;
 			} else {
-				log.warn("Unhandled spawn type " + spawn.getType());
+				log.debug("Unhandled spawn type {}", spawn.getType());
 				continue;
 			}
 			if (npc != null) {

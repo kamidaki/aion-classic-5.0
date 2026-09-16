@@ -150,7 +150,7 @@
 			<spot x="2113.4365" y="2598.4958" z="202.8009" h="0"/>
 			<spot x="1782.3331" y="2623.3711" z="220.6871" h="0"/>
 		</spawn>
-		<!-- Ferronite -->
+		<!-- Liga diamante - Bandana do oficial Noble TAC -->
 		<spawn npc_id="409077" respawn_time="295">
 			<spot x="778.3149" y="1689.4053" z="250.3852" h="0"/>
 			<spot x="361.3434" y="1536.6649" z="273.9555" h="0"/>
@@ -173,7 +173,7 @@
 			<spot x="687.9719" y="1582.5321" z="235.4591" h="0"/>
 			<spot x="905.6636" y="1783.5487" z="229.8662" h="0"/>
 		</spawn>
-		<!-- Solarium -->
+		<!-- Liga diamante - Bandana do oficial Noble TAC -->
 		<spawn npc_id="409078" respawn_time="295">
 			<spot x="2230.6348" y="1713.5619" z="229.0462" h="103"/>
 			<spot x="2302.8035" y="1501.77" z="214.9175" h="16"/>
@@ -226,7 +226,7 @@
 			<spot x="1025.3057" y="1457.3301" z="949.6255" h="0"/>
 			<spot x="2220.4336" y="1988.4778" z="279.2828" h="60"/>
 		</spawn>
-		<!-- Turmaline -->
+		<!-- Liga diamante - chapéu de oficial nobre TAC -->
 		<spawn npc_id="409079" respawn_time="295">
 			<spot x="2501.5198" y="1484.5576" z="238.3905" h="0"/>
 			<spot x="2578.4219" y="1640.8983" z="250.2434" h="30"/>

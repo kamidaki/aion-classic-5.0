@@ -4,7 +4,7 @@
 		<!-- Vortex -->
 		<vortex_spawn id="0">
 			<state_type state="INVASION">
-				<!-- Popuchin's Document Stash -->
+				<!-- trabalho -->
 				<spawn npc_id="701491" respawn_time="295">
 					<spot x="418.9850" y="1203.4479" z="127.3025" h="93" />
 					<spot x="428.9553" y="1231.4476" z="127.2500" />
@@ -17,7 +17,7 @@
 					<spot x="562.4769" y="1224.1726" z="89.5000" />
 					<spot x="551.4507" y="1172.9408" z="89.8961" />
 				</spawn>
-				<!-- Barricade -->
+				<!-- Mutant Mine Lookout -->
 				<spawn npc_id="219480" respawn_time="7200">
 					<spot x="958.2697" y="2382.0061" z="101.3251" h="73" static_id="1191" />
 					<spot x="555.8292" y="2302.3940" z="53.2362" h="73" static_id="1174" />
@@ -57,7 +57,7 @@
 				</spawn>
 				<!-- Pandemonium Hq Elite Ranger -->
 				<!-- Pandemonium Hq Elite Gladiator -->
-				<!-- Dromic -->
+				<!-- <Tek> -->
 				<spawn npc_id="800505" respawn_time="295">
 					<spot x="565.0381" y="2317.7620" z="51.4428" h="45" />
 				</spawn>
@@ -65,7 +65,7 @@
 				<!-- Pandemonium Hq Elite Cleric -->
 				<!-- Jamanok Protectorate Gladiator -->
 				<!-- Theobomos Elite Sorcerer -->
-				<!-- Theobomos Elite Gladiator -->
+				<!-- <Para o 3º Deylon Refuge> -->
 				<spawn npc_id="209416" respawn_time="295">
 					<spot x="322.4705" y="1905.9349" z="69.9708" h="6" />
 					<spot x="241.9484" y="1717.1327" z="75.3356" h="30" />
@@ -84,7 +84,7 @@
 					<spot x="725.8365" y="1944.8142" z="66.3717" h="43" />
 				</spawn>
 				<!-- Theobomos Elite Cleric -->
-				<!-- Barricade -->
+				<!-- Mutant Mine Labourer -->
 				<spawn npc_id="219479" respawn_time="7200">
 					<spot x="243.2252" y="1719.3726" z="78.5163" h="73" static_id="1175" />
 					<spot x="235.6719" y="1719.1537" z="78.0293" h="73" static_id="1172" />
@@ -110,14 +110,14 @@
 					<spot x="564.8577" y="1290.8907" z="86.0230" h="73" static_id="1198" />
 				</spawn>
 				<!-- Abunka -->
-				<!-- Theobomos Elite Templar -->
+				<!-- <Para o 2º Deylon Refuge> -->
 				<spawn npc_id="209415" respawn_time="295">
 					<spot x="211.9166" y="1688.2206" z="77.9262" h="30" />
 					<spot x="344.1049" y="1366.2634" z="26.7500" h="30" />
 					<spot x="378.3507" y="1387.6685" z="26.7500" h="85" />
 					<spot x="750.1849" y="1917.4521" z="67.4975" h="50" />
 				</spawn>
-				<!-- Directportal Tent -->
+				<!-- Mutant Ice Waterworm -->
 				<spawn npc_id="219571" respawn_time="295">
 					<spot x="215.9690" y="1681.8369" z="82.2509" h="73" static_id="1177" />
 					<spot x="567.9882" y="2315.1772" z="57.2464" h="73" static_id="1157" />

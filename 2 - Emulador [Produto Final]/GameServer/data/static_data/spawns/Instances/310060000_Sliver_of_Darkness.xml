@@ -5,7 +5,7 @@
 		<spawn npc_id="205110">
 			<spot x="1875.3131" y="634.126" z="1192"/>
 		</spawn>
-		<!-- Icaronix's Box -->
+		<!-- Caixa de Icaronix -->
 		<spawn npc_id="700240">
 			<spot x="1733.2701" y="790.5267" z="1373.75" h="38"/>
 		</spawn>

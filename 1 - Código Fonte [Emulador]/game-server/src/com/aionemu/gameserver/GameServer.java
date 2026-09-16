@@ -99,6 +99,7 @@ public class GameServer {
 		// ZoneService.getInstance().saveMaterialZones();
 
 		NavService.getInstance().initializeNav();
+		com.lostacademy.nativepath.NativePathService.getInstance().initialize();
 
 		World.getInstance();
 		GameTimeService.getInstance();

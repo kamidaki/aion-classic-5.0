@@ -6,7 +6,7 @@
 			<state_type state="INVASION">
 				<!-- Provisioneers Elite Sorcerer -->
 				<!-- Provisioneers Elite Gladiator -->
-				<!-- Barricade -->
+				<!-- Mutant Mine Labourer -->
 				<spawn npc_id="219479" respawn_time="7200">
 					<spot x="2190.9294" y="2802.5261" z="68.9386" h="73" static_id="1137" />
 					<spot x="2195.1855" y="2796.4133" z="68.6439" h="73" static_id="1145" />
@@ -30,7 +30,7 @@
 				<!-- Griffon's Claw Elite Templar -->
 				<!-- Griffon's Claw Elite Gladiator -->
 				<!-- Captured Griffon's Claw Legionary -->
-				<!-- Steel Rods -->
+				<!-- trabalho -->
 				<spawn npc_id="701490" respawn_time="295">
 					<spot x="1284.6552" y="1912.7936" z="51.2500" h="15" />
 					<spot x="1406.5272" y="1926.9248" z="47.6250" h="43" />
@@ -58,7 +58,7 @@
 				<spawn npc_id="800504" respawn_time="295">
 					<spot x="1696.2336" y="2899.6309" z="66.2234" h="43" />
 				</spawn>
-				<!-- Directportal Tent -->
+				<!-- Mutant Ice Waterworm -->
 				<spawn npc_id="219571" respawn_time="295">
 					<spot x="1082.2162" y="2210.0491" z="84.3891" h="73" static_id="1175" />
 					<spot x="1699.0629" y="2896.2952" z="71.9387" h="73" static_id="1146" />
@@ -76,7 +76,7 @@
 				<!-- Brusthonin Reapers Elite Ranger -->
 				<!-- Brusthonin Gladiator -->
 				<!-- Brusthonin Reapers Elite Templar -->
-				<!-- Barricade -->
+				<!-- Mutant Mine Lookout -->
 				<spawn npc_id="219480" respawn_time="7200">
 					<spot x="1401.2091" y="2871.5007" z="97.8932" h="73" static_id="1154" />
 					<spot x="1395.2657" y="2874.6531" z="98.6065" h="73" static_id="1153" />

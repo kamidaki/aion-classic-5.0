@@ -10,21 +10,21 @@
 			<spot x="352.2565" y="268.4026" z="729.7517" h="0"/>
 			<spot x="348.7565" y="268.4026" z="729.7517" h="0"/>
 		</spawn>
-		<!-- Dança da ilusão da espada -->
+		<!-- Atirador -->
 		<spawn npc_id="803163" respawn_time="295">
 			<spot x="243.0344" y="274.4894" z="85.375" h="0"/>
 		</spawn>
-		<!-- Dança da ilusão da espada -->
+		<!-- Atirador -->
 		<spawn npc_id="803164" respawn_time="295">
 			<spot x="287.1007" y="242.3341" z="85.375" h="0"/>
 		</spawn>
-		<!-- &amp;lt;Two Bass Fortaleza&amp;gt; -->
+		<!-- <Two Bass Fortaleza> -->
 		<spawn npc_id="803169" respawn_time="295">
 			<spot x="205.453" y="274.0493" z="734.2577" h="0"/>
 			<spot x="206.3582" y="243.7661" z="734.2577" h="0"/>
 			<spot x="365.3449" y="260.4612" z="728.2905" h="0"/>
 		</spawn>
-		<!-- Dança da ilusão da espada -->
+		<!-- Atirador -->
 		<spawn npc_id="803172" respawn_time="295">
 			<spot x="263.7296" y="241.6959" z="85.375" h="0"/>
 			<spot x="254.9642" y="257.9062" z="85.625" h="0"/>

@@ -55,7 +55,6 @@ static char* WINAPI zzinet_ntoa(_In_ struct in_addr in) {
     char* addr = real_inet_ntoa(in);
     if (addr && !contains(possibleConnectIps, addr)) {
         possibleConnectIps.push_back(addr);
-        VersionLog("[NET] inet_ntoa: registered candidate game server IP '%s'", addr);
     }
     return addr;
 }
@@ -65,7 +64,6 @@ static decltype(lstrcpynA)* real_lstrcpynA = lstrcpynA;
 static LPSTR WINAPI zzlstrcpynA(_Out_writes_(iMaxLength) LPSTR lpString1, _In_ LPCSTR lpString2, _In_ int iMaxLength) {
     if (iMaxLength == 256 && lpString2) {
         if (contains(possibleConnectIps, lpString2)) {
-            VersionLog("[NET] lstrcpynA: spoofing server IP '%s' -> '%s' (validation bypass from official pool)", lpString2, kPrimaryOfficialIp);
             possibleConnectIps.clear();
             return real_lstrcpynA(lpString1, kPrimaryOfficialIp, iMaxLength);
         }
@@ -84,5 +82,4 @@ void InstallIpFix() {
     DetourAttach(&(PVOID&)real_inet_ntoa, zzinet_ntoa);
     DetourAttach(&(PVOID&)real_lstrcpynA, zzlstrcpynA);
     DetourAttach(&(PVOID&)real_connect, zzconnect);
-    VersionLog("[INIT] IP-Fix hooks installed with official pool (%zu IPs configured).", sizeof(kOfficialIpPool) / sizeof(kOfficialIpPool[0]));
 }

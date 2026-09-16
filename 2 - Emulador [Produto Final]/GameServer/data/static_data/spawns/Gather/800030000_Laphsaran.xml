@@ -96,7 +96,7 @@
 			<spot x="2233.25" y="367.0532" z="189.0006" h="0"/>
 			<spot x="2234.543" y="327.9199" z="190.3342" h="0"/>
 		</spawn>
-		<!-- Ferronite -->
+		<!-- Liga diamante - Bandana do oficial Noble TAC -->
 		<spawn npc_id="409077" respawn_time="295">
 			<spot x="536.3085" y="2514.1616" z="291.61" h="0"/>
 			<spot x="439.8614" y="2295.3013" z="322.9755" h="0"/>
@@ -125,7 +125,7 @@
 			<spot x="750.087" y="404.5767" z="424.7392" h="0"/>
 			<spot x="604.1013" y="368.0008" z="428.1988" h="0"/>
 		</spawn>
-		<!-- Solarium -->
+		<!-- Liga diamante - Bandana do oficial Noble TAC -->
 		<spawn npc_id="409078" respawn_time="295">
 			<spot x="903.0509" y="1542.6764" z="277.7677" h="0"/>
 			<spot x="853.0703" y="1534.8256" z="281.3421" h="0"/>
@@ -145,7 +145,7 @@
 			<spot x="889.4188" y="1638.0255" z="282.7475" h="60"/>
 			<spot x="932.989" y="1686.2178" z="298.924" h="90"/>
 		</spawn>
-		<!-- Turmaline -->
+		<!-- Liga diamante - chapéu de oficial nobre TAC -->
 		<spawn npc_id="409079" respawn_time="295">
 			<spot x="976.2057" y="1411.7795" z="296.9024" h="0"/>
 			<spot x="831.5167" y="1450.8093" z="303.9823" h="0"/>
@@ -187,7 +187,7 @@
 			<spot x="850.944" y="1639.1606" z="284.9576" h="0"/>
 			<spot x="995.0612" y="1648.4415" z="290.2083" h="0"/>
 		</spawn>
-		<!-- Wintermellow -->
+		<!-- Liga Ouro - Divine Coliseum Champion&#39;s Escudo -->
 		<spawn npc_id="409083" respawn_time="295">
 			<spot x="379.4401" y="1086.5072" z="431.4511" h="0"/>
 			<spot x="2037.4199" y="2464.8816" z="263.8006" h="0"/>
@@ -263,7 +263,7 @@
 			<spot x="1729.7256" y="228.455" z="237.2898" h="0"/>
 			<spot x="1640.3646" y="163.9813" z="233.4238" h="0"/>
 		</spawn>
-		<!-- Solarium -->
+		<!-- Liga diamante - Bandana do oficial Noble TAC -->
 		<spawn npc_id="409087" respawn_time="295">
 			<spot x="954.1851" y="1870.483" z="282.6907" h="0"/>
 			<spot x="772.3874" y="1917.9512" z="298.926" h="0"/>
@@ -289,7 +289,7 @@
 			<spot x="853.3579" y="2159.884" z="305.217" h="0"/>
 			<spot x="963.6235" y="2020.7659" z="290.0559" h="0"/>
 		</spawn>
-		<!-- Turmaline -->
+		<!-- Liga diamante - chapéu de oficial nobre TAC -->
 		<spawn npc_id="409088" respawn_time="295">
 			<spot x="743.0324" y="2120.5293" z="312.559" h="0"/>
 			<spot x="793.7797" y="2031.3772" z="309.6422" h="0"/>

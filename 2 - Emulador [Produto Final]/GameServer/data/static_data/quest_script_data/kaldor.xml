@@ -84,10 +84,10 @@
 	<report_to id="26922" start_npc_ids="802433" end_npc_ids="804628"/>
 	
 	<!-- COLLECTING QUESTS -->
-	<item_collecting id="13806" start_npc_ids="802358"/>
+	<!-- Obsolete 4.8 quest disabled for Classic 5.0: <item_collecting id="13806" start_npc_ids="802358"/> -->
 	<item_collecting id="13807" start_npc_ids="802432"/>
 	<item_collecting id="13810" start_npc_ids="802428"/>
-	<item_collecting id="23806" start_npc_ids="802362"/>
+	<!-- Obsolete 4.8 quest disabled for Classic 5.0: <item_collecting id="23806" start_npc_ids="802362"/> -->
 	<item_collecting id="23807" start_npc_ids="802434"/>
 	<item_collecting id="23810" start_npc_ids="802430"/>
 	<item_collecting id="13812" start_npc_ids="802428"/>

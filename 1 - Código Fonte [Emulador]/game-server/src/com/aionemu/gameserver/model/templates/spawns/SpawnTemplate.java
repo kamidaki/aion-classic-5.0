@@ -109,6 +109,10 @@ public class SpawnTemplate {
 		return randomWalk;
 	}
 
+	public void setRandomWalk(int randomWalk) {
+		this.randomWalk = randomWalk;
+	}
+
 	public int getNpcId() {
 		return spawnGroup.getNpcId();
 	}

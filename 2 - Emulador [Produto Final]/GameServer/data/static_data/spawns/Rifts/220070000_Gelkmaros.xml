@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
 	<spawn_map map_id="220070000">
-		<!-- Rift -->
+		<!-- Fenda -->
 		<spawn npc_id="700137" handler="RIFT">
 			<spot x="2627.9016" y="988.3794" z="301.1069" h="53" anchor="GELKMAROS_AM" />
 			<!-- id 2270 -->
@@ -38,9 +38,8 @@
 		<rift_spawn id="2152" />
 		<!-- GELKMAROS_DS -->
 		<rift_spawn id="2153">
-			<!-- Barricade -->
-			<spawn npc_id="219599">
-				<!-- AS -->
+			<!-- Mutant Bakarma Crusader -->
+			<spawn npc_id="219599"> <!-- Mutant Bakarma Crusader -->
 				<spot x="465.5430" y="1823.3699" z="358.8571" static_id="4046" />
 				<spot x="471.2525" y="1828.5531" z="358.8571" static_id="4048" />
 				<spot x="662.6279" y="1857.0714" z="352.5313" static_id="4049" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300690000">
-		<!-- &amp;lt;Two Bass Fortaleza&amp;gt; -->
+		<!-- <Two Bass Fortaleza> -->
 		<spawn npc_id="802204" respawn_time="295">
 			<spot x="528.683" y="759.8904" z="203.0623" h="0"/>
 			<spot x="569.2823" y="838.0389" z="203.0623" h="0"/>

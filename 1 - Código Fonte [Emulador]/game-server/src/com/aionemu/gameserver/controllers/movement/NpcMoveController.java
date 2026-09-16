@@ -36,6 +36,8 @@ import com.aionemu.gameserver.world.geo.GeoService;
 import com.lostacademy.eleanor.Global;
 import com.lostacademy.eleanor.processors.movement.motor.FollowMotor;
 import com.lostacademy.nav.NavService;
+import com.lostacademy.nativepath.NativePathConfig;
+import com.lostacademy.nativepath.NativePathService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -185,7 +187,33 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 				}
 
 				// ========================================================
-				// CAMADA 1: NAVMESH (3D Navigation Mesh Pathfinding)
+				// CAMADA 1: NATIVE-PATH (CryEngine Native Grid 0.5m)
+				// ========================================================
+				if (NativePathConfig.NATIVE_PATH_ENABLE) {
+					if (!cachedPathValid || cachedPath == null) {
+						cachedPath = NativePathService.getInstance().navigateToTarget(owner, creature);
+						cachedPathValid = true;
+					}
+
+					if (cachedPath != null && !isNavFailurePath(cachedPath) && cachedPath.length > 0) {
+						cancelFollow();
+
+						// Pula waypoints intermediários já alcançados
+						while (cachedPath != null && cachedPath.length > 1
+								&& PositionUtil.isInRange(owner, cachedPath[0][0], cachedPath[0][1], cachedPath[0][2], 0.5f)) {
+							float[][] temp = new float[cachedPath.length - 1][];
+							System.arraycopy(cachedPath, 1, temp, 0, cachedPath.length - 1);
+							cachedPath = temp;
+						}
+
+						float[] nextPoint = cachedPath[0];
+						moveToLocation(nextPoint[0], nextPoint[1], nextPoint[2]);
+						break;
+					}
+				}
+
+				// ========================================================
+				// CAMADA 2: NAVMESH (3D Navigation Mesh Pathfinding)
 				// ========================================================
 				if (GeoDataConfig.GEO_NAV_ENABLE) {
 					if (!cachedPathValid || cachedPath == null) {
@@ -212,9 +240,9 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 				}
 
 				// ========================================================
-				// CAMADA 2: FALLBACK PARA ELEANOR (FollowMotor / Pathfind)
+				// CAMADA 3: FALLBACK PARA ELEANOR (FollowMotor / Pathfind)
 				// ========================================================
-				// Se NavMesh falhar ou não tiver dados, tenta Eleanor
+				// Se Native-Path e NavMesh falharem ou não tiverem dados, tenta Eleanor
 				clearCachedPath();
 				if (owner.getAi().getState() == AIState.FOLLOWING) {
 					cancelFollow();
@@ -227,6 +255,23 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 			case POINT:
 			case FORCED_POINT:
 				cancelFollow();
+				if (NativePathConfig.NATIVE_PATH_ENABLE && destination == Destination.POINT) {
+					if (!cachedPathValid || cachedPath == null) {
+						cachedPath = NativePathService.getInstance().navigateToLocation(owner, pointX, pointY, pointZ);
+						cachedPathValid = true;
+					}
+					if (cachedPath != null && !isNavFailurePath(cachedPath) && cachedPath.length > 0) {
+						while (cachedPath != null && cachedPath.length > 1
+								&& PositionUtil.isInRange(owner, cachedPath[0][0], cachedPath[0][1], cachedPath[0][2], 0.5f)) {
+							float[][] temp = new float[cachedPath.length - 1][];
+							System.arraycopy(cachedPath, 1, temp, 0, cachedPath.length - 1);
+							cachedPath = temp;
+						}
+						float[] nextPoint = cachedPath[0];
+						moveToLocation(nextPoint[0], nextPoint[1], nextPoint[2]);
+						break;
+					}
+				}
 				if (GeoDataConfig.GEO_NAV_ENABLE && destination == Destination.POINT) {
 					if (!cachedPathValid || cachedPath == null) {
 						cachedPath = NavService.getInstance().navigateToLocation(owner, pointX, pointY, pointZ);
@@ -451,7 +496,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 	public void setWalkerTemplate(WalkerTemplate walkerTemplate, int stepIndex) {
 		this.walkerTemplate = walkerTemplate;
-		this.currentStep = walkerTemplate.getRouteStep(stepIndex);
+		this.currentStep = walkerTemplate != null ? walkerTemplate.getRouteStep(stepIndex) : null;
 	}
 
 	public void setRouteStep(RouteStep step) {
@@ -486,14 +531,18 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 		}
 		if (walkerTemplate == null) {
 			WalkManager.stopWalking((NpcAI) owner.getAi());
+			if (owner.getSpawn().getWalkerId() == null)
+				return false;
 			if (WalkerFormator.processClusteredNpc(owner, owner.getWorldId(), owner.getInstanceId()))
 				return false;
 
-			setWalkerTemplate(DataManager.WALKER_DATA.getWalkerTemplate(owner.getSpawn().getWalkerId()), 0);
-			if (walkerTemplate == null) {
-				log.warn("Bad Walker Id: " + owner.getSpawn().getWalkerId() + " - point: " + currentStep.getStepIndex());
+			WalkerTemplate template = DataManager.WALKER_DATA.getWalkerTemplate(owner.getSpawn().getWalkerId());
+			if (template == null) {
+				WalkManager.fallbackToRandomWalk(owner, owner.getSpawn().getWalkerId());
+				WalkManager.startWalking((NpcAI) owner.getAi());
 				return false;
 			}
+			setWalkerTemplate(template, 0);
 		}
 		List<RouteStep> routeSteps = walkerTemplate.getRouteSteps();
 		RouteStep nextStep = currentStep.isLastStep() ? routeSteps.get(0) : routeSteps.get(currentStep.getStepIndex() + 1);
@@ -539,14 +588,57 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 	}
 
 	public synchronized void returnToLastStepOrSpawn() {
+		cancelFollow();
 		SpawnTemplate spawn = owner.getSpawn();
+		float spawnX = spawn.getX();
+		float spawnY = spawn.getY();
+		float spawnZ = spawn.getZ();
+
+		// CAMADA 1: NATIVE-PATH (Obedece o pathfinding nativo CryEngine até o ponto de spawn)
+		if (NativePathConfig.NATIVE_PATH_ENABLE) {
+			clearCachedPath();
+			cachedPath = NativePathService.getInstance().navigateToLocation(owner, spawnX, spawnY, spawnZ);
+			cachedPathValid = true;
+
+			if (cachedPath != null && !isNavFailurePath(cachedPath) && cachedPath.length > 0) {
+				destination = Destination.POINT;
+				pointX = spawnX;
+				pointY = spawnY;
+				pointZ = spawnZ;
+				started.set(true);
+				owner.getController().onStartMove();
+				updateLastMove();
+				return;
+			}
+		}
+
+		// CAMADA 2: NAVMESH (Obedece o pathfinding 3D até o ponto de spawn para não colidir)
+		if (GeoDataConfig.GEO_NAV_ENABLE) {
+			clearCachedPath();
+			cachedPath = NavService.getInstance().navigateToLocation(owner, spawnX, spawnY, spawnZ);
+			cachedPathValid = true;
+
+			if (cachedPath != null && !isNavFailurePath(cachedPath) && cachedPath.length > 0) {
+				destination = Destination.POINT;
+				pointX = spawnX;
+				pointY = spawnY;
+				pointZ = spawnZ;
+				started.set(true);
+				owner.getController().onStartMove();
+				updateLastMove();
+				return;
+			}
+		}
+
+		// CAMADA 3 & 4: FALLBACK PARA ELEANOR E GEO RETORNO DIRETO
+		clearCachedPath();
 		Point3D step = lastSteps == null || lastSteps.isEmpty() ? null : lastSteps.removeLast();
 		if (step != null && !lastSteps.isEmpty() && PositionUtil.isInRange(owner, step.getX(), step.getY(), step.getZ(), 2))
 			step = lastSteps.removeLast();
-		if (step == null || GeoService.getInstance().canSee(owner, spawn.getX(), spawn.getY(), spawn.getZ(), IgnoreProperties.ANY_RACE)) {
-			targetDestX = spawn.getX();
-			targetDestY = spawn.getY();
-			targetDestZ = spawn.getZ();
+		if (step == null || GeoService.getInstance().canSee(owner, spawnX, spawnY, spawnZ, IgnoreProperties.ANY_RACE)) {
+			targetDestX = spawnX;
+			targetDestY = spawnY;
+			targetDestZ = spawnZ;
 			if (owner.getAi().isLogging())
 				AILogger.moveinfo(owner, "recall back step: spawn point");
 		} else {

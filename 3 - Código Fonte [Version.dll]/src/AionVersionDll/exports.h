@@ -115,5 +115,4 @@ BOOL APIENTRY zzVerQueryValueW(
     _Out_ PUINT puLen
 );
 
-void VersionLog(const char* fmt, ...);
 #endif
