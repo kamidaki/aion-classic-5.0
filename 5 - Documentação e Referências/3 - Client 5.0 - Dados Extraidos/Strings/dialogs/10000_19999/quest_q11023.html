@@ -1,151 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<HtmlPages>
-
-  <HtmlPage name="select1">
-    <Contents cdata="true">
-        <html>
-        <body>
-          <p>Ah! Esses Sheluks estÃ£o atrapalhando minha pesquisa!</p>
-          <p> </p>
-          <p>Como posso estudar os padrÃµes geracionais de nascimento de Lapides se os Sheluks comem todos os Lapide Ã  vista?</p>
-          <p> </p>
-          <p> </p>
-        </body>
-        </html>
-    </Contents>
-    <Selects>
-      <Act href="HACTION_ASK_QUEST_ACCEPT">"Aqueles pobres Lapides!"</Act>
-    </Selects>
-  </HtmlPage>
-
-  <HtmlPage name="ask_quest_accept">
-    <Contents cdata="true">
-        <html>
-        <body>
-          <p>NÃ£o se preocupe com os Lapides, coraÃ§Ã£o sangrando! Preocupe-se comigo, com minha sanidade e meu tÃªnue controle sobre ela.</p>
-          <p> </p>
-          <p>Tudo bem. Se vocÃª estÃ¡ determinado a antropomorfizar os Lapides, o mÃ­nimo que pode fazer Ã© erradicar os [%dic:STR_DIC_M_LF4_A_Sheluk_Worm_51_An]s que os comem.</p>
-          <p> </p>
-          <p></p>
-          <p> </p>
-          <p></p>
-        </body>
-        </html>
-    </Contents>
-    <Selects>
-      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar.</Act>
-      <Act href="HACTION_QUEST_REFUSE_1">DeclÃ­nio.</Act>
-    </Selects>
-  </HtmlPage>
-
-  <HtmlPage name="quest_accept_1">
-    <Contents cdata="true">
-        <html>
-        <body>
-          <p>Se nÃ£o for demais para sua sensibilidade delicada, [%username], vocÃª tambÃ©m pode lidar com os [%dic:STR_DIC_M_LF4_A_Kuillus_Feeler_51_An]s.</p>
-          <p> </p>
-          <p>Eles atrapalham toda vez que saio para coletar as amostras, e isso significa que nÃ£o posso cuidar do seu precioso Lapides. Sinta-se motivado agora?</p>
-          <p> </p>
-          <p></p>
-          <p> </p>
-          <p></p>
-        </body>
-        </html>
-    </Contents>
-    <Selects>
-      <Act href="HACTION_FINISH_DIALOG">"Esses Lapides precisam da minha ajuda!"</Act>
-    </Selects>
-  </HtmlPage>
-
-  <HtmlPage name="quest_refuse_1">
-    <Contents cdata="true">
-        <html>
-        <body>
-          <p>VocÃª acha que me importo com suas necessidades e desejos? NÃ£o!</p>
-          <p> </p>
-          <p>VocÃª nÃ£o vai ajudar, vÃ¡ embora. VocÃª vai ajudar, vÃ¡ matar coisas. De qualquer forma, estou sozinho com meu trabalho.</p>
-          <p> </p>
-          <p> </p>
-        </body>
-        </html>
-    </Contents>
-    <Selects>
-      <Act href="HACTION_FINISH_DIALOG">"Vou deixar vocÃª com isso, entÃ£o."</Act>
-    </Selects>
-  </HtmlPage>
-
-  <HtmlPage name="select2">
-    <Contents cdata="true">
-        <html>
-        <body>
-          <p>Se eu confiasse em alguÃ©m com meu sistema de arquivamento, contrataria um assistente.</p>
-          <p> </p>
-          <p></p>
-          <p> </p>
-          <p></p>
-        </body>
-        </html>
-    </Contents>
-    <Selects>
-      <Act href="HACTION_SELECT_QUEST_REWARD">"NÃ£o olhe para mim. EntÃ£o, Sheluks..."</Act>
-    </Selects>
-  </HtmlPage>
-
-  <HtmlPage name="select_quest_reward1">
-    <Contents cdata="true">
-        <html>
-        <body>
-          <p>Maravilhoso. Bom trabalho. Maravilhoso. Et cetera.</p>
-          <p> </p>
-          <p>Tenho certeza de que os Lapides ficariam emocionados e fariam de vocÃª um deus de seu povo... se eles fossem sencientes.</p>
-          <p> </p>
-          <p>Aceite este sinal de meu agradecimento e deixe-me com meu trabalho.</p>
-          <p> </p>
-          <p> </p>
-        </body>
-        </html>
-    </Contents>
-  </HtmlPage>
-
-  <HtmlPage name="quest_summary">
-    <Contents cdata="true">
-        <html>
-        <body>
-    <steps>
-               <step><p visible="[%0]"><font color="[%1]">Elimine os Sheluks e os Neokins interferindo na pesquisa de Lapide.</font></p>
-                     <p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_LF4_A_Sheluk_Worm_51_An] ([%2]/3).</font></p>
-                     <p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_LF4_A_Kuillus_Feeler_51_An] ([%5]/7).</font></p></step>
-               <step><p visible="[%15]"><font color="[%16]">RelatÃ³rio para [%dic:STR_DIC_N_Ambrosini].</font></p></step>
-    </steps>
-          <p><font font_xml="quest_summary">Elimine os Steelback Neokins e os Thornsack Sheluks que estÃ£o interferindo na pesquisa de Amred.</font></p>
-        </body>
-        </html>
-    </Contents>
-  </HtmlPage>
-
-  <HtmlPage name="quest_complete">
-    <Contents cdata="true">
-        <html>
-        <body>
-          <p>Ambred disse que Sheluks e Neokins estÃ£o interferindo em sua pesquisa sobre Lapide.</p>
-          <p> </p>
-          <p>VocÃª despachou Thornsack Sheluks e Steelback Neokins para que Amred pudesse estudar os Lapides sem impedimentos, e ele lhe deu um presente.</p>
-        </body>
-        </html>
-    </Contents>
-  </HtmlPage>
-
-  <HtmlPage name="select_acqusitive_quest_desc">
-    <Selects>
-      <Act>Nova missÃ£o: [%questname]</Act>
-    </Selects>
-  </HtmlPage>
-
-  <HtmlPage name="select_progressive_quest_desc">
-    <Selects>
-      <Act>Em andamento: [%questname]</Act>
-    </Selects>
-  </HtmlPage>
-
-</HtmlPages>
-
+Y çÛáÒ»Ï³Î¿Ëö²ıï#.ik­¢Š_q^}[+B	?>õ{.²aï¾.¶kx’hi‹w‚Mÿ¹>®{t¢>_òóòèñéò5/Ln§«–â—sFJÁş>;mrı¯”îY+6R+O:NSKjBN?²~C»7âÃ^û[°R¢O³N¶Kë2©o5®~ë²"†ß}ŞgÛ'Â	¿¾Ñû>2co¾®óë*HiujF°¾çû%"KßÅ¿›¿’·¿î‹ôr¯4îî+»bÁŸ ›6‚ÿ†~{»>òã/¾ns«*ÒcÏrÎvËrÂ¿Ôş3;vbKŸ†ŞûÛşÒãÏşÎïË´²äï".bkà¢é_>^3[6B?>û{>²cï¾.ók*’{8Z‹k‚Dÿ¶>²{v¢?_Î´­¦ş€¾òn/*nî«µâ>rdN†ş(;jr¢¯ğî7+ReOaN;KwBM?ş~g»>â†^¬[¿RºOşN¼K°2«o+®bëş"‘ß{Ş`ÛsÂJ¿T¾¸ûv2bo¢®üëf5;>ş¾³ûv"Kß†û›ş’ÿ®í‹ör7¯iîë+àbéŸ>3›6‚ÿ†~{»>òã/¾ns«*Ò{Ï8ÎSËqÂT¿şşp;7bŸ†Ş’ÛşÒ°ÏªÎ¦Ë²²òïf.ok¶¢†_>^t[sBE?C>©{²7ï÷.¼kx’jj;‹|‚Jÿ¬>ç{>¢K_Öºª·»¡¸òx/fnô«¸âÃRrfBÂş>;mrã¯÷î5+6ROnN~K>Bp?¶~v»:âÍ^¨[şR¦O¿N§Kö2îo0®~ë¬"šß>Ş_ÛwÂ[¿O¾¿û{2co÷®½ë6xo|vWá¾¯ûy"ß˜Ñ›ş’ãşó‹ör+¯fî»+şbÃŸ"c›(‚ÿš~t»nòı/”ns«6Ò+Ï&Î;Ë>Â¿şş3;vbWŸÖŞåÛâÒìÏ®ÎíËÜ²«ïf.;kş¢Ã_>^3[6B?	>¹{q²'ïç.ík’+&;‹>‚ÿş>³{v¢W_‰³ª®²íÜò+/fn»«şâß1PyEÒş>;pr·¯íîm+R+O&N;K>B?~v»:âÅ^¯[­RıOÔNóKö2«of®;ëş"ßß_ŞpÛbÂ¿N¾©û{2%o£®ñë^JEOWl¾Ìû"8ßí„›’–›€‹‚rT¯îØ+b¦ŸNG›4‚ÿ„~»vò¬/ín6«6Ò{ÏiÎtËlÂ¿’şr;&bŸÂŞ¾Û­ÒâÏüÎïËù²Êï%.okà¢é_>^3[6B?>ô{M²&ïò.¶ku’u%‹‚ÿş>¯{y¢#_Ò¶²“¿´³ò5/Ln‘«şâÃ"[bFÊş;r¤¯ûîs+xRjOkN~K#B?¿~`»=â4×^®[»R°OªNŒK·2èo%®~ë®"—ß<Ş-ÛÂ¿¾ûû>2oİ®¼ëxcujPş¾ğû2"
+ßÒº›ã’áª¡‹£rn¯dî¥+ÔbÃŸ>3›6‚ÿ†~{»>òÿ/ön'«{ÒgÏ8ÎË>Â¿şş3;vbKŸ†ŞûÛâÒ¡Ï±Î·Ë¯²µïL.;kş¢Ã_>^3[6B?>û{>²ïî.íkR’dh<‹j‚ÿ©>ü{$¢_ßû¿¡±¦¢ò+/2nó«»âÃRrfBÂş>;mrï¯¾î1+zRnOcNKwBM?¹~3»>âÇ^©[ªRâOşN„K¹2ùo4®bëş"‚ß|Ş|ÛcÂ_¿¾¶û{2oo¾®²ëtdso>N§¾³û%"
+ßÈ²›ª’ºş²‹¸ro¯fîö+§bÃŸjv›x‚^ÿÉ~.»mòã/ön<«zÒoÏ&ÎtËpÂ¿·şg;xbWŸ‰Ş«ÛàÒÉÏşÎóËö²«ïf.;kş¢Ã_>^3[*B[?>û{"²lïî.ík’+&;‹>‚ÿş>³{v¢K_†ç®ıŸ¿ºò+/4nò«¹â‹j=6bÀş{;gr¬¯ëît+dRnO&NK{BW?»~a»;âÈ^¾[ºRãOªN¼Kö2êo(®oë¶"‘ßqŞcÛyÂF¿I¾©ûn2+o÷®©ës+rs{’¾òû&"ßÂ¾›­’ïş§‹¾rn¯fî÷+»b‚Ÿmg›6‚RÿÉ~.»>ò /ÿn=«6ÒoÏiÎ;ËwÂP¿şşv;$b
+ŸÂŞ²Û½Ò¢ÏªÎ¶Ëö²ÿï..~kş¢¸_;^w[BH?>ˆ{J²ïÁ.—k_’HYV‹A‚oÿ˜>§{	¢*_ùˆ¶¦²¦½òT/nô«¬âA&'tçş5;Cr°¯¾î$+~RdO&NzKlBF?ş~v»7âÏ^µ[¹RãOªN»K³2æoh®'ëñ"“ß ŞÛ6Â¿¾ûû>2co¾®óë6+:k â¾¼û&"Uß¬û›ş’ãşó‹ör+¯fî»+şbßŸn-›*‚ÿÖ~e»òã/¾ns«6Ò+Ï&Î;Ë>Â¿şş/;&bUŸ†ŞçÛñÒ³ÏàÎÙËö²«ïf.;kş¢Ã_>^3[6B?>«{ ²ï±.£k(’&;‹>‚ÿş>³{v¢K_šô¼¬ºªèò/fn»«şâÃ>36šşt;vr·¯óî?+(RO&N;K>B?â~<»âÈ^¯[»R­OªN Kè2of®;ëş"Ãß"Ş@ÛsÂG¿C¾¸ûj20o ®Ùë6+&;>â¾Òû5"ß†³›¬’¦¸î‹ôrC¯îØ+ŠbªŸQ]›I‚zÿó~»Mò—/Án«UÒHÏCÎKËJÂ|¿ïş1;hb*ŸÅŞ¸Û»Ò³ÏªÎıËê²¤ï.xkª¢İ_^3[6B?>û{>²ïß.°kb’+ni‹{‚Eÿã>±{¢*_å—ŒŒ‡ò^/nÈ«Šâ¼LVP~õş;Arò¯¼îm+RRnOeNwKwBM?»~=»jâDç^¸[ªRıOÔNóKö2«of®'ëñ"°ß{ŞÛsÂH¿R¾¨û 2Io¾®óë*$NosO¾òû1"ß˜Ñ›Ô’ãşï‹r¯+î÷+b‚Ÿyv›6‚EÿÇ~6»{òş/¼n"«cÒnÏuÎoËAÂB¿½şp;3bŸÒŞ„ÛïÒáÏàÎÙËö²«ïf.;kâ¢ _q^}[bBN?H>¯{m²cïı.·kw’g&‹<‚Wÿ¬>æ{3¢I_˜Ñşãşóöò+/fn»«ââ‹j~z¬ş{;>rã¯¾îs+6R+O&N'K|BL?º~j»hâa†^û[şRãOşNóKö2«of®;ëâ"“ß ŞZÛpÂ¿O¾¯û920o¾®½ëy&oqLş¾şû#"ßÎû›¸’¬¬ó‹¯rd¯3îé+şb‡Ÿ{›‚HÿÇ~/»{òã/ín6«xÒxÏoÎyËwÂO¿·şg;?bŸÕŞ÷ÛşÒ˜ÏûÎ¦Ë¥²îï4.uk¿¢_{^N[:B?_>´{k²cïı.²kx’+b~‹‚Oÿş>ä{?¢_Îûª«»óò./"nò«½âÙMGDtâş;]rœ¯Óî+ZRMO2NDK_B|?•~f»?âÊ^®[­RœO˜N¶K³2ço#®ië"Öß/ŞLÛWÂE¿{¾¨û>2"oí®óëanjw0ñ¾ãûh"aß†û›ş’ãşó‹ör+¯fî»+âb“Ÿ 3›*‚ÿÖ~e»òã/¾ns«6Ò+Ï&Î;Ë>Â¿şş/;&bUŸòŞ³Û»ÒºÏşÎ´Ë³²ÿïf.rk°¢Ã_s^j[6B\?G>¢{>²&ïè.¶kd’r&o‹w‚Nÿ»>³{¢K_Á´ş¬«§öò/)n»«½âŒrsHÒş{;jr«¯ûîs+eRjOkNkKrBF?­~?»vâ
+È^¿[şR·O¶N²K¢2«o+®~ë¿"ßmŞ3Û_Â¿E¾ºûp2doê®óëbjm~>@¿¾áû3"KßÉ½›ş’º±¦‹¤r+¯6îé+»b€Ÿw|›c‚Xÿ†~»ò³/÷n7«sÒxÏ(Î;ËXÂF¿»ş;vbŸÉŞ¯Û·ÒµÏ¿Î§Ë³²ïïf.uk±¢”_!^/[9B[?>Ñ{>²cï¾.ók6’+&;‹>‚ÿâ>ã{h¢K_šô®ıÔóöò+/fn»«şâÃ>36Öşe;"rì¯îîm+R+O&N;K>B?ş~3»vâK†^ç[®RıOşNïKù2ûox®ëş"Ãß>Ş3Û6Â¿¾ûû>2co¢®£ë(7)k )ş¾³ûv"Kß†û›ş’ãâü‹´rd¯"îâ+àbéŸ>3›6‚ÿ†~{»>òã/¢n|«~ÒÏkÎwË Â)¿şş3;vbKŸšŞôÛÒ¬Ï°Î§Ë³²åï2.hkà¢é_>^3[6B?>ˆ{{²/ïû.°kb’x8‹>‚ÿş>³{v¢K_šš½·ş»¤òn/ n¦«üâ«_PBbéş;Ar…¯×î+_RXONNDKZBj?Ÿ~_»â,„^å[üR—O¶N¼K¥2îof®Wë¿"“ßwŞwÛsÂX¿¾µû{2&oú®óë{r&s{O®¾²ût"Wß‰š›½’·àÙ‹ör+¯fî»+âbÌŸMv›z‚NÿÅ~/»mòı/”ns«6Ò7Ï)ÎSËjÂN¿²şC;7bŸÃŞåÛÔÒÉÏşÎóËê²Ãï2.vk²¢³_^t[sB?H>º{s²&ï£.ñkg’~ch‹j‚|ÿ¬>ö{0¢_Õ¾òüíÜò+/fn»«şâß]|x_Ãş5;jr°¯¾î0+rRjOrNzK#B?ª~a»#â„^å[ÔRãOşNóKö2«of®;ëş"ßßvŞgÛ{ÂG¿¾Ñû>2co¾®óë6+&;"A±¾÷û/"Uß¬û›ş’ãşó‹ör+¯fî»+şbßŸn-›O‚DÿÓ~{»jò«/÷n=«}Ò+ÏOÎ;Ë}ÂB¿¬şv;vb
+ŸÄŞ´Û«Ò·ÏşÎªË¹²şï4.;k°¢†_{^w[eB?G>µ{z²cïú.¶ke’bt~‹m‚ÿş>İ{9¢J_šô®ıÔóöò+/fn»«şâÃ>36Öşe;>rÿ¯±î#+(RO&N;K>B?ş~3»vâK†^û[âR³OàNŠK¹2şof®lë±"ß9ŞgÛ6ÂC¿C¾·ûn2oo¾®¿ësjp~0‡¾üû#"KßÑ²›²’¯ş»‹³rg¯6î·+şb„Ÿq3›}‚BÿÊ~7»>ò·/ön:«xÒlÏuÎ5Ë>Âf¿·şg;>bŸÔŞûÛ©Ò¢Ï§ÎÿËö²Âïa.vkş¢‚_r^|[xBN?>¬{w²7ïö.ók{’r&l‹q‚Qÿµ>½{j¢D_ÖåÔãşóöò+/fn»«şâÃ>/f†şg;1r³¯ îY+6R+O&N;K>B?ş~3»vâKš^«[àRÿOñN£Kè2of®;ëş"Ãß>Ş3Û6Â¿¾ôû|2,oú®ªë(&;>ş¾³ûv"Kßšô›¶’·³¿‹èr¯fî»+şbÃŸ"<›U‚DÿÈ~/»{ò­/ên «(ÒÏ&Î;Ë>Â¿âş@;3bŸÃŞ¸ÛªÒ°ÏàÎÙËö²«ïf.;kş¢Ã_"^R[uB_?>³{l²&ïø.îk4’CGX‹J‚jÿ‘>İ{	¢-_ï•—–Œ’òB/n×«‘â¤<-4bş7;rrã¯òî6+wR}OcN;KgBL?«~3»"â†^²[ªRïOşN§K¾2îo(®5ëü"ßß1ŞRÛuÂ_¿¾Ñû>2co¾®óë*$U~rF½¾çû%"Uß¬û›ş’ÿñ›‹¢rf¯*îË+¿b„Ÿ{-›‚!ÿ†~{»"ò‹/ên>«zÒ[ÏgÎ|Ë{Â¿°şr;;bŸ›ŞùÛ­Ò¦Ï²Î¶Ëµ²ÿït.9kà¢é_>^3[6B?>˜{q²-ïê.¶kx’u;‹}‚Gÿ¿>ç{7¢V_„¯¬¶»ñèò/fn»«şâÃ>36šş3;jr®¯òîm+R+O&N;K>B?ş~3»vâWÄ^´[ºRºOàNÙKö2«of®;ëş"Ãß>Ş3Û6Â¿¾«û 2
+oø®óë_+rikPª¾öû2"KßÇµ›§’¬°¶‹ör|¯/îï+¶bÃŸsj›6‚MÿÏ~7»wò­/ùns«eÒrÏuÎoË{ÂN¿òş3;bLŸÂŞûÛ¹Ò¦ÏªÎóË·²åïf.zk­¢_w^`[bBJ?H>¯{0²ï±.£k(’&;‹>‚ÿş>³{v¢K_†ûâ³àóêò$/6n¥«ÔâÃ>36†ş{;>rã¯¾îo+fR5O:N4KnB?Ô~3»vâK†^û[şRãOşNóKö2·o6®%ëş"ßß1ŞcÛ(Â!¿¾ûû>2co¾®óë6+&;"Sà¾¯ûy"ß˜Ñ›ş’ãşó‹ör+¯fî»+âbÌŸ||›r‚Rÿ˜~Q»>òã/¾ns«6Ò+Ï&Î;Ë"Â¿¶şg;;bŸ˜ŞÑÛşÒãÏşÎóËê²¤ï.tk°¢—_{^}[bBX?>Ñ{>²cï¾.ók*’Xcw‹{‚@ÿª>à{h¢a_†ûşãşóêòJ/%nï«şâ‹lvp„ş;_r€¯Êî+YREOYNHK[Bo?›~P»â4÷^[›ROŠNŒK„2Îo®ZëŒ"§ß<Ş-Û4Âo¿I¾µû927o¾®¿ëydm;Wş¾şû3"Eß†ˆ›±’ïş€‹¾rn¯*îî+µbŸ0=›8‚	ÿš~t»_ò /ênm«Ò+Ï&Î;Ë>Â¿ñş@;3bŸÃŞ¸ÛªÒ°ÏàÎÙËö²«ïz.4k–¢—_s^[FBJ?A>¾{ ²Iï”.ók6’7No‹s‚Oÿ>ò{1¢_†µ¿®»îôòx/#n÷«»â€jLg^Ãş(;jrœ¯ìî6+aRjOtNK/B?à~»vâK†^û[âR€O±N½K¢2îo(®oë­"Ãß}ŞwÛwÂ_¿G¾æû<27oì®¦ës)8>ş¾³ûv"Kß†û›â’«ª¾‹ºr5¯Lî»+şbÃŸ>3›6‚ÿ†~g»|ò¬/ún*«(ÒÏ&Î;Ë>Â¿şş3;vbKŸ†ŞûÛâÒ³ÏàÎ„Ë¹²åï".~k¬¢…_k^[8B?a>´{q²'ï¾.¹ky’i(;‹S‚Bÿ¬>å{3¢_Ê´«°ğó“ò/fnø«»â—{awšşt;nrı¯”îs+6R+O&N;K>B?ş~3»vâWÖ^å[şRÿOñN£Kè2of®;ëş"Ãß>Ş3Û6Â¿¾ûû"23o ®šë1f&hkQ»¾³û""ßÃû›’’¢®º‹²rn¯5î»+©bŒŸk›r‚ÿÄ~>»>ò·/ön!«ÒgÏjÎ~ËzÂ¿¿ş};2bKŸËŞºÛµÒ¦ÏşÎªË¹²şïf.zkş¢„_q^w[6BD?@>û{j²+ïû.ºkd’+v~‹q‚Sÿ²>ö{x¢E_ˆ²¸ãª»³òr/fnì«»â‘{3eNÈş/;wr¦¯ğî'+8R7O)NkK B)?ş~3»vâK†^û[şRãOşNóKê2ûox®;ëâ"ÌßnŞ-ÛÂ¿¾ûû>2co¾®óë6+&'nŠ¾òû="ß†¯›¶’ª­ó‹¢rd¯-îş+°bÃŸqu›6‚Fÿß~{»ò³/în!«sÒhÏoÎzËjÂJ¿±ş};zbKŸÇŞµÛºÒãÏ²Î¶Ë·²ıï#.;k³¢†_>^g[yB?K>¢{>²4ïñ.¡k}’%:4‹n‚ÿÔ>³{v¢K_†ûşãşóöò7/6n¥«şâß1c(!†ş{;>rã¯¾îs+6R+O&N;K"BS?à~/»yâ˜^Ñ[şRãOşNóKö2«of®;ëâ"Ìß|Ş|ÛrÂR¿¾Ñû>2co¾®óë6+&;"¶¾çû;"ß˜Ñ›ş’ãşó‹êr$¯îô+°b—Ÿ{}›b‚Xÿ˜~Q»>òã/¢n|«^ÒÏkÎwËNÂB¿¹şv;hbaŸ¬ŞûÛşÒÿÏ–Î§Ë»²çï.zk¹¢†_>^}[wBF?C>æ{<²2ïë.¶ke’Yh‹k‚Nÿ³>ò{$¢_„åÔãşóöò7/nô«°â—{}bX†ş8;zr¢¯êî2++R)OrNiKkBF?ü~-»\âK†^û[şRãOşNóKö2·o.®oë³"ß ŞÛ6Â¿¾ûû>2co¾®óë*iigÔ¾³ûv"Kß†ç›­’·»£‹¥r5¯Lî»+şbÃŸ>3›6‚ÿ†~{»>òã/¾ns«6Ò+Ï:ÎhËjÂF¿®ş-;jbŸ†Ş­Û·Ò°Ï·Î±Ëº²îï{.9k…¢Æ_.^N[4B?>½{q²-ïê.óku’djt‹l‚ÿü>È{s¢Z_ûùàˆ·¿ºò+/2nó«»âÃM{sGÓş0;mrã¯ÿî=+rR+OHN~KqBH?·~}»%âKÒ^³[¿R·OşN²K¤2îof®ë·"ßlŞfÛfÂ_¿O¾µûy2coê®»ës+t~mF¿¾áû5"ßˆç›ñ’¥±½‹¢r5¯zî´+®bİŸ3›6‚ÿ†~{»>òã/¾ns«6Ò+Ï&Î;Ë>Â¿şş3;vbKŸ†ŞûÛâÒ³ÏşÎ¥Ë¿²øï/.yk²¢†_#^1[MB?>†{<²}ï¢.µky’er;‹}‚Lÿ²>ü{$¢V_„€ûòƒñèòP/cnÿ«·â€$@Byùş;Wr€¯Áî+IRGO@N/KABb?~@»>âÊ^®[µRœO‰N¼K¤2æo®.ëï"¼ß_Ş}ÛKÂ¿¾€û;2qoÃ®üë';/'1E±¾ıû""Ußšô›®’ıÔó‹ör+¯fî»+şbÃŸ>3›6‚ÿ†~{»>òã/¾ns«6Ò+Ï&Î;Ë"ÂS¿şşe;?bŸÏŞ¹Û²Ò¦ÏãÎñË²®ïv.Fkü¢İ_"^u[yBE?R>û{}²,ïò.¼kd’6$@‹;‚ÿƒ>±{h¢0_ƒ¿· ä€‚òY/nß«—â A^Igàşo;Ar‚¯Áî+cRbOjNwKkBP?~U»3âÊ^¾[¬RœOëNâK‰2Êo(®Fëş"ËßEŞ6Û#Âv¿	¾éû.2jo¢®üëpdho ñ¾ãûh"Wß‰¨›ª’¦®í‹Ür+¯fî»+şbÃŸ>3›6‚ÿ†~{»>òã/¾ns«*ÒxÏrÎ~ËnÂ¿âşc;vbŸÏŞ¨Û·Ò¡Ï²Î¶Ëë²©ï.>kï¢Ö_C^1[(B?@>´{p²7ï¾.°ky’gii‹#‚ÿ…>¶{g¢]_ûùà‘»£¹òy/2n»«ªâŒ>H3OÏş8;$r¯Êî+IROOONXKABm?~R»;â	Ô^´[­RªO°NºK‹2¥oz®4ë¸"ŒßpŞgÛ(Â¿	¾«û 2o±® ëbnv%ş¾³ûv"Wß‰¨›ª’¦® ‹èr¯fî»+şbÃŸ>3›6‚ÿ†~{»"ò³/ no«pÒdÏhÎoË>ÂE¿±ş};"b4ŸŞŞ¶Û²ÒşÏüÎ¢Ë£²îï5.ok¢_k^~[{BJ?T>¢{<²}ïÕ.ºkz’g&o‹v‚Fÿş>À{>¢_Ê®µ°ş²¸òo/fnÕ«»âŒuzxX†ş/;vr¢¯êîs+wRyOcN;KzBJ?­~a»#âÒ^²[°R¤OşN’K»2éo4®~ëº"úÿmŞ3ÛdÂN¿U¾¾û21oı®»ë87)}qMª¾­ûj"DßÖå›Ô’ãşó‹ör+¯fî»+şbßŸ1q›y‚Oÿß~e»òã/¾ns«6Ò+Ï&Î;Ë>Â¿ñş{;"bŸÊŞåÛÔÒãÏşÎóËö²·ïi.Xk±¢_j^v[xB_?U>å{²cï¾.ïk9’Crv‹r‚sÿ¿>ô{3¢U_¬Ñşãâ›¢òf/*nË«¿â„{3xJËş>;#rá¯ïî&+sRxOrNDK}BL?³~c»:âÒ^¾[üRıOÔNóKö2«of®'ë"ŒßpŞgÛsÂE¿R¾¨û>2 oú®²ëbj;9jQ«¾öût"Uß¬û›ş’ãşó‹ör+¯fî§+¶b—Ÿs›(‚!ÿ†~{»>òã/¾ns«6Ò+Ï:ÎyËqÂG¿§ş-;\bKŸ†ŞûÛşÒãÏşÎóËö²«ïf.'k®¢İ__^~[tBY?C>¿{>²0ïÿ.ºkr’+Us‹{‚Oÿ«>ø{%¢K_Çµºã¶¹ò`//nõ«­âÃasÏş5;jr¦¯ìî5+sRyOoNuKyB?©~z»"â†^³[·R°OşNŸK·2ûo/®ë»"ÃßlŞvÛeÂN¿G¾©û}2+o°®ïë9{8>ş¾³ûv"Kß†û›ş’ãâ£‹èr+¯zî´+®bİŸ3›6‚ÿ†~{»>òã/¾ns«6Ò7ÏvÎ%ËGÂL¿«ş3;2bŸÕŞ«Û¿Ò·Ï½Î»Ë³²ïïf.Ok¶¢Œ_l^}[eBJ?E>°{>²ïö.¶kz’~mh‹>‚Bÿ°>÷{v¢8_Ò¾»¯¼²µò`/fnÕ«»âŒuzxX†ş(;qrã¯ßî>+tRyOcNK>B@?±~f»:â†^¨[ªR¶OºNªKö2ÿo.®~ëş"¯ßŞcÛÂO¿C¾¨û>26oğ®»ëeb~lFº¾¿ûv"
+ßÈ¿›ş’«»ó‹±rj¯0îş+şbšŸqf›6‚Jÿ†~<»wò¥/ên}«*Ò$ÏvÎ%ËÂ¿şş3;vbKŸ†ŞûÛşÒÿÏñÎ±Ë¹²ïï?.%kÔ¢Ã_>^3[6B?>û{>²ï±.»kb’fj%‹‚ÿş>³{v¢W_‰˜±­ª¶¸ò/5n¥«ÔâÃ>/9cÒş6;rr“¯ÿî4+sR5ONK>B?â~[»"âÊ^‹[¿R¤O»NóK¸2êo+®~ëã"ÁßmŞvÛzÂN¿E¾¯ûA2"oı®¢ëcxoowU»¾Ìû'"ßÃ¨›ª’œº¶‹¥rh¯dî¥+ÔbÃŸ>3›6‚ÿõ~>»rò¦/ın'«eÒ5ÏÎ;Ë>Â¿şş3;vbWŸçŞ¸ÛªÒıÏÎ¶Ë¡²«ï7.nk»¢_j^)[6Bp?>ª{k²&ïí.§kx’jk~‹C‚ÿñ>Ò{5¢_˜Ñşãşóêò$/nş«²â†}ge¬ş{;>rÿ¯±î+bRfOjNKKBD?»~-»\âa†^û[âR‹OªN¾Kº2Ûo'®|ë»"ÃßpŞrÛ{ÂN¿¾ùûm2&oò®¶ëuYklL¹¾áû3"ßÕ²›¨’¦¢‹£rn¯5îï+b‡Ÿ{`›u‚	ÿ˜~Q»>òã/¾ns«*ÒXÏcÎwË{Â@¿ªş`;hbaŸ†ŞûÛşÒãÏşÎóËê²Êï%.okà¢ª_p^3[fBY?I>¼{l²&ïí. k,’+]>‹o‚Vÿ»>à{"¢_Ç¶»âü—òh/2n¥«ÔâÃ>36‰ş;{r¯¯ûî0+bRxO8NK>B?â~<»âË^·[R¢O¹N¶Kè2oL®'ëñ"«ßjŞ~ÛzÂ{¿G¾¼û{20o ®Ùë
