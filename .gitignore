@@ -63,10 +63,6 @@ cache/
 # 5. Formatos Binários Pesados e Arquivos Multimídia
 *.dds
 *.DDS
-*.dat
-*.DAT
-!**/data/native-path/**
-!**/data/native-path/**/*.dat
 *.tga
 *.bmp
 *.wav
@@ -85,6 +81,8 @@ cache/
 5 - Documentação e Referências/4 - Client 5.0 - Dados Extraidos/data/**
 !5 - Documentação e Referências/4 - Client 5.0 - Dados Extraidos/data/**/
 !5 - Documentação e Referências/4 - Client 5.0 - Dados Extraidos/data/**/.gitkeep
+5 - Documentação e Referências/**/levels/**/*.dat
+5 - Documentação e Referências/**/levels/**/newterrain/
 
 # 7. Backups e Arquivos de Trabalho dos Parsers
 6 - Ferramentas/parsersXML/backups/
