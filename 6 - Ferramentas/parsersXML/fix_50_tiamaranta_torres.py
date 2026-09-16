@@ -423,7 +423,7 @@ def bloco_template(texto, npc):
     return m.group(1) if m else None
 
 
-def ajusta(bloco, npc, cli, strings, medida):
+def ajusta(bloco, npc, cli, strings, medida, criando=False):
     """Aplica ao bloco (existente ou copiado do molde) o que o cliente e a captura dizem deste npcId."""
     d = cli[npc]
     novo = re.sub(r'(<npc_template npc_id=")\d+(")', lambda m: m.group(1) + str(npc) + m.group(2), bloco, count=1)
@@ -443,7 +443,8 @@ def ajusta(bloco, npc, cli, strings, medida):
     titulo = medida.get("titulo")
     if titulo is None:
         titulo = strings.get((d.get("npc_title") or "").upper(), 0)
-    atr("name", d["name"])
+    if criando:            # template que ja existe fica com o nome dele (a localizacao pt-BR traduz esse campo)
+        atr("name", d["name"])
     atr("name_id", nome_id)
     atr("title_id", titulo)
     atr("level", medida.get("lvl"))
@@ -490,7 +491,7 @@ def templates(usados, cli, cat, strings, medidas, seco):
             if not molde:
                 sem_molde.append(npc)
                 continue
-            novo = insere(novo, npc, ajusta(molde, npc, cli, strings, medida))
+            novo = insere(novo, npc, ajusta(molde, npc, cli, strings, medida, criando=True))
             criados.append(npc)
         antes, depois = len(re.findall(r"<npc_template npc_id=", texto)), len(re.findall(r"<npc_template npc_id=", novo))
         if depois != antes + len(criados) or not novo.rstrip().endswith("</npc_templates>"):

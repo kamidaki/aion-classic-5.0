@@ -221,12 +221,70 @@ def abre(caminho, porta=7777):
     return None
 
 
-def abre_todas(caminho, porta=7777):
+BYTE_DE_SERVIDOR = {True: 101, False: 111}     # corpo[2], constante em cada direcao
+
+
+class CifraDaChave(Cifra):
+    """Cifra que comeca de uma chave de 8 bytes ja conhecida, sem seed."""
+
+    def __init__(self, chave):
+        self.key = bytearray(struct.pack("<Q", chave))
+
+
+def chave_sem_skey(fluxo, do_servidor, amostra=3000):
+    """Chave de uma direcao cuja captura comecou com a sessao ja aberta (sem o S_KEY).
+
+    Por byte do primeiro corpo: `corpo[2]` e constante (101 no servidor, 111 no cliente), o que da o k2;
+    os bytes 4-7 nascem `A1 6C 54 87` (so somam o tamanho dos corpos, entao A2 cobre o vai-um); o
+    checksum `!opcode` da o k1 e amarra o k3 ao k0. Sobram 256 valores de k0 por byte alto, e cada um e
+    conferido nos `amostra` primeiros pacotes com a chave avancando. Empate (sessao curta) desempata pelo
+    opcode <= 0x2FF. Devolve None se nenhum candidato fecha tudo.
+    """
+    corpos, off = [], 0
+    while off + 2 <= len(fluxo) and len(corpos) < amostra:
+        ln = struct.unpack_from("<H", fluxo, off)[0]
+        if ln < 7 or off + ln > len(fluxo):
+            return None
+        corpos.append(fluxo[off + 2: off + ln])
+        off += ln
+    if not corpos:
+        return None
+    esperado, c, S = BYTE_DE_SERVIDOR[do_servidor], corpos[0], STATIC_KEY
+    k2 = c[2] ^ S[2] ^ c[1] ^ esperado
+    melhores = []
+    for k4 in (0xA1, 0xA2):
+        k1 = c[1] ^ S[1] ^ c[0] ^ (~(c[4] ^ k4 ^ S[4] ^ c[3]) & 0xFF)
+        for k0 in range(256):
+            k3 = c[3] ^ S[3] ^ c[2] ^ (~(c[0] ^ k0) & 0xFF)
+            chave = struct.unpack("<Q", bytes([k0, k1, k2, k3, k4, 0x6C, 0x54, 0x87]))[0]
+            atual, fecham, opcodes_ok = chave, 0, 0
+            for b in corpos:
+                kb = struct.pack("<Q", atual)
+                p0 = b[0] ^ kb[0]
+                p1, p2, p3, p4 = (b[i] ^ kb[i] ^ S[i] ^ b[i - 1] for i in range(1, 5))
+                op = p0 | p1 << 8
+                if (p3 | p4 << 8) == (~op & 0xFFFF) and p2 == esperado:
+                    fecham += 1
+                    decod = opcode_servidor(op) if do_servidor else opcode_cliente(op)
+                    opcodes_ok += decod <= 0x2FF
+                atual = (atual + len(b)) & 0xFFFFFFFFFFFFFFFF
+            if fecham == len(corpos):
+                melhores.append((opcodes_ok, chave))
+    if not melhores:
+        return None
+    melhores.sort(reverse=True)
+    return melhores[0][1]
+
+
+def abre_todas(caminho, porta=7777, sem_skey=False):
     """Toda sessao de jogo da captura, nao so a primeira.
 
     Uma subida de nivel 1 ao 60 nao cabe num login so: cada reconexao abre um TCP novo, com o seu
     proprio S_KEY e a sua propria chave. O [`abre`] devolve a primeira e para -- de onde vem o
     risco de analisar 20 minutos de uma sessao de doze horas sem perceber. O censo usa esta.
+
+    Com `sem_skey`, a sessao que a captura pegou ja aberta tambem entra: a chave de cada direcao sai
+    de [`chave_sem_skey`], e a sessao vem com `"seed": None`.
     """
     todos = fluxos(caminho, porta, com_tempo=True)
     sessoes = []
@@ -234,14 +292,24 @@ def abre_todas(caminho, porta=7777):
         src, sport, dst, dport = chave
         if sport != porta or len(fluxo) < 11:
             continue
-        if struct.unpack_from("<H", fluxo, 0)[0] != 11:
-            continue
-        seed = struct.unpack_from("<I", fluxo, 7)[0]
         volta, marcos_volta = todos.get((dst, dport, src, sport), (b"", []))
-        servidor = separa(fluxo[11:], Cifra(seed), True, marcos, base=11)
-        tempo_servidor = separa.tempos
-        cliente = separa(volta, Cifra(seed), False, marcos_volta)
-        tempo_cliente = separa.tempos
+        if struct.unpack_from("<H", fluxo, 0)[0] == 11:
+            seed = struct.unpack_from("<I", fluxo, 7)[0]
+            servidor = separa(fluxo[11:], Cifra(seed), True, marcos, base=11)
+            tempo_servidor = separa.tempos
+            cliente = separa(volta, Cifra(seed), False, marcos_volta)
+            tempo_cliente = separa.tempos
+        elif sem_skey:
+            seed, k_srv = None, chave_sem_skey(fluxo, True)
+            if k_srv is None:
+                continue
+            servidor = separa(fluxo, CifraDaChave(k_srv), True, marcos)
+            tempo_servidor = separa.tempos
+            k_cli = chave_sem_skey(volta, False) if volta else None
+            cliente = separa(volta, CifraDaChave(k_cli), False, marcos_volta) if k_cli is not None else []
+            tempo_cliente = separa.tempos if k_cli is not None else []
+        else:
+            continue
         sessoes.append({
             "seed": seed,
             "servidor": servidor,
