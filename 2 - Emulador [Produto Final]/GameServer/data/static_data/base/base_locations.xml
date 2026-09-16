@@ -12,6 +12,12 @@
 	<!-- Beluslan -->
 	<base_location id="2240" type="CASUAL" world="220040000" />
 	<base_location id="2241" type="CASUAL" world="220040000" />
-	<!-- Tiamaranta Mesa -->
+	<!-- Tiamaranta Mesa: torres do camp war com guarnicao capturada (fix_50_tiamaranta_torres.py) -->
+	<base_location id="4401" type="CASUAL" world="800040000" default_occupier="BALAUR" />
+	<base_location id="4402" type="CASUAL" world="800040000" default_occupier="ASMODIANS" />
 	<base_location id="4413" type="CASUAL" world="800040000" default_occupier="BALAUR" />
+	<base_location id="4414" type="CASUAL" world="800040000" default_occupier="ASMODIANS" />
+	<base_location id="40008" type="CASUAL" world="800040000" default_occupier="ASMODIANS" />
+	<base_location id="40010" type="CASUAL" world="800040000" default_occupier="BALAUR" />
+	<base_location id="40012" type="CASUAL" world="800040000" default_occupier="BALAUR" />
 </base_locations>

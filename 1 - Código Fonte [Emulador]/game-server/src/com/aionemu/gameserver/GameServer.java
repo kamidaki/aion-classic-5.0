@@ -140,6 +140,9 @@ public class GameServer {
 
 		// BaseService.getInstance().initBases(); // 4.8 retail residue
 
+		// Camp war 5.0 (torres de Tiamaranta Mesa). Inicia so as bases das torres; as bases da 4.8 seguem desligadas.
+		CampWarService.getInstance().initCamps();
+
 		// WorldRaidService.getInstance().initWorldRaids(); // 4.8 retail residue
 
 		//AnnouncementService.getInstance();

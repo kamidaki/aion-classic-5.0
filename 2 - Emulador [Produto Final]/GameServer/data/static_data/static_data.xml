@@ -124,6 +124,7 @@
 	<import file="recipe/recipe_templates.xml" />
 	<import file="rift/rift_locations.xml" />
 	<import file="roads/roads.xml" />
+	<import file="siege/camp_world_states.xml" />
 	<import file="siege/siege_locations.xml" />
 	<import file="siege/siege_shields.xml" />
 	<import file="skills/motion_times.xml" />

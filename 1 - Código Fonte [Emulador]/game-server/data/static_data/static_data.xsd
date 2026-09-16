@@ -69,6 +69,7 @@
 	<xs:include schemaLocation="recipe/recipe_templates.xsd" />
 	<xs:include schemaLocation="rift/rift_locations.xsd" />
 	<xs:include schemaLocation="roads/roads.xsd" />
+	<xs:include schemaLocation="siege/camp_world_states.xsd" />
 	<xs:include schemaLocation="siege/siege_locations.xsd" />
 	<xs:include schemaLocation="siege/siege_shields.xsd" />
 	<xs:include schemaLocation="skill_tree/skill_tree.xsd" />
@@ -177,6 +178,7 @@
 					<xs:element ref="rift_locations" minOccurs="0" />
 					<xs:element ref="roads" minOccurs="0" />
 					<xs:element ref="shields" minOccurs="0" />
+					<xs:element ref="camp_world_states" minOccurs="0" />
 					<xs:element ref="siege_locations" minOccurs="0" />
 					<xs:element ref="skill_charge" minOccurs="0" />
 					<xs:element ref="skill_data" minOccurs="0" />

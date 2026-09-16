@@ -213934,30 +213934,72 @@
 		</equipment>
 		<bound_radius front="1" side="1.89" upper="2.3" />
 	</npc_template>
-	<npc_template npc_id="274027" level="1" name_id="345336" title_id="345281" name="Guardian Ambusher" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="1900" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274028" level="1" name_id="345337" title_id="345281" name="Guardian Eye Guard" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274029" level="1" name_id="345338" title_id="345281" name="Guardian Eye Mystic" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2040" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274030" level="1" name_id="345339" title_id="345281" name="Guardian Battle Mage" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2300" sangle="75" arange="37"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274031" level="1" name_id="345340" title_id="345281" name="Archon Ambusher" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="1900" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274032" level="1" name_id="345341" title_id="345281" name="Archon Eye Guardian" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274033" level="1" name_id="345342" title_id="345281" name="Archon Eye Mystic" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2040" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274034" level="1" name_id="345343" title_id="345281" name="Archon Battle Mage" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2300" sangle="75" arange="37"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274035" level="1" name_id="345344" title_id="345302" name="Synthral Trapper" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="1900" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="2.88" /></npc_template>
-	<npc_template npc_id="274036" level="1" name_id="345345" title_id="345302" name="Synthral Fighter" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2100" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.585" side="0.495" upper="3.24" /></npc_template>
-	<npc_template npc_id="274037" level="1" name_id="345346" title_id="345302" name="Synthral Medic" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2040" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="2.96" /></npc_template>
-	<npc_template npc_id="274038" level="1" name_id="345347" title_id="345302" name="Synthral Battle Mage" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2300" sangle="75" arange="37"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="3.04" /></npc_template>
+	<npc_template npc_id="274000" title_id="0" level="65" name="LDF4b_4401_Boss_Li_1" name_id="345323" height="10" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="base_protector" srange="15" arange="4" attack_speed="2300" hpgauge="14" rating="HERO" rank="EXPERT" race="ELYOS" group_drop="NONE">
+		<stats maxHp="560000">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="5" side="5" upper="10" />
+	</npc_template>
+	<npc_template npc_id="274005" title_id="0" level="65" name="LDF4b_4401_Boss_Da_1" name_id="345323" height="10" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="base_protector" srange="15" arange="4" attack_speed="2300" hpgauge="14" rating="HERO" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
+		<stats maxHp="560000">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="5" side="5" upper="10" />
+	</npc_template>
+	<npc_template npc_id="274010" title_id="0" level="65" name="LDF4b_4401_Boss_Dr_1" name_id="345323" height="10" tribe="XDRAKAN" type="ABYSS_GUARD" ai="base_protector" srange="15" arange="4" attack_speed="2300" hpgauge="14" rating="HERO" rank="EXPERT" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="560000">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="5" side="5" upper="10" />
+	</npc_template>
+	<npc_template npc_id="274027" level="65" name_id="345336" title_id="345281" name="LDF4b_4401_Guard_MistOn_Li_As" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="1900" sangle="75" arange="2"><stats maxHp="108031"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274028" level="65" name_id="345337" title_id="345281" name="LDF4b_4401_Guard_MistOn_Li_Fi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2100" sangle="75" arange="2"><stats maxHp="143174"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274029" level="65" name_id="345338" title_id="345281" name="LDF4b_4401_Guard_MistOn_Li_Pr" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2040" sangle="75" arange="2"><stats maxHp="130158"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274030" level="65" name_id="345339" title_id="345281" name="LDF4b_4401_Guard_MistOn_Li_Wi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2300" sangle="75" arange="37"><stats maxHp="108031"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274031" level="65" name_id="345340" title_id="345281" name="LDF4b_4401_Guard_MistOn_Da_As" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="1900" sangle="75" arange="2"><stats maxHp="108031"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274032" level="65" name_id="345341" title_id="345281" name="LDF4b_4401_Guard_MistOn_Da_Fi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2100" sangle="75" arange="2"><stats maxHp="143174"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274033" level="65" name_id="345342" title_id="345281" name="LDF4b_4401_Guard_MistOn_Da_Pr" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2040" sangle="75" arange="2"><stats maxHp="130158"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274034" level="65" name_id="345343" title_id="345281" name="LDF4b_4401_Guard_MistOn_Da_Wi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2300" sangle="75" arange="37"><stats maxHp="108031"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274035" level="65" name_id="345344" title_id="345302" name="LDF4b_4401_Guard_MistOn_Dr_As" height="2.88" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="1900" sangle="75" arange="4"><stats maxHp="108031"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="2.88" /></npc_template>
+	<npc_template npc_id="274036" level="65" name_id="345345" title_id="345302" name="LDF4b_4401_Guard_MistOn_Dr_Fi" height="3.24" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2100" sangle="75" arange="4"><stats maxHp="143174"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.585" side="0.495" upper="3.24" /></npc_template>
+	<npc_template npc_id="274037" level="65" name_id="345346" title_id="345302" name="LDF4b_4401_Guard_MistOn_Dr_Pr" height="2.96" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2040" sangle="75" arange="4"><stats maxHp="130158"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="2.96" /></npc_template>
+	<npc_template npc_id="274038" level="65" name_id="345347" title_id="345302" name="LDF4b_4401_Guard_MistOn_Dr_Wi" height="3.04" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2300" sangle="75" arange="37"><stats maxHp="108031"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="3.04" /></npc_template>
+	<npc_template npc_id="274039" title_id="345281" level="65" name="LDF4b_4401_Guard_MistOn_Li_Seeker" name_id="345348" height="2" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="ELYOS" group_drop="NONE">
+		<stats maxHp="130158">
+			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="274040" title_id="345281" level="65" name="LDF4b_4401_Guard_MistOn_Da_Seeker" name_id="345349" height="2" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
+		<stats maxHp="130158">
+			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="274041" title_id="345302" level="65" name="LDF4b_4401_Guard_MistOn_Dr_Seeker" name_id="345350" height="3.25" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="130158">
+			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
+		</stats>
+		<bound_radius front="1.3" side="2.47" upper="3.25" />
+	</npc_template>
 	<npc_template npc_id="274069" level="1" name_id="345364" title_id="345282" name="Guardian Ambusher" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="1900" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274070" level="1" name_id="345365" title_id="345282" name="Guardian Eye Guard" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274071" level="1" name_id="345366" title_id="345282" name="Guardian Eye Mystic" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2040" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274072" level="1" name_id="345367" title_id="345282" name="Guardian Battle Mage" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2300" sangle="75" arange="37"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274073" level="1" name_id="345368" title_id="345282" name="Archon Ambusher" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="1900" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274074" level="1" name_id="345369" title_id="345282" name="Archon Eye Guardian" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274075" level="1" name_id="345370" title_id="345282" name="Archon Eye Mystic" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2040" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274076" level="1" name_id="345371" title_id="345282" name="Archon Battle Mage" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2300" sangle="75" arange="37"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274073" level="65" name_id="345368" title_id="345282" name="LDF4b_4402_Guard_MistOn_Da_As" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="1900" sangle="75" arange="2"><stats maxHp="108031"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274074" level="65" name_id="345369" title_id="345282" name="LDF4b_4402_Guard_MistOn_Da_Fi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2100" sangle="75" arange="2"><stats maxHp="143174"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274075" level="65" name_id="345370" title_id="345282" name="LDF4b_4402_Guard_MistOn_Da_Pr" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2040" sangle="75" arange="2"><stats maxHp="130158"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274076" level="65" name_id="345371" title_id="345282" name="LDF4b_4402_Guard_MistOn_Da_Wi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2300" sangle="75" arange="37"><stats maxHp="108031"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274077" level="1" name_id="345372" title_id="345303" name="Synthral Trapper" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="1900" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="2.88" /></npc_template>
 	<npc_template npc_id="274078" level="1" name_id="345373" title_id="345303" name="Synthral Fighter" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2100" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.585" side="0.495" upper="3.24" /></npc_template>
 	<npc_template npc_id="274079" level="1" name_id="345374" title_id="345303" name="Synthral Medic" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2040" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="2.96" /></npc_template>
 	<npc_template npc_id="274080" level="1" name_id="345375" title_id="345303" name="Synthral Battle Mage" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2300" sangle="75" arange="37"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="3.04" /></npc_template>
+	<npc_template npc_id="274082" title_id="345282" level="65" name="LDF4b_4402_Guard_MistOn_Da_Seeker" name_id="345377" height="2" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
+		<stats maxHp="130158">
+			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
 	<npc_template npc_id="274111" level="1" name_id="345392" title_id="345283" name="Guardian Ambusher" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="1900" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274112" level="1" name_id="345393" title_id="345283" name="Guardian Eye Guard" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274113" level="1" name_id="345394" title_id="345283" name="Guardian Eye Mystic" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2040" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
@@ -213970,6 +214012,36 @@
 	<npc_template npc_id="274120" level="1" name_id="345401" title_id="345304" name="Synthral Fighter" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2100" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.585" side="0.495" upper="3.24" /></npc_template>
 	<npc_template npc_id="274121" level="1" name_id="345402" title_id="345304" name="Synthral Medic" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2040" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="2.96" /></npc_template>
 	<npc_template npc_id="274122" level="1" name_id="345403" title_id="345304" name="Synthral Battle Mage" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2300" sangle="75" arange="37"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="3.04" /></npc_template>
+	<npc_template npc_id="274259" title_id="345287" level="65" name="LDF4b_4414_Guard_Da_As" name_id="345484" height="2" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="1900" hpgauge="10" rating="ELITE" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
+		<stats maxHp="63464">
+			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="274260" title_id="345287" level="65" name="LDF4b_4414_Guard_Da_Fi" name_id="345485" height="2" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="2100" hpgauge="10" rating="ELITE" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
+		<stats maxHp="84109">
+			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="274261" title_id="345287" level="65" name="LDF4b_4414_Guard_Da_Pr" name_id="345486" height="2" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="2040" hpgauge="10" rating="ELITE" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
+		<stats maxHp="76463">
+			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="274262" title_id="345287" level="65" name="LDF4b_4414_Guard_Da_Wi" name_id="345487" height="2" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="37" attack_speed="2300" hpgauge="10" rating="ELITE" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
+		<stats maxHp="63464">
+			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="274268" title_id="345287" level="65" name="LDF4b_4414_Guard_Da_Seeker" name_id="345493" height="2" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
+		<stats maxHp="76463">
+			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
 	<npc_template npc_id="274321" level="1" name_id="345518" title_id="345289" name="Guardian Ambusher" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274322" level="1" name_id="345519" title_id="345289" name="Guardian Eye Guard" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274323" level="1" name_id="345520" title_id="345289" name="Guardian Eye Mystic" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
@@ -214034,14 +214106,20 @@
 	<npc_template npc_id="274510" level="1" name_id="345623" title_id="345316" name="Satra Fighter" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.585" side="0.495" upper="3.24" /></npc_template>
 	<npc_template npc_id="274511" level="1" name_id="345624" title_id="345316" name="Satra Bloodbinder" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="2.96" /></npc_template>
 	<npc_template npc_id="274512" level="1" name_id="345625" title_id="345316" name="Satra Battle Mage" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="3.04" /></npc_template>
-	<npc_template npc_id="274535" level="1" name_id="345634" title_id="345296" name="Archon Ambusher" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274536" level="1" name_id="345635" title_id="345296" name="Archon Eye Guardian" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274537" level="1" name_id="345636" title_id="345296" name="Archon Eye Mystic" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274538" level="1" name_id="345637" title_id="345296" name="Archon Battle Mage" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274535" level="65" name_id="345634" title_id="345296" name="LDF4b_40008_Guard_Da_As" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274536" level="65" name_id="345635" title_id="345296" name="LDF4b_40008_Guard_Da_Fi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274537" level="65" name_id="345636" title_id="345296" name="LDF4b_40008_Guard_Da_Pr" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274538" level="65" name_id="345637" title_id="345296" name="LDF4b_40008_Guard_Da_Wi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274539" level="1" name_id="345638" title_id="345317" name="Satra Trapper" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="2.88" /></npc_template>
 	<npc_template npc_id="274540" level="1" name_id="345639" title_id="345317" name="Satra Fighter" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.585" side="0.495" upper="3.24" /></npc_template>
 	<npc_template npc_id="274541" level="1" name_id="345640" title_id="345317" name="Satra Bloodbinder" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="2.96" /></npc_template>
 	<npc_template npc_id="274542" level="1" name_id="345641" title_id="345317" name="Satra Battle Mage" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="3.04" /></npc_template>
+	<npc_template npc_id="274544" title_id="345296" level="65" name="LDF4b_40008_Guard_Da_Seeker" name_id="345643" height="2" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
+		<stats maxHp="23171">
+			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
 	<npc_template npc_id="274561" level="1" name_id="345646" title_id="345297" name="Guardian Ambusher" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274562" level="1" name_id="345647" title_id="345297" name="Guardian Eye Guard" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274563" level="1" name_id="345648" title_id="345297" name="Guardian Eye Mystic" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
@@ -214050,18 +214128,54 @@
 	<npc_template npc_id="274570" level="1" name_id="345655" title_id="345318" name="Satra Fighter" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.585" side="0.495" upper="3.24" /></npc_template>
 	<npc_template npc_id="274571" level="1" name_id="345656" title_id="345318" name="Satra Bloodbinder" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="2.96" /></npc_template>
 	<npc_template npc_id="274572" level="1" name_id="345657" title_id="345318" name="Satra Battle Mage" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="3.04" /></npc_template>
-	<npc_template npc_id="274591" level="1" name_id="345662" title_id="345298" name="Guardian Ambusher" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274592" level="1" name_id="345663" title_id="345298" name="Guardian Eye Guard" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274593" level="1" name_id="345664" title_id="345298" name="Guardian Eye Mystic" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274594" level="1" name_id="345665" title_id="345298" name="Guardian Battle Mage" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274595" level="1" name_id="345666" title_id="345298" name="Archon Ambusher" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274596" level="1" name_id="345667" title_id="345298" name="Archon Eye Guardian" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274597" level="1" name_id="345668" title_id="345298" name="Archon Eye Mystic" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274598" level="1" name_id="345669" title_id="345298" name="Archon Battle Mage" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274599" level="1" name_id="345670" title_id="345319" name="Satra Trapper" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="2.88" /></npc_template>
-	<npc_template npc_id="274600" level="1" name_id="345671" title_id="345319" name="Satra Fighter" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.585" side="0.495" upper="3.24" /></npc_template>
-	<npc_template npc_id="274601" level="1" name_id="345672" title_id="345319" name="Satra Bloodbinder" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="2.96" /></npc_template>
-	<npc_template npc_id="274602" level="1" name_id="345673" title_id="345319" name="Satra Battle Mage" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="3.04" /></npc_template>
+	<npc_template npc_id="274576" title_id="0" level="65" name="LDF4b_40010_Boss_Li_1" name_id="345661" height="5" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="base_protector" srange="15" arange="4" attack_speed="2300" hpgauge="14" rating="HERO" rank="EXPERT" race="ELYOS" group_drop="NONE">
+		<stats maxHp="140000">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="2.5" side="2.5" upper="5" />
+	</npc_template>
+	<npc_template npc_id="274581" title_id="0" level="65" name="LDF4b_40010_Boss_Da_1" name_id="345661" height="5" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="base_protector" srange="15" arange="4" attack_speed="2300" hpgauge="14" rating="HERO" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
+		<stats maxHp="140000">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="2.5" side="2.5" upper="5" />
+	</npc_template>
+	<npc_template npc_id="274586" title_id="0" level="65" name="LDF4b_40010_Boss_Dr_1" name_id="345661" height="5" tribe="XDRAKAN" type="ABYSS_GUARD" ai="base_protector" srange="15" arange="4" attack_speed="2300" hpgauge="14" rating="HERO" rank="EXPERT" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="140000">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="2.5" side="2.5" upper="5" />
+	</npc_template>
+	<npc_template npc_id="274591" level="65" name_id="345662" title_id="345298" name="LDF4b_40010_Guard_Li_As" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274592" level="65" name_id="345663" title_id="345298" name="LDF4b_40010_Guard_Li_Fi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274593" level="65" name_id="345664" title_id="345298" name="LDF4b_40010_Guard_Li_Pr" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274594" level="65" name_id="345665" title_id="345298" name="LDF4b_40010_Guard_Li_Wi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274595" level="65" name_id="345666" title_id="345298" name="LDF4b_40010_Guard_Da_As" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274596" level="65" name_id="345667" title_id="345298" name="LDF4b_40010_Guard_Da_Fi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274597" level="65" name_id="345668" title_id="345298" name="LDF4b_40010_Guard_Da_Pr" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274598" level="65" name_id="345669" title_id="345298" name="LDF4b_40010_Guard_Da_Wi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274599" level="65" name_id="345670" title_id="345319" name="LDF4b_40010_Guard_Dr_As" height="2.88" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="4"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="2.88" /></npc_template>
+	<npc_template npc_id="274600" level="65" name_id="345671" title_id="345319" name="LDF4b_40010_Guard_Dr_Fi" height="3.24" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="4"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.585" side="0.495" upper="3.24" /></npc_template>
+	<npc_template npc_id="274601" level="65" name_id="345672" title_id="345319" name="LDF4b_40010_Guard_Dr_Pr" height="2.96" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="4"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="2.96" /></npc_template>
+	<npc_template npc_id="274602" level="65" name_id="345673" title_id="345319" name="LDF4b_40010_Guard_Dr_Wi" height="3.04" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="3.04" /></npc_template>
+	<npc_template npc_id="274603" title_id="345298" level="65" name="LDF4b_40010_Guard_Li_Seeker" name_id="345674" height="2" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="ELYOS" group_drop="NONE">
+		<stats maxHp="23171">
+			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="274604" title_id="345298" level="65" name="LDF4b_40010_Guard_Da_Seeker" name_id="345675" height="2" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
+		<stats maxHp="23171">
+			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="274605" title_id="345319" level="65" name="LDF4b_40010_Guard_Dr_Seeker" name_id="345676" height="3.25" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="23171">
+			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
+		</stats>
+		<bound_radius front="1.3" side="2.47" upper="3.25" />
+	</npc_template>
 	<npc_template npc_id="274625" level="1" name_id="345682" title_id="345299" name="Archon Ambusher" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274626" level="1" name_id="345683" title_id="345299" name="Archon Eye Guardian" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274627" level="1" name_id="345684" title_id="345299" name="Archon Eye Mystic" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
@@ -214070,21 +214184,57 @@
 	<npc_template npc_id="274630" level="1" name_id="345687" title_id="345320" name="Satra Fighter" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.585" side="0.495" upper="3.24" /></npc_template>
 	<npc_template npc_id="274631" level="1" name_id="345688" title_id="345320" name="Satra Bloodbinder" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="2.96" /></npc_template>
 	<npc_template npc_id="274632" level="1" name_id="345689" title_id="345320" name="Satra Battle Mage" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="3.04" /></npc_template>
-	<npc_template npc_id="274651" level="1" name_id="345694" title_id="345300" name="Guardian Ambusher" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274652" level="1" name_id="345695" title_id="345300" name="Guardian Eye Guard" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274653" level="1" name_id="345696" title_id="345300" name="Guardian Eye Mystic" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274654" level="1" name_id="345697" title_id="345300" name="Guardian Battle Mage" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274655" level="1" name_id="345698" title_id="345300" name="Archon Ambusher" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274656" level="1" name_id="345699" title_id="345300" name="Archon Eye Guardian" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274657" level="1" name_id="345700" title_id="345300" name="Archon Eye Mystic" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274658" level="1" name_id="345701" title_id="345300" name="Archon Battle Mage" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274659" level="1" name_id="345702" title_id="345321" name="Satra Trapper" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="2.88" /></npc_template>
-	<npc_template npc_id="274660" level="1" name_id="345703" title_id="345321" name="Satra Fighter" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.585" side="0.495" upper="3.24" /></npc_template>
-	<npc_template npc_id="274661" level="1" name_id="345704" title_id="345321" name="Satra Bloodbinder" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="4"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="2.96" /></npc_template>
-	<npc_template npc_id="274662" level="1" name_id="345705" title_id="345321" name="Satra Battle Mage" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="3.04" /></npc_template>
+	<npc_template npc_id="274636" title_id="0" level="65" name="LDF4b_40012_Boss_Li_1" name_id="345693" height="5" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="base_protector" srange="15" arange="4" attack_speed="2300" hpgauge="14" rating="HERO" rank="EXPERT" race="ELYOS" group_drop="NONE">
+		<stats maxHp="140000">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="2.5" side="2.5" upper="5" />
+	</npc_template>
+	<npc_template npc_id="274641" title_id="0" level="65" name="LDF4b_40012_Boss_Da_1" name_id="345693" height="5" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="base_protector" srange="15" arange="4" attack_speed="2300" hpgauge="14" rating="HERO" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
+		<stats maxHp="140000">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="2.5" side="2.5" upper="5" />
+	</npc_template>
+	<npc_template npc_id="274646" title_id="0" level="65" name="LDF4b_40012_Boss_Dr_1" name_id="345693" height="5" tribe="XDRAKAN" type="ABYSS_GUARD" ai="base_protector" srange="15" arange="4" attack_speed="2300" hpgauge="14" rating="HERO" rank="EXPERT" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="140000">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="2.5" side="2.5" upper="5" />
+	</npc_template>
+	<npc_template npc_id="274651" level="65" name_id="345694" title_id="345300" name="LDF4b_40012_Guard_Li_As" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274652" level="65" name_id="345695" title_id="345300" name="LDF4b_40012_Guard_Li_Fi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274653" level="65" name_id="345696" title_id="345300" name="LDF4b_40012_Guard_Li_Pr" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274654" level="65" name_id="345697" title_id="345300" name="LDF4b_40012_Guard_Li_Wi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274655" level="65" name_id="345698" title_id="345300" name="LDF4b_40012_Guard_Da_As" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274656" level="65" name_id="345699" title_id="345300" name="LDF4b_40012_Guard_Da_Fi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274657" level="65" name_id="345700" title_id="345300" name="LDF4b_40012_Guard_Da_Pr" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274658" level="65" name_id="345701" title_id="345300" name="LDF4b_40012_Guard_Da_Wi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274659" level="65" name_id="345702" title_id="345321" name="LDF4b_40012_Guard_Dr_As" height="2.88" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="4"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="2.88" /></npc_template>
+	<npc_template npc_id="274660" level="65" name_id="345703" title_id="345321" name="LDF4b_40012_Guard_Dr_Fi" height="3.24" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="4"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.585" side="0.495" upper="3.24" /></npc_template>
+	<npc_template npc_id="274661" level="65" name_id="345704" title_id="345321" name="LDF4b_40012_Guard_Dr_Pr" height="2.96" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="4"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="2.96" /></npc_template>
+	<npc_template npc_id="274662" level="65" name_id="345705" title_id="345321" name="LDF4b_40012_Guard_Dr_Wi" height="3.04" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.52" side="0.44" upper="3.04" /></npc_template>
 <npc_template npc_id="275000" level="40" name="aetheric renewal artifact core" name_id="301566" height="3.19" group_drop="ARTIFACT_LIGHT_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" sangle="0" attack_speed="2100" hpgauge="10" cancel_level="50">
 		<stats maxHp="1700615" />
 		<bound_radius front="2.014" side="0.7239999" upper="3.19" />
+	</npc_template>
+	<npc_template npc_id="274663" title_id="345300" level="65" name="LDF4b_40012_Guard_Li_Seeker" name_id="345706" height="2" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="ELYOS" group_drop="NONE">
+		<stats maxHp="23171">
+			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="274664" title_id="345300" level="65" name="LDF4b_40012_Guard_Da_Seeker" name_id="345707" height="2" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
+		<stats maxHp="23171">
+			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="274665" title_id="345321" level="65" name="LDF4b_40012_Guard_Dr_Seeker" name_id="345708" height="3.25" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="23171">
+			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
+		</stats>
+		<bound_radius front="1.3" side="2.47" upper="3.25" />
 	</npc_template>
 	<npc_template npc_id="275001" level="1" name="abyssal aura core" name_id="301567" height="3.19" group_drop="ARTIFACT_LIGHT_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" sangle="0" attack_speed="2100" hpgauge="10" cancel_level="50">
 		<stats maxHp="1700615" />
@@ -358378,8 +358528,8 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2 3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802222" level="1" name="advance corridor" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="NONE" type="GENERAL" ai="noaction" attack_speed="2000" hpgauge="3" srange="5" sangle="75">
-		<stats maxHp="63">
+	<npc_template npc_id="802222" title_id="0" level="65" name="LDF4b_Placeable_OBJ_LINK_Noshow_NPC" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="NONE" type="GENERAL" ai="noaction" attack_speed="2000" hpgauge="3" srange="5" sangle="75">
+		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
@@ -358526,8 +358676,8 @@
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802235" level="3" name="Guardian Strike Force Master" name_id="464640" height="1.98" title_id="345286" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="1900" hpgauge="3" sangle="75">
-		<stats maxHp="29738">
+	<npc_template npc_id="802235" level="65" name="LDF4b_Quest_NPC_Li_Middle_3" name_id="464640" height="2" title_id="345286" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="1900" hpgauge="3" sangle="75">
+		<stats maxHp="19232">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
 		<equipment>
@@ -358604,8 +358754,8 @@
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802247" level="10" name_id="464640" title_id="345298" name="Guardian Strike Force Master" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
-		<stats maxHp="1000">
+	<npc_template npc_id="802247" level="65" name_id="464640" title_id="345298" name="LDF4b_Quest_NPC_Li_Small_10" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
+		<stats maxHp="19232">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
@@ -358652,14 +358802,14 @@
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802257" level="3" name_id="464642" title_id="345286" name="Archon Strike Force Master" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
-		<stats maxHp="1000">
+	<npc_template npc_id="802257" level="65" name_id="464642" title_id="345286" name="LDF4b_Quest_NPC_Da_Middle_3" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
+		<stats maxHp="19232">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802258" level="4" name_id="464642" title_id="345287" name="Archon Strike Force Master" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
-		<stats maxHp="1000">
+	<npc_template npc_id="802258" level="65" name_id="464642" title_id="345287" name="LDF4b_Quest_NPC_Da_Middle_4" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
+		<stats maxHp="19232">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
@@ -358682,14 +358832,14 @@
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802267" level="8" name_id="464642" title_id="345296" name="Archon Strike Force Master" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
-		<stats maxHp="1000">
+	<npc_template npc_id="802267" level="65" name_id="464642" title_id="345296" name="LDF4b_Quest_NPC_Da_Small_8" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
+		<stats maxHp="19232">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802269" level="10" name_id="464642" title_id="345298" name="Archon Strike Force Master" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
-		<stats maxHp="1000">
+	<npc_template npc_id="802269" level="65" name_id="464642" title_id="345298" name="LDF4b_Quest_NPC_Da_Small_10" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
+		<stats maxHp="19232">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
@@ -358707,6 +358857,78 @@
 		<bound_radius front="0.3375" side="0.4725" upper="2.7" />
 	</npc_template>
 
+<npc_template npc_id="802282" title_id="0" level="65" name="LDF4b_WindBox_Setting_Tower_M_03" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="general" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
+		<stats maxHp="21107">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="802274" title_id="0" level="65" name="LDF4b_WindBox_Setting_Tower_L_01" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="general" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
+		<stats maxHp="21107">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="802275" title_id="0" level="65" name="LDF4b_WindBox_Setting_Tower_L_02" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="general" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
+		<stats maxHp="21107">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="802283" title_id="0" level="65" name="LDF4b_WindBox_Setting_Tower_M_04" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="general" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
+		<stats maxHp="21107">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="802292" title_id="0" level="65" name="LDF4b_WindBox_Setting_Tower_S_08" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="general" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
+		<stats maxHp="21107">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="802294" title_id="0" level="65" name="LDF4b_WindBox_Setting_Tower_S_10" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="general" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
+		<stats maxHp="21107">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="802296" title_id="0" level="65" name="LDF4b_WindBox_Setting_Tower_S_12" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="general" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
+		<stats maxHp="21107">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="802298" title_id="0" level="65" name="LDF4b_Tower_L_01_L" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="base_flag" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
+		<stats maxHp="21107">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="802299" title_id="0" level="65" name="LDF4b_Tower_L_01_D" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="base_flag" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
+		<stats maxHp="21107">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="802300" title_id="0" level="65" name="LDF4b_Tower_L_01_Dr" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="base_flag" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
+		<stats maxHp="21107">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="802302" title_id="0" level="65" name="LDF4b_Tower_L_02_D" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="base_flag" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
+		<stats maxHp="21107">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="802317" title_id="0" level="65" name="LDF4b_Tower_M_04_D" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="base_flag" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
+		<stats maxHp="21107">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
 	<npc_template npc_id="802328" level="3" name="povit" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="LEGENDARY" race="ELYOS" tribe="NONE" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
 		<stats maxHp="111">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
@@ -358947,8 +359169,8 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802344" level="8" name="kestum" name_id="350000" height="2" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="NONE" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
-		<stats maxHp="31089">
+	<npc_template npc_id="802344" title_id="0" level="65" name="LDF4b_Tower_S_08_D" name_id="350000" height="2" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="NONE" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
+		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
@@ -359022,8 +359244,8 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802349" level="10" name="mete" name_id="350000" height="2" group_drop="DARK" rank="DISCIPLINED" rating="LEGENDARY" race="ASMODIANS" tribe="NONE" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
-		<stats maxHp="31089">
+	<npc_template npc_id="802349" title_id="0" level="65" name="LDF4b_Tower_S_10_L" name_id="350000" height="2" group_drop="DARK" rank="DISCIPLINED" rating="LEGENDARY" race="ASMODIANS" tribe="NONE" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
+		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
@@ -359037,8 +359259,8 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802350" level="10" name="eljer" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="NONE" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
-		<stats maxHp="31089">
+	<npc_template npc_id="802350" title_id="0" level="65" name="LDF4b_Tower_S_10_D" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="NONE" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
+		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
@@ -359052,8 +359274,8 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802351" level="10" name="tosca" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="NONE" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
-		<stats maxHp="131">
+	<npc_template npc_id="802351" title_id="0" level="65" name="LDF4b_Tower_S_10_Dr" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="NONE" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
+		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
@@ -359113,8 +359335,8 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802355" level="12" name="asara" name_id="350000" height="2" group_drop="DARK" rank="DISCIPLINED" rating="LEGENDARY" race="ASMODIANS" tribe="NONE" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
-		<stats maxHp="31089">
+	<npc_template npc_id="802355" title_id="0" level="65" name="LDF4b_Tower_S_12_L" name_id="350000" height="2" group_drop="DARK" rank="DISCIPLINED" rating="LEGENDARY" race="ASMODIANS" tribe="NONE" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
+		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
@@ -359129,8 +359351,8 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802356" level="12" name="illa" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="NONE" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
-		<stats maxHp="136">
+	<npc_template npc_id="802356" title_id="0" level="65" name="LDF4b_Tower_S_12_D" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="NONE" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
+		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
@@ -359145,8 +359367,8 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802357" level="12" name="voltin" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="NONE" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
-		<stats maxHp="27996">
+	<npc_template npc_id="802357" title_id="0" level="65" name="LDF4b_Tower_S_12_Dr" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="NONE" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
+		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
@@ -359199,8 +359421,8 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802361" level="1" name="kisian" name_id="350000" height="2" group_drop="DARK" rank="EXPERT" rating="HERO" race="ASMODIANS" tribe="NONE" type="GENERAL" ai="general" srange="5" arange="37" attack_speed="2000" hpgauge="3" cancel_level="0" sangle="75">
-		<stats maxHp="466030" msup="957">
+	<npc_template npc_id="802361" title_id="0" level="65" name="LDF4b_MistOn_Tower_L_01" name_id="350000" height="2" group_drop="DARK" rank="EXPERT" rating="HERO" race="ASMODIANS" tribe="NONE" type="GENERAL" ai="general" srange="5" arange="37" attack_speed="2000" hpgauge="3" cancel_level="0" sangle="75">
+		<stats maxHp="21107" msup="957">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
@@ -359251,8 +359473,8 @@
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802366" level="3" name="stonereach outpost" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="NONE" type="GENERAL" ai="base_flag" attack_speed="2000" hpgauge="3" flag_type="1" srange="5" sangle="75">
-		<stats maxHp="26116">
+	<npc_template npc_id="802366" title_id="0" level="65" name="LDF4b_MistOn_Tower_M_03" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="NONE" type="GENERAL" ai="base_flag" attack_speed="2000" hpgauge="3" flag_type="1" srange="5" sangle="75">
+		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
@@ -359333,8 +359555,8 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802378" level="10" name=" " name_id="350000" height="2.4" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
-		<stats maxHp="146">
+	<npc_template npc_id="802378" title_id="0" level="65" name="LDF4b_MistOn_Tower_S_10" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
+		<stats maxHp="21107">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
 		<equipment>
@@ -359365,8 +359587,8 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802380" level="12" name=" " name_id="350000" height="2.4" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
-		<stats maxHp="114">
+	<npc_template npc_id="802380" title_id="0" level="65" name="LDF4b_MistOn_Tower_S_12" name_id="350000" height="2" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
+		<stats maxHp="21107">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
 		<equipment>
@@ -360354,15 +360576,15 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="3" is_dialog="true" func_dialogs="44" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802456" level="3" name="3rd Medium Teleport Statue" name_id="464705" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" attack_speed="2000" hpgauge="3" sangle="75">
-		<stats maxHp="107">
+	<npc_template npc_id="802456" title_id="0" level="65" name="LDF4b_MiddleTower_Teleport_03" name_id="464705" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" attack_speed="2000" hpgauge="3" sangle="75">
+		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="3" is_dialog="true" func_dialogs="44" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802457" level="4" name="4th Medium Teleport Statue" name_id="464706" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" attack_speed="2000" hpgauge="3" sangle="75">
-		<stats maxHp="125">
+	<npc_template npc_id="802457" title_id="0" level="65" name="LDF4b_MiddleTower_Teleport_04" name_id="464706" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" attack_speed="2000" hpgauge="3" sangle="75">
+		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
@@ -360454,8 +360676,8 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802466" level="8" name=" " name_id="350000" height="2.4" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
-		<stats maxHp="122">
+	<npc_template npc_id="802466" title_id="0" level="65" name="LDF4b_SmallTower_Teleport_08" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
+		<stats maxHp="21107">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
 		<equipment>
@@ -360486,8 +360708,8 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802468" level="10" name=" " name_id="350000" height="2.4" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
-		<stats maxHp="114">
+	<npc_template npc_id="802468" title_id="0" level="65" name="LDF4b_SmallTower_Teleport_10" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
+		<stats maxHp="21107">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
 		<equipment>
@@ -372551,143 +372773,143 @@
 
 	<!-- Tiamaranta Middle Tower 03 (Base 4413) Official Canon Templates -->
 	<!-- Elyos Tower Base Flag -->
-	<npc_template npc_id="802313" level="58" name="LDF4b_Tower_M_03_L" name_id="350000" height="1" tribe="NONE" type="GENERAL" ai="base_flag" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
-		<stats maxHp="2000">
+	<npc_template npc_id="802313" title_id="0" level="65" name="LDF4b_Tower_M_03_L" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="base_flag" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
+		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<bound_radius front="0.5" side="0.7" upper="2" />
+		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<!-- Asmodian Tower Base Flag -->
-	<npc_template npc_id="802314" level="58" name="LDF4b_Tower_M_03_D" name_id="350000" height="1" tribe="NONE" type="GENERAL" ai="base_flag" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
-		<stats maxHp="2000">
+	<npc_template npc_id="802314" title_id="0" level="65" name="LDF4b_Tower_M_03_D" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="base_flag" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
+		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<bound_radius front="0.5" side="0.7" upper="2" />
+		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<!-- Drakan Tower Base Flag -->
-	<npc_template npc_id="802315" level="58" name="LDF4b_Tower_M_03_Dr" name_id="350000" height="1" tribe="NONE" type="GENERAL" ai="base_flag" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
-		<stats maxHp="2000">
+	<npc_template npc_id="802315" title_id="0" level="65" name="LDF4b_Tower_M_03_Dr" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="base_flag" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
+		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<bound_radius front="0.5" side="0.7" upper="2" />
+		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 
 	<!-- Elyos Base Boss Level 5 -->
-	<npc_template npc_id="274208" level="65" name="LDF4b_4413_Boss_Li_5" name_id="345457" height="1" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="base_protector" srange="15" arange="4" attack_speed="2300" hpgauge="14" rating="HERO" rank="EXPERT" race="ELYOS" group_drop="NONE">
+	<npc_template npc_id="274208" title_id="0" level="65" name="LDF4b_4413_Boss_Li_5" name_id="345457" height="10" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="base_protector" srange="15" arange="4" attack_speed="2300" hpgauge="14" rating="HERO" rank="EXPERT" race="ELYOS" group_drop="NONE">
 		<stats maxHp="280000">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<bound_radius front="10" side="10" upper="10" />
+		<bound_radius front="5" side="5" upper="10" />
 	</npc_template>
 	<!-- Asmodian Base Boss Level 5 -->
-	<npc_template npc_id="274213" level="65" name="LDF4b_4413_Boss_Da_5" name_id="345457" height="1" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="base_protector" srange="15" arange="4" attack_speed="2300" hpgauge="14" rating="HERO" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
+	<npc_template npc_id="274213" title_id="0" level="65" name="LDF4b_4413_Boss_Da_5" name_id="345457" height="10" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="base_protector" srange="15" arange="4" attack_speed="2300" hpgauge="14" rating="HERO" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
 		<stats maxHp="280000">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<bound_radius front="10" side="10" upper="10" />
+		<bound_radius front="5" side="5" upper="10" />
 	</npc_template>
 	<!-- Drakan Base Boss Level 5 (Official 5.0 PCAP) -->
-	<npc_template npc_id="274218" level="65" name="LDF4b_4413_Boss_Dr_5" name_id="345457" height="1" tribe="XDRAKAN" type="ABYSS_GUARD" ai="base_protector" srange="15" arange="4" attack_speed="2300" hpgauge="14" rating="HERO" rank="EXPERT" race="DRAKAN" group_drop="NONE">
+	<npc_template npc_id="274218" title_id="0" level="65" name="LDF4b_4413_Boss_Dr_5" name_id="345457" height="10" tribe="XDRAKAN" type="ABYSS_GUARD" ai="base_protector" srange="15" arange="4" attack_speed="2300" hpgauge="14" rating="HERO" rank="EXPERT" race="DRAKAN" group_drop="NONE">
 		<stats maxHp="280000">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<bound_radius front="10" side="10" upper="10" />
+		<bound_radius front="5" side="5" upper="10" />
 	</npc_template>
 
 	<!-- Elyos Guards -->
-	<npc_template npc_id="274219" level="58" name="LDF4b_4413_Guard_Li_As" name_id="345458" height="1" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="1900" hpgauge="10" rating="ELITE" rank="EXPERT" race="ELYOS" group_drop="NONE">
-		<stats maxHp="55000">
+	<npc_template npc_id="274219" title_id="345286" level="65" name="LDF4b_4413_Guard_Li_As" name_id="345458" height="2" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="1900" hpgauge="10" rating="ELITE" rank="EXPERT" race="ELYOS" group_drop="NONE">
+		<stats maxHp="63464">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
-		<bound_radius front="0.5" side="0.7" upper="2" />
+		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="274220" level="58" name="LDF4b_4413_Guard_Li_Fi" name_id="345459" height="1" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="2100" hpgauge="10" rating="ELITE" rank="EXPERT" race="ELYOS" group_drop="NONE">
-		<stats maxHp="55000">
+	<npc_template npc_id="274220" title_id="345286" level="65" name="LDF4b_4413_Guard_Li_Fi" name_id="345459" height="2" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="2100" hpgauge="10" rating="ELITE" rank="EXPERT" race="ELYOS" group_drop="NONE">
+		<stats maxHp="84109">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
-		<bound_radius front="0.5" side="0.7" upper="2" />
+		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="274221" level="58" name="LDF4b_4413_Guard_Li_Pr" name_id="345460" height="1" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="2040" hpgauge="10" rating="ELITE" rank="EXPERT" race="ELYOS" group_drop="NONE">
-		<stats maxHp="55000">
+	<npc_template npc_id="274221" title_id="345286" level="65" name="LDF4b_4413_Guard_Li_Pr" name_id="345460" height="2" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="2040" hpgauge="10" rating="ELITE" rank="EXPERT" race="ELYOS" group_drop="NONE">
+		<stats maxHp="76463">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
-		<bound_radius front="0.5" side="0.7" upper="2" />
+		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="274222" level="58" name="LDF4b_4413_Guard_Li_Wi" name_id="345461" height="1" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="37" attack_speed="2300" hpgauge="10" rating="ELITE" rank="EXPERT" race="ELYOS" group_drop="NONE">
-		<stats maxHp="55000">
+	<npc_template npc_id="274222" title_id="345286" level="65" name="LDF4b_4413_Guard_Li_Wi" name_id="345461" height="2" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="37" attack_speed="2300" hpgauge="10" rating="ELITE" rank="EXPERT" race="ELYOS" group_drop="NONE">
+		<stats maxHp="63464">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
-		<bound_radius front="0.5" side="0.7" upper="2" />
+		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="274231" level="65" name="LDF4b_4413_Guard_Li_Seeker" name_id="345470" height="1" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="ELYOS" group_drop="NONE">
-		<stats maxHp="180000">
+	<npc_template npc_id="274231" title_id="345286" level="65" name="LDF4b_4413_Guard_Li_Seeker" name_id="345470" height="2" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="ELYOS" group_drop="NONE">
+		<stats maxHp="76463">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
-		<bound_radius front="0.5" side="0.7" upper="2" />
+		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 
 	<!-- Asmodian Guards -->
-	<npc_template npc_id="274223" level="58" name="LDF4b_4413_Guard_Da_As" name_id="345462" height="1" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="1900" hpgauge="10" rating="ELITE" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
-		<stats maxHp="55000">
+	<npc_template npc_id="274223" title_id="345286" level="65" name="LDF4b_4413_Guard_Da_As" name_id="345462" height="2" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="1900" hpgauge="10" rating="ELITE" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
+		<stats maxHp="63464">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
-		<bound_radius front="0.5" side="0.7" upper="2" />
+		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="274224" level="58" name="LDF4b_4413_Guard_Da_Fi" name_id="345463" height="1" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="2100" hpgauge="10" rating="ELITE" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
-		<stats maxHp="55000">
+	<npc_template npc_id="274224" title_id="345286" level="65" name="LDF4b_4413_Guard_Da_Fi" name_id="345463" height="2" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="2100" hpgauge="10" rating="ELITE" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
+		<stats maxHp="84109">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
-		<bound_radius front="0.5" side="0.7" upper="2" />
+		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="274225" level="58" name="LDF4b_4413_Guard_Da_Pr" name_id="345464" height="1" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="2040" hpgauge="10" rating="ELITE" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
-		<stats maxHp="55000">
+	<npc_template npc_id="274225" title_id="345286" level="65" name="LDF4b_4413_Guard_Da_Pr" name_id="345464" height="2" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="2040" hpgauge="10" rating="ELITE" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
+		<stats maxHp="76463">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
-		<bound_radius front="0.5" side="0.7" upper="2" />
+		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="274226" level="58" name="LDF4b_4413_Guard_Da_Wi" name_id="345465" height="1" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="37" attack_speed="2300" hpgauge="10" rating="ELITE" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
-		<stats maxHp="55000">
+	<npc_template npc_id="274226" title_id="345286" level="65" name="LDF4b_4413_Guard_Da_Wi" name_id="345465" height="2" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="37" attack_speed="2300" hpgauge="10" rating="ELITE" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
+		<stats maxHp="63464">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
-		<bound_radius front="0.5" side="0.7" upper="2" />
+		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="274232" level="65" name="LDF4b_4413_Guard_Da_Seeker" name_id="345471" height="1" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
-		<stats maxHp="180000">
+	<npc_template npc_id="274232" title_id="345286" level="65" name="LDF4b_4413_Guard_Da_Seeker" name_id="345471" height="2" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
+		<stats maxHp="76463">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
-		<bound_radius front="0.5" side="0.7" upper="2" />
+		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 
 	<!-- Drakan Guards -->
-	<npc_template npc_id="274227" level="58" name="LDF4b_4413_Guard_Dr_As" name_id="345466" height="1" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="1900" hpgauge="10" rating="ELITE" rank="EXPERT" race="DRAKAN" group_drop="NONE">
-		<stats maxHp="55000">
+	<npc_template npc_id="274227" title_id="345307" level="65" name="LDF4b_4413_Guard_Dr_As" name_id="345466" height="2.88" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="1900" hpgauge="10" rating="ELITE" rank="EXPERT" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="63464">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
-		<bound_radius front="1.3" side="1.1" upper="3.6" />
+		<bound_radius front="0.52" side="0.44" upper="2.88" />
 	</npc_template>
-	<npc_template npc_id="274228" level="58" name="LDF4b_4413_Guard_Dr_Fi" name_id="345467" height="1" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="2100" hpgauge="10" rating="ELITE" rank="EXPERT" race="DRAKAN" group_drop="NONE">
-		<stats maxHp="55000">
+	<npc_template npc_id="274228" title_id="345307" level="65" name="LDF4b_4413_Guard_Dr_Fi" name_id="345467" height="3.24" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="2100" hpgauge="10" rating="ELITE" rank="EXPERT" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="84109">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
-		<bound_radius front="1.3" side="1.1" upper="3.6" />
+		<bound_radius front="0.585" side="0.495" upper="3.24" />
 	</npc_template>
-	<npc_template npc_id="274229" level="58" name="LDF4b_4413_Guard_Dr_Pr" name_id="345468" height="1" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="2040" hpgauge="10" rating="ELITE" rank="EXPERT" race="DRAKAN" group_drop="NONE">
-		<stats maxHp="55000">
+	<npc_template npc_id="274229" title_id="345307" level="65" name="LDF4b_4413_Guard_Dr_Pr" name_id="345468" height="2.96" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="2040" hpgauge="10" rating="ELITE" rank="EXPERT" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="76463">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
-		<bound_radius front="1.3" side="1.1" upper="3.7" />
+		<bound_radius front="0.52" side="0.44" upper="2.96" />
 	</npc_template>
-	<npc_template npc_id="274230" level="58" name="LDF4b_4413_Guard_Dr_Wi" name_id="345469" height="1" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="37" attack_speed="2300" hpgauge="10" rating="ELITE" rank="EXPERT" race="DRAKAN" group_drop="NONE">
-		<stats maxHp="55000">
+	<npc_template npc_id="274230" title_id="345307" level="65" name="LDF4b_4413_Guard_Dr_Wi" name_id="345469" height="3.04" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="37" attack_speed="2300" hpgauge="10" rating="ELITE" rank="EXPERT" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="63464">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
-		<bound_radius front="1.3" side="1.1" upper="3.8" />
+		<bound_radius front="0.52" side="0.44" upper="3.04" />
 	</npc_template>
-	<npc_template npc_id="274233" level="65" name="LDF4b_4413_Guard_Dr_Seeker" name_id="345472" height="1" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="DRAKAN" group_drop="NONE">
-		<stats maxHp="180000">
+	<npc_template npc_id="274233" title_id="345307" level="65" name="LDF4b_4413_Guard_Dr_Seeker" name_id="345472" height="3.25" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="76463">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
-		<bound_radius front="2" side="3.8" upper="2.5" />
+		<bound_radius front="1.3" side="2.47" upper="3.25" />
 	</npc_template>
 
 </npc_templates>

@@ -84,4 +84,30 @@
 	<siege_location id="4011" type="FORTRESS" world="800010000" name_id="403509" occupy_count="1">
 		<door_repair_data item_id="188030000" count="75" cd="30" />
 	</siege_location>
+	<!-- Tiamaranta Mesa (LDF4b) - torres "Watching Eye" do camp war 5.0.
+	     protect_time: 300 (Tower_S), 600 (Tower_M), 900 (Tower_L) - o de 600 foi cronometrado na captura de 2026-09-13
+	     (tomada as 2150,5 s, vulneravel as 2750,5 s) e o de 900 confere com os 804 s que faltavam na 4401.
+	     reset_time: o camp_war_reset_time do client_abyss.xml; 0 onde o cliente traz 40000000, ou seja torre desligada.
+	     default_race: o dono que o S_ABYSS_INFO oficial mostrava, usado so na primeira carga (depois vale o banco). -->
+	<siege_location id="4401" type="CAMP" world="800040000" name_id="403847" camp_protect_time="900" camp_reset_time="300" camp_pvp_zone="LDF4b_TowerWar_PvPArea_4401" camp_default_race="BALAUR" />
+	<siege_location id="4402" type="CAMP" world="800040000" name_id="403848" camp_protect_time="900" camp_reset_time="0" camp_pvp_zone="LDF4b_TowerWar_PvPArea_4402" camp_default_race="ASMODIANS" />
+	<siege_location id="4403" type="CAMP" world="800040000" name_id="403849" camp_protect_time="900" camp_reset_time="0" camp_pvp_zone="LDF4b_TowerWar_PvPArea_4403" camp_default_race="ELYOS" />
+	<siege_location id="4411" type="CAMP" world="800040000" name_id="403850" camp_protect_time="600" camp_reset_time="0" camp_pvp_zone="LDF4b_TowerWar_PvPArea_4411" camp_default_race="ELYOS" />
+	<siege_location id="4412" type="CAMP" world="800040000" name_id="403851" camp_protect_time="600" camp_reset_time="300" camp_pvp_zone="LDF4b_TowerWar_PvPArea_4412" camp_default_race="BALAUR" />
+	<siege_location id="4413" type="CAMP" world="800040000" name_id="403852" camp_protect_time="600" camp_reset_time="300" camp_pvp_zone="LDF4b_TowerWar_PvPArea_4413" camp_default_race="BALAUR" />
+	<siege_location id="4414" type="CAMP" world="800040000" name_id="403853" camp_protect_time="600" camp_reset_time="0" camp_pvp_zone="LDF4b_TowerWar_PvPArea_4414" camp_default_race="ASMODIANS" />
+	<siege_location id="4415" type="CAMP" world="800040000" name_id="403854" camp_protect_time="600" camp_reset_time="0" camp_pvp_zone="LDF4b_TowerWar_PvPArea_4415" camp_default_race="BALAUR" />
+	<siege_location id="40001" type="CAMP" world="800040000" name_id="403855" camp_protect_time="300" camp_reset_time="300" camp_pvp_zone="LDF4b_TowerWar_PvPArea_40001" camp_default_race="BALAUR" />
+	<siege_location id="40002" type="CAMP" world="800040000" name_id="403856" camp_protect_time="300" camp_reset_time="300" camp_pvp_zone="LDF4b_TowerWar_PvPArea_40002" camp_default_race="BALAUR" />
+	<siege_location id="40003" type="CAMP" world="800040000" name_id="403857" camp_protect_time="300" camp_reset_time="0" camp_pvp_zone="LDF4b_TowerWar_PvPArea_40003" camp_default_race="BALAUR" />
+	<siege_location id="40004" type="CAMP" world="800040000" name_id="403858" camp_protect_time="300" camp_reset_time="0" camp_pvp_zone="LDF4b_TowerWar_PvPArea_40004" camp_default_race="BALAUR" />
+	<siege_location id="40005" type="CAMP" world="800040000" name_id="403859" camp_protect_time="300" camp_reset_time="0" camp_pvp_zone="LDF4b_TowerWar_PvPArea_40005" camp_default_race="ELYOS" />
+	<siege_location id="40006" type="CAMP" world="800040000" name_id="403860" camp_protect_time="300" camp_reset_time="0" camp_pvp_zone="LDF4b_TowerWar_PvPArea_40006" camp_default_race="BALAUR" />
+	<siege_location id="40007" type="CAMP" world="800040000" name_id="403861" camp_protect_time="300" camp_reset_time="0" camp_pvp_zone="LDF4b_TowerWar_PvPArea_40007" camp_default_race="BALAUR" />
+	<siege_location id="40008" type="CAMP" world="800040000" name_id="403862" camp_protect_time="300" camp_reset_time="0" camp_pvp_zone="LDF4b_TowerWar_PvPArea_40008" camp_default_race="ASMODIANS" />
+	<siege_location id="40009" type="CAMP" world="800040000" name_id="403863" camp_protect_time="300" camp_reset_time="0" camp_pvp_zone="LDF4b_TowerWar_PvPArea_40009" camp_default_race="BALAUR" />
+	<siege_location id="40010" type="CAMP" world="800040000" name_id="403864" camp_protect_time="300" camp_reset_time="300" camp_pvp_zone="LDF4b_TowerWar_PvPArea_40010" camp_default_race="BALAUR" />
+	<siege_location id="40011" type="CAMP" world="800040000" name_id="403865" camp_protect_time="300" camp_reset_time="0" camp_pvp_zone="LDF4b_TowerWar_PvPArea_40011" camp_default_race="BALAUR" />
+	<siege_location id="40012" type="CAMP" world="800040000" name_id="403866" camp_protect_time="300" camp_reset_time="300" camp_pvp_zone="LDF4b_TowerWar_PvPArea_40012" camp_default_race="BALAUR" />
+	<siege_location id="40013" type="CAMP" world="800040000" name_id="403867" camp_protect_time="300" camp_reset_time="0" camp_pvp_zone="LDF4b_TowerWar_PvPArea_40013" camp_default_race="BALAUR" />
 </siege_locations>

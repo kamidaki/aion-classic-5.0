@@ -18,6 +18,7 @@ import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.questEngine.QuestEngine;
+import com.aionemu.gameserver.services.CampWarService;
 import com.aionemu.gameserver.services.SiegeService;
 import com.aionemu.gameserver.services.TownService;
 import com.aionemu.gameserver.services.WeatherService;
@@ -90,6 +91,9 @@ public class CM_LEVEL_READY extends AionClientPacket {
 		if (activePlayer.isInSiegeWorld()) {
 			SiegeService.getInstance().onEnterSiegeWorld(activePlayer);
 		}
+
+		// Estado das zonas PvP das torres do mapa (S_ZONE_PVP), que o oficial manda no login junto da lista de zonas.
+		CampWarService.getInstance().onEnterWorld(activePlayer);
 
 		// SM_RIFT_ANNOUNCE
 		RiftInformer.sendRiftsInfo(activePlayer);

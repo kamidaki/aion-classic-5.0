@@ -299,13 +299,16 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(374, SM_EP_UPDATE_OTHER.class); // EP de um jogador para quem o vê (0x0176, 6 b)
 		addPacketOpcode(375, SM_UNK_0177.class); // [S_UNK_0177] (0x0177)
 		addPacketOpcode(383, SM_PROTOCOL_VERSION.class); // [S_PROTOCOL_VERSION] (0x017F)
+		addPacketOpcode(384, SM_WORLD_VARIABLE.class); // [S_WORLD_VARIABLE] (0x0180) — variaveis de mundo do mapa
 		addPacketOpcode(385, SM_UNK_0181.class); // [S_UNK_0181] (0x0181)
 		addPacketOpcode(386, SM_UNK_0182.class); // [S_UNK_0182] (0x0182)
 		addPacketOpcode(387, SM_UNK_0183.class); // [S_UNK_0183] (0x0183)
+		addPacketOpcode(391, SM_CAMP_PVP_ZONE.class); // [S_ZONE_PVP] (0x0187) — zona PvP das torres de Tiamaranta
 		addPacketOpcode(396, SM_UNK_018C.class); // [S_UNK_018C] (0x018C)
 		addPacketOpcode(401, SM_UNK_0191.class); // [S_UNK_0191] (0x0191)
 		addPacketOpcode(407, SM_UNK_0197.class); // [S_UNK_0197] (0x0197)
-		addPacketOpcode(413, SM_UNK_019D.class); // [S_UNK_019D] (0x019D)
+		addPacketOpcode(413, SM_ZONE_STATE_LIST.class); // [S_ZONE_STATE_LIST] (0x019D) — lista de zonas do mapa na entrada
+		// SM_UNK_019D saiu: era um blob fixo com zonas DF4_* de outro mapa e nunca era enviado
 		addPacketOpcode(424, SM_UNK_01A8.class); // [S_UNK_01A8] (0x01A8)
 		addPacketOpcode(426, SM_UNK_01AA.class); // [S_UNK_01AA] (0x01AA)
 		addPacketOpcode(427, SM_UNK_01AB.class); // [S_UNK_01AB] (0x01AB)

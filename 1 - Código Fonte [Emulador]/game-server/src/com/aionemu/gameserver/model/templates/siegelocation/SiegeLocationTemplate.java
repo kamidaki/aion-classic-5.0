@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlList;
 import javax.xml.bind.annotation.XmlType;
 
+import com.aionemu.gameserver.model.siege.SiegeRace;
 import com.aionemu.gameserver.model.siege.SiegeType;
 import com.aionemu.gameserver.model.templates.L10n;
 
@@ -40,6 +41,15 @@ public class SiegeLocationTemplate implements L10n {
 	protected AssaultData assaultData;
 	@XmlElement(name = "siege_related_bases")
 	protected SiegeRelatedBases siegeRelatedBases;
+
+	@XmlAttribute(name = "camp_protect_time")
+	protected int campProtectTime = 0;
+	@XmlAttribute(name = "camp_reset_time")
+	protected int campResetTime = 0;
+	@XmlAttribute(name = "camp_pvp_zone")
+	protected String campPvpZone;
+	@XmlAttribute(name = "camp_default_race")
+	protected SiegeRace campDefaultRace;
 
 	@XmlAttribute(name = "name_id")
 	protected int nameId = 0;
@@ -134,5 +144,24 @@ public class SiegeLocationTemplate implements L10n {
 		if (kinahRewards == null || rewardLevel > kinahRewards.size() - 1)
 			return 0;
 		return kinahRewards.get(rewardLevel);
+	}
+
+	/** Segundos de protecao depois de trocar de dono: 300 (Tower_S), 600 (Tower_M), 900 (Tower_L). Medido nas capturas. */
+	public int getCampProtectTime() {
+		return campProtectTime;
+	}
+
+	/** Segundos que os Balaur levam para retomar uma torre vulneravel de jogador; 0 = a torre nao entra no ciclo. */
+	public int getCampResetTime() {
+		return campResetTime;
+	}
+
+	/** Nome da zona PvP do client_world_ldf4b.xml, ligada e desligada pelo S_ZONE_PVP (0x187). */
+	public String getCampPvpZone() {
+		return campPvpZone;
+	}
+
+	public SiegeRace getCampDefaultRace() {
+		return campDefaultRace == null ? SiegeRace.BALAUR : campDefaultRace;
 	}
 }

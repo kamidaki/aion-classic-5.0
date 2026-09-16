@@ -26,6 +26,8 @@ public class SiegeLocationData {
 	@XmlTransient
 	private Map<Integer, OutpostLocation> outpostLocations = new LinkedHashMap<>();
 	@XmlTransient
+	private Map<Integer, CampLocation> campLocations = new LinkedHashMap<>();
+	@XmlTransient
 	private Map<Integer, SiegeLocation> siegeLocations = new LinkedHashMap<>();
 	@XmlTransient
 	private AgentLocation agentLoc;
@@ -34,6 +36,7 @@ public class SiegeLocationData {
 		artifactLocations.clear();
 		fortressLocations.clear();
 		outpostLocations.clear();
+		campLocations.clear();
 		siegeLocations.clear();
 		for (SiegeLocationTemplate template : siegeLocationTemplates)
 			switch (template.getType()) {
@@ -57,6 +60,11 @@ public class SiegeLocationData {
 					outpostLocations.put(template.getId(), outpost);
 					siegeLocations.put(template.getId(), outpost);
 				}
+				case CAMP -> {
+					CampLocation camp = new CampLocation(template);
+					campLocations.put(template.getId(), camp);
+					siegeLocations.put(template.getId(), camp);
+				}
 				case AGENT_FIGHT -> {
 					agentLoc = new AgentLocation(template);
 					siegeLocations.put(template.getId(), agentLoc);
@@ -78,6 +86,10 @@ public class SiegeLocationData {
 
 	public Map<Integer, OutpostLocation> getOutpost() {
 		return outpostLocations;
+	}
+
+	public Map<Integer, CampLocation> getCamps() {
+		return campLocations;
 	}
 
 	public Map<Integer, SiegeLocation> getSiegeLocations() {

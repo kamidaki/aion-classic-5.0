@@ -22,6 +22,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Rates;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.model.team.TemporaryPlayerTeam;
 import com.aionemu.gameserver.model.team.common.service.PlayerTeamDistributionService;
+import com.aionemu.gameserver.model.templates.spawns.basespawns.BaseSpawnTemplate;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS.LOG;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS.TYPE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_LOOKATOBJECT;
@@ -29,6 +30,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_PET;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.questEngine.QuestEngine;
 import com.aionemu.gameserver.questEngine.model.QuestEnv;
+import com.aionemu.gameserver.services.CampWarService;
 import com.aionemu.gameserver.services.DialogService;
 import com.aionemu.gameserver.services.RespawnService;
 import com.aionemu.gameserver.services.abyss.AbyssPointsService;
@@ -37,6 +39,7 @@ import com.aionemu.gameserver.services.drop.DropService;
 import com.aionemu.gameserver.services.event.EventService;
 import com.aionemu.gameserver.services.instance.InstanceScaler;
 import com.aionemu.gameserver.skillengine.model.Effect;
+import com.aionemu.gameserver.spawnengine.SpawnHandlerType;
 import com.aionemu.gameserver.skillengine.model.HopType;
 import com.aionemu.gameserver.skillengine.model.SkillTemplate;
 import com.aionemu.gameserver.taskmanager.tasks.MoveTaskManager;
@@ -153,6 +156,10 @@ public class NpcController extends CreatureController<Npc> {
 		}
 
 		super.onDie(lastAttacker);
+
+		// Camp war 5.0: a torre de Tiamaranta so troca de dono quando morre o NPC de handler BOSS da base.
+		if (owner.getSpawn() instanceof BaseSpawnTemplate baseSpawn && baseSpawn.getHandlerType() == SpawnHandlerType.BOSS)
+			CampWarService.getInstance().onBaseBossKilled(baseSpawn, lastAttacker);
 
 		if (allowDecay) {
 			if (shouldLoot)

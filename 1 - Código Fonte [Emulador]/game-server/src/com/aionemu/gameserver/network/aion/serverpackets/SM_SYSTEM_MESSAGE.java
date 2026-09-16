@@ -29002,6 +29002,45 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 		return new SM_SYSTEM_MESSAGE(1403776, baseName, raceName, legionName);
 	}
 
+	/**
+	 * %0 has conquered %1. Usada quando quem toma a torre nao tem legiao.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_CAMP_WIN_FORT(DescriptionId raceName, DescriptionId baseName) {
+		return new SM_SYSTEM_MESSAGE(1402059, raceName, baseName);
+	}
+
+	/**
+	 * The Legion %1 from %0 has conquered %2.
+	 * <p>
+	 * Medida na captura de Tiamaranta de 2026-09-13: os parametros 0 e 2 vao como DescriptionId (bloco 0x24) e o 1
+	 * como texto -- {@code 1403775 [desc:1800483, "Org Asmo-Tia", desc:807705]}.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_CAMP_GUILD_WIN_FORT(DescriptionId raceName, String legionName, DescriptionId baseName) {
+		return new SM_SYSTEM_MESSAGE(1403775, raceName, legionName, baseName);
+	}
+
+	/**
+	 * %0 took advantage of the confusion and conquered %1. E a retomada dos Balaur no fim do prazo de reset.
+	 * Medida na mesma captura: {@code 1403777 [desc:1800485, desc:807705]}.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_CAMP_RESET_CHANGE_RACE(DescriptionId raceName, DescriptionId baseName) {
+		return new SM_SYSTEM_MESSAGE(1403777, raceName, baseName);
+	}
+
+	/**
+	 * %0 is now open for capture. Enviada quando a torre passa a vulneravel.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_CAMP_PVP_ON(DescriptionId baseName) {
+		return new SM_SYSTEM_MESSAGE(1403773, baseName);
+	}
+
+	/**
+	 * %0 is no longer open for capture. Enviada quando a torre passa a protegida.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_CAMP_PVP_OFF(DescriptionId baseName) {
+		return new SM_SYSTEM_MESSAGE(1403774, baseName);
+	}
+
 	private int msgId;
 	private byte chatType;
 	private int senderObjId;

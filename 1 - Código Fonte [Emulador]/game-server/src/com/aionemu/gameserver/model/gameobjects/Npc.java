@@ -251,6 +251,8 @@ public class Npc extends Creature {
 	}
 
 	private CreatureType getRelationBasedType(Creature creature) {
+		if (getTribe() == TribeClass.NONE)
+			return CreatureType.NONE; // objeto de nivel: o oficial 5.0 manda 34, nao 2 (S_PUT_NPC p[24])
 		if (TribeRelationService.isNone(this, creature))
 			return CreatureType.PEACE;
 		else if (TribeRelationService.isAggressive(this, creature))

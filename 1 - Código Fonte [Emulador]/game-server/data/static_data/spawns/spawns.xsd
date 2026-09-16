@@ -186,13 +186,6 @@
 			<xs:maxInclusive value="120"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="SiegeRaceType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="ELYOS"/>
-			<xs:enumeration value="ASMODIANS"/>
-			<xs:enumeration value="BALAUR"/>
-		</xs:restriction>
-	</xs:simpleType>
 	<xs:simpleType name="SpawnHandlerType">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="ATTACKER"/>

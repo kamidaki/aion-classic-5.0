@@ -32,6 +32,10 @@
 		<xs:attribute name="legion_gp" type="xs:int" />
 		<xs:attribute name="occupy_count" type="xs:int" />
 		<xs:attribute name="kinah_rewards" type="IntListType" />
+		<xs:attribute name="camp_protect_time" type="xs:int" default="0" />
+		<xs:attribute name="camp_reset_time" type="xs:int" default="0" />
+		<xs:attribute name="camp_pvp_zone" type="xs:string" />
+		<xs:attribute name="camp_default_race" type="SiegeRaceType" />
 	</xs:complexType>
 
 	<xs:simpleType name="SiegeType">
@@ -39,6 +43,7 @@
 			<xs:enumeration value="FORTRESS" />
 			<xs:enumeration value="ARTIFACT" />
 			<xs:enumeration value="OUTPOST" />
+			<xs:enumeration value="CAMP" />
 			<xs:enumeration value="AGENT_FIGHT" />
 			<xs:enumeration value="INDUN" />
 			<xs:enumeration value="UNDERPASS" />

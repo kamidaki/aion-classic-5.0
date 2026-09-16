@@ -11,6 +11,9 @@ public enum SiegeType {
 	OUTPOST,
 	AGENT_FIGHT,
 
+	/** Torre "Watching Eye" de Tiamaranta Mesa (camp war 5.0). */
+	CAMP,
+
 	// Unk
 	INDUN,
 	UNDERPASS;

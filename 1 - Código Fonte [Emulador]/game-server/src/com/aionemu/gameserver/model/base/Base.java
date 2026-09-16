@@ -107,6 +107,9 @@ public abstract class Base<T extends BaseLocation> {
 			if (isStopped.get())
 				return;
 			spawnBySpawnHandler(SpawnHandlerType.BOSS, getOccupier());
+			// Oficial 5.0: os objetos de vulnerabilidade nascem no mesmo instante do boss. Na captura de Tiamaranta
+			// (2026-09-13, t=2750,5 s) o 802366 (MistOn) veio na mesma rajada do S_PUT_NPC do boss, e some com ele.
+			spawnBySpawnHandler(SpawnHandlerType.GUARDIAN, getOccupier());
 			SM_SYSTEM_MESSAGE bossSpawnMsg = getBossSpawnMsg();
 			if (bossSpawnMsg != null && flag != null && flag.getPosition() != null)
 				PacketSendUtility.broadcastToMap(flag.getPosition().getWorldMapInstance(), bossSpawnMsg);
@@ -114,7 +117,7 @@ public abstract class Base<T extends BaseLocation> {
 		}, getBossSpawnDelay());
 	}
 
-	private void scheduleAssault() {
+	protected void scheduleAssault() {
 		assaultTask = ThreadPoolManager.getInstance().schedule(() -> {
 			if (isStopped.get())
 				return;

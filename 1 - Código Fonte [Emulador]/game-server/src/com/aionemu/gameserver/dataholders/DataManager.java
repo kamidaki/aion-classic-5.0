@@ -90,6 +90,7 @@ public final class DataManager {
 	public static RiftData RIFT_DATA;
 	public static RoadData ROAD_DATA;
 	public static ShieldData SHIELD_DATA;
+	public static CampWorldStateData CAMP_WORLD_STATE_DATA;
 	public static SiegeLocationData SIEGE_LOCATION_DATA;
 	public static SkillChargeData SKILL_CHARGE_DATA;
 	public static SkillData SKILL_DATA;
@@ -165,6 +166,7 @@ public final class DataManager {
 		NPC_FACTIONS_DATA = data.npcFactionsData;
 		NPC_SKILL_DATA = data.npcSkillData;
 		PET_SKILL_DATA = data.petSkillData;
+		CAMP_WORLD_STATE_DATA = data.campWorldStateData;
 		SIEGE_LOCATION_DATA = data.siegeLocationData;
 		VORTEX_DATA = data.vortexData;
 		RIFT_DATA = data.riftData;

@@ -125,6 +125,9 @@ public class StaticData {
 	@XmlElement(name = "pet_skill_templates")
 	public PetSkillData petSkillData;
 
+	@XmlElement(name = "camp_world_states")
+	public CampWorldStateData campWorldStateData;
+
 	@XmlElement(name = "siege_locations")
 	public SiegeLocationData siegeLocationData;
 

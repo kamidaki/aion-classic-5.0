@@ -2786,77 +2786,13 @@
 			<spot x="2749.8906" y="2600.5161" z="351.625" h="0"/>
 		</spawn>
 		<!-- Ambargono Krotan de alto escalão -->
-		<spawn npc_id="274035" respawn_time="295">
-			<spot x="1098.7799" y="1525.0272" z="268.125" h="105"/>
-			<spot x="1078.986" y="1514.8175" z="266.625" h="30"/>
-			<spot x="1075.8077" y="1504.6027" z="265.5" h="30"/>
-		</spawn>
 		<!-- Curador de Krotan de baixo escalão -->
-		<spawn npc_id="274036" respawn_time="295">
-			<spot x="1078.536" y="1501.8368" z="262.625" h="50"/>
-			<spot x="1074.9463" y="1490.2549" z="261.25" h="60"/>
-			<spot x="1087.4646" y="1521.9712" z="359.2843" h="20"/>
-			<spot x="1094.9833" y="1527.9497" z="269.0" h="0"/>
-			<spot x="1062.0039" y="1508.29" z="359.6829" h="110"/>
-			<spot x="1083.2852" y="1508.2813" z="359.3833" h="80"/>
-		</spawn>
 		<!-- Curador de Krotan de baixo escalão -->
-		<spawn npc_id="274037" respawn_time="295">
-			<spot x="1065.8289" y="1465.8843" z="262.5" h="50"/>
-			<spot x="1088.7183" y="1508.6295" z="359.921" h="80"/>
-			<spot x="1081.4567" y="1520.9746" z="359.822" h="20"/>
-			<spot x="1109.1089" y="1521.5687" z="363.5145" h="50"/>
-			<spot x="1094.0693" y="1530.2715" z="269.375" h="0"/>
-			<spot x="1080.0319" y="1499.4897" z="262.125" h="50"/>
-		</spawn>
 		<!-- Curador de Krotan no meio do ranking -->
-		<spawn npc_id="274038" respawn_time="295">
-			<spot x="1076.9371" y="1518.1708" z="267.25" h="110"/>
-			<spot x="1080.8978" y="1502.7531" z="263.0" h="50"/>
-			<spot x="1069.2766" y="1545.9506" z="264.875" h="0"/>
-			<spot x="1103.7924" y="1509.0752" z="265.375" h="110"/>
-			<spot x="1070.2556" y="1520.4202" z="266.25" h="50"/>
-			<spot x="1096.7401" y="1511.7322" z="268.125" h="50"/>
-			<spot x="1078.916" y="1512.47" z="359.6612" h="80"/>
-			<spot x="1092.1344" y="1517.4602" z="359.5622" h="20"/>
-			<spot x="1092.6711" y="1526.7374" z="268.625" h="0"/>
-		</spawn>
 		<!-- Oficial de funcionários de Krotan no meio -->
-		<spawn npc_id="274077" respawn_time="295">
-			<spot x="2103.6777" y="954.5821" z="310.214" h="30"/>
-			<spot x="2119.6873" y="967.5254" z="309.7027" h="110"/>
-			<spot x="2101.718" y="942.4331" z="309.3772" h="50"/>
-		</spawn>
 		<!-- Oficial de funcionários de Krotan de alto escalão -->
-		<spawn npc_id="274078" respawn_time="295">
-			<spot x="2087.5415" y="946.8082" z="391.5761" h="110"/>
-			<spot x="2108.2444" y="947.9739" z="389.2832" h="80"/>
-			<spot x="2123.6658" y="978.2543" z="300.2175" h="15"/>
-			<spot x="2117.5" y="968.5" z="310.7027" h="110"/>
-			<spot x="2112.5603" y="961.5337" z="389.2832" h="20"/>
-			<spot x="2105.75" y="941.25" z="310.7027" h="50"/>
-		</spawn>
 		<!-- Oficial de funcionários de Krotan de alto escalão -->
-		<spawn npc_id="274079" respawn_time="295">
-			<spot x="2107.1831" y="960.9019" z="389.2832" h="20"/>
-			<spot x="2106.75" y="938.75" z="310.7027" h="50"/>
-			<spot x="2104.2175" y="951.4388" z="389.2832" h="80"/>
-			<spot x="2132.9148" y="962.3874" z="391.5761" h="50"/>
-			<spot x="2099.6553" y="988.0286" z="299.9464" h="0"/>
-			<spot x="2115.7185" y="970.6281" z="310.9527" h="110"/>
-		</spawn>
 		<!-- Escoteiro Krotan de baixo escalão -->
-		<spawn npc_id="274080" respawn_time="295">
-			<spot x="2088.9993" y="930.9697" z="300.0055" h="110"/>
-			<spot x="2101.8357" y="957.7357" z="310.7027" h="110"/>
-			<spot x="2128.4082" y="948.8337" z="281.5" h="110"/>
-			<spot x="2116.312" y="957.9798" z="389.2832" h="20"/>
-			<spot x="2095.1624" y="960.2955" z="310.7027" h="50"/>
-			<spot x="2113.2649" y="948.4253" z="389.2832" h="80"/>
-			<spot x="2108.25" y="942.25" z="310.7027" h="50"/>
-			<spot x="2115.0" y="967.5" z="310.7027" h="110"/>
-			<spot x="2121.3594" y="951.3293" z="310.7027" h="50"/>
-		</spawn>
 		<!-- Guarda-costas Krotan de baixo escalão -->
 		<spawn npc_id="274119" respawn_time="295">
 			<spot x="2110.1257" y="2140.2788" z="297.0" h="45"/>
@@ -2951,62 +2887,17 @@
 			<spot x="1047.0244" y="207.732" z="209.125" h="100"/>
 		</spawn>
 		<!-- Ellest Miren Escoteiro -->
-		<spawn npc_id="274539" respawn_time="295">
-			<spot x="1905.1694" y="2753.8669" z="276.3688" h="23"/>
-		</spawn>
 		<!-- Elyos parece escolher -->
-		<spawn npc_id="274540" respawn_time="295">
-			<spot x="1908.1187" y="2730.2009" z="215.125" h="0"/>
-			<spot x="1915.1016" y="2759.5671" z="217.5" h="0"/>
-		</spawn>
 		<!-- Elyos parece escolher -->
-		<spawn npc_id="274541" respawn_time="295">
-			<spot x="1897.9417" y="2763.0259" z="217.625" h="10"/>
-			<spot x="1891.0547" y="2733.324" z="218.0" h="110"/>
-		</spawn>
 		<!-- Oficial de Elyos Miren -->
-		<spawn npc_id="274542" respawn_time="295">
-			<spot x="1910.532" y="2745.1528" z="216.375" h="53"/>
-			<spot x="1896.3796" y="2749.1191" z="217.0" h="113"/>
-		</spawn>
 		<!-- ASMODIAN KROTAN Escoteiro -->
-		<spawn npc_id="274599" respawn_time="295">
-			<spot x="2804.6216" y="1181.8018" z="241.7264" h="0"/>
-		</spawn>
 		<!-- Asmodiano Krotan Triar -->
-		<spawn npc_id="274600" respawn_time="295">
-			<spot x="2781.3452" y="1173.0256" z="178.25" h="60"/>
-			<spot x="2811.6013" y="1172.8564" z="179.25" h="0"/>
-		</spawn>
 		<!-- Asmodiano Krotan Triar -->
-		<spawn npc_id="274601" respawn_time="295">
-			<spot x="2781.3452" y="1190.9965" z="178.0" h="60"/>
-			<spot x="2811.6013" y="1191.2319" z="179.625" h="0"/>
-		</spawn>
 		<!-- Oficial de Krotan Asmodiano -->
-		<spawn npc_id="274602" respawn_time="295">
-			<spot x="2797.0" y="1189.5" z="180.125" h="90"/>
-			<spot x="2797.0" y="1174.5" z="180.25" h="30"/>
-		</spawn>
 		<!-- Escoteiro de Kysis Asmodiano -->
-		<spawn npc_id="274659" respawn_time="295">
-			<spot x="2955.8074" y="1837.2935" z="267.5329" h="0"/>
-		</spawn>
 		<!-- Asmodiano Kyis Triar -->
-		<spawn npc_id="274660" respawn_time="295">
-			<spot x="2964.0" y="1828.4106" z="204.875" h="0"/>
-			<spot x="2932.5" y="1828.5258" z="204.75" h="60"/>
-		</spawn>
 		<!-- Asmodiano Kyis Triar -->
-		<spawn npc_id="274661" respawn_time="295">
-			<spot x="2964.0" y="1846.5895" z="204.875" h="0"/>
-			<spot x="2932.5" y="1846.0496" z="204.75" h="60"/>
-		</spawn>
 		<!-- Oficial de Kysis Asmodiano -->
-		<spawn npc_id="274662" respawn_time="295">
-			<spot x="2948.5" y="1845.0" z="204.875" h="90"/>
-			<spot x="2948.5" y="1830.0" z="204.875" h="30"/>
-		</spawn>
 		<!-- Localizador -->
 		<spawn npc_id="279016" respawn_time="295">
 			<spot x="2496.8" y="1548.0" z="232.875" h="105"/>
@@ -4027,12 +3918,9 @@
 		</spawn>
 		<!-- NPC_802222 -->
 		<spawn npc_id="802222" respawn_time="295">
-			<spot x="1896.7172" y="2735.7913" z="281.5908" h="0"/>
 			<spot x="2810.2561" y="565.135" z="148.0008" h="0"/>
 			<spot x="2530.8357" y="2941.7117" z="368.2306" h="0"/>
-			<spot x="1104.925" y="1527.4" z="360.0" h="66"/>
 			<spot x="2143.325" y="2156.95" z="400.0" h="66"/>
-			<spot x="2092.8999" y="945.3" z="389.8306" h="10"/>
 		</spawn>
 		<!-- NPC_802223 -->
 		<spawn npc_id="802223" respawn_time="295">
@@ -4059,13 +3947,7 @@
 			<spot x="2432.3831" y="176.4139" z="399.2194" h="0"/>
 		</spawn>
 		<!-- Kiton -->
-		<spawn npc_id="802235" respawn_time="295">
-			<spot x="790.7435" y="2788.5679" z="340" h="0"/>
-		</spawn>
 		<!-- Kiton -->
-		<spawn npc_id="802236" respawn_time="295">
-			<spot x="2645.4094" y="2414.0366" z="390" h="0"/>
-		</spawn>
 		<!-- Kiton -->
 		<spawn npc_id="802238" respawn_time="295">
 			<spot x="357.6007" y="1101.983" z="313.2638" h="0"/>
@@ -4079,17 +3961,8 @@
 			<spot x="1039.1932" y="194.6765" z="270" h="0"/>
 		</spawn>
 		<!-- Kiton -->
-		<spawn npc_id="802245" respawn_time="295">
-			<spot x="1891.7506" y="2740.0542" z="280.5315" h="0"/>
-		</spawn>
 		<!-- Kiton -->
-		<spawn npc_id="802247" respawn_time="295">
-			<spot x="2785.4487" y="1175.5112" z="240" h="0"/>
-		</spawn>
 		<!-- Kiton -->
-		<spawn npc_id="802249" respawn_time="295">
-			<spot x="2934.8455" y="1837.3295" z="270" h="0"/>
-		</spawn>
 		<!-- Hirakis -->
 		<spawn npc_id="802251" respawn_time="295">
 			<spot x="1545.4" y="323.2299" z="420.1266" h="0"/>
@@ -4115,13 +3988,7 @@
 			<spot x="2432.3831" y="176.4139" z="399.2194" h="0"/>
 		</spawn>
 		<!-- Salgueiro -->
-		<spawn npc_id="802257" respawn_time="295">
-			<spot x="790.7435" y="2788.5679" z="340" h="0"/>
-		</spawn>
 		<!-- Salgueiro -->
-		<spawn npc_id="802258" respawn_time="295">
-			<spot x="2645.4094" y="2414.0366" z="390" h="0"/>
-		</spawn>
 		<!-- Salgueiro -->
 		<spawn npc_id="802260" respawn_time="295">
 			<spot x="357.6007" y="1101.983" z="313.2638" h="0"/>
@@ -4137,17 +4004,8 @@
 			<spot x="1039.1932" y="194.6765" z="270" h="0"/>
 		</spawn>
 		<!-- Salgueiro -->
-		<spawn npc_id="802267" respawn_time="295">
-			<spot x="1891.7506" y="2740.0542" z="280.5315" h="0"/>
-		</spawn>
 		<!-- Salgueiro -->
-		<spawn npc_id="802269" respawn_time="295">
-			<spot x="2785.4487" y="1175.5112" z="240" h="0"/>
-		</spawn>
 		<!-- Salgueiro -->
-		<spawn npc_id="802271" respawn_time="295">
-			<spot x="2934.8455" y="1837.3295" z="270" h="0"/>
-		</spawn>
 		<!-- Creaks -->
 		<spawn npc_id="802273" respawn_time="295">
 			<spot x="1486.2712" y="2739.0056" z="437.728" h="0"/>
@@ -4173,37 +4031,22 @@
 			<spot x="1140.0725" y="2683.428" z="265.5" h="0"/>
 		</spawn>
 		<!-- NPC_802345 -->
-		<spawn npc_id="802345" respawn_time="295">
-			<spot x="1896.8748" y="2748.0098" z="217.0" h="0"/>
-		</spawn>
 		<!-- NPC_802348 -->
 		<spawn npc_id="802348" respawn_time="295">
 			<spot x="2820.5139" y="569.8583" z="85.625" h="0"/>
 		</spawn>
 		<!-- NPC_802351 -->
-		<spawn npc_id="802351" respawn_time="295">
-			<spot x="2793.8789" y="1182.0728" z="180.375" h="0"/>
-		</spawn>
 		<!-- NPC_802354 -->
 		<spawn npc_id="802354" respawn_time="295">
 			<spot x="2524.8733" y="2954.3555" z="296.75" h="0"/>
 		</spawn>
 		<!-- NPC_802357 -->
-		<spawn npc_id="802357" respawn_time="295">
-			<spot x="2946.8489" y="1837.4004" z="204.875" h="0"/>
-		</spawn>
 		<!-- NPC_802360 -->
 		<spawn npc_id="802360" respawn_time="295">
 			<spot x="1929.7456" y="1537.7512" z="244.0922" h="0"/>
 		</spawn>
 		<!-- NPC_802361 -->
-		<spawn npc_id="802361" respawn_time="295">
-			<spot x="1084.3363" y="1514.4855" z="266.875" h="0"/>
-		</spawn>
 		<!-- NPC_802362 -->
-		<spawn npc_id="802362" respawn_time="295">
-			<spot x="2107.2373" y="954.6417" z="316.3926" h="0"/>
-		</spawn>
 		<!-- NPC_802363 -->
 		<spawn npc_id="802363" respawn_time="295">
 			<spot x="2117.8799" y="2150.1819" z="297.625" h="0"/>
@@ -4217,13 +4060,7 @@
 			<spot x="2447.9917" y="168.5786" z="322.125" h="0"/>
 		</spawn>
 		<!-- NPC_802366 -->
-		<spawn npc_id="802366" respawn_time="295">
-			<spot x="806.8731" y="2783.4475" z="265.25" h="0"/>
-		</spawn>
 		<!-- NPC_802367 -->
-		<spawn npc_id="802367" respawn_time="295">
-			<spot x="2658.3533" y="2403.8389" z="309.5" h="0"/>
-		</spawn>
 		<!-- NPC_802368 -->
 		<spawn npc_id="802368" respawn_time="295">
 			<spot x="533.3926" y="1713.9543" z="273.0" h="0"/>
@@ -4257,25 +4094,16 @@
 			<spot x="1140.1067" y="2683.4607" z="265.5" h="0"/>
 		</spawn>
 		<!-- NPC_802376 -->
-		<spawn npc_id="802376" respawn_time="295">
-			<spot x="1896.9089" y="2748.0425" z="217.0" h="0"/>
-		</spawn>
 		<!-- NPC_802377 -->
 		<spawn npc_id="802377" respawn_time="295">
 			<spot x="2820.5481" y="569.891" z="85.625" h="0"/>
 		</spawn>
 		<!-- NPC_802378 -->
-		<spawn npc_id="802378" respawn_time="295">
-			<spot x="2793.9131" y="1182.1055" z="180.375" h="0"/>
-		</spawn>
 		<!-- NPC_802379 -->
 		<spawn npc_id="802379" respawn_time="295">
 			<spot x="2524.9075" y="2954.3882" z="296.75" h="0"/>
 		</spawn>
 		<!-- NPC_802380 -->
-		<spawn npc_id="802380" respawn_time="295">
-			<spot x="2946.8831" y="1837.4331" z="204.875" h="0"/>
-		</spawn>
 		<!-- NPC_802381 -->
 		<spawn npc_id="802381" respawn_time="295">
 			<spot x="1929.7798" y="1537.7839" z="246.1592" h="0"/>
@@ -4401,15 +4229,7 @@
 			<spot x="2435.5022" y="181.1188" z="400" h="0"/>
 		</spawn>
 		<!-- Engolido -->
-		<spawn npc_id="802456" respawn_time="295">
-			<spot x="790.5" y="2782.9065" z="340.7028" h="0"/>
-			<spot x="790.5" y="2782.9065" z="340.7028" h="0"/>
-		</spawn>
 		<!-- Duro -->
-		<spawn npc_id="802457" respawn_time="295">
-			<spot x="2649.5049" y="2416.9153" z="390" h="0"/>
-			<spot x="2649.5049" y="2416.9153" z="390" h="0"/>
-		</spawn>
 		<!-- NPC_802459 -->
 		<spawn npc_id="802459" respawn_time="295">
 			<spot x="373.1113" y="1120.6509" z="316.6209" h="23"/>
@@ -4439,17 +4259,11 @@
 			<spot x="1152.8209" y="2675.5857" z="395.3709" h="58"/>
 		</spawn>
 		<!-- NPC_802466 -->
-		<spawn npc_id="802466" respawn_time="295">
-			<spot x="1910.8043" y="2758.2007" z="277.7175" h="58"/>
-		</spawn>
 		<!-- NPC_802467 -->
 		<spawn npc_id="802467" respawn_time="295">
 			<spot x="2817.1301" y="557.7823" z="395.3709" h="60"/>
 		</spawn>
 		<!-- NPC_802468 -->
-		<spawn npc_id="802468" respawn_time="295">
-			<spot x="2785.9197" y="1183.6061" z="395.3709" h="60"/>
-		</spawn>
 		<!-- NPC_802469 -->
 		<spawn npc_id="802469" respawn_time="295">
 			<spot x="2536.2913" y="2964.1858" z="361.773" h="60"/>

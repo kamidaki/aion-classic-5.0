@@ -11,11 +11,8 @@ import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.base.*;
+import com.aionemu.gameserver.model.siege.CampLocation;
 import com.aionemu.gameserver.model.templates.base.BaseTemplate;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
-import com.aionemu.gameserver.utils.PacketSendUtility;
-import com.aionemu.gameserver.world.World;
-import com.aionemu.gameserver.world.WorldMapInstance;
 
 /**
  * @author Lost Academy Team & Durak
@@ -92,6 +89,9 @@ public class BaseService {
 	 */
 	private Base<?> newBase(int id) {
 		BaseLocation loc = allBaseLocations.get(id);
+		CampLocation camp = CampWarService.getInstance().getCamp(id);
+		if (camp != null)
+			return new CampBase(loc, camp); // torre de Tiamaranta: quem manda nas fases e o CampWarService
 		return switch (loc.getType()) {
 			case CASUAL -> new CasualBase(loc);
 			case STAINED -> new StainedBase((StainedBaseLocation) loc);
@@ -112,20 +112,7 @@ public class BaseService {
 
 		start(id);
 
-		// Broadcast conquest message to the world map
-		if (newOccupier != null && newOccupier != BaseOccupier.BALAUR) {
-			Base<?> newBase = activeBases.get(id);
-			if (newBase != null) {
-				int worldId = loc.getWorldId();
-				WorldMapInstance mapInstance = World.getInstance().getWorldMap(worldId).getMainWorldMapInstance();
-				if (mapInstance != null) {
-					String raceName = newOccupier == BaseOccupier.ELYOS ? "Elyos" : "Asmodians";
-					String baseName = "Base " + id;
-					PacketSendUtility.broadcastToMap(mapInstance,
-						SM_SYSTEM_MESSAGE.STR_CAMP_GUILD_WIN_FORT(raceName, "", baseName));
-				}
-			}
-		}
+		// O anuncio da conquista e do CampWarService, que tem o nome da torre e da legiao (STR_CAMP_*).
 
 		if (loc instanceof StainedBaseLocation coloredLoc)
 			handleStainedFeatures(coloredLoc.getColor(), newOccupier);
