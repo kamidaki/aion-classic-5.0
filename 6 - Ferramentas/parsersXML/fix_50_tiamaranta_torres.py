@@ -13,11 +13,17 @@ Pelo nome interno do client_npcs.xml, que e sistematico:
   LDF4b_<torre>_Boss_{Li|Da|Dr}_<nivel>                    Watching Eye (BOSS)
   LDF4b_<torre>_Guard_[MistOn_|MistOff_]{Li|Da|Dr}_<papel> guarnicao (As/Fi/Pr/Wi/Seeker)
   LDF4b_WindBox_Setting_Tower_{S|M|L}_<nn>                 geiser de subida
+  LDF4b_WindBox_Setting_Tower_L_<nn>_UP                    segundo geiser das Greater, so com dono de raca
   LDF4b_MistOn_Tower_{S|M|L}_<nn>                          MistOn (so vulneravel)
-  LDF4b_{Small|Middle|Large}Tower_Teleport_<nn>            estatua de teleporte (so de raca)
-  LDF4b_Quest_NPC_{Li|Da}_{Small|Middle|Large}_<n>         NPC de quest da raca dona
+  LDF4b_{Small|Middle|Big}Tower_Teleport_<nn>              estatua de teleporte (so de raca)
+  LDF4b_Quest_NPC_{Li|Da}_{Small|Middle|Big}_<n>           NPC de quest da raca dona (tribo USEALL, ver TRIBO_QUEST)
   802222 LDF4b_Placeable_OBJ_LINK_Noshow_NPC               corredor de avanco, pela torre mais proxima
-S/Small = Lesser (40000+n), M/Middle = Medium (4410+n), L/Large = Greater (4400+n).
+S/Small = Lesser (40000+n), M/Middle = Medium (4410+n), L/Big = Greater (4400+n). Quest_NPC_*_Completion_* nao e de
+torre: nasce sempre, no spawn comum.
+
+Estatua e NPC de quest sem captura com dono de raca saem do client_world_ldf4b.xml: o <npc_info> deles traz
+<abyss_info> ALi (Elyos) ou ADa (Asmodiano). Ajuste feito em jogo com //fixspawn no Bases (z/h diferente do HEAD no
+mesmo npc e x/y) e reaplicado por cima do que o gerador escreve.
 
 Regras medidas (captura de 2026-09-13 com a chave 0x87546CA107DC27B8, 2026-09-15, 2026-09-16 e 2026-09-17):
   * a guarnicao tem os mesmos pontos para qualquer dono (4413 e 40010, capturadas com dois donos);
@@ -70,19 +76,18 @@ CORREDOR = 802222
 OCUPANTES = ("ELYOS", "ASMODIANS", "BALAUR")
 GUARDAS = ("FIGHTER", "PRIEST", "WIZARD", "ASSASSIN", "SEEKER")
 PATRULHAM = ("ASSASSIN", "SEEKER")          # medido na 4413: ~35 m e ~12 m
-# guarnicao por tamanho, confirmada entre torres independentes: Greater 4401 = 4402, Medium 4413 = 4414, Lesser
-# 40008 = 40010 = 40012 (e depois 4403, 4411, 4412, 40001, 40002, 40005 na captura de 17/09)
-GUARNICAO = {"L": dict(FIGHTER=5, PRIEST=5, WIZARD=8, ASSASSIN=3, SEEKER=1),
-             "M": dict(FIGHTER=6, PRIEST=5, WIZARD=5, ASSASSIN=2, SEEKER=1),
-             "S": dict(FIGHTER=2, PRIEST=2, WIZARD=2, ASSASSIN=1, SEEKER=1)}
-
-
-def tamanho_de(torre):
-    return "L" if 4400 < torre < 4410 else "M" if 4410 < torre < 4420 else "S" if 40000 < torre < 40100 else None
 POR_DONO = ("WINDBOX", "CORREDOR")          # ponto muda entre Balaur e raca
 SO_DE_RACA = ("TELEPORT", "QUEST")
 SIGLA = {"L": 0, "Li": 0, "D": 1, "Da": 1, "Dr": 2}
-TAMANHO = {"S": 40000, "Small": 40000, "M": 4410, "Middle": 4410, "L": 4400, "Large": 4400}
+TAMANHO = {"S": 40000, "Small": 40000, "M": 4410, "Middle": 4410, "L": 4400, "Large": 4400, "Big": 4400}
+# WindBox da fase de raca das Greater (LDF4b_WindBox_Setting_Tower_L_<n>_UP): nas capturas convive com o WindBox normal
+# (4402 Asmodiana e 4403 Elyos, 2,5-3,8 m em x) e nao aparece com Balaur. A 4401 nunca foi vista de raca com ele na visao;
+# o ponto vem do dump oficial do SpawnParser (spawn_0_Monster/NPC.xml, 2026-09-16), o mesmo padrao de deslocamento.
+WINDBOX_UP_SEM_CAPTURA = {4401: dict(x=1089.7, y=1514.4, z=282.1, h=0)}
+# NPC de quest nasce pela base com tribo GENERAL/GENERAL_DARK, e o checkSiegeRelation torna esse NPC atacavel para a
+# outra raca. O oficial manda o NPC de quest da raca inimiga como FRIEND (tipo 38 em 35 de 37 S_PUT_NPC, 2 em PEACE):
+# USEALL e amigo das duas racas e fica fora do checkSiegeRelation.
+TRIBO_QUEST = "USEALL"
 PAPEL_GUARDA = {"As": "ASSASSIN", "Fi": "FIGHTER", "Pr": "PRIEST", "Wi": "WIZARD", "Seeker": "SEEKER"}
 # irmao que ja existe nos dois npc_templates e serve de molde para criar o que faltar (mesmo papel e dono)
 MOLDE = {("BOSS", 0): 274208, ("BOSS", 1): 274213, ("BOSS", 2): 274218,
@@ -93,7 +98,17 @@ MOLDE = {("BOSS", 0): 274208, ("BOSS", 1): 274213, ("BOSS", 2): 274218,
          ("SEEKER", 0): 274231, ("SEEKER", 1): 274232, ("SEEKER", 2): 274233,
          ("TORRE", 0): 802313, ("TORRE", 1): 802314, ("TORRE", 2): 802315,
          ("QUEST", 0): 802235, ("QUEST", 1): 802257,
-         ("WINDBOX", None): 802282, ("MISTON", None): 802366, ("TELEPORT", None): 802456, ("CORREDOR", None): 802222}
+         ("WINDBOX", None): 802282, ("WINDBOX_UP", None): 802282, ("MISTON", None): 802366, ("TELEPORT", None): 802456,
+         ("CORREDOR", None): 802222}
+# guarnicao por tamanho, confirmada entre torres independentes: Greater 4401 = 4402, Medium 4413 = 4414, Lesser
+# 40008 = 40010 = 40012 (e depois 4403, 4411, 4412, 40001, 40002, 40005 na captura de 17/09)
+GUARNICAO = {"L": dict(FIGHTER=5, PRIEST=5, WIZARD=8, ASSASSIN=3, SEEKER=1),
+             "M": dict(FIGHTER=6, PRIEST=5, WIZARD=5, ASSASSIN=2, SEEKER=1),
+             "S": dict(FIGHTER=2, PRIEST=2, WIZARD=2, ASSASSIN=1, SEEKER=1)}
+
+
+def tamanho_de(torre):
+    return "L" if 4400 < torre < 4410 else "M" if 4410 < torre < 4420 else "S" if 40000 < torre < 40100 else None
 
 
 # ---------------------------------------------------------------- cliente
@@ -125,6 +140,26 @@ def le_cliente():
     return out
 
 
+def le_mundo():
+    """npcId -> [(x, y, z, abyss_info)] dos <npc_info> de Tiamaranta que so existem com um dono (ALi, ADa, ADr)."""
+    caminho = os.path.join(CLIENTE, "world", "client_world_ldf4b.xml")
+    bruto = open(caminho, "rb").read()
+    import aion_bxml
+    texto = aion_bxml.decodifica(bruto) if aion_bxml.e_bxml(caminho) else bruto.decode("utf-8", "ignore")
+    out = collections.defaultdict(list)
+    for m in re.finditer(r"<npc_info>(.*?)</npc_info>", texto, re.S):
+        dono = re.search(r"<abyss_info>([^<]*)</abyss_info>", m.group(1))
+        if not dono:
+            continue
+        n = int(re.search(r"<nameid>(\d+)</nameid>", m.group(1)).group(1))
+        x, y, z = (float(v) for v in re.search(r"<x>([^<]+)</x>\s*<y>([^<]+)</y>\s*<z>([^<]+)</z>", m.group(1)).groups())
+        out[n].append((x, y, z, dono.group(1)))
+    return out
+
+
+MUNDO = {}
+
+
 def le_strings():
     """STR_... -> id, de todos os client_strings."""
     out = {}
@@ -149,16 +184,16 @@ def papel_de(nome):
     m = re.match(r"LDF4b_(\d{4,5})_Guard_((?:Mist(?:On|Off)_)?)(Li|Da|Dr)_(As|Fi|Pr|Wi|Seeker)$", nome)
     if m:
         return int(m.group(1)), PAPEL_GUARDA[m.group(4)], SIGLA[m.group(3)], m.group(2)
-    m = re.match(r"LDF4b_WindBox_Setting_Tower_([SML])_(\d+)$", nome)
+    m = re.match(r"LDF4b_WindBox_Setting_Tower_([SML])_(\d+)(_UP)?$", nome)
     if m:
-        return TAMANHO[m.group(1)] + int(m.group(2)), "WINDBOX", None, None
+        return TAMANHO[m.group(1)] + int(m.group(2)), "WINDBOX_UP" if m.group(3) else "WINDBOX", None, None
     m = re.match(r"LDF4b_MistOn_Tower_([SML])_(\d+)$", nome)
     if m:
         return TAMANHO[m.group(1)] + int(m.group(2)), "MISTON", None, None
-    m = re.match(r"LDF4b_(Small|Middle|Large)Tower_Teleport_(\d+)$", nome)
+    m = re.match(r"LDF4b_(Small|Middle|Large|Big)Tower_Teleport_(\d+)$", nome)
     if m:
         return TAMANHO[m.group(1)] + int(m.group(2)), "TELEPORT", None, None
-    m = re.match(r"LDF4b_Quest_NPC_(Li|Da)_(Small|Middle|Large)_(\d+)$", nome)
+    m = re.match(r"LDF4b_Quest_NPC_(Li|Da)_(Small|Middle|Large|Big)_(\d+)$", nome)
     if m:
         return TAMANHO[m.group(2)] + int(m.group(3)), "QUEST", SIGLA[m.group(1)], None
     if nome == "LDF4b_Placeable_OBJ_LINK_Noshow_NPC":
@@ -435,9 +470,22 @@ def monta_torre(t, pontos, cat, camps, rel):
                 npc = CORREDOR if papel == "CORREDOR" else cat.get((t, papel, None, None))
                 blocos.append(grupo("MERCHANT", npc, pts))
         if i != 2:
+            npc = cat.get((t, "WINDBOX_UP", None, None))
+            if npc:
+                pts = pega("WINDBOX_UP", "RACA")
+                if not pts and t in WINDBOX_UP_SEM_CAPTURA:
+                    pts = [dict(WINDBOX_UP_SEM_CAPTURA[t], static=0, raio=0, papel="WINDBOX_UP")]
+                if pts:
+                    blocos.append(grupo("MERCHANT", npc, pts[:1]))
             for papel in SO_DE_RACA:
-                pts = pega(papel, "RACA")
                 npc = cat.get((t, papel, None if papel == "TELEPORT" else i, None))
+                pts = pega(papel, "RACA")
+                if not pts and npc:
+                    # a captura nao viu esta torre com dono de raca: o npc_info do cliente marca o ponto com abyss_info
+                    pts = [dict(x=x, y=y, z=z, h=0, static=0, raio=0, papel=papel)
+                           for x, y, z, dono in MUNDO.get(npc, []) if dono == ("ALi", "ADa")[i]]
+                    if pts:
+                        rel.append("  %d %s %s: ponto do client_world (abyss_info), sem captura" % (t, ocupante, papel))
                 if pts and npc:
                     blocos.append(grupo("MERCHANT", npc, pts[:1]))
         for papel in GUARDAS:
@@ -458,7 +506,7 @@ def bloco_template(texto, npc):
     return m.group(1) if m else None
 
 
-def ajusta(bloco, npc, cli, strings, medida, criando=False):
+def ajusta(bloco, npc, cli, strings, medida, criando=False, tribo=None):
     """Aplica ao bloco (existente ou copiado do molde) o que o cliente e a captura dizem deste npcId."""
     d = cli[npc]
     novo = re.sub(r'(<npc_template npc_id=")\d+(")', lambda m: m.group(1) + str(npc) + m.group(2), bloco, count=1)
@@ -481,6 +529,7 @@ def ajusta(bloco, npc, cli, strings, medida, criando=False):
     if criando:            # template que ja existe fica com o nome dele (a localizacao pt-BR traduz esse campo)
         atr("name", d["name"])
     atr("name_id", nome_id)
+    atr("tribe", tribo)
     atr("title_id", titulo)
     atr("level", medida.get("lvl"))
     if "upper" in d:
@@ -516,7 +565,7 @@ def templates(usados, cli, cat, strings, medidas, seco):
                 medida.setdefault(k, geral.get(k))
             existente = bloco_template(novo, npc)
             if existente:
-                ajustado = ajusta(existente, npc, cli, strings, medida)
+                ajustado = ajusta(existente, npc, cli, strings, medida, tribo=TRIBO_QUEST if papel == "QUEST" else None)
                 if ajustado != existente:
                     novo = novo.replace(existente, ajustado, 1)
                     corrigidos += 1
@@ -526,7 +575,7 @@ def templates(usados, cli, cat, strings, medidas, seco):
             if not molde:
                 sem_molde.append(npc)
                 continue
-            novo = insere(novo, npc, ajusta(molde, npc, cli, strings, medida, criando=True))
+            novo = insere(novo, npc, ajusta(molde, npc, cli, strings, medida, criando=True, tribo=TRIBO_QUEST if papel == "QUEST" else None))
             criados.append(npc)
         antes, depois = len(re.findall(r"<npc_template npc_id=", texto)), len(re.findall(r"<npc_template npc_id=", novo))
         if depois != antes + len(criados) or not novo.rstrip().endswith("</npc_templates>"):
@@ -538,8 +587,11 @@ def templates(usados, cli, cat, strings, medidas, seco):
 
 
 # ---------------------------------------------------------------- spawn comum e base_locations
-def limpa_spawn_comum(torres, centros, cli, seco):
-    """Tira do spawn comum do mapa o que agora nasce pela base: NPC da torre (pelo nome) e corredor a ate 40 m."""
+def limpa_spawn_comum(torres, centros, cli, seco, balaur_fixo=()):
+    """Tira do spawn comum do mapa o que agora nasce pela base: NPC da torre (pelo nome) e corredor a ate 40 m.
+
+    Tambem sai o que so existe com dono de raca (estatua, NPC de quest, WindBox _UP) das torres que sao sempre Balaur
+    (camp_default_race BALAUR sem camp_reset_time; no S_ABYSS_INFO oficial elas vem com dono 2 e sem ciclo)."""
     for arvore in ARVORES:
         caminho = os.path.join(arvore, "spawns", "Npcs", "800040000_Tiamaranta_Mesa.xml")
         texto = novo = open(caminho, encoding="utf-8", errors="replace").read()
@@ -550,13 +602,14 @@ def limpa_spawn_comum(torres, centros, cli, seco):
             t, papel, _d, _v = papel_de(nome) if nome else (None, None, None, None)
             if papel is None:
                 continue
+            so_de_raca = t in balaur_fixo and (papel in SO_DE_RACA or papel == "WINDBOX_UP")
             spots = re.findall(r'\t\t\t<spot [^>]*/>\n', m.group(2))
             fica = []
             for s in spots:
                 x, y = float(re.search(r'x="([^"]+)"', s).group(1)), float(re.search(r'y="([^"]+)"', s).group(1))
                 dono_do_ponto = t if t is not None else min(centros, key=lambda c: math.dist(centros[c][:2], (x, y)))
                 perto = t is not None or math.dist(centros[dono_do_ponto][:2], (x, y)) <= 40
-                if dono_do_ponto in torres and perto:
+                if (dono_do_ponto in torres and perto) or so_de_raca:
                     tirados[npc] += 1
                 else:
                     fica.append(s)
@@ -569,11 +622,55 @@ def limpa_spawn_comum(torres, centros, cli, seco):
             open(caminho, "w", encoding="utf-8", newline="\n").write(novo)
 
 
+SPOT_BASE = re.compile(r'(<spot x="([^"]+)" y="([^"]+)" z=")([^"]+)(" h=")(\d+)(")')
+
+
+def spots_por_npc(texto):
+    """(npc_id, x, y) -> (z, h) de cada spot do arquivo de base."""
+    out = {}
+    for m in re.finditer(r'<spawn [^>]*npc_id="(\d+)"[^>]*>(.*?)</spawn>', texto, re.S):
+        for s in SPOT_BASE.finditer(m.group(2)):
+            out[(m.group(1), s.group(2), s.group(3))] = (s.group(4), s.group(6))
+    return out
+
+
+def ajustes_manuais(caminho):
+    """Spots cujo z/h no arquivo difere do commit atual: e o //fixspawn gravando em jogo."""
+    import subprocess
+    if not os.path.exists(caminho):
+        return {}
+    rel = os.path.relpath(caminho, RAIZ).replace(os.sep, "/")
+    r = subprocess.run(["git", "-C", RAIZ, "show", "HEAD:" + rel], capture_output=True)
+    if r.returncode:
+        return {}
+    antes, agora = spots_por_npc(r.stdout.decode("utf-8")), spots_por_npc(open(caminho, encoding="utf-8").read())
+    return {k: v for k, v in agora.items() if k in antes and antes[k] != v}
+
+
+def reaplica(xml, ajustes):
+    """xml com o z/h dos ajustes manuais nos spots de mesmo npc_id e x/y; devolve tambem quantos aplicou."""
+    aplicados = 0
+
+    def no_bloco(m):
+        def no_spot(s):
+            nonlocal aplicados
+            v = ajustes.get((m.group(1), s.group(2), s.group(3)))
+            if not v:
+                return s.group(0)
+            aplicados += 1
+            return s.group(1) + v[0] + s.group(5) + v[1] + s.group(7)
+        return m.group(0).replace(m.group(2), SPOT_BASE.sub(no_spot, m.group(2)))
+    return re.sub(r'<spawn [^>]*npc_id="(\d+)"[^>]*>(.*?)</spawn>', no_bloco, xml, flags=re.S), aplicados
+
+
 def grava_base_locations(torres, camps, seco):
     for arvore in ARVORES:
         caminho = os.path.join(arvore, "base", "base_locations.xml")
         texto = open(caminho, encoding="utf-8").read()
-        texto = re.sub(r'\t<!-- Tiamaranta Mesa -->\n(\t<base_location [^>]*world="800040000"[^>]*/>\n)*', "", texto)
+        # tira todo base_location do mapa e os dois comentarios que ja marcaram o bloco; so tirar o comentario antigo
+        # duplicava o bloco a cada execucao (4401 chegou a 4 entradas)
+        texto = re.sub(r'\t<!-- Tiamaranta Mesa[^\n]*-->\n', "", texto)
+        texto = re.sub(r'\t<base_location [^>]*world="%d"[^>]*/>\n' % MAPA, "", texto)
         linhas = ["\t<!-- Tiamaranta Mesa: torres do camp war com guarnicao capturada (fix_50_tiamaranta_torres.py) -->"]
         for t in sorted(torres):
             linhas.append('\t<base_location id="%d" type="CASUAL" world="%d" default_occupier="%s" />' % (t, MAPA, camps[t][1]))
@@ -589,6 +686,7 @@ def main():
     print("1. Cliente...")
     cli, strings = le_cliente(), le_strings()
     cat = catalogo(cli)
+    MUNDO.update(le_mundo())
     camps = camps_do_servidor()
     print("   %d NPCs de LDF4b, %d strings, %d torres no siege_locations" % (len(cli), len(strings), len(camps)))
 
@@ -625,14 +723,16 @@ def main():
            "%s\n\t</spawn_map>\n</spawns>\n") % (MAPA, "\n".join(blocos))
     for arvore in ARVORES:
         caminho = os.path.join(arvore, "spawns", "Bases", "800040000_Tiamaranta.xml")
+        ajustes = ajustes_manuais(caminho)
+        final, aplicados = reaplica(xml, ajustes)
         if not seco:
-            open(caminho, "w", encoding="utf-8", newline="\n").write(xml)
-        print("   " + caminho)
+            open(caminho, "w", encoding="utf-8", newline="\n").write(final)
+        print("   %s\n      ajustes manuais (//fixspawn) reaplicados: %d de %d" % (caminho, aplicados, len(ajustes)))
 
     print("4. base_locations...")
     grava_base_locations(torres, camps, seco)
     print("5. Spawn comum do mapa...")
-    limpa_spawn_comum(set(torres), centros, cli, seco)
+    limpa_spawn_comum(set(torres), centros, cli, seco, {t for t, (ativa, dono) in camps.items() if not ativa and dono == "BALAUR"})
     print("6. Templates (por arvore)...")
     templates(usados, cli, cat, strings, medidas, seco)
     if rel:

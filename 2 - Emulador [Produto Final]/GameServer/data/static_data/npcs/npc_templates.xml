@@ -30825,13 +30825,6 @@
 		<stats maxHp="23691">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
-		<equipment>
-			<item>113101329</item>
-			<item>110101437</item>
-			<item>112101268</item>
-			<item>111101312</item>
-			<item>114101358</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -30992,11 +30985,6 @@
 		<stats maxHp="23691">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
-		<equipment>
-			<item>110900268</item>
-			<item>100001151</item>
-			<item>125003064</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -31004,10 +30992,6 @@
 		<stats maxHp="23691">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
-		<equipment>
-			<item>110900269</item>
-			<item>125003065</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -31015,14 +30999,6 @@
 		<stats maxHp="23691">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
-		<equipment>
-			<item>113601253</item>
-			<item>110601299</item>
-			<item>100001151</item>
-			<item>112601244</item>
-			<item>111601264</item>
-			<item>114601248</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -31030,14 +31006,6 @@
 		<stats maxHp="23691">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
-		<equipment>
-			<item>113601253</item>
-			<item>110601299</item>
-			<item>100001151</item>
-			<item>112601244</item>
-			<item>111601264</item>
-			<item>114601248</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -31052,14 +31020,6 @@
 		<stats maxHp="23691">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
-		<equipment>
-			<item>113601253</item>
-			<item>110601299</item>
-			<item>100001151</item>
-			<item>112601244</item>
-			<item>111601264</item>
-			<item>114601248</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2 3" can_talk_invisible="false" />
 	</npc_template>
@@ -31094,14 +31054,6 @@
 		<stats maxHp="23691">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
-		<equipment>
-			<item>113301313</item>
-			<item>110301344</item>
-			<item>100600759</item>
-			<item>112301233</item>
-			<item>111301289</item>
-			<item>114301346</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -43073,14 +43025,14 @@
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
 		<equipment>
-			<item>113600649</item>
-			<item>110600683</item>
-			<item>101700808</item>
-			<item>163000003</item>
-			<item>112600632</item>
-			<item>111600657</item>
-			<item>114600643</item>
-			<item>125300027</item>
+			<item>125300026</item>
+			<item>110600677</item>
+			<item>113600643</item>
+			<item>114600637</item>
+			<item>112600626</item>
+			<item>111600651</item>
+			<item>100000031</item>
+			<item>115000129</item>
 		</equipment>
 		<bound_radius front="0.2875" side="0.4025" upper="2.3" />
 	</npc_template>
@@ -43089,14 +43041,14 @@
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
 		<equipment>
-			<item>113600649</item>
-			<item>110600683</item>
-			<item>101700808</item>
-			<item>163000003</item>
-			<item>112600632</item>
-			<item>111600657</item>
-			<item>114600643</item>
-			<item>125300027</item>
+			<item>125300026</item>
+			<item>110600677</item>
+			<item>113600643</item>
+			<item>114600637</item>
+			<item>112600626</item>
+			<item>111600651</item>
+			<item>100000031</item>
+			<item>115000129</item>
 		</equipment>
 		<bound_radius front="0.2875" side="0.4025" upper="2.3" />
 	</npc_template>
@@ -43105,14 +43057,14 @@
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
 		<equipment>
-			<item>113601021</item>
-			<item>110601060</item>
-			<item>100001008</item>
-			<item>115001054</item>
-			<item>112601010</item>
-			<item>111601037</item>
-			<item>114601017</item>
-			<item>125300029</item>
+			<item>125300027</item>
+			<item>110600683</item>
+			<item>113600649</item>
+			<item>114600643</item>
+			<item>112600632</item>
+			<item>111600657</item>
+			<item>100000032</item>
+			<item>115000130</item>
 		</equipment>
 		<bound_radius front="0.2875" side="0.4025" upper="2.3" />
 	</npc_template>
@@ -43121,14 +43073,14 @@
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
 		<equipment>
-			<item>113601021</item>
-			<item>110601060</item>
-			<item>100001008</item>
-			<item>115001054</item>
-			<item>112601010</item>
-			<item>111601037</item>
-			<item>114601017</item>
-			<item>125300029</item>
+			<item>125300027</item>
+			<item>110600683</item>
+			<item>113600649</item>
+			<item>114600643</item>
+			<item>112600632</item>
+			<item>111600657</item>
+			<item>100000032</item>
+			<item>115000130</item>
 		</equipment>
 		<bound_radius front="0.2875" side="0.4025" upper="2.3" />
 	</npc_template>
@@ -43183,16 +43135,6 @@
 		<stats maxHp="107415">
 			<speeds walk="1.169" group_walk="1.169" run="6" run_fight="6" group_run_fight="4.5" />
 		</stats>
-		<equipment>
-			<item>113601252</item>
-			<item>110601298</item>
-			<item>101700726</item>
-			<item>163000003</item>
-			<item>112601243</item>
-			<item>111601263</item>
-			<item>114601247</item>
-			<item>125003059</item>
-		</equipment>
 		<bound_radius front="0.891" side="0.61" upper="2.05" />
 	</npc_template>
 	<npc_template npc_id="209397" level="60" name="&lt;Tropa de Ocupação da Fortaleza da Eternidade&gt;" name_id="464927" height="1.98" title_id="464344" group_drop="LIGHT" rank="VETERAN" rating="HERO" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="2000" hpgauge="3" cancel_level="0" sangle="75">
@@ -118151,6 +118093,10 @@
 		<stats maxHp="55000">
 			<speeds walk="1.2" group_walk="1.2" run="8" run_fight="10" group_run_fight="4" />
 		</stats>
+		<equipment>
+			<item>100201296</item>
+			<item>100201297</item>
+		</equipment>
 		<bound_radius front="0.5" side="0.7" upper="4" />
 	</npc_template>
 	<npc_template npc_id="220423" level="65" name="Gurriki Healer" name_id="344824" height="3.64" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="8" arange="2" attack_speed="2040" hpgauge="4" rating="ELITE" rank="EXPERT" race="BEAST" group_drop="NONE">
@@ -118237,6 +118183,9 @@
 		<stats maxHp="55000">
 			<speeds walk="1.2" group_walk="1.2" run="8" run_fight="10" group_run_fight="4" />
 		</stats>
+		<equipment>
+			<item>100901131</item>
+		</equipment>
 		<bound_radius front="0.625" side="0.875" upper="5" />
 	</npc_template>
 	<npc_template npc_id="220436" level="65" name="Gurriki Sorcerer" name_id="344831" height="3.25" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="8" arange="4" attack_speed="2300" hpgauge="4" rating="ELITE" rank="EXPERT" race="BEAST" group_drop="NONE">
@@ -118281,6 +118230,9 @@
 		<stats maxHp="55000">
 			<speeds walk="1.2" group_walk="1.2" run="8" run_fight="10" group_run_fight="4" />
 		</stats>
+		<equipment>
+			<item>100501129</item>
+		</equipment>
 		<bound_radius front="0.45" side="0.63" upper="3.6" />
 	</npc_template>
 	<npc_template npc_id="220443" level="65" name="Marconnut Worker" name_id="344836" height="2.36" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="aggressive" srange="8" arange="8" attack_speed="2100" hpgauge="3" rating="NORMAL" rank="DISCIPLINED" race="BEAST" group_drop="NONE">
@@ -118540,6 +118492,10 @@
 		<stats maxHp="107415">
 			<speeds walk="1.38" group_walk="1.38" run="6" run_fight="8" group_run_fight="8" />
 		</stats>
+		<equipment>
+			<item>100200886</item>
+			<item>100200887</item>
+		</equipment>
 		<bound_radius front="0.35" side="0.49" upper="2.8" />
 	</npc_template>
 	<npc_template npc_id="220500" level="65" name="Protectorate Drakan Superior Mage" name_id="344892" height="4.2" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="8" arange="15" attack_speed="2300" hpgauge="10" rating="ELITE" rank="EXPERT" race="DRAKAN" group_drop="NONE" title_id="344812">
@@ -118731,6 +118687,9 @@
 		<stats maxHp="14000">
 			<speeds walk="1.2" group_walk="1.38" run="6" run_fight="8" group_run_fight="8" />
 		</stats>
+		<equipment>
+			<item>100000997</item>
+		</equipment>
 		<bound_radius front="1.2" side="0.9" upper="3.6" />
 	</npc_template>
 	<npc_template npc_id="220535" level="65" name="Vasharti Cavalry" name_id="344926" height="3.6" tribe="IDYUN_XDRAKAN" type="MONSTER" ai="aggressive" srange="8" arange="2" attack_speed="2100" hpgauge="5" rating="NORMAL" rank="DISCIPLINED" race="DRAKAN" group_drop="NONE" title_id="314425">
@@ -118746,6 +118705,9 @@
 		<stats maxHp="14000">
 			<speeds walk="2" group_walk="2" run="8" run_fight="9" group_run_fight="6" />
 		</stats>
+		<equipment>
+			<item>101700799</item>
+		</equipment>
 		<bound_radius front="2.475" side="2.475" upper="4.1107" />
 	</npc_template>
 	<npc_template npc_id="220537" level="65" name="Vasharti Sikar Scout" name_id="344928" height="5.4" tribe="IDYUN_XDRAKAN" type="MONSTER" ai="useSkillAndDie" srange="15" arange="15" attack_speed="1900" hpgauge="5" rating="NORMAL" rank="DISCIPLINED" race="DRAKAN" group_drop="NONE" title_id="314425">
@@ -119197,7 +119159,7 @@
 		</equipment>
 		<bound_radius front="0.35" side="0.49" upper="2.8" />
 	</npc_template>
-	<npc_template npc_id="220624" level="59" name_id="345014" title_id="345166" name="Dux" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="14" attack_speed="2000" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.50" side="0.50" upper="2.00" /></npc_template>
+	<npc_template npc_id="220624" level="59" name_id="345014" title_id="345166" name="Dux" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="14" attack_speed="2000" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125002283</item><item>110600969</item><item>113600932</item><item>114600927</item><item>112600923</item><item>111600948</item><item>101300656</item></equipment><bound_radius front="0.50" side="0.50" upper="2.00" /></npc_template>
 	<npc_template npc_id="220625" level="65" name_id="345015" name="Dux experiente" height="2.405" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="35000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100201260</item><item>100201260</item><item>125003206</item><item>110301395</item><item>111301338</item><item>114301398</item><item>112301282</item><item>113301362</item></equipment><bound_radius front="0.455" side="0.455" upper="2.405" /></npc_template>
 	<npc_template npc_id="220626" level="65" name_id="345016" name="Mighty Dux" height="2.405" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="35000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100201260</item><item>100201260</item><item>125003206</item><item>110301395</item><item>111301338</item><item>114301398</item><item>112301282</item><item>113301362</item></equipment><bound_radius front="0.455" side="0.455" upper="2.405" /></npc_template>
 	<npc_template npc_id="220627" level="70" name_id="345017" title_id="345166" name="Mighty Dux" height="2.59" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="14" attack_speed="2000" sangle="75" arange="2"><stats maxHp="292083"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100200808</item><item>100200808</item><item>125002279</item><item>110301021</item><item>111300970</item><item>114301025</item><item>113300991</item></equipment><bound_radius front="0.50" side="0.50" upper="2.00" /></npc_template>
@@ -119346,7 +119308,7 @@
 		</equipment>
 		<bound_radius front="0.585" side="0.495" upper="3.24" />
 	</npc_template>
-	<npc_template npc_id="220658" level="59" name_id="345048" title_id="345166" name="Meio de escavação de asmodianos de Krotan" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" ai="aggressive" srange="8" hpgauge="14" attack_speed="2000" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.5" side="0.25" upper="3.6" /></npc_template>
+	<npc_template npc_id="220658" level="59" name_id="345048" title_id="345166" name="Meio de escavação de asmodianos de Krotan" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" ai="aggressive" srange="8" hpgauge="14" attack_speed="2000" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100901093</item></equipment><bound_radius front="0.5" side="0.25" upper="3.6" /></npc_template>
 	<npc_template npc_id="220659" level="65" name="Basrasa Special Triaris" name_id="345049" height="4.5625" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="8" arange="20" attack_speed="1900" hpgauge="10" rating="ELITE" rank="EXPERT" race="DRAKAN" group_drop="NONE" title_id="314402">
 		<stats maxHp="63464">
 			<speeds walk="1.38" group_walk="1.38" run="6" run_fight="8" group_run_fight="8" />
@@ -119899,7 +119861,7 @@
 		</equipment>
 		<bound_radius front="0.52" side="0.44" upper="3.04" />
 	</npc_template>
-	<npc_template npc_id="220751" level="60" name_id="345139" title_id="345166" name="Emboscador Asmodiano Miren de baixo escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" ai="aggressive" srange="8" hpgauge="14" attack_speed="2000" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.45" side="0.225" upper="3.24" /></npc_template>
+	<npc_template npc_id="220751" level="60" name_id="345139" title_id="345166" name="Emboscador Asmodiano Miren de baixo escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" ai="aggressive" srange="8" hpgauge="14" attack_speed="2000" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100501030</item></equipment><bound_radius front="0.45" side="0.225" upper="3.24" /></npc_template>
 	<npc_template npc_id="220752" level="65" name="Crystalfin Skyray" name_id="345140" height="3.85" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="aggressive" srange="8" arange="2" attack_speed="2100" hpgauge="3" rating="NORMAL" rank="SEASONED" race="BEAST" group_drop="NONE">
 		<stats maxHp="35000">
 			<speeds walk="1.07" group_walk="1.38" run="6" run_fight="8" group_run_fight="7" />
@@ -120037,6 +119999,15 @@
 		<stats maxHp="14000">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="8" group_run_fight="8" />
 		</stats>
+		<equipment>
+			<item>125003208</item>
+			<item>110601324</item>
+			<item>113501338</item>
+			<item>114601280</item>
+			<item>112601267</item>
+			<item>111601291</item>
+			<item>100001418</item>
+		</equipment>
 		<bound_radius front="0.35" side="0.49" upper="2.8" />
 	</npc_template>
 	<npc_template npc_id="220796" level="65" name_id="345170" name="Oficial de funcionários de Miren de Baixo Ranking" height="3" rank="DISCIPLINED" rating="NORMAL" tribe="IDYUN_ANCIENT" ai="portal" srange="5" hpgauge="3" attack_speed="2100" sangle="75">
@@ -120129,19 +120100,19 @@
 	</npc_template>
 	<npc_template npc_id="220986" level="65" name_id="345852" title_id="345957" name="Protetor de artefato Asmodiano de Ranking" height="2.405" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="35000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100201260</item><item>100201260</item><item>125003206</item><item>110301395</item><item>111301338</item><item>114301398</item><item>112301282</item><item>113301362</item></equipment><bound_radius front="0.455" side="0.455" upper="2.405" /></npc_template>
 	<npc_template npc_id="220987" level="65" name_id="345853" title_id="345957" name="Protetor de artefato asmodiano de alto escalão" height="2.59" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="35000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100001418</item><item>125003208</item><item>110601324</item><item>111601291</item><item>114601280</item><item>112601267</item><item>113501338</item></equipment><bound_radius front="0.50" side="0.50" upper="2.00" /></npc_template>
-	<npc_template npc_id="220988" level="62" name_id="345854" title_id="345957" name="Protetor de artefato asmodiano de alto escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.36" side="0.36" upper="2.028" /></npc_template>
-	<npc_template npc_id="220989" level="62" name_id="345855" title_id="345957" name="Guardião do artefato de baixo escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="10"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.42" side="0.42" upper="2.22" /></npc_template>
-	<npc_template npc_id="220990" level="62" name_id="345856" title_id="345957" name="Recruta de artefato de baixo escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="10"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.36" side="0.36" upper="2.028" /></npc_template>
-	<npc_template npc_id="220991" level="62" name_id="345857" title_id="345958" name="Guarda de artefato de baixo escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.455" side="0.455" upper="2.405" /></npc_template>
-	<npc_template npc_id="220992" level="62" name_id="345858" title_id="345958" name="Espírito curador de artefato de baixo escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.50" side="0.50" upper="2.00" /></npc_template>
+	<npc_template npc_id="220988" level="62" name_id="345854" title_id="345957" name="Protetor de artefato asmodiano de alto escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125003207</item><item>110550971</item><item>113501330</item><item>114501337</item><item>112501256</item><item>111501313</item><item>101501120</item></equipment><bound_radius front="0.36" side="0.36" upper="2.028" /></npc_template>
+	<npc_template npc_id="220989" level="62" name_id="345855" title_id="345957" name="Guardião do artefato de baixo escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="10"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125003206</item><item>110301395</item><item>113301362</item><item>114301398</item><item>112301282</item><item>111301338</item><item>101700028</item><item>163000003</item></equipment><bound_radius front="0.42" side="0.42" upper="2.22" /></npc_template>
+	<npc_template npc_id="220990" level="62" name_id="345856" title_id="345957" name="Recruta de artefato de baixo escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="10"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300035</item><item>110101476</item><item>113101364</item><item>114101394</item><item>112101300</item><item>111101346</item><item>100600021</item></equipment><bound_radius front="0.36" side="0.36" upper="2.028" /></npc_template>
+	<npc_template npc_id="220991" level="62" name_id="345857" title_id="345958" name="Guarda de artefato de baixo escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125003206</item><item>110301395</item><item>113301362</item><item>114301398</item><item>112301282</item><item>111301338</item><item>100201260</item><item>100201260</item></equipment><bound_radius front="0.455" side="0.455" upper="2.405" /></npc_template>
+	<npc_template npc_id="220992" level="62" name_id="345858" title_id="345958" name="Espírito curador de artefato de baixo escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125003208</item><item>110601324</item><item>113501338</item><item>114601280</item><item>112601267</item><item>111601291</item><item>100001418</item></equipment><bound_radius front="0.50" side="0.50" upper="2.00" /></npc_template>
 	<npc_template npc_id="220993" level="65" name_id="345859" title_id="345958" name="Protetor de artefato de baixo escalão" height="2.028" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="35000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>101501120</item><item>125003207</item><item>110550971</item><item>111501313</item><item>114501337</item><item>112501256</item><item>113501330</item></equipment><bound_radius front="0.36" side="0.36" upper="2.028" /></npc_template>
 	<npc_template npc_id="220994" level="65" name_id="345860" title_id="345958" name="Protetor de artefato de baixo escalão" height="2.22" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="10"><stats maxHp="35000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>101700028</item><item>163000003</item><item>125003206</item><item>110301395</item><item>111301338</item><item>114301398</item><item>112301282</item><item>113301362</item></equipment><bound_radius front="0.42" side="0.42" upper="2.22" /></npc_template>
-	<npc_template npc_id="220995" level="62" name_id="345861" title_id="345958" name="Protetor de artefato no meio do ranking" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="10"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.36" side="0.36" upper="2.028" /></npc_template>
-	<npc_template npc_id="220996" level="62" name_id="345862" title_id="345959" name="Protetor de artefato de alto escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.455" side="0.455" upper="2.405" /></npc_template>
-	<npc_template npc_id="220997" level="62" name_id="345863" title_id="345959" name="Protetor de artefato de alto escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.50" side="0.50" upper="2.00" /></npc_template>
-	<npc_template npc_id="220998" level="62" name_id="345864" title_id="345959" name="Guardião do artefato Elyos de baixo escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.36" side="0.36" upper="2.028" /></npc_template>
-	<npc_template npc_id="220999" level="62" name_id="345865" title_id="345959" name="Recrutamento de artefato Elyos de baixo escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="10"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.42" side="0.42" upper="2.22" /></npc_template>
-	<npc_template npc_id="221000" level="62" name_id="345866" title_id="345959" name="Guarda de artefato Elyos de baixo escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="10"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.36" side="0.36" upper="2.028" /></npc_template>
+	<npc_template npc_id="220995" level="62" name_id="345861" title_id="345958" name="Protetor de artefato no meio do ranking" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="10"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300035</item><item>110101476</item><item>113101364</item><item>114101394</item><item>112101300</item><item>111101346</item><item>100600021</item></equipment><bound_radius front="0.36" side="0.36" upper="2.028" /></npc_template>
+	<npc_template npc_id="220996" level="62" name_id="345862" title_id="345959" name="Protetor de artefato de alto escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125003206</item><item>110301395</item><item>113301362</item><item>114301398</item><item>112301282</item><item>111301338</item><item>100201260</item><item>100201260</item></equipment><bound_radius front="0.455" side="0.455" upper="2.405" /></npc_template>
+	<npc_template npc_id="220997" level="62" name_id="345863" title_id="345959" name="Protetor de artefato de alto escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125003208</item><item>110601324</item><item>113501338</item><item>114601280</item><item>112601267</item><item>111601291</item><item>100001418</item></equipment><bound_radius front="0.50" side="0.50" upper="2.00" /></npc_template>
+	<npc_template npc_id="220998" level="62" name_id="345864" title_id="345959" name="Guardião do artefato Elyos de baixo escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125003207</item><item>110550971</item><item>113501330</item><item>114501337</item><item>112501256</item><item>111501313</item><item>101501120</item></equipment><bound_radius front="0.36" side="0.36" upper="2.028" /></npc_template>
+	<npc_template npc_id="220999" level="62" name_id="345865" title_id="345959" name="Recrutamento de artefato Elyos de baixo escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="10"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125003206</item><item>110301395</item><item>113301362</item><item>114301398</item><item>112301282</item><item>111301338</item><item>101700028</item><item>163000003</item></equipment><bound_radius front="0.42" side="0.42" upper="2.22" /></npc_template>
+	<npc_template npc_id="221000" level="62" name_id="345866" title_id="345959" name="Guarda de artefato Elyos de baixo escalão" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100" sangle="75" arange="10"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300035</item><item>110101476</item><item>113101364</item><item>114101394</item><item>112101300</item><item>111101346</item><item>100600021</item></equipment><bound_radius front="0.36" side="0.36" upper="2.028" /></npc_template>
 	<npc_template npc_id="221001" level="65" name="Reian Naduka Priest Assassin" name_id="345867" height="2.405" tribe="LDF4B_FANATIC" type="MONSTER" ai="aggressive" srange="8" arange="2" attack_speed="2100" hpgauge="3" rating="NORMAL" rank="SEASONED" race="DEMIHUMANOID" group_drop="NONE" title_id="345960">
 		<stats maxHp="35000">
 			<speeds walk="1.457" group_walk="1.457" run="5" run_fight="7" group_run_fight="8" />
@@ -120408,6 +120379,15 @@
 		<stats maxHp="25569">
 			<speeds walk="1.457" group_walk="1.457" run="5" run_fight="7" group_run_fight="8" />
 		</stats>
+		<equipment>
+			<item>125003207</item>
+			<item>110550971</item>
+			<item>113501330</item>
+			<item>114501337</item>
+			<item>112501256</item>
+			<item>111501313</item>
+			<item>101501120</item>
+		</equipment>
 		<bound_radius front="0.3" side="0.42" upper="2.4" />
 	</npc_template>
 	<npc_template npc_id="221019" level="65" name="Reian Naduka Priest Scout" name_id="345885" height="2.22" tribe="LDF4B_FANATIC" type="MONSTER" ai="aggressive" srange="10" arange="10" attack_speed="2100" hpgauge="3" rating="NORMAL" rank="SEASONED" race="DEMIHUMANOID" group_drop="NONE" title_id="345963">
@@ -120629,6 +120609,16 @@
 		<stats maxHp="28386">
 			<speeds walk="1.457" group_walk="1.457" run="5" run_fight="7" group_run_fight="8" />
 		</stats>
+		<equipment>
+			<item>125003206</item>
+			<item>110301395</item>
+			<item>113301362</item>
+			<item>114301398</item>
+			<item>112301282</item>
+			<item>111301338</item>
+			<item>101700028</item>
+			<item>163000003</item>
+		</equipment>
 		<bound_radius front="0.3" side="0.42" upper="2.4" />
 	</npc_template>
 	<npc_template npc_id="221127" level="65" name="Reian Satra Assassin" name_id="346009" height="2.405" tribe="LDF4B_FANATIC" type="MONSTER" ai="aggressive" srange="8" arange="2" attack_speed="1900" hpgauge="3" rating="NORMAL" rank="SEASONED" race="DEMIHUMANOID" group_drop="NONE" title_id="345165">
@@ -121370,9 +121360,9 @@
 	<npc_template npc_id="221514" level="1" name_id="346477" title_id="346486" name="Guardião Geral do Caos" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="15" hpgauge="5" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.56" side="0.56" upper="3.92" /></npc_template>
 	<npc_template npc_id="221515" level="1" name_id="346478" title_id="346487" name="Guardião Geral do Caos" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="15" hpgauge="5" attack_speed="2260" sangle="75" arange="20"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.845" side="0.455" upper="3.51" /></npc_template>
 	<npc_template npc_id="221516" level="1" name_id="346479" title_id="346488" name="Guardião Geral do Caos" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="15" hpgauge="5" attack_speed="2300" sangle="75" arange="20"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="1.2" side="0.9" upper="4.2" /></npc_template>
-	<npc_template npc_id="221517" level="1" name_id="346480" title_id="346489" name="Guardião Geral do Caos" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="15" hpgauge="5" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.56" side="0.56" upper="3.92" /></npc_template>
-	<npc_template npc_id="221518" level="1" name_id="346481" title_id="346490" name="Grand Ulsaruk" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="15" hpgauge="5" attack_speed="2260" sangle="75" arange="20"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.845" side="0.455" upper="3.51" /></npc_template>
-	<npc_template npc_id="221519" level="1" name_id="346482" title_id="346491" name="Grand Ulsaruk" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="15" hpgauge="5" attack_speed="2300" sangle="75" arange="20"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="1.2" side="0.9" upper="4.2" /></npc_template>
+	<npc_template npc_id="221517" level="1" name_id="346480" title_id="346489" name="Guardião Geral do Caos" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="15" hpgauge="5" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100901165</item></equipment><bound_radius front="0.56" side="0.56" upper="3.92" /></npc_template>
+	<npc_template npc_id="221518" level="1" name_id="346481" title_id="346490" name="Grand Ulsaruk" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="15" hpgauge="5" attack_speed="2260" sangle="75" arange="20"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>101701200</item><item>163050009</item></equipment><bound_radius front="0.845" side="0.455" upper="3.51" /></npc_template>
+	<npc_template npc_id="221519" level="1" name_id="346482" title_id="346491" name="Grand Ulsaruk" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="15" hpgauge="5" attack_speed="2300" sangle="75" arange="20"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100501163</item></equipment><bound_radius front="1.2" side="0.9" upper="4.2" /></npc_template>
 	<npc_template npc_id="221520" level="1" name_id="346483" title_id="346492" name="Grand Ulsaruk" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="15" hpgauge="5" attack_speed="2100" sangle="75" arange="2"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.56" side="0.56" upper="3.92" /></npc_template>
 	<npc_template npc_id="221521" level="1" name_id="346484" title_id="346493" name="Grand Ulsaruk" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="15" hpgauge="5" attack_speed="2260" sangle="75" arange="20"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.845" side="0.455" upper="3.51" /></npc_template>
 	<npc_template npc_id="221522" level="1" name_id="346485" title_id="346494" name="Grand Ulsaruk" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="15" hpgauge="5" attack_speed="2300" sangle="75" arange="20"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="1.2" side="0.9" upper="4.2" /></npc_template>
@@ -144615,10 +144605,6 @@
 		<stats maxHp="1311303" msup="207">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>100201034</item>
-			<item>100201035</item>
-		</equipment>
 		<bound_radius front="2.3" side="2.3" upper="12" />
 	</npc_template>
 	<npc_template npc_id="259912" level="1" name="Protetor de artefato asmodiano de alto escalão" name_id="345800" height="12" group_drop="DRAKANSCOUTF" rank="VETERAN" rating="HERO" race="PC_LIGHT_CASTLE_DOOR" tribe="GENERAL" type="ABYSS_GUARD" ai="fortressgate" srange="15" arange="2" attack_speed="2415" hpgauge="20" cancel_level="0">
@@ -216877,10 +216863,10 @@
 	<npc_template npc_id="274028" level="65" name_id="345337" title_id="345281" name="LDF4b_4401_Guard_MistOn_Li_Fi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2100" sangle="75" arange="2"><stats maxHp="143174"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100000031</item><item>115000129</item><item>125300024</item><item>110600852</item><item>111600828</item><item>114600811</item><item>112600802</item><item>113600817</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274029" level="65" name_id="345338" title_id="345281" name="LDF4b_4401_Guard_MistOn_Li_Pr" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2040" sangle="75" arange="2"><stats maxHp="130158"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100000747</item><item>115000129</item><item>125300024</item><item>110600852</item><item>111600828</item><item>114600811</item><item>112600802</item><item>113600817</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274030" level="65" name_id="345339" title_id="345281" name="LDF4b_4401_Guard_MistOn_Li_Wi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2300" sangle="75" arange="37"><stats maxHp="108031"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100600617</item><item>125300024</item><item>110600852</item><item>111600828</item><item>114600811</item><item>112600802</item><item>113600817</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274031" level="65" name_id="345340" title_id="345281" name="LDF4b_4401_Guard_MistOn_Da_As" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="1900" sangle="75" arange="2"><stats maxHp="108031"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274032" level="65" name_id="345341" title_id="345281" name="LDF4b_4401_Guard_MistOn_Da_Fi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2100" sangle="75" arange="2"><stats maxHp="143174"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274033" level="65" name_id="345342" title_id="345281" name="LDF4b_4401_Guard_MistOn_Da_Pr" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2040" sangle="75" arange="2"><stats maxHp="130158"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274034" level="65" name_id="345343" title_id="345281" name="LDF4b_4401_Guard_MistOn_Da_Wi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2300" sangle="75" arange="37"><stats maxHp="108031"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274031" level="65" name_id="345340" title_id="345281" name="LDF4b_4401_Guard_MistOn_Da_As" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="1900" sangle="75" arange="2"><stats maxHp="108031"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300025</item><item>110600859</item><item>113600824</item><item>114600818</item><item>112600809</item><item>111600835</item><item>100200690</item><item>100200690</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274032" level="65" name_id="345341" title_id="345281" name="LDF4b_4401_Guard_MistOn_Da_Fi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2100" sangle="75" arange="2"><stats maxHp="143174"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300025</item><item>110600859</item><item>113600824</item><item>114600818</item><item>112600809</item><item>111600835</item><item>100000032</item><item>115000130</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274033" level="65" name_id="345342" title_id="345281" name="LDF4b_4401_Guard_MistOn_Da_Pr" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2040" sangle="75" arange="2"><stats maxHp="130158"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300025</item><item>110600859</item><item>113600824</item><item>114600818</item><item>112600809</item><item>111600835</item><item>100000575</item><item>115000130</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274034" level="65" name_id="345343" title_id="345281" name="LDF4b_4401_Guard_MistOn_Da_Wi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="12" attack_speed="2300" sangle="75" arange="37"><stats maxHp="108031"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300025</item><item>110600859</item><item>113600824</item><item>114600818</item><item>112600809</item><item>111600835</item><item>100600626</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274035" level="65" name_id="345344" title_id="345302" name="LDF4b_4401_Guard_MistOn_Dr_As" height="2.88" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="10" hpgauge="12" attack_speed="1900" sangle="75" arange="4"><stats maxHp="108031"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100201253</item><item>100201254</item></equipment><bound_radius front="0.52" side="0.44" upper="2.88" /></npc_template>
 	<npc_template npc_id="274036" level="65" name_id="345345" title_id="345302" name="LDF4b_4401_Guard_MistOn_Dr_Fi" height="3.24" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="10" hpgauge="12" attack_speed="2100" sangle="75" arange="4"><stats maxHp="143174"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100901019</item></equipment><bound_radius front="0.585" side="0.495" upper="3.24" /></npc_template>
 	<npc_template npc_id="274037" level="65" name_id="345346" title_id="345302" name="LDF4b_4401_Guard_MistOn_Dr_Pr" height="2.96" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="10" hpgauge="12" attack_speed="2040" sangle="75" arange="4"><stats maxHp="130158"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100101015</item><item>115001372</item></equipment><bound_radius front="0.52" side="0.44" upper="2.96" /></npc_template>
@@ -216905,6 +216891,16 @@
 		<stats maxHp="130158">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
+		<equipment>
+			<item>125300025</item>
+			<item>110600859</item>
+			<item>113600824</item>
+			<item>114600818</item>
+			<item>112600809</item>
+			<item>111600835</item>
+			<item>101700609</item>
+			<item>163000003</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="274041" title_id="345302" level="65" name="LDF4b_4401_Guard_MistOn_Dr_Seeker" name_id="345350" height="3.25" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="DRAKAN" group_drop="NONE">
@@ -217449,14 +217445,14 @@
 		</stats>
 		<bound_radius front="2.5" side="2.5" upper="5" />
 	</npc_template>
-	<npc_template npc_id="274321" level="65" name_id="345518" title_id="345289" name="Kysy Guardian de alto escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274322" level="65" name_id="345519" title_id="345289" name="Kysing Guardian de baixo escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274323" level="65" name_id="345520" title_id="345289" name="Kysing Guardian de baixo escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274324" level="65" name_id="345521" title_id="345289" name="Kysy Guardian no meio do ranking" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274325" level="65" name_id="345522" title_id="345289" name="Kysy Guardian de alto escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274326" level="65" name_id="345523" title_id="345289" name="Kysy Guardian de alto escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274327" level="65" name_id="345524" title_id="345289" name="Kysing Guardian de baixo escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274328" level="65" name_id="345525" title_id="345289" name="Kysing Guardian de baixo escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274321" level="65" name_id="345518" title_id="345289" name="Kysy Guardian de alto escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300024</item><item>110600852</item><item>113600817</item><item>114600811</item><item>112600802</item><item>111600828</item><item>100200683</item><item>100200683</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274322" level="65" name_id="345519" title_id="345289" name="Kysing Guardian de baixo escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300024</item><item>110600852</item><item>113600817</item><item>114600811</item><item>112600802</item><item>111600828</item><item>100000031</item><item>115000129</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274323" level="65" name_id="345520" title_id="345289" name="Kysing Guardian de baixo escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300024</item><item>110600852</item><item>113600817</item><item>114600811</item><item>112600802</item><item>111600828</item><item>100000747</item><item>115000129</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274324" level="65" name_id="345521" title_id="345289" name="Kysy Guardian no meio do ranking" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300024</item><item>110600852</item><item>113600817</item><item>114600811</item><item>112600802</item><item>111600828</item><item>100600617</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274325" level="65" name_id="345522" title_id="345289" name="Kysy Guardian de alto escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300025</item><item>110600859</item><item>113600824</item><item>114600818</item><item>112600809</item><item>111600835</item><item>100200690</item><item>100200690</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274326" level="65" name_id="345523" title_id="345289" name="Kysy Guardian de alto escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300025</item><item>110600859</item><item>113600824</item><item>114600818</item><item>112600809</item><item>111600835</item><item>100000032</item><item>115000130</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274327" level="65" name_id="345524" title_id="345289" name="Kysing Guardian de baixo escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300025</item><item>110600859</item><item>113600824</item><item>114600818</item><item>112600809</item><item>111600835</item><item>100000575</item><item>115000130</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274328" level="65" name_id="345525" title_id="345289" name="Kysing Guardian de baixo escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300025</item><item>110600859</item><item>113600824</item><item>114600818</item><item>112600809</item><item>111600835</item><item>100600626</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274329" level="65" name_id="345526" title_id="345310" name="Kysy Guardian no meio do ranking" height="2.88" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="4"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100201253</item><item>100201254</item></equipment><bound_radius front="0.52" side="0.44" upper="2.88" /></npc_template>
 	<npc_template npc_id="274330" level="65" name_id="345527" title_id="345310" name="Kysy Guardian de alto escalão" height="3.24" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="4"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100901019</item></equipment><bound_radius front="0.585" side="0.495" upper="3.24" /></npc_template>
 	<npc_template npc_id="274331" level="65" name_id="345528" title_id="345310" name="Kysy Guardian de alto escalão" height="2.96" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="4"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100101015</item><item>115001372</item></equipment><bound_radius front="0.52" side="0.44" upper="2.96" /></npc_template>
@@ -217465,6 +217461,16 @@
 		<stats maxHp="23171">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
+		<equipment>
+			<item>125300024</item>
+			<item>110600852</item>
+			<item>113600817</item>
+			<item>114600811</item>
+			<item>112600802</item>
+			<item>111600828</item>
+			<item>101700601</item>
+			<item>163000003</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="274334" title_id="345289" level="65" name="LDF4b_40001_Guard_Da_Seeker" name_id="345531" height="2" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
@@ -217514,10 +217520,10 @@
 	<npc_template npc_id="274352" level="65" name_id="345535" title_id="345290" name="Emboscador de Kysis de baixo escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100000031</item><item>115000129</item><item>125300024</item><item>110600852</item><item>111600828</item><item>114600811</item><item>112600802</item><item>113600817</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274353" level="65" name_id="345536" title_id="345290" name="Ambarro de Kys de escalada no meio" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100000747</item><item>115000129</item><item>125300024</item><item>110600852</item><item>111600828</item><item>114600811</item><item>112600802</item><item>113600817</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274354" level="65" name_id="345537" title_id="345290" name="Emboscador de Kysis de alto escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100600617</item><item>125300024</item><item>110600852</item><item>111600828</item><item>114600811</item><item>112600802</item><item>113600817</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274355" level="65" name_id="345538" title_id="345290" name="Emboscador de Kysis de alto escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274356" level="65" name_id="345539" title_id="345290" name="Curador de Kysis de baixo escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274357" level="65" name_id="345540" title_id="345290" name="Curador de Kysis de baixo escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274358" level="65" name_id="345541" title_id="345290" name="Curador de Kysis de Ranking intermediário" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274355" level="65" name_id="345538" title_id="345290" name="Emboscador de Kysis de alto escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300025</item><item>110600859</item><item>113600824</item><item>114600818</item><item>112600809</item><item>111600835</item><item>100200690</item><item>100200690</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274356" level="65" name_id="345539" title_id="345290" name="Curador de Kysis de baixo escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300025</item><item>110600859</item><item>113600824</item><item>114600818</item><item>112600809</item><item>111600835</item><item>100000032</item><item>115000130</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274357" level="65" name_id="345540" title_id="345290" name="Curador de Kysis de baixo escalão" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300025</item><item>110600859</item><item>113600824</item><item>114600818</item><item>112600809</item><item>111600835</item><item>100000575</item><item>115000130</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274358" level="65" name_id="345541" title_id="345290" name="Curador de Kysis de Ranking intermediário" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300025</item><item>110600859</item><item>113600824</item><item>114600818</item><item>112600809</item><item>111600835</item><item>100600626</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274359" level="65" name_id="345542" title_id="345311" name="Curador de Kysis de alto escalão" height="2.88" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="4"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100201253</item><item>100201254</item></equipment><bound_radius front="0.52" side="0.44" upper="2.88" /></npc_template>
 	<npc_template npc_id="274360" level="65" name_id="345543" title_id="345311" name="Curador de Kysis de alto escalão" height="3.24" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="4"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100901019</item></equipment><bound_radius front="0.585" side="0.495" upper="3.24" /></npc_template>
 	<npc_template npc_id="274361" level="65" name_id="345544" title_id="345311" name="Espírito curandeiro de Kysing de baixo escalão" height="2.96" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="4"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100101015</item><item>115001372</item></equipment><bound_radius front="0.52" side="0.44" upper="2.96" /></npc_template>
@@ -217687,7 +217693,7 @@
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="274591" level="65" name_id="345662" title_id="345298" name="LDF4b_40010_Guard_Li_As" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274591" level="65" name_id="345662" title_id="345298" name="LDF4b_40010_Guard_Li_As" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300024</item><item>110600852</item><item>113600817</item><item>114600811</item><item>112600802</item><item>111600828</item><item>100200683</item><item>100200683</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274592" level="65" name_id="345663" title_id="345298" name="LDF4b_40010_Guard_Li_Fi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="simple_abyssguard" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100000031</item><item>115000129</item><item>125300024</item><item>110600852</item><item>111600828</item><item>114600811</item><item>112600802</item><item>113600817</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274593" level="65" name_id="345664" title_id="345298" name="LDF4b_40010_Guard_Li_Pr" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="simple_abyssguard" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100000747</item><item>115000129</item><item>125300024</item><item>110600852</item><item>111600828</item><item>114600811</item><item>112600802</item><item>113600817</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274594" level="65" name_id="345665" title_id="345298" name="LDF4b_40010_Guard_Li_Wi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="simple_abyssguard" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100600617</item><item>125300024</item><item>110600852</item><item>111600828</item><item>114600811</item><item>112600802</item><item>113600817</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
@@ -217703,6 +217709,16 @@
 		<stats maxHp="23171">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
+		<equipment>
+			<item>125300024</item>
+			<item>110600852</item>
+			<item>113600817</item>
+			<item>114600811</item>
+			<item>112600802</item>
+			<item>111600828</item>
+			<item>101700601</item>
+			<item>163000003</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="274604" title_id="345298" level="65" name="LDF4b_40010_Guard_Da_Seeker" name_id="345675" height="2" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
@@ -217762,14 +217778,14 @@
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="274651" level="65" name_id="345694" title_id="345300" name="LDF4b_40012_Guard_Li_As" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274652" level="65" name_id="345695" title_id="345300" name="LDF4b_40012_Guard_Li_Fi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274653" level="65" name_id="345696" title_id="345300" name="LDF4b_40012_Guard_Li_Pr" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274654" level="65" name_id="345697" title_id="345300" name="LDF4b_40012_Guard_Li_Wi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274655" level="65" name_id="345698" title_id="345300" name="LDF4b_40012_Guard_Da_As" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274656" level="65" name_id="345699" title_id="345300" name="LDF4b_40012_Guard_Da_Fi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274657" level="65" name_id="345700" title_id="345300" name="LDF4b_40012_Guard_Da_Pr" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
-	<npc_template npc_id="274658" level="65" name_id="345701" title_id="345300" name="LDF4b_40012_Guard_Da_Wi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274651" level="65" name_id="345694" title_id="345300" name="LDF4b_40012_Guard_Li_As" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300024</item><item>110600852</item><item>113600817</item><item>114600811</item><item>112600802</item><item>111600828</item><item>100200683</item><item>100200683</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274652" level="65" name_id="345695" title_id="345300" name="LDF4b_40012_Guard_Li_Fi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300024</item><item>110600852</item><item>113600817</item><item>114600811</item><item>112600802</item><item>111600828</item><item>100000031</item><item>115000129</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274653" level="65" name_id="345696" title_id="345300" name="LDF4b_40012_Guard_Li_Pr" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300024</item><item>110600852</item><item>113600817</item><item>114600811</item><item>112600802</item><item>111600828</item><item>100000747</item><item>115000129</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274654" level="65" name_id="345697" title_id="345300" name="LDF4b_40012_Guard_Li_Wi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300024</item><item>110600852</item><item>113600817</item><item>114600811</item><item>112600802</item><item>111600828</item><item>100600617</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274655" level="65" name_id="345698" title_id="345300" name="LDF4b_40012_Guard_Da_As" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="2"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300025</item><item>110600859</item><item>113600824</item><item>114600818</item><item>112600809</item><item>111600835</item><item>100200690</item><item>100200690</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274656" level="65" name_id="345699" title_id="345300" name="LDF4b_40012_Guard_Da_Fi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="2"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300025</item><item>110600859</item><item>113600824</item><item>114600818</item><item>112600809</item><item>111600835</item><item>100000032</item><item>115000130</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274657" level="65" name_id="345700" title_id="345300" name="LDF4b_40012_Guard_Da_Pr" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="2"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300025</item><item>110600859</item><item>113600824</item><item>114600818</item><item>112600809</item><item>111600835</item><item>100000575</item><item>115000130</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
+	<npc_template npc_id="274658" level="65" name_id="345701" title_id="345300" name="LDF4b_40012_Guard_Da_Wi" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="general" srange="10" hpgauge="3" attack_speed="2300" sangle="75" arange="37"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>125300025</item><item>110600859</item><item>113600824</item><item>114600818</item><item>112600809</item><item>111600835</item><item>100600626</item></equipment><bound_radius front="0.25" side="0.35" upper="2" /></npc_template>
 	<npc_template npc_id="274659" level="65" name_id="345702" title_id="345321" name="LDF4b_40012_Guard_Dr_As" height="2.88" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="10" hpgauge="3" attack_speed="1900" sangle="75" arange="4"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100201253</item><item>100201254</item></equipment><bound_radius front="0.52" side="0.44" upper="2.88" /></npc_template>
 	<npc_template npc_id="274660" level="65" name_id="345703" title_id="345321" name="LDF4b_40012_Guard_Dr_Fi" height="3.24" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="10" hpgauge="3" attack_speed="2100" sangle="75" arange="4"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100901019</item></equipment><bound_radius front="0.585" side="0.495" upper="3.24" /></npc_template>
 	<npc_template npc_id="274661" level="65" name_id="345704" title_id="345321" name="LDF4b_40012_Guard_Dr_Pr" height="2.96" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="10" hpgauge="3" attack_speed="2040" sangle="75" arange="4"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100101015</item><item>115001372</item></equipment><bound_radius front="0.52" side="0.44" upper="2.96" /></npc_template>
@@ -217824,12 +217840,32 @@
 		<stats maxHp="23171">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
+		<equipment>
+			<item>125300024</item>
+			<item>110600852</item>
+			<item>113600817</item>
+			<item>114600811</item>
+			<item>112600802</item>
+			<item>111600828</item>
+			<item>101700601</item>
+			<item>163000003</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="274664" title_id="345300" level="65" name="LDF4b_40012_Guard_Da_Seeker" name_id="345707" height="2" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="ASMODIANS" group_drop="NONE">
 		<stats maxHp="23171">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
+		<equipment>
+			<item>125300025</item>
+			<item>110600859</item>
+			<item>113600824</item>
+			<item>114600818</item>
+			<item>112600809</item>
+			<item>111600835</item>
+			<item>101700609</item>
+			<item>163000003</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="274665" title_id="345321" level="65" name="LDF4b_40012_Guard_Dr_Seeker" name_id="345708" height="3.25" tribe="XDRAKAN" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="DRAKAN" group_drop="NONE">
@@ -358721,11 +358757,6 @@
 		<stats maxHp="18756">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
-		<equipment>
-			<item>113000014</item>
-			<item>110000011</item>
-			<item>114000042</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -358733,10 +358764,6 @@
 		<stats maxHp="12733">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
-		<equipment>
-			<item>110900268</item>
-			<item>125003064</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -358744,9 +358771,6 @@
 		<stats maxHp="12733">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
-		<equipment>
-			<item>110900268</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -361568,14 +361592,8 @@
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
 		<equipment>
-			<item>113301444</item>
-			<item>110301480</item>
-			<item>101800985</item>
-			<item>101800994</item>
-			<item>112301364</item>
-			<item>111301420</item>
-			<item>114301481</item>
-			<item>125003396</item>
+			<item>100001484</item>
+			<item>115000869</item>
 		</equipment>
 		<bound_radius front="0.325" side="0.455" upper="2.34" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2 3" can_talk_invisible="false" />
@@ -361599,15 +361617,6 @@
 		<stats maxHp="18756">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
-		<equipment>
-			<item>113301445</item>
-			<item>110301481</item>
-			<item>101800986</item>
-			<item>101800995</item>
-			<item>112301365</item>
-			<item>111301421</item>
-			<item>114301482</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2" can_talk_invisible="false" />
 	</npc_template>
@@ -361616,12 +361625,11 @@
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
 		<equipment>
-			<item>113101448</item>
-			<item>110101592</item>
-			<item>102000906</item>
-			<item>112101390</item>
-			<item>111101436</item>
-			<item>114101483</item>
+			<item>110100740</item>
+			<item>113100276</item>
+			<item>114100294</item>
+			<item>112100256</item>
+			<item>111100277</item>
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2" can_talk_invisible="false" />
@@ -361631,7 +361639,11 @@
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
 		<equipment>
-			<item>110900257</item>
+			<item>110100740</item>
+			<item>113100276</item>
+			<item>114100294</item>
+			<item>112100256</item>
+			<item>111100277</item>
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2" can_talk_invisible="false" />
@@ -362001,13 +362013,6 @@
 		<stats maxHp="26116">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113101601</item>
-			<item>110101769</item>
-			<item>112101539</item>
-			<item>111101589</item>
-			<item>114101635</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -362015,13 +362020,6 @@
 		<stats maxHp="26116">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113501665</item>
-			<item>110551088</item>
-			<item>112501586</item>
-			<item>111501647</item>
-			<item>114501675</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="3" is_dialog="true" subdialog_type="ABYSSRANK" subdialog_value="10" can_talk_invisible="false" />
 	</npc_template>
@@ -362148,7 +362146,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2 3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802230" level="65" name="Kiton" name_id="464640" height="2" title_id="345281" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" sangle="75" arange="2" attack_speed="1900" hpgauge="3">
+	<npc_template npc_id="802230" level="65" name="Kiton" name_id="464640" height="2" title_id="345281" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="general" srange="20" sangle="75" arange="2" attack_speed="1900" hpgauge="3">
 		<stats maxHp="19232">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -362180,7 +362178,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802232" level="65" name="Kiton" name_id="464640" height="2" title_id="345283" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="1900" hpgauge="3" sangle="75">
+	<npc_template npc_id="802232" level="65" name="Kiton" name_id="464640" height="2" title_id="345283" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="1900" hpgauge="3" sangle="75">
 		<stats maxHp="19232">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -362194,10 +362192,10 @@
 			<item>112600802</item>
 			<item>113600817</item>
 		</equipment>
-		<bound_radius front="0.25" side="0.35" upper="1.8" />
+		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802233" level="65" name="Kiton" name_id="464640" height="2" title_id="345284" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="1900" hpgauge="3" sangle="75">
+	<npc_template npc_id="802233" level="65" name="Kiton" name_id="464640" height="2" title_id="345284" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="1900" hpgauge="3" sangle="75">
 		<stats maxHp="19232">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -362214,7 +362212,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802234" level="65" name="Kiton" name_id="464640" height="2" title_id="345285" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="1900" hpgauge="3" sangle="75">
+	<npc_template npc_id="802234" level="65" name="Kiton" name_id="464640" height="2" title_id="345285" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="1900" hpgauge="3" sangle="75">
 		<stats maxHp="19232">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -362231,17 +362229,19 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802235" level="65" name="LDF4b_Quest_NPC_Li_Middle_3" name_id="464640" height="2" title_id="345286" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="1900" hpgauge="3" sangle="75">
+	<npc_template npc_id="802235" level="65" name="LDF4b_Quest_NPC_Li_Middle_3" name_id="464640" height="2" title_id="345286" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="1900" hpgauge="3" sangle="75">
 		<stats maxHp="19232">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
 		<equipment>
-			<item>113601387</item>
-			<item>110601441</item>
-			<item>100901201</item>
-			<item>112601385</item>
-			<item>111601403</item>
-			<item>114601391</item>
+			<item>125300024</item>
+			<item>110600852</item>
+			<item>113600817</item>
+			<item>114600811</item>
+			<item>112600802</item>
+			<item>111600828</item>
+			<item>100000031</item>
+			<item>115000129</item>
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
@@ -362276,22 +362276,24 @@
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802238" level="1" name="Kiton" name_id="464640" height="1.98" title_id="345289" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="1900" hpgauge="3" sangle="75">
+	<npc_template npc_id="802238" level="1" name="Kiton" name_id="464640" height="2" title_id="345289" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="1900" hpgauge="3" sangle="75">
 		<stats maxHp="29738">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
 		<equipment>
-			<item>113601387</item>
-			<item>110601441</item>
-			<item>100901201</item>
-			<item>112601385</item>
-			<item>111601403</item>
-			<item>114601391</item>
+			<item>125300024</item>
+			<item>110600852</item>
+			<item>113600817</item>
+			<item>114600811</item>
+			<item>112600802</item>
+			<item>111600828</item>
+			<item>100200683</item>
+			<item>100200683</item>
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802239" level="65" name_id="464640" title_id="345290" name="Kiton" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
+	<npc_template npc_id="802239" level="65" name_id="464640" title_id="345290" name="Kiton" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
 		<stats maxHp="19232">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>
@@ -362307,7 +362309,7 @@
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802242" level="65" name_id="464640" title_id="345293" name="Kiton" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
+	<npc_template npc_id="802242" level="65" name_id="464640" title_id="345293" name="Kiton" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
 		<stats maxHp="19232">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>
@@ -362329,16 +362331,36 @@
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802247" level="65" name_id="464640" title_id="345298" name="LDF4b_Quest_NPC_Li_Small_10" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
+	<npc_template npc_id="802247" level="65" name_id="464640" title_id="345298" name="LDF4b_Quest_NPC_Li_Small_10" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
 		<stats maxHp="19232">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>
+		<equipment>
+			<item>125300024</item>
+			<item>110600852</item>
+			<item>113600817</item>
+			<item>114600811</item>
+			<item>112600802</item>
+			<item>111600828</item>
+			<item>100000031</item>
+			<item>115000129</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802249" level="12" name_id="464640" title_id="345300" name="Kiton" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
+	<npc_template npc_id="802249" level="12" name_id="464640" title_id="345300" name="Kiton" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
 		<stats maxHp="1000">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>
+		<equipment>
+			<item>125300024</item>
+			<item>110600852</item>
+			<item>113600817</item>
+			<item>114600811</item>
+			<item>112600802</item>
+			<item>111600828</item>
+			<item>100000031</item>
+			<item>115000129</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="802251" level="65" name_id="464641" name="Hirakis" height="2.7" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
@@ -362357,13 +362379,23 @@
 		</equipment>
 		<bound_radius front="0.3375" side="0.4725" upper="2.7" />
 	</npc_template>
-	<npc_template npc_id="802252" level="1" name_id="464642" title_id="345281" name="Salgueiro" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
-		<stats maxHp="1000">
+	<npc_template npc_id="802252" level="65" name_id="464642" title_id="345281" name="Salgueiro" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
+		<stats maxHp="19232">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>
+		<equipment>
+			<item>125300025</item>
+			<item>110600859</item>
+			<item>113600824</item>
+			<item>114600818</item>
+			<item>112600809</item>
+			<item>111600835</item>
+			<item>100000575</item>
+			<item>115000130</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802253" level="65" name_id="464642" title_id="345282" name="Salgueiro" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
+	<npc_template npc_id="802253" level="65" name_id="464642" title_id="345282" name="Salgueiro" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
 		<stats maxHp="19232">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>
@@ -362391,13 +362423,23 @@
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802256" level="65" name_id="464642" title_id="345285" name="Salgueiro" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
+	<npc_template npc_id="802256" level="65" name_id="464642" title_id="345285" name="Salgueiro" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
 		<stats maxHp="19232">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>
+		<equipment>
+			<item>125300025</item>
+			<item>110600859</item>
+			<item>113600824</item>
+			<item>114600818</item>
+			<item>112600809</item>
+			<item>111600835</item>
+			<item>100000575</item>
+			<item>115000130</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802257" level="65" name_id="464642" title_id="345286" name="LDF4b_Quest_NPC_Da_Middle_3" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
+	<npc_template npc_id="802257" level="65" name_id="464642" title_id="345286" name="LDF4b_Quest_NPC_Da_Middle_3" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
 		<stats maxHp="19232">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>
@@ -362413,7 +362455,7 @@
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802258" level="65" name_id="464642" title_id="345287" name="LDF4b_Quest_NPC_Da_Middle_4" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
+	<npc_template npc_id="802258" level="65" name_id="464642" title_id="345287" name="LDF4b_Quest_NPC_Da_Middle_4" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
 		<stats maxHp="19232">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>
@@ -362429,16 +362471,36 @@
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802260" level="1" name_id="464642" title_id="345289" name="Salgueiro" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
+	<npc_template npc_id="802260" level="1" name_id="464642" title_id="345289" name="Salgueiro" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
 		<stats maxHp="1000">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>
+		<equipment>
+			<item>125300025</item>
+			<item>110600859</item>
+			<item>113600824</item>
+			<item>114600818</item>
+			<item>112600809</item>
+			<item>111600835</item>
+			<item>100000575</item>
+			<item>115000130</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802261" level="65" name_id="464642" title_id="345290" name="Salgueiro" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
+	<npc_template npc_id="802261" level="65" name_id="464642" title_id="345290" name="Salgueiro" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
 		<stats maxHp="19232">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>
+		<equipment>
+			<item>125300025</item>
+			<item>110600859</item>
+			<item>113600824</item>
+			<item>114600818</item>
+			<item>112600809</item>
+			<item>111600835</item>
+			<item>100000032</item>
+			<item>115000130</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="802264" level="5" name_id="464642" title_id="345293" name="Salgueiro" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
@@ -362447,7 +362509,7 @@
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802267" level="65" name_id="464642" title_id="345296" name="LDF4b_Quest_NPC_Da_Small_8" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
+	<npc_template npc_id="802267" level="65" name_id="464642" title_id="345296" name="LDF4b_Quest_NPC_Da_Small_8" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
 		<stats maxHp="19232">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>
@@ -362463,7 +362525,7 @@
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802269" level="65" name_id="464642" title_id="345298" name="LDF4b_Quest_NPC_Da_Small_10" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
+	<npc_template npc_id="802269" level="65" name_id="464642" title_id="345298" name="LDF4b_Quest_NPC_Da_Small_10" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
 		<stats maxHp="19232">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>
@@ -362479,10 +362541,20 @@
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802271" level="12" name_id="464642" title_id="345300" name="Salgueiro" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
+	<npc_template npc_id="802271" level="12" name_id="464642" title_id="345300" name="Salgueiro" height="2" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
 		<stats maxHp="1000">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>
+		<equipment>
+			<item>125300025</item>
+			<item>110600859</item>
+			<item>113600824</item>
+			<item>114600818</item>
+			<item>112600809</item>
+			<item>111600835</item>
+			<item>100000032</item>
+			<item>115000130</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="802273" level="65" name_id="464643" name="Creaks" height="2.7" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" hpgauge="3" attack_speed="1900" sangle="75" arange="2">
@@ -362508,19 +362580,19 @@
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802277" level="58" name="LDF4b_WindBox_Setting_Tower_L_01_UP" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="general" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
+	<npc_template npc_id="802277" title_id="0" level="58" name="LDF4b_WindBox_Setting_Tower_L_01_UP" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="general" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
 		<stats maxHp="2000">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802278" level="65" name="LDF4b_WindBox_Setting_Tower_L_02_UP" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="general" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
+	<npc_template npc_id="802278" title_id="0" level="65" name="LDF4b_WindBox_Setting_Tower_L_02_UP" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="general" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
 		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802279" level="65" name="LDF4b_WindBox_Setting_Tower_L_03_UP" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="general" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
+	<npc_template npc_id="802279" title_id="0" level="65" name="LDF4b_WindBox_Setting_Tower_L_03_UP" name_id="350000" height="2" tribe="NONE" type="GENERAL" ai="general" srange="5" attack_speed="2000" hpgauge="3" rating="JUNK" rank="NOVICE" group_drop="NONE">
 		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -362879,14 +362951,6 @@
 		<stats maxHp="31089">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113601468</item>
-			<item>110601522</item>
-			<item>100901211</item>
-			<item>112601466</item>
-			<item>111601485</item>
-			<item>114601475</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -363079,14 +363143,6 @@
 		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113601469</item>
-			<item>110601523</item>
-			<item>100901212</item>
-			<item>112601467</item>
-			<item>111601486</item>
-			<item>114601476</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -363145,15 +363201,6 @@
 		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113601560</item>
-			<item>110601614</item>
-			<item>100001716</item>
-			<item>115001742</item>
-			<item>112601559</item>
-			<item>111601577</item>
-			<item>114601567</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -363161,15 +363208,6 @@
 		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113601366</item>
-			<item>110601417</item>
-			<item>100001523</item>
-			<item>115001568</item>
-			<item>112601361</item>
-			<item>111601379</item>
-			<item>114601367</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -363325,15 +363363,6 @@
 		<stats maxHp="128">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
-		<equipment>
-			<item>113601466</item>
-			<item>110601520</item>
-			<item>100001630</item>
-			<item>115001674</item>
-			<item>112601464</item>
-			<item>111601483</item>
-			<item>114601473</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
@@ -363348,15 +363377,6 @@
 		<stats maxHp="146">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
-		<equipment>
-			<item>113101557</item>
-			<item>110101713</item>
-			<item>102001173</item>
-			<item>112101495</item>
-			<item>111101543</item>
-			<item>114101591</item>
-			<item>125003893</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
@@ -363371,14 +363391,6 @@
 		<stats maxHp="114">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
-		<equipment>
-			<item>113601467</item>
-			<item>110601521</item>
-			<item>100901268</item>
-			<item>112601465</item>
-			<item>111601484</item>
-			<item>114601474</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
@@ -364042,14 +364054,6 @@
 		<stats maxHp="26116">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113301769</item>
-			<item>110301800</item>
-			<item>112301677</item>
-			<item>111301738</item>
-			<item>114301806</item>
-			<item>125004098</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -364057,14 +364061,6 @@
 		<stats maxHp="466030" msup="957">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113601550</item>
-			<item>110601604</item>
-			<item>100901346</item>
-			<item>112601549</item>
-			<item>111601567</item>
-			<item>114601557</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -364072,14 +364068,6 @@
 		<stats maxHp="26116">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113301770</item>
-			<item>110301801</item>
-			<item>112301678</item>
-			<item>111301739</item>
-			<item>114301807</item>
-			<item>125004099</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -364087,14 +364075,6 @@
 		<stats maxHp="466030">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113601474</item>
-			<item>110601528</item>
-			<item>100001559</item>
-			<item>112601472</item>
-			<item>111601491</item>
-			<item>114601481</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" subdialog_type="FORT_CAPTURE" can_talk_invisible="false" />
 	</npc_template>
@@ -364232,21 +364212,21 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802451" level="65" name="Sotios" name_id="464700" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
+	<npc_template npc_id="802451" title_id="0" level="65" name="Sotios" name_id="464700" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
 		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="44" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802452" level="65" name="Pyna" name_id="464701" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
+	<npc_template npc_id="802452" title_id="0" level="65" name="Pyna" name_id="464701" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
 		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="44" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802453" level="65" name="Torose" name_id="464702" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
+	<npc_template npc_id="802453" title_id="0" level="65" name="Torose" name_id="464702" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="2000" hpgauge="3" sangle="75">
 		<stats maxHp="21107">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -364311,13 +364291,6 @@
 		<stats maxHp="10340535">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113000008</item>
-			<item>110000009</item>
-			<item>111000031</item>
-			<item>114000032</item>
-			<item>125003009</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -364332,15 +364305,6 @@
 		<stats maxHp="463974">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113601507</item>
-			<item>110601561</item>
-			<item>100901309</item>
-			<item>112601506</item>
-			<item>111601524</item>
-			<item>114601514</item>
-			<item>125004008</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -364348,15 +364312,6 @@
 		<stats maxHp="463974">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113601507</item>
-			<item>110601561</item>
-			<item>100901309</item>
-			<item>112601506</item>
-			<item>111601524</item>
-			<item>114601514</item>
-			<item>125004008</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -364371,15 +364326,6 @@
 		<stats maxHp="122">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
-		<equipment>
-			<item>113301685</item>
-			<item>110301716</item>
-			<item>101701293</item>
-			<item>112301593</item>
-			<item>111301654</item>
-			<item>114301722</item>
-			<item>125003892</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
@@ -364394,15 +364340,6 @@
 		<stats maxHp="132">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
-		<equipment>
-			<item>113301686</item>
-			<item>110301717</item>
-			<item>101901055</item>
-			<item>112301594</item>
-			<item>111301655</item>
-			<item>114301723</item>
-			<item>125003894</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
@@ -364425,15 +364362,6 @@
 		<stats maxHp="132">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
-		<equipment>
-			<item>113501634</item>
-			<item>110551057</item>
-			<item>101501278</item>
-			<item>112501555</item>
-			<item>111501614</item>
-			<item>114501643</item>
-			<item>125003895</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
@@ -365402,15 +365330,6 @@
 		<stats maxHp="149032">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113601507</item>
-			<item>110601561</item>
-			<item>100901309</item>
-			<item>112601506</item>
-			<item>111601524</item>
-			<item>114601514</item>
-			<item>125004008</item>
-		</equipment>
 		<bound_radius front="5" side="7.5" upper="9" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -365418,15 +365337,6 @@
 		<stats maxHp="149032">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113601504</item>
-			<item>110601558</item>
-			<item>100901310</item>
-			<item>112601503</item>
-			<item>111601521</item>
-			<item>114601511</item>
-			<item>125004005</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -365450,15 +365360,6 @@
 		<stats maxHp="149032">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113601506</item>
-			<item>110601560</item>
-			<item>100901311</item>
-			<item>112601505</item>
-			<item>111601523</item>
-			<item>114601513</item>
-			<item>125004007</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -365466,13 +365367,6 @@
 		<stats maxHp="463974">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113601583</item>
-			<item>110601637</item>
-			<item>112601582</item>
-			<item>111601600</item>
-			<item>114601590</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -365480,13 +365374,6 @@
 		<stats maxHp="463974">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113601585</item>
-			<item>110601639</item>
-			<item>112601584</item>
-			<item>111601602</item>
-			<item>114601592</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -365494,13 +365381,6 @@
 		<stats maxHp="463974">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113601584</item>
-			<item>110601638</item>
-			<item>112601583</item>
-			<item>111601601</item>
-			<item>114601591</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -365996,11 +365876,13 @@
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
 		<equipment>
-			<item>113100276</item>
-			<item>110100309</item>
-			<item>112100256</item>
-			<item>111100277</item>
-			<item>114100294</item>
+			<item>125003237</item>
+			<item>110101460</item>
+			<item>113101348</item>
+			<item>114101378</item>
+			<item>112101285</item>
+			<item>111101330</item>
+			<item>100101090</item>
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2 3" can_talk_invisible="false" />
@@ -366026,12 +365908,13 @@
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
 		<equipment>
-			<item>113501414</item>
-			<item>110501440</item>
-			<item>112501339</item>
-			<item>111501397</item>
-			<item>114501422</item>
-			<item>125003405</item>
+			<item>125003237</item>
+			<item>110101460</item>
+			<item>113101348</item>
+			<item>114101378</item>
+			<item>112101285</item>
+			<item>111101330</item>
+			<item>100101090</item>
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2 3" can_talk_invisible="false" />
@@ -366562,13 +366445,6 @@
 		<stats maxHp="141">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113100270</item>
-			<item>110100314</item>
-			<item>112100250</item>
-			<item>111100271</item>
-			<item>114100288</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
@@ -369503,6 +369379,10 @@
 		<stats maxHp="28386">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
+		<equipment>
+			<item>100001484</item>
+			<item>115000869</item>
+		</equipment>
 		<bound_radius front="0.325" side="0.455" upper="2.34" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -371043,6 +370923,16 @@
 		<stats maxHp="28386">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
+		<equipment>
+			<item>125300024</item>
+			<item>110600852</item>
+			<item>113600817</item>
+			<item>114600811</item>
+			<item>112600802</item>
+			<item>111600828</item>
+			<item>100000031</item>
+			<item>115000129</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
@@ -376557,30 +376447,79 @@
 		<stats maxHp="63464">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
+		<equipment>
+			<item>125300024</item>
+			<item>110600852</item>
+			<item>113600817</item>
+			<item>114600811</item>
+			<item>112600802</item>
+			<item>111600828</item>
+			<item>100200683</item>
+			<item>100200683</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="274220" title_id="345286" level="65" name="Recruta de Miren no meio do ranking" name_id="345459" height="2" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="2100" hpgauge="10" rating="ELITE" rank="EXPERT" race="ELYOS" group_drop="NONE">
 		<stats maxHp="84109">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
+		<equipment>
+			<item>125300024</item>
+			<item>110600852</item>
+			<item>113600817</item>
+			<item>114600811</item>
+			<item>112600802</item>
+			<item>111600828</item>
+			<item>100000031</item>
+			<item>115000129</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="274221" title_id="345286" level="65" name="Recrutamento de Miren de alto escalão" name_id="345460" height="2" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="4" attack_speed="2040" hpgauge="10" rating="ELITE" rank="EXPERT" race="ELYOS" group_drop="NONE">
 		<stats maxHp="76463">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
+		<equipment>
+			<item>125300024</item>
+			<item>110600852</item>
+			<item>113600817</item>
+			<item>114600811</item>
+			<item>112600802</item>
+			<item>111600828</item>
+			<item>100000747</item>
+			<item>115000129</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="274222" title_id="345286" level="65" name="Recrutamento de Miren de alto escalão" name_id="345461" height="2" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="simple_abyssguard" srange="15" arange="37" attack_speed="2300" hpgauge="10" rating="ELITE" rank="EXPERT" race="ELYOS" group_drop="NONE">
 		<stats maxHp="63464">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
+		<equipment>
+			<item>125300024</item>
+			<item>110600852</item>
+			<item>113600817</item>
+			<item>114600811</item>
+			<item>112600802</item>
+			<item>111600828</item>
+			<item>100600617</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="274231" title_id="345286" level="65" name="Oficial de funcionários Miren de alto escalão" name_id="345470" height="2" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" arange="4" attack_speed="2040" hpgauge="10" rating="HERO" rank="EXPERT" race="ELYOS" group_drop="NONE">
 		<stats maxHp="76463">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
+		<equipment>
+			<item>125300024</item>
+			<item>110600852</item>
+			<item>113600817</item>
+			<item>114600811</item>
+			<item>112600802</item>
+			<item>111600828</item>
+			<item>101700601</item>
+			<item>163000003</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 

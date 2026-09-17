@@ -57,8 +57,11 @@ public class SM_SIEGE_LOCATION_INFO extends AionServerPacket {
 			writeD(legionId); // 4
 			if (legionId != 0 && LegionService.getInstance().getLegion(legionId) != null) // can be null if legion got deleted
 				emblem = LegionService.getInstance().getLegion(legionId).getLegionEmblem();
-			writeH(emblem.getEmblemId() & 0xFFFF); // 2
-			writeH(emblem.getEmblemType().getValue() & 0xFFFF); // 2
+			// 5.0 oficial, torre conquistada por legiao: [C emblema][C tipo, 0x80 custom][H][C a][C r][C g][C b]. Ex.: 4413 da
+			// legiao 771755128 = 04 80 f041 ff000000. O H varia entre capturas sem padrao conhecido (0961, 5e12, f041...).
+			writeC(emblem.getEmblemId()); // 8
+			writeC(emblem.getEmblemType().getValue()); // 9
+			writeH(0); // 10
 			writeC(emblem.getColor_a()); // 1
 			writeC(emblem.getColor_r()); // 1
 			writeC(emblem.getColor_g()); // 1
