@@ -26,26 +26,19 @@ static std::unordered_set<HMODULE> s_scannedCountryModules;
 static std::unordered_set<HMODULE> s_scannedCrcModules;
 static SRWLOCK s_patchLock = SRWLOCK_INIT;
 
-static void BypassTableCrcInModule(HMODULE hMod) {
-    if (!hMod) return;
-
-    AcquireSRWLockExclusive(&s_patchLock);
-    if (s_scannedCrcModules.find(hMod) != s_scannedCrcModules.end()) {
-        ReleaseSRWLockExclusive(&s_patchLock);
-        return;
-    }
-    s_scannedCrcModules.insert(hMod);
-    ReleaseSRWLockExclusive(&s_patchLock);
+static bool BypassTableCrcInModule(HMODULE hMod) {
+    if (!hMod) return false;
 
     __try {
         PIMAGE_DOS_HEADER dos = (PIMAGE_DOS_HEADER)hMod;
-        if (dos->e_magic != IMAGE_DOS_SIGNATURE) return;
-        if (dos->e_lfanew <= 0 || dos->e_lfanew > 0x10000000) return;
+        if (dos->e_magic != IMAGE_DOS_SIGNATURE) return false;
+        if (dos->e_lfanew <= 0 || dos->e_lfanew > 0x10000000) return false;
 
         PIMAGE_NT_HEADERS nt = (PIMAGE_NT_HEADERS)((BYTE*)hMod + dos->e_lfanew);
-        if (nt->Signature != IMAGE_NT_SIGNATURE) return;
+        if (nt->Signature != IMAGE_NT_SIGNATURE) return false;
 
         BYTE* base = (BYTE*)hMod;
+        bool patchedAny = false;
         PIMAGE_SECTION_HEADER sec = IMAGE_FIRST_SECTION(nt);
         for (WORD i = 0; i < nt->FileHeader.NumberOfSections; i++, sec++) {
             if (!(sec->Characteristics & IMAGE_SCN_MEM_EXECUTE))
@@ -66,36 +59,32 @@ static void BypassTableCrcInModule(HMODULE hMod) {
                     if (VirtualProtect(p + 7, 6, PAGE_EXECUTE_READWRITE, &oldProtect)) {
                         memset(p + 7, 0x90, 6); // 6 NOPs: bypass jne fail_handler
                         VirtualProtect(p + 7, 6, oldProtect, &oldProtect);
+                        patchedAny = true;
                     }
                     p += 12;
                 }
             }
         }
+        return patchedAny;
     }
     __except (EXCEPTION_EXECUTE_HANDLER) {
+        return false;
     }
 }
 
-static void BypassCountryCheckInModule(HMODULE hMod) {
-    if (!hMod) return;
-
-    AcquireSRWLockExclusive(&s_patchLock);
-    if (s_scannedCountryModules.find(hMod) != s_scannedCountryModules.end()) {
-        ReleaseSRWLockExclusive(&s_patchLock);
-        return;
-    }
-    s_scannedCountryModules.insert(hMod);
-    ReleaseSRWLockExclusive(&s_patchLock);
+static bool BypassCountryCheckInModule(HMODULE hMod) {
+    if (!hMod) return false;
 
     __try {
         PIMAGE_DOS_HEADER dos = (PIMAGE_DOS_HEADER)hMod;
-        if (dos->e_magic != IMAGE_DOS_SIGNATURE) return;
-        if (dos->e_lfanew <= 0 || dos->e_lfanew > 0x10000000) return;
+        if (dos->e_magic != IMAGE_DOS_SIGNATURE) return false;
+        if (dos->e_lfanew <= 0 || dos->e_lfanew > 0x10000000) return false;
 
         PIMAGE_NT_HEADERS nt = (PIMAGE_NT_HEADERS)((BYTE*)hMod + dos->e_lfanew);
-        if (nt->Signature != IMAGE_NT_SIGNATURE) return;
+        if (nt->Signature != IMAGE_NT_SIGNATURE) return false;
 
         BYTE* base = (BYTE*)hMod;
+        bool patchedAny = false;
         PIMAGE_SECTION_HEADER sec = IMAGE_FIRST_SECTION(nt);
         for (WORD i = 0; i < nt->FileHeader.NumberOfSections; i++, sec++) {
             if (!(sec->Characteristics & IMAGE_SCN_MEM_EXECUTE))
@@ -123,6 +112,7 @@ static void BypassCountryCheckInModule(HMODULE hMod) {
                                 memset(p + 2, 0x90, 6);   // NOP jne target
                                 memset(p + 12, 0x90, 6);  // NOP je target
                                 VirtualProtect(p + 2, 16, oldProtect, &oldProtect);
+                                patchedAny = true;
                             }
                             p += 17;
                             continue;
@@ -142,6 +132,7 @@ static void BypassCountryCheckInModule(HMODULE hMod) {
                                 memset(p + 2, 0x90, 6);   // NOP jne target
                                 memset(p + 11, 0x90, 6);  // NOP je target
                                 VirtualProtect(p + 2, 15, oldProtect, &oldProtect);
+                                patchedAny = true;
                             }
                             p += 16;
                             continue;
@@ -150,36 +141,79 @@ static void BypassCountryCheckInModule(HMODULE hMod) {
                 }
             }
         }
+        return patchedAny;
     }
     __except (EXCEPTION_EXECUTE_HANDLER) {
+        return false;
     }
 }
 
-static void PatchLanguageTableInModule(HMODULE hMod) {
-    if (!hMod) return;
-
-    AcquireSRWLockExclusive(&s_patchLock);
-    if (s_scannedLangModules.find(hMod) != s_scannedLangModules.end()) {
-        ReleaseSRWLockExclusive(&s_patchLock);
-        return;
-    }
-    s_scannedLangModules.insert(hMod);
-    ReleaseSRWLockExclusive(&s_patchLock);
+static bool PatchLanguageTableInModule(HMODULE hMod) {
+    if (!hMod) return false;
 
     __try {
         PIMAGE_DOS_HEADER dos = (PIMAGE_DOS_HEADER)hMod;
-        if (dos->e_magic != IMAGE_DOS_SIGNATURE) return;
-        if (dos->e_lfanew <= 0 || dos->e_lfanew > 0x10000000) return;
+        if (dos->e_magic != IMAGE_DOS_SIGNATURE) return false;
+        if (dos->e_lfanew <= 0 || dos->e_lfanew > 0x10000000) return false;
 
         PIMAGE_NT_HEADERS nt = (PIMAGE_NT_HEADERS)((BYTE*)hMod + dos->e_lfanew);
-        if (nt->Signature != IMAGE_NT_SIGNATURE) return;
+        if (nt->Signature != IMAGE_NT_SIGNATURE) return false;
+
+        BYTE* base = (BYTE*)hMod;
+        bool patchedAny = false;
+
+#if defined(_M_AMD64)
+        // Direct fast-path: Game.dll (64-bit) known PLK offset at 0xd5ee88
+        if (nt->OptionalHeader.SizeOfImage > 0xd5ee90) {
+            BYTE* pPlk = base + 0xd5ee88;
+            if (memcmp(pPlk, "PLK\0", 4) == 0) {
+                DWORD oldProtect = 0;
+                if (VirtualProtect(pPlk, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+                    memcpy(pPlk, "BRA\0", 4);
+                    VirtualProtect(pPlk, 4, oldProtect, &oldProtect);
+                    patchedAny = true;
+                }
+            } else if (memcmp(pPlk, "BRA\0", 4) == 0) {
+                patchedAny = true;
+            }
+        }
+
+        // Direct fast-path: CryMovie.dll (64-bit) known PLK offset at 0xa6b50
+        if (nt->OptionalHeader.SizeOfImage > 0xa6b58) {
+            BYTE* pPlk = base + 0xa6b50;
+            if (memcmp(pPlk, "PLK\0", 4) == 0) {
+                DWORD oldProtect = 0;
+                if (VirtualProtect(pPlk, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+                    memcpy(pPlk, "BRA\0", 4);
+                    VirtualProtect(pPlk, 4, oldProtect, &oldProtect);
+                    patchedAny = true;
+                }
+            } else if (memcmp(pPlk, "BRA\0", 4) == 0) {
+                patchedAny = true;
+            }
+        }
+
+        // Direct fast-path: CrySystem.dll (64-bit) known PLK/BRA offset at 0x2018b8
+        if (nt->OptionalHeader.SizeOfImage > 0x2018c0) {
+            BYTE* pPlk = base + 0x2018b8;
+            if (memcmp(pPlk, "PLK\0", 4) == 0) {
+                DWORD oldProtect = 0;
+                if (VirtualProtect(pPlk, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+                    memcpy(pPlk, "BRA\0", 4);
+                    VirtualProtect(pPlk, 4, oldProtect, &oldProtect);
+                    patchedAny = true;
+                }
+            } else if (memcmp(pPlk, "BRA\0", 4) == 0) {
+                patchedAny = true;
+            }
+        }
+#endif
 
         const char p1_prefix[] = "KOR\0ENU\0ENG\0DEU\0FRA\0ITA\0ESN\0"; // 28 bytes
         const char p2_suffix[] = "ESN\0ITA\0FRA\0DEU\0ENG\0ENU\0KOR\0"; // 28 bytes
         const char p_movie[]   = "KOR\0TRK\0PLK\0ITA\0ESN\0FRA\0DEU\0ENU\0"; // 32 bytes
         const size_t patternLen = 32;
 
-        BYTE* base = (BYTE*)hMod;
         PIMAGE_SECTION_HEADER sec = IMAGE_FIRST_SECTION(nt);
         for (WORD i = 0; i < nt->FileHeader.NumberOfSections; i++, sec++) {
             if (!(sec->Characteristics & (IMAGE_SCN_MEM_READ | IMAGE_SCN_CNT_INITIALIZED_DATA | IMAGE_SCN_CNT_CODE)))
@@ -187,66 +221,76 @@ static void PatchLanguageTableInModule(HMODULE hMod) {
 
             BYTE* s = base + sec->VirtualAddress;
             DWORD sz = sec->Misc.VirtualSize;
-            if (sz < patternLen) continue;
-            BYTE* s_end = s + sz - patternLen;
+            if (sz < 8) continue;
+            BYTE* s_end = s + sz - 8;
 
             for (BYTE* p = s; p <= s_end; p++) {
+                // High-performance filter: skip any non-candidate bytes immediately
+                if (*p != 'P' && *p != 'K' && *p != 'I' && *p != 'E') continue;
+
                 // Check Classic pattern: PLK\0 + ESN\0ITA\0FRA\0DEU\0ENG\0ENU\0KOR\0
-                if (p[0] == 'P' && memcmp(p, "PLK\0", 4) == 0 && memcmp(p + 4, p2_suffix, 28) == 0) {
+                if (*p == 'P' && p <= s + sz - patternLen && memcmp(p, "PLK\0", 4) == 0 && memcmp(p + 4, p2_suffix, 28) == 0) {
                     DWORD oldProtect = 0;
                     if (VirtualProtect(p, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
                         memcpy(p, "BRA\0", 4);
                         VirtualProtect(p, 4, oldProtect, &oldProtect);
+                        patchedAny = true;
                     }
                     p += 31;
                     continue;
                 }
                 // Check primary 32-byte 5.0+ pattern (KOR...PLK)
-                if (p[0] == 'K' && memcmp(p, p1_prefix, 28) == 0 && memcmp(p + 28, "PLK\0", 4) == 0) {
+                if (*p == 'K' && p <= s + sz - patternLen && memcmp(p, p1_prefix, 28) == 0 && memcmp(p + 28, "PLK\0", 4) == 0) {
                     BYTE* plk = p + 28;
                     DWORD oldProtect = 0;
                     if (VirtualProtect(plk, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
                         memcpy(plk, "BRA\0", 4);
                         VirtualProtect(plk, 4, oldProtect, &oldProtect);
+                        patchedAny = true;
                     }
                     p += 31;
                     continue;
                 }
                 // Check CryMovie pattern: KOR\0TRK\0PLK\0ITA\0ESN\0FRA\0DEU\0ENU\0
-                if (p[0] == 'K' && memcmp(p, p_movie, 32) == 0) {
+                if (*p == 'K' && p <= s + sz - patternLen && memcmp(p, p_movie, 32) == 0) {
                     BYTE* plk = p + 8;
                     DWORD oldProtect = 0;
                     if (VirtualProtect(plk, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
                         memcpy(plk, "BRA\0", 4);
                         VirtualProtect(plk, 4, oldProtect, &oldProtect);
+                        patchedAny = true;
                     }
                     p += 31;
                     continue;
                 }
                 // Check Game.dll / short pattern: PLK\0ESN\0, PLK\0TRK\0, PLK\0ITA\0
-                if (memcmp(p, "PLK\0ESN\0", 8) == 0 || memcmp(p, "PLK\0TRK\0", 8) == 0 || memcmp(p, "PLK\0ITA\0", 8) == 0) {
+                if (*p == 'P' && (memcmp(p, "PLK\0ESN\0", 8) == 0 || memcmp(p, "PLK\0TRK\0", 8) == 0 || memcmp(p, "PLK\0ITA\0", 8) == 0)) {
                     DWORD oldProtect = 0;
                     if (VirtualProtect(p, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
                         memcpy(p, "BRA\0", 4);
                         VirtualProtect(p, 4, oldProtect, &oldProtect);
+                        patchedAny = true;
                     }
                     p += 3;
                     continue;
                 }
                 // Check CryMovie.dll pattern: ITA\0PLK\0 or ESN\0PLK\0
-                if (memcmp(p, "ITA\0PLK\0", 8) == 0 || memcmp(p, "ESN\0PLK\0", 8) == 0) {
+                if ((*p == 'I' || *p == 'E') && (memcmp(p, "ITA\0PLK\0", 8) == 0 || memcmp(p, "ESN\0PLK\0", 8) == 0)) {
                     DWORD oldProtect = 0;
                     if (VirtualProtect(p + 4, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
                         memcpy(p + 4, "BRA\0", 4);
                         VirtualProtect(p + 4, 4, oldProtect, &oldProtect);
+                        patchedAny = true;
                     }
                     p += 7;
                     continue;
                 }
             }
         }
+        return patchedAny;
     }
     __except (EXCEPTION_EXECUTE_HANDLER) {
+        return false;
     }
 }
 
@@ -269,16 +313,52 @@ static void PatchAllLoadedLanguageModules() {
     };
     HMODULE hMain = GetModuleHandleW(nullptr);
     if (hMain) {
-        PatchLanguageTableInModule(hMain);
-        BypassCountryCheckInModule(hMain);
-        BypassTableCrcInModule(hMain);
+        AcquireSRWLockExclusive(&s_patchLock);
+        bool langDone = s_scannedLangModules.count(hMain) > 0;
+        bool countryDone = s_scannedCountryModules.count(hMain) > 0;
+        bool crcDone = s_scannedCrcModules.count(hMain) > 0;
+        ReleaseSRWLockExclusive(&s_patchLock);
+
+        if (!langDone && PatchLanguageTableInModule(hMain)) {
+            AcquireSRWLockExclusive(&s_patchLock);
+            s_scannedLangModules.insert(hMain);
+            ReleaseSRWLockExclusive(&s_patchLock);
+        }
+        if (!countryDone && BypassCountryCheckInModule(hMain)) {
+            AcquireSRWLockExclusive(&s_patchLock);
+            s_scannedCountryModules.insert(hMain);
+            ReleaseSRWLockExclusive(&s_patchLock);
+        }
+        if (!crcDone && BypassTableCrcInModule(hMain)) {
+            AcquireSRWLockExclusive(&s_patchLock);
+            s_scannedCrcModules.insert(hMain);
+            ReleaseSRWLockExclusive(&s_patchLock);
+        }
     }
     for (const wchar_t* name : moduleNames) {
         HMODULE h = GetModuleHandleW(name);
         if (h) {
-            PatchLanguageTableInModule(h);
-            BypassCountryCheckInModule(h);
-            BypassTableCrcInModule(h);
+            AcquireSRWLockExclusive(&s_patchLock);
+            bool langDone = s_scannedLangModules.count(h) > 0;
+            bool countryDone = s_scannedCountryModules.count(h) > 0;
+            bool crcDone = s_scannedCrcModules.count(h) > 0;
+            ReleaseSRWLockExclusive(&s_patchLock);
+
+            if (!langDone && PatchLanguageTableInModule(h)) {
+                AcquireSRWLockExclusive(&s_patchLock);
+                s_scannedLangModules.insert(h);
+                ReleaseSRWLockExclusive(&s_patchLock);
+            }
+            if (!countryDone && BypassCountryCheckInModule(h)) {
+                AcquireSRWLockExclusive(&s_patchLock);
+                s_scannedCountryModules.insert(h);
+                ReleaseSRWLockExclusive(&s_patchLock);
+            }
+            if (!crcDone && BypassTableCrcInModule(h)) {
+                AcquireSRWLockExclusive(&s_patchLock);
+                s_scannedCrcModules.insert(h);
+                ReleaseSRWLockExclusive(&s_patchLock);
+            }
         }
     }
 }
@@ -287,9 +367,7 @@ static decltype(LoadLibraryA)* real_LoadLibraryA = LoadLibraryA;
 static HMODULE WINAPI zzLoadLibraryA(LPCSTR lpLibFileName) {
     HMODULE h = real_LoadLibraryA(lpLibFileName);
     if (h) {
-        PatchLanguageTableInModule(h);
-        BypassCountryCheckInModule(h);
-        BypassTableCrcInModule(h);
+        PatchAllLoadedLanguageModules();
     }
     return h;
 }
@@ -298,9 +376,7 @@ static decltype(LoadLibraryExA)* real_LoadLibraryExA = LoadLibraryExA;
 static HMODULE WINAPI zzLoadLibraryExA(LPCSTR lpLibFileName, HANDLE hFile, DWORD dwFlags) {
     HMODULE h = real_LoadLibraryExA(lpLibFileName, hFile, dwFlags);
     if (h && !(dwFlags & (LOAD_LIBRARY_AS_DATAFILE | LOAD_LIBRARY_AS_IMAGE_RESOURCE))) {
-        PatchLanguageTableInModule(h);
-        BypassCountryCheckInModule(h);
-        BypassTableCrcInModule(h);
+        PatchAllLoadedLanguageModules();
     }
     return h;
 }
@@ -309,9 +385,7 @@ static decltype(LoadLibraryW)* real_LoadLibraryW = LoadLibraryW;
 static HMODULE WINAPI zzLoadLibraryW(LPCWSTR lpLibFileName) {
     HMODULE h = real_LoadLibraryW(lpLibFileName);
     if (h) {
-        PatchLanguageTableInModule(h);
-        BypassCountryCheckInModule(h);
-        BypassTableCrcInModule(h);
+        PatchAllLoadedLanguageModules();
     }
     return h;
 }
@@ -320,9 +394,7 @@ static decltype(LoadLibraryExW)* real_LoadLibraryExW = LoadLibraryExW;
 static HMODULE WINAPI zzLoadLibraryExW(LPCWSTR lpLibFileName, HANDLE hFile, DWORD dwFlags) {
     HMODULE h = real_LoadLibraryExW(lpLibFileName, hFile, dwFlags);
     if (h && !(dwFlags & (LOAD_LIBRARY_AS_DATAFILE | LOAD_LIBRARY_AS_IMAGE_RESOURCE))) {
-        PatchLanguageTableInModule(h);
-        BypassCountryCheckInModule(h);
-        BypassTableCrcInModule(h);
+        PatchAllLoadedLanguageModules();
     }
     return h;
 }
@@ -341,6 +413,22 @@ static int WINAPI zzMessageBoxW(HWND hWnd, LPCWSTR lpText, LPCWSTR lpCaption, UI
         return IDOK;
     }
     return real_MessageBoxW(hWnd, lpText, lpCaption, uType);
+}
+
+static decltype(GetPrivateProfileIntA)* real_GetPrivateProfileIntA = GetPrivateProfileIntA;
+static UINT WINAPI zzGetPrivateProfileIntA(LPCSTR lpAppName, LPCSTR lpKeyName, INT nDefault, LPCSTR lpFileName) {
+    if (lpKeyName && _stricmp(lpKeyName, "ValidTableDump") == 0) {
+        return 0; // Force disable binary table dump so localized XML strings are always loaded
+    }
+    return real_GetPrivateProfileIntA(lpAppName, lpKeyName, nDefault, lpFileName);
+}
+
+static decltype(GetPrivateProfileIntW)* real_GetPrivateProfileIntW = GetPrivateProfileIntW;
+static UINT WINAPI zzGetPrivateProfileIntW(LPCWSTR lpAppName, LPCWSTR lpKeyName, INT nDefault, LPCWSTR lpFileName) {
+    if (lpKeyName && _wcsicmp(lpKeyName, L"ValidTableDump") == 0) {
+        return 0; // Force disable binary table dump so localized XML strings are always loaded
+    }
+    return real_GetPrivateProfileIntW(lpAppName, lpKeyName, nDefault, lpFileName);
 }
 
 static void EnableHighQualityGraphicsOptions() {
@@ -554,6 +642,8 @@ static void InstallPatch() {
     DetourAttach(&(PVOID&)real_LoadLibraryExW, zzLoadLibraryExW);
     DetourAttach(&(PVOID&)real_MessageBoxA, zzMessageBoxA);
     DetourAttach(&(PVOID&)real_MessageBoxW, zzMessageBoxW);
+    DetourAttach(&(PVOID&)real_GetPrivateProfileIntA, zzGetPrivateProfileIntA);
+    DetourAttach(&(PVOID&)real_GetPrivateProfileIntW, zzGetPrivateProfileIntW);
     DetourAttach(&(PVOID&)real_GetCommandLineA, zzGetCommandLineA);
     DetourAttach(&(PVOID&)real_GetCommandLineW, zzGetCommandLineW);
     DetourAttach(&(PVOID&)real_CreateWindowExA, zzCreateWindowExA);
