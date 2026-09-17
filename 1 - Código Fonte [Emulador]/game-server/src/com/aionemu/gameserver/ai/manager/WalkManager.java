@@ -5,8 +5,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.lostacademy.nav.NavData;
-import com.lostacademy.nav.NavService;
 import com.lostacademy.nativepath.NativePathConfig;
 import com.lostacademy.nativepath.NativePathService;
 import com.aionemu.commons.utils.Rnd;
@@ -242,19 +240,7 @@ public class WalkManager {
                     return;
                 }
             }
-            boolean navEnabled = GeoDataConfig.GEO_NAV_ENABLE && NavData.getInstance().getNavMap(owner.getWorldId()) != null;
-            if (navEnabled) {
-                float[][] navPath = NavService.getInstance().navigateToLocation(owner, nextX, nextY, owner.getZ());
-                float[] navTarget = selectNextNavPoint(owner, navPath, diameter);
-                if (navTarget != null) {
-                    owner.getMoveController().moveToPoint(navTarget[0], navTarget[1], navTarget[2]);
-                } else if (GeoDataConfig.GEO_ENABLE && GeoDataConfig.GEO_NPC_MOVE) {
-                    Vector3f loc = GeoService.getInstance().getClosestCollision(owner, nextX, nextY, owner.getZ(), true, RANDOM_WALK_GEO_FLAGS, IgnoreProperties.of(owner.getRace()));
-                    owner.getMoveController().moveToPoint(loc.x, loc.y, loc.z);
-                } else {
-                    owner.getMoveController().moveToPoint(nextX, nextY, owner.getZ());
-                }
-            } else if (GeoDataConfig.GEO_ENABLE && GeoDataConfig.GEO_NPC_MOVE) {
+            if (GeoDataConfig.GEO_ENABLE && GeoDataConfig.GEO_NPC_MOVE) {
                 Vector3f loc = GeoService.getInstance().getClosestCollision(owner, nextX, nextY, owner.getZ(), true, RANDOM_WALK_GEO_FLAGS, IgnoreProperties.of(owner.getRace()));
                 owner.getMoveController().moveToPoint(loc.x, loc.y, loc.z);
             } else {

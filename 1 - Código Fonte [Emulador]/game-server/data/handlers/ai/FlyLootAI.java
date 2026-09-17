@@ -73,8 +73,7 @@ public class FlyLootAI extends ActionItemNpcAI {
 	protected void handleDied() {
 		super.handleDied();
 		if (dropRegistered.compareAndSet(false, true)) {
-			Creature killer = getOwner().getAggroList().getMostDamage();
-			Player looter = killer instanceof Player p ? p : null;
+			Player looter = getOwner().getAggroList().getMostPlayerDamage();
 			if (looter != null) {
 				Collection<Player> eligibleLooters = resolveEligibleLooters(looter);
 				int highestLevel = getHighestLevel(looter, eligibleLooters);

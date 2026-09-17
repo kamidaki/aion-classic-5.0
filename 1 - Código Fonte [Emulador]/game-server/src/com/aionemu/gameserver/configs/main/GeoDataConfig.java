@@ -47,21 +47,12 @@ public class GeoDataConfig {
 	public static boolean GEO_SHIELDS_ENABLE;
 
 	/**
-	 * Enable NavMesh system
 	 */
-	@Property(key = "gameserver.geodata.nav.enable", defaultValue = "true")
-	public static boolean GEO_NAV_ENABLE;
 
 	/**
-	 * NavMesh data directory
 	 */
-	@Property(key = "gameserver.geodata.nav.dir", defaultValue = "data/nav/")
-	public static String GEO_NAV_DIR;
 
 	/**
-	 * Enable forced movement nav fallback
 	 */
-	@Property(key = "gameserver.geodata.forced_move.nav_fallback", defaultValue = "true")
-	public static boolean FORCED_MOVE_NAV_FALLBACK;
 
 }
