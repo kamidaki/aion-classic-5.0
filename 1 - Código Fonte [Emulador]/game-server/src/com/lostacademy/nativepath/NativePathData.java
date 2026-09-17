@@ -197,7 +197,6 @@ public final class NativePathData {
 			if (cachedMaps.remove(oldestWorldId, oldestCached)) {
 				mapActivity.remove(oldestWorldId);
 				LOG.info("NATIVE_PATH: LRU removeu mapa {} da memoria.", oldestWorldId);
-				System.gc();
 			}
 		}
 	}
@@ -235,7 +234,6 @@ public final class NativePathData {
 				if (cachedMaps.remove(worldId, cached)) {
 					mapActivity.remove(worldId);
 					LOG.info("NATIVE_PATH: Mapa {} liberado da memória por inatividade.", worldId);
-					System.gc();
 				}
 			}
 		}

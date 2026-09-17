@@ -30,7 +30,6 @@ public final class NativePathMap {
 	private static final Logger LOG = LoggerFactory.getLogger(NativePathMap.class);
 
 	private static final float SPATIAL_CELL_SIZE = 16.0f;
-	private static final float GRID_SCALE = 0.5f;
 
 	private final int worldId;
 	private final NativePathNode[] nodes;
@@ -126,12 +125,12 @@ public final class NativePathMap {
 					if (dist2DSq > maxRadiusSq)
 						continue;
 
-					// Rejeita nós com desnível vertical desproporcional
-					if (Math.abs(dz) > Math.max(3.5f, maxRadius * 0.75f))
+					// Rejeita nós com desnível vertical desproporcional (permite até 7m para início de escadas/rampas)
+					if (Math.abs(dz) > Math.max(7.0f, maxRadius * 0.75f))
 						continue;
 
-					// Ponderação vertical (3.0x): distância horizontal prevalece sobre salto vertical
-					float score = dist2DSq + (dz * 3.0f) * (dz * 3.0f);
+					// Ponderação vertical (2.0x): distância horizontal prevalece sobre salto vertical
+					float score = dist2DSq + (dz * 2.0f) * (dz * 2.0f);
 					if (score < bestScore) {
 						bestScore = score;
 						bestNode = node;
@@ -147,7 +146,7 @@ public final class NativePathMap {
 	 * Retorna a elevação Z da superfície navegável na coordenada (x, y).
 	 */
 	public float getSurfaceZ(float x, float y, float fallbackZ) {
-		NativePathNode closest = findClosestNode(x, y, fallbackZ, 6.0f);
+		NativePathNode closest = findClosestNode(x, y, fallbackZ, 16.0f);
 		if (closest != null) {
 			return closest.getZ();
 		}
@@ -163,7 +162,8 @@ public final class NativePathMap {
 
 	/**
 	 * Verifica linha de visão desobstruída entre dois pontos sobre nós navegáveis (String-Pulling / Raycast).
-	 * Valida inclinação máxima do terreno e continuidade de superfície transitável passo a passo.
+	 * Valida colisões 3D reais (barcos, pontes flutuantes, paredes, decorações) através do GeoService
+	 * e integridade de inclinação máxima transitável.
 	 */
 	public boolean hasLineOfSight(float x1, float y1, float z1, float x2, float y2, float z2, float maxDropHeight) {
 		float dx = x2 - x1;
@@ -180,7 +180,18 @@ public final class NativePathMap {
 			return false;
 		}
 
-		int steps = Math.max(1, (int) Math.ceil(dist2D / 1.0f));
+		// Validação física 3D contra objetos de decoração, barcos, pontes e paredes (.geo)
+		try {
+			if (GeoService.getInstance() != null) {
+				boolean canPass = GeoService.getInstance().canPass(worldId, x1, y1, z1 + 0.5f, x2, y2, z2 + 0.5f, 0, 0);
+				if (!canPass) {
+					return false;
+				}
+			}
+		} catch (Throwable ignored) {
+		}
+
+		int steps = Math.max(1, (int) Math.ceil(dist2D / 2.0f));
 		float stepX = dx / steps;
 		float stepY = dy / steps;
 		float stepZ = dz / steps;
@@ -189,17 +200,21 @@ public final class NativePathMap {
 		float currY = y1;
 		float currZ = z1;
 
-		for (int i = 1; i <= steps; i++) {
+		for (int i = 1; i < steps; i++) {
 			currX += stepX;
 			currY += stepY;
 			currZ += stepZ;
 
-			NativePathNode node = findClosestNode(currX, currY, currZ, 2.5f);
-			if (node == null) {
-				return false;
-			}
-			if (Math.abs(node.getZ() - currZ) > maxDropHeight) {
-				return false;
+			if (GeoService.getInstance() != null) {
+				float groundZ = GeoService.getInstance().getZ(worldId, currX, currY, currZ + 2.5f, currZ - 3.5f, 0);
+				if (!Float.isNaN(groundZ) && Math.abs(groundZ - currZ) > maxDropHeight) {
+					return false;
+				}
+			} else {
+				NativePathNode node = findClosestNode(currX, currY, currZ, 16.0f);
+				if (node == null || Math.abs(node.getZ() - currZ) > maxDropHeight) {
+					return false;
+				}
 			}
 		}
 
@@ -281,16 +296,20 @@ public final class NativePathMap {
 
 						int subType = in.read();
 						int elevRaw = readLittleEndianInt(in);
+						float baseElev = Float.NaN;
 
 						// Decodificação polimórfica de payload por tipo de layer CryEngine
 						switch (layerType) {
 							case 0:
 							case 1:
-								in.skipNBytes(4);
+								int e0 = readLittleEndianInt(in);
+								if (e0 != 0 && Math.abs(e0) < 5000000) {
+									baseElev = e0 / 100.0f;
+								}
 								break;
 							case 2:
 							case 3:
-								// Sem máscara
+								// Sem máscara (superfície plana / terreno)
 								break;
 							case 4:
 							case 5:
@@ -310,11 +329,19 @@ public final class NativePathMap {
 								break;
 							case 12:
 							case 13:
-								in.skipNBytes(4 + 1024);
+								int e12 = readLittleEndianInt(in);
+								if (e12 != 0 && Math.abs(e12) < 5000000) {
+									baseElev = e12 / 100.0f;
+								}
+								in.skipNBytes(1024);
 								break;
 							case 14:
 							case 15:
-								in.skipNBytes(4 + 2048);
+								int e14 = readLittleEndianInt(in);
+								if (e14 != 0 && Math.abs(e14) < 5000000) {
+									baseElev = e14 / 100.0f;
+								}
+								in.skipNBytes(2048);
 								break;
 							default:
 								LOG.warn("NATIVE_PATH: Layer desconhecido {} em mapa {}", layerType, worldId);
@@ -332,22 +359,35 @@ public final class NativePathMap {
 						// Cálculo exato de coordenadas de mundo CryEngine: centro da célula de 16m
 						float worldX = gridX + 8.0f;
 						float worldY = gridY + 8.0f;
+						float worldZ = 0.0f;
 
-						// No CryEngine elevRaw é armazenado em centímetros como inteiro (cvtdq2ps / divss 100.0f)
-						float worldZ = elevRaw / 100.0f;
+						// Resolução precisa de altitude:
+						// Camadas estruturais (pontes flutuantes, barcos, decks, plataformas elevadas)
+						boolean hasExplicitBase = !Float.isNaN(baseElev) && Math.abs(baseElev) > 0.1f
+								&& Math.abs(baseElev - 655.35f) > 0.1f && Math.abs(baseElev - 327.67f) > 0.1f;
 
-						// Se GeoService estiver disponível e a altitude nativa for nula/padrão, obtém Z sub-métrico do terreno
-						try {
-							if (GeoService.getInstance() != null) {
-								float geoZ = GeoService.getInstance().getZ(worldId, worldX, worldY);
-								if (!Float.isNaN(geoZ) && geoZ > -500.0f && geoZ < 5000.0f) {
-									// Se a elevação nativa for 0 (nível base) ou inconsistente, usa geoZ
-									if (Math.abs(worldZ) < 0.5f || Math.abs(worldZ - geoZ) > 40.0f || worldZ < -500.0f || worldZ > 5000.0f) {
+						if (hasExplicitBase) {
+							worldZ = baseElev;
+							try {
+								if (GeoService.getInstance() != null) {
+									float meshZ = GeoService.getInstance().getZ(worldId, worldX, worldY, baseElev + 3.0f, baseElev - 5.0f, 0);
+									if (!Float.isNaN(meshZ) && Math.abs(meshZ - baseElev) <= 5.0f) {
+										worldZ = meshZ;
+									}
+								}
+							} catch (Throwable ignored) {
+							}
+						} else {
+							// Camada de terreno ou sem cota explícita
+							try {
+								if (GeoService.getInstance() != null) {
+									float geoZ = GeoService.getInstance().getZ(worldId, worldX, worldY);
+									if (!Float.isNaN(geoZ) && geoZ > -500.0f && geoZ < 5000.0f) {
 										worldZ = geoZ;
 									}
 								}
+							} catch (Throwable ignored) {
 							}
-						} catch (Throwable ignored) {
 						}
 
 						if (worldZ < -500.0f || worldZ > 5000.0f) {
@@ -413,10 +453,11 @@ public final class NativePathMap {
 				long key = (((long) nx) << 32) | (ny & 0xFFFFFFFFL);
 				List<Integer> candList = gridPosMap.get(key);
 				if (candList != null) {
+					// Limite de rampa: 6.5m para vizinhos cardinais (16m), 8.5m para diagonais (22.6m)
+					float maxDeltaZ = (dir < 4) ? 6.5f : 8.5f;
 					for (int candIdx : candList) {
 						NativePathNode cand = array[candIdx];
-						// Limite estrito de rampa caminhável (2.5m) para não atravessar parapeitos ou pontes suspensas
-						if (Math.abs(cand.getZ() - node.getZ()) <= 2.5f) {
+						if (Math.abs(cand.getZ() - node.getZ()) <= maxDeltaZ) {
 							neighbors.add(cand.getId());
 						}
 					}

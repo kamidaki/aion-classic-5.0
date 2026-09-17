@@ -22,7 +22,7 @@ public final class NativePathAStar {
 
 	private static final Logger LOG = LoggerFactory.getLogger(NativePathAStar.class);
 
-	private static final int MAX_EXPLORED_NODES = 3500;
+	private static final int DEFAULT_MAX_EXPLORED_NODES = 8000;
 	private static final float MAX_SAFE_STEP_DROP = 2.5f;
 
 	private NativePathAStar() {
@@ -38,18 +38,24 @@ public final class NativePathAStar {
 			return null;
 		}
 
-		// Se há linha de visão direta sem desnível excessivo, retorna direto o destino
+		// Se há linha de visão direta desobstruída (sem colisões 3D e sem desnível excessivo), retorna direto o destino
 		if (map.hasLineOfSight(startX, startY, startZ, targetX, targetY, targetZ, MAX_SAFE_STEP_DROP)) {
 			return new float[][] {{targetX, targetY, targetZ}};
 		}
 
-		// Localiza os nós mais próximos de início e fim
-		NativePathNode startNode = map.findClosestNode(startX, startY, startZ, 8.0f);
+		// Localiza os nós mais próximos de início e fim (raio de 24m cobre 100% da célula de 16m inclusive diagonais)
+		NativePathNode startNode = map.findClosestNode(startX, startY, startZ, 24.0f);
+		if (startNode == null) {
+			startNode = map.findClosestNode(startX, startY, startZ, 36.0f);
+		}
 		if (startNode == null) {
 			return null;
 		}
 
-		NativePathNode targetNode = map.findClosestNode(targetX, targetY, targetZ, 8.0f);
+		NativePathNode targetNode = map.findClosestNode(targetX, targetY, targetZ, 24.0f);
+		if (targetNode == null) {
+			targetNode = map.findClosestNode(targetX, targetY, targetZ, 36.0f);
+		}
 		if (targetNode == null) {
 			return null;
 		}
@@ -64,16 +70,17 @@ public final class NativePathAStar {
 			return null;
 		}
 
-		// Suavização da rota eliminando waypoints redundantes
+		// Suavização da rota eliminando waypoints redundantes sem atravessar obstáculos
 		List<float[]> smoothedWaypoints = smoothPath(map, nodePath, startX, startY, startZ, targetX, targetY, targetZ);
 		return smoothedWaypoints.toArray(new float[0][]);
 	}
 
 	private static List<NativePathNode> executeAStar(NativePathMap map, NativePathNode startNode, NativePathNode goalNode) {
 		int nodeCount = map.getNodeCount();
-		PriorityQueue<AStarItem> openSet = new PriorityQueue<>(64);
-		Map<Integer, Float> gScore = new HashMap<>(128);
-		Map<Integer, Integer> cameFrom = new HashMap<>(128);
+		int maxExplored = Math.max(DEFAULT_MAX_EXPLORED_NODES, NativePathConfig.NATIVE_PATH_MAX_SEARCH_NODES);
+		PriorityQueue<AStarItem> openSet = new PriorityQueue<>(128);
+		Map<Integer, Float> gScore = new HashMap<>(256);
+		Map<Integer, Integer> cameFrom = new HashMap<>(256);
 		BitSet closedSet = new BitSet(nodeCount);
 
 		gScore.put(startNode.getId(), 0.0f);
@@ -81,7 +88,7 @@ public final class NativePathAStar {
 
 		int iterations = 0;
 
-		while (!openSet.isEmpty() && iterations++ < MAX_EXPLORED_NODES) {
+		while (!openSet.isEmpty() && iterations++ < maxExplored) {
 			AStarItem currentItem = openSet.poll();
 			int currentId = currentItem.nodeId;
 
@@ -111,7 +118,9 @@ public final class NativePathAStar {
 				}
 
 				float stepDist = currentNode.distanceTo(neighborNode);
-				float tentativeG = currentG + stepDist;
+				float dz = Math.abs(neighborNode.getZ() - currentNode.getZ());
+				// Penalidade vertical adicional para priorizar escadas/rampas suaves sobre saltos abruptos
+				float tentativeG = currentG + stepDist + dz * 1.5f;
 
 				float oldG = gScore.getOrDefault(neighborId, Float.POSITIVE_INFINITY);
 				if (tentativeG < oldG) {
@@ -127,7 +136,10 @@ public final class NativePathAStar {
 	}
 
 	private static float heuristic(NativePathNode a, NativePathNode b) {
-		return a.distanceTo(b);
+		float dx = a.getX() - b.getX();
+		float dy = a.getY() - b.getY();
+		float dz = a.getZ() - b.getZ();
+		return (float) Math.sqrt(dx * dx + dy * dy + dz * dz * 4.0f);
 	}
 
 	private static List<NativePathNode> reconstructPath(NativePathMap map, Map<Integer, Integer> cameFrom, int currentId) {

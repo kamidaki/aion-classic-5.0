@@ -199,7 +199,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 						// Pula waypoints intermediários já alcançados
 						while (cachedPath != null && cachedPath.length > 1
-								&& PositionUtil.isInRange(owner, cachedPath[0][0], cachedPath[0][1], cachedPath[0][2], 0.5f)) {
+								&& PositionUtil.isInRange(owner, cachedPath[0][0], cachedPath[0][1], cachedPath[0][2], 0.8f)) {
 							float[][] temp = new float[cachedPath.length - 1][];
 							System.arraycopy(cachedPath, 1, temp, 0, cachedPath.length - 1);
 							cachedPath = temp;
@@ -236,7 +236,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 					}
 					if (cachedPath != null && !isPathFailure(cachedPath) && cachedPath.length > 0) {
 						while (cachedPath != null && cachedPath.length > 1
-								&& PositionUtil.isInRange(owner, cachedPath[0][0], cachedPath[0][1], cachedPath[0][2], 0.5f)) {
+								&& PositionUtil.isInRange(owner, cachedPath[0][0], cachedPath[0][1], cachedPath[0][2], 0.8f)) {
 							float[][] temp = new float[cachedPath.length - 1][];
 							System.arraycopy(cachedPath, 1, temp, 0, cachedPath.length - 1);
 							cachedPath = temp;
@@ -346,20 +346,6 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 		if (futureDistPassed > dist) {
 			futureDistPassed = dist;
-		}
-
-		if (futureDistPassed == dist && com.lostacademy.nativepath.NativePathConfig.NATIVE_PATH_ENABLE
-				&& (destination == Destination.TARGET_OBJECT || destination == Destination.POINT)) {
-			if (cachedPath != null && cachedPath.length > 0) {
-				float[][] tempCache = new float[cachedPath.length - 1][];
-				if (tempCache.length > 0) {
-					System.arraycopy(cachedPath, 1, tempCache, 0, cachedPath.length - 1);
-					cachedPath = tempCache;
-				} else {
-					cachedPath = null;
-					cachedPathValid = false;
-				}
-			}
 		}
 
 		float distFraction = futureDistPassed / dist;
@@ -576,6 +562,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 				started.set(true);
 				owner.getController().onStartMove();
 				updateLastMove();
+				moveToLocation(cachedPath[0][0], cachedPath[0][1], cachedPath[0][2]);
 				return;
 			}
 		}
@@ -649,18 +636,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 	}
 
 	private boolean isPathFailure(float[][] path) {
-		if (path == null || path.length == 0) {
-			return true;
-		}
-		if (path.length == 1) {
-			float[] point = path[0];
-			if (point.length >= 3) {
-				double distance = PositionUtil.getDistance(owner.getX(), owner.getY(), owner.getZ(),
-						point[0], point[1], point[2]);
-				return distance <= 1.0f;
-			}
-		}
-		return false;
+		return path == null || path.length == 0;
 	}
 
 	public void clearCachedPath() {
