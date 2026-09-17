@@ -21,7 +21,8 @@ Objetos vivos ao mesmo tempo na mesma sessao sao spots distintos. Objetos de ses
 (S_REMOVE_OBJECT com animacao != 0) seguida de outro objeto, viram um spot so quando ficam a ate R_FUNDE.
 
 random_walk por npcId: 0 se nenhum objeto andou; senao 5 ou 10, pelo p90 do espalhamento dos pontos (Tiamaranta
-agrupa nesses dois raios; o raio nao sai da velocidade). respawn_time: o do proprio npc no mapa, senao o mais comum
+agrupa nesses dois raios; o raio nao sai da velocidade). Acima de LIMITE_ROTA o NPC anda por rota: so entra o ponto de
+nascimento, sem random_walk, e o resto sai no relatorio como candidato a rota. respawn_time: o do proprio npc no mapa, senao o mais comum
 do mapa -- nao ha morte seguida de nascimento suficiente nas capturas para medir.
 
 Uso:
@@ -58,6 +59,7 @@ R_FUNDE = 12.0           # objetos que nao coexistiram, ate essa distancia = mes
 ANDAR = (0xE0, 0xE2, 0xE4)
 MIN_PONTOS_RAIO = 3
 RAIO_CURTO, RAIO_LONGO, LIMITE_RAIO = 5, 10, 7.0
+LIMITE_ROTA = 30.0      # espalhamento acima disso e rota (Roamer, refugiado), nao andar aleatorio em volta do spawn
 
 
 # ---------------------------------------------------------------- capturas
@@ -249,11 +251,18 @@ def main():
                 faltam.append(s)
         esp = sorted(e for e in (espalhamento(o) for o in por_npc[n]) if e is not None)
         andou = any(o["alvos"] or len({tuple(round(c, 1) for c in p) for p in o["pontos"]}) > 1 for o in por_npc[n])
-        raio = 0 if not andou else (RAIO_CURTO if esp and esp[int(len(esp) * 0.9)] <= LIMITE_RAIO else RAIO_LONGO)
+        p90 = esp[int(len(esp) * 0.9)] if esp else None
+        raio = 0 if not andou else (RAIO_CURTO if p90 is not None and p90 <= LIMITE_RAIO else RAIO_LONGO)
+        rota = p90 is not None and p90 > LIMITE_ROTA
+        if rota:
+            # o centro de um caminho longo nao e ponto de spawn: so entra o nascimento visto, parado no lugar
+            descartados = sum(1 for s in faltam if not s["exato"])
+            faltam, raio = [s for s in faltam if s["exato"]], 0
         novos[n] = dict(spots=faltam, raio=raio)
-        linha = "%d %-40s objetos %3d  spots %3d  ja no arquivo %3d  novos %3d (exatos %d)  random_walk %d  p90 espalhamento %s" % (
-            n, (nome.get(n) or "?")[:40], len(por_npc[n]), len(spots), len(spots) - len(faltam), len(faltam),
-            sum(1 for s in faltam if s["exato"]), raio, round(esp[int(len(esp) * 0.9)], 1) if esp else "-")
+        linha = "%d %-40s objetos %3d  spots %3d  ja no arquivo %3d  novos %3d (exatos %d)  random_walk %d  p90 espalhamento %s%s" % (
+            n, (nome.get(n) or "?")[:40], len(por_npc[n]), len(spots), len(spots) - len(faltam) - (descartados if rota else 0), len(faltam),
+            sum(1 for s in faltam if s["exato"]), raio, round(p90, 1) if p90 is not None else "-",
+            ("  ROTA: %d ponto(s) sem nascimento descartado(s), candidato a rota pela captura" % descartados) if rota else "")
         print("   " + linha)
         rel.append(linha)
         for s in faltam:

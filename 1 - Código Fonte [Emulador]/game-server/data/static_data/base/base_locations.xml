@@ -20,4 +20,18 @@
 	<base_location id="40008" type="CASUAL" world="800040000" default_occupier="ASMODIANS" />
 	<base_location id="40010" type="CASUAL" world="800040000" default_occupier="BALAUR" />
 	<base_location id="40012" type="CASUAL" world="800040000" default_occupier="BALAUR" />
+	<!-- Tiamaranta Mesa: torres do camp war com guarnicao capturada (fix_50_tiamaranta_torres.py) -->
+	<base_location id="4401" type="CASUAL" world="800040000" default_occupier="BALAUR" />
+	<base_location id="4402" type="CASUAL" world="800040000" default_occupier="ASMODIANS" />
+	<base_location id="4403" type="CASUAL" world="800040000" default_occupier="ELYOS" />
+	<base_location id="4411" type="CASUAL" world="800040000" default_occupier="ELYOS" />
+	<base_location id="4412" type="CASUAL" world="800040000" default_occupier="BALAUR" />
+	<base_location id="4413" type="CASUAL" world="800040000" default_occupier="BALAUR" />
+	<base_location id="4414" type="CASUAL" world="800040000" default_occupier="ASMODIANS" />
+	<base_location id="40001" type="CASUAL" world="800040000" default_occupier="BALAUR" />
+	<base_location id="40002" type="CASUAL" world="800040000" default_occupier="BALAUR" />
+	<base_location id="40005" type="CASUAL" world="800040000" default_occupier="ELYOS" />
+	<base_location id="40008" type="CASUAL" world="800040000" default_occupier="ASMODIANS" />
+	<base_location id="40010" type="CASUAL" world="800040000" default_occupier="BALAUR" />
+	<base_location id="40012" type="CASUAL" world="800040000" default_occupier="BALAUR" />
 </base_locations>

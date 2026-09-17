@@ -19,7 +19,7 @@ Pelo nome interno do client_npcs.xml, que e sistematico:
   802222 LDF4b_Placeable_OBJ_LINK_Noshow_NPC               corredor de avanco, pela torre mais proxima
 S/Small = Lesser (40000+n), M/Middle = Medium (4410+n), L/Large = Greater (4400+n).
 
-Regras medidas (captura de 2026-09-13 com a chave 0x87546CA107DC27B8, 2026-09-15 e 2026-09-16):
+Regras medidas (captura de 2026-09-13 com a chave 0x87546CA107DC27B8, 2026-09-15, 2026-09-16 e 2026-09-17):
   * a guarnicao tem os mesmos pontos para qualquer dono (4413 e 40010, capturadas com dois donos);
   * WindBox e corredores mudam de lugar entre Balaur e raca (4413);
   * boss e MistOn so existem vulneraveis; estatua e NPC de quest so quando a torre e de uma raca;
@@ -56,6 +56,10 @@ CAPTURAS = [
     (os.path.join(CAP, "08_Spawns_Mapas", "Tiamaranta_Mesa",
                   "08_Spawns_Mapas_Tiamaranta_Mesa_2026-09-15_05-09-38_00001_20260915050938.pcapng"), None),
     (os.path.join(CAP, "06_Sistemas_Novos_5.0", "06_Sistemas_Novos_5.0_2026-09-16_05-01-15_00001_20260916050115.pcapng"), None),
+    (os.path.join(CAP, "08_Spawns_Mapas", "Tiamaranta_Mesa",
+                  "08_Spawns_Mapas_Tiamaranta_Mesa_2026-09-16_05-22-24_00001_20260916052224.pcapng"), None),   # sem S_KEY
+    (os.path.join(CAP, "08_Spawns_Mapas", "Tiamaranta_Mesa",
+                  "08_Spawns_Mapas_Tiamaranta_Mesa_2026-09-17_07-13-15_00001_20260917071315.pcapng"), None),
 ]
 CLIENTE = os.path.join(RAIZ, "5 - Documentação e Referências", "3 - Client 5.0 - Dados Extraidos", "data")
 FONTE = os.path.join(RAIZ, "1 - Código Fonte [Emulador]", "game-server", "data", "static_data")
@@ -66,6 +70,15 @@ CORREDOR = 802222
 OCUPANTES = ("ELYOS", "ASMODIANS", "BALAUR")
 GUARDAS = ("FIGHTER", "PRIEST", "WIZARD", "ASSASSIN", "SEEKER")
 PATRULHAM = ("ASSASSIN", "SEEKER")          # medido na 4413: ~35 m e ~12 m
+# guarnicao por tamanho, confirmada entre torres independentes: Greater 4401 = 4402, Medium 4413 = 4414, Lesser
+# 40008 = 40010 = 40012 (e depois 4403, 4411, 4412, 40001, 40002, 40005 na captura de 17/09)
+GUARNICAO = {"L": dict(FIGHTER=5, PRIEST=5, WIZARD=8, ASSASSIN=3, SEEKER=1),
+             "M": dict(FIGHTER=6, PRIEST=5, WIZARD=5, ASSASSIN=2, SEEKER=1),
+             "S": dict(FIGHTER=2, PRIEST=2, WIZARD=2, ASSASSIN=1, SEEKER=1)}
+
+
+def tamanho_de(torre):
+    return "L" if 4400 < torre < 4410 else "M" if 4410 < torre < 4420 else "S" if 40000 < torre < 40100 else None
 POR_DONO = ("WINDBOX", "CORREDOR")          # ponto muda entre Balaur e raca
 SO_DE_RACA = ("TELEPORT", "QUEST")
 SIGLA = {"L": 0, "Li": 0, "D": 1, "Da": 1, "Dr": 2}
@@ -181,7 +194,7 @@ class Cifra:
 def sessoes(caminho, chave):
     """Uma lista de pacotes do servidor (opcode, payload) por sessao."""
     if chave is None:
-        for s in aion_pcap.abre_todas(caminho):
+        for s in aion_pcap.abre_todas(caminho, sem_skey=True):
             yield [(op, p) for op, p, _ in s["servidor"]]
         return
     todos = aion_pcap.fluxos(caminho, 7777, com_tempo=True)
@@ -204,8 +217,14 @@ def le_put(p):
     x, y, z, oid, npc = struct.unpack_from("<fffII", p, 0)
     if not all(map(math.isfinite, (x, y, z))):
         return None
+    if len(p) < 107 or struct.unpack_from("<I", p, 43)[0]:
+        return None                                   # curto demais, ou invocacao de jogador (criador != 0)
     cauda, off = p[-48:], 47
-    off += 2 + struct.unpack_from("<H", p, off)[0] * 2
+    while p[off:off + 2] != b"\0\0":                  # nome do dono: UTF-16 terminado em 00 00, vazio fora de invocacao
+        off += 2
+        if off + 2 > len(p):
+            return None
+    off += 2
     return dict(npc=npc, oid=oid, x=x, y=y, z=z, h=p[27], nome_id=struct.unpack_from("<I", p, 28)[0],
                 titulo=struct.unpack_from("<I", p, 32)[0], nasceu=cauda[16] == 1,
                 static=struct.unpack_from("<H", cauda, 30)[0], raio=struct.unpack_from("<f", cauda, 0)[0],
@@ -313,6 +332,22 @@ def canoniza(objetos):
             mapa = pontos[t].get(r, {}).get("TODOS", {})
             for k in [k for k, p in mapa.items() if p["q"] == 0 and p["z"] < piso - 5]:
                 del mapa[k]
+    # com mais capturas, o mesmo guarda visto andando em lugares diferentes virava guarda a mais (4401 com 28 e 4402 com
+    # 31 depois da captura de 17/09). A guarnicao de cada tamanho de torre e a mesma entre torres independentes, entao
+    # acima dela sai primeiro o ponto so visto andando que esta mais perto de outro da mesma classe; parado e nascimento
+    # nunca saem.
+    for t in pontos:
+        esperado = GUARNICAO.get(tamanho_de(t))
+        if not esperado:
+            continue
+        for r in GUARDAS:
+            mapa = pontos[t].get(r, {}).get("TODOS", {})
+            while len(mapa) > esperado[r]:
+                andando = [k for k, p in mapa.items() if p["q"] == 0]
+                if not andando:
+                    break
+                vizinho = lambda k: min((math.dist(k, o) for o in mapa if o != k), default=float("inf"))
+                del mapa[min(andando, key=vizinho)]
     for t in pontos:
         for r in pontos[t]:
             for classe, mapa in pontos[t][r].items():

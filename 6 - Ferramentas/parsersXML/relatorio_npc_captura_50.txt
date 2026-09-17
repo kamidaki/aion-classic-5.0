@@ -44,6 +44,7 @@ CAPTURAS
   08_Spawns_Mapas_Gelkmaros_2026-09-12_21-06-08_00001_20260912210609.pcapng                            sessoes 1 (sem S_KEY 1)  S_PUT_NPC 647
   08_Spawns_Mapas_Tiamaranta_Mesa_2026-09-15_05-09-38_00001_20260915050938.pcapng                      sessoes 2 (sem S_KEY 0)  S_PUT_NPC 648
   08_Spawns_Mapas_Tiamaranta_Mesa_2026-09-16_05-22-24_00001_20260916052224.pcapng                      sessoes 1 (sem S_KEY 1)  S_PUT_NPC 4425
+  08_Spawns_Mapas_Tiamaranta_Mesa_2026-09-17_07-13-15_00001_20260917071315.pcapng                      sessoes 4 (sem S_KEY 0)  S_PUT_NPC 7552
   oficial_fusao_arma_limpa_00001_20260906031028.pcapng                                                 sessoes 2 (sem S_KEY 1)  S_PUT_NPC 66
   oficial_fusao_detalhada_00001_20260906022117.pcapng                                                  sessoes 1 (sem S_KEY 0)  S_PUT_NPC 187
   oficial_login_com_fusao_00001_20260906024513.pcapng                                                  sessoes 1 (sem S_KEY 0)  S_PUT_NPC 115
@@ -51,17 +52,18 @@ CAPTURAS
   subida-1-60-2026-08-28.pcapng                                                                        sessoes 2 (sem S_KEY 0)  S_PUT_NPC 692
 
 NPCIDS COM CAMPO VARIANDO ENTRE CAPTURAS (esses campos nao mudam)
+  209048 BF4_Lguard_Li_Priest_Ah2_lv57: {'maxhp': {1306550: 5, 1633187: 1}}
   216760 DF4_FanaticKn_54_Ae_Knee: {'atk': {2100: 3, 14800: 1}, 'alt': {2.4975: 3, -7.364108533926136e+33: 1}, 'raio': {0.4725: 3, 0.0: 1}, 'itens': {(100000894, 115000968, 125002284, 110600970, 111600949, 114600928, 112600924, 113600933): 3, (100000894, 115000968, 125002284, 110600970, 111600949, 114600928, 112600924, 3992468617): 1}}
 
 ====================================================================================================
 ARVORE FONTE: G:\Projetos AION\Classic\1 - Código Fonte [Emulador]\game-server\data\static_data\npcs\npc_templates.xml
-  corrigidos: mob 3, guarda 0, npc 0
-  por campo: bound_radius 3
-  sem template (mob, 28): 220682(LDF4b_T3_Fanatic_ItemNamed_59_An) 220810(DrakanWeapon_Invisible) 220890(LDF4b_MimicViolet_Treasure_Mimic) 221819(DF4_SandShark_Nmd_50_n) 224300(IDTutorialQ_Lizard_Fi_01) 224301(IDTutorialQ_Lizard_As_01) 224302(IDTutorialQ_Lizard_Ra_01) 224303(IDTutorialQ_Lizard_Pr_01) 224304(IDTutorialQ_Lizard_Drake_01) 224305(IDTutorialQ_Lizard_Fi_Armor_01) 224306(IDTutorialQ_Naga_Fi_01) 224307(IDTutorialQ_Naga_Cl_01) 224308(IDTutorialQ_Naga_Wi_01) 224309(IDTutorialQ_Naga_EleFire_01) 224310(IDTutorialQ_Naga_EleAir_01) 224311(IDTutorialQ_Drakan_Fi_M_01) 224312(IDTutorialQ_Drakan_Sc_F_01) 224313(IDTutorialQ_Drakan_Sc_M_01) 224314(IDTutorialQ_Drakan_Pagati_01) 224315(IDTutorialQ_Noble_Drakan_Fi_01) 224316(IDTutorialQ_Noble_Drakan_Fi_02) 224317(IDTutorialQ_Noble_Drakan_PagatiStrider_01) 224318(IDTutorialQ_Noble_Drakan_PagatiStriderDrop_01) 224319(IDTutorialQ_Noble_Drakan_SikaraRider_01) 224320(IDTutorialQ_Noble_Drakan_SikaraRiderDrop_01) 224333(IDTutorialQ_Raksha_Named_7_Ah) 224334(IDTutorialQ_DragonRider_Named_7_Ah) 224335(IDTutorialQ_Elementalking_Named_8_Ah)
-  sem template (guarda, 6): 274178(LDF4b_4412_Boss_Dr_1) 274183(LDF4b_4412_Guard_Li_As) 274184(LDF4b_4412_Guard_Li_Fi) 274185(LDF4b_4412_Guard_Li_Pr) 274186(LDF4b_4412_Guard_Li_Wi) 274195(LDF4b_4412_Guard_Li_Seeker)
-  sem template (npc, 2): 221526(Rank_Boss_Anuhart_Gate) 780181(Event_NPC_redhorse_Site)
+  corrigidos: mob 5, guarda 0, npc 1
+  por campo: bound_radius 4, equipment 4, height 5, title_id 4
+  sem template (mob, 27): 220448(LDF4b_C1_Spakle_GururuFood) 220810(DrakanWeapon_Invisible) 221819(DF4_SandShark_Nmd_50_n) 224300(IDTutorialQ_Lizard_Fi_01) 224301(IDTutorialQ_Lizard_As_01) 224302(IDTutorialQ_Lizard_Ra_01) 224303(IDTutorialQ_Lizard_Pr_01) 224304(IDTutorialQ_Lizard_Drake_01) 224305(IDTutorialQ_Lizard_Fi_Armor_01) 224306(IDTutorialQ_Naga_Fi_01) 224307(IDTutorialQ_Naga_Cl_01) 224308(IDTutorialQ_Naga_Wi_01) 224309(IDTutorialQ_Naga_EleFire_01) 224310(IDTutorialQ_Naga_EleAir_01) 224311(IDTutorialQ_Drakan_Fi_M_01) 224312(IDTutorialQ_Drakan_Sc_F_01) 224313(IDTutorialQ_Drakan_Sc_M_01) 224314(IDTutorialQ_Drakan_Pagati_01) 224315(IDTutorialQ_Noble_Drakan_Fi_01) 224316(IDTutorialQ_Noble_Drakan_Fi_02) 224317(IDTutorialQ_Noble_Drakan_PagatiStrider_01) 224318(IDTutorialQ_Noble_Drakan_PagatiStriderDrop_01) 224319(IDTutorialQ_Noble_Drakan_SikaraRider_01) 224320(IDTutorialQ_Noble_Drakan_SikaraRiderDrop_01) 224333(IDTutorialQ_Raksha_Named_7_Ah) 224334(IDTutorialQ_DragonRider_Named_7_Ah) 224335(IDTutorialQ_Elementalking_Named_8_Ah)
+  sem template (guarda, 0): 
+  sem template (npc, 1): 221526(Rank_Boss_Anuhart_Gate)
 
-  tribo diferente do cliente (nao mexido): 110
+  tribo diferente do cliente (nao mexido): 121
     209358 Bot_Killer_03_L servidor=LDF4A_YUN_GUARD cliente=MONSTER_BOT tipo=[34]
     209359 Bot_Killer_03_D servidor=LDF4A_YUN_GUARD cliente=MONSTER_BOT tipo=[34]
     209361 Bot_Killer_03_Move_D servidor=LDF4A_YUN_GUARD cliente=MONSTER_BOT tipo=[34]
@@ -70,13 +72,24 @@ ARVORE FONTE: G:\Projetos AION\Classic\1 - Código Fonte [Emulador]\game-server\
     209386 LDF4b_Guard_Y_Ranger_Ah2_lv60_M servidor=NEUTRAL_DGUARD cliente=YUN_GUARD tipo=[38]
     259417 ldf4b_4031_guard_Dr_Fi_1 servidor=F4GUARD_DRAGON cliente=LDF4B_CASTLE_XDRAKAN tipo=[8]
     259423 ldf4b_4031_guard_Dr_Ra_1 servidor=F4GUARD_DRAGON cliente=LDF4B_CASTLE_XDRAKAN tipo=[8]
+    274004 LDF4b_4401_Boss_Li_5 servidor=F4GUARD_LIGHT cliente=LDF4B_TOWER_L tipo=[38]
     274010 LDF4b_4401_Boss_Dr_1 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
+    274014 LDF4b_4401_Boss_Dr_5 servidor=GENERAL cliente=LDF4B_TOWER tipo=[0]
+    274178 LDF4b_4412_Boss_Dr_1 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
+    274182 LDF4b_4412_Boss_Dr_5 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
+    274320 LDF4b_40001_Boss_Dr_5 servidor=GENERAL cliente=LDF4B_TOWER tipo=[0]
+    274350 LDF4b_40002_Boss_Dr_5 servidor=GENERAL cliente=LDF4B_TOWER tipo=[0]
     274586 LDF4b_40010_Boss_Dr_1 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
     274646 LDF4b_40012_Boss_Dr_1 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
     701462 LDF4b_FOBJ_TankParts2 servidor=NONE cliente=GENERAL_ALL_NONE tipo=[34]
+    701466 LDF4b_FOBJ_CrackPortal servidor=NONE cliente=GENERAL_ALL_NONE tipo=[34]
     701468 LDF4b_FOBJ_LavaRock1 servidor=NONE cliente=GENERAL_ALL_NONE tipo=[34]
     701469 LDF4b_FOBJ_CrystalYun servidor=NONE cliente=GENERAL_ALL_NONE tipo=[34]
     701470 LDF4b_FOBJ_CrystalBox servidor=NONE cliente=GENERAL_ALL_NONE tipo=[34]
+    701471 LDF4B_FOBJ_T1_GemStone servidor=NONE cliente=GENERAL_ALL_NONE tipo=[34]
+    701473 LDF4B_FOBJ_T2_Stone servidor=NONE cliente=GENERAL_ALL_NONE tipo=[34]
+    701474 LDF4B_FOBJ_T3_Wagon servidor=NONE cliente=GENERAL_ALL_NONE tipo=[34]
+    701524 LDF4b_Dummy2 servidor=FIELD_OBJECT_ALL cliente=YDUMMY tipo=[0]
     701533 LDF4b_Dummy5 servidor=GUARD_DARK cliente=YDUMMY2 tipo=[0]
     730079 DC1_StoryBook_1 servidor=FIELD_OBJECT_DARK cliente=FIELD_OBJECT_ALL tipo=[38]
     730080 DC1_StoryBook_2 servidor=FIELD_OBJECT_DARK cliente=FIELD_OBJECT_ALL tipo=[38]
@@ -173,24 +186,39 @@ ARVORE FONTE: G:\Projetos AION\Classic\1 - Código Fonte [Emulador]\game-server\
     274213 LDF4b_4413_Boss_Da_5 servidor=F4GUARD_DARK cliente=LDF4B_TOWER_D tipo=[38]
     274218 LDF4b_4413_Boss_Dr_5 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
 
-  agressivo no oficial com ai sem aggro (nao mexido): 2
+  agressivo no oficial com ai sem aggro (nao mexido): 3
     220537 LDF4b_T1_S3_DrakanSc_Sikara_Fight_58_An ai=useSkillAndDie
+    220538 LDF4b_T1_S3_DrakanSc_Sikara_Fight_Named_58_An ai=useSkillAndDie
     224328 IDTutorialQ_Deco_Monster_01 ai=general
 
   MUDANCAS
-  220462 LDF4b_C2_Enos_Baby_59_An                      [mob] bound_radius: - -> 2.7/1.5
-  220584 LDF4b_T2_Foam_White_58_An                     [mob] bound_radius: - -> 0.767/1.17
-  220585 LDF4b_T2_Foam_White_59_An                     [mob] bound_radius: - -> 0.767/1.17
+  220449 LDF4b_C1_Spakle_GururuFood_Run                [mob] bound_radius: 0.2925/0.2925 -> 0.225/0.225
+  220489 LDF4b_C3_DrakanCl_Tiamat_60_An                [mob] title_id: 0 -> 344812
+  220489 LDF4b_C3_DrakanCl_Tiamat_60_An                [mob] height: 1 -> 2.96
+  220489 LDF4b_C3_DrakanCl_Tiamat_60_An                [mob] equipment: - -> 100101015 115001372
+  220512 LDF4b_T1_DrakanFi_PagatiDrop_Roamer_58_An     [mob] title_id: 0 -> 314425
+  220512 LDF4b_T1_DrakanFi_PagatiDrop_Roamer_58_An     [mob] height: 2.3 -> 3.6
+  220512 LDF4b_T1_DrakanFi_PagatiDrop_Roamer_58_An     [mob] equipment: - -> 100000997
+  220682 LDF4b_T3_Fanatic_ItemNamed_59_An              [mob] title_id: 0 -> 345836
+  220682 LDF4b_T3_Fanatic_ItemNamed_59_An              [mob] height: 0 -> 3.33
+  220682 LDF4b_T3_Fanatic_ItemNamed_59_An              [mob] equipment: - -> 101300656 125002283 110600969 111600948 114600927 112600923 113600932
+  220682 LDF4b_T3_Fanatic_ItemNamed_59_An              [mob] bound_radius: - -> 0.63/0.63
+  221009 LDF4b_4412_Scout_Yun_Ra_62_An                 [mob] title_id: 0 -> 345961
+  221009 LDF4b_4412_Scout_Yun_Ra_62_An                 [mob] height: 0 -> 2.22
+  221009 LDF4b_4412_Scout_Yun_Ra_62_An                 [mob] equipment: - -> 101700028 163000003 125003206 110301395 111301338 114301398 112301282 113301362
+  221009 LDF4b_4412_Scout_Yun_Ra_62_An                 [mob] bound_radius: - -> 0.42/0.42
+  780181 Event_NPC_redhorse_Site                       [npc] height: 2 -> 2.5
+  780181 Event_NPC_redhorse_Site                       [npc] bound_radius: 0.25/0.35 -> 0.35/0.5
 
 ====================================================================================================
 ARVORE PRODUTO: G:\Projetos AION\Classic\2 - Emulador [Produto Final]\GameServer\data\static_data\npcs\npc_templates.xml
-  corrigidos: mob 3, guarda 0, npc 0
-  por campo: bound_radius 3
-  sem template (mob, 28): 220682(LDF4b_T3_Fanatic_ItemNamed_59_An) 220810(DrakanWeapon_Invisible) 220890(LDF4b_MimicViolet_Treasure_Mimic) 221819(DF4_SandShark_Nmd_50_n) 224300(IDTutorialQ_Lizard_Fi_01) 224301(IDTutorialQ_Lizard_As_01) 224302(IDTutorialQ_Lizard_Ra_01) 224303(IDTutorialQ_Lizard_Pr_01) 224304(IDTutorialQ_Lizard_Drake_01) 224305(IDTutorialQ_Lizard_Fi_Armor_01) 224306(IDTutorialQ_Naga_Fi_01) 224307(IDTutorialQ_Naga_Cl_01) 224308(IDTutorialQ_Naga_Wi_01) 224309(IDTutorialQ_Naga_EleFire_01) 224310(IDTutorialQ_Naga_EleAir_01) 224311(IDTutorialQ_Drakan_Fi_M_01) 224312(IDTutorialQ_Drakan_Sc_F_01) 224313(IDTutorialQ_Drakan_Sc_M_01) 224314(IDTutorialQ_Drakan_Pagati_01) 224315(IDTutorialQ_Noble_Drakan_Fi_01) 224316(IDTutorialQ_Noble_Drakan_Fi_02) 224317(IDTutorialQ_Noble_Drakan_PagatiStrider_01) 224318(IDTutorialQ_Noble_Drakan_PagatiStriderDrop_01) 224319(IDTutorialQ_Noble_Drakan_SikaraRider_01) 224320(IDTutorialQ_Noble_Drakan_SikaraRiderDrop_01) 224333(IDTutorialQ_Raksha_Named_7_Ah) 224334(IDTutorialQ_DragonRider_Named_7_Ah) 224335(IDTutorialQ_Elementalking_Named_8_Ah)
-  sem template (guarda, 6): 274178(LDF4b_4412_Boss_Dr_1) 274183(LDF4b_4412_Guard_Li_As) 274184(LDF4b_4412_Guard_Li_Fi) 274185(LDF4b_4412_Guard_Li_Pr) 274186(LDF4b_4412_Guard_Li_Wi) 274195(LDF4b_4412_Guard_Li_Seeker)
-  sem template (npc, 2): 221526(Rank_Boss_Anuhart_Gate) 780181(Event_NPC_redhorse_Site)
+  corrigidos: mob 5, guarda 0, npc 1
+  por campo: bound_radius 4, equipment 4, height 5, title_id 4
+  sem template (mob, 27): 220448(LDF4b_C1_Spakle_GururuFood) 220810(DrakanWeapon_Invisible) 221819(DF4_SandShark_Nmd_50_n) 224300(IDTutorialQ_Lizard_Fi_01) 224301(IDTutorialQ_Lizard_As_01) 224302(IDTutorialQ_Lizard_Ra_01) 224303(IDTutorialQ_Lizard_Pr_01) 224304(IDTutorialQ_Lizard_Drake_01) 224305(IDTutorialQ_Lizard_Fi_Armor_01) 224306(IDTutorialQ_Naga_Fi_01) 224307(IDTutorialQ_Naga_Cl_01) 224308(IDTutorialQ_Naga_Wi_01) 224309(IDTutorialQ_Naga_EleFire_01) 224310(IDTutorialQ_Naga_EleAir_01) 224311(IDTutorialQ_Drakan_Fi_M_01) 224312(IDTutorialQ_Drakan_Sc_F_01) 224313(IDTutorialQ_Drakan_Sc_M_01) 224314(IDTutorialQ_Drakan_Pagati_01) 224315(IDTutorialQ_Noble_Drakan_Fi_01) 224316(IDTutorialQ_Noble_Drakan_Fi_02) 224317(IDTutorialQ_Noble_Drakan_PagatiStrider_01) 224318(IDTutorialQ_Noble_Drakan_PagatiStriderDrop_01) 224319(IDTutorialQ_Noble_Drakan_SikaraRider_01) 224320(IDTutorialQ_Noble_Drakan_SikaraRiderDrop_01) 224333(IDTutorialQ_Raksha_Named_7_Ah) 224334(IDTutorialQ_DragonRider_Named_7_Ah) 224335(IDTutorialQ_Elementalking_Named_8_Ah)
+  sem template (guarda, 0): 
+  sem template (npc, 1): 221526(Rank_Boss_Anuhart_Gate)
 
-  tribo diferente do cliente (nao mexido): 110
+  tribo diferente do cliente (nao mexido): 121
     209358 Bot_Killer_03_L servidor=LDF4A_YUN_GUARD cliente=MONSTER_BOT tipo=[34]
     209359 Bot_Killer_03_D servidor=LDF4A_YUN_GUARD cliente=MONSTER_BOT tipo=[34]
     209361 Bot_Killer_03_Move_D servidor=LDF4A_YUN_GUARD cliente=MONSTER_BOT tipo=[34]
@@ -206,13 +234,24 @@ ARVORE PRODUTO: G:\Projetos AION\Classic\2 - Emulador [Produto Final]\GameServer
     224327 IDTutorialQ_DeadBody_Pagati servidor=NONE cliente=GENERAL_ALL_NONE tipo=[34]
     259417 ldf4b_4031_guard_Dr_Fi_1 servidor=F4GUARD_DRAGON cliente=LDF4B_CASTLE_XDRAKAN tipo=[8]
     259423 ldf4b_4031_guard_Dr_Ra_1 servidor=F4GUARD_DRAGON cliente=LDF4B_CASTLE_XDRAKAN tipo=[8]
+    274004 LDF4b_4401_Boss_Li_5 servidor=F4GUARD_LIGHT cliente=LDF4B_TOWER_L tipo=[38]
     274010 LDF4b_4401_Boss_Dr_1 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
+    274014 LDF4b_4401_Boss_Dr_5 servidor=GENERAL cliente=LDF4B_TOWER tipo=[0]
+    274178 LDF4b_4412_Boss_Dr_1 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
+    274182 LDF4b_4412_Boss_Dr_5 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
+    274320 LDF4b_40001_Boss_Dr_5 servidor=GENERAL cliente=LDF4B_TOWER tipo=[0]
+    274350 LDF4b_40002_Boss_Dr_5 servidor=GENERAL cliente=LDF4B_TOWER tipo=[0]
     274586 LDF4b_40010_Boss_Dr_1 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
     274646 LDF4b_40012_Boss_Dr_1 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
     701462 LDF4b_FOBJ_TankParts2 servidor=NONE cliente=GENERAL_ALL_NONE tipo=[34]
+    701466 LDF4b_FOBJ_CrackPortal servidor=NONE cliente=GENERAL_ALL_NONE tipo=[34]
     701468 LDF4b_FOBJ_LavaRock1 servidor=NONE cliente=GENERAL_ALL_NONE tipo=[34]
     701469 LDF4b_FOBJ_CrystalYun servidor=NONE cliente=GENERAL_ALL_NONE tipo=[34]
     701470 LDF4b_FOBJ_CrystalBox servidor=NONE cliente=GENERAL_ALL_NONE tipo=[34]
+    701471 LDF4B_FOBJ_T1_GemStone servidor=NONE cliente=GENERAL_ALL_NONE tipo=[34]
+    701473 LDF4B_FOBJ_T2_Stone servidor=NONE cliente=GENERAL_ALL_NONE tipo=[34]
+    701474 LDF4B_FOBJ_T3_Wagon servidor=NONE cliente=GENERAL_ALL_NONE tipo=[34]
+    701524 LDF4b_Dummy2 servidor=FIELD_OBJECT_ALL cliente=YDUMMY tipo=[0]
     701533 LDF4b_Dummy5 servidor=GUARD_DARK cliente=YDUMMY2 tipo=[0]
     730079 DC1_StoryBook_1 servidor=FIELD_OBJECT_DARK cliente=FIELD_OBJECT_ALL tipo=[38]
     730080 DC1_StoryBook_2 servidor=FIELD_OBJECT_DARK cliente=FIELD_OBJECT_ALL tipo=[38]
@@ -302,11 +341,26 @@ ARVORE PRODUTO: G:\Projetos AION\Classic\2 - Emulador [Produto Final]\GameServer
     274213 LDF4b_4413_Boss_Da_5 servidor=F4GUARD_DARK cliente=LDF4B_TOWER_D tipo=[38]
     274218 LDF4b_4413_Boss_Dr_5 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
 
-  agressivo no oficial com ai sem aggro (nao mexido): 2
+  agressivo no oficial com ai sem aggro (nao mexido): 3
     220537 LDF4b_T1_S3_DrakanSc_Sikara_Fight_58_An ai=useSkillAndDie
+    220538 LDF4b_T1_S3_DrakanSc_Sikara_Fight_Named_58_An ai=useSkillAndDie
     224328 IDTutorialQ_Deco_Monster_01 ai=general
 
   MUDANCAS
-  220462 LDF4b_C2_Enos_Baby_59_An                      [mob] bound_radius: - -> 2.7/1.5
-  220584 LDF4b_T2_Foam_White_58_An                     [mob] bound_radius: - -> 0.767/1.17
-  220585 LDF4b_T2_Foam_White_59_An                     [mob] bound_radius: - -> 0.767/1.17
+  220449 LDF4b_C1_Spakle_GururuFood_Run                [mob] bound_radius: 0.2925/0.2925 -> 0.225/0.225
+  220489 LDF4b_C3_DrakanCl_Tiamat_60_An                [mob] title_id: 0 -> 344812
+  220489 LDF4b_C3_DrakanCl_Tiamat_60_An                [mob] height: 1 -> 2.96
+  220489 LDF4b_C3_DrakanCl_Tiamat_60_An                [mob] equipment: - -> 100101015 115001372
+  220512 LDF4b_T1_DrakanFi_PagatiDrop_Roamer_58_An     [mob] title_id: 0 -> 314425
+  220512 LDF4b_T1_DrakanFi_PagatiDrop_Roamer_58_An     [mob] height: 2.3 -> 3.6
+  220512 LDF4b_T1_DrakanFi_PagatiDrop_Roamer_58_An     [mob] equipment: - -> 100000997
+  220682 LDF4b_T3_Fanatic_ItemNamed_59_An              [mob] title_id: 0 -> 345836
+  220682 LDF4b_T3_Fanatic_ItemNamed_59_An              [mob] height: 0 -> 3.33
+  220682 LDF4b_T3_Fanatic_ItemNamed_59_An              [mob] equipment: - -> 101300656 125002283 110600969 111600948 114600927 112600923 113600932
+  220682 LDF4b_T3_Fanatic_ItemNamed_59_An              [mob] bound_radius: - -> 0.63/0.63
+  221009 LDF4b_4412_Scout_Yun_Ra_62_An                 [mob] title_id: 0 -> 345961
+  221009 LDF4b_4412_Scout_Yun_Ra_62_An                 [mob] height: 0 -> 2.22
+  221009 LDF4b_4412_Scout_Yun_Ra_62_An                 [mob] equipment: - -> 101700028 163000003 125003206 110301395 111301338 114301398 112301282 113301362
+  221009 LDF4b_4412_Scout_Yun_Ra_62_An                 [mob] bound_radius: - -> 0.42/0.42
+  780181 Event_NPC_redhorse_Site                       [npc] height: 2 -> 2.5
+  780181 Event_NPC_redhorse_Site                       [npc] bound_radius: 0.25/0.35 -> 0.35/0.5
