@@ -10,6 +10,7 @@
 	<xs:include schemaLocation="cosmetic_items/cosmetic_items.xsd" />
 	<xs:include schemaLocation="curing_objects/curing_objects.xsd" />
 	<xs:include schemaLocation="custom_drop/custom_drop.xsd" />
+	<xs:include schemaLocation="custom_drop/fly_loot.xsd" />
 	<xs:include schemaLocation="decomposable_items/decomposable_items.xsd" />
 	<xs:include schemaLocation="enchants/enchant_templates.xsd" />
 	<xs:include schemaLocation="events/arcadelist.xsd" />
@@ -127,6 +128,7 @@
 					<xs:element ref="enchant_templates" minOccurs="0" />
 					<xs:element ref="timed_events" minOccurs="0" />
 					<xs:element ref="fly_rings" minOccurs="0" />
+					<xs:element ref="fly_loot" minOccurs="0" />
 					<xs:element ref="flypath_template" minOccurs="0" />
 					<xs:element ref="gatherable_templates" minOccurs="0" />
 					<xs:element ref="global_npc_exclusions" minOccurs="0" />

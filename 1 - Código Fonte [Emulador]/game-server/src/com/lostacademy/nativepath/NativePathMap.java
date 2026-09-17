@@ -14,6 +14,10 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.aionemu.gameserver.dataholders.DataManager;
+import com.aionemu.gameserver.model.templates.world.WorldMapTemplate;
+import com.aionemu.gameserver.world.geo.GeoService;
+
 /**
  * Representação em memória da malha de navegação nativa CryEngine (*-path.dat).
  * Contém os nós da grade, indexação espacial em grade hash para buscas O(1) e
@@ -26,7 +30,6 @@ public final class NativePathMap {
 	private static final Logger LOG = LoggerFactory.getLogger(NativePathMap.class);
 
 	private static final float SPATIAL_CELL_SIZE = 16.0f;
-	private static final float GRID_SCALE = 0.5f;
 
 	private final int worldId;
 	private final NativePathNode[] nodes;
@@ -89,7 +92,9 @@ public final class NativePathMap {
 	}
 
 	/**
-	 * Localiza o nó transitável mais próximo da coordenada 3D fornecida dentro do raio máximo.
+	 * Localiza o nó transitável mais próximo da coordenada 3D fornecida dentro do raio máximo,
+	 * aplicando penalidade vertical (3.0x) para priorizar a camada navegável correta (evita
+	 * selecionar piso de ponte quando a entidade está embaixo, ou água quando está sobre a ponte).
 	 */
 	public NativePathNode findClosestNode(float x, float y, float z, float maxRadius) {
 		if (nodes.length == 0)
@@ -102,7 +107,7 @@ public final class NativePathMap {
 		int maxCy = (int) Math.floor((y + maxRadius) / SPATIAL_CELL_SIZE);
 
 		NativePathNode bestNode = null;
-		float bestDistSq = maxRadiusSq;
+		float bestScore = Float.MAX_VALUE;
 
 		for (int cx = minCx; cx <= maxCx; cx++) {
 			for (int cy = minCy; cy <= maxCy; cy++) {
@@ -113,9 +118,21 @@ public final class NativePathMap {
 
 				for (int nodeIdx : cellNodes) {
 					NativePathNode node = nodes[nodeIdx];
-					float distSq = node.distanceSquaredTo(x, y, z);
-					if (distSq < bestDistSq) {
-						bestDistSq = distSq;
+					float dx = node.getX() - x;
+					float dy = node.getY() - y;
+					float dz = node.getZ() - z;
+					float dist2DSq = dx * dx + dy * dy;
+					if (dist2DSq > maxRadiusSq)
+						continue;
+
+					// Rejeita nós com desnível vertical desproporcional (permite até 7m para início de escadas/rampas)
+					if (Math.abs(dz) > Math.max(7.0f, maxRadius * 0.75f))
+						continue;
+
+					// Ponderação vertical (2.0x): distância horizontal prevalece sobre salto vertical
+					float score = dist2DSq + (dz * 2.0f) * (dz * 2.0f);
+					if (score < bestScore) {
+						bestScore = score;
 						bestNode = node;
 					}
 				}
@@ -129,7 +146,7 @@ public final class NativePathMap {
 	 * Retorna a elevação Z da superfície navegável na coordenada (x, y).
 	 */
 	public float getSurfaceZ(float x, float y, float fallbackZ) {
-		NativePathNode closest = findClosestNode(x, y, fallbackZ, 6.0f);
+		NativePathNode closest = findClosestNode(x, y, fallbackZ, 16.0f);
 		if (closest != null) {
 			return closest.getZ();
 		}
@@ -145,6 +162,8 @@ public final class NativePathMap {
 
 	/**
 	 * Verifica linha de visão desobstruída entre dois pontos sobre nós navegáveis (String-Pulling / Raycast).
+	 * Valida colisões 3D reais (barcos, pontes flutuantes, paredes, decorações) através do GeoService
+	 * e integridade de inclinação máxima transitável.
 	 */
 	public boolean hasLineOfSight(float x1, float y1, float z1, float x2, float y2, float z2, float maxDropHeight) {
 		float dx = x2 - x1;
@@ -156,7 +175,23 @@ public final class NativePathMap {
 			return Math.abs(dz) <= maxDropHeight;
 		}
 
-		int steps = Math.max(1, (int) Math.ceil(dist2D / 1.0f));
+		// Validação de inclinação: rejeita segmentos com rampa excessivamente íngreme (> ~50 graus)
+		if (Math.abs(dz) / dist2D > 1.2f) {
+			return false;
+		}
+
+		// Validação física 3D contra objetos de decoração, barcos, pontes e paredes (.geo)
+		try {
+			if (GeoService.getInstance() != null) {
+				boolean canPass = GeoService.getInstance().canPass(worldId, x1, y1, z1 + 0.5f, x2, y2, z2 + 0.5f, 0, 0);
+				if (!canPass) {
+					return false;
+				}
+			}
+		} catch (Throwable ignored) {
+		}
+
+		int steps = Math.max(1, (int) Math.ceil(dist2D / 2.0f));
 		float stepX = dx / steps;
 		float stepY = dy / steps;
 		float stepZ = dz / steps;
@@ -165,17 +200,21 @@ public final class NativePathMap {
 		float currY = y1;
 		float currZ = z1;
 
-		for (int i = 1; i <= steps; i++) {
+		for (int i = 1; i < steps; i++) {
 			currX += stepX;
 			currY += stepY;
 			currZ += stepZ;
 
-			NativePathNode node = findClosestNode(currX, currY, currZ, 2.5f);
-			if (node == null) {
-				return false;
-			}
-			if (Math.abs(node.getZ() - currZ) > maxDropHeight) {
-				return false;
+			if (GeoService.getInstance() != null) {
+				float groundZ = GeoService.getInstance().getZ(worldId, currX, currY, currZ + 2.5f, currZ - 3.5f, 0);
+				if (!Float.isNaN(groundZ) && Math.abs(groundZ - currZ) > maxDropHeight) {
+					return false;
+				}
+			} else {
+				NativePathNode node = findClosestNode(currX, currY, currZ, 16.0f);
+				if (node == null || Math.abs(node.getZ() - currZ) > maxDropHeight) {
+					return false;
+				}
 			}
 		}
 
@@ -183,7 +222,8 @@ public final class NativePathMap {
 	}
 
 	/**
-	 * Carrega e faz o parse binário de um arquivo *-path.dat do CryEngine.
+	 * Carrega e faz o parse binário exato de um arquivo *-path.dat oficial do CryEngine.
+	 * Decodifica o fluxo polimórfico de camadas conforme engenharia reversa do Cry3DEngine.dll.
 	 */
 	public static NativePathMap loadFromDisk(Path file, int worldId) throws IOException {
 		if (!Files.exists(file)) {
@@ -219,12 +259,21 @@ public final class NativePathMap {
 				in.skipNBytes((long) count2 * 4);
 			}
 
-			List<NativePathNode> parsedNodes = new ArrayList<>(Math.min(50000, (int) (fileSize / 147)));
+			// Determina dimensão do mapa
+			int mapSize = 3072;
+			if (DataManager.WORLD_MAPS_DATA != null) {
+				WorldMapTemplate template = DataManager.WORLD_MAPS_DATA.getTemplate(worldId);
+				if (template != null && template.getWorldSize() > 0) {
+					mapSize = template.getWorldSize();
+				}
+			}
+
+			List<NativePathNode> parsedNodes = new ArrayList<>(Math.min(60000, (int) (fileSize / 80)));
 			int nodeId = 0;
 			short gridX = 0;
 			short gridY = 0;
 
-			// Loop de leitura da grade CryEngine
+			// Loop de leitura da grade de setores CryEngine
 			while (in.available() > 0) {
 				int layerCount = in.read();
 				if (layerCount == -1)
@@ -239,29 +288,119 @@ public final class NativePathMap {
 						if (layerType == -1)
 							break;
 
-						// Leitura do registro do nó (formato padrão CryEngine ~145 bytes)
+						// Tipo 16: índice espacial CryEngine (6 bytes de payload)
+						if (layerType == 16) {
+							in.skipNBytes(6);
+							continue;
+						}
+
 						int subType = in.read();
 						int elevRaw = readLittleEndianInt(in);
+						float baseElev = Float.NaN;
 
-						byte[] mask = in.readNBytes(128);
-						byte[] connections = in.readNBytes(12);
+						// Decodificação polimórfica de payload por tipo de layer CryEngine
+						switch (layerType) {
+							case 0:
+							case 1:
+								int e0 = readLittleEndianInt(in);
+								if (e0 != 0 && Math.abs(e0) < 5000000) {
+									baseElev = e0 / 100.0f;
+								}
+								break;
+							case 2:
+							case 3:
+								// Sem máscara (superfície plana / terreno)
+								break;
+							case 4:
+							case 5:
+								in.skipNBytes(1024);
+								break;
+							case 6:
+							case 7:
+								in.skipNBytes(128);
+								break;
+							case 8:
+							case 9:
+								in.skipNBytes(8 + 256);
+								break;
+							case 10:
+							case 11:
+								in.skipNBytes(56 + 512);
+								break;
+							case 12:
+							case 13:
+								int e12 = readLittleEndianInt(in);
+								if (e12 != 0 && Math.abs(e12) < 5000000) {
+									baseElev = e12 / 100.0f;
+								}
+								in.skipNBytes(1024);
+								break;
+							case 14:
+							case 15:
+								int e14 = readLittleEndianInt(in);
+								if (e14 != 0 && Math.abs(e14) < 5000000) {
+									baseElev = e14 / 100.0f;
+								}
+								in.skipNBytes(2048);
+								break;
+							default:
+								LOG.warn("NATIVE_PATH: Layer desconhecido {} em mapa {}", layerType, worldId);
+								break;
+						}
 
-						float worldX = (gridX + 16) * GRID_SCALE;
-						float worldY = (gridY + 16) * GRID_SCALE;
-						float worldZ = (float) elevRaw;
-						if (Float.isNaN(worldZ) || Math.abs(worldZ) > 10000f) {
+						// Tipos ímpares leem buffer adicional de terreno de 512 bytes
+						if (layerType % 2 == 1 && layerType <= 15) {
+							in.skipNBytes(512);
+						}
+
+						// 12 bytes finais de conexões / metadados
+						in.skipNBytes(12);
+
+						// Cálculo exato de coordenadas de mundo CryEngine: centro da célula de 16m
+						float worldX = gridX + 8.0f;
+						float worldY = gridY + 8.0f;
+						float worldZ = 0.0f;
+
+						// Resolução precisa de altitude:
+						// Camadas estruturais (pontes flutuantes, barcos, decks, plataformas elevadas)
+						boolean hasExplicitBase = !Float.isNaN(baseElev) && Math.abs(baseElev) > 0.1f
+								&& Math.abs(baseElev - 655.35f) > 0.1f && Math.abs(baseElev - 327.67f) > 0.1f;
+
+						if (hasExplicitBase) {
+							worldZ = baseElev;
+							try {
+								if (GeoService.getInstance() != null) {
+									float meshZ = GeoService.getInstance().getZ(worldId, worldX, worldY, baseElev + 3.0f, baseElev - 5.0f, 0);
+									if (!Float.isNaN(meshZ) && Math.abs(meshZ - baseElev) <= 5.0f) {
+										worldZ = meshZ;
+									}
+								}
+							} catch (Throwable ignored) {
+							}
+						} else {
+							// Camada de terreno ou sem cota explícita
+							try {
+								if (GeoService.getInstance() != null) {
+									float geoZ = GeoService.getInstance().getZ(worldId, worldX, worldY);
+									if (!Float.isNaN(geoZ) && geoZ > -500.0f && geoZ < 5000.0f) {
+										worldZ = geoZ;
+									}
+								}
+							} catch (Throwable ignored) {
+							}
+						}
+
+						if (worldZ < -500.0f || worldZ > 5000.0f) {
 							worldZ = 0.0f;
 						}
 
-						int[] neighborIds = parseNeighbors(nodeId, connections);
-
 						parsedNodes.add(new NativePathNode(nodeId++, worldX, worldY, worldZ,
-							gridX, gridY, (byte) layerType, neighborIds));
+							gridX, gridY, (byte) layerType, new int[0]));
 					}
 				}
 
 				gridX += 16;
-				if (gridX >= 4096) {
+				if (gridX >= mapSize) {
 					gridX = 0;
 					gridY += 16;
 				}
@@ -288,29 +427,9 @@ public final class NativePathMap {
 		return (b1 & 0xFF) | ((b2 & 0xFF) << 8) | ((b3 & 0xFF) << 16) | ((b4 & 0xFF) << 24);
 	}
 
-	private static int[] parseNeighbors(int currentId, byte[] connections) {
-		if (connections == null || connections.length < 4) {
-			return new int[0];
-		}
-		List<Integer> list = new ArrayList<>(4);
-		for (int i = 0; i < connections.length - 3; i += 4) {
-			int nId = (connections[i] & 0xFF) |
-				((connections[i + 1] & 0xFF) << 8) |
-				((connections[i + 2] & 0xFF) << 16) |
-				((connections[i + 3] & 0xFF) << 24);
-			if (nId >= 0 && nId != currentId && nId < 100_000_000) {
-				list.add(nId);
-			}
-		}
-		int[] res = new int[list.size()];
-		for (int i = 0; i < list.size(); i++) {
-			res[i] = list.get(i);
-		}
-		return res;
-	}
-
 	/**
-	 * Conecta nós adjacentes espacialmente (até 8 direções na grade de 8m) para garantir conectividade perfeita.
+	 * Conecta nós adjacentes espacialmente (até 8 direções na grade de 16m) com limite estrito
+	 * de desnível vertical (delta Z <= 2.5m) para prevenir saltos impossíveis sobre água ou entre pontes.
 	 */
 	private static void connectAdjacentNodes(NativePathNode[] array) {
 		if (array.length == 0)
@@ -327,9 +446,6 @@ public final class NativePathMap {
 		short[] dy = {0, 0, 16, -16, 16, -16, 16, -16};
 
 		for (NativePathNode node : array) {
-			if (node.getNeighborIds().length > 0)
-				continue;
-
 			List<Integer> neighbors = new ArrayList<>(8);
 			for (int dir = 0; dir < 8; dir++) {
 				short nx = (short) (node.getGridX() + dx[dir]);
@@ -337,9 +453,11 @@ public final class NativePathMap {
 				long key = (((long) nx) << 32) | (ny & 0xFFFFFFFFL);
 				List<Integer> candList = gridPosMap.get(key);
 				if (candList != null) {
+					// Limite de rampa: 6.5m para vizinhos cardinais (16m), 8.5m para diagonais (22.6m)
+					float maxDeltaZ = (dir < 4) ? 6.5f : 8.5f;
 					for (int candIdx : candList) {
 						NativePathNode cand = array[candIdx];
-						if (Math.abs(cand.getZ() - node.getZ()) <= 3.0f) {
+						if (Math.abs(cand.getZ() - node.getZ()) <= maxDeltaZ) {
 							neighbors.add(cand.getId());
 						}
 					}

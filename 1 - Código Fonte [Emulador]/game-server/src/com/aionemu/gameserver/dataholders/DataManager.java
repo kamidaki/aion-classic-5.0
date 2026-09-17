@@ -44,6 +44,7 @@ public final class DataManager {
 	public static EventData EVENT_DATA;
 	public static FlyPathData FLY_PATH;
 	public static FlyRingData FLY_RING_DATA;
+	public static FlyLootData FLY_LOOT_DATA;
 	public static GuideHtmlData GUIDE_HTML_DATA;
 	public static ItemData ITEM_DATA;
 	public static ItemRandomBonusData ITEM_RANDOM_BONUSES;
@@ -172,6 +173,7 @@ public final class DataManager {
 		RIFT_DATA = data.riftData;
 		BASE_DATA = data.baseData;
 		FLY_RING_DATA = data.flyRingData;
+		FLY_LOOT_DATA = data.flyLootData;
 		SHIELD_DATA = data.shieldData;
 		PET_DATA = data.petData;
 		PET_FEED_DATA = data.petFeedData;

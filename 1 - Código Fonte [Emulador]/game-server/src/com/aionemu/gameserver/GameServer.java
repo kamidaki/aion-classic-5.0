@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.lostacademy.nav.NavService;
 
 import com.aionemu.commons.configuration.transformers.PropertyTransformers;
 import com.aionemu.commons.database.DatabaseFactory;
@@ -98,7 +97,6 @@ public class GameServer {
 			GeoService.getInstance()).parallel().forEach(GameEngine::init);
 		// ZoneService.getInstance().saveMaterialZones();
 
-		NavService.getInstance().initializeNav();
 		com.lostacademy.nativepath.NativePathService.getInstance().initialize();
 
 		World.getInstance();

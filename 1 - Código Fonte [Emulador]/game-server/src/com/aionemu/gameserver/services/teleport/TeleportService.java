@@ -5,7 +5,6 @@ import java.util.concurrent.FutureTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.lostacademy.nav.NavData;
 import com.lostacademy.nativepath.NativePathData;
 
 import com.aionemu.gameserver.configs.main.SecurityConfig;
@@ -232,8 +231,6 @@ public class TeleportService {
 		if (currentWorldId != worldId || player.getInstanceId() != instanceId) {
 			InstanceService.onLeaveInstance(player);
 			if (currentWorldId != worldId) {
-				NavData.getInstance().onPlayerLeaveMap(currentWorldId);
-				NavData.getInstance().onPlayerEnterMap(worldId);
 				NativePathData.getInstance().onPlayerLeaveMap(currentWorldId);
 				NativePathData.getInstance().onPlayerEnterMap(worldId);
 			}
@@ -518,8 +515,6 @@ public class TeleportService {
 			if (currentWorldId != worldId || currentInstance != instanceId) {
 				InstanceService.onLeaveInstance(player);
 				if (currentWorldId != worldId) {
-					NavData.getInstance().onPlayerLeaveMap(currentWorldId);
-					NavData.getInstance().onPlayerEnterMap(worldId);
 					NativePathData.getInstance().onPlayerLeaveMap(currentWorldId);
 					NativePathData.getInstance().onPlayerEnterMap(worldId);
 				}

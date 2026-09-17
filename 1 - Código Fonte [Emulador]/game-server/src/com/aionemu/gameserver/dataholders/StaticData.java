@@ -143,6 +143,9 @@ public class StaticData {
 	@XmlElement(name = "fly_rings")
 	public FlyRingData flyRingData;
 
+	@XmlElement(name = "fly_loot")
+	public FlyLootData flyLootData;
+
 	@XmlElement(name = "shields")
 	public ShieldData shieldData;
 
@@ -366,6 +369,9 @@ public class StaticData {
 		log.info("Loaded " + riftData.size() + " rift entries");
 		log.info("Loaded " + baseData.size() + " base entries");
 		log.info("Loaded " + flyRingData.size() + " fly ring entries");
+		if (flyLootData != null) {
+			log.info("Loaded " + flyLootData.size() + " fly loot templates");
+		}
 		log.info("Loaded " + shieldData.size() + " shield entries");
 		log.info("Loaded " + petData.size() + " pet entries");
 		log.info("Loaded " + guideData.size() + " guide entries");
