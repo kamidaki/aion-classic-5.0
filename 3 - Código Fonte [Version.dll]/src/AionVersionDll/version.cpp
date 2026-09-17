@@ -23,7 +23,58 @@
 static bool s_gfxEnabled = false;
 static std::unordered_set<HMODULE> s_scannedLangModules;
 static std::unordered_set<HMODULE> s_scannedCountryModules;
+static std::unordered_set<HMODULE> s_scannedCrcModules;
 static SRWLOCK s_patchLock = SRWLOCK_INIT;
+
+static void BypassTableCrcInModule(HMODULE hMod) {
+    if (!hMod) return;
+
+    AcquireSRWLockExclusive(&s_patchLock);
+    if (s_scannedCrcModules.find(hMod) != s_scannedCrcModules.end()) {
+        ReleaseSRWLockExclusive(&s_patchLock);
+        return;
+    }
+    s_scannedCrcModules.insert(hMod);
+    ReleaseSRWLockExclusive(&s_patchLock);
+
+    __try {
+        PIMAGE_DOS_HEADER dos = (PIMAGE_DOS_HEADER)hMod;
+        if (dos->e_magic != IMAGE_DOS_SIGNATURE) return;
+        if (dos->e_lfanew <= 0 || dos->e_lfanew > 0x10000000) return;
+
+        PIMAGE_NT_HEADERS nt = (PIMAGE_NT_HEADERS)((BYTE*)hMod + dos->e_lfanew);
+        if (nt->Signature != IMAGE_NT_SIGNATURE) return;
+
+        BYTE* base = (BYTE*)hMod;
+        PIMAGE_SECTION_HEADER sec = IMAGE_FIRST_SECTION(nt);
+        for (WORD i = 0; i < nt->FileHeader.NumberOfSections; i++, sec++) {
+            if (!(sec->Characteristics & IMAGE_SCN_MEM_EXECUTE))
+                continue;
+
+            BYTE* s = base + sec->VirtualAddress;
+            DWORD sz = sec->Misc.VirtualSize;
+            if (sz < 16) continue;
+            BYTE* s_end = s + sz - 14;
+
+            for (BYTE* p = s; p <= s_end; p++) {
+                // Check pattern: 39 AC 24 70 01 00 00 0F 85 (cmp dword ptr [rsp + 0x170], ebp; jne ...)
+                if (p[0] == 0x39 && p[1] == 0xAC && p[2] == 0x24 && p[3] == 0x70 &&
+                    p[4] == 0x01 && p[5] == 0x00 && p[6] == 0x00 &&
+                    p[7] == 0x0F && p[8] == 0x85) {
+                    
+                    DWORD oldProtect = 0;
+                    if (VirtualProtect(p + 7, 6, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+                        memset(p + 7, 0x90, 6); // 6 NOPs: bypass jne fail_handler
+                        VirtualProtect(p + 7, 6, oldProtect, &oldProtect);
+                    }
+                    p += 12;
+                }
+            }
+        }
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+}
 
 static void BypassCountryCheckInModule(HMODULE hMod) {
     if (!hMod) return;
@@ -220,12 +271,14 @@ static void PatchAllLoadedLanguageModules() {
     if (hMain) {
         PatchLanguageTableInModule(hMain);
         BypassCountryCheckInModule(hMain);
+        BypassTableCrcInModule(hMain);
     }
     for (const wchar_t* name : moduleNames) {
         HMODULE h = GetModuleHandleW(name);
         if (h) {
             PatchLanguageTableInModule(h);
             BypassCountryCheckInModule(h);
+            BypassTableCrcInModule(h);
         }
     }
 }
@@ -236,6 +289,7 @@ static HMODULE WINAPI zzLoadLibraryA(LPCSTR lpLibFileName) {
     if (h) {
         PatchLanguageTableInModule(h);
         BypassCountryCheckInModule(h);
+        BypassTableCrcInModule(h);
     }
     return h;
 }
@@ -246,6 +300,7 @@ static HMODULE WINAPI zzLoadLibraryExA(LPCSTR lpLibFileName, HANDLE hFile, DWORD
     if (h && !(dwFlags & (LOAD_LIBRARY_AS_DATAFILE | LOAD_LIBRARY_AS_IMAGE_RESOURCE))) {
         PatchLanguageTableInModule(h);
         BypassCountryCheckInModule(h);
+        BypassTableCrcInModule(h);
     }
     return h;
 }
@@ -256,6 +311,7 @@ static HMODULE WINAPI zzLoadLibraryW(LPCWSTR lpLibFileName) {
     if (h) {
         PatchLanguageTableInModule(h);
         BypassCountryCheckInModule(h);
+        BypassTableCrcInModule(h);
     }
     return h;
 }
@@ -266,6 +322,7 @@ static HMODULE WINAPI zzLoadLibraryExW(LPCWSTR lpLibFileName, HANDLE hFile, DWOR
     if (h && !(dwFlags & (LOAD_LIBRARY_AS_DATAFILE | LOAD_LIBRARY_AS_IMAGE_RESOURCE))) {
         PatchLanguageTableInModule(h);
         BypassCountryCheckInModule(h);
+        BypassTableCrcInModule(h);
     }
     return h;
 }
@@ -510,6 +567,11 @@ static void InstallPatch() {
 BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID lpvReserved) {
     if (fdwReason == DLL_PROCESS_ATTACH) {
         DisableThreadLibraryCalls(hinstDLL);
+
+        // Pin version.dll in memory so it is NEVER unloaded by dynamic FreeLibrary calls
+        HMODULE hSelf = nullptr;
+        GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_PIN, (LPCWSTR)hinstDLL, &hSelf);
+
         InstallPatch();
 
         // Spawn early language monitor thread (surveillance for 30s during client load)
