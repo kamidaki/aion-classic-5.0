@@ -14,10 +14,9 @@
 //  Features:
 //  1. Graphics quality unlock (4096x4096 resolution support in CrySystem).
 //  2. High core-count CPU affinity stability fix (32+ cores).
-//  3. Window sizing / border adjustments for modern resolutions.
-//  4. Official IP spoofing for private emulator connectivity.
-//  5. Clean command line bypasses for official-only telemetry/shops.
-//  6. Native L10N BRA (Portuguese-Brazil) language support injection.
+//  3. Official IP spoofing for private emulator connectivity.
+//  4. Clean command line bypasses for official-only telemetry/shops.
+//  5. Native L10N BRA (Portuguese-Brazil) language support injection.
 // =========================================================================
 
 static bool s_gfxEnabled = false;
@@ -550,57 +549,6 @@ static LPWSTR WINAPI zzGetCommandLineW() {
     return const_cast<LPWSTR>(s_hookedCmdW.c_str());
 }
 
-static decltype(CreateWindowExA)* real_CreateWindowExA = CreateWindowExA;
-static HWND WINAPI zzCreateWindowExA(DWORD dwExStyle, LPCSTR lpClassName, LPCSTR lpWindowName, DWORD dwStyle, int X, int Y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam) {
-    if (lpClassName && ((ULONG_PTR)lpClassName > 0xFFFF) && (strcmp(lpClassName, "AION") == 0 || strcmp(lpClassName, "CryGame") == 0)) {
-        if ((dwStyle & WS_CAPTION) && !(dwStyle & WS_MAXIMIZE) && !(dwStyle & WS_MINIMIZE)) {
-            RECT rect = {0, 0, nWidth, nHeight};
-            AdjustWindowRectEx(&rect, dwStyle, FALSE, dwExStyle);
-            nWidth = rect.right - rect.left;
-            nHeight = rect.bottom - rect.top;
-        }
-    }
-    return real_CreateWindowExA(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
-}
-
-static decltype(CreateWindowExW)* real_CreateWindowExW = CreateWindowExW;
-static HWND WINAPI zzCreateWindowExW(DWORD dwExStyle, LPCWSTR lpClassName, LPCWSTR lpWindowName, DWORD dwStyle, int X, int Y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam) {
-    if (lpClassName && ((ULONG_PTR)lpClassName > 0xFFFF) && (wcscmp(lpClassName, L"AION") == 0 || wcscmp(lpClassName, L"CryGame") == 0)) {
-        if ((dwStyle & WS_CAPTION) && !(dwStyle & WS_MAXIMIZE) && !(dwStyle & WS_MINIMIZE)) {
-            RECT rect = {0, 0, nWidth, nHeight};
-            AdjustWindowRectEx(&rect, dwStyle, FALSE, dwExStyle);
-            nWidth = rect.right - rect.left;
-            nHeight = rect.bottom - rect.top;
-        }
-    }
-    return real_CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
-}
-
-static decltype(SetWindowPos)* real_SetWindowPos = SetWindowPos;
-static BOOL WINAPI zzSetWindowPos(HWND hWnd, HWND hWndInsertAfter, int X, int Y, int cx, int cy, UINT uFlags) {
-    char className[256];
-    if (!(uFlags & SWP_NOSIZE) && GetClassNameA(hWnd, className, sizeof(className)) && 
-        (strcmp(className, "AION") == 0 || strcmp(className, "CryGame") == 0)) {
-        
-        DWORD style = GetWindowLongA(hWnd, GWL_STYLE);
-        if ((style & WS_CAPTION) && !(style & WS_MAXIMIZE) && !(style & WS_MINIMIZE)) {
-            if ((cx == 1024 && cy == 768) || (cx == 1280 && (cy == 720 || cy == 800 || cy == 1024)) ||
-                (cx == 1366 && cy == 768) || (cx == 1440 && cy == 900) || (cx == 1600 && (cy == 900 || cy == 1200)) ||
-                (cx == 1680 && cy == 1050) || (cx == 1920 && (cy == 1080 || cy == 1200)) ||
-                (cx == 2560 && (cy == 1080 || cy == 1440 || cy == 1600)) || (cx == 3440 && cy == 1440) ||
-                (cx == 3840 && cy == 2160)) {
-                
-                RECT rect = {0, 0, cx, cy};
-                DWORD exStyle = GetWindowLongA(hWnd, GWL_EXSTYLE);
-                AdjustWindowRectEx(&rect, style, FALSE, exStyle);
-                cx = rect.right - rect.left;
-                cy = rect.bottom - rect.top;
-            }
-        }
-    }
-    return real_SetWindowPos(hWnd, hWndInsertAfter, X, Y, cx, cy, uFlags);
-}
-
 static decltype(SetWindowLongA)* real_SetWindowLongA = SetWindowLongA;
 static LONG WINAPI zzSetWindowLongA(_In_ HWND hWnd, _In_ int nIndex, _In_ LONG dwNewLong) {
     if (!s_gfxEnabled) {
@@ -622,8 +570,6 @@ static void FixClientStartupWithHighCoreCountCpus() {
 }
 
 static void InstallPatch() {
-    SetProcessDPIAware();
-
     PatchLanguageTableInModule(GetModuleHandleW(nullptr));
     BypassCountryCheckInModule(GetModuleHandleW(nullptr));
     PatchAllLoadedLanguageModules();
@@ -646,9 +592,6 @@ static void InstallPatch() {
     DetourAttach(&(PVOID&)real_GetPrivateProfileIntW, zzGetPrivateProfileIntW);
     DetourAttach(&(PVOID&)real_GetCommandLineA, zzGetCommandLineA);
     DetourAttach(&(PVOID&)real_GetCommandLineW, zzGetCommandLineW);
-    DetourAttach(&(PVOID&)real_CreateWindowExA, zzCreateWindowExA);
-    DetourAttach(&(PVOID&)real_CreateWindowExW, zzCreateWindowExW);
-    DetourAttach(&(PVOID&)real_SetWindowPos, zzSetWindowPos);
     DetourTransactionCommit();
 
     FixClientStartupWithHighCoreCountCpus();
