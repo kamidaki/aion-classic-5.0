@@ -38,10 +38,20 @@ import com.aionemu.gameserver.world.WorldDropType;
 import com.aionemu.gameserver.world.WorldMapType;
 import com.aionemu.gameserver.world.zone.ZoneName;
 
+import com.aionemu.gameserver.dataholders.FlyLootData;
+import com.aionemu.gameserver.model.drop.FlyRewardType;
+import com.aionemu.gameserver.model.templates.fly.FlyDropTemplate;
+
 /**
  * @author Lost Academy Team & Durak
  */
 public class DropRegistrationService {
+
+	private static final EnumSet<FlyRewardType> COMMON_FLY_REWARD_TYPES = EnumSet.of(
+		FlyRewardType.POTION,
+		FlyRewardType.SCROLL,
+		FlyRewardType.FOOD
+	);
 
 	private Map<Integer, Set<DropItem>> currentDropMap = new ConcurrentHashMap<>();
 	private Map<Integer, DropNpc> dropRegistrationMap = new ConcurrentHashMap<>();
@@ -73,7 +83,13 @@ public class DropRegistrationService {
 
 		int index = 1;
 		Set<DropItem> droppedItems = new HashSet<>();
+		int looterLevel = looter != null ? looter.getLevel() : highestLevel;
 		DropModifiers dropModifiers = createDropModifiers(npc, looter, highestLevel);
+
+		if (isFlyLootNpc(npc)) {
+			index = addFlyDrops(droppedItems, index, dropModifiers, looterLevel);
+			applyFlyRewardSinglePick(droppedItems, looter, highestLevel);
+		}
 
 		if (npcDrop != null) // add custom drops
 			index = npcDrop.dropCalculator(droppedItems, index, dropModifiers, groupMembers);
@@ -85,7 +101,7 @@ public class DropRegistrationService {
 
 		// if npc ai == quest_use_item it will be always excluded from global drops
 		boolean isNpcQuest = npc.getAi().getName().equals("quest_use_item");
-		if (!isNpcQuest) {
+		if (!isNpcQuest && !isFlyLootNpc(npc)) {
 			boolean hasGlobalNpcExclusions = hasGlobalNpcExclusions(npc);
 			boolean isAllowedDefaultGlobalDropNpc = isAllowedDefaultGlobalDropNpc(npc, dropModifiers.isDropNpcChest());
 			// instances with WorldDropType.NONE must not have global drops (example Arenas)
@@ -108,12 +124,17 @@ public class DropRegistrationService {
 		DropService.getInstance().scheduleFreeForAll(npcObjId);
 	}
 
+	public void registerDrop(Npc npc, Player player, int highestLevel, Collection<Player> groupMembers, boolean previewOnly) {
+		registerDrop(npc, player, highestLevel, groupMembers);
+	}
+
 	public DropModifiers createDropModifiers(Npc npc, Player player, int highestLevel) {
 		DropModifiers dropModifiers = new DropModifiers();
-		String dropType = npc.getGroupDrop().name().toLowerCase();
-		boolean isChest = npc.getAi().getName().equals("chest") || dropType.startsWith("treasure") || dropType.endsWith("box");
+		String dropType = npc.getGroupDrop() != null ? npc.getGroupDrop().name().toLowerCase() : "";
+		boolean isChest = (npc.getAi() != null && (npc.getAi().getName().equals("chest") || npc.getAi().getName().equals("fly_loot")))
+			|| dropType.startsWith("treasure") || dropType.endsWith("box");
 		dropModifiers.setIsDropNpcChest(isChest);
-		dropModifiers.setDropRace(player.getRace());
+		dropModifiers.setDropRace(player != null ? player.getRace() : Race.PC_ALL);
 		dropModifiers.setBoostDropRate(calculateBoostDropRate(player, npc));
 		dropModifiers.setReductionDropRate(getReductionDropRate(npc, highestLevel));
 		return dropModifiers;
@@ -474,6 +495,137 @@ public class DropRegistrationService {
 			case HERO -> 1.8f;
 			case LEGENDARY -> 2f;
 		};
+	}
+
+	public static boolean isFlyLootNpc(Npc npc) {
+		if (npc == null)
+			return false;
+		int id = npc.getNpcId();
+		return id == 802012 || id == 802016 || id == 282438
+			|| (npc.getAi() != null && "fly_loot".equals(npc.getAi().getName()));
+	}
+
+	private int addFlyDrops(Set<DropItem> items, int index, DropModifiers dropModifiers, int looterLevel) {
+		FlyLootData data = DataManager.FLY_LOOT_DATA;
+		if (data == null || data.isEmpty())
+			return index;
+
+		for (FlyDropTemplate template : data.getAllDrops()) {
+			if (!template.isEligibleForLevel(looterLevel))
+				continue;
+
+			float finalChance = dropModifiers.calculateDropChance(template.getChance(), false);
+			if (finalChance <= 0f)
+				continue;
+
+			DropItem dropItem = new DropItem(template.toDrop(finalChance));
+			dropItem.calculateCount();
+			dropItem.setIndex(index++);
+			items.add(dropItem);
+		}
+
+		return index;
+	}
+
+	private void applyFlyRewardSinglePick(Set<DropItem> items, Player looter, int fallbackLevel) {
+		if (items == null || items.isEmpty())
+			return;
+
+		FlyLootData flyLootData = DataManager.FLY_LOOT_DATA;
+		if (flyLootData == null || flyLootData.isEmpty()) {
+			items.clear();
+			return;
+		}
+
+		int looterLevel = looter != null ? looter.getLevel() : Math.max(1, fallbackLevel);
+		int baseIndex = items.stream().mapToInt(DropItem::getIndex).min().orElse(1);
+
+		Map<FlyRewardType, Candidate> grouped = new EnumMap<>(FlyRewardType.class);
+		for (DropItem dropItem : items) {
+			FlyDropTemplate meta = flyLootData.getTemplate(dropItem.getDropTemplate().getItemId());
+			if (meta == null)
+				continue;
+
+			if (!meta.isEligibleForLevel(looterLevel))
+				continue;
+
+			int effectiveLevel = meta.resolveEffectiveLevel(looterLevel);
+			if (effectiveLevel <= 0)
+				continue;
+
+			Candidate candidate = new Candidate(dropItem, meta, effectiveLevel);
+			Candidate previous = grouped.get(meta.getType());
+			float candidateChance = dropItem.getDropTemplate().getChance();
+			float previousChance = previous != null ? previous.dropItem().getDropTemplate().getChance() : 0f;
+			if (previous == null
+				|| effectiveLevel > previous.effectiveLevel()
+				|| (effectiveLevel == previous.effectiveLevel() && candidateChance > previousChance)
+				|| (effectiveLevel == previous.effectiveLevel() && candidateChance == previousChance
+					&& meta.getItemId() < previous.template().getItemId())) {
+				grouped.put(meta.getType(), candidate);
+			}
+		}
+
+		if (grouped.isEmpty()) {
+			items.clear();
+			return;
+		}
+
+		List<Candidate> successes = new ArrayList<>();
+		for (Candidate candidate : grouped.values()) {
+			float chance = Math.max(0f, candidate.dropItem().getDropTemplate().getChance());
+			if (chance >= 100f || Rnd.chance() < chance)
+				successes.add(candidate);
+		}
+
+		items.clear();
+		if (successes.isEmpty())
+			return;
+
+		List<Candidate> weightedCandidates = new ArrayList<>(successes.size());
+		List<Float> cumulativeWeights = new ArrayList<>(successes.size());
+		float totalWeight = 0f;
+		for (Candidate candidate : successes) {
+			float weight = computeFlyRewardWeight(candidate);
+			if (weight <= 0f)
+				continue;
+
+			totalWeight += weight;
+			weightedCandidates.add(candidate);
+			cumulativeWeights.add(totalWeight);
+		}
+
+		if (weightedCandidates.isEmpty())
+			return;
+
+		float roll = Rnd.nextFloat(totalWeight);
+		Candidate chosen = null;
+		for (int i = 0; i < weightedCandidates.size(); i++) {
+			if (roll <= cumulativeWeights.get(i)) {
+				chosen = weightedCandidates.get(i);
+				break;
+			}
+		}
+
+		if (chosen == null)
+			chosen = weightedCandidates.get(weightedCandidates.size() - 1);
+
+		if (chosen != null) {
+			DropItem dropItem = chosen.dropItem();
+			dropItem.setIndex(baseIndex);
+			items.add(dropItem);
+		}
+	}
+
+	private float computeFlyRewardWeight(Candidate candidate) {
+		FlyRewardType type = candidate.template().getType();
+		float baseWeight = COMMON_FLY_REWARD_TYPES.contains(type) ? 1f : 0.35f;
+		float chanceWeight = Math.max(0.01f, candidate.dropItem().getDropTemplate().getChance() / 100f);
+		float levelWeight = 1f + (candidate.effectiveLevel() / 100f);
+		return baseWeight * chanceWeight * levelWeight;
+	}
+
+	private record Candidate(DropItem dropItem, FlyDropTemplate template, int effectiveLevel) {
 	}
 
 	private static class SingletonHolder {

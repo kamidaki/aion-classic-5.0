@@ -117,7 +117,17 @@ public final class NativePathService {
 			float x1 = pathOwner.getX(), y1 = pathOwner.getY(), z1 = pathOwner.getZ();
 			float x2 = target.getX(), y2 = target.getY(), z2 = target.getZ();
 
-			return NativePathAStar.findPath(map, x1, y1, z1, x2, y2, z2);
+			float[][] path = NativePathAStar.findPath(map, x1, y1, z1, x2, y2, z2);
+			if (NativePathConfig.NATIVE_PATH_DEBUG) {
+				if (path != null) {
+					LOG.info("NATIVE_PATH [TARGET]: [{}] ({}, {}, {}) -> ({}, {}, {}) | {} waypoints",
+						pathOwner.getName(), x1, y1, z1, x2, y2, z2, path.length);
+				} else {
+					LOG.debug("NATIVE_PATH [TARGET]: [{}] No path from ({}, {}, {}) to ({}, {}, {})",
+						pathOwner.getName(), x1, y1, z1, x2, y2, z2);
+				}
+			}
+			return path;
 		} finally {
 			recordQuery(start);
 		}
@@ -145,7 +155,17 @@ public final class NativePathService {
 
 			float x1 = pathOwner.getX(), y1 = pathOwner.getY(), z1 = pathOwner.getZ();
 
-			return NativePathAStar.findPath(map, x1, y1, z1, x, y, z);
+			float[][] path = NativePathAStar.findPath(map, x1, y1, z1, x, y, z);
+			if (NativePathConfig.NATIVE_PATH_DEBUG) {
+				if (path != null) {
+					LOG.info("NATIVE_PATH [LOC]: [{}] ({}, {}, {}) -> ({}, {}, {}) | {} waypoints",
+						pathOwner.getName(), x1, y1, z1, x, y, z, path.length);
+				} else {
+					LOG.debug("NATIVE_PATH [LOC]: [{}] No path from ({}, {}, {}) to ({}, {}, {})",
+						pathOwner.getName(), x1, y1, z1, x, y, z);
+				}
+			}
+			return path;
 		} finally {
 			recordQuery(start);
 		}

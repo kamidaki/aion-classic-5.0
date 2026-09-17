@@ -76,6 +76,7 @@
 	<import file="cosmetic_items/cosmetic_items.xml" />
 	<import file="curing_objects/curing_objects.xml" />
 	<import file="custom_drop/custom_drop.xml" />
+	<import file="custom_drop/fly_loot.xml" />
 	<import file="decomposable_items/decomposable_items.xml" />
 	<import file="enchants/enchant_templates.xml" />
 	<import file="events/arcadelist.xml" />

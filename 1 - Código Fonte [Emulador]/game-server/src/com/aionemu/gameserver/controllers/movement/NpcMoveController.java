@@ -390,7 +390,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 			futureDistPassed = dist;
 		}
 
-		if (futureDistPassed == dist && GeoDataConfig.GEO_NAV_ENABLE
+		if (futureDistPassed == dist && (GeoDataConfig.GEO_NAV_ENABLE || com.lostacademy.nativepath.NativePathConfig.NATIVE_PATH_ENABLE)
 				&& (destination == Destination.TARGET_OBJECT || destination == Destination.POINT)) {
 			if (cachedPath != null && cachedPath.length > 0) {
 				float[][] tempCache = new float[cachedPath.length - 1][];
@@ -408,8 +408,18 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 		float newX = (targetDestX - ownerX) * distFraction + ownerX;
 		float newY = (targetDestY - ownerY) * distFraction + ownerY;
 		float newZ = (targetDestZ - ownerZ) * distFraction + ownerZ;
-		if (GeoDataConfig.GEO_NPC_MOVE && GeoDataConfig.GEO_ENABLE && owner.getAi().getSubState() != AISubState.WALK_PATH
-			&& owner.getAi().getState() != AIState.RETURNING && owner.getGameStats().getNextGeoZUpdate() < System.currentTimeMillis()) {
+
+		// Clamping de Z durante AIState.RETURNING para impedir flutuação em linha reta
+		if (owner.getAi().getState() == AIState.RETURNING) {
+			float surfaceZ = GeoService.getInstance().getZ(owner.getWorldId(), newX, newY, newZ + 3.0f, newZ - 6.0f, owner.getInstanceId());
+			if (Float.isNaN(surfaceZ)) {
+				surfaceZ = com.lostacademy.nativepath.NativePathService.getInstance().getSurfaceZ(owner.getWorldId(), newX, newY, newZ);
+			}
+			if (!Float.isNaN(surfaceZ)) {
+				newZ = surfaceZ;
+			}
+		} else if (GeoDataConfig.GEO_NPC_MOVE && GeoDataConfig.GEO_ENABLE && owner.getAi().getSubState() != AISubState.WALK_PATH
+			&& owner.getGameStats().getNextGeoZUpdate() < System.currentTimeMillis()) {
 			// fix Z if npc doesn't move to spawn point
 			if (owner.getSpawn().getX() != targetDestX || owner.getSpawn().getY() != targetDestY || owner.getSpawn().getZ() != targetDestZ) {
 				float geoZ = GeoService.getInstance().getZ(owner.getWorldId(), newX, newY, newZ + 2, Math.min(newZ, ownerZ) - 2, owner.getInstanceId());
