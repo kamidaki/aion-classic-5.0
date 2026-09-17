@@ -77,7 +77,10 @@ public class SM_SIEGE_LOCATION_INFO extends AionServerPacket {
 			writeD(loc instanceof CampLocation ? 0 : NetworkConfig.GAMESERVER_ID); // 28 (id do servidor dono; 0 nos camps)
 			writeD(protectSeconds(loc, locId)); // 32 (segundos que faltam da fase protegida)
 			writeD(resetSeconds(loc)); // 36 (segundos ate os Balaur retomarem, so quando vulneravel e de uma raca)
-			writeD(loc.getOccupiedCount()); // 40
+			// 40: nas capturas de Tiamaranta o oficial manda 0 em todas as torres, inclusive nas conquistadas por uma
+			// legiao; so as localizacoes 40014-40020, que o servidor nao tem, vem com 1. Com o contador do emulador
+			// (1 apos a primeira conquista) o cliente deixa de escrever quem domina e so diz que esta ocupada.
+			writeD(loc instanceof CampLocation ? 0 : loc.getOccupiedCount()); // 40
 			// 4+4+2+2+4+1+1+1+1+4+4+4+4+4+4 = exactly 44 bytes per entry
 		}
 	}
