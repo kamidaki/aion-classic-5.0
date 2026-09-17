@@ -22,8 +22,8 @@ S/Small = Lesser (40000+n), M/Middle = Medium (4410+n), L/Big = Greater (4400+n)
 torre: nasce sempre, no spawn comum.
 
 Estatua e NPC de quest sem captura com dono de raca saem do client_world_ldf4b.xml: o <npc_info> deles traz
-<abyss_info> ALi (Elyos) ou ADa (Asmodiano). Ajuste feito em jogo com //fixspawn no Bases (z/h diferente do HEAD no
-mesmo npc e x/y) e reaplicado por cima do que o gerador escreve.
+<abyss_info> ALi (Elyos) ou ADa (Asmodiano). Ajuste feito em jogo com //fixspawn no Bases (so z/h, no
+mesmo npc e x/y) e preservado: spot de mesmo npc e x/y fica com o z/h que ja esta no arquivo.
 
 Regras medidas (captura de 2026-09-13 com a chave 0x87546CA107DC27B8, 2026-09-15, 2026-09-16 e 2026-09-17):
   * a guarnicao tem os mesmos pontos para qualquer dono (4413 e 40010, capturadas com dois donos);
@@ -506,7 +506,7 @@ def bloco_template(texto, npc):
     return m.group(1) if m else None
 
 
-def ajusta(bloco, npc, cli, strings, medida, criando=False, tribo=None):
+def ajusta(bloco, npc, cli, strings, medida, criando=False, padrao=None):
     """Aplica ao bloco (existente ou copiado do molde) o que o cliente e a captura dizem deste npcId."""
     d = cli[npc]
     novo = re.sub(r'(<npc_template npc_id=")\d+(")', lambda m: m.group(1) + str(npc) + m.group(2), bloco, count=1)
@@ -529,7 +529,8 @@ def ajusta(bloco, npc, cli, strings, medida, criando=False, tribo=None):
     if criando:            # template que ja existe fica com o nome dele (a localizacao pt-BR traduz esse campo)
         atr("name", d["name"])
     atr("name_id", nome_id)
-    atr("tribe", tribo)
+    for nome_atr, valor in (padrao or {}).items():
+        atr(nome_atr, valor)
     atr("title_id", titulo)
     atr("level", medida.get("lvl"))
     if "upper" in d:
@@ -550,6 +551,22 @@ def insere(texto, npc, bloco):
     return texto[:fim] + bloco + "\n" + texto[fim:]
 
 
+def comportamento_do_molde(molde, papel):
+    """tribo, ai e tipo do molde (4413, a torre validada em jogo); raca so para guarda e Watching Eye, que tem uma por dono.
+
+    Os templates herdados divergiam entre torres: Watching Eye Balaur da 40001/40002 com GENERAL/general (verde, nao
+    atacavel para Elyos -- o oficial manda tipo 0), guardas de raca com ai general (nunca atacam), teleporte com tribo
+    GENERAL (atacavel pela outra raca pelo checkSiegeRelation)."""
+    if not molde:
+        return {}
+    cab = dict(re.findall(r'(\w+)="([^"]*)"', re.match(r"\t?<npc_template\b[^>]*>", molde).group(0)))
+    chaves = ("tribe", "ai", "type") + (("race",) if papel in GUARDAS or papel == "BOSS" else ())
+    padrao = {k: cab[k] for k in chaves if k in cab}
+    if papel == "QUEST":
+        padrao["tribe"] = TRIBO_QUEST
+    return padrao
+
+
 def templates(usados, cli, cat, strings, medidas, seco):
     inv = {v: k for k, v in cat.items()}
     for arvore in ARVORES:
@@ -564,18 +581,19 @@ def templates(usados, cli, cat, strings, medidas, seco):
             for k in ("lvl", "maxhp"):
                 medida.setdefault(k, geral.get(k))
             existente = bloco_template(novo, npc)
+            molde_id = MOLDE.get((papel, dono)) or MOLDE.get((papel, None))
+            molde = bloco_template(novo, molde_id) if molde_id else None
+            padrao = comportamento_do_molde(molde, papel)
             if existente:
-                ajustado = ajusta(existente, npc, cli, strings, medida, tribo=TRIBO_QUEST if papel == "QUEST" else None)
+                ajustado = ajusta(existente, npc, cli, strings, medida, padrao=padrao)
                 if ajustado != existente:
                     novo = novo.replace(existente, ajustado, 1)
                     corrigidos += 1
                 continue
-            molde_id = MOLDE.get((papel, dono)) or MOLDE.get((papel, None))
-            molde = bloco_template(novo, molde_id) if molde_id else None
             if not molde:
                 sem_molde.append(npc)
                 continue
-            novo = insere(novo, npc, ajusta(molde, npc, cli, strings, medida, criando=True, tribo=TRIBO_QUEST if papel == "QUEST" else None))
+            novo = insere(novo, npc, ajusta(molde, npc, cli, strings, medida, criando=True, padrao=padrao))
             criados.append(npc)
         antes, depois = len(re.findall(r"<npc_template npc_id=", texto)), len(re.findall(r"<npc_template npc_id=", novo))
         if depois != antes + len(criados) or not novo.rstrip().endswith("</npc_templates>"):
@@ -635,27 +653,22 @@ def spots_por_npc(texto):
 
 
 def ajustes_manuais(caminho):
-    """Spots cujo z/h no arquivo difere do commit atual: e o //fixspawn gravando em jogo."""
-    import subprocess
+    """z/h de cada spot que o arquivo ja tem. O //fixspawn so muda z/h, e dado novo de captura muda x/y; entao spot do
+    mesmo npc e x/y fica com o z/h do arquivo -- comparar com o HEAD perdia o ajuste assim que ele era commitado."""
     if not os.path.exists(caminho):
         return {}
-    rel = os.path.relpath(caminho, RAIZ).replace(os.sep, "/")
-    r = subprocess.run(["git", "-C", RAIZ, "show", "HEAD:" + rel], capture_output=True)
-    if r.returncode:
-        return {}
-    antes, agora = spots_por_npc(r.stdout.decode("utf-8")), spots_por_npc(open(caminho, encoding="utf-8").read())
-    return {k: v for k, v in agora.items() if k in antes and antes[k] != v}
+    return spots_por_npc(open(caminho, encoding="utf-8").read())
 
 
 def reaplica(xml, ajustes):
-    """xml com o z/h dos ajustes manuais nos spots de mesmo npc_id e x/y; devolve tambem quantos aplicou."""
+    """xml com o z/h do arquivo nos spots de mesmo npc_id e x/y; devolve tambem quantos o gerador teria mudado."""
     aplicados = 0
 
     def no_bloco(m):
         def no_spot(s):
             nonlocal aplicados
             v = ajustes.get((m.group(1), s.group(2), s.group(3)))
-            if not v:
+            if not v or v == (s.group(4), s.group(6)):
                 return s.group(0)
             aplicados += 1
             return s.group(1) + v[0] + s.group(5) + v[1] + s.group(7)
@@ -727,7 +740,7 @@ def main():
         final, aplicados = reaplica(xml, ajustes)
         if not seco:
             open(caminho, "w", encoding="utf-8", newline="\n").write(final)
-        print("   %s\n      ajustes manuais (//fixspawn) reaplicados: %d de %d" % (caminho, aplicados, len(ajustes)))
+        print("   %s\n      z/h do arquivo mantido (//fixspawn): %d spot(s)" % (caminho, aplicados))
 
     print("4. base_locations...")
     grava_base_locations(torres, camps, seco)
