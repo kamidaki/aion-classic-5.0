@@ -1,6 +1,5 @@
 #include <windows.h>
 #include <windowsx.h>
-#include "exports.h"
 #include "detours.h"
 
 #pragma warning(disable: 28159)
@@ -11,6 +10,7 @@ static MSG hiddenMouseMoveMsg = { nullptr, WM_MOUSEMOVE };
 static DWORD fixCoordsExpirationTime = 0;
 static POINT lastVisibleCursorPos = {};
 static POINT hiddenCursorPos = {};
+
 
 static decltype(SetCursor)* real_SetCursor = SetCursor;
 static HCURSOR WINAPI zzSetCursor(_In_opt_ HCURSOR hCursor) {
@@ -119,10 +119,9 @@ static bool IsWindows10FallCreatorsUpdateOrLater() {
     return IsWindowsVersionOrLater(10, 0, 16299); // update version 1709 (Fall Creators Update) broke the WM_MOUSEMOVE event when dragging the mouse
 }
 
-/// Fixes stuttering camera movement on Windows 10 and later (Disabled per user request for testing)
+/// Fixes stuttering camera movement on Windows 10 and later
 void InstallOrUpdateCameraFix(HWND hWnd) {
     hiddenMouseMoveMsg.hwnd = hWnd;
-    /* [Camera fix disabled for testing]
     if (real_SetCursor == SetCursor && IsWindows10FallCreatorsUpdateOrLater()) {
         DetourTransactionBegin();
         DetourUpdateThread(GetCurrentThread());
@@ -131,8 +130,5 @@ void InstallOrUpdateCameraFix(HWND hWnd) {
         DetourAttach(&(PVOID&)real_GetCursorPos, zzGetCursorPos);
         DetourAttach(&(PVOID&)real_PeekMessageA, zzPeekMessageA);
         DetourTransactionCommit();
-        VersionLog("[INIT] Camera Fix installed.");
     }
-    */
-    VersionLog("[INIT] Camera Fix disabled per user configuration.");
 }

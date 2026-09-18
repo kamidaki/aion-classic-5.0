@@ -201,10 +201,14 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="camera_fix.cpp" />
     <ClCompile Include="exports.cpp" />
     <ClCompile Include="ip_fix.cpp" />
-    <ClCompile Include="PathRedirect.cpp" />
     <ClCompile Include="shader_fix.cpp" />
+    <ClCompile Include="stack_fix_x64.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="version.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -212,11 +216,17 @@
     <None Include="..\..\LICENSE" />
     <None Include="..\..\README.md" />
     <None Include="packages.config" />
+    <MASM Include="asmfix64.asm">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </MASM>
     <None Include="version.def" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="exports.h" />
-    <ClInclude Include="PathRedirect.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
