@@ -201,7 +201,6 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="camera_fix.cpp" />
     <ClCompile Include="exports.cpp" />
     <ClCompile Include="ip_fix.cpp" />
     <ClCompile Include="shader_fix.cpp" />

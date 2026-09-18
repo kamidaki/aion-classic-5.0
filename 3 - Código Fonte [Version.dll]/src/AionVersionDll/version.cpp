@@ -1,22 +1,27 @@
-#include "exports.h"
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
+#include <winsock2.h>
+#include <windows.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <string>
+#include <algorithm>
 #include <unordered_set>
+#include <mutex>
+#include "exports.h"
 #include "detours.h"
 
 // =========================================================================
-//  Version.dll - Mod, Compatibility & Localization Core for Aion Classic 5.0
+//  Version.dll - Mod & Compatibility Hook for Aion Classic 5.0
 // =========================================================================
 //  Features:
-//  1. DXVK preloading & DirectX 9 initialization support.
-//  2. 4K High-Quality graphics resolution unlock in CrySystem (4096x4096).
-//  3. Mouse camera jitter / stuttering fix for Windows 10/11.
-//  4. High core-count CPU affinity stability fix (32+ cores).
-//  5. Official IP spoofing for private emulator connectivity.
-//  6. Shader compilation & cache fix for modern GPU drivers.
+//  1. Graphics quality unlock (4096x4096 resolution support in CrySystem).
+//  2. High core-count CPU affinity stability fix (32+ cores).
+//  3. Official IP spoofing for private emulator connectivity.
+//  4. Official mandatory command line injection for telemetry/shops bypass.
+//  5. Native L10N BRA (Portuguese-Brazil) language support injection.
+//  6. CryEngine country check bypass.
 //  7. 64-bit VEH and stack alignment fix for Windows 10/11 Themida (x64).
-//  8. Native L10N BRA (Portuguese-Brazil) language support injection.
-//  9. Country check bypass for Classic EU / regional emulator clients.
+//  * Note: Vulkan/DXVK and MouseFix are explicitly excluded for production.
 // =========================================================================
 
 static bool s_gfxEnabled = false;
@@ -29,18 +34,11 @@ static void EnableHighQualityGraphicsOptions() {
     if (!hCry) return;
 
     MEMORY_BASIC_INFORMATION mbi = {};
-    if (!VirtualQuery((char*)hCry + 0x1000, &mbi, sizeof(mbi))) {
-        return;
-    }
-
-    if (!(mbi.AllocationProtect & 0xF0)) {
-        return;
-    }
+    if (!VirtualQuery((char*)hCry + 0x1000, &mbi, sizeof(mbi))) return;
+    if (!(mbi.AllocationProtect & 0xF0)) return;
 
     DWORD oldProtect;
-    if (!VirtualProtect(mbi.BaseAddress, mbi.RegionSize, PAGE_EXECUTE_READWRITE, &oldProtect)) {
-        return;
-    }
+    if (!VirtualProtect(mbi.BaseAddress, mbi.RegionSize, PAGE_EXECUTE_READWRITE, &oldProtect)) return;
 
     char* c = (char*)mbi.BaseAddress;
     char* end = c + mbi.RegionSize - sizeof(DWORD);
@@ -66,43 +64,14 @@ static void EnableHighQualityGraphicsOptions() {
     VirtualProtect(mbi.BaseAddress, mbi.RegionSize, oldProtect, &oldProtect);
 }
 
-void InstallOrUpdateCameraFix(HWND hWnd);
 void InstallIpFix();
 void InstallShaderFix();
 #if defined(_M_AMD64)
 void Install64BitStackFix();
 #endif
 
-static decltype(SetWindowLongA)* real_SetWindowLongA = SetWindowLongA;
-static LONG WINAPI zzSetWindowLongA(_In_ HWND hWnd, _In_ int nIndex, _In_ LONG dwNewLong) {
-    if (!s_gfxEnabled) {
-        EnableHighQualityGraphicsOptions();
-        s_gfxEnabled = true;
-    }
-    InstallOrUpdateCameraFix(hWnd);
-    return real_SetWindowLongA(hWnd, nIndex, dwNewLong);
-}
-
-static void PreloadDXVK() {
-    LoadLibrary(L"d3d9.dll");
-}
-
-static void InstallGraphicsOptionsFixAndCameraFix() {
-    DetourAttach(&(PVOID&)real_SetWindowLongA, zzSetWindowLongA);
-}
-
-static void FixClientStartupWithHighCoreCountCpus() {
-    SYSTEM_INFO info;
-    GetSystemInfo(&info);
-    if (info.dwNumberOfProcessors >= 32) {
-        int maxCpu = min(64, (int)info.dwNumberOfProcessors) - 1;
-        DWORD_PTR mask = (1ULL << maxCpu) - 1;
-        SetProcessAffinityMask(GetCurrentProcess(), mask);
-    }
-}
-
 // =========================================================================
-//  Dynamic Language & Region Injection (Lost Academy canonical pattern)
+// Dynamic Language & Region Injection (Lost Academy canonical pattern)
 // =========================================================================
 
 static void PatchLanguageTableInModule(HMODULE hMod) {
@@ -324,79 +293,108 @@ static int WINAPI zzMessageBoxW(_In_opt_ HWND hWnd, _In_opt_ LPCWSTR lpText, _In
     return real_MessageBoxW(hWnd, lpText, lpCaption, uType);
 }
 
+// =========================================================================
+// Command Line Injection Hook
+// Appends official mandatory bypass arguments and normalizes -lang:BRA
+// =========================================================================
 static decltype(GetCommandLineA)* real_GetCommandLineA = GetCommandLineA;
 static LPSTR WINAPI zzGetCommandLineA() {
-    static std::string s_cmdA;
-    if (s_cmdA.empty()) {
+    static std::string s_hookedCmdA;
+    static std::once_flag s_flagA;
+    std::call_once(s_flagA, []() {
         LPSTR cmd = real_GetCommandLineA();
-        s_cmdA = cmd ? cmd : "";
+        s_hookedCmdA = cmd ? cmd : "";
         size_t p = 0;
-        while ((p = s_cmdA.find("-LANG:", p)) != std::string::npos) {
-            s_cmdA.replace(p, 6, "-lang:");
+        while ((p = s_hookedCmdA.find("-LANG:", p)) != std::string::npos) {
+            s_hookedCmdA.replace(p, 6, "-lang:");
             p += 6;
         }
         p = 0;
-        while ((p = s_cmdA.find("-Lang:", p)) != std::string::npos) {
-            s_cmdA.replace(p, 6, "-lang:");
+        while ((p = s_hookedCmdA.find("-Lang:", p)) != std::string::npos) {
+            s_hookedCmdA.replace(p, 6, "-lang:");
             p += 6;
         }
         p = 0;
-        while ((p = s_cmdA.find("-lang:bra", p)) != std::string::npos) {
-            s_cmdA.replace(p, 9, "-lang:BRA");
+        while ((p = s_hookedCmdA.find("-lang:bra", p)) != std::string::npos) {
+            s_hookedCmdA.replace(p, 9, "-lang:BRA");
             p += 9;
         }
-        if (s_cmdA.find("-lang:BRA") != std::string::npos) {
-            p = s_cmdA.find("-cc:1");
+        if (s_hookedCmdA.find("-lang:BRA") != std::string::npos) {
+            p = s_hookedCmdA.find("-cc:1");
             if (p != std::string::npos) {
-                s_cmdA.replace(p, 5, "-cc:2");
+                s_hookedCmdA.replace(p, 5, "-cc:2");
             }
-            p = s_cmdA.find("-CC:1");
+            p = s_hookedCmdA.find("-CC:1");
             if (p != std::string::npos) {
-                s_cmdA.replace(p, 5, "-cc:2");
+                s_hookedCmdA.replace(p, 5, "-cc:2");
             }
         }
-    }
-    return const_cast<LPSTR>(s_cmdA.c_str());
+        if (s_hookedCmdA.find("-classic") == std::string::npos) {
+            s_hookedCmdA += " -noweb -classic -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu -dwsm -probability -nospamcheck";
+        }
+    });
+    return const_cast<LPSTR>(s_hookedCmdA.c_str());
 }
 
 static decltype(GetCommandLineW)* real_GetCommandLineW = GetCommandLineW;
 static LPWSTR WINAPI zzGetCommandLineW() {
-    static std::wstring s_cmdW;
-    if (s_cmdW.empty()) {
+    static std::wstring s_hookedCmdW;
+    static std::once_flag s_flagW;
+    std::call_once(s_flagW, []() {
         LPWSTR cmd = real_GetCommandLineW();
-        s_cmdW = cmd ? cmd : L"";
+        s_hookedCmdW = cmd ? cmd : L"";
         size_t p = 0;
-        while ((p = s_cmdW.find(L"-LANG:", p)) != std::wstring::npos) {
-            s_cmdW.replace(p, 6, L"-lang:");
+        while ((p = s_hookedCmdW.find(L"-LANG:", p)) != std::wstring::npos) {
+            s_hookedCmdW.replace(p, 6, L"-lang:");
             p += 6;
         }
         p = 0;
-        while ((p = s_cmdW.find(L"-Lang:", p)) != std::wstring::npos) {
-            s_cmdW.replace(p, 6, L"-lang:");
+        while ((p = s_hookedCmdW.find(L"-Lang:", p)) != std::wstring::npos) {
+            s_hookedCmdW.replace(p, 6, L"-lang:");
             p += 6;
         }
         p = 0;
-        while ((p = s_cmdW.find(L"-lang:bra", p)) != std::wstring::npos) {
-            s_cmdW.replace(p, 9, L"-lang:BRA");
+        while ((p = s_hookedCmdW.find(L"-lang:bra", p)) != std::wstring::npos) {
+            s_hookedCmdW.replace(p, 9, L"-lang:BRA");
             p += 9;
         }
-        if (s_cmdW.find(L"-lang:BRA") != std::wstring::npos) {
-            p = s_cmdW.find(L"-cc:1");
+        if (s_hookedCmdW.find(L"-lang:BRA") != std::wstring::npos) {
+            p = s_hookedCmdW.find(L"-cc:1");
             if (p != std::wstring::npos) {
-                s_cmdW.replace(p, 5, L"-cc:2");
+                s_hookedCmdW.replace(p, 5, L"-cc:2");
             }
-            p = s_cmdW.find(L"-CC:1");
+            p = s_hookedCmdW.find(L"-CC:1");
             if (p != std::wstring::npos) {
-                s_cmdW.replace(p, 5, L"-cc:2");
+                s_hookedCmdW.replace(p, 5, L"-cc:2");
             }
         }
+        if (s_hookedCmdW.find(L"-classic") == std::wstring::npos) {
+            s_hookedCmdW += L" -noweb -classic -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu -dwsm -probability -nospamcheck";
+        }
+    });
+    return const_cast<LPWSTR>(s_hookedCmdW.c_str());
+}
+
+static decltype(SetWindowLongA)* real_SetWindowLongA = SetWindowLongA;
+static LONG WINAPI zzSetWindowLongA(_In_ HWND hWnd, _In_ int nIndex, _In_ LONG dwNewLong) {
+    if (!s_gfxEnabled) {
+        EnableHighQualityGraphicsOptions();
+        s_gfxEnabled = true;
     }
-    return const_cast<LPWSTR>(s_cmdW.c_str());
+    return real_SetWindowLongA(hWnd, nIndex, dwNewLong);
+}
+
+static void FixClientStartupWithHighCoreCountCpus() {
+    SYSTEM_INFO info;
+    GetSystemInfo(&info);
+    if (info.dwNumberOfProcessors >= 32) {
+        int maxCpu = min(64, (int)info.dwNumberOfProcessors) - 1;
+        DWORD_PTR mask = (1ULL << maxCpu) - 1;
+        SetProcessAffinityMask(GetCurrentProcess(), mask);
+    }
 }
 
 static void InstallPatch() {
-    PreloadDXVK();
-
     // Early language table patch for main module
     PatchLanguageTableInModule(GetModuleHandleW(nullptr));
     BypassCountryCheckInCryEngineModule(GetModuleHandleW(nullptr));
@@ -405,11 +403,11 @@ static void InstallPatch() {
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
     InstallIpFix();
-    InstallGraphicsOptionsFixAndCameraFix();
     InstallShaderFix();
 #if defined(_M_AMD64)
     Install64BitStackFix();
 #endif
+    DetourAttach(&(PVOID&)real_SetWindowLongA, zzSetWindowLongA);
     DetourAttach(&(PVOID&)real_LoadLibraryA, zzLoadLibraryA);
     DetourAttach(&(PVOID&)real_LoadLibraryExA, zzLoadLibraryExA);
     DetourAttach(&(PVOID&)real_LoadLibraryW, zzLoadLibraryW);
@@ -426,7 +424,24 @@ static void InstallPatch() {
 BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID lpvReserved) {
     if (fdwReason == DLL_PROCESS_ATTACH) {
         DisableThreadLibraryCalls(hinstDLL);
+
+        // Pin version.dll in memory so it is NEVER unloaded by dynamic FreeLibrary calls
+        HMODULE hSelf = nullptr;
+        GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_PIN, (LPCWSTR)hinstDLL, &hSelf);
+
         InstallPatch();
+
+        // Spawn early language monitor thread (surveillance for 30s during client load)
+        HANDLE hLangThread = CreateThread(nullptr, 0, [](LPVOID) -> DWORD {
+            for (int i = 0; i < 300; i++) {
+                PatchAllLoadedLanguageModules();
+                Sleep(100);
+            }
+            return 0;
+        }, nullptr, 0, nullptr);
+        if (hLangThread) {
+            CloseHandle(hLangThread);
+        }
     }
     return TRUE;
 }
