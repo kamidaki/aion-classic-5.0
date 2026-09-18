@@ -5,11 +5,13 @@
 #include <string>
 #include <algorithm>
 #include <unordered_set>
+#include <mutex>
 #include "exports.h"
 #include "detours.h"
+#include "PathRedirect.h"
 
 // =========================================================================
-//  Version.dll - Mod & Compatibility Hook for Aion Classic
+//  Version.dll - Mod, Compatibility & CryPak Optimizer for Aion Classic
 // =========================================================================
 //  Features:
 //  1. Graphics quality unlock (4096x4096 resolution support in CrySystem).
@@ -17,73 +19,34 @@
 //  3. Official IP spoofing for private emulator connectivity.
 //  4. Clean command line bypasses for official-only telemetry/shops.
 //  5. Native L10N BRA (Portuguese-Brazil) language support injection.
+//  6. CryPak loose file optimization, case-insensitivity & path redirect.
 // =========================================================================
 
 static bool s_gfxEnabled = false;
 static std::unordered_set<HMODULE> s_scannedLangModules;
 static std::unordered_set<HMODULE> s_scannedCountryModules;
-static std::unordered_set<HMODULE> s_scannedCrcModules;
 static SRWLOCK s_patchLock = SRWLOCK_INIT;
 
-static bool BypassTableCrcInModule(HMODULE hMod) {
-    if (!hMod) return false;
+static void BypassCountryCheckInModule(HMODULE hMod) {
+    if (!hMod) return;
+
+    AcquireSRWLockExclusive(&s_patchLock);
+    if (s_scannedCountryModules.find(hMod) != s_scannedCountryModules.end()) {
+        ReleaseSRWLockExclusive(&s_patchLock);
+        return;
+    }
+    s_scannedCountryModules.insert(hMod);
+    ReleaseSRWLockExclusive(&s_patchLock);
 
     __try {
         PIMAGE_DOS_HEADER dos = (PIMAGE_DOS_HEADER)hMod;
-        if (dos->e_magic != IMAGE_DOS_SIGNATURE) return false;
-        if (dos->e_lfanew <= 0 || dos->e_lfanew > 0x10000000) return false;
+        if (dos->e_magic != IMAGE_DOS_SIGNATURE) return;
+        if (dos->e_lfanew <= 0 || dos->e_lfanew > 0x10000000) return;
 
         PIMAGE_NT_HEADERS nt = (PIMAGE_NT_HEADERS)((BYTE*)hMod + dos->e_lfanew);
-        if (nt->Signature != IMAGE_NT_SIGNATURE) return false;
+        if (nt->Signature != IMAGE_NT_SIGNATURE) return;
 
         BYTE* base = (BYTE*)hMod;
-        bool patchedAny = false;
-        PIMAGE_SECTION_HEADER sec = IMAGE_FIRST_SECTION(nt);
-        for (WORD i = 0; i < nt->FileHeader.NumberOfSections; i++, sec++) {
-            if (!(sec->Characteristics & IMAGE_SCN_MEM_EXECUTE))
-                continue;
-
-            BYTE* s = base + sec->VirtualAddress;
-            DWORD sz = sec->Misc.VirtualSize;
-            if (sz < 16) continue;
-            BYTE* s_end = s + sz - 14;
-
-            for (BYTE* p = s; p <= s_end; p++) {
-                // Check pattern: 39 AC 24 70 01 00 00 0F 85 (cmp dword ptr [rsp + 0x170], ebp; jne ...)
-                if (p[0] == 0x39 && p[1] == 0xAC && p[2] == 0x24 && p[3] == 0x70 &&
-                    p[4] == 0x01 && p[5] == 0x00 && p[6] == 0x00 &&
-                    p[7] == 0x0F && p[8] == 0x85) {
-                    
-                    DWORD oldProtect = 0;
-                    if (VirtualProtect(p + 7, 6, PAGE_EXECUTE_READWRITE, &oldProtect)) {
-                        memset(p + 7, 0x90, 6); // 6 NOPs: bypass jne fail_handler
-                        VirtualProtect(p + 7, 6, oldProtect, &oldProtect);
-                        patchedAny = true;
-                    }
-                    p += 12;
-                }
-            }
-        }
-        return patchedAny;
-    }
-    __except (EXCEPTION_EXECUTE_HANDLER) {
-        return false;
-    }
-}
-
-static bool BypassCountryCheckInModule(HMODULE hMod) {
-    if (!hMod) return false;
-
-    __try {
-        PIMAGE_DOS_HEADER dos = (PIMAGE_DOS_HEADER)hMod;
-        if (dos->e_magic != IMAGE_DOS_SIGNATURE) return false;
-        if (dos->e_lfanew <= 0 || dos->e_lfanew > 0x10000000) return false;
-
-        PIMAGE_NT_HEADERS nt = (PIMAGE_NT_HEADERS)((BYTE*)hMod + dos->e_lfanew);
-        if (nt->Signature != IMAGE_NT_SIGNATURE) return false;
-
-        BYTE* base = (BYTE*)hMod;
-        bool patchedAny = false;
         PIMAGE_SECTION_HEADER sec = IMAGE_FIRST_SECTION(nt);
         for (WORD i = 0; i < nt->FileHeader.NumberOfSections; i++, sec++) {
             if (!(sec->Characteristics & IMAGE_SCN_MEM_EXECUTE))
@@ -111,10 +74,8 @@ static bool BypassCountryCheckInModule(HMODULE hMod) {
                                 memset(p + 2, 0x90, 6);   // NOP jne target
                                 memset(p + 12, 0x90, 6);  // NOP je target
                                 VirtualProtect(p + 2, 16, oldProtect, &oldProtect);
-                                patchedAny = true;
                             }
-                            p += 17;
-                            continue;
+                            return;
                         }
                     }
 
@@ -131,82 +92,38 @@ static bool BypassCountryCheckInModule(HMODULE hMod) {
                                 memset(p + 2, 0x90, 6);   // NOP jne target
                                 memset(p + 11, 0x90, 6);  // NOP je target
                                 VirtualProtect(p + 2, 15, oldProtect, &oldProtect);
-                                patchedAny = true;
                             }
-                            p += 16;
-                            continue;
+                            return;
                         }
                     }
                 }
             }
         }
-        return patchedAny;
     }
     __except (EXCEPTION_EXECUTE_HANDLER) {
-        return false;
     }
 }
 
-static bool PatchLanguageTableInModule(HMODULE hMod) {
-    if (!hMod) return false;
+static void PatchLanguageTableInModule(HMODULE hMod) {
+    if (!hMod) return;
+
+    AcquireSRWLockExclusive(&s_patchLock);
+    if (s_scannedLangModules.find(hMod) != s_scannedLangModules.end()) {
+        ReleaseSRWLockExclusive(&s_patchLock);
+        return;
+    }
+    s_scannedLangModules.insert(hMod);
+    ReleaseSRWLockExclusive(&s_patchLock);
 
     __try {
         PIMAGE_DOS_HEADER dos = (PIMAGE_DOS_HEADER)hMod;
-        if (dos->e_magic != IMAGE_DOS_SIGNATURE) return false;
-        if (dos->e_lfanew <= 0 || dos->e_lfanew > 0x10000000) return false;
+        if (dos->e_magic != IMAGE_DOS_SIGNATURE) return;
+        if (dos->e_lfanew <= 0 || dos->e_lfanew > 0x10000000) return;
 
         PIMAGE_NT_HEADERS nt = (PIMAGE_NT_HEADERS)((BYTE*)hMod + dos->e_lfanew);
-        if (nt->Signature != IMAGE_NT_SIGNATURE) return false;
+        if (nt->Signature != IMAGE_NT_SIGNATURE) return;
 
         BYTE* base = (BYTE*)hMod;
-        bool patchedAny = false;
-
-#if defined(_M_AMD64)
-        // Direct fast-path: Game.dll (64-bit) known PLK offset at 0xd5ee88
-        if (nt->OptionalHeader.SizeOfImage > 0xd5ee90) {
-            BYTE* pPlk = base + 0xd5ee88;
-            if (memcmp(pPlk, "PLK\0", 4) == 0) {
-                DWORD oldProtect = 0;
-                if (VirtualProtect(pPlk, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
-                    memcpy(pPlk, "BRA\0", 4);
-                    VirtualProtect(pPlk, 4, oldProtect, &oldProtect);
-                    patchedAny = true;
-                }
-            } else if (memcmp(pPlk, "BRA\0", 4) == 0) {
-                patchedAny = true;
-            }
-        }
-
-        // Direct fast-path: CryMovie.dll (64-bit) known PLK offset at 0xa6b50
-        if (nt->OptionalHeader.SizeOfImage > 0xa6b58) {
-            BYTE* pPlk = base + 0xa6b50;
-            if (memcmp(pPlk, "PLK\0", 4) == 0) {
-                DWORD oldProtect = 0;
-                if (VirtualProtect(pPlk, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
-                    memcpy(pPlk, "BRA\0", 4);
-                    VirtualProtect(pPlk, 4, oldProtect, &oldProtect);
-                    patchedAny = true;
-                }
-            } else if (memcmp(pPlk, "BRA\0", 4) == 0) {
-                patchedAny = true;
-            }
-        }
-
-        // Direct fast-path: CrySystem.dll (64-bit) known PLK/BRA offset at 0x2018b8
-        if (nt->OptionalHeader.SizeOfImage > 0x2018c0) {
-            BYTE* pPlk = base + 0x2018b8;
-            if (memcmp(pPlk, "PLK\0", 4) == 0) {
-                DWORD oldProtect = 0;
-                if (VirtualProtect(pPlk, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
-                    memcpy(pPlk, "BRA\0", 4);
-                    VirtualProtect(pPlk, 4, oldProtect, &oldProtect);
-                    patchedAny = true;
-                }
-            } else if (memcmp(pPlk, "BRA\0", 4) == 0) {
-                patchedAny = true;
-            }
-        }
-#endif
 
         const char p1_prefix[] = "KOR\0ENU\0ENG\0DEU\0FRA\0ITA\0ESN\0"; // 28 bytes
         const char p2_suffix[] = "ESN\0ITA\0FRA\0DEU\0ENG\0ENU\0KOR\0"; // 28 bytes
@@ -220,44 +137,40 @@ static bool PatchLanguageTableInModule(HMODULE hMod) {
 
             BYTE* s = base + sec->VirtualAddress;
             DWORD sz = sec->Misc.VirtualSize;
-            if (sz < 8) continue;
-            BYTE* s_end = s + sz - 8;
+            if (sz < patternLen) continue;
+            BYTE* s_end = s + sz - patternLen;
 
             for (BYTE* p = s; p <= s_end; p++) {
-                // High-performance filter: skip any non-candidate bytes immediately
                 if (*p != 'P' && *p != 'K' && *p != 'I' && *p != 'E') continue;
 
                 // Check Classic pattern: PLK\0 + ESN\0ITA\0FRA\0DEU\0ENG\0ENU\0KOR\0
-                if (*p == 'P' && p <= s + sz - patternLen && memcmp(p, "PLK\0", 4) == 0 && memcmp(p + 4, p2_suffix, 28) == 0) {
+                if (*p == 'P' && memcmp(p, "PLK\0", 4) == 0 && memcmp(p + 4, p2_suffix, 28) == 0) {
                     DWORD oldProtect = 0;
                     if (VirtualProtect(p, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
                         memcpy(p, "BRA\0", 4);
                         VirtualProtect(p, 4, oldProtect, &oldProtect);
-                        patchedAny = true;
                     }
                     p += 31;
                     continue;
                 }
                 // Check primary 32-byte 5.0+ pattern (KOR...PLK)
-                if (*p == 'K' && p <= s + sz - patternLen && memcmp(p, p1_prefix, 28) == 0 && memcmp(p + 28, "PLK\0", 4) == 0) {
+                if (*p == 'K' && memcmp(p, p1_prefix, 28) == 0 && memcmp(p + 28, "PLK\0", 4) == 0) {
                     BYTE* plk = p + 28;
                     DWORD oldProtect = 0;
                     if (VirtualProtect(plk, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
                         memcpy(plk, "BRA\0", 4);
                         VirtualProtect(plk, 4, oldProtect, &oldProtect);
-                        patchedAny = true;
                     }
                     p += 31;
                     continue;
                 }
                 // Check CryMovie pattern: KOR\0TRK\0PLK\0ITA\0ESN\0FRA\0DEU\0ENU\0
-                if (*p == 'K' && p <= s + sz - patternLen && memcmp(p, p_movie, 32) == 0) {
+                if (*p == 'K' && memcmp(p, p_movie, 32) == 0) {
                     BYTE* plk = p + 8;
                     DWORD oldProtect = 0;
                     if (VirtualProtect(plk, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
                         memcpy(plk, "BRA\0", 4);
                         VirtualProtect(plk, 4, oldProtect, &oldProtect);
-                        patchedAny = true;
                     }
                     p += 31;
                     continue;
@@ -268,7 +181,6 @@ static bool PatchLanguageTableInModule(HMODULE hMod) {
                     if (VirtualProtect(p, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
                         memcpy(p, "BRA\0", 4);
                         VirtualProtect(p, 4, oldProtect, &oldProtect);
-                        patchedAny = true;
                     }
                     p += 3;
                     continue;
@@ -279,17 +191,14 @@ static bool PatchLanguageTableInModule(HMODULE hMod) {
                     if (VirtualProtect(p + 4, 4, PAGE_EXECUTE_READWRITE, &oldProtect)) {
                         memcpy(p + 4, "BRA\0", 4);
                         VirtualProtect(p + 4, 4, oldProtect, &oldProtect);
-                        patchedAny = true;
                     }
                     p += 7;
                     continue;
                 }
             }
         }
-        return patchedAny;
     }
     __except (EXCEPTION_EXECUTE_HANDLER) {
-        return false;
     }
 }
 
@@ -310,54 +219,17 @@ static void PatchAllLoadedLanguageModules() {
         L"xrenderd3d9.dll",
         L"SendLogClient.exe"
     };
+
     HMODULE hMain = GetModuleHandleW(nullptr);
     if (hMain) {
-        AcquireSRWLockExclusive(&s_patchLock);
-        bool langDone = s_scannedLangModules.count(hMain) > 0;
-        bool countryDone = s_scannedCountryModules.count(hMain) > 0;
-        bool crcDone = s_scannedCrcModules.count(hMain) > 0;
-        ReleaseSRWLockExclusive(&s_patchLock);
-
-        if (!langDone && PatchLanguageTableInModule(hMain)) {
-            AcquireSRWLockExclusive(&s_patchLock);
-            s_scannedLangModules.insert(hMain);
-            ReleaseSRWLockExclusive(&s_patchLock);
-        }
-        if (!countryDone && BypassCountryCheckInModule(hMain)) {
-            AcquireSRWLockExclusive(&s_patchLock);
-            s_scannedCountryModules.insert(hMain);
-            ReleaseSRWLockExclusive(&s_patchLock);
-        }
-        if (!crcDone && BypassTableCrcInModule(hMain)) {
-            AcquireSRWLockExclusive(&s_patchLock);
-            s_scannedCrcModules.insert(hMain);
-            ReleaseSRWLockExclusive(&s_patchLock);
-        }
+        PatchLanguageTableInModule(hMain);
+        BypassCountryCheckInModule(hMain);
     }
     for (const wchar_t* name : moduleNames) {
         HMODULE h = GetModuleHandleW(name);
         if (h) {
-            AcquireSRWLockExclusive(&s_patchLock);
-            bool langDone = s_scannedLangModules.count(h) > 0;
-            bool countryDone = s_scannedCountryModules.count(h) > 0;
-            bool crcDone = s_scannedCrcModules.count(h) > 0;
-            ReleaseSRWLockExclusive(&s_patchLock);
-
-            if (!langDone && PatchLanguageTableInModule(h)) {
-                AcquireSRWLockExclusive(&s_patchLock);
-                s_scannedLangModules.insert(h);
-                ReleaseSRWLockExclusive(&s_patchLock);
-            }
-            if (!countryDone && BypassCountryCheckInModule(h)) {
-                AcquireSRWLockExclusive(&s_patchLock);
-                s_scannedCountryModules.insert(h);
-                ReleaseSRWLockExclusive(&s_patchLock);
-            }
-            if (!crcDone && BypassTableCrcInModule(h)) {
-                AcquireSRWLockExclusive(&s_patchLock);
-                s_scannedCrcModules.insert(h);
-                ReleaseSRWLockExclusive(&s_patchLock);
-            }
+            PatchLanguageTableInModule(h);
+            BypassCountryCheckInModule(h);
         }
     }
 }
@@ -408,26 +280,18 @@ static int WINAPI zzMessageBoxA(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT
 
 static decltype(MessageBoxW)* real_MessageBoxW = MessageBoxW;
 static int WINAPI zzMessageBoxW(HWND hWnd, LPCWSTR lpText, LPCWSTR lpCaption, UINT uType) {
-    if (lpText && wcsstr(lpText, L"unavailable in your country")) {
-        return IDOK;
+    if (lpText) {
+        if (!wcsncmp(lpText, L"Your PC", 7)) {
+            return IDOK;
+        }
+        if (wcsstr(lpText, L"Direct3D") || wcsstr(lpText, L"acceleration")) {
+            return IDOK;
+        }
+        if (wcsstr(lpText, L"unavailable in your country")) {
+            return IDOK;
+        }
     }
     return real_MessageBoxW(hWnd, lpText, lpCaption, uType);
-}
-
-static decltype(GetPrivateProfileIntA)* real_GetPrivateProfileIntA = GetPrivateProfileIntA;
-static UINT WINAPI zzGetPrivateProfileIntA(LPCSTR lpAppName, LPCSTR lpKeyName, INT nDefault, LPCSTR lpFileName) {
-    if (lpKeyName && _stricmp(lpKeyName, "ValidTableDump") == 0) {
-        return 0; // Force disable binary table dump so localized XML strings are always loaded
-    }
-    return real_GetPrivateProfileIntA(lpAppName, lpKeyName, nDefault, lpFileName);
-}
-
-static decltype(GetPrivateProfileIntW)* real_GetPrivateProfileIntW = GetPrivateProfileIntW;
-static UINT WINAPI zzGetPrivateProfileIntW(LPCWSTR lpAppName, LPCWSTR lpKeyName, INT nDefault, LPCWSTR lpFileName) {
-    if (lpKeyName && _wcsicmp(lpKeyName, L"ValidTableDump") == 0) {
-        return 0; // Force disable binary table dump so localized XML strings are always loaded
-    }
-    return real_GetPrivateProfileIntW(lpAppName, lpKeyName, nDefault, lpFileName);
 }
 
 static void EnableHighQualityGraphicsOptions() {
@@ -467,7 +331,6 @@ static void EnableHighQualityGraphicsOptions() {
 
 void InstallIpFix();
 void InstallShaderFix();
-void Install64BitStackFix();
 
 // =========================================================================
 // Command Line Injection Hook
@@ -476,7 +339,8 @@ void Install64BitStackFix();
 static decltype(GetCommandLineA)* real_GetCommandLineA = GetCommandLineA;
 static LPSTR WINAPI zzGetCommandLineA() {
     static std::string s_hookedCmdA;
-    if (s_hookedCmdA.empty()) {
+    static std::once_flag s_flagA;
+    std::call_once(s_flagA, []() {
         LPSTR cmd = real_GetCommandLineA();
         s_hookedCmdA = cmd ? cmd : "";
         size_t p = 0;
@@ -507,14 +371,15 @@ static LPSTR WINAPI zzGetCommandLineA() {
         if (s_hookedCmdA.find("-classic") == std::string::npos) {
             s_hookedCmdA += " -noweb -classic -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu -dwsm -probability -nospamcheck";
         }
-    }
+    });
     return const_cast<LPSTR>(s_hookedCmdA.c_str());
 }
 
 static decltype(GetCommandLineW)* real_GetCommandLineW = GetCommandLineW;
 static LPWSTR WINAPI zzGetCommandLineW() {
     static std::wstring s_hookedCmdW;
-    if (s_hookedCmdW.empty()) {
+    static std::once_flag s_flagW;
+    std::call_once(s_flagW, []() {
         LPWSTR cmd = real_GetCommandLineW();
         s_hookedCmdW = cmd ? cmd : L"";
         size_t p = 0;
@@ -545,7 +410,7 @@ static LPWSTR WINAPI zzGetCommandLineW() {
         if (s_hookedCmdW.find(L"-classic") == std::wstring::npos) {
             s_hookedCmdW += L" -noweb -classic -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu -dwsm -probability -nospamcheck";
         }
-    }
+    });
     return const_cast<LPWSTR>(s_hookedCmdW.c_str());
 }
 
@@ -563,9 +428,9 @@ static void FixClientStartupWithHighCoreCountCpus() {
     SYSTEM_INFO info;
     GetSystemInfo(&info);
     if (info.dwNumberOfProcessors >= 32) {
-        int maxCpu = min(64, (int)info.dwNumberOfProcessors) - 1;
-        DWORD_PTR mask = (1ULL << maxCpu) - 1;
-        SetProcessAffinityMask(GetCurrentProcess(), mask);
+        int maxCpu = min(64, (int)info.dwNumberOfProcessors);
+        uint64_t mask = (maxCpu >= 64) ? ~0ULL : (((uint64_t)1 << maxCpu) - 1);
+        SetProcessAffinityMask(GetCurrentProcess(), (DWORD_PTR)mask);
     }
 }
 
@@ -577,10 +442,7 @@ static void InstallPatch() {
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
     InstallIpFix();
-    InstallShaderFix();
-#if defined(_M_AMD64)
-    Install64BitStackFix();
-#endif
+    InstallPathRedirect();
     DetourAttach(&(PVOID&)real_SetWindowLongA, zzSetWindowLongA);
     DetourAttach(&(PVOID&)real_LoadLibraryA, zzLoadLibraryA);
     DetourAttach(&(PVOID&)real_LoadLibraryExA, zzLoadLibraryExA);
@@ -588,8 +450,6 @@ static void InstallPatch() {
     DetourAttach(&(PVOID&)real_LoadLibraryExW, zzLoadLibraryExW);
     DetourAttach(&(PVOID&)real_MessageBoxA, zzMessageBoxA);
     DetourAttach(&(PVOID&)real_MessageBoxW, zzMessageBoxW);
-    DetourAttach(&(PVOID&)real_GetPrivateProfileIntA, zzGetPrivateProfileIntA);
-    DetourAttach(&(PVOID&)real_GetPrivateProfileIntW, zzGetPrivateProfileIntW);
     DetourAttach(&(PVOID&)real_GetCommandLineA, zzGetCommandLineA);
     DetourAttach(&(PVOID&)real_GetCommandLineW, zzGetCommandLineW);
     DetourTransactionCommit();
@@ -607,18 +467,19 @@ BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID l
 
         InstallPatch();
 
-        // Spawn early language monitor thread (surveillance for 30s during client load)
-        HANDLE hLangThread = CreateThread(nullptr, 0, [](LPVOID) -> DWORD {
-            for (int i = 0; i < 300; i++) {
+        // Spawn early background thread to handle shader fix and module surveillance
+        // safely outside of the Windows Loader Lock
+        HANDLE hInitThread = CreateThread(nullptr, 0, [](LPVOID) -> DWORD {
+            InstallShaderFix();
+            for (int i = 0; i < 30; i++) {
                 PatchAllLoadedLanguageModules();
-                Sleep(100);
+                Sleep(500);
             }
             return 0;
         }, nullptr, 0, nullptr);
-        if (hLangThread) {
-            CloseHandle(hLangThread);
+        if (hInitThread) {
+            CloseHandle(hInitThread);
         }
     }
     return TRUE;
 }
-
