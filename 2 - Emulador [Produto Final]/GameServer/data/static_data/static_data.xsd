@@ -43,6 +43,7 @@
 	<xs:include schemaLocation="items/item_templates.xsd" />
 	<xs:include schemaLocation="items/multi_return_item.xsd" />
 	<xs:include schemaLocation="items/option_clear.xsd" />
+	<xs:include schemaLocation="items/classic_item_systems.xsd" />
 	<xs:include schemaLocation="items/siel_anvil.xsd" />
 	<xs:include schemaLocation="items/siel_hammer.xsd" />
 	<xs:include schemaLocation="legion_dominion_template.xsd" />
@@ -178,6 +179,7 @@
 					<xs:element ref="portal_locs" minOccurs="0" />
 					<xs:element ref="portal_templates2" minOccurs="0" />
 					<xs:element ref="quest_scripts" minOccurs="0" />
+					<xs:element ref="classic_item_systems" minOccurs="0" />
 					<xs:element ref="quests" minOccurs="0" />
 					<xs:element ref="random_bonuses" minOccurs="0" />
 					<xs:element ref="recipe_templates" minOccurs="0" />

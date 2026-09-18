@@ -321,6 +321,7 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(450, SM_UNK_01C2.class); // [S_UNK_01C2] (0x01C2)
 		addPacketOpcode(453, SM_UNK_01C5.class); // [S_UNK_01C5] (0x01C5)
 		addPacketOpcode(0x1A3, SM_SIEL_ANVIL_START.class);
+		addPacketOpcode(0x1C3, SM_CLASSIC_ENCHANT_ANIMATION.class);
 		addPacketOpcode(0x1A4, SM_SIEL_ANVIL_RESULT.class);
 		addPacketOpcode(0x1C4, SM_SIEL_HAMMER_EVENT.class);
 		addPacketOpcode(0x1A2, SM_SIEL_HAMMER_RESULT.class);

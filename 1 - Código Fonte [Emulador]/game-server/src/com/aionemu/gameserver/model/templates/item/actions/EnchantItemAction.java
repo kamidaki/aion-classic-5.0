@@ -84,6 +84,7 @@ public class EnchantItemAction extends AbstractItemAction {
 
 	// necessary overloading to not change AbstractItemAction
 	public void act(final Player player, final Item parentItem, final Item targetItem, final Item supplementItem, final int targetWeapon) {
+		player.getController().cancelUseItem();
 		if (supplementItem != null && !checkSupplementLevel(player, supplementItem.getItemTemplate(), targetItem.getItemTemplate()))
 			return;
 
@@ -113,7 +114,9 @@ public class EnchantItemAction extends AbstractItemAction {
 
 		player.getController().addTask(TaskId.ITEM_USE, ThreadPoolManager.getInstance().schedule(() -> {
 			player.getObserveController().removeObserver(observer);
-			if (player.getInventory().getItemByObjId(targetItem.getObjectId()) == null && !targetItem.isEquipped()) {
+			if (player.getInventory().getItemByObjId(parentItem.getObjectId()) != parentItem
+				|| (player.getInventory().getItemByObjId(targetItem.getObjectId()) != targetItem
+					&& player.getEquipment().getEquippedItemByObjId(targetItem.getObjectId()) != targetItem)) {
 				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ENCHANT_ITEM_NO_TARGET_ITEM());
 				PacketSendUtility.broadcastPacketAndReceive(player,
 					new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem.getItemTemplate().getTemplateId(), 0, 2, 0));

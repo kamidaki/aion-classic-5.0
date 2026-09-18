@@ -175,7 +175,7 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_TITLE_SET.class, 0x169, State.IN_GAME); // 0x009B TITLE_SET
 		addPacket(CM_QUESTIONNAIRE.class, 0x163, State.IN_GAME); // 0x0091 QUESTIONNAIRE
 		// MOVE_ITEM e SPLIT_ITEM da 5.0 sao dec 0x00B4/0x00B5 (registrados acima e abaixo); dec 0x009C/0x009D nunca aparecem nas capturas
-		addPacket(CM_DELETE_ITEM.class, 0x10E, State.IN_GAME); // DELETE_ITEM (0x10E)
+		addPacket(CM_DELETE_ITEM.class, 0x108, State.IN_GAME); // decoded 0x007A C_DESTROY_ITEM; 0x10E belongs to VIEW_PLAYER_DETAILS
 		addPacket(CM_DELETE_QUEST.class, 0x122, State.IN_GAME); // DELETE_QUEST
 		addPacket(CM_REVIVE.class, 0x00FF, State.IN_GAME); // 0x0005 C_DEAD_RESTART (5.0 Classic)
 		addPacket(CM_REVIVE.class, 0x0005, State.IN_GAME); // Raw alias

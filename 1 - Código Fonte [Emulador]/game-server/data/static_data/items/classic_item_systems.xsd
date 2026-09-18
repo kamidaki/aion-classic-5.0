@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+ <xs:element name="classic_item_systems">
+  <xs:complexType><xs:sequence>
+   <xs:element name="enchant" minOccurs="0" maxOccurs="unbounded"><xs:complexType>
+    <xs:attribute name="group" type="xs:string" use="required"/>
+    <xs:attribute name="before" type="xs:nonNegativeInteger" use="required"/>
+    <xs:attribute name="success" type="xs:nonNegativeInteger" use="required"/>
+    <xs:attribute name="failure" type="xs:nonNegativeInteger" use="required"/>
+    <xs:attribute name="probability" type="xs:int" use="required"/>
+    <xs:attribute name="stones" type="xs:positiveInteger" use="required"/>
+    <xs:attribute name="component" type="xs:positiveInteger" use="required"/>
+    <xs:attribute name="cost" type="xs:nonNegativeInteger" use="required"/>
+   </xs:complexType></xs:element>
+   <xs:element name="gap" minOccurs="0" maxOccurs="unbounded"><xs:complexType>
+    <xs:attribute name="grade" type="xs:positiveInteger" use="required"/>
+    <xs:attribute name="level" type="xs:int" use="required"/>
+    <xs:attribute name="quality" type="xs:string" use="required"/>
+    <xs:attribute name="probability" type="xs:nonNegativeInteger" use="required"/>
+   </xs:complexType></xs:element>
+   <xs:element name="power" minOccurs="0" maxOccurs="unbounded"><xs:complexType>
+    <xs:attribute name="type" type="xs:string" use="required"/>
+    <xs:attribute name="value" type="xs:string" use="required"/>
+    <xs:attribute name="points" type="xs:nonNegativeInteger" use="required"/>
+   </xs:complexType></xs:element>
+  </xs:sequence></xs:complexType>
+ </xs:element>
+</xs:schema>

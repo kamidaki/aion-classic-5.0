@@ -154,6 +154,7 @@
 		<xs:attribute name="max_stack_count" type="xs:int" default="1"/>
 		<xs:attribute name="item_group" type="ItemGroup" default="NONE"/>
 		<xs:attribute name="mask" type="xs:int"/>
+		<xs:attribute name="client_mask" type="xs:unsignedShort"/>
 		<xs:attribute name="level" type="xs:int"/>
 		<xs:attribute name="id" type="itemId" use="required"/>
 		<xs:attribute name="name" type="xs:string"/>
@@ -161,6 +162,9 @@
 		<xs:attribute name="casting_delay" type="xs:int"/>
 		<xs:attribute name="tempering_name" type="xs:string"/>
 		<xs:attribute name="enchant_name" type="xs:string" />
+		<xs:attribute name="combat_power" type="xs:nonNegativeInteger" />
+		<xs:attribute name="enchant_group" type="xs:string" />
+		<xs:attribute name="enchant_essence" type="xs:boolean" />
 		<xs:attribute name="multi_return" type="xs:string"/>
 		<xs:attribute name="can_exceed_enchant" type="xs:boolean"/>
 		<xs:attribute name="exceed_enchant_skill" type="ExceedEnchantSkillSet"/>
@@ -564,6 +568,7 @@
 			<xs:enumeration value="CL_SHIELD"/>
 			<xs:enumeration value="WING"/>
 			<xs:enumeration value="POWER_SHARDS"/>
+			<xs:enumeration value="ARCAMANT"/>
 			<xs:enumeration value="EARRING"/>
 			<xs:enumeration value="RING"/>
 			<xs:enumeration value="NECKLACE"/>

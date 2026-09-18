@@ -180,13 +180,15 @@ public class SM_STATS_INFO extends AionServerPacket {
 		writeQ(pcd.getMaxReposeEnergy()); // 200
 
 		writeC(pcd.getCurrentSalvationPercent()); // 208
-		writeB(new byte[7]); // 209
+		writeB(new byte[3]); // 209 alignment
+		// Game.dll: S_STATUS copies payload[8..263] to the current stats;
+		// the character sheet reads Combat Talent at stats + 0xCC (wire 212).
+		writeD(com.aionemu.gameserver.services.CombatTalentService.calculateCombatPower(player)); // 212
 
 		writeD(100); // 216
 		writeB(new byte[32]); // 220
 
-		int cp = com.aionemu.gameserver.services.CombatTalentService.calculateCombatPower(player);
-		writeD(cp); // 252
+		writeD(0); // 252
 		writeD(0); // 256
 		writeD(0); // 260
 
@@ -245,7 +247,7 @@ public class SM_STATS_INFO extends AionServerPacket {
 		writeH(safeBase(mCritDamReduce)); // 366
 
 		writeB(new byte[20]); // 368
-		writeD(cp); // 388
+		writeD(0); // 388
 		writeD(0); // 392
 		writeD(0); // 396
 
@@ -256,4 +258,3 @@ public class SM_STATS_INFO extends AionServerPacket {
 		});
 	}
 }
-

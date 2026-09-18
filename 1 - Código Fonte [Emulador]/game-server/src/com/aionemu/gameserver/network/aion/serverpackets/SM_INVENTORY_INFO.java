@@ -46,7 +46,7 @@ public class SM_INVENTORY_INFO extends AionServerPacket {
 
 	@Override
 	protected void writeImpl(AionConnection con) {
-		if (items == null || items.isEmpty()) {
+		if ((items == null || items.isEmpty()) && !isFirstPacket) {
 			// 5.0 Classic: 9 zero bytes when empty (wire verified: 00 00 00 00 00 00 00 00 00)
 			writeB(new byte[9]);
 			return;
@@ -57,7 +57,7 @@ public class SM_INVENTORY_INFO extends AionServerPacket {
 		writeC(isFirstPacket ? 1 : 0);
 		writeC(npcExpandsSize);
 		writeC(questExpandsSize);
-		writeC(0);
+		writeC(player != null ? player.getItemExpands() : 0);
 		writeC(0);
 		writeC(0);
 		writeC(0);

@@ -64,7 +64,7 @@ RACE = {"pc_light": "ELYOS", "pc_dark": "ASMODIANS"}
 MASK_FLAGS = [(1, "lore"), (2, "can_exchange"), (4, "can_sell_to_npc"), (8, "can_deposit_to_character_warehouse"),
               (16, "can_deposit_to_account_warehouse"), (32, "can_deposit_to_guild_warehouse"), (64, "breakable"),
               (128, "soul_bind"), (256, "remove_when_logout"), (512, "no_enchant"), (1024, "can_proc_enchant"),
-              (2048, "can_composite_weapon"), (8192, "can_split"), (16384, "item_drop_permitted")]
+              (2048, "can_composite_weapon"), (8192, "can_split"), (16384, "breakable")]
 
 # Stats base do cliente -> modifier (bonus=false). Medidos: 99-100%.
 BASE_MODS = {"physical_defend": ("add", "PHYSICAL_DEFENSE"), "magical_resist": ("add", "MAGICAL_RESIST"),
@@ -73,7 +73,8 @@ BASE_MODS = {"physical_defend": ("add", "PHYSICAL_DEFENSE"), "magical_resist": (
 # bonus_attrN e stat_enchant_type (manastone) do cliente -> modifier (bonus=true); "X%" vira rate.
 # Medidos: 84-100% (manastones: 100% nas que o servidor tem stat). Os que nao aparecem nos itens que batem
 # foram ligados pelo nome exato do StatEnum.
-BONUS_MODS = {"maxhp": "MAXHP", "maxmp": "MAXMP", "concentration": "CONCENTRATION", "physicaldefend": "PHYSICAL_DEFENSE",
+BONUS_MODS = {"str": "POWER", "vit": "HEALTH", "dex": "ACCURACY", "agi": "AGILITY", "kno": "KNOWLEDGE", "wil": "WILL",
+              "maxhp": "MAXHP", "maxmp": "MAXMP", "concentration": "CONCENTRATION", "physicaldefend": "PHYSICAL_DEFENSE",
               "magicalresist": "MAGICAL_RESIST", "magicalskillboost": "BOOST_MAGICAL_SKILL", "dodge": "EVASION",
               "phyattack": "PHYSICAL_ATTACK", "boosthate": "BOOST_HATE", "parry": "PARRY", "critical": "PHYSICAL_CRITICAL",
               "hitaccuracy": "PHYSICAL_ACCURACY", "attackdelay": "ATTACK_SPEED", "attackdelayratio": "ATTACK_SPEED",

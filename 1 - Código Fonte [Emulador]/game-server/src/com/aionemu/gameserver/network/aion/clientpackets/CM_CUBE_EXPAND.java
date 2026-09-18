@@ -1,6 +1,7 @@
 package com.aionemu.gameserver.network.aion.clientpackets;
 
 import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.services.CubeExpandService;
@@ -36,5 +37,7 @@ public class CM_CUBE_EXPAND extends AionClientPacket {
 		if (activePlayer.isCasting()) {
 			activePlayer.getController().cancelCurrentSkill(null);
 		}
+		if (type == 0 && activePlayer.getTarget() instanceof Npc npc)
+			CubeExpandService.expandCube(activePlayer, npc);
 	}
 }

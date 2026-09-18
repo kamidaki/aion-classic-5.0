@@ -67,6 +67,7 @@ public final class DataManager {
 	public static ItemGroupsData ITEM_GROUPS_DATA;
 	public static ItemPurificationData ITEM_PURIFICATION_DATA;
 	public static OptionClearData OPTION_CLEAR_DATA;
+	public static ClassicItemSystemsData CLASSIC_ITEM_SYSTEMS_DATA;
 	public static SielAnvilData SIEL_ANVIL_DATA;
 	public static SielHammerData SIEL_HAMMER_DATA;
 	public static ItemRestrictionCleanupData ITEM_CLEAN_UP;
@@ -220,6 +221,7 @@ public final class DataManager {
 		HOTSPOT_DATA = data.hotspotData;
 		ITEM_PURIFICATION_DATA = data.itemPurificationData;
 		OPTION_CLEAR_DATA = data.optionClearData;
+		CLASSIC_ITEM_SYSTEMS_DATA = data.classicItemSystemsData;
 		SIEL_ANVIL_DATA = data.sielAnvilData;
 		SIEL_HAMMER_DATA = data.sielHammerData;
 		UPGRADE_ARCADE_DATA = data.upgradeArcadeData;

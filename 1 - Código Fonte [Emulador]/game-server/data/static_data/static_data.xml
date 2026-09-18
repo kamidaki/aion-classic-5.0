@@ -65,6 +65,7 @@
 	<import file="items/item_restriction_cleanups.xml" />
 	<import file="items/multi_return_item.xml" />
 	<import file="items/option_clear.xml" />
+	<import file="items/classic_item_systems.xml" />
 	<import file="items/siel_anvil.xml" />
 	<import file="items/siel_hammer.xml" />
 	<import file="item_sets/item_sets.xml" />

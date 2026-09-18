@@ -32,8 +32,8 @@ REM  -disabledevaschedule - Desativa o calendario/agenda do evento Deva in-game 
 REM  -old_charInstance    - Habilita o motor classic de customizacao visual de personagens.
 REM  -charnamemenu        - Permite a exibicao e funcionamento correto dos menus de criacao/renomear.
 REM  -dwsm                - Desativa verificacoes de seguranca do Web Service Manager oficial.
-REM  -probability         - Desativa requisicoes remotas de probabilidades de loot da Gameforge.
+REM  -probability         - Habilita a exibicao da porcentagem de sucesso do enchant.
 REM  -nospamcheck         - Desativa filtros remotos de spam de chat dos servidores oficiais.
 REM =========================================================================================
 
-start bin64\Aion.bin -ip:127.0.0.1 -port:2106 -lang:ENG -cc:2 -dss -dce
+start bin64\Aion.bin -ip:127.0.0.1 -port:2106 -lang:ENG -cc:2 -dss -dce -probability

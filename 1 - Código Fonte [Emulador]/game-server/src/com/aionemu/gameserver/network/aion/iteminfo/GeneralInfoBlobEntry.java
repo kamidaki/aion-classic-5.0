@@ -18,7 +18,7 @@ public class GeneralInfoBlobEntry extends ItemBlobEntry {
 	@Override
 	public void writeThisBlob(ByteBuffer buf) {
 		Item item = ownerItem;
-		writeH(buf, item.getItemMask());
+		writeH(buf, item.getItemTemplate().getClientMask());
 		writeQ(buf, item.getItemCount());
 		writeS(buf, item.getItemCreator());
 		writeC(buf, 0);

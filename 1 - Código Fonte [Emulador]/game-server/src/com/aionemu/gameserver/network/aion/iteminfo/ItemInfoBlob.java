@@ -74,7 +74,7 @@ public class ItemInfoBlob extends PacketWriteHelper {
 			blob.addBlobEntry(ItemBlobType.EQUIPPED_SLOT);
 
 			// SLOT INFO
-			if (itemTemplate.getItemGroup() == ItemGroup.WING || itemTemplate.getItemGroup() == ItemGroup.ARCAMANT) {
+			if (itemTemplate.getItemGroup() == ItemGroup.WING) {
 				blob.addBlobEntry(ItemBlobType.SLOTS_WING);
 			} else if (itemTemplate.isArmor()) {
 				if (itemTemplate.getItemGroup().getArmorType() == ArmorType.ACCESSORY) {

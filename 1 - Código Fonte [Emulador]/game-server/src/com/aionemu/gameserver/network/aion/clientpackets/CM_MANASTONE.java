@@ -11,6 +11,7 @@ import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.services.EnchantService;
+import com.aionemu.gameserver.services.ClassicEnchantService;
 import com.aionemu.gameserver.services.StigmaService;
 import com.aionemu.gameserver.services.item.ItemSocketService;
 
@@ -47,6 +48,11 @@ public class CM_MANASTONE extends AionClientPacket {
 			case 8:
 				stoneUniqueId = readD();
 				supplementUniqueId = readD();
+				if (actionType == 1) {
+					// The 5.0 enchant window appends 24 bytes (38 total), including the client cost preview.
+					// Costs and material counts are always taken from canonical server rules.
+					while (getRemainingBytes() > 0) readUC();
+				}
 				break;
 			case 3:
 				// Classic 5.0 removal window (game menu, no NPC). Body measured on the official server is 26 bytes:
@@ -63,6 +69,7 @@ public class CM_MANASTONE extends AionClientPacket {
 	@Override
 	protected void runImpl() {
 		Player player = getConnection().getActivePlayer();
+		if (player == null || player.isTrading() || player.isDead()) return;
 
 		switch (actionType) {
 			case 1: // enchant stone
@@ -76,7 +83,9 @@ public class CM_MANASTONE extends AionClientPacket {
 					return;
 				}
 
-				if (stone.getItemTemplate().isStigma() && targetItem.getItemTemplate().isStigma()) {
+				if (actionType == 1 && stone.getItemTemplate().isEnchantEssence()) {
+					if (supplementUniqueId == 0) ClassicEnchantService.enchant(player, stone, targetItem);
+				} else if (stone.getItemTemplate().isStigma() && targetItem.getItemTemplate().isStigma()) {
 					StigmaService.chargeStigma(player, targetItem, stone);
 				} else {
 					boolean isFusionSlot = (targetFusedSlot != 1); // the 5.0 client sends 1 for the main item (seen on armor)

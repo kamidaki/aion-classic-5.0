@@ -44,6 +44,10 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	private ItemActions actions;
 	@XmlAttribute(name = "mask")
 	private int mask;
+	@XmlAttribute(name = "client_mask", required = true)
+	private int clientMask;
+
+	public int getClientMask() { return clientMask; }
 	@XmlAttribute(name = "weapon_boost")
 	private int weaponBoost;
 	@XmlAttribute(name = "price")
@@ -52,6 +56,16 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	private int maxStackCount = 1;
 	@XmlAttribute(name = "item_group")
 	private ItemGroup itemGroup = ItemGroup.NONE;
+	@XmlAttribute(name = "combat_power")
+	private int combatPower;
+	@XmlAttribute(name = "enchant_group")
+	private String enchantGroup;
+	@XmlAttribute(name = "enchant_essence")
+	private boolean enchantEssence;
+
+	public int getCombatPower() { return combatPower; }
+	public String getEnchantGroup() { return enchantGroup; }
+	public boolean isEnchantEssence() { return enchantEssence; }
 	@XmlAttribute(name = "pack_count")
 	private int packCount;
 	@XmlAttribute(name = "level")

@@ -1,121 +1,60 @@
 package com.aionemu.gameserver.services;
 
+import com.aionemu.gameserver.dataholders.DataManager;
+import com.aionemu.gameserver.dataholders.ClassicItemSystemsData;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.model.templates.item.ItemQuality;
+import com.aionemu.gameserver.model.items.ItemSlot;
+import com.aionemu.gameserver.model.items.ManaStone;
+import com.aionemu.gameserver.model.skill.PlayerSkillEntry;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
+import com.aionemu.gameserver.model.templates.item.enums.ItemGroup;
 
-import java.util.List;
+/** Power Talent contributions imported from the official Classic 5.0 combat power rules. */
+public final class CombatTalentService {
+    private CombatTalentService() {}
 
-/**
- * Combat Talent / Power Score calculation service for Classic 5.0.
- * Calculates player combat power based on equipped items, enchant levels,
- * quality, socketed manastones, fusioned weapons, and character level.
- *
- * @author Lost Academy Team & Durak
- */
-public class CombatTalentService {
+    public static int calculateCombatPower(Player player) {
+        if (player == null || !player.getCommonData().isDaeva()) return 0;
+        ClassicItemSystemsData rules = DataManager.CLASSIC_ITEM_SYSTEMS_DATA;
+        long total = rules.getPower("character_level", Integer.toString(player.getLevel()));
+        for (Item item : player.getEquipment().getEquippedItems()) {
+            if ((item.getEquipmentSlot() & ItemSlot.MAIN_OFF_OR_SUB_OFF.getSlotIdMask()) == 0)
+                total += calculateItemPower(item);
+        }
+        for (PlayerSkillEntry skill : player.getSkillList().getAllSkills())
+            total += rules.getPower("skill", Integer.toString(skill.getSkillId()));
+        return (int) Math.min(Integer.MAX_VALUE, total);
+    }
 
-	/**
-	 * Calculates the total combat talent / power score of a player.
-	 *
-	 * @param player The player
-	 * @return total combat talent score
-	 */
-	public static int calculateCombatPower(Player player) {
-		if (player == null || player.getEquipment() == null) {
-			return 0;
-		}
+    public static int calculateItemPower(Item item) {
+        if (item == null || item.getItemTemplate() == null) return 0;
+        ItemTemplate template = item.getItemTemplate();
+        if (template.isStigma() || template.getItemGroup() == ItemGroup.POWER_SHARDS) return 0;
+        ClassicItemSystemsData rules = DataManager.CLASSIC_ITEM_SYSTEMS_DATA;
+        int total = basePower(template, rules)
+            + rules.getPower("enchant_count", Integer.toString(item.getEnchantLevel()));
+        if (item.hasManaStones())
+            for (ManaStone stone : item.getItemStones()) total += stonePower(stone);
+        if (item.hasFusionedItem()) {
+            total += basePower(item.getFusionedItemTemplate(), rules);
+            if (item.hasFusionStones())
+                for (ManaStone stone : item.getFusionStones()) total += stonePower(stone);
+        }
+        return total;
+    }
 
-		int totalPower = 0;
-		List<Item> equippedItems = player.getEquipment().getEquippedItems();
-		if (equippedItems != null) {
-			for (Item item : equippedItems) {
-				if (item == null || item.getItemTemplate() == null) {
-					continue;
-				}
-				totalPower += calculateItemPower(item);
-			}
-		}
+    private static int basePower(ItemTemplate template, ClassicItemSystemsData rules) {
+        if (template == null) return 0;
+        String quality = template.getItemQuality().name().toLowerCase(java.util.Locale.ROOT);
+        if (quality.equals("legendary")) quality = "legend";
+        if (quality.equals("mythic")) quality = "divinity";
+        return template.getCombatPower() + rules.getPower("item_quality", quality)
+            + rules.getPower("item_level", Integer.toString(template.getLevel()));
+    }
 
-		// Base power from player level (20 points per level)
-		totalPower += player.getLevel() * 20;
-
-		return totalPower;
-	}
-
-	/**
-	 * Calculates the combat power contribution of a single item.
-	 *
-	 * @param item The item
-	 * @return combat power points
-	 */
-	public static int calculateItemPower(Item item) {
-		if (item == null) {
-			return 0;
-		}
-
-		ItemTemplate template = item.getItemTemplate();
-		if (template == null) {
-			return 0;
-		}
-
-		int power = 0;
-
-		// 1. Base power from item level (level 1 to 75)
-		int itemLevel = template.getLevel();
-		power += itemLevel * 10;
-
-		// 2. Bonus from Item Quality / Rarity
-		ItemQuality quality = template.getItemQuality();
-		if (quality != null) {
-			power += switch (quality) {
-				case JUNK -> 0;
-				case COMMON -> 20;
-				case RARE -> 50;
-				case LEGEND, LEGENDARY -> 150;
-				case UNIQUE -> 250;
-				case EPIC -> 400;
-				case MYTHIC -> 600;
-			};
-		}
-
-		// 3. Enchant Level bonus (exponential curve matching official rule: +15 = ~842)
-		int enchant = item.getEnchantLevel();
-		if (enchant > 0) {
-			power += (int) (enchant * 30 + Math.pow(enchant, 1.8) * 4);
-		}
-
-		// 4. Manastones socketed (35 points each)
-		if (item.hasManaStones()) {
-			power += item.getItemStones().size() * 35;
-		}
-
-		// 5. Fusioned item power and fusion stones
-		if (item.hasFusionedItem()) {
-			ItemTemplate fusedTemplate = item.getFusionedItemTemplate();
-			if (fusedTemplate != null) {
-				power += (fusedTemplate.getLevel() * 5);
-				if (fusedTemplate.getItemQuality() != null) {
-					power += switch (fusedTemplate.getItemQuality()) {
-						case LEGEND, LEGENDARY -> 75;
-						case UNIQUE -> 125;
-						case EPIC -> 200;
-						case MYTHIC -> 300;
-						default -> 20;
-					};
-				}
-			}
-			if (item.hasFusionStones()) {
-				power += item.getFusionStones().size() * 25;
-			}
-		}
-
-		// 6. Idian stone bonus (50 points)
-		if (item.getIdianStone() != null) {
-			power += 50;
-		}
-
-		return power;
-	}
+    private static int stonePower(ManaStone stone) {
+        ItemTemplate template = DataManager.ITEM_DATA.getItemTemplate(stone.getItemId());
+        return template == null ? 0 : template.getCombatPower();
+    }
 }

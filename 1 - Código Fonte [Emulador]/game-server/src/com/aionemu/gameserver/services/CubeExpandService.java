@@ -15,6 +15,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_QUESTION_WINDOW;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
 import com.aionemu.gameserver.utils.PacketSendUtility;
+import com.aionemu.gameserver.utils.PositionUtil;
 
 /**
  * @author Lost Academy Team & Durak
@@ -27,6 +28,7 @@ public class CubeExpandService {
 	 * Shows Question window and expands on positive response
 	 */
 	public static void expandCube(Player player, Npc npc) {
+		if (!canInteract(player, npc)) return;
 		StorageExpansionTemplate template = DataManager.CUBEEXPANDER_DATA.getCubeExpansionTemplate(npc.getNpcId());
 		if (template == null) {
 			log.warn("Cube expansion template could not be found for " + npc);
@@ -51,10 +53,14 @@ public class CubeExpandService {
 
 			@Override
 			public void acceptRequest(Npc requester, Player responder) {
-				if (responder.getInventory().tryDecreaseKinah(price, ItemUpdateType.DEC_KINAH_CUBE))
-					npcExpand(responder);
-				else
-					PacketSendUtility.sendPacket(responder, SM_SYSTEM_MESSAGE.STR_WAREHOUSE_EXPAND_NOT_ENOUGH_MONEY()); // warehouse and cube use the same msg..
+				synchronized (responder.getInventory()) {
+					if (!canInteract(responder, requester) || !canExpand(responder)
+						|| responder.getNpcExpands() + 1 != newNpcExpansions) return;
+					if (responder.getInventory().tryDecreaseKinah(price, ItemUpdateType.DEC_KINAH_CUBE))
+						npcExpand(responder);
+					else
+						PacketSendUtility.sendPacket(responder, SM_SYSTEM_MESSAGE.STR_WAREHOUSE_EXPAND_NOT_ENOUGH_MONEY());
+				}
 			}
 		};
 		boolean result = player.getResponseRequester().putRequest(SM_QUESTION_WINDOW.STR_WAREHOUSE_EXPAND_WARNING, responseHandler);
@@ -87,6 +93,14 @@ public class CubeExpandService {
 		}
 		player.setCubeLimit();
 		PacketSendUtility.sendPacket(player, SM_CUBE_UPDATE.cubeSize(StorageType.CUBE, player));
+		player.getGameStats().updateStatsVisually();
+	}
+
+	private static boolean canInteract(Player player, Npc npc) {
+		return player != null && npc != null && player.isSpawned() && npc.isSpawned()
+			&& !player.isDead() && !npc.isDead() && !player.isTrading()
+			&& player.getKnownList().getObject(npc.getObjectId()) == npc
+			&& PositionUtil.isInRange(player, npc, 10);
 	}
 
 	public static void questExpand(Player player) {

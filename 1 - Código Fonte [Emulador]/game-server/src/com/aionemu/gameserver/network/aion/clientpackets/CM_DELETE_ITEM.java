@@ -31,14 +31,17 @@ public class CM_DELETE_ITEM extends AionClientPacket {
 	protected void runImpl() {
 
 		Player player = getConnection().getActivePlayer();
+		if (player == null || !player.isSpawned() || player.isTrading()) return;
+		player.getController().cancelUseItem();
 		Storage inventory = player.getInventory();
-		Item item = inventory.getItemByObjId(itemObjectId);
-
-		if (item != null) {
-			if (!item.getItemTemplate().isDeletable()) {
-				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_UNBREAKABLE_ITEM(item.getL10n()));
-			} else {
-				inventory.delete(item, ItemDeleteType.DISCARD);
+		synchronized (inventory) {
+			Item item = inventory.getItemByObjId(itemObjectId);
+			if (item != null) {
+				if (item.isEquipped() || item.getItemTemplate().isKinah() || !item.getItemTemplate().isDeletable()) {
+					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_UNBREAKABLE_ITEM(item.getL10n()));
+				} else {
+					inventory.delete(item, ItemDeleteType.DISCARD);
+				}
 			}
 		}
 	}
