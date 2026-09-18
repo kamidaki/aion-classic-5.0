@@ -136,6 +136,10 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_GROUP_LOOT.class, 0x17B, State.IN_GAME); // 0x0089 GROUP_LOOT
 		addPacket(CM_DISTRIBUTION_SETTINGS.class, 0x178, State.IN_GAME); // 0x008A DISTRIBUTION_SETTINGS
 		addPacket(CM_CRAFT.class, 0x167, State.IN_GAME); // 0x008D CRAFT
+		addPacket(CM_SIEL_ANVIL.class, 0x1FA, State.IN_GAME); // decoded 0x0108 Siel Anvil, Classic 5.0
+		addPacket(CM_SIEL_ANVIL_CANCEL.class, 0x1FB, State.IN_GAME);
+		addPacket(CM_SIEL_HAMMER.class, 0x1F5, State.IN_GAME);
+		addPacket(CM_SIEL_HAMMER_CANCEL.class, 0x220, State.IN_GAME);
 		addPacket(CM_SEND_MAIL.class, 0x17E, State.IN_GAME); // 0x0084 SEND_MAIL
 		addPacket(CM_CHECK_MAIL_LIST.class, 0x16F, State.IN_GAME); // 0x0095 CHECK_MAIL_SIZE
 		addPacket(CM_READ_MAIL.class, 0x16C, State.IN_GAME); // 0x0096 READ_MAIL

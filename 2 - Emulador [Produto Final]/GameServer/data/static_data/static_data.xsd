@@ -43,6 +43,8 @@
 	<xs:include schemaLocation="items/item_templates.xsd" />
 	<xs:include schemaLocation="items/multi_return_item.xsd" />
 	<xs:include schemaLocation="items/option_clear.xsd" />
+	<xs:include schemaLocation="items/siel_anvil.xsd" />
+	<xs:include schemaLocation="items/siel_hammer.xsd" />
 	<xs:include schemaLocation="legion_dominion_template.xsd" />
 	<xs:include schemaLocation="mail_templates.xsd" />
 	<xs:include schemaLocation="mesh_materials/material_templates.xsd" />
@@ -128,7 +130,7 @@
 					<xs:element ref="enchant_templates" minOccurs="0" />
 					<xs:element ref="timed_events" minOccurs="0" />
 					<xs:element ref="fly_rings" minOccurs="0" />
-				<xs:element ref="fly_loot" minOccurs="0" />
+					<xs:element ref="fly_loot" minOccurs="0" />
 					<xs:element ref="flypath_template" minOccurs="0" />
 					<xs:element ref="gatherable_templates" minOccurs="0" />
 					<xs:element ref="global_npc_exclusions" minOccurs="0" />
@@ -163,6 +165,8 @@
 					<xs:element ref="npc_trade_list" minOccurs="0" />
 					<xs:element ref="npc_walker" minOccurs="0" />
 					<xs:element ref="option_clears" minOccurs="0" />
+					<xs:element ref="siel_anvil_recipes" minOccurs="0" />
+					<xs:element ref="siel_hammer" minOccurs="0" />
 					<xs:element ref="pet_buffs" minOccurs="0" />
 					<xs:element ref="pet_feed" minOccurs="0" />
 					<xs:element ref="pet_skill_templates" minOccurs="0" />

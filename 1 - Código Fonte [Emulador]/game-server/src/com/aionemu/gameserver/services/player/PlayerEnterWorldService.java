@@ -277,6 +277,7 @@ public final class PlayerEnterWorldService {
 
 			// 17. Receitas & Stats
 			client.sendPacket(new SM_RECIPE_LIST(player.getRecipeList().getRecipeList()));
+			com.aionemu.gameserver.services.craft.SielAnvilService.sendProgress(player);
 			player.getLifeStats().updateCurrentStats();
 
 			// 18. Tarefas de expiracao

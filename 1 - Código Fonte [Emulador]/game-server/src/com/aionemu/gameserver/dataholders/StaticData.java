@@ -290,6 +290,11 @@ public class StaticData {
 	@XmlElement(name = "option_clears")
 	public OptionClearData optionClearData;
 
+	@XmlElement(name = "siel_anvil_recipes")
+	public SielAnvilData sielAnvilData;
+	@XmlElement(name = "siel_hammer")
+	public SielHammerData sielHammerData;
+
 	@XmlElement(name = "arcadelist")
 	public UpgradeArcadeData upgradeArcadeData;
 

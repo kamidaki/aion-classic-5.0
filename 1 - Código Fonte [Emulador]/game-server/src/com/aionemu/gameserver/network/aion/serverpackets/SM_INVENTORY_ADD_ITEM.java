@@ -34,7 +34,13 @@ public class SM_INVENTORY_ADD_ITEM extends AionServerPacket {
 	@Override
 	protected void writeImpl(AionConnection con) {
 		// Classic 5.0: 6 zero bytes header followed by count short
-		writeB(new byte[6]);
+		if (addType == ItemAddType.CRUSH_RESULT) {
+			writeD(addType.getMask());
+			writeC(0);
+			writeC(1);
+		} else {
+			writeB(new byte[6]);
+		}
 		writeH(items.size());
 		for (Item item : items)
 			writeItemInfo(item);

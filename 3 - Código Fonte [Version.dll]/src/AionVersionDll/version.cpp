@@ -7,6 +7,7 @@
 #include <unordered_set>
 #include "exports.h"
 #include "detours.h"
+#include "siel_hammer_fix.h"
 
 // =========================================================================
 //  Version.dll - Mod & Compatibility Hook for Aion Classic
@@ -338,6 +339,7 @@ static void PatchAllLoadedLanguageModules() {
     for (const wchar_t* name : moduleNames) {
         HMODULE h = GetModuleHandleW(name);
         if (h) {
+            if (_wcsicmp(name, L"game.dll") == 0) InstallSielHammerFix(h);
             AcquireSRWLockExclusive(&s_patchLock);
             bool langDone = s_scannedLangModules.count(h) > 0;
             bool countryDone = s_scannedCountryModules.count(h) > 0;

@@ -26,6 +26,7 @@ public class ItemPacketService {
 		DEC_ITEM_SPLIT_MOVE(0x0A, true), // move to other storage with split
 		PUT(0x13, true), // from other storage
 		DEC_ITEM_USE(0x16, true),
+		DEC_ITEM_CRUSH(0x110, true), // deletion reason; inventory update has no reason field in Classic 5.0
 		DEC_STIGMA_USE(0x17, true),
 		INC_ITEM_COLLECT(0x19, true),
 		INC_KINAH_COLLECT(0x1A, true),
@@ -73,6 +74,7 @@ public class ItemPacketService {
 
 	public static enum ItemAddType {
 		SERVER_GENERATED(0x00), // Banquest Table, Extract Enchanment stones, Remodel, Armfusion
+		CRUSH_RESULT(0x112), // official S_ADD_INVENTORY Hammer reward header
 		PARTIAL_WITH_SLOT(0x07), // partial content of slot
 		ALL_SLOT(0x13), // All warehouses/pets
 		ITEM_COLLECT(0x19), // Drop, Gather
@@ -112,6 +114,7 @@ public class ItemPacketService {
 		QUEST_COMPLETE(0x31),
 		QUEST_START(0x34),
 		DECOMPOSE(0x66),
+		CRUSH(0x110),
 		REGISTER(0x78),
 		PUT_TO_EXCHANGE(0x26);
 
@@ -129,6 +132,7 @@ public class ItemPacketService {
 			return switch (updateType) {
 				case DEC_ITEM_SPLIT -> SPLIT;
 				case DEC_ITEM_USE -> USE;
+				case DEC_ITEM_CRUSH -> CRUSH;
 				case DEC_ITEM_SPLIT_MOVE -> MOVE;
 				default -> DEFAULT;
 			};
@@ -172,7 +176,10 @@ public class ItemPacketService {
 		} else {
 			PacketSendUtility.sendPacket(player, new SM_DELETE_WAREHOUSE_ITEM(storageType.getId(), item.getObjectId(), deleteType));
 		}
-		PacketSendUtility.sendPacket(player, SM_CUBE_UPDATE.cubeSize(storageType, player));
+		// Hammer refreshes the cube after the result and rewards, as in the official capture.
+		// Refreshing while its selected input disappears makes the client treat the dialog as interrupted.
+		if (deleteType != ItemDeleteType.CRUSH)
+			PacketSendUtility.sendPacket(player, SM_CUBE_UPDATE.cubeSize(storageType, player));
 	}
 
 	/**
@@ -215,7 +222,8 @@ public class ItemPacketService {
 			default:
 				PacketSendUtility.sendPacket(player, new SM_WAREHOUSE_ADD_ITEM(item, storageType.getId(), player, addType));
 		}
-		PacketSendUtility.sendPacket(player, SM_CUBE_UPDATE.cubeSize(storageType, player));
+		if (addType != ItemAddType.CRUSH_RESULT)
+			PacketSendUtility.sendPacket(player, SM_CUBE_UPDATE.cubeSize(storageType, player));
 	}
 
 	public static void sendItemUnlockPacket(Player player, Item item) {

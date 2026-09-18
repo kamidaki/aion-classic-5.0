@@ -75,6 +75,13 @@ public class SM_CUBE_UPDATE extends AionServerPacket {
 				writeC(npcExpands); // cube size from npc (so max 5 for now)
 				writeC(questExpands); // cube size from quest (so max 2 for now)
 				writeC(itemExpands); // count of used items (tickets)
+				// Classic 5.0 S_EVENT action 0 is 12 bytes. The client reads
+				// offsets 9..11 even for a routine item-count refresh; offset 11
+				// changes the inventory mode and closes its window when changed.
+				// Official normal cube refreshes keep all three fields zero.
+				writeC(0);
+				writeC(0);
+				writeC(0);
 				break;
 		}
 	}

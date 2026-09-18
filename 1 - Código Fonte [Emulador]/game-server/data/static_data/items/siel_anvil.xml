@@ -1,0 +1,3178 @@
+<?xml version='1.0' encoding='utf-8'?>
+<siel_anvil_recipes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="siel_anvil.xsd">
+	<recipe id="1" enabled="true">
+		<product item_id="186020388" count="1" index="1" probability="1000" />
+		<refund item_id="186020389" count="5" />
+		<materials>
+			<item item_id="186020389" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="2" enabled="true">
+		<product item_id="186020404" count="1" index="1" probability="2000" />
+		<refund item_id="186020403" count="5" />
+		<materials>
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="186020403" count="10" selected="false" />
+			<item item_id="152010319" count="10" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="250000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="3" enabled="false" disabled_reason="hidden">
+		<product item_id="188056288" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="4" enabled="false" disabled_reason="hidden">
+		<product item_id="188056289" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="20" selected="false" />
+			<item item_id="186020404" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="5" enabled="false" disabled_reason="hidden">
+		<product item_id="188056290" count="1" index="1" probability="1500" />
+		<refund item_id="188056270" count="1" />
+		<materials>
+			<item item_id="186020388" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="6" enabled="false" disabled_reason="hidden">
+		<product item_id="188056291" count="1" index="1" probability="1500" />
+		<refund item_id="188056271" count="1" />
+		<materials>
+			<item item_id="186020388" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="7" enabled="false" disabled_reason="hidden">
+		<product item_id="188056269" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="700" selected="false" />
+			<item item_id="186020404" count="70" selected="false" />
+			<item item_id="186020387" count="7" selected="false" />
+			<item item_id="186020405" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="8" enabled="false" disabled_reason="hidden">
+		<product item_id="188056275" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="2" selected="false" />
+			<item item_id="186020406" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="9" enabled="false" disabled_reason="hidden">
+		<product item_id="190020165" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="5" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="10" enabled="false" disabled_reason="hidden">
+		<product item_id="188056299" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="11" enabled="false" disabled_reason="hidden">
+		<product item_id="188056547" count="1" index="1" probability="1500" />
+		<refund item_id="188056553" count="1" />
+		<materials>
+			<item item_id="186020388" count="5" selected="false" />
+			<item item_id="186020404" count="5" selected="false" />
+			<item item_id="152011070" count="5" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="12" enabled="false" disabled_reason="hidden">
+		<product item_id="187000067" count="1" index="1" probability="500" />
+		<refund item_id="188056561" count="1" />
+		<materials>
+			<item item_id="186020388" count="5" selected="false" />
+			<item item_id="186020404" count="5" selected="false" />
+			<item item_id="152011065" count="5" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020408" count="20" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="13" enabled="true">
+		<product item_id="188056623" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="10" selected="false" />
+			<item item_id="186020404" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="14" enabled="true">
+		<product item_id="188056624" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="30" selected="false" />
+			<item item_id="186020404" count="5" selected="false" />
+			<item item_id="152011075" count="15" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="15" enabled="false" disabled_reason="hidden">
+		<product item_id="188056626" count="1" index="1" probability="1000" />
+		<refund item_id="188056625" count="1" />
+		<materials>
+			<item item_id="186020388" count="10" selected="false" />
+			<item item_id="186020404" count="2" selected="false" />
+			<item item_id="152011065" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="16" enabled="true">
+		<product item_id="188056633" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="20" selected="false" />
+			<item item_id="186020404" count="5" selected="false" />
+			<item item_id="152011065" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="17" enabled="true">
+		<product item_id="188056634" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="10" selected="false" />
+			<item item_id="186020404" count="2" selected="false" />
+			<item item_id="152011070" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="18" enabled="true">
+		<product item_id="188056640" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="5" selected="false" />
+			<item item_id="186020404" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="19" enabled="true">
+		<product item_id="188056641" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020387" count="1" selected="false" />
+			<item item_id="186020404" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="20" enabled="true">
+		<product item_id="188056648" count="1" index="1" probability="1000" />
+		<refund item_id="188056647" count="1" />
+		<materials>
+			<item item_id="186020388" count="10" selected="false" />
+			<item item_id="186020404" count="2" selected="false" />
+			<item item_id="152011065" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="21" enabled="false" disabled_reason="hidden">
+		<product item_id="188056681" count="1" index="1" probability="1000" />
+		<refund item_id="188056686" count="1" />
+		<materials>
+			<item item_id="186020388" count="1" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="188100329" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="22" enabled="false" disabled_reason="hidden">
+		<product item_id="188056682" count="1" index="1" probability="1000" />
+		<refund item_id="188056687" count="1" />
+		<materials>
+			<item item_id="186020388" count="1" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="188100330" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="23" enabled="false" disabled_reason="hidden">
+		<product item_id="188056683" count="1" index="1" probability="2000" />
+		<refund item_id="186020389" count="5" />
+		<materials>
+			<item item_id="166003095" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="24" enabled="true">
+		<product item_id="140005174" count="1" index="1" probability="8000" />
+		<refund item_id="140005173" count="1" />
+		<materials>
+			<item item_id="140005173" count="1" selected="false" />
+			<item item_id="186020389" count="100" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="25" enabled="true">
+		<product item_id="140005175" count="1" index="1" probability="8000" />
+		<refund item_id="140005174" count="1" />
+		<materials>
+			<item item_id="140005174" count="1" selected="false" />
+			<item item_id="186020389" count="300" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="26" enabled="true">
+		<product item_id="140005176" count="1" index="1" probability="8000" />
+		<refund item_id="140005175" count="1" />
+		<materials>
+			<item item_id="140005175" count="1" selected="false" />
+			<item item_id="186020389" count="500" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="27" enabled="true">
+		<product item_id="140005177" count="1" index="1" probability="5000" />
+		<refund item_id="140005176" count="1" />
+		<materials>
+			<item item_id="140005176" count="1" selected="false" />
+			<item item_id="186020388" count="30" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="28" enabled="true">
+		<product item_id="140005178" count="1" index="1" probability="5000" />
+		<refund item_id="140005177" count="1" />
+		<materials>
+			<item item_id="140005177" count="1" selected="false" />
+			<item item_id="186020388" count="50" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="29" enabled="true">
+		<product item_id="140005179" count="1" index="1" probability="5000" />
+		<refund item_id="140005178" count="1" />
+		<materials>
+			<item item_id="140005178" count="1" selected="false" />
+			<item item_id="186020388" count="70" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="30" enabled="true">
+		<product item_id="140005180" count="1" index="1" probability="1500" />
+		<refund item_id="140005179" count="1" />
+		<materials>
+			<item item_id="140005179" count="1" selected="false" />
+			<item item_id="186020387" count="3" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="31" enabled="true">
+		<product item_id="140005180" count="1" index="1" probability="500" />
+		<refund item_id="140005179" count="1" />
+		<materials>
+			<item item_id="140005179" count="1" selected="false" />
+			<item item_id="186020388" count="20" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="32" enabled="true">
+		<product item_id="140005181" count="1" index="1" probability="1500" />
+		<refund item_id="140005180" count="1" />
+		<materials>
+			<item item_id="140005180" count="1" selected="false" />
+			<item item_id="186020387" count="6" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="33" enabled="true">
+		<product item_id="140005181" count="1" index="1" probability="500" />
+		<refund item_id="140005180" count="1" />
+		<materials>
+			<item item_id="140005180" count="1" selected="false" />
+			<item item_id="186020388" count="50" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="34" enabled="true">
+		<product item_id="140005182" count="1" index="1" probability="1500" />
+		<refund item_id="140005181" count="1" />
+		<materials>
+			<item item_id="140005181" count="1" selected="false" />
+			<item item_id="186020387" count="9" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="35" enabled="true">
+		<product item_id="140005182" count="1" index="1" probability="500" />
+		<refund item_id="140005181" count="1" />
+		<materials>
+			<item item_id="140005181" count="1" selected="false" />
+			<item item_id="186020388" count="70" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="36" enabled="true">
+		<product item_id="140005184" count="1" index="1" probability="8000" />
+		<refund item_id="140005183" count="1" />
+		<materials>
+			<item item_id="140005183" count="1" selected="false" />
+			<item item_id="186020389" count="100" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="37" enabled="true">
+		<product item_id="140005185" count="1" index="1" probability="8000" />
+		<refund item_id="140005184" count="1" />
+		<materials>
+			<item item_id="140005184" count="1" selected="false" />
+			<item item_id="186020389" count="300" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="38" enabled="true">
+		<product item_id="140005186" count="1" index="1" probability="8000" />
+		<refund item_id="140005185" count="1" />
+		<materials>
+			<item item_id="140005185" count="1" selected="false" />
+			<item item_id="186020389" count="500" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="39" enabled="true">
+		<product item_id="140005187" count="1" index="1" probability="5000" />
+		<refund item_id="140005186" count="1" />
+		<materials>
+			<item item_id="140005186" count="1" selected="false" />
+			<item item_id="186020388" count="30" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="40" enabled="true">
+		<product item_id="140005188" count="1" index="1" probability="5000" />
+		<refund item_id="140005187" count="1" />
+		<materials>
+			<item item_id="140005187" count="1" selected="false" />
+			<item item_id="186020388" count="50" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="41" enabled="true">
+		<product item_id="140005189" count="1" index="1" probability="5000" />
+		<refund item_id="140005188" count="1" />
+		<materials>
+			<item item_id="140005188" count="1" selected="false" />
+			<item item_id="186020388" count="70" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="42" enabled="true">
+		<product item_id="140005190" count="1" index="1" probability="1500" />
+		<refund item_id="140005189" count="1" />
+		<materials>
+			<item item_id="140005189" count="1" selected="false" />
+			<item item_id="186020387" count="3" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="43" enabled="true">
+		<product item_id="140005190" count="1" index="1" probability="500" />
+		<refund item_id="140005189" count="1" />
+		<materials>
+			<item item_id="140005189" count="1" selected="false" />
+			<item item_id="186020388" count="20" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="44" enabled="true">
+		<product item_id="140005191" count="1" index="1" probability="1500" />
+		<refund item_id="140005190" count="1" />
+		<materials>
+			<item item_id="140005190" count="1" selected="false" />
+			<item item_id="186020387" count="6" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="45" enabled="true">
+		<product item_id="140005191" count="1" index="1" probability="500" />
+		<refund item_id="140005190" count="1" />
+		<materials>
+			<item item_id="140005190" count="1" selected="false" />
+			<item item_id="186020388" count="50" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="46" enabled="true">
+		<product item_id="140005192" count="1" index="1" probability="1500" />
+		<refund item_id="140005191" count="1" />
+		<materials>
+			<item item_id="140005191" count="1" selected="false" />
+			<item item_id="186020387" count="9" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="47" enabled="true">
+		<product item_id="140005192" count="1" index="1" probability="500" />
+		<refund item_id="140005191" count="1" />
+		<materials>
+			<item item_id="140005191" count="1" selected="false" />
+			<item item_id="186020388" count="70" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="48" enabled="true">
+		<product item_id="140005194" count="1" index="1" probability="8000" />
+		<refund item_id="140005193" count="1" />
+		<materials>
+			<item item_id="140005193" count="1" selected="false" />
+			<item item_id="186020389" count="150" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="49" enabled="true">
+		<product item_id="140005195" count="1" index="1" probability="8000" />
+		<refund item_id="140005194" count="1" />
+		<materials>
+			<item item_id="140005194" count="1" selected="false" />
+			<item item_id="186020389" count="450" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="50" enabled="true">
+		<product item_id="140005196" count="1" index="1" probability="8000" />
+		<refund item_id="140005195" count="1" />
+		<materials>
+			<item item_id="140005195" count="1" selected="false" />
+			<item item_id="186020389" count="750" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="51" enabled="true">
+		<product item_id="140005197" count="1" index="1" probability="5000" />
+		<refund item_id="140005196" count="1" />
+		<materials>
+			<item item_id="140005196" count="1" selected="false" />
+			<item item_id="186020388" count="45" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="52" enabled="true">
+		<product item_id="140005198" count="1" index="1" probability="5000" />
+		<refund item_id="140005197" count="1" />
+		<materials>
+			<item item_id="140005197" count="1" selected="false" />
+			<item item_id="186020388" count="75" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="53" enabled="true">
+		<product item_id="140005199" count="1" index="1" probability="5000" />
+		<refund item_id="140005198" count="1" />
+		<materials>
+			<item item_id="140005198" count="1" selected="false" />
+			<item item_id="186020388" count="105" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="54" enabled="true">
+		<product item_id="140005200" count="1" index="1" probability="1500" />
+		<refund item_id="140005199" count="1" />
+		<materials>
+			<item item_id="140005199" count="1" selected="false" />
+			<item item_id="186020387" count="5" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="55" enabled="true">
+		<product item_id="140005200" count="1" index="1" probability="500" />
+		<refund item_id="140005199" count="1" />
+		<materials>
+			<item item_id="140005199" count="1" selected="false" />
+			<item item_id="186020388" count="30" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="56" enabled="true">
+		<product item_id="140005201" count="1" index="1" probability="1500" />
+		<refund item_id="140005200" count="1" />
+		<materials>
+			<item item_id="140005200" count="1" selected="false" />
+			<item item_id="186020387" count="9" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="57" enabled="true">
+		<product item_id="140005201" count="1" index="1" probability="500" />
+		<refund item_id="140005200" count="1" />
+		<materials>
+			<item item_id="140005200" count="1" selected="false" />
+			<item item_id="186020388" count="75" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="58" enabled="true">
+		<product item_id="140005202" count="1" index="1" probability="1500" />
+		<refund item_id="140005201" count="1" />
+		<materials>
+			<item item_id="140005201" count="1" selected="false" />
+			<item item_id="186020387" count="12" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="59" enabled="true">
+		<product item_id="140005202" count="1" index="1" probability="500" />
+		<refund item_id="140005201" count="1" />
+		<materials>
+			<item item_id="140005201" count="1" selected="false" />
+			<item item_id="186020388" count="105" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="60" enabled="false" disabled_reason="hidden">
+		<product item_id="188508071" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020418" count="7" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="61" enabled="false" disabled_reason="hidden">
+		<product item_id="188500091" count="1" index="1" probability="3500" />
+		<materials>
+			<item item_id="186020418" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="62" enabled="false" disabled_reason="hidden">
+		<product item_id="169611133" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="188100242" count="5" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="63" enabled="false" disabled_reason="hidden">
+		<product item_id="169611149" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="188100261" count="5" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="64" enabled="true">
+		<product item_id="188055846" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="188100282" count="20" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="65" enabled="false" disabled_reason="hidden">
+		<product item_id="122001590" count="1" index="1" probability="200" />
+		<refund item_id="122001590" count="1" />
+		<materials>
+			<item item_id="122001590" count="1" selected="true" />
+			<item item_id="122001590" count="1" selected="true" />
+			<item item_id="186020387" count="10" selected="false" />
+			<item item_id="186020388" count="10" selected="false" />
+			<item item_id="186020404" count="20" selected="false" />
+			<item item_id="152011075" count="20" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="66" enabled="false" disabled_reason="hidden">
+		<product item_id="122001590" count="1" index="1" probability="20" />
+		<refund item_id="122001590" count="1" />
+		<materials>
+			<item item_id="122001590" count="1" selected="true" />
+			<item item_id="186020387" count="20" selected="false" />
+			<item item_id="182400001" count="100000000" selected="false" />
+			<item item_id="186020404" count="40" selected="false" />
+			<item item_id="152011075" count="40" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="67" enabled="false" disabled_reason="hidden">
+		<product item_id="188056790" count="1" index="1" probability="10" />
+		<materials>
+			<item item_id="186020421" count="6" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="68" enabled="false" disabled_reason="hidden">
+		<product item_id="188056833" count="1" index="1" probability="3000" />
+		<materials>
+			<item item_id="186020421" count="6" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="69" enabled="false" disabled_reason="hidden">
+		<product item_id="166001105" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020421" count="5" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="70" enabled="false" disabled_reason="hidden">
+		<product item_id="166001110" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020421" count="5" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="71" enabled="false" disabled_reason="hidden">
+		<product item_id="188056788" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020421" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="72" enabled="false" disabled_reason="hidden">
+		<product item_id="188056789" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020421" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="73" enabled="false" disabled_reason="hidden">
+		<product item_id="188056835" count="1" index="1" probability="1500" />
+		<refund item_id="188100338" count="1" />
+		<materials>
+			<item item_id="188056834" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="74" enabled="false" disabled_reason="hidden">
+		<product item_id="188056917" count="20" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020425" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="75" enabled="false" disabled_reason="hidden">
+		<product item_id="188056919" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="182400001" count="4000000" selected="false" />
+			<item item_id="186020354" count="200" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="76" enabled="false" disabled_reason="hidden">
+		<product item_id="188056919" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="182400001" count="400000" selected="false" />
+			<item item_id="186020354" count="20" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="77" enabled="true">
+		<product item_id="188057707" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020414" count="1" selected="false" />
+			<item item_id="186020389" count="600" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="78" enabled="true">
+		<product item_id="188057707" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="186020416" count="1" selected="false" />
+			<item item_id="186020389" count="60" selected="false" />
+			<item item_id="186000190" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="79" enabled="false" disabled_reason="hidden">
+		<product item_id="188056681" count="1" index="1" probability="1000" />
+		<refund item_id="188056922" count="1" />
+		<materials>
+			<item item_id="186020355" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="80" enabled="false" disabled_reason="hidden">
+		<product item_id="188056682" count="1" index="1" probability="1000" />
+		<refund item_id="188056307" count="1" />
+		<materials>
+			<item item_id="186020355" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="81" enabled="true">
+		<product item_id="188056930" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020355" count="20" selected="false" />
+			<item item_id="186020354" count="1000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="82" enabled="true">
+		<product item_id="187000078" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="187000071" count="1" selected="true" />
+			<item item_id="188100282" count="500" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="83" enabled="true">
+		<product item_id="187000079" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="187000072" count="1" selected="true" />
+			<item item_id="188100282" count="500" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="84" enabled="true">
+		<product item_id="187000076" count="1" index="1" probability="1000" />
+		<refund item_id="187000069" count="1" />
+		<materials>
+			<item item_id="187000069" count="1" selected="true" />
+			<item item_id="188100282" count="50" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="85" enabled="true">
+		<product item_id="187000077" count="1" index="1" probability="1000" />
+		<refund item_id="187000070" count="1" />
+		<materials>
+			<item item_id="187000070" count="1" selected="true" />
+			<item item_id="188100282" count="50" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="86" enabled="false" disabled_reason="hidden">
+		<product item_id="188057004" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020427" count="6" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="87" enabled="false" disabled_reason="hidden">
+		<product item_id="188057006" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020428" count="6" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="88" enabled="false" disabled_reason="hidden">
+		<product item_id="188053302" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020427" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="89" enabled="false" disabled_reason="hidden">
+		<product item_id="188053302" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020428" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="90" enabled="true">
+		<product item_id="187000078" count="1" index="1" probability="1000" />
+		<refund item_id="187000071" count="1" />
+		<materials>
+			<item item_id="187000071" count="1" selected="true" />
+			<item item_id="188100282" count="50" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="91" enabled="true">
+		<product item_id="187000079" count="1" index="1" probability="1000" />
+		<refund item_id="187000072" count="1" />
+		<materials>
+			<item item_id="187000072" count="1" selected="true" />
+			<item item_id="188100282" count="50" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="92" enabled="true">
+		<product item_id="187000076" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="187000069" count="1" selected="true" />
+			<item item_id="188100282" count="500" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="93" enabled="true">
+		<product item_id="187000077" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="187000070" count="1" selected="true" />
+			<item item_id="188100282" count="500" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="94" enabled="true">
+		<product item_id="188057038" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="130000011" count="1" selected="true" />
+			<item item_id="188100339" count="30" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="130000016" count="1" selected="true" />
+			<item item_id="188100339" count="30" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="130000021" count="1" selected="true" />
+			<item item_id="188100339" count="30" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="95" enabled="true">
+		<product item_id="188057038" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="130000031" count="1" selected="true" />
+			<item item_id="188100339" count="30" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="130000036" count="1" selected="true" />
+			<item item_id="188100339" count="30" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="130000026" count="1" selected="true" />
+			<item item_id="188100339" count="30" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="96" enabled="true">
+		<product item_id="188057038" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020429" count="30" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="97" enabled="false" disabled_reason="hidden">
+		<product item_id="188057071" count="1" index="1" probability="1500" />
+		<refund item_id="188057070" count="1" />
+		<materials>
+			<item item_id="186020430" count="5" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="98" enabled="false" disabled_reason="hidden">
+		<product item_id="188057072" count="1" index="1" probability="1500" />
+		<refund item_id="188057070" count="1" />
+		<materials>
+			<item item_id="186020430" count="5" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="99" enabled="false" disabled_reason="hidden">
+		<product item_id="140005276" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="250" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="100" enabled="false" disabled_reason="hidden">
+		<product item_id="169591298" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="250" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="101" enabled="false" disabled_reason="hidden">
+		<product item_id="169591299" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="250" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="102" ceiling_max_point="1000" failure_ceiling_point_min="30" failure_ceiling_point_max="60" enabled="true">
+		<product item_id="122001561" count="1" index="1" probability="500" />
+		<refund item_id="122001590" count="1" />
+		<materials>
+			<item item_id="122001590" count="1" selected="true" />
+			<item item_id="122001590" count="1" selected="true" />
+			<item item_id="186020388" count="10" selected="false" />
+			<item item_id="186020404" count="20" selected="false" />
+			<item item_id="152011075" count="20" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="122001590" count="1" selected="true" />
+			<item item_id="186020387" count="150" selected="false" />
+			<item item_id="186020388" count="50" selected="false" />
+			<item item_id="186020404" count="100" selected="false" />
+			<item item_id="152011075" count="100" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="103" enabled="false" disabled_reason="hidden">
+		<product item_id="188057119" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="188057118" count="1" selected="false" />
+			<item item_id="160010442" count="50" selected="false" />
+			<item item_id="141000002" count="5000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="105" enabled="false" disabled_reason="hidden">
+		<product item_id="169591300" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="250" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="106" enabled="false" disabled_reason="hidden">
+		<product item_id="169591301" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="250" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="107" enabled="false" disabled_reason="hidden">
+		<product item_id="169591302" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="250" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="108" enabled="false" disabled_reason="hidden">
+		<product item_id="140005277" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="250" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="109" enabled="false" disabled_reason="hidden">
+		<product item_id="169591303" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="250" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="110" enabled="false" disabled_reason="hidden">
+		<product item_id="169591304" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="250" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="111" enabled="false" disabled_reason="hidden">
+		<product item_id="169591305" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="250" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="112" enabled="false" disabled_reason="hidden">
+		<product item_id="169591306" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="250" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="113" enabled="true">
+		<product item_id="188057172" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="188057173" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="114" enabled="true">
+		<product item_id="188057173" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="188057174" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="115" enabled="true">
+		<product item_id="188057174" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="188057175" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="116" enabled="true">
+		<product item_id="188057175" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="188057176" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="117" enabled="true">
+		<product item_id="188057176" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="188057177" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="118" ceiling_max_point="300" failure_ceiling_point_min="20" failure_ceiling_point_max="30" enabled="true">
+		<product item_id="188057636" count="1" index="1" probability="980" />
+		<product item_id="188057642" count="1" index="2" probability="20" />
+		<materials>
+			<item item_id="186020440" count="5" selected="false" />
+			<item item_id="186020388" count="5" selected="false" />
+			<item item_id="186020404" count="5" selected="false" />
+			<item item_id="186020355" count="1" selected="false" />
+			<item item_id="186020354" count="20" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="119" enabled="true">
+		<product item_id="188057636" count="1" index="1" probability="9800" />
+		<product item_id="188057642" count="1" index="2" probability="200" />
+		<materials>
+			<item item_id="186020440" count="50" selected="false" />
+			<item item_id="186020387" count="3" selected="false" />
+			<item item_id="186020404" count="50" selected="false" />
+			<item item_id="186020355" count="10" selected="false" />
+			<item item_id="186020354" count="100" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="120" enabled="true">
+		<product item_id="186020440" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="182400001" count="10000000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020415" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="121" enabled="true">
+		<product item_id="188057654" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="250" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="122" enabled="false" disabled_reason="hidden">
+		<product item_id="188057660" count="1" index="1" probability="7500" />
+		<product item_id="188057661" count="1" index="2" probability="500" />
+		<materials>
+			<item item_id="186020444" count="1" selected="false" />
+			<item item_id="186020441" count="1" selected="false" />
+			<item item_id="186020443" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="123" enabled="false" disabled_reason="hidden">
+		<product item_id="188057660" count="1" index="1" probability="7500" />
+		<product item_id="188057662" count="1" index="2" probability="500" />
+		<materials>
+			<item item_id="186020444" count="1" selected="false" />
+			<item item_id="186020441" count="1" selected="false" />
+			<item item_id="186020443" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="124" enabled="false" disabled_reason="hidden">
+		<product item_id="188057661" count="1" index="1" probability="8000" />
+		<refund item_id="188057660" count="1" />
+		<materials>
+			<item item_id="188057660" count="3" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="125" enabled="false" disabled_reason="hidden">
+		<product item_id="188057662" count="1" index="1" probability="8000" />
+		<refund item_id="188057660" count="1" />
+		<materials>
+			<item item_id="188057660" count="3" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="126" enabled="false" disabled_reason="hidden">
+		<product item_id="188059956" count="1" index="1" probability="8000" />
+		<refund item_id="188059955" count="1" />
+		<materials>
+			<item item_id="188059955" count="1" selected="false" />
+			<item item_id="186020449" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="127" enabled="false" disabled_reason="hidden">
+		<product item_id="188059957" count="1" index="1" probability="4000" />
+		<refund item_id="188059956" count="1" />
+		<materials>
+			<item item_id="188059956" count="1" selected="false" />
+			<item item_id="186020449" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="128" enabled="false" disabled_reason="hidden">
+		<product item_id="188059958" count="1" index="1" probability="2000" />
+		<refund item_id="188059957" count="1" />
+		<materials>
+			<item item_id="188059957" count="1" selected="false" />
+			<item item_id="186020449" count="3" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="129" enabled="false" disabled_reason="hidden">
+		<product item_id="188059959" count="1" index="1" probability="1000" />
+		<refund item_id="188059958" count="1" />
+		<materials>
+			<item item_id="188059958" count="1" selected="false" />
+			<item item_id="186020449" count="4" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="130" enabled="true">
+		<product item_id="188056681" count="1" index="1" probability="1000" />
+		<refund item_id="188057722" count="1" />
+		<materials>
+			<item item_id="186020355" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="131" enabled="true">
+		<product item_id="188056682" count="1" index="1" probability="1000" />
+		<refund item_id="188057728" count="1" />
+		<materials>
+			<item item_id="186020355" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="132" enabled="true">
+		<product item_id="123001246" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="123001245" count="1" selected="true" />
+			<item item_id="123001175" count="1" selected="true" />
+		</materials>
+		<materials>
+			<item item_id="123001245" count="1" selected="true" />
+			<item item_id="123001180" count="1" selected="true" />
+		</materials>
+	</recipe>
+	<recipe id="133" enabled="true">
+		<product item_id="123001246" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="123001245" count="1" selected="true" />
+			<item item_id="123001185" count="1" selected="true" />
+		</materials>
+		<materials>
+			<item item_id="123001245" count="1" selected="true" />
+			<item item_id="123001190" count="1" selected="true" />
+		</materials>
+	</recipe>
+	<recipe id="134" enabled="true">
+		<product item_id="188057876" count="1" index="1" probability="9990" />
+		<product item_id="188057877" count="1" index="2" probability="10" />
+		<materials>
+			<item item_id="186020354" count="1500" selected="false" />
+			<item item_id="186020355" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="135" enabled="false" disabled_reason="hidden">
+		<product item_id="188057932" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="188057925" count="1" selected="false" />
+			<item item_id="186020459" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="136" enabled="false" disabled_reason="hidden">
+		<product item_id="190020166" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="3" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="137" enabled="true">
+		<product item_id="186020466" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020461" count="50" selected="false" />
+			<item item_id="186020462" count="50" selected="false" />
+			<item item_id="186020463" count="70" selected="false" />
+			<item item_id="186020464" count="50" selected="false" />
+			<item item_id="186020465" count="50" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="138" enabled="true">
+		<product item_id="188057994" count="1" index="1" probability="8000" />
+		<product item_id="188057995" count="1" index="2" probability="2000" />
+		<materials>
+			<item item_id="186020270" count="20" selected="false" />
+			<item item_id="182215473" count="1" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020270" count="20" selected="false" />
+			<item item_id="182215474" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="139" enabled="true">
+		<product item_id="188057996" count="1" index="1" probability="8000" />
+		<product item_id="188057997" count="1" index="2" probability="2000" />
+		<materials>
+			<item item_id="186020388" count="10" selected="false" />
+			<item item_id="182215473" count="1" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020388" count="10" selected="false" />
+			<item item_id="182215474" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="140" enabled="true">
+		<product item_id="186020356" count="1" index="1" probability="1000" />
+		<refund item_id="186020470" count="5" />
+		<materials>
+			<item item_id="186020470" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="141" enabled="true">
+		<product item_id="186020471" count="1" index="1" probability="1000" />
+		<refund item_id="186020389" count="5" />
+		<materials>
+			<item item_id="186020389" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="142" enabled="true">
+		<product item_id="186020387" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020471" count="50" selected="false" />
+			<item item_id="182215473" count="1" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020471" count="50" selected="false" />
+			<item item_id="182215474" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="143" enabled="true">
+		<product item_id="188058018" count="1" index="1" probability="8000" />
+		<product item_id="188058019" count="1" index="2" probability="2000" />
+		<materials>
+			<item item_id="188100282" count="50" selected="false" />
+			<item item_id="182215473" count="1" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="188100282" count="50" selected="false" />
+			<item item_id="182215474" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="144" enabled="false" disabled_reason="hidden">
+		<product item_id="188058020" count="1" index="1" probability="8000" />
+		<product item_id="188058021" count="1" index="2" probability="2000" />
+		<materials>
+			<item item_id="188100327" count="10" selected="false" />
+			<item item_id="182215473" count="1" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="188100327" count="10" selected="false" />
+			<item item_id="182215474" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="145" ceiling_max_point="1000" failure_ceiling_point_min="30" failure_ceiling_point_max="60" enabled="true">
+		<product item_id="122001590" count="1" index="1" probability="500" />
+		<refund item_id="188058022" count="1" />
+		<materials>
+			<item item_id="186020387" count="4" selected="false" />
+			<item item_id="186020388" count="40" selected="false" />
+			<item item_id="186020404" count="40" selected="false" />
+			<item item_id="152011075" count="40" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="146" enabled="false" disabled_reason="hidden">
+		<product item_id="186020356" count="1" index="1" probability="900" />
+		<materials>
+			<item item_id="166000120" count="5" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020477" count="70" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="147" enabled="false" disabled_reason="hidden">
+		<product item_id="186020387" count="5" index="1" probability="2000" />
+		<materials>
+			<item item_id="166000120" count="3" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020477" count="42" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="148" enabled="false" disabled_reason="hidden">
+		<product item_id="186020388" count="50" index="1" probability="3500" />
+		<materials>
+			<item item_id="166000120" count="2" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020477" count="28" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="149" enabled="false" disabled_reason="hidden">
+		<product item_id="188057636" count="1" index="1" probability="2000" />
+		<materials>
+			<item item_id="166000120" count="5" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020477" count="70" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="150" enabled="false" disabled_reason="hidden">
+		<product item_id="188058063" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="166000120" count="5" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020477" count="70" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="151" enabled="false" disabled_reason="hidden">
+		<product item_id="140005180" count="1" index="1" probability="500" />
+		<materials>
+			<item item_id="166000120" count="4" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020477" count="56" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="152" enabled="false" disabled_reason="hidden">
+		<product item_id="140005190" count="1" index="1" probability="500" />
+		<materials>
+			<item item_id="166000120" count="4" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020477" count="56" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="153" enabled="false" disabled_reason="hidden">
+		<product item_id="140005200" count="1" index="1" probability="400" />
+		<materials>
+			<item item_id="166000120" count="5" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020477" count="70" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="154" enabled="false" disabled_reason="hidden">
+		<product item_id="188100414" count="1" index="1" probability="500" />
+		<materials>
+			<item item_id="166000120" count="11" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020477" count="100" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="155" enabled="true">
+		<product item_id="123001245" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="25" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="182400001" count="13000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="156" enabled="false" disabled_reason="hidden">
+		<product item_id="182006825" count="1" index="1" probability="7000" />
+		<refund item_id="186020484" count="2" />
+		<materials>
+			<item item_id="186020484" count="3" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="157" enabled="false" disabled_reason="hidden">
+		<product item_id="188058095" count="1" index="1" probability="9700" />
+		<product item_id="186020419" count="1" index="2" probability="300" />
+		<materials>
+			<item item_id="182400001" count="80000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="158" enabled="false" disabled_reason="hidden">
+		<product item_id="188058096" count="1" index="1" probability="600" />
+		<materials>
+			<item item_id="166000120" count="5" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="182400001" count="10000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="159" enabled="false" disabled_reason="hidden">
+		<product item_id="188058097" count="1" index="1" probability="3500" />
+		<materials>
+			<item item_id="166000120" count="3" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="182400001" count="6000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="160" enabled="false" disabled_reason="hidden">
+		<product item_id="188057636" count="1" index="1" probability="300" />
+		<materials>
+			<item item_id="166000120" count="1" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="161" enabled="false" disabled_reason="hidden">
+		<product item_id="188058100" count="1" index="1" probability="3500" />
+		<materials>
+			<item item_id="166000120" count="3" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="182400001" count="6000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="162" enabled="false" disabled_reason="hidden">
+		<product item_id="188058101" count="1" index="1" probability="3500" />
+		<materials>
+			<item item_id="166000120" count="3" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="182400001" count="6000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="163" enabled="false" disabled_reason="hidden">
+		<product item_id="188058098" count="1" index="1" probability="3000" />
+		<materials>
+			<item item_id="166000120" count="2" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="182400001" count="4000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="164" enabled="false" disabled_reason="hidden">
+		<product item_id="188058099" count="1" index="1" probability="3000" />
+		<materials>
+			<item item_id="166000120" count="2" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="182400001" count="4000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="165" enabled="false" disabled_reason="hidden">
+		<product item_id="188058102" count="1" index="1" probability="3000" />
+		<materials>
+			<item item_id="166000120" count="2" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="182400001" count="4000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="166" enabled="false" disabled_reason="hidden">
+		<product item_id="186020387" count="20" index="1" probability="700" />
+		<materials>
+			<item item_id="166000120" count="4" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="182400001" count="8000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="167" enabled="false" disabled_reason="hidden">
+		<product item_id="123001248" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="123001246" count="1" selected="true" />
+			<item item_id="186000404" count="1" selected="false" />
+			<item item_id="186000405" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="168" enabled="false" disabled_reason="hidden">
+		<product item_id="188100372" count="1" index="1" probability="500" />
+		<materials>
+			<item item_id="166000120" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="169" enabled="false" disabled_reason="hidden">
+		<product item_id="166000120" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="166000110" count="3" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="166000115" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="170" enabled="true">
+		<product item_id="174000003" count="1" index="1" probability="8000" />
+		<product item_id="174000001" count="1" index="2" probability="2000" />
+		<materials>
+			<item item_id="166300000" count="4" selected="false" />
+			<item item_id="182400001" count="400000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020388" count="2" selected="false" />
+			<item item_id="182400001" count="3000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="171" enabled="true">
+		<product item_id="188058155" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="5" selected="false" />
+			<item item_id="152010319" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="172" enabled="false" disabled_reason="hidden">
+		<product item_id="188058161" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="10" selected="false" />
+			<item item_id="152010319" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="173" enabled="true">
+		<product item_id="188058156" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="15" selected="false" />
+			<item item_id="152010319" count="15" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="174" enabled="true">
+		<product item_id="188058157" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="30" selected="false" />
+			<item item_id="152010319" count="30" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="175" enabled="true">
+		<product item_id="188058160" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020388" count="45" selected="false" />
+			<item item_id="152010319" count="45" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="176" enabled="false" disabled_reason="hidden">
+		<product item_id="188058164" count="1" index="1" probability="2000" />
+		<refund item_id="186020490" count="1" />
+		<materials>
+			<item item_id="186020490" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="177" ceiling_max_point="100" failure_ceiling_point_min="8" failure_ceiling_point_max="10" enabled="true">
+		<product item_id="188058325" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="186020387" count="7" selected="false" />
+			<item item_id="186020356" count="1" selected="false" />
+			<item item_id="186020491" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="180" enabled="true">
+		<product item_id="188058289" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020493" count="750" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="181" enabled="true">
+		<product item_id="188058288" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020493" count="200" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="185" enabled="false" disabled_reason="hidden">
+		<product item_id="188058389" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020502" count="1" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="186" enabled="false" disabled_reason="hidden">
+		<product item_id="188058389" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020503" count="1" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="187" enabled="false" disabled_reason="hidden">
+		<product item_id="188058389" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020504" count="1" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="188" enabled="false" disabled_reason="hidden">
+		<product item_id="188058389" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020505" count="1" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="189" enabled="false" disabled_reason="hidden">
+		<product item_id="188058389" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020506" count="1" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="190" enabled="false" disabled_reason="hidden">
+		<product item_id="188058390" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020502" count="1" selected="false" />
+			<item item_id="182400001" count="50000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="191" enabled="false" disabled_reason="hidden">
+		<product item_id="188058390" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020503" count="1" selected="false" />
+			<item item_id="182400001" count="50000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="192" enabled="false" disabled_reason="hidden">
+		<product item_id="188058390" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020504" count="1" selected="false" />
+			<item item_id="182400001" count="50000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="193" enabled="false" disabled_reason="hidden">
+		<product item_id="188058390" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020505" count="1" selected="false" />
+			<item item_id="182400001" count="50000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="194" enabled="false" disabled_reason="hidden">
+		<product item_id="188058390" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020506" count="1" selected="false" />
+			<item item_id="182400001" count="50000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="195" enabled="true">
+		<product item_id="169611230" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020497" count="30" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="196" enabled="true">
+		<product item_id="169611231" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020497" count="50" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="197" enabled="true">
+		<product item_id="169611232" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020497" count="100" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="198" enabled="false" disabled_reason="hidden">
+		<product item_id="186020508" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020354" count="2" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="199" enabled="false" disabled_reason="hidden">
+		<product item_id="188058427" count="1" index="1" probability="5000" />
+		<refund item_id="186020510" count="1" />
+		<materials>
+			<item item_id="186020510" count="1" selected="false" />
+			<item item_id="166000120" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="200" enabled="false" disabled_reason="hidden">
+		<product item_id="188058427" count="1" index="1" probability="3500" />
+		<product item_id="188058428" count="1" index="2" probability="2500" />
+		<refund item_id="186020510" count="1" />
+		<materials>
+			<item item_id="188058427" count="1" selected="false" />
+			<item item_id="166000120" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="201" enabled="false" disabled_reason="hidden">
+		<product item_id="188058428" count="1" index="1" probability="3000" />
+		<product item_id="188058429" count="1" index="2" probability="2000" />
+		<refund item_id="188058427" count="1" />
+		<materials>
+			<item item_id="188058428" count="1" selected="false" />
+			<item item_id="166000120" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="202" enabled="false" disabled_reason="hidden">
+		<product item_id="188058429" count="1" index="1" probability="3500" />
+		<product item_id="188058430" count="1" index="2" probability="500" />
+		<refund item_id="188058428" count="1" />
+		<materials>
+			<item item_id="188058429" count="1" selected="false" />
+			<item item_id="166000120" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="203" enabled="true">
+		<product item_id="166300000" count="1" index="1" probability="9500" />
+		<product item_id="166300000" count="2" index="2" probability="500" />
+		<materials>
+			<item item_id="186020511" count="100" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="204" enabled="true">
+		<product item_id="166300500" count="1" index="1" probability="9500" />
+		<product item_id="166300500" count="2" index="2" probability="500" />
+		<materials>
+			<item item_id="186020512" count="100" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="205" enabled="false" disabled_reason="hidden">
+		<product item_id="160009062" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020513" count="27" selected="false" />
+			<item item_id="186020516" count="17" selected="false" />
+			<item item_id="186020522" count="17" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="206" enabled="false" disabled_reason="hidden">
+		<product item_id="160009062" count="5" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020522" count="17" selected="false" />
+			<item item_id="186020517" count="13" selected="false" />
+			<item item_id="186020514" count="23" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="207" enabled="false" disabled_reason="hidden">
+		<product item_id="160009062" count="15" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020514" count="21" selected="false" />
+			<item item_id="186020518" count="3" selected="false" />
+			<item item_id="186020524" count="3" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="208" enabled="false" disabled_reason="hidden">
+		<product item_id="160009063" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020513" count="15" selected="false" />
+			<item item_id="186020516" count="13" selected="false" />
+			<item item_id="186020522" count="11" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="209" enabled="false" disabled_reason="hidden">
+		<product item_id="160009063" count="5" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020522" count="11" selected="false" />
+			<item item_id="186020517" count="8" selected="false" />
+			<item item_id="186020514" count="7" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="210" enabled="false" disabled_reason="hidden">
+		<product item_id="160009063" count="15" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020514" count="5" selected="false" />
+			<item item_id="186020518" count="2" selected="false" />
+			<item item_id="186020524" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="211" enabled="false" disabled_reason="hidden">
+		<product item_id="162003514" count="3" index="1" probability="9000" />
+		<product item_id="162003515" count="3" index="2" probability="1000" />
+		<materials>
+			<item item_id="186020513" count="7" selected="false" />
+			<item item_id="186020519" count="5" selected="false" />
+			<item item_id="186020522" count="4" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="212" enabled="false" disabled_reason="hidden">
+		<product item_id="162003514" count="10" index="1" probability="9000" />
+		<product item_id="162003515" count="10" index="2" probability="1000" />
+		<materials>
+			<item item_id="186020513" count="6" selected="false" />
+			<item item_id="186020520" count="4" selected="false" />
+			<item item_id="186020523" count="3" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="213" enabled="false" disabled_reason="hidden">
+		<product item_id="162003514" count="30" index="1" probability="9000" />
+		<product item_id="162003515" count="30" index="2" probability="1000" />
+		<materials>
+			<item item_id="186020523" count="3" selected="false" />
+			<item item_id="186020521" count="2" selected="false" />
+			<item item_id="186020515" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="214" enabled="false" disabled_reason="hidden">
+		<product item_id="162003516" count="3" index="1" probability="9000" />
+		<product item_id="162003517" count="3" index="2" probability="1000" />
+		<materials>
+			<item item_id="186020513" count="7" selected="false" />
+			<item item_id="186020519" count="5" selected="false" />
+			<item item_id="186020522" count="4" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="215" enabled="false" disabled_reason="hidden">
+		<product item_id="162003516" count="10" index="1" probability="9000" />
+		<product item_id="162003517" count="10" index="2" probability="1000" />
+		<materials>
+			<item item_id="186020513" count="6" selected="false" />
+			<item item_id="186020520" count="4" selected="false" />
+			<item item_id="186020523" count="3" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="216" enabled="false" disabled_reason="hidden">
+		<product item_id="162003516" count="30" index="1" probability="9000" />
+		<product item_id="162003517" count="30" index="2" probability="1000" />
+		<materials>
+			<item item_id="186020523" count="3" selected="false" />
+			<item item_id="186020521" count="2" selected="false" />
+			<item item_id="186020515" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="217" enabled="false" disabled_reason="hidden">
+		<product item_id="162000069" count="5" index="1" probability="9900" />
+		<product item_id="162000066" count="5" index="2" probability="100" />
+		<materials>
+			<item item_id="186020513" count="25" selected="false" />
+			<item item_id="186020520" count="7" selected="false" />
+			<item item_id="186020523" count="6" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="218" enabled="false" disabled_reason="hidden">
+		<product item_id="162000069" count="15" index="1" probability="9900" />
+		<product item_id="162000066" count="15" index="2" probability="100" />
+		<materials>
+			<item item_id="186020523" count="4" selected="false" />
+			<item item_id="186020521" count="2" selected="false" />
+			<item item_id="186020515" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="219" enabled="false" disabled_reason="hidden">
+		<product item_id="162000070" count="5" index="1" probability="9900" />
+		<product item_id="162000066" count="5" index="2" probability="100" />
+		<materials>
+			<item item_id="186020513" count="25" selected="false" />
+			<item item_id="186020520" count="7" selected="false" />
+			<item item_id="186020523" count="6" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="220" enabled="false" disabled_reason="hidden">
+		<product item_id="162000070" count="15" index="1" probability="9900" />
+		<product item_id="162000066" count="15" index="2" probability="100" />
+		<materials>
+			<item item_id="186020523" count="4" selected="false" />
+			<item item_id="186020521" count="2" selected="false" />
+			<item item_id="186020515" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="221" enabled="false" disabled_reason="hidden">
+		<product item_id="162003518" count="1" index="1" probability="9900" />
+		<product item_id="162003519" count="1" index="2" probability="100" />
+		<materials>
+			<item item_id="186020513" count="10" selected="false" />
+			<item item_id="186020516" count="5" selected="false" />
+			<item item_id="186020522" count="4" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="222" enabled="false" disabled_reason="hidden">
+		<product item_id="162003518" count="5" index="1" probability="9900" />
+		<product item_id="162003519" count="5" index="2" probability="100" />
+		<materials>
+			<item item_id="186020522" count="7" selected="false" />
+			<item item_id="186020517" count="3" selected="false" />
+			<item item_id="186020514" count="3" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="223" enabled="false" disabled_reason="hidden">
+		<product item_id="162003518" count="15" index="1" probability="9900" />
+		<product item_id="162003519" count="15" index="2" probability="100" />
+		<materials>
+			<item item_id="186020514" count="4" selected="false" />
+			<item item_id="186020518" count="2" selected="false" />
+			<item item_id="186020524" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="224" enabled="false" disabled_reason="hidden">
+		<product item_id="141000001" count="50" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020516" count="15" selected="false" />
+			<item item_id="186020519" count="11" selected="false" />
+			<item item_id="186020522" count="7" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="225" enabled="false" disabled_reason="hidden">
+		<product item_id="141000001" count="100" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020522" count="11" selected="false" />
+			<item item_id="186020520" count="7" selected="false" />
+			<item item_id="186020517" count="4" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="226" enabled="false" disabled_reason="hidden">
+		<product item_id="141000001" count="300" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020520" count="6" selected="false" />
+			<item item_id="186020518" count="2" selected="false" />
+			<item item_id="186020524" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="227" enabled="false" disabled_reason="hidden">
+		<product item_id="169000016" count="50" index="1" probability="9500" />
+		<product item_id="169000017" count="50" index="2" probability="500" />
+		<materials>
+			<item item_id="186020516" count="15" selected="false" />
+			<item item_id="186020519" count="11" selected="false" />
+			<item item_id="186020522" count="7" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="228" enabled="false" disabled_reason="hidden">
+		<product item_id="169000016" count="100" index="1" probability="9500" />
+		<product item_id="169000017" count="100" index="2" probability="500" />
+		<materials>
+			<item item_id="186020522" count="11" selected="false" />
+			<item item_id="186020520" count="7" selected="false" />
+			<item item_id="186020517" count="4" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="229" enabled="false" disabled_reason="hidden">
+		<product item_id="169000016" count="300" index="1" probability="9500" />
+		<product item_id="169000017" count="300" index="2" probability="500" />
+		<materials>
+			<item item_id="186020520" count="6" selected="false" />
+			<item item_id="186020518" count="2" selected="false" />
+			<item item_id="186020524" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="230" enabled="false" disabled_reason="hidden">
+		<product item_id="164000010" count="3" index="1" probability="9900" />
+		<product item_id="161000004" count="1" index="2" probability="100" />
+		<materials>
+			<item item_id="186020513" count="11" selected="false" />
+			<item item_id="186020519" count="8" selected="false" />
+			<item item_id="186020522" count="6" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="231" enabled="false" disabled_reason="hidden">
+		<product item_id="164000010" count="10" index="1" probability="9900" />
+		<product item_id="161000004" count="5" index="2" probability="100" />
+		<materials>
+			<item item_id="186020513" count="7" selected="false" />
+			<item item_id="186020520" count="6" selected="false" />
+			<item item_id="186020523" count="7" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="232" enabled="false" disabled_reason="hidden">
+		<product item_id="164000010" count="30" index="1" probability="9900" />
+		<product item_id="161000004" count="15" index="2" probability="100" />
+		<materials>
+			<item item_id="186020523" count="5" selected="false" />
+			<item item_id="186020521" count="2" selected="false" />
+			<item item_id="186020515" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="233" enabled="false" disabled_reason="hidden">
+		<product item_id="188059064" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020520" count="5" selected="false" />
+			<item item_id="186020518" count="2" selected="false" />
+			<item item_id="186020524" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="234" enabled="false" disabled_reason="hidden">
+		<product item_id="188059065" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="187000080" count="1" selected="true" />
+			<item item_id="186020523" count="50" selected="false" />
+			<item item_id="186020520" count="50" selected="false" />
+			<item item_id="186020518" count="50" selected="false" />
+			<item item_id="186020524" count="50" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="187000081" count="1" selected="true" />
+			<item item_id="186020523" count="50" selected="false" />
+			<item item_id="186020520" count="50" selected="false" />
+			<item item_id="186020518" count="50" selected="false" />
+			<item item_id="186020524" count="50" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="235" enabled="false" disabled_reason="hidden">
+		<product item_id="188058952" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="125001710" count="1" selected="true" />
+			<item item_id="186020514" count="50" selected="false" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020515" count="50" selected="false" />
+			<item item_id="186020521" count="50" selected="false" />
+			<item item_id="186020518" count="50" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="125001711" count="1" selected="true" />
+			<item item_id="186020514" count="50" selected="false" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020515" count="50" selected="false" />
+			<item item_id="186020521" count="50" selected="false" />
+			<item item_id="186020518" count="50" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="125001712" count="1" selected="true" />
+			<item item_id="186020514" count="50" selected="false" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020515" count="50" selected="false" />
+			<item item_id="186020521" count="50" selected="false" />
+			<item item_id="186020518" count="50" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="125001713" count="1" selected="true" />
+			<item item_id="186020514" count="50" selected="false" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020515" count="50" selected="false" />
+			<item item_id="186020521" count="50" selected="false" />
+			<item item_id="186020518" count="50" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="236" enabled="false" disabled_reason="hidden">
+		<product item_id="188058952" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="125001714" count="1" selected="true" />
+			<item item_id="186020514" count="50" selected="false" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020515" count="50" selected="false" />
+			<item item_id="186020521" count="50" selected="false" />
+			<item item_id="186020518" count="50" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="125001715" count="1" selected="true" />
+			<item item_id="186020514" count="50" selected="false" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020515" count="50" selected="false" />
+			<item item_id="186020521" count="50" selected="false" />
+			<item item_id="186020518" count="50" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="125001716" count="1" selected="true" />
+			<item item_id="186020514" count="50" selected="false" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020515" count="50" selected="false" />
+			<item item_id="186020521" count="50" selected="false" />
+			<item item_id="186020518" count="50" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="125001717" count="1" selected="true" />
+			<item item_id="186020514" count="50" selected="false" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020515" count="50" selected="false" />
+			<item item_id="186020521" count="50" selected="false" />
+			<item item_id="186020518" count="50" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="237" enabled="false" disabled_reason="hidden">
+		<product item_id="188058954" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="121000729" count="1" selected="true" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020520" count="50" selected="false" />
+			<item item_id="186020523" count="50" selected="false" />
+			<item item_id="186020515" count="50" selected="false" />
+			<item item_id="186020518" count="50" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="121000731" count="1" selected="true" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020520" count="50" selected="false" />
+			<item item_id="186020523" count="50" selected="false" />
+			<item item_id="186020515" count="50" selected="false" />
+			<item item_id="186020518" count="50" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="121000730" count="1" selected="true" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020520" count="50" selected="false" />
+			<item item_id="186020523" count="50" selected="false" />
+			<item item_id="186020515" count="50" selected="false" />
+			<item item_id="186020518" count="50" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="121000732" count="1" selected="true" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020520" count="50" selected="false" />
+			<item item_id="186020523" count="50" selected="false" />
+			<item item_id="186020515" count="50" selected="false" />
+			<item item_id="186020518" count="50" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="238" enabled="false" disabled_reason="hidden">
+		<product item_id="188058951" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="120000800" count="1" selected="true" />
+			<item item_id="186020514" count="50" selected="false" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020520" count="50" selected="false" />
+			<item item_id="186020515" count="50" selected="false" />
+			<item item_id="186020524" count="50" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="120000802" count="1" selected="true" />
+			<item item_id="186020514" count="50" selected="false" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020520" count="50" selected="false" />
+			<item item_id="186020515" count="50" selected="false" />
+			<item item_id="186020524" count="50" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="120000801" count="1" selected="true" />
+			<item item_id="186020514" count="50" selected="false" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020520" count="50" selected="false" />
+			<item item_id="186020515" count="50" selected="false" />
+			<item item_id="186020524" count="50" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="120000803" count="1" selected="true" />
+			<item item_id="186020514" count="50" selected="false" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020520" count="50" selected="false" />
+			<item item_id="186020515" count="50" selected="false" />
+			<item item_id="186020524" count="50" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="239" enabled="false" disabled_reason="hidden">
+		<product item_id="188058955" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="122000849" count="1" selected="true" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020520" count="50" selected="false" />
+			<item item_id="186020523" count="50" selected="false" />
+			<item item_id="186020521" count="50" selected="false" />
+			<item item_id="186020524" count="50" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="122000851" count="1" selected="true" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020520" count="50" selected="false" />
+			<item item_id="186020523" count="50" selected="false" />
+			<item item_id="186020521" count="50" selected="false" />
+			<item item_id="186020524" count="50" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="122000850" count="1" selected="true" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020520" count="50" selected="false" />
+			<item item_id="186020523" count="50" selected="false" />
+			<item item_id="186020521" count="50" selected="false" />
+			<item item_id="186020524" count="50" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="122000852" count="1" selected="true" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020520" count="50" selected="false" />
+			<item item_id="186020523" count="50" selected="false" />
+			<item item_id="186020521" count="50" selected="false" />
+			<item item_id="186020524" count="50" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="240" enabled="false" disabled_reason="hidden">
+		<product item_id="188058953" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="123000842" count="1" selected="true" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020520" count="50" selected="false" />
+			<item item_id="186020523" count="50" selected="false" />
+			<item item_id="186020521" count="50" selected="false" />
+			<item item_id="186020524" count="50" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="123000844" count="1" selected="true" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020520" count="50" selected="false" />
+			<item item_id="186020523" count="50" selected="false" />
+			<item item_id="186020521" count="50" selected="false" />
+			<item item_id="186020524" count="50" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="123000843" count="1" selected="true" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020520" count="50" selected="false" />
+			<item item_id="186020523" count="50" selected="false" />
+			<item item_id="186020521" count="50" selected="false" />
+			<item item_id="186020524" count="50" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="123000845" count="1" selected="true" />
+			<item item_id="186020517" count="50" selected="false" />
+			<item item_id="186020520" count="50" selected="false" />
+			<item item_id="186020523" count="50" selected="false" />
+			<item item_id="186020521" count="50" selected="false" />
+			<item item_id="186020524" count="50" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="241" enabled="false" disabled_reason="hidden">
+		<product item_id="188059342" count="1" index="1" probability="1000" />
+		<refund item_id="188100446" count="1" />
+		<materials>
+			<item item_id="186020388" count="2" selected="false" />
+			<item item_id="186020525" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="242" enabled="false" disabled_reason="hidden">
+		<product item_id="188058624" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020525" count="40" selected="false" />
+			<item item_id="182400001" count="1000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="243" enabled="false" disabled_reason="hidden">
+		<product item_id="188058625" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020525" count="30" selected="false" />
+			<item item_id="182400001" count="700000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="244" enabled="false" disabled_reason="hidden">
+		<product item_id="188058626" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020525" count="15" selected="false" />
+			<item item_id="182400001" count="350000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="245" enabled="false" disabled_reason="hidden">
+		<product item_id="188058627" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020525" count="15" selected="false" />
+			<item item_id="182400001" count="350000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="246" enabled="false" disabled_reason="hidden">
+		<product item_id="188058628" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020525" count="20" selected="false" />
+			<item item_id="182400001" count="500000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="247" enabled="false" disabled_reason="hidden">
+		<product item_id="188058629" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020525" count="15" selected="false" />
+			<item item_id="182400001" count="350000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="248" ceiling_max_point="200" failure_ceiling_point_min="13" failure_ceiling_point_max="20" enabled="false" disabled_reason="hidden">
+		<product item_id="188058630" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="186020388" count="30" selected="false" />
+			<item item_id="186020525" count="20" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="249" ceiling_max_point="200" failure_ceiling_point_min="13" failure_ceiling_point_max="20" enabled="false" disabled_reason="hidden">
+		<product item_id="188058631" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="186020388" count="20" selected="false" />
+			<item item_id="186020525" count="16" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="250" ceiling_max_point="200" failure_ceiling_point_min="13" failure_ceiling_point_max="20" enabled="false" disabled_reason="hidden">
+		<product item_id="188058632" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="186020388" count="10" selected="false" />
+			<item item_id="186020525" count="8" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="251" ceiling_max_point="200" failure_ceiling_point_min="13" failure_ceiling_point_max="20" enabled="false" disabled_reason="hidden">
+		<product item_id="188058633" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="186020388" count="10" selected="false" />
+			<item item_id="186020525" count="8" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="252" ceiling_max_point="200" failure_ceiling_point_min="13" failure_ceiling_point_max="20" enabled="false" disabled_reason="hidden">
+		<product item_id="188058634" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="186020388" count="15" selected="false" />
+			<item item_id="186020525" count="12" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="253" ceiling_max_point="200" failure_ceiling_point_min="13" failure_ceiling_point_max="20" enabled="false" disabled_reason="hidden">
+		<product item_id="188058635" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="186020388" count="10" selected="false" />
+			<item item_id="186020525" count="8" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="254" ceiling_max_point="200" failure_ceiling_point_min="13" failure_ceiling_point_max="20" enabled="false" disabled_reason="hidden">
+		<product item_id="188058974" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="186020388" count="20" selected="false" />
+			<item item_id="186020525" count="16" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="255" ceiling_max_point="200" failure_ceiling_point_min="13" failure_ceiling_point_max="20" enabled="false" disabled_reason="hidden">
+		<product item_id="188058976" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="186020388" count="20" selected="false" />
+			<item item_id="186020525" count="16" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="256" ceiling_max_point="200" failure_ceiling_point_min="13" failure_ceiling_point_max="20" enabled="false" disabled_reason="hidden">
+		<product item_id="188058973" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="186020388" count="15" selected="false" />
+			<item item_id="186020525" count="12" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="257" ceiling_max_point="200" failure_ceiling_point_min="13" failure_ceiling_point_max="20" enabled="false" disabled_reason="hidden">
+		<product item_id="188058977" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="186020388" count="10" selected="false" />
+			<item item_id="186020525" count="8" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="258" ceiling_max_point="200" failure_ceiling_point_min="13" failure_ceiling_point_max="20" enabled="false" disabled_reason="hidden">
+		<product item_id="188058975" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="186020388" count="10" selected="false" />
+			<item item_id="186020525" count="8" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="259" enabled="false" disabled_reason="hidden">
+		<product item_id="188059356" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="188100453" count="1" selected="false" />
+			<item item_id="188100452" count="2" selected="false" />
+			<item item_id="188100454" count="2" selected="false" />
+			<item item_id="188100450" count="2" selected="false" />
+			<item item_id="188100447" count="1" selected="false" />
+			<item item_id="188100448" count="2" selected="false" />
+			<item item_id="188100449" count="1" selected="false" />
+			<item item_id="188100451" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="260" enabled="false" disabled_reason="hidden">
+		<product item_id="186020525" count="1" index="1" probability="3500" />
+		<materials>
+			<item item_id="186020388" count="1" selected="false" />
+			<item item_id="186020528" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="269" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="125003455" count="1" index="1" probability="3" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="270" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="125003455" count="1" index="1" probability="3" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="271" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="120001406" count="1" index="1" probability="3" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="272" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="122001590" count="1" index="1" probability="3" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="273" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="120001406" count="1" index="1" probability="3" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="274" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188059463" count="1" index="1" probability="50" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="500000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="275" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188058096" count="1" index="1" probability="40" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="1000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="276" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="125003455" count="1" index="1" probability="3" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="277" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="125003455" count="1" index="1" probability="3" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="278" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="120001406" count="1" index="1" probability="3" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="279" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="122001590" count="1" index="1" probability="3" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="280" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="120001406" count="1" index="1" probability="3" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="281" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188059463" count="1" index="1" probability="50" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="500000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="282" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188058096" count="1" index="1" probability="40" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="1000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="283" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="125003455" count="1" index="1" probability="3" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="284" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="125003455" count="1" index="1" probability="3" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="285" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="120001406" count="1" index="1" probability="3" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="286" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="122001590" count="1" index="1" probability="3" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="287" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="120001406" count="1" index="1" probability="3" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="288" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188059463" count="1" index="1" probability="70" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="500000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="289" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188058096" count="1" index="1" probability="30" />
+		<materials>
+			<item item_id="166300000" count="1" selected="false" />
+			<item item_id="182400001" count="1000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="290" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188059483" count="1" index="1" probability="30" />
+		<materials>
+			<item item_id="166300000" count="3" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="291" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188059481" count="1" index="1" probability="30" />
+		<materials>
+			<item item_id="166300000" count="2" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="292" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188059482" count="1" index="1" probability="30" />
+		<materials>
+			<item item_id="166300000" count="2" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="293" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188059484" count="1" index="1" probability="30" />
+		<materials>
+			<item item_id="166300000" count="3" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="294" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188059483" count="1" index="1" probability="30" />
+		<materials>
+			<item item_id="166300000" count="3" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="295" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188059482" count="1" index="1" probability="30" />
+		<materials>
+			<item item_id="166300000" count="2" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="296" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188059481" count="1" index="1" probability="30" />
+		<materials>
+			<item item_id="166300000" count="2" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="297" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188059050" count="1" index="1" probability="1" />
+		<materials>
+			<item item_id="186020532" count="3" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="298" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188059466" count="1" index="1" probability="7" />
+		<materials>
+			<item item_id="186020532" count="1" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="299" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188057962" count="1" index="1" probability="5" />
+		<materials>
+			<item item_id="186020532" count="2" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="300" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188059050" count="1" index="1" probability="1" />
+		<materials>
+			<item item_id="186020532" count="3" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="301" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188058382" count="1" index="1" probability="10" />
+		<materials>
+			<item item_id="186020532" count="2" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="302" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188059465" count="1" index="1" probability="20" />
+		<materials>
+			<item item_id="186020532" count="1" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="303" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188059464" count="1" index="1" probability="10" />
+		<materials>
+			<item item_id="186020532" count="2" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="304" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188059050" count="1" index="1" probability="1" />
+		<materials>
+			<item item_id="186020532" count="3" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="305" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188059466" count="1" index="1" probability="7" />
+		<materials>
+			<item item_id="186020532" count="1" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="306" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188057962" count="1" index="1" probability="5" />
+		<materials>
+			<item item_id="186020532" count="2" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="307" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188059050" count="1" index="1" probability="1" />
+		<materials>
+			<item item_id="186020532" count="3" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="308" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188058382" count="1" index="1" probability="10" />
+		<materials>
+			<item item_id="186020532" count="2" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="309" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188059465" count="1" index="1" probability="20" />
+		<materials>
+			<item item_id="186020532" count="1" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="310" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188059464" count="1" index="1" probability="10" />
+		<materials>
+			<item item_id="186020532" count="2" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="311" enabled="false" disabled_reason="hidden">
+		<product item_id="169591414" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="186020388" count="20" selected="false" />
+			<item item_id="182400001" count="800000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020388" count="20" selected="false" />
+			<item item_id="186020525" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="312" enabled="false" disabled_reason="hidden">
+		<product item_id="169591415" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="186020388" count="20" selected="false" />
+			<item item_id="182400001" count="800000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020388" count="20" selected="false" />
+			<item item_id="186020525" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="313" enabled="false" disabled_reason="hidden">
+		<product item_id="169591416" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="186020388" count="20" selected="false" />
+			<item item_id="182400001" count="800000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020388" count="20" selected="false" />
+			<item item_id="186020525" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="314" enabled="false" disabled_reason="hidden">
+		<product item_id="169591417" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="186020388" count="20" selected="false" />
+			<item item_id="182400001" count="800000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020388" count="20" selected="false" />
+			<item item_id="186020525" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="315" enabled="false" disabled_reason="hidden">
+		<product item_id="169591418" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="186020388" count="20" selected="false" />
+			<item item_id="182400001" count="800000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="186020388" count="20" selected="false" />
+			<item item_id="186020525" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="316" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188056939" count="1" index="1" probability="800" />
+		<materials>
+			<item item_id="166300000" count="60" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="317" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188058393" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="166300000" count="50" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="318" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="186020356" count="1" index="1" probability="1000" />
+		<materials>
+			<item item_id="166300000" count="20" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="319" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="186020388" count="10" index="1" probability="5000" />
+		<materials>
+			<item item_id="166300000" count="5" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="320" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188058380" count="20" index="1" probability="1000" />
+		<materials>
+			<item item_id="166300000" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="389" enabled="false" disabled_reason="hidden">
+		<product item_id="188058380" count="10" index="1" probability="1000" />
+		<materials>
+			<item item_id="166300000" count="8" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="390" enabled="false" disabled_reason="hidden">
+		<product item_id="188058380" count="10" index="1" probability="1000" />
+		<materials>
+			<item item_id="188056665" count="4" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="391" enabled="false" disabled_reason="hidden">
+		<product item_id="174000003" count="10" index="1" probability="1000" />
+		<materials>
+			<item item_id="166300000" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="392" enabled="false" disabled_reason="hidden">
+		<product item_id="174000003" count="10" index="1" probability="1000" />
+		<materials>
+			<item item_id="188056665" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="393" enabled="false" disabled_reason="hidden">
+		<product item_id="186020404" count="30" index="1" probability="1000" />
+		<materials>
+			<item item_id="166300000" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="394" enabled="false" disabled_reason="hidden">
+		<product item_id="186020404" count="30" index="1" probability="1000" />
+		<materials>
+			<item item_id="188056665" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="395" enabled="false" disabled_reason="hidden">
+		<product item_id="186020387" count="15" index="1" probability="1000" />
+		<materials>
+			<item item_id="166300000" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="396" enabled="false" disabled_reason="hidden">
+		<product item_id="186020387" count="15" index="1" probability="1000" />
+		<materials>
+			<item item_id="188056665" count="5" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="397" enabled="false" disabled_reason="hidden">
+		<product item_id="186020356" count="1" index="1" probability="500" />
+		<materials>
+			<item item_id="166300000" count="8" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="398" enabled="false" disabled_reason="hidden">
+		<product item_id="186020356" count="1" index="1" probability="500" />
+		<materials>
+			<item item_id="188056665" count="4" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="399" enabled="false" disabled_reason="hidden">
+		<product item_id="188058381" count="10" index="1" probability="200" />
+		<materials>
+			<item item_id="166300000" count="8" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="400" enabled="false" disabled_reason="hidden">
+		<product item_id="188058381" count="10" index="1" probability="200" />
+		<materials>
+			<item item_id="188056665" count="4" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="401" enabled="false" disabled_reason="hidden">
+		<product item_id="123001245" count="1" index="1" probability="2000" />
+		<materials>
+			<item item_id="166300000" count="4" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="402" enabled="false" disabled_reason="hidden">
+		<product item_id="123001245" count="1" index="1" probability="2000" />
+		<materials>
+			<item item_id="188056665" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="770" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188040165" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020507" count="60" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="771" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188040166" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020507" count="45" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="772" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188040167" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020507" count="30" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="773" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188040168" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020507" count="15" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="774" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188040169" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020507" count="5" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="783" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188040221" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020589" count="1" selected="false" />
+			<item item_id="186020502" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="784" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188040222" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020590" count="1" selected="false" />
+			<item item_id="186020503" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="785" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188040223" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020591" count="1" selected="false" />
+			<item item_id="186020505" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="786" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188040224" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020592" count="1" selected="false" />
+			<item item_id="186020504" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="787" enabled="false" disabled_reason="hidden,limited">
+		<product item_id="188040225" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020593" count="1" selected="false" />
+			<item item_id="186020506" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="801" enabled="false" disabled_reason="hidden">
+		<product item_id="188059355" count="1" index="1" probability="3875" />
+		<product item_id="188058382" count="1" index="2" probability="25" />
+		<refund item_id="188058380" count="1" />
+		<materials>
+			<item item_id="186020496" count="10" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="25000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="802" enabled="false" disabled_reason="hidden">
+		<product item_id="188058382" count="1" index="1" probability="94" />
+		<product item_id="169611175" count="1" index="2" probability="1" />
+		<refund item_id="188059355" count="1" />
+		<materials>
+			<item item_id="186020496" count="30" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="100000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="803" enabled="false" disabled_reason="hidden">
+		<product item_id="188059355" count="1" index="1" probability="8650" />
+		<product item_id="188058382" count="1" index="2" probability="150" />
+		<refund item_id="188058380" count="1" />
+		<materials>
+			<item item_id="186020497" count="10" selected="false" />
+			<item item_id="186020389" count="2" selected="false" />
+			<item item_id="182400001" count="50000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="804" enabled="false" disabled_reason="hidden">
+		<product item_id="188058382" count="1" index="1" probability="597" />
+		<product item_id="169611175" count="1" index="2" probability="2" />
+		<refund item_id="188059355" count="1" />
+		<materials>
+			<item item_id="186020497" count="30" selected="false" />
+			<item item_id="186020389" count="2" selected="false" />
+			<item item_id="182400001" count="200000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="805" enabled="false" disabled_reason="hidden">
+		<product item_id="169611248" count="1" index="1" probability="9700" />
+		<product item_id="169611175" count="1" index="2" probability="300" />
+		<materials>
+			<item item_id="186020500" count="18" selected="false" />
+			<item item_id="182400001" count="25000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="806" enabled="false" disabled_reason="hidden">
+		<product item_id="188040279" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="182400001" count="3500000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="807" enabled="false" disabled_reason="hidden">
+		<product item_id="186020620" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020626" count="3" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="808" enabled="false" disabled_reason="hidden">
+		<product item_id="186020621" count="1" index="1" probability="4000" />
+		<refund item_id="186020627" count="1" />
+		<materials>
+			<item item_id="186020620" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="809" enabled="false" disabled_reason="hidden">
+		<product item_id="186020621" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020620" count="3" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="810" enabled="false" disabled_reason="hidden">
+		<product item_id="186020622" count="1" index="1" probability="2500" />
+		<refund item_id="186020627" count="4" />
+		<materials>
+			<item item_id="186020621" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="811" enabled="false" disabled_reason="hidden">
+		<product item_id="186020622" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020621" count="5" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="812" enabled="false" disabled_reason="hidden">
+		<product item_id="186020623" count="1" index="1" probability="2000" />
+		<refund item_id="186020627" count="10" />
+		<materials>
+			<item item_id="186020622" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="813" enabled="false" disabled_reason="hidden">
+		<product item_id="186020623" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020622" count="6" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="814" enabled="false" disabled_reason="hidden">
+		<product item_id="186020624" count="1" index="1" probability="1500" />
+		<refund item_id="186020627" count="20" />
+		<materials>
+			<item item_id="186020623" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="815" enabled="false" disabled_reason="hidden">
+		<product item_id="186020624" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020623" count="7" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="816" enabled="false" disabled_reason="hidden">
+		<product item_id="186020625" count="1" index="1" probability="1000" />
+		<refund item_id="186020627" count="50" />
+		<materials>
+			<item item_id="186020624" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="817" enabled="false" disabled_reason="hidden">
+		<product item_id="186020625" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020624" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="818" enabled="false" disabled_reason="hidden">
+		<product item_id="188055580" count="35" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020387" count="1" selected="false" />
+			<item item_id="182400001" count="300000" selected="false" />
+			<item item_id="186020627" count="4" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="819" enabled="false" disabled_reason="hidden">
+		<product item_id="174000003" count="25" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020387" count="3" selected="false" />
+			<item item_id="182400001" count="1000000" selected="false" />
+			<item item_id="186020627" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="820" enabled="false" disabled_reason="hidden">
+		<product item_id="188900121" count="175" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020387" count="5" selected="false" />
+			<item item_id="182400001" count="2000000" selected="false" />
+			<item item_id="186020627" count="100" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="821" enabled="false" disabled_reason="hidden">
+		<product item_id="188058382" count="2" index="1" probability="5500" />
+		<materials>
+			<item item_id="186020387" count="10" selected="false" />
+			<item item_id="182400001" count="5000000" selected="false" />
+			<item item_id="186020627" count="200" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="822" enabled="false" disabled_reason="hidden">
+		<product item_id="122001590" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020387" count="80" selected="false" />
+			<item item_id="182400001" count="50000000" selected="false" />
+			<item item_id="186020627" count="1000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="823" enabled="false" disabled_reason="hidden">
+		<product item_id="186020625" count="1" index="1" probability="5" />
+		<materials>
+			<item item_id="186020387" count="1" selected="false" />
+			<item item_id="182400001" count="150000" selected="false" />
+			<item item_id="186020627" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="824" enabled="false" disabled_reason="hidden">
+		<product item_id="186020625" count="1" index="1" probability="1" />
+		<materials>
+			<item item_id="186020627" count="150" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="825" enabled="false" disabled_reason="hidden">
+		<product item_id="186020623" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020627" count="600" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="826" enabled="false" disabled_reason="hidden">
+		<product item_id="188900011" count="10" index="1" probability="1000" />
+		<materials>
+			<item item_id="186020627" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="888" enabled="false" disabled_reason="hidden">
+		<product item_id="188100480" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020477" count="2" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="889" enabled="false" disabled_reason="hidden">
+		<product item_id="188100482" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020477" count="3" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="890" enabled="false" disabled_reason="hidden">
+		<product item_id="188100484" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020477" count="5" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="891" enabled="false" disabled_reason="hidden">
+		<product item_id="188100486" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020477" count="10" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="892" enabled="false" disabled_reason="hidden">
+		<product item_id="166300500" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020477" count="4" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="893" enabled="false" disabled_reason="hidden">
+		<product item_id="186020388" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020477" count="100" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="894" enabled="false" disabled_reason="hidden">
+		<product item_id="186020387" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020477" count="120" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="895" enabled="false" disabled_reason="hidden">
+		<product item_id="186020356" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020477" count="80" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="896" enabled="false" disabled_reason="hidden">
+		<product item_id="188057637" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020477" count="110" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="897" enabled="false" disabled_reason="hidden">
+		<product item_id="188057638" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020477" count="110" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="898" enabled="false" disabled_reason="hidden">
+		<product item_id="188057639" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020477" count="110" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="899" enabled="false" disabled_reason="hidden">
+		<product item_id="188057640" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020477" count="110" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="900" enabled="false" disabled_reason="hidden">
+		<product item_id="188057641" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020477" count="110" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="901" enabled="false" disabled_reason="hidden">
+		<product item_id="140005179" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020477" count="75" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="902" enabled="false" disabled_reason="hidden">
+		<product item_id="140005189" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020477" count="75" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="903" enabled="false" disabled_reason="hidden">
+		<product item_id="140005199" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020477" count="75" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="904" enabled="false" disabled_reason="hidden">
+		<product item_id="188055263" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020477" count="20" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="905" enabled="false" disabled_reason="hidden">
+		<product item_id="188059441" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020477" count="5" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="906" enabled="false" disabled_reason="hidden">
+		<product item_id="186020499" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020477" count="110" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="907" enabled="false" disabled_reason="hidden">
+		<product item_id="188055591" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="186020477" count="9" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="969" enabled="false" disabled_reason="hidden">
+		<product item_id="186020421" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="167000596" count="1" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="250000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="167000597" count="1" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="250000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="167000598" count="1" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="250000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="167000599" count="1" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="250000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="970" enabled="false" disabled_reason="hidden">
+		<product item_id="186020421" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="167000600" count="1" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="250000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="167000601" count="1" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="250000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="167000602" count="1" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="250000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="167000603" count="1" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="250000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="971" enabled="false" disabled_reason="hidden">
+		<product item_id="186020421" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="167000604" count="1" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="250000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="167000605" count="1" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="250000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="167000606" count="1" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="250000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="167000607" count="1" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="250000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="972" enabled="false" disabled_reason="hidden">
+		<product item_id="186020421" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="167000608" count="1" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="250000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="167000609" count="1" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="250000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="167000610" count="1" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="250000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="167000613" count="1" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="250000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="973" enabled="false" disabled_reason="hidden">
+		<product item_id="186020421" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="167000614" count="1" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="250000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="167000615" count="1" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="250000" selected="false" />
+		</materials>
+		<materials>
+			<item item_id="167000616" count="1" selected="false" />
+			<item item_id="186020389" count="1" selected="false" />
+			<item item_id="182400001" count="250000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="974" enabled="false" disabled_reason="hidden">
+		<product item_id="122001561" count="1" index="1" probability="5" />
+		<materials>
+			<item item_id="186020421" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="975" enabled="false" disabled_reason="hidden">
+		<product item_id="169611175" count="1" index="1" probability="10" />
+		<materials>
+			<item item_id="186020421" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="976" enabled="false" disabled_reason="hidden">
+		<product item_id="167000619" count="1" index="1" probability="50" />
+		<materials>
+			<item item_id="186020421" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="977" enabled="false" disabled_reason="hidden">
+		<product item_id="167000617" count="1" index="1" probability="50" />
+		<materials>
+			<item item_id="186020421" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="978" enabled="false" disabled_reason="hidden">
+		<product item_id="167000618" count="1" index="1" probability="50" />
+		<materials>
+			<item item_id="186020421" count="1" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="1008" enabled="false" disabled_reason="hidden">
+		<product item_id="188040515" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="182400001" count="1000000" selected="false" />
+		</materials>
+	</recipe>
+	<recipe id="1009" enabled="false" disabled_reason="hidden">
+		<product item_id="188040516" count="1" index="1" probability="10000" />
+		<materials>
+			<item item_id="182499001" count="10" selected="false" />
+		</materials>
+	</recipe>
+</siel_anvil_recipes>
