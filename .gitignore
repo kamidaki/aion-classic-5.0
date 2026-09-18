@@ -104,5 +104,7 @@ database.properties
 4 - Patch para o Client 5.0/l10n/BRA/Textures/
 4 - Patch para o Client 5.0/bin32/
 4 - Patch para o Client 5.0/bin64/Aion.bin
+4 - Patch para o Client 5.0/data/dump/
+*.dmp
 
 
