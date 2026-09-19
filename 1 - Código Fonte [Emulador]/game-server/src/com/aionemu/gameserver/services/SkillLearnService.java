@@ -1,5 +1,7 @@
 package com.aionemu.gameserver.services;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,6 +25,7 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 public class SkillLearnService {
 
 	private static final Logger log = LoggerFactory.getLogger(SkillLearnService.class);
+	private static final ThreadLocal<Boolean> syncingBlendedSkills = ThreadLocal.withInitial(() -> false);
 
 	public static void onLearnSkill(Player player, int skillId, int skillLevel, boolean isNew) {
 		PlayerSkillEntry skill = player.getSkillList().getSkillEntry(skillId);
@@ -50,6 +53,7 @@ public class SkillLearnService {
 		}
 		if (skill.isCraftingSkill() || skill.isMorphSkill())
 			RecipeService.autoLearnRecipes(player, skillId, skillLevel);
+		syncBlendedSkills(player);
 	}
 
 	private static void sendPacket(Player player, PlayerSkillEntry skill, boolean isNew) {
@@ -83,6 +87,7 @@ public class SkillLearnService {
 				player.getSkillList().addSkill(player, 30002, player.getSkillList().getSkillLevel(30001));
 			removeSkill(player, 30001);
 		}
+		syncBlendedSkills(player);
 	}
 
 	public static void learnTemporarySkill(Player player, int skillId, int skillLevel) {
@@ -103,10 +108,24 @@ public class SkillLearnService {
 		}
 	}
 
-	public static void learnSkillBook(Player player, int skillId) {
-		for (SkillLearnTemplate skill : DataManager.SKILL_TREE_DATA.getSkillsForSkill(skillId, player.getPlayerClass(), player.getRace(),
-			player.getLevel()))
-			player.getSkillList().addSkill(player, skillId, skill.getSkillLevel());
+	public static boolean learnSkillBook(Player player, int skillId) {
+		return learnSkillBook(player, skillId, 1);
+	}
+
+	public static boolean learnSkillBook(Player player, int skillId, int fallbackSkillLevel) {
+		List<SkillLearnTemplate> skills = DataManager.SKILL_TREE_DATA.getSkillsForSkill(skillId, player.getPlayerClass(), player.getRace(),
+			player.getLevel());
+		boolean learned = false;
+		if (skills != null && !skills.isEmpty()) {
+			for (SkillLearnTemplate skill : skills) {
+				if (player.getSkillList().addSkill(player, skillId, skill.getSkillLevel()))
+					learned = true;
+			}
+		} else {
+			int lvl = fallbackSkillLevel > 0 ? fallbackSkillLevel : 1;
+			learned = player.getSkillList().addSkill(player, skillId, lvl);
+		}
+		return learned;
 	}
 
 	public static boolean removeSkill(Player player, int skillId) {
@@ -117,8 +136,27 @@ public class SkillLearnService {
 				player.getEffectController().removeEffect(skillId);
 			player.getSkillList().removeSkill(skillId);
 			PacketSendUtility.sendPacket(player, new SM_SKILL_REMOVE(skill));
+			syncBlendedSkills(player);
 			return true;
 		}
 		return false;
+	}
+
+	private static void syncBlendedSkills(Player player) {
+		if (syncingBlendedSkills.get())
+			return;
+		syncingBlendedSkills.set(true);
+		try {
+			for (SkillLearnTemplate template : DataManager.SKILL_TREE_DATA.getBlendedSkillsFor(player.getPlayerClass(), player.getRace())) {
+				boolean shouldKnow = template.hasBlendingSources(player.getSkillList());
+				boolean knows = player.getSkillList().isSkillPresent(template.getSkillId());
+				if (shouldKnow && !knows)
+					learnTemporarySkill(player, template.getSkillId(), template.getSkillLevel());
+				else if (!shouldKnow && knows)
+					removeSkill(player, template.getSkillId());
+			}
+		} finally {
+			syncingBlendedSkills.remove();
+		}
 	}
 }

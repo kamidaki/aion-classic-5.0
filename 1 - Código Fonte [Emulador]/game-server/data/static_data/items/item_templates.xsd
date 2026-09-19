@@ -253,6 +253,7 @@
 				<xs:attribute name="level" type="xs:int"/>
 				<xs:attribute name="class" type="playerClass"/>
 				<xs:attribute name="skillid" type="xs:int"/>
+				<xs:attribute name="skill_level" type="xs:int"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>

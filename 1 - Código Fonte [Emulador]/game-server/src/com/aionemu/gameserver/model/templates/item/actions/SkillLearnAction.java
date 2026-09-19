@@ -27,6 +27,8 @@ public class SkillLearnAction extends AbstractItemAction {
 	protected int level;
 	@XmlAttribute(name = "class")
 	protected PlayerClass playerClass;
+	@XmlAttribute(name = "skill_level")
+	protected int skillLevel = 1;
 
 	@Override
 	public boolean canAct(Player player, Item parentItem, Item targetItem, Object... params) {
@@ -43,8 +45,11 @@ public class SkillLearnAction extends AbstractItemAction {
 		if (player.getRace() != race && race != Race.PC_ALL)
 			return false;
 		// 5. check whether this skill is already learned
-		if (player.getSkillList().isSkillPresent(skillid))
-			return false;
+		if (player.getSkillList().isSkillPresent(skillid)) {
+			int targetLvl = skillLevel > 0 ? skillLevel : 1;
+			if (player.getSkillList().getSkillLevel(skillid) >= targetLvl)
+				return false;
+		}
 
 		return true;
 	}
@@ -55,16 +60,35 @@ public class SkillLearnAction extends AbstractItemAction {
 			new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem.getItemId()), true);
 
 		// add skill (the "you learned" message is embedded in SM_SKILL_LIST, sent by SkillLearnService)
-		SkillLearnService.learnSkillBook(player, skillid);
+		boolean learned = SkillLearnService.learnSkillBook(player, skillid, skillLevel);
+		if (!learned)
+			return;
 
 		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_USE_ITEM(parentItem.getL10n()));
 
 		// remove book from inventory (assuming its not stackable)
 		Item item = player.getInventory().getItemByObjId(parentItem.getObjectId());
-		player.getInventory().delete(item);
+		if (item != null)
+			player.getInventory().delete(item);
 	}
 
 	private boolean validateClass(PlayerClass pc) {
 		return playerClass == null || playerClass == pc || playerClass == pc.getStartingClass();
+	}
+
+	public int getSkillid() {
+		return skillid;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public PlayerClass getPlayerClass() {
+		return playerClass;
+	}
+
+	public int getSkillLevel() {
+		return skillLevel;
 	}
 }

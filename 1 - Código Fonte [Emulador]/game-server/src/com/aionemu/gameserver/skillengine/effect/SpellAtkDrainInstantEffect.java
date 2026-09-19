@@ -29,12 +29,15 @@ public class SpellAtkDrainInstantEffect extends DamageEffect {
 	public void applyEffect(Effect effect) {
 		super.applyEffect(effect);
 		ThreadPoolManager.getInstance().schedule(() -> {
+			if (effect.getEffector() == null || effect.getEffector().getLifeStats() == null || effect.getEffector().isDead()) {
+				return;
+			}
 			if (hpPercent != 0) {
-				effect.getEffector().getLifeStats().increaseHp(TYPE.HP, effect.getReserveds(position).getValue() * hpPercent / 100, effect,
+				effect.getEffector().getLifeStats().increaseHp(TYPE.ABSORBED_HP, effect.getReserveds(position).getValue() * hpPercent / 100, effect,
 						LOG.SPELLATKDRAININSTANT);
 			}
 			if (mpPercent != 0) {
-				effect.getEffector().getLifeStats().increaseMp(TYPE.ABSORBED_MP, effect.getReserveds(position).getValue() * mpPercent / 100,
+				effect.getEffector().getLifeStats().increaseMp(TYPE.MP, effect.getReserveds(position).getValue() * mpPercent / 100,
 						effect.getSkillId(), LOG.SPELLATKDRAININSTANT);
 			}
 		}, 1000); // on retail the effect is applied about 1sec later (maybe based on animationTime/hitTime?)

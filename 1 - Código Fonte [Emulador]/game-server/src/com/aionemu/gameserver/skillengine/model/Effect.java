@@ -563,11 +563,9 @@ public class Effect implements StatOwner {
 		Creature effected = getEffected();
 		try {
 			for (EffectTemplate template : successEffects.values()) {
-				if (!shouldApplyFurtherEffects(effected))
+				if (!shouldApplyFurtherEffects(effected, template))
 					break;
 				template.applyEffect(this);
-				if (!shouldApplyFurtherEffects(effected))
-					break;
 				template.startSubEffect(this);
 			}
 			if (applyCriticalEffect && subEffect != null)
@@ -596,12 +594,15 @@ public class Effect implements StatOwner {
 		}
 	}
 
-	private boolean shouldApplyFurtherEffects(Creature effected) {
+	private boolean shouldApplyFurtherEffects(Creature effected, EffectTemplate template) {
 		if (effected != null) {
 			if (!effected.isSpawned() && !skillTemplate.isPassive()) // only allow on despawned if it's a passive skill (players get them during enterWorld)
 				return false;
-			if (effected.isDead() && !skillTemplate.hasResurrectEffect())
+			if (effected.isDead() && !skillTemplate.hasResurrectEffect()) {
+				if (template instanceof SpellAtkDrainInstantEffect || template instanceof SkillAtkDrainInstantEffect)
+					return true;
 				return false;
+			}
 		}
 		return true;
 	}
