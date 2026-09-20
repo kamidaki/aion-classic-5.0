@@ -6,9 +6,11 @@
 			<spot x="1433.9114" y="328.9468" z="240.125" h="0" />
 		</spawn>
 		
+		<!-- DESATIVADO (Alerta Walker: DE4DFAE16E5D520152EA8E45AD91726ABCA50BF3)
 		<spawn npc_id="203359" respawn_time="295">
 			<spot x="2906.6892" y="2441.6099" z="16.25" h="49" walker_id="DE4DFAE16E5D520152EA8E45AD91726ABCA50BF3" />
 		</spawn>
+		-->
 		
 		<spawn npc_id="205120" respawn_time="295">
 			<spot x="2937.0046" y="2426.0222" z="15.5" h="58" />
@@ -50,9 +52,11 @@
 			<spot x="2920.9583" y="2428.0081" z="15.125" h="42" />
 		</spawn>
 		
+		<!-- DESATIVADO (Alerta Walker: DE4DFAE16E5D520152EA8E45AD91726ABCA50BF3)
 		<spawn npc_id="205130" respawn_time="295">
 			<spot x="2908.6892" y="2441.6099" z="16.0" h="49" walker_id="DE4DFAE16E5D520152EA8E45AD91726ABCA50BF3" />
 		</spawn>
+		-->
 		
 		<spawn npc_id="205131" respawn_time="295">
 			<spot x="2892.5105" y="2444.5334" z="17.25" h="15" />
@@ -237,15 +241,17 @@
 		<spawn npc_id="205168" respawn_time="295">
 			<spot x="409.75" y="746.75" z="58.5" h="21" />
 			<spot x="411.79" y="768.59" z="59.0" h="51" />
-			<spot x="414.11" y="790.14" z="61.125" h="43" walker_id="DC3E4F351DDFAFA976CD9BD8F7FEE0D482AD0346" />
+			<!-- DESATIVADO (Alerta Walker: DC3E4F351DDFAFA976CD9BD8F7FEE0D482AD0346): <spot x="414.11" y="790.14" z="61.125" h="43" walker_id="DC3E4F351DDFAFA976CD9BD8F7FEE0D482AD0346" /> -->
 			<spot x="417.75" y="785.75" z="60.625" h="69" />
 			<spot x="423.75" y="769.75" z="60.0" h="74" />
 			<spot x="426.75" y="756.84" z="61.25" h="4" />
 		</spawn>
 		
+		<!-- DESATIVADO (Alerta Walker: DC3E4F351DDFAFA976CD9BD8F7FEE0D482AD0346)
 		<spawn npc_id="205169" respawn_time="295">
 			<spot x="414.5691" y="789.9857" z="60.75" h="43" walker_id="DC3E4F351DDFAFA976CD9BD8F7FEE0D482AD0346" />
 		</spawn>
+		-->
 		
 		<spawn npc_id="205170" respawn_time="295">
 			<spot x="478.4066" y="841.869" z="75.625" h="44" />
