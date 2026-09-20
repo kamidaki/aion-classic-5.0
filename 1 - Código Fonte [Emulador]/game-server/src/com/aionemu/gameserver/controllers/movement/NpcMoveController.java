@@ -185,6 +185,14 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 					clearCachedPath();
 				}
 
+				// Perseguição direta quando há linha de chão desobstruída no NativePath
+				if (canUseDirectTargetMovement(creature, targetX, targetY, targetZ)) {
+					cancelFollow();
+					clearCachedPath();
+					moveToLocation(targetX, targetY, targetZ);
+					break;
+				}
+
 				// ========================================================
 				// CAMADA 1: NATIVE-PATH (CryEngine Native Grid 0.5m)
 				// ========================================================
@@ -197,9 +205,9 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 					if (cachedPath != null && !isPathFailure(cachedPath) && cachedPath.length > 0) {
 						cancelFollow();
 
-						// Pula waypoints intermediários já alcançados
+						// Pula waypoints intermediários já alcançados (0.5m subcélula CryEngine)
 						while (cachedPath != null && cachedPath.length > 1
-								&& PositionUtil.isInRange(owner, cachedPath[0][0], cachedPath[0][1], cachedPath[0][2], 0.8f)) {
+								&& PositionUtil.isInRange(owner, cachedPath[0][0], cachedPath[0][1], cachedPath[0][2], 0.5f)) {
 							float[][] temp = new float[cachedPath.length - 1][];
 							System.arraycopy(cachedPath, 1, temp, 0, cachedPath.length - 1);
 							cachedPath = temp;
@@ -236,7 +244,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 					}
 					if (cachedPath != null && !isPathFailure(cachedPath) && cachedPath.length > 0) {
 						while (cachedPath != null && cachedPath.length > 1
-								&& PositionUtil.isInRange(owner, cachedPath[0][0], cachedPath[0][1], cachedPath[0][2], 0.8f)) {
+								&& PositionUtil.isInRange(owner, cachedPath[0][0], cachedPath[0][1], cachedPath[0][2], 0.5f)) {
 							float[][] temp = new float[cachedPath.length - 1][];
 							System.arraycopy(cachedPath, 1, temp, 0, cachedPath.length - 1);
 							cachedPath = temp;
@@ -346,6 +354,20 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 		if (futureDistPassed > dist) {
 			futureDistPassed = dist;
+		}
+
+		if (futureDistPassed == dist && NativePathConfig.NATIVE_PATH_ENABLE
+				&& (destination == Destination.TARGET_OBJECT || destination == Destination.POINT)) {
+			if (cachedPath != null && cachedPath.length > 0) {
+				float[][] tempCache = new float[cachedPath.length - 1][];
+				if (tempCache.length > 0) {
+					System.arraycopy(cachedPath, 1, tempCache, 0, cachedPath.length - 1);
+					cachedPath = tempCache;
+				} else {
+					cachedPath = null;
+					cachedPathValid = false;
+				}
+			}
 		}
 
 		float distFraction = futureDistPassed / dist;
@@ -562,7 +584,6 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 				started.set(true);
 				owner.getController().onStartMove();
 				updateLastMove();
-				moveToLocation(cachedPath[0][0], cachedPath[0][1], cachedPath[0][2]);
 				return;
 			}
 		}
@@ -633,6 +654,44 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 			}
 		}
 		moveToLocation(pointX, pointY, pointZ);
+	}
+
+	private static final float DIRECT_TARGET_MOVEMENT_MAX_DISTANCE = 15.0f;
+
+	private float calculateMaxZDiff(float distanceXY, Creature target) {
+		if (distanceXY < 1.0f) {
+			return 1.2f;
+		} else if (distanceXY < 3.0f) {
+			return 2.0f;
+		} else if (distanceXY < 5.0f) {
+			return 3.0f;
+		} else if (distanceXY < 8.0f) {
+			return 5.0f;
+		} else if (distanceXY < 10.0f) {
+			return 7.0f;
+		} else if (distanceXY < 15.0f) {
+			return 10.0f;
+		} else if (distanceXY < 20.0f) {
+			return 15.0f;
+		} else {
+			return 20.0f;
+		}
+	}
+
+	private boolean canUseDirectTargetMovement(Creature target, float targetX, float targetY, float targetZ) {
+		if (target == null || !target.isSpawned() || target.isDead() || owner.isFlying() || target.isFlying())
+			return false;
+		double distance = PositionUtil.getDistance(owner.getX(), owner.getY(), owner.getZ(), targetX, targetY, targetZ);
+		if (distance > DIRECT_TARGET_MOVEMENT_MAX_DISTANCE)
+			return false;
+		float maxZDiff = calculateMaxZDiff(
+				(float) PositionUtil.getDistance(owner.getX(), owner.getY(), targetX, targetY), target);
+		if (Math.abs(owner.getZ() - targetZ) > maxZDiff)
+			return false;
+		if (NativePathConfig.NATIVE_PATH_ENABLE) {
+			return NativePathService.getInstance().canWalkDirectly(owner, targetX, targetY, targetZ);
+		}
+		return !GeoDataConfig.GEO_ENABLE || GeoService.getInstance().canSee(owner, target);
 	}
 
 	private boolean isPathFailure(float[][] path) {

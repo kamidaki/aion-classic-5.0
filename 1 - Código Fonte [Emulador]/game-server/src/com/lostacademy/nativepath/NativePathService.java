@@ -7,11 +7,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.model.gameobjects.Creature;
+import com.aionemu.gameserver.world.geo.GeoService;
 
 /**
- * Ponto de entrada e fachada pública de consultas de navegação CryEngine (native-path).
+ * =========================================================================================
+ * LOST ACADEMY — SISTEMA OFICIAL DE NAVEGAÇÃO NATIVA CRYENGINE (*-PATH.DAT)
+ * =========================================================================================
+ * Fachada pública e ponto de entrada central do subsistema de navegação nativa CryEngine.
  *
- * @author KAMIDAKI
+ * Responsabilidades:
+ * 1. Inicialização e monitoramento de telemetria (QPS, tempo de consulta, requisições em voo).
+ * 2. Validação de percurso direto (canWalkDirectly) sem atravessar cercas ou quinas.
+ * 3. Encaminhamento de rotas para o algoritmo híbrido NativePathAStar com suporte a raio de colisão
+ *    e distância de ataque (reachDistance).
+ * 4. Validação de linhas de puxão / habilidades de combate (canPullTarget).
+ *
+ * @author KAMIDAKI & Equipe Lost Academy
  */
 public final class NativePathService {
 
@@ -28,6 +39,9 @@ public final class NativePathService {
 	private static volatile double queriesPerSecond = 0.0;
 	private static volatile long lastQpsResetTime = System.currentTimeMillis();
 
+	/**
+	 * Retorna a taxa atualizada de consultas de navegação por segundo (QPS).
+	 */
 	public static synchronized double getQueriesPerSecond() {
 		long now = System.currentTimeMillis();
 		long delta = now - lastQpsResetTime;
@@ -38,6 +52,9 @@ public final class NativePathService {
 		return queriesPerSecond;
 	}
 
+	/**
+	 * Registra a conclusão de uma consulta de caminho, computando métricas de latência.
+	 */
 	private static void recordQuery(long startTimeNs) {
 		queriesInFlight.decrementAndGet();
 		long duration = System.nanoTime() - startTimeNs;
@@ -48,20 +65,72 @@ public final class NativePathService {
 	private NativePathService() {
 	}
 
+	/**
+	 * Inicializa o serviço e carrega 100% dos mapas nativos CryEngine na memória RAM em paralelo.
+	 * Todas as malhas permanecem permanentemente residentes (paridade com GeoData .geo).
+	 */
 	public void initialize() {
 		if (!NativePathConfig.NATIVE_PATH_ENABLE) {
-			LOG.info("NATIVE_PATH: Subsistema desativado por configuração.");
+			LOG.info("NATIVE_PATH: Subsistema CryEngine desativado por configuração.");
 			return;
 		}
-		LOG.info("NATIVE_PATH: Subsistema CryEngine habilitado. Malhas de 185 mapas prontas para carregamento sob demanda.");
+		LOG.info("NATIVE_PATH: Subsistema CryEngine habilitado. Iniciando pré-carregamento integral de 100% dos mapas na RAM...");
+		data.loadAllMaps();
 	}
 
+	/**
+	 * Informa se o mapa especificado possui malha binária *-path.dat indexada no disco.
+	 *
+	 * @param worldId Identificador numérico do mapa (ex: 210010000).
+	 * @return true se o arquivo .dat existir e estiver disponível para carregamento.
+	 */
 	public boolean hasMap(int worldId) {
 		if (!NativePathConfig.NATIVE_PATH_ENABLE)
 			return false;
 		return data.hasMap(worldId);
 	}
 
+	/**
+	 * Valida se uma criatura consegue caminhar diretamente em linha reta até a coordenada alvo,
+	 * verificando todas as subcélulas de 0.5m do CryEngine e colisões 3D da GeoEngine.
+	 *
+	 * @param owner   A criatura que deseja se mover.
+	 * @param targetX Coordenada X do destino.
+	 * @param targetY Coordenada Y do destino.
+	 * @param targetZ Coordenada Z do destino.
+	 * @return true se a linha reta for 100% caminhável; false se houver paredes, desníveis ou obstáculos.
+	 */
+	public boolean canWalkDirectly(Creature owner, float targetX, float targetY, float targetZ) {
+		if (owner == null)
+			return false;
+		if (owner.isFlying())
+			return true;
+
+		int worldId = owner.getWorldId();
+		NativePathMap map = data.getNativeMap(worldId);
+		if (map != null) {
+			return map.hasLineOfSight(owner.getX(), owner.getY(), owner.getZ(), targetX, targetY, targetZ, NativePathMap.MAX_DROP_DOWN);
+		}
+
+		// Fallback GeoEngine se não houver mapa .dat no disco
+		if (GeoService.getInstance() != null) {
+			float dist2D = (float) Math.hypot(targetX - owner.getX(), targetY - owner.getY());
+			return GeoService.getInstance().canPass(worldId,
+					owner.getX(), owner.getY(), owner.getZ() + 0.5f,
+					targetX, targetY, targetZ + 0.5f,
+					dist2D, owner.getInstanceId());
+		}
+
+		return true;
+	}
+
+	/**
+	 * Valida se há linha de visão física e folga desobstruída para habilidades de puxão/gancho (Pull).
+	 *
+	 * @param creature Criatura conjuradora.
+	 * @param target   Criatura alvo do efeito.
+	 * @return true se o trajeto estiver limpo sem interceptar geometrias sólidas.
+	 */
 	public boolean canPullTarget(Creature creature, Creature target) {
 		long start = System.nanoTime();
 		queriesInFlight.incrementAndGet();
@@ -80,7 +149,10 @@ public final class NativePathService {
 
 			NativePathMap map = data.getNativeMap(worldId);
 			if (map == null) {
-				return true; // Sem mapa nativo: delega ao fallback
+				if (GeoService.getInstance() != null) {
+					return GeoService.getInstance().canSee(creature, target);
+				}
+				return true;
 			}
 
 			float x1 = creature.getX(), y1 = creature.getY(), z1 = creature.getZ();
@@ -92,6 +164,14 @@ public final class NativePathService {
 		}
 	}
 
+	/**
+	 * Calcula a rota de perseguição de uma criatura até seu alvo vivo, considerando o raio de
+	 * colisão do agente e seu alcance de ataque para parada antecipada.
+	 *
+	 * @param pathOwner Criatura que está se movendo (NPC ou monstro).
+	 * @param target    Criatura alvo a ser alcançada.
+	 * @return Matriz de waypoints float[][] ou null se não houver caminho possível.
+	 */
 	public float[][] navigateToTarget(Creature pathOwner, Creature target) {
 		long start = System.nanoTime();
 		queriesInFlight.incrementAndGet();
@@ -109,7 +189,6 @@ public final class NativePathService {
 				return null;
 
 			int worldId = pathOwner.getWorldId();
-
 			NativePathMap map = data.getNativeMap(worldId);
 			if (map == null)
 				return null;
@@ -117,14 +196,32 @@ public final class NativePathService {
 			float x1 = pathOwner.getX(), y1 = pathOwner.getY(), z1 = pathOwner.getZ();
 			float x2 = target.getX(), y2 = target.getY(), z2 = target.getZ();
 
-			float[][] path = NativePathAStar.findPath(map, x1, y1, z1, x2, y2, z2);
+			// Extrai raio de colisão do template do agente
+			float agentRadius = 0.5f;
+			if (pathOwner.getObjectTemplate() != null && pathOwner.getObjectTemplate().getBoundRadius() != null) {
+				float r = pathOwner.getObjectTemplate().getBoundRadius().getCollision();
+				if (r > 0.1f) {
+					agentRadius = r;
+				}
+			}
+
+			// Extrai alcance de ataque para encerramento de trajeto
+			float reachDistance = 0.0f;
+			if (pathOwner.getGameStats() != null && pathOwner.getGameStats().getAttackRange() != null) {
+				float atkRange = pathOwner.getGameStats().getAttackRange().getCurrent() / 1000.0f;
+				if (atkRange > 1.5f) {
+					reachDistance = Math.max(1.0f, atkRange - 0.5f);
+				}
+			}
+
+			float[][] path = NativePathAStar.findPath(map, x1, y1, z1, x2, y2, z2, agentRadius, reachDistance);
 			if (NativePathConfig.NATIVE_PATH_DEBUG) {
 				if (path != null) {
-					LOG.info("NATIVE_PATH [TARGET]: [{}] ({}, {}, {}) -> ({}, {}, {}) | {} waypoints",
-						pathOwner.getName(), x1, y1, z1, x2, y2, z2, path.length);
+					LOG.info("NATIVE_PATH [TARGET]: [{}] ({}, {}, {}) -> ({}, {}, {}) | {} waypoints | r={} reach={}",
+							pathOwner.getName(), x1, y1, z1, x2, y2, z2, path.length, agentRadius, reachDistance);
 				} else {
-					LOG.debug("NATIVE_PATH [TARGET]: [{}] No path from ({}, {}, {}) to ({}, {}, {})",
-						pathOwner.getName(), x1, y1, z1, x2, y2, z2);
+					LOG.debug("NATIVE_PATH [TARGET]: [{}] Sem rota para ({}, {}, {})",
+							pathOwner.getName(), x2, y2, z2);
 				}
 			}
 			return path;
@@ -133,6 +230,16 @@ public final class NativePathService {
 		}
 	}
 
+	/**
+	 * Calcula o percurso até uma coordenada espacial estática (x, y, z), por exemplo retorno
+	 * ao spawn ou destino de patrulha.
+	 *
+	 * @param pathOwner Criatura em locomoção.
+	 * @param x         Coordenada X de destino.
+	 * @param y         Coordenada Y de destino.
+	 * @param z         Coordenada Z de destino.
+	 * @return Matriz de waypoints ou null se rota inacessível.
+	 */
 	public float[][] navigateToLocation(Creature pathOwner, float x, float y, float z) {
 		long start = System.nanoTime();
 		queriesInFlight.incrementAndGet();
@@ -148,21 +255,28 @@ public final class NativePathService {
 				return null;
 
 			int worldId = pathOwner.getWorldId();
-
 			NativePathMap map = data.getNativeMap(worldId);
 			if (map == null)
 				return null;
 
 			float x1 = pathOwner.getX(), y1 = pathOwner.getY(), z1 = pathOwner.getZ();
 
-			float[][] path = NativePathAStar.findPath(map, x1, y1, z1, x, y, z);
+			float agentRadius = 0.5f;
+			if (pathOwner.getObjectTemplate() != null && pathOwner.getObjectTemplate().getBoundRadius() != null) {
+				float r = pathOwner.getObjectTemplate().getBoundRadius().getCollision();
+				if (r > 0.1f) {
+					agentRadius = r;
+				}
+			}
+
+			float[][] path = NativePathAStar.findPath(map, x1, y1, z1, x, y, z, agentRadius, 0.0f);
 			if (NativePathConfig.NATIVE_PATH_DEBUG) {
 				if (path != null) {
-					LOG.info("NATIVE_PATH [LOC]: [{}] ({}, {}, {}) -> ({}, {}, {}) | {} waypoints",
-						pathOwner.getName(), x1, y1, z1, x, y, z, path.length);
+					LOG.info("NATIVE_PATH [LOC]: [{}] ({}, {}, {}) -> ({}, {}, {}) | {} waypoints | r={}",
+							pathOwner.getName(), x1, y1, z1, x, y, z, path.length, agentRadius);
 				} else {
-					LOG.debug("NATIVE_PATH [LOC]: [{}] No path from ({}, {}, {}) to ({}, {}, {})",
-						pathOwner.getName(), x1, y1, z1, x, y, z);
+					LOG.debug("NATIVE_PATH [LOC]: [{}] Sem rota para ({}, {}, {})",
+							pathOwner.getName(), x, y, z);
 				}
 			}
 			return path;
@@ -171,6 +285,9 @@ public final class NativePathService {
 		}
 	}
 
+	/**
+	 * Consulta a altitude Z da superfície navegável CryEngine em um mundo e posição informados.
+	 */
 	public float getSurfaceZ(int worldId, float x, float y, float z) {
 		if (!NativePathConfig.NATIVE_PATH_ENABLE)
 			return Float.NaN;
@@ -179,9 +296,12 @@ public final class NativePathService {
 		if (map == null)
 			return Float.NaN;
 
-		return map.getSurfaceZ(x, y, z);
+		return map.getSurfaceZ(x, y, z, z);
 	}
 
+	/**
+	 * Verifica se a coordenada 3D é transitável no mapa de navegação nativo.
+	 */
 	public boolean isWalkable(int worldId, float x, float y, float z) {
 		if (!NativePathConfig.NATIVE_PATH_ENABLE)
 			return false;
@@ -190,7 +310,7 @@ public final class NativePathService {
 		if (map == null)
 			return false;
 
-		return map.isWalkable(x, y, z, 2.5f);
+		return map.isWalkable(x, y, z, 2.0f);
 	}
 
 	public static NativePathService getInstance() {

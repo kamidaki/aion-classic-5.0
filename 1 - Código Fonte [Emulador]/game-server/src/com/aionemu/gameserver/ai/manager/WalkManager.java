@@ -233,7 +233,11 @@ public class WalkManager {
             float nextX = Rnd.nextFloat(diameter) - randomWalkRange + owner.getSpawn().getX();
             float nextY = Rnd.nextFloat(diameter) - randomWalkRange + owner.getSpawn().getY();
             if (NativePathConfig.NATIVE_PATH_ENABLE && NativePathService.getInstance().hasMap(owner.getWorldId())) {
-                float[][] navPath = NativePathService.getInstance().navigateToLocation(owner, nextX, nextY, owner.getZ());
+                float targetZ = NativePathService.getInstance().getSurfaceZ(owner.getWorldId(), nextX, nextY, owner.getZ());
+                if (Float.isNaN(targetZ)) {
+                    targetZ = owner.getZ();
+                }
+                float[][] navPath = NativePathService.getInstance().navigateToLocation(owner, nextX, nextY, targetZ);
                 float[] navTarget = selectNextNavPoint(owner, navPath, diameter);
                 if (navTarget != null) {
                     owner.getMoveController().moveToPoint(navTarget[0], navTarget[1], navTarget[2]);
