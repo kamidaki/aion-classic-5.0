@@ -2,6 +2,7 @@ package com.aionemu.gameserver.controllers.movement;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,10 +62,41 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 	private RouteStep currentStep;
 	private FollowMotor _followMotor;
 
-	private volatile boolean cachedPathValid;
-	private volatile float[][] cachedPath;
-	/** Índice do próximo waypoint a seguir em cachedPath (evita realocar o array por frame). */
-	private volatile int cachedPathIndex;
+	/**
+	 * Estado imutável da rota NativePath em cache.
+	 *
+	 * Encapsula path + index num objeto único trocado atomicamente via AtomicReference,
+	 * eliminando a race condition entre clearCachedPath() e moveToDestination().
+	 * Qualquer thread que lê pathRef.get() obtém um snapshot coerente — não é possível
+	 * ver path != null mas index já resetado, ou vice-versa.
+	 */
+	private static final class PathState {
+		final float[][] path;
+		final int index;
+
+		PathState(float[][] path, int index) {
+			this.path = path;
+			this.index = index;
+		}
+
+		/** Retorna novo PathState com índice incrementado (imutável). */
+		PathState advance() {
+			return index < path.length - 1 ? new PathState(path, index + 1) : this;
+		}
+
+		/** Retorna o waypoint corrente ou null se path vazio. */
+		float[] current() {
+			return (path != null && index < path.length) ? path[index] : null;
+		}
+
+		/** Verifica se há waypoints restantes acessíveis. */
+		boolean hasNext() {
+			return path != null && index < path.length;
+		}
+	}
+
+	/** Referência atômica ao estado da rota — null representa "sem rota válida". */
+	private final AtomicReference<PathState> pathRef = new AtomicReference<>(null);
 
 	public NpcMoveController(Npc owner) {
 		super(owner);
@@ -199,23 +231,31 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 				// CAMADA 1: NATIVE-PATH (CryEngine Native Grid 0.5m)
 				// ========================================================
 				if (NativePathConfig.NATIVE_PATH_ENABLE) {
-					if (!cachedPathValid || cachedPath == null) {
-						cachedPath = NativePathService.getInstance().navigateToTarget(owner, creature);
-						cachedPathValid = true;
+					// Lê snapshot atômico — sem race condition
+					PathState ps = pathRef.get();
+					if (ps == null) {
+						// Calcula nova rota e armazena atomicamente
+						float[][] newPath = NativePathService.getInstance().navigateToTarget(owner, creature);
+						ps = (newPath != null && newPath.length > 0) ? new PathState(newPath, 0) : null;
+						pathRef.set(ps);
 					}
 
-					if (cachedPath != null && !isPathFailure(cachedPath) && cachedPathIndex < cachedPath.length) {
+					if (ps != null && ps.hasNext()) {
 						cancelFollow();
 
 						// Avança o índice enquanto o NPC já passou por este waypoint (tolerância 0.5m)
-						while (cachedPathIndex < cachedPath.length - 1
-								&& PositionUtil.isInRange(owner, cachedPath[cachedPathIndex][0], cachedPath[cachedPathIndex][1], cachedPath[cachedPathIndex][2], 0.5f)) {
-							cachedPathIndex++;
+						while (ps.hasNext()
+								&& ps.index < ps.path.length - 1
+								&& PositionUtil.isInRange(owner, ps.current()[0], ps.current()[1], ps.current()[2], 0.5f)) {
+							ps = ps.advance();
+							pathRef.set(ps);
 						}
 
-						float[] nextPoint = cachedPath[cachedPathIndex];
-						moveToLocation(nextPoint[0], nextPoint[1], nextPoint[2]);
-						break;
+						float[] nextPoint = ps.current();
+						if (nextPoint != null) {
+							moveToLocation(nextPoint[0], nextPoint[1], nextPoint[2]);
+							break;
+						}
 					}
 				}
 
@@ -238,18 +278,23 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 			case FORCED_POINT:
 				cancelFollow();
 				if (NativePathConfig.NATIVE_PATH_ENABLE && destination == Destination.POINT) {
-					if (!cachedPathValid || cachedPath == null) {
-						cachedPath = NativePathService.getInstance().navigateToLocation(owner, pointX, pointY, pointZ);
-						cachedPathValid = true;
+					PathState ps = pathRef.get();
+					if (ps == null) {
+						float[][] newPath = NativePathService.getInstance().navigateToLocation(owner, pointX, pointY, pointZ);
+						ps = (newPath != null && newPath.length > 0) ? new PathState(newPath, 0) : null;
+						pathRef.set(ps);
 					}
-					if (cachedPath != null && !isPathFailure(cachedPath) && cachedPathIndex < cachedPath.length) {
-						while (cachedPathIndex < cachedPath.length - 1
-								&& PositionUtil.isInRange(owner, cachedPath[cachedPathIndex][0], cachedPath[cachedPathIndex][1], cachedPath[cachedPathIndex][2], 0.5f)) {
-							cachedPathIndex++;
+					if (ps != null && ps.hasNext()) {
+						while (ps.index < ps.path.length - 1
+								&& PositionUtil.isInRange(owner, ps.current()[0], ps.current()[1], ps.current()[2], 0.5f)) {
+							ps = ps.advance();
+							pathRef.set(ps);
 						}
-						float[] nextPoint = cachedPath[cachedPathIndex];
-						moveToLocation(nextPoint[0], nextPoint[1], nextPoint[2]);
-						break;
+						float[] nextPoint = ps.current();
+						if (nextPoint != null) {
+							moveToLocation(nextPoint[0], nextPoint[1], nextPoint[2]);
+							break;
+						}
 					}
 				}
 
@@ -356,13 +401,14 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 		if (futureDistPassed == dist && NativePathConfig.NATIVE_PATH_ENABLE
 				&& (destination == Destination.TARGET_OBJECT || destination == Destination.POINT)) {
-			// Avança índice ao chegar no waypoint atual (sem realocar o array)
-			if (cachedPath != null && cachedPathIndex < cachedPath.length - 1) {
-				cachedPathIndex++;
-			} else if (cachedPath != null && cachedPathIndex >= cachedPath.length - 1) {
-				cachedPath = null;
-				cachedPathValid = false;
-				cachedPathIndex = 0;
+			// Avança índice ao chegar no waypoint atual (operação atômica CAS)
+			PathState ps = pathRef.get();
+			if (ps != null) {
+				if (ps.index < ps.path.length - 1) {
+					pathRef.compareAndSet(ps, ps.advance());
+				} else {
+					pathRef.set(null); // Rota concluída
+				}
 			}
 		}
 
@@ -569,10 +615,9 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 		// CAMADA 1: NATIVE-PATH (Obedece o pathfinding nativo CryEngine até o ponto de spawn)
 		if (NativePathConfig.NATIVE_PATH_ENABLE) {
 			clearCachedPath();
-			cachedPath = NativePathService.getInstance().navigateToLocation(owner, spawnX, spawnY, spawnZ);
-			cachedPathValid = true;
-
-			if (cachedPath != null && !isPathFailure(cachedPath) && cachedPath.length > 0) {
+			float[][] newPath = NativePathService.getInstance().navigateToLocation(owner, spawnX, spawnY, spawnZ);
+			if (newPath != null && newPath.length > 0) {
+				pathRef.set(new PathState(newPath, 0));
 				destination = Destination.POINT;
 				pointX = spawnX;
 				pointY = spawnY;
@@ -694,9 +739,12 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 		return path == null || path.length == 0;
 	}
 
+	/**
+	 * Descarta a rota atual atomicamente.
+	 * Seguro para ser chamado de qualquer thread: usa pathRef.set(null) que é atômico.
+	 * Não há janela entre "ver path não-null" e "acessar path[index]" de outra thread.
+	 */
 	public void clearCachedPath() {
-		cachedPath = null;
-		cachedPathValid = false;
-		cachedPathIndex = 0;
+		pathRef.set(null);
 	}
 }
