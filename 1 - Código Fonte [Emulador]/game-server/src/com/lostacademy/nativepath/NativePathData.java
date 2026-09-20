@@ -11,9 +11,6 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.aionemu.gameserver.dataholders.DataManager;
-import com.aionemu.gameserver.model.templates.world.WorldMapTemplate;
-
 /**
  * =========================================================================================
  * LOST ACADEMY — SISTEMA OFICIAL DE NAVEGAÇÃO NATIVA CRYENGINE (*-PATH.DAT)
@@ -88,43 +85,6 @@ public final class NativePathData {
 	}
 
 	/**
-	 * Fallback de compatibilidade com o cliente oficial Classic 5.0 (D:/GameForge/aionclassic/levels).
-	 */
-	private void indexClientLevelsFallback() {
-		Path clientLevels = Path.of("D:/GameForge/aionclassic/levels");
-		if (!Files.exists(clientLevels) || !Files.isDirectory(clientLevels)) {
-			return;
-		}
-
-		if (DataManager.WORLD_MAPS_DATA == null) {
-			return;
-		}
-
-		int added = 0;
-		for (WorldMapTemplate template : DataManager.WORLD_MAPS_DATA) {
-			int worldId = template.getMapId();
-			if (mapFileIndex.containsKey(worldId)) {
-				continue;
-			}
-			String cName = template.getCName();
-			if (cName == null || cName.isEmpty()) {
-				continue;
-			}
-			Path clientDat = clientLevels.resolve(cName.toLowerCase()).resolve(cName.toUpperCase() + "-path.dat");
-			if (!Files.exists(clientDat)) {
-				clientDat = clientLevels.resolve(cName.toLowerCase()).resolve(cName.toLowerCase() + "-path.dat");
-			}
-			if (Files.exists(clientDat)) {
-				mapFileIndex.put(worldId, clientDat);
-				added++;
-			}
-		}
-		if (added > 0) {
-			LOG.info("NATIVE_PATH: {} mapas adicionais indexados a partir do cliente em {}", added, clientLevels);
-		}
-	}
-
-	/**
 	 * Localiza o primeiro arquivo *.dat contido no subdiretório do mapa.
 	 */
 	private static Path findDatFile(Path dir) {
@@ -150,7 +110,6 @@ public final class NativePathData {
 		if (mapFileIndex.isEmpty()) {
 			indexNativePathDirectories();
 		}
-		indexClientLevelsFallback();
 
 		long startTime = System.currentTimeMillis();
 		AtomicInteger successCount = new AtomicInteger(0);
