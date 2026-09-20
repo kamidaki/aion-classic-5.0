@@ -202,7 +202,7 @@ public class FollowMotor extends AMovementMotor {
                     public void run() {
                         update();
                     }
-                }, 0);
+                }, TARGET_REVALIDATE_TIME);
             }
         }, TARGET_REVALIDATE_TIME);
 

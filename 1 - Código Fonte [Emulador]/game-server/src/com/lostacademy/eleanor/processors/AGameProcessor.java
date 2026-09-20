@@ -35,7 +35,11 @@ public class AGameProcessor {
 
         _processorPool = new ScheduledThreadPoolExecutor(threadsCount);
         _processorPool.setRejectedExecutionHandler(new AionRejectedExecutionHandler());
-        _processorPool.prestartAllCoreThreads();
+        // Remove cancelled tasks from the scheduler queue immediately (prevents memory/GC overhead
+        // from FollowMotor cancelling/rescheduling frequently).
+        _processorPool.setRemoveOnCancelPolicy(true);
+        // NOTE: Do not call prestartAllCoreThreads() — threads are created on demand
+        // to avoid 12 idle spinning threads when no NPCs are in combat.
 
     }
 

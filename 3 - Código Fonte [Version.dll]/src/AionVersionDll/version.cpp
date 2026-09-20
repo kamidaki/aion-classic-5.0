@@ -10,6 +10,7 @@
 #include "exports.h"
 #include "detours.h"
 #include "siel_hammer_fix.h"
+#include "free_fly_fix.h"
 
 // =========================================================================
 //  Version.dll - Mod & Compatibility Hook for Aion Classic 5.0
@@ -231,7 +232,10 @@ static void PatchAllLoadedLanguageModules() {
     for (const wchar_t* name : moduleNames) {
         HMODULE h = GetModuleHandleW(name);
         if (h) {
-            if (_wcsicmp(name, L"game.dll") == 0) InstallSielHammerFix(h);
+            if (_wcsicmp(name, L"game.dll") == 0) {
+                InstallSielHammerFix(h);
+                InstallFreeFlyFix(h);
+            }
             PatchLanguageTableInModule(h);
             BypassCountryCheckInCryEngineModule(h);
         }
