@@ -21,8 +21,10 @@ public class AggroEventHandler {
 	public static void onAggro(NpcAI npcAI, Creature target) {
 		Npc owner = npcAI.getOwner();
 		if (target instanceof Player player && player.isFlying() && AttackEventHandler.isGroundNpc(owner)) {
-			AttackEventHandler.fleeFromAirborneAttacker(npcAI, player);
-			return;
+			if (!AttackEventHandler.isWithinAttackRange(owner, player)) {
+				AttackEventHandler.fleeFromAirborneAttacker(npcAI, player);
+				return;
+			}
 		}
 		ThreadPoolManager.getInstance().schedule(new AggroNotifier(owner, target, true), 500);
 		owner.getWorldMapInstance().getInstanceHandler().onAggro(owner);

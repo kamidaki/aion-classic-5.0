@@ -8,13 +8,18 @@ import com.aionemu.gameserver.ai.event.AIEventType;
 import com.aionemu.gameserver.ai.manager.AttackManager;
 import com.aionemu.gameserver.ai.manager.EmoteManager;
 import com.aionemu.gameserver.ai.manager.WalkManager;
+import com.aionemu.gameserver.controllers.attack.AggroTarget;
+import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.geoEngine.math.Vector3f;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
+import com.aionemu.gameserver.model.skill.NpcSkillEntry;
 import com.aionemu.gameserver.skillengine.effect.AbnormalState;
+import com.aionemu.gameserver.skillengine.model.SkillTemplate;
 import com.aionemu.gameserver.utils.PositionUtil;
+import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.geo.GeoService;
 import com.lostacademy.eleanor.processors.movement.PathfindHelper;
 import com.lostacademy.eleanor.utils.GeomUtil;
@@ -51,8 +56,10 @@ public class AttackEventHandler {
 		npcAI.getOwner().getGameStats().renewLastAttackedTime();
 
 		if (creature instanceof Player player && player.isFlying() && isGroundNpc(npcAI.getOwner())) {
-			fleeFromAirborneAttacker(npcAI, player);
-			return;
+			if (!isWithinAttackRange(npcAI.getOwner(), player)) {
+				fleeFromAirborneAttacker(npcAI, player);
+				return;
+			}
 		}
 
 		boolean allowFight = npcAI.getState() != AIState.FEAR && !npcAI.getOwner().getEffectController().isAbnormalSet(AbnormalState.FEAR)
@@ -109,6 +116,31 @@ public class AttackEventHandler {
 		return !npc.isInState(CreatureState.FLYING) && (npc.getSpawn() == null || !npc.getSpawn().isAerialSpawn());
 	}
 
+	public static float getEffectiveAttackRange(Npc npc) {
+		if (npc == null)
+			return 2.0f;
+		float range = npc.getGameStats().getAttackRange().getCurrent() / 1000.0f;
+		if (range <= 0 && npc.getSkillList() != null && !npc.getSkillList().isEmpty()) {
+			for (NpcSkillEntry entry : npc.getSkillList().getNpcSkills()) {
+				SkillTemplate st = DataManager.SKILL_DATA.getSkillTemplate(entry.getSkillId());
+				if (st != null && st.getProperties() != null) {
+					int r = st.getProperties().getFirstTargetRange();
+					if (r > range) {
+						range = r;
+					}
+				}
+			}
+		}
+		return range > 0 ? range : 2.0f;
+	}
+
+	public static boolean isWithinAttackRange(Npc npc, Creature target) {
+		if (npc == null || target == null)
+			return false;
+		float range = getEffectiveAttackRange(npc);
+		return PositionUtil.isInAttackRange(npc, target, range);
+	}
+
 	public static void fleeFromAirborneAttacker(NpcAI npcAI, Creature attacker) {
 		Npc npc = npcAI.getOwner();
 		if (npc == null || npc.isDead() || !npcAI.canThink()) {
@@ -117,6 +149,13 @@ public class AttackEventHandler {
 
 		if (npcAI.isInState(AIState.WALKING)) {
 			WalkManager.stopWalking(npcAI);
+		}
+
+		// Regras rigorosas de fuga contra alvo aéreo inalcançável:
+		// 1. Limpar ódio do atacante aéreo para não ficar preso em loop
+		npc.getAggroList().stopHating(attacker);
+		if (npc.getTarget() != null && npc.getTarget().equals(attacker)) {
+			npc.setTarget(null);
 		}
 
 		npcAI.setStateIfNot(AIState.FEAR);
@@ -148,5 +187,30 @@ public class AttackEventHandler {
 		if (stepPoint != null) {
 			npc.getMoveController().moveToPoint(stepPoint.getX(), stepPoint.getY(), stepPoint.getZ());
 		}
+
+		// Agendar rotina de conclusão da fuga e retorno ao lar
+		ThreadPoolManager.getInstance().schedule(() -> {
+			if (npc == null || npc.isDead() || !npc.isSpawned()) {
+				return;
+			}
+			if (npc.getEffectController().isAbnormalSet(AbnormalState.FEAR)) {
+				return;
+			}
+			if (npcAI.isInState(AIState.FEAR)) {
+				npcAI.setStateIfNot(AIState.IDLE);
+				npcAI.setSubStateIfNot(AISubState.NONE);
+				npc.clearQueuedSkills();
+				npc.getGameStats().setLastSkill(null);
+				npc.getGameStats().resetFightStats();
+
+				Creature mostHated = npc.getAggroList().getTarget(AggroTarget.MOST_HATED);
+				if (mostHated != null && !mostHated.isDead() && npc.canSee(mostHated)) {
+					npcAI.onCreatureEvent(AIEventType.CREATURE_AGGRO, mostHated);
+				} else {
+					npcAI.onGeneralEvent(AIEventType.ATTACK_FINISH);
+					npcAI.onGeneralEvent(npc.isAtSpawnLocation() ? AIEventType.BACK_HOME : AIEventType.NOT_AT_HOME);
+				}
+			}
+		}, 3500);
 	}
 }

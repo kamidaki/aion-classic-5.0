@@ -48,8 +48,10 @@ public class AttackManager {
 	protected static void chooseAttack(NpcAI npcAI, int delay) {
 		VisibleObject target = npcAI.getOwner().getTarget();
 		if (target instanceof Player player && player.isFlying() && AttackEventHandler.isGroundNpc(npcAI.getOwner())) {
-			AttackEventHandler.fleeFromAirborneAttacker(npcAI, player);
-			return;
+			if (!AttackEventHandler.isWithinAttackRange(npcAI.getOwner(), player)) {
+				AttackEventHandler.fleeFromAirborneAttacker(npcAI, player);
+				return;
+			}
 		}
 
 		AttackIntention attackIntention = npcAI.chooseAttackIntention();
@@ -78,6 +80,20 @@ public class AttackManager {
 			AILogger.info(npcAI, "AttackManager: attackTimeDelta " + npc.getGameStats().getLastAttackTimeDelta());
 		}
 
+		VisibleObject target = npc.getTarget();
+		if (target == null || !(target instanceof Creature creature) || creature.isDead()) {
+			npcAI.onGeneralEvent(AIEventType.TARGET_GIVEUP);
+			return;
+		}
+
+		// Se o alvo estiver voando e o npc for terrestre, só foge se estiver fora do alcance
+		if (target instanceof Player player && player.isFlying() && AttackEventHandler.isGroundNpc(npc)) {
+			if (!AttackEventHandler.isWithinAttackRange(npc, player)) {
+				AttackEventHandler.fleeFromAirborneAttacker(npcAI, player);
+				return;
+			}
+		}
+
 		// switch target if there is more hated creature
 		if (npc.getGameStats().getLastChangeTargetTimeDelta() > 5) {
 			Creature mostHated = npc.getAggroList().getTarget(AggroTarget.MOST_HATED);
@@ -89,19 +105,13 @@ public class AttackManager {
 				return;
 			}
 		}
-		if (!npc.canSee(npc.getTarget())) {
-			if (npcAI.setSubStateIfNot(AISubState.TARGET_LOST)) {
-				ThreadPoolManager.getInstance().schedule(() -> {
-					if (npcAI.isInSubState(AISubState.TARGET_LOST) && npc.isSpawned() && !npc.isDead())
-						npcAI.onGeneralEvent(AIEventType.TARGET_GIVEUP);
-				}, 2000);
-			}
-			return;
-		}
+
+		// O monstro só desiste da perseguição se o jogador se afastar a mais de 60 metros (mesmo sem visão)
 		if (checkGiveupDistance(npcAI)) {
 			npcAI.onGeneralEvent(AIEventType.TARGET_GIVEUP);
 			return;
 		}
+
 		if (npcAI.isMoveSupported()) {
 			npc.getMoveController().moveToTargetObject();
 			return;
@@ -111,27 +121,22 @@ public class AttackManager {
 
 	private static boolean checkGiveupDistance(NpcAI npcAI) {
 		Npc npc = npcAI.getOwner();
-		// if target run away too far
 		VisibleObject target = npc.getTarget();
 		if (target != null) {
 			if (npcAI.isLogging())
 				AILogger.info(npcAI, "AttackManager: distanceToTarget " + PositionUtil.getDistance(npc, target, false));
-			int maxChaseDistance = npc.isBoss() ? 50 : npc.getPosition().getWorldMapInstance().getTemplate().getAiInfo().getChaseTarget();
-			if (!PositionUtil.isInRange(npc, target, maxChaseDistance))
-				return true;
-		}
-		double distanceToHome = npc.getDistanceToSpawnLocation();
-		// if npc is far away from home
-		int chaseHome = npc.isBoss() ? 150 : npc.getPosition().getWorldMapInstance().getTemplate().getAiInfo().getChaseHome();
-		if (distanceToHome > chaseHome) {
-			return true;
-		}
-		// start thinking about home after 100 meters and no attack for 10 seconds (only for default monsters)
-		if (chaseHome <= 200) { // TODO: Check Client and use chase_user_by_trace value
-			if ((npc.getGameStats().getLastAttackTimeDelta() > 20 && npc.getGameStats().getLastAttackedTimeDelta() > 20)
-				|| (distanceToHome > chaseHome / 2 && npc.getGameStats().getLastAttackedTimeDelta() > 10)) {
+			// Regra rigorosa: monstro só desiste da perseguição se o alvo se afastar a mais de 60 metros
+			if (!PositionUtil.isInRange(npc, target, 60.0f, false)) {
 				return true;
 			}
+		} else {
+			return true;
+		}
+		double distanceToHome = npc.getDistanceToSpawnLocation();
+		// Tether de retorno ao lar para evitar que o mob seja arrastado infinitamente pelo mapa
+		int chaseHome = Math.max(150, npc.getPosition().getWorldMapInstance().getTemplate().getAiInfo().getChaseHome());
+		if (distanceToHome > chaseHome) {
+			return true;
 		}
 		return false;
 	}

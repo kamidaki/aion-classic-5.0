@@ -4,10 +4,12 @@ import com.aionemu.gameserver.ai.AILogger;
 import com.aionemu.gameserver.ai.AIState;
 import com.aionemu.gameserver.ai.NpcAI;
 import com.aionemu.gameserver.ai.event.AIEventType;
+import com.aionemu.gameserver.ai.handler.AttackEventHandler;
 import com.aionemu.gameserver.controllers.attack.AggroTarget;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
+import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.utils.PositionUtil;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.geo.GeoService;
@@ -71,15 +73,14 @@ public class SimpleAttackManager {
 			npc.getController().abortCast();
 			npcAI.onGeneralEvent(AIEventType.TARGET_TOOFAR);
 		} else if (!isTargetInAttackRange(npc)) {
-			npcAI.onGeneralEvent(AIEventType.TARGET_TOOFAR);
-		} else if (!GeoService.getInstance().canSee(npc, target)) { // delete geo check when we've implemented a pathfinding system
-			npc.getController().cancelCurrentSkill(null);
-			if (((System.currentTimeMillis() - npc.getMoveController().getLastMoveUpdate()) > 15000)
-				&& npc.getGameStats().getLastAttackedTimeDelta() > 15) {
-				npcAI.onGeneralEvent(AIEventType.TARGET_GIVEUP);
-			} else {
-				npcAI.onGeneralEvent(AIEventType.ATTACK_COMPLETE);
+			if (target instanceof Player player && player.isFlying() && AttackEventHandler.isGroundNpc(npc)) {
+				AttackEventHandler.fleeFromAirborneAttacker(npcAI, player);
+				return;
 			}
+			npcAI.onGeneralEvent(AIEventType.TARGET_TOOFAR);
+		} else if (!GeoService.getInstance().canSee(npc, target)) {
+			npc.getController().cancelCurrentSkill(null);
+			npcAI.onGeneralEvent(AIEventType.TARGET_TOOFAR);
 		} else {
 			if (npc.isSpawned() && !npc.isDead() && !npc.getLifeStats().isAboutToDie() && npc.canAttack()) {
 				npc.getPosition().setH(PositionUtil.getHeadingTowards(npc, target));
