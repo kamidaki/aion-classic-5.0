@@ -28,9 +28,15 @@ public class SummonEffect extends EffectTemplate {
 	protected int time; // in seconds
 	@XmlAttribute(name = "skill_id")
 	protected Integer skillId;
+	@XmlAttribute(name = "count")
+	protected int count = 1;
 
 	public Integer getSkillId() {
 		return skillId;
+	}
+
+	public int getCount() {
+		return count;
 	}
 
 	@Override

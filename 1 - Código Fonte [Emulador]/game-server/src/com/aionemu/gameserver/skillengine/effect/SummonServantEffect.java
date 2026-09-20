@@ -38,13 +38,29 @@ public class SummonServantEffect extends SummonEffect {
 	@Override
 	public void applyEffect(Effect effect) {
 		Creature effector = effect.getEffector();
-		double radian = Math.toRadians(PositionUtil.convertHeadingToAngle(effect.getEffector().getHeading()));
-		float x = effector.getX() + (float) (Math.cos(radian) * 2);
-		float y = effector.getY() + (float) (Math.sin(radian) * 2);
-		Vector3f pos = GeoService.getInstance().getClosestCollision(effector, x, y, effector.getZ(), true, CollisionIntention.DEFAULT_COLLISIONS.getId(),
-			IgnoreProperties.of(effector.getRace()));
-		Servant servant = spawnServant(effect, time, NpcObjectType.SERVANT, pos.getX(), pos.getY(), pos.getZ());
-		servant.getAi().onCreatureEvent(AIEventType.ATTACK, effect.getEffected());
+		int spawnCount = Math.max(1, count);
+		if (spawnCount > 1) {
+			double baseAngle = PositionUtil.convertHeadingToAngle(effector.getHeading());
+			double radian = Math.toRadians(baseAngle);
+			double perpRadian = radian + Math.PI / 2;
+			for (int i = 0; i < spawnCount; i++) {
+				double offset = (i == 0) ? -1.5 : 1.5;
+				float x = effector.getX() + (float) (Math.cos(radian) * 1.5 + Math.cos(perpRadian) * offset);
+				float y = effector.getY() + (float) (Math.sin(radian) * 1.5 + Math.sin(perpRadian) * offset);
+				Vector3f pos = GeoService.getInstance().getClosestCollision(effector, x, y, effector.getZ(), true,
+					CollisionIntention.DEFAULT_COLLISIONS.getId(), IgnoreProperties.of(effector.getRace()));
+				Servant servant = spawnServant(effect, time, NpcObjectType.SERVANT, pos.getX(), pos.getY(), pos.getZ());
+				servant.getAi().onCreatureEvent(AIEventType.ATTACK, effect.getEffected());
+			}
+		} else {
+			double radian = Math.toRadians(PositionUtil.convertHeadingToAngle(effector.getHeading()));
+			float x = effector.getX() + (float) (Math.cos(radian) * 2);
+			float y = effector.getY() + (float) (Math.sin(radian) * 2);
+			Vector3f pos = GeoService.getInstance().getClosestCollision(effector, x, y, effector.getZ(), true,
+				CollisionIntention.DEFAULT_COLLISIONS.getId(), IgnoreProperties.of(effector.getRace()));
+			Servant servant = spawnServant(effect, time, NpcObjectType.SERVANT, pos.getX(), pos.getY(), pos.getZ());
+			servant.getAi().onCreatureEvent(AIEventType.ATTACK, effect.getEffected());
+		}
 	}
 
 	protected Servant spawnServant(Effect effect, int spawnDuration, NpcObjectType npcObjectType, float x, float y, float z) {

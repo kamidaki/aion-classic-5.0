@@ -62,7 +62,7 @@ public class EffectController {
 			}
 		}
 
-		if (nextEffect.getStack() != null && nextEffect.getStack().startsWith("LU_BLENDE")) {
+		if (isBlendingStack(nextEffect)) {
 			Effect existingSameStack;
 			long stamp = lock.readLock();
 			try {
@@ -169,13 +169,19 @@ public class EffectController {
 			lock.unlockRead(stamp);
 		}
 		if (effectToEnd != null) {
-			if (nextEffect.getStack() != null && nextEffect.getStack().startsWith("LU_BLENDE")) {
+			if (isBlendingStack(nextEffect)) {
 				int nextStacks = Math.min(15, Math.max(nextEffect.getCarvedSignet(), effectToEnd.getCarvedSignet() + 1));
 				nextEffect.setCarvedSignet(nextStacks);
 			}
 			effectToEnd.endEffect(effectToEnd.getTargetSlot() != nextEffect.getTargetSlot());
 		}
 		return false;
+	}
+
+	private static boolean isBlendingStack(Effect effect) {
+		if (effect == null || effect.getStack() == null)
+			return false;
+		return effect.getStack().startsWith("LU_BLENDE") || effect.getStack().startsWith("GU_ARCANEDISCHARGE");
 	}
 
 	/**

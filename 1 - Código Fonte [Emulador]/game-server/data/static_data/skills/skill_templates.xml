@@ -132122,7 +132122,7 @@
 			</wpnmastery>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4002" name="Defesa Alada" nameId="2286928" delayId="4002" stack="GU_SERAPHICGUN_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="4002" name="Defesa Alada" nameId="2286928" delayId="0" stack="GU_SERAPHICGUN_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -132133,7 +132133,7 @@
 			</statboost>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4003" name="Cadeias de ilusão" nameId="2286930" delayId="4003" stack="GU_GUNNERSGIFT_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="4003" name="Cadeias de ilusão" nameId="2286930" delayId="0" stack="GU_GUNNERSGIFT_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -132841,7 +132841,7 @@
 		</actions>
 		<motion name="rapidshot1"/>
 	</skill_template>
-	<skill_template skill_id="4044" name="STR_SKILL_Gu_ArmorBreak_G1" stack="GU_ARMORBREAK_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="30" req_dispel_level="1" cancel_rate="15" delayId="1808">
+	<skill_template skill_id="4044" name="STR_SKILL_Gu_ArmorBreak_G1" stack="GU_ARMORBREAK_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="300" req_dispel_level="1" cancel_rate="15" delayId="1808">
 		<properties first_target="TARGET" first_target_range="0" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<mp value="252" delta="0"/>
@@ -132862,10 +132862,10 @@
 		<motion name="PointFire1"/>
 		</skill_template>
 	
-	<skill_template skill_id="4045" name="STR_SKILL_Gu_ArmorBreak_G2" nameId="2286986" delayId="1808" stack="GU_ARMORBREAK_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="30" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="15">
+	<skill_template skill_id="4045" name="STR_SKILL_Gu_ArmorBreak_G2" nameId="2286986" delayId="1808" stack="GU_ARMORBREAK_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="300" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="15">
 		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 	<startconditions><mp value="270" delta="0"/><weapon weapon="GUN_1H"/></startconditions><effects><spellatkinstant value="990" delta="4" e="1" element="WIND"/><statdown effectid="140442" e="2" duration2="18000"><change stat="PHYSICAL_ATTACK" func="ADD" value="-500"/></statdown><deboostheal duration2="18000" effectid="140443" e="3"><change stat="HEAL_SKILL_DEBOOST" func="PERCENT" value="-50"/></deboostheal></effects><actions><mpuse value="270" delta="0"/></actions><motion name="PointFire1"/></skill_template>
-	<skill_template skill_id="4046" name="STR_SKILL_Gu_ArmorBreak_G3" nameId="2286987" delayId="1808" stack="GU_ARMORBREAK_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="30" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="15">
+	<skill_template skill_id="4046" name="STR_SKILL_Gu_ArmorBreak_G3" nameId="2286987" delayId="1808" stack="GU_ARMORBREAK_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="300" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="15">
 		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 	<startconditions><mp value="281" delta="0"/><weapon weapon="GUN_1H"/></startconditions><effects><spellatkinstant value="1252" delta="5" e="1" element="WIND"/><statdown effectid="140442" e="2" duration2="18000"><change stat="PHYSICAL_ATTACK" func="ADD" value="-600"/></statdown><deboostheal duration2="18000" effectid="140443" e="3"><change stat="HEAL_SKILL_DEBOOST" func="PERCENT" value="-50"/></deboostheal></effects><actions><mpuse value="281" delta="0"/></actions><motion name="PointFire1"/></skill_template>
 	<skill_template skill_id="4047" name="Lifeline Penetration I" nameId="2286992" delayId="1809" stack="GU_VEINSNIPE_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="300" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10" pvp_damage="65">
@@ -133044,7 +133044,7 @@
 		</actions>
 		<motion name="StrikeShot2"/>
 	</skill_template>
-	<skill_template skill_id="4060" name="STR_SKILL_Gu_EmpowerAmmo_G1" stack="GU_EMPOWERAMMO_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="30" req_dispel_level="1" cancel_rate="20" delayId="1818">
+	<skill_template skill_id="4060" name="STR_SKILL_Gu_EmpowerAmmo_G1" stack="GU_EMPOWERAMMO_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="300" req_dispel_level="1" cancel_rate="20" delayId="1818">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="142" delta="0"/>
@@ -133072,14 +133072,14 @@
 			<mp value="43" delta="0"/>
 		<weapon weapon="GUN_1H"/></startconditions>
 		<effects>
-			<skillcooltimereset e="1" delta="100" noresist="true"/>
+			<skillcooltimereset first_cd="1" last_cd="2199" delta="100" e="1" noresist="true"/>
 		</effects>
 		<actions>
 			<mpuse value="43" delta="0"/>
 		</actions>
 		<motion name="Reload"/>
 	</skill_template>
-	<skill_template skill_id="4063" name="STR_SKILL_Gu_FireChainRefresh_G1" stack="GU_FIRECHAINREFRESH_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="60" cancel_rate="10" delayId="1820">
+	<skill_template skill_id="4063" name="STR_SKILL_Gu_FireChainRefresh_G1" stack="GU_FIRECHAINREFRESH_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="600" cancel_rate="10" delayId="1820">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="87" delta="0"/>
@@ -133453,7 +133453,7 @@
 		</actions>
 		<motion name="FocusShot1"/>
 	</skill_template>
-	<skill_template skill_id="4088" name="Escudo corajoso" nameId="2287071" delayId="4088" stack="GU_RAPIDSTANCE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PASSIVE" cooldown="0" duration="0" tslot_level="2">
+	<skill_template skill_id="4088" name="Escudo corajoso" nameId="2287071" delayId="0" stack="GU_RAPIDSTANCE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PASSIVE" cooldown="0" duration="0" tslot_level="2">
 		<properties first_target="ME" first_target_range="2"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -134092,7 +134092,7 @@
 		</actions>
 		<motion name="Chainshot1"/>
 	</skill_template>
-	<skill_template skill_id="4132" name="STR_SKILL_Gu_MentalicRapidFire_G1" stack="GU_MENTALICRAPIDFIRE_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="1" cancel_rate="10" delayId="1837" chain_skill_prob="100">
+	<skill_template skill_id="4132" name="STR_SKILL_Gu_MentalicRapidFire_G1" stack="GU_MENTALICRAPIDFIRE_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="10" cancel_rate="10" delayId="1837" chain_skill_prob="100" penalty_skill_id="9158">
 		<properties first_target="TARGET" first_target_range="0" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<mp value="21" delta="0"/>
@@ -134112,7 +134112,7 @@
 		<motion name="Chainshot3"/>
 		</skill_template>
 	
-	<skill_template skill_id="4133" name="STR_SKILL_Gu_MentalicRapidFire_G2" stack="GU_MENTALICRAPIDFIRE_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="1" cancel_rate="10" delayId="1837" chain_skill_prob="100">
+	<skill_template skill_id="4133" name="STR_SKILL_Gu_MentalicRapidFire_G2" stack="GU_MENTALICRAPIDFIRE_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="10" cancel_rate="10" delayId="1837" chain_skill_prob="100" penalty_skill_id="9159">
 		<properties first_target="TARGET" first_target_range="0" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<mp value="24" delta="0"/>
@@ -134132,7 +134132,7 @@
 		<motion name="Chainshot3"/>
 		</skill_template>
 	
-	<skill_template skill_id="4134" name="STR_SKILL_Gu_MentalicRapidFire_G3" stack="GU_MENTALICRAPIDFIRE_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="1" cancel_rate="10" delayId="1837" chain_skill_prob="100">
+	<skill_template skill_id="4134" name="STR_SKILL_Gu_MentalicRapidFire_G3" stack="GU_MENTALICRAPIDFIRE_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="10" cancel_rate="10" delayId="1837" chain_skill_prob="100" penalty_skill_id="9160">
 		<properties first_target="TARGET" first_target_range="0" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<mp value="27" delta="0"/>
@@ -134152,16 +134152,16 @@
 		<motion name="Chainshot3"/>
 		</skill_template>
 	
-	<skill_template skill_id="4135" name="OLHO QUE VERECIMENTO" nameId="2287152" delayId="1837" stack="GU_MENTALICRAPIDFIRE_G4" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0" chain_skill_prob="100">
+	<skill_template skill_id="4135" name="OLHO QUE VERECIMENTO" nameId="2287152" delayId="1837" stack="GU_MENTALICRAPIDFIRE_G4" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0" chain_skill_prob="100" penalty_skill_id="9161">
 		<properties first_target="TARGET"/>
 	<startconditions><mp value="29" delta="0"/><weapon weapon="GUN_1H"/><chain category="E_CHAIND_3TH_1" precategory="E_CHAIND_2TH_1" time="3000"/></startconditions><actions><mpuse value="29" delta="0"/></actions></skill_template>
-	<skill_template skill_id="4136" name="Rapid Soul Fire V (unused)" nameId="2287153" delayId="1837" stack="GU_MENTALICRAPIDFIRE_G5" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0" chain_skill_prob="100">
+	<skill_template skill_id="4136" name="Rapid Soul Fire V (unused)" nameId="2287153" delayId="1837" stack="GU_MENTALICRAPIDFIRE_G5" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0" chain_skill_prob="100" penalty_skill_id="9162">
 		<properties first_target="TARGET"/>
 	<startconditions><mp value="31" delta="0"/><weapon weapon="GUN_1H"/><chain category="E_CHAIND_3TH_1" precategory="E_CHAIND_2TH_1" time="3000"/></startconditions><actions><mpuse value="31" delta="0"/></actions></skill_template>
-	<skill_template skill_id="4137" name="Você pode ver um alvo no modo furtivo aprimorado." nameId="2287154" delayId="1837" stack="GU_MENTALICRAPIDFIRE_G6" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0" chain_skill_prob="100">
+	<skill_template skill_id="4137" name="Você pode ver um alvo no modo furtivo aprimorado." nameId="2287154" delayId="1837" stack="GU_MENTALICRAPIDFIRE_G6" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0" chain_skill_prob="100" penalty_skill_id="9163">
 		<properties first_target="TARGET"/>
 	<startconditions><mp value="33" delta="0"/><weapon weapon="GUN_1H"/><chain category="E_CHAIND_3TH_1" precategory="E_CHAIND_2TH_1" time="3000"/></startconditions><actions><mpuse value="33" delta="0"/></actions></skill_template>
-	<skill_template skill_id="4138" name="STR_SKILL_Gu_BreakingFireChain_G1" stack="GU_BREAKINGFIRECHAIN_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="1" cancel_rate="10" delayId="1838" chain_skill_prob="100">
+	<skill_template skill_id="4138" name="STR_SKILL_Gu_BreakingFireChain_G1" stack="GU_BREAKINGFIRECHAIN_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="10" cancel_rate="10" delayId="1838" chain_skill_prob="100" penalty_skill_id="9164">
 		<properties first_target="TARGET" first_target_range="0" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<weapon weapon="GUN"/>
@@ -134177,7 +134177,7 @@
 		<motion name="Chainshot2"/>
 		</skill_template>
 	
-	<skill_template skill_id="4139" name="STR_SKILL_Gu_BreakingFireChain_G2" stack="GU_BREAKINGFIRECHAIN_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="1" cancel_rate="10" delayId="1838" chain_skill_prob="100">
+	<skill_template skill_id="4139" name="STR_SKILL_Gu_BreakingFireChain_G2" stack="GU_BREAKINGFIRECHAIN_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="10" cancel_rate="10" delayId="1838" chain_skill_prob="100" penalty_skill_id="9165">
 		<properties first_target="TARGET" first_target_range="0" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<mp value="6" delta="0"/>
@@ -134197,7 +134197,7 @@
 		<motion name="Chainshot2"/>
 		</skill_template>
 	
-	<skill_template skill_id="4140" name="STR_SKILL_Gu_BreakingFireChain_G3" stack="GU_BREAKINGFIRECHAIN_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="1" cancel_rate="10" delayId="1838" chain_skill_prob="100">
+	<skill_template skill_id="4140" name="STR_SKILL_Gu_BreakingFireChain_G3" stack="GU_BREAKINGFIRECHAIN_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="10" cancel_rate="10" delayId="1838" chain_skill_prob="100" penalty_skill_id="9166">
 		<properties first_target="TARGET" first_target_range="0" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<mp value="12" delta="0"/>
@@ -134217,7 +134217,7 @@
 		<motion name="Chainshot2"/>
 		</skill_template>
 	
-	<skill_template skill_id="4141" name="STR_SKILL_Gu_BreakingFireChain_G4" stack="GU_BREAKINGFIRECHAIN_G4" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="1" cancel_rate="10" delayId="1838" chain_skill_prob="100">
+	<skill_template skill_id="4141" name="STR_SKILL_Gu_BreakingFireChain_G4" stack="GU_BREAKINGFIRECHAIN_G4" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="10" cancel_rate="10" delayId="1838" chain_skill_prob="100" penalty_skill_id="9167">
 		<properties first_target="TARGET" first_target_range="0" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<mp value="16" delta="0"/>
@@ -134237,19 +134237,19 @@
 		<motion name="Chainshot2"/>
 		</skill_template>
 	
-	<skill_template skill_id="4142" name="Transformação: Slayer" nameId="2287175" delayId="1838" stack="GU_BREAKINGFIRECHAIN_G5" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0" chain_skill_prob="100">
+	<skill_template skill_id="4142" name="Transformação: Slayer" nameId="2287175" delayId="1838" stack="GU_BREAKINGFIRECHAIN_G5" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0" chain_skill_prob="100" penalty_skill_id="9168">
 		<properties first_target="TARGET"/>
 	<startconditions><mp value="18" delta="0"/><weapon weapon="GUN_1H"/><chain category="E_CHAIND_2TH_1" precategory="E_CHAIND_1TH_1" time="3000"/></startconditions><actions><mpuse value="18" delta="0"/></actions></skill_template>
-	<skill_template skill_id="4143" name="Soul Volley VI (not used)" nameId="2287176" delayId="1838" stack="GU_BREAKINGFIRECHAIN_G6" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0" chain_skill_prob="100">
+	<skill_template skill_id="4143" name="Soul Volley VI (not used)" nameId="2287176" delayId="1838" stack="GU_BREAKINGFIRECHAIN_G6" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0" chain_skill_prob="100" penalty_skill_id="9169">
 		<properties first_target="TARGET"/>
 	<startconditions><mp value="19" delta="0"/><weapon weapon="GUN_1H"/><chain category="E_CHAIND_2TH_1" precategory="E_CHAIND_1TH_1" time="3000"/></startconditions><actions><mpuse value="19" delta="0"/></actions></skill_template>
-	<skill_template skill_id="4144" name="Soul Volley VII (not used)" nameId="2287177" delayId="1838" stack="GU_BREAKINGFIRECHAIN_G7" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0" chain_skill_prob="100">
+	<skill_template skill_id="4144" name="Soul Volley VII (not used)" nameId="2287177" delayId="1838" stack="GU_BREAKINGFIRECHAIN_G7" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0" chain_skill_prob="100" penalty_skill_id="9170">
 		<properties first_target="TARGET"/>
 	<startconditions><mp value="21" delta="0"/><weapon weapon="GUN_1H"/><chain category="E_CHAIND_2TH_1" precategory="E_CHAIND_1TH_1" time="3000"/></startconditions><actions><mpuse value="21" delta="0"/></actions></skill_template>
-	<skill_template skill_id="4145" name="Frenesi" nameId="2287178" delayId="1838" stack="GU_BREAKINGFIRECHAIN_G8" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0" chain_skill_prob="100">
+	<skill_template skill_id="4145" name="Frenesi" nameId="2287178" delayId="1838" stack="GU_BREAKINGFIRECHAIN_G8" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0" chain_skill_prob="100" penalty_skill_id="9171">
 		<properties first_target="TARGET"/>
 	<startconditions><mp value="24" delta="0"/><weapon weapon="GUN_1H"/><chain category="E_CHAIND_2TH_1" precategory="E_CHAIND_1TH_1" time="3000"/></startconditions><actions><mpuse value="24" delta="0"/></actions></skill_template>
-	<skill_template skill_id="4146" name="Soul Volley IX (not used)" nameId="2287179" delayId="1838" stack="GU_BREAKINGFIRECHAIN_G9" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0" chain_skill_prob="100">
+	<skill_template skill_id="4146" name="Soul Volley IX (not used)" nameId="2287179" delayId="1838" stack="GU_BREAKINGFIRECHAIN_G9" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0" chain_skill_prob="100" penalty_skill_id="9172">
 		<properties first_target="TARGET"/>
 	<startconditions><mp value="26" delta="0"/><weapon weapon="GUN_1H"/><chain category="E_CHAIND_2TH_1" precategory="E_CHAIND_1TH_1" time="3000"/></startconditions><actions><mpuse value="26" delta="0"/></actions></skill_template>
 	<skill_template skill_id="4147" name="Soul Bombardment I" nameId="2287189" delayId="1840" stack="GU_MENTALICBLASTER_1_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="10" duration="0" ammospeed="50" chain_skill_prob="100">
@@ -134402,7 +134402,7 @@
 		</actions>
 		<motion name="PointFire1"/>
 	</skill_template>
-	<skill_template skill_id="4157" name="Trueshot Magic Eye I" nameId="2287202" delayId="4157" stack="GU_BULLSEYE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="4157" name="Trueshot Magic Eye I" nameId="2287202" delayId="0" stack="GU_BULLSEYE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -134415,7 +134415,7 @@
 		</effects>
 		<motion name="buff1"/>
 	</skill_template>
-	<skill_template skill_id="4158" name="Trueshot Magic Eye II" nameId="2287204" delayId="4158" stack="GU_BULLSEYE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="4158" name="Trueshot Magic Eye II" nameId="2287204" delayId="0" stack="GU_BULLSEYE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -134428,7 +134428,7 @@
 		</effects>
 		<motion name="buff1"/>
 	</skill_template>
-	<skill_template skill_id="4159" name="Kick Beast" nameId="2287205" delayId="4159" stack="GU_BULLSEYE_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="4159" name="Kick Beast" nameId="2287205" delayId="0" stack="GU_BULLSEYE_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -134539,7 +134539,7 @@
 		</actions>
 		<motion name="Strikeshot1" speed="70"/>
 	</skill_template>
-	<skill_template skill_id="4167" name="STR_SKILL_Gu_BacksteppingSnipe_G1" stack="GU_BACKSTEPPINGSNIPE_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="60" cancel_rate="10" delayId="1850">
+	<skill_template skill_id="4167" name="STR_SKILL_Gu_BacksteppingSnipe_G1" stack="GU_BACKSTEPPINGSNIPE_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="600" cancel_rate="10" delayId="1850">
 		<properties first_target="TARGET" first_target_range="10" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="31" delta="0"/>
@@ -134557,7 +134557,7 @@
 		<motion name="BackDash_GunFire"/>
 		</skill_template>
 	
-	<skill_template skill_id="4168" name="STR_SKILL_Gu_BacksteppingSnipe_G2" stack="GU_BACKSTEPPINGSNIPE_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="60" cancel_rate="10" delayId="1850">
+	<skill_template skill_id="4168" name="STR_SKILL_Gu_BacksteppingSnipe_G2" stack="GU_BACKSTEPPINGSNIPE_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="600" cancel_rate="10" delayId="1850">
 		<properties first_target="TARGET" first_target_range="10" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="43" delta="0"/>
@@ -134575,7 +134575,7 @@
 		<motion name="BackDash_GunFire"/>
 		</skill_template>
 	
-	<skill_template skill_id="4169" name="STR_SKILL_Gu_BacksteppingSnipe_G3" stack="GU_BACKSTEPPINGSNIPE_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="60" cancel_rate="10" delayId="1850">
+	<skill_template skill_id="4169" name="STR_SKILL_Gu_BacksteppingSnipe_G3" stack="GU_BACKSTEPPINGSNIPE_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="600" cancel_rate="10" delayId="1850">
 		<properties first_target="TARGET" first_target_range="10" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="52" delta="0"/>
@@ -134702,28 +134702,28 @@
 		</actions>
 		<motion name="buff4"/>
 	</skill_template>
-	<skill_template skill_id="4187" name="STR_Gu_Light_CannonServant_G1" stack="GU_LIGHT_CANNONSERVANT_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="30" cancel_rate="20" delayId="1863">
+	<skill_template skill_id="4187" name="STR_Gu_Light_CannonServant_G1" stack="GU_LIGHT_CANNONSERVANT_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="300" cancel_rate="20" delayId="1863">
 		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="200" delta="2"/>
 			<weapon weapon="GUN"/>
 			</startconditions>
 		<effects>
-			<summonservant npc_id="749259" time="1" e="1"/>
+			<summonservant npc_id="749259" skill_id="18504" count="2" time="6" e="1"/>
 			</effects>
 		<actions>
 			<mpuse value="200" delta="2"/>
 			</actions>
 		</skill_template>
 	
-	<skill_template skill_id="4188" name="STR_Gu_Dark_CannonServant_G1" stack="GU_DARK_CANNONSERVANT_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="30" cancel_rate="20" delayId="1863">
+	<skill_template skill_id="4188" name="STR_Gu_Dark_CannonServant_G1" stack="GU_DARK_CANNONSERVANT_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="300" cancel_rate="20" delayId="1863">
 		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="200" delta="2"/>
 			<weapon weapon="GUN"/>
 			</startconditions>
 		<effects>
-			<summonservant npc_id="749260" time="1" e="1"/>
+			<summonservant npc_id="749260" skill_id="18504" count="2" time="6" e="1"/>
 			</effects>
 		<actions>
 			<mpuse value="200" delta="2"/>
@@ -134744,7 +134744,7 @@
 			<mpuse value="449" delta="0"/>
 		</actions>
 	</skill_template>
-	<skill_template skill_id="4190" name="STR_Gu_Light_BlackHall_G1" stack="GU_LIGHT_BLACKHALL_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="60" cancel_rate="30" delayId="1867">
+	<skill_template skill_id="4190" name="STR_Gu_Light_BlackHall_G1" stack="GU_LIGHT_BLACKHALL_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="600" cancel_rate="30" delayId="1867">
 		<properties first_target="POINT" first_target_range="20" target_relation="ENEMY" target_type="POINT" target_maxcount="1"/>
 		<startconditions>
 			<mp value="150" delta="4"/>
@@ -134758,7 +134758,7 @@
 			</actions>
 		</skill_template>
 	
-	<skill_template skill_id="4191" name="STR_Gu_Dark_BlackHall_G1" stack="GU_DARK_BLACKHALL_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="60" cancel_rate="30" delayId="1867">
+	<skill_template skill_id="4191" name="STR_Gu_Dark_BlackHall_G1" stack="GU_DARK_BLACKHALL_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="600" cancel_rate="30" delayId="1867">
 		<properties first_target="POINT" first_target_range="20" target_relation="ENEMY" target_type="POINT" target_maxcount="1"/>
 		<startconditions>
 			<mp value="150" delta="4"/>
@@ -134917,7 +134917,7 @@
 		</actions>
 		<motion name="buff4"/>
 	</skill_template>
-	<skill_template skill_id="4202" name="Overcharged Shot I" nameId="2287335" delayId="4202" stack="GU_ARCANEDISCHARGE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="4202" name="Overcharged Shot I" nameId="2287335" delayId="0" stack="GU_ARCANEDISCHARGE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -134926,7 +134926,7 @@
 			<provoker e="1" skill_id="9185" provoke_target="ME" hittype="CRITICAL" effectid="142021" basiclvl="1" noresist="true" hittypeprob2="1000" element="WIND" hoptype="SKILLLV" hopb="705"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4203" name="Overcharged Shot II" nameId="2287336" delayId="4203" stack="GU_ARCANEDISCHARGE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="4203" name="Overcharged Shot II" nameId="2287336" delayId="0" stack="GU_ARCANEDISCHARGE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -134935,7 +134935,7 @@
 			<provoker e="1" skill_id="9187" provoke_target="ME" hittype="CRITICAL" effectid="142021" basiclvl="2" noresist="true" hittypeprob2="1000" element="WIND" hoptype="SKILLLV" hopb="705"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4204" name="Overcharged Shot III" nameId="2287337" delayId="4204" stack="GU_ARCANEDISCHARGE_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="4204" name="Overcharged Shot III" nameId="2287337" delayId="0" stack="GU_ARCANEDISCHARGE_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -134944,7 +134944,7 @@
 			<provoker e="1" skill_id="9189" provoke_target="ME" hittype="CRITICAL" effectid="142021" basiclvl="3" noresist="true" hittypeprob2="1000" element="WIND" hoptype="SKILLLV" hopb="705"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4205" name="Invocar o espírito da água" nameId="2287418" delayId="4205" stack="GU_M_CRI_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="4205" name="Invocar o espírito da água" nameId="2287418" delayId="0" stack="GU_M_CRI_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -134958,7 +134958,7 @@
 			</statboost>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4206" name="Convoca um espírito de água. Quando o espírito for convocado, o efeito do Espírito Bundling desaparecerá." nameId="2287419" delayId="4206" stack="GU_M_CRI_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="4206" name="Convoca um espírito de água. Quando o espírito for convocado, o efeito do Espírito Bundling desaparecerá." nameId="2287419" delayId="0" stack="GU_M_CRI_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -134972,7 +134972,7 @@
 			</statboost>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4207" name="Invocar o espírito da água" nameId="2287420" delayId="4207" stack="GU_M_CRI_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="4207" name="Invocar o espírito da água" nameId="2287420" delayId="0" stack="GU_M_CRI_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -134986,7 +134986,7 @@
 			</statboost>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4208" name="O controle da mente de Beritra fez com que Phox perdesse a consciência. A saúde e todas as habilidades de ataque são aumentadas." nameId="2287457" delayId="4208" stack="GU_P_PVEPVPATTACK_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="4208" name="O controle da mente de Beritra fez com que Phox perdesse a consciência. A saúde e todas as habilidades de ataque são aumentadas." nameId="2287457" delayId="0" stack="GU_P_PVEPVPATTACK_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -134998,7 +134998,7 @@
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4209" name="RAGE DE VERIDADE" nameId="2287458" delayId="4209" stack="GU_P_PVEPVPATTACK_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="4209" name="RAGE DE VERIDADE" nameId="2287458" delayId="0" stack="GU_P_PVEPVPATTACK_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -135010,7 +135010,7 @@
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4210" name="Você está protegido pelo poder. Você não sofre de danos causados ​​por ataques de alvos inimigos." nameId="2287459" delayId="4210" stack="GU_P_PVEPVPDEFENCE_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="4210" name="Você está protegido pelo poder. Você não sofre de danos causados ​​por ataques de alvos inimigos." nameId="2287459" delayId="0" stack="GU_P_PVEPVPDEFENCE_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -135022,7 +135022,7 @@
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4211" name="Temer" nameId="2287460" delayId="4211" stack="GU_P_PVEPVPDEFENCE_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="4211" name="Temer" nameId="2287460" delayId="0" stack="GU_P_PVEPVPDEFENCE_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -135372,7 +135372,7 @@
 		<motion name="Reload"/>
 		</skill_template>
 	
-	<skill_template skill_id="4245" name="STR_SKILL_Gu_MindReading_AD_G1" stack="GU_MINDREADING_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="60" req_dispel_level="1" cancel_rate="10" delayId="1830">
+	<skill_template skill_id="4245" name="STR_SKILL_Gu_MindReading_AD_G1" stack="GU_MINDREADING_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="600" req_dispel_level="1" cancel_rate="10" delayId="1830">
 		<properties first_target="ME" first_target_range="0" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="196" delta="0"/>
@@ -138626,7 +138626,7 @@
 		<motion name="Reload"/>
 		</skill_template>
 	
-	<skill_template skill_id="4526" name="STR_SKILL_Gu_MindReading_AD_G1" stack="GU_MINDREADING_AD_G1_EVT" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="60" req_dispel_level="1" cancel_rate="10" delayId="1830">
+	<skill_template skill_id="4526" name="STR_SKILL_Gu_MindReading_AD_G1" stack="GU_MINDREADING_AD_G1_EVT" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="600" req_dispel_level="1" cancel_rate="10" delayId="1830">
 		<properties first_target="ME" first_target_range="0" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="196" delta="0"/>
@@ -143148,7 +143148,7 @@
 	<skill_template skill_id="9179" name="Devoção inabalável" nameId="2286911" delayId="9179" stack="FI_VIGORBODY_UP_AD_G1_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET"/>
 	</skill_template>
-	<skill_template skill_id="9185" name="Overcharge Energy I" nameId="2287339" delayId="9185" stack="GU_ARCANEDISCHARGE_G1_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
+	<skill_template skill_id="9185" name="Overcharge Energy I" nameId="2287339" delayId="0" stack="GU_ARCANEDISCHARGE_G1_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<weapon weapon="GUN_1H GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE"/>
@@ -143163,7 +143163,7 @@
 			<blending stack_level="5" skill_id="9186" source_skills="9185 9187 9189" e="2"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9186" name="Overcharge Frenzy I" nameId="2287343" delayId="9186" stack="GU_ARCANEDISCHARGE_G1_PROC_BLENDING" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="5000" dispel_category="BUFF">
+	<skill_template skill_id="9186" name="Overcharge Frenzy I" nameId="2287343" delayId="0" stack="GU_ARCANEDISCHARGE_G1_PROC_BLENDING" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<weapon weapon="GUN_1H GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE"/>
@@ -143177,7 +143177,7 @@
 			</boostspellattack>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9187" name="Overcharge Energy II" nameId="2287340" delayId="9187" stack="GU_ARCANEDISCHARGE_G2_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
+	<skill_template skill_id="9187" name="Overcharge Energy II" nameId="2287340" delayId="0" stack="GU_ARCANEDISCHARGE_G2_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<weapon weapon="GUN_1H GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE"/>
@@ -143192,7 +143192,7 @@
 			<blending stack_level="5" skill_id="9188" source_skills="9185 9187 9189" e="2"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9188" name="Overcharge Frenzy II" nameId="2287344" delayId="9188" stack="GU_ARCANEDISCHARGE_G2_PROC_BLENDING" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="5000" dispel_category="BUFF">
+	<skill_template skill_id="9188" name="Overcharge Frenzy II" nameId="2287344" delayId="0" stack="GU_ARCANEDISCHARGE_G2_PROC_BLENDING" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<weapon weapon="GUN_1H GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE"/>
@@ -143206,7 +143206,7 @@
 			</boostspellattack>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9189" name="Overcharge Energy III" nameId="2287341" delayId="9189" stack="GU_ARCANEDISCHARGE_G3_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
+	<skill_template skill_id="9189" name="Overcharge Energy III" nameId="2287341" delayId="0" stack="GU_ARCANEDISCHARGE_G3_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<weapon weapon="GUN_1H GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE"/>
@@ -143221,7 +143221,7 @@
 			<blending stack_level="5" skill_id="9190" source_skills="9185 9187 9189" e="2"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9190" name="Overcharge Frenzy III" nameId="2287345" delayId="9190" stack="GU_ARCANEDISCHARGE_G3_PROC_BLENDING" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="5000" dispel_category="BUFF">
+	<skill_template skill_id="9190" name="Overcharge Frenzy III" nameId="2287345" delayId="0" stack="GU_ARCANEDISCHARGE_G3_PROC_BLENDING" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<weapon weapon="GUN_1H GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE"/>

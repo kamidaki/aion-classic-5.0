@@ -40,10 +40,16 @@ public class SkillCooltimeResetEffect extends EffectTemplate {
 	@Override
 	public void applyEffect(Effect effect) {
 		Creature effected = effect.getEffected();
+		if (effected == null || effected.getSkillCoolDowns() == null || effected.getSkillCoolDowns().isEmpty())
+			return;
+
 		long now = System.currentTimeMillis();
 		Map<Integer, Long> resetSkillCoolDowns = new HashMap<>();
-		for (int cooldownId : cooldownIds()) {
-			long delay = effected.getSkillCoolDown(cooldownId) - now;
+		for (Map.Entry<Integer, Long> entry : new HashMap<>(effected.getSkillCoolDowns()).entrySet()) {
+			int cooldownId = entry.getKey();
+			if (!matches(cooldownId))
+				continue;
+			long delay = entry.getValue() - now;
 			if (delay <= 0) // 5.0 oficial: o 0x33 só traz as skills que ainda estavam em recarga
 				continue;
 			// delta = porcentagem da recarga restante; sem delta, value em ms
@@ -60,9 +66,9 @@ public class SkillCooltimeResetEffect extends EffectTemplate {
 			PacketSendUtility.sendPacket(player, new SM_SKILL_COOLDOWN(player, resetSkillCoolDowns, true));
 	}
 
-	private int[] cooldownIds() {
+	private boolean matches(int cooldownId) {
 		if (delayIds != null && !delayIds.isEmpty())
-			return delayIds.stream().mapToInt(Integer::intValue).toArray();
-		return IntStream.rangeClosed(firstCd, lastCd).toArray();
+			return delayIds.contains(cooldownId);
+		return cooldownId >= firstCd && cooldownId <= lastCd;
 	}
 }

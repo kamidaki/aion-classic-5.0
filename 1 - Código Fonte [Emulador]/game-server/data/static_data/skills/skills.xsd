@@ -1032,6 +1032,7 @@
 				<xs:attribute name="npc_id" type="xs:int" />
 				<xs:attribute name="time" type="xs:int" />
 				<xs:attribute name="skill_id" type="xs:int" />
+				<xs:attribute name="count" type="xs:int" />
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>

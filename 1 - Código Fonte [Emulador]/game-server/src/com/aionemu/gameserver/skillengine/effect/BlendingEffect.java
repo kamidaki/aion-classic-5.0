@@ -40,9 +40,15 @@ public class BlendingEffect extends EffectTemplate {
 		Creature target = effect.getEffected();
 		if (isStackBlending()) {
 			if (effect.getCarvedSignet() >= stackLevel && target != null && !target.getLifeStats().isDead()) {
-				var skill = SkillEngine.getInstance().getSkill(effect.getEffector(), skillId, 1, target);
-				if (skill != null)
-					skill.useWithoutPropSkill();
+				SkillEngine.getInstance().applyEffectDirectly(skillId, effect.getEffector(), target);
+				for (String sSkill : sourceSkills.split(" ")) {
+					if (!sSkill.isEmpty()) {
+						try {
+							target.getEffectController().removeEffect(Integer.parseInt(sSkill));
+						} catch (NumberFormatException ignored) {
+						}
+					}
+				}
 			}
 			return;
 		}

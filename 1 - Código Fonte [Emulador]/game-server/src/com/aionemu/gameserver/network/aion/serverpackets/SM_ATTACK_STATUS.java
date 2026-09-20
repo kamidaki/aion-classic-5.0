@@ -118,7 +118,7 @@ public class SM_ATTACK_STATUS extends AionServerPacket {
 
 	@Override
 	protected void writeImpl(AionConnection con) {
-		int hpOrMp;
+		int hpPercentage = creature.getLifeStats().getHpPercentage();
 		writeD(creature.getObjectId());
 		switch (type) {
 			case DAMAGE:
@@ -129,26 +129,14 @@ public class SM_ATTACK_STATUS extends AionServerPacket {
 			case DISPELBUFFCOUNTERATK:
 			case USED_HP:
 			case DROWNING:
-				writeD(-value);
-				hpOrMp = creature.getLifeStats().getHpPercentage();
-				break;
 			case DAMAGE_MP:
 				writeD(-value);
-				hpOrMp = creature.getLifeStats().getMpPercentage();
-				break;
-			case MP:
-			case NATURAL_MP:
-			case HEAL_MP:
-			case ABSORBED_MP:
-				writeD(value);
-				hpOrMp = creature.getLifeStats().getMpPercentage();
 				break;
 			default:
 				writeD(value);
-				hpOrMp = creature.getLifeStats().getHpPercentage();
 		}
 		writeC(type.getValue());
-		writeC(hpOrMp);
+		writeC(hpPercentage);
 		writeH(skillId);
 		writeH(0); // 5.0 Classic unk1
 		writeH(logId);

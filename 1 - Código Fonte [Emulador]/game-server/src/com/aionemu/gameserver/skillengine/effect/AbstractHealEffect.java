@@ -42,9 +42,9 @@ public abstract class AbstractHealEffect extends EffectTemplate implements HealE
 				break;
 			case MP:
 				if (this instanceof ProcMPHealInstantEffect)// item heal, eg potions
-					effected.getLifeStats().increaseMp(TYPE.MP, healValue, 0, LOG.REGULAR);
+					effected.getLifeStats().increaseMp(TYPE.MP, healValue, effect.getSkillId(), LOG.REGULAR);
 				else
-					effected.getLifeStats().increaseMp(TYPE.HEAL_MP, healValue, 0, LOG.REGULAR);
+					effected.getLifeStats().increaseMp(TYPE.HEAL_MP, healValue, effect.getSkillId(), LOG.REGULAR);
 				break;
 			case FP:
 				if (!(effected instanceof Player))
