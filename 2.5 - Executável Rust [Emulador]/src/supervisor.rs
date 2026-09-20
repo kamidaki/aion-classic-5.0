@@ -93,6 +93,7 @@ pub struct DashboardState {
     pub total_memory_mb: f32,
     pub uptime_secs: u64,
     pub local_ip: String,
+    pub http_port: u16,
     pub servers: Vec<ServerMetrics>,
     pub history: Vec<HistoryPoint>,
     pub online_players_count: usize,
@@ -863,6 +864,7 @@ impl Supervisor {
             total_memory_mb: total_mem + launcher_mem,
             uptime_secs: self.start_time.elapsed().as_secs(),
             local_ip: get_local_lan_ip(),
+            http_port: self._config.gui.http_port,
             servers: server_metrics,
             history: hist.iter().cloned().collect(),
             online_players_count: self.db_manager.get_online_players().len(),
@@ -881,7 +883,7 @@ impl Supervisor {
     pub fn get_tray_tooltip_text(&self) -> String {
         let srvs = self.servers.lock();
         let active = srvs.values().filter(|s| s.status == ServerStatus::Online).count();
-        format!("Aion Classic - Classic Emu\nServidores Ativos: {}/3", active)
+        format!("Aion Classic - EMULADOR\nServidores Ativos: {}/3", active)
     }
 }
 

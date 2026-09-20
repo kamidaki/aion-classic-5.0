@@ -3,9 +3,15 @@ package com.lostacademy.nativepath;
 import java.util.Arrays;
 
 /**
- * Representação imutável de um nó de navegação na grade nativa CryEngine.
+ * =========================================================================================
+ * LOST ACADEMY — SISTEMA OFICIAL DE NAVEGAÇÃO NATIVA CRYENGINE (*-PATH.DAT)
+ * =========================================================================================
+ * Representação imutável de um nó macro de navegação na malha CryEngine.
  *
- * @author KAMIDAKI
+ * Utilizado pelo grafo macro para interconexão de setores transitáveis em travessias de longa
+ * distância (retorno ao spawn, patrulhas de rotas de monstros e guardas).
+ *
+ * @author KAMIDAKI & Equipe Lost Academy
  */
 public final class NativePathNode {
 
@@ -18,6 +24,18 @@ public final class NativePathNode {
 	private final byte flags;
 	private int[] neighborIds;
 
+	/**
+	 * Construtor do nó de navegação.
+	 *
+	 * @param id          Identificador único do nó na malha.
+	 * @param x           Coordenada X em metros.
+	 * @param y           Coordenada Y em metros.
+	 * @param z           Coordenada Z em metros.
+	 * @param gridX       Coordenada discreta de grade X.
+	 * @param gridY       Coordenada discreta de grade Y.
+	 * @param flags       Sinalizadores de transitabilidade CryEngine.
+	 * @param neighborIds Identificadores dos nós vizinhos conectados.
+	 */
 	public NativePathNode(int id, float x, float y, float z, short gridX, short gridY, byte flags, int[] neighborIds) {
 		this.id = id;
 		this.x = x;
@@ -65,6 +83,9 @@ public final class NativePathNode {
 		return neighborIds;
 	}
 
+	/**
+	 * Distância euclidiana tridimensional ao quadrado até a coordenada alvo.
+	 */
 	public float distanceSquaredTo(float targetX, float targetY, float targetZ) {
 		float dx = this.x - targetX;
 		float dy = this.y - targetY;
@@ -72,12 +93,18 @@ public final class NativePathNode {
 		return dx * dx + dy * dy + dz * dz;
 	}
 
+	/**
+	 * Distância euclidiana bidimensional plana ao quadrado até a coordenada alvo.
+	 */
 	public float distance2DSquaredTo(float targetX, float targetY) {
 		float dx = this.x - targetX;
 		float dy = this.y - targetY;
 		return dx * dx + dy * dy;
 	}
 
+	/**
+	 * Distância euclidiana tridimensional até outro nó de navegação.
+	 */
 	public float distanceTo(NativePathNode other) {
 		float dx = this.x - other.x;
 		float dy = this.y - other.y;
@@ -88,10 +115,10 @@ public final class NativePathNode {
 	@Override
 	public String toString() {
 		return "NativePathNode{" +
-			"id=" + id +
-			", pos=(" + x + ", " + y + ", " + z + ")" +
-			", grid=(" + gridX + ", " + gridY + ")" +
-			", neighbors=" + Arrays.toString(neighborIds) +
-			'}';
+				"id=" + id +
+				", pos=(" + x + ", " + y + ", " + z + ")" +
+				", grid=(" + gridX + ", " + gridY + ")" +
+				", neighbors=" + Arrays.toString(neighborIds) +
+				'}';
 	}
 }

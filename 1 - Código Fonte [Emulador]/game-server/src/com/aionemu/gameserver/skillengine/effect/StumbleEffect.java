@@ -16,6 +16,8 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.PositionUtil;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.geo.GeoService;
+import com.lostacademy.nativepath.NativePathConfig;
+import com.lostacademy.nativepath.NativePathService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -67,7 +69,17 @@ public class StumbleEffect extends EffectTemplate {
 		float x1 = (float) (Math.cos(radian) * 2);
 		float y1 = (float) (Math.sin(radian) * 2);
 		Vector3f closestCollision = GeoService.getInstance().getClosestCollision(effected, effected.getX() + x1, effected.getY() + y1, effected.getZ());
-		effect.setTargetLoc(closestCollision.getX(), closestCollision.getY(), closestCollision.getZ());
+		float destX = closestCollision.getX();
+		float destY = closestCollision.getY();
+		float destZ = closestCollision.getZ();
+		// Corrige Z com NativePath para garantir que o destino esteja sobre solo CryEngine transitável
+		if (NativePathConfig.NATIVE_PATH_ENABLE) {
+			float nativeZ = NativePathService.getInstance().getSurfaceZ(effected.getWorldId(), destX, destY, destZ);
+			if (!Float.isNaN(nativeZ)) {
+				destZ = nativeZ;
+			}
+		}
+		effect.setTargetLoc(destX, destY, destZ);
 	}
 
 	@Override

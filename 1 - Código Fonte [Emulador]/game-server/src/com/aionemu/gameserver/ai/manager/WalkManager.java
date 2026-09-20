@@ -233,7 +233,21 @@ public class WalkManager {
             float nextX = Rnd.nextFloat(diameter) - randomWalkRange + owner.getSpawn().getX();
             float nextY = Rnd.nextFloat(diameter) - randomWalkRange + owner.getSpawn().getY();
             if (NativePathConfig.NATIVE_PATH_ENABLE && NativePathService.getInstance().hasMap(owner.getWorldId())) {
-                float[][] navPath = NativePathService.getInstance().navigateToLocation(owner, nextX, nextY, owner.getZ());
+                float targetZ = NativePathService.getInstance().getSurfaceZ(owner.getWorldId(), nextX, nextY, owner.getZ());
+                if (Float.isNaN(targetZ)) {
+                    targetZ = owner.getZ();
+                }
+                float[][] navPath = NativePathService.getInstance().navigateToLocation(owner, nextX, nextY, targetZ);
+                // Valida que o destino final da rota não extrapola o raio de random walk do spawn
+                if (navPath != null && navPath.length > 0) {
+                    float[] lastWp = navPath[navPath.length - 1];
+                    float spawnX = owner.getSpawn().getX(), spawnY = owner.getSpawn().getY();
+                    float distToSpawn = (float) PositionUtil.getDistance(lastWp[0], lastWp[1], spawnX, spawnY);
+                    if (distToSpawn > randomWalkRange * 1.5f) {
+                        // Destino fora do território — descartar rota e ficar parado
+                        navPath = null;
+                    }
+                }
                 float[] navTarget = selectNextNavPoint(owner, navPath, diameter);
                 if (navTarget != null) {
                     owner.getMoveController().moveToPoint(navTarget[0], navTarget[1], navTarget[2]);
@@ -271,12 +285,14 @@ public class WalkManager {
 	private static float[] selectNextNavPoint(Npc owner, float[][] navPath, float minDistance) {
 		if (navPath == null || navPath.length == 0)
 			return null;
+		// Retorna sempre o próximo passo imediato da rota NativePath (navPath[0]).
+		// O A* já produziu os waypoints em ordem, o NpcMoveController avança pelo array.
+		// Buscar o "mais distante" era incorreto: causava o NPC ignorar waypoints
+		// intermediários e tentar ir direto ao destino, atravessando obstáculos.
 		for (float[] navPoint : navPath) {
-			if (navPoint == null || navPoint.length < 3)
-				continue;
-			if (PositionUtil.getDistance(owner, navPoint[0], navPoint[1], navPoint[2]) >= minDistance)
+			if (navPoint != null && navPoint.length >= 3)
 				return navPoint;
 		}
-		return navPath[navPath.length - 1];
+		return null;
 	}
 }

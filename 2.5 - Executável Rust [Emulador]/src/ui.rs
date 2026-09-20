@@ -3,7 +3,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Aion Classic - Classic Emu Dashboard</title>
+    <title>Aion Classic - EMULADOR Dashboard</title>
     <style>
         :root {
             --bg-base: #060910;
@@ -1737,6 +1737,61 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             background: rgba(56, 189, 248, 0.05);
         }
 
+        .db-row-editing {
+            background: rgba(56, 189, 248, 0.12) !important;
+        }
+        .db-row-editing td {
+            background: #0d1930 !important;
+            padding: 3px 6px !important;
+        }
+        .db-row-new {
+            background: rgba(16, 185, 129, 0.12) !important;
+            animation: fadeInRow 0.2s ease-out;
+        }
+        .db-row-new td {
+            background: #092019 !important;
+            padding: 3px 6px !important;
+        }
+        @keyframes fadeInRow {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .db-inline-input {
+            width: 100%;
+            min-width: 80px;
+            box-sizing: border-box;
+            background: #040814;
+            border: 1px solid rgba(56, 189, 248, 0.45);
+            border-radius: 4px;
+            color: #f8fafc;
+            padding: 4px 8px;
+            font-size: 0.74rem;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.15s ease;
+        }
+        .db-inline-input:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.3);
+            background: #02050e;
+        }
+        .db-row-new .db-inline-input {
+            border-color: rgba(16, 185, 129, 0.45);
+        }
+        .db-row-new .db-inline-input:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+        }
+        .db-table tbody tr:not(.db-row-editing):not(.db-row-new) td:not(:first-child) {
+            cursor: pointer;
+            transition: background 0.12s, outline 0.12s;
+        }
+        .db-table tbody tr:not(.db-row-editing):not(.db-row-new) td:not(:first-child):hover {
+            background: rgba(56, 189, 248, 0.14) !important;
+            outline: 1px dashed rgba(56, 189, 248, 0.5);
+            outline-offset: -1px;
+        }
+
         .db-pk-tag {
             font-size: 0.6rem;
             color: #eab308;
@@ -1986,7 +2041,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             </button>
             <div class="brand-box">
                 <div class="brand-icon">A</div>
-                <div class="brand-text">Classic Emu</div>
+                <div class="brand-text">EMULADOR</div>
                 <div class="brand-pill">Classic 5.0</div>
             </div>
         </div>
@@ -2001,7 +2056,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             <!-- Simple Host:Port Text Display (Copy on click) -->
             <div class="lan-text-badge" onclick="copyExternalUrl()" title="Clique para copiar o endereço do painel">
                 <span class="btn-svg" style="color: var(--accent-login);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
-                <span>Web: <b id="hdr-lan-ip">127.0.0.1:18080</b></span>
+                <span>Web: <b id="hdr-lan-ip">...</b></span>
             </div>
 
             <button class="btn-secondary" onclick="toggleFullscreen()" title="Tela Cheia">
@@ -2253,7 +2308,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 </div>
                 <div class="drawer-card">
                     <div class="drawer-row"><span style="color: var(--text-muted);">IP Local (LAN):</span><span class="drawer-val" id="reg-lan-ip">127.0.0.1</span></div>
-                    <div class="drawer-row"><span style="color: var(--text-muted);">URL do Painel:</span><span class="drawer-val" id="reg-ext-url" style="color: var(--accent-login); word-break: break-all;">http://127.0.0.1:18080</span></div>
+                    <div class="drawer-row"><span style="color: var(--text-muted);">URL do Painel:</span><span class="drawer-val" id="reg-ext-url" style="color: var(--accent-login); word-break: break-all;">-</span></div>
                     <button class="btn-secondary" style="margin-top: 4px;" onclick="copyExternalUrl()">
                         <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
                         <span>Copiar Link do Painel</span>
@@ -2285,7 +2340,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                     <div class="drawer-row"><span>Login Server:</span><span class="drawer-val" style="color: var(--accent-login);">2106 (TCP)</span></div>
                     <div class="drawer-row"><span>Game Server:</span><span class="drawer-val" style="color: var(--accent-game);">7777 (TCP)</span></div>
                     <div class="drawer-row"><span>Chat Server:</span><span class="drawer-val" style="color: var(--accent-chat);">10241 (TCP)</span></div>
-                    <div class="drawer-row"><span>Web Dashboard:</span><span class="drawer-val" style="color: var(--accent-launcher);">18080 (HTTP)</span></div>
+                    <div class="drawer-row"><span>Web Dashboard:</span><span class="drawer-val" id="reg-http-port" style="color: var(--accent-launcher);">-</span></div>
                     <div class="drawer-row"><span>Banco de Dados:</span><span class="drawer-val" style="color: var(--accent-db);">3310 (MySQL)</span></div>
                 </div>
             </div>
@@ -2394,7 +2449,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                         </div>
 
                         <div class="db-toolbar-right" id="db-grid-actions">
-                            <button class="btn-start db-btn-compact" onclick="openInsertRowModal()" title="Inserir Novo Registro">
+                            <button class="btn-start db-btn-compact" onclick="addNewGridRow()" title="Inserir Novo Registro Diretamente no Grid">
                                 <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
                                 <span>+ Registro</span>
                             </button>
@@ -2656,26 +2711,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         </div>
     </div>
 
-    <!-- Row Insert/Edit Modal -->
-    <div class="db-row-modal" id="db-row-modal">
-        <div class="db-row-card">
-            <div class="db-header">
-                <div class="db-header-title">
-                    <span class="btn-svg" style="color:var(--accent-login);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
-                    <span id="db-row-modal-title">Editar Registro</span>
-                </div>
-                <button class="drawer-close-btn" onclick="closeRowModal()">✕</button>
-            </div>
-            <div class="db-row-form" id="db-row-form-fields"></div>
-            <div style="padding: 10px 16px; background:#0b111e; border-top:1px solid var(--border-glass); display:flex; justify-content:flex-end; gap:8px;">
-                <button class="btn-secondary" onclick="closeRowModal()">Cancelar</button>
-                <button class="btn-start" onclick="saveRowData()">
-                    <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>
-                    <span>Salvar Alterações</span>
-                </button>
-            </div>
-        </div>
-    </div>
+
 
     <!-- Clean All Tables Confirmation Modal -->
     <div class="modal-overlay" id="clean-all-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); backdrop-filter:blur(8px); z-index:2100; align-items:center; justify-content:center;">
@@ -2883,7 +2919,24 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         let historyData = [];
         let rawDashboardState = null;
         let chartMetric = 'both'; // 'both', 'cpu', or 'mem'
-        let externalUrlStr = "http://127.0.0.1:18080";
+        let externalUrlStr = "";
+
+        // Auto-detect current port and origin immediately on load
+        (function initPortFromLocation() {
+            try {
+                const curPort = window.location.port || (window.location.protocol === 'https:' ? '443' : '80');
+                const curHost = window.location.hostname || '127.0.0.1';
+                if (curPort) {
+                    const hdrLan = document.getElementById('hdr-lan-ip');
+                    if (hdrLan) hdrLan.innerText = `${curHost}:${curPort}`;
+                    const regExt = document.getElementById('reg-ext-url');
+                    if (regExt) regExt.innerText = `http://${curHost}:${curPort}`;
+                    const regHttp = document.getElementById('reg-http-port');
+                    if (regHttp) regHttp.innerText = `${curPort} (HTTP)`;
+                    externalUrlStr = `http://${curHost}:${curPort}`;
+                }
+            } catch (e) {}
+        })();
 
         // Day-Trade Series Definitions
         const serverSeriesDefs = [
@@ -3171,20 +3224,28 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 if (data.registers) {
                     const r = data.registers;
                     externalUrlStr = r.external_url;
-                    document.getElementById('hdr-lan-ip').innerText = `${r.lan_ip}:${r.http_port}`;
-                    document.getElementById('reg-lan-ip').innerText = r.lan_ip;
-                    document.getElementById('reg-ext-url').innerText = r.external_url;
+                    const hdrLan = document.getElementById('hdr-lan-ip');
+                    if (hdrLan) hdrLan.innerText = `${r.lan_ip}:${r.http_port}`;
+                    const regLan = document.getElementById('reg-lan-ip');
+                    if (regLan) regLan.innerText = r.lan_ip;
+                    const regExt = document.getElementById('reg-ext-url');
+                    if (regExt) regExt.innerText = r.external_url;
+                    const regHttp = document.getElementById('reg-http-port');
+                    if (regHttp) regHttp.innerText = `${r.http_port} (HTTP)`;
                 }
 
-                if (data.local_ip) {
-                    const port = 18080;
-                    externalUrlStr = `http://${data.local_ip}:${port}`;
+                if (data.local_ip || data.http_port) {
+                    const hostIp = data.local_ip || window.location.hostname || '127.0.0.1';
+                    const port = data.http_port || window.location.port || 18080;
+                    externalUrlStr = `http://${hostIp}:${port}`;
                     const hdrLan = document.getElementById('hdr-lan-ip');
-                    if (hdrLan) hdrLan.innerText = `${data.local_ip}:${port}`;
+                    if (hdrLan) hdrLan.innerText = `${hostIp}:${port}`;
                     const regLan = document.getElementById('reg-lan-ip');
-                    if (regLan) regLan.innerText = data.local_ip;
+                    if (regLan) regLan.innerText = hostIp;
                     const regExt = document.getElementById('reg-ext-url');
                     if (regExt) regExt.innerText = externalUrlStr;
+                    const regHttp = document.getElementById('reg-http-port');
+                    if (regHttp) regHttp.innerText = `${port} (HTTP)`;
                 }
 
                 if (data.os_total_memory_mb) {
@@ -3788,7 +3849,9 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         }
 
         function copyExternalUrl() {
-            const url = externalUrlStr || `http://${window.location.hostname || '127.0.0.1'}:18080`;
+            const hostIp = (rawDashboardState && rawDashboardState.local_ip) || window.location.hostname || '127.0.0.1';
+            const port = (rawDashboardState && rawDashboardState.http_port) || window.location.port || 18080;
+            const url = externalUrlStr || `http://${hostIp}:${port}`;
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(url).then(() => {
                     showToast("Link copiado para a área de transferência!");
@@ -4045,6 +4108,11 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         let currentDbSortOrder = "ASC";
         let currentDbTab = "grid";
         let dbGroupCollapsed = {}; // Empty means ALL EXPANDED BY DEFAULT
+        let currentDbColumns = [];
+        let currentDbRows = [];
+        let editingRowIndex = null;
+        let editingRowOriginalPk = null;
+        let isAddingNewRow = false;
         let isInsertingRow = false;
         let editingRowPk = null;
         let pendingConfirmAction = null;
@@ -4261,48 +4329,33 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         }
 
         function renderGridData(data) {
+            currentDbColumns = data.columns || [];
+            currentDbRows = data.rows || [];
+            editingRowIndex = null;
+            editingRowOriginalPk = null;
+            isAddingNewRow = false;
+
             const thead = document.getElementById('db-table-head');
             const tbody = document.getElementById('db-table-body');
             if (!thead || !tbody) return;
 
             // Render Header
-            let thHtml = `<th style="width:70px; text-align:center;">Ações</th>`;
-            data.columns.forEach(col => {
+            let thHtml = `<th style="width:75px; text-align:center;">Ações</th>`;
+            currentDbColumns.forEach(col => {
                 const isPk = col.pk;
                 const pkBadge = isPk ? `<span class="db-pk-tag">PK</span>` : '';
                 const sortIcon = (currentDbSortCol === col.name) ? (currentDbSortOrder === 'ASC' ? ' ▲' : ' ▼') : '';
-                thHtml += `<th onclick="sortTableBy('${col.name}')">
+                thHtml += `<th onclick="sortTableBy('${col.name}')" style="cursor:pointer;" title="Clique para ordenar por ${col.name}">
                     ${col.name} ${pkBadge} <span style="font-size:0.62rem; color:#64748b;">(${col.type_name})</span><span style="color:var(--accent-login);">${sortIcon}</span>
                 </th>`;
             });
             thead.innerHTML = `<tr>${thHtml}</tr>`;
 
             // Render Rows
-            if (!data.rows || data.rows.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="${data.columns.length + 1}" style="text-align:center; padding:30px; color:#64748b;">Nenhum registro encontrado nesta tabela.</td></tr>`;
+            if (currentDbRows.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="${currentDbColumns.length + 1}" style="text-align:center; padding:30px; color:#64748b;">Nenhum registro encontrado nesta tabela.</td></tr>`;
             } else {
-                tbody.innerHTML = data.rows.map(row => {
-                    const rowEncoded = encodeURIComponent(JSON.stringify(row));
-                    let tdHtml = `<td style="text-align:center;">
-                        <button class="filter-btn" style="padding:2px 5px; font-size:0.65rem;" onclick="openEditRowModal('${rowEncoded}')" title="Editar Linha">
-                            <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
-                        </button>
-                        <button class="filter-btn" style="padding:2px 5px; font-size:0.65rem; color:#f87171;" onclick="deleteRow('${rowEncoded}')" title="Excluir Linha">
-                            <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></span>
-                        </button>
-                    </td>`;
-
-                    data.columns.forEach(col => {
-                        const val = row[col.name];
-                        if (val === null || val === undefined) {
-                            tdHtml += `<td><span class="db-null-val">NULL</span></td>`;
-                        } else {
-                            tdHtml += `<td title="${escapeHtml(String(val))}">${escapeHtml(String(val))}</td>`;
-                        }
-                    });
-
-                    return `<tr>${tdHtml}</tr>`;
-                }).join('');
+                tbody.innerHTML = currentDbRows.map((row, idx) => renderRowHtml(row, idx, false)).join('');
             }
 
             // Update Pagination
@@ -4310,6 +4363,49 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             document.getElementById('db-page-info').innerText = `Página ${data.page} de ${data.total_pages}`;
             document.getElementById('db-prev-page-btn').disabled = data.page <= 1;
             document.getElementById('db-next-page-btn').disabled = data.page >= data.total_pages;
+        }
+
+        function renderRowHtml(row, idx, isEditing = false, focusCol = null) {
+            const rowEncoded = encodeURIComponent(JSON.stringify(row));
+            if (!isEditing) {
+                let tdHtml = `<td style="text-align:center; white-space:nowrap;">
+                    <button class="filter-btn" style="padding:2px 5px; font-size:0.65rem;" onclick="startRowInlineEdit(${idx})" title="Editar Linha no Grid">
+                        <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+                    </button>
+                    <button class="filter-btn" style="padding:2px 5px; font-size:0.65rem; color:#f87171;" onclick="deleteRow('${rowEncoded}')" title="Excluir Linha">
+                        <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></span>
+                    </button>
+                </td>`;
+
+                currentDbColumns.forEach(col => {
+                    const val = row[col.name];
+                    const displayVal = (val === null || val === undefined) 
+                        ? `<span class="db-null-val">NULL</span>` 
+                        : escapeHtml(String(val));
+                    tdHtml += `<td onclick="startRowInlineEdit(${idx}, '${col.name}')" title="Clique para editar (${col.name})">${displayVal}</td>`;
+                });
+
+                return `<tr id="db-grid-row-${idx}">${tdHtml}</tr>`;
+            } else {
+                let tdHtml = `<td style="text-align:center; white-space:nowrap;">
+                    <button class="filter-btn" style="padding:2px 6px; font-size:0.75rem; color:#34d399; font-weight:bold; border-color:rgba(52,211,153,0.4);" onclick="saveRowInlineEdit(${idx})" title="Salvar Alterações (Enter)">
+                        ✔
+                    </button>
+                    <button class="filter-btn" style="padding:2px 6px; font-size:0.75rem; color:#f87171; font-weight:bold; border-color:rgba(248,113,113,0.4);" onclick="cancelRowInlineEdit(${idx})" title="Cancelar (Esc)">
+                        ✕
+                    </button>
+                </td>`;
+
+                currentDbColumns.forEach(col => {
+                    const val = row[col.name];
+                    const inputVal = (val === null || val === undefined) ? '' : String(val);
+                    tdHtml += `<td>
+                        <input type="text" class="db-inline-input" id="db-edit-input-${idx}-${col.name}" data-col="${col.name}" value="${escapeHtml(inputVal)}" placeholder="${col.pk ? 'PK' : (val === null ? 'NULL' : '')}" onkeydown="handleRowInlineKeydown(event, ${idx})">
+                    </td>`;
+                });
+
+                return `<tr id="db-grid-row-${idx}" class="db-row-editing">${tdHtml}</tr>`;
+            }
         }
 
         function sortTableBy(colName) {
@@ -4656,79 +4752,211 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             closeConfirmModal();
         }
 
-        // Add / Edit Row Modal
-        function openInsertRowModal() {
-            if (!currentDbTable) return;
-            isInsertingRow = true;
-            editingRowPk = null;
-            document.getElementById('db-row-modal-title').innerText = `Novo Registro em '${currentDbTable}' (${currentDbId}.db)`;
+        // Inline Grid Editing and Inline Row Addition (Workbench style)
+        function startRowInlineEdit(rowIndex, focusCol = null) {
+            if (isAddingNewRow) {
+                cancelNewDraftRow();
+            }
+            if (editingRowIndex !== null && editingRowIndex !== rowIndex) {
+                cancelRowInlineEdit(editingRowIndex);
+            }
 
-            const dbGroup = dbDatabases.find(d => d.id === currentDbId);
-            const schema = dbGroup?.tables.find(s => s.name === currentDbTable);
-            if (!schema) return;
+            const row = currentDbRows[rowIndex];
+            if (!row) return;
 
-            const form = document.getElementById('db-row-form-fields');
-            form.innerHTML = schema.columns.map(col => {
-                const isAutoPk = col.pk && col.type_name.toUpperCase().includes('INT');
-                const placeholder = isAutoPk ? '(Auto-Increment)' : (col.dflt_value ? `Padrão: ${col.dflt_value}` : '');
-                return `<div class="db-form-field">
-                    <div class="db-form-label">
-                        <span>${col.name} ${col.pk ? '<span class="db-pk-tag">PK</span>' : ''}</span>
-                        <span style="font-size:0.65rem; color:#64748b;">${col.type_name}</span>
-                    </div>
-                    <input type="text" class="db-form-input" id="db-input-${col.name}" placeholder="${placeholder}">
-                </div>`;
-            }).join('');
-
-            document.getElementById('db-row-modal').classList.add('open');
-        }
-
-        function openEditRowModal(encodedRowJson) {
-            if (!currentDbTable) return;
-            const row = JSON.parse(decodeURIComponent(encodedRowJson));
-            const dbGroup = dbDatabases.find(d => d.id === currentDbId);
-            const schema = dbGroup?.tables.find(s => s.name === currentDbTable);
-            if (!schema) return;
-
-            isInsertingRow = false;
-            editingRowPk = {};
-            schema.columns.filter(c => c.pk).forEach(c => {
-                editingRowPk[c.name] = row[c.name];
+            editingRowIndex = rowIndex;
+            editingRowOriginalPk = {};
+            currentDbColumns.filter(c => c.pk).forEach(c => {
+                editingRowOriginalPk[c.name] = row[c.name];
             });
 
-            document.getElementById('db-row-modal-title').innerText = `Editar Registro em '${currentDbTable}' (${currentDbId}.db)`;
+            const rowEl = document.getElementById(`db-grid-row-${rowIndex}`);
+            if (rowEl) {
+                const tempDiv = document.createElement('tbody');
+                tempDiv.innerHTML = renderRowHtml(row, rowIndex, true, focusCol);
+                rowEl.replaceWith(tempDiv.firstElementChild);
 
-            const form = document.getElementById('db-row-form-fields');
-            form.innerHTML = schema.columns.map(col => {
-                const val = row[col.name] !== null && row[col.name] !== undefined ? row[col.name] : '';
-                return `<div class="db-form-field">
-                    <div class="db-form-label">
-                        <span>${col.name} ${col.pk ? '<span class="db-pk-tag">PK</span>' : ''}</span>
-                        <span style="font-size:0.65rem; color:#64748b;">${col.type_name}</span>
-                    </div>
-                    <input type="text" class="db-form-input" id="db-input-${col.name}" value="${escapeHtml(String(val))}">
-                </div>`;
-            }).join('');
-
-            document.getElementById('db-row-modal').classList.add('open');
+                setTimeout(() => {
+                    let targetInput = null;
+                    if (focusCol) {
+                        targetInput = document.getElementById(`db-edit-input-${rowIndex}-${focusCol}`);
+                    }
+                    if (!targetInput) {
+                        targetInput = document.querySelector(`#db-grid-row-${rowIndex} .db-inline-input`);
+                    }
+                    if (targetInput) {
+                        targetInput.focus();
+                        targetInput.select();
+                    }
+                }, 10);
+            }
         }
 
-        function closeRowModal() {
-            document.getElementById('db-row-modal').classList.remove('open');
+        function cancelRowInlineEdit(rowIndex = null) {
+            const idx = rowIndex !== null ? rowIndex : editingRowIndex;
+            if (idx === null || !currentDbRows[idx]) return;
+
+            const rowEl = document.getElementById(`db-grid-row-${idx}`);
+            if (rowEl) {
+                const tempDiv = document.createElement('tbody');
+                tempDiv.innerHTML = renderRowHtml(currentDbRows[idx], idx, false);
+                rowEl.replaceWith(tempDiv.firstElementChild);
+            }
+            if (editingRowIndex === idx) {
+                editingRowIndex = null;
+                editingRowOriginalPk = null;
+            }
         }
 
-        async function saveRowData() {
-            if (!currentDbTable) return;
-            const dbGroup = dbDatabases.find(d => d.id === currentDbId);
-            const schema = dbGroup?.tables.find(s => s.name === currentDbTable);
-            if (!schema) return;
+        function handleRowInlineKeydown(event, rowIndex) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                saveRowInlineEdit(rowIndex);
+            } else if (event.key === 'Escape') {
+                event.preventDefault();
+                cancelRowInlineEdit(rowIndex);
+            }
+        }
+
+        async function saveRowInlineEdit(rowIndex) {
+            if (!currentDbTable || rowIndex === null || !currentDbRows[rowIndex]) return;
 
             const rowData = {};
-            schema.columns.forEach(col => {
-                const el = document.getElementById(`db-input-${col.name}`);
-                if (el) {
-                    let v = el.value.trim();
-                    if (isInsertingRow && col.pk && col.type_name.toUpperCase().includes('INT') && v === '') {
+            currentDbColumns.forEach(col => {
+                const input = document.getElementById(`db-edit-input-${rowIndex}-${col.name}`);
+                if (input) {
+                    let v = input.value.trim();
+                    if (v === '' && !col.notnull) {
+                        rowData[col.name] = null;
+                    } else if (col.type_name.toUpperCase().includes('INT')) {
+                        const num = parseInt(v, 10);
+                        rowData[col.name] = isNaN(num) ? v : num;
+                    } else if (col.type_name.toUpperCase().includes('REAL') || col.type_name.toUpperCase().includes('FLOAT')) {
+                        const flt = parseFloat(v);
+                        rowData[col.name] = isNaN(flt) ? v : flt;
+                    } else {
+                        rowData[col.name] = v;
+                    }
+                }
+            });
+
+            try {
+                const res = await fetch(`/api/db/table/${encodeURIComponent(currentDbTable)}/row`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ db: currentDbId, pk: editingRowOriginalPk, updates: rowData })
+                });
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    showToast("Registro atualizado com sucesso!");
+                    editingRowIndex = null;
+                    editingRowOriginalPk = null;
+                    loadTableData();
+                    fetchMetrics();
+                } else {
+                    alert("Erro ao atualizar registro: " + json.message);
+                }
+            } catch (e) {
+                alert("Erro ao comunicar com o servidor: " + e);
+            }
+        }
+
+        function addNewGridRow() {
+            if (!currentDbTable || !currentDbColumns.length) {
+                showToast("Selecione uma tabela primeiro.");
+                return;
+            }
+
+            if (isAddingNewRow) {
+                const first = document.querySelector('#db-draft-new-row .db-inline-input');
+                if (first) first.focus();
+                return;
+            }
+
+            if (editingRowIndex !== null) {
+                cancelRowInlineEdit(editingRowIndex);
+            }
+
+            isAddingNewRow = true;
+            const tbody = document.getElementById('db-table-body');
+            if (!tbody) return;
+
+            if (currentDbRows.length === 0) {
+                tbody.innerHTML = '';
+            }
+
+            let tdHtml = `<td style="text-align:center; white-space:nowrap;">
+                <button class="filter-btn" style="padding:2px 6px; font-size:0.75rem; color:#34d399; font-weight:bold; border-color:rgba(52,211,153,0.4);" onclick="submitNewDraftRow()" title="Salvar Novo Registro (Enter)">
+                    ✔
+                </button>
+                <button class="filter-btn" style="padding:2px 6px; font-size:0.75rem; color:#f87171; font-weight:bold; border-color:rgba(248,113,113,0.4);" onclick="cancelNewDraftRow()" title="Cancelar (Esc)">
+                    ✕
+                </button>
+            </td>`;
+
+            currentDbColumns.forEach(col => {
+                const isAutoPk = col.pk && col.type_name.toUpperCase().includes('INT');
+                const placeholder = isAutoPk ? '(Auto)' : (col.dflt_value ? `Padrão: ${col.dflt_value}` : (col.notnull ? 'Obrigatório' : 'NULL'));
+                tdHtml += `<td>
+                    <input type="text" class="db-inline-input" id="db-new-input-${col.name}" data-col="${col.name}" placeholder="${placeholder}" onkeydown="handleNewRowKeydown(event)">
+                </td>`;
+            });
+
+            const tr = document.createElement('tr');
+            tr.id = 'db-draft-new-row';
+            tr.className = 'db-row-new';
+            tr.innerHTML = tdHtml;
+            tbody.prepend(tr);
+
+            setTimeout(() => {
+                let toFocus = null;
+                for (const col of currentDbColumns) {
+                    const isAutoPk = col.pk && col.type_name.toUpperCase().includes('INT');
+                    if (!isAutoPk) {
+                        toFocus = document.getElementById(`db-new-input-${col.name}`);
+                        break;
+                    }
+                }
+                if (!toFocus) {
+                    toFocus = document.querySelector('#db-draft-new-row .db-inline-input');
+                }
+                if (toFocus) {
+                    toFocus.focus();
+                }
+            }, 10);
+        }
+
+        function cancelNewDraftRow() {
+            const draft = document.getElementById('db-draft-new-row');
+            if (draft) draft.remove();
+            isAddingNewRow = false;
+            if (currentDbRows.length === 0) {
+                const tbody = document.getElementById('db-table-body');
+                if (tbody) {
+                    tbody.innerHTML = `<tr><td colspan="${currentDbColumns.length + 1}" style="text-align:center; padding:30px; color:#64748b;">Nenhum registro encontrado nesta tabela.</td></tr>`;
+                }
+            }
+        }
+
+        function handleNewRowKeydown(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                submitNewDraftRow();
+            } else if (event.key === 'Escape') {
+                event.preventDefault();
+                cancelNewDraftRow();
+            }
+        }
+
+        async function submitNewDraftRow() {
+            if (!currentDbTable) return;
+
+            const rowData = {};
+            currentDbColumns.forEach(col => {
+                const input = document.getElementById(`db-new-input-${col.name}`);
+                if (input) {
+                    let v = input.value.trim();
+                    if (col.pk && col.type_name.toUpperCase().includes('INT') && v === '') {
                         return; // Let SQLite autoincrement
                     }
                     if (v === '' && !col.notnull) {
@@ -4746,41 +4974,25 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             });
 
             try {
-                if (isInsertingRow) {
-                    const res = await fetch(`/api/db/table/${encodeURIComponent(currentDbTable)}/row?db=${encodeURIComponent(currentDbId)}`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(rowData)
-                    });
-                    const json = await res.json();
-                    if (json.status === 'ok') {
-                        closeRowModal();
-                        showToast("Registro inserido com sucesso!");
-                        loadDbSchema(true);
-                        loadTableData(true);
-                        fetchMetrics();
-                    } else {
-                        alert("Erro ao inserir registro: " + json.message);
-                    }
+                const res = await fetch(`/api/db/table/${encodeURIComponent(currentDbTable)}/row?db=${encodeURIComponent(currentDbId)}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(rowData)
+                });
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    showToast("Registro inserido com sucesso!");
+                    isAddingNewRow = false;
+                    const draft = document.getElementById('db-draft-new-row');
+                    if (draft) draft.remove();
+                    loadDbSchema(true);
+                    loadTableData(true);
+                    fetchMetrics();
                 } else {
-                    const res = await fetch(`/api/db/table/${encodeURIComponent(currentDbTable)}/row`, {
-                        method: 'PUT',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ db: currentDbId, pk: editingRowPk, updates: rowData })
-                    });
-                    const json = await res.json();
-                    if (json.status === 'ok') {
-                        closeRowModal();
-                        showToast("Registro atualizado com sucesso!");
-                        loadDbSchema(true);
-                        loadTableData(true);
-                        fetchMetrics();
-                    } else {
-                        alert("Erro ao atualizar registro: " + json.message);
-                    }
+                    alert("Erro ao inserir registro: " + json.message);
                 }
             } catch (e) {
-                alert("Erro ao comunicar com o servidor: " + e);
+                alert("Erro ao salvar novo registro: " + e);
             }
         }
 

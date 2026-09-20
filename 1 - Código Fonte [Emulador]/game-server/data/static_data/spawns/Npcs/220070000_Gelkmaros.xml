@@ -2,9 +2,11 @@
 <spawns>
 	<spawn_map map_id="220070000">
 		
+		<!-- DESATIVADO (Alerta Walker: 30AE9FAADF71BF5E93BFB6EAFB9342C7C43A9959)
 		<spawn npc_id="205298" respawn_time="295">
 			<spot x="1772.04" y="2881.84" z="541.625" h="100" walker_id="30AE9FAADF71BF5E93BFB6EAFB9342C7C43A9959" walker_index="5" />
 		</spawn>
+		-->
 		
 		<spawn npc_id="205322" respawn_time="295">
 			<spot x="1758.0588" y="2961.2473" z="551.625" h="8" />
@@ -9930,25 +9932,35 @@
 			<spot x="2385.1211" y="2066.2046" z="451.25" h="0" />
 			</spawn>
 		
+		<!-- DESATIVADO (Alerta Walker: 30AE9FAADF71BF5E93BFB6EAFB9342C7C43A9959)
 		<spawn npc_id="799731" respawn_time="295">
 			<spot x="1771.8473" y="2880.0032" z="543.5" h="97" walker_id="30AE9FAADF71BF5E93BFB6EAFB9342C7C43A9959" walker_index="3" />
 		</spawn>
+		-->
 		
+		<!-- DESATIVADO (Alerta Walker: 30AE9FAADF71BF5E93BFB6EAFB9342C7C43A9959)
 		<spawn npc_id="799735" respawn_time="295">
 			<spot x="1772.04" y="2881.84" z="541.625" h="99" walker_id="30AE9FAADF71BF5E93BFB6EAFB9342C7C43A9959" walker_index="1" />
 		</spawn>
+		-->
 		
+		<!-- DESATIVADO (Alerta Walker: 30AE9FAADF71BF5E93BFB6EAFB9342C7C43A9959)
 		<spawn npc_id="799736" respawn_time="295">
 			<spot x="1772.04" y="2881.84" z="541.625" h="100" walker_id="30AE9FAADF71BF5E93BFB6EAFB9342C7C43A9959" />
 		</spawn>
+		-->
 		
+		<!-- DESATIVADO (Alerta Walker: 30AE9FAADF71BF5E93BFB6EAFB9342C7C43A9959)
 		<spawn npc_id="799747" respawn_time="295">
 			<spot x="1772.8473" y="2883.0032" z="543.375" h="99" walker_id="30AE9FAADF71BF5E93BFB6EAFB9342C7C43A9959" walker_index="4" />
 		</spawn>
+		-->
 		
+		<!-- DESATIVADO (Alerta Walker: 30AE9FAADF71BF5E93BFB6EAFB9342C7C43A9959)
 		<spawn npc_id="799749" respawn_time="295">
 			<spot x="1771.8473" y="2882.0032" z="544.25" h="100" walker_id="30AE9FAADF71BF5E93BFB6EAFB9342C7C43A9959" walker_index="2" />
 		</spawn>
+		-->
 		
 		<spawn npc_id="799842" respawn_time="295">
 			<spot x="1823.7946" y="2839.1584" z="534.875" h="41" />

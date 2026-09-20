@@ -16,6 +16,8 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.PositionUtil;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.geo.GeoService;
+import com.lostacademy.nativepath.NativePathConfig;
+import com.lostacademy.nativepath.NativePathService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -35,9 +37,15 @@ public class PulledEffect extends EffectTemplate {
 		if (ec.isAbnormalSet(AbnormalState.PULLED) || ec.isAbnormalSet(AbnormalState.STUMBLE) || ec.isAbnormalSet(AbnormalState.OPENAERIAL))
 			return;
 
-		if (!GeoService.getInstance().canSee(effect.getEffected(),effect.getEffector())) {
+		// Validação prioritária via NativePath CryEngine (grade 0.5m) quando disponível
+		if (NativePathConfig.NATIVE_PATH_ENABLE) {
+			if (!NativePathService.getInstance().canPullTarget(effect.getEffected(), effect.getEffector())) {
+				return;
+			}
+		} else if (!GeoService.getInstance().canSee(effect.getEffected(), effect.getEffector())) {
 			return;
 		}
+
 		if (!super.calculate(effect, StatEnum.PULLED_RESISTANCE, null))
 			return;
 		if (effect.isSubEffect())
@@ -48,8 +56,18 @@ public class PulledEffect extends EffectTemplate {
 		float z = effector.getZ();
 		final float x1 = (float) Math.cos(radian) * 1.5f;
 		final float y1 = (float) Math.sin(radian) * 1.5f;
-		Vector3f closestCollision = GeoService.getInstance().getClosestCollision(effect.getEffected(),effector.getX() + x1, effector.getY() + y1, z);
-		effect.setTargetLoc(closestCollision.getX(), closestCollision.getY(), closestCollision.getZ());
+		Vector3f closestCollision = GeoService.getInstance().getClosestCollision(effect.getEffected(), effector.getX() + x1, effector.getY() + y1, z);
+		float destX = closestCollision.getX();
+		float destY = closestCollision.getY();
+		float destZ = closestCollision.getZ();
+		// Corrige Z com NativePath para evitar que a vítima flutue ou caia em abismo
+		if (NativePathConfig.NATIVE_PATH_ENABLE) {
+			float nativeZ = NativePathService.getInstance().getSurfaceZ(effector.getWorldId(), destX, destY, destZ);
+			if (!Float.isNaN(nativeZ)) {
+				destZ = nativeZ;
+			}
+		}
+		effect.setTargetLoc(destX, destY, destZ);
 	}
 
 	@Override

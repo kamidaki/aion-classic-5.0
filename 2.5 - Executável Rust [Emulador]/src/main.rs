@@ -24,6 +24,47 @@ use tray::{TrayAction, TrayManager};
 use warp::Filter;
 use webview::{UserEvent, WebViewApp};
 
+fn is_port_available(port: u16) -> bool {
+    // 1. If any service is accepting connections on 127.0.0.1:port, it is occupied
+    if std::net::TcpStream::connect_timeout(
+        &std::net::SocketAddr::from(([127, 0, 0, 1], port)),
+        Duration::from_millis(60),
+    )
+    .is_ok()
+    {
+        return false;
+    }
+
+    // 2. Test binding to 127.0.0.1
+    let l_local = match std::net::TcpListener::bind(("127.0.0.1", port)) {
+        Ok(l) => l,
+        Err(_) => return false,
+    };
+
+    // 3. Test binding to 0.0.0.0 to prevent any wildcard port conflicts
+    let l_all = match std::net::TcpListener::bind(("0.0.0.0", port)) {
+        Ok(l) => l,
+        Err(_) => {
+            drop(l_local);
+            return false;
+        }
+    };
+
+    drop(l_local);
+    drop(l_all);
+    true
+}
+
+fn find_available_http_port(preferred: u16, max_attempts: u16) -> u16 {
+    for offset in 0..max_attempts {
+        let candidate = preferred.saturating_add(offset);
+        if is_port_available(candidate) {
+            return candidate;
+        }
+    }
+    preferred
+}
+
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let _ = std::fs::create_dir_all("logs");
     std::panic::set_hook(Box::new(|info| {
@@ -41,7 +82,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let _job_guard = JobObjectGuard::init();
 
     // 2. Strict Single Instance Protection via Global/Local Named Mutex & Process Scan
-    let _instance_guard = match SingleInstanceGuard::acquire("Aion Classic - EMU") {
+    let _instance_guard = match SingleInstanceGuard::acquire("Aion Classic - EMULADOR") {
         Some(g) => g,
         None => {
             std::process::exit(0);
@@ -49,7 +90,21 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     };
 
     let cfg_path = "config.json";
-    let cfg = load_config(cfg_path);
+    let mut cfg = load_config(cfg_path);
+
+    // Dynamic HTTP Port Allocation: If preferred port is in use (e.g. by another emulator like Florensia),
+    // automatically find and bind the next free port.
+    let preferred_http_port = cfg.gui.http_port;
+    let actual_http_port = find_available_http_port(preferred_http_port, 100);
+    if actual_http_port != preferred_http_port {
+        eprintln!(
+            "[AVISO] Porta padrao {} ocupada por outro processo. Alocando painel web na proxima porta livre: {}",
+            preferred_http_port, actual_http_port
+        );
+    } else {
+        println!("[OK] Painel web alocado na porta: {}", actual_http_port);
+    }
+    cfg.gui.http_port = actual_http_port;
 
     let log_center = LogCenter::new(
         cfg.launcher.clean_archived_logs_days,
@@ -436,7 +491,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .or(db_create_route);
 
         let port = cfg_clone.gui.http_port;
-        warp::serve(routes).run(([127, 0, 0, 1], port)).await;
+        let server_fut = warp::serve(routes).bind(([127, 0, 0, 1], port));
+        println!("[OK] Servidor web Warp ativo em http://127.0.0.1:{}/", port);
+        server_fut.await;
     });
 
     // 6. Wait until local web server is bound and accepting connections
@@ -460,4 +517,21 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     });
 
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_dynamic_port_allocation() {
+        let initial_port = find_available_http_port(18080, 50);
+        // Bind the port with a dummy listener to simulate another process (like Florensia) taking it
+        let dummy = std::net::TcpListener::bind(("127.0.0.1", initial_port)).expect("Should bind free port");
+        // Now finding the next available port must skip initial_port and return next port
+        let next_port = find_available_http_port(initial_port, 50);
+        assert_ne!(next_port, initial_port, "Must find the next free port when preferred is in use");
+        assert!(next_port > initial_port, "Allocated port must be greater than or equal to preferred + 1");
+        drop(dummy);
+    }
 }
