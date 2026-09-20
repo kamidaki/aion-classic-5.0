@@ -37,6 +37,17 @@ public class FlyLootAI extends ActionItemNpcAI {
 	}
 
 	@Override
+	protected int getTalkDelayInMs() {
+		return 5000;
+	}
+
+	@Override
+	protected void handleSpawned() {
+		super.handleSpawned();
+		dropRegistered.set(false);
+	}
+
+	@Override
 	protected void handleDialogStart(Player player) {
 		if (getOwner().isInState(CreatureState.DEAD) || dropRegistered.get()) {
 			return;

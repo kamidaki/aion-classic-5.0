@@ -39,17 +39,16 @@ public class SM_LOOT_ITEMLIST extends AionServerPacket {
 		if (activePlayer == null)
 			return;
 		writeD(targetObjectId);
-		writeC(dropItems.size());
+		writeH(dropItems.size());
 
 		for (DropItem dropItem : dropItems) {
 			Drop drop = dropItem.getDropTemplate();
 			writeD(dropItem.getIndex()); // u32 index in droplist
-			writeC(0);
 			writeD(drop.getItemId());
 			writeD((int) dropItem.getCount());
-			writeH(0);
+			writeC(0);
+			writeC(0);
 		}
-
 	}
 
 }
