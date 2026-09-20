@@ -28988,6 +28988,11 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DEVAPASS_REWARD_INVENTORY_FULL = new SM_SYSTEM_MESSAGE(1401424);
 
+	/** You receive %1x %0 in reward for your Combat Talent progress. */
+	public static SM_SYSTEM_MESSAGE STR_MSG_COMBAT_POWER_REWARD_GET(int itemNameId, long amount) {
+		return new SM_SYSTEM_MESSAGE(1401956, new DescriptionId(itemNameId << 1 | 1), amount);
+	}
+
 	/**
 	 * The Legion %1 from %0 has conquered %2.
 	 */

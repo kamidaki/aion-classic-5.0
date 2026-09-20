@@ -36,7 +36,11 @@ public class SignetBurstEffect extends DamageEffect {
 			valueWithDelta *= effect.getEffector().getGameStats().getKnowledge().getCurrent() / 100f;
 
 		int effectProb = 0;
-		int signetLvl = Math.min(signetlvl, signetEffect == null ? 0 : signetEffect.getSkillLevel());
+		int signetLvl = 0;
+		if (signetEffect != null) {
+			int currentLevel = signetEffect.getCarvedSignet() > 0 ? signetEffect.getCarvedSignet() : signetEffect.getSkillLevel();
+			signetLvl = signetlvl > 0 ? Math.min(signetlvl, currentLevel) : currentLevel;
+		}
 		SignetEnum signetEnum = null;
 		if (signet != null) {
 			if ("SYSTEM_SKILL_SIGNET1".equalsIgnoreCase(signet)) {
@@ -53,11 +57,16 @@ public class SignetBurstEffect extends DamageEffect {
 		SignetData signetData = signetEnum != null ? DataManager.SIGNET_DATA_TEMPLATES.getSignetData(signetEnum, signetLvl) : null;
 		if (signetData != null) {
 			valueWithDelta *= signetData.getDamageMultiplier();
-			effectProb = signetData.getAddEffectProb() * addEffectProbMultiplier;
+			int multiplier = addEffectProbMultiplier > 0 ? addEffectProbMultiplier : 1;
+			effectProb = signetData.getAddEffectProb() * multiplier;
 		}
 		effect.setSignetBurstedCount(signetLvl);
 		AttackUtil.calculateSkillResult(effect, valueWithDelta, this, false);
-		effect.setLaunchSubEffect(Rnd.chance() < effectProb);
+		if (effect.getSkillTemplate().getStack() != null && effect.getSkillTemplate().getStack().contains("DRAINBURST")) {
+			effect.setLaunchSubEffect(signetLvl > 0);
+		} else {
+			effect.setLaunchSubEffect(Rnd.chance() < effectProb);
+		}
 		if (signetEffect != null)
 			signetEffect.endEffect();
 	}

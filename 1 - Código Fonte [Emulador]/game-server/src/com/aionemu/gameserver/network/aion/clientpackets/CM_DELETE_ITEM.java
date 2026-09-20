@@ -29,8 +29,11 @@ public class CM_DELETE_ITEM extends AionClientPacket {
 
 	@Override
 	protected void runImpl() {
-
 		Player player = getConnection().getActivePlayer();
+		deleteItem(player, itemObjectId);
+	}
+
+	public static void deleteItem(Player player, int itemObjectId) {
 		if (player == null || !player.isSpawned() || player.isTrading()) return;
 		player.getController().cancelUseItem();
 		Storage inventory = player.getInventory();

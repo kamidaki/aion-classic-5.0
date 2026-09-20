@@ -23,6 +23,12 @@
     <xs:attribute name="value" type="xs:string" use="required"/>
     <xs:attribute name="points" type="xs:nonNegativeInteger" use="required"/>
    </xs:complexType></xs:element>
+   <xs:element name="combat_reward" minOccurs="0" maxOccurs="32"><xs:complexType>
+    <xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+    <xs:attribute name="goal" type="xs:nonNegativeInteger" use="required"/>
+    <xs:attribute name="item" type="xs:positiveInteger" use="required"/>
+    <xs:attribute name="amount" type="xs:positiveInteger" use="required"/>
+   </xs:complexType></xs:element>
   </xs:sequence></xs:complexType>
  </xs:element>
 </xs:schema>

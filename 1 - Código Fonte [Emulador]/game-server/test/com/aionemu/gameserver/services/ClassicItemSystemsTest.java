@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import com.aionemu.gameserver.dataholders.ClassicItemSystemsData;
+import com.aionemu.gameserver.dataholders.CubeExpandData;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.dataholders.ItemData;
 import com.aionemu.gameserver.model.gameobjects.Item;
@@ -19,6 +20,14 @@ import com.aionemu.gameserver.model.templates.item.enums.EquipType;
 import com.aionemu.gameserver.configs.main.GSConfig;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 import com.aionemu.gameserver.network.aion.AionConnection;
+import com.aionemu.gameserver.network.aion.AionConnection.State;
+import com.aionemu.gameserver.network.aion.clientpackets.CM_CUBE_EXPAND;
+import com.aionemu.gameserver.network.aion.clientpackets.CM_COMBAT_TALENT_REWARD;
+import com.aionemu.gameserver.network.aion.clientpackets.CM_REMOVE_STIGMA;
+import com.aionemu.gameserver.network.factories.AionPacketHandlerFactory;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_COMBAT_TALENT_REWARD_UPDATE;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_INVENTORY_ADD_ITEM;
+import com.aionemu.gameserver.services.item.ItemPacketService.ItemAddType;
 import com.aionemu.gameserver.network.aion.iteminfo.ItemInfoBlob;
 import com.aionemu.gameserver.network.aion.iteminfo.ItemInfoBlob.ItemBlobType;
 import com.aionemu.gameserver.network.aion.serverpackets.S_SERVER_ENV;
@@ -30,6 +39,8 @@ class ClassicItemSystemsTest {
 			.createUnmarshaller().unmarshal(new File("data/static_data/items/classic_item_systems.xml"));
 		DataManager.ITEM_DATA = (ItemData) JAXBContext.newInstance(ItemData.class).createUnmarshaller()
 			.unmarshal(new File("data/static_data/items/item_templates.xml"));
+		DataManager.CUBEEXPANDER_DATA = (CubeExpandData) JAXBContext.newInstance(CubeExpandData.class)
+			.createUnmarshaller().unmarshal(new File("data/static_data/storage_expander/cube_expander.xml"));
 	}
 
 	@Test void essenceUsesOfficialCostsAndFailureTransition() {
@@ -112,6 +123,19 @@ class ClassicItemSystemsTest {
 		assertFalse(DataManager.ITEM_DATA.getItemTemplate(182400001).isDeletable());
 	}
 
+	@Test void inventoryExpansionUsesOfficialUiPacketAndNpcPriceTable() {
+		assertEquals(1000, DataManager.CUBEEXPANDER_DATA.getPrice(1));
+		assertEquals(12000, DataManager.CUBEEXPANDER_DATA.getPrice(2));
+		assertEquals(80000, DataManager.CUBEEXPANDER_DATA.getPrice(3));
+		assertEquals(180000, DataManager.CUBEEXPANDER_DATA.getPrice(4));
+		assertEquals(360000, DataManager.CUBEEXPANDER_DATA.getPrice(5));
+		assertNull(DataManager.CUBEEXPANDER_DATA.getPrice(6));
+
+		var packets = AionPacketHandlerFactory.getInstance().getPacketHandler().getPacketsPrototypes().get(State.IN_GAME);
+		assertInstanceOf(CM_CUBE_EXPAND.class, packets.get(0x1B8)); // decoded 0x00CA, one-byte type
+		assertInstanceOf(CM_REMOVE_STIGMA.class, packets.get(0x136)); // decoded 0x003C, shared item-object request
+	}
+
 	@Test void enchantPowerUsesExactOfficialPointsAndExcludesStigmas() {
 		Item item = new Item(1, DataManager.ITEM_DATA.getItemTemplate(110601334));
 		int base = CombatTalentService.calculateItemPower(item);
@@ -120,6 +144,26 @@ class ClassicItemSystemsTest {
 		item.setEnchantLevel(10);
 		assertEquals(291, CombatTalentService.calculateItemPower(item) - base);
 		assertEquals(0, CombatTalentService.calculateItemPower(new Item(2, DataManager.ITEM_DATA.getItemTemplate(140000008))));
+	}
+
+	@Test void combatTalentRewardMatchesOfficialClaimCapture() throws Exception {
+		var reward = DataManager.CLASSIC_ITEM_SYSTEMS_DATA.getCombatReward(11);
+		assertNotNull(reward);
+		assertEquals(14000, reward.goal);
+		assertEquals(166300500, reward.item);
+		assertEquals(10, reward.amount);
+		assertEquals(14, DataManager.CLASSIC_ITEM_SYSTEMS_DATA.getCombatRewardCount());
+
+		var packets = AionPacketHandlerFactory.getInstance().getPacketHandler().getPacketsPrototypes().get(State.IN_GAME);
+		assertInstanceOf(CM_COMBAT_TALENT_REWARD.class, packets.get(0x1E5)); // decoded C 0x010F
+		assertEquals("0b0001", HexFormat.of().formatHex(body(new SM_COMBAT_TALENT_REWARD_UPDATE(11, true))));
+		assertEquals("190000000000646415000224005bf31800000031003000000000",
+			HexFormat.of().formatHex(body(SM_SYSTEM_MESSAGE.STR_MSG_COMBAT_POWER_REWARD_GET(817581, 10))));
+
+		Item item = new Item(0xC041BDBB, DataManager.ITEM_DATA.getItemTemplate(166300500));
+		item.setItemCount(10);
+		byte[] add = body(new SM_INVENTORY_ADD_ITEM(item, null, ItemAddType.COMBAT_TALENT_REWARD));
+		assertEquals("eb00000000010100", HexFormat.of().formatHex(Arrays.copyOf(add, 8)));
 	}
 
 	@Test void clientMaskIsIndependentFromGameplayPermissions() {

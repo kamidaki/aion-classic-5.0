@@ -9,6 +9,7 @@ import com.aionemu.gameserver.model.gameobjects.HouseObject;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.templates.item.actions.AbstractItemAction;
+import com.aionemu.gameserver.model.templates.item.actions.DecomposeAction;
 import com.aionemu.gameserver.model.templates.item.actions.DyeAction;
 import com.aionemu.gameserver.model.templates.item.actions.InstanceTimeClear;
 import com.aionemu.gameserver.model.templates.item.actions.MultiReturnAction;
@@ -54,6 +55,12 @@ public class CM_USE_ITEM extends AionClientPacket {
 	@Override
 	protected void runImpl() {
 		Player player = getConnection().getActivePlayer();
+
+		// Cancelar na janela de escolha de uma caixa selectable chega como C_USE_ITEM com objeto 0 (subida 1-60 oficial)
+		if (uniqueItemId == 0) {
+			DecomposeAction.cancelSelection(player);
+			return;
+		}
 
 		if (player.isProtectionActive())
 			player.getController().stopProtectionActiveTask();

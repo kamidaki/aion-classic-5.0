@@ -26,10 +26,17 @@ public class DecomposableItemsData {
 	private final Map<Integer, List<ExtractedItemsCollection>> decomposableItemsInfo = new HashMap<>();
 	@XmlTransient
 	private final Map<Integer, List<ResultedItem>> selectableDecomposables = new HashMap<>();
+	@XmlTransient
+	private final Map<Integer, DecomposableItemInfo> setDecomposables = new HashMap<>();
 
 	void afterUnmarshal(Unmarshaller u, Object parent) {
 		decomposableItemsInfo.clear();
+		setDecomposables.clear();
 		for (DecomposableItemInfo template : decomposableItemsTemplates) {
+			if (!template.getSets().isEmpty()) {
+				setDecomposables.put(template.getItemId(), template);
+				continue;
+			}
 			List<ExtractedItemsCollection> itemGroups = template.getItemsCollections();
 			if (itemGroups != null) {
 				if (template.isIsSelectable()) {
@@ -43,7 +50,14 @@ public class DecomposableItemsData {
 	}
 
 	public int size() {
-		return decomposableItemsInfo.size();
+		return decomposableItemsInfo.size() + selectableDecomposables.size() + setDecomposables.size();
+	}
+
+	/**
+	 * Caixa no formato do cliente 5.0 (sets), ou null se o item nao tem ou esta no formato antigo (items).
+	 */
+	public DecomposableItemInfo getSetDecomposable(int itemId) {
+		return setDecomposables.get(itemId);
 	}
 
 	public List<ResultedItem> getSelectableItems(int itemId) {

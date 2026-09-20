@@ -32,8 +32,10 @@ REM  -disabledevaschedule - Desativa o calendario/agenda do evento Deva in-game 
 REM  -old_charInstance    - Habilita o motor classic de customizacao visual de personagens.
 REM  -charnamemenu        - Permite a exibicao e funcionamento correto dos menus de criacao/renomear.
 REM  -dwsm                - Desativa verificacoes de seguranca do Web Service Manager oficial.
-REM  -probability         - Habilita a exibicao da porcentagem de sucesso do enchant.
+REM  -probability         - Liga o bit 82 de conteudo (exibicao de porcentagem; nao e a janela das caixas).
+REM  -probability2        - Liga o bit 102: tooltip "Ctrl + clique" e janela de conteudo/probabilidade das caixas.
 REM  -nospamcheck         - Desativa filtros remotos de spam de chat dos servidores oficiais.
 REM =========================================================================================
 
+REM WinMain recebe a linha de comando armazenada pelo CRT; passar a flag desde a criacao do processo.
 start bin64\Aion.bin -ip:127.0.0.1 -port:2106 -lang:ENG -cc:2 -dss -dce -probability

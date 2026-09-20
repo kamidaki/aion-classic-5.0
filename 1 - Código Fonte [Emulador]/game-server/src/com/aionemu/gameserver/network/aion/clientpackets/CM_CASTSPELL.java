@@ -76,6 +76,10 @@ public class CM_CASTSPELL extends AionClientPacket {
 	protected void runImpl() {
 		Player player = getConnection().getActivePlayer();
 
+		if (player == null) {
+			return;
+		}
+
 		if (player.isDead()) {
 			sendPacket(SM_SYSTEM_MESSAGE.STR_SKILL_CANT_CAST(ActionState.DEAD.getL10n()));
 			return;
@@ -91,15 +95,16 @@ public class CM_CASTSPELL extends AionClientPacket {
 		}
 
 		SkillTemplate template = DataManager.SKILL_DATA.getSkillTemplate(spellid);
-		if (template == null || template.isPassive())
+		if (template == null || template.isPassive()) {
 			return;
+		}
 
 		if (player.isProtectionActive())
 			player.getController().stopProtectionActiveTask();
 		player.getController().cancelUseItem();
 
 		if (player.getNextSkillUse() > receiveTime) {
-			int lastSkillId = player.getLastSkill().getSkillId(); // lastSkill cannot be null, as nextSkillUse is zero on the first cast
+			int lastSkillId = player.getLastSkill() != null ? player.getLastSkill().getSkillId() : 0;
 			AuditLogger.log(player, "tried to use skill " + spellid + " " + (player.getNextSkillUse() - receiveTime) + " ms too early. Previous skill: " + lastSkillId);
 			if (player.getNextSkillUse() > System.currentTimeMillis()) {
 				sendPacket(SM_SYSTEM_MESSAGE.STR_SKILL_NOT_READY());

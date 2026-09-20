@@ -67,6 +67,10 @@ public class AionPacketHandler {
 	 */
 	private void unknownPacket(State state, int id, ByteBuffer data) {
 		int decOp = ((id ^ 0x36) - 0xC4) & 0xFFFF;
-		log.debug(String.format("[REDE DESCONHECIDO] Opcode=0x%04X (dec=0x%04X), State=%s, Bytes=%d", id, decOp, state.toString(), data.remaining()));
+		String msg = String.format("[REDE DESCONHECIDO] Opcode=0x%04X (dec=0x%04X), State=%s, Bytes=%d", id, decOp, state.toString(), data.remaining());
+		if (NetworkConfig.LOG_UNKNOWN_PACKETS)
+			log.warn(msg + System.lineSeparator() + NetworkUtils.toHex(data.duplicate()));
+		else
+			log.debug(msg);
 	}
 }

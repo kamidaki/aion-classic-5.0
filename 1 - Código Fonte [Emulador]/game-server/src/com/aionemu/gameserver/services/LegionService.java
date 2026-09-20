@@ -481,10 +481,10 @@ public class LegionService {
 			List<Item> items = player.getLegion().getLegionWarehouse().getItems();
 			int storageId = StorageType.LEGION_WAREHOUSE.getId();
 
-			SplitList<Item> legionMemberSplitList = new FixedElementCountSplitList<>(items, false, 10);
-			legionMemberSplitList
-				.forEach(part -> PacketSendUtility.sendPacket(player, new SM_WAREHOUSE_INFO(part, storageId, whLvl, part.isFirst(), player)));
-			PacketSendUtility.sendPacket(player, new SM_WAREHOUSE_INFO(null, storageId, whLvl, items.isEmpty(), player));
+			SM_WAREHOUSE_INFO.split(items, storageId, whLvl, player)
+                .forEach(packet -> PacketSendUtility.sendPacket(player, packet));
+			if (!items.isEmpty())
+                PacketSendUtility.sendPacket(player, new SM_WAREHOUSE_INFO(null, storageId, whLvl, false, player));
 			PacketSendUtility.sendPacket(player, new SM_DIALOG_WINDOW(npc.getObjectId(), DialogPage.LEGION_WAREHOUSE.id()));
 		}
 	}

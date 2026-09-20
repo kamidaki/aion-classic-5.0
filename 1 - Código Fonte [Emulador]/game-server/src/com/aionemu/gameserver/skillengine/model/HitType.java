@@ -15,5 +15,7 @@ public enum HitType {
 	PHHIT,
 	FEAR,
 	SKILL,
-	BACKATK
+	BACKATK,
+	DODGEHIT,
+	PARRYHIT
 }

@@ -1,5 +1,6 @@
 package com.aionemu.gameserver.controllers.observer;
 
+import com.aionemu.gameserver.controllers.attack.AttackStatus;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -46,6 +47,14 @@ public class ActionObserver {
 	 * @param skillId - effector skill id, which called this method
 	 */
 	public void attacked(Creature creature, int skillId) {
+	}
+
+	/**
+	 * Called for defensive attack results that may deal no damage, such as dodge
+	 * and parry. Kept separate from {@link #attacked(Creature, int)} so legacy
+	 * observers are not triggered by avoided attacks.
+	 */
+	public void attacked(Creature creature, int skillId, AttackStatus status) {
 	}
 
 	public void attack(Creature creature, int skillId) {

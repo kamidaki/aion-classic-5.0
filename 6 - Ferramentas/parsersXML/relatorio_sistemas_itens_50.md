@@ -3,8 +3,8 @@
 ## Alterações
 
 - Enchant com essência 166300500: regras de custo, quantidade de pedras, probabilidade por diferença de nível e transições importadas do client. Revalidação de posse, materiais e nível após a animação, cancelamento de uso e resposta de animação Classic.
-- Descarte: bit DELETABLE usa `breakable`, não `item_drop_permitted`. Preserva proteção de Kinah, itens equipados e não destrutíveis. O registro antigo de CM_DELETE_ITEM sobrescrevia CM_VIEW_PLAYER_DETAILS.
-- Expansão: ligação do pedido com o serviço de NPC; revalidação de alcance, estágio e capacidade antes de cobrar; cabeçalho inicial mantém capacidade mesmo no inventário vazio e inclui expansões por item.
+- Descarte: bit DELETABLE usa `breakable`, não `item_drop_permitted`. Preserva proteção de Kinah, itens equipados e não destrutíveis. O pedido Classic 5.0 decodificado `0x003C` é compartilhado com remoção de stigma e é distinguido pelo estado do item.
+- Expansão: o pedido da interface Classic 5.0 não carrega NPC. O servidor usa o estágio pago atual e a tabela oficial já presente em `cube_expander.xml`; o cabeçalho inicial mantém capacidade mesmo no inventário vazio e inclui expansões por item.
 - Arcamant: os 12 itens `seed` usam grupo ARCAMANT, slot próprio e regras `seed_enchant`.
 - Power Talent: substituição das estimativas antigas por contribuições oficiais de itens, qualidade, nível do item, enchant, manastones, fusão e skills. Ainda não constitui implementação completa do sistema: título, recompensas de experiência, additional_option e moros não estão conectados, e o transporte para a ficha requer confirmação.
 
@@ -14,14 +14,14 @@ Dados: `3 - Client 5.0 - Dados Extraidos/data/items/client_items.xml`, `client_e
 
 A captura `06_Sistemas_Novos_5.0/*Enchantando*` contém pedido C 0x005A de 38 bytes e resposta S 0x01C3 de 20 bytes, com duração 5000 no início e duração 0 no fim.
 
-A captura indicada `Outros/subida-1-60-2026-08-28.pcapng` foi analisada; não foi isolado nela um descarte nem uma expansão paga que confirme os novos registros. O opcode de descarte 0x0108 (decodificado 0x007A), o tipo 0 de CM_CUBE_EXPAND e o campo de expansão por item do cabeçalho inicial precisam de validação de integração no client 5.0.
+As capturas `Outros/deletando_item_2026-09-18_23-46-55_00001_20260918234655.pcapng` e `Outros/aumentariventario_2026-09-19_00-15-58_00001_20260919001558.pcapng` confirmam os dois fluxos. No descarte, C `0x003C` envia somente o object ID e recebe S `0x001C` com o mesmo ID e motivo `0x15`, seguido de S `0x0081` com 67 itens em vez de 68. Na expansão, C `0x00CA` envia o tipo `00`, sem ID de NPC; a Kinah cai de 4.970 para 3.970 e S `0x0081` altera `npcExpands` de 0 para 1. O registro de expansão é raw `0x01B8`, e o pedido compartilhado de item é raw `0x0136`.
 
 Atribuir Power Talent aos offsets 252/388 de S_STATUS não foi confirmado: há valores pareados nos captures que não correspondem a uma pontuação total. O transporte existente foi preservado nesta alteração; não se considera a exibição na ficha resolvida.
 
 ## Verificação
 
 - Maven package Java 25: BUILD SUCCESS.
-- ClassicItemSystemsTest: 4 testes, 0 falhas, 0 erros. Carrega os XMLs reais com JAXB e verifica essência, custos/transições, 12 Arcamants, descarte e pontos de enchant.
+- ClassicItemSystemsTest: 11 testes, 0 falhas, 0 erros. Carrega os XMLs reais com JAXB e também verifica a tabela de preços e os registros de pacote da expansão e do descarte.
 - item_templates.xml e classic_item_systems.xml: schemas XSD válidos; schema principal compilado.
 - Gerador repetido: 0 templates alterados, 3637 regras oficiais. Agora valida schemas antes de escrever.
 - XMLs, schemas e JAR sincronizados no Produto Final. A ativação requer reinício do GameServer; não houve teste visual no client.

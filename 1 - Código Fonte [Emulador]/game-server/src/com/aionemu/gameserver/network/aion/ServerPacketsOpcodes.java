@@ -239,9 +239,8 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(281, S_GAMEPASS_INFO.class); // [S_GAMEPASS_INFO] (0x119)
 		addPacketOpcode(282, S_GAMEPASS_OTHER_UPDATED.class); // [S_GAMEPASS_OTHER_UPDATED] (0x11A)
 		addPacketOpcode(283, SM_QUNA.class); // [SM_QUNA] (0x11B)
-		addPacketOpcode(284, SM_FIRST_SHOW_DECOMPOSABLE.class); // [S_DISASSEMBLY_ITEMLIST]
+		// 284/286 eram S_DISASSEMBLY_ITEMLIST/S_SELECT_DISASSEMBLY_ITEM_RESULT de outra versao; na 5.0 sao 0x104/0x105 (abaixo)
 		addPacketOpcode(285, S_READY_ENTER_WORLD.class); // [S_READY_ENTER_WORLD] (0x11D)
-		addPacketOpcode(286, SM_SECONDARY_SHOW_DECOMPOSABLE.class); // [S_SELECT_DISASSEMBLY_ITEM_RESULT]
 		addPacketOpcode(288, SM_TUNE_RESULT.class); // [S_REIDENTIFY_PREVIEW]
 		addPacketOpcode(290, SM_USER_CLASSIC_WARDROBE_LOAD.class); // [S_USER_CLASSIC_WARDROBE_LOAD] (0x122)
 		addPacketOpcode(291, SM_USER_CLASSIC_WARDROBE_INFO_UPDATED.class); // [S_USER_CLASSIC_WARDROBE_INFO_UPDATED] (0x123)
@@ -265,8 +264,9 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(146, SM_ENTER_WORLD_NOTIFY.class); // [S_ENTER_WORLD_NOTIFY] (0x0092)
 		addPacketOpcode(188, SM_UNK_00BC.class); // [S_UNK_00BC] (0x00BC)
 		addPacketOpcode(197, SM_UNK_00C5.class); // [S_UNK_00C5] (0x00C5)
-		addPacketOpcode(260, SM_UNK_0104.class); // [S_UNK_0104] (0x0104)
-		addPacketOpcode(261, SM_UNK_0105.class); // [S_UNK_0105] (0x0105)
+		// Subida 1-60: 0x104 (212/95 b) logo apos o C_USE_ITEM de caixa selectable, 0x105 (9 b) depois do C_SELECT_DISASSEMBLY_ITEM
+		addPacketOpcode(260, SM_FIRST_SHOW_DECOMPOSABLE.class); // [S_DISASSEMBLY_ITEMLIST] (0x0104)
+		addPacketOpcode(261, SM_SECONDARY_SHOW_DECOMPOSABLE.class); // [S_SELECT_DISASSEMBLY_ITEM_RESULT] (0x0105)
 		addPacketOpcode(265, SM_UNK_0109.class); // [S_UNK_0109] (0x0109)
 		addPacketOpcode(272, SM_UNK_0110.class); // [S_UNK_0110] (0x0110)
 		addPacketOpcode(275, SM_UNK_0113.class); // [S_UNK_0113] (0x0113)
@@ -278,7 +278,8 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(314, SM_UNK_013A.class); // [S_UNK_013A] (0x013A)
 		addPacketOpcode(321, SM_UNK_0141.class); // [S_UNK_0141] (0x0141)
 		addPacketOpcode(326, SM_UNK_0146.class); // [S_UNK_0146] (0x0146)
-		addPacketOpcode(328, SM_UNK_0148.class); // [S_UNK_0148] (0x0148)
+		addPacketOpcode(328, SM_COMBAT_TALENT_REWARDS.class); // [S_COMBAT_POWER_REWARD_INFO] (0x0148)
+		addPacketOpcode(329, SM_COMBAT_TALENT_REWARD_UPDATE.class); // [S_COMBAT_POWER_REWARD_UPDATE] (0x0149)
 		addPacketOpcode(330, SM_UNK_014A.class); // [S_UNK_014A] (0x014A)
 		addPacketOpcode(331, SM_SP_UPDATE.class); // SP do próprio Revenant (0x014B, 2 b)
 		addPacketOpcode(332, SM_UNK_014C.class); // [S_UNK_014C] (0x014C)

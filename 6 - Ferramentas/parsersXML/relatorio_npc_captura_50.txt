@@ -63,7 +63,7 @@ ARVORE FONTE: G:\Projetos AION\Classic\1 - Código Fonte [Emulador]\game-server\
   sem template (guarda, 0): 
   sem template (npc, 1): 221526(Rank_Boss_Anuhart_Gate)
 
-  tribo diferente do cliente (nao mexido): 132
+  tribo diferente do cliente (nao mexido): 128
     209358 Bot_Killer_03_L servidor=LDF4A_YUN_GUARD cliente=MONSTER_BOT tipo=[34]
     209359 Bot_Killer_03_D servidor=LDF4A_YUN_GUARD cliente=MONSTER_BOT tipo=[34]
     209361 Bot_Killer_03_Move_D servidor=LDF4A_YUN_GUARD cliente=MONSTER_BOT tipo=[34]
@@ -77,8 +77,8 @@ ARVORE FONTE: G:\Projetos AION\Classic\1 - Código Fonte [Emulador]\game-server\
     274014 LDF4b_4401_Boss_Dr_5 servidor=GENERAL cliente=LDF4B_TOWER tipo=[0]
     274178 LDF4b_4412_Boss_Dr_1 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
     274182 LDF4b_4412_Boss_Dr_5 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
-    274320 LDF4b_40001_Boss_Dr_5 servidor=GENERAL cliente=LDF4B_TOWER tipo=[0]
-    274350 LDF4b_40002_Boss_Dr_5 servidor=GENERAL cliente=LDF4B_TOWER tipo=[0]
+    274320 LDF4b_40001_Boss_Dr_5 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
+    274350 LDF4b_40002_Boss_Dr_5 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
     274586 LDF4b_40010_Boss_Dr_1 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
     274646 LDF4b_40012_Boss_Dr_1 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
     701462 LDF4b_FOBJ_TankParts2 servidor=NONE cliente=GENERAL_ALL_NONE tipo=[34]
@@ -163,10 +163,6 @@ ARVORE FONTE: G:\Projetos AION\Classic\1 - Código Fonte [Emulador]\game-server\
     802232 LDF4b_Quest_NPC_Li_Big_3 servidor=USEALL cliente=GENERAL tipo=[38]
     802233 LDF4b_Quest_NPC_Li_Middle_1 servidor=USEALL cliente=GENERAL tipo=[38]
     802234 LDF4b_Quest_NPC_Li_Middle_2 servidor=USEALL cliente=GENERAL tipo=[2]
-    802378 LDF4b_MistOn_Tower_S_10 servidor=GENERAL cliente=NONE tipo=[34]
-    802380 LDF4b_MistOn_Tower_S_12 servidor=GENERAL_DARK cliente=NONE tipo=[34]
-    802466 LDF4b_SmallTower_Teleport_08 servidor=GENERAL cliente=USEALL tipo=[38]
-    802468 LDF4b_SmallTower_Teleport_10 servidor=GENERAL cliente=USEALL tipo=[38]
     804100 IDTutorialQ_Guard_Li_Fi_01 servidor=GENERAL_DARK cliente=IDTUTORIALQ_GUARD_L tipo=[38]
     804101 IDTutorialQ_Guard_Li_Ra_01 servidor=GENERAL_DARK cliente=IDTUTORIALQ_GUARD_L tipo=[38]
     804102 IDTutorialQ_Guard_Li_As_01 servidor=GENERAL_DARK cliente=IDTUTORIALQ_GUARD_L tipo=[38]
@@ -212,7 +208,7 @@ ARVORE PRODUTO: G:\Projetos AION\Classic\2 - Emulador [Produto Final]\GameServer
   sem template (guarda, 0): 
   sem template (npc, 1): 221526(Rank_Boss_Anuhart_Gate)
 
-  tribo diferente do cliente (nao mexido): 132
+  tribo diferente do cliente (nao mexido): 128
     209358 Bot_Killer_03_L servidor=LDF4A_YUN_GUARD cliente=MONSTER_BOT tipo=[34]
     209359 Bot_Killer_03_D servidor=LDF4A_YUN_GUARD cliente=MONSTER_BOT tipo=[34]
     209361 Bot_Killer_03_Move_D servidor=LDF4A_YUN_GUARD cliente=MONSTER_BOT tipo=[34]
@@ -233,8 +229,8 @@ ARVORE PRODUTO: G:\Projetos AION\Classic\2 - Emulador [Produto Final]\GameServer
     274014 LDF4b_4401_Boss_Dr_5 servidor=GENERAL cliente=LDF4B_TOWER tipo=[0]
     274178 LDF4b_4412_Boss_Dr_1 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
     274182 LDF4b_4412_Boss_Dr_5 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
-    274320 LDF4b_40001_Boss_Dr_5 servidor=GENERAL cliente=LDF4B_TOWER tipo=[0]
-    274350 LDF4b_40002_Boss_Dr_5 servidor=GENERAL cliente=LDF4B_TOWER tipo=[0]
+    274320 LDF4b_40001_Boss_Dr_5 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
+    274350 LDF4b_40002_Boss_Dr_5 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
     274586 LDF4b_40010_Boss_Dr_1 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
     274646 LDF4b_40012_Boss_Dr_1 servidor=XDRAKAN cliente=LDF4B_TOWER tipo=[0]
     701462 LDF4b_FOBJ_TankParts2 servidor=NONE cliente=GENERAL_ALL_NONE tipo=[34]
@@ -326,10 +322,6 @@ ARVORE PRODUTO: G:\Projetos AION\Classic\2 - Emulador [Produto Final]\GameServer
     802258 LDF4b_Quest_NPC_Da_Middle_4 servidor=USEALL cliente=GENERAL_DARK tipo=[38]
     802267 LDF4b_Quest_NPC_Da_Small_8 servidor=USEALL cliente=GENERAL_DARK tipo=[2, 38]
     802269 LDF4b_Quest_NPC_Da_Small_10 servidor=USEALL cliente=GENERAL_DARK tipo=[38]
-    802378 LDF4b_MistOn_Tower_S_10 servidor=GENERAL cliente=NONE tipo=[34]
-    802380 LDF4b_MistOn_Tower_S_12 servidor=GENERAL_DARK cliente=NONE tipo=[34]
-    802466 LDF4b_SmallTower_Teleport_08 servidor=GENERAL cliente=USEALL tipo=[38]
-    802468 LDF4b_SmallTower_Teleport_10 servidor=GENERAL cliente=USEALL tipo=[38]
     804100 IDTutorialQ_Guard_Li_Fi_01 servidor=GENERAL_DARK cliente=IDTUTORIALQ_GUARD_L tipo=[38]
     804101 IDTutorialQ_Guard_Li_Ra_01 servidor=GENERAL_DARK cliente=IDTUTORIALQ_GUARD_L tipo=[38]
     804102 IDTutorialQ_Guard_Li_As_01 servidor=GENERAL_DARK cliente=IDTUTORIALQ_GUARD_L tipo=[38]

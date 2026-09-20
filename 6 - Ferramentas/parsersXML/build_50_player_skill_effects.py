@@ -42,7 +42,9 @@ ARMAS = [
     ("DAGGER", "required_dagger"), ("MACE", "required_mace"), ("ORB", "required_orb"),
     ("POLEARM", "required_polearm"), ("STAFF", "required_staff"), ("SWORD", "required_sword"),
     ("CHAINBLADE", "required_chainblade"), ("GUN", "required_gun"), ("CANNON", "required_cannon"),
-    ("HARP", "required_harp"), ("KEYBLADE", "required_keyblade")
+    ("HARP", "required_harp"), ("KEYBLADE", "required_keyblade"),
+    ("GAUNTLET", "required_gauntlet"), ("DIMENSIONSWORD", "required_dimensionsword"),
+    ("RUNESWORD", "required_runesword")
 ]
 
 DEFAULTS = {
@@ -130,7 +132,7 @@ def clean_nz(v):
 
 def resolve_stat_name(token):
     if not token:
-        return "PHYSICAL_ATTACK"
+        return None
     t = token.lower().replace("_", "")
     if t in STAT_MAP:
         res = STAT_MAP[t]
@@ -140,7 +142,7 @@ def resolve_stat_name(token):
         return token.upper()
     if t.endswith("regen") and ("REGEN_" + t[:-5].upper()) in VALID_STAT_ENUMS:
         return "REGEN_" + t[:-5].upper()
-    return "PHYSICAL_ATTACK"
+    return None
 
 
 def get_blending_note(skill_name):
@@ -159,333 +161,30 @@ def get_blending_note(skill_name):
 
 
 def build_effect_block(c, n, sid, skill_by_name, npc_by_name):
+    """Traduz somente efeitos com mapeamento explícito e testado.
+
+    Os argumentos sid e npc_by_name são mantidos para compatibilidade com as
+    chamadas existentes. Nenhum modelo, duração, stat ou valor é presumido.
+    """
     prefix = f"effect{n}_"
-    etype = c.get(prefix + "type", "").strip()
-    if not etype:
+    f = {k[len(prefix):]: v for k, v in c.items() if k.startswith(prefix)}
+    if not f.get("type"):
         return None
-    et_lower = etype.lower()
 
-    # Client fields
-    r1 = c.get(prefix + "reserved1", "")
-    r2 = c.get(prefix + "reserved2", "")
-    r3 = c.get(prefix + "reserved3", "")
-    r4 = c.get(prefix + "reserved4", "")
-    r6 = c.get(prefix + "reserved6", "")
-    r8 = c.get(prefix + "reserved8", "")
-    r9 = c.get(prefix + "reserved9", "")
-    r10 = c.get(prefix + "reserved10", "")
-    r13 = c.get(prefix + "reserved13", "")
-    r14 = c.get(prefix + "reserved14", "")
-    r15 = c.get(prefix + "reserved15", "")
-    r17 = c.get(prefix + "reserved17", "")
-    remain2 = clean_nz(c.get(prefix + "remain2"))
-    eff_id = clean_nz(c.get(prefix + "effectid")) or f"1{sid}{n}"
-    elem_name = (r10 or "").upper() if r10 and r10.upper() in ("FIRE", "WATER", "WIND", "EARTH", "LIGHT", "DARK") else None
+    from refresh_50_skills import build_confirmed_effect
+    effect = build_confirmed_effect(f, skill_by_name)
+    if effect is None or any(child.tag != "change" for child in effect):
+        return None
+    effect.set("e", str(n))
+    changes = [list(change.attrib.items()) for change in effect.findall("change")]
+    return effect.tag, list(effect.attrib.items()), changes
 
-    # Value & delta heuristics
-    val = clean_nz(r2) or clean_nz(r4) or clean_nz(r9) or "100"
-    delta = clean_nz(r1) or clean_nz(r3) or clean_nz(r8) or "0"
 
-    # Mappings
-    if et_lower in ("skillatk_instant", "skillatk"):
-        attrs = [("value", val), ("delta", delta), ("e", str(n))]
-        return "skillatk", attrs, []
-
-    elif et_lower in ("spellatk_instant", "spellatkinstant"):
-        attrs = [("value", val), ("delta", delta), ("e", str(n))]
-        if elem_name:
-            attrs.append(("element", elem_name))
-        return "spellatkinstant", attrs, []
-
-    elif et_lower in ("spellatk",):
-        chk = clean_nz(r1) or "2"
-        attrs = [("value", val), ("delta", delta), ("checktime", chk), ("e", str(n))]
-        if remain2:
-            attrs.append(("duration2", remain2))
-        if elem_name:
-            attrs.append(("element", elem_name))
-        return "spellatk", attrs, []
-
-    elif et_lower in ("mpatkdrain_instant", "mpattackdrain_instant"):
-        attrs = [("value", val), ("delta", delta), ("e", str(n))]
-        if elem_name:
-            attrs.append(("element", elem_name))
-        return "spellatkdraininstant", attrs, []
-
-    elif et_lower in ("mpattack_instant", "mpattackinstant"):
-        attrs = [("value", val), ("delta", delta), ("e", str(n))]
-        return "mpattackinstant", attrs, []
-
-    elif et_lower in ("absolutesnare",):
-        attrs = [("duration2", remain2 or "8000"), ("effectid", eff_id), ("e", str(n))]
-        slow_val = clean_nz(r2) or "50"
-        ch = [("stat", "SPEED"), ("func", "PERCENT"), ("value", f"-{slow_val}")]
-        return "absolutesnare", attrs, [ch]
-
-    elif et_lower in ("snare",):
-        attrs = [("duration2", remain2 or "8000"), ("effectid", eff_id), ("e", str(n))]
-        slow_val = clean_nz(r2) or "50"
-        ch = [("stat", "SPEED"), ("func", "PERCENT"), ("value", f"-{slow_val}")]
-        return "snare", attrs, [ch]
-
-    elif et_lower in ("slow",):
-        attrs = [("duration2", remain2 or "8000"), ("effectid", eff_id), ("e", str(n))]
-        slow_val = clean_nz(r2) or "30"
-        ch = [("stat", "SPEED"), ("func", "PERCENT"), ("value", f"-{slow_val}")]
-        return "slow", attrs, [ch]
-
-    elif et_lower in ("blending",):
-        note = get_blending_note(c.get("name", ""))
-        attrs = [("note", note), ("e", str(n))]
-        return "blending", attrs, []
-
-    elif et_lower in ("skilllauncher",):
-        target_skill = r1.lower() if r1 else ""
-        t_id = skill_by_name.get(target_skill, sid)
-        attrs = [("skill_id", str(t_id)), ("e", str(n))]
-        return "skilllauncher", attrs, []
-
-    elif et_lower in ("silence",):
-        attrs = [("duration2", remain2 or "5000"), ("effectid", eff_id), ("e", str(n))]
-        return "silence", attrs, []
-
-    elif et_lower in ("bind",):
-        attrs = [("duration2", remain2 or "5000"), ("effectid", eff_id), ("e", str(n))]
-        return "bind", attrs, []
-
-    elif et_lower in ("buffbind",):
-        attrs = [("duration2", remain2 or "5000"), ("effectid", eff_id), ("e", str(n))]
-        return "buffbind", attrs, []
-
-    elif et_lower in ("buffsilence",):
-        attrs = [("duration2", remain2 or "5000"), ("effectid", eff_id), ("e", str(n))]
-        return "buffsilence", attrs, []
-
-    elif et_lower in ("stun",):
-        attrs = [("duration2", remain2 or "2000"), ("effectid", eff_id), ("e", str(n))]
-        return "stun", attrs, []
-
-    elif et_lower in ("movebehindatk", "movebehind"):
-        attrs = [("value", val), ("e", str(n))]
-        return "movebehind", attrs, []
-
-    elif et_lower in ("backdashatk", "backdash"):
-        dist = clean_nz(r1) or "15"
-        attrs = [("distance", dist), ("value", val), ("delta", delta), ("e", str(n))]
-        return "backdash", attrs, []
-
-    elif et_lower in ("movelocation",):
-        dist = clean_nz(c.get("first_target_valid_distance")) or clean_nz(r1) or "15"
-        attrs = [("distance", dist), ("e", str(n)), ("noresist", "true")]
-        return "movelocation", attrs, []
-
-    elif et_lower in ("shadowmove",):
-        dist = clean_nz(c.get("first_target_valid_distance")) or "25"
-        attrs = [("distance", dist), ("e", str(n))]
-        return "shadowmove", attrs, []
-
-    elif et_lower in ("deboosthealamount", "deboostheal"):
-        attrs = [("duration2", remain2 or "10000"), ("effectid", eff_id), ("e", str(n))]
-        heal_val = clean_nz(r2) or "50"
-        ch = [("stat", "HEAL_SKILL_DEBOOST"), ("func", "PERCENT"), ("value", f"-{heal_val}")]
-        return "deboostheal", attrs, [ch]
-
-    elif et_lower in ("boostskillcastingtime",):
-        attrs = [("duration2", remain2 or "15000"), ("effectid", eff_id), ("e", str(n))]
-        cast_val = clean_nz(r2) or "50"
-        ch = [("stat", "BOOST_CASTING_TIME"), ("func", "PERCENT"), ("value", cast_val)]
-        return "boostskillcastingtime", attrs, [ch]
-
-    elif et_lower in ("boostskillcost",):
-        cost_val = clean_nz(r2) or "-10"
-        attrs = [("value", cost_val), ("duration2", remain2 or "15000"), ("e", str(n))]
-        return "boostskillcost", attrs, []
-
-    elif et_lower in ("onetimeboostskillcritical",):
-        cnt = clean_nz(r1) or "1"
-        crit_val = clean_nz(r2) or "1000"
-        attrs = [("count", cnt), ("value", crit_val), ("duration2", remain2 or "10000"), ("e", str(n))]
-        return "onetimeboostskillcritical", attrs, []
-
-    elif et_lower in ("onetimeboostskillattack",):
-        cnt = clean_nz(r1) or "5"
-        atk_val = clean_nz(r2) or "30"
-        attrs = [("count", cnt), ("type", "PHYSICAL"), ("value", atk_val), ("duration2", remain2 or "60000"), ("e", str(n))]
-        return "onetimeboostskillattack", attrs, []
-
-    elif et_lower in ("onetimeboosthealeffect", "onetimeboostheal"):
-        attrs = [("duration2", remain2 or "20000"), ("effectid", eff_id), ("e", str(n))]
-        heal_b = clean_nz(r2) or "100"
-        ch = [("stat", "HEAL_SKILL_BOOST"), ("func", "PERCENT"), ("value", heal_b)]
-        return "onetimeboostheal", attrs, [ch]
-
-    elif et_lower in ("summonservant",):
-        npc = npc_by_name.get((r9 or "").lower(), "749173")
-        attrs = [("npc_id", str(npc)), ("time", clean_nz(r1) or "15"), ("e", str(n))]
-        return "summonservant", attrs, []
-
-    elif et_lower in ("summonskillarea",):
-        npc = npc_by_name.get((r9 or "").lower(), "749084")
-        attrs = [("npc_id", str(npc)), ("time", clean_nz(r1) or "15"), ("e", str(n))]
-        return "summonskillarea", attrs, []
-
-    elif et_lower in ("summontrap",):
-        npc = npc_by_name.get((r9 or "").lower(), "749179")
-        attrs = [("npc_id", str(npc)), ("time", clean_nz(r1) or "60"), ("e", str(n))]
-        return "summontrap", attrs, []
-
-    elif et_lower in ("summontotem",):
-        npc = npc_by_name.get((r9 or "").lower(), "749185")
-        attrs = [("npc_id", str(npc)), ("time", clean_nz(r1) or "60"), ("e", str(n))]
-        return "summontotem", attrs, []
-
-    elif et_lower in ("shield",):
-        sh_val = clean_nz(r2) or "500"
-        attrs = [("hitvalue", sh_val), ("value", sh_val), ("duration2", remain2 or "10000"), ("effectid", eff_id), ("e", str(n))]
-        return "shield", attrs, []
-
-    elif et_lower in ("dispelbuffcounteratk",):
-        attrs = [("hitvalue", clean_nz(r2) or "300"), ("dispel_level", "1"), ("power", "10"), ("value", "3"), ("e", str(n))]
-        return "dispelbuffcounteratk", attrs, []
-
-    elif et_lower in ("weaponstatboost", "weaponstatup"):
-        tok = r13 or r14 or r15 or "phyattack"
-        st = resolve_stat_name(tok)
-        st_val = clean_nz(r2) or clean_nz(r4) or "10"
-        func = "PERCENT" if "%" in str(r6) or clean_nz(r6) == "1" else "ADD"
-        attrs = [("effectid", eff_id), ("e", str(n))]
-        ch = [("stat", st), ("func", func), ("value", st_val)]
-        tag = "weaponstatboost" if et_lower == "weaponstatboost" else "weaponstatup"
-        return tag, attrs, [ch]
-
-    elif et_lower in ("statup", "statboost", "statsynergy"):
-        tok = r13 or r14 or r15 or "maxhp"
-        st = resolve_stat_name(tok)
-        st_val = clean_nz(r2) or clean_nz(r4) or "10"
-        func = "PERCENT" if "%" in str(r6) or clean_nz(r6) == "1" else "ADD"
-        attrs = [("effectid", eff_id), ("e", str(n))]
-        if remain2:
-            attrs.append(("duration2", remain2))
-        ch = [("stat", st), ("func", func), ("value", st_val)]
-        tag = "statboost" if et_lower == "statboost" else "statup"
-        return tag, attrs, [ch]
-
-    elif et_lower in ("statdown",):
-        tok = r13 or r14 or r15 or "physicaldefend"
-        st = resolve_stat_name(tok)
-        st_val = clean_nz(r2) or clean_nz(r4) or "50"
-        func = "PERCENT" if "%" in str(r6) or clean_nz(r6) == "1" else "ADD"
-        attrs = [("effectid", eff_id), ("e", str(n))]
-        if remain2:
-            attrs.append(("duration2", remain2))
-        ch = [("stat", st), ("func", func), ("value", f"-{st_val}")]
-        return "statdown", attrs, [ch]
-
-    elif et_lower in ("wpn_mastery", "wpnmastery"):
-        attrs = [("effectid", eff_id), ("e", str(n))]
-        ch = [("stat", "PHYSICAL_ATTACK"), ("func", "ADD"), ("value", clean_nz(r2) or "20")]
-        return "wpnmastery", attrs, [ch]
-
-    elif et_lower in ("boosthate", "hostileup"):
-        attrs = [("effectid", eff_id), ("e", str(n))]
-        ch = [("stat", "BOOST_HATE"), ("func", "PERCENT"), ("value", clean_nz(r2) or "15")]
-        return "boosthate", attrs, [ch]
-
-    elif et_lower in ("hide",):
-        attrs = [("state", "HIDE1"), ("duration2", remain2 or "30000"), ("effectid", eff_id), ("e", str(n))]
-        return "hide", attrs, []
-
-    elif et_lower in ("evade",):
-        attrs = [("dispeltype", "EFFECTTYPE"), ("e", str(n))]
-        return "evade", attrs, []
-
-    elif et_lower in ("dispel",):
-        attrs = [("dispel_level", "1"), ("count", clean_nz(r2) or "1"), ("e", str(n))]
-        return "dispel", attrs, []
-
-    elif et_lower in ("dispelbuff",):
-        attrs = [("value", clean_nz(r2) or "1"), ("e", str(n))]
-        return "dispelbuff", attrs, []
-
-    elif et_lower in ("mpheal",):
-        attrs = [("value", val), ("delta", delta), ("checktime", "2"), ("duration2", remain2 or "10000"), ("e", str(n))]
-        return "mpheal", attrs, []
-
-    elif et_lower in ("mpheal_instant", "mphealinstant"):
-        attrs = [("value", val), ("delta", delta), ("e", str(n))]
-        return "mphealinstant", attrs, []
-
-    elif et_lower in ("noreducespellatk_instant", "noreducespellatk"):
-        attrs = [("value", val), ("e", str(n))]
-        return "noreducespellatk", attrs, []
-
-    elif et_lower in ("provoker", "targetlock"):
-        target_s = r17.lower() if r17 else ""
-        t_id = skill_by_name.get(target_s, sid)
-        attrs = [("skill_id", str(t_id)), ("e", str(n))]
-        return "provoker", attrs, []
-
-    elif et_lower in ("control", "deform", "shapechange"):
-        attrs = [("duration2", remain2 or "5000"), ("effectid", eff_id), ("e", str(n))]
-        npc = npc_by_name.get((r9 or "").lower(), "200000")
-        attrs.append(("model", str(npc)))
-        return "deform", attrs, []
-
-    elif et_lower in ("fear",):
-        attrs = [("duration2", remain2 or "8000"), ("effectid", eff_id), ("e", str(n))]
-        return "fear", attrs, []
-
-    elif et_lower in ("root",):
-        attrs = [("duration2", remain2 or "6000"), ("effectid", eff_id), ("e", str(n))]
-        return "root", attrs, []
-
-    elif et_lower in ("curse",):
-        attrs = [("duration2", remain2 or "10000"), ("effectid", eff_id), ("e", str(n))]
-        return "curse", attrs, []
-
-    elif et_lower in ("blind",):
-        attrs = [("duration2", remain2 or "8000"), ("effectid", eff_id), ("e", str(n))]
-        return "blind", attrs, []
-
-    elif et_lower in ("noresurrectpenalty",):
-        attrs = [("duration2", remain2 or "3600000"), ("effectid", eff_id), ("e", str(n))]
-        return "noresurrectpenalty", attrs, []
-
-    elif et_lower in ("nodeathpenalty",):
-        attrs = [("duration2", remain2 or "3600000"), ("effectid", eff_id), ("e", str(n))]
-        return "nodeathpenalty", attrs, []
-
-    elif et_lower in ("deathtriggerbuff",):
-        attrs = [("skill_id", str(sid)), ("duration2", "3000"), ("e", str(n))]
-        return "delayedskill", attrs, []
-
-    elif et_lower in ("flyboost",):
-        attrs = [("effectid", eff_id), ("e", str(n))]
-        ch = [("stat", "FLY_SPEED"), ("func", "PERCENT"), ("value", clean_nz(r2) or "20")]
-        return "statup", attrs, [ch]
-
-    elif et_lower in ("radarangle",):
-        attrs = [("effectid", eff_id), ("e", str(n))]
-        ch = [("stat", "SPEED"), ("func", "PERCENT"), ("value", "0")]
-        return "statup", attrs, [ch]
-
-    elif et_lower in ("convertheal",):
-        attrs = [("duration2", remain2 or "10000"), ("effectid", eff_id), ("e", str(n))]
-        return "convertheal", attrs, []
-
-    elif et_lower in ("alwaysresist",):
-        attrs = [("duration2", remain2 or "10000"), ("effectid", eff_id), ("e", str(n))]
-        return "alwaysresist", attrs, []
-
-    elif et_lower in ("resurrectbase",):
-        attrs = [("e", str(n))]
-        return "resurrectbase", attrs, []
-
-    # Fallback generic effect
-    attrs = [("effectid", eff_id), ("e", str(n))]
-    ch = [("stat", "PHYSICAL_ATTACK"), ("func", "ADD"), ("value", "10")]
-    return "statup", attrs, [ch]
-
+def all_official_effects_confirmed(c, skill_by_name):
+    """Impede que clones carreguem estrutura 4.8 sem tradução 5.0."""
+    from refresh_50_skills import build_confirmed_effect, fields
+    positions = [n for n in range(1, 10) if c.get(f"effect{n}_type")]
+    return bool(positions) and all(build_confirmed_effect(fields(c, n), skill_by_name) is not None for n in positions)
 
 def clone_from_earlier_grade(st_prev, sid_curr, c_curr):
     """Clona a estrutura de efeitos do grau anterior e atualiza dados chave."""
@@ -526,22 +225,12 @@ def clone_from_earlier_grade(st_prev, sid_curr, c_curr):
         elem.set("tslot", tslot_conv.get(tslot_raw, "NONE"))
     cd_ms = clean_int(c_curr.get("delay_time"))
     if cd_ms and int(cd_ms) > 0:
-        elem.set("cooldown", str(int(int(cd_ms) / 1000)))
+        elem.set("cooldown", str(int(cd_ms) // 100))
 
-    # Atualizar valores de efeitos se disponíveis no client_skills
-    effs = elem.find("effects")
-    if effs is not None:
-        for idx, child in enumerate(effs, 1):
-            r2 = clean_nz(c_curr.get(f"effect{idx}_reserved2")) or clean_nz(c_curr.get(f"effect{idx}_reserved4"))
-            r1 = clean_nz(c_curr.get(f"effect{idx}_reserved1")) or clean_nz(c_curr.get(f"effect{idx}_reserved3"))
-            if r2 and "value" in child.attrib:
-                child.set("value", r2)
-            if r1 and "delta" in child.attrib:
-                child.set("delta", r1)
-            for ch in child.findall("change"):
-                if r2:
-                    is_neg = ch.get("value", "").startswith("-")
-                    ch.set("value", f"-{r2}" if is_neg else r2)
+    # Reserveds têm significados diferentes por tipo; e é a posição oficial,
+    # não a posição do elemento na lista. Reutiliza a tradução verificada.
+    from refresh_50_skills import refresh
+    refresh(elem, c_curr, [])
 
     return ET.tostring(elem, encoding="utf-8").decode("utf-8")
 
@@ -556,7 +245,7 @@ def generate_new_player_skill_xml(sid, c, skill_by_name, npc_by_name, motions):
 
     # Cooldown a partir de delay_time (em milissegundos no cliente -> segundos no emulador)
     cd_ms = clean_int(c.get("delay_time"))
-    cooldown = str(int(int(cd_ms) / 1000)) if cd_ms and int(cd_ms) > 0 else clean_int(c.get("cooldown")) or "0"
+    cooldown = str(int(cd_ms) // 100) if cd_ms and int(cd_ms) > 0 else "0"
 
     # tslot (TargetSlot)
     tslot_raw = (c.get("target_slot") or "").lower()
@@ -643,7 +332,9 @@ def generate_new_player_skill_xml(sid, c, skill_by_name, npc_by_name, motions):
 
     cat = c.get("chain_category_name")
     if cat and (c.get("skill_category") == "SKILLCTG_CHAIN_SKILL" or c.get("prechain_category_name")):
-        p = {"category": cat.upper(), "time": clean_int(c.get("chain_time")) or "1000"}
+        p = {"category": cat.upper()}
+        if clean_int(c.get("chain_time")) is not None:
+            p["time"] = clean_int(c["chain_time"])
         if c.get("prechain_category_name"):
             p["precategory"] = c["prechain_category_name"].upper()
         ET.SubElement(sc, "chain", p)
@@ -658,18 +349,20 @@ def generate_new_player_skill_xml(sid, c, skill_by_name, npc_by_name, motions):
 
     # 4. Effects (REQUIRED in sequence before actions!)
     eff_container = ET.SubElement(root, "effects")
+    unresolved_effects = []
     for i in range(1, 10):
+        if not c.get(f"effect{i}_type"):
+            continue
         eb = build_effect_block(c, i, sid, skill_by_name, npc_by_name)
-        if eb:
-            tag, attrs, chs = eb
-            child = ET.SubElement(eff_container, tag, dict(attrs))
-            for ch in chs:
-                ET.SubElement(child, "change", dict(ch))
-
-    # If no effect was built, put generic statup fallback
-    if len(eff_container) == 0:
-        ch_el = ET.SubElement(eff_container, "statup", {"effectid": f"1{sid}1", "e": "1"})
-        ET.SubElement(ch_el, "change", {"stat": "PHYSICAL_ATTACK", "func": "ADD", "value": "10"})
+        if eb is None:
+            unresolved_effects.append((i, c[f"effect{i}_type"]))
+            continue
+        tag, attrs, chs = eb
+        child = ET.SubElement(eff_container, tag, dict(attrs))
+        for ch in chs:
+            ET.SubElement(child, "change", dict(ch))
+    if unresolved_effects or len(eff_container) == 0:
+        return None
 
     # 5. Actions (MUST BE AFTER effects!)
     if len(ac) > 0:
@@ -798,13 +491,18 @@ def main():
                     prev_elem = existing_templates[cand]
                     eff_p = prev_elem.find("effects")
                     if eff_p is not None and len(eff_p) > 0:
-                        new_xml_str = clone_from_earlier_grade(prev_elem, sid, c)
-                        cloned = True
-                        method = f"CLONADO_{cand}"
+                        if all_official_effects_confirmed(c, skill_by_name):
+                            new_xml_str = clone_from_earlier_grade(prev_elem, sid, c)
+                            cloned = True
+                            method = f"CLONADO_CONFIRMADO_{cand}"
                         break
 
         if not cloned:
             new_xml_str = generate_new_player_skill_xml(sid, c, skill_by_name, npc_by_name, motions)
+
+        if new_xml_str is None:
+            report_lines.append(f"  {sid:5} | {c_name:30} | PENDENTE_SEM_MAPEAMENTO     | Classes: {', '.join(x[0] for x in player_skills[sid])}")
+            continue
 
         # Formatar indentação
         try:

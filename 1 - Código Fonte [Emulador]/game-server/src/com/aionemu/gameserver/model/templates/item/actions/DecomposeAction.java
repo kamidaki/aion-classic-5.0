@@ -1,6 +1,7 @@
 package com.aionemu.gameserver.model.templates.item.actions;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -21,6 +22,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.templates.item.*;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_FIRST_SHOW_DECOMPOSABLE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ITEM_USAGE_ANIMATION;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_SECONDARY_SHOW_DECOMPOSABLE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemAddType;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
@@ -96,10 +98,79 @@ public class DecomposeAction extends AbstractItemAction {
 				152221434, 152221435, 152221436, 152221437, 152221450, 152221451, 152221452, 152221453, 152221454, 152221455, 152221576 });
 	}
 
+	/**
+	 * Opcao da janela de escolha, com o que o C_SELECT_DISASSEMBLY_ITEM entrega.
+	 */
+	public record SelectableReward(int itemId, int minCount, int maxCount, ItemUpdatePredicate predicate) {}
+
+	/** S_USE_ITEM de fim que o oficial manda quando a abertura de uma caixa e interrompida (subida 1-60: [end=3][0][1][0]). */
+	public static final int CANCEL_END_CODE = 3;
+
+	private static final ItemUpdatePredicate DECOMPOSE_PREDICATE = new ItemUpdatePredicate(ItemAddType.DECOMPOSABLE, ItemUpdateType.INC_ITEM_COLLECT);
+
+	/**
+	 * Opcoes da caixa selectable para o jogador, na ordem da janela (o indice que o cliente devolve aponta aqui), ou null se a caixa nao e de
+	 * escolha.
+	 */
+	public static List<SelectableReward> getSelectableRewards(Player player, int itemId) {
+		DecomposableItemInfo info = DataManager.DECOMPOSABLE_ITEMS_DATA.getSetDecomposable(itemId);
+		if (info != null) {
+			if (!info.isIsSelectable())
+				return null;
+			return info.getSelectableItemsFor(player).stream()
+				.map(i -> new SelectableReward(i.getItemId(), i.getCount(), i.getCount(), i.newUpdatePredicate())).toList();
+		}
+		List<ResultedItem> legacy = DataManager.DECOMPOSABLE_ITEMS_DATA.getSelectableItems(itemId);
+		if (legacy == null)
+			return null;
+		return legacy.stream().filter(i -> i.isObtainableFor(player))
+			.map(i -> new SelectableReward(i.getItemId(), i.getMinCount(), i.getMaxCount(), DECOMPOSE_PREDICATE)).toList();
+	}
+
+	public static SM_FIRST_SHOW_DECOMPOSABLE selectionWindow(Item parentItem, List<SelectableReward> rewards) {
+		return new SM_FIRST_SHOW_DECOMPOSABLE(parentItem.getObjectId(),
+			rewards.stream().map(r -> new SM_FIRST_SHOW_DECOMPOSABLE.Option(r.itemId(), r.minCount())).toList());
+	}
+
+	/** Caixa cuja janela de escolha esta aberta, por jogador: e ela que o C_USE_ITEM com objeto 0 (Cancelar na janela) cancela. */
+	private static final Map<Integer, Integer> openSelections = new ConcurrentHashMap<>();
+
+	public static void selectionClosed(Player player) {
+		openSelections.remove(player.getObjectId());
+	}
+
+	/**
+	 * Cancelar na janela de escolha: o cliente manda C_USE_ITEM com objeto 0 e o oficial responde "cancelado", S_SELECT_DISASSEMBLY_ITEM_RESULT
+	 * [0][0][3] e S_USE_ITEM [end=3] da caixa (subida 1-60).
+	 */
+	public static void cancelSelection(Player player) {
+		Integer boxObjId = openSelections.remove(player.getObjectId());
+		Item box = boxObjId == null ? null : player.getInventory().getItemByObjId(boxObjId);
+		if (box == null)
+			return;
+		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_UNCOMPRESS_COMPRESSED_ITEM_CANCELED(box.getL10n()));
+		PacketSendUtility.sendPacket(player, new SM_SECONDARY_SHOW_DECOMPOSABLE(0, SM_SECONDARY_SHOW_DECOMPOSABLE.CANCELED));
+		PacketSendUtility.broadcastPacket(player,
+			new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), box.getObjectId(), box.getItemId(), 0, CANCEL_END_CODE, 0), true);
+	}
+
 	@Override
 	public boolean canAct(Player player, Item parentItem, Item targetItem, Object... params) {
 		if (player.isDead() || !player.isSpawned())
 			return false;
+		DecomposableItemInfo setInfo = DataManager.DECOMPOSABLE_ITEMS_DATA.getSetDecomposable(parentItem.getItemId());
+		if (setInfo != null) {
+			List<DecomposableSet> sets = setInfo.getSetsFor(player);
+			if (sets.isEmpty()) {
+				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_DECOMPOSE_ITEM_IT_CAN_NOT_BE_DECOMPOSED(parentItem.getL10n()));
+				return false;
+			}
+			if (player.getInventory().isFull() || player.getInventory().isFullSpecialCube() && containsSpecialCubeItems(sets)) {
+				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_DECOMPOSE_ITEM_INVENTORY_IS_FULL());
+				return false;
+			}
+			return true;
+		}
 		List<ExtractedItemsCollection> itemsCollections = DataManager.DECOMPOSABLE_ITEMS_DATA.getInfoByItemId(parentItem.getItemId());
 		if (itemsCollections == null || itemsCollections.isEmpty()) {
 			if (DataManager.DECOMPOSABLE_ITEMS_DATA.getSelectableItems(parentItem.getItemId()) != null) // selectable decomposable
@@ -116,10 +187,15 @@ public class DecomposeAction extends AbstractItemAction {
 
 	@Override
 	public void act(final Player player, final Item parentItem, final Item targetItem, Object... params) {
-		Collection<ResultedItem> selectable = DataManager.DECOMPOSABLE_ITEMS_DATA.getSelectableItems(parentItem.getItemId());
+		List<SelectableReward> selectable = getSelectableRewards(player, parentItem.getItemId());
 		if (selectable != null) {
-			selectable.removeIf(item -> !item.isObtainableFor(player));
-			PacketSendUtility.sendPacket(player, new SM_FIRST_SHOW_DECOMPOSABLE(parentItem.getObjectId(), selectable));
+			openSelections.put(player.getObjectId(), parentItem.getObjectId());
+			PacketSendUtility.sendPacket(player, selectionWindow(parentItem, selectable));
+			return;
+		}
+		DecomposableItemInfo setInfo = DataManager.DECOMPOSABLE_ITEMS_DATA.getSetDecomposable(parentItem.getItemId());
+		if (setInfo != null) {
+			castThen(player, parentItem, CANCEL_END_CODE, () -> finishSetUse(player, parentItem, setInfo), null);
 			return;
 		}
 		List<ExtractedItemsCollection> itemsCollections = DataManager.DECOMPOSABLE_ITEMS_DATA.getInfoByItemId(parentItem.getItemId());
@@ -130,9 +206,17 @@ public class DecomposeAction extends AbstractItemAction {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_DECOMPOSE_ITEM_FAILED(parentItem.getL10n()));
 			return;
 		}
+		castThen(player, parentItem, 2, () -> finishUse(player, parentItem, targetItem, selectedCollection), null);
+	}
+
+	/**
+	 * Barra de uso do item (casting_delay do template) e, no fim, {@code onFinish}. Movimento/ataque interrompe: mensagem de cancelado,
+	 * {@code onAbort} (se houver) e S_USE_ITEM com {@code cancelEndCode}, nesta ordem, como no oficial.
+	 */
+	public static void castThen(Player player, Item parentItem, int cancelEndCode, Runnable onFinish, Runnable onAbort) {
 		int castingDelay = parentItem.getItemTemplate().getCastingDelay();
 		if (castingDelay <= 0) {
-			finishUse(player, parentItem, targetItem, selectedCollection);
+			onFinish.run();
 			return;
 		}
 		PacketSendUtility.broadcastPacket(player,
@@ -144,8 +228,10 @@ public class DecomposeAction extends AbstractItemAction {
 			public void abort() {
 				player.getController().cancelTask(TaskId.ITEM_USE);
 				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_UNCOMPRESS_COMPRESSED_ITEM_CANCELED(parentItem.getL10n()));
+				if (onAbort != null)
+					onAbort.run();
 				PacketSendUtility.broadcastPacket(player,
-					new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem.getItemTemplate().getTemplateId(), 0, 2, 0), true);
+					new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem.getItemId(), 0, cancelEndCode, 0), true);
 				player.getObserveController().removeObserver(this);
 			}
 
@@ -154,8 +240,42 @@ public class DecomposeAction extends AbstractItemAction {
 		player.getObserveController().attach(observer);
 		player.getController().addTask(TaskId.ITEM_USE, ThreadPoolManager.getInstance().schedule(() -> {
 			player.getObserveController().removeObserver(observer);
-			finishUse(player, parentItem, targetItem, selectedCollection);
+			onFinish.run();
 		}, castingDelay));
+	}
+
+	/**
+	 * Fim da abertura de uma caixa no formato do cliente, na ordem da captura oficial (wrap_common_rare_title, wrap_change_medal_04to03):
+	 * desembrulhado, S_USE_ITEM de fim, "usou", sai a caixa, entram os itens.
+	 */
+	private void finishSetUse(Player player, Item parentItem, DecomposableItemInfo setInfo) {
+		if (!canAct(player, parentItem, null)) {
+			PacketSendUtility.broadcastPacket(player,
+				new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem.getItemId(), 0, CANCEL_END_CODE, 0), true);
+			return;
+		}
+		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_UNCOMPRESS_COMPRESSED_ITEM_SUCCEEDED(parentItem.getL10n()));
+		PacketSendUtility.broadcastPacket(player,
+			new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem.getItemId(), 0, 1, 0), true);
+		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_USE_ITEM(parentItem.getL10n()));
+		if (!player.getInventory().decreaseByObjectId(parentItem.getObjectId(), 1)) {
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_DECOMPOSE_ITEM_NO_TARGET_ITEM());
+			return;
+		}
+		player.startCooldown(parentItem);
+		for (DecomposableSetItem reward : setInfo.rollItemsFor(player))
+			ItemService.addItem(player, reward.getItemId(), reward.getCount(), true, reward.newUpdatePredicate());
+	}
+
+	private boolean containsSpecialCubeItems(List<DecomposableSet> sets) {
+		for (DecomposableSet set : sets) {
+			for (DecomposableSetItem item : set.getItems()) {
+				ItemTemplate template = DataManager.ITEM_DATA.getItemTemplate(item.getItemId());
+				if (template != null && template.getExtraInventoryId() > 0)
+					return true;
+			}
+		}
+		return false;
 	}
 
 	private boolean postValidate(Player player, Item parentItem, Item targetItem) {

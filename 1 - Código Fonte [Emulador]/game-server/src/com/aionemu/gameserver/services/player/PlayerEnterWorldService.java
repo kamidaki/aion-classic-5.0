@@ -249,6 +249,7 @@ public final class PlayerEnterWorldService {
 			client.sendPacket(new SM_ABYSS_RANK(player));
 			client.sendPacket(new SM_UNK_0191());
 			client.sendPacket(new SM_STATS_INFO(player));
+			CombatTalentRewardService.sendProgress(player);
 
 			// 13. Quests
 			if (player.getQuestStateList().getAllQuestState().isEmpty()) {
@@ -349,16 +350,12 @@ public final class PlayerEnterWorldService {
 				continue;
 			}
 			List<Item> items = storage.getItemsWithKinah();
-			int itemsSize = items.size();
-			for (int index = 0; index < itemsSize; index += 10) {
-				int end = Math.min(index + 10, itemsSize);
-				client.sendPacket(new SM_WAREHOUSE_INFO(items.subList(index, end), i, 0, index == 0, player));
-			}
+			SM_WAREHOUSE_INFO.split(items, i, 0, player).forEach(client::sendPacket);
 			client.sendPacket(new SM_WAREHOUSE_INFO(null, i, 0, false, player));
 		}
 		// 5.0 Classic: Inicializa a janela de estigmas (Storage 58) e o slot de síntese/enchant (Storage 59)
 		List<Item> stigmaItems = player.getEquipment().getEquippedItemsAllStigma();
-		client.sendPacket(new SM_WAREHOUSE_INFO(stigmaItems, StorageType.STIGMA.getId(), 0, true, player));
+		SM_WAREHOUSE_INFO.split(stigmaItems, StorageType.STIGMA.getId(), 0, player).forEach(client::sendPacket);
 		client.sendPacket(new SM_WAREHOUSE_INFO(null, StorageType.STIGMA_ENCHANT.getId(), 0, true, player));
 	}
 

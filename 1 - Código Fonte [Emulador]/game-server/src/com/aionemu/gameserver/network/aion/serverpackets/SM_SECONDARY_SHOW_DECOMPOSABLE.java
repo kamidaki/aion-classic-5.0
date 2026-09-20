@@ -1,40 +1,33 @@
 package com.aionemu.gameserver.network.aion.serverpackets;
 
-import java.util.Collection;
-
-import com.aionemu.gameserver.model.templates.item.ResultedItem;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 
 /**
+ * Resultado da escolha numa caixa selectable (S_SELECT_DISASSEMBLY_ITEM_RESULT, 0x105 na 5.0): [D obj][D 0][C resultado].
+ * Subida 1-60 oficial: {@link #OK} com o objeto da caixa depois de entregar o item; {@link #CANCELED} com objeto 0 quando o jogador fecha a
+ * janela (o cliente manda C_USE_ITEM com objeto 0) ou interrompe a barra de uso.
+ *
  * @author Lost Academy Team & Durak
  */
 public class SM_SECONDARY_SHOW_DECOMPOSABLE extends AionServerPacket {
 
-	private Collection<ResultedItem> itemsCollections;
-	private int objectId;
+	public static final int OK = 0;
+	public static final int CANCELED = 3;
 
-	public SM_SECONDARY_SHOW_DECOMPOSABLE(int objectId, Collection<ResultedItem> itemsCollections) {
-		this.itemsCollections = itemsCollections;
+	private final int objectId;
+	private final int result;
+
+	public SM_SECONDARY_SHOW_DECOMPOSABLE(int objectId, int result) {
 		this.objectId = objectId;
+		this.result = result;
 	}
 
 	@Override
 	protected void writeImpl(AionConnection con) {
 		writeD(objectId);
 		writeD(0);
-		writeC(itemsCollections.size());
-		int index = 0;
-		for (ResultedItem item : itemsCollections) {
-			writeC(index);
-			writeD(item.getItemId());
-			writeD(item.getMinCount());
-			writeC(0);
-			writeC(0);
-			writeC(0);
-			writeC(1);
-			index++;
-		}
+		writeC(result);
 	}
 
 }

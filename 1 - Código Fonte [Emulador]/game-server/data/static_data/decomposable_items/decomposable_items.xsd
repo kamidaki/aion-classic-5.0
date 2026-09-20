@@ -11,9 +11,32 @@
 	<xs:complexType name="DecomposableItem">
 		<xs:sequence>
 			<xs:element name="items" type="ExtractedItemsCollection" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="set" type="DecomposableSet" minOccurs="0" maxOccurs="unbounded" />
 		</xs:sequence>
 		<xs:attribute name="item_id" type="itemId" use="required" />
 		<xs:attribute name="selectable" type="xs:boolean" default="false" />
+		<xs:attribute name="only_one" type="xs:boolean" default="false" />
+	</xs:complexType>
+	<!-- Formato do cliente 5.0 (client_disassembly_item + SetList): cada set e sorteado sozinho com rate/1000 e, se passar, da um dos
+		seus itens, escolhido pelo peso (rate). Com only_one, so o primeiro set que vale para o jogador conta. Numa caixa selectable, os
+		itens dos sets que valem para o jogador sao as opcoes da janela de escolha. -->
+	<xs:complexType name="DecomposableSet">
+		<xs:sequence>
+			<xs:element name="item" type="DecomposableSetItem" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="rate" type="xs:int" default="1000" />
+		<xs:attribute name="race" type="Race" default="PC_ALL" />
+		<xs:attribute name="player_classes" type="ListPlayerClass" use="optional" />
+		<xs:attribute name="minlevel" type="xs:int" default="0" />
+		<xs:attribute name="maxlevel" type="xs:int" default="99" />
+	</xs:complexType>
+	<xs:complexType name="DecomposableSetItem">
+		<xs:attribute name="id" type="itemId" use="required" />
+		<xs:attribute name="count" type="xs:int" default="1" />
+		<xs:attribute name="rate" type="xs:int" default="10000" />
+		<!-- client_disassembly_item_Customize + client_item_custom_set: o item sai ja encantado e com estas manastones -->
+		<xs:attribute name="enchant" type="xs:int" default="0" />
+		<xs:attribute name="manastones" type="IntListType" use="optional" />
 	</xs:complexType>
 	<xs:complexType name="ExtractedItemsCollection">
 		<xs:complexContent>

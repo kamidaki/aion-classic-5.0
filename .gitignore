@@ -37,7 +37,7 @@ logs/
 cache/
 **/cache/
 !**/src/**/cache/
-!**/src/**/cache/**
+!**/src/**/cache/**/*.java
 *.log
 **/*.log
 *.WebView2/
@@ -71,6 +71,8 @@ cache/
 *.bik
 *.7z
 *.zip
+*.rar
+*.bak*
 
 # 6. Client 5.0 - Dados Extraídos (Regras Específicas)
 # O diretório 'data' não deve ter seu conteúdo de arquivos versionado,

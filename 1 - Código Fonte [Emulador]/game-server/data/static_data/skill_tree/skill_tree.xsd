@@ -20,6 +20,7 @@
 		<xs:attribute name="autoLearn" type="xs:boolean"/>
 		<xs:attribute name="stigma" type="xs:boolean"/>
 		<xs:attribute name="skillBook" type="xs:boolean"/>
+		<xs:attribute name="blendingSources" type="xs:string"/>
 		<xs:attribute name="race" type="Race"/>
 		<xs:attribute name="minLevel" type="xs:int" use="required"/>
 	</xs:complexType>

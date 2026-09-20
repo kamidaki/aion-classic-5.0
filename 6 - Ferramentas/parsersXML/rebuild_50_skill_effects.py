@@ -145,8 +145,10 @@ def stat_por_nome(token):
     <x>regen = REGEN_<x>). Medida nos tokens que o gabarito tem sozinhos: 30 de 31."""
     global _STATS
     if _STATS is None:
-        nomes = re.findall(r"^\s*([A-Z][A-Z0-9_]+)\s*[\(,;]", open(STAT_ENUM, encoding="utf-8").read(), re.M) \
-            if os.path.isfile(STAT_ENUM) else []
+        nomes = []
+        if os.path.isfile(STAT_ENUM):
+            with open(STAT_ENUM, encoding="utf-8") as stat_file:
+                nomes = re.findall(r"^\s*([A-Z][A-Z0-9_]+)\s*[\(,;]", stat_file.read(), re.M)
         _STATS = {n.replace("_", "").lower(): n for n in nomes}
     if not token:
         return None

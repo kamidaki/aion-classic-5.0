@@ -11588,8 +11588,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="2" minLevel="63" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="2" minLevel="63" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="2" minLevel="63" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="2" minLevel="63" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="2" minLevel="63" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="2" minLevel="63" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="2" minLevel="63" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="2" minLevel="63" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="2" minLevel="63" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="2" minLevel="63" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
@@ -11624,8 +11624,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="3" minLevel="64" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="3" minLevel="64" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="3" minLevel="64" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="3" minLevel="64" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="3" minLevel="64" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="3" minLevel="64" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="3" minLevel="64" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="3" minLevel="64" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="3" minLevel="64" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="3" minLevel="64" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
@@ -11660,8 +11660,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="4" minLevel="65" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="4" minLevel="65" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="4" minLevel="65" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="4" minLevel="65" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="4" minLevel="65" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="4" minLevel="65" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="4" minLevel="65" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="4" minLevel="65" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="4" minLevel="65" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="4" minLevel="65" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
@@ -11690,8 +11690,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="5" minLevel="66" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="5" minLevel="66" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="5" minLevel="66" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="5" minLevel="66" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="5" minLevel="66" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="5" minLevel="66" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="5" minLevel="66" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="5" minLevel="66" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="5" minLevel="66" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="5" minLevel="66" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
@@ -11720,8 +11720,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="6" minLevel="67" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="6" minLevel="67" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="6" minLevel="67" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="6" minLevel="67" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="6" minLevel="67" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="6" minLevel="67" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="6" minLevel="67" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="6" minLevel="67" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="6" minLevel="67" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="6" minLevel="67" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
@@ -11745,8 +11745,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="7" minLevel="68" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="7" minLevel="68" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="7" minLevel="68" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="7" minLevel="68" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="7" minLevel="68" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="7" minLevel="68" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="7" minLevel="68" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="7" minLevel="68" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="7" minLevel="68" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="7" minLevel="68" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
@@ -11767,8 +11767,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="8" minLevel="69" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="8" minLevel="69" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="8" minLevel="69" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="8" minLevel="69" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="8" minLevel="69" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="8" minLevel="69" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="8" minLevel="69" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="8" minLevel="69" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="8" minLevel="69" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="8" minLevel="69" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
@@ -11789,8 +11789,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="9" minLevel="70" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="9" minLevel="70" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="9" minLevel="70" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="9" minLevel="70" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="9" minLevel="70" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="9" minLevel="70" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="9" minLevel="70" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="9" minLevel="70" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="9" minLevel="70" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="9" minLevel="70" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
@@ -11915,8 +11915,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="10" minLevel="71" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="10" minLevel="71" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="10" minLevel="71" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="10" minLevel="71" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="10" minLevel="71" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="10" minLevel="71" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="10" minLevel="71" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="10" minLevel="71" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="10" minLevel="71" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="10" minLevel="71" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
@@ -12041,8 +12041,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="11" minLevel="72" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="11" minLevel="72" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="11" minLevel="72" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="11" minLevel="72" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="11" minLevel="72" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="11" minLevel="72" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="11" minLevel="72" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="11" minLevel="72" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="11" minLevel="72" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="11" minLevel="72" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
@@ -12167,8 +12167,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="12" minLevel="73" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="12" minLevel="73" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="12" minLevel="73" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="12" minLevel="73" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="12" minLevel="73" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="12" minLevel="73" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="12" minLevel="73" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="12" minLevel="73" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="12" minLevel="73" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="12" minLevel="73" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
@@ -12293,8 +12293,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="13" minLevel="74" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="13" minLevel="74" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="13" minLevel="74" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="13" minLevel="74" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="13" minLevel="74" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="13" minLevel="74" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="13" minLevel="74" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="13" minLevel="74" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="13" minLevel="74" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="13" minLevel="74" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
@@ -12419,8 +12419,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="14" minLevel="75" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="14" minLevel="75" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="14" minLevel="75" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="14" minLevel="75" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="14" minLevel="75" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="14" minLevel="75" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="14" minLevel="75" race="PC_ALL" classId="GLADIATOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="14" minLevel="75" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="14" minLevel="75" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="14" minLevel="75" race="PC_ALL" classId="GLADIATOR" skillBook="true" />
@@ -22328,30 +22328,30 @@
 	<skill name="rb_reflection_g1" skillId="4441" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
 	<skill name="rb_dodge_regist_g1" skillId="4442" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
 	<skill name="rb_purify_g1" skillId="4443" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
-	<skill name="rb_massheal_g1" skillId="4445" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
+	<skill name="rb_massheal_g1" skillId="4445" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" blendingSources="4446,4462,4478;4447|4446;4447,4463,4479" />
 	<skill name="rb_heal_g1" skillId="4446" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
 	<skill name="rb_arallup_g1" skillId="4447" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
 	<skill name="rb_p_maxhpup_g1" skillId="4448" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
-	<skill name="rb_darkstorm_g1" skillId="4449" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
+	<skill name="rb_darkstorm_g1" skillId="4449" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" blendingSources="4450,4466,4482;4451|4450;4451,4467,4483" />
 	<skill name="rb_dark_weakening_g1" skillId="4450" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
 	<skill name="rb_silence_g1" skillId="4451" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
 	<skill name="rb_p_magicalskillboostup_g1" skillId="4452" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
-	<skill name="rb_voidvortex_g1" skillId="4453" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
+	<skill name="rb_voidvortex_g1" skillId="4453" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" blendingSources="4454,4470,4486;4455|4454;4455,4471,4487" />
 	<skill name="rb_dispel_g1" skillId="4454" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
 	<skill name="rb_bind_g1" skillId="4455" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
 	<skill name="rb_p_phyattackup_g1" skillId="4456" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
 	<skill name="rb_reflection_g2" skillId="4457" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
 	<skill name="rb_dodge_regist_g2" skillId="4458" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
 	<skill name="rb_purify_g2" skillId="4459" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
-	<skill name="rb_massheal_g2" skillId="4461" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
+	<skill name="rb_massheal_g2" skillId="4461" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" blendingSources="4462,4478;4463|4462;4463,4479" />
 	<skill name="rb_heal_g2" skillId="4462" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
 	<skill name="rb_arallup_g2" skillId="4463" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
 	<skill name="rb_p_maxhpup_g2" skillId="4464" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
-	<skill name="rb_darkstorm_g2" skillId="4465" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
+	<skill name="rb_darkstorm_g2" skillId="4465" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" blendingSources="4466,4482;4467|4466;4467,4483" />
 	<skill name="rb_dark_weakening_g2" skillId="4466" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
 	<skill name="rb_silence_g2" skillId="4467" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
 	<skill name="rb_p_magicalskillboostup_g2" skillId="4468" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
-	<skill name="rb_voidvortex_g2" skillId="4469" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
+	<skill name="rb_voidvortex_g2" skillId="4469" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" blendingSources="4470,4486;4471|4470;4471,4487" />
 	<skill name="rb_dispel_g2" skillId="4470" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
 	<skill name="rb_bind_g2" skillId="4471" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
 	<skill name="rb_p_phyattackup_g2" skillId="4472" skillLevel="1" minLevel="1" race="PC_ALL" classId="SOUL_REAPER" stigma="true" />
@@ -26596,8 +26596,8 @@
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="2" minLevel="63" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_bloodyslash_g1" skillId="3790" skillLevel="2" minLevel="63" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_turnaggressive_g1" skillId="3791" skillLevel="2" minLevel="63" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="2" minLevel="63" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="2" minLevel="63" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="2" minLevel="63" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="2" minLevel="63" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="2" minLevel="63" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="2" minLevel="63" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="2" minLevel="63" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
@@ -26652,8 +26652,8 @@
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="3" minLevel="64" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_bloodyslash_g1" skillId="3790" skillLevel="3" minLevel="64" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_turnaggressive_g1" skillId="3791" skillLevel="3" minLevel="64" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="3" minLevel="64" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="3" minLevel="64" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="3" minLevel="64" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="3" minLevel="64" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="3" minLevel="64" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="3" minLevel="64" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="3" minLevel="64" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
@@ -26708,8 +26708,8 @@
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="4" minLevel="65" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_bloodyslash_g1" skillId="3790" skillLevel="4" minLevel="65" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_turnaggressive_g1" skillId="3791" skillLevel="4" minLevel="65" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="4" minLevel="65" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="4" minLevel="65" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="4" minLevel="65" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="4" minLevel="65" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="4" minLevel="65" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="4" minLevel="65" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="4" minLevel="65" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
@@ -26754,8 +26754,8 @@
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="5" minLevel="66" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_bloodyslash_g1" skillId="3790" skillLevel="5" minLevel="66" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_turnaggressive_g1" skillId="3791" skillLevel="5" minLevel="66" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="5" minLevel="66" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="5" minLevel="66" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="5" minLevel="66" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="5" minLevel="66" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="5" minLevel="66" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="5" minLevel="66" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="5" minLevel="66" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
@@ -26799,8 +26799,8 @@
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="6" minLevel="67" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_bloodyslash_g1" skillId="3790" skillLevel="6" minLevel="67" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_turnaggressive_g1" skillId="3791" skillLevel="6" minLevel="67" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="6" minLevel="67" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="6" minLevel="67" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="6" minLevel="67" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="6" minLevel="67" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="6" minLevel="67" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="6" minLevel="67" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="6" minLevel="67" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
@@ -26836,8 +26836,8 @@
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="7" minLevel="68" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_bloodyslash_g1" skillId="3790" skillLevel="7" minLevel="68" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_turnaggressive_g1" skillId="3791" skillLevel="7" minLevel="68" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="7" minLevel="68" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="7" minLevel="68" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="7" minLevel="68" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="7" minLevel="68" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="7" minLevel="68" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="7" minLevel="68" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="7" minLevel="68" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
@@ -26867,8 +26867,8 @@
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="8" minLevel="69" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_bloodyslash_g1" skillId="3790" skillLevel="8" minLevel="69" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_turnaggressive_g1" skillId="3791" skillLevel="8" minLevel="69" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="8" minLevel="69" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="8" minLevel="69" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="8" minLevel="69" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="8" minLevel="69" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="8" minLevel="69" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="8" minLevel="69" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="8" minLevel="69" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
@@ -26898,8 +26898,8 @@
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="9" minLevel="70" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_bloodyslash_g1" skillId="3790" skillLevel="9" minLevel="70" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_turnaggressive_g1" skillId="3791" skillLevel="9" minLevel="70" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="9" minLevel="70" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="9" minLevel="70" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="9" minLevel="70" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="9" minLevel="70" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="9" minLevel="70" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="9" minLevel="70" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="9" minLevel="70" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
@@ -27100,8 +27100,8 @@
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="10" minLevel="71" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_bloodyslash_g1" skillId="3790" skillLevel="10" minLevel="71" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_turnaggressive_g1" skillId="3791" skillLevel="10" minLevel="71" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="10" minLevel="71" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="10" minLevel="71" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="10" minLevel="71" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="10" minLevel="71" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="10" minLevel="71" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="10" minLevel="71" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="10" minLevel="71" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
@@ -27302,8 +27302,8 @@
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="11" minLevel="72" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_bloodyslash_g1" skillId="3790" skillLevel="11" minLevel="72" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_turnaggressive_g1" skillId="3791" skillLevel="11" minLevel="72" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="11" minLevel="72" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="11" minLevel="72" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="11" minLevel="72" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="11" minLevel="72" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="11" minLevel="72" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="11" minLevel="72" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="11" minLevel="72" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
@@ -27504,8 +27504,8 @@
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="12" minLevel="73" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_bloodyslash_g1" skillId="3790" skillLevel="12" minLevel="73" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_turnaggressive_g1" skillId="3791" skillLevel="12" minLevel="73" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="12" minLevel="73" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="12" minLevel="73" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="12" minLevel="73" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="12" minLevel="73" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="12" minLevel="73" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="12" minLevel="73" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="12" minLevel="73" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
@@ -27706,8 +27706,8 @@
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="13" minLevel="74" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_bloodyslash_g1" skillId="3790" skillLevel="13" minLevel="74" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_turnaggressive_g1" skillId="3791" skillLevel="13" minLevel="74" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="13" minLevel="74" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="13" minLevel="74" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="13" minLevel="74" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="13" minLevel="74" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="13" minLevel="74" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="13" minLevel="74" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="13" minLevel="74" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
@@ -27908,8 +27908,8 @@
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="14" minLevel="75" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_bloodyslash_g1" skillId="3790" skillLevel="14" minLevel="75" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="kn_turnaggressive_g1" skillId="3791" skillLevel="14" minLevel="75" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="14" minLevel="75" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="14" minLevel="75" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="14" minLevel="75" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="14" minLevel="75" race="PC_ALL" classId="TEMPLAR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="14" minLevel="75" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="14" minLevel="75" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="14" minLevel="75" race="PC_ALL" classId="TEMPLAR" skillBook="true" />
@@ -30684,8 +30684,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="2" minLevel="63" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="2" minLevel="63" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="2" minLevel="63" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="2" minLevel="63" race="PC_ALL" classId="WARRIOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="2" minLevel="63" race="PC_ALL" classId="WARRIOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="2" minLevel="63" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="2" minLevel="63" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="2" minLevel="63" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="2" minLevel="63" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="2" minLevel="63" race="PC_ALL" classId="WARRIOR" skillBook="true" />
@@ -30720,8 +30720,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="3" minLevel="64" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="3" minLevel="64" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="3" minLevel="64" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="3" minLevel="64" race="PC_ALL" classId="WARRIOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="3" minLevel="64" race="PC_ALL" classId="WARRIOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="3" minLevel="64" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="3" minLevel="64" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="3" minLevel="64" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="3" minLevel="64" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="3" minLevel="64" race="PC_ALL" classId="WARRIOR" skillBook="true" />
@@ -30756,8 +30756,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="4" minLevel="65" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="4" minLevel="65" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="4" minLevel="65" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="4" minLevel="65" race="PC_ALL" classId="WARRIOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="4" minLevel="65" race="PC_ALL" classId="WARRIOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="4" minLevel="65" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="4" minLevel="65" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="4" minLevel="65" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="4" minLevel="65" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="4" minLevel="65" race="PC_ALL" classId="WARRIOR" skillBook="true" />
@@ -30786,8 +30786,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="5" minLevel="66" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="5" minLevel="66" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="5" minLevel="66" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="5" minLevel="66" race="PC_ALL" classId="WARRIOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="5" minLevel="66" race="PC_ALL" classId="WARRIOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="5" minLevel="66" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="5" minLevel="66" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="5" minLevel="66" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="5" minLevel="66" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="5" minLevel="66" race="PC_ALL" classId="WARRIOR" skillBook="true" />
@@ -30816,8 +30816,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="6" minLevel="67" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="6" minLevel="67" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="6" minLevel="67" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="6" minLevel="67" race="PC_ALL" classId="WARRIOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="6" minLevel="67" race="PC_ALL" classId="WARRIOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="6" minLevel="67" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="6" minLevel="67" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="6" minLevel="67" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="6" minLevel="67" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="6" minLevel="67" race="PC_ALL" classId="WARRIOR" skillBook="true" />
@@ -30841,8 +30841,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="7" minLevel="68" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="7" minLevel="68" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="7" minLevel="68" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="7" minLevel="68" race="PC_ALL" classId="WARRIOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="7" minLevel="68" race="PC_ALL" classId="WARRIOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="7" minLevel="68" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="7" minLevel="68" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="7" minLevel="68" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="7" minLevel="68" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="7" minLevel="68" race="PC_ALL" classId="WARRIOR" skillBook="true" />
@@ -30863,8 +30863,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="8" minLevel="69" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="8" minLevel="69" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="8" minLevel="69" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="8" minLevel="69" race="PC_ALL" classId="WARRIOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="8" minLevel="69" race="PC_ALL" classId="WARRIOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="8" minLevel="69" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="8" minLevel="69" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="8" minLevel="69" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="8" minLevel="69" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="8" minLevel="69" race="PC_ALL" classId="WARRIOR" skillBook="true" />
@@ -30885,8 +30885,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="9" minLevel="70" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="9" minLevel="70" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="9" minLevel="70" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="9" minLevel="70" race="PC_ALL" classId="WARRIOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="9" minLevel="70" race="PC_ALL" classId="WARRIOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="9" minLevel="70" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="9" minLevel="70" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="9" minLevel="70" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="9" minLevel="70" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="9" minLevel="70" race="PC_ALL" classId="WARRIOR" skillBook="true" />
@@ -31011,8 +31011,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="10" minLevel="71" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="10" minLevel="71" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="10" minLevel="71" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="10" minLevel="71" race="PC_ALL" classId="WARRIOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="10" minLevel="71" race="PC_ALL" classId="WARRIOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="10" minLevel="71" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="10" minLevel="71" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="10" minLevel="71" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="10" minLevel="71" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="10" minLevel="71" race="PC_ALL" classId="WARRIOR" skillBook="true" />
@@ -31137,8 +31137,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="11" minLevel="72" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="11" minLevel="72" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="11" minLevel="72" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="11" minLevel="72" race="PC_ALL" classId="WARRIOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="11" minLevel="72" race="PC_ALL" classId="WARRIOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="11" minLevel="72" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="11" minLevel="72" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="11" minLevel="72" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="11" minLevel="72" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="11" minLevel="72" race="PC_ALL" classId="WARRIOR" skillBook="true" />
@@ -31263,8 +31263,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="12" minLevel="73" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="12" minLevel="73" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="12" minLevel="73" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="12" minLevel="73" race="PC_ALL" classId="WARRIOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="12" minLevel="73" race="PC_ALL" classId="WARRIOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="12" minLevel="73" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="12" minLevel="73" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="12" minLevel="73" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="12" minLevel="73" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="12" minLevel="73" race="PC_ALL" classId="WARRIOR" skillBook="true" />
@@ -31389,8 +31389,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="13" minLevel="74" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="13" minLevel="74" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="13" minLevel="74" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="13" minLevel="74" race="PC_ALL" classId="WARRIOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="13" minLevel="74" race="PC_ALL" classId="WARRIOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="13" minLevel="74" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="13" minLevel="74" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="13" minLevel="74" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="13" minLevel="74" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="13" minLevel="74" race="PC_ALL" classId="WARRIOR" skillBook="true" />
@@ -31515,8 +31515,8 @@
 	<skill name="wa_avengingcrash_g6" skillId="3551" skillLevel="14" minLevel="75" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_slashigforce_g1" skillId="3788" skillLevel="14" minLevel="75" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_dragonslash_g1" skillId="3789" skillLevel="14" minLevel="75" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
-	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="14" minLevel="75" race="PC_ALL" classId="WARRIOR" skillBook="true" />
-	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="14" minLevel="75" race="PC_ALL" classId="WARRIOR" skillBook="true" />
+	<skill name="fi_re_powerslash_g1" skillId="3852" skillLevel="14" minLevel="75" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
+	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="14" minLevel="75" race="PC_ALL" classId="WARRIOR" autoLearn="true" />
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="14" minLevel="75" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_gustblade_g1" skillId="3855" skillLevel="14" minLevel="75" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_jumpingcut_g1" skillId="3856" skillLevel="14" minLevel="75" race="PC_ALL" classId="WARRIOR" skillBook="true" />

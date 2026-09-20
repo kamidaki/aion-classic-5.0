@@ -223,6 +223,10 @@ public abstract class CreatureController<T extends Creature> extends VisibleObje
 			}
 			getOwner().getObserveController().notifyAttackedObservers(attacker, effect == null ? 0 : effect.getSkillId());
 		}
+		AttackStatus baseStatus = AttackStatus.getBaseStatus(status);
+		if (baseStatus == AttackStatus.DODGE || baseStatus == AttackStatus.PARRY) {
+			getOwner().getObserveController().notifyAttackedObservers(attacker, effect == null ? 0 : effect.getSkillId(), status);
+		}
 
 		getOwner().getAggroList().addDamage(attacker, damage, notifyAttack, hopType);
 

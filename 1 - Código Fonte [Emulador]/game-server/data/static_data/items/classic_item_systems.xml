@@ -3637,4 +3637,18 @@
 	<power type="skill" value="4609" points="56" />
 	<power type="skill" value="4610" points="56" />
 	<power type="skill" value="4611" points="56" />
+	<combat_reward id="1" goal="4000" item="188055125" amount="10" />
+	<combat_reward id="2" goal="5000" item="188052965" amount="1" />
+	<combat_reward id="3" goal="6000" item="161000004" amount="3" />
+	<combat_reward id="4" goal="7000" item="164002044" amount="3" />
+	<combat_reward id="5" goal="8000" item="190020139" amount="1" />
+	<combat_reward id="6" goal="9000" item="169611060" amount="1" />
+	<combat_reward id="7" goal="10000" item="166300500" amount="1" />
+	<combat_reward id="8" goal="11000" item="166300500" amount="3" />
+	<combat_reward id="9" goal="12000" item="166300500" amount="4" />
+	<combat_reward id="10" goal="13000" item="188052964" amount="1" />
+	<combat_reward id="11" goal="14000" item="166300500" amount="10" />
+	<combat_reward id="12" goal="15000" item="166300500" amount="20" />
+	<combat_reward id="13" goal="21000" item="169591267" amount="1" />
+	<combat_reward id="14" goal="25000" item="169591277" amount="1" />
 </classic_item_systems>

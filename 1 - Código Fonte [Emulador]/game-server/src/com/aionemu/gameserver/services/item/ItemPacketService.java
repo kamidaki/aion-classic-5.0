@@ -91,6 +91,7 @@ public class ItemPacketService {
 		MAIL(0x36),
 		SURVEY(0x40),
 		DECOMPOSABLE(0x50), // also Guestbloom
+		COMBAT_TALENT_REWARD(0xEB), // official Combat Talent milestone reward
 		REPURCHASE(0x51);
 
 		private final int mask;

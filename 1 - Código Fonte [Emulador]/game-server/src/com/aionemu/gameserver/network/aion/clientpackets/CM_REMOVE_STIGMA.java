@@ -36,8 +36,10 @@ public class CM_REMOVE_STIGMA extends AionClientPacket {
 			return;
 
 		Item item = player.getEquipment().getEquippedItemByObjId(itemObjId);
-		if (item == null)
+		if (item == null) {
+			CM_DELETE_ITEM.deleteItem(player, itemObjId);
 			return;
+		}
 
 		if (!StigmaService.checkUnequip(player, item))
 			return;

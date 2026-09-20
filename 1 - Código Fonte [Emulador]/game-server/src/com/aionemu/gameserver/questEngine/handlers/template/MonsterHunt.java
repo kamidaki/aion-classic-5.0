@@ -207,11 +207,30 @@ public class MonsterHunt extends AbstractTemplateQuestHandler {
 							}
 							updateQuestStatus(env);
 							if (!isDataDriven) { // Old quest style
-								if (tmpTotal == m.getEndVar() && (reward || rewardNextStep)) {
-									if (rewardNextStep)
-										qs.setQuestVarById(0, qs.getQuestVarById(0) + 1);
-									qs.setStatus(QuestStatus.REWARD);
-									updateQuestStatus(env);
+								if (tmpTotal == m.getEndVar()) {
+									boolean allCompleted = true;
+									for (Monster mi : monsters) {
+										int mEndVar = mi.getEndVar();
+										int vId = mi.getVar();
+										int mTotal = 0;
+										do {
+											int currentVar = qs.getQuestVarById(vId);
+											mTotal += currentVar << ((vId - mi.getVar()) * 6);
+											mEndVar >>= 6;
+											vId++;
+										} while (mEndVar > 0);
+										if (mTotal < mi.getEndVar()) {
+											allCompleted = false;
+											break;
+										}
+									}
+									boolean isCanReport = DataManager.QUEST_DATA.getQuestById(questId).isCanReport();
+									if (allCompleted && (reward || rewardNextStep || isCanReport)) {
+										if (rewardNextStep)
+											qs.setQuestVarById(0, qs.getQuestVarById(0) + 1);
+										qs.setStatus(QuestStatus.REWARD);
+										updateQuestStatus(env);
+									}
 								}
 								return true;
 							}

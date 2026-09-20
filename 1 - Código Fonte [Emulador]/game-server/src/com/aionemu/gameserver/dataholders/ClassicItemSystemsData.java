@@ -17,9 +17,12 @@ public class ClassicItemSystemsData {
 	private List<GapRule> gaps;
 	@XmlElement(name = "power")
 	private List<PowerRule> powers;
+	@XmlElement(name = "combat_reward")
+	private List<CombatRewardRule> combatRewards;
 	@XmlTransient private final Map<String, EnchantRule> enchantByKey = new HashMap<>();
 	@XmlTransient private final Map<String, Integer> gapByKey = new HashMap<>();
 	@XmlTransient private final Map<String, Integer> powerByKey = new HashMap<>();
+	@XmlTransient private final Map<Integer, CombatRewardRule> combatRewardById = new HashMap<>();
 
 	void afterUnmarshal(Unmarshaller u, Object parent) {
 		if (enchants != null)
@@ -28,13 +31,17 @@ public class ClassicItemSystemsData {
 			for (GapRule rule : gaps) gapByKey.put(rule.grade + ":" + rule.level + ":" + rule.quality, rule.probability);
 		if (powers != null)
 			for (PowerRule rule : powers) powerByKey.put(rule.type + ":" + rule.value.toLowerCase(java.util.Locale.ROOT), rule.points);
-		 enchants = null; gaps = null; powers = null;
+		if (combatRewards != null)
+			for (CombatRewardRule rule : combatRewards) combatRewardById.put(rule.id, rule);
+		 enchants = null; gaps = null; powers = null; combatRewards = null;
 	}
 
 	public EnchantRule getEnchant(String group, int level) { return enchantByKey.get(group + ":" + level); }
 	public Integer getGap(int grade, int level, String quality) { return gapByKey.get(grade + ":" + level + ":" + quality); }
 	public int getPower(String type, String value) { return powerByKey.getOrDefault(type + ":" + value.toLowerCase(java.util.Locale.ROOT), 0); }
-	public int size() { return enchantByKey.size() + gapByKey.size() + powerByKey.size(); }
+	public CombatRewardRule getCombatReward(int id) { return combatRewardById.get(id); }
+	public int getCombatRewardCount() { return combatRewardById.size(); }
+	public int size() { return enchantByKey.size() + gapByKey.size() + powerByKey.size() + combatRewardById.size(); }
 
 	@XmlAccessorType(XmlAccessType.FIELD)
 	public static class EnchantRule {
@@ -59,5 +66,12 @@ public class ClassicItemSystemsData {
 		@XmlAttribute public String type;
 		@XmlAttribute public String value;
 		@XmlAttribute public int points;
+	}
+	@XmlAccessorType(XmlAccessType.FIELD)
+	public static class CombatRewardRule {
+		@XmlAttribute public int id;
+		@XmlAttribute public int goal;
+		@XmlAttribute public int item;
+		@XmlAttribute public long amount;
 	}
 }

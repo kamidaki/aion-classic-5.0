@@ -871,6 +871,17 @@ CREATE TABLE `player_titles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
+-- Table structure for `player_combat_talent_rewards`
+-- ----------------------------
+DROP TABLE IF EXISTS `player_combat_talent_rewards`;
+CREATE TABLE `player_combat_talent_rewards` (
+  `player_id` int NOT NULL,
+  `claimed_mask` int unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`player_id`),
+  CONSTRAINT `player_combat_talent_rewards_ibfk_1` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
 -- Table structure for `player_veteran_rewards`
 -- ----------------------------
 DROP TABLE IF EXISTS `player_veteran_rewards`;

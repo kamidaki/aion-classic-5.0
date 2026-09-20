@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
 import com.aionemu.commons.utils.Rnd;
+import com.aionemu.gameserver.controllers.attack.AttackStatus;
 import com.aionemu.gameserver.controllers.observer.ActionObserver;
 import com.aionemu.gameserver.controllers.observer.ObserverType;
 import com.aionemu.gameserver.dataholders.DataManager;
@@ -52,16 +53,21 @@ public class ProvokerEffect extends ShieldEffect {
 
 			@Override
 			public void attack(Creature attacked, int attackSkillId) {
-				tryApplyEffect(attacked, attackSkillId, effector);
+				tryApplyEffect(attacked, attackSkillId, null, effector);
 			}
 
 			@Override
 			public void attacked(Creature attacker, int attackSkillId) {
-				tryApplyEffect(attacker, attackSkillId, effector);
+				tryApplyEffect(attacker, attackSkillId, null, effector);
 			}
 
-			private void tryApplyEffect(Creature target, int attackSkillId, Creature effector) {
-				if (shouldApply(effector, target, attackSkillId)) {
+			@Override
+			public void attacked(Creature attacker, int attackSkillId, AttackStatus status) {
+				tryApplyEffect(attacker, attackSkillId, status, effector);
+			}
+
+			private void tryApplyEffect(Creature target, int attackSkillId, AttackStatus status, Creature effector) {
+				if (shouldApply(effector, target, attackSkillId, status)) {
 					if (effector instanceof Player player) {
 						PacketSendUtility.sendPacket(player,
 							SM_SYSTEM_MESSAGE.STR_SKILL_PROC_EFFECT_OCCURRED(DataManager.SKILL_DATA.getSkillTemplate(skillId).getL10n()));
@@ -72,10 +78,14 @@ public class ProvokerEffect extends ShieldEffect {
 		});
 	}
 
-	private boolean shouldApply(Creature effector, Creature target, int attackSkillId) {
+	private boolean shouldApply(Creature effector, Creature target, int attackSkillId, AttackStatus status) {
 		if (provokeTarget == ProvokeTarget.OPPONENT && target == effector)
 			return false;
 		if (radius > 0 && !PositionUtil.isInRange(effector, target, radius, false))
+			return false;
+		if (hitType == HitType.DODGEHIT && (status == null || AttackStatus.getBaseStatus(status) != AttackStatus.DODGE))
+			return false;
+		if (hitType == HitType.PARRYHIT && (status == null || AttackStatus.getBaseStatus(status) != AttackStatus.PARRY))
 			return false;
 		float chance = hitTypeProb > 100 ? hitTypeProb / 10f : hitTypeProb;
 		if (Rnd.chance() >= chance)
@@ -86,6 +96,7 @@ public class ProvokerEffect extends ShieldEffect {
 			case PHHIT -> attackSkillId == 0 || (DataManager.SKILL_DATA.getSkillTemplate(attackSkillId) != null && DataManager.SKILL_DATA.getSkillTemplate(attackSkillId).getType() == SkillType.PHYSICAL);
 			case MAHIT -> attackSkillId != 0 && DataManager.SKILL_DATA.getSkillTemplate(attackSkillId) != null && DataManager.SKILL_DATA.getSkillTemplate(attackSkillId).getType() == SkillType.MAGICAL;
 			case BACKATK -> PositionUtil.isBehind(effector, target);
+			case DODGEHIT, PARRYHIT -> true;
 			default -> true;
 		};
 	}

@@ -3,7 +3,7 @@
 	<spawn_map map_id="110030000">
 		<!-- Atirador -->
 		<spawn npc_id="730648" respawn_time="295">
-			<spot x="1345.7201" y="1511.3084" z="571.665" h="0"/>
+			<spot x="1345.7201" y="1511.3084" z="569.0387" h="58"/>
 		</spawn>
 	</spawn_map>
 </spawns>

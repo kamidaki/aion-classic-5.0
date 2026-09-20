@@ -519366,12 +519366,12 @@ Você pode trocar maiores estigmas pelos pontos do Abismo em comerciantes de est
 	</item_template>
 	<item_template id="169591268" name="Você pode usar o instrumento de delirium com cordas por 7 dias depois de despachar." level="6" cName="skillbook_FI_Re_PowerSlash_G1" mask="20092" item_group="SKILLBOOK" quality="RARE" price="26400" desc="809335" race="PC_ALL" max_stack_count="1" item_type="NORMAL"  client_mask="16680">
 		<actions>
-			<skilllearn skillid="3852" level="6" class="GLADIATOR" skill_level="1" />
+			<skilllearn skillid="3852" level="6" class="WARRIOR" skill_level="1" />
 		</actions>
 	</item_template>
 	<item_template id="169591269" name="Você pode usar o instrumento de cordas delirium por 14 dias após o descompactação." level="10" cName="skillbook_FI_Re_TripleSlash_G1" mask="20092" item_group="SKILLBOOK" quality="RARE" price="26400" desc="809336" race="PC_ALL" max_stack_count="1" item_type="NORMAL"  client_mask="16680">
 		<actions>
-			<skilllearn skillid="3853" level="10" class="GLADIATOR" skill_level="1" />
+			<skilllearn skillid="3853" level="10" class="WARRIOR" skill_level="1" />
 		</actions>
 	</item_template>
 	<item_template id="169591270" name="Você pode usar o instrumento de cordas dos sonhos por 3 dias depois de despachar." level="10" cName="skillbook_FI_Re_WingBlade_G1" mask="20092" item_group="SKILLBOOK" quality="RARE" price="26400" desc="809337" race="PC_ALL" max_stack_count="1" item_type="NORMAL"  client_mask="16680">

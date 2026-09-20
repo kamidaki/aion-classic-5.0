@@ -99,7 +99,7 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_PLAYER_LISTENER.class, 0xCA, State.IN_GAME); // 0x0038 MOVE_OBJECT
 		addPacket(CM_BUILDER_COMMAND.class, 0xC8, State.IN_GAME); // 0x003A GM_COMMAND
 		addPacket(CM_EMOTION.class, 0xC9, State.IN_GAME); // 0x003B EMOTION
-		addPacket(CM_REMOVE_STIGMA.class, 0x136, State.IN_GAME); // 0x003C REMOVE_STIGMA (4 bytes [D itemObjId], 5.0 Classic)
+		addPacket(CM_REMOVE_STIGMA.class, 0x136, State.IN_GAME); // 0x003C REMOVE_STIGMA / DESTROY_ITEM ([D itemObjId], distinguished by equipped state)
 		addPacket(CM_BROKER_REGISTERED.class, 0x137, State.IN_GAME); // 0x003D BROKER_REGISTERED
 		addPacket(CM_BUY_BROKER_ITEM.class, 0x134, State.IN_GAME); // 0x003E BUY_BROKER_ITEM
 		addPacket(CM_REGISTER_BROKER_ITEM.class, 0x135, State.IN_GAME); // 0x003F REGISTER_BROKER_ITEM
@@ -146,9 +146,8 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_GET_MAIL_ATTACHMENT.class, 0x16A, State.IN_GAME); // 0x0098 GET_MAIL_ATTACHMENT
 		addPacket(CM_DELETE_MAIL.class, 0x16B, State.IN_GAME); // 0x0099 DELETE_MAIL
 		addPacket(CM_READ_EXPRESS_MAIL.class, 0x150, State.IN_GAME); // 0x00A2 READ_EXPRESS_MAIL
-		addPacket(CM_SELECT_DECOMPOSABLE.class, 0x186, State.IN_GAME); // 0x00EC C_SELECT_DISASSEMBLY_ITEM
-		addPacket(CM_SELECT_DECOMPOSABLE.class, 0xEC, State.IN_GAME); // Raw alias
-		addPacket(CM_BLACKCLOUD_MAIL_OPEN.class, 0x15B, State.IN_GAME); // 0x00A9 BLACKCLOUD_MAIL_OPEN
+		// 0x00A9 é a escolha da caixa selectable, não BLACKCLOUD_MAIL_OPEN: nas capturas só aparece (4x, 9 b [obj][0][índice]) logo depois do S 0x104
+		addPacket(CM_SELECT_DECOMPOSABLE.class, 0x15B, State.IN_GAME); // 0x00A9 C_SELECT_DISASSEMBLY_ITEM
 		addPacket(CM_BLACKCLOUD_MAIL.class, 0x15F, State.IN_GAME); // 0x00A5 BLACKCLOUD_MAIL
 		// 0x00A6 não é BLACKCLOUD_MAIL_CLAIM na 5.0: é o cast do summon (C_CLIENTSIDE_NPC_USE_SKILL), 25 pacotes de 15 b nas capturas do Spirit Master
 		// addPacket(CM_BLACKCLOUD_MAIL_CLAIM.class, 0x15C, State.IN_GAME);
@@ -175,7 +174,6 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_TITLE_SET.class, 0x169, State.IN_GAME); // 0x009B TITLE_SET
 		addPacket(CM_QUESTIONNAIRE.class, 0x163, State.IN_GAME); // 0x0091 QUESTIONNAIRE
 		// MOVE_ITEM e SPLIT_ITEM da 5.0 sao dec 0x00B4/0x00B5 (registrados acima e abaixo); dec 0x009C/0x009D nunca aparecem nas capturas
-		addPacket(CM_DELETE_ITEM.class, 0x108, State.IN_GAME); // decoded 0x007A C_DESTROY_ITEM; 0x10E belongs to VIEW_PLAYER_DETAILS
 		addPacket(CM_DELETE_QUEST.class, 0x122, State.IN_GAME); // DELETE_QUEST
 		addPacket(CM_REVIVE.class, 0x00FF, State.IN_GAME); // 0x0005 C_DEAD_RESTART (5.0 Classic)
 		addPacket(CM_REVIVE.class, 0x0005, State.IN_GAME); // Raw alias
@@ -188,7 +186,8 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_BREAK_WEAPONS.class, 0x1A2, State.IN_GAME); // BREAK_WEAPONS
 		addPacket(CM_PET.class, 0x9C, State.IN_GAME); // PET
 		addPacket(CM_PET_EMOTE.class, 0x9E, State.IN_GAME); // PET_EMOTE
-		addPacket(CM_CUBE_EXPAND.class, 0x1BB, State.IN_GAME); // CUBE_EXPAND
+		addPacket(CM_CUBE_EXPAND.class, 0x1B8, State.IN_GAME); // decoded 0x00CA CUBE_EXPAND (Classic 5.0: [C type], no NPC id)
+		addPacket(CM_COMBAT_TALENT_REWARD.class, 0x1E5, State.IN_GAME); // decoded 0x010F [H rewardId]
 		addPacket(CM_MANASTONE.class, 0x128, State.IN_GAME); // MANASTONE / ENCHANMENT_STONES
 		addPacket(CM_GODSTONE_SOCKET.class, 0x2D9, State.IN_GAME); // 0x022B GIVE_ITEM_PROC
 		addPacket(CM_GODSTONE_CLEAR.class, 0x1F9, State.IN_GAME); // 0x010B GIVE_ITEM_PROC_CLEAR
@@ -223,7 +222,7 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_CLIENT_SCENE_ACK.class, 0x01A7, State.IN_GAME); // 0x00CD CLIENT_SCENE_ACK (5.0 Classic)
 		addPacket(CM_CLIENT_MOTION_ACK.class, 0x0181, State.IN_GAME); // 0x00F3 CLIENT_MOTION_ACK (5.0 Classic)
 		addPacket(CM_CLIENT_WORLD_EVENT_ACK.class, 0x01E4, State.IN_GAME); // 0x010E CLIENT_WORLD_EVENT_ACK (5.0 Classic)
-		addPacket(CM_CLIENT_STATUS_HEARTBEAT.class, 0x02DF, State.IN_GAME); // 0x0225 CLIENT_STATUS_HEARTBEAT (5.0 Classic)
+		addPacket(CM_CLIENT_STATUS_HEARTBEAT.class, 0x02DF, State.IN_GAME, State.AUTHED); // 0x0225 CLIENT_STATUS_HEARTBEAT (5.0 Classic)
 
 		// Session telemetry & aliases
 		addPacket(CM_UI_SETTINGS.class, 0x00E8, State.IN_GAME); // 0x001A SAVE_UI_SETTINGS

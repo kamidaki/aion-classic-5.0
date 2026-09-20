@@ -15,8 +15,9 @@ public class SM_ITEM_USAGE_ANIMATION extends AionServerPacket {
 	private int time;
 	private int end;
 	private int unk;
-	private int unk1;
-	private int unk2 = 1;
+	// 5.0 oficial: os 32 S_USE_ITEM da subida 1-60 trazem [end][0][1][0] (inicio do cast, fim e cancelamento)
+	private int unk1 = 1;
+	private int unk2;
 	private int unk3;
 
 	public SM_ITEM_USAGE_ANIMATION(int playerObjId, int itemObjId, int itemId) {

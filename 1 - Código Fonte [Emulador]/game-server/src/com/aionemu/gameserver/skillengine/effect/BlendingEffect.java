@@ -11,9 +11,10 @@ import com.aionemu.gameserver.skillengine.SkillEngine;
 import com.aionemu.gameserver.skillengine.model.Effect;
 
 /**
- * Efeito de registro de nota musical do Blending (Luminess).
+ * Implementa as duas formas de Blending descritas pelos dados oficiais 5.0:
+ * notas musicais do Luminess e acúmulo compartilhado entre graduações de uma skill.
  *
- * Separação estrita:
+ * No modo de notas:
  * 1. Alvo: mantém os acúmulos (carvedSignet) de cada nota debuff.
  * 2. Jogador: mantém o BlendingState (sequência de notas utilizadas).
  * 3. Expiração: quando o efeito no alvo termina por tempo ou morte, BlendingState é resetado.
@@ -27,10 +28,24 @@ public class BlendingEffect extends EffectTemplate {
 
 	@XmlAttribute(name = "note")
 	protected String note;
+	@XmlAttribute(name = "stack_level")
+	private int stackLevel;
+	@XmlAttribute(name = "skill_id")
+	private int skillId;
+	@XmlAttribute(name = "source_skills")
+	private String sourceSkills;
 
 	@Override
 	public void applyEffect(Effect effect) {
 		Creature target = effect.getEffected();
+		if (isStackBlending()) {
+			if (effect.getCarvedSignet() >= stackLevel && target != null && !target.getLifeStats().isDead()) {
+				var skill = SkillEngine.getInstance().getSkill(effect.getEffector(), skillId, 1, target);
+				if (skill != null)
+					skill.useWithoutPropSkill();
+			}
+			return;
+		}
 		int targetLiStacks = 0;
 
 		// 1. Gerenciar acúmulos (carvedSignet) no efeito aplicado ao alvo
@@ -89,6 +104,8 @@ public class BlendingEffect extends EffectTemplate {
 
 	@Override
 	public void endEffect(Effect effect) {
+		if (isStackBlending())
+			return;
 		if (effect.getEffector() instanceof Player player) {
 			// Reseta o BlendingState quando o efeito no alvo termina por expiração de tempo ou morte do alvo
 			if (effect.isEndedByTime() || effect.getEffected() == null || effect.getEffected().getLifeStats().isDead()) {
@@ -102,6 +119,19 @@ public class BlendingEffect extends EffectTemplate {
 		effect.addSuccessEffect(this);
 
 		Creature target = effect.getEffected();
+		if (isStackBlending()) {
+			int count = 1;
+			if (target != null) {
+				for (Effect active : target.getEffectController().getAbnormalEffects()) {
+					if (active != effect && isSourceSkill(active.getSkillId())) {
+						count = Math.min(stackLevel, Math.max(1, active.getCarvedSignet()) + 1);
+						break;
+					}
+				}
+			}
+			effect.setCarvedSignet(count);
+			return;
+		}
 		if (target != null) {
 			String currentStack = effect.getStack();
 			String stackPrefix = getStackPrefix(currentStack);
@@ -125,6 +155,18 @@ public class BlendingEffect extends EffectTemplate {
 
 	public String getNote() {
 		return note;
+	}
+
+	private boolean isStackBlending() {
+		return stackLevel > 0 && skillId > 0 && sourceSkills != null;
+	}
+
+	private boolean isSourceSkill(int activeSkillId) {
+		for (String sourceSkill : sourceSkills.split(" ")) {
+			if (!sourceSkill.isEmpty() && Integer.parseInt(sourceSkill) == activeSkillId)
+				return true;
+		}
+		return false;
 	}
 
 	private static String getStackPrefix(String stack) {

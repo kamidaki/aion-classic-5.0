@@ -149,10 +149,27 @@ def fluxos(caminho, porta, com_tempo=False):
     saida = {}
     for chave, partes in pedacos.items():
         fluxo, marcos = bytearray(), []
+        proximo_seq = None
         for seq in sorted(partes):
             carga, ts = partes[seq]
+            if proximo_seq is None:
+                proximo_seq = seq
+            if seq < proximo_seq:
+                # Retransmissoes podem recomecar no meio de um segmento ja
+                # capturado. Concatenar o segmento inteiro desloca todos os
+                # frames e a chave da cifra; conserva apenas a parte nova.
+                sobreposicao = proximo_seq - seq
+                if sobreposicao >= len(carga):
+                    continue
+                carga = carga[sobreposicao:]
+                seq = proximo_seq
+            if seq > proximo_seq:
+                # Há bytes realmente ausentes na captura. Mantém o fluxo
+                # disponível, mas não inventa preenchimento para a lacuna.
+                proximo_seq = seq
             marcos.append((len(fluxo), ts))
             fluxo += carga
+            proximo_seq += len(carga)
         saida[chave] = (bytes(fluxo), marcos) if com_tempo else bytes(fluxo)
     return saida
 

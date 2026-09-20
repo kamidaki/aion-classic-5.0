@@ -73,6 +73,14 @@ def generate():
             value = skills[value.lower()]
         ET.SubElement(result, 'power', type=typ, value=value, points=e.findtext('combat_power_point'))
     canonical = {d['id']: d for d in items.iter_depth1(str(CLIENT / 'data/items/client_items.xml'))}
+    canonical_by_name = {d['name'].lower(): d for d in canonical.values() if d.get('name')}
+    for e in ET.parse(CLIENT / 'data/PC/combat_power_reward.xml').getroot():
+        item_name = e.findtext('item_name').lower()
+        item = canonical_by_name.get(item_name)
+        if item is None:
+            raise ValueError('Recompensa de Combat Talent não encontrada: ' + item_name)
+        ET.SubElement(result, 'combat_reward', id=e.attrib['id'], goal=e.findtext('goal'),
+                      item=item['id'], amount=e.findtext('item_amount'))
     name_ids, names = items.load_strings(str(CLIENT))
     raw = (SOURCE / 'items/item_templates.xml').read_bytes().decode('utf-8')
     changed = 0

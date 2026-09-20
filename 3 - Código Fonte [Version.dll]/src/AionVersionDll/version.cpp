@@ -299,6 +299,31 @@ static int WINAPI zzMessageBoxW(_In_opt_ HWND hWnd, _In_opt_ LPCWSTR lpText, _In
 // Command Line Injection Hook
 // Appends official mandatory bypass arguments and normalizes -lang:BRA
 // =========================================================================
+// Opcao inteira na linha de comando: "-probability" nao pode casar com "-probability2".
+template <typename C>
+static bool HasCmdOption(const std::basic_string<C>& cmd, const C* opt) {
+    const std::basic_string<C> o(opt);
+    for (size_t p = cmd.find(o); p != std::basic_string<C>::npos; p = cmd.find(o, p + 1)) {
+        size_t end = p + o.size();
+        if (end == cmd.size() || cmd[end] == C(' ') || cmd[end] == C(':'))
+            return true;
+    }
+    return false;
+}
+
+// No Aion.bin, -probability liga o bit 82 do bitset de conteudo e -probability2 o bit 102. O Game.dll testa o 102 antes de colocar
+// "Ctrl + clique: ver conteudo/probabilidade" no tooltip de caixas e de abrir a janela nativa (dlg_disassembly_info) com os itens e as chances.
+template <typename C>
+static void AppendProbabilityOptions(std::basic_string<C>& cmd) {
+    static const C probability[] = { '-','p','r','o','b','a','b','i','l','i','t','y',0 };
+    static const C probability2[] = { '-','p','r','o','b','a','b','i','l','i','t','y','2',0 };
+    static const C space[] = { ' ',0 };
+    if (!HasCmdOption(cmd, probability))
+        cmd += std::basic_string<C>(space) + probability;
+    if (!HasCmdOption(cmd, probability2))
+        cmd += std::basic_string<C>(space) + probability2;
+}
+
 static decltype(GetCommandLineA)* real_GetCommandLineA = GetCommandLineA;
 static LPSTR WINAPI zzGetCommandLineA() {
     static std::string s_hookedCmdA;
@@ -306,6 +331,7 @@ static LPSTR WINAPI zzGetCommandLineA() {
     std::call_once(s_flagA, []() {
         LPSTR cmd = real_GetCommandLineA();
         s_hookedCmdA = cmd ? cmd : "";
+        AppendProbabilityOptions(s_hookedCmdA);
         size_t p = 0;
         while ((p = s_hookedCmdA.find("-LANG:", p)) != std::string::npos) {
             s_hookedCmdA.replace(p, 6, "-lang:");
@@ -345,6 +371,7 @@ static LPWSTR WINAPI zzGetCommandLineW() {
     std::call_once(s_flagW, []() {
         LPWSTR cmd = real_GetCommandLineW();
         s_hookedCmdW = cmd ? cmd : L"";
+        AppendProbabilityOptions(s_hookedCmdW);
         size_t p = 0;
         while ((p = s_hookedCmdW.find(L"-LANG:", p)) != std::wstring::npos) {
             s_hookedCmdW.replace(p, 6, L"-lang:");

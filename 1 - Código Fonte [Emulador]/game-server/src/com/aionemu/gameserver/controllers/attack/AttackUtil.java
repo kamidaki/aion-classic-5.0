@@ -127,6 +127,7 @@ public class AttackUtil {
 				damage -= dmgToReduce;
 			}
 			damage = StatFunctions.adjustDamageByPvpOrPveModifiers(attacker, attacked, damage, 0, false, element);
+			damage = TargetLockEffect.modifyDamage(attacker, attacked, damage);
 			if (damage < 1) {
 				damage = 1;
 			}
@@ -347,6 +348,7 @@ public class AttackUtil {
 			damage /= effect.getSkill().getEffectedList().size();
 		}
 		damage = StatFunctions.adjustDamageByPvpOrPveModifiers(effector, effected, damage, effect.getPvpDamage(), useTemplateDmg, element);
+		damage = TargetLockEffect.modifyDamage(effector, effected, damage);
 
 		if (damage < 0)
 			damage = 0;
@@ -486,6 +488,7 @@ public class AttackUtil {
 					StatEnum.MAGICAL_CRITICAL_DAMAGE_REDUCE, true);
 			}
 			damage = StatFunctions.adjustDamageByPvpOrPveModifiers(effector, effected, damage, effect.getPvpDamage(), false, template.getElement());
+			damage = TargetLockEffect.modifyDamage(effector, effected, damage);
 		}
 
 		if (damage < 1)

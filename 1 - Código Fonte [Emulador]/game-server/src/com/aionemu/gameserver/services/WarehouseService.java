@@ -127,31 +127,18 @@ public class WarehouseService {
 		List<Item> items = player.getStorage(StorageType.REGULAR_WAREHOUSE.getId()).getItems();
 
 		int whSize = player.getWarehouseExpansions();
-		int itemsSize = items.size();
-
-		// regular warehouse
-		if (itemsSize != 0) {
-			int index = 0;
-			boolean firstPacket = true;
-			while (index + 10 < itemsSize) {
-				PacketSendUtility.sendPacket(player, new SM_WAREHOUSE_INFO(items.subList(index, index + 10), StorageType.REGULAR_WAREHOUSE.getId(), whSize,
-					firstPacket, player));
-				index += 10;
-				firstPacket = false;
-			}
-			PacketSendUtility.sendPacket(player, new SM_WAREHOUSE_INFO(items.subList(index, itemsSize), StorageType.REGULAR_WAREHOUSE.getId(), whSize,
-				firstPacket, player));
-			PacketSendUtility.sendPacket(player, new SM_WAREHOUSE_INFO(null, StorageType.REGULAR_WAREHOUSE.getId(), whSize, false, player));
-		} else {
-			PacketSendUtility.sendPacket(player, new SM_WAREHOUSE_INFO(null, StorageType.REGULAR_WAREHOUSE.getId(), whSize, true, player));
-		}
+		SM_WAREHOUSE_INFO.split(items, StorageType.REGULAR_WAREHOUSE.getId(), whSize, player)
+            .forEach(packet -> PacketSendUtility.sendPacket(player, packet));
+        if (!items.isEmpty())
+            PacketSendUtility.sendPacket(player, new SM_WAREHOUSE_INFO(null, StorageType.REGULAR_WAREHOUSE.getId(), whSize, false, player));
 
 		if (sendAccountWh) {
 			// account warehouse
 			IStorage accWh = player.getStorage(StorageType.ACCOUNT_WAREHOUSE.getId());
 			List<Item> accItems = accWh != null ? accWh.getItemsWithKinah() : Collections.emptyList();
 			if (!accItems.isEmpty()) {
-				PacketSendUtility.sendPacket(player, new SM_WAREHOUSE_INFO(accItems, StorageType.ACCOUNT_WAREHOUSE.getId(), 0, true, player));
+				SM_WAREHOUSE_INFO.split(accItems, StorageType.ACCOUNT_WAREHOUSE.getId(), 0, player)
+                    .forEach(packet -> PacketSendUtility.sendPacket(player, packet));
 				PacketSendUtility.sendPacket(player, new SM_WAREHOUSE_INFO(null, StorageType.ACCOUNT_WAREHOUSE.getId(), 0, false, player));
 			} else {
 				PacketSendUtility.sendPacket(player, new SM_WAREHOUSE_INFO(null, StorageType.ACCOUNT_WAREHOUSE.getId(), 0, true, player));

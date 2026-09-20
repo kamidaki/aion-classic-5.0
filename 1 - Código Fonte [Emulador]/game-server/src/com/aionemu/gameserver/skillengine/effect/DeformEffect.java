@@ -26,14 +26,19 @@ public class DeformEffect extends TransformEffect {
 
 	@Override
 	public void startEffect(Effect effect) {
-		super.startEffect(effect);
+		// Some Classic effects (for example WI_Sleep_G1) use Deform only as an
+		// abnormal state and explicitly declare no model. Do not reset an active
+		// transformation when the client definition has no visual model.
+		if (model > 0)
+			super.startEffect(effect);
 		effect.getEffected().getEffectController().setAbnormal(AbnormalState.DEFORM);
 		effect.setAbnormal(AbnormalState.DEFORM);
 	}
 
 	@Override
 	public void endEffect(Effect effect) {
-		super.endEffect(effect);
+		if (model > 0)
+			super.endEffect(effect);
 		effect.getEffected().getEffectController().unsetAbnormal(AbnormalState.DEFORM);
 	}
 }

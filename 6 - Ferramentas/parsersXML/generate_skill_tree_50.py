@@ -1,4 +1,4 @@
-"""
+r"""
 Gerador Canônico Oficial de Árvores de Habilidades (skill_tree.xml) — Aion Classic 5.0
 Lê os dados originais do cliente 5.0 em:
   - 5 - Documentação e Referências\4 - Client 5.0 - Dados Extraidos\data\skills\client_skills.xml
@@ -77,6 +77,21 @@ def generate_skill_tree():
             
     print(f"     Carregadas {len(name_to_skill)} definições de skills do cliente.")
 
+    # Regras de Blending: stigma_display=5 não é uma stigma equipável. O cliente
+    # a concede quando uma das combinações de pré-requisitos está completa.
+    blending_by_result = {}
+    for combination in common_bxml.read_client_xml("PC/client_bledingskill_combination.xml"):
+        result_name = combination.findtext("blended_skill", "").lower()
+        requirements = []
+        for data in combination.findall("./blending_combination/data"):
+            ids = [name_to_skill.get(name.strip().lower())
+                   for name in data.findtext("condition_skill", "").split(",")]
+            ids = [skill_id for skill_id in ids if skill_id]
+            if ids:
+                requirements.append(",".join(map(str, ids)))
+        if result_name and requirements:
+            blending_by_result.setdefault(result_name, []).append(";".join(requirements))
+
     # 2. Carregar regras de aprendizado
     print("  -> Lendo client_skill_learns.xml...")
     client_learns = common_bxml.read_client_xml("skills/client_skill_learns.xml")
@@ -107,9 +122,10 @@ def generate_skill_tree():
         stigma_display = l.findtext("stigma_display", "0")
         learntype = l.findtext("learntype", "0")
 
-        is_stigma = stigma_display in ('1', '2', '5') or learntype == '1'
+        is_blended = stigma_display == '5'
+        is_stigma = stigma_display in ('1', '2') or learntype == '1'
         is_autolearn = auto_learn_val == "TRUE"
-        is_skillbook = (not is_autolearn) and (not is_stigma)
+        is_skillbook = (not is_autolearn) and (not is_stigma) and (not is_blended)
 
         for target_class in targets:
             key = (target_class, skill_id, skill_level, race)
@@ -127,6 +143,12 @@ def generate_skill_tree():
                 entry['stigma'] = 'true'
             if is_skillbook:
                 entry['skillBook'] = 'true'
+            if is_blended:
+                combinations = blending_by_result.get(raw_skill.lower(), [])
+                if not combinations:
+                    print(f"  [AVISO] Blending sem combinação resolvida: {raw_skill}")
+                    continue
+                entry['blendingSources'] = '|'.join(combinations)
 
             # Sobrescreve se a nova definição tiver maior precedência
             if key not in best_entries or prio > best_entries[key][0]:

@@ -25,6 +25,31 @@ public class CubeExpandService {
 	private static final Logger log = LoggerFactory.getLogger(CubeExpandService.class);
 
 	/**
+	 * Paid expansion requested by the Classic 5.0 inventory UI. The client shows
+	 * its own confirmation before sending the request, so there is no NPC or
+	 * second server-side question in this flow.
+	 */
+	public static void expandCube(Player player) {
+		if (player == null || !player.isSpawned() || player.isDead() || player.isTrading())
+			return;
+		synchronized (player.getInventory()) {
+			if (!canExpand(player))
+				return;
+			int newNpcExpansions = player.getNpcExpands() + 1;
+			int maxExpansionLevel = CustomConfig.NPC_CUBE_EXPANDS_SIZE_LIMIT;
+			Integer price = DataManager.CUBEEXPANDER_DATA.getPrice(newNpcExpansions);
+			if (price == null || newNpcExpansions > maxExpansionLevel) {
+				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_EXTEND_INVENTORY_CANT_EXTEND_MORE());
+				return;
+			}
+			if (player.getInventory().tryDecreaseKinah(price, ItemUpdateType.DEC_KINAH_CUBE))
+				npcExpand(player);
+			else
+				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_WAREHOUSE_EXPAND_NOT_ENOUGH_MONEY());
+		}
+	}
+
+	/**
 	 * Shows Question window and expands on positive response
 	 */
 	public static void expandCube(Player player, Npc npc) {

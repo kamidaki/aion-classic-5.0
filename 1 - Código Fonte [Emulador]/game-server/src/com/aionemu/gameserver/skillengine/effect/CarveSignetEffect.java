@@ -6,8 +6,9 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
 import com.aionemu.commons.utils.Rnd;
-import com.aionemu.gameserver.skillengine.SkillEngine;
+import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.skillengine.model.Effect;
+import com.aionemu.gameserver.skillengine.model.SkillTemplate;
 
 /**
  * @author Lost Academy Team & Durak
@@ -42,16 +43,30 @@ public class CarveSignetEffect extends DamageEffect {
 
 		int targetCap = signetCap != null ? signetCap : (signetLvl != null ? signetLvl : 5);
 		int targetSignetId = signetId != null ? signetId : (signetIdAlt != null ? signetIdAlt : 0);
-		int nextSignetLevel = signetIncrement;
+		int nextSignetLevel = signetLvlStart != null ? signetLvlStart : signetIncrement;
 		Effect activeSignet = effect.getEffected().getEffectController().getAbnormalEffect(signet);
 		if (activeSignet != null) {
+			int currentLevel = activeSignet.getCarvedSignet() > 0 ? activeSignet.getCarvedSignet() : activeSignet.getSkillLevel();
+			if (currentLevel <= 0 && targetSignetId > 0) {
+				currentLevel = Math.max(1, activeSignet.getSkillId() - targetSignetId + 1);
+			}
+			if (signetLvlStart != null) {
+				nextSignetLevel = Math.max(signetLvlStart, currentLevel);
+			} else {
+				nextSignetLevel = Math.min(currentLevel + signetIncrement, Math.max(targetCap, currentLevel));
+			}
 			activeSignet.endEffect();
-			nextSignetLevel = Math.min(activeSignet.getCarvedSignet() + signetIncrement, Math.max(targetCap, activeSignet.getCarvedSignet()));
 		}
+
+		effect.setCarvedSignet(nextSignetLevel);
+
 		if (targetSignetId > 0) {
-			Effect signetEffect = SkillEngine.getInstance().applyEffect(targetSignetId + nextSignetLevel - 1, effect.getEffector(), effect.getEffected());
-			if (signetEffect != null) {
+			SkillTemplate template = DataManager.SKILL_DATA.getSkillTemplate(targetSignetId + nextSignetLevel - 1);
+			if (template != null) {
+				Effect signetEffect = new Effect(effect.getEffector(), effect.getEffected(), template, nextSignetLevel, null, null);
 				signetEffect.setCarvedSignet(nextSignetLevel);
+				signetEffect.initialize();
+				signetEffect.applyEffect();
 			}
 		}
 	}

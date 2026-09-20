@@ -86,6 +86,7 @@
 				<xs:element name="dispel" type="DispelEffect" />
 				<xs:element name="statup" type="StatupEffect" />
 				<xs:element name="statboost" type="StatboostEffect" />
+				<xs:element name="statsynergy" type="StatSynergyEffect" />
 				<xs:element name="weaponstatboost" type="WeaponStatboostEffect" />
 				<xs:element name="wpnmastery" type="WeaponMasteryEffect" />
 				<xs:element name="statdown" type="StatdownEffect" />
@@ -127,6 +128,7 @@
 				<xs:element name="hostileup" type="HostileUpEffect" />
 				<xs:element name="paralyze" type="ParalyzeEffect" />
 				<xs:element name="confuse" type="ConfuseEffect" />
+				<xs:element name="control" type="ControlEffect" />
 				<xs:element name="alwaysresist" type="AlwaysResistEffect" />
 				<xs:element name="alwaysblock" type="AlwaysBlockEffect" />
 				<xs:element name="alwaysparry" type="AlwaysParryEffect" />
@@ -142,6 +144,7 @@
 				<xs:element name="reflector" type="ReflectorEffect" />
 				<xs:element name="returnpoint" type="ReturnPointEffect" />
 				<xs:element name="provoker" type="ProvokerEffect" />
+				<xs:element name="targetlock" type="TargetLockEffect" />
 				<xs:element name="spellatkdraininstant" type="SpellAtkDrainInstantEffect" />
 				<xs:element name="onetimeboostskillattack" type="OneTimeBoostSkillAttackEffect" />
 				<xs:element name="onetimeboostskillcritical" type="OneTimeBoostSkillCriticalEffect" />
@@ -229,6 +232,8 @@
 				<xs:element name="summonfunctionalnpc" type="SummonFunctionalNpcEffect" />
 				<xs:element name="targetteleport" type="TargetTeleportEffect" />
 				<xs:element name="flyoff" type="FlyOffEffect" />
+				<xs:element name="flyboost" type="FlyBoostEffect" />
+				<xs:element name="radarangle" type="RadarAngleEffect" />
 				<xs:element name="escape" type="EscapeEffect" />
 				<xs:element name="skillcooltimereset" type="SkillCooltimeResetEffect" />
 				<xs:element name="riderobot" type="RideRobotEffect" />
@@ -587,6 +592,21 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
+	<xs:complexType name="TargetLockEffect">
+		<xs:complexContent>
+			<xs:extension base="Effect">
+				<xs:attribute name="focus_value" type="xs:int" use="required" />
+				<xs:attribute name="focus_delta" type="xs:int" />
+				<xs:attribute name="cover_value" type="xs:int" use="required" />
+				<xs:attribute name="cover_delta" type="xs:int" />
+				<xs:attribute name="focus_drop_value" type="xs:int" use="required" />
+				<xs:attribute name="focus_drop_delta" type="xs:int" />
+				<xs:attribute name="range" type="xs:int" />
+				<xs:attribute name="checktime" type="xs:int" />
+				<xs:attribute name="skill_id" type="xs:int" use="required" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
 	<xs:complexType name="SpellAttackEffect">
 		<xs:complexContent>
 			<xs:extension base="AbstractOverTimeEffect" />
@@ -622,6 +642,21 @@
 	<xs:complexType name="StatboostEffect">
 		<xs:complexContent>
 			<xs:extension base="BufEffect" />
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="StatSynergyEffect">
+		<xs:complexContent>
+			<xs:extension base="Effect">
+				<xs:attribute name="source" type="modifiersenum" use="required" />
+				<xs:attribute name="target" type="modifiersenum" use="required" />
+				<xs:attribute name="source_value" type="xs:int" use="required" />
+				<xs:attribute name="target_value" type="xs:int" use="required" />
+				<xs:attribute name="fixed_value" type="xs:int" />
+				<xs:attribute name="target2" type="modifiersenum" />
+				<xs:attribute name="source_value2" type="xs:int" />
+				<xs:attribute name="target_value2" type="xs:int" />
+				<xs:attribute name="fixed_value2" type="xs:int" />
+			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:complexType name="WeaponStatboostEffect">
@@ -670,7 +705,7 @@
 	<xs:complexType name="TransformEffect" abstract="true">
 		<xs:complexContent>
 			<xs:extension base="Effect">
-				<xs:attribute name="model" type="xs:int" use="required" />
+				<xs:attribute name="model" type="xs:int" />
 				<xs:attribute name="type" type="TransformType" default="NONE" />
 				<xs:attribute name="panelid" type="xs:int" />
 				<xs:attribute name="cantUseSkills" type="xs:boolean" />
@@ -1636,10 +1671,28 @@
 			<xs:extension base="Effect" />
 		</xs:complexContent>
 	</xs:complexType>
+	<xs:complexType name="ControlEffect">
+		<xs:complexContent>
+			<xs:extension base="Effect" />
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FlyBoostEffect">
+		<xs:complexContent>
+			<xs:extension base="Effect" />
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="RadarAngleEffect">
+		<xs:complexContent>
+			<xs:extension base="Effect" />
+		</xs:complexContent>
+	</xs:complexType>
 	<xs:complexType name="BlendingEffect">
 		<xs:complexContent>
 			<xs:extension base="Effect">
 				<xs:attribute name="note" type="xs:string" />
+				<xs:attribute name="stack_level" type="xs:int" />
+				<xs:attribute name="skill_id" type="xs:int" />
+				<xs:attribute name="source_skills" type="xs:string" />
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -1847,6 +1900,8 @@
 			<xs:enumeration value="FEAR" />
 			<xs:enumeration value="SKILL" />
 			<xs:enumeration value="BACKATK" />
+			<xs:enumeration value="DODGEHIT" />
+			<xs:enumeration value="PARRYHIT" />
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="ProvokeType">

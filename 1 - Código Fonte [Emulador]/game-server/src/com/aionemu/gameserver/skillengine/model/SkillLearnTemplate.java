@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlType;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.PlayerClass;
 import com.aionemu.gameserver.model.Race;
+import com.aionemu.gameserver.model.skill.PlayerSkillList;
 
 /**
  * @author Lost Academy Team & Durak
@@ -38,6 +39,8 @@ public class SkillLearnTemplate {
 	private boolean stigma;
 	@XmlAttribute(name = "skillBook")
 	private boolean skillBook;
+	@XmlAttribute(name = "blendingSources")
+	private String blendingSources;
 
 	public PlayerClass getClassId() {
 		return classId;
@@ -76,6 +79,38 @@ public class SkillLearnTemplate {
 
 	public boolean isSkillBook() {
 		return skillBook;
+	}
+
+	public boolean isBlended() {
+		return blendingSources != null && !blendingSources.isBlank();
+	}
+
+	/**
+	 * The expression is a disjunction of combinations. "|" separates combinations,
+	 * ";" separates required groups and "," separates alternative skill IDs in a group.
+	 */
+	public boolean hasBlendingSources(PlayerSkillList skillList) {
+		if (!isBlended())
+			return false;
+		for (String combination : blendingSources.split("\\|")) {
+			boolean matches = true;
+			for (String group : combination.split(";")) {
+				boolean groupMatches = false;
+				for (String skillId : group.split(",")) {
+					if (skillList.isSkillPresent(Integer.parseInt(skillId))) {
+						groupMatches = true;
+						break;
+					}
+				}
+				if (!groupMatches) {
+					matches = false;
+					break;
+				}
+			}
+			if (matches)
+				return true;
+		}
+		return false;
 	}
 
 	public boolean isLinkedStigma() { return false; }

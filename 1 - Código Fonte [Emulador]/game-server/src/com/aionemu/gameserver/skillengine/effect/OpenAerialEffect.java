@@ -30,21 +30,20 @@ public class OpenAerialEffect extends EffectTemplate {
 	@Override
 	public void calculate(Effect effect) {
 		if (effect.getEffected().getEffectController().isAbnormalSet(AbnormalState.PULLED)
-			|| effect.getEffected().getEffectController().isAbnormalSet(AbnormalState.STUMBLE)
-			|| effect.getEffected().getEffectController().isAbnormalSet(AbnormalState.OPENAERIAL)
-			|| effect.getEffected().getEffectController().isAbnormalSet(AbnormalState.STAGGER)
-			|| effect.getEffected().getEffectController().isAbnormalSet(AbnormalState.SPIN))
+			|| effect.getEffected().getEffectController().isAbnormalSet(AbnormalState.OPENAERIAL))
 			return;
 
-		if(!super.calculate(effect, StatEnum.OPENAERIAL_RESISTANCE, SpellStatus.OPENAERIAL))
+		if (!super.calculate(effect, StatEnum.OPENAERIAL_RESISTANCE, SpellStatus.OPENAERIAL))
 			return;
-		if (effect.isSubEffect() && !(effect.getEffected() instanceof Player))
+		if (effect.isSubEffect())
 			effect.setSubEffectType(SubEffectType.OPENAERIAL);
 		float z = effect.getEffected().getZ();
 		if (!effect.getEffected().isFlying()) {
-			float geoZ = GeoService.getInstance().getZ(effect.getEffected().getWorldId(),effect.getEffected().getX(), effect.getEffected().getY(), effect.getEffected().getZ() + 2, effect.getEffected().getZ() - 1, effect.getEffected().getInstanceId());
+			float geoZ = GeoService.getInstance().getZ(effect.getEffected().getWorldId(), effect.getEffected().getX(), effect.getEffected().getY(), effect.getEffected().getZ() + 2, effect.getEffected().getZ() - 1, effect.getEffected().getInstanceId());
 			if (!Float.isNaN(geoZ)) {
-				z = geoZ;
+				z = geoZ + 2.5f;
+			} else {
+				z += 2.5f;
 			}
 		}
 		effect.setTargetLoc(effect.getEffected().getX(), effect.getEffected().getY(), z);
@@ -54,7 +53,8 @@ public class OpenAerialEffect extends EffectTemplate {
 	public void startEffect(Effect effect) {
 		final Creature effected = effect.getEffected();
 		effected.getController().cancelCurrentSkill(effect.getEffector());
-		effect.getEffected().getEffectController().removeParalyzeEffects();
+		effected.getEffectController().removeParalyzeEffects();
+		effected.getEffectController().unsetAbnormal(AbnormalState.STUMBLE);
 		if (effected instanceof Player player) {
 			player.getFlyController().onStopGliding();
 			player.getController().onStopMove();
@@ -69,6 +69,16 @@ public class OpenAerialEffect extends EffectTemplate {
 
 	@Override
 	public void endEffect(Effect effect) {
-		effect.getEffected().getEffectController().unsetAbnormal(AbnormalState.OPENAERIAL);
+		final Creature effected = effect.getEffected();
+		effected.getEffectController().unsetAbnormal(AbnormalState.OPENAERIAL);
+		if (!effected.isFlying()) {
+			float geoZ = GeoService.getInstance().getZ(effected.getWorldId(), effected.getX(), effected.getY(), effected.getZ() + 2, effected.getZ() - 4, effected.getInstanceId());
+			if (!Float.isNaN(geoZ)) {
+				World.getInstance().updatePosition(effected, effected.getX(), effected.getY(), geoZ, effected.getHeading());
+				if (effected instanceof Player)
+					PacketSendUtility.broadcastPacketAndReceive(effected, new SM_FORCED_MOVE(effected, effected.getObjectId(),
+							effected.getX(), effected.getY(), geoZ));
+			}
+		}
 	}
 }

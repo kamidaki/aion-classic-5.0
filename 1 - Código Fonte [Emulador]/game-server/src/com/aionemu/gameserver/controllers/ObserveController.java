@@ -87,7 +87,10 @@ public class ObserveController {
 				observer.attack((Creature) object[0], (int) object[1]);
 				break;
 			case ATTACKED:
-				observer.attacked((Creature) object[0], (int) object[1]);
+				if (object.length > 2)
+					observer.attacked((Creature) object[0], (int) object[1], (AttackStatus) object[2]);
+				else
+					observer.attacked((Creature) object[0], (int) object[1]);
 				break;
 			case DEATH:
 				observer.died((Creature) object[0]);
@@ -149,6 +152,10 @@ public class ObserveController {
 
 	public void notifyAttackedObservers(Creature creature, int skillId) {
 		notifyObservers(ObserverType.ATTACKED, creature, skillId);
+	}
+
+	public void notifyAttackedObservers(Creature creature, int skillId, AttackStatus status) {
+		notifyObservers(ObserverType.ATTACKED, creature, skillId, status);
 	}
 
 	public void notifyDotAttackedObservers(Creature creature, Effect effect) {

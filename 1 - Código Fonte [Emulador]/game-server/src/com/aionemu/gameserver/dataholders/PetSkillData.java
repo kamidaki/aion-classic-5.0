@@ -38,7 +38,14 @@ public class PetSkillData {
 	}
 
 	public boolean isPetOrderSkill(int orderSkill) {
-		return petSkillData.containsKey(orderSkill);
+		if (!petSkillData.containsKey(orderSkill)) {
+			return false;
+		}
+		com.aionemu.gameserver.skillengine.model.SkillTemplate template = DataManager.SKILL_DATA != null ? DataManager.SKILL_DATA.getSkillTemplate(orderSkill) : null;
+		if (template != null && !template.getStack().startsWith("EL_ORDER_")) {
+			return false;
+		}
+		return true;
 	}
 
 	/**
