@@ -64,7 +64,7 @@ impl SingleInstanceGuard {
                     SetForegroundWindow(hwnd);
                 }
 
-                let wide_msg: Vec<u16> = OsStr::new("O Aion Classic - EMU já está em execução neste computador!\n\nVerifique a barra de tarefas ou a bandeja do sistema.")
+                let wide_msg: Vec<u16> = OsStr::new("O Aion Classic - EMULADOR já está em execução neste computador!\n\nVerifique a barra de tarefas ou a bandeja do sistema.")
                     .encode_wide()
                     .chain(std::iter::once(0))
                     .collect();

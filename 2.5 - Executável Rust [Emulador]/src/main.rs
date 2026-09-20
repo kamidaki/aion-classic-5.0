@@ -82,7 +82,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let _job_guard = JobObjectGuard::init();
 
     // 2. Strict Single Instance Protection via Global/Local Named Mutex & Process Scan
-    let _instance_guard = match SingleInstanceGuard::acquire("Aion Classic - EMU") {
+    let _instance_guard = match SingleInstanceGuard::acquire("Aion Classic - EMULADOR") {
         Some(g) => g,
         None => {
             std::process::exit(0);

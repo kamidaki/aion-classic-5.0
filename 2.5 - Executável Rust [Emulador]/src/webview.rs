@@ -35,7 +35,7 @@ impl WebViewApp {
         cleanup_on_exit: impl Fn() + Send + Sync + 'static,
     ) {
         let window = WindowBuilder::new()
-            .with_title("Aion Classic - Classic Emu")
+            .with_title("Aion Classic - EMULADOR")
             .with_inner_size(LogicalSize::new(1440.0, 900.0))
             .with_min_inner_size(LogicalSize::new(1024.0, 680.0))
             .build(&self.event_loop)

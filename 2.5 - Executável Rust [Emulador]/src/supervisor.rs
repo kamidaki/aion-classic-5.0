@@ -883,7 +883,7 @@ impl Supervisor {
     pub fn get_tray_tooltip_text(&self) -> String {
         let srvs = self.servers.lock();
         let active = srvs.values().filter(|s| s.status == ServerStatus::Online).count();
-        format!("Aion Classic - Classic Emu\nServidores Ativos: {}/3", active)
+        format!("Aion Classic - EMULADOR\nServidores Ativos: {}/3", active)
     }
 }
 

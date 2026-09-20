@@ -46,10 +46,8 @@ if errorlevel 1 (
 )
 
 set "DEST1=%~dp0..\2 - Emulador [Produto Final]\Aion Classic - EMULADOR.exe"
-set "DEST2=%~dp0..\2 - Emulador [Produto Final]\Aion Classic - EMU.exe"
-echo [*] Publicando binario em "%DEST1%" e "%DEST2%"...
+echo [*] Publicando binario em "%DEST1%"...
 copy /Y "target\release\aion-classic-emu.exe" "%DEST1%" >nul
-copy /Y "target\release\aion-classic-emu.exe" "%DEST2%" >nul
 
 echo [OK] Aion Classic - EMULADOR.exe publicado com sucesso em "2 - Emulador [Produto Final]".
 
