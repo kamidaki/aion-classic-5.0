@@ -221,32 +221,41 @@ public final class NativePathAStar {
 				float nextWorldX = nextGx * 0.5f;
 				float nextWorldY = nextGy * 0.5f;
 
-				// Prevenção estrita de "Corner Cutting": movimentos diagonais exigem ambos vizinhos ortogonais livres
+				// FIX CAUSA 2: calcula nextZ ANTES de verificar transitabilidade,
+				// para usar a altitude real do vizinho como âncora no findBestLayer.
+				// Sem isso, degraus e pisos elevados são erroneamente rejeitados.
+				float nextZ = map.getSurfaceZ(nextWorldX, nextWorldY, current.z, current.z);
+				float anchorZ = nextZ; // âncora correta para isWalkable do vizinho
+
+				// FIX CAUSA 5: Anti-corner-cutting relaxado.
+				// Bloqueio diagonal somente se AMBOS os ortogonais adjacentes forem paredes.
+				// Um corredor de 1m tem uma parede mas o tile oposto é livre — a diagonal DEVE passar.
 				if (dir >= 4) {
-					if (!map.isWalkable(currentWorldX + dx[dir] * 0.5f, currentWorldY, current.z, 1.5f) ||
-							!map.isWalkable(currentWorldX, currentWorldY + dy[dir] * 0.5f, current.z, 1.5f)) {
+					boolean sideA = !map.isWalkable(currentWorldX + dx[dir] * 0.5f, currentWorldY, anchorZ, 2.0f);
+					boolean sideB = !map.isWalkable(currentWorldX, currentWorldY + dy[dir] * 0.5f, anchorZ, 2.0f);
+					if (sideA && sideB) { // ambos bloqueados = diagonal realmente corta quina
 						continue;
 					}
 				}
 
-				// Verifica transitabilidade da subcélula destino
-				if (!map.isWalkable(nextWorldX, nextWorldY, current.z, 1.8f)) {
+				// FIX CAUSA 2: usa nextZ como âncora (altitude real do tile vizinho)
+				if (!map.isWalkable(nextWorldX, nextWorldY, anchorZ, 2.0f)) {
 					continue;
 				}
 
 				// Folga lateral (Clearance) para agentes de raio avantajado (> 0.6m)
+				// Usa anchorZ para não rejeitar paredes de pisos adjacentes diferentes
 				if (agentRadius > 0.6f) {
 					float clearanceOffset = agentRadius * 0.5f;
-					if (!map.isWalkable(nextWorldX + clearanceOffset, nextWorldY, current.z, 1.5f) ||
-							!map.isWalkable(nextWorldX - clearanceOffset, nextWorldY, current.z, 1.5f) ||
-							!map.isWalkable(nextWorldX, nextWorldY + clearanceOffset, current.z, 1.5f) ||
-							!map.isWalkable(nextWorldX, nextWorldY - clearanceOffset, current.z, 1.5f)) {
+					if (!map.isWalkable(nextWorldX + clearanceOffset, nextWorldY, anchorZ, 2.0f) ||
+							!map.isWalkable(nextWorldX - clearanceOffset, nextWorldY, anchorZ, 2.0f) ||
+							!map.isWalkable(nextWorldX, nextWorldY + clearanceOffset, anchorZ, 2.0f) ||
+							!map.isWalkable(nextWorldX, nextWorldY - clearanceOffset, anchorZ, 2.0f)) {
 						continue;
 					}
 				}
 
 				// Validação física de elevação assimétrica (subida máx 0.8m / queda máx 1.8m)
-				float nextZ = map.getSurfaceZ(nextWorldX, nextWorldY, current.z, current.z);
 				float deltaZ = nextZ - current.z;
 
 				if (deltaZ > MAX_STEP_UP) { // Degrau muito alto para subir

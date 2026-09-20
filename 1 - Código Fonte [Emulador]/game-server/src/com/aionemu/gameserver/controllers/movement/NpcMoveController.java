@@ -731,7 +731,11 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 		moveToLocation(pointX, pointY, pointZ);
 	}
 
-	private static final float DIRECT_TARGET_MOVEMENT_MAX_DISTANCE = 15.0f;
+	// FIX CAUSA 1: Reduzido de 15m para 4m.
+	// A 15m, mobs próximos de obstáculos nunca chegam ao A* — tentam linha reta (canWalkDirectly)
+	// e ao falhar caem no FollowMotor/Eleanor que atravessa paredes.
+	// A 4m, apenas mobs quase em combate (alcance melee) usam linha reta direta.
+	private static final float DIRECT_TARGET_MOVEMENT_MAX_DISTANCE = 4.0f;
 
 	private float calculateMaxZDiff(float distanceXY, Creature target) {
 		if (distanceXY < 1.0f) {

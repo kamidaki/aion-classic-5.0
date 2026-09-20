@@ -318,10 +318,13 @@ public final class NativePathMap {
 
 			// Valida cota do solo real
 			float groundZ = getSurfaceZ(currX, currY, currZ, Float.NaN, instanceId);
+			// FIX CAUSA 3: tolerância por-passo aumentada para MAX_STEP_UP * 2.0 (1.6m).
+			// O gradiente TOTAL já foi verificado (|dz|/dist2D <= 1.2) no início do método.
+			// Saltos pontuais no getSurfaceZ em terreno irregular não devem rejeitar rampas válidas.
+			// O fator 2.0 acomoda irregularidades de amostragem sem criar brechas de física.
 			if (!Float.isNaN(groundZ)) {
 				float deltaZ = groundZ - prevGroundZ;
-				// Subida máxima por passo (0.8m) e queda máxima (1.8m)
-				if (deltaZ > MAX_STEP_UP || -deltaZ > maxDropHeight) {
+				if (deltaZ > MAX_STEP_UP * 2.0f || -deltaZ > maxDropHeight * 1.5f) {
 					return false;
 				}
 				prevGroundZ = groundZ;

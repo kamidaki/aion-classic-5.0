@@ -234,11 +234,13 @@ public final class NativePathSector {
 			float lz = l.getZ(subX, subY, terrainZ);
 			float diff = Math.abs(lz - z);
 
-			// Favorece superfícies abaixo dos pés do agente (piso) em vez de acima (teto).
-			// Camadas acima do agente têm custo 3× maior para evitar selecionar teto
-			// em mapas de múltiplos pisos sobrepostos (castelos, fortalezas, dungeons).
+			// FIX CAUSA 4: penalidade adaptativa para camadas acima do agente.
+			// Pisos levemente elevados (< 2m) recebem penalidade menor (1.5x) para
+			// não rejeitar degraus, entradas de cabanas e pisos com 0.3~0.5m de elevação.
+			// Camadas muito acima (>= 2m) são tetos — penalidade 3x preservada.
 			if (lz > z) {
-				diff *= 3.0f;
+				float heightDiff = lz - z;
+				diff *= (heightDiff < 2.0f) ? 1.5f : 3.0f;
 			}
 
 			if (diff <= maxZDiff && diff < bestDiff) {
