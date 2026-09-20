@@ -134709,7 +134709,7 @@
 			<weapon weapon="GUN"/>
 			</startconditions>
 		<effects>
-			<summonservant npc_id="749259" skill_id="18504" count="2" time="6" e="1"/>
+			<summonservant npc_id="749259" skill_id="19875" count="2" time="6" e="1"/>
 			</effects>
 		<actions>
 			<mpuse value="200" delta="2"/>
@@ -134723,7 +134723,7 @@
 			<weapon weapon="GUN"/>
 			</startconditions>
 		<effects>
-			<summonservant npc_id="749260" skill_id="18504" count="2" time="6" e="1"/>
+			<summonservant npc_id="749260" skill_id="19875" count="2" time="6" e="1"/>
 			</effects>
 		<actions>
 			<mpuse value="200" delta="2"/>
@@ -134751,7 +134751,7 @@
 			<weapon weapon="GUN"/>
 			</startconditions>
 		<effects>
-			<summonskillarea npc_id="749261" time="15" e="1"/>
+			<summonskillarea npc_id="749261" time="20" e="1"/>
 			</effects>
 		<actions>
 			<mpuse value="150" delta="4"/>
@@ -134765,7 +134765,7 @@
 			<weapon weapon="GUN"/>
 			</startconditions>
 		<effects>
-			<summonskillarea npc_id="749262" time="15" e="1"/>
+			<summonskillarea npc_id="749262" time="20" e="1"/>
 			</effects>
 		<actions>
 			<mpuse value="150" delta="4"/>

@@ -71,7 +71,7 @@ public class ServantNpcAI extends GeneralNpcAI {
 				startDelay = 100;
 			}
 			// Firestorm Illusion & Auto-Cannons
-			case 749259, 749260, 749263, 749264, 749265, 749266 -> duration = 2000;
+			case 749259, 749260, 749263, 749264, 749265, 749266 -> duration = 3900;
 		}
 		final Creature target = (Creature) getOwner().getTarget();
 		// 5.0 oficial: a skill sai no nível da skill que invocou o servant (Holy Servant IV nv 9 -> 17590 nv 9)

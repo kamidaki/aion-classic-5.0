@@ -35,6 +35,7 @@ public class SummonSkillAreaEffect extends SummonServantEffect {
 		}
 
 		int tickDelay = 3000;
+		int initialDelay = 0;
 		int spawnDuration = time;
 
 		String group = effect.getSkillTemplate().getGroup();
@@ -56,9 +57,15 @@ public class SummonSkillAreaEffect extends SummonServantEffect {
 			}
 		}
 		String stack = effect.getSkillTemplate().getStack();
-		if (stack != null && (stack.contains("ICEAGE") || stack.contains("IceAge"))) {
-			spawnDuration = 10;
-			tickDelay = 2000;
+		if (stack != null) {
+			if (stack.contains("ICEAGE") || stack.contains("IceAge")) {
+				spawnDuration = 10;
+				tickDelay = 2000;
+			} else if (stack.contains("BLACKHOLE") || stack.contains("BlackHall") || stack.contains("BLACKHALL")) {
+				spawnDuration = 20;
+				initialDelay = 1500;
+				tickDelay = 1800;
+			}
 		}
 
 		Servant servant = spawnServant(effect, spawnDuration, NpcObjectType.SKILLAREA, x, y, z);
@@ -80,13 +87,17 @@ public class SummonSkillAreaEffect extends SummonServantEffect {
 				if (servant.getSkillList() == null || servant.getSkillList().isEmpty()) {
 					return;
 				}
-				NpcSkillEntry skillEntry = servant.getSkillList().getSkillOnPosition(skillPos);
+				int skillCount = servant.getSkillList().getNpcSkills().size();
+				if (skillCount == 0) {
+					return;
+				}
+				NpcSkillEntry skillEntry = servant.getSkillList().getSkillOnPosition(skillPos % skillCount);
 				if (skillEntry != null) {
 					servant.getController().useSkill(skillEntry.getSkillId());
 				}
 				skillPos++;
 			}
-		}, 0, tickDelay);
+		}, initialDelay, tickDelay);
 		servant.getController().addTask(TaskId.SKILL_USE, task);
 	}
 }
