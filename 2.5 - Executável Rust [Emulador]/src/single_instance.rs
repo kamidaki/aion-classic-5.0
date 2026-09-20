@@ -1,6 +1,5 @@
 use std::ffi::OsStr;
 use std::os::windows::ffi::OsStrExt;
-use sysinfo::{ProcessRefreshKind, RefreshKind, System};
 use windows_sys::Win32::Foundation::{CloseHandle, GetLastError, HANDLE, ERROR_ALREADY_EXISTS};
 use windows_sys::Win32::System::Threading::CreateMutexW;
 use windows_sys::Win32::UI::WindowsAndMessaging::{
@@ -12,37 +11,18 @@ pub struct SingleInstanceGuard {
 }
 
 impl SingleInstanceGuard {
-    /// Acquires a system-wide single instance mutex and validates running processes.
+    /// Acquires a system-wide single instance mutex.
     /// If another instance of the launcher is already running, brings its window to the foreground,
     /// alerts the user, and returns None so the second process can terminate cleanly.
+    /// Uses kernel Named Mutex which is automatically freed when a process terminates,
+    /// avoiding false positives from dead zombie processes in the Windows process table.
     pub fn acquire(title: &str) -> Option<Self> {
         let wide_title: Vec<u16> = OsStr::new(title)
             .encode_wide()
             .chain(std::iter::once(0))
             .collect();
 
-        // 1. Check process table for any other running instance of the launcher
-        let my_pid = std::process::id();
-        let sys = System::new_with_specifics(
-            RefreshKind::new().with_processes(ProcessRefreshKind::new()),
-        );
-
-        let mut already_running_pid: Option<u32> = None;
-        for (pid, proc) in sys.processes() {
-            let pid_u32 = pid.as_u32();
-            if pid_u32 != my_pid {
-                let name = proc.name().to_lowercase();
-                if name == "aion-classic-emu.exe"
-                    || name == "aion classic - emu.exe"
-                    || name == "aion-classic-emu"
-                {
-                    already_running_pid = Some(pid_u32);
-                    break;
-                }
-            }
-        }
-
-        // 2. Try Global Mutex first, then Local Mutex fallback
+        // 1. Try Global Mutex first, then Local Mutex fallback
         let mutex_names = [
             "Global\\AionClassicEmu_Global_SingleInstance_Mutex",
             "Local\\AionClassicEmu_Local_SingleInstance_Mutex",
@@ -71,7 +51,7 @@ impl SingleInstanceGuard {
             }
         }
 
-        if mutex_conflict || already_running_pid.is_some() {
+        if mutex_conflict {
             if let Some(h) = acquired_handle {
                 unsafe { CloseHandle(h) };
             }
