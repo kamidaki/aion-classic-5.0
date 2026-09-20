@@ -63,6 +63,8 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 	private volatile boolean cachedPathValid;
 	private volatile float[][] cachedPath;
+	/** Índice do próximo waypoint a seguir em cachedPath (evita realocar o array por frame). */
+	private volatile int cachedPathIndex;
 
 	public NpcMoveController(Npc owner) {
 		super(owner);
@@ -202,18 +204,16 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 						cachedPathValid = true;
 					}
 
-					if (cachedPath != null && !isPathFailure(cachedPath) && cachedPath.length > 0) {
+					if (cachedPath != null && !isPathFailure(cachedPath) && cachedPathIndex < cachedPath.length) {
 						cancelFollow();
 
-						// Pula waypoints intermediários já alcançados (0.5m subcélula CryEngine)
-						while (cachedPath != null && cachedPath.length > 1
-								&& PositionUtil.isInRange(owner, cachedPath[0][0], cachedPath[0][1], cachedPath[0][2], 0.5f)) {
-							float[][] temp = new float[cachedPath.length - 1][];
-							System.arraycopy(cachedPath, 1, temp, 0, cachedPath.length - 1);
-							cachedPath = temp;
+						// Avança o índice enquanto o NPC já passou por este waypoint (tolerância 0.5m)
+						while (cachedPathIndex < cachedPath.length - 1
+								&& PositionUtil.isInRange(owner, cachedPath[cachedPathIndex][0], cachedPath[cachedPathIndex][1], cachedPath[cachedPathIndex][2], 0.5f)) {
+							cachedPathIndex++;
 						}
 
-						float[] nextPoint = cachedPath[0];
+						float[] nextPoint = cachedPath[cachedPathIndex];
 						moveToLocation(nextPoint[0], nextPoint[1], nextPoint[2]);
 						break;
 					}
@@ -242,14 +242,12 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 						cachedPath = NativePathService.getInstance().navigateToLocation(owner, pointX, pointY, pointZ);
 						cachedPathValid = true;
 					}
-					if (cachedPath != null && !isPathFailure(cachedPath) && cachedPath.length > 0) {
-						while (cachedPath != null && cachedPath.length > 1
-								&& PositionUtil.isInRange(owner, cachedPath[0][0], cachedPath[0][1], cachedPath[0][2], 0.5f)) {
-							float[][] temp = new float[cachedPath.length - 1][];
-							System.arraycopy(cachedPath, 1, temp, 0, cachedPath.length - 1);
-							cachedPath = temp;
+					if (cachedPath != null && !isPathFailure(cachedPath) && cachedPathIndex < cachedPath.length) {
+						while (cachedPathIndex < cachedPath.length - 1
+								&& PositionUtil.isInRange(owner, cachedPath[cachedPathIndex][0], cachedPath[cachedPathIndex][1], cachedPath[cachedPathIndex][2], 0.5f)) {
+							cachedPathIndex++;
 						}
-						float[] nextPoint = cachedPath[0];
+						float[] nextPoint = cachedPath[cachedPathIndex];
 						moveToLocation(nextPoint[0], nextPoint[1], nextPoint[2]);
 						break;
 					}
@@ -358,15 +356,13 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 		if (futureDistPassed == dist && NativePathConfig.NATIVE_PATH_ENABLE
 				&& (destination == Destination.TARGET_OBJECT || destination == Destination.POINT)) {
-			if (cachedPath != null && cachedPath.length > 0) {
-				float[][] tempCache = new float[cachedPath.length - 1][];
-				if (tempCache.length > 0) {
-					System.arraycopy(cachedPath, 1, tempCache, 0, cachedPath.length - 1);
-					cachedPath = tempCache;
-				} else {
-					cachedPath = null;
-					cachedPathValid = false;
-				}
+			// Avança índice ao chegar no waypoint atual (sem realocar o array)
+			if (cachedPath != null && cachedPathIndex < cachedPath.length - 1) {
+				cachedPathIndex++;
+			} else if (cachedPath != null && cachedPathIndex >= cachedPath.length - 1) {
+				cachedPath = null;
+				cachedPathValid = false;
+				cachedPathIndex = 0;
 			}
 		}
 
@@ -701,5 +697,6 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 	public void clearCachedPath() {
 		cachedPath = null;
 		cachedPathValid = false;
+		cachedPathIndex = 0;
 	}
 }

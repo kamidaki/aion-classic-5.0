@@ -41,11 +41,14 @@ public final class NativePathService {
 
 	/**
 	 * Retorna a taxa atualizada de consultas de navegação por segundo (QPS).
+	 * Cálculo stateless: divide o total acumulado pelo delta real desde o último reset,
+	 * garantindo precisão mesmo sem chamadas periódicas regulares (evita drift).
 	 */
-	public static synchronized double getQueriesPerSecond() {
+	public static double getQueriesPerSecond() {
 		long now = System.currentTimeMillis();
 		long delta = now - lastQpsResetTime;
 		if (delta >= 1000) {
+			// Cálculo exato: usa o delta real em vez de assumir exatamente 1s
 			queriesPerSecond = (double) queriesInLastSecond.getAndSet(0) / (delta / 1000.0);
 			lastQpsResetTime = now;
 		}
@@ -109,7 +112,9 @@ public final class NativePathService {
 		int worldId = owner.getWorldId();
 		NativePathMap map = data.getNativeMap(worldId);
 		if (map != null) {
-			return map.hasLineOfSight(owner.getX(), owner.getY(), owner.getZ(), targetX, targetY, targetZ, NativePathMap.MAX_DROP_DOWN);
+			// Usa instanceId correto para validar instâncias de masmorras (portais diferentes por instância)
+			int instanceId = owner.getInstanceId();
+			return map.hasLineOfSight(owner.getX(), owner.getY(), owner.getZ(), targetX, targetY, targetZ, NativePathMap.MAX_DROP_DOWN, instanceId);
 		}
 
 		// Fallback GeoEngine se não houver mapa .dat no disco
@@ -157,8 +162,9 @@ public final class NativePathService {
 
 			float x1 = creature.getX(), y1 = creature.getY(), z1 = creature.getZ();
 			float x2 = target.getX(), y2 = target.getY(), z2 = target.getZ();
+			int instanceId = creature.getInstanceId();
 
-			return map.hasLineOfSight(x1, y1, z1, x2, y2, z2, 2.5f);
+			return map.hasLineOfSight(x1, y1, z1, x2, y2, z2, 2.5f, instanceId);
 		} finally {
 			recordQuery(start);
 		}

@@ -144,6 +144,10 @@ public final class NativePathMap {
 	 * @return true se o ponto for transitável sem colidir com obstáculos; false se bloqueado.
 	 */
 	public boolean isWalkable(float x, float y, float z, float maxZDiff) {
+		return isWalkable(x, y, z, maxZDiff, 0);
+	}
+
+	public boolean isWalkable(float x, float y, float z, float maxZDiff, int instanceId) {
 		if (x < 0 || x >= mapSize || y < 0 || y >= mapSize) {
 			return false;
 		}
@@ -164,10 +168,11 @@ public final class NativePathMap {
 		subX = Math.max(0, Math.min(SUBCELLS_PER_SECTOR - 1, subX));
 		subY = Math.max(0, Math.min(SUBCELLS_PER_SECTOR - 1, subY));
 
+		// Janela de 5m (z ± 2.5m) centrada no agente — evita pegar piso errado em fortalezas com múltiplos pisos
 		float terrainZ = z;
 		try {
 			if (GeoService.getInstance() != null) {
-				float gz = GeoService.getInstance().getZ(worldId, x, y, z + 5.0f, z - 5.0f, 0);
+				float gz = GeoService.getInstance().getZ(worldId, x, y, z + 2.5f, z - 2.5f, instanceId);
 				if (!Float.isNaN(gz) && (gz != 0 || Math.abs(z) < 5.0f)) {
 					terrainZ = gz;
 				}
@@ -193,6 +198,10 @@ public final class NativePathMap {
 	 * @return A altitude em metros do piso navegável.
 	 */
 	public float getSurfaceZ(float x, float y, float currentZ, float fallbackZ) {
+		return getSurfaceZ(x, y, currentZ, fallbackZ, 0);
+	}
+
+	public float getSurfaceZ(float x, float y, float currentZ, float fallbackZ, int instanceId) {
 		if (x < 0 || x >= mapSize || y < 0 || y >= mapSize) {
 			return fallbackZ;
 		}
@@ -213,10 +222,11 @@ public final class NativePathMap {
 		subX = Math.max(0, Math.min(SUBCELLS_PER_SECTOR - 1, subX));
 		subY = Math.max(0, Math.min(SUBCELLS_PER_SECTOR - 1, subY));
 
+		// Janela de 5m (currentZ ± 2.5m) — mais precisa que ±5m em fortalezas com pisos sobrepostos
 		float terrainZ = fallbackZ;
 		try {
 			if (GeoService.getInstance() != null) {
-				float gz = GeoService.getInstance().getZ(worldId, x, y, currentZ + 5.0f, currentZ - 5.0f, 0);
+				float gz = GeoService.getInstance().getZ(worldId, x, y, currentZ + 2.5f, currentZ - 2.5f, instanceId);
 				if (!Float.isNaN(gz) && (gz != 0 || Math.abs(currentZ) < 5.0f)) {
 					terrainZ = gz;
 				}
@@ -259,6 +269,10 @@ public final class NativePathMap {
 	 * @return true se o agente puder caminhar em linha reta entre os pontos; false caso haja qualquer obstrução.
 	 */
 	public boolean hasLineOfSight(float x1, float y1, float z1, float x2, float y2, float z2, float maxDropHeight) {
+		return hasLineOfSight(x1, y1, z1, x2, y2, z2, maxDropHeight, 0);
+	}
+
+	public boolean hasLineOfSight(float x1, float y1, float z1, float x2, float y2, float z2, float maxDropHeight, int instanceId) {
 		float dx = x2 - x1;
 		float dy = y2 - y1;
 		float dz = z2 - z1;
@@ -278,12 +292,13 @@ public final class NativePathMap {
 		}
 
 		// Validação física 3D contra objetos .geo (portões de fortalezas, pontes dinâmicas, barricadas)
+		// instanceId correto para validar instâncias de masmorras
 		try {
 			if (GeoService.getInstance() != null) {
 				boolean canPass = GeoService.getInstance().canPass(worldId,
 						x1, y1, z1 + 0.5f,
 						x2, y2, z2 + 0.5f,
-						dist2D, 0);
+						dist2D, instanceId);
 				if (!canPass) {
 					return false;
 				}
@@ -308,12 +323,12 @@ public final class NativePathMap {
 			currZ += stepZ;
 
 			// Verifica se a subcélula é transitável
-			if (!isWalkable(currX, currY, currZ, maxDropHeight + 1.0f)) {
+			if (!isWalkable(currX, currY, currZ, maxDropHeight + 1.0f, instanceId)) {
 				return false;
 			}
 
 			// Valida cota do solo real
-			float groundZ = getSurfaceZ(currX, currY, currZ, Float.NaN);
+			float groundZ = getSurfaceZ(currX, currY, currZ, Float.NaN, instanceId);
 			if (!Float.isNaN(groundZ)) {
 				float deltaZ = groundZ - prevGroundZ;
 				// Subida máxima por passo (0.8m) e queda máxima (1.8m)
@@ -456,11 +471,13 @@ public final class NativePathMap {
 				for (int x = 0; x < mapSize; x += SECTOR_SIZE) {
 					int sx = x / SECTOR_SIZE;
 
-					if (in.available() <= 0) {
+					// Bug #3 fix: in.available() não é confiável em BufferedInputStream para
+					// mapas grandes — pode retornar 0 antes do EOF real. Usar readNBytes + verificação.
+					byte[] layerCountBuf = in.readNBytes(1);
+					if (layerCountBuf.length == 0) {
 						break;
 					}
-
-					int layerCount = in.read();
+					int layerCount = layerCountBuf[0] & 0xFF;
 					if (layerCount <= 0) {
 						continue;
 					}

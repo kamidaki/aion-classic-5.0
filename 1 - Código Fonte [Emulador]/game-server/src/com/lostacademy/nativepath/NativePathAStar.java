@@ -166,9 +166,9 @@ public final class NativePathAStar {
 		long startKey = packGridKey(startGx, startGy);
 
 		PriorityQueue<GridNode> openSet = new PriorityQueue<>(256);
-		Map<Long, Float> gScore = new HashMap<>(512);
-		Map<Long, GridNode> cameFrom = new HashMap<>(512);
-		Set<Long> closedSet = new HashSet<>(512);
+		Map<Long, Float> gScore = new HashMap<>(4096);
+		Map<Long, GridNode> cameFrom = new HashMap<>(4096);
+		Set<Long> closedSet = new HashSet<>(4096);
 
 		float initialH = heuristic(startX, startY, targetX, targetY);
 		GridNode startNode = new GridNode(startGx, startGy, startZ, 0.0f, initialH);
@@ -256,8 +256,9 @@ public final class NativePathAStar {
 					continue;
 				}
 
-				// Custo energético: subir rampa custa mais, descida custa normal
-				float slopeCost = deltaZ > 0 ? deltaZ * 1.5f : -deltaZ * 0.3f;
+				// Custo energético: subir rampa custa mais (proporcional ao custo de movimento), descida é barata
+				// A proporcionalidade garante que diagonal (já mais cara) penaliza rampas adequadamente
+				float slopeCost = deltaZ > 0 ? deltaZ * 2.0f * moveCost[dir] : -deltaZ * 0.2f * moveCost[dir];
 				float tentativeG = current.g + moveCost[dir] + slopeCost;
 				float oldG = gScore.getOrDefault(nextKey, Float.POSITIVE_INFINITY);
 
@@ -297,9 +298,9 @@ public final class NativePathAStar {
 		long startKey = packGridKey(startMx, startMy);
 
 		PriorityQueue<GridNode> openSet = new PriorityQueue<>(128);
-		Map<Long, Float> gScore = new HashMap<>(256);
-		Map<Long, GridNode> cameFrom = new HashMap<>(256);
-		Set<Long> closedSet = new HashSet<>(256);
+		Map<Long, Float> gScore = new HashMap<>(2048);
+		Map<Long, GridNode> cameFrom = new HashMap<>(2048);
+		Set<Long> closedSet = new HashSet<>(2048);
 
 		float initialH = heuristic(startX, startY, targetX, targetY);
 		GridNode startNode = new GridNode(startMx, startMy, startZ, 0.0f, initialH);
@@ -391,9 +392,14 @@ public final class NativePathAStar {
 
 		GridNode curr = current;
 		while (curr != null) {
-			path.add(new float[] {curr.gx * 0.5f, curr.gy * 0.5f, curr.z});
 			long key = packGridKey(curr.gx, curr.gy);
-			curr = cameFrom.get(key);
+			GridNode parent = cameFrom.get(key);
+			// Não adiciona o nó raiz (startNode não está em cameFrom, parent será null)
+			// Se parent != null, este nó é intermediário e deve entrar na rota
+			if (parent != null) {
+				path.add(new float[] {curr.gx * 0.5f, curr.gy * 0.5f, curr.z});
+			}
+			curr = parent;
 		}
 
 		Collections.reverse(path);
@@ -419,12 +425,23 @@ public final class NativePathAStar {
 	/**
 	 * Suavização de trajeto via String-Pulling (Funnel Algorithm):
 	 * Elimina ziguezagues e atalhos conectando nós distantes onde houver linha de visão limpa.
+	 *
+	 * Limitação de salto:
+	 * - Em ambientes fechados (muitas camadas = dungeons/fortalezas): máx 8m por salto.
+	 * - Em campo aberto: máx 20m por salto.
+	 * Evita que o String-Pulling crie segmentos que atravessem paredes em corredores curvos.
 	 */
 	private static List<float[]> smoothPath(NativePathMap map, List<float[]> waypoints,
 											float targetX, float targetY, float targetZ) {
 		if (waypoints.size() <= 2) {
 			return waypoints;
 		}
+
+		// Determina distância máxima de salto baseada na densidade de camadas do mapa
+		// Mapas com muitas camadas (fortalezas, dungeons) usam salto menor para evitar atalhos inválidos
+		int layerDensityThreshold = map.getSectorDim() * 2;
+		float maxJumpDist = map.getTotalLayers() > layerDensityThreshold ? 8.0f : 20.0f;
+		float maxJumpDistSq = maxJumpDist * maxJumpDist;
 
 		List<float[]> smoothed = new ArrayList<>();
 		int currentIndex = 0;
@@ -434,9 +451,15 @@ public final class NativePathAStar {
 			int furthestIndex = currentIndex + 1;
 			float[] currentPt = waypoints.get(currentIndex);
 
-			// Avança gananciosamente até o ponto mais distante diretamente visível
+			// Avança gananciosamente até o ponto mais distante diretamente visível dentro do limite de salto
 			for (int testIndex = waypoints.size() - 1; testIndex > currentIndex + 1; testIndex--) {
 				float[] testPt = waypoints.get(testIndex);
+				float dx = testPt[0] - currentPt[0];
+				float dy = testPt[1] - currentPt[1];
+				float distSq = dx * dx + dy * dy;
+				if (distSq > maxJumpDistSq) {
+					continue; // Salto muito longo — pula este candidato
+				}
 				if (map.hasLineOfSight(currentPt[0], currentPt[1], currentPt[2],
 						testPt[0], testPt[1], testPt[2], MAX_DROP_DOWN)) {
 					furthestIndex = testIndex;

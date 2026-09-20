@@ -234,7 +234,13 @@ public final class NativePathSector {
 			float lz = l.getZ(subX, subY, terrainZ);
 			float diff = Math.abs(lz - z);
 
-			// Favorece superfícies que estejam abaixo dos pés do agente (até 0.8m acima ou 3.0m abaixo)
+			// Favorece superfícies abaixo dos pés do agente (piso) em vez de acima (teto).
+			// Camadas acima do agente têm custo 3× maior para evitar selecionar teto
+			// em mapas de múltiplos pisos sobrepostos (castelos, fortalezas, dungeons).
+			if (lz > z) {
+				diff *= 3.0f;
+			}
+
 			if (diff <= maxZDiff && diff < bestDiff) {
 				bestDiff = diff;
 				best = l;

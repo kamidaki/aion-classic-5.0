@@ -14,6 +14,8 @@ import com.aionemu.gameserver.skillengine.model.SpellStatus;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.geo.GeoService;
+import com.lostacademy.nativepath.NativePathConfig;
+import com.lostacademy.nativepath.NativePathService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -42,9 +44,20 @@ public class OpenAerialEffect extends EffectTemplate {
 			effect.setSubEffectType(SubEffectType.OPENAERIAL);
 		float z = effect.getEffected().getZ();
 		if (!effect.getEffected().isFlying()) {
-			float geoZ = GeoService.getInstance().getZ(effect.getEffected().getWorldId(),effect.getEffected().getX(), effect.getEffected().getY(), effect.getEffected().getZ() + 2, effect.getEffected().getZ() - 1, effect.getEffected().getInstanceId());
+			float geoZ = GeoService.getInstance().getZ(effect.getEffected().getWorldId(), effect.getEffected().getX(), effect.getEffected().getY(), effect.getEffected().getZ() + 2, effect.getEffected().getZ() - 1, effect.getEffected().getInstanceId());
 			if (!Float.isNaN(geoZ)) {
 				z = geoZ;
+			}
+			// Validação adicional NativePath: garante que a posição está sobre solo transitável CryEngine
+			// Evita que a criatura seja lançada no ar sobre abismo detectado apenas pelo CryEngine
+			if (NativePathConfig.NATIVE_PATH_ENABLE) {
+				float nativeZ = NativePathService.getInstance().getSurfaceZ(
+					effect.getEffected().getWorldId(),
+					effect.getEffected().getX(),
+					effect.getEffected().getY(), z);
+				if (!Float.isNaN(nativeZ)) {
+					z = nativeZ;
+				}
 			}
 		}
 		effect.setTargetLoc(effect.getEffected().getX(), effect.getEffected().getY(), z);
