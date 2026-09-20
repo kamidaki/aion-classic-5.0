@@ -2001,7 +2001,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             <!-- Simple Host:Port Text Display (Copy on click) -->
             <div class="lan-text-badge" onclick="copyExternalUrl()" title="Clique para copiar o endereço do painel">
                 <span class="btn-svg" style="color: var(--accent-login);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
-                <span>Web: <b id="hdr-lan-ip">127.0.0.1:18080</b></span>
+                <span>Web: <b id="hdr-lan-ip">...</b></span>
             </div>
 
             <button class="btn-secondary" onclick="toggleFullscreen()" title="Tela Cheia">
@@ -2253,7 +2253,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 </div>
                 <div class="drawer-card">
                     <div class="drawer-row"><span style="color: var(--text-muted);">IP Local (LAN):</span><span class="drawer-val" id="reg-lan-ip">127.0.0.1</span></div>
-                    <div class="drawer-row"><span style="color: var(--text-muted);">URL do Painel:</span><span class="drawer-val" id="reg-ext-url" style="color: var(--accent-login); word-break: break-all;">http://127.0.0.1:18080</span></div>
+                    <div class="drawer-row"><span style="color: var(--text-muted);">URL do Painel:</span><span class="drawer-val" id="reg-ext-url" style="color: var(--accent-login); word-break: break-all;">-</span></div>
                     <button class="btn-secondary" style="margin-top: 4px;" onclick="copyExternalUrl()">
                         <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
                         <span>Copiar Link do Painel</span>
@@ -2285,7 +2285,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                     <div class="drawer-row"><span>Login Server:</span><span class="drawer-val" style="color: var(--accent-login);">2106 (TCP)</span></div>
                     <div class="drawer-row"><span>Game Server:</span><span class="drawer-val" style="color: var(--accent-game);">7777 (TCP)</span></div>
                     <div class="drawer-row"><span>Chat Server:</span><span class="drawer-val" style="color: var(--accent-chat);">10241 (TCP)</span></div>
-                    <div class="drawer-row"><span>Web Dashboard:</span><span class="drawer-val" style="color: var(--accent-launcher);">18080 (HTTP)</span></div>
+                    <div class="drawer-row"><span>Web Dashboard:</span><span class="drawer-val" id="reg-http-port" style="color: var(--accent-launcher);">-</span></div>
                     <div class="drawer-row"><span>Banco de Dados:</span><span class="drawer-val" style="color: var(--accent-db);">3310 (MySQL)</span></div>
                 </div>
             </div>
@@ -2883,7 +2883,24 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         let historyData = [];
         let rawDashboardState = null;
         let chartMetric = 'both'; // 'both', 'cpu', or 'mem'
-        let externalUrlStr = "http://127.0.0.1:18080";
+        let externalUrlStr = "";
+
+        // Auto-detect current port and origin immediately on load
+        (function initPortFromLocation() {
+            try {
+                const curPort = window.location.port || (window.location.protocol === 'https:' ? '443' : '80');
+                const curHost = window.location.hostname || '127.0.0.1';
+                if (curPort) {
+                    const hdrLan = document.getElementById('hdr-lan-ip');
+                    if (hdrLan) hdrLan.innerText = `${curHost}:${curPort}`;
+                    const regExt = document.getElementById('reg-ext-url');
+                    if (regExt) regExt.innerText = `http://${curHost}:${curPort}`;
+                    const regHttp = document.getElementById('reg-http-port');
+                    if (regHttp) regHttp.innerText = `${curPort} (HTTP)`;
+                    externalUrlStr = `http://${curHost}:${curPort}`;
+                }
+            } catch (e) {}
+        })();
 
         // Day-Trade Series Definitions
         const serverSeriesDefs = [
@@ -3171,20 +3188,28 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 if (data.registers) {
                     const r = data.registers;
                     externalUrlStr = r.external_url;
-                    document.getElementById('hdr-lan-ip').innerText = `${r.lan_ip}:${r.http_port}`;
-                    document.getElementById('reg-lan-ip').innerText = r.lan_ip;
-                    document.getElementById('reg-ext-url').innerText = r.external_url;
+                    const hdrLan = document.getElementById('hdr-lan-ip');
+                    if (hdrLan) hdrLan.innerText = `${r.lan_ip}:${r.http_port}`;
+                    const regLan = document.getElementById('reg-lan-ip');
+                    if (regLan) regLan.innerText = r.lan_ip;
+                    const regExt = document.getElementById('reg-ext-url');
+                    if (regExt) regExt.innerText = r.external_url;
+                    const regHttp = document.getElementById('reg-http-port');
+                    if (regHttp) regHttp.innerText = `${r.http_port} (HTTP)`;
                 }
 
-                if (data.local_ip) {
-                    const port = 18080;
-                    externalUrlStr = `http://${data.local_ip}:${port}`;
+                if (data.local_ip || data.http_port) {
+                    const hostIp = data.local_ip || window.location.hostname || '127.0.0.1';
+                    const port = data.http_port || window.location.port || 18080;
+                    externalUrlStr = `http://${hostIp}:${port}`;
                     const hdrLan = document.getElementById('hdr-lan-ip');
-                    if (hdrLan) hdrLan.innerText = `${data.local_ip}:${port}`;
+                    if (hdrLan) hdrLan.innerText = `${hostIp}:${port}`;
                     const regLan = document.getElementById('reg-lan-ip');
-                    if (regLan) regLan.innerText = data.local_ip;
+                    if (regLan) regLan.innerText = hostIp;
                     const regExt = document.getElementById('reg-ext-url');
                     if (regExt) regExt.innerText = externalUrlStr;
+                    const regHttp = document.getElementById('reg-http-port');
+                    if (regHttp) regHttp.innerText = `${port} (HTTP)`;
                 }
 
                 if (data.os_total_memory_mb) {
@@ -3788,7 +3813,9 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         }
 
         function copyExternalUrl() {
-            const url = externalUrlStr || `http://${window.location.hostname || '127.0.0.1'}:18080`;
+            const hostIp = (rawDashboardState && rawDashboardState.local_ip) || window.location.hostname || '127.0.0.1';
+            const port = (rawDashboardState && rawDashboardState.http_port) || window.location.port || 18080;
+            const url = externalUrlStr || `http://${hostIp}:${port}`;
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(url).then(() => {
                     showToast("Link copiado para a área de transferência!");

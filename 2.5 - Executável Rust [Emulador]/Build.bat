@@ -38,19 +38,20 @@ if defined VS_VCVARS (
     echo [AVISO] vcvars64.bat nao encontrado explicitamente. Tentando compilacao direta via Cargo...
 )
 
-echo [*] Compilando Aion Classic - EMU (Release)...
+echo [*] Compilando Aion Classic - EMULADOR (Release)...
 cargo build --release
 if errorlevel 1 (
-    echo [ERRO] Falha na compilacao de Aion Classic - EMU.
+    echo [ERRO] Falha na compilacao de Aion Classic - EMULADOR.
     exit /b 1
 )
 
-set "DEST1=%~dp0..\2 - Emulador [Produto Final]\Aion Classic - EMU.exe"
-set "DEST2=%~dp0..\2 - Emulador [Produto Final]\Aion Classic - EMULADOR.exe"
+set "DEST1=%~dp0..\2 - Emulador [Produto Final]\Aion Classic - EMULADOR.exe"
+set "DEST2=%~dp0..\2 - Emulador [Produto Final]\Aion Classic - EMU.exe"
 echo [*] Publicando binario em "%DEST1%" e "%DEST2%"...
 copy /Y "target\release\aion-classic-emu.exe" "%DEST1%" >nul
 copy /Y "target\release\aion-classic-emu.exe" "%DEST2%" >nul
 
-echo [OK] Aion Classic - EMU.exe e Aion Classic - EMULADOR.exe publicados com sucesso em "2 - Emulador [Produto Final]".
+echo [OK] Aion Classic - EMULADOR.exe publicado com sucesso em "2 - Emulador [Produto Final]".
+
 
 
