@@ -60421,11 +60421,12 @@
 	<npc_skills npc_ids="749255">
 		<npc_skill id="20831" lv="1" prob="100" />
 		</npc_skills>
-	<npc_skills npc_ids="749262">
-		<npc_skill id="20999" lv="5" prob="100" />
-		</npc_skills>
-		<npc_skills npc_ids="749259 749260">
-		<npc_skill id="18504" lv="1" prob="100" />
+	<npc_skills npc_ids="749261 749262">
+		<npc_skill id="19876" lv="1" prob="100" />
+		<npc_skill id="19877" lv="1" prob="100" />
+	</npc_skills>
+	<npc_skills npc_ids="749259 749260">
+		<npc_skill id="19875" lv="1" prob="100" />
 	</npc_skills>
 	<npc_skills npc_ids="749263 749264 749265 749266">
 		<npc_skill id="19985" lv="1" prob="100" />
