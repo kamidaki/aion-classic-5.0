@@ -38,7 +38,9 @@ public class WeaponDualEffect extends BufEffect {
 		if (player == null) {
 			return false;
 		}
-		if (player.getPlayerClass() == com.aionemu.gameserver.model.PlayerClass.ASSASSIN) {
+		if (player.getPlayerClass() == com.aionemu.gameserver.model.PlayerClass.ASSASSIN
+			|| player.getPlayerClass() == com.aionemu.gameserver.model.PlayerClass.PHOENIX
+			|| player.getPlayerClass() == com.aionemu.gameserver.model.PlayerClass.GUNNER) {
 			return true;
 		}
 		if (player.getSkillList() != null) {
