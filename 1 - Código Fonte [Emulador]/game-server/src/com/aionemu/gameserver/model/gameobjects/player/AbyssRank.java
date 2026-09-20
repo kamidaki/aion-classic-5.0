@@ -25,6 +25,7 @@ public class AbyssRank implements Persistable {
 	private int maxRank;
 	private int lastKill;
 	private long lastUpdate;
+	private Player player;
 
 	public AbyssRank(int dailyAP, int weeklyAP, int ap, int rank, int dailyKill, int weeklyKill, int allKill, int maxRank, int lastKill, int lastAP,
 		long lastUpdate) {
@@ -160,6 +161,7 @@ public class AbyssRank implements Persistable {
 		dailyKill++;
 		weeklyKill++;
 		allKill++;
+		setPersistentState(PersistentState.UPDATE_REQUIRED);
 	}
 
 	/**
@@ -199,6 +201,12 @@ public class AbyssRank implements Persistable {
 	public void setPersistentState(PersistentState persistentState) {
 		if (persistentState != PersistentState.UPDATE_REQUIRED || this.persistentState != PersistentState.NEW)
 			this.persistentState = persistentState;
+		if (persistentState == PersistentState.UPDATE_REQUIRED && player != null)
+			player.getController().markAbyssRankDirty();
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 
 	/**

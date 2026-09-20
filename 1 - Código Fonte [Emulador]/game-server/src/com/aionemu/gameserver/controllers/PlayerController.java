@@ -139,6 +139,22 @@ public class PlayerController extends CreatureController<Player> {
 		}
 	}
 
+	public void markInventoryDirty() {
+		getOwner().markDirty(Player.DirtyFlag.INVENTORY);
+	}
+
+	public void markQuestListDirty() {
+		getOwner().markDirty(Player.DirtyFlag.QUESTS);
+	}
+
+	public void markSkillListDirty() {
+		getOwner().markDirty(Player.DirtyFlag.SKILLS);
+	}
+
+	public void markAbyssRankDirty() {
+		getOwner().markDirty(Player.DirtyFlag.ABYSS_RANK);
+	}
+
 	@Override
 	public void onTargetChanged(VisibleObject oldTarget, VisibleObject newTarget) {
 		super.onTargetChanged(oldTarget, newTarget);

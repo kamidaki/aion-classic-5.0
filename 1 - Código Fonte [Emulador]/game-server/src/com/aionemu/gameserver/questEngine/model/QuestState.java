@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.Persistable;
+import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.templates.QuestTemplate;
 
 /**
@@ -20,6 +21,7 @@ public class QuestState implements Persistable {
 	private Timestamp nextRepeatTime;
 	private Integer reward;
 	private PersistentState persistentState;
+	private Player player;
 
 	public QuestState(int questId, QuestStatus status, int questVars, int flags, int completeCount, Timestamp nextRepeatTime, Integer reward,
 		Timestamp completeTime) {
@@ -37,6 +39,10 @@ public class QuestState implements Persistable {
 	public QuestState(int questId, QuestStatus status) {
 		this(questId, status, 0, 0, status == QuestStatus.COMPLETE ? 1 : 0, null, null,
 			status == QuestStatus.COMPLETE ? new Timestamp(System.currentTimeMillis()) : null);
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 
 	public QuestVars getQuestVars() {
@@ -150,6 +156,9 @@ public class QuestState implements Persistable {
 					break;
 			default:
 				this.persistentState = persistentState;
+		}
+		if (persistentState == PersistentState.UPDATE_REQUIRED && player != null) {
+			player.getController().markQuestListDirty();
 		}
 	}
 

@@ -20,11 +20,23 @@ public class QuestStateList {
 	private static final Logger log = LoggerFactory.getLogger(QuestStateList.class);
 	private SortedMap<Integer, QuestState> quests = new TreeMap<>();
 	private Set<Integer> deletedQuests = new HashSet<>();
+	private Player owner;
 
 	/**
 	 * Creates an empty quests list
 	 */
 	public QuestStateList() {
+	}
+
+	public QuestStateList(Player owner) {
+		this.owner = owner;
+	}
+
+	public void setOwner(Player owner) {
+		this.owner = owner;
+		for (QuestState qs : quests.values()) {
+			qs.setPlayer(owner);
+		}
 	}
 
 	/**
@@ -41,6 +53,9 @@ public class QuestStateList {
 			return false;
 		}
 		quests.put(questId, questState);
+		questState.setPlayer(owner);
+		if (owner != null)
+			owner.getController().markQuestListDirty();
 		return true;
 	}
 
@@ -53,6 +68,8 @@ public class QuestStateList {
 		if (qs != null) {
 			deletedQuests.add(qs.getQuestId());
 			qs.setPersistentState(PersistentState.DELETED);
+			if (owner != null)
+				owner.getController().markQuestListDirty();
 		}
 		return qs;
 	}

@@ -472,9 +472,18 @@ class GeneralUpdateTask implements Runnable {
 		Player player = World.getInstance().getPlayer(playerId);
 		if (player != null) {
 			try {
-				AbyssRankDAO.storeAbyssRank(player);
-				PlayerSkillListDAO.storeSkills(player);
-				PlayerQuestListDAO.store(player);
+				if (player.isDirty(Player.DirtyFlag.ABYSS_RANK)) {
+					player.clearDirty(Player.DirtyFlag.ABYSS_RANK);
+					AbyssRankDAO.storeAbyssRank(player);
+				}
+				if (player.isDirty(Player.DirtyFlag.SKILLS)) {
+					player.clearDirty(Player.DirtyFlag.SKILLS);
+					PlayerSkillListDAO.storeSkills(player);
+				}
+				if (player.isDirty(Player.DirtyFlag.QUESTS)) {
+					player.clearDirty(Player.DirtyFlag.QUESTS);
+					PlayerQuestListDAO.store(player);
+				}
 				PlayerDAO.storePlayer(player);
 				for (House house : player.getHouses())
 					house.save();
@@ -497,8 +506,9 @@ class ItemUpdateTask implements Runnable {
 	@Override
 	public void run() {
 		Player player = World.getInstance().getPlayer(playerId);
-		if (player != null) {
+		if (player != null && player.isDirty(Player.DirtyFlag.INVENTORY)) {
 			try {
+				player.clearDirty(Player.DirtyFlag.INVENTORY);
 				InventoryDAO.store(player);
 				ItemStoneListDAO.save(player);
 			} catch (Exception ex) {

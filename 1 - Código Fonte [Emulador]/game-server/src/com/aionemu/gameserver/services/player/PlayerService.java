@@ -116,6 +116,10 @@ public class PlayerService {
 		HouseObjectCooldownsDAO.storeHouseObjectCooldowns(player);
 		PlayerNpcFactionsDAO.storeNpcFactions(player);
 		AccountPassportsDAO.storePassport(player.getAccount());
+		player.clearDirty(Player.DirtyFlag.ABYSS_RANK);
+		player.clearDirty(Player.DirtyFlag.SKILLS);
+		player.clearDirty(Player.DirtyFlag.QUESTS);
+		player.clearDirty(Player.DirtyFlag.INVENTORY);
 	}
 
 	public static Player getPlayer(int playerObjId, Account account) {
