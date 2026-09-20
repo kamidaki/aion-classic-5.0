@@ -27,9 +27,13 @@ public class SkillTreeData {
 	private final Map<Integer, List<SkillLearnTemplate>> templates = new HashMap<>();
 	@XmlTransient
 	private final Map<Integer, List<SkillLearnTemplate>> templatesById = new HashMap<>();
+	@XmlTransient
+	private final List<SkillLearnTemplate> blendedSkillTemplates = new ArrayList<>();
 
 	void afterUnmarshal(Unmarshaller u, Object parent) {
 		for (SkillLearnTemplate template : skillTemplates) {
+			if (template.isBlended())
+				blendedSkillTemplates.add(template);
 			if (template.getClassId() == null || template.getClassId() == PlayerClass.ALL) {
 				for (PlayerClass pClass: PlayerClass.values()) {
 					addTemplate(pClass, template);
@@ -39,6 +43,16 @@ public class SkillTreeData {
 			}
 		}
 		skillTemplates = null;
+	}
+
+	public List<SkillLearnTemplate> getBlendedSkillsFor(PlayerClass playerClass, Race race) {
+		List<SkillLearnTemplate> result = new ArrayList<>();
+		for (SkillLearnTemplate template : blendedSkillTemplates) {
+			if ((template.getClassId() == null || template.getClassId() == PlayerClass.ALL || template.getClassId() == playerClass)
+					&& (template.getRace() == Race.PC_ALL || template.getRace() == race))
+				result.add(template);
+		}
+		return result;
 	}
 
 	private void addTemplate(PlayerClass playerClass, SkillLearnTemplate template) {
