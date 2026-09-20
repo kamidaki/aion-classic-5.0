@@ -21,6 +21,7 @@ public final class PlayerSkillList implements SkillList<Player> {
 
 	private final Map<Integer, PlayerSkillEntry> skills = new ConcurrentHashMap<>();
 	private final List<PlayerSkillEntry> deletedSkills = new ArrayList<>();
+	private Player owner;
 
 	public PlayerSkillList() {
 
@@ -29,6 +30,17 @@ public final class PlayerSkillList implements SkillList<Player> {
 	public PlayerSkillList(List<PlayerSkillEntry> playerSkills) {
 		for (PlayerSkillEntry entry : playerSkills)
 			skills.put(entry.getSkillId(), entry);
+	}
+
+	public void setOwner(Player owner) {
+		this.owner = owner;
+	}
+
+	private void markSkillListDirtyIfNeeded(Player player) {
+		Player p = player != null ? player : this.owner;
+		if (p != null) {
+			p.getController().markSkillListDirty();
+		}
 	}
 
 	public List<PlayerSkillEntry> getAllSkills() {
@@ -74,6 +86,7 @@ public final class PlayerSkillList implements SkillList<Player> {
 			}
 		}
 		SkillLearnService.onLearnSkill(player, skillId, skillLevel, isNew);
+		markSkillListDirtyIfNeeded(player);
 		return true;
 	}
 
@@ -123,6 +136,7 @@ public final class PlayerSkillList implements SkillList<Player> {
 			SkillLearnService.onLearnSkill(player, skillId, skillLvl, false);
 		} else
 			skill.setCurrentXp(skill.getCurrentXp() + xpReward);
+		markSkillListDirtyIfNeeded(player);
 		return true;
 	}
 
@@ -145,6 +159,7 @@ public final class PlayerSkillList implements SkillList<Player> {
 		synchronized (deletedSkills) {
 			deletedSkills.add(entry);
 		}
+		markSkillListDirtyIfNeeded(null);
 		return true;
 	}
 

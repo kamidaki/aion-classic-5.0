@@ -120,6 +120,8 @@ public abstract class Storage implements IStorage {
 		if (actor != null)
 			ItemPacketService.sendItemPacket(actor, storageType, item, updateType);
 		setPersistentState(PersistentState.UPDATE_REQUIRED);
+		if (actor != null)
+			actor.getController().markInventoryDirty();
 		return leftCount;
 	}
 
@@ -147,6 +149,8 @@ public abstract class Storage implements IStorage {
 			ItemPacketService.sendItemPacket(actor, storageType, item, updateType);
 
 		setPersistentState(PersistentState.UPDATE_REQUIRED);
+		if (actor != null)
+			actor.getController().markInventoryDirty();
 		return leftCount;
 	}
 
@@ -177,6 +181,7 @@ public abstract class Storage implements IStorage {
 		item.setItemLocation(storageType.getId());
 		setPersistentState(PersistentState.UPDATE_REQUIRED);
 		if (actor != null) {
+			actor.getController().markInventoryDirty();
 			ItemPacketService.sendStorageUpdatePacket(actor, storageType, item, addType);
 			if (storageType == StorageType.CUBE)
 				QuestEngine.getInstance().onItemGet(actor, item.getItemId());
@@ -210,6 +215,8 @@ public abstract class Storage implements IStorage {
 		}
 		item.setItemLocation(storageType.getId());
 		setPersistentState(PersistentState.UPDATE_REQUIRED);
+		if (actor != null)
+			actor.getController().markInventoryDirty();
 		ItemPacketService.sendItemUpdatePacket(actor, storageType, item, ItemUpdateType.EQUIP_UNEQUIP);
 		return item;
 	}
@@ -237,6 +244,8 @@ public abstract class Storage implements IStorage {
 			item.setPersistentState(PersistentState.DELETED);
 			deletedItems.add(item);
 			setPersistentState(PersistentState.UPDATE_REQUIRED);
+			if (actor != null)
+				actor.getController().markInventoryDirty();
 			ItemPacketService.sendItemDeletePacket(actor, StorageType.getStorageTypeById(item.getItemLocation()), item, deleteType);
 			if (LoggingConfig.LOG_ITEM && !item.getItemTemplate().isKinah() && item.getItemCount() > 0) {
 				String name = (item.getEnchantLevel() > 0 ? "+" + item.getEnchantLevel() + " " : "") + item.getItemName();

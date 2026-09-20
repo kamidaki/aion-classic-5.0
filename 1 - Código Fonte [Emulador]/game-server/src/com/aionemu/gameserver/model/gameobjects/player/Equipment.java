@@ -1049,6 +1049,9 @@ public class Equipment implements Persistable {
 	@Override
 	public void setPersistentState(PersistentState persistentState) {
 		this.persistentState = persistentState;
+		if (persistentState == PersistentState.UPDATE_REQUIRED && owner != null) {
+			owner.getController().markInventoryDirty();
+		}
 	}
 
 	private boolean soulBindItem(final Player player, final Item item, final long slot) {

@@ -2,6 +2,7 @@ package com.aionemu.gameserver.model.gameobjects.player;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -97,6 +98,27 @@ public class Player extends Creature {
 	private QuestStateList questStateList;
 	private RecipeList recipeList;
 	private List<House> houses;
+
+	public enum DirtyFlag {
+		INVENTORY,
+		QUESTS,
+		SKILLS,
+		ABYSS_RANK
+	}
+
+	private final EnumSet<DirtyFlag> dirtyFlags = EnumSet.noneOf(DirtyFlag.class);
+
+	public synchronized void markDirty(DirtyFlag flag) {
+		dirtyFlags.add(flag);
+	}
+
+	public synchronized boolean isDirty(DirtyFlag flag) {
+		return dirtyFlags.contains(flag);
+	}
+
+	public synchronized void clearDirty(DirtyFlag flag) {
+		dirtyFlags.remove(flag);
+	}
 
 	private ResponseRequester requester;
 	private boolean lookingForGroup = false;
@@ -195,6 +217,7 @@ public class Player extends Creature {
 
 		this.requester = new ResponseRequester(this);
 		this.questStateList = new QuestStateList();
+		this.questStateList.setOwner(this);
 		this.titleList = new TitleList();
 		this.equipment = new Equipment(this);
 		this.inventory = new PlayerStorage(this, StorageType.CUBE);
@@ -295,6 +318,9 @@ public class Player extends Creature {
 
 	public void setSkillList(PlayerSkillList skillList) {
 		this.skillList = skillList;
+		if (skillList != null) {
+			skillList.setOwner(this);
+		}
 	}
 
 	public Pet getPet() {
@@ -525,6 +551,9 @@ public class Player extends Creature {
 	 */
 	public void setQuestStateList(QuestStateList questStateList) {
 		this.questStateList = questStateList;
+		if (questStateList != null) {
+			questStateList.setOwner(this);
+		}
 	}
 
 	public RecipeList getRecipeList() {
@@ -652,6 +681,9 @@ public class Player extends Creature {
 	 */
 	public void setAbyssRank(AbyssRank abyssRank) {
 		this.abyssRank = abyssRank;
+		if (abyssRank != null) {
+			abyssRank.setPlayer(this);
+		}
 	}
 
 	@Override
