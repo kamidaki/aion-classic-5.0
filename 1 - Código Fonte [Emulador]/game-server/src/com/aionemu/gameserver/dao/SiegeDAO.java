@@ -24,6 +24,7 @@ public class SiegeDAO {
 	public static final String SELECT_QUERY = "SELECT `id`, `race`, `legion_id`, `occupy_count`, `faction_balance` FROM `siege_locations`";
 	public static final String INSERT_QUERY = "INSERT INTO `siege_locations` (`id`, `race`, `legion_id`, `occupy_count`, `faction_balance`) VALUES(?, ?, ?, ?, ?)";
 	public static final String UPDATE_QUERY = "UPDATE `siege_locations` SET  `race` = ?, `legion_id` = ?, `occupy_count` = ?, `faction_balance` = ? WHERE `id` = ?";
+	public static final String DELETE_QUERY = "DELETE FROM `siege_locations` WHERE `id` = ?";
 
 	public static boolean loadSiegeLocations(Map<Integer, SiegeLocation> locations) {
 		boolean success = true;
@@ -36,7 +37,8 @@ public class SiegeDAO {
 				int id = resultSet.getInt("id");
 				SiegeLocation loc = locations.get(id);
 				if (loc == null) {
-					log.warn("Obsolete or unknown siege location id in DB: {}", id);
+					log.info("Removing obsolete siege location id from DB: {}", id);
+					deleteSiegeLocation(id);
 					continue;
 				}
 				loc.setRace(SiegeRace.valueOf(resultSet.getString("race")));
@@ -87,6 +89,18 @@ public class SiegeDAO {
 			stmt.execute();
 		} catch (Exception e) {
 			log.error("Could not insert siege location " + siegeLocation.getLocationId(), e);
+			return false;
+		}
+		return true;
+	}
+
+	public static boolean deleteSiegeLocation(int id) {
+		try (Connection con = DatabaseFactory.getConnection();
+				 PreparedStatement stmt = con.prepareStatement(DELETE_QUERY)) {
+			stmt.setInt(1, id);
+			stmt.execute();
+		} catch (Exception e) {
+			log.error("Could not delete obsolete siege location " + id, e);
 			return false;
 		}
 		return true;

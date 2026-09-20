@@ -318202,8 +318202,8 @@
 		</stats>
 		<bound_radius front="0.225" side="0.28" upper="0.51" />
 	</npc_template>
-	<npc_template npc_id="749261" level="1" name="Atirador" name_id="465344" height="3" group_drop="NONE" rank="NOVICE" rating="JUNK" race="ELYOS" tribe="GENERAL" type="ABYSS_GUARD" ai="aggressive" srange="15" attack_speed="2000" hpgauge="3">
-		<stats maxHp="106" >
+	<npc_template npc_id="749261" level="60" name="Atirador" name_id="465344" height="3" group_drop="NONE" rank="NOVICE" rating="JUNK" race="ELYOS" tribe="GENERAL" type="ABYSS_GUARD" ai="skillarea" srange="15" sangle="240" attack_speed="2000" hpgauge="3">
+		<stats maxHp="6001" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="1.325" side="0.66" upper="2.05" />

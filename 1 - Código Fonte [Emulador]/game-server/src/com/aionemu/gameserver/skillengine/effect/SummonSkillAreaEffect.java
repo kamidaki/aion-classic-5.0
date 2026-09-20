@@ -11,6 +11,7 @@ import com.aionemu.gameserver.model.TaskId;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.NpcObjectType;
 import com.aionemu.gameserver.model.gameobjects.Servant;
+import com.aionemu.gameserver.model.skill.NpcSkillEntry;
 import com.aionemu.gameserver.skillengine.model.Effect;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 
@@ -61,6 +62,9 @@ public class SummonSkillAreaEffect extends SummonServantEffect {
 		}
 
 		Servant servant = spawnServant(effect, spawnDuration, NpcObjectType.SKILLAREA, x, y, z);
+		if (servant == null)
+			return;
+
 		if (effect.getEffected() != null) // point skill without any initial target (we cannot trigger handleAttack with a null target)
 			servant.getAi().onCreatureEvent(AIEventType.ATTACK, effect.getEffected());
 
@@ -70,7 +74,16 @@ public class SummonSkillAreaEffect extends SummonServantEffect {
 
 			@Override
 			public void run() {
-				servant.getController().useSkill(servant.getSkillList().getSkillOnPosition(skillPos).getSkillId());
+				if (servant.getLifeStats().isDead() || !servant.isSpawned()) {
+					return;
+				}
+				if (servant.getSkillList() == null || servant.getSkillList().isEmpty()) {
+					return;
+				}
+				NpcSkillEntry skillEntry = servant.getSkillList().getSkillOnPosition(skillPos);
+				if (skillEntry != null) {
+					servant.getController().useSkill(skillEntry.getSkillId());
+				}
 				skillPos++;
 			}
 		}, 0, tickDelay);
