@@ -277,8 +277,8 @@ public final class NativePathAStar {
 			}
 		}
 
-		// Se a busca esgotou as iterações mas chegou muito perto (<= 2 metros), retorna a melhor rota parcial
-		if (minHeuristic < 2.0f && closestToGoal != startNode) {
+		// Se a busca esgotou as iterações mas fez progresso em direção ao alvo, retorna a melhor rota parcial (impede mob de congelar/desistir em esquinas)
+		if (closestToGoal != startNode && minHeuristic < initialH) {
 			return reconstructGridPath(cameFrom, closestToGoal, targetX, targetY, targetZ);
 		}
 

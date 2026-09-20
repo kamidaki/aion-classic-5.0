@@ -97,6 +97,10 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 	/** Referência atômica ao estado da rota — null representa "sem rota válida". */
 	private final AtomicReference<PathState> pathRef = new AtomicReference<>(null);
+	private long lastPathCalcTime;
+	private float lastTargetX;
+	private float lastTargetY;
+	private float lastTargetZ;
 
 	public NpcMoveController(Npc owner) {
 		super(owner);
@@ -211,14 +215,6 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 				float targetY = creature.getY();
 				float targetZ = creature.getZ();
 
-				// Invalida rota do NavMesh se o alvo se moveu mais de 1.5m
-				if (PositionUtil.getDistance(targetX, targetY, targetZ, pointX, pointY, pointZ) > 1.5f) {
-					pointX = targetX;
-					pointY = targetY;
-					pointZ = targetZ;
-					clearCachedPath();
-				}
-
 				// Perseguição direta quando há linha de chão desobstruída no NativePath
 				if (canUseDirectTargetMovement(creature, targetX, targetY, targetZ)) {
 					cancelFollow();
@@ -231,22 +227,55 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 				// CAMADA 1: NATIVE-PATH (CryEngine Native Grid 0.5m)
 				// ========================================================
 				if (NativePathConfig.NATIVE_PATH_ENABLE) {
-					// Lê snapshot atômico — sem race condition
+					long now = System.currentTimeMillis();
 					PathState ps = pathRef.get();
-					if (ps == null) {
-						// Calcula nova rota e armazena atomicamente
+
+					// Throttling e validação de rota: só recalcula se:
+					// 1) Não há rota ou os waypoints acabaram
+					// 2) O alvo se distanciou mais de 3.5m de onde a rota foi calculada E passou pelo menos 800ms
+					// 3) Passou tempo excessivo (> 2500ms) mesmo sem o alvo se mover muito
+					boolean needRepath = (ps == null || !ps.hasNext());
+					if (!needRepath && ps.path != null && ps.path.length > 0) {
+						float distFromTargetAtCalc = (float) PositionUtil.getDistance(targetX, targetY, targetZ, lastTargetX, lastTargetY, lastTargetZ);
+						if (distFromTargetAtCalc > 3.5f && (now - lastPathCalcTime) >= 800) {
+							needRepath = true;
+						} else if ((now - lastPathCalcTime) >= 2500) {
+							needRepath = true;
+						}
+					}
+
+					if (needRepath) {
 						float[][] newPath = NativePathService.getInstance().navigateToTarget(owner, creature);
-						ps = (newPath != null && newPath.length > 0) ? new PathState(newPath, 0) : null;
-						pathRef.set(ps);
+						if (newPath != null && newPath.length > 0) {
+							lastPathCalcTime = now;
+							lastTargetX = targetX;
+							lastTargetY = targetY;
+							lastTargetZ = targetZ;
+
+							// Waypoint 0 é a posição inicial do monstro no momento do cálculo.
+							// Se o monstro já estiver a menos de 1.2m do waypoint 0 e houver um próximo, inicia em 1 para não recuar para trás
+							int startIdx = 0;
+							if (newPath.length > 1 && PositionUtil.isInRange(owner, newPath[0][0], newPath[0][1], newPath[0][2], 1.2f)) {
+								startIdx = 1;
+							}
+							ps = new PathState(newPath, startIdx);
+							pathRef.set(ps);
+						} else {
+							ps = null;
+							pathRef.set(null);
+						}
 					}
 
 					if (ps != null && ps.hasNext()) {
 						cancelFollow();
 
-						// Avança o índice enquanto o NPC já passou por este waypoint (tolerância 0.5m)
+						// Tolerância dinâmica de chegada ao waypoint proporcional à velocidade
+						float speed = owner.getGameStats().getMovementSpeedFloat();
+						float tolerance = Math.max(1.2f, speed * 0.35f);
+
 						while (ps.hasNext()
 								&& ps.index < ps.path.length - 1
-								&& PositionUtil.isInRange(owner, ps.current()[0], ps.current()[1], ps.current()[2], 0.5f)) {
+								&& PositionUtil.isInRange(owner, ps.current()[0], ps.current()[1], ps.current()[2], tolerance)) {
 							ps = ps.advance();
 							pathRef.set(ps);
 						}
@@ -258,8 +287,6 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 						}
 					}
 				}
-
-
 
 				// ========================================================
 				// CAMADA 3: FALLBACK PARA ELEANOR (FollowMotor / Pathfind)
@@ -281,12 +308,19 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 					PathState ps = pathRef.get();
 					if (ps == null) {
 						float[][] newPath = NativePathService.getInstance().navigateToLocation(owner, pointX, pointY, pointZ);
-						ps = (newPath != null && newPath.length > 0) ? new PathState(newPath, 0) : null;
+						int startIdx = 0;
+						if (newPath != null && newPath.length > 1 && PositionUtil.isInRange(owner, newPath[0][0], newPath[0][1], newPath[0][2], 1.2f)) {
+							startIdx = 1;
+						}
+						ps = (newPath != null && newPath.length > 0) ? new PathState(newPath, startIdx) : null;
 						pathRef.set(ps);
 					}
 					if (ps != null && ps.hasNext()) {
+						float speed = owner.getGameStats().getMovementSpeedFloat();
+						float tolerance = Math.max(1.2f, speed * 0.35f);
+
 						while (ps.index < ps.path.length - 1
-								&& PositionUtil.isInRange(owner, ps.current()[0], ps.current()[1], ps.current()[2], 0.5f)) {
+								&& PositionUtil.isInRange(owner, ps.current()[0], ps.current()[1], ps.current()[2], tolerance)) {
 							ps = ps.advance();
 							pathRef.set(ps);
 						}
@@ -746,5 +780,6 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 	 */
 	public void clearCachedPath() {
 		pathRef.set(null);
+		lastPathCalcTime = 0;
 	}
 }

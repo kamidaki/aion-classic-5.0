@@ -58,7 +58,7 @@ public class ChatProcessor implements GameEngine {
 	public boolean handleChatCommand(Player player, String text) {
 		if (text == null || text.isEmpty())
 			return false;
-		if (!text.startsWith(AdminCommand.PREFIX) && !text.startsWith(PlayerCommand.PREFIX))
+		if (!text.startsWith(AdminCommand.PREFIX) && !text.startsWith(PlayerCommand.PREFIX) && !text.startsWith("/"))
 			return false;
 		int splitIndex = text.indexOf(' ');
 		String cmdName = splitIndex == -1 ? text : text.substring(0, splitIndex);
@@ -91,7 +91,27 @@ public class ChatProcessor implements GameEngine {
 	}
 
 	private ChatCommand getCommand(String alias) {
-		return commandHandlers.get(alias.toLowerCase());
+		String lower = alias.toLowerCase();
+		ChatCommand cmd = commandHandlers.get(lower);
+		if (cmd != null)
+			return cmd;
+
+		String bare = lower;
+		if (bare.startsWith("//")) {
+			bare = bare.substring(2);
+		} else if (bare.startsWith(".") || bare.startsWith("/")) {
+			bare = bare.substring(1);
+		}
+
+		cmd = commandHandlers.get("//" + bare);
+		if (cmd != null)
+			return cmd;
+
+		cmd = commandHandlers.get("." + bare);
+		if (cmd != null)
+			return cmd;
+
+		return null;
 	}
 
 	/**

@@ -19,14 +19,36 @@ public final class CombatTalentRewardDAO {
 	private static final String CLAIM = "UPDATE player_combat_talent_rewards SET claimed_mask=claimed_mask|? WHERE player_id=? AND (claimed_mask&?)=0";
 	private static final String UNCLAIM = "UPDATE player_combat_talent_rewards SET claimed_mask=claimed_mask&~? WHERE player_id=?";
 
+	private static volatile boolean tableChecked = false;
+
+	private static void ensureTable(Connection con) {
+		if (!tableChecked) {
+			try (java.sql.Statement s = con.createStatement()) {
+				s.executeUpdate("CREATE TABLE IF NOT EXISTS `player_combat_talent_rewards` (" +
+					"  `player_id` INT NOT NULL," +
+					"  `claimed_mask` INT UNSIGNED NOT NULL DEFAULT 0," +
+					"  PRIMARY KEY (`player_id`)," +
+					"  CONSTRAINT `player_combat_talent_rewards_player_fk` FOREIGN KEY (`player_id`)" +
+					"    REFERENCES `players` (`id`) ON DELETE CASCADE ON UPDATE CASCADE" +
+					") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+				tableChecked = true;
+			} catch (Exception e) {
+				log.warn("Could not ensure player_combat_talent_rewards table: " + e.getMessage());
+			}
+		}
+	}
+
 	private CombatTalentRewardDAO() {
 	}
 
 	public static int loadClaimedMask(Player player) {
-		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement stmt = con.prepareStatement(LOAD)) {
-			stmt.setInt(1, player.getObjectId());
-			try (ResultSet result = stmt.executeQuery()) {
-				return result.next() ? result.getInt(1) : 0;
+		try (Connection con = DatabaseFactory.getConnection()) {
+			ensureTable(con);
+			try (PreparedStatement stmt = con.prepareStatement(LOAD)) {
+				stmt.setInt(1, player.getObjectId());
+				try (ResultSet result = stmt.executeQuery()) {
+					return result.next() ? result.getInt(1) : 0;
+				}
 			}
 		} catch (Exception e) {
 			log.error("Could not load Combat Talent rewards for " + player, e);

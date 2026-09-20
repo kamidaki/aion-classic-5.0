@@ -168,19 +168,7 @@ public final class NativePathMap {
 		subX = Math.max(0, Math.min(SUBCELLS_PER_SECTOR - 1, subX));
 		subY = Math.max(0, Math.min(SUBCELLS_PER_SECTOR - 1, subY));
 
-		// Janela de 5m (z ± 2.5m) centrada no agente — evita pegar piso errado em fortalezas com múltiplos pisos
-		float terrainZ = z;
-		try {
-			if (GeoService.getInstance() != null) {
-				float gz = GeoService.getInstance().getZ(worldId, x, y, z + 2.5f, z - 2.5f, instanceId);
-				if (!Float.isNaN(gz) && (gz != 0 || Math.abs(z) < 5.0f)) {
-					terrainZ = gz;
-				}
-			}
-		} catch (Throwable ignored) {
-		}
-
-		NativePathSector.Layer layer = sector.findBestLayer(subX, subY, z, terrainZ, maxZDiff);
+		NativePathSector.Layer layer = sector.findBestLayer(subX, subY, z, z, maxZDiff);
 		if (layer == null) {
 			return false;
 		}
@@ -222,21 +210,22 @@ public final class NativePathMap {
 		subX = Math.max(0, Math.min(SUBCELLS_PER_SECTOR - 1, subX));
 		subY = Math.max(0, Math.min(SUBCELLS_PER_SECTOR - 1, subY));
 
-		// Janela de 5m (currentZ ± 2.5m) — mais precisa que ±5m em fortalezas com pisos sobrepostos
-		float terrainZ = fallbackZ;
+		NativePathSector.Layer layer = sector.findBestLayer(subX, subY, currentZ, fallbackZ, 12.0f);
+		if (layer != null) {
+			float lz = layer.getZ(subX, subY, Float.NaN);
+			if (!Float.isNaN(lz)) {
+				return lz;
+			}
+		}
+
 		try {
 			if (GeoService.getInstance() != null) {
 				float gz = GeoService.getInstance().getZ(worldId, x, y, currentZ + 2.5f, currentZ - 2.5f, instanceId);
 				if (!Float.isNaN(gz) && (gz != 0 || Math.abs(currentZ) < 5.0f)) {
-					terrainZ = gz;
+					return gz;
 				}
 			}
 		} catch (Throwable ignored) {
-		}
-
-		NativePathSector.Layer layer = sector.findBestLayer(subX, subY, currentZ, terrainZ, 12.0f);
-		if (layer != null) {
-			return layer.getZ(subX, subY, terrainZ);
 		}
 
 		return fallbackZ;

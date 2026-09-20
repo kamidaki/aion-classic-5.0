@@ -82,6 +82,9 @@ public enum AttackStatus {
 	}
 
 	public static final AttackStatus getBaseStatus(AttackStatus status) {
+		if (status == null) {
+			return AttackStatus.NORMALHIT;
+		}
 		switch (status) {
 			case DODGE:
 			case CRITICAL_DODGE:

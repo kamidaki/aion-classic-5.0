@@ -216,6 +216,7 @@ public class GameServer {
 		com.aionemu.commons.network.GeoIPFilterService.load();
 		// Second should be database factory
 		DatabaseFactory.init();
+		com.aionemu.gameserver.services.DatabaseSchemaService.init();
 		PlayerDAO.setAllPlayersOffline();
 		if (CleaningConfig.CLEANING_ENABLE)
 			DatabaseCleaningService.deletePlayersOnInactiveAccounts();

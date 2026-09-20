@@ -97,7 +97,7 @@ public class Kill extends AdminCommand {
 			return false;
 
 		target.getController().onAttack(target.isPvpTarget(attacker) && !target.isEnemy(attacker) ? target : attacker, target.getLifeStats().getMaxHp(),
-			null);
+			com.aionemu.gameserver.controllers.attack.AttackStatus.NORMALHIT);
 		return true;
 	}
 }

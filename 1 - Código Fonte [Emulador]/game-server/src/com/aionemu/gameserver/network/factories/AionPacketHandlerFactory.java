@@ -238,6 +238,8 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_CLIENT_PERF_METRICS.class, 0x00C5, State.IN_GAME);
 		addPacket(CM_PROTOCOL_PING_ACK.class, 0x01D0, State.IN_GAME, State.AUTHED); // 0x0122 PROTOCOL_PING_ACK
 		addPacket(CM_PROTOCOL_PING_ACK.class, 0x0122, State.IN_GAME, State.AUTHED);
+		addPacket(CM_CLIENT_TELEMETRY_SYNC.class, 0x01E0, State.IN_GAME, State.AUTHED); // 0x0112 CLIENT_TELEMETRY_SYNC (5.0 Classic)
+		addPacket(CM_CLIENT_TELEMETRY_SYNC.class, 0x0112, State.IN_GAME, State.AUTHED);
 	}
 
 	public AionPacketHandler getPacketHandler() {

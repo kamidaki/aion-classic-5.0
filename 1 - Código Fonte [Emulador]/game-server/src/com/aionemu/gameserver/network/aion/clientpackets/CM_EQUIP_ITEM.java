@@ -51,7 +51,7 @@ public class CM_EQUIP_ITEM extends AionClientPacket {
 		if (!PlayerRestrictions.canChangeEquip(activePlayer))
 			return;
 
-		log.info("[EQUIP_ITEM] player={} action={} slotRead={} itemObjId={} subSlot={}",
+		log.debug("[EQUIP_ITEM] player={} action={} slotRead={} itemObjId={} subSlot={}",
 			activePlayer.getName(), action, slotRead, itemObjId, subSlot);
 
 		Equipment equipment = activePlayer.getEquipment();

@@ -26,7 +26,7 @@ public class FollowMotor extends AMovementMotor {
     private static final int TARGET_REVALIDATE_TIME = 200;
 
     /* Revalidate pathfind position time in milliseconds */
-    private static long pathfindRevalidationTime;
+    private long pathfindRevalidationTime;
 
     /* Object to follow to */
     public VisibleObject _target;
