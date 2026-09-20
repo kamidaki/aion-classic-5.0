@@ -45,7 +45,14 @@ public class WeaponCondition extends Condition {
 	private boolean isValidWeapon(Creature creature) {
 		if (creature instanceof Player) {
 			Player player = (Player) creature;
-			return itemGroups.contains(player.getEquipment().getMainHandWeaponType());
+			ItemGroup mainHand = player.getEquipment().getMainHandWeaponType();
+			if (itemGroups.contains(mainHand))
+				return true;
+			if (mainHand == ItemGroup.GUN && itemGroups.contains(ItemGroup.GUN_1H))
+				return true;
+			if (mainHand == ItemGroup.GUN_1H && itemGroups.contains(ItemGroup.GUN))
+				return true;
+			return false;
 		}
 		// for npcs we don't validate weapon, though in templates they are present
 		return true;

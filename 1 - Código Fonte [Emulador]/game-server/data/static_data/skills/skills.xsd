@@ -1902,6 +1902,7 @@
 			<xs:enumeration value="BACKATK" />
 			<xs:enumeration value="DODGEHIT" />
 			<xs:enumeration value="PARRYHIT" />
+			<xs:enumeration value="CRITICAL" />
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="ProvokeType">

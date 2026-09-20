@@ -49,8 +49,14 @@ public class FirstTargetRangeProperty {
 		}
 
 		// Add Weapon Range to distance
-		if (properties.isAddWeaponRange())
-			firstTargetRange += effector.getGameStats().getAttackRange().getCurrent() / 1000f;
+		if (properties.isAddWeaponRange()) {
+			float weaponRange = effector.getGameStats().getAttackRange().getCurrent() / 1000f;
+			if (firstTargetRange >= weaponRange) {
+				firstTargetRange = weaponRange;
+			} else {
+				firstTargetRange += weaponRange;
+			}
+		}
 
 		// fixes first hit sometimes incorrectly not going through
 		if (effector.getMoveController().isInMove() && !firstTarget.getAggroList().isHating(effector))

@@ -42,7 +42,7 @@ public class ProvokerEffect extends ShieldEffect {
 	public void startEffect(Effect effect) {
 		Creature effector = effect.getEffector();
 		ObserverType observerType;
-		if (hitType == HitType.NMLATK || hitType == HitType.BACKATK) {
+		if (hitType == HitType.NMLATK || hitType == HitType.BACKATK || hitType == HitType.CRITICAL) {
 			observerType = ObserverType.ATTACK;
 		} else if (hitType == HitType.EVERYHIT || hitType == null) {
 			observerType = ObserverType.ATTACK_DEFEND;
@@ -54,6 +54,11 @@ public class ProvokerEffect extends ShieldEffect {
 			@Override
 			public void attack(Creature attacked, int attackSkillId) {
 				tryApplyEffect(attacked, attackSkillId, null, effector);
+			}
+
+			@Override
+			public void attack(Creature attacked, int attackSkillId, AttackStatus status) {
+				tryApplyEffect(attacked, attackSkillId, status, effector);
 			}
 
 			@Override
@@ -87,10 +92,38 @@ public class ProvokerEffect extends ShieldEffect {
 			return false;
 		if (hitType == HitType.PARRYHIT && (status == null || AttackStatus.getBaseStatus(status) != AttackStatus.PARRY))
 			return false;
+		if (hitType == HitType.CRITICAL) {
+			if (attackSkillId == 0)
+				return false;
+			if (effector instanceof Player player) {
+				if (skillId == 9185 && (player.getSkillList().isSkillPresent(4203) || player.getSkillList().isSkillPresent(4204)))
+					return false;
+				if (skillId == 9187 && player.getSkillList().isSkillPresent(4204))
+					return false;
+			}
+			if (effector.getEffectController().hasAbnormalEffect(9186) || effector.getEffectController().hasAbnormalEffect(9188) || effector.getEffectController().hasAbnormalEffect(9190))
+				return false;
+			boolean isCrit = status != null && status.isCritical();
+			boolean isShockImmune = false;
+			if (target != null) {
+				var skillTemplate = DataManager.SKILL_DATA.getSkillTemplate(attackSkillId);
+				if (skillTemplate != null && hasShockEffect(skillTemplate)) {
+					var ec = target.getEffectController();
+					isShockImmune = ec.isAbnormalSet(AbnormalState.STUN) || ec.isAbnormalSet(AbnormalState.STUMBLE)
+						|| ec.isAbnormalSet(AbnormalState.SPIN) || ec.isAbnormalSet(AbnormalState.OPENAERIAL)
+						|| ec.isAbnormalSet(AbnormalState.STAGGER) || ec.isAbnormalSet(AbnormalState.SANCTUARY);
+					if (target instanceof com.aionemu.gameserver.model.gameobjects.Npc npc) {
+						isShockImmune = isShockImmune || npc.isBoss() || npc.hasStatic();
+					}
+				}
+			}
+			if (!isCrit && !isShockImmune)
+				return false;
+		}
 		float chance = hitTypeProb > 100 ? hitTypeProb / 10f : hitTypeProb;
 		if (Rnd.chance() >= chance)
 			return false;
-		if (hitType == null || hitType == HitType.EVERYHIT)
+		if (hitType == null || hitType == HitType.EVERYHIT || hitType == HitType.CRITICAL)
 			return true;
 		return switch (hitType) {
 			case PHHIT -> attackSkillId == 0 || (DataManager.SKILL_DATA.getSkillTemplate(attackSkillId) != null && DataManager.SKILL_DATA.getSkillTemplate(attackSkillId).getType() == SkillType.PHYSICAL);
@@ -99,6 +132,17 @@ public class ProvokerEffect extends ShieldEffect {
 			case DODGEHIT, PARRYHIT -> true;
 			default -> true;
 		};
+	}
+
+	private static boolean hasShockEffect(com.aionemu.gameserver.skillengine.model.SkillTemplate st) {
+		if (st.getEffects() != null && st.getEffects().getEffects() != null) {
+			for (EffectTemplate et : st.getEffects().getEffects()) {
+				if (et instanceof StunEffect || et instanceof StumbleEffect || et instanceof SpinEffect || et instanceof OpenAerialEffect || et instanceof ParalyzeEffect || et instanceof StaggerEffect) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	private Creature getProvokeTarget(Creature effector, Creature target) {

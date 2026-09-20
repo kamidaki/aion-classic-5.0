@@ -17,5 +17,6 @@ public enum HitType {
 	SKILL,
 	BACKATK,
 	DODGEHIT,
-	PARRYHIT
+	PARRYHIT,
+	CRITICAL
 }

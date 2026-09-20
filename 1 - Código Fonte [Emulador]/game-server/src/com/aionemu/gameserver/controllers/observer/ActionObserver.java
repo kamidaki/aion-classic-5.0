@@ -60,6 +60,10 @@ public class ActionObserver {
 	public void attack(Creature creature, int skillId) {
 	}
 
+	public void attack(Creature creature, int skillId, AttackStatus status) {
+		attack(creature, skillId);
+	}
+
 	public void equip(Item item, Player owner) {
 	}
 

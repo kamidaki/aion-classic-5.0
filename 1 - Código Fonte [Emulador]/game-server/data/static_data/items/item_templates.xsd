@@ -528,6 +528,7 @@
 			<xs:enumeration value="BOW"/>
 			<xs:enumeration value="HARP"/>
 			<xs:enumeration value="GUN"/>
+			<xs:enumeration value="GUN_1H"/>
 			<xs:enumeration value="CANNON"/>
 			<xs:enumeration value="KEYBLADE"/>
 			<xs:enumeration value="CHAINBLADE"/>

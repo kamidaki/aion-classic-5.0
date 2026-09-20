@@ -31,7 +31,7 @@ public abstract class DamageEffect extends EffectTemplate {
 			onAttack(effect, TYPE.DAMAGE, LOG.PROCATKINSTANT);
 		} else {
 			onAttack(effect, TYPE.REGULAR, LOG.REGULAR);
-			effect.getEffector().getObserveController().notifyAttackObservers(effect.getEffected(), effect.getSkillId());
+			effect.getEffector().getObserveController().notifyAttackObservers(effect.getEffected(), effect.getSkillId(), effect.getAttackStatus());
 		}
 	}
 

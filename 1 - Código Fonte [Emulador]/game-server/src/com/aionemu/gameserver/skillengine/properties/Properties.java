@@ -89,7 +89,7 @@ public class Properties {
 		skill.getEffectedList().clear();
 		skill.getEffectedList().add(firstTarget);
 
-		if (firstTargetRange != 0) {
+		if (firstTargetRange != 0 || addWeaponRange) {
 			if (!FirstTargetRangeProperty.set(skill, this, CastState.CAST_END)) {
 				return false;
 			}

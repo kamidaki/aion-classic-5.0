@@ -84,7 +84,10 @@ public class ObserveController {
 	private void notifyAction(ObserverType type, ActionObserver observer, Object... object) {
 		switch (type) {
 			case ATTACK:
-				observer.attack((Creature) object[0], (int) object[1]);
+				if (object.length > 2)
+					observer.attack((Creature) object[0], (int) object[1], (AttackStatus) object[2]);
+				else
+					observer.attack((Creature) object[0], (int) object[1]);
 				break;
 			case ATTACKED:
 				if (object.length > 2)
@@ -148,6 +151,10 @@ public class ObserveController {
 
 	public void notifyAttackObservers(Creature creature, int skillId) {
 		notifyObservers(ObserverType.ATTACK, creature, skillId);
+	}
+
+	public void notifyAttackObservers(Creature creature, int skillId, AttackStatus status) {
+		notifyObservers(ObserverType.ATTACK, creature, skillId, status);
 	}
 
 	public void notifyAttackedObservers(Creature creature, int skillId) {
