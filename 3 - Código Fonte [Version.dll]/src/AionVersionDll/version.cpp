@@ -10,6 +10,7 @@
 #include "exports.h"
 #include "detours.h"
 #include "siel_hammer_fix.h"
+#include "quna_fix.h"
 
 // Security & Service Integration (BrService.dll)
 typedef bool (WINAPI *fn_BR_Initialize)(const char* token, const char* cmdline);
@@ -238,6 +239,7 @@ static void PatchAllLoadedLanguageModules() {
         if (h) {
             if (_wcsicmp(name, L"game.dll") == 0) {
                 InstallSielHammerFix(h);
+                InstallQunaFix(h);
             }
             PatchLanguageTableInModule(h);
             BypassCountryCheckInCryEngineModule(h);
