@@ -349,6 +349,7 @@ DWORD WINAPI WebSocketClient::ClientThread(LPVOID /*param*/) {
         }
         s_connected = true;
         LogInfo("WebSocket conectado com sucesso ao emulador em %s:%d!", s_wsHost.c_str(), s_wsPort);
+        SendTextMessage(std::string("SET_COMBO_VISIBILITY:") + (g_comboVisible.load() ? "1" : "0"));
 
         // Frame read loop
         std::vector<uint8_t> frameBuffer;

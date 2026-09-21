@@ -157,9 +157,12 @@ void DrawerModalUI::UpdatePosition(int gameX, int gameY, int gameW, int gameH) {
     int modalX = gameX + 24; // 24px detachment from left edge
     int modalY = gameY + (gameH - s_modalH) / 2; // Centered vertically
 
+    bool shouldBeVisible = g_featConsole.load() && g_isDrawerOpen.load() && g_isInWorld.load() && !g_isLoadingScreen.load() && g_isGameActive.load();
     SetWindowPos(g_hDrawerModalWnd, HWND_TOPMOST, modalX, modalY, s_modalW, s_modalH,
-                 SWP_NOACTIVATE | (g_isDrawerOpen.load() && !g_isLoadingScreen.load() && g_isGameActive.load() ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
-    Repaint();
+                 SWP_NOACTIVATE | (shouldBeVisible ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
+    if (shouldBeVisible) {
+        Repaint();
+    }
 }
 
 void DrawerModalUI::ResizeDrawer(int newW, int newH) {

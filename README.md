@@ -138,9 +138,28 @@ Ao iniciar:
 ### 4. Conexão do Cliente Oficial 5.0
 1. Tenha o cliente oficial **Aion Classic 5.0 (EU)** instalado.
 2. Aplique os arquivos da pasta `4 - Patch para o Client 5.0\` no diretório do seu cliente.
-3. Inicie o jogo executando `Start x64.bat`.
+3. Inicie o jogo executando `Start x64 - PORTUGUÊS BRASIL.bat` ou `Start x64 - INGLÊS.bat`.
+
+---
+
+## BrService.dll & Recursos no Cliente
+
+O patch do cliente inclui a **`BrService.dll`** (localizada em `bin64/`), que implementa recursos nativos modernos e integração em tempo real com o GameServer:
+
+- **Controle Total via BAT**: Flags independentes no inicializador (`-console`, `-freefly`, `-pingUi`, `-DpsMeterUI`, `-comboUi`, `-Model3D`, `-fov`, `-camMax`, `-fpsUnlock`, `-lang:BRA/ENG`).
+- **Console Shugo e Analisador de Combate**: Acionamento rápido via **Shift + F3** ou **Ctrl + X**, com ajustes visuais de opacidade, dimensões e modo compacto.
+- **Combo UI Idêntico ao LostHunting**: Sistema de combos com contagem progressiva de hits, multiplicador de dano, pop scale, partículas e banners temáticos.
+- **Pontos de Participação**: A cada 1.000 golpes cumulativos em combate contra NPCs agressivos, o jogador ganha 1 Ponto de Participação (persistido no banco de dados nas tabelas `player_participation_points` e `player_hits`).
+- **Ajustes de Combo UI no Console**: Controle de opacidade, tamanho/escala e toggle de exibição (se ocultado, o ganho de pontos é pausado).
+- **Radar de Combate 4-Eixos**: Substituídos os atributos genéricos; agora exibe estritamente **Crítico**, **Bloqueio**, **Esquiva** e **Resistência**.
+- **Gráfico Fibonacci de Latência**: Linha fina branca desenhada abaixo do texto de MS, apresentando o histórico de subida/descida de latência dos últimos 60 minutos.
+- **Disco / Emblema do Alvo**: Renderização fiel do disco/avatar de monstros e NPCs baseado na classificação oficial (`LEGENDARY`, `HERO`, `ELITE`, `NORMAL`) e raça (`ELYOS`, `ASMODIANS`).
+- **Auto-criação de Tabelas no Banco**: Todas as tabelas SQL necessárias (`player_participation_points`, `player_hits`, `player_secure_area_log`, etc.) são criadas e validadas automaticamente na inicialização do GameServer via `DatabaseSchemaService`.
+- **Ocultação Inteligente com Foco**: HUD de ping, console, gaveta e Combo UI se ocultam imediatamente quando a janela do Aion é minimizada ou perde o foco.
+- **Pasta Sprites Localizada**: A pasta de sprites (`bin64/sprites/effects/`) é resolvida estritamente relativa à DLL, sem caminhos retrocessivos (`../`).
 
 ---
 
 ## Regras de Desenvolvimento e Qualidade
 Consulte sempre o documento [`CONTEXT.md`](file:///CONTEXT.md) para conhecer as diretrizes obrigatórias de arquitetura, integridade de dados estáticos e fluxo de desenvolvimento canônico.
+

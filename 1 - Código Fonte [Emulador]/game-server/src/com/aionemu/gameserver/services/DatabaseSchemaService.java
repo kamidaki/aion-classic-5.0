@@ -120,6 +120,26 @@ public class DatabaseSchemaService {
 			"  PRIMARY KEY (`account_id`, `player_id`)" +
 			") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;"
 		);
+
+		// 7. player_secure_area_log (Registro e histórico de transições do Secure Area / FFA)
+		executeSql(con,
+			"CREATE TABLE IF NOT EXISTS `player_secure_area_log` (" +
+			"  `id` INT NOT NULL AUTO_INCREMENT," +
+			"  `player_id` INT NOT NULL," +
+			"  `account_id` INT NOT NULL," +
+			"  `player_name` VARCHAR(50) NOT NULL," +
+			"  `action` VARCHAR(20) NOT NULL," +
+			"  `world_id` INT NOT NULL," +
+			"  `x` FLOAT NOT NULL," +
+			"  `y` FLOAT NOT NULL," +
+			"  `z` FLOAT NOT NULL," +
+			"  `points_spent` INT NOT NULL DEFAULT 0," +
+			"  `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP," +
+			"  PRIMARY KEY (`id`)," +
+			"  KEY `idx_player` (`player_id`)," +
+			"  KEY `idx_account` (`account_id`)" +
+			") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;"
+		);
 	}
 
 	private static void ensureColumns(Connection con) {

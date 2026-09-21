@@ -18,11 +18,16 @@ namespace BrService {
 static std::string ParseParam(const char* cmdline, const char* key) {
     if (!cmdline || !key) return "";
     std::string s(cmdline);
-    size_t pos = s.find(key);
+    std::string sLower = s;
+    for (char& c : sLower) c = (char)::tolower((unsigned char)c);
+    std::string keyLower(key);
+    for (char& c : keyLower) c = (char)::tolower((unsigned char)c);
+
+    size_t pos = sLower.find(keyLower);
     if (pos == std::string::npos) return "";
-    pos += strlen(key);
+    pos += keyLower.length();
     while (pos < s.length() && (s[pos] == ' ' || s[pos] == ':' || s[pos] == '=')) pos++;
-    size_t end = s.find(' ', pos);
+    size_t end = s.find_first_of(" \t\r\n", pos);
     if (end == std::string::npos) end = s.length();
     return s.substr(pos, end - pos);
 }
@@ -81,22 +86,23 @@ __declspec(dllexport) bool WINAPI BR_Initialize(const char* token, const char* c
         LogInfo("   BrService.dll - Shugo Console, Ping & DPS Meter Ativado      ");
         LogInfo("=================================================================");
 
-        // Extract IP and feature flags from cmdline
-        if (cmdline) {
-            std::string ip = ParseParam(cmdline, "-ip");
+        // Extract IP and feature flags from cmdline (fallback to GetCommandLineA)
+        const char* actualCmd = (cmdline && cmdline[0] != '\0') ? cmdline : GetCommandLineA();
+        if (actualCmd) {
+            std::string ip = ParseParam(actualCmd, "-ip");
             if (!ip.empty()) {
                 g_serverIp = ip;
                 LogInfo("IP do Servidor extraido da linha de comando: %s", g_serverIp.c_str());
             }
-            std::string port = ParseParam(cmdline, "-port");
+            std::string port = ParseParam(actualCmd, "-port");
             if (!port.empty()) {
                 try { g_serverPort = std::stoi(port); } catch (...) {}
             }
 
-            // Language selection (-lang:ENG or -lang:BRA)
-            std::string lang = ParseParam(cmdline, "-lang");
+            // Language selection (-lang:ENG or -lang:ENU or -lang:BRA)
+            std::string lang = ParseParam(actualCmd, "-lang");
             if (lang.empty()) {
-                lang = ParseParam(cmdline, "/lang");
+                lang = ParseParam(actualCmd, "/lang");
             }
             if (!lang.empty()) {
                 for (char& c : lang) c = (char)::toupper((unsigned char)c);
@@ -105,15 +111,15 @@ __declspec(dllexport) bool WINAPI BR_Initialize(const char* token, const char* c
             }
 
             // Feature Control Flags (default: true / enable)
-            g_featConsole = IsParamEnabled(cmdline, "console", true);
-            g_featFreeFly = IsParamEnabled(cmdline, "freefly", true);
-            g_featPingUi = IsParamEnabled(cmdline, "pingUi", true);
-            g_featDpsMeterUI = IsParamEnabled(cmdline, "DpsMeterUI", true);
-            g_featComboUi = IsParamEnabled(cmdline, "comboUi", true);
-            g_featModel3D = IsParamEnabled(cmdline, "Model3D", true);
-            g_featFov = IsParamEnabled(cmdline, "fov", true);
-            g_featCamMax = IsParamEnabled(cmdline, "camMax", true);
-            g_featFpsUnlock = IsParamEnabled(cmdline, "fpsUnlock", true);
+            g_featConsole = IsParamEnabled(actualCmd, "console", true);
+            g_featFreeFly = IsParamEnabled(actualCmd, "freefly", true);
+            g_featPingUi = IsParamEnabled(actualCmd, "pingUi", true);
+            g_featDpsMeterUI = IsParamEnabled(actualCmd, "DpsMeterUI", true);
+            g_featComboUi = IsParamEnabled(actualCmd, "comboUi", true);
+            g_featModel3D = IsParamEnabled(actualCmd, "Model3D", true);
+            g_featFov = IsParamEnabled(actualCmd, "fov", true);
+            g_featCamMax = IsParamEnabled(actualCmd, "camMax", true);
+            g_featFpsUnlock = IsParamEnabled(actualCmd, "fpsUnlock", true);
 
             LogInfo("Configuracao de Recursos do BrService via Linha de Comando:");
             LogInfo("  [-console]    : %s", g_featConsole.load() ? "ENABLE" : "DISABLE");

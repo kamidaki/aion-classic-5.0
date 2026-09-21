@@ -70,12 +70,18 @@ public class ComboService {
 		return Math.max(COMBO_TIMEOUT_FLOOR_MS, t);
 	}
 
+	private volatile boolean globalComboHidden = false;
+
+	public void setGlobalComboHidden(boolean hidden) {
+		this.globalComboHidden = hidden;
+	}
+
 	public void setComboUiHidden(int playerId, boolean hidden) {
 		playerComboHidden.put(playerId, hidden);
 	}
 
 	public boolean isComboUiHidden(int playerId) {
-		return playerComboHidden.getOrDefault(playerId, Boolean.FALSE);
+		return playerComboHidden.getOrDefault(playerId, globalComboHidden);
 	}
 
 	public void onPlayerHit(Player attacker, Creature target, int hitDamage) {

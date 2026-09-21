@@ -187,26 +187,17 @@ bool ComboRenderer::DrawBannerImage(Graphics& g, Image* banner, float cx, float 
 
 void ComboRenderer::LoadSprites() {
     wchar_t dllPath[MAX_PATH] = {};
-    HMODULE hMod = GetModuleHandleW(L"BrService.dll");
-    if (!hMod) hMod = GetModuleHandleW(L"LostHunting.dll");
-    if (!hMod) hMod = BrService::g_hModule;
-    if (!hMod) hMod = nullptr;
+    HMODULE hMod = BrService::g_hModule;
+    if (!hMod) hMod = GetModuleHandleW(L"BrService.dll");
     GetModuleFileNameW(hMod, dllPath, MAX_PATH);
     std::wstring dir(dllPath);
     auto slash = dir.find_last_of(L"\\/"); 
     if (slash != std::wstring::npos) dir = dir.substr(0, slash + 1);
     else dir += L'\\';
 
-    // Verify sprites folder path (either in same dir, ../, or fallback)
+    // Strictly resolve sprites directory in the exact same directory as the DLL (e.g. bin64\sprites\effects\)
+    // NEVER look in the root or parent directory (../)
     std::wstring effectsBase = dir + L"sprites\\effects\\";
-    DWORD attr = GetFileAttributesW((effectsBase + L"hit1.gif").c_str());
-    if (attr == INVALID_FILE_ATTRIBUTES) {
-        if (GetFileAttributesW((dir + L"..\\sprites\\effects\\hit1.gif").c_str()) != INVALID_FILE_ATTRIBUTES) {
-            effectsBase = dir + L"..\\sprites\\effects\\";
-        } else if (GetFileAttributesW(L"sprites\\effects\\hit1.gif") != INVALID_FILE_ATTRIBUTES) {
-            effectsBase = L"sprites\\effects\\";
-        }
-    }
 
     auto loadGif = [&](const std::wstring& path, Image*& outImg, GUID& outDim, UINT& outCount, float& outMs) {
         outImg = Image::FromFile(path.c_str());

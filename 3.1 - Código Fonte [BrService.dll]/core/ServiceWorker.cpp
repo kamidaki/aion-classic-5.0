@@ -70,33 +70,54 @@ static LRESULT CALLBACK GameWindowSubclassProc(HWND hWnd, UINT uMsg, WPARAM wPar
 
     case WM_ACTIVATE:
         if (LOWORD(wParam) == WA_INACTIVE) {
+            g_isGameActive = false;
             PingHudUI::Hide();
             DrawerModalUI::Hide();
             if (g_wakeEvent) SetEvent(g_wakeEvent);
         } else {
-            if (g_isInWorld.load() && !g_isLoadingScreen.load()) {
-                PingHudUI::Show();
-                DrawerModalUI::RestoreIfOpen();
-                SyncPositionsDirectly(hWnd);
+            HWND fg = GetForegroundWindow();
+            bool isMin = IsIconic(hWnd);
+            bool isFore = (fg == hWnd || fg == g_hPingHudWnd || fg == g_hDrawerModalWnd || fg == g_overlayHwnd || IsForegroundInGameProcess(hWnd, fg));
+            g_isGameActive = (!isMin && isFore);
+            if (g_isGameActive.load()) {
+                if (g_isInWorld.load() && !g_isLoadingScreen.load()) {
+                    PingHudUI::Show();
+                    DrawerModalUI::RestoreIfOpen();
+                    SyncPositionsDirectly(hWnd);
+                }
+            } else {
+                PingHudUI::Hide();
+                DrawerModalUI::Hide();
             }
             if (g_wakeEvent) SetEvent(g_wakeEvent);
         }
         break;
 
     case WM_KILLFOCUS:
+        g_isGameActive = false;
         PingHudUI::Hide();
         DrawerModalUI::Hide();
         if (g_wakeEvent) SetEvent(g_wakeEvent);
         break;
 
-    case WM_SETFOCUS:
-        if (g_isInWorld.load() && !g_isLoadingScreen.load()) {
-            PingHudUI::Show();
-            DrawerModalUI::RestoreIfOpen();
-            SyncPositionsDirectly(hWnd);
+    case WM_SETFOCUS: {
+        HWND fg = GetForegroundWindow();
+        bool isMin = IsIconic(hWnd);
+        bool isFore = (fg == hWnd || fg == g_hPingHudWnd || fg == g_hDrawerModalWnd || fg == g_overlayHwnd || IsForegroundInGameProcess(hWnd, fg));
+        g_isGameActive = (!isMin && isFore);
+        if (g_isGameActive.load()) {
+            if (g_isInWorld.load() && !g_isLoadingScreen.load()) {
+                PingHudUI::Show();
+                DrawerModalUI::RestoreIfOpen();
+                SyncPositionsDirectly(hWnd);
+            }
+        } else {
+            PingHudUI::Hide();
+            DrawerModalUI::Hide();
         }
         if (g_wakeEvent) SetEvent(g_wakeEvent);
         break;
+    }
 
     case WM_DESTROY:
         UnregisterHotKey(hWnd, HOTKEY_ID_CONSOLE);

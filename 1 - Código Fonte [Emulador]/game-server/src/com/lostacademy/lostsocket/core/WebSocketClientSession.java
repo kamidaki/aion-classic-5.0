@@ -162,10 +162,12 @@ public class WebSocketClientSession implements Runnable {
 		if (msg == null || msg.isEmpty()) return;
 		try {
 			if (msg.contains("SET_COMBO_VISIBILITY")) {
-				boolean visible = msg.contains("\"visible\":true");
+				boolean visible = msg.contains("\"visible\":true") || msg.contains(":1") || msg.endsWith("1");
+				boolean hidden = !visible;
+				com.lostacademy.lostsocket.combat.ComboService.getInstance().setGlobalComboHidden(hidden);
 				for (var player : com.aionemu.gameserver.world.World.getInstance().getAllPlayers()) {
 					if (player != null && player.isOnline()) {
-						com.lostacademy.lostsocket.combat.ComboService.getInstance().setComboUiHidden(player.getObjectId(), !visible);
+						com.lostacademy.lostsocket.combat.ComboService.getInstance().setComboUiHidden(player.getObjectId(), hidden);
 					}
 				}
 				log.info("[BrSocket] Atualizado status de exibicao do Combo UI para: visible={}", visible);
