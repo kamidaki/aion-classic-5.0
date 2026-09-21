@@ -47,6 +47,7 @@ public class ExpExtractAction extends AbstractItemAction {
 
 	@Override
 	public void act(final Player player, final Item parentItem, Item targetItem, Object... params) {
+		player.getController().cancelUseItem();
 		int castingDelay = parentItem.getItemTemplate().getCastingDelay();
 		if (castingDelay <= 0) {
 			finishUse(player, parentItem);
@@ -76,10 +77,12 @@ public class ExpExtractAction extends AbstractItemAction {
 	}
 
 	private void finishUse(Player player, Item parentItem) {
+		if (player.getInventory().getItemByObjId(parentItem.getObjectId()) != parentItem)
+			return;
 		PlayerCommonData cd = player.getCommonData();
 		long requiredExp = getRequiredExp(cd);
 		long newExp = cd.getExp() - requiredExp;
-		if (!canExtractExp(player, newExp) || !player.getInventory().decreaseByItemId(parentItem.getItemId(), 1)) {
+		if (!canExtractExp(player, newExp) || !player.getInventory().decreaseByObjectId(parentItem.getObjectId(), 1)) {
 			PacketSendUtility.sendPacket(player,
 				new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem.getItemTemplate().getTemplateId(), 0, 2, 0));
 			return;

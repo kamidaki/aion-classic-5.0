@@ -175,23 +175,26 @@ public class CampWarService {
 		CampLocation camp = camps.get(spawn.getId());
 		if (camp == null)
 			return; // base comum, nao e torre
-		if (camp.isStatic() || !camp.isVulnerable()) {
-			log.warn("Camp {} boss died but the tower is {}, no capture", camp.getLocationId(),
-				camp.isStatic() ? "static" : "protected");
-			return;
+		synchronized (camp) {
+			if (camp.isStatic() || !camp.isVulnerable()) {
+				log.warn("Camp {} boss died but the tower is {}, no capture", camp.getLocationId(),
+					camp.isStatic() ? "static" : "protected");
+				return;
+			}
+			Player player = killer instanceof Player p ? p : killer != null && killer.getMaster() instanceof Player m ? m : null;
+			if (player == null) {
+				log.warn("Camp {} boss died with no player killer ({}), no capture", camp.getLocationId(), killer);
+				return;
+			}
+			SiegeRace nova = SiegeRace.getByRace(player.getRace());
+			if (nova == camp.getRace()) {
+				log.info("Camp {} boss died but {} already owns it", camp.getLocationId(), nova);
+				return;
+			}
+			camp.setVulnerable(false);
+			Legion legion = player.getLegion();
+			captura(camp, nova, legion == null ? 0 : legion.getLegionId(), legion == null ? null : legion.getName());
 		}
-		Player player = killer instanceof Player p ? p : killer != null && killer.getMaster() instanceof Player m ? m : null;
-		if (player == null) {
-			log.warn("Camp {} boss died with no player killer ({}), no capture", camp.getLocationId(), killer);
-			return;
-		}
-		SiegeRace nova = SiegeRace.getByRace(player.getRace());
-		if (nova == camp.getRace()) {
-			log.info("Camp {} boss died but {} already owns it", camp.getLocationId(), nova);
-			return;
-		}
-		Legion legion = player.getLegion();
-		captura(camp, nova, legion == null ? 0 : legion.getLegionId(), legion == null ? null : legion.getName());
 	}
 
 	/**
@@ -199,6 +202,8 @@ public class CampWarService {
 	 * administrador, que e como da para testar sem esperar o prazo de protecao.
 	 */
 	public void captura(CampLocation camp, SiegeRace nova, int legionId, String legionName) {
+		cancelPhaseTask(camp);
+		camp.setVulnerable(false);
 		camp.setRace(nova);
 		camp.setLegionId(legionId);
 		camp.setOccupiedCount(camp.getOccupiedCount() + 1);

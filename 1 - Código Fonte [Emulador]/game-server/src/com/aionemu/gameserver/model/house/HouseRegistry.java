@@ -31,11 +31,11 @@ public class HouseRegistry implements Persistable {
 	/**
 	 * @return All objects including deleted
 	 */
-	public List<HouseObject<?>> getObjects() {
+	public synchronized List<HouseObject<?>> getObjects() {
 		return new ArrayList<>(objects.values());
 	}
 
-	public List<HouseObject<?>> getSpawnedObjects() {
+	public synchronized List<HouseObject<?>> getSpawnedObjects() {
 		List<HouseObject<?>> temp = new ArrayList<>();
 		for (HouseObject<?> obj : objects.values()) {
 			if (obj.isSpawnedByPlayer() && obj.getPersistentState() != PersistentState.DELETED)
@@ -44,7 +44,7 @@ public class HouseRegistry implements Persistable {
 		return temp;
 	}
 
-	public List<HouseObject<?>> getNotSpawnedObjects() {
+	public synchronized List<HouseObject<?>> getNotSpawnedObjects() {
 		List<HouseObject<?>> temp = new ArrayList<>();
 		for (HouseObject<?> obj : objects.values()) {
 			if (!obj.isSpawnedByPlayer() && obj.getPersistentState() != PersistentState.DELETED)
@@ -53,11 +53,11 @@ public class HouseRegistry implements Persistable {
 		return temp;
 	}
 
-	public HouseObject<?> getObjectByObjId(int itemObjId) {
+	public synchronized HouseObject<?> getObjectByObjId(int itemObjId) {
 		return objects.get(itemObjId);
 	}
 
-	public boolean putObject(HouseObject<?> houseObject, boolean saveRegistry) {
+	public synchronized boolean putObject(HouseObject<?> houseObject, boolean saveRegistry) {
 		if (objects.putIfAbsent(houseObject.getObjectId(), houseObject) != null)
 			return false;
 		if (houseObject.getPersistentState() != PersistentState.UPDATED) // state is UPDATED when reloading registry and spawned objects get reused
@@ -67,15 +67,15 @@ public class HouseRegistry implements Persistable {
 		return true;
 	}
 
-	public void discardObject(HouseObject<?> object, boolean direct) {
+	public synchronized void discardObject(HouseObject<?> object, boolean direct) {
 		discard(objects, object, direct);
 	}
 
-	public List<HouseDecoration> getDecors() {
+	public synchronized List<HouseDecoration> getDecors() {
 		return new ArrayList<>(decors.values());
 	}
 
-	public List<HouseDecoration> getUnusedDecors() {
+	public synchronized List<HouseDecoration> getUnusedDecors() {
 		List<HouseDecoration> temp = new ArrayList<>();
 		for (HouseDecoration decor : decors.values()) {
 			if (decor.getPersistentState() != PersistentState.DELETED && decor.getRoom() == -1)
@@ -84,11 +84,11 @@ public class HouseRegistry implements Persistable {
 		return temp;
 	}
 
-	public HouseDecoration getDecorByObjId(int itemObjId) {
+	public synchronized HouseDecoration getDecorByObjId(int itemObjId) {
 		return decors.get(itemObjId);
 	}
 
-	public boolean putDecor(HouseDecoration decor, boolean saveRegistry) {
+	public synchronized boolean putDecor(HouseDecoration decor, boolean saveRegistry) {
 		if (decors.putIfAbsent(decor.getObjectId(), decor) != null)
 			return false;
 		if (decor.getPersistentState() != PersistentState.UPDATED)
@@ -98,7 +98,7 @@ public class HouseRegistry implements Persistable {
 		return true;
 	}
 
-	public Integer getUsedDecorId(PartType partType, int room) {
+	public synchronized Integer getUsedDecorId(PartType partType, int room) {
 		for (HouseDecoration decor : decors.values()) {
 			if (decor.getPersistentState() != PersistentState.DELETED && decor.getTemplate().getType() == partType && decor.getRoom() == room)
 				return decor.getTemplateId();
@@ -106,7 +106,7 @@ public class HouseRegistry implements Persistable {
 		return getOwner().getBuilding().getDefaultDecorId(partType);
 	}
 
-	public void setUsed(HouseDecoration decor, int room) {
+	public synchronized void setUsed(HouseDecoration decor, int room) {
 		if (decor.getPersistentState() == PersistentState.DELETED || decor.getRoom() == room)
 			return;
 		discardDecor(decor.getTemplate().getType(), room);
@@ -122,18 +122,18 @@ public class HouseRegistry implements Persistable {
 		}
 	}
 
-	public void discardDecor(PartType partType, int roomNo) {
+	public synchronized void discardDecor(PartType partType, int roomNo) {
 		for (HouseDecoration decor : getDecors()) {
 			if (decor.getTemplate().getType() == partType && decor.getRoom() == roomNo)
 				discardDecor(decor, false);
 		}
 	}
 
-	public void discardDecor(HouseDecoration decor, boolean direct) {
+	public synchronized void discardDecor(HouseDecoration decor, boolean direct) {
 		discard(decors, decor, direct);
 	}
 
-	private <T extends AionObject & Persistable> void discard(Map<Integer, T> map, T obj, boolean direct) {
+	private synchronized <T extends AionObject & Persistable> void discard(Map<Integer, T> map, T obj, boolean direct) {
 		if (obj.getPersistentState() == PersistentState.NEW || direct) {
 			map.remove(obj.getObjectId(), obj);
 		} else {
@@ -148,7 +148,7 @@ public class HouseRegistry implements Persistable {
 	/**
 	 * Despawns all objects and updates DB.
 	 */
-	public void reset() {
+	public synchronized void reset() {
 		List<HouseObject<?>> spawnedObjects = getSpawnedObjects();
 		if (spawnedObjects.isEmpty()) {
 			if (getOwner().getOwnerId() != 0)
@@ -164,22 +164,22 @@ public class HouseRegistry implements Persistable {
 		save();
 	}
 
-	public void save() {
+	public synchronized void save() {
 		if (persistentState == PersistentState.UPDATE_REQUIRED)
 			PlayerRegisteredItemsDAO.store(this, getOwner().getOwnerId());
 	}
 
 	@Override
-	public final PersistentState getPersistentState() {
+	public synchronized final PersistentState getPersistentState() {
 		return persistentState;
 	}
 
 	@Override
-	public final void setPersistentState(PersistentState persistentState) {
+	public synchronized final void setPersistentState(PersistentState persistentState) {
 		this.persistentState = persistentState;
 	}
 
-	public int size() {
+	public synchronized int size() {
 		return objects.size() + decors.size();
 	}
 }

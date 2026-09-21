@@ -35,6 +35,8 @@ public class TuningAction extends AbstractItemAction {
 
 	@Override
 	public boolean canAct(Player player, Item parentItem, Item targetItem, Object... params) {
+		if (parentItem == null || targetItem == null || parentItem.getObjectId() == targetItem.getObjectId())
+			return false;
 		if (targetItem.isEquipped())
 			return false;
 		if (!targetItem.isIdentified()) {
@@ -60,8 +62,9 @@ public class TuningAction extends AbstractItemAction {
 
 	@Override
 	public void act(Player player, Item parentItem, Item targetItem, Object... params) {
+		player.getController().cancelUseItem();
 		int tuningScrollItemId = parentItem.getItemId();
-		int tuningScrollObjectId = parentItem.getObjectId();
+		final int tuningScrollObjectId = parentItem.getObjectId();
 		PacketSendUtility.broadcastPacket(player,
 			new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), tuningScrollObjectId, tuningScrollItemId, 5000, 12, 0), true);
 		ItemUseObserver observer = new ItemUseObserver() {
@@ -79,7 +82,9 @@ public class TuningAction extends AbstractItemAction {
 		player.getObserveController().attach(observer);
 		player.getController().addTask(TaskId.ITEM_USE, ThreadPoolManager.getInstance().schedule(() -> {
 			player.getObserveController().removeObserver(observer);
-			if (player.getInventory().getItemByObjId(targetItem.getObjectId()) == null || !canAct(player, parentItem, targetItem)) {
+			if (player.getInventory().getItemByObjId(tuningScrollObjectId) != parentItem
+				|| player.getInventory().getItemByObjId(targetItem.getObjectId()) != targetItem
+				|| !canAct(player, parentItem, targetItem)) {
 				PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), tuningScrollObjectId, tuningScrollItemId, 0, 14, 0),
 					true);
 				return;

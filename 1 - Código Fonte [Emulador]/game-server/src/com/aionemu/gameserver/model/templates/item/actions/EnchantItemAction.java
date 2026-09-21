@@ -95,6 +95,7 @@ public class EnchantItemAction extends AbstractItemAction {
 			@Override
 			public void abort() {
 				player.getController().cancelTask(TaskId.ITEM_USE);
+				player.subtractSupplements(0, 0);
 				PacketSendUtility.sendPacket(player, isEnchantmentStone ? SM_SYSTEM_MESSAGE.STR_ENCHANT_ITEM_CANCELED(targetItem.getL10n())
 					: SM_SYSTEM_MESSAGE.STR_GIVE_ITEM_OPTION_CANCELED(targetItem.getL10n()));
 				PacketSendUtility.broadcastPacketAndReceive(player,
@@ -116,7 +117,10 @@ public class EnchantItemAction extends AbstractItemAction {
 			player.getObserveController().removeObserver(observer);
 			if (player.getInventory().getItemByObjId(parentItem.getObjectId()) != parentItem
 				|| (player.getInventory().getItemByObjId(targetItem.getObjectId()) != targetItem
-					&& player.getEquipment().getEquippedItemByObjId(targetItem.getObjectId()) != targetItem)) {
+					&& player.getEquipment().getEquippedItemByObjId(targetItem.getObjectId()) != targetItem)
+				|| (supplementItem != null && (player.getInventory().getItemByObjId(supplementItem.getObjectId()) != supplementItem
+					|| supplementItem.getItemCount() < count))) {
+				player.subtractSupplements(0, 0);
 				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ENCHANT_ITEM_NO_TARGET_ITEM());
 				PacketSendUtility.broadcastPacketAndReceive(player,
 					new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem.getItemTemplate().getTemplateId(), 0, 2, 0));

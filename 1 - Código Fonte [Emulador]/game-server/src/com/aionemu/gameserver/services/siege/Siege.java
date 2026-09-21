@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import com.aionemu.gameserver.configs.main.LoggingConfig;
 import com.aionemu.gameserver.configs.main.SiegeConfig;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.model.gameobjects.player.PlayerCommonData;
 import com.aionemu.gameserver.model.gameobjects.siege.SiegeNpc;
 import com.aionemu.gameserver.model.siege.FortressLocation;
 import com.aionemu.gameserver.model.siege.SiegeLocation;
@@ -190,14 +191,17 @@ public abstract class Siege<SL extends SiegeLocation> {
 
 				for (int i = 0; i < topGrade.getTop() && playerIndex < topPlayersIds.size(); i++, playerIndex++) {
 					int playerId = topPlayersIds.get(playerIndex);
+					PlayerCommonData recipient = PlayerService.getOrLoadPlayerCommonData(playerId);
+					if (recipient == null)
+						continue;
 					long kinahReward = Math.round(kinahRewardForRewardLevel / (float) topGrade.getTop());
 					if (kinahReward > 40000000)
 						kinahReward = 40000000;
 					if (isWinner && topGrade.hasItemRewardsForWin())
-						MailFormatter.sendAbyssRewardMail(getSiegeLocation(), PlayerService.getOrLoadPlayerCommonData(playerId), level, raceResult, timeMillis,
+						MailFormatter.sendAbyssRewardMail(getSiegeLocation(), recipient, level, raceResult, timeMillis,
 							topGrade.getItemId(), topGrade.getItemCount(), kinahReward);
 					else if (!isWinner && topGrade.hasItemRewardsForDefeat())
-						MailFormatter.sendCustomAbyssDefeatRewardMail(PlayerService.getOrLoadPlayerCommonData(playerId), topGrade.getItemIdDefeat(), topGrade.getItemCountDefeat());
+						MailFormatter.sendCustomAbyssDefeatRewardMail(recipient, topGrade.getItemIdDefeat(), topGrade.getItemCountDefeat());
 
 				}
 			}

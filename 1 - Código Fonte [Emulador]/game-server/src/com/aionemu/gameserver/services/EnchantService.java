@@ -38,44 +38,53 @@ import com.aionemu.gameserver.utils.audit.AuditLogger;
 public class EnchantService {
 
 	public static boolean breakItem(Player player, Item targetItem, Item parentItem) {
+		if (targetItem == null || parentItem == null || targetItem.getObjectId() == parentItem.getObjectId())
+			return false;
 		Storage inventory = player.getInventory();
-		if (inventory.getItemByObjId(targetItem.getObjectId()) == null || inventory.getItemByObjId(parentItem.getObjectId()) == null)
-			return false;
+		synchronized (inventory) {
+			if (inventory.getItemByObjId(targetItem.getObjectId()) != targetItem || inventory.getItemByObjId(parentItem.getObjectId()) != parentItem)
+				return false;
 
-		ItemTemplate itemTemplate = targetItem.getItemTemplate();
-		if (!itemTemplate.isArmor() && !itemTemplate.isWeapon()) {
-			AuditLogger.log(player, "tried to break down incompatible item type");
-			return false;
+			ItemTemplate itemTemplate = targetItem.getItemTemplate();
+			if (!itemTemplate.isArmor() && !itemTemplate.isWeapon()) {
+				AuditLogger.log(player, "tried to break down incompatible item type");
+				return false;
+			}
+
+			int effectiveLevel = calculateEffectiveLevel(itemTemplate.getItemQuality(), itemTemplate.getLevel());
+			if (effectiveLevel == 0)
+				throw new IllegalArgumentException("Invalid item quality for breaking item " + itemTemplate.getItemQuality());
+
+			int rndEffectiveLevel = effectiveLevel + Rnd.get(0, 10);
+			if (itemTemplate.isWeapon())
+				rndEffectiveLevel += 5;
+
+			// Omega Stones are limited to Drops
+			int stoneId;
+			if (rndEffectiveLevel >= calculateEffectiveLevel(EnchantmentStone.EPSILON))
+				stoneId = 166000195;
+			else if (rndEffectiveLevel >= calculateEffectiveLevel(EnchantmentStone.DELTA))
+				stoneId = 166000194;
+			else if (rndEffectiveLevel >= calculateEffectiveLevel(EnchantmentStone.GAMMA))
+				stoneId = 166000193;
+			else if (rndEffectiveLevel >= calculateEffectiveLevel(EnchantmentStone.BETA))
+				stoneId = 166000192;
+			else
+				stoneId = 166000191; // Alpha
+
+			if (!inventory.decreaseByObjectId(parentItem.getObjectId(), 1)) {
+				AuditLogger.log(player, "possibly used break item hack");
+				return false;
+			}
+			if (inventory.delete(targetItem) == null) {
+				ItemService.addItem(player, parentItem.getItemId(), 1);
+				AuditLogger.log(player, "possibly used break item hack");
+				return false;
+			}
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_DECOMPOSE_ITEM_SUCCEED(targetItem.getL10n()));
+			ItemService.addItem(player, stoneId, itemTemplate.isWeapon() ? Rnd.get(2, 5) : Rnd.get(1, 3));
+			return true;
 		}
-
-		int effectiveLevel = calculateEffectiveLevel(itemTemplate.getItemQuality(), itemTemplate.getLevel());
-		if (effectiveLevel == 0)
-			throw new IllegalArgumentException("Invalid item quality for breaking item " + itemTemplate.getItemQuality());
-
-		int rndEffectiveLevel = effectiveLevel + Rnd.get(0, 10);
-		if (itemTemplate.isWeapon())
-			rndEffectiveLevel += 5;
-
-		// Omega Stones are limited to Drops
-		int stoneId;
-		if (rndEffectiveLevel >= calculateEffectiveLevel(EnchantmentStone.EPSILON))
-			stoneId = 166000195;
-		else if (rndEffectiveLevel >= calculateEffectiveLevel(EnchantmentStone.DELTA))
-			stoneId = 166000194;
-		else if (rndEffectiveLevel >= calculateEffectiveLevel(EnchantmentStone.GAMMA))
-			stoneId = 166000193;
-		else if (rndEffectiveLevel >= calculateEffectiveLevel(EnchantmentStone.BETA))
-			stoneId = 166000192;
-		else
-			stoneId = 166000191; // Alpha
-
-		if (!inventory.decreaseByObjectId(parentItem.getObjectId(), 1) || inventory.delete(targetItem) == null) {
-			AuditLogger.log(player, "possibly used break item hack");
-			return false;
-		}
-		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_DECOMPOSE_ITEM_SUCCEED(targetItem.getL10n()));
-		ItemService.addItem(player, stoneId, itemTemplate.isWeapon() ? Rnd.get(2, 5) : Rnd.get(1, 3));
-		return true;
 	}
 
 	private static int calculateEffectiveLevel(EnchantmentStone enchantmentStone) {

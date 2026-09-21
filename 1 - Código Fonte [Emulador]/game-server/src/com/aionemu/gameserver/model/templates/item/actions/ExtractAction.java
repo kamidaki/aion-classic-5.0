@@ -23,7 +23,7 @@ public class ExtractAction extends AbstractItemAction {
 
 	@Override
 	public boolean canAct(Player player, Item parentItem, Item targetItem, Object... params) {
-		if (targetItem == null) {
+		if (parentItem == null || targetItem == null || parentItem.getObjectId() == targetItem.getObjectId()) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_DECOMPOSE_ITEM_NO_TARGET_ITEM());
 			return false;
 		}
@@ -41,6 +41,7 @@ public class ExtractAction extends AbstractItemAction {
 
 	@Override
 	public void act(Player player, Item parentItem, Item targetItem, Object... params) {
+		player.getController().cancelUseItem();
 		PacketSendUtility.sendPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem.getItemTemplate()
 			.getTemplateId(), 5000, 0, 0));
 		ItemUseObserver observer = new ItemUseObserver() {

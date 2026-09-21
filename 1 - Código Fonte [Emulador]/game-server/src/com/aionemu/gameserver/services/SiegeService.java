@@ -63,7 +63,8 @@ public class SiegeService {
 	private final Map<Integer, SiegeLocation> locations;
 	private AgentLocation agent;
 	private Date nextStateUpdateTime;
-	private Set<Player> rvrEventPlayers = new HashSet<>();
+	private final Map<Integer, java.util.concurrent.Future<?>> siegeEndTasks = new ConcurrentHashMap<>();
+	private final Set<Player> rvrEventPlayers = ConcurrentHashMap.newKeySet();
 
 	public static SiegeService getInstance() {
 		return instance;
@@ -227,6 +228,7 @@ public class SiegeService {
 		try {
 			siege.startSiege();
 		} catch (Exception e) {
+			activeSieges.remove(siegeLocationId);
 			log.error("Error starting siege for location " + siegeLocationId, e);
 			return;
 		}
@@ -237,11 +239,16 @@ public class SiegeService {
 			return;
 
 		// schedule siege end
-		ThreadPoolManager.getInstance().schedule(() -> stopSiege(siegeLocationId), siege.getSiegeLocation().getSiegeDuration() * 1000L);
+		java.util.concurrent.Future<?> endTask = ThreadPoolManager.getInstance().schedule(() -> stopSiege(siegeLocationId), siege.getSiegeLocation().getSiegeDuration() * 1000L);
+		siegeEndTasks.put(siegeLocationId, endTask);
 	}
 
 	public synchronized void stopSiege(int siegeLocationId) {
 		log.debug("Stopping siege of siege location: {}", siegeLocationId);
+
+		java.util.concurrent.Future<?> endTask = siegeEndTasks.remove(siegeLocationId);
+		if (endTask != null && !endTask.isDone())
+			endTask.cancel(false);
 
 		Siege<? extends SiegeLocation> siege = activeSieges.remove(siegeLocationId);
 		if (siege == null) {
@@ -711,7 +718,7 @@ public class SiegeService {
 	}
 
 	public void clearRvrEventPlayers() {
-		rvrEventPlayers = new HashSet<>();
+		rvrEventPlayers.clear();
 	}
 
 	/**

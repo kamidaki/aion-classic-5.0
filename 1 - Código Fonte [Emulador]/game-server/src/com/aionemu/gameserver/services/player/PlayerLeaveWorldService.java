@@ -102,6 +102,7 @@ public class PlayerLeaveWorldService {
 			SielEnergyService.getInstance().onLogout(player);
 			DecomposeAction.selectionClosed(player);
 			PlayerMoveTaskManager.getInstance().removePlayer(player);
+			SiegeService.getInstance().getRvrEventPlayers().remove(player);
 
 			if (player.isDead()) {
 				if (player.isInInstance() || player.getWorldId() == 400030000)

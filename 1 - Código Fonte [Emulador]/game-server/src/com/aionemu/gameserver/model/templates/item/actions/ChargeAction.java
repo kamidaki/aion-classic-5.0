@@ -66,6 +66,7 @@ public class ChargeAction extends AbstractItemAction {
 
 	@Override
 	public void act(final Player player, Item parentItem, final Item targetItem, Object... params) {
+		player.getController().cancelUseItem();
 		int chargeWay = parentItem.getImprovement().getChargeWay();
 		int castingDelay = parentItem.getItemTemplate().getCastingDelay();
 		if (castingDelay <= 0) {
@@ -97,19 +98,21 @@ public class ChargeAction extends AbstractItemAction {
 	}
 
 	private void finishUse(Player player, Item parentItem, Item targetItem) {
+		if (player.getInventory().getItemByObjId(parentItem.getObjectId()) != parentItem)
+			return;
 		if (targetItem != null && player.getInventory().getItemByObjId(targetItem.getObjectId()) == null && !targetItem.isEquipped()) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ENCHANT_ITEM_NO_TARGET_ITEM());
 			PacketSendUtility.broadcastPacket(player,
 				new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem.getItemId(), 0, 2, 0), true);
 			return;
 		}
-		PacketSendUtility.broadcastPacket(player,
-			new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem.getItemId(), 0, 1, 0), true);
 		Collection<Item> conditioningItems = getConditioningItems(player, parentItem, targetItem);
 		if (conditioningItems.isEmpty())
 			return;
 		if (!player.getInventory().decreaseByObjectId(parentItem.getObjectId(), 1))
 			return;
+		PacketSendUtility.broadcastPacket(player,
+			new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem.getItemId(), 0, 1, 0), true);
 		player.startCooldown(parentItem);
 		if (targetItem != null) // avoid the "Successfully conditioned equipped item(s)" bulk summary for a single targeted item
 			ItemChargeService.chargeItem(player, targetItem, maxChargeLevel, false, false);
