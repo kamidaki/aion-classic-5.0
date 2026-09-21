@@ -33,6 +33,9 @@ std::atomic<bool> g_featComboUi(true);
 std::atomic<bool> g_comboVisible(true);
 std::atomic<float> g_comboOpacity(1.0f);
 std::atomic<float> g_comboScale(1.0f);
+std::atomic<float> g_comboPosNormX(0.80f);
+std::atomic<float> g_comboPosNormY(0.50f);
+std::atomic<bool>  g_secureAreaVisible(true);
 
 std::string g_clientLang = "BRA";
 

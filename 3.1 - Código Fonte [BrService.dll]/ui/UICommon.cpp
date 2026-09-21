@@ -295,4 +295,19 @@ std::wstring UICommon::FormatTime(uint32_t totalSecs) {
     return std::wstring(buf);
 }
 
+std::wstring UICommon::Utf8ToWide(const std::string& utf8Str) {
+    if (utf8Str.empty()) return std::wstring();
+    int wlen = MultiByteToWideChar(CP_UTF8, 0, utf8Str.c_str(), (int)utf8Str.length(), nullptr, 0);
+    if (wlen <= 0) {
+        wlen = MultiByteToWideChar(CP_ACP, 0, utf8Str.c_str(), (int)utf8Str.length(), nullptr, 0);
+        if (wlen <= 0) return std::wstring(utf8Str.begin(), utf8Str.end());
+        std::wstring out(wlen, 0);
+        MultiByteToWideChar(CP_ACP, 0, utf8Str.c_str(), (int)utf8Str.length(), &out[0], wlen);
+        return out;
+    }
+    std::wstring out(wlen, 0);
+    MultiByteToWideChar(CP_UTF8, 0, utf8Str.c_str(), (int)utf8Str.length(), &out[0], wlen);
+    return out;
+}
+
 } // namespace BrService

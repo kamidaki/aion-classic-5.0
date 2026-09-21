@@ -38,6 +38,7 @@ cl /c /O2 /utf-8 /W3 /std:c++17 /EHsc /MT /D NDEBUG /D _WINDOWS /D _USRDLL /D _U
     database\CombatDb.cpp ^
     model3d\CryModelBridge.cpp ^
     ui\UICommon.cpp ^
+    ui\IconManager.cpp ^
     ui\PingHudUI.cpp ^
     ui\DrawerModalUI.cpp ^
     combo\ComboRenderer.cpp ^

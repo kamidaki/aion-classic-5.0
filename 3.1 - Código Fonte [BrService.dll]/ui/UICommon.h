@@ -28,6 +28,7 @@ public:
 
     static std::wstring FormatNumber(uint64_t val);
     static std::wstring FormatTime(uint32_t totalSecs);
+    static std::wstring Utf8ToWide(const std::string& utf8Str);
 
     // Color constants (Aion 2 Palette)
     static const Gdiplus::Color ColGlassBack;

@@ -90,6 +90,9 @@ extern std::atomic<bool> g_featComboUi;        // -comboUi:enable|disable
 extern std::atomic<bool> g_comboVisible;       // settings toggle (if false, hidden and participation points paused)
 extern std::atomic<float> g_comboOpacity;      // 0.1f to 1.0f (default 1.0f)
 extern std::atomic<float> g_comboScale;        // 0.55f to 1.60f (default 1.0f)
+extern std::atomic<float> g_comboPosNormX;     // normalized X pos (default 0.80f)
+extern std::atomic<float> g_comboPosNormY;     // normalized Y pos (default 0.50f)
+extern std::atomic<bool> g_secureAreaVisible;  // secure area overlay visibility toggle (default true)
 
 // Language Flag: "BRA" (Portuguese) or "ENG"/"ENU" (English)
 extern std::string g_clientLang;

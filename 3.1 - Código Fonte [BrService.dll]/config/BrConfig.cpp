@@ -46,14 +46,22 @@ void BrConfig::Load() {
 
     GetPrivateProfileStringW(L"ComboUI", L"Scale", L"1.0", buf, 64, ini.c_str());
     g_comboScale = std::clamp(static_cast<float>(_wtof(buf)), 0.55f, 1.60f);
-    float normX = 0.8f, normY = 0.5f, dummyS = 1.0f;
-    GetComboOverlayLayout(&normX, &normY, &dummyS);
-    SetComboOverlayLayout(normX, normY, g_comboScale.load());
 
-    LogInfo("Configuracoes carregadas de %ls: FOV=%.1f, CamMax=%.1f, MaxFPS=%d, W=%d, H=%d, Opacity=%d, ComboVis=%d, ComboScale=%.2f",
+    GetPrivateProfileStringW(L"ComboUI", L"PosNormX", L"0.80", buf, 64, ini.c_str());
+    g_comboPosNormX = std::clamp(static_cast<float>(_wtof(buf)), 0.05f, 0.95f);
+
+    GetPrivateProfileStringW(L"ComboUI", L"PosNormY", L"0.50", buf, 64, ini.c_str());
+    g_comboPosNormY = std::clamp(static_cast<float>(_wtof(buf)), 0.05f, 0.95f);
+
+    SetComboOverlayLayout(g_comboPosNormX.load(), g_comboPosNormY.load(), g_comboScale.load());
+
+    g_secureAreaVisible = (GetPrivateProfileIntW(L"SecureArea", L"Visible", 1, ini.c_str()) != 0);
+
+    LogInfo("Configuracoes carregadas de %ls: FOV=%.1f, CamMax=%.1f, MaxFPS=%d, W=%d, H=%d, Opacity=%d, ComboVis=%d, ComboScale=%.2f, ComboPos=(%.2f, %.2f), SecureArea=%d",
             ini.c_str(), g_cvarFov.load(), g_cvarCamMax.load(), g_cvarMaxFps.load(),
             g_drawerW.load(), g_drawerH.load(), g_drawerOpacity.load(),
-            g_comboVisible.load() ? 1 : 0, g_comboScale.load());
+            g_comboVisible.load() ? 1 : 0, g_comboScale.load(),
+            g_comboPosNormX.load(), g_comboPosNormY.load(), g_secureAreaVisible.load() ? 1 : 0);
 }
 
 void BrConfig::Save() {
@@ -83,6 +91,12 @@ void BrConfig::Save() {
     WritePrivateProfileStringW(L"ComboUI", L"Opacity", buf, ini.c_str());
     swprintf_s(buf, L"%.2f", g_comboScale.load());
     WritePrivateProfileStringW(L"ComboUI", L"Scale", buf, ini.c_str());
+    swprintf_s(buf, L"%.3f", g_comboPosNormX.load());
+    WritePrivateProfileStringW(L"ComboUI", L"PosNormX", buf, ini.c_str());
+    swprintf_s(buf, L"%.3f", g_comboPosNormY.load());
+    WritePrivateProfileStringW(L"ComboUI", L"PosNormY", buf, ini.c_str());
+
+    WritePrivateProfileStringW(L"SecureArea", L"Visible", g_secureAreaVisible.load() ? L"1" : L"0", ini.c_str());
 }
 
 } // namespace BrService

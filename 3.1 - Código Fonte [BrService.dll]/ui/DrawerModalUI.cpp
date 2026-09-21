@@ -1,5 +1,6 @@
 #include "DrawerModalUI.h"
 #include "UICommon.h"
+#include "IconManager.h"
 #include "../core/ServiceGlobals.h"
 #include "../core/ServiceLog.h"
 #include "../core/I18n.h"
@@ -54,9 +55,19 @@ static RECT s_comboScale100Rect = { 0, 0, 0, 0 };
 static RECT s_comboScale130Rect = { 0, 0, 0, 0 };
 static RECT s_comboScaleMinusRect = { 0, 0, 0, 0 };
 static RECT s_comboScalePlusRect = { 0, 0, 0, 0 };
+static RECT s_comboPosTopRect = { 0, 0, 0, 0 };
+static RECT s_comboPosMidRightRect = { 0, 0, 0, 0 };
+static RECT s_comboPosCenterRect = { 0, 0, 0, 0 };
+static RECT s_comboPosLeftRect = { 0, 0, 0, 0 };
+static RECT s_comboPosXMinusRect = { 0, 0, 0, 0 };
+static RECT s_comboPosXPlusRect = { 0, 0, 0, 0 };
+static RECT s_comboPosYMinusRect = { 0, 0, 0, 0 };
+static RECT s_comboPosYPlusRect = { 0, 0, 0, 0 };
+static RECT s_secureAreaToggleRect = { 0, 0, 0, 0 };
 static RECT s_saveSettingsBtnRect = { 0, 0, 0, 0 };
 
 bool DrawerModalUI::Initialize(HINSTANCE hInst) {
+    IconManager::Initialize();
     s_modalW = std::clamp(g_drawerW.load(), 400, 640);
     s_modalH = std::clamp(g_drawerH.load(), 480, 780);
 
@@ -95,6 +106,7 @@ bool DrawerModalUI::Initialize(HINSTANCE hInst) {
 }
 
 void DrawerModalUI::Shutdown() {
+    IconManager::Shutdown();
     if (g_hDrawerModalWnd && IsWindow(g_hDrawerModalWnd)) {
         DestroyWindow(g_hDrawerModalWnd);
         g_hDrawerModalWnd = nullptr;
@@ -243,19 +255,23 @@ void DrawerModalUI::Paint(HWND hwnd) {
         Gdiplus::SolidBrush headerBrush(UICommon::ColGlassHeader);
         UICommon::FillRoundRectangle(g, &headerBrush, 3.0f, 3.0f, W - 6.0f, 44.0f, 14.0f);
 
-        Gdiplus::Font fontTitle(L"Segoe UI", 10.5f, Gdiplus::FontStyleBold);
+        Gdiplus::Font fontTitle(L"Segoe UI", 11.0f, Gdiplus::FontStyleBold);
         Gdiplus::SolidBrush textWhite(UICommon::ColTextWhite);
         Gdiplus::SolidBrush textGold(UICommon::ColGoldAccent);
         Gdiplus::SolidBrush textMuted(UICommon::ColTextMuted);
 
         g.DrawString(I18n::TitlePanel(), -1, &fontTitle, Gdiplus::PointF(16.0f, 12.0f), &textGold);
 
-        Gdiplus::Font fontSubTitle(L"Segoe UI", 8.5f, Gdiplus::FontStyleRegular);
-        if (s_isSettingsOpen) {
-            g.DrawString(I18n::SubtitleSettings(), -1, &fontSubTitle, Gdiplus::PointF(160.0f, 14.0f), &textMuted);
-        } else {
-            g.DrawString(I18n::TitleDpsMeter(), -1, &fontSubTitle, Gdiplus::PointF(160.0f, 14.0f), &textMuted);
-        }
+        Gdiplus::RectF titleBounds;
+        g.MeasureString(I18n::TitlePanel(), -1, &fontTitle, Gdiplus::PointF(16.0f, 12.0f), &titleBounds);
+
+        float subX = titleBounds.GetRight() + 10.0f;
+        Gdiplus::Font fontSubTitle(L"Segoe UI", 8.2f, Gdiplus::FontStyleRegular);
+        Gdiplus::SolidBrush pipeBrush(Gdiplus::Color(65, 212, 175, 55));
+        g.DrawString(L"|", -1, &fontSubTitle, Gdiplus::PointF(subX, 14.0f), &pipeBrush);
+
+        const wchar_t* subText = s_isSettingsOpen ? I18n::SubtitleSettings() : I18n::TitleDpsMeter();
+        g.DrawString(subText, -1, &fontSubTitle, Gdiplus::PointF(subX + 8.0f, 14.0f), &textMuted);
 
         // Settings Button [⚙]
         s_settingsBtnRect = { s_modalW - 68, 10, s_modalW - 44, 34 };
@@ -430,9 +446,53 @@ void DrawerModalUI::Paint(HWND hwnd) {
             g.DrawString(I18n::FineTune(), -1, &fontSubLabel, Gdiplus::PointF(255.0f, curY + 2), &textMuted);
             drawStepBtn(s_comboScaleMinusRect, 320, L"-");
             drawStepBtn(s_comboScalePlusRect, 350, L"+");
+            curY += 28.0f;
+
+            // Combo UI Screen Position
+            g.DrawString(I18n::ComboUiPosition(), -1, &fontLabel, Gdiplus::PointF(16.0f, curY), &textWhite);
+            curY += 18.0f;
+
+            float curNormX = g_comboPosNormX.load();
+            float curNormY = g_comboPosNormY.load();
+            bool isTop = (curNormY < 0.25f);
+            bool isMidRight = (!isTop && curNormX > 0.65f);
+            bool isCenter = (!isTop && curNormX >= 0.35f && curNormX <= 0.65f);
+            bool isLeft = (!isTop && curNormX < 0.35f);
+
+            drawPresetBtn(s_comboPosTopRect, 16, 68, I18n::ComboPosTop(), isTop);
+            drawPresetBtn(s_comboPosMidRightRect, 88, 80, I18n::ComboPosMidRight(), isMidRight);
+            drawPresetBtn(s_comboPosCenterRect, 172, 70, I18n::ComboPosCenter(), isCenter);
+            drawPresetBtn(s_comboPosLeftRect, 246, 72, I18n::ComboPosLeft(), isLeft);
+            curY += 26.0f;
+
+            // Position Fine Tuning X and Y
+            g.DrawString(I18n::FineTune(), -1, &fontSubLabel, Gdiplus::PointF(16.0f, curY + 2), &textMuted);
+            g.DrawString(I18n::PosX(), -1, &fontSubLabel, Gdiplus::PointF(85.0f, curY + 2), &textWhite);
+            drawStepBtn(s_comboPosXMinusRect, 105, L"-");
+            drawStepBtn(s_comboPosXPlusRect, 135, L"+");
+
+            g.DrawString(I18n::PosY(), -1, &fontSubLabel, Gdiplus::PointF(175.0f, curY + 2), &textWhite);
+            drawStepBtn(s_comboPosYMinusRect, 195, L"-");
+            drawStepBtn(s_comboPosYPlusRect, 225, L"+");
+            curY += 28.0f;
+
+            // 5. Secure Area UI Toggle (Barreira de Seguranca)
+            g.DrawLine(&sepPen, 16.0f, curY, W - 16.0f, curY);
+            curY += 10.0f;
+            g.DrawString(I18n::SecureAreaSection(), -1, &fontSection, Gdiplus::PointF(16.0f, curY), &textGold);
+            curY += 20.0f;
+
+            s_secureAreaToggleRect = { 16, (int)curY, 200, (int)curY + 22 };
+            bool saVis = g_secureAreaVisible.load();
+            Gdiplus::SolidBrush saVisBrush(saVis ? Gdiplus::Color(80, 45, 210, 45) : Gdiplus::Color(35, 75, 85, 95));
+            UICommon::FillRoundRectangle(g, &saVisBrush, (float)s_secureAreaToggleRect.left, (float)s_secureAreaToggleRect.top, 184.0f, 22.0f, 4.0f);
+            g.DrawString(saVis ? I18n::SecureAreaActive() : I18n::SecureAreaInactive(), -1, &fontSubLabel,
+                         Gdiplus::PointF((float)s_secureAreaToggleRect.left + 8, (float)s_secureAreaToggleRect.top + 4), &textWhite);
+
+            g.DrawString(I18n::SecureAreaDesc(), -1, &fontSubLabel, Gdiplus::PointF(212.0f, curY + 4), &textMuted);
             curY += 32.0f;
 
-            // 5. Save & Close Button
+            // 6. Save & Close Button
             s_saveSettingsBtnRect = { 16, (int)H - 46, (int)W - 16, (int)H - 14 };
             Gdiplus::LinearGradientBrush saveBtnBrush(
                 Gdiplus::PointF(16.0f, (float)s_saveSettingsBtnRect.top),
@@ -458,7 +518,9 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 s_heightMinusRect = s_heightPlusRect = s_opacitySliderRect = s_compactToggleRect =
                 s_hideConsoleToggleRect = s_comboToggleRect = s_comboOpacitySliderRect = s_comboScale70Rect =
                 s_comboScale100Rect = s_comboScale130Rect = s_comboScaleMinusRect = s_comboScalePlusRect =
-                s_saveSettingsBtnRect = { 0, 0, 0, 0 };
+                s_comboPosTopRect = s_comboPosMidRightRect = s_comboPosCenterRect = s_comboPosLeftRect =
+                s_comboPosXMinusRect = s_comboPosXPlusRect = s_comboPosYMinusRect = s_comboPosYPlusRect =
+                s_secureAreaToggleRect = s_saveSettingsBtnRect = { 0, 0, 0, 0 };
 
             // =========================================================================
             // VIEW B: MAIN DASHBOARD
@@ -557,11 +619,17 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 Gdiplus::Font fontTargetStats(L"Segoe UI", 7.5f, Gdiplus::FontStyleRegular);
 
                 if (g_currentTarget.hasTarget) {
-                    float targetX = 16.0f;
-                    UICommon::DrawTargetEmblemDisk(g, targetX, curY + 1.0f, 16.0f, g_currentTarget.rating, g_currentTarget.race, g_currentTarget.isNpc);
-                    targetX += 22.0f;
+                    if (g_currentTarget.modelId > 0) {
+                        CryModelBridge::SetTargetNpc(g_currentTarget.modelId);
+                    }
+                    float curRadius = 10.0f;
+                    float diskCx = 28.0f;
+                    float diskCy = curY + 9.0f;
+                    UICommon::DrawTargetEmblemDisk(g, diskCx, diskCy, curRadius, g_currentTarget.rating, g_currentTarget.race, g_currentTarget.isNpc);
 
-                    std::wstring targetTitle = I18n::TargetLabel() + std::wstring(g_currentTarget.name.begin(), g_currentTarget.name.end());
+                    float targetX = 44.0f;
+                    std::wstring targetNameW = UICommon::Utf8ToWide(g_currentTarget.name);
+                    std::wstring targetTitle = I18n::TargetLabel() + targetNameW;
                     if (g_currentTarget.level > 0) {
                         targetTitle += L" [Lv. " + std::to_wstring(g_currentTarget.level) + L"]";
                     }
@@ -569,10 +637,10 @@ void DrawerModalUI::Paint(HWND hwnd) {
 
                     // Extra target stats chips
                     wchar_t statsBuf[128];
-                    std::wstring wAi(g_currentTarget.aiName.begin(), g_currentTarget.aiName.end());
+                    std::wstring wAi = UICommon::Utf8ToWide(g_currentTarget.aiName);
                     swprintf_s(statsBuf, L"AI: %ls | ATK: %u  DEF: %u  M.RES: %u",
                                wAi.c_str(), g_currentTarget.attack, g_currentTarget.pdef, g_currentTarget.mres);
-                    g.DrawString(statsBuf, -1, &fontTargetStats, Gdiplus::PointF(W - 250.0f, curY + 2.0f), &textGold);
+                    g.DrawString(statsBuf, -1, &fontTargetStats, Gdiplus::PointF(W - 245.0f, curY + 2.0f), &textGold);
 
                     curY += 18.0f;
 
@@ -695,11 +763,11 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 } else {
                     for (int i = startIdx; i < static_cast<int>(tSize); ++i) {
                         const auto& evt = g_combatTimeline[i];
-                        std::wstring wTime(evt.timeStr.begin(), evt.timeStr.end());
-                        std::wstring wAtt(evt.attacker.begin(), evt.attacker.end());
-                        std::wstring wSkill(evt.skillName.begin(), evt.skillName.end());
+                        std::wstring wTime = UICommon::Utf8ToWide(evt.timeStr);
+                        std::wstring wAtt = UICommon::Utf8ToWide(evt.attacker);
+                        std::wstring wSkill = UICommon::Utf8ToWide(evt.skillName);
 
-                        UICommon::DrawSkillIconBadge(g, 18.0f, curY + 1.0f, 13.0f, evt.skillId, evt.skillName);
+                        IconManager::DrawSkillIcon(g, 18.0f, curY + 1.0f, 13.0f, evt.skillId, evt.skillName);
                         float lineX = 36.0f;
 
                         wchar_t logLine[128];
@@ -751,7 +819,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
                     Gdiplus::SolidBrush barB(Gdiplus::Color(45, 215, 65, 75));
                     UICommon::FillRoundRectangle(g, &barB, 16.0f, curY, barW, rowHeight - 2.0f, 3.0f);
 
-                    std::wstring wName(player.name.begin(), player.name.end());
+                    std::wstring wName = UICommon::Utf8ToWide(player.name);
                     g.DrawString(wName.c_str(), -1, &fRow, Gdiplus::PointF(20.0f, curY + 2), &textWhite);
 
                     std::wstring wDmg = UICommon::FormatNumber(player.totalDamage);
@@ -954,6 +1022,72 @@ LRESULT CALLBACK DrawerModalUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
             if (mx >= s_comboScalePlusRect.left && mx <= s_comboScalePlusRect.right &&
                 my >= s_comboScalePlusRect.top && my <= s_comboScalePlusRect.bottom) {
                 applyScale(curScale + 0.05f);
+                return 0;
+            }
+
+            // Combo Position Presets & Fine Tuning
+            float curNormX = g_comboPosNormX.load();
+            float curNormY = g_comboPosNormY.load();
+
+            auto applyPos = [&](float tx, float ty) {
+                tx = std::clamp(tx, 0.05f, 0.95f);
+                ty = std::clamp(ty, 0.05f, 0.95f);
+                SetComboOverlayLayout(tx, ty, curScale);
+                g_comboPosNormX = tx;
+                g_comboPosNormY = ty;
+                g_ComboUI.RequestLayoutRefresh();
+                BrConfig::Save();
+                Repaint();
+            };
+
+            if (mx >= s_comboPosTopRect.left && mx <= s_comboPosTopRect.right &&
+                my >= s_comboPosTopRect.top && my <= s_comboPosTopRect.bottom) {
+                applyPos(0.50f, 0.12f);
+                return 0;
+            }
+            if (mx >= s_comboPosMidRightRect.left && mx <= s_comboPosMidRightRect.right &&
+                my >= s_comboPosMidRightRect.top && my <= s_comboPosMidRightRect.bottom) {
+                applyPos(0.80f, 0.50f);
+                return 0;
+            }
+            if (mx >= s_comboPosCenterRect.left && mx <= s_comboPosCenterRect.right &&
+                my >= s_comboPosCenterRect.top && my <= s_comboPosCenterRect.bottom) {
+                applyPos(0.50f, 0.50f);
+                return 0;
+            }
+            if (mx >= s_comboPosLeftRect.left && mx <= s_comboPosLeftRect.right &&
+                my >= s_comboPosLeftRect.top && my <= s_comboPosLeftRect.bottom) {
+                applyPos(0.20f, 0.50f);
+                return 0;
+            }
+
+            if (mx >= s_comboPosXMinusRect.left && mx <= s_comboPosXMinusRect.right &&
+                my >= s_comboPosXMinusRect.top && my <= s_comboPosXMinusRect.bottom) {
+                applyPos(curNormX - 0.02f, curNormY);
+                return 0;
+            }
+            if (mx >= s_comboPosXPlusRect.left && mx <= s_comboPosXPlusRect.right &&
+                my >= s_comboPosXPlusRect.top && my <= s_comboPosXPlusRect.bottom) {
+                applyPos(curNormX + 0.02f, curNormY);
+                return 0;
+            }
+            if (mx >= s_comboPosYMinusRect.left && mx <= s_comboPosYMinusRect.right &&
+                my >= s_comboPosYMinusRect.top && my <= s_comboPosYMinusRect.bottom) {
+                applyPos(curNormX, curNormY - 0.02f);
+                return 0;
+            }
+            if (mx >= s_comboPosYPlusRect.left && mx <= s_comboPosYPlusRect.right &&
+                my >= s_comboPosYPlusRect.top && my <= s_comboPosYPlusRect.bottom) {
+                applyPos(curNormX, curNormY + 0.02f);
+                return 0;
+            }
+
+            // Secure Area UI Toggle
+            if (mx >= s_secureAreaToggleRect.left && mx <= s_secureAreaToggleRect.right &&
+                my >= s_secureAreaToggleRect.top && my <= s_secureAreaToggleRect.bottom) {
+                g_secureAreaVisible = !g_secureAreaVisible.load();
+                BrConfig::Save();
+                Repaint();
                 return 0;
             }
 

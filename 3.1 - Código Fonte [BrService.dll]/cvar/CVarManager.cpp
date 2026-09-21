@@ -1,201 +1,362 @@
 #include "CVarManager.h"
 #include "../core/ServiceGlobals.h"
 #include "../core/ServiceLog.h"
-#include <mutex>
-#include <vector>
 #include <cstdio>
 #include <cstring>
+#include <algorithm>
+#include <atomic>
 
 namespace BrService {
 
-static std::recursive_mutex s_cvarMutex;
-static std::unordered_map<std::string, void*> s_cvarMap;
-static bool s_initialized = false;
+// 64-bit CryEngine CVar layout offsets
+static constexpr size_t kCVarNameOffset   = 8;
+static constexpr size_t kCVarIntOffset    = 184;
+static constexpr size_t kCVarFloatOffset  = 188;
+static constexpr size_t kCVarStringOffset = 192;
+static constexpr uintptr_t kVirtualMemoryMax = 0x7fffffff0000ull;
 
-// 64-bit CryEngine CVar structure offsets (Standard CryEngine 1.5 / Aion 64-bit)
-static constexpr size_t CVAR_FLAG_OFFSET = 8;
-static constexpr size_t CVAR_NAME_OFFSET = 9;
-static constexpr size_t CVAR_INT_OFFSET  = 184;
-static constexpr size_t CVAR_FLOAT_OFFSET= 188;
-static constexpr size_t CVAR_STR_OFFSET  = 192;
+// Worker state
+static HANDLE g_hWorkerThread = nullptr;
+static HANDLE g_hWakeEvent = nullptr;
+static volatile LONG g_stopWorker = 0;
+static CRITICAL_SECTION g_cvarLock;
+static bool g_csInitialized = false;
 
-void* CVarManager::FindCVar(const char* name) {
-    if (!name) return nullptr;
-    auto it = s_cvarMap.find(name);
-    if (it != s_cvarMap.end()) return it->second;
-    return nullptr;
+// Cached CVar memory addresses
+static BYTE* g_pCvarFov    = nullptr;
+static BYTE* g_pCvarCam    = nullptr;
+static BYTE* g_pCvarFps    = nullptr;
+static BYTE* g_pCvarTriple = nullptr;
+static BYTE* g_pCvarAniso  = nullptr;
+static BYTE* g_pCvarFreeFly= nullptr;
+
+static DWORD g_lastScanFov    = 0;
+static DWORD g_lastScanCam    = 0;
+static DWORD g_lastScanFps    = 0;
+static DWORD g_lastScanTriple = 0;
+static DWORD g_lastScanAniso  = 0;
+static DWORD g_lastScanFreeFly= 0;
+
+static bool IsGameReady() {
+    return GetModuleHandleA("game.dll") != nullptr &&
+           GetModuleHandleA("crysystem.dll") != nullptr &&
+           GetModuleHandleA("XRenderD3D9.dll") != nullptr;
 }
 
-static void WriteCVarFloat(void* pCVar, float val) {
-    if (!pCVar) return;
-    uint8_t* p = static_cast<uint8_t*>(pCVar);
-    *reinterpret_cast<int*>(p + CVAR_INT_OFFSET) = static_cast<int>(val);
-    *reinterpret_cast<float*>(p + CVAR_FLOAT_OFFSET) = val;
-    sprintf_s(reinterpret_cast<char*>(p + CVAR_STR_OFFSET), 64, "%f", val);
+static bool CvarNameMatches(const char* name, BYTE* p) {
+    if (!name || !p) return false;
+    const size_t len = strlen(name);
+    __try {
+        const BYTE flag = p[kCVarNameOffset];
+        if (flag != 0 && flag != 1) return false;
+        if (memcmp(p + kCVarNameOffset + 1, name, len) != 0) return false;
+        return p[kCVarNameOffset + 1 + len] == '\0';
+    } __except (EXCEPTION_EXECUTE_HANDLER) {
+        return false;
+    }
 }
 
-static void WriteCVarInt(void* pCVar, int val) {
-    if (!pCVar) return;
-    uint8_t* p = static_cast<uint8_t*>(pCVar);
-    *reinterpret_cast<int*>(p + CVAR_INT_OFFSET) = val;
-    *reinterpret_cast<float*>(p + CVAR_FLOAT_OFFSET) = static_cast<float>(val);
-    sprintf_s(reinterpret_cast<char*>(p + CVAR_STR_OFFSET), 64, "%d", val);
-}
+static BYTE* ScanCVarAddress(const char* name) {
+    BYTE* address = nullptr;
+    MEMORY_BASIC_INFORMATION mbi = {};
+    const size_t len = strlen(name);
 
-void CVarManager::ScanCVars() {
-    const char* targets[] = {
-        "g_minFov", "g_camMax", "g_maxfps", "g_freefly",
-        "d3d9_TripleBuffering", "r_Texture_Anisotropic_Level", "r_anisotropy", "con_disable_console"
-    };
+    while (VirtualQuery(address, &mbi, sizeof(mbi)) == sizeof(mbi)) {
+        if (reinterpret_cast<uintptr_t>(address) >= kVirtualMemoryMax) {
+            break;
+        }
 
-    SYSTEM_INFO si;
-    GetSystemInfo(&si);
+        BYTE* base = static_cast<BYTE*>(mbi.BaseAddress);
+        const SIZE_T size = mbi.RegionSize;
 
-    MEMORY_BASIC_INFORMATION mbi;
-    uint8_t* addr = static_cast<uint8_t*>(si.lpMinimumApplicationAddress);
-    uint8_t* maxAddr = static_cast<uint8_t*>(si.lpMaximumApplicationAddress);
+        if (mbi.State == MEM_COMMIT &&
+            mbi.Type == MEM_PRIVATE &&
+            mbi.Protect == PAGE_READWRITE &&
+            size > (kCVarNameOffset + len + 1)) {
 
-    size_t foundCount = 0;
-    size_t totalTargets = sizeof(targets) / sizeof(targets[0]);
-
-    try {
-        while (addr < maxAddr && foundCount < totalTargets) {
-            if (!VirtualQuery(addr, &mbi, sizeof(mbi))) {
-                addr += 0x1000;
-                continue;
-            }
-
-            if ((mbi.State == MEM_COMMIT) &&
-                (mbi.Protect == PAGE_READWRITE || mbi.Protect == PAGE_EXECUTE_READWRITE) &&
-                !(mbi.Protect & PAGE_GUARD)) {
-
-                uint8_t* pStart = static_cast<uint8_t*>(mbi.BaseAddress);
-                size_t regionSize = mbi.RegionSize;
-
-                // Scan in 16-byte steps (CryEngine heap alignment)
-                for (size_t i = 0; i + 256 < regionSize; i += 16) {
-                    uint8_t* candidate = pStart + i;
-
-                    for (const char* tName : targets) {
-                        if (s_cvarMap.find(tName) != s_cvarMap.end()) continue;
-
-                        size_t len = strlen(tName);
-                        // In CryEngine 64-bit: candidate[8] is boolean flag (0 or 1), candidate[9] is ASCII CVar name
-                        if ((candidate[CVAR_FLAG_OFFSET] == 0 || candidate[CVAR_FLAG_OFFSET] == 1) &&
-                            memcmp(candidate + CVAR_NAME_OFFSET, tName, len) == 0 &&
-                            (candidate[CVAR_NAME_OFFSET + len] == '\0' || candidate[CVAR_NAME_OFFSET + len] == ' ')) {
-
-                            s_cvarMap[tName] = candidate;
-                            foundCount++;
-                            LogInfo("CVar CryEngine localizado: %s no endereco %p", tName, candidate);
+            BYTE* end = base + size - (kCVarNameOffset + len + 1);
+            __try {
+                for (BYTE* p = base; p < end; p += 16) {
+                    const BYTE flag = p[kCVarNameOffset];
+                    if (flag == 0 || flag == 1) {
+                        if (memcmp(p + kCVarNameOffset + 1, name, len) == 0 &&
+                            p[kCVarNameOffset + 1 + len] == '\0') {
+                            return p;
                         }
                     }
                 }
+            } __except (EXCEPTION_EXECUTE_HANDLER) {
             }
-
-            uint8_t* nextAddr = static_cast<uint8_t*>(mbi.BaseAddress) + mbi.RegionSize;
-            if (nextAddr <= addr) break;
-            addr = nextAddr;
         }
-    } catch (...) {
-        LogError("Excecao capturada durante ScanCVars.");
+
+        BYTE* next = base + size;
+        if (next <= address) break;
+        address = next;
+    }
+    return nullptr;
+}
+
+static bool ApplyIntFloat(BYTE* base, int iVal, float fVal) {
+    if (!base) return false;
+    char txt[64] = {};
+    if (fVal == static_cast<float>(iVal)) {
+        snprintf(txt, sizeof(txt), "%d", iVal);
+    } else {
+        snprintf(txt, sizeof(txt), "%.3f", static_cast<double>(fVal));
+    }
+    __try {
+        *reinterpret_cast<int*>(base + kCVarIntOffset) = iVal;
+        *reinterpret_cast<float*>(base + kCVarFloatOffset) = fVal;
+        strcpy_s(reinterpret_cast<char*>(base + kCVarStringOffset), 64, txt);
+        return true;
+    } __except (EXCEPTION_EXECUTE_HANDLER) {
+        return false;
+    }
+}
+
+static void WorkerApplyAll() {
+    if (!IsGameReady()) return;
+
+    DWORD now = GetTickCount();
+
+    // 1. Panoramic FOV (g_minFov)
+    if (g_featFov.load()) {
+        float fov = std::clamp(g_cvarFov.load(), 60.0f, 120.0f);
+        BYTE* p = g_pCvarFov;
+        if (!p || !CvarNameMatches("g_minFov", p)) {
+            if (now - g_lastScanFov > 8000) {
+                g_lastScanFov = now;
+                g_pCvarFov = ScanCVarAddress("g_minFov");
+                p = g_pCvarFov;
+                if (p) LogInfo("CVar g_minFov localizado em: %p", p);
+            } else {
+                p = nullptr;
+            }
+        }
+        if (p) {
+            __try {
+                float cur = *reinterpret_cast<float*>(p + kCVarFloatOffset);
+                if (cur != fov) {
+                    ApplyIntFloat(p, static_cast<int>(fov), fov);
+                }
+            } __except (EXCEPTION_EXECUTE_HANDLER) {}
+        }
     }
 
-    LogInfo("Varredura de CVars concluida. Total encontrados: %zu/%zu", foundCount, totalTargets);
+    // 2. Camera Max Zoom (g_camMax)
+    if (g_featCamMax.load()) {
+        float cam = std::clamp(g_cvarCamMax.load(), 5.0f, 45.0f);
+        BYTE* p = g_pCvarCam;
+        if (!p || !CvarNameMatches("g_camMax", p)) {
+            if (now - g_lastScanCam > 8000) {
+                g_lastScanCam = now;
+                g_pCvarCam = ScanCVarAddress("g_camMax");
+                p = g_pCvarCam;
+                if (p) LogInfo("CVar g_camMax localizado em: %p", p);
+            } else {
+                p = nullptr;
+            }
+        }
+        if (p) {
+            __try {
+                float cur = *reinterpret_cast<float*>(p + kCVarFloatOffset);
+                if (cur != cam) {
+                    ApplyIntFloat(p, static_cast<int>(cam), cam);
+                }
+            } __except (EXCEPTION_EXECUTE_HANDLER) {}
+        }
+    }
+
+    // 3. Framerate Cap (g_maxfps)
+    if (g_featFpsUnlock.load()) {
+        int fps = g_cvarMaxFps.load();
+        BYTE* p = g_pCvarFps;
+        if (!p || !CvarNameMatches("g_maxfps", p)) {
+            if (now - g_lastScanFps > 8000) {
+                g_lastScanFps = now;
+                g_pCvarFps = ScanCVarAddress("g_maxfps");
+                p = g_pCvarFps;
+                if (p) LogInfo("CVar g_maxfps localizado em: %p", p);
+            } else {
+                p = nullptr;
+            }
+        }
+        if (p) {
+            __try {
+                int cur = *reinterpret_cast<int*>(p + kCVarIntOffset);
+                if (cur != fps) {
+                    ApplyIntFloat(p, fps, static_cast<float>(fps));
+                }
+            } __except (EXCEPTION_EXECUTE_HANDLER) {}
+        }
+    }
+
+    // 4. Triple Buffering (d3d9_TripleBuffering)
+    {
+        int tb = g_cvarTripleBuffering.load() ? 1 : 0;
+        BYTE* p = g_pCvarTriple;
+        if (!p || !CvarNameMatches("d3d9_TripleBuffering", p)) {
+            if (now - g_lastScanTriple > 8000) {
+                g_lastScanTriple = now;
+                g_pCvarTriple = ScanCVarAddress("d3d9_TripleBuffering");
+                p = g_pCvarTriple;
+                if (p) LogInfo("CVar d3d9_TripleBuffering localizado em: %p", p);
+            } else {
+                p = nullptr;
+            }
+        }
+        if (p) {
+            __try {
+                int cur = *reinterpret_cast<int*>(p + kCVarIntOffset);
+                if (cur != tb) {
+                    ApplyIntFloat(p, tb, static_cast<float>(tb));
+                }
+            } __except (EXCEPTION_EXECUTE_HANDLER) {}
+        }
+    }
+
+    // 5. Anisotropic Filtering (r_Texture_Anisotropic_Level)
+    {
+        int aniso = g_cvarAnisotropic.load() ? 16 : 0;
+        BYTE* p = g_pCvarAniso;
+        if (!p || !CvarNameMatches("r_Texture_Anisotropic_Level", p)) {
+            if (now - g_lastScanAniso > 8000) {
+                g_lastScanAniso = now;
+                g_pCvarAniso = ScanCVarAddress("r_Texture_Anisotropic_Level");
+                p = g_pCvarAniso;
+                if (p) LogInfo("CVar r_Texture_Anisotropic_Level localizado em: %p", p);
+            } else {
+                p = nullptr;
+            }
+        }
+        if (p) {
+            __try {
+                int cur = *reinterpret_cast<int*>(p + kCVarIntOffset);
+                if (cur != aniso) {
+                    ApplyIntFloat(p, aniso, static_cast<float>(aniso));
+                }
+            } __except (EXCEPTION_EXECUTE_HANDLER) {}
+        }
+    }
+
+    // 6. Free Fly (g_freefly)
+    {
+        int ff = g_featFreeFly.load() ? 1 : 0;
+        BYTE* p = g_pCvarFreeFly;
+        if (!p || !CvarNameMatches("g_freefly", p)) {
+            if (now - g_lastScanFreeFly > 8000) {
+                g_lastScanFreeFly = now;
+                g_pCvarFreeFly = ScanCVarAddress("g_freefly");
+                p = g_pCvarFreeFly;
+                if (p) LogInfo("CVar g_freefly localizado em: %p", p);
+            } else {
+                p = nullptr;
+            }
+        }
+        if (p) {
+            __try {
+                int cur = *reinterpret_cast<int*>(p + kCVarIntOffset);
+                if (cur != ff) {
+                    ApplyIntFloat(p, ff, static_cast<float>(ff));
+                }
+            } __except (EXCEPTION_EXECUTE_HANDLER) {}
+        }
+    }
+}
+
+static DWORD WINAPI CVarWorkerThreadProc(LPVOID) {
+    const DWORD intervalMs = 1500;
+    while (!InterlockedCompareExchange(&g_stopWorker, 0, 0)) {
+        WorkerApplyAll();
+        if (g_hWakeEvent) {
+            WaitForSingleObject(g_hWakeEvent, intervalMs);
+        } else {
+            Sleep(intervalMs);
+        }
+    }
+    return 0;
 }
 
 bool CVarManager::Initialize() {
-    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
-    if (s_initialized) return true;
+    if (!g_csInitialized) {
+        InitializeCriticalSection(&g_cvarLock);
+        g_csInitialized = true;
+    }
 
-    ScanCVars();
-    s_initialized = true;
-    ApplyAll();
+    InterlockedExchange(&g_stopWorker, 0);
+
+    if (!g_hWakeEvent) {
+        g_hWakeEvent = CreateEvent(nullptr, FALSE, FALSE, nullptr);
+    }
+
+    if (!g_hWorkerThread) {
+        g_hWorkerThread = CreateThread(nullptr, 0, CVarWorkerThreadProc, nullptr, 0, nullptr);
+        LogInfo("CVarManager worker thread iniciada.");
+    }
     return true;
 }
 
 void CVarManager::Shutdown() {
-    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
-    s_cvarMap.clear();
-    s_initialized = false;
+    InterlockedExchange(&g_stopWorker, 1);
+    if (g_hWakeEvent) {
+        SetEvent(g_hWakeEvent);
+    }
+    if (g_hWorkerThread) {
+        WaitForSingleObject(g_hWorkerThread, 2000);
+        CloseHandle(g_hWorkerThread);
+        g_hWorkerThread = nullptr;
+    }
+    if (g_hWakeEvent) {
+        CloseHandle(g_hWakeEvent);
+        g_hWakeEvent = nullptr;
+    }
+    if (g_csInitialized) {
+        DeleteCriticalSection(&g_cvarLock);
+        g_csInitialized = false;
+    }
 }
 
 void CVarManager::SetFov(float fov) {
-    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
     g_cvarFov = fov;
-    void* p = FindCVar("g_minFov");
-    if (p) {
-        WriteCVarFloat(p, fov);
-    }
+    if (g_hWakeEvent) SetEvent(g_hWakeEvent);
 }
 
 void CVarManager::SetCameraMax(float maxDist) {
-    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
     g_cvarCamMax = maxDist;
-    void* p = FindCVar("g_camMax");
-    if (p) {
-        WriteCVarFloat(p, maxDist);
-    }
+    if (g_hWakeEvent) SetEvent(g_hWakeEvent);
 }
 
 void CVarManager::SetMaxFps(int fps) {
-    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
     g_cvarMaxFps = fps;
-    void* p = FindCVar("g_maxfps");
-    if (p) {
-        WriteCVarInt(p, fps);
-    }
+    if (g_hWakeEvent) SetEvent(g_hWakeEvent);
 }
 
 void CVarManager::SetTripleBuffering(bool enable) {
-    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
     g_cvarTripleBuffering = enable;
-    void* p = FindCVar("d3d9_TripleBuffering");
-    if (p) {
-        WriteCVarInt(p, enable ? 1 : 0);
-    }
+    if (g_hWakeEvent) SetEvent(g_hWakeEvent);
 }
 
 void CVarManager::SetAnisotropic(bool enable) {
-    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
     g_cvarAnisotropic = enable;
-    int val = enable ? 16 : 0;
-
-    void* p1 = FindCVar("r_Texture_Anisotropic_Level");
-    if (p1) WriteCVarInt(p1, val);
-
-    void* p2 = FindCVar("r_anisotropy");
-    if (p2) WriteCVarInt(p2, val);
+    if (g_hWakeEvent) SetEvent(g_hWakeEvent);
 }
 
 void CVarManager::SetFreeFly(bool enable) {
-    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
-    void* p = FindCVar("g_freefly");
-    if (p) {
-        WriteCVarInt(p, enable ? 1 : 0);
-        LogInfo("g_freefly configurado em tempo real para: %d", enable ? 1 : 0);
-    }
+    g_featFreeFly = enable;
+    if (g_hWakeEvent) SetEvent(g_hWakeEvent);
 }
 
 void CVarManager::ApplyAll() {
-    if (g_featFov.load()) SetFov(g_cvarFov.load());
-    if (g_featCamMax.load()) SetCameraMax(g_cvarCamMax.load());
-    if (g_featFpsUnlock.load()) SetMaxFps(g_cvarMaxFps.load());
-    SetTripleBuffering(g_cvarTripleBuffering.load());
-    SetAnisotropic(g_cvarAnisotropic.load());
-    if (g_featFreeFly.load()) {
-        SetFreeFly(true);
-    } else {
-        SetFreeFly(false);
-    }
+    if (g_hWakeEvent) SetEvent(g_hWakeEvent);
 }
 
 void CVarManager::ResyncOnMapChange() {
-    // If CVars were re-registered on map load, re-scan if needed and reapply
-    if (s_cvarMap.empty()) {
-        ScanCVars();
-    }
-    ApplyAll();
+    g_lastScanFov = g_lastScanCam = g_lastScanFps = g_lastScanTriple = g_lastScanAniso = g_lastScanFreeFly = 0;
+    if (g_hWakeEvent) SetEvent(g_hWakeEvent);
+}
+
+bool CVarManager::IsWorkerRunning() {
+    return g_hWorkerThread != nullptr;
 }
 
 } // namespace BrService
