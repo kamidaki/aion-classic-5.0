@@ -13,6 +13,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_NPSHOP_GOODS_COUNT;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_RANKING_READY;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SECURITY_TOKEN;
 import com.aionemu.gameserver.services.abyss.AbyssRankingCache;
+import com.aionemu.gameserver.services.mail.BlackCloudMailService;
 
 /**
  * CM_INIT_LEVEL (0x0056 wire 0x12C).
@@ -58,7 +59,7 @@ public class CM_INIT_LEVEL extends AionClientPacket {
 				sendPacket(packet);
 			}
 		}
-		sendPacket(new SM_NPSHOP_GOODS_COUNT(0));
+		sendPacket(new SM_NPSHOP_GOODS_COUNT(BlackCloudMailService.getGoodsCount(player.getAccount().getId())));
 		sendPacket(new SM_RANKING_READY());
 		sendPacket(new SM_RANKING_READY());
 		sendPacket(new SM_SECURITY_TOKEN(new byte[32]));

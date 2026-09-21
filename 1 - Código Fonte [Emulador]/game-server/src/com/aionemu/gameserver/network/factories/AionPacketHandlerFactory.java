@@ -135,23 +135,24 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_CHAT_AUTH.class, 0x17C, State.IN_GAME); // 0x0086 SIGN_CLIENT
 		addPacket(CM_GROUP_LOOT.class, 0x17B, State.IN_GAME); // 0x0089 GROUP_LOOT
 		addPacket(CM_DISTRIBUTION_SETTINGS.class, 0x178, State.IN_GAME); // 0x008A DISTRIBUTION_SETTINGS
-		addPacket(CM_CRAFT.class, 0x167, State.IN_GAME); // 0x008D CRAFT
+		// 0x008D não é C_COMBINE na 5.0: é o C_MAIL_LIST (1 b, respondido pelo S_MAIL tipo 2) nas capturas Black Cloud Mail e express.
+		// O opcode do C_COMBINE na 5.0 ainda não apareceu em captura.
+		// addPacket(CM_CRAFT.class, 0x167, State.IN_GAME);
 		addPacket(CM_SIEL_ANVIL.class, 0x1FA, State.IN_GAME); // decoded 0x0108 Siel Anvil, Classic 5.0
 		addPacket(CM_SIEL_ANVIL_CANCEL.class, 0x1FB, State.IN_GAME);
 		addPacket(CM_SIEL_HAMMER.class, 0x1F5, State.IN_GAME);
 		addPacket(CM_SIEL_HAMMER_CANCEL.class, 0x220, State.IN_GAME);
 		addPacket(CM_SEND_MAIL.class, 0x17E, State.IN_GAME); // 0x0084 SEND_MAIL
-		addPacket(CM_CHECK_MAIL_LIST.class, 0x16F, State.IN_GAME); // 0x0095 CHECK_MAIL_SIZE
-		addPacket(CM_READ_MAIL.class, 0x16C, State.IN_GAME); // 0x0096 READ_MAIL
+		addPacket(CM_CHECK_MAIL_LIST.class, 0x167, State.IN_GAME); // 0x008D C_MAIL_LIST (5.0 Classic: [C só expresso], captura Black Cloud Mail)
+		addPacket(CM_READ_MAIL.class, 0x164, State.IN_GAME); // 0x008E C_MAIL_READ (5.0 Classic: [D carta], respondido pelo S_MAIL tipo 3)
 		addPacket(CM_GET_MAIL_ATTACHMENT.class, 0x16A, State.IN_GAME); // 0x0098 GET_MAIL_ATTACHMENT
 		addPacket(CM_DELETE_MAIL.class, 0x16B, State.IN_GAME); // 0x0099 DELETE_MAIL
 		addPacket(CM_READ_EXPRESS_MAIL.class, 0x150, State.IN_GAME); // 0x00A2 READ_EXPRESS_MAIL
 		// 0x00A9 é a escolha da caixa selectable, não BLACKCLOUD_MAIL_OPEN: nas capturas só aparece (4x, 9 b [obj][0][índice]) logo depois do S 0x104
 		addPacket(CM_SELECT_DECOMPOSABLE.class, 0x15B, State.IN_GAME); // 0x00A9 C_SELECT_DISASSEMBLY_ITEM
-		addPacket(CM_BLACKCLOUD_MAIL.class, 0x15F, State.IN_GAME); // 0x00A5 BLACKCLOUD_MAIL
-		// 0x00A6 não é BLACKCLOUD_MAIL_CLAIM na 5.0: é o cast do summon (C_CLIENTSIDE_NPC_USE_SKILL), 25 pacotes de 15 b nas capturas do Spirit Master
-		// addPacket(CM_BLACKCLOUD_MAIL_CLAIM.class, 0x15C, State.IN_GAME);
-		addPacket(CM_PING_REQUEST.class, 0x158, State.IN_GAME); // 0x00AA CUR_STATUS
+		addPacket(CM_NPSHOP_GOODS_LIST.class, 0x157, State.IN_GAME); // 0x009D C_SA_GOODSLIST (Black Cloud Mail, sem corpo)
+		addPacket(CM_NPSHOP_GOODS_RECV.class, 0x154, State.IN_GAME); // 0x009E C_SA_CONFIRMGOODS (Black Cloud Mail, [Q mercadoria])
+		addPacket(CM_NPSHOP_GOODS_COUNT.class, 0x158, State.IN_GAME); // 0x00AA C_REQUEST_NPSHOP_GOODS_COUNT (sempre seguido do S 0x10A nas capturas)
 		addPacket(CM_REPLACE_ITEM.class, 0x140, State.IN_GAME); // 0x00B2 REPLACE_ITEM
 		addPacket(CM_BLOCK_SET_REASON.class, 0x141, State.IN_GAME); // 0x00B3 BLOCK_SET_REASON
 		addPacket(CM_MOVE_ITEM.class, 0x14E, State.IN_GAME); // 0x00B4 MOVE_ITEM (5.0 Classic: [D obj][C origem][C destino][H slot], 366 pacotes de 8 b nas capturas)

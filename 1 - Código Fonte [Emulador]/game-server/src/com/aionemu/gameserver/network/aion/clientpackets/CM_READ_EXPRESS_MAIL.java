@@ -11,6 +11,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
+import com.aionemu.gameserver.services.mail.BlackCloudMailService;
 import com.aionemu.gameserver.spawnengine.VisibleObjectSpawner;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
@@ -45,7 +46,7 @@ public class CM_READ_EXPRESS_MAIL extends AionClientPacket {
 				break;
 			case 1: // click on icon
 				boolean haveUnreadExpress = player.getMailbox().haveUnreadByType(LetterType.EXPRESS);
-				boolean haveUnreadBlackcloud = player.getMailbox().haveUnreadByType(LetterType.BLACKCLOUD);
+				boolean haveUnreadBlackcloud = player.getMailbox().haveUnreadByType(LetterType.BLACKCLOUD) || BlackCloudMailService.hasGoods(player);
 				if (player.getPostman() != null) {
 					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_POSTMAN_ALREADY_SUMMONED());
 				} else if (player.isFlying()) {

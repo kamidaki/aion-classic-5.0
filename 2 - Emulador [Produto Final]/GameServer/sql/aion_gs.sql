@@ -32,6 +32,25 @@ CREATE TABLE `abyss_rank` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
+-- Table structure for `account_blackcloud_goods`
+-- Black Cloud Mail (NPShop 5.0): mercadorias da conta. A loja web insere (account_id, name, item_id, item_count);
+-- o resgate marca received_player_id/received_time e a linha fica como histórico.
+-- ----------------------------
+DROP TABLE IF EXISTS `account_blackcloud_goods`;
+CREATE TABLE `account_blackcloud_goods` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `account_id` int NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `item_id` int NOT NULL,
+  `item_count` bigint NOT NULL,
+  `register_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `received_player_id` int NULL DEFAULT NULL,
+  `received_time` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_pending` (`account_id`,`received_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
 -- Table structure for `account_passports`
 -- ----------------------------
 DROP TABLE IF EXISTS `account_passports`;

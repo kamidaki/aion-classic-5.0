@@ -34,6 +34,7 @@ import com.aionemu.gameserver.network.loginserver.LoginServerConnection.State;
 import com.aionemu.gameserver.network.loginserver.serverpackets.*;
 import com.aionemu.gameserver.services.AccountService;
 import com.aionemu.gameserver.services.ban.HDDBanService;
+import com.aionemu.gameserver.services.mail.BlackCloudMailService;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.World;
 
@@ -180,13 +181,13 @@ public class LoginServer {
 		// Envio dos pacotes de autenticacao NP (NetPasskey) e autorizacao de entrada no mundo (Classic 5.0)
 		// Conforme captura oficial Wireshark (01_Login_World_Elyos):
 		// 1) S_REPLY_NP_LOGIN_GAMESVR (x2)
-		// 2) S_NPSHOP_GOODS_COUNT (0)
+		// 2) S_NPSHOP_GOODS_COUNT (mercadorias do Black Cloud Mail da conta; 4 na captura Black Cloud Mail)
 		// 3) S_READY_ENTER_WORLD (0, code)
 		// 4) S_REPLY_NP_AUTH_TOKEN (token Gameforge Classic 5.0)
 		// 5) S_L2AUTH_LOGIN_CHECK
 		client.sendPacket(new SM_REPLY_NP_LOGIN_GAMESVR());
 		client.sendPacket(new SM_REPLY_NP_LOGIN_GAMESVR());
-		client.sendPacket(new SM_NPSHOP_GOODS_COUNT(0));
+		client.sendPacket(new SM_NPSHOP_GOODS_COUNT(BlackCloudMailService.getGoodsCount(accountId)));
 		int code = Rnd.get(300000000, 400000000);
 		client.sendPacket(new S_READY_ENTER_WORLD(0, code));
 		client.sendPacket(new SM_REPLY_NP_AUTH_TOKEN("014D6A677A526B55344E54517452446730524330304E7A41304C5549354D546374516A41304E6B517A4D6A52434E454A424F6B4E445244597752454D774C5549344F5555744E4445784F5331434E5546464C546B79525468464E545132525459324E41413D0038423535373337342D313837322D343742432D393833442D3735383230373132313441360061696F6E67666300140c03"));

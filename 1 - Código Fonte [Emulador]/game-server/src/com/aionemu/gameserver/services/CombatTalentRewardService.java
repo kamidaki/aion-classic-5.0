@@ -4,7 +4,6 @@ import com.aionemu.gameserver.dao.CombatTalentRewardDAO;
 import com.aionemu.gameserver.dataholders.ClassicItemSystemsData.CombatRewardRule;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.DescriptionId;
-import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.items.storage.Storage;
 import com.aionemu.gameserver.model.items.storage.StorageType;
@@ -45,7 +44,7 @@ public final class CombatTalentRewardService {
 
 		Storage inventory = player.getInventory();
 		synchronized (inventory) {
-			if (!hasSpace(inventory, template, reward.amount)) {
+			if (!ItemService.hasInventorySpace(inventory, template, reward.amount)) {
 				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_UI_INVENTORY_FULL());
 				return;
 			}
@@ -66,16 +65,5 @@ public final class CombatTalentRewardService {
 			PacketSendUtility.sendPacket(player, new SM_COMBAT_TALENT_REWARDS(player, mask));
 			PacketSendUtility.sendPacket(player, SM_CUBE_UPDATE.cubeSize(StorageType.CUBE, player));
 		}
-	}
-
-	private static boolean hasSpace(Storage inventory, ItemTemplate template, long amount) {
-		if (!template.isStackable())
-			return amount <= inventory.getFreeSlots(template.getExtraInventoryId());
-		long freeInStacks = 0;
-		for (Item item : inventory.getItemsByItemId(template.getTemplateId()))
-			freeInStacks += Math.max(0, template.getMaxStackCount() - item.getItemCount());
-		long remaining = Math.max(0, amount - freeInStacks);
-		long requiredSlots = (remaining + template.getMaxStackCount() - 1) / template.getMaxStackCount();
-		return requiredSlots <= inventory.getFreeSlots(template.getExtraInventoryId());
 	}
 }

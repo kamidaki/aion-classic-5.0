@@ -54,6 +54,22 @@ public class DatabaseSchemaService {
 			"    REFERENCES `players` (`id`) ON DELETE CASCADE ON UPDATE CASCADE" +
 			") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;"
 		);
+
+		// 3. account_blackcloud_goods (Classic 5.0 Black Cloud Mail: mercadorias da conta, S 0x10A/0x10C/0x10D)
+		executeSql(con,
+			"CREATE TABLE IF NOT EXISTS `account_blackcloud_goods` (" +
+			"  `id` BIGINT NOT NULL AUTO_INCREMENT," +
+			"  `account_id` INT NOT NULL," +
+			"  `name` VARCHAR(100) NOT NULL," +
+			"  `item_id` INT NOT NULL," +
+			"  `item_count` BIGINT NOT NULL," +
+			"  `register_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP," +
+			"  `received_player_id` INT NULL DEFAULT NULL," +
+			"  `received_time` TIMESTAMP NULL DEFAULT NULL," +
+			"  PRIMARY KEY (`id`)," +
+			"  KEY `account_pending` (`account_id`, `received_time`)" +
+			") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;"
+		);
 	}
 
 	private static void ensureColumns(Connection con) {

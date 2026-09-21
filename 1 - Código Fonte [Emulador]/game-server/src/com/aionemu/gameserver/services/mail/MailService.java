@@ -209,8 +209,9 @@ public class MailService {
 			return;
 		}
 
-		PacketSendUtility.sendPacket(player, new SM_MAIL_SERVICE(player, letter, letter.getTimeStamp().getTime()));
+		// marca antes de enviar: o S_MAIL tipo 3 oficial já traz a carta fora da contagem de não lidas
 		letter.setReadLetter();
+		PacketSendUtility.sendPacket(player, new SM_MAIL_SERVICE(player, letter, letter.getTimeStamp().getTime()));
 	}
 
 	public static void getAttachments(Player player, int letterId, byte attachmentType) {

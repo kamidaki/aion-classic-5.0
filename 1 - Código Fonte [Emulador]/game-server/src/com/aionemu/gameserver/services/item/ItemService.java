@@ -142,6 +142,22 @@ public class ItemService {
 	}
 
 	/**
+	 * @return true if {@code amount} of the item fits in the inventory, counting free room in existing stacks
+	 */
+	public static boolean hasInventorySpace(Storage inventory, ItemTemplate template, long amount) {
+		if (template.isKinah())
+			return true;
+		if (!template.isStackable())
+			return amount <= inventory.getFreeSlots(template.getExtraInventoryId());
+		long freeInStacks = 0;
+		for (Item item : inventory.getItemsByItemId(template.getTemplateId()))
+			freeInStacks += Math.max(0, template.getMaxStackCount() - item.getItemCount());
+		long remaining = Math.max(0, amount - freeInStacks);
+		long requiredSlots = (remaining + template.getMaxStackCount() - 1) / template.getMaxStackCount();
+		return requiredSlots <= inventory.getFreeSlots(template.getExtraInventoryId());
+	}
+
+	/**
 	 * Add stackable item to inventory
 	 */
 	private static long addStackableItem(Player player, ItemTemplate itemTemplate, long count, boolean allowInventoryOverflow,

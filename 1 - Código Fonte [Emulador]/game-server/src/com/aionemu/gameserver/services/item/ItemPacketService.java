@@ -122,6 +122,7 @@ public class ItemPacketService {
 		SURVEY(0x40),
 		DECOMPOSABLE(0x50), // also Guestbloom
 		COMBAT_TALENT_REWARD(0xEB), // official Combat Talent milestone reward
+		NPSHOP_GOODS(0x7A), // Black Cloud Mail: cabeçalho [D 0x7A][C 0][C 1] do S_ADD_INVENTORY (captura oficial, 3 de 3)
 		REPURCHASE(0x51);
 
 		private final int mask;

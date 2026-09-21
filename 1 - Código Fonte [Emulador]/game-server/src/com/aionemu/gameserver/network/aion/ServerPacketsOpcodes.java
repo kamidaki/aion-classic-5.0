@@ -228,6 +228,8 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(262, SM_REPLY_NP_LOGIN_GAMESVR.class); // [S_REPLY_NP_LOGIN_GAMESVR] (0x106)
 		addPacketOpcode(264, SM_REPLY_NP_AUTH_TOKEN.class); // [S_REPLY_NP_AUTH_TOKEN] (0x108)
 		addPacketOpcode(266, SM_NPSHOP_GOODS_COUNT.class); // [S_NPSHOP_GOODS_COUNT] (0x10A)
+		addPacketOpcode(268, SM_NPSHOP_GOODS_LIST.class); // [S_RESPONSE_NPSHOP_GOODS_LIST] (0x10C, captura Black Cloud Mail)
+		addPacketOpcode(269, SM_NPSHOP_GOODS_RECV.class); // [S_RESPONSE_NPSHOP_GOODS_RECV] (0x10D, captura Black Cloud Mail)
 		addPacketOpcode(270, S_SERVER_ENV.class); // [S_SERVER_ENV] (0x10E)
 		addPacketOpcode(271, S_PROGRESS_ACHIEVEMENT.class); // [S_PROGRESS_ACHIEVEMENT] (0x10F)
 		addPacketOpcode(274, S_CREATE_ACHIEVEMENT_EVENT.class); // [S_CREATE_ACHIEVEMENT_EVENT] (0x112)

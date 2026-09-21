@@ -20,7 +20,7 @@ import com.aionemu.gameserver.network.aion.iteminfo.ItemInfoBlob;
 public class SM_MAIL_SERVICE extends AionServerPacket {
 
 	public static final int STATIC_BODY_SIZE = 8;
-	public static final Function<Letter, Integer> DYNAMIC_BODY_PART_SIZE_CALCULATOR = (letter) -> 22 + byteLengthForString(letter.getSenderName())
+	public static final Function<Letter, Integer> DYNAMIC_BODY_PART_SIZE_CALCULATOR = (letter) -> 30 + byteLengthForString(letter.getSenderName())
 		+ byteLengthForString(letter.getTitle());
 
 	private Player player;
@@ -110,9 +110,11 @@ public class SM_MAIL_SERVICE extends AionServerPacket {
 			writeS(letter.getSenderName());
 			writeS(letter.getTitle());
 			writeC(letter.isUnread() ? 0 : 1); // isRead
+			// Classic 5.0 (capturas Black Cloud Mail e express, 96 b): [D chegada][D obj do anexo][Q kinah][Q 0], sem o template do anexo
+			writeD((int) (letter.getTimeStamp().getTime() / 1000));
 			writeD(letter.getAttachedItem() == null ? 0 : letter.getAttachedItem().getObjectId());
-			writeD(letter.getAttachedItem() == null ? 0 : letter.getAttachedItem().getItemTemplate().getTemplateId());
 			writeQ(letter.getAttachedKinah());
+			writeQ(0);
 			writeC(letter.getLetterType().getId());
 		}
 	}
@@ -133,7 +135,7 @@ public class SM_MAIL_SERVICE extends AionServerPacket {
 		writeD(totalCount + unreadCount * 0x10000); // total count + unread hex
 		writeD(expressCount + blackCloudCount); // unread express + BC letters count
 		writeD(letter.getObjectId());
-		writeD(letter.getRecipientId());
+		writeD(0); // Classic 5.0: 0 nas capturas (a 4.8 repetia o destinatário)
 		writeS(letter.getSenderName());
 		writeS(letter.getTitle());
 		writeS(letter.getMessage());
@@ -146,18 +148,19 @@ public class SM_MAIL_SERVICE extends AionServerPacket {
 			writeD(itemTemplate.getTemplateId());
 			writeD(1); // unk
 			writeD(0); // unk
-			writeNameId(itemTemplate.getNameId());
-
+			// Classic 5.0: o blob vem logo depois, sem o nameId da 4.8 (captura: [D obj][D template][D 1][D 0][H 0x22][blob])
 			ItemInfoBlob itemInfoBlob = ItemInfoBlob.getFullBlob(player, item);
 			itemInfoBlob.writeMe(getBuf());
 		} else {
+			// sem anexo: layout 5.0 não capturado, mantido o da 4.8
 			writeQ(0);
 			writeQ(0);
 			writeD(0);
 		}
 
-		writeD((int) letter.getAttachedKinah());
-		writeD(0); // AP reward for castle assault/defense (in future)
+		// Classic 5.0: 17 bytes entre o blob e a data (captura com anexo e sem kinah) = [Q kinah][Q AP][C 0], mesma largura da lista
+		writeQ(letter.getAttachedKinah());
+		writeQ(0); // AP reward for castle assault/defense (in future)
 		writeC(0);
 		writeD((int) (time / 1000));
 		writeC(letter.getLetterType().getId()); // mail type
