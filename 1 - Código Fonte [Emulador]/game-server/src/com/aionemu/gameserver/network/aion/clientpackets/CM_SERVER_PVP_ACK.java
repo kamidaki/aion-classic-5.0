@@ -1,12 +1,16 @@
 package com.aionemu.gameserver.network.aion.clientpackets;
 
-import com.aionemu.gameserver.network.aion.AionClientPacket;
-import com.aionemu.gameserver.network.aion.AionConnection.State;
-
 import java.util.Set;
 
+import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.network.aion.AionClientPacket;
+import com.aionemu.gameserver.network.aion.AionConnection.State;
+import com.lostacademy.lostsocket.secure.SecureAreaService;
+
 /**
- * Client packet for Server PVP acknowledgment (decOp 0x0326, wire 0x03DC, len 7 in 5.0 Classic).
+ * Botão Secure Area / FFA do cliente Aion Classic 5.0.
+ * Wire opcode: 0x03DC — decoded index: 806 (0x326).
+ * Enviado quando o jogador clica no botão de alternar modo FFA.
  */
 public class CM_SERVER_PVP_ACK extends AionClientPacket {
 
@@ -20,11 +24,14 @@ public class CM_SERVER_PVP_ACK extends AionClientPacket {
 
 	@Override
 	protected void readImpl() {
-		readB(getRemainingBytes());
+		readB(getRemainingBytes()); // consume remaining bytes (len 7 → 2 bytes payload after header)
 	}
 
 	@Override
 	protected void runImpl() {
-		// PVP acknowledgment from client
+		Player player = getConnection().getActivePlayer();
+		if (player == null)
+			return;
+		SecureAreaService.getInstance().requestToggle(player);
 	}
 }

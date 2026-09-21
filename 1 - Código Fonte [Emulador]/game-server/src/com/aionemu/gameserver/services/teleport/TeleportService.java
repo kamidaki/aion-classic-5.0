@@ -178,6 +178,7 @@ public class TeleportService {
 
 	private static void sendLoc(Player player, int worldId, int instanceId, float x, float y, float z, byte h, TeleportAnimation animation) {
 		abortPlayerActions(player);
+		com.lostacademy.Dps_Meter.DpsService.sendPlayerState(player, true, true);
 		// despawn from world and send animation to others (also ends flying)
 		World.getInstance().despawn(player, animation.getDefaultObjectDeleteAnimation());
 
@@ -211,6 +212,7 @@ public class TeleportService {
 		player.getEffectController().updatePlayerEffectIcons(null);
 		player.getController().updateZone();
 		player.setPortAnimation(ArrivalAnimation.NONE);
+		com.lostacademy.Dps_Meter.DpsService.sendPlayerState(player, true, false);
 	}
 
 	public static void teleportTo(Player player, WorldPosition pos) {

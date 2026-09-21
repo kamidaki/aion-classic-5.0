@@ -145,6 +145,9 @@ public class WebSocketClientSession implements Runnable {
 					break;
 				} else if (opcode == 0x9) { // Ping
 					sendControlFrame(0xA, payload); // Pong
+				} else if (opcode == 0x1) { // Text frame
+					String msg = new String(payload, StandardCharsets.UTF_8);
+					handleIncomingMessage(msg);
 				}
 			}
 
@@ -152,6 +155,23 @@ public class WebSocketClientSession implements Runnable {
 			// Normal socket close or network reset
 		} finally {
 			close();
+		}
+	}
+
+	private void handleIncomingMessage(String msg) {
+		if (msg == null || msg.isEmpty()) return;
+		try {
+			if (msg.contains("SET_COMBO_VISIBILITY")) {
+				boolean visible = msg.contains("\"visible\":true");
+				for (var player : com.aionemu.gameserver.world.World.getInstance().getAllPlayers()) {
+					if (player != null && player.isOnline()) {
+						com.lostacademy.lostsocket.combat.ComboService.getInstance().setComboUiHidden(player.getObjectId(), !visible);
+					}
+				}
+				log.info("[BrSocket] Atualizado status de exibicao do Combo UI para: visible={}", visible);
+			}
+		} catch (Exception e) {
+			log.error("[BrSocket] Erro ao processar mensagem recebida: {}", msg, e);
 		}
 	}
 

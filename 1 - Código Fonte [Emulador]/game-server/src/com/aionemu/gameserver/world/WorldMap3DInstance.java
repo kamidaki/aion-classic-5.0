@@ -18,8 +18,18 @@ public class WorldMap3DInstance extends WorldMapInstance {
 
 	@Override
 	public MapRegion getRegion(float x, float y, float z) {
-		int regionId = RegionUtil.get3dRegionId(x, y, z);
-		return regions.get(regionId);
+		int size = getParent().getWorldSize();
+		float maxZ = Math.round((float) size / regionSize) * regionSize;
+		float clampedX = Math.max(0, Math.min(size - 1, x));
+		float clampedY = Math.max(0, Math.min(size - 1, y));
+		float clampedZ = Math.max(0, Math.min(maxZ - 1, z));
+		int regionId = RegionUtil.get3dRegionId(clampedX, clampedY, clampedZ);
+		MapRegion region = regions.get(regionId);
+		if (region == null) {
+			regionId = RegionUtil.get3dRegionId(x, y, z);
+			region = regions.get(regionId);
+		}
+		return region;
 	}
 
 	@Override

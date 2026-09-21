@@ -3,21 +3,25 @@
 #include "UICommon.h"
 #include "../core/ServiceGlobals.h"
 #include "../core/ServiceLog.h"
+#include <gdiplus.h>
+#include <string>
+#include <algorithm>
 
 namespace BrService {
 
 static const wchar_t* kPingHudClassName = L"BrService_PingHud";
-static bool s_iconHovered = false;
-static int s_hudWidth = 140;
+static int s_hudWidth = 150;
 static int s_hudHeight = 32;
+static bool s_iconHovered = false;
+static RECT s_consoleIconRect = { 0, 0, 0, 0 };
 
 bool PingHudUI::Initialize(HINSTANCE hInst) {
-    WNDCLASSEXW wc = { sizeof(WNDCLASSEXW) };
+    WNDCLASSEXW wc = { 0 };
+    wc.cbSize = sizeof(WNDCLASSEXW);
     wc.lpfnWndProc = WndProc;
     wc.hInstance = hInst;
-    wc.lpszClassName = kPingHudClassName;
     wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
-    wc.style = CS_HREDRAW | CS_VREDRAW;
+    wc.lpszClassName = kPingHudClassName;
 
     if (!RegisterClassExW(&wc)) {
         DWORD err = GetLastError();
@@ -28,7 +32,7 @@ bool PingHudUI::Initialize(HINSTANCE hInst) {
     }
 
     g_hPingHudWnd = CreateWindowExW(
-        WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW,
+        WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE,
         kPingHudClassName,
         L"Aion Ping HUD",
         WS_POPUP,
@@ -41,8 +45,9 @@ bool PingHudUI::Initialize(HINSTANCE hInst) {
         return false;
     }
 
-    Repaint();
-    LogInfo("PingHudUI inicializado com sucesso.");
+    // Default hidden until GameServer signals in-world spawn
+    ShowWindow(g_hPingHudWnd, SW_HIDE);
+    LogInfo("PingHudUI inicializado com sucesso (aguardando entrada no mundo).");
     return true;
 }
 
@@ -55,44 +60,49 @@ void PingHudUI::Shutdown() {
 
 void PingHudUI::Show() {
     if (!g_featConsole.load() && !g_featPingUi.load()) return;
-    if (g_hPingHudWnd && !g_isLoadingScreen.load() && g_isGameActive.load()) {
+    if (g_hPingHudWnd && g_isInWorld.load() && !g_isLoadingScreen.load() && g_isGameActive.load()) {
         ShowWindow(g_hPingHudWnd, SW_SHOWNOACTIVATE);
         Repaint();
     }
 }
 
 void PingHudUI::Hide() {
-    if (g_hPingHudWnd) {
+    if (g_hPingHudWnd && IsWindow(g_hPingHudWnd)) {
         ShowWindow(g_hPingHudWnd, SW_HIDE);
     }
 }
 
 void PingHudUI::UpdatePosition(int gameX, int gameY, int gameW, int gameH) {
-    if (!g_hPingHudWnd) return;
+    if (!g_hPingHudWnd || !IsWindow(g_hPingHudWnd)) return;
 
     bool showConsole = g_featConsole.load();
     bool showPing = g_featPingUi.load();
+    bool showAdminOnline = g_isAdmin.load();
 
     if (!showConsole && !showPing) {
         ShowWindow(g_hPingHudWnd, SW_HIDE);
         return;
     }
 
-    if (showConsole && showPing) {
-        s_hudWidth = 140;
-    } else if (showConsole && !showPing) {
-        s_hudWidth = 36;
-    } else {
-        s_hudWidth = 104;
-    }
+    // Calculate dynamic width based on visible items
+    int calcW = 4;
+    if (showPing) calcW += 64;
+    if (showConsole) calcW += 32;
+    if (showAdminOnline) calcW += 52;
+    calcW += 8;
+    s_hudWidth = calcW;
 
-    // Position at bottom-right corner, 18px from right and 20px from bottom (Aion 2 location)
-    int hudX = gameX + gameW - s_hudWidth - 18;
-    int hudY = gameY + gameH - s_hudHeight - 20;
+    // Position: Extremidade inferior esquerda (colado na quina inferior sem margem)
+    int hudX = gameX;
+    int hudY = gameY + gameH - s_hudHeight;
+
+    bool shouldBeVisible = g_isInWorld.load() && !g_isLoadingScreen.load() && g_isGameActive.load();
 
     SetWindowPos(g_hPingHudWnd, HWND_TOPMOST, hudX, hudY, s_hudWidth, s_hudHeight,
-                 SWP_NOACTIVATE | (g_isLoadingScreen.load() || !g_isGameActive.load() ? SWP_HIDEWINDOW : SWP_SHOWWINDOW));
-    Repaint();
+                 SWP_NOACTIVATE | (shouldBeVisible ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
+    if (shouldBeVisible) {
+        Repaint();
+    }
 }
 
 void PingHudUI::Repaint() {
@@ -126,12 +136,102 @@ void PingHudUI::Paint(HWND hwnd) {
 
         bool showConsole = g_featConsole.load();
         bool showPing = g_featPingUi.load();
+        bool showAdminOnline = g_isAdmin.load();
 
-        // 1. Shugo Console Icon (if enabled)
+        float curX = 6.0f;
+
+        // 1. PING (Vertical Signal Bars + ms) -> First on Left
+        if (showPing) {
+            int bars = g_pingBars.load();
+            int pingMs = g_currentPingMs.load();
+
+            Gdiplus::Color barActiveCol = UICommon::ColNeonGreen;
+            if (pingMs > 220) barActiveCol = Gdiplus::Color(255, 230, 60, 60);      // Red
+            else if (pingMs > 130) barActiveCol = Gdiplus::Color(255, 235, 185, 45); // Yellow
+
+            Gdiplus::Color barInactiveCol(70, 80, 90, 100);
+
+            float barWidth = 3.0f;
+            float barGap = 2.0f;
+            float baseBottomY = 22.0f;
+            float barHeights[4] = { 5.0f, 8.0f, 11.0f, 15.0f };
+
+            for (int i = 0; i < 4; ++i) {
+                float bx = curX + i * (barWidth + barGap);
+                float bh = barHeights[i];
+                float by = baseBottomY - bh;
+
+                Gdiplus::Color col = (i < bars) ? barActiveCol : barInactiveCol;
+                Gdiplus::SolidBrush b(col);
+                g.FillRectangle(&b, bx, by, barWidth, bh);
+            }
+
+            curX += 4 * (barWidth + barGap) + 3.0f;
+
+            // Ping Text (e.g. "11ms")
+            wchar_t pingStr[32];
+            swprintf_s(pingStr, L"%dms", pingMs);
+
+            Gdiplus::Font fontPing(L"Segoe UI", 10.0f, Gdiplus::FontStyleBold);
+            Gdiplus::SolidBrush textBrush(barActiveCol);
+
+            g.DrawString(pingStr, -1, &fontPing, Gdiplus::PointF(curX, 5.0f), &textBrush);
+
+            // Thin white Fibonacci trend line under MS text (last 60 minutes, no background)
+            float sparkX = curX;
+            float sparkW = 36.0f;
+            float sparkY = 23.0f;
+            float sparkH = 5.0f;
+
+            std::vector<Gdiplus::PointF> sparkPts;
+            {
+                std::lock_guard<std::mutex> lock(g_pingHistoryMutex);
+                if (g_pingHistory.size() >= 2) {
+                    int minP = g_pingHistory[0].pingMs;
+                    int maxP = g_pingHistory[0].pingMs;
+                    for (const auto& e : g_pingHistory) {
+                        if (e.pingMs < minP) minP = e.pingMs;
+                        if (e.pingMs > maxP) maxP = e.pingMs;
+                    }
+                    if (maxP - minP < 6) maxP = minP + 6;
+
+                    size_t count = g_pingHistory.size();
+                    size_t step = (count > 24) ? (count / 24) : 1;
+                    for (size_t i = 0; i < count; i += step) {
+                        float fx = sparkX + ((float)i / (float)(count - 1)) * sparkW;
+                        float norm = (float)(g_pingHistory[i].pingMs - minP) / (float)(maxP - minP);
+                        norm = std::clamp(norm, 0.0f, 1.0f);
+                        float fy = sparkY + sparkH - norm * sparkH;
+                        sparkPts.push_back(Gdiplus::PointF(fx, fy));
+                    }
+                }
+            }
+
+            if (sparkPts.size() < 2) {
+                // Subtle Fibonacci progression curve when history is initializing
+                static const float fibRatios[6] = { 0.236f, 0.500f, 0.382f, 0.618f, 0.382f, 0.786f };
+                for (int i = 0; i < 6; ++i) {
+                    float fx = sparkX + (float)i * (sparkW / 5.0f);
+                    float fy = sparkY + sparkH - fibRatios[i] * sparkH;
+                    sparkPts.push_back(Gdiplus::PointF(fx, fy));
+                }
+            }
+
+            if (sparkPts.size() >= 2) {
+                Gdiplus::Pen sparkPen(Gdiplus::Color(255, 255, 255, 255), 1.0f); // 1px pure white, no background
+                g.DrawCurve(&sparkPen, sparkPts.data(), (INT)sparkPts.size(), 0.5f);
+            }
+
+            curX += 38.0f;
+        }
+
+        // 2. CONSOLE ICON (>_) -> Second
         if (showConsole) {
-            float iconX = 8.0f;
+            float iconX = curX + 2.0f;
             float iconY = 6.0f;
             float iconSize = 20.0f;
+
+            s_consoleIconRect = { (int)iconX - 2, (int)iconY - 2, (int)(iconX + iconSize + 2), (int)(iconY + iconSize + 2) };
 
             Gdiplus::Color iconCol = s_iconHovered ? UICommon::ColGoldAccent : Gdiplus::Color(220, 180, 190, 205);
             Gdiplus::Pen iconPen(iconCol, 1.6f);
@@ -143,44 +243,33 @@ void PingHudUI::Paint(HWND hwnd) {
             g.DrawLine(&iconPen, iconX + 8.5f, iconY + 8.5f, iconX + 4.5f, iconY + 12.0f);
             // Cursor line '_'
             g.DrawLine(&iconPen, iconX + 11.0f, iconY + 12.0f, iconX + 15.5f, iconY + 12.0f);
+
+            curX += iconSize + 8.0f;
+        } else {
+            s_consoleIconRect = { 0, 0, 0, 0 };
         }
 
-        // 2. Vertical Ping Signal Bars (if enabled)
-        if (showPing) {
-            int bars = g_pingBars.load();
-            int pingMs = g_currentPingMs.load();
+        // 3. ONLINE PLAYERS (Admin Only) -> Third
+        if (showAdminOnline) {
+            float adminX = curX + 2.0f;
+            float adminY = 7.0f;
 
-            Gdiplus::Color barActiveCol = UICommon::ColNeonGreen;
-            if (pingMs > 220) barActiveCol = Gdiplus::Color(255, 230, 60, 60);      // Red
-            else if (pingMs > 130) barActiveCol = Gdiplus::Color(255, 235, 185, 45); // Yellow
+            // Draw small User/Admin silhouette icon
+            Gdiplus::Color adminCol(255, 120, 200, 255); // Cyan-Blue for Admin indicator
+            Gdiplus::Pen adminPen(adminCol, 1.3f);
+            Gdiplus::SolidBrush adminBrush(adminCol);
 
-            Gdiplus::Color barInactiveCol(70, 80, 90, 100);
+            // Head circle
+            g.DrawEllipse(&adminPen, adminX + 2.0f, adminY, 6.0f, 6.0f);
+            // Shoulder arc
+            g.DrawArc(&adminPen, adminX, adminY + 7.0f, 10.0f, 8.0f, 190.0f, 160.0f);
 
-            float barX = showConsole ? 36.0f : 8.0f;
-            float barWidth = 3.0f;
-            float barGap = 2.0f;
-            float baseBottomY = 22.0f;
-            float barHeights[4] = { 5.0f, 8.0f, 11.0f, 15.0f };
+            // Online count text
+            wchar_t onlineStr[32];
+            swprintf_s(onlineStr, L"%u", g_onlineCount.load());
 
-            for (int i = 0; i < 4; ++i) {
-                float bx = barX + i * (barWidth + barGap);
-                float bh = barHeights[i];
-                float by = baseBottomY - bh;
-
-                Gdiplus::Color col = (i < bars) ? barActiveCol : barInactiveCol;
-                Gdiplus::SolidBrush b(col);
-                g.FillRectangle(&b, bx, by, barWidth, bh);
-            }
-
-            // 3. Ping Text (e.g. "11ms")
-            wchar_t pingStr[32];
-            swprintf_s(pingStr, L"%dms", pingMs);
-
-            Gdiplus::Font font(L"Segoe UI", 11.0f, Gdiplus::FontStyleBold);
-            Gdiplus::SolidBrush textBrush(barActiveCol);
-
-            Gdiplus::PointF textPt(barX + 4 * (barWidth + barGap) + 4.0f, 6.0f);
-            g.DrawString(pingStr, -1, &font, textPt, &textBrush);
+            Gdiplus::Font fontOnline(L"Segoe UI", 9.5f, Gdiplus::FontStyleBold);
+            g.DrawString(onlineStr, -1, &fontOnline, Gdiplus::PointF(adminX + 13.0f, 5.0f), &adminBrush);
         }
     }
 
@@ -207,7 +296,8 @@ LRESULT CALLBACK PingHudUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
         if (!g_featConsole.load()) return 0;
         int mx = LOWORD(lParam);
         int my = HIWORD(lParam);
-        bool hovered = (mx >= 6 && mx <= 30 && my >= 4 && my <= 26);
+        POINT pt = { mx, my };
+        bool hovered = PtInRect(&s_consoleIconRect, pt) != FALSE;
         if (hovered != s_iconHovered) {
             s_iconHovered = hovered;
             Repaint();
@@ -228,8 +318,8 @@ LRESULT CALLBACK PingHudUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
         if (!g_featConsole.load()) return 0;
         int mx = LOWORD(lParam);
         int my = HIWORD(lParam);
-        // Click on Console Icon
-        if (mx >= 6 && mx <= 32 && my >= 4 && my <= 28) {
+        POINT pt = { mx, my };
+        if (PtInRect(&s_consoleIconRect, pt)) {
             DrawerModalUI::Toggle();
         }
         return 0;

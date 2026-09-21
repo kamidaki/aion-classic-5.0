@@ -94,6 +94,32 @@ public class DatabaseSchemaService {
 			"  KEY `state_seller` (`state`, `seller_id`)" +
 			") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;"
 		);
+
+		// 5. player_participation_points (Pontos de Participação Lost Academy)
+		executeSql(con,
+			"CREATE TABLE IF NOT EXISTS `player_participation_points` (" +
+			"  `account_id` INT NOT NULL," +
+			"  `points` BIGINT NOT NULL DEFAULT '0'," +
+			"  `last_update` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP," +
+			"  PRIMARY KEY (`account_id`)" +
+			") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;"
+		);
+
+		// 6. player_hits (Rastreamento de combos e histórico de golpes)
+		executeSql(con,
+			"CREATE TABLE IF NOT EXISTS `player_hits` (" +
+			"  `account_id` INT NOT NULL," +
+			"  `player_id` INT NOT NULL," +
+			"  `cumulative_reward` INT NOT NULL DEFAULT '0'," +
+			"  `better_amount_hits` INT NOT NULL DEFAULT '0'," +
+			"  `daily_hits` INT NOT NULL DEFAULT '0'," +
+			"  `weekly_hits` INT NOT NULL DEFAULT '0'," +
+			"  `monthly_hits` INT NOT NULL DEFAULT '0'," +
+			"  `year_hits` INT NOT NULL DEFAULT '0'," +
+			"  `total_hits` INT NOT NULL DEFAULT '0'," +
+			"  PRIMARY KEY (`account_id`, `player_id`)" +
+			") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;"
+		);
 	}
 
 	private static void ensureColumns(Connection con) {

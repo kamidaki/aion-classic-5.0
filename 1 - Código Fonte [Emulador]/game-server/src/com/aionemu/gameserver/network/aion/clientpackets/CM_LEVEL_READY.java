@@ -157,5 +157,7 @@ public class CM_LEVEL_READY extends AionClientPacket {
 		var team = activePlayer.getCurrentTeam();
 		if (team != null)
 			ThreadPoolManager.getInstance().schedule(() -> team.sendBrands(activePlayer), 100); // delayed to fix brands when returning from studios/houses
+
+		com.lostacademy.Dps_Meter.DpsService.sendPlayerState(activePlayer, true, false);
 	}
 }

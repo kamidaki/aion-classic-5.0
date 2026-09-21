@@ -46,7 +46,7 @@ int PingEngine::GetSignalBars() {
 }
 
 DWORD WINAPI PingEngine::WorkerThread(LPVOID /*param*/) {
-    LogInfo("PingEngine iniciado visando IP: %s (taxa: 2500ms, 0%% CPU)", s_targetIp.c_str());
+    LogInfo("PingEngine iniciado visando IP: %s (taxa: 5000ms, 0%% CPU)", s_targetIp.c_str());
 
     HANDLE hIcmpFile = IcmpCreateFile();
     if (hIcmpFile == INVALID_HANDLE_VALUE) {
@@ -78,6 +78,7 @@ DWORD WINAPI PingEngine::WorkerThread(LPVOID /*param*/) {
         }
 
         g_currentPingMs = measuredPing;
+        AddPingHistory(measuredPing);
 
         // Calculate 1 to 4 bars
         int bars = 4;
@@ -92,8 +93,8 @@ DWORD WINAPI PingEngine::WorkerThread(LPVOID /*param*/) {
             InvalidateRect(g_hPingHudWnd, nullptr, FALSE);
         }
 
-        // Sleep 2500ms cleanly in chunks of 250ms for responsive shutdown without CPU load
-        for (int i = 0; i < 10 && s_running.load(); ++i) {
+        // Sleep 5000ms cleanly in chunks of 250ms for responsive shutdown without CPU load
+        for (int i = 0; i < 20 && s_running.load(); ++i) {
             Sleep(250);
         }
     }

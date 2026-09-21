@@ -18,8 +18,13 @@ public:
     static void FillRoundRectangle(Gdiplus::Graphics& g, Gdiplus::Brush* brush, float x, float y, float w, float h, float radius);
 
     static void DrawFibonacciCurve(Gdiplus::Graphics& g, float x, float y, float w, float h, const std::vector<float>& points);
+    static void DrawRadarChart4Axis(Gdiplus::Graphics& g, float cx, float cy, float radius,
+                                   float crit, float block, float dodge, float resist);
     static void DrawRadarChart(Gdiplus::Graphics& g, float cx, float cy, float radius,
                                float burst, float sustain, float crit, float accuracy, float efficiency);
+    static void DrawTargetEmblemDisk(Gdiplus::Graphics& g, float cx, float cy, float radius,
+                                     const std::string& rating, const std::string& race, bool isNpc = true);
+    static void DrawSkillIconBadge(Gdiplus::Graphics& g, float x, float y, float size, uint32_t skillId, const std::string& skillName);
 
     static std::wstring FormatNumber(uint64_t val);
     static std::wstring FormatTime(uint32_t totalSecs);

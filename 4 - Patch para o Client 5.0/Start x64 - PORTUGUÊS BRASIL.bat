@@ -25,13 +25,15 @@ REM  - Ajuste de Distancia Maxima da Camera / Zoom Out (ate 45 metros):
 set "PARAM_CAMMAX=enable"
 REM  - Desbloqueio e Limitador de FPS (60, 144, MAX):
 set "PARAM_FPSUNLOCK=enable"
+REM  - Combo UI, Animacoes de Golpes e Pontos de Participacao:
+set "PARAM_COMBOUI=enable"
 REM
 REM =========================================================================================
 REM  DESCRICAO DETALHADA DOS PARAMETROS DO BRSERVICE.DLL:
 REM
 REM  -console:enable/disable
 REM     Controla o icone do console (>_) no canto inferior direito e a janela modal (gaveta)
-REM     de ferramentas Shugo (Ctrl + X). Se desativado, o icone e a gaveta ficam ocultos.
+REM     de ferramentas Shugo (Shift + F3 / Ctrl + X). Se desativado, o icone e a gaveta ficam ocultos.
 REM
 REM  -freefly:enable/disable
 REM     Ativa voo e planeio (glide) livre irrestrito em 100%% dos mapas e cenarios de Atreia.
@@ -44,6 +46,10 @@ REM
 REM  -DpsMeterUI:enable/disable
 REM     Habilita a analise de combate em tempo real, curva Fibonacci de dano, radar de combate
 REM     e classificacao de DPS por jogador/skill. Se desativado, remove esses graficos.
+REM
+REM  -comboUi:enable/disable
+REM     Ativa o Combo UI identico ao LostHunting com contador de hits, animacoes de particulas,
+REM     efeitos visuais de combo e sistema de Pontos de Participacao (1 pt a cada 1000 hits).
 REM
 REM  -Model3D:enable/disable
 REM     Renderiza a miniatura 3D do personagem com rotacao e esqueleto dentro do console.
@@ -59,4 +65,4 @@ REM  -fpsUnlock:enable/disable
 REM     Permite alternar a taxa de quadros entre 60 FPS, 144 FPS ou Ilimitado (MAX).
 REM =========================================================================================
 
-start bin64\Aion.bin -token:#@br!classic50_token_2026# -ip:127.0.0.1 -port:2106 -lang:BRA -cc:2 -dss -dce -probability -console:%PARAM_CONSOLE% -freefly:%PARAM_FREEFLY% -pingUi:%PARAM_PINGUI% -DpsMeterUI:%PARAM_DPSMETERUI% -Model3D:%PARAM_MODEL3D% -fov:%PARAM_FOV% -camMax:%PARAM_CAMMAX% -fpsUnlock:%PARAM_FPSUNLOCK%
+start bin64\Aion.bin -token:#@br!classic50_token_2026# -ip:127.0.0.1 -port:2106 -lang:BRA -cc:2 -dss -dce -probability -console:%PARAM_CONSOLE% -freefly:%PARAM_FREEFLY% -pingUi:%PARAM_PINGUI% -DpsMeterUI:%PARAM_DPSMETERUI% -comboUi:%PARAM_COMBOUI% -Model3D:%PARAM_MODEL3D% -fov:%PARAM_FOV% -camMax:%PARAM_CAMMAX% -fpsUnlock:%PARAM_FPSUNLOCK%

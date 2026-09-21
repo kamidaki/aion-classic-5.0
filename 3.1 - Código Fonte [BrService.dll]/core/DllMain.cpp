@@ -10,6 +10,7 @@
 #include "../ui/UICommon.h"
 #include "../ui/PingHudUI.h"
 #include "../ui/DrawerModalUI.h"
+#include "../combo/ComboUI.h"
 #include <string>
 
 namespace BrService {
@@ -92,11 +93,23 @@ __declspec(dllexport) bool WINAPI BR_Initialize(const char* token, const char* c
                 try { g_serverPort = std::stoi(port); } catch (...) {}
             }
 
+            // Language selection (-lang:ENG or -lang:BRA)
+            std::string lang = ParseParam(cmdline, "-lang");
+            if (lang.empty()) {
+                lang = ParseParam(cmdline, "/lang");
+            }
+            if (!lang.empty()) {
+                for (char& c : lang) c = (char)::toupper((unsigned char)c);
+                g_clientLang = lang;
+                LogInfo("Idioma selecionado via linha de comando: %s", g_clientLang.c_str());
+            }
+
             // Feature Control Flags (default: true / enable)
             g_featConsole = IsParamEnabled(cmdline, "console", true);
             g_featFreeFly = IsParamEnabled(cmdline, "freefly", true);
             g_featPingUi = IsParamEnabled(cmdline, "pingUi", true);
             g_featDpsMeterUI = IsParamEnabled(cmdline, "DpsMeterUI", true);
+            g_featComboUi = IsParamEnabled(cmdline, "comboUi", true);
             g_featModel3D = IsParamEnabled(cmdline, "Model3D", true);
             g_featFov = IsParamEnabled(cmdline, "fov", true);
             g_featCamMax = IsParamEnabled(cmdline, "camMax", true);
@@ -107,6 +120,8 @@ __declspec(dllexport) bool WINAPI BR_Initialize(const char* token, const char* c
             LogInfo("  [-freefly]    : %s", g_featFreeFly.load() ? "ENABLE" : "DISABLE");
             LogInfo("  [-pingUi]     : %s", g_featPingUi.load() ? "ENABLE" : "DISABLE");
             LogInfo("  [-DpsMeterUI] : %s", g_featDpsMeterUI.load() ? "ENABLE" : "DISABLE");
+            LogInfo("  [-comboUi]    : %s", g_featComboUi.load() ? "ENABLE" : "DISABLE");
+            LogInfo("  [-lang]       : %s", g_clientLang.c_str());
             LogInfo("  [-Model3D]    : %s", g_featModel3D.load() ? "ENABLE" : "DISABLE");
             LogInfo("  [-fov]        : %s", g_featFov.load() ? "ENABLE" : "DISABLE");
             LogInfo("  [-camMax]     : %s", g_featCamMax.load() ? "ENABLE" : "DISABLE");
@@ -139,6 +154,10 @@ __declspec(dllexport) bool WINAPI BR_Initialize(const char* token, const char* c
         if (g_featConsole.load()) {
             DrawerModalUI::Initialize(g_hModule);
         }
+        if (g_featComboUi.load()) {
+            g_ComboUI.Start();
+            LogInfo("ComboUI (Animacoes, Particulas & HUD de Combo) inicializado com sucesso.");
+        }
 
         // 4. Start Lifecycle Watchdog
         ServiceWorker::Start();
@@ -159,6 +178,9 @@ __declspec(dllexport) void WINAPI BR_Shutdown() {
     LogInfo("BR_Shutdown: Encerrando servicos...");
 
     ServiceWorker::Stop();
+    if (g_featComboUi.load()) {
+        g_ComboUI.Stop();
+    }
     DrawerModalUI::Shutdown();
     PingHudUI::Shutdown();
     WebSocketClient::Stop();

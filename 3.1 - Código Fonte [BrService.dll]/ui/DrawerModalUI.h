@@ -12,9 +12,12 @@ public:
     static void Toggle();
     static void Open();
     static void Close();
+    static void Hide();
+    static void RestoreIfOpen();
     static bool IsOpen();
 
     static void UpdatePosition(int gameX, int gameY, int gameW, int gameH);
+    static void ResizeDrawer(int newW, int newH);
     static void Repaint();
 
 private:
