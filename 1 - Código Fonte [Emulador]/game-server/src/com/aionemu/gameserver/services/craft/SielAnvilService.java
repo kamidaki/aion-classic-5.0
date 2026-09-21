@@ -19,6 +19,7 @@ import com.aionemu.gameserver.model.templates.item.SielAnvilRecipe.Ingredient;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SIEL_ANVIL_START;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SIEL_ANVIL_RESULT;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
+import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
 import com.aionemu.gameserver.services.item.ItemService;
 import com.aionemu.gameserver.skillengine.task.AbstractInteractionTask;
 import com.aionemu.gameserver.utils.PacketSendUtility;
@@ -179,7 +180,7 @@ public final class SielAnvilService {
 		}
 		List<Debit> applied = new ArrayList<>();
 		for (Debit debit : plan) {
-			if (!player.getInventory().decreaseByObjectId(debit.item.getObjectId(), debit.count)) {
+			if (!player.getInventory().decreaseByObjectId(debit.item.getObjectId(), debit.count, ItemUpdateType.DEC_SIEL_ANVIL_MATERIAL)) {
 				// A concurrent inventory change must not leave a partially paid recipe.
 				for (Debit previous : applied)
 					ItemService.addItem(player, previous.item, previous.count, true, ItemService.DEFAULT_UPDATE_PREDICATE);
@@ -187,7 +188,7 @@ public final class SielAnvilService {
 			}
 			applied.add(debit);
 		}
-		if (!player.getInventory().tryDecreaseKinah(costs.getOrDefault(ItemId.KINAH, 0L))) {
+		if (!player.getInventory().tryDecreaseKinah(costs.getOrDefault(ItemId.KINAH, 0L), ItemUpdateType.DEC_KINAH_ENCHANT)) {
 			for (Debit previous : applied)
 				ItemService.addItem(player, previous.item, previous.count, true, ItemService.DEFAULT_UPDATE_PREDICATE);
 			return null;

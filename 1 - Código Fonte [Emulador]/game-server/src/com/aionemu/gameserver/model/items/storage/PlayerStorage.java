@@ -124,6 +124,11 @@ public class PlayerStorage extends Storage {
 	}
 
 	@Override
+	public boolean decreaseByItemId(int itemId, long count, ItemUpdateType updateType) {
+		return decreaseByItemId(itemId, count, updateType, actor);
+	}
+
+	@Override
 	public boolean decreaseByObjectId(int itemObjId, long count) {
 		return decreaseByObjectId(itemObjId, count, actor);
 	}

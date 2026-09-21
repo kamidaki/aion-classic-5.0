@@ -11,6 +11,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.items.ItemId;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_CLASSIC_ENCHANT_ANIMATION;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
+import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 
@@ -51,7 +52,7 @@ public final class ClassicEnchantService {
 				if (!player.isDead() && player.isSpawned() && !player.isTrading() && owns(player, stone, target)
 					&& target.getEnchantLevel() == rule.before && hasMaterials(player, stone, rule)) {
 					boolean paid = rule.component == ItemId.KINAH
-						? player.getInventory().tryDecreaseKinah(rule.cost)
+						? player.getInventory().tryDecreaseKinah(rule.cost, ItemUpdateType.DEC_KINAH_ENCHANT)
 						: player.getInventory().decreaseByItemId(rule.component, rule.cost);
 					if (paid && player.getInventory().decreaseByObjectId(stone.getObjectId(), rule.stones)) {
 						boolean success = Rnd.get(1, 1000) <= probability;

@@ -134,12 +134,12 @@ public class TradeService {
 			AbyssPointsService.addAp(player, -tradeList.getRequiredAp());
 
 		if (useKinah && tradeListPrice > 0)
-			if (!inventory.tryDecreaseKinah(tradeListPrice))
+			if (!inventory.tryDecreaseKinah(tradeListPrice, ItemUpdateType.DEC_KINAH_BUY))
 				return false;
 
 		Map<Integer, Long> requiredItems = tradeList.getRequiredItems();
 		for (Integer itemId : requiredItems.keySet()) {
-			if (!player.getInventory().decreaseByItemId(itemId, requiredItems.get(itemId))) {
+			if (!player.getInventory().decreaseByItemId(itemId, requiredItems.get(itemId), ItemUpdateType.DEC_ITEM_BUY)) {
 				AuditLogger.log(player, "tried to sell item " + itemId + " for AP, which could not be removed");
 				return false;
 			}

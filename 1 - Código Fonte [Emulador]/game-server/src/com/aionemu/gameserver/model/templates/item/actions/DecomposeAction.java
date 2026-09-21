@@ -106,7 +106,7 @@ public class DecomposeAction extends AbstractItemAction {
 	/** S_USE_ITEM de fim que o oficial manda quando a abertura de uma caixa e interrompida (subida 1-60: [end=3][0][1][0]). */
 	public static final int CANCEL_END_CODE = 3;
 
-	private static final ItemUpdatePredicate DECOMPOSE_PREDICATE = new ItemUpdatePredicate(ItemAddType.DECOMPOSABLE, ItemUpdateType.INC_ITEM_COLLECT);
+	private static final ItemUpdatePredicate DECOMPOSE_PREDICATE = new ItemUpdatePredicate(ItemAddType.DECOMPOSABLE, ItemUpdateType.INC_ITEM_DECOMPOSE);
 
 	/**
 	 * Opcoes da caixa selectable para o jogador, na ordem da janela (o indice que o cliente devolve aponta aqui), ou null se a caixa nao e de
@@ -299,7 +299,7 @@ public class DecomposeAction extends AbstractItemAction {
 				if (resultItem.isObtainableFor(player)) {
 					int count = Rnd.get(resultItem.getMinCount(), resultItem.getMaxCount());
 					ItemService.addItem(player, resultItem.getItemId(), count, true,
-						new ItemUpdatePredicate(ItemAddType.DECOMPOSABLE, ItemUpdateType.INC_ITEM_COLLECT));
+						new ItemUpdatePredicate(ItemAddType.DECOMPOSABLE, ItemUpdateType.INC_ITEM_DECOMPOSE));
 				}
 			}
 			for (RandomItem randomItem : selectedCollection.getRandomItems()) {
@@ -487,7 +487,7 @@ public class DecomposeAction extends AbstractItemAction {
 					}
 					if (randomId != 0) {
 						int count = Rnd.get(randomItem.getMinCount(), randomItem.getMaxCount());
-						ItemService.addItem(player, randomId, count, true, new ItemUpdatePredicate(ItemAddType.DECOMPOSABLE, ItemUpdateType.INC_ITEM_COLLECT));
+						ItemService.addItem(player, randomId, count, true, new ItemUpdatePredicate(ItemAddType.DECOMPOSABLE, ItemUpdateType.INC_ITEM_DECOMPOSE));
 					}
 				}
 			}

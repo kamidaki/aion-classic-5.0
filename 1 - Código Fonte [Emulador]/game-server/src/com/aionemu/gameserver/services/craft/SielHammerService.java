@@ -32,7 +32,7 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 public final class SielHammerService {
 	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(SielHammerService.class);
 	private static final int DURATION = 2000;
-	private static final ItemUpdatePredicate REWARD_UPDATE = new ItemUpdatePredicate(ItemAddType.CRUSH_RESULT, ItemUpdateType.INC_ITEM_MERGE);
+	private static final ItemUpdatePredicate REWARD_UPDATE = new ItemUpdatePredicate(ItemAddType.CRUSH_RESULT, ItemUpdateType.INC_CRUSH_RESULT);
 	private SielHammerService() { }
 	private record Selection(Item item, long quantity, SielHammerTable table, Band band, int enchantment) { }
 	private record Plan(List<Selection> selections, long kinah) { }

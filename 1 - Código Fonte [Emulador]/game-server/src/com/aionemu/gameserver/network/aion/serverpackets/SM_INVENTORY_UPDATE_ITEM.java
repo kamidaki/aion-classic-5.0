@@ -19,7 +19,7 @@ public class SM_INVENTORY_UPDATE_ITEM extends AionServerPacket {
 	private final ItemUpdateType updateType;
 
 	public SM_INVENTORY_UPDATE_ITEM(Player player, Item item) {
-		this(player, item, ItemUpdateType.DEC_ITEM_USE);
+		this(player, item, ItemUpdateType.STATS_CHANGE); // troca de informação do item: o oficial manda motivo 0
 	}
 
 	public SM_INVENTORY_UPDATE_ITEM(Player player, Item item, ItemUpdateType updateType) {
@@ -48,8 +48,10 @@ public class SM_INVENTORY_UPDATE_ITEM extends AionServerPacket {
 			default:
 				itemInfoBlob = ItemInfoBlob.getFullBlob(player, item);
 				itemInfoBlob.writeMe(getBuf());
-				// Classic 5.0 wire: 5 trailing zero bytes after full blob (verified in packets 3271, 5834, 7784)
-				writeB(new byte[5]);
+				// Classic 5.0 wire: [D motivo][C 0] depois do blob. Motivo sem captura vai 0 (ver ItemUpdateType).
+				// As variantes de equipar (entrada 0x06) e de carga não têm trailer: o oficial manda 15 e 11 bytes.
+				writeD(updateType.getReason());
+				writeC(0);
 				break;
 		}
 	}

@@ -72,6 +72,8 @@ public interface IStorage extends Persistable {
 
 	boolean decreaseByItemId(int itemId, long count, QuestStatus questStatus);
 
+	boolean decreaseByItemId(int itemId, long count, ItemUpdateType updateType);
+
 	boolean decreaseByObjectId(int itemObjId, long count);
 
 	boolean decreaseByObjectId(int itemObjId, long count, ItemUpdateType updateType);

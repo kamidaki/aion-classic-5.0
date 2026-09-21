@@ -116,6 +116,11 @@ public class LegionStorageProxy extends Storage {
 	}
 
 	@Override
+	public boolean decreaseByItemId(int itemId, long count, ItemUpdateType updateType) {
+		return storage.decreaseByItemId(itemId, count, updateType, actor);
+	}
+
+	@Override
 	public boolean decreaseByObjectId(int itemObjId, long count) {
 		return storage.decreaseByObjectId(itemObjId, count, actor);
 	}

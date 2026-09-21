@@ -56,7 +56,7 @@ public class DecomposableSetItem {
 	}
 
 	public ItemUpdatePredicate newUpdatePredicate() {
-		return new ItemUpdatePredicate(ItemAddType.DECOMPOSABLE, ItemUpdateType.INC_ITEM_COLLECT) {
+		return new ItemUpdatePredicate(ItemAddType.DECOMPOSABLE, ItemUpdateType.INC_ITEM_DECOMPOSE) {
 
 			@Override
 			public boolean changeItem(Item item) {

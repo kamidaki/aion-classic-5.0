@@ -24,6 +24,9 @@ import com.aionemu.gameserver.model.templates.item.OptionClearType;
 import com.aionemu.gameserver.model.templates.item.enums.ItemGroup;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ITEM_USAGE_ANIMATION;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
+import com.aionemu.gameserver.services.item.ItemPacketService.ItemAddType;
+import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
+import com.aionemu.gameserver.services.item.ItemService.ItemUpdatePredicate;
 import com.aionemu.gameserver.services.trade.PricesService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
@@ -33,6 +36,9 @@ import com.aionemu.gameserver.utils.audit.AuditLogger;
  * @author Lost Academy Team & Durak
  */
 public class ItemSocketService {
+
+	private static final ItemUpdatePredicate MANASTONE_RETURN = new ItemUpdatePredicate(ItemAddType.ITEM_COLLECT,
+		ItemUpdateType.INC_MANASTONE_CLEAR);
 
 	public static ManaStone addManaStone(Item item, int manaStoneItemId, boolean useFusionSlots) {
 		if (item == null)
@@ -186,7 +192,7 @@ public class ItemSocketService {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ITEM_OPTION_CLEAR_EQUIP_NOT_PROC());
 			return;
 		}
-		if (!player.getInventory().tryDecreaseKinah(price)) {
+		if (!player.getInventory().tryDecreaseKinah(price, ItemUpdateType.DEC_KINAH_MANASTONE_CLEAR)) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ITEM_OPTION_CLEAR_HAVE_NOT_KINA(item.getL10n()));
 			return;
 		}
@@ -200,7 +206,7 @@ public class ItemSocketService {
 			itemStones.remove(stone);
 			OptionClearTemplate rule = entry.getValue();
 			if (rule.getType() == OptionClearType.RETURN && rule.getReturnItemId() != 0)
-				ItemService.addItem(player, rule.getReturnItemId(), 1);
+				ItemService.addItem(player, rule.getReturnItemId(), 1, false, MANASTONE_RETURN);
 		}
 		storeStones(stonesToRemove.keySet(), isFusionSocket);
 		repackSlots(item, itemStones, isFusionSocket);
@@ -270,7 +276,7 @@ public class ItemSocketService {
 			AuditLogger.log(player, "tried to remove godstone " + godstoneId + " without option clear rule from item " + item.getItemId());
 			return;
 		}
-		if (!player.getInventory().tryDecreaseKinah(rule.getKinah())) {
+		if (!player.getInventory().tryDecreaseKinah(rule.getKinah(), ItemUpdateType.DEC_KINAH_GODSTONE_CLEAR)) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_GIVE_ITEM_PROC_CLEAR_HAVE_NOT_KINA(item.getL10n()));
 			return;
 		}

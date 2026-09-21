@@ -123,6 +123,11 @@ public class LegionWarehouse extends Storage {
 	}
 
 	@Override
+	public boolean decreaseByItemId(int itemId, long count, ItemUpdateType updateType) {
+		throw new UnsupportedOperationException("LWH should be used behind proxy");
+	}
+
+	@Override
 	public boolean decreaseByObjectId(int itemObjId, long count) {
 		throw new UnsupportedOperationException("LWH should be used behind proxy");
 	}

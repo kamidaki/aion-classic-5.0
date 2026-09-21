@@ -23,7 +23,7 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 public final class CombatTalentRewardService {
 
 	private static final ItemUpdatePredicate REWARD_ADD = new ItemUpdatePredicate(ItemAddType.COMBAT_TALENT_REWARD,
-		ItemUpdateType.INC_ITEM_COLLECT);
+		ItemUpdateType.INC_COMBAT_TALENT_REWARD);
 
 	private CombatTalentRewardService() {
 	}

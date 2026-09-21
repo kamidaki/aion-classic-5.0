@@ -140,7 +140,7 @@ public class DialogService {
 								PacketSendUtility.sendPacket(responder, SM_SYSTEM_MESSAGE.STR_GET_EXP2(expLost));
 								PacketSendUtility.sendPacket(responder, SM_SYSTEM_MESSAGE.STR_SUCCESS_RECOVER_EXPERIENCE());
 								responder.getCommonData().resetRecoverableExp();
-								responder.getInventory().decreaseKinah(price, ItemUpdateType.STATS_CHANGE);
+								responder.getInventory().decreaseKinah(price, ItemUpdateType.DEC_KINAH_SOUL_HEALER);
 								responder.getEffectController().removeByDispelSlotType(DispelSlotType.SPECIAL2);
 								responder.getCommonData().setDeathCount(0);
 							} else {

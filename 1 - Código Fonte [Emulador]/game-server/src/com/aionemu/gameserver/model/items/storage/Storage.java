@@ -99,7 +99,7 @@ public abstract class Storage implements IStorage {
 	 * just decrease kinah without any checks
 	 */
 	void decreaseKinah(long amount, Player actor) {
-		decreaseKinah(amount, ItemUpdateType.DEC_KINAH_BUY, actor);
+		decreaseKinah(amount, ItemUpdateType.DEC_KINAH, actor);
 	}
 
 	void decreaseKinah(long amount, ItemUpdateType updateType, Player actor) {
@@ -109,7 +109,7 @@ public abstract class Storage implements IStorage {
 	}
 
 	long increaseItemCount(Item item, long count, Player actor) {
-		return increaseItemCount(item, count, ItemUpdateType.DEC_ITEM_USE, actor);
+		return increaseItemCount(item, count, ItemUpdateType.INC_ITEM_COLLECT, actor);
 	}
 
 	/**
@@ -258,10 +258,18 @@ public abstract class Storage implements IStorage {
 	}
 
 	boolean decreaseByItemId(int itemId, long count, Player actor) {
-		return decreaseByItemId(itemId, count, null, actor);
+		return decreaseByItemId(itemId, count, ItemUpdateType.DEC_ITEM_USE, actor);
 	}
 
 	boolean decreaseByItemId(int itemId, long count, QuestStatus questStatus, Player actor) {
+		return decreaseItemsById(itemId, count, ItemUpdateType.DEC_ITEM_USE, questStatus, actor);
+	}
+
+	boolean decreaseByItemId(int itemId, long count, ItemUpdateType updateType, Player actor) {
+		return decreaseItemsById(itemId, count, updateType, null, actor);
+	}
+
+	private boolean decreaseItemsById(int itemId, long count, ItemUpdateType updateType, QuestStatus questStatus, Player actor) {
 		List<Item> items = itemStorage.getItemsById(itemId);
 		if (items.size() == 0)
 			return false;
@@ -270,7 +278,7 @@ public abstract class Storage implements IStorage {
 			if (count == 0) {
 				break;
 			}
-			count = decreaseItemCount(item, count, ItemUpdateType.DEC_ITEM_USE, questStatus, actor);
+			count = decreaseItemCount(item, count, updateType, questStatus, actor);
 		}
 
 		return count == 0;

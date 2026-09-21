@@ -105,7 +105,7 @@ public class ItemSplitService {
 			long freeCount = targetItem.getFreeCount();
 			count = count > freeCount ? freeCount : count;
 			long leftCount = destStorage.increaseItemCount(targetItem, count,
-				sourceStorage.getStorageType() == destStorage.getStorageType() ? ItemUpdateType.INC_ITEM_MERGE : ItemUpdateType.INC_ITEM_COLLECT);
+				sourceStorage.getStorageType() == destStorage.getStorageType() ? ItemUpdateType.INC_ITEM_MERGE : ItemUpdateType.PUT);
 			sourceStorage.decreaseItemCount(sourceItem, count - leftCount,
 				sourceStorage.getStorageType() == destStorage.getStorageType() ? ItemUpdateType.DEC_ITEM_SPLIT : ItemUpdateType.DEC_ITEM_SPLIT_MOVE);
 		}
