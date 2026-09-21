@@ -123,7 +123,10 @@ public class DialogService {
 				case RECREATE_LEGION: // recreate legion
 					LegionService.getInstance().recreateLegion(npc, player);
 					break;
-				case RECOVERY:// soul healing (2.5)
+				case RECOVERY: // soul healing (2.5)
+				case RECOVERY_WITH_HEAL: // Classic 5.0: também restaura HP e MP (captura de 2026-09-21: pergunta 909382)
+					final boolean restoreHpMp = dialogActionId == RECOVERY_WITH_HEAL;
+					final int questionId = restoreHpMp ? SM_QUESTION_WINDOW.STR_ASK_RECOVER_EXPERIENCE2 : SM_QUESTION_WINDOW.STR_ASK_RECOVER_EXPERIENCE;
 					final long expLost = player.getCommonData().getExpRecoverable();
 					if (expLost == 0) {
 						player.getEffectController().removeByDispelSlotType(DispelSlotType.SPECIAL2);
@@ -143,16 +146,20 @@ public class DialogService {
 								responder.getInventory().decreaseKinah(price, ItemUpdateType.DEC_KINAH_SOUL_HEALER);
 								responder.getEffectController().removeByDispelSlotType(DispelSlotType.SPECIAL2);
 								responder.getCommonData().setDeathCount(0);
+								if (restoreHpMp) {
+									responder.getLifeStats().setCurrentHpPercent(100);
+									responder.getLifeStats().setCurrentMpPercent(100);
+								}
 							} else {
-								PacketSendUtility.sendPacket(responder, SM_SYSTEM_MESSAGE.STR_MSG_NOT_ENOUGH_KINA(price));
+								// oficial: STR_CANNOT_RECOVER_EXPERIENCE_NOT_ENOUGH_FEE nas duas opções (captura de 2026-09-21)
+								PacketSendUtility.sendPacket(responder, SM_SYSTEM_MESSAGE.STR_CANNOT_RECOVER_EXPERIENCE_NOT_ENOUGH_FEE());
 							}
 						}
 					};
 					if (player.getCommonData().getExpRecoverable() > 0) {
-						boolean result = player.getResponseRequester().putRequest(SM_QUESTION_WINDOW.STR_ASK_RECOVER_EXPERIENCE, responseHandler);
+						boolean result = player.getResponseRequester().putRequest(questionId, responseHandler);
 						if (result) {
-							PacketSendUtility.sendPacket(player,
-								new SM_QUESTION_WINDOW(SM_QUESTION_WINDOW.STR_ASK_RECOVER_EXPERIENCE, 0, 0, String.valueOf(price)));
+							PacketSendUtility.sendPacket(player, new SM_QUESTION_WINDOW(questionId, 0, 0, String.valueOf(price)));
 						}
 					} else {
 						PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_DONOT_HAVE_RECOVER_EXPERIENCE());

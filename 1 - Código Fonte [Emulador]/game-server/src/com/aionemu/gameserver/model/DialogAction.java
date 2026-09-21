@@ -46,6 +46,8 @@ public final class DialogAction {
 	public static final int OPEN_VENDOR = 33;
 	public static final int RESURRECT_BIND = 34;
 	public static final int RECOVERY = 35;
+	/** Classic 5.0: cura de alma que também restaura HP e MP (pergunta 909382, STR_ASK_RECOVER_EXPERIENCE2); nas capturas custa o da 35 mais uma base */
+	public static final int RECOVERY_WITH_HEAL = 128;
 	public static final int ENTER_PVP = 36;
 	public static final int LEAVE_PVP = 37;
 	public static final int OPEN_POSTBOX = 38;

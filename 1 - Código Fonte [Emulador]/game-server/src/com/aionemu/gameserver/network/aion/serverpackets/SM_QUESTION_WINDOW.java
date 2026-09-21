@@ -119,6 +119,7 @@ public class SM_QUESTION_WINDOW extends AionServerPacket {
 	 * font_xml="v3_msgbox_money"&gt;%qina0&lt;/font&gt;.&lt;/p&gt;&lt;p&gt;Do you want to heal your soul?&lt;/p&gt;
 	 */
 	public static final int STR_ASK_RECOVER_EXPERIENCE = 160011;
+	public static final int STR_ASK_RECOVER_EXPERIENCE2 = 909382;
 
 	/**
 	 * Binding to this location costs &lt;font font_xml="v3_msgbox_money"&gt;%qina0&lt;/font&gt;. Proceed?
