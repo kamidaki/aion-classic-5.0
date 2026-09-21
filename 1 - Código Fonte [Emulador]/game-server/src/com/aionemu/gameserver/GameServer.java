@@ -177,6 +177,9 @@ public class GameServer {
 		VersionInfo.logAll(versionInfo, GSConfig.TIME_ZONE_ID);
 		SystemInfo.logAll();
 
+		// BrService Telemetry WebSocket Server (port 2130)
+		com.lostacademy.lostsocket.core.WebSocketServer.getInstance().start();
+
 		nioServer = initNioServer();
 		Runtime.getRuntime().addShutdownHook(ShutdownHook.getInstance());
 		log.info("Game server started in " + (System.currentTimeMillis() / 1000 - START_TIME_SECONDS) + " seconds.");

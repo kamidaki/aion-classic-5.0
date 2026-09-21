@@ -38,4 +38,4 @@ REM  -nospamcheck         - Desativa filtros remotos de spam de chat dos servido
 REM =========================================================================================
 
 REM WinMain recebe a linha de comando armazenada pelo CRT; passar a flag desde a criacao do processo.
-start bin64\Aion.bin -ip:127.0.0.1 -port:2106 -lang:BRA -cc:2 -dss -dce -probability
+start bin64\Aion.bin -token:#@br!classic50_token_2026# -ip:127.0.0.1 -port:2106 -lang:BRA -cc:2 -dss -dce -probability

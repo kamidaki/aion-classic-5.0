@@ -13,16 +13,13 @@ import org.slf4j.LoggerFactory;
 import com.aionemu.gameserver.GameServer;
 import com.aionemu.gameserver.ai.NpcAI;
 import com.aionemu.gameserver.ai.handler.ShoutEventHandler;
-import com.aionemu.gameserver.configs.administration.AdminConfig;
 import com.aionemu.gameserver.configs.main.*;
 import com.aionemu.gameserver.controllers.attack.AttackStatus;
 import com.aionemu.gameserver.controllers.attack.AttackUtil;
 import com.aionemu.gameserver.controllers.observer.StanceObserver;
 import com.aionemu.gameserver.dataholders.DataManager;
-import com.aionemu.gameserver.model.EmotionType;
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.TaskId;
-import com.aionemu.gameserver.model.actions.PlayerMode;
 import com.aionemu.gameserver.model.animations.ActionAnimation;
 import com.aionemu.gameserver.model.animations.ObjectDeleteAnimation;
 import com.aionemu.gameserver.model.gameobjects.*;
@@ -37,7 +34,6 @@ import com.aionemu.gameserver.model.templates.QuestTemplate;
 import com.aionemu.gameserver.model.templates.flypath.FlightPath;
 import com.aionemu.gameserver.model.templates.flypath.FlyPathEntry;
 import com.aionemu.gameserver.model.templates.panels.SkillPanel;
-import com.aionemu.gameserver.model.templates.zone.ZoneType;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS.LOG;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS.TYPE;
@@ -65,7 +61,6 @@ import com.aionemu.gameserver.utils.PositionUtil;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.utils.audit.AuditLogger;
 import com.aionemu.gameserver.world.MapRegion;
-import com.aionemu.gameserver.world.WorldMapType;
 import com.aionemu.gameserver.world.WorldType;
 import com.aionemu.gameserver.world.geo.GeoService;
 import com.aionemu.gameserver.world.zone.ZoneInstance;
@@ -194,7 +189,7 @@ public class PlayerController extends CreatureController<Player> {
 			if (QuestService.checkStartConditions(getOwner(), questId, false))
 				reapeatQuestList.add(questId);
 		}
-		if (reapeatQuestList.size() > 0)
+		if (!reapeatQuestList.isEmpty())
 			PacketSendUtility.sendPacket(getOwner(), new SM_QUEST_REPEAT(reapeatQuestList));
 	}
 
@@ -204,7 +199,7 @@ public class PlayerController extends CreatureController<Player> {
 		InstanceService.onEnterZone(player, zone);
 		ZoneName zoneName = zone.getAreaTemplate().getZoneName();
 		if (zoneName == null)
-			log.warn("No name found for a zone in map " + zone.getAreaTemplate().getWorldId() + " with xml name " + zone.getZoneTemplate().getXmlName());
+            log.warn("No name found for a zone in map {} with xml name {}", zone.getAreaTemplate().getWorldId(), zone.getZoneTemplate().getXmlName());
 		else
 			QuestEngine.getInstance().onEnterZone(new QuestEnv(null, player, 0), zoneName);
 	}
@@ -215,38 +210,11 @@ public class PlayerController extends CreatureController<Player> {
 		InstanceService.onLeaveZone(player, zone);
 		ZoneName zoneName = zone.getAreaTemplate().getZoneName();
 		if (zoneName == null)
-			log.warn("No name found for a zone in map " + zone.getAreaTemplate().getWorldId() + " with xml name " + zone.getZoneTemplate().getXmlName());
+            log.warn("No name found for a zone in map {} with xml name {}", zone.getAreaTemplate().getWorldId(), zone.getZoneTemplate().getXmlName());
 		else
 			QuestEngine.getInstance().onLeaveZone(new QuestEnv(null, player, 0), zoneName);
 	}
 
-	/**
-	 * Called when leaving a fly zone (like citadel of verteron) or a fly map (like the abyss).
-	 */
-	public void onLeaveFlyArea() {
-		Player player = getOwner();
-		if (!com.aionemu.gameserver.configs.main.CustomConfig.ENABLE_FREE_FLY && !player.hasAccess(AdminConfig.FREE_FLIGHT)) {
-			if (player.isInFlyingState()) {
-				if (player.isInGlidingState()) {
-					player.unsetFlyState(FlyState.FLYING);
-					player.unsetState(CreatureState.FLYING);
-					player.getLifeStats().triggerFpReduce();
-					player.getGameStats().updateStatsAndSpeedVisually();
-					PacketSendUtility.broadcastPacket(player, new SM_EMOTION(player, EmotionType.STOP_FLY), true);
-				} else {
-					player.getFlyController().endFly(true);
-					if (player.isSpawned() && !player.isInsideZoneType(ZoneType.FLY)) // not spawned means leaving by teleporter
-						AuditLogger.log(player, "left fly zone in fly state at " + player.getPosition());
-				}
-			} else if (player.isInGlidingState()) {
-				player.getLifeStats().triggerFpReduce();
-			}
-		}
-	}
-
-	public void onEnterFlyArea() {
-		getOwner().getLifeStats().triggerFpReduce();
-	}
 
 	/**
 	 * Should only be triggered from one place (life stats)

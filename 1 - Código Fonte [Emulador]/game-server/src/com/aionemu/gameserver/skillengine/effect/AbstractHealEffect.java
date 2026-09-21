@@ -13,6 +13,7 @@ import com.aionemu.gameserver.skillengine.model.Effect;
 import com.aionemu.gameserver.skillengine.model.EffectReserved;
 import com.aionemu.gameserver.skillengine.model.EffectReserved.ResourceType;
 import com.aionemu.gameserver.skillengine.model.HealType;
+import com.lostacademy.Dps_Meter.DpsService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -39,6 +40,11 @@ public abstract class AbstractHealEffect extends EffectTemplate implements HealE
 					effected.getLifeStats().increaseHp(TYPE.HP, healValue, effect.getEffector());
 				else
 					effected.getLifeStats().increaseHp(TYPE.REGULAR, healValue, effect.getEffector());
+
+				if (effect.getEffector() instanceof Player effectorPlayer && healValue > 0) {
+					String skillName = effect.getSkillTemplate() != null ? effect.getSkillTemplate().getName() : "Heal";
+					DpsService.recordPlayerHeal(effectorPlayer, effected, healValue, effect.getSkillId(), skillName);
+				}
 				break;
 			case MP:
 				if (this instanceof ProcMPHealInstantEffect)// item heal, eg potions

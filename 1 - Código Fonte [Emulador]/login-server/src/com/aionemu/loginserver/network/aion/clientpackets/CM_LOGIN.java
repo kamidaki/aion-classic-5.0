@@ -85,6 +85,12 @@ public class CM_LOGIN extends AionClientPacket {
 		ncotp |= (decrypted[0x7f] & 0xFF) << 24;
 
 		LoginConnection client = getConnection();
+		if (Config.REQUIRE_CLIENT_TOKEN && ncotp == 0) {
+			log.warn("Tentativa de conexao rejeitada de {}: Client nao autenticado com token oficial.", client.getIP());
+			client.close(new SM_LOGIN_FAIL(AionAuthResponse.STR_L2AUTH_S_SYSTEM_ERROR));
+			return;
+		}
+
 		AionAuthResponse response = AccountController.login(user, password, client);
 		if (response == null) {
 			return;

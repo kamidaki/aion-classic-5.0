@@ -80,11 +80,6 @@ public class CustomConfig {
 	@Property(key = "gameserver.base.flytime", defaultValue = "60")
 	public static int BASE_FLYTIME;
 
-	/**
-	 * Enable Free Flying on all maps
-	 */
-	@Property(key = "gameserver.flight.freefly", defaultValue = "true")
-	public static boolean ENABLE_FREE_FLY;
 
 	@Property(key = "gameserver.friendlist.gm_restrict", defaultValue = "false")
 	public static boolean FRIENDLIST_GM_RESTRICT;
@@ -288,4 +283,16 @@ public class CustomConfig {
 	 */
 	@Property(key = "gameserver.weapon.fusion.split.stored", defaultValue = "false")
 	public static boolean SPLIT_STORED_WEAPON_FUSIONS;
+
+	/**
+	 * BrService Telemetry WebSocket Server Configuration
+	 */
+	@Property(key = "gameserver.telemetry.websocket.enable", defaultValue = "true")
+	public static boolean TELEMETRY_WEBSOCKET_ENABLE;
+
+	@Property(key = "gameserver.telemetry.websocket.port", defaultValue = "2130")
+	public static int TELEMETRY_WEBSOCKET_PORT;
+
+	@Property(key = "gameserver.telemetry.websocket.token", defaultValue = "#@br!classic50_token_2026#")
+	public static String TELEMETRY_WEBSOCKET_TOKEN;
 }

@@ -79,6 +79,16 @@ public class Config {
 	@Property(key = "loginserver.log.logins", defaultValue = "false")
 	public static boolean LOG_LOGINS;
 
+	/**
+	 * Enforces official client security token validation.
+	 * Rejects unauthorized or generic clients before processing login flow.
+	 */
+	@Property(key = "loginserver.security.token.required", defaultValue = "false")
+	public static boolean REQUIRE_CLIENT_TOKEN;
+
+	@Property(key = "loginserver.security.token", defaultValue = "#@br!classic50_token_2026#")
+	public static String CLIENT_SECURITY_TOKEN;
+
 	public static boolean useExternalAuth() {
 		return !EXTERNAL_AUTH_URL.isBlank();
 	}

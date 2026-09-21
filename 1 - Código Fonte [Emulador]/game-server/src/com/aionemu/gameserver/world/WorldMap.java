@@ -62,16 +62,9 @@ public class WorldMap implements Iterable<WorldMapInstance> {
 		return worldMapTemplate.getMapId();
 	}
 
-	public boolean isFlightAllowed() {
-		return com.aionemu.gameserver.configs.main.CustomConfig.ENABLE_FREE_FLY || (worldOptions & ZoneAttributes.FLY.getId()) != 0;
-	}
 
 	public boolean isExceptBuff() {
 		return worldMapTemplate.isExceptBuff();
-	}
-
-	public boolean canGlide() {
-		return com.aionemu.gameserver.configs.main.CustomConfig.ENABLE_FREE_FLY || (worldOptions & ZoneAttributes.GLIDE.getId()) != 0;
 	}
 
 	public boolean canPutKisk() {
@@ -80,14 +73,6 @@ public class WorldMap implements Iterable<WorldMapInstance> {
 
 	public boolean canRecall() {
 		return (worldOptions & ZoneAttributes.RECALL.getId()) != 0;
-	}
-
-	public boolean canRide() {
-		return (worldOptions & ZoneAttributes.RIDE.getId()) != 0;
-	}
-
-	public boolean canFlyRide() {
-		return com.aionemu.gameserver.configs.main.CustomConfig.ENABLE_FREE_FLY || (worldOptions & ZoneAttributes.FLY_RIDE.getId()) != 0;
 	}
 
 	public boolean isPvpAllowed() {

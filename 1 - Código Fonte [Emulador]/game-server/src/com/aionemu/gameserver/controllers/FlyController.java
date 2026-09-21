@@ -1,12 +1,9 @@
 package com.aionemu.gameserver.controllers;
 
-import com.aionemu.gameserver.configs.administration.AdminConfig;
 import com.aionemu.gameserver.model.EmotionType;
-import com.aionemu.gameserver.model.actions.PlayerMode;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.model.gameobjects.state.FlyState;
-import com.aionemu.gameserver.model.templates.zone.ZoneType;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_EMOTION;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.skillengine.effect.AbnormalState;
@@ -25,7 +22,7 @@ public class FlyController {
 	 */
 	public static final int FLY_SPRINT_SPEED = 18000;
 	private static final int[] FLY_SPRINT_SKILLS = { 3180, 2669 }; // ALL_FlyBoost_G2, ALL_FlyBoost_G1
-	private Player player;
+	private final Player player;
 	private volatile int flySprintSkillId;
 
 	public FlyController(Player player) {
