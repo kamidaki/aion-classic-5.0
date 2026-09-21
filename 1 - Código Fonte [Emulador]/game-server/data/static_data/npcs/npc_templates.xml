@@ -316691,7 +316691,7 @@
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730660" level="70" name="ROIRUNKER" name_id="465410" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="2000" hpgauge="3" race="ASMODIANS">
+	<npc_template npc_id="730660" level="70" name="ROIRUNKER" name_id="465410" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="portal_dialog" srange="20" arange="2" attack_speed="2000" hpgauge="3" race="ASMODIANS">
 		<stats maxHp="23568" >
 			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -358674,12 +358674,12 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802001" level="1" name="Teleporter" name_id="464435" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="aggressive" sangle="0" attack_speed="2000" hpgauge="3" race="ASMODIANS" srange="20">
+	<npc_template npc_id="802001" level="1" name="Teleporter" name_id="464435" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="portal" sangle="0" attack_speed="2000" hpgauge="3" race="ASMODIANS" srange="20">
 		<stats maxHp="172" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" can_talk_invisible="false" />
+		<talk_info distance="5" delay="2" can_talk_invisible="false" />
 	</npc_template>
 	<npc_template npc_id="802002" level="1" name="Teleporter" name_id="464436" title_id="464442" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="aggressive" sangle="0" attack_speed="2000" hpgauge="3" race="ASMODIANS" srange="20">
 		<stats maxHp="149" >
