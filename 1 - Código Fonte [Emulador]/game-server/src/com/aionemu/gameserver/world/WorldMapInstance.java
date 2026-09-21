@@ -128,7 +128,7 @@ public abstract class WorldMapInstance implements Iterable<VisibleObject> {
 			}
 		}
 		if (object instanceof Player player) {
-			if (getParent().isFlightAllowed())
+			if (com.aionemu.gameserver.configs.main.CustomConfig.ENABLE_FREE_FLY || getParent().isFlightAllowed())
 				player.setInsideZoneType(ZoneType.FLY);
 			worldMapPlayers.put(object.getObjectId(), player);
 		}
@@ -138,7 +138,7 @@ public abstract class WorldMapInstance implements Iterable<VisibleObject> {
 		worldMapObjects.remove(object.getObjectId());
 		if (object instanceof Player player) {
 			lastPlayerLeaveTime = System.currentTimeMillis();
-			if (getParent().isFlightAllowed()) {
+			if (com.aionemu.gameserver.configs.main.CustomConfig.ENABLE_FREE_FLY || getParent().isFlightAllowed()) {
 				player.unsetInsideZoneType(ZoneType.FLY);
 				// necessary for fly maps like the abyss (they don't have FlyZones, so no FlyZoneInstance.onLeave() is called)
 				player.getController().onLeaveFlyArea();

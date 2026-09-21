@@ -255,11 +255,13 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 							ps = new PathState(newPath, startIdx);
 							pathRef.set(ps);
 						} else {
-							// A* falhou (mapa sem dados ou rota inacessível):
-							// Move diretamente ao alvo — NPC nunca para pra "pensar"
+							// A* não encontrou rota navegável:
 							ps = null;
 							pathRef.set(null);
-							moveToLocation(targetX, targetY, targetZ);
+							// Só move diretamente se houver caminho físico desobstruído — nunca atravessa sólidos
+							if (canWalkDirectly(owner, targetX, targetY, targetZ)) {
+								moveToLocation(targetX, targetY, targetZ);
+							}
 							break;
 						}
 					}
@@ -438,9 +440,11 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 		float newY = (targetDestY - ownerY) * distFraction + ownerY;
 		float newZ = (targetDestZ - ownerZ) * distFraction + ownerZ;
 
-		// Clamping de Z durante AIState.RETURNING para impedir flutuação em linha reta
+		// Clamping de Z durante AIState.RETURNING para impedir flutuação ou afundamento sob o relevo
 		if (owner.getAi().getState() == AIState.RETURNING) {
-			float surfaceZ = GeoService.getInstance().getZ(owner.getWorldId(), newX, newY, newZ + 3.0f, newZ - 6.0f, owner.getInstanceId());
+			float highZ = Math.max(ownerZ, newZ) + 15.0f;
+			float lowZ = Math.min(ownerZ, newZ) - 25.0f;
+			float surfaceZ = GeoService.getInstance().getZ(owner.getWorldId(), newX, newY, highZ, lowZ, owner.getInstanceId());
 			if (Float.isNaN(surfaceZ)) {
 				surfaceZ = com.lostacademy.nativepath.NativePathService.getInstance().getSurfaceZ(owner.getWorldId(), newX, newY, newZ);
 			}
@@ -762,6 +766,13 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 	private boolean isPathFailure(float[][] path) {
 		return path == null || path.length == 0;
+	}
+
+	private boolean canWalkDirectly(Creature owner, float targetX, float targetY, float targetZ) {
+		if (NativePathConfig.NATIVE_PATH_ENABLE) {
+			return NativePathService.getInstance().canWalkDirectly(owner, targetX, targetY, targetZ);
+		}
+		return !GeoDataConfig.GEO_ENABLE || GeoService.getInstance().canSee(owner, targetX, targetY, targetZ, IgnoreProperties.ANY_RACE);
 	}
 
 	/**

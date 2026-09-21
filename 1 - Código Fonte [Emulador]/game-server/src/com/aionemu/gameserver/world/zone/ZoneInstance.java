@@ -96,6 +96,8 @@ public class ZoneInstance {
 	}
 
 	public boolean canFly() {
+		if (com.aionemu.gameserver.configs.main.CustomConfig.ENABLE_FREE_FLY)
+			return true;
 		if (template.getZoneTemplate().getFlags() == -1 || template.getZoneTemplate().getFlags() == 0
 			|| World.getInstance().getWorldMap(mapId).hasOverridenOption(ZoneAttributes.FLY))
 			return World.getInstance().getWorldMap(mapId).isFlightAllowed();
@@ -103,6 +105,8 @@ public class ZoneInstance {
 	}
 
 	public boolean canGlide() {
+		if (com.aionemu.gameserver.configs.main.CustomConfig.ENABLE_FREE_FLY)
+			return true;
 		if (template.getZoneTemplate().getFlags() == -1 || template.getZoneTemplate().getFlags() == 0
 			|| World.getInstance().getWorldMap(mapId).hasOverridenOption(ZoneAttributes.GLIDE))
 			return World.getInstance().getWorldMap(mapId).canGlide();

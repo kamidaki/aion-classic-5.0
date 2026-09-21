@@ -225,7 +225,7 @@ public class PlayerController extends CreatureController<Player> {
 	 */
 	public void onLeaveFlyArea() {
 		Player player = getOwner();
-		if (!player.hasAccess(AdminConfig.FREE_FLIGHT)) {
+		if (!com.aionemu.gameserver.configs.main.CustomConfig.ENABLE_FREE_FLY && !player.hasAccess(AdminConfig.FREE_FLIGHT)) {
 			if (player.isInFlyingState()) {
 				if (player.isInGlidingState()) {
 					player.unsetFlyState(FlyState.FLYING);

@@ -80,6 +80,12 @@ public class CustomConfig {
 	@Property(key = "gameserver.base.flytime", defaultValue = "60")
 	public static int BASE_FLYTIME;
 
+	/**
+	 * Enable Free Flying on all maps
+	 */
+	@Property(key = "gameserver.flight.freefly", defaultValue = "true")
+	public static boolean ENABLE_FREE_FLY;
+
 	@Property(key = "gameserver.friendlist.gm_restrict", defaultValue = "false")
 	public static boolean FRIENDLIST_GM_RESTRICT;
 

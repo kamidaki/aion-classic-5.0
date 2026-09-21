@@ -48,9 +48,9 @@ public final class NativePathAStar {
 	public static final float MAX_DROP_DOWN = 1.8f;
 
 	/**
-	 * Distância máxima plana para utilização da grade de 0.5m (60 metros).
+	 * Distância máxima plana para utilização da grade de 0.5m (90 metros).
 	 */
-	private static final float LOCAL_SEARCH_MAX_DIST = 60.0f;
+	private static final float LOCAL_SEARCH_MAX_DIST = 90.0f;
 
 	private NativePathAStar() {
 	}

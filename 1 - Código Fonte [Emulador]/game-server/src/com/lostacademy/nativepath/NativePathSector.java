@@ -129,6 +129,7 @@ public final class NativePathSector {
 		 * @return Altitude Z em metros da superfície desta camada.
 		 */
 		public float getZ(int subX, int subY, float terrainZ) {
+			boolean hasValidBase = !Float.isNaN(baseElev) && (Float.isNaN(terrainZ) || Math.abs(baseElev - terrainZ) < 50.0f);
 			if (subElevs != null) {
 				int idx = (subY << 5) | subX;
 				short e = subElevs[idx];
@@ -136,13 +137,13 @@ public final class NativePathSector {
 				// - 0xFFFE / -2: célula sem alteração (usa terreno natural)
 				// - 0xFFFF / -1: célula bloqueada / inválida
 				if (e != -2 && e != -1 && Math.abs(e) < 32000) {
-					if (!Float.isNaN(baseElev)) {
+					if (hasValidBase) {
 						return baseElev + (e / 100.0f);
 					}
-					return e / 100.0f;
+					return !Float.isNaN(terrainZ) ? (terrainZ + (e / 100.0f)) : (e / 100.0f);
 				}
 			}
-			if (!Float.isNaN(baseElev)) {
+			if (hasValidBase) {
 				return baseElev;
 			}
 			return terrainZ;
