@@ -1,0 +1,12 @@
+fix_50_item_self_resurrect.py
+
+== marcado: 9
+  161000001 test_scroll_resurrect_01
+  161000002 test_scroll_resurrect_02
+  161000003 soulstone_resurrect_self_20
+  161000004 soulstone_a_resurrect_self_01
+  161001001 cash_soulstone_resurrect_self_01
+  161001002 Event_SOULSTONE_RESURRECT_SELF_01
+  161001003 world_event_ru_soulstone_resurrect_self_02
+  161001004 world_ru_soulstone_resurrect_self_01
+  188053614 world_event_ru_soulstone_resurrect_self_01

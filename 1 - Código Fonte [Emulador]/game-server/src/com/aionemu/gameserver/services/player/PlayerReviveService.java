@@ -3,6 +3,7 @@ package com.aionemu.gameserver.services.player;
 import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.configs.administration.AdminConfig;
+import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.EmotionType;
 import com.aionemu.gameserver.model.TaskId;
 import com.aionemu.gameserver.model.gameobjects.Item;
@@ -14,11 +15,15 @@ import com.aionemu.gameserver.model.team.common.legacy.GroupEvent;
 import com.aionemu.gameserver.model.team.common.legacy.PlayerAllianceEvent;
 import com.aionemu.gameserver.model.team.group.PlayerGroupService;
 import com.aionemu.gameserver.model.templates.item.ItemUseLimits;
+import com.aionemu.gameserver.model.templates.item.actions.SkillUseAction;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.services.VortexService;
 import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.services.vortex.DimensionalVortex;
+import com.aionemu.gameserver.skillengine.effect.EffectTemplate;
+import com.aionemu.gameserver.skillengine.effect.ResurrectEffect;
 import com.aionemu.gameserver.skillengine.model.Effect;
+import com.aionemu.gameserver.skillengine.model.SkillTemplate;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.utils.audit.AuditLogger;
@@ -209,6 +214,20 @@ public class PlayerReviveService {
 		PacketSendUtility.broadcastPacket(player, new SM_EMOTION(player, EmotionType.RESURRECT), true);
 	}
 
+	/**
+	 * @return skill que o ResurrectEffect da skill do item aplica depois de reviver, ou 0 se o item não tem
+	 */
+	private static int resurrectDebuffOf(Item item) {
+		SkillUseAction action = item.getItemTemplate().getActions() == null ? null : item.getItemTemplate().getActions().getSkillUseAction();
+		SkillTemplate skill = action == null ? null : DataManager.SKILL_DATA.getSkillTemplate(action.getSkillId());
+		if (skill != null && skill.getEffects() != null)
+			for (EffectTemplate effect : skill.getEffects().getEffects())
+				if (effect instanceof ResurrectEffect resurrect)
+					return resurrect.getSkillId();
+		LoggerFactory.getLogger(PlayerReviveService.class).warn("Pedra de auto-ressurreição {} sem ResurrectEffect na skill do item", item.getItemId());
+		return 0;
+	}
+
 	public static void itemSelfRevive(Player player) {
 		Item item = player.getSelfRezStone();
 		if (item == null) {
@@ -227,8 +246,9 @@ public class PlayerReviveService {
 			AuditLogger.log(player, "tried to use selfres without having the required selfres stone");
 			return;
 		}
-		// Tombstone Self-Rez retail verified 15%
-		revive(player, 15, 15, true, player.getResurrectionSkill());
+		// Classic 5.0 (captura de 2026-09-21, C_DEAD_RESTART tipo 2 com a 161000004): volta com 35% de HP e MP, os mesmos do ResurrectEffect,
+		// e recebe o debuff da skill do item (item_soulstone_resurrect_01 -> CL_ResurrectDebuff 8296)
+		revive(player, 35, 35, true, resurrectDebuffOf(item));
 		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_REBIRTH_MASSAGE_ME());
 		// if player was flying before res, start flying
 		if (player.getIsFlyingBeforeDeath()) {

@@ -134,6 +134,8 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	private int activationCount;
 	@XmlAttribute(name = "activate_combat")
 	private boolean activateCombat;
+	@XmlAttribute(name = "self_resurrect")
+	private boolean selfResurrect;
 	@XmlAttribute(name = "robot")
 	private Integer robotId;
 	@XmlElement(name = "tradein_list")
@@ -641,6 +643,13 @@ public class ItemTemplate extends VisibleObjectTemplate {
 
 	public boolean isCombatActivated() {
 		return activateCombat;
+	}
+
+	/**
+	 * @return true para as pedras que ressuscitam o próprio dono morto pelo C_DEAD_RESTART tipo 2 (mgrouptag I_RESURRECT do cliente)
+	 */
+	public boolean isSelfResurrect() {
+		return selfResurrect;
 	}
 
 	public Integer getRobotId() {

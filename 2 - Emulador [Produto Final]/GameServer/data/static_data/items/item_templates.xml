@@ -440857,13 +440857,13 @@
 	</item_template>
 	<item_template id="160005045" name="Equipe do herói" level="1" cName="world_event_food_sweet_2stats_01a" mask="28744" max_stack_count="1000" quality="RARE" price="5" desc="780342" activate_target="STANDALONE" activate_count="1" item_group="PACK_SCROLL" client_mask="24872">
 		<actions>
-			<skilluse level="5" skillid="10440"/>
+			<skilluse level="5" skillid="10371"/>
 		</actions>
 		<uselimits usedelay="5000" usedelayid="22"/>
 	</item_template>
 	<item_template id="160005046" name="[Evento] Peanut Butter Cookie" level="1" cName="world_event_food_sweet_2stats_02a" mask="28744" max_stack_count="1000" quality="RARE" price="5" desc="780344" activate_target="STANDALONE" activate_count="1" item_group="PACK_SCROLL" client_mask="24872">
 		<actions>
-			<skilluse level="5" skillid="10441"/>
+			<skilluse level="5" skillid="10372"/>
 		</actions>
 		<uselimits usedelay="5000" usedelayid="22"/>
 	</item_template>
@@ -443034,48 +443034,48 @@
 			<skilluse skillid="10565" level="1"/>
 		</actions>
 	</item_template>
-	<item_template id="161000001" name="Rolagem de teste de ressurreição imediata" level="1" cName="test_scroll_resurrect_01" mask="28798" max_stack_count="100" quality="COMMON" price="1" desc="700194" activate_target="TARGET" activate_count="1" item_group="SOULSTONE" client_mask="25406">
+	<item_template id="161000001" name="Rolagem de teste de ressurreição imediata" level="1" cName="test_scroll_resurrect_01" mask="28798" max_stack_count="100" quality="COMMON" price="1" desc="700194" activate_target="TARGET" activate_count="1" item_group="SOULSTONE" client_mask="25406" self_resurrect="true">
 		<actions>
 			<skilluse level="1" skillid="9870"/>
 		</actions>
 		<uselimits usedelay="15000" usedelayid="53"/>
 	</item_template>
-	<item_template id="161000002" name="Rolagem do teste de auto -ressurreição" level="1" cName="test_scroll_resurrect_02" mask="28798" max_stack_count="100" quality="COMMON" price="1" desc="700228" activate_target="STANDALONE" activate_count="1" item_group="SOULSTONE" client_mask="25406">
+	<item_template id="161000002" name="Rolagem do teste de auto -ressurreição" level="1" cName="test_scroll_resurrect_02" mask="28798" max_stack_count="100" quality="COMMON" price="1" desc="700228" activate_target="STANDALONE" activate_count="1" item_group="SOULSTONE" client_mask="25406" self_resurrect="true">
 		<actions>
 			<skilluse level="1" skillid="9872"/>
 		</actions>
 		<uselimits usedelay="15000" usedelayid="53"/>
 	</item_template>
-	<item_template id="161000003" name="Revivendo a pedra elementar" level="25" cName="soulstone_resurrect_self_20" mask="28798" max_stack_count="10" item_group="SOULSTONE" quality="RARE" price="6500" desc="702549" activate_target="TARGET" activate_count="1" client_mask="25406">
+	<item_template id="161000003" name="Revivendo a pedra elementar" level="25" cName="soulstone_resurrect_self_20" mask="28798" max_stack_count="10" item_group="SOULSTONE" quality="RARE" price="6500" desc="702549" activate_target="TARGET" activate_count="1" client_mask="25406" self_resurrect="true">
 		<actions>
-			<skilluse level="1" skillid="10802"/>
+			<skilluse level="1" skillid="9912"/>
 		</actions>
 		<uselimits usedelay="3600000" usedelayid="53"/>
 	</item_template>
-	<item_template id="161000004" name="Tombstone do reavivamento" level="25" cName="soulstone_a_resurrect_self_01" mask="28744" max_stack_count="10" item_group="SOULSTONE" item_type="ABYSS" quality="RARE" price="5" desc="717227" activate_target="TARGET" activate_count="1" client_mask="24872">
+	<item_template id="161000004" name="Tombstone do reavivamento" level="25" cName="soulstone_a_resurrect_self_01" mask="28744" max_stack_count="10" item_group="SOULSTONE" item_type="ABYSS" quality="RARE" price="5" desc="717227" activate_target="TARGET" activate_count="1" client_mask="24872" self_resurrect="true">
 		<actions>
-			<skilluse level="1" skillid="10802"/>
+			<skilluse level="1" skillid="9912"/>
 		</actions>
 		<acquisition type="AP" ap="500"/>
 		<uselimits usedelay="3600000" usedelayid="53"/>
 	</item_template>
-	<item_template id="161001001" name="Pedra de Revival" level="1" cName="cash_soulstone_resurrect_self_01" mask="28744" max_stack_count="100" quality="RARE" price="5" desc="739490" activate_target="TARGET" activate_count="1" item_group="SOULSTONE" client_mask="24872">
+	<item_template id="161001001" name="Pedra de Revival" level="1" cName="cash_soulstone_resurrect_self_01" mask="28744" max_stack_count="100" quality="RARE" price="5" desc="739490" activate_target="TARGET" activate_count="1" item_group="SOULSTONE" client_mask="24872" self_resurrect="true">
 		<actions>
-			<skilluse level="1" skillid="10802"/>
+			<skilluse level="1" skillid="9912"/>
 		</actions>
 		<uselimits usedelay="1800000" usedelayid="72"/>
 	</item_template>
-	<item_template id="161001002" name="Maça dos seres" level="25" cName="Event_SOULSTONE_RESURRECT_SELF_01" mask="24648" item_group="SKILLBOOK" quality="RARE" price="5" desc="780642" max_stack_count="100" activate_target="TARGET" activate_count="1" client_mask="24872">
+	<item_template id="161001002" name="Maça dos seres" level="25" cName="Event_SOULSTONE_RESURRECT_SELF_01" mask="24648" item_group="SKILLBOOK" quality="RARE" price="5" desc="780642" max_stack_count="100" activate_target="TARGET" activate_count="1" client_mask="24872" self_resurrect="true">
 		<actions>
 			<skilluse skillid="9912" level="1"/>
 		</actions>
 	</item_template>
-	<item_template id="161001003" name="Um item usado para substituir o papel de parede de uma casa." level="25" cName="world_event_ru_soulstone_resurrect_self_02" mask="8200" item_group="DROP_MATERIAL" quality="RARE" price="5" restrict="25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 0 25" desc="791589" max_stack_count="100" activate_target="TARGET" activate_count="1" client_mask="24840">
+	<item_template id="161001003" name="Um item usado para substituir o papel de parede de uma casa." level="25" cName="world_event_ru_soulstone_resurrect_self_02" mask="8200" item_group="DROP_MATERIAL" quality="RARE" price="5" restrict="25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 0 25" desc="791589" max_stack_count="100" activate_target="TARGET" activate_count="1" client_mask="24840" self_resurrect="true">
 		<actions>
 			<skilluse skillid="9912" level="1"/>
 		</actions>
 	</item_template>
-	<item_template id="161001004" name="Pedra de Revival" level="1" cName="world_ru_soulstone_resurrect_self_01" mask="24648" item_group="SOULSTONE" quality="RARE" price="5" desc="739490" max_stack_count="100" activate_target="TARGET" activate_count="1" client_mask="24872">
+	<item_template id="161001004" name="Pedra de Revival" level="1" cName="world_ru_soulstone_resurrect_self_01" mask="24648" item_group="SOULSTONE" quality="RARE" price="5" desc="739490" max_stack_count="100" activate_target="TARGET" activate_count="1" client_mask="24872" self_resurrect="true">
 		<actions>
 			<skilluse skillid="9912" level="1"/>
 		</actions>
@@ -444287,19 +444287,19 @@
 	</item_template>
 	<item_template id="164000023" name="Ettin Form Scroll" level="1" cName="scroll_polymorph_ettin" mask="28798" max_stack_count="1000" quality="COMMON" price="1" desc="700436" activate_target="STANDALONE" activate_count="1" item_group="PACK_SCROLL" client_mask="25406">
 		<actions>
-			<skilluse level="1" skillid="278"/>
+			<skilluse level="1" skillid="1907"/>
 		</actions>
 		<uselimits usedelay="6000" usedelayid="33" usearea="IDELIM_ITEMUSE"/>
 	</item_template>
 	<item_template id="164000024" name="DRACONUTE FORMA ROLO" level="1" cName="scroll_polymorph_lizardman" mask="28798" max_stack_count="1000" quality="COMMON" price="1" desc="700437" activate_target="STANDALONE" activate_count="1" item_group="PACK_SCROLL" client_mask="25406">
 		<actions>
-			<skilluse level="1" skillid="279"/>
+			<skilluse level="1" skillid="1908"/>
 		</actions>
 		<uselimits usedelay="6000" usedelayid="33" ownership_worlds="300240000"/>
 	</item_template>
 	<item_template id="164000025" name="Worg Form Scroll" level="1" cName="scroll_polymorph_zaif" mask="28798" max_stack_count="1000" quality="COMMON" price="1" desc="700438" activate_target="STANDALONE" activate_count="1" item_group="PACK_SCROLL" client_mask="25406">
 		<actions>
-			<skilluse level="1" skillid="280"/>
+			<skilluse level="1" skillid="1909"/>
 		</actions>
 		<uselimits usedelay="6000" usedelayid="33"/>
 	</item_template>
@@ -466838,7 +466838,7 @@
 	</item_template>
 	<item_template id="182202194" name="Emissor de ondas de choque" level="1" cName="quest_3722a" casting_delay="2000" mask="20545" item_group="QUEST" quality="COMMON" price="1" race="ELYOS" desc="1107587" activate_target="STANDALONE" activate_count="1" client_mask="17697">
 		<actions>
-			<skilluse level="0" skillid="289"/>
+			<skilluse level="0" skillid="2257"/>
 		</actions>
 		<uselimits usedelay="120000" usedelayid="61" usearea="IDDREADGION_02_ITEMUSEAREA_Q3722"/>
 		<inventory id="2"/>
@@ -468925,7 +468925,7 @@
 	</item_template>
 	<item_template id="182205692" name="Emissor de ondas de choque" level="1" cName="quest_4722a" casting_delay="2000" mask="20545" item_group="QUEST" quality="COMMON" price="1" race="ASMODIANS" desc="1107881" activate_target="STANDALONE" activate_count="1" client_mask="17697">
 		<actions>
-			<skilluse level="0" skillid="290"/>
+			<skilluse level="0" skillid="2258"/>
 		</actions>
 		<uselimits usedelay="120000" usedelayid="61" usearea="IDDREADGION_02_ITEMUSEAREA_Q3722"/>
 		<inventory id="2"/>
@@ -469602,7 +469602,7 @@
 	</item_template>
 	<item_template id="182206620" name="Balaur havia disfarçado" level="1" cName="quest_10024f" casting_delay="2000" mask="4097" item_group="QUEST" quality="COMMON" price="1" race="ELYOS" desc="1130540" activate_target="STANDALONE" activate_count="1" client_mask="17665">
 		<actions>
-			<skilluse level="1" skillid="284"/>
+			<skilluse level="1" skillid="2252"/>
 		</actions>
 		<uselimits usedelay="60000" usedelayid="61" usearea="LF4_ITEMUSEAREA_Q10024A"/>
 		<inventory id="2"/>
@@ -469722,7 +469722,7 @@
 	</item_template>
 	<item_template id="182206724" name="Vegetais temperados da Moonflower" level="1" cName="quest_11031b" casting_delay="2000" mask="20545" item_group="QUEST" quality="COMMON" price="1" race="ELYOS" desc="1130602" activate_target="STANDALONE" activate_count="1" client_mask="17697">
 		<actions>
-			<skilluse level="0" skillid="285"/>
+			<skilluse level="0" skillid="2253"/>
 		</actions>
 		<uselimits usedelay="30000" usedelayid="61"/>
 		<inventory id="2"/>
@@ -469732,7 +469732,7 @@
 	</item_template>
 	<item_template id="182206726" name="Tentáculos experientes" level="1" cName="quest_11032b" casting_delay="2000" mask="20545" item_group="QUEST" quality="COMMON" price="1" race="ELYOS" desc="1130606" activate_target="STANDALONE" activate_count="1" client_mask="17697">
 		<actions>
-			<skilluse level="0" skillid="286"/>
+			<skilluse level="0" skillid="2254"/>
 		</actions>
 		<uselimits usedelay="30000" usedelayid="61"/>
 		<inventory id="2"/>
@@ -472161,7 +472161,7 @@
 	</item_template>
 	<item_template id="182209041" name="Poção de Jackdaw" level="1" cName="quest_4056b" casting_delay="5000" mask="20545" item_group="QUEST" quality="COMMON" price="1" desc="1116088" activate_target="STANDALONE" activate_count="1000" client_mask="17697">
 		<actions>
-			<skilluse level="1" skillid="275"/>
+			<skilluse level="1" skillid="1871"/>
 		</actions>
 		<uselimits usedelay="600000" usedelayid="61" usearea="DF2A_ITEMUSEAREA_Q4056B"/>
 		<inventory id="2"/>
@@ -497822,7 +497822,7 @@
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188053614" name="Um item usado para substituir o papel de parede de uma casa." level="25" cName="world_event_ru_soulstone_resurrect_self_01" mask="8200" item_group="DROP_MATERIAL" quality="RARE" price="5" restrict="25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 0 25" desc="791589" max_stack_count="100" activate_target="TARGET" activate_count="1" client_mask="24840">
+	<item_template id="188053614" name="Um item usado para substituir o papel de parede de uma casa." level="25" cName="world_event_ru_soulstone_resurrect_self_01" mask="8200" item_group="DROP_MATERIAL" quality="RARE" price="5" restrict="25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 0 25" desc="791589" max_stack_count="100" activate_target="TARGET" activate_count="1" client_mask="24840" self_resurrect="true">
 		<actions>
 			<skilluse skillid="9912" level="1"/>
 		</actions>

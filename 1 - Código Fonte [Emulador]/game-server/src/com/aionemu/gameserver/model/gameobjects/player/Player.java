@@ -1453,35 +1453,20 @@ public class Player extends Creature {
 	}
 
 	/**
-	 * Stone Use Order determined by highest inventory slot. :( If player has two types, wrong one might be used.
+	 * Pedra de auto-ressurreição fora de recarga (self_resurrect no item_templates, a marca I_RESURRECT do cliente). Com mais de uma, a de menor
+	 * id de item, para a escolha não depender da ordem do cubo.
 	 *
 	 * @return selfRezItem
 	 */
 	public Item getSelfRezStone() {
-		Item item;
-		item = getReviveStone(161001001);
-		if (item == null)
-			item = getReviveStone(161000003);
-		if (item == null)
-			item = getReviveStone(161000004);
-		if (item == null)
-			item = getReviveStone(161000001);
-		return item;
+		Item stone = null;
+		for (Item item : getInventory().getItems())
+			if (item.getItemTemplate().isSelfResurrect() && !hasCooldown(item) && (stone == null || item.getItemId() < stone.getItemId()))
+				stone = item;
+		return stone;
 	}
 
 	/**
-	 * @return stoneItem or null
-	 */
-	private Item getReviveStone(int stoneId) {
-		Item item = getInventory().getFirstItemByItemId(stoneId);
-		if (item != null && hasCooldown(item))
-			item = null;
-		return item;
-	}
-
-	/**
-	 * Need to find how an item is determined as able to self-rez.
-	 * 
 	 * @return boolean can self rez with item
 	 */
 	public boolean haveSelfRezItem() {

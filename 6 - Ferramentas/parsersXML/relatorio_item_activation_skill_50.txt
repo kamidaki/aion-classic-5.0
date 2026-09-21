@@ -1,0 +1,17 @@
+fix_50_item_activation_skill.py
+
+== trocado: 14
+  160005045: cash_food_popskill_01a 10440 -> 10371
+  160005046: cash_food_popskill_01b 10441 -> 10372
+  161000003: item_soulstone_resurrect_01 10802 -> 9912
+  161000004: item_soulstone_resurrect_01 10802 -> 9912
+  161001001: item_soulstone_resurrect_01 10802 -> 9912
+  164000023: ettinpolymorph 278 -> 1907
+  164000024: lizardmanpolymorph 279 -> 1908
+  164000025: zaifpolymorph 280 -> 1909
+  182202194: q_li_trapatkstumble 289 -> 2257
+  182205692: q_da_trapatkstumble 290 -> 2258
+  182206620: q_polymorph_drakan 284 -> 2252
+  182206724: q_sleep_debuff 285 -> 2253
+  182206726: q_yellow_debuff 286 -> 2254
+  182209041: q_speedup3 275 -> 1871

@@ -20,6 +20,13 @@ public class ResurrectEffect extends EffectTemplate {
 	@XmlAttribute(name = "skill_id")
 	protected int skillId;
 
+	/**
+	 * @return skill aplicada em quem revive (ex.: CL_ResurrectDebuff 8296)
+	 */
+	public int getSkillId() {
+		return skillId;
+	}
+
 	@Override
 	public void applyEffect(Effect effect) {
 		if (effect.getEffected() instanceof Player) {

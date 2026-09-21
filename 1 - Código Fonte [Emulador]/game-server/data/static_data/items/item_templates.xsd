@@ -133,6 +133,8 @@
 		<xs:attribute name="slot" type="xs:int"/>
 		<xs:attribute name="activate_count" type="xs:int"/>
 		<xs:attribute name="activate_combat" type="xs:boolean"/>
+		<!-- pedra de auto-ressurreição (mgrouptag I_RESURRECT no client_items); gerado por fix_50_item_self_resurrect.py -->
+		<xs:attribute name="self_resurrect" type="xs:boolean"/>
 		<xs:attribute name="activate_target" type="ItemActivationTarget"/>
 		<xs:attribute name="m_slots" type="xs:int"/>
 		<xs:attribute name="max_tampering" type="xs:int"/>
