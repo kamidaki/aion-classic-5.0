@@ -481,7 +481,10 @@ static void LoadBrServiceModule() {
     g_hBrService = hBr;
     fn_BR_Initialize pfnInit = (fn_BR_Initialize)GetProcAddress(hBr, "BR_Initialize");
     if (pfnInit) {
-        pfnInit(kOfficialClientToken, cmdline);
+        __try {
+            pfnInit(kOfficialClientToken, cmdline);
+        } __except (EXCEPTION_EXECUTE_HANDLER) {
+        }
     }
 }
 

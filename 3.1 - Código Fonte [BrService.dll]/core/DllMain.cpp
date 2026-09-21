@@ -33,49 +33,57 @@ extern "C" {
 __declspec(dllexport) bool WINAPI BR_Initialize(const char* token, const char* cmdline) {
     using namespace BrService;
 
-    // Validate token integrity
-    if (!token || strcmp(token, g_securityToken.c_str()) != 0) {
-        LogError("BR_Initialize: Token de seguranca incorreto ou violado.");
+    try {
+        // Validate token integrity
+        if (!token || strcmp(token, g_securityToken.c_str()) != 0) {
+            LogError("BR_Initialize: Token de seguranca incorreto ou violado.");
+            return false;
+        }
+
+        LogInfo("=================================================================");
+        LogInfo("   BrService.dll - Shugo Console, Ping & DPS Meter Ativado      ");
+        LogInfo("=================================================================");
+
+        // Extract IP from cmdline
+        if (cmdline) {
+            std::string ip = ParseParam(cmdline, "-ip");
+            if (!ip.empty()) {
+                g_serverIp = ip;
+                LogInfo("IP do Servidor extraido da linha de comando: %s", g_serverIp.c_str());
+            }
+            std::string port = ParseParam(cmdline, "-port");
+            if (!port.empty()) {
+                try { g_serverPort = std::stoi(port); } catch (...) {}
+            }
+        }
+
+        // 1. Initialize Subsystems
+        UICommon::InitializeGdiplus();
+        BrConfig::Load();
+        CombatDb::Initialize();
+        CVarManager::Initialize();
+        CryModelBridge::Initialize();
+
+        // 2. Start Network Services
+        PingEngine::Start(g_serverIp);
+        WebSocketClient::Start(g_serverIp, 2130);
+
+        // 3. Initialize UI Windows
+        PingHudUI::Initialize(g_hModule);
+        DrawerModalUI::Initialize(g_hModule);
+
+        // 4. Start Lifecycle Watchdog
+        ServiceWorker::Start();
+
+        LogInfo("BR_Initialize: Inicializacao concluida com 100%% de sucesso.");
+        return true;
+    } catch (const std::exception& e) {
+        LogError("BR_Initialize: Excecao fatal durante inicializacao: %s", e.what());
+        return false;
+    } catch (...) {
+        LogError("BR_Initialize: Excecao fatal desconhecida durante inicializacao.");
         return false;
     }
-
-    LogInfo("=================================================================");
-    LogInfo("   BrService.dll - Shugo Console, Ping & DPS Meter Ativado      ");
-    LogInfo("=================================================================");
-
-    // Extract IP from cmdline
-    if (cmdline) {
-        std::string ip = ParseParam(cmdline, "-ip");
-        if (!ip.empty()) {
-            g_serverIp = ip;
-            LogInfo("IP do Servidor extraido da linha de comando: %s", g_serverIp.c_str());
-        }
-        std::string port = ParseParam(cmdline, "-port");
-        if (!port.empty()) {
-            try { g_serverPort = std::stoi(port); } catch (...) {}
-        }
-    }
-
-    // 1. Initialize Subsystems
-    UICommon::InitializeGdiplus();
-    BrConfig::Load();
-    CombatDb::Initialize();
-    CVarManager::Initialize();
-    CryModelBridge::Initialize();
-
-    // 2. Start Network Services
-    PingEngine::Start(g_serverIp);
-    WebSocketClient::Start(g_serverIp, 2130);
-
-    // 3. Initialize UI Windows
-    PingHudUI::Initialize(g_hModule);
-    DrawerModalUI::Initialize(g_hModule);
-
-    // 4. Start Lifecycle Watchdog
-    ServiceWorker::Start();
-
-    LogInfo("BR_Initialize: Inicializacao concluida com 100%% de sucesso.");
-    return true;
 }
 
 __declspec(dllexport) void WINAPI BR_Shutdown() {

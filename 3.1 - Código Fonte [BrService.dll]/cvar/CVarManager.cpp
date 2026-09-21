@@ -6,7 +6,7 @@
 
 namespace BrService {
 
-static std::mutex s_cvarMutex;
+static std::recursive_mutex s_cvarMutex;
 static std::unordered_map<std::string, void*> s_cvarMap;
 static bool s_initialized = false;
 
@@ -39,39 +39,45 @@ void CVarManager::ScanCVars() {
     size_t foundCount = 0;
     size_t totalTargets = sizeof(targets) / sizeof(targets[0]);
 
-    while (addr < maxAddr && foundCount < totalTargets) {
-        if (!VirtualQuery(addr, &mbi, sizeof(mbi))) {
-            addr += 0x1000;
-            continue;
-        }
+    try {
+        while (addr < maxAddr && foundCount < totalTargets) {
+            if (!VirtualQuery(addr, &mbi, sizeof(mbi))) {
+                addr += 0x1000;
+                continue;
+            }
 
-        if ((mbi.State == MEM_COMMIT) && (mbi.Protect & (PAGE_READWRITE | PAGE_EXECUTE_READWRITE)) && !(mbi.Protect & PAGE_GUARD)) {
-            uint8_t* pStart = (uint8_t*)mbi.BaseAddress;
-            size_t regionSize = mbi.RegionSize;
+            if ((mbi.State == MEM_COMMIT) && (mbi.Protect & (PAGE_READWRITE | PAGE_EXECUTE_READWRITE)) && !(mbi.Protect & PAGE_GUARD)) {
+                uint8_t* pStart = (uint8_t*)mbi.BaseAddress;
+                size_t regionSize = mbi.RegionSize;
 
-            for (size_t i = 0; i + 256 < regionSize; i += 8) {
-                uint8_t* candidate = pStart + i;
+                for (size_t i = 0; i + 256 < regionSize; i += 8) {
+                    uint8_t* candidate = pStart + i;
 
-                for (const char* tName : targets) {
-                    if (s_cvarMap.find(tName) != s_cvarMap.end()) continue;
+                    for (const char* tName : targets) {
+                        if (s_cvarMap.find(tName) != s_cvarMap.end()) continue;
 
-                    size_t len = strlen(tName);
-                    // Match name at candidate + OFFSET_NAME
-                    if (memcmp(candidate + OFFSET_NAME, tName, len) == 0 && candidate[OFFSET_NAME + len] == '\0') {
-                        s_cvarMap[tName] = candidate;
-                        foundCount++;
-                        LogInfo("CVar encontrado: %s no endereco %p", tName, candidate);
+                        size_t len = strlen(tName);
+                        // Match name at candidate + OFFSET_NAME
+                        if (memcmp(candidate + OFFSET_NAME, tName, len) == 0 && candidate[OFFSET_NAME + len] == '\0') {
+                            s_cvarMap[tName] = candidate;
+                            foundCount++;
+                            LogInfo("CVar encontrado: %s no endereco %p", tName, candidate);
+                        }
                     }
                 }
             }
-        }
 
-        addr = (uint8_t*)mbi.BaseAddress + mbi.RegionSize;
+            uint8_t* nextAddr = (uint8_t*)mbi.BaseAddress + mbi.RegionSize;
+            if (nextAddr <= addr) break;
+            addr = nextAddr;
+        }
+    } catch (...) {
+        LogError("Excecao capturada durante ScanCVars.");
     }
 }
 
 bool CVarManager::Initialize() {
-    std::lock_guard<std::mutex> lock(s_cvarMutex);
+    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
     if (s_initialized) return true;
 
     ScanCVars();
@@ -81,13 +87,13 @@ bool CVarManager::Initialize() {
 }
 
 void CVarManager::Shutdown() {
-    std::lock_guard<std::mutex> lock(s_cvarMutex);
+    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
     s_cvarMap.clear();
     s_initialized = false;
 }
 
 void CVarManager::SetFov(float fov) {
-    std::lock_guard<std::mutex> lock(s_cvarMutex);
+    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
     g_cvarFov = fov;
     void* p = FindCVar("g_minFov");
     if (p) {
@@ -98,7 +104,7 @@ void CVarManager::SetFov(float fov) {
 }
 
 void CVarManager::SetCameraMax(float maxDist) {
-    std::lock_guard<std::mutex> lock(s_cvarMutex);
+    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
     g_cvarCamMax = maxDist;
     void* p = FindCVar("g_camMax");
     if (p) {
@@ -109,7 +115,7 @@ void CVarManager::SetCameraMax(float maxDist) {
 }
 
 void CVarManager::SetMaxFps(int fps) {
-    std::lock_guard<std::mutex> lock(s_cvarMutex);
+    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
     g_cvarMaxFps = fps;
     void* p = FindCVar("g_maxfps");
     if (p) {
@@ -120,7 +126,7 @@ void CVarManager::SetMaxFps(int fps) {
 }
 
 void CVarManager::SetTripleBuffering(bool enable) {
-    std::lock_guard<std::mutex> lock(s_cvarMutex);
+    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
     g_cvarTripleBuffering = enable;
     void* p = FindCVar("d3d9_TripleBuffering");
     if (p) {
@@ -130,7 +136,7 @@ void CVarManager::SetTripleBuffering(bool enable) {
 }
 
 void CVarManager::SetAnisotropic(bool enable) {
-    std::lock_guard<std::mutex> lock(s_cvarMutex);
+    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
     g_cvarAnisotropic = enable;
     void* p = FindCVar("r_anisotropy");
     if (p) {
