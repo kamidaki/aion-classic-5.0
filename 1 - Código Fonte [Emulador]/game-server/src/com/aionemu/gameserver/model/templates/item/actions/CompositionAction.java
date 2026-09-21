@@ -16,6 +16,11 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 public class CompositionAction {
 
 	public boolean canAct(Player player, Item tools, Item first, Item second) {
+		if (tools == null || first == null || second == null)
+			return false;
+
+		if (tools.getObjectId() == first.getObjectId() || tools.getObjectId() == second.getObjectId())
+			return false;
 
 		if (!tools.getItemTemplate().isCombinationItem())
 			return false;
@@ -26,17 +31,47 @@ public class CompositionAction {
 		if (!second.getItemTemplate().isEnchantmentStone())
 			return false;
 
-		if (first.getItemCount() < 1 || second.getItemCount() < 1)
-			return false;
+		if (first.getObjectId() == second.getObjectId()) {
+			if (first.getItemCount() < 2)
+				return false;
+		} else {
+			if (first.getItemCount() < 1 || second.getItemCount() < 1)
+				return false;
+		}
 
 		return first.getItemTemplate().getLevel() <= 95 && second.getItemTemplate().getLevel() <= 95;
 	}
 
 	public void act(final Player player, final Item tools, final Item first, final Item second) {
-		boolean result = player.getInventory().decreaseByItemId(tools.getItemId(), 1);
-		boolean result1 = player.getInventory().decreaseByItemId(first.getItemId(), 1);
-		boolean result2 = player.getInventory().decreaseByItemId(second.getItemId(), 1);
-		if (result && result1 && result2) {
+		synchronized (player.getInventory()) {
+			if (!canAct(player, tools, first, second))
+				return;
+			if (player.getInventory().getItemByObjId(tools.getObjectId()) != tools
+				|| player.getInventory().getItemByObjId(first.getObjectId()) != first
+				|| player.getInventory().getItemByObjId(second.getObjectId()) != second)
+				return;
+
+			if (first.getObjectId() == second.getObjectId()) {
+				if (!player.getInventory().decreaseByObjectId(tools.getObjectId(), 1))
+					return;
+				if (!player.getInventory().decreaseByObjectId(first.getObjectId(), 2)) {
+					ItemService.addItem(player, tools.getItemId(), 1);
+					return;
+				}
+			} else {
+				if (!player.getInventory().decreaseByObjectId(tools.getObjectId(), 1))
+					return;
+				if (!player.getInventory().decreaseByObjectId(first.getObjectId(), 1)) {
+					ItemService.addItem(player, tools.getItemId(), 1);
+					return;
+				}
+				if (!player.getInventory().decreaseByObjectId(second.getObjectId(), 1)) {
+					ItemService.addItem(player, tools.getItemId(), 1);
+					ItemService.addItem(player, first.getItemId(), 1);
+					return;
+				}
+			}
+
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_COMPOUND_SUCCESS(second.getL10n(), first.getL10n()));
 			ItemService.addItem(player, getItemId(calcLevel(first.getItemTemplate().getLevel(), second.getItemTemplate().getLevel())), 1);
 		}

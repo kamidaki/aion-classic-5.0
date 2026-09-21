@@ -1,0 +1,5 @@
+LIBRARY BrService
+EXPORTS
+    BR_Initialize @1
+    BR_Shutdown   @2
+    BR_GetStatus  @3

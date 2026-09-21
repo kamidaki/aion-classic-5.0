@@ -109,31 +109,47 @@ public class HousingBidService {
 
 	public HouseBids.Bid bid(Player player, int listIndex, long bidOffer) {
 		HouseBids houseBids = bids.values().stream().filter(b -> b.getListIndex() == listIndex).findAny().orElse(null);
-		if (!isAllowedToBid(player, houseBids, bidOffer))
-			return null; // bid too low or bidding not allowed
-		HouseBids.Bid previousBid = houseBids.getHighestBid();
-		HouseBids.Bid bid = houseBids.bid(player, bidOffer);
-		if (bid == null) { // another bidder just bid more
-			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_HOUSING_CANT_BID_LOWER());
-			PacketSendUtility.sendPacket(player, new SM_RECEIVE_BIDS(0));
+		if (houseBids == null) {
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_HOUSING_BID_FAIL());
 			return null;
 		}
-		if (AuctionEndTask.getInstance().tryProlongAuction(bid.getHouseObjectId()))
-			HouseBidsDAO.addBid(bid); // no need to save the bid if prolongation failed (the auction just ended)
-		player.getInventory().decreaseKinah(bid.getKinah());
-		House bidHouse = HousingService.getInstance().findHouse(bid.getHouseObjectId());
-		if (previousBid != houseBids.getInitialOffer() && previousBid.getPlayerObjectId() != 0) {
-			PlayerCommonData prevPcd = PlayerService.getOrLoadPlayerCommonData(previousBid.getPlayerObjectId());
-			if (prevPcd.isOnline()) {
-				PacketSendUtility.sendPacket(prevPcd.getPlayer(), SM_SYSTEM_MESSAGE.STR_MSG_HOUSING_BID_CANCEL());
-				PacketSendUtility.sendPacket(prevPcd.getPlayer(), new SM_RECEIVE_BIDS(0));
+
+		synchronized (houseBids) {
+			if (!isAllowedToBid(player, houseBids, bidOffer))
+				return null; // bid too low or bidding not allowed
+
+			if (!player.getInventory().tryDecreaseKinah(bidOffer)) {
+				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_HOUSING_CANT_BID_NOT_ENOUGH_MONEY(bidOffer));
+				return null;
 			}
-			MailFormatter.sendHouseAuctionMail(bidHouse, prevPcd, AuctionResult.FAILED_BID, bid.getTime(), previousBid.getKinah());
+
+			HouseBids.Bid previousBid = houseBids.getHighestBid();
+			HouseBids.Bid bid = houseBids.bid(player, bidOffer);
+			if (bid == null) { // another bidder just bid more
+				player.getInventory().increaseKinah(bidOffer);
+				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_HOUSING_CANT_BID_LOWER());
+				PacketSendUtility.sendPacket(player, new SM_RECEIVE_BIDS(0));
+				return null;
+			}
+			if (AuctionEndTask.getInstance().tryProlongAuction(bid.getHouseObjectId()))
+				HouseBidsDAO.addBid(bid); // no need to save the bid if prolongation failed (the auction just ended)
+
+			House bidHouse = HousingService.getInstance().findHouse(bid.getHouseObjectId());
+			if (previousBid != houseBids.getInitialOffer() && previousBid.getPlayerObjectId() != 0) {
+				PlayerCommonData prevPcd = PlayerService.getOrLoadPlayerCommonData(previousBid.getPlayerObjectId());
+				if (prevPcd != null) {
+					if (prevPcd.isOnline()) {
+						PacketSendUtility.sendPacket(prevPcd.getPlayer(), SM_SYSTEM_MESSAGE.STR_MSG_HOUSING_BID_CANCEL());
+						PacketSendUtility.sendPacket(prevPcd.getPlayer(), new SM_RECEIVE_BIDS(0));
+					}
+					MailFormatter.sendHouseAuctionMail(bidHouse, prevPcd, AuctionResult.FAILED_BID, bid.getTime(), previousBid.getKinah());
+				}
+			}
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_HOUSING_BID_SUCCESS(bidHouse.getAddress().getId()));
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_HOUSING_PRICE_CHANGE(bidOffer));
+			PacketSendUtility.sendPacket(player, new SM_RECEIVE_BIDS(0));
+			return bid;
 		}
-		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_HOUSING_BID_SUCCESS(bidHouse.getAddress().getId()));
-		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_HOUSING_PRICE_CHANGE(bidOffer));
-		PacketSendUtility.sendPacket(player, new SM_RECEIVE_BIDS(0));
-		return bid;
 	}
 
 	private boolean isAllowedToBid(Player player, HouseBids houseBids, long bidOffer) {
@@ -354,17 +370,21 @@ public class HousingBidService {
 
 		if (house.getOwnerId() != 0) {
 			PlayerCommonData pcd = PlayerService.getOrLoadPlayerCommonData(house.getOwnerId());
-			if (pcd.isOnline()) {
-				PacketSendUtility.sendPacket(pcd.getPlayer(), SM_SYSTEM_MESSAGE.STR_MSG_HOUSING_AUCTION_FAIL(house.getAddress().getId()));
-				PacketSendUtility.sendPacket(pcd.getPlayer(), new SM_RECEIVE_BIDS(1));
+			if (pcd != null) {
+				if (pcd.isOnline()) {
+					PacketSendUtility.sendPacket(pcd.getPlayer(), SM_SYSTEM_MESSAGE.STR_MSG_HOUSING_AUCTION_FAIL(house.getAddress().getId()));
+					PacketSendUtility.sendPacket(pcd.getPlayer(), new SM_RECEIVE_BIDS(1));
+				}
+				MailFormatter.sendHouseAuctionMail(house, pcd, AuctionResult.CANCELED_BID, System.currentTimeMillis(), 0);
 			}
-			MailFormatter.sendHouseAuctionMail(house, pcd, AuctionResult.CANCELED_BID, System.currentTimeMillis(), 0);
 		}
 		HouseBids.Bid highestBid = bids.getHighestBid();
 		if (highestBid != bids.getInitialOffer() && highestBid.getPlayerObjectId() != 0) {
 			// return bid price only to the last bidder (previous bidders already get their money back when another player bids more)
 			PlayerCommonData pcd = PlayerService.getOrLoadPlayerCommonData(highestBid.getPlayerObjectId());
-			MailFormatter.sendHouseAuctionMail(house, pcd, AuctionResult.CANCELED_BID, System.currentTimeMillis(), highestBid.getKinah());
+			if (pcd != null) {
+				MailFormatter.sendHouseAuctionMail(house, pcd, AuctionResult.CANCELED_BID, System.currentTimeMillis(), highestBid.getKinah());
+			}
 		}
 
 		return true;

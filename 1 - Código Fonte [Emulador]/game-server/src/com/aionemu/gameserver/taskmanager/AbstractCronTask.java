@@ -107,14 +107,22 @@ public abstract class AbstractCronTask implements Runnable {
 	 *         correct date if the underlying cron expression is irregular
 	 */
 	private Date findLastPlannedRun() {
-		long interval = getNextRunAfter(nextRun).getTime() - nextRun.getTime();
+		Date afterNext = nextRun == null ? null : getNextRunAfter(nextRun);
+		if (afterNext == null || nextRun == null)
+			return null;
+		long interval = afterNext.getTime() - nextRun.getTime();
+		if (interval <= 0)
+			return null;
 		long now = System.currentTimeMillis();
 		long millis = now;
-		Date lastRun;
+		Date lastRun = null;
+		int attempts = 0;
 		do {
-			millis -= interval / 2;
+			millis -= Math.max(interval / 2, 1000L);
 			lastRun = cronExpression.getTimeAfter(new Date(millis));
-		} while (lastRun.getTime() >= now);
+			if (++attempts > 100)
+				break;
+		} while (lastRun != null && lastRun.getTime() >= now);
 		return lastRun;
 	}
 }

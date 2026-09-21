@@ -46,6 +46,7 @@ public class AssemblyItemAction extends AbstractItemAction {
 
 	@Override
 	public void act(final Player player, final Item parentItem, Item targetItem, Object... params) {
+		player.getController().cancelUseItem();
 		int castingDelay = parentItem.getItemTemplate().getCastingDelay();
 		if (castingDelay <= 0) {
 			finishUse(player, parentItem);
@@ -75,23 +76,44 @@ public class AssemblyItemAction extends AbstractItemAction {
 
 	private void finishUse(Player player, Item parentItem) {
 		AssemblyItem assemblyItem = getAssemblyItem();
-		Map<Integer, Long> requiredCounts = assemblyItem.getParts().stream().collect(Collectors.groupingBy(id -> id, Collectors.counting()));
-		for (Map.Entry<Integer, Long> requiredCount : requiredCounts.entrySet()) {
-			if (player.getInventory().getItemCountByItemId(requiredCount.getKey()) < requiredCount.getValue()) {
+		if (assemblyItem == null)
+			return;
+		synchronized (player.getInventory()) {
+			if (player.getInventory().getItemByObjId(parentItem.getObjectId()) != parentItem)
+				return;
+			Map<Integer, Long> requiredCounts = assemblyItem.getParts().stream().collect(Collectors.groupingBy(id -> id, Collectors.counting()));
+			for (Map.Entry<Integer, Long> requiredCount : requiredCounts.entrySet()) {
+				if (player.getInventory().getItemCountByItemId(requiredCount.getKey()) < requiredCount.getValue()) {
+					PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem
+						.getItemTemplate().getTemplateId(), 0, 2, 0), true);
+					return;
+				}
+			}
+			java.util.List<Integer> decreasedParts = new java.util.ArrayList<>();
+			boolean success = true;
+			for (Integer itemId : assemblyItem.getParts()) {
+				if (player.getInventory().decreaseByItemId(itemId, 1)) {
+					decreasedParts.add(itemId);
+				} else {
+					success = false;
+					break;
+				}
+			}
+			if (!success) {
+				for (Integer itemId : decreasedParts) {
+					ItemService.addItem(player, itemId, 1);
+				}
 				PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem
 					.getItemTemplate().getTemplateId(), 0, 2, 0), true);
 				return;
 			}
+			player.startCooldown(parentItem);
+			PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem
+				.getItemTemplate().getTemplateId(), 0, 1, 0), true);
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_USE_ITEM(parentItem.getL10n()));
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ASSEMBLY_ITEM_SUCCEEDED());
+			ItemService.addItem(player, assemblyItem.getId(), 1);
 		}
-		player.startCooldown(parentItem);
-		for (Integer itemId : assemblyItem.getParts()) {
-			player.getInventory().decreaseByItemId(itemId, 1);
-		}
-		PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem
-			.getItemTemplate().getTemplateId(), 0, 1, 0), true);
-		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_USE_ITEM(parentItem.getL10n()));
-		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ASSEMBLY_ITEM_SUCCEEDED());
-		ItemService.addItem(player, assemblyItem.getId(), 1);
 	}
 
 	public AssemblyItem getAssemblyItem() {

@@ -215,31 +215,26 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 				float targetY = creature.getY();
 				float targetZ = creature.getZ();
 
-				// Perseguição direta quando há linha de chão desobstruída no NativePath
-				if (canUseDirectTargetMovement(creature, targetX, targetY, targetZ)) {
-					cancelFollow();
-					clearCachedPath();
-					moveToLocation(targetX, targetY, targetZ);
-					break;
-				}
-
 				// ========================================================
-				// CAMADA 1: NATIVE-PATH (CryEngine Native Grid 0.5m)
+				// CAMADA ÚNICA: NATIVE-PATH (CryEngine Native Grid 0.5m)
+				// Sem canUseDirectTargetMovement — sempre usa A* NativePath.
+				// NPC nunca para: se A* falhar, move direto ao alvo sem pausa.
 				// ========================================================
+				cancelFollow();
 				if (NativePathConfig.NATIVE_PATH_ENABLE) {
 					long now = System.currentTimeMillis();
 					PathState ps = pathRef.get();
 
-					// Throttling e validação de rota: só recalcula se:
-					// 1) Não há rota ou os waypoints acabaram
-					// 2) O alvo se distanciou mais de 3.5m de onde a rota foi calculada E passou pelo menos 800ms
-					// 3) Passou tempo excessivo (> 2500ms) mesmo sem o alvo se mover muito
+					// Rerota se:
+					// 1) Não há rota ou waypoints esgotados
+					// 2) Alvo moveu-se > 2m desde o cálculo E > 500ms se passaram
+					// 3) Tempo excessivo > 1200ms (garante responsividade mesmo parado)
 					boolean needRepath = (ps == null || !ps.hasNext());
 					if (!needRepath && ps.path != null && ps.path.length > 0) {
 						float distFromTargetAtCalc = (float) PositionUtil.getDistance(targetX, targetY, targetZ, lastTargetX, lastTargetY, lastTargetZ);
-						if (distFromTargetAtCalc > 3.5f && (now - lastPathCalcTime) >= 800) {
+						if (distFromTargetAtCalc > 2.0f && (now - lastPathCalcTime) >= 500) {
 							needRepath = true;
-						} else if ((now - lastPathCalcTime) >= 2500) {
+						} else if ((now - lastPathCalcTime) >= 1200) {
 							needRepath = true;
 						}
 					}
@@ -252,8 +247,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 							lastTargetY = targetY;
 							lastTargetZ = targetZ;
 
-							// Waypoint 0 é a posição inicial do monstro no momento do cálculo.
-							// Se o monstro já estiver a menos de 1.2m do waypoint 0 e houver um próximo, inicia em 1 para não recuar para trás
+							// Waypoint 0 é a posição inicial — pula se o NPC já estiver próximo
 							int startIdx = 0;
 							if (newPath.length > 1 && PositionUtil.isInRange(owner, newPath[0][0], newPath[0][1], newPath[0][2], 1.2f)) {
 								startIdx = 1;
@@ -261,17 +255,21 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 							ps = new PathState(newPath, startIdx);
 							pathRef.set(ps);
 						} else {
+							// A* não encontrou rota navegável:
 							ps = null;
 							pathRef.set(null);
+							// Só move diretamente se houver caminho físico desobstruído — nunca atravessa sólidos
+							if (canWalkDirectly(owner, targetX, targetY, targetZ)) {
+								moveToLocation(targetX, targetY, targetZ);
+							}
+							break;
 						}
 					}
 
 					if (ps != null && ps.hasNext()) {
-						cancelFollow();
-
 						// Tolerância dinâmica de chegada ao waypoint proporcional à velocidade
 						float speed = owner.getGameStats().getMovementSpeedFloat();
-						float tolerance = Math.max(1.2f, speed * 0.35f);
+						float tolerance = Math.max(1.0f, speed * 0.30f);
 
 						while (ps.hasNext()
 								&& ps.index < ps.path.length - 1
@@ -288,17 +286,8 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 					}
 				}
 
-				// ========================================================
-				// CAMADA 3: FALLBACK PARA ELEANOR (FollowMotor / Pathfind)
-				// ========================================================
-				// Se Native-Path falhar ou não tiver dados para o mapa, executa fallback para Eleanor
-				clearCachedPath();
-				if (owner.getAi().getState() == AIState.FOLLOWING) {
-					cancelFollow();
-					fallbackToNormalMove(target);
-				} else {
-					applyFollow(target);
-				}
+				// NativePath desativado ou sem waypoints restantes — move direto sem pausa
+				moveToLocation(targetX, targetY, targetZ);
 				break;
 
 			case POINT:
@@ -451,9 +440,11 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 		float newY = (targetDestY - ownerY) * distFraction + ownerY;
 		float newZ = (targetDestZ - ownerZ) * distFraction + ownerZ;
 
-		// Clamping de Z durante AIState.RETURNING para impedir flutuação em linha reta
+		// Clamping de Z durante AIState.RETURNING para impedir flutuação ou afundamento sob o relevo
 		if (owner.getAi().getState() == AIState.RETURNING) {
-			float surfaceZ = GeoService.getInstance().getZ(owner.getWorldId(), newX, newY, newZ + 3.0f, newZ - 6.0f, owner.getInstanceId());
+			float highZ = Math.max(ownerZ, newZ) + 15.0f;
+			float lowZ = Math.min(ownerZ, newZ) - 25.0f;
+			float surfaceZ = GeoService.getInstance().getZ(owner.getWorldId(), newX, newY, highZ, lowZ, owner.getInstanceId());
 			if (Float.isNaN(surfaceZ)) {
 				surfaceZ = com.lostacademy.nativepath.NativePathService.getInstance().getSurfaceZ(owner.getWorldId(), newX, newY, newZ);
 			}
@@ -731,7 +722,11 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 		moveToLocation(pointX, pointY, pointZ);
 	}
 
-	private static final float DIRECT_TARGET_MOVEMENT_MAX_DISTANCE = 15.0f;
+	// FIX CAUSA 1: Reduzido de 15m para 4m.
+	// A 15m, mobs próximos de obstáculos nunca chegam ao A* — tentam linha reta (canWalkDirectly)
+	// e ao falhar caem no FollowMotor/Eleanor que atravessa paredes.
+	// A 4m, apenas mobs quase em combate (alcance melee) usam linha reta direta.
+	private static final float DIRECT_TARGET_MOVEMENT_MAX_DISTANCE = 4.0f;
 
 	private float calculateMaxZDiff(float distanceXY, Creature target) {
 		if (distanceXY < 1.0f) {
@@ -771,6 +766,13 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 	private boolean isPathFailure(float[][] path) {
 		return path == null || path.length == 0;
+	}
+
+	private boolean canWalkDirectly(Creature owner, float targetX, float targetY, float targetZ) {
+		if (NativePathConfig.NATIVE_PATH_ENABLE) {
+			return NativePathService.getInstance().canWalkDirectly(owner, targetX, targetY, targetZ);
+		}
+		return !GeoDataConfig.GEO_ENABLE || GeoService.getInstance().canSee(owner, targetX, targetY, targetZ, IgnoreProperties.ANY_RACE);
 	}
 
 	/**

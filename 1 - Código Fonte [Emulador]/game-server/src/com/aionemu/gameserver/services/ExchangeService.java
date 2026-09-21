@@ -74,121 +74,138 @@ public class ExchangeService {
 	}
 
 	public void addKinah(Player activePlayer, long itemCount) {
-		Exchange currentExchange = getCurrentExchange(activePlayer);
-		if (currentExchange == null || currentExchange.isLocked())
-			return;
+		synchronized (exchanges) {
+			Exchange currentExchange = getCurrentExchange(activePlayer);
+			if (currentExchange == null || currentExchange.isLocked())
+				return;
 
-		if (itemCount < 1)
-			return;
+			if (itemCount < 1)
+				return;
 
-		// count total amount in inventory
-		long availableCount = activePlayer.getInventory().getKinah();
+			// count total amount in inventory
+			long availableCount = activePlayer.getInventory().getKinah();
 
-		// count amount that was already added to exchange
-		availableCount -= currentExchange.getKinahCount();
+			// count amount that was already added to exchange
+			availableCount -= currentExchange.getKinahCount();
 
-		long countToAdd = availableCount > itemCount ? itemCount : availableCount;
+			long countToAdd = availableCount > itemCount ? itemCount : availableCount;
 
-		if (countToAdd > 0) {
-			Player partner = getCurrentParter(activePlayer);
-			PacketSendUtility.sendPacket(activePlayer, new SM_EXCHANGE_ADD_KINAH(countToAdd, 0));
-			PacketSendUtility.sendPacket(partner, new SM_EXCHANGE_ADD_KINAH(countToAdd, 1));
-			currentExchange.addKinah(countToAdd);
+			if (countToAdd > 0) {
+				Player partner = getCurrentParter(activePlayer);
+				PacketSendUtility.sendPacket(activePlayer, new SM_EXCHANGE_ADD_KINAH(countToAdd, 0));
+				if (partner != null)
+					PacketSendUtility.sendPacket(partner, new SM_EXCHANGE_ADD_KINAH(countToAdd, 1));
+				currentExchange.addKinah(countToAdd);
+			}
 		}
 	}
 
 	public void addItem(Player activePlayer, int itemObjId, long itemCount) {
-		Item item = activePlayer.getInventory().getItemByObjId(itemObjId);
-		if (item == null)
-			return;
-
-		Player partner = getCurrentParter(activePlayer);
-		if (partner == null)
-			return;
-		if (item.getPackCount() <= 0 && !item.isTradeable() && !TemporaryTradeTimeTask.getInstance().canTrade(item, partner.getObjectId())) {
-			if (!item.isLegionTradeable() || activePlayer.getLegion() == null || !activePlayer.getLegion().equals(partner.getLegion()))
+		synchronized (exchanges) {
+			Item item = activePlayer.getInventory().getItemByObjId(itemObjId);
+			if (item == null)
 				return;
-		}
 
-		if (itemCount < 1)
-			return;
-
-		if (itemCount > item.getItemCount())
-			return;
-
-		Exchange currentExchange = getCurrentExchange(activePlayer);
-
-		if (currentExchange == null)
-			return;
-
-		if (currentExchange.isLocked())
-			return;
-
-		if (currentExchange.isExchangeListFull())
-			return;
-
-		if (!AdminService.getInstance().canOperate(activePlayer, partner, item, "trade"))
-			return;
-
-		ExchangeItem exchangeItem = currentExchange.getItems().get(item.getObjectId());
-
-		long actuallAddCount = 0;
-		// item was not added previosly
-		if (exchangeItem == null) {
-			Item newItem = null;
-			if (itemCount < item.getItemCount()) {
-				newItem = ItemFactory.newItem(item.getItemId(), itemCount);
-			} else {
-				newItem = item;
+			Player partner = getCurrentParter(activePlayer);
+			if (partner == null)
+				return;
+			if (item.getPackCount() <= 0 && !item.isTradeable() && !TemporaryTradeTimeTask.getInstance().canTrade(item, partner.getObjectId())) {
+				if (!item.isLegionTradeable() || activePlayer.getLegion() == null || !activePlayer.getLegion().equals(partner.getLegion()))
+					return;
 			}
-			exchangeItem = new ExchangeItem(itemObjId, itemCount, newItem);
-			currentExchange.addItem(itemObjId, exchangeItem);
-			actuallAddCount = itemCount;
-		}
-		// item was already added
-		else {
-			// if player add item count that is more than possible
-			// happens with exploits
-			if (item.getItemCount() == exchangeItem.getItemCount())
+
+			if (itemCount < 1)
 				return;
 
-			long possibleToAdd = item.getItemCount() - exchangeItem.getItemCount();
-			actuallAddCount = itemCount > possibleToAdd ? possibleToAdd : itemCount;
-			exchangeItem.addCount(actuallAddCount);
-		}
+			if (itemCount > item.getItemCount())
+				return;
 
-		if (!item.getItemTemplate().isStackable() || item.getItemCount() == exchangeItem.getItemCount()) {
-			PacketSendUtility.sendPacket(activePlayer, new SM_DELETE_ITEM(itemObjId, ItemPacketService.ItemDeleteType.PUT_TO_EXCHANGE));
-		} else {
-			Item fakeItem = new Item(itemObjId, item.getItemTemplate());
-			fakeItem.setItemCount(item.getItemCount() - exchangeItem.getItemCount());
-			PacketSendUtility.sendPacket(activePlayer, new SM_INVENTORY_UPDATE_ITEM(activePlayer, fakeItem,
-				ItemPacketService.ItemUpdateType.PUT_TO_EXCHANGE));
-		}
+			Exchange currentExchange = getCurrentExchange(activePlayer);
 
-		PacketSendUtility.sendPacket(activePlayer, new SM_EXCHANGE_ADD_ITEM(0, exchangeItem.getItem(), activePlayer));
-		PacketSendUtility.sendPacket(partner, new SM_EXCHANGE_ADD_ITEM(1, exchangeItem.getItem(), partner));
+			if (currentExchange == null)
+				return;
+
+			if (currentExchange.isLocked())
+				return;
+
+			if (currentExchange.isExchangeListFull())
+				return;
+
+			if (!AdminService.getInstance().canOperate(activePlayer, partner, item, "trade"))
+				return;
+
+			ExchangeItem exchangeItem = currentExchange.getItems().get(item.getObjectId());
+
+			long actuallAddCount = 0;
+			// item was not added previosly
+			if (exchangeItem == null) {
+				Item newItem = null;
+				if (itemCount < item.getItemCount()) {
+					newItem = ItemFactory.newItem(item.getItemId(), itemCount);
+				} else {
+					newItem = item;
+				}
+				exchangeItem = new ExchangeItem(itemObjId, itemCount, newItem);
+				currentExchange.addItem(itemObjId, exchangeItem);
+				actuallAddCount = itemCount;
+			}
+			// item was already added
+			else {
+				// if player add item count that is more than possible
+				// happens with exploits
+				if (item.getItemCount() == exchangeItem.getItemCount())
+					return;
+
+				long possibleToAdd = item.getItemCount() - exchangeItem.getItemCount();
+				actuallAddCount = itemCount > possibleToAdd ? possibleToAdd : itemCount;
+				exchangeItem.addCount(actuallAddCount);
+			}
+
+			if (!item.getItemTemplate().isStackable() || item.getItemCount() == exchangeItem.getItemCount()) {
+				PacketSendUtility.sendPacket(activePlayer, new SM_DELETE_ITEM(itemObjId, ItemPacketService.ItemDeleteType.PUT_TO_EXCHANGE));
+			} else {
+				Item fakeItem = new Item(itemObjId, item.getItemTemplate());
+				fakeItem.setItemCount(item.getItemCount() - exchangeItem.getItemCount());
+				PacketSendUtility.sendPacket(activePlayer, new SM_INVENTORY_UPDATE_ITEM(activePlayer, fakeItem,
+					ItemPacketService.ItemUpdateType.PUT_TO_EXCHANGE));
+			}
+
+			PacketSendUtility.sendPacket(activePlayer, new SM_EXCHANGE_ADD_ITEM(0, exchangeItem.getItem(), activePlayer));
+			PacketSendUtility.sendPacket(partner, new SM_EXCHANGE_ADD_ITEM(1, exchangeItem.getItem(), partner));
+		}
 	}
 
 	public void lockExchange(Player activePlayer) {
-		Exchange exchange = getCurrentExchange(activePlayer);
-		if (exchange != null) {
-			exchange.lock();
-			Player currentParter = getCurrentParter(activePlayer);
-			PacketSendUtility.sendPacket(currentParter, new SM_EXCHANGE_CONFIRMATION(3));
+		synchronized (exchanges) {
+			Exchange exchange = getCurrentExchange(activePlayer);
+			if (exchange != null) {
+				exchange.lock();
+				Player currentParter = getCurrentParter(activePlayer);
+				if (currentParter != null)
+					PacketSendUtility.sendPacket(currentParter, new SM_EXCHANGE_CONFIRMATION(3));
+			}
 		}
 	}
 
 	public void cancelExchange(Player activePlayer) {
-		Player currentPartner = getCurrentParter(activePlayer);
-		returnItems(activePlayer);
+		if (activePlayer == null)
+			return;
 
-		if (currentPartner != null) {
-			returnItems(currentPartner);
-			PacketSendUtility.sendPacket(currentPartner, new SM_EXCHANGE_CONFIRMATION(1));
+		synchronized (exchanges) {
+			Exchange currentExchange = getCurrentExchange(activePlayer);
+			if (currentExchange == null)
+				return;
+
+			Player currentPartner = getCurrentParter(activePlayer);
+			returnItems(activePlayer);
+
+			if (currentPartner != null) {
+				returnItems(currentPartner);
+				PacketSendUtility.sendPacket(currentPartner, new SM_EXCHANGE_CONFIRMATION(1));
+			}
+
+			cleanUpExchanges(true, activePlayer, currentPartner);
 		}
-
-		cleanUpExchanges(true, activePlayer, currentPartner);
 	}
 
 	private void returnItems(Player player) {
@@ -217,18 +234,29 @@ public class ExchangeService {
 		if (activePlayer == null || !activePlayer.isOnline())
 			return;
 
-		Exchange currentExchange = getCurrentExchange(activePlayer);
+		synchronized (exchanges) {
+			Exchange currentExchange = getCurrentExchange(activePlayer);
+			if (currentExchange == null)
+				return;
 
-		// TODO: Why is exchange null =/
-		if (currentExchange == null)
-			return;
-		currentExchange.confirm();
+			Player currentPartner = getCurrentParter(activePlayer);
+			if (currentPartner == null || !currentPartner.isOnline()) {
+				cancelExchange(activePlayer);
+				return;
+			}
 
-		Player currentPartner = getCurrentParter(activePlayer);
-		PacketSendUtility.sendPacket(currentPartner, new SM_EXCHANGE_CONFIRMATION(2));
+			Exchange partnerExchange = getCurrentExchange(currentPartner);
+			if (partnerExchange == null) {
+				cancelExchange(activePlayer);
+				return;
+			}
 
-		if (getCurrentExchange(currentPartner).isConfirmed()) {
-			performTrade(activePlayer, currentPartner);
+			currentExchange.confirm();
+			PacketSendUtility.sendPacket(currentPartner, new SM_EXCHANGE_CONFIRMATION(2));
+
+			if (partnerExchange.isConfirmed()) {
+				performTrade(activePlayer, currentPartner);
+			}
 		}
 	}
 
@@ -236,16 +264,25 @@ public class ExchangeService {
 		Exchange exchange1 = getCurrentExchange(activePlayer);
 		Exchange exchange2 = getCurrentExchange(currentPartner);
 
+		if (exchange1 == null || exchange2 == null) {
+			cleanUpExchanges(true, activePlayer, currentPartner);
+			return;
+		}
+
 		if (!validateExchange(activePlayer, currentPartner)) {
 			if (!validateInventorySize(currentPartner, exchange1))
 				PacketSendUtility.sendPacket(activePlayer, SM_SYSTEM_MESSAGE.STR_EXCHANGE_CANT_EXCHANGE_HEAVY_TO_ADD_EXCHANGE_ITEM());
 			else
 				PacketSendUtility.sendPacket(activePlayer, SM_SYSTEM_MESSAGE.STR_PARTNER_TOO_HEAVY_TO_EXCHANGE());
+			returnItems(activePlayer);
+			returnItems(currentPartner);
 			cleanUpExchanges(true, activePlayer, currentPartner);
 			return;
 		}
 
 		if (!removeItemsFromInventory(activePlayer, exchange1) || !removeItemsFromInventory(currentPartner, exchange2)) {
+			returnItems(activePlayer);
+			returnItems(currentPartner);
 			cleanUpExchanges(true, activePlayer, currentPartner);
 			AuditLogger.log(activePlayer, "tried to exploit kinah exchange with partner: " + currentPartner);
 			return;

@@ -21,7 +21,7 @@ public class PackAction extends AbstractItemAction {
 
 	@Override
 	public boolean canAct(Player player, Item parentItem, Item targetItem, Object... params) {
-		if (targetItem == null) {
+		if (parentItem == null || targetItem == null || parentItem.getObjectId() == targetItem.getObjectId()) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_PACK_ITEM_NO_TARGET_ITEM());
 			return false;
 		}
@@ -90,6 +90,13 @@ public class PackAction extends AbstractItemAction {
 
 	@Override
 	public void act(Player player, Item parentItem, Item targetItem, Object... params) {
+		player.getController().cancelUseItem();
+		if (!canAct(player, parentItem, targetItem))
+			return;
+		if (player.getInventory().getItemByObjId(parentItem.getObjectId()) != parentItem
+			|| player.getInventory().getItemByObjId(targetItem.getObjectId()) != targetItem)
+			return;
+
 		final int parentItemId = parentItem.getItemId();
 		final int parentObjectId = parentItem.getObjectId();
 		int packCount = targetItem.getPackCount();

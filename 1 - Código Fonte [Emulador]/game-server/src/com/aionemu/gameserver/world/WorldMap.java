@@ -62,6 +62,7 @@ public class WorldMap implements Iterable<WorldMapInstance> {
 		return worldMapTemplate.getMapId();
 	}
 
+
 	public boolean isFlightAllowed() {
 		return (worldOptions & ZoneAttributes.FLY.getId()) != 0;
 	}

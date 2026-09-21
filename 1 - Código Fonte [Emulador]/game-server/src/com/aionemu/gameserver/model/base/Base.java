@@ -28,7 +28,7 @@ public abstract class Base<T extends BaseLocation> {
 
 	private final T bLoc;
 	private final int id;
-	private final List<Npc> assaulter = new ArrayList<>();
+	private final List<Npc> assaulter = new java.util.concurrent.CopyOnWriteArrayList<>();
 	private final AtomicBoolean isStarted = new AtomicBoolean();
 	private final AtomicBoolean isStopped = new AtomicBoolean();
 	private Future<?> assaultTask, assaultDespawnTask, bossSpawnTask, outriderSpawnTask;
@@ -71,6 +71,7 @@ public abstract class Base<T extends BaseLocation> {
 
 	protected void handleStop() {
 		cancelTask(assaultTask, assaultDespawnTask, bossSpawnTask, outriderSpawnTask);
+		despawnAssaulter();
 		despawnAllNpcs();
 	}
 

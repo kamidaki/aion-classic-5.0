@@ -78,6 +78,7 @@ public class ShutdownHook extends Thread {
 		CronService.getInstance().shutdown();
 		ThreadPoolManager.getInstance().shutdown();
 		com.lostacademy.eleanor.Global.MovementProcessor.shutdown();
+		com.lostacademy.lostsocket.core.WebSocketServer.getInstance().stop();
 
 		// shut down logger factory to flush all pending log messages
 		((LoggerContext) LoggerFactory.getILoggerFactory()).stop();

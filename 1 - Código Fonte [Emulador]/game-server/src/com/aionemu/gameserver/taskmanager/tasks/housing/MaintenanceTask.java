@@ -70,7 +70,10 @@ public class MaintenanceTask extends AbstractCronTask {
 		Date paymentDueDate = Date.from(housePaidUntil.toInstant().plus(14, ChronoUnit.DAYS)); // player must pay within two weeks
 		Date impoundDate = new Date();
 		while (impoundDate.before(paymentDueDate)) {
-			impoundDate = getNextRunAfter(impoundDate);
+			Date nextRun = getNextRunAfter(impoundDate);
+			if (nextRun == null || !nextRun.after(impoundDate))
+				break;
+			impoundDate = nextRun;
 		}
 		return impoundDate;
 	}

@@ -54,6 +54,12 @@ public class ItemSplitService {
 			}
 		}
 
+		if (sourceStorageType == StorageType.LEGION_WAREHOUSE.getId() || destinationStorageType == StorageType.LEGION_WAREHOUSE.getId()) {
+			if (player.getLegion() == null || player.getLegion().getLegionWarehouse().getCurrentUser() != player.getObjectId()) {
+				return;
+			}
+		}
+
 		if (sourceStorageType != destinationStorageType
 			&& (ItemRestrictionService.isItemRestrictedTo(player, sourceItem, destStorage.getStorageType()) || ItemRestrictionService.isItemRestrictedFrom(
 				player, sourceItem, sourceStorage.getStorageType()))) {
@@ -86,7 +92,8 @@ public class ItemSplitService {
 				: ItemUpdateType.DEC_ITEM_SPLIT_MOVE);
 			PacketSendUtility.sendPacket(player, SM_CUBE_UPDATE.cubeSize(sourceStorage.getStorageType(), player));
 			if (destStorage.add(newItem) == null) {
-				// if item was not added - we can release its id
+				// if item was not added - refund to source storage and release id
+				sourceStorage.increaseItemCount(sourceItem, splitAmount);
 				IDFactory.getInstance().releaseId(newItem.getObjectId());
 			}
 		} else if (targetItem.getItemId() == sourceItem.getItemId()) {

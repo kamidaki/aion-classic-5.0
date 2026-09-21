@@ -212,7 +212,7 @@ public final class NativePathMap {
 
 		NativePathSector.Layer layer = sector.findBestLayer(subX, subY, currentZ, fallbackZ, 12.0f);
 		if (layer != null) {
-			float lz = layer.getZ(subX, subY, Float.NaN);
+			float lz = layer.getZ(subX, subY, fallbackZ);
 			if (!Float.isNaN(lz)) {
 				return lz;
 			}
@@ -318,10 +318,13 @@ public final class NativePathMap {
 
 			// Valida cota do solo real
 			float groundZ = getSurfaceZ(currX, currY, currZ, Float.NaN, instanceId);
+			// FIX CAUSA 3: tolerância por-passo aumentada para MAX_STEP_UP * 2.0 (1.6m).
+			// O gradiente TOTAL já foi verificado (|dz|/dist2D <= 1.2) no início do método.
+			// Saltos pontuais no getSurfaceZ em terreno irregular não devem rejeitar rampas válidas.
+			// O fator 2.0 acomoda irregularidades de amostragem sem criar brechas de física.
 			if (!Float.isNaN(groundZ)) {
 				float deltaZ = groundZ - prevGroundZ;
-				// Subida máxima por passo (0.8m) e queda máxima (1.8m)
-				if (deltaZ > MAX_STEP_UP || -deltaZ > maxDropHeight) {
+				if (deltaZ > NativePathAStar.MAX_STEP_UP || -deltaZ > maxDropHeight * 1.5f) {
 					return false;
 				}
 				prevGroundZ = groundZ;
@@ -500,11 +503,9 @@ public final class NativePathMap {
 						switch (layerType) {
 							case 0:
 							case 1:
-								// Base plana de piso ou ponte
-								int e0 = readLittleEndianInt(in);
-								if (e0 != 0 && Math.abs(e0) < 5000000) {
-									baseElev = e0 / 100.0f;
-								}
+								// Base plana de piso ou ponte (4 bytes lidos são contagem de subcélulas 32x32, não altitude)
+								readLittleEndianInt(in);
+								baseElev = Float.NaN;
 								break;
 
 							case 2:
@@ -575,7 +576,7 @@ public final class NativePathMap {
 							case 13:
 								// Base de elevação + 1024 bytes (1 byte por subcélula)
 								int e12 = readLittleEndianInt(in);
-								if (e12 != 0 && Math.abs(e12) < 5000000) {
+								if (Math.abs(e12) > 100 && Math.abs(e12) < 5000000) {
 									baseElev = e12 / 100.0f;
 								}
 								in.readFully(raw1024);
@@ -598,7 +599,7 @@ public final class NativePathMap {
 							case 15:
 								// Base de elevação + 2048 bytes (2 bytes short por subcélula)
 								int e14 = readLittleEndianInt(in);
-								if (e14 != 0 && Math.abs(e14) < 5000000) {
+								if (Math.abs(e14) > 100 && Math.abs(e14) < 5000000) {
 									baseElev = e14 / 100.0f;
 								}
 								in.readFully(raw2048);

@@ -32,6 +32,8 @@ public class PolishAction extends AbstractItemAction {
 
 	@Override
 	public boolean canAct(Player player, Item parentItem, Item targetItem, Object... params) {
+		if (parentItem == null || targetItem == null || parentItem.getObjectId() == targetItem.getObjectId())
+			return false;
 		if (parentItem.getItemTemplate().getLevel() > targetItem.getItemTemplate().getLevel()) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_POLISH_WRONG_LEVEL());
 			return false;
@@ -45,6 +47,7 @@ public class PolishAction extends AbstractItemAction {
 
 	@Override
 	public void act(Player player, Item parentItem, Item targetItem, Object... params) {
+		player.getController().cancelUseItem();
 		PacketSendUtility.broadcastPacket(player,
 			new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem.getItemId(), 5000, 0, 0), true);
 		ItemUseObserver observer = new ItemUseObserver() {
@@ -63,7 +66,8 @@ public class PolishAction extends AbstractItemAction {
 		player.getController().addTask(TaskId.ITEM_USE, ThreadPoolManager.getInstance().schedule(() -> {
 			player.getObserveController().removeObserver(observer);
 
-			if (player.getInventory().getItemByObjId(targetItem.getObjectId()) == null && !targetItem.isEquipped()) {
+			if (player.getInventory().getItemByObjId(parentItem.getObjectId()) != parentItem
+				|| (player.getInventory().getItemByObjId(targetItem.getObjectId()) == null && !targetItem.isEquipped())) {
 				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ENCHANT_ITEM_NO_TARGET_ITEM());
 				PacketSendUtility.broadcastPacket(player,
 					new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem.getItemId(), 0, 2, 0), true);

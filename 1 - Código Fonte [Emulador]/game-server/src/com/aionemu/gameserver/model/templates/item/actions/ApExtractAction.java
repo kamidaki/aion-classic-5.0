@@ -11,6 +11,7 @@ import com.aionemu.gameserver.model.templates.item.Acquisition;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ITEM_USAGE_ANIMATION;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.services.abyss.AbyssPointsService;
+import com.aionemu.gameserver.services.item.ItemService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.utils.audit.AuditLogger;
@@ -29,9 +30,10 @@ public class ApExtractAction extends AbstractItemAction {
 
 	@Override
 	public boolean canAct(Player player, Item parentItem, Item targetItem, Object... params) {
-		if (targetItem == null || !targetItem.canApExtract()) {
-			if (targetItem != null)
-				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_AP_DECOMPOSE_CANNOT(targetItem.getL10n()));
+		if (parentItem == null || targetItem == null || parentItem.getObjectId() == targetItem.getObjectId())
+			return false;
+		if (!targetItem.canApExtract()) {
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_AP_DECOMPOSE_CANNOT(targetItem.getL10n()));
 			return false;
 		}
 		if (targetItem.isEquipped()) {
@@ -126,6 +128,7 @@ public class ApExtractAction extends AbstractItemAction {
 
 	@Override
 	public void act(Player player, Item parentItem, Item targetItem, Object... params) {
+		player.getController().cancelUseItem();
 		PacketSendUtility.broadcastPacket(player,
 			new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem.getItemId(), CASTING_DELAY, 0, 0), true);
 
@@ -163,14 +166,25 @@ public class ApExtractAction extends AbstractItemAction {
 		if (acquisition == null || acquisition.getRequiredAp() == 0)
 			return false;
 		Storage inventory = player.getInventory();
-		if (!inventory.decreaseByObjectId(parentItem.getObjectId(), 1) || inventory.delete(targetItem) == null) {
-			AuditLogger.log(player, "possibly using item AP extraction hack");
-			return false;
+		synchronized (inventory) {
+			if (inventory.getItemByObjId(parentItem.getObjectId()) != parentItem
+				|| inventory.getItemByObjId(targetItem.getObjectId()) != targetItem)
+				return false;
+
+			if (!inventory.decreaseByObjectId(parentItem.getObjectId(), 1)) {
+				AuditLogger.log(player, "possibly using item AP extraction hack");
+				return false;
+			}
+			if (inventory.delete(targetItem) == null) {
+				ItemService.addItem(player, parentItem.getItemId(), 1);
+				AuditLogger.log(player, "possibly using item AP extraction hack");
+				return false;
+			}
+			int ap = (int) (acquisition.getRequiredAp() * rate);
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_AP_DECOMPOSE_ITEM_SUCCEED(targetItem.getL10n()));
+			AbyssPointsService.addAp(player, ap, SM_SYSTEM_MESSAGE::STR_MSG_AP_DECOMPOSE_ITEM_SUCCEED_AP);
+			return true;
 		}
-		int ap = (int) (acquisition.getRequiredAp() * rate);
-		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_AP_DECOMPOSE_ITEM_SUCCEED(targetItem.getL10n()));
-		AbyssPointsService.addAp(player, ap, SM_SYSTEM_MESSAGE::STR_MSG_AP_DECOMPOSE_ITEM_SUCCEED_AP);
-		return true;
 	}
 
 	public UseTarget getTarget() {

@@ -34,6 +34,7 @@ import com.aionemu.gameserver.services.trade.PricesService;
 import com.aionemu.gameserver.taskmanager.AbstractFIFOPeriodicTaskManager;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
+import com.aionemu.gameserver.utils.audit.AuditLogger;
 import com.aionemu.gameserver.utils.collections.DynamicServerPacketBodySplitList;
 import com.aionemu.gameserver.utils.collections.ListPart;
 import com.aionemu.gameserver.utils.collections.SplitList;
@@ -254,6 +255,16 @@ public class BrokerService {
 			if (buyingItem == null)
 				return; // TODO: Message "this item has already been bought, refresh page please."
 
+			if (itemCount <= 0 || itemCount > buyingItem.getItemCount()) {
+				AuditLogger.log(player, "tried to buy invalid item count from broker: " + itemCount + " of " + buyingItem.getItemId());
+				return;
+			}
+
+			if (!buyingItem.isSplittingAvailable() && itemCount != buyingItem.getItemCount()) {
+				AuditLogger.log(player, "tried to split non-splittable broker item: " + itemCount + " of " + buyingItem.getItemId());
+				return;
+			}
+
 			if (buyingItem.getSellerId() == player.getObjectId()) {
 				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_VENDOR_CAN_NOT_BUY_MY_REGISTER_ITEM());
 				return;
@@ -270,7 +281,20 @@ public class BrokerService {
 			}
 
 			Item item = buyingItem.getItem();
-			long price = buyingItem.getPrice() * itemCount;
+			if (item == null)
+				return;
+
+			long price;
+			try {
+				price = Math.multiplyExact(buyingItem.getPrice(), itemCount);
+			} catch (ArithmeticException e) {
+				AuditLogger.log(player, "arithmetic overflow on broker purchase price calculation");
+				return;
+			}
+
+			if (price < 0)
+				return;
+
 			if (player.getInventory().isFull(item.getItemTemplate().getExtraInventoryId())) {
 				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_FULL_INVENTORY());
 				return;

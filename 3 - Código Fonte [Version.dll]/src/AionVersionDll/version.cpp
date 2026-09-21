@@ -10,7 +10,11 @@
 #include "exports.h"
 #include "detours.h"
 #include "siel_hammer_fix.h"
-#include "free_fly_fix.h"
+
+// Security & Service Integration (BrService.dll)
+typedef bool (WINAPI *fn_BR_Initialize)(const char* token, const char* cmdline);
+static HMODULE g_hBrService = nullptr;
+static const char* kOfficialClientToken = "#@br!classic50_token_2026#";
 
 // =========================================================================
 //  Version.dll - Mod & Compatibility Hook for Aion Classic 5.0
@@ -234,7 +238,6 @@ static void PatchAllLoadedLanguageModules() {
         if (h) {
             if (_wcsicmp(name, L"game.dll") == 0) {
                 InstallSielHammerFix(h);
-                InstallFreeFlyFix(h);
             }
             PatchLanguageTableInModule(h);
             BypassCountryCheckInCryEngineModule(h);
@@ -427,6 +430,64 @@ static void FixClientStartupWithHighCoreCountCpus() {
     }
 }
 
+static void LoadBrServiceModule() {
+    // Only load inside the game process (aion.bin)
+    char exePath[MAX_PATH] = { 0 };
+    GetModuleFileNameA(nullptr, exePath, MAX_PATH);
+    _strlwr_s(exePath, sizeof(exePath));
+    if (strstr(exePath, "aion.bin") == nullptr && strstr(exePath, "aion") == nullptr) {
+        return;
+    }
+
+    // Check mandatory token in command line
+    const char* cmdline = GetCommandLineA();
+    if (!cmdline || strstr(cmdline, kOfficialClientToken) == nullptr) {
+        MessageBoxA(nullptr,
+            "Acesso Negado: Inicializacao invalida do cliente.\n\n"
+            "O cliente deve ser executado exclusivamente atraves dos arquivos oficiais de inicializacao (Start x64).\n"
+            "Token de seguranca nao fornecido ou invalido.",
+            "Aion Classic 5.0 - Erro de Seguranca",
+            MB_ICONSTOP | MB_OK);
+        ExitProcess(1);
+        return;
+    }
+
+    // Try loading BrService.dll from current directory or bin64
+    HMODULE hBr = LoadLibraryW(L"BrService.dll");
+    if (!hBr) {
+        wchar_t dllPath[MAX_PATH] = { 0 };
+        HMODULE hSelf = nullptr;
+        GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS, (LPCWSTR)LoadBrServiceModule, &hSelf);
+        if (hSelf && GetModuleFileNameW(hSelf, dllPath, MAX_PATH)) {
+            wchar_t* lastSlash = wcsrchr(dllPath, L'\\');
+            if (lastSlash) {
+                wcscpy_s(lastSlash + 1, MAX_PATH - (lastSlash - dllPath + 1), L"BrService.dll");
+                hBr = LoadLibraryW(dllPath);
+            }
+        }
+    }
+
+    if (!hBr) {
+        MessageBoxA(nullptr,
+            "Falha critica de seguranca:\n\n"
+            "A biblioteca essencial 'BrService.dll' nao foi encontrada ou esta corrompida.\n"
+            "Certifique-se de que os arquivos do patch estao na pasta bin64.",
+            "Aion Classic 5.0 - Erro de Integridade",
+            MB_ICONSTOP | MB_OK);
+        ExitProcess(1);
+        return;
+    }
+
+    g_hBrService = hBr;
+    fn_BR_Initialize pfnInit = (fn_BR_Initialize)GetProcAddress(hBr, "BR_Initialize");
+    if (pfnInit) {
+        __try {
+            pfnInit(kOfficialClientToken, cmdline);
+        } __except (EXCEPTION_EXECUTE_HANDLER) {
+        }
+    }
+}
+
 static void InstallPatch() {
     // Early language table patch for main module
     PatchLanguageTableInModule(GetModuleHandleW(nullptr));
@@ -452,6 +513,7 @@ static void InstallPatch() {
     DetourTransactionCommit();
 
     FixClientStartupWithHighCoreCountCpus();
+    LoadBrServiceModule();
 }
 
 BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID lpvReserved) {

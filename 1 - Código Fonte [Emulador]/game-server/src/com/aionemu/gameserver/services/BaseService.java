@@ -58,7 +58,7 @@ public class BaseService {
 	/**
 	 * Generates a new BaseObject for given id
 	 */
-	public void start(int id) {
+	public synchronized void start(int id) {
 		final Base<?> base;
 
 		if (isActive(id)) {
@@ -74,7 +74,7 @@ public class BaseService {
 	/**
 	 * Stops a base.
 	 */
-	public void stop(int id) {
+	public synchronized void stop(int id) {
 		Base<?> base = activeBases.remove(id);
 		if (base != null)
 			base.stop();
@@ -99,7 +99,7 @@ public class BaseService {
 		};
 	}
 
-	public void capture(int id, BaseOccupier newOccupier) {
+	public synchronized void capture(int id, BaseOccupier newOccupier) {
 		if (!isActive(id))
 			return;
 

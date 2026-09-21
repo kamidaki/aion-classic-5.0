@@ -18,8 +18,8 @@ public class FlyZoneInstance extends ZoneInstance {
 	public synchronized boolean onEnter(Creature creature) {
 		if (super.onEnter(creature)) {
 			creature.setInsideZoneType(ZoneType.FLY);
-			if (creature instanceof Player) {
-				((Player) creature).getController().onEnterFlyArea();
+			if (creature instanceof Player player) {
+				player.getController().onEnterFlyArea();
 			}
 			return true;
 		} else {
@@ -31,8 +31,8 @@ public class FlyZoneInstance extends ZoneInstance {
 	public synchronized boolean onLeave(Creature creature) {
 		if (super.onLeave(creature)) {
 			creature.unsetInsideZoneType(ZoneType.FLY);
-			if (!creature.isInsideZoneType(ZoneType.FLY) && creature instanceof Player)
-				((Player) creature).getController().onLeaveFlyArea();
+			if (!creature.isInsideZoneType(ZoneType.FLY) && creature instanceof Player player)
+				player.getController().onLeaveFlyArea();
 			return true;
 		} else
 			return false;
