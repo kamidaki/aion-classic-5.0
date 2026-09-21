@@ -70,6 +70,9 @@
 	<import file="items/siel_hammer.xml" />
 	<import file="items/global_trade.xml" />
 	<import file="items/item_compose.xml" />
+	<import file="items/item_upgrade.xml" />
+	<import file="moros/moros.xml" />
+	<import file="storybook/storybook.xml" />
 	<import file="item_sets/item_sets.xml" />
 	<import file="ai" singleRootTag="true" />
 	<import file="assembled_npcs/assembled_npcs.xml" />

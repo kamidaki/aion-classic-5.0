@@ -215,6 +215,8 @@ public class PlayerService {
 		}
 
 		PlayerEquipmentSettingDAO.loadEquipmentSetting(player);
+		MorosService.onLoad(player);
+		StorybookService.onLoad(player);
 		PlayerWardrobeService.getInstance().onLoad(player);
 
 		return player;

@@ -48,6 +48,9 @@
 	<xs:include schemaLocation="items/siel_hammer.xsd" />
 	<xs:include schemaLocation="items/global_trade.xsd" />
 	<xs:include schemaLocation="items/item_compose.xsd" />
+	<xs:include schemaLocation="items/item_upgrade.xsd" />
+	<xs:include schemaLocation="moros/moros.xsd" />
+	<xs:include schemaLocation="storybook/storybook.xsd" />
 	<xs:include schemaLocation="legion_dominion_template.xsd" />
 	<xs:include schemaLocation="mail_templates.xsd" />
 	<xs:include schemaLocation="mesh_materials/material_templates.xsd" />
@@ -172,6 +175,9 @@
 					<xs:element ref="siel_hammer" minOccurs="0" />
 					<xs:element ref="global_trade" minOccurs="0" />
 					<xs:element ref="item_composes" minOccurs="0" />
+					<xs:element ref="item_upgrades" minOccurs="0" />
+					<xs:element ref="moros" minOccurs="0" />
+					<xs:element ref="storybooks" minOccurs="0" />
 					<xs:element ref="pet_buffs" minOccurs="0" />
 					<xs:element ref="pet_feed" minOccurs="0" />
 					<xs:element ref="pet_skill_templates" minOccurs="0" />

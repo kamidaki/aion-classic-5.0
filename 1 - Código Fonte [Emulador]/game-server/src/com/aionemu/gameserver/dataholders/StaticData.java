@@ -301,6 +301,12 @@ public class StaticData {
 	public GlobalTradeData globalTradeData;
 	@XmlElement(name = "item_composes")
 	public ItemComposeData itemComposeData;
+	@XmlElement(name = "item_upgrades")
+	public ItemUpgradeData itemUpgradeData;
+	@XmlElement(name = "moros")
+	public MorosData morosData;
+	@XmlElement(name = "storybooks")
+	public StorybookData storybookData;
 
 	@XmlElement(name = "arcadelist")
 	public UpgradeArcadeData upgradeArcadeData;

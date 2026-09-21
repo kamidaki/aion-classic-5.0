@@ -95,6 +95,8 @@ public class Player extends Creature {
 	private Mailbox mailbox;
 	private PrivateStore store;
 	private TitleList titleList;
+	private PlayerMoros moros;
+	private PlayerStorybook storybook;
 	private QuestStateList questStateList;
 	private RecipeList recipeList;
 	private List<House> houses;
@@ -661,6 +663,28 @@ public class Player extends Creature {
 	public void setTitleList(TitleList titleList) {
 		this.titleList = titleList;
 		titleList.setOwner(this);
+	}
+
+	/**
+	 * Moreth, Chronicle of Time; null até o personagem entrar no mundo.
+	 */
+	public PlayerMoros getMoros() {
+		return moros;
+	}
+
+	public void setMoros(PlayerMoros moros) {
+		this.moros = moros;
+	}
+
+	/**
+	 * Book of Legends; null até o personagem entrar no mundo.
+	 */
+	public PlayerStorybook getStorybook() {
+		return storybook;
+	}
+
+	public void setStorybook(PlayerStorybook storybook) {
+		this.storybook = storybook;
 	}
 
 	public PlayerGroup getPlayerGroup() {

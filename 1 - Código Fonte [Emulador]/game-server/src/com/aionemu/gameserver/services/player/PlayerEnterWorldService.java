@@ -203,8 +203,8 @@ public final class PlayerEnterWorldService {
 			client.sendPacket(new SM_UNK_01C2());
 			PlayerWardrobeService.getInstance().onEnterWorld(player); // S 0x122, logo antes do 0x138 como na captura
 			client.sendPacket(new SM_UNK_0138());
-			client.sendPacket(new SM_UNK_014C(player.getObjectId()));
-			client.sendPacket(new SM_UNK_014D(player.getObjectId()));
+			StorybookService.onEnterWorld(player); // S 0x14C e 0x14D
+			MorosService.onEnterWorld(player); // S 0x169, logo depois do 0x14D como na captura
 			client.sendPacket(new SM_UNK_0177());
 			client.sendPacket(new SM_UNK_0197(player.getObjectId()));
 			client.sendPacket(new SM_UNK_01A8(player.getObjectId()));

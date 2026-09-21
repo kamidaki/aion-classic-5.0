@@ -100,6 +100,7 @@ public class PlayerLeaveWorldService {
 			GMService.getInstance().onPlayerLogout(player);
 			KiskService.getInstance().onLogout(player);
 			SielEnergyService.getInstance().onLogout(player);
+			MorosService.onLogout(player);
 			DecomposeAction.selectionClosed(player);
 			PlayerMoveTaskManager.getInstance().removePlayer(player);
 			SiegeService.getInstance().getRvrEventPlayers().remove(player);

@@ -274,9 +274,10 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(275, SM_UNK_0113.class); // [S_UNK_0113] (0x0113)
 		addPacketOpcode(295, SM_UNK_0127.class); // [S_UNK_0127] (0x0127)
 		addPacketOpcode(297, SM_UNK_0129.class); // [S_UNK_0129] (0x0129)
-		addPacketOpcode(304, SM_UNK_0130.class); // [S_UNK_0130] (0x0130)
+		addPacketOpcode(304, SM_RANK_LIST.class); // [S_RANK_LIST] (0x0130)
+		addPacketOpcode(305, SM_RANK_INFO.class); // [S_RANK_INFO] (0x0131)
 		addPacketOpcode(309, SM_UNK_0135.class); // [S_UNK_0135] (0x0135)
-		addPacketOpcode(312, SM_UNK_0138.class); // [S_UNK_0138] (0x0138)
+		addPacketOpcode(312, SM_RANKING_BADGE.class); // [S_RANKING_BADGE] (0x0138)
 		addPacketOpcode(314, SM_UNK_013A.class); // [S_UNK_013A] (0x013A)
 		// Global Auction House 5.0 (capturas de 2026-09-11 a 13). A ordem dos nomes é a do enum S_GLOBAL_TRADE_* (LIST, MYLIST, BUY, COMMIT,
 		// CANCEL, SALESLOG, COLLECT, AVG_PRICE, STATE, HISTORY), que casa com a função de todos os capturados a partir de 0x13C.
@@ -293,13 +294,20 @@ public class ServerPacketsOpcodes {
 		// Altar of Transcendence 5.0: início e resultado da fusão (C 0x154)
 		addPacketOpcode(0x1A6, SM_ITEM_COMPOSE_EVENT.class);
 		addPacketOpcode(0x1A7, SM_ITEM_COMPOSE_RESULT.class);
+		// Ascend (Item Upgrade) 5.0: início e resultado (C 0x106), captura Outros/outros_2026-09-21_06-10-28
+		addPacketOpcode(0x1AD, SM_ITEM_UPGRADE_EVENT.class); // [S_ITEM_UPGRADE_EVENT]
+		addPacketOpcode(0x1AE, SM_ITEM_UPGRADE_RESULT.class); // [S_ITEM_UPGRADE_RESULT]
 		addPacketOpcode(326, SM_UNK_0146.class); // [S_UNK_0146] (0x0146)
 		addPacketOpcode(328, SM_COMBAT_TALENT_REWARDS.class); // [S_COMBAT_POWER_REWARD_INFO] (0x0148)
 		addPacketOpcode(329, SM_COMBAT_TALENT_REWARD_UPDATE.class); // [S_COMBAT_POWER_REWARD_UPDATE] (0x0149)
 		addPacketOpcode(330, SM_UNK_014A.class); // [S_UNK_014A] (0x014A)
 		addPacketOpcode(331, SM_SP_UPDATE.class); // SP do próprio Revenant (0x014B, 2 b)
-		addPacketOpcode(332, SM_UNK_014C.class); // [S_UNK_014C] (0x014C)
-		addPacketOpcode(333, SM_UNK_014D.class); // [S_UNK_014D] (0x014D)
+		// Book of Legends 5.0 (captura 06_Sistemas_Novos_Book_of_Legends, 11/09): nomes do enum S_USER_STORY_BOOK_* do Game.dll
+		addPacketOpcode(0x14C, SM_STORYBOOK_FINISHED_LIST.class); // [S_USER_STORY_BOOK_FINISHED_LIST_LOAD]
+		addPacketOpcode(0x14D, SM_STORYBOOK_REGISTERED_LIST.class); // [S_USER_STORY_BOOK_REGISTERED_ITEM_LIST_LOAD]
+		addPacketOpcode(0x14E, SM_STORYBOOK_UPDATE.class); // [S_USER_STORY_BOOK_UPDATE_RESULT], resposta ao C 0xE4
+		addPacketOpcode(0x171, SM_STORYBOOK_APPRAISE_RESULT.class); // identificação de fragmentos, resposta ao C 0xDC
+		addPacketOpcode(0x172, SM_STORYBOOK_DISASSEMBLE_RESULT.class); // desmontagem de fragmentos, resposta ao C 0xDD
 		addPacketOpcode(337, SM_UNK_0151.class); // [S_UNK_0151] (0x0151)
 		addPacketOpcode(338, SM_UNK_0152.class); // [S_UNK_0152] (0x0152)
 		addPacketOpcode(344, SM_UNK_0158.class); // [S_UNK_0158] (0x0158)
@@ -309,7 +317,7 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(350, SM_UNK_015E.class); // [S_UNK_015E] (0x015E)
 		addPacketOpcode(357, SM_UNK_0165.class); // [S_UNK_0165] (0x0165)
 		addPacketOpcode(358, SM_SP_UPDATE_OTHER.class); // SP de um jogador para quem o vê (0x0166, 6 b)
-		addPacketOpcode(361, SM_UNK_0169.class); // [S_UNK_0169] (0x0169)
+		addPacketOpcode(0x169, SM_MOROS_INFO.class); // Moreth, Chronicle of Time: [H nível][D pontos][D 0][H registros] (40 de 40 capturas)
 		addPacketOpcode(368, SM_UNK_0170.class); // [S_UNK_0170] (0x0170)
 		addPacketOpcode(371, SM_UNK_0173.class); // [S_UNK_0173] (0x0173)
 		addPacketOpcode(373, SM_EP_UPDATE.class); // EP (Ki) do próprio Brawler (0x0175, 2 b)

@@ -72,6 +72,9 @@ public final class DataManager {
 	public static SielHammerData SIEL_HAMMER_DATA;
 	public static GlobalTradeData GLOBAL_TRADE_DATA;
 	public static ItemComposeData ITEM_COMPOSE_DATA;
+	public static ItemUpgradeData ITEM_UPGRADE_DATA;
+	public static MorosData MOROS_DATA;
+	public static StorybookData STORYBOOK_DATA;
 	public static ItemRestrictionCleanupData ITEM_CLEAN_UP;
 	public static Mails SYSTEM_MAIL_TEMPLATES;
 	public static MapWeatherData MAP_WEATHER_DATA;
@@ -228,6 +231,9 @@ public final class DataManager {
 		SIEL_HAMMER_DATA = data.sielHammerData;
 		GLOBAL_TRADE_DATA = data.globalTradeData;
 		ITEM_COMPOSE_DATA = data.itemComposeData;
+		ITEM_UPGRADE_DATA = data.itemUpgradeData;
+		MOROS_DATA = data.morosData;
+		STORYBOOK_DATA = data.storybookData;
 		UPGRADE_ARCADE_DATA = data.upgradeArcadeData;
 		ATREIAN_PASSPORT_DATA = data.atreianPassportData;
 		WORLD_RAID_DATA = data.worldRaidData;

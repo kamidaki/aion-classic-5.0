@@ -1,0 +1,160 @@
+parse_moros_50.py
+
+== nível gerado: 10
+  1: 0 pontos, 200%, Moros_Promise_G1 (2544) nv 1
+  2: 8850 pontos, 200%, Moros_Promise_G1 (2544) nv 2
+  3: 9500 pontos, 200%, Moros_Promise_G1 (2544) nv 3
+  4: 10000 pontos, 200%, Moros_Promise_G1 (2544) nv 4
+  5: 11000 pontos, 150%, Moros_Promise_G1 (2544) nv 5
+  6: 22000 pontos, 150%, Moros_Promise_G2 (2550) nv 6
+  7: 33000 pontos, 150%, Moros_Promise_G2 (2550) nv 7
+  8: 44000 pontos, 100%, Moros_Promise_G2 (2550) nv 8
+  9: 55000 pontos, 100%, Moros_Promise_G2 (2550) nv 9
+  10: 66000 pontos, 100%, Moros_Promise_G3 (3942) nv 10
+
+== nível sem skill ou sem valor de ponto (preenchimento, fora): 91
+  11: 100 pontos
+  12: 100 pontos
+  13: 100 pontos
+  14: 100 pontos
+  15: 100 pontos
+  16: 100 pontos
+  17: 100 pontos
+  18: 100 pontos
+  19: 100 pontos
+  20: 100 pontos
+  21: 100 pontos
+  22: 100 pontos
+  23: 100 pontos
+  24: 100 pontos
+  25: 100 pontos
+  26: 100 pontos
+  27: 100 pontos
+  28: 100 pontos
+  29: 100 pontos
+  30: 100 pontos
+  31: 100 pontos
+  32: 100 pontos
+  33: 100 pontos
+  34: 100 pontos
+  35: 100 pontos
+  36: 100 pontos
+  37: 100 pontos
+  38: 100 pontos
+  39: 100 pontos
+  40: 100 pontos
+  41: 100 pontos
+  42: 100 pontos
+  43: 100 pontos
+  44: 100 pontos
+  45: 100 pontos
+  46: 100 pontos
+  47: 100 pontos
+  48: 100 pontos
+  49: 100 pontos
+  50: 100 pontos
+  51: 100 pontos
+  52: 100 pontos
+  53: 100 pontos
+  54: 100 pontos
+  55: 100 pontos
+  56: 100 pontos
+  57: 100 pontos
+  58: 100 pontos
+  59: 100 pontos
+  60: 100 pontos
+  61: 100 pontos
+  62: 100 pontos
+  63: 100 pontos
+  64: 100 pontos
+  65: 100 pontos
+  66: 100 pontos
+  67: 100 pontos
+  68: 100 pontos
+  69: 100 pontos
+  70: 100 pontos
+  71: 100 pontos
+  72: 100 pontos
+  73: 100 pontos
+  74: 100 pontos
+  75: 100 pontos
+  76: 100 pontos
+  77: 100 pontos
+  78: 100 pontos
+  79: 100 pontos
+  80: 100 pontos
+  81: 100 pontos
+  82: 100 pontos
+  83: 100 pontos
+  84: 100 pontos
+  85: 100 pontos
+  86: 100 pontos
+  87: 100 pontos
+  88: 100 pontos
+  89: 100 pontos
+  90: 100 pontos
+  91: 100 pontos
+  92: 100 pontos
+  93: 100 pontos
+  94: 100 pontos
+  95: 100 pontos
+  96: 100 pontos
+  97: 100 pontos
+  98: 100 pontos
+  99: 100 pontos
+  100: 100 pontos
+  101: 100 pontos
+
+== categoria sem ponto (item não pode ser gravado): 3
+  can_not_record: 26038 itens
+  event: 5403 itens
+  quest: 4350 itens
+
+== categoria de item sem linha no client_moros_point (fora): 1
+  gear_rare: 37 itens
+
+== categoria gerada: 44
+  etc: 1 ponto(s), 9046 itens
+  gear_etc: 1 ponto(s), 14745 itens
+  harvest: 1 ponto(s), 277 itens
+  proc_rare: 1 ponto(s), 61 itens
+  skillbook: 1 ponto(s), 1478 itens
+  stigma_abyss: 1 ponto(s), 235 itens
+  enchant: 2 ponto(s), 70 itens
+  gear_legend: 2 ponto(s), 7537 itens
+  material_d: 2 ponto(s), 20 itens
+  moros_common: 2 ponto(s), 1 itens
+  option_common: 2 ponto(s), 67 itens
+  option_rare: 2 ponto(s), 62 itens
+  puzzle: 2 ponto(s), 536 itens
+  stigma_normal: 2 ponto(s), 1125 itens
+  enchant_70: 3 ponto(s), 10 itens
+  record_page: 3 ponto(s), 1 itens
+  enchant_80: 4 ponto(s), 10 itens
+  material_d_key: 4 ponto(s), 27 itens
+  enchant_90: 5 ponto(s), 10 itens
+  gear_unique: 5 ponto(s), 4793 itens
+  moros_rare: 5 ponto(s), 1 itens
+  option_legend: 5 ponto(s), 36 itens
+  proc_legend: 5 ponto(s), 53 itens
+  proc_unique: 5 ponto(s), 27 itens
+  stigma_abyss_56_01: 5 ponto(s), 142 itens
+  stigma_abyss_56_02: 7 ponto(s), 116 itens
+  cash_candy: 15 ponto(s), 214 itens
+  enchant_100: 15 ponto(s), 91 itens
+  moros_legend: 15 ponto(s), 1 itens
+  gear_epic: 20 ponto(s), 1939 itens
+  cash_earring: 30 ponto(s), 1 itens
+  cash_head: 30 ponto(s), 175 itens
+  starweapon_L: 30 ponto(s), 78 itens
+  moros_unique: 40 ponto(s), 1 itens
+  cash_Petcard: 60 ponto(s), 8 itens
+  seed_up_70: 60 ponto(s), 5 itens
+  moros_epic: 80 ponto(s), 1 itens
+  cash_weapon: 100 ponto(s), 211 itens
+  starweapon_U: 100 ponto(s), 78 itens
+  cash_hair: 125 ponto(s), 60 itens
+  cash_clothes: 150 ponto(s), 245 itens
+  epic_quest_70: 160 ponto(s), 3 itens
+  cash_social: 200 ponto(s), 46 itens
+  cash_motion: 300 ponto(s), 75 itens

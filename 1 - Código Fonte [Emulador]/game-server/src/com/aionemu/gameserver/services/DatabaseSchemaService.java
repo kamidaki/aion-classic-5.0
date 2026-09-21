@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.database.DatabaseFactory;
 import com.aionemu.gameserver.dao.AccountQunaDAO;
+import com.aionemu.gameserver.dao.PlayerMorosDAO;
+import com.aionemu.gameserver.dao.PlayerStorybookDAO;
 import com.aionemu.gameserver.dao.PlayerWardrobeDAO;
 
 /**
@@ -96,6 +98,13 @@ public class DatabaseSchemaService {
 			"  KEY `state_seller` (`state`, `seller_id`)" +
 			") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;"
 		);
+
+		// 5. player_moros (Classic 5.0 Moreth, Chronicle of Time: C 0x111 / S 0x169)
+		executeSql(con, PlayerMorosDAO.CREATE_TABLE);
+
+		// 6. player_storybook_items e player_storybook_finished (Classic 5.0 Book of Legends: C 0xDC/0xDD/0xE4 / S 0x14C-0x14E)
+		executeSql(con, PlayerStorybookDAO.CREATE_ITEMS_TABLE);
+		executeSql(con, PlayerStorybookDAO.CREATE_FINISHED_TABLE);
 
 		// 7. player_wardrobe (Classic 5.0 Wardrobe: C 0xEE-0xFB / S 0x122-0x124)
 		executeSql(con, PlayerWardrobeDAO.CREATE_TABLE);

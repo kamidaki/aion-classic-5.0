@@ -224,6 +224,12 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_GLOBAL_TRADE_BUY.class, 0x1EC, State.IN_GAME); // 0x0116 C_GLOBAL_TRADE_BUY [Q anúncio]
 		addPacket(CM_GLOBAL_TRADE_COMMIT.class, 0x1ED, State.IN_GAME); // 0x0117 C_GLOBAL_TRADE_COMMIT [D objeto][Q preço][Q qtd][D moeda]
 		addPacket(CM_ITEM_COMPOSE.class, 0x22E, State.IN_GAME); // 0x0154 Altar of Transcendence [D receita][H n][n x (D item, D qtd)][D 0][C fusões]
+		addPacket(CM_ITEM_UPGRADE.class, 0x1FC, State.IN_GAME); // 0x0106 Ascend [D receita][D objeto][D opção]
+		addPacket(CM_ITEM_UPGRADE_CANCEL.class, 0x230, State.IN_GAME); // 0x0142 C_CANCEL_ITEM_UPGRADE [D itemId]
+		addPacket(CM_MOROS_RECORD.class, 0x1E3, State.IN_GAME); // 0x0111 Moreth [H n][n x (D objeto, Q qtd)]
+		addPacket(CM_STORYBOOK_APPRAISE.class, 0x196, State.IN_GAME); // 0x00DC Book of Legends, identificação [H n][n x (D objeto, Q qtd)]
+		addPacket(CM_STORYBOOK_DISASSEMBLE.class, 0x197, State.IN_GAME); // 0x00DD Book of Legends, desmontagem [H n][n x (D objeto, Q qtd)]
+		addPacket(CM_STORYBOOK_REGISTER.class, 0x19E, State.IN_GAME); // 0x00E4 C_USER_STORY_BOOK_REGISTER_ITEM [D livro]
 		addPacket(CM_CLIENT_PING_STATE.class, 0x222, State.IN_GAME); // 0x0150 CLIENT_PING_STATE (5.0 Classic)
 		addPacket(CM_SHOW_DIALOG.class, 0x00F6, State.IN_GAME); // 0xFFFC USE_OBJECT
 		addPacket(CM_CLOSE_DIALOG.class, 0x00F7, State.IN_GAME); // 0xFFFD STOP_USE_OBJECT
@@ -252,6 +258,14 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_PROTOCOL_PING_ACK.class, 0x0122, State.IN_GAME, State.AUTHED);
 		addPacket(CM_CLIENT_TELEMETRY_SYNC.class, 0x01E0, State.IN_GAME, State.AUTHED); // 0x0112 CLIENT_TELEMETRY_SYNC (5.0 Classic)
 		addPacket(CM_CLIENT_TELEMETRY_SYNC.class, 0x0112, State.IN_GAME, State.AUTHED);
+
+		// ==========================================
+		// RANKING 5.0 (Combat Power Ranking 1000..1003)
+		// ==========================================
+		addPacket(CM_RANKING_INFO.class, 0x01B6, State.IN_GAME); // 0x01B6 WIRE CM_RANKING_INFO (dec=0x00BC)
+		addPacket(CM_RANKING_INFO.class, 0x00BC, State.IN_GAME); // Raw alias
+		addPacket(CM_RANKING_SUBSCRIBE.class, 0x0181, State.IN_GAME, State.AUTHED); // 0x0181 WIRE CM_RANKING_SUBSCRIBE (dec=0x00F3)
+		addPacket(CM_RANKING_SUBSCRIBE.class, 0x00F3, State.IN_GAME, State.AUTHED); // Raw alias
 	}
 
 	public AionPacketHandler getPacketHandler() {
