@@ -200,7 +200,6 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_CHARGE_ITEM.class, 0x124, State.IN_GAME); // CHARGE_ITEM
 		addPacket(CM_GUILD_JOIN_REQUEST.class, 0x1EA, State.IN_GAME); // GUILD_JOIN_REQUEST
 		addPacket(CM_GUILD_JOIN_CANCEL.class, 0x1EB, State.IN_GAME); // GUILD_JOIN_CANCEL
-		addPacket(CM_GUILD_SEARCH.class, 0x1ED, State.IN_GAME); // GUILD_SEARCH
 		addPacket(CM_GUILD_TABS.class, 0xFD, State.IN_GAME); // GUILD_TABS
 		addPacket(CM_EQUIPMENT_CHANGE.class, 0x182, State.IN_GAME); // EQUIPMENT_CHANGE
 		addPacket(CM_EQUIPMENT_CHANGE_USE.class, 0x183, State.IN_GAME); // EQUIPMENT_CHANGE_USE
@@ -212,7 +211,18 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_USER_CLASSIC_WARDROBE_REGISTER.class, 0x18F, State.IN_GAME); // WARDROBE_REGISTER
 		addPacket(CM_RECIPE_LIST.class, 0x14C, State.AUTHED, State.IN_GAME); // 0x00B6 RECIPE_LIST (5.0 Classic)
 		addPacket(CM_RECIPE_LIST.class, 0xB6, State.AUTHED, State.IN_GAME); // Alias dec opcode
-		addPacket(CM_GLOBAL_TRADE.class, 0x1F3, State.IN_GAME); // 0x0101 GLOBAL_TRADE_SALESLOG (5.0 Classic)
+		// Global Auction House 5.0 (capturas de 2026-09-11 a 21). O 0x1ED tinha o CM_GUILD_SEARCH da 4.x, sem ação.
+		addPacket(CM_GLOBAL_TRADE_CANCEL.class, 0x1F2, State.IN_GAME); // 0x0100 C_GLOBAL_TRADE_CANCEL [Q anúncio]
+		addPacket(CM_GLOBAL_TRADE_SALESLOG.class, 0x1F3, State.IN_GAME); // 0x0101 C_GLOBAL_TRADE_SALESLOG [C][C][C moeda][C][H]
+		addPacket(CM_GLOBAL_TRADE_COLLECT.class, 0x1F0, State.IN_GAME); // 0x0102 C_GLOBAL_TRADE_COLLECT [D moeda]
+		addPacket(CM_GLOBAL_TRADE_AVG_PRICE.class, 0x1F1, State.IN_GAME); // 0x0103 C_GLOBAL_TRADE_AVG_PRICE [D objeto][D moeda]
+		addPacket(CM_GLOBAL_TRADE_STATE.class, 0x1E6, State.IN_GAME); // 0x010C C_GLOBAL_TRADE_STATE, sem corpo, ao abrir a janela
+		addPacket(CM_GLOBAL_TRADE_HISTORY.class, 0x1E7, State.IN_GAME); // 0x010D C_GLOBAL_TRADE_HISTORY [C][C][C moeda][C][H]
+		addPacket(CM_GLOBAL_TRADE_LIST.class, 0x1EE, State.IN_GAME); // 0x0114 C_GLOBAL_TRADE_LIST
+		addPacket(CM_GLOBAL_TRADE_MYLIST.class, 0x1EF, State.IN_GAME); // 0x0115 C_GLOBAL_TRADE_MYLIST [D moeda]
+		addPacket(CM_GLOBAL_TRADE_BUY.class, 0x1EC, State.IN_GAME); // 0x0116 C_GLOBAL_TRADE_BUY [Q anúncio]
+		addPacket(CM_GLOBAL_TRADE_COMMIT.class, 0x1ED, State.IN_GAME); // 0x0117 C_GLOBAL_TRADE_COMMIT [D objeto][Q preço][Q qtd][D moeda]
+		addPacket(CM_ITEM_COMPOSE.class, 0x22E, State.IN_GAME); // 0x0154 Altar of Transcendence [D receita][H n][n x (D item, D qtd)][D 0][C fusões]
 		addPacket(CM_CLIENT_PING_STATE.class, 0x222, State.IN_GAME); // 0x0150 CLIENT_PING_STATE (5.0 Classic)
 		addPacket(CM_SHOW_DIALOG.class, 0x00F6, State.IN_GAME); // 0xFFFC USE_OBJECT
 		addPacket(CM_CLOSE_DIALOG.class, 0x00F7, State.IN_GAME); // 0xFFFD STOP_USE_OBJECT

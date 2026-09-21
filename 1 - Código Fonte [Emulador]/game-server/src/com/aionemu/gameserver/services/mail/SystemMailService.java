@@ -113,6 +113,43 @@ public class SystemMailService {
 		return true;
 	}
 
+	/**
+	 * Carta de sistema com um item que já existe (encanto, pedras e criador preservados), como a devolução de um anúncio da Auction House.
+	 * O item passa para o local MAILBOX do destinatário.
+	 *
+	 * @return false sem gravar nada se o destinatário não existe ou tem a caixa cheia
+	 */
+	public static boolean sendMail(String sender, int recipientObjId, String title, String message, Item attachedItem, LetterType letterType) {
+		PlayerCommonData recipientCommonData = PlayerService.getOrLoadPlayerCommonData(recipientObjId);
+		if (recipientCommonData == null) {
+			log.info("[SYSMAILSERVICE] > [RecipientId: " + recipientObjId + "] NO SUCH CHARACTER.");
+			return false;
+		}
+		if (recipientCommonData.getMailboxLetters() > 199) {
+			log.info("[SYSMAILSERVICE] > [SenderName: " + sender + "] [RecipientName: " + recipientCommonData.getName() + "] ITEM RETURN "
+				+ attachedItem.getItemId() + " ITEM COUNT " + attachedItem.getItemCount() + " MAILBOX FULL ");
+			return false;
+		}
+		if (title.length() > 20)
+			title = title.substring(0, 20);
+		if (message.length() > 1000)
+			message = message.substring(0, 1000);
+
+		attachedItem.setEquipped(false);
+		attachedItem.setEquipmentSlot(0);
+		attachedItem.setItemLocation(StorageType.MAILBOX.getId());
+		Letter newLetter = new Letter(IDFactory.getInstance().nextId(), recipientObjId, attachedItem, 0, title, message, sender,
+			new Timestamp(System.currentTimeMillis()), true, letterType);
+		if (!MailDAO.storeLetter(newLetter) || !InventoryDAO.store(attachedItem, recipientObjId))
+			return false;
+
+		if (LoggingConfig.LOG_SYSMAIL)
+			log.info("[SYSMAILSERVICE] > [SenderName: " + sender + "] [RecipientName: " + recipientCommonData.getName() + "] RETURN ITEM ID:"
+				+ attachedItem.getItemId() + " ITEM COUNT " + attachedItem.getItemCount() + " MESSAGE SUCCESSFULLY SENDED ");
+		updateRecipientMailbox(recipientCommonData, newLetter);
+		return true;
+	}
+
 	static void updateRecipientMailbox(PlayerCommonData recipientCommonData, Letter newLetter) {
 		Player recipient = recipientCommonData.getPlayer();
 		if (recipient == null) {

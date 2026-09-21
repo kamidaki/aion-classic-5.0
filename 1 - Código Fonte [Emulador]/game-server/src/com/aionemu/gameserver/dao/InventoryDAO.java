@@ -68,21 +68,28 @@ public class InventoryDAO {
 	}
 
 	public static List<Item> loadBrokerItems() {
+		return loadItemsAt(StorageType.BROKER);
+	}
+
+	/**
+	 * Todos os itens de um local sem dono carregado (broker, Global Auction House), de qualquer jogador.
+	 */
+	public static List<Item> loadItemsAt(StorageType storageType) {
 		List<Item> items = new ArrayList<>();
 		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement stmt = con.prepareStatement(SELECT_ALL_QUERY)) {
-			stmt.setInt(1, StorageType.BROKER.getId());
+			stmt.setInt(1, storageType.getId());
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				try {
-					Item item = constructItem(StorageType.BROKER.getId(), rs);
+					Item item = constructItem(storageType.getId(), rs);
 					item.setPersistentState(PersistentState.UPDATED);
 					items.add(item);
 				} catch (Exception e) {
-					log.warn("Skipping invalid broker item: " + e.getMessage());
+					log.warn("Skipping invalid " + storageType + " item: " + e.getMessage());
 				}
 			}
 		} catch (Exception e) {
-			log.error("Could not load broker items", e);
+			log.error("Could not load " + storageType + " items", e);
 		}
 		return items;
 	}

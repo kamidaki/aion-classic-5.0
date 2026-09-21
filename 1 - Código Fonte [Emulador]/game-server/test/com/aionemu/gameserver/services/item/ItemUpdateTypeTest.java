@@ -21,7 +21,8 @@ class ItemUpdateTypeTest {
 		Map.entry(DEC_KINAH_MANASTONE_CLEAR, 0x4A), Map.entry(DEC_KINAH_FLY, 0x4B), Map.entry(INC_ITEM_DECOMPOSE, 0x50),
 		Map.entry(DEC_KINAH_CUBE, 0x5A), Map.entry(INC_NPSHOP_GOODS, 0x7A), Map.entry(DEC_KINAH_SOUL_HEALER, 0xE6),
 		Map.entry(DEC_SIEL_ANVIL_MATERIAL, 0x115), Map.entry(DEC_KINAH_ENCHANT, 0x118), Map.entry(DEC_KINAH_GODSTONE_CLEAR, 0x11A),
-		Map.entry(INC_MANASTONE_CLEAR, 0x11C));
+		Map.entry(INC_MANASTONE_CLEAR, 0x11C), Map.entry(DEC_KINAH_GLOBAL_TRADE_FEE, 0x9C), Map.entry(DEC_KINAH_GLOBAL_TRADE_BUY, 0x13C),
+		Map.entry(INC_KINAH_GLOBAL_TRADE_COLLECT, 0x13D), Map.entry(DEC_ITEM_COMPOSE_MATERIAL, 0x11D), Map.entry(DEC_KINAH_ITEM_COMPOSE, 0x120));
 
 	@Test
 	void reasonIsTheCapturedOneOrZero() {
@@ -34,5 +35,6 @@ class ItemUpdateTypeTest {
 		assertEquals(ItemDeleteType.USE, ItemDeleteType.fromUpdateType(DEC_ITEM_USE));
 		assertEquals(ItemDeleteType.USE, ItemDeleteType.fromUpdateType(DEC_ITEM_BUY));
 		assertEquals(ItemDeleteType.USE, ItemDeleteType.fromUpdateType(DEC_SIEL_ANVIL_MATERIAL));
+		assertEquals(0x11D, ItemDeleteType.fromUpdateType(DEC_ITEM_COMPOSE_MATERIAL).getMask()); // 0x1C do material do Altar
 	}
 }

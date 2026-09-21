@@ -48,6 +48,7 @@ import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ENTER_WORLD_CHECK.Msg;
 import com.aionemu.gameserver.services.*;
+import com.aionemu.gameserver.services.globaltrade.GlobalTradeService;
 import com.aionemu.gameserver.services.instance.InstanceService;
 import com.aionemu.gameserver.services.LegionService;
 import com.aionemu.gameserver.services.SkillLearnService;
@@ -265,6 +266,7 @@ public final class PlayerEnterWorldService {
 			PetService.getInstance().onPlayerLogin(player);
 			MailService.onPlayerLogin(player);
 			BrokerService.getInstance().onPlayerLogin(player);
+			GlobalTradeService.getInstance().onPlayerLogin(player);
 			WeaponFusionSplitService.onPlayerLogin(player);
 
 			// 15. Macro list

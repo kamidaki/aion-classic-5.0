@@ -14,6 +14,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_DELETE_CHARACTER;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.services.AccountService;
 import com.aionemu.gameserver.services.LegionService;
+import com.aionemu.gameserver.services.globaltrade.GlobalTradeService;
 import com.aionemu.gameserver.services.player.PlayerService;
 
 /**
@@ -70,6 +71,10 @@ public class CM_DELETE_CHARACTER extends AionClientPacket {
 
 		if (LegionService.getInstance().getLegionMember(playerAccData.getPlayerCommonData()) != null) {
 			sendPacket(SM_SYSTEM_MESSAGE.STR_GUILD_DISPERSE_STAYMODE_CANCEL_1());
+			return;
+		}
+		if (GlobalTradeService.getInstance().hasOpenListings(playerAccData.getPlayerCommonData().getPlayerObjId())) {
+			sendPacket(new SM_SYSTEM_MESSAGE(GlobalTradeService.MSG_DELETE_CHARACTER));
 			return;
 		}
 		boolean isDeleted = PlayerService.deletePlayer(playerAccData);

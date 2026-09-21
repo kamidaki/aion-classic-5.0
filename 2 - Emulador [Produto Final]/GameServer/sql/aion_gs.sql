@@ -283,6 +283,33 @@ CREATE TABLE `friends` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
+-- Table structure for `global_trade_listings`
+-- Global Auction House (Classic 5.0): anúncios. O item anunciado fica no inventory com item_location 125 e o vendedor como dono;
+-- a linha fica como histórico depois da venda (state SOLD/COLLECTED), do cancelamento ou do vencimento.
+-- ----------------------------
+DROP TABLE IF EXISTS `global_trade_listings`;
+CREATE TABLE `global_trade_listings` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `seller_id` int NOT NULL,
+  `item_unique_id` int NOT NULL,
+  `item_id` int NOT NULL,
+  `item_count` bigint NOT NULL,
+  `price` bigint NOT NULL,
+  `currency` tinyint NOT NULL,
+  `category` int NOT NULL,
+  `register_fee` bigint NOT NULL DEFAULT 0,
+  `register_time` datetime NOT NULL,
+  `expire_time` datetime NOT NULL,
+  `state` varchar(16) NOT NULL,
+  `buyer_id` int NULL DEFAULT NULL,
+  `sold_time` datetime NULL DEFAULT NULL,
+  `sale_fee` bigint NOT NULL DEFAULT 0,
+  `collected_time` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `state_seller` (`state`,`seller_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
 -- Table structure for `guides`
 -- ----------------------------
 DROP TABLE IF EXISTS `guides`;

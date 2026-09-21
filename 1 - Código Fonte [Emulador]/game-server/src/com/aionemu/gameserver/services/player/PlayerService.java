@@ -37,6 +37,7 @@ import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_DELETE_CHARACTER;
 import com.aionemu.gameserver.services.AccountService;
 import com.aionemu.gameserver.services.BrokerService;
+import com.aionemu.gameserver.services.globaltrade.GlobalTradeService;
 import com.aionemu.gameserver.services.HousingService;
 import com.aionemu.gameserver.services.LegionService;
 import com.aionemu.gameserver.services.PunishmentService.PunishmentType;
@@ -396,6 +397,7 @@ public class PlayerService {
 		if (notifyServices) {
 			HousingService.getInstance().onPlayerDeleted(playerId);
 			BrokerService.getInstance().onPlayerDeleted(playerId);
+			GlobalTradeService.getInstance().onPlayerDeleted(playerId);
 		}
 	}
 

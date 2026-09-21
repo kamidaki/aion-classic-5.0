@@ -42,6 +42,7 @@ public enum StorageType {
 	HOUSE_STORAGE_18(77, 27, 9), // Convenient 3-Drawer Cabinet
 	HOUSE_STORAGE_19(78, 27, 9), // Strong 3-Drawer Cabinet
 	HOUSE_STORAGE_20(79, 27, 9), // Firm 3-Drawer Cabinet
+	GLOBAL_TRADE(125), // item anunciado na Global Auction House (Classic 5.0): fica no inventory com o vendedor como dono
 	BROKER(126),
 	MAILBOX(127);
 

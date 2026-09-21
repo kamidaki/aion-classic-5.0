@@ -37,6 +37,7 @@ import com.aionemu.gameserver.network.chatserver.ChatServer;
 import com.aionemu.gameserver.network.loginserver.LoginServer;
 import com.aionemu.gameserver.questEngine.QuestEngine;
 import com.aionemu.gameserver.services.*;
+import com.aionemu.gameserver.services.globaltrade.GlobalTradeService;
 import com.aionemu.gameserver.services.abyss.AbyssRankUpdateService;
 import com.aionemu.gameserver.services.abyss.AbyssRankingCache;
 import com.aionemu.gameserver.services.cron.CronExpressionTransformer;
@@ -148,6 +149,7 @@ public class GameServer {
 		// DebugService.getInstance();
 		WeatherService.getInstance();
 		BrokerService.getInstance();
+		GlobalTradeService.getInstance();
 		Influence.getInstance();
 		ExchangeService.getInstance();
 		PeriodicSaveService.getInstance();

@@ -47,6 +47,11 @@ public class ItemPacketService {
 		DEC_KINAH_ENCHANT(0x118, true, true), // 2: taxa do enchant (C 0x5A tipo 1) e do Siel Anvil
 		DEC_KINAH_GODSTONE_CLEAR(0x11A, true, true), // 1: remoção de godstone pelo menu (C 0x10B)
 		INC_MANASTONE_CLEAR(0x11C, true, true), // 4: manastone devolvida pela remoção (C 0x5A tipo 3)
+		DEC_KINAH_GLOBAL_TRADE_FEE(0x9C, true, true), // 2: taxa de registro na Auction House (C 0x117)
+		DEC_KINAH_GLOBAL_TRADE_BUY(0x13C, true, true), // 2: compra na Auction House (C 0x116)
+		INC_KINAH_GLOBAL_TRADE_COLLECT(0x13D, true, true), // 1: receita recebida da Auction House (C 0x102)
+		DEC_ITEM_COMPOSE_MATERIAL(0x11D, true, true), // 1: material gasto no Altar of Transcendence (C 0x154), também no 0x1C
+		DEC_KINAH_ITEM_COMPOSE(0x120, true, true), // 2: taxa do Altar of Transcendence (C 0x154)
 
 		DEC_KINAH(0, true, false), // gasto de kinah sem motivo capturado; o oficial usa um por serviço, e 0x1D só na compra
 		DEC_ITEM_SPLIT_MOVE(0x0A, true, false), // move to other storage with split
@@ -63,7 +68,8 @@ public class ItemPacketService {
 		DEC_PET_FOOD(0x5E, true, false),
 		INC_PASSPORT_ADD(0x8A, true, false),
 		INC_COMBAT_TALENT_REWARD(0xEB, true, false), // cabeçalho do S_ADD_INVENTORY da recompensa; 0x1D não capturado
-		INC_CRUSH_RESULT(0x112, true, false); // cabeçalho do S_ADD_INVENTORY do hammer; 0x1D não capturado
+		INC_CRUSH_RESULT(0x112, true, false), // cabeçalho do S_ADD_INVENTORY do hammer; 0x1D não capturado
+		INC_ITEM_COMPOSE(0x11E, true, false); // cabeçalho do S_ADD_INVENTORY do Altar; resultado somado a pilha (0x1D) não capturado
 
 		private final int mask;
 		private final boolean sendable;
@@ -123,6 +129,9 @@ public class ItemPacketService {
 		DECOMPOSABLE(0x50), // also Guestbloom
 		COMBAT_TALENT_REWARD(0xEB), // official Combat Talent milestone reward
 		NPSHOP_GOODS(0x7A), // Black Cloud Mail: cabeçalho [D 0x7A][C 0][C 1] do S_ADD_INVENTORY (captura oficial, 3 de 3)
+		GLOBAL_TRADE_BUY(0x98), // Auction House: item comprado (C 0x116), cabeçalho [D 0x98][C 0][C 1] nas capturas (3 de 3)
+		GLOBAL_TRADE_CANCEL(0x9E), // Auction House: item de volta pelo cancelamento (C 0x100), cabeçalho [D 0x9E][C 0][C 1] (2 de 2)
+		ITEM_COMPOSE(0x11E), // Altar of Transcendence: resultado da fusão (C 0x154), cabeçalho [D 0x11E][C 0][C 1] (2 de 2)
 		REPURCHASE(0x51);
 
 		private final int mask;
@@ -147,6 +156,8 @@ public class ItemPacketService {
 		QUEST_START(0x34),
 		DECOMPOSE(0x66),
 		CRUSH(0x110),
+		GLOBAL_TRADE_REGISTER(0x0C), // S_REMOVE_INVENTORY do item anunciado na Auction House (C 0x117)
+		ITEM_COMPOSE(0x11D), // S_REMOVE_INVENTORY do material do Altar (C 0x154), mesmo motivo do 0x1D
 		REGISTER(0x78),
 		PUT_TO_EXCHANGE(0x26);
 
@@ -165,6 +176,7 @@ public class ItemPacketService {
 				case DEC_ITEM_SPLIT -> SPLIT;
 				case DEC_ITEM_USE, DEC_ITEM_BUY, DEC_SIEL_ANVIL_MATERIAL -> USE;
 				case DEC_ITEM_CRUSH -> CRUSH;
+				case DEC_ITEM_COMPOSE_MATERIAL -> ITEM_COMPOSE;
 				case DEC_ITEM_SPLIT_MOVE -> MOVE;
 				default -> DEFAULT;
 			};

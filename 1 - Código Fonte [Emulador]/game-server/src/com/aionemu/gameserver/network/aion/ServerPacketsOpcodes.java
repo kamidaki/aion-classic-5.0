@@ -278,7 +278,21 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(309, SM_UNK_0135.class); // [S_UNK_0135] (0x0135)
 		addPacketOpcode(312, SM_UNK_0138.class); // [S_UNK_0138] (0x0138)
 		addPacketOpcode(314, SM_UNK_013A.class); // [S_UNK_013A] (0x013A)
-		addPacketOpcode(321, SM_UNK_0141.class); // [S_UNK_0141] (0x0141)
+		// Global Auction House 5.0 (capturas de 2026-09-11 a 13). A ordem dos nomes é a do enum S_GLOBAL_TRADE_* (LIST, MYLIST, BUY, COMMIT,
+		// CANCEL, SALESLOG, COLLECT, AVG_PRICE, STATE, HISTORY), que casa com a função de todos os capturados a partir de 0x13C.
+		addPacketOpcode(0x13C, SM_GLOBAL_TRADE_LIST.class); // [S_GLOBAL_TRADE_LIST]
+		addPacketOpcode(0x13D, SM_GLOBAL_TRADE_MYLIST.class); // [S_GLOBAL_TRADE_MYLIST]
+		addPacketOpcode(0x13E, SM_GLOBAL_TRADE_BUY.class); // [S_GLOBAL_TRADE_BUY]
+		addPacketOpcode(0x13F, SM_GLOBAL_TRADE_COMMIT.class); // [S_GLOBAL_TRADE_COMMIT]
+		addPacketOpcode(0x140, SM_GLOBAL_TRADE_CANCEL.class); // [S_GLOBAL_TRADE_CANCEL]
+		addPacketOpcode(0x141, SM_GLOBAL_TRADE_SALESLOG.class); // [S_GLOBAL_TRADE_SALESLOG]
+		addPacketOpcode(0x142, SM_GLOBAL_TRADE_COLLECT.class); // [S_GLOBAL_TRADE_COLLECT]
+		addPacketOpcode(0x143, SM_GLOBAL_TRADE_AVG_PRICE.class); // [S_GLOBAL_TRADE_AVG_PRICE]
+		addPacketOpcode(0x144, SM_GLOBAL_TRADE_STATE.class); // [S_GLOBAL_TRADE_STATE]
+		addPacketOpcode(0x145, SM_GLOBAL_TRADE_HISTORY.class); // [S_GLOBAL_TRADE_HISTORY]
+		// Altar of Transcendence 5.0: início e resultado da fusão (C 0x154)
+		addPacketOpcode(0x1A6, SM_ITEM_COMPOSE_EVENT.class);
+		addPacketOpcode(0x1A7, SM_ITEM_COMPOSE_RESULT.class);
 		addPacketOpcode(326, SM_UNK_0146.class); // [S_UNK_0146] (0x0146)
 		addPacketOpcode(328, SM_COMBAT_TALENT_REWARDS.class); // [S_COMBAT_POWER_REWARD_INFO] (0x0148)
 		addPacketOpcode(329, SM_COMBAT_TALENT_REWARD_UPDATE.class); // [S_COMBAT_POWER_REWARD_UPDATE] (0x0149)

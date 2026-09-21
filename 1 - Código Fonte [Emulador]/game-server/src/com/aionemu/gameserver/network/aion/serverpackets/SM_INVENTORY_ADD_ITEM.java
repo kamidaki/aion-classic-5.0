@@ -34,7 +34,8 @@ public class SM_INVENTORY_ADD_ITEM extends AionServerPacket {
 	@Override
 	protected void writeImpl(AionConnection con) {
 		// Classic 5.0: 6 zero bytes header followed by count short
-		if (addType == ItemAddType.CRUSH_RESULT || addType == ItemAddType.COMBAT_TALENT_REWARD || addType == ItemAddType.NPSHOP_GOODS) {
+		if (addType == ItemAddType.CRUSH_RESULT || addType == ItemAddType.COMBAT_TALENT_REWARD || addType == ItemAddType.NPSHOP_GOODS
+			|| addType == ItemAddType.GLOBAL_TRADE_BUY || addType == ItemAddType.GLOBAL_TRADE_CANCEL || addType == ItemAddType.ITEM_COMPOSE) {
 			writeD(addType.getMask());
 			writeC(0);
 			writeC(1);

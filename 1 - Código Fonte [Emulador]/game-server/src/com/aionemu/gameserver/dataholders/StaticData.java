@@ -297,6 +297,10 @@ public class StaticData {
 	public SielAnvilData sielAnvilData;
 	@XmlElement(name = "siel_hammer")
 	public SielHammerData sielHammerData;
+	@XmlElement(name = "global_trade")
+	public GlobalTradeData globalTradeData;
+	@XmlElement(name = "item_composes")
+	public ItemComposeData itemComposeData;
 
 	@XmlElement(name = "arcadelist")
 	public UpgradeArcadeData upgradeArcadeData;
