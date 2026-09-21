@@ -440,8 +440,18 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 		float newY = (targetDestY - ownerY) * distFraction + ownerY;
 		float newZ = (targetDestZ - ownerZ) * distFraction + ownerZ;
 
-		// Clamping de Z durante AIState.RETURNING para impedir flutuação ou afundamento sob o relevo
-		if (owner.getAi().getState() == AIState.RETURNING) {
+		// Clamping de Z contínuo a cada tick para impedir flutuação ou afundamento sob o relevo/pontes
+		if (!owner.isFlying()) {
+			float surfaceZ = com.lostacademy.nativepath.NativePathService.getInstance().getSurfaceZ(owner.getWorldId(), newX, newY, newZ);
+			if (Float.isNaN(surfaceZ)) {
+				float highZ = Math.max(ownerZ, newZ) + 5.0f;
+				float lowZ = Math.min(ownerZ, newZ) - 10.0f;
+				surfaceZ = GeoService.getInstance().getZ(owner.getWorldId(), newX, newY, highZ, lowZ, owner.getInstanceId());
+			}
+			if (!Float.isNaN(surfaceZ)) {
+				newZ = surfaceZ;
+			}
+		} else if (owner.getAi().getState() == AIState.RETURNING) {
 			float highZ = Math.max(ownerZ, newZ) + 15.0f;
 			float lowZ = Math.min(ownerZ, newZ) - 25.0f;
 			float surfaceZ = GeoService.getInstance().getZ(owner.getWorldId(), newX, newY, highZ, lowZ, owner.getInstanceId());
@@ -451,21 +461,6 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 			if (!Float.isNaN(surfaceZ)) {
 				newZ = surfaceZ;
 			}
-		} else if (GeoDataConfig.GEO_NPC_MOVE && GeoDataConfig.GEO_ENABLE && owner.getAi().getSubState() != AISubState.WALK_PATH
-			&& owner.getGameStats().getNextGeoZUpdate() < System.currentTimeMillis()) {
-			// fix Z if npc doesn't move to spawn point
-			if (owner.getSpawn().getX() != targetDestX || owner.getSpawn().getY() != targetDestY || owner.getSpawn().getZ() != targetDestZ) {
-				float geoZ = GeoService.getInstance().getZ(owner.getWorldId(), newX, newY, newZ + 2, Math.min(newZ, ownerZ) - 2, owner.getInstanceId());
-				if (!Float.isNaN(geoZ)) {
-					if (Math.abs(newZ - geoZ) > 1)
-						destinationChanged = true;
-					newZ = geoZ;
-					boolean isXYDestinationReached = PositionUtil.getDistance(newX, newY, pointX, pointY) < MOVE_OFFSET;
-					if (isXYDestinationReached && !PositionUtil.isInRange(newX, newY, newZ, pointX, pointY, pointZ, MOVE_OFFSET))
-						pointZ = newZ; // original pointZ is unreachable, override it so isReachedPoint() can return true
-				}
-			}
-			owner.getGameStats().setNextGeoZUpdate(System.currentTimeMillis() + 1000);
 		}
 		if (owner.getAi().isLogging()) {
 			AILogger.moveinfo(owner, "newX=" + newX + " newY=" + newY + " newZ=" + newZ + " mask=" + movementMask);

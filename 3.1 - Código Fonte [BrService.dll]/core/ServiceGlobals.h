@@ -55,6 +55,16 @@ extern std::atomic<bool> g_isGameActive;
 extern std::atomic<bool> g_isLoadingScreen;
 extern std::atomic<bool> g_isDrawerOpen;
 
+// Feature Control Flags (Controlled via Command-Line Parameters: -param:enable/disable)
+extern std::atomic<bool> g_featConsole;       // -console:enable|disable
+extern std::atomic<bool> g_featFreeFly;       // -freefly:enable|disable
+extern std::atomic<bool> g_featPingUi;        // -pingUi:enable|disable
+extern std::atomic<bool> g_featDpsMeterUI;    // -DpsMeterUI:enable|disable
+extern std::atomic<bool> g_featModel3D;       // -Model3D:enable|disable
+extern std::atomic<bool> g_featFov;           // -fov:enable|disable
+extern std::atomic<bool> g_featCamMax;        // -camMax:enable|disable
+extern std::atomic<bool> g_featFpsUnlock;     // -fpsUnlock:enable|disable
+
 // Network & Ping State
 extern std::string g_serverIp;
 extern int g_serverPort;

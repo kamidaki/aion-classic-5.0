@@ -21,20 +21,34 @@ static BOOL CALLBACK EnumWindowsCallback(HWND hwnd, LPARAM lParam) {
     DWORD pid = 0;
     GetWindowThreadProcessId(hwnd, &pid);
     if (pid == ctx->targetPid) {
+        // Skip our own overlay and drawer windows
+        if (hwnd == g_hPingHudWnd || hwnd == g_hDrawerModalWnd) return TRUE;
+
         wchar_t className[128] = { 0 };
         GetClassNameW(hwnd, className, 128);
+        if (wcsstr(className, L"BrService") != nullptr) return TRUE;
+
         wchar_t title[256] = { 0 };
         GetWindowTextW(hwnd, title, 256);
+        if (wcscmp(title, L"Aion Ping HUD") == 0 || wcsstr(title, L"Combat Analysis") != nullptr) return TRUE;
 
         // Aion Classic game window class or title
-        if (wcscmp(className, L"AION Client") == 0 ||
-            wcsstr(title, L"AION") != nullptr ||
-            wcsstr(title, L"Aion") != nullptr) {
+        if (wcscmp(className, L"AION Client") == 0) {
             ctx->foundHwnd = hwnd;
-            return FALSE; // Stop enum
+            return FALSE; // Exact class match
         }
-        if (!ctx->foundHwnd && IsWindowVisible(hwnd)) {
+        if (wcsstr(title, L"AION Client") != nullptr) {
             ctx->foundHwnd = hwnd;
+            return FALSE;
+        }
+
+        // Secondary match: visible window with real game client dimensions
+        if (!ctx->foundHwnd && IsWindowVisible(hwnd)) {
+            RECT rc;
+            GetClientRect(hwnd, &rc);
+            if ((rc.right - rc.left) >= 300 && (rc.bottom - rc.top) >= 300) {
+                ctx->foundHwnd = hwnd;
+            }
         }
     }
     return TRUE;
@@ -95,9 +109,8 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
 
         // 1. Check window visibility & active state
         bool isMinimized = IsIconic(hGame);
-        HWND foreground = GetForegroundWindow();
-        bool isActive = (foreground == hGame || foreground == g_hDrawerModalWnd || foreground == g_hPingHudWnd);
-        g_isGameActive = (isActive && !isMinimized);
+        bool isVisible = IsWindowVisible(hGame);
+        g_isGameActive = (isVisible && !isMinimized);
 
         // 2. Check loading screen
         bool isLoading = CheckLoadingScreen(hGame);
@@ -132,7 +145,7 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
 
             if (gx != lastRect.left || gy != lastRect.top ||
                 gw != (lastRect.right - lastRect.left) || gh != (lastRect.bottom - lastRect.top) ||
-                g_isGameActive.load() != lastActive) {
+                g_isGameActive.load() != lastActive || !IsWindowVisible(g_hPingHudWnd)) {
 
                 lastRect = { gx, gy, gx + gw, gy + gh };
                 lastActive = g_isGameActive.load();
@@ -140,7 +153,7 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
                 PingHudUI::UpdatePosition(gx, gy, gw, gh);
                 DrawerModalUI::UpdatePosition(gx, gy, gw, gh);
             }
-        } else if (!g_isGameActive.load()) {
+        } else {
             PingHudUI::Hide();
             if (g_isDrawerOpen.load()) {
                 ShowWindow(g_hDrawerModalWnd, SW_HIDE);

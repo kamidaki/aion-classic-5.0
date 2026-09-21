@@ -182,6 +182,9 @@ public class GameServer {
 		// BrService Telemetry WebSocket Server (port 2130)
 		com.lostacademy.lostsocket.core.WebSocketServer.getInstance().start();
 
+		// Local Web Server para Aion Shop e Aion Today (porta 8080)
+		com.aionemu.gameserver.web.LocalWebServer.getInstance().start(8080);
+
 		nioServer = initNioServer();
 		Runtime.getRuntime().addShutdownHook(ShutdownHook.getInstance());
 		log.info("Game server started in " + (System.currentTimeMillis() / 1000 - START_TIME_SECONDS) + " seconds.");

@@ -96,17 +96,11 @@ public class ZoneInstance {
 	}
 
 	public boolean canFly() {
-		if (template.getZoneTemplate().getFlags() == -1 || template.getZoneTemplate().getFlags() == 0
-			|| World.getInstance().getWorldMap(mapId).hasOverridenOption(ZoneAttributes.FLY))
-			return World.getInstance().getWorldMap(mapId).isFlightAllowed();
-		return (template.getZoneTemplate().getFlags() & ZoneAttributes.FLY.getId()) != 0;
+		return true;
 	}
 
 	public boolean canGlide() {
-		if (template.getZoneTemplate().getFlags() == -1 || template.getZoneTemplate().getFlags() == 0
-			|| World.getInstance().getWorldMap(mapId).hasOverridenOption(ZoneAttributes.GLIDE))
-			return World.getInstance().getWorldMap(mapId).canGlide();
-		return (template.getZoneTemplate().getFlags() & ZoneAttributes.GLIDE.getId()) != 0;
+		return true;
 	}
 
 	public boolean canPutKisk() {
@@ -137,10 +131,7 @@ public class ZoneInstance {
 	}
 
 	public boolean canFlyRide() {
-		if (template.getZoneTemplate().getFlags() == -1 || template.getZoneTemplate().getFlags() == 0
-			|| World.getInstance().getWorldMap(mapId).hasOverridenOption(ZoneAttributes.FLY_RIDE))
-			return World.getInstance().getWorldMap(mapId).canFlyRide();
-		return (template.getZoneTemplate().getFlags() & ZoneAttributes.FLY_RIDE.getId()) != 0;
+		return true;
 	}
 
 	public boolean isPvpAllowed() {

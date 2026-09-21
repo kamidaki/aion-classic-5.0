@@ -10,6 +10,15 @@ std::atomic<bool> g_isGameActive(true);
 std::atomic<bool> g_isLoadingScreen(false);
 std::atomic<bool> g_isDrawerOpen(false);
 
+std::atomic<bool> g_featConsole(true);
+std::atomic<bool> g_featFreeFly(true);
+std::atomic<bool> g_featPingUi(true);
+std::atomic<bool> g_featDpsMeterUI(true);
+std::atomic<bool> g_featModel3D(true);
+std::atomic<bool> g_featFov(true);
+std::atomic<bool> g_featCamMax(true);
+std::atomic<bool> g_featFpsUnlock(true);
+
 std::string g_serverIp = "127.0.0.1";
 int g_serverPort = 2106;
 std::string g_securityToken = "#@br!classic50_token_2026#";

@@ -2,40 +2,61 @@
 cd /d "%~dp0"
 
 REM =========================================================================================
-REM  Aion Classic EU - Script de Inicializacao (Start_Classic.bat)
+REM  AION CLASSIC 5.0 - SCRIPT DE INICIALIZACAO (Start x64 - INGLÊS)
 REM =========================================================================================
 REM
-REM  PARAMETROS MANDATORIOS DE LINHA DE COMANDO:
-REM  -ip:127.0.0.1   - IP de destino da conexao com o Login Server (Porta TCP 2106).
-REM  -port:2106      - Porta TCP oficial de autenticacao do Login Server.
-REM  -lang:ENG       - Idioma do cliente (Ingles).
-REM  -cc:2           - Country Code / Regiao (Classic EU / Gameforge).
-REM  -dss            - Desativa checagens de seguranca secundarias do client engine.
-REM  -dce            - Desativa verificacoes redundantes de ambiente do launcher oficial.
+REM  CONFIGURACOES DE RECURSOS DO BRSERVICE.DLL:
+REM  Altere o valor para 'enable' para ativar ou 'disable' para desativar e ocultar.
+REM  Por padrao, todas as funcoes vem ativadas (enable).
 REM
-REM  -----------------------------------------------------------------------------------------
-REM  PARAMETROS AUXILIARES (INJETADOS / BYPASSADOS DE FORMA TRANSPARENTE VIA VERSION.DLL):
-REM  Abaixo estao listados os parametros oficiais bypassados automaticamente pela version.dll
-REM  para garantir inicializacao limpa, desativar conexoes oficiais da Gameforge e menus web:
+REM  - Console Shugo / Gaveta Lateral de Ajustes e Combate (Ctrl + X):
+set "PARAM_CONSOLE=enable"
+REM  - Voo Livre e Planeio em 100%% dos Mapas (g_freefly):
+set "PARAM_FREEFLY=enable"
+REM  - HUD de Ping e Barras de Latencia em Tempo Real (Canto inferior direito):
+set "PARAM_PINGUI=enable"
+REM  - Medidor de DPS, Ranking de Dano e Grafico de Combate (Dentro do Console):
+set "PARAM_DPSMETERUI=enable"
+REM  - Miniatura e Rotacao do Modelo 3D do Personagem (Dentro do Console):
+set "PARAM_MODEL3D=enable"
+REM  - Ajuste de Campo de Visao Panoramico / FOV (60 a 120 graus):
+set "PARAM_FOV=enable"
+REM  - Ajuste de Distancia Maxima da Camera / Zoom Out (ate 45 metros):
+set "PARAM_CAMMAX=enable"
+REM  - Desbloqueio e Limitador de FPS (60, 144, MAX):
+set "PARAM_FPSUNLOCK=enable"
 REM
-REM  -noweb               - Desabilita paginas Web de login do launcher, forcando a tela nativa do jogo.
-REM  -classic             - Ativa o modo de regras, menus e interface grafica do Aion Classic.
-REM  -nowebshop           - Desativa o carregamento da loja in-game via browser web embutido.
-REM  -dnpshop             - Desativa integracoes e verificacoes da loja de DNP oficial (moeda cash).
-REM  -st                  - Desativa envio de telemetria e estatisticas para os servidores da Gameforge.
-REM  -dpetition           - Desativa o sistema de suporte / abertura de tickets da distribuidora.
-REM  -hidepromo           - Oculta janelas, banners e ofertas promocionais na tela de selecao.
-REM  -nosatab             - Remove abas de sub-contas e vinculos do launcher oficial da Gameforge.
-REM  -nosarefund          - Desativa as verificacoes do sistema de reembolso de itens oficial.
-REM  -disabletempbanner   - Desativa banners temporarios de anuncios na inicializacao.
-REM  -disabledevaschedule - Desativa o calendario/agenda do evento Deva in-game oficial.
-REM  -old_charInstance    - Habilita o motor classic de customizacao visual de personagens.
-REM  -charnamemenu        - Permite a exibicao e funcionamento correto dos menus de criacao/renomear.
-REM  -dwsm                - Desativa verificacoes de seguranca do Web Service Manager oficial.
-REM  -probability         - Liga o bit 82 de conteudo (exibicao de porcentagem; nao e a janela das caixas).
-REM  -probability2        - Liga o bit 102: tooltip "Ctrl + clique" e janela de conteudo/probabilidade das caixas.
-REM  -nospamcheck         - Desativa filtros remotos de spam de chat dos servidores oficiais.
+REM =========================================================================================
+REM  DESCRICAO DETALHADA DOS PARAMETROS DO BRSERVICE.DLL:
+REM
+REM  -console:enable/disable
+REM     Controla o icone do console (>_) no canto inferior direito e a janela modal (gaveta)
+REM     de ferramentas Shugo (Ctrl + X). Se desativado, o icone e a gaveta ficam ocultos.
+REM
+REM  -freefly:enable/disable
+REM     Ativa voo e planeio (glide) livre irrestrito em 100%% dos mapas e cenarios de Atreia.
+REM     Se desativado, segue as regras padroes de restricao de voo do motor CryEngine original.
+REM
+REM  -pingUi:enable/disable
+REM     Exibe o medidor de MS e barras de sinal de conexao no estilo Aion 2.
+REM     Se desativado, oculta os indicadores visuais de ping.
+REM
+REM  -DpsMeterUI:enable/disable
+REM     Habilita a analise de combate em tempo real, curva Fibonacci de dano, radar de combate
+REM     e classificacao de DPS por jogador/skill. Se desativado, remove esses graficos.
+REM
+REM  -Model3D:enable/disable
+REM     Renderiza a miniatura 3D do personagem com rotacao e esqueleto dentro do console.
+REM     Se desativado, a viewport 3D fica desativada e oculta para economia de processamento.
+REM
+REM  -fov:enable/disable
+REM     Permite controlar o campo de visao panoramico (FOV) de 60 a 120 graus.
+REM
+REM  -camMax:enable/disable
+REM     Permite distanciar a camera alem do limite padrao (ate 45 metros de zoom out).
+REM
+REM  -fpsUnlock:enable/disable
+REM     Permite alternar a taxa de quadros entre 60 FPS, 144 FPS ou Ilimitado (MAX).
 REM =========================================================================================
 
-REM WinMain recebe a linha de comando armazenada pelo CRT; passar a flag desde a criacao do processo.
-start bin64\Aion.bin -token:#@br!classic50_token_2026# -ip:127.0.0.1 -port:2106 -lang:ENG -cc:2 -dss -dce -probability
+start bin64\Aion.bin -token:#@br!classic50_token_2026# -ip:127.0.0.1 -port:2106 -lang:ENG -cc:2 -dss -dce -probability -console:%PARAM_CONSOLE% -freefly:%PARAM_FREEFLY% -pingUi:%PARAM_PINGUI% -DpsMeterUI:%PARAM_DPSMETERUI% -Model3D:%PARAM_MODEL3D% -fov:%PARAM_FOV% -camMax:%PARAM_CAMMAX% -fpsUnlock:%PARAM_FPSUNLOCK%

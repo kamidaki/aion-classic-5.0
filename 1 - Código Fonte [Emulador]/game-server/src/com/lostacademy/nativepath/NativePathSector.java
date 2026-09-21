@@ -129,7 +129,7 @@ public final class NativePathSector {
 		 * @return Altitude Z em metros da superfície desta camada.
 		 */
 		public float getZ(int subX, int subY, float terrainZ) {
-			boolean hasValidBase = !Float.isNaN(baseElev) && (Float.isNaN(terrainZ) || Math.abs(baseElev - terrainZ) < 50.0f);
+			boolean hasValidBase = !Float.isNaN(baseElev);
 			if (subElevs != null) {
 				int idx = (subY << 5) | subX;
 				short e = subElevs[idx];

@@ -66,11 +66,13 @@ void DrawerModalUI::Shutdown() {
 }
 
 void DrawerModalUI::Toggle() {
+    if (!g_featConsole.load()) return;
     if (g_isDrawerOpen.load()) Close();
     else Open();
 }
 
 void DrawerModalUI::Open() {
+    if (!g_featConsole.load()) return;
     g_isDrawerOpen = true;
     if (g_hDrawerModalWnd && !g_isLoadingScreen.load() && g_isGameActive.load()) {
         ShowWindow(g_hDrawerModalWnd, SW_SHOWNOACTIVATE);
@@ -177,209 +179,229 @@ void DrawerModalUI::Paint(HWND hwnd) {
         // 3. Top Section: Shugo Console Controls
         float curY = 54.0f;
         Gdiplus::Font fontSection(L"Segoe UI", 8.5f, Gdiplus::FontStyleBold);
+        Gdiplus::Font fontLabel(L"Segoe UI", 8.0f, Gdiplus::FontStyleRegular);
+        Gdiplus::SolidBrush trackBrush(Gdiplus::Color(50, 80, 90, 110));
+        Gdiplus::SolidBrush thumbBrush(UICommon::ColGoldAccent);
+
         g.DrawString(L"SHUGO CONSOLE (MOTOR GRÁFICO)", -1, &fontSection, Gdiplus::PointF(16.0f, curY), &textGold);
         curY += 20.0f;
 
-        // FOV Slider
-        Gdiplus::Font fontLabel(L"Segoe UI", 8.0f, Gdiplus::FontStyleRegular);
-        wchar_t fovBuf[64];
-        swprintf_s(fovBuf, L"Campo de Visão (FOV): %.0f°", g_cvarFov.load());
-        g.DrawString(fovBuf, -1, &fontLabel, Gdiplus::PointF(16.0f, curY), &textWhite);
+        // FOV Slider (if enabled)
+        if (g_featFov.load()) {
+            wchar_t fovBuf[64];
+            swprintf_s(fovBuf, L"Campo de Visão (FOV): %.0f°", g_cvarFov.load());
+            g.DrawString(fovBuf, -1, &fontLabel, Gdiplus::PointF(16.0f, curY), &textWhite);
 
-        s_fovSliderRect = { 180, (int)curY + 2, s_modalW - 24, (int)curY + 12 };
-        Gdiplus::SolidBrush trackBrush(Gdiplus::Color(50, 80, 90, 110));
-        g.FillRectangle(&trackBrush, (float)s_fovSliderRect.left, (float)s_fovSliderRect.top, (float)(s_fovSliderRect.right - s_fovSliderRect.left), 8.0f);
+            s_fovSliderRect = { 180, (int)curY + 2, s_modalW - 24, (int)curY + 12 };
+            g.FillRectangle(&trackBrush, (float)s_fovSliderRect.left, (float)s_fovSliderRect.top, (float)(s_fovSliderRect.right - s_fovSliderRect.left), 8.0f);
 
-        float fovPct = (g_cvarFov.load() - 60.0f) / (120.0f - 60.0f);
-        fovPct = std::clamp(fovPct, 0.0f, 1.0f);
-        float thumbX = s_fovSliderRect.left + fovPct * (s_fovSliderRect.right - s_fovSliderRect.left - 12);
-        Gdiplus::SolidBrush thumbBrush(UICommon::ColGoldAccent);
-        g.FillEllipse(&thumbBrush, thumbX, (float)s_fovSliderRect.top - 2.0f, 12.0f, 12.0f);
-        curY += 22.0f;
+            float fovPct = (g_cvarFov.load() - 60.0f) / (120.0f - 60.0f);
+            fovPct = std::clamp(fovPct, 0.0f, 1.0f);
+            float thumbX = s_fovSliderRect.left + fovPct * (s_fovSliderRect.right - s_fovSliderRect.left - 12);
+            g.FillEllipse(&thumbBrush, thumbX, (float)s_fovSliderRect.top - 2.0f, 12.0f, 12.0f);
+            curY += 22.0f;
+        } else {
+            s_fovSliderRect = { 0, 0, 0, 0 };
+        }
 
-        // CamMax Slider
-        wchar_t camBuf[64];
-        swprintf_s(camBuf, L"Distância da Câmera: %.0fm", g_cvarCamMax.load());
-        g.DrawString(camBuf, -1, &fontLabel, Gdiplus::PointF(16.0f, curY), &textWhite);
+        // CamMax Slider (if enabled)
+        if (g_featCamMax.load()) {
+            wchar_t camBuf[64];
+            swprintf_s(camBuf, L"Distância da Câmera: %.0fm", g_cvarCamMax.load());
+            g.DrawString(camBuf, -1, &fontLabel, Gdiplus::PointF(16.0f, curY), &textWhite);
 
-        s_camSliderRect = { 180, (int)curY + 2, s_modalW - 24, (int)curY + 12 };
-        g.FillRectangle(&trackBrush, (float)s_camSliderRect.left, (float)s_camSliderRect.top, (float)(s_camSliderRect.right - s_camSliderRect.left), 8.0f);
+            s_camSliderRect = { 180, (int)curY + 2, s_modalW - 24, (int)curY + 12 };
+            g.FillRectangle(&trackBrush, (float)s_camSliderRect.left, (float)s_camSliderRect.top, (float)(s_camSliderRect.right - s_camSliderRect.left), 8.0f);
 
-        float camPct = (g_cvarCamMax.load() - 5.0f) / (45.0f - 5.0f);
-        camPct = std::clamp(camPct, 0.0f, 1.0f);
-        float thumbCamX = s_camSliderRect.left + camPct * (s_camSliderRect.right - s_camSliderRect.left - 12);
-        g.FillEllipse(&thumbBrush, thumbCamX, (float)s_camSliderRect.top - 2.0f, 12.0f, 12.0f);
-        curY += 24.0f;
+            float camPct = (g_cvarCamMax.load() - 5.0f) / (45.0f - 5.0f);
+            camPct = std::clamp(camPct, 0.0f, 1.0f);
+            float thumbCamX = s_camSliderRect.left + camPct * (s_camSliderRect.right - s_camSliderRect.left - 12);
+            g.FillEllipse(&thumbBrush, thumbCamX, (float)s_camSliderRect.top - 2.0f, 12.0f, 12.0f);
+            curY += 24.0f;
+        } else {
+            s_camSliderRect = { 0, 0, 0, 0 };
+        }
 
-        // FPS Limiters & Toggles in a compact row
-        g.DrawString(L"FPS Máx:", -1, &fontLabel, Gdiplus::PointF(16.0f, curY + 2), &textWhite);
+        // FPS Limiters & Toggles in a compact row (if enabled)
+        if (g_featFpsUnlock.load()) {
+            g.DrawString(L"FPS Máx:", -1, &fontLabel, Gdiplus::PointF(16.0f, curY + 2), &textWhite);
 
-        auto drawFpsBtn = [&](RECT& r, int x, int val, const wchar_t* txt) {
-            r = { x, (int)curY, x + 38, (int)curY + 18 };
-            bool active = (g_cvarMaxFps.load() == val);
-            Gdiplus::SolidBrush b(active ? Gdiplus::Color(100, 215, 170, 50) : Gdiplus::Color(40, 60, 70, 85));
-            UICommon::FillRoundRectangle(g, &b, (float)r.left, (float)r.top, (float)(r.right - r.left), 18.0f, 3.0f);
-            Gdiplus::SolidBrush t(active ? UICommon::ColTextWhite : UICommon::ColTextMuted);
-            g.DrawString(txt, -1, &fontLabel, Gdiplus::PointF((float)r.left + 5, (float)r.top + 2), &t);
-        };
+            auto drawFpsBtn = [&](RECT& r, int x, int val, const wchar_t* txt) {
+                r = { x, (int)curY, x + 38, (int)curY + 18 };
+                bool active = (g_cvarMaxFps.load() == val);
+                Gdiplus::SolidBrush b(active ? Gdiplus::Color(100, 215, 170, 50) : Gdiplus::Color(40, 60, 70, 85));
+                UICommon::FillRoundRectangle(g, &b, (float)r.left, (float)r.top, (float)(r.right - r.left), 18.0f, 3.0f);
+                Gdiplus::SolidBrush t(active ? UICommon::ColTextWhite : UICommon::ColTextMuted);
+                g.DrawString(txt, -1, &fontLabel, Gdiplus::PointF((float)r.left + 5, (float)r.top + 2), &t);
+            };
 
-        drawFpsBtn(s_fps60Rect, 72, 60, L"60");
-        drawFpsBtn(s_fps144Rect, 114, 144, L"144");
-        drawFpsBtn(s_fpsMaxRect, 156, 0, L"MAX");
+            drawFpsBtn(s_fps60Rect, 72, 60, L"60");
+            drawFpsBtn(s_fps144Rect, 114, 144, L"144");
+            drawFpsBtn(s_fpsMaxRect, 156, 0, L"MAX");
 
-        // Triple Buffering & Anisotropic
-        s_tbToggleRect = { 216, (int)curY, 320, (int)curY + 18 };
-        bool tb = g_cvarTripleBuffering.load();
-        Gdiplus::SolidBrush tbBrush(tb ? Gdiplus::Color(60, 45, 230, 45) : Gdiplus::Color(30, 80, 80, 80));
-        UICommon::FillRoundRectangle(g, &tbBrush, (float)s_tbToggleRect.left, (float)s_tbToggleRect.top, (float)(s_tbToggleRect.right - s_tbToggleRect.left), 18.0f, 3.0f);
-        g.DrawString(tb ? L"✔ TriBuffer" : L"✖ TriBuffer", -1, &fontLabel, Gdiplus::PointF((float)s_tbToggleRect.left + 6, (float)s_tbToggleRect.top + 2), &textWhite);
+            // Triple Buffering & Anisotropic
+            s_tbToggleRect = { 216, (int)curY, 320, (int)curY + 18 };
+            bool tb = g_cvarTripleBuffering.load();
+            Gdiplus::SolidBrush tbBrush(tb ? Gdiplus::Color(60, 45, 230, 45) : Gdiplus::Color(30, 80, 80, 80));
+            UICommon::FillRoundRectangle(g, &tbBrush, (float)s_tbToggleRect.left, (float)s_tbToggleRect.top, (float)(s_tbToggleRect.right - s_tbToggleRect.left), 18.0f, 3.0f);
+            g.DrawString(tb ? L"✔ TriBuffer" : L"✖ TriBuffer", -1, &fontLabel, Gdiplus::PointF((float)s_tbToggleRect.left + 6, (float)s_tbToggleRect.top + 2), &textWhite);
 
-        s_anisoToggleRect = { 328, (int)curY, 436, (int)curY + 18 };
-        bool aniso = g_cvarAnisotropic.load();
-        Gdiplus::SolidBrush anisoBrush(aniso ? Gdiplus::Color(60, 45, 230, 45) : Gdiplus::Color(30, 80, 80, 80));
-        UICommon::FillRoundRectangle(g, &anisoBrush, (float)s_anisoToggleRect.left, (float)s_anisoToggleRect.top, (float)(s_anisoToggleRect.right - s_anisoToggleRect.left), 18.0f, 3.0f);
-        g.DrawString(aniso ? L"✔ 16x Aniso" : L"✖ 16x Aniso", -1, &fontLabel, Gdiplus::PointF((float)s_anisoToggleRect.left + 6, (float)s_anisoToggleRect.top + 2), &textWhite);
+            s_anisoToggleRect = { 328, (int)curY, 436, (int)curY + 18 };
+            bool aniso = g_cvarAnisotropic.load();
+            Gdiplus::SolidBrush anisoBrush(aniso ? Gdiplus::Color(60, 45, 230, 45) : Gdiplus::Color(30, 80, 80, 80));
+            UICommon::FillRoundRectangle(g, &anisoBrush, (float)s_anisoToggleRect.left, (float)s_anisoToggleRect.top, (float)(s_anisoToggleRect.right - s_anisoToggleRect.left), 18.0f, 3.0f);
+            g.DrawString(aniso ? L"✔ 16x Aniso" : L"✖ 16x Aniso", -1, &fontLabel, Gdiplus::PointF((float)s_anisoToggleRect.left + 6, (float)s_anisoToggleRect.top + 2), &textWhite);
 
-        curY += 28.0f;
+            curY += 28.0f;
+        } else {
+            s_fps60Rect = s_fps144Rect = s_fpsMaxRect = s_tbToggleRect = s_anisoToggleRect = { 0, 0, 0, 0 };
+        }
+
         g.DrawLine(&sepPen, 16.0f, curY, W - 16.0f, curY);
         curY += 10.0f;
 
-        // 4. Main Section: DPS METER
-        std::lock_guard<std::recursive_mutex> lock(g_combatMutex);
+        // 4. Main Section: DPS METER (if enabled)
+        if (g_featDpsMeterUI.load()) {
+            std::lock_guard<std::recursive_mutex> lock(g_combatMutex);
 
-        // Target Banner
-        Gdiplus::Font fontTarget(L"Segoe UI", 9.5f, Gdiplus::FontStyleBold);
-        std::wstring targetTitle = L"Alvo: " + std::wstring(g_currentTarget.name.begin(), g_currentTarget.name.end());
-        if (g_currentTarget.level > 0) {
-            targetTitle += L" [Lv. " + std::to_wstring(g_currentTarget.level) + L"]";
+            // Target Banner
+            Gdiplus::Font fontTarget(L"Segoe UI", 9.5f, Gdiplus::FontStyleBold);
+            std::wstring targetTitle = L"Alvo: " + std::wstring(g_currentTarget.name.begin(), g_currentTarget.name.end());
+            if (g_currentTarget.level > 0) {
+                targetTitle += L" [Lv. " + std::to_wstring(g_currentTarget.level) + L"]";
+            }
+            g.DrawString(targetTitle.c_str(), -1, &fontTarget, Gdiplus::PointF(16.0f, curY), &textWhite);
+
+            // Health bar under target
+            curY += 18.0f;
+            float hpW = W - 32.0f;
+            Gdiplus::SolidBrush hpBg(Gdiplus::Color(60, 30, 35, 45));
+            UICommon::FillRoundRectangle(g, &hpBg, 16.0f, curY, hpW, 8.0f, 2.0f);
+
+            float hpPct = g_currentTarget.maxHp > 0 ? (float)g_currentTarget.currentHp / (float)g_currentTarget.maxHp : 1.0f;
+            hpPct = std::clamp(hpPct, 0.0f, 1.0f);
+            if (hpPct > 0.0f) {
+                Gdiplus::SolidBrush hpFill(Gdiplus::Color(255, 220, 50, 60)); // Crimson HP
+                UICommon::FillRoundRectangle(g, &hpFill, 16.0f, curY, hpW * hpPct, 8.0f, 2.0f);
+            }
+            curY += 16.0f;
+
+            // Combat Highlight Cards (Time, DPS, Total Damage, Golden Button)
+            float cardW = (W - 32.0f - 24.0f) / 3.0f;
+            auto drawMetricCard = [&](float cx, const wchar_t* title, const std::wstring& val, Gdiplus::Color valCol) {
+                Gdiplus::SolidBrush cardBg(Gdiplus::Color(40, 20, 26, 36));
+                UICommon::FillRoundRectangle(g, &cardBg, cx, curY, cardW, 44.0f, 6.0f);
+                Gdiplus::Pen cardBorder(Gdiplus::Color(40, 180, 190, 210), 1.0f);
+                UICommon::DrawRoundRectangle(g, &cardBorder, cx, curY, cardW, 44.0f, 6.0f);
+
+                Gdiplus::Font fT(L"Segoe UI", 7.5f, Gdiplus::FontStyleRegular);
+                g.DrawString(title, -1, &fT, Gdiplus::PointF(cx + 8, curY + 5), &textMuted);
+
+                Gdiplus::Font fV(L"Segoe UI", 11.0f, Gdiplus::FontStyleBold);
+                Gdiplus::SolidBrush bV(valCol);
+                g.DrawString(val.c_str(), -1, &fV, Gdiplus::PointF(cx + 8, curY + 18), &bV);
+            };
+
+            drawMetricCard(16.0f, L"TEMPO DE BATALHA", UICommon::FormatTime(g_battleDurationSeconds.load()), UICommon::ColTextWhite);
+            drawMetricCard(16.0f + cardW + 12.0f, L"DPS TOTAL", UICommon::FormatNumber(g_totalBattleDps.load()), UICommon::ColGoldAccent);
+            drawMetricCard(16.0f + (cardW + 12.0f) * 2.0f, L"DANO TOTAL", UICommon::FormatNumber(g_totalBattleDamage.load()), UICommon::ColNeonGreen);
+            curY += 52.0f;
+
+            // Golden Start/Reset Action Button (Ctrl + X)
+            s_resetBtnRect = { 16, (int)curY, (int)W - 16, (int)curY + 28 };
+            Gdiplus::LinearGradientBrush btnBrush(
+                Gdiplus::PointF(16.0f, curY), Gdiplus::PointF(W - 16.0f, curY),
+                Gdiplus::Color(220, 215, 170, 50),
+                Gdiplus::Color(220, 175, 130, 30)
+            );
+            UICommon::FillRoundRectangle(g, &btnBrush, (float)s_resetBtnRect.left, (float)s_resetBtnRect.top, (float)(s_resetBtnRect.right - s_resetBtnRect.left), 28.0f, 5.0f);
+
+            Gdiplus::Font btnFont(L"Segoe UI", 9.0f, Gdiplus::FontStyleBold);
+            Gdiplus::SolidBrush btnText(Gdiplus::Color(255, 18, 14, 6)); // Dark readable text on gold
+            Gdiplus::StringFormat centerFmt;
+            centerFmt.SetAlignment(Gdiplus::StringAlignmentCenter);
+            centerFmt.SetLineAlignment(Gdiplus::StringAlignmentCenter);
+            Gdiplus::RectF btnRectF((float)s_resetBtnRect.left, (float)s_resetBtnRect.top, (float)(s_resetBtnRect.right - s_resetBtnRect.left), 28.0f);
+            g.DrawString(L"⚡ [Ctrl + X] Iniciar / Resetar Análise", -1, &btnFont, btnRectF, &centerFmt, &btnText);
+            curY += 36.0f;
+
+            // Visual Charts Row: Fibonacci Curve (left) + Radar Chart (right)
+            float chartH = 92.0f;
+            float fiboW = 230.0f;
+            g.DrawString(L"PROGRESSÃO BURST (FIBONACCI)", -1, &fontLabel, Gdiplus::PointF(16.0f, curY), &textMuted);
+            UICommon::DrawFibonacciCurve(g, 16.0f, curY + 14.0f, fiboW, chartH - 18.0f, g_fibonacciCurve);
+
+            // Radar Chart on the right
+            float radarCx = W - 95.0f;
+            float radarCy = curY + chartH * 0.52f;
+            UICommon::DrawRadarChart(g, radarCx, radarCy, 34.0f,
+                                    g_currentRadar.burst, g_currentRadar.sustain,
+                                    g_currentRadar.critRate, g_currentRadar.accuracy, g_currentRadar.efficiency);
+
+            curY += chartH + 8.0f;
+            g.DrawLine(&sepPen, 16.0f, curY, W - 16.0f, curY);
+            curY += 8.0f;
+
+            // Player & Skill Rankings Table
+            g.DrawString(L"CLASSIFICAÇÃO DE COMBATE / SKILLS", -1, &fontSection, Gdiplus::PointF(16.0f, curY), &textGold);
+            curY += 18.0f;
+
+            // Table Header
+            Gdiplus::Font fTh(L"Segoe UI", 7.5f, Gdiplus::FontStyleBold);
+            g.DrawString(L"JOGADOR / SKILL", -1, &fTh, Gdiplus::PointF(18.0f, curY), &textMuted);
+            g.DrawString(L"DANO TOTAL", -1, &fTh, Gdiplus::PointF(160.0f, curY), &textMuted);
+            g.DrawString(L"DPS", -1, &fTh, Gdiplus::PointF(245.0f, curY), &textMuted);
+            g.DrawString(L"PARTIC.", -1, &fTh, Gdiplus::PointF(295.0f, curY), &textMuted);
+            curY += 14.0f;
+
+            // Table Rows
+            Gdiplus::Font fRow(L"Segoe UI", 8.0f, Gdiplus::FontStyleRegular);
+            int rowsDrawn = 0;
+            float rowHeight = 22.0f;
+
+            for (const auto& player : g_playerRankings) {
+                if (rowsDrawn >= 4 || curY + rowHeight > H - 120.0f) break;
+
+                // Background bar representing damage share
+                float barW = 120.0f * (player.percentage / 100.0f);
+                Gdiplus::SolidBrush barB(Gdiplus::Color(45, 215, 65, 75));
+                UICommon::FillRoundRectangle(g, &barB, 16.0f, curY, barW, rowHeight - 2.0f, 3.0f);
+
+                std::wstring wName(player.name.begin(), player.name.end());
+                g.DrawString(wName.c_str(), -1, &fRow, Gdiplus::PointF(20.0f, curY + 2), &textWhite);
+
+                std::wstring wDmg = UICommon::FormatNumber(player.totalDamage);
+                g.DrawString(wDmg.c_str(), -1, &fRow, Gdiplus::PointF(160.0f, curY + 2), &textGold);
+
+                std::wstring wDps = UICommon::FormatNumber(player.dps);
+                g.DrawString(wDps.c_str(), -1, &fRow, Gdiplus::PointF(245.0f, curY + 2), &textWhite);
+
+                wchar_t pctBuf[32];
+                swprintf_s(pctBuf, L"%.0f%%", player.percentage);
+                g.DrawString(pctBuf, -1, &fRow, Gdiplus::PointF(298.0f, curY + 2), &textMuted);
+
+                curY += rowHeight;
+                rowsDrawn++;
+            }
+
+            // If no players yet, show mock row
+            if (rowsDrawn == 0) {
+                g.DrawString(L"Aguardando acoes de combate...", -1, &fRow, Gdiplus::PointF(20.0f, curY + 4), &textMuted);
+                curY += 24.0f;
+            }
+        } else {
+            s_resetBtnRect = { 0, 0, 0, 0 };
         }
-        g.DrawString(targetTitle.c_str(), -1, &fontTarget, Gdiplus::PointF(16.0f, curY), &textWhite);
 
-        // Health bar under target
-        curY += 18.0f;
-        float hpW = W - 32.0f;
-        Gdiplus::SolidBrush hpBg(Gdiplus::Color(60, 30, 35, 45));
-        UICommon::FillRoundRectangle(g, &hpBg, 16.0f, curY, hpW, 8.0f, 2.0f);
+        // 5. 3D Model Miniature Preview in Lower-Right Corner (if enabled)
+        if (g_featModel3D.load()) {
+            float previewW = 110.0f;
+            float previewH = 110.0f;
+            float previewX = W - previewW - 14.0f;
+            float previewY = H - previewH - 12.0f;
 
-        float hpPct = g_currentTarget.maxHp > 0 ? (float)g_currentTarget.currentHp / (float)g_currentTarget.maxHp : 1.0f;
-        hpPct = std::clamp(hpPct, 0.0f, 1.0f);
-        if (hpPct > 0.0f) {
-            Gdiplus::SolidBrush hpFill(Gdiplus::Color(255, 220, 50, 60)); // Crimson HP
-            UICommon::FillRoundRectangle(g, &hpFill, 16.0f, curY, hpW * hpPct, 8.0f, 2.0f);
+            CryModelBridge::RenderThumbnail(g, previewX, previewY, previewW, previewH);
         }
-        curY += 16.0f;
-
-        // Combat Highlight Cards (Time, DPS, Total Damage, Golden Button)
-        float cardW = (W - 32.0f - 24.0f) / 3.0f;
-        auto drawMetricCard = [&](float cx, const wchar_t* title, const std::wstring& val, Gdiplus::Color valCol) {
-            Gdiplus::SolidBrush cardBg(Gdiplus::Color(40, 20, 26, 36));
-            UICommon::FillRoundRectangle(g, &cardBg, cx, curY, cardW, 44.0f, 6.0f);
-            Gdiplus::Pen cardBorder(Gdiplus::Color(40, 180, 190, 210), 1.0f);
-            UICommon::DrawRoundRectangle(g, &cardBorder, cx, curY, cardW, 44.0f, 6.0f);
-
-            Gdiplus::Font fT(L"Segoe UI", 7.5f, Gdiplus::FontStyleRegular);
-            g.DrawString(title, -1, &fT, Gdiplus::PointF(cx + 8, curY + 5), &textMuted);
-
-            Gdiplus::Font fV(L"Segoe UI", 11.0f, Gdiplus::FontStyleBold);
-            Gdiplus::SolidBrush bV(valCol);
-            g.DrawString(val.c_str(), -1, &fV, Gdiplus::PointF(cx + 8, curY + 18), &bV);
-        };
-
-        drawMetricCard(16.0f, L"TEMPO DE BATALHA", UICommon::FormatTime(g_battleDurationSeconds.load()), UICommon::ColTextWhite);
-        drawMetricCard(16.0f + cardW + 12.0f, L"DPS TOTAL", UICommon::FormatNumber(g_totalBattleDps.load()), UICommon::ColGoldAccent);
-        drawMetricCard(16.0f + (cardW + 12.0f) * 2.0f, L"DANO TOTAL", UICommon::FormatNumber(g_totalBattleDamage.load()), UICommon::ColNeonGreen);
-        curY += 52.0f;
-
-        // Golden Start/Reset Action Button (Ctrl + X)
-        s_resetBtnRect = { 16, (int)curY, (int)W - 16, (int)curY + 28 };
-        Gdiplus::LinearGradientBrush btnBrush(
-            Gdiplus::PointF(16.0f, curY), Gdiplus::PointF(W - 16.0f, curY),
-            Gdiplus::Color(220, 215, 170, 50),
-            Gdiplus::Color(220, 175, 130, 30)
-        );
-        UICommon::FillRoundRectangle(g, &btnBrush, (float)s_resetBtnRect.left, (float)s_resetBtnRect.top, (float)(s_resetBtnRect.right - s_resetBtnRect.left), 28.0f, 5.0f);
-
-        Gdiplus::Font btnFont(L"Segoe UI", 9.0f, Gdiplus::FontStyleBold);
-        Gdiplus::SolidBrush btnText(Gdiplus::Color(255, 18, 14, 6)); // Dark readable text on gold
-        Gdiplus::StringFormat centerFmt;
-        centerFmt.SetAlignment(Gdiplus::StringAlignmentCenter);
-        centerFmt.SetLineAlignment(Gdiplus::StringAlignmentCenter);
-        Gdiplus::RectF btnRectF((float)s_resetBtnRect.left, (float)s_resetBtnRect.top, (float)(s_resetBtnRect.right - s_resetBtnRect.left), 28.0f);
-        g.DrawString(L"⚡ [Ctrl + X] Iniciar / Resetar Análise", -1, &btnFont, btnRectF, &centerFmt, &btnText);
-        curY += 36.0f;
-
-        // Visual Charts Row: Fibonacci Curve (left) + Radar Chart (right)
-        float chartH = 92.0f;
-        float fiboW = 230.0f;
-        g.DrawString(L"PROGRESSÃO BURST (FIBONACCI)", -1, &fontLabel, Gdiplus::PointF(16.0f, curY), &textMuted);
-        UICommon::DrawFibonacciCurve(g, 16.0f, curY + 14.0f, fiboW, chartH - 18.0f, g_fibonacciCurve);
-
-        // Radar Chart on the right
-        float radarCx = W - 95.0f;
-        float radarCy = curY + chartH * 0.52f;
-        UICommon::DrawRadarChart(g, radarCx, radarCy, 34.0f,
-                                g_currentRadar.burst, g_currentRadar.sustain,
-                                g_currentRadar.critRate, g_currentRadar.accuracy, g_currentRadar.efficiency);
-
-        curY += chartH + 8.0f;
-        g.DrawLine(&sepPen, 16.0f, curY, W - 16.0f, curY);
-        curY += 8.0f;
-
-        // Player & Skill Rankings Table
-        g.DrawString(L"CLASSIFICAÇÃO DE COMBATE / SKILLS", -1, &fontSection, Gdiplus::PointF(16.0f, curY), &textGold);
-        curY += 18.0f;
-
-        // Table Header
-        Gdiplus::Font fTh(L"Segoe UI", 7.5f, Gdiplus::FontStyleBold);
-        g.DrawString(L"JOGADOR / SKILL", -1, &fTh, Gdiplus::PointF(18.0f, curY), &textMuted);
-        g.DrawString(L"DANO TOTAL", -1, &fTh, Gdiplus::PointF(160.0f, curY), &textMuted);
-        g.DrawString(L"DPS", -1, &fTh, Gdiplus::PointF(245.0f, curY), &textMuted);
-        g.DrawString(L"PARTIC.", -1, &fTh, Gdiplus::PointF(295.0f, curY), &textMuted);
-        curY += 14.0f;
-
-        // Table Rows
-        Gdiplus::Font fRow(L"Segoe UI", 8.0f, Gdiplus::FontStyleRegular);
-        int rowsDrawn = 0;
-        float rowHeight = 22.0f;
-
-        for (const auto& player : g_playerRankings) {
-            if (rowsDrawn >= 4 || curY + rowHeight > H - 120.0f) break;
-
-            // Background bar representing damage share
-            float barW = 120.0f * (player.percentage / 100.0f);
-            Gdiplus::SolidBrush barB(Gdiplus::Color(45, 215, 65, 75));
-            UICommon::FillRoundRectangle(g, &barB, 16.0f, curY, barW, rowHeight - 2.0f, 3.0f);
-
-            std::wstring wName(player.name.begin(), player.name.end());
-            g.DrawString(wName.c_str(), -1, &fRow, Gdiplus::PointF(20.0f, curY + 2), &textWhite);
-
-            std::wstring wDmg = UICommon::FormatNumber(player.totalDamage);
-            g.DrawString(wDmg.c_str(), -1, &fRow, Gdiplus::PointF(160.0f, curY + 2), &textGold);
-
-            std::wstring wDps = UICommon::FormatNumber(player.dps);
-            g.DrawString(wDps.c_str(), -1, &fRow, Gdiplus::PointF(245.0f, curY + 2), &textWhite);
-
-            wchar_t pctBuf[32];
-            swprintf_s(pctBuf, L"%.0f%%", player.percentage);
-            g.DrawString(pctBuf, -1, &fRow, Gdiplus::PointF(298.0f, curY + 2), &textMuted);
-
-            curY += rowHeight;
-            rowsDrawn++;
-        }
-
-        // If no players yet, show mock row
-        if (rowsDrawn == 0) {
-            g.DrawString(L"Aguardando acoes de combate...", -1, &fRow, Gdiplus::PointF(20.0f, curY + 4), &textMuted);
-            curY += 24.0f;
-        }
-
-        // 5. 3D Model Miniature Preview in Lower-Right Corner (with Transparent Background)
-        float previewW = 110.0f;
-        float previewH = 110.0f;
-        float previewX = W - previewW - 14.0f;
-        float previewY = H - previewH - 12.0f;
-
-        CryModelBridge::RenderThumbnail(g, previewX, previewY, previewW, previewH);
     }
 
     // Blend to layered window

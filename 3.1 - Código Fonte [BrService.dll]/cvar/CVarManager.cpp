@@ -26,7 +26,7 @@ void* CVarManager::FindCVar(const char* name) {
 void CVarManager::ScanCVars() {
     // Scan heap/committed pages for standard CryEngine CVars
     const char* targets[] = {
-        "g_maxfps", "g_minFov", "g_camMax", "d3d9_TripleBuffering", "r_anisotropy", "r_TexturesStreaming"
+        "g_maxfps", "g_minFov", "g_camMax", "d3d9_TripleBuffering", "r_anisotropy", "r_TexturesStreaming", "g_freefly"
     };
 
     SYSTEM_INFO si;
@@ -146,12 +146,28 @@ void CVarManager::SetAnisotropic(bool enable) {
     }
 }
 
+void CVarManager::SetFreeFly(bool enable) {
+    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
+    void* p = FindCVar("g_freefly");
+    if (p) {
+        *(int*)((uint8_t*)p + OFFSET_INT) = enable ? 1 : 0;
+        *(float*)((uint8_t*)p + OFFSET_FLOAT) = enable ? 1.0f : 0.0f;
+        snprintf((char*)((uint8_t*)p + OFFSET_STR), 32, "%d", enable ? 1 : 0);
+        LogInfo("g_freefly configurado para: %d", enable ? 1 : 0);
+    }
+}
+
 void CVarManager::ApplyAll() {
-    SetFov(g_cvarFov.load());
-    SetCameraMax(g_cvarCamMax.load());
-    SetMaxFps(g_cvarMaxFps.load());
+    if (g_featFov.load()) SetFov(g_cvarFov.load());
+    if (g_featCamMax.load()) SetCameraMax(g_cvarCamMax.load());
+    if (g_featFpsUnlock.load()) SetMaxFps(g_cvarMaxFps.load());
     SetTripleBuffering(g_cvarTripleBuffering.load());
     SetAnisotropic(g_cvarAnisotropic.load());
+    if (g_featFreeFly.load()) {
+        SetFreeFly(true);
+    } else {
+        SetFreeFly(false);
+    }
 }
 
 void CVarManager::ResyncOnMapChange() {

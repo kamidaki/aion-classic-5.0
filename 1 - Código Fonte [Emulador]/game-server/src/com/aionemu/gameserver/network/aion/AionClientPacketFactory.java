@@ -21,7 +21,7 @@ import com.aionemu.gameserver.network.aion.clientpackets.*;
 public class AionClientPacketFactory {
 
 	private static final Logger log = LoggerFactory.getLogger(AionClientPacketFactory.class);
-	private static final PacketInfo<? extends AionClientPacket>[] packets = new PacketInfo<?>[250];
+	private static final PacketInfo<? extends AionClientPacket>[] packets = new PacketInfo<?>[350];
 
 	static {
 		try {

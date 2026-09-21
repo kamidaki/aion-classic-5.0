@@ -26,6 +26,42 @@ static std::string ParseParam(const char* cmdline, const char* key) {
     return s.substr(pos, end - pos);
 }
 
+static bool IsParamEnabled(const char* cmdline, const char* paramName, bool defaultValue = true) {
+    if (!cmdline || !paramName) return defaultValue;
+    std::string s(cmdline);
+    for (char& c : s) c = (char)::tolower((unsigned char)c);
+
+    std::string pName(paramName);
+    for (char& c : pName) c = (char)::tolower((unsigned char)c);
+
+    std::string keyColon = "-" + pName + ":";
+    std::string keyEqual = "-" + pName + "=";
+
+    size_t pos = s.find(keyColon);
+    size_t keyLen = keyColon.length();
+    if (pos == std::string::npos) {
+        pos = s.find(keyEqual);
+        keyLen = keyEqual.length();
+    }
+    if (pos == std::string::npos) {
+        return defaultValue;
+    }
+
+    pos += keyLen;
+    while (pos < s.length() && (s[pos] == ' ' || s[pos] == '\t')) pos++;
+    size_t end = s.find_first_of(" \t\r\n", pos);
+    if (end == std::string::npos) end = s.length();
+    std::string val = s.substr(pos, end - pos);
+
+    if (val == "disable" || val == "disabled" || val == "0" || val == "false" || val == "no" || val == "off") {
+        return false;
+    }
+    if (val == "enable" || val == "enabled" || val == "1" || val == "true" || val == "yes" || val == "on") {
+        return true;
+    }
+    return defaultValue;
+}
+
 } // namespace BrService
 
 extern "C" {
@@ -44,7 +80,7 @@ __declspec(dllexport) bool WINAPI BR_Initialize(const char* token, const char* c
         LogInfo("   BrService.dll - Shugo Console, Ping & DPS Meter Ativado      ");
         LogInfo("=================================================================");
 
-        // Extract IP from cmdline
+        // Extract IP and feature flags from cmdline
         if (cmdline) {
             std::string ip = ParseParam(cmdline, "-ip");
             if (!ip.empty()) {
@@ -55,22 +91,54 @@ __declspec(dllexport) bool WINAPI BR_Initialize(const char* token, const char* c
             if (!port.empty()) {
                 try { g_serverPort = std::stoi(port); } catch (...) {}
             }
+
+            // Feature Control Flags (default: true / enable)
+            g_featConsole = IsParamEnabled(cmdline, "console", true);
+            g_featFreeFly = IsParamEnabled(cmdline, "freefly", true);
+            g_featPingUi = IsParamEnabled(cmdline, "pingUi", true);
+            g_featDpsMeterUI = IsParamEnabled(cmdline, "DpsMeterUI", true);
+            g_featModel3D = IsParamEnabled(cmdline, "Model3D", true);
+            g_featFov = IsParamEnabled(cmdline, "fov", true);
+            g_featCamMax = IsParamEnabled(cmdline, "camMax", true);
+            g_featFpsUnlock = IsParamEnabled(cmdline, "fpsUnlock", true);
+
+            LogInfo("Configuracao de Recursos do BrService via Linha de Comando:");
+            LogInfo("  [-console]    : %s", g_featConsole.load() ? "ENABLE" : "DISABLE");
+            LogInfo("  [-freefly]    : %s", g_featFreeFly.load() ? "ENABLE" : "DISABLE");
+            LogInfo("  [-pingUi]     : %s", g_featPingUi.load() ? "ENABLE" : "DISABLE");
+            LogInfo("  [-DpsMeterUI] : %s", g_featDpsMeterUI.load() ? "ENABLE" : "DISABLE");
+            LogInfo("  [-Model3D]    : %s", g_featModel3D.load() ? "ENABLE" : "DISABLE");
+            LogInfo("  [-fov]        : %s", g_featFov.load() ? "ENABLE" : "DISABLE");
+            LogInfo("  [-camMax]     : %s", g_featCamMax.load() ? "ENABLE" : "DISABLE");
+            LogInfo("  [-fpsUnlock]  : %s", g_featFpsUnlock.load() ? "ENABLE" : "DISABLE");
         }
 
         // 1. Initialize Subsystems
         UICommon::InitializeGdiplus();
         BrConfig::Load();
-        CombatDb::Initialize();
+        if (g_featDpsMeterUI.load()) {
+            CombatDb::Initialize();
+        }
         CVarManager::Initialize();
-        CryModelBridge::Initialize();
+        if (g_featModel3D.load()) {
+            CryModelBridge::Initialize();
+        }
 
         // 2. Start Network Services
-        PingEngine::Start(g_serverIp);
-        WebSocketClient::Start(g_serverIp, 2130);
+        if (g_featPingUi.load()) {
+            PingEngine::Start(g_serverIp);
+        }
+        if (g_featDpsMeterUI.load()) {
+            WebSocketClient::Start(g_serverIp, 2130);
+        }
 
         // 3. Initialize UI Windows
-        PingHudUI::Initialize(g_hModule);
-        DrawerModalUI::Initialize(g_hModule);
+        if (g_featConsole.load() || g_featPingUi.load()) {
+            PingHudUI::Initialize(g_hModule);
+        }
+        if (g_featConsole.load()) {
+            DrawerModalUI::Initialize(g_hModule);
+        }
 
         // 4. Start Lifecycle Watchdog
         ServiceWorker::Start();
