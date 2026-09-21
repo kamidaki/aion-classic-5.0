@@ -191,9 +191,37 @@ std::wstring IconManager::GetSkillIconPath(const std::string& skillName, uint32_
     return L"";
 }
 
+static std::string NormalizeClassName(const std::string& raw) {
+    std::string s = ToLowerAscii(raw);
+    if (s.find("gladiador") != std::string::npos || s == "gladiator") return "Gladiator";
+    if (s.find("templ") != std::string::npos) return "Templar";
+    if (s.find("guerreiro") != std::string::npos || s == "warrior") return "Warrior";
+    if (s.find("batedor") != std::string::npos || s == "scout") return "Scout";
+    if (s.find("assassin") != std::string::npos) return "Assassin";
+    if (s.find("arqueiro") != std::string::npos || s == "ranger") return "Ranger";
+    if (s.find("mago") != std::string::npos || s == "mage") return "Mage";
+    if (s.find("feiticeiro") != std::string::npos || s == "sorcerer") return "Sorcerer";
+    if (s.find("invocador") != std::string::npos || s.find("spirit") != std::string::npos) return "Spiritmaster";
+    if (s.find("sacerdote") != std::string::npos || s == "priest") return "Priest";
+    if (s.find("clérigo") != std::string::npos || s.find("clerigo") != std::string::npos || s == "cleric") return "Cleric";
+    if (s.find("cantor") != std::string::npos || s == "chanter") return "Chanter";
+    if (s.find("revenant") != std::string::npos || s.find("thunderer") != std::string::npos || s.find("monk") != std::string::npos) return "Revenant";
+    if (s.find("brawler") != std::string::npos || s.find("lutador") != std::string::npos || s.find("striker") != std::string::npos) return "Brawler";
+    if (s.find("luminess") != std::string::npos || s.find("lumin") != std::string::npos || s.find("orchestrator") != std::string::npos || s.find("bard") != std::string::npos) return "Luminess";
+    if (s.find("phoenix") != std::string::npos || s.find("fenix") != std::string::npos || s.find("engineer") != std::string::npos || s.find("gunner") != std::string::npos) return "Phoenix";
+    if (s.find("soul_reaper") != std::string::npos || s.find("ceifador") != std::string::npos || s.find("reaper") != std::string::npos) return "Soul_Reaper";
+    if (!raw.empty()) {
+        std::string cap = raw;
+        cap[0] = (char)::toupper((unsigned char)cap[0]);
+        return cap;
+    }
+    return "Warrior";
+}
+
 std::wstring IconManager::GetClassIconPath(const std::string& className) {
     if (!s_initialized) Initialize();
-    std::wstring wClass(className.begin(), className.end());
+    std::string norm = NormalizeClassName(className);
+    std::wstring wClass(norm.begin(), norm.end());
     return s_baseIconDir + L"\\classes\\" + wClass + L".png";
 }
 

@@ -30,6 +30,7 @@ public:
     static void Shutdown();
 
     static void SetTargetNpc(uint32_t npcId);
+    static void SetTargetEntity(uint32_t modelId, uint8_t entityType, uint8_t race, float yaw);
     static void RenderThumbnail(Gdiplus::Graphics& g, float x, float y, float width, float height);
 
     static bool IsFrameBufferConnected();

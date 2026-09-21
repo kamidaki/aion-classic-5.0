@@ -66,6 +66,106 @@ static RECT s_comboPosYPlusRect = { 0, 0, 0, 0 };
 static RECT s_secureAreaToggleRect = { 0, 0, 0, 0 };
 static RECT s_saveSettingsBtnRect = { 0, 0, 0, 0 };
 
+struct MemoryTargetRaw {
+    bool valid;
+    uint32_t objId;
+    uint32_t modelId;
+    uint8_t type;
+    uint8_t race;
+    wchar_t name[128];
+    int hp;
+    int maxHp;
+    float px, py, pz, yaw;
+};
+
+static bool ReadTargetMemoryRaw(MemoryTargetRaw* outRaw) {
+    if (!outRaw) return false;
+    outRaw->valid = false;
+
+    uintptr_t hGame = (uintptr_t)GetModuleHandleA("Game.dll");
+    if (!hGame) return false;
+
+    __try {
+        uintptr_t* pTarget = (uintptr_t*)(hGame + 0xECE610);
+        if (!pTarget || !*pTarget) return false;
+
+        uintptr_t targetPtr = *pTarget;
+        uintptr_t* pEntityData = (uintptr_t*)(targetPtr + 0x378);
+        if (!pEntityData || !*pEntityData) return false;
+        uintptr_t entityData = *pEntityData;
+
+        outRaw->hp = *(int*)(entityData + 0x147C);
+        outRaw->maxHp = *(int*)(entityData + 0x1478);
+        outRaw->type = *(uint8_t*)(entityData + 0x38);
+        outRaw->race = *(uint8_t*)(entityData + 0x39);
+        outRaw->modelId = *(uint32_t*)(entityData + 0x20);
+        outRaw->objId = *(uint32_t*)(entityData + 0x24);
+
+        wchar_t* pName = (wchar_t*)(entityData + 0x46);
+        if (pName) {
+            wcsncpy_s(outRaw->name, pName, _TRUNCATE);
+        } else {
+            outRaw->name[0] = L'\0';
+        }
+
+        outRaw->px = *(float*)(targetPtr + 0x3C);
+        outRaw->py = *(float*)(targetPtr + 0x40);
+        outRaw->pz = *(float*)(targetPtr + 0x44);
+        outRaw->yaw = *(float*)(targetPtr + 0x48);
+        outRaw->valid = true;
+        return true;
+    } __except (EXCEPTION_EXECUTE_HANDLER) {
+        return false;
+    }
+}
+
+static bool UpdateTargetFromGameMemory() {
+    MemoryTargetRaw raw = {};
+    bool ok = ReadTargetMemoryRaw(&raw);
+
+    std::lock_guard<std::recursive_mutex> lock(g_combatMutex);
+    if (!ok || !raw.valid) {
+        g_currentTarget.hasTarget = false;
+        g_currentTarget.name = "Sem Alvo";
+        g_currentTarget.currentHp = 0;
+        g_currentTarget.maxHp = 100;
+        g_currentTarget.level = 0;
+        g_currentTarget.modelId = 0;
+        return false;
+    }
+
+    g_currentTarget.hasTarget = true;
+    g_currentTarget.targetId = raw.objId;
+    g_currentTarget.modelId = raw.modelId;
+    g_currentTarget.isNpc = (raw.type != 0);
+
+    if (wcslen(raw.name) > 0) {
+        char utf8Buf[256] = { 0 };
+        WideCharToMultiByte(CP_UTF8, 0, raw.name, -1, utf8Buf, sizeof(utf8Buf), nullptr, nullptr);
+        g_currentTarget.name = utf8Buf;
+    }
+
+    if (raw.maxHp > 0) {
+        g_currentTarget.currentHp = (raw.hp >= 0) ? raw.hp : 0;
+        g_currentTarget.maxHp = raw.maxHp;
+    }
+
+    if (raw.race == 0) {
+        g_currentTarget.race = "ELYOS";
+    } else if (raw.race == 1) {
+        g_currentTarget.race = "ASMODIANS";
+    } else if (raw.race == 2) {
+        g_currentTarget.race = "BALAUR";
+    }
+
+    g_currentTarget.posX = raw.px;
+    g_currentTarget.posY = raw.py;
+    g_currentTarget.posZ = raw.pz;
+    g_currentTarget.yaw = raw.yaw;
+
+    return true;
+}
+
 bool DrawerModalUI::Initialize(HINSTANCE hInst) {
     IconManager::Initialize();
     s_modalW = std::clamp(g_drawerW.load(), 400, 640);
@@ -612,6 +712,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
 
             // Section 2: Combat Analysis & Target Data
             if (g_featDpsMeterUI.load()) {
+                UpdateTargetFromGameMemory();
                 std::lock_guard<std::recursive_mutex> lock(g_combatMutex);
 
                 // Target Banner & Dynamic Stats
@@ -619,9 +720,9 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 Gdiplus::Font fontTargetStats(L"Segoe UI", 7.5f, Gdiplus::FontStyleRegular);
 
                 if (g_currentTarget.hasTarget) {
-                    if (g_currentTarget.modelId > 0) {
-                        CryModelBridge::SetTargetNpc(g_currentTarget.modelId);
-                    }
+                    uint8_t raceCode = (g_currentTarget.race == "ELYOS" ? 0 : (g_currentTarget.race == "ASMODIANS" ? 1 : 2));
+                    CryModelBridge::SetTargetEntity(g_currentTarget.modelId, g_currentTarget.isNpc ? 1 : 0, raceCode, g_currentTarget.yaw);
+
                     float curRadius = 10.0f;
                     float diskCx = 28.0f;
                     float diskCy = curY + 9.0f;

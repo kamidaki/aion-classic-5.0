@@ -46,6 +46,10 @@ struct TargetInfo {
     uint32_t mres = 0;
     std::string rating = "NORMAL"; // NORMAL, ELITE, HERO, LEGENDARY
     std::string race = "NONE";     // ELYOS, ASMODIANS, etc.
+    float posX = 0.0f;
+    float posY = 0.0f;
+    float posZ = 0.0f;
+    float yaw = 0.0f;
 };
 
 struct CombatTimelineEntry {
