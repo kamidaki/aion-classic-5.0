@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import com.aionemu.gameserver.GameServer;
 import com.aionemu.gameserver.ai.NpcAI;
 import com.aionemu.gameserver.ai.handler.ShoutEventHandler;
+import com.aionemu.gameserver.configs.administration.AdminConfig;
 import com.aionemu.gameserver.configs.main.*;
 import com.aionemu.gameserver.controllers.attack.AttackStatus;
 import com.aionemu.gameserver.controllers.attack.AttackUtil;
@@ -63,6 +64,8 @@ import com.aionemu.gameserver.utils.audit.AuditLogger;
 import com.aionemu.gameserver.world.MapRegion;
 import com.aionemu.gameserver.world.WorldType;
 import com.aionemu.gameserver.world.geo.GeoService;
+import com.aionemu.gameserver.model.EmotionType;
+import com.aionemu.gameserver.model.templates.zone.ZoneType;
 import com.aionemu.gameserver.world.zone.ZoneInstance;
 import com.aionemu.gameserver.world.zone.ZoneName;
 
@@ -213,6 +216,34 @@ public class PlayerController extends CreatureController<Player> {
             log.warn("No name found for a zone in map {} with xml name {}", zone.getAreaTemplate().getWorldId(), zone.getZoneTemplate().getXmlName());
 		else
 			QuestEngine.getInstance().onLeaveZone(new QuestEnv(null, player, 0), zoneName);
+	}
+
+	/**
+	 * Called when leaving a fly zone (like citadel of verteron) or a fly map (like the abyss).
+	 */
+	public void onLeaveFlyArea() {
+		Player player = getOwner();
+		if (!player.hasAccess(AdminConfig.FREE_FLIGHT)) {
+			if (player.isInFlyingState()) {
+				if (player.isInGlidingState()) {
+					player.unsetFlyState(FlyState.FLYING);
+					player.unsetState(CreatureState.FLYING);
+					player.getLifeStats().triggerFpReduce();
+					player.getGameStats().updateStatsAndSpeedVisually();
+					PacketSendUtility.broadcastPacket(player, new SM_EMOTION(player, EmotionType.STOP_FLY), true);
+				} else {
+					player.getFlyController().endFly(true);
+					if (player.isSpawned() && !player.isInsideZoneType(ZoneType.FLY)) // not spawned means leaving by teleporter
+						AuditLogger.log(player, "left fly zone in fly state at " + player.getPosition());
+				}
+			} else if (player.isInGlidingState()) {
+				player.getLifeStats().triggerFpReduce();
+			}
+		}
+	}
+
+	public void onEnterFlyArea() {
+		getOwner().getLifeStats().triggerFpReduce();
 	}
 
 

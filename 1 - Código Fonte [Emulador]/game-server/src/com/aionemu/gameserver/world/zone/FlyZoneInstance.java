@@ -16,11 +16,25 @@ public class FlyZoneInstance extends ZoneInstance {
 
 	@Override
 	public synchronized boolean onEnter(Creature creature) {
-        return super.onEnter(creature);
+		if (super.onEnter(creature)) {
+			creature.setInsideZoneType(ZoneType.FLY);
+			if (creature instanceof Player player) {
+				player.getController().onEnterFlyArea();
+			}
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
 	public synchronized boolean onLeave(Creature creature) {
-        return super.onLeave(creature);
+		if (super.onLeave(creature)) {
+			creature.unsetInsideZoneType(ZoneType.FLY);
+			if (!creature.isInsideZoneType(ZoneType.FLY) && creature instanceof Player player)
+				player.getController().onLeaveFlyArea();
+			return true;
+		} else
+			return false;
 	}
 }

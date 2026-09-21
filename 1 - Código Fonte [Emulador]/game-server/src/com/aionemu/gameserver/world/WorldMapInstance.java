@@ -128,15 +128,21 @@ public abstract class WorldMapInstance implements Iterable<VisibleObject> {
 			}
 		}
 		if (object instanceof Player player) {
-			player.setInsideZoneType(ZoneType.FLY);
+			if (getParent().isFlightAllowed())
+				player.setInsideZoneType(ZoneType.FLY);
 			worldMapPlayers.put(object.getObjectId(), player);
 		}
 	}
 
 	public void removeObject(AionObject object) {
 		worldMapObjects.remove(object.getObjectId());
-		if (object instanceof Player) {
+		if (object instanceof Player player) {
 			lastPlayerLeaveTime = System.currentTimeMillis();
+			if (getParent().isFlightAllowed()) {
+				player.unsetInsideZoneType(ZoneType.FLY);
+				// necessary for fly maps like the abyss (they don't have FlyZones, so no FlyZoneInstance.onLeave() is called)
+				player.getController().onLeaveFlyArea();
+			}
 			worldMapPlayers.remove(object.getObjectId());
 		} else if (object instanceof Npc) {
 			worldMapNpcs.remove(object.getObjectId());

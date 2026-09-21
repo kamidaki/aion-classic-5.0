@@ -63,8 +63,16 @@ public class WorldMap implements Iterable<WorldMapInstance> {
 	}
 
 
+	public boolean isFlightAllowed() {
+		return (worldOptions & ZoneAttributes.FLY.getId()) != 0;
+	}
+
 	public boolean isExceptBuff() {
 		return worldMapTemplate.isExceptBuff();
+	}
+
+	public boolean canGlide() {
+		return (worldOptions & ZoneAttributes.GLIDE.getId()) != 0;
 	}
 
 	public boolean canPutKisk() {
@@ -73,6 +81,14 @@ public class WorldMap implements Iterable<WorldMapInstance> {
 
 	public boolean canRecall() {
 		return (worldOptions & ZoneAttributes.RECALL.getId()) != 0;
+	}
+
+	public boolean canRide() {
+		return (worldOptions & ZoneAttributes.RIDE.getId()) != 0;
+	}
+
+	public boolean canFlyRide() {
+		return (worldOptions & ZoneAttributes.FLY_RIDE.getId()) != 0;
 	}
 
 	public boolean isPvpAllowed() {

@@ -95,6 +95,20 @@ public class ZoneInstance {
 		handlers.add(handler);
 	}
 
+	public boolean canFly() {
+		if (template.getZoneTemplate().getFlags() == -1 || template.getZoneTemplate().getFlags() == 0
+			|| World.getInstance().getWorldMap(mapId).hasOverridenOption(ZoneAttributes.FLY))
+			return World.getInstance().getWorldMap(mapId).isFlightAllowed();
+		return (template.getZoneTemplate().getFlags() & ZoneAttributes.FLY.getId()) != 0;
+	}
+
+	public boolean canGlide() {
+		if (template.getZoneTemplate().getFlags() == -1 || template.getZoneTemplate().getFlags() == 0
+			|| World.getInstance().getWorldMap(mapId).hasOverridenOption(ZoneAttributes.GLIDE))
+			return World.getInstance().getWorldMap(mapId).canGlide();
+		return (template.getZoneTemplate().getFlags() & ZoneAttributes.GLIDE.getId()) != 0;
+	}
+
 	public boolean canPutKisk() {
 		if (template.getZoneTemplate().getFlags() == -1 || template.getZoneTemplate().getFlags() == 0
 			|| World.getInstance().getWorldMap(mapId).hasOverridenOption(ZoneAttributes.BIND))
@@ -114,6 +128,20 @@ public class ZoneInstance {
 		return World.getInstance().getWorldMap(mapId).canReturnToBattle();
 	}
 
+	public boolean canRide() {
+		if (template.getZoneTemplate().getFlags() == -1 || template.getZoneTemplate().getFlags() == 0
+			|| World.getInstance().getWorldMap(mapId).hasOverridenOption(ZoneAttributes.RIDE)) {
+			return World.getInstance().getWorldMap(mapId).canRide();
+		}
+		return (template.getZoneTemplate().getFlags() & ZoneAttributes.RIDE.getId()) != 0;
+	}
+
+	public boolean canFlyRide() {
+		if (template.getZoneTemplate().getFlags() == -1 || template.getZoneTemplate().getFlags() == 0
+			|| World.getInstance().getWorldMap(mapId).hasOverridenOption(ZoneAttributes.FLY_RIDE))
+			return World.getInstance().getWorldMap(mapId).canFlyRide();
+		return (template.getZoneTemplate().getFlags() & ZoneAttributes.FLY_RIDE.getId()) != 0;
+	}
 
 	public boolean isPvpAllowed() {
 		if (template.getZoneTemplate().getZoneType() != ZoneClassName.PVP)
