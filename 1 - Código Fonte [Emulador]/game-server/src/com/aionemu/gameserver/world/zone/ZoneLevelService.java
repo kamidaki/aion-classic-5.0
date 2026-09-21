@@ -45,6 +45,10 @@ public class ZoneLevelService {
 		if (player.getController().hasTask(TaskId.DROWN))
 			return;
 		player.getController().addTask(TaskId.DROWN, ThreadPoolManager.getInstance().scheduleAtFixedRate(() -> {
+			if (player.isDead() || !player.isSpawned() || !player.isOnline()) {
+				stopDrowning(player);
+				return;
+			}
 			int value = player.getLifeStats().getMaxHp() / 20;
 			if (player.getLifeStats().reduceHp(TYPE.DROWNING, value, 0, LOG.REGULAR, player) == 0)
 				stopDrowning(player);

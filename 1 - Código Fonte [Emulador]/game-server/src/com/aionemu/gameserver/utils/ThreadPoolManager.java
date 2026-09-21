@@ -41,6 +41,7 @@ public final class ThreadPoolManager implements Executor {
 		scheduledPool.setRejectedExecutionHandler(new AionRejectedExecutionHandler());
 		scheduledPool.prestartAllCoreThreads();
 		scheduledPool.setExecuteExistingDelayedTasksAfterShutdownPolicy(false);
+		scheduledPool.setRemoveOnCancelPolicy(true);
 
 		longRunningPool = (ThreadPoolExecutor) Executors.newCachedThreadPool();
 

@@ -21,6 +21,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_WAREHOUSE_INFO;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.utils.PacketSendUtility;
+import com.aionemu.gameserver.utils.PositionUtil;
 
 /**
  * @author Lost Academy Team & Durak
@@ -30,10 +31,18 @@ public class WarehouseService {
 	private static final Logger log = LoggerFactory.getLogger(WarehouseService.class);
 	private static final int MAX_EXPAND = 11;
 
+	private static boolean canInteract(Player player, Npc npc) {
+		return player != null && player.isSpawned() && !player.isDead() && !player.isTrading()
+			&& npc != null && npc.isSpawned() && PositionUtil.isInRange(player, npc, 10);
+	}
+
 	/**
 	 * Shows Question window and expands on positive response
 	 */
 	public static void expandWarehouse(Player player, Npc npc) {
+		if (!canInteract(player, npc))
+			return;
+
 		StorageExpansionTemplate template = DataManager.WAREHOUSEEXPANDER_DATA.getWarehouseExpansionTemplate(npc.getNpcId());
 		if (template == null) {
 			log.warn("Warehouse expansion template could not be found for " + npc);
@@ -57,10 +66,15 @@ public class WarehouseService {
 
 			@Override
 			public void acceptRequest(Npc requester, Player responder) {
-				if (responder.getInventory().tryDecreaseKinah(price))
-					expand(responder, true);
-				else
-					PacketSendUtility.sendPacket(responder, SM_SYSTEM_MESSAGE.STR_WAREHOUSE_EXPAND_NOT_ENOUGH_MONEY()); // warehouse and cube use the same msg..
+				synchronized (responder.getInventory()) {
+					if (!canInteract(responder, requester) || !canExpand(responder)
+						|| responder.getWhNpcExpands() + 1 != newNpcExpansions)
+						return;
+					if (responder.getInventory().tryDecreaseKinah(price))
+						expand(responder, true);
+					else
+						PacketSendUtility.sendPacket(responder, SM_SYSTEM_MESSAGE.STR_WAREHOUSE_EXPAND_NOT_ENOUGH_MONEY()); // warehouse and cube use the same msg..
+				}
 			}
 
 		};

@@ -26,14 +26,17 @@ public class RepurchaseService {
 	 * Save items for repurchase for this player
 	 */
 	public void addRepurchaseItems(Player player, List<Item> items) {
-		repurchaseItems.put(player.getObjectId(), new HashSet<>(items));
+		if (player == null || items == null || items.isEmpty())
+			return;
+		repurchaseItems.computeIfAbsent(player.getObjectId(), k -> ConcurrentHashMap.newKeySet()).addAll(items);
 	}
 
 	/**
 	 * Delete all repurchase items for this player
 	 */
 	public void removeRepurchaseItems(Player player) {
-		repurchaseItems.remove(player.getObjectId());
+		if (player != null)
+			repurchaseItems.remove(player.getObjectId());
 	}
 
 	public Set<Item> getRepurchaseItems(int playerObjectId) {
@@ -41,29 +44,39 @@ public class RepurchaseService {
 	}
 
 	public boolean canRepurchase(Player player, int itemObjectId) {
+		if (player == null)
+			return false;
 		return getRepurchaseItems(player.getObjectId()).stream().anyMatch(item -> item.getObjectId() == itemObjectId);
 	}
 
 	public void repurchaseFromShop(Player player, RepurchaseList repurchaseList) {
-		if (!PlayerRestrictions.canTrade(player)) {
+		if (player == null || !PlayerRestrictions.canTrade(player) || repurchaseList == null) {
 			return;
 		}
 		Set<Item> items = repurchaseItems.get(player.getObjectId());
-		for (int itemObjectId : repurchaseList.getRepurchaseItems()) {
-			if (player.getInventory().isFull()) {
-				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_DICE_INVEN_ERROR());
-				break;
-			}
-
-			Item repurchaseItem = items.stream().filter(item -> item.getObjectId() == itemObjectId).findAny().orElse(null);
-			if (repurchaseItem != null) {
-				if (player.getInventory().tryDecreaseKinah(repurchaseItem.getRepurchasePrice())) {
-					ItemService.addItem(player, repurchaseItem);
-					items.remove(repurchaseItem);
-				} else {
-					AuditLogger.log(player, "tried to repurchase item " + repurchaseItem.getItemId() + ", count: " + repurchaseItem.getItemCount()
-							+ " without kinah");
+		if (items == null || items.isEmpty()) {
+			return;
+		}
+		synchronized (items) {
+			for (int itemObjectId : repurchaseList.getRepurchaseItems()) {
+				if (player.getInventory().isFull()) {
+					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_DICE_INVEN_ERROR());
+					break;
 				}
+
+				Item repurchaseItem = items.stream().filter(item -> item.getObjectId() == itemObjectId).findAny().orElse(null);
+				if (repurchaseItem != null) {
+					if (player.getInventory().tryDecreaseKinah(repurchaseItem.getRepurchasePrice())) {
+						ItemService.addItem(player, repurchaseItem);
+						items.remove(repurchaseItem);
+					} else {
+						AuditLogger.log(player, "tried to repurchase item " + repurchaseItem.getItemId() + ", count: " + repurchaseItem.getItemCount()
+								+ " without kinah");
+					}
+				}
+			}
+			if (items.isEmpty()) {
+				repurchaseItems.remove(player.getObjectId());
 			}
 		}
 	}

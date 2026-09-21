@@ -267,9 +267,9 @@ public class DuelService {
 
 	private void removeDuel(Player player) {
 		Integer opponentId = duels.remove(player.getObjectId());
+		removeAndEndTask(player.getObjectId());
 		if (opponentId != null) {
 			duels.remove(opponentId);
-			removeAndEndTask(player.getObjectId());
 			removeAndEndTask(opponentId);
 		}
 	}

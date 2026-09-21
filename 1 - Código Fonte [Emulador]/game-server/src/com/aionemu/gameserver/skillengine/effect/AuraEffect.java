@@ -86,12 +86,12 @@ public class AuraEffect extends EffectTemplate {
 
 		@Override
 		public void run() {
+			Creature effector = effect.getEffector();
+			if (effector == null || !effector.isSpawned() || effector.isDead()) {
+				effect.endEffect();
+				return;
+			}
 			onPeriodicAction(effect);
-			/**
-			 * This has the special effect of clearing the current thread's quantum and putting it to the end of the queue for its priority level. Will just
-			 * give-up the thread's turn, and gain it in the next round.
-			 */
-			Thread.yield();
 		}
 	}
 

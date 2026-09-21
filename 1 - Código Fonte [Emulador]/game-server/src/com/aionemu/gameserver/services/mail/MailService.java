@@ -214,43 +214,55 @@ public class MailService {
 	}
 
 	public static void getAttachments(Player player, int letterId, byte attachmentType) {
-		Letter letter = player.getMailbox().getLetterFromMailbox(letterId);
+		if (player == null || !player.isOnline())
+			return;
 
+		Letter letter = player.getMailbox().getLetterFromMailbox(letterId);
 		if (letter == null)
 			return;
 
-		switch (attachmentType) {
-			case 0:
-				Item attachedItem = letter.getAttachedItem();
-				if (attachedItem == null)
-					return;
-				if (player.getInventory().isFull()) {
-					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MAIL_TAKE_ALL_CANCEL());
-					return;
-				}
-				if (attachedItem.getExpireTime() != 0 && attachedItem.getExpireTime() <= System.currentTimeMillis() / 1000) {
-					attachedItem.setPersistentState(PersistentState.DELETED);
-					InventoryDAO.store(attachedItem, player);
-				} else {
-					if (player.getInventory().add(attachedItem, ItemPacketService.ItemAddType.MAIL) == null)
+		synchronized (letter) {
+			switch (attachmentType) {
+				case 0:
+					Item attachedItem = letter.getAttachedItem();
+					if (attachedItem == null)
 						return;
-					ExpireTimerTask.getInstance().registerExpirable(attachedItem, player);
-				}
-				PacketSendUtility.sendPacket(player, new SM_MAIL_SERVICE(letterId, attachmentType));
-				letter.setAttachedItem(null);
-				break;
-			case 1:
-				// TODO normal fix
-				// fix for kinah dupe
-				long attachedKinahCount = letter.getAttachedKinah();
-				letter.removeAttachedKinah();
-				if (!MailDAO.storeLetter(letter)) {
-					AuditLogger.log(player, "tried to use kinah mail exploit. Location: " + player.getPosition() + ", kinah count: " + attachedKinahCount);
-					return;
-				}
-				player.getInventory().increaseKinah(attachedKinahCount);
-				PacketSendUtility.sendPacket(player, new SM_MAIL_SERVICE(letterId, attachmentType));
-				break;
+					if (player.getInventory().isFull()) {
+						PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MAIL_TAKE_ALL_CANCEL());
+						return;
+					}
+					letter.setAttachedItem(null);
+					if (!MailDAO.storeLetter(letter)) {
+						letter.setAttachedItem(attachedItem);
+						AuditLogger.log(player, "failed to persist detached item from letter " + letterId);
+						return;
+					}
+					if (attachedItem.getExpireTime() != 0 && attachedItem.getExpireTime() <= System.currentTimeMillis() / 1000) {
+						attachedItem.setPersistentState(PersistentState.DELETED);
+						InventoryDAO.store(attachedItem, player);
+					} else {
+						if (player.getInventory().add(attachedItem, ItemPacketService.ItemAddType.MAIL) == null) {
+							letter.setAttachedItem(attachedItem);
+							MailDAO.storeLetter(letter);
+							return;
+						}
+						ExpireTimerTask.getInstance().registerExpirable(attachedItem, player);
+					}
+					PacketSendUtility.sendPacket(player, new SM_MAIL_SERVICE(letterId, attachmentType));
+					break;
+				case 1:
+					long attachedKinahCount = letter.getAttachedKinah();
+					if (attachedKinahCount <= 0)
+						return;
+					letter.removeAttachedKinah();
+					if (!MailDAO.storeLetter(letter)) {
+						AuditLogger.log(player, "tried to use kinah mail exploit. Location: " + player.getPosition() + ", kinah count: " + attachedKinahCount);
+						return;
+					}
+					player.getInventory().increaseKinah(attachedKinahCount);
+					PacketSendUtility.sendPacket(player, new SM_MAIL_SERVICE(letterId, attachmentType));
+					break;
+			}
 		}
 	}
 

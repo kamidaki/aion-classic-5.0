@@ -124,6 +124,10 @@ public class ItemMoveService {
 		}
 
 		if (sourceStorageType == StorageType.LEGION_WAREHOUSE.getId() || destinationStorageType == StorageType.LEGION_WAREHOUSE.getId()) {
+			if (player.getLegion() == null || player.getLegion().getLegionWarehouse().getCurrentUser() != player.getObjectId()) {
+				sendItemUnlockPacket(player, item);
+				return;
+			}
 			LegionService.getInstance().addWHItemHistory(player, item.getItemId(), item.getItemCount(), sourceStorage, targetStorage);
 		}
 		if (slot == -1) {
@@ -190,6 +194,14 @@ public class ItemMoveService {
 			if (GameServer.isShuttingDownSoon())
 				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_DISABLE("Shutdown Progress"));
 			return;
+		}
+
+		if (sourceStorageType == StorageType.LEGION_WAREHOUSE.getId() || replaceStorageType == StorageType.LEGION_WAREHOUSE.getId()) {
+			if (player.getLegion() == null || player.getLegion().getLegionWarehouse().getCurrentUser() != player.getObjectId()) {
+				sendItemUnlockPacket(player, sourceItem);
+				sendItemUnlockPacket(player, replaceItem);
+				return;
+			}
 		}
 
 		if (sourceItem.getItemId() == replaceItem.getItemId() && sourceItem.getItemTemplate().isStackable()) {

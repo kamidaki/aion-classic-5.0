@@ -26,8 +26,13 @@ public class KillCounter {
 		long minAge = now - CustomConfig.PVP_DAY_DURATION;
 		Map<Integer, List<Long>> killTimesByVictimId = PVP_KILL_LISTS.computeIfAbsent(killerId, k -> new HashMap<>());
 		synchronized (killTimesByVictimId) {
+			killTimesByVictimId.entrySet().removeIf(entry -> {
+				List<Long> times = entry.getValue();
+				times.removeIf(time -> time < minAge);
+				return times.isEmpty();
+			});
+
 			List<Long> killTimes = killTimesByVictimId.computeIfAbsent(victimId, k -> new ArrayList<>());
-			killTimes.removeIf(time -> time < minAge);
 			killTimes.add(now);
 			return killTimes.size();
 		}

@@ -193,6 +193,10 @@ public class TradeService {
 		List<Item> items = new ArrayList<>();
 		for (TradeItem tradeItem : tradeList.getTradeItems()) {
 			long count = tradeItem.getCount();
+			if (count <= 0) {
+				AuditLogger.log(player, "tried to sell invalid item count to npc: " + count);
+				return false;
+			}
 			Item item = inventory.getItemByObjId(tradeItem.getItemId());
 			if (item == null) // don't allow to sell fake items;
 				return false;
@@ -267,6 +271,10 @@ public class TradeService {
 		for (TradeItem tradeItem : tradeList.getTradeItems()) {
 			int itemObjectId = tradeItem.getItemId();
 			long count = tradeItem.getCount();
+			if (count <= 0) {
+				AuditLogger.log(player, "tried to sell invalid item count for AP: " + count);
+				return false;
+			}
 			Item item = inventory.getItemByObjId(itemObjectId);
 			if (item == null)
 				return false;
@@ -292,7 +300,7 @@ public class TradeService {
 	}
 
 	public static boolean performBuyFromTradeInTrade(Player player, int npcObjectId, int itemId, int count, List<Integer> tradeInItemObjectIds) {
-		if (!PlayerRestrictions.canTrade(player)) {
+		if (count <= 0 || !PlayerRestrictions.canTrade(player)) {
 			return false;
 		}
 		if (player.getInventory().isFull()) {
