@@ -203,12 +203,13 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_GUILD_TABS.class, 0xFD, State.IN_GAME); // GUILD_TABS
 		addPacket(CM_EQUIPMENT_CHANGE.class, 0x182, State.IN_GAME); // EQUIPMENT_CHANGE
 		addPacket(CM_EQUIPMENT_CHANGE_USE.class, 0x183, State.IN_GAME); // EQUIPMENT_CHANGE_USE
-		addPacket(CM_USER_CLASSIC_WARDROBE_FAVORITE.class, 0x18A, State.IN_GAME); // WARDROBE_FAVORITE
-		addPacket(CM_USER_CLASSIC_WARDROBE_APPLY.class, 0x18B, State.IN_GAME); // WARDROBE_APPLY
-		addPacket(CM_USER_CLASSIC_WARDROBE_REMOVE.class, 0x18C, State.IN_GAME); // WARDROBE_REMOVE
-		addPacket(CM_USER_CLASSIC_WARDROBE_DYE.class, 0x18D, State.IN_GAME); // WARDROBE_DYE
-		addPacket(CM_USER_CLASSIC_WARDROBE_EXTEND.class, 0x188, State.IN_GAME); // WARDROBE_EXTEND
-		addPacket(CM_USER_CLASSIC_WARDROBE_REGISTER.class, 0x18F, State.IN_GAME); // WARDROBE_REGISTER
+		// Wardrobe 5.0: capturas 06_Sistemas_Novos_5.0 de 2026-09-21 14:56 e 15:16. A 2.4/2.7 tinha REGISTER..EXTEND seguidos em 0xF5-0xFA.
+		addPacket(CM_USER_CLASSIC_WARDROBE_REGISTER.class, 0x184, State.IN_GAME); // 0x00EE [D item] (1 de 1)
+		addPacket(CM_USER_CLASSIC_WARDROBE_REMOVE.class, 0x185, State.IN_GAME); // 0x00EF [D entrada] (2 de 2)
+		addPacket(CM_USER_CLASSIC_WARDROBE_DYE.class, 0x18A, State.IN_GAME); // 0x00F8 [D entrada][D tinta] (1 de 1)
+		addPacket(CM_USER_CLASSIC_WARDROBE_FAVORITE.class, 0x18B, State.IN_GAME); // 0x00F9 [D entrada][C 1] (1 de 1)
+		addPacket(CM_USER_CLASSIC_WARDROBE_APPLY.class, 0x188, State.IN_GAME); // 0x00FA [D item][D entrada ou 0] (5 de 5)
+		addPacket(CM_USER_CLASSIC_WARDROBE_EXTEND.class, 0x189, State.IN_GAME); // 0x00FB [H 1][C 1 Quna, 2 item]: sem captura, conferido no cliente em 21/09
 		addPacket(CM_RECIPE_LIST.class, 0x14C, State.AUTHED, State.IN_GAME); // 0x00B6 RECIPE_LIST (5.0 Classic)
 		addPacket(CM_RECIPE_LIST.class, 0xB6, State.AUTHED, State.IN_GAME); // Alias dec opcode
 		// Global Auction House 5.0 (capturas de 2026-09-11 a 21). O 0x1ED tinha o CM_GUILD_SEARCH da 4.x, sem ação.

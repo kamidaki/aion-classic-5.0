@@ -39,6 +39,7 @@ public class Item extends AionObject implements Expirable, StatOwner, Persistabl
 	private String itemCreator;
 	private final ItemTemplate itemTemplate;
 	private ItemTemplate itemSkinTemplate;
+	private boolean wardrobeSkin;
 	private ItemTemplate fusionedItemTemplate;
 	private boolean isEquipped = false;
 	private long equipmentSlot = ItemStorage.FIRST_AVAILABLE_SLOT;
@@ -273,13 +274,30 @@ public class Item extends AionObject implements Expirable, StatOwner, Persistabl
 		return this.itemSkinTemplate;
 	}
 
+	/**
+	 * Troca o visual. Qualquer troca tira a marca de visual do Wardrobe; o Wardrobe a põe de volta com {@link #setWardrobeSkin(boolean)}.
+	 */
 	public void setItemSkinTemplate(ItemTemplate newTemplate) {
 		this.itemSkinTemplate = newTemplate;
+		this.wardrobeSkin = false;
 		setPersistentState(PersistentState.UPDATE_REQUIRED);
 	}
 
 	public boolean isSkinnedItem() {
 		return getItemSkinTemplate() != this.itemTemplate;
+	}
+
+	/**
+	 * @return true se o visual veio do Wardrobe (C 0xFA). O blob 0x0B marca isso em dois bytes; o visual de remodelagem por NPC fica sem a marca
+	 *         (219 itens assim nas capturas) e o Wardrobe não o remove.
+	 */
+	public boolean isWardrobeSkin() {
+		return wardrobeSkin;
+	}
+
+	public void setWardrobeSkin(boolean wardrobeSkin) {
+		this.wardrobeSkin = wardrobeSkin;
+		setPersistentState(PersistentState.UPDATE_REQUIRED);
 	}
 
 	/**

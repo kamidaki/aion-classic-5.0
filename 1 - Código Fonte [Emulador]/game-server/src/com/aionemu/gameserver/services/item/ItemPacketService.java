@@ -52,6 +52,7 @@ public class ItemPacketService {
 		INC_KINAH_GLOBAL_TRADE_COLLECT(0x13D, true, true), // 1: receita recebida da Auction House (C 0x102)
 		DEC_ITEM_COMPOSE_MATERIAL(0x11D, true, true), // 1: material gasto no Altar of Transcendence (C 0x154), também no 0x1C
 		DEC_KINAH_ITEM_COMPOSE(0x120, true, true), // 2: taxa do Altar of Transcendence (C 0x154)
+		DEC_KINAH_WARDROBE(0xDF, true, true), // 5: taxa do Wardrobe (C 0xFA), 3 aplicações de visual e 2 remoções
 
 		DEC_KINAH(0, true, false), // gasto de kinah sem motivo capturado; o oficial usa um por serviço, e 0x1D só na compra
 		DEC_ITEM_SPLIT_MOVE(0x0A, true, false), // move to other storage with split
@@ -69,7 +70,9 @@ public class ItemPacketService {
 		INC_PASSPORT_ADD(0x8A, true, false),
 		INC_COMBAT_TALENT_REWARD(0xEB, true, false), // cabeçalho do S_ADD_INVENTORY da recompensa; 0x1D não capturado
 		INC_CRUSH_RESULT(0x112, true, false), // cabeçalho do S_ADD_INVENTORY do hammer; 0x1D não capturado
-		INC_ITEM_COMPOSE(0x11E, true, false); // cabeçalho do S_ADD_INVENTORY do Altar; resultado somado a pilha (0x1D) não capturado
+		INC_ITEM_COMPOSE(0x11E, true, false), // cabeçalho do S_ADD_INVENTORY do Altar; resultado somado a pilha (0x1D) não capturado
+		DEC_WARDROBE_REGISTER(0x81, true, false), // Wardrobe (C 0xEE): motivo do 0x1C do item registrado; pilha em parte (0x1D) não capturada
+		DEC_WARDROBE_DYE(0x82, true, false); // Wardrobe (C 0xF8): motivo do 0x1C da tinta gasta; pilha em parte (0x1D) não capturada
 
 		private final int mask;
 		private final boolean sendable;
@@ -158,6 +161,8 @@ public class ItemPacketService {
 		CRUSH(0x110),
 		GLOBAL_TRADE_REGISTER(0x0C), // S_REMOVE_INVENTORY do item anunciado na Auction House (C 0x117)
 		ITEM_COMPOSE(0x11D), // S_REMOVE_INVENTORY do material do Altar (C 0x154), mesmo motivo do 0x1D
+		WARDROBE_REGISTER(0x81), // item registrado no Wardrobe (C 0xEE), 1 de 1
+		WARDROBE_DYE(0x82), // tinta usada numa entrada do Wardrobe (C 0xF8), 1 de 1
 		REGISTER(0x78),
 		PUT_TO_EXCHANGE(0x26);
 
@@ -177,6 +182,8 @@ public class ItemPacketService {
 				case DEC_ITEM_USE, DEC_ITEM_BUY, DEC_SIEL_ANVIL_MATERIAL -> USE;
 				case DEC_ITEM_CRUSH -> CRUSH;
 				case DEC_ITEM_COMPOSE_MATERIAL -> ITEM_COMPOSE;
+				case DEC_WARDROBE_REGISTER -> WARDROBE_REGISTER;
+				case DEC_WARDROBE_DYE -> WARDROBE_DYE;
 				case DEC_ITEM_SPLIT_MOVE -> MOVE;
 				default -> DEFAULT;
 			};

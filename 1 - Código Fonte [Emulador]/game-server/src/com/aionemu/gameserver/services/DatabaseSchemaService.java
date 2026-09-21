@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.database.DatabaseFactory;
 import com.aionemu.gameserver.dao.AccountQunaDAO;
+import com.aionemu.gameserver.dao.PlayerWardrobeDAO;
 
 /**
  * Serviço responsável por validar e inicializar automaticamente tabelas e colunas
@@ -96,6 +97,9 @@ public class DatabaseSchemaService {
 			") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;"
 		);
 
+		// 7. player_wardrobe (Classic 5.0 Wardrobe: C 0xEE-0xFB / S 0x122-0x124)
+		executeSql(con, PlayerWardrobeDAO.CREATE_TABLE);
+
 		// 8. account_quna (Classic 5.0 Quna: saldo por conta, S 0x11B)
 		executeSql(con, AccountQunaDAO.CREATE_TABLE);
 	}
@@ -109,6 +113,11 @@ public class DatabaseSchemaService {
 		if (!hasColumn(con, "player_life_stats", "ep")) {
 			log.info("Adicionando coluna 'ep' na tabela player_life_stats...");
 			executeSql(con, "ALTER TABLE `player_life_stats` ADD COLUMN `ep` int NOT NULL DEFAULT '0' AFTER `sp`;");
+		}
+		// inventory: visual aplicado pelo Wardrobe 5.0 (C 0xFA), que o blob 0x0B marca e o Wardrobe remove
+		if (!hasColumn(con, "inventory", "wardrobe_skin")) {
+			log.info("Adicionando coluna 'wardrobe_skin' na tabela inventory...");
+			executeSql(con, "ALTER TABLE `inventory` ADD COLUMN `wardrobe_skin` boolean NOT NULL DEFAULT '0' AFTER `item_skin`;");
 		}
 	}
 

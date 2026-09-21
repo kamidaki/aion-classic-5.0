@@ -16,14 +16,11 @@ public class ArmorInfoBlobEntry extends ItemBlobEntry {
 	public void writeThisBlob(ByteBuffer buf) {
 		Item item = ownerItem;
 		ItemSlot[] slots = ItemSlot.getSlotsFor(item.getItemTemplate().getItemSlot());
+		// 5.0 Classic: 20 bytes, [Q slot][Q 0][C tingido][R][G][B]. Nas capturas o byte logo depois do slot é 0 nas 424 armaduras, e a tinta
+		// fica no fim (71 tingidas, ex. 00 10 .. 00 01 1f 87 f5; o torso tingido pelo Wardrobe veio 08 00 .. 00 01 19 8d 94).
 		writeQ(buf, (slots != null && slots.length > 0) ? slots[0].getSlotIdMask() : 0);
-		writeC(buf, item.getItemTemplate().isItemDyePermitted() ? 1 : 0);
-		int color = item.getItemColor() != null ? item.getItemColor() : 0;
-		writeC(buf, (color & 0xFF0000) >> 16);
-		writeC(buf, (color & 0xFF00) >> 8);
-		writeC(buf, (color & 0xFF));
-		// 5.0 Classic: a entrada tem 20 bytes. Captura: u64 slot + 12 bytes (4 de tintura + 8 zeros).
-		writeB(buf, new byte[8]);
+		writeQ(buf, 0);
+		writeDyeInfo(buf, item.getItemColor());
 	}
 
 	@Override

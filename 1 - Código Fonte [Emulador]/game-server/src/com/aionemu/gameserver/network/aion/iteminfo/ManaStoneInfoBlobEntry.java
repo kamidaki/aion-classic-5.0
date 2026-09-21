@@ -35,21 +35,17 @@ public class ManaStoneInfoBlobEntry extends ItemBlobEntry {
 		ItemStone god = item.getGodStone();
 		writeD(buf, god == null ? 0 : god.getItemId());
 
-		int itemColor = item.getItemColor() != null ? item.getItemColor() : 0;
+		// Cor como [C tingido][R][G][B] (71 itens tingidos nas capturas, ex. 01 1f 87 f5). Os dois bytes do Wardrobe valem 1 só em item com visual
+		// aplicado pelo guarda-roupa (62 de 62) e 0 no visual de remodelagem por NPC (247); o C 0xFA de remoção os zera.
 		int dyeExpiration = item.getColorTimeLeft();
-		if ((dyeExpiration > 0 && item.getColorExpireTime() > 0 || dyeExpiration == 0 && item.getColorExpireTime() == 0) && item.getItemTemplate().isItemDyePermitted()) {
-			writeC(buf, itemColor == 0 ? 0 : 1);
-			writeD(buf, itemColor);
-			writeD(buf, 0); // unk 1.5.1.9
-			writeD(buf, dyeExpiration); // seconds until dye expires
-		} else {
-			writeC(buf, itemColor == 0 ? 0 : 1);
-			writeD(buf, itemColor);
-			writeD(buf, 0); // unk 1.5.1.9
-			writeD(buf, 0);
-		}
+		writeDyeInfo(buf, item.getItemColor());
+		writeC(buf, item.isWardrobeSkin() ? 1 : 0);
+		writeD(buf, 0); // unk 1.5.1.9
+		writeD(buf, dyeExpiration > 0 && item.getColorExpireTime() > 0 && item.getItemTemplate().isItemDyePermitted() ? dyeExpiration : 0);
+		writeC(buf, item.isWardrobeSkin() ? 1 : 0);
+		writeC(buf, 0);
+		writeH(buf, 0);
 
-		writeD(buf, 0); // 2.4
 		writeD(buf, 0); // 2.4
 		writeD(buf, 0); // 2.8
 

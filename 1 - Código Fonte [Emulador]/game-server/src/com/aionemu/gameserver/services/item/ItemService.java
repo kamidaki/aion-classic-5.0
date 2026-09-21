@@ -142,6 +142,7 @@ public class ItemService {
 		newItem.setItemColor(sourceItem.getItemColor());
 		newItem.setEnchantBonus(sourceItem.getEnchantBonus());
 		newItem.setItemSkinTemplate(sourceItem.getItemSkinTemplate());
+		newItem.setWardrobeSkin(sourceItem.isWardrobeSkin());
 	}
 
 	/**

@@ -201,6 +201,7 @@ public final class PlayerEnterWorldService {
 
 			// 5.1 Classic 5.0 Warmup Sequence (from official Wireshark PCAP)
 			client.sendPacket(new SM_UNK_01C2());
+			PlayerWardrobeService.getInstance().onEnterWorld(player); // S 0x122, logo antes do 0x138 como na captura
 			client.sendPacket(new SM_UNK_0138());
 			client.sendPacket(new SM_UNK_014C(player.getObjectId()));
 			client.sendPacket(new SM_UNK_014D(player.getObjectId()));

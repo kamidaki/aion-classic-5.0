@@ -215,6 +215,7 @@ public class PlayerService {
 		}
 
 		PlayerEquipmentSettingDAO.loadEquipmentSetting(player);
+		PlayerWardrobeService.getInstance().onLoad(player);
 
 		return player;
 	}

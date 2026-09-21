@@ -421,6 +421,7 @@ CREATE TABLE `inventory` (
   `enchant` tinyint unsigned NOT NULL DEFAULT '0',
   `enchant_bonus` tinyint NOT NULL DEFAULT '0',
   `item_skin` int NOT NULL DEFAULT '0',
+  `wardrobe_skin` boolean NOT NULL DEFAULT '0',
   `fusioned_item` int NOT NULL DEFAULT '0',
   `optional_socket` tinyint unsigned NOT NULL DEFAULT '0',
   `optional_fusion_socket` tinyint unsigned NOT NULL DEFAULT '0',

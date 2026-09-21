@@ -89,6 +89,13 @@ public class DyeAction extends AbstractItemAction {
 		return color.equals("no") ? null : Integer.parseInt(color, 16);
 	}
 
+	/**
+	 * @return duração da tinta em minutos, ou null se ela não expira
+	 */
+	public Integer getMinutes() {
+		return minutes;
+	}
+
 	private void dyeHouseObject(Player player, Item dyeItem, HouseObject<?> houseObject) {
 		if (!player.getInventory().decreaseByObjectId(dyeItem.getObjectId(), 1))
 			return;

@@ -203,7 +203,7 @@ public class Player extends Creature {
 	private int robotId;
 	private boolean isInFfaTeamMode;
 	private int customStates;
-	private Map<Integer, WardrobeEntry> playerWardrobe = new ConcurrentHashMap<>();
+	private Map<Integer, WardrobeEntry> playerWardrobe;
 	private Map<Integer, EquipmentSetting> playerEquipSettingList = new ConcurrentHashMap<>();
 	private long lastEquipTime;
 	private PlayerBattlePass playerBattlePass;
@@ -340,6 +340,9 @@ public class Player extends Creature {
 		return friendList;
 	}
 
+	/**
+	 * Entradas do Wardrobe por objeto; null até carregar ou se a carga falhou. Mexer só com o lock do jogador (PlayerWardrobeService).
+	 */
 	public Map<Integer, WardrobeEntry> getPlayerWardrobe() {
 		return playerWardrobe;
 	}
