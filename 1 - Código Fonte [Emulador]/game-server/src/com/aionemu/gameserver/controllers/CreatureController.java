@@ -53,6 +53,7 @@ import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.utils.audit.AuditLogger;
 import com.aionemu.gameserver.utils.stats.CalculationType;
 import com.aionemu.gameserver.world.geo.GeoService;
+import com.lostacademy.Dps_Meter.DpsService;
 import com.aionemu.gameserver.world.zone.ZoneInstance;
 import com.aionemu.gameserver.world.zone.ZoneUpdateService;
 
@@ -234,6 +235,25 @@ public abstract class CreatureController<T extends Creature> extends VisibleObje
 		getOwner().getKnownList().forEachNpc(npc -> npc.getAi().onCreatureEvent(AIEventType.CREATURE_NEEDS_SUPPORT, getOwner()));
 		getOwner().getLifeStats().reduceHp(type, damage, effect == null ? 0 : effect.getSkillId(), logId, attacker);
 		getOwner().incrementAttackedCount();
+
+		if (damage > 0 && attacker != null) {
+			Creature acting = attacker.getActingCreature();
+			if (acting instanceof Player pAttacker) {
+				int skillId = effect != null ? effect.getSkillId() : 0;
+				String skillName = (effect != null && effect.getSkillTemplate() != null)
+					? effect.getSkillTemplate().getName()
+					: (type == TYPE.REGULAR ? "Auto Attack" : "Skill");
+				boolean isCrit = status != null && status.isCritical();
+				DpsService.recordPlayerDamage(pAttacker, getOwner(), damage, skillId, skillName, isCrit);
+			} else if (getOwner() instanceof Player pVictim) {
+				int skillId = effect != null ? effect.getSkillId() : 0;
+				String skillName = (effect != null && effect.getSkillTemplate() != null)
+					? effect.getSkillTemplate().getName()
+					: (type == TYPE.REGULAR ? "Auto Attack" : "Skill");
+				boolean isCrit = status != null && status.isCritical();
+				DpsService.recordNpcDamage(attacker, pVictim, damage, skillId, skillName, isCrit);
+			}
+		}
 
 		if (!getOwner().isDead() && attacker instanceof Player player) {
 			if (criticalEffect != null) {

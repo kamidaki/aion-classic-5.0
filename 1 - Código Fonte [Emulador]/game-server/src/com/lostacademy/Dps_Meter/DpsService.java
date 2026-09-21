@@ -134,13 +134,14 @@ public final class DpsService {
 	}
 
 	public static void recordPlayerDamage(Player player, Creature target, long damage, int skillId, String skillName, boolean isCrit) {
-		WebSocketServer ws = WebSocketServer.getInstance();
-		if (!ws.hasActiveSubscribers()) return;
 		if (player == null || target == null || damage <= 0) return;
 		if (target.equals(player)) return; // Exclude self target
 
-		// Trigger Combo chaining
+		// Trigger Combo chaining unconditionally for valid hits
 		ComboService.getInstance().onPlayerHit(player, target, (int) damage);
+
+		WebSocketServer ws = WebSocketServer.getInstance();
+		if (!ws.hasActiveSubscribers()) return;
 
 		String attackerName = safeJsonString(player.getName());
 		String targetName = safeJsonString(target.getName());

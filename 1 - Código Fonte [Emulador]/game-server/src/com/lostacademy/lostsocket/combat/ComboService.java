@@ -14,6 +14,7 @@ import com.aionemu.gameserver.model.ChatType;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.services.TribeRelationService;
 import com.aionemu.gameserver.skillengine.effect.AbnormalState;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
@@ -114,7 +115,7 @@ public class ComboService {
 
 		// Record target hits for aggressive NPCs
 		if (target instanceof Npc npc) {
-			boolean isAggro = isAggressiveNpc(npc);
+			boolean isAggro = isAggressiveNpc(npc, attacker);
 			if (isAggro) {
 				playerTargetHits.computeIfAbsent(playerId, k -> new ConcurrentHashMap<>())
 					.compute(targetId, (k, v) -> {
@@ -182,13 +183,36 @@ public class ComboService {
 	}
 
 	private boolean isAggressiveNpc(Npc npc) {
+		return isAggressiveNpc(npc, null);
+	}
+
+	private boolean isAggressiveNpc(Npc npc, Player player) {
 		if (npc == null) return false;
-		if (npc.getAi() != null && npc.getAi().getName() != null && npc.getAi().getName().toLowerCase().contains("aggressive")) {
+		String name = npc.getName() != null ? npc.getName().toLowerCase() : "";
+		String aiName = (npc.getAi() != null && npc.getAi().getName() != null) ? npc.getAi().getName().toLowerCase() : "";
+		// Training dummy detection (always valid target for combo & hit tracking)
+		if (name.contains("dummy") || name.contains("manequim") || name.contains("treino") || aiName.contains("dummy")) {
 			return true;
 		}
-		if (npc.getObjectTemplate() != null && npc.getObjectTemplate().getAiName() != null &&
-			npc.getObjectTemplate().getAiName().toLowerCase().contains("aggressive")) {
+		if (player != null) {
+			if (npc.isEnemy(player) || npc.isEnemyFrom(player)) {
+				return true;
+			}
+			try {
+				if (TribeRelationService.isAggressive(npc, player) || TribeRelationService.isHostile(npc, player)) {
+					return true;
+				}
+			} catch (Exception ignored) {
+			}
+		}
+		if (aiName.contains("aggressive") || aiName.contains("aggresive") || aiName.contains("monster") || aiName.contains("boss")) {
 			return true;
+		}
+		if (npc.getObjectTemplate() != null && npc.getObjectTemplate().getAiName() != null) {
+			String tmplAi = npc.getObjectTemplate().getAiName().toLowerCase();
+			if (tmplAi.contains("aggressive") || tmplAi.contains("aggresive") || tmplAi.contains("monster") || tmplAi.contains("boss") || tmplAi.contains("dummy")) {
+				return true;
+			}
 		}
 		return false;
 	}
