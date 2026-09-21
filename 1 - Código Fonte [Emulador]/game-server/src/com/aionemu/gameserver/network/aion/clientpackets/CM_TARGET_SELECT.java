@@ -63,5 +63,6 @@ public class CM_TARGET_SELECT extends AionClientPacket {
 			}
 		}
 		player.setTarget(newTarget);
+		com.lostacademy.Dps_Meter.DpsService.onTargetSelected(player, newTarget);
 	}
 }

@@ -3,6 +3,8 @@
 #include "../core/ServiceLog.h"
 #include <mutex>
 #include <vector>
+#include <cstdio>
+#include <cstring>
 
 namespace BrService {
 
@@ -10,11 +12,12 @@ static std::recursive_mutex s_cvarMutex;
 static std::unordered_map<std::string, void*> s_cvarMap;
 static bool s_initialized = false;
 
-// 64-bit CryEngine CVar structure offsets
-static constexpr size_t OFFSET_NAME = 8;
-static constexpr size_t OFFSET_INT  = 184;
-static constexpr size_t OFFSET_FLOAT= 188;
-static constexpr size_t OFFSET_STR  = 192;
+// 64-bit CryEngine CVar structure offsets (Standard CryEngine 1.5 / Aion 64-bit)
+static constexpr size_t CVAR_FLAG_OFFSET = 8;
+static constexpr size_t CVAR_NAME_OFFSET = 9;
+static constexpr size_t CVAR_INT_OFFSET  = 184;
+static constexpr size_t CVAR_FLOAT_OFFSET= 188;
+static constexpr size_t CVAR_STR_OFFSET  = 192;
 
 void* CVarManager::FindCVar(const char* name) {
     if (!name) return nullptr;
@@ -23,18 +26,34 @@ void* CVarManager::FindCVar(const char* name) {
     return nullptr;
 }
 
+static void WriteCVarFloat(void* pCVar, float val) {
+    if (!pCVar) return;
+    uint8_t* p = static_cast<uint8_t*>(pCVar);
+    *reinterpret_cast<int*>(p + CVAR_INT_OFFSET) = static_cast<int>(val);
+    *reinterpret_cast<float*>(p + CVAR_FLOAT_OFFSET) = val;
+    sprintf_s(reinterpret_cast<char*>(p + CVAR_STR_OFFSET), 64, "%f", val);
+}
+
+static void WriteCVarInt(void* pCVar, int val) {
+    if (!pCVar) return;
+    uint8_t* p = static_cast<uint8_t*>(pCVar);
+    *reinterpret_cast<int*>(p + CVAR_INT_OFFSET) = val;
+    *reinterpret_cast<float*>(p + CVAR_FLOAT_OFFSET) = static_cast<float>(val);
+    sprintf_s(reinterpret_cast<char*>(p + CVAR_STR_OFFSET), 64, "%d", val);
+}
+
 void CVarManager::ScanCVars() {
-    // Scan heap/committed pages for standard CryEngine CVars
     const char* targets[] = {
-        "g_maxfps", "g_minFov", "g_camMax", "d3d9_TripleBuffering", "r_anisotropy", "r_TexturesStreaming"
+        "g_minFov", "g_camMax", "g_maxfps", "g_freefly",
+        "d3d9_TripleBuffering", "r_Texture_Anisotropic_Level", "r_anisotropy", "con_disable_console"
     };
 
     SYSTEM_INFO si;
     GetSystemInfo(&si);
 
     MEMORY_BASIC_INFORMATION mbi;
-    uint8_t* addr = (uint8_t*)si.lpMinimumApplicationAddress;
-    uint8_t* maxAddr = (uint8_t*)si.lpMaximumApplicationAddress;
+    uint8_t* addr = static_cast<uint8_t*>(si.lpMinimumApplicationAddress);
+    uint8_t* maxAddr = static_cast<uint8_t*>(si.lpMaximumApplicationAddress);
 
     size_t foundCount = 0;
     size_t totalTargets = sizeof(targets) / sizeof(targets[0]);
@@ -46,34 +65,43 @@ void CVarManager::ScanCVars() {
                 continue;
             }
 
-            if ((mbi.State == MEM_COMMIT) && (mbi.Protect & (PAGE_READWRITE | PAGE_EXECUTE_READWRITE)) && !(mbi.Protect & PAGE_GUARD)) {
-                uint8_t* pStart = (uint8_t*)mbi.BaseAddress;
+            if ((mbi.State == MEM_COMMIT) &&
+                (mbi.Protect == PAGE_READWRITE || mbi.Protect == PAGE_EXECUTE_READWRITE) &&
+                !(mbi.Protect & PAGE_GUARD)) {
+
+                uint8_t* pStart = static_cast<uint8_t*>(mbi.BaseAddress);
                 size_t regionSize = mbi.RegionSize;
 
-                for (size_t i = 0; i + 256 < regionSize; i += 8) {
+                // Scan in 16-byte steps (CryEngine heap alignment)
+                for (size_t i = 0; i + 256 < regionSize; i += 16) {
                     uint8_t* candidate = pStart + i;
 
                     for (const char* tName : targets) {
                         if (s_cvarMap.find(tName) != s_cvarMap.end()) continue;
 
                         size_t len = strlen(tName);
-                        // Match name at candidate + OFFSET_NAME
-                        if (memcmp(candidate + OFFSET_NAME, tName, len) == 0 && candidate[OFFSET_NAME + len] == '\0') {
+                        // In CryEngine 64-bit: candidate[8] is boolean flag (0 or 1), candidate[9] is ASCII CVar name
+                        if ((candidate[CVAR_FLAG_OFFSET] == 0 || candidate[CVAR_FLAG_OFFSET] == 1) &&
+                            memcmp(candidate + CVAR_NAME_OFFSET, tName, len) == 0 &&
+                            (candidate[CVAR_NAME_OFFSET + len] == '\0' || candidate[CVAR_NAME_OFFSET + len] == ' ')) {
+
                             s_cvarMap[tName] = candidate;
                             foundCount++;
-                            LogInfo("CVar encontrado: %s no endereco %p", tName, candidate);
+                            LogInfo("CVar CryEngine localizado: %s no endereco %p", tName, candidate);
                         }
                     }
                 }
             }
 
-            uint8_t* nextAddr = (uint8_t*)mbi.BaseAddress + mbi.RegionSize;
+            uint8_t* nextAddr = static_cast<uint8_t*>(mbi.BaseAddress) + mbi.RegionSize;
             if (nextAddr <= addr) break;
             addr = nextAddr;
         }
     } catch (...) {
         LogError("Excecao capturada durante ScanCVars.");
     }
+
+    LogInfo("Varredura de CVars concluida. Total encontrados: %zu/%zu", foundCount, totalTargets);
 }
 
 bool CVarManager::Initialize() {
@@ -97,9 +125,7 @@ void CVarManager::SetFov(float fov) {
     g_cvarFov = fov;
     void* p = FindCVar("g_minFov");
     if (p) {
-        *(float*)((uint8_t*)p + OFFSET_FLOAT) = fov;
-        *(int*)((uint8_t*)p + OFFSET_INT) = static_cast<int>(fov);
-        snprintf((char*)((uint8_t*)p + OFFSET_STR), 32, "%.1f", fov);
+        WriteCVarFloat(p, fov);
     }
 }
 
@@ -108,9 +134,7 @@ void CVarManager::SetCameraMax(float maxDist) {
     g_cvarCamMax = maxDist;
     void* p = FindCVar("g_camMax");
     if (p) {
-        *(float*)((uint8_t*)p + OFFSET_FLOAT) = maxDist;
-        *(int*)((uint8_t*)p + OFFSET_INT) = static_cast<int>(maxDist);
-        snprintf((char*)((uint8_t*)p + OFFSET_STR), 32, "%.1f", maxDist);
+        WriteCVarFloat(p, maxDist);
     }
 }
 
@@ -119,9 +143,7 @@ void CVarManager::SetMaxFps(int fps) {
     g_cvarMaxFps = fps;
     void* p = FindCVar("g_maxfps");
     if (p) {
-        *(int*)((uint8_t*)p + OFFSET_INT) = fps;
-        *(float*)((uint8_t*)p + OFFSET_FLOAT) = static_cast<float>(fps);
-        snprintf((char*)((uint8_t*)p + OFFSET_STR), 32, "%d", fps);
+        WriteCVarInt(p, fps);
     }
 }
 
@@ -130,32 +152,49 @@ void CVarManager::SetTripleBuffering(bool enable) {
     g_cvarTripleBuffering = enable;
     void* p = FindCVar("d3d9_TripleBuffering");
     if (p) {
-        *(int*)((uint8_t*)p + OFFSET_INT) = enable ? 1 : 0;
-        *(float*)((uint8_t*)p + OFFSET_FLOAT) = enable ? 1.0f : 0.0f;
+        WriteCVarInt(p, enable ? 1 : 0);
     }
 }
 
 void CVarManager::SetAnisotropic(bool enable) {
     std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
     g_cvarAnisotropic = enable;
-    void* p = FindCVar("r_anisotropy");
+    int val = enable ? 16 : 0;
+
+    void* p1 = FindCVar("r_Texture_Anisotropic_Level");
+    if (p1) WriteCVarInt(p1, val);
+
+    void* p2 = FindCVar("r_anisotropy");
+    if (p2) WriteCVarInt(p2, val);
+}
+
+void CVarManager::SetFreeFly(bool enable) {
+    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
+    void* p = FindCVar("g_freefly");
     if (p) {
-        int val = enable ? 16 : 0;
-        *(int*)((uint8_t*)p + OFFSET_INT) = val;
-        *(float*)((uint8_t*)p + OFFSET_FLOAT) = static_cast<float>(val);
+        WriteCVarInt(p, enable ? 1 : 0);
+        LogInfo("g_freefly configurado em tempo real para: %d", enable ? 1 : 0);
     }
 }
 
 void CVarManager::ApplyAll() {
-    SetFov(g_cvarFov.load());
-    SetCameraMax(g_cvarCamMax.load());
-    SetMaxFps(g_cvarMaxFps.load());
+    if (g_featFov.load()) SetFov(g_cvarFov.load());
+    if (g_featCamMax.load()) SetCameraMax(g_cvarCamMax.load());
+    if (g_featFpsUnlock.load()) SetMaxFps(g_cvarMaxFps.load());
     SetTripleBuffering(g_cvarTripleBuffering.load());
     SetAnisotropic(g_cvarAnisotropic.load());
+    if (g_featFreeFly.load()) {
+        SetFreeFly(true);
+    } else {
+        SetFreeFly(false);
+    }
 }
 
 void CVarManager::ResyncOnMapChange() {
-    // If CVars were reallocated or reset by map change, re-apply
+    // If CVars were re-registered on map load, re-scan if needed and reapply
+    if (s_cvarMap.empty()) {
+        ScanCVars();
+    }
     ApplyAll();
 }
 

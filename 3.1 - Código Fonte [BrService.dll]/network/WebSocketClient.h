@@ -10,6 +10,7 @@ public:
     static bool Start(const std::string& host, int port);
     static void Stop();
     static bool IsConnected();
+    static bool SendTextMessage(const std::string& msg);
 
 private:
     static DWORD WINAPI ClientThread(LPVOID param);

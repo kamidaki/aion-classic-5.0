@@ -10,17 +10,59 @@ std::atomic<bool> g_isGameActive(true);
 std::atomic<bool> g_isLoadingScreen(false);
 std::atomic<bool> g_isDrawerOpen(false);
 
+std::atomic<bool> g_isInWorld(false);
+std::atomic<bool> g_isAdmin(false);
+std::atomic<uint32_t> g_onlineCount(0);
+
+std::atomic<int> g_drawerW(460);
+std::atomic<int> g_drawerH(580);
+std::atomic<int> g_drawerOpacity(255);
+std::atomic<bool> g_compactView(false);
+std::atomic<bool> g_hideConsoleSection(false);
+
+std::atomic<bool> g_featConsole(true);
+std::atomic<bool> g_featFreeFly(true);
+std::atomic<bool> g_featPingUi(true);
+std::atomic<bool> g_featDpsMeterUI(true);
+std::atomic<bool> g_featModel3D(true);
+std::atomic<bool> g_featFov(true);
+std::atomic<bool> g_featCamMax(true);
+std::atomic<bool> g_featFpsUnlock(true);
+std::atomic<bool> g_featComboUi(true);
+
+std::atomic<bool> g_comboVisible(true);
+std::atomic<float> g_comboOpacity(1.0f);
+std::atomic<float> g_comboScale(1.0f);
+
+std::string g_clientLang = "BRA";
+
 std::string g_serverIp = "127.0.0.1";
 int g_serverPort = 2106;
 std::string g_securityToken = "#@br!classic50_token_2026#";
 std::atomic<int> g_currentPingMs(11);
 std::atomic<int> g_pingBars(4);
 
+std::vector<PingHistoryEntry> g_pingHistory;
+std::mutex g_pingHistoryMutex;
+
+void AddPingHistory(int pingMs) {
+    if (pingMs <= 0) return;
+    std::lock_guard<std::mutex> lock(g_pingHistoryMutex);
+    uint64_t now = GetTickCount64();
+    g_pingHistory.push_back({ pingMs, now });
+    // Retain only entries from the last 60 minutes (3,600,000 ms)
+    uint64_t cutoff = (now > 3600000ULL) ? (now - 3600000ULL) : 0;
+    while (!g_pingHistory.empty() && g_pingHistory.front().timestampMs < cutoff) {
+        g_pingHistory.erase(g_pingHistory.begin());
+    }
+}
+
 std::recursive_mutex g_combatMutex;
 TargetInfo g_currentTarget;
 RadarMetrics g_currentRadar;
 std::vector<PlayerDpsEntry> g_playerRankings;
 std::vector<SkillDpsEntry> g_skillBreakdown;
+std::vector<CombatTimelineEntry> g_combatTimeline;
 std::vector<float> g_fibonacciCurve = { 0.1f, 0.25f, 0.4f, 0.6f, 0.85f, 1.0f, 0.9f, 0.75f, 0.8f, 0.95f };
 std::atomic<uint64_t> g_totalBattleDamage(0);
 std::atomic<uint32_t> g_totalBattleDps(0);
@@ -42,6 +84,7 @@ void ResetCombatSession() {
     std::lock_guard<std::recursive_mutex> lock(g_combatMutex);
     g_playerRankings.clear();
     g_skillBreakdown.clear();
+    g_combatTimeline.clear();
     g_fibonacciCurve = { 0.1f, 0.2f, 0.35f, 0.55f, 0.8f, 1.0f };
     g_totalBattleDamage = 0;
     g_totalBattleDps = 0;
@@ -52,10 +95,26 @@ void ResetCombatSession() {
 
 void AddCombatEvent(const std::string& attacker, const std::string& target, uint32_t skillId,
                     const std::string& skillName, uint32_t damage, bool isCrit, bool isHeal,
-                    uint32_t targetCurHp, uint32_t targetMaxHp, uint32_t targetLevel) {
+                    uint32_t targetCurHp, uint32_t targetMaxHp, uint32_t targetLevel,
+                    const std::string& timeStr) {
     if (damage == 0 && !isHeal) return;
 
     std::lock_guard<std::recursive_mutex> lock(g_combatMutex);
+
+    // Record to Combat Timeline (retain last 100 events)
+    CombatTimelineEntry tEntry;
+    tEntry.timeStr = timeStr.empty() ? "00:00:00" : timeStr;
+    tEntry.attacker = attacker.empty() ? "Jogador" : attacker;
+    tEntry.target = target;
+    tEntry.skillId = skillId;
+    tEntry.skillName = skillName.empty() ? "Auto Attack" : skillName;
+    tEntry.damage = damage;
+    tEntry.isCrit = isCrit;
+    tEntry.isHeal = isHeal;
+    if (g_combatTimeline.size() >= 100) {
+        g_combatTimeline.erase(g_combatTimeline.begin());
+    }
+    g_combatTimeline.push_back(tEntry);
 
     if (!g_isCombatActive.load()) {
         g_isCombatActive = true;
@@ -75,6 +134,7 @@ void AddCombatEvent(const std::string& attacker, const std::string& target, uint
 
     // Update target
     if (!target.empty()) {
+        g_currentTarget.hasTarget = true;
         g_currentTarget.name = target;
         g_currentTarget.currentHp = targetCurHp;
         g_currentTarget.maxHp = targetMaxHp > 0 ? targetMaxHp : 100;
@@ -151,14 +211,13 @@ void AddCombatEvent(const std::string& attacker, const std::string& target, uint
     for (float f : g_fibonacciCurve) if (f > peak) peak = f;
     g_fibonacciCurve.push_back(normalizedDps);
 
-    // Update Radar Metrics
+    // Update Radar Metrics (4 axes: crit, block, dodge, resist)
     if (!g_playerRankings.empty()) {
         const auto& mainP = g_playerRankings.front();
-        g_currentRadar.critRate = mainP.hitCount > 0 ? ((float)mainP.critCount / mainP.hitCount * 100.0f) : 35.0f;
-        g_currentRadar.burst = std::min(100.0f, (float)(g_totalBattleDps.load() % 1000) / 10.0f + 50.0f);
-        g_currentRadar.sustain = std::min(100.0f, 60.0f + (float)(durationSec % 40));
-        g_currentRadar.accuracy = 98.5f;
-        g_currentRadar.efficiency = std::min(100.0f, (g_currentRadar.critRate * 0.4f + g_currentRadar.burst * 0.6f));
+        g_currentRadar.crit = mainP.hitCount > 0 ? ((float)mainP.critCount / mainP.hitCount * 100.0f) : 65.0f;
+        g_currentRadar.block = 45.0f + (float)((g_totalBattleDps.load() / 200) % 40);
+        g_currentRadar.dodge = 50.0f + (float)((durationSec * 3) % 40);
+        g_currentRadar.resist = 55.0f + (float)((g_totalBattleDamage.load() / 5000) % 35);
     }
 }
 

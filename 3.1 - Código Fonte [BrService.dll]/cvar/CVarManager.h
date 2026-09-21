@@ -24,6 +24,7 @@ public:
     static void SetMaxFps(int fps);
     static void SetTripleBuffering(bool enable);
     static void SetAnisotropic(bool enable);
+    static void SetFreeFly(bool enable);
 
     static void ApplyAll();
     static void ResyncOnMapChange();

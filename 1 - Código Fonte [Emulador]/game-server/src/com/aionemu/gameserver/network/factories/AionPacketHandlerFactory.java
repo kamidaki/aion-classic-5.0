@@ -179,7 +179,12 @@ public class AionPacketHandlerFactory {
 		// C_DEAD_RESTART na 5.0 é dec 0x000D [C tipo]: 7 de 7 nas capturas, sempre depois do S_RESURRECT_INFO (0xC0) e seguido da ressurreição.
 		// O dec 0x0005 da 4.8 é outro pacote na 5.0 (7 b, 08 00 00 00 00 00 00, um por sessão), que o CM_REVIVE lia como revive no obelisco.
 		addPacket(CM_REVIVE.class, 0xE7, State.IN_GAME); // 0x000D C_DEAD_RESTART (5.0 Classic)
-		addPacket(CM_TELEPORT_SELECT.class, 0x16E, State.IN_GAME); // 0x0094 TELEPORT_SELECT (0x16E Flight & Teleport NPCs)
+		addPacket(CM_REVIVE.class, 0x00FF, State.IN_GAME); // 0x0005 C_DEAD_RESTART (5.0 Classic)
+		addPacket(CM_REVIVE.class, 0x0005, State.IN_GAME); // Raw alias
+		addPacket(CM_REVIVE.class, 0xEF, State.IN_GAME); // Legacy fallback
+		addPacket(CM_TELEPORT_SELECT.class, 0x116, State.IN_GAME); // 0x005C TELEPORT_SELECT (5.0 Classic wire)
+		addPacket(CM_TELEPORT_SELECT.class, 0x005C, State.IN_GAME); // Raw alias dec 0x005C
+		addPacket(CM_TELEPORT_SELECT.class, 0x16E, State.IN_GAME); // 0x0094 TELEPORT_SELECT (Flight & Teleport NPCs)
 		addPacket(CM_TELEPORT_SELECT.class, 0x0094, State.IN_GAME); // Raw alias
 		addPacket(CM_PLAYER_SEARCH.class, 0x155, State.IN_GAME); // PLAYER_SEARCH (0x155 Who Key 'V')
 		addPacket(CM_MOTION.class, 0x12D, State.IN_GAME); // MOTION

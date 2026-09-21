@@ -43,10 +43,17 @@ public class BattlePassService {
 
 	public void initBattlePass() {
 		long now = System.currentTimeMillis();
+		// 10 temporadas em loop contínuo de 2 meses (60 dias) cada
+		long seasonDurationMs = 60L * 24L * 3600L * 1000L;
+		long baseEpoch = 1704067200000L; // 2024-01-01 00:00:00 UTC
+		long elapsed = Math.max(0, now - baseEpoch);
+		long currentSeasonStart = baseEpoch + ((elapsed / seasonDurationMs) * seasonDurationMs);
+		long currentSeasonEnd = currentSeasonStart + seasonDurationMs;
+
 		DataManager.BATTLE_PASS_DATA.getAllTemplate().forEach((template) -> {
-			if (template.getStartDate().getTime() <= now && template.getEndDate().getTime() >= now) {
-				season.add(template);
-			}
+			template.setStartDate(new Timestamp(currentSeasonStart));
+			template.setEndDate(new Timestamp(currentSeasonEnd));
+			season.add(template);
 		});
 		DataManager.BATTLE_PASS_QUEST_DATA.getAllTemplate().forEach((template) -> {
 			this.season.forEach((s) -> {

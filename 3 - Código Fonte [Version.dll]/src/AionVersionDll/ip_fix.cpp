@@ -71,9 +71,41 @@ static LPSTR WINAPI zzlstrcpynA(_Out_writes_(iMaxLength) LPSTR lpString1, _In_ L
     return real_lstrcpynA(lpString1, lpString2, iMaxLength);
 }
 
+static decltype(gethostbyname)* real_gethostbyname = gethostbyname;
+static struct hostent* WSAAPI zzgethostbyname(const char* name) {
+    if (name) {
+        if (strstr(name, "plaync") != nullptr || strstr(name, "ncsoft") != nullptr || strstr(name, "gameforge") != nullptr) {
+            static struct hostent localHost;
+            static char* localAddrList[2];
+            static unsigned long localIp;
+            localIp = inet_addr("127.0.0.1");
+            localAddrList[0] = (char*)&localIp;
+            localAddrList[1] = nullptr;
+            localHost.h_name = (char*)name;
+            localHost.h_aliases = nullptr;
+            localHost.h_addrtype = AF_INET;
+            localHost.h_length = 4;
+            localHost.h_addr_list = localAddrList;
+            return &localHost;
+        }
+    }
+    return real_gethostbyname(name);
+}
+
 static decltype(connect)* real_connect = connect;
 static int WSAAPI zzconnect(_In_ SOCKET s, _In_reads_bytes_(namelen) const struct sockaddr FAR* name, _In_ int namelen) {
     possibleConnectIps.clear();
+    if (name && namelen >= sizeof(sockaddr_in) && name->sa_family == AF_INET) {
+        sockaddr_in* sin = (sockaddr_in*)name;
+        uint16_t port = ntohs(sin->sin_port);
+        // Intercept outgoing HTTP/Shop connections to port 80 or 443 (redirect to local web server 127.0.0.1:8080)
+        if (port == 80 || port == 443) {
+            sockaddr_in localAddr = *sin;
+            localAddr.sin_port = htons(8080);
+            localAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+            return real_connect(s, (struct sockaddr*)&localAddr, sizeof(localAddr));
+        }
+    }
     return real_connect(s, name, namelen);
 }
 
@@ -82,4 +114,5 @@ void InstallIpFix() {
     DetourAttach(&(PVOID&)real_inet_ntoa, zzinet_ntoa);
     DetourAttach(&(PVOID&)real_lstrcpynA, zzlstrcpynA);
     DetourAttach(&(PVOID&)real_connect, zzconnect);
+    DetourAttach(&(PVOID&)real_gethostbyname, zzgethostbyname);
 }

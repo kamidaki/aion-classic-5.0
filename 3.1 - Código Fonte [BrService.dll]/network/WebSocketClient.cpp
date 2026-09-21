@@ -1,11 +1,18 @@
 #include "WebSocketClient.h"
 #include "../core/ServiceGlobals.h"
 #include "../core/ServiceLog.h"
+#include "../core/I18n.h"
 #include "../database/CombatDb.h"
+#include "../ui/PingHudUI.h"
+#include "../ui/DrawerModalUI.h"
+#include "../model3d/CryModelBridge.h"
+#include "../combo/ComboUI.h"
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <atomic>
 #include <chrono>
+#include <mutex>
+#include <vector>
 
 namespace BrService {
 
@@ -14,6 +21,41 @@ static std::atomic<bool> s_running(false);
 static std::atomic<bool> s_connected(false);
 static std::string s_wsHost = "127.0.0.1";
 static int s_wsPort = 2130;
+static SOCKET s_currentSock = INVALID_SOCKET;
+static std::mutex s_sendMutex;
+
+bool WebSocketClient::SendTextMessage(const std::string& msg) {
+    std::lock_guard<std::mutex> lock(s_sendMutex);
+    if (s_currentSock == INVALID_SOCKET || !s_connected.load()) return false;
+
+    // RFC 6455 Client Masked Text Frame
+    std::vector<uint8_t> frame;
+    frame.push_back(0x81); // FIN + Text
+
+    size_t len = msg.size();
+    if (len <= 125) {
+        frame.push_back(static_cast<uint8_t>(len | 0x80)); // masked
+    } else if (len <= 65535) {
+        frame.push_back(126 | 0x80);
+        frame.push_back(static_cast<uint8_t>((len >> 8) & 0xFF));
+        frame.push_back(static_cast<uint8_t>(len & 0xFF));
+    } else {
+        frame.push_back(127 | 0x80);
+        for (int i = 7; i >= 0; --i) {
+            frame.push_back(static_cast<uint8_t>((len >> (i * 8)) & 0xFF));
+        }
+    }
+
+    uint8_t mask[4] = { 0x4B, 0x9A, 0x2C, 0xF1 };
+    frame.insert(frame.end(), mask, mask + 4);
+
+    for (size_t i = 0; i < len; ++i) {
+        frame.push_back(static_cast<uint8_t>(msg[i]) ^ mask[i % 4]);
+    }
+
+    int sent = send(s_currentSock, reinterpret_cast<const char*>(frame.data()), static_cast<int>(frame.size()), 0);
+    return sent > 0;
+}
 
 static std::string ExtractJsonString(const std::string& json, const std::string& key) {
     std::string pattern = "\"" + key + "\":\"";
@@ -63,6 +105,13 @@ bool WebSocketClient::Start(const std::string& host, int port) {
 void WebSocketClient::Stop() {
     s_running = false;
     s_connected = false;
+    {
+        std::lock_guard<std::mutex> lock(s_sendMutex);
+        if (s_currentSock != INVALID_SOCKET) {
+            closesocket(s_currentSock);
+            s_currentSock = INVALID_SOCKET;
+        }
+    }
     if (s_hThread) {
         WaitForSingleObject(s_hThread, 2000);
         CloseHandle(s_hThread);
@@ -75,11 +124,136 @@ bool WebSocketClient::IsConnected() {
 }
 
 void WebSocketClient::HandleIncomingPayload(const std::string& payload) {
+    // 1. Player State Updates
+    if (payload.find("\"PLAYER_STATE\"") != std::string::npos) {
+        bool inGame = ExtractJsonBool(payload, "inGame", false);
+        bool isLoading = ExtractJsonBool(payload, "isLoading", false);
+        bool isAdmin = ExtractJsonBool(payload, "isAdmin", false);
+        uint32_t onlineCount = ExtractJsonUint(payload, "onlineCount", 0);
+
+        g_isInWorld = inGame;
+        g_isLoadingScreen = isLoading;
+        g_isAdmin = isAdmin;
+        g_onlineCount = onlineCount;
+
+        LogInfo("WebSocket PLAYER_STATE recebido: inGame=%d, isLoading=%d, isAdmin=%d, online=%u",
+                inGame, isLoading, isAdmin, onlineCount);
+
+        if (!inGame || isLoading) {
+            PingHudUI::Hide();
+            DrawerModalUI::Hide();
+        } else {
+            PingHudUI::Show();
+            PingHudUI::Repaint();
+        }
+        return;
+    }
+
+    // 2. Real-Time Target Selection Updates
+    if (payload.find("\"TARGET_INFO\"") != std::string::npos) {
+        bool hasTarget = ExtractJsonBool(payload, "hasTarget", false);
+        std::lock_guard<std::recursive_mutex> lock(g_combatMutex);
+        if (!hasTarget) {
+            g_currentTarget.hasTarget = false;
+            g_currentTarget.name = "Sem Alvo";
+            g_currentTarget.level = 0;
+            g_currentTarget.currentHp = 0;
+            g_currentTarget.maxHp = 100;
+            g_currentTarget.modelId = 0;
+            g_currentTarget.rating = "NORMAL";
+            g_currentTarget.race = "NONE";
+        } else {
+            g_currentTarget.hasTarget = true;
+            g_currentTarget.targetId = ExtractJsonUint(payload, "targetId", 0);
+            g_currentTarget.name = ExtractJsonString(payload, "name");
+            g_currentTarget.level = ExtractJsonUint(payload, "level", 0);
+            g_currentTarget.currentHp = ExtractJsonUint(payload, "currentHp", 0);
+            g_currentTarget.maxHp = ExtractJsonUint(payload, "maxHp", 100);
+            g_currentTarget.isNpc = ExtractJsonBool(payload, "isNpc", true);
+            g_currentTarget.modelId = ExtractJsonUint(payload, "modelId", 0);
+            g_currentTarget.aiName = ExtractJsonString(payload, "aiName");
+            g_currentTarget.attack = ExtractJsonUint(payload, "attack", 0);
+            g_currentTarget.pdef = ExtractJsonUint(payload, "pdef", 0);
+            g_currentTarget.mres = ExtractJsonUint(payload, "mres", 0);
+            g_currentTarget.rating = ExtractJsonString(payload, "rating");
+            if (g_currentTarget.rating.empty()) g_currentTarget.rating = "NORMAL";
+            g_currentTarget.race = ExtractJsonString(payload, "race");
+            if (g_currentTarget.race.empty()) g_currentTarget.race = "NONE";
+
+            // Immediately load 3D preview model for selected NPC
+            if (g_featModel3D.load() && g_currentTarget.modelId > 0) {
+                CryModelBridge::SetTargetNpc(g_currentTarget.modelId);
+            }
+        }
+
+        if (g_hDrawerModalWnd && IsWindow(g_hDrawerModalWnd) && g_isDrawerOpen.load()) {
+            InvalidateRect(g_hDrawerModalWnd, nullptr, FALSE);
+        }
+        return;
+    }
+
+    // 3. COMBO_EVENT
+    if (payload.find("\"COMBO_EVENT\"") != std::string::npos) {
+        std::string ev = ExtractJsonString(payload, "event");
+        int hits = (int)ExtractJsonUint(payload, "hits", 0);
+        int hitDamage = (int)ExtractJsonUint(payload, "hitDamage", 0);
+        int totalDamage = (int)ExtractJsonUint(payload, "totalDamage", 0);
+        int timeoutMs = (int)ExtractJsonUint(payload, "timeoutMs", 3000);
+        std::string title = ExtractJsonString(payload, "title");
+        g_ComboUI.OnEvent(ev, hits, title, hitDamage, totalDamage, timeoutMs);
+        return;
+    }
+
+    // 4. ACTION_POINT_GAINED (Pontos de Participação)
+    if (payload.find("\"ACTION_POINT_GAINED\"") != std::string::npos) {
+        int pts = (int)ExtractJsonUint(payload, "pointsEarned", 1);
+        if (IsEnglish()) {
+            g_ComboUI.ShowNotification("+" + std::to_string(pts) + " Participation Point!");
+        } else {
+            g_ComboUI.ShowNotification("+" + std::to_string(pts) + " Ponto de Participação!");
+        }
+        return;
+    }
+
+    // 5. ACTION_NEW_RECORD
+    if (payload.find("\"ACTION_NEW_RECORD\"") != std::string::npos) {
+        int rec = (int)ExtractJsonUint(payload, "recordHits", 0);
+        if (IsEnglish()) {
+            g_ComboUI.ShowNotification("New Combo Record: " + std::to_string(rec) + " Hits!");
+        } else {
+            g_ComboUI.ShowNotification("Novo Recorde de Combo: " + std::to_string(rec) + " Golpes!");
+        }
+        return;
+    }
+
+    // 6. ACTION_ABNORMAL_STATE
+    if (payload.find("\"ACTION_ABNORMAL_STATE\"") != std::string::npos) {
+        std::string stateName = ExtractJsonString(payload, "stateName");
+        std::string stateType = ExtractJsonString(payload, "stateType");
+        NotificationType nType = NotificationType::Normal;
+        if (stateType == "STUN") nType = NotificationType::AbnormalStun;
+        else if (stateType == "PARALYZE") nType = NotificationType::AbnormalParalyzed;
+        else if (stateType == "SILENCE") nType = NotificationType::AbnormalSilenced;
+        else if (stateType == "SNARE" || stateType == "ROOT") nType = NotificationType::AbnormalBlink;
+        else if (stateType == "POISON") nType = NotificationType::AbnormalPoison;
+        else if (stateType == "BLEED") nType = NotificationType::AbnormalBleed;
+        else if (stateType == "FEAR") nType = NotificationType::AbnormalFear;
+        else if (stateType == "SLEEP") nType = NotificationType::AbnormalSleep;
+        else if (stateType == "BLIND") nType = NotificationType::AbnormalBlind;
+        else if (stateType == "DISEASE") nType = NotificationType::AbnormalDisease;
+        else if (stateType == "CURSE") nType = NotificationType::AbnormalCurse;
+        else if (stateType == "CONFUSE") nType = NotificationType::AbnormalConfuse;
+        g_ComboUI.ShowAbnormalState(stateName, nType);
+        return;
+    }
+
+    // 3. Combat Event (Damage/Heal Telemetry)
     if (payload.find("\"COMBAT_EVENT\"") == std::string::npos &&
         payload.find("\"type\":\"damage\"") == std::string::npos) {
         return;
     }
 
+    std::string timeStr = ExtractJsonString(payload, "time");
     std::string attacker = ExtractJsonString(payload, "attacker");
     if (attacker.empty()) attacker = ExtractJsonString(payload, "attackerName");
     std::string target = ExtractJsonString(payload, "target");
@@ -94,8 +268,8 @@ void WebSocketClient::HandleIncomingPayload(const std::string& payload) {
     uint32_t targetMaxHp = ExtractJsonUint(payload, "targetMaxHp", 100);
     uint32_t targetLevel = ExtractJsonUint(payload, "targetLevel", 55);
 
-    // Update in-memory telemetry
-    AddCombatEvent(attacker, target, skillId, skillName, damage, isCrit, isHeal, targetCurHp, targetMaxHp, targetLevel);
+    // Update in-memory telemetry and timeline
+    AddCombatEvent(attacker, target, skillId, skillName, damage, isCrit, isHeal, targetCurHp, targetMaxHp, targetLevel, timeStr);
 
     // Record to SQLite local history
     auto now = std::chrono::system_clock::now();
@@ -169,8 +343,13 @@ DWORD WINAPI WebSocketClient::ClientThread(LPVOID /*param*/) {
             continue;
         }
 
+        {
+            std::lock_guard<std::mutex> lock(s_sendMutex);
+            s_currentSock = sock;
+        }
         s_connected = true;
         LogInfo("WebSocket conectado com sucesso ao emulador em %s:%d!", s_wsHost.c_str(), s_wsPort);
+        SendTextMessage(std::string("SET_COMBO_VISIBILITY:") + (g_comboVisible.load() ? "1" : "0"));
 
         // Frame read loop
         std::vector<uint8_t> frameBuffer;
@@ -238,6 +417,10 @@ DWORD WINAPI WebSocketClient::ClientThread(LPVOID /*param*/) {
         }
 
         s_connected = false;
+        {
+            std::lock_guard<std::mutex> lock(s_sendMutex);
+            s_currentSock = INVALID_SOCKET;
+        }
         if (sock != INVALID_SOCKET) {
             closesocket(sock);
         }

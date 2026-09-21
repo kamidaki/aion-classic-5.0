@@ -189,32 +189,7 @@ public class World {
 
 		MapRegion newRegion = oldRegion.getParent().getRegion(newX, newY, newZ);
 		if (newRegion == null) {
-			log.warn("New MapRegion for {} doesn't exist at coordinates: Map {}, X {}, Y {}, Z {}", object, object.getWorldId(), newX, newY, newZ,
-				new Throwable());
-			if (object instanceof Creature creature)
-				creature.getMoveController().abortMove();
-			if (object instanceof Player player) {
-				float x, y, z;
-				int worldId;
-				byte h = 0;
-
-				if (player.getBindPoint() != null) {
-					BindPointPosition bplist = player.getBindPoint();
-					worldId = bplist.getMapId();
-					x = bplist.getX();
-					y = bplist.getY();
-					z = bplist.getZ();
-					h = bplist.getHeading();
-				} else {
-					LocationData locationData = DataManager.PLAYER_INITIAL_DATA.getSpawnLocation(player.getCommonData().getRace());
-					worldId = locationData.getMapId();
-					x = locationData.getX();
-					y = locationData.getY();
-					z = locationData.getZ();
-				}
-				setPosition(object, worldId, x, y, z, h);
-			}
-			return;
+			newRegion = oldRegion;
 		}
 
 		position.setXYZH(newX, newY, newZ, newHeading);

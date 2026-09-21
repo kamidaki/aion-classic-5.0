@@ -59,8 +59,16 @@ public class WorldMap2DInstance extends WorldMapInstance {
 
 	@Override
 	public MapRegion getRegion(float x, float y, float z) {
-		int regionId = RegionUtil.get2dRegionId(x, y);
-		return regions.get(regionId);
+		int size = getParent().getWorldSize();
+		float clampedX = Math.max(0, Math.min(size - 1, x));
+		float clampedY = Math.max(0, Math.min(size - 1, y));
+		int regionId = RegionUtil.get2dRegionId(clampedX, clampedY);
+		MapRegion region = regions.get(regionId);
+		if (region == null) {
+			regionId = RegionUtil.get2dRegionId(x, y);
+			region = regions.get(regionId);
+		}
+		return region;
 	}
 
 	@Override

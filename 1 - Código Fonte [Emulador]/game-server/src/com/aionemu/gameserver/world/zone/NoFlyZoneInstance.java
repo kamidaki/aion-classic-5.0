@@ -15,10 +15,6 @@ public class NoFlyZoneInstance extends ZoneInstance {
 	public synchronized boolean onEnter(Creature creature) {
 		if (!super.onEnter(creature))
 			return false;
-		boolean wasInNoFlyZone = creature.isInsideZoneType(ZoneType.NO_FLY);
-		creature.setInsideZoneType(ZoneType.NO_FLY);
-		if (!wasInNoFlyZone && creature.isInsideZoneType(ZoneType.FLY) && creature instanceof Player player)
-			player.getController().onLeaveFlyArea();
 		return true;
 	}
 
@@ -26,9 +22,6 @@ public class NoFlyZoneInstance extends ZoneInstance {
 	public synchronized boolean onLeave(Creature creature) {
 		if (!super.onLeave(creature))
 			return false;
-		creature.unsetInsideZoneType(ZoneType.NO_FLY);
-		if (!creature.isInsideZoneType(ZoneType.NO_FLY) && creature.isInsideZoneType(ZoneType.FLY) && creature instanceof Player player)
-			player.getController().onEnterFlyArea();
 		return true;
 	}
 }

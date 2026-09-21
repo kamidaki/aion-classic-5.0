@@ -151,6 +151,7 @@ public class NpcController extends CreatureController<Npc> {
 				doReward();
 			owner.getPosition().getWorldMapInstance().getInstanceHandler().onDie(owner);
 			owner.getAi().onGeneralEvent(AIEventType.DIED);
+			com.lostacademy.lostsocket.combat.ComboService.getInstance().onNpcDeath(owner);
 		} catch (Exception e) {
 			log.error("onDie() exception for " + owner + ":", e);
 		}

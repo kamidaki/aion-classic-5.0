@@ -112785,10 +112785,15 @@
 			<playermove allow="false"/>
 		</useconditions>
 	</skill_template>
-	<skill_template skill_id="50052" name="Mostrar marca %0" nameId="901745" stack="ACTIONKEY_EMERGENCY_ESCAPE" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
-		<useconditions>
-			<playermove allow="false"/>
-		</useconditions>
+	<skill_template skill_id="50052" name="Aumenta a velocidade de movimento" nameId="12400004" cooldownId="182" group="WA_DASH" stack="WA_DASH" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="2400" duration="0" cancel_rate="20" hostile_type="INDIRECT">
+		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
+		<effects>
+			<statup duration2="600000" effectid="101821" e="1" noresist="true" hoptype="SKILLLV" hopb="328">
+				<change stat="SPEED" func="ADD" value="3000"/>
+				<change stat="FLY_SPEED" func="ADD" value="3000"/>
+			</statup>
+		</effects>
+		<motion name="phburst" speed="30" instant_skill="true"/>
 	</skill_template>
 	<skill_template skill_id="201" name="Salvação" nameId="2286200" delayId="201" stack="ENCHANT_EFFECT_COMBINE_30_ATTACKRATIO" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2" target_type="ONLYONE"/>

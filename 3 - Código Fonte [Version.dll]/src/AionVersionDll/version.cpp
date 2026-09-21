@@ -367,7 +367,7 @@ static LPSTR WINAPI zzGetCommandLineA() {
             }
         }
         if (s_hookedCmdA.find("-classic") == std::string::npos) {
-            s_hookedCmdA += " -noweb -classic -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu -dwsm -probability -nospamcheck";
+            s_hookedCmdA += " -classic -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu -dwsm -probability -nospamcheck";
         }
     });
     return const_cast<LPSTR>(s_hookedCmdA.c_str());
@@ -407,7 +407,7 @@ static LPWSTR WINAPI zzGetCommandLineW() {
             }
         }
         if (s_hookedCmdW.find(L"-classic") == std::wstring::npos) {
-            s_hookedCmdW += L" -noweb -classic -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu -dwsm -probability -nospamcheck";
+            s_hookedCmdW += L" -classic -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu -dwsm -probability -nospamcheck";
         }
     });
     return const_cast<LPWSTR>(s_hookedCmdW.c_str());

@@ -40,6 +40,8 @@ cl /c /O2 /utf-8 /W3 /std:c++17 /EHsc /MT /D NDEBUG /D _WINDOWS /D _USRDLL /D _U
     ui\UICommon.cpp ^
     ui\PingHudUI.cpp ^
     ui\DrawerModalUI.cpp ^
+    combo\ComboRenderer.cpp ^
+    combo\ComboUI.cpp ^
     core\DllMain.cpp
 if %ERRORLEVEL% neq 0 (
     echo [ERRO] Falha na compilacao dos fontes C++!
@@ -47,7 +49,7 @@ if %ERRORLEVEL% neq 0 (
 )
 
 echo [*] Linkando BrService.dll (x64)...
-link /NOLOGO /DLL /OUT:x64\Release\BrService.dll /DEF:BrService.def x64\Release\*.obj user32.lib gdi32.lib gdiplus.lib ws2_32.lib iphlpapi.lib shell32.lib ole32.lib dwmapi.lib
+link /NOLOGO /DLL /OUT:x64\Release\BrService.dll /DEF:BrService.def x64\Release\*.obj user32.lib gdi32.lib gdiplus.lib ws2_32.lib iphlpapi.lib shell32.lib ole32.lib dwmapi.lib comctl32.lib
 if %ERRORLEVEL% neq 0 (
     echo [ERRO] Falha na linkagem da BrService.dll!
     exit /b 1

@@ -4,37 +4,163 @@
 #include "../ui/PingHudUI.h"
 #include "../ui/DrawerModalUI.h"
 #include "../cvar/CVarManager.h"
+#include "../combo/ComboUI.h"
 #include <atomic>
+#include <commctrl.h>
+
+#pragma comment(lib, "comctl32.lib")
 
 namespace BrService {
 
 static HANDLE s_hWatchdog = nullptr;
 static std::atomic<bool> s_running(false);
+static constexpr UINT_PTR GAME_SUBCLASS_ID = 0x2026;
+static constexpr int HOTKEY_ID_CONSOLE = 0x53463; // Shift + F3
+static bool s_subclassInstalled = false;
 
 struct WindowSearchContext {
     DWORD targetPid;
     HWND foundHwnd;
 };
 
+static void SyncPositionsDirectly(HWND hGame) {
+    if (!hGame || !IsWindow(hGame)) return;
+    if (IsIconic(hGame)) return;
+
+    RECT cr;
+    GetClientRect(hGame, &cr);
+    POINT pt = { 0, 0 };
+    ClientToScreen(hGame, &pt);
+
+    int gx = pt.x;
+    int gy = pt.y;
+    int gw = cr.right - cr.left;
+    int gh = cr.bottom - cr.top;
+
+    PingHudUI::UpdatePosition(gx, gy, gw, gh);
+    DrawerModalUI::UpdatePosition(gx, gy, gw, gh);
+}
+
+static LRESULT CALLBACK GameWindowSubclassProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam,
+                                              UINT_PTR uIdSubclass, DWORD_PTR /*dwRefData*/) {
+    switch (uMsg) {
+    case WM_HOTKEY:
+        if (wParam == HOTKEY_ID_CONSOLE) {
+            DrawerModalUI::Toggle();
+            return 0;
+        }
+        break;
+
+    case WM_KEYDOWN:
+    case WM_SYSKEYDOWN: {
+        bool shiftDown = (GetKeyState(VK_SHIFT) & 0x8000) != 0;
+        if (wParam == VK_F3 && shiftDown) {
+            DrawerModalUI::Toggle();
+            return 0;
+        }
+        break;
+    }
+
+    case WM_WINDOWPOSCHANGED:
+    case WM_MOVE:
+    case WM_SIZE:
+        SyncPositionsDirectly(hWnd);
+        if (g_wakeEvent) SetEvent(g_wakeEvent);
+        break;
+
+    case WM_ACTIVATE:
+        if (LOWORD(wParam) == WA_INACTIVE) {
+            g_isGameActive = false;
+            PingHudUI::Hide();
+            DrawerModalUI::Hide();
+            if (g_wakeEvent) SetEvent(g_wakeEvent);
+        } else {
+            HWND fg = GetForegroundWindow();
+            bool isMin = IsIconic(hWnd);
+            bool isFore = (fg == hWnd || fg == g_hPingHudWnd || fg == g_hDrawerModalWnd || fg == g_overlayHwnd || IsForegroundInGameProcess(hWnd, fg));
+            g_isGameActive = (!isMin && isFore);
+            if (g_isGameActive.load()) {
+                if (g_isInWorld.load() && !g_isLoadingScreen.load()) {
+                    PingHudUI::Show();
+                    DrawerModalUI::RestoreIfOpen();
+                    SyncPositionsDirectly(hWnd);
+                }
+            } else {
+                PingHudUI::Hide();
+                DrawerModalUI::Hide();
+            }
+            if (g_wakeEvent) SetEvent(g_wakeEvent);
+        }
+        break;
+
+    case WM_KILLFOCUS:
+        g_isGameActive = false;
+        PingHudUI::Hide();
+        DrawerModalUI::Hide();
+        if (g_wakeEvent) SetEvent(g_wakeEvent);
+        break;
+
+    case WM_SETFOCUS: {
+        HWND fg = GetForegroundWindow();
+        bool isMin = IsIconic(hWnd);
+        bool isFore = (fg == hWnd || fg == g_hPingHudWnd || fg == g_hDrawerModalWnd || fg == g_overlayHwnd || IsForegroundInGameProcess(hWnd, fg));
+        g_isGameActive = (!isMin && isFore);
+        if (g_isGameActive.load()) {
+            if (g_isInWorld.load() && !g_isLoadingScreen.load()) {
+                PingHudUI::Show();
+                DrawerModalUI::RestoreIfOpen();
+                SyncPositionsDirectly(hWnd);
+            }
+        } else {
+            PingHudUI::Hide();
+            DrawerModalUI::Hide();
+        }
+        if (g_wakeEvent) SetEvent(g_wakeEvent);
+        break;
+    }
+
+    case WM_DESTROY:
+        UnregisterHotKey(hWnd, HOTKEY_ID_CONSOLE);
+        RemoveWindowSubclass(hWnd, GameWindowSubclassProc, uIdSubclass);
+        s_subclassInstalled = false;
+        break;
+    }
+    return DefSubclassProc(hWnd, uMsg, wParam, lParam);
+}
+
 static BOOL CALLBACK EnumWindowsCallback(HWND hwnd, LPARAM lParam) {
     auto* ctx = reinterpret_cast<WindowSearchContext*>(lParam);
     DWORD pid = 0;
     GetWindowThreadProcessId(hwnd, &pid);
     if (pid == ctx->targetPid) {
+        // Skip our own overlay and drawer windows
+        if (hwnd == g_hPingHudWnd || hwnd == g_hDrawerModalWnd) return TRUE;
+
         wchar_t className[128] = { 0 };
         GetClassNameW(hwnd, className, 128);
+        if (wcsstr(className, L"BrService") != nullptr) return TRUE;
+
         wchar_t title[256] = { 0 };
         GetWindowTextW(hwnd, title, 256);
+        if (wcscmp(title, L"Aion Ping HUD") == 0 || wcsstr(title, L"Analisador") != nullptr || wcsstr(title, L"Painel Academy") != nullptr) return TRUE;
 
         // Aion Classic game window class or title
-        if (wcscmp(className, L"AION Client") == 0 ||
-            wcsstr(title, L"AION") != nullptr ||
-            wcsstr(title, L"Aion") != nullptr) {
+        if (wcscmp(className, L"AION Client") == 0) {
             ctx->foundHwnd = hwnd;
-            return FALSE; // Stop enum
+            return FALSE; // Exact class match
         }
-        if (!ctx->foundHwnd && IsWindowVisible(hwnd)) {
+        if (wcsstr(title, L"AION Client") != nullptr) {
             ctx->foundHwnd = hwnd;
+            return FALSE;
+        }
+
+        // Secondary match: visible window with real game client dimensions
+        if (!ctx->foundHwnd && IsWindowVisible(hwnd)) {
+            RECT rc;
+            GetClientRect(hwnd, &rc);
+            if ((rc.right - rc.left) >= 300 && (rc.bottom - rc.top) >= 300) {
+                ctx->foundHwnd = hwnd;
+            }
         }
     }
     return TRUE;
@@ -50,7 +176,6 @@ bool ServiceWorker::CheckLoadingScreen(HWND hwnd) {
     if (!hwnd) return false;
     wchar_t title[256] = { 0 };
     GetWindowTextW(hwnd, title, 256);
-    // While loading, Aion modifies title or state
     if (wcsstr(title, L"Loading") != nullptr || wcsstr(title, L"carregando") != nullptr) {
         return true;
     }
@@ -66,6 +191,12 @@ bool ServiceWorker::Start() {
 
 void ServiceWorker::Stop() {
     s_running = false;
+    HWND hGame = g_gameHwnd.load();
+    if (s_subclassInstalled && hGame && IsWindow(hGame)) {
+        UnregisterHotKey(hGame, HOTKEY_ID_CONSOLE);
+        RemoveWindowSubclass(hGame, GameWindowSubclassProc, GAME_SUBCLASS_ID);
+        s_subclassInstalled = false;
+    }
     if (s_hWatchdog) {
         WaitForSingleObject(s_hWatchdog, 1500);
         CloseHandle(s_hWatchdog);
@@ -77,77 +208,64 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
     LogInfo("ServiceWorker iniciado. Monitorando ciclo de vida do Aion...");
 
     HWND hGame = nullptr;
-    RECT lastRect = { 0, 0, 0, 0 };
     bool lastLoading = false;
-    bool lastActive = false;
 
     while (s_running.load()) {
         if (!hGame || !IsWindow(hGame)) {
             hGame = FindGameWindow();
             if (hGame) {
                 g_gameHwnd = hGame;
+                ::g_gameHwnd = hGame;
                 LogInfo("Janela do Aion localizada: HWND=%p", hGame);
+
+                // Install high-performance zero-delay subclass for instant window synchronization
+                if (!s_subclassInstalled) {
+                    if (SetWindowSubclass(hGame, GameWindowSubclassProc, GAME_SUBCLASS_ID, 0)) {
+                        s_subclassInstalled = true;
+                        RegisterHotKey(hGame, HOTKEY_ID_CONSOLE, MOD_SHIFT, VK_F3);
+                        LogInfo("Subclasse de alta performance e Hotkey (Shift+F3) vinculadas a janela do jogo.");
+                    }
+                }
+                SyncPositionsDirectly(hGame);
             } else {
-                Sleep(500);
+                Sleep(250);
                 continue;
             }
         }
 
-        // 1. Check window visibility & active state
+        // 1. Check window visibility & active state & foreground focus
         bool isMinimized = IsIconic(hGame);
-        HWND foreground = GetForegroundWindow();
-        bool isActive = (foreground == hGame || foreground == g_hDrawerModalWnd || foreground == g_hPingHudWnd);
-        g_isGameActive = (isActive && !isMinimized);
+        bool isVisible = IsWindowVisible(hGame);
+        HWND fg = GetForegroundWindow();
+        bool isForeground = (fg == hGame || fg == g_hPingHudWnd || fg == g_hDrawerModalWnd || fg == g_overlayHwnd || IsForegroundInGameProcess(hGame, fg));
+        bool active = (isVisible && !isMinimized && isForeground);
+        g_isGameActive = active;
 
-        // 2. Check loading screen
+        // 2. Fallback check for loading screen title
         bool isLoading = CheckLoadingScreen(hGame);
-        g_isLoadingScreen = isLoading;
-
         if (isLoading != lastLoading) {
             lastLoading = isLoading;
             if (isLoading) {
-                // Instantly hide HUD and drawer during map transitions
                 PingHudUI::Hide();
-                DrawerModalUI::Close();
-                LogInfo("Tela de carregamento detectada -> HUDs ocultados temporariamente.");
-            } else {
-                // Restore CVars and HUDs when loading finishes
+                DrawerModalUI::Hide();
+            } else if (g_isInWorld.load() && active) {
                 CVarManager::ResyncOnMapChange();
                 PingHudUI::Show();
-                LogInfo("Fim da tela de carregamento -> CVars sincronizados e HUD restaurado.");
+                DrawerModalUI::RestoreIfOpen();
             }
         }
 
-        // 3. Track position and size of game window
-        if (!isMinimized && !isLoading && g_isGameActive.load()) {
-            RECT cr;
-            GetClientRect(hGame, &cr);
-            POINT pt = { 0, 0 };
-            ClientToScreen(hGame, &pt);
-
-            int gx = pt.x;
-            int gy = pt.y;
-            int gw = cr.right - cr.left;
-            int gh = cr.bottom - cr.top;
-
-            if (gx != lastRect.left || gy != lastRect.top ||
-                gw != (lastRect.right - lastRect.left) || gh != (lastRect.bottom - lastRect.top) ||
-                g_isGameActive.load() != lastActive) {
-
-                lastRect = { gx, gy, gx + gw, gy + gh };
-                lastActive = g_isGameActive.load();
-
-                PingHudUI::UpdatePosition(gx, gy, gw, gh);
-                DrawerModalUI::UpdatePosition(gx, gy, gw, gh);
-            }
-        } else if (!g_isGameActive.load()) {
+        // 3. Periodic synchronization checkpoint
+        if (active && g_isInWorld.load() && !isLoading) {
+            SyncPositionsDirectly(hGame);
+            PingHudUI::Show();
+            DrawerModalUI::RestoreIfOpen();
+        } else {
             PingHudUI::Hide();
-            if (g_isDrawerOpen.load()) {
-                ShowWindow(g_hDrawerModalWnd, SW_HIDE);
-            }
+            DrawerModalUI::Hide();
         }
 
-        Sleep(60); // Low 16Hz polling -> 0% CPU consumption
+        Sleep(100); // 10Hz relaxed background monitor (subclass handles instant moves with 0% CPU)
     }
 
     LogInfo("ServiceWorker finalizado.");

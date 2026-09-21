@@ -36,6 +36,7 @@ import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.utils.audit.GMService;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.WorldPosition;
+import com.lostacademy.lostsocket.secure.SecureAreaService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -65,6 +66,10 @@ public class PlayerLeaveWorldService {
 	public static void leaveWorld(Player player) {
 		if (player == null)
 			return;
+
+		com.lostacademy.Dps_Meter.DpsService.sendPlayerState(player, false, false);
+		com.lostacademy.lostsocket.combat.ComboService.getInstance().onPlayerLogout(player);
+		SecureAreaService.getInstance().onLeaveWorld(player); // limpa estado FFA e cancela charge pendente
 
 		AionConnection con = player.getClientConnection();
 		player.setClientConnection(null); // this sets the player semi-offline, PacketSendUtility will not send packets anymore

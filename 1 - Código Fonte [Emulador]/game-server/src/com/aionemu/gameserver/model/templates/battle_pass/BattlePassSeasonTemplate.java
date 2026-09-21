@@ -63,11 +63,24 @@ public class BattlePassSeasonTemplate {
 		return name;
 	}
 
+	private Timestamp customStartDate = null;
+	private Timestamp customEndDate = null;
+
+	public void setStartDate(Timestamp ts) {
+		this.customStartDate = ts;
+	}
+
+	public void setEndDate(Timestamp ts) {
+		this.customEndDate = ts;
+	}
+
 	public Timestamp getStartDate() {
+		if (customStartDate != null) return customStartDate;
 		return startDate != null ? new Timestamp(startDate.toGregorianCalendar().getTimeInMillis()) : new Timestamp(0);
 	}
 
 	public Timestamp getEndDate() {
+		if (customEndDate != null) return customEndDate;
 		return endDate != null ? new Timestamp(endDate.toGregorianCalendar().getTimeInMillis()) : new Timestamp(Long.MAX_VALUE);
 	}
 }

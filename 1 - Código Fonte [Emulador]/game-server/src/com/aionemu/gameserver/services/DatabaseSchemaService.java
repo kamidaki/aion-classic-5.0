@@ -111,6 +111,52 @@ public class DatabaseSchemaService {
 
 		// 8. account_quna (Classic 5.0 Quna: saldo por conta, S 0x11B)
 		executeSql(con, AccountQunaDAO.CREATE_TABLE);
+
+		// 9. player_participation_points (Pontos de Participação Lost Academy)
+		executeSql(con,
+			"CREATE TABLE IF NOT EXISTS `player_participation_points` (" +
+			"  `account_id` INT NOT NULL," +
+			"  `points` BIGINT NOT NULL DEFAULT '0'," +
+			"  `last_update` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP," +
+			"  PRIMARY KEY (`account_id`)" +
+			") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;"
+		);
+
+		// 10. player_hits (Rastreamento de combos e histórico de golpes)
+		executeSql(con,
+			"CREATE TABLE IF NOT EXISTS `player_hits` (" +
+			"  `account_id` INT NOT NULL," +
+			"  `player_id` INT NOT NULL," +
+			"  `cumulative_reward` INT NOT NULL DEFAULT '0'," +
+			"  `better_amount_hits` INT NOT NULL DEFAULT '0'," +
+			"  `daily_hits` INT NOT NULL DEFAULT '0'," +
+			"  `weekly_hits` INT NOT NULL DEFAULT '0'," +
+			"  `monthly_hits` INT NOT NULL DEFAULT '0'," +
+			"  `year_hits` INT NOT NULL DEFAULT '0'," +
+			"  `total_hits` INT NOT NULL DEFAULT '0'," +
+			"  PRIMARY KEY (`account_id`, `player_id`)" +
+			") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;"
+		);
+
+		// 11. player_secure_area_log (Registro e histórico de transições do Secure Area / FFA)
+		executeSql(con,
+			"CREATE TABLE IF NOT EXISTS `player_secure_area_log` (" +
+			"  `id` INT NOT NULL AUTO_INCREMENT," +
+			"  `player_id` INT NOT NULL," +
+			"  `account_id` INT NOT NULL," +
+			"  `player_name` VARCHAR(50) NOT NULL," +
+			"  `action` VARCHAR(20) NOT NULL," +
+			"  `world_id` INT NOT NULL," +
+			"  `x` FLOAT NOT NULL," +
+			"  `y` FLOAT NOT NULL," +
+			"  `z` FLOAT NOT NULL," +
+			"  `points_spent` INT NOT NULL DEFAULT 0," +
+			"  `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP," +
+			"  PRIMARY KEY (`id`)," +
+			"  KEY `idx_player` (`player_id`)," +
+			"  KEY `idx_account` (`account_id`)" +
+			") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;"
+		);
 	}
 
 	private static void ensureColumns(Connection con) {
