@@ -163,7 +163,7 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_QUEST_TELEPORT.class, 0x1BF, State.IN_GAME); // 0x00C5 REQUEST_GUILD_HISTORY / QUEST_TELEPORT
 		addPacket(CM_SUMMON_ATTACK.class, 0x15E, State.IN_GAME); // 0x00A4 SUMMON_ATTACK (5.0 Classic: [D summon][D alvo][C][H tempo][C], 43 pacotes de 12 b nas capturas do Spirit Master)
 		addPacket(CM_SUMMON_CASTSPELL.class, 0x15C, State.IN_GAME); // 0x00A6 SUMMON_CASTSPELL (5.0 Classic: [D summon][H skill][C 1][D alvo][F], 25 pacotes de 15 b)
-		addPacket(CM_SHOW_MAP.class, 0x1AF, State.IN_GAME); // 0x00D5 SHOW_MAP
+		addPacket(CM_SHOW_MAP.class, 0x1AF, State.AUTHED, State.IN_GAME); // 0x00D5 SHOW_MAP (5.0: [C 0] logo depois do C_ENTER_WORLD, antes do LEVEL_READY)
 		addPacket(CM_AUTO_GROUP.class, 0x1AB, State.IN_GAME); // 0x00D9 AUTO_GROUP
 		addPacket(CM_SUMMON_MOVE.class, 0x1A8, State.IN_GAME); // 0x00DA SUMMON_MOVE
 		addPacket(CM_SUMMON_EMOTION.class, 0x1A9, State.IN_GAME); // 0x00DB SUMMON_EMOTION
@@ -176,9 +176,9 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_QUESTIONNAIRE.class, 0x163, State.IN_GAME); // 0x0091 QUESTIONNAIRE
 		// MOVE_ITEM e SPLIT_ITEM da 5.0 sao dec 0x00B4/0x00B5 (registrados acima e abaixo); dec 0x009C/0x009D nunca aparecem nas capturas
 		addPacket(CM_DELETE_QUEST.class, 0x122, State.IN_GAME); // DELETE_QUEST
-		addPacket(CM_REVIVE.class, 0x00FF, State.IN_GAME); // 0x0005 C_DEAD_RESTART (5.0 Classic)
-		addPacket(CM_REVIVE.class, 0x0005, State.IN_GAME); // Raw alias
-		addPacket(CM_REVIVE.class, 0xEF, State.IN_GAME); // Legacy fallback
+		// C_DEAD_RESTART na 5.0 é dec 0x000D [C tipo]: 7 de 7 nas capturas, sempre depois do S_RESURRECT_INFO (0xC0) e seguido da ressurreição.
+		// O dec 0x0005 da 4.8 é outro pacote na 5.0 (7 b, 08 00 00 00 00 00 00, um por sessão), que o CM_REVIVE lia como revive no obelisco.
+		addPacket(CM_REVIVE.class, 0xE7, State.IN_GAME); // 0x000D C_DEAD_RESTART (5.0 Classic)
 		addPacket(CM_TELEPORT_SELECT.class, 0x16E, State.IN_GAME); // 0x0094 TELEPORT_SELECT (0x16E Flight & Teleport NPCs)
 		addPacket(CM_TELEPORT_SELECT.class, 0x0094, State.IN_GAME); // Raw alias
 		addPacket(CM_PLAYER_SEARCH.class, 0x155, State.IN_GAME); // PLAYER_SEARCH (0x155 Who Key 'V')

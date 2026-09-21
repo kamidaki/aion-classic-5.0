@@ -28,7 +28,12 @@ public enum ReviveType {
 	/**
 	 * Revive to Obelisk
 	 */
-	OBELISK_REVIVE(8);
+	OBELISK_REVIVE(8),
+	/**
+	 * Classic 5.0: botão "Kibelisk" (STR_RESURRECT_BUTTON_RP), revive no ponto registrado ou na cidade sem registro
+	 * (STR_DEATH_NOT_REGISTERED_RESURRECT_POINT). Nas capturas: 25% de HP/MP num ponto fixo do mapa, 5 de 5.
+	 */
+	RESURRECT_POINT_REVIVE(9);
 
 	private int typeId;
 

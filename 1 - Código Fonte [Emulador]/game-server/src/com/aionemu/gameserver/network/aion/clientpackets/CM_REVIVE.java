@@ -41,6 +41,7 @@ public class CM_REVIVE extends AionClientPacket {
 		switch (reviveType) {
 			case BIND_REVIVE:
 			case OBELISK_REVIVE:
+			case RESURRECT_POINT_REVIVE:
 				PlayerReviveService.bindRevive(activePlayer);
 				break;
 			case REBIRTH_REVIVE:
