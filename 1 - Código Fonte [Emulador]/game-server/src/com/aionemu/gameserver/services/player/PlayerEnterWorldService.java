@@ -251,6 +251,7 @@ public final class PlayerEnterWorldService {
 			client.sendPacket(new SM_UNK_0191());
 			client.sendPacket(new SM_STATS_INFO(player));
 			CombatTalentRewardService.sendProgress(player);
+			QunaService.onEnterWorld(player); // S 0x11B com o saldo da conta; o oficial não manda no login (lê do STS)
 
 			// 13. Quests
 			if (player.getQuestStateList().getAllQuestState().isEmpty()) {

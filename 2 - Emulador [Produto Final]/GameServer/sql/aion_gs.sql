@@ -63,6 +63,16 @@ CREATE TABLE `account_passports` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
+-- Table structure for `account_quna`
+-- ----------------------------
+DROP TABLE IF EXISTS `account_quna`;
+CREATE TABLE `account_quna` (
+  `account_id` int NOT NULL,
+  `quna` bigint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`account_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
 -- Table structure for `account_stamps`
 -- ----------------------------
 DROP TABLE IF EXISTS `account_stamps`;

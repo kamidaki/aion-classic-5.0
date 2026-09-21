@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.database.DatabaseFactory;
+import com.aionemu.gameserver.dao.AccountQunaDAO;
 
 /**
  * Serviço responsável por validar e inicializar automaticamente tabelas e colunas
@@ -94,6 +95,9 @@ public class DatabaseSchemaService {
 			"  KEY `state_seller` (`state`, `seller_id`)" +
 			") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;"
 		);
+
+		// 8. account_quna (Classic 5.0 Quna: saldo por conta, S 0x11B)
+		executeSql(con, AccountQunaDAO.CREATE_TABLE);
 	}
 
 	private static void ensureColumns(Connection con) {

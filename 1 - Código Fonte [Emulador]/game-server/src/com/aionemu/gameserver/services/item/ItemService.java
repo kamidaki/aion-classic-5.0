@@ -18,6 +18,7 @@ import com.aionemu.gameserver.model.templates.item.enums.ItemGroup;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemAddType;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
+import com.aionemu.gameserver.services.player.QunaService;
 import com.aionemu.gameserver.taskmanager.tasks.ExpireTimerTask;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
@@ -85,6 +86,8 @@ public class ItemService {
 			inventory.increaseKinah(count);
 			return 0;
 		}
+		if (QunaService.isQunaItem(itemId)) // QUNA e FREE_QUNA (caixas wrap_quna_N) são saldo da conta, não item
+			return QunaService.add(player, count) ? 0 : count;
 
 		if (itemTemplate.isStackable())
 			count = addStackableItem(player, itemTemplate, count, allowInventoryOverflow, predicate);
