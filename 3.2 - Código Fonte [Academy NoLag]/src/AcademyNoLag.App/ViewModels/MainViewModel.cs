@@ -392,7 +392,7 @@ public class MainViewModel : ViewModelBase, IDisposable
         });
 
         // Populate initial UI lists
-        RefreshProfilesList();
+        LoadGameProfiles();
         RefreshInterfacesList();
         _ = RefreshNodesListAsync();
 
@@ -401,12 +401,24 @@ public class MainViewModel : ViewModelBase, IDisposable
         Logger.Instance.Info("Core", "Academy NoLag Engine initialized successfully.");
     }
 
-    private void RefreshProfilesList()
+    private void LoadGameProfiles()
     {
         GameProfiles.Clear();
-        foreach (var p in _profileManager.Profiles)
+        foreach (var profile in _profileManager.Profiles)
         {
-            GameProfiles.Add(p);
+            profile.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == nameof(GameProfile.AutoOptimize))
+                {
+                    Logger.Instance.Info("Profile", $"Toggled auto-optimize for {profile.DisplayName}: {profile.AutoOptimize}");
+                    // Re-eval if it's the active game
+                    if (ActiveProfile?.Id == profile.Id)
+                    {
+                        _engine.ToggleAutoOptimize(profile.AutoOptimize && AutoOptimize);
+                    }
+                }
+            };
+            GameProfiles.Add(profile);
         }
     }
 
@@ -516,7 +528,7 @@ public class MainViewModel : ViewModelBase, IDisposable
             };
 
             _profileManager.AddOrUpdateProfile(customProfile);
-            RefreshProfilesList();
+            LoadGameProfiles();
             Logger.Instance.Info("Profile", $"Added custom game profile: {customProfile.DisplayName}");
         }
     }

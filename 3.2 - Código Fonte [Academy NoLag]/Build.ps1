@@ -3,7 +3,6 @@ param(
     [string]$Configuration = "Release"
 )
 
-$ErrorActionPreference = "Continue"
 $BaseDir = $PSScriptRoot
 Set-Location -LiteralPath $BaseDir
 
@@ -18,20 +17,28 @@ $TempAppPublish = Join-Path $BuildDir "app_publish"
 $TempNodePublish = Join-Path $BuildDir "node_publish"
 $TempServicePublish = Join-Path $BuildDir "service_publish"
 
-# Clean previous build artifacts
+# 0. Terminate any running Academy NoLag instances to prevent file lock contention
+Write-Host "[0/5] Ensuring no previous Academy NoLag processes are running..." -ForegroundColor Cyan
+@("Academy - NoLag", "AcademyNoLag", "AcademyNoLag.RelayNode", "AcademyNoLag.Service") | ForEach-Object {
+    Get-Process -Name $_ -ErrorAction SilentlyContinue | ForEach-Object {
+        try {
+            Stop-Process -Id $_.Id -Force -ErrorAction Stop
+            Write-Host "  Terminated running instance: $($_.ProcessName) (PID: $($_.Id))" -ForegroundColor Yellow
+        }
+        catch { }
+    }
+}
+Start-Sleep -Milliseconds 600
+
+# 1. Clean previous build artifacts and intermediate compiler/XAML cache
+Write-Host "Cleaning build, dist, and intermediate obj/bin cache..." -ForegroundColor Cyan
 if (Test-Path -LiteralPath $BuildDir) { Remove-Item -Recurse -Force -LiteralPath $BuildDir }
 if (Test-Path -LiteralPath $DistDir) { Remove-Item -Recurse -Force -LiteralPath $DistDir }
+if (Test-Path -LiteralPath $FinalDir) { Remove-Item -Recurse -Force -LiteralPath $FinalDir }
 
-# Gracefully clean Produto Final — skip the EXE if it's currently locked (app running)
-if (Test-Path -LiteralPath $FinalDir) {
-    Get-ChildItem -LiteralPath $FinalDir -Recurse -File | ForEach-Object {
-        try { Remove-Item -LiteralPath $_.FullName -Force -ErrorAction Stop }
-        catch { Write-Host "  [SKIP] Locked file (app may be running): $($_.Name)" -ForegroundColor DarkYellow }
-    }
-    Get-ChildItem -LiteralPath $FinalDir -Recurse -Directory | Sort-Object FullName -Descending | ForEach-Object {
-        try { Remove-Item -LiteralPath $_.FullName -Force -Recurse -ErrorAction Stop }
-        catch { } # Ignore dirs that still have locked files
-    }
+Get-ChildItem -LiteralPath (Join-Path $BaseDir "src") -Recurse -Directory | Where-Object { $_.Name -in @("bin", "obj") } | ForEach-Object {
+    try { Remove-Item -LiteralPath $_.FullName -Recurse -Force -ErrorAction SilentlyContinue }
+    catch { }
 }
 
 # Setup clean folder hierarchy for Produto Final
@@ -63,7 +70,12 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 # Copy standalone executable to the root of Produto Final
-Copy-Item -LiteralPath (Join-Path $TempAppPublish "Academy - NoLag.exe") -Destination (Join-Path $FinalDir "Academy - NoLag.exe") -Force
+$publishedExe = Join-Path $TempAppPublish "Academy - NoLag.exe"
+if (-not (Test-Path -LiteralPath $publishedExe)) {
+    Write-Error "Published executable not found at $publishedExe!"
+    exit 1
+}
+Copy-Item -LiteralPath $publishedExe -Destination (Join-Path $FinalDir "Academy - NoLag.exe") -Force
 
 # Copy application icon to root
 $iconPath = Join-Path $BaseDir "src\AcademyNoLag.App\app.ico"
@@ -73,7 +85,15 @@ if (Test-Path -LiteralPath $iconPath) {
 
 Write-Host "[3/5] Publishing Secondary Execution Modules (RelayNode & Service) to 'bin/'..." -ForegroundColor Yellow
 dotnet publish "src\AcademyNoLag.RelayNode\AcademyNoLag.RelayNode.csproj" -c $Configuration -r win-x64 --self-contained false -o $TempNodePublish
+if ($LASTEXITCODE -ne 0) {
+    Write-Error "Publishing RelayNode failed."
+    exit 1
+}
 dotnet publish "src\AcademyNoLag.Service\AcademyNoLag.Service.csproj" -c $Configuration -r win-x64 --self-contained false -o $TempServicePublish
+if ($LASTEXITCODE -ne 0) {
+    Write-Error "Publishing Service failed."
+    exit 1
+}
 
 # Copy modules & supporting DLLs into bin/
 Get-ChildItem -LiteralPath $TempNodePublish | ForEach-Object {

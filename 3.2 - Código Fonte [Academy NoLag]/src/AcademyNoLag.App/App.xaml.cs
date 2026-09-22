@@ -1,6 +1,8 @@
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Security.AccessControl;
+using System.Security.Principal;
 using System.Threading;
 using System.Windows;
 using AcademyNoLag.Diagnostics;
@@ -9,7 +11,8 @@ namespace AcademyNoLag.App;
 
 public partial class App : System.Windows.Application
 {
-    private const string SingleInstanceEventName = @"Local\AcademyNoLag_SingleInstance_Signal";
+    private const string SingleInstanceMutexName = @"Local\AcademyNoLag_SingleInstance_Mutex2";
+    private const string SingleInstanceEventName = @"Local\AcademyNoLag_SingleInstance_Signal2";
     private static EventWaitHandle? _singleInstanceEvent;
     private static Mutex? _singleInstanceMutex;
 
@@ -24,9 +27,14 @@ public partial class App : System.Windows.Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
-        Logger.Instance.Info("App", "=== Academy NoLag Launching ===");
+        // 1. Normalize working directory immediately (UAC elevation can change CWD to System32)
+        try
+        {
+            Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
+        }
+        catch { }
 
-        // 1. Setup Global Exception Logging
+        // 2. Setup Global Exception Logging
         AppDomain.CurrentDomain.UnhandledException += (s, args) =>
         {
             Logger.Instance.Error("AppDomain", $"UnhandledException: {args.ExceptionObject}");
@@ -34,34 +42,93 @@ public partial class App : System.Windows.Application
 
         DispatcherUnhandledException += (s, args) =>
         {
+            Console.Error.WriteLine($"DispatcherException: {args.Exception}");
             Logger.Instance.Error("Dispatcher", $"DispatcherException: {args.Exception}");
-            args.Handled = true;
+            args.Handled = false;
         };
 
-        // 2. Single-Instance Check using Mutex & EventWaitHandle
+        // 3. Structured [BOOT] Logging
+        var currentProcess = Process.GetCurrentProcess();
+        bool isAdmin = IsRunningAsAdmin();
+        Logger.Instance.Info("BOOT", "=== Academy NoLag Boot Initialization ===");
+        Logger.Instance.Info("BOOT", $"Process started: PID={currentProcess.Id}, SessionID={currentProcess.SessionId}");
+        Logger.Instance.Info("BOOT", $"Running as Administrator: {(isAdmin ? "YES" : "NO")}");
+        Logger.Instance.Info("BOOT", $"Executable path: {currentProcess.MainModule?.FileName ?? "Unknown"}");
+        Logger.Instance.Info("BOOT", $"Working directory: {Environment.CurrentDirectory}");
+        Logger.Instance.Info("BOOT", $"Base directory: {AppDomain.CurrentDomain.BaseDirectory}");
+
+        // 4. Single-Instance Check using Mutex & EventWaitHandle with Cross-Integrity DACL
         bool isOnlyInstance = false;
         try
         {
-            _singleInstanceMutex = new Mutex(true, @"Local\AcademyNoLag_SingleInstance_Mutex", out isOnlyInstance);
+            var mutexSecurity = new MutexSecurity();
+            var mutexRule = new MutexAccessRule(
+                new SecurityIdentifier(WellKnownSidType.AuthenticatedUserSid, null),
+                MutexRights.FullControl,
+                AccessControlType.Allow);
+            mutexSecurity.AddAccessRule(mutexRule);
+
+            _singleInstanceMutex = MutexAcl.Create(true, SingleInstanceMutexName, out isOnlyInstance, mutexSecurity);
+        }
+        catch (UnauthorizedAccessException)
+        {
+            Logger.Instance.Info("BOOT", "Mutex access denied — existing instance is active with higher/different token.");
+            isOnlyInstance = false;
+        }
+        catch (AbandonedMutexException)
+        {
+            Logger.Instance.Info("BOOT", "Abandoned mutex detected from terminated previous instance. Taking ownership.");
+            isOnlyInstance = true;
         }
         catch (Exception ex)
         {
-            Logger.Instance.Info("App", $"Mutex check note: {ex.Message}");
-            isOnlyInstance = true;
+            Logger.Instance.Warn("BOOT", $"Mutex check fallback: {ex.Message}");
+            try
+            {
+                Mutex.OpenExisting(SingleInstanceMutexName);
+                isOnlyInstance = false;
+            }
+            catch
+            {
+                isOnlyInstance = true;
+            }
         }
 
         try
         {
-            _singleInstanceEvent = new EventWaitHandle(false, EventResetMode.AutoReset, SingleInstanceEventName);
+            var eventSecurity = new EventWaitHandleSecurity();
+            var eventRule = new EventWaitHandleAccessRule(
+                new SecurityIdentifier(WellKnownSidType.AuthenticatedUserSid, null),
+                EventWaitHandleRights.FullControl,
+                AccessControlType.Allow);
+            eventSecurity.AddAccessRule(eventRule);
+
+            _singleInstanceEvent = EventWaitHandleAcl.Create(false, EventResetMode.AutoReset, SingleInstanceEventName, out _, eventSecurity);
         }
-        catch { }
+        catch (Exception ex)
+        {
+            try
+            {
+                _singleInstanceEvent = new EventWaitHandle(false, EventResetMode.AutoReset, SingleInstanceEventName);
+            }
+            catch { }
+            Logger.Instance.Info("BOOT", $"EventWaitHandle fallback note: {ex.Message}");
+        }
 
         if (!isOnlyInstance)
         {
-            Logger.Instance.Info("App", "Existing instance detected. Signaling existing instance and exiting.");
+            Logger.Instance.Info("BOOT", "Existing instance detected. Signaling existing instance and exiting.");
             try
             {
-                _singleInstanceEvent?.Set();
+                if (EventWaitHandle.TryOpenExisting(SingleInstanceEventName, out var signalEvent))
+                {
+                    signalEvent.Set();
+                    signalEvent.Dispose();
+                }
+                else
+                {
+                    _singleInstanceEvent?.Set();
+                }
 
                 IntPtr existingHwnd = FindWindow(null, "Academy NoLag — Gaming HUD");
                 if (existingHwnd != IntPtr.Zero)
@@ -76,7 +143,9 @@ public partial class App : System.Windows.Application
             return;
         }
 
-        // 3. Listen for wake-up signals from secondary launches
+        Logger.Instance.Info("BOOT", "Mutex acquired: primary application instance confirmed.");
+
+        // 5. Listen for wake-up signals from secondary launches
         Task.Run(() =>
         {
             while (_singleInstanceEvent != null)
@@ -85,6 +154,7 @@ public partial class App : System.Windows.Application
                 {
                     if (_singleInstanceEvent.WaitOne())
                     {
+                        Logger.Instance.Info("App", "Wake-up signal received from secondary launch attempt.");
                         Current?.Dispatcher.Invoke(() =>
                         {
                             if (Current.MainWindow is Views.FloatingHudWindow hud)
@@ -100,25 +170,36 @@ public partial class App : System.Windows.Application
 
         base.OnStartup(e);
 
-        // 4. Explicitly instantiate and show the Floating HUD window
+        // 6. Explicitly instantiate and show the Floating HUD window
         try
         {
-            Logger.Instance.Info("App", "Instantiating FloatingHudWindow...");
+            Logger.Instance.Info("BOOT", "UI subsystem initialized: creating FloatingHudWindow...");
             var hud = new Views.FloatingHudWindow();
             MainWindow = hud;
 
-            Logger.Instance.Info("App", "Displaying FloatingHudWindow...");
+            Logger.Instance.Info("BOOT", "Displaying FloatingHudWindow...");
             hud.Show();
             hud.Activate();
-            Logger.Instance.Info("App", "FloatingHudWindow displayed successfully!");
+            Logger.Instance.Info("BOOT", "Academy NoLag startup completed successfully!");
         }
         catch (Exception ex)
         {
-            Logger.Instance.Error("App", $"FATAL: Failed to initialize/show FloatingHudWindow: {ex}");
-            MessageBox.Show($"Erro fatal ao iniciar a interface:\n\n{ex.Message}\n\nStack:\n{ex.StackTrace}", 
-                            "Academy NoLag - Erro de Inicialização", 
-                            MessageBoxButton.OK, 
-                            MessageBoxImage.Error);
+            Console.Error.WriteLine($"FATAL: {ex}");
+            Logger.Instance.Error("BOOT", $"FATAL: Failed to initialize/show FloatingHudWindow: {ex}");
+        }
+    }
+
+    private static bool IsRunningAsAdmin()
+    {
+        try
+        {
+            using var identity = WindowsIdentity.GetCurrent();
+            var principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+        catch
+        {
+            return false;
         }
     }
 

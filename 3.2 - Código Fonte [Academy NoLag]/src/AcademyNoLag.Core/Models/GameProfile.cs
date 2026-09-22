@@ -1,7 +1,16 @@
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
 namespace AcademyNoLag.Core.Models;
 
-public class GameProfile
+public class GameProfile : INotifyPropertyChanged
 {
+    public event PropertyChangedEventHandler? PropertyChanged;
+    protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
     public required string Id { get; set; }
     public required string DisplayName { get; set; }
     public required List<string> ProcessNames { get; set; } = [];
@@ -9,7 +18,21 @@ public class GameProfile
     public List<int> KnownPorts { get; set; } = [];
     public NetworkTransportProtocol DefaultProtocol { get; set; } = NetworkTransportProtocol.Tcp;
     public List<string> PreferredRegions { get; set; } = [];
-    public bool AutoOptimize { get; set; } = true;
+    
+    private bool _autoOptimize = true;
+    public bool AutoOptimize
+    {
+        get => _autoOptimize;
+        set
+        {
+            if (_autoOptimize != value)
+            {
+                _autoOptimize = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+    
     public bool IsAionClassic { get; set; } = false;
     public string Category { get; set; } = "MMORPG";
     public string IconKey { get; set; } = "game_default";
