@@ -35,7 +35,8 @@ std::atomic<float> g_comboOpacity(1.0f);
 std::atomic<float> g_comboScale(1.0f);
 std::atomic<float> g_comboPosNormX(0.80f);
 std::atomic<float> g_comboPosNormY(0.50f);
-std::atomic<bool>  g_secureAreaVisible(true);
+std::atomic<int>   g_drawerPosX(-1);
+std::atomic<int>   g_drawerPosY(-1);
 
 std::string g_clientLang = "BRA";
 
@@ -66,7 +67,7 @@ RadarMetrics g_currentRadar;
 std::vector<PlayerDpsEntry> g_playerRankings;
 std::vector<SkillDpsEntry> g_skillBreakdown;
 std::vector<CombatTimelineEntry> g_combatTimeline;
-std::vector<float> g_fibonacciCurve = { 0.1f, 0.25f, 0.4f, 0.6f, 0.85f, 1.0f, 0.9f, 0.75f, 0.8f, 0.95f };
+std::vector<float> g_dpsHistory;
 std::atomic<uint64_t> g_totalBattleDamage(0);
 std::atomic<uint32_t> g_totalBattleDps(0);
 std::atomic<uint32_t> g_battleDurationSeconds(0);
@@ -88,7 +89,7 @@ void ResetCombatSession() {
     g_playerRankings.clear();
     g_skillBreakdown.clear();
     g_combatTimeline.clear();
-    g_fibonacciCurve = { 0.1f, 0.2f, 0.35f, 0.55f, 0.8f, 1.0f };
+    g_dpsHistory.clear();
     g_totalBattleDamage = 0;
     g_totalBattleDps = 0;
     g_battleDurationSeconds = 0;
@@ -205,14 +206,12 @@ void AddCombatEvent(const std::string& attacker, const std::string& target, uint
         g_skillBreakdown.push_back(s);
     }
 
-    // Update Fibonacci Burst Curve (moving window of relative DPS points)
-    float normalizedDps = (float)g_totalBattleDps.load();
-    if (g_fibonacciCurve.size() > 20) {
-        g_fibonacciCurve.erase(g_fibonacciCurve.begin());
+    // Update DPS Over Time history points (moving window of DPS samples)
+    float currentDps = (float)g_totalBattleDps.load();
+    if (g_dpsHistory.size() >= 30) {
+        g_dpsHistory.erase(g_dpsHistory.begin());
     }
-    float peak = 1.0f;
-    for (float f : g_fibonacciCurve) if (f > peak) peak = f;
-    g_fibonacciCurve.push_back(normalizedDps);
+    g_dpsHistory.push_back(currentDps);
 
     // Update Radar Metrics (4 axes: crit, block, dodge, resist)
     if (!g_playerRankings.empty()) {

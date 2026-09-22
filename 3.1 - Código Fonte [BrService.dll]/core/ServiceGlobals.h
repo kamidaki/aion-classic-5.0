@@ -96,7 +96,8 @@ extern std::atomic<float> g_comboOpacity;      // 0.1f to 1.0f (default 1.0f)
 extern std::atomic<float> g_comboScale;        // 0.55f to 1.60f (default 1.0f)
 extern std::atomic<float> g_comboPosNormX;     // normalized X pos (default 0.80f)
 extern std::atomic<float> g_comboPosNormY;     // normalized Y pos (default 0.50f)
-extern std::atomic<bool> g_secureAreaVisible;  // secure area overlay visibility toggle (default true)
+extern std::atomic<int>   g_drawerPosX;        // custom window X pos (-1 for default)
+extern std::atomic<int>   g_drawerPosY;        // custom window Y pos (-1 for default)
 
 // Language Flag: "BRA" (Portuguese) or "ENG"/"ENU" (English)
 extern std::string g_clientLang;
@@ -133,7 +134,7 @@ extern TargetInfo g_currentTarget;
 extern RadarMetrics g_currentRadar;
 extern std::vector<PlayerDpsEntry> g_playerRankings;
 extern std::vector<SkillDpsEntry> g_skillBreakdown;
-extern std::vector<float> g_fibonacciCurve; // Burst progression normalized
+extern std::vector<float> g_dpsHistory; // DPS over time telemetry points
 extern std::vector<CombatTimelineEntry> g_combatTimeline; // Real-time combat timeline
 extern std::atomic<uint64_t> g_totalBattleDamage;
 extern std::atomic<uint32_t> g_totalBattleDps;

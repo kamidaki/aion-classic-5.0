@@ -55,13 +55,14 @@ void BrConfig::Load() {
 
     SetComboOverlayLayout(g_comboPosNormX.load(), g_comboPosNormY.load(), g_comboScale.load());
 
-    g_secureAreaVisible = (GetPrivateProfileIntW(L"SecureArea", L"Visible", 1, ini.c_str()) != 0);
+    g_drawerPosX = GetPrivateProfileIntW(L"DrawerUI", L"PosX", -1, ini.c_str());
+    g_drawerPosY = GetPrivateProfileIntW(L"DrawerUI", L"PosY", -1, ini.c_str());
 
-    LogInfo("Configuracoes carregadas de %ls: FOV=%.1f, CamMax=%.1f, MaxFPS=%d, W=%d, H=%d, Opacity=%d, ComboVis=%d, ComboScale=%.2f, ComboPos=(%.2f, %.2f), SecureArea=%d",
+    LogInfo("Configuracoes carregadas de %ls: FOV=%.1f, CamMax=%.1f, MaxFPS=%d, W=%d, H=%d, Pos=(%d, %d), Opacity=%d, ComboVis=%d, ComboScale=%.2f, ComboPos=(%.2f, %.2f)",
             ini.c_str(), g_cvarFov.load(), g_cvarCamMax.load(), g_cvarMaxFps.load(),
-            g_drawerW.load(), g_drawerH.load(), g_drawerOpacity.load(),
+            g_drawerW.load(), g_drawerH.load(), g_drawerPosX.load(), g_drawerPosY.load(), g_drawerOpacity.load(),
             g_comboVisible.load() ? 1 : 0, g_comboScale.load(),
-            g_comboPosNormX.load(), g_comboPosNormY.load(), g_secureAreaVisible.load() ? 1 : 0);
+            g_comboPosNormX.load(), g_comboPosNormY.load());
 }
 
 void BrConfig::Save() {
@@ -82,6 +83,8 @@ void BrConfig::Save() {
 
     WritePrivateProfileStringW(L"DrawerUI", L"Width", std::to_wstring(g_drawerW.load()).c_str(), ini.c_str());
     WritePrivateProfileStringW(L"DrawerUI", L"Height", std::to_wstring(g_drawerH.load()).c_str(), ini.c_str());
+    WritePrivateProfileStringW(L"DrawerUI", L"PosX", std::to_wstring(g_drawerPosX.load()).c_str(), ini.c_str());
+    WritePrivateProfileStringW(L"DrawerUI", L"PosY", std::to_wstring(g_drawerPosY.load()).c_str(), ini.c_str());
     WritePrivateProfileStringW(L"DrawerUI", L"Opacity", std::to_wstring(g_drawerOpacity.load()).c_str(), ini.c_str());
     WritePrivateProfileStringW(L"DrawerUI", L"CompactView", g_compactView.load() ? L"1" : L"0", ini.c_str());
     WritePrivateProfileStringW(L"DrawerUI", L"HideConsole", g_hideConsoleSection.load() ? L"1" : L"0", ini.c_str());
@@ -95,8 +98,6 @@ void BrConfig::Save() {
     WritePrivateProfileStringW(L"ComboUI", L"PosNormX", buf, ini.c_str());
     swprintf_s(buf, L"%.3f", g_comboPosNormY.load());
     WritePrivateProfileStringW(L"ComboUI", L"PosNormY", buf, ini.c_str());
-
-    WritePrivateProfileStringW(L"SecureArea", L"Visible", g_secureAreaVisible.load() ? L"1" : L"0", ini.c_str());
 }
 
 } // namespace BrService

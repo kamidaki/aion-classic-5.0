@@ -204,22 +204,8 @@ struct I18n {
         return L"Y";
     }
 
-    // Secure Area UI Settings
-    static const wchar_t* SecureAreaSection() {
-        return IsEnglish() ? L"SECURE AREA OVERLAY" : L"ÁREA SEGURA (BARREIRA)";
-    }
-    static const wchar_t* SecureAreaActive() {
-        return IsEnglish() ? L"✔ Secure Area UI: VISIBLE" : L"✔ Área Segura: VISÍVEL";
-    }
-    static const wchar_t* SecureAreaInactive() {
-        return IsEnglish() ? L"✖ Secure Area UI: HIDDEN" : L"✖ Área Segura: OCULTA";
-    }
-    static const wchar_t* SecureAreaDesc() {
-        return IsEnglish() ? L"(Toggles sanctuary and safe barrier overlay indicators)" : L"(Alterna indicadores de barreira e santuário seguro)";
-    }
-
     static const wchar_t* SaveAndClose() {
-        return IsEnglish() ? L"✔ Save and Close Settings" : L"✔ Salvar e Concluir Ajustes";
+        return IsEnglish() ? L"Save & Close" : L"Salvar & Fechar";
     }
 };
 

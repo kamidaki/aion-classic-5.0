@@ -9,23 +9,6 @@
 
 namespace BrService {
 
-struct ModelVertex {
-    float x, y, z;
-};
-
-enum FaceMaterial {
-    MAT_ARMOR = 0,
-    MAT_TRIM = 1,
-    MAT_WINGS = 2,
-    MAT_GLOW = 3,
-    MAT_BODY = 4
-};
-
-struct ModelFace {
-    int v1, v2, v3;
-    FaceMaterial mat;
-};
-
 static std::mutex s_modelMutex;
 static HANDLE s_hSharedMem = nullptr;
 static void*  s_pSharedMemView = nullptr;
@@ -33,10 +16,7 @@ static uint32_t s_currentNpcId = 0;
 static uint8_t  s_currentEntityType = 1;
 static uint8_t  s_currentRace = 0;
 static float    s_targetMemoryYaw = 0.0f;
-
-static std::vector<ModelVertex> s_vertices;
-static std::vector<ModelFace> s_faces;
-static float s_rotationYaw = 0.0f;
+static float    s_pedestalRotYaw = 0.0f;
 static ULONGLONG s_lastRotTime = 0;
 
 void CryModelBridge::EnsureSharedMemory() {
@@ -64,7 +44,11 @@ bool CryModelBridge::IsFrameBufferConnected() {
 void CryModelBridge::RequestNpcModelOverPipe(uint32_t npcId) {
     std::thread([npcId]() {
         char cmd[64];
-        snprintf(cmd, sizeof(cmd), "LOAD %u\n", npcId);
+        if (npcId == 0) {
+            snprintf(cmd, sizeof(cmd), "LOAD_PLAYER\n");
+        } else {
+            snprintf(cmd, sizeof(cmd), "LOAD %u\n", npcId);
+        }
 
         HANDLE hPipe = CreateFileA("\\\\.\\pipe\\LostAcademy_CryModelBridge",
                                    GENERIC_READ | GENERIC_WRITE, 0, nullptr,
@@ -80,7 +64,7 @@ void CryModelBridge::RequestNpcModelOverPipe(uint32_t npcId) {
 bool CryModelBridge::Initialize() {
     std::lock_guard<std::mutex> lock(s_modelMutex);
     EnsureSharedMemory();
-    LoadFallbackMesh(0);
+    RequestNpcModelOverPipe(0); // Request player model by default
     return true;
 }
 
@@ -94,8 +78,6 @@ void CryModelBridge::Shutdown() {
         CloseHandle(s_hSharedMem);
         s_hSharedMem = nullptr;
     }
-    s_vertices.clear();
-    s_faces.clear();
 }
 
 void CryModelBridge::SetTargetNpc(uint32_t npcId) {
@@ -109,113 +91,12 @@ void CryModelBridge::SetTargetEntity(uint32_t modelId, uint8_t entityType, uint8
     s_currentRace = race;
     s_targetMemoryYaw = yaw;
 
+    // If modelId is 0, request player model fallback over bridge
     RequestNpcModelOverPipe(modelId);
-    LoadFallbackMesh(modelId);
 }
 
-void CryModelBridge::LoadFallbackMesh(uint32_t npcId) {
-    s_vertices.clear();
-    s_faces.clear();
-
-    // Reconstruct full articulated 3D character mesh tailored to the target entity
-    // Coordinates: X = right, Y = up, Z = forward
-    auto addQuad = [](int v0, int v1, int v2, int v3, FaceMaterial mat) {
-        s_faces.push_back({ v0, v1, v2, mat });
-        s_faces.push_back({ v0, v2, v3, mat });
-    };
-
-    auto addBox = [&](float cx, float cy, float cz, float sx, float sy, float sz, FaceMaterial mat) {
-        int base = (int)s_vertices.size();
-        float hx = sx * 0.5f, hy = sy * 0.5f, hz = sz * 0.5f;
-        s_vertices.push_back({ cx - hx, cy - hy, cz - hz });
-        s_vertices.push_back({ cx + hx, cy - hy, cz - hz });
-        s_vertices.push_back({ cx + hx, cy + hy, cz - hz });
-        s_vertices.push_back({ cx - hx, cy + hy, cz - hz });
-        s_vertices.push_back({ cx - hx, cy - hy, cz + hz });
-        s_vertices.push_back({ cx + hx, cy - hy, cz + hz });
-        s_vertices.push_back({ cx + hx, cy + hy, cz + hz });
-        s_vertices.push_back({ cx - hx, cy + hy, cz + hz });
-
-        addQuad(base + 0, base + 3, base + 2, base + 1, mat); // Front
-        addQuad(base + 5, base + 6, base + 7, base + 4, mat); // Back
-        addQuad(base + 3, base + 7, base + 6, base + 2, mat); // Top
-        addQuad(base + 0, base + 1, base + 5, base + 4, mat); // Bottom
-        addQuad(base + 0, base + 4, base + 7, base + 3, mat); // Left
-        addQuad(base + 1, base + 2, base + 6, base + 5, mat); // Right
-    };
-
-    // 1. Torso / Chestplate
-    addBox(0.0f, 0.15f, 0.0f, 0.55f, 0.65f, 0.35f, MAT_ARMOR);
-
-    // 2. Head / Helm
-    addBox(0.0f, 0.72f, 0.0f, 0.32f, 0.34f, 0.32f, MAT_BODY);
-    addBox(0.0f, 0.76f, 0.08f, 0.22f, 0.12f, 0.16f, MAT_TRIM); // Visor
-
-    // 3. Shoulders (Pauldrons)
-    addBox(-0.38f, 0.45f, 0.0f, 0.26f, 0.22f, 0.28f, MAT_TRIM);
-    addBox( 0.38f, 0.45f, 0.0f, 0.26f, 0.22f, 0.28f, MAT_TRIM);
-
-    // 4. Arms
-    addBox(-0.36f, 0.05f, 0.02f, 0.16f, 0.55f, 0.18f, MAT_ARMOR);
-    addBox( 0.36f, 0.05f, 0.02f, 0.16f, 0.55f, 0.18f, MAT_ARMOR);
-
-    // 5. Waist & Belt
-    addBox(0.0f, -0.22f, 0.0f, 0.46f, 0.16f, 0.30f, MAT_TRIM);
-
-    // 6. Legs & Greaves
-    addBox(-0.16f, -0.65f, 0.0f, 0.18f, 0.70f, 0.22f, MAT_ARMOR);
-    addBox( 0.16f, -0.65f, 0.0f, 0.18f, 0.70f, 0.22f, MAT_ARMOR);
-
-    // 7. Weapon Silhouette (Right hand sword blade)
-    addBox(0.42f, 0.25f, 0.25f, 0.06f, 0.95f, 0.12f, MAT_TRIM);
-
-    // 8. Race-Specific 3D Wings (Elyos / Asmodian / Balaur)
-    if (s_currentRace == 0) {
-        // Elyos: Outstretched feathered wings
-        for (int side = -1; side <= 1; side += 2) {
-            float sx = (float)side;
-            int wBase = (int)s_vertices.size();
-            s_vertices.push_back({ sx * 0.15f, 0.30f, -0.15f });
-            s_vertices.push_back({ sx * 0.75f, 0.85f, -0.35f });
-            s_vertices.push_back({ sx * 1.05f, 0.40f, -0.25f });
-            s_vertices.push_back({ sx * 0.65f, -0.10f, -0.15f });
-
-            s_faces.push_back({ wBase + 0, wBase + 1, wBase + 2, MAT_WINGS });
-            s_faces.push_back({ wBase + 0, wBase + 2, wBase + 3, MAT_WINGS });
-            s_faces.push_back({ wBase + 0, wBase + 2, wBase + 1, MAT_WINGS });
-            s_faces.push_back({ wBase + 0, wBase + 3, wBase + 2, MAT_WINGS });
-        }
-    } else if (s_currentRace == 1) {
-        // Asmodian: Dark spiked wings with claws and back mane
-        for (int side = -1; side <= 1; side += 2) {
-            float sx = (float)side;
-            int wBase = (int)s_vertices.size();
-            s_vertices.push_back({ sx * 0.12f, 0.32f, -0.12f });
-            s_vertices.push_back({ sx * 0.85f, 0.95f, -0.45f });
-            s_vertices.push_back({ sx * 1.15f, 0.55f, -0.35f });
-            s_vertices.push_back({ sx * 0.80f, 0.05f, -0.20f });
-
-            s_faces.push_back({ wBase + 0, wBase + 1, wBase + 2, MAT_WINGS });
-            s_faces.push_back({ wBase + 0, wBase + 2, wBase + 3, MAT_WINGS });
-            s_faces.push_back({ wBase + 0, wBase + 2, wBase + 1, MAT_WINGS });
-            s_faces.push_back({ wBase + 0, wBase + 3, wBase + 2, MAT_WINGS });
-        }
-        addBox(0.0f, 0.35f, -0.20f, 0.12f, 0.45f, 0.10f, MAT_GLOW);
-    } else {
-        // Monster / Boss / Balaur
-        addBox(-0.18f, 0.95f, -0.05f, 0.08f, 0.28f, 0.08f, MAT_TRIM);
-        addBox( 0.18f, 0.95f, -0.05f, 0.08f, 0.28f, 0.08f, MAT_TRIM);
-        for (int side = -1; side <= 1; side += 2) {
-            float sx = (float)side;
-            int wBase = (int)s_vertices.size();
-            s_vertices.push_back({ sx * 0.20f, 0.25f, -0.15f });
-            s_vertices.push_back({ sx * 1.10f, 0.80f, -0.40f });
-            s_vertices.push_back({ sx * 0.90f, -0.15f, -0.25f });
-
-            s_faces.push_back({ wBase + 0, wBase + 1, wBase + 2, MAT_WINGS });
-            s_faces.push_back({ wBase + 0, wBase + 2, wBase + 1, MAT_WINGS });
-        }
-    }
+void CryModelBridge::LoadFallbackMesh(uint32_t /*npcId*/) {
+    // Geometric box/prism fallback removed completely per Requirement 15.
 }
 
 void CryModelBridge::RenderThumbnail(Gdiplus::Graphics& g, float x, float y, float width, float height) {
@@ -230,152 +111,77 @@ void CryModelBridge::RenderThumbnail(Gdiplus::Graphics& g, float x, float y, flo
 
             g.SetInterpolationMode(Gdiplus::InterpolationModeHighQualityBicubic);
             g.DrawImage(&frameBmp, x, y, width, height);
-
-            Gdiplus::Pen rimPen(Gdiplus::Color(90, 215, 170, 50), 1.2f);
-            g.DrawRectangle(&rimPen, x, y, width, height);
             return;
         }
     }
 
-    std::lock_guard<std::mutex> lock(s_modelMutex);
-    if (s_vertices.empty() || s_faces.empty()) return;
-
+    // Modern Pedestal & Ambient Platform Renderer (Zero cubes, zero boxes)
     ULONGLONG now = GetTickCount64();
     if (s_lastRotTime == 0) s_lastRotTime = now;
     float dt = (float)(now - s_lastRotTime) / 1000.0f;
     s_lastRotTime = now;
     if (dt > 0.1f) dt = 0.033f;
 
-    s_rotationYaw += dt * 0.65f;
-    if (s_rotationYaw > 6.2831853f) s_rotationYaw -= 6.2831853f;
-
-    float effectiveYaw = s_rotationYaw + s_targetMemoryYaw;
-    float cosY = cosf(effectiveYaw);
-    float sinY = sinf(effectiveYaw);
-    float pitch = 0.18f;
-    float cosP = cosf(pitch);
-    float sinP = sinf(pitch);
-
-    float centerX = x + width * 0.5f;
-    float centerY = y + height * 0.52f;
-    float scale = std::min(width, height) * 0.44f;
-
-    std::vector<Gdiplus::PointF> proj(s_vertices.size());
-    std::vector<float> transformedZ(s_vertices.size());
-    std::vector<ModelVertex> viewSpaceVerts(s_vertices.size());
-
-    const float distance = 4.2f;
-
-    for (size_t i = 0; i < s_vertices.size(); ++i) {
-        const auto& v = s_vertices[i];
-        float rx = v.x * cosY - v.z * sinY;
-        float rz = v.x * sinY + v.z * cosY;
-        float ry = v.y * cosP - rz * sinP;
-        float rz2 = v.y * sinP + rz * cosP;
-
-        viewSpaceVerts[i] = { rx, ry, rz2 };
-
-        float fovFactor = distance / (distance + rz2);
-        proj[i].X = centerX + rx * scale * fovFactor;
-        proj[i].Y = centerY - ry * scale * fovFactor;
-        transformedZ[i] = rz2;
-    }
-
-    struct DepthFace {
-        ModelFace face;
-        float depth;
-        float shade;
-    };
-    std::vector<DepthFace> sortedFaces;
-    sortedFaces.reserve(s_faces.size());
-
-    const float lx = 0.50f, ly = 0.75f, lz = 0.42f;
-    const float lLen = sqrtf(lx * lx + ly * ly + lz * lz);
-    const float normLx = lx / lLen, normLy = ly / lLen, normLz = lz / lLen;
-
-    for (const auto& f : s_faces) {
-        const auto& v0 = viewSpaceVerts[f.v1];
-        const auto& v1 = viewSpaceVerts[f.v2];
-        const auto& v2 = viewSpaceVerts[f.v3];
-
-        float ax = v1.x - v0.x, ay = v1.y - v0.y, az = v1.z - v0.z;
-        float bx = v2.x - v0.x, by = v2.y - v0.y, bz = v2.z - v0.z;
-        float nx = ay * bz - az * by;
-        float ny = az * bx - ax * bz;
-        float nz = ax * by - ay * bx;
-        float nLen = sqrtf(nx * nx + ny * ny + nz * nz);
-
-        float shade = 0.5f;
-        if (nLen > 0.0001f) {
-            nx /= nLen; ny /= nLen; nz /= nLen;
-            float dot = nx * normLx + ny * normLy + nz * normLz;
-            shade = std::clamp(dot * 0.65f + 0.35f, 0.25f, 1.0f);
-        }
-
-        float avgZ = (transformedZ[f.v1] + transformedZ[f.v2] + transformedZ[f.v3]) / 3.0f;
-        sortedFaces.push_back({ f, avgZ, shade });
-    }
-
-    std::sort(sortedFaces.begin(), sortedFaces.end(), [](const DepthFace& a, const DepthFace& b) {
-        return a.depth > b.depth;
-    });
+    s_pedestalRotYaw += dt * 0.45f;
+    if (s_pedestalRotYaw > 6.2831853f) s_pedestalRotYaw -= 6.2831853f;
 
     g.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
 
-    Gdiplus::Pen circlePen(Gdiplus::Color(65, 215, 175, 55), 1.2f);
-    g.DrawEllipse(&circlePen, centerX - width * 0.35f, centerY + height * 0.36f, width * 0.70f, height * 0.18f);
+    float cx = x + width * 0.5f;
+    float cy = y + height * 0.78f;
+    float pedW = width * 0.78f;
+    float pedH = height * 0.26f;
 
-    Gdiplus::Pen innerCircle(Gdiplus::Color(35, 120, 180, 240), 1.0f);
-    g.DrawEllipse(&innerCircle, centerX - width * 0.24f, centerY + height * 0.38f, width * 0.48f, height * 0.12f);
+    // 1. Soft Ambient Shadow below pedestal
+    Gdiplus::SolidBrush shadowBrush(Gdiplus::Color(35, 10, 20, 35));
+    g.FillEllipse(&shadowBrush, cx - pedW * 0.52f, cy + pedH * 0.22f, pedW * 1.04f, pedH * 0.70f);
 
-    for (const auto& df : sortedFaces) {
-        const auto& f = df.face;
-        Gdiplus::PointF pts[3] = { proj[f.v1], proj[f.v2], proj[f.v3] };
+    // 2. Multi-tier Stone Pedestal
+    Gdiplus::SolidBrush stoneBase(Gdiplus::Color(220, 140, 145, 155));
+    Gdiplus::SolidBrush stoneTop(Gdiplus::Color(240, 175, 180, 190));
+    Gdiplus::SolidBrush grassRim(Gdiplus::Color(210, 85, 145, 80));
 
-        float crossZ = (pts[1].X - pts[0].X) * (pts[2].Y - pts[0].Y) -
-                       (pts[1].Y - pts[0].Y) * (pts[2].X - pts[0].X);
+    // Lower tier
+    g.FillEllipse(&stoneBase, cx - pedW * 0.50f, cy, pedW, pedH);
+    // Upper tier
+    g.FillEllipse(&stoneTop, cx - pedW * 0.44f, cy - 6.0f, pedW * 0.88f, pedH * 0.88f);
+    // Moss / Grass surface
+    g.FillEllipse(&grassRim, cx - pedW * 0.38f, cy - 9.0f, pedW * 0.76f, pedH * 0.76f);
 
-        if (crossZ > 0.0f || f.mat == MAT_WINGS) {
-            float s = df.shade;
-            Gdiplus::Color baseColor;
+    // 3. Faction / Entity Aura Glow Ring
+    Gdiplus::Color ringCol = (s_currentRace == 0) ? Gdiplus::Color(160, 59, 130, 246) :   // Elyos Light Blue
+                             (s_currentRace == 1) ? Gdiplus::Color(160, 168, 85, 247) :   // Asmodian Violet
+                                                    Gdiplus::Color(160, 239, 68, 68);     // Monster Crimson
+    Gdiplus::Pen auraPen(ringCol, 2.0f);
+    g.DrawEllipse(&auraPen, cx - pedW * 0.34f, cy - 11.0f, pedW * 0.68f, pedH * 0.68f);
 
-            switch (f.mat) {
-            case MAT_ARMOR:
-                baseColor = Gdiplus::Color(220, (BYTE)(175 * s), (BYTE)(185 * s), (BYTE)(200 * s));
-                break;
-            case MAT_TRIM:
-                baseColor = Gdiplus::Color(230, (BYTE)(220 * s), (BYTE)(170 * s), (BYTE)(55 * s));
-                break;
-            case MAT_WINGS:
-                if (s_currentRace == 0) {
-                    baseColor = Gdiplus::Color(190, (BYTE)(160 * s), (BYTE)(225 * s), (BYTE)(255 * s));
-                } else if (s_currentRace == 1) {
-                    baseColor = Gdiplus::Color(200, (BYTE)(150 * s), (BYTE)(70 * s), (BYTE)(190 * s));
-                } else {
-                    baseColor = Gdiplus::Color(210, (BYTE)(215 * s), (BYTE)(45 * s), (BYTE)(55 * s));
-                }
-                break;
-            case MAT_GLOW:
-                baseColor = Gdiplus::Color(210, (BYTE)(180 * s), (BYTE)(80 * s), (BYTE)(220 * s));
-                break;
-            case MAT_BODY:
-            default:
-                baseColor = Gdiplus::Color(220, (BYTE)(200 * s), (BYTE)(175 * s), (BYTE)(160 * s));
-                break;
-            }
+    // 4. Character / Creature Standing Silhouette
+    // Draw stylized standing hero / target silhouette on top of the pedestal
+    float charW = width * 0.40f;
+    float charH = height * 0.60f;
+    float charX = cx - charW * 0.5f;
+    float charY = cy - charH - 10.0f;
 
-            Gdiplus::SolidBrush polyBrush(baseColor);
-            g.FillPolygon(&polyBrush, pts, 3);
+    Gdiplus::SolidBrush charGlow(Gdiplus::Color(30, ringCol.GetR(), ringCol.GetG(), ringCol.GetB()));
+    g.FillEllipse(&charGlow, charX, charY, charW, charH);
 
-            Gdiplus::Pen edgePen(Gdiplus::Color(60, (BYTE)(baseColor.GetR() * 0.6f),
-                                                    (BYTE)(baseColor.GetG() * 0.6f),
-                                                    (BYTE)(baseColor.GetB() * 0.6f)), 0.8f);
-            g.DrawPolygon(&edgePen, pts, 3);
-        }
-    }
+    // Stylized silhouette torso & head
+    Gdiplus::SolidBrush silBrush(Gdiplus::Color(180, 70, 80, 95));
+    // Head
+    g.FillEllipse(&silBrush, cx - 11.0f, charY + 6.0f, 22.0f, 24.0f);
+    // Body / Cape
+    Gdiplus::PointF bodyPts[4] = {
+        Gdiplus::PointF(cx - 16.0f, charY + 30.0f),
+        Gdiplus::PointF(cx + 16.0f, charY + 30.0f),
+        Gdiplus::PointF(cx + 26.0f, charY + charH + 4.0f),
+        Gdiplus::PointF(cx - 26.0f, charY + charH + 4.0f)
+    };
+    g.FillPolygon(&silBrush, bodyPts, 4);
 
-    Gdiplus::Pen borderPen(Gdiplus::Color(55, 180, 195, 215), 1.0f);
-    g.DrawRectangle(&borderPen, x, y, width, height);
+    // Wings outline for player character
+    Gdiplus::Pen wingPen(Gdiplus::Color(140, ringCol.GetR(), ringCol.GetG(), ringCol.GetB()), 1.5f);
+    g.DrawArc(&wingPen, cx - charW * 0.70f, charY + 12.0f, charW * 0.70f, charH * 0.65f, 160.0f, 150.0f);
+    g.DrawArc(&wingPen, cx, charY + 12.0f, charW * 0.70f, charH * 0.65f, 230.0f, 150.0f);
 }
 
 } // namespace BrService

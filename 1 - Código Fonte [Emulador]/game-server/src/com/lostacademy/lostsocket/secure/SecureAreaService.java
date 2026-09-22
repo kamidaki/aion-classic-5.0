@@ -35,13 +35,7 @@ public class SecureAreaService {
     private SecureAreaService() { initTable(); }
 
     public void requestToggle(Player player) {
-        if (player == null || !player.isOnline()) return;
-        if (cancelPendingCharge(player)) {
-            PacketSendUtility.sendMessage(player, "[Secure Area] Ativacao cancelada.");
-            broadcastPlayerInfo(player); return;
-        }
-        if (player.isInCustomState(CustomPlayerState.ENEMY_OF_ALL_PLAYERS)) { deactivateFfa(player); return; }
-        activateFfa(player);
+        // Secure Area completely disabled
     }
 
     public void onLeaveWorld(Player player) {

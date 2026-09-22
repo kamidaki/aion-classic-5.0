@@ -233,6 +233,12 @@ void PingHudUI::Paint(HWND hwnd) {
 
             s_consoleIconRect = { (int)iconX - 2, (int)iconY - 2, (int)(iconX + iconSize + 2), (int)(iconY + iconSize + 2) };
 
+            // Hit test fix: fill entire hitbox with non-zero alpha (alpha=2) so WS_EX_LAYERED registers mouse on 100% of the button area
+            Gdiplus::SolidBrush hitBrush(Gdiplus::Color(2, 20, 25, 30));
+            UICommon::FillRoundRectangle(g, &hitBrush, (float)s_consoleIconRect.left, (float)s_consoleIconRect.top,
+                                         (float)(s_consoleIconRect.right - s_consoleIconRect.left),
+                                         (float)(s_consoleIconRect.bottom - s_consoleIconRect.top), 4.0f);
+
             Gdiplus::Color iconCol = s_iconHovered ? UICommon::ColGoldAccent : Gdiplus::Color(220, 180, 190, 205);
             Gdiplus::Pen iconPen(iconCol, 1.6f);
 
@@ -254,8 +260,8 @@ void PingHudUI::Paint(HWND hwnd) {
             float adminX = curX + 2.0f;
             float adminY = 7.0f;
 
-            // Draw small User/Admin silhouette icon
-            Gdiplus::Color adminCol(255, 120, 200, 255); // Cyan-Blue for Admin indicator
+            // Draw small User/Admin silhouette icon in pure WHITE (Requirement 19)
+            Gdiplus::Color adminCol(255, 255, 255, 255); // Pure white
             Gdiplus::Pen adminPen(adminCol, 1.3f);
             Gdiplus::SolidBrush adminBrush(adminCol);
 

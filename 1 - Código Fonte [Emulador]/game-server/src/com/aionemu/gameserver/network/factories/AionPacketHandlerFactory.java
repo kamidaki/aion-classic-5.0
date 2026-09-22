@@ -238,7 +238,6 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_CLIENT_PING_STATE.class, 0x222, State.IN_GAME); // 0x0150 CLIENT_PING_STATE (5.0 Classic)
 		addPacket(CM_SHOW_DIALOG.class, 0x00F6, State.IN_GAME); // 0xFFFC USE_OBJECT
 		addPacket(CM_CLOSE_DIALOG.class, 0x00F7, State.IN_GAME); // 0xFFFD STOP_USE_OBJECT
-		addPacket(CM_SERVER_PVP_ACK.class, 0x03DC, State.IN_GAME); // 0x0326 SERVER_PVP_ACK (5.0 Classic)
 		addPacket(CM_CLIENT_SYNC_ACTION.class, 0x00F0, State.IN_GAME, State.AUTHED); // 0x0002 CLIENT_SYNC_ACTION (5.0 Classic)
 		addPacket(CM_CLIENT_PING_SYNC.class, 0x0151, State.IN_GAME, State.AUTHED); // 0x00A3 CLIENT_PING_SYNC (5.0 Classic)
 		addPacket(CM_SPLIT_ITEM.class, 0x014F, State.IN_GAME); // 0x00B5 SPLIT_ITEM (5.0 Classic: [D origem][Q qtd][C armazem][D destino][C armazem][H slot], 20 b)

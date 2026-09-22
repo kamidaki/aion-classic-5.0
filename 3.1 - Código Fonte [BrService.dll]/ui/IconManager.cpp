@@ -25,7 +25,6 @@ static std::string ToLowerAscii(const std::string& str) {
 
 static std::string NormalizeSkillName(const std::string& raw) {
     std::string s = raw;
-    // Strip trailing roman numerals: " I", " II", " III", " IV", " V", " VI", " VII", " VIII", " IX", " X"
     static const std::regex rankRegex(R"(\s+(?:[IVXLCDM]+|\d+)\s*$)");
     s = std::regex_replace(s, rankRegex, "");
 
@@ -33,7 +32,49 @@ static std::string NormalizeSkillName(const std::string& raw) {
     if (s.rfind("[DoT] ", 0) == 0) {
         s = s.substr(6);
     }
+    // Strip (Effect) suffix
+    size_t eff = s.find(" (Effect)");
+    if (eff != std::string::npos) {
+        s.erase(eff, 9);
+    }
+    // Strip colons or extra hyphens
+    s.erase(std::remove(s.begin(), s.end(), ':'), s.end());
     return ToLowerAscii(s);
+}
+
+static bool FileExists(const std::wstring& path) {
+    DWORD attr = GetFileAttributesW(path.c_str());
+    return (attr != INVALID_FILE_ATTRIBUTES && !(attr & FILE_ATTRIBUTE_DIRECTORY));
+}
+
+static std::wstring ResolveExistingIcon(const std::wstring& baseDir, const std::string& filename) {
+    if (filename.empty()) return L"";
+    std::wstring wName(filename.begin(), filename.end());
+
+    // 1. Direct check
+    std::wstring p1 = baseDir + L"\\" + wName;
+    if (FileExists(p1)) return p1;
+
+    // 2. Try with cbt_ prefix (combat skills)
+    if (filename.rfind("cbt_", 0) != 0) {
+        std::wstring p2 = baseDir + L"\\cbt_" + wName;
+        if (FileExists(p2)) return p2;
+    } else {
+        // Try without cbt_
+        std::wstring pNoCbt = baseDir + L"\\" + std::wstring(filename.begin() + 4, filename.end());
+        if (FileExists(pNoCbt)) return pNoCbt;
+    }
+
+    // 3. Try removing _proc
+    std::string base = filename;
+    size_t procPos = base.find("_proc");
+    if (procPos != std::string::npos) {
+        base.erase(procPos, 5);
+        std::wstring pProc = ResolveExistingIcon(baseDir, base);
+        if (!pProc.empty()) return pProc;
+    }
+
+    return L"";
 }
 
 bool IconManager::Initialize() {
@@ -184,9 +225,19 @@ std::wstring IconManager::GetSkillIconPath(const std::string& skillName, uint32_
     }
 
     if (!iconFilename.empty()) {
-        std::wstring wFilename(iconFilename.begin(), iconFilename.end());
-        return s_baseIconDir + L"\\skills\\" + wFilename;
+        std::wstring resolved = ResolveExistingIcon(s_baseIconDir + L"\\skills", iconFilename);
+        if (!resolved.empty()) return resolved;
     }
+
+    // Direct check with skillName without extension
+    if (!skillName.empty()) {
+        std::wstring resolved = ResolveExistingIcon(s_baseIconDir + L"\\skills", ToLowerAscii(skillName) + ".png");
+        if (!resolved.empty()) return resolved;
+    }
+
+    // Default fallback to action operation icon if available
+    std::wstring fallback = s_baseIconDir + L"\\skills\\icon_action_operation.png";
+    if (FileExists(fallback)) return fallback;
 
     return L"";
 }
