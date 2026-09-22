@@ -10,11 +10,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.configs.main.CustomConfig;
+import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
+import com.aionemu.gameserver.world.World;
 
 /**
  * High-performance, 0% CPU WebSocket server for real-time telemetry streaming to BrService.dll.
  * Executes on virtual threads (Java 21+) and accepts client connections on port 2130.
+ * Supports targeted, secure per-player telemetry dispatch and team/group routing.
  */
 public class WebSocketServer {
 
@@ -24,6 +27,8 @@ public class WebSocketServer {
 	private ServerSocket serverSocket;
 	private final AtomicBoolean isRunning = new AtomicBoolean(false);
 	private final Set<WebSocketClientSession> activeSessions = ConcurrentHashMap.newKeySet();
+	private final ConcurrentHashMap<Integer, WebSocketClientSession> playerSessions = new ConcurrentHashMap<>();
+	private final ConcurrentHashMap<String, WebSocketClientSession> ipSessions = new ConcurrentHashMap<>();
 
 	public static WebSocketServer getInstance() {
 		return instance;
@@ -51,6 +56,7 @@ public class WebSocketServer {
 				log.info("=========================================================================");
 				log.info("  BrSocket Telemetry Server escutando na porta: " + port);
 				log.info("  Seguranca: Token obrigatorio ativo (X-Token)");
+				log.info("  Roteamento: Telemetria direcionada individual / grupo (Zero Leaks)");
 				log.info("=========================================================================");
 
 				while (isRunning.get()) {
@@ -81,6 +87,8 @@ public class WebSocketServer {
 				session.close();
 			}
 			activeSessions.clear();
+			playerSessions.clear();
+			ipSessions.clear();
 		} catch (Exception e) {
 			log.error("[BrSocket] Erro durante o shutdown do servidor WebSocket", e);
 		}
@@ -89,12 +97,80 @@ public class WebSocketServer {
 	public void registerSession(WebSocketClientSession session) {
 		if (session != null) {
 			activeSessions.add(session);
+			if (session.getClientIp() != null) {
+				ipSessions.put(session.getClientIp(), session);
+			}
+			if (session.getPlayerObjectId() > 0) {
+				playerSessions.put(session.getPlayerObjectId(), session);
+			}
 		}
 	}
 
 	public void unregisterSession(WebSocketClientSession session) {
 		if (session != null) {
 			activeSessions.remove(session);
+			if (session.getPlayerObjectId() > 0) {
+				playerSessions.remove(session.getPlayerObjectId(), session);
+			}
+			if (session.getClientIp() != null) {
+				ipSessions.remove(session.getClientIp(), session);
+			}
+		}
+	}
+
+	public void bindPlayer(int playerId, WebSocketClientSession session) {
+		if (playerId > 0 && session != null) {
+			playerSessions.put(playerId, session);
+		}
+	}
+
+	public void sendToPlayer(int playerId, String json) {
+		if (json == null || playerId <= 0 || activeSessions.isEmpty()) {
+			return;
+		}
+		WebSocketClientSession session = playerSessions.get(playerId);
+		if (session != null && !session.isClosed()) {
+			session.sendText(json);
+			return;
+		}
+		// Fallback inteligente: buscar IP da conexao de jogo do player e associar
+		try {
+			Player p = World.getInstance().getPlayer(playerId);
+			if (p != null && p.getClientConnection() != null) {
+				String ip = p.getClientConnection().getIP();
+				if (ip != null) {
+					session = ipSessions.get(ip);
+					if (session != null && !session.isClosed()) {
+						session.setPlayerObjectId(playerId);
+						bindPlayer(playerId, session);
+						session.sendText(json);
+					}
+				}
+			}
+		} catch (Exception ignored) {
+		}
+	}
+
+	public void sendToGroupOrAlliance(Player player, String json) {
+		if (player == null || json == null || activeSessions.isEmpty()) {
+			return;
+		}
+		sendToPlayer(player.getObjectId(), json);
+		try {
+			if (player.isInGroup() && player.getPlayerGroup() != null) {
+				for (Player member : player.getPlayerGroup().getOnlineMembers()) {
+					if (member != null && member.getObjectId() != player.getObjectId()) {
+						sendToPlayer(member.getObjectId(), json);
+					}
+				}
+			} else if (player.isInAlliance() && player.getPlayerAlliance() != null) {
+				for (Player member : player.getPlayerAlliance().getOnlineMembers()) {
+					if (member != null && member.getObjectId() != player.getObjectId()) {
+						sendToPlayer(member.getObjectId(), json);
+					}
+				}
+			}
+		} catch (Exception ignored) {
 		}
 	}
 

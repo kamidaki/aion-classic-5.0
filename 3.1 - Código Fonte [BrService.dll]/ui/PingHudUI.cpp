@@ -61,8 +61,10 @@ void PingHudUI::Shutdown() {
 void PingHudUI::Show() {
     if (!g_featConsole.load() && !g_featPingUi.load()) return;
     if (g_hPingHudWnd && g_isInWorld.load() && !g_isLoadingScreen.load() && g_isGameActive.load()) {
-        ShowWindow(g_hPingHudWnd, SW_SHOWNOACTIVATE);
-        Repaint();
+        if (!IsWindowVisible(g_hPingHudWnd)) {
+            ShowWindow(g_hPingHudWnd, SW_SHOWNOACTIVATE);
+            Repaint();
+        }
     }
 }
 

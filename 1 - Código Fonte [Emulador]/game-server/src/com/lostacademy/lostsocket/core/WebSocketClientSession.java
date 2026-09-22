@@ -6,6 +6,8 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.Base64;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,6 +18,7 @@ import org.slf4j.LoggerFactory;
 /**
  * RFC 6455 compliant WebSocket client session handler running in a Virtual Thread.
  * Enforces mandatory X-Token security check before upgrading connection.
+ * Features 100% non-blocking async dispatch queue ensuring game server combat loops never stall.
  */
 public class WebSocketClientSession implements Runnable {
 
@@ -25,17 +28,38 @@ public class WebSocketClientSession implements Runnable {
 	private final Socket socket;
 	private final String expectedToken;
 	private final WebSocketServer server;
+	private final String clientIp;
 	private final AtomicBoolean closed = new AtomicBoolean(false);
 	private final Object sendLock = new Object();
+	private final BlockingQueue<byte[]> sendQueue = new LinkedBlockingQueue<>(256);
 
 	private InputStream in;
 	private OutputStream out;
 	private volatile boolean authenticated = false;
+	private volatile int playerObjectId = 0;
 
 	public WebSocketClientSession(Socket socket, String expectedToken, WebSocketServer server) {
 		this.socket = socket;
 		this.expectedToken = expectedToken;
 		this.server = server;
+		this.clientIp = (socket != null && socket.getInetAddress() != null)
+			? socket.getInetAddress().getHostAddress() : null;
+	}
+
+	public int getPlayerObjectId() {
+		return playerObjectId;
+	}
+
+	public void setPlayerObjectId(int playerObjectId) {
+		this.playerObjectId = playerObjectId;
+	}
+
+	public String getClientIp() {
+		return clientIp;
+	}
+
+	public boolean isClosed() {
+		return closed.get();
 	}
 
 	@Override
@@ -99,6 +123,10 @@ public class WebSocketClientSession implements Runnable {
 
 			socket.setSoTimeout(0); // Persistent connection for telemetry
 			authenticated = true;
+
+			// Iniciar thread de despacho assíncrono dedicada (zero bloqueio de threads de combate)
+			Thread.ofVirtual().name("BrSocket-Sender-", socket.getPort()).start(this::senderLoop);
+
 			server.registerSession(this);
 
 			log.info("[BrSocket] Cliente BrService autenticado e conectado com sucesso de {}", socket.getRemoteSocketAddress());
@@ -158,19 +186,63 @@ public class WebSocketClientSession implements Runnable {
 		}
 	}
 
+	private void senderLoop() {
+		try {
+			while (!closed.get()) {
+				byte[] frame = sendQueue.take();
+				if (frame == null) continue;
+				synchronized (sendLock) {
+					if (closed.get() || out == null) break;
+					out.write(frame);
+					out.flush();
+				}
+			}
+		} catch (InterruptedException ignored) {
+		} catch (Exception e) {
+			close();
+		}
+	}
+
 	private void handleIncomingMessage(String msg) {
 		if (msg == null || msg.isEmpty()) return;
 		try {
+			// Identificacao segura do jogador vinculado a esta sessao
+			if (msg.startsWith("IDENTIFY:") || msg.contains("\"IDENTIFY\"") || msg.contains("\"charId\"")) {
+				Matcher m = Pattern.compile("(?:\"charId\"|\"playerId\"|IDENTIFY:)\\s*[:\"]?\\s*(\\d+)").matcher(msg);
+				if (m.find()) {
+					int id = Integer.parseInt(m.group(1));
+					if (id > 0) {
+						this.playerObjectId = id;
+						server.bindPlayer(id, this);
+						log.info("[BrSocket] Sessao vinculada ao jogador objId={} de {}", id, socket.getRemoteSocketAddress());
+					}
+				}
+				return;
+			}
+
+			// Configuracao de visibilidade do Combo UI: aplicar APENAS para este jogador
 			if (msg.contains("SET_COMBO_VISIBILITY")) {
 				boolean visible = msg.contains("\"visible\":true") || msg.contains(":1") || msg.endsWith("1");
 				boolean hidden = !visible;
-				com.lostacademy.lostsocket.combat.ComboService.getInstance().setGlobalComboHidden(hidden);
-				for (var player : com.aionemu.gameserver.world.World.getInstance().getAllPlayers()) {
-					if (player != null && player.isOnline()) {
-						com.lostacademy.lostsocket.combat.ComboService.getInstance().setComboUiHidden(player.getObjectId(), hidden);
+				if (this.playerObjectId > 0) {
+					com.lostacademy.lostsocket.combat.ComboService.getInstance().setComboUiHidden(this.playerObjectId, hidden);
+					log.info("[BrSocket] Status do Combo UI do jogador objId={} atualizado para: visible={}", this.playerObjectId, visible);
+				} else {
+					// Fallback por IP
+					String ip = getClientIp();
+					if (ip != null) {
+						for (var p : com.aionemu.gameserver.world.World.getInstance().getAllPlayers()) {
+							if (p != null && p.isOnline() && p.getClientConnection() != null && ip.equals(p.getClientConnection().getIP())) {
+								this.playerObjectId = p.getObjectId();
+								server.bindPlayer(this.playerObjectId, this);
+								com.lostacademy.lostsocket.combat.ComboService.getInstance().setComboUiHidden(this.playerObjectId, hidden);
+								log.info("[BrSocket] Status do Combo UI do jogador objId={} (via IP) atualizado para: visible={}", this.playerObjectId, visible);
+								break;
+							}
+						}
 					}
 				}
-				log.info("[BrSocket] Atualizado status de exibicao do Combo UI para: visible={}", visible);
+				return;
 			}
 		} catch (Exception e) {
 			log.error("[BrSocket] Erro ao processar mensagem recebida: {}", msg, e);
@@ -205,10 +277,10 @@ public class WebSocketClientSession implements Runnable {
 			System.arraycopy(frame, 0, reply, 0, frameCount);
 			System.arraycopy(rawData, 0, reply, frameCount, rawData.length);
 
-			synchronized (sendLock) {
-				if (closed.get() || out == null) return;
-				out.write(reply);
-				out.flush();
+			// Despacho 100% assincrono via fila: se lotada, descarta frame mais antigo para nunca travar
+			if (!sendQueue.offer(reply)) {
+				sendQueue.poll();
+				sendQueue.offer(reply);
 			}
 		} catch (Exception e) {
 			close();
@@ -255,3 +327,4 @@ public class WebSocketClientSession implements Runnable {
 		return true;
 	}
 }
+

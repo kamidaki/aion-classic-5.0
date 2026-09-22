@@ -45,7 +45,7 @@ public final class DpsService {
 		  .append("\"onlineCount\":").append(onlineCount)
 		  .append("}");
 
-		ws.broadcast(sb.toString());
+		ws.sendToPlayer(player.getObjectId(), sb.toString());
 	}
 
 	public static void onTargetSelected(Player player, VisibleObject newTarget) {
@@ -55,7 +55,7 @@ public final class DpsService {
 
 		// Never show self as combat target
 		if (newTarget == null || newTarget.equals(player)) {
-			ws.broadcast("{\"type\":\"TARGET_INFO\",\"hasTarget\":false}");
+			ws.sendToPlayer(player.getObjectId(), "{\"type\":\"TARGET_INFO\",\"hasTarget\":false}");
 			return;
 		}
 
@@ -129,7 +129,7 @@ public final class DpsService {
 			  .append("\"mres\":").append(mRes)
 			  .append("}");
 
-			ws.broadcast(sb.toString());
+			ws.sendToPlayer(player.getObjectId(), sb.toString());
 		}
 	}
 
@@ -194,7 +194,7 @@ public final class DpsService {
 		  .append("\"resist\":").append(pResist)
 		  .append("}}");
 
-		ws.broadcast(sb.toString());
+		ws.sendToGroupOrAlliance(player, sb.toString());
 	}
 
 	public static void recordNpcDamage(Creature attacker, Player player, long damage, int skillId, String skillName, boolean isCrit) {
@@ -229,7 +229,7 @@ public final class DpsService {
 		  .append("\"targetLevel\":").append(targetLevel)
 		  .append("}");
 
-		ws.broadcast(sb.toString());
+		ws.sendToPlayer(player.getObjectId(), sb.toString());
 	}
 
 	public static void recordPlayerHeal(Player healer, Creature target, long healAmount, int skillId, String skillName) {
@@ -264,7 +264,7 @@ public final class DpsService {
 		  .append("\"targetLevel\":").append(targetLevel)
 		  .append("}");
 
-		ws.broadcast(sb.toString());
+		ws.sendToGroupOrAlliance(healer, sb.toString());
 	}
 
 	public static void sendComboEvent(Player player, String event, int hits, int hitDamage, int totalDamage, int timeoutMs, String title) {
@@ -279,7 +279,7 @@ public final class DpsService {
 		  .append("\"timeoutMs\":").append(timeoutMs).append(",")
 		  .append("\"title\":\"").append(safeJsonString(title)).append("\"")
 		  .append("}");
-		ws.broadcast(sb.toString());
+		ws.sendToPlayer(player.getObjectId(), sb.toString());
 	}
 
 	public static void sendParticipationGained(Player player, int pointsEarned, long totalPoints) {
@@ -290,7 +290,7 @@ public final class DpsService {
 		  .append("\"pointsEarned\":").append(pointsEarned).append(",")
 		  .append("\"totalPoints\":").append(totalPoints)
 		  .append("}");
-		ws.broadcast(sb.toString());
+		ws.sendToPlayer(player.getObjectId(), sb.toString());
 	}
 
 	public static void sendNewRecord(Player player, int recordHits) {
@@ -300,7 +300,7 @@ public final class DpsService {
 		sb.append("{\"type\":\"ACTION_NEW_RECORD\",")
 		  .append("\"recordHits\":").append(recordHits)
 		  .append("}");
-		ws.broadcast(sb.toString());
+		ws.sendToPlayer(player.getObjectId(), sb.toString());
 	}
 
 	public static void sendAbnormalState(Player player, int detailId, String stateName) {
@@ -311,7 +311,7 @@ public final class DpsService {
 		  .append("\"detail\":").append(detailId).append(",")
 		  .append("\"name\":\"").append(safeJsonString(stateName)).append("\"")
 		  .append("}");
-		ws.broadcast(sb.toString());
+		ws.sendToPlayer(player.getObjectId(), sb.toString());
 	}
 
 	public static void sendParticipationNotification(Player player, long delta, long total) {

@@ -175,4 +175,8 @@ void AddCombatEvent(const std::string& attacker, const std::string& target, uint
                     uint32_t targetCurHp, uint32_t targetMaxHp, uint32_t targetLevel,
                     const std::string& timeStr = "");
 
+uint32_t GetLocalPlayerObjectId();
+std::string GetLocalPlayerName();
+
 } // namespace BrService
+

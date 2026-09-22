@@ -105,13 +105,14 @@ void CryModelBridge::SetTargetNpc(uint32_t npcId) {
 
 void CryModelBridge::SetTargetEntity(uint32_t modelId, uint8_t entityType, uint8_t race, float yaw) {
     std::lock_guard<std::mutex> lock(s_modelMutex);
+    bool changed = (s_currentNpcId != modelId);
     s_currentNpcId = modelId;
     s_currentEntityType = entityType;
     s_currentRace = race;
     s_targetMemoryYaw = yaw;
 
     // Requisito 2: Se modelId == 0 (sem alvo), NUNCA pedir modelo do jogador e limpar estado
-    if (modelId != 0) {
+    if (modelId != 0 && changed) {
         RequestNpcModelOverPipe(modelId);
     }
 }

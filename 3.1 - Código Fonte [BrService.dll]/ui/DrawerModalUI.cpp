@@ -123,6 +123,14 @@ struct MemoryTargetRaw {
     float px, py, pz, yaw;
 };
 
+static inline bool IsValidUserPointer(uintptr_t addr) {
+#ifdef _WIN64
+    return addr >= 0x10000 && addr <= 0x00007FFFFFFEFFFF;
+#else
+    return addr >= 0x10000 && addr <= 0x7FFEFFFF;
+#endif
+}
+
 static bool ReadTargetMemoryRaw(MemoryTargetRaw* o) {
     if (!o) return false;
     o->valid = false;
@@ -130,37 +138,42 @@ static bool ReadTargetMemoryRaw(MemoryTargetRaw* o) {
     if (!hG) return false;
 
     __try {
-        uintptr_t* pT = (uintptr_t*)(hG + 0xECE610);
-        if (!pT || !*pT) return false;
-        uintptr_t tp = *pT;
+        uintptr_t targetBase = hG + 0xECE610;
+        if (!IsValidUserPointer(targetBase)) return false;
+        uintptr_t tp = *(uintptr_t*)targetBase;
+        if (!IsValidUserPointer(tp)) return false;
 
         // Validar e filtrar self-target (jogador selecionando a si mesmo)
         uintptr_t addr = hG + 0xECDDC8;
         static const uintptr_t pOffsets[] = { 0x70, 0x10, 0x20 };
         for (int i = 0; i < 3; ++i) {
-            if (!addr) break;
+            if (!IsValidUserPointer(addr)) break;
             addr = *(uintptr_t*)addr;
-            if (!addr) break;
+            if (!IsValidUserPointer(addr)) break;
             addr += pOffsets[i];
         }
-        uintptr_t pPlayer = addr ? *(uintptr_t*)addr : 0;
+        uintptr_t pPlayer = (IsValidUserPointer(addr)) ? *(uintptr_t*)addr : 0;
         if (pPlayer != 0 && tp == pPlayer) {
             // Jogador com target em si mesmo -> tratar como sem alvo
             return false;
         }
 
-        uintptr_t* pE = (uintptr_t*)(tp + 0x378);
-        if (!pE || !*pE) return false;
-        uintptr_t e = *pE;
+        uintptr_t entityPtrAddr = tp + 0x378;
+        if (!IsValidUserPointer(entityPtrAddr)) return false;
+        uintptr_t e = *(uintptr_t*)entityPtrAddr;
+        if (!IsValidUserPointer(e)) return false;
 
         o->objId = *(uint32_t*)(e + 0x24);
         o->modelId = *(uint32_t*)(e + 0x20);
 
         if (pPlayer != 0) {
-            uintptr_t pPE = *(uintptr_t*)(pPlayer + 0x378);
-            if (pPE && *(uint32_t*)(pPE + 0x24) == o->objId) {
-                // ObjId do target coincide com o próprio jogador
-                return false;
+            uintptr_t pPEAddr = pPlayer + 0x378;
+            if (IsValidUserPointer(pPEAddr)) {
+                uintptr_t pPE = *(uintptr_t*)pPEAddr;
+                if (IsValidUserPointer(pPE) && *(uint32_t*)(pPE + 0x24) == o->objId) {
+                    // ObjId do target coincide com o próprio jogador
+                    return false;
+                }
             }
         }
 
@@ -170,7 +183,7 @@ static bool ReadTargetMemoryRaw(MemoryTargetRaw* o) {
         o->race = *(uint8_t*)(e + 0x39);
 
         wchar_t* pN = (wchar_t*)(e + 0x46);
-        if (pN) wcsncpy_s(o->name, pN, _TRUNCATE);
+        if (IsValidUserPointer((uintptr_t)pN)) wcsncpy_s(o->name, pN, _TRUNCATE);
         else o->name[0] = L'\0';
 
         o->px = *(float*)(tp + 0x3C);
@@ -303,9 +316,11 @@ void DrawerModalUI::Hide() {
 void DrawerModalUI::RestoreIfOpen() {
     if (!g_featConsole.load()) return;
     if (g_isDrawerOpen.load() && g_hDrawerModalWnd && !g_isLoadingScreen.load() && g_isGameActive.load()) {
-        ShowWindow(g_hDrawerModalWnd, SW_SHOWNOACTIVATE);
-        SetTimer(g_hDrawerModalWnd, 1, 33, nullptr);
-        Repaint();
+        if (!IsWindowVisible(g_hDrawerModalWnd)) {
+            ShowWindow(g_hDrawerModalWnd, SW_SHOWNOACTIVATE);
+            SetTimer(g_hDrawerModalWnd, 1, 33, nullptr);
+            Repaint();
+        }
     }
 }
 

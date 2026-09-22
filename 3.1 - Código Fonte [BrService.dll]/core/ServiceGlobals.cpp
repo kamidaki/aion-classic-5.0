@@ -285,4 +285,74 @@ void AddCombatEvent(const std::string& attacker, const std::string& target, uint
     }
 }
 
+static inline bool IsValidUserPointer(uintptr_t addr) {
+#ifdef _WIN64
+    return addr >= 0x10000 && addr <= 0x00007FFFFFFEFFFF;
+#else
+    return addr >= 0x10000 && addr <= 0x7FFEFFFF;
+#endif
+}
+
+uint32_t GetLocalPlayerObjectId() {
+    uintptr_t hG = (uintptr_t)GetModuleHandleA("Game.dll");
+    if (!hG) return 0;
+    __try {
+        uintptr_t addr = hG + 0xECDDC8;
+        static const uintptr_t pOffsets[] = { 0x70, 0x10, 0x20 };
+        for (int i = 0; i < 3; ++i) {
+            if (!IsValidUserPointer(addr)) return 0;
+            addr = *(uintptr_t*)addr;
+            if (!IsValidUserPointer(addr)) return 0;
+            addr += pOffsets[i];
+        }
+        if (!IsValidUserPointer(addr)) return 0;
+        uintptr_t pPlayer = *(uintptr_t*)addr;
+        if (!IsValidUserPointer(pPlayer)) return 0;
+        uintptr_t pPE = *(uintptr_t*)(pPlayer + 0x378);
+        if (!IsValidUserPointer(pPE)) return 0;
+        return *(uint32_t*)(pPE + 0x24);
+    } __except (EXCEPTION_EXECUTE_HANDLER) {
+        return 0;
+    }
+}
+
+static bool ReadPlayerNameRaw(char* outBuf, size_t bufSize) {
+    if (!outBuf || bufSize == 0) return false;
+    outBuf[0] = '\0';
+    uintptr_t hG = (uintptr_t)GetModuleHandleA("Game.dll");
+    if (!hG) return false;
+    __try {
+        uintptr_t addr = hG + 0xECDDC8;
+        static const uintptr_t pOffsets[] = { 0x70, 0x10, 0x20 };
+        for (int i = 0; i < 3; ++i) {
+            if (!IsValidUserPointer(addr)) return false;
+            addr = *(uintptr_t*)addr;
+            if (!IsValidUserPointer(addr)) return false;
+            addr += pOffsets[i];
+        }
+        if (!IsValidUserPointer(addr)) return false;
+        uintptr_t pPlayer = *(uintptr_t*)addr;
+        if (!IsValidUserPointer(pPlayer)) return false;
+        uintptr_t pPE = *(uintptr_t*)(pPlayer + 0x378);
+        if (!IsValidUserPointer(pPE)) return false;
+        wchar_t* pN = (wchar_t*)(pPE + 0x46);
+        if (pN && wcslen(pN) > 0) {
+            WideCharToMultiByte(CP_UTF8, 0, pN, -1, outBuf, (int)bufSize, nullptr, nullptr);
+            return true;
+        }
+    } __except (EXCEPTION_EXECUTE_HANDLER) {
+        return false;
+    }
+    return false;
+}
+
+std::string GetLocalPlayerName() {
+    char buf[128] = { 0 };
+    if (ReadPlayerNameRaw(buf, sizeof(buf))) {
+        return std::string(buf);
+    }
+    return "";
+}
+
 } // namespace BrService
+

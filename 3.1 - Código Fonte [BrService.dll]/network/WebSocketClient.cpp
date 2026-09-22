@@ -349,61 +349,100 @@ DWORD WINAPI WebSocketClient::ClientThread(LPVOID /*param*/) {
         }
         s_connected = true;
         LogInfo("WebSocket conectado com sucesso ao emulador em %s:%d!", s_wsHost.c_str(), s_wsPort);
+
+        // Auto-identificar o jogador local se ja conectado no mundo
+        uint32_t lastIdentifiedCharId = GetLocalPlayerObjectId();
+        if (lastIdentifiedCharId > 0) {
+            std::string myName = GetLocalPlayerName();
+            SendTextMessage("IDENTIFY:{\"charId\":" + std::to_string(lastIdentifiedCharId) + ",\"name\":\"" + myName + "\"}");
+            LogInfo("WebSocket: Enviado IDENTIFY inicial charId=%u (%s)", lastIdentifiedCharId, myName.c_str());
+        }
+
         SendTextMessage(std::string("SET_COMBO_VISIBILITY:") + (g_comboVisible.load() ? "1" : "0"));
 
-        // Frame read loop
+        // Frame read loop com buffer continuo de alta performance (sem erase por frame)
         std::vector<uint8_t> frameBuffer;
+        ULONGLONG lastIdentifyCheckTick = GetTickCount64();
+
         while (s_running.load()) {
             uint8_t chunk[4096];
             int n = recv(sock, (char*)chunk, sizeof(chunk), 0);
             if (n <= 0) {
                 int err = WSAGetLastError();
-                if (err == WSAETIMEDOUT) continue;
+                if (err == WSAETIMEDOUT) {
+                    // Periodic identity check
+                    ULONGLONG now = GetTickCount64();
+                    if (now - lastIdentifyCheckTick >= 2000) {
+                        lastIdentifyCheckTick = now;
+                        uint32_t curId = GetLocalPlayerObjectId();
+                        if (curId > 0 && curId != lastIdentifiedCharId) {
+                            lastIdentifiedCharId = curId;
+                            std::string myName = GetLocalPlayerName();
+                            SendTextMessage("IDENTIFY:{\"charId\":" + std::to_string(curId) + ",\"name\":\"" + myName + "\"}");
+                            LogInfo("WebSocket: Sincronizado IDENTIFY charId=%u (%s)", curId, myName.c_str());
+                        }
+                    }
+                    continue;
+                }
                 break; // Disconnected
+            }
+
+            // Periodic identity check upon network activity
+            ULONGLONG now = GetTickCount64();
+            if (now - lastIdentifyCheckTick >= 2000) {
+                lastIdentifyCheckTick = now;
+                uint32_t curId = GetLocalPlayerObjectId();
+                if (curId > 0 && curId != lastIdentifiedCharId) {
+                    lastIdentifiedCharId = curId;
+                    std::string myName = GetLocalPlayerName();
+                    SendTextMessage("IDENTIFY:{\"charId\":" + std::to_string(curId) + ",\"name\":\"" + myName + "\"}");
+                    LogInfo("WebSocket: Sincronizado IDENTIFY charId=%u (%s)", curId, myName.c_str());
+                }
             }
 
             frameBuffer.insert(frameBuffer.end(), chunk, chunk + n);
 
-            while (frameBuffer.size() >= 2) {
-                uint8_t b1 = frameBuffer[0];
-                uint8_t b2 = frameBuffer[1];
+            size_t readOffset = 0;
+            while (frameBuffer.size() - readOffset >= 2) {
+                uint8_t b1 = frameBuffer[readOffset + 0];
+                uint8_t b2 = frameBuffer[readOffset + 1];
                 int opcode = b1 & 0x0F;
                 bool masked = (b2 & 0x80) != 0;
                 uint64_t payloadLen = b2 & 0x7F;
                 size_t headerLen = 2;
 
                 if (payloadLen == 126) {
-                    if (frameBuffer.size() < 4) break;
-                    payloadLen = (frameBuffer[2] << 8) | frameBuffer[3];
+                    if (frameBuffer.size() - readOffset < 4) break;
+                    payloadLen = (frameBuffer[readOffset + 2] << 8) | frameBuffer[readOffset + 3];
                     headerLen = 4;
                 } else if (payloadLen == 127) {
-                    if (frameBuffer.size() < 10) break;
+                    if (frameBuffer.size() - readOffset < 10) break;
                     payloadLen = 0;
                     for (int i = 0; i < 8; i++) {
-                        payloadLen = (payloadLen << 8) | frameBuffer[2 + i];
+                        payloadLen = (payloadLen << 8) | frameBuffer[readOffset + 2 + i];
                     }
                     headerLen = 10;
                 }
 
                 size_t maskLen = masked ? 4 : 0;
-                if (frameBuffer.size() < headerLen + maskLen + payloadLen) break;
+                if (frameBuffer.size() - readOffset < headerLen + maskLen + payloadLen) break;
 
                 uint8_t mask[4] = { 0 };
                 if (masked) {
-                    memcpy(mask, &frameBuffer[headerLen], 4);
+                    memcpy(mask, &frameBuffer[readOffset + headerLen], 4);
                 }
 
                 std::string payloadText;
                 payloadText.resize(static_cast<size_t>(payloadLen));
 
-                const uint8_t* payloadBytes = &frameBuffer[headerLen + maskLen];
+                const uint8_t* payloadBytes = &frameBuffer[readOffset + headerLen + maskLen];
                 for (size_t i = 0; i < payloadLen; i++) {
                     uint8_t b = payloadBytes[i];
                     if (masked) b ^= mask[i % 4];
                     payloadText[i] = (char)b;
                 }
 
-                frameBuffer.erase(frameBuffer.begin(), frameBuffer.begin() + (headerLen + maskLen + payloadLen));
+                readOffset += (headerLen + maskLen + payloadLen);
 
                 if (opcode == 0x1) { // Text frame
                     HandleIncomingPayload(payloadText);
@@ -413,6 +452,15 @@ DWORD WINAPI WebSocketClient::ClientThread(LPVOID /*param*/) {
                     break;
                 }
             }
+
+            if (readOffset > 0) {
+                if (readOffset >= frameBuffer.size()) {
+                    frameBuffer.clear();
+                } else {
+                    frameBuffer.erase(frameBuffer.begin(), frameBuffer.begin() + readOffset);
+                }
+            }
+
             if (sock == INVALID_SOCKET) break;
         }
 
