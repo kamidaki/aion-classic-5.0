@@ -1,6 +1,7 @@
 #include "IconManager.h"
 #include "UICommon.h"
 #include "../core/ServiceLog.h"
+#include "../core/ServiceGlobals.h"
 #include <fstream>
 #include <sstream>
 #include <algorithm>
@@ -74,6 +75,16 @@ static std::wstring ResolveExistingIcon(const std::wstring& baseDir, const std::
         if (!pProc.empty()) return pProc;
     }
 
+    // 4. Try fallback to grade 1 (_g1)
+    size_t gPos = base.rfind("_g");
+    if (gPos != std::string::npos && gPos + 3 <= base.length()) {
+        std::string baseG1 = base.substr(0, gPos) + "_g1.png";
+        if (baseG1 != base) {
+            std::wstring pG1 = ResolveExistingIcon(baseDir, baseG1);
+            if (!pG1.empty()) return pG1;
+        }
+    }
+
     return L"";
 }
 
@@ -82,9 +93,11 @@ bool IconManager::Initialize() {
     if (s_initialized) return true;
 
     wchar_t dllPath[MAX_PATH] = { 0 };
-    HMODULE hMod = nullptr;
-    GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
-                       (LPCWSTR)&Initialize, &hMod);
+    HMODULE hMod = g_hModule;
+    if (!hMod) {
+        GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+                           (LPCWSTR)&Initialize, &hMod);
+    }
     GetModuleFileNameW(hMod, dllPath, MAX_PATH);
 
     wchar_t* lastSlash = wcsrchr(dllPath, L'\\');
@@ -92,11 +105,38 @@ bool IconManager::Initialize() {
         *lastSlash = L'\0';
     }
 
+    // Lista de caminhos candidatos para encontrar a pasta de icones
+    const wchar_t* candidateDirs[] = {
+        L"sprites\\icons",
+        L"D:\\GameForge\\aionclassic\\bin64\\sprites\\icons",
+        L"D:\\AION CLASSIC 5.0 - EMULADOR\\4 - Patch para o Client 5.0\\bin64\\sprites\\icons",
+        L"D:\\Downloads - Google\\Lost Academy - Remake v1\\LostAcademy\\sprites\\icons",
+    };
+
     s_baseIconDir = std::wstring(dllPath) + L"\\sprites\\icons";
+    for (const wchar_t* cd : candidateDirs) {
+        std::wstring path = (cd[1] == L':') ? std::wstring(cd) : (std::wstring(dllPath) + L"\\" + cd);
+        std::wstring testJson = path + L"\\skills.json";
+        if (FileExists(testJson)) {
+            s_baseIconDir = path;
+            break;
+        }
+    }
+
     LoadSkillDatabase();
 
+    // Contar arquivos .png na pasta de skills para diagnóstico
+    int iconCount = 0;
+    std::wstring searchPath = s_baseIconDir + L"\\skills\\*.png";
+    WIN32_FIND_DATAW fd = {};
+    HANDLE hFind = FindFirstFileW(searchPath.c_str(), &fd);
+    if (hFind != INVALID_HANDLE_VALUE) {
+        do { iconCount++; } while (FindNextFileW(hFind, &fd));
+        FindClose(hFind);
+    }
+    LogInfo("IconManager: %d icones .png encontrados em %ls\\skills\\.", iconCount, s_baseIconDir.c_str());
+
     s_initialized = true;
-    LogInfo("IconManager inicializado. Diretorio base de icones: %ls", s_baseIconDir.c_str());
     return true;
 }
 

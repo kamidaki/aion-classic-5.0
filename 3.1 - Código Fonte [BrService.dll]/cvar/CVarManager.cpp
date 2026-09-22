@@ -187,7 +187,15 @@ bool CVarManager::Initialize() {
 
     if (!g_hWorkerThread) {
         g_hWorkerThread = CreateThread(nullptr, 0, CVarWorkerThreadProc, nullptr, 0, nullptr);
-        LogInfo("CVarManager conectado com sucesso ao subsistema de console nativo da CryEngine.");
+        // Diagn\u00f3stico de RVA/console
+        uintptr_t pConsole = GetNativeConsole();
+        if (pConsole) {
+            LogInfo("CVarManager: Console CryEngine encontrado em 0x%p (RVA=0x%zX). CVars prontos.", (void*)pConsole, kEngineGlobalRva);
+        } else {
+            LogError("CVarManager: Console CryEngine NAO encontrado (RVA=0x%zX). Game.dll=%p CrySystem.dll=%p. CVars inoperantes ate o engine inicializar.",
+                     kEngineGlobalRva, GetModuleHandleA("Game.dll"), GetModuleHandleA("CrySystem.dll"));
+        }
+        LogInfo("CVarManager worker thread iniciado. Intervalo de reaplicacao: 1200ms.");
     }
     return true;
 }

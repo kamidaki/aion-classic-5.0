@@ -72,7 +72,7 @@ static LRESULT CALLBACK GameWindowSubclassProc(HWND hWnd, UINT uMsg, WPARAM wPar
         if (LOWORD(wParam) == WA_INACTIVE) {
             g_isGameActive = false;
             PingHudUI::Hide();
-            DrawerModalUI::Hide();
+            if (g_drawerPinned.load()) DrawerModalUI::Hide(); // UNPINNED: manter visível
             if (g_wakeEvent) SetEvent(g_wakeEvent);
         } else {
             HWND fg = GetForegroundWindow();
@@ -87,7 +87,7 @@ static LRESULT CALLBACK GameWindowSubclassProc(HWND hWnd, UINT uMsg, WPARAM wPar
                 }
             } else {
                 PingHudUI::Hide();
-                DrawerModalUI::Hide();
+                if (g_drawerPinned.load()) DrawerModalUI::Hide();
             }
             if (g_wakeEvent) SetEvent(g_wakeEvent);
         }
@@ -96,7 +96,7 @@ static LRESULT CALLBACK GameWindowSubclassProc(HWND hWnd, UINT uMsg, WPARAM wPar
     case WM_KILLFOCUS:
         g_isGameActive = false;
         PingHudUI::Hide();
-        DrawerModalUI::Hide();
+        if (g_drawerPinned.load()) DrawerModalUI::Hide();
         if (g_wakeEvent) SetEvent(g_wakeEvent);
         break;
 
@@ -113,7 +113,7 @@ static LRESULT CALLBACK GameWindowSubclassProc(HWND hWnd, UINT uMsg, WPARAM wPar
             }
         } else {
             PingHudUI::Hide();
-            DrawerModalUI::Hide();
+            if (g_drawerPinned.load()) DrawerModalUI::Hide();
         }
         if (g_wakeEvent) SetEvent(g_wakeEvent);
         break;
@@ -276,7 +276,7 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
             s_lastShiftF3 = shiftF3;
         } else {
             PingHudUI::Hide();
-            DrawerModalUI::Hide();
+            if (g_drawerPinned.load()) DrawerModalUI::Hide();
         }
 
         Sleep(30); // ~33Hz responsive input & window loop (0% CPU)

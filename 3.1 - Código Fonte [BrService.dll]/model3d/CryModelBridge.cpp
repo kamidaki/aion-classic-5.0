@@ -64,7 +64,26 @@ void CryModelBridge::RequestNpcModelOverPipe(uint32_t npcId) {
 bool CryModelBridge::Initialize() {
     std::lock_guard<std::mutex> lock(s_modelMutex);
     EnsureSharedMemory();
-    RequestNpcModelOverPipe(0); // Request player model by default
+
+    // Diagn\u00f3stico: reportar status do shared memory e do pipe
+    if (s_pSharedMemView) {
+        const BridgeFrameHeader* h = reinterpret_cast<const BridgeFrameHeader*>(s_pSharedMemView);
+        LogInfo("CryModelBridge: Shared memory conectada. magic=0x%08X status=%u w=%u h=%u pitch=%u",
+                h->magic, h->status, h->width, h->height, h->pitch);
+    } else {
+        // Tentar abrir pipe como teste
+        HANDLE hPipe = CreateFileA("\\\\.\\pipe\\LostAcademy_CryModelBridge",
+                                   GENERIC_READ | GENERIC_WRITE, 0, nullptr,
+                                   OPEN_EXISTING, 0, nullptr);
+        if (hPipe != INVALID_HANDLE_VALUE) {
+            CloseHandle(hPipe);
+            LogInfo("CryModelBridge: Pipe encontrado mas shared memory ausente. Broker iniciado mas frame ainda nao disponivel.");
+        } else {
+            LogError("CryModelBridge: Broker NAO encontrado (sem shared memory nem pipe). Modelos 3D usarao silhueta fallback. Inicie o broker LostAcademy_CryModelBridge para renderizacao real.");
+        }
+    }
+
+    // Nao solicitar player model fallback (requisito: sem fallback para proprio personagem)
     return true;
 }
 
@@ -91,8 +110,10 @@ void CryModelBridge::SetTargetEntity(uint32_t modelId, uint8_t entityType, uint8
     s_currentRace = race;
     s_targetMemoryYaw = yaw;
 
-    // If modelId is 0, request player model fallback over bridge
-    RequestNpcModelOverPipe(modelId);
+    // Requisito 2: Se modelId == 0 (sem alvo), NUNCA pedir modelo do jogador e limpar estado
+    if (modelId != 0) {
+        RequestNpcModelOverPipe(modelId);
+    }
 }
 
 void CryModelBridge::LoadFallbackMesh(uint32_t /*npcId*/) {
@@ -100,6 +121,11 @@ void CryModelBridge::LoadFallbackMesh(uint32_t /*npcId*/) {
 }
 
 void CryModelBridge::RenderThumbnail(Gdiplus::Graphics& g, float x, float y, float width, float height) {
+    if (s_currentNpcId == 0) {
+        // Requisito 2: sem target = nada exibido, sem fallback para proprio personagem
+        return;
+    }
+
     EnsureSharedMemory();
 
     if (s_pSharedMemView) {

@@ -37,6 +37,7 @@ void BrConfig::Load() {
     g_drawerOpacity = std::clamp((int)GetPrivateProfileIntW(L"DrawerUI", L"Opacity", 255, ini.c_str()), 120, 255);
     g_compactView = (GetPrivateProfileIntW(L"DrawerUI", L"CompactView", 0, ini.c_str()) != 0);
     g_hideConsoleSection = (GetPrivateProfileIntW(L"DrawerUI", L"HideConsole", 0, ini.c_str()) != 0);
+    g_drawerPinned = (GetPrivateProfileIntW(L"DrawerUI", L"Pinned", 1, ini.c_str()) != 0);
 
     g_comboVisible = (GetPrivateProfileIntW(L"ComboUI", L"Visible", 1, ini.c_str()) != 0);
 
@@ -88,6 +89,7 @@ void BrConfig::Save() {
     WritePrivateProfileStringW(L"DrawerUI", L"Opacity", std::to_wstring(g_drawerOpacity.load()).c_str(), ini.c_str());
     WritePrivateProfileStringW(L"DrawerUI", L"CompactView", g_compactView.load() ? L"1" : L"0", ini.c_str());
     WritePrivateProfileStringW(L"DrawerUI", L"HideConsole", g_hideConsoleSection.load() ? L"1" : L"0", ini.c_str());
+    WritePrivateProfileStringW(L"DrawerUI", L"Pinned", g_drawerPinned.load() ? L"1" : L"0", ini.c_str());
 
     WritePrivateProfileStringW(L"ComboUI", L"Visible", g_comboVisible.load() ? L"1" : L"0", ini.c_str());
     swprintf_s(buf, L"%.2f", g_comboOpacity.load());
