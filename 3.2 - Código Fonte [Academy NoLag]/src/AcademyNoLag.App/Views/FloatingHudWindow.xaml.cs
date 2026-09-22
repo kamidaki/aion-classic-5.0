@@ -24,9 +24,23 @@ public partial class FloatingHudWindow : Window
 
     public FloatingHudWindow(MainViewModel viewModel)
     {
-        InitializeComponent();
+        Logger.Instance.Info("UI", "FloatingHudWindow constructor starting...");
         _viewModel = viewModel;
         DataContext = _viewModel;
+
+        InitializeComponent();
+        Logger.Instance.Info("UI", "FloatingHudWindow InitializeComponent completed.");
+
+        // Create SystemTrayManager in constructor so tray icon is active immediately
+        try
+        {
+            _trayManager = new SystemTrayManager(this, _viewModel);
+            Logger.Instance.Info("UI", "SystemTrayManager created in constructor.");
+        }
+        catch (Exception ex)
+        {
+            Logger.Instance.Error("UI", $"Failed to create SystemTrayManager in constructor: {ex}");
+        }
 
         Loaded += OnLoaded;
         Closing += OnWindowClosing;
@@ -34,27 +48,31 @@ public partial class FloatingHudWindow : Window
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
-        // 1. Position window at bottom-right above taskbar, ensuring safe screen bounds
-        var workingArea = SystemParameters.WorkArea;
-        double w = ActualWidth > 100 ? ActualWidth : (Width > 0 ? Width : 465);
-        double h = ActualHeight > 100 ? ActualHeight : (Height > 0 ? Height : 545);
-        Left = Math.Max(20, workingArea.Right - w - 24);
-        Top = Math.Max(20, workingArea.Bottom - h - 24);
+        Logger.Instance.Info("UI", $"FloatingHudWindow OnLoaded triggered! Screen WorkArea: {SystemParameters.WorkArea.Width}x{SystemParameters.WorkArea.Height}");
 
-        // 2. Initialize Tray Manager
-        try
+        // If tray manager was not yet created, create it now as fallback
+        if (_trayManager == null)
         {
-            if (_trayManager == null)
+            try
             {
                 _trayManager = new SystemTrayManager(this, _viewModel);
             }
-        }
-        catch (Exception ex)
-        {
-            Logger.Instance.Error("TrayManager", $"Failed to initialize TrayManager: {ex.Message}");
+            catch (Exception ex)
+            {
+                Logger.Instance.Error("UI", $"Failed to initialize fallback TrayManager: {ex.Message}");
+            }
         }
 
-        // 3. Ensure window is visible and focused
+        // Center on screen initially for prominent visibility
+        if (double.IsNaN(Left) || Left <= 0 || Left > SystemParameters.WorkArea.Right - 50)
+        {
+            Left = Math.Max(20, (SystemParameters.WorkArea.Width - Width) / 2);
+        }
+        if (double.IsNaN(Top) || Top <= 0 || Top > SystemParameters.WorkArea.Bottom - 50)
+        {
+            Top = Math.Max(20, (SystemParameters.WorkArea.Height - Height) / 2);
+        }
+
         ShowFloatingHud();
     }
 

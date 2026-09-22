@@ -26,11 +26,15 @@ public class SystemTrayManager : IDisposable
         _floatingHud = floatingHud;
         _viewModel = viewModel;
 
+        Diagnostics.Logger.Instance.Info("Tray", "SystemTrayManager constructor started.");
+
         // 1. Build Dark Gaming ContextMenuStrip with Custom Renderer (Zero White Margins)
         _contextMenu = BuildContextMenu();
+        Diagnostics.Logger.Instance.Info("Tray", "ContextMenu built.");
 
         // 2. Resolve Icon
         Icon icon = ResolveTrayIcon();
+        Diagnostics.Logger.Instance.Info("Tray", $"Icon resolved: {icon.Width}x{icon.Height}");
 
         // 3. Initialize NotifyIcon
         _notifyIcon = new WinForms.NotifyIcon
@@ -40,6 +44,7 @@ public class SystemTrayManager : IDisposable
             ContextMenuStrip = _contextMenu,
             Visible = true
         };
+        Diagnostics.Logger.Instance.Info("Tray", $"NotifyIcon initialized with Visible={_notifyIcon.Visible}");
 
         // Click handlers
         _notifyIcon.MouseClick += (s, e) =>
