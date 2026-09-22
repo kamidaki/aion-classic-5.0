@@ -44,15 +44,15 @@ public partial class RealTimeMetricGraph : System.Windows.Controls.UserControl
 
         _directLine = new Polyline
         {
-            Stroke = new SolidColorBrush(Color.FromRgb(249, 115, 22)), // Orange
-            StrokeThickness = 2,
+            Stroke = new SolidColorBrush(Color.FromRgb(249, 115, 22)), // #F97316 — Default route (warm orange)
+            StrokeThickness = 1.5,
             StrokeLineJoin = PenLineJoin.Round
         };
 
         _optimizedLine = new Polyline
         {
-            Stroke = new SolidColorBrush(Color.FromRgb(0, 229, 255)), // Cyan
-            StrokeThickness = 2.5,
+            Stroke = new SolidColorBrush(Color.FromRgb(24, 201, 139)), // #18C98B — Optimized route (accent green)
+            StrokeThickness = 2.0,
             StrokeLineJoin = PenLineJoin.Round
         };
 
@@ -77,7 +77,14 @@ public partial class RealTimeMetricGraph : System.Windows.Controls.UserControl
 
     private void OnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
-        Dispatcher.Invoke(Redraw);
+        if (Dispatcher.CheckAccess())
+        {
+            Redraw();
+        }
+        else
+        {
+            Dispatcher.BeginInvoke(Redraw);
+        }
     }
 
     private double _lastWidth = 0;
@@ -109,8 +116,8 @@ public partial class RealTimeMetricGraph : System.Windows.Controls.UserControl
             _lastHeight = height;
             GraphCanvas.Children.Clear();
 
-            // Draw horizontal gridlines (0%, 25%, 50%, 75%, 100%)
-            var gridPen = new SolidColorBrush(Color.FromArgb(30, 255, 255, 255));
+            // Draw extremely subtle horizontal gridlines — minimal dark aesthetic
+            var gridPen = new SolidColorBrush(Color.FromArgb(18, 255, 255, 255)); // alpha=18 ~ very faint
             for (int i = 0; i <= 4; i++)
             {
                 double y = height * (i / 4.0);

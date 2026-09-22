@@ -123,9 +123,13 @@ public partial class FloatingHudWindow : Window
 
     private void DragWindow(object sender, MouseButtonEventArgs e)
     {
-        if (e.ChangedButton == MouseButton.Left)
+        if (e.LeftButton == MouseButtonState.Pressed)
         {
-            DragMove();
+            try
+            {
+                DragMove();
+            }
+            catch { }
         }
     }
 
@@ -142,7 +146,7 @@ public partial class FloatingHudWindow : Window
         if (TxtPin != null)
         {
             TxtPin.Foreground = _isPinned 
-                ? new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(0, 229, 255)) 
+                ? new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255)) 
                 : new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(148, 163, 184));
         }
     }

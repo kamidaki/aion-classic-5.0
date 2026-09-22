@@ -7,7 +7,7 @@
         xmlns:vm="clr-namespace:AcademyNoLag.App.ViewModels"
         mc:Ignorable="d"
         Title="Academy NoLag — Gaming HUD"
-        Width="465" Height="695"
+        Width="460" Height="700"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
@@ -15,164 +15,477 @@
         ShowInTaskbar="True"
         WindowStartupLocation="CenterScreen">
 
-    <!-- Outer Glow Container -->
-    <Border Margin="10" CornerRadius="14" Background="#0B0F19" BorderBrush="#00E5FF" BorderThickness="1.5">
+    <Window.Resources>
+
+        <!-- ===== COLOR PALETTE: MINIMAL DARK ===== -->
+        <SolidColorBrush x:Key="BgDeep"       Color="#080B10"/>
+        <SolidColorBrush x:Key="BgBase"       Color="#0B0F15"/>
+        <SolidColorBrush x:Key="BgPanel"      Color="#111722"/>
+        <SolidColorBrush x:Key="BgPanelAlt"   Color="#151B25"/>
+        <SolidColorBrush x:Key="BorderSubtle" Color="#1C2333"/>
+        <SolidColorBrush x:Key="BorderMid"    Color="#243045"/>
+        <SolidColorBrush x:Key="TxtPrimary"   Color="#F5F7FA"/>
+        <SolidColorBrush x:Key="TxtSecondary" Color="#8B95A5"/>
+        <SolidColorBrush x:Key="TxtMuted"     Color="#4A566A"/>
+        <SolidColorBrush x:Key="Accent"       Color="#18C98B"/>
+        <SolidColorBrush x:Key="AccentBg"     Color="#0A2D22"/>
+        <SolidColorBrush x:Key="Warn"         Color="#F97316"/>
+
+        <!-- ===== SIDEBAR NAV BUTTON ===== -->
+        <Style x:Key="SidebarNavButtonStyle" TargetType="Button">
+            <Setter Property="Width"           Value="40"/>
+            <Setter Property="Height"          Value="40"/>
+            <Setter Property="Margin"          Value="0,2"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="Background"      Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Root" Background="{TemplateBinding Background}" CornerRadius="10" Padding="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Root" Property="Background" Value="#151B25"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Root" Property="Background" Value="#1C2333"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ===== WINDOW CONTROL BUTTON ===== -->
+        <Style x:Key="WindowControlButtonStyle" TargetType="Button">
+            <Setter Property="Width"           Value="28"/>
+            <Setter Property="Height"          Value="22"/>
+            <Setter Property="Background"      Value="Transparent"/>
+            <Setter Property="Foreground"      Value="#4A566A"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Root" Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Root" Property="Background" Value="#1C2333"/>
+                                <Setter Property="Foreground" Value="#F5F7FA"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ===== GAME CARD ===== -->
+        <Style x:Key="GameCardStyle" TargetType="Border">
+            <Setter Property="Background"      Value="#111722"/>
+            <Setter Property="CornerRadius"    Value="10"/>
+            <Setter Property="Padding"         Value="6,8"/>
+            <Setter Property="BorderBrush"     Value="#1C2333"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+        </Style>
+
+        <!-- ===== LABEL (uppercase muted category labels) ===== -->
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize"   Value="9"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#4A566A"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+        </Style>
+
+        <!-- ===== TOGGLE SWITCH ===== -->
+        <Style x:Key="ToggleStyle" TargetType="CheckBox">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Border Width="34" Height="19" CornerRadius="10" Margin="0,0,10,0">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Background" Value="#243045"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+                                                <Setter Property="Background" Value="#18C98B"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <Ellipse Width="13" Height="13" Fill="White" Margin="2,0">
+                                    <Ellipse.Style>
+                                        <Style TargetType="Ellipse">
+                                            <Setter Property="HorizontalAlignment" Value="Left"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+                                                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Ellipse.Style>
+                                </Ellipse>
+                            </Border>
+                            <TextBlock Text="Otimização Automática" FontSize="11" FontWeight="SemiBold"
+                                       Foreground="#8B95A5" FontFamily="Segoe UI" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <!-- ROOT WINDOW BORDER -->
+    <Border Margin="12" CornerRadius="16" Background="#0B0F15" BorderBrush="#1C2333" BorderThickness="1">
         <Border.Effect>
-            <DropShadowEffect BlurRadius="20" ShadowDepth="0" Color="#00E5FF" Opacity="0.38"/>
+            <DropShadowEffect BlurRadius="32" ShadowDepth="8" Color="#000000" Opacity="0.70"/>
         </Border.Effect>
 
-        <Grid>
+        <Grid ClipToBounds="True">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="48"/> <!-- Compact Vertical Navbar -->
-                <ColumnDefinition Width="*"/>  <!-- Main Content Area -->
+                <ColumnDefinition Width="52"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- ============================================================== -->
-            <!-- 1. COMPACT VERTICAL NAVBAR (Sidebar)                           -->
-            <!-- ============================================================== -->
-            <Border Grid.Column="0" Background="#080C14" CornerRadius="12,0,0,12" BorderBrush="#1E293B" BorderThickness="0,0,1,0">
+            <!-- ===================== SIDEBAR ===================== -->
+            <Border Grid.Column="0" Background="#080B10" CornerRadius="16,0,0,16"
+                    BorderBrush="#1C2333" BorderThickness="0,0,1,0">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/> <!-- App Icon / Brand -->
-                        <RowDefinition Height="*"/>  <!-- Navigation Icon Buttons -->
-                        <RowDefinition Height="40"/> <!-- Status Indicator -->
+                        <RowDefinition Height="56"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
 
-                    <!-- Top Brand Icon -->
-                    <Border Grid.Row="0" Width="30" Height="30" Background="#00E5FF" CornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock Text="⚡" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#0B0F19"/>
+                    <!-- Brand icon -->
+                    <Border Grid.Row="0" Width="32" Height="32" Background="#111722" CornerRadius="9"
+                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="&#x26A1;" FontSize="17"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Foreground="#18C98B"/>
                     </Border>
 
-                    <!-- Nav Buttons -->
-                    <StackPanel Grid.Row="1" VerticalAlignment="Top" Margin="0,10,0,0">
-                        <Button Tag="0" Click="NavButton_Click" ToolTip="Dashboard" Width="38" Height="38" Margin="0,0,0,8" Cursor="Hand" Background="Transparent" BorderThickness="0">
-                            <TextBlock Text="📊" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <!-- Navigation icons -->
+                    <StackPanel Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,12,0,0">
+                        <Button Tag="0" Click="NavButton_Click" ToolTip="Dashboard"
+                                Style="{StaticResource SidebarNavButtonStyle}">
+                            <TextBlock Text="&#x25C8;" FontSize="17"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#8B95A5"/>
                         </Button>
-                        <Button Tag="1" Click="NavButton_Click" ToolTip="Rotas Manuais" Width="38" Height="38" Margin="0,0,0,8" Cursor="Hand" Background="Transparent" BorderThickness="0">
-                            <TextBlock Text="🌐" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Button Tag="1" Click="NavButton_Click" ToolTip="Rotas Manuais"
+                                Style="{StaticResource SidebarNavButtonStyle}">
+                            <TextBlock Text="&#x21CC;" FontSize="18"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#8B95A5"/>
                         </Button>
-                        <Button Tag="2" Click="NavButton_Click" ToolTip="Jogos" Width="38" Height="38" Margin="0,0,0,8" Cursor="Hand" Background="Transparent" BorderThickness="0">
-                            <TextBlock Text="🎮" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Button Tag="2" Click="NavButton_Click" ToolTip="Jogos"
+                                Style="{StaticResource SidebarNavButtonStyle}">
+                            <TextBlock Text="&#x229E;" FontSize="16"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#8B95A5"/>
                         </Button>
-                        <Button Tag="3" Click="NavButton_Click" ToolTip="Configurações" Width="38" Height="38" Margin="0,0,0,8" Cursor="Hand" Background="Transparent" BorderThickness="0">
-                            <TextBlock Text="⚙️" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Button Tag="3" Click="NavButton_Click" ToolTip="Configurações"
+                                Style="{StaticResource SidebarNavButtonStyle}">
+                            <TextBlock Text="&#x2699;" FontSize="15"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#8B95A5"/>
                         </Button>
                     </StackPanel>
 
-                    <!-- Pin Status / Bottom Action -->
-                    <Button Grid.Row="2" x:Name="BtnPin" Click="PinButton_Click" ToolTip="Fixar no Topo" Width="38" Height="38" Cursor="Hand" Background="Transparent" BorderThickness="0">
-                        <TextBlock Text="📌" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#94A3B8" x:Name="TxtPin"/>
+                    <!-- Pin/Topmost toggle -->
+                    <Button Grid.Row="2" x:Name="BtnPin" Click="PinButton_Click" ToolTip="Fixar no Topo"
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Style="{StaticResource SidebarNavButtonStyle}">
+                        <TextBlock x:Name="TxtPin" Text="&#x25CE;" FontSize="14"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#18C98B"/>
                     </Button>
                 </Grid>
             </Border>
 
-            <!-- ============================================================== -->
-            <!-- 2. MAIN CONTENT AREA                                           -->
-            <!-- ============================================================== -->
+            <!-- ===================== MAIN CONTENT ===================== -->
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="46"/> <!-- Top Header bar (Close/Minimize) -->
-                    <RowDefinition Height="*"/>  <!-- Dynamic Tab Content -->
-                    <RowDefinition Height="130"/> <!-- Real-Time Fibo Graph always visible! -->
-                    <RowDefinition Height="46"/> <!-- Bottom Status Bar (Auto-Optimize toggle) -->
+                    <RowDefinition Height="44"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="118"/>
+                    <RowDefinition Height="44"/>
                 </Grid.RowDefinitions>
 
-                <!-- HEADER -->
-                <Grid Grid.Row="0" Margin="16,0" MouseDown="DragWindow">
-                    <TextBlock Text="DASHBOARD DE REDE" FontSize="11" FontWeight="Bold" Foreground="#94A3B8" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                    
+                <!-- TITLE BAR (draggable) -->
+                <Grid Grid.Row="0" Margin="16,0,8,0" Background="Transparent" MouseLeftButtonDown="DragWindow">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="ACADEMY" FontSize="11" FontWeight="Bold"
+                                   Foreground="#F5F7FA" FontFamily="Segoe UI" VerticalAlignment="Center"/>
+                        <TextBlock Text=" NOLAG" FontSize="11" FontWeight="Bold"
+                                   Foreground="#18C98B" FontFamily="Segoe UI" VerticalAlignment="Center"/>
+                    </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                        <Button Content="—" Width="30" Height="24" Background="Transparent" Foreground="#64748B" BorderThickness="0" Cursor="Hand" Click="MinimizeButton_Click"/>
-                        <Button Content="✕" Width="30" Height="24" Background="Transparent" Foreground="#64748B" BorderThickness="0" Cursor="Hand" Click="CloseButton_Click"/>
+                        <Button Content="—" Style="{StaticResource WindowControlButtonStyle}"
+                                Click="MinimizeButton_Click" FontSize="12" FontFamily="Segoe UI"/>
+                        <Button Content="✕" Style="{StaticResource WindowControlButtonStyle}"
+                                Click="CloseButton_Click" FontSize="11" FontFamily="Segoe UI"/>
                     </StackPanel>
                 </Grid>
 
-                <!-- DYNAMIC CONTENT (Controlled by SelectedTabIndex) -->
-                <TabControl Grid.Row="1" SelectedIndex="{Binding SelectedTabIndex}" Background="Transparent" BorderThickness="0" Margin="16,0">
-                    <TabControl.ItemContainerStyle>
-                        <Style TargetType="TabItem">
-                            <Setter Property="Visibility" Value="Collapsed"/> <!-- Hides default tab headers -->
-                        </Style>
-                    </TabControl.ItemContainerStyle>
+                <!-- ===== TAB CONTENT ===== -->
+                <TabControl Grid.Row="1" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}"
+                            Background="Transparent" BorderThickness="0" Margin="14,4,14,4">
+                    <TabControl.Template>
+                        <ControlTemplate TargetType="TabControl">
+                            <ContentPresenter ContentSource="SelectedContent"/>
+                        </ControlTemplate>
+                    </TabControl.Template>
 
                     <!-- TAB 0: DASHBOARD -->
                     <TabItem>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            
-                            <!-- Active Game Info Card -->
-                            <Border Grid.Row="0" Background="#111827" CornerRadius="8" Padding="12" Margin="0,0,0,10" BorderBrush="#1E293B" BorderThickness="1">
-                                <Grid>
+                        <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
+                            <StackPanel Margin="0,2,0,4">
+
+                                <!-- GAME DETECTED CARD -->
+                                <Border Background="#111722" CornerRadius="12" Padding="12,10"
+                                        Margin="0,0,0,8" BorderBrush="#1C2333" BorderThickness="1">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Border Grid.Column="0" Width="38" Height="38" Background="#151B25"
+                                                CornerRadius="10" Margin="0,0,12,0">
+                                            <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#F5F7FA">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Text" Value="&#x25CC;"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding HasActiveGame}" Value="True">
+                                                                <Setter Property="Text" Value="&#x1F3AE;"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Border>
+
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding ActiveGameName}" FontSize="13" FontWeight="SemiBold"
+                                                       Foreground="#F5F7FA" FontFamily="Segoe UI" TextTrimming="CharacterEllipsis"/>
+                                            <TextBlock Text="{Binding ActiveGamePid}" FontSize="10"
+                                                       Foreground="#8B95A5" FontFamily="Segoe UI" Margin="0,2,0,0"/>
+                                        </StackPanel>
+
+                                        <Border Grid.Column="2" VerticalAlignment="Center" Padding="8,4" CornerRadius="6">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="Background" Value="#111722"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding HasActiveGame}" Value="True">
+                                                            <Setter Property="Background" Value="#0A2D22"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <TextBlock FontSize="9" FontWeight="Bold" FontFamily="Segoe UI">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Text"       Value="STANDBY"/>
+                                                        <Setter Property="Foreground" Value="#4A566A"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding HasActiveGame}" Value="True">
+                                                                <Setter Property="Text"       Value="ATIVO"/>
+                                                                <Setter Property="Foreground" Value="#18C98B"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+
+                                <!-- PING ATUAL vs NOLAG side by side -->
+                                <Grid Margin="0,0,0,8">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="8"/>
+                                        <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    
-                                    <Border Grid.Column="0" Width="40" Height="40" Background="#1E293B" CornerRadius="6" Margin="0,0,12,0">
-                                        <TextBlock Text="🎮" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                    <!-- Ping Atual -->
+                                    <Border Grid.Column="0" Background="#111722" CornerRadius="12" Padding="12,10"
+                                            BorderBrush="#1C2333" BorderThickness="1">
+                                        <StackPanel>
+                                            <TextBlock Text="PING ATUAL" Style="{StaticResource LabelStyle}" Margin="0,0,0,6"/>
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                                                <TextBlock FontSize="30" FontWeight="Bold" FontFamily="Segoe UI" Foreground="#F97316">
+                                                    <Run Text="{Binding DirectPing, Mode=OneWay, StringFormat={}{0:F0}}"/>
+                                                </TextBlock>
+                                                <TextBlock Text=" ms" FontSize="12" FontFamily="Segoe UI"
+                                                           Foreground="#8B95A5" VerticalAlignment="Bottom" Margin="2,0,0,4"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                                                <TextBlock Text="Jitter  " FontSize="10" FontFamily="Segoe UI" Foreground="#4A566A"/>
+                                                <TextBlock Text="{Binding DirectJitter, StringFormat={}{0:F1}ms}"
+                                                           FontSize="10" FontFamily="Segoe UI" Foreground="#8B95A5"/>
+                                            </StackPanel>
+                                        </StackPanel>
                                     </Border>
-                                    
-                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding ActiveGameName}" FontSize="14" FontWeight="Bold" Foreground="#F8FAFC" TextTrimming="CharacterEllipsis"/>
-                                        <TextBlock Text="{Binding ActiveGamePid}" FontSize="11" Foreground="#64748B"/>
-                                    </StackPanel>
+
+                                    <!-- Ping NoLag (optimized) -->
+                                    <Border Grid.Column="2" Background="#0D1E18" CornerRadius="12" Padding="12,10"
+                                            BorderBrush="#184D38" BorderThickness="1">
+                                        <StackPanel>
+                                            <TextBlock Text="NOLAG" Style="{StaticResource LabelStyle}"
+                                                       Foreground="#18C98B" Margin="0,0,0,6"/>
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                                                <TextBlock FontSize="30" FontWeight="Bold" FontFamily="Segoe UI" Foreground="#18C98B">
+                                                    <Run Text="{Binding OptimizedPing, Mode=OneWay, StringFormat={}{0:F0}}"/>
+                                                </TextBlock>
+                                                <TextBlock Text=" ms" FontSize="12" FontFamily="Segoe UI"
+                                                           Foreground="#18C98B" Opacity="0.7" VerticalAlignment="Bottom" Margin="2,0,0,4"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                                                <TextBlock Text="Melhoria  " FontSize="10" FontFamily="Segoe UI" Foreground="#4A566A"/>
+                                                <TextBlock Text="{Binding ImprovementDisplay}" FontSize="10" FontWeight="SemiBold"
+                                                           FontFamily="Segoe UI" Foreground="#18C98B"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Border>
                                 </Grid>
-                            </Border>
 
-                            <!-- Telemetry Comparison (Direct vs Optimized) -->
-                            <Grid Grid.Row="1" Margin="0,0,0,10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="8"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                
-                                <!-- Direct Route -->
-                                <Border Grid.Column="0" Background="#111827" CornerRadius="8" Padding="12" BorderBrush="#1E293B" BorderThickness="1">
-                                    <StackPanel>
-                                        <TextBlock Text="ROTA PADRÃO" FontSize="10" FontWeight="SemiBold" Foreground="#94A3B8" Margin="0,0,0,8"/>
-                                        <TextBlock FontSize="24" FontWeight="Bold" Foreground="#F97316">
-                                            <Run Text="{Binding DirectPing, Mode=OneWay, StringFormat={}{0:F0}}"/><Run Text=" ms" FontSize="12" Foreground="#64748B"/>
-                                        </TextBlock>
-                                        <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
-                                            <TextBlock Text="Jitter: " FontSize="10" Foreground="#64748B"/>
-                                            <TextBlock Text="{Binding DirectJitter, StringFormat={}{0:F1}ms}" FontSize="10" Foreground="#F8FAFC"/>
+                                <!-- ROTA ATIVA -->
+                                <Border Background="#111722" CornerRadius="12" Padding="12,10"
+                                        Margin="0,0,0,8" BorderBrush="#1C2333" BorderThickness="1">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock Text="ROTA ATIVA" Style="{StaticResource LabelStyle}" Margin="0,0,0,4"/>
+                                            <TextBlock Text="{Binding SelectedNodeName}" FontSize="12" FontWeight="SemiBold"
+                                                       FontFamily="Segoe UI" Foreground="#F5F7FA" TextTrimming="CharacterEllipsis"/>
+                                            <TextBlock Text="{Binding SelectedNodeRegion}" FontSize="10"
+                                                       FontFamily="Segoe UI" Foreground="#8B95A5" Margin="0,2,0,0"/>
                                         </StackPanel>
-                                    </StackPanel>
+                                        <Border Grid.Column="1" VerticalAlignment="Center"
+                                                Background="#151B25" Padding="8,4" CornerRadius="6">
+                                            <TextBlock Text="{Binding RouteGrade}" FontSize="11" FontWeight="Bold"
+                                                       FontFamily="Segoe UI" Foreground="#18C98B" HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </Grid>
                                 </Border>
-                                
-                                <!-- Optimized Route -->
-                                <Border Grid.Column="2" Background="#0C1220" CornerRadius="8" Padding="12" BorderBrush="#00E5FF" BorderThickness="1.5">
-                                    <Border.Effect>
-                                        <DropShadowEffect BlurRadius="12" ShadowDepth="0" Color="#00E5FF" Opacity="0.15"/>
-                                    </Border.Effect>
-                                    <StackPanel>
-                                        <TextBlock Text="ACADEMY NOLAG" FontSize="10" FontWeight="Bold" Foreground="#00E5FF" Margin="0,0,0,8"/>
-                                        <TextBlock FontSize="24" FontWeight="Bold" Foreground="#10B981">
-                                            <Run Text="{Binding OptimizedPing, Mode=OneWay, StringFormat={}{0:F0}}"/><Run Text=" ms" FontSize="12" Foreground="#64748B"/>
-                                        </TextBlock>
-                                        <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
-                                            <TextBlock Text="Melhoria: " FontSize="10" Foreground="#64748B"/>
-                                            <TextBlock Text="{Binding ImprovementDisplay}" FontSize="10" FontWeight="Bold" Foreground="#10B981"/>
-                                        </StackPanel>
-                                    </StackPanel>
-                                </Border>
-                            </Grid>
 
-                            <!-- Node Info -->
-                            <Border Grid.Row="2" Background="#111827" CornerRadius="8" Padding="12" BorderBrush="#1E293B" BorderThickness="1" VerticalAlignment="Top">
-                                <StackPanel>
-                                    <TextBlock Text="ROTA ATIVA (NODE)" FontSize="10" FontWeight="SemiBold" Foreground="#94A3B8" Margin="0,0,0,4"/>
-                                    <TextBlock Text="{Binding SelectedNodeName}" FontSize="13" FontWeight="Bold" Foreground="#00E5FF"/>
-                                    <TextBlock Text="{Binding SelectedNodeRegion}" FontSize="11" Foreground="#64748B"/>
+                                <!-- JOGOS OTIMIZADOS grid -->
+                                <StackPanel Margin="0,0,0,4">
+                                    <TextBlock Text="JOGOS OTIMIZADOS" Style="{StaticResource LabelStyle}" Margin="0,0,0,8"/>
+                                    <UniformGrid Columns="3">
+
+                                        <!-- Aion Classic — highlights when active -->
+                                        <Border Margin="0,0,4,4">
+                                            <Border.Style>
+                                                <Style TargetType="Border" BasedOn="{StaticResource GameCardStyle}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding HasActiveGame}" Value="True">
+                                                            <Setter Property="Background" Value="#0A2D22"/>
+                                                            <Setter Property="BorderBrush" Value="#184D38"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <StackPanel HorizontalAlignment="Center">
+                                                <TextBlock Text="&#x2694;" FontSize="22" HorizontalAlignment="Center"
+                                                           Foreground="#18C98B" Margin="0,0,0,4"/>
+                                                <TextBlock Text="Aion Classic" FontSize="9" FontWeight="SemiBold"
+                                                           FontFamily="Segoe UI" Foreground="#8B95A5"
+                                                           HorizontalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                                                <TextBlock FontSize="8" FontFamily="Segoe UI" HorizontalAlignment="Center" Margin="0,2,0,0">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Text"       Value="MMORPG"/>
+                                                            <Setter Property="Foreground" Value="#4A566A"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding HasActiveGame}" Value="True">
+                                                                    <Setter Property="Text"       Value="&#x25CF; ATIVO"/>
+                                                                    <Setter Property="Foreground" Value="#18C98B"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <!-- League of Legends -->
+                                        <Border Style="{StaticResource GameCardStyle}" Margin="0,0,4,4">
+                                            <StackPanel HorizontalAlignment="Center">
+                                                <TextBlock Text="&#x2B21;" FontSize="22" HorizontalAlignment="Center"
+                                                           Foreground="#C89B3C" Margin="0,0,0,4"/>
+                                                <TextBlock Text="League" FontSize="9" FontWeight="SemiBold"
+                                                           FontFamily="Segoe UI" Foreground="#8B95A5" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="MOBA" FontSize="8" FontFamily="Segoe UI"
+                                                           Foreground="#4A566A" HorizontalAlignment="Center" Margin="0,2,0,0"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <!-- Valorant -->
+                                        <Border Style="{StaticResource GameCardStyle}" Margin="0,0,0,4">
+                                            <StackPanel HorizontalAlignment="Center">
+                                                <TextBlock Text="&#x2726;" FontSize="20" HorizontalAlignment="Center"
+                                                           Foreground="#FF4655" Margin="0,0,0,4"/>
+                                                <TextBlock Text="Valorant" FontSize="9" FontWeight="SemiBold"
+                                                           FontFamily="Segoe UI" Foreground="#8B95A5" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="FPS" FontSize="8" FontFamily="Segoe UI"
+                                                           Foreground="#4A566A" HorizontalAlignment="Center" Margin="0,2,0,0"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <!-- CS2 -->
+                                        <Border Style="{StaticResource GameCardStyle}" Margin="0,0,4,0">
+                                            <StackPanel HorizontalAlignment="Center">
+                                                <TextBlock Text="&#x2295;" FontSize="20" HorizontalAlignment="Center"
+                                                           Foreground="#6C9DC4" Margin="0,0,0,4"/>
+                                                <TextBlock Text="CS2" FontSize="9" FontWeight="SemiBold"
+                                                           FontFamily="Segoe UI" Foreground="#8B95A5" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="FPS" FontSize="8" FontFamily="Segoe UI"
+                                                           Foreground="#4A566A" HorizontalAlignment="Center" Margin="0,2,0,0"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <!-- WoW -->
+                                        <Border Style="{StaticResource GameCardStyle}" Margin="0,0,4,0">
+                                            <StackPanel HorizontalAlignment="Center">
+                                                <TextBlock Text="&#x25C8;" FontSize="20" HorizontalAlignment="Center"
+                                                           Foreground="#8B6914" Margin="0,0,0,4"/>
+                                                <TextBlock Text="WoW" FontSize="9" FontWeight="SemiBold"
+                                                           FontFamily="Segoe UI" Foreground="#8B95A5" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="MMORPG" FontSize="8" FontFamily="Segoe UI"
+                                                           Foreground="#4A566A" HorizontalAlignment="Center" Margin="0,2,0,0"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <!-- Path of Exile -->
+                                        <Border Style="{StaticResource GameCardStyle}" Margin="0,0,0,0">
+                                            <StackPanel HorizontalAlignment="Center">
+                                                <TextBlock Text="&#x2B1F;" FontSize="20" HorizontalAlignment="Center"
+                                                           Foreground="#AF7A4E" Margin="0,0,0,4"/>
+                                                <TextBlock Text="Path of Exile" FontSize="9" FontWeight="SemiBold"
+                                                           FontFamily="Segoe UI" Foreground="#8B95A5"
+                                                           HorizontalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                                                <TextBlock Text="ARPG" FontSize="8" FontFamily="Segoe UI"
+                                                           Foreground="#4A566A" HorizontalAlignment="Center" Margin="0,2,0,0"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                    </UniformGrid>
                                 </StackPanel>
-                            </Border>
-                        </Grid>
+
+                            </StackPanel>
+                        </ScrollViewer>
                     </TabItem>
 
                     <!-- TAB 1: ROTAS MANUAIS -->
@@ -182,15 +495,17 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            
-                            <TextBlock Grid.Row="0" Text="Selecione uma rota manualmente" FontSize="12" FontWeight="SemiBold" Foreground="#F8FAFC" Margin="0,0,0,10"/>
-                            
-                            <!-- Rotas Disponíveis List -->
+                            <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                                <TextBlock Text="ROTAS DISPONÍVEIS" Style="{StaticResource LabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Selecione uma rota manualmente" FontSize="12" FontWeight="SemiBold"
+                                           FontFamily="Segoe UI" Foreground="#F5F7FA"/>
+                            </StackPanel>
                             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                                 <ItemsControl ItemsSource="{Binding RelayNodes}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <Border Background="#111827" CornerRadius="6" Padding="10" Margin="0,0,0,6" BorderBrush="#1E293B" BorderThickness="1">
+                                            <Border Background="#111722" CornerRadius="10" Padding="12,10"
+                                                    Margin="0,0,0,6" BorderBrush="#1C2333" BorderThickness="1" Cursor="Hand">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="*"/>
@@ -198,11 +513,19 @@
                                                         <ColumnDefinition Width="Auto"/>
                                                     </Grid.ColumnDefinitions>
                                                     <StackPanel Grid.Column="0">
-                                                        <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="#F8FAFC" FontSize="12"/>
-                                                        <TextBlock Text="{Binding Region}" Foreground="#64748B" FontSize="10"/>
+                                                        <TextBlock Text="{Binding Name}" FontWeight="SemiBold"
+                                                                   FontFamily="Segoe UI" Foreground="#F5F7FA" FontSize="12"/>
+                                                        <TextBlock Text="{Binding Region}" Foreground="#8B95A5"
+                                                                   FontFamily="Segoe UI" FontSize="10" Margin="0,2,0,0"/>
                                                     </StackPanel>
-                                                    <TextBlock Grid.Column="1" Text="{Binding LatencyDisplay}" Foreground="#10B981" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                                    <Button Grid.Column="2" Content="APLICAR" Padding="10,4" Background="#1E293B" Foreground="#00E5FF" BorderThickness="1" BorderBrush="#00E5FF" Command="{Binding DataContext.SelectManualRouteCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}"/>
+                                                    <TextBlock Grid.Column="1" Text="{Binding LatencyDisplay}"
+                                                               Foreground="#18C98B" FontWeight="Bold" FontFamily="Segoe UI"
+                                                               VerticalAlignment="Center" Margin="0,0,12,0"/>
+                                                    <Button Grid.Column="2" Content="APLICAR" Padding="10,5"
+                                                            Background="#151B25" Foreground="#F5F7FA" FontSize="10" FontWeight="Bold"
+                                                            FontFamily="Segoe UI" BorderThickness="1" BorderBrush="#243045" Cursor="Hand"
+                                                            Command="{Binding DataContext.SelectManualRouteCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                            CommandParameter="{Binding}"/>
                                                 </Grid>
                                             </Border>
                                         </DataTemplate>
@@ -219,108 +542,144 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-
-                            <TextBlock Grid.Row="0" Text="Gerenciar Jogos" FontSize="12" FontWeight="SemiBold" Foreground="#F8FAFC" Margin="0,0,0,10"/>
-
+                            <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                                <TextBlock Text="JOGOS CONFIGURADOS" Style="{StaticResource LabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Gerenciar perfis de jogos" FontSize="12" FontWeight="SemiBold"
+                                           FontFamily="Segoe UI" Foreground="#F5F7FA"/>
+                            </StackPanel>
                             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                                <ItemsControl ItemsSource="{Binding GameProfiles}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Border Background="#111827" CornerRadius="6" Padding="10" Margin="0,0,0,6" BorderBrush="#1E293B" BorderThickness="1">
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <StackPanel Grid.Column="0">
-                                                        <TextBlock Text="{Binding DisplayName}" FontWeight="Bold" Foreground="#F8FAFC" FontSize="12"/>
-                                                        <TextBlock Text="{Binding ProcessName}" Foreground="#64748B" FontSize="10"/>
-                                                    </StackPanel>
-                                                    <!-- Toggle Per-Game Auto-Optimize -->
-                                                    <CheckBox Grid.Column="1" IsChecked="{Binding AutoOptimize, Mode=TwoWay}" Content="Otimizar" Foreground="#94A3B8" VerticalAlignment="Center"/>
-                                                </Grid>
-                                            </Border>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
+                                <StackPanel>
+                                    <ItemsControl ItemsSource="{Binding GameProfiles}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Background="#111722" CornerRadius="10" Padding="12,10"
+                                                        Margin="0,0,0,6" BorderBrush="#1C2333" BorderThickness="1">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <StackPanel Grid.Column="0">
+                                                            <TextBlock Text="{Binding DisplayName}" FontWeight="SemiBold"
+                                                                       FontFamily="Segoe UI" Foreground="#F5F7FA" FontSize="12"/>
+                                                            <TextBlock Text="{Binding Category}" Foreground="#4A566A"
+                                                                       FontFamily="Segoe UI" FontSize="10" Margin="0,2,0,0"/>
+                                                        </StackPanel>
+                                                        <CheckBox Grid.Column="1" IsChecked="{Binding AutoOptimize, Mode=TwoWay}"
+                                                                  Content="Auto" FontFamily="Segoe UI" FontSize="10"
+                                                                  Foreground="#8B95A5" VerticalAlignment="Center" Cursor="Hand"/>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                    <Button Content="+ Adicionar Jogo Personalizado" Command="{Binding AddCustomProfileCommand}"
+                                            Background="Transparent" Foreground="#8B95A5" FontFamily="Segoe UI" FontSize="11"
+                                            BorderThickness="1" BorderBrush="#1C2333" Padding="12,10" Cursor="Hand" Margin="0,4,0,0"/>
+                                </StackPanel>
                             </ScrollViewer>
                         </Grid>
                     </TabItem>
 
-                    <!-- TAB 3: CONFIGS -->
+                    <!-- TAB 3: CONFIGURACOES -->
                     <TabItem>
-                        <StackPanel>
-                            <TextBlock Text="Ajustes de Rede e Sistema" FontSize="12" FontWeight="SemiBold" Foreground="#F8FAFC" Margin="0,0,0,10"/>
-                            
-                            <Button Content="Limpar Cache DNS" Command="{Binding FlushDnsCommand}"
-                                    Background="#1E293B" Foreground="#00E5FF" FontWeight="Bold" FontSize="12"
-                                    Padding="12,10" BorderBrush="#00E5FF" BorderThickness="1" Cursor="Hand" Margin="0,0,0,8"/>
-                        </StackPanel>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel Margin="0,2,0,4">
+                                <TextBlock Text="CONFIGURAÇÕES" Style="{StaticResource LabelStyle}" Margin="0,0,0,10"/>
+                                <Border Background="#111722" CornerRadius="10" Padding="14,12"
+                                        Margin="0,0,0,8" BorderBrush="#1C2333" BorderThickness="1">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock Text="Cache DNS" FontSize="12" FontWeight="SemiBold"
+                                                       FontFamily="Segoe UI" Foreground="#F5F7FA"/>
+                                            <TextBlock Text="Limpa o cache do resolvedor DNS" FontSize="10"
+                                                       FontFamily="Segoe UI" Foreground="#8B95A5" Margin="0,3,0,0"/>
+                                        </StackPanel>
+                                        <Button Grid.Column="1" Content="LIMPAR" Command="{Binding FlushDnsCommand}"
+                                                Background="#151B25" Foreground="#F5F7FA" FontFamily="Segoe UI"
+                                                FontSize="10" FontWeight="Bold" BorderThickness="1" BorderBrush="#243045"
+                                                Padding="10,6" Cursor="Hand" VerticalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                                <Border Background="#111722" CornerRadius="10" Padding="14,12"
+                                        BorderBrush="#1C2333" BorderThickness="1">
+                                    <StackPanel>
+                                        <TextBlock Text="STATUS DO SISTEMA" Style="{StaticResource LabelStyle}" Margin="0,0,0,8"/>
+                                        <TextBlock Text="{Binding StatusText}" FontSize="11" FontFamily="Segoe UI"
+                                                   Foreground="#18C98B" TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding PrimaryEndpointDisplay}" FontSize="10" FontFamily="Segoe UI"
+                                                   Foreground="#8B95A5" Margin="0,6,0,0" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </ScrollViewer>
                     </TabItem>
+
                 </TabControl>
 
-                <!-- REAL-TIME METRIC GRAPH (+150px section) -->
-                <Border Grid.Row="2" Background="#080C14" BorderBrush="#1E293B" BorderThickness="0,1,0,0" Padding="16,8">
+                <!-- TELEMETRIA EM TEMPO REAL -->
+                <Border Grid.Row="2" Background="#080B10" BorderBrush="#1C2333"
+                        BorderThickness="0,1,0,0" Padding="14,8">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Text="TELEMETRIA EM TEMPO REAL" FontSize="9" FontWeight="Bold" Foreground="#64748B" Margin="0,0,0,4"/>
-                        <controls:RealTimeMetricGraph Grid.Row="1" DirectPoints="{Binding DirectGraphPoints}" OptimizedPoints="{Binding OptimizedGraphPoints}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        <Grid Grid.Row="0" Margin="0,0,0,4">
+                            <TextBlock Text="TELEMETRIA" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <Ellipse Width="7" Height="7" Fill="#F97316" Margin="0,0,4,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="Padrão" FontSize="9" FontFamily="Segoe UI" Foreground="#8B95A5" Margin="0,0,12,0"/>
+                                <Ellipse Width="7" Height="7" Fill="#18C98B" Margin="0,0,4,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="Otimizado" FontSize="9" FontFamily="Segoe UI" Foreground="#8B95A5"/>
+                            </StackPanel>
+                        </Grid>
+                        <controls:RealTimeMetricGraph Grid.Row="1"
+                                                      DirectPoints="{Binding DirectGraphPoints}"
+                                                      OptimizedPoints="{Binding OptimizedGraphPoints}"
+                                                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                     </Grid>
                 </Border>
 
                 <!-- BOTTOM STATUS BAR -->
-                <Border Grid.Row="3" Background="#111827" CornerRadius="0,0,12,0" Padding="16,0" BorderBrush="#1E293B" BorderThickness="0,1,0,0">
+                <Border Grid.Row="3" Background="#0B0F15" CornerRadius="0,0,16,0"
+                        BorderBrush="#1C2333" BorderThickness="0,1,0,0" Padding="14,0">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-
-                        <!-- Auto Optimize Toggle -->
-                        <CheckBox Grid.Column="0" IsChecked="{Binding AutoOptimize}" VerticalAlignment="Center" Cursor="Hand">
-                            <CheckBox.Template>
-                                <ControlTemplate TargetType="CheckBox">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Border Width="32" Height="18" CornerRadius="9" Margin="0,0,8,0">
-                                            <Border.Style>
-                                                <Style TargetType="Border">
-                                                    <Setter Property="Background" Value="#334155"/>
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
-                                                            <Setter Property="Background" Value="#10B981"/>
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Border.Style>
-                                            <Ellipse Width="14" Height="14" Fill="#F8FAFC" Margin="2,0">
-                                                <Ellipse.Style>
-                                                    <Style TargetType="Ellipse">
-                                                        <Setter Property="HorizontalAlignment" Value="Left"/>
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
-                                                                <Setter Property="HorizontalAlignment" Value="Right"/>
-                                                            </DataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </Ellipse.Style>
-                                            </Ellipse>
-                                        </Border>
-                                        <TextBlock Text="Otimização Automática" FontSize="11" FontWeight="SemiBold" Foreground="#F8FAFC" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </ControlTemplate>
-                            </CheckBox.Template>
-                        </CheckBox>
-
-                        <!-- Status Badge -->
-                        <Border Grid.Column="1" Background="#102E24" CornerRadius="4" Padding="8,4" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding StatusText}" FontSize="9" FontWeight="Bold" Foreground="#10B981"/>
-                        </Border>
+                        <CheckBox Grid.Column="0" IsChecked="{Binding AutoOptimize}"
+                                  VerticalAlignment="Center" Style="{StaticResource ToggleStyle}"/>
+                        <TextBlock Grid.Column="1" Text="{Binding StatusText}" FontSize="9" FontWeight="SemiBold"
+                                   FontFamily="Segoe UI" Foreground="#18C98B" VerticalAlignment="Center"
+                                   TextTrimming="CharacterEllipsis" MaxWidth="120"/>
                     </Grid>
                 </Border>
+
             </Grid>
+
+            <!-- FLOATING OPTIMIZED PING (no card, no border, floating typography) -->
+            <Canvas Grid.Column="1" IsHitTestVisible="False">
+                <StackPanel Canvas.Right="-6" Canvas.Bottom="-2"
+                            Orientation="Horizontal" VerticalAlignment="Bottom">
+                    <TextBlock FontFamily="Segoe UI" FontSize="52" FontWeight="Bold"
+                               Foreground="#18C98B" VerticalAlignment="Bottom" LineHeight="52"
+                               Text="{Binding OptimizedPing, Mode=OneWay, StringFormat={}{0:F0}}">
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="#18C98B" BlurRadius="18" ShadowDepth="0" Opacity="0.28"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                    <TextBlock FontFamily="Segoe UI" FontSize="16" FontWeight="SemiBold"
+                               Foreground="#18C98B" Opacity="0.75" Text="ms"
+                               VerticalAlignment="Bottom" Margin="3,0,0,12"/>
+                </StackPanel>
+            </Canvas>
+
         </Grid>
     </Border>
 </Window>

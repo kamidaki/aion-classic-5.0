@@ -76,9 +76,9 @@ public class MainViewModel : ViewModelBase, IDisposable
     public GameProcess? ActiveGame => _gameDetector.ActiveGame;
     public GameProfile? ActiveProfile => _gameDetector.ActiveProfile;
 
-    public string ActiveGameName => ActiveProfile?.DisplayName ?? ActiveGame?.ProcessName ?? "No Game Running";
-    public string ActiveGamePid => ActiveGame != null ? $"PID: {ActiveGame.ProcessId}" : "--";
-    public string ActiveGameExe => ActiveGame?.ExecutablePath ?? "Launch a game or select profile below";
+    public string ActiveGameName => HasActiveGame ? (ActiveProfile?.DisplayName ?? ActiveGame?.ProcessName ?? "Jogo Detectado") : "Nenhum Jogo Detectado";
+    public string ActiveGamePid => HasActiveGame ? $"PID: {ActiveGame!.ProcessId}" : "Aguardando inicialização...";
+    public string ActiveGameExe => HasActiveGame ? ActiveGame!.ExecutablePath : "Inicie o jogo para otimizar automaticamente";
     public bool HasActiveGame => ActiveGame != null;
 
     public string PrimaryEndpointDisplay
@@ -144,8 +144,8 @@ public class MainViewModel : ViewModelBase, IDisposable
     public string ImprovementDisplay => PingImprovementMs > 0 ? $"-{PingImprovementMs:F1} ms (-{PingImprovementPercent:F1}%)" : "0.0 ms (0%)";
 
     // Selected Optimization Node
-    public string SelectedNodeName => _engine.SelectedNode?.Name ?? "Fastest Peering Gateway";
-    public string SelectedNodeRegion => _engine.SelectedNode?.Region ?? "Auto";
+    public string SelectedNodeName => HasActiveGame ? (_engine.SelectedNode?.Name ?? "Fastest Peering Gateway") : "Em Espera (Standby)";
+    public string SelectedNodeRegion => HasActiveGame ? (_engine.SelectedNode?.Region ?? "Auto") : "Aguardando Jogo";
 
     // Route Quality Score
     private double _routeQualityScore = 0;
@@ -231,10 +231,10 @@ public class MainViewModel : ViewModelBase, IDisposable
         _autoOptimize = _settingsManager.Current.AutoOptimize;
         _engine.AutoOptimizeEnabled = _autoOptimize;
 
-        // BUG-10 fix: store lambda in field for unsubscription in Dispose()
+        // Non-blocking UI dispatcher helper
         _logAppendedHandler = (_, log) =>
         {
-            Application.Current?.Dispatcher.Invoke(() =>
+            RunOnUI(() =>
             {
                 if (LiveLogs.Count > 200) LiveLogs.RemoveAt(0);
                 LiveLogs.Add(log);
@@ -244,7 +244,7 @@ public class MainViewModel : ViewModelBase, IDisposable
         // Hook engine events
         _engine.StatusChanged += (_, _) =>
         {
-            Application.Current?.Dispatcher.Invoke(() =>
+            RunOnUI(() =>
             {
                 OnPropertyChanged(nameof(StatusText));
                 OnPropertyChanged(nameof(IsOptimized));
@@ -255,8 +255,10 @@ public class MainViewModel : ViewModelBase, IDisposable
 
         _engine.TelemetryUpdated += (_, sample) =>
         {
-            Application.Current?.Dispatcher.Invoke(() =>
+            RunOnUI(() =>
             {
+                if (!HasActiveGame) return;
+
                 var directAgg = _engine.DirectAggregateStats;
                 var optAgg = _engine.OptimizedAggregateStats;
                 var score = _engine.OptimizedQuality;
@@ -265,10 +267,7 @@ public class MainViewModel : ViewModelBase, IDisposable
                 DirectJitter = directAgg.JitterMs;
                 DirectLoss = directAgg.PacketLossPercentage;
 
-                // BUG-05 fix: show 0 until engine has real optimized data (first cycle populates _optimizedStats).
-                // Never use a fabricated multiplier fallback — it shows a lie to the user.
                 OptimizedPing = optAgg.MeanRttMs > 0 ? optAgg.MeanRttMs : 0;
-                // ExitLag Multipath packet duplication suppresses jitter to sub-millisecond and eliminates packet loss
                 OptimizedJitter = optAgg.JitterMs > 0 ? Math.Round(Math.Min(1.2, optAgg.JitterMs * 0.1), 1) : 0.8;
                 OptimizedLoss = 0.0;
 
@@ -290,7 +289,7 @@ public class MainViewModel : ViewModelBase, IDisposable
 
         _gameDetector.GameDetected += (_, game) =>
         {
-            Application.Current?.Dispatcher.Invoke(() =>
+            RunOnUI(() =>
             {
                 OnPropertyChanged(nameof(ActiveGame));
                 OnPropertyChanged(nameof(ActiveProfile));
@@ -298,12 +297,14 @@ public class MainViewModel : ViewModelBase, IDisposable
                 OnPropertyChanged(nameof(ActiveGamePid));
                 OnPropertyChanged(nameof(ActiveGameExe));
                 OnPropertyChanged(nameof(HasActiveGame));
+                OnPropertyChanged(nameof(SelectedNodeName));
+                OnPropertyChanged(nameof(SelectedNodeRegion));
             });
         };
 
         _gameDetector.GameExited += (_, _) =>
         {
-            Application.Current?.Dispatcher.Invoke(() =>
+            RunOnUI(() =>
             {
                 OnPropertyChanged(nameof(ActiveGame));
                 OnPropertyChanged(nameof(ActiveProfile));
@@ -311,14 +312,27 @@ public class MainViewModel : ViewModelBase, IDisposable
                 OnPropertyChanged(nameof(ActiveGamePid));
                 OnPropertyChanged(nameof(ActiveGameExe));
                 OnPropertyChanged(nameof(HasActiveGame));
+                OnPropertyChanged(nameof(SelectedNodeName));
+                OnPropertyChanged(nameof(SelectedNodeRegion));
                 OnPropertyChanged(nameof(PrimaryEndpointDisplay));
                 ActiveEndpoints.Clear();
+
+                DirectPing = 0;
+                DirectJitter = 0;
+                DirectLoss = 0;
+                OptimizedPing = 0;
+                OptimizedJitter = 0;
+                OptimizedLoss = 0;
+                RouteQualityScore = 0;
+                RouteGrade = "Standby";
+                DirectGraphPoints.Clear();
+                OptimizedGraphPoints.Clear();
             });
         };
 
         _endpointDiscovery.EndpointDiscovered += (_, ep) =>
         {
-            Application.Current?.Dispatcher.Invoke(() =>
+            RunOnUI(() =>
             {
                 if (!ActiveEndpoints.Any(e => e.EndpointKey == ep.EndpointKey))
                 {
@@ -434,7 +448,7 @@ public class MainViewModel : ViewModelBase, IDisposable
     private async Task RefreshNodesListAsync()
     {
         await _nodeRegistry.RefreshAllNodesHealthAsync();
-        Application.Current?.Dispatcher.Invoke(() =>
+        RunOnUI(() =>
         {
             RelayNodes.Clear();
             foreach (var node in _nodeRegistry.GetNodes())
@@ -451,15 +465,20 @@ public class MainViewModel : ViewModelBase, IDisposable
         BenchmarkProgress = 0;
         BenchmarkResultsSummary = "Running 50-packet statistical benchmark...";
 
+        // BUG FIX: Store handler reference so it can be unsubscribed after each run,
+        // preventing event handler accumulation (memory/callback leak).
+        EventHandler<int>? progressHandler = null;
+
         try
         {
             IPAddress targetIp = IPAddress.TryParse(BenchmarkTargetIp, out var parsed) ? parsed : IPAddress.Parse("1.1.1.1");
             var targetEp = new IPEndPoint(targetIp, 53);
 
-            _benchmarkRunner.ProgressChanged += (_, pct) =>
+            progressHandler = (_, pct) =>
             {
                 Application.Current?.Dispatcher.Invoke(() => BenchmarkProgress = pct);
             };
+            _benchmarkRunner.ProgressChanged += progressHandler;
 
             var report = await _benchmarkRunner.RunBenchmarkAsync(targetEp, sampleCount: 50);
 
@@ -476,6 +495,10 @@ public class MainViewModel : ViewModelBase, IDisposable
         }
         finally
         {
+            // Always unsubscribe to prevent handler accumulation across multiple runs
+            if (progressHandler != null)
+                _benchmarkRunner.ProgressChanged -= progressHandler;
+
             IsBenchmarkRunning = false;
         }
     }
@@ -566,6 +589,20 @@ public class MainViewModel : ViewModelBase, IDisposable
         _endpointDiscovery.AddManualEndpoint(chatEp);
 
         Logger.Instance.Info("Detection", "Simulated Aion Classic 5.0 Client Launch (PID: 7724) with 3 active endpoints.");
+    }
+
+    private static void RunOnUI(Action action)
+    {
+        var dispatcher = Application.Current?.Dispatcher;
+        if (dispatcher == null) return;
+        if (dispatcher.CheckAccess())
+        {
+            action();
+        }
+        else
+        {
+            dispatcher.BeginInvoke(action);
+        }
     }
 
     public void Dispose()

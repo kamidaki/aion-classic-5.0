@@ -56,11 +56,19 @@ public class ProfileManager
             _profiles.Clear();
 
             // 1. Aion Classic 5.0 (Target #1)
+            // BUG FIX: Windows reports process name WITHOUT extension (.bin/.exe stripped).
+            // "Aion.bin" runs as ProcessName="Aion". MainModule is inaccessible without
+            // admin rights on 64-bit processes, so we must include bare names for detection.
             _profiles.Add(new GameProfile
             {
                 Id = "aion_classic_50",
                 DisplayName = "Aion Classic 5.0 (EU / Private)",
-                ProcessNames = ["Aion.bin", "aion.bin", "aionclassic.bin", "Aion.exe", "aion_x64.bin"],
+                ProcessNames = [
+                    // Bare names (what Windows actually reports via GetProcessesByName):
+                    "Aion", "aion", "AionClassic", "aionclassic", "aion_x64",
+                    // Full filenames (for MainModule path matching when accessible):
+                    "Aion.bin", "aion.bin", "aionclassic.bin", "Aion.exe", "aion_x64.bin"
+                ],
                 ExecutablePatterns = ["Aion", "AionClassic", "Aion EU", "Aion 5.0"],
                 KnownPorts = [2106, 6600, 7777, 10241],
                 DefaultProtocol = NetworkTransportProtocol.Tcp,

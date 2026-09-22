@@ -97,7 +97,7 @@ public class GameDetector : IGameDetector
             bool isStillAlive = false;
             try
             {
-                var proc = Process.GetProcessById(currentActive.ProcessId);
+                using var proc = Process.GetProcessById(currentActive.ProcessId);
                 isStillAlive = !proc.HasExited;
             }
             catch
@@ -136,8 +136,9 @@ public class GameDetector : IGameDetector
     public IReadOnlyList<GameProcess> ScanRunningProcesses()
     {
         var matched = new List<GameProcess>();
+        int currentPid = Environment.ProcessId;
 
-        // 1. Fast targeted check for known profile processes (0% CPU impact)
+        // 1. Fast targeted check for known profile processes (0.0% CPU impact, no handle leaks)
         try
         {
             var searchNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -147,8 +148,6 @@ public class GameDetector : IGameDetector
                 {
                     string noExt = Path.GetFileNameWithoutExtension(name);
                     if (!string.IsNullOrEmpty(noExt)) searchNames.Add(noExt);
-                    string withExt = Path.GetFileName(name);
-                    if (!string.IsNullOrEmpty(withExt)) searchNames.Add(withExt);
                 }
             }
 
@@ -163,17 +162,29 @@ public class GameDetector : IGameDetector
                 {
                     try
                     {
+                        if (proc.Id == currentPid) continue;
                         string procName = proc.ProcessName;
+                        if (procName.StartsWith("Academy", StringComparison.OrdinalIgnoreCase)) continue;
+
                         string? mainModulePath = null;
                         string? windowTitle = null;
 
                         try
                         {
                             windowTitle = proc.MainWindowTitle;
+                        }
+                        catch { /* Window title inaccessible — non-critical */ }
+
+                        try
+                        {
+                            // MainModule can throw AccessDenied for 64-bit processes when running
+                            // without admin elevation. This is non-fatal: bare ProcessName matching
+                            // is sufficient since ProfileManager now registers bare names (e.g. "Aion").
                             mainModulePath = proc.MainModule?.FileName;
                         }
-                        catch { /* System/protected process */ }
+                        catch { /* Expected: 64-bit process / system process without elevation */ }
 
+                        // Match by processName alone OR with full exe path when available
                         var profile = _profileManager.FindMatchingProfile(procName, mainModulePath);
                         if (profile != null)
                         {
@@ -187,7 +198,7 @@ public class GameDetector : IGameDetector
                             ));
                         }
                     }
-                    catch { /* Skip */ }
+                    catch { /* Skip unreadable processes */ }
                     finally
                     {
                         // Dispose Win32 process handle to prevent handle leak across polling cycles
@@ -203,7 +214,13 @@ public class GameDetector : IGameDetector
             return matched;
         }
 
-        // 2. Fallback full scan only if targeted didn't match (e.g. for custom profile patterns)
+        // 2. Fallback full scan only if custom profiles exist without specific ProcessNames
+        bool hasWildcardProfiles = _profileManager.Profiles.Any(p => p.ProcessNames.Count == 0 && p.ExecutablePatterns.Count > 0);
+        if (!hasWildcardProfiles)
+        {
+            return matched;
+        }
+
         Process[] processes;
         try
         {
@@ -218,16 +235,24 @@ public class GameDetector : IGameDetector
         {
             try
             {
+                if (proc.Id == currentPid) continue;
                 string procName = proc.ProcessName;
+                if (procName.StartsWith("Academy", StringComparison.OrdinalIgnoreCase)) continue;
+
                 string? mainModulePath = null;
                 string? windowTitle = null;
 
                 try
                 {
                     windowTitle = proc.MainWindowTitle;
+                }
+                catch { /* Window title inaccessible — non-critical */ }
+
+                try
+                {
                     mainModulePath = proc.MainModule?.FileName;
                 }
-                catch { /* Privilege access denied on system processes */ }
+                catch { /* AccessDenied for 64-bit or system processes — non-fatal */ }
 
                 var profile = _profileManager.FindMatchingProfile(procName, mainModulePath);
                 if (profile != null)
@@ -245,7 +270,6 @@ public class GameDetector : IGameDetector
             catch { /* Skip unreadable processes */ }
             finally
             {
-                // Dispose Win32 process handle to prevent handle leak during full-scan fallback
                 proc.Dispose();
             }
         }

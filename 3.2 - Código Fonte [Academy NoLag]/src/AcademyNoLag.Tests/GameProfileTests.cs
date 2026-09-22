@@ -39,4 +39,27 @@ public class GameProfileTests
             Assert.Null(profile);
         }
     }
+
+    [Theory]
+    [InlineData(@"D:\AION CLASSIC 5.0 - EMULADOR\3.2 - Código Fonte [Academy NoLag]\Produto Final\Academy - NoLag.exe", false)]
+    [InlineData(@"C:\Games\Aion Classic\bin32\setup.exe", false)]
+    [InlineData(@"D:\Games\AION\Aion.bin", true)]
+    [InlineData(@"C:\Program Files\Aion\bin64\aion_x64.bin", true)]
+    [InlineData(@"C:\AionClassic\aionclassic.bin", true)]
+    public void ProfileManager_DoesNotFalsePositiveOnParentDirectory(string fullPath, bool shouldMatch)
+    {
+        var manager = new ProfileManager();
+        string processName = System.IO.Path.GetFileNameWithoutExtension(fullPath);
+        var profile = manager.FindMatchingProfile(processName, fullPath);
+
+        if (shouldMatch)
+        {
+            Assert.NotNull(profile);
+            Assert.Equal("aion_classic_50", profile.Id);
+        }
+        else
+        {
+            Assert.Null(profile);
+        }
+    }
 }

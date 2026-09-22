@@ -55,8 +55,15 @@ public class GameProfile : INotifyPropertyChanged
             if (ProcessNames.Any(p => string.Equals(p, fileName, StringComparison.OrdinalIgnoreCase)))
                 return true;
 
+            string fileNameNoExt = System.IO.Path.GetFileNameWithoutExtension(fileName);
+            if (ProcessNames.Any(p => string.Equals(System.IO.Path.GetFileNameWithoutExtension(p), fileNameNoExt, StringComparison.OrdinalIgnoreCase)))
+                return true;
+
+            // Match ExecutablePatterns ONLY against the executable filename, never against parent directories
             if (ExecutablePatterns.Any(pattern =>
-                executablePath.Contains(pattern, StringComparison.OrdinalIgnoreCase)))
+                string.Equals(fileName, pattern, StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(fileNameNoExt, pattern, StringComparison.OrdinalIgnoreCase) ||
+                fileName.StartsWith(pattern, StringComparison.OrdinalIgnoreCase)))
                 return true;
         }
 

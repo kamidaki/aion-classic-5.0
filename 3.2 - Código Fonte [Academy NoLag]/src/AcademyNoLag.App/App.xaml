@@ -43,10 +43,10 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="border" Property="Background" Value="#2A374F"/>
-                                <Setter TargetName="border" Property="BorderBrush" Value="#00E5FF"/>
+                                <Setter TargetName="border" Property="BorderBrush" Value="#475569"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#00B4D8"/>
+                                <Setter TargetName="border" Property="Background" Value="#334155"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -54,11 +54,11 @@
             </Setter>
         </Style>
 
-        <!-- Primary Action Button (Glowing Cyan) -->
+        <!-- Primary Action Button -->
         <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource GamingButton}">
-            <Setter Property="Background" Value="#00B4D8"/>
-            <Setter Property="Foreground" Value="#0B0F19"/>
-            <Setter Property="BorderBrush" Value="#00E5FF"/>
+            <Setter Property="Background" Value="#1E293B"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="BorderBrush" Value="#334155"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -71,7 +71,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#00E5FF"/>
+                                <Setter TargetName="border" Property="Background" Value="#2A374F"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -85,11 +85,11 @@
             <Setter Property="Width" Value="8"/>
         </Style>
 
-        <!-- Dark Gaming ContextMenu (Zero White Left Gutter) -->
+        <!-- Dark Gaming ContextMenu (Sleek Dark Border, No Neon) -->
         <Style TargetType="ContextMenu">
             <Setter Property="Background" Value="#111827"/>
-            <Setter Property="BorderBrush" Value="#00E5FF"/>
-            <Setter Property="BorderThickness" Value="1.2"/>
+            <Setter Property="BorderBrush" Value="#1E293B"/>
+            <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Padding" Value="4"/>
             <Setter Property="SnapsToDevicePixels" Value="True"/>
             <Setter Property="OverridesDefaultStyle" Value="True"/>
@@ -97,9 +97,9 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ContextMenu">
-                        <Border Background="#111827" BorderBrush="#00E5FF" BorderThickness="1.2" CornerRadius="8" Padding="4">
+                        <Border Background="#111827" BorderBrush="#1E293B" BorderThickness="1" CornerRadius="8" Padding="4">
                             <Border.Effect>
-                                <DropShadowEffect BlurRadius="16" ShadowDepth="0" Color="#00E5FF" Opacity="0.35"/>
+                                <DropShadowEffect BlurRadius="16" ShadowDepth="3" Color="#000000" Opacity="0.6"/>
                             </Border.Effect>
                             <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle"/>
                         </Border>
