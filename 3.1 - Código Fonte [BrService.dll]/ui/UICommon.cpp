@@ -34,6 +34,16 @@ const Gdiplus::Color UICommon::ColModel3BlueBorder(255, 191, 219, 254); // Selec
 const Gdiplus::Color UICommon::ColModel3BlueHover(255, 29, 78, 216);    // Darker blue #1D4ED8
 const Gdiplus::Color UICommon::ColModel3HpRed(255, 239, 68, 68);        // Target HP red #EF4444
 
+// Theme palette variants
+const Gdiplus::Color UICommon::ColThemeDarkBg(255, 15, 15, 20);       // Near black #0F0F14
+const Gdiplus::Color UICommon::ColThemeDarkCard(255, 25, 28, 38);     // Dark card #191C26
+const Gdiplus::Color UICommon::ColThemeDarkBorder(255, 45, 52, 68);   // Dark border #2D3444
+const Gdiplus::Color UICommon::ColThemeDarkText(255, 240, 244, 255);  // Near white #F0F4FF
+const Gdiplus::Color UICommon::ColThemeGrayBg(255, 68, 74, 88);       // Mid gray bg #444A58
+const Gdiplus::Color UICommon::ColThemeGrayCard(255, 88, 95, 112);    // Gray card #585F70
+const Gdiplus::Color UICommon::ColThemeNavyBg(255, 12, 24, 68);       // Deep navy #0C1844
+const Gdiplus::Color UICommon::ColThemeNavyCard(255, 20, 40, 100);    // Navy card #142864
+
 void UICommon::InitializeGdiplus() {
     if (s_gdiplusToken == 0) {
         Gdiplus::GdiplusStartupInput gsi;
@@ -446,6 +456,38 @@ void UICommon::DrawModernSwitch(Gdiplus::Graphics& g, float x, float y, bool act
     Gdiplus::Font font(L"Segoe UI", 7.5f, Gdiplus::FontStyleRegular);
     Gdiplus::SolidBrush textBrush(active ? ColModel3TextDark : ColModel3TextMuted);
     g.DrawString(label, -1, &font, Gdiplus::PointF(x + swW + 8.0f, y + 2.0f), &textBrush);
+}
+
+void UICommon::DrawBarChart(Gdiplus::Graphics& g, float x, float y, float w, float h,
+                            const std::vector<float>& bars, Gdiplus::Color barColor) {
+    if (bars.empty()) return;
+    float maxVal = 0.0f;
+    for (float v : bars) if (v > maxVal) maxVal = v;
+    if (maxVal < 1.0f) maxVal = 1.0f;
+
+    // Background
+    Gdiplus::SolidBrush bgBrush(ColModel3Bg);
+    FillRoundRectangle(g, &bgBrush, x, y, w, h, 5.0f);
+    Gdiplus::Pen bgPen(ColModel3Border, 1.0f);
+    DrawRoundRectangle(g, &bgPen, x, y, w, h, 5.0f);
+
+    float plotX = x + 6.0f;
+    float plotY = y + 4.0f;
+    float plotW = w - 12.0f;
+    float plotH = h - 12.0f;
+
+    float barW = plotW / (float)bars.size() - 2.0f;
+    if (barW < 3.0f) barW = 3.0f;
+
+    Gdiplus::SolidBrush barBrush(barColor);
+    for (size_t i = 0; i < bars.size(); ++i) {
+        float norm = bars[i] / maxVal;
+        float bh = plotH * norm;
+        float bx = plotX + i * (barW + 2.0f);
+        float by = plotY + plotH - bh;
+        if (bh > 1.0f)
+            FillRoundRectangle(g, &barBrush, bx, by, barW, bh, 2.0f);
+    }
 }
 
 } // namespace BrService
