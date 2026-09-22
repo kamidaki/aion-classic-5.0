@@ -35,6 +35,7 @@ public class ProfileManager
         string[] candidatePaths = [
             Path.Combine(baseDir, "data", "config", "profiles.json"),
             Path.Combine(baseDir, "config", "profiles.json"),
+            Path.Combine(baseDir, "modules", "config", "profiles.json"),
             Path.Combine(baseDir, "bin", "config", "profiles.json")
         ];
 
@@ -69,7 +70,14 @@ public class ProfileManager
                     // Full filenames (for MainModule path matching when accessible):
                     "Aion.bin", "aion.bin", "aionclassic.bin", "Aion.exe", "aion_x64.bin"
                 ],
-                ExecutablePatterns = ["Aion", "AionClassic", "Aion EU", "Aion 5.0"],
+                // Aion Classic 5.0 — all known window titles and exe patterns
+                // Window title matching is the universal fallback for emulator clients
+                // that may rename the executable. The AION window title is standardized:
+                // "AION Client (64bit)", "AION Classic", "AION", "Aion Classic 5.0"
+                ExecutablePatterns = [
+                    "Aion", "AION", "AionClassic", "Aion Classic", "AION Classic",
+                    "Aion EU", "Aion 5.0", "AION Client", "Aion Client"
+                ],
                 KnownPorts = [2106, 6600, 7777, 10241],
                 DefaultProtocol = NetworkTransportProtocol.Tcp,
                 PreferredRegions = ["EU-Frankfurt", "SA-SaoPaulo", "NA-Virginia"],
@@ -229,6 +237,25 @@ public class ProfileManager
         lock (_lock)
         {
             return _profiles.FirstOrDefault(p => p.MatchesProcess(processName, executablePath));
+        }
+    }
+
+    /// <summary>
+    /// Matches a profile by window title — used as universal fallback for
+    /// processes with unpredictable names (emulators, private servers, wrappers).
+    /// </summary>
+    public GameProfile? FindMatchingProfileByWindowTitle(string windowTitle)
+    {
+        if (string.IsNullOrWhiteSpace(windowTitle)) return null;
+        lock (_lock)
+        {
+            // Check ExecutablePatterns, DisplayName, and ProcessNames keywords against the window title
+            return _profiles.FirstOrDefault(p =>
+                p.ExecutablePatterns.Any(pat =>
+                    windowTitle.IndexOf(pat, StringComparison.OrdinalIgnoreCase) >= 0)
+                || windowTitle.IndexOf(p.Id.Replace("_", " "), StringComparison.OrdinalIgnoreCase) >= 0
+                || p.ProcessNames.Any(pname =>
+                    windowTitle.IndexOf(System.IO.Path.GetFileNameWithoutExtension(pname), StringComparison.OrdinalIgnoreCase) >= 0));
         }
     }
 

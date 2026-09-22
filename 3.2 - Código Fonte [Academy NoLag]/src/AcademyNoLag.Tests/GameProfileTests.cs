@@ -20,7 +20,10 @@ public class GameProfileTests
     [Theory]
     [InlineData("Aion.bin", true)]
     [InlineData("aion.bin", true)]
+    [InlineData("Aion", true)]
+    [InlineData("aion", true)]
     [InlineData("aionclassic.bin", true)]
+    [InlineData("AionClassic", true)]
     [InlineData("Aion.exe", true)]
     [InlineData("notepad.exe", false)]
     [InlineData("chrome.exe", false)]
@@ -28,6 +31,28 @@ public class GameProfileTests
     {
         var manager = new ProfileManager();
         var profile = manager.FindMatchingProfile(processName);
+
+        if (shouldMatch)
+        {
+            Assert.NotNull(profile);
+            Assert.Equal("aion_classic_50", profile.Id);
+        }
+        else
+        {
+            Assert.Null(profile);
+        }
+    }
+
+    [Theory]
+    [InlineData("AION Client (64bit)", true)]
+    [InlineData("AION Classic", true)]
+    [InlineData("Aion 5.0 Private Server", true)]
+    [InlineData("Aion EU", true)]
+    [InlineData("Google Chrome", false)]
+    public void ProfileManager_MatchesAionWindowTitle(string windowTitle, bool shouldMatch)
+    {
+        var manager = new ProfileManager();
+        var profile = manager.FindMatchingProfileByWindowTitle(windowTitle);
 
         if (shouldMatch)
         {
@@ -60,6 +85,24 @@ public class GameProfileTests
         else
         {
             Assert.Null(profile);
+        }
+    }
+
+    [Fact]
+    public void GameDetector_ScansRunningProcesses_DetectsRunningAionIfPresent()
+    {
+        var manager = new ProfileManager();
+        var detector = new GameDetector(manager);
+        var detected = detector.ScanRunningProcesses();
+
+        var runningAion = System.Diagnostics.Process.GetProcessesByName("Aion.bin")
+            .Concat(System.Diagnostics.Process.GetProcessesByName("Aion"))
+            .FirstOrDefault();
+
+        if (runningAion != null)
+        {
+            Assert.NotEmpty(detected);
+            Assert.Contains(detected, g => g.ProcessId == runningAion.Id);
         }
     }
 }

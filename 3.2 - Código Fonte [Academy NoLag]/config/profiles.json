@@ -3,17 +3,28 @@
     "Id": "aion_classic_50",
     "DisplayName": "Aion Classic 5.0 (EU / Private)",
     "ProcessNames": [
+      "Aion",
+      "aion",
+      "AionClassic",
+      "aionclassic",
+      "aion_x64",
       "Aion.bin",
       "aion.bin",
       "aionclassic.bin",
       "Aion.exe",
+      "aion.exe",
       "aion_x64.bin"
     ],
     "ExecutablePatterns": [
       "Aion",
+      "AION",
       "AionClassic",
+      "Aion Classic",
+      "AION Classic",
       "Aion EU",
-      "Aion 5.0"
+      "Aion 5.0",
+      "AION Client",
+      "Aion Client"
     ],
     "KnownPorts": [
       2106,

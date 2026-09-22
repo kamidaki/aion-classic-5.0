@@ -40,23 +40,42 @@ public class GameProfile : INotifyPropertyChanged
 
     public bool MatchesProcess(string processName, string? executablePath = null)
     {
-        if (ProcessNames.Any(p => string.Equals(p, processName, StringComparison.OrdinalIgnoreCase)))
+        if (string.IsNullOrWhiteSpace(processName)) return false;
+
+        string cleanName = processName.Trim();
+        string processNoExt = System.IO.Path.GetFileNameWithoutExtension(cleanName);
+
+        // 1. Direct match on ProcessNames (exact or stripped extension)
+        if (ProcessNames.Any(p =>
+            string.Equals(p, cleanName, StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(p, processNoExt, StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(System.IO.Path.GetFileNameWithoutExtension(p), cleanName, StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(System.IO.Path.GetFileNameWithoutExtension(p), processNoExt, StringComparison.OrdinalIgnoreCase)))
             return true;
 
-        if (ProcessNames.Any(p => string.Equals(System.IO.Path.GetFileNameWithoutExtension(p), processName, StringComparison.OrdinalIgnoreCase)))
+        // 2. Suffix match (.exe, .bin)
+        if (ProcessNames.Any(p =>
+            string.Equals(p + ".exe", cleanName, StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(p + ".bin", cleanName, StringComparison.OrdinalIgnoreCase)))
             return true;
 
-        if (ProcessNames.Any(p => string.Equals(p + ".exe", processName, StringComparison.OrdinalIgnoreCase)))
+        // 3. ExecutablePatterns match against processName
+        if (ExecutablePatterns.Any(pattern =>
+            string.Equals(cleanName, pattern, StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(processNoExt, pattern, StringComparison.OrdinalIgnoreCase) ||
+            cleanName.StartsWith(pattern, StringComparison.OrdinalIgnoreCase) ||
+            processNoExt.StartsWith(pattern, StringComparison.OrdinalIgnoreCase)))
             return true;
 
+        // 4. ExecutablePath matching when accessible (with elevation)
         if (!string.IsNullOrEmpty(executablePath))
         {
             string fileName = System.IO.Path.GetFileName(executablePath);
-            if (ProcessNames.Any(p => string.Equals(p, fileName, StringComparison.OrdinalIgnoreCase)))
-                return true;
-
             string fileNameNoExt = System.IO.Path.GetFileNameWithoutExtension(fileName);
-            if (ProcessNames.Any(p => string.Equals(System.IO.Path.GetFileNameWithoutExtension(p), fileNameNoExt, StringComparison.OrdinalIgnoreCase)))
+
+            if (ProcessNames.Any(p =>
+                string.Equals(p, fileName, StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(System.IO.Path.GetFileNameWithoutExtension(p), fileNameNoExt, StringComparison.OrdinalIgnoreCase)))
                 return true;
 
             // Match ExecutablePatterns ONLY against the executable filename, never against parent directories

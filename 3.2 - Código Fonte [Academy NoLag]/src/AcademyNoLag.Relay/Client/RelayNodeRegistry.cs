@@ -23,6 +23,7 @@ public class RelayNodeRegistry : IRelayNodeRegistry
         string[] candidatePaths = [
             Path.Combine(baseDir, "data", "config", "nodes.json"),
             Path.Combine(baseDir, "config", "nodes.json"),
+            Path.Combine(baseDir, "modules", "config", "nodes.json"),
             Path.Combine(baseDir, "bin", "config", "nodes.json")
         ];
 

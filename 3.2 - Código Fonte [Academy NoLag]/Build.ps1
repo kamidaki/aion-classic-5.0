@@ -42,17 +42,21 @@ Get-ChildItem -LiteralPath (Join-Path $BaseDir "src") -Recurse -Directory | Wher
 }
 
 # Setup clean folder hierarchy for Produto Final
+$FinalModules = Join-Path $FinalDir "modules"
 $FinalBin = Join-Path $FinalDir "bin"
 $FinalData = Join-Path $FinalDir "data"
 $FinalConfig = Join-Path $FinalData "config"
 $FinalDocs = Join-Path $FinalData "docs"
 $FinalScripts = Join-Path $FinalData "scripts"
+$FinalLogs = Join-Path $FinalDir "logs"
 
 [System.IO.Directory]::CreateDirectory($FinalDir) | Out-Null
+[System.IO.Directory]::CreateDirectory($FinalModules) | Out-Null
 [System.IO.Directory]::CreateDirectory($FinalBin) | Out-Null
 [System.IO.Directory]::CreateDirectory($FinalConfig) | Out-Null
 [System.IO.Directory]::CreateDirectory($FinalDocs) | Out-Null
 [System.IO.Directory]::CreateDirectory($FinalScripts) | Out-Null
+[System.IO.Directory]::CreateDirectory($FinalLogs) | Out-Null
 
 Write-Host "[1/5] Running Automated Test Suite..." -ForegroundColor Yellow
 dotnet test "src\AcademyNoLag.Tests\AcademyNoLag.Tests.csproj" -c $Configuration --verbosity normal
@@ -83,7 +87,7 @@ if (Test-Path -LiteralPath $iconPath) {
     Copy-Item -LiteralPath $iconPath -Destination (Join-Path $FinalDir "app.ico") -Force
 }
 
-Write-Host "[3/5] Publishing Secondary Execution Modules (RelayNode & Service) to 'bin/'..." -ForegroundColor Yellow
+Write-Host "[3/5] Publishing Secondary Execution Modules (RelayNode & Service) to 'modules/' and 'bin/'..." -ForegroundColor Yellow
 dotnet publish "src\AcademyNoLag.RelayNode\AcademyNoLag.RelayNode.csproj" -c $Configuration -r win-x64 --self-contained false -o $TempNodePublish
 if ($LASTEXITCODE -ne 0) {
     Write-Error "Publishing RelayNode failed."
@@ -95,11 +99,13 @@ if ($LASTEXITCODE -ne 0) {
     exit 1
 }
 
-# Copy modules & supporting DLLs into bin/
+# Copy modules & supporting DLLs into modules/ and bin/ (dual compatibility)
 Get-ChildItem -LiteralPath $TempNodePublish | ForEach-Object {
+    Copy-Item -LiteralPath $_.FullName -Destination (Join-Path $FinalModules $_.Name) -Recurse -Force
     Copy-Item -LiteralPath $_.FullName -Destination (Join-Path $FinalBin $_.Name) -Recurse -Force
 }
 Get-ChildItem -LiteralPath $TempServicePublish | ForEach-Object {
+    Copy-Item -LiteralPath $_.FullName -Destination (Join-Path $FinalModules $_.Name) -Recurse -Force
     Copy-Item -LiteralPath $_.FullName -Destination (Join-Path $FinalBin $_.Name) -Recurse -Force
 }
 
@@ -129,6 +135,11 @@ Get-ChildItem -LiteralPath $BaseDir -Filter "*.md" | ForEach-Object {
 # Also ensure AddPath.ps1 exists in Produto Final root for instant user convenience
 Copy-Item -LiteralPath (Join-Path $BaseDir "AddPath.ps1") -Destination (Join-Path $FinalDir "AddPath.ps1") -Force
 
+# Hygiene: Remove PDB debug symbols and intermediate localization artifacts from release output
+Get-ChildItem -LiteralPath $FinalDir -Recurse -Filter "*.pdb" | ForEach-Object {
+    try { Remove-Item -LiteralPath $_.FullName -Force -ErrorAction SilentlyContinue } catch { }
+}
+
 Write-Host "[5/5] Mirroring distribution to 'dist/'..." -ForegroundColor Yellow
 [System.IO.Directory]::CreateDirectory($DistDir) | Out-Null
 Copy-Item -LiteralPath (Join-Path $FinalDir "*") -Destination $DistDir -Recurse -Force
@@ -137,8 +148,9 @@ Write-Host "==========================================================" -Foregro
 Write-Host "   BUILD & PACKAGING SUCCEEDED!                           " -ForegroundColor Green
 Write-Host "   - Root Executable:  $FinalDir\Academy - NoLag.exe      " -ForegroundColor White
 Write-Host "   - Root Icon:        $FinalDir\app.ico                  " -ForegroundColor White
-Write-Host "   - Modules Folder:   $FinalDir\bin\                     " -ForegroundColor White
+Write-Host "   - Modules Folder:   $FinalDir\modules\                 " -ForegroundColor White
 Write-Host "   - Data/Configs:     $FinalDir\data\config\             " -ForegroundColor White
 Write-Host "   - Docs:             $FinalDir\data\docs\               " -ForegroundColor White
 Write-Host "   - Scripts:          $FinalDir\data\scripts\            " -ForegroundColor White
+Write-Host "   - Logs:             $FinalDir\logs\                    " -ForegroundColor White
 Write-Host "==========================================================" -ForegroundColor Green

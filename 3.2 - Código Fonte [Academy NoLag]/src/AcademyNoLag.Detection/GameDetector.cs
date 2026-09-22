@@ -1,4 +1,6 @@
 using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Text;
 using AcademyNoLag.Core.Interfaces;
 using AcademyNoLag.Core.Models;
 
@@ -138,7 +140,7 @@ public class GameDetector : IGameDetector
         var matched = new List<GameProcess>();
         int currentPid = Environment.ProcessId;
 
-        // 1. Fast targeted check for known profile processes (0.0% CPU impact, no handle leaks)
+        // 1. Fast targeted check for known profile processes
         try
         {
             var searchNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -146,8 +148,17 @@ public class GameDetector : IGameDetector
             {
                 foreach (var name in p.ProcessNames)
                 {
+                    if (string.IsNullOrWhiteSpace(name)) continue;
+                    searchNames.Add(name); // e.g. "Aion.bin"
                     string noExt = Path.GetFileNameWithoutExtension(name);
-                    if (!string.IsNullOrEmpty(noExt)) searchNames.Add(noExt);
+                    if (!string.IsNullOrWhiteSpace(noExt)) searchNames.Add(noExt); // e.g. "Aion"
+                }
+                foreach (var pattern in p.ExecutablePatterns)
+                {
+                    if (string.IsNullOrWhiteSpace(pattern)) continue;
+                    searchNames.Add(pattern);
+                    string noExt = Path.GetFileNameWithoutExtension(pattern);
+                    if (!string.IsNullOrWhiteSpace(noExt)) searchNames.Add(noExt);
                 }
             }
 
@@ -169,23 +180,25 @@ public class GameDetector : IGameDetector
                         string? mainModulePath = null;
                         string? windowTitle = null;
 
-                        try
+                        try { windowTitle = proc.MainWindowTitle; } catch { }
+                        if (string.IsNullOrWhiteSpace(windowTitle))
                         {
-                            windowTitle = proc.MainWindowTitle;
+                            windowTitle = GetProcessVisibleWindowTitle(proc.Id);
                         }
-                        catch { /* Window title inaccessible — non-critical */ }
 
                         try
                         {
-                            // MainModule can throw AccessDenied for 64-bit processes when running
-                            // without admin elevation. This is non-fatal: bare ProcessName matching
-                            // is sufficient since ProfileManager now registers bare names (e.g. "Aion").
                             mainModulePath = proc.MainModule?.FileName;
                         }
-                        catch { /* Expected: 64-bit process / system process without elevation */ }
+                        catch { /* 64-bit or unprivileged access */ }
 
-                        // Match by processName alone OR with full exe path when available
+                        // Match by processName (+ exe path when available)
                         var profile = _profileManager.FindMatchingProfile(procName, mainModulePath);
+
+                        // FALLBACK: if no match by name, try window title
+                        if (profile == null && !string.IsNullOrEmpty(windowTitle))
+                            profile = _profileManager.FindMatchingProfileByWindowTitle(windowTitle);
+
                         if (profile != null)
                         {
                             matched.Add(new GameProcess(
@@ -201,7 +214,6 @@ public class GameDetector : IGameDetector
                     catch { /* Skip unreadable processes */ }
                     finally
                     {
-                        // Dispose Win32 process handle to prevent handle leak across polling cycles
                         proc.Dispose();
                     }
                 }
@@ -214,22 +226,11 @@ public class GameDetector : IGameDetector
             return matched;
         }
 
-        // 2. Fallback full scan only if custom profiles exist without specific ProcessNames
-        bool hasWildcardProfiles = _profileManager.Profiles.Any(p => p.ProcessNames.Count == 0 && p.ExecutablePatterns.Count > 0);
-        if (!hasWildcardProfiles)
-        {
-            return matched;
-        }
-
+        // Phase 2: Fallback scan across all active processes
+        // Matches by ProcessName, ExecutablePath, or WindowTitle (essential for emulators / private servers)
         Process[] processes;
-        try
-        {
-            processes = Process.GetProcesses();
-        }
-        catch
-        {
-            return matched;
-        }
+        try { processes = Process.GetProcesses(); }
+        catch { return matched; }
 
         foreach (var proc in processes)
         {
@@ -242,19 +243,20 @@ public class GameDetector : IGameDetector
                 string? mainModulePath = null;
                 string? windowTitle = null;
 
-                try
+                try { windowTitle = proc.MainWindowTitle; } catch { }
+                if (string.IsNullOrWhiteSpace(windowTitle))
                 {
-                    windowTitle = proc.MainWindowTitle;
+                    windowTitle = GetProcessVisibleWindowTitle(proc.Id);
                 }
-                catch { /* Window title inaccessible — non-critical */ }
 
-                try
-                {
-                    mainModulePath = proc.MainModule?.FileName;
-                }
-                catch { /* AccessDenied for 64-bit or system processes — non-fatal */ }
+                try { mainModulePath = proc.MainModule?.FileName; } catch { }
 
                 var profile = _profileManager.FindMatchingProfile(procName, mainModulePath);
+                if (profile == null && !string.IsNullOrEmpty(windowTitle))
+                {
+                    profile = _profileManager.FindMatchingProfileByWindowTitle(windowTitle);
+                }
+
                 if (profile != null)
                 {
                     matched.Add(new GameProcess(
@@ -265,17 +267,124 @@ public class GameDetector : IGameDetector
                         StartTime: null,
                         MainWindowTitle: windowTitle
                     ));
+                    break;
                 }
             }
-            catch { /* Skip unreadable processes */ }
-            finally
+            catch { }
+            finally { proc.Dispose(); }
+        }
+
+        if (matched.Count > 0) return matched;
+
+        // Phase 3: Universal window-title scan
+        var titleMatched = ScanByWindowTitle();
+        if (titleMatched.Count > 0) return titleMatched;
+
+        return matched;
+    }
+
+    /// <summary>
+    /// Phase 3 scan: enumerate all processes with a visible window and match by window title.
+    /// Works even when the process has a custom/unexpected name.
+    /// </summary>
+    private List<GameProcess> ScanByWindowTitle()
+    {
+        var matched = new List<GameProcess>();
+        int currentPid = Environment.ProcessId;
+
+        Process[] processes;
+        try { processes = Process.GetProcesses(); }
+        catch { return matched; }
+
+        foreach (var proc in processes)
+        {
+            try
             {
-                proc.Dispose();
+                if (proc.Id == currentPid) continue;
+
+                string procName = proc.ProcessName;
+                if (procName.StartsWith("Academy", StringComparison.OrdinalIgnoreCase)) continue;
+
+                string? windowTitle = null;
+                try { windowTitle = proc.MainWindowTitle; } catch { }
+                if (string.IsNullOrWhiteSpace(windowTitle))
+                {
+                    windowTitle = GetProcessVisibleWindowTitle(proc.Id);
+                }
+
+                if (string.IsNullOrWhiteSpace(windowTitle)) continue;
+
+                var profile = _profileManager.FindMatchingProfileByWindowTitle(windowTitle);
+                if (profile != null)
+                {
+                    string? mainModulePath = null;
+                    try { mainModulePath = proc.MainModule?.FileName; } catch { }
+
+                    matched.Add(new GameProcess(
+                        ProcessId: proc.Id,
+                        ProcessName: procName,
+                        ExecutablePath: mainModulePath ?? procName,
+                        CommandLine: null,
+                        StartTime: null,
+                        MainWindowTitle: windowTitle
+                    ));
+                }
             }
+            catch { }
+            finally { proc.Dispose(); }
         }
 
         return matched;
     }
+
+    #region Win32 Window Title Resolver
+    [DllImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool EnumWindows(EnumWindowsProc lpEnumFunc, IntPtr lParam);
+    private delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
+
+    [DllImport("user32.dll", SetLastError = true)]
+    private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+
+    [DllImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool IsWindowVisible(IntPtr hWnd);
+
+    [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    private static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
+
+    private static string? GetProcessVisibleWindowTitle(int pid)
+    {
+        string? result = null;
+        try
+        {
+            EnumWindows((hWnd, lParam) =>
+            {
+                if (IsWindowVisible(hWnd))
+                {
+                    GetWindowThreadProcessId(hWnd, out uint windowPid);
+                    if (windowPid == pid)
+                    {
+                        var sb = new StringBuilder(256);
+                        int len = GetWindowText(hWnd, sb, sb.Capacity);
+                        if (len > 0)
+                        {
+                            string title = sb.ToString();
+                            if (!string.IsNullOrWhiteSpace(title))
+                            {
+                                result = title;
+                                return false; // Found visible title, terminate search
+                            }
+                        }
+                    }
+                }
+                return true;
+            }, IntPtr.Zero);
+        }
+        catch { }
+        return result;
+    }
+    #endregion
 
     public void SetManualGame(GameProcess game, GameProfile? profile = null)
     {

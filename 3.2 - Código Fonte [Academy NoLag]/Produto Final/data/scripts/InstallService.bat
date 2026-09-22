@@ -15,6 +15,9 @@ if '%errorlevel%' NEQ '0' (
 
 set SERVICE_NAME=AcademyNoLagService
 set BINARY_PATH="%~dp0AcademyNoLag.Service.exe"
+if exist "%~dp0modules\AcademyNoLag.Service.exe" set BINARY_PATH="%~dp0modules\AcademyNoLag.Service.exe"
+if exist "%~dp0..\modules\AcademyNoLag.Service.exe" set BINARY_PATH="%~dp0..\modules\AcademyNoLag.Service.exe"
+if exist "%~dp0..\..\modules\AcademyNoLag.Service.exe" set BINARY_PATH="%~dp0..\..\modules\AcademyNoLag.Service.exe"
 
 echo Stopping existing service if running...
 sc stop %SERVICE_NAME% >nul 2>&1
