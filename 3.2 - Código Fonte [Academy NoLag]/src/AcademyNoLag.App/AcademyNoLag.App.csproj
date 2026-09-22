@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <LangVersion>13.0</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyName>Academy - NoLag</AssemblyName>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="app.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AcademyNoLag.Core\AcademyNoLag.Core.csproj" />
+    <ProjectReference Include="..\AcademyNoLag.Network\AcademyNoLag.Network.csproj" />
+    <ProjectReference Include="..\AcademyNoLag.Detection\AcademyNoLag.Detection.csproj" />
+    <ProjectReference Include="..\AcademyNoLag.Routing\AcademyNoLag.Routing.csproj" />
+    <ProjectReference Include="..\AcademyNoLag.Relay\AcademyNoLag.Relay.csproj" />
+    <ProjectReference Include="..\AcademyNoLag.Redirection\AcademyNoLag.Redirection.csproj" />
+    <ProjectReference Include="..\AcademyNoLag.Persistence\AcademyNoLag.Persistence.csproj" />
+    <ProjectReference Include="..\AcademyNoLag.Diagnostics\AcademyNoLag.Diagnostics.csproj" />
+  </ItemGroup>
+</Project>

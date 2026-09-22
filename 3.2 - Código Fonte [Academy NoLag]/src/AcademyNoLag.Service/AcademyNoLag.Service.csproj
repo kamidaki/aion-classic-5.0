@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>13.0</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AcademyNoLag.Core\AcademyNoLag.Core.csproj" />
+    <ProjectReference Include="..\AcademyNoLag.Network\AcademyNoLag.Network.csproj" />
+    <ProjectReference Include="..\AcademyNoLag.Routing\AcademyNoLag.Routing.csproj" />
+    <ProjectReference Include="..\AcademyNoLag.Redirection\AcademyNoLag.Redirection.csproj" />
+    <ProjectReference Include="..\AcademyNoLag.Diagnostics\AcademyNoLag.Diagnostics.csproj" />
+  </ItemGroup>
+</Project>

@@ -21,6 +21,8 @@ Debug/
 *.recipe
 *.iobj
 *.ipdb
+*.pdb
+**/*.pdb
 *.class
 *.pyc
 __pycache__/
@@ -109,4 +111,14 @@ database.properties
 4 - Patch para o Client 5.0/data/dump/
 *.dmp
 
-
+# 12. Academy NoLag (.NET 9 / C# Optimizer)
+3.2 - Código Fonte [Academy NoLag]/build/
+3.2 - Código Fonte [Academy NoLag]/dist/
+3.2 - Código Fonte [Academy NoLag]/src/**/bin/
+3.2 - Código Fonte [Academy NoLag]/src/**/obj/
+3.2 - Código Fonte [Academy NoLag]/**/*.user
+3.2 - Código Fonte [Academy NoLag]/**/*.suo
+3.2 - Código Fonte [Academy NoLag]/**/.vs/
+3.2 - Código Fonte [Academy NoLag]/**/TestResults/
+3.2 - Código Fonte [Academy NoLag]/**/*.pdb
+3.2 - Código Fonte [Academy NoLag]/**/crash.log
