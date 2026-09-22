@@ -51,14 +51,25 @@ public class SystemTrayManager : IDisposable
     [DllImport("shell32.dll", CharSet = CharSet.Unicode)]
     private static extern bool Shell_NotifyIcon(int dwMessage, ref NOTIFYICONDATA lpData);
 
-    [DllImport("user32.dll", SetLastError = true)]
+    [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
     private static extern IntPtr LoadImage(IntPtr hinst, string lpszName, uint uType, int cxDesired, int cyDesired, uint fuLoad);
+
+    [DllImport("user32.dll")]
+    private static extern IntPtr LoadIcon(IntPtr hInstance, IntPtr lpIconName);
+
+    [DllImport("shell32.dll", CharSet = CharSet.Unicode)]
+    private static extern IntPtr ExtractIcon(IntPtr hInst, string lpszExeFileName, int nIconIndex);
+
+    [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+    private static extern int RegisterWindowMessage(string lpString);
 
     [DllImport("user32.dll", SetLastError = true)]
     private static extern bool DestroyIcon(IntPtr hIcon);
 
     [DllImport("user32.dll")]
     private static extern bool SetForegroundWindow(IntPtr hWnd);
+
+    private static readonly int WM_TASKBARCREATED = RegisterWindowMessage("TaskbarCreated");
 
     private readonly FloatingHudWindow _floatingHud;
     private readonly MainViewModel _viewModel;
@@ -79,32 +90,23 @@ public class SystemTrayManager : IDisposable
         // Build stylish dark gaming context menu
         _contextMenu = BuildContextMenu();
 
-        // Create message-only window to capture tray notification messages
-        var parameters = new HwndSourceParameters("AcademyNoLagTrayMsg")
-        {
-            WindowStyle = 0,
-            ExtendedWindowStyle = 0
-        };
-        _hwndSource = new HwndSource(parameters);
-        _hwndSource.AddHook(WndProc);
+        // Use the genuine HWND of the Floating HUD window
+        var helper = new WindowInteropHelper(_floatingHud);
+        IntPtr hwnd = helper.EnsureHandle();
+        _hwndSource = HwndSource.FromHwnd(hwnd);
+        _hwndSource?.AddHook(WndProc);
 
-        IntPtr hIcon = IntPtr.Zero;
-        string iconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "app.ico");
-        if (File.Exists(iconPath))
-        {
-            // IMAGE_ICON = 1, LR_LOADFROMFILE = 0x00000010
-            hIcon = LoadImage(IntPtr.Zero, iconPath, 1, 16, 16, 0x00000010);
-        }
+        IntPtr hIcon = ResolveTrayIcon();
 
         _nid = new NOTIFYICONDATA
         {
             cbSize = Marshal.SizeOf<NOTIFYICONDATA>(),
-            hWnd = _hwndSource.Handle,
+            hWnd = hwnd,
             uID = 1001,
             uFlags = NIF_MESSAGE | NIF_ICON | NIF_TIP,
             uCallbackMessage = WM_TRAYICON,
             hIcon = hIcon,
-            szTip = "Academy NoLag • Monitorando\nAguardando Aion Classic..."
+            szTip = "Academy NoLag • Otimizador Ativo\nAguardando Aion Classic..."
         };
 
         _isAdded = Shell_NotifyIcon(NIM_ADD, ref _nid);
@@ -116,6 +118,36 @@ public class SystemTrayManager : IDisposable
         };
         _tooltipTimer.Tick += (_, _) => UpdateTooltip();
         _tooltipTimer.Start();
+    }
+
+    private static IntPtr ResolveTrayIcon()
+    {
+        try
+        {
+            // 1. Try loading app.ico from application directory with Unicode support
+            string iconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "app.ico");
+            if (File.Exists(iconPath))
+            {
+                // IMAGE_ICON = 1, LR_LOADFROMFILE = 0x00000010
+                IntPtr hIcon = LoadImage(IntPtr.Zero, iconPath, 1, 16, 16, 0x00000010);
+                if (hIcon != IntPtr.Zero) return hIcon;
+            }
+
+            // 2. Try extracting icon from own executable
+            string exePath = Process.GetCurrentProcess().MainModule?.FileName ?? "";
+            if (!string.IsNullOrEmpty(exePath) && File.Exists(exePath))
+            {
+                IntPtr hIcon = ExtractIcon(IntPtr.Zero, exePath, 0);
+                if (hIcon != IntPtr.Zero) return hIcon;
+            }
+
+            // 3. Fallback to standard application icon so Shell_NotifyIcon NEVER fails
+            return LoadIcon(IntPtr.Zero, (IntPtr)32512); // IDI_APPLICATION
+        }
+        catch
+        {
+            return LoadIcon(IntPtr.Zero, (IntPtr)32512);
+        }
     }
 
     private ContextMenu BuildContextMenu()
@@ -195,6 +227,13 @@ public class SystemTrayManager : IDisposable
 
     private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
     {
+        if (msg == WM_TASKBARCREATED)
+        {
+            // Windows Explorer restarted or tray was refreshed — re-register icon
+            _isAdded = Shell_NotifyIcon(NIM_ADD, ref _nid);
+            return IntPtr.Zero;
+        }
+
         if (msg == WM_TRAYICON)
         {
             int eventId = lParam.ToInt32();
@@ -304,8 +343,7 @@ public class SystemTrayManager : IDisposable
             _nid.hIcon = IntPtr.Zero;
         }
 
-        _floatingHud.Close();
-        _hwndSource?.Dispose();
+        _hwndSource?.RemoveHook(WndProc);
         GC.SuppressFinalize(this);
     }
 }

@@ -12,8 +12,8 @@
         AllowsTransparency="True"
         Background="Transparent"
         Topmost="True"
-        ShowInTaskbar="False"
-        WindowStartupLocation="Manual">
+        ShowInTaskbar="True"
+        WindowStartupLocation="CenterScreen">
 
     <!-- Outer Glow Container -->
     <Border Margin="10" CornerRadius="14" Background="#0B0F19" BorderBrush="#00E5FF" BorderThickness="1.5">

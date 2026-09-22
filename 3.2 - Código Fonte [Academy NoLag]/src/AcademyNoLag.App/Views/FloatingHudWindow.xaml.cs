@@ -34,6 +34,14 @@ public partial class FloatingHudWindow : Window
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
+        // 1. Position window at bottom-right above taskbar, ensuring safe screen bounds
+        var workingArea = SystemParameters.WorkArea;
+        double w = ActualWidth > 100 ? ActualWidth : (Width > 0 ? Width : 465);
+        double h = ActualHeight > 100 ? ActualHeight : (Height > 0 ? Height : 545);
+        Left = Math.Max(20, workingArea.Right - w - 24);
+        Top = Math.Max(20, workingArea.Bottom - h - 24);
+
+        // 2. Initialize Tray Manager
         try
         {
             if (_trayManager == null)
@@ -46,15 +54,16 @@ public partial class FloatingHudWindow : Window
             Debug.WriteLine($"[TrayManager] Initialization warning: {ex.Message}");
         }
 
-        // Hook window message loop to capture single-instance ShowHud broadcast
+        // 3. Hook window message loop to capture single-instance ShowHud broadcast
         var hwnd = new WindowInteropHelper(this).Handle;
         var source = HwndSource.FromHwnd(hwnd);
         source?.AddHook(WndProc);
 
-        // Position window at bottom-right above taskbar
-        var workingArea = SystemParameters.WorkArea;
-        Left = workingArea.Right - ActualWidth - 24;
-        Top = workingArea.Bottom - ActualHeight - 24;
+        // 4. Ensure window is visible and focused
+        Show();
+        Activate();
+        Topmost = _isPinned;
+        Focus();
     }
 
     private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
@@ -73,6 +82,7 @@ public partial class FloatingHudWindow : Window
         WindowState = WindowState.Normal;
         Activate();
         Topmost = _isPinned;
+        Focus();
     }
 
     private void OnWindowClosing(object? sender, CancelEventArgs e)
