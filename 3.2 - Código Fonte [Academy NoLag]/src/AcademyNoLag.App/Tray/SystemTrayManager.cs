@@ -1,273 +1,221 @@
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
-using System.Runtime.InteropServices;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Interop;
-using System.Windows.Media;
 using System.Windows.Threading;
 using AcademyNoLag.App.ViewModels;
 using AcademyNoLag.App.Views;
+using WinForms = System.Windows.Forms;
 
 namespace AcademyNoLag.App.Tray;
 
 public class SystemTrayManager : IDisposable
 {
-    private const int NIM_ADD = 0x00000000;
-    private const int NIM_MODIFY = 0x00000001;
-    private const int NIM_DELETE = 0x00000002;
-
-    private const int NIF_MESSAGE = 0x00000001;
-    private const int NIF_ICON = 0x00000002;
-    private const int NIF_TIP = 0x00000004;
-
-    private const int WM_USER = 0x0400;
-    private const int WM_TRAYICON = WM_USER + 101;
-    private const int WM_LBUTTONUP = 0x0202;
-    private const int WM_LBUTTONDBLCLK = 0x0203;
-    private const int WM_RBUTTONUP = 0x0205;
-
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-    private struct NOTIFYICONDATA
-    {
-        public int cbSize;
-        public IntPtr hWnd;
-        public int uID;
-        public int uFlags;
-        public int uCallbackMessage;
-        public IntPtr hIcon;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-        public string szTip;
-        public int dwState;
-        public int dwStateMask;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
-        public string szInfo;
-        public int uTimeoutOrVersion;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
-        public string szInfoTitle;
-        public int dwInfoFlags;
-    }
-
-    [DllImport("shell32.dll", CharSet = CharSet.Unicode)]
-    private static extern bool Shell_NotifyIcon(int dwMessage, ref NOTIFYICONDATA lpData);
-
-    [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-    private static extern IntPtr LoadImage(IntPtr hinst, string lpszName, uint uType, int cxDesired, int cyDesired, uint fuLoad);
-
-    [DllImport("user32.dll")]
-    private static extern IntPtr LoadIcon(IntPtr hInstance, IntPtr lpIconName);
-
-    [DllImport("shell32.dll", CharSet = CharSet.Unicode)]
-    private static extern IntPtr ExtractIcon(IntPtr hInst, string lpszExeFileName, int nIconIndex);
-
-    [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-    private static extern int RegisterWindowMessage(string lpString);
-
-    [DllImport("user32.dll", SetLastError = true)]
-    private static extern bool DestroyIcon(IntPtr hIcon);
-
-    [DllImport("user32.dll")]
-    private static extern bool SetForegroundWindow(IntPtr hWnd);
-
-    private static readonly int WM_TASKBARCREATED = RegisterWindowMessage("TaskbarCreated");
-
     private readonly FloatingHudWindow _floatingHud;
     private readonly MainViewModel _viewModel;
-    private readonly ContextMenu _contextMenu;
+    private readonly WinForms.NotifyIcon _notifyIcon;
+    private readonly WinForms.ContextMenuStrip _contextMenu;
     private readonly DispatcherTimer _tooltipTimer;
-
-    private HwndSource? _hwndSource;
-    private NOTIFYICONDATA _nid;
-    private bool _isAdded = false;
+    private WinForms.ToolStripMenuItem? _autoOptimizeMenuItem;
+    private bool _isDisposed = false;
 
     public FloatingHudWindow FloatingHud => _floatingHud;
+    public WinForms.NotifyIcon NotifyIcon => _notifyIcon;
 
     public SystemTrayManager(FloatingHudWindow floatingHud, MainViewModel viewModel)
     {
         _floatingHud = floatingHud;
         _viewModel = viewModel;
 
-        // Build stylish dark gaming context menu
+        // 1. Build Dark Gaming ContextMenuStrip with Custom Renderer (Zero White Margins)
         _contextMenu = BuildContextMenu();
 
-        // Use the genuine HWND of the Floating HUD window
-        var helper = new WindowInteropHelper(_floatingHud);
-        IntPtr hwnd = helper.EnsureHandle();
-        _hwndSource = HwndSource.FromHwnd(hwnd);
-        _hwndSource?.AddHook(WndProc);
+        // 2. Resolve Icon
+        Icon icon = ResolveTrayIcon();
 
-        IntPtr hIcon = ResolveTrayIcon();
-
-        _nid = new NOTIFYICONDATA
+        // 3. Initialize NotifyIcon
+        _notifyIcon = new WinForms.NotifyIcon
         {
-            cbSize = Marshal.SizeOf<NOTIFYICONDATA>(),
-            hWnd = hwnd,
-            uID = 1001,
-            uFlags = NIF_MESSAGE | NIF_ICON | NIF_TIP,
-            uCallbackMessage = WM_TRAYICON,
-            hIcon = hIcon,
-            szTip = "Academy NoLag • Otimizador Ativo\nAguardando Aion Classic..."
+            Icon = icon,
+            Text = "Academy NoLag • Otimizador Ativo",
+            ContextMenuStrip = _contextMenu,
+            Visible = true
         };
 
-        _isAdded = Shell_NotifyIcon(NIM_ADD, ref _nid);
+        // Click handlers
+        _notifyIcon.MouseClick += (s, e) =>
+        {
+            if (e.Button == WinForms.MouseButtons.Left)
+            {
+                _floatingHud.Dispatcher.Invoke(ToggleFloatingHud);
+            }
+        };
 
-        // Setup periodic tooltip updater (every 1.5s, virtually 0% CPU)
+        _notifyIcon.DoubleClick += (s, e) =>
+        {
+            _floatingHud.Dispatcher.Invoke(ShowFloatingHud);
+        };
+
+        // Listen for ViewModel changes to update the auto-optimize menu checkmark
+        _viewModel.PropertyChanged += (s, e) =>
+        {
+            if (e.PropertyName == nameof(MainViewModel.AutoOptimize) && _autoOptimizeMenuItem != null)
+            {
+                _floatingHud.Dispatcher.Invoke(() =>
+                {
+                    _autoOptimizeMenuItem.Checked = _viewModel.AutoOptimize;
+                    _autoOptimizeMenuItem.Text = _viewModel.AutoOptimize
+                        ? "✓ Otimização Automática: ATIVA"
+                        : "○ Otimização Automática: MANUAL";
+                });
+            }
+        };
+
+        // 4. Periodic tooltip update (1.5s interval, virtually 0% CPU)
         _tooltipTimer = new DispatcherTimer
         {
             Interval = TimeSpan.FromMilliseconds(1500)
         };
         _tooltipTimer.Tick += (_, _) => UpdateTooltip();
         _tooltipTimer.Start();
+
+        // Display brief introductory balloon notification
+        try
+        {
+            _notifyIcon.ShowBalloonTip(
+                2000,
+                "Academy NoLag",
+                "Otimizador de latência ativo e monitorando tráfego do jogo.",
+                WinForms.ToolTipIcon.Info
+            );
+        }
+        catch { }
     }
 
-    private static IntPtr ResolveTrayIcon()
+    private static Icon ResolveTrayIcon()
     {
         try
         {
-            // 1. Try loading app.ico from application directory with Unicode support
+            // 1. Look for app.ico in BaseDirectory
             string iconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "app.ico");
             if (File.Exists(iconPath))
             {
-                // IMAGE_ICON = 1, LR_LOADFROMFILE = 0x00000010
-                IntPtr hIcon = LoadImage(IntPtr.Zero, iconPath, 1, 16, 16, 0x00000010);
-                if (hIcon != IntPtr.Zero) return hIcon;
+                return new Icon(iconPath);
             }
 
-            // 2. Try extracting icon from own executable
+            // 2. Look in data folder
+            string altPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "app.ico");
+            if (File.Exists(altPath))
+            {
+                return new Icon(altPath);
+            }
+
+            // 3. Extract associated icon from running executable
             string exePath = Process.GetCurrentProcess().MainModule?.FileName ?? "";
             if (!string.IsNullOrEmpty(exePath) && File.Exists(exePath))
             {
-                IntPtr hIcon = ExtractIcon(IntPtr.Zero, exePath, 0);
-                if (hIcon != IntPtr.Zero) return hIcon;
+                var extracted = Icon.ExtractAssociatedIcon(exePath);
+                if (extracted != null) return extracted;
             }
 
-            // 3. Fallback to standard application icon so Shell_NotifyIcon NEVER fails
-            return LoadIcon(IntPtr.Zero, (IntPtr)32512); // IDI_APPLICATION
+            // 4. Fallback to standard application icon
+            return SystemIcons.Application;
         }
         catch
         {
-            return LoadIcon(IntPtr.Zero, (IntPtr)32512);
+            return SystemIcons.Application;
         }
     }
 
-    private ContextMenu BuildContextMenu()
+    private WinForms.ContextMenuStrip BuildContextMenu()
     {
-        var menu = new ContextMenu
+        var menu = new WinForms.ContextMenuStrip
         {
-            Background = new SolidColorBrush(Color.FromRgb(15, 23, 42)),
-            BorderBrush = new SolidColorBrush(Color.FromRgb(0, 229, 255)),
-            BorderThickness = new Thickness(1.2),
-            Padding = new Thickness(4),
-            SnapsToDevicePixels = true,
-            HasDropShadow = true
+            Renderer = new WinForms.ToolStripProfessionalRenderer(new DarkGamingColorTable()),
+            ShowImageMargin = false, // Completely eliminates the white/gray left gutter column!
+            BackColor = Color.FromArgb(15, 23, 42),
+            ForeColor = Color.FromArgb(248, 250, 252),
+            Font = new Font("Segoe UI", 9f, FontStyle.Regular)
         };
 
-        // Header item
-        var headerItem = CreateCustomMenuItem("⚡ ACADEMY NOLAG", new SolidColorBrush(Color.FromRgb(0, 229, 255)), null, isBold: true, isEnabled: false);
-        menu.Items.Add(headerItem);
-        menu.Items.Add(new Separator());
+        // Header: ACADEMY NOLAG
+        var header = new WinForms.ToolStripMenuItem("⚡ ACADEMY NOLAG")
+        {
+            Enabled = false,
+            Font = new Font("Segoe UI", 9.5f, FontStyle.Bold),
+            ForeColor = Color.FromArgb(0, 229, 255)
+        };
+        menu.Items.Add(header);
 
-        // Abrir Painel Flutuante
-        var itemFloating = CreateCustomMenuItem("Abrir Academy NoLag", new SolidColorBrush(Color.FromRgb(248, 250, 252)), () => ShowFloatingHud(), isBold: true);
-        menu.Items.Add(itemFloating);
+        menu.Items.Add(new WinForms.ToolStripSeparator());
 
-        menu.Items.Add(new Separator());
+        // Abrir Painel HUD
+        var openItem = new WinForms.ToolStripMenuItem("🖥️ Abrir Painel HUD", null, (s, e) =>
+        {
+            _floatingHud.Dispatcher.Invoke(ShowFloatingHud);
+        })
+        {
+            Font = new Font("Segoe UI", 9f, FontStyle.Bold),
+            ForeColor = Color.FromArgb(248, 250, 252)
+        };
+        menu.Items.Add(openItem);
 
-        // Otimização Automática toggle
-        var itemAuto = CreateCustomMenuItem(
-            _viewModel.AutoOptimize ? "✓ Otimização Automática: ATIVA" : "○ Otimização Automática: MANUAL", 
-            new SolidColorBrush(Color.FromRgb(16, 185, 129)), 
-            () =>
+        menu.Items.Add(new WinForms.ToolStripSeparator());
+
+        // Otimização Automática
+        _autoOptimizeMenuItem = new WinForms.ToolStripMenuItem(
+            _viewModel.AutoOptimize ? "✓ Otimização Automática: ATIVA" : "○ Otimização Automática: MANUAL",
+            null,
+            (s, e) =>
             {
-                _viewModel.AutoOptimize = !_viewModel.AutoOptimize;
-            });
-        menu.Items.Add(itemAuto);
+                _floatingHud.Dispatcher.Invoke(() =>
+                {
+                    _viewModel.AutoOptimize = !_viewModel.AutoOptimize;
+                });
+            }
+        )
+        {
+            Checked = _viewModel.AutoOptimize,
+            ForeColor = Color.FromArgb(16, 185, 129),
+            Font = new Font("Segoe UI", 9f, FontStyle.Regular)
+        };
+        menu.Items.Add(_autoOptimizeMenuItem);
 
-        menu.Items.Add(new Separator());
+        // Limpar Cache DNS
+        var dnsItem = new WinForms.ToolStripMenuItem("🌐 Limpar Cache DNS", null, (s, e) =>
+        {
+            _floatingHud.Dispatcher.Invoke(() =>
+            {
+                if (_viewModel.FlushDnsCommand.CanExecute(null))
+                {
+                    _viewModel.FlushDnsCommand.Execute(null);
+                }
+            });
+        })
+        {
+            ForeColor = Color.FromArgb(148, 163, 184),
+            Font = new Font("Segoe UI", 9f, FontStyle.Regular)
+        };
+        menu.Items.Add(dnsItem);
+
+        menu.Items.Add(new WinForms.ToolStripSeparator());
 
         // Encerrar
-        var itemExit = CreateCustomMenuItem("Encerrar", new SolidColorBrush(Color.FromRgb(239, 68, 68)), () => _floatingHud.ShutdownApp(), isBold: true);
-        menu.Items.Add(itemExit);
+        var exitItem = new WinForms.ToolStripMenuItem("❌ Encerrar", null, (s, e) =>
+        {
+            _floatingHud.Dispatcher.Invoke(() => _floatingHud.ShutdownApp());
+        })
+        {
+            Font = new Font("Segoe UI", 9f, FontStyle.Bold),
+            ForeColor = Color.FromArgb(239, 68, 68)
+        };
+        menu.Items.Add(exitItem);
 
         return menu;
     }
 
-    private static MenuItem CreateCustomMenuItem(string header, Brush foreground, Action? onClick, bool isBold = false, bool isEnabled = true)
+    private void ToggleFloatingHud()
     {
-        var item = new MenuItem
-        {
-            Header = header,
-            Foreground = foreground,
-            FontWeight = isBold ? FontWeights.Bold : FontWeights.SemiBold,
-            FontSize = 12,
-            IsEnabled = isEnabled,
-            Padding = new Thickness(12, 7, 12, 7),
-            Background = Brushes.Transparent,
-            Cursor = isEnabled ? System.Windows.Input.Cursors.Hand : System.Windows.Input.Cursors.Arrow
-        };
-
-        if (isEnabled)
-        {
-            item.MouseEnter += (s, _) =>
-            {
-                if (s is MenuItem mi) mi.Background = new SolidColorBrush(Color.FromRgb(30, 41, 59));
-            };
-            item.MouseLeave += (s, _) =>
-            {
-                if (s is MenuItem mi) mi.Background = Brushes.Transparent;
-            };
-        }
-
-        if (onClick != null)
-        {
-            item.Click += (_, _) => onClick();
-        }
-        return item;
-    }
-
-    private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
-    {
-        if (msg == WM_TASKBARCREATED)
-        {
-            // Windows Explorer restarted or tray was refreshed — re-register icon
-            _isAdded = Shell_NotifyIcon(NIM_ADD, ref _nid);
-            return IntPtr.Zero;
-        }
-
-        if (msg == WM_TRAYICON)
-        {
-            int eventId = lParam.ToInt32();
-            if (eventId == WM_LBUTTONUP || eventId == WM_LBUTTONDBLCLK)
-            {
-                // Left click or double click toggles the stylish Floating HUD
-                ToggleFloatingHud();
-                handled = true;
-            }
-            else if (eventId == WM_RBUTTONUP)
-            {
-                // Right click shows stylish context menu
-                ShowContextMenu();
-                handled = true;
-            }
-        }
-
-        return IntPtr.Zero;
-    }
-
-    private void ShowContextMenu()
-    {
-        if (_hwndSource != null)
-        {
-            SetForegroundWindow(_hwndSource.Handle);
-        }
-
-        _contextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
-        _contextMenu.IsOpen = true;
-    }
-
-    public void ToggleFloatingHud()
-    {
-        if (_floatingHud.IsVisible)
+        if (_floatingHud.IsVisible && _floatingHud.WindowState != System.Windows.WindowState.Minimized)
         {
             _floatingHud.Hide();
         }
@@ -282,68 +230,88 @@ public class SystemTrayManager : IDisposable
         _floatingHud.ShowFloatingHud();
     }
 
-    public void MinimizeToTray()
+    private void UpdateTooltip()
     {
-        _floatingHud.Hide();
-    }
-
-    public void UpdateTooltip()
-    {
-        if (!_isAdded) return;
-
         try
         {
+            if (_isDisposed || _notifyIcon == null) return;
+
             string tip;
             if (_viewModel.HasActiveGame)
             {
-                string ping = _viewModel.OptimizedPing > 0 
-                    ? $"{_viewModel.OptimizedPing:F0}ms" 
-                    : $"{_viewModel.DirectPing:F0}ms";
-
-                string imp = _viewModel.PingImprovementPercent > 0 
-                    ? $" (-{_viewModel.PingImprovementPercent:F0}%)" 
-                    : "";
-
                 string game = _viewModel.ActiveGameName;
-                if (game.Length > 20) game = game[..20];
-
-                string endpoint = _viewModel.PrimaryEndpointDisplay;
-                if (endpoint.Length > 22) endpoint = endpoint[..22];
-
-                tip = $"Academy NoLag [Otimizado]\n{game}\nIP: {endpoint}\nPing: {ping}{imp}";
+                double ping = _viewModel.OptimizedPing > 0 ? _viewModel.OptimizedPing : _viewModel.DirectPing;
+                tip = $"Academy NoLag • {game} ({ping:F0}ms)";
             }
             else
             {
-                tip = "Academy NoLag • Monitorando\nNenhum jogo em execução\nAguardando Aion Classic...";
+                tip = "Academy NoLag • Monitorando jogos";
             }
 
-            // Win32 NOTIFYICONDATA.szTip limit is 128 characters including null terminator
-            if (tip.Length >= 128) tip = tip[..127];
+            if (tip.Length > 63)
+            {
+                tip = tip.Substring(0, 60) + "...";
+            }
 
-            _nid.szTip = tip;
-            _nid.uFlags = NIF_TIP;
-            Shell_NotifyIcon(NIM_MODIFY, ref _nid);
+            _notifyIcon.Text = tip;
         }
-        catch { /* Gracefully handle Win32 update */ }
+        catch { }
     }
 
     public void Dispose()
     {
-        _tooltipTimer.Stop();
+        if (_isDisposed) return;
+        _isDisposed = true;
 
-        if (_isAdded)
+        try
         {
-            Shell_NotifyIcon(NIM_DELETE, ref _nid);
-            _isAdded = false;
+            _tooltipTimer.Stop();
         }
+        catch { }
 
-        if (_nid.hIcon != IntPtr.Zero)
+        try
         {
-            DestroyIcon(_nid.hIcon);
-            _nid.hIcon = IntPtr.Zero;
+            _notifyIcon.Visible = false;
+            _notifyIcon.Dispose();
         }
+        catch { }
 
-        _hwndSource?.RemoveHook(WndProc);
+        try
+        {
+            _contextMenu.Dispose();
+        }
+        catch { }
+
         GC.SuppressFinalize(this);
+    }
+
+    /// <summary>
+    /// Custom ColorTable that enforces a modern gaming dark theme and eliminates all white borders/gutters.
+    /// </summary>
+    private class DarkGamingColorTable : WinForms.ProfessionalColorTable
+    {
+        public override Color MenuStripGradientBegin => Color.FromArgb(15, 23, 42);
+        public override Color MenuStripGradientEnd => Color.FromArgb(15, 23, 42);
+        public override Color ToolStripDropDownBackground => Color.FromArgb(15, 23, 42);
+
+        // Eliminates left icon margin white/gray gutter
+        public override Color ImageMarginGradientBegin => Color.FromArgb(15, 23, 42);
+        public override Color ImageMarginGradientMiddle => Color.FromArgb(15, 23, 42);
+        public override Color ImageMarginGradientEnd => Color.FromArgb(15, 23, 42);
+
+        // Item selection & hover
+        public override Color MenuItemSelected => Color.FromArgb(30, 41, 59);
+        public override Color MenuItemSelectedGradientBegin => Color.FromArgb(30, 41, 59);
+        public override Color MenuItemSelectedGradientEnd => Color.FromArgb(30, 41, 59);
+        public override Color MenuItemPressedGradientBegin => Color.FromArgb(30, 41, 59);
+        public override Color MenuItemPressedGradientEnd => Color.FromArgb(30, 41, 59);
+
+        // Borders
+        public override Color MenuBorder => Color.FromArgb(0, 229, 255);
+        public override Color MenuItemBorder => Color.FromArgb(0, 229, 255);
+
+        // Separator
+        public override Color SeparatorDark => Color.FromArgb(30, 41, 59);
+        public override Color SeparatorLight => Color.FromArgb(30, 41, 59);
     }
 }

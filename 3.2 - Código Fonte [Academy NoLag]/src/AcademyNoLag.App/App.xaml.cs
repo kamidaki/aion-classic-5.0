@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using System.Runtime.InteropServices;
+using System.IO;
 using System.Threading;
 using System.Windows;
 
@@ -7,14 +7,8 @@ namespace AcademyNoLag.App;
 
 public partial class App : System.Windows.Application
 {
-    public const string ShowHudMessageName = "AcademyNoLag_ShowFloatingHud_Broadcast";
-    public static int ShowHudMessageId { get; private set; }
-
-    [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-    private static extern int RegisterWindowMessage(string lpString);
-
-    [DllImport("user32.dll", SetLastError = true)]
-    private static extern bool PostMessage(IntPtr hWnd, int Msg, IntPtr wParam, IntPtr lParam);
+    private const string SingleInstanceEventName = "AcademyNoLag_SingleInstance_Signal";
+    private static EventWaitHandle? _singleInstanceEvent;
 
     protected override void OnStartup(StartupEventArgs e)
     {
@@ -24,8 +18,8 @@ public partial class App : System.Windows.Application
             try
             {
                 var ex = args.ExceptionObject as Exception;
-                string logPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "crash.log");
-                System.IO.File.WriteAllText(logPath, $"[{DateTime.UtcNow}] UnhandledException: {ex}");
+                string logPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "crash.log");
+                File.WriteAllText(logPath, $"[{DateTime.UtcNow}] UnhandledException: {ex}");
             }
             catch { }
         };
@@ -34,54 +28,59 @@ public partial class App : System.Windows.Application
         {
             try
             {
-                string logPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "crash.log");
-                System.IO.File.WriteAllText(logPath, $"[{DateTime.UtcNow}] DispatcherException: {args.Exception}");
+                string logPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "crash.log");
+                File.WriteAllText(logPath, $"[{DateTime.UtcNow}] DispatcherException: {args.Exception}");
             }
             catch { }
-            args.Handled = true; // Prevent app termination!
+            args.Handled = true;
         };
 
-        // 2. Single-Instance Check using real running process list
+        // 2. Single-Instance Check using EventWaitHandle (cross-process signal, UIPI-immune)
+        bool createdNew;
         try
         {
-            ShowHudMessageId = RegisterWindowMessage(ShowHudMessageName);
+            _singleInstanceEvent = new EventWaitHandle(false, EventResetMode.AutoReset, SingleInstanceEventName, out createdNew);
+        }
+        catch
+        {
+            createdNew = true;
+        }
 
-            var current = Process.GetCurrentProcess();
-            var existingProcesses = Process.GetProcessesByName(current.ProcessName)
-                .Where(p => p.Id != current.Id)
-                .ToList();
-
-            if (existingProcesses.Count > 0)
+        if (!createdNew)
+        {
+            // Another instance is already running!
+            // Signal the running instance to bring its Floating HUD to foreground
+            try
             {
-                // Verify if any existing process is actually alive and responsive
-                var active = existingProcesses.FirstOrDefault(p =>
-                {
-                    try { return !p.HasExited && p.Responding; }
-                    catch { return false; }
-                });
+                _singleInstanceEvent?.Set();
+            }
+            catch { }
 
-                if (active != null)
-                {
-                    // Existing instance is running and responsive!
-                    // Tell it to show its Floating HUD
-                    IntPtr HWND_BROADCAST = (IntPtr)0xffff;
-                    PostMessage(HWND_BROADCAST, ShowHudMessageId, IntPtr.Zero, IntPtr.Zero);
+            Shutdown(0);
+            return;
+        }
 
-                    // Exit this second instance
-                    Shutdown(0);
-                    return;
-                }
-                else
+        // 3. Listen for wake-up signals from secondary launches in a background thread
+        Task.Run(() =>
+        {
+            while (_singleInstanceEvent != null)
+            {
+                try
                 {
-                    // Existing process was hung/zombie, terminate it so this new one can take over
-                    foreach (var dead in existingProcesses)
+                    if (_singleInstanceEvent.WaitOne())
                     {
-                        try { dead.Kill(); } catch { }
+                        Current?.Dispatcher.Invoke(() =>
+                        {
+                            if (Current.MainWindow is Views.FloatingHudWindow hud)
+                            {
+                                hud.ShowFloatingHud();
+                            }
+                        });
                     }
                 }
+                catch { break; }
             }
-        }
-        catch { }
+        });
 
         base.OnStartup(e);
     }
@@ -90,6 +89,9 @@ public partial class App : System.Windows.Application
     {
         try
         {
+            _singleInstanceEvent?.Dispose();
+            _singleInstanceEvent = null;
+
             if (MainWindow is Views.FloatingHudWindow hud)
             {
                 hud.ShutdownApp();

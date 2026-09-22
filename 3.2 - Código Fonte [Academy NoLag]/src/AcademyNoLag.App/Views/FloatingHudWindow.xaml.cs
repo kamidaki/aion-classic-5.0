@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Interop;
 using AcademyNoLag.App.Tray;
 using AcademyNoLag.App.ViewModels;
+using AcademyNoLag.Diagnostics;
 
 namespace AcademyNoLag.App.Views;
 
@@ -51,35 +51,21 @@ public partial class FloatingHudWindow : Window
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[TrayManager] Initialization warning: {ex.Message}");
+            Logger.Instance.Error("TrayManager", $"Failed to initialize TrayManager: {ex.Message}");
         }
 
-        // 3. Hook window message loop to capture single-instance ShowHud broadcast
-        var hwnd = new WindowInteropHelper(this).Handle;
-        var source = HwndSource.FromHwnd(hwnd);
-        source?.AddHook(WndProc);
-
-        // 4. Ensure window is visible and focused
-        Show();
-        Activate();
-        Topmost = _isPinned;
-        Focus();
-    }
-
-    private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
-    {
-        if (msg == App.ShowHudMessageId && App.ShowHudMessageId != 0)
-        {
-            ShowFloatingHud();
-            handled = true;
-        }
-        return IntPtr.Zero;
+        // 3. Ensure window is visible and focused
+        ShowFloatingHud();
     }
 
     public void ShowFloatingHud()
     {
+        if (WindowState == WindowState.Minimized)
+        {
+            WindowState = WindowState.Normal;
+        }
         Show();
-        WindowState = WindowState.Normal;
+        Visibility = Visibility.Visible;
         Activate();
         Topmost = _isPinned;
         Focus();
@@ -131,7 +117,7 @@ public partial class FloatingHudWindow : Window
             // 1. Hide UI immediately
             Hide();
 
-            // 2. Dispose tray manager
+            // 2. Dispose tray manager (removes tray icon instantly)
             _trayManager?.Dispose();
             _trayManager = null;
 
