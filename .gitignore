@@ -96,8 +96,9 @@ cache/
 *_Live_*.pcapng
 **/Oficial_Live_Gameplay/**
 
-# 9. Backup de Seguranca de Strings Originais
+# 9. Backup de Seguranca de Strings Originais e Backups Locais
 **/Strings_ORIGINAL_BACKUP/
+backup_*/
 
 # 10. Proteção de Credenciais e Configurações de Banco de Dados
 **/database.properties

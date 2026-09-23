@@ -140,6 +140,7 @@ public final class PlayerEnterWorldService {
 
 		if (player != null && client.setActivePlayer(player)) {
 			player.setClientConnection(client);
+			com.lostacademy.lostsocket.core.WebSocketServer.getInstance().bindIfSingleOrLocal(player);
 			log.info("[MAC_AUDIT] Player {} has entered world with {} MAC.", player.getName(), client.getMacAddress());
 			PlayerCommonData pcd = player.getCommonData();
 

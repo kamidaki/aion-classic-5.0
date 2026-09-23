@@ -158,6 +158,11 @@ static void WorkerApplyAll() {
         int ff = g_featFreeFly.load() ? 1 : 0;
         SetNativeCVarInt("g_freefly", ff);
     }
+
+    // 7. Performance & Throttling Fixes
+    SetNativeCVarInt("sys_fixedframe", 0);
+    SetNativeCVarFloat("r_EnvCMupdateInterval", 0.100000f);
+    SetNativeCVarFloat("r_EnvTexUpdateInterval", 0.100000f);
 }
 
 static DWORD WINAPI CVarWorkerThreadProc(LPVOID) {

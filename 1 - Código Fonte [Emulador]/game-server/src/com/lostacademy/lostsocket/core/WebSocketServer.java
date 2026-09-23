@@ -124,6 +124,64 @@ public class WebSocketServer {
 		}
 	}
 
+	public boolean isLocalOrLoopback(String ip) {
+		if (ip == null || ip.isEmpty()) return false;
+		if ("127.0.0.1".equals(ip) || "localhost".equalsIgnoreCase(ip) || "0:0:0:0:0:0:0:1".equals(ip) || "::1".equals(ip)) {
+			return true;
+		}
+		if (ip.startsWith("192.168.") || ip.startsWith("10.") || ip.startsWith("172.16.")) {
+			return true;
+		}
+		try {
+			java.net.InetAddress addr = java.net.InetAddress.getByName(ip);
+			if (addr.isLoopbackAddress() || addr.isSiteLocalAddress() || addr.isAnyLocalAddress()) {
+				return true;
+			}
+			return java.net.NetworkInterface.getByInetAddress(addr) != null;
+		} catch (Exception ignored) {
+			return false;
+		}
+	}
+
+	public void bindIfSingleOrLocal(Player player) {
+		if (player == null || activeSessions.isEmpty()) {
+			return;
+		}
+		int playerId = player.getObjectId();
+		WebSocketClientSession existing = playerSessions.get(playerId);
+		if (existing != null && !existing.isClosed()) {
+			return;
+		}
+
+		String ip = (player.getClientConnection() != null) ? player.getClientConnection().getIP() : null;
+		WebSocketClientSession session = null;
+
+		if (ip != null) {
+			session = ipSessions.get(ip);
+			if (session == null && isLocalOrLoopback(ip)) {
+				session = ipSessions.get("127.0.0.1");
+				if (session == null) {
+					for (WebSocketClientSession s : activeSessions) {
+						if (isLocalOrLoopback(s.getClientIp())) {
+							session = s;
+							break;
+						}
+					}
+				}
+			}
+		}
+
+		if (session == null && activeSessions.size() == 1) {
+			session = activeSessions.iterator().next();
+		}
+
+		if (session != null && !session.isClosed()) {
+			session.setPlayerObjectId(playerId);
+			bindPlayer(playerId, session);
+			log.info("[BrSocket] Sessao telemetria vinculada com sucesso ao jogador {} (objId={})", player.getName(), playerId);
+		}
+	}
+
 	public void sendToPlayer(int playerId, String json) {
 		if (json == null || playerId <= 0 || activeSessions.isEmpty()) {
 			return;
@@ -133,18 +191,15 @@ public class WebSocketServer {
 			session.sendText(json);
 			return;
 		}
-		// Fallback inteligente: buscar IP da conexao de jogo do player e associar
+		// Fallback inteligente: buscar jogador no mundo e associar por IP ou sessao unica/local
 		try {
 			Player p = World.getInstance().getPlayer(playerId);
-			if (p != null && p.getClientConnection() != null) {
-				String ip = p.getClientConnection().getIP();
-				if (ip != null) {
-					session = ipSessions.get(ip);
-					if (session != null && !session.isClosed()) {
-						session.setPlayerObjectId(playerId);
-						bindPlayer(playerId, session);
-						session.sendText(json);
-					}
+			if (p != null) {
+				bindIfSingleOrLocal(p);
+				session = playerSessions.get(playerId);
+				if (session != null && !session.isClosed()) {
+					session.sendText(json);
+					return;
 				}
 			}
 		} catch (Exception ignored) {

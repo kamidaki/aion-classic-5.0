@@ -133,33 +133,35 @@ static BOOL CALLBACK EnumWindowsCallback(HWND hwnd, LPARAM lParam) {
     DWORD pid = 0;
     GetWindowThreadProcessId(hwnd, &pid);
     if (pid == ctx->targetPid) {
-        // Skip our own overlay and drawer windows
-        if (hwnd == g_hPingHudWnd || hwnd == g_hDrawerModalWnd) return TRUE;
+        // Skip our own overlay, drawer and combo windows
+        if (hwnd == g_hPingHudWnd || hwnd == g_hDrawerModalWnd || hwnd == g_overlayHwnd) return TRUE;
 
         wchar_t className[128] = { 0 };
         GetClassNameW(hwnd, className, 128);
-        if (wcsstr(className, L"BrService") != nullptr) return TRUE;
+        if (wcsstr(className, L"BrService") != nullptr ||
+            wcscmp(className, L"AionComboUI") == 0 ||
+            wcsstr(className, L"ComboUI") != nullptr ||
+            wcsstr(className, L"Chrome_WidgetWin") != nullptr ||
+            wcsstr(className, L"Intermediate D3D") != nullptr) {
+            return TRUE;
+        }
 
         wchar_t title[256] = { 0 };
         GetWindowTextW(hwnd, title, 256);
-        if (wcscmp(title, L"Aion Ping HUD") == 0 || wcsstr(title, L"Analisador") != nullptr || wcsstr(title, L"Painel Academy") != nullptr) return TRUE;
-
-        // Aion Classic game window class or title
-        if (wcscmp(className, L"AION Client") == 0) {
-            ctx->foundHwnd = hwnd;
-            return FALSE; // Exact class match
-        }
-        if (wcsstr(title, L"AION Client") != nullptr) {
-            ctx->foundHwnd = hwnd;
-            return FALSE;
+        if (wcscmp(title, L"Aion Ping HUD") == 0 ||
+            wcsstr(title, L"Analisador") != nullptr ||
+            wcsstr(title, L"Painel Academy") != nullptr ||
+            wcsstr(title, L"ComboUI") != nullptr) {
+            return TRUE;
         }
 
-        // Secondary match: visible window with real game client dimensions
-        if (!ctx->foundHwnd && IsWindowVisible(hwnd)) {
+        // Aion Classic game window class (CrySystem / CryInput official class)
+        if (wcscmp(className, L"AIONClientWndClass1.0") == 0 || wcscmp(className, L"AION Client") == 0) {
             RECT rc;
             GetClientRect(hwnd, &rc);
             if ((rc.right - rc.left) >= 300 && (rc.bottom - rc.top) >= 300) {
                 ctx->foundHwnd = hwnd;
+                return FALSE; // Exact class and valid game dimensions found!
             }
         }
     }
@@ -248,24 +250,16 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
             if (isLoading) {
                 PingHudUI::Hide();
                 DrawerModalUI::Hide();
-            } else if (g_isInWorld.load() && active) {
+            } else if (active) {
                 CVarManager::ResyncOnMapChange();
                 PingHudUI::Show();
                 DrawerModalUI::RestoreIfOpen();
             }
         }
 
-        // 3. Periodic synchronization checkpoint
-        if (active && g_isInWorld.load() && !isLoading) {
-            static int syncCounter = 0;
-            if (++syncCounter >= 10) { // ~300ms sync check
-                syncCounter = 0;
-                SyncPositionsDirectly(hGame);
-            }
-            PingHudUI::Show();
-            DrawerModalUI::RestoreIfOpen();
-
-            // 4. Reliable Direct Hotkey (Shift + F3) with game in focus
+        // 3. Hotkey handling & synchronization (whenever game window is active in foreground)
+        if (active && !isLoading) {
+            // Direct Hotkey (Shift + F3) with game in focus
             static bool s_lastShiftF3 = false;
             bool isF3 = (GetAsyncKeyState(VK_F3) & 0x8000) != 0;
             bool isShift = (GetAsyncKeyState(VK_SHIFT) & 0x8000) != 0;
@@ -274,6 +268,14 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
                 DrawerModalUI::Toggle();
             }
             s_lastShiftF3 = shiftF3;
+
+            static int syncCounter = 0;
+            if (++syncCounter >= 10) { // ~300ms sync check
+                syncCounter = 0;
+                SyncPositionsDirectly(hGame);
+            }
+            PingHudUI::Show();
+            DrawerModalUI::RestoreIfOpen();
         } else {
             PingHudUI::Hide();
             if (g_drawerPinned.load()) DrawerModalUI::Hide();

@@ -731,11 +731,10 @@ void ComboRenderer::RenderLoop() {
         nullptr, NULL, hInstance, NULL);
 
     SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOOWNERZORDER);
-    ShowWindow(hwnd, SW_SHOWNOACTIVATE);
+    ShowWindow(hwnd, SW_HIDE); // Start hidden to preserve DWM hardware flip
 
     screenDC = GetDC(NULL);
     EnsureBuffer(rectW, rectH);
-    UpdateOverlay(rectW, rectH, rect.left, rect.top, 0.0f);
 
     ULONGLONG lastFrameTick = GetTickCount64();
     bool transparentFrameApplied = true;
@@ -748,20 +747,12 @@ void ComboRenderer::RenderLoop() {
         }
 
         if (!gameHwnd || !IsWindow(gameHwnd)) {
-            if (g_windowHook) {
-                UnhookWindowsHookEx(g_windowHook);
-                g_windowHook = nullptr;
-            }
-            gameHwnd = FindWindowA("AIONClient", nullptr);
-            if (!gameHwnd) gameHwnd = FindWindowA("AIONClientWndClass1.0", nullptr);
-            if (!gameHwnd) gameHwnd = FindWindowA("Lost Academy", nullptr);
-            if (!gameHwnd) gameHwnd = FindWindowA("LostAcademyWndClass1.0", nullptr);
+            gameHwnd = FindWindowA("AIONClientWndClass1.0", nullptr);
+            if (!gameHwnd) gameHwnd = FindWindowA("AIONClient", nullptr);
 
             if (gameHwnd) {
                 g_gameHwnd = gameHwnd;
                 g_overlayHwnd = hwnd;
-                DWORD threadId = GetWindowThreadProcessId(gameHwnd, NULL);
-                g_windowHook = SetWindowsHookExA(WH_CALLWNDPROC, CallWndProcHook, (HINSTANCE)BrService::g_hModule, threadId);
             }
         }
 
@@ -814,34 +805,13 @@ void ComboRenderer::RenderLoop() {
             else std::this_thread::sleep_for(std::chrono::milliseconds(16));
         } else {
             lastFrameTick = GetTickCount64();
-            if (shouldDraw) {
-                RECT currRect;
-                GetWindowRect(hwnd, &currRect);
-                bool needsPosUpdate = (currRect.left != drawRect.left || currRect.top != drawRect.top ||
-                                       (currRect.right - currRect.left) != drawW ||
-                                       (currRect.bottom - currRect.top) != drawH);
-                if (needsPosUpdate || !IsWindowVisible(hwnd)) {
-                    SetWindowPos(hwnd, HWND_TOPMOST, drawRect.left, drawRect.top, drawW, drawH,
-                                 SWP_SHOWWINDOW | SWP_NOACTIVATE | SWP_NOOWNERZORDER | SWP_ASYNCWINDOWPOS);
-                }
-                if (!transparentFrameApplied) {
-                    UpdateOverlay(drawW, drawH, drawRect.left, drawRect.top, 0.0f);
-                    transparentFrameApplied = true;
-                }
-                if (wakeEvent) WaitForSingleObject(wakeEvent, 300);
-                else std::this_thread::sleep_for(std::chrono::milliseconds(300));
-            } else {
+            if (IsWindowVisible(hwnd)) {
                 ShowWindowAsync(hwnd, SW_HIDE);
                 transparentFrameApplied = false;
-                if (wakeEvent) WaitForSingleObject(wakeEvent, 750);
-                else std::this_thread::sleep_for(std::chrono::milliseconds(750));
             }
+            if (wakeEvent) WaitForSingleObject(wakeEvent, 300);
+            else std::this_thread::sleep_for(std::chrono::milliseconds(300));
         }
-    }
-
-    if (g_windowHook) {
-        UnhookWindowsHookEx(g_windowHook);
-        g_windowHook = nullptr;
     }
     ReleaseBuffer();
     if (screenDC) { ReleaseDC(NULL, screenDC); screenDC = nullptr; }

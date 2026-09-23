@@ -356,7 +356,7 @@ void DrawerModalUI::UpdatePosition(int gX, int gY, int gW, int gH) {
         g_drawerPosY = mY2;
     }
 
-    bool v = g_featConsole.load() && g_isDrawerOpen.load() && g_isInWorld.load() && !g_isLoadingScreen.load() && g_isGameActive.load();
+    bool v = g_featConsole.load() && g_isDrawerOpen.load() && !g_isLoadingScreen.load() && g_isGameActive.load();
     SetWindowPos(g_hDrawerModalWnd, HWND_TOPMOST, mX, mY2, s_modalW, s_modalH, SWP_NOACTIVATE | (v ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
     if (v) Repaint();
 }
