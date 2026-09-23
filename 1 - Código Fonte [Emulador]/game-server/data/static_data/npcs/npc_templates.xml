@@ -371753,7 +371753,7 @@
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804100" level="5" name="&lt;Design Merchant&gt;" name_id="465670" title_id="465676" height="2.5" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL_DARK" type="MONSTER" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+	<npc_template npc_id="804100" level="5" name="IDTutorialQ_Guard_Li_Fi_01" name_id="465670" title_id="465676" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
 		<stats maxHp="3871652">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
@@ -371768,9 +371768,8 @@
 			<item>113601020</item>
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
-		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804101" level="5" name="&lt;Design Merchant&gt;" name_id="465670" title_id="465676" height="2.5" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL_DARK" type="MONSTER" ai="general" srange="10" arange="10" attack_speed="2249" hpgauge="3">
+	<npc_template npc_id="804101" level="5" name="IDTutorialQ_Guard_Li_Ra_01" name_id="465670" title_id="465676" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
 		<stats maxHp="3871652">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
@@ -371785,11 +371784,10 @@
 			<item>113601020</item>
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
-		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804102" level="5" name="&lt;Design Merchant&gt;" name_id="465670" title_id="465676" height="2.5" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL_DARK" type="MONSTER" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+	<npc_template npc_id="804102" level="5" name="IDTutorialQ_Guard_Li_As_01" name_id="465670" title_id="465676" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
 		<stats maxHp="3871652">
-			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="10" group_run_fight="6" />
+			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
 		<equipment>
 			<item>100001009</item>
@@ -371802,11 +371800,10 @@
 			<item>113601020</item>
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
-		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804103" level="5" name="&lt;Design Merchant&gt;" name_id="465670" title_id="465676" height="2.5" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL_DARK" type="MONSTER" ai="general" srange="10" arange="10" attack_speed="2249" hpgauge="3">
+	<npc_template npc_id="804103" level="5" name="IDTutorialQ_Guard_Li_Wi_01" name_id="465670" title_id="465676" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
 		<stats maxHp="3871652">
-			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="8" group_run_fight="6" />
+			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
 		<equipment>
 			<item>100600840</item>
@@ -371818,11 +371815,10 @@
 			<item>113601020</item>
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
-		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804104" level="5" name="&lt;Design Merchant&gt;" name_id="465670" title_id="465676" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="MONSTER" ai="general" srange="10" attack_speed="2249" hpgauge="3" arange="2">
-		<stats maxHp="3871652" >
-			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="8" group_run_fight="6" />
+	<npc_template npc_id="804104" level="5" name="IDTutorialQ_Guard_Li_Pr_01" name_id="465670" title_id="465676" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
 		<equipment>
 			<item>100100766</item>
@@ -371835,10 +371831,9 @@
 			<item>113601020</item>
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
-		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804105" level="5" name="Modificador de acessório de penas" name_id="465671" title_id="465677" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="MONSTER" ai="general" srange="10" attack_speed="2249" hpgauge="3" arange="2">
-		<stats maxHp="3871652" >
+	<npc_template npc_id="804105" level="5" name="IDTutorialQ_Guard_Da_Fi_01" name_id="465671" title_id="465677" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
 		<equipment>
@@ -371852,17 +371847,26 @@
 			<item>113601021</item>
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
-		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804106" level="65" name="Modificador de acessório de penas" name_id="465671" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD" type="MONSTER" ai="general" attack_speed="2249" hpgauge="3" flag_type="8" arange="10" srange="10">
-		<stats maxHp="23517" >
+	<npc_template npc_id="804106" level="5" name="IDTutorialQ_Guard_Da_Ra_01" name_id="465671" title_id="465677" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
+		<equipment>
+			<item>101700808</item>
+			<item>163000003</item>
+			<item>125300029</item>
+			<item>110601060</item>
+			<item>111601037</item>
+			<item>114601017</item>
+			<item>112601010</item>
+			<item>113601021</item>
+		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="804107" level="5" name="Modificador de acessório de penas" name_id="465671" title_id="465677" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD" type="MONSTER" ai="general" attack_speed="2249" hpgauge="3" flag_type="8" arange="2" srange="10">
-		<stats maxHp="3871652" >
-			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="10" group_run_fight="6" />
+	<npc_template npc_id="804107" level="5" name="IDTutorialQ_Guard_Da_As_01" name_id="465671" title_id="465677" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
 		<equipment>
 			<item>100001008</item>
@@ -371876,9 +371880,9 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="804108" level="5" name="Modificador de acessório de penas" name_id="465671" title_id="465677" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD" type="MONSTER" ai="general" attack_speed="2249" hpgauge="3" flag_type="8" arange="10" srange="10">
-		<stats maxHp="3871652" >
-			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="8" group_run_fight="6" />
+	<npc_template npc_id="804108" level="5" name="IDTutorialQ_Guard_Da_Wi_01" name_id="465671" title_id="465677" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
 		<equipment>
 			<item>100600839</item>
@@ -371891,9 +371895,9 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="804109" level="5" name="Modificador de acessório de penas" name_id="465671" title_id="465677" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD" type="MONSTER" ai="general" attack_speed="2249" hpgauge="3" flag_type="8" arange="2" srange="10">
-		<stats maxHp="3871652" >
-			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="8" group_run_fight="6" />
+	<npc_template npc_id="804109" level="5" name="IDTutorialQ_Guard_Da_Pr_01" name_id="465671" title_id="465677" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
 		<equipment>
 			<item>100100765</item>
@@ -371907,8 +371911,8 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="804110" level="5" name="Missão orientada a dados q9670 fobj" name_id="465672" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="NONE" type="MONSTER" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="8" srange="10">
-		<stats maxHp="3871652" >
+	<npc_template npc_id="804110" level="5" name="IDTutorialQ_DeadBody_Li_M" name_id="465672" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="NONE" type="GENERAL" ai="noaction" flag_type="8" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
@@ -371921,8 +371925,8 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="804111" level="5" name="Missão orientada a dados q9670 fobj" name_id="465672" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="NONE" type="MONSTER" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="8" srange="10">
-		<stats maxHp="3871652" >
+	<npc_template npc_id="804111" level="5" name="IDTutorialQ_DeadBody_Li_F" name_id="465672" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="NONE" type="GENERAL" ai="noaction" flag_type="8" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
@@ -371935,22 +371939,8 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="804112" level="5" name="Quest orientado a dados Q9671 FOBJ" name_id="465673" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="NONE" type="MONSTER" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="8" srange="10">
-		<stats maxHp="3871652" >
-			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
-		</stats>
-		<equipment>
-			<item>125300029</item>
-			<item>110601060</item>
-			<item>111601037</item>
-			<item>114601017</item>
-			<item>112601010</item>
-			<item>113601021</item>
-		</equipment>
-		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
-	</npc_template>
-	<npc_template npc_id="804113" level="5" name="Quest orientado a dados Q9671 FOBJ" name_id="465673" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="NONE" type="MONSTER" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="8" srange="10">
-		<stats maxHp="3871652" >
+	<npc_template npc_id="804112" level="5" name="IDTutorialQ_DeadBody_Da_M" name_id="465673" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="NONE" type="GENERAL" ai="noaction" flag_type="8" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
@@ -371963,69 +371953,183 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="804114" level="65" name="Quest orientado a dados Q9672 FOBJ" name_id="465674" title_id="465676" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="9" srange="10">
-		<stats maxHp="23517" >
-			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
+	<npc_template npc_id="804113" level="5" name="IDTutorialQ_DeadBody_Da_F" name_id="465673" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="NONE" type="GENERAL" ai="noaction" flag_type="8" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
+		<equipment>
+			<item>125300029</item>
+			<item>110601060</item>
+			<item>111601037</item>
+			<item>114601017</item>
+			<item>112601010</item>
+			<item>113601021</item>
+		</equipment>
+		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
+	</npc_template>
+	<npc_template npc_id="804114" level="5" name="IDTutorialQ_Gossip_Li_01" name_id="465674" title_id="465676" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<equipment>
+			<item>100000058</item>
+			<item>115000734</item>
+			<item>125300028</item>
+			<item>110601059</item>
+			<item>111601036</item>
+			<item>114601016</item>
+			<item>112601009</item>
+			<item>113601020</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804115" level="65" name="Quest orientado a dados Q9672 FOBJ" name_id="465674" title_id="465676" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="9" srange="20">
-		<stats maxHp="23517" >
-			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
+	<npc_template npc_id="804115" level="5" name="IDTutorialQ_Gossip_Li_02" name_id="465674" title_id="465676" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
+		<equipment>
+			<item>100000058</item>
+			<item>115000734</item>
+			<item>125300028</item>
+			<item>110601059</item>
+			<item>111601036</item>
+			<item>114601016</item>
+			<item>112601009</item>
+			<item>113601020</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804116" level="65" name="Quest orientado a dados Q9672 FOBJ" name_id="465674" title_id="465676" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="9" srange="20">
-		<stats maxHp="23517" >
-			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
+	<npc_template npc_id="804116" level="5" name="IDTutorialQ_Gossip_Li_03" name_id="465674" title_id="465676" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
+		<equipment>
+			<item>100000058</item>
+			<item>115000734</item>
+			<item>125300028</item>
+			<item>110601059</item>
+			<item>111601036</item>
+			<item>114601016</item>
+			<item>112601009</item>
+			<item>113601020</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804117" level="65" name="Quest orientado a dados Q9672 FOBJ" name_id="465674" title_id="465676" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="9" srange="20">
-		<stats maxHp="23517" >
-			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
+	<npc_template npc_id="804117" level="5" name="IDTutorialQ_Gossip_Li_04" name_id="465674" title_id="465676" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
+		<equipment>
+			<item>100000058</item>
+			<item>115000734</item>
+			<item>125300028</item>
+			<item>110601059</item>
+			<item>111601036</item>
+			<item>114601016</item>
+			<item>112601009</item>
+			<item>113601020</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804118" level="65" name="Quest orientado a dados Q9672 FOBJ" name_id="465674" title_id="465676" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="9" srange="20">
-		<stats maxHp="23517" >
-			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
+	<npc_template npc_id="804118" level="5" name="IDTutorialQ_Gossip_Li_05" name_id="465674" title_id="465676" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
+		<equipment>
+			<item>100000058</item>
+			<item>115000734</item>
+			<item>125300028</item>
+			<item>110601059</item>
+			<item>111601036</item>
+			<item>114601016</item>
+			<item>112601009</item>
+			<item>113601020</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804119" level="65" name="Quest orientado a dados Q9672 FOBJ" name_id="465674" title_id="465676" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="9" srange="20">
-		<stats maxHp="23517" >
-			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
+	<npc_template npc_id="804119" level="5" name="IDTutorialQ_Gossip_Li_06" name_id="465674" title_id="465676" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
+		<equipment>
+			<item>100000058</item>
+			<item>115000734</item>
+			<item>125300028</item>
+			<item>110601059</item>
+			<item>111601036</item>
+			<item>114601016</item>
+			<item>112601009</item>
+			<item>113601020</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804120" level="65" name="Quest orientado a dados Q9672 FOBJ" name_id="465674" title_id="465676" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="9" srange="20">
-		<stats maxHp="23517" >
-			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
+	<npc_template npc_id="804120" level="5" name="IDTutorialQ_Gossip_Li_07" name_id="465674" title_id="465676" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
+		<equipment>
+			<item>100000058</item>
+			<item>115000734</item>
+			<item>125300028</item>
+			<item>110601059</item>
+			<item>111601036</item>
+			<item>114601016</item>
+			<item>112601009</item>
+			<item>113601020</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804121" level="65" name="Quest orientado a dados Q9672 FOBJ" name_id="465674" title_id="465676" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="9" srange="20">
-		<stats maxHp="23517" >
-			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
+	<npc_template npc_id="804121" level="5" name="IDTutorialQ_Gossip_Li_08" name_id="465674" title_id="465676" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
+		<equipment>
+			<item>100000058</item>
+			<item>115000734</item>
+			<item>125300028</item>
+			<item>110601059</item>
+			<item>111601036</item>
+			<item>114601016</item>
+			<item>112601009</item>
+			<item>113601020</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804122" level="65" name="Quest orientado a dados Q9672 FOBJ" name_id="465674" title_id="465676" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="9" srange="20">
-		<stats maxHp="23517" >
-			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
+	<npc_template npc_id="804122" level="5" name="IDTutorialQ_Gossip_Li_09" name_id="465674" title_id="465676" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
+		<equipment>
+			<item>100000058</item>
+			<item>115000734</item>
+			<item>125300028</item>
+			<item>110601059</item>
+			<item>111601036</item>
+			<item>114601016</item>
+			<item>112601009</item>
+			<item>113601020</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804123" level="65" name="Quest orientado a dados Q9672 FOBJ" name_id="465674" title_id="465676" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="9" srange="20">
-		<stats maxHp="23517" >
-			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
+	<npc_template npc_id="804123" level="5" name="IDTutorialQ_Gossip_Li_10" name_id="465674" title_id="465676" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
+		<equipment>
+			<item>100000058</item>
+			<item>115000734</item>
+			<item>125300028</item>
+			<item>110601059</item>
+			<item>111601036</item>
+			<item>114601016</item>
+			<item>112601009</item>
+			<item>113601020</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804124" level="5" name="Grupo" name_id="465675" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="9" srange="20">
-		<stats maxHp="3871652" >
-			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
+	<npc_template npc_id="804124" level="5" name="IDTutorialQ_Gossip_Da_01" name_id="465675" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
 			<item>100000058</item>
@@ -372039,9 +372143,9 @@
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804125" level="5" name="Grupo" name_id="465675" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="9" srange="20">
-		<stats maxHp="3871652" >
-			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
+	<npc_template npc_id="804125" level="5" name="IDTutorialQ_Gossip_Da_02" name_id="465675" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
 			<item>100000058</item>
@@ -372055,9 +372159,9 @@
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804126" level="5" name="Grupo" name_id="465675" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="9" srange="20">
-		<stats maxHp="3871652" >
-			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
+	<npc_template npc_id="804126" level="5" name="IDTutorialQ_Gossip_Da_03" name_id="465675" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
 			<item>100000058</item>
@@ -372071,9 +372175,9 @@
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804127" level="5" name="Grupo" name_id="465675" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="9" srange="20">
-		<stats maxHp="3871652" >
-			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
+	<npc_template npc_id="804127" level="5" name="IDTutorialQ_Gossip_Da_04" name_id="465675" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
 			<item>100000058</item>
@@ -372087,9 +372191,9 @@
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804128" level="5" name="Grupo" name_id="465675" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="9" srange="20">
-		<stats maxHp="3871652" >
-			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
+	<npc_template npc_id="804128" level="5" name="IDTutorialQ_Gossip_Da_05" name_id="465675" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
 			<item>100000058</item>
@@ -372103,9 +372207,9 @@
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804129" level="5" name="Grupo" name_id="465675" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="9" srange="20">
-		<stats maxHp="3871652" >
-			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
+	<npc_template npc_id="804129" level="5" name="IDTutorialQ_Gossip_Da_06" name_id="465675" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
 			<item>100000058</item>
@@ -372119,9 +372223,9 @@
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804130" level="5" name="Grupo" name_id="465675" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="9" srange="20">
-		<stats maxHp="3871652" >
-			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
+	<npc_template npc_id="804130" level="5" name="IDTutorialQ_Gossip_Da_07" name_id="465675" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
 			<item>100000058</item>
@@ -372135,9 +372239,9 @@
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804131" level="5" name="Grupo" name_id="465675" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="9" srange="20">
-		<stats maxHp="3871652" >
-			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
+	<npc_template npc_id="804131" level="5" name="IDTutorialQ_Gossip_Da_08" name_id="465675" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
 			<item>100000058</item>
@@ -372151,9 +372255,9 @@
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804132" level="5" name="Grupo" name_id="465675" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="9" srange="20">
-		<stats maxHp="3871652" >
-			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
+	<npc_template npc_id="804132" level="5" name="IDTutorialQ_Gossip_Da_09" name_id="465675" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
 			<item>100000058</item>
@@ -372167,14 +372271,24 @@
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804133" level="65" name="Grupo" name_id="465675" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2249" hpgauge="3" flag_type="9" srange="20">
-		<stats maxHp="23517" >
-			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
+	<npc_template npc_id="804133" level="5" name="IDTutorialQ_Gossip_Da_10" name_id="465675" title_id="465677" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+		<stats maxHp="3871652">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
+		<equipment>
+			<item>100000058</item>
+			<item>115000738</item>
+			<item>125300028</item>
+			<item>110601059</item>
+			<item>111601036</item>
+			<item>114601016</item>
+			<item>112601009</item>
+			<item>113601020</item>
+		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804134" level="65" name="Wild Ginseng" name_id="465678" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="25" arange="2" attack_speed="2249" hpgauge="3">
-		<stats maxHp="28386">
+	<npc_template npc_id="804134" level="5" name="Inggril" name_id="465678" height="2.18" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="idtutorialq_teleport_out_li" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="3871652">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<equipment>
@@ -372185,9 +372299,9 @@
 			<item>114500331</item>
 		</equipment>
 		<bound_radius front="0.2725" side="0.3815" upper="2.18" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
+		<talk_info distance="5" is_dialog="true" />
 	</npc_template>
-	<npc_template npc_id="804135" level="5" name="Junkrunerk" name_id="465679" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="25" arange="2" attack_speed="2249" hpgauge="3">
+	<npc_template npc_id="804135" level="5" name="Inggness" name_id="465679" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="idtutorialq_teleport_out_da" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="3871652">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -372199,375 +372313,262 @@
 			<item>113100276</item>
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
+		<talk_info distance="5" is_dialog="true" />
 	</npc_template>
-	<npc_template npc_id="804136" level="1" name="belus relics supervisor" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="20" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="172">
+	<npc_template npc_id="804136" level="1" name="IDTutorialQ_Set_Ctrl_NPC_01" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="100">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804137" level="65" name="belus abyss equipment merchant" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="20" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="28386">
-			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
-		</stats>
-		<equipment>
-			<item>113100270</item>
-			<item>110100312</item>
-			<item>112100250</item>
-			<item>111100271</item>
-			<item>114100288</item>
-		</equipment>
-		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
-	</npc_template>
-	<npc_template npc_id="804138" level="1" name="belus field crafting merchant" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="20" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="172">
+	<npc_template npc_id="804137" level="1" name="IDTutorialQ_Set_Ctrl_NPC_02" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="100">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804139" level="1" name="belus combat crafting merchant" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="20" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="172">
+	<npc_template npc_id="804138" level="1" name="IDTutorialQ_Set_Ctrl_NPC_03" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="100">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804140" level="1" name="belus fortress crest trader" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="20" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="172">
+	<npc_template npc_id="804139" level="1" name="IDTutorialQ_Set_Ctrl_NPC_04" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="100">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804141" level="1" name="belus general goods merchant" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="20" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="172">
+	<npc_template npc_id="804140" level="1" name="IDTutorialQ_Set_Ctrl_NPC_05" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="100">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804142" level="1" name="belus stigma master" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="20" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="172">
+	<npc_template npc_id="804141" level="1" name="IDTutorialQ_Set_Ctrl_NPC_06" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="100">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804143" level="1" name="belus conditioning officer" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="20" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="172">
+	<npc_template npc_id="804142" level="1" name="IDTutorialQ_Set_Ctrl_NPC_07" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="100">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804144" level="1" name="belus augmenter" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="20" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="172">
+	<npc_template npc_id="804143" level="1" name="IDTutorialQ_Set_Ctrl_NPC_08" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="100">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" func_dialogs="94 95" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804145" level="1" name="belus warehouse manager" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="20" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="172">
+	<npc_template npc_id="804144" level="1" name="IDTutorialQ_Set_Ctrl_NPC_09" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="100">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804146" level="1" name="aspida consumables distributor" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="172">
+	<npc_template npc_id="804145" level="1" name="IDTutorialQ_Set_Ctrl_NPC_10" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="100">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804147" level="1" name="aspida design merchant" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="172">
+	<npc_template npc_id="804146" level="1" name="IDTutorialQ_MSG_Ctrl_NPC_01" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="100">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804148" level="65" name="aspida relics supervisor" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="28386">
-			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
-		</stats>
-		<equipment>
-			<item>113501412</item>
-			<item>110501438</item>
-			<item>112501337</item>
-			<item>114501420</item>
-		</equipment>
-		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
-	</npc_template>
-	<npc_template npc_id="804149" level="1" name="aspida abyss equipment merchant" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="172">
+	<npc_template npc_id="804147" level="1" name="IDTutorialQ_MSG_Ctrl_NPC_02" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="100">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804150" level="1" name="aspida field crafting material merchant" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="172">
+	<npc_template npc_id="804148" level="1" name="IDTutorialQ_MSG_Ctrl_NPC_03" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="100">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804151" level="1" name="aspida combat crafting merchant" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="172">
+	<npc_template npc_id="804149" level="1" name="IDTutorialQ_MSG_Ctrl_NPC_04" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="100">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804152" level="1" name="aspida fortress crest trader" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="172">
+	<npc_template npc_id="804150" level="1" name="IDTutorialQ_MSG_Ctrl_NPC_05" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="100">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804153" level="1" name="aspida general goods merchant" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="172">
+	<npc_template npc_id="804151" level="1" name="IDTutorialQ_MSG_Ctrl_NPC_06" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="100">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804154" level="1" name="aspida stigma master" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="172">
+	<npc_template npc_id="804152" level="1" name="IDTutorialQ_MSG_Ctrl_NPC_07" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="100">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804155" level="1" name="aspida conditioning officer" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="172">
+	<npc_template npc_id="804153" level="1" name="IDTutorialQ_MSG_Ctrl_NPC_08" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="100">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804156" level="5" name="Barkel" name_id="465770" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804154" level="1" name="IDTutorialQ_MSG_Ctrl_NPC_09" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="100">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="804155" level="1" name="IDTutorialQ_MSG_Ctrl_NPC_10" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="100">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="804156" level="5" name="IDTutorialQ_TREASUREBOX_01_01" name_id="465770" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="MONSTER" type="MONSTER" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" func_dialogs="94 95" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804157" level="5" name="Joio" name_id="465771" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804157" level="5" name="IDTutorialQ_TREASUREBOX_01_02" name_id="465771" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
+		<talk_info distance="5" is_dialog="true" />
 	</npc_template>
-	<npc_template npc_id="804158" level="65" name="Glorinerk" name_id="465772" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="28386">
-			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
-		</stats>
-		<equipment>
-			<item>113500319</item>
-			<item>110500336</item>
-			<item>112500309</item>
-			<item>111500327</item>
-			<item>114500331</item>
-		</equipment>
-		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
-	</npc_template>
-	<npc_template npc_id="804159" level="65" name="&lt;Oficial de Administração da Sagrada Árvore&gt;" name_id="465773" height="2.5" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="28386">
-			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
-		</stats>
-		<equipment>
-			<item>113501413</item>
-			<item>110501439</item>
-			<item>112501338</item>
-			<item>111501396</item>
-			<item>114501421</item>
-		</equipment>
-		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" can_talk_invisible="false" />
-	</npc_template>
-	<npc_template npc_id="804160" level="65" name="&lt;Supervisor da Holy Tree&gt;" name_id="465774" height="2.5" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="28386">
-			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
-		</stats>
-		<equipment>
-			<item>113501412</item>
-			<item>110501438</item>
-			<item>112501337</item>
-			<item>114501420</item>
-		</equipment>
-		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
-	</npc_template>
-	<npc_template npc_id="804161" level="5" name="Baú dos retornados" name_id="465775" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804158" level="5" name="IDTutorialQ_TREASUREBOX_01_03" name_id="465772" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
+		<talk_info distance="5" is_dialog="true" />
 	</npc_template>
-	<npc_template npc_id="804162" level="5" name="Banho brilhante dos retornados" name_id="465776" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804159" level="5" name="IDTutorialQ_TREASUREBOX_01_04" name_id="465773" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
+		<talk_info distance="5" is_dialog="true" />
 	</npc_template>
-	<npc_template npc_id="804163" level="65" name="&lt;Patrulha Distribuidor&gt;" name_id="465777" height="2.5" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="28386">
-			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
-		</stats>
-		<equipment>
-			<item>113501410</item>
-			<item>110501436</item>
-			<item>112501335</item>
-			<item>111501393</item>
-			<item>114501418</item>
-		</equipment>
-		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
-	</npc_template>
-	<npc_template npc_id="804164" level="65" name="&lt;Distribuidor de Patrulha de Elite&gt;" name_id="465778" height="2.5" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="28386">
-			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
-		</stats>
-		<equipment>
-			<item>113501412</item>
-			<item>110101436</item>
-			<item>100500989</item>
-			<item>112501337</item>
-			<item>114501420</item>
-		</equipment>
-		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
-	</npc_template>
-	<npc_template npc_id="804165" level="65" name="&lt;Merchant especial&gt;" name_id="465779" height="2.5" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="28386">
-			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
-		</stats>
-		<equipment>
-			<item>113100270</item>
-			<item>110100314</item>
-			<item>112100250</item>
-			<item>111100271</item>
-			<item>114100288</item>
-		</equipment>
-		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
-	</npc_template>
-	<npc_template npc_id="804166" level="1" name="Khamatorn" name_id="2288143" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" type="GENERAL" ai="aggressive" srange="5" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="172">
-			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
-		</stats>
-		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
-	</npc_template>
-	<npc_template npc_id="804167" level="65" name="atanatos conditioning officer" name_id="350000" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" type="GENERAL" ai="aggressive" srange="0" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="28386">
-			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
-		</stats>
-		<equipment>
-			<item>113101328</item>
-			<item>110101436</item>
-			<item>112101267</item>
-			<item>111101311</item>
-			<item>114101357</item>
-		</equipment>
-		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
-	</npc_template>
-	<npc_template npc_id="804168" level="5" name="Guerreiro Shugo" name_id="465808" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804160" level="5" name="IDTutorialQ_TREASUREBOX_01_05" name_id="465774" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" func_dialogs="94 95" can_talk_invisible="false" />
+		<talk_info distance="5" is_dialog="true" />
 	</npc_template>
-	<npc_template npc_id="804169" level="5" name="Mago shugo" name_id="465809" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804161" level="5" name="IDTutorialQ_TREASUREBOX_02_01" name_id="465775" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="MONSTER" type="MONSTER" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="804170" level="65" name="Cavaleiro Shugo" name_id="465810" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="28386">
+	<npc_template npc_id="804162" level="5" name="IDTutorialQ_TREASUREBOX_02_02" name_id="465776" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113500319</item>
-			<item>110500336</item>
-			<item>112500309</item>
-			<item>111500327</item>
-			<item>114500331</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
+		<talk_info distance="5" is_dialog="true" />
 	</npc_template>
-	<npc_template npc_id="804171" level="65" name="Guerreiro Shugo" name_id="465811" height="2.5" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="28386">
+	<npc_template npc_id="804163" level="5" name="IDTutorialQ_TREASUREBOX_02_03" name_id="465777" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113501413</item>
-			<item>110501439</item>
-			<item>112501338</item>
-			<item>111501396</item>
-			<item>114501421</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" can_talk_invisible="false" />
+		<talk_info distance="5" is_dialog="true" />
 	</npc_template>
-	<npc_template npc_id="804172" level="65" name="Mago shugo" name_id="465812" height="2.5" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="28386">
+	<npc_template npc_id="804164" level="5" name="IDTutorialQ_TREASUREBOX_02_04" name_id="465778" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113501412</item>
-			<item>110501438</item>
-			<item>112501337</item>
-			<item>114501420</item>
-		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
+		<talk_info distance="5" is_dialog="true" />
 	</npc_template>
-	<npc_template npc_id="804173" level="65" name="Relíquia destruída" name_id="465851" height="2.5" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="28386">
+	<npc_template npc_id="804165" level="5" name="IDTutorialQ_TREASUREBOX_02_05" name_id="465779" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
-		<equipment>
-			<item>113100270</item>
-			<item>110100312</item>
-			<item>112100250</item>
-			<item>111100271</item>
-			<item>114100288</item>
-		</equipment>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+		<talk_info distance="5" is_dialog="true" />
+	</npc_template>
+	<npc_template npc_id="804166" level="1" name="IDTutorialQ_NoShowNPC_DarkShadow_Normalfire" name_id="0" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="NONE" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="10">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="804167" level="1" name="IDTutorialQ_NoShowNPC_DarkShadow_Spawn" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="NONE" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="10">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="804168" level="5" name="IDTutorialQ_TREASUREBOX_03_01" name_id="465808" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="MONSTER" type="MONSTER" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="10">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+	</npc_template>
+	<npc_template npc_id="804169" level="5" name="IDTutorialQ_TREASUREBOX_03_02" name_id="465809" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="10">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+		<talk_info distance="5" is_dialog="true" />
+	</npc_template>
+	<npc_template npc_id="804170" level="5" name="IDTutorialQ_TREASUREBOX_03_03" name_id="465810" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="10">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+		<talk_info distance="5" is_dialog="true" />
+	</npc_template>
+	<npc_template npc_id="804171" level="5" name="IDTutorialQ_TREASUREBOX_03_04" name_id="465811" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="10">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+		<talk_info distance="5" is_dialog="true" />
+	</npc_template>
+	<npc_template npc_id="804172" level="5" name="IDTutorialQ_TREASUREBOX_03_05" name_id="465812" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="10">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="0.25" side="0.35" upper="2" />
+		<talk_info distance="5" is_dialog="true" />
+	</npc_template>
+	<npc_template npc_id="804173" level="5" name="IDTutorialQ_Content_UI_BonusBox_21" name_id="465851" height="6" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="831">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
 		<bound_radius front="0.75" side="1.05" upper="6" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
+		<talk_info distance="5" is_dialog="true" />
 	</npc_template>
-	<npc_template npc_id="804174" level="7" name="Fóssil antigo" name_id="465852" height="4" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804174" level="5" name="IDTutorialQ_Content_UI_BonusBox_22" name_id="465852" height="4" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="831">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.5" side="0.7" upper="4" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
+		<talk_info distance="5" is_dialog="true" />
 	</npc_template>
-	<npc_template npc_id="804175" level="7" name="Aviso" name_id="465853" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804175" level="5" name="IDTutorialQ_Content_UI_BonusBox_23" name_id="465853" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="831">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
+		<talk_info distance="5" is_dialog="true" />
 	</npc_template>
 	<npc_template npc_id="804200" level="1" name="abnova" name_id="350000" height="2" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="136">
