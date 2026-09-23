@@ -733,6 +733,11 @@
 			<xs:enumeration value="ZAIF_ADARU" />
 			<xs:enumeration value="ZAIF_AMINX" />
 			<xs:enumeration value="ZAIF_ATOG" />
+			<xs:enumeration value="IDTUTORIALQ_GUARD_D" />
+			<xs:enumeration value="IDTUTORIALQ_GUARD_L" />
+			<xs:enumeration value="IDTUTORIALQ_MONSTER" />
+			<xs:enumeration value="IDTUTORIALQ_PC" />
+			<xs:enumeration value="IDTUTORIALQ_PET" />
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="startingPlayerClass">

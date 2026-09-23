@@ -2744,4 +2744,25 @@
     <tribe name="ZAIF_ATOG" base="MONSTER">
         <aggro>PC PC_DARK TOG_AZAIF</aggro>
     </tribe>
+    <tribe name="IDTUTORIALQ_GUARD_D" base="USEALL">
+        <aggro>IDTUTORIALQ_MONSTER</aggro>
+        <neutral>IDTUTORIALQ_PET IDTUTORIALQ_GUARD_L GENERAL</neutral>
+        <support>PC PC_DARK</support>
+    </tribe>
+    <tribe name="IDTUTORIALQ_GUARD_L" base="USEALL">
+        <aggro>IDTUTORIALQ_MONSTER</aggro>
+        <neutral>IDTUTORIALQ_PET IDTUTORIALQ_GUARD_D GENERAL_DARK</neutral>
+        <support>PC PC_DARK</support>
+    </tribe>
+    <tribe name="IDTUTORIALQ_MONSTER" base="MONSTER">
+        <aggro>IDTUTORIALQ_GUARD_L IDTUTORIALQ_GUARD_D PC PC_DARK IDTUTORIALQ_PET</aggro>
+    </tribe>
+    <tribe name="IDTUTORIALQ_PC" base="GENERAL">
+        <aggro>IDTUTORIALQ_MONSTER</aggro>
+        <neutral>IDTUTORIALQ_PET</neutral>
+    </tribe>
+    <tribe name="IDTUTORIALQ_PET" base="USEALL">
+        <aggro>IDTUTORIALQ_MONSTER</aggro>
+        <friend>PC PC_DARK IDTUTORIALQ_PC</friend>
+    </tribe>
 </tribe_relations>
