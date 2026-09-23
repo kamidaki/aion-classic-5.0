@@ -1,112 +1,28 @@
 package quest.inggison;
 
-import static com.aionemu.gameserver.model.DialogAction.*;
-
-import com.aionemu.gameserver.model.Race;
-import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.questEngine.handlers.AbstractQuestHandler;
-import com.aionemu.gameserver.questEngine.model.QuestEnv;
-import com.aionemu.gameserver.questEngine.model.QuestState;
-import com.aionemu.gameserver.questEngine.model.QuestStatus;
+import com.aionemu.gameserver.questEngine.handlers.CampaignQuestHandler;
 
 /**
- * Quest ID: 10162
- * Title: Scar Canyon e o local de petrificação
- * Zone: Inggison
- * 
- * Auto-generated with Classic 5.0 campaign engine standards.
+ * Campanha 10162 Scar Canyon and the Petrification Site. Tabela gerada por 6 - Ferramentas/parsersXML/gera_handlers_campanhas_50.py a partir de
+ * dialogs/quest/quest_q10162.html e Quest/quest_script_monster.csv do cliente 5.0.
  */
-public class _10162ScarCanyonAndThePetrificationSite extends AbstractQuestHandler {
-
-	private static final int START_NPC = 798927;
-	private static final int END_NPC = 798927;
-	private static final int[] MOBS = { 216489, 216490, 216491 };
+public class _10162ScarCanyonAndThePetrificationSite extends CampaignQuestHandler {
 
 	public _10162ScarCanyonAndThePetrificationSite() {
-		super(10162);
+		super(10162, 10161);
 	}
 
 	@Override
-	public void register() {
-		qe.registerOnLevelChanged(questId);
-		qe.registerOnQuestCompleted(questId);
-		qe.registerQuestNpc(START_NPC).addOnQuestStart(questId);
-		qe.registerQuestNpc(START_NPC).addOnTalkEvent(questId);
-		for (int mob : MOBS) {
-			qe.registerQuestNpc(mob).addOnKillEvent(questId);
-		}
-	}
-
-	@Override
-	public boolean onDialogEvent(QuestEnv env) {
-		final Player player = env.getPlayer();
-		if (player.getRace() != Race.ELYOS) {
-			return false;
-		}
-
-		final QuestState qs = player.getQuestStateList().getQuestState(questId);
-		int targetId = env.getTargetId();
-		int dialogActionId = env.getDialogActionId();
-
-		if (qs == null || qs.isStartable()) {
-			if (targetId == START_NPC) {
-				if (dialogActionId == QUEST_SELECT) {
-					return sendQuestDialog(env, 1011);
-				} else {
-					return sendQuestStartDialog(env);
-				}
-			}
-			return false;
-		}
-
-		if (qs.getStatus() == QuestStatus.START) {
-			int var = qs.getQuestVarById(0);
-			if (targetId == START_NPC) {
-				switch (dialogActionId) {
-					case QUEST_SELECT:
-						return sendQuestDialog(env, 1011);
-					case SETPRO1:
-					case SETPRO2:
-					case SET_SUCCEED:
-						qs.setQuestVar(var + 1);
-						updateQuestStatus(env);
-						return closeDialogWindow(env);
-				}
-			} else if (targetId == END_NPC) {
-				switch (dialogActionId) {
-					case QUEST_SELECT:
-						return sendQuestDialog(env, 2375);
-					case SELECT_QUEST_REWARD:
-						qs.setStatus(QuestStatus.REWARD);
-						updateQuestStatus(env);
-						return sendQuestEndDialog(env);
-				}
-			}
-		} else if (qs.getStatus() == QuestStatus.REWARD) {
-			if (targetId == END_NPC || targetId == START_NPC) {
-				return sendQuestEndDialog(env);
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public boolean onKillEvent(QuestEnv env) {
-		return defaultOnKillEvent(env, MOBS, 0, 1);
-	}
-
-	@Override
-	public void onLevelChangedEvent(Player player) {
-		if (player.getRace() == Race.ELYOS) {
-			defaultOnLevelChangedEvent(player, 10161);
-		}
-	}
-
-	@Override
-	public void onQuestCompletedEvent(QuestEnv env) {
-		Player player = env.getPlayer();
-		if (player.getRace() == Race.ELYOS) {
-			defaultOnQuestCompletedEvent(env, 10161);
-		}
+	protected void defineSteps() {
+		talk(0, 1, 1, 798951); // Ambrosini
+		talk(1, 2, 2, 798981); // Philon
+		talk(2, 3, 3, 730226); // fragmento LF4_FOBJ_Q10023A (quest_use_npc, select3)
+		talk(3, 4, 4, 730227); // fragmento LF4_FOBJ_Q10023B (select4)
+		talk(4, 5, 5, 730228); // fragmento LF4_FOBJ_Q10023C (select5)
+		killSection(5, 1, 1, 6, 216489); // CSV SECTION_1<1; SECTION_0==5 LF4_B1_Rhinoce_NamedQ_54_n
+		killSection(5, 2, 1, 6, 216490); // CSV SECTION_2<1; SECTION_0==5 LF4_B1_Baku_NamedQ_54_n
+		killSection(5, 3, 1, 6, 216491); // CSV SECTION_3<1; SECTION_0==5 LF4_B1_Crestlich_NamedQ_54_n
+		talk(6, 7, REWARD, 798981); // Philon, select7 SET_SUCCEED
+		reward(798983); // Croton
 	}
 }

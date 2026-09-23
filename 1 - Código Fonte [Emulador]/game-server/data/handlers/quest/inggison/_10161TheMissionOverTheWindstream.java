@@ -1,112 +1,32 @@
 package quest.inggison;
 
-import static com.aionemu.gameserver.model.DialogAction.*;
+import static com.aionemu.gameserver.model.DialogAction.SETPRO7;
 
-import com.aionemu.gameserver.model.Race;
-import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.questEngine.handlers.AbstractQuestHandler;
-import com.aionemu.gameserver.questEngine.model.QuestEnv;
-import com.aionemu.gameserver.questEngine.model.QuestState;
-import com.aionemu.gameserver.questEngine.model.QuestStatus;
+import com.aionemu.gameserver.questEngine.handlers.CampaignQuestHandler;
 
 /**
- * Quest ID: 10161
- * Title: A missão além do Windstream
- * Zone: Inggison
- * 
- * Auto-generated with Classic 5.0 campaign engine standards.
+ * Campanha 10161 The Mission over the Windstream. Tabela gerada por 6 - Ferramentas/parsersXML/gera_handlers_campanhas_50.py a partir de
+ * dialogs/quest/quest_q10161.html e Quest/quest_script_monster.csv do cliente 5.0.
  */
-public class _10161TheMissionOverTheWindstream extends AbstractQuestHandler {
-
-	private static final int START_NPC = 798927;
-	private static final int END_NPC = 798927;
-	private static final int[] MOBS = { 206168, 206169, 206170 };
+public class _10161TheMissionOverTheWindstream extends CampaignQuestHandler {
 
 	public _10161TheMissionOverTheWindstream() {
-		super(10161);
+		super(10161, 10160);
 	}
 
 	@Override
-	public void register() {
-		qe.registerOnLevelChanged(questId);
-		qe.registerOnQuestCompleted(questId);
-		qe.registerQuestNpc(START_NPC).addOnQuestStart(questId);
-		qe.registerQuestNpc(START_NPC).addOnTalkEvent(questId);
-		for (int mob : MOBS) {
-			qe.registerQuestNpc(mob).addOnKillEvent(questId);
-		}
-	}
-
-	@Override
-	public boolean onDialogEvent(QuestEnv env) {
-		final Player player = env.getPlayer();
-		if (player.getRace() != Race.ELYOS) {
-			return false;
-		}
-
-		final QuestState qs = player.getQuestStateList().getQuestState(questId);
-		int targetId = env.getTargetId();
-		int dialogActionId = env.getDialogActionId();
-
-		if (qs == null || qs.isStartable()) {
-			if (targetId == START_NPC) {
-				if (dialogActionId == QUEST_SELECT) {
-					return sendQuestDialog(env, 1011);
-				} else {
-					return sendQuestStartDialog(env);
-				}
-			}
-			return false;
-		}
-
-		if (qs.getStatus() == QuestStatus.START) {
-			int var = qs.getQuestVarById(0);
-			if (targetId == START_NPC) {
-				switch (dialogActionId) {
-					case QUEST_SELECT:
-						return sendQuestDialog(env, 1011);
-					case SETPRO1:
-					case SETPRO2:
-					case SET_SUCCEED:
-						qs.setQuestVar(var + 1);
-						updateQuestStatus(env);
-						return closeDialogWindow(env);
-				}
-			} else if (targetId == END_NPC) {
-				switch (dialogActionId) {
-					case QUEST_SELECT:
-						return sendQuestDialog(env, 2375);
-					case SELECT_QUEST_REWARD:
-						qs.setStatus(QuestStatus.REWARD);
-						updateQuestStatus(env);
-						return sendQuestEndDialog(env);
-				}
-			}
-		} else if (qs.getStatus() == QuestStatus.REWARD) {
-			if (targetId == END_NPC || targetId == START_NPC) {
-				return sendQuestEndDialog(env);
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public boolean onKillEvent(QuestEnv env) {
-		return defaultOnKillEvent(env, MOBS, 0, 1);
-	}
-
-	@Override
-	public void onLevelChangedEvent(Player player) {
-		if (player.getRace() == Race.ELYOS) {
-			defaultOnLevelChangedEvent(player, 10160);
-		}
-	}
-
-	@Override
-	public void onQuestCompletedEvent(QuestEnv env) {
-		Player player = env.getPlayer();
-		if (player.getRace() == Race.ELYOS) {
-			defaultOnQuestCompletedEvent(env, 10160);
-		}
+	protected void defineSteps() {
+		talk(0, 1, 1, 798927); // Versetti
+		talk(1, 2, 2, 798938); // Aglaus
+		talk(2, 3, 3, 799025); // Laokoon: SETPRO3 = fazer as correntes de vento...
+		branch(SETPRO7, 7); // ...ou SETPRO7 = pular direto para o obelisco (select3_1_1_1)
+		sensory(3, 4, 206168); // CSV Progress(3) LF4_SensoryArea_Q11076A
+		sensory(4, 5, 206169); // CSV Progress(4) LF4_SensoryArea_Q11076B
+		sensory(5, 6, 206170); // CSV Progress(5) LF4_SensoryArea_Q11076C
+		talk(6, 7, 7, 799084); // Harami
+		talk(7, 8, 8, 730225); // obelisco LF4_FOBJ_Q10020C (objeto com página select8)
+		talk(8, 9, 9, 798951); // Ambrosini
+		check(9, 10, REWARD, 798951); // Ambrosini confere o dínamo (quest_monster drop@9); check_ok -> SELECT_QUEST_REWARD
+		reward(798951); // Ambrosini
 	}
 }

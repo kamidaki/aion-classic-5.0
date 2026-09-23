@@ -254,12 +254,12 @@ public final class PlayerEnterWorldService {
 			CombatTalentRewardService.sendProgress(player);
 			QunaService.onEnterWorld(player); // S 0x11B com o saldo da conta; o oficial não manda no login (lê do STS)
 
-			// 13. Quests
-			if (player.getQuestStateList().getAllQuestState().isEmpty()) {
-				QuestEngine.getInstance().onLevelChanged(player);
-			}
+			// 13. Quests: listas primeiro e depois o ADD das que entram agora, na ordem da captura subida-1-60 (908.42 s: listas;
+			// 911.67 s: S_QUEST ADD 20153)
+			boolean newCharacter = player.getQuestStateList().getAllQuestState().isEmpty();
 			QuestEngine.getInstance().sendCompletedQuests(player);
 			client.sendPacket(new SM_QUEST_LIST(player.getQuestStateList().getUncompletedQuests()));
+			QuestEngine.getInstance().onLevelChanged(player, !newCharacter);
 
 
 			// 14. Equipe & Servicos sociais

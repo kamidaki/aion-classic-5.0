@@ -1,112 +1,28 @@
 package quest.inggison;
 
-import static com.aionemu.gameserver.model.DialogAction.*;
-
-import com.aionemu.gameserver.model.Race;
-import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.questEngine.handlers.AbstractQuestHandler;
-import com.aionemu.gameserver.questEngine.model.QuestEnv;
-import com.aionemu.gameserver.questEngine.model.QuestState;
-import com.aionemu.gameserver.questEngine.model.QuestStatus;
+import com.aionemu.gameserver.questEngine.handlers.CampaignQuestHandler;
 
 /**
- * Quest ID: 10170
- * Title: Derrote Inggison’s Balaur
- * Zone: Inggison
- * 
- * Auto-generated with Classic 5.0 campaign engine standards.
+ * Campanha 10170 Defeat Inggison's Balaur. Tabela gerada por 6 - Ferramentas/parsersXML/gera_handlers_campanhas_50.py a partir de
+ * dialogs/quest/quest_q10170.html e Quest/quest_script_monster.csv do cliente 5.0.
  */
-public class _10170DefeatInggisonSBalaur extends AbstractQuestHandler {
-
-	private static final int START_NPC = 798927;
-	private static final int END_NPC = 798927;
-	private static final int[] MOBS = { 701568 };
+public class _10170DefeatInggisonSBalaur extends CampaignQuestHandler {
 
 	public _10170DefeatInggisonSBalaur() {
-		super(10170);
+		super(10170, 10169);
 	}
 
 	@Override
-	public void register() {
-		qe.registerOnLevelChanged(questId);
-		qe.registerOnQuestCompleted(questId);
-		qe.registerQuestNpc(START_NPC).addOnQuestStart(questId);
-		qe.registerQuestNpc(START_NPC).addOnTalkEvent(questId);
-		for (int mob : MOBS) {
-			qe.registerQuestNpc(mob).addOnKillEvent(questId);
-		}
-	}
-
-	@Override
-	public boolean onDialogEvent(QuestEnv env) {
-		final Player player = env.getPlayer();
-		if (player.getRace() != Race.ELYOS) {
-			return false;
-		}
-
-		final QuestState qs = player.getQuestStateList().getQuestState(questId);
-		int targetId = env.getTargetId();
-		int dialogActionId = env.getDialogActionId();
-
-		if (qs == null || qs.isStartable()) {
-			if (targetId == START_NPC) {
-				if (dialogActionId == QUEST_SELECT) {
-					return sendQuestDialog(env, 1011);
-				} else {
-					return sendQuestStartDialog(env);
-				}
-			}
-			return false;
-		}
-
-		if (qs.getStatus() == QuestStatus.START) {
-			int var = qs.getQuestVarById(0);
-			if (targetId == START_NPC) {
-				switch (dialogActionId) {
-					case QUEST_SELECT:
-						return sendQuestDialog(env, 1011);
-					case SETPRO1:
-					case SETPRO2:
-					case SET_SUCCEED:
-						qs.setQuestVar(var + 1);
-						updateQuestStatus(env);
-						return closeDialogWindow(env);
-				}
-			} else if (targetId == END_NPC) {
-				switch (dialogActionId) {
-					case QUEST_SELECT:
-						return sendQuestDialog(env, 2375);
-					case SELECT_QUEST_REWARD:
-						qs.setStatus(QuestStatus.REWARD);
-						updateQuestStatus(env);
-						return sendQuestEndDialog(env);
-				}
-			}
-		} else if (qs.getStatus() == QuestStatus.REWARD) {
-			if (targetId == END_NPC || targetId == START_NPC) {
-				return sendQuestEndDialog(env);
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public boolean onKillEvent(QuestEnv env) {
-		return defaultOnKillEvent(env, MOBS, 0, 1);
-	}
-
-	@Override
-	public void onLevelChangedEvent(Player player) {
-		if (player.getRace() == Race.ELYOS) {
-			defaultOnLevelChangedEvent(player, 10169);
-		}
-	}
-
-	@Override
-	public void onQuestCompletedEvent(QuestEnv env) {
-		Player player = env.getPlayer();
-		if (player.getRace() == Race.ELYOS) {
-			defaultOnQuestCompletedEvent(env, 10169);
-		}
+	protected void defineSteps() {
+		talkGive(0, 1, 1, 182215590, 1, 798941); // Pilomenes entrega o mapa (doc_quest_10170a)
+		itemUse(1, 2, 182215590); // conferir o mapa no cubo
+		talk(2, 3, 3, 799017); // Sulinia
+		check(3, 4, 4, 799017); // símbolos dos quatro pontos (quest_monster drop@3); check_ok -> SELECT5
+		talkGive(4, 5, 5, 182215595, 1, 799017); // Sulinia (select5) entrega o disfarce (quest_10170f)
+		sensory(5, 6, 701568); // CSV Progress(5) LF4_SensoryArea_Q10170a
+		itemUseAt(6, 7, 182215595, 210050000, 2143f, 2344f, 82.6875f, 15f); // CSV Progress(6); zona Q10170A ausente -> marcador oficial
+		talkGive(7, 8, 8, 182215596, 1, 216498); // carcereiro LF4_C5_DrakanAs_vil_NamedQ_55_Ae (select8) entrega o relatório (quest_10170g)
+		talk(8, 9, REWARD, 799017); // Sulinia, select9 SET_SUCCEED
+		reward(798926); // Cainus
 	}
 }

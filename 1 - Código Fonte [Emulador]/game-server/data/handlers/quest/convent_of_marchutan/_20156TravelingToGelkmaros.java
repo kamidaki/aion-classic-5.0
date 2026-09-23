@@ -1,105 +1,61 @@
 package quest.convent_of_marchutan;
 
-import static com.aionemu.gameserver.model.DialogAction.*;
+import static com.aionemu.gameserver.model.DialogAction.QUEST_SELECT;
+import static com.aionemu.gameserver.model.DialogAction.SETPRO10;
 
-import com.aionemu.gameserver.model.Race;
-import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.questEngine.handlers.AbstractQuestHandler;
+import com.aionemu.gameserver.model.animations.TeleportAnimation;
+import com.aionemu.gameserver.questEngine.handlers.CampaignQuestHandler;
 import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 
 /**
- * Quest ID: 20156
- * Title: Viajando para Gelkmaros
- * Zone: Convent of Marchutan
- * 
- * Auto-generated with Classic 5.0 campaign engine standards.
+ * Campanha 20156 Traveling to Gelkmaros. Tabela gerada por 6 - Ferramentas/parsersXML/gera_handlers_campanhas_50.py a partir de
+ * dialogs/quest/quest_q20156.html e Quest/quest_script_monster.csv do cliente 5.0.
  */
-public class _20156TravelingToGelkmaros extends AbstractQuestHandler {
+public class _20156TravelingToGelkmaros extends CampaignQuestHandler {
 
-	private static final int START_NPC = 204052;
-	private static final int END_NPC = 799226;
+	private static final int TIGRINA = 798409;
 
 	public _20156TravelingToGelkmaros() {
-		super(20156);
+		super(20156, 20155);
 	}
 
 	@Override
-	public void register() {
-		qe.registerOnLevelChanged(questId);
-		qe.registerOnQuestCompleted(questId);
-		qe.registerQuestNpc(START_NPC).addOnQuestStart(questId);
-		qe.registerQuestNpc(START_NPC).addOnTalkEvent(questId);
-		qe.registerQuestNpc(END_NPC).addOnTalkEvent(questId);
+	protected void defineSteps() {
+		talk(0, 1, 1, 798800); // Agehia
+		talk(1, 2, 2, 798409); // Tigrina
+		talk(2, 3, 3, 204202); // Nekai
+		talk(3, 4, 4, 204073); // Grer
+		talk(4, 5, 5, 204283); // Shugo_DC1_19
+		talk(5, 6, 6, 798409); // Tigrina, select6_1 SETPRO6: embarca para Gelkmaros (onAdvance)
+		rewardAt(6, 799225); // Hler, em Gelkmaros: só select_success
+	}
 
+	@Override
+	protected void onAdvance(QuestEnv env, int fromVar, int next) {
+		if (next == 6)
+			toGelkmaros(env);
 	}
 
 	@Override
 	public boolean onDialogEvent(QuestEnv env) {
-		final Player player = env.getPlayer();
-		if (player.getRace() != Race.ASMODIANS) {
-			return false;
-		}
-
-		final QuestState qs = player.getQuestStateList().getQuestState(questId);
-		int targetId = env.getTargetId();
-		int dialogActionId = env.getDialogActionId();
-
-		if (qs == null || qs.isStartable()) {
-			if (targetId == START_NPC) {
-				if (dialogActionId == QUEST_SELECT) {
-					return sendQuestDialog(env, 1011);
-				} else {
-					return sendQuestStartDialog(env);
-				}
-			}
-			return false;
-		}
-
-		if (qs.getStatus() == QuestStatus.START) {
-			int var = qs.getQuestVarById(0);
-			if (targetId == START_NPC) {
-				switch (dialogActionId) {
-					case QUEST_SELECT:
-						return sendQuestDialog(env, 1011);
-					case SETPRO1:
-					case SETPRO2:
-					case SET_SUCCEED:
-						qs.setQuestVar(var + 1);
-						updateQuestStatus(env);
-						return closeDialogWindow(env);
-				}
-			} else if (targetId == END_NPC) {
-				switch (dialogActionId) {
-					case QUEST_SELECT:
-						return sendQuestDialog(env, 2375);
-					case SELECT_QUEST_REWARD:
-						qs.setStatus(QuestStatus.REWARD);
-						updateQuestStatus(env);
-						return sendQuestEndDialog(env);
-				}
-			}
-		} else if (qs.getStatus() == QuestStatus.REWARD) {
-			if (targetId == END_NPC || targetId == START_NPC) {
-				return sendQuestEndDialog(env);
+		// select6_2 (SETPRO10): quem voltou sem falar com o Hler embarca de novo
+		QuestState qs = env.getPlayer().getQuestStateList().getQuestState(questId);
+		if (qs != null && qs.getStatus() == QuestStatus.START && qs.getQuestVarById(0) == 6 && env.getTargetId() == TIGRINA) {
+			if (env.getDialogActionId() == QUEST_SELECT)
+				return sendQuestDialog(env, 2718);
+			if (env.getDialogActionId() == SETPRO10) {
+				toGelkmaros(env);
+				return closeDialogWindow(env);
 			}
 		}
-		return false;
+		return super.onDialogEvent(env);
 	}
 
-	@Override
-	public void onLevelChangedEvent(Player player) {
-		if (player.getRace() == Race.ASMODIANS) {
-			defaultOnLevelChangedEvent(player, 20155);
-		}
-	}
-
-	@Override
-	public void onQuestCompletedEvent(QuestEnv env) {
-		Player player = env.getPlayer();
-		if (player.getRace() == Race.ASMODIANS) {
-			defaultOnQuestCompletedEvent(env, 20155);
-		}
+	private static void toGelkmaros(QuestEnv env) {
+		// destino do handler 4.8 da 20031 (sem captura 5.0 desta viagem)
+		TeleportService.teleportTo(env.getPlayer(), 220070000, 1868, 2746, 531, (byte) 20, TeleportAnimation.FADE_OUT_BEAM);
 	}
 }

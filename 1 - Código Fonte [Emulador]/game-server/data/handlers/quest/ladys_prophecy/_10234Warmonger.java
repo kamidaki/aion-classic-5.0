@@ -1,104 +1,47 @@
 package quest.ladys_prophecy;
 
-import static com.aionemu.gameserver.model.DialogAction.*;
-
-import com.aionemu.gameserver.model.Race;
-import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.questEngine.handlers.AbstractQuestHandler;
+import com.aionemu.gameserver.questEngine.handlers.CampaignQuestHandler;
 import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
+import com.aionemu.gameserver.utils.stats.AbyssRankEnum;
 
 /**
- * Quest ID: 10234
- * Title: Warmonger
- * Zone: The Ladys Prophecy
- * 
- * Auto-generated with Classic 5.0 campaign engine standards.
+ * Campanha 10234 Warmonger. Tabela gerada por 6 - Ferramentas/parsersXML/gera_handlers_campanhas_50.py a partir de
+ * dialogs/quest/quest_q10234.html e Quest/quest_script_monster.csv do cliente 5.0.
  */
-public class _10234Warmonger extends AbstractQuestHandler {
-
-	private static final int START_NPC = 203752;
-	private static final int END_NPC = 203752;
+public class _10234Warmonger extends CampaignQuestHandler {
 
 	public _10234Warmonger() {
-		super(10234);
+		super(10234, 10233);
+	}
+
+	@Override
+	protected void defineSteps() {
+		talk(0, 1, 1, 203752); // Jucleas (select1)
+		rewardAtPage(2, 2, 203752); // Jucleas: select2 -> SELECT_QUEST_REWARD
 	}
 
 	@Override
 	public void register() {
-		qe.registerOnLevelChanged(questId);
-		qe.registerOnQuestCompleted(questId);
-		qe.registerQuestNpc(START_NPC).addOnQuestStart(questId);
-		qe.registerQuestNpc(START_NPC).addOnTalkEvent(questId);
-
+		super.register();
+		qe.registerOnKillRanked(AbyssRankEnum.GRADE5_SOLDIER, questId); // "5급병 이상": patente soldado grau 5 ou maior
 	}
 
 	@Override
-	public boolean onDialogEvent(QuestEnv env) {
-		final Player player = env.getPlayer();
-		if (player.getRace() != Race.ELYOS) {
+	public boolean onKillRankedEvent(QuestEnv env) {
+		// ([%5]/1000): o contador não cabe numa var de 6 bits; vai nas vars 1 e 2 (12 bits)
+		QuestState qs = env.getPlayer().getQuestStateList().getQuestState(questId);
+		if (qs == null || qs.getStatus() != QuestStatus.START || qs.getQuestVarById(0) != 1)
 			return false;
+		int kills = (qs.getQuestVarById(1) | qs.getQuestVarById(2) << 6) + 1;
+		if (kills >= 1000) {
+			qs.setQuestVar(2);
+		} else {
+			qs.setQuestVarById(1, kills & 0x3F);
+			qs.setQuestVarById(2, kills >> 6);
 		}
-
-		final QuestState qs = player.getQuestStateList().getQuestState(questId);
-		int targetId = env.getTargetId();
-		int dialogActionId = env.getDialogActionId();
-
-		if (qs == null || qs.isStartable()) {
-			if (targetId == START_NPC) {
-				if (dialogActionId == QUEST_SELECT) {
-					return sendQuestDialog(env, 1011);
-				} else {
-					return sendQuestStartDialog(env);
-				}
-			}
-			return false;
-		}
-
-		if (qs.getStatus() == QuestStatus.START) {
-			int var = qs.getQuestVarById(0);
-			if (targetId == START_NPC) {
-				switch (dialogActionId) {
-					case QUEST_SELECT:
-						return sendQuestDialog(env, 1011);
-					case SETPRO1:
-					case SETPRO2:
-					case SET_SUCCEED:
-						qs.setQuestVar(var + 1);
-						updateQuestStatus(env);
-						return closeDialogWindow(env);
-				}
-			} else if (targetId == END_NPC) {
-				switch (dialogActionId) {
-					case QUEST_SELECT:
-						return sendQuestDialog(env, 2375);
-					case SELECT_QUEST_REWARD:
-						qs.setStatus(QuestStatus.REWARD);
-						updateQuestStatus(env);
-						return sendQuestEndDialog(env);
-				}
-			}
-		} else if (qs.getStatus() == QuestStatus.REWARD) {
-			if (targetId == END_NPC || targetId == START_NPC) {
-				return sendQuestEndDialog(env);
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public void onLevelChangedEvent(Player player) {
-		if (player.getRace() == Race.ELYOS) {
-			defaultOnLevelChangedEvent(player, 10233);
-		}
-	}
-
-	@Override
-	public void onQuestCompletedEvent(QuestEnv env) {
-		Player player = env.getPlayer();
-		if (player.getRace() == Race.ELYOS) {
-			defaultOnQuestCompletedEvent(env, 10233);
-		}
+		updateQuestStatus(env);
+		return true;
 	}
 }

@@ -12,6 +12,7 @@ import com.aionemu.gameserver.ai.NpcAI;
 import com.aionemu.gameserver.configs.main.CustomConfig;
 import com.aionemu.gameserver.dao.PlayerBindPointDAO;
 import com.aionemu.gameserver.dataholders.DataManager;
+import com.aionemu.gameserver.model.DialogAction;
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.TribeClass;
 import com.aionemu.gameserver.model.animations.ActionAnimation;
@@ -23,6 +24,8 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.templates.BindPointTemplate;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ACTION_ANIMATION;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_QUESTION_WINDOW;
+import com.aionemu.gameserver.questEngine.QuestEngine;
+import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.PositionUtil;
@@ -98,6 +101,8 @@ public class ResurrectAI extends NpcAI {
 						TeleportService.sendObeliskBindPoint(responder);
 						PacketSendUtility.broadcastPacket(responder, new SM_ACTION_ANIMATION(responder.getObjectId(), ActionAnimation.BIND_KISK), true);
 						PacketSendUtility.sendPacket(responder, STR_DEATH_REGISTER_RESURRECT_POINT());
+						// campanhas 10160/20160 ("registre o obelisco como ponto"): o registro é a etapa
+						QuestEngine.getInstance().onDialog(new QuestEnv(requester, responder, 0, DialogAction.USE_OBJECT));
 					} else
 						// if any errors happen, left that player with old bind point
 						responder.setBindPoint(old);

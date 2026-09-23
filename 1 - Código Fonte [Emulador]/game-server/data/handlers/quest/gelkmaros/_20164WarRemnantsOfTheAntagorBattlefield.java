@@ -1,112 +1,27 @@
 package quest.gelkmaros;
 
-import static com.aionemu.gameserver.model.DialogAction.*;
-
-import com.aionemu.gameserver.model.Race;
-import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.questEngine.handlers.AbstractQuestHandler;
-import com.aionemu.gameserver.questEngine.model.QuestEnv;
-import com.aionemu.gameserver.questEngine.model.QuestState;
-import com.aionemu.gameserver.questEngine.model.QuestStatus;
+import com.aionemu.gameserver.questEngine.handlers.CampaignQuestHandler;
 
 /**
- * Quest ID: 20164
- * Title: Restos de Guerra do Campo de Batalha Antagor
- * Zone: Gelkmaros
- * 
- * Auto-generated with Classic 5.0 campaign engine standards.
+ * Campanha 20164 War Remnants of the Antagor Battlefield. Tabela gerada por 6 - Ferramentas/parsersXML/gera_handlers_campanhas_50.py a partir de
+ * dialogs/quest/quest_q20164.html e Quest/quest_script_monster.csv do cliente 5.0.
  */
-public class _20164WarRemnantsOfTheAntagorBattlefield extends AbstractQuestHandler {
-
-	private static final int START_NPC = 799226;
-	private static final int END_NPC = 799226;
-	private static final int[] MOBS = { 206128, 218987, 216545 };
+public class _20164WarRemnantsOfTheAntagorBattlefield extends CampaignQuestHandler {
 
 	public _20164WarRemnantsOfTheAntagorBattlefield() {
-		super(20164);
+		super(20164, 20163);
 	}
 
 	@Override
-	public void register() {
-		qe.registerOnLevelChanged(questId);
-		qe.registerOnQuestCompleted(questId);
-		qe.registerQuestNpc(START_NPC).addOnQuestStart(questId);
-		qe.registerQuestNpc(START_NPC).addOnTalkEvent(questId);
-		for (int mob : MOBS) {
-			qe.registerQuestNpc(mob).addOnKillEvent(questId);
-		}
-	}
-
-	@Override
-	public boolean onDialogEvent(QuestEnv env) {
-		final Player player = env.getPlayer();
-		if (player.getRace() != Race.ASMODIANS) {
-			return false;
-		}
-
-		final QuestState qs = player.getQuestStateList().getQuestState(questId);
-		int targetId = env.getTargetId();
-		int dialogActionId = env.getDialogActionId();
-
-		if (qs == null || qs.isStartable()) {
-			if (targetId == START_NPC) {
-				if (dialogActionId == QUEST_SELECT) {
-					return sendQuestDialog(env, 1011);
-				} else {
-					return sendQuestStartDialog(env);
-				}
-			}
-			return false;
-		}
-
-		if (qs.getStatus() == QuestStatus.START) {
-			int var = qs.getQuestVarById(0);
-			if (targetId == START_NPC) {
-				switch (dialogActionId) {
-					case QUEST_SELECT:
-						return sendQuestDialog(env, 1011);
-					case SETPRO1:
-					case SETPRO2:
-					case SET_SUCCEED:
-						qs.setQuestVar(var + 1);
-						updateQuestStatus(env);
-						return closeDialogWindow(env);
-				}
-			} else if (targetId == END_NPC) {
-				switch (dialogActionId) {
-					case QUEST_SELECT:
-						return sendQuestDialog(env, 2375);
-					case SELECT_QUEST_REWARD:
-						qs.setStatus(QuestStatus.REWARD);
-						updateQuestStatus(env);
-						return sendQuestEndDialog(env);
-				}
-			}
-		} else if (qs.getStatus() == QuestStatus.REWARD) {
-			if (targetId == END_NPC || targetId == START_NPC) {
-				return sendQuestEndDialog(env);
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public boolean onKillEvent(QuestEnv env) {
-		return defaultOnKillEvent(env, MOBS, 0, 1);
-	}
-
-	@Override
-	public void onLevelChangedEvent(Player player) {
-		if (player.getRace() == Race.ASMODIANS) {
-			defaultOnLevelChangedEvent(player, 20163);
-		}
-	}
-
-	@Override
-	public void onQuestCompletedEvent(QuestEnv env) {
-		Player player = env.getPlayer();
-		if (player.getRace() == Race.ASMODIANS) {
-			defaultOnQuestCompletedEvent(env, 20163);
-		}
+	protected void defineSteps() {
+		talk(0, 1, 1, 799226); // Barretta
+		talk(1, 2, 2, 799245); // Vyuin
+		check(2, 3, 3, 799245); // restos do Drakan (quest_monster drop@2); check_ok -> SELECT4
+		talkGive(3, 4, 4, 182215609, 1, 799245); // Vyuin (select4) entrega o item de uso (quest_20164b)
+		itemUseArea(4, 5, 182215609, "DF4_ITEMUSEAREA_Q20020_220070000"); // CSV Progress(4) itemUseArea
+		sensory(5, 6, 206128); // CSV Progress(5) DF4_SensoryArea_Q20020
+		kill(6, 1, 218987, 216545); // CSV Progress(6) DF4_Drakan_Runner01_Q_55_An ou DF4_DrakanFi_NmdQ_52_An
+		talk(7, 8, REWARD, 799245); // Vyuin, select8 SET_SUCCEED
+		reward(799226); // Barretta
 	}
 }

@@ -1,112 +1,32 @@
 package quest.gelkmaros;
 
-import static com.aionemu.gameserver.model.DialogAction.*;
-
-import com.aionemu.gameserver.model.Race;
-import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.questEngine.handlers.AbstractQuestHandler;
-import com.aionemu.gameserver.questEngine.model.QuestEnv;
-import com.aionemu.gameserver.questEngine.model.QuestState;
-import com.aionemu.gameserver.questEngine.model.QuestStatus;
+import com.aionemu.gameserver.questEngine.handlers.CampaignQuestHandler;
 
 /**
- * Quest ID: 20160
- * Title: First Assignment in Gelkmaros
- * Zone: Gelkmaros
- * 
- * Auto-generated with Classic 5.0 campaign engine standards.
+ * Campanha 20160 First Assignment in Gelkmaros. Tabela gerada por 6 - Ferramentas/parsersXML/gera_handlers_campanhas_50.py a partir de
+ * dialogs/quest/quest_q20160.html e Quest/quest_script_monster.csv do cliente 5.0.
  */
-public class _20160FirstAssignmentInGelkmaros extends AbstractQuestHandler {
-
-	private static final int START_NPC = 799226;
-	private static final int END_NPC = 799226;
-	private static final int[] MOBS = { 216555 };
+public class _20160FirstAssignmentInGelkmaros extends CampaignQuestHandler {
 
 	public _20160FirstAssignmentInGelkmaros() {
-		super(20160);
+		super(20160, 20156);
 	}
 
 	@Override
-	public void register() {
-		qe.registerOnLevelChanged(questId);
-		qe.registerOnQuestCompleted(questId);
-		qe.registerQuestNpc(START_NPC).addOnQuestStart(questId);
-		qe.registerQuestNpc(START_NPC).addOnTalkEvent(questId);
-		for (int mob : MOBS) {
-			qe.registerQuestNpc(mob).addOnKillEvent(questId);
-		}
-	}
-
-	@Override
-	public boolean onDialogEvent(QuestEnv env) {
-		final Player player = env.getPlayer();
-		if (player.getRace() != Race.ASMODIANS) {
-			return false;
-		}
-
-		final QuestState qs = player.getQuestStateList().getQuestState(questId);
-		int targetId = env.getTargetId();
-		int dialogActionId = env.getDialogActionId();
-
-		if (qs == null || qs.isStartable()) {
-			if (targetId == START_NPC) {
-				if (dialogActionId == QUEST_SELECT) {
-					return sendQuestDialog(env, 1011);
-				} else {
-					return sendQuestStartDialog(env);
-				}
-			}
-			return false;
-		}
-
-		if (qs.getStatus() == QuestStatus.START) {
-			int var = qs.getQuestVarById(0);
-			if (targetId == START_NPC) {
-				switch (dialogActionId) {
-					case QUEST_SELECT:
-						return sendQuestDialog(env, 1011);
-					case SETPRO1:
-					case SETPRO2:
-					case SET_SUCCEED:
-						qs.setQuestVar(var + 1);
-						updateQuestStatus(env);
-						return closeDialogWindow(env);
-				}
-			} else if (targetId == END_NPC) {
-				switch (dialogActionId) {
-					case QUEST_SELECT:
-						return sendQuestDialog(env, 2375);
-					case SELECT_QUEST_REWARD:
-						qs.setStatus(QuestStatus.REWARD);
-						updateQuestStatus(env);
-						return sendQuestEndDialog(env);
-				}
-			}
-		} else if (qs.getStatus() == QuestStatus.REWARD) {
-			if (targetId == END_NPC || targetId == START_NPC) {
-				return sendQuestEndDialog(env);
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public boolean onKillEvent(QuestEnv env) {
-		return defaultOnKillEvent(env, MOBS, 0, 1);
-	}
-
-	@Override
-	public void onLevelChangedEvent(Player player) {
-		if (player.getRace() == Race.ASMODIANS) {
-			defaultOnLevelChangedEvent(player, 20156);
-		}
-	}
-
-	@Override
-	public void onQuestCompletedEvent(QuestEnv env) {
-		Player player = env.getPlayer();
-		if (player.getRace() == Race.ASMODIANS) {
-			defaultOnQuestCompletedEvent(env, 20156);
-		}
+	protected void defineSteps() {
+		talk(0, 1, 1, 799225); // Hler
+		talk(1, 2, 2, 799200); // Nikola, curandeira de alma
+		useObject(2, 3, 730238); // registrar o obelisco de Gelkmaros (evento do ResurrectAI)
+		talk(3, 4, 4, 799364); // Merhen
+		talk(4, 5, 5, 799365); // Gudinho
+		talk(5, 6, 6, 799204); // Vincenzo
+		talk(6, 7, 7, 799208); // Garath
+		talk(7, 8, 8, 799405); // Homesiane
+		talk(8, 9, 9, 799406); // Sherockian (select9)
+		check(9, 10, 10, 799406); // erva e pedra (quest_monster drop@9)
+		talk(10, 11, 11, 799406); // Sherockian (select11)
+		kill(11, 1, 216555); // CSV Progress(11~!12) DF4_Condor_DR_NmdQ_52_An
+		talk(12, 13, REWARD, 799406); // Sherockian, select13 SET_SUCCEED
+		reward(799227); // Gelastra
 	}
 }

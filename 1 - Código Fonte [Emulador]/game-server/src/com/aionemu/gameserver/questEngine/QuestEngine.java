@@ -226,9 +226,25 @@ public class QuestEngine implements GameEngine {
 	 *          - The player who leveled up
 	 */
 	public void onLevelChanged(Player player) {
+		onLevelChanged(player, false);
+	}
+
+	/**
+	 * @param missionsOnly
+	 *          só as campanhas (category1=mission). É o que o login usa: a campanha entra em START/LOCKED sozinha assim que nível e
+	 *          anterior permitem (capturas 01_Login_World: ADD 1010 e 10153 logo depois das listas), e um personagem que já passou do
+	 *          nível sem receber a campanha precisa dela no login seguinte. Quest comum não entra aqui, para não voltar depois de
+	 *          abandonada.
+	 */
+	public void onLevelChanged(Player player, boolean missionsOnly) {
 		try {
 			List<Integer> raceQuestsOnLevelUp = getOrCreateOnLevelUpForRace(player.getRace());
 			for (int questId : raceQuestsOnLevelUp) {
+				if (missionsOnly) {
+					QuestTemplate template = DataManager.QUEST_DATA.getQuestById(questId);
+					if (template == null || !template.isMission())
+						continue;
+				}
 				QuestState qs = player.getQuestStateList().getQuestState(questId);
 				if (qs == null || qs.getStatus() != QuestStatus.COMPLETE) {
 					AbstractQuestHandler questHandler = getQuestHandlerByQuestId(questId);
