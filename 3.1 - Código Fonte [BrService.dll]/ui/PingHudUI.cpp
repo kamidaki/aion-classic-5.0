@@ -179,51 +179,6 @@ void PingHudUI::Paint(HWND hwnd) {
 
             g.DrawString(pingStr, -1, &fontPing, Gdiplus::PointF(curX, 5.0f), &textBrush);
 
-            // Thin white Fibonacci trend line under MS text (last 60 minutes, no background)
-            float sparkX = curX;
-            float sparkW = 36.0f;
-            float sparkY = 23.0f;
-            float sparkH = 5.0f;
-
-            std::vector<Gdiplus::PointF> sparkPts;
-            {
-                std::lock_guard<std::mutex> lock(g_pingHistoryMutex);
-                if (g_pingHistory.size() >= 2) {
-                    int minP = g_pingHistory[0].pingMs;
-                    int maxP = g_pingHistory[0].pingMs;
-                    for (const auto& e : g_pingHistory) {
-                        if (e.pingMs < minP) minP = e.pingMs;
-                        if (e.pingMs > maxP) maxP = e.pingMs;
-                    }
-                    if (maxP - minP < 6) maxP = minP + 6;
-
-                    size_t count = g_pingHistory.size();
-                    size_t step = (count > 24) ? (count / 24) : 1;
-                    for (size_t i = 0; i < count; i += step) {
-                        float fx = sparkX + ((float)i / (float)(count - 1)) * sparkW;
-                        float norm = (float)(g_pingHistory[i].pingMs - minP) / (float)(maxP - minP);
-                        norm = std::clamp(norm, 0.0f, 1.0f);
-                        float fy = sparkY + sparkH - norm * sparkH;
-                        sparkPts.push_back(Gdiplus::PointF(fx, fy));
-                    }
-                }
-            }
-
-            if (sparkPts.size() < 2) {
-                // Subtle Fibonacci progression curve when history is initializing
-                static const float fibRatios[6] = { 0.236f, 0.500f, 0.382f, 0.618f, 0.382f, 0.786f };
-                for (int i = 0; i < 6; ++i) {
-                    float fx = sparkX + (float)i * (sparkW / 5.0f);
-                    float fy = sparkY + sparkH - fibRatios[i] * sparkH;
-                    sparkPts.push_back(Gdiplus::PointF(fx, fy));
-                }
-            }
-
-            if (sparkPts.size() >= 2) {
-                Gdiplus::Pen sparkPen(Gdiplus::Color(255, 255, 255, 255), 1.0f); // 1px pure white, no background
-                g.DrawCurve(&sparkPen, sparkPts.data(), (INT)sparkPts.size(), 0.5f);
-            }
-
             curX += 38.0f;
         }
 
