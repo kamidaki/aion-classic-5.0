@@ -143,7 +143,7 @@ private:
 private:
     template <typename T>
     T SafeRead(uintptr_t addr) {
-        if (!addr) return T{};
+        if (addr < 0x10000 || addr > 0x00007FFFFFFEFFFF) return T{};
         __try {
             return *(T*)addr;
         } __except (EXCEPTION_EXECUTE_HANDLER) {

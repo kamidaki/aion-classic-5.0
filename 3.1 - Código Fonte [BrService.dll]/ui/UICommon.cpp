@@ -20,6 +20,30 @@ const Gdiplus::Color UICommon::ColTextMuted(255, 150, 155, 165);   // Secondary 
 const Gdiplus::Color UICommon::ColBorderSubtle(90, 180, 190, 210); // Glass rim shine
 const Gdiplus::Color UICommon::ColBarDamage(255, 210, 60, 65);     // Crimson/amber damage bar
 
+// Model 3 Light Theme Palette
+const Gdiplus::Color UICommon::ColModel3Bg(255, 248, 250, 252);         // Very light slate #F8FAFC
+const Gdiplus::Color UICommon::ColModel3Card(255, 255, 255, 255);       // Crisp white #FFFFFF
+const Gdiplus::Color UICommon::ColModel3Border(255, 226, 232, 240);     // Clean border #E2E8F0
+const Gdiplus::Color UICommon::ColModel3BorderDark(255, 203, 213, 225); // Medium border #CBD5E1
+const Gdiplus::Color UICommon::ColModel3TextDark(255, 15, 23, 42);      // Heading text #0F172A
+const Gdiplus::Color UICommon::ColModel3TextMuted(255, 100, 116, 139);  // Secondary text #64748B
+const Gdiplus::Color UICommon::ColModel3TextLight(255, 148, 163, 184);  // Subtle label #94A3B8
+const Gdiplus::Color UICommon::ColModel3Blue(255, 37, 99, 235);         // Accent blue #2563EB
+const Gdiplus::Color UICommon::ColModel3BlueLight(255, 239, 246, 255);  // Selected pill bg #EFF6FF
+const Gdiplus::Color UICommon::ColModel3BlueBorder(255, 191, 219, 254); // Selected pill border #BFDBFE
+const Gdiplus::Color UICommon::ColModel3BlueHover(255, 29, 78, 216);    // Darker blue #1D4ED8
+const Gdiplus::Color UICommon::ColModel3HpRed(255, 239, 68, 68);        // Target HP red #EF4444
+
+// Theme palette variants
+const Gdiplus::Color UICommon::ColThemeDarkBg(255, 15, 15, 20);       // Near black #0F0F14
+const Gdiplus::Color UICommon::ColThemeDarkCard(255, 25, 28, 38);     // Dark card #191C26
+const Gdiplus::Color UICommon::ColThemeDarkBorder(255, 45, 52, 68);   // Dark border #2D3444
+const Gdiplus::Color UICommon::ColThemeDarkText(255, 240, 244, 255);  // Near white #F0F4FF
+const Gdiplus::Color UICommon::ColThemeGrayBg(255, 68, 74, 88);       // Mid gray bg #444A58
+const Gdiplus::Color UICommon::ColThemeGrayCard(255, 88, 95, 112);    // Gray card #585F70
+const Gdiplus::Color UICommon::ColThemeNavyBg(255, 12, 24, 68);       // Deep navy #0C1844
+const Gdiplus::Color UICommon::ColThemeNavyCard(255, 20, 40, 100);    // Navy card #142864
+
 void UICommon::InitializeGdiplus() {
     if (s_gdiplusToken == 0) {
         Gdiplus::GdiplusStartupInput gsi;
@@ -293,6 +317,177 @@ std::wstring UICommon::FormatTime(uint32_t totalSecs) {
     wchar_t buf[32];
     swprintf_s(buf, L"%02u:%02u", mins, secs);
     return std::wstring(buf);
+}
+
+std::wstring UICommon::Utf8ToWide(const std::string& utf8Str) {
+    if (utf8Str.empty()) return std::wstring();
+    int wlen = MultiByteToWideChar(CP_UTF8, 0, utf8Str.c_str(), (int)utf8Str.length(), nullptr, 0);
+    if (wlen <= 0) {
+        wlen = MultiByteToWideChar(CP_ACP, 0, utf8Str.c_str(), (int)utf8Str.length(), nullptr, 0);
+        if (wlen <= 0) return std::wstring(utf8Str.begin(), utf8Str.end());
+        std::wstring out(wlen, 0);
+        MultiByteToWideChar(CP_ACP, 0, utf8Str.c_str(), (int)utf8Str.length(), &out[0], wlen);
+        return out;
+    }
+    std::wstring out(wlen, 0);
+    MultiByteToWideChar(CP_UTF8, 0, utf8Str.c_str(), (int)utf8Str.length(), &out[0], wlen);
+    return out;
+}
+
+void UICommon::DrawDpsSplineChart(Gdiplus::Graphics& g, float x, float y, float w, float h,
+                                  const std::vector<float>& points, uint32_t durationSec) {
+    // 1. Chart Background Card with clean border
+    Gdiplus::SolidBrush bgCard(ColModel3Card);
+    FillRoundRectangle(g, &bgCard, x, y, w, h, 6.0f);
+    Gdiplus::Pen borderPen(ColModel3Border, 1.0f);
+    DrawRoundRectangle(g, &borderPen, x, y, w, h, 6.0f);
+
+    float axisLeftW = 32.0f;
+    float timeBottomH = 14.0f;
+    float plotX = x + axisLeftW;
+    float plotY = y + 8.0f;
+    float plotW = w - axisLeftW - 12.0f;
+    float plotH = h - timeBottomH - 12.0f;
+
+    // Determine max DPS for scaling
+    float maxVal = 1000.0f;
+    for (float v : points) {
+        if (v > maxVal) maxVal = v;
+    }
+    maxVal = std::ceil(maxVal / 500.0f) * 500.0f;
+    if (maxVal < 1000.0f) maxVal = 1000.0f;
+
+    // Draw 3 horizontal grid lines and Y-axis labels
+    Gdiplus::Font fontAxis(L"Segoe UI", 6.5f, Gdiplus::FontStyleRegular);
+    Gdiplus::SolidBrush textAxis(ColModel3TextLight);
+    Gdiplus::Pen gridPen(Gdiplus::Color(255, 241, 245, 249), 1.0f);
+    Gdiplus::StringFormat rightAlign;
+    rightAlign.SetAlignment(Gdiplus::StringAlignmentFar);
+    rightAlign.SetLineAlignment(Gdiplus::StringAlignmentCenter);
+
+    float valSteps[3] = { maxVal, maxVal * 0.66f, maxVal * 0.33f };
+    float ySteps[3] = { plotY, plotY + plotH * 0.35f, plotY + plotH * 0.70f };
+
+    for (int i = 0; i < 3; ++i) {
+        wchar_t lbl[32];
+        if (valSteps[i] >= 1000.0f) {
+            swprintf_s(lbl, L"%.1fk", valSteps[i] / 1000.0f);
+        } else {
+            swprintf_s(lbl, L"%.0f", valSteps[i]);
+        }
+        Gdiplus::RectF lblRect(x + 2.0f, ySteps[i] - 6.0f, axisLeftW - 6.0f, 12.0f);
+        g.DrawString(lbl, -1, &fontAxis, lblRect, &rightAlign, &textAxis);
+        g.DrawLine(&gridPen, plotX, ySteps[i], plotX + plotW, ySteps[i]);
+    }
+
+    g.DrawLine(&gridPen, plotX, plotY + plotH, plotX + plotW, plotY + plotH);
+
+    // Build points for spline
+    std::vector<Gdiplus::PointF> ptArray;
+    if (points.size() < 2) {
+        ptArray.push_back(Gdiplus::PointF(plotX, plotY + plotH * 0.75f));
+        ptArray.push_back(Gdiplus::PointF(plotX + plotW * 0.20f, plotY + plotH * 0.55f));
+        ptArray.push_back(Gdiplus::PointF(plotX + plotW * 0.45f, plotY + plotH * 0.60f));
+        ptArray.push_back(Gdiplus::PointF(plotX + plotW * 0.60f, plotY + plotH * 0.35f));
+        ptArray.push_back(Gdiplus::PointF(plotX + plotW * 0.75f, plotY + plotH * 0.45f));
+        ptArray.push_back(Gdiplus::PointF(plotX + plotW * 0.88f, plotY + plotH * 0.40f));
+        ptArray.push_back(Gdiplus::PointF(plotX + plotW, plotY + plotH * 0.70f));
+    } else {
+        float stepX = plotW / (points.size() - 1);
+        for (size_t i = 0; i < points.size(); ++i) {
+            float normY = std::clamp(points[i] / maxVal, 0.05f, 0.98f);
+            float py = (plotY + plotH) - (normY * plotH);
+            ptArray.push_back(Gdiplus::PointF(plotX + i * stepX, py));
+        }
+    }
+
+    if (ptArray.size() >= 2) {
+        Gdiplus::GraphicsPath areaPath;
+        areaPath.AddCurve(ptArray.data(), (INT)ptArray.size(), 0.45f);
+        areaPath.AddLine(plotX + plotW, plotY + plotH, plotX, plotY + plotH);
+        areaPath.CloseFigure();
+
+        Gdiplus::LinearGradientBrush areaBrush(
+            Gdiplus::PointF(plotX, plotY),
+            Gdiplus::PointF(plotX, plotY + plotH),
+            Gdiplus::Color(60, 37, 99, 235),
+            Gdiplus::Color(5, 37, 99, 235)
+        );
+        g.FillPath(&areaBrush, &areaPath);
+
+        Gdiplus::Pen curvePen(ColModel3Blue, 2.0f);
+        curvePen.SetLineJoin(Gdiplus::LineJoinRound);
+        g.DrawCurve(&curvePen, ptArray.data(), (INT)ptArray.size(), 0.45f);
+    }
+
+    // X-axis time marks
+    uint32_t tMax = durationSec > 0 ? durationSec : 45;
+    uint32_t tStep = tMax / 3;
+    if (tStep == 0) tStep = 15;
+
+    Gdiplus::StringFormat centerAlign;
+    centerAlign.SetAlignment(Gdiplus::StringAlignmentCenter);
+
+    for (int i = 0; i < 4; ++i) {
+        uint32_t curT = i * tStep;
+        wchar_t tBuf[16];
+        swprintf_s(tBuf, L"%02u:%02u", curT / 60, curT % 60);
+        float tx = plotX + (float)i * (plotW / 3.0f);
+        Gdiplus::RectF tRect(tx - 20.0f, plotY + plotH + 2.0f, 40.0f, 12.0f);
+        g.DrawString(tBuf, -1, &fontAxis, tRect, &centerAlign, &textAxis);
+    }
+}
+
+void UICommon::DrawModernSwitch(Gdiplus::Graphics& g, float x, float y, bool active,
+                                const wchar_t* activeText, const wchar_t* inactiveText) {
+    float swW = 34.0f;
+    float swH = 18.0f;
+
+    Gdiplus::SolidBrush trackBrush(active ? ColModel3Blue : ColModel3BorderDark);
+    FillRoundRectangle(g, &trackBrush, x, y, swW, swH, swH * 0.5f);
+
+    float thumbD = swH - 4.0f;
+    float thumbX = active ? (x + swW - thumbD - 2.0f) : (x + 2.0f);
+    float thumbY = y + 2.0f;
+    Gdiplus::SolidBrush thumbBrush(ColModel3Card);
+    g.FillEllipse(&thumbBrush, thumbX, thumbY, thumbD, thumbD);
+
+    const wchar_t* label = active ? (activeText ? activeText : L"Enabled") : (inactiveText ? inactiveText : L"Disabled");
+    Gdiplus::Font font(L"Segoe UI", 7.5f, Gdiplus::FontStyleRegular);
+    Gdiplus::SolidBrush textBrush(active ? ColModel3TextDark : ColModel3TextMuted);
+    g.DrawString(label, -1, &font, Gdiplus::PointF(x + swW + 8.0f, y + 2.0f), &textBrush);
+}
+
+void UICommon::DrawBarChart(Gdiplus::Graphics& g, float x, float y, float w, float h,
+                            const std::vector<float>& bars, Gdiplus::Color barColor) {
+    if (bars.empty()) return;
+    float maxVal = 0.0f;
+    for (float v : bars) if (v > maxVal) maxVal = v;
+    if (maxVal < 1.0f) maxVal = 1.0f;
+
+    // Background
+    Gdiplus::SolidBrush bgBrush(ColModel3Bg);
+    FillRoundRectangle(g, &bgBrush, x, y, w, h, 5.0f);
+    Gdiplus::Pen bgPen(ColModel3Border, 1.0f);
+    DrawRoundRectangle(g, &bgPen, x, y, w, h, 5.0f);
+
+    float plotX = x + 6.0f;
+    float plotY = y + 4.0f;
+    float plotW = w - 12.0f;
+    float plotH = h - 12.0f;
+
+    float barW = plotW / (float)bars.size() - 2.0f;
+    if (barW < 3.0f) barW = 3.0f;
+
+    Gdiplus::SolidBrush barBrush(barColor);
+    for (size_t i = 0; i < bars.size(); ++i) {
+        float norm = bars[i] / maxVal;
+        float bh = plotH * norm;
+        float bx = plotX + i * (barW + 2.0f);
+        float by = plotY + plotH - bh;
+        if (bh > 1.0f)
+            FillRoundRectangle(g, &barBrush, bx, by, barW, bh, 2.0f);
+    }
 }
 
 } // namespace BrService

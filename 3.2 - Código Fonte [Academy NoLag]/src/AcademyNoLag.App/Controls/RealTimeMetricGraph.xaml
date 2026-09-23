@@ -1,0 +1,24 @@
+<UserControl x:Class="AcademyNoLag.App.Controls.RealTimeMetricGraph"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="110" d:DesignWidth="380">
+    <!-- Minimal Dark graph: no legend (parent renders it), subtle grid, clean polylines -->
+    <Grid Background="#080B10" ClipToBounds="True">
+        <Canvas x:Name="GraphCanvas" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+        <!-- Subtle latency scale labels — left side only -->
+        <TextBlock x:Name="MaxScaleText" Text="100ms"
+                   Foreground="#2A3548" FontSize="9" FontFamily="Segoe UI"
+                   Margin="6,4,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock x:Name="MidScaleText" Text="50ms"
+                   Foreground="#2A3548" FontSize="9" FontFamily="Segoe UI"
+                   Margin="6,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBlock Text="0ms"
+                   Foreground="#2A3548" FontSize="9" FontFamily="Segoe UI"
+                   Margin="6,0,0,4" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+    </Grid>
+</UserControl>
+

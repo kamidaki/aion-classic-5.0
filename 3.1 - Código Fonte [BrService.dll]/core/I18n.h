@@ -12,7 +12,7 @@ inline bool IsEnglish() {
 struct I18n {
     // Top Bar & Titles
     static const wchar_t* TitlePanel() {
-        return IsEnglish() ? L"LOST ACADEMY - SHUGO ANALYZER" : L"PAINEL ACADEMY - COMBATE & SHUGO";
+        return L"Academy Show";
     }
     static const wchar_t* TitleDpsMeter() {
         return IsEnglish() ? L"DPS METER & COMBAT METRICS" : L"ANALISADOR DE COMBATE & DPS";
@@ -181,8 +181,31 @@ struct I18n {
         return IsEnglish() ? L"Combo UI Scale: %d%%" : L"Escala do Combo UI: %d%%";
     }
 
+    // COMBO UI Screen Position
+    static const wchar_t* ComboUiPosition() {
+        return IsEnglish() ? L"Combo UI Position:" : L"Posição do Combo UI:";
+    }
+    static const wchar_t* ComboPosTop() {
+        return IsEnglish() ? L"Top" : L"Topo";
+    }
+    static const wchar_t* ComboPosMidRight() {
+        return IsEnglish() ? L"Mid-Right" : L"Centro-Dir";
+    }
+    static const wchar_t* ComboPosCenter() {
+        return IsEnglish() ? L"Center" : L"Centro";
+    }
+    static const wchar_t* ComboPosLeft() {
+        return IsEnglish() ? L"Mid-Left" : L"Centro-Esq";
+    }
+    static const wchar_t* PosX() {
+        return L"X";
+    }
+    static const wchar_t* PosY() {
+        return L"Y";
+    }
+
     static const wchar_t* SaveAndClose() {
-        return IsEnglish() ? L"✔ Save and Close Settings" : L"✔ Salvar e Concluir Ajustes";
+        return IsEnglish() ? L"Save & Close" : L"Salvar & Fechar";
     }
 };
 

@@ -1,201 +1,285 @@
 #include "CVarManager.h"
 #include "../core/ServiceGlobals.h"
 #include "../core/ServiceLog.h"
-#include <mutex>
-#include <vector>
 #include <cstdio>
 #include <cstring>
+#include <algorithm>
+#include <atomic>
 
 namespace BrService {
 
-static std::recursive_mutex s_cvarMutex;
-static std::unordered_map<std::string, void*> s_cvarMap;
-static bool s_initialized = false;
+// Worker state
+static HANDLE g_hWorkerThread = nullptr;
+static HANDLE g_hWakeEvent = nullptr;
+static volatile LONG g_stopWorker = 0;
+static CRITICAL_SECTION g_cvarLock;
+static bool g_csInitialized = false;
 
-// 64-bit CryEngine CVar structure offsets (Standard CryEngine 1.5 / Aion 64-bit)
-static constexpr size_t CVAR_FLAG_OFFSET = 8;
-static constexpr size_t CVAR_NAME_OFFSET = 9;
-static constexpr size_t CVAR_INT_OFFSET  = 184;
-static constexpr size_t CVAR_FLOAT_OFFSET= 188;
-static constexpr size_t CVAR_STR_OFFSET  = 192;
+// Native Game.dll Engine offsets (Aion Classic 5.0 x64)
+// Verified directly from client disassembly at Game.dll RVA 0x47DBA8
+static constexpr uintptr_t kEngineGlobalRva = 0x156F2D0;
+static constexpr size_t kVtableGetConsole   = 0x158 / 8; // ISystem::GetIConsole
+static constexpr size_t kVtableGetCVar      = 0x0C8 / 8; // IConsole::GetCVar(const char*, bool)
+static constexpr size_t kVtableCVarSetFloat = 0x028 / 8; // ICVar::Set(float)
+static constexpr size_t kVtableCVarSetInt   = 0x030 / 8; // ICVar::Set(int)
+static constexpr size_t kVtableCVarSetStr   = 0x020 / 8; // ICVar::Set(const char*)
 
-void* CVarManager::FindCVar(const char* name) {
-    if (!name) return nullptr;
-    auto it = s_cvarMap.find(name);
-    if (it != s_cvarMap.end()) return it->second;
-    return nullptr;
+static bool IsGameReady() {
+    return GetModuleHandleA("Game.dll") != nullptr &&
+           GetModuleHandleA("CrySystem.dll") != nullptr;
 }
 
-static void WriteCVarFloat(void* pCVar, float val) {
-    if (!pCVar) return;
-    uint8_t* p = static_cast<uint8_t*>(pCVar);
-    *reinterpret_cast<int*>(p + CVAR_INT_OFFSET) = static_cast<int>(val);
-    *reinterpret_cast<float*>(p + CVAR_FLOAT_OFFSET) = val;
-    sprintf_s(reinterpret_cast<char*>(p + CVAR_STR_OFFSET), 64, "%f", val);
+static uintptr_t GetNativeConsole() {
+    uintptr_t hGame = reinterpret_cast<uintptr_t>(GetModuleHandleA("Game.dll"));
+    if (!hGame) return 0;
+
+    __try {
+        uintptr_t** ppEngineGlobal = reinterpret_cast<uintptr_t**>(hGame + kEngineGlobalRva);
+        if (!ppEngineGlobal || !*ppEngineGlobal) return 0;
+
+        uintptr_t* pEngineGlobal = *ppEngineGlobal;
+        if (!pEngineGlobal || !*pEngineGlobal) return 0;
+
+        auto fnGetConsole = reinterpret_cast<uintptr_t(__fastcall*)(void*)>(
+            pEngineGlobal[kVtableGetConsole]);
+        if (!fnGetConsole) return 0;
+
+        return fnGetConsole(pEngineGlobal);
+    } __except (EXCEPTION_EXECUTE_HANDLER) {
+        return 0;
+    }
 }
 
-static void WriteCVarInt(void* pCVar, int val) {
-    if (!pCVar) return;
-    uint8_t* p = static_cast<uint8_t*>(pCVar);
-    *reinterpret_cast<int*>(p + CVAR_INT_OFFSET) = val;
-    *reinterpret_cast<float*>(p + CVAR_FLOAT_OFFSET) = static_cast<float>(val);
-    sprintf_s(reinterpret_cast<char*>(p + CVAR_STR_OFFSET), 64, "%d", val);
+static uintptr_t GetNativeCVar(uintptr_t pConsole, const char* name) {
+    if (!pConsole || !name) return 0;
+
+    __try {
+        uintptr_t* pVtable = *reinterpret_cast<uintptr_t**>(pConsole);
+        if (!pVtable) return 0;
+
+        auto fnGetCVar = reinterpret_cast<uintptr_t(__fastcall*)(void*, const char*, bool)>(
+            pVtable[kVtableGetCVar]);
+        if (!fnGetCVar) return 0;
+
+        return fnGetCVar(reinterpret_cast<void*>(pConsole), name, true);
+    } __except (EXCEPTION_EXECUTE_HANDLER) {
+        return 0;
+    }
 }
 
-void CVarManager::ScanCVars() {
-    const char* targets[] = {
-        "g_minFov", "g_camMax", "g_maxfps", "g_freefly",
-        "d3d9_TripleBuffering", "r_Texture_Anisotropic_Level", "r_anisotropy", "con_disable_console"
-    };
+static bool SetNativeCVarFloat(const char* name, float val) {
+    uintptr_t pConsole = GetNativeConsole();
+    if (!pConsole) return false;
 
-    SYSTEM_INFO si;
-    GetSystemInfo(&si);
+    __try {
+        uintptr_t pCVar = GetNativeCVar(pConsole, name);
+        if (!pCVar) return false;
 
-    MEMORY_BASIC_INFORMATION mbi;
-    uint8_t* addr = static_cast<uint8_t*>(si.lpMinimumApplicationAddress);
-    uint8_t* maxAddr = static_cast<uint8_t*>(si.lpMaximumApplicationAddress);
+        uintptr_t* pVtable = *reinterpret_cast<uintptr_t**>(pCVar);
+        if (!pVtable) return false;
 
-    size_t foundCount = 0;
-    size_t totalTargets = sizeof(targets) / sizeof(targets[0]);
+        auto fnSet = reinterpret_cast<void(__fastcall*)(void*, float)>(
+            pVtable[kVtableCVarSetFloat]);
+        if (!fnSet) return false;
 
-    try {
-        while (addr < maxAddr && foundCount < totalTargets) {
-            if (!VirtualQuery(addr, &mbi, sizeof(mbi))) {
-                addr += 0x1000;
-                continue;
-            }
+        fnSet(reinterpret_cast<void*>(pCVar), val);
+        return true;
+    } __except (EXCEPTION_EXECUTE_HANDLER) {
+        return false;
+    }
+}
 
-            if ((mbi.State == MEM_COMMIT) &&
-                (mbi.Protect == PAGE_READWRITE || mbi.Protect == PAGE_EXECUTE_READWRITE) &&
-                !(mbi.Protect & PAGE_GUARD)) {
+static bool SetNativeCVarInt(const char* name, int val) {
+    uintptr_t pConsole = GetNativeConsole();
+    if (!pConsole) return false;
 
-                uint8_t* pStart = static_cast<uint8_t*>(mbi.BaseAddress);
-                size_t regionSize = mbi.RegionSize;
+    __try {
+        uintptr_t pCVar = GetNativeCVar(pConsole, name);
+        if (!pCVar) return false;
 
-                // Scan in 16-byte steps (CryEngine heap alignment)
-                for (size_t i = 0; i + 256 < regionSize; i += 16) {
-                    uint8_t* candidate = pStart + i;
+        uintptr_t* pVtable = *reinterpret_cast<uintptr_t**>(pCVar);
+        if (!pVtable) return false;
 
-                    for (const char* tName : targets) {
-                        if (s_cvarMap.find(tName) != s_cvarMap.end()) continue;
+        auto fnSet = reinterpret_cast<void(__fastcall*)(void*, int)>(
+            pVtable[kVtableCVarSetInt]);
+        if (!fnSet) return false;
 
-                        size_t len = strlen(tName);
-                        // In CryEngine 64-bit: candidate[8] is boolean flag (0 or 1), candidate[9] is ASCII CVar name
-                        if ((candidate[CVAR_FLAG_OFFSET] == 0 || candidate[CVAR_FLAG_OFFSET] == 1) &&
-                            memcmp(candidate + CVAR_NAME_OFFSET, tName, len) == 0 &&
-                            (candidate[CVAR_NAME_OFFSET + len] == '\0' || candidate[CVAR_NAME_OFFSET + len] == ' ')) {
+        fnSet(reinterpret_cast<void*>(pCVar), val);
+        return true;
+    } __except (EXCEPTION_EXECUTE_HANDLER) {
+        return false;
+    }
+}
 
-                            s_cvarMap[tName] = candidate;
-                            foundCount++;
-                            LogInfo("CVar CryEngine localizado: %s no endereco %p", tName, candidate);
-                        }
-                    }
-                }
-            }
+static void WorkerApplyAll() {
+    if (!IsGameReady()) return;
 
-            uint8_t* nextAddr = static_cast<uint8_t*>(mbi.BaseAddress) + mbi.RegionSize;
-            if (nextAddr <= addr) break;
-            addr = nextAddr;
-        }
-    } catch (...) {
-        LogError("Excecao capturada durante ScanCVars.");
+    // 1. Panoramic FOV (delete_0721_g_minfov & delete_0721_g_maxFov)
+    if (g_featFov.load()) {
+        float fov = std::clamp(g_cvarFov.load(), 60.0f, 120.0f);
+        SetNativeCVarFloat("delete_0721_g_minfov", fov);
+        SetNativeCVarFloat("delete_0721_g_maxFov", fov);
+        SetNativeCVarFloat("delete_0721_g_midFov", fov);
+        // Fallback names in case of client variants
+        SetNativeCVarFloat("g_minFov", fov);
+        SetNativeCVarFloat("g_maxFov", fov);
     }
 
-    LogInfo("Varredura de CVars concluida. Total encontrados: %zu/%zu", foundCount, totalTargets);
+    // 2. Camera Max Zoom (delete_0721_g_camMax & cb_cam_max_dist)
+    if (g_featCamMax.load()) {
+        float cam = std::clamp(g_cvarCamMax.load(), 5.0f, 45.0f);
+        SetNativeCVarFloat("delete_0721_g_camMax", cam);
+        SetNativeCVarFloat("cb_cam_max_dist", cam);
+        // Fallback
+        SetNativeCVarFloat("g_camMax", cam);
+    }
+
+    // 3. Framerate Cap (delete_0721_g_maxfps)
+    if (g_featFpsUnlock.load()) {
+        int fps = g_cvarMaxFps.load();
+        SetNativeCVarInt("delete_0721_g_maxfps", fps);
+        SetNativeCVarInt("g_maxfps", fps);
+    }
+
+    // 4. Triple Buffering (d3d9_TripleBuffering)
+    {
+        int tb = g_cvarTripleBuffering.load() ? 1 : 0;
+        SetNativeCVarInt("d3d9_TripleBuffering", tb);
+    }
+
+    // 5. Anisotropic Filtering (r_Texture_Anisotropic_Level)
+    {
+        int aniso = g_cvarAnisotropic.load() ? 16 : 0;
+        SetNativeCVarInt("r_Texture_Anisotropic_Level", aniso);
+    }
+
+    // 6. Free Fly (g_freefly)
+    {
+        int ff = g_featFreeFly.load() ? 1 : 0;
+        SetNativeCVarInt("g_freefly", ff);
+    }
+}
+
+static DWORD WINAPI CVarWorkerThreadProc(LPVOID) {
+    const DWORD intervalMs = 1200;
+    while (!InterlockedCompareExchange(&g_stopWorker, 0, 0)) {
+        WorkerApplyAll();
+        if (g_hWakeEvent) {
+            WaitForSingleObject(g_hWakeEvent, intervalMs);
+        } else {
+            Sleep(intervalMs);
+        }
+    }
+    return 0;
 }
 
 bool CVarManager::Initialize() {
-    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
-    if (s_initialized) return true;
+    if (!g_csInitialized) {
+        InitializeCriticalSection(&g_cvarLock);
+        g_csInitialized = true;
+    }
 
-    ScanCVars();
-    s_initialized = true;
-    ApplyAll();
+    InterlockedExchange(&g_stopWorker, 0);
+
+    if (!g_hWakeEvent) {
+        g_hWakeEvent = CreateEvent(nullptr, FALSE, FALSE, nullptr);
+    }
+
+    if (!g_hWorkerThread) {
+        g_hWorkerThread = CreateThread(nullptr, 0, CVarWorkerThreadProc, nullptr, 0, nullptr);
+        // Diagn\u00f3stico de RVA/console
+        uintptr_t pConsole = GetNativeConsole();
+        if (pConsole) {
+            LogInfo("CVarManager: Console CryEngine encontrado em 0x%p (RVA=0x%zX). CVars prontos.", (void*)pConsole, kEngineGlobalRva);
+        } else {
+            LogError("CVarManager: Console CryEngine NAO encontrado (RVA=0x%zX). Game.dll=%p CrySystem.dll=%p. CVars inoperantes ate o engine inicializar.",
+                     kEngineGlobalRva, GetModuleHandleA("Game.dll"), GetModuleHandleA("CrySystem.dll"));
+        }
+        LogInfo("CVarManager worker thread iniciado. Intervalo de reaplicacao: 1200ms.");
+    }
     return true;
 }
 
 void CVarManager::Shutdown() {
-    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
-    s_cvarMap.clear();
-    s_initialized = false;
+    InterlockedExchange(&g_stopWorker, 1);
+    if (g_hWakeEvent) {
+        SetEvent(g_hWakeEvent);
+    }
+    if (g_hWorkerThread) {
+        WaitForSingleObject(g_hWorkerThread, 2000);
+        CloseHandle(g_hWorkerThread);
+        g_hWorkerThread = nullptr;
+    }
+    if (g_hWakeEvent) {
+        CloseHandle(g_hWakeEvent);
+        g_hWakeEvent = nullptr;
+    }
+    if (g_csInitialized) {
+        DeleteCriticalSection(&g_cvarLock);
+        g_csInitialized = false;
+    }
 }
 
 void CVarManager::SetFov(float fov) {
-    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
-    g_cvarFov = fov;
-    void* p = FindCVar("g_minFov");
-    if (p) {
-        WriteCVarFloat(p, fov);
-    }
+    float clamped = std::clamp(fov, 60.0f, 120.0f);
+    g_cvarFov = clamped;
+    // Apply instantly
+    SetNativeCVarFloat("delete_0721_g_minfov", clamped);
+    SetNativeCVarFloat("delete_0721_g_maxFov", clamped);
+    SetNativeCVarFloat("delete_0721_g_midFov", clamped);
+    SetNativeCVarFloat("g_minFov", clamped);
+    SetNativeCVarFloat("g_maxFov", clamped);
+    if (g_hWakeEvent) SetEvent(g_hWakeEvent);
 }
 
 void CVarManager::SetCameraMax(float maxDist) {
-    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
-    g_cvarCamMax = maxDist;
-    void* p = FindCVar("g_camMax");
-    if (p) {
-        WriteCVarFloat(p, maxDist);
-    }
+    float clamped = std::clamp(maxDist, 5.0f, 45.0f);
+    g_cvarCamMax = clamped;
+    // Apply instantly
+    SetNativeCVarFloat("delete_0721_g_camMax", clamped);
+    SetNativeCVarFloat("cb_cam_max_dist", clamped);
+    SetNativeCVarFloat("g_camMax", clamped);
+    if (g_hWakeEvent) SetEvent(g_hWakeEvent);
 }
 
 void CVarManager::SetMaxFps(int fps) {
-    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
     g_cvarMaxFps = fps;
-    void* p = FindCVar("g_maxfps");
-    if (p) {
-        WriteCVarInt(p, fps);
-    }
+    // Apply instantly
+    SetNativeCVarInt("delete_0721_g_maxfps", fps);
+    SetNativeCVarInt("g_maxfps", fps);
+    if (g_hWakeEvent) SetEvent(g_hWakeEvent);
 }
 
 void CVarManager::SetTripleBuffering(bool enable) {
-    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
     g_cvarTripleBuffering = enable;
-    void* p = FindCVar("d3d9_TripleBuffering");
-    if (p) {
-        WriteCVarInt(p, enable ? 1 : 0);
-    }
+    SetNativeCVarInt("d3d9_TripleBuffering", enable ? 1 : 0);
+    if (g_hWakeEvent) SetEvent(g_hWakeEvent);
 }
 
 void CVarManager::SetAnisotropic(bool enable) {
-    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
     g_cvarAnisotropic = enable;
-    int val = enable ? 16 : 0;
-
-    void* p1 = FindCVar("r_Texture_Anisotropic_Level");
-    if (p1) WriteCVarInt(p1, val);
-
-    void* p2 = FindCVar("r_anisotropy");
-    if (p2) WriteCVarInt(p2, val);
+    SetNativeCVarInt("r_Texture_Anisotropic_Level", enable ? 16 : 0);
+    if (g_hWakeEvent) SetEvent(g_hWakeEvent);
 }
 
 void CVarManager::SetFreeFly(bool enable) {
-    std::lock_guard<std::recursive_mutex> lock(s_cvarMutex);
-    void* p = FindCVar("g_freefly");
-    if (p) {
-        WriteCVarInt(p, enable ? 1 : 0);
-        LogInfo("g_freefly configurado em tempo real para: %d", enable ? 1 : 0);
-    }
+    g_featFreeFly = enable;
+    SetNativeCVarInt("g_freefly", enable ? 1 : 0);
+    if (g_hWakeEvent) SetEvent(g_hWakeEvent);
 }
 
 void CVarManager::ApplyAll() {
-    if (g_featFov.load()) SetFov(g_cvarFov.load());
-    if (g_featCamMax.load()) SetCameraMax(g_cvarCamMax.load());
-    if (g_featFpsUnlock.load()) SetMaxFps(g_cvarMaxFps.load());
-    SetTripleBuffering(g_cvarTripleBuffering.load());
-    SetAnisotropic(g_cvarAnisotropic.load());
-    if (g_featFreeFly.load()) {
-        SetFreeFly(true);
-    } else {
-        SetFreeFly(false);
-    }
+    WorkerApplyAll();
+    if (g_hWakeEvent) SetEvent(g_hWakeEvent);
 }
 
 void CVarManager::ResyncOnMapChange() {
-    // If CVars were re-registered on map load, re-scan if needed and reapply
-    if (s_cvarMap.empty()) {
-        ScanCVars();
-    }
-    ApplyAll();
+    WorkerApplyAll();
+    if (g_hWakeEvent) SetEvent(g_hWakeEvent);
+}
+
+bool CVarManager::IsWorkerRunning() {
+    return g_hWorkerThread != nullptr;
 }
 
 } // namespace BrService

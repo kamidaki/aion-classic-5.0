@@ -61,8 +61,10 @@ void PingHudUI::Shutdown() {
 void PingHudUI::Show() {
     if (!g_featConsole.load() && !g_featPingUi.load()) return;
     if (g_hPingHudWnd && g_isInWorld.load() && !g_isLoadingScreen.load() && g_isGameActive.load()) {
-        ShowWindow(g_hPingHudWnd, SW_SHOWNOACTIVATE);
-        Repaint();
+        if (!IsWindowVisible(g_hPingHudWnd)) {
+            ShowWindow(g_hPingHudWnd, SW_SHOWNOACTIVATE);
+            Repaint();
+        }
     }
 }
 
@@ -177,51 +179,6 @@ void PingHudUI::Paint(HWND hwnd) {
 
             g.DrawString(pingStr, -1, &fontPing, Gdiplus::PointF(curX, 5.0f), &textBrush);
 
-            // Thin white Fibonacci trend line under MS text (last 60 minutes, no background)
-            float sparkX = curX;
-            float sparkW = 36.0f;
-            float sparkY = 23.0f;
-            float sparkH = 5.0f;
-
-            std::vector<Gdiplus::PointF> sparkPts;
-            {
-                std::lock_guard<std::mutex> lock(g_pingHistoryMutex);
-                if (g_pingHistory.size() >= 2) {
-                    int minP = g_pingHistory[0].pingMs;
-                    int maxP = g_pingHistory[0].pingMs;
-                    for (const auto& e : g_pingHistory) {
-                        if (e.pingMs < minP) minP = e.pingMs;
-                        if (e.pingMs > maxP) maxP = e.pingMs;
-                    }
-                    if (maxP - minP < 6) maxP = minP + 6;
-
-                    size_t count = g_pingHistory.size();
-                    size_t step = (count > 24) ? (count / 24) : 1;
-                    for (size_t i = 0; i < count; i += step) {
-                        float fx = sparkX + ((float)i / (float)(count - 1)) * sparkW;
-                        float norm = (float)(g_pingHistory[i].pingMs - minP) / (float)(maxP - minP);
-                        norm = std::clamp(norm, 0.0f, 1.0f);
-                        float fy = sparkY + sparkH - norm * sparkH;
-                        sparkPts.push_back(Gdiplus::PointF(fx, fy));
-                    }
-                }
-            }
-
-            if (sparkPts.size() < 2) {
-                // Subtle Fibonacci progression curve when history is initializing
-                static const float fibRatios[6] = { 0.236f, 0.500f, 0.382f, 0.618f, 0.382f, 0.786f };
-                for (int i = 0; i < 6; ++i) {
-                    float fx = sparkX + (float)i * (sparkW / 5.0f);
-                    float fy = sparkY + sparkH - fibRatios[i] * sparkH;
-                    sparkPts.push_back(Gdiplus::PointF(fx, fy));
-                }
-            }
-
-            if (sparkPts.size() >= 2) {
-                Gdiplus::Pen sparkPen(Gdiplus::Color(255, 255, 255, 255), 1.0f); // 1px pure white, no background
-                g.DrawCurve(&sparkPen, sparkPts.data(), (INT)sparkPts.size(), 0.5f);
-            }
-
             curX += 38.0f;
         }
 
@@ -232,6 +189,12 @@ void PingHudUI::Paint(HWND hwnd) {
             float iconSize = 20.0f;
 
             s_consoleIconRect = { (int)iconX - 2, (int)iconY - 2, (int)(iconX + iconSize + 2), (int)(iconY + iconSize + 2) };
+
+            // Hit test fix: fill entire hitbox with non-zero alpha (alpha=2) so WS_EX_LAYERED registers mouse on 100% of the button area
+            Gdiplus::SolidBrush hitBrush(Gdiplus::Color(2, 20, 25, 30));
+            UICommon::FillRoundRectangle(g, &hitBrush, (float)s_consoleIconRect.left, (float)s_consoleIconRect.top,
+                                         (float)(s_consoleIconRect.right - s_consoleIconRect.left),
+                                         (float)(s_consoleIconRect.bottom - s_consoleIconRect.top), 4.0f);
 
             Gdiplus::Color iconCol = s_iconHovered ? UICommon::ColGoldAccent : Gdiplus::Color(220, 180, 190, 205);
             Gdiplus::Pen iconPen(iconCol, 1.6f);
@@ -254,8 +217,8 @@ void PingHudUI::Paint(HWND hwnd) {
             float adminX = curX + 2.0f;
             float adminY = 7.0f;
 
-            // Draw small User/Admin silhouette icon
-            Gdiplus::Color adminCol(255, 120, 200, 255); // Cyan-Blue for Admin indicator
+            // Draw small User/Admin silhouette icon in pure WHITE (Requirement 19)
+            Gdiplus::Color adminCol(255, 255, 255, 255); // Pure white
             Gdiplus::Pen adminPen(adminCol, 1.3f);
             Gdiplus::SolidBrush adminBrush(adminCol);
 

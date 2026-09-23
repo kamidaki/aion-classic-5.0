@@ -761,7 +761,7 @@ void ComboRenderer::RenderLoop() {
                 g_gameHwnd = gameHwnd;
                 g_overlayHwnd = hwnd;
                 DWORD threadId = GetWindowThreadProcessId(gameHwnd, NULL);
-                g_windowHook = SetWindowsHookExA(WH_CALLWNDPROC, CallWndProcHook, GetModuleHandleA("LostHunting.dll"), threadId);
+                g_windowHook = SetWindowsHookExA(WH_CALLWNDPROC, CallWndProcHook, (HINSTANCE)BrService::g_hModule, threadId);
             }
         }
 
@@ -800,9 +800,6 @@ void ComboRenderer::RenderLoop() {
             if (needsPosUpdate || !IsWindowVisible(hwnd)) {
                 SetWindowPos(hwnd, HWND_TOPMOST, drawRect.left, drawRect.top, drawW, drawH,
                              SWP_SHOWWINDOW | SWP_NOACTIVATE | SWP_NOOWNERZORDER | SWP_ASYNCWINDOWPOS);
-            } else {
-                SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0,
-                             SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW | SWP_NOACTIVATE | SWP_NOOWNERZORDER | SWP_ASYNCWINDOWPOS);
             }
 
             ULONGLONG nowTick = GetTickCount64();
@@ -826,9 +823,6 @@ void ComboRenderer::RenderLoop() {
                 if (needsPosUpdate || !IsWindowVisible(hwnd)) {
                     SetWindowPos(hwnd, HWND_TOPMOST, drawRect.left, drawRect.top, drawW, drawH,
                                  SWP_SHOWWINDOW | SWP_NOACTIVATE | SWP_NOOWNERZORDER | SWP_ASYNCWINDOWPOS);
-                } else {
-                    SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0,
-                                 SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW | SWP_NOACTIVATE | SWP_NOOWNERZORDER | SWP_ASYNCWINDOWPOS);
                 }
                 if (!transparentFrameApplied) {
                     UpdateOverlay(drawW, drawH, drawRect.left, drawRect.top, 0.0f);

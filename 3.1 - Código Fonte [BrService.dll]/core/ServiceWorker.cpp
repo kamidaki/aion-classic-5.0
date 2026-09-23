@@ -72,7 +72,7 @@ static LRESULT CALLBACK GameWindowSubclassProc(HWND hWnd, UINT uMsg, WPARAM wPar
         if (LOWORD(wParam) == WA_INACTIVE) {
             g_isGameActive = false;
             PingHudUI::Hide();
-            DrawerModalUI::Hide();
+            if (g_drawerPinned.load()) DrawerModalUI::Hide(); // UNPINNED: manter visível
             if (g_wakeEvent) SetEvent(g_wakeEvent);
         } else {
             HWND fg = GetForegroundWindow();
@@ -87,7 +87,7 @@ static LRESULT CALLBACK GameWindowSubclassProc(HWND hWnd, UINT uMsg, WPARAM wPar
                 }
             } else {
                 PingHudUI::Hide();
-                DrawerModalUI::Hide();
+                if (g_drawerPinned.load()) DrawerModalUI::Hide();
             }
             if (g_wakeEvent) SetEvent(g_wakeEvent);
         }
@@ -96,7 +96,7 @@ static LRESULT CALLBACK GameWindowSubclassProc(HWND hWnd, UINT uMsg, WPARAM wPar
     case WM_KILLFOCUS:
         g_isGameActive = false;
         PingHudUI::Hide();
-        DrawerModalUI::Hide();
+        if (g_drawerPinned.load()) DrawerModalUI::Hide();
         if (g_wakeEvent) SetEvent(g_wakeEvent);
         break;
 
@@ -113,7 +113,7 @@ static LRESULT CALLBACK GameWindowSubclassProc(HWND hWnd, UINT uMsg, WPARAM wPar
             }
         } else {
             PingHudUI::Hide();
-            DrawerModalUI::Hide();
+            if (g_drawerPinned.load()) DrawerModalUI::Hide();
         }
         if (g_wakeEvent) SetEvent(g_wakeEvent);
         break;
@@ -257,15 +257,29 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
 
         // 3. Periodic synchronization checkpoint
         if (active && g_isInWorld.load() && !isLoading) {
-            SyncPositionsDirectly(hGame);
+            static int syncCounter = 0;
+            if (++syncCounter >= 10) { // ~300ms sync check
+                syncCounter = 0;
+                SyncPositionsDirectly(hGame);
+            }
             PingHudUI::Show();
             DrawerModalUI::RestoreIfOpen();
+
+            // 4. Reliable Direct Hotkey (Shift + F3) with game in focus
+            static bool s_lastShiftF3 = false;
+            bool isF3 = (GetAsyncKeyState(VK_F3) & 0x8000) != 0;
+            bool isShift = (GetAsyncKeyState(VK_SHIFT) & 0x8000) != 0;
+            bool shiftF3 = isF3 && isShift;
+            if (shiftF3 && !s_lastShiftF3) {
+                DrawerModalUI::Toggle();
+            }
+            s_lastShiftF3 = shiftF3;
         } else {
             PingHudUI::Hide();
-            DrawerModalUI::Hide();
+            if (g_drawerPinned.load()) DrawerModalUI::Hide();
         }
 
-        Sleep(100); // 10Hz relaxed background monitor (subclass handles instant moves with 0% CPU)
+        Sleep(30); // ~33Hz responsive input & window loop (0% CPU)
     }
 
     LogInfo("ServiceWorker finalizado.");

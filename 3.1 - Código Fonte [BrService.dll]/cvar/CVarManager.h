@@ -3,22 +3,15 @@
 #include <windows.h>
 #include <cstdint>
 #include <string>
-#include <unordered_map>
 
 namespace BrService {
-
-struct CVarDescriptor {
-    std::string name;
-    void* pAddress = nullptr;
-    int defaultValueInt = 0;
-    float defaultValueFloat = 0.0f;
-};
 
 class CVarManager {
 public:
     static bool Initialize();
     static void Shutdown();
 
+    // Instant CVar update APIs
     static void SetFov(float fov);
     static void SetCameraMax(float maxDist);
     static void SetMaxFps(int fps);
@@ -28,10 +21,7 @@ public:
 
     static void ApplyAll();
     static void ResyncOnMapChange();
-
-private:
-    static void ScanCVars();
-    static void* FindCVar(const char* name);
+    static bool IsWorkerRunning();
 };
 
 } // namespace BrService

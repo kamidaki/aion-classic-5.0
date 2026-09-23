@@ -29,7 +29,6 @@ import com.aionemu.gameserver.skillengine.model.HitType;
 import com.aionemu.gameserver.skillengine.model.SkillType;
 import com.aionemu.gameserver.utils.stats.CalculationType;
 import com.aionemu.gameserver.utils.stats.StatFunctions;
-import com.lostacademy.Dps_Meter.DpsService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -54,18 +53,6 @@ public class AttackUtil {
 		amplifyDamageByAdditionalHitCount(attacker, attackStatus, attackResultList);
 		modifyDamageByNpcAi(attacker, attacked, attackResultList);
 		attacked.getObserveController().checkShieldStatus(attackResultList, null, attacker);
-		int totalDmg = 0;
-		for (AttackResult res : attackResultList) {
-			totalDmg += res.getDamage();
-		}
-		if (totalDmg > 0) {
-			boolean isCrit = attackStatus.isCritical();
-			if (attacker instanceof Player p) {
-				DpsService.recordPlayerDamage(p, attacked, totalDmg, 0, "Auto Attack", isCrit);
-			} else if (attacked instanceof Player p) {
-				DpsService.recordNpcDamage(attacker, p, totalDmg, 0, "Auto Attack", isCrit);
-			}
-		}
 		return attackResultList;
 	}
 
@@ -369,16 +356,6 @@ public class AttackUtil {
 		if (effected instanceof Npc) {
 			damage = effected.getAi().modifyDamage(effector, damage, effect);
 		}
-		if (damage > 0) {
-			int skillId = effect.getSkillId();
-			String skillName = effect.getSkillTemplate() != null ? effect.getSkillTemplate().getName() : "Skill";
-			boolean isCrit = status.isCritical();
-			if (effector instanceof Player p) {
-				DpsService.recordPlayerDamage(p, effected, (long) damage, skillId, skillName, isCrit);
-			} else if (effected instanceof Player p) {
-				DpsService.recordNpcDamage(effector, p, (long) damage, skillId, skillName, isCrit);
-			}
-		}
 		calculateEffectResult(effect, effected, (int) damage, status, ht, ignoreShield, template.getPosition(), send);
 	}
 
@@ -486,18 +463,6 @@ public class AttackUtil {
 		amplifyDamageByAdditionalHitCount(attacker, attackStatus, attackResultList);
 		modifyDamageByNpcAi(attacker, attacked, attackResultList);
 		attacked.getObserveController().checkShieldStatus(attackResultList, null, attacker);
-		int totalDmg = 0;
-		for (AttackResult res : attackResultList) {
-			totalDmg += res.getDamage();
-		}
-		if (totalDmg > 0) {
-			boolean isCrit = attackStatus.isCritical();
-			if (attacker instanceof Player p) {
-				DpsService.recordPlayerDamage(p, attacked, totalDmg, 0, "Magic Attack", isCrit);
-			} else if (attacked instanceof Player p) {
-				DpsService.recordNpcDamage(attacker, p, totalDmg, 0, "Magic Attack", isCrit);
-			}
-		}
 		return attackResultList;
 	}
 
@@ -531,17 +496,6 @@ public class AttackUtil {
 
 		if (effected instanceof Npc)
 			damage = effected.getAi().modifyDamage(effector, damage, effect);
-
-		if (damage > 0) {
-			int skillId = effect.getSkillId();
-			String skillName = effect.getSkillTemplate() != null ? effect.getSkillTemplate().getName() : "Skill";
-			boolean isCrit = effect.getAttackStatus() == AttackStatus.CRITICAL;
-			if (effector instanceof Player p) {
-				DpsService.recordPlayerDamage(p, effected, (long) damage, skillId, "[DoT] " + skillName, isCrit);
-			} else if (effected instanceof Player p) {
-				DpsService.recordNpcDamage(effector, p, (long) damage, skillId, "[DoT] " + skillName, isCrit);
-			}
-		}
 
 		return (int) damage;
 	}

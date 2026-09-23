@@ -4,163 +4,211 @@
 #include <cmath>
 #include <mutex>
 #include <algorithm>
+#include <thread>
+#include <vector>
 
 namespace BrService {
 
-static std::mutex s_meshMutex;
-static std::vector<ModelVertex> s_vertices;
-static std::vector<ModelFace> s_faces;
-static float s_rotationYaw = 0.0f;
+static std::mutex s_modelMutex;
+static HANDLE s_hSharedMem = nullptr;
+static void*  s_pSharedMemView = nullptr;
 static uint32_t s_currentNpcId = 0;
+static uint8_t  s_currentEntityType = 1;
+static uint8_t  s_currentRace = 0;
+static float    s_targetMemoryYaw = 0.0f;
+static float    s_pedestalRotYaw = 0.0f;
 static ULONGLONG s_lastRotTime = 0;
 
+void CryModelBridge::EnsureSharedMemory() {
+    if (!s_pSharedMemView) {
+        if (!s_hSharedMem) {
+            s_hSharedMem = OpenFileMappingW(FILE_MAP_READ, FALSE, L"Local\\LostAcademy_CryModel_FrameBuffer");
+        }
+        if (s_hSharedMem) {
+            s_pSharedMemView = MapViewOfFile(s_hSharedMem, FILE_MAP_READ, 0, 0, 0);
+            if (s_pSharedMemView) {
+                LogInfo("CryModelBridge: Conectado ao Frame Buffer compartilhado Local\\LostAcademy_CryModel_FrameBuffer.");
+            }
+        }
+    }
+}
+
+bool CryModelBridge::IsFrameBufferConnected() {
+    EnsureSharedMemory();
+    if (!s_pSharedMemView) return false;
+    const BridgeFrameHeader* h = reinterpret_cast<const BridgeFrameHeader*>(s_pSharedMemView);
+    // Accepts both 'AION' (0x41494F4E) and 'ACMB' (0x41434D42)
+    return ((h->magic == 0x41494F4E || h->magic == 0x41434D42) && h->status == 2);
+}
+
+void CryModelBridge::RequestNpcModelOverPipe(uint32_t npcId) {
+    std::thread([npcId]() {
+        char cmd[64];
+        if (npcId == 0) {
+            snprintf(cmd, sizeof(cmd), "LOAD_PLAYER\n");
+        } else {
+            snprintf(cmd, sizeof(cmd), "LOAD %u\n", npcId);
+        }
+
+        HANDLE hPipe = CreateFileA("\\\\.\\pipe\\LostAcademy_CryModelBridge",
+                                   GENERIC_READ | GENERIC_WRITE, 0, nullptr,
+                                   OPEN_EXISTING, 0, nullptr);
+        if (hPipe != INVALID_HANDLE_VALUE) {
+            DWORD written = 0;
+            WriteFile(hPipe, cmd, (DWORD)strlen(cmd), &written, nullptr);
+            CloseHandle(hPipe);
+        }
+    }).detach();
+}
+
 bool CryModelBridge::Initialize() {
-    std::lock_guard<std::mutex> lock(s_meshMutex);
-    LoadMeshForTarget(0); // default mesh
+    std::lock_guard<std::mutex> lock(s_modelMutex);
+    EnsureSharedMemory();
+
+    // Diagn\u00f3stico: reportar status do shared memory e do pipe
+    if (s_pSharedMemView) {
+        const BridgeFrameHeader* h = reinterpret_cast<const BridgeFrameHeader*>(s_pSharedMemView);
+        LogInfo("CryModelBridge: Shared memory conectada. magic=0x%08X status=%u w=%u h=%u pitch=%u",
+                h->magic, h->status, h->width, h->height, h->pitch);
+    } else {
+        // Tentar abrir pipe como teste
+        HANDLE hPipe = CreateFileA("\\\\.\\pipe\\LostAcademy_CryModelBridge",
+                                   GENERIC_READ | GENERIC_WRITE, 0, nullptr,
+                                   OPEN_EXISTING, 0, nullptr);
+        if (hPipe != INVALID_HANDLE_VALUE) {
+            CloseHandle(hPipe);
+            LogInfo("CryModelBridge: Pipe encontrado mas shared memory ausente. Broker iniciado mas frame ainda nao disponivel.");
+        } else {
+            LogError("CryModelBridge: Broker NAO encontrado (sem shared memory nem pipe). Modelos 3D usarao silhueta fallback. Inicie o broker LostAcademy_CryModelBridge para renderizacao real.");
+        }
+    }
+
+    // Nao solicitar player model fallback (requisito: sem fallback para proprio personagem)
     return true;
 }
 
 void CryModelBridge::Shutdown() {
-    std::lock_guard<std::mutex> lock(s_meshMutex);
-    s_vertices.clear();
-    s_faces.clear();
+    std::lock_guard<std::mutex> lock(s_modelMutex);
+    if (s_pSharedMemView) {
+        UnmapViewOfFile(s_pSharedMemView);
+        s_pSharedMemView = nullptr;
+    }
+    if (s_hSharedMem) {
+        CloseHandle(s_hSharedMem);
+        s_hSharedMem = nullptr;
+    }
 }
 
 void CryModelBridge::SetTargetNpc(uint32_t npcId) {
-    if (s_currentNpcId == npcId) return;
-    std::lock_guard<std::mutex> lock(s_meshMutex);
-    s_currentNpcId = npcId;
-    LoadMeshForTarget(npcId);
+    SetTargetEntity(npcId, 1, 0, 0.0f);
 }
 
-void CryModelBridge::LoadMeshForTarget(uint32_t npcId) {
-    s_vertices.clear();
-    s_faces.clear();
+void CryModelBridge::SetTargetEntity(uint32_t modelId, uint8_t entityType, uint8_t race, float yaw) {
+    std::lock_guard<std::mutex> lock(s_modelMutex);
+    bool changed = (s_currentNpcId != modelId);
+    s_currentNpcId = modelId;
+    s_currentEntityType = entityType;
+    s_currentRace = race;
+    s_targetMemoryYaw = yaw;
 
-    // Procedural crystalline / dragon avatar mesh for target preview
-    // Inspired by Aion Drakan / Crystal Scythe aesthetics
-    const int segments = 12;
-    const float height = 2.4f;
-    const float radius = 0.75f;
-
-    // Center base and apex
-    s_vertices.push_back({ 0.0f, -height * 0.4f, 0.0f }); // 0: bottom
-    s_vertices.push_back({ 0.0f,  height * 0.6f, 0.0f }); // 1: top
-
-    // Middle crystal belt
-    for (int i = 0; i < segments; ++i) {
-        float angle = (float)i / segments * 6.2831853f;
-        float r = radius * (1.0f + 0.2f * sinf(angle * 3.0f));
-        float y = 0.05f * cosf(angle * 4.0f);
-        s_vertices.push_back({ r * cosf(angle), y, r * sinf(angle) });
+    // Requisito 2: Se modelId == 0 (sem alvo), NUNCA pedir modelo do jogador e limpar estado
+    if (modelId != 0 && changed) {
+        RequestNpcModelOverPipe(modelId);
     }
+}
 
-    // Connect faces
-    for (int i = 0; i < segments; ++i) {
-        int vCurrent = 2 + i;
-        int vNext = 2 + ((i + 1) % segments);
-
-        // Bottom cap triangle
-        s_faces.push_back({ 0, vCurrent, vNext });
-        // Top cap triangle
-        s_faces.push_back({ 1, vNext, vCurrent });
-    }
-
-    // Add decorative crystal wings/spikes
-    int baseIdx = (int)s_vertices.size();
-    s_vertices.push_back({ -radius * 1.8f, height * 0.3f, 0.1f });
-    s_vertices.push_back({  radius * 1.8f, height * 0.3f, 0.1f });
-    s_vertices.push_back({  0.0f, height * 0.85f, 0.2f });
-
-    s_faces.push_back({ 1, baseIdx, 2 });
-    s_faces.push_back({ 1, 2 + segments / 2, baseIdx + 1 });
-    s_faces.push_back({ 1, baseIdx + 2, 0 });
+void CryModelBridge::LoadFallbackMesh(uint32_t /*npcId*/) {
+    // Geometric box/prism fallback removed completely per Requirement 15.
 }
 
 void CryModelBridge::RenderThumbnail(Gdiplus::Graphics& g, float x, float y, float width, float height) {
-    std::lock_guard<std::mutex> lock(s_meshMutex);
-    if (s_vertices.empty() || s_faces.empty()) return;
+    if (s_currentNpcId == 0) {
+        // Requisito 2: sem target = nada exibido, sem fallback para proprio personagem
+        return;
+    }
 
+    EnsureSharedMemory();
+
+    if (s_pSharedMemView) {
+        const BridgeFrameHeader* h = reinterpret_cast<const BridgeFrameHeader*>(s_pSharedMemView);
+        if ((h->magic == 0x41494F4E || h->magic == 0x41434D42) && h->status == 2 && h->width > 0 && h->height > 0) {
+            BYTE* pPixels = reinterpret_cast<BYTE*>(s_pSharedMemView) + sizeof(BridgeFrameHeader);
+            Gdiplus::Bitmap frameBmp((INT)h->width, (INT)h->height, (INT)h->pitch,
+                                     PixelFormat32bppARGB, pPixels);
+
+            g.SetInterpolationMode(Gdiplus::InterpolationModeHighQualityBicubic);
+            g.DrawImage(&frameBmp, x, y, width, height);
+            return;
+        }
+    }
+
+    // Modern Pedestal & Ambient Platform Renderer (Zero cubes, zero boxes)
     ULONGLONG now = GetTickCount64();
     if (s_lastRotTime == 0) s_lastRotTime = now;
     float dt = (float)(now - s_lastRotTime) / 1000.0f;
     s_lastRotTime = now;
     if (dt > 0.1f) dt = 0.033f;
 
-    // Slow elegant rotation (approx 20 deg / sec)
-    s_rotationYaw += dt * 0.45f;
-    if (s_rotationYaw > 6.2831853f) s_rotationYaw -= 6.2831853f;
-
-    float cosY = cosf(s_rotationYaw);
-    float sinY = sinf(s_rotationYaw);
-    float pitch = 0.22f; // Slight tilt
-    float cosP = cosf(pitch);
-    float sinP = sinf(pitch);
-
-    float centerX = x + width * 0.5f;
-    float centerY = y + height * 0.52f;
-    float scale = std::min(width, height) * 0.42f;
-
-    // Project vertices
-    std::vector<Gdiplus::PointF> proj(s_vertices.size());
-    std::vector<float> depth(s_vertices.size());
-
-    for (size_t i = 0; i < s_vertices.size(); ++i) {
-        const auto& v = s_vertices[i];
-        // Rotate Y
-        float rx = v.x * cosY - v.z * sinY;
-        float rz = v.x * sinY + v.z * cosY;
-        // Pitch X
-        float ry = v.y * cosP - rz * sinP;
-        float rz2 = v.y * sinP + rz * cosP;
-
-        float distance = 4.0f;
-        float fovFactor = distance / (distance + rz2);
-
-        proj[i].X = centerX + rx * scale * fovFactor;
-        proj[i].Y = centerY - ry * scale * fovFactor; // invert Y for screen
-        depth[i] = rz2;
-    }
-
-    // Sort faces by average depth (Painter's algorithm)
-    struct DepthFace {
-        ModelFace face;
-        float z;
-    };
-    std::vector<DepthFace> sortedFaces;
-    sortedFaces.reserve(s_faces.size());
-
-    for (const auto& f : s_faces) {
-        float avgZ = (depth[f.v1] + depth[f.v2] + depth[f.v3]) / 3.0f;
-        sortedFaces.push_back({ f, avgZ });
-    }
-
-    std::sort(sortedFaces.begin(), sortedFaces.end(), [](const DepthFace& a, const DepthFace& b) {
-        return a.z > b.z; // Far to near
-    });
-
-    // Draw faces with translucent metallic/crystal gradient and transparent background
-    Gdiplus::Pen wirePen(Gdiplus::Color(110, 212, 175, 55), 1.0f); // Gold wireframe
-    Gdiplus::SolidBrush fillBrush(Gdiplus::Color(35, 180, 140, 45)); // Translucent gold
+    s_pedestalRotYaw += dt * 0.45f;
+    if (s_pedestalRotYaw > 6.2831853f) s_pedestalRotYaw -= 6.2831853f;
 
     g.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
 
-    for (const auto& df : sortedFaces) {
-        const auto& f = df.face;
-        Gdiplus::PointF pts[3] = { proj[f.v1], proj[f.v2], proj[f.v3] };
+    float cx = x + width * 0.5f;
+    float cy = y + height * 0.78f;
+    float pedW = width * 0.78f;
+    float pedH = height * 0.26f;
 
-        // Backface culling
-        float crossZ = (pts[1].X - pts[0].X) * (pts[2].Y - pts[0].Y) -
-                       (pts[1].Y - pts[0].Y) * (pts[2].X - pts[0].X);
-        if (crossZ > 0.0f) {
-            g.FillPolygon(&fillBrush, pts, 3);
-            g.DrawPolygon(&wirePen, pts, 3);
-        }
-    }
+    // 1. Soft Ambient Shadow below pedestal
+    Gdiplus::SolidBrush shadowBrush(Gdiplus::Color(35, 10, 20, 35));
+    g.FillEllipse(&shadowBrush, cx - pedW * 0.52f, cy + pedH * 0.22f, pedW * 1.04f, pedH * 0.70f);
 
-    // Subdued glow ring at base of model
-    Gdiplus::Pen ringPen(Gdiplus::Color(60, 212, 175, 55), 1.2f);
-    g.DrawEllipse(&ringPen, centerX - width * 0.32f, centerY + height * 0.32f, width * 0.64f, height * 0.16f);
+    // 2. Multi-tier Stone Pedestal
+    Gdiplus::SolidBrush stoneBase(Gdiplus::Color(220, 140, 145, 155));
+    Gdiplus::SolidBrush stoneTop(Gdiplus::Color(240, 175, 180, 190));
+    Gdiplus::SolidBrush grassRim(Gdiplus::Color(210, 85, 145, 80));
+
+    // Lower tier
+    g.FillEllipse(&stoneBase, cx - pedW * 0.50f, cy, pedW, pedH);
+    // Upper tier
+    g.FillEllipse(&stoneTop, cx - pedW * 0.44f, cy - 6.0f, pedW * 0.88f, pedH * 0.88f);
+    // Moss / Grass surface
+    g.FillEllipse(&grassRim, cx - pedW * 0.38f, cy - 9.0f, pedW * 0.76f, pedH * 0.76f);
+
+    // 3. Faction / Entity Aura Glow Ring
+    Gdiplus::Color ringCol = (s_currentRace == 0) ? Gdiplus::Color(160, 59, 130, 246) :   // Elyos Light Blue
+                             (s_currentRace == 1) ? Gdiplus::Color(160, 168, 85, 247) :   // Asmodian Violet
+                                                    Gdiplus::Color(160, 239, 68, 68);     // Monster Crimson
+    Gdiplus::Pen auraPen(ringCol, 2.0f);
+    g.DrawEllipse(&auraPen, cx - pedW * 0.34f, cy - 11.0f, pedW * 0.68f, pedH * 0.68f);
+
+    // 4. Character / Creature Standing Silhouette
+    // Draw stylized standing hero / target silhouette on top of the pedestal
+    float charW = width * 0.40f;
+    float charH = height * 0.60f;
+    float charX = cx - charW * 0.5f;
+    float charY = cy - charH - 10.0f;
+
+    Gdiplus::SolidBrush charGlow(Gdiplus::Color(30, ringCol.GetR(), ringCol.GetG(), ringCol.GetB()));
+    g.FillEllipse(&charGlow, charX, charY, charW, charH);
+
+    // Stylized silhouette torso & head
+    Gdiplus::SolidBrush silBrush(Gdiplus::Color(180, 70, 80, 95));
+    // Head
+    g.FillEllipse(&silBrush, cx - 11.0f, charY + 6.0f, 22.0f, 24.0f);
+    // Body / Cape
+    Gdiplus::PointF bodyPts[4] = {
+        Gdiplus::PointF(cx - 16.0f, charY + 30.0f),
+        Gdiplus::PointF(cx + 16.0f, charY + 30.0f),
+        Gdiplus::PointF(cx + 26.0f, charY + charH + 4.0f),
+        Gdiplus::PointF(cx - 26.0f, charY + charH + 4.0f)
+    };
+    g.FillPolygon(&silBrush, bodyPts, 4);
+
+    // Wings outline for player character
+    Gdiplus::Pen wingPen(Gdiplus::Color(140, ringCol.GetR(), ringCol.GetG(), ringCol.GetB()), 1.5f);
+    g.DrawArc(&wingPen, cx - charW * 0.70f, charY + 12.0f, charW * 0.70f, charH * 0.65f, 160.0f, 150.0f);
+    g.DrawArc(&wingPen, cx, charY + 12.0f, charW * 0.70f, charH * 0.65f, 230.0f, 150.0f);
 }
 
 } // namespace BrService

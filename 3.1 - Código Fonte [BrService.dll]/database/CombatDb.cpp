@@ -96,6 +96,9 @@ void CombatDb::RecordEventAsync(const StoredCombatEvent& ev) {
     if (!s_running) return;
     {
         std::lock_guard<std::mutex> lock(s_queueMutex);
+        if (s_eventQueue.size() >= 5000) {
+            s_eventQueue.pop_front();
+        }
         s_eventQueue.push_back(ev);
     }
     if (s_hWakeEvent) {

@@ -1,5 +1,6 @@
 #include "DrawerModalUI.h"
 #include "UICommon.h"
+#include "IconManager.h"
 #include "../core/ServiceGlobals.h"
 #include "../core/ServiceLog.h"
 #include "../core/I18n.h"
@@ -11,54 +12,232 @@
 #include "../network/WebSocketClient.h"
 #include <algorithm>
 #include <cmath>
+#include <vector>
+#include <string>
 
 namespace BrService {
 
 static const wchar_t* kDrawerClassName = L"BrService_DrawerModal";
-static int s_modalW = 460;
-static int s_modalH = 580;
-static bool s_isSettingsOpen = false;
+static int s_modalW = 760;
+static int s_modalH = 560;
 
+enum class DrawerTab { Display = 0, DpsMeter, ComboUi, Engine, Advanced };
+static DrawerTab s_activeTab = DrawerTab::Display;
+
+// Theme: 0=Light 1=Dark 2=Gray 3=Navy
+static int s_theme = 0;
+
+static Gdiplus::Color ThemeBg() {
+    switch(s_theme) {
+        case 1: return UICommon::ColThemeDarkBg;
+        case 2: return UICommon::ColThemeGrayBg;
+        case 3: return UICommon::ColThemeNavyBg;
+        default: return UICommon::ColModel3Bg;
+    }
+}
+static Gdiplus::Color ThemeCard() {
+    switch(s_theme) {
+        case 1: return UICommon::ColThemeDarkCard;
+        case 2: return UICommon::ColThemeGrayCard;
+        case 3: return UICommon::ColThemeNavyCard;
+        default: return UICommon::ColModel3Card;
+    }
+}
+static Gdiplus::Color ThemeBorder() {
+    switch(s_theme) {
+        case 1: return UICommon::ColThemeDarkBorder;
+        case 2: return Gdiplus::Color(255, 110, 118, 138);
+        case 3: return Gdiplus::Color(255, 38, 60, 130);
+        default: return UICommon::ColModel3Border;
+    }
+}
+static Gdiplus::Color ThemeTextDark() {
+    switch(s_theme) {
+        case 1: return UICommon::ColThemeDarkText;
+        case 2: return Gdiplus::Color(255, 240, 242, 248);
+        case 3: return Gdiplus::Color(255, 220, 230, 255);
+        default: return UICommon::ColModel3TextDark;
+    }
+}
+static Gdiplus::Color ThemeTextMuted() {
+    switch(s_theme) {
+        case 1: return Gdiplus::Color(255, 140, 148, 168);
+        case 2: return Gdiplus::Color(255, 185, 190, 205);
+        case 3: return Gdiplus::Color(255, 130, 150, 200);
+        default: return UICommon::ColModel3TextMuted;
+    }
+}
+
+static bool s_isDraggingWindow = false;
+static POINT s_dragStartCursor = { 0, 0 };
+static POINT s_dragStartPos = { 0, 0 };
+static POINT s_mousePos = { -1, -1 };
+
+static bool s_draggingOpacity = false;
+static bool s_draggingComboScale = false;
+static bool s_draggingComboOpacity = false;
 static bool s_draggingFov = false;
 static bool s_draggingCam = false;
-static bool s_draggingOpacity = false;
-static bool s_draggingComboOpacity = false;
 
-// Main View Rects
-static RECT s_closeBtnRect = { 0, 0, 0, 0 };
-static RECT s_settingsBtnRect = { 0, 0, 0, 0 };
-static RECT s_resetBtnRect = { 0, 0, 0, 0 };
-static RECT s_fovSliderRect = { 0, 0, 0, 0 };
-static RECT s_camSliderRect = { 0, 0, 0, 0 };
-static RECT s_fps60Rect = { 0, 0, 0, 0 };
-static RECT s_fps144Rect = { 0, 0, 0, 0 };
-static RECT s_fpsMaxRect = { 0, 0, 0, 0 };
-static RECT s_tbToggleRect = { 0, 0, 0, 0 };
-static RECT s_anisoToggleRect = { 0, 0, 0, 0 };
+// Navigation & Header Rectangles
+static RECT s_headerDragRect = {};
+static RECT s_helpBtnRect = {}, s_minimizeBtnRect = {}, s_closeBtnRect = {};
+static RECT s_tabDisplayRect = {}, s_tabDpsMeterRect = {}, s_tabComboRect = {}, s_tabEngineRect = {}, s_tabAdvancedRect = {};
+static RECT s_resetDefaultsRect = {};
 
-// Settings View Rects
-static RECT s_presetNormalRect = { 0, 0, 0, 0 };
-static RECT s_presetWideRect = { 0, 0, 0, 0 };
-static RECT s_presetCompactRect = { 0, 0, 0, 0 };
-static RECT s_widthMinusRect = { 0, 0, 0, 0 };
-static RECT s_widthPlusRect = { 0, 0, 0, 0 };
-static RECT s_heightMinusRect = { 0, 0, 0, 0 };
-static RECT s_heightPlusRect = { 0, 0, 0, 0 };
-static RECT s_opacitySliderRect = { 0, 0, 0, 0 };
-static RECT s_compactToggleRect = { 0, 0, 0, 0 };
-static RECT s_hideConsoleToggleRect = { 0, 0, 0, 0 };
-static RECT s_comboToggleRect = { 0, 0, 0, 0 };
-static RECT s_comboOpacitySliderRect = { 0, 0, 0, 0 };
-static RECT s_comboScale70Rect = { 0, 0, 0, 0 };
-static RECT s_comboScale100Rect = { 0, 0, 0, 0 };
-static RECT s_comboScale130Rect = { 0, 0, 0, 0 };
-static RECT s_comboScaleMinusRect = { 0, 0, 0, 0 };
-static RECT s_comboScalePlusRect = { 0, 0, 0, 0 };
-static RECT s_saveSettingsBtnRect = { 0, 0, 0, 0 };
+// Tab Display Rectangles
+static RECT s_presetDefaultRect = {}, s_presetWideRect = {}, s_presetCompactRect = {}, s_opacitySliderRect = {};
+static RECT s_compactToggleRect = {}, s_consoleToggleRect = {}, s_comboToggleRect = {}, s_comboScaleSliderRect = {};
+static RECT s_comboPosTopRect = {}, s_comboPosMidRightRect = {}, s_comboPosCenterRect = {}, s_comboPosLeftRect = {};
+static RECT s_saveSettingsBtnRect = {}, s_targetDropdownRect = {}, s_resetCombatBtnRect = {};
+static RECT s_targetCardRect = {}, s_targetCardCloseRect = {};
+
+// Tab DPS Meter Rectangles & State
+static int s_selectedCombatIndex = -1; // -1 = Live Combat; 0..N-1 = index in g_combatHistory
+static RECT s_combatLiveBtnRect = {};
+static RECT s_combatHistBtnRects[5] = {};
+static RECT s_dpsResetRect = {};
+
+// Tab Combo UI Rectangles
+static RECT s_comboTabToggleRect = {}, s_comboTabScaleSlider = {}, s_comboTabOpacitySlider = {};
+static RECT s_comboTabPosTop = {}, s_comboTabPosMidRight = {}, s_comboTabPosCenter = {}, s_comboTabPosLeft = {};
+
+// Tab Engine Rectangles
+static RECT s_engFovSlider = {}, s_engCamSlider = {};
+static RECT s_engFps60Rect = {}, s_engFps144Rect = {}, s_engFpsMaxRect = {};
+static RECT s_engTbToggleRect = {}, s_engAnisoToggleRect = {}, s_engFreeFlyRect = {}, s_engConsoleRect = {};
+
+// Tab Advanced Rectangles
+static RECT s_advOpacitySlider = {}, s_advPresetDefault = {}, s_advPresetWide = {}, s_advPresetCompact = {};
+static RECT s_advThemeLight = {}, s_advThemeDark = {}, s_advThemeGray = {}, s_advThemeNavy = {};
+static RECT s_advPinnedToggle = {};
+static RECT s_advCompactToggle = {}, s_advConsoleToggle = {}, s_advModel3DToggle = {};
+static RECT s_advFovToggle = {}, s_advCamToggle = {}, s_advFpsToggle = {};
+
+struct MemoryTargetRaw {
+    bool valid;
+    uint32_t objId, modelId;
+    uint8_t type, race;
+    wchar_t name[128];
+    int hp, maxHp;
+    float px, py, pz, yaw;
+};
+
+static inline bool IsValidUserPointer(uintptr_t addr) {
+#ifdef _WIN64
+    return addr >= 0x10000 && addr <= 0x00007FFFFFFEFFFF;
+#else
+    return addr >= 0x10000 && addr <= 0x7FFEFFFF;
+#endif
+}
+
+static bool ReadTargetMemoryRaw(MemoryTargetRaw* o) {
+    if (!o) return false;
+    o->valid = false;
+    uintptr_t hG = (uintptr_t)GetModuleHandleA("Game.dll");
+    if (!hG) return false;
+
+    __try {
+        uintptr_t targetBase = hG + 0xECE610;
+        if (!IsValidUserPointer(targetBase)) return false;
+        uintptr_t tp = *(uintptr_t*)targetBase;
+        if (!IsValidUserPointer(tp)) return false;
+
+        // Validar e filtrar self-target (jogador selecionando a si mesmo)
+        uintptr_t addr = hG + 0xECDDC8;
+        static const uintptr_t pOffsets[] = { 0x70, 0x10, 0x20 };
+        for (int i = 0; i < 3; ++i) {
+            if (!IsValidUserPointer(addr)) break;
+            addr = *(uintptr_t*)addr;
+            if (!IsValidUserPointer(addr)) break;
+            addr += pOffsets[i];
+        }
+        uintptr_t pPlayer = (IsValidUserPointer(addr)) ? *(uintptr_t*)addr : 0;
+        if (pPlayer != 0 && tp == pPlayer) {
+            // Jogador com target em si mesmo -> tratar como sem alvo
+            return false;
+        }
+
+        uintptr_t entityPtrAddr = tp + 0x378;
+        if (!IsValidUserPointer(entityPtrAddr)) return false;
+        uintptr_t e = *(uintptr_t*)entityPtrAddr;
+        if (!IsValidUserPointer(e)) return false;
+
+        o->objId = *(uint32_t*)(e + 0x24);
+        o->modelId = *(uint32_t*)(e + 0x20);
+
+        if (pPlayer != 0) {
+            uintptr_t pPEAddr = pPlayer + 0x378;
+            if (IsValidUserPointer(pPEAddr)) {
+                uintptr_t pPE = *(uintptr_t*)pPEAddr;
+                if (IsValidUserPointer(pPE) && *(uint32_t*)(pPE + 0x24) == o->objId) {
+                    // ObjId do target coincide com o próprio jogador
+                    return false;
+                }
+            }
+        }
+
+        o->hp = *(int*)(e + 0x147C);
+        o->maxHp = *(int*)(e + 0x1478);
+        o->type = *(uint8_t*)(e + 0x38);
+        o->race = *(uint8_t*)(e + 0x39);
+
+        wchar_t* pN = (wchar_t*)(e + 0x46);
+        if (IsValidUserPointer((uintptr_t)pN)) wcsncpy_s(o->name, pN, _TRUNCATE);
+        else o->name[0] = L'\0';
+
+        o->px = *(float*)(tp + 0x3C);
+        o->py = *(float*)(tp + 0x40);
+        o->pz = *(float*)(tp + 0x44);
+        o->yaw = *(float*)(tp + 0x48);
+        o->valid = true;
+        return true;
+    } __except (EXCEPTION_EXECUTE_HANDLER) {
+        return false;
+    }
+}
+
+static bool UpdateTargetFromGameMemory() {
+    MemoryTargetRaw r = {};
+    if (!ReadTargetMemoryRaw(&r) || !r.valid || r.objId == 0) {
+        std::lock_guard<std::recursive_mutex> lk(g_combatMutex);
+        g_currentTarget.hasTarget = false;
+        CryModelBridge::SetTargetEntity(0, 0, 0, 0.0f);
+        return false;
+    }
+
+    std::lock_guard<std::recursive_mutex> lk(g_combatMutex);
+    g_currentTarget.hasTarget = true;
+    g_currentTarget.targetId = r.objId;
+    g_currentTarget.modelId = r.modelId;
+    g_currentTarget.isNpc = (r.type != 0);
+
+    if (wcslen(r.name) > 0) {
+        char b[256] = {};
+        WideCharToMultiByte(CP_UTF8, 0, r.name, -1, b, sizeof(b), nullptr, nullptr);
+        g_currentTarget.name = b;
+    }
+    if (r.maxHp > 0) {
+        g_currentTarget.currentHp = (r.hp >= 0) ? r.hp : 0;
+        g_currentTarget.maxHp = r.maxHp;
+    }
+    if (r.race == 0) g_currentTarget.race = "ELYOS";
+    else if (r.race == 1) g_currentTarget.race = "ASMODIANS";
+    else g_currentTarget.race = "BALAUR";
+
+    g_currentTarget.posX = r.px;
+    g_currentTarget.posY = r.py;
+    g_currentTarget.posZ = r.pz;
+    g_currentTarget.yaw = r.yaw;
+    return true;
+}
 
 bool DrawerModalUI::Initialize(HINSTANCE hInst) {
-    s_modalW = std::clamp(g_drawerW.load(), 400, 640);
-    s_modalH = std::clamp(g_drawerH.load(), 480, 780);
+    IconManager::Initialize();
+    if (g_drawerW.load() < 600) g_drawerW = 760;
+    if (g_drawerH.load() < 500) g_drawerH = 560;
+    s_modalW = std::clamp(g_drawerW.load(), 540, 960);
+    s_modalH = std::clamp(g_drawerH.load(), 480, 800);
 
     WNDCLASSEXW wc = { sizeof(WNDCLASSEXW) };
     wc.lpfnWndProc = WndProc;
@@ -68,9 +247,9 @@ bool DrawerModalUI::Initialize(HINSTANCE hInst) {
     wc.style = CS_HREDRAW | CS_VREDRAW;
 
     if (!RegisterClassExW(&wc)) {
-        DWORD err = GetLastError();
-        if (err != ERROR_CLASS_ALREADY_EXISTS) {
-            LogError("Falha ao registrar classe DrawerModal: %lu", err);
+        DWORD e = GetLastError();
+        if (e != ERROR_CLASS_ALREADY_EXISTS) {
+            LogError("Falha DrawerModal RegisterClass: %lu", e);
             return false;
         }
     }
@@ -78,23 +257,24 @@ bool DrawerModalUI::Initialize(HINSTANCE hInst) {
     g_hDrawerModalWnd = CreateWindowExW(
         WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW,
         kDrawerClassName,
-        L"Painel Academy",
+        L"Academy Show - DPS Meter",
         WS_POPUP,
         0, 0, s_modalW, s_modalH,
         nullptr, nullptr, hInst, nullptr
     );
 
     if (!g_hDrawerModalWnd) {
-        LogError("Falha ao criar janela DrawerModal: %lu", GetLastError());
+        LogError("Falha criar DrawerModal: %lu", GetLastError());
         return false;
     }
 
-    LogInfo("DrawerModalUI inicializado com sucesso (%dx%d, Opacidade=%d).",
-            s_modalW, s_modalH, g_drawerOpacity.load());
+    LogInfo("DrawerModalUI inicializado (%dx%d Op=%d Tema=%d Pinned=%d).",
+            s_modalW, s_modalH, g_drawerOpacity.load(), s_theme, g_drawerPinned.load() ? 1 : 0);
     return true;
 }
 
 void DrawerModalUI::Shutdown() {
+    IconManager::Shutdown();
     if (g_hDrawerModalWnd && IsWindow(g_hDrawerModalWnd)) {
         DestroyWindow(g_hDrawerModalWnd);
         g_hDrawerModalWnd = nullptr;
@@ -112,14 +292,13 @@ void DrawerModalUI::Open() {
     g_isDrawerOpen = true;
     if (g_hDrawerModalWnd && !g_isLoadingScreen.load() && g_isGameActive.load()) {
         ShowWindow(g_hDrawerModalWnd, SW_SHOWNOACTIVATE);
-        SetTimer(g_hDrawerModalWnd, 1, 33, nullptr); // ~30 FPS timer
+        SetTimer(g_hDrawerModalWnd, 1, 33, nullptr);
         Repaint();
     }
 }
 
 void DrawerModalUI::Close() {
     g_isDrawerOpen = false;
-    s_isSettingsOpen = false;
     if (g_hDrawerModalWnd) {
         KillTimer(g_hDrawerModalWnd, 1);
         ShowWindow(g_hDrawerModalWnd, SW_HIDE);
@@ -137,9 +316,11 @@ void DrawerModalUI::Hide() {
 void DrawerModalUI::RestoreIfOpen() {
     if (!g_featConsole.load()) return;
     if (g_isDrawerOpen.load() && g_hDrawerModalWnd && !g_isLoadingScreen.load() && g_isGameActive.load()) {
-        ShowWindow(g_hDrawerModalWnd, SW_SHOWNOACTIVATE);
-        SetTimer(g_hDrawerModalWnd, 1, 33, nullptr);
-        Repaint();
+        if (!IsWindowVisible(g_hDrawerModalWnd)) {
+            ShowWindow(g_hDrawerModalWnd, SW_SHOWNOACTIVATE);
+            SetTimer(g_hDrawerModalWnd, 1, 33, nullptr);
+            Repaint();
+        }
     }
 }
 
@@ -147,36 +328,51 @@ bool DrawerModalUI::IsOpen() {
     return g_isDrawerOpen.load();
 }
 
-void DrawerModalUI::UpdatePosition(int gameX, int gameY, int gameW, int gameH) {
+void DrawerModalUI::UpdatePosition(int gX, int gY, int gW, int gH) {
     if (!g_hDrawerModalWnd) return;
+    s_modalW = std::clamp(g_drawerW.load(), 540, 960);
+    s_modalH = std::clamp(g_drawerH.load(), 480, 800);
+    if (s_modalH > gH - 30) s_modalH = gH - 30;
 
-    s_modalW = std::clamp(g_drawerW.load(), 400, 640);
-    s_modalH = std::clamp(g_drawerH.load(), 480, 780);
-    if (s_modalH > gameH - 30) s_modalH = gameH - 30;
-
-    int modalX = gameX + 24; // 24px detachment from left edge
-    int modalY = gameY + (gameH - s_modalH) / 2; // Centered vertically
-
-    bool shouldBeVisible = g_featConsole.load() && g_isDrawerOpen.load() && g_isInWorld.load() && !g_isLoadingScreen.load() && g_isGameActive.load();
-    SetWindowPos(g_hDrawerModalWnd, HWND_TOPMOST, modalX, modalY, s_modalW, s_modalH,
-                 SWP_NOACTIVATE | (shouldBeVisible ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
-    if (shouldBeVisible) {
-        Repaint();
+    int mX = g_drawerPosX.load(), mY2 = g_drawerPosY.load();
+    if (mX < 0 || mY2 < 0) {
+        mX = gX + (gW - s_modalW) / 2;
+        mY2 = gY + (gH - s_modalH) / 2;
+        if (mX < gX + 10) mX = gX + 10;
+        if (mY2 < gY + 10) mY2 = gY + 10;
+        g_drawerPosX = mX;
+        g_drawerPosY = mY2;
     }
+
+    // Se estiver em modo PINNED, restringir a posição para dentro dos limites da tela do jogo
+    if (g_drawerPinned.load()) {
+        int minX = gX;
+        int maxX = gX + gW - s_modalW;
+        int minY = gY;
+        int maxY = gY + gH - s_modalH;
+        if (maxX >= minX) mX = std::clamp(mX, minX, maxX);
+        if (maxY >= minY) mY2 = std::clamp(mY2, minY, maxY);
+        g_drawerPosX = mX;
+        g_drawerPosY = mY2;
+    }
+
+    bool v = g_featConsole.load() && g_isDrawerOpen.load() && g_isInWorld.load() && !g_isLoadingScreen.load() && g_isGameActive.load();
+    SetWindowPos(g_hDrawerModalWnd, HWND_TOPMOST, mX, mY2, s_modalW, s_modalH, SWP_NOACTIVATE | (v ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
+    if (v) Repaint();
 }
 
-void DrawerModalUI::ResizeDrawer(int newW, int newH) {
-    g_drawerW = std::clamp(newW, 400, 640);
-    g_drawerH = std::clamp(newH, 480, 780);
+void DrawerModalUI::ResizeDrawer(int nW, int nH) {
+    g_drawerW = std::clamp(nW, 540, 960);
+    g_drawerH = std::clamp(nH, 480, 800);
+    s_modalW = g_drawerW.load();
+    s_modalH = g_drawerH.load();
 
-    HWND hGame = g_gameHwnd.load();
-    if (hGame && IsWindow(hGame)) {
+    HWND hG = g_gameHwnd.load();
+    if (hG && IsWindow(hG)) {
         RECT gr = {};
-        GetWindowRect(hGame, &gr);
+        GetWindowRect(hG, &gr);
         UpdatePosition(gr.left, gr.top, gr.right - gr.left, gr.bottom - gr.top);
     } else {
-        s_modalW = g_drawerW.load();
-        s_modalH = g_drawerH.load();
         Repaint();
     }
     BrConfig::Save();
@@ -187,27 +383,9 @@ void DrawerModalUI::Repaint() {
     Paint(g_hDrawerModalWnd);
 }
 
-// Helper: Programmatic sleek gear icon
-static void DrawGearIcon(Gdiplus::Graphics& g, float cx, float cy, float radius, Gdiplus::Pen* pen) {
-    float innerR = radius * 0.45f;
-    float toothLen = radius * 0.35f;
-    g.DrawEllipse(pen, cx - innerR, cy - innerR, innerR * 2.0f, innerR * 2.0f);
-
-    const int numTeeth = 6;
-    for (int i = 0; i < numTeeth; ++i) {
-        float angle = i * (3.14159265f / 3.0f);
-        float x1 = cx + cosf(angle) * (innerR + 1.0f);
-        float y1 = cy + sinf(angle) * (innerR + 1.0f);
-        float x2 = cx + cosf(angle) * (innerR + toothLen + 1.0f);
-        float y2 = cy + sinf(angle) * (innerR + toothLen + 1.0f);
-        g.DrawLine(pen, x1, y1, x2, y2);
-    }
-}
-
 void DrawerModalUI::Paint(HWND hwnd) {
-    HDC screenDC = GetDC(nullptr);
-    HDC memDC = CreateCompatibleDC(screenDC);
-
+    HDC sc = GetDC(nullptr);
+    HDC mc = CreateCompatibleDC(sc);
     BITMAPINFO bmi = {};
     bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
     bmi.bmiHeader.biWidth = s_modalW;
@@ -216,593 +394,783 @@ void DrawerModalUI::Paint(HWND hwnd) {
     bmi.bmiHeader.biBitCount = 32;
     bmi.bmiHeader.biCompression = BI_RGB;
 
-    void* pBits = nullptr;
-    HBITMAP hBitmap = CreateDIBSection(screenDC, &bmi, DIB_RGB_COLORS, &pBits, nullptr, 0);
-    HBITMAP hOldBitmap = (HBITMAP)SelectObject(memDC, hBitmap);
+    void* pb = nullptr;
+    HBITMAP hB = CreateDIBSection(sc, &bmi, DIB_RGB_COLORS, &pb, nullptr, 0);
+    HBITMAP hOB = (HBITMAP)SelectObject(mc, hB);
 
     {
-        Gdiplus::Graphics g(memDC);
+        Gdiplus::Graphics g(mc);
         g.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
         g.SetTextRenderingHint(Gdiplus::TextRenderingHintClearTypeGridFit);
-
-        // Clear transparent
         g.Clear(Gdiplus::Color(0, 0, 0, 0));
 
-        float W = static_cast<float>(s_modalW);
-        float H = static_cast<float>(s_modalH);
+        Gdiplus::Color cBg = ThemeBg(), cCd = ThemeCard(), cBr = ThemeBorder();
+        Gdiplus::Color cTD = ThemeTextDark(), cTM = ThemeTextMuted(), cBl = UICommon::ColModel3Blue;
+        Gdiplus::SolidBrush bTD(cTD), bTM(cTM), bBl(cBl), bWh(cCd);
+        Gdiplus::Pen spn(cBr, 1.0f);
 
-        // 1. Dark Glassmorphism Backdrop with Rounded Corners (16px)
-        Gdiplus::SolidBrush bgBrush(UICommon::ColGlassBack);
-        UICommon::FillRoundRectangle(g, &bgBrush, 2.0f, 2.0f, W - 4.0f, H - 4.0f, 16.0f);
+        float cX = 4, cY = 4, cW = (float)s_modalW - 8, cH = (float)s_modalH - 8;
 
-        // Subtle Gold Trim Border
-        Gdiplus::Pen borderPen(UICommon::ColGoldDim, 1.4f);
-        UICommon::DrawRoundRectangle(g, &borderPen, 2.0f, 2.0f, W - 4.0f, H - 4.0f, 16.0f);
-
-        // 2. Title Bar / Header
-        Gdiplus::SolidBrush headerBrush(UICommon::ColGlassHeader);
-        UICommon::FillRoundRectangle(g, &headerBrush, 3.0f, 3.0f, W - 6.0f, 44.0f, 14.0f);
-
-        Gdiplus::Font fontTitle(L"Segoe UI", 10.5f, Gdiplus::FontStyleBold);
-        Gdiplus::SolidBrush textWhite(UICommon::ColTextWhite);
-        Gdiplus::SolidBrush textGold(UICommon::ColGoldAccent);
-        Gdiplus::SolidBrush textMuted(UICommon::ColTextMuted);
-
-        g.DrawString(I18n::TitlePanel(), -1, &fontTitle, Gdiplus::PointF(16.0f, 12.0f), &textGold);
-
-        Gdiplus::Font fontSubTitle(L"Segoe UI", 8.5f, Gdiplus::FontStyleRegular);
-        if (s_isSettingsOpen) {
-            g.DrawString(I18n::SubtitleSettings(), -1, &fontSubTitle, Gdiplus::PointF(160.0f, 14.0f), &textMuted);
-        } else {
-            g.DrawString(I18n::TitleDpsMeter(), -1, &fontSubTitle, Gdiplus::PointF(160.0f, 14.0f), &textMuted);
+        // Fundo com sombra suave e borda moderna
+        {
+            Gdiplus::SolidBrush sh(Gdiplus::Color(25, 15, 23, 42));
+            UICommon::FillRoundRectangle(g, &sh, cX + 3, cY + 4, cW, cH, 14);
+        }
+        {
+            Gdiplus::SolidBrush bg(cCd);
+            UICommon::FillRoundRectangle(g, &bg, cX, cY, cW, cH, 14);
+            Gdiplus::Pen bp(cBr, 1.2f);
+            UICommon::DrawRoundRectangle(g, &bp, cX, cY, cW, cH, 14);
         }
 
-        // Settings Button [⚙]
-        s_settingsBtnRect = { s_modalW - 68, 10, s_modalW - 44, 34 };
-        Gdiplus::SolidBrush settingsBg(s_isSettingsOpen ? Gdiplus::Color(80, 215, 170, 50) : Gdiplus::Color(35, 60, 70, 85));
-        UICommon::FillRoundRectangle(g, &settingsBg, (float)s_settingsBtnRect.left, (float)s_settingsBtnRect.top, 24.0f, 24.0f, 4.0f);
-        Gdiplus::Pen gearPen(s_isSettingsOpen ? UICommon::ColGoldAccent : UICommon::ColTextMuted, 1.6f);
-        DrawGearIcon(g, (float)s_settingsBtnRect.left + 12.0f, (float)s_settingsBtnRect.top + 12.0f, 6.0f, &gearPen);
+        // ================= HEADER =================
+        s_headerDragRect = { (int)cX, (int)cY, (int)(cX + cW - 100), (int)(cY + 46) };
+        float iX = cX + 14, iY = cY + 11, iS = 26;
+        {
+            Gdiplus::SolidBrush ib(cBl);
+            UICommon::FillRoundRectangle(g, &ib, iX, iY, iS, iS, 6);
+            Gdiplus::Pen ip(cCd, 2);
+            Gdiplus::PointF pts[4] = { { iX + 13, iY + 5 }, { iX + 21, iY + 13 }, { iX + 13, iY + 21 }, { iX + 5, iY + 13 } };
+            g.DrawPolygon(&ip, pts, 4);
+            g.DrawLine(&ip, iX + 13, iY + 8, iX + 13, iY + 18);
+        }
 
-        // Close Button [X]
-        s_closeBtnRect = { s_modalW - 38, 10, s_modalW - 14, 34 };
-        Gdiplus::Pen closePen(UICommon::ColTextMuted, 1.8f);
-        g.DrawLine(&closePen, (float)s_closeBtnRect.left + 6, (float)s_closeBtnRect.top + 6,
-                              (float)s_closeBtnRect.right - 6, (float)s_closeBtnRect.bottom - 6);
-        g.DrawLine(&closePen, (float)s_closeBtnRect.right - 6, (float)s_closeBtnRect.top + 6,
-                              (float)s_closeBtnRect.left + 6, (float)s_closeBtnRect.bottom - 6);
+        Gdiplus::Font fT(L"Segoe UI", 11, Gdiplus::FontStyleBold);
+        Gdiplus::Font fS(L"Segoe UI", 7.8f, Gdiplus::FontStyleRegular);
+        g.DrawString(L"ACADEMY SHOW", -1, &fT, Gdiplus::PointF(iX + iS + 10, cY + 9), &bTD);
+        g.DrawString(L"DPS Meter & Combat Metrics", -1, &fS, Gdiplus::PointF(iX + iS + 10, cY + 25), &bTM);
 
-        // Separator line under header
-        Gdiplus::Pen sepPen(Gdiplus::Color(45, 200, 205, 220), 1.0f);
-        g.DrawLine(&sepPen, 16.0f, 48.0f, W - 16.0f, 48.0f);
+        auto dHB = [&](RECT& r, int bx, int by, const wchar_t* s2) {
+            r = { bx, by, bx + 24, by + 24 };
+            Gdiplus::SolidBrush bb(cCd);
+            UICommon::FillRoundRectangle(g, &bb, (float)bx, (float)by, 24, 24, 5);
+            Gdiplus::Pen bp2(cBr, 1);
+            UICommon::DrawRoundRectangle(g, &bp2, (float)bx, (float)by, 24, 24, 5);
+            Gdiplus::Font bf(L"Segoe UI", 8.5f, Gdiplus::FontStyleBold);
+            Gdiplus::StringFormat sf;
+            sf.SetAlignment(Gdiplus::StringAlignmentCenter);
+            sf.SetLineAlignment(Gdiplus::StringAlignmentCenter);
+            g.DrawString(s2, -1, &bf, Gdiplus::RectF((float)bx, (float)by, 24, 24), &sf, &bTM);
+        };
 
-        float curY = 56.0f;
-        Gdiplus::Font fontSection(L"Segoe UI", 8.5f, Gdiplus::FontStyleBold);
-        Gdiplus::Font fontLabel(L"Segoe UI", 8.0f, Gdiplus::FontStyleRegular);
-        Gdiplus::Font fontSubLabel(L"Segoe UI", 7.5f, Gdiplus::FontStyleRegular);
-        Gdiplus::SolidBrush trackBrush(Gdiplus::Color(50, 80, 90, 110));
-        Gdiplus::SolidBrush thumbBrush(UICommon::ColGoldAccent);
+        int bBX = (int)(cX + cW - 88), bBY = (int)(cY + 12);
+        dHB(s_helpBtnRect, bBX, bBY, L"?");
+        dHB(s_minimizeBtnRect, bBX + 28, bBY, L"\u2212");
+        dHB(s_closeBtnRect, bBX + 56, bBY, L"\u00D7");
+        g.DrawLine(&spn, cX + 12, cY + 46, cX + cW - 12, cY + 46);
 
-        // =========================================================================
-        // VIEW A: SETTINGS OVERLAY
-        // =========================================================================
-        if (s_isSettingsOpen) {
-            // Zero out main view rects
-            s_resetBtnRect = s_fovSliderRect = s_camSliderRect = s_fps60Rect = s_fps144Rect = s_fpsMaxRect = s_tbToggleRect = s_anisoToggleRect = { 0, 0, 0, 0 };
+        // ================= SIDEBAR (NAVBAR) =================
+        float sX = cX + 8, sY = cY + 54, sW = 108, sH = cH - 62;
+        g.DrawLine(&spn, sX + sW + 4, sY, sX + sW + 4, sY + sH);
 
-            g.DrawString(I18n::TitleSettings(), -1, &fontSection, Gdiplus::PointF(16.0f, curY), &textGold);
-            curY += 22.0f;
+        struct NT { DrawerTab t; const wchar_t* l; const wchar_t* i; RECT* r; };
+        NT nvs[] = {
+            { DrawerTab::Display, L"Display", L"\u25A3", &s_tabDisplayRect },
+            { DrawerTab::DpsMeter, L"DPS Meter", L"\u25A5", &s_tabDpsMeterRect },
+            { DrawerTab::ComboUi, L"Combo UI", L"\u2694", &s_tabComboRect },
+            { DrawerTab::Engine, L"Engine", L"\u2699", &s_tabEngineRect },
+            { DrawerTab::Advanced, L"Advanced", L"\u26A1", &s_tabAdvancedRect }
+        };
 
-            // 1. Window Dimensions
-            wchar_t dimBuf[64];
-            swprintf_s(dimBuf, I18n::PanelDimensions(), s_modalW, s_modalH);
-            g.DrawString(dimBuf, -1, &fontLabel, Gdiplus::PointF(16.0f, curY), &textWhite);
-            curY += 20.0f;
+        Gdiplus::Font ftb(L"Segoe UI", 8.2f, Gdiplus::FontStyleRegular);
+        Gdiplus::Font ftbb(L"Segoe UI", 8.2f, Gdiplus::FontStyleBold);
+        float ctY = sY + 4;
 
-            // Presets
-            auto drawPresetBtn = [&](RECT& r, int x, int w, const wchar_t* txt, bool active) {
-                r = { x, (int)curY, x + w, (int)curY + 22 };
-                Gdiplus::SolidBrush b(active ? Gdiplus::Color(100, 215, 170, 50) : Gdiplus::Color(40, 60, 70, 85));
-                UICommon::FillRoundRectangle(g, &b, (float)r.left, (float)r.top, (float)(r.right - r.left), 22.0f, 4.0f);
-                Gdiplus::SolidBrush t(active ? UICommon::ColTextWhite : UICommon::ColTextMuted);
-                g.DrawString(txt, -1, &fontSubLabel, Gdiplus::PointF((float)r.left + 8, (float)r.top + 4), &t);
-            };
-
-            bool isNormal = (s_modalW == 460 && s_modalH == 580);
-            bool isWide = (s_modalW == 560 && s_modalH == 680);
-            bool isCompact = (s_modalW == 420 && s_modalH == 500);
-
-            drawPresetBtn(s_presetNormalRect, 16, 120, I18n::PresetDefault(), isNormal);
-            drawPresetBtn(s_presetWideRect, 144, 120, I18n::PresetWide(), isWide);
-            drawPresetBtn(s_presetCompactRect, 272, 130, I18n::PresetCompact(), isCompact);
-            curY += 28.0f;
-
-            // Manual adjustments row
-            g.DrawString(I18n::FineTune(), -1, &fontSubLabel, Gdiplus::PointF(16.0f, curY + 2), &textMuted);
-
-            auto drawStepBtn = [&](RECT& r, int x, const wchar_t* txt) {
-                r = { x, (int)curY, x + 24, (int)curY + 18 };
-                Gdiplus::SolidBrush b(Gdiplus::Color(50, 70, 80, 95));
-                UICommon::FillRoundRectangle(g, &b, (float)r.left, (float)r.top, 24.0f, 18.0f, 3.0f);
-                g.DrawString(txt, -1, &fontLabel, Gdiplus::PointF((float)r.left + 6, (float)r.top + 1), &textWhite);
-            };
-
-            g.DrawString(I18n::Width(), -1, &fontSubLabel, Gdiplus::PointF(85.0f, curY + 2), &textWhite);
-            drawStepBtn(s_widthMinusRect, 135, L"-");
-            drawStepBtn(s_widthPlusRect, 165, L"+");
-
-            g.DrawString(I18n::Height(), -1, &fontSubLabel, Gdiplus::PointF(210.0f, curY + 2), &textWhite);
-            drawStepBtn(s_heightMinusRect, 250, L"-");
-            drawStepBtn(s_heightPlusRect, 280, L"+");
-            curY += 28.0f;
-
-            // 2. Opacity Slider
-            int opPct = static_cast<int>((g_drawerOpacity.load() / 255.0f) * 100.0f);
-            wchar_t opBuf[64];
-            swprintf_s(opBuf, I18n::PanelOpacity(), opPct);
-            g.DrawString(opBuf, -1, &fontLabel, Gdiplus::PointF(16.0f, curY), &textWhite);
-
-            s_opacitySliderRect = { 180, (int)curY + 2, s_modalW - 24, (int)curY + 12 };
-            g.FillRectangle(&trackBrush, (float)s_opacitySliderRect.left, (float)s_opacitySliderRect.top,
-                            (float)(s_opacitySliderRect.right - s_opacitySliderRect.left), 8.0f);
-
-            float opNorm = (g_drawerOpacity.load() - 120.0f) / (255.0f - 120.0f);
-            opNorm = std::clamp(opNorm, 0.0f, 1.0f);
-            float thumbOpX = s_opacitySliderRect.left + opNorm * (s_opacitySliderRect.right - s_opacitySliderRect.left - 12);
-            g.FillEllipse(&thumbBrush, thumbOpX, (float)s_opacitySliderRect.top - 2.0f, 12.0f, 12.0f);
-            curY += 28.0f;
-
-            // 3. View mode toggles
-            g.DrawLine(&sepPen, 16.0f, curY, W - 16.0f, curY);
-            curY += 12.0f;
-            g.DrawString(I18n::DisplayModes(), -1, &fontSection, Gdiplus::PointF(16.0f, curY), &textGold);
-            curY += 22.0f;
-
-            // Compact mode toggle
-            s_compactToggleRect = { 16, (int)curY, 200, (int)curY + 22 };
-            bool comp = g_compactView.load();
-            Gdiplus::SolidBrush compBrush(comp ? Gdiplus::Color(80, 45, 210, 45) : Gdiplus::Color(35, 75, 85, 95));
-            UICommon::FillRoundRectangle(g, &compBrush, (float)s_compactToggleRect.left, (float)s_compactToggleRect.top, 184.0f, 22.0f, 4.0f);
-            g.DrawString(comp ? I18n::CompactModeActive() : I18n::CompactModeInactive(), -1, &fontSubLabel,
-                         Gdiplus::PointF((float)s_compactToggleRect.left + 8, (float)s_compactToggleRect.top + 4), &textWhite);
-
-            g.DrawString(I18n::CompactModeDesc(), -1, &fontSubLabel, Gdiplus::PointF(212.0f, curY + 4), &textMuted);
-            curY += 28.0f;
-
-            // Hide console toggle
-            s_hideConsoleToggleRect = { 16, (int)curY, 200, (int)curY + 22 };
-            bool hideCon = g_hideConsoleSection.load();
-            Gdiplus::SolidBrush hideBrush(hideCon ? Gdiplus::Color(80, 45, 210, 45) : Gdiplus::Color(35, 75, 85, 95));
-            UICommon::FillRoundRectangle(g, &hideBrush, (float)s_hideConsoleToggleRect.left, (float)s_hideConsoleToggleRect.top, 184.0f, 22.0f, 4.0f);
-            g.DrawString(hideCon ? I18n::HideConsoleActive() : I18n::HideConsoleInactive(), -1, &fontSubLabel,
-                         Gdiplus::PointF((float)s_hideConsoleToggleRect.left + 8, (float)s_hideConsoleToggleRect.top + 4), &textWhite);
-
-            g.DrawString(I18n::HideConsoleDesc(), -1, &fontSubLabel, Gdiplus::PointF(212.0f, curY + 4), &textMuted);
-            curY += 28.0f;
-
-            // 4. Combo UI Settings
-            g.DrawLine(&sepPen, 16.0f, curY, W - 16.0f, curY);
-            curY += 12.0f;
-            g.DrawString(I18n::ComboUiSection(), -1, &fontSection, Gdiplus::PointF(16.0f, curY), &textGold);
-            curY += 22.0f;
-
-            // Toggle Show/Hide
-            s_comboToggleRect = { 16, (int)curY, 200, (int)curY + 22 };
-            bool comboVis = g_comboVisible.load();
-            Gdiplus::SolidBrush comboVisBrush(comboVis ? Gdiplus::Color(80, 45, 210, 45) : Gdiplus::Color(35, 75, 85, 95));
-            UICommon::FillRoundRectangle(g, &comboVisBrush, (float)s_comboToggleRect.left, (float)s_comboToggleRect.top, 184.0f, 22.0f, 4.0f);
-            g.DrawString(comboVis ? I18n::ComboUiToggleActive() : I18n::ComboUiToggleInactive(), -1, &fontSubLabel,
-                         Gdiplus::PointF((float)s_comboToggleRect.left + 8, (float)s_comboToggleRect.top + 4), &textWhite);
-
-            g.DrawString(I18n::ComboUiToggleDesc(), -1, &fontSubLabel, Gdiplus::PointF(212.0f, curY + 4), &textMuted);
-            curY += 28.0f;
-
-            // Opacity Slider
-            float curComboOp = GetComboOverlayOpacity();
-            int comboOpPct = static_cast<int>(curComboOp * 100.0f + 0.5f);
-            wchar_t comboOpBuf[64];
-            swprintf_s(comboOpBuf, I18n::ComboUiOpacity(), comboOpPct);
-            g.DrawString(comboOpBuf, -1, &fontLabel, Gdiplus::PointF(16.0f, curY), &textWhite);
-
-            s_comboOpacitySliderRect = { 180, (int)curY + 2, s_modalW - 24, (int)curY + 12 };
-            g.FillRectangle(&trackBrush, (float)s_comboOpacitySliderRect.left, (float)s_comboOpacitySliderRect.top,
-                            (float)(s_comboOpacitySliderRect.right - s_comboOpacitySliderRect.left), 8.0f);
-
-            float comboOpNorm = (curComboOp - 0.10f) / (1.0f - 0.10f);
-            comboOpNorm = std::clamp(comboOpNorm, 0.0f, 1.0f);
-            float thumbComboOpX = s_comboOpacitySliderRect.left + comboOpNorm * (s_comboOpacitySliderRect.right - s_comboOpacitySliderRect.left - 12);
-            g.FillEllipse(&thumbBrush, thumbComboOpX, (float)s_comboOpacitySliderRect.top - 2.0f, 12.0f, 12.0f);
-            curY += 28.0f;
-
-            // Scale Presets & Step Buttons
-            float normX = 0.8f, normY = 0.5f, curScale = 1.0f;
-            GetComboOverlayLayout(&normX, &normY, &curScale);
-            int scalePct = static_cast<int>(curScale * 100.0f + 0.5f);
-            wchar_t scaleBuf[64];
-            swprintf_s(scaleBuf, I18n::ComboUiScale(), scalePct);
-            g.DrawString(scaleBuf, -1, &fontLabel, Gdiplus::PointF(16.0f, curY), &textWhite);
-            curY += 20.0f;
-
-            drawPresetBtn(s_comboScale70Rect, 16, 70, L"70%", (scalePct >= 68 && scalePct <= 72));
-            drawPresetBtn(s_comboScale100Rect, 94, 70, L"100%", (scalePct >= 98 && scalePct <= 102));
-            drawPresetBtn(s_comboScale130Rect, 172, 70, L"130%", (scalePct >= 128 && scalePct <= 132));
-
-            g.DrawString(I18n::FineTune(), -1, &fontSubLabel, Gdiplus::PointF(255.0f, curY + 2), &textMuted);
-            drawStepBtn(s_comboScaleMinusRect, 320, L"-");
-            drawStepBtn(s_comboScalePlusRect, 350, L"+");
-            curY += 32.0f;
-
-            // 5. Save & Close Button
-            s_saveSettingsBtnRect = { 16, (int)H - 46, (int)W - 16, (int)H - 14 };
-            Gdiplus::LinearGradientBrush saveBtnBrush(
-                Gdiplus::PointF(16.0f, (float)s_saveSettingsBtnRect.top),
-                Gdiplus::PointF(W - 16.0f, (float)s_saveSettingsBtnRect.top),
-                Gdiplus::Color(220, 215, 170, 50),
-                Gdiplus::Color(220, 175, 130, 30)
-            );
-            UICommon::FillRoundRectangle(g, &saveBtnBrush, (float)s_saveSettingsBtnRect.left, (float)s_saveSettingsBtnRect.top,
-                                         (float)(s_saveSettingsBtnRect.right - s_saveSettingsBtnRect.left), 32.0f, 6.0f);
-
-            Gdiplus::Font btnFont(L"Segoe UI", 9.0f, Gdiplus::FontStyleBold);
-            Gdiplus::SolidBrush btnText(Gdiplus::Color(255, 18, 14, 6));
-            Gdiplus::StringFormat centerFmt;
-            centerFmt.SetAlignment(Gdiplus::StringAlignmentCenter);
-            centerFmt.SetLineAlignment(Gdiplus::StringAlignmentCenter);
-            Gdiplus::RectF btnRectF((float)s_saveSettingsBtnRect.left, (float)s_saveSettingsBtnRect.top,
-                                   (float)(s_saveSettingsBtnRect.right - s_saveSettingsBtnRect.left), 32.0f);
-            g.DrawString(I18n::SaveAndClose(), -1, &btnFont, btnRectF, &centerFmt, &btnText);
-
-        } else {
-            // Zero out settings rects
-            s_presetNormalRect = s_presetWideRect = s_presetCompactRect = s_widthMinusRect = s_widthPlusRect =
-                s_heightMinusRect = s_heightPlusRect = s_opacitySliderRect = s_compactToggleRect =
-                s_hideConsoleToggleRect = s_comboToggleRect = s_comboOpacitySliderRect = s_comboScale70Rect =
-                s_comboScale100Rect = s_comboScale130Rect = s_comboScaleMinusRect = s_comboScalePlusRect =
-                s_saveSettingsBtnRect = { 0, 0, 0, 0 };
-
-            // =========================================================================
-            // VIEW B: MAIN DASHBOARD
-            // =========================================================================
-
-            // Section 1: Shugo Console (Motor Gráfico) - if not hidden
-            if (!g_hideConsoleSection.load() && g_featConsole.load()) {
-                g.DrawString(I18n::ShugoEngineTitle(), -1, &fontSection, Gdiplus::PointF(16.0f, curY), &textGold);
-                curY += 20.0f;
-
-                // FOV Slider
-                if (g_featFov.load()) {
-                    wchar_t fovBuf[64];
-                    swprintf_s(fovBuf, L"%ls%.0f°", I18n::FovLabel(), g_cvarFov.load());
-                    g.DrawString(fovBuf, -1, &fontLabel, Gdiplus::PointF(16.0f, curY), &textWhite);
-
-                    s_fovSliderRect = { 180, (int)curY + 2, s_modalW - 24, (int)curY + 12 };
-                    g.FillRectangle(&trackBrush, (float)s_fovSliderRect.left, (float)s_fovSliderRect.top,
-                                    (float)(s_fovSliderRect.right - s_fovSliderRect.left), 8.0f);
-
-                    float fovPct = (g_cvarFov.load() - 60.0f) / (120.0f - 60.0f);
-                    fovPct = std::clamp(fovPct, 0.0f, 1.0f);
-                    float thumbX = s_fovSliderRect.left + fovPct * (s_fovSliderRect.right - s_fovSliderRect.left - 12);
-                    g.FillEllipse(&thumbBrush, thumbX, (float)s_fovSliderRect.top - 2.0f, 12.0f, 12.0f);
-                    curY += 20.0f;
-                } else {
-                    s_fovSliderRect = { 0, 0, 0, 0 };
-                }
-
-                // CamMax Slider
-                if (g_featCamMax.load()) {
-                    wchar_t camBuf[64];
-                    swprintf_s(camBuf, L"%ls%.0fm", I18n::CamMaxLabel(), g_cvarCamMax.load());
-                    g.DrawString(camBuf, -1, &fontLabel, Gdiplus::PointF(16.0f, curY), &textWhite);
-
-                    s_camSliderRect = { 180, (int)curY + 2, s_modalW - 24, (int)curY + 12 };
-                    g.FillRectangle(&trackBrush, (float)s_camSliderRect.left, (float)s_camSliderRect.top,
-                                    (float)(s_camSliderRect.right - s_camSliderRect.left), 8.0f);
-
-                    float camPct = (g_cvarCamMax.load() - 5.0f) / (45.0f - 5.0f);
-                    camPct = std::clamp(camPct, 0.0f, 1.0f);
-                    float thumbCamX = s_camSliderRect.left + camPct * (s_camSliderRect.right - s_camSliderRect.left - 12);
-                    g.FillEllipse(&thumbBrush, thumbCamX, (float)s_camSliderRect.top - 2.0f, 12.0f, 12.0f);
-                    curY += 22.0f;
-                } else {
-                    s_camSliderRect = { 0, 0, 0, 0 };
-                }
-
-                // FPS limiters & toggles
-                if (g_featFpsUnlock.load()) {
-                    g.DrawString(I18n::FpsCapLabel(), -1, &fontLabel, Gdiplus::PointF(16.0f, curY + 2), &textWhite);
-
-                    auto drawFpsBtn = [&](RECT& r, int x, int val, const wchar_t* txt) {
-                        r = { x, (int)curY, x + 38, (int)curY + 18 };
-                        bool active = (g_cvarMaxFps.load() == val);
-                        Gdiplus::SolidBrush b(active ? Gdiplus::Color(100, 215, 170, 50) : Gdiplus::Color(40, 60, 70, 85));
-                        UICommon::FillRoundRectangle(g, &b, (float)r.left, (float)r.top, (float)(r.right - r.left), 18.0f, 3.0f);
-                        Gdiplus::SolidBrush t(active ? UICommon::ColTextWhite : UICommon::ColTextMuted);
-                        g.DrawString(txt, -1, &fontLabel, Gdiplus::PointF((float)r.left + 5, (float)r.top + 2), &t);
-                    };
-
-                    drawFpsBtn(s_fps60Rect, 52, 60, L"60");
-                    drawFpsBtn(s_fps144Rect, 94, 144, L"144");
-                    drawFpsBtn(s_fpsMaxRect, 136, 0, L"MAX");
-
-                    // Triple Buffering & Anisotropic
-                    s_tbToggleRect = { 186, (int)curY, 276, (int)curY + 18 };
-                    bool tb = g_cvarTripleBuffering.load();
-                    Gdiplus::SolidBrush tbBrush(tb ? Gdiplus::Color(60, 45, 230, 45) : Gdiplus::Color(30, 80, 80, 80));
-                    UICommon::FillRoundRectangle(g, &tbBrush, (float)s_tbToggleRect.left, (float)s_tbToggleRect.top, (float)(s_tbToggleRect.right - s_tbToggleRect.left), 18.0f, 3.0f);
-                    g.DrawString(tb ? L"✔ TriBuffer" : L"✖ TriBuffer", -1, &fontSubLabel, Gdiplus::PointF((float)s_tbToggleRect.left + 6, (float)s_tbToggleRect.top + 2), &textWhite);
-
-                    s_anisoToggleRect = { 284, (int)curY, 376, (int)curY + 18 };
-                    bool aniso = g_cvarAnisotropic.load();
-                    Gdiplus::SolidBrush anisoBrush(aniso ? Gdiplus::Color(60, 45, 230, 45) : Gdiplus::Color(30, 80, 80, 80));
-                    UICommon::FillRoundRectangle(g, &anisoBrush, (float)s_anisoToggleRect.left, (float)s_anisoToggleRect.top, (float)(s_anisoToggleRect.right - s_anisoToggleRect.left), 18.0f, 3.0f);
-                    g.DrawString(aniso ? (IsEnglish() ? L"✔ 16x Aniso" : L"✔ 16x Aniso") : (IsEnglish() ? L"✖ 16x Aniso" : L"✖ 16x Aniso"), -1, &fontSubLabel, Gdiplus::PointF((float)s_anisoToggleRect.left + 6, (float)s_anisoToggleRect.top + 2), &textWhite);
-
-                    curY += 26.0f;
-                } else {
-                    s_fps60Rect = s_fps144Rect = s_fpsMaxRect = s_tbToggleRect = s_anisoToggleRect = { 0, 0, 0, 0 };
-                }
-
-                g.DrawLine(&sepPen, 16.0f, curY, W - 16.0f, curY);
-                curY += 10.0f;
+        for (auto& n : nvs) {
+            bool ac = (s_activeTab == n.t);
+            *(n.r) = { (int)sX, (int)ctY, (int)(sX + sW), (int)(ctY + 30) };
+            if (ac) {
+                Gdiplus::SolidBrush ab(cBl);
+                UICommon::FillRoundRectangle(g, &ab, sX, ctY, sW, 30, 6);
+                Gdiplus::PointF ap[3] = { { sX + sW, ctY + 10 }, { sX + sW + 4, ctY + 15 }, { sX + sW, ctY + 20 } };
+                g.FillPolygon(&ab, ap, 3);
+                Gdiplus::SolidBrush wh(cCd);
+                g.DrawString(n.i, -1, &ftbb, Gdiplus::PointF(sX + 10, ctY + 6), &wh);
+                g.DrawString(n.l, -1, &ftbb, Gdiplus::PointF(sX + 28, ctY + 6), &wh);
             } else {
-                s_fovSliderRect = s_camSliderRect = s_fps60Rect = s_fps144Rect = s_fpsMaxRect = s_tbToggleRect = s_anisoToggleRect = { 0, 0, 0, 0 };
+                g.DrawString(n.i, -1, &ftb, Gdiplus::PointF(sX + 10, ctY + 6), &bTM);
+                g.DrawString(n.l, -1, &ftb, Gdiplus::PointF(sX + 28, ctY + 6), &bTD);
+            }
+            ctY += 36;
+        }
+
+        s_resetDefaultsRect = { (int)sX, (int)(cY + cH - 36), (int)(sX + sW), (int)(cY + cH - 12) };
+        {
+            Gdiplus::SolidBrush rb(cBg);
+            UICommon::FillRoundRectangle(g, &rb, (float)s_resetDefaultsRect.left, (float)s_resetDefaultsRect.top, sW, 24, 4);
+            Gdiplus::Pen rp(cBr, 1);
+            UICommon::DrawRoundRectangle(g, &rp, (float)s_resetDefaultsRect.left, (float)s_resetDefaultsRect.top, sW, 24, 4);
+            Gdiplus::Font fr(L"Segoe UI", 7.2f, Gdiplus::FontStyleRegular);
+            Gdiplus::StringFormat cf;
+            cf.SetAlignment(Gdiplus::StringAlignmentCenter);
+            cf.SetLineAlignment(Gdiplus::StringAlignmentCenter);
+            g.DrawString(L"Reset Defaults", -1, &fr, Gdiplus::RectF((float)s_resetDefaultsRect.left, (float)s_resetDefaultsRect.top, sW, 24), &cf, &bTM);
+        }
+
+        // ================= MAIN CONTENT AREA =================
+        float mX = sX + sW + 14, mY = sY + 2, mW2 = (cX + cW - 10) - mX, mH2 = sH - 4;
+        Gdiplus::Font fCT(L"Segoe UI", 8.2f, Gdiplus::FontStyleBold);
+        Gdiplus::Font fLb(L"Segoe UI", 7.8f, Gdiplus::FontStyleRegular);
+        Gdiplus::Font fSb(L"Segoe UI", 7.2f, Gdiplus::FontStyleRegular);
+        Gdiplus::StringFormat cf2;
+        cf2.SetAlignment(Gdiplus::StringAlignmentCenter);
+        cf2.SetLineAlignment(Gdiplus::StringAlignmentCenter);
+        Gdiplus::StringFormat rA;
+        rA.SetAlignment(Gdiplus::StringAlignmentFar);
+
+        auto dSl = [&](RECT& r2, float sx, float sy, float sw, float nv, const wchar_t* lb, const wchar_t* vl) {
+            if (lb && lb[0]) g.DrawString(lb, -1, &fLb, Gdiplus::PointF(sx, sy), &bTD);
+            if (vl && vl[0]) g.DrawString(vl, -1, &fSb, Gdiplus::RectF(sx + sw - 44, sy, 44, 14), &rA, &bTM);
+            sy += 16;
+            r2 = { (int)sx, (int)sy, (int)(sx + sw), (int)(sy + 12) };
+            Gdiplus::SolidBrush tr(cBr);
+            UICommon::FillRoundRectangle(g, &tr, sx, sy + 4, sw, 4, 2);
+            if (nv > 0.01f) {
+                Gdiplus::SolidBrush fl(cBl);
+                UICommon::FillRoundRectangle(g, &fl, sx, sy + 4, sw * nv, 4, 2);
+            }
+            Gdiplus::SolidBrush th(cBl);
+            g.FillEllipse(&th, sx + nv * (sw - 12.0f), sy, 12.0f, 12.0f);
+        };
+
+        auto dTR = [&](RECT& r2, float sx, float sy, float sw, const wchar_t* lb, bool ac) -> float {
+            r2 = { (int)(sx + sw - 90), (int)sy, (int)(sx + sw), (int)(sy + 18) };
+            g.DrawString(lb, -1, &fSb, Gdiplus::PointF(sx, sy + 2), &bTM);
+            UICommon::DrawModernSwitch(g, (float)r2.left, (float)r2.top, ac, L"ON", L"OFF");
+            return sy + 26;
+        };
+
+        auto dPl = [&](RECT& r2, float px, float py, float pw, float ph, const wchar_t* tx, bool ac) {
+            r2 = { (int)px, (int)py, (int)(px + pw), (int)(py + ph) };
+            Gdiplus::SolidBrush b(ac ? cBl : cBg);
+            UICommon::FillRoundRectangle(g, &b, px, py, pw, ph, 4);
+            Gdiplus::Pen p2(ac ? cBl : cBr, 1);
+            UICommon::DrawRoundRectangle(g, &p2, px, py, pw, ph, 4);
+            Gdiplus::SolidBrush t(ac ? cCd : cTD);
+            Gdiplus::Font f(L"Segoe UI", 7.2f, ac ? Gdiplus::FontStyleBold : Gdiplus::FontStyleRegular);
+            g.DrawString(tx, -1, &f, Gdiplus::RectF(px, py + 2, pw, ph - 4), &cf2, &t);
+        };
+
+        // ================= TAB 0: DISPLAY (OVERVIEW) =================
+        if (s_activeTab == DrawerTab::Display) {
+            float cg = 16, c1W = std::floor(mW2 * 0.44f), c2W = mW2 - c1W - cg, c2X = mX + c1W + cg;
+            g.DrawLine(&spn, mX + c1W + cg * 0.5f, mY, mX + c1W + cg * 0.5f, mY + mH2);
+
+            float c1Y = mY;
+            g.DrawString(L"DISPLAY & COMBO", -1, &fCT, Gdiplus::PointF(mX, c1Y), &bBl);
+            c1Y += 20;
+
+            g.DrawString(L"Panel Size", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
+            c1Y += 16;
+            float pW = std::floor((c1W - 8) / 3.0f);
+            dPl(s_presetDefaultRect, mX, c1Y, pW, 28, L"Default", (s_modalW == 760 && s_modalH == 560));
+            dPl(s_presetWideRect, mX + pW + 4, c1Y, pW, 28, L"Wide", (s_modalW == 880 && s_modalH == 660));
+            dPl(s_presetCompactRect, mX + (pW + 4) * 2, c1Y, pW, 28, L"Compact", (s_modalW == 540 && s_modalH == 500));
+            c1Y += 34;
+
+            {
+                float n = std::clamp((g_drawerOpacity.load() - 120.0f) / 135.0f, 0.0f, 1.0f);
+                wchar_t b[16];
+                swprintf_s(b, L"%d%%", (int)(n * 100 + 0.5f));
+                dSl(s_opacitySliderRect, mX, c1Y, c1W, n, L"Opacity", b);
+                c1Y += 32;
             }
 
-            // Section 2: Combat Analysis & Target Data
-            if (g_featDpsMeterUI.load()) {
-                std::lock_guard<std::recursive_mutex> lock(g_combatMutex);
+            g.DrawString(L"Display Modes", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
+            c1Y += 18;
+            c1Y = dTR(s_compactToggleRect, mX, c1Y, c1W, L"Compact Mode", g_compactView.load());
+            c1Y = dTR(s_consoleToggleRect, mX, c1Y, c1W, L"Graphic Console", !g_hideConsoleSection.load());
 
-                // Target Banner & Dynamic Stats
-                Gdiplus::Font fontTarget(L"Segoe UI", 9.5f, Gdiplus::FontStyleBold);
-                Gdiplus::Font fontTargetStats(L"Segoe UI", 7.5f, Gdiplus::FontStyleRegular);
+            g.DrawString(L"Combo UI", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
+            c1Y += 18;
+            c1Y = dTR(s_comboToggleRect, mX, c1Y, c1W, L"Combo Enabled", g_comboVisible.load());
+            {
+                float sc = g_comboScale.load(), n = std::clamp((sc - 0.55f) / 1.05f, 0.0f, 1.0f);
+                wchar_t b[16];
+                swprintf_s(b, L"%.0f%%", sc * 100);
+                dSl(s_comboScaleSliderRect, mX, c1Y, c1W, n, L"Combo Scale", b);
+                c1Y += 32;
+            }
 
-                if (g_currentTarget.hasTarget) {
-                    float targetX = 16.0f;
-                    UICommon::DrawTargetEmblemDisk(g, targetX, curY + 1.0f, 16.0f, g_currentTarget.rating, g_currentTarget.race, g_currentTarget.isNpc);
-                    targetX += 22.0f;
+            g.DrawString(L"Position", -1, &fSb, Gdiplus::PointF(mX, c1Y), &bTM);
+            c1Y += 14;
+            float pbW = std::floor((c1W - 9) / 4.0f), cnx = g_comboPosNormX.load(), cny = g_comboPosNormY.load();
+            bool iT = cny < 0.25f, iMR = !iT && cnx > 0.65f, iC = !iT && cnx >= 0.35f && cnx <= 0.65f, iML = !iT && cnx < 0.35f;
+            dPl(s_comboPosTopRect, mX, c1Y, pbW, 22, L"Top", iT);
+            dPl(s_comboPosMidRightRect, mX + pbW + 3, c1Y, pbW, 22, L"Mid-R", iMR);
+            dPl(s_comboPosCenterRect, mX + (pbW + 3) * 2, c1Y, pbW, 22, L"Ctr", iC);
+            dPl(s_comboPosLeftRect, mX + (pbW + 3) * 3, c1Y, pbW, 22, L"Mid-L", iML);
+            c1Y += 28;
 
-                    std::wstring targetTitle = I18n::TargetLabel() + std::wstring(g_currentTarget.name.begin(), g_currentTarget.name.end());
-                    if (g_currentTarget.level > 0) {
-                        targetTitle += L" [Lv. " + std::to_wstring(g_currentTarget.level) + L"]";
-                    }
-                    g.DrawString(targetTitle.c_str(), -1, &fontTarget, Gdiplus::PointF(targetX, curY), &textWhite);
+            s_saveSettingsBtnRect = { (int)mX, (int)(cY + cH - 36), (int)(mX + c1W), (int)(cY + cH - 10) };
+            {
+                Gdiplus::SolidBrush sb(cBl);
+                UICommon::FillRoundRectangle(g, &sb, (float)s_saveSettingsBtnRect.left, (float)s_saveSettingsBtnRect.top, c1W, 26, 5);
+                Gdiplus::Font sf2(L"Segoe UI", 8.2f, Gdiplus::FontStyleBold);
+                g.DrawString(L"\u2713 Save & Close", -1, &sf2, Gdiplus::RectF((float)s_saveSettingsBtnRect.left, (float)s_saveSettingsBtnRect.top, c1W, 26), &cf2, &bWh);
+            }
 
-                    // Extra target stats chips
-                    wchar_t statsBuf[128];
-                    std::wstring wAi(g_currentTarget.aiName.begin(), g_currentTarget.aiName.end());
-                    swprintf_s(statsBuf, L"AI: %ls | ATK: %u  DEF: %u  M.RES: %u",
-                               wAi.c_str(), g_currentTarget.attack, g_currentTarget.pdef, g_currentTarget.mres);
-                    g.DrawString(statsBuf, -1, &fontTargetStats, Gdiplus::PointF(W - 250.0f, curY + 2.0f), &textGold);
+            // Right side: DPS Meter Overview & Combat Metrics
+            UpdateTargetFromGameMemory();
+            std::lock_guard<std::recursive_mutex> lk(g_combatMutex);
 
-                    curY += 18.0f;
+            float c2Y = mY;
+            g.DrawString(L"DPS METER OVERVIEW", -1, &fCT, Gdiplus::PointF(c2X, c2Y), &bBl);
+            c2Y += 18;
 
-                    // Health bar with exact HP numbers and percentage
-                    float hpW = W - 32.0f;
-                    Gdiplus::SolidBrush hpBg(Gdiplus::Color(60, 30, 35, 45));
-                    UICommon::FillRoundRectangle(g, &hpBg, 16.0f, curY, hpW, 12.0f, 2.0f);
+            s_targetDropdownRect = { (int)c2X, (int)c2Y, (int)(c2X + c2W), (int)(c2Y + 26) };
+            {
+                Gdiplus::SolidBrush db(cBg);
+                UICommon::FillRoundRectangle(g, &db, c2X, c2Y, c2W, 26, 5);
+                Gdiplus::Pen dp(cBr, 1);
+                UICommon::DrawRoundRectangle(g, &dp, c2X, c2Y, c2W, 26, 5);
+                std::wstring tn = g_currentTarget.hasTarget ? UICommon::Utf8ToWide(g_currentTarget.name) : L"(Nenhum Alvo Selecionado)";
+                g.DrawString((L"Target: " + tn).c_str(), -1, &fLb, Gdiplus::PointF(c2X + 10, c2Y + 5), &bTD);
+            }
+            c2Y += 34;
 
-                    float hpPct = (g_currentTarget.maxHp > 0) ? (float)g_currentTarget.currentHp / (float)g_currentTarget.maxHp : 0.0f;
-                    hpPct = std::clamp(hpPct, 0.0f, 1.0f);
+            // 4 Metrics Cards: Tempo, DPS, Dano Causado, Dano Recebido
+            float mWm = std::floor((c2W - 18) / 4.0f);
+            auto dM = [&](float mx2, const wchar_t* lb, const std::wstring& vl) {
+                Gdiplus::SolidBrush mb(cBg);
+                UICommon::FillRoundRectangle(g, &mb, mx2, c2Y, mWm, 44, 5);
+                Gdiplus::Pen mp(cBr, 1);
+                UICommon::DrawRoundRectangle(g, &mp, mx2, c2Y, mWm, 44, 5);
+                Gdiplus::Font fl(L"Segoe UI", 6.8f, Gdiplus::FontStyleRegular);
+                g.DrawString(lb, -1, &fl, Gdiplus::PointF(mx2 + 6, c2Y + 4), &bTM);
+                Gdiplus::Font fv(L"Segoe UI", 10.5f, Gdiplus::FontStyleBold);
+                g.DrawString(vl.c_str(), -1, &fv, Gdiplus::PointF(mx2 + 6, c2Y + 18), &bTD);
+            };
 
-                    if (hpPct > 0.0f && g_currentTarget.currentHp > 0) {
-                        Gdiplus::SolidBrush hpFill(Gdiplus::Color(255, 220, 50, 60)); // Crimson HP
-                        UICommon::FillRoundRectangle(g, &hpFill, 16.0f, curY, hpW * hpPct, 12.0f, 2.0f);
+            dM(c2X, L"Tempo", UICommon::FormatTime(g_battleDurationSeconds.load()));
+            dM(c2X + (mWm + 6), L"DPS", UICommon::FormatNumber(g_totalDealtDps.load()));
+            dM(c2X + (mWm + 6) * 2, L"Causado", UICommon::FormatNumber(g_totalDamageDealt.load()));
+            dM(c2X + (mWm + 6) * 3, L"Recebido", UICommon::FormatNumber(g_totalDamageReceived.load()));
+            c2Y += 52;
 
-                        wchar_t hpText[64];
-                        swprintf_s(hpText, L"%ls / %ls (%.1f%%)",
-                                   UICommon::FormatNumber(g_currentTarget.currentHp).c_str(),
-                                   UICommon::FormatNumber(g_currentTarget.maxHp).c_str(),
-                                   hpPct * 100.0f);
-                        Gdiplus::StringFormat cFmt;
-                        cFmt.SetAlignment(Gdiplus::StringAlignmentCenter);
-                        cFmt.SetLineAlignment(Gdiplus::StringAlignmentCenter);
-                        Gdiplus::RectF hpRect(16.0f, curY, hpW, 12.0f);
-                        g.DrawString(hpText, -1, &fontSubLabel, hpRect, &cFmt, &textWhite);
+            g.DrawString(L"DPS Over Time", -1, &fLb, Gdiplus::PointF(c2X, c2Y), &bTD);
+            c2Y += 16;
+            UICommon::DrawDpsSplineChart(g, c2X, c2Y, c2W, 56, g_dpsHistory, g_battleDurationSeconds.load());
+            c2Y += 68;
+
+            g.DrawString(L"Damage Breakdown", -1, &fLb, Gdiplus::PointF(c2X, c2Y), &bTD);
+            c2Y += 16;
+            uint64_t tb = g_totalDamageDealt.load();
+            size_t ns = std::min(g_skillBreakdown.size(), (size_t)4);
+            if (ns > 0) {
+                for (size_t i = 0; i < ns; ++i) {
+                    auto& sk = g_skillBreakdown[i];
+                    float p = tb > 0 ? (float)sk.totalDamage / tb * 100.0f : 0.0f;
+                    IconManager::DrawSkillIcon(g, c2X, c2Y + 1, 13, sk.skillId, sk.skillName);
+                    Gdiplus::Font fsk(L"Segoe UI", 7.2f, Gdiplus::FontStyleRegular);
+                    g.DrawString(UICommon::Utf8ToWide(sk.skillName).c_str(), -1, &fsk, Gdiplus::PointF(c2X + 17, c2Y), &bTD);
+                    float bSX = c2X + c2W * 0.45f, bMW = c2W * 0.28f, bW = bMW * std::clamp(p / 100.0f, 0.05f, 1.0f);
+                    Gdiplus::SolidBrush bg2(cBr);
+                    UICommon::FillRoundRectangle(g, &bg2, bSX, c2Y + 4, bMW, 5, 2.5f);
+                    Gdiplus::SolidBrush bf(cBl);
+                    UICommon::FillRoundRectangle(g, &bf, bSX, c2Y + 4, bW, 5, 2.5f);
+                    wchar_t pb[16];
+                    swprintf_s(pb, L"%.1f%%", p);
+                    g.DrawString(pb, -1, &fsk, Gdiplus::PointF(bSX + bMW + 6, c2Y + 1), &bTM);
+                    c2Y += 17;
+                }
+            } else {
+                Gdiplus::Font fn(L"Segoe UI", 7.5f, Gdiplus::FontStyleRegular);
+                g.DrawString(L"Awaiting combat...", -1, &fn, Gdiplus::PointF(c2X, c2Y), &bTM);
+            }
+
+            s_resetCombatBtnRect = { (int)c2X, (int)(cY + cH - 36), (int)(c2X + c2W), (int)(cY + cH - 10) };
+            {
+                Gdiplus::SolidBrush rb2(cBg);
+                UICommon::FillRoundRectangle(g, &rb2, (float)s_resetCombatBtnRect.left, (float)s_resetCombatBtnRect.top, c2W, 26, 5);
+                Gdiplus::Pen rp2(cBr, 1);
+                UICommon::DrawRoundRectangle(g, &rp2, (float)s_resetCombatBtnRect.left, (float)s_resetCombatBtnRect.top, c2W, 26, 5);
+                Gdiplus::Font frs(L"Segoe UI", 8.2f, Gdiplus::FontStyleBold);
+                g.DrawString(L"\u21BA Reset Combat", -1, &frs, Gdiplus::RectF((float)s_resetCombatBtnRect.left, (float)s_resetCombatBtnRect.top, c2W, 26), &cf2, &bTD);
+            }
+
+            // MODELO 3D & TARGET STATUS CARD (Apenas se tiver alvo ativo - Requisito 2)
+            if (g_featModel3D.load() && !g_compactView.load() && g_currentTarget.hasTarget) {
+                uint8_t rc = (g_currentTarget.race == "ELYOS" ? 0 : (g_currentTarget.race == "ASMODIANS" ? 1 : 2));
+                CryModelBridge::SetTargetEntity(g_currentTarget.modelId, g_currentTarget.isNpc ? 1 : 0, rc, g_currentTarget.yaw);
+                CryModelBridge::RenderThumbnail(g, (float)s_modalW - 140, (float)s_modalH - 240, 130, 185);
+
+                float tX2 = (float)s_modalW - 145, tY2 = (float)s_modalH - 78, tW = 140, tH = 62;
+                s_targetCardRect = { (int)tX2, (int)tY2, (int)(tX2 + tW), (int)(tY2 + tH) };
+
+                {
+                    Gdiplus::SolidBrush sh(Gdiplus::Color(30, 15, 23, 42));
+                    UICommon::FillRoundRectangle(g, &sh, tX2 + 2, tY2 + 3, tW, tH, 7);
+                }
+                {
+                    Gdiplus::SolidBrush bg3(cCd);
+                    UICommon::FillRoundRectangle(g, &bg3, tX2, tY2, tW, tH, 7);
+                    Gdiplus::Pen bp2(cBr, 1);
+                    UICommon::DrawRoundRectangle(g, &bp2, tX2, tY2, tW, tH, 7);
+                }
+
+                std::wstring tcN = UICommon::Utf8ToWide(g_currentTarget.name);
+                std::transform(tcN.begin(), tcN.end(), tcN.begin(), ::towupper);
+                Gdiplus::Font ftn(L"Segoe UI", 7.8f, Gdiplus::FontStyleBold);
+                g.DrawString(tcN.c_str(), -1, &ftn, Gdiplus::PointF(tX2 + 8, tY2 + 7), &bTD);
+
+                s_targetCardCloseRect = { (int)(tX2 + tW - 18), (int)(tY2 + 5), (int)(tX2 + tW - 4), (int)(tY2 + 19) };
+                Gdiplus::Font fcl(L"Segoe UI", 7, Gdiplus::FontStyleRegular);
+                g.DrawString(L"\u00D7", -1, &fcl, Gdiplus::PointF(tX2 + tW - 16, tY2 + 5), &bTM);
+
+                float hF = (g_currentTarget.maxHp > 0) ? std::clamp((float)g_currentTarget.currentHp / g_currentTarget.maxHp, 0.0f, 1.0f) : 1.0f;
+                float hX = tX2 + 8, hY2 = tY2 + 38, hW = tW - 16, hH = 14;
+                Gdiplus::SolidBrush hBg(Gdiplus::Color(255, 254, 226, 226));
+                UICommon::FillRoundRectangle(g, &hBg, hX, hY2, hW, hH, 3);
+                if (hF > 0) {
+                    Gdiplus::SolidBrush hFl(UICommon::ColModel3HpRed);
+                    UICommon::FillRoundRectangle(g, &hFl, hX, hY2, hW * hF, hH, 3);
+                }
+                wchar_t hpT[32];
+                if (g_currentTarget.maxHp > 0) swprintf_s(hpT, L"%u / %u", g_currentTarget.currentHp, g_currentTarget.maxHp);
+                else swprintf_s(hpT, L"%.0f%%", hF * 100);
+                Gdiplus::Font fhp(L"Segoe UI", 6.8f, Gdiplus::FontStyleBold);
+                g.DrawString(hpT, -1, &fhp, Gdiplus::RectF(hX, hY2 + 1, hW, hH), &cf2, &bWh);
+
+                // TOOLTIP DE STATUS DO TARGET (Requisito 4)
+                if (PtInRect(&s_targetCardRect, s_mousePos)) {
+                    float tipW = 180.0f, tipH = 82.0f;
+                    float tipX = tX2 - tipW - 8.0f;
+                    float tipY = tY2 - 20.0f;
+                    if (tipX < mX) tipX = mX;
+
+                    Gdiplus::SolidBrush tipBg(Gdiplus::Color(245, 15, 23, 42));
+                    UICommon::FillRoundRectangle(g, &tipBg, tipX, tipY, tipW, tipH, 6);
+                    Gdiplus::Pen tipBorder(cBl, 1.2f);
+                    UICommon::DrawRoundRectangle(g, &tipBorder, tipX, tipY, tipW, tipH, 6);
+
+                    Gdiplus::Font fTipT(L"Segoe UI", 7.8f, Gdiplus::FontStyleBold);
+                    Gdiplus::Font fTipB(L"Segoe UI", 7.0f, Gdiplus::FontStyleRegular);
+                    Gdiplus::SolidBrush tipText(Gdiplus::Color(255, 240, 245, 255));
+                    Gdiplus::SolidBrush tipSub(Gdiplus::Color(255, 160, 175, 200));
+
+                    wchar_t lineT[128];
+                    swprintf_s(lineT, L"%ls  [Lv. %u]", UICommon::Utf8ToWide(g_currentTarget.name).c_str(), g_currentTarget.level);
+                    g.DrawString(lineT, -1, &fTipT, Gdiplus::PointF(tipX + 8, tipY + 6), &tipText);
+
+                    wchar_t lineHp[128];
+                    swprintf_s(lineHp, L"HP: %u / %u (%.1f%%)", g_currentTarget.currentHp, g_currentTarget.maxHp, hF * 100.0f);
+                    g.DrawString(lineHp, -1, &fTipB, Gdiplus::PointF(tipX + 8, tipY + 24), &tipSub);
+
+                    wchar_t lineRace[128];
+                    swprintf_s(lineRace, L"Raca: %ls | %ls",
+                               UICommon::Utf8ToWide(g_currentTarget.race).c_str(),
+                               g_currentTarget.isNpc ? L"NPC / Monstro" : L"Jogador");
+                    g.DrawString(lineRace, -1, &fTipB, Gdiplus::PointF(tipX + 8, tipY + 42), &tipSub);
+
+                    wchar_t lineM[128];
+                    swprintf_s(lineM, L"Modelo ID: #%u", g_currentTarget.modelId);
+                    g.DrawString(lineM, -1, &fTipB, Gdiplus::PointF(tipX + 8, tipY + 60), &tipSub);
+                }
+            } else {
+                // Sem target ativo: garantir que nada seja renderizado no modelo 3D
+                CryModelBridge::SetTargetEntity(0, 0, 0, 0.0f);
+                s_targetCardRect = {};
+            }
+        }
+        // ================= TAB 1: DPS METER & HISTÓRICO =================
+        else if (s_activeTab == DrawerTab::DpsMeter) {
+            std::lock_guard<std::recursive_mutex> lk(g_combatMutex);
+
+            float y = mY;
+            g.DrawString(L"DPS METER & COMBAT HISTORY", -1, &fCT, Gdiplus::PointF(mX, y), &bBl);
+            y += 20;
+
+            // Seletor de Sessões de Combate (Histórico dos últimos combates)
+            float selX = mX, selH = 22.0f;
+            float btnLiveW = 76.0f;
+            dPl(s_combatLiveBtnRect, selX, y, btnLiveW, selH, L"\u25CF Ao Vivo", (s_selectedCombatIndex == -1));
+            selX += btnLiveW + 6.0f;
+
+            for (int i = 0; i < 5; ++i) {
+                if (i < (int)g_combatHistory.size()) {
+                    wchar_t hBtn[32];
+                    swprintf_s(hBtn, L"Luta #%d (%hs)", i + 1, g_combatHistory[i].startTime.c_str());
+                    float bw = 92.0f;
+                    dPl(s_combatHistBtnRects[i], selX, y, bw, selH, hBtn, (s_selectedCombatIndex == i));
+                    selX += bw + 6.0f;
+                } else {
+                    s_combatHistBtnRects[i] = {};
+                }
+            }
+            y += 30;
+
+            // Dados da sessão selecionada (ou live se -1)
+            uint32_t dur = 0, dps = 0;
+            uint64_t dealt = 0, recv = 0;
+            std::vector<SkillDpsEntry> curSkills;
+            std::vector<CombatTimelineEntry> curTimeline;
+
+            if (s_selectedCombatIndex == -1) {
+                dur = g_battleDurationSeconds.load();
+                dps = g_totalDealtDps.load();
+                dealt = g_totalDamageDealt.load();
+                recv = g_totalDamageReceived.load();
+                curSkills = g_skillBreakdown;
+                curTimeline = g_combatTimeline;
+            } else if (s_selectedCombatIndex >= 0 && s_selectedCombatIndex < (int)g_combatHistory.size()) {
+                const auto& sess = g_combatHistory[s_selectedCombatIndex];
+                dur = sess.durationSec;
+                dps = sess.dps;
+                dealt = sess.totalDealt;
+                recv = sess.totalReceived;
+                curSkills = sess.skills;
+                curTimeline = sess.timeline;
+            }
+
+            // 4 Metrics Cards: Duração, DPS Causado, Dano Causado, Dano Recebido
+            float mWm = std::floor((mW2 - 18) / 4.0f);
+            auto dM = [&](float mx2, const wchar_t* lb, const std::wstring& vl) {
+                Gdiplus::SolidBrush mb(cBg);
+                UICommon::FillRoundRectangle(g, &mb, mx2, y, mWm, 44, 5);
+                Gdiplus::Pen mp(cBr, 1);
+                UICommon::DrawRoundRectangle(g, &mp, mx2, y, mWm, 44, 5);
+                Gdiplus::Font fl(L"Segoe UI", 6.8f, Gdiplus::FontStyleRegular);
+                g.DrawString(lb, -1, &fl, Gdiplus::PointF(mx2 + 6, y + 4), &bTM);
+                Gdiplus::Font fv(L"Segoe UI", 11.5f, Gdiplus::FontStyleBold);
+                g.DrawString(vl.c_str(), -1, &fv, Gdiplus::PointF(mx2 + 6, y + 18), &bTD);
+            };
+
+            dM(mX, L"Duracao", UICommon::FormatTime(dur));
+            dM(mX + (mWm + 6), L"DPS Causado", UICommon::FormatNumber(dps));
+            dM(mX + (mWm + 6) * 2, L"Dano Causado", UICommon::FormatNumber(dealt));
+            dM(mX + (mWm + 6) * 3, L"Dano Recebido", UICommon::FormatNumber(recv));
+            y += 52;
+
+            g.DrawString(L"DPS Over Time", -1, &fLb, Gdiplus::PointF(mX, y), &bTD);
+            y += 16;
+            UICommon::DrawDpsSplineChart(g, mX, y, mW2, 70, (s_selectedCombatIndex == -1) ? g_dpsHistory : std::vector<float>(), dur);
+            y += 82;
+
+            g.DrawString(L"Skill Breakdown (Dano Causado)", -1, &fLb, Gdiplus::PointF(mX, y), &bTD);
+            y += 18;
+
+            float hfW = (mW2 - 10) * 0.5f;
+            uint64_t tb = dealt;
+            size_t sc2 = std::min(curSkills.size(), (size_t)6);
+            if (sc2 > 0) {
+                for (size_t i = 0; i < sc2; ++i) {
+                    float co = (i % 2 == 0) ? 0 : hfW + 10, ry = y + (i / 2) * 18.0f;
+                    auto& sk = curSkills[i];
+                    float p = tb > 0 ? (float)sk.totalDamage / tb * 100.0f : 0.0f;
+                    IconManager::DrawSkillIcon(g, mX + co, ry + 1, 13, sk.skillId, sk.skillName);
+                    Gdiplus::Font fs(L"Segoe UI", 7.2f, Gdiplus::FontStyleRegular);
+                    g.DrawString(UICommon::Utf8ToWide(sk.skillName).c_str(), -1, &fs, Gdiplus::PointF(mX + co + 16, ry), &bTD);
+                    wchar_t pb[16];
+                    swprintf_s(pb, L"%.1f%%", p);
+                    g.DrawString(pb, -1, &fs, Gdiplus::RectF(mX + co + hfW - 36, ry, 36, 14), &rA, &bTM);
+                }
+                y += ((sc2 + 1) / 2) * 18.0f + 6;
+            } else {
+                Gdiplus::Font fn(L"Segoe UI", 7.5f, Gdiplus::FontStyleRegular);
+                g.DrawString(L"No skill data yet.", -1, &fn, Gdiplus::PointF(mX, y), &bTM);
+                y += 18;
+            }
+
+            g.DrawLine(&spn, mX, y, mX + mW2, y);
+            y += 6;
+
+            g.DrawString(L"Combat Log (Ultimos Eventos)", -1, &fLb, Gdiplus::PointF(mX, y), &bTD);
+            y += 16;
+            size_t tSz = curTimeline.size();
+            if (!tSz) {
+                Gdiplus::Font fn(L"Segoe UI", 7.5f, Gdiplus::FontStyleRegular);
+                g.DrawString(L"No events yet.", -1, &fn, Gdiplus::PointF(mX, y), &bTM);
+            } else {
+                int si = (tSz > 7) ? (int)(tSz - 7) : 0;
+                for (int i = si; i < (int)tSz && y < mY + mH2 - 34; ++i) {
+                    auto& ev = curTimeline[i];
+                    Gdiplus::Font fl(L"Segoe UI", 6.8f, Gdiplus::FontStyleRegular);
+
+                    // Badge de direção do dano
+                    if (ev.isIncoming) {
+                        Gdiplus::SolidBrush recBadge(Gdiplus::Color(255, 239, 68, 68));
+                        g.DrawString(L"\u25C0 RECV", -1, &fl, Gdiplus::PointF(mX, y), &recBadge);
                     } else {
-                        // Dead target
-                        Gdiplus::StringFormat cFmt;
-                        cFmt.SetAlignment(Gdiplus::StringAlignmentCenter);
-                        cFmt.SetLineAlignment(Gdiplus::StringAlignmentCenter);
-                        Gdiplus::RectF hpRect(16.0f, curY, hpW, 12.0f);
-                        g.DrawString(I18n::TargetDefeated(), -1, &fontSubLabel, hpRect, &cFmt, &textMuted);
+                        Gdiplus::SolidBrush dealBadge(cBl);
+                        g.DrawString(L"\u25B6 DEALT", -1, &fl, Gdiplus::PointF(mX, y), &dealBadge);
                     }
-                } else {
-                    g.DrawString(I18n::TargetNone(), -1, &fontTarget, Gdiplus::PointF(16.0f, curY), &textMuted);
-                    curY += 18.0f;
 
-                    float hpW = W - 32.0f;
-                    Gdiplus::SolidBrush hpBg(Gdiplus::Color(40, 30, 35, 45));
-                    UICommon::FillRoundRectangle(g, &hpBg, 16.0f, curY, hpW, 12.0f, 2.0f);
+                    wchar_t ln[160];
+                    swprintf_s(ln, L"%ls  %ls \u2192 %ls",
+                               UICommon::Utf8ToWide(ev.timeStr).c_str(),
+                               UICommon::Utf8ToWide(ev.attacker).c_str(),
+                               UICommon::Utf8ToWide(ev.skillName).c_str());
+                    g.DrawString(ln, -1, &fl, Gdiplus::PointF(mX + 44, y), &bTM);
 
-                    Gdiplus::StringFormat cFmt;
-                    cFmt.SetAlignment(Gdiplus::StringAlignmentCenter);
-                    cFmt.SetLineAlignment(Gdiplus::StringAlignmentCenter);
-                    Gdiplus::RectF hpRect(16.0f, curY, hpW, 12.0f);
-                    g.DrawString(IsEnglish() ? L"Awaiting target selection in-game..." : L"Aguardando seleção de alvo no jogo...", -1, &fontSubLabel, hpRect, &cFmt, &textMuted);
+                    Gdiplus::SolidBrush db2(ev.isCrit ? UICommon::ColGoldAccent : (ev.isIncoming ? Gdiplus::Color(255, 239, 68, 68) : cTD));
+                    g.DrawString(UICommon::FormatNumber(ev.damage).c_str(), -1, &fl, Gdiplus::RectF(mX + mW2 - 55, y, 55, 12), &rA, &db2);
+                    y += 14;
                 }
-                curY += 18.0f;
-
-                // Combat Highlight Cards
-                float cardW = (W - 32.0f - 16.0f) / 3.0f;
-                auto drawMetricCard = [&](float cx, const wchar_t* title, const std::wstring& val, Gdiplus::Color valCol) {
-                    Gdiplus::SolidBrush cardBg(Gdiplus::Color(40, 20, 26, 36));
-                    UICommon::FillRoundRectangle(g, &cardBg, cx, curY, cardW, 40.0f, 5.0f);
-                    Gdiplus::Pen cardBorder(Gdiplus::Color(40, 180, 190, 210), 1.0f);
-                    UICommon::DrawRoundRectangle(g, &cardBorder, cx, curY, cardW, 40.0f, 5.0f);
-
-                    Gdiplus::Font fT(L"Segoe UI", 7.0f, Gdiplus::FontStyleRegular);
-                    g.DrawString(title, -1, &fT, Gdiplus::PointF(cx + 6, curY + 4), &textMuted);
-
-                    Gdiplus::Font fV(L"Segoe UI", 10.5f, Gdiplus::FontStyleBold);
-                    Gdiplus::SolidBrush bV(valCol);
-                    g.DrawString(val.c_str(), -1, &fV, Gdiplus::PointF(cx + 6, curY + 16), &bV);
-                };
-
-                drawMetricCard(16.0f, I18n::BattleDuration(), UICommon::FormatTime(g_battleDurationSeconds.load()), UICommon::ColTextWhite);
-                drawMetricCard(16.0f + cardW + 8.0f, I18n::GroupDps(), UICommon::FormatNumber(g_totalBattleDps.load()), UICommon::ColGoldAccent);
-                drawMetricCard(16.0f + (cardW + 8.0f) * 2.0f, I18n::TotalDamage(), UICommon::FormatNumber(g_totalBattleDamage.load()), UICommon::ColNeonGreen);
-                curY += 46.0f;
-
-                // Reset Action Button
-                s_resetBtnRect = { 16, (int)curY, (int)W - 16, (int)curY + 24 };
-                Gdiplus::LinearGradientBrush btnBrush(
-                    Gdiplus::PointF(16.0f, curY), Gdiplus::PointF(W - 16.0f, curY),
-                    Gdiplus::Color(210, 215, 170, 50),
-                    Gdiplus::Color(210, 175, 130, 30)
-                );
-                UICommon::FillRoundRectangle(g, &btnBrush, (float)s_resetBtnRect.left, (float)s_resetBtnRect.top,
-                                             (float)(s_resetBtnRect.right - s_resetBtnRect.left), 24.0f, 4.0f);
-
-                Gdiplus::Font resetBtnFont(L"Segoe UI", 8.5f, Gdiplus::FontStyleBold);
-                Gdiplus::SolidBrush resetBtnText(Gdiplus::Color(255, 18, 14, 6));
-                Gdiplus::StringFormat centerFmt;
-                centerFmt.SetAlignment(Gdiplus::StringAlignmentCenter);
-                centerFmt.SetLineAlignment(Gdiplus::StringAlignmentCenter);
-                Gdiplus::RectF resetRectF((float)s_resetBtnRect.left, (float)s_resetBtnRect.top,
-                                         (float)(s_resetBtnRect.right - s_resetBtnRect.left), 24.0f);
-                g.DrawString(IsEnglish() ? L"⚡ [Ctrl + X] Start / Reset DPS Analysis" : L"⚡ [Ctrl + X] Iniciar / Resetar Análise", -1, &resetBtnFont, resetRectF, &centerFmt, &resetBtnText);
-                curY += 30.0f;
-
-                // Visual Charts: Fibonacci Curve & 4-Axis Radar (if NOT in compact mode)
-                if (!g_compactView.load()) {
-                    float chartH = 80.0f;
-                    float fiboW = W * 0.55f;
-                    g.DrawString(IsEnglish() ? L"BURST PROGRESSION (FIBONACCI)" : L"PROGRESSÃO BURST (FIBONACCI)", -1, &fontSubLabel, Gdiplus::PointF(16.0f, curY), &textMuted);
-                    UICommon::DrawFibonacciCurve(g, 16.0f, curY + 12.0f, fiboW, chartH - 14.0f, g_fibonacciCurve);
-
-                    float radarCx = W - 70.0f;
-                    float radarCy = curY + chartH * 0.48f;
-                    UICommon::DrawRadarChart4Axis(g, radarCx, radarCy, 30.0f,
-                                                  g_currentRadar.crit, g_currentRadar.block,
-                                                  g_currentRadar.dodge, g_currentRadar.resist);
-
-                    curY += chartH + 6.0f;
-                    g.DrawLine(&sepPen, 16.0f, curY, W - 16.0f, curY);
-                    curY += 6.0f;
-                }
-
-                // Combat Timeline (Real-time Log)
-                g.DrawString(I18n::TitleTimeline(), -1, &fontSection, Gdiplus::PointF(16.0f, curY), &textGold);
-                curY += 16.0f;
-
-                size_t tSize = g_combatTimeline.size();
-                int maxEntries = g_compactView.load() ? 5 : 3;
-                int startIdx = (tSize > (size_t)maxEntries) ? static_cast<int>(tSize - maxEntries) : 0;
-
-                if (tSize == 0) {
-                    g.DrawString(I18n::NoCombatEvents(), -1, &fontSubLabel, Gdiplus::PointF(20.0f, curY + 2), &textMuted);
-                    curY += 18.0f;
-                } else {
-                    for (int i = startIdx; i < static_cast<int>(tSize); ++i) {
-                        const auto& evt = g_combatTimeline[i];
-                        std::wstring wTime(evt.timeStr.begin(), evt.timeStr.end());
-                        std::wstring wAtt(evt.attacker.begin(), evt.attacker.end());
-                        std::wstring wSkill(evt.skillName.begin(), evt.skillName.end());
-
-                        UICommon::DrawSkillIconBadge(g, 18.0f, curY + 1.0f, 13.0f, evt.skillId, evt.skillName);
-                        float lineX = 36.0f;
-
-                        wchar_t logLine[128];
-                        if (evt.isCrit) {
-                            swprintf_s(logLine, L"[%ls] %ls -> %ls: %ls (CRIT!)",
-                                       wTime.c_str(), wAtt.c_str(), wSkill.c_str(), UICommon::FormatNumber(evt.damage).c_str());
-                            Gdiplus::SolidBrush critBrush(UICommon::ColGoldAccent);
-                            g.DrawString(logLine, -1, &fontSubLabel, Gdiplus::PointF(lineX, curY), &critBrush);
-                        } else if (evt.isHeal) {
-                            swprintf_s(logLine, L"[%ls] %ls -> %ls: +%ls (%ls)",
-                                       wTime.c_str(), wAtt.c_str(), wSkill.c_str(), UICommon::FormatNumber(evt.damage).c_str(),
-                                       IsEnglish() ? L"HEAL" : L"CURA");
-                            Gdiplus::SolidBrush healBrush(UICommon::ColNeonGreen);
-                            g.DrawString(logLine, -1, &fontSubLabel, Gdiplus::PointF(lineX, curY), &healBrush);
-                        } else {
-                            swprintf_s(logLine, L"[%ls] %ls -> %ls: %ls",
-                                       wTime.c_str(), wAtt.c_str(), wSkill.c_str(), UICommon::FormatNumber(evt.damage).c_str());
-                            g.DrawString(logLine, -1, &fontSubLabel, Gdiplus::PointF(lineX, curY), &textWhite);
-                        }
-                        curY += 15.0f;
-                    }
-                }
-
-                curY += 4.0f;
-                g.DrawLine(&sepPen, 16.0f, curY, W - 16.0f, curY);
-                curY += 8.0f;
-
-                // Player & Skill Rankings Table
-                g.DrawString(I18n::TitleDpsMeter(), -1, &fontSection, Gdiplus::PointF(16.0f, curY), &textGold);
-                curY += 16.0f;
-
-                // Table Header
-                Gdiplus::Font fTh(L"Segoe UI", 7.5f, Gdiplus::FontStyleBold);
-                g.DrawString(I18n::ColPlayer(), -1, &fTh, Gdiplus::PointF(18.0f, curY), &textMuted);
-                g.DrawString(I18n::ColDamage(), -1, &fTh, Gdiplus::PointF(160.0f, curY), &textMuted);
-                g.DrawString(I18n::ColDps(), -1, &fTh, Gdiplus::PointF(245.0f, curY), &textMuted);
-                g.DrawString(L"%", -1, &fTh, Gdiplus::PointF(300.0f, curY), &textMuted);
-                curY += 14.0f;
-
-                // Table Rows
-                Gdiplus::Font fRow(L"Segoe UI", 8.0f, Gdiplus::FontStyleRegular);
-                int rowsDrawn = 0;
-                float rowHeight = 20.0f;
-
-                for (const auto& player : g_playerRankings) {
-                    if (rowsDrawn >= 4 || curY + rowHeight > H - 80.0f) break;
-
-                    float barW = 120.0f * (player.percentage / 100.0f);
-                    Gdiplus::SolidBrush barB(Gdiplus::Color(45, 215, 65, 75));
-                    UICommon::FillRoundRectangle(g, &barB, 16.0f, curY, barW, rowHeight - 2.0f, 3.0f);
-
-                    std::wstring wName(player.name.begin(), player.name.end());
-                    g.DrawString(wName.c_str(), -1, &fRow, Gdiplus::PointF(20.0f, curY + 2), &textWhite);
-
-                    std::wstring wDmg = UICommon::FormatNumber(player.totalDamage);
-                    g.DrawString(wDmg.c_str(), -1, &fRow, Gdiplus::PointF(160.0f, curY + 2), &textGold);
-
-                    std::wstring wDps = UICommon::FormatNumber(player.dps);
-                    g.DrawString(wDps.c_str(), -1, &fRow, Gdiplus::PointF(245.0f, curY + 2), &textWhite);
-
-                    wchar_t pctBuf[32];
-                    swprintf_s(pctBuf, L"%.0f%%", player.percentage);
-                    g.DrawString(pctBuf, -1, &fRow, Gdiplus::PointF(300.0f, curY + 2), &textMuted);
-
-                    curY += rowHeight;
-                    rowsDrawn++;
-                }
-
-                if (rowsDrawn == 0) {
-                    g.DrawString(I18n::NoDamageRecorded(), -1, &fRow, Gdiplus::PointF(20.0f, curY + 2), &textMuted);
-                    curY += 20.0f;
-                }
-            } else {
-                s_resetBtnRect = { 0, 0, 0, 0 };
             }
 
-            // 3D Model Miniature Preview in Lower-Right Corner (Only if NOT compact)
-            if (g_featModel3D.load() && !g_compactView.load()) {
-                float previewW = 96.0f;
-                float previewH = 96.0f;
-                float previewX = W - previewW - 14.0f;
-                float previewY = H - previewH - 12.0f;
-
-                CryModelBridge::RenderThumbnail(g, previewX, previewY, previewW, previewH);
+            s_dpsResetRect = { (int)mX, (int)(cY + cH - 36), (int)(mX + mW2), (int)(cY + cH - 10) };
+            {
+                Gdiplus::SolidBrush drb(cBl);
+                UICommon::FillRoundRectangle(g, &drb, (float)s_dpsResetRect.left, (float)s_dpsResetRect.top, mW2, 26, 5);
+                Gdiplus::Font drf(L"Segoe UI", 8.2f, Gdiplus::FontStyleBold);
+                g.DrawString(L"\u21BA Reset Combat Session (Salvar & Limpar)", -1, &drf, Gdiplus::RectF((float)s_dpsResetRect.left, (float)s_dpsResetRect.top, mW2, 26), &cf2, &bWh);
             }
+        }
+        // ================= TAB 2: COMBO UI =================
+        else if (s_activeTab == DrawerTab::ComboUi) {
+            float y = mY;
+            g.DrawString(L"COMBO UI SETTINGS", -1, &fCT, Gdiplus::PointF(mX, y), &bBl);
+            y += 22;
+
+            float cg = 14, c1W = std::floor(mW2 * 0.48f), c2W = mW2 - c1W - cg, c2X = mX + c1W + cg;
+            g.DrawLine(&spn, mX + c1W + cg * 0.5f, y, mX + c1W + cg * 0.5f, mY + mH2);
+
+            float c1Y = y;
+            g.DrawString(L"Enable / Disable", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
+            c1Y += 18;
+            c1Y = dTR(s_comboTabToggleRect, mX, c1Y, c1W, L"Combo UI Active", g_comboVisible.load());
+            c1Y += 4;
+
+            {
+                float sc = g_comboScale.load(), n = std::clamp((sc - 0.55f) / 1.05f, 0.0f, 1.0f);
+                wchar_t b[16];
+                swprintf_s(b, L"%.0f%%", sc * 100);
+                g.DrawString(L"Scale", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
+                c1Y += 2;
+                dSl(s_comboTabScaleSlider, mX, c1Y, c1W, n, L"", b);
+                c1Y += 34;
+            }
+            {
+                float op = g_comboOpacity.load(), n = std::clamp((op - 0.1f) / 0.9f, 0.0f, 1.0f);
+                wchar_t b[16];
+                swprintf_s(b, L"%.0f%%", op * 100);
+                g.DrawString(L"Opacity", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
+                c1Y += 2;
+                dSl(s_comboTabOpacitySlider, mX, c1Y, c1W, n, L"", b);
+                c1Y += 34;
+            }
+
+            g.DrawString(L"Position Preset", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
+            c1Y += 16;
+            float pbW = std::floor((c1W - 9) / 4.0f), cnx = g_comboPosNormX.load(), cny = g_comboPosNormY.load();
+            bool iT = cny < 0.25f, iMR = !iT && cnx > 0.65f, iC = !iT && cnx >= 0.35f && cnx <= 0.65f, iML = !iT && cnx < 0.35f;
+            dPl(s_comboTabPosTop, mX, c1Y, pbW, 24, L"Top", iT);
+            dPl(s_comboTabPosMidRight, mX + pbW + 3, c1Y, pbW, 24, L"Mid-R", iMR);
+            dPl(s_comboTabPosCenter, mX + (pbW + 3) * 2, c1Y, pbW, 24, L"Ctr", iC);
+            dPl(s_comboTabPosLeft, mX + (pbW + 3) * 3, c1Y, pbW, 24, L"Mid-L", iML);
+
+            float c2Y = y;
+            g.DrawString(L"COMBO REPORT", -1, &fCT, Gdiplus::PointF(c2X, c2Y), &bBl);
+            c2Y += 18;
+            {
+                std::lock_guard<std::recursive_mutex> lk2(g_combatMutex);
+                if (g_combatTimeline.empty()) {
+                    Gdiplus::Font fn(L"Segoe UI", 7.5f, Gdiplus::FontStyleRegular);
+                    g.DrawString(L"No combo data yet.", -1, &fn, Gdiplus::PointF(c2X, c2Y), &bTM);
+                } else {
+                    g.DrawString(L"Recent Skill Chain:", -1, &fLb, Gdiplus::PointF(c2X, c2Y), &bTD);
+                    c2Y += 16;
+                    int si = (int)g_combatTimeline.size() > 8 ? (int)g_combatTimeline.size() - 8 : 0;
+                    for (int i = si; i < (int)g_combatTimeline.size() && c2Y < mY + mH2 - 30; ++i) {
+                        auto& ev = g_combatTimeline[i];
+                        Gdiplus::Font fl(L"Segoe UI", 7, Gdiplus::FontStyleRegular);
+                        IconManager::DrawSkillIcon(g, c2X, c2Y, 12, ev.skillId, ev.skillName);
+                        g.DrawString(UICommon::Utf8ToWide(ev.skillName).c_str(), -1, &fl, Gdiplus::PointF(c2X + 15, c2Y), &bTD);
+                        Gdiplus::SolidBrush db3(ev.isCrit ? UICommon::ColGoldAccent : cTM);
+                        g.DrawString(UICommon::FormatNumber(ev.damage).c_str(), -1, &fl, Gdiplus::RectF(c2X + c2W - 45, c2Y, 45, 12), &rA, &db3);
+                        c2Y += 14;
+                    }
+                }
+            }
+        }
+        // ================= TAB 3: ENGINE (SHUGO CONSOLE) =================
+        else if (s_activeTab == DrawerTab::Engine) {
+            float y = mY;
+            g.DrawString(L"ENGINE & GRAPHICS CONSOLE", -1, &fCT, Gdiplus::PointF(mX, y), &bBl);
+            y += 22;
+
+            float cg = 14, c1W = std::floor(mW2 * 0.50f), c2W = mW2 - c1W - cg, c2X = mX + c1W + cg;
+            g.DrawLine(&spn, mX + c1W + cg * 0.5f, y, mX + c1W + cg * 0.5f, mY + mH2);
+
+            float c1Y = y;
+            g.DrawString(L"Camera & View", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
+            c1Y += 18;
+            {
+                float fv = g_cvarFov.load(), n = std::clamp((fv - 60.0f) / 60.0f, 0.0f, 1.0f);
+                wchar_t b[16];
+                swprintf_s(b, L"%.0f\u00B0", fv);
+                dSl(s_engFovSlider, mX, c1Y, c1W, n, L"Panoramic FOV", b);
+                c1Y += 34;
+            }
+            {
+                float cm = g_cvarCamMax.load(), n = std::clamp((cm - 5.0f) / 40.0f, 0.0f, 1.0f);
+                wchar_t b[16];
+                swprintf_s(b, L"%.0fm", cm);
+                dSl(s_engCamSlider, mX, c1Y, c1W, n, L"Camera Zoom", b);
+                c1Y += 34;
+            }
+
+            g.DrawString(L"FreeFly Mode", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
+            c1Y += 18;
+            s_engFreeFlyRect = { (int)(mX + c1W - 90), (int)c1Y, (int)(mX + c1W), (int)(c1Y + 18) };
+            g.DrawString(L"Free Camera Fly", -1, &fSb, Gdiplus::PointF(mX, c1Y + 2), &bTM);
+            UICommon::DrawModernSwitch(g, (float)s_engFreeFlyRect.left, (float)s_engFreeFlyRect.top, g_featFreeFly.load(), L"ON", L"OFF");
+            c1Y += 30;
+
+            s_engConsoleRect = { (int)(mX + c1W - 90), (int)c1Y, (int)(mX + c1W), (int)(c1Y + 18) };
+            g.DrawString(L"Graphic Console HUD", -1, &fSb, Gdiplus::PointF(mX, c1Y + 2), &bTM);
+            UICommon::DrawModernSwitch(g, (float)s_engConsoleRect.left, (float)s_engConsoleRect.top, !g_hideConsoleSection.load(), L"Visible", L"Hidden");
+            c1Y += 30;
+
+            float c2Y = y;
+            g.DrawString(L"Performance", -1, &fLb, Gdiplus::PointF(c2X, c2Y), &bTD);
+            c2Y += 18;
+            float fW = 36, fY = c2Y;
+            g.DrawString(L"FPS Cap", -1, &fSb, Gdiplus::PointF(c2X, fY + 3), &bTM);
+            float fSX = c2X + c2W - (fW * 3 + 8);
+            dPl(s_engFps60Rect, fSX, fY, fW, 22, L"60", (g_cvarMaxFps.load() == 60));
+            dPl(s_engFps144Rect, fSX + fW + 4, fY, fW, 22, L"144", (g_cvarMaxFps.load() == 144));
+            dPl(s_engFpsMaxRect, fSX + (fW + 4) * 2, fY, fW, 22, L"MAX", (g_cvarMaxFps.load() == 0));
+            c2Y += 30;
+
+            s_engTbToggleRect = { (int)(c2X + c2W - 90), (int)c2Y, (int)(c2X + c2W), (int)(c2Y + 18) };
+            g.DrawString(L"Triple Buffer", -1, &fSb, Gdiplus::PointF(c2X, c2Y + 2), &bTM);
+            UICommon::DrawModernSwitch(g, (float)s_engTbToggleRect.left, (float)s_engTbToggleRect.top, g_cvarTripleBuffering.load(), L"ON", L"OFF");
+            c2Y += 28;
+
+            s_engAnisoToggleRect = { (int)(c2X + c2W - 50), (int)c2Y, (int)(c2X + c2W), (int)(c2Y + 22) };
+            g.DrawString(L"Anisotropic", -1, &fSb, Gdiplus::PointF(c2X, c2Y + 2), &bTM);
+            {
+                bool a = g_cvarAnisotropic.load();
+                Gdiplus::SolidBrush ab(a ? cBl : cBg);
+                UICommon::FillRoundRectangle(g, &ab, (float)s_engAnisoToggleRect.left, (float)c2Y, 50, 22, 4);
+                Gdiplus::Pen ap2(a ? cBl : cBr, 1);
+                UICommon::DrawRoundRectangle(g, &ap2, (float)s_engAnisoToggleRect.left, (float)c2Y, 50, 22, 4);
+                Gdiplus::SolidBrush at(a ? cCd : cTD);
+                Gdiplus::Font af(L"Segoe UI", 7, Gdiplus::FontStyleBold);
+                g.DrawString(a ? L"16x" : L"OFF", -1, &af, Gdiplus::RectF((float)s_engAnisoToggleRect.left, (float)c2Y + 2, 50, 18), &cf2, &at);
+            }
+            c2Y += 32;
+
+            {
+                Gdiplus::SolidBrush ib2(cBg);
+                UICommon::FillRoundRectangle(g, &ib2, c2X, c2Y, c2W, 66, 6);
+                Gdiplus::Pen ip2(cBr, 1);
+                UICommon::DrawRoundRectangle(g, &ip2, c2X, c2Y, c2W, 66, 6);
+                Gdiplus::Font fi(L"Segoe UI", 7, Gdiplus::FontStyleRegular);
+                float iy = c2Y + 6;
+                g.DrawString(L"Comandos aplicados diretamente em memoria.", -1, &fi, Gdiplus::PointF(c2X + 8, iy), &bTM);
+                iy += 14;
+                g.DrawString(L"FreeFly: Teclas WASD + arraste botao direito.", -1, &fi, Gdiplus::PointF(c2X + 8, iy), &bTM);
+                iy += 14;
+                g.DrawString(L"FOV e Cam persistem entre sessoes do jogo.", -1, &fi, Gdiplus::PointF(c2X + 8, iy), &bTM);
+                iy += 14;
+                g.DrawString(L"CryEngine CVar thread: ~33Hz em tempo real.", -1, &fi, Gdiplus::PointF(c2X + 8, iy), &bBl);
+            }
+        }
+        // ================= TAB 4: ADVANCED =================
+        else if (s_activeTab == DrawerTab::Advanced) {
+            float y = mY;
+            g.DrawString(L"ADVANCED CONFIGURATION", -1, &fCT, Gdiplus::PointF(mX, y), &bBl);
+            y += 22;
+
+            float cg = 14, c1W = std::floor(mW2 * 0.50f), c2W = mW2 - c1W - cg, c2X = mX + c1W + cg;
+            g.DrawLine(&spn, mX + c1W + cg * 0.5f, y, mX + c1W + cg * 0.5f, mY + mH2);
+
+            float c1Y = y;
+            g.DrawString(L"Window Size", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
+            c1Y += 16;
+            float pW = std::floor((c1W - 8) / 3.0f);
+            dPl(s_advPresetDefault, mX, c1Y, pW, 28, L"Default", (s_modalW == 760 && s_modalH == 560));
+            dPl(s_advPresetWide, mX + pW + 4, c1Y, pW, 28, L"Wide", (s_modalW == 880 && s_modalH == 660));
+            dPl(s_advPresetCompact, mX + (pW + 4) * 2, c1Y, pW, 28, L"Compact", (s_modalW == 540 && s_modalH == 500));
+            c1Y += 36;
+
+            {
+                float n = std::clamp((g_drawerOpacity.load() - 120.0f) / 135.0f, 0.0f, 1.0f);
+                wchar_t b[16];
+                swprintf_s(b, L"%d%%", (int)(n * 100 + 0.5f));
+                dSl(s_advOpacitySlider, mX, c1Y, c1W, n, L"Window Opacity", b);
+                c1Y += 34;
+            }
+
+            g.DrawString(L"Color Theme", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
+            c1Y += 16;
+            float thW = std::floor((c1W - 12) / 4.0f), thH = 32;
+            struct ThO { int id; const wchar_t* nm; Gdiplus::Color sw; };
+            ThO ths[] = {
+                { 0, L"Light", Gdiplus::Color(255, 248, 250, 252) },
+                { 1, L"Dark",  Gdiplus::Color(255, 25, 28, 38) },
+                { 2, L"Gray",  Gdiplus::Color(255, 88, 95, 112) },
+                { 3, L"Navy",  Gdiplus::Color(255, 20, 40, 100) }
+            };
+            RECT* thRs[] = { &s_advThemeLight, &s_advThemeDark, &s_advThemeGray, &s_advThemeNavy };
+            for (int i = 0; i < 4; ++i) {
+                float tx = mX + i * (thW + 4);
+                *thRs[i] = { (int)tx, (int)c1Y, (int)(tx + thW), (int)(c1Y + thH) };
+                bool ac = (s_theme == ths[i].id);
+                Gdiplus::SolidBrush sb2(ths[i].sw);
+                UICommon::FillRoundRectangle(g, &sb2, tx, c1Y, thW, thH - 14, 4);
+                if (ac) {
+                    Gdiplus::Pen ap2(cBl, 2);
+                    UICommon::DrawRoundRectangle(g, &ap2, tx, c1Y, thW, thH - 14, 4);
+                    Gdiplus::Pen ck(cBl, 2);
+                    g.DrawLine(&ck, tx + thW * 0.3f, c1Y + (thH - 14) * 0.55f, tx + thW * 0.45f, c1Y + (thH - 14) * 0.75f);
+                    g.DrawLine(&ck, tx + thW * 0.45f, c1Y + (thH - 14) * 0.75f, tx + thW * 0.7f, c1Y + (thH - 14) * 0.30f);
+                } else {
+                    Gdiplus::Pen np(cBr, 1);
+                    UICommon::DrawRoundRectangle(g, &np, tx, c1Y, thW, thH - 14, 4);
+                }
+                Gdiplus::Font tf(L"Segoe UI", 6.8f, ac ? Gdiplus::FontStyleBold : Gdiplus::FontStyleRegular);
+                Gdiplus::SolidBrush tt(cTD);
+                g.DrawString(ths[i].nm, -1, &tf, Gdiplus::RectF(tx, c1Y + thH - 14, thW, 13), &cf2, &tt);
+            }
+            c1Y += thH + 8;
+
+            // FIXAR JANELA NO JOGO (PINNED - Requisito 6)
+            g.DrawString(L"Janela Fixa no Jogo", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
+            c1Y += 18;
+            c1Y = dTR(s_advPinnedToggle, mX, c1Y, c1W, L"PINNED Mode", g_drawerPinned.load());
+            {
+                Gdiplus::Font fsSub(L"Segoe UI", 6.8f, Gdiplus::FontStyleRegular);
+                g.DrawString(L"Se ativo: trava arrasto dentro do jogo e oculta ao perder foco.", -1, &fsSub, Gdiplus::PointF(mX, c1Y - 4), &bTM);
+                c1Y += 14;
+            }
+
+            // Coluna Direita: Feature Flags
+            float c2Y = y;
+            g.DrawString(L"Feature Flags", -1, &fLb, Gdiplus::PointF(c2X, c2Y), &bTD);
+            c2Y += 18;
+            auto dFT = [&](RECT& r2, float sx, float sy, const wchar_t* lb, bool ac) -> float {
+                r2 = { (int)(sx + c2W - 90), (int)sy, (int)(sx + c2W), (int)(sy + 18) };
+                g.DrawString(lb, -1, &fSb, Gdiplus::PointF(sx, sy + 2), &bTM);
+                UICommon::DrawModernSwitch(g, (float)r2.left, (float)r2.top, ac, L"ON", L"OFF");
+                return sy + 26;
+            };
+
+            c2Y = dFT(s_advCompactToggle, c2X, c2Y, L"Compact View", g_compactView.load());
+            c2Y = dFT(s_advConsoleToggle, c2X, c2Y, L"Graphic HUD", !g_hideConsoleSection.load());
+            c2Y = dFT(s_advModel3DToggle, c2X, c2Y, L"3D Model", g_featModel3D.load());
+            c2Y = dFT(s_advFovToggle, c2X, c2Y, L"FOV Control", g_featFov.load());
+            c2Y = dFT(s_advCamToggle, c2X, c2Y, L"Cam Max", g_featCamMax.load());
+            c2Y = dFT(s_advFpsToggle, c2X, c2Y, L"FPS Unlock", g_featFpsUnlock.load());
+            (void)c2Y;
         }
     }
 
-    // Blend to layered window with user configurable opacity
-    POINT ptSrc = { 0, 0 };
-    SIZE szWindow = { s_modalW, s_modalH };
-    BLENDFUNCTION blend = {};
-    blend.BlendOp = AC_SRC_OVER;
-    blend.BlendFlags = 0;
-    blend.SourceConstantAlpha = static_cast<BYTE>(std::clamp(g_drawerOpacity.load(), 120, 255));
-    blend.AlphaFormat = AC_SRC_ALPHA;
+    POINT pts = { 0, 0 };
+    SIZE szW = { s_modalW, s_modalH };
+    BLENDFUNCTION bl = {};
+    bl.BlendOp = AC_SRC_OVER;
+    bl.SourceConstantAlpha = (BYTE)std::clamp(g_drawerOpacity.load(), 120, 255);
+    bl.AlphaFormat = AC_SRC_ALPHA;
 
-    UpdateLayeredWindow(hwnd, screenDC, nullptr, &szWindow, memDC, &ptSrc, 0, &blend, ULW_ALPHA);
-
-    SelectObject(memDC, hOldBitmap);
-    DeleteObject(hBitmap);
-    DeleteDC(memDC);
-    ReleaseDC(nullptr, screenDC);
+    UpdateLayeredWindow(hwnd, sc, nullptr, &szW, mc, &pts, 0, &bl, ULW_ALPHA);
+    SelectObject(mc, hOB);
+    DeleteObject(hB);
+    DeleteDC(mc);
+    ReleaseDC(nullptr, sc);
 }
 
 LRESULT CALLBACK DrawerModalUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
@@ -812,259 +1180,426 @@ LRESULT CALLBACK DrawerModalUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
         return 0;
 
     case WM_LBUTTONDOWN: {
-        int mx = LOWORD(lParam);
-        int my = HIWORD(lParam);
+        int mx = LOWORD(lParam), my = HIWORD(lParam);
 
-        // Close Button
-        if (mx >= s_closeBtnRect.left && mx <= s_closeBtnRect.right &&
-            my >= s_closeBtnRect.top && my <= s_closeBtnRect.bottom) {
+        if (mx >= s_closeBtnRect.left && mx <= s_closeBtnRect.right && my >= s_closeBtnRect.top && my <= s_closeBtnRect.bottom) {
             Close();
             return 0;
         }
-
-        // Settings Button Toggle
-        if (mx >= s_settingsBtnRect.left && mx <= s_settingsBtnRect.right &&
-            my >= s_settingsBtnRect.top && my <= s_settingsBtnRect.bottom) {
-            s_isSettingsOpen = !s_isSettingsOpen;
+        if (mx >= s_minimizeBtnRect.left && mx <= s_minimizeBtnRect.right && my >= s_minimizeBtnRect.top && my <= s_minimizeBtnRect.bottom) {
+            Close();
+            return 0;
+        }
+        if (mx >= s_helpBtnRect.left && mx <= s_helpBtnRect.right && my >= s_helpBtnRect.top && my <= s_helpBtnRect.bottom) {
+            s_activeTab = (s_activeTab == DrawerTab::Advanced) ? DrawerTab::Display : DrawerTab::Advanced;
             Repaint();
             return 0;
         }
 
-        // --- SETTINGS VIEW ACTIONS ---
-        if (s_isSettingsOpen) {
-            if (mx >= s_presetNormalRect.left && mx <= s_presetNormalRect.right &&
-                my >= s_presetNormalRect.top && my <= s_presetNormalRect.bottom) {
-                ResizeDrawer(460, 580);
-                return 0;
-            }
-            if (mx >= s_presetWideRect.left && mx <= s_presetWideRect.right &&
-                my >= s_presetWideRect.top && my <= s_presetWideRect.bottom) {
-                ResizeDrawer(560, 680);
-                return 0;
-            }
-            if (mx >= s_presetCompactRect.left && mx <= s_presetCompactRect.right &&
-                my >= s_presetCompactRect.top && my <= s_presetCompactRect.bottom) {
-                ResizeDrawer(420, 500);
-                return 0;
-            }
-
-            // Width step
-            if (mx >= s_widthMinusRect.left && mx <= s_widthMinusRect.right &&
-                my >= s_widthMinusRect.top && my <= s_widthMinusRect.bottom) {
-                ResizeDrawer(s_modalW - 20, s_modalH);
-                return 0;
-            }
-            if (mx >= s_widthPlusRect.left && mx <= s_widthPlusRect.right &&
-                my >= s_widthPlusRect.top && my <= s_widthPlusRect.bottom) {
-                ResizeDrawer(s_modalW + 20, s_modalH);
-                return 0;
-            }
-
-            // Height step
-            if (mx >= s_heightMinusRect.left && mx <= s_heightMinusRect.right &&
-                my >= s_heightMinusRect.top && my <= s_heightMinusRect.bottom) {
-                ResizeDrawer(s_modalW, s_modalH - 20);
-                return 0;
-            }
-            if (mx >= s_heightPlusRect.left && mx <= s_heightPlusRect.right &&
-                my >= s_heightPlusRect.top && my <= s_heightPlusRect.bottom) {
-                ResizeDrawer(s_modalW, s_modalH + 20);
-                return 0;
-            }
-
-            // Opacity slider start
-            if (mx >= s_opacitySliderRect.left && mx <= s_opacitySliderRect.right &&
-                my >= s_opacitySliderRect.top - 6 && my <= s_opacitySliderRect.bottom + 6) {
-                s_draggingOpacity = true;
-                SetCapture(hwnd);
-                return 0;
-            }
-
-            // Compact mode toggle
-            if (mx >= s_compactToggleRect.left && mx <= s_compactToggleRect.right &&
-                my >= s_compactToggleRect.top && my <= s_compactToggleRect.bottom) {
-                g_compactView = !g_compactView.load();
-                BrConfig::Save();
-                Repaint();
-                return 0;
-            }
-
-            // Hide console toggle
-            if (mx >= s_hideConsoleToggleRect.left && mx <= s_hideConsoleToggleRect.right &&
-                my >= s_hideConsoleToggleRect.top && my <= s_hideConsoleToggleRect.bottom) {
-                g_hideConsoleSection = !g_hideConsoleSection.load();
-                BrConfig::Save();
-                Repaint();
-                return 0;
-            }
-
-            // Combo UI Show / Hide Toggle
-            if (mx >= s_comboToggleRect.left && mx <= s_comboToggleRect.right &&
-                my >= s_comboToggleRect.top && my <= s_comboToggleRect.bottom) {
-                bool newVis = !g_comboVisible.load();
-                g_comboVisible = newVis;
-                g_ComboUI.RequestLayoutRefresh();
-                WebSocketClient::SendTextMessage(std::string("SET_COMBO_VISIBILITY:") + (newVis ? "1" : "0"));
-                BrConfig::Save();
-                Repaint();
-                return 0;
-            }
-
-            // Combo UI Opacity Slider Start
-            if (mx >= s_comboOpacitySliderRect.left && mx <= s_comboOpacitySliderRect.right &&
-                my >= s_comboOpacitySliderRect.top - 6 && my <= s_comboOpacitySliderRect.bottom + 6) {
-                s_draggingComboOpacity = true;
-                SetCapture(hwnd);
-                return 0;
-            }
-
-            // Combo UI Scale Presets & Step Buttons
-            float normX = 0.8f, normY = 0.5f, curScale = 1.0f;
-            GetComboOverlayLayout(&normX, &normY, &curScale);
-
-            auto applyScale = [&](float targetScale) {
-                targetScale = std::clamp(targetScale, 0.55f, 1.60f);
-                SetComboOverlayLayout(normX, normY, targetScale);
-                g_comboScale = targetScale;
-                g_ComboUI.RequestLayoutRefresh();
-                BrConfig::Save();
-                Repaint();
-            };
-
-            if (mx >= s_comboScale70Rect.left && mx <= s_comboScale70Rect.right &&
-                my >= s_comboScale70Rect.top && my <= s_comboScale70Rect.bottom) {
-                applyScale(0.70f);
-                return 0;
-            }
-            if (mx >= s_comboScale100Rect.left && mx <= s_comboScale100Rect.right &&
-                my >= s_comboScale100Rect.top && my <= s_comboScale100Rect.bottom) {
-                applyScale(1.00f);
-                return 0;
-            }
-            if (mx >= s_comboScale130Rect.left && mx <= s_comboScale130Rect.right &&
-                my >= s_comboScale130Rect.top && my <= s_comboScale130Rect.bottom) {
-                applyScale(1.30f);
-                return 0;
-            }
-            if (mx >= s_comboScaleMinusRect.left && mx <= s_comboScaleMinusRect.right &&
-                my >= s_comboScaleMinusRect.top && my <= s_comboScaleMinusRect.bottom) {
-                applyScale(curScale - 0.05f);
-                return 0;
-            }
-            if (mx >= s_comboScalePlusRect.left && mx <= s_comboScalePlusRect.right &&
-                my >= s_comboScalePlusRect.top && my <= s_comboScalePlusRect.bottom) {
-                applyScale(curScale + 0.05f);
-                return 0;
-            }
-
-            // Save & Close Settings button
-            if (mx >= s_saveSettingsBtnRect.left && mx <= s_saveSettingsBtnRect.right &&
-                my >= s_saveSettingsBtnRect.top && my <= s_saveSettingsBtnRect.bottom) {
-                s_isSettingsOpen = false;
-                BrConfig::Save();
-                Repaint();
-                return 0;
-            }
-
-            return 0;
-        }
-
-        // --- MAIN VIEW ACTIONS ---
-        // Reset Button
-        if (mx >= s_resetBtnRect.left && mx <= s_resetBtnRect.right &&
-            my >= s_resetBtnRect.top && my <= s_resetBtnRect.bottom) {
-            ResetCombatSession();
-            Repaint();
-            return 0;
-        }
-
-        // FPS Limiters
-        auto checkFpsBtn = [&](RECT& r, int fps) {
+        // Navegação de Tabs
+        auto chT = [&](RECT& r, DrawerTab t) {
             if (mx >= r.left && mx <= r.right && my >= r.top && my <= r.bottom) {
-                CVarManager::SetMaxFps(fps);
+                s_activeTab = t;
                 Repaint();
                 return true;
             }
             return false;
         };
-        if (checkFpsBtn(s_fps60Rect, 60)) return 0;
-        if (checkFpsBtn(s_fps144Rect, 144)) return 0;
-        if (checkFpsBtn(s_fpsMaxRect, 0)) return 0;
 
-        // Toggles
-        if (mx >= s_tbToggleRect.left && mx <= s_tbToggleRect.right &&
-            my >= s_tbToggleRect.top && my <= s_tbToggleRect.bottom) {
-            CVarManager::SetTripleBuffering(!g_cvarTripleBuffering.load());
+        if (chT(s_tabDisplayRect, DrawerTab::Display)) return 0;
+        if (chT(s_tabDpsMeterRect, DrawerTab::DpsMeter)) return 0;
+        if (chT(s_tabComboRect, DrawerTab::ComboUi)) return 0;
+        if (chT(s_tabEngineRect, DrawerTab::Engine)) return 0;
+        if (chT(s_tabAdvancedRect, DrawerTab::Advanced)) return 0;
+
+        if (mx >= s_resetDefaultsRect.left && mx <= s_resetDefaultsRect.right && my >= s_resetDefaultsRect.top && my <= s_resetDefaultsRect.bottom) {
+            ResizeDrawer(760, 560);
+            g_drawerOpacity = 255;
+            g_compactView = false;
+            g_hideConsoleSection = false;
+            g_drawerPinned = true;
+            g_comboVisible = true;
+            g_comboScale = 1.0f;
+            g_comboOpacity = 1.0f;
+            g_comboPosNormX = 0.80f;
+            g_comboPosNormY = 0.50f;
+            s_theme = 0;
+            s_selectedCombatIndex = -1;
+            CVarManager::SetFov(75);
+            CVarManager::SetCameraMax(25);
+            CVarManager::SetMaxFps(144);
+            CVarManager::SetTripleBuffering(true);
+            CVarManager::SetAnisotropic(true);
+            CVarManager::SetFreeFly(false);
+            ResetCombatSession();
+            BrConfig::Save();
             Repaint();
             return 0;
         }
 
-        if (mx >= s_anisoToggleRect.left && mx <= s_anisoToggleRect.right &&
-            my >= s_anisoToggleRect.top && my <= s_anisoToggleRect.bottom) {
-            CVarManager::SetAnisotropic(!g_cvarAnisotropic.load());
-            Repaint();
-            return 0;
+        // Tab: Display
+        if (s_activeTab == DrawerTab::Display) {
+            auto cPr = [&](RECT& r, int w, int h) {
+                if (mx >= r.left && mx <= r.right && my >= r.top && my <= r.bottom) {
+                    ResizeDrawer(w, h);
+                    return true;
+                }
+                return false;
+            };
+            if (cPr(s_presetDefaultRect, 760, 560)) return 0;
+            if (cPr(s_presetWideRect, 880, 660)) return 0;
+            if (cPr(s_presetCompactRect, 540, 500)) return 0;
+
+            if (mx >= s_opacitySliderRect.left && mx <= s_opacitySliderRect.right && my >= s_opacitySliderRect.top - 6 && my <= s_opacitySliderRect.bottom + 6) {
+                s_draggingOpacity = true;
+                SetCapture(hwnd);
+                return 0;
+            }
+            if (mx >= s_compactToggleRect.left && mx <= s_compactToggleRect.right && my >= s_compactToggleRect.top && my <= s_compactToggleRect.bottom) {
+                g_compactView = !g_compactView.load();
+                BrConfig::Save();
+                Repaint();
+                return 0;
+            }
+            if (mx >= s_consoleToggleRect.left && mx <= s_consoleToggleRect.right && my >= s_consoleToggleRect.top && my <= s_consoleToggleRect.bottom) {
+                g_hideConsoleSection = !g_hideConsoleSection.load();
+                BrConfig::Save();
+                Repaint();
+                return 0;
+            }
+            if (mx >= s_comboToggleRect.left && mx <= s_comboToggleRect.right && my >= s_comboToggleRect.top && my <= s_comboToggleRect.bottom) {
+                bool nv = !g_comboVisible.load();
+                g_comboVisible = nv;
+                g_ComboUI.RequestLayoutRefresh();
+                WebSocketClient::SendTextMessage(std::string("SET_COMBO_VISIBILITY:") + (nv ? "1" : "0"));
+                BrConfig::Save();
+                Repaint();
+                return 0;
+            }
+            if (mx >= s_comboScaleSliderRect.left && mx <= s_comboScaleSliderRect.right && my >= s_comboScaleSliderRect.top - 6 && my <= s_comboScaleSliderRect.bottom + 6) {
+                s_draggingComboScale = true;
+                SetCapture(hwnd);
+                return 0;
+            }
+
+            auto apP = [&](float tx, float ty) {
+                SetComboOverlayLayout(tx, ty, g_comboScale.load());
+                g_comboPosNormX = tx;
+                g_comboPosNormY = ty;
+                g_ComboUI.RequestLayoutRefresh();
+                BrConfig::Save();
+                Repaint();
+            };
+            if (mx >= s_comboPosTopRect.left && mx <= s_comboPosTopRect.right && my >= s_comboPosTopRect.top && my <= s_comboPosTopRect.bottom) { apP(0.5f, 0.12f); return 0; }
+            if (mx >= s_comboPosMidRightRect.left && mx <= s_comboPosMidRightRect.right && my >= s_comboPosMidRightRect.top && my <= s_comboPosMidRightRect.bottom) { apP(0.8f, 0.5f); return 0; }
+            if (mx >= s_comboPosCenterRect.left && mx <= s_comboPosCenterRect.right && my >= s_comboPosCenterRect.top && my <= s_comboPosCenterRect.bottom) { apP(0.5f, 0.5f); return 0; }
+            if (mx >= s_comboPosLeftRect.left && mx <= s_comboPosLeftRect.right && my >= s_comboPosLeftRect.top && my <= s_comboPosLeftRect.bottom) { apP(0.2f, 0.5f); return 0; }
+
+            if (mx >= s_saveSettingsBtnRect.left && mx <= s_saveSettingsBtnRect.right && my >= s_saveSettingsBtnRect.top && my <= s_saveSettingsBtnRect.bottom) {
+                Close();
+                return 0;
+            }
+            if (mx >= s_resetCombatBtnRect.left && mx <= s_resetCombatBtnRect.right && my >= s_resetCombatBtnRect.top && my <= s_resetCombatBtnRect.bottom) {
+                ResetCombatSession();
+                s_selectedCombatIndex = -1;
+                Repaint();
+                return 0;
+            }
+            if (mx >= s_targetCardCloseRect.left && mx <= s_targetCardCloseRect.right && my >= s_targetCardCloseRect.top && my <= s_targetCardCloseRect.bottom) {
+                std::lock_guard<std::recursive_mutex> lk(g_combatMutex);
+                g_currentTarget.hasTarget = false;
+                CryModelBridge::SetTargetEntity(0, 0, 0, 0.0f);
+                Repaint();
+                return 0;
+            }
+        }
+        // Tab: DPS Meter
+        else if (s_activeTab == DrawerTab::DpsMeter) {
+            // Seletor de Sessão Ao Vivo
+            if (mx >= s_combatLiveBtnRect.left && mx <= s_combatLiveBtnRect.right && my >= s_combatLiveBtnRect.top && my <= s_combatLiveBtnRect.bottom) {
+                s_selectedCombatIndex = -1;
+                Repaint();
+                return 0;
+            }
+            // Seletor de Sessão Histórica
+            for (int i = 0; i < 5; ++i) {
+                if (s_combatHistBtnRects[i].right > s_combatHistBtnRects[i].left &&
+                    mx >= s_combatHistBtnRects[i].left && mx <= s_combatHistBtnRects[i].right &&
+                    my >= s_combatHistBtnRects[i].top && my <= s_combatHistBtnRects[i].bottom) {
+                    s_selectedCombatIndex = i;
+                    Repaint();
+                    return 0;
+                }
+            }
+            if (mx >= s_dpsResetRect.left && mx <= s_dpsResetRect.right && my >= s_dpsResetRect.top && my <= s_dpsResetRect.bottom) {
+                ResetCombatSession();
+                s_selectedCombatIndex = -1;
+                Repaint();
+                return 0;
+            }
+        }
+        // Tab: Combo UI
+        else if (s_activeTab == DrawerTab::ComboUi) {
+            if (mx >= s_comboTabToggleRect.left && mx <= s_comboTabToggleRect.right && my >= s_comboTabToggleRect.top && my <= s_comboTabToggleRect.bottom) {
+                bool nv = !g_comboVisible.load();
+                g_comboVisible = nv;
+                g_ComboUI.RequestLayoutRefresh();
+                WebSocketClient::SendTextMessage(std::string("SET_COMBO_VISIBILITY:") + (nv ? "1" : "0"));
+                BrConfig::Save();
+                Repaint();
+                return 0;
+            }
+            if (mx >= s_comboTabScaleSlider.left && mx <= s_comboTabScaleSlider.right && my >= s_comboTabScaleSlider.top - 6 && my <= s_comboTabScaleSlider.bottom + 6) {
+                s_draggingComboScale = true;
+                SetCapture(hwnd);
+                return 0;
+            }
+            if (mx >= s_comboTabOpacitySlider.left && mx <= s_comboTabOpacitySlider.right && my >= s_comboTabOpacitySlider.top - 6 && my <= s_comboTabOpacitySlider.bottom + 6) {
+                s_draggingComboOpacity = true;
+                SetCapture(hwnd);
+                return 0;
+            }
+            auto apP = [&](float tx, float ty) {
+                SetComboOverlayLayout(tx, ty, g_comboScale.load());
+                g_comboPosNormX = tx;
+                g_comboPosNormY = ty;
+                g_ComboUI.RequestLayoutRefresh();
+                BrConfig::Save();
+                Repaint();
+            };
+            if (mx >= s_comboTabPosTop.left && mx <= s_comboTabPosTop.right && my >= s_comboTabPosTop.top && my <= s_comboTabPosTop.bottom) { apP(0.5f, 0.12f); return 0; }
+            if (mx >= s_comboTabPosMidRight.left && mx <= s_comboTabPosMidRight.right && my >= s_comboTabPosMidRight.top && my <= s_comboTabPosMidRight.bottom) { apP(0.8f, 0.5f); return 0; }
+            if (mx >= s_comboTabPosCenter.left && mx <= s_comboTabPosCenter.right && my >= s_comboTabPosCenter.top && my <= s_comboTabPosCenter.bottom) { apP(0.5f, 0.5f); return 0; }
+            if (mx >= s_comboTabPosLeft.left && mx <= s_comboTabPosLeft.right && my >= s_comboTabPosLeft.top && my <= s_comboTabPosLeft.bottom) { apP(0.2f, 0.5f); return 0; }
+        }
+        // Tab: Engine
+        else if (s_activeTab == DrawerTab::Engine) {
+            if (mx >= s_engFovSlider.left && mx <= s_engFovSlider.right && my >= s_engFovSlider.top - 6 && my <= s_engFovSlider.bottom + 6) {
+                s_draggingFov = true;
+                SetCapture(hwnd);
+                return 0;
+            }
+            if (mx >= s_engCamSlider.left && mx <= s_engCamSlider.right && my >= s_engCamSlider.top - 6 && my <= s_engCamSlider.bottom + 6) {
+                s_draggingCam = true;
+                SetCapture(hwnd);
+                return 0;
+            }
+            auto cFps = [&](RECT& r, int fps) {
+                if (mx >= r.left && mx <= r.right && my >= r.top && my <= r.bottom) {
+                    CVarManager::SetMaxFps(fps);
+                    BrConfig::Save();
+                    Repaint();
+                    return true;
+                }
+                return false;
+            };
+            if (cFps(s_engFps60Rect, 60)) return 0;
+            if (cFps(s_engFps144Rect, 144)) return 0;
+            if (cFps(s_engFpsMaxRect, 0)) return 0;
+
+            if (mx >= s_engTbToggleRect.left && mx <= s_engTbToggleRect.right && my >= s_engTbToggleRect.top && my <= s_engTbToggleRect.bottom) {
+                CVarManager::SetTripleBuffering(!g_cvarTripleBuffering.load());
+                BrConfig::Save();
+                Repaint();
+                return 0;
+            }
+            if (mx >= s_engAnisoToggleRect.left && mx <= s_engAnisoToggleRect.right && my >= s_engAnisoToggleRect.top && my <= s_engAnisoToggleRect.bottom) {
+                CVarManager::SetAnisotropic(!g_cvarAnisotropic.load());
+                BrConfig::Save();
+                Repaint();
+                return 0;
+            }
+            if (mx >= s_engFreeFlyRect.left && mx <= s_engFreeFlyRect.right && my >= s_engFreeFlyRect.top && my <= s_engFreeFlyRect.bottom) {
+                bool nff = !g_featFreeFly.load();
+                CVarManager::SetFreeFly(nff);
+                BrConfig::Save();
+                Repaint();
+                return 0;
+            }
+            if (mx >= s_engConsoleRect.left && mx <= s_engConsoleRect.right && my >= s_engConsoleRect.top && my <= s_engConsoleRect.bottom) {
+                g_hideConsoleSection = !g_hideConsoleSection.load();
+                BrConfig::Save();
+                Repaint();
+                return 0;
+            }
+        }
+        // Tab: Advanced
+        else if (s_activeTab == DrawerTab::Advanced) {
+            auto cPr = [&](RECT& r, int w, int h) {
+                if (mx >= r.left && mx <= r.right && my >= r.top && my <= r.bottom) {
+                    ResizeDrawer(w, h);
+                    return true;
+                }
+                return false;
+            };
+            if (cPr(s_advPresetDefault, 760, 560)) return 0;
+            if (cPr(s_advPresetWide, 880, 660)) return 0;
+            if (cPr(s_advPresetCompact, 540, 500)) return 0;
+
+            if (mx >= s_advOpacitySlider.left && mx <= s_advOpacitySlider.right && my >= s_advOpacitySlider.top - 6 && my <= s_advOpacitySlider.bottom + 6) {
+                s_draggingOpacity = true;
+                SetCapture(hwnd);
+                return 0;
+            }
+
+            auto cTh = [&](RECT& r, int id) {
+                if (mx >= r.left && mx <= r.right && my >= r.top && my <= r.bottom) {
+                    s_theme = id;
+                    BrConfig::Save();
+                    Repaint();
+                    return true;
+                }
+                return false;
+            };
+            if (cTh(s_advThemeLight, 0)) return 0;
+            if (cTh(s_advThemeDark, 1)) return 0;
+            if (cTh(s_advThemeGray, 2)) return 0;
+            if (cTh(s_advThemeNavy, 3)) return 0;
+
+            if (mx >= s_advPinnedToggle.left && mx <= s_advPinnedToggle.right && my >= s_advPinnedToggle.top && my <= s_advPinnedToggle.bottom) {
+                g_drawerPinned = !g_drawerPinned.load();
+                BrConfig::Save();
+                Repaint();
+                return 0;
+            }
+
+            auto cFt = [&](RECT& r, std::atomic<bool>& f) {
+                if (mx >= r.left && mx <= r.right && my >= r.top && my <= r.bottom) {
+                    f = !f.load();
+                    BrConfig::Save();
+                    Repaint();
+                    return true;
+                }
+                return false;
+            };
+            if (cFt(s_advCompactToggle, g_compactView)) return 0;
+            if (mx >= s_advConsoleToggle.left && mx <= s_advConsoleToggle.right && my >= s_advConsoleToggle.top && my <= s_advConsoleToggle.bottom) {
+                g_hideConsoleSection = !g_hideConsoleSection.load();
+                BrConfig::Save();
+                Repaint();
+                return 0;
+            }
+            if (cFt(s_advModel3DToggle, g_featModel3D)) return 0;
+            if (cFt(s_advFovToggle, g_featFov)) return 0;
+            if (cFt(s_advCamToggle, g_featCamMax)) return 0;
+            if (cFt(s_advFpsToggle, g_featFpsUnlock)) return 0;
         }
 
-        // Sliders Dragging Start
-        if (mx >= s_fovSliderRect.left && mx <= s_fovSliderRect.right &&
-            my >= s_fovSliderRect.top - 6 && my <= s_fovSliderRect.bottom + 6) {
-            s_draggingFov = true;
-            SetCapture(hwnd);
-        } else if (mx >= s_camSliderRect.left && mx <= s_camSliderRect.right &&
-                   my >= s_camSliderRect.top - 6 && my <= s_camSliderRect.bottom + 6) {
-            s_draggingCam = true;
+        // Arrastar Janela através do Header
+        if (mx >= s_headerDragRect.left && mx <= s_headerDragRect.right && my >= s_headerDragRect.top && my <= s_headerDragRect.bottom) {
+            s_isDraggingWindow = true;
+            GetCursorPos(&s_dragStartCursor);
+            RECT wr = {};
+            GetWindowRect(hwnd, &wr);
+            s_dragStartPos.x = wr.left;
+            s_dragStartPos.y = wr.top;
             SetCapture(hwnd);
         }
         return 0;
     }
 
     case WM_MOUSEMOVE: {
-        int mx = LOWORD(lParam);
+        int mx = LOWORD(lParam), my = HIWORD(lParam);
+        s_mousePos.x = mx;
+        s_mousePos.y = my;
+
+        if (s_isDraggingWindow) {
+            POINT c = {};
+            GetCursorPos(&c);
+            int nx = s_dragStartPos.x + (c.x - s_dragStartCursor.x);
+            int ny = s_dragStartPos.y + (c.y - s_dragStartCursor.y);
+
+            // Requisito 6: Bloqueio do arrasto dentro dos limites da tela do jogo se PINNED
+            if (g_drawerPinned.load()) {
+                HWND hG = g_gameHwnd.load();
+                if (hG && IsWindow(hG)) {
+                    RECT gr = {};
+                    GetWindowRect(hG, &gr);
+                    int minX = gr.left;
+                    int maxX = gr.right - s_modalW;
+                    int minY = gr.top;
+                    int maxY = gr.bottom - s_modalH;
+                    if (maxX >= minX) nx = std::clamp(nx, minX, maxX);
+                    if (maxY >= minY) ny = std::clamp(ny, minY, maxY);
+                }
+            }
+
+            g_drawerPosX = nx;
+            g_drawerPosY = ny;
+            SetWindowPos(hwnd, HWND_TOPMOST, nx, ny, 0, 0, SWP_NOSIZE | SWP_NOACTIVATE);
+            return 0;
+        }
+
         if (s_draggingOpacity) {
-            float pct = (float)(mx - s_opacitySliderRect.left) / (float)(s_opacitySliderRect.right - s_opacitySliderRect.left);
-            pct = std::clamp(pct, 0.0f, 1.0f);
-            int op = static_cast<int>(120 + pct * (255 - 120));
-            g_drawerOpacity = op;
+            RECT& r = (s_activeTab == DrawerTab::Advanced) ? s_advOpacitySlider : s_opacitySliderRect;
+            if (r.right > r.left) {
+                float p = std::clamp((float)(mx - r.left) / (float)(r.right - r.left), 0.0f, 1.0f);
+                g_drawerOpacity = (int)(120 + p * 135);
+                Repaint();
+            }
+            return 0;
+        }
+
+        if (s_draggingComboScale) {
+            RECT& r = (s_activeTab == DrawerTab::ComboUi) ? s_comboTabScaleSlider : s_comboScaleSliderRect;
+            if (r.right > r.left) {
+                float p = std::clamp((float)(mx - r.left) / (float)(r.right - r.left), 0.0f, 1.0f);
+                float sc = 0.55f + p * 1.05f;
+                SetComboOverlayLayout(g_comboPosNormX.load(), g_comboPosNormY.load(), sc);
+                g_comboScale = sc;
+                g_ComboUI.RequestLayoutRefresh();
+                Repaint();
+            }
+            return 0;
+        }
+
+        if (s_draggingComboOpacity && s_comboTabOpacitySlider.right > s_comboTabOpacitySlider.left) {
+            float p = std::clamp((float)(mx - s_comboTabOpacitySlider.left) / (float)(s_comboTabOpacitySlider.right - s_comboTabOpacitySlider.left), 0.0f, 1.0f);
+            g_comboOpacity = 0.1f + p * 0.9f;
             Repaint();
-        } else if (s_draggingComboOpacity) {
-            float pct = (float)(mx - s_comboOpacitySliderRect.left) / (float)(s_comboOpacitySliderRect.right - s_comboOpacitySliderRect.left);
-            pct = std::clamp(pct, 0.0f, 1.0f);
-            float newOp = 0.10f + pct * (1.0f - 0.10f);
-            SetComboOverlayOpacity(newOp);
-            g_comboOpacity = newOp;
-            g_ComboUI.RequestLayoutRefresh();
+            return 0;
+        }
+
+        if (s_draggingFov && s_engFovSlider.right > s_engFovSlider.left) {
+            float p = std::clamp((float)(mx - s_engFovSlider.left) / (float)(s_engFovSlider.right - s_engFovSlider.left), 0.0f, 1.0f);
+            CVarManager::SetFov(60.0f + p * 60.0f);
             Repaint();
-        } else if (s_draggingFov) {
-            float pct = (float)(mx - s_fovSliderRect.left) / (float)(s_fovSliderRect.right - s_fovSliderRect.left);
-            pct = std::clamp(pct, 0.0f, 1.0f);
-            float fov = 60.0f + pct * (120.0f - 60.0f);
-            CVarManager::SetFov(fov);
+            return 0;
+        }
+
+        if (s_draggingCam && s_engCamSlider.right > s_engCamSlider.left) {
+            float p = std::clamp((float)(mx - s_engCamSlider.left) / (float)(s_engCamSlider.right - s_engCamSlider.left), 0.0f, 1.0f);
+            CVarManager::SetCameraMax(5.0f + p * 40.0f);
             Repaint();
-        } else if (s_draggingCam) {
-            float pct = (float)(mx - s_camSliderRect.left) / (float)(s_camSliderRect.right - s_camSliderRect.left);
-            pct = std::clamp(pct, 0.0f, 1.0f);
-            float cam = 5.0f + pct * (45.0f - 5.0f);
-            CVarManager::SetCameraMax(cam);
-            Repaint();
+            return 0;
+        }
+
+        // Se mouse estiver sobre o card de target na aba Display, repintar para exibir tooltip
+        if (s_activeTab == DrawerTab::Display && s_targetCardRect.right > s_targetCardRect.left) {
+            if (PtInRect(&s_targetCardRect, s_mousePos)) {
+                Repaint();
+            }
         }
         return 0;
     }
 
-    case WM_LBUTTONUP: {
-        if (s_draggingFov || s_draggingCam || s_draggingOpacity || s_draggingComboOpacity) {
-            s_draggingFov = false;
-            s_draggingCam = false;
-            s_draggingOpacity = false;
-            s_draggingComboOpacity = false;
+    case WM_LBUTTONUP:
+        if (s_isDraggingWindow) {
+            s_isDraggingWindow = false;
+            ReleaseCapture();
+            BrConfig::Save();
+            return 0;
+        }
+        if (s_draggingOpacity || s_draggingComboScale || s_draggingComboOpacity || s_draggingFov || s_draggingCam) {
+            s_draggingOpacity = s_draggingComboScale = s_draggingComboOpacity = s_draggingFov = s_draggingCam = false;
             ReleaseCapture();
             BrConfig::Save();
         }
         return 0;
-    }
 
     case WM_DESTROY:
         return 0;
+
     default:
         return DefWindowProcW(hwnd, uMsg, wParam, lParam);
     }

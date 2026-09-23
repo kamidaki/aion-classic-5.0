@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>13.0</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AcademyNoLag.Core\AcademyNoLag.Core.csproj" />
+    <ProjectReference Include="..\AcademyNoLag.Network\AcademyNoLag.Network.csproj" />
+  </ItemGroup>
+</Project>
