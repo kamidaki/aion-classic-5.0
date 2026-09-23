@@ -1142,4 +1142,13 @@
 		<enter_min_level_dark>65</enter_min_level_dark>
 		<can_enter_mentor>true</can_enter_mentor>
 	</instance_cooltime>
+	<instance_cooltime race="PC_ALL" worldId="390000000" id="110">
+		<max_member_light>1</max_member_light>
+		<max_member_dark>1</max_member_dark>
+		<enter_min_level_light>1</enter_min_level_light>
+		<enter_max_level_light>75</enter_max_level_light>
+		<enter_min_level_dark>1</enter_min_level_dark>
+		<enter_max_level_dark>75</enter_max_level_dark>
+		<can_enter_mentor>false</can_enter_mentor>
+	</instance_cooltime>
 </instance_cooltimes>

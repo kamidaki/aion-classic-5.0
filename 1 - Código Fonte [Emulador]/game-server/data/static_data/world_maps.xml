@@ -133,7 +133,7 @@
 	<map id="330020000" name="Punishing_Aster" cName="IDFist" instance="true" water_level="16" death_level="0" world_size="512" drop_type="BALAUREA_INSTANCE" flags="GLIDE PVP DUEL_SAME_RACE NO_RETURN_BATTLE FLY"/>
 	<map id="330030000" name="Bloody_Aster" cName="IDFist_01" instance="true" water_level="16" death_level="0" world_size="512" drop_type="BALAUREA_INSTANCE" flags="GLIDE PVP DUEL_SAME_RACE NO_RETURN_BATTLE FLY"/>
 	<map id="330040000" name="IDEvent_damage_01" cName="IDEvent_damage_01" instance="true" water_level="0" death_level="0" world_size="1024" drop_type="BALAUREA_INSTANCE" flags="GLIDE PVP DUEL_SAME_RACE NO_RETURN_BATTLE FLY"/>
-	<map id="390000000" name="Land_of_Shadows" cName="IDTutorialQ" water_level="0" death_level="0" world_size="1024" flags="BIND RECALL GLIDE PVP DUEL_SAME_RACE FLY"/>
+	<map id="390000000" name="Land_of_Shadows" cName="IDTutorialQ" instance="true" water_level="0" death_level="0" world_size="1024" flags="RECALL GLIDE PVP DUEL_SAME_RACE FLY"/>
 	<map id="400010000" name="Reshanta" cName="Ab1" water_level="16" death_level="500" world_type="ABYSS" world_size="4096" drop_type="ABYSS" flags="BIND RECALL GLIDE FLY RIDE PVP DUEL_SAME_RACE" pve_attack_ratio="150" pve_defend_ratio="50"/>
 	<map id="510010000" name="LF_Prison" cName="LF_Prison" prison="true" water_level="16" death_level="0" world_size="512" drop_type="NONE" flags="BIND RECALL PVP DUEL_SAME_RACE NO_RETURN_BATTLE FLY"/>
 	<map id="520010000" name="DF_Prison" cName="DF_Prison" prison="true" water_level="16" death_level="0" world_size="512" drop_type="NONE" flags="RECALL PVP DUEL_SAME_RACE NO_RETURN_BATTLE FLY"/>
