@@ -22,7 +22,7 @@ public class SM_QUEST_LIST extends AionServerPacket {
 			writeD(qs.getQuestId());
 			writeC(qs.getStatus().value());
 			writeD(qs.getQuestVars().getQuestVars() | (qs.getFlags() << 24));
-			writeC(Math.min(qs.getCompleteCount(), 255));
+			writeB(new byte[9]); // Classic 5.0 wire layout: each active quest entry is exactly 18 bytes
 		}
 	}
 }

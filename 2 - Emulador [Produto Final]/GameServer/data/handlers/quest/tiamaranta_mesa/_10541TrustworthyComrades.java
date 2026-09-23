@@ -2,21 +2,25 @@ package quest.tiamaranta_mesa;
 
 import static com.aionemu.gameserver.model.DialogAction.*;
 
+import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.questEngine.handlers.AbstractQuestHandler;
 import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
-import com.aionemu.gameserver.services.QuestService;
 
 /**
  * Quest ID: 10541
  * Title: Trustworthy Comrades
  * Zone: Tiamaranta Mesa
  * 
- * @author Aion Classic 5.0 Parser Pipeline
+ * Auto-generated with Classic 5.0 campaign engine standards.
  */
 public class _10541TrustworthyComrades extends AbstractQuestHandler {
+
+	private static final int START_NPC = 798928;
+	private static final int END_NPC = 798928;
+	private static final int[] MOBS = { 220625, 220626, 220628, 220629, 220630, 220631, 220632, 220633, 220634, 220635 };
 
 	public _10541TrustworthyComrades() {
 		super(10541);
@@ -24,80 +28,85 @@ public class _10541TrustworthyComrades extends AbstractQuestHandler {
 
 	@Override
 	public void register() {
-		// 800360: Mine!
-		qe.registerQuestNpc(800360).addOnTalkEvent(questId);
-		// 800361: Mine!
-		qe.registerQuestNpc(800361).addOnTalkEvent(questId);
-		// 220625: Traitorous Reian Assassin
-		qe.registerQuestNpc(220625).addOnKillEvent(questId);
-		// 220626: Traitorous Reian Assassin
-		qe.registerQuestNpc(220626).addOnKillEvent(questId);
-		// 220628: Traitorous Reian Warrior
-		qe.registerQuestNpc(220628).addOnKillEvent(questId);
-		// 220629: Traitorous Reian Warrior
-		qe.registerQuestNpc(220629).addOnKillEvent(questId);
-		// 220630: Traitorous Reian Priest
-		qe.registerQuestNpc(220630).addOnKillEvent(questId);
-		// 220631: Traitorous Reian Priest
-		qe.registerQuestNpc(220631).addOnKillEvent(questId);
-		// 220632: Traitorous Reian Scout
-		qe.registerQuestNpc(220632).addOnKillEvent(questId);
-		// 220633: Traitorous Reian Scout
-		qe.registerQuestNpc(220633).addOnKillEvent(questId);
-		// 220634: Traitorous Reian Mage
-		qe.registerQuestNpc(220634).addOnKillEvent(questId);
-		// 220635: Traitorous Reian Mage
-		qe.registerQuestNpc(220635).addOnKillEvent(questId);
 		qe.registerOnLevelChanged(questId);
-		qe.registerOnEnterWorld(questId);
+		qe.registerOnQuestCompleted(questId);
+		qe.registerQuestNpc(START_NPC).addOnQuestStart(questId);
+		qe.registerQuestNpc(START_NPC).addOnTalkEvent(questId);
+		for (int mob : MOBS) {
+			qe.registerQuestNpc(mob).addOnKillEvent(questId);
+		}
 	}
 
 	@Override
 	public boolean onDialogEvent(QuestEnv env) {
 		final Player player = env.getPlayer();
-		final QuestState qs = player.getQuestStateList().getQuestState(questId);
-		if (qs == null) {
+		if (player.getRace() != Race.ELYOS) {
 			return false;
 		}
 
+		final QuestState qs = player.getQuestStateList().getQuestState(questId);
 		int targetId = env.getTargetId();
 		int dialogActionId = env.getDialogActionId();
 
-		if (qs.getStatus() == QuestStatus.START) {
-			if (dialogActionId == QUEST_SELECT) {
-				return sendQuestDialog(env, 1011);
+		if (qs == null || qs.isStartable()) {
+			if (targetId == START_NPC) {
+				if (dialogActionId == QUEST_SELECT) {
+					return sendQuestDialog(env, 1011);
+				} else {
+					return sendQuestStartDialog(env);
+				}
 			}
-			if (dialogActionId == SET_SUCCEED) {
-				qs.setStatus(QuestStatus.REWARD);
-				updateQuestStatus(env);
-				return closeDialogWindow(env);
+			return false;
+		}
+
+		if (qs.getStatus() == QuestStatus.START) {
+			int var = qs.getQuestVarById(0);
+			if (targetId == START_NPC) {
+				switch (dialogActionId) {
+					case QUEST_SELECT:
+						return sendQuestDialog(env, 1011);
+					case SETPRO1:
+					case SETPRO2:
+					case SET_SUCCEED:
+						qs.setQuestVar(var + 1);
+						updateQuestStatus(env);
+						return closeDialogWindow(env);
+				}
+			} else if (targetId == END_NPC) {
+				switch (dialogActionId) {
+					case QUEST_SELECT:
+						return sendQuestDialog(env, 2375);
+					case SELECT_QUEST_REWARD:
+						qs.setStatus(QuestStatus.REWARD);
+						updateQuestStatus(env);
+						return sendQuestEndDialog(env);
+				}
 			}
 		} else if (qs.getStatus() == QuestStatus.REWARD) {
-			if (dialogActionId == USE_OBJECT) {
-				return sendQuestDialog(env, 10002);
+			if (targetId == END_NPC || targetId == START_NPC) {
+				return sendQuestEndDialog(env);
 			}
-			return sendQuestEndDialog(env);
 		}
 		return false;
 	}
 
 	@Override
 	public boolean onKillEvent(QuestEnv env) {
-		int[] mobs = { 220625, 220626, 220628, 220629, 220630, 220631, 220632, 220633, 220634, 220635 };
-		return defaultOnKillEvent(env, mobs, 0, 1);
-	}
-
-	@Override
-	public boolean onEnterWorldEvent(QuestEnv env) {
-		Player player = env.getPlayer();
-		if (!player.getQuestStateList().hasQuest(questId)) {
-			return QuestService.startQuest(env);
-		}
-		return false;
+		return defaultOnKillEvent(env, MOBS, 0, 1);
 	}
 
 	@Override
 	public void onLevelChangedEvent(Player player) {
-		defaultOnLevelChangedEvent(player);
+		if (player.getRace() == Race.ELYOS) {
+			defaultOnLevelChangedEvent(player, 10540);
+		}
+	}
+
+	@Override
+	public void onQuestCompletedEvent(QuestEnv env) {
+		Player player = env.getPlayer();
+		if (player.getRace() == Race.ELYOS) {
+			defaultOnQuestCompletedEvent(env, 10540);
+		}
 	}
 }

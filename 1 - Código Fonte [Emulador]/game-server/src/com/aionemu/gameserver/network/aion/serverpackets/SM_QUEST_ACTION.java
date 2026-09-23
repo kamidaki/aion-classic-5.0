@@ -66,24 +66,21 @@ public class SM_QUEST_ACTION extends AionServerPacket {
 
 	@Override
 	protected void writeImpl(AionConnection con) {
-		QuestTemplate questTemplate = DataManager.QUEST_DATA.getQuestById(questId);
-		if (questTemplate != null && questTemplate.getExtraCategory() != QuestExtraCategory.NONE)
-			return;
+		if (DataManager.QUEST_DATA != null) {
+			QuestTemplate questTemplate = DataManager.QUEST_DATA.getQuestById(questId);
+			if (questTemplate != null && questTemplate.getExtraCategory() != QuestExtraCategory.NONE)
+				return;
+		}
 		writeC(actionType.getId());
 		writeD(questId);
 		switch (actionType) {
 			case ADD:
-				writeC(status);// quest status goes by ENUM value
-				writeC(0x0);
-				writeD(step | flags << 24);// current quest step
-				writeH(0);
-				writeC(0); // seen sometimes 1 for campaign quests
-				break;
 			case UPDATE:
 				writeC(status);// quest status goes by ENUM value
 				writeC(0x0);
 				writeD(step | flags << 24);// current quest step
-				writeH(0); // seen sometimes 1 when status == COMPLETED
+				writeH(0);
+				writeB(new byte[8]); // Classic 5.0: trailing 8 bytes (total 21 bytes wire payload)
 				break;
 			case ABANDON:
 				writeD(0);

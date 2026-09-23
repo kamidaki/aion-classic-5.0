@@ -21,12 +21,11 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 public class ClassChangeService {
 
 	public static void showClassChangeDialog(Player player) {
-		if (true) return;
 		PlayerClass playerClass = player.getPlayerClass();
 		Race playerRace = player.getRace();
-		if (player.getLevel() >= 9 && playerClass.getStartingClass() == playerClass)
+		if (player.getLevel() >= 5 && playerClass.getStartingClass() == playerClass)
 			PacketSendUtility.sendPacket(player,
-				new SM_DIALOG_WINDOW(0, getClassSelectionDialogPageId(playerRace, playerClass), playerRace == Race.ELYOS ? 1006 : 2008));
+				new SM_DIALOG_WINDOW(0, getClassSelectionDialogPageId(playerRace, playerClass), playerRace == Race.ELYOS ? 1010 : 2010));
 	}
 
 	public static void changeClassToSelection(Player player, int dialogActionId) {
@@ -35,7 +34,7 @@ public class ClassChangeService {
 	}
 
 	public static void completeAscensionQuest(Player player) {
-		int questId = player.getRace() == Race.ELYOS ? 1006 : 2008;
+		int questId = player.getRace() == Race.ELYOS ? 1010 : 2010;
 		QuestState qs = player.getQuestStateList().getQuestState(questId);
 		if (qs == null) {
 			qs = new QuestState(questId, QuestStatus.COMPLETE);

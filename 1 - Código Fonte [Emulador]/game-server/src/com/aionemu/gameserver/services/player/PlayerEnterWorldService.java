@@ -259,7 +259,7 @@ public final class PlayerEnterWorldService {
 				QuestEngine.getInstance().onLevelChanged(player);
 			}
 			QuestEngine.getInstance().sendCompletedQuests(player);
-			client.sendPacket(new SM_QUEST_LIST(player.getQuestStateList().getAllQuestState()));
+			client.sendPacket(new SM_QUEST_LIST(player.getQuestStateList().getUncompletedQuests()));
 
 
 			// 14. Equipe & Servicos sociais

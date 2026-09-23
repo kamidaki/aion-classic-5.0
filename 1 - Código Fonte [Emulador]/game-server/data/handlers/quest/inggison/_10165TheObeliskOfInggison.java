@@ -2,21 +2,24 @@ package quest.inggison;
 
 import static com.aionemu.gameserver.model.DialogAction.*;
 
+import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.questEngine.handlers.AbstractQuestHandler;
 import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
-import com.aionemu.gameserver.services.QuestService;
 
 /**
  * Quest ID: 10165
- * Title: The Obelisk of Inggison
+ * Title: Obelisco de Inggison
  * Zone: Inggison
  * 
- * @author Aion Classic 5.0 Parser Pipeline
+ * Auto-generated with Classic 5.0 campaign engine standards.
  */
 public class _10165TheObeliskOfInggison extends AbstractQuestHandler {
+
+	private static final int START_NPC = 798927;
+	private static final int END_NPC = 798927;
 
 	public _10165TheObeliskOfInggison() {
 		super(10165);
@@ -24,51 +27,78 @@ public class _10165TheObeliskOfInggison extends AbstractQuestHandler {
 
 	@Override
 	public void register() {
-		// Auto-registrado para eventos de missão
 		qe.registerOnLevelChanged(questId);
-		qe.registerOnEnterWorld(questId);
+		qe.registerOnQuestCompleted(questId);
+		qe.registerQuestNpc(START_NPC).addOnQuestStart(questId);
+		qe.registerQuestNpc(START_NPC).addOnTalkEvent(questId);
+
 	}
 
 	@Override
 	public boolean onDialogEvent(QuestEnv env) {
 		final Player player = env.getPlayer();
-		final QuestState qs = player.getQuestStateList().getQuestState(questId);
-		if (qs == null) {
+		if (player.getRace() != Race.ELYOS) {
 			return false;
 		}
 
+		final QuestState qs = player.getQuestStateList().getQuestState(questId);
 		int targetId = env.getTargetId();
 		int dialogActionId = env.getDialogActionId();
 
-		if (qs.getStatus() == QuestStatus.START) {
-			if (dialogActionId == QUEST_SELECT) {
-				return sendQuestDialog(env, 1011);
+		if (qs == null || qs.isStartable()) {
+			if (targetId == START_NPC) {
+				if (dialogActionId == QUEST_SELECT) {
+					return sendQuestDialog(env, 1011);
+				} else {
+					return sendQuestStartDialog(env);
+				}
 			}
-			if (dialogActionId == SET_SUCCEED) {
-				qs.setStatus(QuestStatus.REWARD);
-				updateQuestStatus(env);
-				return closeDialogWindow(env);
+			return false;
+		}
+
+		if (qs.getStatus() == QuestStatus.START) {
+			int var = qs.getQuestVarById(0);
+			if (targetId == START_NPC) {
+				switch (dialogActionId) {
+					case QUEST_SELECT:
+						return sendQuestDialog(env, 1011);
+					case SETPRO1:
+					case SETPRO2:
+					case SET_SUCCEED:
+						qs.setQuestVar(var + 1);
+						updateQuestStatus(env);
+						return closeDialogWindow(env);
+				}
+			} else if (targetId == END_NPC) {
+				switch (dialogActionId) {
+					case QUEST_SELECT:
+						return sendQuestDialog(env, 2375);
+					case SELECT_QUEST_REWARD:
+						qs.setStatus(QuestStatus.REWARD);
+						updateQuestStatus(env);
+						return sendQuestEndDialog(env);
+				}
 			}
 		} else if (qs.getStatus() == QuestStatus.REWARD) {
-			if (dialogActionId == USE_OBJECT) {
-				return sendQuestDialog(env, 10002);
+			if (targetId == END_NPC || targetId == START_NPC) {
+				return sendQuestEndDialog(env);
 			}
-			return sendQuestEndDialog(env);
-		}
-		return false;
-	}
-
-	@Override
-	public boolean onEnterWorldEvent(QuestEnv env) {
-		Player player = env.getPlayer();
-		if (!player.getQuestStateList().hasQuest(questId)) {
-			return QuestService.startQuest(env);
 		}
 		return false;
 	}
 
 	@Override
 	public void onLevelChangedEvent(Player player) {
-		defaultOnLevelChangedEvent(player);
+		if (player.getRace() == Race.ELYOS) {
+			defaultOnLevelChangedEvent(player, 10164);
+		}
+	}
+
+	@Override
+	public void onQuestCompletedEvent(QuestEnv env) {
+		Player player = env.getPlayer();
+		if (player.getRace() == Race.ELYOS) {
+			defaultOnQuestCompletedEvent(env, 10164);
+		}
 	}
 }

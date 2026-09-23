@@ -102,7 +102,7 @@ public class CM_DIALOG_SELECT extends AionClientPacket {
 			}
 			if (QuestEngine.getInstance().onDialog(env))
 				return;
-			if (CustomConfig.ENABLE_SIMPLE_2NDCLASS && (questId == 1006 || questId == 2008))
+			if (questId == 1010 || questId == 2010 || (CustomConfig.ENABLE_SIMPLE_2NDCLASS && (questId == 1006 || questId == 2008)))
 				ClassChangeService.changeClassToSelection(player, dialogActionId);
 			return;
 		}

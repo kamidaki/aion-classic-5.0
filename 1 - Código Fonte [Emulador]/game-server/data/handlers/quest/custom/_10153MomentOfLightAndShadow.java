@@ -124,7 +124,7 @@ public class _10153MomentOfLightAndShadow extends AbstractQuestHandler {
 			return true;
 		}
 		QuestState qs = player.getQuestStateList().getQuestState(questId);
-		if (qs == null && player.getRace() == Race.ELYOS && player.getLevel() >= 1) {
+		if (qs == null && player.getRace() == Race.ELYOS && player.getLevel() == 1) {
 			env.setQuestId(questId);
 			return QuestService.startQuest(env);
 		}

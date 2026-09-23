@@ -2,21 +2,25 @@ package quest.tiamaranta_mesa;
 
 import static com.aionemu.gameserver.model.DialogAction.*;
 
+import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.questEngine.handlers.AbstractQuestHandler;
 import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
-import com.aionemu.gameserver.services.QuestService;
 
 /**
  * Quest ID: 20541
  * Title: Reliable Comrades
  * Zone: Tiamaranta Mesa
  * 
- * @author Aion Classic 5.0 Parser Pipeline
+ * Auto-generated with Classic 5.0 campaign engine standards.
  */
 public class _20541ReliableComrades extends AbstractQuestHandler {
+
+	private static final int START_NPC = 799226;
+	private static final int END_NPC = 799226;
+	private static final int[] MOBS = { 220684, 220685, 220690, 220691, 220695, 220696, 220697, 220698, 220699, 220700 };
 
 	public _20541ReliableComrades() {
 		super(20541);
@@ -24,80 +28,85 @@ public class _20541ReliableComrades extends AbstractQuestHandler {
 
 	@Override
 	public void register() {
-		// 800360: Mine!
-		qe.registerQuestNpc(800360).addOnTalkEvent(questId);
-		// 800361: Mine!
-		qe.registerQuestNpc(800361).addOnTalkEvent(questId);
-		// 220684: Avad Scout
-		qe.registerQuestNpc(220684).addOnKillEvent(questId);
-		// 220685: Avad Scout
-		qe.registerQuestNpc(220685).addOnKillEvent(questId);
-		// 220690: Avad Fighter
-		qe.registerQuestNpc(220690).addOnKillEvent(questId);
-		// 220691: Avad Fighter
-		qe.registerQuestNpc(220691).addOnKillEvent(questId);
-		// 220695: Avad Priest
-		qe.registerQuestNpc(220695).addOnKillEvent(questId);
-		// 220696: Avad Priest
-		qe.registerQuestNpc(220696).addOnKillEvent(questId);
-		// 220697: Avad Searcher
-		qe.registerQuestNpc(220697).addOnKillEvent(questId);
-		// 220698: Avad Searcher
-		qe.registerQuestNpc(220698).addOnKillEvent(questId);
-		// 220699: Avad Mage
-		qe.registerQuestNpc(220699).addOnKillEvent(questId);
-		// 220700: Avad Mage
-		qe.registerQuestNpc(220700).addOnKillEvent(questId);
 		qe.registerOnLevelChanged(questId);
-		qe.registerOnEnterWorld(questId);
+		qe.registerOnQuestCompleted(questId);
+		qe.registerQuestNpc(START_NPC).addOnQuestStart(questId);
+		qe.registerQuestNpc(START_NPC).addOnTalkEvent(questId);
+		for (int mob : MOBS) {
+			qe.registerQuestNpc(mob).addOnKillEvent(questId);
+		}
 	}
 
 	@Override
 	public boolean onDialogEvent(QuestEnv env) {
 		final Player player = env.getPlayer();
-		final QuestState qs = player.getQuestStateList().getQuestState(questId);
-		if (qs == null) {
+		if (player.getRace() != Race.ASMODIANS) {
 			return false;
 		}
 
+		final QuestState qs = player.getQuestStateList().getQuestState(questId);
 		int targetId = env.getTargetId();
 		int dialogActionId = env.getDialogActionId();
 
-		if (qs.getStatus() == QuestStatus.START) {
-			if (dialogActionId == QUEST_SELECT) {
-				return sendQuestDialog(env, 1011);
+		if (qs == null || qs.isStartable()) {
+			if (targetId == START_NPC) {
+				if (dialogActionId == QUEST_SELECT) {
+					return sendQuestDialog(env, 1011);
+				} else {
+					return sendQuestStartDialog(env);
+				}
 			}
-			if (dialogActionId == SET_SUCCEED) {
-				qs.setStatus(QuestStatus.REWARD);
-				updateQuestStatus(env);
-				return closeDialogWindow(env);
+			return false;
+		}
+
+		if (qs.getStatus() == QuestStatus.START) {
+			int var = qs.getQuestVarById(0);
+			if (targetId == START_NPC) {
+				switch (dialogActionId) {
+					case QUEST_SELECT:
+						return sendQuestDialog(env, 1011);
+					case SETPRO1:
+					case SETPRO2:
+					case SET_SUCCEED:
+						qs.setQuestVar(var + 1);
+						updateQuestStatus(env);
+						return closeDialogWindow(env);
+				}
+			} else if (targetId == END_NPC) {
+				switch (dialogActionId) {
+					case QUEST_SELECT:
+						return sendQuestDialog(env, 2375);
+					case SELECT_QUEST_REWARD:
+						qs.setStatus(QuestStatus.REWARD);
+						updateQuestStatus(env);
+						return sendQuestEndDialog(env);
+				}
 			}
 		} else if (qs.getStatus() == QuestStatus.REWARD) {
-			if (dialogActionId == USE_OBJECT) {
-				return sendQuestDialog(env, 10002);
+			if (targetId == END_NPC || targetId == START_NPC) {
+				return sendQuestEndDialog(env);
 			}
-			return sendQuestEndDialog(env);
 		}
 		return false;
 	}
 
 	@Override
 	public boolean onKillEvent(QuestEnv env) {
-		int[] mobs = { 220684, 220685, 220690, 220691, 220695, 220696, 220697, 220698, 220699, 220700 };
-		return defaultOnKillEvent(env, mobs, 0, 1);
-	}
-
-	@Override
-	public boolean onEnterWorldEvent(QuestEnv env) {
-		Player player = env.getPlayer();
-		if (!player.getQuestStateList().hasQuest(questId)) {
-			return QuestService.startQuest(env);
-		}
-		return false;
+		return defaultOnKillEvent(env, MOBS, 0, 1);
 	}
 
 	@Override
 	public void onLevelChangedEvent(Player player) {
-		defaultOnLevelChangedEvent(player);
+		if (player.getRace() == Race.ASMODIANS) {
+			defaultOnLevelChangedEvent(player, 20540);
+		}
+	}
+
+	@Override
+	public void onQuestCompletedEvent(QuestEnv env) {
+		Player player = env.getPlayer();
+		if (player.getRace() == Race.ASMODIANS) {
+			defaultOnQuestCompletedEvent(env, 20540);
+		}
 	}
 }

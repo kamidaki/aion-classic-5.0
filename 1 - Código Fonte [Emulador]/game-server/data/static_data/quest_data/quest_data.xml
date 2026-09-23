@@ -28111,7 +28111,7 @@
 	<quest id="10030" name="Incapaz de pegar?? Estado 5" nameId="1123110" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="QUEST">
 		<rewards gold="10030" />
 	</quest>
-	<quest id="10031" name="A Risk for the Obelisk" nameId="1141842" quest_zone="Inggison" minlevel_permitted="50" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
+	<quest id="10031" name="A Risk for the Obelisk" nameId="1141842" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
 		<rewards exp="21014395">
 			<selectable_reward_item item_id="122001214" count="1" />
 			<selectable_reward_item item_id="122001215" count="1" />
@@ -28125,7 +28125,7 @@
 			<unfinished>14062</unfinished>
 		</start_conditions>
 	</quest>
-	<quest id="10032" name="Help in the Hollow" nameId="1141843" quest_zone="Inggison" minlevel_permitted="51" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
+	<quest id="10032" name="Help in the Hollow" nameId="1141843" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215620" count="1" />
 		</collect_items>
@@ -28145,7 +28145,7 @@
 			<quest_work_item item_id="182215619" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="10033" name="Petrified Subside" nameId="1141844" quest_zone="Inggison" minlevel_permitted="52" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
+	<quest id="10033" name="Petrified Subside" nameId="1141844" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
 		<rewards exp="21168858">
 			<selectable_reward_item item_id="125002371" count="1" />
 			<selectable_reward_item item_id="125002372" count="1" />
@@ -28159,7 +28159,7 @@
 			<unfinished>14062</unfinished>
 		</start_conditions>
 	</quest>
-	<quest id="10034" name="Found Underground" nameId="1141845" quest_zone="Inggison" minlevel_permitted="53" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
+	<quest id="10034" name="Found Underground" nameId="1141845" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215627" count="1" />
 		</collect_items>
@@ -28179,7 +28179,7 @@
 			<quest_work_item item_id="182215628" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="10035" name="Soar to the Canyon" nameId="1141846" quest_zone="Inggison" minlevel_permitted="54" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
+	<quest id="10035" name="Soar to the Canyon" nameId="1141846" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
 		<rewards exp="22194087">
 			<selectable_reward_item item_id="110101251" count="1" />
 			<selectable_reward_item item_id="110301183" count="1" />
@@ -28381,7 +28381,7 @@
 		</rewards>
 		<class_permitted>WARRIOR SCOUT MAGE PRIEST ENGINEER ARTIST GLADIATOR TEMPLAR ASSASSIN RANGER SORCERER SPIRIT_MASTER CHANTER CLERIC GUNNER BARD</class_permitted>
 	</quest>
-	<quest id="10070" name="Kaisinel's Command" nameId="1137083" quest_zone="Tiamat Stronghold" minlevel_permitted="60" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="10070" name="Kaisinel's Command" nameId="1137083" quest_zone="Tiamat Stronghold" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="8027013">
 			<selectable_reward_item item_id="122001499" />
 			<selectable_reward_item item_id="122001500" />
@@ -28394,7 +28394,7 @@
 			<quest_work_item item_id="182213241" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="10071" name="On the Trail of Israphel" nameId="1137084" quest_zone="Tiamat Stronghold" minlevel_permitted="60" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="10071" name="On the Trail of Israphel" nameId="1137084" quest_zone="Tiamat Stronghold" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="8027013">
 			<selectable_reward_item item_id="114101380" />
 			<selectable_reward_item item_id="114301386" />
@@ -28411,7 +28411,7 @@
 			<quest_work_item item_id="182213243" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="10072" name="The Truth Revealed" nameId="1137085" quest_zone="Tiamat Stronghold" minlevel_permitted="60" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="10072" name="The Truth Revealed" nameId="1137085" quest_zone="Tiamat Stronghold" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182213244" count="3" />
 		</collect_items>
@@ -28428,7 +28428,7 @@
 		</start_conditions>
 		<class_permitted>WARRIOR SCOUT MAGE PRIEST ENGINEER ARTIST GLADIATOR TEMPLAR ASSASSIN RANGER SORCERER SPIRIT_MASTER CHANTER CLERIC GUNNER BARD</class_permitted>
 	</quest>
-	<quest id="10073" name="Shattered Alliance" nameId="1137086" quest_zone="Tiamat Stronghold" minlevel_permitted="60" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="10073" name="Shattered Alliance" nameId="1137086" quest_zone="Tiamat Stronghold" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="8027013" title="249">
 			<reward_item item_id="186000147" count="3" />
 		</rewards>
@@ -28689,7 +28689,7 @@
 		</start_conditions>
 		<class_permitted>MONK THUNDERER</class_permitted>
 	</quest>
-	<quest id="10500" name="Oficial de informações nuves" nameId="1800437" quest_zone="Cygnea" minlevel_permitted="55" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
+	<quest id="10500" name="Oficial de informações nuves" nameId="1800437" quest_zone="Cygnea" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
 		<rewards exp="22459785">
 			<selectable_reward_item item_id="114101313" count="1" />
 			<selectable_reward_item item_id="114301319" count="1" />
@@ -28699,7 +28699,7 @@
 			<reward_item item_id="186000231" count="10" />
 		</rewards>
 	</quest>
-	<quest id="10501" name="Ruínas misteriosas" nameId="1800438" quest_zone="Cygnea" minlevel_permitted="56" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
+	<quest id="10501" name="Ruínas misteriosas" nameId="1800438" quest_zone="Cygnea" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215599" count="1" />
 		</collect_items>
@@ -28719,7 +28719,7 @@
 			<quest_work_item item_id="182215598" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="10502" name="Coleta de amostras" nameId="1800439" quest_zone="Cygnea" minlevel_permitted="57" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
+	<quest id="10502" name="Coleta de amostras" nameId="1800439" quest_zone="Cygnea" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215600" count="3" />
 		</collect_items>
@@ -28738,7 +28738,7 @@
 			<quest_work_item item_id="182215635" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="10503" name="As pedras runneseal" nameId="1800440" quest_zone="Cygnea" minlevel_permitted="58" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
+	<quest id="10503" name="As pedras runneseal" nameId="1800440" quest_zone="Cygnea" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215603" count="1" />
 		</collect_items>
@@ -28759,7 +28759,7 @@
 			<quest_work_item item_id="182215604" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="10504" name="Segredo de Tiamat" nameId="1800441" quest_zone="Cygnea" minlevel_permitted="60" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
+	<quest id="10504" name="Segredo de Tiamat" nameId="1800441" quest_zone="Cygnea" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215607" count="1" />
 		</collect_items>
@@ -28782,7 +28782,7 @@
 			<quest_work_item item_id="182215606" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="10505" name="Em busca de Beritra" nameId="1800442" quest_zone="Cygnea" minlevel_permitted="61" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
+	<quest id="10505" name="Em busca de Beritra" nameId="1800442" quest_zone="Cygnea" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215609" count="1" />
 			<collect_item item_id="182215610" count="1" />
@@ -28809,7 +28809,7 @@
 			<quest_work_item item_id="182215612" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="10506" name="O corredor de invasão" nameId="1800443" quest_zone="Cygnea" minlevel_permitted="62" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
+	<quest id="10506" name="O corredor de invasão" nameId="1800443" quest_zone="Cygnea" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
 		<rewards exp="24953660">
 			<selectable_reward_item item_id="110101544" count="1" />
 			<selectable_reward_item item_id="110301440" count="1" />
@@ -28828,7 +28828,7 @@
 			<quest_work_item item_id="182215613" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="10507" name="Apoiar" nameId="1800444" quest_zone="Cygnea" minlevel_permitted="64" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
+	<quest id="10507" name="Apoiar" nameId="1800444" quest_zone="Cygnea" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION" data_driven="true">
 		<rewards exp="25408188">
 			<selectable_reward_item item_id="113101407" count="1" />
 			<selectable_reward_item item_id="113301406" count="1" />
@@ -36043,14 +36043,14 @@
 			<finished quest_id="13917" />
 		</start_conditions>
 	</quest>
-	<quest id="14010" name="Terrain of the Verteron Fortress" nameId="1129872" quest_zone="Verteron" minlevel_permitted="10" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14010" name="Terrain of the Verteron Fortress" nameId="1129872" quest_zone="Verteron" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="22473" />
 		<start_conditions>
 			<unfinished>1130</unfinished>
 			<noacquired>1130</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="14011" name="Fragments in the Sky" nameId="1129873" quest_zone="Verteron" minlevel_permitted="11" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14011" name="Fragments in the Sky" nameId="1129873" quest_zone="Verteron" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards gold="4230" exp="31309">
 			<selectable_reward_item item_id="114101695" count="1" />
 			<selectable_reward_item item_id="114301816" count="1" />
@@ -36064,7 +36064,7 @@
 			<noacquired>1130</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="14012" name="Dukaki Mischief" nameId="1129874" quest_zone="Verteron" minlevel_permitted="15" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14012" name="Dukaki Mischief" nameId="1129874" quest_zone="Verteron" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="55537">
 			<selectable_reward_item item_id="100001734" />
 			<selectable_reward_item item_id="100101331" />
@@ -36085,7 +36085,7 @@
 			<noacquired>1130</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="14013" name="A Frill of a Fuss" nameId="1129875" quest_zone="Verteron" minlevel_permitted="14" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14013" name="A Frill of a Fuss" nameId="1129875" quest_zone="Verteron" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="49319">
 			<selectable_reward_item item_id="110101835" />
 			<selectable_reward_item item_id="110301810" />
@@ -36099,7 +36099,7 @@
 			<noacquired>1130</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="14014" name="Turning the Tide" nameId="1129876" quest_zone="Verteron" minlevel_permitted="20" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14014" name="Turning the Tide" nameId="1129876" quest_zone="Verteron" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215315" count="5" />
 		</collect_items>
@@ -36126,7 +36126,7 @@
 			<noacquired>1130</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="14015" name="Not Blinded by Vengeance" nameId="1129877" quest_zone="Verteron" minlevel_permitted="20" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14015" name="Not Blinded by Vengeance" nameId="1129877" quest_zone="Verteron" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215316" count="10" />
 		</collect_items>
@@ -36160,7 +36160,7 @@
 			<noacquired>1130</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="14016" name="A Gate Agape" nameId="1129878" quest_zone="Verteron" minlevel_permitted="20" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14016" name="A Gate Agape" nameId="1129878" quest_zone="Verteron" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215317" count="1" />
 		</collect_items>
@@ -36196,7 +36196,7 @@
 			<noacquired>1130</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="14020" name="Orders from Eltnen" nameId="1129879" quest_zone="Eltnen" minlevel_permitted="21" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14020" name="Orders from Eltnen" nameId="1129879" quest_zone="Eltnen" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="293759">
 			<selectable_reward_item item_id="120001530" />
 			<selectable_reward_item item_id="120001531" />
@@ -36206,7 +36206,7 @@
 			<noacquired>1300</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="14021" name="To Cure a Curse" nameId="1129880" quest_zone="Eltnen" minlevel_permitted="22" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14021" name="To Cure a Curse" nameId="1129880" quest_zone="Eltnen" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="359158">
 			<selectable_reward_item item_id="110101839" />
 			<selectable_reward_item item_id="110301818" />
@@ -36220,7 +36220,7 @@
 			<noacquired>1300</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="14022" name="The Test of the Heart" nameId="1129881" quest_zone="Eltnen" minlevel_permitted="27" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14022" name="The Test of the Heart" nameId="1129881" quest_zone="Eltnen" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="805806">
 			<selectable_reward_item item_id="121001404" />
 			<selectable_reward_item item_id="121001405" />
@@ -36231,7 +36231,7 @@
 			<noacquired>1300</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="14023" name="Playing Around at the Temple" nameId="1129882" quest_zone="Eltnen" minlevel_permitted="29" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14023" name="Playing Around at the Temple" nameId="1129882" quest_zone="Eltnen" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215318" count="1" />
 			<collect_item item_id="182215319" count="1" />
@@ -36272,7 +36272,7 @@
 			<noacquired>1300</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="14024" name="A Krall-ing Suspicion" nameId="1129883" quest_zone="Eltnen" minlevel_permitted="28" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14024" name="A Krall-ing Suspicion" nameId="1129883" quest_zone="Eltnen" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215322" count="1" />
 		</collect_items>
@@ -36301,7 +36301,7 @@
 			<noacquired>1300</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="14025" name="Cooking up Disasters" nameId="1129884" quest_zone="Eltnen" minlevel_permitted="35" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14025" name="Cooking up Disasters" nameId="1129884" quest_zone="Eltnen" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215323" count="1" />
 		</collect_items>
@@ -36318,7 +36318,7 @@
 			<noacquired>1300</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="14026" name="A Lone Defense" nameId="1129885" quest_zone="Eltnen" minlevel_permitted="35" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14026" name="A Lone Defense" nameId="1129885" quest_zone="Eltnen" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="3504765" title="12">
 			<selectable_reward_item item_id="110101843" />
 			<selectable_reward_item item_id="110301826" />
@@ -36346,7 +36346,7 @@
 			<noacquired>1300</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="14030" name="Retrieved Memory" nameId="1129931" quest_zone="Bare Truth" minlevel_permitted="50" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14030" name="Retrieved Memory" nameId="1129931" quest_zone="Bare Truth" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="8755085" title="49">
 			<selectable_reward_item item_id="120000888" count="1" />
 			<selectable_reward_item item_id="120000889" count="1" />
@@ -36358,7 +36358,7 @@
 			<quest_work_item item_id="182215387" />
 		</quest_work_items>
 	</quest>
-	<quest id="14031" name="A Hyper-vention" nameId="1129932" quest_zone="Bare Truth" minlevel_permitted="50" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14031" name="A Hyper-vention" nameId="1129932" quest_zone="Bare Truth" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="15918337">
 			<selectable_reward_item item_id="121000842" count="1" />
 			<selectable_reward_item item_id="121000843" count="1" />
@@ -36372,13 +36372,13 @@
 			<quest_work_item item_id="182215390" />
 		</quest_work_items>
 	</quest>
-	<quest id="14040" name="Orders from Reshanta" nameId="1129900" quest_zone="Abyss" minlevel_permitted="25" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14040" name="Orders from Reshanta" nameId="1129900" quest_zone="Abyss" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="20110" ap="300">
 			<reward_item item_id="188051192" count="2" />
 			<reward_item item_id="186000031" count="2" />
 		</rewards>
 	</quest>
-	<quest id="14041" name="Abyssal Abilities" nameId="1129901" quest_zone="Abyss" minlevel_permitted="25" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14041" name="Abyssal Abilities" nameId="1129901" quest_zone="Abyss" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="20110" ap="500">
 			<reward_item item_id="169000005" count="150" />
 			<reward_item item_id="184000017" count="2" />
@@ -36386,20 +36386,20 @@
 			<reward_item item_id="186000031" count="2" />
 		</rewards>
 	</quest>
-	<quest id="14042" name="A Rescue Operation" nameId="1129902" quest_zone="Abyss" minlevel_permitted="25" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14042" name="A Rescue Operation" nameId="1129902" quest_zone="Abyss" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="404426" ap="1000">
 			<reward_item item_id="164000077" count="6" />
 			<reward_item item_id="188050790" count="1" />
 			<reward_item item_id="186000031" count="2" />
 		</rewards>
 	</quest>
-	<quest id="14043" name="Drawling Balaur" nameId="1129903" quest_zone="Abyss" minlevel_permitted="25" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14043" name="Drawling Balaur" nameId="1129903" quest_zone="Abyss" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="654335" ap="800" title="30">
 			<reward_item item_id="188051193" count="1" />
 			<reward_item item_id="186000031" count="2" />
 		</rewards>
 	</quest>
-	<quest id="14044" name="Shards of Memory" nameId="1129904" quest_zone="Abyss" minlevel_permitted="26" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14044" name="Shards of Memory" nameId="1129904" quest_zone="Abyss" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="765928" ap="1500">
 			<reward_item item_id="161000003" count="2" />
 			<reward_item item_id="167000465" count="1" />
@@ -36408,7 +36408,7 @@
 			<reward_item item_id="186000031" count="2" />
 		</rewards>
 	</quest>
-	<quest id="14045" name="Rumors on Wings" nameId="1129905" quest_zone="Abyss" minlevel_permitted="32" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14045" name="Rumors on Wings" nameId="1129905" quest_zone="Abyss" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards gold="27550" exp="2929235" ap="2000">
 			<reward_item item_id="162000027" count="8" />
 			<reward_item item_id="188051193" count="1" />
@@ -36418,7 +36418,7 @@
 			<finished quest_id="14041" />
 		</start_conditions>
 	</quest>
-	<quest id="14046" name="Piecing the Memory" nameId="1129906" quest_zone="Abyss" minlevel_permitted="35" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14046" name="Piecing the Memory" nameId="1129906" quest_zone="Abyss" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="167000323" count="1" />
 			<collect_item item_id="152000309" count="1" />
@@ -36430,14 +36430,14 @@
 			<finished quest_id="14044" />
 		</start_conditions>
 	</quest>
-	<quest id="14047" name="Chaining Memories" nameId="1129907" quest_zone="Abyss" minlevel_permitted="35" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14047" name="Chaining Memories" nameId="1129907" quest_zone="Abyss" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="8306873" ap="3000" title="46">
 			<reward_item item_id="187000035" />
 			<reward_item item_id="186000031" count="4" />
 			<reward_item item_id="162001057" count="5" />
 		</rewards>
 	</quest>
-	<quest id="14050" name="Orders from Heiron Fortress" nameId="1129908" quest_zone="Heiron" minlevel_permitted="36" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14050" name="Orders from Heiron Fortress" nameId="1129908" quest_zone="Heiron" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="4272047">
 			<selectable_reward_item item_id="125004165" />
 			<selectable_reward_item item_id="125004166" />
@@ -36448,7 +36448,7 @@
 			<reward_item item_id="162000011" count="20" />
 		</rewards>
 	</quest>
-	<quest id="14051" name="Root of the Problem" nameId="1129909" quest_zone="Heiron" minlevel_permitted="36" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14051" name="Root of the Problem" nameId="1129909" quest_zone="Heiron" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215337" count="3" />
 			<collect_item item_id="182215338" count="3" />
@@ -36475,7 +36475,7 @@
 		<quest_drop npc_id="211079" item_id="182215338" drop_each_member="1" collecting_step="2" />
 		<quest_drop npc_id="211089" item_id="182215338" drop_each_member="1" collecting_step="2" />
 	</quest>
-	<quest id="14052" name="Restless Souls" nameId="1129910" quest_zone="Heiron" minlevel_permitted="41" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14052" name="Restless Souls" nameId="1129910" quest_zone="Heiron" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215340" count="1" />
 			<collect_item item_id="182215341" count="1" />
@@ -36496,7 +36496,7 @@
 		<quest_drop npc_id="204626" item_id="182215342" drop_each_member="1" collecting_step="2" />
 		<quest_drop npc_id="204622" item_id="182215343" drop_each_member="1" collecting_step="2" />
 	</quest>
-	<quest id="14053" name="Danger Cubed" nameId="1129911" quest_zone="Heiron" minlevel_permitted="43" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14053" name="Danger Cubed" nameId="1129911" quest_zone="Heiron" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215345" count="1" />
 		</collect_items>
@@ -36520,7 +36520,7 @@
 		</rewards>
 		<quest_drop npc_id="233860" item_id="182215345" drop_each_member="1" collecting_step="3" />
 	</quest>
-	<quest id="14054" name="Krall-ing to Kralltumagna" nameId="1129912" quest_zone="Heiron" minlevel_permitted="44" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14054" name="Krall-ing to Kralltumagna" nameId="1129912" quest_zone="Heiron" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="13809218" title="25">
 			<selectable_reward_item item_id="110101847" />
 			<selectable_reward_item item_id="110301834" />
@@ -36613,7 +36613,7 @@
 			<quest_work_item item_id="182215399" />
 		</quest_work_items>
 	</quest>
-	<quest id="14080" name="Teetering in Tiamaranta" nameId="1129935" quest_zone="Tiamaranta" minlevel_permitted="58" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14080" name="Teetering in Tiamaranta" nameId="1129935" quest_zone="Tiamaranta" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215403" count="8" />
 		</collect_items>
@@ -36638,7 +36638,7 @@
 		</start_conditions>
 		<class_permitted>ENGINEER RIDER</class_permitted>
 	</quest>
-	<quest id="14081" name="The Heart of the Present" nameId="1129936" quest_zone="Tiamaranta" minlevel_permitted="58" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14081" name="The Heart of the Present" nameId="1129936" quest_zone="Tiamaranta" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="15165823">
 			<selectable_reward_item item_id="102100679" count="1" />
 			<selectable_reward_item item_id="101800770" count="1" />
@@ -36652,7 +36652,7 @@
 			<quest_work_item item_id="182215404" />
 		</quest_work_items>
 	</quest>
-	<quest id="14090" name="Traces of the Past" nameId="1129937" quest_zone="Tiamat Stronghold" minlevel_permitted="58" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14090" name="Traces of the Past" nameId="1129937" quest_zone="Tiamat Stronghold" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="16054027">
 			<selectable_reward_item item_id="122001499" count="1" />
 			<selectable_reward_item item_id="122001500" count="1" />
@@ -36668,7 +36668,7 @@
 			<quest_work_item item_id="182215410" />
 		</quest_work_items>
 	</quest>
-	<quest id="14091" name="Identity Business" nameId="1129938" quest_zone="Tiamat Stronghold" minlevel_permitted="58" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="14091" name="Identity Business" nameId="1129938" quest_zone="Tiamat Stronghold" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="16139345" title="249">
 			<reward_item item_id="186000147" count="3" />
 			<reward_item item_id="110501361" count="1" />
@@ -42849,7 +42849,7 @@
 			<finished quest_id="20001" />
 		</start_conditions>
 	</quest>
-	<quest id="20031" name="Go to Gelkmaros" nameId="1141819" quest_zone="Gelkmaros" minlevel_permitted="50" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
+	<quest id="20031" name="Go to Gelkmaros" nameId="1141819" quest_zone="Gelkmaros" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215591" count="1" />
 		</collect_items>
@@ -42869,7 +42869,7 @@
 			<quest_work_item item_id="182215590" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="20032" name="All About Abnormal Aether" nameId="1141820" quest_zone="Gelkmaros" minlevel_permitted="51" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
+	<quest id="20032" name="All About Abnormal Aether" nameId="1141820" quest_zone="Gelkmaros" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
 		<rewards exp="21086405">
 			<selectable_reward_item item_id="120001077" count="1" />
 			<selectable_reward_item item_id="120001078" count="1" />
@@ -42886,7 +42886,7 @@
 			<quest_work_item item_id="182215593" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="20033" name="Drana Solution" nameId="1141821" quest_zone="Gelkmaros" minlevel_permitted="52" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
+	<quest id="20033" name="Drana Solution" nameId="1141821" quest_zone="Gelkmaros" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
 		<rewards exp="21168858">
 			<selectable_reward_item item_id="125002371" count="1" />
 			<selectable_reward_item item_id="125002372" count="1" />
@@ -42901,7 +42901,7 @@
 			<unfinished>24062</unfinished>
 		</start_conditions>
 	</quest>
-	<quest id="20034" name="Rescue the Reians" nameId="1141822" quest_zone="Gelkmaros" minlevel_permitted="53" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
+	<quest id="20034" name="Rescue the Reians" nameId="1141822" quest_zone="Gelkmaros" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
 		<rewards exp="21888991">
 			<selectable_reward_item item_id="115001177" count="1" />
 			<selectable_reward_item item_id="115001178" count="1" />
@@ -42917,7 +42917,7 @@
 			<quest_work_item item_id="182215595" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="20035" name="Silentera Support" nameId="1141823" quest_zone="Gelkmaros" minlevel_permitted="54" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
+	<quest id="20035" name="Silentera Support" nameId="1141823" quest_zone="Gelkmaros" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
 		<rewards exp="22194087">
 			<selectable_reward_item item_id="110101251" count="1" />
 			<selectable_reward_item item_id="110301183" count="1" />
@@ -43120,7 +43120,7 @@
 		</rewards>
 		<class_permitted>WARRIOR SCOUT MAGE PRIEST ENGINEER ARTIST GLADIATOR TEMPLAR ASSASSIN RANGER SORCERER SPIRIT_MASTER CHANTER CLERIC GUNNER BARD</class_permitted>
 	</quest>
-	<quest id="20070" name="Marchutan's Will" nameId="1137087" quest_zone="Tiamat Stronghold" minlevel_permitted="60" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="20070" name="Marchutan's Will" nameId="1137087" quest_zone="Tiamat Stronghold" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="8027013">
 			<selectable_reward_item item_id="122001501" />
 			<selectable_reward_item item_id="122001502" />
@@ -43133,7 +43133,7 @@
 			<quest_work_item item_id="182213248" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="20071" name="The Hunt for Israphel" nameId="1137088" quest_zone="Tiamat Stronghold" minlevel_permitted="60" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="20071" name="The Hunt for Israphel" nameId="1137088" quest_zone="Tiamat Stronghold" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="8027013">
 			<selectable_reward_item item_id="114101381" />
 			<selectable_reward_item item_id="114301387" />
@@ -43150,7 +43150,7 @@
 			<quest_work_item item_id="182213250" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="20072" name="Israphel's True Face" nameId="1137089" quest_zone="Tiamat Stronghold" minlevel_permitted="60" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="20072" name="Israphel's True Face" nameId="1137089" quest_zone="Tiamat Stronghold" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182213251" count="3" />
 		</collect_items>
@@ -43167,7 +43167,7 @@
 		</start_conditions>
 		<class_permitted>WARRIOR SCOUT MAGE PRIEST ENGINEER ARTIST GLADIATOR TEMPLAR ASSASSIN RANGER SORCERER SPIRIT_MASTER CHANTER CLERIC GUNNER BARD</class_permitted>
 	</quest>
-	<quest id="20073" name="Alliances Undone" nameId="1137090" quest_zone="Tiamat Stronghold" minlevel_permitted="60" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="20073" name="Alliances Undone" nameId="1137090" quest_zone="Tiamat Stronghold" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="8027013" title="250">
 			<reward_item item_id="186000147" count="3" />
 		</rewards>
@@ -43407,13 +43407,13 @@
 			<quest_work_item item_id="182215253" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="20100" name="Ghost of a Bygone Age" nameId="1129957" quest_zone="Prelude to Chaos" minlevel_permitted="65" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="20100" name="Ghost of a Bygone Age" nameId="1129957" quest_zone="Prelude to Chaos" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="24617969">
 			<reward_item item_id="188053057" count="1" />
 			<reward_item item_id="166100011" count="70" />
 		</rewards>
 	</quest>
-	<quest id="20101" name="Unraveling the Mystery" nameId="1129958" quest_zone="Prelude to Chaos" minlevel_permitted="65" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="20101" name="Unraveling the Mystery" nameId="1129958" quest_zone="Prelude to Chaos" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215453" count="1" />
 		</collect_items>
@@ -43422,7 +43422,7 @@
 		</rewards>
 		<quest_drop npc_id="234648" item_id="182215453" drop_each_member="1" collecting_step="7" />
 	</quest>
-	<quest id="20500" name="A tropa da Expedição Vengar" nameId="1800500" quest_zone="Enshar" minlevel_permitted="55" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
+	<quest id="20500" name="A tropa da Expedição Vengar" nameId="1800500" quest_zone="Enshar" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
 		<rewards exp="22459785">
 			<selectable_reward_item item_id="114101313" count="1" />
 			<selectable_reward_item item_id="114301319" count="1" />
@@ -43432,7 +43432,7 @@
 			<reward_item item_id="186000231" count="10" />
 		</rewards>
 	</quest>
-	<quest id="20501" name="Investigando os fragmentos" nameId="1800501" quest_zone="Enshar" minlevel_permitted="56" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
+	<quest id="20501" name="Investigando os fragmentos" nameId="1800501" quest_zone="Enshar" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
 		<rewards exp="22916836">
 			<selectable_reward_item item_id="113101249" count="1" />
 			<selectable_reward_item item_id="113301251" count="1" />
@@ -43448,7 +43448,7 @@
 			<quest_work_item item_id="182215637" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="20502" name="Segredos da Avennga" nameId="1800502" quest_zone="Enshar" minlevel_permitted="57" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
+	<quest id="20502" name="Segredos da Avennga" nameId="1800502" quest_zone="Enshar" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215639" count="5" />
 		</collect_items>
@@ -43464,7 +43464,7 @@
 			<finished quest_id="20501" />
 		</start_conditions>
 	</quest>
-	<quest id="20503" name="Pedras de Campo Aetérico" nameId="1800503" quest_zone="Enshar" minlevel_permitted="58" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
+	<quest id="20503" name="Pedras de Campo Aetérico" nameId="1800503" quest_zone="Enshar" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215640" count="1" />
 		</collect_items>
@@ -43483,7 +43483,7 @@
 			<finished quest_id="20502" />
 		</start_conditions>
 	</quest>
-	<quest id="20504" name="Integração de Tiamat" nameId="1800504" quest_zone="Enshar" minlevel_permitted="60" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
+	<quest id="20504" name="Integração de Tiamat" nameId="1800504" quest_zone="Enshar" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
 		<rewards exp="24154189">
 			<selectable_reward_item item_id="114101439" count="1" />
 			<selectable_reward_item item_id="114301445" count="1" />
@@ -43500,7 +43500,7 @@
 			<finished quest_id="20503" />
 		</start_conditions>
 	</quest>
-	<quest id="20505" name="Cristal antigo" nameId="1800505" quest_zone="Enshar" minlevel_permitted="61" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
+	<quest id="20505" name="Cristal antigo" nameId="1800505" quest_zone="Enshar" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
 		<rewards exp="24828475">
 			<selectable_reward_item item_id="112101346" count="1" />
 			<selectable_reward_item item_id="112301328" count="1" />
@@ -43515,7 +43515,7 @@
 			<finished quest_id="20504" />
 		</start_conditions>
 	</quest>
-	<quest id="20506" name="Uma batalha intrigante" nameId="1800506" quest_zone="Enshar" minlevel_permitted="62" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
+	<quest id="20506" name="Uma batalha intrigante" nameId="1800506" quest_zone="Enshar" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
 		<rewards exp="24953660">
 			<selectable_reward_item item_id="110101547" count="1" />
 			<selectable_reward_item item_id="110301443" count="1" />
@@ -43531,7 +43531,7 @@
 			<finished quest_id="20505" />
 		</start_conditions>
 	</quest>
-	<quest id="20507" name="Novas descobertas" nameId="1800507" quest_zone="Enshar" minlevel_permitted="64" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
+	<quest id="20507" name="Novas descobertas" nameId="1800507" quest_zone="Enshar" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION" data_driven="true">
 		<rewards exp="25408188">
 			<selectable_reward_item item_id="113101410" count="1" />
 			<selectable_reward_item item_id="113301409" count="1" />
@@ -44784,12 +44784,10 @@
 			<reward_item item_id="162002048" count="1" />
 		</rewards>
 	</quest>
-	<quest id="21209" name="Balaur Ponto de Retorno 1 (Infiltration1)
-21209 - 21210" nameId="1127112" quest_zone="Gelkmaros" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="21209" name="Balaur Ponto de Retorno 1 (Infiltration1) 21209 - 21210" nameId="1127112" quest_zone="Gelkmaros" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards />
 	</quest>
-	<quest id="21210" name="Balaur Ponto de Retorno 1 (Infiltration2)
-21209 - 21210" nameId="1127113" quest_zone="Gelkmaros" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="21210" name="Balaur Ponto de Retorno 1 (Infiltration2) 21209 - 21210" nameId="1127113" quest_zone="Gelkmaros" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards />
 		<start_conditions>
 			<finished quest_id="21209" />
@@ -44840,12 +44838,10 @@
 			<quest_work_item item_id="182207890" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="21218" name="Balaur Ponto de Retorno 2 (Infiltration1)
-21218 - 21219" nameId="1127121" quest_zone="Gelkmaros" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="21218" name="Balaur Ponto de Retorno 2 (Infiltration1) 21218 - 21219" nameId="1127121" quest_zone="Gelkmaros" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards />
 	</quest>
-	<quest id="21219" name="Balaur Ponto de Retorno 2 (Infiltration1)
-21218 - 21219" nameId="1127122" quest_zone="Gelkmaros" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="21219" name="Balaur Ponto de Retorno 2 (Infiltration1) 21218 - 21219" nameId="1127122" quest_zone="Gelkmaros" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards />
 		<start_conditions>
 			<finished quest_id="21218" />
@@ -50517,14 +50513,14 @@
 			<finished quest_id="23917" />
 		</start_conditions>
 	</quest>
-	<quest id="24010" name="Suthran's Orders" nameId="1129886" quest_zone="Altgard" minlevel_permitted="10" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24010" name="Suthran's Orders" nameId="1129886" quest_zone="Altgard" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards gold="2170" exp="22473" />
 		<start_conditions>
 			<unfinished>2200</unfinished>
 			<noacquired>2200</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="24011" name="Funny Floating Fungus" nameId="1129887" quest_zone="Altgard" minlevel_permitted="11" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24011" name="Funny Floating Fungus" nameId="1129887" quest_zone="Altgard" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="31309">
 			<selectable_reward_item item_id="114101696" />
 			<selectable_reward_item item_id="114301817" />
@@ -50542,7 +50538,7 @@
 			<noacquired>2011</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="24012" name="An Ominous Crop" nameId="1129888" quest_zone="Altgard" minlevel_permitted="12" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24012" name="An Ominous Crop" nameId="1129888" quest_zone="Altgard" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215357" count="3" />
 			<collect_item item_id="182215358" count="5" />
@@ -50577,7 +50573,7 @@
 			<noacquired>2013</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="24013" name="Poison In the Waters" nameId="1129889" quest_zone="Altgard" minlevel_permitted="14" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24013" name="Poison In the Waters" nameId="1129889" quest_zone="Altgard" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="55537">
 			<selectable_reward_item item_id="100001735" />
 			<selectable_reward_item item_id="100101332" />
@@ -50602,7 +50598,7 @@
 			<noacquired>2016</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="24014" name="Stomp Out the Plot" nameId="1129890" quest_zone="Altgard" minlevel_permitted="20" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24014" name="Stomp Out the Plot" nameId="1129890" quest_zone="Altgard" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215360" count="1" />
 		</collect_items>
@@ -50621,7 +50617,7 @@
 			<noacquired>2020</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="24015" name="Totem-Plowed" nameId="1129891" quest_zone="Altgard" minlevel_permitted="20" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24015" name="Totem-Plowed" nameId="1129891" quest_zone="Altgard" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="228880">
 			<selectable_reward_item item_id="125004137" />
 			<selectable_reward_item item_id="125004138" />
@@ -50637,7 +50633,7 @@
 			<noacquired>2021</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="24016" name="A Strange New Threat" nameId="1129892" quest_zone="Altgard" minlevel_permitted="20" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24016" name="A Strange New Threat" nameId="1129892" quest_zone="Altgard" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="228880" title="57">
 			<selectable_reward_item item_id="100001737" />
 			<selectable_reward_item item_id="100101334" />
@@ -50663,7 +50659,7 @@
 			<noacquired>2022</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="24020" name="Aegir's Orders" nameId="1129893" quest_zone="Morheim" minlevel_permitted="21" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24020" name="Aegir's Orders" nameId="1129893" quest_zone="Morheim" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="293759">
 			<selectable_reward_item item_id="110101840" />
 			<selectable_reward_item item_id="110301819" />
@@ -50677,7 +50673,7 @@
 			<noacquired>2300</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="24021" name="Ghosts in the Desert" nameId="1129894" quest_zone="Morheim" minlevel_permitted="27" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24021" name="Ghosts in the Desert" nameId="1129894" quest_zone="Morheim" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215361" count="10" />
 			<collect_item item_id="182215362" count="1" />
@@ -50703,7 +50699,7 @@
 			<noacquired>2032</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="24022" name="Sneak Behind the Ice Claw" nameId="1129895" quest_zone="Morheim" minlevel_permitted="28" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24022" name="Sneak Behind the Ice Claw" nameId="1129895" quest_zone="Morheim" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="893476" title="58">
 			<selectable_reward_item item_id="125004153" />
 			<selectable_reward_item item_id="125004154" />
@@ -50721,7 +50717,7 @@
 			<noacquired>2034</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="24023" name="A Blazing Rescue" nameId="1129896" quest_zone="Morheim" minlevel_permitted="29" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24023" name="A Blazing Rescue" nameId="1129896" quest_zone="Morheim" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215366" count="1" />
 			<collect_item item_id="182215367" count="1" />
@@ -50755,7 +50751,7 @@
 			<noacquired>2035</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="24024" name="A Nepra Protector" nameId="1129897" quest_zone="Morheim" minlevel_permitted="35" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24024" name="A Nepra Protector" nameId="1129897" quest_zone="Morheim" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="3504765">
 			<selectable_reward_item item_id="120001536" />
 			<selectable_reward_item item_id="120001537" />
@@ -50771,7 +50767,7 @@
 			<noacquired>2037</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="24025" name="Crisis in Morheim" nameId="1129898" quest_zone="Morheim" minlevel_permitted="35" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24025" name="Crisis in Morheim" nameId="1129898" quest_zone="Morheim" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215370" count="1" />
 		</collect_items>
@@ -50795,7 +50791,7 @@
 			<noacquired>2040</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="24026" name="A Hand from Each Side" nameId="1129899" quest_zone="Morheim" minlevel_permitted="35" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24026" name="A Hand from Each Side" nameId="1129899" quest_zone="Morheim" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="3504765" title="60">
 			<selectable_reward_item item_id="114101704" />
 			<selectable_reward_item item_id="114301833" />
@@ -50825,7 +50821,7 @@
 			<noacquired>2041</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="24030" name="Showdown with Destiny" nameId="1129940" quest_zone="Clash of Destiny" minlevel_permitted="50" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24030" name="Showdown with Destiny" nameId="1129940" quest_zone="Clash of Destiny" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215391" count="1" />
 		</collect_items>
@@ -50846,7 +50842,7 @@
 			<quest_work_item item_id="182215393" />
 		</quest_work_items>
 	</quest>
-	<quest id="24031" name="Enemy at the Doorstep" nameId="1129941" quest_zone="Clash of Destiny" minlevel_permitted="50" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24031" name="Enemy at the Doorstep" nameId="1129941" quest_zone="Clash of Destiny" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="15918337">
 			<selectable_reward_item item_id="121000844" count="1" />
 			<selectable_reward_item item_id="121000845" count="1" />
@@ -50864,13 +50860,13 @@
 			<quest_work_item item_id="182215396" />
 		</quest_work_items>
 	</quest>
-	<quest id="24040" name="Votan's Orders" nameId="1129916" quest_zone="Reshanta" minlevel_permitted="25" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24040" name="Votan's Orders" nameId="1129916" quest_zone="Reshanta" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="20110" ap="300">
 			<reward_item item_id="188051192" count="2" />
 			<reward_item item_id="186000031" count="2" />
 		</rewards>
 	</quest>
-	<quest id="24041" name="Training in the Abyss" nameId="1129917" quest_zone="Reshanta" minlevel_permitted="25" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24041" name="Training in the Abyss" nameId="1129917" quest_zone="Reshanta" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="20110" ap="500">
 			<reward_item item_id="169000005" count="150" />
 			<reward_item item_id="184000021" count="2" />
@@ -50878,20 +50874,20 @@
 			<reward_item item_id="186000031" count="2" />
 		</rewards>
 	</quest>
-	<quest id="24042" name="A Ready Rescue" nameId="1129918" quest_zone="Reshanta" minlevel_permitted="25" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24042" name="A Ready Rescue" nameId="1129918" quest_zone="Reshanta" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="450488" ap="1000">
 			<reward_item item_id="164000077" count="6" />
 			<reward_item item_id="188050880" count="1" />
 			<reward_item item_id="186000031" count="2" />
 		</rewards>
 	</quest>
-	<quest id="24043" name="Lazy Language Lessons" nameId="1129919" quest_zone="Reshanta" minlevel_permitted="25" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24043" name="Lazy Language Lessons" nameId="1129919" quest_zone="Reshanta" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="404426" ap="800" title="80">
 			<reward_item item_id="188051193" count="1" />
 			<reward_item item_id="186000031" count="2" />
 		</rewards>
 	</quest>
-	<quest id="24044" name="Change the Future" nameId="1129920" quest_zone="Reshanta" minlevel_permitted="26" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24044" name="Change the Future" nameId="1129920" quest_zone="Reshanta" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="1225484" ap="1500">
 			<reward_item item_id="161000003" count="2" />
 			<reward_item item_id="167000465" count="1" />
@@ -50900,7 +50896,7 @@
 			<reward_item item_id="186000031" count="2" />
 		</rewards>
 	</quest>
-	<quest id="24045" name="A Speedy Errand" nameId="1129921" quest_zone="Reshanta" minlevel_permitted="33" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24045" name="A Speedy Errand" nameId="1129921" quest_zone="Reshanta" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="5391316" ap="2000">
 			<reward_item item_id="162000027" count="6" />
 			<reward_item item_id="188051194" count="1" />
@@ -50910,14 +50906,14 @@
 			<finished quest_id="24041" />
 		</start_conditions>
 	</quest>
-	<quest id="24046" name="The Shadow Calls" nameId="1129922" quest_zone="Reshanta" minlevel_permitted="33" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24046" name="The Shadow Calls" nameId="1129922" quest_zone="Reshanta" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="5404521" ap="2500" title="96">
 			<reward_item item_id="187000036" count="1" />
 			<reward_item item_id="186000031" count="4" />
 			<reward_item item_id="162001057" count="5" />
 		</rewards>
 	</quest>
-	<quest id="24050" name="Nerita's Orders" nameId="1129923" quest_zone="Beluslan" minlevel_permitted="36" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24050" name="Nerita's Orders" nameId="1129923" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="4272047">
 			<selectable_reward_item item_id="125004169" />
 			<selectable_reward_item item_id="125004170" />
@@ -50931,7 +50927,7 @@
 		</start_conditions>
 		<class_permitted>ENGINEER ARTIST GLADIATOR TEMPLAR ASSASSIN RANGER SORCERER SPIRIT_MASTER CHANTER CLERIC GUNNER BARD RIDER</class_permitted>
 	</quest>
-	<quest id="24051" name="Investigate the Disappearance" nameId="1129924" quest_zone="Beluslan" minlevel_permitted="36" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24051" name="Investigate the Disappearance" nameId="1129924" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215377" count="1" />
 		</collect_items>
@@ -50967,7 +50963,7 @@
 		</start_conditions>
 		<class_permitted>ENGINEER ARTIST GLADIATOR TEMPLAR ASSASSIN RANGER SORCERER SPIRIT_MASTER CHANTER CLERIC GUNNER BARD RIDER</class_permitted>
 	</quest>
-	<quest id="24052" name="A Frozen City" nameId="1129925" quest_zone="Beluslan" minlevel_permitted="41" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24052" name="A Frozen City" nameId="1129925" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="10462313">
 			<selectable_reward_item item_id="111101662" />
 			<selectable_reward_item item_id="111301773" />
@@ -50992,7 +50988,7 @@
 			<quest_work_item item_id="182215380" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="24053" name="The Mauling of the Mau" nameId="1129926" quest_zone="Beluslan" minlevel_permitted="42" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24053" name="The Mauling of the Mau" nameId="1129926" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="12241520">
 			<selectable_reward_item item_id="114101708" />
 			<selectable_reward_item item_id="114301841" />
@@ -51012,7 +51008,7 @@
 		</start_conditions>
 		<class_permitted>ENGINEER ARTIST GLADIATOR TEMPLAR ASSASSIN RANGER SORCERER SPIRIT_MASTER CHANTER CLERIC GUNNER BARD RIDER</class_permitted>
 	</quest>
-	<quest id="24054" name="Crisis in Beluslan" nameId="1129927" quest_zone="Beluslan" minlevel_permitted="44" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24054" name="Crisis in Beluslan" nameId="1129927" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="13809218" title="74">
 			<selectable_reward_item item_id="110101848" />
 			<selectable_reward_item item_id="110301835" />
@@ -51124,7 +51120,7 @@
 			<quest_work_item item_id="182215402" />
 		</quest_work_items>
 	</quest>
-	<quest id="24080" name="Conspiracy in Tiamaranta" nameId="1129944" quest_zone="Tiamaranta" minlevel_permitted="58" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24080" name="Conspiracy in Tiamaranta" nameId="1129944" quest_zone="Tiamaranta" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215405" count="8" />
 		</collect_items>
@@ -51147,7 +51143,7 @@
 		</start_conditions>
 		<class_permitted>ENGINEER RIDER</class_permitted>
 	</quest>
-	<quest id="24081" name="Secrets Within the Heart" nameId="1129945" quest_zone="Tiamaranta" minlevel_permitted="58" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24081" name="Secrets Within the Heart" nameId="1129945" quest_zone="Tiamaranta" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215407" count="1" />
 		</collect_items>
@@ -51171,7 +51167,7 @@
 			<quest_work_item item_id="182215406" />
 		</quest_work_items>
 	</quest>
-	<quest id="24090" name="Footsteps of the Past" nameId="1129946" quest_zone="Tiamat Stronghold" minlevel_permitted="58" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24090" name="Footsteps of the Past" nameId="1129946" quest_zone="Tiamat Stronghold" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="16054027">
 			<selectable_reward_item item_id="122001501" count="1" />
 			<selectable_reward_item item_id="122001502" count="1" />
@@ -51187,7 +51183,7 @@
 			<quest_work_item item_id="182215414" />
 		</quest_work_items>
 	</quest>
-	<quest id="24091" name="Unending Mission" nameId="1129947" quest_zone="Tiamat Stronghold" minlevel_permitted="58" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="24091" name="Unending Mission" nameId="1129947" quest_zone="Tiamat Stronghold" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="8027013" title="250">
 			<selectable_reward_item item_id="110101479" count="1" />
 			<selectable_reward_item item_id="110301387" count="1" />
@@ -80278,8 +80274,7 @@
 		<priest_selectable_reward item_id="140000267" count="1" />
 		<chanter_selectable_reward item_id="140000282" count="1" />
 	</quest>
-	<quest id="29106" name="Utilize esse item para reviver o seu Pet de Combate.
- Ele somente surte efeito no Pet atualmente ativo em seu personagem." nameId="1801371" quest_zone="Pandaemonium" minlevel_permitted="55" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="SIGNIFICANT">
+	<quest id="29106" name="Utilize esse item para reviver o seu Pet de Combate.  Ele somente surte efeito no Pet atualmente ativo em seu personagem." nameId="1801371" quest_zone="Pandaemonium" minlevel_permitted="55" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="SIGNIFICANT">
 		<rewards />
 		<start_conditions>
 			<finished quest_id="4934" />
@@ -84208,9 +84203,7 @@
 			<reward_item item_id="188053534" count="1" />
 		</rewards>
 	</quest>
-	<quest id="70040" name="Um fragmento da espada pertencente a Anoha, o herói da tribo Rune.
-Se você tem isso em seu inventário, pode aceitar missões especiais reservadas para os generais da Brigada da Guilda que conquistaram a fortaleza.
-Disponível por 6 dias." nameId="1800179" quest_zone="Steel Rake" minlevel_permitted="99" max_repeat_count="2" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="IMPORTANT">
+	<quest id="70040" name="Um fragmento da espada pertencente a Anoha, o herói da tribo Rune. Se você tem isso em seu inventário, pode aceitar missões especiais reservadas para os generais da Brigada da Guilda que conquistaram a fortaleza. Disponível por 6 dias." nameId="1800179" quest_zone="Steel Rake" minlevel_permitted="99" max_repeat_count="2" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="IMPORTANT">
 		<rewards exp="2815297">
 			<reward_item item_id="188053535" count="1" />
 		</rewards>
