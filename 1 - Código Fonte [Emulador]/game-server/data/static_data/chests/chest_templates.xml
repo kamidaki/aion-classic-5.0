@@ -385,4 +385,49 @@
 	<!-- Joker's Wild Event -->
 	<!-- Drakenspire Depths -->
 	<!-- Ice Festival -->
+	<chest npc_id="804157">
+		<key_item item_ids="0" count="1" />
+	</chest>
+	<chest npc_id="804158">
+		<key_item item_ids="0" count="1" />
+	</chest>
+	<chest npc_id="804159">
+		<key_item item_ids="0" count="1" />
+	</chest>
+	<chest npc_id="804160">
+		<key_item item_ids="0" count="1" />
+	</chest>
+	<chest npc_id="804162">
+		<key_item item_ids="0" count="1" />
+	</chest>
+	<chest npc_id="804163">
+		<key_item item_ids="0" count="1" />
+	</chest>
+	<chest npc_id="804164">
+		<key_item item_ids="0" count="1" />
+	</chest>
+	<chest npc_id="804165">
+		<key_item item_ids="0" count="1" />
+	</chest>
+	<chest npc_id="804169">
+		<key_item item_ids="0" count="1" />
+	</chest>
+	<chest npc_id="804170">
+		<key_item item_ids="0" count="1" />
+	</chest>
+	<chest npc_id="804171">
+		<key_item item_ids="0" count="1" />
+	</chest>
+	<chest npc_id="804172">
+		<key_item item_ids="0" count="1" />
+	</chest>
+	<chest npc_id="804173">
+		<key_item item_ids="0" count="1" />
+	</chest>
+	<chest npc_id="804174">
+		<key_item item_ids="0" count="1" />
+	</chest>
+	<chest npc_id="804175">
+		<key_item item_ids="0" count="1" />
+	</chest>
 </chest_templates>

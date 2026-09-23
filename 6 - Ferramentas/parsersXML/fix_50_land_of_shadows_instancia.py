@@ -21,6 +21,10 @@ De onde vem cada dado
   instance_exit.xml       saida dos Asmodianos pela captura subida-1-60-2026-08-28.pcapng (acao 104 da Inggril 804135:
                           Pandaemonium 120010000, 1469 1450 176.93 h30). Nao ha captura Elyos do tutorial; sem saida
                           cadastrada o TeleportService.moveToInstanceExit leva ao ponto de retorno (bind).
+  chest_templates.xml     um <chest> sem chave (item_ids 0) para cada template da faixa 804100..804175 com ai="chest":
+                          sem ele o ChestAI so registra "Missing chest template" e o bau nao abre. Na captura os baus
+                          abrem pela barra de uso (S_GAUGE 3000/5000 ms) e dao loot sem gastar item (nenhum
+                          S_REMOVE_INVENTORY na sessao da instancia).
 
 A pasta do cliente (a que contem data/) pode vir da variavel de ambiente AION_CLIENT_XML_DIR.
 Cada arvore e lida, validada contra o XSD e gravada separadamente.
@@ -56,7 +60,25 @@ ARQUIVOS = {
     "world_maps.xml": "world_maps.xsd",
     "instance_cooltimes/instance_cooltimes.xml": "instance_cooltimes/instance_cooltimes.xsd",
     "instance_exit/instance_exit.xml": "instance_exit/instance_exit.xsd",
+    "chests/chest_templates.xml": "chests/chest_templates.xsd",
 }
+FAIXA_NPC = range(804100, 804176)
+
+
+def baus_da_instancia(base):
+    with open(os.path.join(base, "npcs", "npc_templates.xml"), encoding="utf-8") as f:
+        texto = f.read()
+    return sorted(int(m.group(1)) for m in re.finditer(r'<npc_template npc_id="(\d+)"[^>]*\bai="chest"', texto)
+                  if int(m.group(1)) in FAIXA_NPC)
+
+
+def baus(texto, ids):
+    faltam = [i for i in ids if 'npc_id="%d"' % i not in texto]
+    if not faltam:
+        return texto, None
+    bloco = "".join('\t<chest npc_id="%d">\n\t\t<key_item item_ids="0" count="1" />\n\t</chest>\n' % i for i in faltam)
+    fim = texto.rindex("</chest_templates>")
+    return texto[:fim] + bloco + texto[fim:], "+%d baus: %s" % (len(faltam), " ".join(map(str, faltam)))
 
 
 def le_cliente():
@@ -149,6 +171,8 @@ def main():
                 mud = None if mud[0] == mud[1] else "{}\n   -> {}".format(mud[0].strip(), mud[1].strip())
             elif rel.startswith("instance_cooltimes"):
                 novo, mud = cooltimes(texto, cli)
+            elif rel.startswith("chests"):
+                novo, mud = baus(texto, baus_da_instancia(base))
             else:
                 novo, mud = saidas(texto)
             if mud and CRLF in texto:  # os blocos sao montados com LF; o arquivo usa CRLF
