@@ -73,6 +73,13 @@ class QuestPacketsWireTest {
 		assertEquals(44, data.length);
 	}
 
+	@Test
+	void useObjectGaugeMatchesOfficialPcap() throws Exception {
+		// outros2 2026-09-22 09:41, sessão 2, 177.84 s e 189.92 s: lápide 701477 (obj fa230080) da 20541, barra de 12000 ms
+		assertEquals("d95b0f2efa230080e02e000001", HEX.formatHex(body(new SM_USE_OBJECT(0x2e0f5bd9, 0x800023fa, 12000, 1))));
+		assertEquals("d95b0f2efa230080e02e000002", HEX.formatHex(body(new SM_USE_OBJECT(0x2e0f5bd9, 0x800023fa, 12000, 2))));
+	}
+
 	private static byte[] body(AionServerPacket packet) throws Exception {
 		ByteBuffer buffer = ByteBuffer.allocate(256).order(ByteOrder.LITTLE_ENDIAN);
 		packet.setBuf(buffer);

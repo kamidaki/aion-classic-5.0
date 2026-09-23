@@ -169,7 +169,7 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(192, SM_RESURRECT.class); // [S_RESURRECT_BY_OTHER] (0xC0)
 		addPacketOpcode(193, SM_FORCED_MOVE.class); // [S_MOVEBACK] (0xC1)
 		addPacketOpcode(194, SM_TELEPORT_MAP.class); // [S_ROUTEMAP_INFO] (0xC2)
-		addPacketOpcode(195, SM_USE_OBJECT.class); // [S_GAUGE] (0xC3)
+		addPacketOpcode(196, SM_USE_OBJECT.class); // [S_GAUGE] (0xC4): 13 b [D jogador][D objeto][D ms][C 1 início|2 fim] em todas as capturas; 0xC3 é outro pacote, de tamanho variável
 		addPacketOpcode(198, SM_L2AUTH_LOGIN_CHECK.class); // [S_L2AUTH_LOGIN_CHECK] (0xC6, was 199)
 		addPacketOpcode(199, SM_CHARACTER_LIST.class); // [S_CHARACTER_LIST] (0xC7, was 200)
 		addPacketOpcode(200, SM_CREATE_CHARACTER.class); // [S_CREATE_CHARACTER] (0xC8, was 201)
