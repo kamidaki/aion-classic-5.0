@@ -15,7 +15,7 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 import ai.GeneralNpcAI;
 
 /**
- * AI para Inggness (804135, Daeva do Tempo, Asmodiano) na Land of Shadows (390000000).
+ * AI para Inggril (804135, STR_IDTutorialQ_Teleport_Out_Da, Daeva do Tempo do lado Asmodiano) na Land of Shadows (390000000).
  * Conforme captura oficial 5.0 (subida-1-60-2026-08-28.pcapng):
  * Responde com página de diálogo 1011 e, na ação 104 (TELEPORT_SIMPLE),
  * teletransporta o jogador para Pandaemonium (120010000) em (1469.0f, 1450.0f, 176.93f, h30).

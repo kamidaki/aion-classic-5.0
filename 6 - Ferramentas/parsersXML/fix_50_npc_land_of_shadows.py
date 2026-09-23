@@ -6,6 +6,14 @@ fix_50_npc_land_of_shadows.py
 Corrige os 76 templates de NPCs da instância Land of Shadows (IDTutorialQ, world 390000000,
 faixa 804100..804175) eliminando a colisão com dados legados do 4.8.
 
+Conferido em 23/09 com o S_PUT_NPC de todas as capturas oficiais (fix_50_npc_captura.py em simulação):
+  - 804135 attack_speed 2249 (= attack_delay do cliente, igual no 804134)
+  - controladores 804136..804155 e 804166 com maxHp 172; bonus box 22/23 (804174/804175) no level 7
+Nome: o texto do desc no cliente coreano manda (o Strings/strings traduzido tem 465678/465679 errados):
+  STR_IDTutorialQ_Teleport_Out_Li (804134) = Inggness, STR_IDTutorialQ_Teleport_Out_Da (804135) = Inggril.
+  O <ment> do client_npcs vem trocado e nao serve de nome.
+srange e talk_info dos dois teleportadores saem do sensory_range (25) e do talking_distance (3) do cliente.
+
 Sincroniza as duas árvores:
   - 1 - Código Fonte [Emulador]/game-server/data/static_data/npcs/npc_templates.xml
   - 2 - Emulador [Produto Final]/GameServer/data/static_data/npcs/npc_templates.xml
@@ -68,8 +76,8 @@ EQUIP_DEAD_DA = [125300029, 110601060, 111601037, 114601017, 112601010, 11360102
 EQUIP_GOSSIP_LI = [100000058, 115000734, 125300028, 110601059, 111601036, 114601016, 112601009, 113601020]
 EQUIP_GOSSIP_DA = [100000058, 115000738, 125300028, 110601059, 111601036, 114601016, 112601009, 113601020]
 
-EQUIP_INGGRIL = [113500319, 110500336, 112500309, 111500327, 114500331]
-EQUIP_INGGNESS = [110900154, 111100277, 114100294, 112100256, 113100276]
+EQUIP_TELEPORT_LI = [113500319, 110500336, 112500309, 111500327, 114500331]
+EQUIP_TELEPORT_DA = [110900154, 111100277, 114100294, 112100256, 113100276]
 
 
 def format_equipment(items):
@@ -169,33 +177,33 @@ def build_template_xml(npc_id):
             f'\t</npc_template>'
         )
 
-    # 6. Inggril (804134, Elyos Daeva do Tempo)
+    # 6. Inggness (804134, STR_IDTutorialQ_Teleport_Out_Li, Daeva do Tempo do lado Elyos)
     if npc_id == 804134:
-        equip = format_equipment(EQUIP_INGGRIL)
+        equip = format_equipment(EQUIP_TELEPORT_LI)
         return (
-            f'\t<npc_template npc_id="804134" level="5" name="Inggril" name_id="465678" '
+            f'\t<npc_template npc_id="804134" level="5" name="Inggness" name_id="465678" '
             f'height="2.18" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" '
-            f'type="GENERAL" ai="idtutorialq_teleport_out_li" srange="10" arange="2" attack_speed="2000" hpgauge="3">\n'
+            f'type="GENERAL" ai="idtutorialq_teleport_out_li" srange="25" arange="2" attack_speed="2249" hpgauge="3">\n'
             f'\t\t<stats maxHp="3871652">\n'
             f'\t\t\t<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />\n'
             f'\t\t</stats>{equip}\n'
             f'\t\t<bound_radius front="0.2725" side="0.3815" upper="2.18" />\n'
-            f'\t\t<talk_info distance="5" is_dialog="true" />\n'
+            f'\t\t<talk_info distance="3" is_dialog="true" />\n'
             f'\t</npc_template>'
         )
 
-    # 7. Inggness (804135, Asmodiano Daeva do Tempo)
+    # 7. Inggril (804135, STR_IDTutorialQ_Teleport_Out_Da, Daeva do Tempo do lado Asmodiano)
     if npc_id == 804135:
-        equip = format_equipment(EQUIP_INGGNESS)
+        equip = format_equipment(EQUIP_TELEPORT_DA)
         return (
-            f'\t<npc_template npc_id="804135" level="5" name="Inggness" name_id="465679" '
+            f'\t<npc_template npc_id="804135" level="5" name="Inggril" name_id="465679" '
             f'height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" '
-            f'type="GENERAL" ai="idtutorialq_teleport_out_da" srange="10" arange="2" attack_speed="2000" hpgauge="3">\n'
+            f'type="GENERAL" ai="idtutorialq_teleport_out_da" srange="25" arange="2" attack_speed="2249" hpgauge="3">\n'
             f'\t\t<stats maxHp="3871652">\n'
             f'\t\t\t<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />\n'
             f'\t\t</stats>{equip}\n'
             f'\t\t<bound_radius front="0.25" side="0.35" upper="2" />\n'
-            f'\t\t<talk_info distance="5" is_dialog="true" />\n'
+            f'\t\t<talk_info distance="3" is_dialog="true" />\n'
             f'\t</npc_template>'
         )
 
@@ -211,7 +219,7 @@ def build_template_xml(npc_id):
             f'\t<npc_template npc_id="{npc_id}" level="1" name="{cname}" name_id="350000" '
             f'height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" '
             f'type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">\n'
-            f'\t\t<stats maxHp="100">\n'
+            f'\t\t<stats maxHp="172">\n'  # S_PUT_NPC oficial
             f'\t\t\t<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />\n'
             f'\t\t</stats>\n'
             f'\t\t<bound_radius front="0.25" side="0.35" upper="2" />\n'
@@ -268,10 +276,10 @@ def build_template_xml(npc_id):
         # NoShow NPCs (804166, 804167)
         if npc_id == 804166:
             return (
-                f'\t<npc_template npc_id="804166" level="1" name="IDTutorialQ_NoShowNPC_DarkShadow_Normalfire" name_id="0" '
+                f'\t<npc_template npc_id="804166" level="1" name="IDTutorialQ_NoShowNPC_DarkShadow_Normalfire" name_id="2288143" '
                 f'height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="NONE" '
                 f'type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">\n'
-                f'\t\t<stats maxHp="10">\n'
+                f'\t\t<stats maxHp="172">\n'  # S_PUT_NPC oficial
                 f'\t\t\t<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />\n'
                 f'\t\t</stats>\n'
                 f'\t\t<bound_radius front="0.25" side="0.35" upper="2" />\n'
@@ -289,17 +297,17 @@ def build_template_xml(npc_id):
                 f'\t</npc_template>'
             )
 
-        # Bonus Boxes (804173..804175)
+        # Bonus Boxes (804173..804175); level 7 do S_PUT_NPC oficial na 22 e na 23 (a 21 nao aparece nas capturas)
         boxes = {
-            804173: ("IDTutorialQ_Content_UI_BonusBox_21", 465851, 6.0, 0.75, 1.05, 6.0),
-            804174: ("IDTutorialQ_Content_UI_BonusBox_22", 465852, 4.0, 0.5, 0.7, 4.0),
-            804175: ("IDTutorialQ_Content_UI_BonusBox_23", 465853, 2.0, 0.25, 0.35, 2.0),
+            804173: ("IDTutorialQ_Content_UI_BonusBox_21", 465851, 5, 6.0, 0.75, 1.05, 6.0),
+            804174: ("IDTutorialQ_Content_UI_BonusBox_22", 465852, 7, 4.0, 0.5, 0.7, 4.0),
+            804175: ("IDTutorialQ_Content_UI_BonusBox_23", 465853, 7, 2.0, 0.25, 0.35, 2.0),
         }
-        cname, name_id, h, bf, bs, bu = boxes[npc_id]
+        cname, name_id, lvl, h, bf, bs, bu = boxes[npc_id]
         h_str = f"{int(h)}" if h.is_integer() else f"{h}"
         bu_str = f"{int(bu)}" if bu.is_integer() else f"{bu}"
         return (
-            f'\t<npc_template npc_id="{npc_id}" level="5" name="{cname}" name_id="{name_id}" '
+            f'\t<npc_template npc_id="{npc_id}" level="{lvl}" name="{cname}" name_id="{name_id}" '
             f'height="{h_str}" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" '
             f'type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">\n'
             f'\t\t<stats maxHp="831">\n'
@@ -324,6 +332,8 @@ def process_tree(nome, base, aplicar=False):
     conteudo = open(caminho_xml, "r", encoding="utf-8", newline="").read()
     substituidos = 0
     novos_blocos = {nid: build_template_xml(nid) for nid in range(804100, 804176)}
+    if "\r\n" in conteudo:  # os blocos saem com LF; o checkout (autocrlf) usa CRLF
+        novos_blocos = {nid: b.replace("\n", "\r\n") for nid, b in novos_blocos.items()}
 
     # Mapa de posições dos blocos existentes
     matches = list(BLOCO_RE.finditer(conteudo))

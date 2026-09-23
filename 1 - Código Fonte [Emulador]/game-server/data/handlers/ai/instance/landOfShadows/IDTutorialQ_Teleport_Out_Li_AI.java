@@ -15,9 +15,10 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 import ai.GeneralNpcAI;
 
 /**
- * AI para Inggril (804134, Daeva do Tempo, Elyos) na Land of Shadows (390000000).
+ * AI para Inggness (804134, STR_IDTutorialQ_Teleport_Out_Li, Daeva do Tempo do lado Elyos) na Land of Shadows (390000000).
  * Responde com página de diálogo 1011 e, na ação 104 (TELEPORT_SIMPLE),
- * teletransporta o jogador para Sanctum (110010000).
+ * teletransporta o jogador para Sanctum (110010000). Ponto sem captura oficial (so ha a do lado Asmodiano):
+ * conferir quando houver captura Elyos do tutorial.
  */
 @AIName("idtutorialq_teleport_out_li")
 public class IDTutorialQ_Teleport_Out_Li_AI extends GeneralNpcAI {

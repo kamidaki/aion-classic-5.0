@@ -372287,7 +372287,7 @@
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804134" level="5" name="Inggril" name_id="465678" height="2.18" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="idtutorialq_teleport_out_li" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804134" level="5" name="Inggness" name_id="465678" height="2.18" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="idtutorialq_teleport_out_li" srange="25" arange="2" attack_speed="2249" hpgauge="3">
 		<stats maxHp="3871652">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -372299,9 +372299,9 @@
 			<item>114500331</item>
 		</equipment>
 		<bound_radius front="0.2725" side="0.3815" upper="2.18" />
-		<talk_info distance="5" is_dialog="true" />
+		<talk_info distance="3" is_dialog="true" />
 	</npc_template>
-	<npc_template npc_id="804135" level="5" name="Inggness" name_id="465679" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="idtutorialq_teleport_out_da" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804135" level="5" name="Inggril" name_id="465679" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="idtutorialq_teleport_out_da" srange="25" arange="2" attack_speed="2249" hpgauge="3">
 		<stats maxHp="3871652">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -372313,124 +372313,124 @@
 			<item>113100276</item>
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" />
+		<talk_info distance="3" is_dialog="true" />
 	</npc_template>
 	<npc_template npc_id="804136" level="1" name="IDTutorialQ_Set_Ctrl_NPC_01" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="100">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="804137" level="1" name="IDTutorialQ_Set_Ctrl_NPC_02" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="100">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="804138" level="1" name="IDTutorialQ_Set_Ctrl_NPC_03" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="100">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="804139" level="1" name="IDTutorialQ_Set_Ctrl_NPC_04" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="100">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="804140" level="1" name="IDTutorialQ_Set_Ctrl_NPC_05" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="100">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="804141" level="1" name="IDTutorialQ_Set_Ctrl_NPC_06" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="100">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="804142" level="1" name="IDTutorialQ_Set_Ctrl_NPC_07" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="100">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="804143" level="1" name="IDTutorialQ_Set_Ctrl_NPC_08" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="100">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="804144" level="1" name="IDTutorialQ_Set_Ctrl_NPC_09" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="100">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="804145" level="1" name="IDTutorialQ_Set_Ctrl_NPC_10" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="100">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="804146" level="1" name="IDTutorialQ_MSG_Ctrl_NPC_01" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="100">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="804147" level="1" name="IDTutorialQ_MSG_Ctrl_NPC_02" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="100">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="804148" level="1" name="IDTutorialQ_MSG_Ctrl_NPC_03" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="100">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="804149" level="1" name="IDTutorialQ_MSG_Ctrl_NPC_04" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="100">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="804150" level="1" name="IDTutorialQ_MSG_Ctrl_NPC_05" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="100">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="804151" level="1" name="IDTutorialQ_MSG_Ctrl_NPC_06" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="100">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="804152" level="1" name="IDTutorialQ_MSG_Ctrl_NPC_07" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="100">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="804153" level="1" name="IDTutorialQ_MSG_Ctrl_NPC_08" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="100">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="804154" level="1" name="IDTutorialQ_MSG_Ctrl_NPC_09" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="100">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
 	<npc_template npc_id="804155" level="1" name="IDTutorialQ_MSG_Ctrl_NPC_10" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="100">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
@@ -372503,8 +372503,8 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" />
 	</npc_template>
-	<npc_template npc_id="804166" level="1" name="IDTutorialQ_NoShowNPC_DarkShadow_Normalfire" name_id="0" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="NONE" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="10">
+	<npc_template npc_id="804166" level="1" name="IDTutorialQ_NoShowNPC_DarkShadow_Normalfire" name_id="2288143" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="NONE" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
@@ -372556,14 +372556,14 @@
 		<bound_radius front="0.75" side="1.05" upper="6" />
 		<talk_info distance="5" is_dialog="true" />
 	</npc_template>
-	<npc_template npc_id="804174" level="5" name="IDTutorialQ_Content_UI_BonusBox_22" name_id="465852" height="4" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804174" level="7" name="IDTutorialQ_Content_UI_BonusBox_22" name_id="465852" height="4" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="831">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.5" side="0.7" upper="4" />
 		<talk_info distance="5" is_dialog="true" />
 	</npc_template>
-	<npc_template npc_id="804175" level="5" name="IDTutorialQ_Content_UI_BonusBox_23" name_id="465853" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804175" level="7" name="IDTutorialQ_Content_UI_BonusBox_23" name_id="465853" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="831">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
