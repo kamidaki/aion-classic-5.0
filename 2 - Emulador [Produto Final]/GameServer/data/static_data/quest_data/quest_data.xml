@@ -75090,14 +75090,14 @@
 			<reward_item item_id="164000259" count="10" />
 		</rewards>
 		<quest_drop npc_id="217009" item_id="182215563" chance="100" drop_each_member="1" collecting_step="9" />
-		<quest_drop npc_id="215517" item_id="182215563" chance="100" drop_each_member="1" collecting_step="9" />
-		<quest_drop npc_id="215519" item_id="182215563" chance="100" drop_each_member="1" collecting_step="9" />
-		<quest_drop npc_id="216648" item_id="182215563" chance="100" drop_each_member="1" collecting_step="9" />
-		<quest_drop npc_id="216692" item_id="182215563" chance="100" drop_each_member="1" collecting_step="9" />
-		<quest_drop npc_id="215516" item_id="182215563" chance="100" drop_each_member="1" collecting_step="9" />
-		<quest_drop npc_id="215518" item_id="182215563" chance="100" drop_each_member="1" collecting_step="9" />
-		<quest_drop npc_id="216647" item_id="182215563" chance="100" drop_each_member="1" collecting_step="9" />
-		<quest_drop npc_id="216691" item_id="182215563" chance="100" drop_each_member="1" collecting_step="9" />
+		<quest_drop npc_id="215517" item_id="182215563" chance="50" drop_each_member="1" collecting_step="9" />
+		<quest_drop npc_id="215519" item_id="182215563" chance="50" drop_each_member="1" collecting_step="9" />
+		<quest_drop npc_id="216648" item_id="182215563" chance="50" drop_each_member="1" collecting_step="9" />
+		<quest_drop npc_id="216692" item_id="182215563" chance="50" drop_each_member="1" collecting_step="9" />
+		<quest_drop npc_id="215516" item_id="182215563" chance="50" drop_each_member="1" collecting_step="9" />
+		<quest_drop npc_id="215518" item_id="182215563" chance="50" drop_each_member="1" collecting_step="9" />
+		<quest_drop npc_id="216647" item_id="182215563" chance="50" drop_each_member="1" collecting_step="9" />
+		<quest_drop npc_id="216691" item_id="182215563" chance="50" drop_each_member="1" collecting_step="9" />
 		<quest_kill seq="0" npc_ids="206168" count="1" var="0" step="3" />
 		<quest_kill seq="1" npc_ids="206169" count="1" var="0" step="4" />
 		<quest_kill seq="2" npc_ids="206170" count="1" var="0" step="5" />
@@ -75140,10 +75140,10 @@
 			<reward_item item_id="164000259" count="15" />
 		</rewards>
 		<quest_drop npc_id="216492" item_id="182215564" chance="100" drop_each_member="1" collecting_step="11" />
-		<quest_drop npc_id="215595" item_id="182215564" chance="100" drop_each_member="1" collecting_step="11" />
-		<quest_drop npc_id="215596" item_id="182215564" chance="100" drop_each_member="1" collecting_step="11" />
-		<quest_drop npc_id="216721" item_id="182215564" chance="100" drop_each_member="1" collecting_step="11" />
-		<quest_drop npc_id="216722" item_id="182215564" chance="100" drop_each_member="1" collecting_step="11" />
+		<quest_drop npc_id="215595" item_id="182215564" chance="50" drop_each_member="1" collecting_step="11" />
+		<quest_drop npc_id="215596" item_id="182215564" chance="50" drop_each_member="1" collecting_step="11" />
+		<quest_drop npc_id="216721" item_id="182215564" chance="50" drop_each_member="1" collecting_step="11" />
+		<quest_drop npc_id="216722" item_id="182215564" chance="50" drop_each_member="1" collecting_step="11" />
 		<quest_kill seq="0" npc_ids="215599" count="1" var="0" step="0" />
 		<quest_kill seq="1" npc_ids="215600" count="1" var="0" step="0" />
 		<start_conditions>
@@ -75179,8 +75179,8 @@
 			<reward_item item_id="184000017" count="2" />
 		</rewards>
 		<quest_drop npc_id="216487" item_id="182215571" chance="100" drop_each_member="1" collecting_step="5" />
-		<quest_drop npc_id="215530" item_id="182215571" chance="100" drop_each_member="1" collecting_step="5" />
-		<quest_drop npc_id="215531" item_id="182215571" chance="100" drop_each_member="1" collecting_step="5" />
+		<quest_drop npc_id="215530" item_id="182215571" chance="50" drop_each_member="1" collecting_step="5" />
+		<quest_drop npc_id="215531" item_id="182215571" chance="50" drop_each_member="1" collecting_step="5" />
 		<start_conditions>
 			<finished quest_id="10164" />
 		</start_conditions>
@@ -75261,8 +75261,8 @@
 			<reward_item item_id="164000259" count="25" />
 		</rewards>
 		<quest_drop npc_id="222013" item_id="182215589" chance="100" drop_each_member="1" collecting_step="6" />
-		<quest_drop npc_id="222011" item_id="182215589" chance="100" drop_each_member="1" collecting_step="6" />
-		<quest_drop npc_id="222012" item_id="182215589" chance="100" drop_each_member="1" collecting_step="6" />
+		<quest_drop npc_id="222011" item_id="182215589" chance="50" drop_each_member="1" collecting_step="6" />
+		<quest_drop npc_id="222012" item_id="182215589" chance="50" drop_each_member="1" collecting_step="6" />
 		<start_conditions>
 			<finished quest_id="10168" />
 		</start_conditions>
@@ -78134,8 +78134,8 @@
 			<reward_item item_id="164000259" count="10" />
 		</rewards>
 		<quest_drop npc_id="216549" item_id="182215600" chance="100" drop_each_member="1" collecting_step="8" />
-		<quest_drop npc_id="215955" item_id="182215600" chance="100" drop_each_member="1" collecting_step="8" />
-		<quest_drop npc_id="216407" item_id="182215600" chance="100" drop_each_member="1" collecting_step="8" />
+		<quest_drop npc_id="215955" item_id="182215600" chance="50" drop_each_member="1" collecting_step="8" />
+		<quest_drop npc_id="216407" item_id="182215600" chance="50" drop_each_member="1" collecting_step="8" />
 		<quest_kill seq="0" npc_ids="206171" count="1" var="0" step="3" />
 		<quest_kill seq="1" npc_ids="206172" count="1" var="0" step="4" />
 		<quest_kill seq="2" npc_ids="206173" count="1" var="0" step="5" />
@@ -78243,10 +78243,10 @@
 			<reward_item item_id="164000259" count="20" />
 		</rewards>
 		<quest_drop npc_id="216565" item_id="182215612" chance="100" drop_each_member="1" collecting_step="4" />
-		<quest_drop npc_id="216041" item_id="182215612" chance="100" drop_each_member="1" collecting_step="4" />
-		<quest_drop npc_id="216042" item_id="182215612" chance="100" drop_each_member="1" collecting_step="4" />
-		<quest_drop npc_id="216043" item_id="182215612" chance="100" drop_each_member="1" collecting_step="4" />
-		<quest_drop npc_id="216044" item_id="182215612" chance="100" drop_each_member="1" collecting_step="4" />
+		<quest_drop npc_id="216041" item_id="182215612" chance="50" drop_each_member="1" collecting_step="4" />
+		<quest_drop npc_id="216042" item_id="182215612" chance="50" drop_each_member="1" collecting_step="4" />
+		<quest_drop npc_id="216043" item_id="182215612" chance="50" drop_each_member="1" collecting_step="4" />
+		<quest_drop npc_id="216044" item_id="182215612" chance="50" drop_each_member="1" collecting_step="4" />
 		<start_conditions>
 			<finished quest_id="20165" />
 		</start_conditions>
@@ -78310,9 +78310,9 @@
 			<reward_item item_id="164000259" count="25" />
 		</rewards>
 		<quest_drop npc_id="216573" item_id="182215618" chance="100" drop_each_member="1" collecting_step="2" />
-		<quest_drop npc_id="216026" item_id="182215618" chance="100" drop_each_member="1" collecting_step="2" />
-		<quest_drop npc_id="216028" item_id="182215618" chance="100" drop_each_member="1" collecting_step="2" />
-		<quest_drop npc_id="216429" item_id="182215618" chance="100" drop_each_member="1" collecting_step="2" />
+		<quest_drop npc_id="216026" item_id="182215618" chance="50" drop_each_member="1" collecting_step="2" />
+		<quest_drop npc_id="216028" item_id="182215618" chance="50" drop_each_member="1" collecting_step="2" />
+		<quest_drop npc_id="216429" item_id="182215618" chance="50" drop_each_member="1" collecting_step="2" />
 		<start_conditions>
 			<finished quest_id="20169" />
 		</start_conditions>

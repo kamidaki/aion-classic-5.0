@@ -309137,7 +309137,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700749" level="1" name="Monumento Tiamat" name_id="371480" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="useitem" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700749" level="1" name="Monumento Tiamat" name_id="371480" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="quest_use_item" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="142" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
@@ -312249,12 +312249,12 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="10" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="701475" level="1" name="Monumento da Lealdade" name_id="464201" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="701475" level="1" name="Monumento da Lealdade" name_id="464201" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="quest_use_item" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" can_talk_invisible="false" />
+		<talk_info distance="5" delay="12" can_talk_invisible="false" />
 	</npc_template>
 	<npc_template npc_id="701476" level="1" name="Monumento da Glória" name_id="464202" height="4.75" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="noaction" attack_speed="2000" hpgauge="3">
 		<stats maxHp="23691" >
@@ -312263,12 +312263,12 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="701477" level="1" name="Floriner" name_id="464203" height="2" group_drop="TREASUREBOX3" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="701477" level="1" name="Floriner" name_id="464203" height="2" group_drop="TREASUREBOX3" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="quest_use_item" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="3" delay="10" can_talk_invisible="false" />
+		<talk_info distance="5" delay="12" can_talk_invisible="false" />
 	</npc_template>
 	<npc_template npc_id="701478" level="1" name="hora" name_id="464204" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="resurrect" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="137" >
