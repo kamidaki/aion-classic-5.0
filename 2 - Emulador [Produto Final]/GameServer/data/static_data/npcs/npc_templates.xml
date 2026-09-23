@@ -121015,6 +121015,147 @@
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
+	<npc_template npc_id="224300" title_id="346643" level="5" name="Guerreiro da 31ª conquista" name_id="346610" tribe="IDTUTORIALQ_MONSTER" height="2.886" type="MONSTER" ai="aggressive" srange="12" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="LIZARDMAN" group_drop="NONE">
+		<stats maxHp="10000">
+			<speeds walk="1.76" group_walk="1.76" run="7" run_fight="6" group_run_fight="7" />
+		</stats>
+		<bound_radius front="1.025" side="2" upper="2.886" />
+	</npc_template>
+	<npc_template npc_id="224301" title_id="346643" level="5" name="Guerreiro da 41ª tropa de ocupação" name_id="346611" tribe="IDTUTORIALQ_MONSTER" height="1.5" type="MONSTER" ai="aggressive" srange="12" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="BEAST" group_drop="NONE">
+		<stats maxHp="10000">
+			<speeds walk="1.76" group_walk="1.76" run="7" run_fight="6" group_run_fight="7" />
+		</stats>
+		<bound_radius front="0.725" side="1.625" upper="1.5" />
+	</npc_template>
+	<npc_template npc_id="224302" title_id="346643" level="5" name="Guerreiro da 41ª tropa de ocupação" name_id="346612" tribe="IDTUTORIALQ_MONSTER" height="1.8" type="MONSTER" ai="aggressive" srange="12" arange="10" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="LIZARDMAN" group_drop="NONE">
+		<stats maxHp="10000">
+			<speeds walk="1.76" group_walk="1.76" run="7" run_fight="6" group_run_fight="7" />
+		</stats>
+		<bound_radius front="0.725" side="1.625" upper="1.8" />
+	</npc_template>
+	<npc_template npc_id="224303" title_id="346643" level="5" name="Guerreiro da 41ª tropa de ocupação" name_id="346613" tribe="IDTUTORIALQ_MONSTER" height="2.601" type="MONSTER" ai="aggressive" srange="12" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="LIZARDMAN" group_drop="NONE">
+		<stats maxHp="10000">
+			<speeds walk="1.76" group_walk="1.76" run="7" run_fight="6" group_run_fight="7" />
+		</stats>
+		<bound_radius front="1.12" side="1.55" upper="2.601" />
+	</npc_template>
+	<npc_template npc_id="224304" title_id="346643" level="5" name="Guerreiro da 41ª tropa de ocupação" name_id="346614" tribe="IDTUTORIALQ_MONSTER" height="2.1945" type="MONSTER" ai="aggressive" srange="12" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="LIZARDMAN" group_drop="NONE">
+		<stats maxHp="10000">
+			<speeds walk="2.578" group_walk="2.578" run="9" run_fight="6.5" group_run_fight="9" />
+		</stats>
+		<bound_radius front="1.75" side="1.75" upper="6.1883" />
+	</npc_template>
+	<npc_template npc_id="224305" title_id="346646" level="5" name="Guerreiro da 41ª conquista" name_id="346615" tribe="IDTUTORIALQ_MONSTER" height="3.4873" type="MONSTER" ai="aggressive" srange="12" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="LIZARDMAN" group_drop="NONE">
+		<stats maxHp="30000">
+			<speeds walk="1.76" group_walk="1.76" run="7" run_fight="12" group_run_fight="7" />
+		</stats>
+		<bound_radius front="1.4863" side="2.9" upper="3.4873" />
+	</npc_template>
+	<npc_template npc_id="224306" title_id="346644" level="5" name="Pesquisador da 11ª tropa de ocupação" name_id="346616" tribe="IDTUTORIALQ_MONSTER" height="2.3" type="MONSTER" ai="aggressive" srange="12" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="NAGA" group_drop="NONE">
+		<stats maxHp="10000">
+			<speeds walk="1" group_walk="1" run="7" run_fight="6" group_run_fight="7" />
+		</stats>
+		<bound_radius front="1" side="1.9" upper="2.3" />
+	</npc_template>
+	<npc_template npc_id="224307" title_id="346644" level="5" name="Pesquisador da 11ª tropa de ocupação" name_id="346617" tribe="IDTUTORIALQ_MONSTER" height="2.5" type="MONSTER" ai="aggressive" srange="12" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="NAGA" group_drop="NONE">
+		<stats maxHp="10000">
+			<speeds walk="1" group_walk="1" run="7" run_fight="6" group_run_fight="7" />
+		</stats>
+		<bound_radius front="1" side="1.9" upper="2.5" />
+	</npc_template>
+	<npc_template npc_id="224308" title_id="346644" level="5" name="Pesquisador da 11ª tropa de ocupação" name_id="346618" tribe="IDTUTORIALQ_MONSTER" height="1.56" type="MONSTER" ai="aggressive" srange="12" arange="10" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="NAGA" group_drop="NONE">
+		<stats maxHp="10000">
+			<speeds walk="1" group_walk="1" run="7" run_fight="6" group_run_fight="7" />
+		</stats>
+		<bound_radius front="1" side="1.9" upper="1.56" />
+	</npc_template>
+	<npc_template npc_id="224309" title_id="346644" level="5" name="Pesquisador da 11ª tropa de ocupação" name_id="346619" tribe="IDTUTORIALQ_MONSTER" height="1.36" type="MONSTER" ai="aggressive" srange="12" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="NAGA" group_drop="NONE">
+		<stats maxHp="10000">
+			<speeds walk="1.5" group_walk="1.5" run="7.5" run_fight="5.5" group_run_fight="7.5" />
+		</stats>
+		<bound_radius front="0.4" side="0.4" upper="2.23" />
+	</npc_template>
+	<npc_template npc_id="224310" title_id="346644" level="5" name="Pesquisador da 11ª equipe de conquista" name_id="346620" tribe="IDTUTORIALQ_MONSTER" height="1.17" type="MONSTER" ai="aggressive" srange="12" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="NAGA" group_drop="NONE">
+		<stats maxHp="10000">
+			<speeds walk="0.829" group_walk="0.829" run="8" run_fight="6" group_run_fight="8" />
+		</stats>
+		<bound_radius front="0.35" side="0.6" upper="1.17" />
+	</npc_template>
+	<npc_template npc_id="224311" title_id="346645" level="5" name="Pesquisador da 21ª tropa de ocupação" name_id="346621" tribe="IDTUTORIALQ_MONSTER" height="2.4" type="MONSTER" ai="aggressive" srange="12" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="10000">
+			<speeds walk="1.2" group_walk="1.38" run="6" run_fight="8" group_run_fight="8" />
+		</stats>
+		<bound_radius front="1.2" side="0.9" upper="3.6" />
+	</npc_template>
+	<npc_template npc_id="224312" title_id="346645" level="5" name="Pesquisador da 21ª tropa de ocupação" name_id="346622" tribe="IDTUTORIALQ_MONSTER" height="1" type="MONSTER" ai="aggressive" srange="12" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="10000">
+			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
+		</stats>
+		<bound_radius front="0.52" side="0.44" upper="2.88" />
+	</npc_template>
+	<npc_template npc_id="224313" title_id="346645" level="5" name="Pesquisador da 21ª tropa de ocupação" name_id="346623" tribe="IDTUTORIALQ_MONSTER" height="4.38" type="MONSTER" ai="aggressive" srange="12" arange="10" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="10000">
+			<speeds walk="1.578" group_walk="2.578" run="7" run_fight="9" group_run_fight="9" />
+		</stats>
+		<bound_radius front="1.32" side="1.68" upper="4.38" />
+	</npc_template>
+	<npc_template npc_id="224314" title_id="346645" level="5" name="Pesquisador da 21ª tropa de ocupação" name_id="346624" tribe="IDTUTORIALQ_MONSTER" height="2.1" type="MONSTER" ai="aggressive" srange="12" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="10000">
+			<speeds walk="1.2" group_walk="2.1" run="6" run_fight="8" group_run_fight="10" />
+		</stats>
+		<bound_radius front="1.26" side="4.2" upper="5.04" />
+	</npc_template>
+	<npc_template npc_id="224315" title_id="346646" level="5" name="Pesquisador da 21ª equipe de conquista" name_id="346625" tribe="IDTUTORIALQ_MONSTER" height="4.2" type="MONSTER" ai="aggressive" srange="10" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="30000">
+			<speeds walk="1.07" group_walk="1.38" run="6" run_fight="9" group_run_fight="8.8" />
+		</stats>
+		<bound_radius front="1.4" side="1.05" upper="4.2" />
+	</npc_template>
+	<npc_template npc_id="224316" title_id="346646" level="5" name="Pesquisador da 31ª tropa de ocupação" name_id="346626" tribe="IDTUTORIALQ_MONSTER" height="1" type="MONSTER" ai="aggressive" srange="10" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="30000">
+			<speeds walk="1.8" group_walk="1.5" run="8" run_fight="8" group_run_fight="8.8" />
+		</stats>
+		<bound_radius front="1.3" side="0.975" upper="3.9" />
+	</npc_template>
+	<npc_template npc_id="224317" title_id="346646" level="5" name="Pesquisador da 31ª tropa de ocupação" name_id="346627" tribe="IDTUTORIALQ_MONSTER" height="2.96" type="MONSTER" ai="aggressive" srange="10" arange="3" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="30000">
+			<speeds walk="1.8" group_walk="2.1" run="10" run_fight="10" group_run_fight="10" />
+		</stats>
+		<bound_radius front="1.26" side="4.2" upper="5.04" />
+	</npc_template>
+	<npc_template npc_id="224318" title_id="346646" level="5" name="Pesquisador da 31ª tropa de ocupação" name_id="346628" tribe="IDTUTORIALQ_MONSTER" height="3.6" type="MONSTER" ai="aggressive" srange="10" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="30000">
+			<speeds walk="1.38" group_walk="1.38" run="8" run_fight="8" group_run_fight="8" />
+		</stats>
+		<bound_radius front="1.2" side="0.9" upper="3.6" />
+	</npc_template>
+	<npc_template npc_id="224319" title_id="346646" level="5" name="Pesquisador da 31ª tropa de ocupação" name_id="346629" tribe="IDTUTORIALQ_MONSTER" type="MONSTER" ai="aggressive" srange="10" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="30000">
+			<speeds walk="2" group_walk="2" run="8" run_fight="9" group_run_fight="6" />
+		</stats>
+	</npc_template>
+	<npc_template npc_id="224320" title_id="346646" level="5" name="Pesquisador do 31º esquadrão conquista" name_id="346630" tribe="IDTUTORIALQ_MONSTER" height="1.12" type="MONSTER" ai="aggressive" srange="10" arange="10" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="30000">
+			<speeds walk="1.38" group_walk="1.38" run="6" run_fight="8" group_run_fight="8" />
+		</stats>
+		<bound_radius front="1.4" side="2.24" upper="3.15" />
+	</npc_template>
+	<npc_template npc_id="224333" title_id="346647" level="7" name="Booster do Esquadrão de Infiltração de Asmodianos" name_id="346742" tribe="IDTUTORIALQ_MONSTER" type="MONSTER" ai="aggressive" srange="20" arange="20" attack_speed="2100" hpgauge="22" rank="MASTER" rating="HERO" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="100000">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+	</npc_template>
+	<npc_template npc_id="224334" title_id="346647" level="7" name="Assassino do Esquadrão de Infiltração de Asmodianos" name_id="346743" tribe="IDTUTORIALQ_MONSTER" height="5.0625" type="MONSTER" ai="aggressive" srange="8" arange="20" attack_speed="2100" hpgauge="22" rank="MASTER" rating="HERO" race="DRAKAN" group_drop="NONE">
+		<stats maxHp="120000">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+		<bound_radius front="9.5" side="8.5" upper="10" />
+	</npc_template>
+	<npc_template npc_id="224335" title_id="346647" level="8" name="Guerreiro do Esquadrão de Infiltração de Elyos" name_id="346744" tribe="IDTUTORIALQ_MONSTER" type="MONSTER" ai="aggressive" srange="20" arange="20" attack_speed="2300" hpgauge="20" rank="EXPERT" rating="HERO" race="MAGICALMONSTER" group_drop="NONE">
+		<stats maxHp="150000">
+			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
+		</stats>
+	</npc_template>
 	<npc_template npc_id="250001" level="1" name="Artefato de Nível 1 do Quake de quadro - Elyos" name_id="301425" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" abyss_type="ARTIFACT" ai="artifact" srange="8" attack_speed="2100" hpgauge="3">
 		<stats maxHp="113" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
@@ -371753,7 +371894,7 @@
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804100" level="5" name="IDTutorialQ_Guard_Li_Fi_01" name_id="465670" title_id="465676" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+	<npc_template npc_id="804100" level="5" name="IDTutorialQ_Guard_Li_Fi_01" name_id="465670" title_id="465676" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="IDTUTORIALQ_GUARD_L" type="GUARD" ai="aggressive" srange="10" arange="2" attack_speed="2249" hpgauge="3">
 		<stats maxHp="3871652">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
@@ -371769,7 +371910,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="804101" level="5" name="IDTutorialQ_Guard_Li_Ra_01" name_id="465670" title_id="465676" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+	<npc_template npc_id="804101" level="5" name="IDTutorialQ_Guard_Li_Ra_01" name_id="465670" title_id="465676" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="IDTUTORIALQ_GUARD_L" type="GUARD" ai="aggressive" srange="10" arange="2" attack_speed="2249" hpgauge="3">
 		<stats maxHp="3871652">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
@@ -371785,7 +371926,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="804102" level="5" name="IDTutorialQ_Guard_Li_As_01" name_id="465670" title_id="465676" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+	<npc_template npc_id="804102" level="5" name="IDTutorialQ_Guard_Li_As_01" name_id="465670" title_id="465676" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="IDTUTORIALQ_GUARD_L" type="GUARD" ai="aggressive" srange="10" arange="2" attack_speed="2249" hpgauge="3">
 		<stats maxHp="3871652">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
@@ -371801,7 +371942,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="804103" level="5" name="IDTutorialQ_Guard_Li_Wi_01" name_id="465670" title_id="465676" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+	<npc_template npc_id="804103" level="5" name="IDTutorialQ_Guard_Li_Wi_01" name_id="465670" title_id="465676" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="IDTUTORIALQ_GUARD_L" type="GUARD" ai="aggressive" srange="10" arange="2" attack_speed="2249" hpgauge="3">
 		<stats maxHp="3871652">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
@@ -371816,7 +371957,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="804104" level="5" name="IDTutorialQ_Guard_Li_Pr_01" name_id="465670" title_id="465676" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+	<npc_template npc_id="804104" level="5" name="IDTutorialQ_Guard_Li_Pr_01" name_id="465670" title_id="465676" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="IDTUTORIALQ_GUARD_L" type="GUARD" ai="aggressive" srange="10" arange="2" attack_speed="2249" hpgauge="3">
 		<stats maxHp="3871652">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
@@ -371832,7 +371973,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="804105" level="5" name="IDTutorialQ_Guard_Da_Fi_01" name_id="465671" title_id="465677" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+	<npc_template npc_id="804105" level="5" name="IDTutorialQ_Guard_Da_Fi_01" name_id="465671" title_id="465677" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="IDTUTORIALQ_GUARD_D" type="GUARD" ai="aggressive" srange="10" arange="2" attack_speed="2249" hpgauge="3">
 		<stats maxHp="3871652">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
@@ -371848,7 +371989,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="804106" level="5" name="IDTutorialQ_Guard_Da_Ra_01" name_id="465671" title_id="465677" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+	<npc_template npc_id="804106" level="5" name="IDTutorialQ_Guard_Da_Ra_01" name_id="465671" title_id="465677" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="IDTUTORIALQ_GUARD_D" type="GUARD" ai="aggressive" srange="10" arange="2" attack_speed="2249" hpgauge="3">
 		<stats maxHp="3871652">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
@@ -371864,7 +372005,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="804107" level="5" name="IDTutorialQ_Guard_Da_As_01" name_id="465671" title_id="465677" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+	<npc_template npc_id="804107" level="5" name="IDTutorialQ_Guard_Da_As_01" name_id="465671" title_id="465677" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="IDTUTORIALQ_GUARD_D" type="GUARD" ai="aggressive" srange="10" arange="2" attack_speed="2249" hpgauge="3">
 		<stats maxHp="3871652">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
@@ -371880,7 +372021,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="804108" level="5" name="IDTutorialQ_Guard_Da_Wi_01" name_id="465671" title_id="465677" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+	<npc_template npc_id="804108" level="5" name="IDTutorialQ_Guard_Da_Wi_01" name_id="465671" title_id="465677" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="IDTUTORIALQ_GUARD_D" type="GUARD" ai="aggressive" srange="10" arange="2" attack_speed="2249" hpgauge="3">
 		<stats maxHp="3871652">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
@@ -371895,7 +372036,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="804109" level="5" name="IDTutorialQ_Guard_Da_Pr_01" name_id="465671" title_id="465677" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">
+	<npc_template npc_id="804109" level="5" name="IDTutorialQ_Guard_Da_Pr_01" name_id="465671" title_id="465677" height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="IDTUTORIALQ_GUARD_D" type="GUARD" ai="aggressive" srange="10" arange="2" attack_speed="2249" hpgauge="3">
 		<stats maxHp="3871652">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
@@ -372315,61 +372456,61 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="3" is_dialog="true" />
 	</npc_template>
-	<npc_template npc_id="804136" level="1" name="IDTutorialQ_Set_Ctrl_NPC_01" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804136" level="1" name="IDTutorialQ_Set_Ctrl_NPC_01" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="20" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804137" level="1" name="IDTutorialQ_Set_Ctrl_NPC_02" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804137" level="1" name="IDTutorialQ_Set_Ctrl_NPC_02" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="20" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804138" level="1" name="IDTutorialQ_Set_Ctrl_NPC_03" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804138" level="1" name="IDTutorialQ_Set_Ctrl_NPC_03" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="20" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804139" level="1" name="IDTutorialQ_Set_Ctrl_NPC_04" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804139" level="1" name="IDTutorialQ_Set_Ctrl_NPC_04" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="20" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804140" level="1" name="IDTutorialQ_Set_Ctrl_NPC_05" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804140" level="1" name="IDTutorialQ_Set_Ctrl_NPC_05" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="20" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804141" level="1" name="IDTutorialQ_Set_Ctrl_NPC_06" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804141" level="1" name="IDTutorialQ_Set_Ctrl_NPC_06" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="20" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804142" level="1" name="IDTutorialQ_Set_Ctrl_NPC_07" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804142" level="1" name="IDTutorialQ_Set_Ctrl_NPC_07" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="20" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804143" level="1" name="IDTutorialQ_Set_Ctrl_NPC_08" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804143" level="1" name="IDTutorialQ_Set_Ctrl_NPC_08" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="20" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804144" level="1" name="IDTutorialQ_Set_Ctrl_NPC_09" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804144" level="1" name="IDTutorialQ_Set_Ctrl_NPC_09" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="20" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804145" level="1" name="IDTutorialQ_Set_Ctrl_NPC_10" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804145" level="1" name="IDTutorialQ_Set_Ctrl_NPC_10" name_id="350000" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" type="GENERAL" ai="noaction" srange="20" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>

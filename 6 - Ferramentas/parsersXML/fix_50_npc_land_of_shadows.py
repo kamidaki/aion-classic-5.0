@@ -13,6 +13,9 @@ Nome: o texto do desc no cliente coreano manda (o Strings/strings traduzido tem 
   STR_IDTutorialQ_Teleport_Out_Li (804134) = Inggness, STR_IDTutorialQ_Teleport_Out_Da (804135) = Inggril.
   O <ment> do client_npcs vem trocado e nao serve de nome.
 srange e talk_info dos dois teleportadores saem do sensory_range (25) e do talking_distance (3) do cliente.
+Guardas 804100..804109: tribo do cliente (IDTutorialQ_Guard_L/_D, criadas pelo fix_50_land_of_shadows_tribos.py) e
+ai aggressive -- no oficial eles atacam os mobs (IDTutorialQ_Monster) sem atacar o jogador, e aggressive e a ai que
+decide aggro pela relacao de tribo.
 
 Sincroniza as duas árvores:
   - 1 - Código Fonte [Emulador]/game-server/data/static_data/npcs/npc_templates.xml
@@ -100,8 +103,8 @@ def build_template_xml(npc_id):
         equip = format_equipment(EQUIP_GUARDS_LI[idx])
         return (
             f'\t<npc_template npc_id="{npc_id}" level="5" name="{cname}" name_id="465670" title_id="465676" '
-            f'height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD" '
-            f'type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">\n'
+            f'height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="IDTUTORIALQ_GUARD_L" '
+            f'type="GUARD" ai="aggressive" srange="10" arange="2" attack_speed="2249" hpgauge="3">\n'
             f'\t\t<stats maxHp="3871652">\n'
             f'\t\t\t<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />\n'
             f'\t\t</stats>{equip}\n'
@@ -117,8 +120,8 @@ def build_template_xml(npc_id):
         equip = format_equipment(EQUIP_GUARDS_DA[idx])
         return (
             f'\t<npc_template npc_id="{npc_id}" level="5" name="{cname}" name_id="465671" title_id="465677" '
-            f'height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" '
-            f'type="GUARD" ai="general" srange="10" arange="2" attack_speed="2249" hpgauge="3">\n'
+            f'height="2.5" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="IDTUTORIALQ_GUARD_D" '
+            f'type="GUARD" ai="aggressive" srange="10" arange="2" attack_speed="2249" hpgauge="3">\n'
             f'\t\t<stats maxHp="3871652">\n'
             f'\t\t\t<speeds walk="1.419" group_walk="1.419" run="6" run_fight="8" group_run_fight="6" />\n'
             f'\t\t</stats>{equip}\n'
@@ -212,13 +215,15 @@ def build_template_xml(npc_id):
         if npc_id <= 804145:
             idx = npc_id - 804135
             cname = f"IDTutorialQ_Set_Ctrl_NPC_{idx:02d}"
+            srange = 20  # sensory_range do cliente; o gatilho dos bosses mediu 17-20 m na captura
         else:
             idx = npc_id - 804145
             cname = f"IDTutorialQ_MSG_Ctrl_NPC_{idx:02d}"
+            srange = 10  # sensory_range do cliente; as mensagens comecaram a 5-10 m na captura
         return (
             f'\t<npc_template npc_id="{npc_id}" level="1" name="{cname}" name_id="350000" '
             f'height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="USEALL" '
-            f'type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">\n'
+            f'type="GENERAL" ai="noaction" srange="{srange}" arange="2" attack_speed="2000" hpgauge="3">\n'
             f'\t\t<stats maxHp="172">\n'  # S_PUT_NPC oficial
             f'\t\t\t<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />\n'
             f'\t\t</stats>\n'
