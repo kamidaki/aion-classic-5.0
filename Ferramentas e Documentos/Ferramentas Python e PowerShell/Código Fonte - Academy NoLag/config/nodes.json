@@ -1,0 +1,66 @@
+[
+  {
+    "Id": "node_eu_ellalink",
+    "Name": "Lisbon EllaLink Direct Subsea (105ms)",
+    "Region": "Lisbon / EllaLink",
+    "CountryCode": "PT",
+    "Host": "185.130.44.1",
+    "Port": 80
+  },
+  {
+    "Id": "node_eu_mad",
+    "Name": "Madrid Direct Fiber Hub (118ms)",
+    "Region": "Madrid",
+    "CountryCode": "ES",
+    "Host": "195.235.48.1",
+    "Port": 80
+  },
+  {
+    "Id": "node_eu_fra",
+    "Name": "Frankfurt Core Transit (Aion EU)",
+    "Region": "Frankfurt",
+    "CountryCode": "DE",
+    "Host": "88.198.248.254",
+    "Port": 80
+  },
+  {
+    "Id": "node_eu_lon",
+    "Name": "London Transatlantic UltraPath (125ms)",
+    "Region": "London",
+    "CountryCode": "GB",
+    "Host": "88.198.248.254",
+    "Port": 443
+  },
+  {
+    "Id": "node_na_mia",
+    "Name": "Miami UltraPath Gaming Gateway (100ms)",
+    "Region": "Miami",
+    "CountryCode": "US",
+    "Host": "154.54.40.106",
+    "Port": 80
+  },
+  {
+    "Id": "node_sa_sp1",
+    "Name": "São Paulo FastPath Node 01",
+    "Region": "São Paulo",
+    "CountryCode": "BR",
+    "Host": "200.160.2.3",
+    "Port": 53
+  },
+  {
+    "Id": "node_na_va",
+    "Name": "Virginia East Gaming Hub",
+    "Region": "North Virginia",
+    "CountryCode": "US",
+    "Host": "54.239.28.85",
+    "Port": 443
+  },
+  {
+    "Id": "node_local_test",
+    "Name": "Local Test Relay Node",
+    "Region": "Localhost",
+    "CountryCode": "BR",
+    "Host": "127.0.0.1",
+    "Port": 42420
+  }
+]

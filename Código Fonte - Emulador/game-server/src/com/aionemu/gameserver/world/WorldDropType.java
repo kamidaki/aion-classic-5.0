@@ -1,0 +1,21 @@
+package com.aionemu.gameserver.world;
+
+/**
+ * @author Lost Academy Team & Durak
+ */
+public enum WorldDropType {
+	ASMODAE,
+	ELYSEA,
+	ABYSS,
+	ABYSS_INSTANCE,
+	ARENA_INSTANCE,
+	BALAUREA,
+	BALAUREA_INSTANCE,
+	BALAUREA_HIGH,
+	BALAUREA_HIGH_INSTANCE,
+	DREDGION_INSTANCE,
+	BATTLEFIELD_INSTANCE,
+	STEEL_RAKE_INSTANCE,
+	OTHER_INSTANCES,
+	NONE
+}

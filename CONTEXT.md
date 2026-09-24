@@ -12,10 +12,10 @@ O **melhor e único emulador Aion Classic 5.0 do mundo**, totalmente construído
 ### 1. Portabilidade Absoluta e Proibição de Caminhos Hardcoded
 * **Este repositório é compartilhado e executado em múltiplos ambientes, computadores, discos e sistemas operacionais.**
 * **É TERMINANTEMENTE PROIBIDO fixar letras de unidade de disco (ex: `C:\`, `D:\`, `E:\`) ou caminhos absolutos locais em qualquer arquivo do projeto** (seja código Java, scripts Python, arquivos `.bat`, `.ps1`, `.json`, `.xml` ou documentos `.md`).
-* Todas as referências devem ser **estritamente relativas** ou dinamicamente resolvidas via raiz do projeto (ex: `1 - Código Fonte [Emulador]`, `2 - Emulador [Produto Final]`, `4 - Patch para o Client 5.0`, `6 - Ferramentas`).
+* Todas as referências devem ser **estritamente relativas** ou dinamicamente resolvidas via raiz do projeto (ex: `Código Fonte - Emulador`, `Emulador - Produto Final`, `Ferramentas e Documentos`).
 * **NUNCA FAZER WORKAROUND (GAMBIARRAS OU ATALHOS TEMPORÁRIOS).**
 * O estado atual do projeto em **Java 25 LTS** é definitivo e consolidado. **NUNCA recupere arquivos, dados ou referências a versões legadas obsoletas**.
-* Use exclusivamente as capturas de rede de `5 - Documentação e Referências/2 - Wireshark - Oficial Classic 5.0/` e dados extraídos em `5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/`.
+* Use exclusivamente as capturas de rede de `Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/` e dados extraídos em `Ferramentas e Documentos/Client e Coletas/Client 5.0 - Dados Extraidos/`.
 
 ---
 
@@ -28,9 +28,9 @@ $$\mathbf{Captura\ (PCAP)} \longrightarrow \mathbf{Protocolo\ (Wire)} \longright
 > [!IMPORTANT]
 > ### Princípios Inegociáveis de Engenharia:
 > 1. **Não implementar pacotes isoladamente**: Cada pacote recebido do cliente deve alimentar um evento de domínio, atualizar o estado persistente/em memória e acionar o sistema correspondente, que por sua vez gera as respostas e broadcasts necessários.
-> 2. **Evidência Real Baseada em PCAPs e Memória**: Não fazer suposições quando a informação puder ser extraída diretamente das capturas oficiais (`5 - Documentação e Referências/2 - Wireshark - Oficial Classic 5.0/`) ou dos dados extraídos do cliente oficial (`5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/`).
+> 2. **Evidência Real Baseada em PCAPs e Memória**: Não fazer suposições quando a informação puder ser extraída diretamente das capturas oficiais (`Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/`) ou dos dados extraídos do cliente oficial (`Ferramentas e Documentos/Client e Coletas/Client 5.0 - Dados Extraidos/`).
 > 3. **Purga Completa do Javolution e Adoção Nativa Java 25**: Toda a stack do emulador utiliza coleções nativas do Java 25 (`java.util`, `java.util.concurrent`), eliminando por completo classes legadas (`javolution.*`) para máxima eficiência de memória e concorrência nativa.
-> 4. **Sincronização Código-Fonte $\leftrightarrow$ Produto Final**: Sempre que uma alteração for realizada em `1 - Código Fonte [Emulador]`, deve-se compilar e sincronizar os respectivos arquivos em `2 - Emulador [Produto Final]`.
+> 4. **Sincronização Código-Fonte $\leftrightarrow$ Produto Final**: Sempre que uma alteração for realizada em `Código Fonte - Emulador`, deve-se compilar e sincronizar os respectivos arquivos em `Emulador - Produto Final`.
 
 ---
 
@@ -41,13 +41,13 @@ $$\mathbf{Captura\ (PCAP)} \longrightarrow \mathbf{Protocolo\ (Wire)} \longright
 > - **NÃO crie fallbacks hardcoded, valores mágicos fictícios ou pontes que ignoram os templates.**
 > - **A ÚNICA abordagem correta e obrigatória é CORRIGIR OS XMLs.**
 > - Todas as correções de XML devem ser feitas utilizando os scripts e utilitários em:
->   `6 - Ferramentas/parsersXML` e `6 - Ferramentas/aion_bxml.py`
+>   `Ferramentas e Documentos/Ferramentas Python e PowerShell/parsersXML` e `Ferramentas e Documentos/Ferramentas Python e PowerShell/Ferramentas Python/aion_bxml.py`
 > - A fonte canônica de dados oficiais do cliente 5.0 está em:
->   `5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data`
+>   `Ferramentas e Documentos/Client e Coletas/Client 5.0 - Dados Extraidos/data`
 > - Os templates do Java devem permanecer sincronizados em:
->   `1 - Código Fonte [Emulador]/game-server/data/static_data`
+>   `Código Fonte - Emulador/game-server/data/static_data`
 >   e
->   `2 - Emulador [Produto Final]/GameServer/data/static_data`
+>   `Emulador - Produto Final/GameServer/data/static_data`
 
 ---
 
@@ -118,30 +118,34 @@ O emulador adota como motor primário de navegação tridimensional o pacote `co
 ## Estrutura Oficial de Diretórios do Projeto
 
 ```text
-├── 1 - Código Fonte [Emulador]/          # Código-fonte Java multi-módulo em Java 25 (LTS)
+├── Código Fonte - Emulador/              # Código-fonte Java multi-módulo em Java 25 (LTS)
 │   ├── commons/                          # Núcleo de rede (NIO), criptografia Blowfish/RSA, GeoIP e threads
 │   ├── chat-server/                      # Servidor de chat e canais em tempo real
 │   ├── game-server/                      # Motor do mundo, física, IA, combate, entidades, skills, itens
 │   ├── login-server/                     # Autenticação RSA, seleção de servidores e sessões
 │   └── pom.xml                           # POM Maven agregador (compilador Java 25)
-├── 2 - Emulador [Produto Final]/         # Distribuição de produção executável e pronta para uso
-│   ├── Aion Classic - EMU.exe            # Executável compilado do Supervisor e Inicializador nativo
+├── Emulador - Produto Final/             # Distribuição de produção executável e pronta para uso
+│   ├── Aion Classic - EMULADOR.exe       # Executável compilado do Supervisor e Inicializador nativo (Rust)
 │   ├── config.json                       # Configurações do supervisor, JVM e parâmetros de inicialização
 │   ├── ChatServer/                       # Servidor de chat em produção
 │   ├── GameServer/                       # Servidor de jogo, static_data e logs em produção
-│   └── LoginServer/                      # Servidor de autenticação em produção
-├── 2.5 - Executável Rust [Emulador]/     # Código-fonte Rust do inicializador e painel supervisório nativo
-├── 3 - Código Fonte [Version.dll]/       # Código C++/C# do hook No-IP e bypass de launcher oficial
-├── 4 - Patch para o Client 5.0/          # Patch pronto para o cliente (bin32, bin64, Start x64.bat)
-├── 5 - Documentação e Referências/       # Documentações, PCAPs oficiais e dados canônicos
-│   ├── 1 - Version.dll - NoIP/           # Backups e referências do wrapper DLL
-│   ├── 2 - Wireshark - Oficial Classic 5.0/ # Capturas reais de tráfego de rede do cliente 5.0
-│   ├── 3 - Client 5.0 - Dados Extraidos/ # Dados oficiais extraídos do cliente (skills, itens, npcs)
-│   └── 100 - Outros/                     # Ícones e referências complementares
-└── 6 - Ferramentas/                      # Suíte de scripts Python, decodificadores BXML e utilitários
-    ├── aion_bxml.py                      # Decodificador de alta fidelidade para XML binário (BXML)
-    ├── aion_pak.py / aion_unpak.py       # Descompactadores de arquivos .pak oficiais da NCsoft
-    └── parsersXML/                       # Parsers dedicados para geração e sincronização de static_data
+│   ├── LoginServer/                      # Servidor de autenticação em produção
+│   └── WORLD IP RANGE/                   # Tabelas de prefixos IP por país do Firewall GeoIP
+└── Ferramentas e Documentos/             # Hub consolidado de ferramentas, DLLs, patch e documentação
+    ├── Client e Coletas/                 # PCAPs oficiais, dados extraídos e referências canônicas
+    │   ├── Client 5.0 - Dados Extraidos/ # Dados oficiais extraídos do cliente (skills, itens, npcs, strings)
+    │   ├── Outros/                       # Ícones e referências complementares
+    │   ├── Tradução - Português Brasil/  # Textos e traduções oficiais PT-BR
+    │   └── Wireshark - Oficial Classic 5.0/ # Capturas reais de tráfego de rede do cliente 5.0
+    ├── Códigos bin64/                    # Código-fonte C/C++ dos módulos nativos injetados no cliente
+    │   ├── Código Fonte - BrService.dll/ # HUD de latência, Shugo console, DPS meter, Combo UI e WebSocket
+    │   └── Código Fonte - Version.dll/   # Hook No-IP, bypass de auth, DXVK/Vulkan, fixes de câmera/stack
+    ├── Ferramentas Python e PowerShell/  # Utilitários, scripts de dados, reduções de ping e inicializadores
+    │   ├── Código Fonte - Academy NoLag/ # Sistema de roteamento inteligente e tunelamento de latência (.NET 9)
+    │   ├── Código Fonte - Executável Rust do Emulador/ # Código-fonte Rust do supervisor e launcher nativo
+    │   ├── Ferramentas Python/           # Decodificadores BXML, extratores PAK e analisadores de PCAP
+    │   └── parsersXML/                   # Suíte de parsers para geração e sincronização de static_data
+    └── Patch final - Client 5.0/         # Patch consolidado pronto para o cliente (bin32, bin64, l10n, Start scripts)
 ```
 
 ---
@@ -285,14 +289,14 @@ O emulador adota como motor primário de navegação tridimensional o pacote `co
 
 ## Workflow de Compilação e Deploy
 
-$$\mathbf{Código\ Fonte\ [1]} \xrightarrow{\text{mvn clean package}} \mathbf{JARs\ Compilados} \xrightarrow{\text{Deploy}} \mathbf{Produto\ Final\ [2]} \xrightarrow{\text{Aion\ Classic\ -\ EMU.exe}} \mathbf{Servidores\ Ativos}$$
+$$\mathbf{Código\ Fonte} \xrightarrow{\text{mvn clean package}} \mathbf{JARs\ Compilados} \xrightarrow{\text{Deploy}} \mathbf{Produto\ Final} \xrightarrow{\text{Aion\ Classic\ -\ EMULADOR.exe}} \mathbf{Servidores\ Ativos}$$
 
-1. **Alterações de Código**: Feitas exclusivamente em `1 - Código Fonte [Emulador]`.
+1. **Alterações de Código**: Feitas exclusivamente em `Código Fonte - Emulador`.
 2. **Compilação**:
    ```bash
-   mvn -f "1 - Código Fonte [Emulador]/pom.xml" clean package -DskipTests
+   mvn -f "Código Fonte - Emulador/pom.xml" clean package -DskipTests
    ```
 3. **Distribuição dos Artefatos**:
-   Copiar os JARs gerados em `target/` para `2 - Emulador [Produto Final]/<Server>/libs/`.
+   Copiar os JARs gerados em `target/` para `Emulador - Produto Final/<Server>/libs/`.
 4. **Execução**:
-   Iniciar o emulador através de `2 - Emulador [Produto Final]/Aion Classic - EMU.exe`.
+   Iniciar o emulador através de `Emulador - Produto Final/Aion Classic - EMULADOR.exe`.

@@ -1,0 +1,1536 @@
+<Mission CGFCount="71" Description="" MusicScript="" Name="Mission0" PlayerEquipPack="" Script="" Time="09:00">
+	<EquipPacks></EquipPacks>
+	<Environment>
+		<Fog Color="110,110,110" ColorModify="0" End="1500" FogAtmosphereHeight="300.0" FogAtmosphereScale="0.0" FogDensity="0.0" FogSkyRatio="1.0" HeightFalloff="0.0" Start="32" ViewDistance="2048"/>
+		<Shaders Shore="TerrainWaterBeach" SkyBox="1_sky" SunLensFlares="CryLight" SunWaterRefl="BumpSunGlow" Water="TerrainWater"/>
+		<EnvState AmbientAmplify="1.0" EnvColor="136,130,119" OutdoorAmbientColor="64,64,64" SkyBoxAngle="0" SkyBoxStretching="1.0" SunAmplify="1.0" SunColor="128,128,128" SunHeightScale="1.0" WindForce="0.3"/>
+		<MRTSky HorizonColor="86,103,127" MieScattering="11.37" RayleighScattering="0.87" SunMultiplier="29.7827" SunWavelength_B="481.6" SunWavelength_G="599.704" SunWavelength_R="713.192" ZenithColor="67,132,180" ZenithShift="0.6"/>
+		<MRTOcean BeachAmount="1.0" FogColor="51,90,102" FogDensity="0.115" ReflectAmount="0.5" RefractAmount="0.3" RefractColor="51,90,102" SunColor="162,136,103" SunColorMultiplier="5.0" SunSpecular="1.0" SurfaceAmount="1.0" WaveAmplitude="0.500" WaveAngle="0.0" WaveLength="0.500" WaveSpeed="1.500"/>
+		<Ocean BorderTranspRatio="0.5" BottomTexture="terrain/water/oceanfloorcolor.bmp" Caustics="1" FogColor="51,90,102" FogDistance="16" ShoreSize="2" SurfaceBumpAmountX="0.1" SurfaceBumpAmountY="0.1" SurfaceReflectRatio="1.0" SurfaceTranspRatio="1.0"/>
+		<HeightMap DefaultZoomTexture="" GeometryLodRatio="1.0" TextureLodRatio="1.0"/>
+		<Misc VegetationShadowColorMin="0.8"/>
+		<Lighting LightingCount="1"/>
+		<Lighting_000 Algorithm="3" Ambient="0" CurrentHour="6" HemiSamplQuality="5" Lighting="1" lightmap_name="LIGHTMAP" ObjShadows="1" ShadowBlur="1" ShadowIntensity="50" Shadows="1" SkyColor="8421504" SunColor="16777215" SunHeight="10" SunMultiplier="1" SunRotation="0" SunVector="0,0.99498743,-0.1"/>
+	</Environment>
+	<EnvSetManager EnvSetSize="1">
+		<EnvSet000>
+			<Environment>
+				<Fog Color="110,110,110" ColorModify="0" End="1500" FogAtmosphereHeight="300.0" FogAtmosphereScale="0.0" FogDensity="0.0" FogSkyRatio="1.0" HeightFalloff="0.0" Start="32" ViewDistance="2048"/>
+				<Shaders Shore="TerrainWaterBeach" SkyBox="1_sky" SunLensFlares="CryLight" SunWaterRefl="BumpSunGlow" Water="TerrainWater"/>
+				<EnvState AmbientAmplify="1.0" EnvColor="136,130,119" OutdoorAmbientColor="64,64,64" SkyBoxAngle="0" SkyBoxStretching="1.0" SunAmplify="1.0" SunColor="128,128,128" SunHeightScale="1.0" WindForce="0.3"/>
+				<MRTSky HorizonColor="86,103,127" MieScattering="11.37" RayleighScattering="0.87" SunMultiplier="29.7827" SunWavelength_B="481.6" SunWavelength_G="599.704" SunWavelength_R="713.192" ZenithColor="67,132,180" ZenithShift="0.6"/>
+				<MRTOcean BeachAmount="1.0" FogColor="51,90,102" FogDensity="0.115" ReflectAmount="0.5" RefractAmount="0.3" RefractColor="51,90,102" SunColor="162,136,103" SunColorMultiplier="5.0" SunSpecular="1.0" SurfaceAmount="1.0" WaveAmplitude="0.500" WaveAngle="0.0" WaveLength="0.500" WaveSpeed="1.500"/>
+				<Ocean BorderTranspRatio="0.5" BottomTexture="terrain/water/oceanfloorcolor.bmp" Caustics="1" FogColor="51,90,102" FogDistance="16" ShoreSize="2" SurfaceBumpAmountX="0.1" SurfaceBumpAmountY="0.1" SurfaceReflectRatio="1.0" SurfaceTranspRatio="1.0"/>
+				<HeightMap DefaultZoomTexture="" GeometryLodRatio="1.0" TextureLodRatio="1.0"/>
+				<Misc VegetationShadowColorMin="0.8"/>
+			</Environment>
+		</EnvSet000>
+	</EnvSetManager>
+	<Weapons>
+		<Used></Used>
+		<Ammo></Ammo>
+	</Weapons>
+	<LevelOption>
+		<Initialize Render_Beaches="1" Render_Fog="1" Render_Ocean="0.000000" Render_SkyBox="1" Render_SkyCloud="0" Render_Sun="1" Render_Terrain="1.000000"/>
+		<Fly Fly_Whole_Level="0" FRZ_NEGX="50" FRZ_NEGY="50" FRZ_X="50" FRZ_Y="50" MaxHeight="300"/>
+		<Ride Ride_Whole_Level="0"/>
+		<BindArea IsPossible="0"/>
+		<ReCall IsPossible="0"/>
+		<Glide IsPossible="1"/>
+		<LightMap LightMapLevelName="IDTartaros_H"/>
+	</LevelOption>
+	<WeatherSystem></WeatherSystem>
+	<ServerZoneList></ServerZoneList>
+	<TimeEnvSystem>
+		<TimeEnvOption cloud2d="" cloud3d="" cutscenetype="0" env_color="154,138,109" env_heathaze="0.0" env_windforce="0.0" fog_color="100,077,036" fog_end="800" fog_start="50" fullscreenfx="" GammaDestMax="255" GammaDestMin="0" GammaInterpolate="1" GammaSrcMax="255" GammaSrcMin="0" name="TZ_IDTartaros_H_BossRoom" parteffect="" particlefx="" PhotoColor="0,0,0" PhotocolorInterpolate="0" SelectiveDest="0,0,0" SelectiveInterpolate="0" SelectiveSrc="0,0,0" sky_box_name="Ab1.TimeEnv.Red" sky_lens_check="1" sky_lens_name="CryLight" sky_sun_check="1" sky_sun_direction="160" sky_sun_height="50" skydome_name="" time_hour="6" time_min="0" time_name="Daylight" view_dist="2048" zonename="TZ_IDTartaros_H_BossRoom"/>
+		<TimeEnvOption cloud2d="" cloud3d="" cutscenetype="0" env_color="137,118,095" env_heathaze="0.0" env_windforce="0.0" fog_color="043,063,089" fog_end="750" fog_start="34" fullscreenfx="" GammaDestMax="255" GammaDestMin="0" GammaInterpolate="1" GammaSrcMax="255" GammaSrcMin="0" name="TZ_IDTartaros_H_Main" parteffect="" particlefx="" PhotoColor="0,0,0" PhotocolorInterpolate="0" SelectiveDest="0,0,0" SelectiveInterpolate="0" SelectiveSrc="0,0,0" sky_box_name="Ab1.TimeEnv.Light" sky_lens_check="1" sky_lens_name="CryLight" sky_sun_check="1" sky_sun_direction="160" sky_sun_height="50" skydome_name="" time_hour="6" time_min="0" time_name="Daylight" view_dist="2048" zonename="TZ_IDTartaros_H_Main"/>
+	</TimeEnvSystem>
+	<TimeEnvZoneList>
+		<timeenv_zone name="TZ_IDTartaros_H_BossRoom" priority="15">
+			<points_info bottom="0.100000" top="500.100006" type="polygon">
+				<points points_size="6">
+					<data x="715.808105" y="1069.233643"/>
+					<data x="714.892883" y="1283.358398"/>
+					<data x="1084.490234" y="1284.297363"/>
+					<data x="1085.009155" y="1086.834961"/>
+					<data x="923.473267" y="1032.030029"/>
+					<data x="879.882202" y="1031.691895"/>
+				</points>
+			</points_info>
+		</timeenv_zone>
+		<timeenv_zone name="TZ_IDTartaros_H_Main" priority="16">
+			<points_info bottom="1.831268" top="1001.831299" type="polygon">
+				<points points_size="4">
+					<data x="57.629700" y="57.958679"/>
+					<data x="1969.208984" y="60.508484"/>
+					<data x="1967.628174" y="1996.327881"/>
+					<data x="57.614197" y="1996.695801"/>
+				</points>
+			</points_info>
+		</timeenv_zone>
+	</TimeEnvZoneList>
+	<TimeofDayEnvSystem>
+		<TimeofDayGroup vartype="0" zonename="default">
+			<time_name type="arr_string">
+				<keyvalue key0="0.247059,Daylight" key1="0.844344,Night"/>
+			</time_name>
+			<time_hour ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.95945901,0.498698" key2="0,1"/>
+			</time_hour>
+			<time_min ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</time_min>
+			<SSAO type="arr_string">
+				<keyvalue key0="0.000000,2" key1="0.500833,2" key2="0.989605,2"/>
+			</SSAO>
+			<fog_color type="colorbar">
+				<keyvalue key0="84,125,188,0" key1="84,125,188,0.084112003" key2="214,210,249,0.294817" key3="203,235,254,0.49957499" key4="197,211,233,0.70858097" key5="207,156,122,0.74766397" key6="230,171,132,0.83236402" key7="84,125,188,0.87255698"/>
+			</fog_color>
+			<view_dist ratio="0,4000" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</view_dist>
+			<fog_density ratio="0,0.0099999998" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</fog_density>
+			<fog_heightfalloff ratio="-1,1" type="gridwindow">
+				<keyvalue key0="0.50400001,0" key1="0.52857101,0.97710699" key2="0.55000001,1"/>
+			</fog_heightfalloff>
+			<fogAtmosphereScale ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</fogAtmosphereScale>
+			<fogAtmosphereHeight ratio="0,512" type="gridwindow">
+				<keyvalue key0="0.29296899,0" key1="0.29296899,1"/>
+			</fogAtmosphereHeight>
+			<fogAtmosphereDistFog ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.69999999,0" key1="0.71428603,0.090135999" key2="0.71428603,0.164116" key3="0.51428598,0.29591799" key4="0.25714299,0.367347" key5="0.25714299,0.83588398" key6="0.342857,0.87510598" key7="0.69999999,1"/>
+			</fogAtmosphereDistFog>
+			<fogskyratio ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,0.439394" key2="0,1"/>
+			</fogskyratio>
+			<LayerFogHeight ratio="0,3072" type="gridwindow">
+				<keyvalue key0="0.91145802,0" key1="0.97142899,0.29244301" key2="0.91145802,1"/>
+			</LayerFogHeight>
+			<LayerFogOpacity ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.40000001,0" key1="0.342857,0.085432999" key2="0.31428599,0.29846901" key3="0.40000001,1"/>
+			</LayerFogOpacity>
+			<fog_start ratio="1,1000" type="gridwindow">
+				<keyvalue key0="0.011011,0" key1="0.011011,1"/>
+			</fog_start>
+			<fog_end ratio="64,2048" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.014286,0.29244301" key2="0.157143,0.501643" key3="0,1"/>
+			</fog_end>
+			<env_color type="colorbar">
+				<keyvalue key0="89,136,187,0" key1="89,136,187,0.166667" key2="148,148,148,0.207957" key3="148,148,148,0.49909601" key4="148,148,148,0.71247703" key5="182,140,95,0.75290698" key6="182,140,95,0.83430201" key7="89,136,187,0.87425703"/>
+			</env_color>
+			<outdoor_ambient type="colorbar">
+				<keyvalue key0="46,65,92,0" key1="46,60,92,0.170543" key2="85,85,85,0.20814499" key3="85,85,85,0.50090402" key4="85,85,85,0.84162903" key5="46,60,92,0.87425703"/>
+			</outdoor_ambient>
+			<AmbientAmplify ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.44999999,0" key1="0.44999999,1"/>
+			</AmbientAmplify>
+			<env_windforce ratio="0,10" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.17142899,0.50127399" key2="0,1"/>
+			</env_windforce>
+			<env_heathaze ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</env_heathaze>
+			<particlefx type="arr_string">
+				<keyvalue></keyvalue>
+			</particlefx>
+			<fullscreenfx type="arr_string">
+				<keyvalue></keyvalue>
+			</fullscreenfx>
+			<fxEnvColorRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fxEnvColorRatio>
+			<fxEnvAmbAlphaRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fxEnvAmbAlphaRatio>
+			<sky_box_name type="arr_string">
+				<keyvalue key0="0.202519,LF1.TimeEnv.LF1_Dawn" key1="0.312984,LF1.TimeEnv.LF1_Daylight" key2="0.748062,LF1.TimeEnv.LF1_Dusk" key3="0.843670,LF1.TimeEnv.LF1_Night"/>
+			</sky_box_name>
+			<skydome_name type="arr_string">
+				<keyvalue></keyvalue>
+			</skydome_name>
+			<sky_dome_Alpha ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</sky_dome_Alpha>
+			<cloud2d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud2d>
+			<cloud3d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud3d>
+			<sky_lens_name type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_name>
+			<sky_lens_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_check>
+			<sky_sun_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_sun_check>
+			<sky_sun_height ratio="-50,128" type="gridwindow">
+				<keyvalue key0="0.50561798,0" key1="0.50561798,1"/>
+			</sky_sun_height>
+			<sky_sun_direction ratio="0,360" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.371429,0.498366" key2="1,0.972812" key3="0,1"/>
+			</sky_sun_direction>
+			<SunAmplify ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.34999999,0" key1="0.342857,0.167375" key2="0.5,0.20918401" key3="0.5,0.79099399" key4="0.342857,0.83347499" key5="0.34999999,1"/>
+			</SunAmplify>
+			<SunShaftDisplayRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.014286,0.18839" key2="0.2,0.24557801" key3="0.40000001,0.5" key4="0.35714301,0.83132499" key5="0,0.87765503" key6="0,1"/>
+			</SunShaftDisplayRatio>
+			<SunShaftFogShadowRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,0.158144" key2="0.071428999,0.225381" key3="0.18571401,0.5" key4="0.1,0.83333302" key5="0.042856999,0.89889598" key6="0,1"/>
+			</SunShaftFogShadowRatio>
+			<SunMultiplier ratio="0,50" type="gridwindow">
+				<keyvalue key0="0.02,0" key1="0.042856999,0.088359997" key2="0.028571,0.191164" key3="0.54285699,0.249053" key4="0.87142903,0.50050801" key5="0.228571,0.70862901" key6="0.2,0.83248699" key7="0,0.89469701" key8="0.02,1"/>
+			</SunMultiplier>
+			<RayleighScattering ratio="0,30" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.157143,0.082386002" key2="0.271429,0.5" key3="0,0.809659" key4="0,1"/>
+			</RayleighScattering>
+			<MieScattering ratio="0,30" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.285714,0.24974" key2="0.60000002,0.50050801" key3="0.285714,0.77461898" key4="0,0.830782" key5="0,1"/>
+			</MieScattering>
+			<ZenithShift ratio="0,20" type="gridwindow">
+				<keyvalue key0="0.1,0" key1="0.98571402,0.50083297" key2="0.1,1"/>
+			</ZenithShift>
+			<ZenithColor type="colorbar">
+				<keyvalue key0="2,39,49,0" key1="0,0,0,0.16003799" key2="13,55,255,0.50083297" key3="13,55,200,0.71220899" key4="185,119,74,0.75" key5="221,109,43,0.83430201" key6="1,10,65,0.87596899"/>
+			</ZenithColor>
+			<SunWavelength_r ratio="0,1000" type="gridwindow">
+				<keyvalue key0="0.72799999,0" key1="0.72799999,1"/>
+			</SunWavelength_r>
+			<SunWavelength_g ratio="0,1500" type="gridwindow">
+				<keyvalue key0="0.40066701,0" key1="0.38571399,0.244624" key2="0.40066701,1"/>
+			</SunWavelength_g>
+			<SunWavelength_b ratio="0,1500" type="gridwindow">
+				<keyvalue key0="0.352,0" key1="0.352,1"/>
+			</SunWavelength_b>
+			<NoiseAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</NoiseAmount>
+			<WaveLength ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.039999999,0" key1="0.039999999,1"/>
+			</WaveLength>
+			<WaveSpeed ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.40000001,0" key1="0.40000001,1"/>
+			</WaveSpeed>
+			<WaveAmplitude ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.059999999,0" key1="0.059999999,1"/>
+			</WaveAmplitude>
+			<WaveAngle ratio="0,360" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</WaveAngle>
+			<SunSpecular ratio="0,10" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</SunSpecular>
+			<SurfaceAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</SurfaceAmount>
+			<BeachAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.30000001,0" key1="0.30000001,1"/>
+			</BeachAmount>
+			<RefractColor type="colorbar">
+				<keyvalue key0="51,90,102,0" key1="44,69,107,0.093099996" key2="20,128,133,0.51369101" key3="98,34,13,0.81380099"/>
+			</RefractColor>
+			<RefractAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</RefractAmount>
+			<SunColor type="colorbar">
+				<keyvalue key0="113,179,227,0" key1="97,154,241,0.51150101" key2="237,117,103,0.81160998"/>
+			</SunColor>
+			<SunColorMultiplier ratio="0,30" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</SunColorMultiplier>
+			<ReflectAmount ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.30000001,0" key1="0.30000001,1"/>
+			</ReflectAmount>
+			<FogColor type="colorbar">
+				<keyvalue key0="31,141,184,0" key1="11,31,100,0.084337004" key2="31,141,184,0.50821501" key3="189,99,17,0.81380099"/>
+			</FogColor>
+			<FogDensity ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</FogDensity>
+			<LayerIntensity ratio="0,2" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerIntensity>
+			<LayerThaw ratio="0,10" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerThaw>
+			<HorizonColor type="colorbar">
+				<keyvalue key0="0,0,0,0" key1="0,0,0,0.26612899" key2="0,0,0,0.51612902"/>
+			</HorizonColor>
+			<HorizonRange ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonRange>
+			<HorizonOpacity ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonOpacity>
+			<HorizonRatio ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonRatio>
+			<PhotoColor type="colorbar">
+				<keyvalue key0="0,0,0,-0.0075759999"/>
+			</PhotoColor>
+			<SelectiveSrc type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveSrc>
+			<SelectiveDest type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveDest>
+			<GammaSrcMin ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaSrcMin>
+			<GammaSrcMax ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="0.98571402,0.50134403" key2="1,1"/>
+			</GammaSrcMax>
+			<GammaDestMin ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaDestMin>
+			<GammaDestMax ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,0.50268799" key2="1,1"/>
+			</GammaDestMax>
+			<GammaInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,0.5" key2="1,1"/>
+			</GammaInterpolate>
+			<PhotocolorInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</PhotocolorInterpolate>
+			<SelectiveInterpolate ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</SelectiveInterpolate>
+		</TimeofDayGroup>
+		<TimeofDayGroup vartype="0" zonename="TZ_IDTartaros_H_Main">
+			<time_name type="arr_string">
+				<keyvalue key0="0.000000,Daylight"/>
+			</time_name>
+			<time_hour ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</time_hour>
+			<time_min ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</time_min>
+			<SSAO type="arr_string">
+				<keyvalue key0="0.000000,2"/>
+			</SSAO>
+			<fog_color type="colorbar">
+				<keyvalue key0="37,52,75,0"/>
+			</fog_color>
+			<view_dist ratio="0,2048" type="gridwindow">
+				<keyvalue key0="1e-06,0" key1="1e-06,1"/>
+			</view_dist>
+			<fog_density ratio="0,0.5" type="gridwindow">
+				<keyvalue key0="0.029999999,0" key1="0.029999999,1"/>
+			</fog_density>
+			<fog_heightfalloff ratio="-0.1,0.1" type="gridwindow">
+				<keyvalue key0="0.64999998,0" key1="0.64999998,1"/>
+			</fog_heightfalloff>
+			<fogAtmosphereScale ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</fogAtmosphereScale>
+			<fogAtmosphereHeight ratio="0,1024" type="gridwindow">
+				<keyvalue key0="0.087890998,0" key1="0.087890998,1"/>
+			</fogAtmosphereHeight>
+			<fogAtmosphereDistFog ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</fogAtmosphereDistFog>
+			<fogskyratio ratio="0,255" type="gridwindow">
+				<keyvalue key0="8e-06,0" key1="8e-06,1"/>
+			</fogskyratio>
+			<LayerFogHeight ratio="0,2048" type="gridwindow">
+				<keyvalue key0="0.97656298,0" key1="0.97656298,1"/>
+			</LayerFogHeight>
+			<LayerFogOpacity ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</LayerFogOpacity>
+			<fog_start ratio="0,512" type="gridwindow">
+				<keyvalue key0="0.066405997,0" key1="0.066405997,1"/>
+			</fog_start>
+			<fog_end ratio="30,2048" type="gridwindow">
+				<keyvalue key0="0.232904,0" key1="0.232904,1"/>
+			</fog_end>
+			<env_color type="colorbar">
+				<keyvalue key0="121,104,83,0"/>
+			</env_color>
+			<outdoor_ambient type="colorbar">
+				<keyvalue key0="56,55,64,0"/>
+			</outdoor_ambient>
+			<AmbientAmplify ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.80000001,0" key1="0.80000001,1"/>
+			</AmbientAmplify>
+			<env_windforce ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</env_windforce>
+			<env_heathaze ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</env_heathaze>
+			<particlefx type="arr_string">
+				<keyvalue></keyvalue>
+			</particlefx>
+			<fullscreenfx type="arr_string">
+				<keyvalue></keyvalue>
+			</fullscreenfx>
+			<fxEnvColorRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fxEnvColorRatio>
+			<fxEnvAmbAlphaRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fxEnvAmbAlphaRatio>
+			<sky_box_name type="arr_string">
+				<keyvalue key0="0.322772,Ab1.TimeEnv.Light"/>
+			</sky_box_name>
+			<skydome_name type="arr_string">
+				<keyvalue></keyvalue>
+			</skydome_name>
+			<sky_dome_Alpha ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</sky_dome_Alpha>
+			<cloud2d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud2d>
+			<cloud3d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud3d>
+			<sky_lens_name type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_name>
+			<sky_lens_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_check>
+			<sky_sun_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_sun_check>
+			<sky_sun_height ratio="1,64" type="gridwindow">
+				<keyvalue key0="0.77777803,0" key1="0.77777803,1"/>
+			</sky_sun_height>
+			<sky_sun_direction ratio="0,360" type="gridwindow">
+				<keyvalue key0="0.444444,0" key1="0.444444,1"/>
+			</sky_sun_direction>
+			<SunAmplify ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.2,0" key1="0.2,1"/>
+			</SunAmplify>
+			<SunShaftDisplayRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.40000001,0" key1="0.40000001,1"/>
+			</SunShaftDisplayRatio>
+			<SunShaftFogShadowRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.2,0" key1="0.2,1"/>
+			</SunShaftFogShadowRatio>
+			<SunMultiplier ratio="0,50" type="gridwindow">
+				<keyvalue key0="0.02,0" key1="0.02,1"/>
+			</SunMultiplier>
+			<RayleighScattering ratio="0,20" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</RayleighScattering>
+			<MieScattering ratio="0,100" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</MieScattering>
+			<ZenithShift ratio="0,5" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</ZenithShift>
+			<ZenithColor type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</ZenithColor>
+			<SunWavelength_r ratio="0,1024" type="gridwindow">
+				<keyvalue key0="0.696477,0" key1="0.696477,1"/>
+			</SunWavelength_r>
+			<SunWavelength_g ratio="0,1024" type="gridwindow">
+				<keyvalue key0="0.585648,0" key1="0.585648,1"/>
+			</SunWavelength_g>
+			<SunWavelength_b ratio="0,1024" type="gridwindow">
+				<keyvalue key0="0.47031301,0" key1="0.47031301,1"/>
+			</SunWavelength_b>
+			<NoiseAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</NoiseAmount>
+			<WaveLength ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.60000002,0" key1="0.60000002,1"/>
+			</WaveLength>
+			<WaveSpeed ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.30000001,0" key1="0.30000001,1"/>
+			</WaveSpeed>
+			<WaveAmplitude ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.40000001,0" key1="0.40000001,1"/>
+			</WaveAmplitude>
+			<WaveAngle ratio="0,360" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</WaveAngle>
+			<SunSpecular ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</SunSpecular>
+			<SurfaceAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</SurfaceAmount>
+			<BeachAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</BeachAmount>
+			<RefractColor type="colorbar">
+				<keyvalue key0="198,149,0,0"/>
+			</RefractColor>
+			<RefractAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</RefractAmount>
+			<SunColor type="colorbar">
+				<keyvalue key0="255,173,21,0"/>
+			</SunColor>
+			<SunColorMultiplier ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</SunColorMultiplier>
+			<ReflectAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</ReflectAmount>
+			<FogColor type="colorbar">
+				<keyvalue key0="183,123,0,0"/>
+			</FogColor>
+			<FogDensity ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.115,0" key1="0.115,1"/>
+			</FogDensity>
+			<LayerIntensity ratio="0,2" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerIntensity>
+			<LayerThaw ratio="0,10" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerThaw>
+			<HorizonColor type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</HorizonColor>
+			<HorizonRange ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonRange>
+			<HorizonOpacity ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonOpacity>
+			<HorizonRatio ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonRatio>
+			<PhotoColor type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</PhotoColor>
+			<SelectiveSrc type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveSrc>
+			<SelectiveDest type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveDest>
+			<GammaSrcMin ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaSrcMin>
+			<GammaSrcMax ratio="0,255" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</GammaSrcMax>
+			<GammaDestMin ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaDestMin>
+			<GammaDestMax ratio="0,255" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</GammaDestMax>
+			<GammaInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</GammaInterpolate>
+			<PhotocolorInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</PhotocolorInterpolate>
+			<SelectiveInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</SelectiveInterpolate>
+		</TimeofDayGroup>
+		<TimeofDayGroup vartype="0" zonename="TZ_IDTartaros_H_BossRoom">
+			<time_name type="arr_string">
+				<keyvalue key0="0.000000,Daylight"/>
+			</time_name>
+			<time_hour ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</time_hour>
+			<time_min ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</time_min>
+			<SSAO type="arr_string">
+				<keyvalue key0="0.000000,2"/>
+			</SSAO>
+			<fog_color type="colorbar">
+				<keyvalue key0="79,66,43,0"/>
+			</fog_color>
+			<view_dist ratio="0,2048" type="gridwindow">
+				<keyvalue key0="1e-06,0" key1="1e-06,1"/>
+			</view_dist>
+			<fog_density ratio="0,0.5" type="gridwindow">
+				<keyvalue key0="0.029999999,0" key1="0.029999999,1"/>
+			</fog_density>
+			<fog_heightfalloff ratio="-0.1,0.1" type="gridwindow">
+				<keyvalue key0="0.625,0" key1="0.625,1"/>
+			</fog_heightfalloff>
+			<fogAtmosphereScale ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</fogAtmosphereScale>
+			<fogAtmosphereHeight ratio="0,1024" type="gridwindow">
+				<keyvalue key0="0.087890998,0" key1="0.087890998,1"/>
+			</fogAtmosphereHeight>
+			<fogAtmosphereDistFog ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</fogAtmosphereDistFog>
+			<fogskyratio ratio="0,255" type="gridwindow">
+				<keyvalue key0="8e-06,0" key1="8e-06,1"/>
+			</fogskyratio>
+			<LayerFogHeight ratio="0,2048" type="gridwindow">
+				<keyvalue key0="0.97656298,0" key1="0.97656298,1"/>
+			</LayerFogHeight>
+			<LayerFogOpacity ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</LayerFogOpacity>
+			<fog_start ratio="0,512" type="gridwindow">
+				<keyvalue key0="0.066405997,0" key1="0.066405997,1"/>
+			</fog_start>
+			<fog_end ratio="30,2048" type="gridwindow">
+				<keyvalue key0="0.232904,0" key1="0.232904,1"/>
+			</fog_end>
+			<env_color type="colorbar">
+				<keyvalue key0="116,105,88,0"/>
+			</env_color>
+			<outdoor_ambient type="colorbar">
+				<keyvalue key0="56,55,64,0"/>
+			</outdoor_ambient>
+			<AmbientAmplify ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.80000001,0" key1="0.80000001,1"/>
+			</AmbientAmplify>
+			<env_windforce ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</env_windforce>
+			<env_heathaze ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</env_heathaze>
+			<particlefx type="arr_string">
+				<keyvalue></keyvalue>
+			</particlefx>
+			<fullscreenfx type="arr_string">
+				<keyvalue></keyvalue>
+			</fullscreenfx>
+			<fxEnvColorRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fxEnvColorRatio>
+			<fxEnvAmbAlphaRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fxEnvAmbAlphaRatio>
+			<sky_box_name type="arr_string">
+				<keyvalue key0="0.322772,Ab1.TimeEnv.Red"/>
+			</sky_box_name>
+			<skydome_name type="arr_string">
+				<keyvalue></keyvalue>
+			</skydome_name>
+			<sky_dome_Alpha ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</sky_dome_Alpha>
+			<cloud2d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud2d>
+			<cloud3d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud3d>
+			<sky_lens_name type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_name>
+			<sky_lens_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_check>
+			<sky_sun_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_sun_check>
+			<sky_sun_height ratio="1,64" type="gridwindow">
+				<keyvalue key0="0.77777803,0" key1="0.77777803,1"/>
+			</sky_sun_height>
+			<sky_sun_direction ratio="0,360" type="gridwindow">
+				<keyvalue key0="0.444444,0" key1="0.444444,1"/>
+			</sky_sun_direction>
+			<SunAmplify ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.2,0" key1="0.2,1"/>
+			</SunAmplify>
+			<SunShaftDisplayRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.40000001,0" key1="0.40000001,1"/>
+			</SunShaftDisplayRatio>
+			<SunShaftFogShadowRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.2,0" key1="0.2,1"/>
+			</SunShaftFogShadowRatio>
+			<SunMultiplier ratio="0,50" type="gridwindow">
+				<keyvalue key0="0.02,0" key1="0.02,1"/>
+			</SunMultiplier>
+			<RayleighScattering ratio="0,20" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</RayleighScattering>
+			<MieScattering ratio="0,100" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</MieScattering>
+			<ZenithShift ratio="0,5" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</ZenithShift>
+			<ZenithColor type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</ZenithColor>
+			<SunWavelength_r ratio="0,1024" type="gridwindow">
+				<keyvalue key0="0.696477,0" key1="0.696477,1"/>
+			</SunWavelength_r>
+			<SunWavelength_g ratio="0,1024" type="gridwindow">
+				<keyvalue key0="0.585648,0" key1="0.585648,1"/>
+			</SunWavelength_g>
+			<SunWavelength_b ratio="0,1024" type="gridwindow">
+				<keyvalue key0="0.47031301,0" key1="0.47031301,1"/>
+			</SunWavelength_b>
+			<NoiseAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</NoiseAmount>
+			<WaveLength ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.60000002,0" key1="0.60000002,1"/>
+			</WaveLength>
+			<WaveSpeed ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.30000001,0" key1="0.30000001,1"/>
+			</WaveSpeed>
+			<WaveAmplitude ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.40000001,0" key1="0.40000001,1"/>
+			</WaveAmplitude>
+			<WaveAngle ratio="0,360" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</WaveAngle>
+			<SunSpecular ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</SunSpecular>
+			<SurfaceAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</SurfaceAmount>
+			<BeachAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</BeachAmount>
+			<RefractColor type="colorbar">
+				<keyvalue key0="198,149,0,0"/>
+			</RefractColor>
+			<RefractAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</RefractAmount>
+			<SunColor type="colorbar">
+				<keyvalue key0="255,173,21,0"/>
+			</SunColor>
+			<SunColorMultiplier ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</SunColorMultiplier>
+			<ReflectAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</ReflectAmount>
+			<FogColor type="colorbar">
+				<keyvalue key0="183,123,0,0"/>
+			</FogColor>
+			<FogDensity ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.115,0" key1="0.115,1"/>
+			</FogDensity>
+			<LayerIntensity ratio="0,2" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerIntensity>
+			<LayerThaw ratio="0,10" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerThaw>
+			<HorizonColor type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</HorizonColor>
+			<HorizonRange ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonRange>
+			<HorizonOpacity ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonOpacity>
+			<HorizonRatio ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonRatio>
+			<PhotoColor type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</PhotoColor>
+			<SelectiveSrc type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveSrc>
+			<SelectiveDest type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveDest>
+			<GammaSrcMin ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaSrcMin>
+			<GammaSrcMax ratio="0,255" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</GammaSrcMax>
+			<GammaDestMin ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaDestMin>
+			<GammaDestMax ratio="0,255" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</GammaDestMax>
+			<GammaInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</GammaInterpolate>
+			<PhotocolorInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</PhotocolorInterpolate>
+			<SelectiveInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</SelectiveInterpolate>
+		</TimeofDayGroup>
+	</TimeofDayEnvSystem>
+	<FxArtifactSystem></FxArtifactSystem>
+	<CommonShapeList>
+		<music_zones>
+			<music_zone name="Boss" npc="-1" priority="2" theme="Boss">
+				<points_info bottom="100.474998" top="1100.474976" type="polygon">
+					<points points_size="9">
+						<data x="875.279419" y="1037.213501"/>
+						<data x="854.829590" y="1075.164185"/>
+						<data x="865.201843" y="1095.348022"/>
+						<data x="886.778503" y="1112.695923"/>
+						<data x="909.611206" y="1115.133179"/>
+						<data x="927.241211" y="1101.802490"/>
+						<data x="940.817322" y="1080.380371"/>
+						<data x="935.808716" y="1046.712280"/>
+						<data x="909.602417" y="1041.290649"/>
+					</points>
+				</points_info>
+			</music_zone>
+			<music_zone name="BGM_Mute" npc="-1" priority="16" theme="BGM_Mute">
+				<points_info bottom="0.099998" top="1000.099976" type="polygon">
+					<points points_size="21">
+						<data x="41.945076" y="43.489548"/>
+						<data x="29.484852" y="933.450195"/>
+						<data x="14.134033" y="1644.128052"/>
+						<data x="-10.910740" y="1918.069702"/>
+						<data x="121.053085" y="2114.247803"/>
+						<data x="295.716492" y="2310.702637"/>
+						<data x="626.106201" y="2461.113281"/>
+						<data x="1082.154053" y="2483.913086"/>
+						<data x="1366.941528" y="2444.680664"/>
+						<data x="1577.531738" y="2318.328613"/>
+						<data x="1804.159790" y="2123.832275"/>
+						<data x="1983.768066" y="1821.315796"/>
+						<data x="2049.093018" y="1489.478638"/>
+						<data x="2025.450073" y="1209.802856"/>
+						<data x="1925.659912" y="892.704529"/>
+						<data x="2063.868164" y="206.690369"/>
+						<data x="2034.038330" y="-108.471100"/>
+						<data x="1516.974243" y="-54.473450"/>
+						<data x="535.753784" y="-45.929085"/>
+						<data x="283.298218" y="-60.163643"/>
+						<data x="100.317749" y="5.119308"/>
+					</points>
+				</points_info>
+			</music_zone>
+			<music_zone name="Lobby_BGM" npc="-1" priority="1" theme="Lobby">
+				<points_info bottom="42.974998" top="1042.974976" type="polygon">
+					<points points_size="20">
+						<data x="931.976807" y="1049.210815"/>
+						<data x="918.930298" y="1042.815308"/>
+						<data x="894.787964" y="1039.670898"/>
+						<data x="884.838806" y="1043.140137"/>
+						<data x="882.286011" y="1041.176392"/>
+						<data x="878.947876" y="1039.474487"/>
+						<data x="875.086060" y="1036.398193"/>
+						<data x="875.165955" y="1032.850708"/>
+						<data x="878.456299" y="937.273926"/>
+						<data x="871.648926" y="870.040283"/>
+						<data x="863.891968" y="828.121643"/>
+						<data x="882.068665" y="806.594055"/>
+						<data x="913.966125" y="786.187683"/>
+						<data x="978.906555" y="812.035583"/>
+						<data x="981.612854" y="864.051636"/>
+						<data x="944.262756" y="917.274414"/>
+						<data x="934.552185" y="934.661682"/>
+						<data x="921.106873" y="980.123718"/>
+						<data x="926.670959" y="1003.465637"/>
+						<data x="950.119263" y="1021.317322"/>
+					</points>
+				</points_info>
+			</music_zone>
+		</music_zones>
+		<sub_zones>
+			<subzone name="SubzoneShapeIDTartaros_H_Subzone3" priority="16" string="STR_IDTartaros_H_SZ_A">
+				<points_info bottom="83.946686" top="183.946686" type="polygon">
+					<points points_size="5">
+						<data x="880.741089" y="828.374268"/>
+						<data x="944.831177" y="827.397583"/>
+						<data x="944.043518" y="1048.283447"/>
+						<data x="858.395325" y="1027.630859"/>
+						<data x="871.764038" y="862.052368"/>
+					</points>
+				</points_info>
+			</subzone>
+			<subzone name="SubzoneShapeIDTartaros_H_Subzone6" priority="16" string="STR_IDTartaros_H_SZ_B">
+				<points_info bottom="97.268318" top="197.268311" type="polygon">
+					<points points_size="7">
+						<data x="851.174622" y="1027.247803"/>
+						<data x="954.037415" y="1035.216797"/>
+						<data x="948.350403" y="1109.874634"/>
+						<data x="907.926208" y="1126.561890"/>
+						<data x="864.281677" y="1124.614868"/>
+						<data x="849.347839" y="1101.658569"/>
+						<data x="848.607300" y="1090.303955"/>
+					</points>
+				</points_info>
+			</subzone>
+		</sub_zones>
+		<attribute_zones></attribute_zones>
+		<npcpath_boids></npcpath_boids>
+		<flying_zones></flying_zones>
+		<beach_zones></beach_zones>
+	</CommonShapeList>
+	<EntityDescriptions></EntityDescriptions>
+	<Objects>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="SPIDTartaros_H_WindBox4" npc="" Pos="877.36426,1072.017,155.15051" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-63.999996" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1274885381" EntityId="1" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_FX" LodRatio="100" Name="ParticleEffect517156" Pos="900.37134,1251.7771,138.56123" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_df_nature.iddf2a.fog_yellow" Scale="2" SpawnPeriod="0"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="LocationIDTartaros_H_Resurrection5" Pos="894.02496,872.49658,176.03513" Type="Location"/>
+		<Object Angles="0,-0,91" dir="1" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDTartaros_H_MOB1" npc="BIDTartaros_lightning_stick_58_Ah" Pos="896,1077,154.1342" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="87407624" EntityId="53" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66938" Pos="961.41711,815.42322,123.51321" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0,0.545098,0.992157" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="10" lighttype="0" OuterRadius="40" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="18096655" EntityId="32" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66917" Pos="795.90997,917.98627,125.75245" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0,0.596078,0.917647" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="10" lighttype="0" OuterRadius="60" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="StartPointEntity_Door4" Pos="898.97284,867.01855,178.63406" Type="StartPoint"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="2026514705" EntityId="24" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66914" Pos="894.79626,1117.8718,121.17784" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.811765,0.0666667" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="20" lighttype="0" OuterRadius="35" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah154" npc="" Pos="897,1062,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1905951214" EntityId="19" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66908" Pos="958.73285,1112.3569,128.24957" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.811765,0.0666667" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="30" lighttype="0" OuterRadius="40" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1900658195" EntityId="45" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66930" Pos="1416.2616,858.28979,131.86168" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.2,0.341176,1" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="30" lighttype="0" OuterRadius="100" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1638015211" EntityId="56" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66940" Pos="849.95227,972.70654,126.89902" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0,0.619608,0.992157" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="10" lighttype="0" OuterRadius="25" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah262" npc="" Pos="891,1082,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-1745040615" EntityId="78" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDTartaros_H_Ambient" LodRatio="100" Name="Spot_Rock" Pos="886.14935,809.19824,215.85211" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="20" iVolume="255" OuterRadius="50" sndSource="Sounds\ambient\ambient_stone_drop_2.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1039206117" EntityId="46" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66931" Pos="898.35718,1070.4449,98.640648" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.811765,0.0666667" DiffuseMultiplier="3" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="20" lighttype="0" OuterRadius="50" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="SPIDTartaros_H_WindBox8" npc="" Pos="923.3313,1071.7773,156.11156" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1968464419" EntityId="65" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66950" Pos="1046.7744,889.54327,86.045876" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.360784,0.0588235" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="10" lighttype="0" OuterRadius="30" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="946098730" EntityId="36" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66958" Pos="881.83868,985.84668,152.91815" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.811765,0.0666667" DiffuseMultiplier="1.2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="10" lighttype="0" OuterRadius="15" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1489922517" EntityId="40" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66960" Pos="903.97754,1110.4772,178.36957" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.882353,0.0666667" DiffuseMultiplier="3" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="15" lighttype="0" OuterRadius="20" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="PlaceableObject" EntityGUID="-1647409364" EntityId="76" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDTartaros_H_WindBox" LodRatio="100" Name="IDTartaros_H_FOBJ_WindBox4" Pos="923.30249,1071.7666,154.1675" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="250">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties fFontScale="0.1" fileLadderCGF="Objects\npc\level_object\windbox\physicalweak_wind_01a.cgf" fParticleScale="0" gostring_Text="" sParticleName="">
+				<vParticleOffset x="0" y="0" z="0"/>
+			</Properties>
+		</Entity>
+		<Object Angles="0,-0,20" GeomId="1" LodDist="0" MergeGeom="0" Name="Group3745" Pos="883.23486,879.62714,180.21581" Type="Group" UseLOD="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1166822611" EntityId="18" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66907" Pos="848.62762,1103.4016,130.6216" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.811765,0.0666667" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="20" lighttype="0" OuterRadius="40" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="1" Angles="0,0,9" CastShadowMaps="0" CastShadows="0" EntityClass="Door" EntityGUID="-1437853394" EntityId="83" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Door" LodRatio="100" Name="Door2" Pos="902.54449,1029.5801,164.91609" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationClose="" AnimationOpen="" AnimationOpenBack="" AnimationSpeed="1" bAllowRigidBodiesToOpenDoor="1" bAutomatic="1" bEnabled="1" bPlayerOnly="0" bStayOpenWhenOccupied="1" bUsePortal="1" CloseDelay="1.5" fHitImpulse="10" iNeededKey="-1" object_AnimatedModel="objects\npc\level_object\IDTartaros_H\IDTartaros_H_Boss_Door.cga" TextInstruction="" vector_Bounds="0,0,0">
+				<Server bClickable="0" bCloseable="1" bOneWay="0" bOpened="0" id="1" Key="" Link="" Timer="0"/>
+				<Sound InnerRadius="1" nVolume="255" OuterRadius="25" sound_Close="Sounds/doors/close.wav" sound_Open="Sounds/doors/open.wav" sound_Unlock="sounds/items/bombactivate.wav"/>
+			</Properties>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah208" npc="" Pos="910,1075,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="RandomAmbientSound" EntityGUID="1400151600" EntityId="77" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDTartaros_H_Ambient" LodRatio="100" Name="RA_BossRoom" Pos="1005,952,196" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="RandomAmbient" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bLIndoorOnly="0" bLOutdoorOnly="0" fScale="1" nEAXEnvironment="0">
+				<EaxReverbProperties fAirAbsorptionHF="0" fDecayHFRatio="0.1" fDecayLFRatio="0.1" fDecayTime="0.1" fDensity="0" fDiffusion="0" fEchoDepth="0" fEchoTime="0.075" fEnvDiffusion="0" fEnvSize="1" fHFReference="1000" fLFReference="20" fModulationDepth="0" fModulationTime="0.04" fReflectionsDelay="0" fReverbDelay="0" fRoomRolloffFactor="0" nEnvironment="0" nFlags="0" nReflections="-10000" nReverb="-10000" nRoom="-10000" nRoomHF="-10000" nRoomLF="-10000">
+					<fReflectionsPan x="0" y="0" z="0"/>
+					<fReverbPan x="0" y="0" z="0"/>
+				</EaxReverbProperties>
+				<Sound1 bCentered="0" bDoNotOverlap="0" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound2 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="90" sndSound="Sounds\ambient\ambient_idtartaros_h_cave_st_loop_02.ogg"/>
+				<Sound3 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="90" sndSound="Sounds\ambient\ambient_idtartaros_h_cave_st_loop_01.ogg"/>
+				<Sound4 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound5 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound6 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound7 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+			</Properties>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1166563792" EntityId="74" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_FX" LodRatio="100" Name="ParticleEffect517169" Pos="878.20569,809.71051,234.27115" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="150">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_df_nature.nature.00-big_Stone" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="IDTartaros_h_TREASUREBOX_10" npc="IDTartaros_h_TREASUREBOX_02" Pos="914.79059,1089.0377,154.95326" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1021977398" EntityId="51" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66936" Pos="931.25793,988.01178,145.03226" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.796078,0.101961" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="12" lighttype="0" OuterRadius="25" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1539473462" EntityId="39" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66959" Pos="865.25848,1053.2084,138.3176" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.811765,0.0666667" DiffuseMultiplier="3" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="10" lighttype="0" OuterRadius="15" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-169.99998" dir="100" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDTartaros_H_NPC1" npc="IDTartaros_H_Exit" Pos="903.20239,860.29572,175.45328" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah270" npc="" Pos="891,1078,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Group="-1" Ignore_heightcheck="0" Name="SeedPointIDTartaros_H_Seed3" Pos="892,1084,153" Type="SeedPoint"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1220266437" EntityId="28" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66916" Pos="755.3902,1073.1364,148.17799" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0.06" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="1" clrDiffuse="1,0.811765,0.0666667" DiffuseMultiplier="1.5" fileModel01="Objects\Editor\invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="60" ProjectorFov="90" texture_ProjectorTexture="Textures\Animated\Water\causq00.dds" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,91" dir="1" Ignore_heightcheck="0" iidle_range="-1" Name="BIDTartaros_ElectricChain_58_Ah162" npc="BIDTartaros_ElectricChain_58_Ah" Pos="901,1062,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="PlaceableObject" EntityGUID="1896595260" EntityId="73" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDTartaros_H_WindBox" LodRatio="100" Name="IDTartaros_H_FOBJ_WindBox2" Pos="899.94019,1049.1356,154.1675" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="250">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties fFontScale="0.1" fileLadderCGF="Objects\npc\level_object\windbox\physicalweak_wind_01a.cgf" fParticleScale="0" gostring_Text="" sParticleName="">
+				<vParticleOffset x="0" y="0" z="0"/>
+			</Properties>
+		</Entity>
+		<Object Angles="0,0,-9.9999952" GeomId="2" LodDist="0" MergeGeom="0" Name="Group3749" Pos="881.38226,929.84235,173.81229" Type="Group" UseLOD="0"/>
+		<Object Ignore_heightcheck="0" Name="LocationIDTartaros_H_Resurrection6" Pos="899.41382,874.05249,176.03513" Type="Location"/>
+		<Object Angles="0,-0,99.999985" GeomId="3" LodDist="0" MergeGeom="0" Name="Group3742" Pos="895.94641,1006.9905,167.8737" Type="Group" UseLOD="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1423956801" EntityId="5" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66954" Pos="926.69659,956.75018,147.73512" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0,0.745098,0.992157" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="12" lighttype="0" OuterRadius="25" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah266" npc="" Pos="891,1080,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="2070092868" EntityId="68" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66953" Pos="733.21716,865.34149,82.082817" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.360784,0.0588235" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="10" lighttype="0" OuterRadius="30" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,12.000026" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1660320444" EntityId="8" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="BossRoom" LodRatio="100" Name="ParticleEffect517151" Pos="881.37604,929.76648,176.12576" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="0.49209449,0.49209449,0.49209452" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier_B_nolight" Scale="1.5" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="EVENT_NPC_SHUGO_CLEANING_EZ" npc="EVENT_NPC_SHUGO_CLEANING_EZ" Pos="899.70905,1051.9259,157.74966" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah274" npc="" Pos="891,1076,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="IDTartaros_h_TREASUREBOX_2" npc="IDTartaros_h_TREASUREBOX_01" Pos="878.79059,1061.0377,157.95326" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="IDTartaros_h_TREASUREBOX_8" npc="IDTartaros_h_TREASUREBOX_02" Pos="883.79059,1089.0377,155.95326" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-63.999996" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="786754381" EntityId="29" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_FX" LodRatio="100" Name="ParticleEffect517153" Pos="940.93988,1024.6085,140.93985" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_df_nature.iddf2a.fog_yellow" Scale="2" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="Bugs" EntityGUID="1507870544" EntityId="63" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Boid" LodRatio="100" Name="Bugs_spore2" Pos="850.03827,879.79742,156.68179" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties Animation="0" AnimationSpeed="1" bActivateOnStart="1" bFollowPlayer="0" bNoInclination="0" bNoLanding="1" CollisionWithTerrain="1" FactorOrigin="1" flockTime_FShowTime="" flockWeather_FHideWeather="" flockWeather_FShowWeather="" FollowDistance="50" HeightMax="5" HeightMin="1" nBehaviour="0" nNumBugs="30" object_Character="" object_Model1="objects\misc\boids\spore\flic_boid_004.cgf" object_Model2="" object_Model3="" object_Model4="" object_Model5="" object_TexName="" Radius="50" RandomMovement="1" Scale="1" SpeedMax="1" SpeedMin="0.5" TexBehavior="0" TexRadius="0.2" TexRandomColor="0" TexRandomLife="0" VisibilityDist="100"/>
+		</Entity>
+		<Object AreaId="-1" FadeInZone="0" GroupId="0" Height="20" Length="4" Name="IDTartaros_H_AreaBox3" Pos="877.09479,1071.9309,154.09785" Type="AreaBox" Width="4"/>
+		<Object AreaId="-1" FadeInZone="0" GroupId="0" Height="1" Length="4" Name="AreaBoxIDTartaros_H_Design1" Pos="903,1125,97" Type="AreaBox" Width="4"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah278" npc="" Pos="891,1074,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah196" npc="" Pos="910,1069,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="-33.8932,-3.1441853,66.110359" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="542691675" EntityId="70" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_FX" LodRatio="100" Name="ParticleEffect517161" Pos="967.98303,1074.9867,121.00871" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_water.water.water_ripple" Scale="3" SpawnPeriod="0"/>
+		</Entity>
+		<Object AreaId="0" Closed="1" DisplayFilled="0" GroupId="0" Height="200" Name="IDTartaros_H_Ambient_Whole" Pos="1075.2719,567.07294,69.729347" Type="Shape" VerticalFadeInOut="1" Width="100">
+			<Points>
+				<Point Pos="1075.2719,567.07294,69.729347"/>
+				<Point Pos="865.68115,538.55261,69.72937"/>
+				<Point Pos="660.77069,705.05884,69.729347"/>
+				<Point Pos="575.55231,847.53613,89.312897"/>
+				<Point Pos="561.41028,1030.2308,89.312927"/>
+				<Point Pos="560.17871,1141.5206,89.312927"/>
+				<Point Pos="806.92566,1128.7318,69.729347"/>
+				<Point Pos="822.74963,1032.9969,89.312866"/>
+				<Point Pos="1002.0187,985.45654,69.729347"/>
+				<Point Pos="982.43188,1126.1672,69.72937"/>
+				<Point Pos="1317.0018,1124.5908,89.312897"/>
+				<Point Pos="1306.3962,853.36737,89.312897"/>
+				<Point Pos="1277.9751,739.90155,89.312897"/>
+				<Point Pos="1220.9395,615.99481,69.72937"/>
+			</Points>
+			<Entities>
+				<Entity Name="RA_Cave"/>
+			</Entities>
+		</Object>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,63.999996" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1665045919" EntityId="26" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66915" Pos="986.85315,1077.6893,148.06612" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0.08" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="1" clrDiffuse="1,0.811765,0.0666667" DiffuseMultiplier="3" fileModel01="Objects\Editor\invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="40" ProjectorFov="90" texture_ProjectorTexture="Textures\Animated\Water\causq00.dds" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDTartaros_H_Design1" npc="IDTartaros_h_MainSamael_58_Al" Pos="900.00256,1071.8192,153.66756" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah286" npc="" Pos="891,1070,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,100" GeomId="4" LodDist="0" MergeGeom="0" Name="Group3741" Pos="911.03485,1009.9832,167.8737" Type="Group" UseLOD="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="EVENT_NPC_SHUGO_CLEANING" npc="EVENT_NPC_SHUGO_CLEANING" Pos="899.84332,1052.0427,155.30043" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Ignore_heightcheck="0" Name="StartPointEntity_Door2" Pos="901.27795,874.37665,178.63406" Type="StartPoint"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="2059948390" EntityId="3" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight52194" Pos="1049.0677,843.00488,190.99693" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.788235,0.141176" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="100" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,91" dir="1" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDTartaros_H_MOB3" npc="BIDTartaros_lightning_stick_58_Ah" Pos="905,1067,154.1342" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object AreaId="-1" FadeInZone="0" GroupId="0" Height="20" Length="4" Name="IDTartaros_H_AreaBox4" Pos="923.41528,1071.9309,154.09785" Type="AreaBox" Width="4"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-63.999996" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-2001986455" EntityId="27" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_FX" LodRatio="100" Name="ParticleEffect517152" Pos="868.06244,1027.7524,144.09827" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_df_nature.iddf2a.fog_yellow" Scale="2" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1805752169" EntityId="11" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="BossRoom" LodRatio="100" Name="DeferredLight66903" Pos="902.37921,1009.3183,171.00948" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.996078,0.788235,0.505882" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="15" lighttype="0" OuterRadius="25" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,91" dir="1" Ignore_heightcheck="0" iidle_range="-1" Name="BIDTartaros_ElectricChain_58_Ah178" npc="BIDTartaros_ElectricChain_58_Ah" Pos="909,1062,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-2053276050" EntityId="64" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66949" Pos="1087.9376,850.52936,92.20887" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.360784,0.0588235" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="10" lighttype="0" OuterRadius="20" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1956983186" EntityId="60" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66965" Pos="939.39209,894.96826,70.071747" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0,0.843137,0.992157" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="25" lighttype="0" OuterRadius="40" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1012577905" EntityId="2" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight2" Pos="895.14331,1079.3312,179.86121" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.976471,0.905882,0.490196" DiffuseMultiplier="1.5" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="30" lighttype="0" OuterRadius="55" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object AreaId="0" Closed="1" DisplayFilled="0" GroupId="0" Height="50" Name="Ambient_Spot_Ciel" Pos="819.00104,1036.7594,136.07814" Type="Shape" VerticalFadeInOut="1" Width="30">
+			<Points>
+				<Point Pos="819.00104,1036.7594,136.07814"/>
+				<Point Pos="821.31506,1113.5557,136.07814"/>
+				<Point Pos="866.37421,1173.1414,136.07814"/>
+				<Point Pos="951.43286,1153.762,136.07816"/>
+				<Point Pos="970.46851,1116.2548,136.07814"/>
+				<Point Pos="985.29651,1084.5239,136.07814"/>
+				<Point Pos="980.04504,1022.8193,136.07814"/>
+				<Point Pos="953.4986,969.67615,136.07814"/>
+				<Point Pos="913.14905,960.92804,136.07814"/>
+				<Point Pos="895.62622,942.82343,136.07816"/>
+				<Point Pos="887.83264,902.40814,136.07816"/>
+				<Point Pos="903.45258,865.37622,136.07816"/>
+				<Point Pos="888.45685,861.21893,136.07816"/>
+				<Point Pos="874.57562,894.40533,136.07822"/>
+				<Point Pos="883.35846,949.35736,136.07816"/>
+				<Point Pos="891.55518,944.61755,136.07814"/>
+				<Point Pos="901.34717,960.59058,136.07814"/>
+				<Point Pos="908.16083,996.49042,136.07814"/>
+				<Point Pos="909.7431,1010.3309,136.07816"/>
+				<Point Pos="910.3855,1028.6289,136.07814"/>
+				<Point Pos="922.28003,1043.6788,136.07814"/>
+				<Point Pos="920.84833,1049.0536,136.07816"/>
+				<Point Pos="927.52148,1058.5702,136.07814"/>
+				<Point Pos="928.78058,1071.0303,136.07814"/>
+				<Point Pos="927.65411,1080.5879,136.07816"/>
+				<Point Pos="919.56921,1091.6543,136.07816"/>
+				<Point Pos="911.57452,1096.9647,136.07814"/>
+				<Point Pos="897.90839,1097.8699,136.07816"/>
+				<Point Pos="886.69226,1094.303,136.07816"/>
+				<Point Pos="877.33832,1086.2845,136.07814"/>
+				<Point Pos="872.30621,1076.5137,136.07816"/>
+				<Point Pos="873.63977,1063.1547,136.07814"/>
+				<Point Pos="883.68146,1046.5178,136.07814"/>
+				<Point Pos="884.86176,1038.9636,136.07814"/>
+				<Point Pos="889.16364,1033.4103,136.07816"/>
+				<Point Pos="902.06281,1026.3348,136.07816"/>
+				<Point Pos="903.23425,1010.6342,136.07814"/>
+				<Point Pos="901.85339,998.06104,136.07814"/>
+				<Point Pos="890.35327,961.6795,136.07814"/>
+				<Point Pos="895.4248,942.45599,136.07814"/>
+				<Point Pos="864.04327,961.74139,136.07814"/>
+				<Point Pos="835.73895,991.5799,136.07814"/>
+			</Points>
+			<Entities>
+				<Entity Name="RA_Ciel"/>
+			</Entities>
+		</Object>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah170" npc="" Pos="905,1062,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="SPIDTartaros_H_WindBox10" npc="" Pos="877.36426,1072.017,155.9903" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah204" npc="" Pos="910,1073,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object AreaId="-1" FadeInZone="0" GroupId="0" Height="20" Length="4" Name="IDTartaros_H_AreaBox1" Pos="900.05298,1094.672,154.09785" Type="AreaBox" Width="4"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="270" Name="SPIDTartaros_H_Design5" npc="" Pos="899.92059,1070.7874,153.83356" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Ignore_heightcheck="0" Name="LocationIDTartaros_H_Resurrection3" Pos="895.11646,868.34131,176.03513" Type="Location"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="270" Name="SPIDTartaros_H_Design3" npc="" Pos="900.00256,1072.8192,153.66756" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="Bugs" EntityGUID="320969087" EntityId="62" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Boid" LodRatio="100" Name="Bugs_spore1" Pos="955.21619,886.37445,163.41861" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties Animation="0" AnimationSpeed="1" bActivateOnStart="1" bFollowPlayer="0" bNoInclination="0" bNoLanding="1" CollisionWithTerrain="1" FactorOrigin="1" flockTime_FShowTime="" flockWeather_FHideWeather="" flockWeather_FShowWeather="" FollowDistance="50" HeightMax="5" HeightMin="1" nBehaviour="0" nNumBugs="30" object_Character="" object_Model1="objects\misc\boids\spore\flic_boid_004.cgf" object_Model2="" object_Model3="" object_Model4="" object_Model5="" object_TexName="" Radius="50" RandomMovement="1" Scale="1" SpeedMax="1" SpeedMin="0.5" TexBehavior="0" TexRadius="0.2" TexRandomColor="0" TexRandomLife="0" VisibilityDist="100"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,42.000023" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1356649855" EntityId="41" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="BossRoom" LodRatio="100" Name="ParticleEffect517148" Pos="883.2674,879.55829,182.52928" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="0.49209446,0.49209446,0.49209452" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier_B_nolight" Scale="1.5" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="SPIDTartaros_H_WindBox2" npc="" Pos="899.93964,1094.2019,155.15384" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-63.999996" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="948570243" EntityId="30" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_FX" LodRatio="100" Name="ParticleEffect517154" Pos="950.12817,1096.0377,144.57724" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_df_nature.iddf2a.fog_yellow" Scale="2" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-830960509" EntityId="9" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66955" Pos="902.11212,906.84387,152.59956" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0,0.545098,0.992157" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="12" lighttype="0" OuterRadius="25" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-63.999996" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1860886147" EntityId="31" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_FX" LodRatio="100" Name="ParticleEffect517155" Pos="873.89758,1111.1005,141.37338" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_df_nature.iddf2a.fog_yellow" Scale="2" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="SPIDTartaros_H_WindBox13" npc="" Pos="899.93964,1094.2019,156.17908" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,12.000026" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1635529862" EntityId="54" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="BossRoom" LodRatio="100" Name="ParticleEffect517149" Pos="890.31049,928.31915,176.12576" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="0.49209449,0.49209449,0.49209452" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier_B_nolight" Scale="1.5" SpawnPeriod="0"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="STR_IDTartaros_H_SZ_A" Pos="894.88538,958.51074,166.30623" subzone="SubzoneShapeIDTartaros_H_Subzone3" Type="MP"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah216" npc="" Pos="910,1079,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah290" npc="" Pos="891,1068,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="Bugs" EntityGUID="-1650481270" EntityId="61" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Boid" LodRatio="100" Name="Bugs_spore3" Pos="875.56244,905.08569,110.52277" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties Animation="0" AnimationSpeed="1" bActivateOnStart="1" bFollowPlayer="0" bNoInclination="0" bNoLanding="1" CollisionWithTerrain="1" FactorOrigin="1" flockTime_FShowTime="" flockWeather_FHideWeather="" flockWeather_FShowWeather="" FollowDistance="50" HeightMax="1" HeightMin="1" nBehaviour="0" nNumBugs="100" object_Character="" object_Model1="objects\misc\boids\spore\flic_boid_004.cgf" object_Model2="" object_Model3="" object_Model4="" object_Model5="" object_TexName="" Radius="50" RandomMovement="1" Scale="0.9" SpeedMax="5" SpeedMin="0.5" TexBehavior="0" TexRadius="0.2" TexRandomColor="0" TexRandomLife="0" VisibilityDist="100"/>
+		</Entity>
+		<Object AreaId="-1" FadeInZone="0" GroupId="0" Height="20" Length="4" Name="IDTartaros_H_AreaBox2" Pos="900.05298,1049.2999,154.09785" Type="AreaBox" Width="4"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1681575820" EntityId="66" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66951" Pos="1024.6799,919.06311,61.358852" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.392157,0.0235294" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="10" lighttype="0" OuterRadius="20" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah300" npc="" Pos="891,1064,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Ignore_heightcheck="0" Name="LocationIDTartaros_H_Resurrection4" Pos="900.53271,870.32513,176.03513" Type="Location"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah250" npc="" Pos="897,1082,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,70" GeomId="5" LodDist="0" MergeGeom="0" Name="Group3744" Pos="901.28046,959.21143,169.52998" Type="Group" UseLOD="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="2069063315" EntityId="14" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66905" Pos="883.66016,777.37708,224.57552" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.752941,0.176471" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="10" lighttype="0" OuterRadius="30" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah192" npc="" Pos="910,1067,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Ignore_heightcheck="0" Name="LocationIDTartaros_H_Resurrection1" Pos="903.30627,865.01685,176.03513" Type="Location"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="SPIDTartaros_H_WindBox11" npc="" Pos="899.88721,1049.0386,155.45123" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,122" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1940888215" EntityId="13" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="BossRoom" LodRatio="100" Name="ParticleEffect517145" Pos="896.01984,1007.0106,170.18718" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="0.49209446,0.49209446,0.49209452" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier_B_nolight" Scale="1.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="624161175" EntityId="48" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66933" Pos="738.1156,1148.5933,123.57245" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.811765,0.0666667" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="10" lighttype="0" OuterRadius="30" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah242" npc="" Pos="901,1082,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="893578904" EntityId="43" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66961" Pos="813.24237,1565.0022,158.23891" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.992157,0.792157,0" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="10" lighttype="0" OuterRadius="40" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1055947929" EntityId="42" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66928" Pos="1146.5911,838.01837,76.108292" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0,0.843137,0.717647" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="30" lighttype="0" OuterRadius="60" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah238" npc="" Pos="903,1082,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1910500709" EntityId="50" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66935" Pos="876.4057,1019.6313,166.60695" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.811765,0.0666667" DiffuseMultiplier="1.2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="10" lighttype="0" OuterRadius="20" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="StartPointEntity_Door6" Pos="899.7926,870.05035,178.63406" Type="StartPoint"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="IDTartaros_h_TREASUREBOX_01" npc="IDTartaros_h_TREASUREBOX_01" Pos="886.79059,1051.0377,154.95326" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,92.000023" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-176435550" EntityId="38" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="BossRoom" LodRatio="100" Name="ParticleEffect517147" Pos="901.35406,959.19208,171.84346" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="0.49209449,0.49209449,0.49209452" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier_B_nolight" Scale="1.5" SpawnPeriod="0"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="StartPointEntity_Door1" Pos="902.12366,867.35449,178.63406" Type="StartPoint"/>
+		<Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDTartaros_H_Design6" npc="IDTartaros_Ctrl_NPC_15" Pos="905.18433,1072.4122,153.65974" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,69.999985" GeomId="6" LodDist="0" MergeGeom="0" Name="Group3743" Pos="889.84137,963.11713,170.14651" Type="Group" UseLOD="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="115869350" EntityId="79" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDTartaros_H_Ambient" LodRatio="100" Name="Spot_Ciel_Hole" Pos="902.11316,1070.7047,60.104919" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="15" iVolume="255" OuterRadius="100" sndSource="Sounds\ambient\ambient_sticky_lava_loop_01.ogg"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah230" npc="" Pos="907,1082,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah166" npc="" Pos="903,1062,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1117736617" EntityId="22" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66911" Pos="1013.7438,1035.8047,153.20566" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0.08" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="1" clrDiffuse="1,0.811765,0.0666667" DiffuseMultiplier="1.2" fileModel01="Objects\Editor\invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="60" ProjectorFov="90" texture_ProjectorTexture="Textures\Animated\Water\causq00.dds" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="StartPointEntity_Door5" Pos="897.95477,871.97308,178.63406" Type="StartPoint"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="417175470" EntityId="80" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDTartaros_H_Ambient" LodRatio="100" Name="Spot_Waterfall" Pos="1175.9058,768.81396,218.31889" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="30" InnerRadius="50" iVolume="255" OuterRadius="150" sndSource="Sounds\ambient\ambient_waterfall_3.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="PlaceableObject" EntityGUID="959763118" EntityId="75" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDTartaros_H_WindBox" LodRatio="100" Name="IDTartaros_H_FOBJ_WindBox3" Pos="876.98199,1071.7666,154.1675" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="250">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties fFontScale="0.1" fileLadderCGF="Objects\npc\level_object\windbox\physicalweak_wind_01a.cgf" fParticleScale="0" gostring_Text="" sParticleName="">
+				<vParticleOffset x="0" y="0" z="0"/>
+			</Properties>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="334408623" EntityId="34" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66956" Pos="968.18665,877.03088,154.24472" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0,0.545098,0.992157" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="10" lighttype="0" OuterRadius="40" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah246" npc="" Pos="899,1082,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah296" npc="" Pos="891,1066,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1539051442" EntityId="59" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66964" Pos="823.63159,909.90308,85.326881" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0,0.670588,0.992157" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="25" lighttype="0" OuterRadius="40" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="LocationIDTartaros_H_Resurrection2" Pos="897.72717,865.35229,176.03513" Type="Location"/>
+		<Object Group="-1" Ignore_heightcheck="0" Name="SeedPointIDTartaros_H_Seed1" Pos="921,1069,154" Type="SeedPoint"/>
+		<Object Ignore_heightcheck="0" Name="MPIDTartaros_H_Subzone3" Pos="900.31207,1073.0056,153.47316" subzone="SubzoneShapeIDTartaros_H_Subzone6" Type="MP"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-776863052" EntityId="47" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66932" Pos="954.61407,1048.0105,135.45798" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.811765,0.0666667" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="20" lighttype="0" OuterRadius="30" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="1" Angles="0,0,20.17" CastShadowMaps="0" CastShadows="0" EntityClass="Door" EntityGUID="1480300469" EntityId="69" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Door" LodRatio="100" Name="Door1" Pos="889.26599,882.06494,176.8942" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationClose="" AnimationOpen="" AnimationOpenBack="" AnimationSpeed="1" bAllowRigidBodiesToOpenDoor="1" bAutomatic="1" bEnabled="1" bPlayerOnly="0" bStayOpenWhenOccupied="1" bUsePortal="1" CloseDelay="1.5" fHitImpulse="10" iNeededKey="-1" object_AnimatedModel="objects\npc\level_object\door\idphaistos_disc_boss_door.cga" TextInstruction="" vector_Bounds="0,0,0">
+				<Server bClickable="0" bCloseable="1" bOneWay="0" bOpened="0" id="1" Key="" Link="" Timer="0"/>
+				<Sound InnerRadius="1" nVolume="255" OuterRadius="25" sound_Close="Sounds/doors/close.wav" sound_Open="Sounds/doors/open.wav" sound_Unlock="sounds/items/bombactivate.wav"/>
+			</Properties>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah146" npc="" Pos="893,1062,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1721469000" EntityId="12" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="BossRoom" LodRatio="100" Name="DeferredLight66901" Pos="889.42853,881.12524,184.42935" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.996078,0.788235,0.505882" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="20" lighttype="0" OuterRadius="40" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,122.00002" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1421149256" EntityId="10" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="BossRoom" LodRatio="100" Name="ParticleEffect517144" Pos="911.10828,1010.0033,170.18718" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="0.49209446,0.49209446,0.49209452" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier_B_nolight" Scale="1.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-596934983" EntityId="44" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="BossRoom" LodRatio="100" Name="DeferredLight66904" Pos="886.0755,930.37732,176.79945" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.996078,0.788235,0.505882" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="15" lighttype="0" OuterRadius="25" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah150" npc="" Pos="895,1062,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah234" npc="" Pos="905,1082,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1692974010" EntityId="23" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66912" Pos="835.88049,1046.4789,146.5435" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0.08" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="1" clrDiffuse="1,0.811765,0.0666667" DiffuseMultiplier="3" fileModel01="Objects\Editor\invisiblebox.cgf" InnerRadius="25" lighttype="0" OuterRadius="45" ProjectorFov="90" texture_ProjectorTexture="Textures\Animated\Water\causq00.dds" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="-33.893204,-3.1441827,-74.889626" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="138023867" EntityId="4" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_FX" LodRatio="100" Name="ParticleEffect517157" Pos="862.79205,1018.0476,125.89569" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_water.water.water_ripple" Scale="3" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="IDTartaros_h_TREASUREBOX_6" npc="IDTartaros_h_TREASUREBOX_01" Pos="919.79059,1061.0377,154.95326" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-577769026" EntityId="57" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66963" Pos="854.58295,726.12207,219.18965" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.254902,0.921569,0.654902" DiffuseMultiplier="0.8" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="5" lighttype="0" OuterRadius="20" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah200" npc="" Pos="910,1071,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="SPIDTartaros_H_WindBox9" npc="" Pos="923.3313,1071.7773,156.53532" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,42.000023" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1113961920" EntityId="16" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="BossRoom" LodRatio="100" Name="ParticleEffect517143" Pos="895.28784,884.21075,182.81688" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="0.49209446,0.49209446,0.49209452" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier_B_nolight" Scale="1.5" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="SPIDTartaros_H_MOB2" npc="" Pos="896,1067,154.1342" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah226" npc="" Pos="909,1082,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="554121416" EntityId="35" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66920" Pos="1137.9629,1045.9519,107.13177" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0,0.568627,0.984314" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="50" lighttype="0" OuterRadius="80" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="RandomAmbientSound" EntityGUID="54500297" EntityId="81" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDTartaros_H_Ambient" LodRatio="100" Name="RA_Cave" Pos="1054.5059,940.43939,166.9586" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="RandomAmbient" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bLIndoorOnly="0" bLOutdoorOnly="0" fScale="1" nEAXEnvironment="0">
+				<EaxReverbProperties fAirAbsorptionHF="0" fDecayHFRatio="0.1" fDecayLFRatio="0.1" fDecayTime="0.1" fDensity="0" fDiffusion="0" fEchoDepth="0" fEchoTime="0.075" fEnvDiffusion="0" fEnvSize="1" fHFReference="1000" fLFReference="20" fModulationDepth="0" fModulationTime="0.04" fReflectionsDelay="0" fReverbDelay="0" fRoomRolloffFactor="0" nEnvironment="0" nFlags="0" nReflections="-10000" nReverb="-10000" nRoom="-10000" nRoomHF="-10000" nRoomLF="-10000">
+					<fReflectionsPan x="0" y="0" z="0"/>
+					<fReverbPan x="0" y="0" z="0"/>
+				</EaxReverbProperties>
+				<Sound1 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound2 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound3 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="150" sndSound="Sounds\ambient\ambient_idtartaros_h_cave_st_loop_03.ogg"/>
+				<Sound4 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="100" sndSound="Sounds\ambient\ambient_idtartaros_h_cave_st_loop_04.ogg"/>
+				<Sound5 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="100" iVolume="130" sndSound="Sounds\ambient\ambient_idtartros_h_cave_howl_01.ogg"/>
+				<Sound6 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound7 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="300" iVolume="160" sndSound="Sounds\ambient\ambient_idtartros_h_cave_whoosh_01.ogg"/>
+			</Properties>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1349514038" EntityId="58" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66944" Pos="651.13171,891.57581,104.32459" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0,0.568627,0.984314" DiffuseMultiplier="1.2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="30" lighttype="0" OuterRadius="60" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="300" Name="SP_Box_IDTartaros_h_MainSamael_X" npc="" Pos="891.59393,1090.9354,159" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,179.99998" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-859345461" EntityId="71" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_FX" LodRatio="100" Name="ParticleEffect517162" Pos="904.56287,1071.9865,65.621361" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" Scale="2.4673436,2.4673436,2.4673436" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_df_nature.flour.flour_yellow_02" Scale="20" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="Bugs" EntityGUID="876579532" EntityId="25" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Boid" LodRatio="100" Name="Bugs_Bat1" Pos="947.46466,903.4007,193.53918" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="250">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties Animation="" AnimationSpeed="0.5" bActivateOnStart="1" bFollowPlayer="0" bNoInclination="0" bNoLanding="1" CollisionWithTerrain="1" FactorOrigin="1" flockTime_FShowTime="" flockWeather_FHideWeather="" flockWeather_FShowWeather="" FollowDistance="50" HeightMax="5" HeightMin="1" nBehaviour="0" nNumBugs="10" object_Character="" object_Model1="objects\misc\boids\batboid.cgf" object_Model2="" object_Model3="" object_Model4="" object_Model5="" object_TexName="" Radius="15" RandomMovement="1" Scale="0.8" SpeedMax="15" SpeedMin="5" TexBehavior="0" TexRadius="0.2" TexRandomColor="0" TexRandomLife="0" VisibilityDist="100"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,92.000015" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1981449933" EntityId="15" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="BossRoom" LodRatio="100" Name="ParticleEffect517146" Pos="889.91498,963.09778,172.45999" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="0.49209449,0.49209449,0.49209452" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier_B_nolight" Scale="1.5" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,20" GeomId="7" LodDist="0" MergeGeom="0" Name="Group3740" Pos="895.25531,884.2796,180.5034" Type="Group" UseLOD="0"/>
+		<Object AreaId="0" Closed="1" DisplayFilled="0" GroupId="0" Height="100" Name="Ambient_BossRoom" Pos="880.02344,1043.686,105.15167" Type="Shape" VerticalFadeInOut="1" Width="20">
+			<Points>
+				<Point Pos="880.02344,1043.686,105.15167"/>
+				<Point Pos="868.24469,1056.3647,105.15167"/>
+				<Point Pos="864.37494,1073.9945,105.15167"/>
+				<Point Pos="868.14362,1085.5679,105.15167"/>
+				<Point Pos="877.74902,1097.9285,105.15167"/>
+				<Point Pos="893.21863,1105.123,105.15167"/>
+				<Point Pos="912.57819,1104.9869,105.15167"/>
+				<Point Pos="922.62378,1099.3481,105.15167"/>
+				<Point Pos="931.39227,1087.7661,105.15167"/>
+				<Point Pos="934.90912,1070.2423,105.15167"/>
+				<Point Pos="927.34473,1054.1978,105.15167"/>
+				<Point Pos="923.69287,1046.2263,105.15167"/>
+				<Point Pos="919.60767,977.94031,105.15167"/>
+				<Point Pos="888.42523,988.36188,105.15167"/>
+			</Points>
+			<Entities>
+				<Entity Name="RA_BossRoom"/>
+			</Entities>
+		</Object>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-737961266" EntityId="17" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66906" Pos="982.55157,929.12347,68.839661" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0,0.843137,0.717647" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="10" lighttype="0" OuterRadius="60" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah258" npc="" Pos="893,1082,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="449776591" EntityId="55" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66962" Pos="839.53528,824.51624,191.71275" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0,0.545098,0.992157" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="5" lighttype="0" OuterRadius="25" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah282" npc="" Pos="891,1072,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1369113299" EntityId="72" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_FX" LodRatio="100" Name="ParticleEffect517175" Pos="699.31964,886.36963,56.109207" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="250">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_smoke.smoke.dry_ice" Scale="5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1582994389" EntityId="33" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66942" Pos="1087.5543,900.2663,125.06199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0,0.568627,0.984314" DiffuseMultiplier="1.2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="30" lighttype="0" OuterRadius="60" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="360813785" EntityId="49" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66934" Pos="935.40369,1022.0912,162.36874" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.811765,0.0666667" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="15" lighttype="0" OuterRadius="25" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah254" npc="" Pos="895,1082,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Ignore_heightcheck="0" Name="StartPointEntity_Door3" Pos="902.5014,871.74274,178.63406" Type="StartPoint"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah174" npc="" Pos="907,1062,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="252102628" EntityId="7" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66947" Pos="743.68359,1236.8143,122.35849" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0.08" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="1" clrDiffuse="1,0.811765,0.0666667" DiffuseMultiplier="2" fileModel01="Objects\Editor\invisiblebox.cgf" InnerRadius="30" lighttype="0" OuterRadius="80" ProjectorFov="90" texture_ProjectorTexture="Textures\Animated\Water\causq00.dds" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Group="-1" Ignore_heightcheck="0" Name="SeedPointIDTartaros_H_Seed2" Pos="900,1072,153" Type="SeedPoint"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="PlaceableObject" EntityGUID="-1120954649" EntityId="755" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDTartaros_H_WindBox" LodRatio="100" Name="IDTartaros_H_FOBJ_WindBox1" Pos="899.94019,1094.5077,154.1675" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="250">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties fFontScale="0.1" fileLadderCGF="Objects\npc\level_object\windbox\physicalweak_wind_01a.cgf" fParticleScale="0" gostring_Text="" sParticleName="">
+				<vParticleOffset x="0" y="0" z="0"/>
+			</Properties>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah182" npc="" Pos="910,1063,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1002820841" EntityId="20" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66909" Pos="954.02844,1015.8033,135.45798" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.811765,0.0666667" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="20" lighttype="0" OuterRadius="30" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="SPIDTartaros_H_WindBox3" npc="" Pos="899.88721,1049.0386,155.1685" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1072775187" EntityId="6" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66924" Pos="1050.2017,1277.0709,133.52113" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.843137,0.588235,0" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="10" lighttype="0" OuterRadius="60" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="IDTartaros_h_TREASUREBOX_4" npc="IDTartaros_h_TREASUREBOX_01" Pos="910.79059,1051.0377,154.95326" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1860438542" EntityId="67" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66952" Pos="701.20642,906.20154,79.662842" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.360784,0.0588235" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="10" lighttype="0" OuterRadius="30" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah212" npc="" Pos="910,1077,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,91" dir="1" Ignore_heightcheck="0" iidle_range="-1" Name="BIDTartaros_ElectricChain_58_Ah158" npc="BIDTartaros_ElectricChain_58_Ah" Pos="899,1062,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1449517812" EntityId="21" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66910" Pos="862.10461,1009.5517,137.77568" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.811765,0.0666667" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="30" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="RandomAmbientSound" EntityGUID="-180538891" EntityId="82" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDTartaros_H_Ambient" LodRatio="100" Name="RA_Ciel" Pos="1044.0144,971.01178,177.36685" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="RandomAmbient" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bLIndoorOnly="0" bLOutdoorOnly="0" fScale="1" nEAXEnvironment="0">
+				<EaxReverbProperties fAirAbsorptionHF="0" fDecayHFRatio="0.1" fDecayLFRatio="0.1" fDecayTime="0.1" fDensity="0" fDiffusion="0" fEchoDepth="0" fEchoTime="0.075" fEnvDiffusion="0" fEnvSize="1" fHFReference="1000" fLFReference="20" fModulationDepth="0" fModulationTime="0.04" fReflectionsDelay="0" fReverbDelay="0" fRoomRolloffFactor="0" nEnvironment="0" nFlags="0" nReflections="-10000" nReverb="-10000" nRoom="-10000" nRoomHF="-10000" nRoomLF="-10000">
+					<fReflectionsPan x="0" y="0" z="0"/>
+					<fReverbPan x="0" y="0" z="0"/>
+				</EaxReverbProperties>
+				<Sound1 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="100" sndSound="Sounds\ambient\ambient_idtartaros_h_siel_st_loop_01.ogg"/>
+				<Sound2 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="50" sndSound="Sounds\ambient\ambient_sticky_lava_loop_01.ogg"/>
+				<Sound3 bCentered="1" bDoNotOverlap="0" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound4 bCentered="1" bDoNotOverlap="0" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound5 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="150" sndSound="Sounds\ambient\ambient_idtartaros_h_siel_scream_loop_01.ogg"/>
+				<Sound6 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound7 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+			</Properties>
+		</Entity>
+		<Object Angles="0,-0,91" dir="1" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDTartaros_H_MOB4" npc="BIDTartaros_lightning_stick_58_Ah" Pos="905,1077,154.1342" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,0,-9.9999952" GeomId="8" LodDist="0" MergeGeom="0" Name="Group3746" Pos="890.31671,928.39502,173.81229" Type="Group" UseLOD="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah" npc="" Pos="891,1062,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Server_Setting_Condition_Dungeon" npc="Server_Setting_Condition_Dungeon" Pos="885.59393,1089.9354,159" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah220" npc="" Pos="910,1081,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1514146564" EntityId="37" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="BossRoom" LodRatio="100" Name="DeferredLight66902" Pos="895.2171,961.53888,172.59657" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.996078,0.788235,0.505882" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="15" lighttype="0" OuterRadius="25" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-199715331" EntityId="52" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Entity_Light" LodRatio="100" Name="DeferredLight66937" Pos="857.74402,873.67651,155.21014" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0,0.670588,0.992157" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="25" lighttype="0" OuterRadius="40" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="1" Name="BIDTartaros_ElectricChain_58_Ah186" npc="" Pos="910,1065,153.6496" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+	</Objects>
+</Mission>

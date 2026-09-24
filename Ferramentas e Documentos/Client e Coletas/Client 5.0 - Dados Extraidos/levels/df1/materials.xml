@@ -1,0 +1,88 @@
+<MaterialsLibrary>
+	<Library File="Editor\Materials\Level.xml" Name="Level">
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{04012CFB-EB05-4D5F-BE13-78BD49BF6DC0}" MtlFlags="16" Name="pr_ra_od_roll_01a0" Opacity="0.9" Reflectance="0" Saturation="0" Shader="aion_bg_landmark_flicker" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels/common/tribe/ratman/props/exterior/pr_ra_od_roll_01a_001_fx.dds" Map="Diffuse">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture File="levels/common/tribe/ratman/props/exterior/pr_ra_od_roll_01a_001_fx_fun.dds" Map="MaskMap">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+			<SubMaterials>
+				<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{3E0554C6-7800-430B-A447-CBE517C5D333}" MtlFlags="16" Name="[1] 07 - Defaultasdasd" Opacity="0.9" Reflectance="0" Saturation="0" Shader="aion_bg_landmark_flicker" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/tribe/ratman/props/exterior/pr_ra_od_roll_01a_001_fx.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture File="levels/common/tribe/ratman/props/exterior/pr_ra_od_roll_01a_001_fx_fun_02.dds" Map="MaskMap">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+					<PublicParams oscillation="1" viewrange="5"/>
+				</Material>
+				<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{419EE231-FA9D-4D29-AE51-A5F4F7D0561B}" MtlFlags="16" Name="[2] AION_Material_02" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/tribe/ratman/props/exterior/pr_ra_od_roll_01a_002.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material AlphaTest="0.5" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{7FE3D51F-7D12-4F45-9701-758139E00958}" MtlFlags="16" Name="[3] AION_Material_01" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/tribe/ratman/props/exterior/pr_ra_od_roll_01a_001.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material GenMask="0" Id="{6FCC53A0-B164-43CF-8396-0D8F6535C3E7}" MtlFlags="16" Name="[4] AION_Material_04" Shader="nodraw"/>
+			</SubMaterials>
+			<PublicParams oscillation="0.6" viewrange="5"/>
+		</Material>
+	</Library>
+	<Library File="Editor\Materials\DF1_WaterVolume.xml" Name="DF1_WaterVolume">
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.30588236,0.627451,0.78823531" Emissive="0,0,0" GenMask="0" Id="{483A8F8C-8492-4244-A927-9FBA178DA9D8}" MtlFlags="16" Name="WaterVolume_01" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="20" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.7" reflamount="0.38" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="10" textiley="8"/>
+		</Material>
+		<Material AlphaTest="0" GenMask="0" Id="{CF02454D-02B2-4CD6-837B-847EFBFB23C4}" MtlFlags="0" Name="WaterVolume_02" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="20" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.7" reflamount="0.4" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="10" textiley="8"/>
+		</Material>
+		<Material AlphaTest="0" GenMask="0" Id="{56C85F94-4A3D-45F9-8BF0-483BC77618C2}" MtlFlags="0" Name="WaterVolume_03" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="20" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.9" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="10" textiley="8"/>
+		</Material>
+	</Library>
+	<Library></Library>
+</MaterialsLibrary>

@@ -1,0 +1,5 @@
+<LevelInfo HeightmapXSize="768" HeightmapYSize="768" LightMapPath="Levels\IDTartaros\" Name="Levels\IDTartaros" Version="{87D674AE-D66D-4B89-BAC9-17C3A11987BC}">
+	<Missions>
+		<Mission Description="" Name="Mission0"/>
+	</Missions>
+</LevelInfo>

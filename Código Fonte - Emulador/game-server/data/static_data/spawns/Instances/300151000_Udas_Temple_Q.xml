@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="300151000">
+		<!-- Vaporfrost -->
+		<spawn npc_id="281655" respawn_time="295">
+			<spot x="775.7543" y="329.9329" z="138" h="0"/>
+		</spawn>
+		<!-- Exit de câmara de renascimento -->
+		<spawn npc_id="700706" respawn_time="295">
+			<spot x="562.1129" y="181.2764" z="137" h="0"/>
+		</spawn>
+		<!-- Lavagem cerebral Reian -->
+		<spawn npc_id="799513" respawn_time="295">
+			<spot x="541.1841" y="221.2292" z="137" h="0"/>
+		</spawn>
+		<!-- Lavagem cerebral Reian -->
+		<spawn npc_id="799514" respawn_time="295">
+			<spot x="541.271" y="214.6451" z="137" h="0"/>
+		</spawn>
+		<!-- Lavagem cerebral Reian -->
+		<spawn npc_id="799515" respawn_time="295">
+			<spot x="584.4714" y="221.3496" z="137" h="0"/>
+		</spawn>
+		<!-- Lavagem cerebral Reian -->
+		<spawn npc_id="799516" respawn_time="295">
+			<spot x="584.4665" y="215.0515" z="137" h="0"/>
+		</spawn>
+	</spawn_map>
+</spawns>

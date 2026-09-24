@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<spawn_map map_id="320030000">
+		<!-- Cruzado -->
+		<spawn npc_id="211624" respawn_time="295">
+			<spot x="229.465" y="214.921" z="207.123" h="112" walker_id="320030000211624A"/>
+			<spot x="253.48201" y="233.105" z="216.207" h="96"/>
+			<spot x="264.419" y="214.003" z="209.866" h="95"/>
+			<spot x="266.793" y="226.609" z="212.419" h="95"/>
+			<spot x="281.505" y="222.336" z="206.370" h="30" walker_id="320030000211624B"/>
+			<spot x="281.6232" y="221.1767" z="210.0" h="26" walker_id="320030000211624B"/>
+			<spot x="269.6471" y="226.4526" z="217.0" h="95"/>
+			<spot x="244.4517" y="206.4964" z="210.0" h="50"/>
+			<spot x="251.5494" y="244.729" z="222.9212" h="96"/>
+		</spawn>
+		<!-- Draconute Vaegir -->
+		<spawn npc_id="211625" respawn_time="295">
+			<spot x="255.727" y="219.688" z="210.810" h="96"/>
+			<spot x="258.055" y="241.453" z="219.08" h="94"/>
+			<spot x="264.054" y="215.517" z="210.201" h="95"/>
+			<spot x="265.284" y="237.529" z="216.132" h="95"/>
+			<spot x="267.1064" y="248.4056" z="221.7916" h="95"/>
+		</spawn>
+		<!-- Pedra do Guardião do Portão Abismo -->
+		<spawn npc_id="700140" respawn_time="295">
+			<spot x="261.4184" y="229.5311" z="213.918" h="0" static_id="75"/>
+		</spawn>
+		<!-- ABYSS GATE -->
+		<spawn npc_id="700141" respawn_time="295">
+			<spot x="250.9115" y="270.455" z="230.087" h="0" static_id="8"/>
+		</spawn>
+		<!-- Dimensão Sair -->
+		<spawn npc_id="700184" respawn_time="295">
+			<spot x="275.7379" y="162.7033" z="205.332" h="0" static_id="17"/>
+		</spawn>
+	</spawn_map>
+</spawns>

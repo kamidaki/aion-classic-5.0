@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../spawns.xsd">
+	<!-- Sanctum Arena -->
+	<spawn_map map_id="110010000">
+		</spawn_map>
+	<!-- Pandaemonium Arena -->
+	<spawn_map map_id="120010000">
+		</spawn_map>
+	<!-- Discipline Training Grounds -->
+	<spawn_map map_id="300430000">
+		</spawn_map>
+</spawns>

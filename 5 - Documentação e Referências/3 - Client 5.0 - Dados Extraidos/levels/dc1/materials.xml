@@ -1,9 +1,0 @@
-<MaterialsLibrary>
-	<Library></Library>
-	<Library File="Editor\Materials\Dc1_Watervolume.xml" Name="Dc1_Watervolume">
-		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.40000001,0.86274511,0.95686275" Emissive="0,0,0" GenMask="0" Id="{476F3F49-FE2B-40F9-88BD-FF942C93A42E}" MtlFlags="16" Name="Dc1_mainwater_01" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0.53725493,0.97647059" Wrap="0">
-			<Textures></Textures>
-			<PublicParams animspeed="20" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="1" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="20" textiley="20"/>
-		</Material>
-	</Library>
-</MaterialsLibrary>

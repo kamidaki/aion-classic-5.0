@@ -1,0 +1,191 @@
+<MaterialsLibrary>
+	<Library></Library>
+	<Library File="Editor\Materials\LF1A_WaterVolume.xml" Name="LF1A_WaterVolume">
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.53333336,0.64705884,0.49411765" Emissive="0,0,0" GenMask="0" Id="{DD8B6711-66EF-42B4-BA08-D8621CB3F0E3}" MtlFlags="16" Name="Subzone_10" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="5" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.51" reflamount="0.27" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="15" textiley="15"/>
+		</Material>
+	</Library>
+	<Library File="Editor\Materials\Lf2a_lab_water.xml" Name="Lf2a_lab_water"/>
+	<Library File="Editor\Materials\IDElim_Plants.xml" Name="IDElim_Plants">
+		<Material AlphaTest="0.31" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{BB547C1E-F84E-4846-91D3-A481F0DA9B3D}" MtlFlags="18" Name="na_d_vain_07g0" Opacity="1" Reflectance="0" Saturation="0" Shader="Aion_BG_Base" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels/common/dark/natural/plants/etc/na_d_snowvain_02b_001.dds" Map="Diffuse">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+			<SubMaterials>
+				<Material AlphaTest="0.5" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{D2F08FB2-AEF0-4E1A-B3EC-DE78BF71CB5D}" MtlFlags="18" Name="[1] 01 - Default" Opacity="1" Reflectance="0" Saturation="0" Shader="Aion_BG_Base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/dark/natural/plants/etc/na_d_vain_01a_001.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+			</SubMaterials>
+		</Material>
+		<Material AlphaTest="0.31" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{9FB4D4CB-7343-43C8-BE63-88577B4BF446}" MtlFlags="18" Name="na_d_vain_09i0" Opacity="1" Reflectance="0" Saturation="0" Shader="Aion_BG_Base" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels/common/dark/natural/plants/etc/na_d_snowvain_02b_001.dds" Map="Diffuse">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+			<SubMaterials>
+				<Material AlphaTest="0.5" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{8EC09D13-A9F1-4BD5-BA43-75CB96520F8E}" MtlFlags="18" Name="[1] 01 - Default" Opacity="1" Reflectance="0" Saturation="0" Shader="Aion_BG_Base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/dark/natural/plants/etc/na_d_vain_01a_001.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+			</SubMaterials>
+		</Material>
+		<Material AlphaTest="0.31" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{3E88FADF-279B-4F56-95A4-8037F0236AA2}" MtlFlags="18" Name="na_d_vain_08h0" Opacity="1" Reflectance="0" Saturation="0" Shader="Aion_BG_Base" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels/common/dark/natural/plants/etc/na_d_snowvain_02b_001.dds" Map="Diffuse">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+			<SubMaterials>
+				<Material AlphaTest="0.5" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{3E028FB6-CF43-4714-84DF-529B3230793E}" MtlFlags="18" Name="[1] 01 - Default" Opacity="1" Reflectance="0" Saturation="0" Shader="Aion_BG_Base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/dark/natural/plants/etc/na_d_vain_01a_001.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material AlphaTest="0.31" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{BB6C4EBA-0A0B-42D9-B9F1-4B3F87EC2C7B}" MtlFlags="18" Name="[2] Material #133" Opacity="0.99" Reflectance="0" Saturation="0" Shader="Aion_BG_Base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/dark/natural/plants/etc/na_d_snowvain_02b_001.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+			</SubMaterials>
+		</Material>
+		<Material AlphaTest="0.31" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{FE3D7315-EFD9-4BC3-9909-CBADFE6B63FA}" MtlFlags="18" Name="na_d_vain_06f0" Opacity="1" Reflectance="0" Saturation="0" Shader="Aion_BG_Base" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels/common/dark/natural/plants/etc/na_d_snowvain_02b_001.dds" Map="Diffuse">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+			<SubMaterials>
+				<Material AlphaTest="0.5" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{5A328EBB-A1BC-42D6-A205-AE20AF6714BE}" MtlFlags="18" Name="[1] 01 - Default" Opacity="1" Reflectance="0" Saturation="0" Shader="Aion_BG_Base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/dark/natural/plants/etc/na_d_vain_01a_001.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+			</SubMaterials>
+		</Material>
+	</Library>
+</MaterialsLibrary>

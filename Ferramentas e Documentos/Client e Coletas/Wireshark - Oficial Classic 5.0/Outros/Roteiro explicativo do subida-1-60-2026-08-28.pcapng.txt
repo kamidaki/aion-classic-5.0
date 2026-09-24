@@ -1,0 +1,196 @@
+# Fluxo de Teste
+
+## Login e seleção/criação de personagem
+
+1. Aceitei os termos.
+2. Cliquei no servidor.
+3. Esperei na tela de personagens.
+4. Voltei para a tela de servidores.
+5. Escolhi novamente o servidor.
+6. Esperei na tela de personagens.
+7. Escolhi o personagem **Teiteiteitei**.
+8. Deletei o personagem **Teiteiteitei**.
+9. Esperei o personagem ser deletado.
+10. Depois de deletado, esperei 30 segundos.
+11. Fiquei um tempo na tela de cada classe.
+12. Escolhi a classe que eu queria.
+13. Escolhi o gênero.
+14. Modifiquei o personagem.
+15. Cliquei para verificar o nome e esperei em cada etapa.
+16. Depois de criado, esperei um tempo com o personagem selecionado.
+
+---
+
+# Entrada no jogo e tutorial
+
+1. Ao entrar no jogo, começa uma cutscene.
+2. Assisti à cutscene inteira.
+3. O mapa inicial é Pandaemonium, mas não é a Pandaemonium oficial.
+4. O jogo começa com a janela de quests aberta.
+5. Com a janela de quests aberta, apertei em **Locate**.
+6. A janela do mapa abriu ao apertar **Locate**.
+7. Fechei a janela do mapa.
+8. Fechei a janela de quests.
+9. Andei até a frente do NPC.
+10. Cliquei no NPC.
+11. Abri o diálogo com o NPC.
+12. Cliquei nas opções do diálogo.
+13. Depois de todos os diálogos, fui movido para o mapa do tutorial.
+14. Fiquei parado um tempo no mapa do tutorial.
+15. Ocultei a ajuda de teclas e depois cliquei para mostrá-la novamente.
+16. Andei até próximo de um monstro, fiquei a 29 metros dele e esperei. Ao lado dele havia outro monstro.
+17. Cliquei no comando de ataque na barra de skills.
+18. Ao atacar o mob, ele chamou a atenção do outro mob que estava ao lado.
+19. Matei os dois, sem coletar loot.
+20. Andei até os próximos inimigos.
+21. Selecionei um NPC, depois um mob e, em seguida, usei uma skill. O personagem andou até ficar no alcance da skill.
+22. Selecionei um mob ao lado e usei uma skill em área. Antes de usar a skill, o personagem entrou em modo de ataque.
+23. Ao matar o quinto mob, o personagem subiu de nível.
+24. Depois de subir de nível, fui até um determinado ponto do mapa e apareceu um diálogo na tela.
+25. Matei um boss.
+26. Apareceu um objeto que podia ser atacado e, depois, ele se tornou interativo.
+27. Interagi com ele e abriu o loot.
+28. Esperei um tempo, saí da janela de loot e abri novamente.
+29. Ao abrir o loot novamente, o personagem deu alguns passos.
+30. Usei **Take All**.
+31. Segui com o tutorial e entrei em uma parte onde o voo é liberado.
+32. Esperei um tempo.
+33. Abri as asas e esperei mais um tempo.
+34. Notei que o tempo de voo estava infinito.
+35. Notei também que, nesse tutorial, o personagem ficou com **31.660 de vida**.
+36. Voei até um inimigo, selecionei-o e esperei um tempo.
+37. Ataquei o inimigo enquanto eu estava voando.
+38. Matei o inimigo e esperei.
+39. Tentei falar com um NPC do cenário, mas não apareceu nenhuma janela de diálogo.
+40. Desci do voo.
+41. Esperei um tempo.
+42. Saí do target do NPC.
+43. Dei target em mim mesmo.
+44. Segui com o tutorial.
+45. Ao aparecer o segundo boss do tutorial, surgiu uma mensagem na tela informando que ele apareceu. Acredito que a mesma mensagem tenha aparecido para o primeiro boss, mas não reparei.
+46. Ao derrotá-lo, apareceu o mesmo objeto interativo e, ao interagir, também recebi loot.
+47. Segui com tutorial.
+48. Ao aparecer o terceiro boss do tutorial, surgiu uma mensagem na tela informando que ele apareceu.
+49. Ao terminar, abri dois baús interativos no mapa e falei com o NPC.
+50. Testei a opção que permitia permanecer no mapa.
+51. Depois, testei a opção que me tirava do tutorial.
+
+---
+
+# Pandaemonium oficial e inventário
+
+1. Cheguei à Pandaemonium real.
+2. Esperei um tempo.
+3. Apertei **I** para abrir a janela de inventário.
+4. Ao abrir o inventário, apareceu também a janela **"Daeva Pass: Premium Cube"**.
+5. Movi um item dentro do inventário.
+6. Fechei o inventário.
+7. Apertei **P**.
+8. Abriram a janela de inventário e a janela de informações do personagem.
+9. A janela de Profile abriu na aba de **Stigma**.
+10. Apertei na aba **Info**.
+11. Desequipei a arma principal.
+12. Depois, desequipei a arma secundária.
+13. Em seguida, desequipei: elmo, colar, brinco, peitoral, ombreira, calça, luva, bota e, por último, o belt.
+14. Depois, apertei no botão **"Detailed Attributes"** do Profile.
+15. Abriu uma janela de detalhes.
+16. Tudo veio marcado, então comecei a desmarcar item por item.
+17. Na janela de detalhes, apertei **Save** e confirmei.
+18. Depois apertei **Reset** e confirmei.
+19. Em seguida, salvei novamente e confirmei.
+20. Ao confirmar, a janela de Profile e a janela de detalhes fecharam, ficando apenas a janela de inventário.
+
+---
+
+# Itens, consumíveis e loot
+
+1. Fechei a janela de inventário e abri novamente.
+2. Usei um consumível de cada tipo.
+3. Durante esse momento, apareceu outro usuário ao meu lado. Não sei se isso impacta alguma coisa.
+4. Depois, abri os itens que recebi como loot no tutorial.
+5. Apareceu a aba de seleção de item.
+6. Escolhi o item da minha classe e confirmei.
+7. Ao confirmar, apareceu outra confirmação.
+8. Depois da segunda confirmação, o item finalmente foi aberto.
+9. No terceiro baú de loot, apertei em **Cancelar**.
+10. Apareceu uma mensagem informando que a ação foi interrompida.
+11. Abri novamente.
+12. Selecionei o item que eu queria.
+13. Ao abrir, o personagem deu alguns passos.
+14. Em seguida, abri um item que me dava outro item com um título.
+15. Usei esse item.
+
+---
+
+# Títulos
+
+1. Apertei **P**.
+2. Fui até a aba de títulos.
+3. Selecionei o título.
+4. Cliquei em **Select**.
+5. Depois cliquei em **Remove**.
+6. Em seguida, cliquei em **Select** novamente.
+7. Apertei também em **Return Title**.
+8. Apareceu um aviso informando que eu precisava de uma determinada quantidade de Kinah.
+9. Apertei **OK**.
+10. Eu não tinha Kinah suficiente.
+11. Apareceu uma mensagem informando que eu não tinha Kinah suficiente.
+12. Apertei em **Merge Titles**.
+13. Abriu a janela **Altar of Transcendence**.
+14. Fechei a janela.
+
+---
+
+# Equipamentos e gerenciamento do inventário
+
+1. Fui para a aba **Info**.
+2. Comecei a equipar os itens.
+3. Comecei pelas armas: primeiro a principal e depois a secundária.
+4. Segui a mesma sequência utilizada para desequipar os itens.
+5. A única diferença foi a arma principal, a luva e a bota, pois usei os itens que havia ganhado.
+6. Apertei para organizar o inventário.
+7. Fracionei um item.
+8. Depois deletei o item fracionado.
+
+---
+
+# Equipment Sets
+
+1. Apertei na opção **"Equipment Sets"** da janela de Profile (**P**).
+2. Abriu a janela **Equipment Sets Settings**.
+3. Apertei **Current Equipment**.
+4. Apertei **Save**.
+5. Apertei **Reset**.
+6. Apertei novamente **Current Equipment**.
+7. Apertei **Reset**.
+8. Apertei **Save**.
+9. Apertei novamente **Current Equipment**.
+10. Apertei **Save**.
+11. Na mesma janela, apertei em **Title Settings**.
+12. Selecionei o título.
+13. Apertei **Save**.
+14. Arrastei o macro do Equipment Set para a barra de skills.
+15. Fechei todas as abas.
+
+---
+
+# Testes de movimentação e menus
+
+1. Apertei **X** para sacar as armas.
+2. Pulei duas vezes.
+3. Apertei **X** novamente para guardar as armas.
+4. Apareceu uma mensagem informando que minha **Siel's Energy** havia acabado.
+5. Apertei na aba do **Game Menu (O)**.
+6. Fechei o menu.
+7. Usei **Shift + V** para abrir a janela **Find Group**.
+8. Na mesma janela, fui para a aba **Apply for Group**.
+9. Depois fui para **Server-Wide Recruitment List**.
+10. Naveguei entre as abas.
+11. Fechei a janela.
+12. Abri a nova **Global Action House**.
+13. Apareceu uma mensagem informando que eu precisava estar no nível 10.
+14. Fui novamente ao **Game Menu**.
+15. Apertei para ir para a lista de personagens.
+16. Cancelei faltando 4 segundos.
+17. Depois repeti o processo, mas dessa vez sem cancelar.
+18. Esperei o tempo de reconexão.

@@ -1,0 +1,1050 @@
+<Mission CGFCount="26" Description="" MusicScript="" Name="Mission0" PlayerEquipPack="" Script="" Time="09:00">
+	<EquipPacks></EquipPacks>
+	<Environment>
+		<Fog Color="78,148,121" ColorModify="0" End="300" FogAtmosphereHeight="300.0" FogAtmosphereScale="0.0" FogDensity="0.0" FogSkyRatio="1.0" HeightFalloff="0.0" Start="32" ViewDistance="2048"/>
+		<Shaders Shore="TerrainWaterBeach" SkyBox="1_sky" SunLensFlares="CryLight" SunWaterRefl="BumpSunGlow" Water="TerrainWater"/>
+		<EnvState AmbientAmplify="1.0" EnvColor="183,183,183" OutdoorAmbientColor="109,112,190" SkyBoxAngle="0" SkyBoxStretching="1.0" SunAmplify="1.0" SunColor="231,220,209" SunHeightScale="1.0" WindForce="0.3"/>
+		<MRTSky HorizonColor="86,103,127" MieScattering="11.37" RayleighScattering="0.87" SunMultiplier="29.7827" SunWavelength_B="481.6" SunWavelength_G="599.704" SunWavelength_R="713.192" ZenithColor="67,132,180" ZenithShift="0.6"/>
+		<MRTOcean BeachAmount="1.0" FogColor="51,90,102" FogDensity="0.115" ReflectAmount="0.5" RefractAmount="0.3" RefractColor="51,90,102" SunColor="162,136,103" SunColorMultiplier="5.0" SunSpecular="1.0" SurfaceAmount="1.0" WaveAmplitude="0.500" WaveAngle="0.0" WaveLength="0.500" WaveSpeed="1.500"/>
+		<Ocean BorderTranspRatio="0.5" BottomTexture="terrain/water/oceanfloorcolor.bmp" Caustics="1" FogColor="51,90,102" FogDistance="16" ShoreSize="2" SurfaceBumpAmountX="0.1" SurfaceBumpAmountY="0.1" SurfaceReflectRatio="1.0" SurfaceTranspRatio="1.0"/>
+		<HeightMap DefaultZoomTexture="" GeometryLodRatio="1.0" TextureLodRatio="1.0"/>
+		<Misc VegetationShadowColorMin="0.8"/>
+		<Lighting LightingCount="1"/>
+		<Lighting_000 Algorithm="3" Ambient="0" CurrentHour="6" HemiSamplQuality="5" Lighting="1" lightmap_name="LIGHTMAP" ObjShadows="1" ShadowBlur="1" ShadowIntensity="50" Shadows="1" SkyColor="8421504" SunColor="16777215" SunHeight="10" SunMultiplier="1" SunRotation="0" SunVector="0,0.99498743,-0.1"/>
+	</Environment>
+	<EnvSetManager EnvSetSize="1">
+		<EnvSet000>
+			<Environment>
+				<Fog Color="78,148,121" ColorModify="0" End="300" FogAtmosphereHeight="300.0" FogAtmosphereScale="0.0" FogDensity="0.0" FogSkyRatio="1.0" HeightFalloff="0.0" Start="32" ViewDistance="2048"/>
+				<Shaders Shore="TerrainWaterBeach" SkyBox="1_sky" SunLensFlares="CryLight" SunWaterRefl="BumpSunGlow" Water="TerrainWater"/>
+				<EnvState AmbientAmplify="1.0" EnvColor="183,183,183" OutdoorAmbientColor="109,112,190" SkyBoxAngle="0" SkyBoxStretching="1.0" SunAmplify="1.0" SunColor="231,220,209" SunHeightScale="1.0" WindForce="0.3"/>
+				<MRTSky HorizonColor="86,103,127" MieScattering="11.37" RayleighScattering="0.87" SunMultiplier="29.7827" SunWavelength_B="481.6" SunWavelength_G="599.704" SunWavelength_R="713.192" ZenithColor="67,132,180" ZenithShift="0.6"/>
+				<MRTOcean BeachAmount="1.0" FogColor="51,90,102" FogDensity="0.115" ReflectAmount="0.5" RefractAmount="0.3" RefractColor="51,90,102" SunColor="162,136,103" SunColorMultiplier="5.0" SunSpecular="1.0" SurfaceAmount="1.0" WaveAmplitude="0.500" WaveAngle="0.0" WaveLength="0.500" WaveSpeed="1.500"/>
+				<Ocean BorderTranspRatio="0.5" BottomTexture="terrain/water/oceanfloorcolor.bmp" Caustics="1" FogColor="51,90,102" FogDistance="16" ShoreSize="2" SurfaceBumpAmountX="0.1" SurfaceBumpAmountY="0.1" SurfaceReflectRatio="1.0" SurfaceTranspRatio="1.0"/>
+				<HeightMap DefaultZoomTexture="" GeometryLodRatio="1.0" TextureLodRatio="1.0"/>
+				<Misc VegetationShadowColorMin="0.8"/>
+			</Environment>
+		</EnvSet000>
+	</EnvSetManager>
+	<Weapons>
+		<Used></Used>
+		<Ammo></Ammo>
+	</Weapons>
+	<LevelOption>
+		<Initialize Render_Beaches="1" Render_Fog="1" Render_Ocean="1" Render_SkyBox="1" Render_SkyCloud="0" Render_Sun="1" Render_Terrain="1"/>
+		<Fly Fly_Whole_Level="0" FRZ_NEGX="50" FRZ_NEGY="50" FRZ_X="50" FRZ_Y="50" MaxHeight="300"/>
+		<BindArea IsPossible="0"/>
+		<ReCall IsPossible="1"/>
+		<Glide IsPossible="0"/>
+	</LevelOption>
+	<WeatherSystem></WeatherSystem>
+	<ServerZoneList></ServerZoneList>
+	<TimeEnvSystem>
+		<TimeEnvOption cloud2d="" cloud3d="" env_color="208,203,142" env_heathaze="0.0" env_windforce="0.3" fog_color="137,171,184" fog_end="280" fog_start="1" fullscreenfx="" GammaDestMax="" GammaDestMin="" GammaInterpolate="" GammaSrcMax="" GammaSrcMin="" name="TZ_idabre_low_eciel" parteffect="" particlefx="" PhotoColor="" PhotocolorInterpolate="" SelectiveDest="" SelectiveInterpolate="" SelectiveSrc="" sky_box_name="Ab1.TimeEnv.Red" sky_lens_check="0" sky_lens_name="Sun_Evening" sky_sun_check="1" sky_sun_direction="210" sky_sun_height="25" time_hour="9" time_min="0" time_name="Night" view_dist="2048" zonename="TZ_idabre_low_eciel"/>
+	</TimeEnvSystem>
+	<TimeEnvZoneList>
+		<timeenv_zone name="TZ_idabre_low_eciel" priority="16">
+			<points_info bottom="80.349968" top="230.349976" type="polygon">
+				<points points_size="4">
+					<data x="92.562798" y="64.156670"/>
+					<data x="447.551605" y="59.774097"/>
+					<data x="444.264648" y="410.380341"/>
+					<data x="91.467133" y="407.093414"/>
+				</points>
+			</points_info>
+		</timeenv_zone>
+	</TimeEnvZoneList>
+	<TimeofDayEnvSystem>
+		<TimeofDayGroup vartype="0" zonename="TZ_idabre_low_eciel">
+			<time_name type="arr_string">
+				<keyvalue></keyvalue>
+			</time_name>
+			<time_hour ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</time_hour>
+			<time_min ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</time_min>
+			<SSAO type="arr_string">
+				<keyvalue></keyvalue>
+			</SSAO>
+			<fog_color type="colorbar">
+				<keyvalue key0="137,122,135,0"/>
+			</fog_color>
+			<view_dist ratio="0,2048" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</view_dist>
+			<fog_density ratio="0,0.5" type="gridwindow">
+				<keyvalue key0="0.0060000001,0" key1="0.0060000001,1"/>
+			</fog_density>
+			<fog_heightfalloff ratio="-10,10" type="gridwindow">
+				<keyvalue key0="0.50050002,0" key1="0.50050002,1"/>
+			</fog_heightfalloff>
+			<fogAtmosphereScale ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</fogAtmosphereScale>
+			<fogAtmosphereHeight ratio="0,512" type="gridwindow">
+				<keyvalue key0="0.234375,0" key1="0.234375,1"/>
+			</fogAtmosphereHeight>
+			<fogAtmosphereDistFog ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.0099999998,0" key1="0.0099999998,1"/>
+			</fogAtmosphereDistFog>
+			<fogskyratio ratio="0,255" type="gridwindow">
+				<keyvalue key0="0.0039220001,0" key1="0.0039220001,1"/>
+			</fogskyratio>
+			<LayerFogHeight ratio="0,2048" type="gridwindow">
+				<keyvalue key0="0.19531301,0" key1="0.19531301,1"/>
+			</LayerFogHeight>
+			<LayerFogOpacity ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerFogOpacity>
+			<env_color type="colorbar">
+				<keyvalue key0="166,148,130,0"/>
+			</env_color>
+			<outdoor_ambient type="colorbar">
+				<keyvalue key0="85,85,85,0"/>
+			</outdoor_ambient>
+			<AmbientAmplify ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.80000001,0" key1="0.80000001,1"/>
+			</AmbientAmplify>
+			<env_windforce ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</env_windforce>
+			<env_heathaze ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</env_heathaze>
+			<particlefx type="arr_string">
+				<keyvalue></keyvalue>
+			</particlefx>
+			<fullscreenfx type="arr_string">
+				<keyvalue></keyvalue>
+			</fullscreenfx>
+			<fxEnvColorRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fxEnvColorRatio>
+			<fxEnvAmbAlphaRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fxEnvAmbAlphaRatio>
+			<fog_start ratio="0,512" type="gridwindow">
+				<keyvalue key0="0.125,0" key1="0.125,1"/>
+			</fog_start>
+			<fog_end ratio="30,2048" type="gridwindow">
+				<keyvalue key0="0.111992,0" key1="0.111992,1"/>
+			</fog_end>
+			<sky_box_name type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_box_name>
+			<sky_dome_Alpha ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</sky_dome_Alpha>
+			<cloud2d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud2d>
+			<cloud3d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud3d>
+			<sky_lens_name type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_name>
+			<sky_lens_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_check>
+			<sky_sun_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_sun_check>
+			<sky_sun_height ratio="1,64" type="gridwindow">
+				<keyvalue key0="0.809524,0" key1="0.809524,1"/>
+			</sky_sun_height>
+			<sky_sun_direction ratio="0,360" type="gridwindow">
+				<keyvalue key0="0.125,0" key1="0.125,1"/>
+			</sky_sun_direction>
+			<SunAmplify ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.89999998,0" key1="0.89999998,1"/>
+			</SunAmplify>
+			<SunShaftDisplayRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</SunShaftDisplayRatio>
+			<SunShaftFogShadowRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</SunShaftFogShadowRatio>
+			<SunMultiplier ratio="0,255" type="gridwindow">
+				<keyvalue key0="0.078431003,0" key1="0.078431003,1"/>
+			</SunMultiplier>
+			<RayleighScattering ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.2,0" key1="0.2,1"/>
+			</RayleighScattering>
+			<MieScattering ratio="0,100" type="gridwindow">
+				<keyvalue key0="0.1137,0" key1="0.1137,1"/>
+			</MieScattering>
+			<ZenithShift ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.60000002,0" key1="0.60000002,1"/>
+			</ZenithShift>
+			<SunWavelength_r ratio="0,1024" type="gridwindow">
+				<keyvalue key0="0.696477,0" key1="0.696477,1"/>
+			</SunWavelength_r>
+			<SunWavelength_g ratio="0,1024" type="gridwindow">
+				<keyvalue key0="0.228616,0" key1="0.228616,1"/>
+			</SunWavelength_g>
+			<SunWavelength_b ratio="0,1024" type="gridwindow">
+				<keyvalue key0="0.27143601,0" key1="0.27143601,1"/>
+			</SunWavelength_b>
+			<ZenithColor type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</ZenithColor>
+			<NoiseAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</NoiseAmount>
+			<WaveLength ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.1,0" key1="0.1,1"/>
+			</WaveLength>
+			<WaveSpeed ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.30000001,0" key1="0.30000001,1"/>
+			</WaveSpeed>
+			<WaveAmplitude ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.1,0" key1="0.1,1"/>
+			</WaveAmplitude>
+			<WaveAngle ratio="0,360" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</WaveAngle>
+			<SunSpecular ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.1,0" key1="0.1,1"/>
+			</SunSpecular>
+			<SurfaceAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</SurfaceAmount>
+			<BeachAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</BeachAmount>
+			<RefractColor type="colorbar">
+				<keyvalue key0="51,90,102,0"/>
+			</RefractColor>
+			<RefractAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.30000001,0" key1="0.30000001,1"/>
+			</RefractAmount>
+			<SunColor type="colorbar">
+				<keyvalue key0="162,136,103,0"/>
+			</SunColor>
+			<SunColorMultiplier ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</SunColorMultiplier>
+			<ReflectAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</ReflectAmount>
+			<FogColor type="colorbar">
+				<keyvalue key0="51,90,102,0"/>
+			</FogColor>
+			<FogDensity ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.115,0" key1="0.115,1"/>
+			</FogDensity>
+			<LayerIntensity ratio="0,2" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerIntensity>
+			<LayerThaw ratio="0,10" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerThaw>
+			<HorizonColor type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</HorizonColor>
+			<PhotoColor type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</PhotoColor>
+			<SelectiveSrc type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveSrc>
+			<SelectiveDest type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveDest>
+			<GammaSrcMin ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaSrcMin>
+			<GammaSrcMax ratio="0,255" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</GammaSrcMax>
+			<GammaDestMin ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaDestMin>
+			<GammaDestMax ratio="0,255" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</GammaDestMax>
+			<GammaInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</GammaInterpolate>
+			<PhotocolorInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</PhotocolorInterpolate>
+			<SelectiveInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</SelectiveInterpolate>
+		</TimeofDayGroup>
+	</TimeofDayEnvSystem>
+	<FxArtifactSystem></FxArtifactSystem>
+	<CommonShapeList>
+		<music_zones>
+			<music_zone name="MusiczoneShapeIDAbRe_Low_Eciel-BGM1" priority="1" theme="IDAbRe_Low_Eciel">
+				<points_info bottom="0.100000" top="1000.099976" type="polygon">
+					<points points_size="4">
+						<data x="53.258541" y="-12.564165"/>
+						<data x="54.866817" y="491.636963"/>
+						<data x="522.881287" y="509.328217"/>
+						<data x="495.540222" y="-20.605637"/>
+					</points>
+				</points_info>
+			</music_zone>
+			<music_zone name="MUTE" priority="16" theme="MUTE">
+				<points_info bottom="0.100000" top="1000.099976" type="polygon">
+					<points points_size="4">
+						<data x="-54.234356" y="-111.040466"/>
+						<data x="-50.150978" y="687.266418"/>
+						<data x="693.029846" y="749.538513"/>
+						<data x="663.425171" y="-162.083069"/>
+					</points>
+				</points_info>
+			</music_zone>
+		</music_zones>
+		<sub_zones>
+			<subzone name="IDAbRe_Low_ECiel_SZ" priority="16" string="STR_IDAbRe_Low_Eciel_SZ_All">
+				<points_info bottom="80.000000" top="280.000000" type="polygon">
+					<points points_size="4">
+						<data x="121.860001" y="84.169998"/>
+						<data x="122.983276" y="405.976990"/>
+						<data x="399.953674" y="404.591187"/>
+						<data x="398.831909" y="83.203232"/>
+					</points>
+				</points_info>
+			</subzone>
+		</sub_zones>
+		<attribute_zones></attribute_zones>
+		<npcpath_boids></npcpath_boids>
+		<flying_zones></flying_zones>
+		<beach_zones></beach_zones>
+	</CommonShapeList>
+	<EntityDescriptions></EntityDescriptions>
+	<Objects>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1114272771" EntityId="83" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight51" Pos="294.67044,215.30653,141.80353" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.258824,0.658824,0.87451" DiffuseMultiplier="1.2" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="40" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,159.99998" dir="70" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest63" npc="Ab1_1132_TreasureBox_SuscessB" Pos="219.61551,227.06093,103.99603" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest52" npc="Ab1_1132_TreasureBox_SuscessB" Pos="288.77032,245.76599,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-39.999962" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="196336901" EntityId="72" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight38" Pos="305.45978,261.05032,132.32951" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.262745,0.662745,0.878431" DiffuseMultiplier="0.8" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="50" ProjectorFov="90" texture_ProjectorTexture="Levels\common\light\structures\props\lightings\pr_l_window_029.dds" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,30.000004" dir="300" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest4" npc="Ab1_1132_TreasureBox_SuscessB" Pos="238.66106,213.49998,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-20.000011" dir="250" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest49" npc="Ab1_1132_TreasureBox_SuscessB" Pos="285.39703,202.28174,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,100.00001" dir="10" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest14" npc="Ab1_1132_TreasureBox_SuscessB" Pos="245.1205,222.28189,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest106" npc="Ab1_1132_TreasureBox_SuscessB" Pos="334.36011,211.83786,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="-4.3642368e-07,12,90.999893" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1495028745" EntityId="12" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect13" Pos="262.81799,164.65944,107.3671" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.1539444,1.1539444,1.1539439" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1653250807" EntityId="50" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight16" Pos="264.5545,271.8923,108.46283" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.87451,0.341176,0.266667" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="5" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,130" dir="40" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest67" npc="Ab1_1132_TreasureBox_SuscessB" Pos="222.63435,202.37596,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,0,-109.99998" dir="160" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest42" npc="Ab1_1132_TreasureBox_SuscessB" Pos="281.89853,188.39774,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,159.99998" dir="70" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest44" npc="Ab1_1132_TreasureBox_SuscessB" Pos="276.35651,241.0249,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-20.000011" dir="250" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest128" npc="Ab1_1132_TreasureBox_SuscessB" Pos="298.13693,174.24049,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-742678257" EntityId="44" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight10" Pos="243.96094,121.24577,109.47256" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky9" npc="IDAbRe_Low_Draky_35_An" Pos="287.14578,270.52274,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,59.999992" dir="330" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest113" npc="Ab1_1132_TreasureBox_SuscessB" Pos="264.25714,161.7961,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-70.000008" dir="200" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest115" npc="Ab1_1132_TreasureBox_SuscessB" Pos="226.99825,168.10165,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,130" dir="40" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest92" npc="Ab1_1132_TreasureBox_SuscessB" Pos="244.81754,282.16742,103.99676" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest11" npc="Ab1_1132_TreasureBox_SuscessB" Pos="249.21912,209.86971,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1935173868" EntityId="52" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight18" Pos="231.66838,250.78906,108.46283" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,0,-99.999985" dir="170" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest35" npc="Ab1_1132_TreasureBox_SuscessB" Pos="266.90302,212.89743,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob45" npc="RightCiel_LizardFiArmor_35_Ae" Pos="258.65762,126.80566,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,74.999992" dir="345" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob42" npc="RightCiel_LizardRa_35_Ae" Pos="203.77426,317.96259,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky28" npc="IDAbRe_Low_Draky_35_An" Pos="203.58975,154.33722,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest108" npc="Ab1_1132_TreasureBox_SuscessB" Pos="318.55774,179.28487,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-695343337" EntityId="55" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight21" Pos="224.97948,180.63885,108.46283" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-159.99998" dir="110" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest3" npc="Ab1_1132_TreasureBox_SuscessB" Pos="235.61578,206.10236,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest134" npc="Ab1_1132_TreasureBox_SuscessB" Pos="219.8204,183.50363,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest88" npc="Ab1_1132_TreasureBox_SuscessB" Pos="272.40521,274.64737,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-358654693" EntityId="78" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight46" Pos="212.96103,174.96036,133.68217" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.258824,0.658824,0.87451" DiffuseMultiplier="0.8" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="40" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-174.99998" dir="95" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob18" npc="RightCiel_NagaMage_35_Ae" Pos="260.66098,115.30315,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,0.30999678" CastShadowMaps="0" CastShadows="0" EntityClass="PlaceableObject" EntityGUID="1158381598" EntityId="14" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="eciel_placeable" LodRatio="100" Name="PlaceableObject173" Pos="263.59274,395.44913,103.24831" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties fFontScale="0.1" fileLadderCGF="Objects\npc\level_object\door\Door_Treasure.cgf" gostring_Text=""/>
+		</Entity>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest51" npc="Ab1_1132_TreasureBox_SuscessB" Pos="293.5817,189.34846,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-129.99998" dir="140" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob19" npc="RightCiel_NagaMage_35_Ae" Pos="334.53928,143.68509,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="-4.3347217e-07,9.9999971,-44.999969" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1018811424" EntityId="15" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect16" Pos="226.4657,256.23193,107.32143" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.1539446,1.1539446,1.1539438" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1498407903" EntityId="75" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight43" Pos="306.15515,247.00806,134.71788" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.258824,0.658824,0.87451" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="60" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,0,-99.999985" dir="170" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest21" npc="Ab1_1132_TreasureBox_SuscessB" Pos="257.00479,183.50363,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky27" npc="IDAbRe_Low_Draky_35_An" Pos="262.96017,121.70442,108" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="4.3995536e-07,14.000001,-44.000061" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="695231011" EntityId="32" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect39" Pos="295.87006,184.82315,107.44623" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.153944,1.153944,1.1539439" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest38" npc="Ab1_1132_TreasureBox_SuscessB" Pos="280.90698,251.30779,103.99676" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-124.99998" dir="145" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob50" npc="RightCiel_LizardRa_35_Ae" Pos="313.16818,165.94812,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,8.9999943,-87.999977" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1771341348" EntityId="24" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect47" Pos="264.54492,271.64832,106.89182" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.1539445,1.1539441,1.1539443" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1099771612" EntityId="46" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight12" Pos="318.51569,135.22752,109.47256" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1852349734" EntityId="58" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight24" Pos="262.88806,163.82291,108.46283" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-963127002" EntityId="43" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight9" Pos="206.73573,136.52753,109.47256" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,69.999992" dir="340" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest33" npc="Ab1_1132_TreasureBox_SuscessB" Pos="267.03955,188.9743,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-20.000011" dir="250" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob4" npc="RightCiel_LizardPr_35_Ae" Pos="305.57474,330.91666,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1337100249" EntityId="53" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight19" Pos="217.56656,218.6833,108.46283" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky29" npc="IDAbRe_Low_Draky_35_An" Pos="190.5293,160.37767,108" Type="SP" use_dir="0"/>
+		<Object Ignore_heightcheck="0" Name="LocationIDAbRe_Low_ECiel_resurrection_alias3" Pos="261.81519,388.18527,108.71529" Type="Location"/>
+		<Object Angles="0,-0,130" dir="40" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest107" npc="Ab1_1132_TreasureBox_SuscessB" Pos="328.181,234.85429,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-16945364" EntityId="62" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight28" Pos="302.12576,255.23315,108.46283" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob17" npc="RightCiel_NagaFighter_35_Ae" Pos="264.14606,242.9778,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="1.3143469e-06,12.999995,135.99992" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="233649966" EntityId="11" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect12" Pos="300.73676,179.82112,107.41821" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.153944,1.1539441,1.1539441" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,59.999992" dir="330" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest72" npc="Ab1_1132_TreasureBox_SuscessB" Pos="206.99655,253.5,103.99676" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,135" dir="45" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob37" npc="RightCiel_LizardFi_35_Ae" Pos="303.45166,260.9256,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,174.99998" dir="85" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob3" npc="RightCiel_LizardRa_35_Ae" Pos="265.25732,301.164,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1988047663" EntityId="88" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight56" Pos="263.68011,395.02213,101.4615" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.729412,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="10" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,30.000004" dir="300" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest57" npc="Ab1_1132_TreasureBox_SuscessB" Pos="298.14426,213.77122,104" Type="SP" use_dir="0"/>
+		<Object Ignore_heightcheck="0" Name="StartPointIDAbRe_Low_ECiel_StartPoint1" Pos="263.26382,386.85098,104.61702" Type="StartPoint"/>
+		<Object Angles="0,-0,20.000006" dir="290" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest36" npc="Ab1_1132_TreasureBox_SuscessB" Pos="272.51968,248.91594,104" Type="SP" use_dir="0"/>
+		<Object Ignore_heightcheck="0" Name="StartPointIDAbRe_Low_ECiel_StartPoint2" Pos="258.83853,389.84604,104.61702" Type="StartPoint"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob16" npc="RightCiel_NagaFighter_35_Ae" Pos="306.45764,217.35368,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,79.999977" dir="350" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest69" npc="Ab1_1132_TreasureBox_SuscessB" Pos="216.99725,213.5,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob15" npc="RightCiel_NagaMage_35_Ae" Pos="290.12637,216.24402,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest78" npc="Ab1_1132_TreasureBox_SuscessB" Pos="208.17795,216.22987,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest34" npc="Ab1_1132_TreasureBox_SuscessB" Pos="271.86276,224.75154,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,89.999977" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1125466571" EntityId="7" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect6" Pos="272.12561,355.68268,108.30563" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.22,1.22,1.22" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,110" dir="20" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest24" npc="Ab1_1132_TreasureBox_SuscessB" Pos="256.31573,223.59016,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-159.99998" dir="110" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest10" npc="Ab1_1132_TreasureBox_SuscessB" Pos="247.00302,253.5,103.99676" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,59.999992" dir="330" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest25" npc="Ab1_1132_TreasureBox_SuscessB" Pos="256.09061,245.47925,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,21.999994" dir="292" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob46" npc="RightCiel_LizardAs_35_Ae" Pos="340.23523,263.16962,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,41.999992" dir="312" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob23" npc="RightCiel_LizardPr_35_Ae" Pos="281.91803,244.57292,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,89.999977" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="535965240" EntityId="8" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect7" Pos="254.79575,355.66058,108.30563" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.22,1.22,1.22" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,-20.000011" dir="250" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest58" npc="Ab1_1132_TreasureBox_SuscessB" Pos="298.19199,245.28716,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest99" npc="Ab1_1132_TreasureBox_SuscessB" Pos="316.99527,263.49774,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest77" npc="Ab1_1132_TreasureBox_SuscessB" Pos="203.57527,240.41342,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest105" npc="Ab1_1132_TreasureBox_SuscessB" Pos="325.76987,195.04811,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1517786429" EntityId="3" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_Effect" LodRatio="100" Name="ParticleEffect2" Pos="255.21381,230.8885,114.87049" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_df_nature.iddf2a.fog_yellow" Scale="2" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="448055869" EntityId="73" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight39" Pos="262.08615,218.22133,143.15117" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.258824,0.658824,0.87451" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="60" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest53" npc="Ab1_1132_TreasureBox_SuscessB" Pos="293.12836,239.04762,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest101" npc="Ab1_1132_TreasureBox_SuscessB" Pos="306.72617,250.17613,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-30.000011" dir="240" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest55" npc="Ab1_1132_TreasureBox_SuscessB" Pos="294.49564,198.21187,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-979457727" EntityId="60" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight26" Pos="295.32925,185.56583,108.03786" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky32" npc="IDAbRe_Low_Draky_35_An" Pos="222.0246,336.22382,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,69.999992" dir="340" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest120" npc="Ab1_1132_TreasureBox_SuscessB" Pos="289.44058,167.92642,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1701884994" EntityId="23" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight2" Pos="262.92972,361.94797,111.36303" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.301961,0.611765,0.843137" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="10" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,10.000008" dir="280" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest119" npc="Ab1_1132_TreasureBox_SuscessB" Pos="306.83307,164.91898,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-159.99998" dir="110" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest31" npc="Ab1_1132_TreasureBox_SuscessB" Pos="262.44434,218.29866,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-140" dir="130" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest17" npc="Ab1_1132_TreasureBox_SuscessB" Pos="260.0116,175.66753,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,0,-109.99998" dir="160" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest127" npc="Ab1_1132_TreasureBox_SuscessB" Pos="307.59912,170.93611,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,59.999992" dir="330" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest109" npc="Ab1_1132_TreasureBox_SuscessB" Pos="315.3222,206.6904,104" Type="SP" use_dir="0"/>
+		<Object AreaId="1" Closed="1" DisplayFilled="0" GroupId="111" Height="400" Name="idabre_low_eciel_shape_01" Pos="88.760834,10.240356,0.1" Type="Shape" Width="0">
+			<Points>
+				<Point Pos="88.760834,10.240356,0.1"/>
+				<Point Pos="93.379822,472.14075,0.1"/>
+				<Point Pos="446.52408,471.74493,0.1"/>
+				<Point Pos="447.54538,8.7714844,0.1"/>
+			</Points>
+			<Entities>
+				<Entity Name="idabre_low_eciel_RA_01"/>
+			</Entities>
+		</Object>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky16" npc="IDAbRe_Low_Draky_35_An" Pos="216.36395,241.77704,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky20" npc="IDAbRe_Low_Draky_35_An" Pos="242.45634,229.4048,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky26" npc="IDAbRe_Low_Draky_35_An" Pos="318.60858,150.08119,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,45.000004" dir="315" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob36" npc="RightCiel_LizardFiArmor_35_Ae" Pos="233.11867,249.51523,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky14" npc="IDAbRe_Low_Draky_35_An" Pos="206.12592,199.46014,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest100" npc="Ab1_1132_TreasureBox_SuscessB" Pos="324.21808,247.6757,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="RandomAmbientSound" EntityGUID="219586639" EntityId="136" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_Ambient" LodRatio="100" Name="idabre_low_eciel_RA_01" Pos="893.02063,488.08484,24.107849" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="26.4792,26.4792,26.4792" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="RandomAmbient" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bLIndoorOnly="0" bLOutdoorOnly="0" fScale="1" nEAXEnvironment="0">
+				<EaxReverbProperties fAirAbsorptionHF="0" fDecayHFRatio="0.1" fDecayLFRatio="0.1" fDecayTime="0.1" fDensity="0" fDiffusion="0" fEchoDepth="0" fEchoTime="0.075" fEnvDiffusion="0" fEnvSize="1" fHFReference="1000" fLFReference="20" fModulationDepth="0" fModulationTime="0.04" fReflectionsDelay="0" fReverbDelay="0" fRoomRolloffFactor="0" nEnvironment="0" nFlags="0" nReflections="-10000" nReverb="-10000" nRoom="-10000" nRoomHF="-10000" nRoomLF="-10000">
+					<fReflectionsPan x="0" y="0" z="0"/>
+					<fReverbPan x="0" y="0" z="0"/>
+				</EaxReverbProperties>
+				<Sound1 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="160" sndSound="Sounds\ambient\ambient_dungeon_2.ogg"/>
+				<Sound2 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound3 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound4 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound5 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound6 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound7 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+			</Properties>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-61557681" EntityId="74" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight41" Pos="259.89249,191.93025,165.0119" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.258824,0.658824,0.87451" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="40" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-21.999916" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1341840207" EntityId="17" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect54" Pos="348.83313,171.65829,108.6883" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.3113,1.3113,1.3112999" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,94.000053" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="810899792" EntityId="69" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight35" Pos="205.53612,217.25249,132.32951" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.262745,0.662745,0.878431" DiffuseMultiplier="0.8" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="50" ProjectorFov="90" texture_ProjectorTexture="Levels\common\light\structures\props\lightings\pr_l_window_029.dds" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky3" npc="IDAbRe_Low_Draky_35_An" Pos="248.09296,195.44809,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky17" npc="IDAbRe_Low_Draky_35_An" Pos="269.11438,234.43939,108" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="299021394" EntityId="89" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight62" Pos="262.83069,366.31485,117.18229" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.301961,0.611765,0.843137" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="18" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob31" npc="RightCiel_LizardRa_35_Ae" Pos="281.84848,206.63504,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-149.99998" dir="120" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest122" npc="Ab1_1132_TreasureBox_SuscessB" Pos="274.9769,152.21429,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,125" dir="35" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob53" npc="RightCiel_LizardAs_35_Ae" Pos="214.43233,166.51413,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-20.000011" dir="250" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest27" npc="Ab1_1132_TreasureBox_SuscessB" Pos="260.87653,235.07616,103.99603" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-20.000011" dir="250" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest66" npc="Ab1_1132_TreasureBox_SuscessB" Pos="234.13274,208.95232,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-85" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="717566299" EntityId="66" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight32" Pos="322.07916,218.2513,132.71944" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.262745,0.662745,0.878431" DiffuseMultiplier="0.8" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="50" ProjectorFov="90" texture_ProjectorTexture="Levels\common\light\structures\props\lightings\pr_l_window_029.dds" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="-8.7991071e-07,14.000003,-94.000031" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1967484763" EntityId="33" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect40" Pos="262.84894,171.70157,107.43611" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.1539446,1.1539448,1.153944" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,119.99999" dir="30" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest80" npc="Ab1_1132_TreasureBox_SuscessB" Pos="193.05368,220.26468,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-62.999939" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1222483292" EntityId="28" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect52" Pos="281.73068,119.19215,109.02791" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.3113002,1.3113002,1.3112999" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,135" dir="45" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob26" npc="RightCiel_NagaPriest_35_Ae" Pos="232.43814,187.77742,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1446652515" EntityId="79" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight47" Pos="228.17012,310.03372,148.48395" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.258824,0.658824,0.87451" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="40" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,66.999977" dir="337" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob58" npc="RightCiel_LizardFiArmor_35_Ae" Pos="226.35626,143.33194,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,110" dir="20" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest82" npc="Ab1_1132_TreasureBox_SuscessB" Pos="194.76146,208.3403,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest83" npc="Ab1_1132_TreasureBox_SuscessB" Pos="223.2782,258.16321,103.99676" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,140" dir="50" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob60" npc="RightCiel_NagaPriest_35_Ae" Pos="190.56029,148.00653,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,79.999977" dir="350" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest7" npc="Ab1_1132_TreasureBox_SuscessB" Pos="234.76663,245.85519,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1846783333" EntityId="48" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight14" Pos="355.52499,188.62241,109.47256" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,145" dir="55" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob56" npc="RightCiel_NagaFighter_35_Ae" Pos="340.95331,173.27922,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="8.6018531e-07,6.9999967,43.999847" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1840800360" EntityId="37" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect44" Pos="296.6702,250.17271,107.35167" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.1539445,1.1539446,1.1539438" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky5" npc="IDAbRe_Low_Draky_35_An" Pos="295.90182,237.17996,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-70.000008" dir="200" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest46" npc="Ab1_1132_TreasureBox_SuscessB" Pos="287.98297,254.04219,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob66" npc="RightCiel_LizardAs_35_Ae" Pos="336.72922,217.20767,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky1" npc="IDAbRe_Low_Draky_35_An" Pos="241.54179,189.37224,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob40" npc="RightCiel_LizardRa_35_Ae" Pos="206.44426,218.21413,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,1.0000763" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1880822164" EntityId="71" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight37" Pos="263.31265,279.65399,132.32951" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.262745,0.662745,0.878431" DiffuseMultiplier="0.8" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="50" ProjectorFov="90" texture_ProjectorTexture="Levels\common\light\structures\props\lightings\pr_l_window_029.dds" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky19" npc="IDAbRe_Low_Draky_35_An" Pos="266.54996,209.47125,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest74" npc="Ab1_1132_TreasureBox_SuscessB" Pos="207.85107,178.02115,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-66.999985" dir="203" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob34" npc="RightCiel_LizardRa_35_Ae" Pos="251.10136,278.50687,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest23" npc="Ab1_1132_TreasureBox_SuscessB" Pos="258.57547,214.14894,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,20.000006" dir="290" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob57" npc="RightCiel_NagaFighter_35_Ae" Pos="176.76033,196.45737,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,40" dir="310" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest85" npc="Ab1_1132_TreasureBox_SuscessB" Pos="212.30588,268.06393,103.99676" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest86" npc="Ab1_1132_TreasureBox_SuscessB" Pos="291.9184,277.24539,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-89" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-523080078" EntityId="29" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect33" Pos="255.36813,362.72845,108.08225" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.22,1.22,1.22" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,112.99999" dir="23" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob11" npc="RightCiel_LizardPr_35_Ae" Pos="219.53769,292.14777,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,20.000006" dir="290" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest112" npc="Ab1_1132_TreasureBox_SuscessB" Pos="247.50885,167.74756,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,-177.99997" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1600560500" EntityId="67" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight33" Pos="263.66238,159.69675,132.32951" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.262745,0.662745,0.878431" DiffuseMultiplier="0.8" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="50" ProjectorFov="90" texture_ProjectorTexture="Levels\common\light\structures\props\lightings\pr_l_window_029.dds" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,61.999989" dir="332" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob35" npc="RightCiel_LizardAs_35_Ae" Pos="276.38693,278.67014,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky31" npc="IDAbRe_Low_Draky_35_An" Pos="197.27933,282.04419,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-157.99998" dir="112" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob10" npc="RightCiel_LizardRa_35_Ae" Pos="343.42984,239.0078,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky11" npc="IDAbRe_Low_Draky_35_An" Pos="321.68805,233.60742,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,0,-119.99998" dir="150" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest121" npc="Ab1_1132_TreasureBox_SuscessB" Pos="278.04504,163.91689,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-50.000004" dir="220" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest104" npc="Ab1_1132_TreasureBox_SuscessB" Pos="332.71686,222.7697,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-137.99998" dir="132" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob22" npc="RightCiel_LizardFi_35_Ae" Pos="245.48656,192.8168,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,100.00001" dir="10" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest130" npc="Ab1_1132_TreasureBox_SuscessB" Pos="237,263.49506,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-149.99998" dir="120" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest60" npc="Ab1_1132_TreasureBox_SuscessB" Pos="307.00351,230.88202,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-174.99998" dir="95" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob1" npc="RightCiel_LizardFi_35_Ae" Pos="262.58063,301.146,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-2071994246" EntityId="76" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight44" Pos="222.07027,253.92369,134.71788" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.258824,0.658824,0.87451" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="60" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,129.00002" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1532594299" EntityId="68" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight34" Pos="220.85077,176.79132,132.32951" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.262745,0.662745,0.878431" DiffuseMultiplier="0.8" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="50" ProjectorFov="90" texture_ProjectorTexture="Levels\common\light\structures\props\lightings\pr_l_window_029.dds" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,69.999992" dir="340" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest79" npc="Ab1_1132_TreasureBox_SuscessB" Pos="198.96677,236.58699,103.99603" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky21" npc="IDAbRe_Low_Draky_35_An" Pos="282.20279,165.08774,108" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-829946499" EntityId="85" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight53" Pos="270.93469,363.414,108.46283" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.458824,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="5" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-159.99998" dir="110" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest124" npc="Ab1_1132_TreasureBox_SuscessB" Pos="255.21924,151.22728,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest91" npc="Ab1_1132_TreasureBox_SuscessB" Pos="263.06964,274.4743,103.99676" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest126" npc="Ab1_1132_TreasureBox_SuscessB" Pos="262.93213,143.87202,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest111" npc="Ab1_1132_TreasureBox_SuscessB" Pos="316.87973,192.14742,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,130" dir="40" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest96" npc="Ab1_1132_TreasureBox_SuscessB" Pos="292.82407,264.27676,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-69.999916" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="205502591" EntityId="31" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect53" Pos="318.73236,134.77332,109.02791" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.3113,1.3113,1.3112999" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,-174.99998" dir="95" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob2" npc="RightCiel_LizardAs_35_Ae" Pos="263.1604,277.21939,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-47.999992" dir="222" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob25" npc="RightCiel_LizardAs_35_Ae" Pos="288.01245,199.02556,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-159.99998" dir="110" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest65" npc="Ab1_1132_TreasureBox_SuscessB" Pos="226.21587,189.20418,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,9.9999962,179.99989" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-2092211325" EntityId="35" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect42" Pos="217.37538,218.71928,107.33328" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.153944,1.1539441,1.1539438" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,-174.99998" dir="95" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob48" npc="RightCiel_LizardFi_35_Ae" Pos="261.3378,147.85948,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-264905341" EntityId="42" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight8" Pos="178.27147,171.25893,109.47256" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest47" npc="Ab1_1132_TreasureBox_SuscessB" Pos="287,213.5,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,174.99998" dir="85" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob43" npc="RightCiel_LizardAs_35_Ae" Pos="265.5571,277.21225,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1664995449" EntityId="41" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight7" Pos="171.50945,187.91545,109.47256" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest20" npc="Ab1_1132_TreasureBox_SuscessB" Pos="252.82416,189.68726,104" Type="SP" use_dir="0"/>
+		<Object Ignore_heightcheck="0" Name="LocationIDAbRe_Low_ECiel_resurrection_alias1" Pos="265.96033,387.79013,108.71529" Type="Location"/>
+		<Object Angles="0,-0,-50.000004" dir="220" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest59" npc="Ab1_1132_TreasureBox_SuscessB" Pos="307.00351,207.93533,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob39" npc="RightCiel_LizardFi_35_Ae" Pos="201.93567,212.5688,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1769183350" EntityId="82" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight50" Pos="260.17606,297.49078,146.42224" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.258824,0.658824,0.87451" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="40" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-20.000011" dir="250" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest125" npc="Ab1_1132_TreasureBox_SuscessB" Pos="288.56894,158.83875,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,159.99998" dir="70" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest54" npc="Ab1_1132_TreasureBox_SuscessB" Pos="299.85986,218.47906,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky7" npc="IDAbRe_Low_Draky_35_An" Pos="252.58916,255.5428,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest93" npc="Ab1_1132_TreasureBox_SuscessB" Pos="261.9989,287.45251,103.99676" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1679944819" EntityId="87" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight55" Pos="271.00571,392.21317,108.05478" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.458824,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="5" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,132" dir="42" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob24" npc="RightCiel_LizardRa_35_Ae" Pos="239.1223,238.14337,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob38" npc="RightCiel_LizardPr_35_Ae" Pos="323.89639,205.21991,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky25" npc="IDAbRe_Low_Draky_35_An" Pos="358.46674,213.14418,108" Type="SP" use_dir="0"/>
+		<Object Ignore_heightcheck="0" Name="MPIDAbRe_Low_ECiel_Subzone1" Pos="261.42749,219.37775,104.83736" subzone="IDAbRe_Low_ECiel_SZ" Type="MP"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky8" npc="IDAbRe_Low_Draky_35_An" Pos="242.26399,265.01932,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Npc1" npc="" Pos="263.61432,395.24817,104.64008" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest13" npc="Ab1_1132_TreasureBox_SuscessB" Pos="247.77605,196.16809,104" Type="SP" use_dir="0"/>
+		<Object Ignore_heightcheck="0" Name="LocationIDAbRe_Low_ECiel_resurrection_alias2" Pos="268.11411,386.32324,108.71529" Type="Location"/>
+		<Object Ignore_heightcheck="0" Name="LocationIDAbRe_Low_ECiel_resurrection_alias4" Pos="263.88272,385.59753,108.71529" Type="Location"/>
+		<Object Angles="0,-0,-70.000008" dir="200" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest56" npc="Ab1_1132_TreasureBox_SuscessB" Pos="297,195.86575,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,-129.99998" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="293202838" EntityId="65" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight31" Pos="305.17917,177.43651,132.32951" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.262745,0.662745,0.878431" DiffuseMultiplier="0.8" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="50" ProjectorFov="90" texture_ProjectorTexture="Levels\common\light\structures\props\lightings\pr_l_window_029.dds" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky10" npc="IDAbRe_Low_Draky_35_An" Pos="312.36035,179.10361,108" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="769427863" EntityId="49" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight15" Pos="327.00888,315.93411,109.47256" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.458824,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="5" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-140" dir="130" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest131" npc="Ab1_1132_TreasureBox_SuscessB" Pos="227.95821,261.40375,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest89" npc="Ab1_1132_TreasureBox_SuscessB" Pos="240.48059,278.56204,103.99676" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-878488168" EntityId="38" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight4" Pos="272.04724,355.10355,108.46283" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.458824,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="5" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,59.999992" dir="330" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest102" npc="Ab1_1132_TreasureBox_SuscessB" Pos="303.61942,259.98865,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-159.99998" dir="110" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest12" npc="Ab1_1132_TreasureBox_SuscessB" Pos="247.46524,180.90958,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1837959777" EntityId="64" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight30" Pos="309.58118,217.04825,108.46283" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-414524768" EntityId="81" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight49" Pos="297.10818,277.72678,133.81085" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.258824,0.658824,0.87451" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="40" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-70.000008" dir="200" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest75" npc="Ab1_1132_TreasureBox_SuscessB" Pos="207.90533,214.01495,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-541046876" EntityId="40" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight6" Pos="200.64546,317.05185,108.46283" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.458824,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="5" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,89.999977" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1500295772" EntityId="20" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect31" Pos="271.30664,393.11465,107.53465" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.22,1.22,1.22" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest116" npc="Ab1_1132_TreasureBox_SuscessB" Pos="261.03342,162.86937,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest98" npc="Ab1_1132_TreasureBox_SuscessB" Pos="315.86734,258.0744,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Timer1" npc="IDAB1_SensoryArea_Timer_D" Pos="265.30643,349.73779,109.78802" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob7" npc="RightCiel_NagaPriest_35_Ae" Pos="263.10226,174.17934,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky23" npc="IDAbRe_Low_Draky_35_An" Pos="289.8989,304.26151,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,130" dir="40" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest22" npc="Ab1_1132_TreasureBox_SuscessB" Pos="256.03464,199.54208,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="41158059" EntityId="86" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight54" Pos="255.68156,392.52466,108.05478" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.458824,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="5" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob33" npc="RightCiel_LizardFiArmor_35_Ae" Pos="262.45859,214.08505,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,130" dir="40" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest117" npc="Ab1_1132_TreasureBox_SuscessB" Pos="237,156.46735,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="-6.7730028e-08,9.9999952,1.9999397" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="247949995" EntityId="5" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect38" Pos="309.82669,217.12328,107.4688" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.1539439,1.1539437,1.1539441" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-45.000004" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-951093845" EntityId="1" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_Effect" LodRatio="100" Name="ParticleEffect1" Pos="268.34695,189.62971,171.20712" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" Scale="1.08,1.08,1.08" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_lay.lay.cave" Scale="3" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest40" npc="Ab1_1132_TreasureBox_SuscessB" Pos="275.16803,204.32321,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,135" dir="45" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob54" npc="RightCiel_LizardAs_35_Ae" Pos="213.20717,167.73929,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-174.99998" dir="95" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob21" npc="RightCiel_NagaPriest_35_Ae" Pos="262.85641,115.67551,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-165" dir="105" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob61" npc="RightCiel_NagaFighter_35_Ae" Pos="301.34409,126.23319,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest95" npc="Ab1_1132_TreasureBox_SuscessB" Pos="276.99911,283.50299,103.99676" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky2" npc="IDAbRe_Low_Draky_35_An" Pos="274.66428,184.00478,108" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="-8.222238e-13,7.9999971,179.99989" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-664955730" EntityId="9" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect11" Pos="316.92365,217.0135,107.2939" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.1539441,1.1539441,1.1539439" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky22" npc="IDAbRe_Low_Draky_35_An" Pos="326.86902,297.34003,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,20.000006" dir="290" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest132" npc="Ab1_1132_TreasureBox_SuscessB" Pos="228.88388,274.66714,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-169.99998" dir="100" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob64" npc="RightCiel_LizardFi_35_Ae" Pos="224.00998,262.85446,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,47.00008" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-53191247" EntityId="70" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight36" Pos="222.64156,258.76627,132.32951" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.262745,0.662745,0.878431" DiffuseMultiplier="0.8" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="50" ProjectorFov="90" texture_ProjectorTexture="Levels\common\light\structures\props\lightings\pr_l_window_029.dds" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="18,-0,0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1407892401" EntityId="25" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight3" Pos="263.79239,365.80902,120.76346" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.301961,0.611765,0.843137" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="22" ProjectorFov="90" texture_ProjectorTexture="Levels\common\light\structures\props\lightings\pr_l_door_001.dds" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="916584881" EntityId="80" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight48" Pos="214.34372,284.54388,142.26622" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.258824,0.658824,0.87451" DiffuseMultiplier="0.6" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="40" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-20.000011" dir="250" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest32" npc="Ab1_1132_TreasureBox_SuscessB" Pos="264.3898,200.31436,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest97" npc="Ab1_1132_TreasureBox_SuscessB" Pos="322.46881,245.91426,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-50.000004" dir="220" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest48" npc="Ab1_1132_TreasureBox_SuscessB" Pos="287.26831,181.10721,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-145" dir="125" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob29" npc="RightCiel_LizardFiArmor_35_Ae" Pos="295.06146,191.2178,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-933260619" EntityId="59" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight25" Pos="301.12436,179.2966,108.46283" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest45" npc="Ab1_1132_TreasureBox_SuscessB" Pos="284.59241,229.68852,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob8" npc="RightCiel_NagaFighter_35_Ae" Pos="220.46455,218.78754,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,169.99998" dir="80" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest30" npc="Ab1_1132_TreasureBox_SuscessB" Pos="266.22137,173.60193,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-50.000004" dir="220" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest133" npc="Ab1_1132_TreasureBox_SuscessB" Pos="221.17039,176.00786,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-45.000004" dir="225" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob62" npc="RightCiel_LizardFiArmor_35_Ae" Pos="294.71545,248.32007,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,94.999992" dir="5" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob6" npc="RightCiel_NagaMage_35_Ae" Pos="161.30161,220.34151,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,0,-109.99998" dir="160" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest76" npc="Ab1_1132_TreasureBox_SuscessB" Pos="207,193.5,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky4" npc="IDAbRe_Low_Draky_35_An" Pos="299.28976,231.28049,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,110" dir="20" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest123" npc="Ab1_1132_TreasureBox_SuscessB" Pos="247.00302,153.50432,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-30.000011" dir="240" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest64" npc="Ab1_1132_TreasureBox_SuscessB" Pos="230.38399,241.39084,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,69.999992" dir="340" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest129" npc="Ab1_1132_TreasureBox_SuscessB" Pos="305.07922,183.13303,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-70.000008" dir="200" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob67" npc="RightCiel_LizardFi_35_Ae" Pos="321.86005,249.23051,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="274463168" EntityId="2" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_Ambient" LodRatio="100" Name="idabre_low_eciel_Sopt-sound_gate_01" Pos="263.55997,358.88275,107.08805" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="7" iVolume="250" OuterRadius="15" sndSource="Sounds\ambient\ambient_magic_gate.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="3.0668098e-06,12.999999,-132.00002" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1784088383" EntityId="34" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect41" Pos="230.2608,185.88542,107.43429" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.1539444,1.1539445,1.1539441" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1431607614" EntityId="39" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight5" Pos="254.84215,355.10355,108.46283" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.458824,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="5" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky18" npc="IDAbRe_Low_Draky_35_An" Pos="296.61069,205.67244,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-159.99998" dir="110" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest6" npc="Ab1_1132_TreasureBox_SuscessB" Pos="239.68037,234.51529,103.99603" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob30" npc="RightCiel_LizardPr_35_Ae" Pos="289.88361,187.75607,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,159.99998" dir="70" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest28" npc="Ab1_1132_TreasureBox_SuscessB" Pos="268.3403,250.07614,103.99676" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest1" npc="Ab1_1132_TreasureBox_SuscessB" Pos="235.93565,181.52895,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-50.000004" dir="220" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest16" npc="Ab1_1132_TreasureBox_SuscessB" Pos="249.07094,239.85497,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob32" npc="RightCiel_LizardAs_35_Ae" Pos="242.34521,230.15112,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-21.999916" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="446719945" EntityId="18" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect55" Pos="356.29532,188.45766,108.6883" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.3113,1.3113,1.3112999" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky6" npc="IDAbRe_Low_Draky_35_An" Pos="227.36417,214.40985,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-20.000011" dir="250" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest15" npc="Ab1_1132_TreasureBox_SuscessB" Pos="246.07962,207.27348,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest61" npc="Ab1_1132_TreasureBox_SuscessB" Pos="307.00351,211.48393,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky13" npc="IDAbRe_Low_Draky_35_An" Pos="239.04723,160.9285,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest73" npc="Ab1_1132_TreasureBox_SuscessB" Pos="210.29449,198.55309,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,149.99998" dir="60" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest114" npc="Ab1_1132_TreasureBox_SuscessB" Pos="216.99725,163.4985,104" Type="SP" use_dir="0"/>
+		<Object Ignore_heightcheck="0" Name="StartPointIDAbRe_Low_ECiel_StartPoint3" Pos="266.99075,389.45761,104.61702" Type="StartPoint"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky24" npc="IDAbRe_Low_Draky_35_An" Pos="290.49997,334.62512,108" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1162049229" EntityId="57" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight23" Pos="263.52728,171.89355,108.7795" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest68" npc="Ab1_1132_TreasureBox_SuscessB" Pos="229.10225,225.93622,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-114690355" EntityId="56" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight22" Pos="230.75963,186.20419,108.46283" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="1.7338887e-06,9.9999971,42.999962" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1983456462" EntityId="13" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect46" Pos="225.3606,180.83122,107.38688" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.1539441,1.1539443,1.1539435" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,154.99998" dir="65" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob28" npc="RightCiel_NagaFighter_35_Ae" Pos="225.51428,127.80217,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-50.000004" dir="220" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest84" npc="Ab1_1132_TreasureBox_SuscessB" Pos="216.83199,248.84837,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest50" npc="Ab1_1132_TreasureBox_SuscessB" Pos="287,227.01271,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,159.99998" dir="70" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest2" npc="Ab1_1132_TreasureBox_SuscessB" Pos="235.06477,185.98735,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky30" npc="IDAbRe_Low_Draky_35_An" Pos="170.7836,214.31985,108" Type="SP" use_dir="0"/>
+		<Object Ignore_heightcheck="0" Name="StartPointIDAbRe_Low_ECiel_StartPoint4" Pos="258.22141,386.81659,104.61702" Type="StartPoint"/>
+		<Object Angles="0,-0,-22.999996" dir="247" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob47" npc="RightCiel_LizardRa_35_Ae" Pos="186.32153,264.37463,106" Type="SP" use_dir="0"/>
+		<Object Ignore_heightcheck="0" Name="StartPointIDAbRe_Low_ECiel_StartPoint5" Pos="268.52997,386.71469,104.61702" Type="StartPoint"/>
+		<Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob27" npc="RightCiel_NagaMage_35_Ae" Pos="264.19244,261.26437,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="2031868883" EntityId="77" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight45" Pos="250.03651,160.49733,143.40747" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.258824,0.658824,0.87451" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="40" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-30.000011" dir="240" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest37" npc="Ab1_1132_TreasureBox_SuscessB" Pos="273.88019,236.17337,103.99603" Type="SP" use_dir="0"/>
+		<Object Angles="0,0,-112" dir="158" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob9" npc="RightCiel_LizardFi_35_Ae" Pos="305.85413,292.18542,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="-1.512728e-06,9,-132.99997" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1780330539" EntityId="10" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect10" Pos="301.7843,255.18498,107.31235" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.1539446,1.1539443,1.153944" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,-10.000014" dir="260" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest29" npc="Ab1_1132_TreasureBox_SuscessB" Pos="266.90375,260.06918,103.99676" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-84.999985" dir="185" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob20" npc="RightCiel_NagaFighter_35_Ae" Pos="366.09451,214.84323,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest18" npc="Ab1_1132_TreasureBox_SuscessB" Pos="258.38882,233.32634,103.99603" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-111.99994" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-52826410" EntityId="26" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect50" Pos="206.46126,135.95184,109.02791" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.3112999,1.3112999,1.3112999" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="732558550" EntityId="47" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight13" Pos="348.08102,171.75584,109.47256" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,-156.99997" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1227471657" EntityId="4" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect48" Pos="177.7328,171.02586,109.02791" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.3113002,1.3113002,1.3112999" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,64.999992" dir="335" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob41" npc="RightCiel_LizardAs_35_Ae" Pos="203.10867,316.09863,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,149.99998" dir="60" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest103" npc="Ab1_1132_TreasureBox_SuscessB" Pos="327.44754,213.5,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="-4.32208e-07,9.000001,134.99986" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="506731227" EntityId="36" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect43" Pos="231.50316,251.1965,107.24946" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.1539444,1.1539444,1.153944" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,149.99998" dir="60" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest118" npc="Ab1_1132_TreasureBox_SuscessB" Pos="297.05737,161.79393,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,30.000004" dir="300" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest41" npc="Ab1_1132_TreasureBox_SuscessB" Pos="279.02866,223.20299,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-68.000008" dir="202" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob59" npc="RightCiel_LizardFiArmor_35_Ae" Pos="299.44531,142.9044,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1293197788" EntityId="45" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight11" Pos="281.51901,119.71193,109.47256" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob5" npc="RightCiel_LizardFiArmor_35_Ae" Pos="262.45673,222.40105,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,174.99998" dir="85" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob49" npc="RightCiel_LizardFi_35_Ae" Pos="263.84454,147.85841,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,164.99992" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-907221795" EntityId="22" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect45" Pos="200.23878,317.18103,108.30563" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.22,1.22,1.22" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,0,-119.99998" dir="150" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest5" npc="Ab1_1132_TreasureBox_SuscessB" Pos="231.73996,227.9295,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest81" npc="Ab1_1132_TreasureBox_SuscessB" Pos="196.78278,205.36176,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-70.000008" dir="200" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest135" npc="Ab1_1132_TreasureBox_SuscessB" Pos="216.9964,193.5,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest87" npc="Ab1_1132_TreasureBox_SuscessB" Pos="284.70163,272.08905,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-149.99998" dir="120" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest94" npc="Ab1_1132_TreasureBox_SuscessB" Pos="265.77087,286.30264,103.99676" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1713870563" EntityId="51" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight17" Pos="226.33385,256.81042,108.46283" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,159.99998" dir="70" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest39" npc="Ab1_1132_TreasureBox_SuscessB" Pos="279.43619,195.55182,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,30.000004" dir="300" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob52" npc="RightCiel_LizardPr_35_Ae" Pos="283.16949,168.79156,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest90" npc="Ab1_1132_TreasureBox_SuscessB" Pos="251.13116,273.34119,103.99676" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-169.99998" dir="100" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest62" npc="Ab1_1132_TreasureBox_SuscessB" Pos="304.09772,229.81697,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1509456103" EntityId="84" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight52" Pos="255.52301,363.19925,108.46283" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.458824,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="5" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-89" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1554611224" EntityId="30" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect34" Pos="270.98853,362.78345,108.08225" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.22,1.22,1.22" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky12" npc="IDAbRe_Low_Draky_35_An" Pos="253.09621,157.69598,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest19" npc="Ab1_1132_TreasureBox_SuscessB" Pos="255.17285,255.14841,103.99676" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,161.99998" dir="72" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob12" npc="RightCiel_LizardAs_35_Ae" Pos="183.29659,240.27946,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,110" dir="20" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest8" npc="Ab1_1132_TreasureBox_SuscessB" Pos="235.29434,251.91618,103.99676" Type="SP" use_dir="0"/>
+		<Object Angles="0,0,-99.999985" dir="170" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob63" npc="RightCiel_LizardPr_35_Ae" Pos="215.00543,251.3848,106" Type="SP" use_dir="0"/>
+		<Object Ignore_heightcheck="0" Name="LocationIDAbRe_Low_ECiel_resurrection_alias5" Pos="259.09418,386.82581,108.71529" Type="Location"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,10,0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1916357613" EntityId="16" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect17" Pos="210.25613,218.75014,107.31029" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.1539443,1.1539443,1.1539439" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,0,-119.99998" dir="150" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest110" npc="Ab1_1132_TreasureBox_SuscessB" Pos="317.27985,175.38327,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky33" npc="IDAbRe_Low_Draky_35_An" Pos="232.14645,321.36755,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob65" npc="RightCiel_LizardRa_35_Ae" Pos="321.68262,217.09023,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-10.000014" dir="260" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest43" npc="Ab1_1132_TreasureBox_SuscessB" Pos="275.16751,208.84683,104" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-109.99994" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="967829231" EntityId="27" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect51" Pos="243.8054,120.47781,109.02791" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.3113,1.3113,1.3112999" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,26.000074" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-852647438" EntityId="19" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect56" Pos="327.77884,316.41577,108.6883" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.3113,1.3113,1.3112999" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest70" npc="Ab1_1132_TreasureBox_SuscessB" Pos="219.21199,221.34064,104" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob14" npc="RightCiel_NagaFighter_35_Ae" Pos="260.76398,194.06882,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,-169.99998" dir="100" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest71" npc="Ab1_1132_TreasureBox_SuscessB" Pos="209.8604,231.00809,103.99603" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,92.999969" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-609111304" EntityId="21" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect32" Pos="255.46916,393.12399,107.53465" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.22,1.22,1.22" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="10" Name="SPIDAbRe_Low_ECiel_Draky15" npc="IDAbRe_Low_Draky_35_An" Pos="204.6308,230.09029,108" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbRe_Low_ECiel_Mob13" npc="RightCiel_NagaPriest_35_Ae" Pos="236.66916,220.28476,106" Type="SP" use_dir="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob44" npc="RightCiel_LizardRa_35_Ae" Pos="190.45068,217.52448,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-324122884" EntityId="63" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight29" Pos="317.43524,217.03629,108.46283" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest9" npc="Ab1_1132_TreasureBox_SuscessB" Pos="244.16022,233.41878,103.99603" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1136875516" EntityId="61" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight27" Pos="296.44968,250.02921,108.46283" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob51" npc="RightCiel_LizardRa_35_Ae" Pos="314.37375,167.17854,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1794095363" EntityId="526" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_Effect" LodRatio="100" Name="ParticleEffect52" Pos="262.89688,361.14676,112.89355" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.14,1.14,1.14" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_effect.env_effect.magic-wall2" Scale="1.4" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,-50.000004" dir="220" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Chest26" npc="Ab1_1132_TreasureBox_SuscessB" Pos="259.54358,263.90216,103.99676" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-669372161" EntityId="54" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbRe_Low_ECiel_2.5Lighting" LodRatio="100" Name="DeferredLight20" Pos="209.85408,218.70847,108.46283" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.886275,0.411765,0.254902" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="4" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-30.000011" dir="240" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbRe_Low_ECiel_Mob55" npc="RightCiel_LizardPr_35_Ae" Pos="243.91237,168.87727,106" Type="SP" use_dir="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,-156.99997" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1819012863" EntityId="6" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Art_torch" LodRatio="100" Name="ParticleEffect49" Pos="170.99077,187.74945,109.02791" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.3112998,1.3112998,1.3112999" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="300">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+	</Objects>
+</Mission>

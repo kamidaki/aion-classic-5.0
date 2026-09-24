@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='utf-8'?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="210040000">
+		<base_spawn id="2140">
+			<!-- Kishar Outpost -->
+			<occupier_template occupier="ELYOS">
+				<!-- Elyos Territory -->
+				<!-- Territory Boss -->
+				<!-- Elyos Heiron Inspector -->
+				<!-- Heiron Sentinel -->
+				<!-- Marina -->
+				<spawn handler="MERCHANT" npc_id="801180" respawn_time="295">
+					<spot h="45" x="2125.8938" y="1475.2031" z="136.32527" />
+				</spawn>
+				<!-- Ludion -->
+				<spawn handler="MERCHANT" npc_id="801181" respawn_time="295">
+					<spot h="30" x="2113.5986" y="1466.5072" z="136.22552" />
+				</spawn>
+				<!-- Eos Crewman -->
+				<spawn handler="MERCHANT" npc_id="801182" respawn_time="295">
+					<spot h="45" x="2122.8694" y="1471.4498" z="137.00826" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Asmodians Territory -->
+				<!-- Territory Boss -->
+				<!-- Asmodian Heiron Inspector -->
+				<!-- Heiron Infiltrator -->
+				<!-- Heiron Scout -->
+				<!-- Eos Crewman -->
+				<spawn handler="MERCHANT" npc_id="801183" respawn_time="295">
+					<spot h="45" x="2125.8938" y="1475.2031" z="136.32527" />
+				</spawn>
+				<!-- Doroto -->
+				<spawn handler="MERCHANT" npc_id="801184" respawn_time="295">
+					<spot h="30" x="2113.5986" y="1466.5072" z="136.22552" />
+				</spawn>
+				<!-- Kiana -->
+				<spawn handler="MERCHANT" npc_id="801185" respawn_time="295">
+					<spot h="45" x="2122.8694" y="1471.4498" z="137.00826" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- Krall Territory -->
+				<!-- Territory Boss -->
+				<!-- Kishar Assassin -->
+				<!-- Kishar Vanguard (Shieldcaptain) -->
+				<!-- Kishar Protector -->
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="2141">
+			<!-- Research Center Outpost -->
+			<occupier_template occupier="ELYOS">
+				<spawn handler="MERCHANT" npc_id="802631">
+					<spot h="41" x="411.2793" y="909.1309" z="122.5000" />
+				</spawn>
+				<spawn handler="MERCHANT" npc_id="802631">
+					<spot h="47" x="425.4576" y="911.8110" z="122.5000" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<spawn handler="MERCHANT" npc_id="802342">
+					<spot h="41" x="411.2793" y="909.1309" z="122.5000" />
+				</spawn>
+				<spawn handler="MERCHANT" npc_id="802653">
+					<spot h="47" x="425.4576" y="911.8110" z="122.5000" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+                </occupier_template>
+		</base_spawn>
+		<base_spawn id="2142">
+			<occupier_template occupier="ELYOS">
+				<spawn handler="MERCHANT" npc_id="802334">
+					<spot h="23" x="1553.6343" y="174.9121" z="102.3750" />
+				</spawn>
+				<spawn handler="MERCHANT" npc_id="802334">
+					<spot h="49" x="1559.5789" y="176.1642" z="102.3750" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<spawn handler="MERCHANT" npc_id="802653">
+					<spot h="23" x="1553.6343" y="174.9121" z="102.3750" />
+				</spawn>
+				<spawn handler="MERCHANT" npc_id="802653">
+					<spot h="49" x="1559.5789" y="176.1642" z="102.3750" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+                </occupier_template>
+		</base_spawn>
+		<base_spawn id="2143">
+			<occupier_template occupier="ELYOS">
+				<spawn handler="MERCHANT" npc_id="802631">
+					<spot h="20" x="1207.8099" y="1143.7971" z="101.5380" />
+				</spawn>
+				<spawn handler="MERCHANT" npc_id="802631">
+					<spot h="25" x="1214.4215" y="1138.1649" z="101.7603" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<spawn handler="MERCHANT" npc_id="802342">
+					<spot h="20" x="1207.8099" y="1143.7971" z="101.5380" />
+				</spawn>
+				<spawn handler="MERCHANT" npc_id="802342">
+					<spot h="25" x="1214.4215" y="1138.1649" z="101.7603" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+                </occupier_template>
+		</base_spawn>
+		<base_spawn id="2144">
+			<occupier_template occupier="ELYOS">
+				<spawn handler="MERCHANT" npc_id="802631">
+					<spot h="86" x="322.1591" y="2849.9336" z="103.6465" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<spawn handler="MERCHANT" npc_id="802653">
+					<spot h="101" x="316.4212" y="2849.1282" z="102.7585" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+                </occupier_template>
+		</base_spawn>
+		<base_spawn id="2145">
+			<occupier_template occupier="ELYOS">
+                </occupier_template>
+			<occupier_template occupier="ASMODIANS">
+                </occupier_template>
+			<occupier_template occupier="BALAUR">
+                </occupier_template>
+		</base_spawn>
+	</spawn_map>
+</spawns>

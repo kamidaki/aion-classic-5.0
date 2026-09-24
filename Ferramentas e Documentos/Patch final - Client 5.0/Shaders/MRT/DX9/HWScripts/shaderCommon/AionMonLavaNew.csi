@@ -1,0 +1,5 @@
+// AionMonLavaNew.csi stub to resolve missing include warning
+#ifndef _AION_MON_LAVA_NEW_CSI_
+#define _AION_MON_LAVA_NEW_CSI_
+
+#endif

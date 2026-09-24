@@ -1,0 +1,5 @@
+<LevelInfo HeightmapXSize="1024" HeightmapYSize="1024" LightMapPath="Levels\IDPHAISTOS_DISC\" Name="Levels\IDPhaistos_Disc" Version="{09DF2807-146C-4953-8FC5-8D205EDD4652}">
+	<Missions>
+		<Mission Description="" Name="Mission0"/>
+	</Missions>
+</LevelInfo>

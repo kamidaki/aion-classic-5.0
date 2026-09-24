@@ -1,0 +1,5 @@
+<LevelInfo HeightmapXSize="512" HeightmapYSize="512" LightMapPath="Levels\Arena_D_lobby\" Name="Levels\arena_d_lobby" Version="{042D0A7F-E984-45CA-9A35-636E9356FF25}">
+	<Missions>
+		<Mission Description="" Name="Mission0"/>
+	</Missions>
+</LevelInfo>

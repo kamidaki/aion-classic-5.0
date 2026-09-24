@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quest_scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="quest_script_data.xsd">
+	<!-- [BEGIN] Reconstructed Classic 5.0 Quests: 97 entries -->
+	<monster_hunt id="3959"/> <!-- 에필로그 -->
+	<monster_hunt id="9637"/> <!-- [테스트] 누가 잃어버린 가방일까? -->
+	<monster_hunt id="9638"/> <!-- [테스트] 누가 잃어버린 가방일까? -->
+	<monster_hunt id="14600"/> <!-- 연구에 몰두하고 싶어 -->
+	<monster_hunt id="14605"/> <!-- 연구의 걸림돌 -->
+	<monster_hunt id="14610"/> <!-- 원로의 불만 -->
+	<monster_hunt id="14621"/> <!-- 식인 펠리알 처치 -->
+	<monster_hunt id="14625"/> <!-- 일에도 순서가 있다 -->
+	<monster_hunt id="14630"/> <!-- 잉기스온의 뉴트 -->
+	<monster_hunt id="14635"/> <!-- 피해 확산을 저지하라 -->
+	<monster_hunt id="14640"/> <!-- 드라마타 추적 준비 -->
+	<monster_hunt id="14641"/> <!-- 검은 뿔을 가진 생물 -->
+	<monster_hunt id="14645"/> <!-- 심연 속에 숨은 용신도 -->
+	<monster_hunt id="14650"/> <!-- 연구냐 전투냐 -->
+	<monster_hunt id="14700" end_reward="true"/> <!-- 카스파 숲의 생물들 -->
+	<monster_hunt id="14701" end_reward="true"/> <!-- 카스파의 숲의 브로훔 -->
+	<monster_hunt id="14702" end_reward="true"/> <!-- 카스파의 숲의 지배자 -->
+	<monster_hunt id="14705" end_reward="true"/> <!-- 붉은 드라나 농장의 드라코뉴트 -->
+	<monster_hunt id="14706" end_reward="true"/> <!-- 붉은 드라나 농장의 드라쿠니와 드라칸 -->
+	<monster_hunt id="14707" end_reward="true"/> <!-- 붉은 드라나 농장의 지배자 -->
+	<monster_hunt id="14710" end_reward="true"/> <!-- 슈라크 절벽마을의 전사 -->
+	<monster_hunt id="14711" end_reward="true"/> <!-- 슈라크 절벽마을의 주술사 -->
+	<monster_hunt id="14712" end_reward="true"/> <!-- 슈라크 절벽마을의 지배자 -->
+	<monster_hunt id="14715" end_reward="true"/> <!-- 타락한 지하요새의 병사 -->
+	<monster_hunt id="14716" end_reward="true"/> <!-- 타락한 지하요새의 정예병 -->
+	<monster_hunt id="14717" end_reward="true"/> <!-- 타락한 지하요새의 지배자 -->
+	<monster_hunt id="14720" end_reward="true"/> <!-- 드라마타의 은신처의 전투사관 -->
+	<monster_hunt id="14721" end_reward="true"/> <!-- 드라마타의 은신처의 마법사관 -->
+	<monster_hunt id="14722" end_reward="true"/> <!-- 드라마타의 은신처의 지배자 -->
+	<monster_hunt id="14725" end_reward="true"/> <!-- 하나르칸드의 드라쿠니 -->
+	<monster_hunt id="14726" end_reward="true"/> <!-- 하나르칸드의 드라칸 정예병 -->
+	<monster_hunt id="14727" end_reward="true"/> <!-- 하나르칸드의 지배자 -->
+	<monster_hunt id="19539"/> <!-- 공간을 비트는 반크 처치 -->
+	<monster_hunt id="19541"/> <!-- [주간] 타르탈로스의 비밀 -->
+	<monster_hunt id="19542"/> <!-- [주간] 저장소 폐쇄 -->
+	<monster_hunt id="19543"/> <!-- 실종된 연인 -->
+	<monster_hunt id="19923"/> <!-- [파티] 알로스 코스모스의 요괴 퇴치 도전 -->
+	<monster_hunt id="24601"/> <!-- 사랑의 장애물 -->
+	<monster_hunt id="24610"/> <!-- 겁 많은 브라우니 -->
+	<monster_hunt id="24615"/> <!-- 아칸의 부탁 -->
+	<monster_hunt id="24620"/> <!-- 패잔병 처치 -->
+	<monster_hunt id="24621"/> <!-- 용족 잔당 처리 -->
+	<monster_hunt id="24625"/> <!-- 연구를 방해하는 것 -->
+	<monster_hunt id="24630"/> <!-- 오래된 유적의 골칫거리 -->
+	<monster_hunt id="24635"/> <!-- 조사를 방해하는 생명체 -->
+	<monster_hunt id="24636"/> <!-- 티아마트의 힘 연구 -->
+	<monster_hunt id="24640"/> <!-- 잔트하이 사냥 -->
+	<monster_hunt id="24641"/> <!-- 사이클롭스 사냥 -->
+	<monster_hunt id="24646"/> <!-- 위험한 개량 벌떼 -->
+	<monster_hunt id="24651"/> <!-- 뉴트는 너무 징그러워! -->
+	<monster_hunt id="24700" end_reward="true"/> <!-- 크루그 분지의 수생생물 -->
+	<monster_hunt id="24701" end_reward="true"/> <!-- 크루그 분지의 펠리알과 발광체 -->
+	<monster_hunt id="24702" end_reward="true"/> <!-- 크루그 분지의 지배자 -->
+	<monster_hunt id="24705" end_reward="true"/> <!-- 파괴된 눙라크 부락의 라이칸과 크랄 -->
+	<monster_hunt id="24706" end_reward="true"/> <!-- 파괴된 눙라크 부락의 드라칸 -->
+	<monster_hunt id="24707" end_reward="true"/> <!-- 파괴된 눙라크 부락의 지배자 -->
+	<monster_hunt id="24710" end_reward="true"/> <!-- 아울라우 부락의 자객과 전사 -->
+	<monster_hunt id="24711" end_reward="true"/> <!-- 아울라우 부락의 약초사와 주술사 -->
+	<monster_hunt id="24712" end_reward="true"/> <!-- 아울라우 부락의 지배자 -->
+	<monster_hunt id="24715" end_reward="true"/> <!-- 저주받은 지하도시의 병사 -->
+	<monster_hunt id="24716" end_reward="true"/> <!-- 저주받은 지하도시의 정예병 -->
+	<monster_hunt id="24717" end_reward="true"/> <!-- 저주받은 지하도시의 지배자 -->
+	<monster_hunt id="24720" end_reward="true"/> <!-- 대지의 송곳니의 드라칸 상급병 -->
+	<monster_hunt id="24721" end_reward="true"/> <!-- 대지의 송곳니의 드라칸 정예병 -->
+	<monster_hunt id="24722" end_reward="true"/> <!-- 대지의 송곳니의 지배자 -->
+	<monster_hunt id="24725" end_reward="true"/> <!-- 황혼의 드라나 농장의 나두카 군단 -->
+	<monster_hunt id="24726" end_reward="true"/> <!-- 황혼의 드라나 농장의 미트라칸드 시민 -->
+	<monster_hunt id="24727" end_reward="true"/> <!-- 황혼의 드라나 농장의 지배자 -->
+	<monster_hunt id="28704"/> <!-- [파티] 라크샤 유령 군단 괴멸 작전 -->
+	<monster_hunt id="28705"/> <!-- [파티] 유령 군단의 최후 -->
+	<monster_hunt id="28711"/> <!-- [파티] 분노한 라크샤의 종말 -->
+	<monster_hunt id="29539"/> <!-- 공간을 비트는 반크 제압 -->
+	<monster_hunt id="29541"/> <!-- [주간] 타르탈로스의 기밀 -->
+	<monster_hunt id="29542"/> <!-- [주간] 저장소 무력화 -->
+	<monster_hunt id="29543"/> <!-- 사라진 연인 -->
+	<monster_hunt id="29704"/> <!-- [파티] 라크샤 유령 군단 괴멸 작전 -->
+	<monster_hunt id="29705"/> <!-- [파티] 유령 군단의 최후 -->
+	<monster_hunt id="29711"/> <!-- [파티] 분노한 라크샤의 종말 -->
+	<monster_hunt id="29923"/> <!-- [파티] 알로스 코스모스의 요괴 퇴치 도전 -->
+	<monster_hunt id="30058"/> <!-- 새롭게 발견된 지역 -->
+	<monster_hunt id="30159"/> <!-- 새롭게 발견된 구역 -->
+	<monster_hunt id="36518"/> <!-- [잠입/주간] 마족 학살자 처치 -->
+	<monster_hunt id="41862"/> <!-- [모험의 서] 크기를 해독하랑! -->
+	<monster_hunt id="41863"/> <!-- [모험의 서] 형태를 해독하랑! -->
+	<monster_hunt id="41864"/> <!-- [모험의 서] 무게를 해독하랑! -->
+	<monster_hunt id="41865"/> <!-- [모험의 서] 경계를 해독하랑! -->
+	<monster_hunt id="41866"/> <!-- [모험의 서] 시간을 해독하랑! -->
+	<monster_hunt id="41867"/> <!-- [모험의 서] 공간을 해독하랑! -->
+	<monster_hunt id="46518"/> <!-- [잠입/주간] 승부사의 몰락 -->
+	<monster_hunt id="60017"/> <!-- 티아크 연구기지 재조사 -->
+	<monster_hunt id="60018"/> <!-- [일일] 실험체에 남겨진 단서 -->
+	<monster_hunt id="60019"/> <!-- [일일] 새로운 조사 대상 -->
+	<monster_hunt id="60020"/> <!-- [일일] 조사 방해 차단 -->
+	<monster_hunt id="70017"/> <!-- 티아크 연구기지 재수색 -->
+	<monster_hunt id="70018"/> <!-- [일일] 실험체에 보존된 단서 -->
+	<monster_hunt id="70019"/> <!-- [일일] 새로운 수색 후보 -->
+	<monster_hunt id="70020"/> <!-- [일일] 수색 방해 차단 -->
+</quest_scripts>

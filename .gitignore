@@ -78,18 +78,14 @@ cache/
 
 # 6. Client 5.0 - Dados Extraídos (Regras Específicas)
 # O diretório 'data' não deve ter seu conteúdo de arquivos versionado,
-# mas sua estrutura completa de 206 pastas deve ser preservada no Git via .gitkeep.
-5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data/**
-!5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data/**/
-!5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data/**/.gitkeep
-5 - Documentação e Referências/4 - Client 5.0 - Dados Extraidos/data/**
-!5 - Documentação e Referências/4 - Client 5.0 - Dados Extraidos/data/**/
-!5 - Documentação e Referências/4 - Client 5.0 - Dados Extraidos/data/**/.gitkeep
-5 - Documentação e Referências/**/levels/**/*.dat
-5 - Documentação e Referências/**/levels/**/newterrain/
+# mas sua estrutura completa de pastas deve ser preservada no Git via .gitkeep.
+Ferramentas e Documentos/Client e Coletas/Client 5.0 - Dados Extraidos/data/**
+!Ferramentas e Documentos/Client e Coletas/Client 5.0 - Dados Extraidos/data/**/
+!Ferramentas e Documentos/Client e Coletas/Client 5.0 - Dados Extraidos/data/**/.gitkeep
+Ferramentas e Documentos/Client e Coletas/**/levels/**/*.dat
+Ferramentas e Documentos/Client e Coletas/**/levels/**/newterrain/
 
 # 7. Backups e Arquivos de Trabalho dos Parsers
-6 - Ferramentas/parsersXML/backups/
 **/parsersXML/backups/
 
 # 8. Capturas Live / Sessões brutas de rede de grande porte (> 50MB)
@@ -105,21 +101,24 @@ backup_*/
 database.properties
 
 # 11. Patch Client - Mídias e Arquivos Binários Pesados (> 50MB)
-4 - Patch para o Client 5.0/l10n/BRA/sounds/
-4 - Patch para o Client 5.0/l10n/BRA/Textures/
-4 - Patch para o Client 5.0/bin32/
-4 - Patch para o Client 5.0/bin64/Aion.bin
-4 - Patch para o Client 5.0/data/dump/
+Ferramentas e Documentos/Patch final - Client 5.0/l10n/BRA/sounds/
+Ferramentas e Documentos/Patch final - Client 5.0/l10n/BRA/Textures/
+Ferramentas e Documentos/Patch final - Client 5.0/bin32/
+Ferramentas e Documentos/Patch final - Client 5.0/bin64/Aion.bin
+Ferramentas e Documentos/Patch final - Client 5.0/data/dump/
 *.dmp
 
 # 12. Academy NoLag (.NET 9 / C# Optimizer)
-3.2 - Código Fonte [Academy NoLag]/build/
-3.2 - Código Fonte [Academy NoLag]/dist/
-3.2 - Código Fonte [Academy NoLag]/src/**/bin/
-3.2 - Código Fonte [Academy NoLag]/src/**/obj/
-3.2 - Código Fonte [Academy NoLag]/**/*.user
-3.2 - Código Fonte [Academy NoLag]/**/*.suo
-3.2 - Código Fonte [Academy NoLag]/**/.vs/
-3.2 - Código Fonte [Academy NoLag]/**/TestResults/
-3.2 - Código Fonte [Academy NoLag]/**/*.pdb
-3.2 - Código Fonte [Academy NoLag]/**/crash.log
+**/Código Fonte - Academy NoLag/build/
+**/Código Fonte - Academy NoLag/dist/
+**/Código Fonte - Academy NoLag/src/**/bin/
+**/Código Fonte - Academy NoLag/src/**/obj/
+**/Código Fonte - Academy NoLag/**/*.user
+**/Código Fonte - Academy NoLag/**/*.suo
+**/Código Fonte - Academy NoLag/**/.vs/
+**/Código Fonte - Academy NoLag/**/TestResults/
+**/Código Fonte - Academy NoLag/**/*.pdb
+**/Código Fonte - Academy NoLag/**/crash.log
+
+# 13. Executável Rust do Emulador
+**/Código Fonte - Executável Rust do Emulador/target/

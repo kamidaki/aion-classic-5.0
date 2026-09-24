@@ -1,0 +1,13 @@
+<MaterialsLibrary>
+	<Library></Library>
+	<Library File="Editor\Materials\idldf5_fortress_re.xml" Name="idldf5_fortress_re">
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.61176473,0.70980394,0.58431375" Emissive="0,0,0" GenMask="0" Id="{32A620C7-158C-4F77-A1DF-CA10A5D2DE35}" MtlFlags="16" Name="water.bosszone_water" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="Levels\common\dark\natural_etc\etc\na_ldf5b_icewater_01a_002.dds" Map="Diffuse">
+					<TexMod TexMod_TexGenType="1"/>
+				</Texture>
+			</Textures>
+			<PublicParams animspeed="2" bumpamountx="0.04" bumpamounty="0.05" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.7" reflamount="0.6" reflectamount="0.7" refrbumpamount="0.05" refrtillingamount="0.07" textilex="1" textiley="1.5"/>
+		</Material>
+	</Library>
+</MaterialsLibrary>

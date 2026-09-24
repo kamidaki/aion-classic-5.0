@@ -1,0 +1,15 @@
+<MaterialsLibrary>
+	<Library></Library>
+	<Library File="Editor\Materials\iddf2a_adma.xml" Name="iddf2a_adma">
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.32156864,0.54509807,0.43921569" Emissive="0,0,0" GenMask="0" Id="{F76D0D7A-D552-4004-8CC6-BDF69C9CFF61}" MtlFlags="16" Name="WaterVolume_4" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0.58823532,0.58823532,0.58823532" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="5" bumpamountx="0.02" bumpamounty="0.03" opacity="1.3" reflamount="0.3" reflectamount="1" refrtillingamount="5" textilex="20" textiley="30"/>
+		</Material>
+	</Library>
+	<Library File="Editor\Materials\DF4_Watervolume.xml" Name="DF4_Watervolume">
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.82745099,0.99607843,0.94117647" Emissive="0,0,0" GenMask="0" Id="{D4B90D38-7090-4999-A9CC-E9365FCDCA87}" MtlFlags="16" Name="df4_watervolume.Subzone_B2" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="1" bumpamountx="0.1" bumpamounty="0.1" opacity="0.5" reflamount="0.5" reflectamount="1" refrtillingamount="0.7" textilex="30" textiley="30"/>
+		</Material>
+	</Library>
+</MaterialsLibrary>

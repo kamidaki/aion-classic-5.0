@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<npc_skill_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../npc_skills.xsd">
+	
+	<npc_skills npc_ids="702300 702301">
+		<npc_skill id="21420" lv="65" prob="100" next_skill_time="0" />
+	</npc_skills>
+</npc_skill_templates>

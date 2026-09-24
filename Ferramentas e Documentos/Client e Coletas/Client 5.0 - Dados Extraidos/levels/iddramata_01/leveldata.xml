@@ -1,0 +1,83 @@
+<LevelData>
+	<LevelInfo HeightmapUnitSize="2" HeightmapXSize="512" HeightmapYSize="512" Name="iddramata_01" WaterLevel="16"/>
+	<SurfaceTypes>
+		<SurfaceType Bumpmap="" DetailScaleX="0.06" DetailScaleY="0.06" DetailTexture="Levels\iddramata_01\detail\iddramata_01_grass_04.dds" Material="mat_dirt" Name="Default" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.08" DetailScaleY="0.08" DetailTexture="LEVELS\iddramata_01\detail\iddramata_01_crack_01.dds" Material="mat_dirt" Name="ground_01" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.07" DetailScaleY="0.07" DetailTexture="LEVELS\iddramata_01\detail\iddramata_01_grass_07.dds" Material="mat_dirt" Name="ground_02" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.05" DetailScaleY="0.05" DetailTexture="LEVELS\iddramata_01\detail\iddramata_01_ground_03.dds" Material="mat_sand" Name="ground_03" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.05" DetailScaleY="0.05" DetailTexture="LEVELS\iddramata_01\detail\iddramata_01_dirt_2.dds" Material="mat_dirt" Name="ground_04" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.05" DetailScaleY="0.05" DetailTexture="LEVELS\iddramata_01\detail\iddramata_01_dirt_5.dds" Material="mat_dirt" Name="ground_05" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.07" DetailScaleY="0.07" DetailTexture="Levels\iddramata_01\detail\dramata_ground_06.dds" Material="" Name="ground_06" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.04" DetailScaleY="0.04" DetailTexture="Levels\iddramata_01\detail\ver_iddramata_01_cliff_02.dds" Material="" Name="ground_07" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.04" DetailScaleY="0.04" DetailTexture="LEVELS\iddramata_01\detail\ver_iddramata_01_cliff_02.dds" Material="mat_dirt" Name="cliff_x" Offset_U="0" Offset_V="0" ProjAxis="X" ProjectAxis="0" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.04" DetailScaleY="0.04" DetailTexture="LEVELS\iddramata_01\detail\ver_iddramata_01_cliff_02.dds" Material="mat_dirt" Name="cliff_y" Offset_U="0" Offset_V="0" ProjAxis="Y" ProjectAxis="1" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+	</SurfaceTypes>
+	<Vegetation>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.5178201,1.4041322,1.4845126" BoxMin="-1.6119695,-1.4300958,-0.11274438" Brightness="1" CalcLighting="1" CastShadow="0" Category="Tree" Density="1" ElevationMax="255" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\grass\na_d_weed_10j.cgf" GUID="{394EE920-C851-4317-AA98-B0164EEF39B9}" Hidden="0" Hideable="0" Inclination="0" Index="3" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\grass\na_d_weed_10j.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="4.8109159,5.6944213,8.4302197" BoxMin="-2.2933195,-1.4465678,-0.40289825" Brightness="7" CalcLighting="1" CastShadow="0" Category="Tree" Density="1" ElevationMax="255" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\etc\na_d_drytree_01a.cgf" GUID="{4DB6900C-E5B8-48EA-82B0-DA6372CFBCA0}" Hidden="0" Hideable="0" Inclination="0" Index="1" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\etc\na_d_drytree_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="5.6359353,5.9499903,13.709953" BoxMin="-5.8979373,-5.7901196,-0.39778319" Brightness="1" CalcLighting="1" CastShadow="0" Category="Tree" Density="1" ElevationMax="255" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\etc\na_d_drytree_02b.cgf" GUID="{4F04DB5B-EAFE-4041-9BE4-F1E3A3CEA7A5}" Hidden="0" Hideable="0" Inclination="0" Index="2" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\etc\na_d_drytree_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="7.08741,5.9462762,9.0665741" BoxMin="-3.4564178,-3.4861779,-1.2849231" Brightness="7" CalcLighting="1" CastShadow="0" Category="Tree" Density="1" ElevationMax="255" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\etc\na_d_drytree_03c.cgf" GUID="{5D911EE1-3A52-4282-8B0E-302AD19D8FBB}" Hidden="0" Hideable="0" Inclination="0" Index="0" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\etc\na_d_drytree_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+	</Vegetation>
+	<MaterialsLibrary>
+		<Library Name="Level"/>
+	</MaterialsLibrary>
+	<ParticlesLibrary>
+		<Library Name="env_lf_lay"/>
+		<Library Name="env_df_fire"/>
+		<Library Name="env_df_nature"/>
+		<Library Name="env_Nextgen"/>
+		<Library Name="env_lf_fire"/>
+	</ParticlesLibrary>
+	<MusicLibrary>
+		<Library File="IDDramata_01-BGM.xml" Name="IDDramata_01-BGM"/>
+	</MusicLibrary>
+	<Missions>
+		<Mission CGFCount="51" File="Mission_Mission0.xml" Name="Mission0">
+			<LevelOption>
+				<Initialize Render_Beaches="1" Render_Fog="1" Render_Ocean="0" Render_SkyBox="1" Render_SkyCloud="0" Render_Sun="1" Render_Terrain="1"/>
+				<Fly Fly_Whole_Level="1" FRZ_NEGX="30" FRZ_NEGY="30" FRZ_X="30" FRZ_Y="30" MaxHeight="700"/>
+				<Ride Ride_Whole_Level="0"/>
+				<BindArea IsPossible="0"/>
+				<ReCall IsPossible="0"/>
+				<Glide IsPossible="1"/>
+				<LightMap LightMapLevelName=""/>
+			</LevelOption>
+		</Mission>
+	</Missions>
+</LevelData>

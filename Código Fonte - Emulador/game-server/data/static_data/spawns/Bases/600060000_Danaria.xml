@@ -1,0 +1,1023 @@
+<?xml version='1.0' encoding='utf-8'?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="600060000">
+		<base_spawn id="80">
+			<!-- Desolation's Edge -->
+			<occupier_template occupier="ELYOS">
+				<!-- Vou vender este espécime e obter ingredientes da alquimia ... -->
+				<spawn npc_id="800734" respawn_time="180">
+					<spot x="982.4421" y="1159.6975" z="375.13138" h="64" />
+				</spawn>
+				<!-- Por favor ... deixe-me ir ... -->
+				<spawn npc_id="800735" respawn_time="180">
+					<spot x="964.97327" y="1176.63" z="375.13138" h="90" />
+				</spawn>
+				<!-- Onde estou ...? E quem sou eu mesmo ...? -->
+				<spawn npc_id="800736" respawn_time="180">
+					<spot x="971.91113" y="1159.4863" z="375.13138" h="35" />
+				</spawn>
+				<!-- Pode chover gatos e cães para tudo o que me importo ... -->
+				<spawn npc_id="800737" respawn_time="180">
+					<spot x="965.09326" y="1159.481" z="375.13138" h="30" />
+				</spawn>
+				<!-- Por que eu sempre tenho que fazer o trabalho sujo ... -->
+				<spawn npc_id="800738" respawn_time="180">
+					<spot x="970.98499" y="1178.4034" z="374.92691" h="90" />
+				</spawn>
+				<!-- Fleetwing Guild Merchant -->
+				<spawn npc_id="801036" respawn_time="180">
+					<spot x="974.11676" y="1176.0431" z="373.54883" h="60" />
+				</spawn>
+				<!-- 1st Guardian Quartermaster -->
+				<spawn npc_id="801472" respawn_time="180">
+					<spot x="968.67609" y="1159.4497" z="375.13138" h="30" />
+				</spawn>
+				<!-- Sineya Combat Manual Steward -->
+				<spawn npc_id="801559" respawn_time="180">
+					<spot x="968.15216" y="1176.6166" z="375.13138" h="90" />
+				</spawn>
+				<spawn npc_id="801705" handler="MERCHANT">
+					<spot x="982.31427" y="1156.6857" z="373.83276" static_id="2773" />
+				</spawn>
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Elyos Territory -->
+				<spawn npc_id="801627">
+					<spot x="968.3525" y="1168.8684" z="373.52203" h="60" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Eu só quero ... voltar ... -->
+				<spawn npc_id="800739" respawn_time="180">
+					<spot x="982.4421" y="1159.6975" z="375.13138" h="58" />
+				</spawn>
+				<!-- Ornamento de Alquimia -->
+				<spawn npc_id="800740" respawn_time="180">
+					<spot x="964.97327" y="1176.63" z="375.13138" h="90" />
+				</spawn>
+				<!-- Pódio de alquimia -->
+				<spawn npc_id="800741" respawn_time="180">
+					<spot x="971.911133" y="1159.486328" z="375.131378" h="34" />
+				</spawn>
+				<!-- Caldeirão do Alquimista -->
+				<spawn npc_id="800742" respawn_time="180">
+					<spot x="965.09326" y="1159.481" z="375.13138" h="30" />
+				</spawn>
+				<!-- Ornamento de Alquimia -->
+				<spawn npc_id="800743" respawn_time="180">
+					<spot x="970.98499" y="1178.4034" z="374.92691" h="90" />
+				</spawn>
+				<!-- General Goods Merchant in Apheta Beluslan Fortress_Asmo_02 -->
+				<spawn npc_id="801046" respawn_time="180">
+					<spot x="974.11676" y="1176.0431" z="373.54883" h="60" />
+				</spawn>
+				<!-- 1st Guardian Quartermaster -->
+				<spawn npc_id="801471" respawn_time="180">
+					<spot x="968.67609" y="1159.4497" z="375.13138" h="30" />
+				</spawn>
+				<!-- <Para fortaleza de Sillus> -->
+				<spawn npc_id="801558" respawn_time="180">
+					<spot x="968.15216" y="1176.6166" z="375.13138" h="90" />
+				</spawn>
+				<!-- Arqueiro da tropa de greve Asmodiano -->
+				<spawn npc_id="801704" handler="MERCHANT">
+					<spot x="982.31427" y="1156.6857" z="373.83276" static_id="2773" />
+				</spawn>
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Asmodians Territory -->
+				<spawn npc_id="801628">
+					<spot x="968.3525" y="1168.8684" z="373.52203" h="60" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Balaur Territory -->
+				<spawn npc_id="801629">
+					<spot x="968.3525" y="1168.8684" z="373.52203" h="60" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="81">
+			<!-- Icethorn Frontier Post -->
+			<occupier_template occupier="ELYOS">
+				<!-- Pódio de alquimia -->
+				<spawn npc_id="800744" respawn_time="180">
+					<spot x="1048.8524" y="1802.031" z="362.625" h="45" />
+				</spawn>
+				<!-- Invasão do portal Fenda -->
+				<spawn npc_id="800745" respawn_time="180">
+					<spot x="1044.0972" y="1800.4258" z="362.5" h="45" />
+				</spawn>
+				<!-- Invasão do portal Fenda -->
+				<spawn npc_id="800746" respawn_time="180">
+					<spot x="1036.0133" y="1817.9457" z="362.625" h="101" />
+				</spawn>
+				<!-- Fleetwing Guild Merchant -->
+				<spawn npc_id="801037" respawn_time="180">
+					<spot x="1055.3455" y="1806.7864" z="363.94662" h="60" />
+				</spawn>
+				<!-- 123º posto avançado -->
+				<spawn npc_id="802008" respawn_time="180">
+					<spot x="1030.923096" y="1820.157227" z="363.012054" />
+				</spawn>
+				<!-- Artilharia funcional da Guilda -->
+				<spawn npc_id="801970" respawn_time="180">
+					<spot x="1053.316" y="1801.8745" z="362.625" h="45" />
+				</spawn>
+				<!-- Base de suprimento do sul -->
+				<spawn npc_id="802009" respawn_time="180">
+					<spot x="1033.9543" y="1821.9236" z="363.01205" h="105" />
+				</spawn>
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Elyos Territory -->
+				<spawn npc_id="801630">
+					<spot x="1043.9757" y="1811.7323" z="362.625" h="71" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Livro antigo da Rune -->
+				<spawn npc_id="800747" respawn_time="180">
+					<spot x="1048.8524" y="1802.031" z="362.625" h="45" />
+				</spawn>
+				<!-- Livro antigo da Rune -->
+				<spawn npc_id="800748" respawn_time="180">
+					<spot x="1044.0972" y="1800.4258" z="362.5" h="45" />
+				</spawn>
+				<!-- IDGE Research Journal -->
+				<spawn npc_id="800749" respawn_time="180">
+					<spot x="1040.6074" y="1818.9858" z="363.01205" h="93" />
+				</spawn>
+				<!-- Psyche -->
+				<spawn npc_id="801047" respawn_time="180">
+					<spot x="1049.4674" y="1818.2025" z="363.94662" h="70" />
+				</spawn>
+				<!-- Serghed Surveillance Officer -->
+				<spawn npc_id="802010" respawn_time="180">
+					<spot x="1033.9543" y="1821.9236" z="363.01205" h="105" />
+				</spawn>
+				<!-- Post da Guarda Oriental -->
+				<spawn npc_id="802015" respawn_time="180">
+					<spot x="1030.923096" y="1820.157227" z="363.012054" />
+				</spawn>
+				<!-- Artilharia funcional da Guilda -->
+				<spawn npc_id="801971" respawn_time="180">
+					<spot x="1053.316" y="1801.8745" z="362.625" h="45" />
+				</spawn>
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Asmodians Territory -->
+				<spawn npc_id="801631">
+					<spot x="1043.9757" y="1811.7323" z="362.625" h="71" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Balaur Territory -->
+				<spawn npc_id="801632">
+					<spot x="1043.9757" y="1811.7323" z="362.625" h="71" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="82">
+			<!-- Starlit Grove -->
+			<occupier_template occupier="ELYOS">
+				<!-- <Para TheObomos> -->
+				<spawn npc_id="800750" respawn_time="180">
+					<spot x="1066.447" y="2249.582" z="276.5" h="58" />
+				</spawn>
+				<!-- <Para brushonin> -->
+				<spawn npc_id="800751" respawn_time="180">
+					<spot x="1050.9691" y="2252.5732" z="276.5" h="75" />
+				</spawn>
+				<!-- Lottorunyerk -->
+				<spawn npc_id="800752" respawn_time="180">
+					<spot x="1056.9808" y="2250.2214" z="276.5" h="61" />
+				</spawn>
+				<!-- <Mão do Senhor> -->
+				<spawn npc_id="800753" respawn_time="180">
+					<spot x="1037.4586" y="2242.3582" z="276.5" h="15" />
+				</spawn>
+				<!-- Rei -->
+				<spawn npc_id="800754" respawn_time="180">
+					<spot x="1049.0654" y="2255.8518" z="276.5" h="75" />
+				</spawn>
+				<!-- 1st Guardian Quartermaster -->
+				<spawn npc_id="801474" respawn_time="180">
+					<spot x="1040.8568" y="2240.5688" z="276.5" h="15" />
+				</spawn>
+				<!-- Quicksilver Guild Merchant -->
+				<spawn npc_id="801038" respawn_time="180">
+					<spot x="1057.0177" y="2246.654" z="276.5" h="60" />
+				</spawn>
+				<!-- Selbine Combat Manual Steward -->
+				<spawn npc_id="801561" respawn_time="180">
+					<spot x="1056.6018" y="2253.1023" z="276.5" h="75" />
+				</spawn>
+				<!-- SIEGE
+                <spawn npc_id="801707" handler="MERCHANT">
+                    <spot x="1062.8163" y="2243.9741" z="276.5" static_id="2771"/>
+                </spawn> -->
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Elyos Territory -->
+				<spawn npc_id="801633">
+					<spot x="1046.2488" y="2248.4668" z="276.5" h="45" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Verdine -->
+				<spawn npc_id="800755" respawn_time="180">
+					<spot x="1066.447" y="2249.582" z="276.5" h="58" />
+				</spawn>
+				<!-- Hyth -->
+				<spawn npc_id="800756" respawn_time="180">
+					<spot x="1050.9691" y="2252.5732" z="276.5" h="75" />
+				</spawn>
+				<!-- <Éter Glow Trader> -->
+				<spawn npc_id="800757" respawn_time="180">
+					<spot x="1056.9808" y="2250.2214" z="276.5" h="61" />
+				</spawn>
+				<!-- Parootu -->
+				<spawn npc_id="800758" respawn_time="180">
+					<spot x="1037.4586" y="2242.3582" z="276.5" h="15" />
+				</spawn>
+				<!-- Boobana -->
+				<spawn npc_id="800759" respawn_time="180">
+					<spot x="1049.0654" y="2255.8518" z="276.5" h="75" />
+				</spawn>
+				<!-- 1st Guardian Quartermaster -->
+				<spawn npc_id="801473" respawn_time="180">
+					<spot x="1040.8568" y="2240.5688" z="276.5" h="15" />
+				</spawn>
+				<!-- Geiravor Combat Manual Steward -->
+				<spawn npc_id="801560" respawn_time="180">
+					<spot x="1056.6018" y="2253.1023" z="276.5" h="76" />
+				</spawn>
+				<!-- Rasomenia -->
+				<spawn npc_id="801048" respawn_time="180">
+					<spot x="1057.0177" y="2246.654" z="276.5" h="60" />
+				</spawn>
+				<!-- SIEGE
+                <spawn npc_id="801706" handler="MERCHANT">
+                    <spot x="1062.8163" y="2243.9741" z="276.5" static_id="2771"/>
+                </spawn> -->
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Asmodians Territory -->
+				<spawn npc_id="801634">
+					<spot x="1046.2488" y="2248.4668" z="276.5" h="45" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Jaques de protetor -->
+				<spawn npc_id="801635">
+					<spot x="1046.2488" y="2248.4668" z="276.5" h="45" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="83">
+			<!-- Soaring Archways Rampart -->
+			<occupier_template occupier="ELYOS">
+				<!-- <Mestre de fogos de artifício> -->
+				<spawn npc_id="800760" respawn_time="180">
+					<spot x="2827.4648" y="599.7733" z="274.875" h="62" />
+				</spawn>
+				<!-- Soui -->
+				<spawn npc_id="800761" respawn_time="180">
+					<spot x="2814.8083" y="608.77795" z="274.875" h="75" />
+				</spawn>
+				<!-- Festa para o Dia Daeva -->
+				<spawn npc_id="800762" respawn_time="180">
+					<spot x="2820.5635" y="603.45197" z="274.875" h="75" />
+				</spawn>
+				<!-- Cleid -->
+				<spawn npc_id="800763" respawn_time="180">
+					<spot x="2783.2622" y="589.88824" z="276.0" h="2" />
+				</spawn>
+				<!-- Festa para o Dia Daeva -->
+				<spawn npc_id="800764" respawn_time="180">
+					<spot x="2793.1802" y="574.73096" z="274.875" h="15" />
+				</spawn>
+				<!-- Quicksilver Guild Merchant -->
+				<spawn npc_id="801039" respawn_time="180">
+					<spot x="2806.6082" y="617.7058" z="275.875" h="107" />
+				</spawn>
+				<!-- 1st Archon Quartermaster -->
+				<spawn npc_id="801476">
+					<spot x="2786.902344" y="592.194641" z="276.01" />
+				</spawn>
+				<!-- 1st Archon Quartermaster -->
+				<spawn npc_id="801478" respawn_time="180">
+					<spot x="2790.1958" y="577.88837" z="275.10883" h="15" />
+				</spawn>
+				<spawn npc_id="801709" handler="MERCHANT">
+					<spot x="2785.051" y="606.62799" z="276" static_id="2779" />
+				</spawn>
+				<!-- Idian Depths Teleport Device -->
+				<spawn npc_id="801797" respawn_time="180">
+					<spot x="2814.590088" y="624.156067" z="277.220398" h="90" />
+				</spawn>
+				<!-- Kiton -->
+				<spawn npc_id="802230" respawn_time="180">
+					<spot x="2783.05" y="597.7541" z="276" h="117" />
+				</spawn>
+				<!-- Caixa de correio -->
+				<spawn npc_id="700000">
+					<spot x="2823.454834" y="593.751587" z="274.875" />
+				</spawn>
+				<!-- Teleporter externo da fortaleza -->
+				<spawn npc_id="801945" respawn_time="180">
+					<spot x="2784.947998" y="579.454224" z="274.875" />
+				</spawn>
+				<!-- Corredor avançado -->
+				<spawn npc_id="801965" respawn_time="180">
+					<spot x="2782.3376" y="580.56799" z="277.31165" h="15" />
+				</spawn>
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Protetor Paige -->
+				<spawn npc_id="801636">
+					<spot x="2803.1924" y="598.5173" z="275.4661" h="101" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- <O cozinheiro pessoal da delegação> -->
+				<spawn npc_id="800765" respawn_time="180">
+					<spot x="2827.4648" y="599.7733" z="274.875" h="62" />
+				</spawn>
+				<!-- Pensar -->
+				<spawn npc_id="800766" respawn_time="180">
+					<spot x="2814.8083" y="608.77795" z="274.875" h="75" />
+				</spawn>
+				<!-- AVED -->
+				<spawn npc_id="800767" respawn_time="180">
+					<spot x="2820.5635" y="603.45197" z="274.875" h="75" />
+				</spawn>
+				<!-- Auntir Kisk Merchant -->
+				<spawn npc_id="800768" respawn_time="180">
+					<spot x="2783.2622" y="589.88824" z="276.0" h="2" />
+				</spawn>
+				<!-- Baú de tesouro superior do abismo -->
+				<spawn npc_id="800769" respawn_time="180">
+					<spot x="2793.1802" y="574.73096" z="274.875" h="15" />
+				</spawn>
+				<!-- Gorgia -->
+				<spawn npc_id="801049" respawn_time="180">
+					<spot x="2806.6082" y="617.7058" z="275.875" h="107" />
+				</spawn>
+				<!-- Eos Quartermaster -->
+				<spawn npc_id="801475" respawn_time="180">
+					<spot x="2786.902344" y="592.194641" z="275.87" />
+				</spawn>
+				<!-- 1st Archon Quartermaster -->
+				<spawn npc_id="801477" respawn_time="180">
+					<spot x="2790.1958" y="577.88837" z="275.10883" h="15" />
+				</spawn>
+				<spawn npc_id="801708" handler="MERCHANT">
+					<spot x="2785.051" y="606.62799" z="276" static_id="2779" />
+				</spawn>
+				<!-- Idian Depths Teleport Device -->
+				<spawn npc_id="801798" respawn_time="180">
+					<spot x="2814.5901" y="624.15607" z="277.2204" h="105" />
+				</spawn>
+				<!-- Química -->
+				<spawn npc_id="802229" respawn_time="180">
+					<spot x="2783.05" y="597.7541" z="276" h="117" />
+				</spawn>
+				<!-- Caixa de correio -->
+				<spawn npc_id="700079">
+					<spot x="2823.454834" y="593.751587" z="274.875" />
+				</spawn>
+				<!-- Teleporter externo da fortaleza -->
+				<spawn npc_id="801947" respawn_time="180">
+					<spot x="2784.948" y="579.45422" z="277.31165" h="15" />
+				</spawn>
+				<!-- Comprimido de pedra gravado -->
+				<spawn npc_id="801966" respawn_time="180">
+					<spot x="2782.3376" y="580.56799" z="277.31165" h="15" />
+				</spawn>
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Protetor Kentro -->
+				<spawn npc_id="801637">
+					<spot x="2803.1924" y="598.5173" z="275.4661" h="101" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Protetor Bree -->
+				<spawn npc_id="801638">
+					<spot x="2803.1924" y="598.5173" z="275.4661" h="101" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="84">
+			<!-- Eldris Valley Campsite -->
+			<occupier_template occupier="ELYOS">
+				<!-- Baú de tesouro do abismo -->
+				<spawn npc_id="800770" respawn_time="180">
+					<spot x="2665.6572" y="500.42282" z="234.75" h="75" />
+				</spawn>
+				<!-- Baú do tesouro inferior do abismo -->
+				<spawn npc_id="800771" respawn_time="180">
+					<spot x="2666.0088" y="495.40973" z="234.75" h="75" />
+				</spawn>
+				<!-- Edwards -->
+				<spawn npc_id="800772" respawn_time="180">
+					<spot x="2667.7786" y="492.12531" z="236.07442" h="75" />
+				</spawn>
+				<!-- Tasunerk -->
+				<spawn npc_id="801040" respawn_time="180">
+					<spot x="2662.9175" y="502.53073" z="234.75" h="97" />
+				</spawn>
+				<!-- Bekasis -->
+				<spawn npc_id="801538" respawn_time="180">
+					<spot x="2652.607" y="486.30164" z="236.07442" h="11" />
+				</spawn>
+				<!-- Escaped Mont -->
+				<spawn npc_id="801563" respawn_time="180">
+					<spot x="2653.837646" y="483.144073" z="234.75" h="15" />
+				</spawn>
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- talkA_NPC -->
+				<spawn npc_id="801639">
+					<spot x="2658.326" y="489.43933" z="234.75" h="101" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Cebath -->
+				<spawn npc_id="800773" respawn_time="180">
+					<spot x="2665.6572" y="500.42282" z="234.75" h="75" />
+				</spawn>
+				<!-- No jardim -->
+				<spawn npc_id="800774" respawn_time="180">
+					<spot x="2666.0088" y="495.40973" z="234.75" h="75" />
+				</spawn>
+				<!-- Achines -->
+				<spawn npc_id="800775" respawn_time="180">
+					<spot x="2667.7786" y="492.12531" z="236.07442" h="75" />
+				</spawn>
+				<!-- Resmas -->
+				<spawn npc_id="801050" respawn_time="180">
+					<spot x="2662.9175" y="502.53073" z="234.75" h="97" />
+				</spawn>
+				<!-- Inharet -->
+				<spawn npc_id="801537">
+					<spot x="2652.607" y="486.30164" z="236.07442" h="8" />
+				</spawn>
+				<!-- Runaway Mont -->
+				<spawn npc_id="801562" respawn_time="180">
+					<spot x="2653.8376" y="483.14407" z="234.75" h="15" />
+				</spawn>
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Protector Mione -->
+				<spawn npc_id="801640">
+					<spot x="2658.326" y="489.43933" z="234.75" h="101" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Protetor Nico -->
+				<spawn npc_id="801641">
+					<spot x="2658.326" y="489.43933" z="234.75" h="101" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="85">
+			<!-- Earthshaped Promontory -->
+			<occupier_template occupier="ELYOS">
+				<!-- Macelia -->
+				<spawn npc_id="800776" respawn_time="180">
+					<spot x="1829.0145" y="812.83191" z="154.511" h="60" />
+				</spawn>
+				<!-- Anzelo -->
+				<spawn npc_id="800777" respawn_time="180">
+					<spot x="1813.6688" y="789.2796" z="155.35464" h="30" />
+				</spawn>
+				<!-- Yurines -->
+				<spawn npc_id="800778" respawn_time="180">
+					<spot x="1820.5942" y="789.24744" z="155.35464" h="30" />
+				</spawn>
+				<!-- Kamiyu -->
+				<spawn npc_id="800779" respawn_time="180">
+					<spot x="1817.087" y="789.20465" z="155.35464" h="30" />
+				</spawn>
+				<!-- Tapherunerk -->
+				<spawn npc_id="801041" respawn_time="180">
+					<spot x="1817.8" y="792.86993" z="154.26164" h="60" />
+				</spawn>
+				<!-- 1st Archon Quartermaster -->
+				<spawn npc_id="801480" respawn_time="180">
+					<spot x="1815.9598" y="812.78766" z="155.35464" h="90" />
+				</spawn>
+				<!-- 1st Archon Quartermaster -->
+				<spawn npc_id="801482" respawn_time="180">
+					<spot x="1812.0558" y="813.58081" z="155.35464" h="90" />
+				</spawn>
+				<!-- Teleport Device [Earthshaped Promontory To Silona Fortress] -->
+				<spawn npc_id="801711" handler="MERCHANT">
+					<spot x="1828.9193" y="816.37982" z="153.951" static_id="2781" />
+				</spawn>
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Protetor Perma -->
+				<spawn npc_id="801642">
+					<spot x="1814.7731" y="803.96063" z="153.75322" h="58" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Promontory Garrison Shieldcaptain -->
+				<!-- Promontory Garrison Assassin -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Gerente de armazém -->
+				<spawn npc_id="800780" respawn_time="180">
+					<spot x="1829.0145" y="812.83191" z="154.511" h="60" />
+				</spawn>
+				<!-- Reklov -->
+				<spawn npc_id="800781" respawn_time="180">
+					<spot x="1813.6688" y="789.2796" z="155.35464" h="30" />
+				</spawn>
+				<!-- Nitram -->
+				<spawn npc_id="800782" respawn_time="180">
+					<spot x="1820.5942" y="789.24744" z="155.35464" h="30" />
+				</spawn>
+				<!-- Nitram -->
+				<spawn npc_id="800783" respawn_time="180">
+					<spot x="1817.087" y="789.20465" z="155.35464" h="30" />
+				</spawn>
+				<!-- Gornes -->
+				<spawn npc_id="801051" respawn_time="180">
+					<spot x="1817.8132" y="810.4469" z="154.82216" h="60" />
+				</spawn>
+				<!-- 1st Archon Quartermaster -->
+				<spawn npc_id="801481" respawn_time="180">
+					<spot x="1812.0558" y="813.58081" z="155.35464" h="90" />
+				</spawn>
+				<!-- Sistema de Loteria | Categoria: Vermelho -->
+				<spawn npc_id="801564" respawn_time="180">
+					<spot x="1815.9598" y="812.78766" z="155.35464" h="82" />
+				</spawn>
+				<!-- Teleport Device [Earthshaped Promontory To Silona Fortress] -->
+				<spawn npc_id="801710" handler="MERCHANT">
+					<spot x="1828.9193" y="816.37982" z="153.951" static_id="2781" />
+				</spawn>
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Protetor de Leipniz -->
+				<spawn npc_id="801643">
+					<spot x="1814.7731" y="803.96063" z="153.75322" h="58" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Promontory Shieldcaptain -->
+				<!-- Promontory Assassin -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- JEMINI Protector -->
+				<spawn npc_id="801644">
+					<spot x="1814.7731" y="803.96063" z="153.75322" h="58" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Promontory Subjugator Tesserari -->
+				<!-- Promontory Subjugator Assassin -->
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="86">
+			<!-- Silona Cascade Overlook -->
+			<occupier_template occupier="ELYOS">
+				<!-- Test_level Card6 -->
+				<spawn npc_id="800786" respawn_time="180">
+					<spot x="1510.2108" y="1123.4214" z="94.390556" h="12" />
+				</spawn>
+				<!-- Eimaj -->
+				<spawn npc_id="800784">
+					<spot x="1500.284790" y="1136.456543" z="92.390556" />
+				</spawn>
+				<!-- Peito contendo peças de mapa -->
+				<spawn npc_id="801042" respawn_time="180">
+					<spot x="1509.9047" y="1134.2719" z="92.24819" h="90" />
+				</spawn>
+				<!-- 1st Archon Quartermaster -->
+				<spawn npc_id="801484" respawn_time="180">
+					<spot x="1524.5186" y="1137.0227" z="94.390556" h="90" />
+				</spawn>
+				<!-- Terra das Pedras Lamentadoras -->
+				<spawn npc_id="801486" respawn_time="180">
+					<spot x="1509.2964" y="1126.6229" z="94.390556" h="12" />
+				</spawn>
+				<!-- Lançador de granadas de hangar para ataque limitado -->
+				<spawn npc_id="801713" handler="MERCHANT">
+					<spot x="1501.3024" y="1138.8405" z="92.474808" static_id="2780" />
+				</spawn>
+				<!-- Gerador de escudo sul -->
+				<spawn npc_id="801749" respawn_time="180">
+					<spot x="1528.1306" y="1137.087" z="92.15529" h="90" />
+				</spawn>
+				<!-- Caixa de correio -->
+				<spawn npc_id="700000">
+					<spot x="1505.345337" y="1129.259155" z="92.037" />
+				</spawn>
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Protetor Kepler -->
+				<spawn npc_id="801645">
+					<spot x="1517.179" y="1129.934" z="92.25844" h="95" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Test_level Card7 -->
+				<spawn npc_id="800787" respawn_time="180">
+					<spot x="1500.284790" y="1136.456543" z="92.390556" />
+				</spawn>
+				<!-- Sugaronerk -->
+				<spawn npc_id="800789" respawn_time="180">
+					<spot x="1510.2108" y="1123.4214" z="92.27166" h="12" />
+				</spawn>
+				<!-- Robard -->
+				<spawn npc_id="801052" respawn_time="180">
+					<spot x="1528.9701" y="1140.2415" z="92.1285" h="67" />
+				</spawn>
+				<!-- 1st Archon Quartermaster -->
+				<spawn npc_id="801483" respawn_time="180">
+					<spot x="1524.5186" y="1137.0227" z="92.1285" h="90" />
+				</spawn>
+				<!-- Minox Quartermaster -->
+				<spawn npc_id="801485" respawn_time="180">
+					<spot x="1509.2964" y="1126.6229" z="92.27209" h="12" />
+				</spawn>
+				<!-- Lançador de granadas da fortaleza externa -->
+				<spawn npc_id="801712" handler="MERCHANT">
+					<spot x="1501.3024" y="1138.8405" z="92.474808" static_id="2780" />
+				</spawn>
+				<!-- Gerador de escudo do norte -->
+				<spawn npc_id="801750" respawn_time="180">
+					<spot x="1528.1306" y="1137.087" z="92.1285" h="90" />
+				</spawn>
+				<!-- Caixa de correio -->
+				<spawn npc_id="700079">
+					<spot x="1505.345337" y="1129.259155" z="92.037" />
+				</spawn>
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Protetor Menelaus -->
+				<spawn npc_id="801646">
+					<spot x="1517.179" y="1129.934" z="92.25844" h="95" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Protetor Kiroy -->
+				<spawn npc_id="801647">
+					<spot x="1517.179" y="1129.934" z="92.25844" h="95" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="87">
+			<!-- Stonewatch Rampart -->
+			<occupier_template occupier="ELYOS">
+				<spawn npc_id="800790" respawn_time="180">
+					<spot x="1327.985" y="2346.9158" z="185.63243" h="97" />
+				</spawn>
+				<!-- <Aventureiro de Shugo> -->
+				<spawn npc_id="800791" respawn_time="180">
+					<spot x="1356.1029" y="2315.9395" z="183.5" h="30" />
+				</spawn>
+				<!-- Você melhorou -->
+				<spawn npc_id="800792" respawn_time="180">
+					<spot x="1353.4484" y="2331.2012" z="185.63243" h="60" />
+				</spawn>
+				<!-- <Aion templo sacerdote> -->
+				<spawn npc_id="800793" respawn_time="180">
+					<spot x="1355.0981" y="2321.8105" z="183.5" h="60" />
+				</spawn>
+				<!-- Wendolyn -->
+				<spawn npc_id="801043" respawn_time="180">
+					<spot x="1319.5344" y="2339.3738" z="184.5" h="90" />
+				</spawn>
+				<!-- Terra das Pedras Lamentadoras -->
+				<spawn npc_id="801488" respawn_time="180">
+					<spot x="1315.4847" y="2325.749" z="183.93073" h="5" />
+				</spawn>
+				<!-- Reian Worker -->
+				<spawn npc_id="801491" respawn_time="180">
+					<spot x="1317.354858" y="2332.721191" z="185.632431" />
+				</spawn>
+				<!-- Guardian Geoteam -->
+				<spawn npc_id="801493" respawn_time="180">
+					<spot x="1315.4783" y="2328.9531" z="183.93073" h="5" />
+				</spawn>
+				<!-- Aullus -->
+				<spawn npc_id="801539" respawn_time="180">
+					<spot x="1355.2502" y="2325.9846" z="183.5" h="60" />
+				</spawn>
+				<!-- Baú do tesouro regular -->
+				<spawn npc_id="801567" respawn_time="180">
+					<spot x="1352.2638" y="2315.7903" z="183.5" h="30" />
+				</spawn>
+				<spawn npc_id="801715" handler="MERCHANT">
+					<spot x="1325.0239" y="2346.2737" z="184.40797" static_id="2770" />
+				</spawn>
+				<!-- Idian Depths Teleport Device -->
+				<spawn npc_id="801799" respawn_time="180">
+					<spot x="1358.948" y="2346.2317" z="185.63243" h="93" />
+				</spawn>
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Protetor Pesha -->
+				<spawn npc_id="801648">
+					<spot x="1333.086" y="2330.3486" z="183.45392" h="91" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<spawn npc_id="800794" respawn_time="180">
+					<spot x="1327.985" y="2346.9158" z="185.63243" h="95" />
+				</spawn>
+				<!-- Village Guest Bloom Trader -->
+				<spawn npc_id="800795" respawn_time="180">
+					<spot x="1356.1029" y="2315.9395" z="183.5" h="30" />
+				</spawn>
+				<!-- Village Guest Bloom Trader -->
+				<spawn npc_id="800796" respawn_time="180">
+					<spot x="1353.4484" y="2331.2012" z="185.63243" h="60" />
+				</spawn>
+				<!-- Trader de móveis da aldeia -->
+				<spawn npc_id="800797" respawn_time="180">
+					<spot x="1355.0981" y="2321.8105" z="183.5" h="60" />
+				</spawn>
+				<!-- Andreas -->
+				<spawn npc_id="801053" respawn_time="180">
+					<spot x="1352.8727" y="2342.5654" z="184.375" h="90" />
+				</spawn>
+				<!-- Terra dos Ácidos Fumegantes -->
+				<spawn npc_id="801487" respawn_time="180">
+					<spot x="1315.4847" y="2325.749" z="183.93073" h="5" />
+				</spawn>
+				<!-- Terra dos Ácidos Fumegantes -->
+				<spawn npc_id="801489" respawn_time="180">
+					<spot x="1355.2502" y="2325.9846" z="183.5" h="60" />
+				</spawn>
+				<!-- Disillusioned Guardian Labourer -->
+				<spawn npc_id="801490" respawn_time="180">
+					<spot x="1317.354858" y="2332.721191" z="185.632431" />
+				</spawn>
+				<!-- Runaway Reian -->
+				<spawn npc_id="801492" respawn_time="180">
+					<spot x="1315.4783" y="2328.9531" z="183.93073" h="5" />
+				</spawn>
+				<!-- Baú do tesouro premium -->
+				<spawn npc_id="801566" respawn_time="180">
+					<spot x="1352.2638" y="2315.7903" z="183.5" h="30" />
+				</spawn>
+				<spawn npc_id="801714" handler="MERCHANT">
+					<spot x="1325.0239" y="2346.2737" z="184.40797" static_id="2770" />
+				</spawn>
+				<!-- Protetor de Leipniz -->
+				<spawn npc_id="801800" respawn_time="180">
+					<spot x="1358.948" y="2346.2317" z="185.63243" h="93" />
+				</spawn>
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Protetor Flinn -->
+				<spawn npc_id="801649">
+					<spot x="1333.086" y="2330.3486" z="183.45392" h="91" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Aparência protetor -->
+				<spawn npc_id="801650">
+					<spot x="1333.086" y="2330.3486" z="183.45392" h="91" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="88">
+			<!-- Two Vigils Outpost -->
+			<occupier_template occupier="ELYOS">
+				<spawn npc_id="800798" respawn_time="180">
+					<spot x="2117.676270" y="2483.775879" z="269.896790" />
+				</spawn>
+				<!-- Trader de móveis da aldeia -->
+				<spawn npc_id="800799" respawn_time="180">
+					<spot x="2133.564" y="2463.927" z="269.89679" h="30" />
+				</spawn>
+				<!-- Gerente de armazém da vila -->
+				<spawn npc_id="800800" respawn_time="180">
+					<spot x="2126.2051" y="2463.9404" z="269.89679" h="30" />
+				</spawn>
+				<!-- Village Guest Bloom Trader -->
+				<spawn npc_id="800801" respawn_time="180">
+					<spot x="2126.0225" y="2485.1221" z="269.89679" h="90" />
+				</spawn>
+				<!-- Trader de decoração de interiores da aldeia -->
+				<spawn npc_id="800802" respawn_time="180">
+					<spot x="2129.3555" y="2485.1836" z="269.89679" h="90" />
+				</spawn>
+				<!-- General Goods Merchant in Apheta Beluslan Fortress_Asmo_02 -->
+				<spawn npc_id="801044" respawn_time="180">
+					<spot x="2122.1309" y="2462.808" z="268.875" />
+				</spawn>
+				<!-- Disillusioned Prisoner -->
+				<spawn npc_id="801334" respawn_time="180">
+					<spot x="2120.2708" y="2460.7734" z="270.06512" />
+				</spawn>
+				<!-- Laferinerk -->
+				<spawn npc_id="801570" respawn_time="180">
+					<spot x="2130.2297" y="2463.8545" z="269.8968" h="29" />
+				</spawn>
+				<!-- Arqueiro da tropa de greve Asmodiano -->
+				<spawn npc_id="801717" handler="MERCHANT">
+					<spot x="2117.9194" y="2486.8521" z="268.875" static_id="2772" />
+				</spawn>
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Rojan -->
+				<spawn npc_id="801651">
+					<spot x="2130.2258" y="2473.3813" z="268.875" h="113" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Corretor comercial da vila -->
+				<spawn npc_id="800803" respawn_time="180">
+					<spot x="2117.6763" y="2483.776" z="268.875" h="0" />
+				</spawn>
+				<!-- Village Guest Bloom Trader -->
+				<spawn npc_id="800804" respawn_time="180">
+					<spot x="2133.564" y="2463.927" z="268.875" h="30" />
+				</spawn>
+				<!-- Oficial de Administração da Coroa Antiga -->
+				<spawn npc_id="800805" respawn_time="180">
+					<spot x="2126.205" y="2463.9404" z="268.875" h="30" />
+				</spawn>
+				<!-- Village Special Guest Bloom Trader -->
+				<spawn npc_id="800806" respawn_time="180">
+					<spot x="2126.0225" y="2485.122" z="268.875" h="90" />
+				</spawn>
+				<!-- Oficial de Renovação da Aldeia -->
+				<spawn npc_id="800807" respawn_time="180">
+					<spot x="2129.3555" y="2485.1836" z="268.875" h="90" />
+				</spawn>
+				<!-- Selia -->
+				<spawn npc_id="801054" respawn_time="180">
+					<spot x="2123.3506" y="2483.0981" z="268.875" h="113" />
+				</spawn>
+				<!-- Disillusioned Prisoner -->
+				<spawn npc_id="801335" respawn_time="180">
+					<spot x="2120.2708" y="2460.7734" z="268.75653" h="0" />
+				</spawn>
+				<!-- Baú de suprimento do exército de Beritra -->
+				<spawn npc_id="801569" respawn_time="180">
+					<spot x="2130.2297" y="2463.8545" z="268.875" h="30" />
+				</spawn>
+				<!-- Arqueiro da tropa de greve Asmodiano -->
+				<spawn npc_id="801716" handler="MERCHANT">
+					<spot x="2117.9194" y="2486.8521" z="268.875" static_id="2772" />
+				</spawn>
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Estátua de Teleports de rota em marcha -->
+				<spawn npc_id="801652">
+					<spot x="2130.2258" y="2473.3813" z="268.875" h="113" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Sistema de Loteria | Categoria: Azul -->
+				<spawn npc_id="801653">
+					<spot x="2130.2258" y="2473.3813" z="268.875" h="113" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="89">
+			<!-- Emerald Meadow -->
+			<occupier_template occupier="ELYOS">
+				<!-- Vedrevara -->
+				<spawn npc_id="801045" respawn_time="180">
+					<spot x="2606.5176" y="2200.0813" z="249.375" h="30" />
+				</spawn>
+				<!-- Delegação de férias -->
+				<spawn npc_id="800810" respawn_time="180">
+					<spot x="2616.976" y="2213.079" z="249.375" h="75" />
+				</spawn>
+				<!-- Orchestra -->
+				<spawn npc_id="800811" respawn_time="180">
+					<spot x="2614.9326" y="2216.0405" z="249.375" h="75" />
+				</spawn>
+				<!-- Clear-Eyed Prisoner -->
+				<spawn npc_id="801336" respawn_time="180">
+					<spot x="2624.3103" y="2209.2573" z="250.49387" h="45" />
+				</spawn>
+				<!-- Delegação de férias -->
+				<spawn npc_id="800809" respawn_time="180">
+					<spot x="2603.387" y="2202.4004" z="249.375" h="15" />
+				</spawn>
+				<!-- Fogos de artifício-npc -->
+				<spawn npc_id="800808" respawn_time="180">
+					<spot x="2604.3147" y="2187.2964" z="249.375" h="15" />
+				</spawn>
+				<!-- Arqueiro da tropa de greve Asmodiano -->
+				<spawn npc_id="801719" handler="MERCHANT">
+					<spot x="2607.658" y="2187.9888" z="249.375" static_id="2783" />
+				</spawn>
+				<!-- Caixa de correio -->
+				<spawn npc_id="700000">
+					<spot x="2600.851563" y="2205.524170" z="249.375" />
+				</spawn>
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- Bolo de Ratatouille -->
+				<spawn npc_id="801654">
+					<spot x="2609.5544" y="2209.1594" z="249.375" h="40" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Trabalhador de construção da vila -->
+				<spawn npc_id="800815" respawn_time="180">
+					<spot x="2614.9326" y="2216.0405" z="250.6884" h="75" />
+				</spawn>
+				<!-- Trabalhador da vila -->
+				<spawn npc_id="800814" respawn_time="180">
+					<spot x="2616.9761" y="2213.0791" z="250.6884" h="75" />
+				</spawn>
+				<!-- New Laphsaran Fenda -->
+				<spawn npc_id="801337" respawn_time="180">
+					<spot x="2624.3103" y="2209.2573" z="250.49387" h="45" />
+				</spawn>
+				<!-- Denkana -->
+				<spawn npc_id="801055" respawn_time="180">
+					<spot x="2615.5469" y="2207.2708" z="251.14993" h="30" />
+				</spawn>
+				<!-- Orquestra de delegação de férias -->
+				<spawn npc_id="800812">
+					<spot x="2604.3147" y="2187.2964" z="250.6884" h="35" />
+				</spawn>
+				<!-- Orquestra de delegação de férias -->
+				<spawn npc_id="800813" respawn_time="180">
+					<spot x="2603.387" y="2202.4004" z="250.6884" h="15" />
+				</spawn>
+				<!-- Teleport Device [Emerald Meadow To Pradeth Fortress] -->
+				<spawn npc_id="801718" handler="MERCHANT">
+					<spot x="2607.658" y="2187.9888" z="249.375" static_id="2783" />
+				</spawn>
+				<!-- Caixa de correio -->
+				<spawn npc_id="700079">
+					<spot x="2600.851563" y="2205.524170" z="249.375" />
+				</spawn>
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- O grande bolo de Ratatouille -->
+				<spawn npc_id="801655">
+					<spot x="2609.5544" y="2209.1594" z="249.375" h="40" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- GUARD -->
+				<!-- GUARD VILLAGE -->
+				<!-- <Potencializadores Extra> -->
+				<spawn npc_id="801656">
+					<spot x="2609.5544" y="2209.1594" z="249.375" h="40" />
+				</spawn>
+				<!-- Territory Boss -->
+			</occupier_template>
+		</base_spawn>
+	</spawn_map>
+</spawns>

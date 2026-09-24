@@ -1,0 +1,9 @@
+<MaterialsLibrary>
+	<Library></Library>
+	<Library File="Editor\Materials\IDArena_team01_Water.xml" Name="IDArena_team01_Water">
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.78823531,0.71764708,0.57254905" Emissive="0,0,0" GenMask="0" Id="{95FC1449-D129-4F97-B297-F56678359448}" MtlFlags="16" Name="Rainwater" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0.53725493,0.97647059" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="10" bumpamountx="0.01" bumpamounty="0.01" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.5" reflamount="0" reflectamount="1" refrbumpamount="0.05" refrtillingamount="1" textilex="10" textiley="10"/>
+		</Material>
+	</Library>
+</MaterialsLibrary>

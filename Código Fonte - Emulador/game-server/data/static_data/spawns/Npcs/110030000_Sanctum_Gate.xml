@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="110030000">
+		<!-- Atirador -->
+		<spawn npc_id="730648" respawn_time="295">
+			<spot x="1345.7201" y="1511.3084" z="569.0387" h="58"/>
+		</spawn>
+	</spawn_map>
+</spawns>

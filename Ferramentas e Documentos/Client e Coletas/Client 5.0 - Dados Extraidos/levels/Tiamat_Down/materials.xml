@@ -1,0 +1,4 @@
+<MaterialsLibrary>
+	<Library></Library>
+	<Library File="Editor\Materials\LDF4B_tiamat.xml" Name="LDF4B_tiamat"/>
+</MaterialsLibrary>

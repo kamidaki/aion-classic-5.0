@@ -1,0 +1,42 @@
+<LevelData>
+	<LevelInfo HeightmapUnitSize="2" HeightmapXSize="512" HeightmapYSize="512" Name="idlf2a_lab" WaterLevel="16"/>
+	<SurfaceTypes>
+		<SurfaceType Bumpmap="" DetailScaleX="1" DetailScaleY="1" DetailTexture="Textures\Terrain\Detail\Default.dds" Material="" Name="Default" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+	</SurfaceTypes>
+	<Vegetation></Vegetation>
+	<MaterialsLibrary>
+		<Library Name="Level"/>
+		<Library Name="Lf2a_lab_water"/>
+	</MaterialsLibrary>
+	<ParticlesLibrary>
+		<Library Name="sys_bindpoint"/>
+		<Library Name="env_lf_fire"/>
+		<Library Name="env_effect"/>
+		<Library Name="env_dungeon"/>
+		<Library Name="env_lf_smoke"/>
+		<Library Name="env_magma"/>
+		<Library Name="env_df_nature"/>
+		<Library Name="env_lf_nature"/>
+		<Library Name="env_water_ripple"/>
+		<Library Name="env_item"/>
+		<Library Name="mon_tesinon"/>
+	</ParticlesLibrary>
+	<MusicLibrary>
+		<Library File="idlf2a_lab-bgm.xml" Name="idlf2a_lab-bgm"/>
+	</MusicLibrary>
+	<Missions>
+		<Mission CGFCount="303" File="Mission_Mission0.xml" Name="Mission0">
+			<LevelOption>
+				<Initialize Render_Beaches="0" Render_Fog="1" Render_Ocean="0" Render_SkyBox="1" Render_SkyCloud="1" Render_Sun="1" Render_Terrain="0"/>
+				<Fly Fly_Whole_Level="0" FRZ_NEGX="0" FRZ_NEGY="0" FRZ_X="0" FRZ_Y="0" MaxHeight="1000"/>
+				<Ride Ride_Whole_Level="0"/>
+				<BindArea IsPossible="0"/>
+				<ReCall IsPossible="1"/>
+				<Glide IsPossible="1"/>
+				<LightMap LightMapLevelName=""/>
+			</LevelOption>
+		</Mission>
+	</Missions>
+</LevelData>

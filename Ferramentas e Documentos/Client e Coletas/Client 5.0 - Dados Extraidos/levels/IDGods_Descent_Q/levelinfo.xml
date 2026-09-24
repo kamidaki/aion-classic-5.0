@@ -1,0 +1,5 @@
+<LevelInfo HeightmapXSize="512" HeightmapYSize="512" LightMapPath="Levels\LF_Tower\" Name="Levels\IDGods_Descent_Q" Version="{F6FAFB46-8A13-4F7C-89A5-B6573F81C706}">
+	<Missions>
+		<Mission Description="" Name="Mission0"/>
+	</Missions>
+</LevelInfo>
