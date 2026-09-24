@@ -274,13 +274,26 @@ static void WorkerApplyAll() {
 }
 
 static DWORD WINAPI CVarWorkerThreadProc(LPVOID) {
-    const DWORD intervalMs = 1200;
+    bool initialApplied = false;
     while (!InterlockedCompareExchange(&g_stopWorker, 0, 0)) {
-        WorkerApplyAll();
-        if (g_hWakeEvent) {
-            WaitForSingleObject(g_hWakeEvent, intervalMs);
+        if (!initialApplied) {
+            uintptr_t pConsole = GetNativeConsole();
+            if (pConsole != 0) {
+                WorkerApplyAll();
+                initialApplied = true;
+                LogInfo("CVarManager: CVars aplicados com sucesso na engine. Modo event-driven ativado (0%% CPU em idle).");
+            }
         } else {
-            Sleep(intervalMs);
+            WorkerApplyAll();
+        }
+
+        // Aguarda evento de alteração de configuração (0% CPU em repouso)
+        // Durante inicialização da engine, verifica a cada 1500ms até CrySystem estar pronto
+        DWORD waitTime = initialApplied ? INFINITE : 1500;
+        if (g_hWakeEvent) {
+            WaitForSingleObject(g_hWakeEvent, waitTime);
+        } else {
+            Sleep(waitTime);
         }
     }
     return 0;

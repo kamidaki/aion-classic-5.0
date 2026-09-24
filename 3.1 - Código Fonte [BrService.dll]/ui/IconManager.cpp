@@ -6,10 +6,13 @@
 #include <sstream>
 #include <algorithm>
 #include <regex>
+#include <vector>
 
 namespace BrService {
 
 std::wstring IconManager::s_baseIconDir;
+std::wstring IconManager::s_gameDataDir;
+std::wstring IconManager::s_gameTexturesDir;
 std::unordered_map<std::string, std::string> IconManager::s_skillNameToIconFile;
 std::unordered_map<uint32_t, std::string> IconManager::s_skillIdToIconFile;
 std::unordered_map<std::wstring, Gdiplus::Bitmap*> IconManager::s_bitmapCache;
@@ -48,41 +51,142 @@ static bool FileExists(const std::wstring& path) {
     return (attr != INVALID_FILE_ATTRIBUTES && !(attr & FILE_ATTRIBUTE_DIRECTORY));
 }
 
-static std::wstring ResolveExistingIcon(const std::wstring& baseDir, const std::string& filename) {
-    if (filename.empty()) return L"";
-    std::wstring wName(filename.begin(), filename.end());
+// Decodificador nativo de arquivos DDS (DirectDraw Surface) para Gdiplus::Bitmap
+static Gdiplus::Bitmap* LoadDDSBitmap(const std::wstring& fullPath) {
+    HANDLE hFile = CreateFileW(fullPath.c_str(), GENERIC_READ, FILE_SHARE_READ, nullptr, OPEN_EXISTING, 0, nullptr);
+    if (hFile == INVALID_HANDLE_VALUE) return nullptr;
 
-    // 1. Direct check
-    std::wstring p1 = baseDir + L"\\" + wName;
-    if (FileExists(p1)) return p1;
-
-    // 2. Try with cbt_ prefix (combat skills)
-    if (filename.rfind("cbt_", 0) != 0) {
-        std::wstring p2 = baseDir + L"\\cbt_" + wName;
-        if (FileExists(p2)) return p2;
-    } else {
-        // Try without cbt_
-        std::wstring pNoCbt = baseDir + L"\\" + std::wstring(filename.begin() + 4, filename.end());
-        if (FileExists(pNoCbt)) return pNoCbt;
+    DWORD fileSize = GetFileSize(hFile, nullptr);
+    if (fileSize < 128) {
+        CloseHandle(hFile);
+        return nullptr;
     }
 
-    // 3. Try removing _proc
+    std::vector<BYTE> buf(fileSize);
+    DWORD bytesRead = 0;
+    if (!ReadFile(hFile, buf.data(), fileSize, &bytesRead, nullptr) || bytesRead < 128) {
+        CloseHandle(hFile);
+        return nullptr;
+    }
+    CloseHandle(hFile);
+
+    if (*(DWORD*)buf.data() != 0x20534444) return nullptr; // "DDS "
+
+    DWORD h = *(DWORD*)(buf.data() + 12);
+    DWORD w = *(DWORD*)(buf.data() + 16);
+    if (w == 0 || h == 0 || w > 4096 || h > 4096) return nullptr;
+
+    DWORD fourCC = *(DWORD*)(buf.data() + 84);
+    DWORD rgbBits = *(DWORD*)(buf.data() + 88);
+    BYTE* pSrc = buf.data() + 128;
+
+    // Formato nativo Aion: 32-bit BGRA8888 descomprimido
+    if (fourCC == 0 && rgbBits == 32) {
+        Gdiplus::Bitmap* bmp = new Gdiplus::Bitmap((INT)w, (INT)h, PixelFormat32bppARGB);
+        Gdiplus::BitmapData bmpData;
+        Gdiplus::Rect rc(0, 0, (INT)w, (INT)h);
+        if (bmp->LockBits(&rc, Gdiplus::ImageLockModeWrite, PixelFormat32bppARGB, &bmpData) == Gdiplus::Ok) {
+            for (DWORD y = 0; y < h; ++y) {
+                if (pSrc + (y + 1) * w * 4 <= buf.data() + bytesRead) {
+                    memcpy((BYTE*)bmpData.Scan0 + y * bmpData.Stride, pSrc + y * w * 4, w * 4);
+                }
+            }
+            bmp->UnlockBits(&bmpData);
+            return bmp;
+        }
+        delete bmp;
+    }
+    return nullptr;
+}
+
+static std::wstring CheckFileWithExtensions(const std::wstring& baseDir, const std::wstring& stem) {
+    if (stem.empty()) return L"";
+    std::wstring p1 = baseDir + L"\\" + stem;
+    if (FileExists(p1)) return p1;
+
+    size_t dot = stem.rfind(L'.');
+    if (dot != std::wstring::npos) {
+        std::wstring raw = stem.substr(0, dot);
+        std::wstring ext = stem.substr(dot);
+        if (_wcsicmp(ext.c_str(), L".png") == 0) {
+            std::wstring pDds = baseDir + L"\\" + raw + L".dds";
+            if (FileExists(pDds)) return pDds;
+        } else if (_wcsicmp(ext.c_str(), L".dds") == 0) {
+            std::wstring pPng = baseDir + L"\\" + raw + L".png";
+            if (FileExists(pPng)) return pPng;
+        }
+    } else {
+        std::wstring pPng = baseDir + L"\\" + stem + L".png";
+        if (FileExists(pPng)) return pPng;
+        std::wstring pDds = baseDir + L"\\" + stem + L".dds";
+        if (FileExists(pDds)) return pDds;
+    }
+    return L"";
+}
+
+static std::wstring TryCandidateNames(const std::wstring& baseDir, const std::string& filename) {
+    if (filename.empty() || baseDir.empty()) return L"";
+    std::wstring wName(filename.begin(), filename.end());
+
+    // 1. Verificação direta (png e dds)
+    std::wstring found = CheckFileWithExtensions(baseDir, wName);
+    if (!found.empty()) return found;
+
+    // 2. Prefixo cbt_ (skills de combate)
+    if (filename.rfind("cbt_", 0) != 0) {
+        std::wstring p2 = CheckFileWithExtensions(baseDir, L"cbt_" + wName);
+        if (!p2.empty()) return p2;
+    } else {
+        std::wstring pNoCbt = CheckFileWithExtensions(baseDir, std::wstring(wName.begin() + 4, wName.end()));
+        if (!pNoCbt.empty()) return pNoCbt;
+    }
+
+    // 3. Remoção de sufixo _proc
     std::string base = filename;
     size_t procPos = base.find("_proc");
     if (procPos != std::string::npos) {
         base.erase(procPos, 5);
-        std::wstring pProc = ResolveExistingIcon(baseDir, base);
+        std::wstring pProc = CheckFileWithExtensions(baseDir, std::wstring(base.begin(), base.end()));
         if (!pProc.empty()) return pProc;
     }
 
-    // 4. Try fallback to grade 1 (_g1)
+    // 4. Fallback de nível de graduação para grade 1 (_g1)
     size_t gPos = base.rfind("_g");
-    if (gPos != std::string::npos && gPos + 3 <= base.length()) {
-        std::string baseG1 = base.substr(0, gPos) + "_g1.png";
+    if (gPos != std::string::npos) {
+        size_t dotPos = base.rfind('.');
+        std::string ext = (dotPos != std::string::npos) ? base.substr(dotPos) : ".png";
+        std::string baseG1 = base.substr(0, gPos) + "_g1" + ext;
         if (baseG1 != base) {
-            std::wstring pG1 = ResolveExistingIcon(baseDir, baseG1);
+            std::wstring pG1 = CheckFileWithExtensions(baseDir, std::wstring(baseG1.begin(), baseG1.end()));
             if (!pG1.empty()) return pG1;
         }
+    }
+
+    return L"";
+}
+
+static std::wstring ResolveExistingIcon(const std::string& filename) {
+    if (filename.empty()) return L"";
+
+    // Busca relativa em ordem de prioridade (zero paths absolutos)
+    const std::wstring* dirs[] = {
+        &IconManager::GetBaseIconDir(),
+        &IconManager::GetGameDataDir(),
+        &IconManager::GetGameTexturesDir()
+    };
+
+    // Subpastas relativas
+    std::vector<std::wstring> searchLocations = {
+        IconManager::GetBaseIconDir() + L"\\skills",
+        IconManager::GetGameDataDir() + L"\\items",
+        IconManager::GetGameDataDir() + L"\\skills",
+        IconManager::GetGameTexturesDir() + L"\\UI",
+        IconManager::GetBaseIconDir()
+    };
+
+    for (const auto& loc : searchLocations) {
+        std::wstring res = TryCandidateNames(loc, filename);
+        if (!res.empty()) return res;
     }
 
     return L"";
@@ -92,6 +196,7 @@ bool IconManager::Initialize() {
     std::lock_guard<std::mutex> lock(s_cacheMutex);
     if (s_initialized) return true;
 
+    // Resolução 100% relativa da DLL (portabilidade universal)
     wchar_t dllPath[MAX_PATH] = { 0 };
     HMODULE hMod = g_hModule;
     if (!hMod) {
@@ -104,37 +209,45 @@ bool IconManager::Initialize() {
     if (lastSlash) {
         *lastSlash = L'\0';
     }
+    // dllPath é a pasta da DLL (<GameRoot>\bin64)
+    std::wstring binDir = dllPath;
 
-    // Lista de caminhos candidatos para encontrar a pasta de icones
-    const wchar_t* candidateDirs[] = {
-        L"sprites\\icons",
-        L"D:\\GameForge\\aionclassic\\bin64\\sprites\\icons",
-        L"D:\\AION CLASSIC 5.0 - EMULADOR\\4 - Patch para o Client 5.0\\bin64\\sprites\\icons",
-        L"D:\\Downloads - Google\\Lost Academy - Remake v1\\LostAcademy\\sprites\\icons",
-    };
+    // gameRootDir é a raiz do jogo (<GameRoot>), uma pasta acima de bin64
+    std::wstring gameRootDir = dllPath;
+    wchar_t* upSlash = wcsrchr(dllPath, L'\\');
+    if (upSlash) {
+        gameRootDir = std::wstring(dllPath, upSlash);
+    }
 
-    s_baseIconDir = std::wstring(dllPath) + L"\\sprites\\icons";
-    for (const wchar_t* cd : candidateDirs) {
-        std::wstring path = (cd[1] == L':') ? std::wstring(cd) : (std::wstring(dllPath) + L"\\" + cd);
-        std::wstring testJson = path + L"\\skills.json";
-        if (FileExists(testJson)) {
-            s_baseIconDir = path;
-            break;
+    s_baseIconDir = binDir + L"\\sprites\\icons";
+    s_gameDataDir = gameRootDir + L"\\data";
+    s_gameTexturesDir = gameRootDir + L"\\Textures";
+
+    // Verifica se skills.json existe na pasta de sprites da DLL ou na pasta raiz
+    std::wstring testJson = s_baseIconDir + L"\\skills.json";
+    if (!FileExists(testJson)) {
+        std::wstring altJson = binDir + L"\\skills.json";
+        if (FileExists(altJson)) {
+            s_baseIconDir = binDir;
         }
     }
 
     LoadSkillDatabase();
 
-    // Contar arquivos .png na pasta de skills para diagnóstico
+    // Contagem diagnóstica de ícones na pasta de skills
     int iconCount = 0;
-    std::wstring searchPath = s_baseIconDir + L"\\skills\\*.png";
+    std::wstring searchPath = s_baseIconDir + L"\\skills\\*.*";
     WIN32_FIND_DATAW fd = {};
     HANDLE hFind = FindFirstFileW(searchPath.c_str(), &fd);
     if (hFind != INVALID_HANDLE_VALUE) {
-        do { iconCount++; } while (FindNextFileW(hFind, &fd));
+        do {
+            if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
+                iconCount++;
+            }
+        } while (FindNextFileW(hFind, &fd));
         FindClose(hFind);
     }
-    LogInfo("IconManager: %d icones .png encontrados em %ls\\skills\\.", iconCount, s_baseIconDir.c_str());
+    LogInfo("IconManager: %d icones de skills detectados em %ls\\skills\\ (caminho relativo).", iconCount, s_baseIconDir.c_str());
 
     s_initialized = true;
     return true;
@@ -157,7 +270,7 @@ void IconManager::LoadSkillDatabase() {
     std::wstring jsonPath = s_baseIconDir + L"\\skills.json";
     std::ifstream file(jsonPath);
     if (!file.is_open()) {
-        LogInfo("skills.json nao encontrado em %ls. Busca sera efetuada por nome direto de arquivo.", jsonPath.c_str());
+        LogInfo("skills.json nao encontrado em %ls. Busca automatica sera efetuada por nome de arquivo.", jsonPath.c_str());
         return;
     }
 
@@ -165,7 +278,6 @@ void IconManager::LoadSkillDatabase() {
     buffer << file.rdbuf();
     std::string content = buffer.str();
 
-    // Fast lightweight JSON parser for array of { "id": N, "name": "...", "icon": "...", "de": "...", "fr": "..." }
     size_t pos = 0;
     size_t count = 0;
 
@@ -179,13 +291,13 @@ void IconManager::LoadSkillDatabase() {
         std::string nameStr;
         std::string iconStr;
 
-        // Parse "id": 123
+        // "id": 123
         size_t idPos = obj.find("\"id\":");
         if (idPos != std::string::npos) {
             skillId = (uint32_t)strtoul(obj.c_str() + idPos + 5, nullptr, 10);
         }
 
-        // Parse "name": "..."
+        // "name": "..."
         size_t namePos = obj.find("\"name\":");
         if (namePos != std::string::npos) {
             size_t q1 = obj.find('\"', namePos + 7);
@@ -197,7 +309,7 @@ void IconManager::LoadSkillDatabase() {
             }
         }
 
-        // Parse "icon": "..."
+        // "icon": "..."
         size_t iconPos = obj.find("\"icon\":");
         if (iconPos != std::string::npos) {
             size_t q1 = obj.find('\"', iconPos + 7);
@@ -229,15 +341,16 @@ void IconManager::LoadSkillDatabase() {
 std::wstring IconManager::GetSkillIconPath(const std::string& skillName, uint32_t skillId) {
     if (!s_initialized) Initialize();
 
-    // Check auto attack first
+    // Auto attack
     if (skillId == 0 || skillName == "Auto Attack" || skillName == "Ataque Normal" ||
         skillName.find("Auto Attack") != std::string::npos || skillName.find("Magic Attack") != std::string::npos) {
-        return s_baseIconDir + L"\\skills\\icon_action_operation.png";
+        std::wstring autoAtk = ResolveExistingIcon("icon_action_operation.png");
+        if (!autoAtk.empty()) return autoAtk;
     }
 
     std::string iconFilename;
 
-    // 1. Check skillId mapping
+    // 1. Busca por skillId
     if (skillId > 0) {
         auto itId = s_skillIdToIconFile.find(skillId);
         if (itId != s_skillIdToIconFile.end()) {
@@ -245,7 +358,7 @@ std::wstring IconManager::GetSkillIconPath(const std::string& skillName, uint32_
         }
     }
 
-    // 2. Check normalized skill name mapping
+    // 2. Busca por nome normalizado
     if (iconFilename.empty() && !skillName.empty()) {
         std::string norm = NormalizeSkillName(skillName);
         auto itName = s_skillNameToIconFile.find(norm);
@@ -259,48 +372,42 @@ std::wstring IconManager::GetSkillIconPath(const std::string& skillName, uint32_
         }
     }
 
-    // 3. Fallback direct filename check (e.g. if skillName is already an icon key)
+    // 3. Fallback de nome direto de arquivo
     if (iconFilename.empty() && !skillName.empty()) {
-        iconFilename = ToLowerAscii(skillName) + ".png";
+        iconFilename = ToLowerAscii(skillName);
     }
 
     if (!iconFilename.empty()) {
-        std::wstring resolved = ResolveExistingIcon(s_baseIconDir + L"\\skills", iconFilename);
+        std::wstring resolved = ResolveExistingIcon(iconFilename);
         if (!resolved.empty()) return resolved;
     }
 
-    // Direct check with skillName without extension
-    if (!skillName.empty()) {
-        std::wstring resolved = ResolveExistingIcon(s_baseIconDir + L"\\skills", ToLowerAscii(skillName) + ".png");
-        if (!resolved.empty()) return resolved;
-    }
-
-    // Default fallback to action operation icon if available
-    std::wstring fallback = s_baseIconDir + L"\\skills\\icon_action_operation.png";
-    if (FileExists(fallback)) return fallback;
+    // Fallback padrão
+    std::wstring fallback = ResolveExistingIcon("icon_action_operation.png");
+    if (!fallback.empty()) return fallback;
 
     return L"";
 }
 
 static std::string NormalizeClassName(const std::string& raw) {
     std::string s = ToLowerAscii(raw);
-    if (s.find("gladiador") != std::string::npos || s == "gladiator") return "Gladiator";
-    if (s.find("templ") != std::string::npos) return "Templar";
+    if (s.find("gladiador") != std::string::npos || s == "gladiator" || s == "fighter") return "Gladiator";
+    if (s.find("templ") != std::string::npos || s == "knight") return "Templar";
     if (s.find("guerreiro") != std::string::npos || s == "warrior") return "Warrior";
     if (s.find("batedor") != std::string::npos || s == "scout") return "Scout";
     if (s.find("assassin") != std::string::npos) return "Assassin";
     if (s.find("arqueiro") != std::string::npos || s == "ranger") return "Ranger";
     if (s.find("mago") != std::string::npos || s == "mage") return "Mage";
-    if (s.find("feiticeiro") != std::string::npos || s == "sorcerer") return "Sorcerer";
-    if (s.find("invocador") != std::string::npos || s.find("spirit") != std::string::npos) return "Spiritmaster";
+    if (s.find("feiticeiro") != std::string::npos || s == "sorcerer" || s == "wizard") return "Sorcerer";
+    if (s.find("invocador") != std::string::npos || s.find("spirit") != std::string::npos || s == "elementalist") return "Spiritmaster";
     if (s.find("sacerdote") != std::string::npos || s == "priest") return "Priest";
     if (s.find("clérigo") != std::string::npos || s.find("clerigo") != std::string::npos || s == "cleric") return "Cleric";
     if (s.find("cantor") != std::string::npos || s == "chanter") return "Chanter";
     if (s.find("revenant") != std::string::npos || s.find("thunderer") != std::string::npos || s.find("monk") != std::string::npos) return "Revenant";
-    if (s.find("brawler") != std::string::npos || s.find("lutador") != std::string::npos || s.find("striker") != std::string::npos) return "Brawler";
-    if (s.find("luminess") != std::string::npos || s.find("lumin") != std::string::npos || s.find("orchestrator") != std::string::npos || s.find("bard") != std::string::npos) return "Luminess";
+    if (s.find("brawler") != std::string::npos || s.find("lutador") != std::string::npos || s.find("striker") != std::string::npos || s.find("battlemaster") != std::string::npos) return "Brawler";
+    if (s.find("luminess") != std::string::npos || s.find("lumin") != std::string::npos || s.find("orchestrator") != std::string::npos) return "Luminess";
     if (s.find("phoenix") != std::string::npos || s.find("fenix") != std::string::npos || s.find("engineer") != std::string::npos || s.find("gunner") != std::string::npos) return "Phoenix";
-    if (s.find("soul_reaper") != std::string::npos || s.find("ceifador") != std::string::npos || s.find("reaper") != std::string::npos) return "Soul_Reaper";
+    if (s.find("soul_reaper") != std::string::npos || s.find("ceifador") != std::string::npos || s.find("reaper") != std::string::npos || s.find("runeblade") != std::string::npos) return "Soul_Reaper";
     if (!raw.empty()) {
         std::string cap = raw;
         cap[0] = (char)::toupper((unsigned char)cap[0]);
@@ -313,7 +420,14 @@ std::wstring IconManager::GetClassIconPath(const std::string& className) {
     if (!s_initialized) Initialize();
     std::string norm = NormalizeClassName(className);
     std::wstring wClass(norm.begin(), norm.end());
-    return s_baseIconDir + L"\\classes\\" + wClass + L".png";
+
+    std::wstring pPng = s_baseIconDir + L"\\classes\\" + wClass + L".png";
+    if (FileExists(pPng)) return pPng;
+
+    std::wstring pDds = s_baseIconDir + L"\\classes\\" + wClass + L".dds";
+    if (FileExists(pDds)) return pDds;
+
+    return pPng;
 }
 
 Gdiplus::Bitmap* IconManager::GetOrLoadBitmap(const std::wstring& fullPath) {
@@ -330,7 +444,13 @@ Gdiplus::Bitmap* IconManager::GetOrLoadBitmap(const std::wstring& fullPath) {
         return nullptr;
     }
 
-    Gdiplus::Bitmap* bmp = Gdiplus::Bitmap::FromFile(fullPath.c_str(), FALSE);
+    Gdiplus::Bitmap* bmp = nullptr;
+    if (fullPath.length() >= 4 && _wcsicmp(fullPath.c_str() + fullPath.length() - 4, L".dds") == 0) {
+        bmp = LoadDDSBitmap(fullPath);
+    } else {
+        bmp = Gdiplus::Bitmap::FromFile(fullPath.c_str(), FALSE);
+    }
+
     if (bmp && bmp->GetLastStatus() == Gdiplus::Ok) {
         s_bitmapCache[fullPath] = bmp;
         return bmp;
@@ -346,18 +466,15 @@ void IconManager::DrawSkillIcon(Gdiplus::Graphics& g, float x, float y, float si
     Gdiplus::Bitmap* bmp = GetOrLoadBitmap(iconPath);
 
     if (bmp) {
-        // High quality rendering
         g.SetInterpolationMode(Gdiplus::InterpolationModeHighQualityBicubic);
         g.SetPixelOffsetMode(Gdiplus::PixelOffsetModeHighQuality);
 
-        // Draw image smoothly
         g.DrawImage(bmp, x, y, size, size);
 
-        // Subtle dark rim border
         Gdiplus::Pen rimPen(Gdiplus::Color(160, 20, 25, 32), 1.0f);
         UICommon::DrawRoundRectangle(g, &rimPen, x, y, size, size, 2.0f);
     } else {
-        // Fallback to stylized rune badge
+        // Fallback estilizado se a imagem não estiver presente
         UICommon::DrawSkillIconBadge(g, x, y, size, skillId, skillName);
     }
 }

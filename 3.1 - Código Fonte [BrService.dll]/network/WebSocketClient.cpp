@@ -155,13 +155,16 @@ void WebSocketClient::HandleIncomingPayload(const std::string& payload) {
         std::lock_guard<std::recursive_mutex> lock(g_combatMutex);
         if (!hasTarget) {
             g_currentTarget.hasTarget = false;
-            g_currentTarget.name = "Sem Alvo";
+            g_currentTarget.targetId = 0;
+            g_currentTarget.name.clear();
             g_currentTarget.level = 0;
             g_currentTarget.currentHp = 0;
-            g_currentTarget.maxHp = 100;
+            g_currentTarget.maxHp = 0;
             g_currentTarget.modelId = 0;
-            g_currentTarget.rating = "NORMAL";
-            g_currentTarget.race = "NONE";
+            g_currentTarget.isNpc = false;
+            g_currentTarget.rating.clear();
+            g_currentTarget.race.clear();
+            CryModelBridge::SetTargetEntity(0, 0, 0, 0.0f);
         } else {
             g_currentTarget.hasTarget = true;
             g_currentTarget.targetId = ExtractJsonUint(payload, "targetId", 0);
@@ -180,9 +183,11 @@ void WebSocketClient::HandleIncomingPayload(const std::string& payload) {
             g_currentTarget.race = ExtractJsonString(payload, "race");
             if (g_currentTarget.race.empty()) g_currentTarget.race = "NONE";
 
-            // Immediately load 3D preview model for selected NPC
-            if (g_featModel3D.load() && g_currentTarget.modelId > 0) {
+            // OBRIGATORIAMENTE E INEGOCIAVELMENTE SÓ EXIBE O MODELO 3D QUANDO O ALVO FOR NPC (NUNCA JOGADOR OU A SI MESMO)
+            if (g_featModel3D.load() && g_currentTarget.isNpc && g_currentTarget.modelId > 0) {
                 CryModelBridge::SetTargetNpc(g_currentTarget.modelId);
+            } else {
+                CryModelBridge::SetTargetEntity(0, 0, 0, 0.0f);
             }
         }
 
@@ -274,19 +279,17 @@ void WebSocketClient::HandleIncomingPayload(const std::string& payload) {
     std::string rating = ExtractJsonString(payload, "rating");
     std::string race = ExtractJsonString(payload, "race");
 
-    if (targetId > 0 && !target.empty()) {
+    // Atualiza dados autoritativos do alvo APENAS se o alvo atual for o mesmo da telemetria de combate
+    if (targetId > 0 && g_currentTarget.hasTarget && g_currentTarget.targetId == targetId) {
         std::lock_guard<std::recursive_mutex> lock(g_combatMutex);
-        g_currentTarget.hasTarget = true;
-        g_currentTarget.targetId = targetId;
-        g_currentTarget.name = target;
-        g_currentTarget.level = targetLevel;
         g_currentTarget.currentHp = targetCurHp;
-        g_currentTarget.maxHp = targetMaxHp > 0 ? targetMaxHp : 100;
+        if (targetMaxHp > 0) g_currentTarget.maxHp = targetMaxHp;
+        if (targetLevel > 0) g_currentTarget.level = targetLevel;
         if (modelId > 0) g_currentTarget.modelId = modelId;
         g_currentTarget.isNpc = isNpc;
         if (!rating.empty()) g_currentTarget.rating = rating;
         if (!race.empty()) g_currentTarget.race = race;
-        if (g_featModel3D.load() && g_currentTarget.modelId > 0) {
+        if (g_featModel3D.load() && g_currentTarget.isNpc && g_currentTarget.modelId > 0) {
             CryModelBridge::SetTargetNpc(g_currentTarget.modelId);
         }
     }

@@ -24,12 +24,17 @@ public:
     // Asset path resolution
     static std::wstring GetSkillIconPath(const std::string& skillName, uint32_t skillId);
     static std::wstring GetClassIconPath(const std::string& className);
+    static const std::wstring& GetBaseIconDir() { return s_baseIconDir; }
+    static const std::wstring& GetGameDataDir() { return s_gameDataDir; }
+    static const std::wstring& GetGameTexturesDir() { return s_gameTexturesDir; }
 
 private:
     static void LoadSkillDatabase();
     static Gdiplus::Bitmap* GetOrLoadBitmap(const std::wstring& fullPath);
 
     static std::wstring s_baseIconDir;
+    static std::wstring s_gameDataDir;
+    static std::wstring s_gameTexturesDir;
     static std::unordered_map<std::string, std::string> s_skillNameToIconFile;
     static std::unordered_map<uint32_t, std::string> s_skillIdToIconFile;
     static std::unordered_map<std::wstring, Gdiplus::Bitmap*> s_bitmapCache;

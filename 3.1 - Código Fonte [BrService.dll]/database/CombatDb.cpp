@@ -135,7 +135,8 @@ DWORD WINAPI CombatDb::WorkerThread(LPVOID /*param*/) {
     sqlite3_prepare_v2(s_db, insertSql, -1, &stmt, nullptr);
 
     while (s_running) {
-        WaitForSingleObject(s_hWakeEvent, 500);
+        WaitForSingleObject(s_hWakeEvent, INFINITE);
+        if (!s_running) break;
 
         std::vector<StoredCombatEvent> batch;
         {
