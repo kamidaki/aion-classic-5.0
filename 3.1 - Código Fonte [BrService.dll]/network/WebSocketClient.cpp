@@ -268,6 +268,29 @@ void WebSocketClient::HandleIncomingPayload(const std::string& payload) {
     uint32_t targetMaxHp = ExtractJsonUint(payload, "targetMaxHp", 100);
     uint32_t targetLevel = ExtractJsonUint(payload, "targetLevel", 55);
 
+    uint32_t targetId = ExtractJsonUint(payload, "targetId", 0);
+    uint32_t modelId = ExtractJsonUint(payload, "modelId", 0);
+    bool isNpc = ExtractJsonBool(payload, "isNpc", true);
+    std::string rating = ExtractJsonString(payload, "rating");
+    std::string race = ExtractJsonString(payload, "race");
+
+    if (targetId > 0 && !target.empty()) {
+        std::lock_guard<std::recursive_mutex> lock(g_combatMutex);
+        g_currentTarget.hasTarget = true;
+        g_currentTarget.targetId = targetId;
+        g_currentTarget.name = target;
+        g_currentTarget.level = targetLevel;
+        g_currentTarget.currentHp = targetCurHp;
+        g_currentTarget.maxHp = targetMaxHp > 0 ? targetMaxHp : 100;
+        if (modelId > 0) g_currentTarget.modelId = modelId;
+        g_currentTarget.isNpc = isNpc;
+        if (!rating.empty()) g_currentTarget.rating = rating;
+        if (!race.empty()) g_currentTarget.race = race;
+        if (g_featModel3D.load() && g_currentTarget.modelId > 0) {
+            CryModelBridge::SetTargetNpc(g_currentTarget.modelId);
+        }
+    }
+
     // Update in-memory telemetry and timeline
     AddCombatEvent(attacker, target, skillId, skillName, damage, isCrit, isHeal, targetCurHp, targetMaxHp, targetLevel, timeStr);
 

@@ -173,12 +173,36 @@ public final class DpsService {
 			}
 		}
 
-		StringBuilder sb = new StringBuilder(320);
+		int targetId = target.getObjectId();
+		int modelId = (target instanceof Npc npc) ? npc.getNpcId() : 0;
+		boolean isNpc = target instanceof Npc;
+		String rating = "NORMAL";
+		String race = "NPC";
+		if (target instanceof Npc npc) {
+			if (npc.getObjectTemplate() != null && npc.getObjectTemplate().getRating() != null) {
+				rating = npc.getObjectTemplate().getRating().name();
+			}
+			if (npc.getRace() != null) {
+				race = npc.getRace().name();
+			}
+		} else if (target instanceof Player pTarget) {
+			rating = "PLAYER";
+			if (pTarget.getRace() != null) {
+				race = pTarget.getRace().name();
+			}
+		}
+
+		StringBuilder sb = new StringBuilder(380);
 		sb.append("{\"type\":\"COMBAT_EVENT\",")
 		  .append("\"time\":\"").append(timeStr).append("\",")
 		  .append("\"actionType\":\"DAMAGE\",")
 		  .append("\"attacker\":\"").append(attackerName).append("\",")
 		  .append("\"target\":\"").append(targetName).append("\",")
+		  .append("\"targetId\":").append(targetId).append(",")
+		  .append("\"modelId\":").append(modelId).append(",")
+		  .append("\"isNpc\":").append(isNpc).append(",")
+		  .append("\"rating\":\"").append(rating).append("\",")
+		  .append("\"race\":\"").append(race).append("\",")
 		  .append("\"skillId\":").append(skillId).append(",")
 		  .append("\"skillName\":\"").append(safeSkill).append("\",")
 		  .append("\"damage\":").append(damage).append(",")

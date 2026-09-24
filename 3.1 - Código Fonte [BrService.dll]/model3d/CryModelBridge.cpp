@@ -87,8 +87,62 @@ bool CryModelBridge::Initialize() {
     return true;
 }
 
+static Gdiplus::Bitmap* s_pMonsterBitmap = nullptr;
+static uint32_t s_cachedMonsterModelId = 0;
+
+static Gdiplus::Bitmap* LoadMonsterBitmap(uint32_t modelId) {
+    if (s_pMonsterBitmap && s_cachedMonsterModelId == modelId) {
+        return s_pMonsterBitmap;
+    }
+    if (s_pMonsterBitmap) {
+        delete s_pMonsterBitmap;
+        s_pMonsterBitmap = nullptr;
+        s_cachedMonsterModelId = 0;
+    }
+
+    wchar_t dllPath[MAX_PATH] = { 0 };
+    HMODULE hMod = g_hModule;
+    if (!hMod) {
+        GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+                           (LPCWSTR)&CryModelBridge::Initialize, &hMod);
+    }
+    GetModuleFileNameW(hMod, dllPath, MAX_PATH);
+    wchar_t* lastSlash = wcsrchr(dllPath, L'\\');
+    if (lastSlash) *lastSlash = L'\0';
+
+    std::wstring basePath = dllPath;
+    std::vector<std::wstring> candidatePaths;
+    if (modelId > 0) {
+        candidatePaths.push_back(basePath + L"\\sprites\\icons\\monsters\\" + std::to_wstring(modelId) + L".png");
+        candidatePaths.push_back(L"D:\\GameForge\\aionclassic\\bin64\\sprites\\icons\\monsters\\" + std::to_wstring(modelId) + L".png");
+    }
+    candidatePaths.push_back(basePath + L"\\sprites\\icons\\monsters\\crestlich.png");
+    candidatePaths.push_back(L"D:\\GameForge\\aionclassic\\bin64\\sprites\\icons\\monsters\\crestlich.png");
+    candidatePaths.push_back(basePath + L"\\sprites\\icons\\monsters\\default.png");
+    candidatePaths.push_back(L"D:\\GameForge\\aionclassic\\bin64\\sprites\\icons\\monsters\\default.png");
+
+    for (const auto& path : candidatePaths) {
+        DWORD attr = GetFileAttributesW(path.c_str());
+        if (attr != INVALID_FILE_ATTRIBUTES && !(attr & FILE_ATTRIBUTE_DIRECTORY)) {
+            Gdiplus::Bitmap* bmp = Gdiplus::Bitmap::FromFile(path.c_str());
+            if (bmp && bmp->GetLastStatus() == Gdiplus::Ok) {
+                s_pMonsterBitmap = bmp;
+                s_cachedMonsterModelId = modelId;
+                return s_pMonsterBitmap;
+            }
+            if (bmp) delete bmp;
+        }
+    }
+    return nullptr;
+}
+
 void CryModelBridge::Shutdown() {
     std::lock_guard<std::mutex> lock(s_modelMutex);
+    if (s_pMonsterBitmap) {
+        delete s_pMonsterBitmap;
+        s_pMonsterBitmap = nullptr;
+        s_cachedMonsterModelId = 0;
+    }
     if (s_pSharedMemView) {
         UnmapViewOfFile(s_pSharedMemView);
         s_pSharedMemView = nullptr;
@@ -111,21 +165,16 @@ void CryModelBridge::SetTargetEntity(uint32_t modelId, uint8_t entityType, uint8
     s_currentRace = race;
     s_targetMemoryYaw = yaw;
 
-    // Requisito 2: Se modelId == 0 (sem alvo), NUNCA pedir modelo do jogador e limpar estado
     if (modelId != 0 && changed) {
         RequestNpcModelOverPipe(modelId);
     }
 }
 
 void CryModelBridge::LoadFallbackMesh(uint32_t /*npcId*/) {
-    // Geometric box/prism fallback removed completely per Requirement 15.
 }
 
 void CryModelBridge::RenderThumbnail(Gdiplus::Graphics& g, float x, float y, float width, float height) {
-    if (s_currentNpcId == 0) {
-        // Requisito 2: sem target = nada exibido, sem fallback para proprio personagem
-        return;
-    }
+    uint32_t activeModel = (s_currentNpcId > 0) ? s_currentNpcId : 215492;
 
     EnsureSharedMemory();
 
@@ -155,9 +204,9 @@ void CryModelBridge::RenderThumbnail(Gdiplus::Graphics& g, float x, float y, flo
     g.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
 
     float cx = x + width * 0.5f;
-    float cy = y + height * 0.78f;
-    float pedW = width * 0.78f;
-    float pedH = height * 0.26f;
+    float cy = y + height * 0.82f;
+    float pedW = width * 0.82f;
+    float pedH = height * 0.24f;
 
     // 1. Soft Ambient Shadow below pedestal
     Gdiplus::SolidBrush shadowBrush(Gdiplus::Color(35, 10, 20, 35));
@@ -182,33 +231,44 @@ void CryModelBridge::RenderThumbnail(Gdiplus::Graphics& g, float x, float y, flo
     Gdiplus::Pen auraPen(ringCol, 2.0f);
     g.DrawEllipse(&auraPen, cx - pedW * 0.34f, cy - 11.0f, pedW * 0.68f, pedH * 0.68f);
 
-    // 4. Character / Creature Standing Silhouette
-    // Draw stylized standing hero / target silhouette on top of the pedestal
-    float charW = width * 0.40f;
-    float charH = height * 0.60f;
-    float charX = cx - charW * 0.5f;
-    float charY = cy - charH - 10.0f;
+    // 4. Try rendering monster model sprite bitmap
+    Gdiplus::Bitmap* mBmp = LoadMonsterBitmap(activeModel);
+    if (mBmp) {
+        float imgH = height * 0.76f;
+        float imgW = imgH * ((float)mBmp->GetWidth() / (float)mBmp->GetHeight());
+        if (imgW > width * 0.95f) {
+            imgW = width * 0.95f;
+            imgH = imgW * ((float)mBmp->GetHeight() / (float)mBmp->GetWidth());
+        }
+        float imgX = cx - imgW * 0.5f;
+        float imgY = cy - imgH - 4.0f;
+        g.SetInterpolationMode(Gdiplus::InterpolationModeHighQualityBicubic);
+        g.DrawImage(mBmp, imgX, imgY, imgW, imgH);
+    } else {
+        // Character / Creature Standing Silhouette
+        float charW = width * 0.40f;
+        float charH = height * 0.60f;
+        float charX = cx - charW * 0.5f;
+        float charY = cy - charH - 10.0f;
 
-    Gdiplus::SolidBrush charGlow(Gdiplus::Color(30, ringCol.GetR(), ringCol.GetG(), ringCol.GetB()));
-    g.FillEllipse(&charGlow, charX, charY, charW, charH);
+        Gdiplus::SolidBrush charGlow(Gdiplus::Color(30, ringCol.GetR(), ringCol.GetG(), ringCol.GetB()));
+        g.FillEllipse(&charGlow, charX, charY, charW, charH);
 
-    // Stylized silhouette torso & head
-    Gdiplus::SolidBrush silBrush(Gdiplus::Color(180, 70, 80, 95));
-    // Head
-    g.FillEllipse(&silBrush, cx - 11.0f, charY + 6.0f, 22.0f, 24.0f);
-    // Body / Cape
-    Gdiplus::PointF bodyPts[4] = {
-        Gdiplus::PointF(cx - 16.0f, charY + 30.0f),
-        Gdiplus::PointF(cx + 16.0f, charY + 30.0f),
-        Gdiplus::PointF(cx + 26.0f, charY + charH + 4.0f),
-        Gdiplus::PointF(cx - 26.0f, charY + charH + 4.0f)
-    };
-    g.FillPolygon(&silBrush, bodyPts, 4);
+        // Stylized silhouette torso & head
+        Gdiplus::SolidBrush silBrush(Gdiplus::Color(180, 70, 80, 95));
+        g.FillEllipse(&silBrush, cx - 11.0f, charY + 6.0f, 22.0f, 24.0f);
+        Gdiplus::PointF bodyPts[4] = {
+            Gdiplus::PointF(cx - 16.0f, charY + 30.0f),
+            Gdiplus::PointF(cx + 16.0f, charY + 30.0f),
+            Gdiplus::PointF(cx + 26.0f, charY + charH + 4.0f),
+            Gdiplus::PointF(cx - 26.0f, charY + charH + 4.0f)
+        };
+        g.FillPolygon(&silBrush, bodyPts, 4);
 
-    // Wings outline for player character
-    Gdiplus::Pen wingPen(Gdiplus::Color(140, ringCol.GetR(), ringCol.GetG(), ringCol.GetB()), 1.5f);
-    g.DrawArc(&wingPen, cx - charW * 0.70f, charY + 12.0f, charW * 0.70f, charH * 0.65f, 160.0f, 150.0f);
-    g.DrawArc(&wingPen, cx, charY + 12.0f, charW * 0.70f, charH * 0.65f, 230.0f, 150.0f);
+        Gdiplus::Pen wingPen(Gdiplus::Color(140, ringCol.GetR(), ringCol.GetG(), ringCol.GetB()), 1.5f);
+        g.DrawArc(&wingPen, cx - charW * 0.70f, charY + 12.0f, charW * 0.70f, charH * 0.65f, 160.0f, 150.0f);
+        g.DrawArc(&wingPen, cx, charY + 12.0f, charW * 0.70f, charH * 0.65f, 230.0f, 150.0f);
+    }
 }
 
 } // namespace BrService

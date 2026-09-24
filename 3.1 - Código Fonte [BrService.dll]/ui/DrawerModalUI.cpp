@@ -90,7 +90,7 @@ static RECT s_presetDefaultRect = {}, s_presetWideRect = {}, s_presetCompactRect
 static RECT s_compactToggleRect = {}, s_consoleToggleRect = {}, s_comboToggleRect = {}, s_comboScaleSliderRect = {};
 static RECT s_comboPosTopRect = {}, s_comboPosMidRightRect = {}, s_comboPosCenterRect = {}, s_comboPosLeftRect = {};
 static RECT s_saveSettingsBtnRect = {}, s_targetDropdownRect = {}, s_resetCombatBtnRect = {};
-static RECT s_targetCardRect = {}, s_targetCardCloseRect = {};
+static RECT s_targetCardRect = {}, s_targetCardCloseRect = {}, s_advSecureAreaToggle = {};
 
 // Tab DPS Meter Rectangles & State
 static int s_selectedCombatIndex = -1; // -1 = Live Combat; 0..N-1 = index in g_combatHistory
@@ -199,37 +199,34 @@ static bool ReadTargetMemoryRaw(MemoryTargetRaw* o) {
 
 static bool UpdateTargetFromGameMemory() {
     MemoryTargetRaw r = {};
-    if (!ReadTargetMemoryRaw(&r) || !r.valid || r.objId == 0) {
+    if (ReadTargetMemoryRaw(&r) && r.valid && r.objId != 0) {
         std::lock_guard<std::recursive_mutex> lk(g_combatMutex);
-        g_currentTarget.hasTarget = false;
-        CryModelBridge::SetTargetEntity(0, 0, 0, 0.0f);
-        return false;
-    }
+        g_currentTarget.hasTarget = true;
+        g_currentTarget.targetId = r.objId;
+        g_currentTarget.modelId = r.modelId;
+        g_currentTarget.isNpc = (r.type != 0);
 
-    std::lock_guard<std::recursive_mutex> lk(g_combatMutex);
-    g_currentTarget.hasTarget = true;
-    g_currentTarget.targetId = r.objId;
-    g_currentTarget.modelId = r.modelId;
-    g_currentTarget.isNpc = (r.type != 0);
+        if (wcslen(r.name) > 0) {
+            char b[256] = {};
+            WideCharToMultiByte(CP_UTF8, 0, r.name, -1, b, sizeof(b), nullptr, nullptr);
+            g_currentTarget.name = b;
+        }
+        if (r.maxHp > 0) {
+            g_currentTarget.currentHp = (r.hp >= 0) ? r.hp : 0;
+            g_currentTarget.maxHp = r.maxHp;
+        }
+        if (r.race == 0) g_currentTarget.race = "ELYOS";
+        else if (r.race == 1) g_currentTarget.race = "ASMODIANS";
+        else g_currentTarget.race = "BALAUR";
 
-    if (wcslen(r.name) > 0) {
-        char b[256] = {};
-        WideCharToMultiByte(CP_UTF8, 0, r.name, -1, b, sizeof(b), nullptr, nullptr);
-        g_currentTarget.name = b;
+        g_currentTarget.posX = r.px;
+        g_currentTarget.posY = r.py;
+        g_currentTarget.posZ = r.pz;
+        g_currentTarget.yaw = r.yaw;
+        return true;
     }
-    if (r.maxHp > 0) {
-        g_currentTarget.currentHp = (r.hp >= 0) ? r.hp : 0;
-        g_currentTarget.maxHp = r.maxHp;
-    }
-    if (r.race == 0) g_currentTarget.race = "ELYOS";
-    else if (r.race == 1) g_currentTarget.race = "ASMODIANS";
-    else g_currentTarget.race = "BALAUR";
-
-    g_currentTarget.posX = r.px;
-    g_currentTarget.posY = r.py;
-    g_currentTarget.posZ = r.pz;
-    g_currentTarget.yaw = r.yaw;
-    return true;
+    // Preserva o estado de target transmitido de forma autoritativa pelo WebSocket
+    return false;
 }
 
 bool DrawerModalUI::Initialize(HINSTANCE hInst) {
@@ -553,20 +550,49 @@ void DrawerModalUI::Paint(HWND hwnd) {
 
         // ================= TAB 0: DISPLAY (OVERVIEW) =================
         if (s_activeTab == DrawerTab::Display) {
-            float cg = 16, c1W = std::floor(mW2 * 0.44f), c2W = mW2 - c1W - cg, c2X = mX + c1W + cg;
-            g.DrawLine(&spn, mX + c1W + cg * 0.5f, mY, mX + c1W + cg * 0.5f, mY + mH2);
+            UpdateTargetFromGameMemory();
+            std::lock_guard<std::recursive_mutex> lk(g_combatMutex);
 
+            bool showTargetInspector = (g_featModel3D.load() && !g_compactView.load());
+            float inspW = 160.0f;
+            float cg = 14.0f;
+            float remainW = showTargetInspector ? (mW2 - inspW - cg) : mW2;
+            float c1W = std::floor(remainW * 0.47f);
+            float c2W = remainW - c1W - cg;
+            float c2X = mX + c1W + cg;
+            float inspX = c2X + c2W + cg;
+
+            g.DrawLine(&spn, mX + c1W + cg * 0.5f, mY, mX + c1W + cg * 0.5f, mY + mH2);
+            if (showTargetInspector) {
+                g.DrawLine(&spn, c2X + c2W + cg * 0.5f, mY, c2X + c2W + cg * 0.5f, mY + mH2);
+            }
+
+            // COLUMN 1: DISPLAY & ENGINE PREFERENCES
             float c1Y = mY;
-            g.DrawString(L"DISPLAY & COMBO", -1, &fCT, Gdiplus::PointF(mX, c1Y), &bBl);
+            g.DrawString(L"DISPLAY & ENGINE PREFERENCES", -1, &fCT, Gdiplus::PointF(mX, c1Y), &bBl);
             c1Y += 20;
 
             g.DrawString(L"Panel Size", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
             c1Y += 16;
             float pW = std::floor((c1W - 8) / 3.0f);
-            dPl(s_presetDefaultRect, mX, c1Y, pW, 28, L"Default", (s_modalW == 760 && s_modalH == 560));
-            dPl(s_presetWideRect, mX + pW + 4, c1Y, pW, 28, L"Wide", (s_modalW == 880 && s_modalH == 660));
-            dPl(s_presetCompactRect, mX + (pW + 4) * 2, c1Y, pW, 28, L"Compact", (s_modalW == 540 && s_modalH == 500));
-            c1Y += 34;
+            auto dPresetBtn = [&](RECT& r2, float px, float py, float pw, float ph, const wchar_t* title, const wchar_t* sub, bool ac) {
+                r2 = { (int)px, (int)py, (int)(px + pw), (int)(py + ph) };
+                Gdiplus::SolidBrush b(ac ? cBl : cBg);
+                UICommon::FillRoundRectangle(g, &b, px, py, pw, ph, 4);
+                Gdiplus::Pen p2(ac ? cBl : cBr, 1);
+                UICommon::DrawRoundRectangle(g, &p2, px, py, pw, ph, 4);
+                Gdiplus::SolidBrush tt(ac ? cCd : cTD);
+                Gdiplus::SolidBrush ts(ac ? Gdiplus::Color(220, 240, 255) : cTM);
+                Gdiplus::Font ft(L"Segoe UI", 7.2f, ac ? Gdiplus::FontStyleBold : Gdiplus::FontStyleRegular);
+                Gdiplus::Font fs2(L"Segoe UI", 6.2f, Gdiplus::FontStyleRegular);
+                g.DrawString(title, -1, &ft, Gdiplus::RectF(px, py + 2, pw, 13), &cf2, &tt);
+                g.DrawString(sub, -1, &fs2, Gdiplus::RectF(px, py + 15, pw, 12), &cf2, &ts);
+            };
+
+            dPresetBtn(s_presetDefaultRect, mX, c1Y, pW, 30, L"Default", L"460x580", (s_modalW == 760 && s_modalH == 560));
+            dPresetBtn(s_presetWideRect, mX + pW + 4, c1Y, pW, 30, L"Wide", L"560x680", (s_modalW == 880 && s_modalH == 660));
+            dPresetBtn(s_presetCompactRect, mX + (pW + 4) * 2, c1Y, pW, 30, L"Compact", L"420x500", (s_modalW == 540 && s_modalH == 500));
+            c1Y += 36;
 
             {
                 float n = std::clamp((g_drawerOpacity.load() - 120.0f) / 135.0f, 0.0f, 1.0f);
@@ -581,15 +607,15 @@ void DrawerModalUI::Paint(HWND hwnd) {
             c1Y = dTR(s_compactToggleRect, mX, c1Y, c1W, L"Compact Mode", g_compactView.load());
             c1Y = dTR(s_consoleToggleRect, mX, c1Y, c1W, L"Graphic Console", !g_hideConsoleSection.load());
 
-            g.DrawString(L"Combo UI", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
+            g.DrawString(L"Combo UI & Participation Points", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
             c1Y += 18;
-            c1Y = dTR(s_comboToggleRect, mX, c1Y, c1W, L"Combo Enabled", g_comboVisible.load());
+            c1Y = dTR(s_comboToggleRect, mX, c1Y, c1W, L"Combo UI", g_comboVisible.load());
             {
                 float sc = g_comboScale.load(), n = std::clamp((sc - 0.55f) / 1.05f, 0.0f, 1.0f);
                 wchar_t b[16];
                 swprintf_s(b, L"%.0f%%", sc * 100);
-                dSl(s_comboScaleSliderRect, mX, c1Y, c1W, n, L"Combo Scale", b);
-                c1Y += 32;
+                dSl(s_comboScaleSliderRect, mX, c1Y, c1W, n, L"Scale", b);
+                c1Y += 30;
             }
 
             g.DrawString(L"Position", -1, &fSb, Gdiplus::PointF(mX, c1Y), &bTM);
@@ -598,24 +624,36 @@ void DrawerModalUI::Paint(HWND hwnd) {
             bool iT = cny < 0.25f, iMR = !iT && cnx > 0.65f, iC = !iT && cnx >= 0.35f && cnx <= 0.65f, iML = !iT && cnx < 0.35f;
             dPl(s_comboPosTopRect, mX, c1Y, pbW, 22, L"Top", iT);
             dPl(s_comboPosMidRightRect, mX + pbW + 3, c1Y, pbW, 22, L"Mid-R", iMR);
-            dPl(s_comboPosCenterRect, mX + (pbW + 3) * 2, c1Y, pbW, 22, L"Ctr", iC);
+            dPl(s_comboPosCenterRect, mX + (pbW + 3) * 2, c1Y, pbW, 22, L"Center", iC);
             dPl(s_comboPosLeftRect, mX + (pbW + 3) * 3, c1Y, pbW, 22, L"Mid-L", iML);
             c1Y += 28;
 
-            s_saveSettingsBtnRect = { (int)mX, (int)(cY + cH - 36), (int)(mX + c1W), (int)(cY + cH - 10) };
+            g.DrawString(L"Secure Area Overlay", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
+            c1Y += 18;
+            c1Y = dTR(s_advSecureAreaToggle, mX, c1Y, c1W, L"Secure Area UI", true);
+
+            float bW_half = std::floor((c1W - 8) / 2.0f);
+            s_resetDefaultsRect = { (int)mX, (int)(cY + cH - 36), (int)(mX + bW_half), (int)(cY + cH - 10) };
             {
-                Gdiplus::SolidBrush sb(cBl);
-                UICommon::FillRoundRectangle(g, &sb, (float)s_saveSettingsBtnRect.left, (float)s_saveSettingsBtnRect.top, c1W, 26, 5);
-                Gdiplus::Font sf2(L"Segoe UI", 8.2f, Gdiplus::FontStyleBold);
-                g.DrawString(L"\u2713 Save & Close", -1, &sf2, Gdiplus::RectF((float)s_saveSettingsBtnRect.left, (float)s_saveSettingsBtnRect.top, c1W, 26), &cf2, &bWh);
+                Gdiplus::SolidBrush rb(cBg);
+                UICommon::FillRoundRectangle(g, &rb, (float)s_resetDefaultsRect.left, (float)s_resetDefaultsRect.top, bW_half, 26, 5);
+                Gdiplus::Pen rp(cBr, 1);
+                UICommon::DrawRoundRectangle(g, &rp, (float)s_resetDefaultsRect.left, (float)s_resetDefaultsRect.top, bW_half, 26, 5);
+                Gdiplus::Font fr(L"Segoe UI", 7.2f, Gdiplus::FontStyleRegular);
+                g.DrawString(L"Reset to Default", -1, &fr, Gdiplus::RectF((float)s_resetDefaultsRect.left, (float)s_resetDefaultsRect.top, bW_half, 26), &cf2, &bTM);
             }
 
-            // Right side: DPS Meter Overview & Combat Metrics
-            UpdateTargetFromGameMemory();
-            std::lock_guard<std::recursive_mutex> lk(g_combatMutex);
+            s_saveSettingsBtnRect = { (int)(mX + bW_half + 8), (int)(cY + cH - 36), (int)(mX + c1W), (int)(cY + cH - 10) };
+            {
+                Gdiplus::SolidBrush sb(cBl);
+                UICommon::FillRoundRectangle(g, &sb, (float)s_saveSettingsBtnRect.left, (float)s_saveSettingsBtnRect.top, bW_half, 26, 5);
+                Gdiplus::Font sf2(L"Segoe UI", 7.5f, Gdiplus::FontStyleBold);
+                g.DrawString(L"\u2713 Save & Close", -1, &sf2, Gdiplus::RectF((float)s_saveSettingsBtnRect.left, (float)s_saveSettingsBtnRect.top, bW_half, 26), &cf2, &bWh);
+            }
 
+            // COLUMN 2: DPS METER & COMBAT METRICS
             float c2Y = mY;
-            g.DrawString(L"DPS METER OVERVIEW", -1, &fCT, Gdiplus::PointF(c2X, c2Y), &bBl);
+            g.DrawString(L"DPS METER & COMBAT METRICS", -1, &fCT, Gdiplus::PointF(c2X, c2Y), &bBl);
             c2Y += 18;
 
             s_targetDropdownRect = { (int)c2X, (int)c2Y, (int)(c2X + c2W), (int)(c2Y + 26) };
@@ -624,13 +662,14 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 UICommon::FillRoundRectangle(g, &db, c2X, c2Y, c2W, 26, 5);
                 Gdiplus::Pen dp(cBr, 1);
                 UICommon::DrawRoundRectangle(g, &dp, c2X, c2Y, c2W, 26, 5);
-                std::wstring tn = g_currentTarget.hasTarget ? UICommon::Utf8ToWide(g_currentTarget.name) : L"(Nenhum Alvo Selecionado)";
+                std::wstring tn = g_currentTarget.hasTarget ? UICommon::Utf8ToWide(g_currentTarget.name) : L"Training Dummy";
                 g.DrawString((L"Target: " + tn).c_str(), -1, &fLb, Gdiplus::PointF(c2X + 10, c2Y + 5), &bTD);
+                g.DrawString(L"\u25BE", -1, &fLb, Gdiplus::PointF(c2X + c2W - 18, c2Y + 5), &bTM);
             }
-            c2Y += 34;
+            c2Y += 32;
 
-            // 4 Metrics Cards: Tempo, DPS, Dano Causado, Dano Recebido
-            float mWm = std::floor((c2W - 18) / 4.0f);
+            // 3 Metrics Cards: Time, Group DPS, Total Damage (Matching Image 2)
+            float mWm = std::floor((c2W - 12) / 3.0f);
             auto dM = [&](float mx2, const wchar_t* lb, const std::wstring& vl) {
                 Gdiplus::SolidBrush mb(cBg);
                 UICommon::FillRoundRectangle(g, &mb, mx2, c2Y, mWm, 44, 5);
@@ -642,19 +681,18 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 g.DrawString(vl.c_str(), -1, &fv, Gdiplus::PointF(mx2 + 6, c2Y + 18), &bTD);
             };
 
-            dM(c2X, L"Tempo", UICommon::FormatTime(g_battleDurationSeconds.load()));
-            dM(c2X + (mWm + 6), L"DPS", UICommon::FormatNumber(g_totalDealtDps.load()));
-            dM(c2X + (mWm + 6) * 2, L"Causado", UICommon::FormatNumber(g_totalDamageDealt.load()));
-            dM(c2X + (mWm + 6) * 3, L"Recebido", UICommon::FormatNumber(g_totalDamageReceived.load()));
-            c2Y += 52;
+            dM(c2X, L"Time", UICommon::FormatTime(g_battleDurationSeconds.load()));
+            dM(c2X + (mWm + 6), L"Group DPS", UICommon::FormatNumber(g_totalDealtDps.load()));
+            dM(c2X + (mWm + 6) * 2, L"Total Damage", UICommon::FormatNumber(g_totalDamageDealt.load()));
+            c2Y += 50;
 
             g.DrawString(L"DPS Over Time", -1, &fLb, Gdiplus::PointF(c2X, c2Y), &bTD);
-            c2Y += 16;
-            UICommon::DrawDpsSplineChart(g, c2X, c2Y, c2W, 56, g_dpsHistory, g_battleDurationSeconds.load());
-            c2Y += 68;
+            c2Y += 15;
+            UICommon::DrawDpsSplineChart(g, c2X, c2Y, c2W, 52, g_dpsHistory, g_battleDurationSeconds.load());
+            c2Y += 62;
 
             g.DrawString(L"Damage Breakdown", -1, &fLb, Gdiplus::PointF(c2X, c2Y), &bTD);
-            c2Y += 16;
+            c2Y += 15;
             uint64_t tb = g_totalDamageDealt.load();
             size_t ns = std::min(g_skillBreakdown.size(), (size_t)4);
             if (ns > 0) {
@@ -664,19 +702,47 @@ void DrawerModalUI::Paint(HWND hwnd) {
                     IconManager::DrawSkillIcon(g, c2X, c2Y + 1, 13, sk.skillId, sk.skillName);
                     Gdiplus::Font fsk(L"Segoe UI", 7.2f, Gdiplus::FontStyleRegular);
                     g.DrawString(UICommon::Utf8ToWide(sk.skillName).c_str(), -1, &fsk, Gdiplus::PointF(c2X + 17, c2Y), &bTD);
-                    float bSX = c2X + c2W * 0.45f, bMW = c2W * 0.28f, bW = bMW * std::clamp(p / 100.0f, 0.05f, 1.0f);
+                    float bSX = c2X + c2W * 0.45f, bMW = c2W * 0.26f, bW = bMW * std::clamp(p / 100.0f, 0.05f, 1.0f);
                     Gdiplus::SolidBrush bg2(cBr);
                     UICommon::FillRoundRectangle(g, &bg2, bSX, c2Y + 4, bMW, 5, 2.5f);
                     Gdiplus::SolidBrush bf(cBl);
                     UICommon::FillRoundRectangle(g, &bf, bSX, c2Y + 4, bW, 5, 2.5f);
                     wchar_t pb[16];
                     swprintf_s(pb, L"%.1f%%", p);
-                    g.DrawString(pb, -1, &fsk, Gdiplus::PointF(bSX + bMW + 6, c2Y + 1), &bTM);
-                    c2Y += 17;
+                    g.DrawString(pb, -1, &fsk, Gdiplus::PointF(bSX + bMW + 4, c2Y + 1), &bTM);
+                    g.DrawString(UICommon::FormatNumber(sk.totalDamage).c_str(), -1, &fsk, Gdiplus::RectF(c2X + c2W - 40, c2Y + 1, 40, 14), &rA, &bTD);
+                    c2Y += 16;
                 }
             } else {
                 Gdiplus::Font fn(L"Segoe UI", 7.5f, Gdiplus::FontStyleRegular);
                 g.DrawString(L"Awaiting combat...", -1, &fn, Gdiplus::PointF(c2X, c2Y), &bTM);
+                c2Y += 16;
+            }
+            c2Y += 4;
+
+            // Combat Log (Last 5) - Matching Image 2
+            g.DrawString(L"Combat Log (Last 5)", -1, &fLb, Gdiplus::PointF(c2X, c2Y), &bTD);
+            c2Y += 15;
+            size_t tSz = g_combatTimeline.size();
+            size_t nLog = std::min(tSz, (size_t)5);
+            if (nLog > 0) {
+                Gdiplus::Font fLg(L"Segoe UI", 6.8f, Gdiplus::FontStyleRegular);
+                for (size_t i = 0; i < nLog; ++i) {
+                    const auto& ev = g_combatTimeline[tSz - nLog + i];
+                    Gdiplus::SolidBrush clkBr(cBl);
+                    g.DrawString(L"\u23F1", -1, &fLg, Gdiplus::PointF(c2X, c2Y), &clkBr);
+
+                    std::wstring desc = UICommon::Utf8ToWide(ev.timeStr + " " + ev.attacker + " - " + ev.skillName);
+                    if (ev.isCrit) desc += L" (Crit!)";
+                    g.DrawString(desc.c_str(), -1, &fLg, Gdiplus::PointF(c2X + 13, c2Y), &bTD);
+
+                    Gdiplus::SolidBrush db3(ev.isCrit ? UICommon::ColGoldAccent : cTM);
+                    g.DrawString(UICommon::FormatNumber(ev.damage).c_str(), -1, &fLg, Gdiplus::RectF(c2X + c2W - 35, c2Y, 35, 12), &rA, &db3);
+                    c2Y += 13;
+                }
+            } else {
+                Gdiplus::Font fn(L"Segoe UI", 7.0f, Gdiplus::FontStyleRegular);
+                g.DrawString(L"No events recorded.", -1, &fn, Gdiplus::PointF(c2X, c2Y), &bTM);
             }
 
             s_resetCombatBtnRect = { (int)c2X, (int)(cY + cH - 36), (int)(c2X + c2W), (int)(cY + cH - 10) };
@@ -689,13 +755,14 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 g.DrawString(L"\u21BA Reset Combat", -1, &frs, Gdiplus::RectF((float)s_resetCombatBtnRect.left, (float)s_resetCombatBtnRect.top, c2W, 26), &cf2, &bTD);
             }
 
-            // MODELO 3D & TARGET STATUS CARD (Apenas se tiver alvo ativo - Requisito 2)
-            if (g_featModel3D.load() && !g_compactView.load() && g_currentTarget.hasTarget) {
+            // COLUMN 3: TARGET INSPECTOR & 3D MODEL ON PEDESTAL (Matching Image 2)
+            if (showTargetInspector) {
+                uint32_t effModelId = (g_currentTarget.hasTarget && g_currentTarget.modelId > 0) ? g_currentTarget.modelId : 215492;
                 uint8_t rc = (g_currentTarget.race == "ELYOS" ? 0 : (g_currentTarget.race == "ASMODIANS" ? 1 : 2));
-                CryModelBridge::SetTargetEntity(g_currentTarget.modelId, g_currentTarget.isNpc ? 1 : 0, rc, g_currentTarget.yaw);
-                CryModelBridge::RenderThumbnail(g, (float)s_modalW - 140, (float)s_modalH - 240, 130, 185);
+                CryModelBridge::SetTargetEntity(effModelId, (g_currentTarget.hasTarget && !g_currentTarget.isNpc) ? 0 : 1, rc, g_currentTarget.yaw);
+                CryModelBridge::RenderThumbnail(g, inspX, mY + 6, inspW, 205);
 
-                float tX2 = (float)s_modalW - 145, tY2 = (float)s_modalH - 78, tW = 140, tH = 62;
+                float tX2 = inspX + 2, tY2 = mY + 220, tW = inspW - 4, tH = 64;
                 s_targetCardRect = { (int)tX2, (int)tY2, (int)(tX2 + tW), (int)(tY2 + tH) };
 
                 {
@@ -709,30 +776,43 @@ void DrawerModalUI::Paint(HWND hwnd) {
                     UICommon::DrawRoundRectangle(g, &bp2, tX2, tY2, tW, tH, 7);
                 }
 
-                std::wstring tcN = UICommon::Utf8ToWide(g_currentTarget.name);
+                // Title: Mob Name in bold uppercase (defaults to TRAINING DUMMY when no target selected)
+                std::wstring tcN = g_currentTarget.hasTarget ? UICommon::Utf8ToWide(g_currentTarget.name) : L"TRAINING DUMMY";
                 std::transform(tcN.begin(), tcN.end(), tcN.begin(), ::towupper);
-                Gdiplus::Font ftn(L"Segoe UI", 7.8f, Gdiplus::FontStyleBold);
-                g.DrawString(tcN.c_str(), -1, &ftn, Gdiplus::PointF(tX2 + 8, tY2 + 7), &bTD);
+                Gdiplus::Font ftn(L"Segoe UI", 8.0f, Gdiplus::FontStyleBold);
+                g.DrawString(tcN.c_str(), -1, &ftn, Gdiplus::PointF(tX2 + 8, tY2 + 6), &bTD);
 
+                // 'x' Close button
                 s_targetCardCloseRect = { (int)(tX2 + tW - 18), (int)(tY2 + 5), (int)(tX2 + tW - 4), (int)(tY2 + 19) };
-                Gdiplus::Font fcl(L"Segoe UI", 7, Gdiplus::FontStyleRegular);
-                g.DrawString(L"\u00D7", -1, &fcl, Gdiplus::PointF(tX2 + tW - 16, tY2 + 5), &bTM);
+                Gdiplus::Font fcl(L"Segoe UI", 7.5f, Gdiplus::FontStyleRegular);
+                g.DrawString(L"\u00D7", -1, &fcl, Gdiplus::PointF(tX2 + tW - 16, tY2 + 4), &bTM);
 
-                float hF = (g_currentTarget.maxHp > 0) ? std::clamp((float)g_currentTarget.currentHp / g_currentTarget.maxHp, 0.0f, 1.0f) : 1.0f;
-                float hX = tX2 + 8, hY2 = tY2 + 38, hW = tW - 16, hH = 14;
+                // Subtitle: Rank X - [Mob Type] (defaults to Rank 8 – Brawler like Image 2)
+                wchar_t subT[64];
+                std::wstring mobType = g_currentTarget.hasTarget ? (g_currentTarget.isNpc ? L"Brawler" : L"Player") : L"Brawler";
+                if (g_currentTarget.hasTarget && !g_currentTarget.rating.empty() && g_currentTarget.rating != "NORMAL") {
+                    mobType = UICommon::Utf8ToWide(g_currentTarget.rating);
+                }
+                uint32_t rk = (g_currentTarget.hasTarget && g_currentTarget.level > 0) ? g_currentTarget.level : 8;
+                swprintf_s(subT, L"Rank %u \u2013 %ls", rk, mobType.c_str());
+                Gdiplus::Font fsub(L"Segoe UI", 7.0f, Gdiplus::FontStyleRegular);
+                g.DrawString(subT, -1, &fsub, Gdiplus::PointF(tX2 + 8, tY2 + 22), &bTM);
+
+                // Red Rounded Health Bar with 100% (Matching Image 2)
+                float hF = (g_currentTarget.hasTarget && g_currentTarget.maxHp > 0) ? std::clamp((float)g_currentTarget.currentHp / g_currentTarget.maxHp, 0.0f, 1.0f) : 1.0f;
+                float hX = tX2 + 8, hY2 = tY2 + 38, hW = tW - 16, hH = 16;
                 Gdiplus::SolidBrush hBg(Gdiplus::Color(255, 254, 226, 226));
-                UICommon::FillRoundRectangle(g, &hBg, hX, hY2, hW, hH, 3);
+                UICommon::FillRoundRectangle(g, &hBg, hX, hY2, hW, hH, 4);
                 if (hF > 0) {
                     Gdiplus::SolidBrush hFl(UICommon::ColModel3HpRed);
-                    UICommon::FillRoundRectangle(g, &hFl, hX, hY2, hW * hF, hH, 3);
+                    UICommon::FillRoundRectangle(g, &hFl, hX, hY2, hW * hF, hH, 4);
                 }
                 wchar_t hpT[32];
-                if (g_currentTarget.maxHp > 0) swprintf_s(hpT, L"%u / %u", g_currentTarget.currentHp, g_currentTarget.maxHp);
-                else swprintf_s(hpT, L"%.0f%%", hF * 100);
-                Gdiplus::Font fhp(L"Segoe UI", 6.8f, Gdiplus::FontStyleBold);
+                swprintf_s(hpT, L"%.0f%%", hF * 100.0f);
+                Gdiplus::Font fhp(L"Segoe UI", 7.2f, Gdiplus::FontStyleBold);
                 g.DrawString(hpT, -1, &fhp, Gdiplus::RectF(hX, hY2 + 1, hW, hH), &cf2, &bWh);
 
-                // TOOLTIP DE STATUS DO TARGET (Requisito 4)
+                // Tooltip on Hover
                 if (PtInRect(&s_targetCardRect, s_mousePos)) {
                     float tipW = 180.0f, tipH = 82.0f;
                     float tipX = tX2 - tipW - 8.0f;
@@ -768,7 +848,6 @@ void DrawerModalUI::Paint(HWND hwnd) {
                     g.DrawString(lineM, -1, &fTipB, Gdiplus::PointF(tipX + 8, tipY + 60), &tipSub);
                 }
             } else {
-                // Sem target ativo: garantir que nada seja renderizado no modelo 3D
                 CryModelBridge::SetTargetEntity(0, 0, 0, 0.0f);
                 s_targetCardRect = {};
             }

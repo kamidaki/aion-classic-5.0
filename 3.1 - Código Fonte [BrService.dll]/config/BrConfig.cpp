@@ -32,8 +32,8 @@ void BrConfig::Load() {
     g_cvarTripleBuffering = (GetPrivateProfileIntW(L"ShugoConsole", L"TripleBuffering", 1, ini.c_str()) != 0);
     g_cvarAnisotropic = (GetPrivateProfileIntW(L"ShugoConsole", L"Anisotropic", 1, ini.c_str()) != 0);
 
-    g_drawerW = std::clamp((int)GetPrivateProfileIntW(L"DrawerUI", L"Width", 460, ini.c_str()), 400, 640);
-    g_drawerH = std::clamp((int)GetPrivateProfileIntW(L"DrawerUI", L"Height", 580, ini.c_str()), 480, 780);
+    g_drawerW = std::clamp((int)GetPrivateProfileIntW(L"DrawerUI", L"Width", 760, ini.c_str()), 420, 960);
+    g_drawerH = std::clamp((int)GetPrivateProfileIntW(L"DrawerUI", L"Height", 580, ini.c_str()), 480, 800);
     g_drawerOpacity = std::clamp((int)GetPrivateProfileIntW(L"DrawerUI", L"Opacity", 255, ini.c_str()), 120, 255);
     g_compactView = (GetPrivateProfileIntW(L"DrawerUI", L"CompactView", 0, ini.c_str()) != 0);
     g_hideConsoleSection = (GetPrivateProfileIntW(L"DrawerUI", L"HideConsole", 0, ini.c_str()) != 0);
