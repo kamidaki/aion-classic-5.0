@@ -18,17 +18,23 @@ static uint8_t  s_currentRace = 0;
 static float    s_targetMemoryYaw = 0.0f;
 static float    s_pedestalRotYaw = 0.0f;
 static ULONGLONG s_lastRotTime = 0;
+static ULONGLONG s_lastSharedMemCheck = 0;
+static ULONGLONG s_lastPipeAttempt = 0;
+static bool s_pipeKnownMissing = false;
 
 void CryModelBridge::EnsureSharedMemory() {
-    if (!s_pSharedMemView) {
-        if (!s_hSharedMem) {
-            s_hSharedMem = OpenFileMappingW(FILE_MAP_READ, FALSE, L"Local\\LostAcademy_CryModel_FrameBuffer");
-        }
-        if (s_hSharedMem) {
-            s_pSharedMemView = MapViewOfFile(s_hSharedMem, FILE_MAP_READ, 0, 0, 0);
-            if (s_pSharedMemView) {
-                LogInfo("CryModelBridge: Conectado ao Frame Buffer compartilhado Local\\LostAcademy_CryModel_FrameBuffer.");
-            }
+    if (s_pSharedMemView) return;
+    ULONGLONG now = GetTickCount64();
+    if (now - s_lastSharedMemCheck < 3000) return;
+    s_lastSharedMemCheck = now;
+
+    if (!s_hSharedMem) {
+        s_hSharedMem = OpenFileMappingW(FILE_MAP_READ, FALSE, L"Local\\LostAcademy_CryModel_FrameBuffer");
+    }
+    if (s_hSharedMem) {
+        s_pSharedMemView = MapViewOfFile(s_hSharedMem, FILE_MAP_READ, 0, 0, 0);
+        if (s_pSharedMemView) {
+            LogInfo("CryModelBridge: Conectado ao Frame Buffer compartilhado Local\\LostAcademy_CryModel_FrameBuffer.");
         }
     }
 }
@@ -42,6 +48,12 @@ bool CryModelBridge::IsFrameBufferConnected() {
 }
 
 void CryModelBridge::RequestNpcModelOverPipe(uint32_t npcId) {
+    ULONGLONG now = GetTickCount64();
+    if (s_pipeKnownMissing && (now - s_lastPipeAttempt < 5000)) {
+        return;
+    }
+    s_lastPipeAttempt = now;
+
     std::thread([npcId]() {
         char cmd[64];
         if (npcId == 0) {
@@ -54,9 +66,12 @@ void CryModelBridge::RequestNpcModelOverPipe(uint32_t npcId) {
                                    GENERIC_READ | GENERIC_WRITE, 0, nullptr,
                                    OPEN_EXISTING, 0, nullptr);
         if (hPipe != INVALID_HANDLE_VALUE) {
+            s_pipeKnownMissing = false;
             DWORD written = 0;
             WriteFile(hPipe, cmd, (DWORD)strlen(cmd), &written, nullptr);
             CloseHandle(hPipe);
+        } else {
+            s_pipeKnownMissing = true;
         }
     }).detach();
 }

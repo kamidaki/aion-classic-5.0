@@ -25,7 +25,11 @@ public class SM_PLAY_MOVIE extends AionServerPacket {
 
 	@Override
 	protected void writeImpl(AionConnection con) {
-		con.getActivePlayer().setCustomState(CustomPlayerState.WATCHING_CUTSCENE);
+		var activePlayer = con.getActivePlayer();
+		if (activePlayer != null) {
+			activePlayer.setCustomState(CustomPlayerState.WATCHING_CUTSCENE);
+			com.lostacademy.Dps_Meter.DpsService.sendPlayerState(activePlayer, true, true);
+		}
 		writeC(isMovie ? 1 : 0); // if 1: CutSceneMovies else CutScenes
 		writeD(objectId);
 		writeD(questId);

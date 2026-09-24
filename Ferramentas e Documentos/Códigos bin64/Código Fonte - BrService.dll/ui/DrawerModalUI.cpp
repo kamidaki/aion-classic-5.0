@@ -302,12 +302,19 @@ void DrawerModalUI::Toggle() {
     else Open();
 }
 
+static void UpdateDrawerTimer() {
+    if (!g_hDrawerModalWnd || !g_isDrawerOpen.load()) return;
+    UINT interval = (s_activeTab == DrawerTab::Display && g_currentTarget.hasTarget) ? 40 : 250;
+    SetTimer(g_hDrawerModalWnd, 1, interval, nullptr);
+}
+
 void DrawerModalUI::Open() {
     if (!g_featConsole.load()) return;
     g_isDrawerOpen = true;
-    if (g_hDrawerModalWnd && !g_isLoadingScreen.load() && g_isGameActive.load()) {
+    bool canShow = g_isInWorld.load() && !g_isLoadingScreen.load() && g_isGameActive.load();
+    if (g_hDrawerModalWnd && canShow) {
         ShowWindow(g_hDrawerModalWnd, SW_SHOWNOACTIVATE);
-        SetTimer(g_hDrawerModalWnd, 1, 33, nullptr);
+        UpdateDrawerTimer();
         Repaint();
     }
 }
@@ -330,12 +337,15 @@ void DrawerModalUI::Hide() {
 
 void DrawerModalUI::RestoreIfOpen() {
     if (!g_featConsole.load()) return;
-    if (g_isDrawerOpen.load() && g_hDrawerModalWnd && !g_isLoadingScreen.load() && g_isGameActive.load()) {
+    bool canShow = g_isDrawerOpen.load() && g_hDrawerModalWnd && g_isInWorld.load() && !g_isLoadingScreen.load() && g_isGameActive.load();
+    if (canShow) {
         if (!IsWindowVisible(g_hDrawerModalWnd)) {
             ShowWindow(g_hDrawerModalWnd, SW_SHOWNOACTIVATE);
-            SetTimer(g_hDrawerModalWnd, 1, 33, nullptr);
+            UpdateDrawerTimer();
             Repaint();
         }
+    } else {
+        Hide();
     }
 }
 
@@ -371,9 +381,14 @@ void DrawerModalUI::UpdatePosition(int gX, int gY, int gW, int gH) {
         g_drawerPosY = mY2;
     }
 
-    bool v = g_featConsole.load() && g_isDrawerOpen.load() && !g_isLoadingScreen.load() && g_isGameActive.load();
+    bool v = g_featConsole.load() && g_isDrawerOpen.load() && g_isInWorld.load() && !g_isLoadingScreen.load() && g_isGameActive.load();
     SetWindowPos(g_hDrawerModalWnd, HWND_TOPMOST, mX, mY2, s_modalW, s_modalH, SWP_NOACTIVATE | (v ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
-    if (v) Repaint();
+    if (v) {
+        UpdateDrawerTimer();
+        Repaint();
+    } else {
+        KillTimer(g_hDrawerModalWnd, 1);
+    }
 }
 
 void DrawerModalUI::ResizeDrawer(int nW, int nH) {
@@ -1292,6 +1307,7 @@ LRESULT CALLBACK DrawerModalUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
         }
         if (mx >= s_helpBtnRect.left && mx <= s_helpBtnRect.right && my >= s_helpBtnRect.top && my <= s_helpBtnRect.bottom) {
             s_activeTab = (s_activeTab == DrawerTab::Advanced) ? DrawerTab::Display : DrawerTab::Advanced;
+            UpdateDrawerTimer();
             Repaint();
             return 0;
         }
@@ -1300,6 +1316,7 @@ LRESULT CALLBACK DrawerModalUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
         auto chT = [&](RECT& r, DrawerTab t) {
             if (mx >= r.left && mx <= r.right && my >= r.top && my <= r.bottom) {
                 s_activeTab = t;
+                UpdateDrawerTimer();
                 Repaint();
                 return true;
             }

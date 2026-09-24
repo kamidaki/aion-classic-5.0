@@ -11,6 +11,7 @@ public:
 
     static void Show();
     static void Hide();
+    static bool IsAllowedToDisplay();
     static void UpdatePosition(int gameX, int gameY, int gameW, int gameH);
     static void Repaint();
 

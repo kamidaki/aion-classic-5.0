@@ -215,6 +215,15 @@ public class WebSocketClientSession implements Runnable {
 						this.playerObjectId = id;
 						server.bindPlayer(id, this);
 						log.info("[BrSocket] Sessao vinculada ao jogador objId={} de {}", id, socket.getRemoteSocketAddress());
+						try {
+							var p = com.aionemu.gameserver.world.World.getInstance().getPlayer(id);
+							if (p != null) {
+								boolean inWorld = p.isSpawned();
+								boolean isMovie = p.isInCustomState(com.aionemu.gameserver.model.gameobjects.player.CustomPlayerState.WATCHING_CUTSCENE);
+								com.lostacademy.Dps_Meter.DpsService.sendPlayerState(p, inWorld, isMovie);
+							}
+						} catch (Exception ignored) {
+						}
 					}
 				}
 				return;

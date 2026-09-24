@@ -294,6 +294,7 @@ static inline bool IsValidUserPointer(uintptr_t addr) {
 }
 
 uint32_t GetLocalPlayerObjectId() {
+    if (!g_isInWorld.load() || g_isLoadingScreen.load()) return 0;
     uintptr_t hG = (uintptr_t)GetModuleHandleA("Game.dll");
     if (!hG) return 0;
     __try {
@@ -319,6 +320,7 @@ uint32_t GetLocalPlayerObjectId() {
 static bool ReadPlayerNameRaw(char* outBuf, size_t bufSize) {
     if (!outBuf || bufSize == 0) return false;
     outBuf[0] = '\0';
+    if (!g_isInWorld.load() || g_isLoadingScreen.load()) return false;
     uintptr_t hG = (uintptr_t)GetModuleHandleA("Game.dll");
     if (!hG) return false;
     __try {
@@ -336,9 +338,13 @@ static bool ReadPlayerNameRaw(char* outBuf, size_t bufSize) {
         uintptr_t pPE = *(uintptr_t*)(pPlayer + 0x378);
         if (!IsValidUserPointer(pPE)) return false;
         wchar_t* pN = (wchar_t*)(pPE + 0x46);
-        if (pN && wcslen(pN) > 0) {
-            WideCharToMultiByte(CP_UTF8, 0, pN, -1, outBuf, (int)bufSize, nullptr, nullptr);
-            return true;
+        if (pN) {
+            size_t len = wcsnlen_s(pN, 64);
+            if (len > 0 && len < 64) {
+                WideCharToMultiByte(CP_UTF8, 0, pN, (int)len, outBuf, (int)bufSize - 1, nullptr, nullptr);
+                outBuf[bufSize - 1] = '\0';
+                return true;
+            }
         }
     } __except (EXCEPTION_EXECUTE_HANDLER) {
         return false;

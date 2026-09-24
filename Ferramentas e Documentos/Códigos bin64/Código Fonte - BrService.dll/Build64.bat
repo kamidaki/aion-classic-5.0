@@ -27,7 +27,7 @@ if %ERRORLEVEL% neq 0 (
 )
 
 echo [*] Compilando modulos C++ (BrService.dll)...
-cl /c /O2 /utf-8 /W3 /std:c++17 /EHsc /MT /D NDEBUG /D _WINDOWS /D _USRDLL /D _UNICODE /D UNICODE /D NOMINMAX /D _WINSOCK_DEPRECATED_NO_WARNINGS /I. /Idatabase /Icore /Fox64\Release\ ^
+cl /c /O2 /utf-8 /W3 /std:c++17 /EHa /MT /D NDEBUG /D _WINDOWS /D _USRDLL /D _UNICODE /D UNICODE /D NOMINMAX /D _WINSOCK_DEPRECATED_NO_WARNINGS /I. /Idatabase /Icore /Fox64\Release\ ^
     core\ServiceGlobals.cpp ^
     core\ServiceLog.cpp ^
     core\ServiceWorker.cpp ^

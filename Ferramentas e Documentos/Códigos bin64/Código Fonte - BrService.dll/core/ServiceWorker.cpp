@@ -23,7 +23,7 @@ struct WindowSearchContext {
     HWND foundHwnd;
 };
 
-static void SyncPositionsDirectly(HWND hGame) {
+static void SyncPositionsDirectly(HWND hGame, bool force = false) {
     if (!hGame || !IsWindow(hGame)) return;
     if (IsIconic(hGame)) return;
 
@@ -37,8 +37,12 @@ static void SyncPositionsDirectly(HWND hGame) {
     int gw = cr.right - cr.left;
     int gh = cr.bottom - cr.top;
 
-    PingHudUI::UpdatePosition(gx, gy, gw, gh);
-    DrawerModalUI::UpdatePosition(gx, gy, gw, gh);
+    static int s_lastGx = -9999, s_lastGy = -9999, s_lastGw = -9999, s_lastGh = -9999;
+    if (force || gx != s_lastGx || gy != s_lastGy || gw != s_lastGw || gh != s_lastGh) {
+        s_lastGx = gx; s_lastGy = gy; s_lastGw = gw; s_lastGh = gh;
+        PingHudUI::UpdatePosition(gx, gy, gw, gh);
+        DrawerModalUI::UpdatePosition(gx, gy, gw, gh);
+    }
 }
 
 static LRESULT CALLBACK GameWindowSubclassProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam,
@@ -250,15 +254,16 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
             if (isLoading) {
                 PingHudUI::Hide();
                 DrawerModalUI::Hide();
-            } else if (active) {
+            } else if (active && g_isInWorld.load() && !g_isLoadingScreen.load()) {
                 CVarManager::ResyncOnMapChange();
                 PingHudUI::Show();
                 DrawerModalUI::RestoreIfOpen();
             }
         }
 
-        // 3. Hotkey handling & synchronization (whenever game window is active in foreground)
-        if (active && !isLoading) {
+        // 3. Hotkey handling & synchronization (ONLY when game is active, in-world, and NOT in loading screen)
+        bool inWorldReady = g_isInWorld.load() && !g_isLoadingScreen.load() && !isLoading;
+        if (active && inWorldReady) {
             // Direct Hotkey (Shift + F3) with game in focus
             static bool s_lastShiftF3 = false;
             bool isF3 = (GetAsyncKeyState(VK_F3) & 0x8000) != 0;

@@ -19,6 +19,7 @@ static std::wstring Utf8ToWide(const std::string& s) {
 }
 
 uintptr_t ComboRenderer::GetPlayerEntity() {
+    if (!BrService::g_isInWorld.load() || BrService::g_isLoadingScreen.load() || !BrService::g_isGameActive.load()) return 0;
     HMODULE hGame = GetModuleHandleA("Game.dll");
     if (!hGame) return 0;
 #ifdef _WIN64
@@ -37,6 +38,7 @@ uintptr_t ComboRenderer::GetPlayerEntity() {
 }
 
 uintptr_t ComboRenderer::GetTargetEntity() {
+    if (!BrService::g_isInWorld.load() || BrService::g_isLoadingScreen.load() || !BrService::g_isGameActive.load()) return 0;
     HMODULE hGame = GetModuleHandleA("Game.dll");
     if (!hGame) return 0;
 #ifdef _WIN64
@@ -72,6 +74,10 @@ uint32_t ComboRenderer::GetTargetObjId() {
 }
 
 bool ComboRenderer::IsUIHidden() {
+    // 0. Hidden when loading, cutscene, or not in world
+    if (!BrService::g_isInWorld.load() || BrService::g_isLoadingScreen.load() || !BrService::g_isGameActive.load()) {
+        return true;
+    }
     // 1. Feature disabled or hidden via in-game settings
     if (!BrService::g_featComboUi.load() || !BrService::g_comboVisible.load()) {
         return true;

@@ -48,6 +48,7 @@ public class CM_PLAY_MOVIE_END extends AionClientPacket {
 			return;
 		}
 		player.unsetCustomState(CustomPlayerState.WATCHING_CUTSCENE);
+		com.lostacademy.Dps_Meter.DpsService.sendPlayerState(player, true, false);
 		VisibleObject target = player.isTargeting(targetObjectId) ? player.getTarget() : null;
 		QuestEngine.getInstance().onMovieEnd(new QuestEnv(target, player, questId), movieId);
 		player.getPosition().getWorldMapInstance().getInstanceHandler().onPlayMovieEnd(player, movieId);

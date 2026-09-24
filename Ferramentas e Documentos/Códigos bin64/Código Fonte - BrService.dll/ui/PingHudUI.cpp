@@ -58,10 +58,18 @@ void PingHudUI::Shutdown() {
     }
 }
 
+bool PingHudUI::IsAllowedToDisplay() {
+    if (!g_featConsole.load() && !g_featPingUi.load()) return false;
+    if (!g_isInWorld.load() || g_isLoadingScreen.load() || !g_isGameActive.load()) return false;
+    return true;
+}
+
 void PingHudUI::Show() {
-    if (!g_featConsole.load() && !g_featPingUi.load()) return;
-    bool shouldBeVisible = (g_isInWorld.load() || g_currentPingMs.load() > 0) && !g_isLoadingScreen.load() && g_isGameActive.load();
-    if (g_hPingHudWnd && shouldBeVisible) {
+    if (!IsAllowedToDisplay()) {
+        Hide();
+        return;
+    }
+    if (g_hPingHudWnd) {
         if (!IsWindowVisible(g_hPingHudWnd)) {
             ShowWindow(g_hPingHudWnd, SW_SHOWNOACTIVATE);
             Repaint();
@@ -99,7 +107,7 @@ void PingHudUI::UpdatePosition(int gameX, int gameY, int gameW, int gameH) {
     int hudX = gameX;
     int hudY = gameY + gameH - s_hudHeight;
 
-    bool shouldBeVisible = (g_isInWorld.load() || g_currentPingMs.load() > 0) && !g_isLoadingScreen.load() && g_isGameActive.load();
+    bool shouldBeVisible = IsAllowedToDisplay();
 
     SetWindowPos(g_hPingHudWnd, HWND_TOPMOST, hudX, hudY, s_hudWidth, s_hudHeight,
                  SWP_NOACTIVATE | (shouldBeVisible ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
