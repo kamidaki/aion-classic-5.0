@@ -144,4 +144,13 @@ public class NativePathTest {
 			assertTrue(pathAroundSmall.length >= 2, "Rota deve conter waypoints contornando o obstáculo");
 		}
 	}
+
+	@Test
+	@DisplayName("Validação de carregamento estrito 100% sob demanda: nenhum mapa é carregado sem jogador ativo")
+	public void testStrictZeroLoadOnBoot() {
+		NativePathData data = NativePathData.getInstance();
+		int unrequestedWorld = 999999999;
+		assertNull(data.getNativeMap(unrequestedWorld), "Mapa não solicitado por jogador deve retornar null sem carregar do disco");
+		assertFalse(data.isMapLoaded(unrequestedWorld), "Mapa não solicitado não deve estar residente na RAM");
+	}
 }

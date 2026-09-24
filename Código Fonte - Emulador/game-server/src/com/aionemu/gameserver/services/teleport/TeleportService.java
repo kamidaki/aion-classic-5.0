@@ -180,7 +180,7 @@ public class TeleportService {
 		abortPlayerActions(player);
 		com.lostacademy.Dps_Meter.DpsService.sendPlayerState(player, true, true);
 		if (player.getWorldId() != worldId) {
-			NativePathData.getInstance().onPlayerEnterMap(worldId);
+			NativePathData.getInstance().onPlayerEnterMap(worldId, player.getObjectId());
 		}
 		// despawn from world and send animation to others (also ends flying)
 		World.getInstance().despawn(player, animation.getDefaultObjectDeleteAnimation());
@@ -236,8 +236,8 @@ public class TeleportService {
 		if (currentWorldId != worldId || player.getInstanceId() != instanceId) {
 			InstanceService.onLeaveInstance(player);
 			if (currentWorldId != worldId) {
-				NativePathData.getInstance().onPlayerLeaveMap(currentWorldId);
-				NativePathData.getInstance().onPlayerEnterMap(worldId);
+				NativePathData.getInstance().onPlayerLeaveMap(currentWorldId, player.getObjectId());
+				NativePathData.getInstance().onPlayerEnterMap(worldId, player.getObjectId());
 			}
 		}
 		World.getInstance().setPosition(player, worldId, instanceId, x, y, z, heading);
@@ -520,8 +520,8 @@ public class TeleportService {
 			if (currentWorldId != worldId || currentInstance != instanceId) {
 				InstanceService.onLeaveInstance(player);
 				if (currentWorldId != worldId) {
-					NativePathData.getInstance().onPlayerLeaveMap(currentWorldId);
-					NativePathData.getInstance().onPlayerEnterMap(worldId);
+					NativePathData.getInstance().onPlayerLeaveMap(currentWorldId, player.getObjectId());
+					NativePathData.getInstance().onPlayerEnterMap(worldId, player.getObjectId());
 				}
 			}
 			World.getInstance().setPosition(player, worldId, instanceId, x, y, z, h);

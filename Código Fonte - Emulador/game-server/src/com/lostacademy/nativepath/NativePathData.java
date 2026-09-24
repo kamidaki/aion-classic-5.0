@@ -5,6 +5,7 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
@@ -22,14 +23,17 @@ import com.aionemu.gameserver.world.WorldMapInstance;
  * LOST ACADEMY — SISTEMA OFICIAL DE NAVEGAÇÃO NATIVA CRYENGINE (*-PATH.DAT)
  * =========================================================================================
  * Gerenciador central de dados e repositório de malhas na memória RAM com carregamento 100%
- * sob demanda e desalocação segura por inatividade.
+ * sob demanda estrito e desalocação segura por inatividade.
  *
  * ARQUITETURA DE CICLO DE VIDA DE ALTA PERFORMANCE (100% SOB DEMANDA):
  * 1. Resolução dinâmica de arquivos .dat em data/native-path/ (apenas catálogo de caminhos na inicialização).
- * 2. Carregamento 100% sob demanda: nenhum mapa é carregado na inicialização do servidor.
- * 3. Sem limite artificial de mapas: mapas são mantidos na RAM enquanto houver jogadores ou atividade recente.
- * 4. Rastreamento rigoroso de jogadores ativos por mapa (onPlayerEnterMap / onPlayerLeaveMap).
- * 5. Desalocação automática e segura após 3 minutos sem nenhum jogador no mapa.
+ * 2. Carregamento 100% sob demanda: nenhum mapa é carregado na inicialização do servidor. Consultas
+ *    passivas (spawns, NPCs) em mapas sem jogadores NUNCA disparam carregamento do disco.
+ * 3. O carregamento de um mapa .dat ocorre EXCLUSIVAMENTE quando o primeiro jogador acessa o mapa
+ *    (via login, teleporte ou CM_LEVEL_READY).
+ * 4. Sem limite artificial de mapas: mapas são mantidos na RAM enquanto houver jogadores ativos.
+ * 5. Rastreamento rigoroso de jogadores ativos por ID (onPlayerEnterMap / onPlayerLeaveMap).
+ * 6. Desalocação automática e segura após 3 minutos sem nenhum jogador no mapa.
  *
  * @author KAMIDAKI & Equipe Lost Academy
  */
@@ -46,46 +50,59 @@ public final class NativePathData {
 	// Controle de atividade e presença de jogadores por mapa
 	private final ConcurrentHashMap<Integer, MapActivity> mapActivity = new ConcurrentHashMap<>();
 
+	// Locks individuais por mapa para concorrência de carregamento granular
+	private final ConcurrentHashMap<Integer, Object> worldLocks = new ConcurrentHashMap<>();
+
 	public final AtomicLong cacheHits = new AtomicLong(0);
 	public final AtomicLong cacheMisses = new AtomicLong(0);
 	public final AtomicLong totalLoadTimeMs = new AtomicLong(0);
 	public final AtomicLong loadedCount = new AtomicLong(0);
 
 	/**
-	 * Rastreamento de atividade e tempo de acesso de cada mapa.
+	 * Rastreamento de atividade, presença de jogadores e ciclo de vida de cada mapa.
 	 */
 	public static final class MapActivity {
-		private final AtomicInteger playerCount = new AtomicInteger(0);
+		private final Set<Integer> activePlayerIds = ConcurrentHashMap.newKeySet();
+		private final AtomicInteger anonymousPlayerCount = new AtomicInteger(0);
+		private volatile boolean requested = false;
 		private volatile long lastAccessTime = System.currentTimeMillis();
 		private volatile long emptySince = 0L;
 
-		public void incrementPlayerCount() {
-			playerCount.incrementAndGet();
+		public void addPlayer(int playerId) {
+			if (playerId != 0) {
+				activePlayerIds.add(playerId);
+			} else {
+				anonymousPlayerCount.incrementAndGet();
+			}
 			lastAccessTime = System.currentTimeMillis();
 			emptySince = 0L;
+			requested = true;
 		}
 
-		public void decrementPlayerCount() {
-			int remaining = playerCount.updateAndGet(c -> Math.max(0, c - 1));
-			lastAccessTime = System.currentTimeMillis();
-			if (remaining == 0 && emptySince == 0L) {
-				emptySince = System.currentTimeMillis();
+		public void removePlayer(int playerId) {
+			if (playerId != 0) {
+				activePlayerIds.remove(playerId);
+			} else {
+				anonymousPlayerCount.updateAndGet(c -> Math.max(0, c - 1));
 			}
+			lastAccessTime = System.currentTimeMillis();
 		}
 
 		public int getPlayerCount() {
-			return playerCount.get();
+			return activePlayerIds.size() + anonymousPlayerCount.get();
 		}
 
-		public void setPlayerCount(int count) {
-			playerCount.set(count);
-			if (count == 0) {
-				if (emptySince == 0L) {
-					emptySince = System.currentTimeMillis();
-				}
-			} else {
-				emptySince = 0L;
-			}
+		public void clearPlayers() {
+			activePlayerIds.clear();
+			anonymousPlayerCount.set(0);
+		}
+
+		public boolean isRequested() {
+			return requested;
+		}
+
+		public void setRequested(boolean req) {
+			this.requested = req;
 		}
 
 		public long getEmptySince() {
@@ -112,6 +129,10 @@ public final class NativePathData {
 	private NativePathData() {
 		indexNativePathDirectories();
 		startCleanupScheduler();
+	}
+
+	private Object getLockForWorld(int worldId) {
+		return worldLocks.computeIfAbsent(worldId, k -> new Object());
 	}
 
 	/**
@@ -176,34 +197,50 @@ public final class NativePathData {
 
 	/**
 	 * Invocado quando um jogador entra no mapa (login, teleporte, CM_LEVEL_READY).
-	 * Atualiza presença de jogadores e dispara carregamento sob demanda se necessário.
+	 * Registra o jogador e dispara o carregamento sob demanda se o mapa ainda não estiver na memória.
 	 */
-	public void onPlayerEnterMap(int worldId) {
+	public void onPlayerEnterMap(int worldId, int playerId) {
 		if (!NativePathConfig.NATIVE_PATH_ENABLE)
 			return;
 
+		if (!mapFileIndex.containsKey(worldId))
+			return;
+
 		MapActivity act = getOrCreateActivity(worldId);
-		act.incrementPlayerCount();
+		act.addPlayer(playerId);
+		act.setRequested(true);
 
 		// Se o mapa ainda não estiver carregado na memória, inicia o carregamento sob demanda imediatamente
-		if (!maps.containsKey(worldId) && mapFileIndex.containsKey(worldId)) {
-			ThreadPoolManager.getInstance().execute(() -> getNativeMap(worldId));
+		if (!maps.containsKey(worldId)) {
+			ThreadPoolManager.getInstance().execute(() -> loadMap(worldId));
 		}
+	}
+
+	public void onPlayerEnterMap(int worldId) {
+		onPlayerEnterMap(worldId, 0);
 	}
 
 	/**
 	 * Invocado quando um jogador sai do mapa (logout, teleporte para outro mapa).
 	 * Atualiza contagem de presença e agenda checagem de desalocação caso o mapa fique vazio.
 	 */
-	public void onPlayerLeaveMap(int worldId) {
+	public void onPlayerLeaveMap(int worldId, int playerId) {
 		MapActivity act = mapActivity.get(worldId);
 		if (act != null) {
-			act.decrementPlayerCount();
-			if (act.getPlayerCount() == 0) {
+			act.removePlayer(playerId);
+			int remaining = getActivePlayerCount(worldId);
+			if (remaining == 0) {
+				if (act.getEmptySince() == 0L) {
+					act.setEmptySince(System.currentTimeMillis());
+				}
 				long timeout = Math.max(60000L, NativePathConfig.NATIVE_PATH_INACTIVE_TIMEOUT_MS);
 				ThreadPoolManager.getInstance().schedule(() -> unloadIfEmpty(worldId), timeout);
 			}
 		}
+	}
+
+	public void onPlayerLeaveMap(int worldId) {
+		onPlayerLeaveMap(worldId, 0);
 	}
 
 	/**
@@ -229,10 +266,14 @@ public final class NativePathData {
 
 	/**
 	 * Retorna a instância de NativePathMap para o worldId solicitado.
-	 * Carrega 100% sob demanda de forma thread-safe se ainda não estiver residente na RAM.
+	 * REGRA ESTRITA 100% SOB DEMANDA:
+	 * Se o mapa já estiver na RAM, retorna instantaneamente (cache hit).
+	 * Se o mapa NÃO estiver na RAM e NÃO tiver sido solicitado por nenhum jogador ativo (ex: spawns no boot),
+	 * retorna null imediatamente sem tocar no disco.
+	 * Se foi solicitado por jogador ativo, carrega sob demanda sincronizado por mapa.
 	 *
 	 * @param worldId Identificador numérico do mapa.
-	 * @return A instância de NativePathMap ou null se não houver malha indexada.
+	 * @return A instância de NativePathMap ou null se não houver malha indexada ou se não houver jogador.
 	 */
 	public NativePathMap getNativeMap(int worldId) {
 		if (!NativePathConfig.NATIVE_PATH_ENABLE)
@@ -248,39 +289,61 @@ public final class NativePathData {
 			return map;
 		}
 
-		Path filePath = mapFileIndex.get(worldId);
-		if (filePath == null) {
+		// REGRA ESTRITA 100% SOB DEMANDA:
+		// Se o mapa NÃO foi solicitado por nenhum jogador (ou não há jogadores ativos),
+		// NUNCA carregar do disco! Impede carregamento no boot por spawns ou rotinas automáticas de NPCs.
+		MapActivity act = mapActivity.get(worldId);
+		if (act == null || !act.isRequested()) {
 			return null;
 		}
 
-		// Carregamento sob demanda sincronizado por mapa
-		synchronized (this) {
+		cacheMisses.incrementAndGet();
+		return loadMap(worldId);
+	}
+
+	/**
+	 * Carrega o mapa .dat do disco de forma thread-safe com lock granular por worldId.
+	 */
+	public NativePathMap loadMap(int worldId) {
+		if (!NativePathConfig.NATIVE_PATH_ENABLE)
+			return null;
+
+		NativePathMap map = maps.get(worldId);
+		if (map != null)
+			return map;
+
+		Path filePath = mapFileIndex.get(worldId);
+		if (filePath == null)
+			return null;
+
+		Object lock = getLockForWorld(worldId);
+		synchronized (lock) {
 			map = maps.get(worldId);
-			if (map != null) {
-				cacheHits.incrementAndGet();
+			if (map != null)
 				return map;
+
+			MapActivity act = mapActivity.get(worldId);
+			if (act == null || !act.isRequested()) {
+				return null;
 			}
 
-			cacheMisses.incrementAndGet();
 			long t0 = System.currentTimeMillis();
-
 			try {
 				map = NativePathMap.loadFromDisk(filePath, worldId);
 				maps.put(worldId, map);
 				loadedCount.incrementAndGet();
 				long elapsed = System.currentTimeMillis() - t0;
 				totalLoadTimeMs.addAndGet(elapsed);
-				getOrCreateActivity(worldId).updateAccess();
+				act.updateAccess();
 
 				LOG.info("NATIVE_PATH: Mapa {} carregado 100% sob demanda em {} ms ({} camadas ativas, {} MB RAM | Total carregados: {}).",
 						worldId, elapsed, map.getTotalLayers(), map.getEstimatedSizeMB(), maps.size());
+				return map;
 			} catch (Exception e) {
 				LOG.error("NATIVE_PATH: Falha ao carregar mapa nativo {} sob demanda ({}).", worldId, filePath.getFileName(), e);
 				return null;
 			}
 		}
-
-		return map;
 	}
 
 	/**
@@ -298,9 +361,6 @@ public final class NativePathData {
 
 		int players = getActivePlayerCount(worldId);
 		MapActivity act = mapActivity.get(worldId);
-		if (act != null) {
-			act.setPlayerCount(players);
-		}
 
 		if (players > 0) {
 			if (act != null) {
@@ -314,13 +374,19 @@ public final class NativePathData {
 		long timeout = Math.max(60000L, NativePathConfig.NATIVE_PATH_INACTIVE_TIMEOUT_MS);
 
 		if (emptySince > 0 && (now - emptySince) >= timeout) {
-			synchronized (this) {
+			Object lock = getLockForWorld(worldId);
+			synchronized (lock) {
 				// Re-valida sob lock
 				players = getActivePlayerCount(worldId);
 				if (players == 0) {
 					NativePathMap removed = maps.remove(worldId);
 					if (removed != null) {
 						removed.dispose();
+						if (act != null) {
+							act.clearPlayers();
+							act.setRequested(false);
+							act.resetEmptySince();
+						}
 						LOG.info("NATIVE_PATH: Mapa {} sem jogadores há mais de 3 minutos descarregado com segurança da RAM (Mapas ativos restantes: {}).",
 								worldId, maps.size());
 					}
@@ -353,17 +419,24 @@ public final class NativePathData {
 			int wid = entry.getKey();
 			int players = getActivePlayerCount(wid);
 			MapActivity act = getOrCreateActivity(wid);
-			act.setPlayerCount(players);
 
 			if (players == 0) {
 				long emptySince = act.getEmptySince();
 				if (emptySince == 0L) {
 					act.setEmptySince(now);
 				} else if ((now - emptySince) >= timeout) {
-					NativePathMap removed = maps.remove(wid);
-					if (removed != null) {
-						removed.dispose();
-						evicted++;
+					Object lock = getLockForWorld(wid);
+					synchronized (lock) {
+						if (getActivePlayerCount(wid) == 0) {
+							NativePathMap removed = maps.remove(wid);
+							if (removed != null) {
+								removed.dispose();
+								act.clearPlayers();
+								act.setRequested(false);
+								act.resetEmptySince();
+								evicted++;
+							}
+						}
 					}
 				}
 			} else {
@@ -378,10 +451,24 @@ public final class NativePathData {
 	}
 
 	/**
-	 * Verifica se o mapa está catalogado no disco ou carregado na memória.
+	 * Verifica se o mapa está atualmente residente na memória RAM.
+	 */
+	public boolean isMapLoaded(int worldId) {
+		return maps.containsKey(worldId);
+	}
+
+	/**
+	 * Verifica se o mapa possui arquivo catalogado no disco ou está carregado na memória.
 	 */
 	public boolean hasMap(int worldId) {
 		return maps.containsKey(worldId) || mapFileIndex.containsKey(worldId);
+	}
+
+	/**
+	 * Verifica se o mapa possui arquivo .dat catalogado no disco.
+	 */
+	public boolean hasMapFile(int worldId) {
+		return mapFileIndex.containsKey(worldId);
 	}
 
 	/**

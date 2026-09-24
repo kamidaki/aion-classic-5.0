@@ -76,7 +76,19 @@ public final class NativePathService {
 	}
 
 	/**
-	 * Informa se o mapa especificado possui malha binária *-path.dat indexada no disco.
+	 * Informa se o mapa especificado está atualmente carregado e ativo na memória RAM.
+	 *
+	 * @param worldId Identificador numérico do mapa.
+	 * @return true se o mapa estiver carregado na RAM.
+	 */
+	public boolean isMapLoaded(int worldId) {
+		if (!NativePathConfig.NATIVE_PATH_ENABLE)
+			return false;
+		return data.isMapLoaded(worldId);
+	}
+
+	/**
+	 * Informa se o mapa especificado possui malha binária *-path.dat indexada no disco ou carregada.
 	 *
 	 * @param worldId Identificador numérico do mapa.
 	 * @return true se o arquivo .dat existir e estiver disponível para carregamento.

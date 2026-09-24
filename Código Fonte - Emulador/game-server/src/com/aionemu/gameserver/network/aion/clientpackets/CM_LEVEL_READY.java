@@ -87,7 +87,7 @@ public class CM_LEVEL_READY extends AionClientPacket {
 			World.getInstance().despawn(activePlayer);
 		}
 		// Gatilho sob demanda NativePath: jogador concluiu carregamento do mapa
-		NativePathData.getInstance().onPlayerEnterMap(activePlayer.getWorldId());
+		NativePathData.getInstance().onPlayerEnterMap(activePlayer.getWorldId(), activePlayer.getObjectId());
 
 		// Spawn player into the world.
 		World.getInstance().spawn(activePlayer);

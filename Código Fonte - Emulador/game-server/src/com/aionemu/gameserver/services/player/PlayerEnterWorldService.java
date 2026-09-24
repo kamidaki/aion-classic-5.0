@@ -152,7 +152,7 @@ public final class PlayerEnterWorldService {
 			pcd.setInEditMode(false);
 
 			World.getInstance().storeObject(player);
-			NativePathData.getInstance().onPlayerEnterMap(player.getWorldId());
+			NativePathData.getInstance().onPlayerEnterMap(player.getWorldId(), player.getObjectId());
 
 			if (validateFortressZone(player))
 				validateVortexZone(player);
@@ -410,7 +410,7 @@ public final class PlayerEnterWorldService {
 		log.info("Player Logged In: {} Account: {}", player.getName(), player.getClientConnection().getAccount().getName());
 		player.getCommonData().setOnline(true);
 		PlayerDAO.onlinePlayer(player, true);
-		NativePathData.getInstance().onPlayerEnterMap(player.getWorldId());
+		NativePathData.getInstance().onPlayerEnterMap(player.getWorldId(), player.getObjectId());
 	}
 
 	@SuppressWarnings("lossy-conversions")
