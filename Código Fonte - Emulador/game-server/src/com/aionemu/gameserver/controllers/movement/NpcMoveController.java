@@ -250,17 +250,23 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 							ps = new PathState(newPath, startIdx);
 							pathRef.set(ps);
 						} else {
-							// A* não encontrou rota navegável:
-							ps = null;
-							pathRef.set(null);
-							lastPathCalcTime = now + 1000; // Backoff para evitar tempestade de A* a cada tick
-							// Só move diretamente se houver caminho físico desobstruído — nunca atravessa sólidos
-							if (canWalkDirectly(owner, targetX, targetY, targetZ)) {
-								moveToLocation(targetX, targetY, targetZ);
+							// Se o mob já possui waypoints válidos em andamento, preserva a rota atual
+							// e tenta recalcular novamente após breve intervalo (500ms).
+							if (ps != null && ps.hasNext()) {
+								lastPathCalcTime = now + 500;
 							} else {
-								abortMove(); // Bloqueado por obstáculo — para com segurança em vez de atravessar paredes!
+								// Realmente sem rota navegável:
+								ps = null;
+								pathRef.set(null);
+								lastPathCalcTime = now + 800; // Backoff para evitar tempestade de A* a cada tick
+								// Só move diretamente se houver caminho físico desobstruído — nunca atravessa sólidos
+								if (canWalkDirectly(owner, targetX, targetY, targetZ)) {
+									moveToLocation(targetX, targetY, targetZ);
+								} else {
+									abortMove(); // Bloqueado por obstáculo — para com segurança em vez de atravessar paredes!
+								}
+								break;
 							}
-							break;
 						}
 					}
 

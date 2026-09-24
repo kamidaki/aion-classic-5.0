@@ -105,12 +105,12 @@ public final class NativePathAStar {
 		}
 
 		// Projeta pontos para o solo navegável mais próximo caso estejam em subcélula bloqueada
-		float[] validStart = map.findClosestWalkablePoint(startX, startY, startZ, 3.0f);
+		float[] validStart = map.findClosestWalkablePoint(startX, startY, startZ, 5.0f);
 		float sX = validStart != null ? validStart[0] : startX;
 		float sY = validStart != null ? validStart[1] : startY;
 		float sZ = validStart != null ? validStart[2] : startZ;
 
-		float[] validTarget = map.findClosestWalkablePoint(targetX, targetY, targetZ, 4.0f);
+		float[] validTarget = map.findClosestWalkablePoint(targetX, targetY, targetZ, 5.0f);
 		float tX = validTarget != null ? validTarget[0] : targetX;
 		float tY = validTarget != null ? validTarget[1] : targetY;
 		float tZ = validTarget != null ? validTarget[2] : targetZ;
@@ -172,15 +172,20 @@ public final class NativePathAStar {
 
 			// Condição de chegada 1: alcançou a subcélula de destino exata
 			if (cgx == goalGx && cgy == goalGy) {
-				return reconstructPath(ctx, current, targetX, targetY, targetZ);
+				return reconstructPath(ctx, current);
 			}
 
-			// Condição de chegada 2: alcançou distância de parada com linha de visão limpa
-			if (reachDistance > 0.0f && cH <= reachDistance) {
+			// Condição de chegada 2: alcançou distância de combate com linha de visão limpa
+			float effectiveReach = reachDistance > 0.0f ? reachDistance : 1.8f;
+			if (cH <= effectiveReach) {
 				float cWorldX = cgx * 0.5f;
 				float cWorldY = cgy * 0.5f;
 				if (map.hasLineOfSight(cWorldX, cWorldY, cZ, targetX, targetY, targetZ, MAX_DROP_DOWN)) {
-					return reconstructPath(ctx, current, targetX, targetY, targetZ);
+					return reconstructPath(ctx, current);
+				}
+				// Se estiver extremamente próximo (<= 0.8m), considera que chegou ao alcance físico
+				if (cH <= 0.8f) {
+					return reconstructPath(ctx, current);
 				}
 			}
 
@@ -217,13 +222,13 @@ public final class NativePathAStar {
 					continue;
 				}
 
-				// Folga lateral para agentes de grande porte
+				// Folga lateral proporcional para agentes de grande porte (com limite seguro)
 				if (agentRadius > 0.6f) {
-					float clearance = agentRadius * 0.5f;
+					float clearance = Math.min(0.5f, agentRadius * 0.3f);
 					if (!map.isWalkable(nextWorldX + clearance, nextWorldY, nextZ, 2.0f) ||
 							!map.isWalkable(nextWorldX - clearance, nextWorldY, nextZ, 2.0f) ||
-							!map.isWalkable(nextWorldX, nextWorldY + clearance, nextWorldY, 2.0f) ||
-							!map.isWalkable(nextWorldX, nextWorldY - clearance, nextWorldY, 2.0f)) {
+							!map.isWalkable(nextWorldX, nextWorldY + clearance, nextZ, 2.0f) ||
+							!map.isWalkable(nextWorldX, nextWorldY - clearance, nextZ, 2.0f)) {
 						continue;
 					}
 				}
@@ -268,7 +273,7 @@ public final class NativePathAStar {
 
 		// Se a busca esgotou mas avançou significativamente, retorna a melhor rota parcial para não congelar
 		if (closestNode != startNode && minHeuristic < initialH) {
-			return reconstructPath(ctx, closestNode, targetX, targetY, targetZ);
+			return reconstructPath(ctx, closestNode);
 		}
 
 		return null;
@@ -277,18 +282,13 @@ public final class NativePathAStar {
 	/**
 	 * Reconstrói os waypoints do trajeto a partir do pool de nós do contexto.
 	 */
-	private static List<float[]> reconstructPath(AStarSearchContext ctx, int endNode,
-												 float targetX, float targetY, float targetZ) {
+	private static List<float[]> reconstructPath(AStarSearchContext ctx, int endNode) {
 		List<float[]> path = new ArrayList<>();
-		path.add(new float[] {targetX, targetY, targetZ});
 
 		int curr = endNode;
 		while (curr >= 0) {
-			int parent = ctx.nodeParent[curr];
-			if (parent >= 0) {
-				path.add(new float[] {ctx.nodeGx[curr] * 0.5f, ctx.nodeGy[curr] * 0.5f, ctx.nodeZ[curr]});
-			}
-			curr = parent;
+			path.add(new float[] {ctx.nodeGx[curr] * 0.5f, ctx.nodeGy[curr] * 0.5f, ctx.nodeZ[curr]});
+			curr = ctx.nodeParent[curr];
 		}
 
 		Collections.reverse(path);
@@ -301,47 +301,54 @@ public final class NativePathAStar {
 	 */
 	private static List<float[]> smoothPath(NativePathMap map, List<float[]> waypoints,
 											float targetX, float targetY, float targetZ) {
+		if (waypoints == null || waypoints.isEmpty()) {
+			return Collections.emptyList();
+		}
+
+		List<float[]> smoothed;
 		if (waypoints.size() <= 2) {
-			return waypoints;
-		}
+			smoothed = new ArrayList<>(waypoints);
+		} else {
+			int layerDensityThreshold = map.getSectorDim() * 2;
+			float maxJumpDist = map.getTotalLayers() > layerDensityThreshold ? 8.0f : 20.0f;
+			float maxJumpDistSq = maxJumpDist * maxJumpDist;
 
-		int layerDensityThreshold = map.getSectorDim() * 2;
-		float maxJumpDist = map.getTotalLayers() > layerDensityThreshold ? 8.0f : 20.0f;
-		float maxJumpDistSq = maxJumpDist * maxJumpDist;
+			smoothed = new ArrayList<>();
+			int currentIndex = 0;
+			smoothed.add(waypoints.get(0));
 
-		List<float[]> smoothed = new ArrayList<>();
-		int currentIndex = 0;
-		smoothed.add(waypoints.get(0));
+			while (currentIndex < waypoints.size() - 1) {
+				int furthestIndex = currentIndex + 1;
+				float[] currentPt = waypoints.get(currentIndex);
 
-		while (currentIndex < waypoints.size() - 1) {
-			int furthestIndex = currentIndex + 1;
-			float[] currentPt = waypoints.get(currentIndex);
-
-			for (int testIndex = waypoints.size() - 1; testIndex > currentIndex + 1; testIndex--) {
-				float[] testPt = waypoints.get(testIndex);
-				float dx = testPt[0] - currentPt[0];
-				float dy = testPt[1] - currentPt[1];
-				float distSq = dx * dx + dy * dy;
-				if (distSq > maxJumpDistSq) {
-					continue;
+				for (int testIndex = waypoints.size() - 1; testIndex > currentIndex + 1; testIndex--) {
+					float[] testPt = waypoints.get(testIndex);
+					float dx = testPt[0] - currentPt[0];
+					float dy = testPt[1] - currentPt[1];
+					float distSq = dx * dx + dy * dy;
+					if (distSq > maxJumpDistSq) {
+						continue;
+					}
+					if (map.hasLineOfSight(currentPt[0], currentPt[1], currentPt[2],
+							testPt[0], testPt[1], testPt[2], MAX_DROP_DOWN)) {
+						furthestIndex = testIndex;
+						break;
+					}
 				}
-				if (map.hasLineOfSight(currentPt[0], currentPt[1], currentPt[2],
-						testPt[0], testPt[1], testPt[2], MAX_DROP_DOWN)) {
-					furthestIndex = testIndex;
-					break;
-				}
+
+				float[] nextPt = waypoints.get(furthestIndex);
+				smoothed.add(nextPt);
+				currentIndex = furthestIndex;
 			}
-
-			float[] nextPt = waypoints.get(furthestIndex);
-			smoothed.add(nextPt);
-			currentIndex = furthestIndex;
 		}
 
-		// Garante waypoint final no destino exato
+		// Garante waypoint final no destino exato apenas se houver linha de visão limpa
 		float[] last = smoothed.get(smoothed.size() - 1);
 		float dSq = (last[0] - targetX) * (last[0] - targetX) + (last[1] - targetY) * (last[1] - targetY);
 		if (dSq > 0.25f) {
-			smoothed.add(new float[] {targetX, targetY, targetZ});
+			if (map.hasLineOfSight(last[0], last[1], last[2], targetX, targetY, targetZ, MAX_DROP_DOWN)) {
+				smoothed.add(new float[] {targetX, targetY, targetZ});
+			}
 		} else {
 			smoothed.set(smoothed.size() - 1, new float[] {targetX, targetY, targetZ});
 		}

@@ -134,7 +134,11 @@ public final class NativePathMap {
 	private float queryGeoTerrainZ(float x, float y, float zRef, int instanceId) {
 		try {
 			if (GeoService.getInstance() != null) {
-				float gz = GeoService.getInstance().getZ(worldId, x, y, zRef + 15.0f, zRef - 25.0f, instanceId);
+				float gz = GeoService.getInstance().getZ(worldId, x, y, zRef + 2.0f, zRef - 4.0f, instanceId);
+				if (!Float.isNaN(gz)) {
+					return gz;
+				}
+				gz = GeoService.getInstance().getZ(worldId, x, y, zRef + 5.0f, zRef - 10.0f, instanceId);
 				if (!Float.isNaN(gz)) {
 					return gz;
 				}

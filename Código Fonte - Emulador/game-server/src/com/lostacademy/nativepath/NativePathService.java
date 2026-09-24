@@ -185,7 +185,7 @@ public final class NativePathService {
 			if (pathOwner.getObjectTemplate() != null && pathOwner.getObjectTemplate().getBoundRadius() != null) {
 				float r = pathOwner.getObjectTemplate().getBoundRadius().getCollision();
 				if (r > 0.1f) {
-					agentRadius = r;
+					agentRadius = Math.min(0.8f, r);
 				}
 			}
 
@@ -242,7 +242,7 @@ public final class NativePathService {
 			if (pathOwner.getObjectTemplate() != null && pathOwner.getObjectTemplate().getBoundRadius() != null) {
 				float r = pathOwner.getObjectTemplate().getBoundRadius().getCollision();
 				if (r > 0.1f) {
-					agentRadius = r;
+					agentRadius = Math.min(0.8f, r);
 				}
 			}
 

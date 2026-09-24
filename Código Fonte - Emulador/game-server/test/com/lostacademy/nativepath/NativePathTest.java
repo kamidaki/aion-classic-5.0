@@ -67,4 +67,82 @@ public class NativePathTest {
 		dropZ = currentZ - targetDropBlocked;
 		assertFalse(dropZ <= NativePathMap.MAX_DROP_DOWN, "Queda brusca de despenhadeiro deve ser bloqueada");
 	}
+
+	@Test
+	@DisplayName("Teste diagnóstico de A* em Inggison com obstáculo")
+	public void testInggisonAStar() throws Exception {
+		java.nio.file.Path p = java.nio.file.Paths.get("data/native-path/210050000_lf4/lf4-path.dat");
+		if (!java.nio.file.Files.exists(p)) {
+			return; // Pula se arquivo não estiver no path de execução do teste
+		}
+		NativePathMap map = NativePathMap.loadFromDisk(p, 210050000);
+		assertNotNull(map);
+
+		// Posição de spawn do Steelback Neokin em Calmheart Grove
+		float startX = 1540.0f;
+		float startY = 242.0f;
+		float startZ = 531.75f;
+
+		// Posição do jogador atrás de obstrução (ex: 15m de distância)
+		float targetX = 1555.0f;
+		float targetY = 250.0f;
+		float targetZ = 531.75f;
+
+		float[][] path = NativePathAStar.findPath(map, startX, startY, startZ, targetX, targetY, targetZ, 3.51f, 1.5f);
+		System.out.println("PATH RESULT WITH RADIUS 3.51: " + (path != null ? path.length + " waypoints" : "NULL"));
+
+		// Agora testamos pontos com obstáculo real entre eles (atrás de árvore/rocha/torre)
+		// Vamos verificar células bloqueadas no setor de Inggison ao redor de (1540, 242)
+		int sx = 1540 / 16;
+		int sy = 242 / 16;
+		NativePathSector sector = map.getSector(sx, sy);
+		System.out.println("SECTOR layers: " + (sector != null ? sector.getLayerCount() : 0));
+		if (sector != null && sector.getLayerCount() > 0) {
+			for (int ly = 0; ly < sector.getLayerCount(); ly++) {
+				NativePathSector.Layer l = sector.getLayers()[ly];
+				System.out.println("Layer " + ly + " type=" + l.getType() + " hasExplicitBase=" + l.hasExplicitBase() + " baseElev=" + l.getBaseElev());
+			}
+		}
+
+		// Teste de A* entre pontos onde line of sight é bloqueada
+		// Encontrar uma célula bloqueada no setor:
+		int blockedSubX = -1, blockedSubY = -1;
+		if (sector != null && sector.getLayerCount() > 0) {
+			NativePathSector.Layer l = sector.getLayers()[0];
+			for (int y = 0; y < 32; y++) {
+				for (int x = 0; x < 32; x++) {
+					if (!l.isWalkable(x, y)) {
+						blockedSubX = x;
+						blockedSubY = y;
+						break;
+					}
+				}
+				if (blockedSubX >= 0) break;
+			}
+		}
+		System.out.println("Blocked cell in sector (" + sx + ", " + sy + "): subX=" + blockedSubX + ", subY=" + blockedSubY);
+
+		if (blockedSubX >= 0) {
+			float obstWorldX = sx * 16 + blockedSubX * 0.5f;
+			float obstWorldY = sy * 16 + blockedSubY * 0.5f;
+			// Ponto A de um lado do obstáculo, Ponto B do outro lado
+			float pAx = obstWorldX - 2.0f;
+			float pAy = obstWorldY;
+			float pBx = obstWorldX + 2.0f;
+			float pBy = obstWorldY;
+			float pAz = map.getSurfaceZ(pAx, pAy, startZ, startZ);
+			float pBz = map.getSurfaceZ(pBx, pBy, startZ, startZ);
+
+			boolean los = map.hasLineOfSight(pAx, pAy, pAz, pBx, pBy, pBz, 1.8f);
+			assertFalse(los, "Não deve haver linha de visão direta através do obstáculo");
+
+			float[][] pathAroundLarge = NativePathAStar.findPath(map, pAx, pAy, pAz, pBx, pBy, pBz, 3.51f, 0.0f);
+			assertNotNull(pathAroundLarge, "A* deve encontrar rota contornando obstáculo para criatura de grande porte");
+			assertTrue(pathAroundLarge.length >= 2, "Rota deve conter waypoints contornando o obstáculo");
+
+			float[][] pathAroundSmall = NativePathAStar.findPath(map, pAx, pAy, pAz, pBx, pBy, pBz, 0.5f, 0.0f);
+			assertNotNull(pathAroundSmall, "A* deve encontrar rota contornando obstáculo para criatura pequena");
+			assertTrue(pathAroundSmall.length >= 2, "Rota deve conter waypoints contornando o obstáculo");
+		}
+	}
 }
