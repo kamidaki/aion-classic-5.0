@@ -1,6 +1,6 @@
 # Aion Classic 5.0 EU — Java Emulator (Java 25 LTS)
 
-O **melhor e único emulador Aion Classic 5.0 do mundo**, totalmente construído e operando em **Java 25 (LTS)**. Projetado para máxima estabilidade, fluidez absoluta, ausência de gargalos de concorrência e alto throughput, integrando protocolos oficiais Gameforge, criptografia Blowfish/RSA, dados estáticos 5.0 extraídos diretamente do cliente oficial e subsistema nativo de Firewall GeoIP.
+O **melhor e único emulador Aion Classic 5.0 do mundo**, totalmente construído e operando em **Java 25 (LTS)**. Projetado para máxima estabilidade, fluidez absoluta, ausência de gargalos de concorrência e alto throughput, integrando protocolos oficiais Gameforge, criptografia Blowfish/RSA, dados estáticos 5.0 extraídos diretamente do cliente oficial, subsistema nativo de Firewall GeoIP e motor de navegação tridimensional CryEngine Native-Path.
 
 ---
 
@@ -11,7 +11,7 @@ O **melhor e único emulador Aion Classic 5.0 do mundo**, totalmente construído
 
 ### 1. Portabilidade Absoluta e Proibição de Caminhos Hardcoded
 * **Este repositório é compartilhado e executado em múltiplos ambientes, computadores, discos e sistemas operacionais.**
-* **É TERMINANTEMENTE PROIBIDO fixar letras de unidade de disco (ex: `C:\`, `D:\`, `E:\`) ou caminhos absolutos locais em qualquer arquivo do projeto** (seja código Java, scripts Python, arquivos `.bat`, `.ps1`, `.json`, `.xml` ou documentos `.md`).
+* **É TERMINANTEMENTE PROIBIDO fixar letras de unidade de disco (ex: `C:\`, `D:\`, `E:\`) ou caminhos absolutos locais em qualquer arquivo do projeto** (seja código Java, C++, Rust, scripts Python, arquivos `.bat`, `.ps1`, `.json`, `.xml` ou documentos `.md`).
 * Todas as referências devem ser **estritamente relativas** ou dinamicamente resolvidas via raiz do projeto (ex: `Código Fonte - Emulador`, `Emulador - Produto Final`, `Ferramentas e Documentos`).
 * **NUNCA FAZER WORKAROUND (GAMBIARRAS OU ATALHOS TEMPORÁRIOS).**
 * O estado atual do projeto em **Java 25 LTS** é definitivo e consolidado. **NUNCA recupere arquivos, dados ou referências a versões legadas obsoletas**.
@@ -57,61 +57,6 @@ Para manter o histórico do repositório organizado, rastreável e padronizado e
 
 - **Idioma Estritamente em Português**: Mensagens de commit nunca devem ser escritas em inglês.
 - **Formato de Uma Linha por Alteração**: Cada modificação relevante deve ser descrita em uma linha individual, de forma concisa, técnica e objetiva.
-- **Estrutura Recomendada**:
-  ```text
-  Título resumido da entrega em português
-
-  - modulo-modificado: descrição objetiva da primeira mudança
-  - outro-modulo: descrição objetiva da segunda mudança
-  - ui/docs: descrição objetiva da terceira mudança
-  ```
-
----
-
-## Firewall GeoIP e Proteção de Fronteiras (Anti-Intrusão)
-
-O emulador conta com um sistema de alta segurança integrado ao núcleo de rede (`commons`), projetado para mitigar ataques DDoS, bots de varredura e conexões não autorizadas de regiões geográficas não permitidas.
-
-### 1. Arquitetura do GeoIPFilterService
-- **Localização**: `com.aionemu.commons.network.GeoIPFilterService` gerenciado por `com.aionemu.commons.configs.GeoFirewallConfig`.
-- **Atuação no Socket**: O filtro atua no instante imediato da conexão TCP, antes de qualquer processamento de handshake ou alocação pesada de memória.
-- **Estrutura em Memória**: Carrega árvores de busca de prefixos IP para faixas IPv4 e IPv6 mapeadas a códigos ISO 3166-1 alpha-2 de países.
-- **Modo Fail-Safe**: Caso o firewall esteja habilitado e a base de dados não possa ser lida, o serviço adota política de segurança restrita (`DENY-ALL` para todos os IPs externos não locais).
-
-### 2. Configurações (`geo_firewall.properties` ou propriedades de sistema)
-| Propriedade | Padrão | Descrição Técnica |
-| :--- | :---: | :--- |
-| `geo.firewall.enable` | `false` | Habilita ou desabilita globalmente o filtro de países. |
-| `geo.firewall.world_ip_range_dir` | *(vazio)* | Diretório com os arquivos de faixas de IP por país. |
-| `geo.firewall.allowed_countries` | `all` | Lista separada por vírgulas de países autorizados (ex: `BR,PT,US`). Se `all`, permite todos. |
-| `geo.firewall.manual_whitelist_ips` | *(vazio)* | Lista explícita de IPs/sub-redes autorizados que ignoram restrição geográfica (para administradores e nós de proxy). |
-
----
-
-## Subsistema de Navegação e Pathfinding (CryEngine Native-Path)
-
-O emulador adota como motor primário de navegação tridimensional o pacote `com.lostacademy.nativepath`, que consome diretamente os arquivos compilados da CryEngine (`*-path.dat`) extraídos das pastas `Levels/` do cliente oficial GameForge 5.0.
-
-### 1. Cadeia de 4 Camadas de Fallback
-```text
-[Camada 1: Native-Path (CryEngine .dat)]
-         │
-         ▼ (falha / sem arquivo / desativado)
-[Camada 2: NavMesh (.nav Recast)]
-         │
-         ▼ (falha / sem malha / desativado)
-[Camada 3: Eleanor (Geometria / Raycast LoS)]
-         │
-         ▼ (falha / sem rota transitável)
-[Camada 4: Vanilla / Comportamento Normal (GeoService direto)]
-```
-
-### 2. Características do Subsistema
-- **Precisão Espacial**: Grade de resolução 0.5m por célula nativa da CryEngine.
-- **Mapeamento 3D Completo**: Suporte nativo a camadas verticais (pontes, túneis e rampas) e conexões de adjacência pré-calculadas.
-- **Algoritmo A***: Busca heurística 3D de alta performance com fila de prioridade e alisamento via *string-pulling raycasting*.
-- **Gerenciamento de Memória LRU**: Indexação dinâmica por prefixo numérico `{worldId}_*`, carregamento assíncrono sob demanda na entrada de jogadores e liberação automática de mapas inativos (`NativePathData`).
-- **Compatibilidade 5.0**: 118 mapas indexados diretamente do cliente oficial em `data/native-path/`.
 
 ---
 
@@ -127,14 +72,16 @@ O emulador adota como motor primário de navegação tridimensional o pacote `co
 ├── Emulador - Produto Final/             # Distribuição de produção executável e pronta para uso
 │   ├── Aion Classic - EMULADOR.exe       # Executável compilado do Supervisor e Inicializador nativo (Rust)
 │   ├── config.json                       # Configurações do supervisor, JVM e parâmetros de inicialização
-│   ├── ChatServer/                       # Servidor de chat em produção
-│   ├── GameServer/                       # Servidor de jogo, static_data e logs em produção
-│   ├── LoginServer/                      # Servidor de autenticação em produção
+│   ├── ChatServer/                       # Servidor de chat em produção (libs, logs, sql)
+│   ├── GameServer/                       # Servidor de jogo em produção (libs, static_data, logs, sql)
+│   ├── LoginServer/                      # Servidor de autenticação em produção (libs, logs, sql)
 │   └── WORLD IP RANGE/                   # Tabelas de prefixos IP por país do Firewall GeoIP
 └── Ferramentas e Documentos/             # Hub consolidado de ferramentas, DLLs, patch e documentação
     ├── Client e Coletas/                 # PCAPs oficiais, dados extraídos e referências canônicas
-    │   ├── Client 5.0 - Dados Extraidos/ # Dados oficiais extraídos do cliente (skills, itens, npcs, strings)
-    │   ├── Outros/                       # Ícones e referências complementares
+    │   ├── Client 5.0 - Dados Extraidos/ # Dados oficiais extraídos do cliente (levels, data, etc.)
+    │   ├── Outros/                       # Assets visuais e ícones
+    │   │   └── Icones/                   # Ícones de bandeja e Banner oficial Aion Classic
+    │   │       └── Banner/               # Imagem splash_banner.png para documentação
     │   ├── Tradução - Português Brasil/  # Textos e traduções oficiais PT-BR
     │   └── Wireshark - Oficial Classic 5.0/ # Capturas reais de tráfego de rede do cliente 5.0
     ├── Códigos bin64/                    # Código-fonte C/C++ dos módulos nativos injetados no cliente
@@ -147,6 +94,115 @@ O emulador adota como motor primário de navegação tridimensional o pacote `co
     │   └── parsersXML/                   # Suíte de parsers para geração e sincronização de static_data
     └── Patch final - Client 5.0/         # Patch consolidado pronto para o cliente (bin32, bin64, l10n, Start scripts)
 ```
+
+---
+
+## Banco de Dados e Persistência (Segregação Relacional)
+
+O emulador opera com separação estrita de persistência em **3 schemas independentes** (MySQL 8.x / MariaDB 10.x):
+
+### 1. Banco do Login Server (`aion_ls`)
+- **Tabelas (8)**:
+  - `account_data`: Contas, hashes SHA-1, nível de permissão (0=Jogador, 1=VIP, 2=GM, 3=Admin) e créditos.
+  - `account_time`: Registro de tempo online acumulado e dias de assinatura ativa.
+  - `account_login_history`: Log de auditoria de acessos com IP, MAC e timestamps.
+  - `gameservers`: Registro dinâmico de GameServers autorizados, IPs de bind e status de capacidade.
+  - `banned_ip`, `banned_mac`, `banned_hdd`: Controle de segurança e banimentos por rede ou hardware.
+  - `player_transfers`: Controle de migração de personagens entre servidores.
+
+### 2. Banco do Chat Server (`aion_cs`)
+- **Tabelas (1)**:
+  - `chatlog`: Registro persistente de conversas de chat global, local, sussurros e canais para auditoria e moderação.
+
+### 3. Banco do Game Server (`aion_gs`)
+- **Tabelas (71+)**:
+  - `players`: Dados de personagens (classe, gênero, nível, EXP, coordenadas mundiais X/Y/Z/H, HP, MP, DP, cubos).
+  - `inventory`: Itens equipados e na mochila, slots, manastones, fusões e níveis de encantamento.
+  - `player_skills`: Habilidades ativas e passivas, estigmas equipados e cooldowns.
+  - `player_quests`: Missões em andamento, passos concluídos e dados de campanhas 5.0.
+  - `legions` e `legion_members`: Guildas, cargos, direitos de armazém, brasões e histórico.
+  - **Sistemas 5.0 Exclusivos**:
+    - `player_life_stats_sp_ep`: Gestão dos pontos de energia SP e EP introduzidos na expansão 5.0.
+    - `siel_anvil` e `siel_hammer`: Forja de Siel e aprimoramento especial de equipamentos.
+    - `combat_talent_rewards`: Árvores de talentos de combate e marcos de recompensa.
+    - `blackcloud_goods`: Loja Nuvem Negra e produtos disponíveis para resgate in-game.
+    - `global_trade`: Sistema unificado de comércio global entre jogadores.
+    - `quna`: Carteira de moedas Quna e saldo de transações da loja.
+    - `wardrobe`: Guarda-roupa cosmético 5.0 (slots desbloqueados e skins equipadas).
+    - `player_participation_points` e `player_hits`: Concessão de 1 Ponto de Participação a cada 1.000 acertos em NPCs.
+
+### 4. Inicialização e Migração Automática
+- **Rust Database Manager**: O executável supervisor nativo possui rotina embutida que valida a existência dos bancos `aion_cs`, `aion_ls` e `aion_gs`, executando automaticamente os scripts SQL caso as tabelas ainda não existam.
+- **Java DatabaseSchemaService**: O GameServer valida e cria dinamicamente novas tabelas ou colunas necessárias em tempo de boot, garantindo que o servidor nunca falhe por ausência de tabelas recentes.
+
+---
+
+## Mapeamento de Portas e Serviços de Rede
+
+| Porta TCP | Serviço Responsável | Protocolo | Descrição Técnica |
+| :---: | :--- | :---: | :--- |
+| **2106** | LoginServer | Aion TCP | Porta primária de autenticação, validação GameGuard e seleção de reinos. |
+| **7777** | GameServer | Aion TCP | Porta do mundo, combate, movimentação, instâncias e sincronização de entidades. |
+| **10241** | ChatServer | Aion TCP | Serviço de comunicação em tempo real, canais e comandos de GM. |
+| **10001** | BrService.dll | WebSocket | Canal de telemetria in-game, DPS meter, Shugo Console e Radar de combate. |
+| **18080** | Rust Supervisor | HTTP / WS | Painel web administrativo do inicializador (`Aion Classic - EMULADOR.exe`). |
+
+---
+
+## Arquitetura de Módulos Nativos do Cliente (C/C++)
+
+### 1. `version.dll` (Proxy Hook)
+- **Mecanismo de Injeção**: Carregada automaticamente pelo binário do cliente `Aion.bin` via técnicas de proxy DLL de sistema.
+- **Hook No-IP**: Intercepta a API de sockets do Windows (`connect`, `WSAConnect`), redirecionando silenciosamente chamadas para IPs externos oficiais para o endereço de loopback (`127.0.0.1`), permitindo rodar emuladores sem editar `hosts`.
+- **GameGuard Bypass**: Desativa a exigência dos drivers anti-cheat oficiais, prevenindo encerramentos forçados ou incompatibilidades de sistema.
+- **Compatibilidade Gráfica**: Ajustes de stack e limites de profundidade de visão (`fov`, `camMax`, `fpsUnlock`).
+
+### 2. `BrService.dll` (Overlay DirectX & Shugo Console)
+- **Renderização DirectX**: Hook na cadeia de swap do Direct3D (DirectX 9/11) renderizando UI nativa acelerada por GPU via Dear ImGui.
+- **Shugo Console Administrativo**: Atalhos **Shift + F3** ou **Ctrl + X** abrem o terminal administrativo in-game para execução de comandos, testes e depuração em tempo real.
+- **DPS Meter & Radar de Combate 4-Eixos**: Mede em tempo real o dano causado por segundo e plota no radar exclusivamente os 4 atributos oficiais de combate: **Crítico**, **Bloqueio**, **Esquiva** e **Resistência**.
+- **Combo UI Estilo LostHunting**: Sistema dinâmico de combos com pop scale, partículas e multiplicador de dano baseado na sequência ininterrupta de golpes.
+- **Gráfico Fibonacci de Latência**: Linha sutil renderizada abaixo do mostrador de ping apresentando a oscilação de latência dos últimos 60 minutos.
+- **Gerenciamento de Foco**: Auto-ocultação do overlay quando o jogo é minimizado ou perde o foco, poupando processamento de vídeo.
+
+---
+
+## Subsistema de Navegação e Pathfinding (CryEngine Native-Path)
+
+O emulador conta com um motor primário de navegação de alta fidelidade e resolução tridimensional (`com.lostacademy.nativepath`), consumindo diretamente os arquivos compilados da CryEngine (`*-path.dat`) extraídos das pastas de mapas do cliente oficial GameForge 5.0 (`Levels/`).
+
+### Cadeia de 4 Camadas de Fallback:
+1. **Camada 1: Native-Path (CryEngine `*-path.dat`)**:
+   - Resolução ultraprecisa de 0.5m por célula.
+   - Algoritmo A* heurístico tridimensional com fila de prioridade e suavização de trajetórias via *string-pulling raycasting*.
+   - Suporte nativo a desníveis verticais, pontes, túneis e conexões de adjacência pré-calculadas.
+2. **Camada 2: NavMesh (.nav Recast)**: Malhas trianguladas 3D carregadas sob demanda via `NavService` como primeira rota de contingência.
+3. **Camada 3: Eleanor (Geometria / Line-of-Sight)**: Rastreamento dinâmico ponto a ponto via `FollowMotor` com checagens de linha de visão e detecção de obstáculos.
+4. **Camada 4: Vanilla / Comportamento Direto**: Movimentação com ajuste de elevação Z via `GeoService.getZ`.
+
+### Configuração (`geodata.properties`):
+```properties
+gameserver.nativepath.enable = true
+gameserver.nativepath.dir = data/native-path/
+gameserver.nativepath.max_cached_maps = 15
+gameserver.nativepath.inactive_timeout_ms = 300000
+gameserver.nativepath.cleanup_interval_ms = 180000
+gameserver.nativepath.max_search_nodes = 4000
+gameserver.nativepath.debug = false
+```
+
+---
+
+## Firewall GeoIP & Proteção de Fronteiras
+
+Integrado no pacote `com.aionemu.commons.network.GeoIPFilterService`:
+
+1. **Bloqueio no Socket**: Conexões oriundas de faixas IP fora dos países autorizados são rejeitadas instantaneamente no nível NIO TCP antes do handshake de criptografia.
+2. **Faixas IPv4 e IPv6**: Base de prefixos globais indexada em memória na inicialização.
+3. **Configuração (`geo_firewall.properties`)**:
+   - `geo.firewall.enable`: Ativa/desativa o firewall (`true` / `false`).
+   - `geo.firewall.allowed_countries`: Países liberados (ex: `BR,PT,US` ou `all`).
+   - `geo.firewall.manual_whitelist_ips`: IPs individuais autorizados que ignoram restrição geográfica.
 
 ---
 
@@ -275,28 +331,16 @@ O emulador adota como motor primário de navegação tridimensional o pacote `co
 
 ---
 
-## Ambiente de Execução e Stack Tecnológica
+## Procedimento de Push para o Repositório Remoto (Resolução HTTP 408)
 
-- **Linguagem & Runtime**: **Java 25 (LTS)** nativo (`jdk-25.0.2` LTS).
-- **Build Tool**: Apache Maven 3.9+ com `maven-compiler-plugin 3.14.1` (`release 25`).
-- **Banco de Dados**: MySQL 8.x / MariaDB 10.x / MySQL 5.7+ (Pool HikariCP 7.0.2).
-- **Serialização & XML**: JAXB (`jakarta.xml.bind-api 2.3.3` com `jaxb-impl 2.3.9`) e FastJSON2 2.0.60.
-- **Logging**: SLF4J 2.0.16 com Logback 1.5.21.
-- **Protocol Buffers**: Google Protobuf Java 4.31.1.
-- **Agendamento**: Quartz Scheduler 2.5.1 com ThreadPoolManager de alta performance.
+Em repositórios contendo conjuntos de dados de grande escala (como as pastas de extração do cliente com mais de 100.000 arquivos e 2.5 GB de dados já presentes no histórico remoto), a reorganização de pastas de nível raiz pode fazer com que o utilitário nativo `git pack-objects --revs` tente reempacotar todo o repositório histórico, gerando streams de 2.57 GB que ultrapassam o limite de tempo (timeout de ~120s) de requisições POST do GitHub (Erro `HTTP 408 Request Timeout`).
 
----
-
-## Workflow de Compilação e Deploy
-
-$$\mathbf{Código\ Fonte} \xrightarrow{\text{mvn clean package}} \mathbf{JARs\ Compilados} \xrightarrow{\text{Deploy}} \mathbf{Produto\ Final} \xrightarrow{\text{Aion\ Classic\ -\ EMULADOR.exe}} \mathbf{Servidores\ Ativos}$$
-
-1. **Alterações de Código**: Feitas exclusivamente em `Código Fonte - Emulador`.
-2. **Compilação**:
-   ```bash
-   mvn -f "Código Fonte - Emulador/pom.xml" clean package -DskipTests
+### Solução Canônica: Push Direto de Delta via Git Smart HTTP
+Quando ocorrer essa situação:
+1. Obtenha a lista exata dos objetos pendentes de envio entre o commit local e o commit remoto atual:
+   ```cmd
+   git rev-list --objects HEAD ^origin/main
    ```
-3. **Distribuição dos Artefatos**:
-   Copiar os JARs gerados em `target/` para `Emulador - Produto Final/<Server>/libs/`.
-4. **Execução**:
-   Iniciar o emulador através de `Emulador - Produto Final/Aion Classic - EMULADOR.exe`.
+2. Empacote estritamente esses objetos via `git pack-objects --stdout` (resultando em pacote compacto de ~4 MB).
+3. Transmita o pacote diretamente ao endpoint `/git-receive-pack` utilizando o script utilitário em Python com credenciais do Git Credential Manager (`git credential fill`).
+4. Atualize a referência local com `git update-ref refs/remotes/origin/main <HEAD>`.
