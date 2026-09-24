@@ -23,7 +23,7 @@ import com.aionemu.gameserver.world.geo.GeoService;
  * Esta classe decodifica e armazena os dados dos arquivos *-path.dat compilados pelo editor do Aion,
  * fornecendo consultas em tempo constante O(1) de:
  * 1. Transitabilidade subcelular de 0.5m x 0.5m (paredes, cercas, decorações, buracos).
- * 2. Cota exata da superfície (Z) em qualquer ponto do terreno, pontes ou estruturas elevadas.
+ * 2. Cota exata da superfície (Z) combinando relevo oficial GeoEngine e estruturas elevadas CryEngine.
  * 3. Raycasting físico contínuo (Digital Differential Analyzer - DDA) com validação 3D contra GeoEngine.
  *
  * @author KAMIDAKI & Equipe Lost Academy
@@ -129,6 +129,26 @@ public final class NativePathMap {
 	}
 
 	/**
+	 * Obtém a cota de terreno 3D confiável de referência através do GeoService.
+	 */
+	private float queryGeoTerrainZ(float x, float y, float zRef, int instanceId) {
+		try {
+			if (GeoService.getInstance() != null) {
+				float gz = GeoService.getInstance().getZ(worldId, x, y, zRef + 15.0f, zRef - 25.0f, instanceId);
+				if (!Float.isNaN(gz)) {
+					return gz;
+				}
+				gz = GeoService.getInstance().getZ(worldId, x, y);
+				if (!Float.isNaN(gz) && gz != 0) {
+					return gz;
+				}
+			}
+		} catch (Throwable ignored) {
+		}
+		return Float.NaN;
+	}
+
+	/**
 	 * Verifica se a coordenada 3D exata (x, y, z) está situada sobre piso transitável no CryEngine.
 	 *
 	 * Processo de Verificação:
@@ -168,7 +188,12 @@ public final class NativePathMap {
 		subX = Math.max(0, Math.min(SUBCELLS_PER_SECTOR - 1, subX));
 		subY = Math.max(0, Math.min(SUBCELLS_PER_SECTOR - 1, subY));
 
-		NativePathSector.Layer layer = sector.findBestLayer(subX, subY, z, z, maxZDiff);
+		float terrainZ = queryGeoTerrainZ(x, y, z, instanceId);
+		if (Float.isNaN(terrainZ)) {
+			terrainZ = z;
+		}
+
+		NativePathSector.Layer layer = sector.findBestLayer(subX, subY, z, terrainZ, maxZDiff);
 		if (layer == null) {
 			return false;
 		}
@@ -200,9 +225,11 @@ public final class NativePathMap {
 			return fallbackZ;
 		}
 
+		float terrainZ = queryGeoTerrainZ(x, y, currentZ, instanceId);
+
 		NativePathSector sector = sectors[sy * sectorDim + sx];
 		if (sector == null || sector.getLayerCount() == 0) {
-			return fallbackZ;
+			return !Float.isNaN(terrainZ) ? terrainZ : fallbackZ;
 		}
 
 		int subX = (int) ((x - (sx * SECTOR_SIZE)) / SUBCELL_SIZE);
@@ -210,22 +237,18 @@ public final class NativePathMap {
 		subX = Math.max(0, Math.min(SUBCELLS_PER_SECTOR - 1, subX));
 		subY = Math.max(0, Math.min(SUBCELLS_PER_SECTOR - 1, subY));
 
-		NativePathSector.Layer layer = sector.findBestLayer(subX, subY, currentZ, fallbackZ, 12.0f);
+		float anchorTerrainZ = !Float.isNaN(terrainZ) ? terrainZ : (!Float.isNaN(currentZ) ? currentZ : fallbackZ);
+
+		NativePathSector.Layer layer = sector.findBestLayer(subX, subY, currentZ, anchorTerrainZ, 12.0f);
 		if (layer != null) {
-			float lz = layer.getZ(subX, subY, fallbackZ);
+			float lz = layer.getZ(subX, subY, anchorTerrainZ);
 			if (!Float.isNaN(lz)) {
 				return lz;
 			}
 		}
 
-		try {
-			if (GeoService.getInstance() != null) {
-				float gz = GeoService.getInstance().getZ(worldId, x, y, currentZ + 2.5f, currentZ - 2.5f, instanceId);
-				if (!Float.isNaN(gz) && (gz != 0 || Math.abs(currentZ) < 5.0f)) {
-					return gz;
-				}
-			}
-		} catch (Throwable ignored) {
+		if (!Float.isNaN(terrainZ)) {
+			return terrainZ;
 		}
 
 		return fallbackZ;
@@ -242,7 +265,6 @@ public final class NativePathMap {
 	 * 1. Calcula o vetor 3D e a distância euclidiana plana (dist2D).
 	 * 2. Rejeita inclinações excessivas (rampas com gradiente vertical > 1.2, ou seja, > ~50 graus).
 	 * 3. Realiza raycast físico contra malhas da GeoEngine (portas de masmorras, barricadas dinâmicas, decorações).
-	 *    - Nota Técnica: utiliza a distância real euclidiana 3D como limitador de colisão (eliminando o bug de limite zero).
 	 * 4. Amostra cada subcélula intermediária de 0.5m ao longo da trajetória:
 	 *    - Verifica se a subcélula é transitável (isWalkable).
 	 *    - Valida o desnível vertical assimétrico: subida <= MAX_STEP_UP (0.8m) e descida <= MAX_DROP_DOWN (1.8m).
@@ -281,7 +303,6 @@ public final class NativePathMap {
 		}
 
 		// Validação física 3D contra objetos .geo (portões de fortalezas, pontes dinâmicas, barricadas)
-		// instanceId correto para validar instâncias de masmorras
 		try {
 			if (GeoService.getInstance() != null) {
 				boolean canPass = GeoService.getInstance().canPass(worldId,
@@ -318,13 +339,9 @@ public final class NativePathMap {
 
 			// Valida cota do solo real
 			float groundZ = getSurfaceZ(currX, currY, currZ, Float.NaN, instanceId);
-			// FIX CAUSA 3: tolerância por-passo aumentada para MAX_STEP_UP * 2.0 (1.6m).
-			// O gradiente TOTAL já foi verificado (|dz|/dist2D <= 1.2) no início do método.
-			// Saltos pontuais no getSurfaceZ em terreno irregular não devem rejeitar rampas válidas.
-			// O fator 2.0 acomoda irregularidades de amostragem sem criar brechas de física.
 			if (!Float.isNaN(groundZ)) {
 				float deltaZ = groundZ - prevGroundZ;
-				if (deltaZ > NativePathAStar.MAX_STEP_UP || -deltaZ > maxDropHeight * 1.5f) {
+				if (deltaZ > MAX_STEP_UP || -deltaZ > maxDropHeight * 1.5f) {
 					return false;
 				}
 				prevGroundZ = groundZ;
@@ -388,7 +405,7 @@ public final class NativePathMap {
 	/**
 	 * Parser binário oficial de alta fidelidade para arquivos CryEngine *-path.dat (Versão 0x00060005).
 	 *
-	 * Decodifica com 100% de precisão todas as camadas do arquivo:
+	 * Decodifica com 100% de precisão todas as camadas do arquivo com otimização de memória:
 	 * - Camadas 0/1: Base de elevação plana.
 	 * - Camadas 2/3: Terreno natural.
 	 * - Camadas 6/7: Matriz de 128 bytes de bloqueio subcelular (1024 bits = 32x32 subcélulas de 0.5m).
@@ -463,8 +480,6 @@ public final class NativePathMap {
 				for (int x = 0; x < mapSize; x += SECTOR_SIZE) {
 					int sx = x / SECTOR_SIZE;
 
-					// Bug #3 fix: in.available() não é confiável em BufferedInputStream para
-					// mapas grandes — pode retornar 0 antes do EOF real. Usar readNBytes + verificação.
 					byte[] layerCountBuf = in.readNBytes(1);
 					if (layerCountBuf.length == 0) {
 						break;
@@ -503,39 +518,44 @@ public final class NativePathMap {
 						switch (layerType) {
 							case 0:
 							case 1:
-								// Base plana de piso ou ponte (4 bytes lidos são contagem de subcélulas 32x32, não altitude)
 								readLittleEndianInt(in);
 								baseElev = Float.NaN;
 								break;
 
 							case 2:
 							case 3:
-								// Terreno natural 100% transitável
+								// Terreno natural 100% transitável (herda cota)
 								break;
 
 							case 4:
 							case 5:
-								// Grade de elevação 32x32
 								in.skipNBytes(1024);
 								break;
 
 							case 6:
 							case 7:
-								// Bitmap de 128 bytes (1024 bits = grade 32x32)
 								in.readFully(raw128);
-								blockedBits = new long[16];
-								for (int i = 0; i < 16; i++) {
-									long v = 0;
-									for (int b = 0; b < 8; b++) {
-										v |= ((long) (raw128[i * 8 + b] & 0xFF)) << (b * 8);
+								boolean hasBlocked6 = false;
+								for (int i = 0; i < 128; i++) {
+									if (raw128[i] != 0) {
+										hasBlocked6 = true;
+										break;
 									}
-									blockedBits[i] = v;
+								}
+								if (hasBlocked6) {
+									blockedBits = new long[16];
+									for (int i = 0; i < 16; i++) {
+										long v = 0;
+										for (int b = 0; b < 8; b++) {
+											v |= ((long) (raw128[i * 8 + b] & 0xFF)) << (b * 8);
+										}
+										blockedBits[i] = v;
+									}
 								}
 								break;
 
 							case 8:
 							case 9:
-								// 8 bytes de paleta + 256 bytes de índices (2 bits por subcélula)
 								in.skipNBytes(8);
 								in.readFully(raw256);
 								blockedBits = new long[16];
@@ -543,7 +563,7 @@ public final class NativePathMap {
 									int b = raw256[i] & 0xFF;
 									for (int s = 0; s < 4; s++) {
 										int val = (b >>> (s * 2)) & 3;
-										if (val == 3) { // 3 = bloqueado no CryEngine
+										if (val == 3) {
 											int cellIdx = (i << 2) | s;
 											blockedBits[cellIdx >>> 6] |= (1L << (cellIdx & 63));
 										}
@@ -553,7 +573,6 @@ public final class NativePathMap {
 
 							case 10:
 							case 11:
-								// 56 bytes de paleta + 512 bytes de índices (4 bits / nibble por subcélula)
 								in.skipNBytes(56);
 								in.readFully(raw512);
 								blockedBits = new long[16];
@@ -561,7 +580,7 @@ public final class NativePathMap {
 									int b = raw512[i] & 0xFF;
 									int low = b & 0x0F;
 									int high = (b >>> 4) & 0x0F;
-									if (low == 0x0F) { // 0xF = bloqueado
+									if (low == 0x0F) {
 										int cellIdx = i << 1;
 										blockedBits[cellIdx >>> 6] |= (1L << (cellIdx & 63));
 									}
@@ -574,7 +593,6 @@ public final class NativePathMap {
 
 							case 12:
 							case 13:
-								// Base de elevação + 1024 bytes (1 byte por subcélula)
 								int e12 = readLittleEndianInt(in);
 								if (Math.abs(e12) > 100 && Math.abs(e12) < 5000000) {
 									baseElev = e12 / 100.0f;
@@ -584,10 +602,10 @@ public final class NativePathMap {
 								subElevs = new short[1024];
 								for (int i = 0; i < 1024; i++) {
 									int b = raw1024[i] & 0xFF;
-									if (b == 0xFF) { // 0xFF = obstáculo / bloqueado
+									if (b == 0xFF) {
 										blockedBits[i >>> 6] |= (1L << (i & 63));
 										subElevs[i] = -1;
-									} else if (b == 0xFE) { // 0xFE = usa terreno natural
+									} else if (b == 0xFE) {
 										subElevs[i] = -2;
 									} else {
 										subElevs[i] = (short) b;
@@ -597,7 +615,6 @@ public final class NativePathMap {
 
 							case 14:
 							case 15:
-								// Base de elevação + 2048 bytes (2 bytes short por subcélula)
 								int e14 = readLittleEndianInt(in);
 								if (Math.abs(e14) > 100 && Math.abs(e14) < 5000000) {
 									baseElev = e14 / 100.0f;
@@ -609,10 +626,10 @@ public final class NativePathMap {
 									int b1 = raw2048[i * 2] & 0xFF;
 									int b2 = raw2048[i * 2 + 1] & 0xFF;
 									int w = b1 | (b2 << 8);
-									if (w == 0xFFFF) { // 0xFFFF = obstáculo / bloqueado
+									if (w == 0xFFFF) {
 										blockedBits[i >>> 6] |= (1L << (i & 63));
 										subElevs[i] = -1;
-									} else if (w == 0xFFFE) { // 0xFFFE = terreno natural
+									} else if (w == 0xFFFE) {
 										subElevs[i] = -2;
 									} else {
 										subElevs[i] = (short) w;

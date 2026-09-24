@@ -77,7 +77,6 @@ public class ShutdownHook extends Thread {
 		GameTimeService.getInstance().saveGameTime();
 		CronService.getInstance().shutdown();
 		ThreadPoolManager.getInstance().shutdown();
-		com.lostacademy.eleanor.Global.MovementProcessor.shutdown();
 		com.lostacademy.lostsocket.core.WebSocketServer.getInstance().stop();
 		com.aionemu.gameserver.web.LocalWebServer.getInstance().stop();
 

@@ -34,8 +34,6 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.PositionUtil;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.geo.GeoService;
-import com.lostacademy.eleanor.Global;
-import com.lostacademy.eleanor.processors.movement.motor.FollowMotor;
 import com.lostacademy.nativepath.NativePathConfig;
 import com.lostacademy.nativepath.NativePathService;
 
@@ -60,7 +58,6 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 	private WalkerTemplate walkerTemplate;
 	private RouteStep currentStep;
-	private FollowMotor _followMotor;
 
 	/**
 	 * Estado imutável da rota NativePath em cache.
@@ -217,8 +214,6 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 				// ========================================================
 				// CAMADA ÚNICA: NATIVE-PATH (CryEngine Native Grid 0.5m)
-				// Sem canUseDirectTargetMovement — sempre usa A* NativePath.
-				// NPC nunca para: se A* falhar, move direto ao alvo sem pausa.
 				// ========================================================
 				cancelFollow();
 				if (NativePathConfig.NATIVE_PATH_ENABLE) {
@@ -240,9 +235,9 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 					}
 
 					if (needRepath) {
+						lastPathCalcTime = now;
 						float[][] newPath = NativePathService.getInstance().navigateToTarget(owner, creature);
 						if (newPath != null && newPath.length > 0) {
-							lastPathCalcTime = now;
 							lastTargetX = targetX;
 							lastTargetY = targetY;
 							lastTargetZ = targetZ;
@@ -258,9 +253,12 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 							// A* não encontrou rota navegável:
 							ps = null;
 							pathRef.set(null);
+							lastPathCalcTime = now + 1000; // Backoff para evitar tempestade de A* a cada tick
 							// Só move diretamente se houver caminho físico desobstruído — nunca atravessa sólidos
 							if (canWalkDirectly(owner, targetX, targetY, targetZ)) {
 								moveToLocation(targetX, targetY, targetZ);
+							} else {
+								abortMove(); // Bloqueado por obstáculo — para com segurança em vez de atravessar paredes!
 							}
 							break;
 						}
@@ -286,8 +284,12 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 					}
 				}
 
-				// NativePath desativado ou sem waypoints restantes — move direto sem pausa
-				moveToLocation(targetX, targetY, targetZ);
+				// Se sem rota válida, valida transitabilidade direta estrita antes de mover
+				if (canWalkDirectly(owner, targetX, targetY, targetZ)) {
+					moveToLocation(targetX, targetY, targetZ);
+				} else {
+					abortMove();
+				}
 				break;
 
 			case POINT:
@@ -303,6 +305,14 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 						}
 						ps = (newPath != null && newPath.length > 0) ? new PathState(newPath, startIdx) : null;
 						pathRef.set(ps);
+						if (ps == null) {
+							if (canWalkDirectly(owner, pointX, pointY, pointZ)) {
+								moveToLocation(pointX, pointY, pointZ);
+							} else {
+								abortMove(); // Não move através de obstáculos
+							}
+							break;
+						}
 					}
 					if (ps != null && ps.hasNext()) {
 						float speed = owner.getGameStats().getMovementSpeedFloat();
@@ -321,7 +331,11 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 					}
 				}
 
-				moveToLocation(pointX, pointY, pointZ);
+				if (destination == Destination.FORCED_POINT || canWalkDirectly(owner, pointX, pointY, pointZ)) {
+					moveToLocation(pointX, pointY, pointZ);
+				} else {
+					abortMove();
+				}
 				break;
 		}
 		updateLastMove();
@@ -651,7 +665,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 
 
-		// CAMADA 3 & 4: FALLBACK PARA ELEANOR E GEO RETORNO DIRETO
+		// Retorno por passos anteriores registrados ou linha de visão direta via GeoService
 		clearCachedPath();
 		Point3D step = lastSteps == null || lastSteps.isEmpty() ? null : lastSteps.removeLast();
 		if (step != null && !lastSteps.isEmpty() && PositionUtil.isInRange(owner, step.getX(), step.getY(), step.getZ(), 2))
@@ -678,27 +692,11 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 	}
 
 	public void applyFollow(VisibleObject target) {
-		if (_followMotor != null && _followMotor.getTarget() == target)
-			return;
-
-		if (_followMotor != null) {
-			_followMotor.stop();
-		}
-
-		if (Global.MovementProcessor == null) {
-			fallbackToNormalMove(target);
-			return;
-		}
-
-		_followMotor = new FollowMotor(Global.MovementProcessor, owner, target);
-		_followMotor.start();
+		fallbackToNormalMove(target);
 	}
 
 	public void cancelFollow() {
-		if (_followMotor != null) {
-			_followMotor.stop();
-			_followMotor = null;
-		}
+		// No-op: NativePath controla movimento nativamente sem motores externos
 	}
 
 	public void fallbackToNormalMove(VisibleObject target) {
@@ -717,10 +715,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 		moveToLocation(pointX, pointY, pointZ);
 	}
 
-	// FIX CAUSA 1: Reduzido de 15m para 4m.
-	// A 15m, mobs próximos de obstáculos nunca chegam ao A* — tentam linha reta (canWalkDirectly)
-	// e ao falhar caem no FollowMotor/Eleanor que atravessa paredes.
-	// A 4m, apenas mobs quase em combate (alcance melee) usam linha reta direta.
+	// Movimento direto em linha reta restrito a distâncias curtas (<= 4m, alcance melee)
 	private static final float DIRECT_TARGET_MOVEMENT_MAX_DISTANCE = 4.0f;
 
 	private float calculateMaxZDiff(float distanceXY, Creature target) {

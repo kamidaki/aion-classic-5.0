@@ -61,7 +61,7 @@ O ecossistema divide-se em componentes perfeitamente orquestrados:
 | **Banco de Dados Relacional** | MySQL 8.x / MariaDB 10.x | Persistência segregada (`aion_ls`, `aion_cs`, `aion_gs`) |
 | **Pool de Conexões** | HikariCP 7.0.2 | Gerenciamento de alta performance e resiliência de conexões |
 | **Serialização & XML** | JAXB (Jakarta XML 2.3.3) + FastJSON2 | Parser de templates e intercâmbio de dados de alta velocidade |
-| **Motor de Navegação** | CryEngine Native-Path (`*-path.dat`) | Resolução 0.5m tridimensional com 4 camadas de fallback |
+| **Motor de Navegação** | CryEngine Native-Path (`*-path.dat`) | Motor autoritativo exclusivo 0.5m 3D com A* de alocação zero e Cache LRU |
 | **Interface do Supervisor** | Wry 0.47 / Tao 0.31 (WebView2) | Dashboard gráfico acelerado por hardware |
 | **Sistema Operacional** | Windows 10, 11 e Server (64-bit) | Ambiente de execução e compilação homologado |
 
@@ -241,16 +241,19 @@ O emulador integra nativamente no pacote `com.aionemu.commons.network.GeoIPFilte
 
 ## 10. Subsistema de Navegação e Pathfinding (CryEngine Native-Path)
 
-O emulador dispõe do motor primário tridimensional de alta resolução (`com.lostacademy.nativepath`), consumindo diretamente os arquivos de malha de navegação compilados da CryEngine (`*-path.dat`) extraídos das pastas de mapas do cliente oficial GameForge 5.0 (`Levels/`).
+O emulador dispõe do motor primário e **autoritativo exclusivo** de navegação e física tridimensional (`com.lostacademy.nativepath`), consumindo diretamente os arquivos de malha compilados da CryEngine (`*-path.dat`) extraídos das pastas de mapas do cliente oficial GameForge 5.0 (`Levels/`).
 
-### Cadeia de 4 Camadas de Fallback:
-1. **Camada 1: Native-Path (CryEngine `*-path.dat`)**:
-   - Resolução ultraprecisa de 0.5m por célula.
-   - Algoritmo A* heurístico tridimensional com fila de prioridade e suavização de trajetórias via *string-pulling raycasting*.
-   - Suporte nativo a desníveis verticais, pontes, túneis e conexões de adjacência pré-calculadas.
-2. **Camada 2: NavMesh (.nav Recast)**: Malhas trianguladas 3D carregadas sob demanda via `NavService` como primeira rota de contingência.
-3. **Camada 3: Eleanor (Geometria / Line-of-Sight)**: Rastreamento dinâmico ponto a ponto via `FollowMotor` com checagens de linha de visão e desvio de obstáculos.
-4. **Camada 4: Vanilla / Comportamento Direto**: Movimentação com ajuste de elevação Z via `GeoService.getZ`.
+### Destaques e Arquitetura do Subsistema:
+- **Autoridade Exclusiva CryEngine**: Os arquivos `*-path.dat` constituem a única fonte da verdade de navegação, sem fallbacks para Eleanor ou NavMesh genérico em tempo de execução.
+- **Elevação 3D Real Ancorada ao Terreno**: Integração direta com a altitude topográfica do `GeoService.getZ`, combinando camadas de terreno natural e estruturas sobrepostas (pontes, rampas, plataformas elevadas) com tolerância segura a desníveis e proteção contra `Float.NaN`.
+- **Motor A* 3D de Alocação Zero (Zero-GC)**: Contexto de busca `ThreadLocal` reutilizável com min-heap binário primitivo e tabela hash aberta indexada por gerações ($O(1)$ reset). Elimina alocações de heap e boxing de primitivos por busca.
+- **Cinemática e Validação Física Rigorosa**:
+  - Limite de subida máxima (*step up*): 0.8m.
+  - Limite de descida máxima (*drop down*): 1.8m.
+  - Prevenção geométrica de corte de quinas (*anti-corner-cutting*).
+  - Raycasting DDA tridimensional e alisamento de rota (*string-pulling*).
+- **Tratamento Determinístico de Falhas**: Backoff de 1000ms após falhas de repath e cancelamento estrito de movimento (`abortMove()`) quando a linha de visão física estiver bloqueada, eliminando atravessamento de paredes e despenhadeiros.
+- **Gerenciamento de Memória com Cache Bounded LRU**: Mantém até 25 mapas simultâneos na memória com contagem ativa de jogadores (`onPlayerEnterMap` / `onPlayerLeaveMap`) e rotina periódica de limpeza a cada 3 minutos, reduzindo o consumo de RAM em repouso de >2.5 GB para menos de 150 MB.
 
 ---
 

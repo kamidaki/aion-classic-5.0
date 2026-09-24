@@ -205,7 +205,7 @@ public final class NativePathSector {
 	 * @param subX     Índice horizontal da subcélula (0 a 31).
 	 * @param subY     Índice vertical da subcélula (0 a 31).
 	 * @param z        Altitude Z atual do agente em metros.
-	 * @param terrainZ Cota de terreno calculada pela GeoEngine.
+	 * @param terrainZ Cota real de terreno calculada pela GeoEngine.
 	 * @param maxZDiff Tolerância máxima de busca vertical (em metros).
 	 * @return A camada mais adequada ou null se nenhuma estiver ao alcance vertical.
 	 */
@@ -219,6 +219,9 @@ public final class NativePathSector {
 				return null;
 			}
 			float lz = l.getZ(subX, subY, terrainZ);
+			if (Float.isNaN(lz)) {
+				lz = !Float.isNaN(terrainZ) ? terrainZ : z;
+			}
 			if (Math.abs(lz - z) <= maxZDiff) {
 				return l;
 			}
@@ -233,12 +236,15 @@ public final class NativePathSector {
 				continue;
 			}
 			float lz = l.getZ(subX, subY, terrainZ);
+			if (Float.isNaN(lz)) {
+				lz = !Float.isNaN(terrainZ) ? terrainZ : z;
+			}
 			float diff = Math.abs(lz - z);
 
-			// FIX CAUSA 4: penalidade adaptativa para camadas acima do agente.
+			// Penalidade adaptativa para camadas acima do agente
 			// Pisos levemente elevados (< 2m) recebem penalidade menor (1.5x) para
 			// não rejeitar degraus, entradas de cabanas e pisos com 0.3~0.5m de elevação.
-			// Camadas muito acima (>= 2m) são tetos — penalidade 3x preservada.
+			// Camadas muito acima (>= 2m) são tetos/pisos superiores — penalidade 3x preservada.
 			if (lz > z) {
 				float heightDiff = lz - z;
 				diff *= (heightDiff < 2.0f) ? 1.5f : 3.0f;

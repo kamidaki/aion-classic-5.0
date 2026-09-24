@@ -21,8 +21,7 @@ import com.aionemu.gameserver.skillengine.model.SkillTemplate;
 import com.aionemu.gameserver.utils.PositionUtil;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.geo.GeoService;
-import com.lostacademy.eleanor.processors.movement.PathfindHelper;
-import com.lostacademy.eleanor.utils.GeomUtil;
+import com.lostacademy.nativepath.NativePathService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -162,31 +161,44 @@ public class AttackEventHandler {
 		npc.getController().abortCast();
 		npc.getGameStats().renewLastAttackedTime();
 
-		Vector3f npcPos = new Vector3f(npc.getX(), npc.getY(), npc.getZ());
-		Vector3f attackerPos = new Vector3f(attacker.getX(), attacker.getY(), attacker.getZ());
-		Vector3f dirAway = GeomUtil.getDirection3D(attackerPos, npcPos);
-		dirAway.z = 0;
-		if (dirAway.length() > 0) {
-			dirAway.normalizeLocal();
+		float dx = npc.getX() - attacker.getX();
+		float dy = npc.getY() - attacker.getY();
+		float len = (float) Math.sqrt(dx * dx + dy * dy);
+		if (len > 0.001f) {
+			dx /= len;
+			dy /= len;
 		} else {
-			dirAway = new Vector3f(1, 0, 0);
+			dx = 1.0f;
+			dy = 0.0f;
 		}
 
 		float fleeDistance = 15.0f;
-		Vector3f desiredPoint = GeomUtil.getNextPoint3D(npcPos, dirAway, fleeDistance);
+		float desiredX = npc.getX() + dx * fleeDistance;
+		float desiredY = npc.getY() + dy * fleeDistance;
+		float desiredZ = npc.getZ();
 
-		Vector3f stepPoint = PathfindHelper.selectStep(npc, desiredPoint);
-		if (stepPoint == null) {
+		float targetX = desiredX;
+		float targetY = desiredY;
+		float targetZ = desiredZ;
+
+		// 1. Tentar encontrar ponto transitável nativo CryEngine (NativePath)
+		float[] walkable = NativePathService.getInstance().findClosestWalkablePoint(npc.getWorldId(), desiredX, desiredY, desiredZ, 8.0f);
+		if (walkable != null) {
+			targetX = walkable[0];
+			targetY = walkable[1];
+			targetZ = walkable[2];
+		} else {
+			// 2. Fallback de colisão física via GeoService
 			float angle = PositionUtil.calculateAngleFrom(attacker, npc);
-			stepPoint = GeoService.getInstance().findMovementCollision(npc, angle, fleeDistance);
-		}
-		if (stepPoint == null) {
-			stepPoint = PathfindHelper.getRandomPoint(npc, 5.0f, 15.0f);
+			Vector3f stepPoint = GeoService.getInstance().findMovementCollision(npc, angle, fleeDistance);
+			if (stepPoint != null) {
+				targetX = stepPoint.getX();
+				targetY = stepPoint.getY();
+				targetZ = stepPoint.getZ();
+			}
 		}
 
-		if (stepPoint != null) {
-			npc.getMoveController().moveToPoint(stepPoint.getX(), stepPoint.getY(), stepPoint.getZ());
-		}
+		npc.getMoveController().moveToPoint(targetX, targetY, targetZ);
 
 		// Agendar rotina de conclusão da fuga e retorno ao lar
 		ThreadPoolManager.getInstance().schedule(() -> {

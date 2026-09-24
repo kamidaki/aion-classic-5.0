@@ -2,26 +2,28 @@ package com.lostacademy.nativepath;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.Set;
 
 /**
  * =========================================================================================
  * LOST ACADEMY — SISTEMA OFICIAL DE NAVEGAÇÃO NATIVA CRYENGINE (*-PATH.DAT)
  * =========================================================================================
- * Algoritmo A* híbrido de alto desempenho na grade nativa CryEngine (precisão 0.5m),
- * com suavização por String-Pulling (Funnel Algorithm) para contorno fluido de obstáculos.
+ * Algoritmo A* híbrido de altíssimo desempenho e zero alocação de heap por requisição,
+ * operando sobre a grade nativa CryEngine (precisão 0.5m) e malhas 3D de terreno/estruturas.
  *
- * Características da Implementação Oficial:
- * 1. Resolução Subcelular de 0.5m: contorno preciso de quinas, pilares, portas e cercas.
- * 2. Ordenação Canônica A* f(n) = g(n) + h(n): desempate inteligente pelo menor h(n).
- * 3. Física de Locomoção Assimétrica: limite de subida de degraus (0.8m) e queda (1.8m).
- * 4. Folga Lateral de Raio (Clearance): cálculo baseado no raio de colisão do monstro/agente.
- * 5. Parada por Alcance (Reach Distance): encerra a busca quando o agente atinge alcance de ataque.
+ * OTIMIZAÇÕES DE ARQUITETURA DE PRODUÇÃO:
+ * 1. Zero Alocação de Heap (ThreadLocal Search Context):
+ *    - Reutiliza arrays primitivos (heap binário, tabela hash primitiva, pool de nós).
+ *    - Elimina completamente o boxing de Long/Float e a alocação de HashMaps/PriorityQueues.
+ *    - Reset de contexto entre buscas em tempo constante O(1) via carimbo de geração (searchId).
+ * 2. Suporte Tridimensional Exato:
+ *    - Consulta de cota Z real em cada nó vizinho integrando relevo e estruturas elevadas.
+ *    - Validação física de locomoção assimétrica: subida máx 0.8m (degrau) e queda máx 1.8m.
+ *    - Penalidade energética para aclives íngremes.
+ * 3. Prevenção de Corte de Quinas (Anti-Corner Cutting):
+ *    - Bloqueio estrito de diagonais se ambas as subcélulas ortogonais adjacentes forem paredes.
+ * 4. Suavização de Trajetórias (Funnel Algorithm / String-Pulling):
+ *    - Conecta waypoints com linha de visão física direta, eliminando ziguezagues.
  *
  * @author KAMIDAKI & Equipe Lost Academy
  */
@@ -30,12 +32,7 @@ public final class NativePathAStar {
 	/**
 	 * Limite máximo de nós explorados na busca local de alta resolução (0.5m).
 	 */
-	private static final int MAX_LOCAL_EXPLORED_CELLS = 3000;
-
-	/**
-	 * Limite máximo de nós explorados na busca macro (8m/16m).
-	 */
-	private static final int MAX_MACRO_EXPLORED_NODES = 1500;
+	public static final int MAX_LOCAL_EXPLORED_CELLS = 3000;
 
 	/**
 	 * Altura máxima de degrau (subida vertical) sem pular (0.8 metros).
@@ -52,20 +49,16 @@ public final class NativePathAStar {
 	 */
 	private static final float LOCAL_SEARCH_MAX_DIST = 90.0f;
 
+	/**
+	 * Contexto reutilizável thread-safe para execução de A* sem alocações em heap.
+	 */
+	private static final ThreadLocal<AStarSearchContext> SEARCH_CONTEXT = ThreadLocal.withInitial(AStarSearchContext::new);
+
 	private NativePathAStar() {
 	}
 
 	/**
 	 * Calcula o percurso navegável ótimo entre dois pontos de mundo com parâmetros padrão de agente.
-	 *
-	 * @param map     Instância do mapa de navegação CryEngine.
-	 * @param startX  Coordenada X inicial em metros.
-	 * @param startY  Coordenada Y inicial em metros.
-	 * @param startZ  Coordenada Z inicial em metros.
-	 * @param targetX Coordenada X do destino em metros.
-	 * @param targetY Coordenada Y do destino em metros.
-	 * @param targetZ Coordenada Z do destino em metros.
-	 * @return Matriz float[][] com os waypoints (x, y, z) transitáveis, ou null se rota inacessível.
 	 */
 	public static float[][] findPath(NativePathMap map, float startX, float startY, float startZ,
 									 float targetX, float targetY, float targetZ) {
@@ -95,14 +88,14 @@ public final class NativePathAStar {
 
 		float dist2D = (float) Math.hypot(targetX - startX, targetY - startY);
 
-		// Se o agente já estiver no raio de alcance e com linha de visão livre, encerra imediatamente
+		// Se o agente já estiver no raio de alcance e com linha de visão desobstruída, encerra imediatamente
 		if (reachDistance > 0.0f && dist2D <= reachDistance) {
 			if (map.hasLineOfSight(startX, startY, startZ, targetX, targetY, targetZ, MAX_DROP_DOWN)) {
 				return new float[][] {{targetX, targetY, targetZ}};
 			}
 		}
 
-		// 1. Linha de visão direta rápida (sem obstáculos 3D, sem quinas e sem desníveis excessivos)
+		// Linha de visão direta rápida (sem obstáculos 3D, sem quinas e sem desníveis excessivos)
 		if (map.hasLineOfSight(startX, startY, startZ, targetX, targetY, targetZ, MAX_DROP_DOWN)) {
 			return new float[][] {{targetX, targetY, targetZ}};
 		}
@@ -111,7 +104,7 @@ public final class NativePathAStar {
 			return new float[][] {{targetX, targetY, targetZ}};
 		}
 
-		// Garante que os pontos inicial e final estão sobre superfícies transitáveis válidas
+		// Projeta pontos para o solo navegável mais próximo caso estejam em subcélula bloqueada
 		float[] validStart = map.findClosestWalkablePoint(startX, startY, startZ, 3.0f);
 		float sX = validStart != null ? validStart[0] : startX;
 		float sY = validStart != null ? validStart[1] : startY;
@@ -122,291 +115,178 @@ public final class NativePathAStar {
 		float tY = validTarget != null ? validTarget[1] : targetY;
 		float tZ = validTarget != null ? validTarget[2] : targetZ;
 
-		// 2. Busca local de alta resolução (grade de 0.5m) para combate e perseguição (distância <= 60m)
+		// Busca local na grade de 0.5m (para combate, perseguição e patrulhas até 90m)
 		if (dist2D <= LOCAL_SEARCH_MAX_DIST) {
-			List<float[]> rawPath = executeSubcellAStar(map, sX, sY, sZ, tX, tY, tZ, agentRadius, reachDistance);
+			AStarSearchContext ctx = SEARCH_CONTEXT.get();
+			List<float[]> rawPath = executeSubcellAStar(ctx, map, sX, sY, sZ, tX, tY, tZ, agentRadius, reachDistance);
 			if (rawPath != null && !rawPath.isEmpty()) {
 				List<float[]> smoothed = smoothPath(map, rawPath, tX, tY, tZ);
 				return smoothed.toArray(new float[0][]);
 			}
 		}
 
-		// 3. Busca macro (nós de 8m) para longas distâncias (retorno ao spawn / patrulhas extensas)
-		List<float[]> macroPath = executeMacroAStar(map, sX, sY, sZ, tX, tY, tZ);
-		if (macroPath != null && !macroPath.isEmpty()) {
-			List<float[]> smoothed = smoothPath(map, macroPath, tX, tY, tZ);
-			return smoothed.toArray(new float[0][]);
-		}
-
 		return null;
 	}
 
 	/**
-	 * A* preciso na grade nativa de 0.5m com ordenação estrita f(n) = g(n) + h(n).
-	 *
-	 * @param map           Instância do mapa de navegação.
-	 * @param startX        X inicial.
-	 * @param startY        Y inicial.
-	 * @param startZ        Z inicial.
-	 * @param targetX       X final.
-	 * @param targetY       Y final.
-	 * @param targetZ       Z final.
-	 * @param agentRadius   Raio de colisão do agente.
-	 * @param reachDistance Alcance de parada.
-	 * @return Lista de pontos brutos do caminho ou null se inacessível.
+	 * Executa A* na grade de 0.5m utilizando o contexto pré-alocado sem alocações em heap.
 	 */
-	private static List<float[]> executeSubcellAStar(NativePathMap map, float startX, float startY, float startZ,
+	private static List<float[]> executeSubcellAStar(AStarSearchContext ctx, NativePathMap map,
+													float startX, float startY, float startZ,
 													float targetX, float targetY, float targetZ,
 													float agentRadius, float reachDistance) {
+		ctx.reset();
+
 		int startGx = Math.round(startX * 2.0f);
 		int startGy = Math.round(startY * 2.0f);
 		int goalGx = Math.round(targetX * 2.0f);
 		int goalGy = Math.round(targetY * 2.0f);
 
 		long startKey = packGridKey(startGx, startGy);
-
-		PriorityQueue<GridNode> openSet = new PriorityQueue<>(256);
-		Map<Long, Float> gScore = new HashMap<>(4096);
-		Map<Long, GridNode> cameFrom = new HashMap<>(4096);
-		Set<Long> closedSet = new HashSet<>(4096);
-
 		float initialH = heuristic(startX, startY, targetX, targetY);
-		GridNode startNode = new GridNode(startGx, startGy, startZ, 0.0f, initialH);
-		openSet.add(startNode);
-		gScore.put(startKey, 0.0f);
 
-		int iterations = 0;
+		int startNode = ctx.allocateNode(startGx, startGy, startZ, 0.0f, initialH, -1);
+		ctx.tablePut(startKey, startNode);
+		ctx.heapPush(startNode);
+
 		int[] dx = {1, -1, 0, 0, 1, 1, -1, -1};
 		int[] dy = {0, 0, 1, -1, 1, -1, 1, -1};
 		float[] moveCost = {0.5f, 0.5f, 0.5f, 0.5f, 0.7071f, 0.7071f, 0.7071f, 0.7071f};
 
-		GridNode closestToGoal = startNode;
+		int closestNode = startNode;
 		float minHeuristic = initialH;
+		int iterations = 0;
 
-		while (!openSet.isEmpty() && iterations++ < MAX_LOCAL_EXPLORED_CELLS) {
-			GridNode current = openSet.poll();
-			long currentKey = packGridKey(current.gx, current.gy);
+		while (!ctx.isHeapEmpty() && iterations++ < MAX_LOCAL_EXPLORED_CELLS) {
+			int current = ctx.heapPop();
+			if (ctx.nodeClosed[current]) {
+				continue;
+			}
+			ctx.nodeClosed[current] = true;
 
-			// Condição de chegada 1: alcançou a célula exata do objetivo
-			if (current.gx == goalGx && current.gy == goalGy) {
-				return reconstructGridPath(cameFrom, current, targetX, targetY, targetZ);
+			int cgx = ctx.nodeGx[current];
+			int cgy = ctx.nodeGy[current];
+			float cZ = ctx.nodeZ[current];
+			float cG = ctx.nodeG[current];
+			float cH = ctx.nodeH[current];
+
+			// Condição de chegada 1: alcançou a subcélula de destino exata
+			if (cgx == goalGx && cgy == goalGy) {
+				return reconstructPath(ctx, current, targetX, targetY, targetZ);
 			}
 
-			// Condição de chegada 2: alcançou a distância de parada/ataque com linha de visão
-			if (reachDistance > 0.0f && current.h <= reachDistance) {
-				float cWorldX = current.gx * 0.5f;
-				float cWorldY = current.gy * 0.5f;
-				if (map.hasLineOfSight(cWorldX, cWorldY, current.z, targetX, targetY, targetZ, MAX_DROP_DOWN)) {
-					return reconstructGridPath(cameFrom, current, targetX, targetY, targetZ);
+			// Condição de chegada 2: alcançou distância de parada com linha de visão limpa
+			if (reachDistance > 0.0f && cH <= reachDistance) {
+				float cWorldX = cgx * 0.5f;
+				float cWorldY = cgy * 0.5f;
+				if (map.hasLineOfSight(cWorldX, cWorldY, cZ, targetX, targetY, targetZ, MAX_DROP_DOWN)) {
+					return reconstructPath(ctx, current, targetX, targetY, targetZ);
 				}
 			}
 
-			if (closedSet.contains(currentKey)) {
-				continue;
-			}
-			closedSet.add(currentKey);
-
-			float currentWorldX = current.gx * 0.5f;
-			float currentWorldY = current.gy * 0.5f;
+			float currentWorldX = cgx * 0.5f;
+			float currentWorldY = cgy * 0.5f;
 
 			for (int dir = 0; dir < 8; dir++) {
-				int nextGx = current.gx + dx[dir];
-				int nextGy = current.gy + dy[dir];
+				int nextGx = cgx + dx[dir];
+				int nextGy = cgy + dy[dir];
 				long nextKey = packGridKey(nextGx, nextGy);
 
-				if (closedSet.contains(nextKey)) {
+				int existing = ctx.tableGet(nextKey);
+				if (existing >= 0 && ctx.nodeClosed[existing]) {
 					continue;
 				}
 
 				float nextWorldX = nextGx * 0.5f;
 				float nextWorldY = nextGy * 0.5f;
 
-				// FIX CAUSA 2: calcula nextZ ANTES de verificar transitabilidade,
-				// para usar a altitude real do vizinho como âncora no findBestLayer.
-				// Sem isso, degraus e pisos elevados são erroneamente rejeitados.
-				float nextZ = map.getSurfaceZ(nextWorldX, nextWorldY, current.z, current.z);
-				float anchorZ = nextZ; // âncora correta para isWalkable do vizinho
+				// Consulta altitude real no ponto vizinho
+				float nextZ = map.getSurfaceZ(nextWorldX, nextWorldY, cZ, cZ);
 
-				// FIX CAUSA 5: Anti-corner-cutting relaxado.
-				// Bloqueio diagonal somente se AMBOS os ortogonais adjacentes forem paredes.
-				// Um corredor de 1m tem uma parede mas o tile oposto é livre — a diagonal DEVE passar.
+				// Anti-corner-cutting: bloqueia diagonal se ambos os lados ortogonais forem paredes
 				if (dir >= 4) {
-					boolean sideA = !map.isWalkable(currentWorldX + dx[dir] * 0.5f, currentWorldY, anchorZ, 2.0f);
-					boolean sideB = !map.isWalkable(currentWorldX, currentWorldY + dy[dir] * 0.5f, anchorZ, 2.0f);
-					if (sideA && sideB) { // ambos bloqueados = diagonal realmente corta quina
+					boolean sideA = !map.isWalkable(currentWorldX + dx[dir] * 0.5f, currentWorldY, nextZ, 2.0f);
+					boolean sideB = !map.isWalkable(currentWorldX, currentWorldY + dy[dir] * 0.5f, nextZ, 2.0f);
+					if (sideA && sideB) {
 						continue;
 					}
 				}
 
-				// FIX CAUSA 2: usa nextZ como âncora (altitude real do tile vizinho)
-				if (!map.isWalkable(nextWorldX, nextWorldY, anchorZ, 2.0f)) {
+				// Verifica transitabilidade no CryEngine
+				if (!map.isWalkable(nextWorldX, nextWorldY, nextZ, 2.0f)) {
 					continue;
 				}
 
-				// Folga lateral (Clearance) para agentes de raio avantajado (> 0.6m)
-				// Usa anchorZ para não rejeitar paredes de pisos adjacentes diferentes
+				// Folga lateral para agentes de grande porte
 				if (agentRadius > 0.6f) {
-					float clearanceOffset = agentRadius * 0.5f;
-					if (!map.isWalkable(nextWorldX + clearanceOffset, nextWorldY, anchorZ, 2.0f) ||
-							!map.isWalkable(nextWorldX - clearanceOffset, nextWorldY, anchorZ, 2.0f) ||
-							!map.isWalkable(nextWorldX, nextWorldY + clearanceOffset, anchorZ, 2.0f) ||
-							!map.isWalkable(nextWorldX, nextWorldY - clearanceOffset, anchorZ, 2.0f)) {
+					float clearance = agentRadius * 0.5f;
+					if (!map.isWalkable(nextWorldX + clearance, nextWorldY, nextZ, 2.0f) ||
+							!map.isWalkable(nextWorldX - clearance, nextWorldY, nextZ, 2.0f) ||
+							!map.isWalkable(nextWorldX, nextWorldY + clearance, nextWorldY, 2.0f) ||
+							!map.isWalkable(nextWorldX, nextWorldY - clearance, nextWorldY, 2.0f)) {
 						continue;
 					}
 				}
 
-				// Validação física de elevação assimétrica (subida máx 0.8m / queda máx 1.8m)
-				float deltaZ = nextZ - current.z;
-
-				if (deltaZ > MAX_STEP_UP) { // Degrau muito alto para subir
+				// Validação física de locomoção vertical (degrau máx 0.8m / queda máx 1.8m)
+				float deltaZ = nextZ - cZ;
+				if (deltaZ > MAX_STEP_UP) {
 					continue;
 				}
-				if (-deltaZ > MAX_DROP_DOWN) { // Desnível muito profundo para descer
+				if (-deltaZ > MAX_DROP_DOWN) {
 					continue;
 				}
 
-				// Custo energético: subir rampa custa mais (proporcional ao custo de movimento), descida é barata
-				// A proporcionalidade garante que diagonal (já mais cara) penaliza rampas adequadamente
-				float slopeCost = deltaZ > 0 ? deltaZ * 2.0f * moveCost[dir] : -deltaZ * 0.2f * moveCost[dir];
-				float tentativeG = current.g + moveCost[dir] + slopeCost;
-				float oldG = gScore.getOrDefault(nextKey, Float.POSITIVE_INFINITY);
+				// Penalidade para aclives (prefere caminhos planos)
+				float slopeCost = deltaZ > 0 ? deltaZ * 1.5f * moveCost[dir] : -deltaZ * 0.2f * moveCost[dir];
+				float tentativeG = cG + moveCost[dir] + slopeCost;
 
-				if (tentativeG < oldG) {
+				if (existing >= 0) {
+					if (tentativeG < ctx.nodeG[existing]) {
+						ctx.nodeG[existing] = tentativeG;
+						ctx.nodeF[existing] = tentativeG + ctx.nodeH[existing];
+						ctx.nodeParent[existing] = current;
+						ctx.nodeZ[existing] = nextZ;
+						ctx.heapPush(existing);
+					}
+				} else {
+					if (ctx.nodeCount >= AStarSearchContext.MAX_NODES) {
+						break;
+					}
 					float h = heuristic(nextWorldX, nextWorldY, targetX, targetY);
-					GridNode neighbor = new GridNode(nextGx, nextGy, nextZ, tentativeG, h);
-					cameFrom.put(nextKey, current);
-					gScore.put(nextKey, tentativeG);
-					openSet.add(neighbor);
+					int newNode = ctx.allocateNode(nextGx, nextGy, nextZ, tentativeG, h, current);
+					ctx.tablePut(nextKey, newNode);
+					ctx.heapPush(newNode);
 
 					if (h < minHeuristic) {
 						minHeuristic = h;
-						closestToGoal = neighbor;
+						closestNode = newNode;
 					}
 				}
 			}
 		}
 
-		// Se a busca esgotou as iterações mas fez progresso em direção ao alvo, retorna a melhor rota parcial (impede mob de congelar/desistir em esquinas)
-		if (closestToGoal != startNode && minHeuristic < initialH) {
-			return reconstructGridPath(cameFrom, closestToGoal, targetX, targetY, targetZ);
+		// Se a busca esgotou mas avançou significativamente, retorna a melhor rota parcial para não congelar
+		if (closestNode != startNode && minHeuristic < initialH) {
+			return reconstructPath(ctx, closestNode, targetX, targetY, targetZ);
 		}
 
 		return null;
 	}
 
 	/**
-	 * A* Macro em grade de 8m para retorno ao spawn ou longas travessias.
+	 * Reconstrói os waypoints do trajeto a partir do pool de nós do contexto.
 	 */
-	private static List<float[]> executeMacroAStar(NativePathMap map, float startX, float startY, float startZ,
-												  float targetX, float targetY, float targetZ) {
-		int startMx = Math.round(startX / 8.0f);
-		int startMy = Math.round(startY / 8.0f);
-		int goalMx = Math.round(targetX / 8.0f);
-		int goalMy = Math.round(targetY / 8.0f);
-
-		long startKey = packGridKey(startMx, startMy);
-
-		PriorityQueue<GridNode> openSet = new PriorityQueue<>(128);
-		Map<Long, Float> gScore = new HashMap<>(2048);
-		Map<Long, GridNode> cameFrom = new HashMap<>(2048);
-		Set<Long> closedSet = new HashSet<>(2048);
-
-		float initialH = heuristic(startX, startY, targetX, targetY);
-		GridNode startNode = new GridNode(startMx, startMy, startZ, 0.0f, initialH);
-		openSet.add(startNode);
-		gScore.put(startKey, 0.0f);
-
-		int iterations = 0;
-		int[] dx = {1, -1, 0, 0, 1, 1, -1, -1};
-		int[] dy = {0, 0, 1, -1, 1, -1, 1, -1};
-		float[] moveCost = {8.0f, 8.0f, 8.0f, 8.0f, 11.31f, 11.31f, 11.31f, 11.31f};
-
-		while (!openSet.isEmpty() && iterations++ < MAX_MACRO_EXPLORED_NODES) {
-			GridNode current = openSet.poll();
-			long currentKey = packGridKey(current.gx, current.gy);
-
-			if (current.gx == goalMx && current.gy == goalMy) {
-				return reconstructGridPathMacro(cameFrom, current, targetX, targetY, targetZ);
-			}
-
-			if (closedSet.contains(currentKey)) {
-				continue;
-			}
-			closedSet.add(currentKey);
-
-			float currentWorldX = current.gx * 8.0f;
-			float currentWorldY = current.gy * 8.0f;
-
-			for (int dir = 0; dir < 8; dir++) {
-				int nextMx = current.gx + dx[dir];
-				int nextMy = current.gy + dy[dir];
-				long nextKey = packGridKey(nextMx, nextMy);
-
-				if (closedSet.contains(nextKey)) {
-					continue;
-				}
-
-				float nextWorldX = nextMx * 8.0f;
-				float nextWorldY = nextMy * 8.0f;
-
-				if (!map.isWalkable(nextWorldX, nextWorldY, current.z, 4.0f)) {
-					continue;
-				}
-
-				float nextZ = map.getSurfaceZ(nextWorldX, nextWorldY, current.z, current.z);
-				float deltaZ = Math.abs(nextZ - current.z);
-				if (deltaZ > 5.0f) {
-					continue;
-				}
-
-				float tentativeG = current.g + moveCost[dir] + deltaZ * 1.5f;
-				float oldG = gScore.getOrDefault(nextKey, Float.POSITIVE_INFINITY);
-
-				if (tentativeG < oldG) {
-					float h = heuristic(nextWorldX, nextWorldY, targetX, targetY);
-					GridNode neighbor = new GridNode(nextMx, nextMy, nextZ, tentativeG, h);
-					cameFrom.put(nextKey, current);
-					gScore.put(nextKey, tentativeG);
-					openSet.add(neighbor);
-				}
-			}
-		}
-
-		return null;
-	}
-
-	/**
-	 * Heurística euclidiana admissível para estimativa da distância restante até o alvo.
-	 */
-	private static float heuristic(float x1, float y1, float x2, float y2) {
-		float dx = x1 - x2;
-		float dy = y1 - y2;
-		return (float) Math.hypot(dx, dy);
-	}
-
-	/**
-	 * Compacta dois inteiros de grade (gx, gy) em uma chave primitiva de 64 bits (long) para hash rápido.
-	 */
-	private static long packGridKey(int gx, int gy) {
-		return (((long) gx) << 32) | (gy & 0xFFFFFFFFL);
-	}
-
-	/**
-	 * Reconstrói o percurso navegável a partir da tabela cameFrom.
-	 */
-	private static List<float[]> reconstructGridPath(Map<Long, GridNode> cameFrom, GridNode current,
-													float targetX, float targetY, float targetZ) {
+	private static List<float[]> reconstructPath(AStarSearchContext ctx, int endNode,
+												 float targetX, float targetY, float targetZ) {
 		List<float[]> path = new ArrayList<>();
 		path.add(new float[] {targetX, targetY, targetZ});
 
-		GridNode curr = current;
-		while (curr != null) {
-			long key = packGridKey(curr.gx, curr.gy);
-			GridNode parent = cameFrom.get(key);
-			// Não adiciona o nó raiz (startNode não está em cameFrom, parent será null)
-			// Se parent != null, este nó é intermediário e deve entrar na rota
-			if (parent != null) {
-				path.add(new float[] {curr.gx * 0.5f, curr.gy * 0.5f, curr.z});
+		int curr = endNode;
+		while (curr >= 0) {
+			int parent = ctx.nodeParent[curr];
+			if (parent >= 0) {
+				path.add(new float[] {ctx.nodeGx[curr] * 0.5f, ctx.nodeGy[curr] * 0.5f, ctx.nodeZ[curr]});
 			}
 			curr = parent;
 		}
@@ -415,30 +295,9 @@ public final class NativePathAStar {
 		return path;
 	}
 
-	private static List<float[]> reconstructGridPathMacro(Map<Long, GridNode> cameFrom, GridNode current,
-														 float targetX, float targetY, float targetZ) {
-		List<float[]> path = new ArrayList<>();
-		path.add(new float[] {targetX, targetY, targetZ});
-
-		GridNode curr = current;
-		while (curr != null) {
-			path.add(new float[] {curr.gx * 8.0f, curr.gy * 8.0f, curr.z});
-			long key = packGridKey(curr.gx, curr.gy);
-			curr = cameFrom.get(key);
-		}
-
-		Collections.reverse(path);
-		return path;
-	}
-
 	/**
 	 * Suavização de trajeto via String-Pulling (Funnel Algorithm):
-	 * Elimina ziguezagues e atalhos conectando nós distantes onde houver linha de visão limpa.
-	 *
-	 * Limitação de salto:
-	 * - Em ambientes fechados (muitas camadas = dungeons/fortalezas): máx 8m por salto.
-	 * - Em campo aberto: máx 20m por salto.
-	 * Evita que o String-Pulling crie segmentos que atravessem paredes em corredores curvos.
+	 * Elimina ziguezagues conectando nós distantes onde houver linha de visão limpa.
 	 */
 	private static List<float[]> smoothPath(NativePathMap map, List<float[]> waypoints,
 											float targetX, float targetY, float targetZ) {
@@ -446,8 +305,6 @@ public final class NativePathAStar {
 			return waypoints;
 		}
 
-		// Determina distância máxima de salto baseada na densidade de camadas do mapa
-		// Mapas com muitas camadas (fortalezas, dungeons) usam salto menor para evitar atalhos inválidos
 		int layerDensityThreshold = map.getSectorDim() * 2;
 		float maxJumpDist = map.getTotalLayers() > layerDensityThreshold ? 8.0f : 20.0f;
 		float maxJumpDistSq = maxJumpDist * maxJumpDist;
@@ -460,14 +317,13 @@ public final class NativePathAStar {
 			int furthestIndex = currentIndex + 1;
 			float[] currentPt = waypoints.get(currentIndex);
 
-			// Avança gananciosamente até o ponto mais distante diretamente visível dentro do limite de salto
 			for (int testIndex = waypoints.size() - 1; testIndex > currentIndex + 1; testIndex--) {
 				float[] testPt = waypoints.get(testIndex);
 				float dx = testPt[0] - currentPt[0];
 				float dy = testPt[1] - currentPt[1];
 				float distSq = dx * dx + dy * dy;
 				if (distSq > maxJumpDistSq) {
-					continue; // Salto muito longo — pula este candidato
+					continue;
 				}
 				if (map.hasLineOfSight(currentPt[0], currentPt[1], currentPt[2],
 						testPt[0], testPt[1], testPt[2], MAX_DROP_DOWN)) {
@@ -493,35 +349,150 @@ public final class NativePathAStar {
 		return smoothed;
 	}
 
-	/**
-	 * Nó de busca A* com campos explícitos de custo real g, heurística h e custo total f = g + h.
-	 * O desempate em igualdade de f prioriza o menor h (maior proximidade ao objetivo).
-	 */
-	private static final class GridNode implements Comparable<GridNode> {
-		final int gx;
-		final int gy;
-		final float z;
-		final float g;
-		final float h;
-		final float f;
+	private static float heuristic(float x1, float y1, float x2, float y2) {
+		float dx = x1 - x2;
+		float dy = y1 - y2;
+		return (float) Math.hypot(dx, dy);
+	}
 
-		GridNode(int gx, int gy, float z, float g, float h) {
-			this.gx = gx;
-			this.gy = gy;
-			this.z = z;
-			this.g = g;
-			this.h = h;
-			this.f = g + h;
+	private static long packGridKey(int gx, int gy) {
+		return (((long) gx) << 32) | (gy & 0xFFFFFFFFL);
+	}
+
+	/**
+	 * Estrutura de dados pré-alocada de alto desempenho por thread para busca A*.
+	 * Elimina completamente a pressão sobre o coletor de lixo (GC) do Java.
+	 */
+	private static final class AStarSearchContext {
+		static final int MAX_NODES = 4096;
+		static final int TABLE_SIZE = 8192; // Potência de 2
+		static final int TABLE_MASK = TABLE_SIZE - 1;
+
+		int searchId = 1;
+
+		// Tabela hash primitiva aberta (Key -> Node Index)
+		final long[] tableKeys = new long[TABLE_SIZE];
+		final int[] tableValues = new int[TABLE_SIZE];
+		final int[] tableSearchId = new int[TABLE_SIZE];
+
+		// Heap binário de nós abertos
+		final int[] heap = new int[MAX_NODES];
+		int heapSize = 0;
+
+		// Pool de nós A*
+		final int[] nodeGx = new int[MAX_NODES];
+		final int[] nodeGy = new int[MAX_NODES];
+		final float[] nodeZ = new float[MAX_NODES];
+		final float[] nodeG = new float[MAX_NODES];
+		final float[] nodeH = new float[MAX_NODES];
+		final float[] nodeF = new float[MAX_NODES];
+		final int[] nodeParent = new int[MAX_NODES];
+		final boolean[] nodeClosed = new boolean[MAX_NODES];
+		int nodeCount = 0;
+
+		void reset() {
+			heapSize = 0;
+			nodeCount = 0;
+			searchId++;
+			if (searchId == Integer.MAX_VALUE) {
+				java.util.Arrays.fill(tableSearchId, 0);
+				searchId = 1;
+			}
 		}
 
-		@Override
-		public int compareTo(GridNode other) {
-			int cmp = Float.compare(this.f, other.f);
-			if (cmp == 0) {
-				// Desempate em favor do nó mais promissor (mais próximo do objetivo)
-				return Float.compare(this.h, other.h);
+		int allocateNode(int gx, int gy, float z, float g, float h, int parent) {
+			int id = nodeCount++;
+			nodeGx[id] = gx;
+			nodeGy[id] = gy;
+			nodeZ[id] = z;
+			nodeG[id] = g;
+			nodeH[id] = h;
+			nodeF[id] = g + h;
+			nodeParent[id] = parent;
+			nodeClosed[id] = false;
+			return id;
+		}
+
+		int tableGet(long key) {
+			int slot = (int) (key ^ (key >>> 32)) * 0x9e3779b9 & TABLE_MASK;
+			while (tableSearchId[slot] == searchId) {
+				if (tableKeys[slot] == key) {
+					return tableValues[slot];
+				}
+				slot = (slot + 1) & TABLE_MASK;
 			}
-			return cmp;
+			return -1;
+		}
+
+		void tablePut(long key, int nodeIndex) {
+			int slot = (int) (key ^ (key >>> 32)) * 0x9e3779b9 & TABLE_MASK;
+			while (tableSearchId[slot] == searchId && tableKeys[slot] != key) {
+				slot = (slot + 1) & TABLE_MASK;
+			}
+			tableSearchId[slot] = searchId;
+			tableKeys[slot] = key;
+			tableValues[slot] = nodeIndex;
+		}
+
+		boolean isHeapEmpty() {
+			return heapSize == 0;
+		}
+
+		void heapPush(int nodeIndex) {
+			int i = heapSize++;
+			heap[i] = nodeIndex;
+			siftUp(i);
+		}
+
+		int heapPop() {
+			int top = heap[0];
+			int last = heap[--heapSize];
+			if (heapSize > 0) {
+				heap[0] = last;
+				siftDown(0);
+			}
+			return top;
+		}
+
+		private void siftUp(int k) {
+			int node = heap[k];
+			float f = nodeF[node];
+			float h = nodeH[node];
+			while (k > 0) {
+				int parent = (k - 1) >>> 1;
+				int pNode = heap[parent];
+				if (f > nodeF[pNode] || (f == nodeF[pNode] && h >= nodeH[pNode])) {
+					break;
+				}
+				heap[k] = pNode;
+				k = parent;
+			}
+			heap[k] = node;
+		}
+
+		private void siftDown(int k) {
+			int node = heap[k];
+			float f = nodeF[node];
+			float h = nodeH[node];
+			int half = heapSize >>> 1;
+			while (k < half) {
+				int child = (k << 1) + 1;
+				int cNode = heap[child];
+				int right = child + 1;
+				if (right < heapSize) {
+					int rNode = heap[right];
+					if (nodeF[rNode] < nodeF[cNode] || (nodeF[rNode] == nodeF[cNode] && nodeH[rNode] < nodeH[cNode])) {
+						child = right;
+						cNode = rNode;
+					}
+				}
+				if (f < nodeF[cNode] || (f == nodeF[cNode] && h <= nodeH[cNode])) {
+					break;
+				}
+				heap[k] = cNode;
+				k = child;
+			}
+			heap[k] = node;
 		}
 	}
 }
