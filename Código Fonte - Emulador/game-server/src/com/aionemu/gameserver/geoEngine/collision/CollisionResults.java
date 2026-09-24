@@ -8,10 +8,10 @@ public class CollisionResults implements Iterable<CollisionResult> {
 	private static final double SLOPING_SURFACE_ANGLE_RAD = Math.toRadians(45); // players can't walk or stand on surfaces with >= 45° elevation angle
 	private final ArrayList<CollisionResult> results = new ArrayList<>();
 	private boolean sorted = true;
-	private final byte intentions;
-	private final int instanceId;
-	private final boolean onlyFirst;
-	private final IgnoreProperties ignoreProperties;
+	private byte intentions;
+	private int instanceId;
+	private boolean onlyFirst;
+	private IgnoreProperties ignoreProperties;
 	private boolean invalidateSlopingSurface;
 
 	public CollisionResults(byte intentions, int instanceId, IgnoreProperties ignoreProperties) {
@@ -32,6 +32,21 @@ public class CollisionResults implements Iterable<CollisionResult> {
 		this.onlyFirst = searchFirst;
 		this.ignoreProperties = ignoreProperties;
 	}
+
+	/**
+	 * Reinicializa este objeto para reutilização via ThreadLocal, eliminando alocação de heap.
+	 * Limpa resultados anteriores e atualiza os parâmetros da nova consulta.
+	 */
+	public void reset(byte intentions, int instanceId, boolean searchFirst, IgnoreProperties ignoreProperties) {
+		this.results.clear();
+		this.sorted = true;
+		this.invalidateSlopingSurface = false;
+		this.intentions = intentions;
+		this.instanceId = instanceId;
+		this.onlyFirst = searchFirst;
+		this.ignoreProperties = ignoreProperties;
+	}
+
 
 	public void clear() {
 		results.clear();

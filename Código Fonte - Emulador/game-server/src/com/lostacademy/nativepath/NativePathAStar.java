@@ -231,21 +231,27 @@ public final class NativePathAStar {
 					continue;
 				}
 
-				// 2. Validação física 3D estrita contra objetos .geo (estruturas, casas, árvores, muralhas, portas)
-				if (!map.canPassPhysical(currentWorldX, currentWorldY, cZ, nextWorldX, nextWorldY, nextZ, instanceId)) {
-					continue;
-				}
-
-				// Folga lateral proporcional para agentes de grande porte (com limite seguro)
-				if (agentRadius > 0.6f) {
-					float clearance = Math.min(0.5f, agentRadius * 0.3f);
-					if (!map.isWalkable(nextWorldX + clearance, nextWorldY, nextZ, 2.0f, instanceId) ||
-							!map.isWalkable(nextWorldX - clearance, nextWorldY, nextZ, 2.0f, instanceId) ||
-							!map.isWalkable(nextWorldX, nextWorldY + clearance, nextZ, 2.0f, instanceId) ||
-							!map.isWalkable(nextWorldX, nextWorldY - clearance, nextZ, 2.0f, instanceId)) {
+					// 2. Margem de segurança lateral obrigatória para evitar que o agente raspe paredes e cantos.
+				//    Verifica 8 pontos ao redor do próximo nó (4 eixos + 4 diagonais) com folga proporcional
+				//    ao raio de colisão do agente. isWalkable é O(1), zero-alloc — muito mais eficiente do que
+				//    canPassPhysical (que alocava CollisionResults + percorria árvore BIH a cada nó expandido,
+				//    causando até 24.000 raycasts por busca e congelamento visível). A validação física já
+				//    ocorre no hasLineOfSight() do smoothPath (string-pulling), onde o custo é amortizado.
+				{
+					float clearance = Math.max(0.5f, Math.min(1.5f, agentRadius * 0.8f));
+					float diag = clearance * 0.7071f; // clearance / sqrt(2)
+					if (!map.isWalkable(nextWorldX + clearance, nextWorldY,            nextZ, 2.0f, instanceId) ||
+						!map.isWalkable(nextWorldX - clearance, nextWorldY,            nextZ, 2.0f, instanceId) ||
+						!map.isWalkable(nextWorldX,             nextWorldY + clearance, nextZ, 2.0f, instanceId) ||
+						!map.isWalkable(nextWorldX,             nextWorldY - clearance, nextZ, 2.0f, instanceId) ||
+						!map.isWalkable(nextWorldX + diag,      nextWorldY + diag,     nextZ, 2.0f, instanceId) ||
+						!map.isWalkable(nextWorldX + diag,      nextWorldY - diag,     nextZ, 2.0f, instanceId) ||
+						!map.isWalkable(nextWorldX - diag,      nextWorldY + diag,     nextZ, 2.0f, instanceId) ||
+						!map.isWalkable(nextWorldX - diag,      nextWorldY - diag,     nextZ, 2.0f, instanceId)) {
 						continue;
 					}
 				}
+
 
 				// Validação física de locomoção vertical (degrau máx 0.8m / queda máx 1.8m)
 				float deltaZ = nextZ - cZ;

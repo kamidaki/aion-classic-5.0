@@ -34,6 +34,14 @@ public class GeoMap extends Node {
 	private static final float COLLISION_BOUND_OFFSET = 0.5f;
 	private static final int NODE_CHUNK_SIZE = 256;
 
+	/**
+	 * Pool de CollisionResults por thread para canPassPhysical — elimina alocação de heap em hot path.
+	 * Inicializado com intenção PHYSICAL, instanceId=0; reinicializado antes de cada uso via reset().
+	 */
+	private static final ThreadLocal<CollisionResults> PHYSICAL_RESULTS_POOL =
+		ThreadLocal.withInitial(() -> new CollisionResults(CollisionIntention.PHYSICAL.getId(), 0, true, IgnoreProperties.ANY_RACE));
+
+
 	private Terrain terrain;
 	private final Map<Integer, Node> chunkById = new HashMap<>();
 
@@ -275,7 +283,8 @@ public class GeoMap extends Node {
 
 	/**
 	 * Validação física 3D estrita contra objetos geométricos da GeoEngine (casas, estruturas,
-	 * muralhas, portões, árvores, barricadas) com zero alocação de objetos em heap via TempVars.
+	 * muralhas, portões, árvores, barricadas) com zero alocação de objetos em heap via TempVars
+	 * e CollisionResults poolado por thread (ThreadLocal).
 	 */
 	public boolean canPassPhysical(float x, float y, float z, float targetX, float targetY, float targetZ, float limit, int instanceId) {
 		if (chunkById.isEmpty()) {
@@ -307,7 +316,8 @@ public class GeoMap extends Node {
 				Vector3f dir = vars.vect2.set(dx / distance, dy / distance, dz / distance);
 				Ray r = new Ray(pos, dir);
 				r.setLimit(limit > 0 ? limit : distance);
-				CollisionResults results = new CollisionResults(CollisionIntention.PHYSICAL.getId(), instanceId, true, IgnoreProperties.ANY_RACE);
+				CollisionResults results = PHYSICAL_RESULTS_POOL.get();
+				results.reset(CollisionIntention.PHYSICAL.getId(), instanceId, true, IgnoreProperties.ANY_RACE);
 				int collisions = chunk.collideWith(r, results);
 				return (collisions == 0 && results.size() == 0);
 			} finally {
@@ -321,13 +331,15 @@ public class GeoMap extends Node {
 			Vector3f dir = vars.vect2.set(dx / distance, dy / distance, dz / distance);
 			Ray r = new Ray(pos, dir);
 			r.setLimit(limit > 0 ? limit : distance);
-			CollisionResults results = new CollisionResults(CollisionIntention.PHYSICAL.getId(), instanceId, true, IgnoreProperties.ANY_RACE);
+			CollisionResults results = PHYSICAL_RESULTS_POOL.get();
+			results.reset(CollisionIntention.PHYSICAL.getId(), instanceId, true, IgnoreProperties.ANY_RACE);
 			int collisions = this.collideWith(r, results);
 			return (collisions == 0 && results.size() == 0);
 		} finally {
 			vars.release();
 		}
 	}
+
 
 	/**
 	 * @return The terrain materialId at given position if no obstacle is in between, otherwise 0

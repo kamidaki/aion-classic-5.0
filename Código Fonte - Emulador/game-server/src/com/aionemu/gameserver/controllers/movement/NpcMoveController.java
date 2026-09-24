@@ -298,13 +298,9 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 						}
 					}
 				}
-
-				if (canWalkDirectly(owner, targetX, targetY, targetZ)) {
-					moveToLocation(targetX, targetY, targetZ);
-				}
 				break;
 
-			case POINT:
+		case POINT:
 			case FORCED_POINT:
 				cancelFollow();
 				if (NativePathConfig.NATIVE_PATH_ENABLE && destination == Destination.POINT) {
@@ -513,7 +509,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 			sendPacket = true;
 		} else if (headingDiff > 20) { // Mudança de direção significativa (> ~28 graus)
 			sendPacket = true;
-		} else if ((now - lastMovePacketTime) >= 1500) { // Heartbeat de sincronia
+		} else if ((now - lastMovePacketTime) >= 800) { // Heartbeat de sincronia (reduzido de 1500ms → 800ms para minimizar drift visual)
 			sendPacket = true;
 		}
 
