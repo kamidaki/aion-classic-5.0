@@ -1,12 +1,10 @@
 <div align="center">
 
-<img src="Ferramentas e Documentos/Client e Coletas/Outros/Icones/AppTray2.png" alt="Aion Classic 5.0 Icon" width="140" height="140" />
+<img src="Ferramentas e Documentos/Client e Coletas/Outros/Icones/Banner/splash_banner.png" alt="Aion Classic 5.0" width="100%" />
 
-# Aion Classic 5.0 EU — Servidor Emulador Oficial
+# Aion Classic 5.0 — Emulador Oficial
 
-<img src="Ferramentas e Documentos/Client e Coletas/Outros/Icones/Banner/splash_banner.png" alt="Aion Classic 5.0 Banner" width="100%" />
-
-**Servidor Emulador de Alta Performance para Aion Classic 5.0 EU em Java 25 LTS e Painel Supervisor Nativo em Rust**
+**Emulador de Alta Performance para Aion Classic 5.0 EU em Java 25 LTS e Painel Supervisor Nativo em Rust**
 
 [Repositório Oficial](https://github.com/kamidaki/aion-classic-5.0) | Versão: 5.0.0 Classic LTS | Arquitetura: Multimodular Java 25 + Rust Supervisor + CryEngine Native-Path
 
