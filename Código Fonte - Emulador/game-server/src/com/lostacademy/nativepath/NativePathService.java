@@ -71,9 +71,8 @@ public final class NativePathService {
 			LOG.info("NATIVE_PATH: Subsistema CryEngine desativado por configuração.");
 			return;
 		}
-		LOG.info("NATIVE_PATH: Subsistema CryEngine habilitado. Inicializando índice e mundos primários...");
+		LOG.info("NATIVE_PATH: Subsistema CryEngine habilitado (100% sob demanda). Inicializando catálogo de diretórios...");
 		data.indexNativePathDirectories();
-		data.preloadStarterMaps();
 	}
 
 	/**

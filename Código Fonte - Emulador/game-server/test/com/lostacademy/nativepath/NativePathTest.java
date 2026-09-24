@@ -20,11 +20,10 @@ public class NativePathTest {
 	}
 
 	@Test
-	@DisplayName("Validação dos limites do cache LRU e retenção de memória")
+	@DisplayName("Validação da retenção de memória e ciclo de vida sob demanda")
 	public void testCacheConfiguration() {
-		assertEquals(25, NativePathConfig.NATIVE_PATH_MAX_CACHED_MAPS, "Limite máximo de mapas no cache deve ser 25");
-		assertEquals(300000L, NativePathConfig.NATIVE_PATH_INACTIVE_TIMEOUT_MS, "Timeout de inatividade deve ser 5 minutos (300.000 ms)");
-		assertEquals(180000L, NativePathConfig.NATIVE_PATH_CLEANUP_INTERVAL_MS, "Intervalo de limpeza deve ser 3 minutos (180.000 ms)");
+		assertEquals(180000L, NativePathConfig.NATIVE_PATH_INACTIVE_TIMEOUT_MS, "Timeout de inatividade deve ser 3 minutos (180.000 ms)");
+		assertEquals(60000L, NativePathConfig.NATIVE_PATH_CLEANUP_INTERVAL_MS, "Intervalo de limpeza deve ser 1 minuto (60.000 ms)");
 	}
 
 	@Test

@@ -58,13 +58,13 @@ Ao contrário de aproximações ou malhas genéricas trianguladas (`.nav` Recast
   - Verificação estrita de linha de visão física com `NativePathService.canWalkDirectly` antes de permitir qualquer movimento direto.
   - Se não houver caminho transitável, a movimentação é cancelada (`abortMove()`), prevenindo atravessamento de geometria.
 
-### 3.3. Eliminação do Vazamento de Memória (>2 GB) com Cache Bounded LRU
-- **Problema:** O método `loadAllMaps()` mantinha pré-carregados todos os 118 mapas no arranque, alocando mais de 4.3 milhões de setores e 452.000 camadas com matrizes `short[1024]` permanentemente no heap, consumindo >2.5 GB de RAM em repouso.
+### 3.3. Ciclo de Vida 100% Sob Demanda e Desalocação Segura em 3 Minutos
+- **Problema:** Anteriormente, o emulador pré-carregava mapas na inicialização ou dependia de limites rígidos que podiam descartar mapas ativos ou reter mapas sem jogadores por tempo indeterminado.
 - **Solução:**
-  - `NativePathData` foi reformulado com cache LRU estritamente limitado (`max_cached_maps = 25`).
-  - Pré-carregamento assíncrono restrito aos 4 mapas iniciais essenciais (Poeta, Ishalgen, Sanctum, Pandaemonium).
-  - Rastreamento dinâmico de presença de jogadores (`onPlayerEnterMap` / `onPlayerLeaveMap`) e tarefa agendada a cada 3 minutos para expulsação de mapas sem jogadores ativos por mais de 5 minutos.
-  - Redução drástica do consumo de RAM em repouso de >2.5 GB para menos de 150 MB.
+  - **Zero Mapas no Boot:** O emulador inicializa com 0 arquivos `.dat` carregados na RAM, catalogando apenas os caminhos dos arquivos no disco.
+  - **Carregamento 100% Sob Demanda:** O carregamento ocorre exclusivamente quando o primeiro jogador acessa o mapa via teleporte, login ou `CM_LEVEL_READY`.
+  - **Sem Limite Artificial:** Removida a barreira estática de mapas no cache; todos os mapas ativos coexistem enquanto houver jogadores.
+  - **Desalocação Segura em 3 Minutos:** Quando um mapa fica com 0 jogadores (detectado via `onPlayerLeaveMap` e sincronizado com `World.getInstance()`), um temporizador de 180 segundos (3 minutos) é acionado. Se o mapa continuar sem ninguém ao fim do prazo, o `NativePathMap` é removido e seu método `dispose()` limpa todas as referências para recolhimento imediato pelo Garbage Collector.
 
 ### 3.4. A* Tridimensional com Alocação Zero (Zero-GC Heap Churn)
 - **Problema:** Cada busca A* alocava instâncias de `PriorityQueue`, `HashMap(4096)`, `HashSet(4096)` e milhares de objetos empacotados (`java.lang.Long`, `java.lang.Float`), gerando centenas de MB por segundo de pressão sobre o Garbage Collector sob múltiplos NPCs em combate.

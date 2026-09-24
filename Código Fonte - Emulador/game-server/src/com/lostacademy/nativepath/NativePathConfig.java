@@ -32,25 +32,18 @@ public final class NativePathConfig {
 	public static String NATIVE_PATH_DIR = "data/native-path/";
 
 	/**
-	 * Número máximo de mapas mantidos simultaneamente na memória RAM (Cache LRU delimitado).
-	 * Impede crescimento desenfreado de memória, mantendo apenas mapas com jogadores ativos.
-	 */
-	@Property(key = "gameserver.nativepath.max_cached_maps", defaultValue = "25")
-	public static int NATIVE_PATH_MAX_CACHED_MAPS = 25;
-
-	/**
 	 * Tempo limite de inatividade em milissegundos sem jogadores antes de desalocar um mapa da RAM.
-	 * Padrão: 300000ms (5 minutos).
+	 * Padrão: 180000ms (3 minutos conforme especificação técnica).
 	 */
-	@Property(key = "gameserver.nativepath.inactive_timeout_ms", defaultValue = "300000")
-	public static long NATIVE_PATH_INACTIVE_TIMEOUT_MS = 300000L;
+	@Property(key = "gameserver.nativepath.inactive_timeout_ms", defaultValue = "180000")
+	public static long NATIVE_PATH_INACTIVE_TIMEOUT_MS = 180000L;
 
 	/**
 	 * Intervalo do agendador periódico de limpeza de mapas inativos da memória RAM.
-	 * Padrão: 180000ms (3 minutos).
+	 * Padrão: 60000ms (1 minuto).
 	 */
-	@Property(key = "gameserver.nativepath.cleanup_interval_ms", defaultValue = "180000")
-	public static long NATIVE_PATH_CLEANUP_INTERVAL_MS = 180000L;
+	@Property(key = "gameserver.nativepath.cleanup_interval_ms", defaultValue = "60000")
+	public static long NATIVE_PATH_CLEANUP_INTERVAL_MS = 60000L;
 
 	/**
 	 * Limite máximo de nós explorados pelo algoritmo A* nativo antes de declarar falha de percurso.

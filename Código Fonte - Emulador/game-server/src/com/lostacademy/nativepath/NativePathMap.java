@@ -102,6 +102,16 @@ public final class NativePathMap {
 	}
 
 	/**
+	 * Desaloca com segurança as referências espaciais e de setores da memória RAM,
+	 * permitindo que o Garbage Collector limpe os arrays e camadas imediatamente.
+	 */
+	public void dispose() {
+		if (sectors != null) {
+			java.util.Arrays.fill(sectors, null);
+		}
+	}
+
+	/**
 	 * Retorna o setor espacial correspondente aos índices discretos de grade em O(1).
 	 *
 	 * @param sx Índice horizontal do setor (0 .. sectorDim - 1).

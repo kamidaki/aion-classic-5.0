@@ -13,19 +13,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.utils.ThreadPoolManager;
+import com.aionemu.gameserver.world.World;
+import com.aionemu.gameserver.world.WorldMap;
+import com.aionemu.gameserver.world.WorldMapInstance;
 
 /**
  * =========================================================================================
  * LOST ACADEMY — SISTEMA OFICIAL DE NAVEGAÇÃO NATIVA CRYENGINE (*-PATH.DAT)
  * =========================================================================================
- * Gerenciador central de dados e repositório de malhas na memória RAM com Cache LRU limitado.
+ * Gerenciador central de dados e repositório de malhas na memória RAM com carregamento 100%
+ * sob demanda e desalocação segura por inatividade.
  *
- * ARQUITETURA DE CICLO DE VIDA DE ALTA PERFORMANCE:
- * 1. Resolução dinâmica de arquivos .dat em data/native-path/.
- * 2. Carregamento sob demanda com Cache LRU limitado a NATIVE_PATH_MAX_CACHED_MAPS.
- * 3. Rastreamento de jogadores ativos por mapa (onPlayerEnterMap / onPlayerLeaveMap).
- * 4. Desalocação automática periódica de mapas inativos com 0 jogadores (evita vazamento de 2 GB).
- * 5. Pré-carregamento imediato dos mundos primários para latência zero no spawn de jogadores.
+ * ARQUITETURA DE CICLO DE VIDA DE ALTA PERFORMANCE (100% SOB DEMANDA):
+ * 1. Resolução dinâmica de arquivos .dat em data/native-path/ (apenas catálogo de caminhos na inicialização).
+ * 2. Carregamento 100% sob demanda: nenhum mapa é carregado na inicialização do servidor.
+ * 3. Sem limite artificial de mapas: mapas são mantidos na RAM enquanto houver jogadores ou atividade recente.
+ * 4. Rastreamento rigoroso de jogadores ativos por mapa (onPlayerEnterMap / onPlayerLeaveMap).
+ * 5. Desalocação automática e segura após 3 minutos sem nenhum jogador no mapa.
  *
  * @author KAMIDAKI & Equipe Lost Academy
  */
@@ -36,7 +40,7 @@ public final class NativePathData {
 	// Índice de worldId -> Path do arquivo .dat correspondente no disco
 	private final ConcurrentHashMap<Integer, Path> mapFileIndex = new ConcurrentHashMap<>();
 
-	// Cache delimitado em memória RAM das instâncias de NativePathMap
+	// Cache de instâncias de NativePathMap residentes na memória RAM
 	private final ConcurrentHashMap<Integer, NativePathMap> maps = new ConcurrentHashMap<>();
 
 	// Controle de atividade e presença de jogadores por mapa
@@ -53,19 +57,47 @@ public final class NativePathData {
 	public static final class MapActivity {
 		private final AtomicInteger playerCount = new AtomicInteger(0);
 		private volatile long lastAccessTime = System.currentTimeMillis();
+		private volatile long emptySince = 0L;
 
 		public void incrementPlayerCount() {
 			playerCount.incrementAndGet();
 			lastAccessTime = System.currentTimeMillis();
+			emptySince = 0L;
 		}
 
 		public void decrementPlayerCount() {
-			playerCount.updateAndGet(c -> Math.max(0, c - 1));
+			int remaining = playerCount.updateAndGet(c -> Math.max(0, c - 1));
 			lastAccessTime = System.currentTimeMillis();
+			if (remaining == 0 && emptySince == 0L) {
+				emptySince = System.currentTimeMillis();
+			}
 		}
 
 		public int getPlayerCount() {
 			return playerCount.get();
+		}
+
+		public void setPlayerCount(int count) {
+			playerCount.set(count);
+			if (count == 0) {
+				if (emptySince == 0L) {
+					emptySince = System.currentTimeMillis();
+				}
+			} else {
+				emptySince = 0L;
+			}
+		}
+
+		public long getEmptySince() {
+			return emptySince;
+		}
+
+		public void setEmptySince(long time) {
+			this.emptySince = time;
+		}
+
+		public void resetEmptySince() {
+			this.emptySince = 0L;
 		}
 
 		public void updateAccess() {
@@ -84,6 +116,7 @@ public final class NativePathData {
 
 	/**
 	 * Indexa todos os diretórios em data/native-path/ que seguem o padrão canônico {worldId}_{nome}/xxxx-path.dat.
+	 * Não carrega nenhum byte na RAM — apenas indexa a localização dos arquivos no disco.
 	 */
 	public void indexNativePathDirectories() {
 		String baseDirStr = NativePathConfig.NATIVE_PATH_DIR != null ? NativePathConfig.NATIVE_PATH_DIR : "data/native-path/";
@@ -118,7 +151,7 @@ public final class NativePathData {
 			LOG.error("NATIVE_PATH: Erro ao indexar diretórios de mapas.", e);
 		}
 
-		LOG.info("NATIVE_PATH: {} mapas nativos CryEngine indexados em {}", indexed, baseDirStr);
+		LOG.info("NATIVE_PATH: {} mapas nativos CryEngine catalogados (100% sob demanda) em {}", indexed, baseDirStr);
 	}
 
 	/**
@@ -142,7 +175,8 @@ public final class NativePathData {
 	}
 
 	/**
-	 * Invocado quando um jogador entra no mapa. Atualiza atividade e dispara pré-carregamento assíncrono.
+	 * Invocado quando um jogador entra no mapa (login, teleporte, CM_LEVEL_READY).
+	 * Atualiza presença de jogadores e dispara carregamento sob demanda se necessário.
 	 */
 	public void onPlayerEnterMap(int worldId) {
 		if (!NativePathConfig.NATIVE_PATH_ENABLE)
@@ -151,24 +185,51 @@ public final class NativePathData {
 		MapActivity act = getOrCreateActivity(worldId);
 		act.incrementPlayerCount();
 
+		// Se o mapa ainda não estiver carregado na memória, inicia o carregamento sob demanda imediatamente
 		if (!maps.containsKey(worldId) && mapFileIndex.containsKey(worldId)) {
 			ThreadPoolManager.getInstance().execute(() -> getNativeMap(worldId));
 		}
 	}
 
 	/**
-	 * Invocado quando um jogador sai do mapa. Atualiza a contagem de presença.
+	 * Invocado quando um jogador sai do mapa (logout, teleporte para outro mapa).
+	 * Atualiza contagem de presença e agenda checagem de desalocação caso o mapa fique vazio.
 	 */
 	public void onPlayerLeaveMap(int worldId) {
 		MapActivity act = mapActivity.get(worldId);
 		if (act != null) {
 			act.decrementPlayerCount();
+			if (act.getPlayerCount() == 0) {
+				long timeout = Math.max(60000L, NativePathConfig.NATIVE_PATH_INACTIVE_TIMEOUT_MS);
+				ThreadPoolManager.getInstance().schedule(() -> unloadIfEmpty(worldId), timeout);
+			}
 		}
 	}
 
 	/**
+	 * Consulta a quantidade real de jogadores ativos no mapa através do WorldMap do servidor.
+	 */
+	public int getActivePlayerCount(int worldId) {
+		try {
+			if (World.getInstance() != null) {
+				WorldMap worldMap = World.getInstance().getWorldMap(worldId);
+				if (worldMap != null) {
+					int count = 0;
+					for (WorldMapInstance inst : worldMap) {
+						count += inst.getPlayerCount();
+					}
+					return count;
+				}
+			}
+		} catch (Throwable ignored) {
+		}
+		MapActivity act = mapActivity.get(worldId);
+		return act != null ? act.getPlayerCount() : 0;
+	}
+
+	/**
 	 * Retorna a instância de NativePathMap para o worldId solicitado.
-	 * Carrega sob demanda de forma thread-safe se ainda não estiver residente na RAM.
+	 * Carrega 100% sob demanda de forma thread-safe se ainda não estiver residente na RAM.
 	 *
 	 * @param worldId Identificador numérico do mapa.
 	 * @return A instância de NativePathMap ou null se não houver malha indexada.
@@ -205,17 +266,16 @@ public final class NativePathData {
 
 			try {
 				map = NativePathMap.loadFromDisk(filePath, worldId);
-				checkAndEvictOldestMap();
 				maps.put(worldId, map);
 				loadedCount.incrementAndGet();
 				long elapsed = System.currentTimeMillis() - t0;
 				totalLoadTimeMs.addAndGet(elapsed);
 				getOrCreateActivity(worldId).updateAccess();
 
-				LOG.info("NATIVE_PATH: Mapa {} carregado sob demanda em {} ms (Cache: {}/{} mapas).",
-						worldId, elapsed, maps.size(), NativePathConfig.NATIVE_PATH_MAX_CACHED_MAPS);
+				LOG.info("NATIVE_PATH: Mapa {} carregado 100% sob demanda em {} ms ({} camadas ativas, {} MB RAM | Total carregados: {}).",
+						worldId, elapsed, map.getTotalLayers(), map.getEstimatedSizeMB(), maps.size());
 			} catch (Exception e) {
-				LOG.error("NATIVE_PATH: Falha ao carregar mapa nativo {} ({}).", worldId, filePath.getFileName(), e);
+				LOG.error("NATIVE_PATH: Falha ao carregar mapa nativo {} sob demanda ({}).", worldId, filePath.getFileName(), e);
 				return null;
 			}
 		}
@@ -224,34 +284,48 @@ public final class NativePathData {
 	}
 
 	/**
-	 * Desaloca o mapa menos recentemente utilizado que possua 0 jogadores ativos caso o limite seja atingido.
+	 * Desaloca com segurança o mapa da memória RAM se ele permanecer sem jogadores ativos após 3 minutos.
 	 */
-	private void checkAndEvictOldestMap() {
-		int maxMaps = Math.max(5, NativePathConfig.NATIVE_PATH_MAX_CACHED_MAPS);
-		if (maps.size() < maxMaps) {
+	public void unloadIfEmpty(int worldId) {
+		if (!NativePathConfig.NATIVE_PATH_ENABLE) {
 			return;
 		}
 
-		int oldestWorldId = -1;
-		long oldestTime = Long.MAX_VALUE;
-
-		for (Map.Entry<Integer, NativePathMap> entry : maps.entrySet()) {
-			int wid = entry.getKey();
-			MapActivity act = mapActivity.get(wid);
-			int players = act != null ? act.getPlayerCount() : 0;
-			long lastAccess = act != null ? act.getLastAccessTime() : 0;
-
-			// Nunca descarrega mapas com jogadores ativos
-			if (players == 0 && lastAccess < oldestTime) {
-				oldestTime = lastAccess;
-				oldestWorldId = wid;
-			}
+		NativePathMap map = maps.get(worldId);
+		if (map == null) {
+			return;
 		}
 
-		if (oldestWorldId > 0) {
-			maps.remove(oldestWorldId);
-			LOG.info("NATIVE_PATH: Cache LRU: Mapa inativo {} despejado da memória RAM (novo tamanho: {}).",
-					oldestWorldId, maps.size());
+		int players = getActivePlayerCount(worldId);
+		MapActivity act = mapActivity.get(worldId);
+		if (act != null) {
+			act.setPlayerCount(players);
+		}
+
+		if (players > 0) {
+			if (act != null) {
+				act.resetEmptySince();
+			}
+			return;
+		}
+
+		long now = System.currentTimeMillis();
+		long emptySince = act != null ? act.getEmptySince() : now;
+		long timeout = Math.max(60000L, NativePathConfig.NATIVE_PATH_INACTIVE_TIMEOUT_MS);
+
+		if (emptySince > 0 && (now - emptySince) >= timeout) {
+			synchronized (this) {
+				// Re-valida sob lock
+				players = getActivePlayerCount(worldId);
+				if (players == 0) {
+					NativePathMap removed = maps.remove(worldId);
+					if (removed != null) {
+						removed.dispose();
+						LOG.info("NATIVE_PATH: Mapa {} sem jogadores há mais de 3 minutos descarregado com segurança da RAM (Mapas ativos restantes: {}).",
+								worldId, maps.size());
+					}
+				}
+			}
 		}
 	}
 
@@ -259,12 +333,12 @@ public final class NativePathData {
 	 * Inicia o agendador de limpeza periódica de mapas inativos sem jogadores.
 	 */
 	private void startCleanupScheduler() {
-		long interval = Math.max(60000L, NativePathConfig.NATIVE_PATH_CLEANUP_INTERVAL_MS);
+		long interval = Math.max(30000L, NativePathConfig.NATIVE_PATH_CLEANUP_INTERVAL_MS);
 		ThreadPoolManager.getInstance().scheduleAtFixedRate(this::cleanupInactiveMaps, interval, interval);
 	}
 
 	/**
-	 * Executa varredura de mapas inativos e desaloca aqueles sem jogadores além do timeout.
+	 * Executa varredura de mapas inativos e desaloca com segurança aqueles com 0 jogadores após 3 minutos.
 	 */
 	public void cleanupInactiveMaps() {
 		if (maps.isEmpty()) {
@@ -277,41 +351,29 @@ public final class NativePathData {
 
 		for (Map.Entry<Integer, NativePathMap> entry : maps.entrySet()) {
 			int wid = entry.getKey();
-			MapActivity act = mapActivity.get(wid);
-			int players = act != null ? act.getPlayerCount() : 0;
-			long lastAccess = act != null ? act.getLastAccessTime() : 0;
+			int players = getActivePlayerCount(wid);
+			MapActivity act = getOrCreateActivity(wid);
+			act.setPlayerCount(players);
 
-			if (players == 0 && (now - lastAccess) > timeout) {
-				maps.remove(wid);
-				evicted++;
+			if (players == 0) {
+				long emptySince = act.getEmptySince();
+				if (emptySince == 0L) {
+					act.setEmptySince(now);
+				} else if ((now - emptySince) >= timeout) {
+					NativePathMap removed = maps.remove(wid);
+					if (removed != null) {
+						removed.dispose();
+						evicted++;
+					}
+				}
+			} else {
+				act.resetEmptySince();
 			}
 		}
 
 		if (evicted > 0) {
-			LOG.info("NATIVE_PATH: Limpeza periódica: {} mapas inativos liberados da RAM. Mapas ativos restantes: {}.",
+			LOG.info("NATIVE_PATH: Limpeza periódica: {} mapas inativos descarregados com segurança da RAM. Mapas ativos restantes: {}.",
 					evicted, maps.size());
-		}
-	}
-
-	/**
-	 * Pré-carrega mapas iniciais mais frequentes durante a inicialização para eliminar latência.
-	 */
-	public void preloadStarterMaps() {
-		if (!NativePathConfig.NATIVE_PATH_ENABLE) {
-			return;
-		}
-
-		int[] commonWorlds = {
-				210010000, // Poeta
-				220010000, // Ishalgen
-				110010000, // Sanctum
-				120010000  // Pandaemonium
-		};
-
-		for (int wid : commonWorlds) {
-			if (mapFileIndex.containsKey(wid)) {
-				getNativeMap(wid);
-			}
 		}
 	}
 

@@ -410,6 +410,7 @@ public final class PlayerEnterWorldService {
 		log.info("Player Logged In: {} Account: {}", player.getName(), player.getClientConnection().getAccount().getName());
 		player.getCommonData().setOnline(true);
 		PlayerDAO.onlinePlayer(player, true);
+		NativePathData.getInstance().onPlayerEnterMap(player.getWorldId());
 	}
 
 	@SuppressWarnings("lossy-conversions")

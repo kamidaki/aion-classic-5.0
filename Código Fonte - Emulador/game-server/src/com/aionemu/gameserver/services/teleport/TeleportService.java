@@ -179,6 +179,9 @@ public class TeleportService {
 	private static void sendLoc(Player player, int worldId, int instanceId, float x, float y, float z, byte h, TeleportAnimation animation) {
 		abortPlayerActions(player);
 		com.lostacademy.Dps_Meter.DpsService.sendPlayerState(player, true, true);
+		if (player.getWorldId() != worldId) {
+			NativePathData.getInstance().onPlayerEnterMap(worldId);
+		}
 		// despawn from world and send animation to others (also ends flying)
 		World.getInstance().despawn(player, animation.getDefaultObjectDeleteAnimation());
 
