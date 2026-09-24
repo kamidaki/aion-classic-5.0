@@ -293,6 +293,23 @@ public final class NativePathMap {
 	 * @param maxDropHeight Tolerância máxima de desnível vertical na descida (metros).
 	 * @return true se o agente puder caminhar em linha reta entre os pontos; false caso haja qualquer obstrução.
 	 */
+	public boolean canPassPhysical(float x1, float y1, float z1, float x2, float y2, float z2, int instanceId) {
+		try {
+			if (GeoService.getInstance() != null) {
+				float dx = x2 - x1;
+				float dy = y2 - y1;
+				float dz = z2 - z1;
+				float dist3D = (float) Math.sqrt(dx * dx + dy * dy + dz * dz);
+				return GeoService.getInstance().canPassPhysical(worldId,
+						x1, y1, z1 + 1.25f,
+						x2, y2, z2 + 1.25f,
+						dist3D, instanceId);
+			}
+		} catch (Throwable ignored) {
+		}
+		return true;
+	}
+
 	public boolean hasLineOfSight(float x1, float y1, float z1, float x2, float y2, float z2, float maxDropHeight) {
 		return hasLineOfSight(x1, y1, z1, x2, y2, z2, maxDropHeight, 0);
 	}
@@ -316,13 +333,16 @@ public final class NativePathMap {
 			return false;
 		}
 
-		// Validação física 3D contra objetos .geo (portões de fortalezas, pontes dinâmicas, barricadas)
+		float dist3D = (float) Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+		// Validação física 3D contra objetos .geo (estruturas, casas, árvores, muralhas, portas)
+		// Usa altura do tronco/peito (+1.25m) para evitar falso-positivo em relevo e degraus
 		try {
 			if (GeoService.getInstance() != null) {
-				boolean canPass = GeoService.getInstance().canPass(worldId,
-						x1, y1, z1 + 0.5f,
-						x2, y2, z2 + 0.5f,
-						dist2D, instanceId);
+				boolean canPass = GeoService.getInstance().canPassPhysical(worldId,
+						x1, y1, z1 + 1.25f,
+						x2, y2, z2 + 1.25f,
+						dist3D, instanceId);
 				if (!canPass) {
 					return false;
 				}
@@ -365,22 +385,20 @@ public final class NativePathMap {
 		return true;
 	}
 
+	public float[] findClosestWalkablePoint(float x, float y, float z, float searchRadius) {
+		return findClosestWalkablePoint(x, y, z, searchRadius, 0);
+	}
+
 	/**
 	 * Localiza o ponto transitável mais próximo de (x, y, z) em um raio de busca configurável.
 	 *
 	 * Utilizado quando o alvo (ex: jogador encostado em parede ou dentro de árvore) está sobre
 	 * uma subcélula bloqueada. A busca em espiral radial projeta o destino para a subcélula
 	 * livre navegável mais próxima.
-	 *
-	 * @param x            Coordenada X original.
-	 * @param y            Coordenada Y original.
-	 * @param z            Coordenada Z original.
-	 * @param searchRadius Raio máximo de busca em metros (ex: 3.0m ou 4.0m).
-	 * @return Vetor float[] {x, y, z} com as coordenadas do ponto transitável mais próximo, ou null se inacessível.
 	 */
-	public float[] findClosestWalkablePoint(float x, float y, float z, float searchRadius) {
-		if (isWalkable(x, y, z, 2.0f)) {
-			float surfaceZ = getSurfaceZ(x, y, z, z);
+	public float[] findClosestWalkablePoint(float x, float y, float z, float searchRadius, int instanceId) {
+		if (isWalkable(x, y, z, 2.0f, instanceId)) {
+			float surfaceZ = getSurfaceZ(x, y, z, z, instanceId);
 			return new float[] {x, y, surfaceZ};
 		}
 
@@ -396,15 +414,17 @@ public final class NativePathMap {
 				float testX = x + (float) (Math.cos(angle) * rad);
 				float testY = y + (float) (Math.sin(angle) * rad);
 
-				if (isWalkable(testX, testY, z, 2.5f)) {
-					float testZ = getSurfaceZ(testX, testY, z, z);
-					float dx = testX - x;
-					float dy = testY - y;
-					float dz = testZ - z;
-					float dSq = dx * dx + dy * dy + dz * dz;
-					if (dSq < bestDistSq) {
-						bestDistSq = dSq;
-						bestPoint = new float[] {testX, testY, testZ};
+				if (isWalkable(testX, testY, z, 2.5f, instanceId)) {
+					float testZ = getSurfaceZ(testX, testY, z, z, instanceId);
+					if (canPassPhysical(testX, testY, testZ - 0.2f, testX, testY, testZ + 0.2f, instanceId)) {
+						float dx = testX - x;
+						float dy = testY - y;
+						float dz = testZ - z;
+						float dSq = dx * dx + dy * dy + dz * dz;
+						if (dSq < bestDistSq) {
+							bestDistSq = dSq;
+							bestPoint = new float[] {testX, testY, testZ};
+						}
 					}
 				}
 			}

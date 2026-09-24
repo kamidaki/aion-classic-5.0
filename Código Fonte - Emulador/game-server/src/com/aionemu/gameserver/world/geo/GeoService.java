@@ -154,6 +154,18 @@ public class GeoService implements GameEngine {
 		return map.canPass(x, y, z, x1, y1, z1, limit, instanceId);
 	}
 
+	public boolean hasPhysicalGeometries(int worldId, float x, float y) {
+		GeoMap map = geoMaps.get(worldId);
+		return map != null && map.hasPhysicalGeometries(x, y);
+	}
+
+	public boolean canPassPhysical(int worldId, float x, float y, float z, float x1, float y1, float z1, float limit, int instanceId) {
+		GeoMap map = geoMaps.get(worldId);
+		if (map == null)
+			return true;
+		return map.canPassPhysical(x, y, z, x1, y1, z1, limit, instanceId);
+	}
+
 	private float getSeeCheckOffset(VisibleObject object) {
 		float height = object.getObjectTemplate().getBoundRadius().getUpper();
 		if (object instanceof Player p && p.isTransformed() && p.getTransformModel().cantMove()) {

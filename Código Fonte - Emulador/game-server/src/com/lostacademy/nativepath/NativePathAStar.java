@@ -82,6 +82,15 @@ public final class NativePathAStar {
 	public static float[][] findPath(NativePathMap map, float startX, float startY, float startZ,
 									 float targetX, float targetY, float targetZ,
 									 float agentRadius, float reachDistance) {
+		return findPath(map, startX, startY, startZ, targetX, targetY, targetZ, agentRadius, reachDistance, 0);
+	}
+
+	/**
+	 * Calcula o percurso navegável ótimo considerando o raio de colisão do agente, distância de alcance e ID da instância.
+	 */
+	public static float[][] findPath(NativePathMap map, float startX, float startY, float startZ,
+									 float targetX, float targetY, float targetZ,
+									 float agentRadius, float reachDistance, int instanceId) {
 		if (map == null) {
 			return null;
 		}
@@ -90,13 +99,13 @@ public final class NativePathAStar {
 
 		// Se o agente já estiver no raio de alcance e com linha de visão desobstruída, encerra imediatamente
 		if (reachDistance > 0.0f && dist2D <= reachDistance) {
-			if (map.hasLineOfSight(startX, startY, startZ, targetX, targetY, targetZ, MAX_DROP_DOWN)) {
+			if (map.hasLineOfSight(startX, startY, startZ, targetX, targetY, targetZ, MAX_DROP_DOWN, instanceId)) {
 				return new float[][] {{targetX, targetY, targetZ}};
 			}
 		}
 
 		// Linha de visão direta rápida (sem obstáculos 3D, sem quinas e sem desníveis excessivos)
-		if (map.hasLineOfSight(startX, startY, startZ, targetX, targetY, targetZ, MAX_DROP_DOWN)) {
+		if (map.hasLineOfSight(startX, startY, startZ, targetX, targetY, targetZ, MAX_DROP_DOWN, instanceId)) {
 			return new float[][] {{targetX, targetY, targetZ}};
 		}
 
@@ -105,12 +114,12 @@ public final class NativePathAStar {
 		}
 
 		// Projeta pontos para o solo navegável mais próximo caso estejam em subcélula bloqueada
-		float[] validStart = map.findClosestWalkablePoint(startX, startY, startZ, 5.0f);
+		float[] validStart = map.findClosestWalkablePoint(startX, startY, startZ, 5.0f, instanceId);
 		float sX = validStart != null ? validStart[0] : startX;
 		float sY = validStart != null ? validStart[1] : startY;
 		float sZ = validStart != null ? validStart[2] : startZ;
 
-		float[] validTarget = map.findClosestWalkablePoint(targetX, targetY, targetZ, 5.0f);
+		float[] validTarget = map.findClosestWalkablePoint(targetX, targetY, targetZ, 5.0f, instanceId);
 		float tX = validTarget != null ? validTarget[0] : targetX;
 		float tY = validTarget != null ? validTarget[1] : targetY;
 		float tZ = validTarget != null ? validTarget[2] : targetZ;
@@ -118,9 +127,9 @@ public final class NativePathAStar {
 		// Busca local na grade de 0.5m (para combate, perseguição e patrulhas até 90m)
 		if (dist2D <= LOCAL_SEARCH_MAX_DIST) {
 			AStarSearchContext ctx = SEARCH_CONTEXT.get();
-			List<float[]> rawPath = executeSubcellAStar(ctx, map, sX, sY, sZ, tX, tY, tZ, agentRadius, reachDistance);
+			List<float[]> rawPath = executeSubcellAStar(ctx, map, sX, sY, sZ, tX, tY, tZ, agentRadius, reachDistance, instanceId);
 			if (rawPath != null && !rawPath.isEmpty()) {
-				List<float[]> smoothed = smoothPath(map, rawPath, tX, tY, tZ);
+				List<float[]> smoothed = smoothPath(map, rawPath, tX, tY, tZ, instanceId);
 				return smoothed.toArray(new float[0][]);
 			}
 		}
@@ -134,7 +143,7 @@ public final class NativePathAStar {
 	private static List<float[]> executeSubcellAStar(AStarSearchContext ctx, NativePathMap map,
 													float startX, float startY, float startZ,
 													float targetX, float targetY, float targetZ,
-													float agentRadius, float reachDistance) {
+													float agentRadius, float reachDistance, int instanceId) {
 		ctx.reset();
 
 		int startGx = Math.round(startX * 2.0f);
@@ -180,7 +189,7 @@ public final class NativePathAStar {
 			if (cH <= effectiveReach) {
 				float cWorldX = cgx * 0.5f;
 				float cWorldY = cgy * 0.5f;
-				if (map.hasLineOfSight(cWorldX, cWorldY, cZ, targetX, targetY, targetZ, MAX_DROP_DOWN)) {
+				if (map.hasLineOfSight(cWorldX, cWorldY, cZ, targetX, targetY, targetZ, MAX_DROP_DOWN, instanceId)) {
 					return reconstructPath(ctx, current);
 				}
 				// Se estiver extremamente próximo (<= 0.8m), considera que chegou ao alcance físico
@@ -206,29 +215,34 @@ public final class NativePathAStar {
 				float nextWorldY = nextGy * 0.5f;
 
 				// Consulta altitude real no ponto vizinho
-				float nextZ = map.getSurfaceZ(nextWorldX, nextWorldY, cZ, cZ);
+				float nextZ = map.getSurfaceZ(nextWorldX, nextWorldY, cZ, cZ, instanceId);
 
 				// Anti-corner-cutting: bloqueia diagonal se ambos os lados ortogonais forem paredes
 				if (dir >= 4) {
-					boolean sideA = !map.isWalkable(currentWorldX + dx[dir] * 0.5f, currentWorldY, nextZ, 2.0f);
-					boolean sideB = !map.isWalkable(currentWorldX, currentWorldY + dy[dir] * 0.5f, nextZ, 2.0f);
+					boolean sideA = !map.isWalkable(currentWorldX + dx[dir] * 0.5f, currentWorldY, nextZ, 2.0f, instanceId);
+					boolean sideB = !map.isWalkable(currentWorldX, currentWorldY + dy[dir] * 0.5f, nextZ, 2.0f, instanceId);
 					if (sideA && sideB) {
 						continue;
 					}
 				}
 
-				// Verifica transitabilidade no CryEngine
-				if (!map.isWalkable(nextWorldX, nextWorldY, nextZ, 2.0f)) {
+				// 1. Verifica transitabilidade na malha CryEngine (*-path.dat)
+				if (!map.isWalkable(nextWorldX, nextWorldY, nextZ, 2.0f, instanceId)) {
+					continue;
+				}
+
+				// 2. Validação física 3D estrita contra objetos .geo (estruturas, casas, árvores, muralhas, portas)
+				if (!map.canPassPhysical(currentWorldX, currentWorldY, cZ, nextWorldX, nextWorldY, nextZ, instanceId)) {
 					continue;
 				}
 
 				// Folga lateral proporcional para agentes de grande porte (com limite seguro)
 				if (agentRadius > 0.6f) {
 					float clearance = Math.min(0.5f, agentRadius * 0.3f);
-					if (!map.isWalkable(nextWorldX + clearance, nextWorldY, nextZ, 2.0f) ||
-							!map.isWalkable(nextWorldX - clearance, nextWorldY, nextZ, 2.0f) ||
-							!map.isWalkable(nextWorldX, nextWorldY + clearance, nextZ, 2.0f) ||
-							!map.isWalkable(nextWorldX, nextWorldY - clearance, nextZ, 2.0f)) {
+					if (!map.isWalkable(nextWorldX + clearance, nextWorldY, nextZ, 2.0f, instanceId) ||
+							!map.isWalkable(nextWorldX - clearance, nextWorldY, nextZ, 2.0f, instanceId) ||
+							!map.isWalkable(nextWorldX, nextWorldY + clearance, nextZ, 2.0f, instanceId) ||
+							!map.isWalkable(nextWorldX, nextWorldY - clearance, nextZ, 2.0f, instanceId)) {
 						continue;
 					}
 				}
@@ -300,7 +314,7 @@ public final class NativePathAStar {
 	 * Elimina ziguezagues conectando nós distantes onde houver linha de visão limpa.
 	 */
 	private static List<float[]> smoothPath(NativePathMap map, List<float[]> waypoints,
-											float targetX, float targetY, float targetZ) {
+											float targetX, float targetY, float targetZ, int instanceId) {
 		if (waypoints == null || waypoints.isEmpty()) {
 			return Collections.emptyList();
 		}
@@ -330,7 +344,7 @@ public final class NativePathAStar {
 						continue;
 					}
 					if (map.hasLineOfSight(currentPt[0], currentPt[1], currentPt[2],
-							testPt[0], testPt[1], testPt[2], MAX_DROP_DOWN)) {
+							testPt[0], testPt[1], testPt[2], MAX_DROP_DOWN, instanceId)) {
 						furthestIndex = testIndex;
 						break;
 					}
@@ -346,11 +360,28 @@ public final class NativePathAStar {
 		float[] last = smoothed.get(smoothed.size() - 1);
 		float dSq = (last[0] - targetX) * (last[0] - targetX) + (last[1] - targetY) * (last[1] - targetY);
 		if (dSq > 0.25f) {
-			if (map.hasLineOfSight(last[0], last[1], last[2], targetX, targetY, targetZ, MAX_DROP_DOWN)) {
+			if (map.hasLineOfSight(last[0], last[1], last[2], targetX, targetY, targetZ, MAX_DROP_DOWN, instanceId)) {
 				smoothed.add(new float[] {targetX, targetY, targetZ});
 			}
 		} else {
 			smoothed.set(smoothed.size() - 1, new float[] {targetX, targetY, targetZ});
+		}
+
+		// Filtra waypoints intermediários redundantes muito próximos (< 0.8m) para evitar pacotes picotados
+		if (smoothed.size() > 2) {
+			List<float[]> filtered = new ArrayList<>();
+			filtered.add(smoothed.get(0));
+			for (int i = 1; i < smoothed.size() - 1; i++) {
+				float[] prev = filtered.get(filtered.size() - 1);
+				float[] curr = smoothed.get(i);
+				float dX = curr[0] - prev[0];
+				float dY = curr[1] - prev[1];
+				if (dX * dX + dY * dY >= 0.64f) { // >= 0.8m
+					filtered.add(curr);
+				}
+			}
+			filtered.add(smoothed.get(smoothed.size() - 1));
+			smoothed = filtered;
 		}
 
 		return smoothed;

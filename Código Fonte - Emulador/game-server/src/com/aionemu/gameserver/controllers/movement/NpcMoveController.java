@@ -99,6 +99,12 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 	private float lastTargetY;
 	private float lastTargetZ;
 
+	private float lastSentDestX;
+	private float lastSentDestY;
+	private float lastSentDestZ;
+	private byte lastSentHeading;
+	private long lastMovePacketTime;
+
 	public NpcMoveController(Npc owner) {
 		super(owner);
 	}
@@ -220,16 +226,23 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 					long now = System.currentTimeMillis();
 					PathState ps = pathRef.get();
 
-					// Rerota se:
-					// 1) Não há rota ou waypoints esgotados
-					// 2) Alvo moveu-se > 2m desde o cálculo E > 500ms se passaram
-					// 3) Tempo excessivo > 1200ms (garante responsividade mesmo parado)
+					// 1. Se houver linha de visão física direta desobstruída (sem casas, muros, árvores ou abismos),
+					// persegue em linha reta diretamente — transição instantânea e movimento ultra fluido!
+					boolean hasDirectLOS = canWalkDirectly(owner, targetX, targetY, targetZ);
+					if (hasDirectLOS) {
+						clearCachedPath();
+						moveToLocation(targetX, targetY, targetZ);
+						break;
+					}
+
+					// 2. Se a visão física estiver obstruída por obstáculo (casa, muralha, árvore, cerca):
+					// Recalcula rota apenas se:
+					// a) Não há rota ou waypoints atuais foram concluídos
+					// b) Alvo moveu-se > 1.5m desde o último cálculo e já se passaram >= 400ms
 					boolean needRepath = (ps == null || !ps.hasNext());
 					if (!needRepath && ps.path != null && ps.path.length > 0) {
 						float distFromTargetAtCalc = (float) PositionUtil.getDistance(targetX, targetY, targetZ, lastTargetX, lastTargetY, lastTargetZ);
-						if (distFromTargetAtCalc > 2.0f && (now - lastPathCalcTime) >= 500) {
-							needRepath = true;
-						} else if ((now - lastPathCalcTime) >= 1200) {
+						if (distFromTargetAtCalc > 1.5f && (now - lastPathCalcTime) >= 400) {
 							needRepath = true;
 						}
 					}
@@ -242,7 +255,6 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 							lastTargetY = targetY;
 							lastTargetZ = targetZ;
 
-							// Waypoint 0 é a posição inicial — pula se o NPC já estiver próximo
 							int startIdx = 0;
 							if (newPath.length > 1 && PositionUtil.isInRange(owner, newPath[0][0], newPath[0][1], newPath[0][2], 1.2f)) {
 								startIdx = 1;
@@ -250,30 +262,27 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 							ps = new PathState(newPath, startIdx);
 							pathRef.set(ps);
 						} else {
-							// Se o mob já possui waypoints válidos em andamento, preserva a rota atual
-							// e tenta recalcular novamente após breve intervalo (500ms).
+							// Se o mob já possui rota em andamento contornando o obstáculo, preserva-a
 							if (ps != null && ps.hasNext()) {
-								lastPathCalcTime = now + 500;
+								lastPathCalcTime = now + 400;
 							} else {
-								// Realmente sem rota navegável:
-								ps = null;
-								pathRef.set(null);
-								lastPathCalcTime = now + 800; // Backoff para evitar tempestade de A* a cada tick
-								// Só move diretamente se houver caminho físico desobstruído — nunca atravessa sólidos
-								if (canWalkDirectly(owner, targetX, targetY, targetZ)) {
-									moveToLocation(targetX, targetY, targetZ);
-								} else {
-									abortMove(); // Bloqueado por obstáculo — para com segurança em vez de atravessar paredes!
+								// Tenta encontrar ponto transitável na borda do obstáculo em direção ao alvo
+								float[] closest = NativePathService.getInstance().findClosestWalkablePoint(owner.getWorldId(), targetX, targetY, targetZ, 8.0f, owner.getInstanceId());
+								if (closest != null && canWalkDirectly(owner, closest[0], closest[1], closest[2])) {
+									moveToLocation(closest[0], closest[1], closest[2]);
+									break;
 								}
+								// IMPORTANTE: NUNCA chama abortMove() em combate ativo contra alvo vivo!
+								// Mantém o monstro no MoveTaskManager com backoff de 300ms para resposta instantânea.
+								lastPathCalcTime = now + 300;
 								break;
 							}
 						}
 					}
 
 					if (ps != null && ps.hasNext()) {
-						// Tolerância dinâmica de chegada ao waypoint proporcional à velocidade
 						float speed = owner.getGameStats().getMovementSpeedFloat();
-						float tolerance = Math.max(1.0f, speed * 0.30f);
+						float tolerance = Math.max(1.2f, speed * 0.35f);
 
 						while (ps.hasNext()
 								&& ps.index < ps.path.length - 1
@@ -290,11 +299,8 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 					}
 				}
 
-				// Se sem rota válida, valida transitabilidade direta estrita antes de mover
 				if (canWalkDirectly(owner, targetX, targetY, targetZ)) {
 					moveToLocation(targetX, targetY, targetZ);
-				} else {
-					abortMove();
 				}
 				break;
 
@@ -488,32 +494,53 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 		World.getInstance().updatePosition(owner, newX, newY, newZ, heading, false);
 
-		byte newMask = getMoveMask(destinationChanged);
-		if (movementMask != newMask || destinationChanged) {
-			if (movementMask != newMask) {
-				if (owner.getAi().isLogging()) {
-					AILogger.moveinfo(owner, "oldMask=" + movementMask + " newMask=" + newMask);
-				}
-				movementMask = newMask;
-			}
+		byte newMask = getMoveMask();
+		long now = System.currentTimeMillis();
+
+		float destDeltaSq = (targetX - lastSentDestX) * (targetX - lastSentDestX) + (targetY - lastSentDestY) * (targetY - lastSentDestY);
+		int headingDiff = Math.abs(heading - lastSentHeading);
+		if (headingDiff > 128) {
+			headingDiff = 256 - headingDiff;
+		}
+
+		boolean sendPacket = false;
+		if (movementMask != newMask) {
+			sendPacket = true;
+			movementMask = newMask;
+		} else if (lastSentDestX == 0 && lastSentDestY == 0) {
+			sendPacket = true;
+		} else if (destDeltaSq > 1.44f) { // Destino alterou mais de 1.2 metros (mudança de waypoint ou fuga do alvo)
+			sendPacket = true;
+		} else if (headingDiff > 20) { // Mudança de direção significativa (> ~28 graus)
+			sendPacket = true;
+		} else if ((now - lastMovePacketTime) >= 1500) { // Heartbeat de sincronia
+			sendPacket = true;
+		}
+
+		if (sendPacket) {
+			lastSentDestX = targetX;
+			lastSentDestY = targetY;
+			lastSentDestZ = targetZ;
+			lastSentHeading = heading;
+			lastMovePacketTime = now;
 			PacketSendUtility.broadcastPacket(owner, new SM_MOVE(owner));
 		}
 	}
 
-	private byte getMoveMask(boolean directionChanged) {
-		if (directionChanged)
-			return MovementMask.NPC_STARTMOVE;
-		else if (owner.getAi().getState() == AIState.RETURNING)
+	private byte getMoveMask() {
+		if (owner.getAi().getState() == AIState.RETURNING)
 			return MovementMask.NPC_RUN_FAST;
 		else if (owner.getAi().getState() == AIState.FOLLOWING)
 			return MovementMask.NPC_WALK_SLOW;
 
 		byte mask = MovementMask.IMMEDIATE;
 		final Stat2 stat = owner.getGameStats().getMovementSpeed();
-		if (owner.isInState(CreatureState.WEAPON_EQUIPPED)) {
+		if (owner.isInState(CreatureState.WEAPON_EQUIPPED) || owner.getAi().getState() == AIState.FIGHT) {
 			mask = stat.getBonus() < 0 ? MovementMask.NPC_RUN_FAST : MovementMask.NPC_RUN_SLOW;
 		} else if (owner.isInState(CreatureState.WALK_MODE) || owner.isInState(CreatureState.ACTIVE)) {
 			mask = stat.getBonus() < 0 ? MovementMask.NPC_WALK_FAST : MovementMask.NPC_WALK_SLOW;
+		} else {
+			mask = MovementMask.NPC_RUN_FAST;
 		}
 		if (owner.isFlying())
 			mask |= MovementMask.GLIDE;
@@ -546,6 +573,11 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 		pointY = 0;
 		pointZ = 0;
 		nextPointFromGeo = false;
+		lastSentDestX = 0;
+		lastSentDestY = 0;
+		lastSentDestZ = 0;
+		lastSentHeading = 0;
+		lastMovePacketTime = 0;
 	}
 
 	public WalkerTemplate getWalkerTemplate() {

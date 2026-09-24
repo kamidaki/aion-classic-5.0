@@ -20,6 +20,7 @@ import com.aionemu.gameserver.geoEngine.scene.Geometry;
 import com.aionemu.gameserver.geoEngine.scene.Node;
 import com.aionemu.gameserver.geoEngine.scene.Spatial;
 import com.aionemu.gameserver.model.house.HouseDoorState;
+import com.aionemu.gameserver.geoEngine.utils.TempVars;
 import com.aionemu.gameserver.world.RegionUtil;
 import com.aionemu.gameserver.world.WorldMapType;
 
@@ -264,6 +265,68 @@ public class GeoMap extends Node {
 		CollisionResults results = new CollisionResults(CollisionIntention.PHYSICAL.getId(), instanceId, true, IgnoreProperties.ANY_RACE);
 		int collisions = this.collideWith(r, results);
 		return (results.size() == 0 && collisions == 0);
+	}
+
+	public boolean hasPhysicalGeometries(float x, float y) {
+		int chunkId = RegionUtil.get2DRegionId(NODE_CHUNK_SIZE, x, y);
+		Node chunk = chunkById.get(chunkId);
+		return chunk != null && !chunk.getChildren().isEmpty();
+	}
+
+	/**
+	 * Validação física 3D estrita contra objetos geométricos da GeoEngine (casas, estruturas,
+	 * muralhas, portões, árvores, barricadas) com zero alocação de objetos em heap via TempVars.
+	 */
+	public boolean canPassPhysical(float x, float y, float z, float targetX, float targetY, float targetZ, float limit, int instanceId) {
+		if (chunkById.isEmpty()) {
+			return true;
+		}
+
+		float dx = targetX - x;
+		float dy = targetY - y;
+		float dz = targetZ - z;
+		float distSq = dx * dx + dy * dy + dz * dz;
+		if (distSq < 0.0001f) {
+			return true;
+		}
+		float distance = (float) Math.sqrt(distSq);
+		if (distance > 100f) {
+			return false;
+		}
+
+		int startChunk = RegionUtil.get2DRegionId(NODE_CHUNK_SIZE, x, y);
+		int endChunk = RegionUtil.get2DRegionId(NODE_CHUNK_SIZE, targetX, targetY);
+		if (startChunk == endChunk) {
+			Node chunk = chunkById.get(startChunk);
+			if (chunk == null || chunk.getChildren().isEmpty()) {
+				return true;
+			}
+			TempVars vars = TempVars.get();
+			try {
+				Vector3f pos = vars.vect1.set(x, y, z);
+				Vector3f dir = vars.vect2.set(dx / distance, dy / distance, dz / distance);
+				Ray r = new Ray(pos, dir);
+				r.setLimit(limit > 0 ? limit : distance);
+				CollisionResults results = new CollisionResults(CollisionIntention.PHYSICAL.getId(), instanceId, true, IgnoreProperties.ANY_RACE);
+				int collisions = chunk.collideWith(r, results);
+				return (collisions == 0 && results.size() == 0);
+			} finally {
+				vars.release();
+			}
+		}
+
+		TempVars vars = TempVars.get();
+		try {
+			Vector3f pos = vars.vect1.set(x, y, z);
+			Vector3f dir = vars.vect2.set(dx / distance, dy / distance, dz / distance);
+			Ray r = new Ray(pos, dir);
+			r.setLimit(limit > 0 ? limit : distance);
+			CollisionResults results = new CollisionResults(CollisionIntention.PHYSICAL.getId(), instanceId, true, IgnoreProperties.ANY_RACE);
+			int collisions = this.collideWith(r, results);
+			return (collisions == 0 && results.size() == 0);
+		} finally {
+			vars.release();
+		}
 	}
 
 	/**

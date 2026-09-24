@@ -110,18 +110,21 @@ public final class NativePathService {
 			return true;
 
 		int worldId = owner.getWorldId();
+		int instanceId = owner.getInstanceId();
 		NativePathMap map = data.getNativeMap(worldId);
 		if (map != null) {
-			int instanceId = owner.getInstanceId();
 			return map.hasLineOfSight(owner.getX(), owner.getY(), owner.getZ(), targetX, targetY, targetZ, NativePathMap.MAX_DROP_DOWN, instanceId);
 		}
 
 		if (GeoService.getInstance() != null) {
-			float dist2D = (float) Math.hypot(targetX - owner.getX(), targetY - owner.getY());
-			return GeoService.getInstance().canPass(worldId,
-					owner.getX(), owner.getY(), owner.getZ() + 0.5f,
-					targetX, targetY, targetZ + 0.5f,
-					dist2D, owner.getInstanceId());
+			float dx = targetX - owner.getX();
+			float dy = targetY - owner.getY();
+			float dz = targetZ - owner.getZ();
+			float dist3D = (float) Math.sqrt(dx * dx + dy * dy + dz * dz);
+			return GeoService.getInstance().canPassPhysical(worldId,
+					owner.getX(), owner.getY(), owner.getZ() + 1.25f,
+					targetX, targetY, targetZ + 1.25f,
+					dist3D, instanceId);
 		}
 
 		return true;
@@ -208,7 +211,7 @@ public final class NativePathService {
 				}
 			}
 
-			float[][] path = NativePathAStar.findPath(map, x1, y1, z1, x2, y2, z2, agentRadius, reachDistance);
+			float[][] path = NativePathAStar.findPath(map, x1, y1, z1, x2, y2, z2, agentRadius, reachDistance, pathOwner.getInstanceId());
 			if (NativePathConfig.NATIVE_PATH_DEBUG) {
 				if (path != null) {
 					LOG.info("NATIVE_PATH [TARGET]: [{}] ({}, {}, {}) -> ({}, {}, {}) | {} waypoints | r={} reach={}",
@@ -257,7 +260,7 @@ public final class NativePathService {
 				}
 			}
 
-			float[][] path = NativePathAStar.findPath(map, x1, y1, z1, x, y, z, agentRadius, 0.0f);
+			float[][] path = NativePathAStar.findPath(map, x1, y1, z1, x, y, z, agentRadius, 0.0f, pathOwner.getInstanceId());
 			if (NativePathConfig.NATIVE_PATH_DEBUG) {
 				if (path != null) {
 					LOG.info("NATIVE_PATH [LOC]: [{}] ({}, {}, {}) -> ({}, {}, {}) | {} waypoints | r={}",
@@ -305,6 +308,10 @@ public final class NativePathService {
 	 * Localiza o ponto transitável mais próximo da coordenada informada dentro de um raio de busca.
 	 */
 	public float[] findClosestWalkablePoint(int worldId, float x, float y, float z, float searchRadius) {
+		return findClosestWalkablePoint(worldId, x, y, z, searchRadius, 0);
+	}
+
+	public float[] findClosestWalkablePoint(int worldId, float x, float y, float z, float searchRadius, int instanceId) {
 		if (!NativePathConfig.NATIVE_PATH_ENABLE)
 			return null;
 
@@ -312,7 +319,7 @@ public final class NativePathService {
 		if (map == null)
 			return null;
 
-		return map.findClosestWalkablePoint(x, y, z, searchRadius);
+		return map.findClosestWalkablePoint(x, y, z, searchRadius, instanceId);
 	}
 
 	public static NativePathService getInstance() {
