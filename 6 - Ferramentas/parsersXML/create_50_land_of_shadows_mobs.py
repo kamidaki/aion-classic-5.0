@@ -26,6 +26,12 @@ De onde vem cada campo
                                                           hpgauge vizinho do mesmo grau -> MASTER/HERO.
   group_drop                                              NONE (drop da instancia nao faz parte desta correcao)
 
+Ajuste em template que ja existia
+  224328 IDTutorialQ_Deco_Monster_01 (fogo de cenario, mesh FXMon_IDinfinity_Flower_Fire, ui_type noshow_skillnpc):
+          ai noaction. Na captura ele nunca ataca: apanha uma vez do jogador (1.012,7 s), morre e reacende no mesmo ponto
+          15 s depois lancando a 19389 em si (isso fica no LandOfShadowsInstance). Com a ai general ele revidava toda
+          skill de area que o pegava.
+
 Cada arvore e lida, montada, validada no npcs.xsd e gravada separadamente (os npc_templates.xml das duas divergem).
 
 Uso:
@@ -55,6 +61,7 @@ REL_XML = os.path.join("npcs", "npc_templates.xml")
 REL_XSD = os.path.join("npcs", "npcs.xsd")
 ALVOS = [str(i) for i in list(range(224300, 224321)) + [224333, 224334, 224335]]
 AI = "aggressive"
+AJUSTES = {"224328": {"ai": "noaction"}}  # fogo de cenario: ver a docstring
 
 
 def grau(nome):
@@ -135,17 +142,28 @@ def main():
                 bloco = bloco.replace(' level="', ' title_id="%s" level="' % next(iter(m["titulo"])), 1)
             novos[int(npc)] = bloco
             print("      %s %-44s lvl %d hp %d %s/%s" % (npc, d.get("name", "")[:44], level, hp, rr[0], rr[1]))
-        if not novos:
-            continue
-        novo = insere(texto, novos)
+        novo = insere(texto, novos) if novos else texto
         if len(blocos(novo)) != len(blocos(texto)) + len(novos):
             sys.exit("ABORTADO: contagem de templates nao fecha em %s" % caminho)
+        for npc, attrs in AJUSTES.items():
+            m = re.search(r'<npc_template npc_id="%s"[^>]*>' % npc, novo)
+            if not m:
+                sys.exit("ABORTADO: %s sem template para ajustar" % npc)
+            cab = m.group(0)
+            for k, v in attrs.items():
+                cab = re.sub(r' %s="[^"]*"' % k, ' %s="%s"' % (k, v), cab, count=1)
+            if cab != m.group(0):
+                novo = novo[:m.start()] + cab + novo[m.end():]
+                print("      %s ajustado: %s" % (npc, attrs))
+        if novo == texto:
+            continue
         from lxml import etree
         xsd = etree.XMLSchema(etree.parse(os.path.join(base_dir, REL_XSD)))
         if not xsd.validate(etree.fromstring(novo.encode("utf-8"))):
             sys.exit("ABORTADO: %s nao valida no npcs.xsd: %s" % (caminho, xsd.error_log.last_error))
         print("      +%d templates, valida no npcs.xsd" % len(novos))
-        print("      exemplo: " + re.sub(r"\s+", " ", novos[min(novos)])[:400])
+        if novos:
+            print("      exemplo: " + re.sub(r"\s+", " ", novos[min(novos)])[:400])
         if args.aplicar:
             backup_manager.backup_file_before_modification(caminho)
             open(caminho, "w", encoding="utf-8", newline="").write(novo)

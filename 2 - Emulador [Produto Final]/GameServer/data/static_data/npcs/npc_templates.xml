@@ -375032,7 +375032,7 @@
 		</stats>
 		<bound_radius front="1.05" side="3.5" upper="4.2" />
 	</npc_template>
-	<npc_template npc_id="224328" level="5" name_id="346638" name="Mestre de lâmina da 11ª tropa de ocupação" height="2.05" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" ai="general" srange="1" hpgauge="3" attack_speed="2000">
+	<npc_template npc_id="224328" level="5" name_id="346638" name="Mestre de lâmina da 11ª tropa de ocupação" height="2.05" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" ai="noaction" srange="1" hpgauge="3" attack_speed="2000">
 		<stats maxHp="556">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>

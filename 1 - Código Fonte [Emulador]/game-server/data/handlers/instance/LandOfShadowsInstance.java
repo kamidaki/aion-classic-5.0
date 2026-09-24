@@ -14,6 +14,7 @@ import com.aionemu.gameserver.instance.handlers.InstanceID;
 import com.aionemu.gameserver.model.PlayerClass;
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.gameobjects.Npc;
+import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
@@ -65,6 +66,7 @@ public class LandOfShadowsInstance extends GeneralInstanceHandler {
 	private final Set<Integer> disparados = ConcurrentHashMap.newKeySet();
 	private volatile Race raca = Race.ASMODIANS;
 	private volatile boolean destruida;
+	private volatile boolean criada; // o spawn inicial do mapa vem antes do onInstanceCreate
 	private Future<?> vigia;
 
 	public LandOfShadowsInstance(WorldMapInstance instance) {
@@ -98,6 +100,18 @@ public class LandOfShadowsInstance extends GeneralInstanceHandler {
 			apaga(VEU, 675.36f, 518.71f);
 		});
 		vigia = ThreadPoolManager.getInstance().scheduleAtFixedRate(this::vigia, 1000, 1000);
+	}
+
+	@Override
+	public void onInstanceCreate() {
+		criada = true;
+	}
+
+	@Override
+	public void onSpawn(VisibleObject object) {
+		// fogo de cenario (224328): na captura ele reacende 15 s depois de morrer lancando a 19389 (queimadura de 1 m)
+		if (criada && object instanceof Npc npc && npc.getNpcId() == 224328)
+			depois(500, () -> npc.getController().useSkill(19389));
 	}
 
 	@Override

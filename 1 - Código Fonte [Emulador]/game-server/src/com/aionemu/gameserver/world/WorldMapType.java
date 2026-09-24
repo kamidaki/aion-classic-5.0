@@ -96,6 +96,9 @@ public enum WorldMapType {
 	DISCIPLINE_TRAINING_GROUNDS(300430000),
 	PADMARASHKA_CAVE(320150000),
 
+	// Maps 5.0
+	LAND_OF_SHADOWS(390000000), // IDTutorialQ: sem ele o TeleportService.SpawnTask e o GeoMap caem em NPE (getWorld == null)
+
 	// Test Map
 	TEST_BASIC(900020000),
 	TEST_SERVER(900030000),
