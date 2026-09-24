@@ -328,8 +328,10 @@ public final class NativePathMap {
 			return true;
 		}
 
-		// Rejeita rampas excessivamente íngremes (> ~50 graus)
-		if (Math.abs(dz) / dist2D > 1.2f) {
+		// Rejeita superfícies verticais/subverticais (> ~68 graus).
+		// Threshold aumentado de 1.2 → 2.5 para cobrir escadas íngremes do CryEngine (55-65°).
+		// A validação real de transitabilidade por degrau é feita no A* via MAX_STEP_UP (0.8m).
+		if (Math.abs(dz) / dist2D > 2.5f) {
 			return false;
 		}
 
