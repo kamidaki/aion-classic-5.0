@@ -15,6 +15,61 @@ static int s_hudHeight = 32;
 static bool s_iconHovered = false;
 static RECT s_consoleIconRect = { 0, 0, 0, 0 };
 
+// Reusable buffer cache
+static HDC s_hudMemDC = nullptr;
+static HBITMAP s_hudBitmap = nullptr;
+static HBITMAP s_hudOldBitmap = nullptr;
+static int s_hudBufW = 0;
+static int s_hudBufH = 0;
+
+static void EnsureHudBuffer(HDC screenDC, int width, int height) {
+    if (s_hudMemDC && s_hudBufW == width && s_hudBufH == height) return;
+    if (s_hudMemDC) {
+        if (s_hudOldBitmap) SelectObject(s_hudMemDC, s_hudOldBitmap);
+        if (s_hudBitmap) DeleteObject(s_hudBitmap);
+        DeleteDC(s_hudMemDC);
+    }
+    s_hudMemDC = CreateCompatibleDC(screenDC);
+    BITMAPINFO bmi = {};
+    bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+    bmi.bmiHeader.biWidth = width;
+    bmi.bmiHeader.biHeight = -height;
+    bmi.bmiHeader.biPlanes = 1;
+    bmi.bmiHeader.biBitCount = 32;
+    bmi.bmiHeader.biCompression = BI_RGB;
+    void* pBits = nullptr;
+    s_hudBitmap = CreateDIBSection(screenDC, &bmi, DIB_RGB_COLORS, &pBits, nullptr, 0);
+    s_hudOldBitmap = (HBITMAP)SelectObject(s_hudMemDC, s_hudBitmap);
+    s_hudBufW = width;
+    s_hudBufH = height;
+}
+
+static void ReleaseHudBuffer() {
+    if (s_hudMemDC) {
+        if (s_hudOldBitmap) SelectObject(s_hudMemDC, s_hudOldBitmap);
+        if (s_hudBitmap) DeleteObject(s_hudBitmap);
+        DeleteDC(s_hudMemDC);
+    }
+    s_hudMemDC = nullptr;
+    s_hudBitmap = nullptr;
+    s_hudOldBitmap = nullptr;
+    s_hudBufW = s_hudBufH = 0;
+}
+
+// Persistent font cache
+static Gdiplus::Font* s_hudFontPing = nullptr;
+static Gdiplus::Font* s_hudFontOnline = nullptr;
+
+static void EnsureHudFonts() {
+    if (!s_hudFontPing) s_hudFontPing = new Gdiplus::Font(L"Segoe UI", 10.0f, Gdiplus::FontStyleBold);
+    if (!s_hudFontOnline) s_hudFontOnline = new Gdiplus::Font(L"Segoe UI", 9.5f, Gdiplus::FontStyleBold);
+}
+
+static void ReleaseHudFonts() {
+    if (s_hudFontPing) { delete s_hudFontPing; s_hudFontPing = nullptr; }
+    if (s_hudFontOnline) { delete s_hudFontOnline; s_hudFontOnline = nullptr; }
+}
+
 bool PingHudUI::Initialize(HINSTANCE hInst) {
     WNDCLASSEXW wc = { 0 };
     wc.cbSize = sizeof(WNDCLASSEXW);
@@ -52,6 +107,8 @@ bool PingHudUI::Initialize(HINSTANCE hInst) {
 }
 
 void PingHudUI::Shutdown() {
+    ReleaseHudBuffer();
+    ReleaseHudFonts();
     if (g_hPingHudWnd && IsWindow(g_hPingHudWnd)) {
         DestroyWindow(g_hPingHudWnd);
         g_hPingHudWnd = nullptr;
@@ -123,19 +180,13 @@ void PingHudUI::Repaint() {
 
 void PingHudUI::Paint(HWND hwnd) {
     HDC screenDC = GetDC(nullptr);
-    HDC memDC = CreateCompatibleDC(screenDC);
-
-    BITMAPINFO bmi = {};
-    bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-    bmi.bmiHeader.biWidth = s_hudWidth;
-    bmi.bmiHeader.biHeight = -s_hudHeight; // top-down DIB
-    bmi.bmiHeader.biPlanes = 1;
-    bmi.bmiHeader.biBitCount = 32;
-    bmi.bmiHeader.biCompression = BI_RGB;
-
-    void* pBits = nullptr;
-    HBITMAP hBitmap = CreateDIBSection(screenDC, &bmi, DIB_RGB_COLORS, &pBits, nullptr, 0);
-    HBITMAP hOldBitmap = (HBITMAP)SelectObject(memDC, hBitmap);
+    EnsureHudBuffer(screenDC, s_hudWidth, s_hudHeight);
+    HDC memDC = s_hudMemDC;
+    if (!memDC) {
+        ReleaseDC(nullptr, screenDC);
+        return;
+    }
+    EnsureHudFonts();
 
     {
         Gdiplus::Graphics g(memDC);
@@ -183,10 +234,9 @@ void PingHudUI::Paint(HWND hwnd) {
             wchar_t pingStr[32];
             swprintf_s(pingStr, L"%dms", pingMs);
 
-            Gdiplus::Font fontPing(L"Segoe UI", 10.0f, Gdiplus::FontStyleBold);
             Gdiplus::SolidBrush textBrush(barActiveCol);
 
-            g.DrawString(pingStr, -1, &fontPing, Gdiplus::PointF(curX, 5.0f), &textBrush);
+            g.DrawString(pingStr, -1, s_hudFontPing, Gdiplus::PointF(curX, 5.0f), &textBrush);
 
             curX += 38.0f;
         }
@@ -240,8 +290,7 @@ void PingHudUI::Paint(HWND hwnd) {
             wchar_t onlineStr[32];
             swprintf_s(onlineStr, L"%u", g_onlineCount.load());
 
-            Gdiplus::Font fontOnline(L"Segoe UI", 9.5f, Gdiplus::FontStyleBold);
-            g.DrawString(onlineStr, -1, &fontOnline, Gdiplus::PointF(adminX + 13.0f, 5.0f), &adminBrush);
+            g.DrawString(onlineStr, -1, s_hudFontOnline, Gdiplus::PointF(adminX + 13.0f, 5.0f), &adminBrush);
         }
     }
 
@@ -255,10 +304,6 @@ void PingHudUI::Paint(HWND hwnd) {
     blend.AlphaFormat = AC_SRC_ALPHA;
 
     UpdateLayeredWindow(hwnd, screenDC, nullptr, &szWindow, memDC, &ptSrc, 0, &blend, ULW_ALPHA);
-
-    SelectObject(memDC, hOldBitmap);
-    DeleteObject(hBitmap);
-    DeleteDC(memDC);
     ReleaseDC(nullptr, screenDC);
 }
 

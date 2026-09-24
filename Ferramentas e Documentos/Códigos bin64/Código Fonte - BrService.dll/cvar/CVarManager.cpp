@@ -5,6 +5,8 @@
 #include <cstring>
 #include <algorithm>
 #include <atomic>
+#include <unordered_map>
+#include <string>
 
 namespace BrService {
 
@@ -83,6 +85,37 @@ static uintptr_t GetNativeCVar(uintptr_t pConsole, const char* name) {
     }
 }
 
+// Persistent CVar pointer cache to avoid CryEngine vtable string lookups
+static uintptr_t s_cachedConsole = 0;
+static std::unordered_map<std::string, uintptr_t> s_cvarCache;
+static SRWLOCK s_cvarCacheLock = SRWLOCK_INIT;
+
+static uintptr_t GetNativeCVarCached(uintptr_t pConsole, const char* name) {
+    if (!pConsole || !name) return 0;
+    AcquireSRWLockShared(&s_cvarCacheLock);
+    if (pConsole == s_cachedConsole) {
+        auto it = s_cvarCache.find(name);
+        if (it != s_cvarCache.end()) {
+            uintptr_t ptr = it->second;
+            ReleaseSRWLockShared(&s_cvarCacheLock);
+            return ptr;
+        }
+    }
+    ReleaseSRWLockShared(&s_cvarCacheLock);
+
+    uintptr_t pCVar = GetNativeCVar(pConsole, name);
+    if (pCVar) {
+        AcquireSRWLockExclusive(&s_cvarCacheLock);
+        if (pConsole != s_cachedConsole) {
+            s_cachedConsole = pConsole;
+            s_cvarCache.clear();
+        }
+        s_cvarCache[name] = pCVar;
+        ReleaseSRWLockExclusive(&s_cvarCacheLock);
+    }
+    return pCVar;
+}
+
 static bool ExecuteNativeCommand(const char* cmd) {
     uintptr_t pConsole = GetNativeConsole();
     if (!pConsole || !cmd || !cmd[0]) return false;
@@ -108,7 +141,7 @@ static bool SetNativeCVarFloat(const char* name, float val) {
 
     bool directSuccess = false;
     __try {
-        uintptr_t pCVar = GetNativeCVar(pConsole, name);
+        uintptr_t pCVar = GetNativeCVarCached(pConsole, name);
         if (pCVar && !IsBadReadPtr(reinterpret_cast<void*>(pCVar), sizeof(void*))) {
             // 1. Limpar flags restritivas como VF_READONLY (0x800) e 0x80000
             uint32_t* pFlags = reinterpret_cast<uint32_t*>(pCVar + 0x98);
@@ -160,7 +193,7 @@ static bool SetNativeCVarInt(const char* name, int val) {
 
     bool directSuccess = false;
     __try {
-        uintptr_t pCVar = GetNativeCVar(pConsole, name);
+        uintptr_t pCVar = GetNativeCVarCached(pConsole, name);
         if (pCVar && !IsBadReadPtr(reinterpret_cast<void*>(pCVar), sizeof(void*))) {
             // 1. Limpar flags restritivas como VF_READONLY (0x800) e 0x80000
             uint32_t* pFlags = reinterpret_cast<uint32_t*>(pCVar + 0x98);
@@ -336,6 +369,10 @@ void CVarManager::Shutdown() {
         DeleteCriticalSection(&g_cvarLock);
         g_csInitialized = false;
     }
+    AcquireSRWLockExclusive(&s_cvarCacheLock);
+    s_cvarCache.clear();
+    s_cachedConsole = 0;
+    ReleaseSRWLockExclusive(&s_cvarCacheLock);
 }
 
 void CVarManager::SetFov(float fov) {

@@ -14,12 +14,82 @@
 #include <cmath>
 #include <vector>
 #include <string>
+#include <unordered_map>
 
 namespace BrService {
 
 static const wchar_t* kDrawerClassName = L"BrService_DrawerModal";
 static int s_modalW = 760;
 static int s_modalH = 560;
+
+// Reusable DIB/DC buffer cache to eliminate per-frame allocations
+static HDC s_drawerMemDC = nullptr;
+static HBITMAP s_drawerBitmap = nullptr;
+static HBITMAP s_drawerOldBitmap = nullptr;
+static int s_drawerBufW = 0;
+static int s_drawerBufH = 0;
+
+static void EnsureDrawerBuffer(HDC screenDC, int width, int height) {
+    if (s_drawerMemDC && s_drawerBufW == width && s_drawerBufH == height) return;
+    if (s_drawerMemDC) {
+        if (s_drawerOldBitmap) SelectObject(s_drawerMemDC, s_drawerOldBitmap);
+        if (s_drawerBitmap) DeleteObject(s_drawerBitmap);
+        DeleteDC(s_drawerMemDC);
+    }
+    s_drawerMemDC = CreateCompatibleDC(screenDC);
+    BITMAPINFO bmi = {};
+    bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+    bmi.bmiHeader.biWidth = width;
+    bmi.bmiHeader.biHeight = -height;
+    bmi.bmiHeader.biPlanes = 1;
+    bmi.bmiHeader.biBitCount = 32;
+    bmi.bmiHeader.biCompression = BI_RGB;
+    void* pvBits = nullptr;
+    s_drawerBitmap = CreateDIBSection(screenDC, &bmi, DIB_RGB_COLORS, &pvBits, NULL, 0);
+    s_drawerOldBitmap = (HBITMAP)SelectObject(s_drawerMemDC, s_drawerBitmap);
+    s_drawerBufW = width;
+    s_drawerBufH = height;
+}
+
+static void ReleaseDrawerBuffer() {
+    if (s_drawerMemDC) {
+        if (s_drawerOldBitmap) SelectObject(s_drawerMemDC, s_drawerOldBitmap);
+        if (s_drawerBitmap) DeleteObject(s_drawerBitmap);
+        DeleteDC(s_drawerMemDC);
+    }
+    s_drawerMemDC = nullptr;
+    s_drawerBitmap = nullptr;
+    s_drawerOldBitmap = nullptr;
+    s_drawerBufW = s_drawerBufH = 0;
+}
+
+// Persistent Segoe UI font cache to eliminate DirectWrite/GDI churn
+struct DrawerFontKey {
+    int sizeX10;
+    bool bold;
+    bool operator==(const DrawerFontKey& o) const { return sizeX10 == o.sizeX10 && bold == o.bold; }
+};
+struct DrawerFontKeyHash {
+    size_t operator()(const DrawerFontKey& k) const { return (size_t)(k.sizeX10 * 2 + (k.bold ? 1 : 0)); }
+};
+static std::unordered_map<DrawerFontKey, Gdiplus::Font*, DrawerFontKeyHash> s_drawerFontCache;
+
+static Gdiplus::Font* GetSegoeFont(float size, bool bold = false) {
+    DrawerFontKey k = { (int)(size * 10.0f + 0.5f), bold };
+    auto it = s_drawerFontCache.find(k);
+    if (it != s_drawerFontCache.end()) return it->second;
+
+    Gdiplus::Font* font = new Gdiplus::Font(L"Segoe UI", size, bold ? Gdiplus::FontStyleBold : Gdiplus::FontStyleRegular);
+    s_drawerFontCache[k] = font;
+    return font;
+}
+
+static void ReleaseDrawerFonts() {
+    for (auto& pair : s_drawerFontCache) {
+        delete pair.second;
+    }
+    s_drawerFontCache.clear();
+}
 
 enum class DrawerTab { Display = 0, DpsMeter, ComboUi, Engine, Advanced };
 static DrawerTab s_activeTab = DrawerTab::Display;
@@ -290,6 +360,8 @@ bool DrawerModalUI::Initialize(HINSTANCE hInst) {
 
 void DrawerModalUI::Shutdown() {
     IconManager::Shutdown();
+    ReleaseDrawerBuffer();
+    ReleaseDrawerFonts();
     if (g_hDrawerModalWnd && IsWindow(g_hDrawerModalWnd)) {
         DestroyWindow(g_hDrawerModalWnd);
         g_hDrawerModalWnd = nullptr;
@@ -415,18 +487,12 @@ void DrawerModalUI::Repaint() {
 
 void DrawerModalUI::Paint(HWND hwnd) {
     HDC sc = GetDC(nullptr);
-    HDC mc = CreateCompatibleDC(sc);
-    BITMAPINFO bmi = {};
-    bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-    bmi.bmiHeader.biWidth = s_modalW;
-    bmi.bmiHeader.biHeight = -s_modalH;
-    bmi.bmiHeader.biPlanes = 1;
-    bmi.bmiHeader.biBitCount = 32;
-    bmi.bmiHeader.biCompression = BI_RGB;
-
-    void* pb = nullptr;
-    HBITMAP hB = CreateDIBSection(sc, &bmi, DIB_RGB_COLORS, &pb, nullptr, 0);
-    HBITMAP hOB = (HBITMAP)SelectObject(mc, hB);
+    EnsureDrawerBuffer(sc, s_modalW, s_modalH);
+    HDC mc = s_drawerMemDC;
+    if (!mc) {
+        ReleaseDC(nullptr, sc);
+        return;
+    }
 
     {
         Gdiplus::Graphics g(mc);
@@ -465,8 +531,8 @@ void DrawerModalUI::Paint(HWND hwnd) {
             g.DrawLine(&ip, iX + 13, iY + 8, iX + 13, iY + 18);
         }
 
-        Gdiplus::Font fT(L"Segoe UI", 11, Gdiplus::FontStyleBold);
-        Gdiplus::Font fS(L"Segoe UI", 7.8f, Gdiplus::FontStyleRegular);
+        Gdiplus::Font& fT = *GetSegoeFont(11.0f, true);
+        Gdiplus::Font& fS = *GetSegoeFont(7.8f, false);
         g.DrawString(L"ACADEMY SHOW", -1, &fT, Gdiplus::PointF(iX + iS + 10, cY + 9), &bTD);
         g.DrawString(L"DPS Meter & Combat Metrics", -1, &fS, Gdiplus::PointF(iX + iS + 10, cY + 25), &bTM);
 
@@ -476,7 +542,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
             UICommon::FillRoundRectangle(g, &bb, (float)bx, (float)by, 24, 24, 5);
             Gdiplus::Pen bp2(cBr, 1);
             UICommon::DrawRoundRectangle(g, &bp2, (float)bx, (float)by, 24, 24, 5);
-            Gdiplus::Font bf(L"Segoe UI", 8.5f, Gdiplus::FontStyleBold);
+            Gdiplus::Font& bf = *GetSegoeFont(8.5f, true);
             Gdiplus::StringFormat sf;
             sf.SetAlignment(Gdiplus::StringAlignmentCenter);
             sf.SetLineAlignment(Gdiplus::StringAlignmentCenter);
@@ -502,8 +568,8 @@ void DrawerModalUI::Paint(HWND hwnd) {
             { DrawerTab::Advanced, L"Advanced", L"\u26A1", &s_tabAdvancedRect }
         };
 
-        Gdiplus::Font ftb(L"Segoe UI", 8.2f, Gdiplus::FontStyleRegular);
-        Gdiplus::Font ftbb(L"Segoe UI", 8.2f, Gdiplus::FontStyleBold);
+        Gdiplus::Font& ftb = *GetSegoeFont(8.2f, false);
+        Gdiplus::Font& ftbb = *GetSegoeFont(8.2f, true);
         float ctY = sY + 4;
 
         for (auto& n : nvs) {
@@ -530,7 +596,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
             UICommon::FillRoundRectangle(g, &rb, (float)s_resetDefaultsRect.left, (float)s_resetDefaultsRect.top, sW, 24, 4);
             Gdiplus::Pen rp(cBr, 1);
             UICommon::DrawRoundRectangle(g, &rp, (float)s_resetDefaultsRect.left, (float)s_resetDefaultsRect.top, sW, 24, 4);
-            Gdiplus::Font fr(L"Segoe UI", 7.2f, Gdiplus::FontStyleRegular);
+            Gdiplus::Font& fr = *GetSegoeFont(7.2f, false);
             Gdiplus::StringFormat cf;
             cf.SetAlignment(Gdiplus::StringAlignmentCenter);
             cf.SetLineAlignment(Gdiplus::StringAlignmentCenter);
@@ -539,9 +605,9 @@ void DrawerModalUI::Paint(HWND hwnd) {
 
         // ================= MAIN CONTENT AREA =================
         float mX = sX + sW + 14, mY = sY + 2, mW2 = (cX + cW - 10) - mX, mH2 = sH - 4;
-        Gdiplus::Font fCT(L"Segoe UI", 8.2f, Gdiplus::FontStyleBold);
-        Gdiplus::Font fLb(L"Segoe UI", 7.8f, Gdiplus::FontStyleRegular);
-        Gdiplus::Font fSb(L"Segoe UI", 7.2f, Gdiplus::FontStyleRegular);
+        Gdiplus::Font& fCT = *GetSegoeFont(8.2f, true);
+        Gdiplus::Font& fLb = *GetSegoeFont(7.8f, false);
+        Gdiplus::Font& fSb = *GetSegoeFont(7.2f, false);
         Gdiplus::StringFormat cf2;
         cf2.SetAlignment(Gdiplus::StringAlignmentCenter);
         cf2.SetLineAlignment(Gdiplus::StringAlignmentCenter);
@@ -577,7 +643,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
             Gdiplus::Pen p2(ac ? cBl : cBr, 1);
             UICommon::DrawRoundRectangle(g, &p2, px, py, pw, ph, 4);
             Gdiplus::SolidBrush t(ac ? cCd : cTD);
-            Gdiplus::Font f(L"Segoe UI", 7.2f, ac ? Gdiplus::FontStyleBold : Gdiplus::FontStyleRegular);
+            Gdiplus::Font& f = *GetSegoeFont(7.2f, ac);
             g.DrawString(tx, -1, &f, Gdiplus::RectF(px, py + 2, pw, ph - 4), &cf2, &t);
         };
 
@@ -616,8 +682,8 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 UICommon::DrawRoundRectangle(g, &p2, px, py, pw, ph, 4);
                 Gdiplus::SolidBrush tt(ac ? cCd : cTD);
                 Gdiplus::SolidBrush ts(ac ? Gdiplus::Color(220, 240, 255) : cTM);
-                Gdiplus::Font ft(L"Segoe UI", 7.2f, ac ? Gdiplus::FontStyleBold : Gdiplus::FontStyleRegular);
-                Gdiplus::Font fs2(L"Segoe UI", 6.2f, Gdiplus::FontStyleRegular);
+                Gdiplus::Font& ft = *GetSegoeFont(7.2f, ac);
+                Gdiplus::Font& fs2 = *GetSegoeFont(6.2f, false);
                 g.DrawString(title, -1, &ft, Gdiplus::RectF(px, py + 2, pw, 13), &cf2, &tt);
                 g.DrawString(sub, -1, &fs2, Gdiplus::RectF(px, py + 15, pw, 12), &cf2, &ts);
             };
@@ -672,7 +738,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 UICommon::FillRoundRectangle(g, &rb, (float)s_resetDefaultsRect.left, (float)s_resetDefaultsRect.top, bW_half, 26, 5);
                 Gdiplus::Pen rp(cBr, 1);
                 UICommon::DrawRoundRectangle(g, &rp, (float)s_resetDefaultsRect.left, (float)s_resetDefaultsRect.top, bW_half, 26, 5);
-                Gdiplus::Font fr(L"Segoe UI", 7.2f, Gdiplus::FontStyleRegular);
+                Gdiplus::Font& fr = *GetSegoeFont(7.2f, false);
                 g.DrawString(L"Reset to Default", -1, &fr, Gdiplus::RectF((float)s_resetDefaultsRect.left, (float)s_resetDefaultsRect.top, bW_half, 26), &cf2, &bTM);
             }
 
@@ -680,7 +746,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
             {
                 Gdiplus::SolidBrush sb(cBl);
                 UICommon::FillRoundRectangle(g, &sb, (float)s_saveSettingsBtnRect.left, (float)s_saveSettingsBtnRect.top, bW_half, 26, 5);
-                Gdiplus::Font sf2(L"Segoe UI", 7.5f, Gdiplus::FontStyleBold);
+                Gdiplus::Font& sf2 = *GetSegoeFont(7.5f, true);
                 g.DrawString(L"\u2713 Save & Close", -1, &sf2, Gdiplus::RectF((float)s_saveSettingsBtnRect.left, (float)s_saveSettingsBtnRect.top, bW_half, 26), &cf2, &bWh);
             }
 
@@ -708,9 +774,9 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 UICommon::FillRoundRectangle(g, &mb, mx2, c2Y, mWm, 44, 5);
                 Gdiplus::Pen mp(cBr, 1);
                 UICommon::DrawRoundRectangle(g, &mp, mx2, c2Y, mWm, 44, 5);
-                Gdiplus::Font fl(L"Segoe UI", 6.8f, Gdiplus::FontStyleRegular);
+                Gdiplus::Font& fl = *GetSegoeFont(6.8f, false);
                 g.DrawString(lb, -1, &fl, Gdiplus::PointF(mx2 + 6, c2Y + 4), &bTM);
-                Gdiplus::Font fv(L"Segoe UI", 10.5f, Gdiplus::FontStyleBold);
+                Gdiplus::Font& fv = *GetSegoeFont(10.5f, true);
                 g.DrawString(vl.c_str(), -1, &fv, Gdiplus::PointF(mx2 + 6, c2Y + 18), &bTD);
             };
 
@@ -733,7 +799,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
                     auto& sk = g_skillBreakdown[i];
                     float p = tb > 0 ? (float)sk.totalDamage / tb * 100.0f : 0.0f;
                     IconManager::DrawSkillIcon(g, c2X, c2Y + 1, 13, sk.skillId, sk.skillName);
-                    Gdiplus::Font fsk(L"Segoe UI", 7.2f, Gdiplus::FontStyleRegular);
+                    Gdiplus::Font& fsk = *GetSegoeFont(7.2f, false);
                     g.DrawString(UICommon::Utf8ToWide(sk.skillName).c_str(), -1, &fsk, Gdiplus::PointF(c2X + 17, c2Y), &bTD);
                     float bSX = c2X + c2W * 0.45f, bMW = c2W * 0.26f, bW = bMW * std::clamp(p / 100.0f, 0.05f, 1.0f);
                     Gdiplus::SolidBrush bg2(cBr);
@@ -747,7 +813,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
                     c2Y += 16;
                 }
             } else {
-                Gdiplus::Font fn(L"Segoe UI", 7.5f, Gdiplus::FontStyleRegular);
+                Gdiplus::Font& fn = *GetSegoeFont(7.5f, false);
                 g.DrawString(L"Awaiting combat...", -1, &fn, Gdiplus::PointF(c2X, c2Y), &bTM);
                 c2Y += 16;
             }
@@ -759,7 +825,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
             size_t tSz = g_combatTimeline.size();
             size_t nLog = std::min(tSz, (size_t)5);
             if (nLog > 0) {
-                Gdiplus::Font fLg(L"Segoe UI", 6.8f, Gdiplus::FontStyleRegular);
+                Gdiplus::Font& fLg = *GetSegoeFont(6.8f, false);
                 for (size_t i = 0; i < nLog; ++i) {
                     const auto& ev = g_combatTimeline[tSz - nLog + i];
                     IconManager::DrawSkillIcon(g, c2X, c2Y + 1, 11, ev.skillId, ev.skillName);
@@ -773,7 +839,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
                     c2Y += 13;
                 }
             } else {
-                Gdiplus::Font fn(L"Segoe UI", 7.0f, Gdiplus::FontStyleRegular);
+                Gdiplus::Font& fn = *GetSegoeFont(7.0f, false);
                 g.DrawString(L"No events recorded.", -1, &fn, Gdiplus::PointF(c2X, c2Y), &bTM);
             }
 
@@ -783,7 +849,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 UICommon::FillRoundRectangle(g, &rb2, (float)s_resetCombatBtnRect.left, (float)s_resetCombatBtnRect.top, c2W, 26, 5);
                 Gdiplus::Pen rp2(cBr, 1);
                 UICommon::DrawRoundRectangle(g, &rp2, (float)s_resetCombatBtnRect.left, (float)s_resetCombatBtnRect.top, c2W, 26, 5);
-                Gdiplus::Font frs(L"Segoe UI", 8.2f, Gdiplus::FontStyleBold);
+                Gdiplus::Font& frs = *GetSegoeFont(8.2f, true);
                 g.DrawString(L"\u21BA Reset Combat", -1, &frs, Gdiplus::RectF((float)s_resetCombatBtnRect.left, (float)s_resetCombatBtnRect.top, c2W, 26), &cf2, &bTD);
             }
 
@@ -811,12 +877,12 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 // Nome do NPC em maiúsculas
                 std::wstring tcN = UICommon::Utf8ToWide(g_currentTarget.name);
                 std::transform(tcN.begin(), tcN.end(), tcN.begin(), ::towupper);
-                Gdiplus::Font ftn(L"Segoe UI", 8.0f, Gdiplus::FontStyleBold);
+                Gdiplus::Font& ftn = *GetSegoeFont(8.0f, true);
                 g.DrawString(tcN.c_str(), -1, &ftn, Gdiplus::PointF(tX2 + 8, tY2 + 6), &bTD);
 
                 // Botão 'x' fechar
                 s_targetCardCloseRect = { (int)(tX2 + tW - 18), (int)(tY2 + 5), (int)(tX2 + tW - 4), (int)(tY2 + 19) };
-                Gdiplus::Font fcl(L"Segoe UI", 7.5f, Gdiplus::FontStyleRegular);
+                Gdiplus::Font& fcl = *GetSegoeFont(7.5f, false);
                 g.DrawString(L"\u00D7", -1, &fcl, Gdiplus::PointF(tX2 + tW - 16, tY2 + 4), &bTM);
 
                 // Subtítulo: Rank (nível) – Tipo (rating ou NPC)
@@ -830,7 +896,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
                     }
                     swprintf_s(subT, L"Rank %u \u2013 %ls", g_currentTarget.level, mobType.c_str());
                 }
-                Gdiplus::Font fsub(L"Segoe UI", 7.0f, Gdiplus::FontStyleRegular);
+                Gdiplus::Font& fsub = *GetSegoeFont(7.0f, false);
                 g.DrawString(subT, -1, &fsub, Gdiplus::PointF(tX2 + 8, tY2 + 22), &bTM);
 
                 // Barra de HP vermelha arredondada
@@ -844,7 +910,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 }
                 wchar_t hpT[32];
                 swprintf_s(hpT, L"%.0f%%", hF * 100.0f);
-                Gdiplus::Font fhp(L"Segoe UI", 7.2f, Gdiplus::FontStyleBold);
+                Gdiplus::Font& fhp = *GetSegoeFont(7.2f, true);
                 g.DrawString(hpT, -1, &fhp, Gdiplus::RectF(hX, hY2 + 1, hW, hH), &cf2, &bWh);
 
                 // Tooltip ao passar o mouse
@@ -859,8 +925,8 @@ void DrawerModalUI::Paint(HWND hwnd) {
                     Gdiplus::Pen tipBorder(cBl, 1.2f);
                     UICommon::DrawRoundRectangle(g, &tipBorder, tipX, tipY, tipW, tipH, 6);
 
-                    Gdiplus::Font fTipT(L"Segoe UI", 7.8f, Gdiplus::FontStyleBold);
-                    Gdiplus::Font fTipB(L"Segoe UI", 7.0f, Gdiplus::FontStyleRegular);
+                    Gdiplus::Font& fTipT = *GetSegoeFont(7.8f, true);
+                    Gdiplus::Font& fTipB = *GetSegoeFont(7.0f, false);
                     Gdiplus::SolidBrush tipText(Gdiplus::Color(255, 240, 245, 255));
                     Gdiplus::SolidBrush tipSub(Gdiplus::Color(255, 160, 175, 200));
 
@@ -943,9 +1009,9 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 UICommon::FillRoundRectangle(g, &mb, mx2, y, mWm, 44, 5);
                 Gdiplus::Pen mp(cBr, 1);
                 UICommon::DrawRoundRectangle(g, &mp, mx2, y, mWm, 44, 5);
-                Gdiplus::Font fl(L"Segoe UI", 6.8f, Gdiplus::FontStyleRegular);
+                Gdiplus::Font& fl = *GetSegoeFont(6.8f, false);
                 g.DrawString(lb, -1, &fl, Gdiplus::PointF(mx2 + 6, y + 4), &bTM);
-                Gdiplus::Font fv(L"Segoe UI", 11.5f, Gdiplus::FontStyleBold);
+                Gdiplus::Font& fv = *GetSegoeFont(11.5f, true);
                 g.DrawString(vl.c_str(), -1, &fv, Gdiplus::PointF(mx2 + 6, y + 18), &bTD);
             };
 
@@ -972,7 +1038,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
                     auto& sk = curSkills[i];
                     float p = tb > 0 ? (float)sk.totalDamage / tb * 100.0f : 0.0f;
                     IconManager::DrawSkillIcon(g, mX + co, ry + 1, 13, sk.skillId, sk.skillName);
-                    Gdiplus::Font fs(L"Segoe UI", 7.2f, Gdiplus::FontStyleRegular);
+                    Gdiplus::Font& fs = *GetSegoeFont(7.2f, false);
                     g.DrawString(UICommon::Utf8ToWide(sk.skillName).c_str(), -1, &fs, Gdiplus::PointF(mX + co + 16, ry), &bTD);
                     wchar_t pb[16];
                     swprintf_s(pb, L"%.1f%%", p);
@@ -980,7 +1046,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 }
                 y += ((sc2 + 1) / 2) * 18.0f + 6;
             } else {
-                Gdiplus::Font fn(L"Segoe UI", 7.5f, Gdiplus::FontStyleRegular);
+                Gdiplus::Font& fn = *GetSegoeFont(7.5f, false);
                 g.DrawString(L"No skill data yet.", -1, &fn, Gdiplus::PointF(mX, y), &bTM);
                 y += 18;
             }
@@ -992,13 +1058,13 @@ void DrawerModalUI::Paint(HWND hwnd) {
             y += 16;
             size_t tSz = curTimeline.size();
             if (!tSz) {
-                Gdiplus::Font fn(L"Segoe UI", 7.5f, Gdiplus::FontStyleRegular);
+                Gdiplus::Font& fn = *GetSegoeFont(7.5f, false);
                 g.DrawString(L"No events yet.", -1, &fn, Gdiplus::PointF(mX, y), &bTM);
             } else {
                 int si = (tSz > 7) ? (int)(tSz - 7) : 0;
                 for (int i = si; i < (int)tSz && y < mY + mH2 - 34; ++i) {
                     auto& ev = curTimeline[i];
-                    Gdiplus::Font fl(L"Segoe UI", 6.8f, Gdiplus::FontStyleRegular);
+                    Gdiplus::Font& fl = *GetSegoeFont(6.8f, false);
 
                     // Badge de direção do dano
                     if (ev.isIncoming) {
@@ -1028,7 +1094,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
             {
                 Gdiplus::SolidBrush drb(cBl);
                 UICommon::FillRoundRectangle(g, &drb, (float)s_dpsResetRect.left, (float)s_dpsResetRect.top, mW2, 26, 5);
-                Gdiplus::Font drf(L"Segoe UI", 8.2f, Gdiplus::FontStyleBold);
+                Gdiplus::Font& drf = *GetSegoeFont(8.2f, true);
                 g.DrawString(L"\u21BA Reset Combat Session (Salvar & Limpar)", -1, &drf, Gdiplus::RectF((float)s_dpsResetRect.left, (float)s_dpsResetRect.top, mW2, 26), &cf2, &bWh);
             }
         }
@@ -1081,7 +1147,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
             {
                 std::lock_guard<std::recursive_mutex> lk2(g_combatMutex);
                 if (g_combatTimeline.empty()) {
-                    Gdiplus::Font fn(L"Segoe UI", 7.5f, Gdiplus::FontStyleRegular);
+                    Gdiplus::Font& fn = *GetSegoeFont(7.5f, false);
                     g.DrawString(L"No combo data yet.", -1, &fn, Gdiplus::PointF(c2X, c2Y), &bTM);
                 } else {
                     g.DrawString(L"Recent Skill Chain:", -1, &fLb, Gdiplus::PointF(c2X, c2Y), &bTD);
@@ -1089,7 +1155,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
                     int si = (int)g_combatTimeline.size() > 8 ? (int)g_combatTimeline.size() - 8 : 0;
                     for (int i = si; i < (int)g_combatTimeline.size() && c2Y < mY + mH2 - 30; ++i) {
                         auto& ev = g_combatTimeline[i];
-                        Gdiplus::Font fl(L"Segoe UI", 7, Gdiplus::FontStyleRegular);
+                        Gdiplus::Font& fl = *GetSegoeFont(7.0f, false);
                         IconManager::DrawSkillIcon(g, c2X, c2Y, 12, ev.skillId, ev.skillName);
                         g.DrawString(UICommon::Utf8ToWide(ev.skillName).c_str(), -1, &fl, Gdiplus::PointF(c2X + 15, c2Y), &bTD);
                         Gdiplus::SolidBrush db3(ev.isCrit ? UICommon::ColGoldAccent : cTM);
@@ -1163,7 +1229,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 Gdiplus::Pen ap2(a ? cBl : cBr, 1);
                 UICommon::DrawRoundRectangle(g, &ap2, (float)s_engAnisoToggleRect.left, (float)c2Y, 50, 22, 4);
                 Gdiplus::SolidBrush at(a ? cCd : cTD);
-                Gdiplus::Font af(L"Segoe UI", 7, Gdiplus::FontStyleBold);
+                Gdiplus::Font& af = *GetSegoeFont(7.0f, true);
                 g.DrawString(a ? L"16x" : L"OFF", -1, &af, Gdiplus::RectF((float)s_engAnisoToggleRect.left, (float)c2Y + 2, 50, 18), &cf2, &at);
             }
             c2Y += 32;
@@ -1173,7 +1239,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 UICommon::FillRoundRectangle(g, &ib2, c2X, c2Y, c2W, 66, 6);
                 Gdiplus::Pen ip2(cBr, 1);
                 UICommon::DrawRoundRectangle(g, &ip2, c2X, c2Y, c2W, 66, 6);
-                Gdiplus::Font fi(L"Segoe UI", 7, Gdiplus::FontStyleRegular);
+                Gdiplus::Font& fi = *GetSegoeFont(7.0f, false);
                 float iy = c2Y + 6;
                 g.DrawString(L"Comandos aplicados diretamente em memoria.", -1, &fi, Gdiplus::PointF(c2X + 8, iy), &bTM);
                 iy += 14;
@@ -1237,7 +1303,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
                     Gdiplus::Pen np(cBr, 1);
                     UICommon::DrawRoundRectangle(g, &np, tx, c1Y, thW, thH - 14, 4);
                 }
-                Gdiplus::Font tf(L"Segoe UI", 6.8f, ac ? Gdiplus::FontStyleBold : Gdiplus::FontStyleRegular);
+                Gdiplus::Font& tf = *GetSegoeFont(6.8f, ac);
                 Gdiplus::SolidBrush tt(cTD);
                 g.DrawString(ths[i].nm, -1, &tf, Gdiplus::RectF(tx, c1Y + thH - 14, thW, 13), &cf2, &tt);
             }
@@ -1248,7 +1314,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
             c1Y += 18;
             c1Y = dTR(s_advPinnedToggle, mX, c1Y, c1W, L"PINNED Mode", g_drawerPinned.load());
             {
-                Gdiplus::Font fsSub(L"Segoe UI", 6.8f, Gdiplus::FontStyleRegular);
+                Gdiplus::Font& fsSub = *GetSegoeFont(6.8f, false);
                 g.DrawString(L"Se ativo: trava arrasto dentro do jogo e oculta ao perder foco.", -1, &fsSub, Gdiplus::PointF(mX, c1Y - 4), &bTM);
                 c1Y += 14;
             }
@@ -1282,9 +1348,6 @@ void DrawerModalUI::Paint(HWND hwnd) {
     bl.AlphaFormat = AC_SRC_ALPHA;
 
     UpdateLayeredWindow(hwnd, sc, nullptr, &szW, mc, &pts, 0, &bl, ULW_ALPHA);
-    SelectObject(mc, hOB);
-    DeleteObject(hB);
-    DeleteDC(mc);
     ReleaseDC(nullptr, sc);
 }
 

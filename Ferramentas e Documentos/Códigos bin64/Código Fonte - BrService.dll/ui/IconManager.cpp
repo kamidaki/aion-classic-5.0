@@ -16,6 +16,9 @@ std::wstring IconManager::s_gameTexturesDir;
 std::unordered_map<std::string, std::string> IconManager::s_skillNameToIconFile;
 std::unordered_map<uint32_t, std::string> IconManager::s_skillIdToIconFile;
 std::unordered_map<std::wstring, Gdiplus::Bitmap*> IconManager::s_bitmapCache;
+std::unordered_map<uint32_t, std::wstring> IconManager::s_resolvedPathCacheById;
+std::unordered_map<std::string, std::wstring> IconManager::s_resolvedPathCacheByName;
+std::unordered_map<std::string, std::wstring> IconManager::s_classIconPathCache;
 std::mutex IconManager::s_cacheMutex;
 bool IconManager::s_initialized = false;
 
@@ -261,6 +264,9 @@ void IconManager::Shutdown() {
         }
     }
     s_bitmapCache.clear();
+    s_resolvedPathCacheById.clear();
+    s_resolvedPathCacheByName.clear();
+    s_classIconPathCache.clear();
     s_skillNameToIconFile.clear();
     s_skillIdToIconFile.clear();
     s_initialized = false;
@@ -341,11 +347,32 @@ void IconManager::LoadSkillDatabase() {
 std::wstring IconManager::GetSkillIconPath(const std::string& skillName, uint32_t skillId) {
     if (!s_initialized) Initialize();
 
+    {
+        std::lock_guard<std::mutex> lock(s_cacheMutex);
+        if (skillId > 0) {
+            auto it = s_resolvedPathCacheById.find(skillId);
+            if (it != s_resolvedPathCacheById.end()) return it->second;
+        }
+        if (!skillName.empty()) {
+            auto it = s_resolvedPathCacheByName.find(skillName);
+            if (it != s_resolvedPathCacheByName.end()) return it->second;
+        }
+    }
+
+    auto cacheAndReturn = [&](const std::wstring& path) -> std::wstring {
+        if (!path.empty()) {
+            std::lock_guard<std::mutex> lock(s_cacheMutex);
+            if (skillId > 0) s_resolvedPathCacheById[skillId] = path;
+            if (!skillName.empty()) s_resolvedPathCacheByName[skillName] = path;
+        }
+        return path;
+    };
+
     // Auto attack
     if (skillId == 0 || skillName == "Auto Attack" || skillName == "Ataque Normal" ||
         skillName.find("Auto Attack") != std::string::npos || skillName.find("Magic Attack") != std::string::npos) {
         std::wstring autoAtk = ResolveExistingIcon("icon_action_operation.png");
-        if (!autoAtk.empty()) return autoAtk;
+        if (!autoAtk.empty()) return cacheAndReturn(autoAtk);
     }
 
     std::string iconFilename;
@@ -379,12 +406,12 @@ std::wstring IconManager::GetSkillIconPath(const std::string& skillName, uint32_
 
     if (!iconFilename.empty()) {
         std::wstring resolved = ResolveExistingIcon(iconFilename);
-        if (!resolved.empty()) return resolved;
+        if (!resolved.empty()) return cacheAndReturn(resolved);
     }
 
     // Fallback padrão
     std::wstring fallback = ResolveExistingIcon("icon_action_operation.png");
-    if (!fallback.empty()) return fallback;
+    if (!fallback.empty()) return cacheAndReturn(fallback);
 
     return L"";
 }
@@ -418,16 +445,31 @@ static std::string NormalizeClassName(const std::string& raw) {
 
 std::wstring IconManager::GetClassIconPath(const std::string& className) {
     if (!s_initialized) Initialize();
+
+    {
+        std::lock_guard<std::mutex> lock(s_cacheMutex);
+        auto it = s_classIconPathCache.find(className);
+        if (it != s_classIconPathCache.end()) return it->second;
+    }
+
     std::string norm = NormalizeClassName(className);
     std::wstring wClass(norm.begin(), norm.end());
 
+    std::wstring res;
     std::wstring pPng = s_baseIconDir + L"\\classes\\" + wClass + L".png";
-    if (FileExists(pPng)) return pPng;
+    if (FileExists(pPng)) {
+        res = pPng;
+    } else {
+        std::wstring pDds = s_baseIconDir + L"\\classes\\" + wClass + L".dds";
+        if (FileExists(pDds)) res = pDds;
+        else res = pPng;
+    }
 
-    std::wstring pDds = s_baseIconDir + L"\\classes\\" + wClass + L".dds";
-    if (FileExists(pDds)) return pDds;
-
-    return pPng;
+    {
+        std::lock_guard<std::mutex> lock(s_cacheMutex);
+        s_classIconPathCache[className] = res;
+    }
+    return res;
 }
 
 Gdiplus::Bitmap* IconManager::GetOrLoadBitmap(const std::wstring& fullPath) {

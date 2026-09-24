@@ -293,8 +293,20 @@ static inline bool IsValidUserPointer(uintptr_t addr) {
 #endif
 }
 
+static std::atomic<uint32_t> s_cachedPlayerId{ 0 };
+static std::string s_cachedPlayerName;
+static SRWLOCK s_playerIdentityLock = SRWLOCK_INIT;
+
 uint32_t GetLocalPlayerObjectId() {
-    if (!g_isInWorld.load() || g_isLoadingScreen.load()) return 0;
+    if (!g_isInWorld.load() || g_isLoadingScreen.load()) {
+        s_cachedPlayerId.store(0, std::memory_order_relaxed);
+        return 0;
+    }
+    uint32_t cached = s_cachedPlayerId.load(std::memory_order_relaxed);
+    if (cached != 0) {
+        return cached;
+    }
+
     uintptr_t hG = (uintptr_t)GetModuleHandleA("Game.dll");
     if (!hG) return 0;
     __try {
@@ -311,7 +323,11 @@ uint32_t GetLocalPlayerObjectId() {
         if (!IsValidUserPointer(pPlayer)) return 0;
         uintptr_t pPE = *(uintptr_t*)(pPlayer + 0x378);
         if (!IsValidUserPointer(pPE)) return 0;
-        return *(uint32_t*)(pPE + 0x24);
+        uint32_t id = *(uint32_t*)(pPE + 0x24);
+        if (id > 0) {
+            s_cachedPlayerId.store(id, std::memory_order_relaxed);
+        }
+        return id;
     } __except (EXCEPTION_EXECUTE_HANDLER) {
         return 0;
     }
@@ -353,8 +369,26 @@ static bool ReadPlayerNameRaw(char* outBuf, size_t bufSize) {
 }
 
 std::string GetLocalPlayerName() {
+    if (!g_isInWorld.load() || g_isLoadingScreen.load()) {
+        AcquireSRWLockExclusive(&s_playerIdentityLock);
+        s_cachedPlayerName.clear();
+        ReleaseSRWLockExclusive(&s_playerIdentityLock);
+        return "";
+    }
+
+    AcquireSRWLockShared(&s_playerIdentityLock);
+    if (!s_cachedPlayerName.empty()) {
+        std::string res = s_cachedPlayerName;
+        ReleaseSRWLockShared(&s_playerIdentityLock);
+        return res;
+    }
+    ReleaseSRWLockShared(&s_playerIdentityLock);
+
     char buf[128] = { 0 };
     if (ReadPlayerNameRaw(buf, sizeof(buf))) {
+        AcquireSRWLockExclusive(&s_playerIdentityLock);
+        s_cachedPlayerName = buf;
+        ReleaseSRWLockExclusive(&s_playerIdentityLock);
         return std::string(buf);
     }
     return "";

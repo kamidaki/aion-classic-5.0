@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <unordered_set>
 #include <mutex>
+#include <atomic>
 #include "exports.h"
 #include "detours.h"
 #include "siel_hammer_fix.h"
@@ -213,7 +214,13 @@ static void BypassCountryCheckInCryEngineModule(HMODULE hMod) {
     }
 }
 
+static std::atomic<bool> s_allTargetModulesPatched{ false };
+
 static void PatchAllLoadedLanguageModules() {
+    if (s_allTargetModulesPatched.load(std::memory_order_relaxed)) {
+        return;
+    }
+
     static const wchar_t* const moduleNames[] = {
         L"crysystem.dll",
         L"cryfont.dll",
@@ -234,9 +241,11 @@ static void PatchAllLoadedLanguageModules() {
         PatchLanguageTableInModule(hMain);
         BypassCountryCheckInCryEngineModule(hMain);
     }
+    size_t loadedTargetCount = 0;
     for (const wchar_t* name : moduleNames) {
         HMODULE h = GetModuleHandleW(name);
         if (h) {
+            loadedTargetCount++;
             if (_wcsicmp(name, L"game.dll") == 0) {
                 InstallSielHammerFix(h);
                 InstallQunaFix(h);
@@ -244,6 +253,9 @@ static void PatchAllLoadedLanguageModules() {
             PatchLanguageTableInModule(h);
             BypassCountryCheckInCryEngineModule(h);
         }
+    }
+    if (hMain && loadedTargetCount == _countof(moduleNames)) {
+        s_allTargetModulesPatched.store(true, std::memory_order_release);
     }
 }
 
@@ -532,6 +544,9 @@ BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID l
         HANDLE hLangThread = CreateThread(nullptr, 0, [](LPVOID) -> DWORD {
             for (int i = 0; i < 300; i++) {
                 PatchAllLoadedLanguageModules();
+                if (s_allTargetModulesPatched.load(std::memory_order_relaxed)) {
+                    break;
+                }
                 Sleep(100);
             }
             return 0;

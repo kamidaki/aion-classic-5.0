@@ -38,6 +38,9 @@ private:
     static std::unordered_map<std::string, std::string> s_skillNameToIconFile;
     static std::unordered_map<uint32_t, std::string> s_skillIdToIconFile;
     static std::unordered_map<std::wstring, Gdiplus::Bitmap*> s_bitmapCache;
+    static std::unordered_map<uint32_t, std::wstring> s_resolvedPathCacheById;
+    static std::unordered_map<std::string, std::wstring> s_resolvedPathCacheByName;
+    static std::unordered_map<std::string, std::wstring> s_classIconPathCache;
     static std::mutex s_cacheMutex;
     static bool s_initialized;
 };

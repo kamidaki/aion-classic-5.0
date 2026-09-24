@@ -1,8 +1,9 @@
 #include <algorithm>
-#include <list>
 #include <string>
+#include <cstring>
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #include <winsock2.h>
+#include <windows.h>
 #include "exports.h"
 #include "detours.h"
 
@@ -32,10 +33,47 @@ static const char* const kOfficialIpPool[] = {
 };
 
 static constexpr char kPrimaryOfficialIp[] = "70.5.0.18";
-static std::list<std::string> possibleConnectIps = {};
 
-static bool contains(const std::list<std::string>& list, const char* element) {
-    return !list.empty() && std::find(list.begin(), list.end(), element) != list.end();
+// Zero-allocation, thread-safe candidate IP cache
+static constexpr size_t MAX_CANDIDATE_IPS = 16;
+static char s_candidateIps[MAX_CANDIDATE_IPS][32] = {};
+static size_t s_candidateIpCount = 0;
+static SRWLOCK s_candidateIpLock = SRWLOCK_INIT;
+
+static bool HasCandidateIp(const char* ip) {
+    if (!ip || !ip[0]) return false;
+    AcquireSRWLockShared(&s_candidateIpLock);
+    for (size_t i = 0; i < s_candidateIpCount; ++i) {
+        if (strncmp(s_candidateIps[i], ip, 32) == 0) {
+            ReleaseSRWLockShared(&s_candidateIpLock);
+            return true;
+        }
+    }
+    ReleaseSRWLockShared(&s_candidateIpLock);
+    return false;
+}
+
+static void AddCandidateIp(const char* ip) {
+    if (!ip || !ip[0]) return;
+    AcquireSRWLockExclusive(&s_candidateIpLock);
+    for (size_t i = 0; i < s_candidateIpCount; ++i) {
+        if (strncmp(s_candidateIps[i], ip, 32) == 0) {
+            ReleaseSRWLockExclusive(&s_candidateIpLock);
+            return;
+        }
+    }
+    if (s_candidateIpCount < MAX_CANDIDATE_IPS) {
+        strncpy_s(s_candidateIps[s_candidateIpCount], ip, sizeof(s_candidateIps[s_candidateIpCount]) - 1);
+        s_candidateIps[s_candidateIpCount][sizeof(s_candidateIps[s_candidateIpCount]) - 1] = '\0';
+        s_candidateIpCount++;
+    }
+    ReleaseSRWLockExclusive(&s_candidateIpLock);
+}
+
+static void ClearCandidateIps() {
+    AcquireSRWLockExclusive(&s_candidateIpLock);
+    s_candidateIpCount = 0;
+    ReleaseSRWLockExclusive(&s_candidateIpLock);
 }
 
 /// Checks if an IP is part of the recognized official server pool or official subnets
@@ -53,8 +91,8 @@ static decltype(inet_ntoa)* real_inet_ntoa = inet_ntoa;
 /// Gathers candidate game server IPs from the server list
 static char* WINAPI zzinet_ntoa(_In_ struct in_addr in) {
     char* addr = real_inet_ntoa(in);
-    if (addr && !contains(possibleConnectIps, addr)) {
-        possibleConnectIps.push_back(addr);
+    if (addr) {
+        AddCandidateIp(addr);
     }
     return addr;
 }
@@ -63,8 +101,8 @@ static decltype(lstrcpynA)* real_lstrcpynA = lstrcpynA;
 /// Spoofs the IP copy when the client validates the server list entry against official network bounds
 static LPSTR WINAPI zzlstrcpynA(_Out_writes_(iMaxLength) LPSTR lpString1, _In_ LPCSTR lpString2, _In_ int iMaxLength) {
     if (iMaxLength == 256 && lpString2) {
-        if (contains(possibleConnectIps, lpString2)) {
-            possibleConnectIps.clear();
+        if (HasCandidateIp(lpString2)) {
+            ClearCandidateIps();
             return real_lstrcpynA(lpString1, kPrimaryOfficialIp, iMaxLength);
         }
     }
@@ -94,7 +132,7 @@ static struct hostent* WSAAPI zzgethostbyname(const char* name) {
 
 static decltype(connect)* real_connect = connect;
 static int WSAAPI zzconnect(_In_ SOCKET s, _In_reads_bytes_(namelen) const struct sockaddr FAR* name, _In_ int namelen) {
-    possibleConnectIps.clear();
+    ClearCandidateIps();
     if (name && namelen >= sizeof(sockaddr_in) && name->sa_family == AF_INET) {
         sockaddr_in* sin = (sockaddr_in*)name;
         uint16_t port = ntohs(sin->sin_port);
