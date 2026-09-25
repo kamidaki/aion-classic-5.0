@@ -43461,7 +43461,7 @@
 		</stats>
 		<bound_radius front="0.4" side="0.4" upper="1.48" />
 	</npc_template>
-	<npc_template npc_id="210065" level="3" name="Rakelaw Slink" name_id="300058" height="1.48" group_drop="LEPISMA" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="3">
+	<npc_template npc_id="210065" level="3" name="Rakelaw Slink" name_id="300058" height="1.48" group_drop="LEPISMA" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="MONSTER" ai="" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="3">
 		<stats maxHp="282">
 			<speeds walk="0.937" group_walk="0.937" run="4.5" run_fight="4" group_run_fight="4.5" />
 		</stats>
@@ -44360,7 +44360,7 @@
 		</stats>
 		<bound_radius front="0.35" side="0.78" upper="2.02" />
 	</npc_template>
-	<npc_template npc_id="210205" level="3" name="Pinkbeak Airon" name_id="300174" height="2.02" group_drop="HIIV" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="3" floatcorpse="true">
+	<npc_template npc_id="210205" level="3" name="Pinkbeak Airon" name_id="300174" height="2.02" group_drop="HIIV" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="MONSTER" ai="" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="3" floatcorpse="true">
 		<stats maxHp="282">
 			<speeds walk="0.955" group_walk="0.955" run="6.806" run_fight="5.3" group_run_fight="6.806" />
 		</stats>
@@ -44374,7 +44374,7 @@
 		<stats maxHp="2064" />
 		<bound_radius front="1" side="1.12" upper="5.1" />
 	</npc_template>
-	<npc_template npc_id="210259" level="3" name="Brownbristle Brax" name_id="300225" height="2.6" group_drop="BRAX" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="BRAX" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2249" hpgauge="3">
+	<npc_template npc_id="210259" level="3" name="Brownbristle Brax" name_id="300225" height="2.6" group_drop="BRAX" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="BRAX" ai="" srange="7" sangle="240" arange="2" attack_speed="2249" hpgauge="3">
 		<stats maxHp="296">
 			<speeds walk="0.678" group_walk="0.678" run="8" run_fight="6" group_run_fight="8" />
 		</stats>

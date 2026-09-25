@@ -36,6 +36,7 @@ public class EmoteManager {
 	 */
 	public static final void emoteStopAttacking(Npc owner) {
 		owner.unsetState(CreatureState.WEAPON_EQUIPPED);
+		PacketSendUtility.broadcastPacket(owner, new SM_EMOTION(owner, EmotionType.NEUTRALMODE_IN_STANDING));
 		VisibleObject target = owner.getTarget();
 		if (target instanceof Player) {
 			PacketSendUtility.sendPacket((Player) target, SM_SYSTEM_MESSAGE.STR_UI_COMBAT_NPC_RETURN(owner.getObjectTemplate().getL10n()));
@@ -48,6 +49,7 @@ public class EmoteManager {
 	 * @param owner
 	 */
 	public static final void emoteStartFollowing(Npc owner) {
+		owner.unsetState(CreatureState.WEAPON_EQUIPPED);
 		owner.unsetState(CreatureState.WALK_MODE);
 		PacketSendUtility.broadcastPacket(owner, new SM_EMOTION(owner, EmotionType.CHANGE_SPEED, 0, 0));
 		PacketSendUtility.broadcastPacket(owner, new SM_EMOTION(owner, EmotionType.NEUTRALMODE_IN_MOVE, 0, 0));
@@ -78,6 +80,7 @@ public class EmoteManager {
 	 * @param owner
 	 */
 	public static final void emoteStartReturning(Npc owner) {
+		owner.unsetState(CreatureState.WEAPON_EQUIPPED);
 		PacketSendUtility.broadcastPacket(owner, new SM_EMOTION(owner, EmotionType.CHANGE_SPEED, 0, 0));
 		PacketSendUtility.broadcastPacket(owner, new SM_EMOTION(owner, EmotionType.NEUTRALMODE_IN_MOVE, 0, 0));
 	}
@@ -88,6 +91,7 @@ public class EmoteManager {
 	 * @param owner
 	 */
 	public static final void emoteStartIdling(Npc owner) {
+		owner.unsetState(CreatureState.WEAPON_EQUIPPED);
 		owner.setState(CreatureState.WALK_MODE);
 		PacketSendUtility.broadcastPacket(owner, new SM_EMOTION(owner, EmotionType.CHANGE_SPEED, 0, 0));
 		PacketSendUtility.broadcastPacket(owner, new SM_EMOTION(owner, EmotionType.NEUTRALMODE_IN_MOVE, 0, 0));

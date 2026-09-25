@@ -34,6 +34,7 @@ public class ReturningEventHandler {
 				AILogger.info(npcAI, "returning and restoring");
 			}
 			Npc npc = npcAI.getOwner();
+			EmoteManager.emoteStopAttacking(npc);
 			EmoteManager.emoteStartReturning(npc);
 			if (npc.isPathWalker() && WalkManager.startWalking(npcAI))
 				return;

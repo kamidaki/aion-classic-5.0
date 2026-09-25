@@ -160,7 +160,9 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_FRIEND_STATUS.class, 0x148, State.IN_GAME); // 0x00BA FRIEND_STATUS
 		addPacket(CM_INSTANCE_INFO.class, 0x1B3, State.IN_GAME); // 0x00C1 INSTANCE_DUNGEON_COOLTIMES
 		addPacket(CM_BOARD_BUSINESS.class, 0x1BE, State.IN_GAME); // 0x00C4 BOARD_BUSINESS
-		addPacket(CM_QUEST_TELEPORT.class, 0x1BF, State.IN_GAME); // 0x00C5 REQUEST_GUILD_HISTORY / QUEST_TELEPORT
+		addPacket(CM_QUEST_TELEPORT.class, 0x1B4, State.IN_GAME); // 0x00BE C_REQUEST_TELEPORT_TO_NPC (5.0 Classic Quest Teleport Icon)
+		addPacket(CM_QUEST_TELEPORT.class, 0x00BE, State.IN_GAME); // Raw alias dec 0x00BE
+		addPacket(CM_QUEST_TELEPORT.class, 0x1BF, State.IN_GAME); // 0x00C5 REQUEST_GUILD_HISTORY / Legacy fallback
 		addPacket(CM_SUMMON_ATTACK.class, 0x15E, State.IN_GAME); // 0x00A4 SUMMON_ATTACK (5.0 Classic: [D summon][D alvo][C][H tempo][C], 43 pacotes de 12 b nas capturas do Spirit Master)
 		addPacket(CM_SUMMON_CASTSPELL.class, 0x15C, State.IN_GAME); // 0x00A6 SUMMON_CASTSPELL (5.0 Classic: [D summon][H skill][C 1][D alvo][F], 25 pacotes de 15 b)
 		addPacket(CM_SHOW_MAP.class, 0x1AF, State.AUTHED, State.IN_GAME); // 0x00D5 SHOW_MAP (5.0: [C 0] logo depois do C_ENTER_WORLD, antes do LEVEL_READY)
@@ -251,13 +253,17 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_UI_SETTINGS.class, 0x001A, State.IN_GAME);
 		addPacket(CM_CHAT_AUTH.class, 0x017C, State.IN_GAME); // 0x0086 SIGN_CLIENT
 		addPacket(CM_CHAT_AUTH.class, 0x0086, State.IN_GAME);
-		addPacket(CM_INSTANCE_INFO.class, 0x01B3, State.IN_GAME); // 0x00C1 INSTANCE_INFO
+		addPacket(CM_INSTANCE_INFO.class, 0x01B3, State.IN_GAME); // 0x00C1 INSTANCE_DUNGEON_COOLTIMES
 		// sem alias em 0x00C1: esse e o cru do CM_BUY_ITEM (dec 0x0033) e o registro por ultimo apagava a compra e a venda
 		addPacket(CM_MAY_QUIT.class, 0x00FE, State.IN_GAME); // 0x0004 READY_TO_QUIT
 		addPacket(CM_MAY_QUIT.class, 0x0004, State.IN_GAME);
 		addPacket(CM_RECONNECT_AUTH.class, 0x014A, State.AUTHED); // 0x00B8 RECONNECT_AUTH
 		addPacket(CM_RECONNECT_AUTH.class, 0x00B8, State.AUTHED);
 		addPacket(CM_CLIENT_PERF_METRICS.class, 0x00C5, State.IN_GAME);
+		addPacket(CM_CLIENT_PERF_METRICS.class, 0x03DC, State.IN_GAME, State.AUTHED); // 0x0326 client perf/window state telemetry
+		addPacket(CM_CLIENT_PERF_METRICS.class, 0x0326, State.IN_GAME, State.AUTHED);
+		addPacket(CM_CLIENT_PERF_METRICS.class, 0x03DF, State.IN_GAME, State.AUTHED); // 0x0325 client perf/window state ack
+		addPacket(CM_CLIENT_PERF_METRICS.class, 0x0325, State.IN_GAME, State.AUTHED);
 		addPacket(CM_PROTOCOL_PING_ACK.class, 0x01D0, State.IN_GAME, State.AUTHED); // 0x0122 PROTOCOL_PING_ACK
 		addPacket(CM_PROTOCOL_PING_ACK.class, 0x0122, State.IN_GAME, State.AUTHED);
 		addPacket(CM_CLIENT_TELEMETRY_SYNC.class, 0x01E0, State.IN_GAME, State.AUTHED); // 0x0112 CLIENT_TELEMETRY_SYNC (5.0 Classic)

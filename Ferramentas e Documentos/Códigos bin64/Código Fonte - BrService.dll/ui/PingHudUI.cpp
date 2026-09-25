@@ -167,15 +167,15 @@ void PingHudUI::UpdatePosition(int gameX, int gameY, int gameW, int gameH) {
     bool shouldBeVisible = IsAllowedToDisplay();
 
     SetWindowPos(g_hPingHudWnd, HWND_TOPMOST, hudX, hudY, s_hudWidth, s_hudHeight,
-                 SWP_NOACTIVATE | (shouldBeVisible ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
+                 SWP_NOACTIVATE | SWP_ASYNCWINDOWPOS | (shouldBeVisible ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
     if (shouldBeVisible) {
-        Repaint();
+        InvalidateRect(g_hPingHudWnd, nullptr, FALSE);
     }
 }
 
 void PingHudUI::Repaint() {
     if (!g_hPingHudWnd || !IsWindow(g_hPingHudWnd)) return;
-    Paint(g_hPingHudWnd);
+    InvalidateRect(g_hPingHudWnd, nullptr, FALSE);
 }
 
 void PingHudUI::Paint(HWND hwnd) {

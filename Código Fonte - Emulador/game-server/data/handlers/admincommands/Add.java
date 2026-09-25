@@ -1,5 +1,7 @@
 package admincommands;
 
+import com.aionemu.gameserver.dao.AccountQunaDAO;
+import com.aionemu.gameserver.dao.PlayerDAO;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.items.ItemId;
@@ -7,6 +9,7 @@ import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.services.AdminService;
 import com.aionemu.gameserver.services.item.ItemService;
+import com.aionemu.gameserver.services.player.QunaService;
 import com.aionemu.gameserver.utils.ChatUtil;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.Util;
@@ -19,13 +22,15 @@ import com.aionemu.gameserver.world.World;
 public class Add extends AdminCommand {
 
 	public Add() {
-		super("add", "Adds Kinah or items to a player's inventory.");
+		super("add", "Adds Kinah, Quna or items to a player.");
 
 		// @formatter:off
 		setSyntaxInfo(
 			"kinah <amount> - Adds the specified amount of Kinah to your inventory.",
+			"quna <amount> - Adds the specified amount of Quna to your account.",
 			"<item link|ID> [count] - Adds the specified item(s) to your inventory.",
 			"<player> kinah <amount> - Adds the specified amount of Kinah to the player's inventory.",
+			"<player> quna <amount> - Adds the specified amount of Quna to the player's account.",
 			"<player> <item link|ID> [count] - Adds the specified item(s) to the player's inventory."
 		);
 		// @formatter:on
@@ -40,7 +45,16 @@ public class Add extends AdminCommand {
 
 		int index = 0;
 		Player receiver = player;
-		int itemId = params.length == 2 && "Kinah".equalsIgnoreCase(params[index]) ? ItemId.KINAH : ChatUtil.getItemId(params[index]);
+		boolean isKinah = false;
+		boolean isQuna = false;
+
+		if ("Kinah".equalsIgnoreCase(params[index])) {
+			isKinah = true;
+		} else if ("Quna".equalsIgnoreCase(params[index])) {
+			isQuna = true;
+		}
+
+		int itemId = isKinah ? ItemId.KINAH : isQuna ? QunaService.QUNA_ITEM_ID : ChatUtil.getItemId(params[index]);
 		if (itemId == 0) {
 			String playerName = Util.convertName(params[index]);
 			receiver = World.getInstance().getPlayer(playerName);
@@ -48,8 +62,48 @@ public class Add extends AdminCommand {
 				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_NO_SUCH_USER(playerName));
 				return;
 			}
-			if (++index < params.length)
-				itemId = "Kinah".equalsIgnoreCase(params[index]) ? ItemId.KINAH : ChatUtil.getItemId(params[index]);
+			if (++index < params.length) {
+				if ("Kinah".equalsIgnoreCase(params[index])) {
+					isKinah = true;
+				} else if ("Quna".equalsIgnoreCase(params[index])) {
+					isQuna = true;
+				}
+				itemId = isKinah ? ItemId.KINAH : isQuna ? QunaService.QUNA_ITEM_ID : ChatUtil.getItemId(params[index]);
+			}
+		}
+
+		long itemCount;
+		try {
+			itemCount = params.length > ++index ? Long.parseLong(params[index]) : 1;
+		} catch (NumberFormatException e) {
+			sendInfo(player, "Invalid count.");
+			return;
+		}
+
+		if (itemCount <= 0) {
+			sendInfo(player, "Invalid count.");
+			return;
+		}
+
+		if (isQuna) {
+			int accountId = receiver.getClientConnection() != null ? receiver.getClientConnection().getAccount().getId()
+				: PlayerDAO.getAccountIdByName(receiver.getName());
+			if (accountId == 0 || !QunaService.addToAccount(accountId, itemCount)) {
+				sendInfo(player, "Quna couldn't be added.");
+				return;
+			}
+			long newBalance = 0;
+			try {
+				newBalance = AccountQunaDAO.load(accountId);
+			} catch (Exception ignored) {
+			}
+			if (player != receiver) {
+				sendInfo(player, "You gave " + itemCount + " Quna to " + receiver.getName() + " (new balance: " + newBalance + ").");
+				sendInfo(receiver, "You received " + itemCount + " Quna from " + player.getName() + " (new balance: " + newBalance + ").");
+			} else {
+				sendInfo(player, "You added " + itemCount + " Quna to your account (new balance: " + newBalance + ").");
+			}
+			return;
 		}
 
 		ItemTemplate itemTemplate;
@@ -58,9 +112,7 @@ public class Add extends AdminCommand {
 			return;
 		}
 
-		long itemCount = params.length > ++index ? Long.parseLong(params[index]) : 1;
-		if (itemCount <= 0
-			|| (itemId == ItemId.KINAH ? receiver.getInventory().getKinah() + itemCount < 0 : itemCount / itemTemplate.getMaxStackCount() > 126)) {
+		if (itemId == ItemId.KINAH ? receiver.getInventory().getKinah() + itemCount < 0 : itemCount / itemTemplate.getMaxStackCount() > 126) {
 			sendInfo(player, "Invalid item count.");
 			return;
 		}

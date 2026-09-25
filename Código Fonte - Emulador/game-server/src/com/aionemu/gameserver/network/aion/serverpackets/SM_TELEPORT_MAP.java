@@ -21,5 +21,6 @@ public class SM_TELEPORT_MAP extends AionServerPacket {
 	protected void writeImpl(AionConnection con) {
 		writeD(targetObjId);
 		writeH(teleportId);
+		writeH(0);
 	}
 }

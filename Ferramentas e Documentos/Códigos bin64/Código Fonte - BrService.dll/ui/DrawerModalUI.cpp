@@ -454,10 +454,10 @@ void DrawerModalUI::UpdatePosition(int gX, int gY, int gW, int gH) {
     }
 
     bool v = g_featConsole.load() && g_isDrawerOpen.load() && g_isInWorld.load() && !g_isLoadingScreen.load() && g_isGameActive.load();
-    SetWindowPos(g_hDrawerModalWnd, HWND_TOPMOST, mX, mY2, s_modalW, s_modalH, SWP_NOACTIVATE | (v ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
+    SetWindowPos(g_hDrawerModalWnd, HWND_TOPMOST, mX, mY2, s_modalW, s_modalH, SWP_NOACTIVATE | SWP_ASYNCWINDOWPOS | (v ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
     if (v) {
         UpdateDrawerTimer();
-        Repaint();
+        InvalidateRect(g_hDrawerModalWnd, nullptr, FALSE);
     } else {
         KillTimer(g_hDrawerModalWnd, 1);
     }
@@ -482,7 +482,7 @@ void DrawerModalUI::ResizeDrawer(int nW, int nH) {
 
 void DrawerModalUI::Repaint() {
     if (!g_hDrawerModalWnd || !IsWindow(g_hDrawerModalWnd)) return;
-    Paint(g_hDrawerModalWnd);
+    InvalidateRect(g_hDrawerModalWnd, nullptr, FALSE);
 }
 
 void DrawerModalUI::Paint(HWND hwnd) {

@@ -35,8 +35,6 @@ public class SM_TARGET_SELECTED extends AionServerPacket {
 		writeH(level);
 		writeD(maxHp);
 		writeD(currentHp);
-		writeD(maxMp);// new 4.0
-		writeD(currentMp);// new 4.0
 	}
 
 }

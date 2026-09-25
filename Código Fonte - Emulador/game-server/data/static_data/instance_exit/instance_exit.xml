@@ -221,5 +221,6 @@
 	<instance_exit instance_id="301390000" exit_world="210070000" race="ELYOS" x="77.14092" y="2757.5469" z="229.31216" h="51" />
 	<instance_exit instance_id="301390000" exit_world="220080000" race="ASMODIANS" x="2991.0142" y="375.1645" z="309.1385" h="107" />
 	<!-- Land of Shadows (IDTutorialQ) -->
+	<instance_exit instance_id="390000000" exit_world="110010000" race="ELYOS" x="1323.5" y="1511.8" z="568.1" h="0" />
 	<instance_exit instance_id="390000000" exit_world="120010000" race="ASMODIANS" x="1469" y="1450" z="176.93" h="30" />
 </instance_exits>

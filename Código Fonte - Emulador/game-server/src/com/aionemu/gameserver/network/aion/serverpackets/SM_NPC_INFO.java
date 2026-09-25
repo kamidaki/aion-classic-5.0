@@ -2,12 +2,14 @@ package com.aionemu.gameserver.network.aion.serverpackets;
 
 import java.util.Map.Entry;
 
+import com.aionemu.gameserver.ai.AIState;
 import com.aionemu.gameserver.controllers.movement.CreatureMoveController;
 import com.aionemu.gameserver.model.CreatureType;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.Summon;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.model.items.ItemSlot;
 import com.aionemu.gameserver.model.items.NpcEquippedGear;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
@@ -61,7 +63,11 @@ public class SM_NPC_INFO extends AionServerPacket {
 		 * 32,33 - fight mode
 		 * 65 - normal
 		 */
-		writeH(npc.getState());
+		int state = npc.getState();
+		if (npc instanceof Npc n && n.getAi() != null && n.getAi().getState() != AIState.FIGHT) {
+			state &= ~CreatureState.WEAPON_EQUIPPED.getId();
+		}
+		writeH(state);
 
 		writeC(npc.getHeading());
 		writeD(npcTemplate.getL10nId());
