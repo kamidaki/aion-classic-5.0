@@ -44244,7 +44244,7 @@
 		<effects>
 			<polymorph model="210421" type="NONE" duration2="600000" effectid="175" e="1" noresist="true"/>
 			<statup duration2="600000" effectid="30182" e="2" noresist="true" element="WIND" preeffect="1" preeffect_prob="100">
-				<change stat="SPEED" func="PERCENT" value="20"/>
+				<change stat="SPEED" func="PERCENT" value="12"/>
 			</statup>
 			<nofly duration2="600000" effectid="20109" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100"/>
 		</effects>
@@ -44260,7 +44260,7 @@
 		<effects>
 			<polymorph model="211875" type="NONE" duration2="600000" effectid="175" e="1" noresist="true"/>
 			<statup duration2="600000" effectid="30182" e="2" noresist="true" element="WIND" preeffect="1" preeffect_prob="100">
-				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="SPEED" func="PERCENT" value="18"/>
 			</statup>
 			<nofly duration2="600000" effectid="20109" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100"/>
 		</effects>
@@ -44276,7 +44276,7 @@
 		<effects>
 			<polymorph model="210390" type="NONE" duration2="600000" effectid="175" e="1" noresist="true"/>
 			<statup duration2="600000" effectid="30182" e="2" noresist="true" element="WIND" preeffect="1" preeffect_prob="100">
-				<change stat="SPEED" func="PERCENT" value="40"/>
+				<change stat="SPEED" func="PERCENT" value="24"/>
 			</statup>
 			<nofly duration2="600000" effectid="20109" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100"/>
 		</effects>
@@ -45852,7 +45852,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="215956" type="NONE" duration2="600000" effectid="175" e="1" noresist="true" element="WIND"/>
+			<polymorph model="215956" type="NONE" duration2="600000" effectid="275" e="1" noresist="true" element="WIND"/>
 			<nofly duration2="600000" effectid="20109" e="2" noresist="true" element="WIND" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
@@ -45865,7 +45865,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="215956" type="NONE" duration2="600000" effectid="175" e="1" noresist="true" element="WIND"/>
+			<polymorph model="215956" type="NONE" duration2="600000" effectid="275" e="1" noresist="true" element="WIND"/>
 			<nofly duration2="600000" effectid="20109" e="2" noresist="true" element="WIND" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
@@ -45919,7 +45919,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="254523" type="NONE" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="254523" type="NONE" duration2="600000" effectid="275" e="1" noresist="true"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10033" name="Experiência Boost" nameId="725537" name_desc="xp_boost_01" stack="XP_BOOST" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BOOST" activation="ACTIVE" cooldown="0" duration="0">
@@ -48488,7 +48488,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="210119" type="NONE" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="210119" type="NONE" duration2="600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="600000" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="FLY_TIME" func="ADD" value="10"/>
 			</statup>
@@ -48503,7 +48503,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="211850" type="NONE" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="211850" type="NONE" duration2="600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<search state="SEARCH1" duration2="600000" effectid="166" e="3" noresist="true" preeffect="2" preeffect_prob="100"/>
 		</effects>
@@ -48517,7 +48517,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="210833" type="NONE" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="210833" type="NONE" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
@@ -48530,7 +48530,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="210915" type="NONE" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="210915" type="NONE" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
@@ -48543,7 +48543,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="212104" type="NONE" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="212104" type="NONE" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="600000" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="REGEN_HP" func="ADD" value="8"/>
@@ -48562,7 +48562,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="210656" type="NONE" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="210656" type="NONE" duration2="600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="600000" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="FLY_TIME" func="ADD" value="10"/>
 			</statup>
@@ -48577,7 +48577,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="211318" type="NONE" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="211318" type="NONE" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
@@ -48590,7 +48590,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="211850" type="NONE" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="211850" type="NONE" duration2="600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<search state="SEARCH1" duration2="600000" effectid="166" e="3" noresist="true" preeffect="2" preeffect_prob="100"/>
 		</effects>
@@ -48604,7 +48604,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="213020" type="NONE" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="213020" type="NONE" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
@@ -48617,7 +48617,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="213140" type="NONE" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="213140" type="NONE" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="600000" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="REGEN_HP" func="ADD" value="8"/>
@@ -49039,7 +49039,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="214532" type="NONE" duration2="600000" effectid="175" e="1" noresist="true" element="WIND"/>
+			<polymorph model="214532" type="NONE" duration2="600000" effectid="275" e="1" noresist="true" element="WIND"/>
 			<nofly duration2="600000" effectid="20109" e="2" noresist="true" element="WIND" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
@@ -49052,7 +49052,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="214532" type="NONE" duration2="600000" effectid="175" e="1" noresist="true" element="WIND"/>
+			<polymorph model="214532" type="NONE" duration2="600000" effectid="275" e="1" noresist="true" element="WIND"/>
 			<nofly duration2="600000" effectid="20109" e="2" noresist="true" element="WIND" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
@@ -49065,7 +49065,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202514" type="PC" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202514" type="PC" duration2="600000" effectid="275" e="1" noresist="true"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10215" name="Transformação Graveknight" nameId="743504" name_desc="food_shape_GraveknightL" stack="FOOD_SHAPE_GRAVEKNIGHTL" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
@@ -49077,7 +49077,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202515" type="PC" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202515" type="PC" duration2="600000" effectid="275" e="1" noresist="true"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10216" name="Transformação de Krall" nameId="743505" name_desc="food_shape_KrallScoutL" stack="FOOD_SHAPE_KRALLSCOUTL" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
@@ -49089,7 +49089,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202516" type="PC" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202516" type="PC" duration2="600000" effectid="275" e="1" noresist="true"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10217" name="Transformação do esqueleto" nameId="743506" name_desc="food_shape_SkeletonL" stack="FOOD_SHAPE_SKELETONL" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
@@ -49101,7 +49101,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202517" type="PC" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202517" type="PC" duration2="600000" effectid="275" e="1" noresist="true"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10218" name="Teste a transformação do assunto" nameId="743507" name_desc="food_shape_TestResultL" stack="FOOD_SHAPE_TESTRESULTL" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
@@ -49113,7 +49113,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202518" type="PC" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202518" type="PC" duration2="600000" effectid="275" e="1" noresist="true"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10219" name="Transformação de Kobold" nameId="743508" name_desc="food_d_shape_DBrownieD" stack="FOOD_D_SHAPE_DBROWNIED" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
@@ -49125,7 +49125,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202519" type="PC" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202519" type="PC" duration2="600000" effectid="275" e="1" noresist="true"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10220" name="Transformação Graveknight" nameId="743509" name_desc="food_d_shape_GraveknightD" stack="FOOD_D_SHAPE_GRAVEKNIGHTD" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
@@ -49137,7 +49137,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202520" type="PC" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202520" type="PC" duration2="600000" effectid="275" e="1" noresist="true"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10221" name="Transformação de Krall" nameId="743510" name_desc="food_d_shape_KrallScoutD" stack="FOOD_D_SHAPE_KRALLSCOUTD" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
@@ -49149,7 +49149,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202521" type="PC" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202521" type="PC" duration2="600000" effectid="275" e="1" noresist="true"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10222" name="Transformação anubita" nameId="743511" name_desc="food_d_shape_SkeletonD" stack="FOOD_D_SHAPE_SKELETOND" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
@@ -49161,7 +49161,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202522" type="PC" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202522" type="PC" duration2="600000" effectid="275" e="1" noresist="true"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10223" name="Teste a transformação do assunto" nameId="743512" name_desc="food_d_shape_TestResultD" stack="FOOD_D_SHAPE_TESTRESULTD" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
@@ -49173,7 +49173,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202523" type="PC" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202523" type="PC" duration2="600000" effectid="275" e="1" noresist="true"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10224" name="Aumente ataques críticos e precisão" nameId="743933" name_desc="food_Critical_accuracy" stack="FOOD_CRITICAL_ACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
@@ -49360,7 +49360,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202529" type="PC" duration2="600000" effectid="175" e="1" noresist="true" element="WATER"/>
+			<polymorph model="202529" type="PC" duration2="600000" effectid="275" e="1" noresist="true" element="WATER"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10237" name="Forma de urso polar" nameId="747768" name_desc="china_event_food_d_shape_snowbear" stack="CHINA_EVENT_FOOD_SHAPE_SNOWBEAR" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0">
@@ -49372,7 +49372,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202530" type="PC" duration2="600000" effectid="175" e="1" noresist="true" element="WATER"/>
+			<polymorph model="202530" type="PC" duration2="600000" effectid="275" e="1" noresist="true" element="WATER"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10238" name="Soro de recuperação" nameId="747779" name_desc="event_potion_hp_mp_35" stack="EVENT_POTION_HP_MP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
@@ -49397,7 +49397,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="214905" type="NONE" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="214905" type="NONE" duration2="600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
@@ -49410,7 +49410,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="214945" type="NONE" duration2="600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="214945" type="NONE" duration2="600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
@@ -49646,7 +49646,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202529" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202529" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="220"/>
 				<change stat="MAXMP" func="ADD" value="220"/>
@@ -49666,7 +49666,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202530" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202530" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="220"/>
 				<change stat="MAXMP" func="ADD" value="220"/>
@@ -49725,7 +49725,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202541" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202541" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="150"/>
 				<change stat="MAXMP" func="ADD" value="110"/>
@@ -49745,7 +49745,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202542" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202542" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="150"/>
 				<change stat="MAXMP" func="ADD" value="110"/>
@@ -49765,7 +49765,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202543" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202543" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="220"/>
 				<change stat="MAXMP" func="ADD" value="220"/>
@@ -49785,7 +49785,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202544" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202544" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="220"/>
 				<change stat="MAXMP" func="ADD" value="220"/>
@@ -49824,7 +49824,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202547" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202547" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="PHYSICAL_ATTACK" func="ADD" value="3"/>
 				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="15"/>
@@ -49844,7 +49844,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202548" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202548" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="PHYSICAL_ATTACK" func="ADD" value="3"/>
 				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="15"/>
@@ -49864,7 +49864,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202547" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202547" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="PHYSICAL_ATTACK" func="ADD" value="3"/>
 				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="15"/>
@@ -49884,7 +49884,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202548" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202548" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="PHYSICAL_ATTACK" func="ADD" value="3"/>
 				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="15"/>
@@ -49904,7 +49904,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202549" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202549" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="220"/>
 				<change stat="MAXMP" func="ADD" value="220"/>
@@ -49924,7 +49924,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202550" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202550" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="220"/>
 				<change stat="MAXMP" func="ADD" value="220"/>
@@ -49944,7 +49944,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202529" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202529" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="220"/>
 				<change stat="MAXMP" func="ADD" value="220"/>
@@ -49964,7 +49964,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202530" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202530" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="220"/>
 				<change stat="MAXMP" func="ADD" value="220"/>
@@ -49984,7 +49984,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202541" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202541" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="220"/>
 				<change stat="MAXMP" func="ADD" value="220"/>
@@ -50004,7 +50004,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202542" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202542" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="220"/>
 				<change stat="MAXMP" func="ADD" value="220"/>
@@ -50024,7 +50024,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202543" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202543" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="220"/>
 				<change stat="MAXMP" func="ADD" value="220"/>
@@ -50044,7 +50044,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202544" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202544" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="220"/>
 				<change stat="MAXMP" func="ADD" value="220"/>
@@ -50118,7 +50118,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202551" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202551" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="PHYSICAL_ATTACK" func="ADD" value="3"/>
 				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="15"/>
@@ -50138,7 +50138,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202552" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202552" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="PHYSICAL_ATTACK" func="ADD" value="3"/>
 				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="15"/>
@@ -50158,7 +50158,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202559" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202559" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="PHYSICAL_ATTACK" func="ADD" value="3"/>
 				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="15"/>
@@ -50178,7 +50178,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202560" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202560" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="PHYSICAL_ATTACK" func="ADD" value="3"/>
 				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="15"/>
@@ -50198,7 +50198,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202529" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202529" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="181"/>
@@ -50217,7 +50217,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202530" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202530" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="181"/>
@@ -50236,7 +50236,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202529" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202529" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="181"/>
@@ -50255,7 +50255,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202530" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202530" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="181"/>
@@ -50274,7 +50274,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202529" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202529" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="REGEN_HP" func="ADD" value="12"/>
@@ -50293,7 +50293,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202530" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202530" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="REGEN_HP" func="ADD" value="12"/>
@@ -50312,7 +50312,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202529" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202529" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="REGEN_HP" func="ADD" value="12"/>
@@ -50331,7 +50331,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202530" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202530" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="REGEN_HP" func="ADD" value="12"/>
@@ -50350,7 +50350,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202529" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202529" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
@@ -50363,7 +50363,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202530" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202530" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
@@ -50376,7 +50376,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202537" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202537" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="181"/>
@@ -50395,7 +50395,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202538" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202538" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="181"/>
@@ -50414,7 +50414,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202537" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202537" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="181"/>
@@ -50433,7 +50433,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202538" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202538" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="181"/>
@@ -50452,7 +50452,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202537" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202537" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="REGEN_HP" func="ADD" value="12"/>
@@ -50471,7 +50471,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202538" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202538" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="REGEN_HP" func="ADD" value="12"/>
@@ -50490,7 +50490,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202537" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202537" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="REGEN_HP" func="ADD" value="12"/>
@@ -50509,7 +50509,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202538" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202538" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="REGEN_HP" func="ADD" value="12"/>
@@ -50528,7 +50528,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202537" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202537" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
@@ -50541,7 +50541,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202538" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202538" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
@@ -50554,7 +50554,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202539" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202539" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="181"/>
@@ -50573,7 +50573,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202540" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202540" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="181"/>
@@ -50592,7 +50592,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202539" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202539" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="181"/>
@@ -50611,7 +50611,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202540" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202540" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="181"/>
@@ -50630,7 +50630,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202539" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202539" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="REGEN_HP" func="ADD" value="12"/>
@@ -50649,7 +50649,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202540" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202540" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="REGEN_HP" func="ADD" value="12"/>
@@ -50668,7 +50668,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202539" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202539" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="REGEN_HP" func="ADD" value="12"/>
@@ -50687,7 +50687,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202540" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202540" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="REGEN_HP" func="ADD" value="12"/>
@@ -50706,7 +50706,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202539" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202539" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
@@ -50719,7 +50719,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202540" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202540" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="3600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
@@ -50732,7 +50732,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202533" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202533" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10316" name="Transformação do Kerub para Evento GM (Asmodiano)" nameId="295644" name_desc="event_shape_Dark_CherubimD_250" stack="EVENT_SHAPE_DARK_CHERUBIMD_250" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
@@ -50744,7 +50744,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202534" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202534" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10317" name="Insignia do efeito de proteção da luz" nameId="295646" name_desc="light_avatar_buff_shield_01" stack="LIGHT_AVATAR_BUFF_SHIELD" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0" avatar="true">
@@ -50835,7 +50835,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="885027" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="260000" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10323" name="Você se transformou em um dux para um evento GM." nameId="295762" name_desc="event_shape_Ab1_1011_Boss_Da_1" stack="EVENT_SHAPE_AB1_1011_BOSS_DA_1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
@@ -50847,7 +50847,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="260005" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="260005" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10324" name="Bolinho de massa de efeito crescente" nameId="753668" name_desc="event_dish_mandu_01" stack="EVENT_DISH_MANDU" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
@@ -50923,7 +50923,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202529" type="PC" duration2="3600000" effectid="175" e="1" noresist="true" element="WATER"/>
+			<polymorph model="202529" type="PC" duration2="3600000" effectid="275" e="1" noresist="true" element="WATER"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10329" name="Forma de urso polar" nameId="760537" name_desc="event_d_shape_snowbear" stack="EVENT_SHAPE_SNOWBEAR" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0">
@@ -50935,7 +50935,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202530" type="PC" duration2="3600000" effectid="175" e="1" noresist="true" element="WATER"/>
+			<polymorph model="202530" type="PC" duration2="3600000" effectid="275" e="1" noresist="true" element="WATER"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10330" name="Experiência Boost" nameId="296299" name_desc="xp_boost_03" stack="XP_BOOST" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BOOST" activation="ACTIVE" cooldown="0" duration="0">
@@ -51301,7 +51301,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202555" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202555" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="PHYSICAL_ATTACK" func="ADD" value="3"/>
 				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="15"/>
@@ -51321,7 +51321,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202556" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202556" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="PHYSICAL_ATTACK" func="ADD" value="3"/>
 				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="15"/>
@@ -51341,7 +51341,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202553" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202553" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="PHYSICAL_ATTACK" func="ADD" value="3"/>
 				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="15"/>
@@ -51361,7 +51361,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202554" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202554" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="PHYSICAL_ATTACK" func="ADD" value="3"/>
 				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="15"/>
@@ -51381,14 +51381,14 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202557" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202557" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
-				<change stat="PHYSICAL_ATTACK" func="ADD" value="3"/>
-				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="15"/>
+				<change stat="MAXHP" func="ADD" value="220"/>
+				<change stat="MAXMP" func="ADD" value="220"/>
 			</statup>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
-				<change stat="ATTACK_SPEED" func="PERCENT" value="-3"/>
-				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="3"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-2"/>
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="2"/>
 			</statup>
 		</effects>
 	</skill_template>
@@ -51401,14 +51401,14 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202558" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202558" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
-				<change stat="PHYSICAL_ATTACK" func="ADD" value="3"/>
-				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="15"/>
+				<change stat="MAXHP" func="ADD" value="220"/>
+				<change stat="MAXMP" func="ADD" value="220"/>
 			</statup>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
-				<change stat="ATTACK_SPEED" func="PERCENT" value="-3"/>
-				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="3"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-2"/>
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="2"/>
 			</statup>
 		</effects>
 	</skill_template>
@@ -51528,7 +51528,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="217754" type="NONE" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="217754" type="NONE" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<nofly duration2="600000" effectid="20109" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
@@ -51724,7 +51724,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202564" type="PC" duration2="1800000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202564" type="PC" duration2="1800000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="1800000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="PHYSICAL_CRITICAL_RESIST" func="ADD" value="7"/>
 				<change stat="MAGICAL_CRITICAL_RESIST" func="ADD" value="7"/>
@@ -51744,7 +51744,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202563" type="PC" duration2="1800000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202563" type="PC" duration2="1800000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="1800000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="PHYSICAL_CRITICAL_RESIST" func="ADD" value="7"/>
 				<change stat="MAGICAL_CRITICAL_RESIST" func="ADD" value="7"/>
@@ -51764,7 +51764,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202566" type="PC" duration2="900000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202566" type="PC" duration2="900000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="900000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="PHYSICAL_CRITICAL_RESIST" func="ADD" value="10"/>
 				<change stat="MAGICAL_CRITICAL_RESIST" func="ADD" value="10"/>
@@ -51787,7 +51787,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202565" type="PC" duration2="900000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202565" type="PC" duration2="900000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="900000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="PHYSICAL_CRITICAL_RESIST" func="ADD" value="10"/>
 				<change stat="MAGICAL_CRITICAL_RESIST" func="ADD" value="10"/>
@@ -51810,7 +51810,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202529" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202529" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="220"/>
 				<change stat="MAXMP" func="ADD" value="220"/>
@@ -51830,7 +51830,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202530" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202530" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="220"/>
 				<change stat="MAXMP" func="ADD" value="220"/>
@@ -51850,7 +51850,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202543" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202543" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="220"/>
 				<change stat="MAXMP" func="ADD" value="220"/>
@@ -51870,7 +51870,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202544" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202544" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="220"/>
 				<change stat="MAXMP" func="ADD" value="220"/>
@@ -51890,7 +51890,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202564" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202564" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="220"/>
 				<change stat="MAXMP" func="ADD" value="220"/>
@@ -51910,7 +51910,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202563" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202563" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="220"/>
 				<change stat="MAXMP" func="ADD" value="220"/>
@@ -52228,10 +52228,10 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202583" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202583" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
-				<change stat="MAXHP" func="ADD" value="220"/>
-				<change stat="MAXMP" func="ADD" value="220"/>
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="2"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="10"/>
 			</statup>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="ATTACK_SPEED" func="PERCENT" value="-2"/>
@@ -52248,10 +52248,10 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202584" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202584" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
-				<change stat="MAXHP" func="ADD" value="220"/>
-				<change stat="MAXMP" func="ADD" value="220"/>
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="2"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="10"/>
 			</statup>
 			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
 				<change stat="ATTACK_SPEED" func="PERCENT" value="-2"/>
@@ -52268,7 +52268,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202585" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202585" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="PHYSICAL_ATTACK" func="ADD" value="2"/>
 				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="10"/>
@@ -52288,7 +52288,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202586" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202586" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="PHYSICAL_ATTACK" func="ADD" value="2"/>
 				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="10"/>
@@ -52308,7 +52308,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202587" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202587" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="280"/>
 				<change stat="MAXMP" func="ADD" value="280"/>
@@ -52328,7 +52328,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202588" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202588" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="280"/>
 				<change stat="MAXMP" func="ADD" value="280"/>
@@ -52348,7 +52348,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<statup duration2="3600000" effectid="175" e="1" basiclvl="160" noresist="true" element="FIRE">
+			<statup duration2="3600000" effectid="275" e="1" basiclvl="160" noresist="true" element="FIRE">
 				<change stat="MAXHP" func="ADD" value="280"/>
 				<change stat="MAXMP" func="ADD" value="280"/>
 			</statup>
@@ -52401,7 +52401,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202555" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202555" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="220"/>
 				<change stat="MAXMP" func="ADD" value="220"/>
@@ -52421,7 +52421,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="202556" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="202556" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="MAXHP" func="ADD" value="220"/>
 				<change stat="MAXMP" func="ADD" value="220"/>
@@ -52441,7 +52441,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="-1" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="0" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="PHYSICAL_ATTACK" func="ADD" value="2"/>
 				<change stat="PHYSICAL_ACCURACY" func="ADD" value="48"/>
@@ -52461,7 +52461,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="-1" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="0" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="10"/>
 				<change stat="MAGICAL_ACCURACY" func="ADD" value="48"/>
@@ -52481,7 +52481,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<polymorph model="-1" type="PC" duration2="3600000" effectid="175" e="1" noresist="true"/>
+			<polymorph model="0" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
 			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
 				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="10"/>
 				<change stat="MAGICAL_ACCURACY" func="ADD" value="48"/>
@@ -52502,13 +52502,13 @@
 		</useconditions>
 		<effects>
 			<statup duration2="1800000" effectid="10012" e="1" noresist="true" element="FIRE">
-				<change stat="MAXHP" func="ADD" value="36"/>
+				<change stat="MAXHP" func="ADD" value="0" delta="36"/>
 			</statup>
 			<statup duration2="1800000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
-				<change stat="WATER_RESISTANCE" func="ADD" value="10"/>
-				<change stat="WIND_RESISTANCE" func="ADD" value="10"/>
-				<change stat="FIRE_RESISTANCE" func="ADD" value="10"/>
-				<change stat="EARTH_RESISTANCE" func="ADD" value="10"/>
+				<change stat="WATER_RESISTANCE" func="ADD" value="0" delta="10"/>
+				<change stat="WIND_RESISTANCE" func="ADD" value="0" delta="10"/>
+				<change stat="FIRE_RESISTANCE" func="ADD" value="0" delta="10"/>
+				<change stat="EARTH_RESISTANCE" func="ADD" value="0" delta="10"/>
 			</statup>
 		</effects>
 	</skill_template>
@@ -144585,11 +144585,42 @@
 			<sphealinstant value="70" e="1" noresist="true"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10633" name="Recupera a energia do repouso em 100%." nameId="2281059" delayId="10633" stack="SHOP_FOOD_MSBOOST_MAXHP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="10633" name="Recupera a energia do repouso em 100%." nameId="2281059" delayId="10633" stack="SHOP_FOOD_MSBOOST_MAXHP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" activation="ACTIVE" cooldown="0" duration="0" conflict_id="22">
+		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false"/>
+		</useconditions>
+		<effects>
+			<statup duration2="900000" effectid="10012" e="1" noresist="true" element="FIRE">
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="0" delta="10"/>
+			</statup>
+			<statup duration2="900000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
+				<change stat="MAXHP" func="ADD" value="0" delta="40"/>
+			</statup>
+		</effects>
 	</skill_template>
-	<skill_template skill_id="10634" name="Recupera a energia do repouso em 10%." nameId="2281066" delayId="10634" stack="CLASSIC_PASS_FOOD_SHAPE_INVISIBLE_S01" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="10634" name="Recupera a energia do repouso em 10%." nameId="2281066" delayId="10634" stack="CLASSIC_PASS_FOOD_SHAPE_INVISIBLE_S01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" tslot_level="3" noremoveatdie="true">
+		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false"/>
+		</useconditions>
+		<effects>
+			<polymorph model="0" type="PC" duration2="3600000" effectid="275" e="1" noresist="true"/>
+			<statup duration2="3600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
+				<change stat="MAXHP" func="ADD" value="220"/>
+				<change stat="MAXMP" func="ADD" value="220"/>
+			</statup>
+			<statup duration2="3600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-2"/>
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="2"/>
+			</statup>
+		</effects>
 	</skill_template>
 	<skill_template skill_id="10635" name="Drop Rate Increase" nameId="2281086" delayId="10635" stack="DROP_BOOST_02" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET"/>
@@ -145750,6 +145781,7 @@
 			<statup duration2="1800000" effectid="10014" e="1" noresist="true" element="FIRE">
 				<change stat="ATTACK_SPEED" func="PERCENT" value="-1"/>
 				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="1"/>
+				<change stat="SPEED" func="PERCENT" value="1"/>
 			</statup>
 		</effects>
 	</skill_template>
@@ -145849,11 +145881,51 @@
 	<skill_template skill_id="10769" name="O poder de um elfo transformou você em um arlequim." nameId="2283808" delayId="10769" stack="PROVIDENCE_IDINFINITY_ITEM_SKILL" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET"/>
 	</skill_template>
-	<skill_template skill_id="10770" name="O poder de um elfo transformou você em um arlequim." nameId="2283810" delayId="10770" stack="ATTACKROAR_L_IDINFINITY_ITEM_SKILL" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="10770" name="O poder de um elfo transformou você em um arlequim." nameId="2283810" delayId="10770" stack="ATTACKROAR_L_IDINFINITY_ITEM_SKILL" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
+		<useconditions>
+			<playermove allow="false"/>
+		</useconditions>
+		<effects>
+			<polymorph model="202561" type="PC" duration2="30000" effectid="175" e="1" basiclvl="160" noresist="true"/>
+			<statup duration2="30000" effectid="2107702" e="2" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="MAXHP" func="ADD" value="3000"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-20"/>
+				<change stat="SPEED" func="PERCENT" value="20"/>
+			</statup>
+			<statup duration2="30000" effectid="2107703" e="3" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="REGEN_HP" func="ADD" value="300"/>
+				<change stat="REGEN_MP" func="ADD" value="300"/>
+				<change stat="PVE_ATTACK_RATIO" func="ADD" value="50"/>
+			</statup>
+			<boostskillcastingtime duration2="30000" effectid="2107704" e="4" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="10"/>
+			</boostskillcastingtime>
+		</effects>
+		<motion name="DefendRoar"/>
 	</skill_template>
-	<skill_template skill_id="10771" name="O Harlequin balança sua espada e inflige 24.300 danos a até 3 oponentes." nameId="2283812" delayId="10771" stack="ATTACKROAR_D_IDINFINITY_ITEM_SKILL" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="10771" name="O Harlequin balança sua espada e inflige 24.300 danos a até 3 oponentes." nameId="2283812" delayId="10771" stack="ATTACKROAR_D_IDINFINITY_ITEM_SKILL" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
+		<useconditions>
+			<playermove allow="false"/>
+		</useconditions>
+		<effects>
+			<polymorph model="202562" type="PC" duration2="30000" effectid="175" e="1" basiclvl="160" noresist="true"/>
+			<statup duration2="30000" effectid="2107712" e="2" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="MAXHP" func="ADD" value="3000"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-20"/>
+				<change stat="SPEED" func="PERCENT" value="20"/>
+			</statup>
+			<statup duration2="30000" effectid="2107713" e="3" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="REGEN_HP" func="ADD" value="300"/>
+				<change stat="REGEN_MP" func="ADD" value="300"/>
+				<change stat="PVE_ATTACK_RATIO" func="ADD" value="50"/>
+			</statup>
+			<boostskillcastingtime duration2="30000" effectid="2107714" e="4" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="10"/>
+			</boostskillcastingtime>
+		</effects>
+		<motion name="DefendRoar"/>
 	</skill_template>
 	<skill_template skill_id="10772" name="Um bilhete de loteria sem folha de prata. Os números da sorte são 8 31 30 4 34 19." nameId="799501" delayId="10772" stack="CLASSIC_FOOD_IDDRAMATA_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" conflict_id="23">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE"/>
@@ -145867,6 +145939,7 @@
 			<statup duration2="1800000" effectid="10014" e="1" noresist="true" element="FIRE">
 				<change stat="PHYSICAL_ATTACK" func="ADD" value="6"/>
 				<change stat="PHYSICAL_CRITICAL" func="ADD" value="30"/>
+				<change stat="MAXHP" func="ADD" value="120"/>
 			</statup>
 		</effects>
 	</skill_template>
@@ -145882,6 +145955,7 @@
 			<statup duration2="1800000" effectid="10014" e="1" noresist="true" element="FIRE">
 				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="30"/>
 				<change stat="MAXHP" func="ADD" value="120"/>
+				<change stat="MAXMP" func="ADD" value="120"/>
 			</statup>
 		</effects>
 	</skill_template>
@@ -146180,8 +146254,34 @@
 	<skill_template skill_id="10812" name="Transformação em um panda Swift" nameId="2283940" delayId="10812" stack="NPC_SUMMON_CTRL_06" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET"/>
 	</skill_template>
-	<skill_template skill_id="10813" name="Ataca o alvo." nameId="2283971" delayId="10813" stack="CLASSIC_CANDY_SHAPE_INVISIBLE_EXCHANGE_50" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="10813" name="Ataca o alvo." nameId="2283971" delayId="10813" stack="CLASSIC_CANDY_SHAPE_INVISIBLE_EXCHANGE_50" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" tslot_level="3" noremoveatdie="true">
+		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false"/>
+		</useconditions>
+		<effects>
+			<polymorph model="0" type="PC" duration2="3000000" effectid="275" e="1" noresist="true"/>
+			<statup duration2="3000000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="2"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="10"/>
+				<change stat="PHYSICAL_ACCURACY" func="ADD" value="48"/>
+				<change stat="MAGICAL_ACCURACY" func="ADD" value="48"/>
+			</statup>
+			<statup duration2="3000000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
+				<change stat="SPEED" func="PERCENT" value="3"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-3"/>
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="3"/>
+			</statup>
+			<statup duration2="3000000" effectid="10012" e="4" noresist="true" element="FIRE" preeffect="3" preeffect_prob="100">
+				<change stat="PVE_ATTACK_RATIO" func="ADD" value="10"/>
+				<change stat="PVE_DEFEND_RATIO" func="ADD" value="10"/>
+				<change stat="MAXHP" func="ADD" value="220"/>
+				<change stat="MAXMP" func="ADD" value="220"/>
+			</statup>
+		</effects>
 	</skill_template>
 	<skill_template skill_id="10814" name="Lady Lumiel" nameId="2283973" delayId="10814" stack="CLASSIC_ITEM_SKILL_TRANS_LUMIEL_01_ARENA" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" tslot_level="3">
 		<properties first_target="TARGET" first_target_range="20" target_relation="FRIEND" target_type="ONLYONE"/>
@@ -150702,17 +150802,85 @@
 			<provoker e="1" skill_id="9118" provoke_target="OPPONENT" radius="100" effectid="1112241" basiclvl="20" noresist="true" hittypeprob2="40" element="WIND" hoptype="SKILLLV"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11224" name="Eco da clareza" nameId="2286152" delayId="11224" stack="CLASSIC_CANDY_SHAPE_INVISIBLE_PHY_10M" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="11224" name="Eco da clareza" nameId="2286152" delayId="11224" stack="CLASSIC_CANDY_SHAPE_INVISIBLE_PHY_10M" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" tslot_level="3" noremoveatdie="true">
+		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false"/>
+		</useconditions>
+		<effects>
+			<polymorph model="0" type="PC" duration2="600000" effectid="275" e="1" noresist="true"/>
+			<statup duration2="600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="2"/>
+				<change stat="PHYSICAL_ACCURACY" func="ADD" value="48"/>
+			</statup>
+			<statup duration2="600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
+				<change stat="SPEED" func="PERCENT" value="3"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-3"/>
+			</statup>
+		</effects>
 	</skill_template>
-	<skill_template skill_id="11225" name="Candy: Wise Mini Daeva" nameId="2286153" delayId="11225" stack="CLASSIC_CANDY_SHAPE_INVISIBLE_MAG_10M" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="11225" name="Candy: Wise Mini Daeva" nameId="2286153" delayId="11225" stack="CLASSIC_CANDY_SHAPE_INVISIBLE_MAG_10M" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" tslot_level="3" noremoveatdie="true">
+		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false"/>
+		</useconditions>
+		<effects>
+			<polymorph model="0" type="PC" duration2="600000" effectid="275" e="1" noresist="true"/>
+			<statup duration2="600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="10"/>
+				<change stat="MAGICAL_ACCURACY" func="ADD" value="48"/>
+			</statup>
+			<statup duration2="600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
+				<change stat="SPEED" func="PERCENT" value="3"/>
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="3"/>
+			</statup>
+		</effects>
 	</skill_template>
-	<skill_template skill_id="11226" name="Harmonia de Desolação" nameId="2286154" delayId="11226" stack="CLASSIC_CANDY_SHAPE_INVISIBLE_HYD_10M" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="11226" name="Harmonia de Desolação" nameId="2286154" delayId="11226" stack="CLASSIC_CANDY_SHAPE_INVISIBLE_HYD_10M" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" tslot_level="3" noremoveatdie="true">
+		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false"/>
+		</useconditions>
+		<effects>
+			<polymorph model="0" type="PC" duration2="600000" effectid="275" e="1" noresist="true"/>
+			<statup duration2="600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="10"/>
+				<change stat="MAGICAL_ACCURACY" func="ADD" value="48"/>
+			</statup>
+			<statup duration2="600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
+				<change stat="SPEED" func="PERCENT" value="3"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-3"/>
+			</statup>
+		</effects>
 	</skill_template>
-	<skill_template skill_id="11227" name="Candy: Robust Mini Daeva" nameId="2286155" delayId="11227" stack="CLASSIC_CANDY_SHAPE_INVISIBLE_GEN_10M" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="11227" name="Candy: Robust Mini Daeva" nameId="2286155" delayId="11227" stack="CLASSIC_CANDY_SHAPE_INVISIBLE_GEN_10M" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" tslot_level="3" noremoveatdie="true">
+		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false"/>
+		</useconditions>
+		<effects>
+			<polymorph model="0" type="PC" duration2="600000" effectid="275" e="1" noresist="true"/>
+			<statup duration2="600000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
+				<change stat="MAXHP" func="ADD" value="220"/>
+				<change stat="MAXMP" func="ADD" value="220"/>
+			</statup>
+			<statup duration2="600000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-2"/>
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="2"/>
+			</statup>
+		</effects>
 	</skill_template>
 	<skill_template skill_id="11228" name="[Rune] Atordoamento Resistance I" nameId="2286160" delayId="11228" stack="CLASSIC_WIND_STUNRESIST_TORSO_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE"/>
@@ -151889,8 +152057,35 @@
 	<skill_template skill_id="11337" name="Luz ofuscante" nameId="2286288" delayId="11337" stack="NPC_SUMMON_TEVA_UNKNOWN_TREE_S_01" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET"/>
 	</skill_template>
-	<skill_template skill_id="11338" name="Mantra do vento" nameId="2286385" delayId="11338" stack="CLASSIC_CANDY_SHAPE_INVISIBLE_PHY_MAG_XPBOOST_30" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="11338" name="Mantra do vento" nameId="2286385" delayId="11338" stack="CLASSIC_CANDY_SHAPE_INVISIBLE_PHY_MAG_XPBOOST_30" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" tslot_level="3" noremoveatdie="true">
+		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false"/>
+		</useconditions>
+		<effects>
+			<polymorph model="0" type="PC" duration2="1800000" effectid="275" e="1" noresist="true"/>
+			<statup duration2="1800000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="2"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="10"/>
+				<change stat="PHYSICAL_ACCURACY" func="ADD" value="48"/>
+				<change stat="MAGICAL_ACCURACY" func="ADD" value="48"/>
+			</statup>
+			<statup duration2="1800000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
+				<change stat="SPEED" func="PERCENT" value="3"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-3"/>
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="3"/>
+				<change stat="PVE_ATTACK_RATIO" func="ADD" value="10"/>
+			</statup>
+			<xpboost duration2="1800000" e="4" basiclvl="1" noresist="true" preeffect="3" preeffect_prob="100">
+				<change stat="BOOST_CRAFTING_XP_RATE" func="PERCENT" value="100"/>
+				<change stat="BOOST_GATHERING_XP_RATE" func="PERCENT" value="100"/>
+				<change stat="BOOST_GROUP_HUNTING_XP_RATE" func="PERCENT" value="100"/>
+				<change stat="BOOST_HUNTING_XP_RATE" func="PERCENT" value="100"/>
+			</xpboost>
+		</effects>
 	</skill_template>
 	<skill_template skill_id="11339" name="Apostle Ariel’s Blessing" nameId="2286464" delayId="11339" stack="ITEM_SKILL_TRANS_ARIELAPOSTLE_RING_01" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET"/>
@@ -152250,6 +152445,7 @@
 			<statup duration2="600000" effectid="1113891" e="1" noresist="true">
 				<change stat="MAXHP" func="ADD" value="20000"/>
 				<change stat="MAXMP" func="ADD" value="20000"/>
+				<change stat="SPEED" func="PERCENT" value="2"/>
 			</statup>
 			<statup duration2="600000" effectid="1113892" e="2" noresist="true" preeffect="1">
 				<change stat="PHYSICAL_ATTACK" func="ADD" value="50"/>
@@ -153293,11 +153489,58 @@
 	<skill_template skill_id="11658" name="Bassen Fortaleza Consumable Comables" nameId="815578" delayId="11658" stack="ITEM_SCROLL_REGIST_LIGHT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET"/>
 	</skill_template>
-	<skill_template skill_id="11659" name="Lodas’ Little Precious Candy" nameId="2288036" delayId="11659" stack="CLASSIC_CANDY_SHAPE_INVISIBLE_PHY_MAG_XPBOOST_5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="11659" name="Lodas’ Little Precious Candy" nameId="2288036" delayId="11659" stack="CLASSIC_CANDY_SHAPE_INVISIBLE_PHY_MAG_XPBOOST_5" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" tslot_level="3" noremoveatdie="true">
+		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false"/>
+		</useconditions>
+		<effects>
+			<polymorph model="0" type="PC" duration2="300000" effectid="275" e="1" noresist="true"/>
+			<statup duration2="300000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="2"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="10"/>
+				<change stat="PHYSICAL_ACCURACY" func="ADD" value="48"/>
+				<change stat="MAGICAL_ACCURACY" func="ADD" value="48"/>
+			</statup>
+			<statup duration2="300000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2" preeffect_prob="100">
+				<change stat="SPEED" func="PERCENT" value="3"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-3"/>
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="3"/>
+				<change stat="PVE_ATTACK_RATIO" func="ADD" value="10"/>
+			</statup>
+			<xpboost duration2="300000" e="4" basiclvl="1" noresist="true" preeffect="3" preeffect_prob="100">
+				<change stat="BOOST_CRAFTING_XP_RATE" func="PERCENT" value="100"/>
+				<change stat="BOOST_GATHERING_XP_RATE" func="PERCENT" value="100"/>
+				<change stat="BOOST_GROUP_HUNTING_XP_RATE" func="PERCENT" value="100"/>
+				<change stat="BOOST_HUNTING_XP_RATE" func="PERCENT" value="100"/>
+			</xpboost>
+		</effects>
 	</skill_template>
-	<skill_template skill_id="11661" name="aumenta ataque físico, precisão, poder mágico, magical precisão, HP regeneration rate e MP regeneration rate." nameId="2288457" delayId="11661" stack="FOOD_PHYATTACK_ACCURACY_MSBOOST_MACCURACY_HPREGEN_MPREGEN_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="11661" name="aumenta ataque físico, precisão, poder mágico, magical precisão, HP regeneration rate e MP regeneration rate." nameId="2288457" delayId="11661" stack="FOOD_PHYATTACK_ACCURACY_MSBOOST_MACCURACY_HPREGEN_MPREGEN_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" activation="ACTIVE" cooldown="0" duration="0" conflict_id="22">
+		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false"/>
+		</useconditions>
+		<effects>
+			<statup duration2="1800000" effectid="10012" e="1" noresist="true" element="FIRE">
+				<change stat="PHYSICAL_ACCURACY" func="ADD" value="0" delta="10"/>
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="0" delta="2"/>
+			</statup>
+			<statup duration2="1800000" effectid="10012" e="2" noresist="true" element="FIRE" preeffect="1">
+				<change stat="MAGICAL_ACCURACY" func="ADD" value="0" delta="10"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="0" delta="10"/>
+			</statup>
+			<statup duration2="1800000" effectid="10012" e="3" noresist="true" element="FIRE" preeffect="2">
+				<change stat="REGEN_HP" func="ADD" value="0" delta="2"/>
+				<change stat="REGEN_MP" func="ADD" value="0" delta="3"/>
+			</statup>
+		</effects>
 	</skill_template>
 	<skill_template skill_id="11917" name="Summon Abyssal Bulwark" nameId="2283967" delayId="11917" stack="ABYSS_RANKERSKILL_RANKER_BARRICADE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="300" duration="0">
 		<properties first_target="TARGET"/>
@@ -153475,6 +153718,8 @@
 				<change stat="SPEED" func="PERCENT" value="10"/>
 				<change stat="FLY_SPEED" func="PERCENT" value="10"/>
 				<change stat="MAXHP" func="ADD" value="7800"/>
+				<change stat="MAXMP" func="ADD" value="15600"/>
+				<change stat="PVP_ATTACK_RATIO" func="ADD" value="60"/>
 			</statup>
 		</effects>
 		<motion name="PhBurst"/>
@@ -153491,6 +153736,8 @@
 				<change stat="SPEED" func="PERCENT" value="10"/>
 				<change stat="FLY_SPEED" func="PERCENT" value="10"/>
 				<change stat="MAXHP" func="ADD" value="7800"/>
+				<change stat="MAXMP" func="ADD" value="15600"/>
+				<change stat="PVP_ATTACK_RATIO" func="ADD" value="60"/>
 			</statup>
 		</effects>
 		<motion name="PhBurst"/>
@@ -158180,7 +158427,7 @@
 		<effects>
 			<statup duration2="3600000" effectid="10015" e="1" noresist="true" element="FIRE">
 				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="10" delta="1"/>
-				<change stat="MAGICAL_ACCURACY" func="ADD" value="48" delta="1"/>
+				<change stat="MAGICAL_ACCURACY" func="ADD" value="48"/>
 			</statup>
 			<statup duration2="3600000" effectid="10015" e="2" noresist="true" element="FIRE" preeffect="1">
 				<change stat="SPEED" func="PERCENT" value="3"/>

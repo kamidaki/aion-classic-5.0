@@ -1,0 +1,26 @@
+fix_50_food_candy.py -- escopo: 1509 itens, 632 skills
+estrutura dos stubs medida no gabarito: cabecalho 333/616, properties 524/616, startconditions 112/616, useconditions 616/616, noremoveatdie 560/616
+
+== area_to_use com varias areas (usearea mantido): 2
+  160010536 LDF10_shapechange_light: DF4_ItemUseArea_All,LF4_ItemUseArea_All,AB1_ItemUseArea_All,LDF3_01_Item_Use_Area_All,LDF10_Item_Use_Area_All,Underpass_Item_Use_Area_All
+  160010537 LDF10_shapechange_dark: DF4_ItemUseArea_All,LF4_ItemUseArea_All,AB1_ItemUseArea_All,LDF3_01_Item_Use_Area_All,LDF10_Item_Use_Area_All,Underpass_Item_Use_Area_All
+
+== stub mantido (client_skills com colunas deslocadas): 12
+  10665 Classic_Test_Item_Skill_Trans_Candy_M: e3 1
+  10666 Classic_Test_Item_Skill_Trans_Candy_F: e3 1
+  10667 Classic_Test_Item_Skill_Trans_Candy_Kaisinel: e3 1
+  10668 Classic_Test_Item_Skill_Trans_Candy_Marchutan: e3 1
+  10669 Classic_Test_Item_Skill_Trans_Candy_Nezekan: e3 1
+  10670 Classic_Test_Item_Skill_Trans_Candy_Zikel: e3 1
+  10671 Classic_Test_Item_Skill_Trans_Candy_Yustiel: e3 1
+  10672 Classic_Test_Item_Skill_Trans_Candy_Lumiel: e3 1
+  10673 Classic_Test_Item_Skill_Trans_Candy_Vaizel: e3 1
+  10674 Classic_Test_Item_Skill_Trans_Candy_Triniel: e3 1
+  10675 Classic_Test_Item_Skill_Trans_Candy_Ariel: e3 1
+  10676 Classic_Test_Item_Skill_Trans_Candy_Azphel: e3 1
+
+== stub mantido (tipo sem tradutor): 4
+  11410 Item_Skill_DrakanTeva_ShapeChange_FighterLM_01: e2 StatUp
+  11415 Item_Skill_DrakanTeva_ShapeChange_ScoutLF_01: e2 StatUp
+  11419 Item_Skill_DrakanTeva_ShapeChange_MageLF_01: e2 StatUp
+  11422 Item_Skill_DrakanTeva_ShapeChange_ClericLM_01: e2 StatUp
