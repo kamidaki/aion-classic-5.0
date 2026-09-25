@@ -11,7 +11,9 @@ import com.aionemu.gameserver.skillengine.model.DashStatus;
 import com.aionemu.gameserver.skillengine.model.Effect;
 import com.aionemu.gameserver.utils.PositionUtil;
 import com.aionemu.gameserver.world.World;
+import com.aionemu.gameserver.configs.main.GeoDataConfig;
 import com.aionemu.gameserver.world.geo.GeoService;
+import com.lostacademy.nav.NavService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -32,8 +34,17 @@ public class DashEffect extends DamageEffect {
 			final float x1 = (float) Math.cos(Math.PI + radian) * distance;
 			final float y1 = (float) Math.sin(Math.PI + radian) * distance;
 			Vector3f closestCollision = GeoService.getInstance().getClosestCollision(effect.getEffected(),effected.getX() + x1, effected.getY() + y1, effected.getZ());
-			effect.getSkill().setTargetPosition(closestCollision.getX(), closestCollision.getY(), closestCollision.getZ(), h);
-			World.getInstance().updatePosition(effect.getEffector(), closestCollision.getX(), closestCollision.getY(), closestCollision.getZ(), h);
+			float targetX = closestCollision.getX();
+			float targetY = closestCollision.getY();
+			float targetZ = closestCollision.getZ();
+			if (GeoDataConfig.GEO_NAV_ENABLE) {
+				float navZ = NavService.getInstance().getNavSurfaceZ(effect.getEffector().getWorldId(), targetX, targetY, targetZ);
+				if (!Float.isNaN(navZ)) {
+					targetZ = navZ;
+				}
+			}
+			effect.getSkill().setTargetPosition(targetX, targetY, targetZ, h);
+			World.getInstance().updatePosition(effect.getEffector(), targetX, targetY, targetZ, h);
 		}
 		super.calculate(effect);
 	}

@@ -218,30 +218,23 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 				float targetZ = creature.getZ();
 
 				// ========================================================
-				// CAMADA ÚNICA: NAVMESH (.nav 3D Navigation Mesh)
+				// CAMADA 1: NAVMESH (.nav 3D Navigation Mesh - Sistema Primário)
 				// ========================================================
 				cancelFollow();
 				if (GeoDataConfig.GEO_NAV_ENABLE) {
 					long now = System.currentTimeMillis();
 					PathState ps = pathRef.get();
 
-					// 1. Se houver linha de visão física direta desobstruída (sem casas, muros, árvores ou abismos),
-					// persegue em linha reta diretamente — transição instantânea e movimento ultra fluido!
-					boolean hasDirectLOS = canWalkDirectly(owner, targetX, targetY, targetZ);
-					if (hasDirectLOS) {
-						clearCachedPath();
-						moveToLocation(targetX, targetY, targetZ);
-						break;
-					}
-
-					// 2. Se a visão física estiver obstruída por obstáculo (casa, muralha, árvore, cerca):
-					// Recalcula rota apenas se:
+					// Rerota se:
 					// a) Não há rota ou waypoints atuais foram concluídos
 					// b) Alvo moveu-se > 1.5m desde o último cálculo e já se passaram >= 400ms
+					// c) Tempo decorrido >= 1200ms
 					boolean needRepath = (ps == null || !ps.hasNext());
 					if (!needRepath && ps.path != null && ps.path.length > 0) {
 						float distFromTargetAtCalc = (float) PositionUtil.getDistance(targetX, targetY, targetZ, lastTargetX, lastTargetY, lastTargetZ);
 						if (distFromTargetAtCalc > 1.5f && (now - lastPathCalcTime) >= 400) {
+							needRepath = true;
+						} else if ((now - lastPathCalcTime) >= 1200) {
 							needRepath = true;
 						}
 					}
@@ -265,6 +258,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 							if (ps != null && ps.hasNext()) {
 								lastPathCalcTime = now + 400;
 							} else {
+								// NavMesh falhou ou sem malha -> Fallback para GeoService
 								if (canWalkDirectly(owner, targetX, targetY, targetZ)) {
 									moveToLocation(targetX, targetY, targetZ);
 									break;
@@ -373,7 +367,13 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 			distance2D = MAX_GEO_POINT_DISTANCE;
 		}
 		float maxZDiff = distance2D + MOVE_CHECK_OFFSET;
-		float geoZ = GeoService.getInstance().getZ(owner.getWorldId(), targetX, targetY, pointZ + maxZDiff, pointZ - maxZDiff, owner.getInstanceId());
+		float geoZ = Float.NaN;
+		if (GeoDataConfig.GEO_NAV_ENABLE) {
+			geoZ = NavService.getInstance().getNavSurfaceZ(owner.getWorldId(), targetX, targetY, pointZ);
+		}
+		if (Float.isNaN(geoZ) && GeoDataConfig.GEO_ENABLE) {
+			geoZ = GeoService.getInstance().getZ(owner.getWorldId(), targetX, targetY, pointZ + maxZDiff, pointZ - maxZDiff, owner.getInstanceId());
+		}
 		if (Float.isNaN(geoZ)) {
 			owner.getGameStats().setNextGeoZUpdate(nowMillis + 1000);
 			return false;
@@ -469,11 +469,14 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 				newZ = surfaceZ;
 			}
 		} else if (owner.getAi().getState() == AIState.RETURNING) {
-			float highZ = Math.max(ownerZ, newZ) + 15.0f;
-			float lowZ = Math.min(ownerZ, newZ) - 25.0f;
-			float surfaceZ = GeoService.getInstance().getZ(owner.getWorldId(), newX, newY, highZ, lowZ, owner.getInstanceId());
-			if (Float.isNaN(surfaceZ)) {
+			float surfaceZ = Float.NaN;
+			if (GeoDataConfig.GEO_NAV_ENABLE) {
 				surfaceZ = NavService.getInstance().getNavSurfaceZ(owner.getWorldId(), newX, newY, newZ);
+			}
+			if (Float.isNaN(surfaceZ) && GeoDataConfig.GEO_ENABLE) {
+				float highZ = Math.max(ownerZ, newZ) + 15.0f;
+				float lowZ = Math.min(ownerZ, newZ) - 25.0f;
+				surfaceZ = GeoService.getInstance().getZ(owner.getWorldId(), newX, newY, highZ, lowZ, owner.getInstanceId());
 			}
 			if (!Float.isNaN(surfaceZ)) {
 				newZ = surfaceZ;

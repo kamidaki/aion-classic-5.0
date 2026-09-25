@@ -41,21 +41,27 @@ public class OpenAerialEffect extends EffectTemplate {
 			effect.setSubEffectType(SubEffectType.OPENAERIAL);
 		float z = effect.getEffected().getZ();
 		if (!effect.getEffected().isFlying()) {
-			float geoZ = GeoService.getInstance().getZ(effect.getEffected().getWorldId(), effect.getEffected().getX(), effect.getEffected().getY(), effect.getEffected().getZ() + 2, effect.getEffected().getZ() - 1, effect.getEffected().getInstanceId());
-			if (!Float.isNaN(geoZ)) {
-				z = geoZ + 2.5f;
-			} else {
-				z += 2.5f;
-			}
-			// Validação adicional NavMesh: garante que a posição está sobre solo transitável
+			float groundZ = Float.NaN;
 			if (GeoDataConfig.GEO_NAV_ENABLE) {
-				float navZ = NavService.getInstance().getNavSurfaceZ(
+				groundZ = NavService.getInstance().getNavSurfaceZ(
 					effect.getEffected().getWorldId(),
 					effect.getEffected().getX(),
-					effect.getEffected().getY(), z);
-				if (!Float.isNaN(navZ)) {
-					z = navZ;
-				}
+					effect.getEffected().getY(),
+					effect.getEffected().getZ());
+			}
+			if (Float.isNaN(groundZ) && GeoDataConfig.GEO_ENABLE) {
+				groundZ = GeoService.getInstance().getZ(
+					effect.getEffected().getWorldId(),
+					effect.getEffected().getX(),
+					effect.getEffected().getY(),
+					effect.getEffected().getZ() + 2,
+					effect.getEffected().getZ() - 1,
+					effect.getEffected().getInstanceId());
+			}
+			if (!Float.isNaN(groundZ)) {
+				z = groundZ + 2.5f;
+			} else {
+				z += 2.5f;
 			}
 		}
 		effect.setTargetLoc(effect.getEffected().getX(), effect.getEffected().getY(), z);
@@ -84,12 +90,28 @@ public class OpenAerialEffect extends EffectTemplate {
 		final Creature effected = effect.getEffected();
 		effected.getEffectController().unsetAbnormal(AbnormalState.OPENAERIAL);
 		if (!effected.isFlying()) {
-			float geoZ = GeoService.getInstance().getZ(effected.getWorldId(), effected.getX(), effected.getY(), effected.getZ() + 2, effected.getZ() - 4, effected.getInstanceId());
-			if (!Float.isNaN(geoZ)) {
-				World.getInstance().updatePosition(effected, effected.getX(), effected.getY(), geoZ, effected.getHeading());
+			float groundZ = Float.NaN;
+			if (GeoDataConfig.GEO_NAV_ENABLE) {
+				groundZ = NavService.getInstance().getNavSurfaceZ(
+					effected.getWorldId(),
+					effected.getX(),
+					effected.getY(),
+					effected.getZ());
+			}
+			if (Float.isNaN(groundZ) && GeoDataConfig.GEO_ENABLE) {
+				groundZ = GeoService.getInstance().getZ(
+					effected.getWorldId(),
+					effected.getX(),
+					effected.getY(),
+					effected.getZ() + 2,
+					effected.getZ() - 4,
+					effected.getInstanceId());
+			}
+			if (!Float.isNaN(groundZ)) {
+				World.getInstance().updatePosition(effected, effected.getX(), effected.getY(), groundZ, effected.getHeading());
 				if (effected instanceof Player)
 					PacketSendUtility.broadcastPacketAndReceive(effected, new SM_FORCED_MOVE(effected, effected.getObjectId(),
-							effected.getX(), effected.getY(), geoZ));
+							effected.getX(), effected.getY(), groundZ));
 			}
 		}
 	}

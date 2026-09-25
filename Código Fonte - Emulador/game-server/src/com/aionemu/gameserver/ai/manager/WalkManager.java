@@ -234,6 +234,9 @@ public class WalkManager {
             float nextY = Rnd.nextFloat(diameter) - randomWalkRange + owner.getSpawn().getY();
             if (GeoDataConfig.GEO_NAV_ENABLE && NavData.getInstance().getNavMap(owner.getWorldId()) != null) {
                 float targetZ = NavService.getInstance().getNavSurfaceZ(owner.getWorldId(), nextX, nextY, owner.getZ());
+                if (Float.isNaN(targetZ) && GeoDataConfig.GEO_ENABLE) {
+                    targetZ = GeoService.getInstance().getZ(owner.getWorldId(), nextX, nextY, owner.getZ() + 2f, owner.getZ() - 5f, owner.getInstanceId());
+                }
                 if (Float.isNaN(targetZ)) {
                     targetZ = owner.getZ();
                 }

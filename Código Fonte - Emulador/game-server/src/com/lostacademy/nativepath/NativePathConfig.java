@@ -11,7 +11,7 @@ import com.aionemu.commons.configuration.Property;
  * Motor primário e EXCLUSIVO de navegação e pathfinding do emulador:
  * 1. Consome diretamente as malhas de navegação nativas oficiais compiladas da CryEngine (*-path.dat).
  * 2. Gerenciamento inteligente de ciclo de vida com Cache LRU limitado e desalocação por inatividade.
- * 3. Ausência completa de fallbacks para Eleanor ou NavMesh genérico em tempo de execução.
+ * 3. Ausência completa de fallbacks para GeoEngine Vanilla em tempo de execução.
  * 4. Resolução subcelular de 0.5m com suporte nativo a pontes, túneis e relevo tridimensional.
  *
  * @author KAMIDAKI & Equipe Lost Academy

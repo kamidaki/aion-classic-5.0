@@ -60,11 +60,21 @@ public class PulledEffect extends EffectTemplate {
 		float destX = closestCollision.getX();
 		float destY = closestCollision.getY();
 		float destZ = closestCollision.getZ();
-		// Corrige Z com NavMesh para evitar que a vítima flutue ou caia em abismo
+		// Corrige Z com NavMesh prioritário e fallback GeoService
 		if (GeoDataConfig.GEO_NAV_ENABLE) {
 			float navZ = NavService.getInstance().getNavSurfaceZ(effector.getWorldId(), destX, destY, destZ);
 			if (!Float.isNaN(navZ)) {
 				destZ = navZ;
+			} else if (GeoDataConfig.GEO_ENABLE) {
+				float geoZ = GeoService.getInstance().getZ(effector.getWorldId(), destX, destY, destZ + 2, destZ - 4, effector.getInstanceId());
+				if (!Float.isNaN(geoZ)) {
+					destZ = geoZ;
+				}
+			}
+		} else if (GeoDataConfig.GEO_ENABLE) {
+			float geoZ = GeoService.getInstance().getZ(effector.getWorldId(), destX, destY, destZ + 2, destZ - 4, effector.getInstanceId());
+			if (!Float.isNaN(geoZ)) {
+				destZ = geoZ;
 			}
 		}
 		effect.setTargetLoc(destX, destY, destZ);

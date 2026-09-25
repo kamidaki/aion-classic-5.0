@@ -27,7 +27,9 @@ import com.aionemu.gameserver.skillengine.model.Effect;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.PositionUtil;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
+import com.aionemu.gameserver.configs.main.GeoDataConfig;
 import com.aionemu.gameserver.world.geo.GeoService;
+import com.lostacademy.nav.NavService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -109,12 +111,33 @@ public class FearEffect extends EffectTemplate {
 			if (effected.getEffectController().isUnderFear() && PositionUtil.isInRange(effected, effector, 40)) {
 				float angle = PositionUtil.calculateAngleFrom(effector, effected);
 				float maxDistance = effected.getGameStats().getMovementSpeedFloat() * FLEE_SECONDS;
-				Vector3f closestCollision = GeoService.getInstance().findMovementCollision(effected, angle, maxDistance);
+				boolean movedByNav = false;
+				float targetX = 0, targetY = 0, targetZ = 0;
+				if (GeoDataConfig.GEO_NAV_ENABLE) {
+					double rad = Math.toRadians(angle);
+					float desiredX = effected.getX() + (float) Math.cos(rad) * maxDistance;
+					float desiredY = effected.getY() + (float) Math.sin(rad) * maxDistance;
+					float navZ = NavService.getInstance().getNavSurfaceZ(effected.getWorldId(), desiredX, desiredY, effected.getZ());
+					float testZ = Float.isNaN(navZ) ? effected.getZ() : navZ;
+					float[][] path = NavService.getInstance().navigateToLocation(effected, desiredX, desiredY, testZ);
+					if (path != null && path.length > 0 && path[0] != null && path[0].length >= 3) {
+						targetX = path[0][0];
+						targetY = path[0][1];
+						targetZ = path[0][2];
+						movedByNav = true;
+					}
+				}
+				if (!movedByNav) {
+					Vector3f closestCollision = GeoService.getInstance().findMovementCollision(effected, angle, maxDistance);
+					targetX = closestCollision.getX();
+					targetY = closestCollision.getY();
+					targetZ = closestCollision.getZ();
+				}
 				if (effected instanceof Npc npc) {
-					npc.getMoveController().moveToPoint(closestCollision.getX(), closestCollision.getY(), closestCollision.getZ());
+					npc.getMoveController().moveToPoint(targetX, targetY, targetZ);
 				} else {
 					byte moveAwayHeading = PositionUtil.convertAngleToHeading(angle);
-					effected.getMoveController().setNewDirection(closestCollision.getX(), closestCollision.getY(), closestCollision.getZ(), moveAwayHeading);
+					effected.getMoveController().setNewDirection(targetX, targetY, targetZ, moveAwayHeading);
 					effected.getMoveController().startMovingToDestination();
 				}
 			}

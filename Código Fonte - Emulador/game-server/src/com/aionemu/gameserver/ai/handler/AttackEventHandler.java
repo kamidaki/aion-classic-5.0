@@ -186,6 +186,9 @@ public class AttackEventHandler {
 		boolean movedByNav = false;
 		if (GeoDataConfig.GEO_NAV_ENABLE) {
 			float navZ = NavService.getInstance().getNavSurfaceZ(npc.getWorldId(), desiredX, desiredY, desiredZ);
+			if (Float.isNaN(navZ) && GeoDataConfig.GEO_ENABLE) {
+				navZ = GeoService.getInstance().getZ(npc.getWorldId(), desiredX, desiredY, desiredZ, 0.5f, npc.getInstanceId());
+			}
 			float testZ = Float.isNaN(navZ) ? desiredZ : navZ;
 			float[][] path = NavService.getInstance().navigateToLocation(npc, desiredX, desiredY, testZ);
 			if (path != null && path.length > 0) {
@@ -203,6 +206,12 @@ public class AttackEventHandler {
 				targetX = stepPoint.getX();
 				targetY = stepPoint.getY();
 				targetZ = stepPoint.getZ();
+				if (GeoDataConfig.GEO_ENABLE) {
+					float geoZ = GeoService.getInstance().getZ(npc.getWorldId(), targetX, targetY, targetZ, 0.5f, npc.getInstanceId());
+					if (!Float.isNaN(geoZ)) {
+						targetZ = geoZ;
+					}
+				}
 			}
 		}
 

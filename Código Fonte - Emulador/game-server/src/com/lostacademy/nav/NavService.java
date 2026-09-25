@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.configs.main.GeoDataConfig;
+import com.aionemu.gameserver.world.geo.GeoService;
 import com.aionemu.gameserver.geoEngine.bounding.BoundingBox;
 import com.aionemu.gameserver.geoEngine.collision.CollisionResult;
 import com.aionemu.gameserver.geoEngine.collision.CollisionResults;
@@ -87,7 +88,13 @@ public final class NavService {
 				if (tile2 == null) return false;
 			}
 			float[][] path = attemptStraightLinePath(tile2, tile1, x2, y2, z2, x1, y1, z1);
-			if (path != null && path.length == 1) return true;
+			if (path != null && path.length == 1) {
+				// GeoService auxilia o NavMesh verificando portas dinâmicas fechadas e obstruções físicas
+				if (GeoDataConfig.GEO_ENABLE) {
+					return GeoService.getInstance().canSee(creature, target);
+				}
+				return true;
+			}
 			return false;
 		} finally {
 			recordQuery(start);
@@ -210,14 +217,31 @@ public final class NavService {
 		totalQueries.incrementAndGet();
 		queriesInLastSecond.incrementAndGet();
 		try {
-			if (!GeoDataConfig.GEO_NAV_ENABLE) return Float.NaN;
+			if (!GeoDataConfig.GEO_NAV_ENABLE) {
+				// Fallback auxiliar para GeoService caso NavMesh esteja desativado
+				if (GeoDataConfig.GEO_ENABLE) {
+					return GeoService.getInstance().getZ(worldId, x, y, z + 5.0f, z - 10.0f, 0);
+				}
+				return Float.NaN;
+			}
 			NavGeometry tile = getNavTile(worldId, x, y, z);
 			if (tile == null) {
 				tile = getNavTileWithBox(worldId, x, y, z);
 			}
-			if (tile == null) return Float.NaN;
-			float[] point = tile.getClosestPoint(x, y, z);
-			return point == null ? Float.NaN : point[2];
+			if (tile != null) {
+				float[] point = tile.getClosestPoint(x, y, z);
+				if (point != null && !Float.isNaN(point[2])) {
+					return point[2];
+				}
+			}
+			// NAVMESH falhou ou sem malha no ponto? FALLBACK auxiliar para GeoService
+			if (GeoDataConfig.GEO_ENABLE) {
+				float geoZ = GeoService.getInstance().getZ(worldId, x, y, z + 5.0f, z - 10.0f, 0);
+				if (!Float.isNaN(geoZ)) {
+					return geoZ;
+				}
+			}
+			return Float.NaN;
 		} finally {
 			recordQuery(start);
 		}
@@ -415,7 +439,20 @@ public final class NavService {
 		ray.setLimit(5F);
 		CollisionResults results = new CollisionResults((byte) 1, 0);
 		int collisionCount = navMap.collideWith(ray, results);
-		if (collisionCount == 0) return null;
+		if (collisionCount == 0) {
+			// GeoService auxilia o NavMesh fornecendo o ground Z exato caso o Z passado esteja desviado
+			if (GeoDataConfig.GEO_ENABLE) {
+				float geoZ = GeoService.getInstance().getZ(worldId, x, y, z + 5.0f, z - 10.0f, 0);
+				if (!Float.isNaN(geoZ) && Math.abs(geoZ - z) > 0.5f) {
+					pos = new Vector3f(x, y, geoZ + 1F);
+					ray = new Ray(pos, dir);
+					ray.setLimit(5F);
+					results.clear();
+					collisionCount = navMap.collideWith(ray, results);
+				}
+			}
+			if (collisionCount == 0) return null;
+		}
 		CollisionResult closestCollision = results.getClosestCollision();
 		if (closestCollision == null) {
 			return null;
