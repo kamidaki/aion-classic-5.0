@@ -28,7 +28,7 @@ public class SM_TRANSFORM extends AionServerPacket {
 
 	private final int objectId, modelId, state, type, panelId, skillId;
 	private final float radius, height;
-	private final boolean cantUseSkills, cantFly, cantUseItems, cantAttack, cantJump, cantRecall, cantMove;
+	private final boolean cantUseSkills, cantFly, cantUseItems, cantAttack, cantJump, cantRecall, panelTransform;
 
 	public SM_TRANSFORM(Creature creature) {
 		this(creature, creature.getTransformModel(), creature.getObjectTemplate() instanceof NpcTemplate t ? t : null);
@@ -56,7 +56,9 @@ public class SM_TRANSFORM extends AionServerPacket {
 		this.cantAttack = cantAttack;
 		this.cantJump = cantJump;
 		this.cantRecall = cantRecall;
-		this.cantMove = cantMove;
+		// reserved15 no cliente identifica as formas especiais que possuem painel. Nao e a
+		// restricao de movimento: enviar zero aqui faz o modelo do tutorial ficar invisivel.
+		this.panelTransform = panelId > 0;
 	}
 
 	@Override
@@ -75,7 +77,7 @@ public class SM_TRANSFORM extends AionServerPacket {
 		writeC(cantRecall ? 1 : 0);
 		writeD(panelId); // display panel
 		writeD(0);
-		writeC(cantMove ? 1 : 0);
+		writeC(panelTransform ? 1 : 0);
 		writeH(skillId);
 	}
 }

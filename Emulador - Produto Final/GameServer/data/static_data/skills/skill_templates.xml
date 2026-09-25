@@ -135770,16 +135770,36 @@
 			<provoker e="1" skill_id="9267" provoke_target="OPPONENT" effectid="125441" noresist="true" hittype="NMLATK" hittypeprob2="220" element="WIND" hoptype="SKILLLV" hopb="230"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4271" name="Dormir" nameId="2288025" delayId="309" stack="FI_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4271" name="Daeva of Time Transformation" nameId="2288025" delayId="309" stack="FI_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="28" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202692" type="FORM1" panelid="28" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4272" name="Dormir" nameId="2288025" delayId="309" stack="FI_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4272" name="Daeva of Time Transformation" nameId="2288025" delayId="309" stack="FI_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="28" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202705" type="FORM1" panelid="28" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4273" name="Transformation cancelled." nameId="2288035" delayId="86" stack="ALL_START_DISPEL" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NONE" activation="ACTIVE" cooldown="100" duration="0" cancel_rate="20">
@@ -135888,16 +135908,36 @@
 		</actions>
 		<motion name="PhBurst" speed="30"/>
 	</skill_template>
-	<skill_template skill_id="4280" name="Templário Transformation" nameId="2288026" delayId="309" stack="KN_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4280" name="Daeva of Time Transformation" nameId="2288026" delayId="309" stack="KN_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="29" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202693" type="FORM1" panelid="29" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4281" name="Templário Transformation" nameId="2288026" delayId="309" stack="KN_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4281" name="Daeva of Time Transformation" nameId="2288026" delayId="309" stack="KN_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="29" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202706" type="FORM1" panelid="29" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4282" name="Atração doom i" nameId="291348" delayId="1991" stack="KN_STUNNINGSNACHER_NEW_START_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="300" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10">
@@ -135993,16 +136033,36 @@
 		</actions>
 		<motion name="PowerATK"/>
 	</skill_template>
-	<skill_template skill_id="4288" name="Assassino Transformation" nameId="2288027" delayId="309" stack="AS_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4288" name="Daeva of Time Transformation" nameId="2288027" delayId="309" stack="AS_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="30" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202694" type="FORM1" panelid="30" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4289" name="Assassino Transformation" nameId="2288027" delayId="309" stack="AS_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4289" name="Daeva of Time Transformation" nameId="2288027" delayId="309" stack="AS_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="30" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202707" type="FORM1" panelid="30" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4290" name="Borda rápida i" nameId="281985" delayId="1991" stack="SC_SWIFTEDGE_START_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="70" duration="0" cancel_rate="10" chain_skill_prob="100">
@@ -136101,16 +136161,36 @@
 	<skill_template skill_id="4297" name="Ocultar ii" nameId="291226" delayId="1998" stack="SC_HIDE_START_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="600" duration="0">
 		<properties first_target="TARGET"/>
 	<startconditions><mp value="76" delta="0"/></startconditions><effects><hide state="HIDE2" buffcount="3" duration2="60000" randomtime="20000" effectid="165" e="1" basiclvl="21" noresist="true" hoptype="SKILLLV"><change stat="SPEED" func="PERCENT" value="-20"/></hide></effects><actions><mpuse value="76" delta="0"/></actions></skill_template>
-	<skill_template skill_id="4298" name="Folha de gelo" nameId="2288028" delayId="309" stack="RA_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4298" name="Daeva of Time Transformation" nameId="2288028" delayId="309" stack="RA_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="31" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202695" type="FORM1" panelid="31" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4299" name="Folha de gelo" nameId="2288028" delayId="309" stack="RA_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4299" name="Daeva of Time Transformation" nameId="2288028" delayId="309" stack="RA_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="31" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202708" type="FORM1" panelid="31" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4300" name="Amuleto para aumentar as habilidades de extração" nameId="2281143" delayId="1991" stack="RA_BASICSHOT_UP_START_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="20" duration="0" ammospeed="40">
@@ -136236,16 +136316,36 @@
 			<mpuse value="221" delta="0"/>
 		</actions>
 	</skill_template>
-	<skill_template skill_id="4308" name="Causa danos mágicos à água para até 8 inimigos dentro de uma área selecionada e reduz sua velocidade de movimento por 20 segundos." nameId="2288029" delayId="309" stack="WI_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4308" name="Daeva of Time Transformation" nameId="2288029" delayId="309" stack="WI_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="32" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202696" type="FORM1" panelid="32" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4309" name="Causa danos mágicos à água para até 8 inimigos dentro de uma área selecionada e reduz sua velocidade de movimento por 20 segundos." nameId="2288029" delayId="309" stack="WI_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4309" name="Daeva of Time Transformation" nameId="2288029" delayId="309" stack="WI_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="32" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202709" type="FORM1" panelid="32" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4310" name="Parafuso de chama i" nameId="282011" delayId="1991" stack="MA_FLAMEBOLT_START_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="10" duration="2000" cancel_rate="10" ammospeed="30" chain_skill_prob="100">
@@ -136341,16 +136441,36 @@
 			</dispel>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4317" name="Efeito da folha de gelo" nameId="2288030" delayId="309" stack="EL_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4317" name="Daeva of Time Transformation" nameId="2288030" delayId="309" stack="EL_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="33" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202697" type="FORM1" panelid="33" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4318" name="Efeito da folha de gelo" nameId="2288030" delayId="309" stack="EL_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4318" name="Daeva of Time Transformation" nameId="2288030" delayId="309" stack="EL_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="33" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202710" type="FORM1" panelid="33" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4319" name="Choque a vácuo i" nameId="297321" delayId="1991" stack="EL_VACUUMEXPLOSION_START_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="30" duration="0" cancel_rate="20" chain_skill_prob="100">
@@ -136430,16 +136550,36 @@
 		</actions>
 		<motion name="alterfire" speed="40"/>
 	</skill_template>
-	<skill_template skill_id="4324" name="A velocidade de movimento é reduzida." nameId="2288031" delayId="309" stack="CH_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4324" name="Daeva of Time Transformation" nameId="2288031" delayId="309" stack="CH_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="34" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202699" type="FORM1" panelid="35" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4325" name="A velocidade de movimento é reduzida." nameId="2288031" delayId="309" stack="CH_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4325" name="Daeva of Time Transformation" nameId="2288031" delayId="309" stack="CH_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="34" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202712" type="FORM1" panelid="35" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4326" name="Julgamento inevitável i" nameId="292121" delayId="1991" stack="CH_MORTALSTRIKE_START_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="120" duration="0" dispel_category="STUN" req_dispel_level="1" cancel_rate="10" ammospeed="32">
@@ -136515,16 +136655,36 @@
 		</actions>
 		<motion name="heal2"/>
 	</skill_template>
-	<skill_template skill_id="4331" name="Shard glacial" nameId="2288032" delayId="309" stack="PR_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4331" name="Daeva of Time Transformation" nameId="2288032" delayId="309" stack="PR_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="35" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202698" type="FORM1" panelid="34" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4332" name="Shard glacial" nameId="2288032" delayId="309" stack="PR_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4332" name="Daeva of Time Transformation" nameId="2288032" delayId="309" stack="PR_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="35" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202711" type="FORM1" panelid="34" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4333" name="Punindo o vento i" nameId="292104" delayId="1991" stack="PR_ABYSALBOLT_START_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="20" chain_skill_prob="100">
@@ -136611,16 +136771,36 @@
 		</actions>
 		<motion name="PhBurst" speed="30"/>
 	</skill_template>
-	<skill_template skill_id="4339" name="Revenant Transformation" nameId="2288038" delayId="309" stack="TH_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4339" name="Daeva of Time Transformation" nameId="2288038" delayId="309" stack="TH_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="36" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202700" type="FORM1" panelid="36" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4340" name="Revenant Transformation" nameId="2288038" delayId="309" stack="TH_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4340" name="Daeva of Time Transformation" nameId="2288038" delayId="309" stack="TH_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="36" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202713" type="FORM1" panelid="36" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4341" name="Electromagnetic Charge I" nameId="2280757" delayId="1991" stack="TH_LIGHTNINGDASH_START_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="10">
@@ -136710,16 +136890,36 @@
 		</effects>
 		<motion name="SlashATK2"/>
 	</skill_template>
-	<skill_template skill_id="4348" name="Cadeia de gelo" nameId="2288039" delayId="309" stack="BM_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4348" name="Daeva of Time Transformation" nameId="2288039" delayId="309" stack="BM_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="37" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202701" type="FORM1" panelid="37" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4349" name="Cadeia de gelo" nameId="2288039" delayId="309" stack="BM_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4349" name="Daeva of Time Transformation" nameId="2288039" delayId="309" stack="BM_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="37" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202714" type="FORM1" panelid="37" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4350" name="Bang alto i" nameId="2282471" delayId="1991" stack="ST_FLYINGKICK_START_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="120" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10" chain_skill_prob="100">
@@ -136832,16 +137032,36 @@
 	<skill_template skill_id="4359" name="Você se move no local e remove os estados de atordoamento e devagar." nameId="2282572" delayId="2000" stack="ST_BSPIN_START_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="300" duration="0">
 		<properties first_target="TARGET"/>
 	</skill_template>
-	<skill_template skill_id="4360" name="Luminess Transformation" nameId="2288040" delayId="309" stack="LU_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4360" name="Daeva of Time Transformation" nameId="2288040" delayId="309" stack="LU_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="38" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202702" type="FORM1" panelid="38" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4361" name="Luminess Transformation" nameId="2288040" delayId="309" stack="LU_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4361" name="Daeva of Time Transformation" nameId="2288040" delayId="309" stack="LU_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="38" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202715" type="FORM1" panelid="38" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4362" name="Punho de Idium i" nameId="2284113" delayId="1991" stack="LU_BLENDA_START_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="3" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
@@ -136911,16 +137131,36 @@
 			<stun duration2="1000" effectid="20000" e="3" accmod2="200" critprobmod2="100" element="WATER" preeffect="2" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4367" name="Sua velocidade de movimento é reduzida." nameId="2288041" delayId="309" stack="GU_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4367" name="Daeva of Time Transformation" nameId="2288041" delayId="309" stack="GU_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="39" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202703" type="FORM1" panelid="39" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4368" name="Sua velocidade de movimento é reduzida." nameId="2288041" delayId="309" stack="GU_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4368" name="Daeva of Time Transformation" nameId="2288041" delayId="309" stack="GU_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="39" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202716" type="FORM1" panelid="39" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4369" name="Pistola Mágica Shot I" nameId="2286969" delayId="1991" stack="EN_DOUBLEFIRECHAIN_START_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10" ammospeed="40" chain_skill_prob="100">
@@ -137055,16 +137295,36 @@
 		</effects>
 		<motion name="normalfire2"/>
 	</skill_template>
-	<skill_template skill_id="4378" name="Brasa" nameId="2288042" delayId="309" stack="RB_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4378" name="Daeva of Time Transformation" nameId="2288042" delayId="309" stack="RB_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="40" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202704" type="FORM1" panelid="40" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4379" name="Brasa" nameId="2288042" delayId="309" stack="RB_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
-		<properties first_target="TARGET"/>
+	<skill_template skill_id="4379" name="Daeva of Time Transformation" nameId="2288042" delayId="309" stack="RB_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="10" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
-			<shapechange model="40" type="PC" duration2="86400000" effectid="175" e="1" basiclvl="100" noresist="true" />
+			<shapechange model="202717" type="FORM1" panelid="40" duration2="86400000" effectid="148001" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="696"/>
+			<statup duration2="6000000" effectid="148002" e="2" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="1500"/>
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="3000"/>
+				<change stat="SPEED" func="PERCENT" value="30"/>
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-30"/>
+			</statup>
+			<boostskillcastingtime duration2="6000000" effectid="148003" e="3" basiclvl="100" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="30"/>
+			</boostskillcastingtime>
+			<provoker skill_id="9640" provoke_target="ME" duration2="6000000" effectid="148004" e="4" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="300" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4380" name="Comando: vento de garra de detonação" nameId="2287584" delayId="1991" stack="RB_CHAIN_MAGE_BLADE_ASSAULT_START_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0" chain_skill_prob="100">
@@ -157442,7 +157702,7 @@
 		<motion name="NormalFire"/>
 	</skill_template>
 	<skill_template skill_id="20643" name="Efeito Bênção do Fogo VI" nameId="2281523" delayId="20643" stack="IDRAKSHA_BNFI_MAGMABALL" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="1000" ammospeed="15">
-		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
+		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
 		</useconditions>
@@ -157462,7 +157722,7 @@
 		<motion name="PointFire"/>
 	</skill_template>
 	<skill_template skill_id="20645" name="Invocar o Espírito da Terra V" nameId="2281528" delayId="20645" stack="IDRAKSHA_BNFI_FIREBREATH" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="2000" dispel_category="DEBUFF_PHYSICAL">
-		<properties first_target="TARGET" effective_angle="180" first_target_range="25" target_distance="10" target_relation="ENEMY" target_type="AREA" target_maxcount="12" effective_dist="10" effective_altitude="10"/>
+		<properties first_target="TARGET" effective_angle="180" first_target_range="20" target_distance="10" target_relation="ENEMY" target_type="AREA" target_maxcount="12" effective_dist="10" effective_altitude="10"/>
 		<useconditions>
 			<playermove allow="false"/>
 		</useconditions>
@@ -157473,7 +157733,7 @@
 		<motion name="MovingATK"/>
 	</skill_template>
 	<skill_template skill_id="20646" name="Comando: Muralha da Proteção v Terra" nameId="2281531" delayId="20646" stack="IDRAKSHA_BNFI_EARTHQUAKE" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="NONE" activation="ACTIVE" cooldown="0" duration="4000">
-		<properties first_target="ME" first_target_range="25" target_distance="18" target_relation="ENEMY" target_type="AREA" target_maxcount="12" effective_range="18" effective_altitude="10"/>
+		<properties first_target="ME" first_target_range="2" target_distance="18" target_relation="ENEMY" target_type="AREA" target_maxcount="12" effective_range="18" effective_altitude="10"/>
 		<useconditions>
 			<playermove allow="false"/>
 		</useconditions>
@@ -166965,6 +167225,18 @@
 			<statup duration2="1800000" effectid="219271" e="1" noresist="true">
 				<change stat="PHYSICAL_DEFENSE" func="PERCENT" value="15"/>
 				<change stat="MAGICAL_DEFEND" func="PERCENT" value="15"/>
+			</statup>
+		</effects>
+	</skill_template>
+	<skill_template skill_id="59999" name="Blessing of the Shadowrealm (server effect)" nameId="0" delayId="59999" stack="IDTUTORIALQ_SHADOWREALM_BLESSING" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
+		<effects>
+			<statup duration2="86400000" effectid="9000011" e="1" basiclvl="100" noresist="true" maxstat="true">
+				<change stat="REGEN_HP" func="ADD" value="50000"/>
+				<change stat="REGEN_MP" func="ADD" value="50000"/>
+				<change stat="MAXHP" func="ADD" value="30000"/>
+				<change stat="MAXMP" func="ADD" value="30000"/>
+				<change stat="PHYSICAL_ACCURACY" func="ADD" value="1100"/>
 			</statup>
 		</effects>
 	</skill_template>

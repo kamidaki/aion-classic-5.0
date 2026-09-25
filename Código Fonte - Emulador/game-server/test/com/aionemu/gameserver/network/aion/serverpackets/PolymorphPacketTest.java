@@ -48,6 +48,14 @@ class PolymorphPacketTest {
 		assertEquals("e9d6218049450c0021003333b33e00000040000000000000000000000000000000000000000d4e", HEX.formatHex(body(p)));
 	}
 
+	@Test
+	void tutorialFormSetsPanelFlagWithoutBlockingMovement() throws Exception {
+		// Phoenix Elyos: GU_L_START (modelo 202703, painel 39, skill 4367).
+		SM_TRANSFORM p = new SM_TRANSFORM(0x2E464152, 202703, 1, 0.25f, 2.0f, 3, 39, 4367, false, false, false, false, false, false,
+			false);
+		assertEquals("5241462ecf17030001000000803e00000040000300000000000000002700000000000000010f11", HEX.formatHex(body(p)));
+	}
+
 	private static SM_TRANSFORM player(int objectId, int modelId, int skillId) {
 		return new SM_TRANSFORM(objectId, modelId, 1, 0.25f, 2.0f, 1, 0, skillId, false, false, false, false, false, false, false);
 	}

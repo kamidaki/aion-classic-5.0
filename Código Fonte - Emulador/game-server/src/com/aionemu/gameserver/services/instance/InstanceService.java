@@ -17,6 +17,8 @@ import com.aionemu.gameserver.model.house.House;
 import com.aionemu.gameserver.model.team.GeneralTeam;
 import com.aionemu.gameserver.model.templates.housing.BuildingType;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
+import com.aionemu.gameserver.questEngine.model.QuestState;
+import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.services.AutoGroupService;
 import com.aionemu.gameserver.services.event.Event;
 import com.aionemu.gameserver.services.event.EventService;
@@ -149,11 +151,21 @@ public class InstanceService {
 		int worldId = player.getWorldId();
 		int ownerId = player.getCommonData().getWorldOwnerId();
 		WorldMapInstance instance = ownerId != 0 ? getOrCreatePersonalInstance(worldId, ownerId) : getRegisteredInstance(worldId, player.getObjectId());
-		if (instance == null && player.getWorldMapInstance().getTemplate().isInstance() || instance != null && instance.isFull())
+		if (instance == null && canResumeLandOfShadows(player))
+			instance = getNextAvailableInstance(worldId, player);
+		if ((instance == null && player.getWorldMapInstance().getTemplate().isInstance()) || (instance != null && instance.isFull()))
 			moveToExitPoint(player);
 		else if (instance != null) // set to correct instanceId (default on login is 1)
 			World.getInstance().setPosition(player, worldId, instance.getInstanceId(), player.getX(), player.getY(), player.getZ(), player.getHeading());
 		player.getWorldMapInstance().getInstanceHandler().onPlayerLogin(player);
+	}
+
+	private static boolean canResumeLandOfShadows(Player player) {
+		if (player.getWorldId() != 390000000)
+			return false;
+		int questId = player.getRace() == com.aionemu.gameserver.model.Race.ELYOS ? 10153 : 20153;
+		QuestState qs = player.getQuestStateList().getQuestState(questId);
+		return qs != null && qs.getStatus() == QuestStatus.START && qs.getQuestVarById(0) == 2;
 	}
 
 	public static void moveToExitPoint(Player player) {

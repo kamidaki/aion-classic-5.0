@@ -121019,24 +121019,28 @@
 		<stats maxHp="10000">
 			<speeds walk="1.76" group_walk="1.76" run="7" run_fight="6" group_run_fight="7" />
 		</stats>
+		<equipment><item>100000018</item></equipment>
 		<bound_radius front="1.025" side="2" upper="2.886" />
 	</npc_template>
 	<npc_template npc_id="224301" title_id="346643" level="5" name="Guerreiro da 41ª tropa de ocupação" name_id="346611" tribe="IDTUTORIALQ_MONSTER" height="1.5" type="MONSTER" ai="aggressive" srange="12" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="BEAST" group_drop="NONE">
 		<stats maxHp="10000">
 			<speeds walk="1.76" group_walk="1.76" run="7" run_fight="6" group_run_fight="7" />
 		</stats>
+		<equipment><item>100000019</item><item>100000019</item></equipment>
 		<bound_radius front="0.725" side="1.625" upper="1.5" />
 	</npc_template>
 	<npc_template npc_id="224302" title_id="346643" level="5" name="Guerreiro da 41ª tropa de ocupação" name_id="346612" tribe="IDTUTORIALQ_MONSTER" height="1.8" type="MONSTER" ai="aggressive" srange="12" arange="10" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="LIZARDMAN" group_drop="NONE">
 		<stats maxHp="10000">
 			<speeds walk="1.76" group_walk="1.76" run="7" run_fight="6" group_run_fight="7" />
 		</stats>
+		<equipment><item>101700015</item><item>163000003</item></equipment>
 		<bound_radius front="0.725" side="1.625" upper="1.8" />
 	</npc_template>
 	<npc_template npc_id="224303" title_id="346643" level="5" name="Guerreiro da 41ª tropa de ocupação" name_id="346613" tribe="IDTUTORIALQ_MONSTER" height="2.601" type="MONSTER" ai="aggressive" srange="12" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="LIZARDMAN" group_drop="NONE">
 		<stats maxHp="10000">
 			<speeds walk="1.76" group_walk="1.76" run="7" run_fight="6" group_run_fight="7" />
 		</stats>
+		<equipment><item>100000024</item></equipment>
 		<bound_radius front="1.12" side="1.55" upper="2.601" />
 	</npc_template>
 	<npc_template npc_id="224304" title_id="346643" level="5" name="Guerreiro da 41ª tropa de ocupação" name_id="346614" tribe="IDTUTORIALQ_MONSTER" height="2.1945" type="MONSTER" ai="aggressive" srange="12" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="LIZARDMAN" group_drop="NONE">
@@ -121049,24 +121053,28 @@
 		<stats maxHp="30000">
 			<speeds walk="1.76" group_walk="1.76" run="7" run_fight="12" group_run_fight="7" />
 		</stats>
+		<equipment><item>100000808</item></equipment>
 		<bound_radius front="1.4863" side="2.9" upper="3.4873" />
 	</npc_template>
 	<npc_template npc_id="224306" title_id="346644" level="5" name="Pesquisador da 11ª tropa de ocupação" name_id="346616" tribe="IDTUTORIALQ_MONSTER" height="2.3" type="MONSTER" ai="aggressive" srange="12" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="NAGA" group_drop="NONE">
 		<stats maxHp="10000">
 			<speeds walk="1" group_walk="1" run="7" run_fight="6" group_run_fight="7" />
 		</stats>
+		<equipment><item>100900013</item></equipment>
 		<bound_radius front="1" side="1.9" upper="2.3" />
 	</npc_template>
 	<npc_template npc_id="224307" title_id="346644" level="5" name="Pesquisador da 11ª tropa de ocupação" name_id="346617" tribe="IDTUTORIALQ_MONSTER" height="2.5" type="MONSTER" ai="aggressive" srange="12" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="NAGA" group_drop="NONE">
 		<stats maxHp="10000">
 			<speeds walk="1" group_walk="1" run="7" run_fight="6" group_run_fight="7" />
 		</stats>
+		<equipment><item>100000022</item></equipment>
 		<bound_radius front="1" side="1.9" upper="2.5" />
 	</npc_template>
 	<npc_template npc_id="224308" title_id="346644" level="5" name="Pesquisador da 11ª tropa de ocupação" name_id="346618" tribe="IDTUTORIALQ_MONSTER" height="1.56" type="MONSTER" ai="aggressive" srange="12" arange="10" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="NAGA" group_drop="NONE">
 		<stats maxHp="10000">
 			<speeds walk="1" group_walk="1" run="7" run_fight="6" group_run_fight="7" />
 		</stats>
+		<equipment><item>100500008</item></equipment>
 		<bound_radius front="1" side="1.9" upper="1.56" />
 	</npc_template>
 	<npc_template npc_id="224309" title_id="346644" level="5" name="Pesquisador da 11ª tropa de ocupação" name_id="346619" tribe="IDTUTORIALQ_MONSTER" height="1.36" type="MONSTER" ai="aggressive" srange="12" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="NAGA" group_drop="NONE">
@@ -121085,18 +121093,21 @@
 		<stats maxHp="10000">
 			<speeds walk="1.2" group_walk="1.38" run="6" run_fight="8" group_run_fight="8" />
 		</stats>
+		<equipment><item>100000997</item></equipment>
 		<bound_radius front="1.2" side="0.9" upper="3.6" />
 	</npc_template>
 	<npc_template npc_id="224312" title_id="346645" level="5" name="Pesquisador da 21ª tropa de ocupação" name_id="346622" tribe="IDTUTORIALQ_MONSTER" height="1" type="MONSTER" ai="aggressive" srange="12" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" group_drop="NONE">
 		<stats maxHp="10000">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
+		<equipment><item>100201253</item><item>100201254</item></equipment>
 		<bound_radius front="0.52" side="0.44" upper="2.88" />
 	</npc_template>
 	<npc_template npc_id="224313" title_id="346645" level="5" name="Pesquisador da 21ª tropa de ocupação" name_id="346623" tribe="IDTUTORIALQ_MONSTER" height="4.38" type="MONSTER" ai="aggressive" srange="12" arange="10" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" group_drop="NONE">
 		<stats maxHp="10000">
 			<speeds walk="1.578" group_walk="2.578" run="7" run_fight="9" group_run_fight="9" />
 		</stats>
+		<equipment><item>101700799</item><item>163050009</item></equipment>
 		<bound_radius front="1.32" side="1.68" upper="4.38" />
 	</npc_template>
 	<npc_template npc_id="224314" title_id="346645" level="5" name="Pesquisador da 21ª tropa de ocupação" name_id="346624" tribe="IDTUTORIALQ_MONSTER" height="2.1" type="MONSTER" ai="aggressive" srange="12" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" group_drop="NONE">
@@ -121109,12 +121120,14 @@
 		<stats maxHp="30000">
 			<speeds walk="1.07" group_walk="1.38" run="6" run_fight="9" group_run_fight="8.8" />
 		</stats>
+		<equipment><item>100000811</item></equipment>
 		<bound_radius front="1.4" side="1.05" upper="4.2" />
 	</npc_template>
 	<npc_template npc_id="224316" title_id="346646" level="5" name="Pesquisador da 31ª tropa de ocupação" name_id="346626" tribe="IDTUTORIALQ_MONSTER" height="1" type="MONSTER" ai="aggressive" srange="10" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" group_drop="NONE">
 		<stats maxHp="30000">
 			<speeds walk="1.8" group_walk="1.5" run="8" run_fight="8" group_run_fight="8.8" />
 		</stats>
+		<equipment><item>100000811</item></equipment>
 		<bound_radius front="1.3" side="0.975" upper="3.9" />
 	</npc_template>
 	<npc_template npc_id="224317" title_id="346646" level="5" name="Pesquisador da 31ª tropa de ocupação" name_id="346627" tribe="IDTUTORIALQ_MONSTER" height="2.96" type="MONSTER" ai="aggressive" srange="10" arange="3" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" group_drop="NONE">
@@ -121127,6 +121140,7 @@
 		<stats maxHp="30000">
 			<speeds walk="1.38" group_walk="1.38" run="8" run_fight="8" group_run_fight="8" />
 		</stats>
+		<equipment><item>100000997</item></equipment>
 		<bound_radius front="1.2" side="0.9" upper="3.6" />
 	</npc_template>
 	<npc_template npc_id="224319" title_id="346646" level="5" name="Pesquisador da 31ª tropa de ocupação" name_id="346629" tribe="IDTUTORIALQ_MONSTER" type="MONSTER" ai="aggressive" srange="10" arange="2" attack_speed="2249" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" group_drop="NONE">
@@ -121138,6 +121152,7 @@
 		<stats maxHp="30000">
 			<speeds walk="1.38" group_walk="1.38" run="6" run_fight="8" group_run_fight="8" />
 		</stats>
+		<equipment><item>101701085</item><item>163050009</item></equipment>
 		<bound_radius front="1.4" side="2.24" upper="3.15" />
 	</npc_template>
 	<npc_template npc_id="224333" title_id="346647" level="7" name="Booster do Esquadrão de Infiltração de Asmodianos" name_id="346742" tribe="IDTUTORIALQ_MONSTER" type="MONSTER" ai="aggressive" srange="20" arange="20" attack_speed="2100" hpgauge="22" rank="MASTER" rating="HERO" race="DRAKAN" group_drop="NONE">
@@ -372576,7 +372591,7 @@
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804156" level="5" name="IDTutorialQ_TREASUREBOX_01_01" name_id="465770" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="MONSTER" type="MONSTER" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804156" level="5" name="IDTutorialQ_TREASUREBOX_01_01" name_id="465770" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="MONSTER" type="MONSTER" ai="shadowrealm_cube" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -372587,30 +372602,30 @@
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" />
+		<talk_info distance="5" delay="3" is_dialog="true" />
 	</npc_template>
 	<npc_template npc_id="804158" level="5" name="IDTutorialQ_TREASUREBOX_01_03" name_id="465772" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" />
+		<talk_info distance="5" delay="3" is_dialog="true" />
 	</npc_template>
 	<npc_template npc_id="804159" level="5" name="IDTutorialQ_TREASUREBOX_01_04" name_id="465773" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" />
+		<talk_info distance="5" delay="3" is_dialog="true" />
 	</npc_template>
 	<npc_template npc_id="804160" level="5" name="IDTutorialQ_TREASUREBOX_01_05" name_id="465774" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" />
+		<talk_info distance="5" delay="3" is_dialog="true" />
 	</npc_template>
-	<npc_template npc_id="804161" level="5" name="IDTutorialQ_TREASUREBOX_02_01" name_id="465775" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="MONSTER" type="MONSTER" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804161" level="5" name="IDTutorialQ_TREASUREBOX_02_01" name_id="465775" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="MONSTER" type="MONSTER" ai="shadowrealm_cube" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -372621,28 +372636,28 @@
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" />
+		<talk_info distance="5" delay="3" is_dialog="true" />
 	</npc_template>
 	<npc_template npc_id="804163" level="5" name="IDTutorialQ_TREASUREBOX_02_03" name_id="465777" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" />
+		<talk_info distance="5" delay="3" is_dialog="true" />
 	</npc_template>
 	<npc_template npc_id="804164" level="5" name="IDTutorialQ_TREASUREBOX_02_04" name_id="465778" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" />
+		<talk_info distance="5" delay="3" is_dialog="true" />
 	</npc_template>
 	<npc_template npc_id="804165" level="5" name="IDTutorialQ_TREASUREBOX_02_05" name_id="465779" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" />
+		<talk_info distance="5" delay="3" is_dialog="true" />
 	</npc_template>
 	<npc_template npc_id="804166" level="1" name="IDTutorialQ_NoShowNPC_DarkShadow_Normalfire" name_id="2288143" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="NONE" type="GENERAL" ai="noaction" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172">
@@ -372656,7 +372671,7 @@
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="804168" level="5" name="IDTutorialQ_TREASUREBOX_03_01" name_id="465808" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="MONSTER" type="MONSTER" ai="aggressive" srange="10" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="804168" level="5" name="IDTutorialQ_TREASUREBOX_03_01" name_id="465808" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="MONSTER" type="MONSTER" ai="shadowrealm_cube" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -372667,49 +372682,49 @@
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" />
+		<talk_info distance="5" delay="3" is_dialog="true" />
 	</npc_template>
 	<npc_template npc_id="804170" level="5" name="IDTutorialQ_TREASUREBOX_03_03" name_id="465810" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" />
+		<talk_info distance="5" delay="3" is_dialog="true" />
 	</npc_template>
 	<npc_template npc_id="804171" level="5" name="IDTutorialQ_TREASUREBOX_03_04" name_id="465811" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" />
+		<talk_info distance="5" delay="3" is_dialog="true" />
 	</npc_template>
 	<npc_template npc_id="804172" level="5" name="IDTutorialQ_TREASUREBOX_03_05" name_id="465812" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="10">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" />
+		<talk_info distance="5" delay="3" is_dialog="true" />
 	</npc_template>
 	<npc_template npc_id="804173" level="5" name="IDTutorialQ_Content_UI_BonusBox_21" name_id="465851" height="6" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="831">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.75" side="1.05" upper="6" />
-		<talk_info distance="5" is_dialog="true" />
+		<talk_info distance="5" delay="5" is_dialog="true" />
 	</npc_template>
 	<npc_template npc_id="804174" level="7" name="IDTutorialQ_Content_UI_BonusBox_22" name_id="465852" height="4" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="831">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.5" side="0.7" upper="4" />
-		<talk_info distance="5" is_dialog="true" />
+		<talk_info distance="5" delay="5" is_dialog="true" />
 	</npc_template>
 	<npc_template npc_id="804175" level="7" name="IDTutorialQ_Content_UI_BonusBox_23" name_id="465853" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="NONE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="10" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="831">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
-		<talk_info distance="5" is_dialog="true" />
+		<talk_info distance="5" delay="5" is_dialog="true" />
 	</npc_template>
 	<npc_template npc_id="804200" level="1" name="abnova" name_id="350000" height="2" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="USEALL" type="GENERAL" ai="general" srange="5" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="136">
