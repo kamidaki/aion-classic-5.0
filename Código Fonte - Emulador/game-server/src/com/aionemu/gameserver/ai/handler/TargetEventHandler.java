@@ -41,8 +41,11 @@ public class TargetEventHandler {
 				break;
 			case FOLLOWING:
 			case CONFUSE:
+				npcAI.getOwner().getMoveController().abortMove();
+				break;
 			case FEAR:
 				npcAI.getOwner().getMoveController().abortMove();
+				AttackEventHandler.onFleeDestinationReached(npcAI);
 				break;
 			case WALKING:
 				WalkManager.targetReached(npcAI);

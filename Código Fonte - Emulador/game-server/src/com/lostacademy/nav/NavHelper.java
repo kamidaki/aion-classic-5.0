@@ -18,10 +18,9 @@ class NavHelper {
 
 	private final Logger LOG = LoggerFactory.getLogger(NavHelper.class);
 
-	public final static float ARBITRARY_SMALL_VALUE = 5;
-	public final static int ARBITRARY_LARGE_VALUE = 800;
-	public final static float PATH_WEIGHT = 0.2F;
-	public final static float TARGET_WEIGHT = 20;
+	public final static float ARBITRARY_SMALL_VALUE = 2.0F;
+	public final static int ARBITRARY_LARGE_VALUE = 2500;
+	public final static float TARGET_WEIGHT = 1.05F;
 
 	private static final class NavHeapNode implements Comparable<NavHeapNode> {
 		boolean open = false;
@@ -35,31 +34,24 @@ class NavHelper {
 			if (tile == endTile) {
 				targetDist = 0;
 			} else {
-				targetDist = node.getPriority(x2, y2, z2) * targetWeight;
+				targetDist = node.getEuclideanDistance(x2, y2, z2) * targetWeight;
 			}
 		}
 
-		NavHeapNode(NavGeometry node, NavHeapNode parent, boolean useWeight, float x2, float y2, float z2, NavGeometry endTile, float targetWeight, float pathWeight) {
+		NavHeapNode(NavGeometry node, NavHeapNode parent, float x2, float y2, float z2, NavGeometry endTile, float targetWeight) {
 			this(node, x2, y2, z2, endTile, targetWeight);
 			this.parent = parent;
-			float basePriority = parent.pathCost + parent.tile.getInRad();
-			if (useWeight) {
-				pathCost = basePriority + basePriority * pathWeight;
-			} else {
-				pathCost = basePriority;
-			}
+			float stepCost = parent.tile.getDistanceToTile(node);
+			pathCost = parent.pathCost + (stepCost > 0.05f ? stepCost : 0.5f);
 		}
 
-		void checkAndUpdateParent(NavHeapNode newParent, boolean useWeight, float pathWeight, java.util.function.Consumer<NavHeapNode> onUpdate) {
+		void checkAndUpdateParent(NavHeapNode newParent, java.util.function.Consumer<NavHeapNode> onUpdate) {
 			if (newParent == null || parent == null || newParent.parent == this) return;
-			if (parent.pathCost > newParent.pathCost) {
+			float stepCost = newParent.tile.getDistanceToTile(tile);
+			float newPathCost = newParent.pathCost + (stepCost > 0.05f ? stepCost : 0.5f);
+			if (pathCost > newPathCost) {
 				parent = newParent;
-				if (useWeight) {
-					pathCost = parent.pathCost + parent.tile.getInRad();
-					pathCost += pathCost * pathWeight;
-				} else {
-					pathCost = parent.pathCost + parent.tile.getInRad();
-				}
+				pathCost = newPathCost;
 				onUpdate.accept(this);
 			}
 		}
@@ -70,41 +62,40 @@ class NavHelper {
 
 		void open(NavHelper context) {
 			if (open) return;
-			float[] vec = {context.x2, context.y2};
 
 			if (tile.getEdge1() != null) {
 				NavGeometry edge1 = tile.getEdge1();
 				if (!context.contains(edge1)) {
-					NavHeapNode newNode = new NavHeapNode(edge1, this, !tile.isTowardsEdge((byte) 1, vec),
-						context.x2, context.y2, context.z2, context.endTile, TARGET_WEIGHT, PATH_WEIGHT);
+					NavHeapNode newNode = new NavHeapNode(edge1, this,
+						context.x2, context.y2, context.z2, context.endTile, TARGET_WEIGHT);
 					context.add(newNode);
 				} else {
 					NavHeapNode child = context.getNode(edge1);
-					if (child != parent) child.checkAndUpdateParent(this, !tile.isTowardsEdge((byte) 1, vec), PATH_WEIGHT, context::onUpdateNode);
+					if (child != parent) child.checkAndUpdateParent(this, context::onUpdateNode);
 				}
 			}
 
 			if (tile.getEdge2() != null) {
 				NavGeometry edge2 = tile.getEdge2();
 				if (!context.contains(edge2)) {
-					NavHeapNode newNode = new NavHeapNode(edge2, this, !tile.isTowardsEdge((byte) 2, vec),
-						context.x2, context.y2, context.z2, context.endTile, TARGET_WEIGHT, PATH_WEIGHT);
+					NavHeapNode newNode = new NavHeapNode(edge2, this,
+						context.x2, context.y2, context.z2, context.endTile, TARGET_WEIGHT);
 					context.add(newNode);
 				} else {
 					NavHeapNode child = context.getNode(edge2);
-					if (child != parent) child.checkAndUpdateParent(this, !tile.isTowardsEdge((byte) 2, vec), PATH_WEIGHT, context::onUpdateNode);
+					if (child != parent) child.checkAndUpdateParent(this, context::onUpdateNode);
 				}
 			}
 
 			if (tile.getEdge3() != null) {
 				NavGeometry edge3 = tile.getEdge3();
 				if (!context.contains(edge3)) {
-					NavHeapNode newNode = new NavHeapNode(edge3, this, !tile.isTowardsEdge((byte) 3, vec),
-						context.x2, context.y2, context.z2, context.endTile, TARGET_WEIGHT, PATH_WEIGHT);
+					NavHeapNode newNode = new NavHeapNode(edge3, this,
+						context.x2, context.y2, context.z2, context.endTile, TARGET_WEIGHT);
 					context.add(newNode);
 				} else {
 					NavHeapNode child = context.getNode(edge3);
-					if (child != parent) child.checkAndUpdateParent(this, !tile.isTowardsEdge((byte) 3, vec), PATH_WEIGHT, context::onUpdateNode);
+					if (child != parent) child.checkAndUpdateParent(this, context::onUpdateNode);
 				}
 			}
 			open = true;
@@ -152,33 +143,36 @@ class NavHelper {
 	}
 
 	public NavPathway[] createPathway() {
-		boolean finished = false;
-		if (endTile == null) {
-			NavHeapNode current;
-			short opCount = 0;
-			do {
-				current = removeFirst();
-				if (current.targetDist < ARBITRARY_SMALL_VALUE * TARGET_WEIGHT) {
-					finished = true;
-					break;
+		NavHeapNode bestNode = null;
+		float bestDist = Float.MAX_VALUE;
+
+		int opCount = 0;
+		while (currentHeapCount > 0) {
+			NavHeapNode current = removeFirst();
+			if (current == null) break;
+
+			if (current.targetDist < bestDist) {
+				bestDist = current.targetDist;
+				bestNode = current;
+			}
+
+			if (endTile != null) {
+				if (current.tile == endTile || current.targetDist < 0.5f) {
+					return retrace(current);
 				}
-				current.open(this);
-				if (opCount++ > ARBITRARY_LARGE_VALUE) break;
-			} while (currentHeapCount > 0);
-			if (finished) return retrace(current);
-		} else {
-			NavHeapNode current;
-			short opCount = 0;
-			do {
-				current = removeFirst();
-				if (current.tile == endTile) {
-					finished = true;
-					break;
+			} else {
+				if (current.targetDist < ARBITRARY_SMALL_VALUE) {
+					return retrace(current);
 				}
-				current.open(this);
-				if (opCount++ > ARBITRARY_LARGE_VALUE) break;
-			} while (currentHeapCount > 0);
-			if (finished) return retrace(current);
+			}
+
+			current.open(this);
+			if (++opCount > ARBITRARY_LARGE_VALUE) break;
+		}
+
+		// Fallback: se não encontrou o endTile exato, mas encontrou um nó que se aproximou
+		if (bestNode != null && bestNode.parent != null) {
+			return retrace(bestNode);
 		}
 		return new NavPathway[0];
 	}

@@ -115,7 +115,9 @@ public class PlayerController extends CreatureController<Player> {
 	}
 
 	private void sendPlayerInfoPackets(Player player) {
-		PacketSendUtility.sendPacket(getOwner(), new SM_PLAYER_INFO(player, !player.equals(getOwner()) && getOwner().isAggroIconTo(player)));
+		if (!player.equals(getOwner())) {
+			PacketSendUtility.sendPacket(getOwner(), new SM_PLAYER_INFO(player, getOwner().isAggroIconTo(player)));
+		}
 		PacketSendUtility.sendPacket(getOwner(), new SM_MOTION(player.getObjectId(), player.getMotions().getActiveMotions()));
 		if (player.getController().isUnderStance())
 			PacketSendUtility.sendPacket(getOwner(), new SM_PLAYER_STANCE(player, 1));
@@ -621,12 +623,12 @@ public class PlayerController extends CreatureController<Player> {
 	}
 
 	public void onChangedPlayerAttributes() {
-		getOwner().clearKnownlist();
-		sendPlayerInfoPackets(getOwner());
-		if (getOwner().getSeeState() != 0)
-			PacketSendUtility.sendPacket(getOwner(), new SM_PLAYER_STATE(getOwner())); // needed to see hidden creatures again
-		getOwner().getEffectController().updatePlayerEffectIcons(null);
-		getOwner().updateKnownlist();
+		Player player = getOwner();
+		player.clearKnownlist();
+		PacketSendUtility.sendPacket(player, new SM_PLAYER_STATE(player));
+		PacketSendUtility.sendPacket(player, new SM_MOTION(player.getObjectId(), player.getMotions().getActiveMotions()));
+		player.getEffectController().updatePlayerEffectIcons(null);
+		player.updateKnownlist();
 	}
 
 	/**

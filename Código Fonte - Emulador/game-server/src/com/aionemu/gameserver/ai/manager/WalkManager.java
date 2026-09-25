@@ -226,44 +226,61 @@ public class WalkManager {
 		owner.getMoveController().abortMove();
 
 		ThreadPoolManager.getInstance().schedule(() -> {
-            if (!npcAI.isInState(AIState.WALKING))
-                return;
-            int randomWalkRange = owner.getSpawn().getRandomWalkRange();
-            int diameter = randomWalkRange * 2;
-            float nextX = Rnd.nextFloat(diameter) - randomWalkRange + owner.getSpawn().getX();
-            float nextY = Rnd.nextFloat(diameter) - randomWalkRange + owner.getSpawn().getY();
-            if (GeoDataConfig.GEO_NAV_ENABLE && NavData.getInstance().getNavMap(owner.getWorldId()) != null) {
-                float targetZ = NavService.getInstance().getNavSurfaceZ(owner.getWorldId(), nextX, nextY, owner.getZ());
-                if (Float.isNaN(targetZ) && GeoDataConfig.GEO_ENABLE) {
-                    targetZ = GeoService.getInstance().getZ(owner.getWorldId(), nextX, nextY, owner.getZ() + 2f, owner.getZ() - 5f, owner.getInstanceId());
-                }
-                if (Float.isNaN(targetZ)) {
-                    targetZ = owner.getZ();
-                }
-                float[][] navPath = NavService.getInstance().navigateToLocation(owner, nextX, nextY, targetZ);
-                // Valida que o destino final da rota não extrapola o raio de random walk do spawn
-                if (navPath != null && navPath.length > 0) {
-                    float[] lastWp = navPath[navPath.length - 1];
-                    float spawnX = owner.getSpawn().getX(), spawnY = owner.getSpawn().getY();
-                    float distToSpawn = (float) PositionUtil.getDistance(lastWp[0], lastWp[1], spawnX, spawnY);
-                    if (distToSpawn > randomWalkRange * 1.5f) {
-                        // Destino fora do território — descartar rota e ficar parado
-                        navPath = null;
-                    }
-                }
-                float[] navTarget = selectNextNavPoint(owner, navPath, diameter);
-                if (navTarget != null) {
-                    owner.getMoveController().moveToPoint(navTarget[0], navTarget[1], navTarget[2]);
-                    return;
-                }
-            }
-            if (GeoDataConfig.GEO_ENABLE && GeoDataConfig.GEO_NPC_MOVE) {
-                Vector3f loc = GeoService.getInstance().getClosestCollision(owner, nextX, nextY, owner.getZ(), true, RANDOM_WALK_GEO_FLAGS, IgnoreProperties.of(owner.getRace()));
-                owner.getMoveController().moveToPoint(loc.x, loc.y, loc.z);
-            } else {
-                owner.getMoveController().moveToPoint(nextX, nextY, owner.getZ());
-            }
-        }, Rnd.get(AIConfig.MINIMIMUM_DELAY, AIConfig.MAXIMUM_DELAY) * 1000L);
+			if (!npcAI.isInState(AIState.WALKING))
+				return;
+			int randomWalkRange = Math.max(1, owner.getSpawn().getRandomWalkRange());
+			int diameter = randomWalkRange * 2;
+			float spawnX = owner.getSpawn().getX();
+			float spawnY = owner.getSpawn().getY();
+			float maxAllowedZDelta = Math.max(4.0f, randomWalkRange * 0.85f);
+			boolean hasNavMap = GeoDataConfig.GEO_NAV_ENABLE && NavData.getInstance().getNavMap(owner.getWorldId()) != null;
+
+			for (int attempt = 0; attempt < 6; attempt++) {
+				float nextX = Rnd.nextFloat(diameter) - randomWalkRange + spawnX;
+				float nextY = Rnd.nextFloat(diameter) - randomWalkRange + spawnY;
+				if (PositionUtil.getDistance(owner.getX(), owner.getY(), nextX, nextY) < 1.0) {
+					continue;
+				}
+
+				if (hasNavMap) {
+					float targetZ = NavService.getInstance().getNavSurfaceZ(owner.getWorldId(), nextX, nextY, owner.getZ());
+					if (Float.isNaN(targetZ) && GeoDataConfig.GEO_ENABLE) {
+						targetZ = GeoService.getInstance().getValidGroundZ(owner.getWorldId(), nextX, nextY, owner.getZ(), owner.getInstanceId());
+					}
+					if (Float.isNaN(targetZ) || Math.abs(targetZ - owner.getZ()) > maxAllowedZDelta) {
+						continue;
+					}
+					float[][] navPath = NavService.getInstance().navigateToLocation(owner, nextX, nextY, targetZ);
+					if (navPath != null && navPath.length > 0) {
+						float[] lastWp = navPath[navPath.length - 1];
+						float distToSpawn = (float) PositionUtil.getDistance(lastWp[0], lastWp[1], spawnX, spawnY);
+						float distFromOwner = (float) PositionUtil.getDistance(owner.getX(), owner.getY(), lastWp[0], lastWp[1]);
+						if (distToSpawn <= randomWalkRange * 1.5f && distFromOwner >= 0.8f) {
+							float validEndZ = NavService.getInstance().getNavSurfaceZ(owner.getWorldId(), lastWp[0], lastWp[1], lastWp[2]);
+							if (!Float.isNaN(validEndZ)) {
+								lastWp[2] = validEndZ;
+							}
+							owner.getMoveController().moveToPoint(lastWp[0], lastWp[1], lastWp[2]);
+							return;
+						}
+					}
+				} else if (GeoDataConfig.GEO_ENABLE && GeoDataConfig.GEO_NPC_MOVE) {
+					Vector3f loc = GeoService.getInstance().getClosestCollision(
+							owner, nextX, nextY, owner.getZ(), true, RANDOM_WALK_GEO_FLAGS, IgnoreProperties.of(owner.getRace()));
+					float validZ = GeoService.getInstance().getValidGroundZ(owner.getWorldId(), loc.x, loc.y, loc.z, owner.getInstanceId());
+					if (!Float.isNaN(validZ) && Math.abs(validZ - owner.getZ()) <= maxAllowedZDelta
+							&& PositionUtil.getDistance(owner.getX(), owner.getY(), loc.x, loc.y) >= 0.8f) {
+						owner.getMoveController().moveToPoint(loc.x, loc.y, validZ);
+						return;
+					}
+				} else {
+					owner.getMoveController().moveToPoint(nextX, nextY, owner.getZ());
+					return;
+				}
+			}
+			// If all candidate random points were blocked or off-mesh, wait for the next random walk cycle
+			chooseNextRandomPoint(npcAI);
+		}, Rnd.get(AIConfig.MINIMIMUM_DELAY, AIConfig.MAXIMUM_DELAY) * 1000L);
 	}
 
 	/**
@@ -288,14 +305,7 @@ public class WalkManager {
 	private static float[] selectNextNavPoint(Npc owner, float[][] navPath, float minDistance) {
 		if (navPath == null || navPath.length == 0)
 			return null;
-		// Retorna sempre o próximo passo imediato da rota NavMesh (navPath[0]).
-		// O A* já produziu os waypoints em ordem, o NpcMoveController avança pelo array.
-		// Buscar o "mais distante" era incorreto: causava o NPC ignorar waypoints
-		// intermediários e tentar ir direto ao destino, atravessando obstáculos.
-		for (float[] navPoint : navPath) {
-			if (navPoint != null && navPoint.length >= 3)
-				return navPoint;
-		}
-		return null;
+		float[] lastWp = navPath[navPath.length - 1];
+		return (lastWp != null && lastWp.length >= 3) ? lastWp : null;
 	}
 }

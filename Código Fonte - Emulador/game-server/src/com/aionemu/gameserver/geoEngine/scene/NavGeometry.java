@@ -131,6 +131,17 @@ public class NavGeometry extends Geometry {
 		float[] v1 = getVertex(1);
 		float[] v2 = getVertex(2);
 
+		float exactZ = getExactSurfaceZ(x, y);
+		if (!Float.isNaN(exactZ)) {
+			float minX = Math.min(v0[0], Math.min(v1[0], v2[0])) - 0.2f;
+			float maxX = Math.max(v0[0], Math.max(v1[0], v2[0])) + 0.2f;
+			float minY = Math.min(v0[1], Math.min(v1[1], v2[1])) - 0.2f;
+			float maxY = Math.max(v0[1], Math.max(v1[1], v2[1])) + 0.2f;
+			if (x >= minX && x <= maxX && y >= minY && y <= maxY) {
+				return new float[] {x, y, exactZ};
+			}
+		}
+
 		float d0 = manhattanDistance(v0[0], v0[1], v0[2], x, y, z);
 		float d1 = manhattanDistance(v1[0], v1[1], v1[2], x, y, z);
 		float d2 = manhattanDistance(v2[0], v2[1], v2[2], x, y, z);
@@ -141,6 +152,48 @@ public class NavGeometry extends Geometry {
 		if (min == d1) return v1;
 		if (min == d2) return v2;
 		return new float[] {incenterX, incenterY, incenterZ};
+	}
+
+	public float getIncenterX() {
+		return incenterX;
+	}
+
+	public float getIncenterY() {
+		return incenterY;
+	}
+
+	public float getIncenterZ() {
+		return incenterZ;
+	}
+
+	/**
+	 * Computes the exact surface Z on this triangle plane at (x, y).
+	 * If the triangle normal is near vertical (wall/cliff) or calculation is degenerate,
+	 * falls back to the incenter Z.
+	 */
+	public float getExactSurfaceZ(float x, float y) {
+		float[] v0 = getVertex(0);
+		float[] v1 = getVertex(1);
+		float[] v2 = getVertex(2);
+
+		float dx1 = v1[0] - v0[0];
+		float dy1 = v1[1] - v0[1];
+		float dz1 = v1[2] - v0[2];
+
+		float dx2 = v2[0] - v0[0];
+		float dy2 = v2[1] - v0[1];
+		float dz2 = v2[2] - v0[2];
+
+		float nz = (dx1 * dy2) - (dy1 * dx2);
+		if (Math.abs(nz) > 1e-5f) {
+			float nx = (dy1 * dz2) - (dz1 * dy2);
+			float ny = (dz1 * dx2) - (dx1 * dz2);
+			float exactZ = v0[2] - (nx * (x - v0[0]) + ny * (y - v0[1])) / nz;
+			if (!Float.isNaN(exactZ) && !Float.isInfinite(exactZ)) {
+				return exactZ;
+			}
+		}
+		return incenterZ;
 	}
 
 	public float[] getVertex(int i) {
@@ -188,7 +241,22 @@ public class NavGeometry extends Geometry {
 	}
 
 	public float getPriority(float x, float y, float z) {
-		return manhattanDistance(incenterX, incenterY, incenterZ, x, y, z);
+		return getEuclideanDistance(x, y, z);
+	}
+
+	public float getEuclideanDistance(float x, float y, float z) {
+		float dx = incenterX - x;
+		float dy = incenterY - y;
+		float dz = incenterZ - z;
+		return (float) Math.sqrt(dx * dx + dy * dy + dz * dz);
+	}
+
+	public float getDistanceToTile(NavGeometry other) {
+		if (other == null) return inRad;
+		float dx = incenterX - other.incenterX;
+		float dy = incenterY - other.incenterY;
+		float dz = incenterZ - other.incenterZ;
+		return (float) Math.sqrt(dx * dx + dy * dy + dz * dz);
 	}
 
 	private float manhattanDistance(float x1, float y1, float z1, float x2, float y2, float z2) {

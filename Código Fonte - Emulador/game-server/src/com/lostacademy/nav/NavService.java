@@ -14,8 +14,8 @@ import com.aionemu.gameserver.geoEngine.math.Ray;
 import com.aionemu.gameserver.geoEngine.math.Vector3f;
 import com.aionemu.gameserver.geoEngine.models.GeoMap;
 import com.aionemu.gameserver.geoEngine.scene.NavGeometry;
-import com.aionemu.gameserver.geoEngine.scene.Spatial;
 import com.aionemu.gameserver.model.gameobjects.Creature;
+import com.aionemu.gameserver.utils.PositionUtil;
 
 /**
  * Ponto de entrada para consultas de navegação e pathfinding via NavMesh.
@@ -87,7 +87,7 @@ public final class NavService {
 				tile2 = getNavTileWithBox(targetWorldId, x2, y2, z2);
 				if (tile2 == null) return false;
 			}
-			float[][] path = attemptStraightLinePath(tile2, tile1, x2, y2, z2, x1, y1, z1);
+			float[][] path = attemptStraightLinePath(targetWorldId, tile2, tile1, x2, y2, z2, x1, y1, z1);
 			if (path != null && path.length == 1) {
 				// GeoService auxilia o NavMesh verificando portas dinâmicas fechadas e obstruções físicas
 				if (GeoDataConfig.GEO_ENABLE) {
@@ -101,7 +101,7 @@ public final class NavService {
 		}
 	}
 
-	private float[][] attemptStraightLinePath(NavGeometry tile1, NavGeometry tile2, float x1, float y1, float z1, float x2, float y2, float z2) {
+	private float[][] attemptStraightLinePath(int worldId, NavGeometry tile1, NavGeometry tile2, float x1, float y1, float z1, float x2, float y2, float z2) {
 		assert tile1 != null : "NavService#validateStraightLinePath() tile1 is null!";
 		if (tile2 == null) return null;
 		if (tile1 == tile2) return new float[][] {{x2, y2, z2}};
@@ -166,7 +166,7 @@ public final class NavService {
 		}
 
 		if (current == tile2) {
-			return funnelPathway(new NavPathway[] {new NavPathway(current, current.getEdgeMatching(last))}, true, x1, y1, z1, x2, y2, z2);
+			return funnelPathway(worldId, new NavPathway[] {new NavPathway(current, current.getEdgeMatching(last))}, true, x1, y1, z1, x2, y2, z2);
 		}
 		return null;
 	}
@@ -220,7 +220,7 @@ public final class NavService {
 			if (!GeoDataConfig.GEO_NAV_ENABLE) {
 				// Fallback auxiliar para GeoService caso NavMesh esteja desativado
 				if (GeoDataConfig.GEO_ENABLE) {
-					return GeoService.getInstance().getZ(worldId, x, y, z + 5.0f, z - 10.0f, 0);
+					return GeoService.getInstance().getValidGroundZ(worldId, x, y, z, 0);
 				}
 				return Float.NaN;
 			}
@@ -229,6 +229,10 @@ public final class NavService {
 				tile = getNavTileWithBox(worldId, x, y, z);
 			}
 			if (tile != null) {
+				float exactZ = tile.getExactSurfaceZ(x, y);
+				if (!Float.isNaN(exactZ)) {
+					return exactZ;
+				}
 				float[] point = tile.getClosestPoint(x, y, z);
 				if (point != null && !Float.isNaN(point[2])) {
 					return point[2];
@@ -236,7 +240,7 @@ public final class NavService {
 			}
 			// NAVMESH falhou ou sem malha no ponto? FALLBACK auxiliar para GeoService
 			if (GeoDataConfig.GEO_ENABLE) {
-				float geoZ = GeoService.getInstance().getZ(worldId, x, y, z + 5.0f, z - 10.0f, 0);
+				float geoZ = GeoService.getInstance().getValidGroundZ(worldId, x, y, z, 0);
 				if (!Float.isNaN(geoZ)) {
 					return geoZ;
 				}
@@ -268,29 +272,35 @@ public final class NavService {
 		}
 		if (boxed) {
 			float[] p = tile.getClosestPoint(x1, y1, z1);
-			float[][] pathFromP = attemptStraightLinePath(tile, tile2, x1, y1, z1, x2, y2, z2);
+			float[][] pathFromP = null;
+			if (Math.abs(z2 - z1) <= 2.0f) {
+				pathFromP = attemptStraightLinePath(worldId, tile, tile2, x1, y1, z1, x2, y2, z2);
+			}
 			if (pathFromP == null) {
 				NavHelper helper = new NavHelper(tile, tile2, p[0], p[1], p[2], x2, y2, z2);
 				NavPathway[] pathway = helper.createPathway();
 				helper.destroy();
-				pathFromP = funnelPathway(pathway, tile2 != null, p[0], p[1], p[2], x2, y2, z2);
+				pathFromP = funnelPathway(worldId, pathway, tile2 != null, p[0], p[1], p[2], x2, y2, z2);
 			}
 			float[][] ret = new float[pathFromP.length + 1][];
 			ret[0] = p;
 			System.arraycopy(pathFromP, 0, ret, 1, pathFromP.length);
 			return ret;
 		}
-		float[][] straightLinePath = attemptStraightLinePath(tile, tile2, x1, y1, z1, x2, y2, z2);
+		float[][] straightLinePath = null;
+		if (Math.abs(z2 - z1) <= 2.0f) {
+			straightLinePath = attemptStraightLinePath(worldId, tile, tile2, x1, y1, z1, x2, y2, z2);
+		}
 		if (straightLinePath != null) {
 			return straightLinePath;
 		}
 		NavHelper helper = new NavHelper(tile, tile2, x1, y1, z1, x2, y2, z2);
 		NavPathway[] pathway = helper.createPathway();
 		helper.destroy();
-		return funnelPathway(pathway, tile2 != null, x1, y1, z1, x2, y2, z2);
+		return funnelPathway(worldId, pathway, tile2 != null, x1, y1, z1, x2, y2, z2);
 	}
 
-	private static float[][] funnelPathway(NavPathway[] pathway, boolean includeTargetPoint, float x1, float y1, float z1, float x2, float y2, float z2) {
+	private static float[][] funnelPathway(int worldId, NavPathway[] pathway, boolean includeTargetPoint, float x1, float y1, float z1, float x2, float y2, float z2) {
 		if (pathway == null) return null;
 		if (pathway.length == 0) return new float[][] {{x1, y1, z1}};
 		if (pathway.length == 1 && pathway[0].edge == 0) return new float[][] {{x2, y2, z2}};
@@ -409,7 +419,26 @@ public final class NavService {
 				break;
 			}
 		}
-		return ret.toArray(new float[0][]);
+
+		// Valida e ajusta Z dos waypoints na geometria NavMesh/GeoEngine e remove duplicatas
+		ArrayList<float[]> cleaned = new ArrayList<>(ret.size());
+		float[] prev = null;
+		for (float[] pt : ret) {
+			if (pt == null || Float.isNaN(pt[0]) || Float.isNaN(pt[1])) continue;
+			if (prev != null && PositionUtil.getDistance(prev[0], prev[1], prev[2], pt[0], pt[1], pt[2]) < 0.2f) {
+				continue;
+			}
+			float surfaceZ = getInstance().getNavSurfaceZ(worldId, pt[0], pt[1], pt[2]);
+			if (!Float.isNaN(surfaceZ)) {
+				pt[2] = surfaceZ;
+			}
+			cleaned.add(pt);
+			prev = pt;
+		}
+		if (cleaned.isEmpty()) {
+			return new float[][] {{x2, y2, z2}};
+		}
+		return cleaned.toArray(new float[0][]);
 	}
 
 	private static boolean areEqualPoints(float[] p1, float[] p2) {
@@ -433,36 +462,27 @@ public final class NavService {
 	private NavGeometry getNavTile(int worldId, float x, float y, float z) {
 		GeoMap navMap = navData.getNavMap(worldId);
 		if (navMap == null) return null;
-		Vector3f pos = new Vector3f(x, y, z + 1F);
+		Vector3f pos = new Vector3f(x, y, z + 1.5F);
 		Vector3f dir = new Vector3f(0, 0, -1F);
 		Ray ray = new Ray(pos, dir);
-		ray.setLimit(5F);
+		ray.setLimit(5.5F);
 		CollisionResults results = new CollisionResults((byte) 1, 0);
 		int collisionCount = navMap.collideWith(ray, results);
-		if (collisionCount == 0) {
+		if (collisionCount == 0 && GeoDataConfig.GEO_ENABLE) {
 			// GeoService auxilia o NavMesh fornecendo o ground Z exato caso o Z passado esteja desviado
-			if (GeoDataConfig.GEO_ENABLE) {
-				float geoZ = GeoService.getInstance().getZ(worldId, x, y, z + 5.0f, z - 10.0f, 0);
-				if (!Float.isNaN(geoZ) && Math.abs(geoZ - z) > 0.5f) {
-					pos = new Vector3f(x, y, geoZ + 1F);
-					ray = new Ray(pos, dir);
-					ray.setLimit(5F);
-					results.clear();
-					collisionCount = navMap.collideWith(ray, results);
-				}
+			float geoZ = GeoService.getInstance().getValidGroundZ(worldId, x, y, z, 0);
+			if (!Float.isNaN(geoZ) && Math.abs(geoZ - z) > 0.3f) {
+				pos = new Vector3f(x, y, geoZ + 1.5F);
+				ray = new Ray(pos, dir);
+				ray.setLimit(5.5F);
+				results.clear();
+				collisionCount = navMap.collideWith(ray, results);
 			}
-			if (collisionCount == 0) return null;
 		}
+		if (collisionCount == 0) return null;
 		CollisionResult closestCollision = results.getClosestCollision();
-		if (closestCollision == null) {
-			return null;
-		}
-		Spatial ret = closestCollision.getGeometry();
-		assert ret instanceof NavGeometry;
-		try {
-			return (NavGeometry) ret;
-		} catch (ClassCastException e) {
-			LOG.error(e.toString());
+		if (closestCollision != null && closestCollision.getGeometry() instanceof NavGeometry navGeom) {
+			return navGeom;
 		}
 		return null;
 	}
@@ -470,26 +490,28 @@ public final class NavService {
 	private NavGeometry getNavTileWithBox(int worldId, float x, float y, float z) {
 		GeoMap navMap = navData.getNavMap(worldId);
 		if (navMap == null) return null;
-		Vector3f min = new Vector3f(x - 0.8F, y - 0.8F, z - 1);
-		Vector3f max = new Vector3f(x + 0.8F, y + 0.8F, z + 4);
-		Vector3f center = new Vector3f(x, y, z + 0.2F);
+		Vector3f min = new Vector3f(x - 1.2F, y - 1.2F, z - 3.5F);
+		Vector3f max = new Vector3f(x + 1.2F, y + 1.2F, z + 2.5F);
+		Vector3f center = new Vector3f(x, y, z);
 		BoundingBox box = new BoundingBox(min, max);
 		box.setCenter(center);
 		CollisionResults results = new CollisionResults((byte) 1, 0);
 		int collisionCount = navMap.collideWith(box, results);
 		if (collisionCount == 0) return null;
-		CollisionResult closestCollision = results.getClosestCollision();
-		if (closestCollision == null) {
-			return null;
+
+		NavGeometry bestTile = null;
+		float minZDiff = Float.MAX_VALUE;
+		for (CollisionResult cr : results) {
+			if (cr.getGeometry() instanceof NavGeometry ng) {
+				float sz = ng.getExactSurfaceZ(x, y);
+				float diff = Math.abs(sz - z);
+				if (diff < minZDiff) {
+					minZDiff = diff;
+					bestTile = ng;
+				}
+			}
 		}
-		Spatial ret = closestCollision.getGeometry();
-		assert ret instanceof NavGeometry;
-		try {
-			return (NavGeometry) ret;
-		} catch (ClassCastException e) {
-			LOG.error(e.toString());
-		}
-		return null;
+		return bestTile;
 	}
 
 	static class NavPathway {

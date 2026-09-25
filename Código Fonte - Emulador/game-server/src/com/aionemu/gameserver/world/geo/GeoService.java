@@ -73,6 +73,37 @@ public class GeoService implements GameEngine {
 		return map.getZ(x, y);
 	}
 
+	/**
+	 * Resolves valid ground height near currentZ using expanding vertical search windows.
+	 * Avoids shooting from sky (4000) which hits ceilings/roofs, while tolerating spawn elevation errors.
+	 */
+	public float getValidGroundZ(int worldId, float x, float y, float currentZ, int instanceId) {
+		GeoMap map = geoMaps.get(worldId);
+		if (map == null)
+			return Float.NaN;
+
+		// 1. Janela imediata (+2m / -3m)
+		float z = map.getZ(x, y, currentZ + 2.0f, currentZ - 3.0f, instanceId);
+		if (!Float.isNaN(z))
+			return z;
+
+		// 2. Janela intermediaria (+6m / -10m)
+		z = map.getZ(x, y, currentZ + 6.0f, currentZ - 10.0f, instanceId);
+		if (!Float.isNaN(z))
+			return z;
+
+		// 3. Janela ampla (+15m / -25m) para relevos acidentados e rampas
+		z = map.getZ(x, y, currentZ + 15.0f, currentZ - 25.0f, instanceId);
+		if (!Float.isNaN(z))
+			return z;
+
+		// 4. Fallback apenas se currentZ for zero ou proximo de zero
+		if (currentZ <= 0.1f) {
+			return map.getZ(x, y, 4000, 0, instanceId);
+		}
+		return Float.NaN;
+	}
+
 	public CollisionResults getCollisions(VisibleObject object, float x, float y, float z, byte intentions, IgnoreProperties ignoreProperties) {
 		GeoMap map = geoMaps.get(object.getWorldId());
 		return map == null ? null : map.getCollisions(object.getX(), object.getY(), object.getZ() + getSeeCheckOffset(object), x, y, z,

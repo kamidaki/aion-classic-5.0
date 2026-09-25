@@ -92,14 +92,74 @@ public class SpawnEngine {
 		return new SiegeSpawnTemplate(siegeId, race, mod, new SpawnGroup(worldId, npcId, 0, null), x, y, z, heading, 0, null, 0);
 	}
 
+	/**
+	 * Resolves the authoritative ground/walkable Z coordinate for a ground NPC spawn at (x, y) near referenceZ.
+	 * Uses active NavMesh triangle plane interpolation first, then GeoEngine collision raycasting within a safe vertical window
+	 * so NPCs do not spawn embedded underground or floating above terrain/floors.
+	 */
+	public static float resolveSpawnGroundZ(int worldId, float x, float y, float referenceZ, int instanceIndex) {
+		float navZ = com.lostacademy.nav.NavService.getInstance().getNavSurfaceZ(worldId, x, y, referenceZ);
+		if (!Float.isNaN(navZ)) {
+			float diff = navZ - referenceZ;
+			// Correct embedded spawns (up to 6m underground) or floating spawns (up to 5m above surface)
+			if (diff >= -5.0f && diff <= 6.0f) {
+				return navZ;
+			}
+		}
+		if (com.aionemu.gameserver.configs.main.GeoDataConfig.GEO_ENABLE) {
+			float geoZ = com.aionemu.gameserver.world.geo.GeoService.getInstance().getValidGroundZ(worldId, x, y, referenceZ, instanceIndex);
+			if (!Float.isNaN(geoZ)) {
+				float diff = geoZ - referenceZ;
+				if (diff >= -5.0f && diff <= 6.0f) {
+					return geoZ;
+				}
+			}
+		}
+		return referenceZ;
+	}
+
+	private static boolean shouldValidateGroundSpawnZ(VisibleObject visibleObject, SpawnTemplate spawn) {
+		if (!(visibleObject instanceof Npc npc)) {
+			return false;
+		}
+		if (visibleObject instanceof com.aionemu.gameserver.model.gameobjects.StaticDoor) {
+			return false;
+		}
+		if (npc.isFlying()) {
+			return false;
+		}
+		if (spawn != null && spawn.isAerialSpawn()) {
+			return false;
+		}
+		return true;
+	}
+
 	static void bringIntoWorld(VisibleObject visibleObject, SpawnTemplate spawn, int instanceIndex) {
-		bringIntoWorld(visibleObject, spawn.getWorldId(), instanceIndex, spawn.getX(), spawn.getY(), spawn.getZ(), spawn.getHeading());
+		float spawnZ = spawn.getZ();
+		if (shouldValidateGroundSpawnZ(visibleObject, spawn)) {
+			float resolvedZ = resolveSpawnGroundZ(spawn.getWorldId(), spawn.getX(), spawn.getY(), spawnZ, instanceIndex);
+			if (!Float.isNaN(resolvedZ) && Math.abs(resolvedZ - spawnZ) >= 0.05f) {
+				spawnZ = resolvedZ;
+				spawn.setZ(resolvedZ);
+			}
+		}
+		bringIntoWorld(visibleObject, spawn.getWorldId(), instanceIndex, spawn.getX(), spawn.getY(), spawnZ, spawn.getHeading());
 	}
 
 	public static void bringIntoWorld(VisibleObject visibleObject, int worldId, int instanceIndex, float x, float y, float z, byte h) {
+		float effectiveZ = z;
+		if (shouldValidateGroundSpawnZ(visibleObject, visibleObject.getSpawn())) {
+			float resolvedZ = resolveSpawnGroundZ(worldId, x, y, z, instanceIndex);
+			if (!Float.isNaN(resolvedZ) && Math.abs(resolvedZ - z) >= 0.05f) {
+				effectiveZ = resolvedZ;
+				if (visibleObject.getSpawn() != null) {
+					visibleObject.getSpawn().setZ(resolvedZ);
+				}
+			}
+		}
 		World world = World.getInstance();
 		world.storeObject(visibleObject);
-		world.setPosition(visibleObject, worldId, instanceIndex, x, y, z, h);
+		world.setPosition(visibleObject, worldId, instanceIndex, x, y, effectiveZ, h);
 		world.spawn(visibleObject);
 	}
 

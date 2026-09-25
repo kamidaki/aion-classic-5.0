@@ -79,6 +79,9 @@ public class FlyController {
 				player.getLifeStats().triggerFpReduce();
 			}
 			player.getGameStats().updateStatsAndSpeedVisually();
+			if (!player.isFlying()) {
+				notifyNearbyNpcsOfFlightChange(false);
+			}
 		}
 	}
 
@@ -98,6 +101,7 @@ public class FlyController {
 		if (broadcastPacket && player.isSpawned())
 			PacketSendUtility.broadcastToSightedPlayers(player, new SM_EMOTION(player, EmotionType.LAND), true);
 		player.getLifeStats().triggerFpRestore();
+		notifyNearbyNpcsOfFlightChange(false);
 	}
 
 	/**
@@ -127,6 +131,7 @@ public class FlyController {
 
 		if (broadcastPacket)
 			PacketSendUtility.broadcastToSightedPlayers(player, new SM_EMOTION(player, EmotionType.FLY), true);
+		notifyNearbyNpcsOfFlightChange(true);
 		return true;
 	}
 
@@ -164,7 +169,20 @@ public class FlyController {
 		player.setState(CreatureState.GLIDING);
 		player.getLifeStats().triggerFpReduce();
 		player.getGameStats().updateStatsAndSpeedVisually();
+		notifyNearbyNpcsOfFlightChange(true);
 		return true;
+	}
+
+	private void notifyNearbyNpcsOfFlightChange(boolean airborne) {
+		if (player == null || !player.isSpawned() || player.getKnownList() == null) {
+			return;
+		}
+		player.getKnownList().forEachNpc(npc -> {
+			if (npc == null || npc.isDead() || !npc.isSpawned() || !(npc.getAi() instanceof com.aionemu.gameserver.ai.NpcAI npcAI)) {
+				return;
+			}
+			com.aionemu.gameserver.ai.handler.AttackEventHandler.onPlayerFlightStateChanged(npcAI, player, airborne);
+		});
 	}
 
 	private static boolean canGlide(Player player) {

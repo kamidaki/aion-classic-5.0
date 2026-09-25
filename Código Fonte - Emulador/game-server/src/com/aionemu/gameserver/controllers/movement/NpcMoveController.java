@@ -118,21 +118,22 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 	 * Move to current target
 	 */
 	public void moveToTargetObject() {
-		if (started.compareAndSet(false, true)) {
+		boolean startedMoving = started.compareAndSet(false, true);
+		if (startedMoving || destination != Destination.TARGET_OBJECT) {
 			if (owner.getAi().isLogging()) {
 				AILogger.moveinfo(owner, "MC: moveToTarget started");
 			}
 			destination = Destination.TARGET_OBJECT;
 			clearCachedPath();
 			updateLastMove();
-			owner.getController().onStartMove();
+			if (startedMoving) {
+				owner.getController().onStartMove();
+			}
 		}
 	}
 
 	public boolean moveToPoint(float x, float y, float z) {
 		boolean startedMoving = started.compareAndSet(false, true);
-		if (!startedMoving && destination != Destination.POINT)
-			return false;
 		if (owner.getAi().isLogging()) {
 			AILogger.moveinfo(owner, "MC: moveToPoint (startedMoving=" + startedMoving + ")");
 		}
@@ -292,9 +293,16 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 		case POINT:
 			case FORCED_POINT:
 				cancelFollow();
+				if (owner.getAi().getState() == AIState.RETURNING) {
+					double dist2DToPoint = PositionUtil.getDistance(owner.getX(), owner.getY(), pointX, pointY);
+					if (dist2DToPoint <= 0.6f && Math.abs(owner.getZ() - pointZ) <= 3.0f) {
+						TargetEventHandler.onTargetReached((NpcAI) owner.getAi());
+						break;
+					}
+				}
 				if (GeoDataConfig.GEO_NAV_ENABLE && destination == Destination.POINT) {
 					PathState ps = pathRef.get();
-					if (ps == null) {
+					if (ps == null || !ps.hasNext()) {
 						float[][] newPath = NavService.getInstance().navigateToLocation(owner, pointX, pointY, pointZ);
 						int startIdx = 0;
 						if (newPath != null && newPath.length > 1 && PositionUtil.isInRange(owner, newPath[0][0], newPath[0][1], newPath[0][2], 1.2f)) {
@@ -305,6 +313,8 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 						if (ps == null) {
 							if (canWalkDirectly(owner, pointX, pointY, pointZ)) {
 								moveToLocation(pointX, pointY, pointZ);
+							} else if (owner.getAi().getState() == AIState.RETURNING) {
+								recoverReturningMovement();
 							} else {
 								abortMove(); // Não move através de obstáculos
 							}
@@ -330,12 +340,38 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 				if (destination == Destination.FORCED_POINT || canWalkDirectly(owner, pointX, pointY, pointZ)) {
 					moveToLocation(pointX, pointY, pointZ);
+				} else if (owner.getAi().getState() == AIState.RETURNING) {
+					recoverReturningMovement();
 				} else {
 					abortMove();
 				}
 				break;
 		}
 		updateLastMove();
+	}
+
+	private synchronized void recoverReturningMovement() {
+		while (lastSteps != null && !lastSteps.isEmpty()) {
+			Point3D step = lastSteps.removeLast();
+			if (step != null && !PositionUtil.isInRange(owner, step.getX(), step.getY(), step.getZ(), 1.5f)) {
+				pointX = step.getX();
+				pointY = step.getY();
+				pointZ = step.getZ();
+				clearCachedPath();
+				moveToLocation(pointX, pointY, pointZ);
+				return;
+			}
+		}
+		SpawnTemplate spawn = owner.getSpawn();
+		if (spawn != null) {
+			float spawnX = spawn.getX();
+			float spawnY = spawn.getY();
+			float spawnZ = com.aionemu.gameserver.spawnengine.SpawnEngine.resolveSpawnGroundZ(
+					owner.getWorldId(), spawnX, spawnY, spawn.getZ(), owner.getInstanceId());
+			World.getInstance().updatePosition(owner, spawnX, spawnY, spawnZ, spawn.getHeading(), true);
+			PacketSendUtility.broadcastPacket(owner, new SM_MOVE(owner));
+		}
+		TargetEventHandler.onTargetReached((NpcAI) owner.getAi());
 	}
 
 	private boolean isOnGround(Creature creature) {
@@ -400,8 +436,9 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 			targetY = owner.getSpawn().getY();
 			targetZ = owner.getSpawn().getZ();
 			clearBackSteps();
-		} else if (owner.getAi().getState() == AIState.FIGHT || owner.getAi().getState() == AIState.FOLLOWING) {
-			tryStoreStep(targetX, targetY, targetZ);
+		} else if (owner.getAi().getState() == AIState.FIGHT || owner.getAi().getState() == AIState.FOLLOWING
+				|| owner.getAi().getState() == AIState.FEAR) {
+			tryStoreStep(ownerX, ownerY, ownerZ);
 		}
 
 		boolean destinationChanged = targetX != targetDestX || targetY != targetDestY || targetZ != targetDestZ;
@@ -420,12 +457,14 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 		float currentSpeed = owner.getGameStats().getMovementSpeedFloat();
 		float futureDistPassed = currentSpeed * (System.currentTimeMillis() - lastMoveUpdate) / 1000f;
 		float dist = (float) PositionUtil.getDistance(ownerX, ownerY, ownerZ, targetX, targetY, targetZ);
+		float dist2D = (float) PositionUtil.getDistance(ownerX, ownerY, targetX, targetY);
 
 		if (owner.getAi().isLogging()) {
 			AILogger.moveinfo(owner, "futureDist: " + futureDistPassed + " dist: " + dist);
 		}
 
-		if (dist == 0) {
+		if (dist == 0 || (owner.getAi().getState() == AIState.RETURNING && dist2D <= 0.35f && Math.abs(ownerZ - targetZ) <= 2.5f
+				&& (pathRef.get() == null || !pathRef.get().hasNext()))) {
 			if (owner.getAi().getState() == AIState.RETURNING) {
 				if (owner.getAi().isLogging()) {
 					AILogger.moveinfo(owner, "State RETURNING: abort move");
@@ -677,31 +716,39 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 		float spawnX = spawn.getX();
 		float spawnY = spawn.getY();
 		float spawnZ = spawn.getZ();
+		if (!owner.isFlying() && !spawn.isAerialSpawn()) {
+			float resolvedZ = com.aionemu.gameserver.spawnengine.SpawnEngine.resolveSpawnGroundZ(
+					owner.getWorldId(), spawnX, spawnY, spawnZ, owner.getInstanceId());
+			if (!Float.isNaN(resolvedZ)) {
+				spawnZ = resolvedZ;
+			}
+		}
 
 		// CAMADA 1: NAVMESH (Obedece o pathfinding 3D NavMesh até o ponto de spawn)
 		if (GeoDataConfig.GEO_NAV_ENABLE) {
 			clearCachedPath();
 			float[][] newPath = NavService.getInstance().navigateToLocation(owner, spawnX, spawnY, spawnZ);
 			if (newPath != null && newPath.length > 0) {
+				boolean startedMoving = started.compareAndSet(false, true);
 				pathRef.set(new PathState(newPath, 0));
 				destination = Destination.POINT;
 				pointX = spawnX;
 				pointY = spawnY;
 				pointZ = spawnZ;
-				started.set(true);
-				owner.getController().onStartMove();
+				if (startedMoving) {
+					owner.getController().onStartMove();
+				}
 				updateLastMove();
 				return;
 			}
 		}
 
-
-
 		// Retorno por passos anteriores registrados ou linha de visão direta via GeoService
 		clearCachedPath();
 		Point3D step = lastSteps == null || lastSteps.isEmpty() ? null : lastSteps.removeLast();
-		if (step != null && !lastSteps.isEmpty() && PositionUtil.isInRange(owner, step.getX(), step.getY(), step.getZ(), 2))
+		while (step != null && !lastSteps.isEmpty() && PositionUtil.isInRange(owner, step.getX(), step.getY(), step.getZ(), 2)) {
 			step = lastSteps.removeLast();
+		}
 		if (step == null || GeoService.getInstance().canSee(owner, spawnX, spawnY, spawnZ, IgnoreProperties.ANY_RACE)) {
 			targetDestX = spawnX;
 			targetDestY = spawnY;

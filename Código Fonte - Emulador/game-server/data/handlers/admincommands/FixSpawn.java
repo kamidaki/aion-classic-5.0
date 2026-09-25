@@ -38,8 +38,10 @@ public class FixSpawn extends AdminCommand {
 		super("fixspawn", "Corrige altura (Z) e direcao (Heading) de NPCs flutuando.");
 
 		setSyntaxInfo(
-			" - Corrige altura (Z) e direcao (Heading) do NPC para a do jogador (preserva X e Y).",
-			"h - Corrige apenas a direcao (Heading) do NPC para a do jogador (preserva X, Y e Z)."
+			" - Corrige altura (Z) e direcao (Heading) do NPC para o chao/NavMesh referenciado pelo jogador (preserva X e Y).",
+			"h - Corrige apenas a direcao (Heading) do NPC para a do jogador (preserva X, Y e Z).",
+			"player - Forca o Z exato do jogador sem ajuste de chao/NavMesh.",
+			"geo - Corrige o Z usando estritamente o chao NavMesh/GeoEngine no X,Y do NPC."
 		);
 	}
 
@@ -57,15 +59,23 @@ public class FixSpawn extends AdminCommand {
 		}
 
 		boolean onlyHeading = false;
+		boolean forcePlayerZ = false;
+		boolean forceGeoZ = false;
 		if (params != null && params.length > 0) {
 			String arg = params[0].trim().toLowerCase();
 			if (arg.equals("help") || arg.equals("?")) {
 				PacketSendUtility.sendMessage(admin, "\u00a73[FixSpawn] Sintaxe:\n"
-					+ "  //fixspawn (ou //fix / .fix / .fixspawn) -> Corrige Z e Heading para o jogador (preserva X e Y)\n"
-					+ "  //fixspawn h (ou .fixspawn h) -> Corrige apenas Heading para o jogador (preserva X, Y e Z)");
+					+ "  //fixspawn (ou //fix / .fix / .fixspawn) -> Corrige Z (chao NavMesh/Geo no nivel do jogador) e Heading (preserva X e Y)\n"
+					+ "  //fixspawn h (ou .fixspawn h) -> Corrige apenas Heading para o jogador (preserva X, Y e Z)\n"
+					+ "  //fixspawn player -> Forca o Z exato do jogador (preserva X e Y)\n"
+					+ "  //fixspawn geo -> Corrige o Z pelo NavMesh/GeoEngine relativo ao Z do NPC");
 				return;
 			} else if (arg.equals("h")) {
 				onlyHeading = true;
+			} else if (arg.equals("player") || arg.equals("p")) {
+				forcePlayerZ = true;
+			} else if (arg.equals("geo") || arg.equals("g")) {
+				forceGeoZ = true;
 			}
 		}
 
@@ -124,7 +134,21 @@ public class FixSpawn extends AdminCommand {
 
 			float newX = origX;
 			float newY = origY;
-			float newZ = onlyHeading ? origZ : admin.getZ();
+			float newZ;
+			if (onlyHeading) {
+				newZ = origZ;
+			} else if (forcePlayerZ) {
+				newZ = admin.getZ();
+			} else if (forceGeoZ) {
+				newZ = SpawnEngine.resolveSpawnGroundZ(worldId, origX, origY, origZ, admin.getInstanceId());
+			} else {
+				float groundZ = SpawnEngine.resolveSpawnGroundZ(worldId, origX, origY, admin.getZ(), admin.getInstanceId());
+				if (!Float.isNaN(groundZ) && Math.abs(groundZ - admin.getZ()) <= 4.0f) {
+					newZ = groundZ;
+				} else {
+					newZ = admin.getZ();
+				}
+			}
 			byte newH = admin.getHeading();
 
 			// 1. Deletar do mundo o NPC antigo
@@ -187,8 +211,12 @@ public class FixSpawn extends AdminCommand {
 	}
 
 	private static List<File> getSpawnsDirectories() {
-		List<File> dirs = new ArrayList<>(3);
+		List<File> dirs = new ArrayList<>(7);
 		addDirIfValid(dirs, new File("./data/static_data/spawns"));
+		addDirIfValid(dirs, new File("../C\u00f3digo Fonte - Emulador/game-server/data/static_data/spawns"));
+		addDirIfValid(dirs, new File("../../C\u00f3digo Fonte - Emulador/game-server/data/static_data/spawns"));
+		addDirIfValid(dirs, new File("../Emulador - Produto Final/GameServer/data/static_data/spawns"));
+		addDirIfValid(dirs, new File("../../Emulador - Produto Final/GameServer/data/static_data/spawns"));
 		addDirIfValid(dirs, new File("../../1 - C\u00f3digo Fonte [Emulador]/game-server/data/static_data/spawns"));
 		addDirIfValid(dirs, new File("../../2 - Emulador [Produto Final]/GameServer/data/static_data/spawns"));
 		return dirs;
