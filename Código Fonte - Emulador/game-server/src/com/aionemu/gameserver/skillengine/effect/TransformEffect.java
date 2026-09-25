@@ -60,16 +60,18 @@ public abstract class TransformEffect extends EffectTemplate {
 		final Creature effected = effect.getEffected();
 
 		TransformEffect temp = null;
+		int tempSkillId = 0;
 		for (Effect tmp : effected.getEffectController().getAbnormalEffects()) {
 			for (EffectTemplate template : tmp.getEffectTemplates()) {
 				if (template instanceof TransformEffect && ((TransformEffect) template).getTransformId() != model) {
 					temp = (TransformEffect) template;
+					tempSkillId = tmp.getSkillId();
 					break;
 				}
 			}
 		}
 		if (temp != null)
-			effected.getTransformModel().apply(temp.getTransformId(), temp.getTransformType(), temp.getPanelId(), temp.cantUseSkills(),
+			effected.getTransformModel().apply(temp.getTransformId(), temp.getTransformType(), temp.getPanelId(), tempSkillId, temp.cantUseSkills(),
 				temp.cantMove(), temp.cantRecall(), temp.cantJump(), temp.cantAttack(), temp.cantUseItems(), temp.cantFly());
 		else
 			effected.endTransformation();
@@ -77,8 +79,8 @@ public abstract class TransformEffect extends EffectTemplate {
 
 	@Override
 	public void startEffect(Effect effect) {
-		effect.getEffected().getTransformModel().apply(getTransformId(), getTransformType(), getPanelId(), cantUseSkills(), cantMove(), cantRecall(),
-			cantJump(), cantAttack(), cantUseItems(), cantFly());
+		effect.getEffected().getTransformModel().apply(getTransformId(), getTransformType(), getPanelId(), effect.getSkillId(), cantUseSkills(),
+			cantMove(), cantRecall(), cantJump(), cantAttack(), cantUseItems(), cantFly());
 	}
 
 	public TransformType getTransformType() {

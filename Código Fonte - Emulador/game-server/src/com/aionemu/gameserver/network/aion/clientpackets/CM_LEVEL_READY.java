@@ -105,6 +105,10 @@ public class CM_LEVEL_READY extends AionClientPacket {
 
 		if (activePlayer.isInFlyState(FlyState.FLYING)) // notify client if we are still flying (client always ends flying after teleport)
 			activePlayer.getFlyController().startFly(true, true);
+		// o S_PUT_USER nao leva o modelo 0 (candy invisivel); para os outros o oficial manda o S_POLYMORPH logo depois, e o proprio
+		// personagem fica no mesmo caso (sem captura dele ainda)
+		if (activePlayer.getTransformModel().needsPolymorphOnSpawn())
+			sendPacket(new SM_TRANSFORM(activePlayer));
 
 		// SM_SHIELD_EFFECT, SM_ABYSS_ARTIFACT_INFO3
 		if (activePlayer.isInSiegeWorld()) {

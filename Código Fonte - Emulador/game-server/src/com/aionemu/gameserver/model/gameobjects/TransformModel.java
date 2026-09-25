@@ -16,11 +16,17 @@ public class TransformModel {
 
 	private Creature owner;
 
+	/**
+	 * Transformacao ativa. Nao da para deduzir do modelId: o candy invisivel (reserved9 "0" no client_skills, ex. 10813
+	 * Classic_Candy_SHAPE_INVISIBLE_EXCHANGE_50) transforma no modelo 0, e o S_POLYMORPH oficial manda exatamente 0.
+	 */
+	private boolean active;
 	private int modelId;
 	private int eventModelId;
 	private TransformType originalType;
 	private TransformType transformType;
 	private int panelId;
+	private int skillId;
 	private TribeClass transformTribe;
 
 	// restrictions
@@ -38,39 +44,55 @@ public class TransformModel {
 		this.owner = creature;
 	}
 
+	/**
+	 * Transformacao sem skill (//morph). 0 ou o proprio modelo desfaz.
+	 */
 	public void apply(int modelId) {
-		apply(modelId, originalType, 0, false, false, false, false, false, false, false);
+		if (modelId == 0)
+			reset();
+		else
+			apply(modelId, originalType, 0, 0, false, false, false, false, false, false, false);
 	}
 
 	/**
-	 * Function that activates transform
+	 * Function that activates transform. modelId 0 e o modelo invisivel, nao o fim da transformacao (ver {@link #reset()}).
 	 */
-	public void apply(int modelId, TransformType type, int panelId, boolean cantUseSkills, boolean cantMove, boolean cantRecall, boolean cantJump, boolean cantAttack, boolean cantUseItems, boolean cantFly) {
-		int originalModelId = owner.getObjectTemplate().getTemplateId();
-		if (modelId == 0 || modelId == originalModelId) { // reset
-			this.modelId = originalModelId;
-			this.transformType = originalType;
-			this.panelId = 0;
-			this.cantUseSkills = false;
-			this.cantMove = false;
-			this.cantRecall = false;
-			this.cantJump = false;
-			this.cantAttack = false;
-			this.cantUseItems = false;
-			this.cantFly = false;
-		} else { // set new
-			this.modelId = modelId;
-			this.transformType = type;
-			this.panelId = panelId;
-			this.cantUseSkills = cantUseSkills;
-			this.cantMove = cantMove;
-			this.cantRecall = cantRecall;
-			this.cantJump = cantJump;
-			this.cantAttack = cantAttack;
-			this.cantUseItems = cantUseItems;
-			this.cantFly = cantFly;
+	public void apply(int modelId, TransformType type, int panelId, int skillId, boolean cantUseSkills, boolean cantMove, boolean cantRecall, boolean cantJump, boolean cantAttack, boolean cantUseItems, boolean cantFly) {
+		if (modelId == owner.getObjectTemplate().getTemplateId()) {
+			reset();
+			return;
 		}
+		this.active = true;
+		this.modelId = modelId;
+		this.transformType = type;
+		this.panelId = panelId;
+		this.skillId = skillId;
+		this.cantUseSkills = cantUseSkills;
+		this.cantMove = cantMove;
+		this.cantRecall = cantRecall;
+		this.cantJump = cantJump;
+		this.cantAttack = cantAttack;
+		this.cantUseItems = cantUseItems;
+		this.cantFly = cantFly;
+		this.updateVisually();
+	}
 
+	/**
+	 * Volta ao modelo original. O S_POLYMORPH oficial do fim traz o template do personagem (100000-100003), tipo PC e skill 0.
+	 */
+	public void reset() {
+		this.active = false;
+		this.modelId = owner.getObjectTemplate().getTemplateId();
+		this.transformType = originalType;
+		this.panelId = 0;
+		this.skillId = 0;
+		this.cantUseSkills = false;
+		this.cantMove = false;
+		this.cantRecall = false;
+		this.cantJump = false;
+		this.cantAttack = false;
+		this.cantUseItems = false;
+		this.cantFly = false;
 		this.updateVisually();
 	}
 
@@ -140,8 +162,23 @@ public class TransformModel {
 		return panelId;
 	}
 
+	/**
+	 * @return skill que transformou (vai no fim do S_POLYMORPH); 0 no //morph e no fim da transformacao
+	 */
+	public int getSkillId() {
+		return skillId;
+	}
+
 	public boolean isActive() {
-		return modelId > 0 && modelId != owner.getObjectTemplate().getTemplateId();
+		return active;
+	}
+
+	/**
+	 * Modelo que o S_PUT_USER nao consegue levar: la o D do modelo com 0 quer dizer "sem transformacao", entao o oficial
+	 * manda o template e logo depois o S_POLYMORPH com o modelo 0 (captura outros2 de 2026-09-22, candy 10813).
+	 */
+	public boolean needsPolymorphOnSpawn() {
+		return isActive() && getModelId() == 0;
 	}
 
 	/**
@@ -156,9 +193,10 @@ public class TransformModel {
 	 *          the transformTribe to set
 	 */
 	public void setTribe(TribeClass transformTribe) {
-		boolean tribeChanged = this.transformTribe != transformTribe;
+		if (this.transformTribe == transformTribe)
+			return;
 		this.transformTribe = transformTribe;
-		if (tribeChanged && owner instanceof Player player)
+		if (owner instanceof Player player)
 			RecallService.getInstance().cancel(player, CancelReason.CANCELLED);
 		this.updateTribeVisually();
 	}

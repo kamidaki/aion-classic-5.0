@@ -130,7 +130,8 @@ public class Item extends AionObject implements Expirable, StatOwner, Persistabl
 		this.colorExpireTime = colorExpires;
 		this.itemCreator = itemCreator;
 		this.expireTime = expireTime;
-		this.activationCount = activationCount;
+		// a carga nunca e gravada como 0 depois de usada (a ultima consome o item): 0 e item criado antes de o template ter activate_count
+		this.activationCount = activationCount == 0 ? itemTemplate.getActivationCount() : activationCount;
 		this.isEquipped = isEquipped;
 		this.isSoulBound = isSoulBound;
 		this.equipmentSlot = equipmentSlot;

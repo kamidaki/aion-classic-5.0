@@ -99,6 +99,8 @@ public class PlayerController extends CreatureController<Player> {
 			}
 			if (!creature.getEffectController().isEmpty())
 				PacketSendUtility.sendPacket(getOwner(), new SM_ABNORMAL_EFFECT(creature));
+			if (creature instanceof Player player && player.getTransformModel().needsPolymorphOnSpawn())
+				PacketSendUtility.sendPacket(getOwner(), new SM_TRANSFORM(player));
 		} else if (object instanceof Gatherable || object instanceof StaticObject) {
 			PacketSendUtility.sendPacket(getOwner(), new SM_GATHERABLE_INFO(object));
 		} else if (object instanceof Pet pet) {
