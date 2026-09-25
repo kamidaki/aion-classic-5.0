@@ -1,58 +1,38 @@
-
-## Funcionamento de escolha de caminhos = NPC
+## Funcionamento de escolha de caminhos = NPC (Aion Classic 5.0)
 
 ### 1. Configuração de Pathfinding no `NpcMoveController`
 
-Configuração da cadeia de 4 camadas na perseguição de alvos (`Destination.TARGET_OBJECT`) e movimentação a ponto (`Destination.POINT`):
+Configuração da cadeia de navegação na perseguição de alvos (`Destination.TARGET_OBJECT`) e movimentação a ponto (`Destination.POINT`):
 
 ```mermaid
 flowchart TD
     Start["moveToDestination(TARGET_OBJECT)"] --> CheckTarget{"Alvo Válido?"}
-    CheckTarget -- Não --> Cancel["cancelFollow(); clearCachedPath(); abortMove();"]
-    CheckTarget -- Sim --> CheckNative{"NativePath Ativo?<br/>(NATIVE_PATH_ENABLE & hasMap)"}
+    CheckTarget -- Não --> Cancel["clearCachedPath(); abortMove();"]
+    CheckTarget -- Sim --> CheckLOS{"Linha de Visão Direta?<br/>(canWalkDirectly / GeoService)"}
 
-    %% CAMADA 1: NATIVE-PATH
-    CheckNative -- Sim --> NativeQuery["1. Consultar NativePathService.navigateToTarget()"]
-    NativeQuery --> NativeSuccess{"NativePath Encontrou Caminho Válido?"}
-    NativeSuccess -- Sim --> ExecNative["Executar NativePath (CryEngine Nativo)<br/>Waypoints 3D + Raycast Smoothing"]
-    ExecNative --> CancelEleanor["cancelFollow() e avança até destino"]
+    %% CAMADA DIRETA
+    CheckLOS -- Sim --> MoveDirect["Movimentação Direta ao Alvo<br/>(Sem colisão no trajeto)"]
 
-    %% CAMADA 2: NAVMESH (.NAV)
-    CheckNative -- Não --> CheckNav{"GEO_NAV_ENABLE & NavData.hasMap?"}
-    NativeSuccess -- Não --> CheckNav
-    CheckNav -- Sim --> NavQuery["2. Consultar NavService.navigateToTarget()"]
+    %% CAMADA NAVMESH (.NAV)
+    CheckLOS -- Não --> CheckNav{"NavMesh Ativo?<br/>(GEO_NAV_ENABLE & NavData)"}
+    CheckNav -- Sim --> NavQuery["Consultar NavService.navigateToTarget()"]
     NavQuery --> NavSuccess{"NavMesh (.nav) Encontrou Rota?"}
-    NavSuccess -- Sim --> ExecNav["Executar NavMesh (.nav Recast)"]
-    ExecNav --> CancelEleanor
+    NavSuccess -- Sim --> ExecNav["Executar NavMesh (.nav Recast)<br/>A* Tridimensional + String-Pulling"]
 
-    %% CAMADA 3: ELEANOR
-    CheckNav -- Não --> TryEleanor["3. FALLBACK PARA ELEANOR: applyFollow(target)"]
-    NavSuccess -- Não --> TryEleanor
-    TryEleanor --> EleanorCheck{"Eleanor consegue traçar rota<br/>(canPass / selectFollowStep)?"}
-    EleanorCheck -- Sim --> ExecEleanor["FollowMotor move o NPC via Eleanor"]
-
-    %% CAMADA 4: VANILLA / COMPORTAMENTO NORMAL
-    EleanorCheck -- Não --> NormalMove["4. FALLBACK PARA COMPORTAMENTO NORMAL (Vanilla)"]
-    NormalMove --> ExecNormal["fallbackToNormalMove(target) via moveToLocation e Z do GeoService"]
+    %% FALLBACK
+    CheckNav -- Não --> FallbackDirect["Fallback: Movimentação Direta ou Parado"]
+    NavSuccess -- Não --> FallbackDirect
 ```
 
 #### Detalhes de Implementação no `NpcMoveController`:
-1. **Camada 1 (Native-Path - CryEngine Nativo `*-path.dat`)**:
-   - Se `NativePathConfig.NATIVE_PATH_ENABLE` estiver ativado e o mapa possuir `*-path.dat`:
-   - Chama `NativePathService.getInstance().navigateToTarget(owner, creature)`.
-   - Utiliza as malhas de navegação nativas da CryEngine extraídas diretamente dos mapas do cliente.
-   - Aplica algoritmo A* tridimensional nativo com raycasting string-pulling smoothing.
-   - Cancela o `FollowMotor` da Eleanor (`cancelFollow()`) para evitar concorrência de controle de movimento.
-2. **Camada 2 (Fallback: NavMesh Recast `.nav`)**:
-   - Se `native-path` estiver desativado, o mapa não possuir `.dat` nativo, ou a consulta nativa não encontrar caminho navegável:
-   - Se `GeoDataConfig.GEO_NAV_ENABLE` estiver ativo e existir arquivo `.nav`:
-   - Invoca `NavService.getInstance().navigateToTarget(owner, creature)`.
-3. **Camada 3 (Fallback: Eleanor / Line-of-Sight Geometry)**:
-   - Se `native-path` e `navmesh` falharem ou estiverem desativados:
-   - Limpa `cachedPath` e aciona `applyFollow(target)`.
-   - O `FollowMotor` da Eleanor assume o rastreamento ponto a ponto e detecção de obstáculos geométrica.
-4. **Camada 4 (Fallback: Comportamento Normal / Vanilla)**:
-   - Se Eleanor não puder mover ou não encontrar rota transitável (`_targetPosition == null`), o próprio `FollowMotor` invoca `owner.getMoveController().fallbackToNormalMove(target)`.
-   - `fallbackToNormalMove` usa o sistema vanilla com `GeoService.getZ` e movimentação direta sem malha.
+1. **NavMesh Recast `.nav` - Sistema Primário**:
+   - Se `GeoDataConfig.GEO_NAV_ENABLE` estiver ativado e existir arquivo `.nav` para o mapa:
+   - Chama `NavService.getInstance().navigateToTarget(owner, creature)` ou `navigateToLocation(owner, x, y, z)`.
+   - Utiliza as malhas 3D trianguladas Recast (`data/nav/`) com suporte a múltiplos andares, rampas, escadas espirais e pontes estreitas.
+   - Aplica algoritmo A* heurístico tridimensional com alisamento de rota (funnel pathway / string-pulling).
+   - Utiliza controle de concorrência imutável via `AtomicReference<PathState>` com avanço atômico de waypoints.
+2. **Clamping de Z e Retorno ao Spawn**:
+   - `getNavSurfaceZ`: garante que criaturas não atravessem o relevo nem flutuem sobre pontes e desníveis.
+   - `returnToLastStepOrSpawn`: navega de volta ao ponto de spawn utilizando o NavMesh `.nav` para contornar qualquer obstáculo.
 
 ---

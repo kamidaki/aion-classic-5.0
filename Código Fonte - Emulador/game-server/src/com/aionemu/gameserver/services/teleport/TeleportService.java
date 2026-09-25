@@ -5,7 +5,7 @@ import java.util.concurrent.FutureTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.lostacademy.nativepath.NativePathData;
+import com.lostacademy.nav.NavData;
 
 import com.aionemu.gameserver.configs.main.SecurityConfig;
 import com.aionemu.gameserver.dataholders.DataManager;
@@ -180,7 +180,7 @@ public class TeleportService {
 		abortPlayerActions(player);
 		com.lostacademy.Dps_Meter.DpsService.sendPlayerState(player, true, true);
 		if (player.getWorldId() != worldId) {
-			NativePathData.getInstance().onPlayerEnterMap(worldId, player.getObjectId());
+			NavData.getInstance().onPlayerEnterMap(worldId);
 		}
 		// despawn from world and send animation to others (also ends flying)
 		World.getInstance().despawn(player, animation.getDefaultObjectDeleteAnimation());
@@ -236,8 +236,8 @@ public class TeleportService {
 		if (currentWorldId != worldId || player.getInstanceId() != instanceId) {
 			InstanceService.onLeaveInstance(player);
 			if (currentWorldId != worldId) {
-				NativePathData.getInstance().onPlayerLeaveMap(currentWorldId, player.getObjectId());
-				NativePathData.getInstance().onPlayerEnterMap(worldId, player.getObjectId());
+				NavData.getInstance().onPlayerLeaveMap(currentWorldId);
+				NavData.getInstance().onPlayerEnterMap(worldId);
 			}
 		}
 		World.getInstance().setPosition(player, worldId, instanceId, x, y, z, heading);
@@ -520,8 +520,8 @@ public class TeleportService {
 			if (currentWorldId != worldId || currentInstance != instanceId) {
 				InstanceService.onLeaveInstance(player);
 				if (currentWorldId != worldId) {
-					NativePathData.getInstance().onPlayerLeaveMap(currentWorldId, player.getObjectId());
-					NativePathData.getInstance().onPlayerEnterMap(worldId, player.getObjectId());
+					NavData.getInstance().onPlayerLeaveMap(currentWorldId);
+					NavData.getInstance().onPlayerEnterMap(worldId);
 				}
 			}
 			World.getInstance().setPosition(player, worldId, instanceId, x, y, z, h);

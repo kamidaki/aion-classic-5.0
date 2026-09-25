@@ -98,7 +98,7 @@ public class GameServer {
 			GeoService.getInstance()).parallel().forEach(GameEngine::init);
 		// ZoneService.getInstance().saveMaterialZones();
 
-		com.lostacademy.nativepath.NativePathService.getInstance().initialize();
+		com.lostacademy.nav.NavService.getInstance().initializeNav();
 
 		World.getInstance();
 		GameTimeService.getInstance();

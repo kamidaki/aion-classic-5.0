@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.lostacademy.nativepath.NativePathData;
+import com.lostacademy.nav.NavData;
 import com.aionemu.gameserver.configs.administration.AdminConfig;
 import com.aionemu.gameserver.configs.main.GSConfig;
 import com.aionemu.gameserver.configs.main.PeriodicSaveConfig;
@@ -152,7 +152,7 @@ public final class PlayerEnterWorldService {
 			pcd.setInEditMode(false);
 
 			World.getInstance().storeObject(player);
-			NativePathData.getInstance().onPlayerEnterMap(player.getWorldId(), player.getObjectId());
+			NavData.getInstance().onPlayerEnterMap(player.getWorldId());
 
 			if (validateFortressZone(player))
 				validateVortexZone(player);
@@ -410,7 +410,7 @@ public final class PlayerEnterWorldService {
 		log.info("Player Logged In: {} Account: {}", player.getName(), player.getClientConnection().getAccount().getName());
 		player.getCommonData().setOnline(true);
 		PlayerDAO.onlinePlayer(player, true);
-		NativePathData.getInstance().onPlayerEnterMap(player.getWorldId(), player.getObjectId());
+		NavData.getInstance().onPlayerEnterMap(player.getWorldId());
 	}
 
 	@SuppressWarnings("lossy-conversions")

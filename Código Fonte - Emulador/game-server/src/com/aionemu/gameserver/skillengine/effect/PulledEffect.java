@@ -16,8 +16,8 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.PositionUtil;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.geo.GeoService;
-import com.lostacademy.nativepath.NativePathConfig;
-import com.lostacademy.nativepath.NativePathService;
+import com.aionemu.gameserver.configs.main.GeoDataConfig;
+import com.lostacademy.nav.NavService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -37,9 +37,9 @@ public class PulledEffect extends EffectTemplate {
 		if (ec.isAbnormalSet(AbnormalState.PULLED) || ec.isAbnormalSet(AbnormalState.STUMBLE) || ec.isAbnormalSet(AbnormalState.OPENAERIAL))
 			return;
 
-		// Validação prioritária via NativePath CryEngine (grade 0.5m) quando disponível
-		if (NativePathConfig.NATIVE_PATH_ENABLE) {
-			if (!NativePathService.getInstance().canPullTarget(effect.getEffected(), effect.getEffector())) {
+		// Validação prioritária via NavMesh (.nav) quando disponível
+		if (GeoDataConfig.GEO_NAV_ENABLE) {
+			if (!NavService.getInstance().canPullTarget(effect.getEffected(), effect.getEffector())) {
 				return;
 			}
 		} else if (!GeoService.getInstance().canSee(effect.getEffected(), effect.getEffector())) {
@@ -60,11 +60,11 @@ public class PulledEffect extends EffectTemplate {
 		float destX = closestCollision.getX();
 		float destY = closestCollision.getY();
 		float destZ = closestCollision.getZ();
-		// Corrige Z com NativePath para evitar que a vítima flutue ou caia em abismo
-		if (NativePathConfig.NATIVE_PATH_ENABLE) {
-			float nativeZ = NativePathService.getInstance().getSurfaceZ(effector.getWorldId(), destX, destY, destZ);
-			if (!Float.isNaN(nativeZ)) {
-				destZ = nativeZ;
+		// Corrige Z com NavMesh para evitar que a vítima flutue ou caia em abismo
+		if (GeoDataConfig.GEO_NAV_ENABLE) {
+			float navZ = NavService.getInstance().getNavSurfaceZ(effector.getWorldId(), destX, destY, destZ);
+			if (!Float.isNaN(navZ)) {
+				destZ = navZ;
 			}
 		}
 		effect.setTargetLoc(destX, destY, destZ);

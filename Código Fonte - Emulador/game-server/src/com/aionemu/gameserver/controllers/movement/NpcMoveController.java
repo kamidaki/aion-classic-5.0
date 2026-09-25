@@ -34,8 +34,7 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.PositionUtil;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.geo.GeoService;
-import com.lostacademy.nativepath.NativePathConfig;
-import com.lostacademy.nativepath.NativePathService;
+import com.lostacademy.nav.NavService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -60,7 +59,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 	private RouteStep currentStep;
 
 	/**
-	 * Estado imutável da rota NativePath em cache.
+	 * Estado imutável da rota NavMesh em cache.
 	 *
 	 * Encapsula path + index num objeto único trocado atomicamente via AtomicReference,
 	 * eliminando a race condition entre clearCachedPath() e moveToDestination().
@@ -219,10 +218,10 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 				float targetZ = creature.getZ();
 
 				// ========================================================
-				// CAMADA ÚNICA: NATIVE-PATH (CryEngine Native Grid 0.5m)
+				// CAMADA ÚNICA: NAVMESH (.nav 3D Navigation Mesh)
 				// ========================================================
 				cancelFollow();
-				if (NativePathConfig.NATIVE_PATH_ENABLE) {
+				if (GeoDataConfig.GEO_NAV_ENABLE) {
 					long now = System.currentTimeMillis();
 					PathState ps = pathRef.get();
 
@@ -249,7 +248,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 					if (needRepath) {
 						lastPathCalcTime = now;
-						float[][] newPath = NativePathService.getInstance().navigateToTarget(owner, creature);
+						float[][] newPath = NavService.getInstance().navigateToTarget(owner, creature);
 						if (newPath != null && newPath.length > 0) {
 							lastTargetX = targetX;
 							lastTargetY = targetY;
@@ -266,14 +265,10 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 							if (ps != null && ps.hasNext()) {
 								lastPathCalcTime = now + 400;
 							} else {
-								// Tenta encontrar ponto transitável na borda do obstáculo em direção ao alvo
-								float[] closest = NativePathService.getInstance().findClosestWalkablePoint(owner.getWorldId(), targetX, targetY, targetZ, 8.0f, owner.getInstanceId());
-								if (closest != null && canWalkDirectly(owner, closest[0], closest[1], closest[2])) {
-									moveToLocation(closest[0], closest[1], closest[2]);
+								if (canWalkDirectly(owner, targetX, targetY, targetZ)) {
+									moveToLocation(targetX, targetY, targetZ);
 									break;
 								}
-								// IMPORTANTE: NUNCA chama abortMove() em combate ativo contra alvo vivo!
-								// Mantém o monstro no MoveTaskManager com backoff de 300ms para resposta instantânea.
 								lastPathCalcTime = now + 300;
 								break;
 							}
@@ -303,10 +298,10 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 		case POINT:
 			case FORCED_POINT:
 				cancelFollow();
-				if (NativePathConfig.NATIVE_PATH_ENABLE && destination == Destination.POINT) {
+				if (GeoDataConfig.GEO_NAV_ENABLE && destination == Destination.POINT) {
 					PathState ps = pathRef.get();
 					if (ps == null) {
-						float[][] newPath = NativePathService.getInstance().navigateToLocation(owner, pointX, pointY, pointZ);
+						float[][] newPath = NavService.getInstance().navigateToLocation(owner, pointX, pointY, pointZ);
 						int startIdx = 0;
 						if (newPath != null && newPath.length > 1 && PositionUtil.isInRange(owner, newPath[0][0], newPath[0][1], newPath[0][2], 1.2f)) {
 							startIdx = 1;
@@ -444,7 +439,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 			futureDistPassed = dist;
 		}
 
-		if (futureDistPassed == dist && NativePathConfig.NATIVE_PATH_ENABLE
+		if (futureDistPassed == dist && GeoDataConfig.GEO_NAV_ENABLE
 				&& (destination == Destination.TARGET_OBJECT || destination == Destination.POINT)) {
 			// Avança índice ao chegar no waypoint atual (operação atômica CAS)
 			PathState ps = pathRef.get();
@@ -464,7 +459,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 		// Clamping de Z contínuo a cada tick para impedir flutuação ou afundamento sob o relevo/pontes
 		if (!owner.isFlying()) {
-			float surfaceZ = com.lostacademy.nativepath.NativePathService.getInstance().getSurfaceZ(owner.getWorldId(), newX, newY, newZ);
+			float surfaceZ = NavService.getInstance().getNavSurfaceZ(owner.getWorldId(), newX, newY, newZ);
 			if (Float.isNaN(surfaceZ)) {
 				float highZ = Math.max(ownerZ, newZ) + 5.0f;
 				float lowZ = Math.min(ownerZ, newZ) - 10.0f;
@@ -478,7 +473,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 			float lowZ = Math.min(ownerZ, newZ) - 25.0f;
 			float surfaceZ = GeoService.getInstance().getZ(owner.getWorldId(), newX, newY, highZ, lowZ, owner.getInstanceId());
 			if (Float.isNaN(surfaceZ)) {
-				surfaceZ = com.lostacademy.nativepath.NativePathService.getInstance().getSurfaceZ(owner.getWorldId(), newX, newY, newZ);
+				surfaceZ = NavService.getInstance().getNavSurfaceZ(owner.getWorldId(), newX, newY, newZ);
 			}
 			if (!Float.isNaN(surfaceZ)) {
 				newZ = surfaceZ;
@@ -680,10 +675,10 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 		float spawnY = spawn.getY();
 		float spawnZ = spawn.getZ();
 
-		// CAMADA 1: NATIVE-PATH (Obedece o pathfinding nativo CryEngine até o ponto de spawn)
-		if (NativePathConfig.NATIVE_PATH_ENABLE) {
+		// CAMADA 1: NAVMESH (Obedece o pathfinding 3D NavMesh até o ponto de spawn)
+		if (GeoDataConfig.GEO_NAV_ENABLE) {
 			clearCachedPath();
-			float[][] newPath = NativePathService.getInstance().navigateToLocation(owner, spawnX, spawnY, spawnZ);
+			float[][] newPath = NavService.getInstance().navigateToLocation(owner, spawnX, spawnY, spawnZ);
 			if (newPath != null && newPath.length > 0) {
 				pathRef.set(new PathState(newPath, 0));
 				destination = Destination.POINT;
@@ -730,7 +725,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 	}
 
 	public void cancelFollow() {
-		// No-op: NativePath controla movimento nativamente sem motores externos
+		// No-op: NavMesh controla movimento sem motores externos
 	}
 
 	public void fallbackToNormalMove(VisibleObject target) {
@@ -782,9 +777,6 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 				(float) PositionUtil.getDistance(owner.getX(), owner.getY(), targetX, targetY), target);
 		if (Math.abs(owner.getZ() - targetZ) > maxZDiff)
 			return false;
-		if (NativePathConfig.NATIVE_PATH_ENABLE) {
-			return NativePathService.getInstance().canWalkDirectly(owner, targetX, targetY, targetZ);
-		}
 		return !GeoDataConfig.GEO_ENABLE || GeoService.getInstance().canSee(owner, target);
 	}
 
@@ -793,9 +785,6 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 	}
 
 	private boolean canWalkDirectly(Creature owner, float targetX, float targetY, float targetZ) {
-		if (NativePathConfig.NATIVE_PATH_ENABLE) {
-			return NativePathService.getInstance().canWalkDirectly(owner, targetX, targetY, targetZ);
-		}
 		return !GeoDataConfig.GEO_ENABLE || GeoService.getInstance().canSee(owner, targetX, targetY, targetZ, IgnoreProperties.ANY_RACE);
 	}
 

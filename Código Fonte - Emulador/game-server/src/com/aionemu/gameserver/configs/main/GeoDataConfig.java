@@ -53,16 +53,21 @@ public class GeoDataConfig {
 	 */
 
 	/**
-	 * Compatibilidade com pacote nav (referência histórica Lost Academy).
-	 * NavMesh legado (.nav) está desabilitado no Classic 5.0 — usa NativePath CryEngine.
+	 * Enable NavMesh system
 	 */
-	@Property(key = "gameserver.geodata.nav.enable", defaultValue = "false")
+	@Property(key = "gameserver.geodata.nav.enable", defaultValue = "true")
 	public static boolean GEO_NAV_ENABLE;
 
 	/**
-	 * Diretório dos arquivos .nav (compatibilidade — não usado no Classic 5.0).
+	 * NavMesh data directory
 	 */
 	@Property(key = "gameserver.geodata.nav.dir", defaultValue = "data/nav/")
 	public static String GEO_NAV_DIR;
+
+	/**
+	 * Enable forced movement nav fallback
+	 */
+	@Property(key = "gameserver.geodata.forced_move.nav_fallback", defaultValue = "true")
+	public static boolean FORCED_MOVE_NAV_FALLBACK;
 
 }

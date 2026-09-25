@@ -14,8 +14,8 @@ import com.aionemu.gameserver.skillengine.model.SpellStatus;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.geo.GeoService;
-import com.lostacademy.nativepath.NativePathConfig;
-import com.lostacademy.nativepath.NativePathService;
+import com.aionemu.gameserver.configs.main.GeoDataConfig;
+import com.lostacademy.nav.NavService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -47,15 +47,14 @@ public class OpenAerialEffect extends EffectTemplate {
 			} else {
 				z += 2.5f;
 			}
-			// Validação adicional NativePath: garante que a posição está sobre solo transitável CryEngine
-			// Evita que a criatura seja lançada no ar sobre abismo detectado apenas pelo CryEngine
-			if (NativePathConfig.NATIVE_PATH_ENABLE) {
-				float nativeZ = NativePathService.getInstance().getSurfaceZ(
+			// Validação adicional NavMesh: garante que a posição está sobre solo transitável
+			if (GeoDataConfig.GEO_NAV_ENABLE) {
+				float navZ = NavService.getInstance().getNavSurfaceZ(
 					effect.getEffected().getWorldId(),
 					effect.getEffected().getX(),
 					effect.getEffected().getY(), z);
-				if (!Float.isNaN(nativeZ)) {
-					z = nativeZ;
+				if (!Float.isNaN(navZ)) {
+					z = navZ;
 				}
 			}
 		}

@@ -21,7 +21,8 @@ import com.aionemu.gameserver.skillengine.model.SkillTemplate;
 import com.aionemu.gameserver.utils.PositionUtil;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.geo.GeoService;
-import com.lostacademy.nativepath.NativePathService;
+import com.lostacademy.nav.NavService;
+import com.aionemu.gameserver.configs.main.GeoDataConfig;
 
 /**
  * @author Lost Academy Team & Durak
@@ -181,13 +182,20 @@ public class AttackEventHandler {
 		float targetY = desiredY;
 		float targetZ = desiredZ;
 
-		// 1. Tentar encontrar ponto transitável nativo CryEngine (NativePath)
-		float[] walkable = NativePathService.getInstance().findClosestWalkablePoint(npc.getWorldId(), desiredX, desiredY, desiredZ, 8.0f);
-		if (walkable != null) {
-			targetX = walkable[0];
-			targetY = walkable[1];
-			targetZ = walkable[2];
-		} else {
+		// 1. Tentar encontrar rota via NavMesh (.nav)
+		boolean movedByNav = false;
+		if (GeoDataConfig.GEO_NAV_ENABLE) {
+			float navZ = NavService.getInstance().getNavSurfaceZ(npc.getWorldId(), desiredX, desiredY, desiredZ);
+			float testZ = Float.isNaN(navZ) ? desiredZ : navZ;
+			float[][] path = NavService.getInstance().navigateToLocation(npc, desiredX, desiredY, testZ);
+			if (path != null && path.length > 0) {
+				targetX = path[0][0];
+				targetY = path[0][1];
+				targetZ = path[0][2];
+				movedByNav = true;
+			}
+		}
+		if (!movedByNav) {
 			// 2. Fallback de colisão física via GeoService
 			float angle = PositionUtil.calculateAngleFrom(attacker, npc);
 			Vector3f stepPoint = GeoService.getInstance().findMovementCollision(npc, angle, fleeDistance);

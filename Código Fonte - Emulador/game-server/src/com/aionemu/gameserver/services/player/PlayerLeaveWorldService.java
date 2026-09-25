@@ -6,7 +6,7 @@ import java.util.concurrent.Future;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.lostacademy.nativepath.NativePathData;
+import com.lostacademy.nav.NavData;
 import com.aionemu.gameserver.configs.main.AutoGroupConfig;
 import com.aionemu.gameserver.dao.*;
 import com.aionemu.gameserver.dataholders.DataManager;
@@ -98,7 +98,7 @@ public class PlayerLeaveWorldService {
 			if (AutoGroupConfig.AUTO_GROUP_ENABLE)
 				AutoGroupService.getInstance().onLogout(player);
 			MultiClientingService.onLeaveWorld(player);
-			NativePathData.getInstance().onPlayerLeaveMap(player.getWorldId(), player.getObjectId());
+			NavData.getInstance().onPlayerLeaveMap(player.getWorldId());
 			InstanceService.onLogout(player);
 			GMService.getInstance().onPlayerLogout(player);
 			KiskService.getInstance().onLogout(player);

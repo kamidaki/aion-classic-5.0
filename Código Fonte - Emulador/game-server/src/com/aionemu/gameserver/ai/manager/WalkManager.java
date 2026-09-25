@@ -5,8 +5,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.lostacademy.nativepath.NativePathConfig;
-import com.lostacademy.nativepath.NativePathService;
+import com.lostacademy.nav.NavData;
+import com.lostacademy.nav.NavService;
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.gameserver.ai.AIState;
 import com.aionemu.gameserver.ai.AISubState;
@@ -232,12 +232,12 @@ public class WalkManager {
             int diameter = randomWalkRange * 2;
             float nextX = Rnd.nextFloat(diameter) - randomWalkRange + owner.getSpawn().getX();
             float nextY = Rnd.nextFloat(diameter) - randomWalkRange + owner.getSpawn().getY();
-            if (NativePathConfig.NATIVE_PATH_ENABLE && NativePathService.getInstance().isMapLoaded(owner.getWorldId())) {
-                float targetZ = NativePathService.getInstance().getSurfaceZ(owner.getWorldId(), nextX, nextY, owner.getZ());
+            if (GeoDataConfig.GEO_NAV_ENABLE && NavData.getInstance().getNavMap(owner.getWorldId()) != null) {
+                float targetZ = NavService.getInstance().getNavSurfaceZ(owner.getWorldId(), nextX, nextY, owner.getZ());
                 if (Float.isNaN(targetZ)) {
                     targetZ = owner.getZ();
                 }
-                float[][] navPath = NativePathService.getInstance().navigateToLocation(owner, nextX, nextY, targetZ);
+                float[][] navPath = NavService.getInstance().navigateToLocation(owner, nextX, nextY, targetZ);
                 // Valida que o destino final da rota não extrapola o raio de random walk do spawn
                 if (navPath != null && navPath.length > 0) {
                     float[] lastWp = navPath[navPath.length - 1];
@@ -285,7 +285,7 @@ public class WalkManager {
 	private static float[] selectNextNavPoint(Npc owner, float[][] navPath, float minDistance) {
 		if (navPath == null || navPath.length == 0)
 			return null;
-		// Retorna sempre o próximo passo imediato da rota NativePath (navPath[0]).
+		// Retorna sempre o próximo passo imediato da rota NavMesh (navPath[0]).
 		// O A* já produziu os waypoints em ordem, o NpcMoveController avança pelo array.
 		// Buscar o "mais distante" era incorreto: causava o NPC ignorar waypoints
 		// intermediários e tentar ir direto ao destino, atravessando obstáculos.
