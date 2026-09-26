@@ -295,4 +295,10 @@ public class CustomConfig {
 
 	@Property(key = "gameserver.telemetry.websocket.token", defaultValue = "#@br!classic50_token_2026#")
 	public static String TELEMETRY_WEBSOCKET_TOKEN;
+
+	/**
+	 * Enable Secure Area / Battle Zone HUD UI for regular players (Staff always sees it)
+	 */
+	@Property(key = "gameserver.securearea.ui.enable", defaultValue = "false")
+	public static boolean SECURE_AREA_UI_ENABLE;
 }

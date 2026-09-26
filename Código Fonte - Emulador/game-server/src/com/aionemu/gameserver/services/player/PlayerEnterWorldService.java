@@ -176,7 +176,8 @@ public final class PlayerEnterWorldService {
 			StigmaService.onPlayerLogin(player);
 			InstanceService.onPlayerLogin(player);
 
-			// 1. SM_ENTER_WORLD_CHECK (0x0133)
+			// 1. SM_VERSION_CHECK (sync feature flags & HUD visibility) & SM_ENTER_WORLD_CHECK (0x0133)
+			client.sendPacket(new SM_VERSION_CHECK());
 			client.sendPacket(new SM_ENTER_WORLD_CHECK(player.getObjectId()));
 
 			// 2. Skills: pacote unico com todas as skills aprendidas

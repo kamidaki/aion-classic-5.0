@@ -129,6 +129,42 @@ flowchart TD
   - `[Index 6] (0x33ED40)`: Listener de atualização de estado da zona.
   - `[Index 17] (0x33EA50)`: Construtor de widgets (vincula `Setting_button` em `+0x4f8`, `switch_button` em `+0x500` e `ffa_state` em `+0x508`).
 
+### 2.4 Descoberta Crucial: Controle Nativo de Ocultação em `Game.dll` (`0x180365910`)
+Durante engenharia reversa aprofundada das chamadas de fechamento de diálogo em `Game.dll`, foi identificada a rotina de encerramento do diálogo `0x171` (`CloseDialog(0x171)`):
+```assembly
+.text:0000000180365910  sub     rsp, 28h
+.text:0000000180365914  mov     rcx, [rip+126744Dh]  ; g_ClientState
+.text:000000018036591B  cmp     byte ptr [rcx+24h], 1 ; ServerType == 1?
+.text:000000018036591F  jz      short loc_close
+.text:0000000180365921  cmp     byte ptr [rip+12768CCh], 0 ; [0x1815DC7F4] != 0?
+.text:0000000180365928  jz      short loc_ret
+loc_close:
+.text:000000018036592A  mov     edx, 171h             ; Dialog ID 369 (alter_console_dialog)
+.text:000000018036592F  call    sub_180B22520        ; CloseDialog()
+loc_ret:
+.text:0000000180365934  add     rsp, 28h
+.text:0000000180365938  retn
+```
+* **Significado**: O cliente oficial da NCSoft **possui lógica nativa para ocultar o widget `alter_console_dialog` sem necessitar de qualquer alteração nos arquivos XML da interface**!
+* Se o servidor enviar uma flag específica informando que o modo FFA/Alter não está ativo para a sessão do jogador, o cliente chama `CloseDialog(0x171)` automaticamente ao entrar no mundo.
+
+### 2.5 Origem da Flag Global `[0x1815DC7F4]`: O Pacote `SM_VERSION_CHECK` (`0x1808A5260`)
+Rastreando quem escreve na variável global `0x1815DC7F4`, localizamos a rotina de desempacotamento de rede em `0x1808A5260` associada ao opcode de rede `0x0000` (`SM_VERSION_CHECK`):
+```assembly
+.text:00000001808A5260  ; Unpacker SM_VERSION_CHECK
+; ... lê lista de servidores de chat ...
+.text:00000001808A52B5  call    ReadDword             ; lê Dword
+.text:00000001808A52DF  call    ReadByte              ; lê Byte [rbp+3Ch]
+.text:00000001808A52E4  mov     [rip+0D37509h], al   ; grava em [0x1815DC7F4]!
+.text:00000001808A52EA  call    ReadByte              ; lê Byte [rbp+3Dh]
+.text:00000001808A52F5  call    ReadDword             ; lê Dword [rbp+40h]
+```
+* **Conclusão**:
+  - Quando o servidor envia `writeC(1)` nessa posição de `SM_VERSION_CHECK`, `[0x1815DC7F4]` é preenchido com `1`.
+  - Ao entrar no mundo (`PlayerEnterWorldService`), `0x180365910` executa, detecta `[0x1815DC7F4] != 0` e chama `CloseDialog(0x171)`.
+  - Quando o servidor envia `writeC(0)` (ou para Staff), o diálogo permanece ativo na tela!
+  - Isso explica de forma definitiva por que no servidor oficial a interface não aparecia sem ter que alterar o arquivo `UI_Game.xml`.
+
 ---
 
 ## 3. Protocolo de Rede e Análise de Pacotes
@@ -195,6 +231,41 @@ No arquivo [`SecureAreaService.java`](file:///D:/AION%20CLASSIC%205.0%20-%20EMUL
   - Broadcast de atualização visual: `SM_PLAYER_INFO`.
   - Auditoria em banco de dados: tabela `player_secure_area_log`.
 
+### 4.4 Controle Dinâmico pelo Emulador (Implementado)
+Com base na descoberta da rotina `0x180365910` e do pacote `SM_VERSION_CHECK` (`0x1808A5260`), a visibilidade do widget é agora controlada de forma centralizada e autoritativa pelo próprio emulador, mantendo os arquivos de interface do cliente (`UI_Game.xml` ENG e BRA) 100% íntegros e originais da NCSoft.
+
+1. **Configuração Global (`custom.properties`)**:
+   ```properties
+   # ----------------------------
+   # Secure Area / Battle Zone UI (Book of Eltar):
+   # ----------------------------
+   # Controls whether regular players see the "Secure Area / Battle Zone" HUD widget.
+   # Staff/Admins always see it regardless of this setting.
+   # Default: false (hidden for regular players, matches official retail behavior)
+   gameserver.securearea.ui.enable = false
+   ```
+2. **Carregamento de Propriedade (`CustomConfig.java`)**:
+   ```java
+   @Property(key = "gameserver.securearea.ui.enable", defaultValue = "false")
+   public static boolean SECURE_AREA_UI_ENABLE;
+   ```
+3. **Controle de Protocolo (`SM_VERSION_CHECK.java`)**:
+   ```java
+   boolean isStaff = con != null && (
+       (con.getActivePlayer() != null && con.getActivePlayer().isStaff()) ||
+       (con.getAccount() != null && con.getAccount().getAccessLevel() > 0)
+   );
+   boolean showSecureAreaUi = isStaff || CustomConfig.SECURE_AREA_UI_ENABLE;
+   int ffaAlterFlag = showSecureAreaUi ? 0 : 1; // 1 instrui Game.dll 0x180365910 a fechar alter_console_dialog
+
+   writeD(0);
+   writeC(ffaAlterFlag);
+   writeC(0);
+   writeD(0);
+   ```
+4. **Sincronização no Login (`PlayerEnterWorldService.java`)**:
+   Ao entrar no mundo, o emulador envia `SM_VERSION_CHECK` imediatamente antes de `SM_ENTER_WORLD_CHECK`, garantindo que o status de GM/Staff do personagem ativo seja validado e o cliente oculte o widget para jogadores normais e o mantenha para a administração.
+
 ---
 
 ## 5. Respostas Diretas aos 13 Pontos da Auditoria
@@ -205,27 +276,27 @@ No arquivo [`SecureAreaService.java`](file:///D:/AION%20CLASSIC%205.0%20-%20EMUL
 | **2** | **Como o cliente determina "Secure Area" vs "Battle Zone"** | Pela função C++ `0x180A5DFD0` em `Game.dll`. Ela checa o ID da subzona atual em `[rip + 0xb08827]` contra a tabela dinâmica alimentada pelos pacotes `SM_ZONE_STATE_LIST` (`0x19D`) e `SM_CAMP_PVP_ZONE` (`0x187`). Se o byte for 1, retorna `1` ("Battle Zone"); se for 0 ou indefinido, retorna `2` ("Secure Area"). |
 | **3** | **Interatividade do botão de espadas cruzadas** | **É um botão interativo**, não apenas um ícone passivo. Nomeado `switch_button`, possui estados up, over e down, e dispara a função de keymap `TriggerAlterMode_Switch`, que envia o pacote de rede `0x03DC` (decodificado 806 / `0x0326`) para o servidor. |
 | **4** | **Função do botão de engrenagem** | Nomeado `Setting_button`, com tooltip `STR_ALTER_CONSOLE_DIALOG_INFO_BTN` ("Book of Eltar"). Sua única função é disparar `TriggerToggleDialog_AlterInfo`, que abre a janela modal `alter_info_dialog` ("Book of Eltar"). Não abre opções globais, áudio nem gráficos. Se a funcionalidade for desabilitada, o cliente oculta esse botão via `0x18033EB50`. |
-| **5** | **Pacotes de rede trocados** | Cliente -> Servidor: `CM_SERVER_PVP_ACK` (Wire `0x03DC`, Decodificado `806`). Servidor -> Cliente: `SM_ZONE_STATE_LIST` (`0x019D`) no login/teleporte, `SM_CAMP_PVP_ZONE` (`0x0187`) para eventos dinâmicos de área, e `SM_PLAYER_INFO` (`0x0041`) para atualizar a hostilidade dos jogadores. |
+| **5** | **Pacotes de rede trocados** | Cliente -> Servidor: `CM_SERVER_PVP_ACK` (Wire `0x03DC`, Decodificado `806`). Servidor -> Cliente: `SM_VERSION_CHECK` (`0x0000`) para visibilidade do HUD, `SM_ZONE_STATE_LIST` (`0x019D`) no login/teleporte, `SM_CAMP_PVP_ZONE` (`0x0187`) para eventos dinâmicos de área, e `SM_PLAYER_INFO` (`0x0041`) para atualizar a hostilidade dos jogadores. |
 | **6** | **Fluxo completo de atualização da zona** | `Servidor emite SM_ZONE_STATE_LIST/SM_CAMP_PVP_ZONE` -> `Game.dll atualiza tabela interna de subzonas` -> `Jogador cruza a fronteira da subzona` -> `Game.dll 0x18033ED40 avalia 0x180A5DFD0` -> `Widget ffa_state altera texto entre 908051 e 908052` -> `Emite mensagem no meio da tela (1402022 ou 1402023)`. |
 | **7** | **Feature oficial ou customizada?** | **Oficial da NCSoft**. É o sistema de PK de facção ("Eltar Daeva System") introduzido nas versões Classic 5.0 (Tiamaranta Mesa e servidores específicos de PvP irrestrito). O emulador Lost Academy apenas havia criado um serviço intermediário (`SecureAreaService`) para reaproveitar essa UI oficial. |
-| **8** | **O que existe no código do emulador** | Existem o pacote `CM_SERVER_PVP_ACK.java`, os pacotes de servidor `SM_ZONE_STATE_LIST.java` e `SM_CAMP_PVP_ZONE.java`, a lógica de hostilidade `CustomPlayerState.ENEMY_OF_ALL_PLAYERS` em `Player.java` e `PlayerRestrictions.java`, e a classe `SecureAreaService.java` (atualmente com `requestToggle` vazio / desativado). |
-| **9** | **Estratégia para desativação completa** | **No Cliente**: Em `ui/UI_Game.xml`, remover as tags `<Dialog name="alter_console_dialog"></Dialog>` e `<Dialog name="alter_info_dialog"></Dialog>`. Isso impede que o CryEngine crie ou renderize a interface. **No Servidor**: Manter `CM_SERVER_PVP_ACK.java` e `SecureAreaService.requestToggle` como no-op / desativados, ou não enviar o estado 1 em `SM_CAMP_PVP_ZONE`. |
-| **10** | **Restrição para Staff / Admins** | Em `CM_SERVER_PVP_ACK.java`, adicionar: `if (player.getAccessLevel() < 3) return;` ou validar se o jogador possui o status de GM antes de invocar qualquer lógica de toggle, mantendo o jogador comum restrito. |
+| **8** | **O que existe no código do emulador** | Existem o pacote `CM_SERVER_PVP_ACK.java`, os pacotes de servidor `SM_ZONE_STATE_LIST.java` e `SM_CAMP_PVP_ZONE.java`, a lógica de hostilidade `CustomPlayerState.ENEMY_OF_ALL_PLAYERS` em `Player.java` e `PlayerRestrictions.java`, e a classe `SecureAreaService.java` (com toggle desativado). |
+| **9** | **Estratégia para desativação completa** | **Método Oficial / Nativo (Implementado)**: O emulador envia o flag `ffaAlterFlag = 1` no pacote `SM_VERSION_CHECK`. Isso aciona a rotina interna `0x180365910` de `Game.dll`, que chama `CloseDialog(0x171)` e oculta o widget nativamente sem precisar modificar arquivos XML de interface do cliente. |
+| **10** | **Restrição para Staff / Admins** | Implementada nativamente no servidor: administradores e membros da Staff (`isStaff()` ou `accessLevel > 0`) recebem `ffaAlterFlag = 0`, fazendo com que o widget sempre seja exibido para testes e moderação, enquanto jogadores normais têm a exibição controlada por `gameserver.securearea.ui.enable`. |
 | **11** | **Lógica autoritativa vs UI cosmética** | O cliente apenas sugere visualmente o estado e bloqueia o clique primário via `0x180198793`. A **autoridade real do combate é 100% do servidor** em `Player.isEnemyFrom(enemy)` e nas restrições de zona em `PlayerRestrictions.java`. Se o servidor não validar o alvo como inimigo, nenhuma habilidade de dano é executada, mesmo com alterações no cliente. |
 | **12** | **Vulnerabilidades de segurança e exploits** | Se o servidor reativasse o pacote `CM_SERVER_PVP_ACK` sem validar em qual zona o jogador está (ex.: se está dentro de uma cidade ou santuário com guardas), um jogador poderia enviar o pacote via ferramentas de injeção de pacotes e se tornar agressivo em áreas protegidas. Qualquer reativação exige validação estrita da subzona no servidor (`player.isInsideZoneType(ZoneClassName.PVP)`). |
-| **13** | **Resumo e recomendações** | O sistema está atualmente adormecido e inofensivo no servidor. Para remover completamente os botões da tela dos jogadores sem tocar no binário `Game.dll`, a intervenção limpa recomendada é editar o XML do cliente (`ui/UI_Game.xml` dentro do pacote de UI / tradução) removendo a declaração de `alter_console_dialog`. |
+| **13** | **Resumo e recomendações** | A solução definitiva foi implementada diretamente no emulador via protocolo de rede (`SM_VERSION_CHECK`), permitindo controle instantâneo via `custom.properties` sem nenhuma modificação de arquivos de cliente, preservando os arquivos `UI_Game.xml` originais tanto em português quanto em inglês. |
 
 ---
 
-## 6. Recomendações Técnicas de Implementação
+## 6. Arquitetura e Guia de Configuração no Emulador
 
-Se o objetivo for **remover definitivamente a UI visual da tela de todos os jogadores**:
-1. No arquivo `ui/UI_Game.xml` (localizado em `D:\AION CLASSIC 5.0 - EMULADOR\Ferramentas e Documentos\Client e Coletas\Tradução - Português Brasil\ui\UI_Game.xml` e no `data.pak` correspondente):
-   - Remover as linhas:
-     ```xml
-     <Dialog name="alter_console_dialog">
-     </Dialog>
-     <Dialog name="alter_info_dialog">
-     </Dialog>
-     ```
-2. Manter a classe `CM_SERVER_PVP_ACK.java` e o serviço `SecureAreaService.java` no estado atual (desativados / no-op), garantindo que nenhum pacote de rede possa ativar estados de hostilidade indevidos.
+### 6.1 Como Controlar a Interface
+No arquivo `config/main/custom.properties`:
+* `gameserver.securearea.ui.enable = false`:
+  - **Jogadores normais**: O widget `Secure Area / Battle Zone` é completamente ocultado da tela.
+  - **Staff / Administradores**: O widget continua visível normalmente.
+* `gameserver.securearea.ui.enable = true`:
+  - O widget fica visível para todos os jogadores do servidor.
+
+### 6.2 Integridade dos Arquivos do Cliente
+Tanto a tradução brasileira (`data.pak` em `l10n/BRA/Data/`) quanto a versão inglesa (`Data.pak` em `l10n/ENG/Data/`) foram restauradas para seu estado 100% oficial e limpo com os diálogos `alter_console_dialog` e `alter_info_dialog` devidamente declarados, garantindo que qualquer servidor que rode o cliente não dependa de mods de interface específicos.
