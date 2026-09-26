@@ -2,7 +2,7 @@
 
 ## Mensagens `???`
 
-O cliente oficial contém **5694 mensagens**. O Java declara **4133 factories**; **334** apontam para IDs inexistentes no cliente Classic 5.0 e **113** delas são chamadas pelo código atual.
+O cliente oficial contém **5694 mensagens**. O Java declara **4133 factories**; **334** apontam para IDs inexistentes no cliente Classic 5.0 e **112** delas são chamadas pelo código atual.
 Um ID ausente é causa direta e reproduzível para o cliente exibir `???`. Nome divergente com ID existente é risco de texto/parâmetros incorretos, não necessariamente `???`.
 Após substituir o ID legado de distância por `STR_SKILL_TOO_FAR` (`1300022`), o motor de Skills possui **0 chamada(s)** para IDs ausentes. As demais chamadas inválidas pertencem a outros subsistemas e não foram alteradas sem correspondência oficial comprovada.
 
@@ -22,7 +22,6 @@ Após substituir o ID legado de distância por `STR_SKILL_TOO_FAR` (`1300022`), 
 | 1402573 | `STR_MSG_ATTEND_REWARD_INVALID_LEVEL` | 1 |
 | 1402627 | `STR_MSG_ATTEND_REWARD_REMOVE_EXCESS` | 1 |
 | 1402237 | `STR_MSG_BREAK_PROC` | 1 |
-| 1402536 | `STR_MSG_BREAK_PROC_REMAIN_START` | 1 |
 | 1401294 | `STR_MSG_CANT_USE_HOUSE_OBJECT_ITEM_EQUIP` | 1 |
 | 1402878 | `STR_MSG_DARK_SIDE_LEGION_DIRECT_PORTAL_OPEN` | 1 |
 | 1402285 | `STR_MSG_ENCHANT_ITEM_SUCCEEDED_20` | 1 |
@@ -125,6 +124,8 @@ Após substituir o ID legado de distância por `STR_SKILL_TOO_FAR` (`1300022`), 
 | 901714 | `STR_TOOLTIP_LEARNED_TITLE` | 2 |
 
 Também existem **59 factories usadas cujo ID existe, mas o nome oficial associado ao número é diferente**. Elas permanecem no JSON para revisão de parâmetros.
+
+O outro emissor ativo relacionado ao combate, `STR_MSG_BREAK_PROC` (`1402237`), só é alcançado pelos **12 Godstones de teste** com `breakprob` no servidor. **12 deles existem nos arquivos de itens do cliente oficial**; portanto, esse caminho legado não explica o uso de Skills/itens oficiais normais.
 
 ## Defesa e resistência
 

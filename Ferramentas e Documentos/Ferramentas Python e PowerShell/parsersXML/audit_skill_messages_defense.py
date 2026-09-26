@@ -23,6 +23,7 @@ TEMPLATES = SOURCE / "data" / "static_data" / "skills" / "skill_templates.xml"
 CLIENT = ROOT / "Ferramentas e Documentos" / "Client e Coletas" / "Client 5.0 - Dados Extraidos"
 CLIENT_MESSAGES = CLIENT / "data" / "Strings" / "client_strings_msg.xml"
 CLIENT_SKILLS = CLIENT / "data" / "skills" / "client_skills.xml"
+ITEM_TEMPLATES = SOURCE / "data" / "static_data" / "items" / "item_templates.xml"
 OUT_JSON = HERE / "auditoria_mensagens_defesa_skills_50.json"
 OUT_MD = HERE / "auditoria_mensagens_defesa_skills_50.md"
 
@@ -48,6 +49,83 @@ def line_number(text: str, offset: int) -> int:
     return text.count("\n", 0, offset) + 1
 
 
+def strip_java_comments(text: str) -> str:
+    """Remove comentarios sem deslocar offsets/linhas usados no relatorio."""
+    result = list(text)
+    index = 0
+    state = "code"
+    while index < len(text):
+        char = text[index]
+        following = text[index + 1] if index + 1 < len(text) else ""
+        if state == "code":
+            if char == "/" and following == "/":
+                result[index] = result[index + 1] = " "
+                index += 2
+                state = "line_comment"
+                continue
+            if char == "/" and following == "*":
+                result[index] = result[index + 1] = " "
+                index += 2
+                state = "block_comment"
+                continue
+            if char == '"':
+                state = "string"
+            elif char == "'":
+                state = "character"
+        elif state == "line_comment":
+            if char == "\n":
+                state = "code"
+            else:
+                result[index] = " "
+        elif state == "block_comment":
+            if char == "*" and following == "/":
+                result[index] = result[index + 1] = " "
+                index += 2
+                state = "code"
+                continue
+            if char != "\n":
+                result[index] = " "
+        elif state in {"string", "character"}:
+            if char == "\\":
+                index += 2
+                continue
+            if (state == "string" and char == '"') or (state == "character" and char == "'"):
+                state = "code"
+        index += 1
+    return "".join(result)
+
+
+def audit_breakable_godstones() -> list[dict[str, object]]:
+    rows = []
+    for item in ET.parse(ITEM_TEMPLATES).getroot():
+        godstone = item.find("godstone")
+        if godstone is None or int(godstone.get("breakprob", "0")) <= 0:
+            continue
+        rows.append({
+            "item_id": int(item.get("id", "0")),
+            "nome": item.get("name"),
+            "breakprob": int(godstone.get("breakprob", "0")),
+            "existe_cliente_oficial": False,
+            "breakable_cliente": None,
+        })
+
+    pending = {row["item_id"]: row for row in rows}
+    for client_items in CLIENT.rglob("client_items.xml"):
+        if not pending:
+            break
+        for _, entry in ET.iterparse(client_items, events=("end",)):
+            if entry.tag.lower() not in {"client_item", "item"}:
+                continue
+            raw_id = entry.findtext("id")
+            item_id = int(raw_id) if raw_id and raw_id.isdigit() else 0
+            if item_id in pending:
+                pending[item_id]["existe_cliente_oficial"] = True
+                pending[item_id]["breakable_cliente"] = entry.findtext("breakable")
+                pending.pop(item_id)
+            entry.clear()
+    return rows
+
+
 def audit_messages() -> dict[str, object]:
     official_entries = client_records(CLIENT_MESSAGES)
     official_by_id = {msg_id: row.get("name", "") for msg_id, row in official_entries.items()}
@@ -70,7 +148,8 @@ def audit_messages() -> dict[str, object]:
         if path == packet_path:
             continue
         text = path.read_text(encoding="utf-8", errors="replace")
-        for match in usage_pattern.finditer(text):
+        executable_text = strip_java_comments(text)
+        for match in usage_pattern.finditer(executable_text):
             usages[match.group(1)].append({
                 "arquivo": path.relative_to(ROOT).as_posix(),
                 "linha": line_number(text, match.start()),
@@ -109,6 +188,7 @@ def audit_messages() -> dict[str, object]:
             for name, refs in sorted(usages.items())
             if name not in factories
         ],
+        "godstones_com_quebra": audit_breakable_godstones(),
     }
 
 
@@ -217,6 +297,8 @@ def main() -> None:
     invalid_used = [row for row in invalid if row["usos"]]
     invalid_skill_engine = messages["usos_invalidos_no_motor_de_skills"]
     mismatched_used = [row for row in messages["ids_existentes_com_nome_divergente"] if row["usos"]]
+    breakable_godstones = messages["godstones_com_quebra"]
+    breakable_official = [row for row in breakable_godstones if row["existe_cliente_oficial"]]
     lines = [
         "# Auditoria de mensagens e defesas das Skills — Classic 5.0",
         "",
@@ -235,6 +317,8 @@ def main() -> None:
     lines += [
         "",
         f"Também existem **{len(mismatched_used)} factories usadas cujo ID existe, mas o nome oficial associado ao número é diferente**. Elas permanecem no JSON para revisão de parâmetros.",
+        "",
+        f"O outro emissor ativo relacionado ao combate, `STR_MSG_BREAK_PROC` (`1402237`), só é alcançado pelos **{len(breakable_godstones)} Godstones de teste** com `breakprob` no servidor. **{len(breakable_official)} deles existem nos arquivos de itens do cliente oficial**; portanto, esse caminho legado não explica o uso de Skills/itens oficiais normais.",
         "",
         "## Defesa e resistência",
         "",

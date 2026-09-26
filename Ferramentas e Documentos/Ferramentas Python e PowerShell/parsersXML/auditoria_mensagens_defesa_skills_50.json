@@ -233,12 +233,7 @@
         "metodo": "STR_MSG_BREAK_PROC_REMAIN_START",
         "id": 1402536,
         "linha_definicao": 27980,
-        "usos": [
-          {
-            "arquivo": "Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/controllers/CreatureController.java",
-            "linha": 297
-          }
-        ]
+        "usos": []
       },
       {
         "metodo": "STR_MSG_CANNOT_RIDE_ABNORMAL_STATE",
@@ -4376,6 +4371,92 @@
             "linha": 258
           }
         ]
+      }
+    ],
+    "godstones_com_quebra": [
+      {
+        "item_id": 168000104,
+        "nome": "Teste de FX STONELONGONE",
+        "breakprob": 100000,
+        "existe_cliente_oficial": true,
+        "breakable_cliente": "TRUE"
+      },
+      {
+        "item_id": 168000105,
+        "nome": "Paralisia de teste FX Pedra Divina",
+        "breakprob": 100000,
+        "existe_cliente_oficial": true,
+        "breakable_cliente": "TRUE"
+      },
+      {
+        "item_id": 168000106,
+        "nome": "FX Teste de imobilização Pedra Divina",
+        "breakprob": 100000,
+        "existe_cliente_oficial": true,
+        "breakable_cliente": "TRUE"
+      },
+      {
+        "item_id": 168000107,
+        "nome": "Silêncio do teste de FX Pedra Divina",
+        "breakprob": 75000,
+        "existe_cliente_oficial": true,
+        "breakable_cliente": "TRUE"
+      },
+      {
+        "item_id": 168000108,
+        "nome": "FX Test Blind Pedra Divina",
+        "breakprob": 75000,
+        "existe_cliente_oficial": true,
+        "breakable_cliente": "TRUE"
+      },
+      {
+        "item_id": 168000109,
+        "nome": "Redução de velocidade de ataque de teste FX Pedra Divina",
+        "breakprob": 75000,
+        "existe_cliente_oficial": true,
+        "breakable_cliente": "TRUE"
+      },
+      {
+        "item_id": 168000110,
+        "nome": "FX Redução de velocidade de movimento do teste Pedra Divina",
+        "breakprob": 50000,
+        "existe_cliente_oficial": true,
+        "breakable_cliente": "TRUE"
+      },
+      {
+        "item_id": 168000111,
+        "nome": "FX Teste Poison Slash Pedra Divina",
+        "breakprob": 50000,
+        "existe_cliente_oficial": true,
+        "breakable_cliente": "TRUE"
+      },
+      {
+        "item_id": 168000112,
+        "nome": "FX Teste Bleeding Pedra Divina",
+        "breakprob": 40000,
+        "existe_cliente_oficial": true,
+        "breakable_cliente": "TRUE"
+      },
+      {
+        "item_id": 168000113,
+        "nome": "FX Test Fire Pedra Divina",
+        "breakprob": 25000,
+        "existe_cliente_oficial": true,
+        "breakable_cliente": "TRUE"
+      },
+      {
+        "item_id": 168000114,
+        "nome": "FX Test Water Pedra Divina",
+        "breakprob": 25000,
+        "existe_cliente_oficial": true,
+        "breakable_cliente": "TRUE"
+      },
+      {
+        "item_id": 168000115,
+        "nome": "FX Test Wind Pedra Divina",
+        "breakprob": 5000,
+        "existe_cliente_oficial": true,
+        "breakable_cliente": "TRUE"
       }
     ]
   },
