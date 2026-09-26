@@ -33,20 +33,10 @@ static BOOL CALLBACK EnumWindowsCallback(HWND hwnd, LPARAM lParam) {
             return TRUE;
         }
 
-        wchar_t title[256] = { 0 };
-        GetWindowTextW(hwnd, title, 256);
-        if (wcscmp(title, L"Aion Ping HUD") == 0 ||
-            wcsstr(title, L"Analisador") != nullptr ||
-            wcsstr(title, L"Painel Academy") != nullptr ||
-            wcsstr(title, L"ComboUI") != nullptr) {
-            return TRUE;
-        }
-
         // Aion Classic game window class (CrySystem / CryInput official class)
         if (wcscmp(className, L"AIONClientWndClass1.0") == 0 || wcscmp(className, L"AION Client") == 0) {
             RECT rc;
-            GetClientRect(hwnd, &rc);
-            if ((rc.right - rc.left) >= 300 && (rc.bottom - rc.top) >= 300) {
+            if (GetClientRect(hwnd, &rc) && (rc.right - rc.left) >= 300 && (rc.bottom - rc.top) >= 300) {
                 ctx->foundHwnd = hwnd;
                 return FALSE;
             }
@@ -56,35 +46,43 @@ static BOOL CALLBACK EnumWindowsCallback(HWND hwnd, LPARAM lParam) {
 }
 
 HWND ServiceWorker::FindGameWindow() {
+    // 1. Fast direct lookup
+    HWND fastHwnd = FindWindowW(L"AIONClientWndClass1.0", nullptr);
+    if (!fastHwnd) fastHwnd = FindWindowW(L"AION Client", nullptr);
+    if (fastHwnd) {
+        DWORD pid = 0;
+        GetWindowThreadProcessId(fastHwnd, &pid);
+        if (pid == GetCurrentProcessId()) {
+            return fastHwnd;
+        }
+    }
+
+    // 2. Fallback process-wide window enumeration (no cross-thread message sending)
     WindowSearchContext ctx = { GetCurrentProcessId(), nullptr };
     EnumWindows(EnumWindowsCallback, reinterpret_cast<LPARAM>(&ctx));
     return ctx.foundHwnd;
 }
 
-bool ServiceWorker::CheckLoadingScreen(HWND hwnd) {
-    if (!hwnd || !IsWindow(hwnd)) return false;
-    wchar_t title[256] = { 0 };
-    GetWindowTextW(hwnd, title, 256);
-    if (wcsstr(title, L"Loading") != nullptr || wcsstr(title, L"carregando") != nullptr) {
-        return true;
-    }
-    return false;
+bool ServiceWorker::CheckLoadingScreen(HWND /*hwnd*/) {
+    // NEVER send synchronous WM_GETTEXT across threads to the game window.
+    // In Aion, loading state is tracked via WebSocket and in-world status.
+    return g_isLoadingScreen.load();
 }
 
-static void SyncPositionsDirectly(HWND hGame, bool force = false) {
+static void SyncPositionsSafely(HWND hGame, bool force = false) {
     if (!hGame || !IsWindow(hGame) || IsIconic(hGame)) return;
 
     RECT cr = { 0 };
-    GetClientRect(hGame, &cr);
-    POINT pt = { 0, 0 };
-    ClientToScreen(hGame, &pt);
+    if (!GetClientRect(hGame, &cr)) return;
+    POINT pt = { cr.left, cr.top };
+    if (!ClientToScreen(hGame, &pt)) return;
 
     int gx = pt.x;
     int gy = pt.y;
     int gw = cr.right - cr.left;
     int gh = cr.bottom - cr.top;
 
-    if (gw <= 0 || gh <= 0) return;
+    if (gw <= 100 || gh <= 100) return;
 
     static int s_lastGx = -9999, s_lastGy = -9999, s_lastGw = -9999, s_lastGh = -9999;
     if (force || gx != s_lastGx || gy != s_lastGy || gw != s_lastGw || gh != s_lastGh) {
@@ -104,14 +102,24 @@ bool ServiceWorker::Start() {
 void ServiceWorker::Stop() {
     s_running = false;
     if (s_hWatchdog) {
-        WaitForSingleObject(s_hWatchdog, 300);
+        // Wake up MsgWaitForMultipleObjects if blocked
+        PostThreadMessage(GetThreadId(s_hWatchdog), WM_QUIT, 0, 0);
+        WaitForSingleObject(s_hWatchdog, 500);
         CloseHandle(s_hWatchdog);
         s_hWatchdog = nullptr;
     }
 }
 
 DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
-    LogInfo("ServiceWorker: Monitor de ciclo de vida do Aion iniciado.");
+    LogInfo("ServiceWorker: Monitor de ciclo de vida e UI Host iniciado.");
+
+    // Initialize UI Windows on THIS persistent thread so they possess a continuous message pump
+    if (g_featPingUi.load() || g_featDpsMeterUI.load()) {
+        PingHudUI::Initialize(g_hModule);
+    }
+    if (g_featDpsMeterUI.load()) {
+        DrawerModalUI::Initialize(g_hModule);
+    }
 
     HWND hGame = nullptr;
     bool s_gameEverFound = false;
@@ -120,7 +128,19 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
     bool lastActive = false;
 
     while (s_running.load()) {
-        // 0. Periodic Safety Check: Check if game process is exiting
+        // 1. Process all pending window messages for our UI windows (PingHud & DrawerModal)
+        MSG msg;
+        while (PeekMessageW(&msg, nullptr, 0, 0, PM_REMOVE)) {
+            if (msg.message == WM_QUIT) {
+                s_running = false;
+                break;
+            }
+            TranslateMessage(&msg);
+            DispatchMessageW(&msg);
+        }
+        if (!s_running.load()) break;
+
+        // 2. Periodic Safety Check: Check if game process is exiting
         DWORD exitCode = 0;
         if (GetExitCodeProcess(GetCurrentProcess(), &exitCode) && exitCode != STILL_ACTIVE) {
             LogInfo("ServiceWorker: Processo do jogo terminou (exitCode=%lu). Auto-encerrando...", exitCode);
@@ -128,7 +148,7 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
             break;
         }
 
-        // 1. Locate game window
+        // 3. Locate game window safely
         if (!hGame || !IsWindow(hGame)) {
             hGame = FindGameWindow();
             if (hGame) {
@@ -136,7 +156,7 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
                 s_gameEverFound = true;
                 s_gameLostTick = 0;
                 LogInfo("ServiceWorker: Janela do Aion localizada: HWND=%p", hGame);
-                SyncPositionsDirectly(hGame, true);
+                SyncPositionsSafely(hGame, true);
             } else {
                 if (s_gameEverFound) {
                     if (s_gameLostTick == 0) {
@@ -148,12 +168,12 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
                         return 0;
                     }
                 }
-                Sleep(100);
+                MsgWaitForMultipleObjects(0, nullptr, FALSE, 50, QS_ALLINPUT);
                 continue;
             }
         }
 
-        // 2. Active & Foreground Check
+        // 4. Active & Foreground Check (Non-intrusive cached calls, NO WM_GETTEXT)
         bool isMinimized = IsIconic(hGame);
         bool isVisible   = IsWindowVisible(hGame);
         HWND fg = GetForegroundWindow();
@@ -164,9 +184,8 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
         bool active = (isVisible && !isMinimized && isForeground);
         g_isGameActive = active;
 
-        // 3. Loading screen detection
-        bool isLoading = CheckLoadingScreen(hGame);
-        g_isLoadingScreen = isLoading;
+        // 5. Loading screen detection
+        bool isLoading = g_isLoadingScreen.load();
         if (isLoading != lastLoading) {
             lastLoading = isLoading;
             if (isLoading) {
@@ -175,19 +194,19 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
             } else if (active) {
                 PingHudUI::Show();
                 DrawerModalUI::RestoreIfOpen();
-                SyncPositionsDirectly(hGame, true);
+                SyncPositionsSafely(hGame, true);
             }
         }
 
-        // 4. Update in-world flag dynamically from WebSocket player state
+        // 6. In-world flag from WebSocket player state
         uint32_t charId = g_localPlayerId.load();
         g_isInWorld = (charId > 0);
 
-        // 5. Active state change handling (clean, zero flickering)
+        // 7. Active state transitions
         if (active != lastActive) {
             lastActive = active;
             if (active && !isLoading) {
-                SyncPositionsDirectly(hGame, true);
+                SyncPositionsSafely(hGame, true);
                 PingHudUI::Show();
                 DrawerModalUI::RestoreIfOpen();
             } else {
@@ -198,7 +217,7 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
             }
         }
 
-        // 6. Direct Hotkey (Shift + F3) with game active and not in loading
+        // 8. Direct Hotkey (Shift + F3) with game active and not loading
         if (active && !isLoading) {
             static bool s_lastShiftF3 = false;
             bool isF3 = (GetAsyncKeyState(VK_F3) & 0x8000) != 0;
@@ -211,14 +230,19 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
 
             // Periodic position sync check
             static int syncCounter = 0;
-            if (++syncCounter >= 10) { // ~500ms
+            if (++syncCounter >= 6) { // ~180ms cadence
                 syncCounter = 0;
-                SyncPositionsDirectly(hGame);
+                SyncPositionsSafely(hGame);
             }
         }
 
-        Sleep(50); // ~20Hz responsive loop (0% CPU)
+        // Wait up to 30ms or wake up immediately if a window message arrives
+        MsgWaitForMultipleObjects(0, nullptr, FALSE, 30, QS_ALLINPUT);
     }
+
+    // Clean up UI windows on the owning thread
+    DrawerModalUI::Shutdown();
+    PingHudUI::Shutdown();
 
     LogInfo("ServiceWorker finalizado.");
     return 0;

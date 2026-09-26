@@ -89,18 +89,12 @@ static DWORD WINAPI BackgroundInitThread(LPVOID /*param*/) {
         WebSocketClient::Start(g_serverIp, 2130);
     }
 
-    // 3. Initialize UI Windows
-    if (g_featPingUi.load() || g_featDpsMeterUI.load()) {
-        PingHudUI::Initialize(g_hModule);
-    }
-    if (g_featDpsMeterUI.load()) {
-        DrawerModalUI::Initialize(g_hModule);
-    }
+    // 3. Start Combo UI (has its own thread)
     if (g_featComboUi.load()) {
         g_ComboUI.Start();
     }
 
-    // 4. Start Lifecycle Watchdog
+    // 4. Start Lifecycle Watchdog & UI Host
     ServiceWorker::Start();
 
     s_initDone = true;

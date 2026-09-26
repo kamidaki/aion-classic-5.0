@@ -126,8 +126,8 @@ void PingHudUI::Show() {
     if (g_hPingHudWnd && IsWindow(g_hPingHudWnd)) {
         if (!IsWindowVisible(g_hPingHudWnd)) {
             ShowWindow(g_hPingHudWnd, SW_SHOWNOACTIVATE);
-            Repaint();
         }
+        Paint(g_hPingHudWnd);
     }
 }
 
@@ -167,17 +167,17 @@ void PingHudUI::UpdatePosition(int gameX, int gameY, int gameW, int gameH) {
     int curVis = shouldBeVisible ? 1 : 0;
     if (hudX != s_prevX || hudY != s_prevY || s_hudWidth != s_prevW || s_hudHeight != s_prevH || curVis != s_prevVis) {
         s_prevX = hudX; s_prevY = hudY; s_prevW = s_hudWidth; s_prevH = s_hudHeight; s_prevVis = curVis;
-        SetWindowPos(g_hPingHudWnd, HWND_TOPMOST, hudX, hudY, s_hudWidth, s_hudHeight,
-                     SWP_NOACTIVATE | SWP_ASYNCWINDOWPOS | (shouldBeVisible ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
+        SetWindowPos(g_hPingHudWnd, nullptr, hudX, hudY, s_hudWidth, s_hudHeight,
+                     SWP_NOZORDER | SWP_NOACTIVATE | SWP_NOOWNERZORDER | SWP_ASYNCWINDOWPOS | (shouldBeVisible ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
         if (shouldBeVisible) {
-            InvalidateRect(g_hPingHudWnd, nullptr, FALSE);
+            Paint(g_hPingHudWnd);
         }
     }
 }
 
 void PingHudUI::Repaint() {
     if (!g_hPingHudWnd || !IsWindow(g_hPingHudWnd)) return;
-    InvalidateRect(g_hPingHudWnd, nullptr, FALSE);
+    Paint(g_hPingHudWnd);
 }
 
 void PingHudUI::Paint(HWND hwnd) {

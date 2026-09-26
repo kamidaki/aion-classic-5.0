@@ -737,8 +737,8 @@ void ComboRenderer::RenderLoop() {
                                    (currRect.bottom - currRect.top) != drawH);
 
             if (needsPosUpdate || !IsWindowVisible(hwnd)) {
-                SetWindowPos(hwnd, HWND_TOPMOST, drawRect.left, drawRect.top, drawW, drawH,
-                             SWP_SHOWWINDOW | SWP_NOACTIVATE | SWP_NOOWNERZORDER | SWP_ASYNCWINDOWPOS);
+                SetWindowPos(hwnd, nullptr, drawRect.left, drawRect.top, drawW, drawH,
+                             SWP_NOZORDER | SWP_SHOWWINDOW | SWP_NOACTIVATE | SWP_NOOWNERZORDER | SWP_ASYNCWINDOWPOS);
             }
 
             ULONGLONG nowTick = GetTickCount64();

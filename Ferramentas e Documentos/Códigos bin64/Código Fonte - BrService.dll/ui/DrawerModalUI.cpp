@@ -317,11 +317,11 @@ void DrawerModalUI::UpdatePosition(int gX, int gY, int gW, int gH) {
 
     if (mX != s_prevX || mY2 != s_prevY || s_modalW != s_prevW || s_modalH != s_prevH || curVis != s_prevVis) {
         s_prevX = mX; s_prevY = mY2; s_prevW = s_modalW; s_prevH = s_modalH; s_prevVis = curVis;
-        SetWindowPos(g_hDrawerModalWnd, HWND_TOPMOST, mX, mY2, s_modalW, s_modalH,
-                     SWP_NOACTIVATE | SWP_ASYNCWINDOWPOS | (v ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
+        SetWindowPos(g_hDrawerModalWnd, nullptr, mX, mY2, s_modalW, s_modalH,
+                     SWP_NOZORDER | SWP_NOACTIVATE | SWP_NOOWNERZORDER | SWP_ASYNCWINDOWPOS | (v ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
         if (v) {
             UpdateDrawerTimer();
-            InvalidateRect(g_hDrawerModalWnd, nullptr, FALSE);
+            Paint(g_hDrawerModalWnd);
         } else {
             KillTimer(g_hDrawerModalWnd, 1);
         }
@@ -347,7 +347,7 @@ void DrawerModalUI::ResizeDrawer(int nW, int nH) {
 
 void DrawerModalUI::Repaint() {
     if (!g_hDrawerModalWnd || !IsWindow(g_hDrawerModalWnd)) return;
-    InvalidateRect(g_hDrawerModalWnd, nullptr, FALSE);
+    Paint(g_hDrawerModalWnd);
 }
 
 void DrawerModalUI::Paint(HWND hwnd) {
@@ -1021,6 +1021,14 @@ void DrawerModalUI::Paint(HWND hwnd) {
 
 LRESULT CALLBACK DrawerModalUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     switch (uMsg) {
+    case WM_PAINT: {
+        PAINTSTRUCT ps;
+        BeginPaint(hwnd, &ps);
+        Paint(hwnd);
+        EndPaint(hwnd, &ps);
+        return 0;
+    }
+
     case WM_TIMER:
         Repaint();
         return 0;
@@ -1298,7 +1306,7 @@ LRESULT CALLBACK DrawerModalUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
 
             g_drawerPosX = nx;
             g_drawerPosY = ny;
-            SetWindowPos(hwnd, HWND_TOPMOST, nx, ny, 0, 0, SWP_NOSIZE | SWP_NOACTIVATE);
+            SetWindowPos(hwnd, nullptr, nx, ny, 0, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOOWNERZORDER | SWP_ASYNCWINDOWPOS);
             return 0;
         }
 
