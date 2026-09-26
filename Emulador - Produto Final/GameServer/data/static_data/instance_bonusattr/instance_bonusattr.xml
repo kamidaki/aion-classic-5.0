@@ -87,4 +87,12 @@
 	<instance_bonusattr buff_id="16">
 		<penalty_attr stat="PHYSICAL_DEFENSE" func="PERCENT" value="10"/>
 	</instance_bonusattr>
+	<!-- IDTutorialQ_Buff / Blessing of the Shadowrealm, client_instance_bonusattr.xml oficial 5.0. -->
+	<instance_bonusattr buff_id="19">
+		<penalty_attr stat="REGEN_HP" func="ADD" value="50000"/>
+		<penalty_attr stat="REGEN_MP" func="ADD" value="50000"/>
+		<penalty_attr stat="MAXHP" func="ADD" value="30000"/>
+		<penalty_attr stat="MAXMP" func="ADD" value="30000"/>
+		<penalty_attr stat="PHYSICAL_ACCURACY" func="ADD" value="1100"/>
+	</instance_bonusattr>
 </instance_bonusattrs>

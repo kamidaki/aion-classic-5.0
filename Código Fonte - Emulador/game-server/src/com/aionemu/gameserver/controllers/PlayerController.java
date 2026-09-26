@@ -466,8 +466,11 @@ public class PlayerController extends CreatureController<Player> {
 		Skill skill = SkillEngine.getInstance().getSkillFor(player, template, player.getTarget());
 		if (skill == null && player.isTransformed()) {
 			SkillPanel panel = DataManager.PANEL_SKILL_DATA.getSkillPanel(player.getTransformModel().getPanelId());
-			if (panel != null && panel.canUseSkill(template.getSkillId(), skillLevel)) {
-				skill = SkillEngine.getInstance().getSkillFor(player, template, player.getTarget(), skillLevel);
+			int panelSkillLevel = panel == null ? 0 : panel.getSkillLevel(template.getSkillId());
+			if (panelSkillLevel > 0) {
+				// O cliente pode enviar 0 ou um nivel desatualizado para skills temporarias. O nivel autoritativo
+				// pertence ao painel de polymorph que concedeu a skill, nao ao pacote do cliente.
+				skill = SkillEngine.getInstance().getSkillFor(player, template, player.getTarget(), panelSkillLevel);
 			}
 		} else if (skill == null && template.isContextOrForteSkill()) {
 			SkillTemplate baseTemplate = template.getBaseContextSkillTemplate();

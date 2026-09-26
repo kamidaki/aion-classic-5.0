@@ -19,7 +19,9 @@ import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.model.instance.InstanceBuff;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_STATS_INFO;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_UNK_01BD;
 import com.aionemu.gameserver.questEngine.model.QuestState;
@@ -61,11 +63,8 @@ public class LandOfShadowsInstance extends GeneralInstanceHandler {
 	private static final int VAR_NORMAIS = 2;
 	private static final int VAR_NAMEDS = 3;
 	private static final int VAR_BOSSES = 4;
-	/**
-	 * Efeito interno (NOSHOW) dos atributos da bencao de instancia (bonusattr 19). O cliente exibe o painel verde
-	 * IDTutorialQ_Buff separadamente da transformacao visivel da classe.
-	 */
-	private static final int BENCAO_REINO_DAS_SOMBRAS = 59999;
+	private static final int BENCAO_REINO_DAS_SOMBRAS = 19;
+	private static final int DURACAO_BENCAO = 86_400_000;
 	private static final int ELYOS_DELTA = 10; // 8041(2x) Asmodiano -> 8041(1x) Elyos; 804135 -> 804134
 	private static final float ENTRADA_X = 730.58f;
 	private static final float ENTRADA_Y = 513.26f;
@@ -88,6 +87,7 @@ public class LandOfShadowsInstance extends GeneralInstanceHandler {
 	private final AtomicInteger namedsMortos = new AtomicInteger();
 	private final AtomicInteger bossesMortos = new AtomicInteger();
 	private final Set<Integer> disparados = ConcurrentHashMap.newKeySet();
+	private final Map<Integer, InstanceBuff> bencaos = new ConcurrentHashMap<>();
 	private volatile Race raca = Race.ASMODIANS;
 	private volatile boolean destruida;
 	private volatile boolean criada; // o spawn inicial do mapa vem antes do onInstanceCreate
@@ -100,10 +100,10 @@ public class LandOfShadowsInstance extends GeneralInstanceHandler {
 	@Override
 	public void onEnterInstance(Player player) {
 		raca = player.getRace();
+		player.getEffectController().removeEffect(59999); // limpa o efeito NOSHOW usado pela implementacao anterior
 		aplicaForma(player);
+		aplicaBencao(player);
 		if (!iniciado.compareAndSet(false, true)) {
-			if (aberturaIniciada.get())
-				SkillEngine.getInstance().applyEffectDirectly(BENCAO_REINO_DAS_SOMBRAS, player, player);
 			return;
 		}
 		QuestState qs = estadoTutorial(player);
@@ -132,8 +132,6 @@ public class LandOfShadowsInstance extends GeneralInstanceHandler {
 	private void iniciaAbertura() {
 		if (!aberturaIniciada.compareAndSet(false, true))
 			return;
-		for (Player player : instance.getPlayersInside())
-			SkillEngine.getInstance().applyEffectDirectly(BENCAO_REINO_DAS_SOMBRAS, player, player);
 		gravaCheckpoint(1);
 		sendMsg(new SM_SYSTEM_MESSAGE(1404349)); // STR_MSG_IDTutorialQ_Start_Buff_01
 		sendMsg(new SM_SYSTEM_MESSAGE(1404329)); // Ariel_01
@@ -167,7 +165,9 @@ public class LandOfShadowsInstance extends GeneralInstanceHandler {
 		SkillTemplate forma = forma(player);
 		if (forma != null)
 			player.getEffectController().removeEffect(forma.getSkillId());
-		player.getEffectController().removeEffect(BENCAO_REINO_DAS_SOMBRAS);
+		InstanceBuff bencao = bencaos.remove(player.getObjectId());
+		if (bencao != null)
+			bencao.endEffect(player);
 	}
 
 	@Override
@@ -406,7 +406,7 @@ public class LandOfShadowsInstance extends GeneralInstanceHandler {
 	/** Reconstrói a etapa indispensável quando a instância vazia já foi destruída antes do login. */
 	private void restauraCheckpoint(Player player, int checkpoint) {
 		aberturaIniciada.set(true);
-		SkillEngine.getInstance().applyEffectDirectly(BENCAO_REINO_DAS_SOMBRAS, player, player);
+		aplicaBencao(player);
 		apaga(VEU, 675.36f, 518.71f);
 		if (getNpc(daRaca(804135)) == null)
 			spawn(daRaca(804135), 700.53f, 500.77f, 338.25f, (byte) 30);
@@ -437,6 +437,13 @@ public class LandOfShadowsInstance extends GeneralInstanceHandler {
 				spawn(804168, 284.48f, 513.86f, 350.77f, (byte) 45);
 			}
 		}
+	}
+
+	private void aplicaBencao(Player player) {
+		InstanceBuff bencao = bencaos.computeIfAbsent(player.getObjectId(), _ -> new InstanceBuff(BENCAO_REINO_DAS_SOMBRAS));
+		bencao.applyEffect(player, DURACAO_BENCAO);
+		// O icone IDTutorialQ_Buff e resolvido pelo cliente a partir do bonusattr 19 ao receber o novo bloco de stats.
+		PacketSendUtility.sendPacket(player, new SM_STATS_INFO(player));
 	}
 
 	/** Forma de Daeva do Tempo da classe, pela pilha do cliente (BM_D_START = Brawler Asmodiano). */

@@ -167228,16 +167228,4 @@
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="59999" name="Blessing of the Shadowrealm (server effect)" nameId="0" delayId="59999" stack="IDTUTORIALQ_SHADOWREALM_BLESSING" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
-		<effects>
-			<statup duration2="86400000" effectid="9000011" e="1" basiclvl="100" noresist="true" maxstat="true">
-				<change stat="REGEN_HP" func="ADD" value="50000"/>
-				<change stat="REGEN_MP" func="ADD" value="50000"/>
-				<change stat="MAXHP" func="ADD" value="30000"/>
-				<change stat="MAXMP" func="ADD" value="30000"/>
-				<change stat="PHYSICAL_ACCURACY" func="ADD" value="1100"/>
-			</statup>
-		</effects>
-	</skill_template>
 </skill_data>

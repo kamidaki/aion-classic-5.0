@@ -121155,18 +121155,18 @@
 		<equipment><item>101701085</item><item>163050009</item></equipment>
 		<bound_radius front="1.4" side="2.24" upper="3.15" />
 	</npc_template>
-	<npc_template npc_id="224333" title_id="346647" level="7" name="Booster do Esquadrão de Infiltração de Asmodianos" name_id="346742" tribe="IDTUTORIALQ_MONSTER" type="MONSTER" ai="aggressive" srange="20" arange="20" attack_speed="2100" hpgauge="22" rank="MASTER" rating="HERO" race="DRAKAN" group_drop="NONE">
+	<npc_template npc_id="224333" title_id="346647" level="7" name="Booster do Esquadrão de Infiltração de Asmodianos" name_id="346742" tribe="IDTUTORIALQ_MONSTER" type="MONSTER" ai="shadowrealm_boss" srange="20" arange="20" attack_speed="2100" hpgauge="22" rank="MASTER" rating="HERO" race="DRAKAN" group_drop="NONE">
 		<stats maxHp="100000">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 	</npc_template>
-	<npc_template npc_id="224334" title_id="346647" level="7" name="Assassino do Esquadrão de Infiltração de Asmodianos" name_id="346743" tribe="IDTUTORIALQ_MONSTER" height="5.0625" type="MONSTER" ai="aggressive" srange="8" arange="20" attack_speed="2100" hpgauge="22" rank="MASTER" rating="HERO" race="DRAKAN" group_drop="NONE">
+	<npc_template npc_id="224334" title_id="346647" level="7" name="Assassino do Esquadrão de Infiltração de Asmodianos" name_id="346743" tribe="IDTUTORIALQ_MONSTER" height="5.0625" type="MONSTER" ai="shadowrealm_boss" srange="8" arange="20" attack_speed="2100" hpgauge="22" rank="MASTER" rating="HERO" race="DRAKAN" group_drop="NONE">
 		<stats maxHp="120000">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="9.5" side="8.5" upper="10" />
 	</npc_template>
-	<npc_template npc_id="224335" title_id="346647" level="8" name="Guerreiro do Esquadrão de Infiltração de Elyos" name_id="346744" tribe="IDTUTORIALQ_MONSTER" type="MONSTER" ai="aggressive" srange="20" arange="20" attack_speed="2300" hpgauge="20" rank="EXPERT" rating="HERO" race="MAGICALMONSTER" group_drop="NONE">
+	<npc_template npc_id="224335" title_id="346647" level="8" name="Guerreiro do Esquadrão de Infiltração de Elyos" name_id="346744" tribe="IDTUTORIALQ_MONSTER" type="MONSTER" ai="shadowrealm_boss" srange="20" arange="20" attack_speed="2300" hpgauge="20" rank="EXPERT" rating="HERO" race="MAGICALMONSTER" group_drop="NONE">
 		<stats maxHp="150000">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>

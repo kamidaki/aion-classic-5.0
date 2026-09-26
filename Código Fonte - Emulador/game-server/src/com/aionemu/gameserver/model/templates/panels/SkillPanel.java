@@ -24,7 +24,15 @@ public class SkillPanel {
 	}
 
 	public List<Integer> getSkills() {
-		return null;
+		return skills;
+	}
+
+	public int getSkillLevel(int skillId) {
+		for (Integer skill : skills) {
+			if ((skill >> 8) == skillId)
+				return skill & 0xFF;
+		}
+		return 0;
 	}
 
 	public boolean canUseSkill(int skillId, int level) {
