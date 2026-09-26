@@ -138,13 +138,10 @@ DWORD WINAPI CombatDb::WorkerThread(LPVOID /*param*/) {
         WaitForSingleObject(s_hWakeEvent, INFINITE);
         if (!s_running) break;
 
-        std::vector<StoredCombatEvent> batch;
+        std::deque<StoredCombatEvent> batch;
         {
             std::lock_guard<std::mutex> lock(s_queueMutex);
-            while (!s_eventQueue.empty()) {
-                batch.push_back(s_eventQueue.front());
-                s_eventQueue.pop_front();
-            }
+            batch.swap(s_eventQueue);
         }
 
         if (!batch.empty() && stmt) {

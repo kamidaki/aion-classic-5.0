@@ -14,6 +14,7 @@
 namespace BrService {
 
 static HANDLE s_hThread = nullptr;
+static HANDLE s_hWakeEvent = nullptr;
 static std::atomic<bool> s_running(false);
 static std::string s_targetIp = "127.0.0.1";
 static HANDLE s_hIcmpActive = INVALID_HANDLE_VALUE;
@@ -25,6 +26,7 @@ bool PingEngine::Start(const std::string& targetIp) {
         s_targetIp = targetIp;
     }
     s_running = true;
+    if (!s_hWakeEvent) s_hWakeEvent = CreateEventA(nullptr, FALSE, FALSE, nullptr);
 
     s_hThread = CreateThread(nullptr, 0, WorkerThread, nullptr, 0, nullptr);
     return s_hThread != nullptr;
@@ -34,6 +36,11 @@ void PingEngine::Stop() {
     if (!s_running.load()) return;
     s_running = false;
 
+    // Signal wake event for 0ms delay shutdown
+    if (s_hWakeEvent) {
+        SetEvent(s_hWakeEvent);
+    }
+
     // Abort active ICMP handle to unblock IcmpSendEcho immediately
     HANDLE hIcmp = s_hIcmpActive;
     s_hIcmpActive = INVALID_HANDLE_VALUE;
@@ -42,9 +49,13 @@ void PingEngine::Stop() {
     }
 
     if (s_hThread) {
-        WaitForSingleObject(s_hThread, 300);
+        WaitForSingleObject(s_hThread, 500);
         CloseHandle(s_hThread);
         s_hThread = nullptr;
+    }
+    if (s_hWakeEvent) {
+        CloseHandle(s_hWakeEvent);
+        s_hWakeEvent = nullptr;
     }
 }
 
@@ -114,9 +125,11 @@ DWORD WINAPI PingEngine::WorkerThread(LPVOID /*param*/) {
             PingHudUI::Repaint();
         }
 
-        // Sleep 2500ms cleanly in responsive chunks
-        for (int i = 0; i < 10 && s_running.load(); ++i) {
-            Sleep(250);
+        // Sleep 2500ms or wake up instantly on Stop()
+        if (s_hWakeEvent) {
+            WaitForSingleObject(s_hWakeEvent, 2500);
+        } else {
+            Sleep(2500);
         }
     }
 

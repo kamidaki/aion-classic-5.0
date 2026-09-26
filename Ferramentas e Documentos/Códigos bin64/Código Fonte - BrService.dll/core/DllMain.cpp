@@ -6,6 +6,7 @@
 #include "../network/WebSocketClient.h"
 #include "../database/CombatDb.h"
 #include "../ui/UICommon.h"
+#include "../ui/IconManager.h"
 #include "../ui/PingHudUI.h"
 #include "../ui/DrawerModalUI.h"
 #include "../combo/ComboUI.h"
@@ -168,6 +169,7 @@ __declspec(dllexport) void WINAPI BR_Shutdown() {
     WebSocketClient::Stop();
     PingEngine::Stop();
     CombatDb::Shutdown();
+    IconManager::Shutdown();
     UICommon::ShutdownGdiplus();
 
     if (s_hInitThread) {

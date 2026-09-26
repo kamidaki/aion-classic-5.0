@@ -6,14 +6,7 @@
 #include "ComboTypes.h"
 #include "ComboRenderer.h"
 
-extern HWND g_gameHwnd;
-extern HWND g_overlayHwnd;
-extern HHOOK g_windowHook;
-extern HANDLE g_wakeEvent;
-
 extern ComboRenderer g_ComboUI;
-
-LRESULT CALLBACK CallWndProcHook(int nCode, WPARAM wParam, LPARAM lParam);
 
 inline void ComputeOverlayRect(HWND gameHwnd, RECT& out) {
     ComboOverlayGeometry geom;

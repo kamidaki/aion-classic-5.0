@@ -46,39 +46,26 @@ inline float ClampFloat(float value, float minValue, float maxValue) {
     return value;
 }
 
-extern volatile LONG g_comboLayoutNormX10000;
-extern volatile LONG g_comboLayoutNormY10000;
-extern volatile LONG g_comboLayoutScale1000;
-extern volatile LONG g_comboLayoutVersion;
-extern volatile LONG g_comboOpacity1000;
+#include "../core/ServiceGlobals.h"
 
 inline void SetComboOverlayLayout(float normX, float normY, float scale) {
-    normX = ClampFloat(normX, 0.0f, 1.0f);
-    normY = ClampFloat(normY, 0.0f, 1.0f);
-    scale = ClampFloat(scale, 0.55f, 1.60f);
-    InterlockedExchange(&g_comboLayoutNormX10000, (LONG)(normX * 10000.0f + 0.5f));
-    InterlockedExchange(&g_comboLayoutNormY10000, (LONG)(normY * 10000.0f + 0.5f));
-    InterlockedExchange(&g_comboLayoutScale1000, (LONG)(scale * 1000.0f + 0.5f));
-    InterlockedIncrement(&g_comboLayoutVersion);
+    BrService::g_comboPosNormX = ClampFloat(normX, 0.0f, 1.0f);
+    BrService::g_comboPosNormY = ClampFloat(normY, 0.0f, 1.0f);
+    BrService::g_comboScale = ClampFloat(scale, 0.55f, 1.60f);
 }
 
 inline void GetComboOverlayLayout(float* normX, float* normY, float* scale) {
-    LONG x = InterlockedCompareExchange(&g_comboLayoutNormX10000, 0, 0);
-    LONG y = InterlockedCompareExchange(&g_comboLayoutNormY10000, 0, 0);
-    LONG s = InterlockedCompareExchange(&g_comboLayoutScale1000, 0, 0);
-    if (normX) *normX = ClampFloat((float)x / 10000.0f, 0.0f, 1.0f);
-    if (normY) *normY = ClampFloat((float)y / 10000.0f, 0.0f, 1.0f);
-    if (scale) *scale = ClampFloat((float)s / 1000.0f, 0.55f, 1.60f);
+    if (normX) *normX = BrService::g_comboPosNormX.load();
+    if (normY) *normY = BrService::g_comboPosNormY.load();
+    if (scale) *scale = BrService::g_comboScale.load();
 }
 
 inline void SetComboOverlayOpacity(float opacity) {
-    opacity = ClampFloat(opacity, 0.1f, 1.0f);
-    InterlockedExchange(&g_comboOpacity1000, (LONG)(opacity * 1000.0f + 0.5f));
+    BrService::g_comboOpacity = ClampFloat(opacity, 0.1f, 1.0f);
 }
 
 inline float GetComboOverlayOpacity() {
-    LONG o = InterlockedCompareExchange(&g_comboOpacity1000, 0, 0);
-    return ClampFloat((float)o / 1000.0f, 0.1f, 1.0f);
+    return BrService::g_comboOpacity.load();
 }
 
 struct ComboOverlayGeometry {

@@ -21,7 +21,7 @@ static BOOL CALLBACK EnumWindowsCallback(HWND hwnd, LPARAM lParam) {
     DWORD pid = 0;
     GetWindowThreadProcessId(hwnd, &pid);
     if (pid == ctx->targetPid) {
-        if (hwnd == g_hPingHudWnd || hwnd == g_hDrawerModalWnd || hwnd == g_overlayHwnd) return TRUE;
+        if (hwnd == g_hPingHudWnd || hwnd == g_hDrawerModalWnd || hwnd == g_hComboWnd.load()) return TRUE;
 
         wchar_t className[128] = { 0 };
         GetClassNameW(hwnd, className, 128);
@@ -133,7 +133,6 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
             hGame = FindGameWindow();
             if (hGame) {
                 g_gameHwnd = hGame;
-                ::g_gameHwnd = hGame;
                 s_gameEverFound = true;
                 s_gameLostTick = 0;
                 LogInfo("ServiceWorker: Janela do Aion localizada: HWND=%p", hGame);

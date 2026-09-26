@@ -94,26 +94,6 @@ struct I18n {
         return IsEnglish() ? L"No combat actions recorded yet" : L"Nenhuma ação de combate registrada";
     }
 
-    // Shugo Graphics Console
-    static const wchar_t* ShugoEngineTitle() {
-        return IsEnglish() ? L"CRYENGINE RUNTIME & GRAPHICS TWEAKS" : L"CONTROLES GRÁFICOS & MOTOR CRYENGINE";
-    }
-    static const wchar_t* FovLabel() {
-        return IsEnglish() ? L"Panoramic FOV: " : L"Campo de Visão (FOV): ";
-    }
-    static const wchar_t* CamMaxLabel() {
-        return IsEnglish() ? L"Max Camera Zoom: " : L"Distância Máxima Câmera: ";
-    }
-    static const wchar_t* FpsCapLabel() {
-        return IsEnglish() ? L"Framerate Cap (FPS):" : L"Limite de FPS:";
-    }
-    static const wchar_t* TripleBuffering() {
-        return IsEnglish() ? L"Triple Buffering" : L"Triple Buffering";
-    }
-    static const wchar_t* Anisotropic() {
-        return IsEnglish() ? L"16x Anisotropic Filtering" : L"Filtro Anisotrópico 16x";
-    }
-
     // Settings Modal
     static const wchar_t* PanelDimensions() {
         return IsEnglish() ? L"Panel Dimensions: %d x %d px" : L"Dimensões do Painel: %d x %d px";
@@ -150,15 +130,6 @@ struct I18n {
     }
     static const wchar_t* CompactModeDesc() {
         return IsEnglish() ? L"(Hides radar charts and 3D preview)" : L"(Oculta gráficos de radar e prévia 3D)";
-    }
-    static const wchar_t* HideConsoleActive() {
-        return IsEnglish() ? L"✔ Graphic Console: HIDDEN" : L"✔ Console Gráfico: OCULTO";
-    }
-    static const wchar_t* HideConsoleInactive() {
-        return IsEnglish() ? L"✖ Graphic Console: VISIBLE" : L"✖ Console Gráfico: VISÍVEL";
-    }
-    static const wchar_t* HideConsoleDesc() {
-        return IsEnglish() ? L"(Dedicates 100% space to DPS Analyzer)" : L"(Dedica 100% do espaço ao Analisador DPS)";
     }
 
     // COMBO UI Settings

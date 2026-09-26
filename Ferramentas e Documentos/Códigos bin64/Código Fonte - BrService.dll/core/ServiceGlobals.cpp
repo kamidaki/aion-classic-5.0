@@ -1,4 +1,5 @@
 #include "ServiceGlobals.h"
+#include "../combo/ComboUI.h"
 #include <algorithm>
 #include <cmath>
 
@@ -93,6 +94,7 @@ std::vector<CombatSession> g_combatHistory;
 
 HWND g_hPingHudWnd = nullptr;
 HWND g_hDrawerModalWnd = nullptr;
+std::atomic<HWND> g_hComboWnd(nullptr);
 
 static ULONGLONG s_sessionStartTick = 0;
 
@@ -147,12 +149,19 @@ void AddCombatEvent(const std::string& attacker, const std::string& target, uint
     std::lock_guard<std::recursive_mutex> lock(g_combatMutex);
 
     bool isIncoming = false;
-    if (!attacker.empty()) {
-        if (!target.empty()) {
-            std::string lTarget = target;
-            std::transform(lTarget.begin(), lTarget.end(), lTarget.begin(), ::tolower);
-            if (lTarget == "voce" || lTarget == "you" || lTarget == "player" || lTarget == "eu") {
-                isIncoming = true;
+    if (!attacker.empty() && !target.empty()) {
+        std::string lTarget = target;
+        std::transform(lTarget.begin(), lTarget.end(), lTarget.begin(), ::tolower);
+        if (lTarget == "voce" || lTarget == "you" || lTarget == "player" || lTarget == "eu") {
+            isIncoming = true;
+        } else {
+            std::string myName = GetLocalPlayerName();
+            if (!myName.empty()) {
+                std::string lMyName = myName;
+                std::transform(lMyName.begin(), lMyName.end(), lMyName.begin(), ::tolower);
+                if (lTarget == lMyName) {
+                    isIncoming = true;
+                }
             }
         }
     }
@@ -171,6 +180,10 @@ void AddCombatEvent(const std::string& attacker, const std::string& target, uint
         g_combatTimeline.erase(g_combatTimeline.begin());
     }
     g_combatTimeline.push_back(tEntry);
+
+    if (isIncoming && !isHeal && damage > 0 && g_featComboUi.load()) {
+        g_ComboUI.OnDamageReceived(static_cast<int>(damage));
+    }
 
     if (!g_isCombatActive.load()) {
         g_isCombatActive = true;

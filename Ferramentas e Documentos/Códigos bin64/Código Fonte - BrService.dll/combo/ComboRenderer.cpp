@@ -18,23 +18,7 @@ static std::wstring Utf8ToWide(const std::string& s) {
     return w;
 }
 
-uintptr_t ComboRenderer::GetPlayerEntity() {
-    return 0;
-}
 
-uintptr_t ComboRenderer::GetTargetEntity() {
-    return 0;
-}
-
-uint32_t ComboRenderer::GetPlayerHP() {
-    std::lock_guard<std::recursive_mutex> lk(BrService::g_combatMutex);
-    return BrService::g_currentTarget.hasTarget ? BrService::g_currentTarget.currentHp : 100;
-}
-
-uint32_t ComboRenderer::GetTargetObjId() {
-    std::lock_guard<std::recursive_mutex> lk(BrService::g_combatMutex);
-    return BrService::g_currentTarget.hasTarget ? BrService::g_currentTarget.targetId : 0;
-}
 
 bool ComboRenderer::IsUIHidden() {
     // 0. Hidden when loading, cutscene, or not in world
@@ -46,7 +30,7 @@ bool ComboRenderer::IsUIHidden() {
         return true;
     }
     // 2. Window minimized or game window lost focus
-    HWND hGame = g_gameHwnd;
+    HWND hGame = BrService::g_gameHwnd.load();
     if (!hGame || !IsWindow(hGame) || IsIconic(hGame)) {
         return true;
     }
@@ -666,8 +650,6 @@ Color ComboRenderer::ShiftColor(Color base, int delta, int alpha) const {
 }
 
 void ComboRenderer::RenderLoop() {
-    GdiplusStartupInput gdiplusStartupInput;
-    GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
     fontFamilyImpact = new FontFamily(L"Impact");
     LoadSprites();
 
@@ -678,10 +660,9 @@ void ComboRenderer::RenderLoop() {
     wc.lpszClassName = "AionComboUI";
     RegisterClassExA(&wc);
 
-    HWND gameHwnd = FindWindowA("AIONClient", nullptr);
+    HWND gameHwnd = BrService::g_gameHwnd.load();
     if (!gameHwnd) gameHwnd = FindWindowA("AIONClientWndClass1.0", nullptr);
-    if (!gameHwnd) gameHwnd = FindWindowA("Lost Academy", nullptr);
-    if (!gameHwnd) gameHwnd = FindWindowA("LostAcademyWndClass1.0", nullptr);
+    if (!gameHwnd) gameHwnd = FindWindowA("AIONClient", nullptr);
 
     RECT rect;
     if (gameHwnd) {
@@ -698,6 +679,8 @@ void ComboRenderer::RenderLoop() {
         WS_POPUP,
         rect.left, rect.top, rectW, rectH,
         nullptr, NULL, hInstance, NULL);
+
+    BrService::g_hComboWnd = hwnd;
 
     SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOOWNERZORDER);
     ShowWindow(hwnd, SW_HIDE); // Start hidden to preserve DWM hardware flip
@@ -716,13 +699,9 @@ void ComboRenderer::RenderLoop() {
         }
 
         if (!gameHwnd || !IsWindow(gameHwnd)) {
-            gameHwnd = FindWindowA("AIONClientWndClass1.0", nullptr);
+            gameHwnd = BrService::g_gameHwnd.load();
+            if (!gameHwnd) gameHwnd = FindWindowA("AIONClientWndClass1.0", nullptr);
             if (!gameHwnd) gameHwnd = FindWindowA("AIONClient", nullptr);
-
-            if (gameHwnd) {
-                g_gameHwnd = gameHwnd;
-                g_overlayHwnd = hwnd;
-            }
         }
 
         bool shouldDraw = false;
@@ -788,8 +767,9 @@ void ComboRenderer::RenderLoop() {
     delete fontFamilyImpact;
     fontFamilyImpact = nullptr;
     DestroyWindow(hwnd);
+    hwnd = nullptr;
+    BrService::g_hComboWnd = nullptr;
     UnregisterClassA("AionComboUI", hInstance);
-    GdiplusShutdown(gdiplusToken);
 }
 
 void ComboRenderer::UpdateOverlay(int width, int height, int screenX, int screenY, float dt) {
@@ -1065,34 +1045,6 @@ void ComboRenderer::DrawOutlinedSegmentText(Graphics& graphics,
 }
 
 void ComboRenderer::DrawCombo(Graphics& graphics, int w, int h, float dt) {
-    uint32_t currentTarget = GetTargetObjId();
-    uint32_t currentHp = GetPlayerHP();
-    DWORD nowTick = GetTickCount();
-
-    {
-        std::lock_guard<std::mutex> lock(stateMutex);
-        if (lastKnownPlayerHp == 0) {
-            lastKnownPlayerHp = currentHp;
-        }
-
-        if (currentTarget != 0 && currentTarget != lastKnownTargetObjId) {
-            recentHitDamages.clear();
-            lastKnownTargetObjId = currentTarget;
-            lastKnownPlayerHp = currentHp;
-        }
-
-        if (lastKnownPlayerHp != 0 && currentHp < lastKnownPlayerHp) {
-            int dmgReceived = static_cast<int>(lastKnownPlayerHp - currentHp);
-            if (dmgReceived > 0 && dmgReceived < 20000 && currentHits > 0) {
-                recentHitDamages.push_back({ dmgReceived, nowTick, true });
-                while (recentHitDamages.size() > 5) {
-                    recentHitDamages.erase(recentHitDamages.begin());
-                }
-            }
-        }
-        lastKnownPlayerHp = currentHp;
-    }
-
     int snapHits; std::string snapTitle; DWORD snapLastEvent; DWORD snapTimeout;
     bool snapBreaking; DWORD snapBreakStart; int snapFinalHits; std::string snapFinalTitle;
     bool snapRemoveShock; DWORD snapRemoveShockTime;
@@ -1423,7 +1375,6 @@ int ComboRenderer::GetCurrentDamage() {
 void ComboRenderer::Start() {
     if (running) return;
     if (!wakeEvent) wakeEvent = CreateEventA(nullptr, FALSE, FALSE, nullptr);
-    g_wakeEvent = wakeEvent;
     running = true;
     renderThread = std::thread(&ComboRenderer::RenderLoop, this);
 }
@@ -1436,7 +1387,6 @@ void ComboRenderer::Stop() {
         CloseHandle(wakeEvent);
         wakeEvent = nullptr;
     }
-    g_wakeEvent = nullptr;
 }
 
 void ComboRenderer::RequestLayoutRefresh() {
@@ -1449,15 +1399,9 @@ void ComboRenderer::OnEvent(const std::string& event, int hits, const std::strin
     std::lock_guard<std::mutex> lock(stateMutex);
     DWORD now = GetTickCount();
 
-    uint32_t currentTarget = GetTargetObjId();
-    if (currentTarget != 0 && currentTarget != lastKnownTargetObjId) {
-        recentHitDamages.clear();
-        lastKnownTargetObjId = currentTarget;
-        lastKnownPlayerHp = GetPlayerHP();
-    }
-
     if (event == "COMBO_START" || event == "COMBO_UPDATE") {
         if (event == "COMBO_START") {
+            recentHitDamages.clear();
             flashCycleNextIndex = 0;
             flashCycleActiveSlot = -1;
             flashCycleActive = false;
@@ -1467,10 +1411,6 @@ void ComboRenderer::OnEvent(const std::string& event, int hits, const std::strin
         currentTitle = title;
         lastHitDamage = (std::max)(0, hitDamage);
         totalDamage = (std::max)(0, totalDamageValue);
-        if (event == "COMBO_START") {
-            recentHitDamages.clear();
-            lastKnownPlayerHp = 0;
-        }
         if (hitDamage > 0) {
             recentHitDamages.push_back({ hitDamage, now, false });
             while (recentHitDamages.size() > 5) {
@@ -1528,7 +1468,6 @@ void ComboRenderer::OnEvent(const std::string& event, int hits, const std::strin
         totalDamage = 0;
         lastHitDamage = 0;
         recentHitDamages.clear();
-        lastKnownPlayerHp = 0;
         flashCycleActive = false;
         flashCycleActiveSlot = -1;
         flashCycleNextIndex = 0;
@@ -1551,7 +1490,6 @@ void ComboRenderer::OnEvent(const std::string& event, int hits, const std::strin
         totalDamage = 0;
         lastHitDamage = 0;
         recentHitDamages.clear();
-        lastKnownPlayerHp = 0;
         flashCycleActive = false;
         flashCycleActiveSlot = -1;
         flashCycleNextIndex = 0;

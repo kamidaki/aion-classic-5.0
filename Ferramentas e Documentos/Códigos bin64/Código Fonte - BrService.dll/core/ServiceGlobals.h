@@ -157,6 +157,7 @@ extern std::vector<CombatSession> g_combatHistory;
 // HWNDs of Layered Windows
 extern HWND g_hPingHudWnd;
 extern HWND g_hDrawerModalWnd;
+extern std::atomic<HWND> g_hComboWnd;
 
 void ResetCombatSession();
 void AddCombatEvent(const std::string& attacker, const std::string& target, uint32_t skillId,

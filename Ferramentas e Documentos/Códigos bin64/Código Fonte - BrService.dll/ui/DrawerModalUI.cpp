@@ -233,7 +233,7 @@ void DrawerModalUI::Toggle() {
 
 static void UpdateDrawerTimer() {
     if (!g_hDrawerModalWnd || !g_isDrawerOpen.load()) return;
-    UINT interval = (s_activeTab == DrawerTab::Display && g_currentTarget.hasTarget) ? 40 : 250;
+    UINT interval = 250; // Smooth 4Hz cadence for combat duration ticks; events push redraws directly
     SetTimer(g_hDrawerModalWnd, 1, interval, nullptr);
 }
 

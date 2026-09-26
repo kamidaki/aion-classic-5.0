@@ -21,7 +21,6 @@ private:
     std::thread renderThread;
     std::atomic<bool> running{ false };
     HANDLE wakeEvent = nullptr;
-    ULONG_PTR gdiplusToken = 0;
 
     std::mutex stateMutex;
     int currentHits = 0;
@@ -47,8 +46,6 @@ private:
         bool received; // true = dano sofrido, false = dano causado
     };
     std::vector<DamageLine> recentHitDamages;
-    uint32_t lastKnownPlayerHp = 0;
-    uint32_t lastKnownTargetObjId = 0;
 
     std::vector<NotificationLine> activeNotifications;
 
@@ -140,21 +137,6 @@ private:
     static const DWORD kRemoveShockDurationMs = 1400;
     static const DWORD kRemoveShockFadeMs = 280;
 
-private:
-    template <typename T>
-    T SafeRead(uintptr_t addr) {
-        if (addr < 0x10000 || addr > 0x00007FFFFFFEFFFF) return T{};
-        __try {
-            return *(T*)addr;
-        } __except (EXCEPTION_EXECUTE_HANDLER) {
-            return T{};
-        }
-    }
-
-    uintptr_t GetPlayerEntity();
-    uintptr_t GetTargetEntity();
-    uint32_t GetPlayerHP();
-    uint32_t GetTargetObjId();
     bool IsUIHidden();
 
     Gdiplus::Image* GetBanner(const std::string& key);

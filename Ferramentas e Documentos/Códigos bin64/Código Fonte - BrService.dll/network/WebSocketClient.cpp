@@ -56,37 +56,39 @@ bool WebSocketClient::SendTextMessage(const std::string& msg) {
     return sent > 0;
 }
 
-static std::string ExtractJsonString(const std::string& json, const std::string& key) {
-    std::string pattern = "\"" + key + "\":\"";
-    size_t pos = json.find(pattern);
+static std::string ExtractJsonString(const std::string& json, const char* key) {
+    std::string keyQuoted = std::string("\"") + key + "\"";
+    size_t pos = json.find(keyQuoted);
     if (pos == std::string::npos) return "";
-    pos += pattern.length();
-    size_t end = json.find("\"", pos);
+    pos += keyQuoted.length();
+    while (pos < json.length() && (json[pos] == ' ' || json[pos] == '\t' || json[pos] == ':')) pos++;
+    if (pos >= json.length() || json[pos] != '"') return "";
+    pos++; // skip opening quote
+    size_t end = json.find('"', pos);
     if (end == std::string::npos) return "";
     return json.substr(pos, end - pos);
 }
 
-static uint32_t ExtractJsonUint(const std::string& json, const std::string& key, uint32_t fallback = 0) {
-    std::string pattern = "\"" + key + "\":";
-    size_t pos = json.find(pattern);
+static uint32_t ExtractJsonUint(const std::string& json, const char* key, uint32_t fallback = 0) {
+    std::string keyQuoted = std::string("\"") + key + "\"";
+    size_t pos = json.find(keyQuoted);
     if (pos == std::string::npos) return fallback;
-    pos += pattern.length();
-    while (pos < json.length() && (json[pos] == ' ' || json[pos] == '\t')) pos++;
-    try {
-        return static_cast<uint32_t>(std::stoul(json.substr(pos)));
-    } catch (...) {
-        return fallback;
-    }
+    pos += keyQuoted.length();
+    while (pos < json.length() && (json[pos] == ' ' || json[pos] == '\t' || json[pos] == ':')) pos++;
+    if (pos >= json.length() || json[pos] < '0' || json[pos] > '9') return fallback;
+    char* endPtr = nullptr;
+    unsigned long val = strtoul(&json[pos], &endPtr, 10);
+    return (endPtr != &json[pos]) ? static_cast<uint32_t>(val) : fallback;
 }
 
-static bool ExtractJsonBool(const std::string& json, const std::string& key, bool fallback = false) {
-    std::string pattern = "\"" + key + "\":";
-    size_t pos = json.find(pattern);
+static bool ExtractJsonBool(const std::string& json, const char* key, bool fallback = false) {
+    std::string keyQuoted = std::string("\"") + key + "\"";
+    size_t pos = json.find(keyQuoted);
     if (pos == std::string::npos) return fallback;
-    pos += pattern.length();
-    while (pos < json.length() && (json[pos] == ' ' || json[pos] == '\t')) pos++;
-    if (json.compare(pos, 4, "true") == 0)  return true;
-    if (json.compare(pos, 5, "false") == 0) return false;
+    pos += keyQuoted.length();
+    while (pos < json.length() && (json[pos] == ' ' || json[pos] == '\t' || json[pos] == ':')) pos++;
+    if (pos + 4 <= json.length() && memcmp(&json[pos], "true", 4) == 0)  return true;
+    if (pos + 5 <= json.length() && memcmp(&json[pos], "false", 5) == 0) return false;
     return fallback;
 }
 
