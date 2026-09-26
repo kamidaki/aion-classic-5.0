@@ -20,7 +20,11 @@ ROOT = HERE.parents[2]
 SOURCE = ROOT / "Código Fonte - Emulador" / "game-server"
 JAVA = SOURCE / "src" / "com" / "aionemu" / "gameserver"
 TEMPLATES = SOURCE / "data" / "static_data" / "skills" / "skill_templates.xml"
-CLIENT = ROOT / "Ferramentas e Documentos" / "Client e Coletas" / "Client 5.0 - Dados Extraidos"
+CLIENT_ROOTS = (
+    ROOT / "5 - Documentação e Referências" / "3 - Client 5.0 - Dados Extraidos",
+    ROOT / "Ferramentas e Documentos" / "Client e Coletas" / "Client 5.0 - Dados Extraidos",
+)
+CLIENT = next((path for path in CLIENT_ROOTS if path.exists()), CLIENT_ROOTS[0])
 CLIENT_MESSAGES = CLIENT / "data" / "Strings" / "client_strings_msg.xml"
 CLIENT_SKILLS = CLIENT / "data" / "skills" / "client_skills.xml"
 ITEM_TEMPLATES = SOURCE / "data" / "static_data" / "items" / "item_templates.xml"

@@ -2,6 +2,7 @@ package com.aionemu.gameserver.skillengine;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -40,10 +41,9 @@ class SkillStaticDataAuditTest {
 	private static final Path NPC_SKILLS = Path.of("data", "static_data", "npc_skills", "npc_skills.xml");
 	private static final Path PRODUCT_SKILLS = Path.of("..", "..", "Emulador - Produto Final", "GameServer", "data", "static_data", "skills",
 		"skill_templates.xml");
-	private static final Path CLIENT_SKILLS = Path.of("..", "..", "Ferramentas e Documentos", "Client e Coletas",
-		"Client 5.0 - Dados Extraidos", "data", "skills", "client_skills.xml");
-	private static final Path CLIENT_MESSAGES = Path.of("..", "..", "Ferramentas e Documentos", "Client e Coletas",
-		"Client 5.0 - Dados Extraidos", "data", "Strings", "client_strings_msg.xml");
+	private static final Path CLIENT_DATA = resolveClientData();
+	private static final Path CLIENT_SKILLS = CLIENT_DATA.resolve(Path.of("data", "skills", "client_skills.xml"));
+	private static final Path CLIENT_MESSAGES = CLIENT_DATA.resolve(Path.of("data", "Strings", "client_strings_msg.xml"));
 	private static final Path SYSTEM_MESSAGES = Path.of("src", "com", "aionemu", "gameserver", "network", "aion", "serverpackets",
 		"SM_SYSTEM_MESSAGE.java");
 	private static final Path SKILL_ENGINE_SOURCE = Path.of("src", "com", "aionemu", "gameserver", "skillengine");
@@ -55,6 +55,7 @@ class SkillStaticDataAuditTest {
 
 	@Test
 	void skillIdsAreUniqueAndKnownCoverageGapsCannotChangeSilently() throws Exception {
+		requireClientData();
 		Set<Integer> serverIds = templateIds(parse(SKILLS));
 		Set<Integer> officialIds = clientIds(parse(CLIENT_SKILLS));
 
@@ -118,6 +119,7 @@ class SkillStaticDataAuditTest {
 
 	@Test
 	void skillEngineUsesOnlySystemMessagesPresentInClassicClient() throws Exception {
+		requireClientData();
 		Set<Integer> officialMessageIds = childElementIds(parse(CLIENT_MESSAGES), "string", "id");
 		String factoriesSource = Files.readString(SYSTEM_MESSAGES, StandardCharsets.UTF_8);
 		Matcher factoryMatcher = Pattern.compile(
@@ -150,6 +152,7 @@ class SkillStaticDataAuditTest {
 
 	@Test
 	void skillTargetRangesMatchClassicClient() throws Exception {
+		requireClientData();
 		Map<Integer, Element> official = clientElementsById(parse(CLIENT_SKILLS));
 		NodeList templates = parse(SKILLS).getElementsByTagName("skill_template");
 		Set<String> differences = new HashSet<>();
@@ -187,6 +190,17 @@ class SkillStaticDataAuditTest {
 		factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
 		factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
 		return factory.newDocumentBuilder().parse(path.toFile());
+	}
+
+	private static Path resolveClientData() {
+		Path legacy = Path.of("..", "..", "Ferramentas e Documentos", "Client e Coletas", "Client 5.0 - Dados Extraidos");
+		Path canonical = Path.of("..", "..", "5 - Documentação e Referências", "3 - Client 5.0 - Dados Extraidos");
+		return Files.exists(canonical) ? canonical : legacy;
+	}
+
+	private static void requireClientData() {
+		assumeTrue(Files.exists(CLIENT_SKILLS) && Files.exists(CLIENT_MESSAGES),
+			"Dados extraídos do cliente 5.0 não estão disponíveis neste checkout");
 	}
 
 	private static Set<Integer> templateIds(Document document) {

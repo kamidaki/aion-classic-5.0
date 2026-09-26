@@ -30,7 +30,11 @@ ROOT = HERE.parents[2]
 STATIC = ROOT / "Código Fonte - Emulador" / "game-server" / "data" / "static_data"
 JAVA = ROOT / "Código Fonte - Emulador" / "game-server" / "src" / "com" / "aionemu" / "gameserver"
 TESTS = ROOT / "Código Fonte - Emulador" / "game-server" / "test"
-CLIENT_ROOT = ROOT / "Ferramentas e Documentos" / "Client e Coletas" / "Client 5.0 - Dados Extraidos"
+CLIENT_ROOTS = (
+    ROOT / "5 - Documentação e Referências" / "3 - Client 5.0 - Dados Extraidos",
+    ROOT / "Ferramentas e Documentos" / "Client e Coletas" / "Client 5.0 - Dados Extraidos",
+)
+CLIENT_ROOT = next((path for path in CLIENT_ROOTS if path.exists()), CLIENT_ROOTS[0])
 CLIENT_SKILLS = CLIENT_ROOT / "data" / "skills"
 CLIENT_ITEMS = CLIENT_ROOT / "data" / "items" / "client_items.xml"
 PCAPS = ROOT / "Ferramentas e Documentos" / "Client e Coletas" / "Wireshark - Oficial Classic 5.0"

@@ -18,7 +18,12 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
-CLIENT_DIR = ROOT / "Ferramentas e Documentos" / "Client e Coletas" / "Client 5.0 - Dados Extraidos" / "data" / "skills"
+CLIENT_ROOTS = (
+    ROOT / "5 - Documentação e Referências" / "3 - Client 5.0 - Dados Extraidos",
+    ROOT / "Ferramentas e Documentos" / "Client e Coletas" / "Client 5.0 - Dados Extraidos",
+)
+CLIENT_ROOT = next((path for path in CLIENT_ROOTS if path.exists()), CLIENT_ROOTS[0])
+CLIENT_DIR = CLIENT_ROOT / "data" / "skills"
 SOURCE_XML = ROOT / "Código Fonte - Emulador" / "game-server" / "data" / "static_data" / "skills" / "skill_templates.xml"
 PRODUCT_XML = ROOT / "Emulador - Produto Final" / "GameServer" / "data" / "static_data" / "skills" / "skill_templates.xml"
 OUT_JSON = HERE / "auditoria_alcances_skills_50.json"
