@@ -75,8 +75,8 @@ O arquivo `SM_SERVER_LIST.java` do emulador envia `0x00000401` (Classic + visibl
 ### P0 — ausência de testes de Skills
 
 - A auditoria encontrou `maven.test.skip=true`; nesta etapa o padrão foi alterado para `false`, de modo que `mvn test` execute a suíte sem flags especiais.
-- Executando `mvn test` com a configuração corrigida, 109 testes passam com Java 25.
-- Cinco testes estruturais de Skills foram adicionados nesta etapa: unicidade/cobertura de IDs, referências de jogador/NPC, tags de efeito no XSD, sincronização byte a byte entre fonte/produto e garantia de que `UtilityEffect` use o ciclo de buffs.
+- Executando `mvn test` com a configuração corrigida, 110 testes passam com Java 25.
+- Seis testes estruturais de Skills foram adicionados nesta etapa: unicidade/cobertura de IDs, referências de jogador/NPC, tags de efeito no XSD, sincronização byte a byte entre fonte/produto, garantia de que `UtilityEffect` use o ciclo de buffs e proibição de mensagens inexistentes no motor de Skills.
 - Ainda não existe teste comportamental de Skill/efeito/estigma. O sucesso atual não valida combate.
 
 ### P1 — seleção de alvo e protocolo
@@ -84,6 +84,14 @@ O arquivo `SM_SERVER_LIST.java` do emulador envia `0x00000401` (Classic + visibl
 - `CM_CASTSPELL` lê `targetObjectId`, mas não o repassa a `PlayerController.useSkill`; a execução usa o alvo atualmente selecionado no estado do jogador.
 - Isso pode ser correto para o protocolo, mas precisa ser comparado com trocas rápidas de alvo, alvo fora de visão e tipos 3/4 nas PCAPs antes de ser preservado.
 - Pacotes de cast/result já contêm várias adaptações 5.0 comprovadas, mas ainda há campos desconhecidos e regras hardcoded.
+- O aviso de distância usava o ID legado inexistente `1402920`, causa direta do texto `???`; foi substituído pelo ID oficial Classic `1300022` (`STR_SKILL_TOO_FAR`). Após a correção, nenhuma chamada direta do motor de Skills referencia mensagem ausente no cliente oficial.
+
+### P1 — defesa e resistência
+
+- O caminho comum testa evasão ou resistência mágica em `EffectTemplate`, reduz dano por defesa física/mágica e elemental em `AttackUtil`/`StatFunctions`, aplica ratios defensivos PvP/PvE e, por fim, escudos.
+- A auditoria específica enumerou 38 Skills com dano `NoReduce`, 3 stacks de proc com dano fixo hardcoded, 31 Skills de dano atrasado que ignoram escudos e 287 Skills mágicas com efeito sem elemento que exigem revisão individual da conversão.
+- Foram encontradas 83 divergências nas quais o servidor declara ou força `noresist` enquanto o campo oficial do efeito é `0`; 46 atingem alvo `Enemy`. Elas não foram alteradas automaticamente porque efeitos secundários podem herdar o acerto do primeiro efeito e isso depende de lógica do servidor não comprovada pelo XML isolado.
+- A matriz detalhada de bypasses está em `auditoria_mensagens_defesa_skills_50.json`; nenhum caso foi tratado como erro apenas pelo nome do efeito.
 
 ### P1 — Skills temporárias e persistentes
 
@@ -135,7 +143,8 @@ O arquivo `SM_SERVER_LIST.java` do emulador envia `0x00000401` (Classic + visibl
 | Inventário integral | Cliente base/`special`/`special2`, dados do emulador e 68 PCAPs autorizados | Gerador reproduzível, JSON detalhado e matriz CSV com 12.140 IDs | Regeneração completa sem descarte silencioso de IDs |
 | NPC Skills | `NpcSkillList` e lista compartilhada de `DataManager` | Uma referência inválida deixa de remover globalmente a definição carregada; passa a ser ignorada apenas na instância | Compilação Java 25 e suíte Maven |
 | Skills `2521`–`2523` | Tipos oficiais `Utility`, árvore de Skills e modificadores já presentes no XML | `UtilityEffect` passou a herdar o ciclo de `BufEffect`, registrando e removendo os três modificadores declarados | Teste estrutural dedicado e suíte Maven |
-| Execução de testes | `maven.test.skip=true` no POM raiz | Testes habilitados por padrão | `mvn test`: 109 testes, 0 falhas, 0 erros, 0 ignorados |
+| Mensagem de Skill fora de alcance | Cliente oficial: `STR_SKILL_TOO_FAR`, ID `1300022`; ID legado `1402920` ausente | Substituição do envio legado em `FirstTargetRangeProperty` | Teste cruza todas as chamadas do motor de Skills com `client_strings_msg.xml` |
+| Execução de testes | `maven.test.skip=true` no POM raiz | Testes habilitados por padrão | `mvn test`: 110 testes, 0 falhas, 0 erros, 0 ignorados |
 | Produto final | JAR reconstruído a partir do código testado | JAR do GameServer sincronizado | SHA-256 idêntico entre `target` e produto final |
 
 Esta tabela registra apenas o que foi efetivamente alterado. Não promove as demais Skills a compatíveis nem transforma diferenças estáticas em bugs confirmados.

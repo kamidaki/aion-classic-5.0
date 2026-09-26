@@ -42,6 +42,11 @@ class SkillStaticDataAuditTest {
 		"skill_templates.xml");
 	private static final Path CLIENT_SKILLS = Path.of("..", "..", "Ferramentas e Documentos", "Client e Coletas",
 		"Client 5.0 - Dados Extraidos", "data", "skills", "client_skills.xml");
+	private static final Path CLIENT_MESSAGES = Path.of("..", "..", "Ferramentas e Documentos", "Client e Coletas",
+		"Client 5.0 - Dados Extraidos", "data", "Strings", "client_strings_msg.xml");
+	private static final Path SYSTEM_MESSAGES = Path.of("src", "com", "aionemu", "gameserver", "network", "aion", "serverpackets",
+		"SM_SYSTEM_MESSAGE.java");
+	private static final Path SKILL_ENGINE_SOURCE = Path.of("src", "com", "aionemu", "gameserver", "skillengine");
 
 	private static final Set<Integer> KNOWN_OFFICIAL_MISSING = Set.of(50068);
 	private static final Set<Integer> KNOWN_SERVER_ONLY = Set.of(418, 459, 460, 854, 993, 1120, 1129, 1264, 1266, 1514, 2075, 2381, 2382,
@@ -110,6 +115,38 @@ class SkillStaticDataAuditTest {
 			"UtilityEffect deve registrar e remover os atributos declarados pelas Skills 2521-2523");
 	}
 
+	@Test
+	void skillEngineUsesOnlySystemMessagesPresentInClassicClient() throws Exception {
+		Set<Integer> officialMessageIds = childElementIds(parse(CLIENT_MESSAGES), "string", "id");
+		String factoriesSource = Files.readString(SYSTEM_MESSAGES, StandardCharsets.UTF_8);
+		Matcher factoryMatcher = Pattern.compile(
+			"public static SM_SYSTEM_MESSAGE\\s+(\\w+)\\([^)]*\\)\\s*\\{.*?new SM_SYSTEM_MESSAGE\\((\\d+)", Pattern.DOTALL)
+			.matcher(factoriesSource);
+		Map<String, Integer> factoryIds = new HashMap<>();
+		while (factoryMatcher.find())
+			factoryIds.put(factoryMatcher.group(1), Integer.parseInt(factoryMatcher.group(2)));
+
+		Set<String> missingFactories = new HashSet<>();
+		Map<String, Integer> invalidIds = new HashMap<>();
+		Pattern usagePattern = Pattern.compile("SM_SYSTEM_MESSAGE\\.(\\w+)\\(");
+		try (var paths = Files.walk(SKILL_ENGINE_SOURCE)) {
+			for (Path path : paths.filter(p -> p.toString().endsWith(".java")).toList()) {
+				Matcher usageMatcher = usagePattern.matcher(Files.readString(path, StandardCharsets.UTF_8));
+				while (usageMatcher.find()) {
+					String factory = usageMatcher.group(1);
+					Integer id = factoryIds.get(factory);
+					if (id == null)
+						missingFactories.add(factory);
+					else if (!officialMessageIds.contains(id))
+						invalidIds.put(factory, id);
+				}
+			}
+		}
+
+		assertTrue(missingFactories.isEmpty(), "Factories de mensagem ausentes: " + missingFactories);
+		assertTrue(invalidIds.isEmpty(), "Mensagens usadas por Skills ausentes no cliente Classic 5.0: " + invalidIds);
+	}
+
 	private static Document parse(Path path) throws Exception {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
@@ -132,6 +169,16 @@ class SkillStaticDataAuditTest {
 		}
 		assertTrue(counts.values().stream().allMatch(count -> count == 1), "IDs duplicados na fonte oficial: " + duplicates(counts));
 		return counts.keySet();
+	}
+
+	private static Set<Integer> childElementIds(Document document, String tagName, String idTagName) {
+		Set<Integer> ids = new HashSet<>();
+		NodeList nodes = document.getElementsByTagName(tagName);
+		for (int i = 0; i < nodes.getLength(); i++) {
+			Element element = (Element) nodes.item(i);
+			ids.add(Integer.parseInt(element.getElementsByTagName(idTagName).item(0).getTextContent()));
+		}
+		return ids;
 	}
 
 	private static Set<Integer> uniqueIds(NodeList nodes, String attribute) {
