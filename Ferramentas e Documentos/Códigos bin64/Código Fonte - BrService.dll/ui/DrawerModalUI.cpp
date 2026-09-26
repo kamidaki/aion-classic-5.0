@@ -381,7 +381,7 @@ static void UpdateDrawerTimer() {
 void DrawerModalUI::Open() {
     if (!g_featConsole.load()) return;
     g_isDrawerOpen = true;
-    bool canShow = g_isInWorld.load() && !g_isLoadingScreen.load() && g_isGameActive.load();
+    bool canShow = !g_isLoadingScreen.load() && g_isGameActive.load();
     if (g_hDrawerModalWnd && canShow) {
         ShowWindow(g_hDrawerModalWnd, SW_SHOWNOACTIVATE);
         UpdateDrawerTimer();
@@ -407,7 +407,7 @@ void DrawerModalUI::Hide() {
 
 void DrawerModalUI::RestoreIfOpen() {
     if (!g_featConsole.load()) return;
-    bool canShow = g_isDrawerOpen.load() && g_hDrawerModalWnd && g_isInWorld.load() && !g_isLoadingScreen.load() && g_isGameActive.load();
+    bool canShow = g_isDrawerOpen.load() && g_hDrawerModalWnd && !g_isLoadingScreen.load() && g_isGameActive.load();
     if (canShow) {
         if (!IsWindowVisible(g_hDrawerModalWnd)) {
             ShowWindow(g_hDrawerModalWnd, SW_SHOWNOACTIVATE);
@@ -424,7 +424,7 @@ bool DrawerModalUI::IsOpen() {
 }
 
 void DrawerModalUI::UpdatePosition(int gX, int gY, int gW, int gH) {
-    if (!g_hDrawerModalWnd) return;
+    if (!g_hDrawerModalWnd || !IsWindow(g_hDrawerModalWnd)) return;
     s_modalW = std::clamp(g_drawerW.load(), 540, 960);
     s_modalH = std::clamp(g_drawerH.load(), 480, 800);
     if (s_modalH > gH - 30) s_modalH = gH - 30;
@@ -439,7 +439,6 @@ void DrawerModalUI::UpdatePosition(int gX, int gY, int gW, int gH) {
         g_drawerPosY = mY2;
     }
 
-    // Se estiver em modo PINNED, restringir a posição para dentro dos limites da tela do jogo
     if (g_drawerPinned.load()) {
         int minX = gX;
         int maxX = gX + gW - s_modalW;
@@ -451,13 +450,22 @@ void DrawerModalUI::UpdatePosition(int gX, int gY, int gW, int gH) {
         g_drawerPosY = mY2;
     }
 
-    bool v = g_featConsole.load() && g_isDrawerOpen.load() && g_isInWorld.load() && !g_isLoadingScreen.load() && g_isGameActive.load();
-    SetWindowPos(g_hDrawerModalWnd, HWND_TOPMOST, mX, mY2, s_modalW, s_modalH, SWP_NOACTIVATE | SWP_ASYNCWINDOWPOS | (v ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
-    if (v) {
-        UpdateDrawerTimer();
-        InvalidateRect(g_hDrawerModalWnd, nullptr, FALSE);
-    } else {
-        KillTimer(g_hDrawerModalWnd, 1);
+    bool v = g_featConsole.load() && g_isDrawerOpen.load() && !g_isLoadingScreen.load() && g_isGameActive.load();
+
+    static int s_prevX = -9999, s_prevY = -9999, s_prevW = -9999, s_prevH = -9999;
+    static int s_prevVis = -1;
+    int curVis = v ? 1 : 0;
+
+    if (mX != s_prevX || mY2 != s_prevY || s_modalW != s_prevW || s_modalH != s_prevH || curVis != s_prevVis) {
+        s_prevX = mX; s_prevY = mY2; s_prevW = s_modalW; s_prevH = s_modalH; s_prevVis = curVis;
+        SetWindowPos(g_hDrawerModalWnd, HWND_TOPMOST, mX, mY2, s_modalW, s_modalH,
+                     SWP_NOACTIVATE | SWP_ASYNCWINDOWPOS | (v ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
+        if (v) {
+            UpdateDrawerTimer();
+            InvalidateRect(g_hDrawerModalWnd, nullptr, FALSE);
+        } else {
+            KillTimer(g_hDrawerModalWnd, 1);
+        }
     }
 }
 

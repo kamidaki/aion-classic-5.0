@@ -56,7 +56,6 @@ static void ReleaseHudBuffer() {
     s_hudBufW = s_hudBufH = 0;
 }
 
-// Persistent font cache (eliminates DirectWrite/GDI churn)
 static Gdiplus::Font* s_hudFontPing = nullptr;
 
 static void EnsureHudFonts() {
@@ -97,9 +96,8 @@ bool PingHudUI::Initialize(HINSTANCE hInst) {
         return false;
     }
 
-    // Default hidden until GameServer signals in-world spawn
     ShowWindow(g_hPingHudWnd, SW_HIDE);
-    LogInfo("PingHudUI inicializado com sucesso (aguardando entrada no mundo).");
+    LogInfo("PingHudUI inicializado com sucesso.");
     return true;
 }
 
@@ -114,7 +112,9 @@ void PingHudUI::Shutdown() {
 
 bool PingHudUI::IsAllowedToDisplay() {
     if (!g_featConsole.load() && !g_featPingUi.load()) return false;
-    if (!g_isInWorld.load() || g_isLoadingScreen.load() || !g_isGameActive.load()) return false;
+    HWND hGame = g_gameHwnd.load();
+    if (!hGame || !IsWindow(hGame) || IsIconic(hGame)) return false;
+    if (g_isLoadingScreen.load() || !g_isGameActive.load()) return false;
     return true;
 }
 
@@ -123,7 +123,7 @@ void PingHudUI::Show() {
         Hide();
         return;
     }
-    if (g_hPingHudWnd) {
+    if (g_hPingHudWnd && IsWindow(g_hPingHudWnd)) {
         if (!IsWindowVisible(g_hPingHudWnd)) {
             ShowWindow(g_hPingHudWnd, SW_SHOWNOACTIVATE);
             Repaint();
@@ -133,7 +133,9 @@ void PingHudUI::Show() {
 
 void PingHudUI::Hide() {
     if (g_hPingHudWnd && IsWindow(g_hPingHudWnd)) {
-        ShowWindow(g_hPingHudWnd, SW_HIDE);
+        if (IsWindowVisible(g_hPingHudWnd)) {
+            ShowWindow(g_hPingHudWnd, SW_HIDE);
+        }
     }
 }
 
@@ -144,27 +146,32 @@ void PingHudUI::UpdatePosition(int gameX, int gameY, int gameW, int gameH) {
     bool showPing    = g_featPingUi.load();
 
     if (!showConsole && !showPing) {
-        ShowWindow(g_hPingHudWnd, SW_HIDE);
+        Hide();
         return;
     }
 
-    // Calculate dynamic width based on visible items (no online count)
     int calcW = 4;
     if (showPing)    calcW += 64;
     if (showConsole) calcW += 32;
     calcW += 8;
     s_hudWidth = calcW;
 
-    // Position: bottom-left corner of game client area
     int hudX = gameX;
     int hudY = gameY + gameH - s_hudHeight;
 
     bool shouldBeVisible = IsAllowedToDisplay();
 
-    SetWindowPos(g_hPingHudWnd, HWND_TOPMOST, hudX, hudY, s_hudWidth, s_hudHeight,
-                 SWP_NOACTIVATE | SWP_ASYNCWINDOWPOS | (shouldBeVisible ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
-    if (shouldBeVisible) {
-        InvalidateRect(g_hPingHudWnd, nullptr, FALSE);
+    static int s_prevX = -9999, s_prevY = -9999, s_prevW = -9999, s_prevH = -9999;
+    static int s_prevVis = -1;
+
+    int curVis = shouldBeVisible ? 1 : 0;
+    if (hudX != s_prevX || hudY != s_prevY || s_hudWidth != s_prevW || s_hudHeight != s_prevH || curVis != s_prevVis) {
+        s_prevX = hudX; s_prevY = hudY; s_prevW = s_hudWidth; s_prevH = s_hudHeight; s_prevVis = curVis;
+        SetWindowPos(g_hPingHudWnd, HWND_TOPMOST, hudX, hudY, s_hudWidth, s_hudHeight,
+                     SWP_NOACTIVATE | SWP_ASYNCWINDOWPOS | (shouldBeVisible ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
+        if (shouldBeVisible) {
+            InvalidateRect(g_hPingHudWnd, nullptr, FALSE);
+        }
     }
 }
 
@@ -188,7 +195,6 @@ void PingHudUI::Paint(HWND hwnd) {
         g.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
         g.SetTextRenderingHint(Gdiplus::TextRenderingHintClearTypeGridFit);
 
-        // Clear transparent
         g.Clear(Gdiplus::Color(0, 0, 0, 0));
 
         bool showConsole = g_featConsole.load();
@@ -196,7 +202,7 @@ void PingHudUI::Paint(HWND hwnd) {
 
         float curX = 6.0f;
 
-        // 1. PING (Vertical Signal Bars + ms) — First on Left
+        // 1. PING (Signal Bars + ms text)
         if (showPing) {
             int bars   = g_pingBars.load();
             int pingMs = g_currentPingMs.load();
@@ -231,10 +237,10 @@ void PingHudUI::Paint(HWND hwnd) {
             curX += 38.0f;
         }
 
-        // 2. CONSOLE ICON (>_) — Pure white (no per-frame color logic)
+        // 2. CONSOLE ICON (>_) — Pure White
         if (showConsole) {
-            float iconX   = curX + 2.0f;
-            float iconY   = 6.0f;
+            float iconX    = curX + 2.0f;
+            float iconY    = 6.0f;
             float iconSize = 20.0f;
 
             s_consoleIconRect = {
@@ -242,40 +248,31 @@ void PingHudUI::Paint(HWND hwnd) {
                 (int)(iconX + iconSize + 2), (int)(iconY + iconSize + 2)
             };
 
-            // Hit test fix: fill hitbox with non-zero alpha so layered window registers mouse
+            // Hit test background with non-zero alpha so layered window registers clicks
             Gdiplus::SolidBrush hitBrush(Gdiplus::Color(2, 20, 25, 30));
             UICommon::FillRoundRectangle(g, &hitBrush,
                 (float)s_consoleIconRect.left, (float)s_consoleIconRect.top,
                 (float)(s_consoleIconRect.right  - s_consoleIconRect.left),
                 (float)(s_consoleIconRect.bottom - s_consoleIconRect.top), 4.0f);
 
-            // Console icon is always pure white. Hover state adds a slight brightness
-            // but the base color is 255,255,255 per requirement.
-            // Note: NOT using any runtime color computation — pure constant white.
+            // Constant pure white
             Gdiplus::Color iconCol = s_iconHovered
-                ? Gdiplus::Color(255, 255, 255, 255)   // Hovered: opaque white
-                : Gdiplus::Color(220, 255, 255, 255);  // Normal:  slightly transparent white
+                ? Gdiplus::Color(255, 255, 255, 255)
+                : Gdiplus::Color(220, 255, 255, 255);
 
             Gdiplus::Pen iconPen(iconCol, 1.6f);
 
-            // Terminal/Console box
             UICommon::DrawRoundRectangle(g, &iconPen, iconX, iconY, iconSize, iconSize - 2.0f, 3.0f);
-            // Prompt chevron '>' inside icon
             g.DrawLine(&iconPen, iconX + 4.5f, iconY + 5.0f,  iconX + 8.5f, iconY + 8.5f);
             g.DrawLine(&iconPen, iconX + 8.5f, iconY + 8.5f,  iconX + 4.5f, iconY + 12.0f);
-            // Cursor line '_'
             g.DrawLine(&iconPen, iconX + 11.0f, iconY + 12.0f, iconX + 15.5f, iconY + 12.0f);
 
             curX += iconSize + 8.0f;
         } else {
             s_consoleIconRect = { 0, 0, 0, 0 };
         }
-
-        // Online player count section has been completely removed.
-        (void)curX;
     }
 
-    // Blend to layered window
     POINT ptSrc = { 0, 0 };
     SIZE szWindow = { s_hudWidth, s_hudHeight };
     BLENDFUNCTION blend = {};
@@ -290,6 +287,13 @@ void PingHudUI::Paint(HWND hwnd) {
 
 LRESULT CALLBACK PingHudUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     switch (uMsg) {
+    case WM_PAINT: {
+        PAINTSTRUCT ps;
+        BeginPaint(hwnd, &ps);
+        Paint(hwnd);
+        EndPaint(hwnd, &ps);
+        return 0;
+    }
     case WM_MOUSEMOVE: {
         if (!g_featConsole.load()) return 0;
         int mx = LOWORD(lParam);
@@ -298,7 +302,7 @@ LRESULT CALLBACK PingHudUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
         bool hovered = PtInRect(&s_consoleIconRect, pt) != FALSE;
         if (hovered != s_iconHovered) {
             s_iconHovered = hovered;
-            Repaint();
+            Paint(hwnd);
         }
         TRACKMOUSEEVENT tme = { sizeof(TRACKMOUSEEVENT), TME_LEAVE, hwnd, 0 };
         TrackMouseEvent(&tme);
@@ -307,7 +311,7 @@ LRESULT CALLBACK PingHudUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
     case WM_MOUSELEAVE: {
         if (s_iconHovered) {
             s_iconHovered = false;
-            Repaint();
+            Paint(hwnd);
         }
         return 0;
     }

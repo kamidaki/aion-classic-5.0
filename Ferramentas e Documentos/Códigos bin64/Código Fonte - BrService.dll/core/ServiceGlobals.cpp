@@ -78,7 +78,7 @@ std::vector<CombatSession> g_combatHistory;
 std::atomic<float> g_cvarFov(75.0f);
 std::atomic<float> g_cvarCamMax(25.0f);
 std::atomic<int>   g_cvarMaxFps(144);
-std::atomic<bool>  g_cvarTripleBuffering(true);
+std::atomic<bool>  g_cvarTripleBuffering(false);
 
 HWND g_hPingHudWnd = nullptr;
 HWND g_hDrawerModalWnd = nullptr;
@@ -96,7 +96,6 @@ static std::string GetCurrentTimeStr() {
 void ResetCombatSession() {
     std::lock_guard<std::recursive_mutex> lock(g_combatMutex);
 
-    // Salvar sessão atual no histórico antes de limpar
     if (g_isCombatActive.load() && (g_totalDamageDealt.load() > 0 || g_totalDamageReceived.load() > 0)) {
         CombatSession snap;
         snap.startTime = GetCurrentTimeStr();
@@ -132,7 +131,6 @@ void AddCombatEvent(const std::string& attacker, const std::string& target, uint
                     const std::string& timeStr) {
     if (damage == 0 && !isHeal) return;
 
-    // Self-target guard: nunca contar dano cujo attacker == target
     if (!attacker.empty() && !target.empty() && attacker == target) return;
 
     std::lock_guard<std::recursive_mutex> lock(g_combatMutex);
@@ -148,7 +146,6 @@ void AddCombatEvent(const std::string& attacker, const std::string& target, uint
         }
     }
 
-    // Record to Combat Timeline (retain last 100 events)
     CombatTimelineEntry tEntry;
     tEntry.timeStr = timeStr.empty() ? "00:00:00" : timeStr;
     tEntry.attacker = attacker.empty() ? "Jogador" : attacker;
@@ -259,7 +256,6 @@ void AddCombatEvent(const std::string& attacker, const std::string& target, uint
         g_dpsHistory.push_back(currentDps);
     }
 
-    // Update Radar Metrics
     if (!g_playerRankings.empty()) {
         const auto& mainP = g_playerRankings.front();
         g_currentRadar.crit = mainP.hitCount > 0 ? ((float)mainP.critCount / mainP.hitCount * 100.0f) : 65.0f;
@@ -282,15 +278,6 @@ static std::string s_cachedPlayerName;
 static SRWLOCK s_playerIdentityLock = SRWLOCK_INIT;
 
 uint32_t GetLocalPlayerObjectId() {
-    if (!g_isInWorld.load() || g_isLoadingScreen.load()) {
-        s_cachedPlayerId.store(0, std::memory_order_relaxed);
-        return 0;
-    }
-    uint32_t cached = s_cachedPlayerId.load(std::memory_order_relaxed);
-    if (cached != 0) {
-        return cached;
-    }
-
     uintptr_t hG = (uintptr_t)GetModuleHandleA("Game.dll");
     if (!hG) return 0;
     __try {
@@ -310,17 +297,18 @@ uint32_t GetLocalPlayerObjectId() {
         uint32_t id = *(uint32_t*)(pPE + 0x24);
         if (id > 0) {
             s_cachedPlayerId.store(id, std::memory_order_relaxed);
+            g_isInWorld.store(true, std::memory_order_relaxed);
+            return id;
         }
-        return id;
     } __except (EXCEPTION_EXECUTE_HANDLER) {
         return 0;
     }
+    return 0;
 }
 
 static bool ReadPlayerNameRaw(char* outBuf, size_t bufSize) {
     if (!outBuf || bufSize == 0) return false;
     outBuf[0] = '\0';
-    if (!g_isInWorld.load() || g_isLoadingScreen.load()) return false;
     uintptr_t hG = (uintptr_t)GetModuleHandleA("Game.dll");
     if (!hG) return false;
     __try {
@@ -353,13 +341,6 @@ static bool ReadPlayerNameRaw(char* outBuf, size_t bufSize) {
 }
 
 std::string GetLocalPlayerName() {
-    if (!g_isInWorld.load() || g_isLoadingScreen.load()) {
-        AcquireSRWLockExclusive(&s_playerIdentityLock);
-        s_cachedPlayerName.clear();
-        ReleaseSRWLockExclusive(&s_playerIdentityLock);
-        return "";
-    }
-
     AcquireSRWLockShared(&s_playerIdentityLock);
     if (!s_cachedPlayerName.empty()) {
         std::string res = s_cachedPlayerName;

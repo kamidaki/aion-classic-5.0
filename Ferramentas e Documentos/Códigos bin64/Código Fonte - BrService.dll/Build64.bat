@@ -36,7 +36,6 @@ cl /c /O2 /utf-8 /W3 /std:c++17 /EHa /MT /D NDEBUG /D _WINDOWS /D _USRDLL /D _UN
     network\PingEngine.cpp ^
     network\WebSocketClient.cpp ^
     database\CombatDb.cpp ^
-    model3d\CryModelBridge.cpp ^
     ui\UICommon.cpp ^
     ui\IconManager.cpp ^
     ui\PingHudUI.cpp ^

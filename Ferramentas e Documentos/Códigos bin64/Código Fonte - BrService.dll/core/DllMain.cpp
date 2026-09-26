@@ -11,8 +11,12 @@
 #include "../ui/DrawerModalUI.h"
 #include "../combo/ComboUI.h"
 #include <string>
+#include <atomic>
 
 namespace BrService {
+
+static HANDLE s_hInitThread = nullptr;
+static std::atomic<bool> s_initDone(false);
 
 static std::string ParseParam(const char* cmdline, const char* key) {
     if (!cmdline || !key) return "";
@@ -67,6 +71,44 @@ static bool IsParamEnabled(const char* cmdline, const char* paramName, bool defa
     return defaultValue;
 }
 
+static DWORD WINAPI BackgroundInitThread(LPVOID /*param*/) {
+    LogInfo("BackgroundInitThread: Inicializando subsistemas em thread separada...");
+
+    // 1. Initialize Subsystems
+    UICommon::InitializeGdiplus();
+    BrConfig::Load();
+    if (g_featDpsMeterUI.load()) {
+        CombatDb::Initialize();
+    }
+    CVarManager::Initialize();
+
+    // 2. Start Network Services
+    if (g_featPingUi.load()) {
+        PingEngine::Start(g_serverIp);
+    }
+    if (g_featDpsMeterUI.load()) {
+        WebSocketClient::Start(g_serverIp, 2130);
+    }
+
+    // 3. Initialize UI Windows
+    if (g_featConsole.load() || g_featPingUi.load()) {
+        PingHudUI::Initialize(g_hModule);
+    }
+    if (g_featConsole.load()) {
+        DrawerModalUI::Initialize(g_hModule);
+    }
+    if (g_featComboUi.load()) {
+        g_ComboUI.Start();
+    }
+
+    // 4. Start Lifecycle Watchdog
+    ServiceWorker::Start();
+
+    s_initDone = true;
+    LogInfo("BackgroundInitThread: Inicializacao concluida com 100%% de sucesso.");
+    return 0;
+}
+
 } // namespace BrService
 
 extern "C" {
@@ -75,7 +117,6 @@ __declspec(dllexport) bool WINAPI BR_Initialize(const char* token, const char* c
     using namespace BrService;
 
     try {
-        // Validate token integrity
         if (!token || strcmp(token, g_securityToken.c_str()) != 0) {
             LogError("BR_Initialize: Token de seguranca incorreto ou violado.");
             return false;
@@ -85,95 +126,44 @@ __declspec(dllexport) bool WINAPI BR_Initialize(const char* token, const char* c
         LogInfo("   BrService.dll - Shugo Console, Ping & DPS Meter Ativado      ");
         LogInfo("=================================================================");
 
-        // Extract IP and feature flags from cmdline (fallback to GetCommandLineA)
         const char* actualCmd = (cmdline && cmdline[0] != '\0') ? cmdline : GetCommandLineA();
         if (actualCmd) {
             std::string ip = ParseParam(actualCmd, "-ip");
             if (!ip.empty()) {
                 g_serverIp = ip;
-                LogInfo("IP do Servidor extraido da linha de comando: %s", g_serverIp.c_str());
             }
             std::string port = ParseParam(actualCmd, "-port");
             if (!port.empty()) {
                 try { g_serverPort = std::stoi(port); } catch (...) {}
             }
 
-            // Language selection (-lang:ENG or -lang:ENU or -lang:BRA)
             std::string lang = ParseParam(actualCmd, "-lang");
-            if (lang.empty()) {
-                lang = ParseParam(actualCmd, "/lang");
-            }
+            if (lang.empty()) lang = ParseParam(actualCmd, "/lang");
             if (!lang.empty()) {
                 for (char& c : lang) c = (char)::toupper((unsigned char)c);
                 g_clientLang = lang;
-                LogInfo("Idioma selecionado via linha de comando: %s", g_clientLang.c_str());
             }
 
-            // Feature Control Flags (default: true / enable)
-            g_featConsole   = IsParamEnabled(actualCmd, "console",    true);
-            g_featPingUi    = IsParamEnabled(actualCmd, "pingUi",     true);
-            g_featDpsMeterUI= IsParamEnabled(actualCmd, "DpsMeterUI", true);
-            g_featComboUi   = IsParamEnabled(actualCmd, "comboUi",    true);
-            g_featFov       = IsParamEnabled(actualCmd, "fov",        true);
-            g_featCamMax    = IsParamEnabled(actualCmd, "camMax",     true);
-            g_featFpsUnlock = IsParamEnabled(actualCmd, "fpsUnlock",  true);
-
-            LogInfo("Configuracao de Recursos do BrService via Linha de Comando:");
-            LogInfo("  [-console]    : %s", g_featConsole.load()    ? "ENABLE" : "DISABLE");
-            LogInfo("  [-pingUi]     : %s", g_featPingUi.load()     ? "ENABLE" : "DISABLE");
-            LogInfo("  [-DpsMeterUI] : %s", g_featDpsMeterUI.load() ? "ENABLE" : "DISABLE");
-            LogInfo("  [-comboUi]    : %s", g_featComboUi.load()    ? "ENABLE" : "DISABLE");
-            LogInfo("  [-lang]       : %s", g_clientLang.c_str());
-            LogInfo("  [-fov]        : %s", g_featFov.load()        ? "ENABLE" : "DISABLE");
-            LogInfo("  [-camMax]     : %s", g_featCamMax.load()     ? "ENABLE" : "DISABLE");
-            LogInfo("  [-fpsUnlock]  : %s", g_featFpsUnlock.load()  ? "ENABLE" : "DISABLE");
+            g_featConsole    = IsParamEnabled(actualCmd, "console",    true);
+            g_featPingUi     = IsParamEnabled(actualCmd, "pingUi",     true);
+            g_featDpsMeterUI = IsParamEnabled(actualCmd, "DpsMeterUI", true);
+            g_featComboUi    = IsParamEnabled(actualCmd, "comboUi",    true);
+            g_featFov        = IsParamEnabled(actualCmd, "fov",        true);
+            g_featCamMax     = IsParamEnabled(actualCmd, "camMax",     true);
+            g_featFpsUnlock  = IsParamEnabled(actualCmd, "fpsUnlock",  true);
         }
 
-        // 1. Initialize Subsystems
-        UICommon::InitializeGdiplus();
-        BrConfig::Load();
-        if (g_featDpsMeterUI.load()) {
-            CombatDb::Initialize();
-        }
-        CVarManager::Initialize();
-
-        // 2. Start Network Services
-        if (g_featPingUi.load()) {
-            PingEngine::Start(g_serverIp);
-        }
-        if (g_featDpsMeterUI.load()) {
-            WebSocketClient::Start(g_serverIp, 2130);
-        }
-
-        // 3. Initialize UI Windows
-        if (g_featConsole.load() || g_featPingUi.load()) {
-            PingHudUI::Initialize(g_hModule);
-        }
-        if (g_featConsole.load()) {
-            DrawerModalUI::Initialize(g_hModule);
-        }
-        if (g_featComboUi.load()) {
-            g_ComboUI.Start();
-            LogInfo("ComboUI (Animacoes, Particulas & HUD de Combo) inicializado com sucesso.");
-        }
-
-        // 4. Start Lifecycle Watchdog
-        ServiceWorker::Start();
-
-        LogInfo("BR_Initialize: Inicializacao concluida com 100%% de sucesso.");
+        // Run heavy initialization asynchronously in a separate background thread
+        s_hInitThread = CreateThread(nullptr, 0, BackgroundInitThread, nullptr, 0, nullptr);
         return true;
-    } catch (const std::exception& e) {
-        LogError("BR_Initialize: Excecao fatal durante inicializacao: %s", e.what());
-        return false;
     } catch (...) {
-        LogError("BR_Initialize: Excecao fatal desconhecida durante inicializacao.");
         return false;
     }
 }
 
 __declspec(dllexport) void WINAPI BR_Shutdown() {
     using namespace BrService;
-    LogInfo("BR_Shutdown: Encerrando servicos...");
+    LogInfo("BR_Shutdown: Encerrando servicos de forma segura...");
 
     ServiceWorker::Stop();
     if (g_featComboUi.load()) {
@@ -186,6 +176,12 @@ __declspec(dllexport) void WINAPI BR_Shutdown() {
     CVarManager::Shutdown();
     CombatDb::Shutdown();
     UICommon::ShutdownGdiplus();
+
+    if (s_hInitThread) {
+        WaitForSingleObject(s_hInitThread, 300);
+        CloseHandle(s_hInitThread);
+        s_hInitThread = nullptr;
+    }
 
     LogInfo("BR_Shutdown: Finalizacao concluida.");
 }
@@ -200,10 +196,6 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID /*lpvReserved*/)
     if (fdwReason == DLL_PROCESS_ATTACH) {
         DisableThreadLibraryCalls(hinstDLL);
         BrService::g_hModule = hinstDLL;
-
-        // Pin DLL in memory
-        HMODULE hSelf = nullptr;
-        GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_PIN, (LPCWSTR)hinstDLL, &hSelf);
     } else if (fdwReason == DLL_PROCESS_DETACH) {
         BR_Shutdown();
     }
