@@ -84,9 +84,9 @@ Para manter o histórico do repositório organizado, rastreável e padronizado e
     │   │       └── Banner/               # Imagem splash_banner.png para documentação
     │   ├── Tradução - Português Brasil/  # Textos e traduções oficiais PT-BR
     │   └── Wireshark - Oficial Classic 5.0/ # Capturas reais de tráfego de rede do cliente 5.0
-    ├── Códigos bin64/                    # Código-fonte C/C++ dos módulos nativos injetados no cliente
-    │   ├── Código Fonte - BrService.dll/ # HUD de latência, Shugo console, DPS meter, Combo UI e WebSocket
-    │   └── Código Fonte - Version.dll/   # Hook No-IP, bypass de auth, DXVK/Vulkan, fixes de câmera/stack
+    ├── Códigos bin64/                    # Código-fonte C/C++ dos módulos nativos do cliente
+    │   ├── Código Fonte - BrService.dll/ # Código-fonte modular opcional (overlay, HUD de latência e DPS meter)
+    │   └── Código Fonte - Version.dll/   # Hook standalone (No-IP, auth bypass, stack/VEH fix, PT-BR, 4K)
     ├── Ferramentas Python e PowerShell/  # Utilitários, scripts de dados, reduções de ping e inicializadores
     │   ├── Código Fonte - Academy NoLag/ # Sistema de roteamento inteligente e tunelamento de latência (.NET 9)
     │   ├── Código Fonte - Executável Rust do Emulador/ # Código-fonte Rust do supervisor e launcher nativo
@@ -151,19 +151,18 @@ O emulador opera com separação estrita de persistência em **3 schemas indepen
 
 ## Arquitetura de Módulos Nativos do Cliente (C/C++)
 
-### 1. `version.dll` (Proxy Hook)
-- **Mecanismo de Injeção**: Carregada automaticamente pelo binário do cliente `Aion.bin` via técnicas de proxy DLL de sistema.
-- **Hook No-IP**: Intercepta a API de sockets do Windows (`connect`, `WSAConnect`), redirecionando silenciosamente chamadas para IPs externos oficiais para o endereço de loopback (`127.0.0.1`), permitindo rodar emuladores sem editar `hosts`.
-- **GameGuard Bypass**: Desativa a exigência dos drivers anti-cheat oficiais, prevenindo encerramentos forçados ou incompatibilidades de sistema.
-- **Compatibilidade Gráfica**: Ajustes de stack e limites de profundidade de visão (`fov`, `camMax`, `fpsUnlock`).
+### 1. `version.dll` (Proxy Hook Standalone de Produção)
+- **Mecanismo de Injeção**: Carregada automaticamente pelo binário do cliente `Aion.bin` via técnicas de proxy DLL de sistema (`version.dll`).
+- **Independência Completa**: Opera de forma 100% autônoma, sem chamadas, carregamento ou acoplamento a `BrService.dll` e sem exigência de tokens proprietários.
+- **Zero WebSocket**: Comunicação de rede limitada estritamente aos hooks WinSock para conexão do jogo; sem sockets WebSocket ou conexões secundárias de telemetria.
+- **Hook No-IP**: Intercepta a API de sockets do Windows (`connect`, `inet_ntoa`, `lstrcpynA`, `gethostbyname`), redirecionando silenciosamente chamadas para IPs externos oficiais para o endereço de loopback (`127.0.0.1`) e tráfego HTTP/Shop para `127.0.0.1:8080`.
+- **Injeção de Idioma PT-BR & Bypass de País**: Patch dinâmico de tabelas de idioma em módulos CryEngine para habilitar `BRA` e neutralizar restrições regionais.
+- **Compatibilidade e Estabilidade Gráfica**: Desbloqueio de resolução até 4096×4096 no `crysystem`, correção de flickering de shaders, correção de afinidade de CPU para processadores com 32+ cores e correção de stack x64/VEH no Windows 11 (24H2+).
+- **Gameplay Fixes 5.0**: Interceptor de exibição de saldo de Quna (`quna_fix`) e correção do diálogo de resultado de desmonte de itens (`siel_hammer_fix`).
 
-### 2. `BrService.dll` (Overlay DirectX & Shugo Console)
-- **Renderização DirectX**: Hook na cadeia de swap do Direct3D (DirectX 9/11) renderizando UI nativa acelerada por GPU via Dear ImGui.
-- **Shugo Console Administrativo**: Atalhos **Shift + F3** ou **Ctrl + X** abrem o terminal administrativo in-game para execução de comandos, testes e depuração em tempo real.
-- **DPS Meter & Radar de Combate 4-Eixos**: Mede em tempo real o dano causado por segundo e plota no radar exclusivamente os 4 atributos oficiais de combate: **Crítico**, **Bloqueio**, **Esquiva** e **Resistência**.
-- **Combo UI Estilo LostHunting**: Sistema dinâmico de combos com pop scale, partículas e multiplicador de dano baseado na sequência ininterrupta de golpes.
-- **Gráfico Fibonacci de Latência**: Linha sutil renderizada abaixo do mostrador de ping apresentando a oscilação de latência dos últimos 60 minutos.
-- **Gerenciamento de Foco**: Auto-ocultação do overlay quando o jogo é minimizado ou perde o foco, poupando processamento de vídeo.
+### 2. `BrService.dll` (Módulo Modular de Telemetria e Overlay)
+- Código-fonte modular opcional preservado em `Ferramentas e Documentos/Códigos bin64/Código Fonte - BrService.dll`.
+- Fornece funcionalidades opcionais de overlay DirectX, Shugo Console, DPS Meter, Combo UI e integração WebSocket (porta 10001) para telemetria avançada de combate.
 
 ---
 

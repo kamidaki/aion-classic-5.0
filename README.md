@@ -42,7 +42,7 @@ O ecossistema divide-se em componentes perfeitamente orquestrados:
 
 - **Camada de Backend (Java 25 LTS):** Composta por quatro módulos Maven (`commons`, `login-server`, `game-server`, `chat-server`), operando com Java Virtual Threads e Non-blocking I/O (NIO) de alto throughput, sem qualquer dependência legada do Javolution.
 - **Camada de Supervisão e Launcher (Rust):** Executável nativo único compilado em código de máquina de 64 bits (`Aion Classic - EMULADOR.exe`), responsável pelo gerenciamento de ciclo de vida dos processos Java via Windows Job Objects, interface visual moderna em WebView2 (Edge Chromium), monitoramento de telemetria em tempo real e Database Studio embutido.
-- **Módulos de Injeção e Extensão no Cliente (C/C++):** `version.dll` (proxy hook para bypass de autenticação e redirecionamento de conexões) e `BrService.dll` (overlay DirectX, HUD de latência, console Shugo, DPS meter, Combo UI e integração WebSocket).
+- **Módulos de Injeção e Extensão no Cliente (C/C++):** `version.dll` (proxy hook standalone de 64 e 32 bits para bypass de autenticação, No-IP, fixes de stack Windows 10/11, injeção de idioma PT-BR e correções de gameplay 5.0, operando de forma 100% independente e sem dependência de WebSocket) e `BrService.dll` (código-fonte do módulo modular de telemetria, HUD de latência e DPS meter).
 - **Otimizador de Rota e Latência (C# / .NET 9):** `Academy NoLag`, subsistema de roteamento inteligente e tunelamento TCP/UDP para conexões competitivas de baixíssimo ping e eliminação de jitter.
 
 ---
@@ -144,8 +144,8 @@ D:\AION CLASSIC 5.0 - EMULADOR\
     │   └── parsersXML\                       # Suíte de geração e validação de static_data
     │
     └── Patch final - Client 5.0\             # Patch consolidado para aplicação no cliente
-        ├── bin32\                            # DLLs compiladas de 32 bits
-        ├── bin64\                            # DLLs compiladas de 64 bits (version.dll, BrService.dll)
+        ├── bin32\                            # DLLs compiladas de 32 bits (version.dll)
+        ├── bin64\                            # DLLs compiladas de 64 bits (version.dll standalone)
         ├── l10n\                             # Localização e assets (BRA, ENG)
         ├── Start x64 - INGLÊS.bat            # Inicializador do cliente em inglês com flags
         └── Start x64 - PORTUGUÊS BRASIL.bat  # Inicializador do cliente em português com flags
@@ -157,8 +157,8 @@ D:\AION CLASSIC 5.0 - EMULADOR\
 
 > [!IMPORTANT]
 > ### DIRETRIZ MANDATÓRIA DE CLIENTES:
-> 1. **Cliente de Jogo e Desenvolvimento (`D:\GameForge\aionclassic`)**: É o cliente principal onde as DLLs compiladas (`version.dll`, `BrService.dll`), scripts `.bat` e arquivos de localização são aplicados para execução e testes práticos do emulador.
-> 2. **Patch Consolidado (`Ferramentas e Documentos\Patch final - Client 5.0`)**: Contém a versão canônica e pronta para deploy de todos os arquivos de client que acompanham o emulador. Toda nova compilação das DLLs deve atualizar tanto esta pasta quanto a pasta do cliente de jogo.
+> 1. **Cliente de Jogo e Desenvolvimento (`D:\GameForge\aionclassic`)**: É o cliente principal onde os binários compilados (`version.dll`), scripts `.bat` e arquivos de localização são aplicados para execução e testes práticos do emulador.
+> 2. **Patch Consolidado (`Ferramentas e Documentos\Patch final - Client 5.0`)**: Contém a versão canônica e pronta para deploy de todos os arquivos de client que acompanham o emulador. Toda nova compilação da `version.dll` atualiza tanto esta pasta quanto a pasta do cliente de jogo.
 > 3. **Proibição de Caminhos Hardcoded**: Nenhum arquivo versionado no repositório (código Java, C++, Rust, Python, `.bat` ou `.md`) deve conter letras de disco rígido fixas (`C:\`, `D:\`). Todas as referências devem resolver os caminhos relativos à raiz do projeto.
 
 ---
@@ -257,21 +257,20 @@ O emulador dispõe do motor primário e **autoritativo exclusivo** de navegaçã
 
 ---
 
-## 11. Módulos Injetados no Cliente (BrService.dll e Version.dll)
+## 11. Módulos Injetados no Cliente (Version.dll Standalone & BrService.dll)
 
-### 11.1 `version.dll` (Proxy Hook & Bypass)
-- **No-IP Hook**: Intercepta as chamadas de socket do binário `Aion.bin`, redirecionando as conexões de rede oficiais para o emulador local (`127.0.0.1`), dispensando alterações manuais no arquivo `hosts` do Windows.
-- **Bypass de GameGuard**: Neutraliza a checagem obrigatória do software anti-cheat proprietário, garantindo inicialização imediata e estável.
-- **DXVK & Vulkan Fixes**: Compatibilização com camadas de renderização modernas, corrigindo travamentos de câmera e falhas de profundidade de pilha.
+### 11.1 `version.dll` (Proxy Hook Standalone de Produção)
+- **Operação 100% Standalone**: Totalmente desvinculada de dependências externas (como `BrService.dll`), eliminando travas de inicialização e tokens proprietários de linha de comando.
+- **Zero WebSocket**: Não requer infraestrutura WebSocket; toda a interceptação de tráfego de jogo é realizada via hooks WinSock nativos.
+- **No-IP Hook & Redirecionamento**: Intercepta chamadas de socket do binário `Aion.bin`, redirecionando conexões oficiais para o emulador local (`127.0.0.1`) e tráfego HTTP/Shop para `127.0.0.1:8080`, dispensando modificações no arquivo `hosts`.
+- **Injeção de Idioma PT-BR**: Localização dinâmica em memória para o idioma `BRA` e bypass automático da checagem de país (`"unavailable in your country"`).
+- **Desbloqueio Gráfico 4K**: Remove restrições de resolução no `crysystem`, suportando até 4096×4096, e corrige flickering de shaders (`shader_fix`).
+- **Fix de Stack x64 e VEH**: Estabiliza o cliente sob Themida em Windows 10 e Windows 11 (24H2+), prevenindo exceções de inicialização.
+- **Gameplay Fixes 5.0**: Inclui interceptor em memória para exibição correta de saldo de Quna (`quna_fix`) e correção do diálogo de desmonte de itens (`siel_hammer_fix`).
 
-### 11.2 `BrService.dll` (Overlay DirectX & Shugo Console)
-- **Controle via BAT**: Parâmetros modulares de inicialização (`-console`, `-freefly`, `-pingUi`, `-DpsMeterUI`, `-comboUi`, `-Model3D`, `-fov`, `-camMax`, `-fpsUnlock`, `-lang:BRA/ENG`).
-- **Shugo Console Administrativo**: Acionado via atalhos **Shift + F3** ou **Ctrl + X**, com ajustes visuais de opacidade, escala e comandos rápidos de GM.
-- **Combo UI Estilo LostHunting**: Mostrador de combos dinâmico com contagem de acertos, multiplicador de dano, partículas e banners temáticos.
-- **Pontos de Participação**: A cada 1.000 acertos cumulativos em combate contra NPCs, o jogador recebe 1 Ponto de Participação persistido no banco de dados.
-- **Radar de Combate 4-Eixos**: Substituídos os atributos genéricos; apresenta estritamente **Crítico**, **Bloqueio**, **Esquiva** e **Resistência**.
-- **Gráfico Fibonacci de Latência**: Linha sutil renderizada abaixo do mostrador de MS com o histórico de oscilação dos últimos 60 minutos.
-- **Ocultação Automática Inteligente**: O overlay se oculta instantaneamente quando a janela do Aion perde o foco ou é minimizada.
+### 11.2 `BrService.dll` (Módulo Opcional de Telemetria e Overlay)
+- Código-fonte modular preservado na árvore `Ferramentas e Documentos\Códigos bin64\Código Fonte - BrService.dll`, sem vínculo ou acoplamento com o carregador de inicialização do cliente `version.dll`.
+- Fornece funcionalidades opcionais de overlay DirectX, Shugo Console, DPS Meter, Combo UI e integração WebSocket com a porta 10001 do emulador.
 
 ---
 
@@ -314,19 +313,17 @@ Build.bat
 ```
 O script compila via `cargo build --release` e publica o executável automaticamente em `Emulador - Produto Final\Aion Classic - EMULADOR.exe`.
 
-### 14.3 Compilando as DLLs do Cliente (MSVC)
+### 14.3 Compilando a DLL do Cliente (MSVC)
 ```cmd
-:: Compilação da Version.dll (x64 e x86)
+:: Compilação da Version.dll Standalone (x64 e x86)
 cd "Ferramentas e Documentos\Códigos bin64\Código Fonte - Version.dll"
 build.bat
-
-:: Compilação da BrService.dll (x64)
-cd "Ferramentas e Documentos\Códigos bin64\Código Fonte - BrService.dll"
-Build64.bat
 ```
-Ambos os scripts realizam a compilação e instalam os binários diretamente em:
-- `Ferramentas e Documentos\Patch final - Client 5.0\bin64\`
-- `D:\GameForge\aionclassic\bin64\`
+O script realiza a compilação limpa (x64 e x86) e instala os binários diretamente em:
+- `Ferramentas e Documentos\Patch final - Client 5.0\bin64\` (e `bin32\`)
+- `D:\GameForge\aionclassic\bin64\` (e `bin32\`)
+
+*(Nota: O código-fonte de `BrService.dll` permanece preservado de forma independente em `Ferramentas e Documentos\Códigos bin64\Código Fonte - BrService.dll` para desenvolvimento modular de telemetria e overlay).*
 
 ---
 
