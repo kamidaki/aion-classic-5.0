@@ -17,7 +17,7 @@
 
 	<properties>
 		<maven.compiler.release>25</maven.compiler.release>
-		<maven.test.skip>true</maven.test.skip>
+		<maven.test.skip>false</maven.test.skip>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>

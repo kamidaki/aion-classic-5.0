@@ -33,11 +33,9 @@ public class NpcSkillList {
 		} else {
 			skills = new ArrayList<>(npcSkills.size());
 			List<Integer> prios = new ArrayList<>();
-			for (Iterator<NpcSkillTemplate> iter = npcSkills.iterator(); iter.hasNext();) {
-				NpcSkillTemplate template = iter.next();
+			for (NpcSkillTemplate template : npcSkills) {
 				if (DataManager.SKILL_DATA.getSkillTemplate(template.getSkillId()) == null) {
 					log.warn("Missing skill " + template.getSkillId() + " for npc " + npcId);
-					iter.remove();
 					continue;
 				}
 				skills.add(new NpcSkillTemplateEntry(template));
