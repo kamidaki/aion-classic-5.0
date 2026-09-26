@@ -70,12 +70,12 @@ O arquivo `SM_SERVER_LIST.java` do emulador envia `0x00000401` (Classic + visibl
 - 1 ID oficial não possui template: `50068` (`action_pet_pc_doping3`). Nas três variantes oficiais, essa entrada possui somente ID, nome, textos e ícone; não declara ativação, tipo, subtipo, alvo, custo, tempo ou efeitos. A busca integral pelo nome não encontrou outra definição oficial nem ocorrência no código. Ela foi classificada como ação de cliente não executável sem template, justificadamente pendente; criar um template exigiria inventar campos.
 - 26 templates não existem na base oficial: `418`, `459`, `460`, `854`, `993`, `1120`, `1129`, `1264`, `1266`, `1514`, `2075`, `2381`–`2388`, `8397`, `21922`–`21927`.
 - 31 Skills usam tipos oficiais sem correspondência registrada no motor; 3 ainda usam tipos cuja classe Java está vazia (`Activate_Enslave` e `Dummy`). As 3 Skills de coleta `2521`–`2523` deixaram essa lista após `UtilityEffect` passar a aplicar o ciclo de buff e os modificadores já declarados no XML.
-- Há milhares de diferenças de alcance, alvo, slot e tipo de efeito. Parte pode ser conversão semântica legítima; a matriz não as chama de erro sem prova.
+- Os campos oficiais de alcance e seleção foram sincronizados em 8.349 templates; permanecem diferenças de slot, efeitos e outros subsistemas que a matriz não chama de erro sem prova.
 
 ### P0 — ausência de testes de Skills
 
 - A auditoria encontrou `maven.test.skip=true`; nesta etapa o padrão foi alterado para `false`, de modo que `mvn test` execute a suíte sem flags especiais.
-- Executando `mvn test` com a configuração corrigida, 110 testes passam com Java 25.
+- Executando `mvn test` com a configuração corrigida, 113 testes passam com Java 25.
 - Seis testes estruturais de Skills foram adicionados nesta etapa: unicidade/cobertura de IDs, referências de jogador/NPC, tags de efeito no XSD, sincronização byte a byte entre fonte/produto, garantia de que `UtilityEffect` use o ciclo de buffs e proibição de mensagens inexistentes no motor de Skills.
 - Ainda não existe teste comportamental de Skill/efeito/estigma. O sucesso atual não valida combate.
 
@@ -85,6 +85,7 @@ O arquivo `SM_SERVER_LIST.java` do emulador envia `0x00000401` (Classic + visibl
 - Isso pode ser correto para o protocolo, mas precisa ser comparado com trocas rápidas de alvo, alvo fora de visão e tipos 3/4 nas PCAPs antes de ser preservado.
 - Pacotes de cast/result já contêm várias adaptações 5.0 comprovadas, mas ainda há campos desconhecidos e regras hardcoded.
 - O aviso de distância usava o ID legado inexistente `1402920`, causa direta do texto `???`; foi substituído pelo ID oficial Classic `1300022` (`STR_SKILL_TOO_FAR`). Após a correção, nenhuma chamada direta do motor de Skills referencia mensagem ausente no cliente oficial.
+- A validação de `add_wpn_range` substituía incorretamente distâncias-base maiores pelo alcance da arma (por exemplo, 15 m viravam aproximadamente 2 m). A regra voltou a somar alcance-base e alcance da arma, e os campos de distância/alvo/forma de área foram reconstruídos a partir do cliente 5.0.
 
 ### P1 — defesa e resistência
 
@@ -144,7 +145,8 @@ O arquivo `SM_SERVER_LIST.java` do emulador envia `0x00000401` (Classic + visibl
 | NPC Skills | `NpcSkillList` e lista compartilhada de `DataManager` | Uma referência inválida deixa de remover globalmente a definição carregada; passa a ser ignorada apenas na instância | Compilação Java 25 e suíte Maven |
 | Skills `2521`–`2523` | Tipos oficiais `Utility`, árvore de Skills e modificadores já presentes no XML | `UtilityEffect` passou a herdar o ciclo de `BufEffect`, registrando e removendo os três modificadores declarados | Teste estrutural dedicado e suíte Maven |
 | Mensagem de Skill fora de alcance | Cliente oficial: `STR_SKILL_TOO_FAR`, ID `1300022`; ID legado `1402920` ausente | Substituição do envio legado em `FirstTargetRangeProperty` | Teste cruza todas as chamadas do motor de Skills com `client_strings_msg.xml` |
-| Execução de testes | `maven.test.skip=true` no POM raiz | Testes habilitados por padrão | `mvn test`: 110 testes, 0 falhas, 0 erros, 0 ignorados |
+| Alcance e seleção de alvo | `first_target_valid_distance`, `add_wpn_range`, `revision_distance`, `target_range` e `target_range_opt1..4` do cliente | 8.349 templates sincronizados; fórmula de alcance da arma corrigida | Auditor idempotente, teste estático de 12.114 Skills e testes unitários da soma de alcance |
+| Execução de testes | `maven.test.skip=true` no POM raiz | Testes habilitados por padrão | `mvn test`: 113 testes, 0 falhas, 0 erros, 0 ignorados |
 | Produto final | JAR reconstruído a partir do código testado | JAR do GameServer sincronizado | SHA-256 idêntico entre `target` e produto final |
 
 Esta tabela registra apenas o que foi efetivamente alterado. Não promove as demais Skills a compatíveis nem transforma diferenças estáticas em bugs confirmados.

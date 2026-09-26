@@ -1,0 +1,24 @@
+{
+  "skills_cliente": 12114,
+  "skills_servidor": 12139,
+  "conflitos_variantes": [],
+  "sincronizacao": {
+    "skills_alteradas": 8349,
+    "alteracoes_por_atributo": {
+      "awr": 51,
+      "direction": 3,
+      "effective_altitude": 163,
+      "effective_angle": 54,
+      "effective_dist": 11,
+      "effective_range": 180,
+      "first_target": 897,
+      "first_target_range": 7718,
+      "revision_distance": 447,
+      "target_distance": 485,
+      "target_type": 1515
+    },
+    "skills_sem_properties": [],
+    "formas_com_target_type_incompativel": []
+  },
+  "aplicado": true
+}

@@ -29,9 +29,9 @@ Existem 12136 templates sem referência direta ou indireta encontrada nos testes
 
 | Classificação | Skills |
 |---|---:|
-| ALINHADO_ESTATICAMENTE_NAO_VALIDADO | 4336 |
+| ALINHADO_ESTATICAMENTE_NAO_VALIDADO | 9322 |
 | AUSENTE_EMULADOR | 1 |
-| DIVERGENTE_ESTRUTURAL | 7718 |
+| DIVERGENTE_ESTRUTURAL | 2703 |
 | EFEITO_JAVA_STUB | 3 |
 | EFEITO_SEM_REGISTRO_JAVA | 31 |
 | ENTRADA_CLIENTE_NAO_EXECUTAVEL_SEM_TEMPLATE | 1 |
@@ -43,15 +43,12 @@ Existem 12136 templates sem referência direta ou indireta encontrada nos testes
 
 | Campo | Skills |
 |---|---:|
-| properties.first_target_range | 6384 |
 | effect1 | 1197 |
-| properties.first_target | 897 |
 | tslot | 709 |
 | properties.target_maxcount | 672 |
 | pve_damage_ratio | 661 |
 | skillsubtype | 620 |
 | effect2 | 442 |
-| properties.target_distance | 418 |
 | effect3 | 160 |
 | cooldown | 120 |
 | pvp_damage | 79 |

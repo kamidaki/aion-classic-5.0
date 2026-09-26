@@ -51,6 +51,7 @@ class SkillStaticDataAuditTest {
 	private static final Set<Integer> KNOWN_OFFICIAL_MISSING = Set.of(50068);
 	private static final Set<Integer> KNOWN_SERVER_ONLY = Set.of(418, 459, 460, 854, 993, 1120, 1129, 1264, 1266, 1514, 2075, 2381, 2382,
 		2383, 2384, 2385, 2386, 2387, 2388, 8397, 21922, 21923, 21924, 21925, 21926, 21927);
+	private static final Set<String> SUPPORTED_TARGET_TYPES = Set.of("ONLYONE", "PARTY", "AREA", "PARTY_WITHPET", "POINT");
 
 	@Test
 	void skillIdsAreUniqueAndKnownCoverageGapsCannotChangeSilently() throws Exception {
@@ -147,6 +148,39 @@ class SkillStaticDataAuditTest {
 		assertTrue(invalidIds.isEmpty(), "Mensagens usadas por Skills ausentes no cliente Classic 5.0: " + invalidIds);
 	}
 
+	@Test
+	void skillTargetRangesMatchClassicClient() throws Exception {
+		Map<Integer, Element> official = clientElementsById(parse(CLIENT_SKILLS));
+		NodeList templates = parse(SKILLS).getElementsByTagName("skill_template");
+		Set<String> differences = new HashSet<>();
+		for (int i = 0; i < templates.getLength(); i++) {
+			Element template = (Element) templates.item(i);
+			int skillId = Integer.parseInt(template.getAttribute("skill_id"));
+			Element client = official.get(skillId);
+			if (client == null)
+				continue;
+			NodeList propertyNodes = template.getElementsByTagName("properties");
+			if (propertyNodes.getLength() == 0)
+				continue;
+			Element properties = (Element) propertyNodes.item(0);
+			compareIntAttribute(differences, skillId, properties, "first_target_range", clientText(client, "first_target_valid_distance"));
+			compareIntAttribute(differences, skillId, properties, "revision_distance", clientText(client, "revision_distance"));
+			compareIntAttribute(differences, skillId, properties, "target_distance", clientText(client, "target_range_opt1"));
+			boolean expectedWeaponRange = "1".equals(clientText(client, "add_wpn_range"));
+			boolean actualWeaponRange = "true".equals(properties.getAttribute("awr"));
+			if (expectedWeaponRange != actualWeaponRange)
+				differences.add(skillId + ":awr=" + actualWeaponRange + "!=" + expectedWeaponRange);
+
+			String expectedFirstTarget = clientText(client, "first_target").toUpperCase();
+			if (!expectedFirstTarget.isEmpty() && !expectedFirstTarget.equals(properties.getAttribute("first_target")))
+				differences.add(skillId + ":first_target=" + properties.getAttribute("first_target") + "!=" + expectedFirstTarget);
+			String expectedTargetType = clientText(client, "target_range").toUpperCase();
+			if (SUPPORTED_TARGET_TYPES.contains(expectedTargetType) && !expectedTargetType.equals(properties.getAttribute("target_type")))
+				differences.add(skillId + ":target_type=" + properties.getAttribute("target_type") + "!=" + expectedTargetType);
+		}
+		assertTrue(differences.isEmpty(), "Alcances divergentes do cliente Classic 5.0: " + differences);
+	}
+
 	private static Document parse(Path path) throws Exception {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
@@ -179,6 +213,29 @@ class SkillStaticDataAuditTest {
 			ids.add(Integer.parseInt(element.getElementsByTagName(idTagName).item(0).getTextContent()));
 		}
 		return ids;
+	}
+
+	private static Map<Integer, Element> clientElementsById(Document document) {
+		Map<Integer, Element> result = new HashMap<>();
+		NodeList skills = document.getElementsByTagName("skill_base_client");
+		for (int i = 0; i < skills.getLength(); i++) {
+			Element skill = (Element) skills.item(i);
+			result.put(Integer.parseInt(clientText(skill, "id")), skill);
+		}
+		return result;
+	}
+
+	private static String clientText(Element client, String tagName) {
+		NodeList nodes = client.getElementsByTagName(tagName);
+		return nodes.getLength() == 0 ? "" : nodes.item(0).getTextContent().trim();
+	}
+
+	private static void compareIntAttribute(Set<String> differences, int skillId, Element properties, String attribute, String expectedText) {
+		int expected = expectedText.isEmpty() ? 0 : (int) Double.parseDouble(expectedText);
+		String actualText = properties.getAttribute(attribute);
+		int actual = actualText.isEmpty() ? 0 : Integer.parseInt(actualText);
+		if (actual != expected)
+			differences.add(skillId + ":" + attribute + "=" + actual + "!=" + expected);
 	}
 
 	private static Set<Integer> uniqueIds(NodeList nodes, String attribute) {

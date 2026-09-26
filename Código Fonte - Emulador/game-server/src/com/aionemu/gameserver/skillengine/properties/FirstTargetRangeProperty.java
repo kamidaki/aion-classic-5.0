@@ -17,12 +17,13 @@ import com.aionemu.gameserver.world.geo.GeoService;
 public class FirstTargetRangeProperty {
 
 	public static boolean set(Skill skill, Properties properties, CastState castState) {
-		float firstTargetRange = properties.getFirstTargetRange();
 		if (!skill.isFirstTargetRangeCheck())
 			return true;
 
 		Creature effector = skill.getEffector();
 		Creature firstTarget = skill.getFirstTarget();
+		float firstTargetRange = calculateRange(properties.getFirstTargetRange(), properties.isAddWeaponRange(),
+			effector.getGameStats().getAttackRange().getCurrent());
 
 		if (properties.getFirstTarget() == FirstTargetAttribute.POINT) {
 			 if (!GeoService.getInstance().canSee(effector, skill.getX(), skill.getY(), skill.getZ(), IgnoreProperties.of(effector.getRace()))) {
@@ -48,16 +49,6 @@ public class FirstTargetRangeProperty {
 			firstTargetRange += properties.getRevisionDistance();
 		}
 
-		// Add Weapon Range to distance
-		if (properties.isAddWeaponRange()) {
-			float weaponRange = effector.getGameStats().getAttackRange().getCurrent() / 1000f;
-			if (firstTargetRange >= weaponRange) {
-				firstTargetRange = weaponRange;
-			} else {
-				firstTargetRange += weaponRange;
-			}
-		}
-
 		// fixes first hit sometimes incorrectly not going through
 		if (effector.getMoveController().isInMove() && !firstTarget.getAggroList().isHating(effector))
 			firstTargetRange += PositionUtil.calculateMaxCoveredDistance(effector, 50);
@@ -77,6 +68,10 @@ public class FirstTargetRangeProperty {
 			return false;
 		}
 		return true;
+	}
+
+	static float calculateRange(int baseRange, boolean addWeaponRange, int attackRange) {
+		return baseRange + (addWeaponRange ? attackRange / 1000f : 0);
 	}
 
 }
