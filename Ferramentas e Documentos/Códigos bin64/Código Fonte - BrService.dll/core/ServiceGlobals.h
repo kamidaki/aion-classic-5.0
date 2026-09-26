@@ -2,6 +2,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <string>
+#include <deque>
 #include <vector>
 #include <unordered_map>
 #include <mutex>
@@ -133,7 +134,7 @@ struct PingHistoryEntry {
     int pingMs;
     uint64_t timestampMs;
 };
-extern std::vector<PingHistoryEntry> g_pingHistory;
+extern std::deque<PingHistoryEntry> g_pingHistory;
 extern std::mutex g_pingHistoryMutex;
 void AddPingHistory(int pingMs);
 
@@ -154,15 +155,28 @@ extern std::atomic<uint32_t> g_battleDurationSeconds;
 extern std::atomic<bool> g_isCombatActive;
 extern std::vector<CombatSession> g_combatHistory;
 
-// HWNDs of Layered Windows
-extern HWND g_hPingHudWnd;
-extern HWND g_hDrawerModalWnd;
+// HWNDs of Layered Windows — all atomic to allow safe cross-thread read
+// UI thread (WatchdogThread) is the sole WRITER of these handles.
+// WebSocket/PingEngine threads may read these to post messages safely.
+extern std::atomic<HWND> g_hPingHudWnd;
+extern std::atomic<HWND> g_hDrawerModalWnd;
 extern std::atomic<HWND> g_hComboWnd;
+
+// Language flag — atomic for thread-safe multi-threaded access
+// Set during initialization from cmdline or INI. Use IsEnglish() (from I18n.h) to query.
+extern std::atomic<bool> g_isEnglish;
 
 void ResetCombatSession();
 void AddCombatEvent(const std::string& attacker, const std::string& target, uint32_t skillId,
                     const std::string& skillName, uint32_t damage, bool isCrit, bool isHeal,
                     uint32_t targetCurHp, uint32_t targetMaxHp, uint32_t targetLevel,
-                    const std::string& timeStr = "");
+                    const std::string& timeStr = "", const std::string& attackerClass = "");
+
+// Custom window messages for cross-thread UI communication (posted, never sent)
+// T04/T05: All cross-thread UI state changes use PostMessage with these IDs.
+static constexpr UINT WM_BRSERVICE_REPAINT      = WM_USER + 0x100; // Trigger repaint of a UI window
+static constexpr UINT WM_BRSERVICE_SHOW         = WM_USER + 0x101; // Show a UI window
+static constexpr UINT WM_BRSERVICE_HIDE         = WM_USER + 0x102; // Hide a UI window
+static constexpr UINT WM_BRSERVICE_PLAYER_STATE = WM_USER + 0x103; // Player state changed (wParam=inGame, lParam=isLoading)
 
 } // namespace BrService

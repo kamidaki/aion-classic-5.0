@@ -1,12 +1,17 @@
 #pragma once
 #include <string>
+#include <atomic>
 
 namespace BrService {
 
 extern std::string g_clientLang;
+extern std::atomic<bool> g_isEnglish;
 
+// T09: Thread-safe language query. g_isEnglish is an atomic<bool> set during
+// initialization (from cmdline -lang or INI [General]\Language).
+// Never reads the non-atomic g_clientLang directly from render/network threads.
 inline bool IsEnglish() {
-    return g_clientLang == "ENG" || g_clientLang == "ENU";
+    return g_isEnglish.load(std::memory_order_relaxed);
 }
 
 struct I18n {

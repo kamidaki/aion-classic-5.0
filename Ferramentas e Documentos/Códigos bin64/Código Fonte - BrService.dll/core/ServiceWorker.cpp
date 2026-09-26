@@ -11,6 +11,9 @@ namespace BrService {
 static HANDLE s_hWatchdog = nullptr;
 static std::atomic<bool> s_running(false);
 
+// T14: Hotkey ID for Shift+F3 registered via RegisterHotKey
+static const int kHotkeyShiftF3 = 0xB001;
+
 struct WindowSearchContext {
     DWORD targetPid;
     HWND foundHwnd;
@@ -21,7 +24,10 @@ static BOOL CALLBACK EnumWindowsCallback(HWND hwnd, LPARAM lParam) {
     DWORD pid = 0;
     GetWindowThreadProcessId(hwnd, &pid);
     if (pid == ctx->targetPid) {
-        if (hwnd == g_hPingHudWnd || hwnd == g_hDrawerModalWnd || hwnd == g_hComboWnd.load()) return TRUE;
+        HWND hPing = g_hPingHudWnd.load();
+        HWND hDrw  = g_hDrawerModalWnd.load();
+        HWND hCombo = g_hComboWnd.load();
+        if (hwnd == hPing || hwnd == hDrw || hwnd == hCombo) return TRUE;
 
         wchar_t className[128] = { 0 };
         GetClassNameW(hwnd, className, 128);
@@ -65,7 +71,7 @@ HWND ServiceWorker::FindGameWindow() {
 
 bool ServiceWorker::CheckLoadingScreen(HWND /*hwnd*/) {
     // NEVER send synchronous WM_GETTEXT across threads to the game window.
-    // In Aion, loading state is tracked via WebSocket and in-world status.
+    // In Aion, loading state is tracked via WebSocket PLAYER_STATE.isLoading.
     return g_isLoadingScreen.load();
 }
 
@@ -90,6 +96,29 @@ static void SyncPositionsSafely(HWND hGame, bool force = false) {
         PingHudUI::UpdatePosition(gx, gy, gw, gh);
         DrawerModalUI::UpdatePosition(gx, gy, gw, gh);
     }
+}
+
+// T04/T05: Safe cross-thread UI helpers using PostMessage (non-blocking, no deadlock risk).
+// These replace direct Show/Hide/Repaint calls made from non-UI threads.
+static void PostShowPingHud() {
+    HWND h = g_hPingHudWnd.load();
+    if (h) PostMessage(h, WM_BRSERVICE_SHOW, 0, 0);
+}
+static void PostHidePingHud() {
+    HWND h = g_hPingHudWnd.load();
+    if (h) PostMessage(h, WM_BRSERVICE_HIDE, 0, 0);
+}
+static void PostRepaintPingHud() {
+    HWND h = g_hPingHudWnd.load();
+    if (h) PostMessage(h, WM_BRSERVICE_REPAINT, 0, 0);
+}
+static void PostShowDrawer() {
+    HWND h = g_hDrawerModalWnd.load();
+    if (h) PostMessage(h, WM_BRSERVICE_SHOW, 0, 0);
+}
+static void PostHideDrawer() {
+    HWND h = g_hDrawerModalWnd.load();
+    if (h) PostMessage(h, WM_BRSERVICE_HIDE, 0, 0);
 }
 
 bool ServiceWorker::Start() {
@@ -121,6 +150,17 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
         DrawerModalUI::Initialize(g_hModule);
     }
 
+    // T14: Register Shift+F3 as a global hotkey owned by this thread (reliable, no polling).
+    // This replaces the unsafe GetAsyncKeyState polling approach.
+    bool hotkeyRegistered = (RegisterHotKey(nullptr, kHotkeyShiftF3, MOD_SHIFT | MOD_NOREPEAT, VK_F3) != FALSE);
+    if (!hotkeyRegistered) {
+        LogError("ServiceWorker: Falha ao registrar hotkey Shift+F3 (err=%lu). Tentando sem MOD_NOREPEAT.", GetLastError());
+        hotkeyRegistered = (RegisterHotKey(nullptr, kHotkeyShiftF3, MOD_SHIFT, VK_F3) != FALSE);
+    }
+    if (hotkeyRegistered) {
+        LogInfo("ServiceWorker: Hotkey Shift+F3 registrada com sucesso.");
+    }
+
     HWND hGame = nullptr;
     bool s_gameEverFound = false;
     ULONGLONG s_gameLostTick = 0;
@@ -135,6 +175,29 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
                 s_running = false;
                 break;
             }
+
+            // T04/T05: Handle cross-thread UI commands (Posted from WebSocket/PingEngine threads)
+            if (msg.message == WM_BRSERVICE_SHOW && msg.hwnd == nullptr) {
+                // Generic show-all (should not normally occur; real targeting is per-window PostMessage)
+            } else if (msg.message == WM_BRSERVICE_PLAYER_STATE && msg.hwnd == nullptr) {
+                bool inGame   = (msg.wParam != 0);
+                bool isLoading = (msg.lParam != 0);
+                if (!inGame || isLoading) {
+                    PingHudUI::Hide();
+                    DrawerModalUI::Hide();
+                } else {
+                    PingHudUI::Show();
+                    PingHudUI::Repaint();
+                }
+            }
+
+            // T14: Handle registered hotkey messages
+            if (msg.message == WM_HOTKEY && msg.wParam == kHotkeyShiftF3) {
+                if (!g_isLoadingScreen.load() && g_isGameActive.load()) {
+                    DrawerModalUI::Toggle();
+                }
+            }
+
             TranslateMessage(&msg);
             DispatchMessageW(&msg);
         }
@@ -184,7 +247,7 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
         bool active = (isVisible && !isMinimized && isForeground);
         g_isGameActive = active;
 
-        // 5. Loading screen detection
+        // 5. Loading screen detection (state driven entirely by WebSocket PLAYER_STATE)
         bool isLoading = g_isLoadingScreen.load();
         if (isLoading != lastLoading) {
             lastLoading = isLoading;
@@ -198,9 +261,8 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
             }
         }
 
-        // 6. In-world flag from WebSocket player state
-        uint32_t charId = g_localPlayerId.load();
-        g_isInWorld = (charId > 0);
+        // 6. T08: g_isInWorld is set exclusively by WebSocket PLAYER_STATE event.
+        // Removed redundant derivation from charId here (single source of truth = WebSocket).
 
         // 7. Active state transitions
         if (active != lastActive) {
@@ -217,18 +279,8 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
             }
         }
 
-        // 8. Direct Hotkey (Shift + F3) with game active and not loading
+        // 8. Periodic position sync (UI windows follow the game window position)
         if (active && !isLoading) {
-            static bool s_lastShiftF3 = false;
-            bool isF3 = (GetAsyncKeyState(VK_F3) & 0x8000) != 0;
-            bool isShift = (GetAsyncKeyState(VK_SHIFT) & 0x8000) != 0;
-            bool shiftF3 = isF3 && isShift;
-            if (shiftF3 && !s_lastShiftF3) {
-                DrawerModalUI::Toggle();
-            }
-            s_lastShiftF3 = shiftF3;
-
-            // Periodic position sync check
             static int syncCounter = 0;
             if (++syncCounter >= 6) { // ~180ms cadence
                 syncCounter = 0;
@@ -240,7 +292,13 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
         MsgWaitForMultipleObjects(0, nullptr, FALSE, 30, QS_ALLINPUT);
     }
 
-    // Clean up UI windows on the owning thread
+    // T14: Unregister hotkey before exiting
+    if (hotkeyRegistered) {
+        UnregisterHotKey(nullptr, kHotkeyShiftF3);
+    }
+
+    // T07: Clean up UI windows on the OWNING thread (WatchdogThread).
+    // This is the ONLY place these are destroyed. BR_Shutdown does NOT call them again.
     DrawerModalUI::Shutdown();
     PingHudUI::Shutdown();
 

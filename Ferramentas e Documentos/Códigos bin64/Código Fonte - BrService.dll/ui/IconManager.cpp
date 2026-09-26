@@ -475,13 +475,18 @@ std::wstring IconManager::GetClassIconPath(const std::string& className) {
 Gdiplus::Bitmap* IconManager::GetOrLoadBitmap(const std::wstring& fullPath) {
     if (fullPath.empty()) return nullptr;
 
-    std::lock_guard<std::mutex> lock(s_cacheMutex);
-    auto it = s_bitmapCache.find(fullPath);
-    if (it != s_bitmapCache.end()) {
-        return it->second;
+    // 1. Fast path: check memory cache with minimal lock duration
+    {
+        std::lock_guard<std::mutex> lock(s_cacheMutex);
+        auto it = s_bitmapCache.find(fullPath);
+        if (it != s_bitmapCache.end()) {
+            return it->second;
+        }
     }
 
+    // 2. T17: Perform file system I/O and image decoding OUTSIDE the lock
     if (GetFileAttributesW(fullPath.c_str()) == INVALID_FILE_ATTRIBUTES) {
+        std::lock_guard<std::mutex> lock(s_cacheMutex);
         s_bitmapCache[fullPath] = nullptr;
         return nullptr;
     }
@@ -491,6 +496,15 @@ Gdiplus::Bitmap* IconManager::GetOrLoadBitmap(const std::wstring& fullPath) {
         bmp = LoadDDSBitmap(fullPath);
     } else {
         bmp = Gdiplus::Bitmap::FromFile(fullPath.c_str(), FALSE);
+    }
+
+    // 3. Re-acquire lock to insert into cache (handle race where another thread loaded it)
+    std::lock_guard<std::mutex> lock(s_cacheMutex);
+    auto it = s_bitmapCache.find(fullPath);
+    if (it != s_bitmapCache.end()) {
+        // Another thread cached it while we were loading; discard our duplicate
+        if (bmp) delete bmp;
+        return it->second;
     }
 
     if (bmp && bmp->GetLastStatus() == Gdiplus::Ok) {

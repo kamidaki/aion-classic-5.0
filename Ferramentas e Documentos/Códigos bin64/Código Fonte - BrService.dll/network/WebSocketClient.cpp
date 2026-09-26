@@ -16,6 +16,7 @@
 namespace BrService {
 
 static HANDLE s_hThread = nullptr;
+static HANDLE s_hWakeEvent = nullptr; // T06: Used to instantly unblock reconnect Sleep
 static std::atomic<bool> s_running(false);
 static std::atomic<bool> s_connected(false);
 static std::string s_wsHost = "127.0.0.1";
@@ -99,6 +100,8 @@ bool WebSocketClient::Start(const std::string& host, int port) {
     if (port > 0) s_wsPort = port;
 
     s_running = true;
+    // T06: Create wake event for instant shutdown signaling
+    if (!s_hWakeEvent) s_hWakeEvent = CreateEventA(nullptr, FALSE, FALSE, nullptr);
     s_hThread = CreateThread(nullptr, 0, ClientThread, nullptr, 0, nullptr);
     return s_hThread != nullptr;
 }
@@ -106,6 +109,10 @@ bool WebSocketClient::Start(const std::string& host, int port) {
 void WebSocketClient::Stop() {
     s_running = false;
     s_connected = false;
+
+    // T06: Signal wake event first to unblock reconnect sleep immediately
+    if (s_hWakeEvent) SetEvent(s_hWakeEvent);
+
     {
         std::lock_guard<std::mutex> lock(s_sendMutex);
         if (s_currentSock != INVALID_SOCKET) {
@@ -117,6 +124,10 @@ void WebSocketClient::Stop() {
         WaitForSingleObject(s_hThread, 2000);
         CloseHandle(s_hThread);
         s_hThread = nullptr;
+    }
+    if (s_hWakeEvent) {
+        CloseHandle(s_hWakeEvent);
+        s_hWakeEvent = nullptr;
     }
 }
 
@@ -144,12 +155,16 @@ void WebSocketClient::HandleIncomingPayload(const std::string& payload) {
         LogInfo("WebSocket PLAYER_STATE recebido: inGame=%d, isLoading=%d, isAdmin=%d, charId=%u (%s)",
                 inGame, isLoading, isAdmin, charId, charName.c_str());
 
+        // T04/T05: Use PostMessage for cross-thread UI visibility changes (thread-safe, non-blocking).
+        // WatchdogThread processes WM_BRSERVICE_PLAYER_STATE in its message pump.
+        HWND hPing = g_hPingHudWnd.load();
+        HWND hDrw  = g_hDrawerModalWnd.load();
         if (!inGame || isLoading) {
-            PingHudUI::Hide();
-            DrawerModalUI::Hide();
+            if (hPing) PostMessage(hPing, WM_BRSERVICE_HIDE, 0, 0);
+            if (hDrw)  PostMessage(hDrw,  WM_BRSERVICE_HIDE, 0, 0);
         } else {
-            PingHudUI::Show();
-            PingHudUI::Repaint();
+            if (hPing) PostMessage(hPing, WM_BRSERVICE_SHOW, 0, 0);
+            if (hPing) PostMessage(hPing, WM_BRSERVICE_REPAINT, 0, 0);
         }
         return;
     }
@@ -188,8 +203,30 @@ void WebSocketClient::HandleIncomingPayload(const std::string& payload) {
             if (g_currentTarget.race.empty()) g_currentTarget.race = "NONE";
         }
 
-        if (g_hDrawerModalWnd && IsWindow(g_hDrawerModalWnd) && g_isDrawerOpen.load()) {
-            InvalidateRect(g_hDrawerModalWnd, nullptr, FALSE);
+        // T04: PostMessage for repaint (non-blocking, thread-safe)
+        HWND hDrw = g_hDrawerModalWnd.load();
+        if (hDrw && g_isDrawerOpen.load()) {
+            PostMessage(hDrw, WM_BRSERVICE_REPAINT, 0, 0);
+        }
+        return;
+    }
+
+    // T12: Real player combat metrics from the emulator (RADAR_METRICS event).
+    // Replaces the mocked Block/Dodge/Resist values previously computed in AddCombatEvent.
+    if (payload.find("\"RADAR_METRICS\"") != std::string::npos) {
+        float block  = (float)ExtractJsonUint(payload, "block",  0);
+        float dodge  = (float)ExtractJsonUint(payload, "dodge",  0);
+        float resist = (float)ExtractJsonUint(payload, "resist", 0);
+        // Crit is derived from real hit data in AddCombatEvent, but emulator can also override
+        float crit   = (float)ExtractJsonUint(payload, "crit",   0);
+        std::lock_guard<std::recursive_mutex> lock(g_combatMutex);
+        if (block  > 0.0f) g_currentRadar.block  = block;
+        if (dodge  > 0.0f) g_currentRadar.dodge  = dodge;
+        if (resist > 0.0f) g_currentRadar.resist = resist;
+        if (crit   > 0.0f) g_currentRadar.crit   = crit;
+        HWND hDrw = g_hDrawerModalWnd.load();
+        if (hDrw && g_isDrawerOpen.load()) {
+            PostMessage(hDrw, WM_BRSERVICE_REPAINT, 0, 0);
         }
         return;
     }
@@ -258,6 +295,8 @@ void WebSocketClient::HandleIncomingPayload(const std::string& payload) {
     std::string timeStr  = ExtractJsonString(payload, "time");
     std::string attacker = ExtractJsonString(payload, "attacker");
     if (attacker.empty()) attacker = ExtractJsonString(payload, "attackerName");
+    std::string attackerClass = ExtractJsonString(payload, "attackerClass");
+    if (attackerClass.empty()) attackerClass = ExtractJsonString(payload, "className");
     std::string target = ExtractJsonString(payload, "target");
     if (target.empty()) target = ExtractJsonString(payload, "targetName");
     std::string skillName = ExtractJsonString(payload, "skillName");
@@ -276,6 +315,21 @@ void WebSocketClient::HandleIncomingPayload(const std::string& payload) {
     std::string rating = ExtractJsonString(payload, "rating");
     std::string race   = ExtractJsonString(payload, "race");
 
+    // Extract embedded radar stats if present in COMBAT_EVENT
+    size_t radarPos = payload.find("\"radar\":");
+    if (radarPos != std::string::npos) {
+        std::string radarSub = payload.substr(radarPos);
+        float rCrit   = (float)ExtractJsonUint(radarSub, "crit",   0);
+        float rBlock  = (float)ExtractJsonUint(radarSub, "block",  0);
+        float rDodge  = (float)ExtractJsonUint(radarSub, "dodge",  0);
+        float rResist = (float)ExtractJsonUint(radarSub, "resist", 0);
+        std::lock_guard<std::recursive_mutex> lock(g_combatMutex);
+        if (rCrit > 0.0f)   g_currentRadar.crit = rCrit;
+        if (rBlock > 0.0f)  g_currentRadar.block = rBlock;
+        if (rDodge > 0.0f)  g_currentRadar.dodge = rDodge;
+        if (rResist > 0.0f) g_currentRadar.resist = rResist;
+    }
+
     // Update authoritative target data when telemetry matches current target
     if (targetId > 0 && g_currentTarget.hasTarget && g_currentTarget.targetId == targetId) {
         std::lock_guard<std::recursive_mutex> lock(g_combatMutex);
@@ -290,7 +344,7 @@ void WebSocketClient::HandleIncomingPayload(const std::string& payload) {
 
     // Update in-memory telemetry and timeline
     AddCombatEvent(attacker, target, skillId, skillName, damage, isCrit, isHeal,
-                   targetCurHp, targetMaxHp, targetLevel, timeStr);
+                   targetCurHp, targetMaxHp, targetLevel, timeStr, attackerClass);
 
     // Record to SQLite local history
     auto now = std::chrono::system_clock::now();
@@ -307,9 +361,10 @@ void WebSocketClient::HandleIncomingPayload(const std::string& payload) {
     ev.isHeal     = isHeal;
     CombatDb::RecordEventAsync(ev);
 
-    // Trigger modal redraw if visible
-    if (g_hDrawerModalWnd && IsWindow(g_hDrawerModalWnd) && g_isDrawerOpen.load()) {
-        InvalidateRect(g_hDrawerModalWnd, nullptr, FALSE);
+    // T04: PostMessage for repaint (non-blocking, thread-safe)
+    HWND hDrw = g_hDrawerModalWnd.load();
+    if (hDrw && g_isDrawerOpen.load()) {
+        PostMessage(hDrw, WM_BRSERVICE_REPAINT, 0, 0);
     }
 }
 
@@ -319,7 +374,8 @@ DWORD WINAPI WebSocketClient::ClientThread(LPVOID /*param*/) {
     while (s_running.load()) {
         SOCKET sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
         if (sock == INVALID_SOCKET) {
-            Sleep(3000);
+            // T06: WaitForSingleObject instead of Sleep — wakes immediately on Stop()
+            if (s_hWakeEvent) WaitForSingleObject(s_hWakeEvent, 3000);
             continue;
         }
 
@@ -337,7 +393,8 @@ DWORD WINAPI WebSocketClient::ClientThread(LPVOID /*param*/) {
 
         if (connect(sock, (sockaddr*)&saddr, sizeof(saddr)) != 0) {
             closesocket(sock);
-            Sleep(3000);
+            // T06: WaitForSingleObject instead of Sleep — wakes immediately on Stop()
+            if (s_hWakeEvent) WaitForSingleObject(s_hWakeEvent, 3000);
             continue;
         }
 
@@ -359,7 +416,8 @@ DWORD WINAPI WebSocketClient::ClientThread(LPVOID /*param*/) {
         int bytes = recv(sock, recvBuf, sizeof(recvBuf) - 1, 0);
         if (bytes <= 0 || strstr(recvBuf, "101 Switching Protocols") == nullptr) {
             closesocket(sock);
-            Sleep(3000);
+            // T06: WaitForSingleObject instead of Sleep — wakes immediately on Stop()
+            if (s_hWakeEvent) WaitForSingleObject(s_hWakeEvent, 3000);
             continue;
         }
 

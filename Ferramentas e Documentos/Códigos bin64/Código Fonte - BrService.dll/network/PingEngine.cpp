@@ -118,11 +118,13 @@ DWORD WINAPI PingEngine::WorkerThread(LPVOID /*param*/) {
         else                         bars = 4;
         g_pingBars = bars;
 
-        // Only trigger repaint if value changed
+        // T05: PostMessage instead of direct Repaint() call — PingHudUI lives on WatchdogThread.
+        // UpdateLayeredWindow/ShowWindow must be called from the thread that owns the HWND.
         if (measuredPing != lastReportedPing || bars != lastReportedBars) {
             lastReportedPing = measuredPing;
             lastReportedBars = bars;
-            PingHudUI::Repaint();
+            HWND hPing = g_hPingHudWnd.load();
+            if (hPing) PostMessage(hPing, WM_BRSERVICE_REPAINT, 0, 0);
         }
 
         // Sleep 2500ms or wake up instantly on Stop()

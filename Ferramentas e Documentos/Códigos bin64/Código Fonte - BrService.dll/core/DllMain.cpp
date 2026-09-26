@@ -17,6 +17,8 @@ namespace BrService {
 
 static HANDLE s_hInitThread = nullptr;
 static std::atomic<bool> s_initDone(false);
+// T07: Prevent double-shutdown from DLL_PROCESS_DETACH + explicit BR_Shutdown call
+static std::atomic<bool> s_alreadyShutdown(false);
 
 static std::string ParseParam(const char* cmdline, const char* key) {
     if (!cmdline || !key) return "";
@@ -74,9 +76,14 @@ static bool IsParamEnabled(const char* cmdline, const char* paramName, bool defa
 static DWORD WINAPI BackgroundInitThread(LPVOID /*param*/) {
     LogInfo("BackgroundInitThread: Inicializando subsistemas em thread separada...");
 
-    // 1. Initialize Subsystems
+    // 1. Initialize core subsystems
     UICommon::InitializeGdiplus();
     BrConfig::Load();
+
+    // T16: Initialize IconManager during startup (filesystem scan) — NEVER lazy from render thread.
+    // This prevents first-render latency and render-thread I/O blocking.
+    IconManager::Initialize();
+
     if (g_featDpsMeterUI.load()) {
         CombatDb::Initialize();
     }
@@ -89,7 +96,7 @@ static DWORD WINAPI BackgroundInitThread(LPVOID /*param*/) {
         WebSocketClient::Start(g_serverIp, 2130);
     }
 
-    // 3. Start Combo UI (has its own thread)
+    // 3. Start Combo UI (has its own render thread)
     if (g_featComboUi.load()) {
         g_ComboUI.Start();
     }
@@ -130,19 +137,26 @@ __declspec(dllexport) bool WINAPI BR_Initialize(const char* token, const char* c
                 try { g_serverPort = std::stoi(port); } catch (...) {}
             }
 
+            // T08/T09: Parse language from cmdline and set BOTH g_clientLang (for INI save)
+            // AND g_isEnglish atomic (for thread-safe I18n queries from any thread).
             std::string lang = ParseParam(actualCmd, "-lang");
             if (lang.empty()) lang = ParseParam(actualCmd, "/lang");
             if (!lang.empty()) {
                 for (char& c : lang) c = (char)::toupper((unsigned char)c);
                 g_clientLang = lang;
             }
+            // Set atomic flag from parsed language (cmdline takes priority over INI default)
+            g_isEnglish.store(g_clientLang == "ENG" || g_clientLang == "ENU",
+                              std::memory_order_relaxed);
 
             g_featPingUi     = IsParamEnabled(actualCmd, "pingUi",     true);
             g_featDpsMeterUI = IsParamEnabled(actualCmd, "DpsMeterUI", true);
             g_featComboUi    = IsParamEnabled(actualCmd, "comboUi",    true);
         }
 
-        // Run heavy initialization asynchronously in a separate background thread
+        // T01/T02: Run heavy initialization asynchronously. BR_Shutdown will wait for
+        // s_initDone before proceeding to stop subsystems, preventing shutdown-before-init races.
+        s_alreadyShutdown = false;
         s_hInitThread = CreateThread(nullptr, 0, BackgroundInitThread, nullptr, 0, nullptr);
         return true;
     } catch (...) {
@@ -152,25 +166,39 @@ __declspec(dllexport) bool WINAPI BR_Initialize(const char* token, const char* c
 
 __declspec(dllexport) void WINAPI BR_Shutdown() {
     using namespace BrService;
+
+    // T07: Prevent double-shutdown (e.g., DLL_PROCESS_DETACH + explicit call from Version.dll)
+    if (s_alreadyShutdown.exchange(true)) {
+        LogInfo("BR_Shutdown: ja foi executado, ignorando chamada duplicada.");
+        return;
+    }
+
     LogInfo("BR_Shutdown: Encerrando servicos de forma segura...");
+
+    // T02: Wait for background init to complete before shutting down subsystems.
+    // This prevents Stop() being called before Start() on any subsystem.
+    if (s_hInitThread) {
+        // Wait up to 5s for init to finish; if it doesn't, proceed anyway (defensive).
+        DWORD waitResult = WaitForSingleObject(s_hInitThread, 5000);
+        if (waitResult == WAIT_TIMEOUT) {
+            LogError("BR_Shutdown: Timeout aguardando BackgroundInitThread. Continuando shutdown defensivo.");
+        }
+        CloseHandle(s_hInitThread);
+        s_hInitThread = nullptr;
+    }
 
     ServiceWorker::Stop();
     if (g_featComboUi.load()) {
         g_ComboUI.Stop();
     }
-    DrawerModalUI::Shutdown();
-    PingHudUI::Shutdown();
+    // T07: DrawerModalUI::Shutdown and PingHudUI::Shutdown are called by ServiceWorker's
+    // WatchdogThread cleanup. We do NOT call them again here to prevent double-destroy.
+    // ServiceWorker::Stop() ensures WatchdogThread has exited before returning.
     WebSocketClient::Stop();
     PingEngine::Stop();
     CombatDb::Shutdown();
     IconManager::Shutdown();
     UICommon::ShutdownGdiplus();
-
-    if (s_hInitThread) {
-        WaitForSingleObject(s_hInitThread, 300);
-        CloseHandle(s_hInitThread);
-        s_hInitThread = nullptr;
-    }
 
     LogInfo("BR_Shutdown: Finalizacao concluida.");
 }
@@ -185,8 +213,10 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID /*lpvReserved*/)
     if (fdwReason == DLL_PROCESS_ATTACH) {
         DisableThreadLibraryCalls(hinstDLL);
         BrService::g_hModule = hinstDLL;
-    } else if (fdwReason == DLL_PROCESS_DETACH) {
-        BR_Shutdown();
     }
+    // T01: Do NOT call BR_Shutdown in DLL_PROCESS_DETACH.
+    // Calling WaitForSingleObject while the loader lock is held causes deadlock.
+    // BR_Shutdown must be called EXPLICITLY by the host (Version.dll) before FreeLibrary.
+    // else if (fdwReason == DLL_PROCESS_DETACH) { BR_Shutdown(); } // REMOVED — deadlock risk
     return TRUE;
 }

@@ -37,11 +37,14 @@ public final class DpsService {
 		boolean isAdmin = player.isStaff();
 		int onlineCount = World.getInstance().getAllPlayers().size();
 
-		StringBuilder sb = new StringBuilder(128);
+		StringBuilder sb = new StringBuilder(192);
 		sb.append("{\"type\":\"PLAYER_STATE\",")
 		  .append("\"inGame\":").append(inGame).append(",")
 		  .append("\"isLoading\":").append(isLoading).append(",")
 		  .append("\"isAdmin\":").append(isAdmin).append(",")
+		  .append("\"charId\":").append(player.getObjectId()).append(",")
+		  .append("\"name\":\"").append(safeJsonString(player.getName())).append("\",")
+		  .append("\"className\":\"").append(player.getPlayerClass() != null ? player.getPlayerClass().name() : "WARRIOR").append("\",")
 		  .append("\"onlineCount\":").append(onlineCount)
 		  .append("}");
 
@@ -192,11 +195,12 @@ public final class DpsService {
 			}
 		}
 
-		StringBuilder sb = new StringBuilder(380);
+		StringBuilder sb = new StringBuilder(410);
 		sb.append("{\"type\":\"COMBAT_EVENT\",")
 		  .append("\"time\":\"").append(timeStr).append("\",")
 		  .append("\"actionType\":\"DAMAGE\",")
 		  .append("\"attacker\":\"").append(attackerName).append("\",")
+		  .append("\"attackerClass\":\"").append(player.getPlayerClass() != null ? player.getPlayerClass().name() : "WARRIOR").append("\",")
 		  .append("\"target\":\"").append(targetName).append("\",")
 		  .append("\"targetId\":").append(targetId).append(",")
 		  .append("\"modelId\":").append(modelId).append(",")

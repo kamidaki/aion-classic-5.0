@@ -62,7 +62,7 @@ std::string g_securityToken = "#@br!classic50_token_2026#";
 std::atomic<int> g_currentPingMs(11);
 std::atomic<int> g_pingBars(4);
 
-std::vector<PingHistoryEntry> g_pingHistory;
+std::deque<PingHistoryEntry> g_pingHistory;
 std::mutex g_pingHistoryMutex;
 
 void AddPingHistory(int pingMs) {
@@ -70,9 +70,10 @@ void AddPingHistory(int pingMs) {
     std::lock_guard<std::mutex> lock(g_pingHistoryMutex);
     uint64_t now = GetTickCount64();
     g_pingHistory.push_back({ pingMs, now });
+    // Keep only the last 60 minutes of data (O(1) pop_front on deque)
     uint64_t cutoff = (now > 3600000ULL) ? (now - 3600000ULL) : 0;
     while (!g_pingHistory.empty() && g_pingHistory.front().timestampMs < cutoff) {
-        g_pingHistory.erase(g_pingHistory.begin());
+        g_pingHistory.pop_front(); // O(1) on deque vs O(n) vector erase
     }
 }
 
@@ -92,9 +93,11 @@ std::atomic<uint32_t> g_battleDurationSeconds(0);
 std::atomic<bool> g_isCombatActive(false);
 std::vector<CombatSession> g_combatHistory;
 
-HWND g_hPingHudWnd = nullptr;
-HWND g_hDrawerModalWnd = nullptr;
+std::atomic<HWND> g_hPingHudWnd(nullptr);
+std::atomic<HWND> g_hDrawerModalWnd(nullptr);
 std::atomic<HWND> g_hComboWnd(nullptr);
+
+std::atomic<bool> g_isEnglish(false); // Default: Portuguese (BRA)
 
 static ULONGLONG s_sessionStartTick = 0;
 
@@ -141,7 +144,7 @@ void ResetCombatSession() {
 void AddCombatEvent(const std::string& attacker, const std::string& target, uint32_t skillId,
                     const std::string& skillName, uint32_t damage, bool isCrit, bool isHeal,
                     uint32_t targetCurHp, uint32_t targetMaxHp, uint32_t targetLevel,
-                    const std::string& timeStr) {
+                    const std::string& timeStr, const std::string& attackerClass) {
     if (damage == 0 && !isHeal) return;
 
     if (!attacker.empty() && !target.empty() && attacker == target) return;
@@ -223,6 +226,7 @@ void AddCombatEvent(const std::string& attacker, const std::string& target, uint
                 p.dps = static_cast<uint32_t>(p.totalDamage / durationSec);
                 p.hitCount++;
                 if (isCrit) p.critCount++;
+                if (!attackerClass.empty()) p.className = attackerClass;
                 foundPlayer = true;
                 break;
             }
@@ -230,7 +234,7 @@ void AddCombatEvent(const std::string& attacker, const std::string& target, uint
         if (!foundPlayer) {
             PlayerDpsEntry entry;
             entry.name = attName;
-            entry.className = "Gladiador";
+            entry.className = !attackerClass.empty() ? attackerClass : "Warrior";
             entry.totalDamage = damage;
             entry.dps = damage / durationSec;
             entry.hitCount = 1;
@@ -282,10 +286,9 @@ void AddCombatEvent(const std::string& attacker, const std::string& target, uint
 
     if (!g_playerRankings.empty()) {
         const auto& mainP = g_playerRankings.front();
-        g_currentRadar.crit = mainP.hitCount > 0 ? ((float)mainP.critCount / mainP.hitCount * 100.0f) : 65.0f;
-        g_currentRadar.block = 45.0f + (float)((g_totalBattleDps.load() / 200) % 40);
-        g_currentRadar.dodge = 50.0f + (float)((durationSec * 3) % 40);
-        g_currentRadar.resist = 55.0f + (float)((g_totalBattleDamage.load() / 5000) % 35);
+        // Only update Crit% from real hit data. Block/Dodge/Resist come exclusively
+        // from the emulator via RADAR_METRICS WebSocket event (never fabricated here).
+        g_currentRadar.crit = mainP.hitCount > 0 ? ((float)mainP.critCount / mainP.hitCount * 100.0f) : 0.0f;
     }
 }
 

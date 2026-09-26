@@ -173,9 +173,16 @@ static RECT s_advOpacitySlider = {}, s_advPresetDefault = {}, s_advPresetWide = 
 static RECT s_advThemeLight = {}, s_advThemeDark = {}, s_advThemeGray = {}, s_advThemeNavy = {};
 static RECT s_advPinnedToggle = {};
 static RECT s_advCompactToggle = {};
+static RECT s_advLangBraBtn = {}, s_advLangEngBtn = {};
+
+// T07: Guard against double-shutdown (WatchdogThread cleanup vs BR_Shutdown)
+static std::atomic<bool> s_isShutdown(false);
 
 bool DrawerModalUI::Initialize(HINSTANCE hInst) {
-    IconManager::Initialize();
+    // T16: IconManager::Initialize is called during BackgroundInitThread startup.
+    // No need to call it here again — it's already initialized before this runs.
+    s_isShutdown = false;
+
     if (g_drawerW.load() < 600) g_drawerW = 760;
     if (g_drawerH.load() < 500) g_drawerH = 560;
     s_modalW = std::clamp(g_drawerW.load(), 540, 960);
@@ -196,7 +203,7 @@ bool DrawerModalUI::Initialize(HINSTANCE hInst) {
         }
     }
 
-    g_hDrawerModalWnd = CreateWindowExW(
+    HWND hWnd = CreateWindowExW(
         WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW,
         kDrawerClassName,
         L"Academy Show - DPS Meter",
@@ -204,8 +211,9 @@ bool DrawerModalUI::Initialize(HINSTANCE hInst) {
         0, 0, s_modalW, s_modalH,
         nullptr, nullptr, hInst, nullptr
     );
+    g_hDrawerModalWnd.store(hWnd);
 
-    if (!g_hDrawerModalWnd) {
+    if (!hWnd) {
         LogError("Falha criar DrawerModal: %lu", GetLastError());
         return false;
     }
@@ -216,12 +224,16 @@ bool DrawerModalUI::Initialize(HINSTANCE hInst) {
 }
 
 void DrawerModalUI::Shutdown() {
-    IconManager::Shutdown();
+    // T07: Prevent double-destroy — safe no-op if already shut down
+    if (s_isShutdown.exchange(true)) {
+        LogInfo("DrawerModalUI::Shutdown: ja encerrado, ignorando chamada duplicada.");
+        return;
+    }
     ReleaseDrawerBuffer();
     ReleaseDrawerFonts();
-    if (g_hDrawerModalWnd && IsWindow(g_hDrawerModalWnd)) {
-        DestroyWindow(g_hDrawerModalWnd);
-        g_hDrawerModalWnd = nullptr;
+    HWND h = g_hDrawerModalWnd.exchange(nullptr);
+    if (h && IsWindow(h)) {
+        DestroyWindow(h);
     }
 }
 
@@ -992,8 +1004,38 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 c1Y += 14;
             }
 
-            // Coluna Direita: Feature Flags
+            // Coluna Direita: Language & Feature Flags
             float c2Y = y;
+
+            // T11: Language setting under Advanced (Portuguese / English)
+            g.DrawString(IsEnglish() ? L"Interface Language" : L"Idioma da Interface", -1, &fLb, Gdiplus::PointF(c2X, c2Y), &bTD);
+            c2Y += 18;
+
+            float btnW = std::floor((c2W - 8) / 2.0f);
+            float btnH = 26.0f;
+            bool isEng = IsEnglish();
+
+            auto drawLangBtn = [&](RECT& r, float bx, float by, const wchar_t* label, bool active) {
+                r = { (int)bx, (int)by, (int)(bx + btnW), (int)(by + btnH) };
+                if (active) {
+                    Gdiplus::SolidBrush bg(Gdiplus::Color(255, 0, 120, 215));
+                    UICommon::FillRoundRectangle(g, &bg, bx, by, btnW, btnH, 4);
+                    Gdiplus::SolidBrush tb(Gdiplus::Color(255, 255, 255, 255));
+                    g.DrawString(label, -1, &fSb, Gdiplus::RectF(bx, by, btnW, btnH), &cf2, &tb);
+                } else {
+                    Gdiplus::SolidBrush bg(cCd);
+                    UICommon::FillRoundRectangle(g, &bg, bx, by, btnW, btnH, 4);
+                    Gdiplus::Pen p(cBr, 1.0f);
+                    UICommon::DrawRoundRectangle(g, &p, bx, by, btnW, btnH, 4);
+                    Gdiplus::SolidBrush tb(cTM);
+                    g.DrawString(label, -1, &fSb, Gdiplus::RectF(bx, by, btnW, btnH), &cf2, &tb);
+                }
+            };
+
+            drawLangBtn(s_advLangBraBtn, c2X, c2Y, L"Português (BR)", !isEng);
+            drawLangBtn(s_advLangEngBtn, c2X + btnW + 4, c2Y, L"English (US)", isEng);
+            c2Y += btnH + 16;
+
             g.DrawString(L"Feature Flags", -1, &fLb, Gdiplus::PointF(c2X, c2Y), &bTD);
             c2Y += 18;
             auto dFT = [&](RECT& r2, float sx, float sy, const wchar_t* lb, bool ac) -> float {
@@ -1031,6 +1073,29 @@ LRESULT CALLBACK DrawerModalUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
 
     case WM_TIMER:
         Repaint();
+        return 0;
+
+    // T04/T05: Cross-thread UI command handlers.
+    // Non-UI threads (WebSocket, PingEngine) PostMessage these — never SendMessage.
+    // Processed here on WatchdogThread, which owns this HWND.
+    case WM_BRSERVICE_REPAINT:
+        Paint(hwnd);
+        return 0;
+
+    case WM_BRSERVICE_SHOW:
+        if (g_isDrawerOpen.load() && !IsWindowVisible(hwnd) &&
+            !g_isLoadingScreen.load() && g_isGameActive.load()) {
+            ShowWindow(hwnd, SW_SHOWNOACTIVATE);
+            UpdateDrawerTimer();
+        }
+        Paint(hwnd);
+        return 0;
+
+    case WM_BRSERVICE_HIDE:
+        if (IsWindowVisible(hwnd)) {
+            KillTimer(hwnd, 1);
+            ShowWindow(hwnd, SW_HIDE);
+        }
         return 0;
 
     case WM_LBUTTONDOWN: {
@@ -1263,6 +1328,22 @@ LRESULT CALLBACK DrawerModalUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
                 return false;
             };
             if (cFt(s_advCompactToggle, g_compactView)) return 0;
+
+            // T11: Click handlers for Portuguese and English language buttons
+            if (mx >= s_advLangBraBtn.left && mx <= s_advLangBraBtn.right && my >= s_advLangBraBtn.top && my <= s_advLangBraBtn.bottom) {
+                g_clientLang = "BRA";
+                g_isEnglish.store(false, std::memory_order_relaxed);
+                BrConfig::Save();
+                Repaint();
+                return 0;
+            }
+            if (mx >= s_advLangEngBtn.left && mx <= s_advLangEngBtn.right && my >= s_advLangEngBtn.top && my <= s_advLangEngBtn.bottom) {
+                g_clientLang = "ENG";
+                g_isEnglish.store(true, std::memory_order_relaxed);
+                BrConfig::Save();
+                Repaint();
+                return 0;
+            }
         }
 
         // Arrastar Janela através do Header

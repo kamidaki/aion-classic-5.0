@@ -296,6 +296,26 @@ LRESULT CALLBACK PingHudUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
         EndPaint(hwnd, &ps);
         return 0;
     }
+
+    // T04/T05: Handle cross-thread UI commands posted from WebSocket/PingEngine threads.
+    // These messages are POSTED (not sent), so they're processed here on WatchdogThread.
+    case WM_BRSERVICE_REPAINT:
+        Paint(hwnd);
+        return 0;
+
+    case WM_BRSERVICE_SHOW:
+        if (!IsWindowVisible(hwnd) && IsAllowedToDisplay()) {
+            ShowWindow(hwnd, SW_SHOWNOACTIVATE);
+        }
+        Paint(hwnd);
+        return 0;
+
+    case WM_BRSERVICE_HIDE:
+        if (IsWindowVisible(hwnd)) {
+            ShowWindow(hwnd, SW_HIDE);
+        }
+        return 0;
+
     case WM_MOUSEMOVE: {
         if (!g_featDpsMeterUI.load()) return 0;
         int mx = LOWORD(lParam);
