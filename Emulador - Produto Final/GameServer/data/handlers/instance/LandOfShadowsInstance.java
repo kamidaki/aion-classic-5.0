@@ -100,7 +100,6 @@ public class LandOfShadowsInstance extends GeneralInstanceHandler {
 	@Override
 	public void onEnterInstance(Player player) {
 		raca = player.getRace();
-		player.getEffectController().removeEffect(59999); // limpa o efeito NOSHOW usado pela implementacao anterior
 		aplicaForma(player);
 		aplicaBencao(player);
 		if (!iniciado.compareAndSet(false, true)) {
