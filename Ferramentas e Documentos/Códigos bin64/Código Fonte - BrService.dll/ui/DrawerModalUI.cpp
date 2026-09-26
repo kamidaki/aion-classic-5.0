@@ -4,7 +4,6 @@
 #include "../core/ServiceGlobals.h"
 #include "../core/ServiceLog.h"
 #include "../core/I18n.h"
-#include "../cvar/CVarManager.h"
 #include "../config/BrConfig.h"
 #include "../combo/ComboUI.h"
 #include "../combo/ComboTypes.h"
@@ -90,7 +89,7 @@ static void ReleaseDrawerFonts() {
     s_drawerFontCache.clear();
 }
 
-enum class DrawerTab { Display = 0, DpsMeter, ComboUi, Engine, Advanced };
+enum class DrawerTab { Display = 0, DpsMeter, ComboUi, Advanced };
 static DrawerTab s_activeTab = DrawerTab::Display;
 
 // Theme: 0=Light 1=Dark 2=Gray 3=Navy
@@ -145,18 +144,16 @@ static POINT s_mousePos = { -1, -1 };
 static bool s_draggingOpacity = false;
 static bool s_draggingComboScale = false;
 static bool s_draggingComboOpacity = false;
-static bool s_draggingFov = false;
-static bool s_draggingCam = false;
 
 // Navigation & Header Rectangles
 static RECT s_headerDragRect = {};
 static RECT s_helpBtnRect = {}, s_minimizeBtnRect = {}, s_closeBtnRect = {};
-static RECT s_tabDisplayRect = {}, s_tabDpsMeterRect = {}, s_tabComboRect = {}, s_tabEngineRect = {}, s_tabAdvancedRect = {};
+static RECT s_tabDisplayRect = {}, s_tabDpsMeterRect = {}, s_tabComboRect = {}, s_tabAdvancedRect = {};
 static RECT s_resetDefaultsRect = {};
 
 // Tab Display Rectangles
 static RECT s_presetDefaultRect = {}, s_presetWideRect = {}, s_presetCompactRect = {}, s_opacitySliderRect = {};
-static RECT s_compactToggleRect = {}, s_consoleToggleRect = {}, s_comboToggleRect = {}, s_comboScaleSliderRect = {};
+static RECT s_compactToggleRect = {}, s_comboToggleRect = {}, s_comboScaleSliderRect = {};
 static RECT s_comboPosTopRect = {}, s_comboPosMidRightRect = {}, s_comboPosCenterRect = {}, s_comboPosLeftRect = {};
 static RECT s_saveSettingsBtnRect = {}, s_targetDropdownRect = {}, s_resetCombatBtnRect = {};
 static RECT s_targetCardRect = {}, s_targetCardCloseRect = {}, s_advSecureAreaToggle = {};
@@ -171,149 +168,11 @@ static RECT s_dpsResetRect = {};
 static RECT s_comboTabToggleRect = {}, s_comboTabScaleSlider = {}, s_comboTabOpacitySlider = {};
 static RECT s_comboTabPosTop = {}, s_comboTabPosMidRight = {}, s_comboTabPosCenter = {}, s_comboTabPosLeft = {};
 
-// Tab Engine Rectangles
-static RECT s_engFovSlider = {}, s_engCamSlider = {};
-static RECT s_engFps60Rect = {}, s_engFps144Rect = {}, s_engFpsMaxRect = {};
-static RECT s_engTbToggleRect = {}, s_engConsoleRect = {};
-
 // Tab Advanced Rectangles
 static RECT s_advOpacitySlider = {}, s_advPresetDefault = {}, s_advPresetWide = {}, s_advPresetCompact = {};
 static RECT s_advThemeLight = {}, s_advThemeDark = {}, s_advThemeGray = {}, s_advThemeNavy = {};
 static RECT s_advPinnedToggle = {};
-static RECT s_advCompactToggle = {}, s_advConsoleToggle = {};
-static RECT s_advFovToggle = {}, s_advCamToggle = {}, s_advFpsToggle = {};
-
-struct MemoryTargetRaw {
-    bool valid;
-    uint32_t objId, modelId;
-    uint8_t type, race;
-    wchar_t name[128];
-    int hp, maxHp;
-    float px, py, pz, yaw;
-};
-
-static inline bool IsValidUserPointer(uintptr_t addr) {
-#ifdef _WIN64
-    return addr >= 0x10000 && addr <= 0x00007FFFFFFEFFFF;
-#else
-    return addr >= 0x10000 && addr <= 0x7FFEFFFF;
-#endif
-}
-
-static bool ReadTargetMemoryRaw(MemoryTargetRaw* o) {
-    if (!o) return false;
-    o->valid = false;
-    uintptr_t hG = (uintptr_t)GetModuleHandleA("Game.dll");
-    if (!hG) return false;
-
-    __try {
-        uintptr_t targetBase = hG + 0xECE610;
-        if (!IsValidUserPointer(targetBase)) return false;
-        uintptr_t tp = *(uintptr_t*)targetBase;
-        if (!IsValidUserPointer(tp)) return false;
-
-        // Validar e filtrar self-target (jogador selecionando a si mesmo)
-        uintptr_t addr = hG + 0xECDDC8;
-        static const uintptr_t pOffsets[] = { 0x70, 0x10, 0x20 };
-        for (int i = 0; i < 3; ++i) {
-            if (!IsValidUserPointer(addr)) break;
-            addr = *(uintptr_t*)addr;
-            if (!IsValidUserPointer(addr)) break;
-            addr += pOffsets[i];
-        }
-        uintptr_t pPlayer = (IsValidUserPointer(addr)) ? *(uintptr_t*)addr : 0;
-        if (pPlayer != 0 && tp == pPlayer) {
-            // Jogador com target em si mesmo -> tratar como sem alvo
-            return false;
-        }
-
-        uintptr_t entityPtrAddr = tp + 0x378;
-        if (!IsValidUserPointer(entityPtrAddr)) return false;
-        uintptr_t e = *(uintptr_t*)entityPtrAddr;
-        if (!IsValidUserPointer(e)) return false;
-
-        o->objId = *(uint32_t*)(e + 0x24);
-        o->modelId = *(uint32_t*)(e + 0x20);
-
-        if (pPlayer != 0) {
-            uintptr_t pPEAddr = pPlayer + 0x378;
-            if (IsValidUserPointer(pPEAddr)) {
-                uintptr_t pPE = *(uintptr_t*)pPEAddr;
-                if (IsValidUserPointer(pPE) && *(uint32_t*)(pPE + 0x24) == o->objId) {
-                    // ObjId do target coincide com o próprio jogador
-                    return false;
-                }
-            }
-        }
-
-        o->hp = *(int*)(e + 0x147C);
-        o->maxHp = *(int*)(e + 0x1478);
-        o->type = *(uint8_t*)(e + 0x38);
-        o->race = *(uint8_t*)(e + 0x39);
-
-        wchar_t* pN = (wchar_t*)(e + 0x46);
-        if (IsValidUserPointer((uintptr_t)pN)) wcsncpy_s(o->name, pN, _TRUNCATE);
-        else o->name[0] = L'\0';
-
-        o->px = *(float*)(tp + 0x3C);
-        o->py = *(float*)(tp + 0x40);
-        o->pz = *(float*)(tp + 0x44);
-        o->yaw = *(float*)(tp + 0x48);
-        o->valid = true;
-        return true;
-    } __except (EXCEPTION_EXECUTE_HANDLER) {
-        return false;
-    }
-}
-
-static bool UpdateTargetFromGameMemory() {
-    MemoryTargetRaw r = {};
-    if (ReadTargetMemoryRaw(&r) && r.valid && r.objId != 0) {
-        std::lock_guard<std::recursive_mutex> lk(g_combatMutex);
-        g_currentTarget.hasTarget = true;
-        g_currentTarget.targetId = r.objId;
-        g_currentTarget.modelId = r.modelId;
-        g_currentTarget.isNpc = (r.type != 0);
-
-        if (wcslen(r.name) > 0) {
-            char b[256] = {};
-            WideCharToMultiByte(CP_UTF8, 0, r.name, -1, b, sizeof(b), nullptr, nullptr);
-            g_currentTarget.name = b;
-        }
-        if (r.maxHp > 0) {
-            g_currentTarget.currentHp = (r.hp >= 0) ? r.hp : 0;
-            g_currentTarget.maxHp = r.maxHp;
-        }
-        if (r.race == 0) g_currentTarget.race = "ELYOS";
-        else if (r.race == 1) g_currentTarget.race = "ASMODIANS";
-        else g_currentTarget.race = "BALAUR";
-
-        g_currentTarget.posX = r.px;
-        g_currentTarget.posY = r.py;
-        g_currentTarget.posZ = r.pz;
-        g_currentTarget.yaw = r.yaw;
-        return true;
-    } else {
-        // Se a engine indica que não há alvo ativo selecionado (ou é o próprio jogador)
-        uintptr_t hG = (uintptr_t)GetModuleHandleA("Game.dll");
-        if (hG) {
-            uintptr_t targetBase = hG + 0xECE610;
-            if (IsValidUserPointer(targetBase)) {
-                uintptr_t tp = *(uintptr_t*)targetBase;
-                if (!tp) {
-                    std::lock_guard<std::recursive_mutex> lk(g_combatMutex);
-                    g_currentTarget.hasTarget = false;
-                    g_currentTarget.targetId = 0;
-                    g_currentTarget.modelId = 0;
-                    g_currentTarget.isNpc = false;
-                    g_currentTarget.name.clear();
-                    return false;
-                }
-            }
-        }
-    }
-    return false;
-}
+static RECT s_advCompactToggle = {};
 
 bool DrawerModalUI::Initialize(HINSTANCE hInst) {
     IconManager::Initialize();
@@ -367,7 +226,7 @@ void DrawerModalUI::Shutdown() {
 }
 
 void DrawerModalUI::Toggle() {
-    if (!g_featConsole.load()) return;
+    if (!g_featDpsMeterUI.load()) return;
     if (g_isDrawerOpen.load()) Close();
     else Open();
 }
@@ -379,7 +238,7 @@ static void UpdateDrawerTimer() {
 }
 
 void DrawerModalUI::Open() {
-    if (!g_featConsole.load()) return;
+    if (!g_featDpsMeterUI.load()) return;
     g_isDrawerOpen = true;
     bool canShow = !g_isLoadingScreen.load() && g_isGameActive.load();
     if (g_hDrawerModalWnd && canShow) {
@@ -406,7 +265,7 @@ void DrawerModalUI::Hide() {
 }
 
 void DrawerModalUI::RestoreIfOpen() {
-    if (!g_featConsole.load()) return;
+    if (!g_featDpsMeterUI.load()) return;
     bool canShow = g_isDrawerOpen.load() && g_hDrawerModalWnd && !g_isLoadingScreen.load() && g_isGameActive.load();
     if (canShow) {
         if (!IsWindowVisible(g_hDrawerModalWnd)) {
@@ -450,7 +309,7 @@ void DrawerModalUI::UpdatePosition(int gX, int gY, int gW, int gH) {
         g_drawerPosY = mY2;
     }
 
-    bool v = g_featConsole.load() && g_isDrawerOpen.load() && !g_isLoadingScreen.load() && g_isGameActive.load();
+    bool v = g_featDpsMeterUI.load() && g_isDrawerOpen.load() && !g_isLoadingScreen.load() && g_isGameActive.load();
 
     static int s_prevX = -9999, s_prevY = -9999, s_prevW = -9999, s_prevH = -9999;
     static int s_prevVis = -1;
@@ -570,7 +429,6 @@ void DrawerModalUI::Paint(HWND hwnd) {
             { DrawerTab::Display, L"Display", L"\u25A3", &s_tabDisplayRect },
             { DrawerTab::DpsMeter, L"DPS Meter", L"\u25A5", &s_tabDpsMeterRect },
             { DrawerTab::ComboUi, L"Combo UI", L"\u2694", &s_tabComboRect },
-            { DrawerTab::Engine, L"Engine", L"\u2699", &s_tabEngineRect },
             { DrawerTab::Advanced, L"Advanced", L"\u26A1", &s_tabAdvancedRect }
         };
 
@@ -655,7 +513,6 @@ void DrawerModalUI::Paint(HWND hwnd) {
 
         // ================= TAB 0: DISPLAY (OVERVIEW) =================
         if (s_activeTab == DrawerTab::Display) {
-            UpdateTargetFromGameMemory();
             std::lock_guard<std::recursive_mutex> lk(g_combatMutex);
 
             // Two-column layout: Display preferences | DPS Meter & Combat Metrics
@@ -666,9 +523,9 @@ void DrawerModalUI::Paint(HWND hwnd) {
 
             g.DrawLine(&spn, mX + c1W + cg * 0.5f, mY, mX + c1W + cg * 0.5f, mY + mH2);
 
-            // COLUMN 1: DISPLAY & ENGINE PREFERENCES
+            // COLUMN 1: DISPLAY PREFERENCES
             float c1Y = mY;
-            g.DrawString(L"DISPLAY & ENGINE PREFERENCES", -1, &fCT, Gdiplus::PointF(mX, c1Y), &bBl);
+            g.DrawString(L"DISPLAY PREFERENCES", -1, &fCT, Gdiplus::PointF(mX, c1Y), &bBl);
             c1Y += 20;
 
             g.DrawString(L"Panel Size", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
@@ -704,7 +561,6 @@ void DrawerModalUI::Paint(HWND hwnd) {
             g.DrawString(L"Display Modes", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
             c1Y += 18;
             c1Y = dTR(s_compactToggleRect, mX, c1Y, c1W, L"Compact Mode", g_compactView.load());
-            c1Y = dTR(s_consoleToggleRect, mX, c1Y, c1W, L"Graphic Console", !g_hideConsoleSection.load());
 
             g.DrawString(L"Combo UI & Participation Points", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
             c1Y += 18;
@@ -1067,70 +923,7 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 }
             }
         }
-        // ================= TAB 3: ENGINE (SHUGO CONSOLE) =================
-        else if (s_activeTab == DrawerTab::Engine) {
-            float y = mY;
-            g.DrawString(L"ENGINE & GRAPHICS CONSOLE", -1, &fCT, Gdiplus::PointF(mX, y), &bBl);
-            y += 22;
-
-            float cg = 14, c1W = std::floor(mW2 * 0.50f), c2W = mW2 - c1W - cg, c2X = mX + c1W + cg;
-            g.DrawLine(&spn, mX + c1W + cg * 0.5f, y, mX + c1W + cg * 0.5f, mY + mH2);
-
-            float c1Y = y;
-            g.DrawString(L"Camera & View", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
-            c1Y += 18;
-            {
-                float fv = g_cvarFov.load(), n = std::clamp((fv - 60.0f) / 60.0f, 0.0f, 1.0f);
-                wchar_t b[16];
-                swprintf_s(b, L"%.0f\u00B0", fv);
-                dSl(s_engFovSlider, mX, c1Y, c1W, n, L"Panoramic FOV", b);
-                c1Y += 34;
-            }
-            {
-                float cm = g_cvarCamMax.load(), n = std::clamp((cm - 5.0f) / 40.0f, 0.0f, 1.0f);
-                wchar_t b[16];
-                swprintf_s(b, L"%.0fm", cm);
-                dSl(s_engCamSlider, mX, c1Y, c1W, n, L"Camera Zoom", b);
-                c1Y += 34;
-            }
-
-
-            s_engConsoleRect = { (int)(mX + c1W - 90), (int)c1Y, (int)(mX + c1W), (int)(c1Y + 18) };
-            g.DrawString(L"Graphic Console HUD", -1, &fSb, Gdiplus::PointF(mX, c1Y + 2), &bTM);
-            UICommon::DrawModernSwitch(g, (float)s_engConsoleRect.left, (float)s_engConsoleRect.top, !g_hideConsoleSection.load(), L"Visible", L"Hidden");
-            c1Y += 30;
-
-            float c2Y = y;
-            g.DrawString(L"Performance", -1, &fLb, Gdiplus::PointF(c2X, c2Y), &bTD);
-            c2Y += 18;
-            float fW = 36, fY = c2Y;
-            g.DrawString(L"FPS Cap", -1, &fSb, Gdiplus::PointF(c2X, fY + 3), &bTM);
-            float fSX = c2X + c2W - (fW * 3 + 8);
-            dPl(s_engFps60Rect, fSX, fY, fW, 22, L"60", (g_cvarMaxFps.load() == 60));
-            dPl(s_engFps144Rect, fSX + fW + 4, fY, fW, 22, L"144", (g_cvarMaxFps.load() == 144));
-            dPl(s_engFpsMaxRect, fSX + (fW + 4) * 2, fY, fW, 22, L"MAX", (g_cvarMaxFps.load() == 0));
-            c2Y += 30;
-
-            s_engTbToggleRect = { (int)(c2X + c2W - 90), (int)c2Y, (int)(c2X + c2W), (int)(c2Y + 18) };
-            g.DrawString(L"Triple Buffer", -1, &fSb, Gdiplus::PointF(c2X, c2Y + 2), &bTM);
-            UICommon::DrawModernSwitch(g, (float)s_engTbToggleRect.left, (float)s_engTbToggleRect.top, g_cvarTripleBuffering.load(), L"ON", L"OFF");
-            c2Y += 28;
-
-            {
-                Gdiplus::SolidBrush ib2(cBg);
-                UICommon::FillRoundRectangle(g, &ib2, c2X, c2Y, c2W, 52, 6);
-                Gdiplus::Pen ip2(cBr, 1);
-                UICommon::DrawRoundRectangle(g, &ip2, c2X, c2Y, c2W, 52, 6);
-                Gdiplus::Font& fi = *GetSegoeFont(7.0f, false);
-                float iy = c2Y + 6;
-                g.DrawString(L"Comandos aplicados diretamente em memoria.", -1, &fi, Gdiplus::PointF(c2X + 8, iy), &bTM);
-                iy += 14;
-                g.DrawString(L"FOV e Cam persistem entre sessoes do jogo.", -1, &fi, Gdiplus::PointF(c2X + 8, iy), &bTM);
-                iy += 14;
-                g.DrawString(L"CryEngine CVar: change-detection, 0% CPU idle.", -1, &fi, Gdiplus::PointF(c2X + 8, iy), &bBl);
-            }
-        }
-        // ================= TAB 4: ADVANCED =================
+        // ================= TAB 3: ADVANCED =================
         else if (s_activeTab == DrawerTab::Advanced) {
             float y = mY;
             g.DrawString(L"ADVANCED CONFIGURATION", -1, &fCT, Gdiplus::PointF(mX, y), &bBl);
@@ -1211,10 +1004,6 @@ void DrawerModalUI::Paint(HWND hwnd) {
             };
 
             c2Y = dFT(s_advCompactToggle, c2X, c2Y, L"Compact View", g_compactView.load());
-            c2Y = dFT(s_advConsoleToggle, c2X, c2Y, L"Graphic HUD", !g_hideConsoleSection.load());
-            c2Y = dFT(s_advFovToggle, c2X, c2Y, L"FOV Control", g_featFov.load());
-            c2Y = dFT(s_advCamToggle, c2X, c2Y, L"Cam Max", g_featCamMax.load());
-            c2Y = dFT(s_advFpsToggle, c2X, c2Y, L"FPS Unlock", g_featFpsUnlock.load());
             (void)c2Y;
         }
     }
@@ -1268,14 +1057,12 @@ LRESULT CALLBACK DrawerModalUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
         if (chT(s_tabDisplayRect, DrawerTab::Display)) return 0;
         if (chT(s_tabDpsMeterRect, DrawerTab::DpsMeter)) return 0;
         if (chT(s_tabComboRect, DrawerTab::ComboUi)) return 0;
-        if (chT(s_tabEngineRect, DrawerTab::Engine)) return 0;
         if (chT(s_tabAdvancedRect, DrawerTab::Advanced)) return 0;
 
         if (mx >= s_resetDefaultsRect.left && mx <= s_resetDefaultsRect.right && my >= s_resetDefaultsRect.top && my <= s_resetDefaultsRect.bottom) {
             ResizeDrawer(760, 560);
             g_drawerOpacity = 255;
             g_compactView = false;
-            g_hideConsoleSection = false;
             g_drawerPinned = true;
             g_comboVisible = true;
             g_comboScale = 1.0f;
@@ -1284,10 +1071,6 @@ LRESULT CALLBACK DrawerModalUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
             g_comboPosNormY = 0.50f;
             s_theme = 0;
             s_selectedCombatIndex = -1;
-            CVarManager::SetFov(75);
-            CVarManager::SetCameraMax(25);
-            CVarManager::SetMaxFps(144);
-            CVarManager::SetTripleBuffering(true);
             ResetCombatSession();
             BrConfig::Save();
             Repaint();
@@ -1314,12 +1097,6 @@ LRESULT CALLBACK DrawerModalUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
             }
             if (mx >= s_compactToggleRect.left && mx <= s_compactToggleRect.right && my >= s_compactToggleRect.top && my <= s_compactToggleRect.bottom) {
                 g_compactView = !g_compactView.load();
-                BrConfig::Save();
-                Repaint();
-                return 0;
-            }
-            if (mx >= s_consoleToggleRect.left && mx <= s_consoleToggleRect.right && my >= s_consoleToggleRect.top && my <= s_consoleToggleRect.bottom) {
-                g_hideConsoleSection = !g_hideConsoleSection.load();
                 BrConfig::Save();
                 Repaint();
                 return 0;
@@ -1428,44 +1205,6 @@ LRESULT CALLBACK DrawerModalUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
             if (mx >= s_comboTabPosCenter.left && mx <= s_comboTabPosCenter.right && my >= s_comboTabPosCenter.top && my <= s_comboTabPosCenter.bottom) { apP(0.5f, 0.5f); return 0; }
             if (mx >= s_comboTabPosLeft.left && mx <= s_comboTabPosLeft.right && my >= s_comboTabPosLeft.top && my <= s_comboTabPosLeft.bottom) { apP(0.2f, 0.5f); return 0; }
         }
-        // Tab: Engine
-        else if (s_activeTab == DrawerTab::Engine) {
-            if (mx >= s_engFovSlider.left && mx <= s_engFovSlider.right && my >= s_engFovSlider.top - 6 && my <= s_engFovSlider.bottom + 6) {
-                s_draggingFov = true;
-                SetCapture(hwnd);
-                return 0;
-            }
-            if (mx >= s_engCamSlider.left && mx <= s_engCamSlider.right && my >= s_engCamSlider.top - 6 && my <= s_engCamSlider.bottom + 6) {
-                s_draggingCam = true;
-                SetCapture(hwnd);
-                return 0;
-            }
-            auto cFps = [&](RECT& r, int fps) {
-                if (mx >= r.left && mx <= r.right && my >= r.top && my <= r.bottom) {
-                    CVarManager::SetMaxFps(fps);
-                    BrConfig::Save();
-                    Repaint();
-                    return true;
-                }
-                return false;
-            };
-            if (cFps(s_engFps60Rect, 60)) return 0;
-            if (cFps(s_engFps144Rect, 144)) return 0;
-            if (cFps(s_engFpsMaxRect, 0)) return 0;
-
-            if (mx >= s_engTbToggleRect.left && mx <= s_engTbToggleRect.right && my >= s_engTbToggleRect.top && my <= s_engTbToggleRect.bottom) {
-                CVarManager::SetTripleBuffering(!g_cvarTripleBuffering.load());
-                BrConfig::Save();
-                Repaint();
-                return 0;
-            }
-            if (mx >= s_engConsoleRect.left && mx <= s_engConsoleRect.right && my >= s_engConsoleRect.top && my <= s_engConsoleRect.bottom) {
-                g_hideConsoleSection = !g_hideConsoleSection.load();
-                BrConfig::Save();
-                Repaint();
-                return 0;
-            }
-        }
         // Tab: Advanced
         else if (s_activeTab == DrawerTab::Advanced) {
             auto cPr = [&](RECT& r, int w, int h) {
@@ -1516,15 +1255,6 @@ LRESULT CALLBACK DrawerModalUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
                 return false;
             };
             if (cFt(s_advCompactToggle, g_compactView)) return 0;
-            if (mx >= s_advConsoleToggle.left && mx <= s_advConsoleToggle.right && my >= s_advConsoleToggle.top && my <= s_advConsoleToggle.bottom) {
-                g_hideConsoleSection = !g_hideConsoleSection.load();
-                BrConfig::Save();
-                Repaint();
-                return 0;
-            }
-            if (cFt(s_advFovToggle, g_featFov)) return 0;
-            if (cFt(s_advCamToggle, g_featCamMax)) return 0;
-            if (cFt(s_advFpsToggle, g_featFpsUnlock)) return 0;
         }
 
         // Arrastar Janela através do Header
@@ -1602,20 +1332,6 @@ LRESULT CALLBACK DrawerModalUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
             return 0;
         }
 
-        if (s_draggingFov && s_engFovSlider.right > s_engFovSlider.left) {
-            float p = std::clamp((float)(mx - s_engFovSlider.left) / (float)(s_engFovSlider.right - s_engFovSlider.left), 0.0f, 1.0f);
-            CVarManager::SetFov(60.0f + p * 60.0f);
-            Repaint();
-            return 0;
-        }
-
-        if (s_draggingCam && s_engCamSlider.right > s_engCamSlider.left) {
-            float p = std::clamp((float)(mx - s_engCamSlider.left) / (float)(s_engCamSlider.right - s_engCamSlider.left), 0.0f, 1.0f);
-            CVarManager::SetCameraMax(5.0f + p * 40.0f);
-            Repaint();
-            return 0;
-        }
-
         // Se mouse estiver sobre o card de target na aba Display, repintar para exibir tooltip
         if (s_activeTab == DrawerTab::Display && s_targetCardRect.right > s_targetCardRect.left) {
             if (PtInRect(&s_targetCardRect, s_mousePos)) {
@@ -1632,8 +1348,8 @@ LRESULT CALLBACK DrawerModalUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
             BrConfig::Save();
             return 0;
         }
-        if (s_draggingOpacity || s_draggingComboScale || s_draggingComboOpacity || s_draggingFov || s_draggingCam) {
-            s_draggingOpacity = s_draggingComboScale = s_draggingComboOpacity = s_draggingFov = s_draggingCam = false;
+        if (s_draggingOpacity || s_draggingComboScale || s_draggingComboOpacity) {
+            s_draggingOpacity = s_draggingComboScale = s_draggingComboOpacity = false;
             ReleaseCapture();
             BrConfig::Save();
         }

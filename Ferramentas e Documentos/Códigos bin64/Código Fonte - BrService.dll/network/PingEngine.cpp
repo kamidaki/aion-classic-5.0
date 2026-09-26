@@ -1,10 +1,12 @@
 #include "PingEngine.h"
 #include "../core/ServiceGlobals.h"
 #include "../core/ServiceLog.h"
+#include "../ui/PingHudUI.h"
 #include <winsock2.h>
 #include <iphlpapi.h>
 #include <icmpapi.h>
 #include <atomic>
+#include <algorithm>
 
 #pragma comment(lib, "iphlpapi.lib")
 #pragma comment(lib, "ws2_32.lib")
@@ -14,6 +16,7 @@ namespace BrService {
 static HANDLE s_hThread = nullptr;
 static std::atomic<bool> s_running(false);
 static std::string s_targetIp = "127.0.0.1";
+static HANDLE s_hIcmpActive = INVALID_HANDLE_VALUE;
 
 bool PingEngine::Start(const std::string& targetIp) {
     if (s_running.load()) return true;
@@ -30,8 +33,16 @@ bool PingEngine::Start(const std::string& targetIp) {
 void PingEngine::Stop() {
     if (!s_running.load()) return;
     s_running = false;
+
+    // Abort active ICMP handle to unblock IcmpSendEcho immediately
+    HANDLE hIcmp = s_hIcmpActive;
+    s_hIcmpActive = INVALID_HANDLE_VALUE;
+    if (hIcmp != INVALID_HANDLE_VALUE) {
+        IcmpCloseHandle(hIcmp);
+    }
+
     if (s_hThread) {
-        WaitForSingleObject(s_hThread, 1500);
+        WaitForSingleObject(s_hThread, 300);
         CloseHandle(s_hThread);
         s_hThread = nullptr;
     }
@@ -46,15 +57,20 @@ int PingEngine::GetSignalBars() {
 }
 
 DWORD WINAPI PingEngine::WorkerThread(LPVOID /*param*/) {
-    LogInfo("PingEngine iniciado visando IP: %s (taxa: 5000ms, 0%% CPU)", s_targetIp.c_str());
+    LogInfo("PingEngine iniciado visando IP: %s (intervalo: 2500ms)", s_targetIp.c_str());
 
     HANDLE hIcmpFile = IcmpCreateFile();
     if (hIcmpFile == INVALID_HANDLE_VALUE) {
-        LogError("Falha ao criar handle ICMP: %lu", GetLastError());
+        LogError("PingEngine: Falha ao criar handle ICMP: %lu", GetLastError());
     }
+    s_hIcmpActive = hIcmpFile;
 
     char sendData[32] = "AionClassic50PingProbe";
-    DWORD replySize = sizeof(ICMP_ECHO_REPLY) + sizeof(sendData) + 8;
+
+    // Microsoft requirement on 64-bit platforms:
+    // Buffer must be >= sizeof(ICMP_ECHO_REPLY) + RequestSize + 8 + sizeof(IO_STATUS_BLOCK) [16 bytes].
+    // We allocate a safe 2048-byte buffer to guarantee ZERO buffer overruns or heap corruption.
+    const DWORD replySize = 2048;
     void* replyBuffer = malloc(replySize);
 
     unsigned long ipAddr = inet_addr(s_targetIp.c_str());
@@ -62,51 +78,57 @@ DWORD WINAPI PingEngine::WorkerThread(LPVOID /*param*/) {
         ipAddr = inet_addr("127.0.0.1");
     }
 
-    while (s_running.load()) {
-        int measuredPing = 11; // default smooth ping
+    int lastReportedPing = -1;
+    int lastReportedBars = -1;
 
-        if (hIcmpFile != INVALID_HANDLE_VALUE && replyBuffer) {
-            DWORD dwRet = IcmpSendEcho(hIcmpFile, ipAddr, sendData, sizeof(sendData),
-                                       nullptr, replyBuffer, replySize, 1000);
+    while (s_running.load()) {
+        int measuredPing = 11; // default smooth baseline
+
+        if (s_hIcmpActive != INVALID_HANDLE_VALUE && replyBuffer) {
+            DWORD dwRet = IcmpSendEcho(s_hIcmpActive, ipAddr, sendData, sizeof(sendData),
+                                       nullptr, replyBuffer, replySize, 300);
             if (dwRet > 0) {
                 PICMP_ECHO_REPLY pEchoReply = (PICMP_ECHO_REPLY)replyBuffer;
-                if (pEchoReply->Status == IP_SUCCESS) {
+                if (pEchoReply && pEchoReply->Status == IP_SUCCESS) {
                     measuredPing = (int)pEchoReply->RoundTripTime;
-                    if (measuredPing == 0) measuredPing = 1; // local roundtrip minimum
+                    if (measuredPing <= 0) measuredPing = 1;
                 }
             }
         }
 
+        measuredPing = std::clamp(measuredPing, 1, 999);
         g_currentPingMs = measuredPing;
         AddPingHistory(measuredPing);
 
-        // Calculate 1 to 4 bars
         int bars = 4;
-        if (measuredPing > 220) bars = 1;
+        if      (measuredPing > 220) bars = 1;
         else if (measuredPing > 130) bars = 2;
-        else if (measuredPing > 70) bars = 3;
-        else bars = 4;
+        else if (measuredPing > 70)  bars = 3;
+        else                         bars = 4;
         g_pingBars = bars;
 
-        // Invalidate Ping HUD window for redraw
-        if (g_hPingHudWnd && IsWindow(g_hPingHudWnd)) {
-            InvalidateRect(g_hPingHudWnd, nullptr, FALSE);
+        // Only trigger repaint if value changed
+        if (measuredPing != lastReportedPing || bars != lastReportedBars) {
+            lastReportedPing = measuredPing;
+            lastReportedBars = bars;
+            PingHudUI::Repaint();
         }
 
-        // Sleep 5000ms cleanly in chunks of 250ms for responsive shutdown without CPU load
-        for (int i = 0; i < 20 && s_running.load(); ++i) {
+        // Sleep 2500ms cleanly in responsive chunks
+        for (int i = 0; i < 10 && s_running.load(); ++i) {
             Sleep(250);
         }
     }
 
     if (hIcmpFile != INVALID_HANDLE_VALUE) {
         IcmpCloseHandle(hIcmpFile);
+        s_hIcmpActive = INVALID_HANDLE_VALUE;
     }
     if (replyBuffer) {
         free(replyBuffer);
     }
 
-    LogInfo("PingEngine finalizado.");
+    LogInfo("PingEngine finalizado com seguranca.");
     return 0;
 }
 

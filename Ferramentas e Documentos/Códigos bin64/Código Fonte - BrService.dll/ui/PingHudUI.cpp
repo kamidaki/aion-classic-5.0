@@ -13,7 +13,7 @@ static const wchar_t* kPingHudClassName = L"BrService_PingHud";
 static int s_hudWidth  = 120;
 static int s_hudHeight = 32;
 static bool s_iconHovered = false;
-static RECT s_consoleIconRect = { 0, 0, 0, 0 };
+static RECT s_dpsMeterIconRect = { 0, 0, 0, 0 };
 
 // Reusable buffer cache (eliminates per-frame GDI allocations)
 static HDC     s_hudMemDC      = nullptr;
@@ -111,7 +111,7 @@ void PingHudUI::Shutdown() {
 }
 
 bool PingHudUI::IsAllowedToDisplay() {
-    if (!g_featConsole.load() && !g_featPingUi.load()) return false;
+    if (!g_featDpsMeterUI.load() && !g_featPingUi.load()) return false;
     HWND hGame = g_gameHwnd.load();
     if (!hGame || !IsWindow(hGame) || IsIconic(hGame)) return false;
     if (g_isLoadingScreen.load() || !g_isGameActive.load()) return false;
@@ -142,17 +142,17 @@ void PingHudUI::Hide() {
 void PingHudUI::UpdatePosition(int gameX, int gameY, int gameW, int gameH) {
     if (!g_hPingHudWnd || !IsWindow(g_hPingHudWnd)) return;
 
-    bool showConsole = g_featConsole.load();
-    bool showPing    = g_featPingUi.load();
+    bool showDpsMeter = g_featDpsMeterUI.load();
+    bool showPing     = g_featPingUi.load();
 
-    if (!showConsole && !showPing) {
+    if (!showDpsMeter && !showPing) {
         Hide();
         return;
     }
 
     int calcW = 4;
-    if (showPing)    calcW += 64;
-    if (showConsole) calcW += 32;
+    if (showPing)     calcW += 64;
+    if (showDpsMeter) calcW += 32;
     calcW += 8;
     s_hudWidth = calcW;
 
@@ -197,8 +197,8 @@ void PingHudUI::Paint(HWND hwnd) {
 
         g.Clear(Gdiplus::Color(0, 0, 0, 0));
 
-        bool showConsole = g_featConsole.load();
-        bool showPing    = g_featPingUi.load();
+        bool showDpsMeter = g_featDpsMeterUI.load();
+        bool showPing     = g_featPingUi.load();
 
         float curX = 6.0f;
 
@@ -237,13 +237,13 @@ void PingHudUI::Paint(HWND hwnd) {
             curX += 38.0f;
         }
 
-        // 2. CONSOLE ICON (>_) — Pure White
-        if (showConsole) {
+        // 2. DPS METER / DASHBOARD ICON (Metrics Chart) — Pure White
+        if (showDpsMeter) {
             float iconX    = curX + 2.0f;
             float iconY    = 6.0f;
             float iconSize = 20.0f;
 
-            s_consoleIconRect = {
+            s_dpsMeterIconRect = {
                 (int)iconX - 2, (int)iconY - 2,
                 (int)(iconX + iconSize + 2), (int)(iconY + iconSize + 2)
             };
@@ -251,25 +251,27 @@ void PingHudUI::Paint(HWND hwnd) {
             // Hit test background with non-zero alpha so layered window registers clicks
             Gdiplus::SolidBrush hitBrush(Gdiplus::Color(2, 20, 25, 30));
             UICommon::FillRoundRectangle(g, &hitBrush,
-                (float)s_consoleIconRect.left, (float)s_consoleIconRect.top,
-                (float)(s_consoleIconRect.right  - s_consoleIconRect.left),
-                (float)(s_consoleIconRect.bottom - s_consoleIconRect.top), 4.0f);
+                (float)s_dpsMeterIconRect.left, (float)s_dpsMeterIconRect.top,
+                (float)(s_dpsMeterIconRect.right  - s_dpsMeterIconRect.left),
+                (float)(s_dpsMeterIconRect.bottom - s_dpsMeterIconRect.top), 4.0f);
 
-            // Constant pure white
+            // Constant pure white / hover highlight
             Gdiplus::Color iconCol = s_iconHovered
                 ? Gdiplus::Color(255, 255, 255, 255)
                 : Gdiplus::Color(220, 255, 255, 255);
 
             Gdiplus::Pen iconPen(iconCol, 1.6f);
-
             UICommon::DrawRoundRectangle(g, &iconPen, iconX, iconY, iconSize, iconSize - 2.0f, 3.0f);
-            g.DrawLine(&iconPen, iconX + 4.5f, iconY + 5.0f,  iconX + 8.5f, iconY + 8.5f);
-            g.DrawLine(&iconPen, iconX + 8.5f, iconY + 8.5f,  iconX + 4.5f, iconY + 12.0f);
-            g.DrawLine(&iconPen, iconX + 11.0f, iconY + 12.0f, iconX + 15.5f, iconY + 12.0f);
+
+            // 3-bar histogram metrics icon
+            Gdiplus::SolidBrush barBrush(iconCol);
+            g.FillRectangle(&barBrush, iconX + 4.0f,  iconY + 9.5f, 2.2f, 4.5f);
+            g.FillRectangle(&barBrush, iconX + 8.5f,  iconY + 6.5f, 2.2f, 7.5f);
+            g.FillRectangle(&barBrush, iconX + 13.0f, iconY + 4.0f, 2.2f, 10.0f);
 
             curX += iconSize + 8.0f;
         } else {
-            s_consoleIconRect = { 0, 0, 0, 0 };
+            s_dpsMeterIconRect = { 0, 0, 0, 0 };
         }
     }
 
@@ -295,11 +297,11 @@ LRESULT CALLBACK PingHudUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
         return 0;
     }
     case WM_MOUSEMOVE: {
-        if (!g_featConsole.load()) return 0;
+        if (!g_featDpsMeterUI.load()) return 0;
         int mx = LOWORD(lParam);
         int my = HIWORD(lParam);
         POINT pt = { mx, my };
-        bool hovered = PtInRect(&s_consoleIconRect, pt) != FALSE;
+        bool hovered = PtInRect(&s_dpsMeterIconRect, pt) != FALSE;
         if (hovered != s_iconHovered) {
             s_iconHovered = hovered;
             Paint(hwnd);
@@ -316,11 +318,11 @@ LRESULT CALLBACK PingHudUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
         return 0;
     }
     case WM_LBUTTONDOWN: {
-        if (!g_featConsole.load()) return 0;
+        if (!g_featDpsMeterUI.load()) return 0;
         int mx = LOWORD(lParam);
         int my = HIWORD(lParam);
         POINT pt = { mx, my };
-        if (PtInRect(&s_consoleIconRect, pt)) {
+        if (PtInRect(&s_dpsMeterIconRect, pt)) {
             DrawerModalUI::Toggle();
         }
         return 0;

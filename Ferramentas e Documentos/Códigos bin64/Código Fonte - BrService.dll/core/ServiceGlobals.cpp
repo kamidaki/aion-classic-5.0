@@ -13,19 +13,36 @@ std::atomic<bool> g_isDrawerOpen(false);
 std::atomic<bool> g_isInWorld(false);
 std::atomic<bool> g_isAdmin(false);
 
+std::atomic<uint32_t> g_localPlayerId(0);
+std::string g_localPlayerName = "";
+static SRWLOCK s_playerIdentityLock = SRWLOCK_INIT;
+
+void SetLocalPlayerIdentity(uint32_t id, const std::string& name) {
+    g_localPlayerId.store(id, std::memory_order_relaxed);
+    AcquireSRWLockExclusive(&s_playerIdentityLock);
+    g_localPlayerName = name;
+    ReleaseSRWLockExclusive(&s_playerIdentityLock);
+}
+
+uint32_t GetLocalPlayerId() {
+    return g_localPlayerId.load(std::memory_order_relaxed);
+}
+
+std::string GetLocalPlayerName() {
+    AcquireSRWLockShared(&s_playerIdentityLock);
+    std::string res = g_localPlayerName;
+    ReleaseSRWLockShared(&s_playerIdentityLock);
+    return res;
+}
+
 std::atomic<int> g_drawerW(760);
 std::atomic<int> g_drawerH(560);
 std::atomic<int> g_drawerOpacity(255);
 std::atomic<bool> g_compactView(false);
-std::atomic<bool> g_hideConsoleSection(false);
 std::atomic<bool> g_drawerPinned(true);
 
-std::atomic<bool> g_featConsole(true);
 std::atomic<bool> g_featPingUi(true);
 std::atomic<bool> g_featDpsMeterUI(true);
-std::atomic<bool> g_featFov(true);
-std::atomic<bool> g_featCamMax(true);
-std::atomic<bool> g_featFpsUnlock(true);
 std::atomic<bool> g_featComboUi(true);
 
 std::atomic<bool>  g_comboVisible(true);
@@ -52,7 +69,6 @@ void AddPingHistory(int pingMs) {
     std::lock_guard<std::mutex> lock(g_pingHistoryMutex);
     uint64_t now = GetTickCount64();
     g_pingHistory.push_back({ pingMs, now });
-    // Retain only entries from the last 60 minutes (3,600,000 ms)
     uint64_t cutoff = (now > 3600000ULL) ? (now - 3600000ULL) : 0;
     while (!g_pingHistory.empty() && g_pingHistory.front().timestampMs < cutoff) {
         g_pingHistory.erase(g_pingHistory.begin());
@@ -74,11 +90,6 @@ std::atomic<uint32_t> g_totalDealtDps(0);
 std::atomic<uint32_t> g_battleDurationSeconds(0);
 std::atomic<bool> g_isCombatActive(false);
 std::vector<CombatSession> g_combatHistory;
-
-std::atomic<float> g_cvarFov(75.0f);
-std::atomic<float> g_cvarCamMax(25.0f);
-std::atomic<int>   g_cvarMaxFps(144);
-std::atomic<bool>  g_cvarTripleBuffering(false);
 
 HWND g_hPingHudWnd = nullptr;
 HWND g_hDrawerModalWnd = nullptr;
@@ -263,100 +274,6 @@ void AddCombatEvent(const std::string& attacker, const std::string& target, uint
         g_currentRadar.dodge = 50.0f + (float)((durationSec * 3) % 40);
         g_currentRadar.resist = 55.0f + (float)((g_totalBattleDamage.load() / 5000) % 35);
     }
-}
-
-static inline bool IsValidUserPointer(uintptr_t addr) {
-#ifdef _WIN64
-    return addr >= 0x10000 && addr <= 0x00007FFFFFFEFFFF;
-#else
-    return addr >= 0x10000 && addr <= 0x7FFEFFFF;
-#endif
-}
-
-static std::atomic<uint32_t> s_cachedPlayerId{ 0 };
-static std::string s_cachedPlayerName;
-static SRWLOCK s_playerIdentityLock = SRWLOCK_INIT;
-
-uint32_t GetLocalPlayerObjectId() {
-    uintptr_t hG = (uintptr_t)GetModuleHandleA("Game.dll");
-    if (!hG) return 0;
-    __try {
-        uintptr_t addr = hG + 0xECDDC8;
-        static const uintptr_t pOffsets[] = { 0x70, 0x10, 0x20 };
-        for (int i = 0; i < 3; ++i) {
-            if (!IsValidUserPointer(addr)) return 0;
-            addr = *(uintptr_t*)addr;
-            if (!IsValidUserPointer(addr)) return 0;
-            addr += pOffsets[i];
-        }
-        if (!IsValidUserPointer(addr)) return 0;
-        uintptr_t pPlayer = *(uintptr_t*)addr;
-        if (!IsValidUserPointer(pPlayer)) return 0;
-        uintptr_t pPE = *(uintptr_t*)(pPlayer + 0x378);
-        if (!IsValidUserPointer(pPE)) return 0;
-        uint32_t id = *(uint32_t*)(pPE + 0x24);
-        if (id > 0) {
-            s_cachedPlayerId.store(id, std::memory_order_relaxed);
-            g_isInWorld.store(true, std::memory_order_relaxed);
-            return id;
-        }
-    } __except (EXCEPTION_EXECUTE_HANDLER) {
-        return 0;
-    }
-    return 0;
-}
-
-static bool ReadPlayerNameRaw(char* outBuf, size_t bufSize) {
-    if (!outBuf || bufSize == 0) return false;
-    outBuf[0] = '\0';
-    uintptr_t hG = (uintptr_t)GetModuleHandleA("Game.dll");
-    if (!hG) return false;
-    __try {
-        uintptr_t addr = hG + 0xECDDC8;
-        static const uintptr_t pOffsets[] = { 0x70, 0x10, 0x20 };
-        for (int i = 0; i < 3; ++i) {
-            if (!IsValidUserPointer(addr)) return false;
-            addr = *(uintptr_t*)addr;
-            if (!IsValidUserPointer(addr)) return false;
-            addr += pOffsets[i];
-        }
-        if (!IsValidUserPointer(addr)) return false;
-        uintptr_t pPlayer = *(uintptr_t*)addr;
-        if (!IsValidUserPointer(pPlayer)) return false;
-        uintptr_t pPE = *(uintptr_t*)(pPlayer + 0x378);
-        if (!IsValidUserPointer(pPE)) return false;
-        wchar_t* pN = (wchar_t*)(pPE + 0x46);
-        if (pN) {
-            size_t len = wcsnlen_s(pN, 64);
-            if (len > 0 && len < 64) {
-                WideCharToMultiByte(CP_UTF8, 0, pN, (int)len, outBuf, (int)bufSize - 1, nullptr, nullptr);
-                outBuf[bufSize - 1] = '\0';
-                return true;
-            }
-        }
-    } __except (EXCEPTION_EXECUTE_HANDLER) {
-        return false;
-    }
-    return false;
-}
-
-std::string GetLocalPlayerName() {
-    AcquireSRWLockShared(&s_playerIdentityLock);
-    if (!s_cachedPlayerName.empty()) {
-        std::string res = s_cachedPlayerName;
-        ReleaseSRWLockShared(&s_playerIdentityLock);
-        return res;
-    }
-    ReleaseSRWLockShared(&s_playerIdentityLock);
-
-    char buf[128] = { 0 };
-    if (ReadPlayerNameRaw(buf, sizeof(buf))) {
-        AcquireSRWLockExclusive(&s_playerIdentityLock);
-        s_cachedPlayerName = buf;
-        ReleaseSRWLockExclusive(&s_playerIdentityLock);
-        return std::string(buf);
-    }
-    return "";
 }
 
 } // namespace BrService

@@ -21,25 +21,15 @@ std::wstring BrConfig::GetIniPath() {
 void BrConfig::Load() {
     std::wstring ini = GetIniPath();
 
-    wchar_t buf[64] = { 0 };
-    GetPrivateProfileStringW(L"ShugoConsole", L"FOV", L"75.0", buf, 64, ini.c_str());
-    g_cvarFov = static_cast<float>(_wtof(buf));
-
-    GetPrivateProfileStringW(L"ShugoConsole", L"CamMax", L"25.0", buf, 64, ini.c_str());
-    g_cvarCamMax = static_cast<float>(_wtof(buf));
-
-    g_cvarMaxFps = GetPrivateProfileIntW(L"ShugoConsole", L"MaxFPS", 144, ini.c_str());
-    g_cvarTripleBuffering = (GetPrivateProfileIntW(L"ShugoConsole", L"TripleBuffering", 1, ini.c_str()) != 0);
-
-    g_drawerW      = std::clamp((int)GetPrivateProfileIntW(L"DrawerUI", L"Width",   760, ini.c_str()), 420, 960);
-    g_drawerH      = std::clamp((int)GetPrivateProfileIntW(L"DrawerUI", L"Height",  560, ini.c_str()), 480, 800);
-    g_drawerOpacity= std::clamp((int)GetPrivateProfileIntW(L"DrawerUI", L"Opacity", 255, ini.c_str()), 120, 255);
-    g_compactView        = (GetPrivateProfileIntW(L"DrawerUI", L"CompactView",  0, ini.c_str()) != 0);
-    g_hideConsoleSection = (GetPrivateProfileIntW(L"DrawerUI", L"HideConsole",  0, ini.c_str()) != 0);
-    g_drawerPinned       = (GetPrivateProfileIntW(L"DrawerUI", L"Pinned",       1, ini.c_str()) != 0);
+    g_drawerW       = std::clamp((int)GetPrivateProfileIntW(L"DrawerUI", L"Width",       760, ini.c_str()), 420, 960);
+    g_drawerH       = std::clamp((int)GetPrivateProfileIntW(L"DrawerUI", L"Height",      560, ini.c_str()), 480, 800);
+    g_drawerOpacity = std::clamp((int)GetPrivateProfileIntW(L"DrawerUI", L"Opacity",     255, ini.c_str()), 120, 255);
+    g_compactView   = (GetPrivateProfileIntW(L"DrawerUI", L"CompactView",  0, ini.c_str()) != 0);
+    g_drawerPinned  = (GetPrivateProfileIntW(L"DrawerUI", L"Pinned",       1, ini.c_str()) != 0);
 
     g_comboVisible = (GetPrivateProfileIntW(L"ComboUI", L"Visible", 1, ini.c_str()) != 0);
 
+    wchar_t buf[64] = { 0 };
     GetPrivateProfileStringW(L"ComboUI", L"Opacity", L"1.0", buf, 64, ini.c_str());
     g_comboOpacity = std::clamp(static_cast<float>(_wtof(buf)), 0.10f, 1.0f);
     SetComboOverlayOpacity(g_comboOpacity.load());
@@ -58,8 +48,8 @@ void BrConfig::Load() {
     g_drawerPosX = GetPrivateProfileIntW(L"DrawerUI", L"PosX", -1, ini.c_str());
     g_drawerPosY = GetPrivateProfileIntW(L"DrawerUI", L"PosY", -1, ini.c_str());
 
-    LogInfo("Configuracoes carregadas de %ls: FOV=%.1f, CamMax=%.1f, MaxFPS=%d, W=%d, H=%d, Pos=(%d, %d), Opacity=%d, ComboVis=%d, ComboScale=%.2f, ComboPos=(%.2f, %.2f)",
-            ini.c_str(), g_cvarFov.load(), g_cvarCamMax.load(), g_cvarMaxFps.load(),
+    LogInfo("Configuracoes carregadas de %ls: W=%d, H=%d, Pos=(%d, %d), Opacity=%d, ComboVis=%d, ComboScale=%.2f, ComboPos=(%.2f, %.2f)",
+            ini.c_str(),
             g_drawerW.load(), g_drawerH.load(), g_drawerPosX.load(), g_drawerPosY.load(), g_drawerOpacity.load(),
             g_comboVisible.load() ? 1 : 0, g_comboScale.load(),
             g_comboPosNormX.load(), g_comboPosNormY.load());
@@ -68,29 +58,16 @@ void BrConfig::Load() {
 void BrConfig::Save() {
     std::wstring ini = GetIniPath();
 
-    wchar_t buf[64] = { 0 };
-    swprintf_s(buf, L"%.1f", g_cvarFov.load());
-    WritePrivateProfileStringW(L"ShugoConsole", L"FOV", buf, ini.c_str());
-
-    swprintf_s(buf, L"%.1f", g_cvarCamMax.load());
-    WritePrivateProfileStringW(L"ShugoConsole", L"CamMax", buf, ini.c_str());
-
-    swprintf_s(buf, L"%d", g_cvarMaxFps.load());
-    WritePrivateProfileStringW(L"ShugoConsole", L"MaxFPS", buf, ini.c_str());
-
-    WritePrivateProfileStringW(L"ShugoConsole", L"TripleBuffering",
-                               g_cvarTripleBuffering.load() ? L"1" : L"0", ini.c_str());
-
     WritePrivateProfileStringW(L"DrawerUI", L"Width",       std::to_wstring(g_drawerW.load()).c_str(),        ini.c_str());
     WritePrivateProfileStringW(L"DrawerUI", L"Height",      std::to_wstring(g_drawerH.load()).c_str(),        ini.c_str());
     WritePrivateProfileStringW(L"DrawerUI", L"PosX",        std::to_wstring(g_drawerPosX.load()).c_str(),     ini.c_str());
     WritePrivateProfileStringW(L"DrawerUI", L"PosY",        std::to_wstring(g_drawerPosY.load()).c_str(),     ini.c_str());
     WritePrivateProfileStringW(L"DrawerUI", L"Opacity",     std::to_wstring(g_drawerOpacity.load()).c_str(),  ini.c_str());
     WritePrivateProfileStringW(L"DrawerUI", L"CompactView", g_compactView.load()       ? L"1" : L"0", ini.c_str());
-    WritePrivateProfileStringW(L"DrawerUI", L"HideConsole", g_hideConsoleSection.load() ? L"1" : L"0", ini.c_str());
     WritePrivateProfileStringW(L"DrawerUI", L"Pinned",      g_drawerPinned.load()       ? L"1" : L"0", ini.c_str());
 
     WritePrivateProfileStringW(L"ComboUI", L"Visible", g_comboVisible.load() ? L"1" : L"0", ini.c_str());
+    wchar_t buf[64] = { 0 };
     swprintf_s(buf, L"%.2f", g_comboOpacity.load());
     WritePrivateProfileStringW(L"ComboUI", L"Opacity", buf, ini.c_str());
     swprintf_s(buf, L"%.2f", g_comboScale.load());

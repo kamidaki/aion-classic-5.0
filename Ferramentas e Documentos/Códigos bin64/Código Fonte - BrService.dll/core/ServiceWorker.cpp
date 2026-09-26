@@ -3,7 +3,6 @@
 #include "ServiceLog.h"
 #include "../ui/PingHudUI.h"
 #include "../ui/DrawerModalUI.h"
-#include "../cvar/CVarManager.h"
 #include "../combo/ComboUI.h"
 #include <atomic>
 
@@ -175,15 +174,14 @@ DWORD WINAPI ServiceWorker::WatchdogThread(LPVOID /*param*/) {
                 PingHudUI::Hide();
                 DrawerModalUI::Hide();
             } else if (active) {
-                CVarManager::ResyncOnMapChange();
                 PingHudUI::Show();
                 DrawerModalUI::RestoreIfOpen();
                 SyncPositionsDirectly(hGame, true);
             }
         }
 
-        // 4. Update in-world memory flag dynamically from Game.dll
-        uint32_t charId = GetLocalPlayerObjectId();
+        // 4. Update in-world flag dynamically from WebSocket player state
+        uint32_t charId = g_localPlayerId.load();
         g_isInWorld = (charId > 0);
 
         // 5. Active state change handling (clean, zero flickering)

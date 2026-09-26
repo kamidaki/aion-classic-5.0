@@ -44,8 +44,8 @@ struct TargetInfo {
     uint32_t attack = 0;
     uint32_t pdef = 0;
     uint32_t mres = 0;
-    std::string rating = "NORMAL"; // NORMAL, ELITE, HERO, LEGENDARY
-    std::string race = "NONE";     // ELYOS, ASMODIANS, etc.
+    std::string rating = "NORMAL";
+    std::string race = "NONE";
     float posX = 0.0f;
     float posY = 0.0f;
     float posZ = 0.0f;
@@ -61,14 +61,13 @@ struct CombatTimelineEntry {
     uint32_t damage = 0;
     bool isCrit = false;
     bool isHeal = false;
-    bool isIncoming = false; // true = dano recebido pelo player; false = dano causado no alvo
+    bool isIncoming = false;
 };
 
-// Uma sessão de combate completa (salva ao chamar ResetCombatSession)
 struct CombatSession {
-    std::string startTime;           // timestamp de início ("HH:MM:SS")
-    uint64_t totalDealt = 0;         // dano causado ao alvo
-    uint64_t totalReceived = 0;      // dano recebido
+    std::string startTime;
+    uint64_t totalDealt = 0;
+    uint64_t totalReceived = 0;
     uint32_t dps = 0;
     uint32_t durationSec = 0;
     std::vector<SkillDpsEntry> skills;
@@ -76,10 +75,10 @@ struct CombatSession {
 };
 
 struct RadarMetrics {
-    float crit = 45.0f;    // 0 - 100 (Crítico)
-    float block = 30.0f;   // 0 - 100 (Bloqueio)
-    float dodge = 25.0f;   // 0 - 100 (Esquiva)
-    float resist = 35.0f;  // 0 - 100 (Resistência)
+    float crit = 45.0f;
+    float block = 30.0f;
+    float dodge = 25.0f;
+    float resist = 35.0f;
 };
 
 // Global References & Synchronization
@@ -89,38 +88,38 @@ extern std::atomic<bool> g_isGameActive;
 extern std::atomic<bool> g_isLoadingScreen;
 extern std::atomic<bool> g_isDrawerOpen;
 
-// In-Game & Admin State (Sourced from GameServer via WebSocket)
-extern std::atomic<bool> g_isInWorld;       // true ONLY after player spawns in world
-extern std::atomic<bool> g_isAdmin;         // true if player accessLevel > 0
+// In-Game & Admin State (Sourced 100% from GameServer via WebSocket)
+extern std::atomic<bool> g_isInWorld;
+extern std::atomic<bool> g_isAdmin;
+extern std::atomic<uint32_t> g_localPlayerId;
+extern std::string g_localPlayerName;
+void SetLocalPlayerIdentity(uint32_t id, const std::string& name);
+uint32_t GetLocalPlayerId();
+std::string GetLocalPlayerName();
 
-// UI Customization State (Controlled via Settings Modal)
-extern std::atomic<int> g_drawerW;          // console window width (default 760, min 540, max 960)
-extern std::atomic<int> g_drawerH;          // console window height (default 560, min 480, max 800)
-extern std::atomic<int> g_drawerOpacity;    // console opacity (default 255, min 120, max 255)
-extern std::atomic<bool> g_compactView;     // compact mode (hides radar)
-extern std::atomic<bool> g_hideConsoleSection; // hide shugo graphics console, full dps meter
-extern std::atomic<bool> g_drawerPinned;    // PINNED=true: segue janela do jogo; UNPINNED=false: livre
+// UI Customization State
+extern std::atomic<int> g_drawerW;
+extern std::atomic<int> g_drawerH;
+extern std::atomic<int> g_drawerOpacity;
+extern std::atomic<bool> g_compactView;
+extern std::atomic<bool> g_drawerPinned;
 
 // Combo UI In-Game Settings & Flags
-extern std::atomic<bool>  g_featComboUi;       // -comboUi:enable|disable
-extern std::atomic<bool>  g_comboVisible;      // settings toggle (if false, hidden and participation points paused)
-extern std::atomic<float> g_comboOpacity;      // 0.1f to 1.0f (default 1.0f)
-extern std::atomic<float> g_comboScale;        // 0.55f to 1.60f (default 1.0f)
-extern std::atomic<float> g_comboPosNormX;     // normalized X pos (default 0.80f)
-extern std::atomic<float> g_comboPosNormY;     // normalized Y pos (default 0.50f)
-extern std::atomic<int>   g_drawerPosX;        // custom window X pos (-1 for default)
-extern std::atomic<int>   g_drawerPosY;        // custom window Y pos (-1 for default)
+extern std::atomic<bool>  g_featComboUi;
+extern std::atomic<bool>  g_comboVisible;
+extern std::atomic<float> g_comboOpacity;
+extern std::atomic<float> g_comboScale;
+extern std::atomic<float> g_comboPosNormX;
+extern std::atomic<float> g_comboPosNormY;
+extern std::atomic<int>   g_drawerPosX;
+extern std::atomic<int>   g_drawerPosY;
 
-// Language Flag: "BRA" (Portuguese) or "ENG"/"ENU" (English)
+// Language Flag
 extern std::string g_clientLang;
 
-// Feature Control Flags (Controlled via Command-Line Parameters: -param:enable/disable)
-extern std::atomic<bool> g_featConsole;       // -console:enable|disable
-extern std::atomic<bool> g_featPingUi;        // -pingUi:enable|disable
-extern std::atomic<bool> g_featDpsMeterUI;    // -DpsMeterUI:enable|disable
-extern std::atomic<bool> g_featFov;           // -fov:enable|disable
-extern std::atomic<bool> g_featCamMax;        // -camMax:enable|disable
-extern std::atomic<bool> g_featFpsUnlock;     // -fpsUnlock:enable|disable
+// Feature Control Flags
+extern std::atomic<bool> g_featPingUi;
+extern std::atomic<bool> g_featDpsMeterUI;
 
 // Network & Ping State
 extern std::string g_serverIp;
@@ -129,7 +128,7 @@ extern std::string g_securityToken;
 extern std::atomic<int> g_currentPingMs;
 extern std::atomic<int> g_pingBars;
 
-// Ping 60-minute latency history for Fibonacci trend sparkline
+// Ping history
 struct PingHistoryEntry {
     int pingMs;
     uint64_t timestampMs;
@@ -138,28 +137,22 @@ extern std::vector<PingHistoryEntry> g_pingHistory;
 extern std::mutex g_pingHistoryMutex;
 void AddPingHistory(int pingMs);
 
-// Combat State
+// Combat State (100% sourced from WebSocket GameServer events)
 extern std::recursive_mutex g_combatMutex;
 extern TargetInfo g_currentTarget;
 extern RadarMetrics g_currentRadar;
 extern std::vector<PlayerDpsEntry> g_playerRankings;
 extern std::vector<SkillDpsEntry> g_skillBreakdown;
-extern std::vector<float> g_dpsHistory; // DPS over time telemetry points
-extern std::vector<CombatTimelineEntry> g_combatTimeline; // Real-time combat timeline
-extern std::atomic<uint64_t> g_totalBattleDamage;    // legacy: dealt only
-extern std::atomic<uint64_t> g_totalDamageDealt;     // dano causado pelo player no alvo
-extern std::atomic<uint64_t> g_totalDamageReceived;  // dano recebido pelo player
+extern std::vector<float> g_dpsHistory;
+extern std::vector<CombatTimelineEntry> g_combatTimeline;
+extern std::atomic<uint64_t> g_totalBattleDamage;
+extern std::atomic<uint64_t> g_totalDamageDealt;
+extern std::atomic<uint64_t> g_totalDamageReceived;
 extern std::atomic<uint32_t> g_totalBattleDps;
-extern std::atomic<uint32_t> g_totalDealtDps;        // DPS causado
+extern std::atomic<uint32_t> g_totalDealtDps;
 extern std::atomic<uint32_t> g_battleDurationSeconds;
 extern std::atomic<bool> g_isCombatActive;
-extern std::vector<CombatSession> g_combatHistory;   // últimas 5 sessões
-
-// Shugo Console State
-extern std::atomic<float> g_cvarFov;
-extern std::atomic<float> g_cvarCamMax;
-extern std::atomic<int>   g_cvarMaxFps;
-extern std::atomic<bool>  g_cvarTripleBuffering;
+extern std::vector<CombatSession> g_combatHistory;
 
 // HWNDs of Layered Windows
 extern HWND g_hPingHudWnd;
@@ -170,8 +163,5 @@ void AddCombatEvent(const std::string& attacker, const std::string& target, uint
                     const std::string& skillName, uint32_t damage, bool isCrit, bool isHeal,
                     uint32_t targetCurHp, uint32_t targetMaxHp, uint32_t targetLevel,
                     const std::string& timeStr = "");
-
-uint32_t GetLocalPlayerObjectId();
-std::string GetLocalPlayerName();
 
 } // namespace BrService

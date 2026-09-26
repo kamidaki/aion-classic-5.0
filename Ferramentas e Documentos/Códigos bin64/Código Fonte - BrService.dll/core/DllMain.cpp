@@ -5,7 +5,6 @@
 #include "../network/PingEngine.h"
 #include "../network/WebSocketClient.h"
 #include "../database/CombatDb.h"
-#include "../cvar/CVarManager.h"
 #include "../ui/UICommon.h"
 #include "../ui/PingHudUI.h"
 #include "../ui/DrawerModalUI.h"
@@ -80,7 +79,6 @@ static DWORD WINAPI BackgroundInitThread(LPVOID /*param*/) {
     if (g_featDpsMeterUI.load()) {
         CombatDb::Initialize();
     }
-    CVarManager::Initialize();
 
     // 2. Start Network Services
     if (g_featPingUi.load()) {
@@ -91,10 +89,10 @@ static DWORD WINAPI BackgroundInitThread(LPVOID /*param*/) {
     }
 
     // 3. Initialize UI Windows
-    if (g_featConsole.load() || g_featPingUi.load()) {
+    if (g_featPingUi.load() || g_featDpsMeterUI.load()) {
         PingHudUI::Initialize(g_hModule);
     }
-    if (g_featConsole.load()) {
+    if (g_featDpsMeterUI.load()) {
         DrawerModalUI::Initialize(g_hModule);
     }
     if (g_featComboUi.load()) {
@@ -123,7 +121,7 @@ __declspec(dllexport) bool WINAPI BR_Initialize(const char* token, const char* c
         }
 
         LogInfo("=================================================================");
-        LogInfo("   BrService.dll - Shugo Console, Ping & DPS Meter Ativado      ");
+        LogInfo("   BrService.dll - Ping, DPS Meter & Combo UI Ativado           ");
         LogInfo("=================================================================");
 
         const char* actualCmd = (cmdline && cmdline[0] != '\0') ? cmdline : GetCommandLineA();
@@ -144,13 +142,9 @@ __declspec(dllexport) bool WINAPI BR_Initialize(const char* token, const char* c
                 g_clientLang = lang;
             }
 
-            g_featConsole    = IsParamEnabled(actualCmd, "console",    true);
             g_featPingUi     = IsParamEnabled(actualCmd, "pingUi",     true);
             g_featDpsMeterUI = IsParamEnabled(actualCmd, "DpsMeterUI", true);
             g_featComboUi    = IsParamEnabled(actualCmd, "comboUi",    true);
-            g_featFov        = IsParamEnabled(actualCmd, "fov",        true);
-            g_featCamMax     = IsParamEnabled(actualCmd, "camMax",     true);
-            g_featFpsUnlock  = IsParamEnabled(actualCmd, "fpsUnlock",  true);
         }
 
         // Run heavy initialization asynchronously in a separate background thread
@@ -173,7 +167,6 @@ __declspec(dllexport) void WINAPI BR_Shutdown() {
     PingHudUI::Shutdown();
     WebSocketClient::Stop();
     PingEngine::Stop();
-    CVarManager::Shutdown();
     CombatDb::Shutdown();
     UICommon::ShutdownGdiplus();
 

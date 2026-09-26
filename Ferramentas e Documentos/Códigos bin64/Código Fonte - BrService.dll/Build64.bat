@@ -32,7 +32,6 @@ cl /c /O2 /utf-8 /W3 /std:c++17 /EHa /MT /D NDEBUG /D _WINDOWS /D _USRDLL /D _UN
     core\ServiceLog.cpp ^
     core\ServiceWorker.cpp ^
     config\BrConfig.cpp ^
-    cvar\CVarManager.cpp ^
     network\PingEngine.cpp ^
     network\WebSocketClient.cpp ^
     database\CombatDb.cpp ^

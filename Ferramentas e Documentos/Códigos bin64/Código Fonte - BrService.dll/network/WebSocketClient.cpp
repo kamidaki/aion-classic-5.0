@@ -128,13 +128,19 @@ void WebSocketClient::HandleIncomingPayload(const std::string& payload) {
         bool inGame    = ExtractJsonBool(payload, "inGame",    false);
         bool isLoading = ExtractJsonBool(payload, "isLoading", false);
         bool isAdmin   = ExtractJsonBool(payload, "isAdmin",   false);
+        uint32_t charId = ExtractJsonUint(payload, "charId", 0);
+        std::string charName = ExtractJsonString(payload, "name");
 
-        g_isInWorld     = inGame;
+        g_isInWorld       = inGame;
         g_isLoadingScreen = isLoading;
-        g_isAdmin       = isAdmin;
+        g_isAdmin         = isAdmin;
 
-        LogInfo("WebSocket PLAYER_STATE recebido: inGame=%d, isLoading=%d, isAdmin=%d",
-                inGame, isLoading, isAdmin);
+        if (charId > 0) {
+            SetLocalPlayerIdentity(charId, charName);
+        }
+
+        LogInfo("WebSocket PLAYER_STATE recebido: inGame=%d, isLoading=%d, isAdmin=%d, charId=%u (%s)",
+                inGame, isLoading, isAdmin, charId, charName.c_str());
 
         if (!inGame || isLoading) {
             PingHudUI::Hide();
@@ -362,19 +368,18 @@ DWORD WINAPI WebSocketClient::ClientThread(LPVOID /*param*/) {
         s_connected = true;
         LogInfo("WebSocket conectado com sucesso ao emulador em %s:%d!", s_wsHost.c_str(), s_wsPort);
 
-        // Auto-identify player if already in world
-        uint32_t lastIdentifiedCharId = GetLocalPlayerObjectId();
-        if (lastIdentifiedCharId > 0) {
+        // Auto-identify player if already known via WebSocket state
+        uint32_t knownId = GetLocalPlayerId();
+        if (knownId > 0) {
             std::string myName = GetLocalPlayerName();
-            SendTextMessage("IDENTIFY:{\"charId\":" + std::to_string(lastIdentifiedCharId) + ",\"name\":\"" + myName + "\"}");
-            LogInfo("WebSocket: Enviado IDENTIFY inicial charId=%u (%s)", lastIdentifiedCharId, myName.c_str());
+            SendTextMessage("IDENTIFY:{\"charId\":" + std::to_string(knownId) + ",\"name\":\"" + myName + "\"}");
+            LogInfo("WebSocket: Enviado IDENTIFY charId=%u (%s)", knownId, myName.c_str());
         }
 
         SendTextMessage(std::string("SET_COMBO_VISIBILITY:") + (g_comboVisible.load() ? "1" : "0"));
 
         // High-performance continuous frame read loop (no per-frame erase)
         std::vector<uint8_t> frameBuffer;
-        ULONGLONG lastIdentifyCheckTick = GetTickCount64();
 
         while (s_running.load()) {
             uint8_t chunk[4096];
@@ -382,34 +387,9 @@ DWORD WINAPI WebSocketClient::ClientThread(LPVOID /*param*/) {
             if (n <= 0) {
                 int err = WSAGetLastError();
                 if (err == WSAETIMEDOUT) {
-                    // Periodic identity check
-                    ULONGLONG now = GetTickCount64();
-                    if (now - lastIdentifyCheckTick >= 2000) {
-                        lastIdentifyCheckTick = now;
-                        uint32_t curId = GetLocalPlayerObjectId();
-                        if (curId > 0 && curId != lastIdentifiedCharId) {
-                            lastIdentifiedCharId = curId;
-                            std::string myName = GetLocalPlayerName();
-                            SendTextMessage("IDENTIFY:{\"charId\":" + std::to_string(curId) + ",\"name\":\"" + myName + "\"}");
-                            LogInfo("WebSocket: Sincronizado IDENTIFY charId=%u (%s)", curId, myName.c_str());
-                        }
-                    }
                     continue;
                 }
                 break; // Disconnected
-            }
-
-            // Periodic identity check upon network activity
-            ULONGLONG now = GetTickCount64();
-            if (now - lastIdentifyCheckTick >= 2000) {
-                lastIdentifyCheckTick = now;
-                uint32_t curId = GetLocalPlayerObjectId();
-                if (curId > 0 && curId != lastIdentifiedCharId) {
-                    lastIdentifiedCharId = curId;
-                    std::string myName = GetLocalPlayerName();
-                    SendTextMessage("IDENTIFY:{\"charId\":" + std::to_string(curId) + ",\"name\":\"" + myName + "\"}");
-                    LogInfo("WebSocket: Sincronizado IDENTIFY charId=%u (%s)", curId, myName.c_str());
-                }
             }
 
             frameBuffer.insert(frameBuffer.end(), chunk, chunk + n);

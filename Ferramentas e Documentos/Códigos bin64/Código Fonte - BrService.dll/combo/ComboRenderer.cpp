@@ -19,58 +19,21 @@ static std::wstring Utf8ToWide(const std::string& s) {
 }
 
 uintptr_t ComboRenderer::GetPlayerEntity() {
-    if (!BrService::g_isInWorld.load() || BrService::g_isLoadingScreen.load() || !BrService::g_isGameActive.load()) return 0;
-    HMODULE hGame = GetModuleHandleA("Game.dll");
-    if (!hGame) return 0;
-#ifdef _WIN64
-    const uintptr_t BASE_OFFSET_PLAYER = 0xECDDC8;
-#else
-    const uintptr_t BASE_OFFSET_PLAYER = 0x1149DF8;
-#endif
-    uintptr_t addr = reinterpret_cast<uintptr_t>(hGame) + BASE_OFFSET_PLAYER;
-    static const uintptr_t offsets[] = { 0x70, 0x10, 0x20 };
-    for (int i = 0; i < 3; ++i) {
-        addr = SafeRead<uintptr_t>(addr);
-        if (!addr) return 0;
-        addr += offsets[i];
-    }
-    return SafeRead<uintptr_t>(addr);
+    return 0;
 }
 
 uintptr_t ComboRenderer::GetTargetEntity() {
-    if (!BrService::g_isInWorld.load() || BrService::g_isLoadingScreen.load() || !BrService::g_isGameActive.load()) return 0;
-    HMODULE hGame = GetModuleHandleA("Game.dll");
-    if (!hGame) return 0;
-#ifdef _WIN64
-    const uintptr_t BASE_OFFSET_TARGET = 0xECE610;
-#else
-    const uintptr_t BASE_OFFSET_TARGET = 0x114A678;
-#endif
-    uintptr_t addr = reinterpret_cast<uintptr_t>(hGame) + BASE_OFFSET_TARGET;
-    return SafeRead<uintptr_t>(addr);
+    return 0;
 }
 
 uint32_t ComboRenderer::GetPlayerHP() {
-    uintptr_t pEnt = GetPlayerEntity();
-    if (!pEnt) return 0;
-    const uintptr_t OFFSET_ENTITY_DATA = 0x378;
-#ifdef _WIN64
-    const uintptr_t OFFSET_HP = 0x147C;
-#else
-    const uintptr_t OFFSET_HP = 0x15bc;
-#endif
-    uintptr_t pData = SafeRead<uintptr_t>(pEnt + OFFSET_ENTITY_DATA);
-    if (!pData) return 0;
-    return SafeRead<uint32_t>(pData + OFFSET_HP);
+    std::lock_guard<std::recursive_mutex> lk(BrService::g_combatMutex);
+    return BrService::g_currentTarget.hasTarget ? BrService::g_currentTarget.currentHp : 100;
 }
 
 uint32_t ComboRenderer::GetTargetObjId() {
-    uintptr_t tEnt = GetTargetEntity();
-    if (!tEnt) return 0;
-    const uintptr_t OFFSET_ENTITY_DATA = 0x378;
-    uintptr_t tData = SafeRead<uintptr_t>(tEnt + OFFSET_ENTITY_DATA);
-    if (!tData) return 0;
-    return SafeRead<uint32_t>(tData + 0x24);
+    std::lock_guard<std::recursive_mutex> lk(BrService::g_combatMutex);
+    return BrService::g_currentTarget.hasTarget ? BrService::g_currentTarget.targetId : 0;
 }
 
 bool ComboRenderer::IsUIHidden() {
