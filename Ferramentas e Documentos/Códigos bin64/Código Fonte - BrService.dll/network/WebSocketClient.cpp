@@ -5,7 +5,6 @@
 #include "../database/CombatDb.h"
 #include "../ui/PingHudUI.h"
 #include "../ui/DrawerModalUI.h"
-#include "../model3d/CryModelBridge.h"
 #include "../combo/ComboUI.h"
 #include <winsock2.h>
 #include <ws2tcpip.h>
@@ -86,7 +85,7 @@ static bool ExtractJsonBool(const std::string& json, const std::string& key, boo
     if (pos == std::string::npos) return fallback;
     pos += pattern.length();
     while (pos < json.length() && (json[pos] == ' ' || json[pos] == '\t')) pos++;
-    if (json.compare(pos, 4, "true") == 0) return true;
+    if (json.compare(pos, 4, "true") == 0)  return true;
     if (json.compare(pos, 5, "false") == 0) return false;
     return fallback;
 }
@@ -126,18 +125,16 @@ bool WebSocketClient::IsConnected() {
 void WebSocketClient::HandleIncomingPayload(const std::string& payload) {
     // 1. Player State Updates
     if (payload.find("\"PLAYER_STATE\"") != std::string::npos) {
-        bool inGame = ExtractJsonBool(payload, "inGame", false);
+        bool inGame    = ExtractJsonBool(payload, "inGame",    false);
         bool isLoading = ExtractJsonBool(payload, "isLoading", false);
-        bool isAdmin = ExtractJsonBool(payload, "isAdmin", false);
-        uint32_t onlineCount = ExtractJsonUint(payload, "onlineCount", 0);
+        bool isAdmin   = ExtractJsonBool(payload, "isAdmin",   false);
 
-        g_isInWorld = inGame;
+        g_isInWorld     = inGame;
         g_isLoadingScreen = isLoading;
-        g_isAdmin = isAdmin;
-        g_onlineCount = onlineCount;
+        g_isAdmin       = isAdmin;
 
-        LogInfo("WebSocket PLAYER_STATE recebido: inGame=%d, isLoading=%d, isAdmin=%d, online=%u",
-                inGame, isLoading, isAdmin, onlineCount);
+        LogInfo("WebSocket PLAYER_STATE recebido: inGame=%d, isLoading=%d, isAdmin=%d",
+                inGame, isLoading, isAdmin);
 
         if (!inGame || isLoading) {
             PingHudUI::Hide();
@@ -155,40 +152,32 @@ void WebSocketClient::HandleIncomingPayload(const std::string& payload) {
         std::lock_guard<std::recursive_mutex> lock(g_combatMutex);
         if (!hasTarget) {
             g_currentTarget.hasTarget = false;
-            g_currentTarget.targetId = 0;
+            g_currentTarget.targetId  = 0;
             g_currentTarget.name.clear();
-            g_currentTarget.level = 0;
+            g_currentTarget.level     = 0;
             g_currentTarget.currentHp = 0;
-            g_currentTarget.maxHp = 0;
-            g_currentTarget.modelId = 0;
-            g_currentTarget.isNpc = false;
+            g_currentTarget.maxHp     = 0;
+            g_currentTarget.modelId   = 0;
+            g_currentTarget.isNpc     = false;
             g_currentTarget.rating.clear();
             g_currentTarget.race.clear();
-            CryModelBridge::SetTargetEntity(0, 0, 0, 0.0f);
         } else {
             g_currentTarget.hasTarget = true;
-            g_currentTarget.targetId = ExtractJsonUint(payload, "targetId", 0);
-            g_currentTarget.name = ExtractJsonString(payload, "name");
-            g_currentTarget.level = ExtractJsonUint(payload, "level", 0);
+            g_currentTarget.targetId  = ExtractJsonUint(payload, "targetId",  0);
+            g_currentTarget.name      = ExtractJsonString(payload, "name");
+            g_currentTarget.level     = ExtractJsonUint(payload, "level",     0);
             g_currentTarget.currentHp = ExtractJsonUint(payload, "currentHp", 0);
-            g_currentTarget.maxHp = ExtractJsonUint(payload, "maxHp", 100);
-            g_currentTarget.isNpc = ExtractJsonBool(payload, "isNpc", true);
-            g_currentTarget.modelId = ExtractJsonUint(payload, "modelId", 0);
-            g_currentTarget.aiName = ExtractJsonString(payload, "aiName");
-            g_currentTarget.attack = ExtractJsonUint(payload, "attack", 0);
-            g_currentTarget.pdef = ExtractJsonUint(payload, "pdef", 0);
-            g_currentTarget.mres = ExtractJsonUint(payload, "mres", 0);
-            g_currentTarget.rating = ExtractJsonString(payload, "rating");
+            g_currentTarget.maxHp     = ExtractJsonUint(payload, "maxHp",     100);
+            g_currentTarget.isNpc     = ExtractJsonBool(payload, "isNpc",     true);
+            g_currentTarget.modelId   = ExtractJsonUint(payload, "modelId",   0);
+            g_currentTarget.aiName    = ExtractJsonString(payload, "aiName");
+            g_currentTarget.attack    = ExtractJsonUint(payload, "attack",    0);
+            g_currentTarget.pdef      = ExtractJsonUint(payload, "pdef",      0);
+            g_currentTarget.mres      = ExtractJsonUint(payload, "mres",      0);
+            g_currentTarget.rating    = ExtractJsonString(payload, "rating");
             if (g_currentTarget.rating.empty()) g_currentTarget.rating = "NORMAL";
-            g_currentTarget.race = ExtractJsonString(payload, "race");
+            g_currentTarget.race      = ExtractJsonString(payload, "race");
             if (g_currentTarget.race.empty()) g_currentTarget.race = "NONE";
-
-            // OBRIGATORIAMENTE E INEGOCIAVELMENTE SÓ EXIBE O MODELO 3D QUANDO O ALVO FOR NPC (NUNCA JOGADOR OU A SI MESMO)
-            if (g_featModel3D.load() && g_currentTarget.isNpc && g_currentTarget.modelId > 0) {
-                CryModelBridge::SetTargetNpc(g_currentTarget.modelId);
-            } else {
-                CryModelBridge::SetTargetEntity(0, 0, 0, 0.0f);
-            }
         }
 
         if (g_hDrawerModalWnd && IsWindow(g_hDrawerModalWnd) && g_isDrawerOpen.load()) {
@@ -199,11 +188,11 @@ void WebSocketClient::HandleIncomingPayload(const std::string& payload) {
 
     // 3. COMBO_EVENT
     if (payload.find("\"COMBO_EVENT\"") != std::string::npos) {
-        std::string ev = ExtractJsonString(payload, "event");
-        int hits = (int)ExtractJsonUint(payload, "hits", 0);
-        int hitDamage = (int)ExtractJsonUint(payload, "hitDamage", 0);
-        int totalDamage = (int)ExtractJsonUint(payload, "totalDamage", 0);
-        int timeoutMs = (int)ExtractJsonUint(payload, "timeoutMs", 3000);
+        std::string ev    = ExtractJsonString(payload, "event");
+        int hits          = (int)ExtractJsonUint(payload, "hits", 0);
+        int hitDamage     = (int)ExtractJsonUint(payload, "hitDamage", 0);
+        int totalDamage   = (int)ExtractJsonUint(payload, "totalDamage", 0);
+        int timeoutMs     = (int)ExtractJsonUint(payload, "timeoutMs", 3000);
         std::string title = ExtractJsonString(payload, "title");
         g_ComboUI.OnEvent(ev, hits, title, hitDamage, totalDamage, timeoutMs);
         return;
@@ -236,50 +225,50 @@ void WebSocketClient::HandleIncomingPayload(const std::string& payload) {
         std::string stateName = ExtractJsonString(payload, "stateName");
         std::string stateType = ExtractJsonString(payload, "stateType");
         NotificationType nType = NotificationType::Normal;
-        if (stateType == "STUN") nType = NotificationType::AbnormalStun;
-        else if (stateType == "PARALYZE") nType = NotificationType::AbnormalParalyzed;
-        else if (stateType == "SILENCE") nType = NotificationType::AbnormalSilenced;
+        if      (stateType == "STUN")                         nType = NotificationType::AbnormalStun;
+        else if (stateType == "PARALYZE")                     nType = NotificationType::AbnormalParalyzed;
+        else if (stateType == "SILENCE")                      nType = NotificationType::AbnormalSilenced;
         else if (stateType == "SNARE" || stateType == "ROOT") nType = NotificationType::AbnormalBlink;
-        else if (stateType == "POISON") nType = NotificationType::AbnormalPoison;
-        else if (stateType == "BLEED") nType = NotificationType::AbnormalBleed;
-        else if (stateType == "FEAR") nType = NotificationType::AbnormalFear;
-        else if (stateType == "SLEEP") nType = NotificationType::AbnormalSleep;
-        else if (stateType == "BLIND") nType = NotificationType::AbnormalBlind;
-        else if (stateType == "DISEASE") nType = NotificationType::AbnormalDisease;
-        else if (stateType == "CURSE") nType = NotificationType::AbnormalCurse;
-        else if (stateType == "CONFUSE") nType = NotificationType::AbnormalConfuse;
+        else if (stateType == "POISON")                       nType = NotificationType::AbnormalPoison;
+        else if (stateType == "BLEED")                        nType = NotificationType::AbnormalBleed;
+        else if (stateType == "FEAR")                         nType = NotificationType::AbnormalFear;
+        else if (stateType == "SLEEP")                        nType = NotificationType::AbnormalSleep;
+        else if (stateType == "BLIND")                        nType = NotificationType::AbnormalBlind;
+        else if (stateType == "DISEASE")                      nType = NotificationType::AbnormalDisease;
+        else if (stateType == "CURSE")                        nType = NotificationType::AbnormalCurse;
+        else if (stateType == "CONFUSE")                      nType = NotificationType::AbnormalConfuse;
         g_ComboUI.ShowAbnormalState(stateName, nType);
         return;
     }
 
-    // 3. Combat Event (Damage/Heal Telemetry)
+    // 7. Combat Event (Damage/Heal Telemetry)
     if (payload.find("\"COMBAT_EVENT\"") == std::string::npos &&
         payload.find("\"type\":\"damage\"") == std::string::npos) {
         return;
     }
 
-    std::string timeStr = ExtractJsonString(payload, "time");
+    std::string timeStr  = ExtractJsonString(payload, "time");
     std::string attacker = ExtractJsonString(payload, "attacker");
     if (attacker.empty()) attacker = ExtractJsonString(payload, "attackerName");
     std::string target = ExtractJsonString(payload, "target");
     if (target.empty()) target = ExtractJsonString(payload, "targetName");
     std::string skillName = ExtractJsonString(payload, "skillName");
 
-    uint32_t skillId = ExtractJsonUint(payload, "skillId", 0);
-    uint32_t damage = ExtractJsonUint(payload, "damage", 0);
-    bool isCrit = ExtractJsonBool(payload, "isCrit", false);
-    bool isHeal = ExtractJsonBool(payload, "isHeal", false);
-    uint32_t targetCurHp = ExtractJsonUint(payload, "targetHp", 0);
-    uint32_t targetMaxHp = ExtractJsonUint(payload, "targetMaxHp", 100);
-    uint32_t targetLevel = ExtractJsonUint(payload, "targetLevel", 55);
+    uint32_t skillId    = ExtractJsonUint(payload, "skillId",    0);
+    uint32_t damage     = ExtractJsonUint(payload, "damage",     0);
+    bool isCrit         = ExtractJsonBool(payload, "isCrit",     false);
+    bool isHeal         = ExtractJsonBool(payload, "isHeal",     false);
+    uint32_t targetCurHp  = ExtractJsonUint(payload, "targetHp",    0);
+    uint32_t targetMaxHp  = ExtractJsonUint(payload, "targetMaxHp", 100);
+    uint32_t targetLevel  = ExtractJsonUint(payload, "targetLevel", 55);
 
     uint32_t targetId = ExtractJsonUint(payload, "targetId", 0);
-    uint32_t modelId = ExtractJsonUint(payload, "modelId", 0);
-    bool isNpc = ExtractJsonBool(payload, "isNpc", true);
+    uint32_t modelId  = ExtractJsonUint(payload, "modelId",  0);
+    bool isNpc        = ExtractJsonBool(payload, "isNpc",    true);
     std::string rating = ExtractJsonString(payload, "rating");
-    std::string race = ExtractJsonString(payload, "race");
+    std::string race   = ExtractJsonString(payload, "race");
 
-    // Atualiza dados autoritativos do alvo APENAS se o alvo atual for o mesmo da telemetria de combate
+    // Update authoritative target data when telemetry matches current target
     if (targetId > 0 && g_currentTarget.hasTarget && g_currentTarget.targetId == targetId) {
         std::lock_guard<std::recursive_mutex> lock(g_combatMutex);
         g_currentTarget.currentHp = targetCurHp;
@@ -289,27 +278,25 @@ void WebSocketClient::HandleIncomingPayload(const std::string& payload) {
         g_currentTarget.isNpc = isNpc;
         if (!rating.empty()) g_currentTarget.rating = rating;
         if (!race.empty()) g_currentTarget.race = race;
-        if (g_featModel3D.load() && g_currentTarget.isNpc && g_currentTarget.modelId > 0) {
-            CryModelBridge::SetTargetNpc(g_currentTarget.modelId);
-        }
     }
 
     // Update in-memory telemetry and timeline
-    AddCombatEvent(attacker, target, skillId, skillName, damage, isCrit, isHeal, targetCurHp, targetMaxHp, targetLevel, timeStr);
+    AddCombatEvent(attacker, target, skillId, skillName, damage, isCrit, isHeal,
+                   targetCurHp, targetMaxHp, targetLevel, timeStr);
 
     // Record to SQLite local history
     auto now = std::chrono::system_clock::now();
     uint64_t ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
 
     StoredCombatEvent ev;
-    ev.timestamp = ms;
-    ev.attacker = attacker;
-    ev.target = target;
-    ev.skillId = skillId;
-    ev.skillName = skillName;
-    ev.damage = damage;
-    ev.isCrit = isCrit;
-    ev.isHeal = isHeal;
+    ev.timestamp  = ms;
+    ev.attacker   = attacker;
+    ev.target     = target;
+    ev.skillId    = skillId;
+    ev.skillName  = skillName;
+    ev.damage     = damage;
+    ev.isCrit     = isCrit;
+    ev.isHeal     = isHeal;
     CombatDb::RecordEventAsync(ev);
 
     // Trigger modal redraw if visible
@@ -330,13 +317,12 @@ DWORD WINAPI WebSocketClient::ClientThread(LPVOID /*param*/) {
 
         sockaddr_in saddr = {};
         saddr.sin_family = AF_INET;
-        saddr.sin_port = htons(static_cast<u_short>(s_wsPort));
+        saddr.sin_port   = htons(static_cast<u_short>(s_wsPort));
         saddr.sin_addr.s_addr = inet_addr(s_wsHost.c_str());
         if (saddr.sin_addr.s_addr == INADDR_NONE || saddr.sin_addr.s_addr == 0) {
             saddr.sin_addr.s_addr = inet_addr("127.0.0.1");
         }
 
-        // Connect timeout
         DWORD timeout = 2500;
         setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (const char*)&timeout, sizeof(timeout));
         setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, (const char*)&timeout, sizeof(timeout));
@@ -376,7 +362,7 @@ DWORD WINAPI WebSocketClient::ClientThread(LPVOID /*param*/) {
         s_connected = true;
         LogInfo("WebSocket conectado com sucesso ao emulador em %s:%d!", s_wsHost.c_str(), s_wsPort);
 
-        // Auto-identificar o jogador local se ja conectado no mundo
+        // Auto-identify player if already in world
         uint32_t lastIdentifiedCharId = GetLocalPlayerObjectId();
         if (lastIdentifiedCharId > 0) {
             std::string myName = GetLocalPlayerName();
@@ -386,7 +372,7 @@ DWORD WINAPI WebSocketClient::ClientThread(LPVOID /*param*/) {
 
         SendTextMessage(std::string("SET_COMBO_VISIBILITY:") + (g_comboVisible.load() ? "1" : "0"));
 
-        // Frame read loop com buffer continuo de alta performance (sem erase por frame)
+        // High-performance continuous frame read loop (no per-frame erase)
         std::vector<uint8_t> frameBuffer;
         ULONGLONG lastIdentifyCheckTick = GetTickCount64();
 

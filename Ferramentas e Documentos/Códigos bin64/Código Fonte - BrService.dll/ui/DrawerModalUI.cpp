@@ -6,7 +6,6 @@
 #include "../core/I18n.h"
 #include "../cvar/CVarManager.h"
 #include "../config/BrConfig.h"
-#include "../model3d/CryModelBridge.h"
 #include "../combo/ComboUI.h"
 #include "../combo/ComboTypes.h"
 #include "../network/WebSocketClient.h"
@@ -175,13 +174,13 @@ static RECT s_comboTabPosTop = {}, s_comboTabPosMidRight = {}, s_comboTabPosCent
 // Tab Engine Rectangles
 static RECT s_engFovSlider = {}, s_engCamSlider = {};
 static RECT s_engFps60Rect = {}, s_engFps144Rect = {}, s_engFpsMaxRect = {};
-static RECT s_engTbToggleRect = {}, s_engAnisoToggleRect = {}, s_engFreeFlyRect = {}, s_engConsoleRect = {};
+static RECT s_engTbToggleRect = {}, s_engConsoleRect = {};
 
 // Tab Advanced Rectangles
 static RECT s_advOpacitySlider = {}, s_advPresetDefault = {}, s_advPresetWide = {}, s_advPresetCompact = {};
 static RECT s_advThemeLight = {}, s_advThemeDark = {}, s_advThemeGray = {}, s_advThemeNavy = {};
 static RECT s_advPinnedToggle = {};
-static RECT s_advCompactToggle = {}, s_advConsoleToggle = {}, s_advModel3DToggle = {};
+static RECT s_advCompactToggle = {}, s_advConsoleToggle = {};
 static RECT s_advFovToggle = {}, s_advCamToggle = {}, s_advFpsToggle = {};
 
 struct MemoryTargetRaw {
@@ -308,7 +307,6 @@ static bool UpdateTargetFromGameMemory() {
                     g_currentTarget.modelId = 0;
                     g_currentTarget.isNpc = false;
                     g_currentTarget.name.clear();
-                    CryModelBridge::SetTargetEntity(0, 0, 0, 0.0f);
                     return false;
                 }
             }
@@ -652,19 +650,13 @@ void DrawerModalUI::Paint(HWND hwnd) {
             UpdateTargetFromGameMemory();
             std::lock_guard<std::recursive_mutex> lk(g_combatMutex);
 
-            bool showTargetInspector = (g_featModel3D.load() && !g_compactView.load() && g_currentTarget.hasTarget && g_currentTarget.isNpc);
-            float inspW = 160.0f;
+            // Two-column layout: Display preferences | DPS Meter & Combat Metrics
             float cg = 14.0f;
-            float remainW = showTargetInspector ? (mW2 - inspW - cg) : mW2;
-            float c1W = std::floor(remainW * 0.47f);
-            float c2W = remainW - c1W - cg;
+            float c1W = std::floor(mW2 * 0.47f);
+            float c2W = mW2 - c1W - cg;
             float c2X = mX + c1W + cg;
-            float inspX = c2X + c2W + cg;
 
             g.DrawLine(&spn, mX + c1W + cg * 0.5f, mY, mX + c1W + cg * 0.5f, mY + mH2);
-            if (showTargetInspector) {
-                g.DrawLine(&spn, c2X + c2W + cg * 0.5f, mY, c2X + c2W + cg * 0.5f, mY + mH2);
-            }
 
             // COLUMN 1: DISPLAY & ENGINE PREFERENCES
             float c1Y = mY;
@@ -853,104 +845,6 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 g.DrawString(L"\u21BA Reset Combat", -1, &frs, Gdiplus::RectF((float)s_resetCombatBtnRect.left, (float)s_resetCombatBtnRect.top, c2W, 26), &cf2, &bTD);
             }
 
-            // COLUMN 3: TARGET INSPECTOR & 3D MODEL ON PEDESTAL
-            if (showTargetInspector) {
-                // showTargetInspector só é true quando hasTarget && isNpc
-                uint8_t rc = (g_currentTarget.race == "ELYOS" ? 0 : (g_currentTarget.race == "ASMODIANS" ? 1 : 2));
-                CryModelBridge::SetTargetEntity(g_currentTarget.modelId, 1, rc, g_currentTarget.yaw);
-                CryModelBridge::RenderThumbnail(g, inspX, mY + 6, inspW, 205);
-
-                float tX2 = inspX + 2, tY2 = mY + 220, tW = inspW - 4, tH = 64;
-                s_targetCardRect = { (int)tX2, (int)tY2, (int)(tX2 + tW), (int)(tY2 + tH) };
-
-                {
-                    Gdiplus::SolidBrush sh(Gdiplus::Color(30, 15, 23, 42));
-                    UICommon::FillRoundRectangle(g, &sh, tX2 + 2, tY2 + 3, tW, tH, 7);
-                }
-                {
-                    Gdiplus::SolidBrush bg3(cCd);
-                    UICommon::FillRoundRectangle(g, &bg3, tX2, tY2, tW, tH, 7);
-                    Gdiplus::Pen bp2(cBr, 1);
-                    UICommon::DrawRoundRectangle(g, &bp2, tX2, tY2, tW, tH, 7);
-                }
-
-                // Nome do NPC em maiúsculas
-                std::wstring tcN = UICommon::Utf8ToWide(g_currentTarget.name);
-                std::transform(tcN.begin(), tcN.end(), tcN.begin(), ::towupper);
-                Gdiplus::Font& ftn = *GetSegoeFont(8.0f, true);
-                g.DrawString(tcN.c_str(), -1, &ftn, Gdiplus::PointF(tX2 + 8, tY2 + 6), &bTD);
-
-                // Botão 'x' fechar
-                s_targetCardCloseRect = { (int)(tX2 + tW - 18), (int)(tY2 + 5), (int)(tX2 + tW - 4), (int)(tY2 + 19) };
-                Gdiplus::Font& fcl = *GetSegoeFont(7.5f, false);
-                g.DrawString(L"\u00D7", -1, &fcl, Gdiplus::PointF(tX2 + tW - 16, tY2 + 4), &bTM);
-
-                // Subtítulo: Rank (nível) – Tipo (rating ou NPC)
-                wchar_t subT[64] = {};
-                if (g_currentTarget.level > 0) {
-                    std::wstring mobType;
-                    if (!g_currentTarget.rating.empty() && g_currentTarget.rating != "NORMAL") {
-                        mobType = UICommon::Utf8ToWide(g_currentTarget.rating);
-                    } else {
-                        mobType = L"NPC";
-                    }
-                    swprintf_s(subT, L"Rank %u \u2013 %ls", g_currentTarget.level, mobType.c_str());
-                }
-                Gdiplus::Font& fsub = *GetSegoeFont(7.0f, false);
-                g.DrawString(subT, -1, &fsub, Gdiplus::PointF(tX2 + 8, tY2 + 22), &bTM);
-
-                // Barra de HP vermelha arredondada
-                float hF = (g_currentTarget.maxHp > 0) ? std::clamp((float)g_currentTarget.currentHp / g_currentTarget.maxHp, 0.0f, 1.0f) : 0.0f;
-                float hX = tX2 + 8, hY2 = tY2 + 38, hW = tW - 16, hH = 16;
-                Gdiplus::SolidBrush hBg(Gdiplus::Color(255, 254, 226, 226));
-                UICommon::FillRoundRectangle(g, &hBg, hX, hY2, hW, hH, 4);
-                if (hF > 0) {
-                    Gdiplus::SolidBrush hFl(UICommon::ColModel3HpRed);
-                    UICommon::FillRoundRectangle(g, &hFl, hX, hY2, hW * hF, hH, 4);
-                }
-                wchar_t hpT[32];
-                swprintf_s(hpT, L"%.0f%%", hF * 100.0f);
-                Gdiplus::Font& fhp = *GetSegoeFont(7.2f, true);
-                g.DrawString(hpT, -1, &fhp, Gdiplus::RectF(hX, hY2 + 1, hW, hH), &cf2, &bWh);
-
-                // Tooltip ao passar o mouse
-                if (PtInRect(&s_targetCardRect, s_mousePos)) {
-                    float tipW = 180.0f, tipH = 82.0f;
-                    float tipX = tX2 - tipW - 8.0f;
-                    float tipY = tY2 - 20.0f;
-                    if (tipX < mX) tipX = mX;
-
-                    Gdiplus::SolidBrush tipBg(Gdiplus::Color(245, 15, 23, 42));
-                    UICommon::FillRoundRectangle(g, &tipBg, tipX, tipY, tipW, tipH, 6);
-                    Gdiplus::Pen tipBorder(cBl, 1.2f);
-                    UICommon::DrawRoundRectangle(g, &tipBorder, tipX, tipY, tipW, tipH, 6);
-
-                    Gdiplus::Font& fTipT = *GetSegoeFont(7.8f, true);
-                    Gdiplus::Font& fTipB = *GetSegoeFont(7.0f, false);
-                    Gdiplus::SolidBrush tipText(Gdiplus::Color(255, 240, 245, 255));
-                    Gdiplus::SolidBrush tipSub(Gdiplus::Color(255, 160, 175, 200));
-
-                    wchar_t lineT[128];
-                    swprintf_s(lineT, L"%ls  [Lv. %u]", UICommon::Utf8ToWide(g_currentTarget.name).c_str(), g_currentTarget.level);
-                    g.DrawString(lineT, -1, &fTipT, Gdiplus::PointF(tipX + 8, tipY + 6), &tipText);
-
-                    wchar_t lineHp[128];
-                    swprintf_s(lineHp, L"HP: %u / %u (%.1f%%)", g_currentTarget.currentHp, g_currentTarget.maxHp, hF * 100.0f);
-                    g.DrawString(lineHp, -1, &fTipB, Gdiplus::PointF(tipX + 8, tipY + 24), &tipSub);
-
-                    wchar_t lineRace[128];
-                    swprintf_s(lineRace, L"Raca: %ls | NPC / Monstro",
-                               UICommon::Utf8ToWide(g_currentTarget.race).c_str());
-                    g.DrawString(lineRace, -1, &fTipB, Gdiplus::PointF(tipX + 8, tipY + 42), &tipSub);
-
-                    wchar_t lineM[128];
-                    swprintf_s(lineM, L"Modelo ID: #%u", g_currentTarget.modelId);
-                    g.DrawString(lineM, -1, &fTipB, Gdiplus::PointF(tipX + 8, tipY + 60), &tipSub);
-                }
-            } else {
-                CryModelBridge::SetTargetEntity(0, 0, 0, 0.0f);
-                s_targetCardRect = {};
-            }
         }
         // ================= TAB 1: DPS METER & HISTÓRICO =================
         else if (s_activeTab == DrawerTab::DpsMeter) {
@@ -1192,12 +1086,6 @@ void DrawerModalUI::Paint(HWND hwnd) {
                 c1Y += 34;
             }
 
-            g.DrawString(L"FreeFly Mode", -1, &fLb, Gdiplus::PointF(mX, c1Y), &bTD);
-            c1Y += 18;
-            s_engFreeFlyRect = { (int)(mX + c1W - 90), (int)c1Y, (int)(mX + c1W), (int)(c1Y + 18) };
-            g.DrawString(L"Free Camera Fly", -1, &fSb, Gdiplus::PointF(mX, c1Y + 2), &bTM);
-            UICommon::DrawModernSwitch(g, (float)s_engFreeFlyRect.left, (float)s_engFreeFlyRect.top, g_featFreeFly.load(), L"ON", L"OFF");
-            c1Y += 30;
 
             s_engConsoleRect = { (int)(mX + c1W - 90), (int)c1Y, (int)(mX + c1W), (int)(c1Y + 18) };
             g.DrawString(L"Graphic Console HUD", -1, &fSb, Gdiplus::PointF(mX, c1Y + 2), &bTM);
@@ -1220,34 +1108,18 @@ void DrawerModalUI::Paint(HWND hwnd) {
             UICommon::DrawModernSwitch(g, (float)s_engTbToggleRect.left, (float)s_engTbToggleRect.top, g_cvarTripleBuffering.load(), L"ON", L"OFF");
             c2Y += 28;
 
-            s_engAnisoToggleRect = { (int)(c2X + c2W - 50), (int)c2Y, (int)(c2X + c2W), (int)(c2Y + 22) };
-            g.DrawString(L"Anisotropic", -1, &fSb, Gdiplus::PointF(c2X, c2Y + 2), &bTM);
-            {
-                bool a = g_cvarAnisotropic.load();
-                Gdiplus::SolidBrush ab(a ? cBl : cBg);
-                UICommon::FillRoundRectangle(g, &ab, (float)s_engAnisoToggleRect.left, (float)c2Y, 50, 22, 4);
-                Gdiplus::Pen ap2(a ? cBl : cBr, 1);
-                UICommon::DrawRoundRectangle(g, &ap2, (float)s_engAnisoToggleRect.left, (float)c2Y, 50, 22, 4);
-                Gdiplus::SolidBrush at(a ? cCd : cTD);
-                Gdiplus::Font& af = *GetSegoeFont(7.0f, true);
-                g.DrawString(a ? L"16x" : L"OFF", -1, &af, Gdiplus::RectF((float)s_engAnisoToggleRect.left, (float)c2Y + 2, 50, 18), &cf2, &at);
-            }
-            c2Y += 32;
-
             {
                 Gdiplus::SolidBrush ib2(cBg);
-                UICommon::FillRoundRectangle(g, &ib2, c2X, c2Y, c2W, 66, 6);
+                UICommon::FillRoundRectangle(g, &ib2, c2X, c2Y, c2W, 52, 6);
                 Gdiplus::Pen ip2(cBr, 1);
-                UICommon::DrawRoundRectangle(g, &ip2, c2X, c2Y, c2W, 66, 6);
+                UICommon::DrawRoundRectangle(g, &ip2, c2X, c2Y, c2W, 52, 6);
                 Gdiplus::Font& fi = *GetSegoeFont(7.0f, false);
                 float iy = c2Y + 6;
                 g.DrawString(L"Comandos aplicados diretamente em memoria.", -1, &fi, Gdiplus::PointF(c2X + 8, iy), &bTM);
                 iy += 14;
-                g.DrawString(L"FreeFly: Teclas WASD + arraste botao direito.", -1, &fi, Gdiplus::PointF(c2X + 8, iy), &bTM);
-                iy += 14;
                 g.DrawString(L"FOV e Cam persistem entre sessoes do jogo.", -1, &fi, Gdiplus::PointF(c2X + 8, iy), &bTM);
                 iy += 14;
-                g.DrawString(L"CryEngine CVar thread: ~33Hz em tempo real.", -1, &fi, Gdiplus::PointF(c2X + 8, iy), &bBl);
+                g.DrawString(L"CryEngine CVar: change-detection, 0% CPU idle.", -1, &fi, Gdiplus::PointF(c2X + 8, iy), &bBl);
             }
         }
         // ================= TAB 4: ADVANCED =================
@@ -1332,7 +1204,6 @@ void DrawerModalUI::Paint(HWND hwnd) {
 
             c2Y = dFT(s_advCompactToggle, c2X, c2Y, L"Compact View", g_compactView.load());
             c2Y = dFT(s_advConsoleToggle, c2X, c2Y, L"Graphic HUD", !g_hideConsoleSection.load());
-            c2Y = dFT(s_advModel3DToggle, c2X, c2Y, L"3D Model", g_featModel3D.load());
             c2Y = dFT(s_advFovToggle, c2X, c2Y, L"FOV Control", g_featFov.load());
             c2Y = dFT(s_advCamToggle, c2X, c2Y, L"Cam Max", g_featCamMax.load());
             c2Y = dFT(s_advFpsToggle, c2X, c2Y, L"FPS Unlock", g_featFpsUnlock.load());
@@ -1409,8 +1280,6 @@ LRESULT CALLBACK DrawerModalUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
             CVarManager::SetCameraMax(25);
             CVarManager::SetMaxFps(144);
             CVarManager::SetTripleBuffering(true);
-            CVarManager::SetAnisotropic(true);
-            CVarManager::SetFreeFly(false);
             ResetCombatSession();
             BrConfig::Save();
             Repaint();
@@ -1488,7 +1357,6 @@ LRESULT CALLBACK DrawerModalUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
             if (mx >= s_targetCardCloseRect.left && mx <= s_targetCardCloseRect.right && my >= s_targetCardCloseRect.top && my <= s_targetCardCloseRect.bottom) {
                 std::lock_guard<std::recursive_mutex> lk(g_combatMutex);
                 g_currentTarget.hasTarget = false;
-                CryModelBridge::SetTargetEntity(0, 0, 0, 0.0f);
                 Repaint();
                 return 0;
             }
@@ -1583,19 +1451,6 @@ LRESULT CALLBACK DrawerModalUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
                 Repaint();
                 return 0;
             }
-            if (mx >= s_engAnisoToggleRect.left && mx <= s_engAnisoToggleRect.right && my >= s_engAnisoToggleRect.top && my <= s_engAnisoToggleRect.bottom) {
-                CVarManager::SetAnisotropic(!g_cvarAnisotropic.load());
-                BrConfig::Save();
-                Repaint();
-                return 0;
-            }
-            if (mx >= s_engFreeFlyRect.left && mx <= s_engFreeFlyRect.right && my >= s_engFreeFlyRect.top && my <= s_engFreeFlyRect.bottom) {
-                bool nff = !g_featFreeFly.load();
-                CVarManager::SetFreeFly(nff);
-                BrConfig::Save();
-                Repaint();
-                return 0;
-            }
             if (mx >= s_engConsoleRect.left && mx <= s_engConsoleRect.right && my >= s_engConsoleRect.top && my <= s_engConsoleRect.bottom) {
                 g_hideConsoleSection = !g_hideConsoleSection.load();
                 BrConfig::Save();
@@ -1659,7 +1514,6 @@ LRESULT CALLBACK DrawerModalUI::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
                 Repaint();
                 return 0;
             }
-            if (cFt(s_advModel3DToggle, g_featModel3D)) return 0;
             if (cFt(s_advFovToggle, g_featFov)) return 0;
             if (cFt(s_advCamToggle, g_featCamMax)) return 0;
             if (cFt(s_advFpsToggle, g_featFpsUnlock)) return 0;

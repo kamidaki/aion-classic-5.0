@@ -12,26 +12,23 @@ std::atomic<bool> g_isDrawerOpen(false);
 
 std::atomic<bool> g_isInWorld(false);
 std::atomic<bool> g_isAdmin(false);
-std::atomic<uint32_t> g_onlineCount(0);
 
-std::atomic<int> g_drawerW(460);
-std::atomic<int> g_drawerH(580);
+std::atomic<int> g_drawerW(760);
+std::atomic<int> g_drawerH(560);
 std::atomic<int> g_drawerOpacity(255);
 std::atomic<bool> g_compactView(false);
 std::atomic<bool> g_hideConsoleSection(false);
 std::atomic<bool> g_drawerPinned(true);
 
 std::atomic<bool> g_featConsole(true);
-std::atomic<bool> g_featFreeFly(true);
 std::atomic<bool> g_featPingUi(true);
 std::atomic<bool> g_featDpsMeterUI(true);
-std::atomic<bool> g_featModel3D(true);
 std::atomic<bool> g_featFov(true);
 std::atomic<bool> g_featCamMax(true);
 std::atomic<bool> g_featFpsUnlock(true);
 std::atomic<bool> g_featComboUi(true);
 
-std::atomic<bool> g_comboVisible(true);
+std::atomic<bool>  g_comboVisible(true);
 std::atomic<float> g_comboOpacity(1.0f);
 std::atomic<float> g_comboScale(1.0f);
 std::atomic<float> g_comboPosNormX(0.80f);
@@ -80,9 +77,8 @@ std::vector<CombatSession> g_combatHistory;
 
 std::atomic<float> g_cvarFov(75.0f);
 std::atomic<float> g_cvarCamMax(25.0f);
-std::atomic<int> g_cvarMaxFps(144);
-std::atomic<bool> g_cvarTripleBuffering(true);
-std::atomic<bool> g_cvarAnisotropic(true);
+std::atomic<int>   g_cvarMaxFps(144);
+std::atomic<bool>  g_cvarTripleBuffering(true);
 
 HWND g_hPingHudWnd = nullptr;
 HWND g_hDrawerModalWnd = nullptr;
@@ -136,20 +132,13 @@ void AddCombatEvent(const std::string& attacker, const std::string& target, uint
                     const std::string& timeStr) {
     if (damage == 0 && !isHeal) return;
 
-    // Self-target guard: nunca contar dano cujo attacker == target (próprio jogador)
+    // Self-target guard: nunca contar dano cujo attacker == target
     if (!attacker.empty() && !target.empty() && attacker == target) return;
 
     std::lock_guard<std::recursive_mutex> lock(g_combatMutex);
 
-    // Determinar direção do dano:
-    // isIncoming = true quando o target é o próprio jogador (dano recebido)
-    // isIncoming = false quando o attacker é o próprio jogador (dano causado)
-    // Heurística: se attacker == "Voce" ou attacker vazio => outgoing
     bool isIncoming = false;
     if (!attacker.empty()) {
-        std::string lAttacker = attacker;
-        std::transform(lAttacker.begin(), lAttacker.end(), lAttacker.begin(), ::tolower);
-        // Se o alvo do evento é "Voce"/"you"/empty e o attacker é outdo, é incoming
         if (!target.empty()) {
             std::string lTarget = target;
             std::transform(lTarget.begin(), lTarget.end(), lTarget.begin(), ::tolower);
@@ -180,7 +169,6 @@ void AddCombatEvent(const std::string& attacker, const std::string& target, uint
         s_sessionStartTick = GetTickCount64();
     }
 
-    // Update duration
     ULONGLONG now = GetTickCount64();
     uint32_t durationSec = static_cast<uint32_t>((now - s_sessionStartTick) / 1000);
     if (durationSec == 0) durationSec = 1;
@@ -188,18 +176,15 @@ void AddCombatEvent(const std::string& attacker, const std::string& target, uint
 
     if (!isHeal) {
         if (!isIncoming) {
-            // Dano causado pelo player no alvo
             g_totalDamageDealt += damage;
-            g_totalBattleDamage = g_totalDamageDealt.load(); // manter compat legado
+            g_totalBattleDamage = g_totalDamageDealt.load();
             g_totalDealtDps = static_cast<uint32_t>(g_totalDamageDealt.load() / durationSec);
             g_totalBattleDps = g_totalDealtDps.load();
         } else {
-            // Dano recebido pelo player
             g_totalDamageReceived += damage;
         }
     }
 
-    // Update target (apenas quando é dano outgoing)
     if (!isIncoming && !target.empty()) {
         g_currentTarget.hasTarget = true;
         g_currentTarget.name = target;
@@ -208,7 +193,6 @@ void AddCombatEvent(const std::string& attacker, const std::string& target, uint
         g_currentTarget.level = targetLevel;
     }
 
-    // Skill breakdown e player rankings apenas para dano outgoing
     if (!isIncoming && !isHeal) {
         std::string attName = attacker.empty() ? "Voce" : attacker;
         bool foundPlayer = false;
@@ -395,4 +379,3 @@ std::string GetLocalPlayerName() {
 }
 
 } // namespace BrService
-

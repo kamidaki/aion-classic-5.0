@@ -11,13 +11,14 @@ public:
     static bool Initialize();
     static void Shutdown();
 
-    // Instant CVar update APIs
+    // Real-time CVar update APIs (apply immediately + notify worker).
+    // Change-detection: if the new value equals the last-applied value,
+    // no engine call is made. This eliminates redundant writes and prevents
+    // stuttering from rapid slider movement.
     static void SetFov(float fov);
     static void SetCameraMax(float maxDist);
     static void SetMaxFps(int fps);
     static void SetTripleBuffering(bool enable);
-    static void SetAnisotropic(bool enable);
-    static void SetFreeFly(bool enable);
 
     static void ApplyAll();
     static void ResyncOnMapChange();

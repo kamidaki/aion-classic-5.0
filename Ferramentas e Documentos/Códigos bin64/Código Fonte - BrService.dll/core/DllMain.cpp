@@ -6,7 +6,6 @@
 #include "../network/WebSocketClient.h"
 #include "../database/CombatDb.h"
 #include "../cvar/CVarManager.h"
-#include "../model3d/CryModelBridge.h"
 #include "../ui/UICommon.h"
 #include "../ui/PingHudUI.h"
 #include "../ui/DrawerModalUI.h"
@@ -111,27 +110,23 @@ __declspec(dllexport) bool WINAPI BR_Initialize(const char* token, const char* c
             }
 
             // Feature Control Flags (default: true / enable)
-            g_featConsole = IsParamEnabled(actualCmd, "console", true);
-            g_featFreeFly = IsParamEnabled(actualCmd, "freefly", true);
-            g_featPingUi = IsParamEnabled(actualCmd, "pingUi", true);
-            g_featDpsMeterUI = IsParamEnabled(actualCmd, "DpsMeterUI", true);
-            g_featComboUi = IsParamEnabled(actualCmd, "comboUi", true);
-            g_featModel3D = IsParamEnabled(actualCmd, "Model3D", true);
-            g_featFov = IsParamEnabled(actualCmd, "fov", true);
-            g_featCamMax = IsParamEnabled(actualCmd, "camMax", true);
-            g_featFpsUnlock = IsParamEnabled(actualCmd, "fpsUnlock", true);
+            g_featConsole   = IsParamEnabled(actualCmd, "console",    true);
+            g_featPingUi    = IsParamEnabled(actualCmd, "pingUi",     true);
+            g_featDpsMeterUI= IsParamEnabled(actualCmd, "DpsMeterUI", true);
+            g_featComboUi   = IsParamEnabled(actualCmd, "comboUi",    true);
+            g_featFov       = IsParamEnabled(actualCmd, "fov",        true);
+            g_featCamMax    = IsParamEnabled(actualCmd, "camMax",     true);
+            g_featFpsUnlock = IsParamEnabled(actualCmd, "fpsUnlock",  true);
 
             LogInfo("Configuracao de Recursos do BrService via Linha de Comando:");
-            LogInfo("  [-console]    : %s", g_featConsole.load() ? "ENABLE" : "DISABLE");
-            LogInfo("  [-freefly]    : %s", g_featFreeFly.load() ? "ENABLE" : "DISABLE");
-            LogInfo("  [-pingUi]     : %s", g_featPingUi.load() ? "ENABLE" : "DISABLE");
+            LogInfo("  [-console]    : %s", g_featConsole.load()    ? "ENABLE" : "DISABLE");
+            LogInfo("  [-pingUi]     : %s", g_featPingUi.load()     ? "ENABLE" : "DISABLE");
             LogInfo("  [-DpsMeterUI] : %s", g_featDpsMeterUI.load() ? "ENABLE" : "DISABLE");
-            LogInfo("  [-comboUi]    : %s", g_featComboUi.load() ? "ENABLE" : "DISABLE");
+            LogInfo("  [-comboUi]    : %s", g_featComboUi.load()    ? "ENABLE" : "DISABLE");
             LogInfo("  [-lang]       : %s", g_clientLang.c_str());
-            LogInfo("  [-Model3D]    : %s", g_featModel3D.load() ? "ENABLE" : "DISABLE");
-            LogInfo("  [-fov]        : %s", g_featFov.load() ? "ENABLE" : "DISABLE");
-            LogInfo("  [-camMax]     : %s", g_featCamMax.load() ? "ENABLE" : "DISABLE");
-            LogInfo("  [-fpsUnlock]  : %s", g_featFpsUnlock.load() ? "ENABLE" : "DISABLE");
+            LogInfo("  [-fov]        : %s", g_featFov.load()        ? "ENABLE" : "DISABLE");
+            LogInfo("  [-camMax]     : %s", g_featCamMax.load()     ? "ENABLE" : "DISABLE");
+            LogInfo("  [-fpsUnlock]  : %s", g_featFpsUnlock.load()  ? "ENABLE" : "DISABLE");
         }
 
         // 1. Initialize Subsystems
@@ -141,9 +136,6 @@ __declspec(dllexport) bool WINAPI BR_Initialize(const char* token, const char* c
             CombatDb::Initialize();
         }
         CVarManager::Initialize();
-        if (g_featModel3D.load()) {
-            CryModelBridge::Initialize();
-        }
 
         // 2. Start Network Services
         if (g_featPingUi.load()) {
@@ -191,7 +183,6 @@ __declspec(dllexport) void WINAPI BR_Shutdown() {
     PingHudUI::Shutdown();
     WebSocketClient::Stop();
     PingEngine::Stop();
-    CryModelBridge::Shutdown();
     CVarManager::Shutdown();
     CombatDb::Shutdown();
     UICommon::ShutdownGdiplus();
