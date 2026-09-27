@@ -15,11 +15,11 @@ from ..viewers.viewer_stage import ViewerStage
 class AION_OT_set_camera_view(bpy.types.Operator):
     """Sets the viewport camera to a standard axis or resets the view."""
     bl_idname = "aion_model.set_camera_view"
-    bl_label = "Set Camera View"
-    bl_description = "Switch 3D Viewport orientation"
+    bl_label = "Definir Visão da Câmera"
+    bl_description = "Alternar orientação da visão na Janela 3D"
     bl_options = {"INTERNAL"}
 
-    axis: StringProperty(name="Axis", default="FRONT")
+    axis: StringProperty(name="Eixo", default="FRONT")
 
     def execute(self, context: bpy.types.Context) -> set[str]:
         ax = self.axis.upper()
@@ -35,8 +35,8 @@ class AION_OT_set_camera_view(bpy.types.Operator):
 class AION_OT_focus_model(bpy.types.Operator):
     """Focuses and frames the 3D viewport camera on the active model."""
     bl_idname = "aion_model.focus_model"
-    bl_label = "Focus Model"
-    bl_description = "Frame active model in 3D viewport"
+    bl_label = "Focar Modelo"
+    bl_description = "Centralizar e enquadrar modelo ativo na Janela 3D"
     bl_options = {"INTERNAL"}
 
     def execute(self, context: bpy.types.Context) -> set[str]:
@@ -52,18 +52,18 @@ class AION_OT_focus_model(bpy.types.Operator):
             ViewerStage.frame_object(target)
             return {"FINISHED"}
         else:
-            self.report({"INFO"}, "No model in viewer to focus.")
+            self.report({"INFO"}, "Nenhum modelo no visualizador para focar.")
             return {"CANCELLED"}
 
 
 class AION_OT_set_shading(bpy.types.Operator):
     """Switches 3D Viewport shading mode (Wireframe, Solid, Material, Rendered)."""
     bl_idname = "aion_model.set_shading"
-    bl_label = "Set Shading Mode"
-    bl_description = "Set viewport shading method"
+    bl_label = "Definir Modo de Sombreamento"
+    bl_description = "Definir modo de exibição de sombreamento da Janela 3D"
     bl_options = {"INTERNAL"}
 
-    mode: StringProperty(name="Mode", default="MATERIAL")
+    mode: StringProperty(name="Modo", default="MATERIAL")
 
     def execute(self, context: bpy.types.Context) -> set[str]:
         set_shading_mode(self.mode)
@@ -73,8 +73,8 @@ class AION_OT_set_shading(bpy.types.Operator):
 class AION_OT_toggle_bones(bpy.types.Operator):
     """Toggles bone visibility in 3D viewport."""
     bl_idname = "aion_model.toggle_bones"
-    bl_label = "Toggle Bones"
-    bl_description = "Show or hide armature bones"
+    bl_label = "Exibir / Ocultar Ossos"
+    bl_description = "Exibir ou ocultar os ossos do esqueleto"
     bl_options = {"INTERNAL"}
 
     def execute(self, context: bpy.types.Context) -> set[str]:

@@ -61,45 +61,45 @@ class AionModelLibrarySettings(bpy.types.PropertyGroup):
 
     # Client Selection
     client_path: StringProperty(
-        name="Client Directory",
-        description="Path to Aion client root folder (contains Data, Objects, etc.)",
+        name="Pasta do Cliente",
+        description="Caminho raiz do cliente Aion (contendo as pastas Data, Objects, etc.)",
         subtype='DIR_PATH',
         default=DEFAULT_CLIENT_PATHS[0] if DEFAULT_CLIENT_PATHS else "",
     )
     client_flavor: StringProperty(
-        name="Client Flavor",
-        description="Detected client generation/version",
-        default="Not Detected",
+        name="Versão do Cliente",
+        description="Geração ou versão detectada do cliente Aion",
+        default="Não Detectado",
     )
 
     # Safety
     allow_client_write: BoolProperty(
-        name="Allow Client Write",
-        description="CRITICAL SAFETY TOGGLE: Enable writing and patching directly inside official game client files/PAKs. When disabled, changes are saved to the Safe Export Directory.",
+        name="Permitir Gravação no Cliente",
+        description="CHAVE DE SEGURANÇA: Habilita modificar e gravar diretamente dentro dos arquivos/PAKs oficiais do jogo. Quando desativado, alterações são salvas na Pasta Segura de Exportação.",
         default=SAFETY_ALLOW_CLIENT_WRITE_DEFAULT,
     )
     auto_backup: BoolProperty(
-        name="Automatic Backups",
-        description="Always create .bak or .pak.bak copies before modifying any client file",
+        name="Backups Automáticos",
+        description="Sempre cria cópias de segurança (.bak ou .pak.bak) antes de alterar qualquer arquivo do cliente",
         default=True,
     )
     export_fallback_dir: StringProperty(
-        name="Safe Export Directory",
-        description="Target directory for modified assets when Allow Client Write is disabled",
+        name="Pasta Segura de Exportação",
+        description="Diretório de destino para exportação de arquivos quando a gravação direta estiver desativada",
         subtype='DIR_PATH',
         default="",
     )
 
     # Search & Filtering
     search_query: StringProperty(
-        name="Search",
-        description="Search models by name, ID, or file path",
+        name="Buscar",
+        description="Pesquisar modelos por nome, ID ou caminho de arquivo",
         default="",
         update=on_filter_updated,
     )
     category_filter: EnumProperty(
-        name="Category",
-        description="Filter assets by category",
+        name="Categoria",
+        description="Filtrar modelos por categoria",
         items=KNOWN_CATEGORIES,
         default="ALL",
         update=on_filter_updated,
@@ -108,116 +108,116 @@ class AionModelLibrarySettings(bpy.types.PropertyGroup):
     # Scanned asset list
     asset_items: CollectionProperty(type=AionAssetItem)
     active_asset_index: IntProperty(
-        name="Active Asset Index",
+        name="Índice do Modelo Ativo",
         default=0,
     )
     scanned_total_count: IntProperty(
-        name="Total Scanned Assets",
+        name="Total de Modelos Escaneados",
         default=0,
     )
 
     # Active loaded asset metadata
-    active_asset_id: StringProperty(name="Asset ID", default="")
-    active_asset_name: StringProperty(name="Asset Name", default="")
-    active_category: StringProperty(name="Category", default="")
-    active_model_path: StringProperty(name="Model Path", default="")
-    active_skeleton_path: StringProperty(name="Skeleton Path", default="")
-    active_cal_path: StringProperty(name="CAL Path", default="")
-    active_is_modified: BoolProperty(name="Modified Status", default=False)
-    active_poly_count: IntProperty(name="Polygons", default=0)
-    active_vertex_count: IntProperty(name="Vertices", default=0)
-    active_bone_count: IntProperty(name="Bones", default=0)
+    active_asset_id: StringProperty(name="ID do Modelo", default="")
+    active_asset_name: StringProperty(name="Nome do Modelo", default="")
+    active_category: StringProperty(name="Categoria", default="")
+    active_model_path: StringProperty(name="Caminho do Modelo", default="")
+    active_skeleton_path: StringProperty(name="Caminho do Esqueleto", default="")
+    active_cal_path: StringProperty(name="Caminho do CAL", default="")
+    active_is_modified: BoolProperty(name="Modificado", default=False)
+    active_poly_count: IntProperty(name="Polígonos", default=0)
+    active_vertex_count: IntProperty(name="Vértices", default=0)
+    active_bone_count: IntProperty(name="Ossos", default=0)
 
     # Animations of active loaded asset
     active_anims: CollectionProperty(type=AionAnimItem)
-    active_anim_index: IntProperty(name="Active Anim Index", default=0)
+    active_anim_index: IntProperty(name="Índice da Animação", default=0)
 
     # Viewport & Display
     studio_lighting: BoolProperty(
-        name="Studio Lighting",
-        description="Add 3-point studio lighting rig to viewer collection",
+        name="Iluminação de Estúdio",
+        description="Adiciona sistema de 3 pontos de luz ao palco de visualização",
         default=True,
     )
     camera_auto_frame: BoolProperty(
-        name="Auto Frame Camera",
-        description="Automatically frame active camera to loaded model bounding box",
+        name="Enquadramento Automático da Câmera",
+        description="Enquadra automaticamente a câmera no modelo carregado",
         default=True,
     )
     show_armature: BoolProperty(
-        name="Show Bones",
-        description="Toggle armature bone visibility in 3D viewport",
+        name="Exibir Ossos",
+        description="Alterna visibilidade dos ossos do esqueleto na viewport 3D",
         default=True,
     )
     bone_display_type: EnumProperty(
-        name="Bone Display",
+        name="Exibição de Ossos",
         items=[
-            ('OCTAHEDRAL', 'Octahedral', 'Standard bone display'),
-            ('STICK', 'Stick', 'Simple stick display'),
-            ('BBONE', 'B-Bone', 'Bendy bone display'),
-            ('WIRE', 'Wire', 'Wireframe bone display'),
+            ('OCTAHEDRAL', 'Octaédrico', 'Exibição padrão octaédrica'),
+            ('STICK', 'Haste', 'Exibição simples em hastes'),
+            ('BBONE', 'B-Bone', 'Exibição curvada / Bendy Bone'),
+            ('WIRE', 'Aramado', 'Exibição em linhas aramadas'),
         ],
         default='OCTAHEDRAL',
     )
 
     # Character Dressing Room & Class Preview
     preview_mode: EnumProperty(
-        name="Preview Mode",
-        description="Toggle between isolated item preview and previewing on a character body",
+        name="Modo de Visualização",
+        description="Alterna entre visualizar o item isolado ou no corpo de um personagem",
         items=[
-            ('ISOLATED', 'Isolated Item', 'Render only the selected 3D item'),
-            ('ON_BODY', 'On Character Body', 'Render and equip the selected item directly onto character body'),
+            ('ISOLATED', 'Item Isolado', 'Renderiza apenas o modelo 3D selecionado'),
+            ('ON_BODY', 'No Corpo do Personagem', 'Equipa e renderiza o item diretamente no corpo do personagem'),
         ],
         default='ISOLATED',
     )
     character_race: EnumProperty(
-        name="Race & Gender",
-        description="Select character race and gender for dressing room preview",
+        name="Raça e Gênero",
+        description="Selecione a raça e gênero do personagem para o provador",
         items=[
-            ('LF', 'Elyos Female (LF)', 'Elyos Female'),
-            ('LM', 'Elyos Male (LM)', 'Elyos Male'),
-            ('DF', 'Asmodian Female (DF)', 'Asmodian Female'),
-            ('DM', 'Asmodian Male (DM)', 'Asmodian Male'),
+            ('LF', 'Elyos Mulher (LF)', 'Elyos Feminino'),
+            ('LM', 'Elyos Homem (LM)', 'Elyos Masculino'),
+            ('DF', 'Asmodian Mulher (DF)', 'Asmodian Feminino'),
+            ('DM', 'Asmodian Homem (DM)', 'Asmodian Masculino'),
         ],
         default='LF',
     )
     character_class: EnumProperty(
-        name="Class",
-        description="Select Aion class for full armor set and weapon preview",
+        name="Classe",
+        description="Selecione a classe Aion para visualizar conjunto completo de armadura e armas",
         items=[
-            ('GLADIATOR', 'Gladiator', 'Gladiator (Plate, Greatsword / Polearm)'),
-            ('TEMPLAR', 'Templar', 'Templar (Plate, Sword + Shield)'),
-            ('RANGER', 'Ranger', 'Ranger (Leather, Bow)'),
-            ('ASSASSIN', 'Assassin', 'Assassin (Leather, Dual Daggers)'),
-            ('SORCERER', 'Sorcerer', 'Sorcerer (Robe, Orb / Spellbook)'),
-            ('SPIRITMASTER', 'Spiritmaster', 'Spiritmaster (Robe, Orb / Spellbook)'),
-            ('CLERIC', 'Cleric', 'Cleric (Chain, Mace + Shield)'),
-            ('CHANTER', 'Chanter', 'Chanter (Chain, Staff)'),
-            ('GUNSLINGER', 'Gunslinger', 'Gunslinger (Leather, Magic Guns)'),
-            ('SONGWEAVER', 'Songweaver', 'Songweaver (Robe, Harp)'),
-            ('AETHERTECH', 'Aethertech', 'Aethertech (Chain, Cipherblade / Mech)'),
+            ('GLADIATOR', 'Gladiador', 'Gladiador (Placas, Espadão / Lança)'),
+            ('TEMPLAR', 'Templário', 'Templário (Placas, Espada + Escudo)'),
+            ('RANGER', 'Arqueiro', 'Arqueiro (Couro, Arco)'),
+            ('ASSASSIN', 'Assassino', 'Assassino (Couro, Duplas Adagas)'),
+            ('SORCERER', 'Feiticeiro', 'Feiticeiro (Tecido, Orbe / Livro)'),
+            ('SPIRITMASTER', 'Espiritualista', 'Espiritualista (Tecido, Orbe / Livro)'),
+            ('CLERIC', 'Clérigo', 'Clérigo (Malha, Maça + Escudo)'),
+            ('CHANTER', 'Cantor', 'Cantor (Malha, Cajado)'),
+            ('GUNSLINGER', 'Atirador', 'Atirador (Couro, Pistolas Mágicas)'),
+            ('SONGWEAVER', 'Bardo', 'Bardo (Tecido, Harpa)'),
+            ('AETHERTECH', 'Cavaleiro Mecânico', 'Cavaleiro Mecânico (Malha, Chave Espada / Robô)'),
         ],
         default='GLADIATOR',
     )
     auto_complete_humanoid: BoolProperty(
-        name="Auto-Complete Body",
-        description="Automatically attach matching head, hair, hands, and feet to modular clothing / NPCs",
+        name="Auto-Completar Corpo Humanoide",
+        description="Anexa automaticamente cabeça, cabelo, mãos e pés correspondentes em roupas modulares ou NPCs",
         default=True,
     )
 
     # Creation & Cloning
-    new_asset_id: StringProperty(name="New Asset ID", default="custom_mesh_01")
+    new_asset_id: StringProperty(name="ID do Novo Modelo", default="custom_mesh_01")
     new_category: EnumProperty(
-        name="New Category",
+        name="Nova Categoria",
         items=[c for c in KNOWN_CATEGORIES if c[0] != "ALL"],
         default="PROP",
     )
     new_model_path: StringProperty(
-        name="New Model Path",
+        name="Caminho do Novo Modelo",
         default="objects/custom/custom_mesh_01.cgf",
     )
-    clone_new_id: StringProperty(name="Cloned Asset ID", default="cloned_asset_01")
+    clone_new_id: StringProperty(name="ID do Modelo Clonado", default="cloned_asset_01")
     clone_new_path: StringProperty(
-        name="Cloned Path",
+        name="Caminho do Modelo Clonado",
         default="objects/custom/cloned_asset_01.cgf",
     )
 

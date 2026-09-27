@@ -46,36 +46,36 @@ def find_active_or_stage_root(context: bpy.types.Context) -> bpy.types.Object | 
 class AION_OT_save_asset(bpy.types.Operator):
     """Saves the modified model, armature, animations, and materials directly to client files or safe export folder."""
     bl_idname = "aion_model.save_asset"
-    bl_label = "Save to Client / Export"
-    bl_description = "Commit modifications back to client files or safe export folder"
+    bl_label = "Salvar no Cliente / Exportar"
+    bl_description = "Gravar modificações de volta aos arquivos do cliente ou na pasta segura de exportação"
     bl_options = {"REGISTER"}
 
     def execute(self, context: bpy.types.Context) -> set[str]:
         settings = context.scene.aion_model_lib
         asset_id = settings.active_asset_id
         if not asset_id:
-            self.report({"WARNING"}, "No active Aion asset selected to save.")
+            self.report({"WARNING"}, "Nenhum modelo do Aion ativo selecionado para salvar.")
             return {"CANCELLED"}
 
         db = AssetDatabase.get()
         entry = db.get_by_id(asset_id)
         if not entry:
-            self.report({"ERROR"}, f"Asset '{asset_id}' not found in database.")
+            self.report({"ERROR"}, f"Modelo '{asset_id}' não encontrado no banco de dados.")
             return {"CANCELLED"}
 
         client_dir = settings.client_path
         if not client_dir or not Path(client_dir).is_dir():
-            self.report({"ERROR"}, "Valid client folder not configured.")
+            self.report({"ERROR"}, "Pasta do cliente inválida ou não configurada.")
             return {"CANCELLED"}
 
         model_prov = get_model_provider(client_dir)
         if not model_prov:
-            self.report({"ERROR"}, "Failed to initialize model provider.")
+            self.report({"ERROR"}, "Falha ao inicializar o provedor de modelos.")
             return {"CANCELLED"}
 
         root_obj = find_active_or_stage_root(context)
         if not root_obj:
-            self.report({"ERROR"}, "No active 3D model found to save.")
+            self.report({"ERROR"}, "Nenhum modelo 3D ativo encontrado para salvar.")
             return {"CANCELLED"}
 
         # Ensure object mode before serialization
@@ -104,20 +104,20 @@ class AION_OT_save_asset(bpy.types.Operator):
             self.report({"INFO"}, result.message)
             return {"FINISHED"}
         else:
-            self.report({"ERROR"}, f"Save Failed: {result.message}")
+            self.report({"ERROR"}, f"Falha ao Salvar: {result.message}")
             return {"CANCELLED"}
 
 
 class AION_OT_export_loose(bpy.types.Operator):
     """Exports model geometry, armature, and animations to a loose folder on disk."""
     bl_idname = "aion_model.export_loose"
-    bl_label = "Export Loose Files"
-    bl_description = "Export asset to an arbitrary folder without modifying game files"
+    bl_label = "Exportar Arquivos Avulsos"
+    bl_description = "Exportar modelo para uma pasta arbitrária sem modificar os arquivos do jogo"
     bl_options = {"REGISTER"}
 
     directory: StringProperty(
-        name="Target Folder",
-        description="Directory to export loose files into",
+        name="Pasta de Destino",
+        description="Diretório onde exportar os arquivos avulsos",
         subtype='DIR_PATH',
     )
 
@@ -127,24 +127,24 @@ class AION_OT_export_loose(bpy.types.Operator):
 
     def execute(self, context: bpy.types.Context) -> set[str]:
         if not self.directory:
-            self.report({"WARNING"}, "No export folder chosen.")
+            self.report({"WARNING"}, "Nenhuma pasta de exportação escolhida.")
             return {"CANCELLED"}
 
         settings = context.scene.aion_model_lib
         db = AssetDatabase.get()
         entry = db.get_by_id(settings.active_asset_id)
         if not entry:
-            self.report({"ERROR"}, "No active asset to export.")
+            self.report({"ERROR"}, "Nenhum modelo ativo para exportar.")
             return {"CANCELLED"}
 
         model_prov = get_model_provider(settings.client_path)
         if not model_prov:
-            self.report({"ERROR"}, "Model provider not available.")
+            self.report({"ERROR"}, "Provedor de modelos não disponível.")
             return {"CANCELLED"}
 
         root_obj = find_active_or_stage_root(context)
         if not root_obj:
-            self.report({"ERROR"}, "No active model found in stage.")
+            self.report({"ERROR"}, "Nenhum modelo ativo encontrado no palco.")
             return {"CANCELLED"}
 
         MeshEditor.return_to_object_mode()
@@ -158,23 +158,23 @@ class AION_OT_export_loose(bpy.types.Operator):
 
         if res.get("success"):
             files_count = len(res.get("written_files", []))
-            self.report({"INFO"}, f"Exported {files_count} file(s) to {self.directory}")
+            self.report({"INFO"}, f"{files_count} arquivo(s) exportado(s) para {self.directory}")
             return {"FINISHED"}
         else:
-            self.report({"ERROR"}, f"Export Failed: {res.get('error')}")
+            self.report({"ERROR"}, f"Falha na Exportação: {res.get('error')}")
             return {"CANCELLED"}
 
 
 class AION_OT_rollback_asset(bpy.types.Operator):
     """Restores the previous version of the active asset from its backup (.bak / .pak.bak)."""
     bl_idname = "aion_model.rollback_asset"
-    bl_label = "Rollback Asset"
-    bl_description = "Restore original asset from backup file"
+    bl_label = "Restaurar Backup do Modelo"
+    bl_description = "Restaurar modelo original a partir do arquivo de backup (.bak)"
     bl_options = {"REGISTER", "UNDO"}
 
     filepath: StringProperty(
-        name="Backup File",
-        description="Path to .bak or .pak.bak file",
+        name="Arquivo de Backup",
+        description="Caminho para o arquivo .bak ou .pak.bak",
         subtype='FILE_PATH',
     )
 
@@ -184,20 +184,20 @@ class AION_OT_rollback_asset(bpy.types.Operator):
 
     def execute(self, context: bpy.types.Context) -> set[str]:
         if not self.filepath:
-            self.report({"WARNING"}, "No backup file selected.")
+            self.report({"WARNING"}, "Nenhum arquivo de backup selecionado.")
             return {"CANCELLED"}
 
         bak_path = Path(self.filepath)
         if not bak_path.is_file():
-            self.report({"ERROR"}, "Backup file not found.")
+            self.report({"ERROR"}, "Arquivo de backup não encontrado.")
             return {"CANCELLED"}
 
         success = TransactionManager.rollback(bak_path)
         if success:
-            self.report({"INFO"}, f"Successfully restored {bak_path.name}")
+            self.report({"INFO"}, f"{bak_path.name} restaurado com sucesso")
             return {"FINISHED"}
         else:
-            self.report({"ERROR"}, f"Failed to restore {bak_path.name}")
+            self.report({"ERROR"}, f"Falha ao restaurar {bak_path.name}")
             return {"CANCELLED"}
 
 

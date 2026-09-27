@@ -133,14 +133,77 @@ class MannequinProvider:
             }
 
         # PC races: LF, LM, DF, DM
+        # Note: DF uses df004_hair.cgf as canonical centered hair (df001 is asymmetrical accessory)
+        hair_name = "df004_hair.cgf" if rg == "df" else f"{rg}001_hair.cgf"
         return {
             "head": f"objects/pc/{rg}/mesh/{rg}001_head.cgf",
-            "hair": f"objects/pc/{rg}/mesh/{rg}001_hair.cgf",
+            "hair": f"objects/pc/{rg}/mesh/{hair_name}",
             "body": f"objects/pc/{rg}/mesh/{rg}{at}_a001_body.cgf",
             "legs": f"objects/pc/{rg}/mesh/{rg}{at}_a001_leg.cgf",
             "feet": f"objects/pc/{rg}/mesh/{rg}{at}_a001_foot.cgf",
             "hands": f"objects/pc/{rg}/mesh/{rg}{at}_a001_hand.cgf",
         }
+
+    @staticmethod
+    def get_class_animations(race_gender: str, class_name: str) -> List[Tuple[str, str]]:
+        """Returns standard CAL animation state names and CAF file paths for the given class and race."""
+        rg = race_gender.lower()
+        cn = class_name.upper()
+
+        if cn == "GLADIATOR":
+            wtype = "2hand"
+        elif cn in ("TEMPLAR", "CLERIC", "AETHERTECH"):
+            wtype = "1hand"
+        elif cn == "RANGER":
+            wtype = "bow"
+        elif cn in ("ASSASSIN", "GUNSLINGER"):
+            wtype = "2weapon"
+        elif cn in ("SORCERER", "SPIRITMASTER", "SONGWEAVER"):
+            wtype = "orb"
+        elif cn == "CHANTER":
+            wtype = "staff"
+        else:
+            wtype = "2hand"
+
+        pfx = "lf" if "f" in rg else "lm"
+        asmo_pfx = "df" if "f" in rg else "dm"
+        is_asmo = rg.startswith("d")
+
+        asmo_idle_map = {
+            "GLADIATOR": f"{asmo_pfx}_nidle_warrior_001_loop.caf",
+            "TEMPLAR": f"{asmo_pfx}_nidle_warrior_001_loop.caf",
+            "RANGER": f"{asmo_pfx}_nidle_scout_001_loop.caf",
+            "ASSASSIN": f"{asmo_pfx}_nidle_scout_001_loop.caf",
+            "GUNSLINGER": f"{asmo_pfx}_nidle_scout_001_loop.caf",
+            "SORCERER": f"{asmo_pfx}_nidle_mage_001_loop.caf",
+            "SPIRITMASTER": f"{asmo_pfx}_nidle_mage_001_loop.caf",
+            "SONGWEAVER": f"{asmo_pfx}_nidle_mage_001_loop.caf",
+            "CLERIC": f"{asmo_pfx}_nidle_cleric_001_loop.caf",
+            "CHANTER": f"{asmo_pfx}_nidle_cleric_001_loop.caf",
+            "AETHERTECH": f"{asmo_pfx}_nidle_cleric_001_loop.caf",
+        }
+
+        normal_idle = asmo_idle_map.get(cn, f"{pfx}_nidle_001_loop.caf") if is_asmo else f"{pfx}_nidle_001_loop.caf"
+        combat_idle = f"{pfx}_cidle_{wtype}_001_loop.caf"
+        walk = f"{pfx}_nwalk_001_loop.caf"
+        run = f"{pfx}_crun_{wtype}_001_loop.caf"
+        attack1 = f"{pfx}_cattack_{wtype}_001.caf"
+        attack2 = f"{pfx}_cattack_{wtype}_002.caf"
+        jump = f"{asmo_pfx if is_asmo else pfx}_cjump_air_{wtype}_run_001.caf"
+        glide = f"{pfx}_fglide_001_loop.caf"
+        death = f"{pfx}_ndie_001.caf"
+
+        return [
+            ("Idle (Combate)", combat_idle),
+            ("Idle (Normal)", normal_idle),
+            ("Andar (Walk)", walk),
+            ("Correr (Run)", run),
+            ("Ataque 1", attack1),
+            ("Ataque 2", attack2),
+            ("Pulo (Jump)", jump),
+            ("Planar (Glide)", glide),
+            ("Morte (Death)", death),
+        ]
 
     @staticmethod
     def assemble_class_character(
@@ -150,7 +213,7 @@ class MannequinProvider:
         class_name: str,
         target_collection: bpy.types.Collection,
     ) -> Optional[bpy.types.Object]:
-        """Loads and equips an entire class preset with default armor and weapons."""
+        """Loads and equips an entire class preset with default armor, weapons, and animations."""
         preset = CLASS_PRESETS.get(class_name.upper())
         if not preset:
             preset = CLASS_PRESETS["GLADIATOR"]
@@ -173,7 +236,13 @@ class MannequinProvider:
             category="ARMOR",
             model_path=body_path,
         )
-        master_rig = model_provider.load_model(body_entry, target_collection, load_animation=True)
+        master_rig = model_provider.load_model(
+            body_entry,
+            target_collection,
+            load_animation=False,
+            slot_override="torso",
+            replace_slot=False,
+        )
         if not master_rig:
             return None
 
@@ -184,14 +253,14 @@ class MannequinProvider:
 
         # 2. Equip other body parts on the same rig
         other_parts = [
-            ("Head", parts.get("head")),
-            ("Hair", parts.get("hair")),
-            ("Legs", parts.get("legs")),
-            ("Feet", parts.get("feet")),
-            ("Hands", parts.get("hands")),
+            ("Head", parts.get("head"), "head"),
+            ("Hair", parts.get("hair"), "hair"),
+            ("Legs", parts.get("legs"), "legs"),
+            ("Feet", parts.get("feet"), "feet"),
+            ("Hands", parts.get("hands"), "hands"),
         ]
 
-        for slot_name, part_path in other_parts:
+        for slot_name, part_path, slot_tag in other_parts:
             if not part_path:
                 continue
             entry = AssetEntry(
@@ -205,6 +274,8 @@ class MannequinProvider:
                 target_collection,
                 load_animation=False,
                 target_rig=master_rig,
+                slot_override=slot_tag,
+                replace_slot=False,
             )
 
         # 3. Equip Main Weapon
@@ -221,6 +292,8 @@ class MannequinProvider:
                 target_collection,
                 load_animation=False,
                 target_rig=master_rig,
+                slot_override="weapon_main",
+                replace_slot=False,
             )
 
         # 4. Equip Sub Weapon / Shield if available
@@ -237,7 +310,37 @@ class MannequinProvider:
                 target_collection,
                 load_animation=False,
                 target_rig=master_rig,
+                slot_override="weapon_sub",
+                replace_slot=False,
             )
+
+        # 5. Load and apply default combat/idle animation
+        try:
+            anims = MannequinProvider.get_class_animations(rg, class_name)
+            if anims:
+                def_name, def_caf = anims[0]
+                client_provider.ensure_category_paks_indexed(def_caf)
+                caf_bytes = client_provider.catalog.extract_file(def_caf)
+                if not caf_bytes:
+                    caf_bytes = client_provider.catalog.extract_file(Path(def_caf).name)
+
+                if caf_bytes:
+                    b_names, b_pos, b_anim = model_provider.skel_prov.extract_armature(master_rig)
+                    action = model_provider.anim_prov.load_animation(
+                        rig_obj=master_rig,
+                        caf_bytes=caf_bytes,
+                        action_name=f"{rg}_{class_name}_Idle",
+                        bone_names=b_names,
+                        bone_anim=b_anim,
+                    )
+                    if action:
+                        start = int(action.frame_range[0])
+                        end = int(action.frame_range[1])
+                        bpy.context.scene.frame_start = start
+                        bpy.context.scene.frame_end = end
+                        bpy.context.scene.frame_set(start)
+        except Exception as e:
+            logger.warning("Could not auto-apply class idle animation: %s", e)
 
         return master_rig
 

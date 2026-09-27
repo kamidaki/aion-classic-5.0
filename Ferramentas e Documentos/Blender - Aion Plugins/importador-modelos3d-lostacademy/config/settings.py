@@ -23,21 +23,21 @@ DEFAULT_THUMBNAIL_SIZE: Tuple[int, int] = (160, 160)
 SAFETY_ALLOW_CLIENT_WRITE_DEFAULT: bool = False
 BACKUP_SUFFIX: str = ".bak"
 
-# Model Library Asset Categories
+# Model Library Asset Categories (Categorias de Modelos)
 KNOWN_CATEGORIES: List[Tuple[str, str, str]] = [
-    ("ALL", "All Assets", "All indexed assets"),
-    ("NPC", "NPCs", "Non-player characters & humanoids"),
-    ("MONSTER", "Monsters & Bosses", "Aggressive creatures, wildlife, bosses"),
-    ("CHARACTER", "Player Characters", "Player race base bodies and customizations"),
-    ("WEAPON", "Weapons & Shields", "Swords, daggers, bows, staves, orbs, shields"),
-    ("ARMOR", "Armor & Clothing", "Helmets, tops, pants, gloves, boots, pauldrons"),
-    ("WINGS", "Wings", "Wings & flight apparitions"),
-    ("PET_MOUNT", "Pets & Mounts", "Minions, familiars, rideable mounts"),
-    ("BUILDING", "Buildings & Structures", "Castles, fortress pieces, houses, towers"),
-    ("PROP", "Props & Furniture", "Chests, clutter, furniture, barrels, banners"),
-    ("VEGETATION", "Vegetation & Nature", "Trees, flowers, grasses, roots, rocks"),
-    ("OBJECT", "Interactive & World Objects", "Teleporters, switches, gates, traps"),
-    ("EFFECT", "Effects & Lights", "Magic visual anchors, particles, fx placeables"),
+    ("ALL", "Todos os Modelos", "Todos os recursos indexados"),
+    ("NPC", "NPCs", "Personagens não jogáveis e humanoides"),
+    ("MONSTER", "Monstros & Chefes", "Criaturas agressivas, fauna e chefes"),
+    ("CHARACTER", "Personagens de Jogadores", "Corpos base e customizações de jogadores"),
+    ("WEAPON", "Armas & Escudos", "Espadas, adagas, arcos, cajados, orbes e escudos"),
+    ("ARMOR", "Armaduras & Roupas", "Capacetes, peitorais, calças, luvas, botas e ombreiras"),
+    ("WINGS", "Asas", "Asas e aparatos de voo"),
+    ("PET_MOUNT", "Mascotes & Montarias", "Minions, familiares e montarias"),
+    ("BUILDING", "Construções & Estruturas", "Castelos, fortalezas, casas e torres"),
+    ("PROP", "Objetos de Cenário & Móveis", "Baús, móveis, barris e estandartes"),
+    ("VEGETATION", "Vegetação & Natureza", "Árvores, flores, arbustos, rochas e terrenos"),
+    ("OBJECT", "Objetos Interativos", "Portais, interruptores, portões e armadilhas"),
+    ("EFFECT", "Efeitos & Luzes", "Âncoras visuais mágicas e emissores de partículas"),
 ]
 
 # Supported Client Generations / Flavors

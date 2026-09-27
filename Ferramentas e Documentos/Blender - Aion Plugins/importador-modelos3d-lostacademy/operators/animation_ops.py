@@ -21,8 +21,8 @@ logger = logging.getLogger(__name__)
 class AION_OT_play_animation(bpy.types.Operator):
     """Starts or pauses playback of the active animation."""
     bl_idname = "aion_model.play_animation"
-    bl_label = "Play / Pause"
-    bl_description = "Toggle animation playback"
+    bl_label = "Reproduzir / Pausar"
+    bl_description = "Alternar reprodução da animação"
     bl_options = {"INTERNAL"}
 
     def execute(self, context: bpy.types.Context) -> set[str]:
@@ -36,8 +36,8 @@ class AION_OT_play_animation(bpy.types.Operator):
 class AION_OT_stop_animation(bpy.types.Operator):
     """Stops playback and rewinds to the first frame."""
     bl_idname = "aion_model.stop_animation"
-    bl_label = "Stop"
-    bl_description = "Stop playback and rewind to start"
+    bl_label = "Parar"
+    bl_description = "Parar reprodução e voltar ao início"
     bl_options = {"INTERNAL"}
 
     def execute(self, context: bpy.types.Context) -> set[str]:
@@ -48,16 +48,16 @@ class AION_OT_stop_animation(bpy.types.Operator):
 class AION_OT_switch_animation(bpy.types.Operator):
     """Switches the active animation on the loaded model armature."""
     bl_idname = "aion_model.switch_animation"
-    bl_label = "Switch Animation"
-    bl_description = "Load selected animation sequence onto model rig"
+    bl_label = "Trocar Animação"
+    bl_description = "Carregar sequência de animação selecionada no esqueleto do modelo"
     bl_options = {"REGISTER", "UNDO"}
 
-    anim_index: IntProperty(name="Animation Index", default=0)
+    anim_index: IntProperty(name="Índice da Animação", default=0)
 
     def execute(self, context: bpy.types.Context) -> set[str]:
         settings = context.scene.aion_model_lib
         if not settings.active_anims:
-            self.report({"WARNING"}, "No animations available for this asset.")
+            self.report({"WARNING"}, "Nenhuma animação disponível para este modelo.")
             return {"CANCELLED"}
 
         idx = self.anim_index
@@ -83,13 +83,13 @@ class AION_OT_switch_animation(bpy.types.Operator):
                     break
 
         if not rig_obj:
-            self.report({"ERROR"}, "No active armature found in stage to apply animation.")
+            self.report({"ERROR"}, "Nenhum esqueleto ativo encontrado no palco para aplicar a animação.")
             return {"CANCELLED"}
 
         client_prov = get_client_provider(settings.client_path)
         model_prov = get_model_provider(settings.client_path)
         if not client_prov or not model_prov:
-            self.report({"ERROR"}, "Client provider not available.")
+            self.report({"ERROR"}, "Provedor do cliente não disponível.")
             return {"CANCELLED"}
 
         # Extract CAF bytes
@@ -100,7 +100,7 @@ class AION_OT_switch_animation(bpy.types.Operator):
             caf_bytes = client_prov.catalog.extract_file(caf_name)
 
         if not caf_bytes:
-            self.report({"ERROR"}, f"Could not find CAF file '{caf_rel}' in client PAKs.")
+            self.report({"ERROR"}, f"Arquivo de animação CAF '{caf_rel}' não encontrado nos PAKs do cliente.")
             return {"CANCELLED"}
 
         # Extract bone info from armature
@@ -115,7 +115,7 @@ class AION_OT_switch_animation(bpy.types.Operator):
         )
 
         if not action:
-            self.report({"ERROR"}, f"Failed to parse animation data for {anim_name}.")
+            self.report({"ERROR"}, f"Falha ao carregar dados de animação para {anim_name}.")
             return {"CANCELLED"}
 
         # Adjust timeline
@@ -126,7 +126,7 @@ class AION_OT_switch_animation(bpy.types.Operator):
 
         # Start playback
         AnimationPlayer.play()
-        self.report({"INFO"}, f"Playing animation '{anim_name}' ({end - start + 1} frames)")
+        self.report({"INFO"}, f"Reproduzindo animação '{anim_name}' ({end - start + 1} quadros)")
         return {"FINISHED"}
 
 

@@ -196,6 +196,10 @@ class AionClientProvider:
                 self.root / "objects" / "npc",
                 self.root / "Objects" / "npc",
             ])
+        if "animation" in clean_lower or clean_lower.endswith(".caf") or clean_lower.startswith(("lf_", "df_", "lm_", "dm_", "clf", "clm")):
+            for r in ("lf", "lm", "df", "dm"):
+                for obj_p in ("objects/pc", "Objects/pc"):
+                    cand_dirs.append(self.root / obj_p / r / "animation")
 
         for cd in cand_dirs:
             if cd.is_dir():

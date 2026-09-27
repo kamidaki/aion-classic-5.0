@@ -67,6 +67,40 @@ def _safe_uv_idx(idx: int, length: int) -> int:
     return idx if 0 <= idx < length else 0
 
 
+def detect_mesh_slot(model_path: str, category: str = "") -> str:
+    """Classifies an asset into an equipment/body slot for mannequin dressing and replacement."""
+    p_lower = model_path.lower().replace("\\", "/")
+    fn = p_lower.split("/")[-1]
+
+    # Weapons & Shields
+    if "shield" in p_lower or fn.startswith("sh_"):
+        return "weapon_sub"
+    if category == "WEAPON" or any(k in p_lower for k in ("sword", "dagger", "spear", "mace", "staff", "bow", "gun", "harp", "polearm", "2h", "greatsword", "orb", "book", "cipherblade")):
+        return "weapon_main"
+    if category == "WINGS" or "wing" in p_lower:
+        return "wings"
+
+    # Headgear & Hair
+    if "hair" in p_lower:
+        return "hair"
+    if any(k in p_lower for k in ("cap", "hat", "helm", "helmet", "_hd_", "mask", "glasses", "horn", "tiara", "crown")):
+        return "head"
+
+    # Armor slots
+    if any(k in p_lower for k in ("body", "torso", "chest", "robe", "shirt", "tunic", "coat", "dress", "swimsuit")) or fn.endswith(("_body.cgf", "_torso.cgf")):
+        return "torso"
+    if any(k in p_lower for k in ("leg", "pants", "trouser", "skirt")) or fn.endswith(("_leg.cgf", "_pants.cgf")):
+        return "legs"
+    if any(k in p_lower for k in ("foot", "feet", "boot", "shoe")) or fn.endswith(("_foot.cgf", "_feet.cgf")):
+        return "feet"
+    if any(k in p_lower for k in ("hand", "glove", "gauntlet", "bracer")) or fn.endswith(("_hand.cgf", "_glove.cgf")):
+        return "hands"
+    if any(k in p_lower for k in ("shoulder", "pauldron")) or fn.endswith(("_shoulder.cgf",)):
+        return "shoulders"
+
+    return "misc"
+
+
 class ModelProvider(IModelProvider):
     """High-level asset loader and serializer."""
 
@@ -84,12 +118,21 @@ class ModelProvider(IModelProvider):
         target_collection: bpy.types.Collection,
         load_animation: bool = True,
         target_rig: Optional[bpy.types.Object] = None,
+        slot_override: Optional[str] = None,
+        replace_slot: bool = True,
     ) -> Optional[bpy.types.Object]:
         """Loads a model asset into Blender with meshes, materials, armature, and idle animation."""
         self.client_prov.ensure_category_paks_indexed(entry.model_path)
         cgf_bytes = self.client_prov.resolve_cgf_bytes(entry.model_path)
         if not cgf_bytes:
             return None
+
+        # Determine equipment slot and remove existing piece in this slot to prevent overlapping
+        slot = slot_override or detect_mesh_slot(entry.model_path, getattr(entry, "category", ""))
+        if target_rig and replace_slot and slot != "misc":
+            for child in list(target_rig.children):
+                if child.type == "MESH" and child.get("aion_slot") == slot:
+                    bpy.data.objects.remove(child, do_unlink=True)
 
         # Track baseline for change detection
         self.change_tracker.track(
@@ -223,6 +266,7 @@ class ModelProvider(IModelProvider):
 
             m_data.update()
             mesh_obj = bpy.data.objects.new(node_name, m_data)
+            mesh_obj["aion_slot"] = slot
             target_collection.objects.link(mesh_obj)
             created_objects.append(mesh_obj)
 
@@ -242,12 +286,14 @@ class ModelProvider(IModelProvider):
                     mat = self.mat_prov.create_material(
                         material_name=mat_name,
                         mtl_chunk=m_dict,
+                        model_path=entry.model_path,
                     )
                     mesh_obj.data.materials.append(mat)
             elif mat_info:
                 mat = self.mat_prov.create_material(
                     material_name=mat_info.get("name", f"{entry.name}_Material"),
                     mtl_chunk=mat_info,
+                    model_path=entry.model_path,
                 )
                 mesh_obj.data.materials.append(mat)
 
@@ -265,16 +311,29 @@ class ModelProvider(IModelProvider):
                     equip_bone = None
                     entry_cat = getattr(entry, "category", "")
                     entry_name_lower = (entry.name + " " + (entry.model_path or "")).lower()
-                    if "shield" in entry_name_lower or "sh_" in entry_name_lower:
+
+                    # 1. Headgear / Helmets / Hats / Caps / Masks / Glasses / Hair
+                    if any(k in entry_name_lower for k in ("cap", "hat", "helm", "helmet", "_hd_", "_head", "hair", "mask", "glasses", "horn", "tiara", "crown")):
+                        for candidate in ("Bip01 Head", "Bip01 HeadNub", "Head", "bip01 head"):
+                            if hasattr(rig_obj, "data") and candidate in rig_obj.data.bones:
+                                equip_bone = candidate
+                                break
+
+                    # 2. Shields / Offhand
+                    elif "shield" in entry_name_lower or "sh_" in entry_name_lower:
                         for candidate in ("Bip01 L Hand", "Shield", "Dummy_Shield", "bip01 l hand"):
                             if hasattr(rig_obj, "data") and candidate in rig_obj.data.bones:
                                 equip_bone = candidate
                                 break
+
+                    # 3. Weapons
                     elif entry_cat == "WEAPON" or any(k in entry_name_lower for k in ("sword", "dagger", "spear", "mace", "staff", "bow", "gun", "harp", "wp_", "sw_", "da_", "ts_", "pa_", "st_", "ma_")):
                         for candidate in ("Bip01 R Hand", "Weapon_R", "Dummy_Weapon_R", "bip01 r hand"):
                             if hasattr(rig_obj, "data") and candidate in rig_obj.data.bones:
                                 equip_bone = candidate
                                 break
+
+                    # 4. Wings
                     elif entry_cat == "WINGS" or "wing" in entry_name_lower:
                         for candidate in ("Bip01 Spine2", "Bip01 Spine1", "bip01 spine2"):
                             if hasattr(rig_obj, "data") and candidate in rig_obj.data.bones:

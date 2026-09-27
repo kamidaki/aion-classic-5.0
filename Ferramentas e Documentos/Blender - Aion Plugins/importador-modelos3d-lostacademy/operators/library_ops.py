@@ -55,8 +55,8 @@ def get_model_provider(client_path: str) -> Optional[ModelProvider]:
 class AION_OT_detect_client(bpy.types.Operator):
     """Detects Aion client installation and determines flavor/generation."""
     bl_idname = "aion_model.detect_client"
-    bl_label = "Detect Client"
-    bl_description = "Auto-detect Aion client folder and configuration"
+    bl_label = "Detectar Cliente"
+    bl_description = "Detectar automaticamente pasta e configuração do cliente Aion"
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context: bpy.types.Context) -> set[str]:
@@ -76,28 +76,28 @@ class AION_OT_detect_client(bpy.types.Operator):
             settings.client_flavor = detected.flavor
             self.report(
                 {"INFO"},
-                f"Detected {detected.flavor} at {detected.root_path}",
+                f"Cliente {detected.flavor} detectado em {detected.root_path}",
             )
             return {"FINISHED"}
         else:
-            self.report({"WARNING"}, "No valid Aion client found. Please specify folder manually.")
+            self.report({"WARNING"}, "Nenhum cliente Aion válido encontrado. Especifique a pasta manualmente.")
             return {"CANCELLED"}
 
 
 class AION_OT_scan_assets(bpy.types.Operator):
     """Scans the client directory to discover 3D models, armatures, animations, and archetypes."""
     bl_idname = "aion_model.scan_assets"
-    bl_label = "Scan Client Assets"
-    bl_description = "Scan client folder and PAKs to index all 3D models"
+    bl_label = "Escanear Arquivos do Cliente"
+    bl_description = "Escanear pasta e PAKs do cliente para indexar todos os modelos 3D"
     bl_options = {"REGISTER"}
 
-    force_rescan: bpy.props.BoolProperty(name="Force Full Rescan", default=False)
+    force_rescan: bpy.props.BoolProperty(name="Forçar Re-escaneamento", default=False)
 
     def execute(self, context: bpy.types.Context) -> set[str]:
         settings = context.scene.aion_model_lib
         client_dir = settings.client_path
         if not client_dir or not Path(client_dir).is_dir():
-            self.report({"ERROR"}, "Please select a valid Aion client folder first.")
+            self.report({"ERROR"}, "Por favor, selecione uma pasta válida do cliente Aion primeiro.")
             return {"CANCELLED"}
 
         client_path = Path(client_dir)
@@ -109,7 +109,7 @@ class AION_OT_scan_assets(bpy.types.Operator):
             bpy.ops.aion_model.filter_assets()
             self.report(
                 {"INFO"},
-                f"Loaded {db.total_count} assets instantly from index cache! (Click Rescan to rebuild)",
+                f"Carregados {db.total_count:,} arquivos instantaneamente do cache de índice!",
             )
             return {"FINISHED"}
 
@@ -128,7 +128,7 @@ class AION_OT_scan_assets(bpy.types.Operator):
 
         self.report(
             {"INFO"},
-            f"Successfully scanned {len(scanned_assets)} assets across {len(db.get_categories())} categories (cached to disk).",
+            f"Escaneamento concluído com sucesso: {len(scanned_assets):,} modelos em {len(db.get_categories())} categorias (salvo em cache).",
         )
         return {"FINISHED"}
 
@@ -136,8 +136,8 @@ class AION_OT_scan_assets(bpy.types.Operator):
 class AION_OT_filter_assets(bpy.types.Operator):
     """Filters displayed asset list by search keyword and category."""
     bl_idname = "aion_model.filter_assets"
-    bl_label = "Filter Assets"
-    bl_description = "Apply search keyword and category filter to asset list"
+    bl_label = "Filtrar Modelos"
+    bl_description = "Aplica filtro de busca por palavra-chave e categoria"
     bl_options = {"INTERNAL"}
 
     def execute(self, context: bpy.types.Context) -> set[str]:
@@ -184,14 +184,14 @@ class AION_OT_filter_assets(bpy.types.Operator):
 class AION_OT_load_asset(bpy.types.Operator):
     """Loads the selected Aion model into the dedicated 3D viewer stage."""
     bl_idname = "aion_model.load_asset"
-    bl_label = "View Model"
-    bl_description = "Load selected model, skeleton, materials, and idle animation into the 3D viewer"
+    bl_label = "Carregar no Visualizador"
+    bl_description = "Carrega o modelo 3D selecionado no palco do visualizador"
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context: bpy.types.Context) -> set[str]:
         settings = context.scene.aion_model_lib
         if not settings.asset_items or settings.active_asset_index < 0:
-            self.report({"WARNING"}, "No asset selected.")
+            self.report({"WARNING"}, "Nenhum modelo selecionado na lista.")
             return {"CANCELLED"}
 
         if settings.active_asset_index >= len(settings.asset_items):
@@ -201,13 +201,13 @@ class AION_OT_load_asset(bpy.types.Operator):
         db = AssetDatabase.get()
         entry = db.get_by_id(selected_item.asset_id)
         if not entry:
-            self.report({"ERROR"}, f"Asset '{selected_item.asset_id}' not found in database.")
+            self.report({"ERROR"}, f"Modelo '{selected_item.asset_id}' não encontrado no banco de dados.")
             return {"CANCELLED"}
 
         client_prov = get_client_provider(settings.client_path)
         model_prov = get_model_provider(settings.client_path)
         if not client_prov or not model_prov:
-            self.report({"ERROR"}, "Failed to initialize client provider. Check client directory.")
+            self.report({"ERROR"}, "Falha ao inicializar provedor do cliente. Verifique a pasta do jogo.")
             return {"CANCELLED"}
 
         # 1. Setup viewer collection & lighting
@@ -242,6 +242,7 @@ class AION_OT_load_asset(bpy.types.Operator):
                 target_collection=stage_col,
                 load_animation=(target_rig is None),
                 target_rig=target_rig,
+                replace_slot=True,
             )
 
             # Auto-complete modular humanoid NPC/character if enabled
@@ -257,11 +258,11 @@ class AION_OT_load_asset(bpy.types.Operator):
                     )
         except Exception as e:
             logger.error("Failed to load model %s: %s", entry.name, e, exc_info=True)
-            self.report({"ERROR"}, f"Failed to load model {entry.name}: {e}")
+            self.report({"ERROR"}, f"Falha ao carregar modelo {entry.name}: {e}")
             return {"CANCELLED"}
 
         if not root_obj:
-            self.report({"ERROR"}, f"Could not load geometry for {entry.name}.")
+            self.report({"ERROR"}, f"Não foi possível carregar a geometria de {entry.name}.")
             return {"CANCELLED"}
 
         # 3. Update active settings metadata
@@ -322,21 +323,28 @@ class AION_OT_load_asset(bpy.types.Operator):
                         anim_item.name = str(item)
                         anim_item.caf_path = str(item)
 
+        if not settings.active_anims and target_rig:
+            class_anims = MannequinProvider.get_class_animations(settings.character_race, settings.character_class)
+            for anim_label, caf_file in class_anims:
+                a_item = settings.active_anims.add()
+                a_item.name = anim_label
+                a_item.caf_path = caf_file
+
         # 5. Frame camera & set shading
         if settings.camera_auto_frame:
             ViewerStage.frame_object(root_obj)
 
         set_shading_mode("MATERIAL")
 
-        self.report({"INFO"}, f"Loaded {entry.name} ({entry.category})")
+        self.report({"INFO"}, f"Modelo {entry.name} ({entry.category}) carregado!")
         return {"FINISHED"}
 
 
 class AION_OT_clear_stage(bpy.types.Operator):
     """Clears all objects from the viewer stage."""
     bl_idname = "aion_model.clear_stage"
-    bl_label = "Clear Stage"
-    bl_description = "Remove all models from the viewer stage"
+    bl_label = "Limpar Palco"
+    bl_description = "Remove todos os modelos do palco do visualizador"
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context: bpy.types.Context) -> set[str]:
@@ -345,15 +353,15 @@ class AION_OT_clear_stage(bpy.types.Operator):
         settings.active_asset_id = ""
         settings.active_asset_name = ""
         settings.active_anims.clear()
-        self.report({"INFO"}, "Viewer stage cleared.")
+        self.report({"INFO"}, "Palco do visualizador limpo com sucesso.")
         return {"FINISHED"}
 
 
 class AION_OT_load_class_preset(bpy.types.Operator):
     """Loads a complete Aion class character with default armor set and class weapons."""
     bl_idname = "aion_model.load_class_preset"
-    bl_label = "Load Class Preset"
-    bl_description = "Load complete character with class armor set and weapons"
+    bl_label = "Carregar Traje da Classe"
+    bl_description = "Carrega personagem completo com armadura, armas e animações da classe"
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context: bpy.types.Context) -> set[str]:
@@ -361,7 +369,7 @@ class AION_OT_load_class_preset(bpy.types.Operator):
         client_prov = get_client_provider(settings.client_path)
         model_prov = get_model_provider(settings.client_path)
         if not client_prov or not model_prov:
-            self.report({"ERROR"}, "Client provider not available. Check client path.")
+            self.report({"ERROR"}, "Provedor do cliente não disponível. Verifique o caminho da pasta.")
             return {"CANCELLED"}
 
         stage_col = ViewerStage.get_or_create_stage_collection()
@@ -378,45 +386,61 @@ class AION_OT_load_class_preset(bpy.types.Operator):
         )
 
         if not rig:
-            self.report({"ERROR"}, "Failed to assemble class character preset.")
+            self.report({"ERROR"}, "Falha ao montar personagem da classe.")
             return {"CANCELLED"}
 
         settings.active_asset_name = f"{settings.character_race} {settings.character_class}"
         settings.active_category = "CHARACTER"
         settings.active_bone_count = len(rig.data.bones)
 
+        # Populate active animation list with full suite of class animations
+        settings.active_anims.clear()
+        class_anims = MannequinProvider.get_class_animations(settings.character_race, settings.character_class)
+        for anim_label, caf_file in class_anims:
+            anim_item = settings.active_anims.add()
+            anim_item.name = anim_label
+            anim_item.caf_path = caf_file
+        settings.active_anim_index = 0
+
+        # Start timeline playback
+        try:
+            from ..viewers.animation_player import AnimationPlayer
+            AnimationPlayer.play()
+        except Exception:
+            pass
+
         if settings.camera_auto_frame:
             ViewerStage.frame_object(rig)
 
         set_shading_mode("MATERIAL")
-        self.report({"INFO"}, f"Loaded {settings.character_race} {settings.character_class} preset!")
+        self.report({"INFO"}, f"Traje completo de {settings.character_race} {settings.character_class} carregado com sucesso!")
         return {"FINISHED"}
 
 
 class AION_OT_equip_selected_asset(bpy.types.Operator):
     """Equips the selected library item directly onto the active character mannequin."""
     bl_idname = "aion_model.equip_asset"
-    bl_label = "Equip on Character"
-    bl_description = "Equip the selected weapon, armor piece, or wings onto the character body"
+    bl_label = "Equipar no Personagem"
+    bl_description = "Equipa a arma, armadura ou acessório selecionado diretamente no corpo do personagem"
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context: bpy.types.Context) -> set[str]:
         settings = context.scene.aion_model_lib
         if not settings.asset_items or settings.active_asset_index < 0:
-            self.report({"WARNING"}, "No asset selected.")
+            self.report({"WARNING"}, "Nenhum modelo selecionado na lista.")
             return {"CANCELLED"}
 
         selected_item = settings.asset_items[settings.active_asset_index]
         db = AssetDatabase.get()
         entry = db.get_by_id(selected_item.asset_id)
         if not entry:
-            self.report({"ERROR"}, "Asset not found.")
+            self.report({"ERROR"}, "Modelo não encontrado no índice.")
             return {"CANCELLED"}
 
         client_prov = get_client_provider(settings.client_path)
         model_prov = get_model_provider(settings.client_path)
         if not client_prov or not model_prov:
-            self.report({"ERROR"}, "Client provider not available.")
+            self.report({"ERROR"}, "Provedor do cliente não disponível.")
             return {"CANCELLED"}
 
         stage_col = ViewerStage.get_or_create_stage_collection()
@@ -436,7 +460,7 @@ class AION_OT_equip_selected_asset(bpy.types.Operator):
             )
 
         if not target_rig:
-            self.report({"ERROR"}, "Failed to find or create character mannequin.")
+            self.report({"ERROR"}, "Falha ao encontrar ou criar manequim de personagem.")
             return {"CANCELLED"}
 
         model_prov.load_model(
@@ -444,9 +468,10 @@ class AION_OT_equip_selected_asset(bpy.types.Operator):
             target_collection=stage_col,
             load_animation=False,
             target_rig=target_rig,
+            replace_slot=True,
         )
 
-        self.report({"INFO"}, f"Equipped {entry.name} onto character!")
+        self.report({"INFO"}, f"{entry.name} equipado com sucesso no personagem!")
         return {"FINISHED"}
 
 
