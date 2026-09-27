@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 """Sincroniza ações ``titleadd`` comprovadas pelo catálogo Classic 5.0 EU.
 
-Uma ação só é criada quando ``cash_title`` aponta para um título já presente em
-``player_titles.xml``. Itens cujos títulos ainda não têm template no servidor
-permanecem inalterados e são relacionados no relatório, evitando uma exceção ao
-usar o item. ``cash_available_minute=0`` representa título permanente e omite o
-atributo ``minutes``; os demais valores são preservados exatamente como no
-cliente oficial.
+``data/PC/client_titles.xml`` é a autoridade dos títulos existentes. O campo
+legado ``cash_title`` continua preenchido nos cartões antigos, mas a descrição
+oficial ``STR_OLD_TITLE_NOTICE_DESC`` informa que eles não podem mais ser usados
+e devem ser desmontados pelo Siel's Hammer. Portanto, ações antigas fora do
+catálogo atual são removidas. Uma ação nova só é criada quando o título oficial
+também já possui template no servidor.
 
 Uso:
     python sync_50_item_titles.py --verificar
@@ -48,9 +48,19 @@ def le_cliente(pasta):
             title_id = (elemento.findtext("cash_title") or "").strip()
             minutos = (elemento.findtext("cash_available_minute") or "0").strip() or "0"
             if item_id and title_id not in ("", "0", "none"):
-                itens[int(item_id)] = (int(title_id), int(minutos))
+                itens[int(item_id)] = (
+                    int(title_id), int(minutos),
+                    (elemento.findtext("can_crush") or "").strip().upper() == "TRUE",
+                    (elemento.findtext("crush_name") or "").strip(),
+                    (elemento.findtext("desc_long") or "").strip(),
+                )
             elemento.clear()
     return itens
+
+
+def le_titulos_oficiais(pasta):
+    caminho = os.path.join(pasta, "data", "PC", "client_titles.xml")
+    return {int(elemento.findtext("id")) for elemento in ET.parse(caminho).getroot().findall("client_title")}
 
 
 def le_titulos_servidor():
@@ -81,6 +91,17 @@ def insere_titleadd(bloco, title_id, minutos, nl):
     return bloco[:inicio] + nl + acoes + bloco[inicio:]
 
 
+def remove_titleadd(bloco, encontrado):
+    novo = bloco[:encontrado.start()] + bloco[encontrado.end():]
+    actions = re.search(r'<actions>(.*?)</actions>', novo, re.S)
+    if actions and not actions.group(1).strip():
+        inicio = novo.rfind("\n", 0, actions.start()) + 1
+        fim = novo.find("\n", actions.end())
+        fim = len(novo) if fim < 0 else fim + 1
+        novo = novo[:inicio] + novo[fim:]
+    return novo
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--cliente", default=os.environ.get("AION_CLIENT_XML_DIR", DEFAULT_CLIENT_DIR))
@@ -95,7 +116,8 @@ def main():
         sys.exit(f"{REL_ITEMS} do fonte e do Produto Final estao diferentes. Sincronize antes de rodar.")
 
     print("1. Lendo títulos oficiais, catálogo do servidor e templates de item...")
-    oficiais = le_cliente(args.cliente)
+    itens = le_cliente(args.cliente)
+    oficiais = le_titulos_oficiais(args.cliente)
     titulos_servidor = le_titulos_servidor()
     texto = open(src, encoding="utf-8", newline="").read()
     nl = "\r\n" if "\r\n" in texto else "\n"
@@ -104,13 +126,23 @@ def main():
 
     def corrige(match):
         bloco, item_id = match.group(1), int(match.group(2))
-        dados = oficiais.get(item_id)
+        dados = itens.get(item_id)
         if dados is None:
             return bloco
-        title_id, minutos = dados
+        title_id, minutos, can_crush, crush_name, desc_long = dados
         atual = TITLEADD_RE.search(bloco)
+        if title_id not in oficiais:
+            classificacao = "cartão legado elegível no Siel's Hammer" if can_crush and crush_name else "cash_title fora do catálogo atual"
+            rel[classificacao].append(
+                f"{item_id}: título legado {title_id}, crush={crush_name or '-'}, desc_long={desc_long or '-'}"
+            )
+            if atual is not None:
+                corrigidos[item_id] = (atual.group(0), "removido")
+                rel["titleadd legado removido"].append(f"{item_id}: {atual.group(0)}")
+                return remove_titleadd(bloco, atual)
+            return bloco
         if title_id not in titulos_servidor:
-            rel["título sem template no servidor (não alterado)"].append(
+            rel["título Classic sem template no servidor (não alterado)"].append(
                 f"{item_id}: título {title_id}, minutos {minutos}"
             )
             return bloco
@@ -127,10 +159,11 @@ def main():
         return bloco
 
     novo = TEMPLATE_RE.sub(corrige, texto)
-    pendentes = len(rel["título sem template no servidor (não alterado)"])
+    novo = re.sub(r'(?m)^[ \t]+(?=\r?$)', '', novo)
+    pendentes = len(rel["título Classic sem template no servidor (não alterado)"])
     print(
-        f"   itens oficiais com cash_title: {len(oficiais)} | inseridos: {len(inseridos)} | "
-        f"corrigidos: {len(corrigidos)} | pendentes por título: {pendentes}"
+        f"   itens com cash_title: {len(itens)} | títulos oficiais atuais: {len(oficiais)} | "
+        f"inseridos: {len(inseridos)} | corrigidos/removidos: {len(corrigidos)} | pendentes atuais: {pendentes}"
     )
 
     print("2. Validando contra o static_data.xsd agregado...")
@@ -146,6 +179,7 @@ def main():
     with open(RELATORIO, "w", encoding="utf-8") as arquivo:
         arquivo.write("sync_50_item_titles.py\n")
         arquivo.write("catálogo: data/europe/Items/client_items.xml\n")
+        arquivo.write("títulos oficiais: data/PC/client_titles.xml\n")
         arquivo.write(f"títulos no player_titles.xml: {len(titulos_servidor)}\n")
         for chave, valores in rel.items():
             arquivo.write(f"\n== {chave}: {len(valores)}\n")

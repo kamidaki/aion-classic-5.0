@@ -458492,888 +458492,562 @@
 	<item_template id="169600221" name="Morph: Fonte do vento" level="1" cName="classic_cash_add_social_provoke_pop" mask="16474" item_group="QUEST" quality="COMMON" price="5" desc="815837" activate_count="1" client_mask="16698"/>
 	<item_template id="169600222" name="Arco de catalium" level="1" cName="classic_cash_add_social_away_special01" mask="16474" item_group="QUEST" quality="COMMON" price="5" desc="815962" activate_count="1" client_mask="16698"/>
 	<item_template id="169610000" name="[Cartão de título] &quot;Destrador de Aion&quot;" level="1" cName="cash_add_title_01" mask="16456" quality="COMMON" price="0" desc="741825" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="101"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610001" name="[Cartão de título] &amp;#39;Passo de Aion de Aion&amp;#39; - Passo de 7 dias" level="1" cName="cash_add_title_01_7" mask="16456" quality="COMMON" price="0" desc="725541" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="101" minutes="10081"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610002" name="[Cartão de título] &amp;#39;Passo de Aion de Aion&amp;#39; - Passo de 15 dias" level="1" cName="cash_add_title_01_15" mask="16456" quality="COMMON" price="0" desc="741644" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="101" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610003" name="[Cartão de título] &amp;#39;Passo de Aion de Aion&amp;#39; - Passo de 30 dias" level="1" cName="cash_add_title_01_30" mask="16456" quality="COMMON" price="0" desc="741654" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="101" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610004" name="[Cartão de título] &amp;#39;Settles of Aion&amp;#39; - para teste" level="1" cName="cash_add_title_01_test" mask="16456" quality="COMMON" price="0" desc="741794" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="101" minutes="5"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610010" name="[Cartão de título] &amp;#39;Destino Ascendente&amp;#39;" level="1" cName="cash_add_title_02" mask="16456" quality="COMMON" price="0" desc="741826" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="102"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610011" name="[Cartão de título] &amp;#39;Destiny Ascendente&amp;#39; - Passo de 7 dias" level="1" cName="cash_add_title_02_7" mask="16456" quality="COMMON" price="0" desc="725542" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="102" minutes="10081"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610012" name="[Cartão de título] &amp;#39;Destiny Ascendente&amp;#39; - passe de 15 dias" level="1" cName="cash_add_title_02_15" mask="16456" quality="COMMON" price="0" desc="741645" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="102" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610013" name="[Cartão de título] &amp;#39;Destiny Ascendente&amp;#39; - Passo de 30 dias" level="1" cName="cash_add_title_02_30" mask="16456" quality="COMMON" price="0" desc="741655" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="102" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610020" name="[Cartão de título] &quot;adepto de Aion&quot;" level="1" cName="cash_add_title_03" mask="16456" quality="COMMON" price="0" desc="741827" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="103"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610021" name="[Cartão de título] &amp;#39;Adepto do Aion&amp;#39;-7 Day Pass" level="1" cName="cash_add_title_03_7" mask="16456" quality="COMMON" price="0" desc="725543" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="103" minutes="10081"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610022" name="[Cartão de título] &amp;#39;Adepto de Aion&amp;#39;- Pass de 15 dias" level="1" cName="cash_add_title_03_15" mask="16456" quality="COMMON" price="0" desc="741646" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="103" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610023" name="[Cartão de título] &amp;#39;Adepto de Aion&amp;#39;-30 dias Pass" level="1" cName="cash_add_title_03_30" mask="16456" quality="COMMON" price="0" desc="741656" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="103" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610030" name="[Cartão de título] Intelectual brilhante" level="1" cName="cash_add_title_04_30" mask="16456" quality="COMMON" price="0" desc="743495" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="104" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610031" name="[Cartão de título] Sábio de Aion" level="1" cName="cash_add_title_05_30" mask="16456" quality="COMMON" price="0" desc="743496" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="105" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610032" name="[Cartão de título] Munífico" level="1" cName="cash_add_title_06_90" mask="16456" quality="COMMON" price="0" desc="745263" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="106" minutes="129601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610033" name="[Título] Herói Taegeuk" level="1" cName="event_add_title_145_30" mask="16456" quality="COMMON" price="5" desc="764345" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="145" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610034" name="[Cartão de título] Daddy Long Legs-Pass de 30 dias" level="1" cName="event_add_title_146_30" mask="16456" quality="COMMON" price="5" desc="764371" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="146" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610035" name="[Cartão de título] Mestre de muitos animais de estimação-passe de 30 dias" level="1" cName="cash_add_title_151_30" mask="16456" quality="COMMON" price="5" desc="768542" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="151" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610036" name="[Cartão de título] &amp;#39;Charmer&amp;#39; - passe de 14 dias" level="1" cName="world_event_add_title_152_14" mask="16456" quality="COMMON" price="5" desc="769568" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="152" minutes="20161"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610037" name="[Cartão de título] &amp;#39;Sucker&amp;#39;-passe de 14 dias" level="1" cName="world_event_add_title_153_14" mask="16456" quality="COMMON" price="5" desc="769570" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="153" minutes="20161"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610038" name="[Cartão de título] Patrono Gufrinerk - Pass de 15 dias" level="1" cName="cash_add_title_154_15" mask="16456" quality="COMMON" price="5" desc="769995" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="160" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610039" name="[Cartão de título] Patrono de Jielinliner - passe de 15 dias" level="1" cName="cash_add_title_155_15" mask="16456" quality="COMMON" price="5" desc="769996" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="161" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610040" name="[Cartão de título] Patrono gentil de Gufrinerk - passe de 15 dias" level="1" cName="cash_add_title_156_15" mask="16456" quality="COMMON" price="5" desc="769997" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="162" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610041" name="[Cartão de título] Patrono gentil de Jielinliner - passe de 15 dias" level="1" cName="cash_add_title_157_15" mask="16456" quality="COMMON" price="5" desc="769998" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="163" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610042" name="Para controle de qualidade: [cartão de título] Patrono Gufrinerk - Passo de 1 hora" level="1" cName="test_add_title_154_15" mask="16456" quality="COMMON" price="5" desc="770038" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="160" minutes="61"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610043" name="Para controle de qualidade: [cartão de título] Patrono de Jielinliner - passe de 1 hora" level="1" cName="test_add_title_155_15" mask="16456" quality="COMMON" price="5" desc="770039" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="161" minutes="61"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610044" name="Para controle de qualidade: [cartão de título] Patrono gentil de Gufrinerk - passe de 1 hora" level="1" cName="test_add_title_156_15" mask="16456" quality="COMMON" price="5" desc="770040" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="162" minutes="61"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610045" name="Para QA: [cartão de título] Patrono gentil de Jielinliner - passe de 1 hora" level="1" cName="test_add_title_157_15" mask="16456" quality="COMMON" price="5" desc="770041" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="163" minutes="61"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610046" name="[Título] Festival Crab-Pass de 15 dias" level="1" cName="world_event_add_title_158_15day" mask="16456" quality="COMMON" price="5" desc="774310" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="176" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610047" name="Colar direito de Parure" level="1" cName="world_event_add_title_159_15day" mask="16456" quality="COMMON" price="5" desc="778758" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="177" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610048" name="O cinto de Zaellen" level="1" cName="world_event_add_title_160_7day" mask="16456" quality="COMMON" price="5" desc="778823" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="178" minutes="10081"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610049" name="Caixa Manatone Superior de Lagia" level="1" cName="world_event_add_title_161_7day" mask="16456" quality="COMMON" price="5" desc="778825" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="179" minutes="10081"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610050" name="Escala de Balaur antiga" level="1" cName="world_event_add_title_162_30day" mask="16456" quality="COMMON" price="5" desc="778827" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="180" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610051" name="Formulário de doces para o teste de malha 01" level="1" cName="world_event_add_title_163_30day" mask="16456" quality="COMMON" price="5" desc="778829" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="181" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610052" name="Formulário de doces para o teste de malha 02" level="1" cName="world_event_add_title_164_30day" mask="16456" quality="COMMON" price="5" desc="778831" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="182" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610053" name="Presente recebeu" level="1" cName="cash_add_title_185_15" mask="16506" quality="COMMON" price="5" desc="778851" activate_count="1" item_group="PACK_SCROLL" client_mask="17210">
-		<actions>
-			<titleadd titleid="185" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610054" name="Tunic NPC Abismo (3.0)" level="1" cName="cash_add_title_186_15" mask="16506" quality="COMMON" price="5" desc="779031" activate_count="1" item_group="PACK_SCROLL" client_mask="17210">
-		<actions>
-			<titleadd titleid="186" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610055" name="Bilhete de dignidade" level="1" cName="cash_add_title_187_15" mask="16506" quality="COMMON" price="5" desc="780236" activate_count="1" item_group="PACK_SCROLL" client_mask="17210">
-		<actions>
-			<titleadd titleid="187" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610056" name="Esta bola de canhão, usada por armas de cerco de Balaur, segura o feitiço mágico de Drana. Você pode usar a arma do Balaur Cerco do Balaur, desde que tenha isso." level="1" cName="world_cash_add_title_188_30" mask="16456" quality="COMMON" price="5" desc="780348" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="188" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610057" name="Test_compensation_sales_sword_all" level="1" cName="world_cash_add_title_189_30" mask="16456" quality="COMMON" price="5" desc="780350" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="189" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610058" name="Test_compensation_sales_sword_abyss" level="1" cName="world_cash_add_title_190_30" mask="16456" quality="COMMON" price="5" desc="780352" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="190" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610059" name="Test_compensation_sales_mace_all" level="1" cName="world_cash_add_title_191_30" mask="16456" quality="COMMON" price="5" desc="780354" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="191" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610060" name="TEST_COMPENSATION_SALES_MACE_ABYSS" level="1" cName="world_cash_add_title_192_30" mask="16456" quality="COMMON" price="5" desc="780356" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="192" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610061" name="Test_compensation_sales_orb_all" level="1" cName="world_cash_add_title_193_30" mask="16456" quality="COMMON" price="5" desc="780358" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="193" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610062" name="Test_compensation_sales_orb_abyss" level="1" cName="world_cash_add_title_194_30" mask="16456" quality="COMMON" price="5" desc="780360" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="194" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610063" name="Insígnia" level="1" cName="world_cash_add_title_195_30" mask="16456" quality="COMMON" price="5" desc="780362" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="195" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610064" name="2 multiuso 2" level="1" cName="world_cash_add_title_196_30" mask="16456" quality="COMMON" price="5" desc="780364" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="196" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610065" name="Abismo 2" level="1" cName="world_cash_add_title_197_30" mask="16456" quality="COMMON" price="5" desc="780366" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="197" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610066" name="Esta é a espada de flor de Odella de Mumu Ham. Você pode mudar sua aparência, mas durará apenas o tempo dado." level="1" cName="world_cash_add_title_198_30" mask="16456" quality="COMMON" price="5" desc="780368" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="198" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610067" name="Este é um uniforme de mini marinheiro fofo. Você pode mudar sua aparência, mas durará apenas o tempo dado." level="1" cName="world_cash_add_title_199_30" mask="16456" quality="COMMON" price="5" desc="780370" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="199" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610068" name="Liga Diamante - Escudo do Noble TAC Oficial" level="1" cName="cash_add_title_200_15" mask="16456" quality="COMMON" price="5" desc="780472" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="200" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610069" name="Jóia caída" level="1" cName="Event_add_title_186_15" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="780759" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="186" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610070" name="Jóia de Gênesis" level="1" cName="Event_add_title_192_30" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="780773" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="192" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610071" name="Balaururbona Tome" level="1" cName="Event_ADD_TITLE_201" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="780845" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610072" name="Tome dos caídos" level="1" cName="Event_ADD_TITLE_202" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="780847" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="202"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610073" name="Tome dos caídos" level="1" cName="Event_ADD_TITLE_203" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="780849" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="203"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610074" name="Gênesis Tome" level="1" cName="Event_ADD_TITLE_204" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="780851" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="204"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610075" name="Devastação" level="1" cName="Event_ADD_TITLE_205" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="780853" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="205"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610076" name="Tomo de água escura durável nobre" level="1" cName="Event_ADD_TITLE_206" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="780855" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="206"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610077" name="Digno nobre tomo de água escura durável" level="1" cName="Event_ADD_TITLE_207" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="780857" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="207"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610078" name="Pessoal solitário" level="1" cName="Event_ADD_TITLE_208" mask="16456" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="781078" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="208"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610079" name="Funcionários de Balaurbona" level="1" cName="Event_ADD_TITLE_209" mask="16456" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="781079" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="209"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610080" name="Funcionários de Balaurbona" level="1" cName="Event_ADD_TITLE_210" mask="16456" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="781080" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="210"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610081" name="Funcionários de Balaurbona" level="1" cName="Event_ADD_TITLE_211" mask="16456" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="781081" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="211"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610082" name="Funcionários dos caídos" level="1" cName="Event_ADD_TITLE_212" mask="16456" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="781082" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="212"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610083" name="Funcionários dos caídos" level="1" cName="Event_ADD_TITLE_213" mask="16456" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="781083" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="213"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610084" name="Funcionários dos caídos" level="1" cName="Event_ADD_TITLE_214" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="781084" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="214"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610085" name="Equipe de Gênesis" level="1" cName="Event_ADD_TITLE_215" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="781085" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="215"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610086" name="Equipe de Gênesis" level="1" cName="Event_ADD_TITLE_216" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="781086" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="216"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610087" name="Equipe de Gênesis" level="1" cName="Event_ADD_TITLE_217" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="781087" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="217"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610088" name="Devastação" level="1" cName="Event_ADD_TITLE_218" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="781088" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="218"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610089" name="Equipe durável da Nanyu" level="1" cName="Event_ADD_TITLE_219" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="781089" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="219"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610090" name="Noble pessoal durável da Nanyu" level="1" cName="Event_ADD_TITLE_220" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="781090" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="220"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610091" name="Funcionários dignos de Nanyu duráveis" level="1" cName="Event_ADD_TITLE_221" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="781091" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="221"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610092" name="Noble Noble Durável Nanyu Cajado" level="1" cName="Event_ADD_TITLE_222" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="781092" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="222"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610093" name="Funcionários de Nanyu duráveis ​​especializados" level="1" cName="Event_ADD_TITLE_223" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="781093" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="223"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610094" name="Expert Noble Durable Nanyu Cajado" level="1" cName="Event_ADD_TITLE_224" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="781094" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="224"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610095" name="Mestre pessoal durável da Nanyu" level="1" cName="Event_ADD_TITLE_225" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="781095" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="225"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610096" name="Mestre nobre equipe de Nanyu durável" level="1" cName="Event_ADD_TITLE_226" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="781096" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="226"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610097" name="Equipe de Nanyu durável do mestre nobre" level="1" cName="Event_ADD_TITLE_227" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="781097" activate_count="1" client_mask="16680">
-		<actions>
-			<titleadd titleid="227" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610101" name="[Título] ALA ALABASTER" level="30" cName="item_light_title59_3a" mask="16456" quality="RARE" price="5" restrict_max="39 39 39 39 39 39 39 39 39 39 39 39 39 39 39 39 39" desc="763848" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="115" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000100" count="7"/>
 	</item_template>
 	<item_template id="169610102" name="[Título] Alabaster Eye" level="30" cName="item_light_title60_7a" mask="16456" quality="LEGEND" price="5" restrict_max="39 39 39 39 39 39 39 39 39 39 39 39 39 39 39 39 39" desc="763849" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="116" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000100" count="14"/>
 	</item_template>
 	<item_template id="169610103" name="[Título] Hand Alabaster" level="50" cName="item_light_title61" mask="16456" quality="UNIQUE" price="5" desc="763850" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="117"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000100" count="360"/>
 	</item_template>
 	<item_template id="169610104" name="[Título] Punho radiante" level="40" cName="item_light_title62_3a" mask="16456" quality="RARE" price="5" restrict_max="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50" desc="763851" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="118" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000101" count="7"/>
 	</item_template>
 	<item_template id="169610105" name="[Título] Escudo radiante" level="40" cName="item_light_title63_3a" mask="16456" quality="RARE" price="5" restrict_max="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50" desc="763852" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="119" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000101" count="7"/>
 	</item_template>
 	<item_template id="169610106" name="[Título] Blade radiante" level="40" cName="item_light_title64_7a" mask="16456" quality="LEGEND" price="5" restrict_max="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50" desc="763853" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="120" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000101" count="14"/>
 	</item_template>
 	<item_template id="169610107" name="[Título] Salhava radiante" level="40" cName="item_light_title65_7a" mask="16456" quality="LEGEND" price="5" restrict_max="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50" desc="763854" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="121" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000101" count="14"/>
 	</item_template>
 	<item_template id="169610108" name="[Título] Seeker" level="50" cName="item_light_title66" mask="16456" quality="UNIQUE" price="5" desc="763855" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="122"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000101" count="180"/>
 	</item_template>
 	<item_template id="169610109" name="[Título] Tracker" level="50" cName="item_light_title67_10" mask="16456" quality="RARE" price="5" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55" desc="763856" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="123" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000102" count="7"/>
 	</item_template>
 	<item_template id="169610110" name="[Título] Hunter" level="50" cName="item_light_title68_20" mask="16456" quality="LEGEND" price="5" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55" desc="763857" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="124" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000102" count="14"/>
 	</item_template>
 	<item_template id="169610111" name="[Título] Fortuneer" level="50" cName="item_light_title69" mask="16456" quality="UNIQUE" price="5" desc="763858" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="125"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000102" count="90"/>
 	</item_template>
 	<item_template id="169610112" name="[Título] Vanquisher de Mastarius" level="55" cName="item_light_title58" mask="16456" quality="UNIQUE" price="5" desc="763967" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="114" minutes="10081"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610113" name="[Título] ALA ALABASTER" level="40" cName="item_light_title59_3b" mask="16456" quality="RARE" price="5" restrict_max="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50" desc="763848" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="115" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000100" count="14"/>
 	</item_template>
 	<item_template id="169610114" name="[Título] Alabaster Eye" level="40" cName="item_light_title60_7b" mask="16456" quality="LEGEND" price="5" restrict_max="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50" desc="763849" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="116" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000100" count="28"/>
 	</item_template>
 	<item_template id="169610115" name="[Título] Punho radiante" level="50" cName="item_light_title62_3b" mask="16456" quality="RARE" price="5" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55" desc="763851" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="118" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000101" count="14"/>
 	</item_template>
 	<item_template id="169610116" name="[Título] Escudo radiante" level="50" cName="item_light_title63_3b" mask="16456" quality="RARE" price="5" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55" desc="763852" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="119" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000101" count="14"/>
 	</item_template>
 	<item_template id="169610117" name="[Título] Blade radiante" level="50" cName="item_light_title64_7b" mask="16456" quality="LEGEND" price="5" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55" desc="763853" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="120" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000101" count="28"/>
 	</item_template>
 	<item_template id="169610118" name="[Título] Salhava radiante" level="50" cName="item_light_title65_7b" mask="16456" quality="LEGEND" price="5" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55" desc="763854" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="121" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000101" count="28"/>
 	</item_template>
 	<item_template id="169610119" name="[Título] ALA ALABASTER" level="40" cName="item_light_title59_3c" mask="16456" quality="RARE" price="5" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55" desc="763848" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="115" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000100" count="28"/>
 	</item_template>
 	<item_template id="169610120" name="[Título] Alabaster Eye" level="40" cName="item_light_title60_7c" mask="16456" quality="LEGEND" price="5" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55" desc="763849" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="116" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000100" count="56"/>
 	</item_template>
 	<item_template id="169610121" name="[Título] Punho radiante" level="40" cName="item_light_title62_3c" mask="16456" quality="RARE" price="5" restrict_max="49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49" desc="763851" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="118" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000101" count="7"/>
 	</item_template>
 	<item_template id="169610122" name="[Título] Escudo radiante" level="40" cName="item_light_title63_3c" mask="16456" quality="RARE" price="5" restrict_max="49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49" desc="763852" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="119" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000101" count="7"/>
 	</item_template>
 	<item_template id="169610123" name="[Título] Blade radiante" level="40" cName="item_light_title64_7c" mask="16456" quality="LEGEND" price="5" restrict_max="49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49" desc="763853" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="120" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000101" count="14"/>
 	</item_template>
 	<item_template id="169610124" name="[Título] Salhava radiante" level="40" cName="item_light_title65_7c" mask="16456" quality="LEGEND" price="5" restrict_max="49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49" desc="763854" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="121" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000101" count="14"/>
 	</item_template>
 	<item_template id="169610125" name="[Título] ALA ALABASTER" level="40" cName="item_light_title59_3d" mask="16456" quality="RARE" price="5" restrict_max="49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49" desc="763848" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="115" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000100" count="14"/>
 	</item_template>
 	<item_template id="169610126" name="[Título] Alabaster Eye" level="40" cName="item_light_title60_7d" mask="16456" quality="LEGEND" price="5" restrict_max="49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49" desc="763849" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="116" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000100" count="28"/>
 	</item_template>
 	<item_template id="169610127" name="[Título] Sage Counsel" level="40" cName="item_light_title72_3a" mask="16456" quality="RARE" price="5" restrict_max="49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49" desc="769433" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="154" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000102" count="16"/>
 	</item_template>
 	<item_template id="169610128" name="[Título] Conselho de gentil" level="40" cName="item_light_title73_7a" mask="16456" quality="LEGEND" price="5" restrict_max="49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49" desc="769434" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="155" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000102" count="31"/>
 	</item_template>
 	<item_template id="169610129" name="[Título] Sage Counsel" level="50" cName="item_light_title72_3b" mask="16456" quality="RARE" price="5" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55" desc="769433" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="154" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000102" count="31"/>
 	</item_template>
 	<item_template id="169610130" name="[Título] Conselho de gentil" level="50" cName="item_light_title73_7b" mask="16456" quality="LEGEND" price="5" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55" desc="769434" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="155" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000102" count="61"/>
 	</item_template>
 	<item_template id="169610131" name="[Título] Mestre -chave" level="50" cName="item_light_title74" mask="16456" quality="UNIQUE" price="5" desc="769435" activate_count="1" item_group="PACK_SCROLL" client_mask="16680" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 0 55">
-		<actions>
-			<titleadd titleid="156"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000102" count="390"/>
 	</item_template>
 	<item_template id="169610132" name="[Título] Professor da alma" level="50" cName="item_light_title17" mask="16456" quality="LEGEND" price="5" desc="769436" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="17"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000102" count="65"/>
 	</item_template>
 	<item_template id="169610133" name="[Título] Guru do coração partido" level="50" cName="item_light_title18" mask="16456" quality="LEGEND" price="5" desc="769437" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="18"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000102" count="44"/>
 	</item_template>
 	<item_template id="169610134" name="[Título] Braço amarelo" level="50" cName="item_light_title19" mask="16456" quality="LEGEND" price="5" desc="769438" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="19"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000102" count="87"/>
 	</item_template>
 	<item_template id="169610135" name="[Título] Perseguidor tenaz" level="50" cName="item_light_title44" mask="16456" quality="LEGEND" price="5" desc="769439" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="44"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000102" count="65"/>
 	</item_template>
 	<item_template id="169610136" name="[Título] Pro Fisher" level="50" cName="item_light_title28" mask="16456" quality="LEGEND" price="5" desc="769440" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="28"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000102" count="65"/>
 	</item_template>
 	<item_template id="169610137" name="Tiamatian Jerkin" level="1" cName="world_us_cash_add_title_244" mask="16472" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="781450" activate_count="1" client_mask="16696">
-		<actions>
-			<titleadd titleid="244"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610138" name="Derrotou Jerkin de Reian" level="1" cName="world_us_cash_add_title_245_30" mask="16472" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="781451" activate_count="1" client_mask="16696">
-		<actions>
-			<titleadd titleid="245" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610139" name="Espírito caído Jerkin" level="1" cName="world_us_cash_add_title_245_90" mask="16472" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="781452" activate_count="1" client_mask="16696">
-		<actions>
-			<titleadd titleid="245" minutes="129601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610140" name="Jerkin de Assassino Rebel" level="1" cName="world_us_cash_add_title_245_365" mask="16472" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="781453" activate_count="1" client_mask="16696">
-		<actions>
-			<titleadd titleid="245" minutes="525601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610141" name="Jerkin do Rebel Arqueiro" level="1" cName="world_us_cash_add_title_246_30" mask="16472" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="781454" activate_count="1" client_mask="16696">
-		<actions>
-			<titleadd titleid="246" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610142" name="Espírito Primal Jerkin" level="1" cName="world_us_cash_add_title_246_90" mask="16472" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="781455" activate_count="1" client_mask="16696">
-		<actions>
-			<titleadd titleid="246" minutes="129601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610143" name="Jerkin de Reian Trainee" level="1" cName="world_us_cash_add_title_246_365" mask="16472" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="781456" activate_count="1" client_mask="16696">
-		<actions>
-			<titleadd titleid="246" minutes="525601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610144" name="Jerkin de Reian Legionário" level="1" cName="world_us_cash_add_title_247_30" mask="16472" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="781457" activate_count="1" client_mask="16696">
-		<actions>
-			<titleadd titleid="247" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610145" name="Elite Reian Jerkin" level="1" cName="world_us_cash_add_title_247_90" mask="16472" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="781458" activate_count="1" client_mask="16696">
-		<actions>
-			<titleadd titleid="247" minutes="129601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610146" name="Jerkin de Kahrun" level="1" cName="world_us_cash_add_title_247_365" mask="16472" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="781459" activate_count="1" client_mask="16696">
-		<actions>
-			<titleadd titleid="247" minutes="525601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610301" name="[Título] Diretor de campo" level="50" cName="item_dark_title59_3a" mask="16456" quality="RARE" price="5" restrict_max="39 39 39 39 39 39 39 39 39 39 39 39 39 39 39 39 39" desc="763870" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="134" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000103" count="7"/>
 	</item_template>
 	<item_template id="169610302" name="[Título] Agente de campo" level="50" cName="item_dark_title60_7a" mask="16456" quality="LEGEND" price="5" restrict_max="39 39 39 39 39 39 39 39 39 39 39 39 39 39 39 39 39" desc="763871" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="135" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000103" count="14"/>
 	</item_template>
 	<item_template id="169610303" name="[Título] Diretor de campo" level="50" cName="item_dark_title61" mask="16456" quality="UNIQUE" price="5" desc="763872" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="136"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000103" count="360"/>
 	</item_template>
 	<item_template id="169610304" name="[Título] Campeão de Sangue" level="50" cName="item_dark_title62_3a" mask="16456" quality="RARE" price="5" restrict_max="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50" desc="763873" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="137" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000104" count="7"/>
 	</item_template>
 	<item_template id="169610305" name="[Título] Blood Sentinel" level="50" cName="item_dark_title63_3a" mask="16456" quality="RARE" price="5" restrict_max="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50" desc="763874" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="138" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000104" count="7"/>
 	</item_template>
 	<item_template id="169610306" name="[Título] Conquistador de sangue" level="50" cName="item_dark_title64_7a" mask="16456" quality="LEGEND" price="5" restrict_max="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50" desc="763875" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="139" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000104" count="14"/>
 	</item_template>
 	<item_template id="169610307" name="[Título] Falanx de sangue" level="50" cName="item_dark_title65_7a" mask="16456" quality="LEGEND" price="5" restrict_max="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50" desc="763876" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="140" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000104" count="14"/>
 	</item_template>
 	<item_template id="169610308" name="[Título] Fixer" level="50" cName="item_dark_title66" mask="16456" quality="UNIQUE" price="5" desc="763877" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="141"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000104" count="180"/>
 	</item_template>
 	<item_template id="169610309" name="[Título] Operador" level="50" cName="item_dark_title67_10" mask="16456" quality="RARE" price="5" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55" desc="763878" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="142" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000105" count="7"/>
 	</item_template>
 	<item_template id="169610310" name="[Título] Handler" level="50" cName="item_dark_title68_20" mask="16456" quality="LEGEND" price="5" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55" desc="763879" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="143" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000105" count="14"/>
 	</item_template>
 	<item_template id="169610311" name="[Título] Daemon" level="50" cName="item_dark_title69" mask="16456" quality="UNIQUE" price="5" desc="763880" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="144"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000105" count="90"/>
 	</item_template>
 	<item_template id="169610312" name="[Título] VanQuisher de Veille" level="55" cName="item_dark_title58" mask="16456" quality="UNIQUE" price="5" desc="763968" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="133" minutes="10081"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169610313" name="[Título] Diretor de campo" level="50" cName="item_dark_title59_3b" mask="16456" quality="RARE" price="5" restrict_max="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50" desc="763870" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="134" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000103" count="14"/>
 	</item_template>
 	<item_template id="169610314" name="[Título] Agente de campo" level="50" cName="item_dark_title60_7b" mask="16456" quality="LEGEND" price="5" restrict_max="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50" desc="763871" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="135" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000103" count="28"/>
 	</item_template>
 	<item_template id="169610315" name="[Título] Campeão de Sangue" level="50" cName="item_dark_title62_3b" mask="16456" quality="RARE" price="5" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55" desc="763873" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="137" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000104" count="14"/>
 	</item_template>
 	<item_template id="169610316" name="[Título] Blood Sentinel" level="50" cName="item_dark_title63_3b" mask="16456" quality="RARE" price="5" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55" desc="763874" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="138" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000104" count="14"/>
 	</item_template>
 	<item_template id="169610317" name="[Título] Conquistador de sangue" level="50" cName="item_dark_title64_7b" mask="16456" quality="LEGEND" price="5" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55" desc="763875" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="139" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000104" count="28"/>
 	</item_template>
 	<item_template id="169610318" name="[Título] Falanx de sangue" level="50" cName="item_dark_title65_7b" mask="16456" quality="LEGEND" price="5" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55" desc="763876" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="140" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000104" count="28"/>
 	</item_template>
 	<item_template id="169610319" name="[Título] Diretor de campo" level="50" cName="item_dark_title59_3c" mask="16456" quality="RARE" price="5" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55" desc="763870" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="134" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000103" count="28"/>
 	</item_template>
 	<item_template id="169610320" name="[Título] Agente de campo" level="50" cName="item_dark_title60_7c" mask="16456" quality="LEGEND" price="5" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55" desc="763871" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="135" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000103" count="56"/>
 	</item_template>
 	<item_template id="169610321" name="[Título] Campeão de Sangue" level="50" cName="item_dark_title62_3c" mask="16456" quality="RARE" price="5" restrict_max="49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49" desc="763873" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="137" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000104" count="7"/>
 	</item_template>
 	<item_template id="169610322" name="[Título] Blood Sentinel" level="50" cName="item_dark_title63_3c" mask="16456" quality="RARE" price="5" restrict_max="49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49" desc="763874" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="138" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000104" count="7"/>
 	</item_template>
 	<item_template id="169610323" name="[Título] Conquistador de sangue" level="50" cName="item_dark_title64_7c" mask="16456" quality="LEGEND" price="5" restrict_max="49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49" desc="763875" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="139" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000104" count="14"/>
 	</item_template>
 	<item_template id="169610324" name="[Título] Falanx de sangue" level="50" cName="item_dark_title65_7c" mask="16456" quality="LEGEND" price="5" restrict_max="49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49" desc="763876" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="140" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000104" count="14"/>
 	</item_template>
 	<item_template id="169610325" name="[Título] Diretor de campo" level="50" cName="item_dark_title59_3d" mask="16456" quality="RARE" price="5" restrict_max="49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49" desc="763870" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="134" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000103" count="14"/>
 	</item_template>
 	<item_template id="169610326" name="[Título] Agente de campo" level="50" cName="item_dark_title60_7d" mask="16456" quality="LEGEND" price="5" restrict_max="49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49" desc="763871" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="135" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000103" count="28"/>
 	</item_template>
 	<item_template id="169610327" name="[Título] Conselho astuto" level="40" cName="item_dark_title72_3a" mask="16456" quality="RARE" price="5" restrict_max="49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49" desc="769449" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="157" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000105" count="16"/>
 	</item_template>
 	<item_template id="169610328" name="[Título] Conselho Excelente" level="40" cName="item_dark_title73_7a" mask="16456" quality="LEGEND" price="5" restrict_max="49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49" desc="769450" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="158" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000105" count="31"/>
 	</item_template>
 	<item_template id="169610329" name="[Título] Conselho astuto" level="50" cName="item_dark_title72_3b" mask="16456" quality="RARE" price="5" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55" desc="769449" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="157" minutes="4321"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000105" count="31"/>
 	</item_template>
 	<item_template id="169610330" name="[Título] Conselho Excelente" level="50" cName="item_dark_title73_7b" mask="16456" quality="LEGEND" price="5" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55" desc="769450" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="158" minutes="10081"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000105" count="61"/>
 	</item_template>
 	<item_template id="169610331" name="[Título] O líder do círculo" level="50" cName="item_dark_title74" mask="16456" quality="UNIQUE" price="5" desc="769451" activate_count="1" item_group="PACK_SCROLL" client_mask="16680" restrict_max="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 0 55">
-		<actions>
-			<titleadd titleid="159"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000105" count="390"/>
 	</item_template>
 	<item_template id="169610332" name="[Título] Elim Messenger" level="50" cName="item_dark_title17" mask="16456" quality="LEGEND" price="5" desc="769452" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="67"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000105" count="65"/>
 	</item_template>
 	<item_template id="169610333" name="[Título] Chamberlain de pano" level="50" cName="item_dark_title19" mask="16456" quality="LEGEND" price="5" desc="769453" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="69"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000105" count="44"/>
 	</item_template>
 	<item_template id="169610334" name="[Título] Krall Killing Veteran" level="50" cName="item_dark_title18" mask="16456" quality="LEGEND" price="5" desc="769454" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="68"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000105" count="87"/>
 	</item_template>
 	<item_template id="169610335" name="[Título] Elysea sem intercorrências" level="50" cName="item_dark_title29" mask="16456" quality="LEGEND" price="5" desc="769455" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="79"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000105" count="65"/>
 	</item_template>
 	<item_template id="169610336" name="[Título] Fantotum" level="50" cName="item_dark_title42" mask="16456" quality="LEGEND" price="5" desc="769456" activate_count="1" item_group="PACK_SCROLL" client_mask="16680">
-		<actions>
-			<titleadd titleid="92"/>
-		</actions>
+
 		<acquisition type="REWARD" item="186000105" count="65"/>
 	</item_template>
 	<item_template id="169620000" name="Lodas Amulet" level="1" cName="cash_xpboost_01" mask="24648" max_stack_count="100" quality="COMMON" price="0" desc="725544" activate_count="1" item_group="PACK_SCROLL" client_mask="24872">
@@ -521293,339 +520967,205 @@
 	<item_template id="169600227" name="Um baú contendo armadura mítica. Clique duas vezes para abrir." level="1" cName="classic_cash_add_social_away_shop04" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="820054" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16698" activate_count="1"/>
 	<item_template id="169600228" name="Adaga de Hyperion" level="1" cName="classic_cash_add_social_away_shop05" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="820055" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16698" activate_count="1"/>
 	<item_template id="169611001" name="A equipe durável do Imperador de Dragão Noble Horned" level="1" cName="EVENT_ADD_TITLE228" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781118" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="228" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611002" name="Funcionários da Expedição do Guardian" level="1" cName="EVENT_ADD_TITLE229" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781119" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="229" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611003" name="Equipe do comando do guardião" level="1" cName="EVENT_ADD_TITLE230" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781120" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="230" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611004" name="Funcionários do Guardian Sentinel" level="1" cName="EVENT_ADD_TITLE231" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781121" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="231" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611005" name="Funcionários do líder do esquadrão de defesa do Guardian" level="1" cName="EVENT_ADD_TITLE232" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781122" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="232" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611006" name="Funcionários da Expedição de Arqueiro" level="1" cName="EVENT_ADD_TITLE233" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781123" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="233" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611007" name="Funcionários de Archon Commando" level="1" cName="EVENT_ADD_TITLE234" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781124" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="234" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611008" name="Funcionários de Archon Sentinel" level="1" cName="EVENT_ADD_TITLE235" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781125" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="235" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611009" name="Funcionários do líder do time de defesa do Archon" level="1" cName="EVENT_ADD_TITLE236" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781126" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="236" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611010" name="Funcionários do SILION" level="1" cName="EVENT_ADD_TITLE237" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781127" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="237" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611011" name="Equipe de Vesetia" level="1" cName="EVENT_ADD_TITLE238" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781128" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="238" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611012" name="Seres&amp;#39; Cajado" level="1" cName="EVENT_ADD_TITLE239" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781129" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="239" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611013" name="A equipe de Sirio" level="1" cName="EVENT_ADD_TITLE240" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781130" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="240" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611014" name="Equipe do Eden" level="1" cName="EVENT_ADD_TITLE241" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781131" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="241" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611015" name="A equipe de Adella" level="1" cName="EVENT_ADD_TITLE242" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781132" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="242" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611016" name="Mestre nobre empresa durável Jerkin" level="1" cName="EVENT_ADD_TITLE243" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781410" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21600">
-		<actions>
-			<titleadd titleid="243" minutes="21600"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611017" name="Especialista nobre luvas de hoca durável" level="1" cName="EVENT_ADD_TITLE248" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781645" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="248" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611018" name="Mestre luvas de hoca duráveis" level="1" cName="EVENT_ADD_TITLE249" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781646" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="249" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611019" name="Mestre nobre luvas de hoca durável" level="1" cName="EVENT_ADD_TITLE250" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781647" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="250" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611020" name="Manoplas de pano de hoca duráveis ​​do mestre nobre" level="1" cName="EVENT_ADD_TITLE251" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781648" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="251" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611021" name="Luvas duráveis ​​do dragão do céu" level="1" cName="EVENT_ADD_TITLE252" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781649" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="252" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611022" name="Luvas duráveis ​​do dragão do céu nobre" level="1" cName="EVENT_ADD_TITLE253" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781650" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="253" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611023" name="Luvas duráveis ​​do Sky Dragon King" level="1" cName="EVENT_ADD_TITLE254" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781651" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="254" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611024" name="Luvas duráveis ​​do rei do dragão nobre" level="1" cName="EVENT_ADD_TITLE255" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781652" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="255" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611025" name="Luvas duráveis ​​do Imperador do Dragão do Céu" level="1" cName="EVENT_ADD_TITLE256" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781653" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
-		<actions>
-			<titleadd titleid="256" minutes="4321"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611026" name="Vambrace de Phavilian" level="10" cName="EVENT_ADD_TITLE257" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781752" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601" restrict="10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1 10">
-		<actions>
-			<titleadd titleid="257" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611027" name="As plantas de ombro de Reian Legionário" level="10" cName="EVENT_ADD_TITLE258" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782217" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_target="STANDALONE" activate_count="1" expire_time="21601" restrict="10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1 10">
-		<actions>
-			<titleadd titleid="258" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611028" name="Perneiras prolix duráveis ​​dignas" level="1" cName="world_us_cash_add_title_259" mask="16472" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782241" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16696" activate_count="1">
-		<actions>
-			<titleadd titleid="259"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611029" name="Digno nobre perneiras prolix duráveis" level="1" cName="world_us_cash_add_title_260" mask="16472" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782242" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16696" activate_count="1">
-		<actions>
-			<titleadd titleid="260"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611030" name="Perneiras prolix duráveis ​​especializadas" level="1" cName="world_us_cash_add_title_261" mask="16472" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782243" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16696" activate_count="1">
-		<actions>
-			<titleadd titleid="261"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611031" name="Perneiras prolix duráveis ​​nobres especializadas" level="1" cName="world_us_cash_add_title_262" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782244" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
-		<actions>
-			<titleadd titleid="262" minutes="518401"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611032" name="Leggings prolix duráveis ​​mestre" level="1" cName="world_us_cash_add_title_263" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782245" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
-		<actions>
-			<titleadd titleid="263" minutes="518401"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611033" name="Mestre nobre perneiras prolix duráveis" level="1" cName="world_us_cash_add_title_264" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782246" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
-		<actions>
-			<titleadd titleid="264" minutes="518401"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611034" name="Calças de tecido prolix durável do mestre nobre" level="1" cName="world_us_cash_add_title_265" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782247" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
-		<actions>
-			<titleadd titleid="265" minutes="518401"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611035" name="Leggings de hoca duráveis" level="1" cName="world_us_cash_add_title_266" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782248" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
-		<actions>
-			<titleadd titleid="266" minutes="518401"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611036" name="Leggings de hoca duráveis ​​nobres" level="1" cName="world_us_cash_add_title_267" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782249" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
-		<actions>
-			<titleadd titleid="267" minutes="518401"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611037" name="Pernas de hoca duráveis ​​dignas" level="1" cName="world_us_cash_add_title_268" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782250" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
-		<actions>
-			<titleadd titleid="268" minutes="518401"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611038" name="Especialista nobre Drenium Brogans" level="1" cName="world_devapass_add_title_269" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782709" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="43201">
-		<actions>
-			<titleadd titleid="269" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611039" name="Sabatons de Kahrun" level="1" cName="EVENT_ADD_TITLE270" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782827" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="43201">
-		<actions>
-			<titleadd titleid="270" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611040" name="Escudo de Archon Sentinel" level="10" cName="EVENT_ADD_TITLE271" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782885" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_target="STANDALONE" activate_count="1" expire_time="21601" restrict="10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1 10">
-		<actions>
-			<titleadd titleid="271" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611041" name="Escudo de escala de Kahrun" level="50" cName="item_light_title272" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="782909" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
-		<actions>
-			<titleadd titleid="272"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611042" name="Outworld Bandana" level="50" cName="item_dark_title273" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="782910" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
-		<actions>
-			<titleadd titleid="273"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611043" name="Helmo de Balaurbona" level="10" cName="EVENT_ADD_TITLE274" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782925" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601" restrict="10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1 10">
-		<actions>
-			<titleadd titleid="274" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611044" name="Prolix sustentável bandana" level="1" cName="Event_add_title_275_30" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782957" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
-		<actions>
-			<titleadd titleid="275" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611045" name="Colar de corundão elegante e elegante nobre" level="1" cName="Event_ADD_TITLE_276_30" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="783318" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
-		<actions>
-			<titleadd titleid="276" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611046" name="Colar de corundum sofisticado nobre durável" level="1" cName="Event_ADD_TITLE_277_30" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="783330" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
-		<actions>
-			<titleadd titleid="277" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611047" name="Tabela de artesanato de concentração" level="1" cName="EVENT_ADD_TITLE278" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="783620" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601">
-		<actions>
-			<titleadd titleid="229" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611048" name="Ossos da enos" level="1" cName="EVENT_ADD_TITLE279" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="783829" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601">
-		<actions>
-			<titleadd titleid="231" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611049" name="Artesanato: cadeira de pelúcia de Undin" level="1" cName="EVENT_ADD_TITLE280" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="784258" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21600">
-		<actions>
-			<titleadd titleid="278" minutes="21600"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611050" name="Melhor Pellan branco" level="1" cName="EVENT_ADD_TITLE281" mask="16472" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="784467" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16696" activate_count="1">
-		<actions>
-			<titleadd titleid="279"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611051" name="Projeto: Gestas de drenium duráveis ​​de especialistas" level="1" cName="world_cn_event_add_title_282_360day" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785166" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
-		<actions>
-			<titleadd titleid="282" minutes="518401"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611052" name="Projeto: Greos de drenium duráveis ​​nobres especializados" level="1" cName="world_cn_event_add_title_283_360day" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785168" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
-		<actions>
-			<titleadd titleid="283" minutes="518401"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611053" name="Design: Comando de drenium durável nobre especialista" level="1" cName="world_cn_event_add_title_284_90day" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785170" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
-		<actions>
-			<titleadd titleid="284" minutes="129601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611054" name="Projeto: Prolix Durável nobre Pauldrons" level="1" cName="EVENT_ADD_TITLE285" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785209" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
-		<actions>
-			<titleadd titleid="285" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611055" name="Design: Noble Durável Prolix Leggings" level="1" cName="EVENT_ADD_TITLE286" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785210" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
-		<actions>
-			<titleadd titleid="286" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611056" name="Projeto: Túnica prolix durável nobre" level="1" cName="EVENT_ADD_TITLE287" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785211" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
-		<actions>
-			<titleadd titleid="287" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611057" name="Design: A iluminação ao ar livre Adamantium" level="1" cName="EVENT_ADD_TITLE288" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785334" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601">
-		<actions>
-			<titleadd titleid="288" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611058" name="Design Balic: Guardas de mão duráveis ​​do Sky Dragon" level="1" cName="world_Event_ADD_TITLE_275_15" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="785477" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601">
-		<actions>
-			<titleadd titleid="275" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611059" name="Design Balic: Spaulders duráveis ​​do Sky Dragon" level="1" cName="world_Event_ADD_TITLE_276_15" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="785478" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601">
-		<actions>
-			<titleadd titleid="276" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611060" name="Artesanato: Orbe de água escura durável" level="1" cName="EVENT_ADD_TITLE289" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="785860" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
-		<actions>
-			<titleadd titleid="289"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611061" name="Artesanato: digno nobre Drenium Alabarda" level="1" cName="EVENT_ADD_TITLE290" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785876" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="259200">
-		<actions>
-			<titleadd titleid="290" minutes="259201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611062" name="Artesanato: Especialista Noble Drenium Adaga" level="1" cName="EVENT_ADD_TITLE291" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785877" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="129601">
-		<actions>
-			<titleadd titleid="291" minutes="129601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611063" name="Artesanato: especialista nobre durável drenium longsword" level="1" cName="EVENT_ADD_TITLE292" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785878" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="43201">
-		<actions>
-			<titleadd titleid="292" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611064" name="Artesanato: Noble nobre de calças duráveis ​​e duráveis" level="1" cName="world_nct_event_add_title_293_30day" mask="16448" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785949" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16672" activate_count="1">
-		<actions>
-			<titleadd titleid="293" minutes="43201"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611065" name="Ensina como fazer o digno capuz durável de corrente drenium." level="1" cName="item_all_title_294" mask="0" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="786486" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640" activate_count="1">
-		<actions>
-			<titleadd titleid="294"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611066" name="Ensina como fazer a empresa durável vambrace." level="1" cName="EVENT_ADD_TITLE295" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="786528" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601">
-		<actions>
-			<titleadd titleid="295" minutes="21601"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611067" name="Ensina como fazer o prolix durável Bandana durável." level="1" cName="event_add_title_296" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="786568" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
-		<actions>
-			<titleadd titleid="296"/>
-		</actions>
+
 	</item_template>
 	<item_template id="169611068" name="Projeto: nobre malha de drenium durável" level="1" cName="world_jp_event_add_title_301" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="787432" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="10081"/>
 	<item_template id="169611069" name="Design: Noble Drenium ombro durável ombros" level="1" cName="world_jp_event_add_title_302" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="787433" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601"/>

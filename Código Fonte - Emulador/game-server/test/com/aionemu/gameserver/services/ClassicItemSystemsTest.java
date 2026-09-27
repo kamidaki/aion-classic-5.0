@@ -15,6 +15,7 @@ import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.dataholders.ItemData;
 import com.aionemu.gameserver.dataholders.AssemblyItemsData;
 import com.aionemu.gameserver.dataholders.TitleData;
+import com.aionemu.gameserver.dataholders.SielHammerData;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.items.ItemSlot;
@@ -50,6 +51,8 @@ class ClassicItemSystemsTest {
 			.unmarshal(new File("data/static_data/items/assembly_items.xml"));
 		DataManager.TITLE_DATA = (TitleData) JAXBContext.newInstance(TitleData.class).createUnmarshaller()
 			.unmarshal(new File("data/static_data/player_titles.xml"));
+		DataManager.SIEL_HAMMER_DATA = (SielHammerData) JAXBContext.newInstance(SielHammerData.class).createUnmarshaller()
+			.unmarshal(new File("data/static_data/items/siel_hammer.xml"));
 		DataManager.CUBEEXPANDER_DATA = (CubeExpandData) JAXBContext.newInstance(CubeExpandData.class)
 			.createUnmarshaller().unmarshal(new File("data/static_data/storage_expander/cube_expander.xml"));
 	}
@@ -252,27 +255,18 @@ class ClassicItemSystemsTest {
 		assertEquals(100001518, action.getAssemblyItem().getId());
 	}
 
-	@Test void titleCardsOnlyReferenceAvailableOfficialTemplates() {
+	@Test void legacyTitleCardsAreHammerMaterialsInsteadOfUsableTitles() {
 		assertEquals(300, DataManager.TITLE_DATA.size());
-		var temporary = DataManager.ITEM_DATA.getItemTemplate(169611001).getActions().getItemActions().stream()
-			.filter(com.aionemu.gameserver.model.templates.item.actions.TitleAddAction.class::isInstance)
-			.map(com.aionemu.gameserver.model.templates.item.actions.TitleAddAction.class::cast)
-			.findFirst().orElseThrow();
-		assertEquals(228, temporary.getTitleId());
-		assertEquals(4321, temporary.getMinutes());
-		assertNotNull(DataManager.TITLE_DATA.getTitleTemplate(temporary.getTitleId()));
-
-		var permanent = DataManager.ITEM_DATA.getItemTemplate(169611028).getActions().getItemActions().stream()
-			.filter(com.aionemu.gameserver.model.templates.item.actions.TitleAddAction.class::isInstance)
-			.map(com.aionemu.gameserver.model.templates.item.actions.TitleAddAction.class::cast)
-			.findFirst().orElseThrow();
-		assertEquals(259, permanent.getTitleId());
-		assertEquals(0, permanent.getMinutes());
-
-		var unresolved = DataManager.ITEM_DATA.getItemTemplate(169611068);
-		assertTrue(unresolved.getActions() == null || unresolved.getActions().getItemActions().stream()
+		for (int itemId : new int[] {169610000, 169611001, 169611028, 169611068}) {
+			var legacyCard = DataManager.ITEM_DATA.getItemTemplate(itemId);
+			assertTrue(legacyCard.getActions() == null || legacyCard.getActions().getItemActions().stream()
+				.noneMatch(com.aionemu.gameserver.model.templates.item.actions.TitleAddAction.class::isInstance));
+			assertNotNull(DataManager.SIEL_HAMMER_DATA.getTable(itemId));
+		}
+		var currentCard = DataManager.ITEM_DATA.getItemTemplate(169611175);
+		assertTrue(currentCard.getActions() == null || currentCard.getActions().getItemActions().stream()
 			.noneMatch(com.aionemu.gameserver.model.templates.item.actions.TitleAddAction.class::isInstance));
-		assertNull(DataManager.TITLE_DATA.getTitleTemplate(301));
+		assertNull(DataManager.TITLE_DATA.getTitleTemplate(408));
 	}
 
 	@Test void itemCoreFieldsMatchRepresentativeOfficialRecords() {

@@ -2,12 +2,12 @@
   "fonte_cliente": "5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data/europe/Items/client_items.xml",
   "sha256_cliente": "0db9fe61322d0b93049f3aa1914afa8748a26d7dcc027eb3704a2b57c585828d",
   "fonte_emulador": "Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xml",
-  "sha256_emulador": "54a84dfd3162673db487f95d129247a6bb9f96fe04352b938d47b328e7521687",
+  "sha256_emulador": "cb54ecaec4863cdd581a971e38af631af97b44a63239114ee1d7758c39702f9f",
   "itens_oficiais": 79664,
   "itens_emulador": 79664,
   "itens_por_status": {
-    "COMPATIVEL_NOS_CAMPOS_AUDITADOS": 73454,
-    "PENDENTE_RELACAO": 6210
+    "COMPATIVEL_NOS_CAMPOS_AUDITADOS": 73560,
+    "PENDENTE_RELACAO": 6104
   },
   "itens_por_categoria": {
     "acessorios": 3831,
@@ -27,7 +27,9 @@
   },
   "strings_de_item_resolvidas": 78262,
   "skills_oficiais_indexadas": 12114,
+  "titulos_oficiais_indexados": 74,
   "titulos_servidor_indexados": 300,
+  "itens_siel_hammer_indexados": 4446,
   "arquitetura_por_camada": {
     "java": 433,
     "dados": 51,
@@ -60,11 +62,11 @@
     }
   },
   "itens_diferentes_por_variante_contra_europe": {
-    "data/europe/Items/special/client_items.xml": 58072,
-    "data/europe/Items/special2/client_items.xml": 38133,
-    "data/items/client_items.xml": 207,
-    "data/items/special/client_items.xml": 58072,
-    "data/items/special2/client_items.xml": 38085
+    "data/europe/Items/special/client_items.xml": 58323,
+    "data/europe/Items/special2/client_items.xml": 39454,
+    "data/items/client_items.xml": 208,
+    "data/items/special/client_items.xml": 58323,
+    "data/items/special2/client_items.xml": 39406
   },
   "criterio": "Compatibilidade limitada aos campos de equivalencia direta; pendencias nao contam como validadas."
 }

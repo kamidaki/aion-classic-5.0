@@ -1,347 +1,350 @@
 sync_50_item_titles.py
 catálogo: data/europe/Items/client_items.xml
+títulos oficiais: data/PC/client_titles.xml
 títulos no player_titles.xml: 300
 
-== titleadd validado: 230
-  169610000: título 101, minutos 0
-  169610001: título 101, minutos 10081
-  169610002: título 101, minutos 21601
-  169610003: título 101, minutos 43201
-  169610004: título 101, minutos 5
-  169610010: título 102, minutos 0
-  169610011: título 102, minutos 10081
-  169610012: título 102, minutos 21601
-  169610013: título 102, minutos 43201
-  169610020: título 103, minutos 0
-  169610021: título 103, minutos 10081
-  169610022: título 103, minutos 21601
-  169610023: título 103, minutos 43201
-  169610030: título 104, minutos 43201
-  169610031: título 105, minutos 43201
-  169610032: título 106, minutos 129601
-  169610033: título 145, minutos 43201
-  169610034: título 146, minutos 43201
-  169610035: título 151, minutos 43201
-  169610036: título 152, minutos 20161
-  169610037: título 153, minutos 20161
-  169610038: título 160, minutos 21601
-  169610039: título 161, minutos 21601
-  169610040: título 162, minutos 21601
-  169610041: título 163, minutos 21601
-  169610042: título 160, minutos 61
-  169610043: título 161, minutos 61
-  169610044: título 162, minutos 61
-  169610045: título 163, minutos 61
-  169610046: título 176, minutos 21601
-  169610047: título 177, minutos 21601
-  169610048: título 178, minutos 10081
-  169610049: título 179, minutos 10081
-  169610050: título 180, minutos 43201
-  169610051: título 181, minutos 43201
-  169610052: título 182, minutos 43201
-  169610053: título 185, minutos 21601
-  169610054: título 186, minutos 21601
-  169610055: título 187, minutos 21601
-  169610056: título 188, minutos 43201
-  169610057: título 189, minutos 43201
-  169610058: título 190, minutos 43201
-  169610059: título 191, minutos 43201
-  169610060: título 192, minutos 43201
-  169610061: título 193, minutos 43201
-  169610062: título 194, minutos 43201
-  169610063: título 195, minutos 43201
-  169610064: título 196, minutos 43201
-  169610065: título 197, minutos 43201
-  169610066: título 198, minutos 43201
-  169610067: título 199, minutos 43201
-  169610068: título 200, minutos 21601
-  169610069: título 186, minutos 21601
-  169610070: título 192, minutos 43201
-  169610071: título 201, minutos 0
-  169610072: título 202, minutos 0
-  169610073: título 203, minutos 0
-  169610074: título 204, minutos 0
-  169610075: título 205, minutos 0
-  169610076: título 206, minutos 0
-  169610077: título 207, minutos 0
-  169610078: título 208, minutos 0
-  169610079: título 209, minutos 0
-  169610080: título 210, minutos 0
-  169610081: título 211, minutos 0
-  169610082: título 212, minutos 0
-  169610083: título 213, minutos 0
-  169610084: título 214, minutos 0
-  169610085: título 215, minutos 0
-  169610086: título 216, minutos 0
-  169610087: título 217, minutos 0
-  169610088: título 218, minutos 0
-  169610089: título 219, minutos 0
-  169610090: título 220, minutos 0
-  169610091: título 221, minutos 0
-  169610092: título 222, minutos 0
-  169610093: título 223, minutos 0
-  169610094: título 224, minutos 0
-  169610095: título 225, minutos 0
-  169610096: título 226, minutos 0
-  169610097: título 227, minutos 43201
-  169610101: título 115, minutos 4321
-  169610102: título 116, minutos 10081
-  169610103: título 117, minutos 0
-  169610104: título 118, minutos 4321
-  169610105: título 119, minutos 4321
-  169610106: título 120, minutos 10081
-  169610107: título 121, minutos 10081
-  169610108: título 122, minutos 0
-  169610109: título 123, minutos 4321
-  169610110: título 124, minutos 10081
-  169610111: título 125, minutos 0
-  169610112: título 114, minutos 10081
-  169610113: título 115, minutos 4321
-  169610114: título 116, minutos 10081
-  169610115: título 118, minutos 4321
-  169610116: título 119, minutos 4321
-  169610117: título 120, minutos 10081
-  169610118: título 121, minutos 10081
-  169610119: título 115, minutos 4321
-  169610120: título 116, minutos 10081
-  169610121: título 118, minutos 4321
-  169610122: título 119, minutos 4321
-  169610123: título 120, minutos 10081
-  169610124: título 121, minutos 10081
-  169610125: título 115, minutos 4321
-  169610126: título 116, minutos 10081
-  169610127: título 154, minutos 4321
-  169610128: título 155, minutos 10081
-  169610129: título 154, minutos 4321
-  169610130: título 155, minutos 10081
-  169610131: título 156, minutos 0
-  169610132: título 17, minutos 0
-  169610133: título 18, minutos 0
-  169610134: título 19, minutos 0
-  169610135: título 44, minutos 0
-  169610136: título 28, minutos 0
-  169610137: título 244, minutos 0
-  169610138: título 245, minutos 43201
-  169610139: título 245, minutos 129601
-  169610140: título 245, minutos 525601
-  169610141: título 246, minutos 43201
-  169610142: título 246, minutos 129601
-  169610143: título 246, minutos 525601
-  169610144: título 247, minutos 43201
-  169610145: título 247, minutos 129601
-  169610146: título 247, minutos 525601
-  169610301: título 134, minutos 4321
-  169610302: título 135, minutos 10081
-  169610303: título 136, minutos 0
-  169610304: título 137, minutos 4321
-  169610305: título 138, minutos 4321
-  169610306: título 139, minutos 10081
-  169610307: título 140, minutos 10081
-  169610308: título 141, minutos 0
-  169610309: título 142, minutos 4321
-  169610310: título 143, minutos 10081
-  169610311: título 144, minutos 0
-  169610312: título 133, minutos 10081
-  169610313: título 134, minutos 4321
-  169610314: título 135, minutos 10081
-  169610315: título 137, minutos 4321
-  169610316: título 138, minutos 4321
-  169610317: título 139, minutos 10081
-  169610318: título 140, minutos 10081
-  169610319: título 134, minutos 4321
-  169610320: título 135, minutos 10081
-  169610321: título 137, minutos 4321
-  169610322: título 138, minutos 4321
-  169610323: título 139, minutos 10081
-  169610324: título 140, minutos 10081
-  169610325: título 134, minutos 4321
-  169610326: título 135, minutos 10081
-  169610327: título 157, minutos 4321
-  169610328: título 158, minutos 10081
-  169610329: título 157, minutos 4321
-  169610330: título 158, minutos 10081
-  169610331: título 159, minutos 0
-  169610332: título 67, minutos 0
-  169610333: título 69, minutos 0
-  169610334: título 68, minutos 0
-  169610335: título 79, minutos 0
-  169610336: título 92, minutos 0
-  169611001: título 228, minutos 4321
-  169611002: título 229, minutos 4321
-  169611003: título 230, minutos 4321
-  169611004: título 231, minutos 4321
-  169611005: título 232, minutos 4321
-  169611006: título 233, minutos 4321
-  169611007: título 234, minutos 4321
-  169611008: título 235, minutos 4321
-  169611009: título 236, minutos 4321
-  169611010: título 237, minutos 4321
-  169611011: título 238, minutos 4321
-  169611012: título 239, minutos 4321
-  169611013: título 240, minutos 4321
-  169611014: título 241, minutos 4321
-  169611015: título 242, minutos 4321
-  169611016: título 243, minutos 21600
-  169611017: título 248, minutos 4321
-  169611018: título 249, minutos 4321
-  169611019: título 250, minutos 4321
-  169611020: título 251, minutos 4321
-  169611021: título 252, minutos 4321
-  169611022: título 253, minutos 4321
-  169611023: título 254, minutos 4321
-  169611024: título 255, minutos 4321
-  169611025: título 256, minutos 4321
-  169611026: título 257, minutos 21601
-  169611027: título 258, minutos 21601
-  169611028: título 259, minutos 0
-  169611029: título 260, minutos 0
-  169611030: título 261, minutos 0
-  169611031: título 262, minutos 518401
-  169611032: título 263, minutos 518401
-  169611033: título 264, minutos 518401
-  169611034: título 265, minutos 518401
-  169611035: título 266, minutos 518401
-  169611036: título 267, minutos 518401
-  169611037: título 268, minutos 518401
-  169611038: título 269, minutos 43201
-  169611039: título 270, minutos 43201
-  169611040: título 271, minutos 21601
-  169611041: título 272, minutos 0
-  169611042: título 273, minutos 0
-  169611043: título 274, minutos 21601
-  169611044: título 275, minutos 43201
-  169611045: título 276, minutos 43201
-  169611046: título 277, minutos 43201
-  169611047: título 229, minutos 21601
-  169611048: título 231, minutos 21601
-  169611049: título 278, minutos 21600
-  169611050: título 279, minutos 0
-  169611051: título 282, minutos 518401
-  169611052: título 283, minutos 518401
-  169611053: título 284, minutos 129601
-  169611054: título 285, minutos 43201
-  169611055: título 286, minutos 43201
-  169611056: título 287, minutos 43201
-  169611057: título 288, minutos 21601
-  169611058: título 275, minutos 21601
-  169611059: título 276, minutos 21601
-  169611060: título 289, minutos 0
-  169611061: título 290, minutos 259201
-  169611062: título 291, minutos 129601
-  169611063: título 292, minutos 43201
-  169611064: título 293, minutos 43201
-  169611065: título 294, minutos 0
-  169611066: título 295, minutos 21601
-  169611067: título 296, minutos 0
+== cartão legado elegível no Siel's Hammer: 336
+  169610000: título legado 101, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610001: título legado 101, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610002: título legado 101, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610003: título legado 101, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610004: título legado 101, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610010: título legado 102, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610011: título legado 102, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610012: título legado 102, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610013: título legado 102, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610020: título legado 103, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610021: título legado 103, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610022: título legado 103, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610023: título legado 103, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610030: título legado 104, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610031: título legado 105, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610032: título legado 106, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610033: título legado 145, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610034: título legado 146, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610035: título legado 151, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610036: título legado 152, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610037: título legado 153, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610038: título legado 160, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610039: título legado 161, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610040: título legado 162, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610041: título legado 163, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610042: título legado 160, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610043: título legado 161, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610044: título legado 162, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610045: título legado 163, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610046: título legado 176, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610047: título legado 177, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610048: título legado 178, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610049: título legado 179, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610050: título legado 180, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610051: título legado 181, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610052: título legado 182, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610053: título legado 185, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610054: título legado 186, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610055: título legado 187, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610056: título legado 188, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610057: título legado 189, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610058: título legado 190, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610059: título legado 191, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610060: título legado 192, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610061: título legado 193, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610062: título legado 194, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610063: título legado 195, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610064: título legado 196, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610065: título legado 197, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610066: título legado 198, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610067: título legado 199, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610068: título legado 200, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610069: título legado 186, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610070: título legado 192, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610071: título legado 201, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610072: título legado 202, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610073: título legado 203, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610074: título legado 204, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610075: título legado 205, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610076: título legado 206, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610077: título legado 207, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610078: título legado 208, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610079: título legado 209, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610080: título legado 210, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610081: título legado 211, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610082: título legado 212, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610083: título legado 213, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610084: título legado 214, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610085: título legado 215, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610086: título legado 216, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610087: título legado 217, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610088: título legado 218, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610089: título legado 219, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610090: título legado 220, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610091: título legado 221, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610092: título legado 222, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610093: título legado 223, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610094: título legado 224, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610095: título legado 225, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610096: título legado 226, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610097: título legado 227, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610101: título legado 115, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610102: título legado 116, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610103: título legado 117, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610104: título legado 118, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610105: título legado 119, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610106: título legado 120, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610107: título legado 121, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610108: título legado 122, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610109: título legado 123, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610110: título legado 124, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610111: título legado 125, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610112: título legado 114, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610113: título legado 115, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610114: título legado 116, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610115: título legado 118, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610116: título legado 119, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610117: título legado 120, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610118: título legado 121, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610119: título legado 115, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610120: título legado 116, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610121: título legado 118, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610122: título legado 119, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610123: título legado 120, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610124: título legado 121, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610125: título legado 115, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610126: título legado 116, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610127: título legado 154, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610128: título legado 155, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610129: título legado 154, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610130: título legado 155, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610131: título legado 156, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610132: título legado 17, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610133: título legado 18, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610134: título legado 19, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610135: título legado 44, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610136: título legado 28, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610137: título legado 244, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610138: título legado 245, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610139: título legado 245, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610140: título legado 245, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610141: título legado 246, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610142: título legado 246, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610143: título legado 246, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610144: título legado 247, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610145: título legado 247, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610146: título legado 247, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610301: título legado 134, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610302: título legado 135, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610303: título legado 136, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610304: título legado 137, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610305: título legado 138, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610306: título legado 139, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610307: título legado 140, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610308: título legado 141, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610309: título legado 142, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610310: título legado 143, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610311: título legado 144, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610312: título legado 133, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610313: título legado 134, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610314: título legado 135, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610315: título legado 137, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610316: título legado 138, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610317: título legado 139, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610318: título legado 140, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610319: título legado 134, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610320: título legado 135, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610321: título legado 137, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610322: título legado 138, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610323: título legado 139, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610324: título legado 140, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610325: título legado 134, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610326: título legado 135, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610327: título legado 157, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610328: título legado 158, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610329: título legado 157, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610330: título legado 158, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610331: título legado 159, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610332: título legado 67, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610333: título legado 69, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610334: título legado 68, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610335: título legado 79, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169610336: título legado 92, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611001: título legado 228, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611002: título legado 229, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611003: título legado 230, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611004: título legado 231, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611005: título legado 232, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611006: título legado 233, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611007: título legado 234, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611008: título legado 235, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611009: título legado 236, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611010: título legado 237, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611011: título legado 238, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611012: título legado 239, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611013: título legado 240, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611014: título legado 241, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611015: título legado 242, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611016: título legado 243, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611017: título legado 248, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611018: título legado 249, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611019: título legado 250, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611020: título legado 251, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611021: título legado 252, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611022: título legado 253, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611023: título legado 254, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611024: título legado 255, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611025: título legado 256, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611026: título legado 257, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611027: título legado 258, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611028: título legado 259, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611029: título legado 260, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611030: título legado 261, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611031: título legado 262, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611032: título legado 263, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611033: título legado 264, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611034: título legado 265, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611035: título legado 266, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611036: título legado 267, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611037: título legado 268, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611038: título legado 269, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611039: título legado 270, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611040: título legado 271, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611041: título legado 272, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611042: título legado 273, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611043: título legado 274, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611044: título legado 275, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611045: título legado 276, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611046: título legado 277, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611047: título legado 229, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611048: título legado 231, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611049: título legado 278, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611051: título legado 282, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611052: título legado 283, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611053: título legado 284, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611054: título legado 285, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611055: título legado 286, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611056: título legado 287, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611057: título legado 288, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611058: título legado 275, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611059: título legado 276, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611060: título legado 289, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611061: título legado 290, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611062: título legado 291, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611063: título legado 292, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611064: título legado 293, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611065: título legado 294, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611066: título legado 295, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611067: título legado 296, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611068: título legado 301, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611069: título legado 301, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611070: título legado 301, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611071: título legado 302, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611072: título legado 302, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611073: título legado 302, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611074: título legado 307, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611075: título legado 308, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611076: título legado 309, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611077: título legado 310, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611078: título legado 311, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611079: título legado 312, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611080: título legado 313, crush=item_crush_result_rare_token_15, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611081: título legado 314, crush=item_crush_result_rare_token_15, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611082: título legado 315, crush=item_crush_result_rare_token_15, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611083: título legado 316, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611084: título legado 316, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611085: título legado 317, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611086: título legado 318, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611087: título legado 319, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611088: título legado 320, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611089: título legado 321, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611090: título legado 322, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611091: título legado 323, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611092: título legado 324, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611093: título legado 326, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611094: título legado 325, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611095: título legado 333, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611096: título legado 334, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611097: título legado 335, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611098: título legado 336, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611099: título legado 339, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611100: título legado 340, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611101: título legado 341, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611102: título legado 342, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611103: título legado 343, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611104: título legado 344, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611105: título legado 345, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611106: título legado 346, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611107: título legado 347, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611108: título legado 348, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611109: título legado 349, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611110: título legado 350, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611111: título legado 351, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611112: título legado 352, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611113: título legado 353, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611114: título legado 354, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611115: título legado 355, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611116: título legado 356, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611117: título legado 357, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611118: título legado 358, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611119: título legado 359, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611120: título legado 360, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611121: título legado 361, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611122: título legado 362, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611123: título legado 363, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611124: título legado 364, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611125: título legado 365, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611126: título legado 366, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611127: título legado 367, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611128: título legado 368, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611129: título legado 369, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611130: título legado 370, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611131: título legado 371, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611132: título legado 372, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611133: título legado 377, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611134: título legado 378, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611135: título legado 379, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611136: título legado 380, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611137: título legado 313, crush=item_crush_result_rare_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611138: título legado 315, crush=item_crush_result_rare_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611139: título legado 384, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611140: título legado 385, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611141: título legado 386, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611142: título legado 387, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611143: título legado 388, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611144: título legado 384, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611145: título legado 385, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611146: título legado 386, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611147: título legado 387, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611148: título legado 388, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611149: título legado 383, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611150: título legado 313, crush=item_crush_result_rare_token_4, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611151: título legado 315, crush=item_crush_result_rare_token_4, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611152: título legado 389, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611153: título legado 389, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611154: título legado 390, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611155: título legado 390, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611156: título legado 391, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611157: título legado 392, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611158: título legado 393, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611159: título legado 394, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611160: título legado 395, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611161: título legado 396, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611162: título legado 397, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611163: título legado 398, crush=item_crush_result_common_title, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611164: título legado 399, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611165: título legado 400, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611166: título legado 401, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611167: título legado 402, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611168: título legado 403, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611169: título legado 404, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611170: título legado 405, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611171: título legado 406, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611172: título legado 313, crush=item_crush_result_rare_token_2, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611173: título legado 315, crush=item_crush_result_rare_token_2, desc_long=STR_OLD_TITLE_NOTICE_DESC
+  169611174: título legado 407, crush=item_crush_result_common_title, desc_long=STR_WORLD_RU_EVENT_ADD_TITLE_407_DESC
 
-== título sem template no servidor (não alterado): 181
-  169611068: título 301, minutos 10081
-  169611069: título 301, minutos 21601
-  169611070: título 301, minutos 43201
-  169611071: título 302, minutos 10081
-  169611072: título 302, minutos 21601
-  169611073: título 302, minutos 43201
-  169611074: título 307, minutos 0
-  169611075: título 308, minutos 0
-  169611076: título 309, minutos 0
-  169611077: título 310, minutos 0
-  169611078: título 311, minutos 0
-  169611079: título 312, minutos 0
-  169611080: título 313, minutos 43201
-  169611081: título 314, minutos 43201
-  169611082: título 315, minutos 43201
-  169611083: título 316, minutos 21601
-  169611084: título 316, minutos 43201
-  169611085: título 317, minutos 0
-  169611086: título 318, minutos 0
-  169611087: título 319, minutos 0
-  169611088: título 320, minutos 0
-  169611089: título 321, minutos 0
-  169611090: título 322, minutos 0
-  169611091: título 323, minutos 21601
-  169611092: título 324, minutos 0
-  169611093: título 326, minutos 0
-  169611094: título 325, minutos 0
-  169611095: título 333, minutos 43201
-  169611096: título 334, minutos 43201
-  169611097: título 335, minutos 43201
-  169611098: título 336, minutos 0
-  169611099: título 339, minutos 43201
-  169611100: título 340, minutos 0
-  169611101: título 341, minutos 43201
-  169611102: título 342, minutos 0
-  169611103: título 343, minutos 43201
-  169611104: título 344, minutos 129601
-  169611105: título 345, minutos 0
-  169611106: título 346, minutos 43201
-  169611107: título 347, minutos 43201
-  169611108: título 348, minutos 129601
-  169611109: título 349, minutos 129601
-  169611110: título 350, minutos 129601
-  169611111: título 351, minutos 129601
-  169611112: título 352, minutos 129601
-  169611113: título 353, minutos 0
-  169611114: título 354, minutos 0
-  169611115: título 355, minutos 0
-  169611116: título 356, minutos 0
-  169611117: título 357, minutos 0
-  169611118: título 358, minutos 0
-  169611119: título 359, minutos 129601
-  169611120: título 360, minutos 129601
-  169611121: título 361, minutos 129601
-  169611122: título 362, minutos 129601
-  169611123: título 363, minutos 0
-  169611124: título 364, minutos 0
-  169611125: título 365, minutos 43201
-  169611126: título 366, minutos 43201
-  169611127: título 367, minutos 0
-  169611128: título 368, minutos 0
-  169611129: título 369, minutos 43201
-  169611130: título 370, minutos 43201
-  169611131: título 371, minutos 0
-  169611132: título 372, minutos 0
-  169611133: título 377, minutos 0
-  169611134: título 378, minutos 0
-  169611135: título 379, minutos 0
-  169611136: título 380, minutos 21601
-  169611137: título 313, minutos 2881
-  169611138: título 315, minutos 2881
-  169611139: título 384, minutos 43201
-  169611140: título 385, minutos 43201
-  169611141: título 386, minutos 43201
-  169611142: título 387, minutos 43201
-  169611143: título 388, minutos 43201
-  169611144: título 384, minutos 43201
-  169611145: título 385, minutos 43201
-  169611146: título 386, minutos 43201
-  169611147: título 387, minutos 43201
-  169611148: título 388, minutos 43201
-  169611149: título 383, minutos 0
-  169611150: título 313, minutos 10081
-  169611151: título 315, minutos 10081
-  169611152: título 389, minutos 43201
-  169611153: título 389, minutos 43201
-  169611154: título 390, minutos 43201
-  169611155: título 390, minutos 43201
-  169611156: título 391, minutos 10081
-  169611157: título 392, minutos 0
-  169611158: título 393, minutos 10081
-  169611159: título 394, minutos 10081
-  169611160: título 395, minutos 21601
-  169611161: título 396, minutos 21601
-  169611162: título 397, minutos 21601
-  169611163: título 398, minutos 43201
-  169611164: título 399, minutos 43201
-  169611165: título 400, minutos 43201
-  169611166: título 401, minutos 43201
-  169611167: título 402, minutos 43201
-  169611168: título 403, minutos 43201
-  169611169: título 404, minutos 43201
-  169611170: título 405, minutos 43201
-  169611171: título 406, minutos 43201
-  169611172: título 313, minutos 4321
-  169611173: título 315, minutos 4321
-  169611174: título 407, minutos 0
+== cash_title fora do catálogo atual: 1
+  169611050: título legado 279, crush=-, desc_long=STR_EVENT_ADD_TITLE281_DESC
+
+== título Classic sem template no servidor (não alterado): 74
   169611175: título 408, minutos 0
   169611176: título 409, minutos 0
   169611177: título 410, minutos 0
