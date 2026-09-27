@@ -17,6 +17,7 @@ public enum ItemQuality {
 	UNIQUE(4), // Fabled - Yellow
 	EPIC(5), // Eternal - Orange
 	MYTHIC(6), // Mythic - Purple
+	DIVINITY(7), // Divinity - Classic 5.0
 	LEGENDARY(3); // Heroic / Legendary - Blue (alias of tier 3)
 
 	private int qualityId;

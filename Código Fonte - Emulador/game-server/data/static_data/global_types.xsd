@@ -1300,6 +1300,7 @@
 			<xs:enumeration value="UNIQUE" />
 			<xs:enumeration value="EPIC" />
 			<xs:enumeration value="MYTHIC" />
+			<xs:enumeration value="DIVINITY" />
 			<xs:enumeration value="JUNK" />
 		</xs:restriction>
 	</xs:simpleType>

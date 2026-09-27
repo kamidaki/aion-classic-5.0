@@ -52,3 +52,12 @@ Os números de compatibilidade não equivalem a funcionamento integral: um item 
 - Alvo, contagem, expiração e retorno agora têm 100% de igualdade com a camada Europe; delays representáveis também foram sincronizados.
 - Oito itens permanecem pendentes porque o cliente informa `casting_delay=4000000000`, valor fora de `xs:int` e `Java int`. O valor não foi truncado nem convertido sem prova do significado do sentinel unsigned.
 - Indicadores após esta etapa: 49.500 compatíveis nos campos diretos, 20.673 divergentes comprovados e 9.491 pendentes de relações/valores que exigem validação adicional.
+
+## Etapa 4 — campos básicos do catálogo e qualidade Divinity
+
+- Foram sincronizados `level`, `price`, `max_stack_count`, `quality`, `race` e `attack_type` em 20.681 templates, sempre a partir da camada Europe.
+- O servidor e o XSD passaram a reconhecer `DIVINITY(7)`. A posição 7 é comprovada pelas interfaces oficiais `search_quality7`; o catálogo Europe contém 11 itens dessa qualidade e as regras oficiais de Combat Power possuem a entrada `item_quality_divinity`.
+- Tipos de ataque elementais `MAGICAL_FIRE` e `MAGICAL_WATER` foram preservados sem redução para `MAGICAL`; 368 templates divergentes foram corrigidos.
+- Cinco registros oficiais com `max_stack_count=0` (`gold`, `testball`, `arcanium`, `QUNA` e `FREE_QUNA`) ficaram pendentes. O zero não foi aplicado onde alteraria a operação do inventário sem evidência do significado especial.
+- Resultado do verificador: nível, qualidade, raça, tipo de item e tipo de ataque com 100% de igualdade; XML XSD válido. Não restam divergências comprovadas nos campos diretos atualmente auditados.
+- Indicadores após esta etapa: 66.805 compatíveis nos campos diretos, 0 divergentes comprovados e 12.859 pendentes de relações/valores que exigem validação adicional.

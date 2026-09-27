@@ -14,11 +14,14 @@ import com.aionemu.gameserver.dataholders.CubeExpandData;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.dataholders.ItemData;
 import com.aionemu.gameserver.model.gameobjects.Item;
+import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.items.ItemSlot;
 import com.aionemu.gameserver.model.items.ItemMask;
 import com.aionemu.gameserver.model.templates.item.enums.ItemGroup;
 import com.aionemu.gameserver.model.templates.item.enums.EquipType;
 import com.aionemu.gameserver.model.templates.item.ItemActivationTarget;
+import com.aionemu.gameserver.model.templates.item.ItemAttackType;
+import com.aionemu.gameserver.model.templates.item.ItemQuality;
 import com.aionemu.gameserver.configs.main.GSConfig;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 import com.aionemu.gameserver.network.aion.AionConnection;
@@ -211,6 +214,18 @@ class ClassicItemSystemsTest {
 		assertEquals(120, DataManager.ITEM_DATA.getItemTemplate(164000140).getExpireTime());
 		assertEquals(2000, DataManager.ITEM_DATA.getItemTemplate(160010536).getCastingDelay());
 		assertEquals(10, DataManager.ITEM_DATA.getItemTemplate(100000378).getActivationCount());
+	}
+
+	@Test void itemCoreFieldsMatchRepresentativeOfficialRecords() {
+		var divinityRing = DataManager.ITEM_DATA.getItemTemplate(122001561);
+		assertEquals(ItemQuality.DIVINITY, divinityRing.getItemQuality());
+		assertEquals(7, divinityRing.getItemQuality().getQualityId());
+		assertEquals(70, divinityRing.getLevel());
+		assertEquals(3461165, divinityRing.getPrice());
+		assertEquals(Race.PC_ALL, divinityRing.getRace());
+		assertEquals(ItemAttackType.MAGICAL_FIRE, DataManager.ITEM_DATA.getItemTemplate(100500001).getAttackType());
+		assertEquals(1000, DataManager.ITEM_DATA.getItemTemplate(186000389).getMaxStackCount());
+		assertEquals(5, DataManager.ITEM_DATA.getItemTemplate(188100001).getPrice());
 	}
 
 	@Test void environmentMatchesOfficialSixtyBytePayload() throws Exception {

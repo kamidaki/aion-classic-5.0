@@ -39,7 +39,7 @@ TEST_GROUPS = (
 )
 
 QUALITY = {"junk": "JUNK", "common": "COMMON", "rare": "RARE", "legend": "LEGEND", "legendary": "LEGEND",
-           "unique": "UNIQUE", "epic": "EPIC", "mythic": "MYTHIC"}
+           "unique": "UNIQUE", "epic": "EPIC", "mythic": "MYTHIC", "divinity": "DIVINITY"}
 ITEM_TYPE = {"normal": "NORMAL", "abyss": "ABYSS", "draconic": "DRACONIC", "devanion": "DEVANION"}
 RACE = {"pc_light": "ELYOS", "pc_dark": "ASMODIANS", "pc_light pc_dark": "PC_ALL", "all": "PC_ALL", "": "PC_ALL"}
 ATTACK = {"physical": "PHYSICAL", "magic": "MAGICAL", "magical": "MAGICAL"}
@@ -217,6 +217,9 @@ def compare_item(client: dict[str, str] | None, server: dict | None, strings: di
             continue
         if source == "casting_delay" and int(raw) > 2_147_483_647:
             pending.append(f"casting_delay={raw} excede xs:int/Java int")
+            continue
+        if source == "max_stack_count" and int(raw) < 1:
+            pending.append(f"max_stack_count={raw} requer semantica operacional oficial")
             continue
         expected, actual = transform(raw), attrs.get(target, server_defaults.get(target))
         if str(expected) != str(actual):

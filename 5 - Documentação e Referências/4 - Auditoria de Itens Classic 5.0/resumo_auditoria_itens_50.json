@@ -2,13 +2,12 @@
   "fonte_cliente": "5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data/europe/Items/client_items.xml",
   "sha256_cliente": "0db9fe61322d0b93049f3aa1914afa8748a26d7dcc027eb3704a2b57c585828d",
   "fonte_emulador": "Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xml",
-  "sha256_emulador": "f4081b53a18f8eb48e907b35b15a2e6ae245578bb84bfbab3af7a3c07820de96",
+  "sha256_emulador": "4311344faf954cd039d68a4d53bf3b54472e47d732273afd60eadd01aa3e6ef6",
   "itens_oficiais": 79664,
   "itens_emulador": 79664,
   "itens_por_status": {
-    "COMPATIVEL_NOS_CAMPOS_AUDITADOS": 49500,
-    "DIVERGENTE_COMPROVADO": 20673,
-    "PENDENTE_RELACAO": 9491
+    "COMPATIVEL_NOS_CAMPOS_AUDITADOS": 66805,
+    "PENDENTE_RELACAO": 12859
   },
   "itens_por_categoria": {
     "acessorios": 3831,
