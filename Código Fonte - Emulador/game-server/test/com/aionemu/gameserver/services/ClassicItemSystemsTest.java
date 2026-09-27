@@ -271,6 +271,34 @@ class ClassicItemSystemsTest {
 			.mapToInt(m -> m.getValue()).sum());
 	}
 
+	@Test void compositeOfficialModifiersExpandToEveryAffectedStat() {
+		var allAttack = DataManager.ITEM_DATA.getItemTemplate(100000363);
+		for (var stat : new com.aionemu.gameserver.model.stats.container.StatEnum[] {
+			com.aionemu.gameserver.model.stats.container.StatEnum.PVP_ATTACK_RATIO,
+			com.aionemu.gameserver.model.stats.container.StatEnum.PVE_ATTACK_RATIO
+		})
+			assertEquals(24, allAttack.getModifiers().stream().filter(m -> m.getName() == stat && m.isBonus())
+				.mapToInt(m -> m.getValue()).sum());
+
+		var allDefense = DataManager.ITEM_DATA.getItemTemplate(110100842);
+		for (var stat : new com.aionemu.gameserver.model.stats.container.StatEnum[] {
+			com.aionemu.gameserver.model.stats.container.StatEnum.PVP_DEFEND_RATIO,
+			com.aionemu.gameserver.model.stats.container.StatEnum.PVE_DEFEND_RATIO
+		})
+			assertEquals(30, allDefense.getModifiers().stream().filter(m -> m.getName() == stat && m.isBonus())
+				.mapToInt(m -> m.getValue()).sum());
+
+		var allElements = DataManager.ITEM_DATA.getItemTemplate(122001561);
+		for (var stat : new com.aionemu.gameserver.model.stats.container.StatEnum[] {
+			com.aionemu.gameserver.model.stats.container.StatEnum.WATER_RESISTANCE,
+			com.aionemu.gameserver.model.stats.container.StatEnum.WIND_RESISTANCE,
+			com.aionemu.gameserver.model.stats.container.StatEnum.FIRE_RESISTANCE,
+			com.aionemu.gameserver.model.stats.container.StatEnum.EARTH_RESISTANCE
+		})
+			assertEquals(50, allElements.getModifiers().stream().filter(m -> m.getName() == stat && m.isBonus())
+				.mapToInt(m -> m.getValue()).sum());
+	}
+
 	@Test void environmentMatchesOfficialSixtyBytePayload() throws Exception {
 		int previous = GSConfig.CHARACTER_REENTRY_TIME;
 		try {

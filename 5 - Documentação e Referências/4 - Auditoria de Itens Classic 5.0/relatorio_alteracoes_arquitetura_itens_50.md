@@ -89,3 +89,14 @@ Os números de compatibilidade não equivalem a funcionamento integral: um item 
 - A matriz integral agora registra 1.660 itens com pendência específica de modificador, sendo 461 com nome ainda não mapeado e 1.204 com ao menos uma tupla oficial ausente; há sobreposição entre os grupos.
 - A regressão automatizada executou 25 testes em Java 25, todos aprovados, incluindo a carga real de `BOOST_QUEST_XP_RATE=10` e `MAGICAL_RESIST=300` a partir dos templates sincronizados.
 - Indicadores após esta etapa: 71.316 compatíveis nos campos auditados, 0 divergências comprovadas e 8.348 pendentes. A queda nominal de compatíveis decorre da auditoria mais rigorosa, não de regressão: diferenças antes ocultas por um bloco `<modifiers>` não vazio passaram a ser explicitadas.
+
+## Etapa 8 — conflitos e modificadores compostos
+
+- Foram corrigidos 2.785 valores legados em 1.191 templates quando havia correspondência inequívoca um-para-um de operação, `StatEnum` e flag `bonus`; outros 384 modificadores oficiais do mesmo grupo foram adicionados.
+- A leitura de modificadores passou a separar bônus diretos dos efeitos condicionais. Treze templates ainda tinham tuplas diretas ausentes dentro de blocos com condições: foram adicionadas 13 tuplas e corrigidos oito valores de `MAXHP`, preservando integralmente os bônus condicionados por `charge`.
+- `AllAttackRatio` e `AllDefendRatio` foram alinhados à conversão já comprovada no reconstrutor oficial de skills: cada valor gera simultaneamente os modificadores PvP e PvE correspondentes. Foram adicionadas 1.160 tuplas `PVE_ATTACK_RATIO`, 389 `PVE_DEFEND_RATIO` e 239 `PVP_DEFEND_RATIO`; 144 valores legados de defesa PvP foram corrigidos.
+- `ElementalDefendAll` foi expandido para água, vento, fogo e terra, como já definido nos conversores oficiais de skills e consumíveis. Os quatro acessórios e os dois manastones aplicáveis receberam as quatro resistências, totalizando 24 tuplas.
+- `BleedReduceRatio` permaneceu pendente em 66 armaduras. A string oficial o descreve como redução de dano de sangramento; o `BLEED_RESISTANCE` atual representa resistência à aplicação do efeito e, portanto, não é uma equivalência segura. Será necessária uma representação de stat e integração específica com o cálculo de dano periódico.
+- O sincronizador terminou idempotente, sem conflitos diretos preservados. O verificador chegou a 96,9% de igualdade integral dos blocos existentes e 100% das manastones comparáveis; diferenças integrais restantes podem incluir modificadores adicionais não originados nos campos diretos auditados.
+- A regressão automatizada executou 26 testes em Java 25, todos aprovados, incluindo expansão PvP/PvE e as quatro resistências elementais. O XML permanece válido contra o XSD.
+- Indicadores após esta etapa: 72.900 compatíveis nos campos auditados, 0 divergências comprovadas e 6.764 pendentes. Somente 66 itens ainda têm pendência de modificador direto.

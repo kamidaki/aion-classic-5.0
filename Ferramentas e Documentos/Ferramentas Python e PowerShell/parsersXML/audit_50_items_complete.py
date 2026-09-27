@@ -151,8 +151,10 @@ def read_server(path: Path) -> dict[str, dict]:
         modifiers = element.find("modifiers")
         modifier_values = collections.Counter()
         if modifiers is not None:
-            for modifier in modifiers.iter():
+            for modifier in modifiers:
                 if modifier.tag not in ("add", "sub", "rate", "set", "abs", "mean"):
+                    continue
+                if modifier.find("conditions") is not None:
                     continue
                 try:
                     value = int(float(modifier.attrib.get("value", "")))

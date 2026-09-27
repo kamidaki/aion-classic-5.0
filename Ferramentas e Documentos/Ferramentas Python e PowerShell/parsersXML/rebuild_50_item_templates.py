@@ -81,7 +81,7 @@ BONUS_MODS = {"str": "POWER", "vit": "HEALTH", "dex": "ACCURACY", "agi": "AGILIT
               "hitaccuracy": "PHYSICAL_ACCURACY", "attackdelay": "ATTACK_SPEED", "attackdelayratio": "ATTACK_SPEED",
               "flyspeed": "FLY_SPEED", "magicalhitaccuracy": "MAGICAL_ACCURACY", "pvpdefendratio": "PVP_DEFEND_RATIO",
               "maxfp": "FLY_TIME", "block": "BLOCK", "magicalcritical": "MAGICAL_CRITICAL",
-              "allattackratio": "PVP_ATTACK_RATIO", "speed": "SPEED", "speedratio": "SPEED",
+              "speed": "SPEED", "speedratio": "SPEED",
               "physicalcriticalreducerate": "PHYSICAL_CRITICAL_RESIST", "healskillboost": "HEAL_BOOST",
               "boostcastingtime": "BOOST_CASTING_TIME", "boostcastingtimeratio": "BOOST_CASTING_TIME",
               "magicalattack": "MAGICAL_ATTACK", "physicalcriticaldamagereduce": "PHYSICAL_CRITICAL_DAMAGE_REDUCE",
@@ -102,6 +102,11 @@ BONUS_MODS = {"str": "POWER", "vit": "HEALTH", "dex": "ACCURACY", "agi": "AGILIT
               "pvedefendratio": "PVE_DEFEND_RATIO", "pvedefendratio_physical": "PVE_DEFEND_RATIO_PHYSICAL",
               "pvedefendratio_magical": "PVE_DEFEND_RATIO_MAGICAL", "pveattackratio": "PVE_ATTACK_RATIO",
               "pveattackratio_physical": "PVE_ATTACK_RATIO_PHYSICAL", "pveattackratio_magical": "PVE_ATTACK_RATIO_MAGICAL"}
+MULTI_BONUS_MODS = {
+    "allattackratio": ("PVP_ATTACK_RATIO", "PVE_ATTACK_RATIO"),
+    "alldefendratio": ("PVP_DEFEND_RATIO", "PVE_DEFEND_RATIO"),
+    "elementaldefendall": ("WATER_RESISTANCE", "WIND_RESISTANCE", "FIRE_RESISTANCE", "EARTH_RESISTANCE"),
+}
 NEGATE = {"attackdelay", "attackdelayratio"}  # cliente "attackDelay 3%" = servidor rate ATTACK_SPEED -3
 # stats de manastone (stat_enchant, sem "%") que sao taxa
 PCT_STATS = {"attackdelay", "attackdelayratio", "speed", "speedratio", "flyspeed", "boosthate", "boostcastingtime", "boostcastingtimeratio"}
@@ -231,9 +236,9 @@ def gen_mods(d, unmapped=None):
             out.append((op, stat, v, False))
     st, sv = low(d, "stat_enchant_type"), num(d.get("stat_enchant_value"))
     if st and sv:
-        stat = BONUS_MODS.get(st)
-        if stat:
-            out.append(("rate" if st in PCT_STATS else "add", stat, -sv if st in NEGATE else sv, True))
+        stats = MULTI_BONUS_MODS.get(st) or ((BONUS_MODS[st],) if st in BONUS_MODS else ())
+        if stats:
+            out.extend(("rate" if st in PCT_STATS else "add", stat, -sv if st in NEGATE else sv, True) for stat in stats)
         elif unmapped is not None:
             unmapped["manastone:" + st] += 1
     for key in sorted((k for k in d if re.fullmatch(r"bonus_attr\d+", k)), key=lambda k: int(k[10:])):
@@ -244,12 +249,12 @@ def gen_mods(d, unmapped=None):
         v = num(raw.rstrip("%"))
         if not v:
             continue
-        stat = BONUS_MODS.get(name)
-        if not stat:
+        stats = MULTI_BONUS_MODS.get(name) or ((BONUS_MODS[name],) if name in BONUS_MODS else ())
+        if not stats:
             if unmapped is not None:
                 unmapped[name] += 1
             continue
-        out.append(("rate" if raw.endswith("%") else "add", stat, -v if name in NEGATE else v, True))
+        out.extend(("rate" if raw.endswith("%") else "add", stat, -v if name in NEGATE else v, True) for stat in stats)
     return out
 
 
@@ -614,7 +619,8 @@ def main():
     ctx.enum_item_type = xsd_enum(xsd_text, "itemType")
     ctx.enum_target = xsd_enum(xsd_text, "ItemActivationTarget")
     stat_names = set(re.findall(r'value="([A-Z_0-9]+)"', mod_xsd))
-    missing = sorted(({s for _, s in BASE_MODS.values()} | set(BONUS_MODS.values())) - stat_names)
+    missing = sorted(({s for _, s in BASE_MODS.values()} | set(BONUS_MODS.values())
+                      | {stat for stats in MULTI_BONUS_MODS.values() for stat in stats}) - stat_names)
     if missing:
         sys.exit(f"Stats do mapeamento que nao existem no modifiers.xsd: {missing}")
     print(f"   itens: {len(cli)} | strings: {len(ctx.n2id)} | skills: {len(ctx.skills)} | receitas: {len(ctx.recipes)} | decomposicao: {len(ctx.decomposable)}")
