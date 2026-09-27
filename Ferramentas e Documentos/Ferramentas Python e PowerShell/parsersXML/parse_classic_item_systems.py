@@ -27,7 +27,7 @@ def client_mask(d):
     value = sum(1 << bit for bit, field in flags if d.get(field, '').upper() == 'TRUE')
     if d.get('no_enchant', 'TRUE').upper() != 'FALSE':
         value |= 1 << 8
-    if d.get('quest'):
+    if d.get('quest', '').strip().lower() not in ('', '0', 'false', 'none', 'no'):
         value |= 1 << 10
     if d.get('weapon_type', 'none').lower() != 'none':
         value |= 1 << 11

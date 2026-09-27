@@ -35,3 +35,13 @@ Nenhum serviço Java, handler, serializer, opcode ou schema SQL foi alterado nes
 | Grupos end-to-end concluídos | 0/15 |
 
 Os números de compatibilidade não equivalem a funcionamento integral: um item só pode ser declarado validado após dados, comportamento, protocolo, persistência e teste no cliente estarem comprovados.
+
+## Etapa 2 — máscaras e permissões
+
+- As máscaras internas dos 79.664 itens foram reconstruídas exclusivamente com `lore`, troca, venda, warehouses, `breakable`, vínculo, remoção no logout, encantamento, fusão, remodelagem, divisão e tingimento da camada Europe.
+- 52.455 templates foram alterados. Flags herdadas sem campo oficial no Classic (`CAN_AP_EXTRACT`, `CAN_POLISH` e `LEGION_TRADEABLE`) foram removidas.
+- `DELETABLE` continua derivado de `breakable`, conforme a captura oficial de descarte já documentada, e não de `item_drop_permitted`.
+- A `client_mask` de wire foi recalculada separadamente. Oito itens mudaram em relação à camada genérica, refletindo os deltas Europe.
+- Resultado do verificador: `mask` 100% idêntica nos 79.664 itens; `client_mask` 100% idêntica na matriz integral; XML XSD válido.
+- Foi corrigido também o predicado de missão da máscara de wire: 1.422 registros com `<quest>0</quest>` deixaram de receber indevidamente o bit de quest. Os 298 registros com `<quest>1</quest>` permanecem marcados.
+- Indicadores após esta etapa: 42.656 compatíveis nos campos diretos, 28.907 divergentes comprovados e 8.101 pendentes de relações que exigem validação adicional.

@@ -5,13 +5,13 @@
 - Itens oficiais: **79664**.
 - Templates do emulador: **79664**.
 - Strings oficiais resolvidas: **78262**.
-- Fonte e produto final sincronizados: **sim** (`5dae956a4e5dd5d28e4b0478ebe537b46e3f839fef0eefaa7a4861cfdfb5982b`).
+- Fonte e produto final sincronizados: **sim** (`757600eb1f63c7794cdb0c065022738da015953792e2053dbbee0282187f093c`).
 
 ## Classificacao individual
 
-- COMPATIVEL_NOS_CAMPOS_AUDITADOS: **22560**
-- DIVERGENTE_COMPROVADO: **55798**
-- PENDENTE_RELACAO: **1306**
+- COMPATIVEL_NOS_CAMPOS_AUDITADOS: **42656**
+- DIVERGENTE_COMPROVADO: **28907**
+- PENDENTE_RELACAO: **8101**
 
 A matriz CSV contém uma linha para cada ID e registra diferenças, pendências, sistemas e arquivos de origem.
 

@@ -77,6 +77,7 @@ CLIENT_FIELDS = set(DIRECT_FIELDS) | set(ACTION_FIELDS) | set(CLASS_FIELDS) | {
     "max_enchant_level", "option_slot_bonus", "m_slots", "mgrouptag", "tag", "icon_name", "quest",
     "min_damage", "max_damage", "attack_delay", "critical", "hit_accuracy", "parry", "attack_range", "hit_count",
     "magical_hit_accuracy", "magical_skill_boost", "cannot_changeskin", "can_dye", "item_drop_permitted",
+    "cannot_extraction", "cash_item",
     "stat_enchant_type", "stat_enchant_value", "abyss_point", "abyss_item", "charge_level",
 } | {name for _, name in BOOL_MASK}
 
@@ -182,6 +183,20 @@ def expected_mask(item: dict[str, str]) -> str:
     return str(mask)
 
 
+def expected_client_mask(item: dict[str, str]) -> str:
+    flags = ((0, "lore"), (1, "can_exchange"), (2, "can_sell_to_npc"),
+             (3, "can_deposit_to_character_warehouse"), (4, "can_deposit_to_account_warehouse"),
+             (5, "breakable"), (6, "soul_bind"), (9, "can_deposit_to_guild_warehouse"),
+             (13, "can_split"), (15, "cannot_extraction"))
+    value = sum(1 << bit for bit, field in flags if item.get(field, "").upper() == "TRUE")
+    if item.get("no_enchant", "TRUE").upper() != "FALSE": value |= 1 << 8
+    if meaningful(item.get("quest")): value |= 1 << 10
+    if item.get("weapon_type", "none").lower() != "none": value |= 1 << 11
+    if item.get("cash_item") == "1": value |= 1 << 12
+    if item.get("cannot_changeskin", "1") != "0": value |= 1 << 14
+    return str(value)
+
+
 def compare_item(client: dict[str, str] | None, server: dict | None, strings: dict[str, tuple[str, str]]) -> dict:
     if client is None:
         return {"status": "LEGADO_SO_EMULADOR", "differences": ["id ausente no cliente oficial"], "pending": []}
@@ -211,6 +226,8 @@ def compare_item(client: dict[str, str] | None, server: dict | None, strings: di
         differences.append(f"activate_target:{target.upper()}!={attrs.get('activate_target', 'NONE')}")
     if expected_mask(client) != attrs.get("mask"):
         differences.append(f"mask:{expected_mask(client)}!={attrs.get('mask', '<ausente>')}")
+    if expected_client_mask(client) != attrs.get("client_mask"):
+        differences.append(f"client_mask:{expected_client_mask(client)}!={attrs.get('client_mask', '<ausente>')}")
     weapon_map = (("min_damage", "min_damage", 1), ("max_damage", "max_damage", 1),
                   ("attack_delay", "attack_speed", 1), ("critical", "critical", 1),
                   ("hit_accuracy", "physical_accuracy", 1), ("parry", "parry", 1),

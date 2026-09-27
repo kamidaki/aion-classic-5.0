@@ -15,6 +15,7 @@ import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.dataholders.ItemData;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.items.ItemSlot;
+import com.aionemu.gameserver.model.items.ItemMask;
 import com.aionemu.gameserver.model.templates.item.enums.ItemGroup;
 import com.aionemu.gameserver.model.templates.item.enums.EquipType;
 import com.aionemu.gameserver.configs.main.GSConfig;
@@ -180,6 +181,26 @@ class ClassicItemSystemsTest {
 		ByteBuffer buffer = ByteBuffer.allocate(128).order(ByteOrder.LITTLE_ENDIAN);
 		ItemInfoBlob.newBlobEntry(ItemBlobType.GENERAL_INFO, null, stone).writeThisBlob(buffer);
 		assertEquals(0x6128, Short.toUnsignedInt(buffer.getShort(0))); // measured official essence blob
+	}
+
+	@Test void everyGameplayMaskUsesOnlyFlagsBackedByClassicClientData() {
+		int unsupportedLegacyFlags = ItemMask.CAN_AP_EXTRACT | ItemMask.CAN_POLISH | ItemMask.LEGION_TRADEABLE;
+		assertEquals(79664, DataManager.ITEM_DATA.size());
+		for (var template : DataManager.ITEM_DATA.getItemTemplates())
+			assertEquals(0, template.getMask() & unsupportedLegacyFlags, template.getTemplateId() + " " + template.getName());
+
+		var sword = DataManager.ITEM_DATA.getItemTemplate(100000001);
+		assertFalse(sword.isTradeable());
+		assertTrue((sword.getMask() & ItemMask.SELLABLE) != 0);
+		assertTrue((sword.getMask() & ItemMask.STORABLE_IN_WH) != 0);
+		assertTrue((sword.getMask() & ItemMask.STORABLE_IN_AWH) != 0);
+		assertTrue((sword.getMask() & ItemMask.STORABLE_IN_LWH) != 0);
+		assertTrue(sword.isBreakable());
+		assertTrue(sword.isDeletable());
+		assertTrue(sword.isNoEnchant());
+		assertTrue(sword.isCanFuse());
+		assertEquals(24188, sword.getMask());
+		assertEquals(35644, sword.getClientMask());
 	}
 
 	@Test void environmentMatchesOfficialSixtyBytePayload() throws Exception {
