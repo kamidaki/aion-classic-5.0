@@ -94,6 +94,7 @@
 			<xs:enumeration value="FLY_SPEED"/>
 			<xs:enumeration value="DAMAGE_REDUCE"/>
 			<xs:enumeration value="DAMAGE_REDUCE_MAX"/>
+			<xs:enumeration value="BLEED_DAMAGE_REDUCE_RATIO"/>
 			<xs:enumeration value="BLEED_RESISTANCE"/>
 			<xs:enumeration value="BLIND_RESISTANCE"/>
 			<xs:enumeration value="CHARM_RESISTANCE"/>

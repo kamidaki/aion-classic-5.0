@@ -100,3 +100,14 @@ Os números de compatibilidade não equivalem a funcionamento integral: um item 
 - O sincronizador terminou idempotente, sem conflitos diretos preservados. O verificador chegou a 96,9% de igualdade integral dos blocos existentes e 100% das manastones comparáveis; diferenças integrais restantes podem incluir modificadores adicionais não originados nos campos diretos auditados.
 - A regressão automatizada executou 26 testes em Java 25, todos aprovados, incluindo expansão PvP/PvE e as quatro resistências elementais. O XML permanece válido contra o XSD.
 - Indicadores após esta etapa: 72.900 compatíveis nos campos auditados, 0 divergências comprovadas e 6.764 pendentes. Somente 66 itens ainda têm pendência de modificador direto.
+
+## Etapa 9 — redução de dano de sangramento
+
+- Os 66 usos oficiais de `BleedReduceRatio` foram classificados nos valores 100, 140, 205 e 275. A escala por mil segue a convenção dos demais atributos `Ratio`, correspondendo a 10%, 14%, 20,5% e 27,5% de redução.
+- Foi criado o stat `BLEED_DAMAGE_REDUCE_RATIO`, separado de `BLEED_RESISTANCE`. O primeiro reduz o dano periódico já calculado; o segundo continua sendo usado exclusivamente na chance de aplicação/resistência do estado de sangramento.
+- `BleedEffect` passou a aplicar a redução ao dano final reservado para cada pulso, com intervalo defensivo de 0 a 1000 e dano mínimo de um ponto.
+- Os 66 templates receberam o modificador oficial, e os XSDs da fonte e do produto final foram sincronizados com o novo enum.
+- O sincronizador terminou idempotente com zero modificadores ausentes, zero nomes sem mapeamento e zero conflitos. A matriz integral não possui mais pendências de modificadores diretos.
+- A regressão automatizada executou 29 testes em Java 25, todos aprovados. Foram cobertos os quatro valores oficiais, limites inferior/superior, dano mínimo, carga do template e separação de `BLEED_RESISTANCE`.
+- O produto final foi recompilado e sincronizado: JAR `b507257dcf58a5774b72e336c091603aa8a6419edb826d307aa504cdf6bbb136` e ZIP `c91f4a94b6899fcd3b98b8653f2d714528915acfd907515a8c7557141f6c8667` coincidem com os artefatos gerados pelo Maven.
+- Indicadores após esta etapa: 72.961 compatíveis nos campos auditados, 0 divergências comprovadas e 6.703 pendentes. Cinco dos 66 itens continuam pendentes por relações não ligadas aos modificadores.

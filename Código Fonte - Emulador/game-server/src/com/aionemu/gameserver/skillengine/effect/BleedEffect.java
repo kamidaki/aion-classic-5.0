@@ -29,8 +29,15 @@ public class BleedEffect extends AbstractOverTimeEffect {
 	public void startEffect(final Effect effect) {
 		int valueWithDelta = calculateBaseValue(effect);
 		int finalDamage = AttackUtil.calculateMagicalOverTimeSkillResult(effect, valueWithDelta, this, false);
+		int reductionRatio = effect.getEffected().getGameStats().getStat(StatEnum.BLEED_DAMAGE_REDUCE_RATIO, 0).getCurrent();
+		finalDamage = applyDamageReduction(finalDamage, reductionRatio);
 		effect.setReserveds(new EffectReserved(position, finalDamage, ResourceType.HP, true, false), true);
 		super.startEffect(effect, AbnormalState.BLEED);
+	}
+
+	static int applyDamageReduction(int damage, int reductionRatio) {
+		int clampedRatio = Math.clamp(reductionRatio, 0, 1000);
+		return Math.max(1, Math.round(damage * (1000 - clampedRatio) / 1000f));
 	}
 
 	@Override

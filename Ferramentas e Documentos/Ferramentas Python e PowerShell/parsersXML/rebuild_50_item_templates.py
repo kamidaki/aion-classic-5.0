@@ -99,6 +99,7 @@ BONUS_MODS = {"str": "POWER", "vit": "HEALTH", "dex": "ACCURACY", "agi": "AGILIT
               "silence_arp": "SILENCE_RESISTANCE_PENETRATION", "paralyze_arp": "PARALYZE_RESISTANCE_PENETRATION",
               "arpoison": "POISON_RESISTANCE", "arbleed": "BLEED_RESISTANCE", "magicalskillboostresist": "MAGIC_SKILL_BOOST_RESIST",
               "magical_resist": "MAGICAL_RESIST", "questexpboost": "BOOST_QUEST_XP_RATE",
+              "bleedreduceratio": "BLEED_DAMAGE_REDUCE_RATIO",
               "pvedefendratio": "PVE_DEFEND_RATIO", "pvedefendratio_physical": "PVE_DEFEND_RATIO_PHYSICAL",
               "pvedefendratio_magical": "PVE_DEFEND_RATIO_MAGICAL", "pveattackratio": "PVE_ATTACK_RATIO",
               "pveattackratio_physical": "PVE_ATTACK_RATIO_PHYSICAL", "pveattackratio_magical": "PVE_ATTACK_RATIO_MAGICAL"}

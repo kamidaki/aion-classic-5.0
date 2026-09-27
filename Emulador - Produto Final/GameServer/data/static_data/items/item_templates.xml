@@ -87710,7 +87710,7 @@
 			<add name="WATER_RESISTANCE" value="5" bonus="true"/>
 			<add name="EARTH_RESISTANCE" value="1" bonus="true"/>
 			<add name="PVP_DEFEND_RATIO" value="9" bonus="true"/>
-		<add name="MAGIC_SKILL_BOOST_RESIST" value="100" bonus="true" /></modifiers>
+		<add name="MAGIC_SKILL_BOOST_RESIST" value="100" bonus="true" /><add name="BLEED_DAMAGE_REDUCE_RATIO" value="100" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="110100949" name="Túnica média do equipamento de feiticeiro de nível 45 (livro de feitiços)" level="45" cName="test_rb_torso_wi_45b" mask="53374" item_group="TORSO" quality="LEGEND" price="5" desc="745203" max_enchant="15" m_slots="3" enchant_group="legend_enchant" client_mask="33342">
 		<modifiers>
@@ -87726,7 +87726,7 @@
 			<add name="WATER_RESISTANCE" value="1" bonus="true"/>
 			<add name="EARTH_RESISTANCE" value="5" bonus="true"/>
 			<add name="PVP_DEFEND_RATIO" value="7" bonus="true"/>
-		<add name="MAGIC_SKILL_BOOST_RESIST" value="100" bonus="true" /></modifiers>
+		<add name="MAGIC_SKILL_BOOST_RESIST" value="100" bonus="true" /><add name="BLEED_DAMAGE_REDUCE_RATIO" value="100" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="110100950" name="Túnica média do equipamento médio (ORB) do Mestre Espiritual de nível 45 (ORB)" level="45" cName="test_rb_torso_el_45a" mask="53374" item_group="TORSO" quality="LEGEND" price="5" desc="745204" max_enchant="15" m_slots="3" enchant_group="legend_enchant" client_mask="33342">
 		<modifiers>
@@ -93428,7 +93428,7 @@
 			<add name="PVE_DEFEND_RATIO" value="34" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="113" bonus="true"/>
 			<add name="MAXMP" value="981" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="275" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="110101475" name="Balanço-teste_belt_sorcery_e1_65b" level="60" cName="rb_torso_n_u2_iddokkaebi_60a" mask="53324" item_group="RB_TORSO" quality="UNIQUE" price="4640368" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="800172" max_enchant="15" m_slots="4" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -93946,7 +93946,7 @@
 			<add name="PVE_DEFEND_RATIO" value="34" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="113" bonus="true"/>
 			<add name="MAXMP" value="981" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="275" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="110101517" name="Instrumento de cordas miragent" level="40" cName="wind_rb_torso_l_a_u2_40b" mask="20556" item_group="RB_TORSO" quality="UNIQUE" price="522000" desc="805253" item_type="ABYSS" max_enchant="15" m_slots="6" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -94066,7 +94066,7 @@
 			<add name="PVE_DEFEND_RATIO" value="34" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="113" bonus="true"/>
 			<add name="MAXMP" value="981" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="275" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="110101528" name="Asas de tashunerk (7 dias)" level="60" cName="rb_torso_n_e2_id_dokkaebi_60b" mask="20686" item_group="RB_TORSO" quality="EPIC" price="5800460" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="806958" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" combat_power="188" client_mask="32878">
 		<modifiers>
@@ -94083,7 +94083,7 @@
 			<add name="PVE_DEFEND_RATIO" value="34" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="113" bonus="true"/>
 			<add name="MAXMP" value="981" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="275" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="110101529" name="Asas do descendente (30 dias)" level="58" cName="rb_torso_n_e2_id_tartaros_58a" mask="20682" item_group="RB_TORSO" quality="EPIC" price="5400360" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="807010" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -105117,7 +105117,7 @@
 			<rate name="FLY_SPEED" value="10" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="34" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="11" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="275" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="110301434" name="Balance-test_pvp_belt_sorcery_u1_65b" level="60" cName="lt_torso_n_u2_iddokkaebi_60a" mask="53324" item_group="LT_TORSO" quality="UNIQUE" price="4640368" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="800173" max_enchant="15" m_slots="4" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -105314,7 +105314,7 @@
 			<rate name="FLY_SPEED" value="10" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="34" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="11" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="275" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="110301452" name="Asas de querubu vermelho (30 dias)" level="58" cName="lt_torso_n_e2_id_tartaros_58a" mask="20682" item_group="LT_TORSO" quality="EPIC" price="5400360" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="807012" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -105735,7 +105735,7 @@
 			<add name="PVE_DEFEND_RATIO" value="34" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="113" bonus="true"/>
 			<add name="EVASION" value="64" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="275" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="110301484" name="Spaulders de placa NPC da escolta Reian (feminina)" level="58" cName="lt_torso_n_e2_id_tartaros_58b" mask="20682" item_group="LT_TORSO" quality="EPIC" price="5400360" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="814267" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -105875,7 +105875,7 @@
 			<add name="PVE_DEFEND_RATIO" value="34" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="113" bonus="true"/>
 			<add name="EVASION" value="64" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="275" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="110301494" name="Morph: Fonte do vento" level="70" cName="lt_torso_n_e2_iddragonlord_70a" mask="53326" item_group="LT_TORSO" quality="EPIC" price="5800460" desc="815862" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" combat_power="751" client_mask="32814">
 		<modifiers>
@@ -117045,7 +117045,7 @@
 			<rate name="FLY_SPEED" value="10" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="34" bonus="true"/>
 			<add name="HEAL_BOOST" value="48" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="275" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="110550991" name="Balance-test_pvp_belt_sorcery_e1_65b" level="60" cName="ch_torso_n_u2_iddokkaebi_60a" mask="53324" item_group="CH_TORSO" quality="UNIQUE" price="4640368" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="800174" max_enchant="15" m_slots="4" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -117317,7 +117317,7 @@
 			<rate name="FLY_SPEED" value="10" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="34" bonus="true"/>
 			<add name="HEAL_BOOST" value="48" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="275" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="110551014" name="Asas espirituais (30 dias)" level="58" cName="ch_torso_n_e2_id_tartaros_58a" mask="20682" item_group="CH_TORSO" quality="EPIC" price="5400360" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="807013" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -127392,7 +127392,7 @@
 			<rate name="FLY_SPEED" value="10" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="34" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="11" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="275" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="110601344" name="Balance-test_wings_u1_61a" level="60" cName="pl_torso_n_u2_iddokkaebi_60a" mask="53324" item_group="PL_TORSO" quality="UNIQUE" price="4640368" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="800175" max_enchant="15" m_slots="4" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -127591,7 +127591,7 @@
 			<rate name="FLY_SPEED" value="10" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="34" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="11" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="275" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="110601364" name="Asas de querubu branco (30 dias)" level="58" cName="pl_torso_n_e2_id_tartaros_58a" mask="20682" item_group="PL_TORSO" quality="EPIC" price="5400360" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="807014" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -127645,7 +127645,7 @@
 			<rate name="FLY_SPEED" value="10" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="34" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="11" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="275" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="110601368" name="Balic: Revolver Éter de Dragão Negro" level="58" cName="pl_torso_assist_option_enchant_test" mask="20680" item_group="PL_TORSO" quality="EPIC" price="5400360" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="809586" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32872">
 		<modifiers>
@@ -140728,7 +140728,7 @@
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="61" bonus="true"/>
 			<add name="MAXMP" value="589" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="111101345" name="Balance-test_wings_u1_63a" level="60" cName="rb_glove_n_u2_iddokkaebi_60a" mask="53324" item_group="RB_GLOVE" quality="UNIQUE" price="2320184" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="800176" max_enchant="15" m_slots="4" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -141246,7 +141246,7 @@
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="61" bonus="true"/>
 			<add name="MAXMP" value="589" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="111101387" name="Instrumento de cordas de Anund" level="40" cName="wind_rb_glove_l_a_u2_40b" mask="20556" item_group="RB_GLOVE" quality="UNIQUE" price="264000" desc="805255" item_type="ABYSS" max_enchant="15" m_slots="6" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -141366,7 +141366,7 @@
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="61" bonus="true"/>
 			<add name="MAXMP" value="589" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="111101398" name="Asas da vitória de Oriel (7 dias)" level="60" cName="rb_glove_n_e2_id_dokkaebi_60b" mask="53454" item_group="RB_GLOVE" quality="EPIC" price="2900230" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="806963" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" combat_power="113" client_mask="32878">
 		<modifiers>
@@ -141383,7 +141383,7 @@
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="61" bonus="true"/>
 			<add name="MAXMP" value="589" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="111101399" name="Black Cloud Wings S301 (30 dias)" level="58" cName="rb_glove_n_e2_id_tartaros_58a" mask="20682" item_group="RB_GLOVE" quality="EPIC" price="2700180" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="807015" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -151924,7 +151924,7 @@
 			<rate name="ATTACK_SPEED" value="-8" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="7" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="111301363" name="Balance-test_wings_u1_65a" level="60" cName="lt_glove_n_u2_iddokkaebi_60a" mask="53324" item_group="LT_GLOVE" quality="UNIQUE" price="2320184" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="800177" max_enchant="15" m_slots="4" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -152122,7 +152122,7 @@
 			<rate name="ATTACK_SPEED" value="-8" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="7" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="111301382" name="Black Cloud Wings S501 (30 dias)" level="58" cName="lt_glove_n_e2_id_tartaros_58a" mask="20682" item_group="LT_GLOVE" quality="EPIC" price="2700180" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="807017" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -152540,7 +152540,7 @@
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="61" bonus="true"/>
 			<add name="EVASION" value="32" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="111301414" name="Spaulders de placa NPC do Guardian (masculino)" level="58" cName="lt_glove_n_e2_id_tartaros_58b" mask="20682" item_group="LT_GLOVE" quality="EPIC" price="2700180" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="814268" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -152680,7 +152680,7 @@
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="61" bonus="true"/>
 			<add name="EVASION" value="32" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="111301424" name="Morph: Fonte do vento" level="70" cName="lt_glove_n_e2_iddragonlord_70a" mask="53454" item_group="LT_GLOVE" quality="EPIC" price="2900230" desc="815868" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" combat_power="751" client_mask="32878">
 		<modifiers>
@@ -163470,7 +163470,7 @@
 			<rate name="ATTACK_SPEED" value="-8" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="HEAL_BOOST" value="26" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="111501332" name="Balance-test_wings_e1_65a" level="60" cName="ch_glove_n_u2_iddokkaebi_60a" mask="53324" item_group="CH_GLOVE" quality="UNIQUE" price="2320184" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="800178" max_enchant="15" m_slots="4" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -163742,7 +163742,7 @@
 			<rate name="ATTACK_SPEED" value="-8" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="HEAL_BOOST" value="26" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="111501355" name="Asas da tempestade (30 dias)" level="58" cName="ch_glove_n_e2_id_tartaros_58a" mask="20682" item_group="CH_GLOVE" quality="EPIC" price="2700180" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="807018" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -173652,7 +173652,7 @@
 			<rate name="ATTACK_SPEED" value="-8" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="7" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="111601310" name="Balance-test_pvp_wings_u1_65a" level="60" cName="pl_glove_n_u2_iddokkaebi_60a" mask="53324" item_group="PL_GLOVE" quality="UNIQUE" price="2320184" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="800179" max_enchant="15" m_slots="4" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -173857,7 +173857,7 @@
 			<rate name="ATTACK_SPEED" value="-8" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="7" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="111601335" name="Asas do espírito antigo (30 dias)" level="58" cName="pl_glove_n_e2_id_tartaros_58a" mask="20682" item_group="PL_GLOVE" quality="EPIC" price="2700180" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="807019" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -173911,7 +173911,7 @@
 			<rate name="ATTACK_SPEED" value="-8" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="7" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="111601339" name="Cinto de couro do juiz corrupto" level="60" cName="event_pl_glove_a_e1_60a" mask="20552" item_group="PL_GLOVE" quality="EPIC" price="5" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="811778" item_type="ABYSS" max_enchant="15" m_slots="6" enchant_group="epic_enchant" combat_power="113" client_mask="32808">
 		<modifiers>
@@ -185314,7 +185314,7 @@
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="61" bonus="true"/>
 			<add name="MAXMP" value="589" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="112101299" name="Balance-test_pvp_wings_e1_65a" level="60" cName="rb_shoulder_n_u2_iddokkaebi_60a" mask="53324" item_group="RB_SHOULDER" quality="UNIQUE" price="2320184" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="800180" max_enchant="15" m_slots="4" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -185831,7 +185831,7 @@
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="61" bonus="true"/>
 			<add name="MAXMP" value="589" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="112101340" name="Instrumento de cordas com toque de sol" level="40" cName="wind_rb_shoulder_l_a_u2_40b" mask="20556" item_group="RB_SHOULDER" quality="UNIQUE" price="264000" desc="805257" item_type="ABYSS" max_enchant="15" m_slots="6" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -185951,7 +185951,7 @@
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="61" bonus="true"/>
 			<add name="MAXMP" value="589" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="112101351" name="Asas de desespero (7 dias)" level="60" cName="rb_shoulder_n_e2_id_dokkaebi_60b" mask="53454" item_group="RB_SHOULDER" quality="EPIC" price="2900230" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="806968" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" combat_power="113" client_mask="32878">
 		<modifiers>
@@ -185968,7 +185968,7 @@
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="61" bonus="true"/>
 			<add name="MAXMP" value="589" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="112101352" name="Asas de Kahrun (30 dias)" level="58" cName="rb_shoulder_n_e2_id_tartaros_58a" mask="20682" item_group="RB_SHOULDER" quality="EPIC" price="2700180" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="807020" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -196253,7 +196253,7 @@
 			<add name="PHYSICAL_ATTACK" value="21" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="MAXMP" value="293" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="112301307" name="Espada Grande da tropa de defesa de Tiamat" level="60" cName="lt_shoulder_n_u2_iddokkaebi_60a" mask="53324" item_group="LT_SHOULDER" quality="UNIQUE" price="2320184" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="800181" max_enchant="15" m_slots="4" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -196451,7 +196451,7 @@
 			<add name="PHYSICAL_ATTACK" value="21" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="MAXMP" value="293" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="112301326" name="Você pode usar isso para alterar a aparência de outro item por 30 dias." level="58" cName="lt_shoulder_n_e2_id_tartaros_58a" mask="20682" item_group="LT_SHOULDER" quality="EPIC" price="2700180" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="807022" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -196907,7 +196907,7 @@
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="61" bonus="true"/>
 			<add name="EVASION" value="32" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="112301362" name="Spaulders de placa NPC do Guardian (feminino)" level="58" cName="lt_shoulder_n_e2_id_tartaros_58b" mask="20682" item_group="LT_SHOULDER" quality="EPIC" price="2700180" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="814269" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -197047,7 +197047,7 @@
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="61" bonus="true"/>
 			<add name="EVASION" value="32" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="112301372" name="Morph: Fonte do vento" level="70" cName="lt_shoulder_n_e2_iddragonlord_70a" mask="53454" item_group="LT_SHOULDER" quality="EPIC" price="2900230" desc="815874" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" combat_power="751" client_mask="32878">
 		<modifiers>
@@ -207547,7 +207547,7 @@
 			<add name="PHYSICAL_ATTACK" value="21" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="HEAL_BOOST" value="26" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="112501275" name="Protetorado Tiamat Longbow" level="60" cName="ch_shoulder_n_u2_iddokkaebi_60a" mask="53324" item_group="CH_SHOULDER" quality="UNIQUE" price="2320184" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="800182" max_enchant="15" m_slots="4" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -207819,7 +207819,7 @@
 			<add name="PHYSICAL_ATTACK" value="21" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="HEAL_BOOST" value="26" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="112501298" name="Onda de absorção i" level="58" cName="ch_shoulder_n_e2_id_tartaros_58a" mask="20682" item_group="CH_SHOULDER" quality="EPIC" price="2700180" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="807023" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -217690,7 +217690,7 @@
 			<add name="PHYSICAL_ATTACK" value="21" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="MAXMP" value="293" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="112601286" name="Cavalo de guerra da Guilda da Vitória" level="60" cName="pl_shoulder_n_u2_iddokkaebi_60a" mask="53324" item_group="PL_SHOULDER" quality="UNIQUE" price="2320184" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="800183" max_enchant="15" m_slots="4" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -217895,7 +217895,7 @@
 			<add name="PHYSICAL_ATTACK" value="21" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="MAXMP" value="293" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="112601311" name="Golpe corporal i" level="58" cName="pl_shoulder_n_e2_id_tartaros_58a" mask="20682" item_group="PL_SHOULDER" quality="EPIC" price="2700180" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="807024" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -229889,7 +229889,7 @@
 			<add name="PVE_DEFEND_RATIO" value="26" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="86" bonus="true"/>
 			<add name="MAXMP" value="785" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="205" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="113101362" name="Cavalo de guerra da Guilda de Honra" level="60" cName="rb_pants_n_u2_iddokkaebi_60a" mask="53324" item_group="RB_PANTS" quality="UNIQUE" price="3508571" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="800184" max_enchant="15" m_slots="4" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -230408,7 +230408,7 @@
 			<add name="PVE_DEFEND_RATIO" value="26" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="86" bonus="true"/>
 			<add name="MAXMP" value="785" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="205" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="113101405" name="Instrumento de cordas com toque de sombra" level="40" cName="wind_rb_pants_l_a_u2_40b" mask="20556" item_group="RB_PANTS" quality="UNIQUE" price="396000" desc="805259" item_type="ABYSS" max_enchant="15" m_slots="6" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -230528,7 +230528,7 @@
 			<add name="PVE_DEFEND_RATIO" value="26" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="86" bonus="true"/>
 			<add name="MAXMP" value="785" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="205" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="113101416" name="Asas de Skafir (7 dias)" level="60" cName="rb_pants_n_e2_id_dokkaebi_60b" mask="53454" item_group="RB_PANTS" quality="EPIC" price="4385713" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="806973" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" combat_power="163" client_mask="32878">
 		<modifiers>
@@ -230545,7 +230545,7 @@
 			<add name="PVE_DEFEND_RATIO" value="26" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="86" bonus="true"/>
 			<add name="MAXMP" value="785" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="205" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="113101417" name="Preparação de contra -ataque i" level="58" cName="rb_pants_n_e2_id_tartaros_58a" mask="20682" item_group="RB_PANTS" quality="EPIC" price="4083200" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="807025" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -241176,7 +241176,7 @@
 			<rate name="FLY_SPEED" value="8" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="26" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="9" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="205" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="113301386" name="Uma montagem apenas para a Guilda. Use este item para montar e desmontar. O botão &quot;Ascend/Sprint&quot; ativa o modo Sprint. Isso consome seu tempo de voo." level="60" cName="lt_pants_n_u2_iddokkaebi_60a" mask="53324" item_group="LT_PANTS" quality="UNIQUE" price="3508571" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="800185" max_enchant="15" m_slots="4" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -241373,7 +241373,7 @@
 			<rate name="FLY_SPEED" value="8" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="26" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="9" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="205" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="113301404" name="Golpe furioso i" level="58" cName="lt_pants_n_e2_id_tartaros_58a" mask="20682" item_group="LT_PANTS" quality="EPIC" price="4083200" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="807027" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -241788,7 +241788,7 @@
 			<add name="PVE_DEFEND_RATIO" value="26" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="86" bonus="true"/>
 			<add name="EVASION" value="48" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="205" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="113301435" name="Spaulders de placa NPC do Guardian 1 (macho)" level="58" cName="lt_pants_n_e2_id_tartaros_58b" mask="20682" item_group="LT_PANTS" quality="EPIC" price="4083200" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="814270" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -241928,7 +241928,7 @@
 			<add name="PVE_DEFEND_RATIO" value="26" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="86" bonus="true"/>
 			<add name="EVASION" value="48" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="205" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="113301445" name="Morph: Aura do vento" level="70" cName="lt_pants_n_e2_iddragonlord_70a" mask="53454" item_group="LT_PANTS" quality="EPIC" price="4385713" desc="815880" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" combat_power="751" client_mask="32878">
 		<modifiers>
@@ -252979,7 +252979,7 @@
 			<rate name="FLY_SPEED" value="8" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="26" bonus="true"/>
 			<add name="HEAL_BOOST" value="37" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="205" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="113501351" name="Uma montagem apenas para a Guilda. Use este item para montar e desmontar. O botão &quot;Ascend/Sprint&quot; ativa o modo Sprint. Isso consome seu tempo de voo." level="60" cName="ch_pants_n_u2_iddokkaebi_60a" mask="53324" item_group="CH_PANTS" quality="UNIQUE" price="3508571" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="800186" max_enchant="15" m_slots="4" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -253251,7 +253251,7 @@
 			<rate name="FLY_SPEED" value="8" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="26" bonus="true"/>
 			<add name="HEAL_BOOST" value="37" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="205" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="113501374" name="Arqueiro de vento i" level="58" cName="ch_pants_n_e2_id_tartaros_58a" mask="20682" item_group="CH_PANTS" quality="EPIC" price="4083200" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="807028" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -263208,7 +263208,7 @@
 			<rate name="FLY_SPEED" value="8" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="26" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="9" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="205" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="113601299" name="Uniforme de cavalaria leve" level="60" cName="pl_pants_n_u2_iddokkaebi_60a" mask="53324" item_group="PL_PANTS" quality="UNIQUE" price="3508571" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="800187" max_enchant="15" m_slots="4" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -263412,7 +263412,7 @@
 			<rate name="FLY_SPEED" value="8" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="26" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="9" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="205" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="113601323" name="Flame Alabarda i" level="58" cName="pl_pants_n_e2_id_tartaros_58a" mask="20682" item_group="PL_PANTS" quality="EPIC" price="4083200" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="807029" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -263466,7 +263466,7 @@
 			<rate name="FLY_SPEED" value="8" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="26" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="9" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="205" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="113601327" name="Túnica de pano com toque de sol" level="60" cName="event_pl_pants_a_e1_60a" mask="20552" item_group="PL_PANTS" quality="EPIC" price="5" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="811802" item_type="ABYSS" max_enchant="15" m_slots="6" enchant_group="epic_enchant" combat_power="163" client_mask="32808">
 		<modifiers>
@@ -275591,7 +275591,7 @@
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="61" bonus="true"/>
 			<add name="MAXMP" value="589" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="114101393" name="[Conteúdo especial] Uniforme de cavalaria leve (6 horas)" level="60" cName="rb_shoes_n_u2_iddokkaebi_60a" mask="53324" item_group="RB_SHOES" quality="UNIQUE" price="2320184" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="800188" max_enchant="15" m_slots="4" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -276109,7 +276109,7 @@
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="61" bonus="true"/>
 			<add name="MAXMP" value="589" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="114101435" name="Instrumento de cordas de Wiseman" level="40" cName="wind_rb_shoes_l_a_u2_40b" mask="20556" item_group="RB_SHOES" quality="UNIQUE" price="264000" desc="805261" item_type="ABYSS" max_enchant="15" m_slots="6" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -276229,7 +276229,7 @@
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="61" bonus="true"/>
 			<add name="MAXMP" value="589" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="114101446" name="Asas do descendente (7 dias)" level="60" cName="rb_shoes_n_e2_id_dokkaebi_60b" mask="53454" item_group="RB_SHOES" quality="EPIC" price="2900230" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="806978" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" combat_power="113" client_mask="32878">
 		<modifiers>
@@ -276246,7 +276246,7 @@
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="61" bonus="true"/>
 			<add name="MAXMP" value="589" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="114101447" name="Escudo de proteção repetido eu" level="58" cName="rb_shoes_n_e2_id_tartaros_58a" mask="20682" item_group="RB_SHOES" quality="EPIC" price="2700180" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="807030" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -286948,7 +286948,7 @@
 			<rate name="SPEED" value="22" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="7" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="114301423" name="Uniforme de cavalaria leve elegante. Pode ser usado em uma peça de armadura correspondente por um reproficador mestre. Altera a aparência por 6 horas." level="60" cName="lt_shoes_n_u2_iddokkaebi_60a" mask="53324" item_group="LT_SHOES" quality="UNIQUE" price="2320184" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="800189" max_enchant="15" m_slots="4" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -287146,7 +287146,7 @@
 			<rate name="SPEED" value="22" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="7" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="114301442" name="Onda de calor atrasada i" level="58" cName="lt_shoes_n_e2_id_tartaros_58a" mask="20682" item_group="LT_SHOES" quality="EPIC" price="2700180" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="807032" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -287568,7 +287568,7 @@
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="61" bonus="true"/>
 			<add name="EVASION" value="32" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="114301474" name="Spaulders de placa NPC do Guardian 1 (fêmea)" level="58" cName="lt_shoes_n_e2_id_tartaros_58b" mask="20682" item_group="LT_SHOES" quality="EPIC" price="2700180" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="814271" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -287708,7 +287708,7 @@
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="61" bonus="true"/>
 			<add name="EVASION" value="32" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="114301484" name="Morph: Fragmento do vento" level="70" cName="lt_shoes_n_e2_iddragonlord_70a" mask="53454" item_group="LT_SHOES" quality="EPIC" price="2900230" desc="815886" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" combat_power="751" client_mask="32878">
 		<modifiers>
@@ -298697,7 +298697,7 @@
 			<rate name="SPEED" value="22" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="HEAL_BOOST" value="26" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="114501356" name="Calças de cavalaria leves" level="60" cName="ch_shoes_n_u2_iddokkaebi_60a" mask="53324" item_group="CH_SHOES" quality="UNIQUE" price="2320184" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="800190" max_enchant="15" m_slots="4" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -298969,7 +298969,7 @@
 			<rate name="SPEED" value="22" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="HEAL_BOOST" value="26" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="114501379" name="Fogo do poder mágico eu" level="58" cName="ch_shoes_n_e2_id_tartaros_58a" mask="20682" item_group="CH_SHOES" quality="EPIC" price="2700180" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="807033" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -308894,7 +308894,7 @@
 			<rate name="SPEED" value="22" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="7" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="114601299" name="[Conteúdo especial] calções de cavalaria leves (6 horas)" level="60" cName="pl_shoes_n_u2_iddokkaebi_60a" mask="53324" item_group="PL_SHOES" quality="UNIQUE" price="2320184" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="800191" max_enchant="15" m_slots="4" enchant_group="unique_enchant" client_mask="32812">
 		<modifiers>
@@ -309099,7 +309099,7 @@
 			<rate name="SPEED" value="22" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="7" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="114601324" name="GRASS DIVINA CONCONTRADA I" level="58" cName="pl_shoes_n_e2_id_tartaros_58a" mask="20682" item_group="PL_SHOES" quality="EPIC" price="2700180" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="807034" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" client_mask="32874">
 		<modifiers>
@@ -309153,7 +309153,7 @@
 			<rate name="SPEED" value="22" bonus="true"/>
 			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="7" bonus="true"/>
-		</modifiers>
+		<add name="BLEED_DAMAGE_REDUCE_RATIO" value="140" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="114601328" name="Manoplas de cadeias de cadeia" level="60" cName="event_pl_shoes_a_e1_60a" mask="20552" item_group="PL_SHOES" quality="EPIC" price="5" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 0 60" desc="811814" item_type="ABYSS" max_enchant="15" m_slots="6" enchant_group="epic_enchant" combat_power="113" client_mask="32808">
 		<modifiers>

@@ -299,6 +299,16 @@ class ClassicItemSystemsTest {
 				.mapToInt(m -> m.getValue()).sum());
 	}
 
+	@Test void bleedDamageReductionRemainsDistinctFromBleedResistance() {
+		var dokkaebiRobe = DataManager.ITEM_DATA.getItemTemplate(110101474);
+		assertEquals(275, dokkaebiRobe.getModifiers().stream()
+			.filter(m -> m.getName() == com.aionemu.gameserver.model.stats.container.StatEnum.BLEED_DAMAGE_REDUCE_RATIO && m.isBonus())
+			.mapToInt(m -> m.getValue()).sum());
+		assertEquals(0, dokkaebiRobe.getModifiers().stream()
+			.filter(m -> m.getName() == com.aionemu.gameserver.model.stats.container.StatEnum.BLEED_RESISTANCE && m.isBonus())
+			.mapToInt(m -> m.getValue()).sum());
+	}
+
 	@Test void environmentMatchesOfficialSixtyBytePayload() throws Exception {
 		int previous = GSConfig.CHARACTER_REENTRY_TIME;
 		try {

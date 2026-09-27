@@ -76,6 +76,7 @@ public enum StatEnum {
 
 	DAMAGE_REDUCE, // how much damage you block
 	DAMAGE_REDUCE_MAX, // whats max damage to block, TODO: implement
+	BLEED_DAMAGE_REDUCE_RATIO, // Bleed damage reduction in permille (client BleedReduceRatio)
 
 	// resistances
 	BLEED_RESISTANCE(44), // Bleed Resist
