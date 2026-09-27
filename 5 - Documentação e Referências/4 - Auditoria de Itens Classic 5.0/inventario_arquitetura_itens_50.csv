@@ -30,7 +30,7 @@ dados;Código Fonte - Emulador/game-server/data/static_data/items/item_random_bo
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_random_bonuses.xsd;897
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_restriction_cleanups.xml;830
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_restriction_cleanups.xsd;829
-dados;Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xml;43056224
+dados;Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xml;43062165
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xsd;33680
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_upgrade.xml;638694
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_upgrade.xsd;3004
@@ -238,7 +238,7 @@ java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templ
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/SkillLearnAction.java;3129
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/SkillUseAction.java;4191
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/SummonHouseObjectAction.java;1004
-java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/TitleAddAction.java;2063
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/TitleAddAction.java;2181
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/ToyPetSpawnAction.java;5399
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/TuningAction.java;5885
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/UseTarget.java;467

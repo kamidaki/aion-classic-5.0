@@ -28,6 +28,7 @@ DEFAULT_CLIENT = PROJECT_ROOT / "5 - Documentação e Referências" / "3 - Clien
 DEFAULT_CATALOG = Path("data") / "europe" / "Items" / "client_items.xml"
 SERVER_ITEMS = PROJECT_ROOT / "Código Fonte - Emulador" / "game-server" / "data" / "static_data" / "items" / "item_templates.xml"
 PRODUCT_ITEMS = PROJECT_ROOT / "Emulador - Produto Final" / "GameServer" / "data" / "static_data" / "items" / "item_templates.xml"
+SERVER_TITLES = PROJECT_ROOT / "Código Fonte - Emulador" / "game-server" / "data" / "static_data" / "player_titles.xml"
 DEFAULT_OUTPUT = PROJECT_ROOT / "5 - Documentação e Referências" / "4 - Auditoria de Itens Classic 5.0"
 TEST_GROUPS = (
     "Adquirir, equipar e desequipar itens", "Trocar armas e conjuntos de equipamentos",
@@ -82,7 +83,7 @@ CLIENT_FIELDS = set(DIRECT_FIELDS) | set(ACTION_FIELDS) | set(CLASS_FIELDS) | {
     "max_enchant_level", "option_slot_bonus", "m_slots", "mgrouptag", "tag", "icon_name", "quest",
     "min_damage", "max_damage", "attack_delay", "critical", "hit_accuracy", "parry", "attack_range", "hit_count",
     "magical_hit_accuracy", "magical_skill_boost", "reduce_max", "cannot_changeskin", "can_dye", "item_drop_permitted",
-    "cannot_extraction", "cash_item",
+    "cannot_extraction", "cash_item", "cash_available_minute",
     "stat_enchant_type", "stat_enchant_value", "abyss_point", "abyss_item", "charge_level",
 } | set(templates.BASE_MODS) | {name for _, name in BOOL_MASK} | {name + "_max" for name in CLASS_FIELDS}
 
@@ -256,7 +257,8 @@ def expected_client_mask(item: dict[str, str]) -> str:
 
 
 def compare_item(client: dict[str, str] | None, server: dict | None, strings: dict[str, tuple[str, str]],
-                 skill_ids: dict[str, str] | None = None, item_name_ids: dict[str, list[str]] | None = None) -> dict:
+                 skill_ids: dict[str, str] | None = None, item_name_ids: dict[str, list[str]] | None = None,
+                 title_ids: set[str] | None = None) -> dict:
     if client is None:
         return {"status": "LEGADO_SO_EMULADOR", "differences": ["id ausente no cliente oficial"], "pending": []}
     if server is None:
@@ -321,7 +323,24 @@ def compare_item(client: dict[str, str] | None, server: dict | None, strings: di
         differences.append("restrict_max:" + " ".join(map(str, expected_max)) + "!=" + " ".join(map(str, actual_max)))
     for field, action in ACTION_FIELDS.items():
         raw_action = client.get(field)
-        if field == "activation_skill" and meaningful(raw_action) and raw_action.isdigit():
+        if field == "cash_title" and meaningful(raw_action):
+            if not raw_action.isdigit():
+                pending.append(f"cash_title não numérico={raw_action}")
+                continue
+            if title_ids is not None and raw_action not in title_ids:
+                pending.append(f"titleadd depende de title template ausente:{raw_action}")
+                continue
+            actual = server["action_attrs"].get("titleadd")
+            if actual is None:
+                pending.append("acao titleadd indicada por cash_title")
+                continue
+            if actual.get("titleid") != raw_action:
+                differences.append(f"titleadd.titleid:{raw_action}!={actual.get('titleid', '<ausente>')}")
+            expected_minutes = client.get("cash_available_minute") or "0"
+            actual_minutes = actual.get("minutes", "0")
+            if actual_minutes != expected_minutes:
+                differences.append(f"titleadd.minutes:{expected_minutes}!={actual_minutes}")
+        elif field == "activation_skill" and meaningful(raw_action) and raw_action.isdigit():
             pending.append(f"activation_skill numerico={raw_action} requer dicionario oficial; nao e skill id")
         elif meaningful(raw_action) and action not in server["actions"]:
             pending.append(f"acao {action} indicada por {field}")
@@ -435,7 +454,7 @@ def main() -> None:
     client_root = args.cliente.resolve()
     output = args.saida.resolve()
     client_path = client_root / args.catalogo
-    for path in (client_path, SERVER_ITEMS, PRODUCT_ITEMS):
+    for path in (client_path, SERVER_ITEMS, PRODUCT_ITEMS, SERVER_TITLES):
         if not path.is_file():
             raise SystemExit(f"Arquivo obrigatorio ausente: {path}")
     if sha256(SERVER_ITEMS) != sha256(PRODUCT_ITEMS):
@@ -444,6 +463,7 @@ def main() -> None:
     client = read_client(client_path)
     server = read_server(SERVER_ITEMS)
     skill_ids = load_client_skill_ids(client_root)
+    title_ids = {element.get("id") for element in ET.parse(SERVER_TITLES).getroot().findall("title")}
     item_name_ids = collections.defaultdict(list)
     for item_id, item in client.items():
         if item.get("name"):
@@ -454,7 +474,7 @@ def main() -> None:
     status_count, category_count, rows = collections.Counter(), collections.Counter(), []
     for item_id in ids:
         ci, si = client.get(item_id), server.get(item_id)
-        result = compare_item(ci, si, strings, skill_ids, item_name_ids)
+        result = compare_item(ci, si, strings, skill_ids, item_name_ids, title_ids)
         cat = category(ci) if ci else "legado"
         status_count[result["status"]] += 1
         category_count[cat] += 1
@@ -489,7 +509,8 @@ def main() -> None:
         "itens_oficiais": len(client), "itens_emulador": len(server),
         "itens_por_status": dict(sorted(status_count.items())),
         "itens_por_categoria": dict(sorted(category_count.items())),
-        "strings_de_item_resolvidas": len(strings), "skills_oficiais_indexadas": len(skill_ids), "arquitetura_por_camada": architecture,
+        "strings_de_item_resolvidas": len(strings), "skills_oficiais_indexadas": len(skill_ids),
+        "titulos_servidor_indexados": len(title_ids), "arquitetura_por_camada": architecture,
         "variantes_catalogo_cliente": catalog_variants,
         "itens_diferentes_por_variante_contra_europe": variant_differences,
         "criterio": "Compatibilidade limitada aos campos de equivalencia direta; pendencias nao contam como validadas.",

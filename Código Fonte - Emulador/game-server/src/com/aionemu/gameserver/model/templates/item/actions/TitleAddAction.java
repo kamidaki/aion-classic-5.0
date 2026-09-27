@@ -24,6 +24,14 @@ public class TitleAddAction extends AbstractItemAction {
 	@XmlAttribute
 	protected Integer minutes;
 
+	public int getTitleId() {
+		return titleid;
+	}
+
+	public int getMinutes() {
+		return minutes == null ? 0 : minutes;
+	}
+
 	@Override
 	public boolean canAct(Player player, Item parentItem, Item targetItem, Object... params) {
 		if (titleid == 0 || parentItem == null) {

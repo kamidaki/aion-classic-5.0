@@ -521292,73 +521292,341 @@
 	<item_template id="169600226" name="Um baú contendo armadura eterna. Clique duas vezes para abrir." level="1" cName="classic_cash_add_social_away_shop03" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="820053" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16698" activate_count="1"/>
 	<item_template id="169600227" name="Um baú contendo armadura mítica. Clique duas vezes para abrir." level="1" cName="classic_cash_add_social_away_shop04" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="820054" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16698" activate_count="1"/>
 	<item_template id="169600228" name="Adaga de Hyperion" level="1" cName="classic_cash_add_social_away_shop05" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="820055" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16698" activate_count="1"/>
-	<item_template id="169611001" name="A equipe durável do Imperador de Dragão Noble Horned" level="1" cName="EVENT_ADD_TITLE228" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781118" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611002" name="Funcionários da Expedição do Guardian" level="1" cName="EVENT_ADD_TITLE229" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781119" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611003" name="Equipe do comando do guardião" level="1" cName="EVENT_ADD_TITLE230" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781120" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611004" name="Funcionários do Guardian Sentinel" level="1" cName="EVENT_ADD_TITLE231" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781121" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611005" name="Funcionários do líder do esquadrão de defesa do Guardian" level="1" cName="EVENT_ADD_TITLE232" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781122" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611006" name="Funcionários da Expedição de Arqueiro" level="1" cName="EVENT_ADD_TITLE233" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781123" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611007" name="Funcionários de Archon Commando" level="1" cName="EVENT_ADD_TITLE234" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781124" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611008" name="Funcionários de Archon Sentinel" level="1" cName="EVENT_ADD_TITLE235" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781125" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611009" name="Funcionários do líder do time de defesa do Archon" level="1" cName="EVENT_ADD_TITLE236" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781126" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611010" name="Funcionários do SILION" level="1" cName="EVENT_ADD_TITLE237" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781127" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611011" name="Equipe de Vesetia" level="1" cName="EVENT_ADD_TITLE238" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781128" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611012" name="Seres&amp;#39; Cajado" level="1" cName="EVENT_ADD_TITLE239" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781129" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611013" name="A equipe de Sirio" level="1" cName="EVENT_ADD_TITLE240" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781130" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611014" name="Equipe do Eden" level="1" cName="EVENT_ADD_TITLE241" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781131" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611015" name="A equipe de Adella" level="1" cName="EVENT_ADD_TITLE242" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781132" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611016" name="Mestre nobre empresa durável Jerkin" level="1" cName="EVENT_ADD_TITLE243" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781410" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21600"/>
-	<item_template id="169611017" name="Especialista nobre luvas de hoca durável" level="1" cName="EVENT_ADD_TITLE248" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781645" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611018" name="Mestre luvas de hoca duráveis" level="1" cName="EVENT_ADD_TITLE249" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781646" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611019" name="Mestre nobre luvas de hoca durável" level="1" cName="EVENT_ADD_TITLE250" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781647" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611020" name="Manoplas de pano de hoca duráveis ​​do mestre nobre" level="1" cName="EVENT_ADD_TITLE251" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781648" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611021" name="Luvas duráveis ​​do dragão do céu" level="1" cName="EVENT_ADD_TITLE252" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781649" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611022" name="Luvas duráveis ​​do dragão do céu nobre" level="1" cName="EVENT_ADD_TITLE253" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781650" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611023" name="Luvas duráveis ​​do Sky Dragon King" level="1" cName="EVENT_ADD_TITLE254" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781651" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611024" name="Luvas duráveis ​​do rei do dragão nobre" level="1" cName="EVENT_ADD_TITLE255" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781652" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611025" name="Luvas duráveis ​​do Imperador do Dragão do Céu" level="1" cName="EVENT_ADD_TITLE256" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781653" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321"/>
-	<item_template id="169611026" name="Vambrace de Phavilian" level="10" cName="EVENT_ADD_TITLE257" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781752" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601" restrict="10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1 10"/>
-	<item_template id="169611027" name="As plantas de ombro de Reian Legionário" level="10" cName="EVENT_ADD_TITLE258" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782217" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_target="STANDALONE" activate_count="1" expire_time="21601" restrict="10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1 10"/>
-	<item_template id="169611028" name="Perneiras prolix duráveis ​​dignas" level="1" cName="world_us_cash_add_title_259" mask="16472" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782241" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16696" activate_count="1"/>
-	<item_template id="169611029" name="Digno nobre perneiras prolix duráveis" level="1" cName="world_us_cash_add_title_260" mask="16472" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782242" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16696" activate_count="1"/>
-	<item_template id="169611030" name="Perneiras prolix duráveis ​​especializadas" level="1" cName="world_us_cash_add_title_261" mask="16472" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782243" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16696" activate_count="1"/>
-	<item_template id="169611031" name="Perneiras prolix duráveis ​​nobres especializadas" level="1" cName="world_us_cash_add_title_262" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782244" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611032" name="Leggings prolix duráveis ​​mestre" level="1" cName="world_us_cash_add_title_263" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782245" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611033" name="Mestre nobre perneiras prolix duráveis" level="1" cName="world_us_cash_add_title_264" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782246" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611034" name="Calças de tecido prolix durável do mestre nobre" level="1" cName="world_us_cash_add_title_265" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782247" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611035" name="Leggings de hoca duráveis" level="1" cName="world_us_cash_add_title_266" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782248" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611036" name="Leggings de hoca duráveis ​​nobres" level="1" cName="world_us_cash_add_title_267" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782249" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611037" name="Pernas de hoca duráveis ​​dignas" level="1" cName="world_us_cash_add_title_268" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782250" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611038" name="Especialista nobre Drenium Brogans" level="1" cName="world_devapass_add_title_269" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782709" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="43201"/>
-	<item_template id="169611039" name="Sabatons de Kahrun" level="1" cName="EVENT_ADD_TITLE270" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782827" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="43201"/>
-	<item_template id="169611040" name="Escudo de Archon Sentinel" level="10" cName="EVENT_ADD_TITLE271" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782885" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_target="STANDALONE" activate_count="1" expire_time="21601" restrict="10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1 10"/>
-	<item_template id="169611041" name="Escudo de escala de Kahrun" level="50" cName="item_light_title272" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="782909" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611042" name="Outworld Bandana" level="50" cName="item_dark_title273" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="782910" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611043" name="Helmo de Balaurbona" level="10" cName="EVENT_ADD_TITLE274" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782925" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601" restrict="10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1 10"/>
-	<item_template id="169611044" name="Prolix sustentável bandana" level="1" cName="Event_add_title_275_30" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782957" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611045" name="Colar de corundão elegante e elegante nobre" level="1" cName="Event_ADD_TITLE_276_30" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="783318" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611046" name="Colar de corundum sofisticado nobre durável" level="1" cName="Event_ADD_TITLE_277_30" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="783330" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611047" name="Tabela de artesanato de concentração" level="1" cName="EVENT_ADD_TITLE278" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="783620" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601"/>
-	<item_template id="169611048" name="Ossos da enos" level="1" cName="EVENT_ADD_TITLE279" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="783829" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601"/>
-	<item_template id="169611049" name="Artesanato: cadeira de pelúcia de Undin" level="1" cName="EVENT_ADD_TITLE280" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="784258" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21600"/>
-	<item_template id="169611050" name="Melhor Pellan branco" level="1" cName="EVENT_ADD_TITLE281" mask="16472" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="784467" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16696" activate_count="1"/>
-	<item_template id="169611051" name="Projeto: Gestas de drenium duráveis ​​de especialistas" level="1" cName="world_cn_event_add_title_282_360day" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785166" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611052" name="Projeto: Greos de drenium duráveis ​​nobres especializados" level="1" cName="world_cn_event_add_title_283_360day" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785168" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611053" name="Design: Comando de drenium durável nobre especialista" level="1" cName="world_cn_event_add_title_284_90day" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785170" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611054" name="Projeto: Prolix Durável nobre Pauldrons" level="1" cName="EVENT_ADD_TITLE285" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785209" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611055" name="Design: Noble Durável Prolix Leggings" level="1" cName="EVENT_ADD_TITLE286" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785210" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611056" name="Projeto: Túnica prolix durável nobre" level="1" cName="EVENT_ADD_TITLE287" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785211" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611057" name="Design: A iluminação ao ar livre Adamantium" level="1" cName="EVENT_ADD_TITLE288" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785334" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601"/>
-	<item_template id="169611058" name="Design Balic: Guardas de mão duráveis ​​do Sky Dragon" level="1" cName="world_Event_ADD_TITLE_275_15" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="785477" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601"/>
-	<item_template id="169611059" name="Design Balic: Spaulders duráveis ​​do Sky Dragon" level="1" cName="world_Event_ADD_TITLE_276_15" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="785478" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601"/>
-	<item_template id="169611060" name="Artesanato: Orbe de água escura durável" level="1" cName="EVENT_ADD_TITLE289" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="785860" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611061" name="Artesanato: digno nobre Drenium Alabarda" level="1" cName="EVENT_ADD_TITLE290" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785876" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="259200"/>
-	<item_template id="169611062" name="Artesanato: Especialista Noble Drenium Adaga" level="1" cName="EVENT_ADD_TITLE291" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785877" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="129601"/>
-	<item_template id="169611063" name="Artesanato: especialista nobre durável drenium longsword" level="1" cName="EVENT_ADD_TITLE292" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785878" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="43201"/>
-	<item_template id="169611064" name="Artesanato: Noble nobre de calças duráveis ​​e duráveis" level="1" cName="world_nct_event_add_title_293_30day" mask="16448" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785949" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16672" activate_count="1"/>
-	<item_template id="169611065" name="Ensina como fazer o digno capuz durável de corrente drenium." level="1" cName="item_all_title_294" mask="0" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="786486" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640" activate_count="1"/>
-	<item_template id="169611066" name="Ensina como fazer a empresa durável vambrace." level="1" cName="EVENT_ADD_TITLE295" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="786528" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601"/>
-	<item_template id="169611067" name="Ensina como fazer o prolix durável Bandana durável." level="1" cName="event_add_title_296" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="786568" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
+	<item_template id="169611001" name="A equipe durável do Imperador de Dragão Noble Horned" level="1" cName="EVENT_ADD_TITLE228" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781118" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="228" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611002" name="Funcionários da Expedição do Guardian" level="1" cName="EVENT_ADD_TITLE229" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781119" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="229" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611003" name="Equipe do comando do guardião" level="1" cName="EVENT_ADD_TITLE230" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781120" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="230" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611004" name="Funcionários do Guardian Sentinel" level="1" cName="EVENT_ADD_TITLE231" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781121" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="231" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611005" name="Funcionários do líder do esquadrão de defesa do Guardian" level="1" cName="EVENT_ADD_TITLE232" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781122" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="232" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611006" name="Funcionários da Expedição de Arqueiro" level="1" cName="EVENT_ADD_TITLE233" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781123" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="233" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611007" name="Funcionários de Archon Commando" level="1" cName="EVENT_ADD_TITLE234" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781124" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="234" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611008" name="Funcionários de Archon Sentinel" level="1" cName="EVENT_ADD_TITLE235" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781125" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="235" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611009" name="Funcionários do líder do time de defesa do Archon" level="1" cName="EVENT_ADD_TITLE236" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781126" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="236" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611010" name="Funcionários do SILION" level="1" cName="EVENT_ADD_TITLE237" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781127" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="237" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611011" name="Equipe de Vesetia" level="1" cName="EVENT_ADD_TITLE238" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781128" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="238" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611012" name="Seres&amp;#39; Cajado" level="1" cName="EVENT_ADD_TITLE239" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781129" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="239" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611013" name="A equipe de Sirio" level="1" cName="EVENT_ADD_TITLE240" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781130" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="240" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611014" name="Equipe do Eden" level="1" cName="EVENT_ADD_TITLE241" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781131" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="241" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611015" name="A equipe de Adella" level="1" cName="EVENT_ADD_TITLE242" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781132" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="242" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611016" name="Mestre nobre empresa durável Jerkin" level="1" cName="EVENT_ADD_TITLE243" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781410" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21600">
+		<actions>
+			<titleadd titleid="243" minutes="21600"/>
+		</actions>
+	</item_template>
+	<item_template id="169611017" name="Especialista nobre luvas de hoca durável" level="1" cName="EVENT_ADD_TITLE248" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781645" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="248" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611018" name="Mestre luvas de hoca duráveis" level="1" cName="EVENT_ADD_TITLE249" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781646" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="249" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611019" name="Mestre nobre luvas de hoca durável" level="1" cName="EVENT_ADD_TITLE250" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781647" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="250" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611020" name="Manoplas de pano de hoca duráveis ​​do mestre nobre" level="1" cName="EVENT_ADD_TITLE251" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781648" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="251" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611021" name="Luvas duráveis ​​do dragão do céu" level="1" cName="EVENT_ADD_TITLE252" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781649" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="252" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611022" name="Luvas duráveis ​​do dragão do céu nobre" level="1" cName="EVENT_ADD_TITLE253" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781650" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="253" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611023" name="Luvas duráveis ​​do Sky Dragon King" level="1" cName="EVENT_ADD_TITLE254" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781651" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="254" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611024" name="Luvas duráveis ​​do rei do dragão nobre" level="1" cName="EVENT_ADD_TITLE255" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781652" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="255" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611025" name="Luvas duráveis ​​do Imperador do Dragão do Céu" level="1" cName="EVENT_ADD_TITLE256" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781653" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="4321">
+		<actions>
+			<titleadd titleid="256" minutes="4321"/>
+		</actions>
+	</item_template>
+	<item_template id="169611026" name="Vambrace de Phavilian" level="10" cName="EVENT_ADD_TITLE257" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781752" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601" restrict="10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1 10">
+		<actions>
+			<titleadd titleid="257" minutes="21601"/>
+		</actions>
+	</item_template>
+	<item_template id="169611027" name="As plantas de ombro de Reian Legionário" level="10" cName="EVENT_ADD_TITLE258" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782217" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_target="STANDALONE" activate_count="1" expire_time="21601" restrict="10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1 10">
+		<actions>
+			<titleadd titleid="258" minutes="21601"/>
+		</actions>
+	</item_template>
+	<item_template id="169611028" name="Perneiras prolix duráveis ​​dignas" level="1" cName="world_us_cash_add_title_259" mask="16472" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782241" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16696" activate_count="1">
+		<actions>
+			<titleadd titleid="259"/>
+		</actions>
+	</item_template>
+	<item_template id="169611029" name="Digno nobre perneiras prolix duráveis" level="1" cName="world_us_cash_add_title_260" mask="16472" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782242" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16696" activate_count="1">
+		<actions>
+			<titleadd titleid="260"/>
+		</actions>
+	</item_template>
+	<item_template id="169611030" name="Perneiras prolix duráveis ​​especializadas" level="1" cName="world_us_cash_add_title_261" mask="16472" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782243" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16696" activate_count="1">
+		<actions>
+			<titleadd titleid="261"/>
+		</actions>
+	</item_template>
+	<item_template id="169611031" name="Perneiras prolix duráveis ​​nobres especializadas" level="1" cName="world_us_cash_add_title_262" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782244" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="262" minutes="518401"/>
+		</actions>
+	</item_template>
+	<item_template id="169611032" name="Leggings prolix duráveis ​​mestre" level="1" cName="world_us_cash_add_title_263" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782245" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="263" minutes="518401"/>
+		</actions>
+	</item_template>
+	<item_template id="169611033" name="Mestre nobre perneiras prolix duráveis" level="1" cName="world_us_cash_add_title_264" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782246" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="264" minutes="518401"/>
+		</actions>
+	</item_template>
+	<item_template id="169611034" name="Calças de tecido prolix durável do mestre nobre" level="1" cName="world_us_cash_add_title_265" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782247" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="265" minutes="518401"/>
+		</actions>
+	</item_template>
+	<item_template id="169611035" name="Leggings de hoca duráveis" level="1" cName="world_us_cash_add_title_266" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782248" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="266" minutes="518401"/>
+		</actions>
+	</item_template>
+	<item_template id="169611036" name="Leggings de hoca duráveis ​​nobres" level="1" cName="world_us_cash_add_title_267" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782249" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="267" minutes="518401"/>
+		</actions>
+	</item_template>
+	<item_template id="169611037" name="Pernas de hoca duráveis ​​dignas" level="1" cName="world_us_cash_add_title_268" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782250" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="268" minutes="518401"/>
+		</actions>
+	</item_template>
+	<item_template id="169611038" name="Especialista nobre Drenium Brogans" level="1" cName="world_devapass_add_title_269" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782709" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="43201">
+		<actions>
+			<titleadd titleid="269" minutes="43201"/>
+		</actions>
+	</item_template>
+	<item_template id="169611039" name="Sabatons de Kahrun" level="1" cName="EVENT_ADD_TITLE270" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782827" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="43201">
+		<actions>
+			<titleadd titleid="270" minutes="43201"/>
+		</actions>
+	</item_template>
+	<item_template id="169611040" name="Escudo de Archon Sentinel" level="10" cName="EVENT_ADD_TITLE271" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782885" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_target="STANDALONE" activate_count="1" expire_time="21601" restrict="10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1 10">
+		<actions>
+			<titleadd titleid="271" minutes="21601"/>
+		</actions>
+	</item_template>
+	<item_template id="169611041" name="Escudo de escala de Kahrun" level="50" cName="item_light_title272" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="782909" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="272"/>
+		</actions>
+	</item_template>
+	<item_template id="169611042" name="Outworld Bandana" level="50" cName="item_dark_title273" mask="16456" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="782910" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="273"/>
+		</actions>
+	</item_template>
+	<item_template id="169611043" name="Helmo de Balaurbona" level="10" cName="EVENT_ADD_TITLE274" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="782925" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601" restrict="10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1 10">
+		<actions>
+			<titleadd titleid="274" minutes="21601"/>
+		</actions>
+	</item_template>
+	<item_template id="169611044" name="Prolix sustentável bandana" level="1" cName="Event_add_title_275_30" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782957" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="275" minutes="43201"/>
+		</actions>
+	</item_template>
+	<item_template id="169611045" name="Colar de corundão elegante e elegante nobre" level="1" cName="Event_ADD_TITLE_276_30" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="783318" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="276" minutes="43201"/>
+		</actions>
+	</item_template>
+	<item_template id="169611046" name="Colar de corundum sofisticado nobre durável" level="1" cName="Event_ADD_TITLE_277_30" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="783330" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="277" minutes="43201"/>
+		</actions>
+	</item_template>
+	<item_template id="169611047" name="Tabela de artesanato de concentração" level="1" cName="EVENT_ADD_TITLE278" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="783620" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601">
+		<actions>
+			<titleadd titleid="229" minutes="21601"/>
+		</actions>
+	</item_template>
+	<item_template id="169611048" name="Ossos da enos" level="1" cName="EVENT_ADD_TITLE279" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="783829" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601">
+		<actions>
+			<titleadd titleid="231" minutes="21601"/>
+		</actions>
+	</item_template>
+	<item_template id="169611049" name="Artesanato: cadeira de pelúcia de Undin" level="1" cName="EVENT_ADD_TITLE280" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="784258" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21600">
+		<actions>
+			<titleadd titleid="278" minutes="21600"/>
+		</actions>
+	</item_template>
+	<item_template id="169611050" name="Melhor Pellan branco" level="1" cName="EVENT_ADD_TITLE281" mask="16472" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="784467" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16696" activate_count="1">
+		<actions>
+			<titleadd titleid="279"/>
+		</actions>
+	</item_template>
+	<item_template id="169611051" name="Projeto: Gestas de drenium duráveis ​​de especialistas" level="1" cName="world_cn_event_add_title_282_360day" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785166" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="282" minutes="518401"/>
+		</actions>
+	</item_template>
+	<item_template id="169611052" name="Projeto: Greos de drenium duráveis ​​nobres especializados" level="1" cName="world_cn_event_add_title_283_360day" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785168" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="283" minutes="518401"/>
+		</actions>
+	</item_template>
+	<item_template id="169611053" name="Design: Comando de drenium durável nobre especialista" level="1" cName="world_cn_event_add_title_284_90day" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785170" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="284" minutes="129601"/>
+		</actions>
+	</item_template>
+	<item_template id="169611054" name="Projeto: Prolix Durável nobre Pauldrons" level="1" cName="EVENT_ADD_TITLE285" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785209" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="285" minutes="43201"/>
+		</actions>
+	</item_template>
+	<item_template id="169611055" name="Design: Noble Durável Prolix Leggings" level="1" cName="EVENT_ADD_TITLE286" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785210" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="286" minutes="43201"/>
+		</actions>
+	</item_template>
+	<item_template id="169611056" name="Projeto: Túnica prolix durável nobre" level="1" cName="EVENT_ADD_TITLE287" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785211" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="287" minutes="43201"/>
+		</actions>
+	</item_template>
+	<item_template id="169611057" name="Design: A iluminação ao ar livre Adamantium" level="1" cName="EVENT_ADD_TITLE288" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785334" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601">
+		<actions>
+			<titleadd titleid="288" minutes="21601"/>
+		</actions>
+	</item_template>
+	<item_template id="169611058" name="Design Balic: Guardas de mão duráveis ​​do Sky Dragon" level="1" cName="world_Event_ADD_TITLE_275_15" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="785477" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601">
+		<actions>
+			<titleadd titleid="275" minutes="21601"/>
+		</actions>
+	</item_template>
+	<item_template id="169611059" name="Design Balic: Spaulders duráveis ​​do Sky Dragon" level="1" cName="world_Event_ADD_TITLE_276_15" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="785478" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601">
+		<actions>
+			<titleadd titleid="276" minutes="21601"/>
+		</actions>
+	</item_template>
+	<item_template id="169611060" name="Artesanato: Orbe de água escura durável" level="1" cName="EVENT_ADD_TITLE289" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="785860" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="289"/>
+		</actions>
+	</item_template>
+	<item_template id="169611061" name="Artesanato: digno nobre Drenium Alabarda" level="1" cName="EVENT_ADD_TITLE290" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785876" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="259200">
+		<actions>
+			<titleadd titleid="290" minutes="259201"/>
+		</actions>
+	</item_template>
+	<item_template id="169611062" name="Artesanato: Especialista Noble Drenium Adaga" level="1" cName="EVENT_ADD_TITLE291" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785877" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="129601">
+		<actions>
+			<titleadd titleid="291" minutes="129601"/>
+		</actions>
+	</item_template>
+	<item_template id="169611063" name="Artesanato: especialista nobre durável drenium longsword" level="1" cName="EVENT_ADD_TITLE292" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785878" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="43201">
+		<actions>
+			<titleadd titleid="292" minutes="43201"/>
+		</actions>
+	</item_template>
+	<item_template id="169611064" name="Artesanato: Noble nobre de calças duráveis ​​e duráveis" level="1" cName="world_nct_event_add_title_293_30day" mask="16448" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785949" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16672" activate_count="1">
+		<actions>
+			<titleadd titleid="293" minutes="43201"/>
+		</actions>
+	</item_template>
+	<item_template id="169611065" name="Ensina como fazer o digno capuz durável de corrente drenium." level="1" cName="item_all_title_294" mask="0" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="786486" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640" activate_count="1">
+		<actions>
+			<titleadd titleid="294"/>
+		</actions>
+	</item_template>
+	<item_template id="169611066" name="Ensina como fazer a empresa durável vambrace." level="1" cName="EVENT_ADD_TITLE295" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="786528" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601">
+		<actions>
+			<titleadd titleid="295" minutes="21601"/>
+		</actions>
+	</item_template>
+	<item_template id="169611067" name="Ensina como fazer o prolix durável Bandana durável." level="1" cName="event_add_title_296" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="786568" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="296"/>
+		</actions>
+	</item_template>
 	<item_template id="169611068" name="Projeto: nobre malha de drenium durável" level="1" cName="world_jp_event_add_title_301" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="787432" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="10081"/>
 	<item_template id="169611069" name="Design: Noble Drenium ombro durável ombros" level="1" cName="world_jp_event_add_title_302" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="787433" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="21601"/>
 	<item_template id="169611070" name="Projeto: Greaves de drenium duráveis ​​nobres" level="1" cName="world_jp_event_add_title_303" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="787434" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="43201"/>
