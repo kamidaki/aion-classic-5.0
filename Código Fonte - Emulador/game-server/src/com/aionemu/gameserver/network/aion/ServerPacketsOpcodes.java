@@ -349,6 +349,7 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(0x1A4, SM_SIEL_ANVIL_RESULT.class);
 		addPacketOpcode(0x1C4, SM_SIEL_HAMMER_EVENT.class);
 		addPacketOpcode(0x1A2, SM_SIEL_HAMMER_RESULT.class);
+		addPacketOpcode(363, SM_ALTER_INFO.class); // [S_ALTER_INFO] (0x016B)
 	}
 
 	static int getOpcode(Class<? extends AionServerPacket> packetClass) {

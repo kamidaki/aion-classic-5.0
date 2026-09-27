@@ -115,6 +115,7 @@ public class PvpService {
 			updateKillQuests(killers, victim);
 			if (killers.contains(winner)) { // rewards for winner only (group members are ignored)
 				EventService.getInstance().onPvpKill(winner, victim);
+				com.lostacademy.lostsocket.secure.SecureAreaService.getInstance().onPvpKill(winner, victim);
 			}
 		}
 

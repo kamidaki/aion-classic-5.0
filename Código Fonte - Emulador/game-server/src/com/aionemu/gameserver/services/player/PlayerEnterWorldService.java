@@ -207,6 +207,7 @@ public final class PlayerEnterWorldService {
 			client.sendPacket(new SM_UNK_0138());
 			StorybookService.onEnterWorld(player); // S 0x14C e 0x14D
 			MorosService.onEnterWorld(player); // S 0x169, logo depois do 0x14D como na captura
+			com.lostacademy.lostsocket.secure.SecureAreaService.getInstance().onEnterWorld(player); // S 0x16B (SM_ALTER_INFO)
 			client.sendPacket(new SM_UNK_0177());
 			client.sendPacket(new SM_UNK_0197(player.getObjectId()));
 			client.sendPacket(new SM_UNK_01A8(player.getObjectId()));

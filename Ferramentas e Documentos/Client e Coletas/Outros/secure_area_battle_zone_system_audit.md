@@ -266,6 +266,44 @@ Com base na descoberta da rotina `0x180365910` e do pacote `SM_VERSION_CHECK` (`
 4. **Sincronização no Login (`PlayerEnterWorldService.java`)**:
    Ao entrar no mundo, o emulador envia `SM_VERSION_CHECK` imediatamente antes de `SM_ENTER_WORLD_CHECK`, garantindo que o status de GM/Staff do personagem ativo seja validado e o cliente oculte o widget para jogadores normais e o mantenha para a administração.
 
+### 4.5 Reativação Completa do Sistema e Janela de Confirmação Interativa
+Para atender aos requisitos de operação segura e autoritativa do Altar:
+1. **Pacote de Entrada (`CM_SERVER_PVP_ACK`)**:
+   - Mapeado no índice 806 (`0x0326` decodificado / `0x03DC` wire) em `AionClientPacketFactory.java`.
+   - Invoca diretamente `SecureAreaService.getInstance().requestToggle(player)`.
+2. **Janela de Confirmação de Custo (`SM_QUESTION_WINDOW`)**:
+   - Antes de qualquer débito ou ativação do modo FFA, o servidor valida se o jogador atende aos pré-requisitos (nível >= 50, vivo, fora de instâncias, sem cooldown).
+   - Verifica o saldo em conta de Pontos de Participação (`ParticipationPointsDAO`).
+   - Emite um popup interativo na tela (`SM_QUESTION_WINDOW` com ID de diálogo `160016` e texto complementar no chat) informando o custo de 100 Pontos de Participação.
+   - O modo FFA só é efetivado se o jogador explicitamente aceitar na janela modal (`acceptRequest`).
+   - Se recusar, uma mensagem de cancelamento é exibida e nenhum ponto é debitado.
+
+### 4.6 Pacote Oficial de Atualização de Baixas e Cooldown: `SM_ALTER_INFO` (`0x016B`)
+Através de desmontagem da tabela de saltos em `Game.dll 0x18089F665`, foi descoberto o manipulador nativo do cliente em `0x1808CBD70` para o opcode **`0x016B`** (363 decimal):
+```
+[Opcode 0x016B - SM_ALTER_INFO]
+- writeD(playerObjectId)       -> ID de objeto do personagem (4 bytes)
+- writeQ(cooldownTimestamp)    -> Timestamp de término do cooldown/duração em millis (8 bytes)
+- writeD(alterPoints)          -> Baixas / Pontos do Livro de Eltar (4 bytes)
+```
+* **Efeitos no Cliente**:
+  - `Game.dll 0x180365310`: Atualiza o mapa global do jogador, ativa o ícone de espadas cruzadas na HUD e emite a mensagem de sistema `1402028` (*"Eltar mode activated."*) ou `1402027` (*"Eltar mode deactivated."*).
+  - `Game.dll 0x180364B20`: Grava a pontuação na tabela de infâmia/baixas do Livro de Eltar.
+  - `Game.dll 0x18033F3A0`: Quando a janela modal *"Book of Eltar"* (`alter_info_dialog`) é aberta, o cliente lê esse valor e renderiza o número de baixas em `alter_point_text`, calcula a progressão para os 5 ranques de `client_ffa_alter.xml`, ajusta a heráldica (`icon_buff_alter_X`) e o título correspondente.
+
+### 4.7 Regras de Baixas, Reset e Premiação
+- **Persistência (`player_alter_stats`)**:
+  - Tabela dedicada no banco de dados registrando `alter_kills`, `alter_points`, `daily_kills`, `weekly_kills`, `last_kill_time` e `last_reset_time`.
+- **Regras de Reset**:
+  - **Diário**: Ao cruzar meia-noite (horário do servidor), as baixas diárias são automaticamente zeradas.
+  - **Semanal**: A cada troca de semana ISO, as baixas semanais são redefinidas.
+- **Premiação por Baixa (`PvpService.onPvpKill`)**:
+  - Cada abate realizado por um jogador no modo Altar concede:
+    - **+100 Pontos Eltar** (avançando pelos patamares de Ranque 1 a 5).
+    - **+25 Pontos de Participação** creditados na conta via `ParticipationPointsDAO`.
+    - Mensagem de notificação imediata com o resumo de baixas diárias e semanais.
+    - Anúncio de marcos de ranque alcançados (*Renegado*, *Inquisidor*, *Rebelde*, *Legislador*, *Anti-herói de Atreia*).
+
 ---
 
 ## 5. Respostas Diretas aos 13 Pontos da Auditoria
