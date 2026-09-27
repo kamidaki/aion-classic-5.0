@@ -5,6 +5,7 @@ and extracts armature hierarchy / bind poses for export.
 """
 
 from __future__ import annotations
+import binascii
 from typing import Any, Dict, List, Optional, Tuple
 
 import bpy
@@ -140,7 +141,7 @@ class SkeletonProvider(ISkeletonProvider):
 
             pid = name_to_idx.get(bone.parent.name, -1) if bone.parent else -1
             nch = len(bone.children)
-            ctrl_id = abs(hash(bone.name)) % 0xFFFFFFFF
+            ctrl_id = binascii.crc32(bone.name.encode("latin-1"))
 
             bone_anim.append({
                 "bone_id": idx,

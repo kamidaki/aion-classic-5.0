@@ -16,6 +16,7 @@ from .animation_provider import AnimationProvider
 from .model_provider import ModelProvider
 from .npc_provider import NPCProvider
 from .export_provider import ExportProvider
+from .mannequin_provider import MannequinProvider
 
 __all__ = [
     "IModelProvider",
@@ -30,4 +31,5 @@ __all__ = [
     "ModelProvider",
     "NPCProvider",
     "ExportProvider",
+    "MannequinProvider",
 ]

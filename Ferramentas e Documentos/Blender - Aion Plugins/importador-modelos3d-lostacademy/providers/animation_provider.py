@@ -5,12 +5,32 @@ and serializes Blender Actions back into authoritative CryEngine CAF binary file
 """
 
 from __future__ import annotations
+import binascii
 from typing import Any, Dict, List, Optional, Tuple
 
 import bpy
 from .base_provider import IAnimationProvider
 from ..formats.cgf.caf_parser import parse_caf
 from ..formats.cgf.caf_writer import write_caf
+
+
+def get_action_fcurves(action: bpy.types.Action) -> List[bpy.types.FCurve]:
+    """Returns all fcurves for an action, supporting both legacy Actions and Blender 5+ layered Actions."""
+    if not action:
+        return []
+    try:
+        if hasattr(action, "fcurves") and action.fcurves is not None:
+            return list(action.fcurves)
+    except (AttributeError, TypeError):
+        pass
+    curves: List[bpy.types.FCurve] = []
+    if hasattr(action, "layers"):
+        for layer in action.layers:
+            for strip in layer.strips:
+                if hasattr(strip, "channelbags"):
+                    for cb in strip.channelbags:
+                        curves.extend(cb.fcurves)
+    return curves
 
 
 class AnimationProvider(IAnimationProvider):
@@ -36,12 +56,18 @@ class AnimationProvider(IAnimationProvider):
         timing = parsed.get("timing", {})
         frame_end = timing.get("frame_end", 60)
 
-        # Map controller IDs to bone names
+        # Map controller IDs to bone names using CryEngine CRC32
         ctrl_to_bone: Dict[int, str] = {}
         for i, b_info in enumerate(bone_anim):
             cid = b_info.get("ctrl_id")
             if cid is not None and i < len(bone_names):
                 ctrl_to_bone[cid] = bone_names[i]
+
+        # Map directly from rig pose bones via CRC32
+        if rig_obj.pose and rig_obj.pose.bones:
+            for b_name in rig_obj.pose.bones.keys():
+                ctrl_to_bone[binascii.crc32(b_name.encode("latin-1"))] = b_name
+                ctrl_to_bone[binascii.crc32(b_name.lower().encode("latin-1"))] = b_name
 
         action = bpy.data.actions.new(name=action_name)
         rig_obj.animation_data_create()
@@ -65,11 +91,13 @@ class AnimationProvider(IAnimationProvider):
                     pbone.keyframe_insert("rotation_quaternion", frame=frame)
 
         # Setup cyclic playback
-        if hasattr(action, "fcurves"):
-            for fc in action.fcurves:
-                has_cycles = any(m.type == "CYCLES" for m in fc.modifiers)
-                if not has_cycles:
+        for fc in get_action_fcurves(action):
+            has_cycles = any(m.type == "CYCLES" for m in fc.modifiers)
+            if not has_cycles:
+                try:
                     fc.modifiers.new(type="CYCLES")
+                except Exception:
+                    pass
 
         return action
 

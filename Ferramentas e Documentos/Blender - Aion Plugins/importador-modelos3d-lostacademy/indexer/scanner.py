@@ -35,31 +35,65 @@ from .asset_entry import AssetEntry
 from .dependency_graph import DependencyGraph
 
 
+RE_WINGS = re.compile(r'(?i)(?:^|[_/.\-\d])wings?(?:[_/.\-\d]|$)')
+RE_WEAPONS = re.compile(r'(?i)(?:^|[_/.\-\d])(?:weapon|weapons|sword|shield|bow|dagger|spear|polearm|staff|mace|orb|book|gun|cannon|harp|keyblade|keyhammer|pistol|rifle|2hsword|gladius|greatsword|warhammer|cipherblade)(?:[_/.\-\d]|$)')
+RE_WEAPON_PREFIX = re.compile(r'^(?:wp|sw|ts|da|sh|mc|st|or|bk|sp|pa|2h|gun|cn|hp|wh|cb|gt|ds|bw|bo|ma|gu)_', re.I)
+
+RE_ARMOR_KEYWORDS = re.compile(r'(?i)(?:^|[_/.\-\d])(?:torso|body|pants|glove|gloves|foot|feet|boots|shoes|shoulder|shoulders|helm|helmet|robe|cloth|leather|plate|chain|costume|costumes|armor|armors|outfit|dress|swimsuit|uniform|hat|cap|mantle|cloak)(?:[_/.\-\d]|$)')
+RE_ARMOR_PREFIX = re.compile(r'^(?:ch|lt|pl|rb|gl|ft|hd|pt)_[a-z0-9]', re.I)
+RE_PC_PARTS = re.compile(r'^(?:lf|lm|df|dm)(?:cl|pl|lt|ch|rb|wa|sh|gl|ft|hd)_[a-z0-9]', re.I)
+
+RE_PET_MOUNT = re.compile(r'(?i)(?:^|[_/.\-\d])(?:pet|pets|ride|rides|mount|mounts)(?:[_/.\-\d]|$)')
+RE_BUILDING = re.compile(r'(?i)(?:^|[_/.\-\d])(?:building|buildings|structure|structures|fortress|castle|bunker|tower|bridge|house|wall|gate|temple|ruin|ruins|pillar)(?:[_/.\-\d]|$)')
+RE_VEGETATION = re.compile(r'(?i)(?:^|[_/.\-\d])(?:vegetation|tree|trees|plant|plants|cliff|rock|rocks|bush|bushes|grass|flower|flowers|mushroom|leaf|leaves|wood|stone)(?:[_/.\-\d]|$)')
+
+
 def classify_asset_category(rel_path: str) -> str:
     """Classifies an asset into an authoritative category based on directory structure and name."""
-    p_lower = rel_path.lower().replace("\\", "/")
+    p_norm = rel_path.lower().replace("\\", "/")
+    fn = p_norm.split("/")[-1]
 
-    if "/monster/" in p_lower or "monster" in p_lower.split("/")[-1]:
-        return "MONSTER"
-    if "/npc/" in p_lower or "npc" in p_lower.split("/")[-1]:
-        return "NPC"
-    if "/pc/" in p_lower or "/character/" in p_lower:
-        return "CHARACTER"
-    if "/weapon/" in p_lower or "/weapons/" in p_lower or "/shield/" in p_lower:
-        return "WEAPON"
-    if "/armor/" in p_lower or "/costume/" in p_lower or "/item/" in p_lower:
-        return "ARMOR"
-    if "/wing/" in p_lower or "/wings/" in p_lower:
+    # 1. Wings
+    if (RE_WINGS.search(p_norm) or fn.startswith(("dfwing_", "lfwing_", "dmwing_", "lmwing_", "wing_"))) and not any(k in p_norm for k in ("building", "sewing", "drawing", "growing", "wingchair")):
         return "WINGS"
-    if "/pet/" in p_lower or "/ride/" in p_lower or "/mount/" in p_lower:
+
+    # 2. Weapons & Shields
+    if "/weapon/" in p_norm or "/weapons/" in p_norm or RE_WEAPON_PREFIX.match(fn) or RE_WEAPONS.search(p_norm):
+        return "WEAPON"
+
+    # 3. Armor & Costumes & PC equipment
+    if ("/armor/" in p_norm or "/costume/" in p_norm or "/cloth/" in p_norm or 
+        RE_ARMOR_PREFIX.match(fn) or RE_PC_PARTS.match(fn) or 
+        (RE_ARMOR_KEYWORDS.search(fn) and not any(k in p_norm for k in ("/building/", "/prop/")))):
+        return "ARMOR"
+
+    # 4. Pets & Mounts
+    if RE_PET_MOUNT.search(p_norm):
         return "PET_MOUNT"
-    if any(k in p_lower for k in ("/building/", "/buildings/", "/structure/", "/fortress/", "castle", "bunker", "tower", "bridge", "house", "wall")):
+
+    # 5. Monsters
+    if "/monster/" in p_norm or "monster" in fn:
+        return "MONSTER"
+
+    # 6. NPCs
+    if "/npc/" in p_norm or "npc" in fn or fn.startswith(("npc_", "clf", "clm", "caf", "cam")):
+        return "NPC"
+
+    # 7. Characters (Base naked meshes, hair, heads)
+    if "/pc/" in p_norm or "/character/" in p_norm or fn.startswith(("lf_", "lm_", "df_", "dm_", "lf0", "lm0", "df0", "dm0")):
+        return "CHARACTER"
+
+    # 8. World & Environment
+    if RE_BUILDING.search(p_norm):
         return "BUILDING"
-    if any(k in p_lower for k in ("/vegetation/", "/tree/", "/plant/", "cliff", "rock", "bush", "grass", "flower")):
+
+    if RE_VEGETATION.search(p_norm):
         return "VEGETATION"
-    if "/effect/" in p_lower or "/effects/" in p_lower or "/fx/" in p_lower:
+
+    if "/effect/" in p_norm or "/effects/" in p_norm or "/fx/" in p_norm:
         return "EFFECT"
-    if "/prop/" in p_lower or "/props/" in p_lower or "furniture" in p_lower:
+
+    if "/prop/" in p_norm or "/props/" in p_norm or "furniture" in p_norm:
         return "PROP"
 
     return "OBJECT"

@@ -16,6 +16,7 @@ from ..core.client_provider import AionClientProvider
 from ..indexer.asset_database import AssetDatabase
 from ..indexer.scanner import Scanner
 from ..providers.model_provider import ModelProvider
+from ..providers.mannequin_provider import MannequinProvider
 from ..viewers.display_modes import set_shading_mode
 from ..viewers.viewer_stage import ViewerStage
 
@@ -211,9 +212,27 @@ class AION_OT_load_asset(bpy.types.Operator):
 
         # 1. Setup viewer collection & lighting
         stage_col = ViewerStage.get_or_create_stage_collection()
-        ViewerStage.clear_stage_objects()
+        target_rig = None
 
-        if settings.studio_lighting:
+        if settings.preview_mode == "ON_BODY":
+            # Search for existing character armature in stage
+            for o in stage_col.objects:
+                if o.type == "ARMATURE":
+                    target_rig = o
+                    break
+            # If no armature in stage, assemble character mannequin first
+            if not target_rig:
+                target_rig = MannequinProvider.assemble_class_character(
+                    client_provider=client_prov,
+                    model_provider=model_prov,
+                    race_gender=settings.character_race,
+                    class_name=settings.character_class,
+                    target_collection=stage_col,
+                )
+        else:
+            ViewerStage.clear_stage_objects()
+
+        if settings.studio_lighting and not any(o.type == "LIGHT" for o in stage_col.objects):
             ViewerStage.setup_studio_lighting()
 
         # 2. Load model into stage
@@ -221,8 +240,21 @@ class AION_OT_load_asset(bpy.types.Operator):
             root_obj = model_prov.load_model(
                 entry=entry,
                 target_collection=stage_col,
-                load_animation=True,
+                load_animation=(target_rig is None),
+                target_rig=target_rig,
             )
+
+            # Auto-complete modular humanoid NPC/character if enabled
+            if settings.preview_mode == "ISOLATED" and settings.auto_complete_humanoid and root_obj:
+                rig = root_obj if root_obj.type == "ARMATURE" else (root_obj.parent if root_obj.parent and root_obj.parent.type == "ARMATURE" else None)
+                if rig:
+                    MannequinProvider.auto_complete_humanoid(
+                        client_provider=client_prov,
+                        model_provider=model_prov,
+                        loaded_entry=entry,
+                        target_rig=rig,
+                        target_collection=stage_col,
+                    )
         except Exception as e:
             logger.error("Failed to load model %s: %s", entry.name, e, exc_info=True)
             self.report({"ERROR"}, f"Failed to load model {entry.name}: {e}")
@@ -317,12 +349,115 @@ class AION_OT_clear_stage(bpy.types.Operator):
         return {"FINISHED"}
 
 
+class AION_OT_load_class_preset(bpy.types.Operator):
+    """Loads a complete Aion class character with default armor set and class weapons."""
+    bl_idname = "aion_model.load_class_preset"
+    bl_label = "Load Class Preset"
+    bl_description = "Load complete character with class armor set and weapons"
+    bl_options = {"REGISTER", "UNDO"}
+
+    def execute(self, context: bpy.types.Context) -> set[str]:
+        settings = context.scene.aion_model_lib
+        client_prov = get_client_provider(settings.client_path)
+        model_prov = get_model_provider(settings.client_path)
+        if not client_prov or not model_prov:
+            self.report({"ERROR"}, "Client provider not available. Check client path.")
+            return {"CANCELLED"}
+
+        stage_col = ViewerStage.get_or_create_stage_collection()
+        ViewerStage.clear_stage_objects()
+        if settings.studio_lighting:
+            ViewerStage.setup_studio_lighting()
+
+        rig = MannequinProvider.assemble_class_character(
+            client_provider=client_prov,
+            model_provider=model_prov,
+            race_gender=settings.character_race,
+            class_name=settings.character_class,
+            target_collection=stage_col,
+        )
+
+        if not rig:
+            self.report({"ERROR"}, "Failed to assemble class character preset.")
+            return {"CANCELLED"}
+
+        settings.active_asset_name = f"{settings.character_race} {settings.character_class}"
+        settings.active_category = "CHARACTER"
+        settings.active_bone_count = len(rig.data.bones)
+
+        if settings.camera_auto_frame:
+            ViewerStage.frame_object(rig)
+
+        set_shading_mode("MATERIAL")
+        self.report({"INFO"}, f"Loaded {settings.character_race} {settings.character_class} preset!")
+        return {"FINISHED"}
+
+
+class AION_OT_equip_selected_asset(bpy.types.Operator):
+    """Equips the selected library item directly onto the active character mannequin."""
+    bl_idname = "aion_model.equip_asset"
+    bl_label = "Equip on Character"
+    bl_description = "Equip the selected weapon, armor piece, or wings onto the character body"
+    bl_options = {"REGISTER", "UNDO"}
+
+    def execute(self, context: bpy.types.Context) -> set[str]:
+        settings = context.scene.aion_model_lib
+        if not settings.asset_items or settings.active_asset_index < 0:
+            self.report({"WARNING"}, "No asset selected.")
+            return {"CANCELLED"}
+
+        selected_item = settings.asset_items[settings.active_asset_index]
+        db = AssetDatabase.get()
+        entry = db.get_by_id(selected_item.asset_id)
+        if not entry:
+            self.report({"ERROR"}, "Asset not found.")
+            return {"CANCELLED"}
+
+        client_prov = get_client_provider(settings.client_path)
+        model_prov = get_model_provider(settings.client_path)
+        if not client_prov or not model_prov:
+            self.report({"ERROR"}, "Client provider not available.")
+            return {"CANCELLED"}
+
+        stage_col = ViewerStage.get_or_create_stage_collection()
+        target_rig = None
+        for o in stage_col.objects:
+            if o.type == "ARMATURE":
+                target_rig = o
+                break
+
+        if not target_rig:
+            target_rig = MannequinProvider.assemble_class_character(
+                client_provider=client_prov,
+                model_provider=model_prov,
+                race_gender=settings.character_race,
+                class_name=settings.character_class,
+                target_collection=stage_col,
+            )
+
+        if not target_rig:
+            self.report({"ERROR"}, "Failed to find or create character mannequin.")
+            return {"CANCELLED"}
+
+        model_prov.load_model(
+            entry=entry,
+            target_collection=stage_col,
+            load_animation=False,
+            target_rig=target_rig,
+        )
+
+        self.report({"INFO"}, f"Equipped {entry.name} onto character!")
+        return {"FINISHED"}
+
+
 CLASSES = (
     AION_OT_detect_client,
     AION_OT_scan_assets,
     AION_OT_filter_assets,
     AION_OT_load_asset,
     AION_OT_clear_stage,
+    AION_OT_load_class_preset,
+    AION_OT_equip_selected_asset,
 )
 
 

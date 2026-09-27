@@ -83,6 +83,7 @@ class ModelProvider(IModelProvider):
         entry: AssetEntry,
         target_collection: bpy.types.Collection,
         load_animation: bool = True,
+        target_rig: Optional[bpy.types.Object] = None,
     ) -> Optional[bpy.types.Object]:
         """Loads a model asset into Blender with meshes, materials, armature, and idle animation."""
         self.client_prov.ensure_category_paks_indexed(entry.model_path)
@@ -110,9 +111,9 @@ class ModelProvider(IModelProvider):
         bone_initial_pos = parsed_cgf.get("bone_initial_pos", [])
         bone_anim = parsed_cgf.get("bone_anim", [])
 
-        # 1. Build Armature if skeleton is present
-        rig_obj = None
-        if bone_names and bone_initial_pos:
+        # 1. Build or reuse Armature
+        rig_obj = target_rig
+        if rig_obj is None and bone_names and bone_initial_pos:
             rig_obj = self.skel_prov.build_armature(
                 name=entry.name,
                 bone_names=bone_names,
@@ -120,6 +121,29 @@ class ModelProvider(IModelProvider):
                 bone_anim=bone_anim,
                 collection=target_collection,
             )
+        elif rig_obj is not None and bone_names and hasattr(rig_obj, "data") and hasattr(rig_obj.data, "bones"):
+            # Dynamically add any missing bones into target_rig
+            missing_bones = [b for b in bone_names if b not in rig_obj.data.bones]
+            if missing_bones:
+                bpy.context.view_layer.objects.active = rig_obj
+                bpy.ops.object.mode_set(mode="EDIT")
+                for i, b_name in enumerate(bone_names):
+                    if b_name not in rig_obj.data.edit_bones:
+                        eb = rig_obj.data.edit_bones.new(b_name)
+                        eb.use_deform = True
+                        m = bone_initial_pos[i] if i < len(bone_initial_pos) else None
+                        if m and len(m) >= 12:
+                            head_pos = Vector((m[9] / 100.0, m[10] / 100.0, m[11] / 100.0))
+                        else:
+                            head_pos = Vector((0.0, 0.0, 1.5))
+                        eb.head = head_pos
+                        eb.tail = head_pos + Vector((0.0, 0.0, 0.04))
+                        # Hierarchy attachment
+                        if "hair" in b_name.lower() and "Bip01 Head" in rig_obj.data.edit_bones:
+                            eb.parent = rig_obj.data.edit_bones["Bip01 Head"]
+                        elif "wing" in b_name.lower() and "Bip01 Spine2" in rig_obj.data.edit_bones:
+                            eb.parent = rig_obj.data.edit_bones["Bip01 Spine2"]
+                bpy.ops.object.mode_set(mode="OBJECT")
 
         # 2. Build Meshes for each Node
         created_objects: List[bpy.types.Object] = []
@@ -238,8 +262,32 @@ class ModelProvider(IModelProvider):
             else:
                 mesh_obj.matrix_world = node_mat
                 if rig_obj:
-                    mesh_obj.parent = rig_obj
-                    mesh_obj.matrix_parent_inverse = rig_obj.matrix_world.inverted()
+                    equip_bone = None
+                    entry_cat = getattr(entry, "category", "")
+                    entry_name_lower = (entry.name + " " + (entry.model_path or "")).lower()
+                    if "shield" in entry_name_lower or "sh_" in entry_name_lower:
+                        for candidate in ("Bip01 L Hand", "Shield", "Dummy_Shield", "bip01 l hand"):
+                            if hasattr(rig_obj, "data") and candidate in rig_obj.data.bones:
+                                equip_bone = candidate
+                                break
+                    elif entry_cat == "WEAPON" or any(k in entry_name_lower for k in ("sword", "dagger", "spear", "mace", "staff", "bow", "gun", "harp", "wp_", "sw_", "da_", "ts_", "pa_", "st_", "ma_")):
+                        for candidate in ("Bip01 R Hand", "Weapon_R", "Dummy_Weapon_R", "bip01 r hand"):
+                            if hasattr(rig_obj, "data") and candidate in rig_obj.data.bones:
+                                equip_bone = candidate
+                                break
+                    elif entry_cat == "WINGS" or "wing" in entry_name_lower:
+                        for candidate in ("Bip01 Spine2", "Bip01 Spine1", "bip01 spine2"):
+                            if hasattr(rig_obj, "data") and candidate in rig_obj.data.bones:
+                                equip_bone = candidate
+                                break
+
+                    if equip_bone:
+                        mesh_obj.parent = rig_obj
+                        mesh_obj.parent_type = "BONE"
+                        mesh_obj.parent_bone = equip_bone
+                    else:
+                        mesh_obj.parent = rig_obj
+                        mesh_obj.matrix_parent_inverse = rig_obj.matrix_world.inverted()
 
         # 3. Load Idle Animation if requested
         if rig_obj and load_animation and entry.model_path:

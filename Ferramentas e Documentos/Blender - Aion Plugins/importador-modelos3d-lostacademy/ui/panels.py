@@ -141,7 +141,38 @@ class AION_PT_asset_browser(bpy.types.Panel):
         btn_row = layout.row(align=True)
         btn_row.scale_y = 1.3
         btn_row.operator("aion_model.load_asset", text="Load in Viewer", icon="RESTRICT_VIEW_OFF")
+        btn_row.operator("aion_model.equip_asset", text="Equip on Body", icon="USER")
         btn_row.operator("aion_model.clear_stage", text="Clear", icon="TRASH")
+
+
+class AION_PT_character_preview(bpy.types.Panel):
+    """Character Dressing Room & Class Preset Viewer."""
+    bl_label = "Class & Character Preview"
+    bl_idname = "AION_PT_character_preview"
+    bl_space_type = "VIEW_3D"
+    bl_region_type = "UI"
+    bl_category = PANEL_CATEGORY
+
+    def draw(self, context: bpy.types.Context) -> None:
+        layout = self.layout
+        settings = context.scene.aion_model_lib
+
+        # Mode Selection Box
+        m_box = layout.box()
+        m_box.label(text="Preview Mode", icon="RESTRICT_VIEW_OFF")
+        m_box.prop(settings, "preview_mode", expand=True)
+        m_box.prop(settings, "auto_complete_humanoid")
+
+        # Class & Character Selection
+        box = layout.box()
+        box.label(text="Character Dressing Room", icon="COMMUNITY")
+        col = box.column(align=True)
+        col.prop(settings, "character_race")
+        col.prop(settings, "character_class")
+
+        row = box.row(align=True)
+        row.scale_y = 1.3
+        row.operator("aion_model.load_class_preset", text="Load Class Outfit", icon="CHECKMARK")
 
 
 class AION_PT_asset_details(bpy.types.Panel):
@@ -323,6 +354,7 @@ CLASSES = (
     AION_UL_asset_list,
     AION_PT_client_header,
     AION_PT_asset_browser,
+    AION_PT_character_preview,
     AION_PT_asset_details,
     AION_PT_viewport_controls,
     AION_PT_animation_player,

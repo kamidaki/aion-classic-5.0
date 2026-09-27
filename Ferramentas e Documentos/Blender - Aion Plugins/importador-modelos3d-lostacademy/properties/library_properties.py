@@ -159,6 +159,51 @@ class AionModelLibrarySettings(bpy.types.PropertyGroup):
         default='OCTAHEDRAL',
     )
 
+    # Character Dressing Room & Class Preview
+    preview_mode: EnumProperty(
+        name="Preview Mode",
+        description="Toggle between isolated item preview and previewing on a character body",
+        items=[
+            ('ISOLATED', 'Isolated Item', 'Render only the selected 3D item'),
+            ('ON_BODY', 'On Character Body', 'Render and equip the selected item directly onto character body'),
+        ],
+        default='ISOLATED',
+    )
+    character_race: EnumProperty(
+        name="Race & Gender",
+        description="Select character race and gender for dressing room preview",
+        items=[
+            ('LF', 'Elyos Female (LF)', 'Elyos Female'),
+            ('LM', 'Elyos Male (LM)', 'Elyos Male'),
+            ('DF', 'Asmodian Female (DF)', 'Asmodian Female'),
+            ('DM', 'Asmodian Male (DM)', 'Asmodian Male'),
+        ],
+        default='LF',
+    )
+    character_class: EnumProperty(
+        name="Class",
+        description="Select Aion class for full armor set and weapon preview",
+        items=[
+            ('GLADIATOR', 'Gladiator', 'Gladiator (Plate, Greatsword / Polearm)'),
+            ('TEMPLAR', 'Templar', 'Templar (Plate, Sword + Shield)'),
+            ('RANGER', 'Ranger', 'Ranger (Leather, Bow)'),
+            ('ASSASSIN', 'Assassin', 'Assassin (Leather, Dual Daggers)'),
+            ('SORCERER', 'Sorcerer', 'Sorcerer (Robe, Orb / Spellbook)'),
+            ('SPIRITMASTER', 'Spiritmaster', 'Spiritmaster (Robe, Orb / Spellbook)'),
+            ('CLERIC', 'Cleric', 'Cleric (Chain, Mace + Shield)'),
+            ('CHANTER', 'Chanter', 'Chanter (Chain, Staff)'),
+            ('GUNSLINGER', 'Gunslinger', 'Gunslinger (Leather, Magic Guns)'),
+            ('SONGWEAVER', 'Songweaver', 'Songweaver (Robe, Harp)'),
+            ('AETHERTECH', 'Aethertech', 'Aethertech (Chain, Cipherblade / Mech)'),
+        ],
+        default='GLADIATOR',
+    )
+    auto_complete_humanoid: BoolProperty(
+        name="Auto-Complete Body",
+        description="Automatically attach matching head, hair, hands, and feet to modular clothing / NPCs",
+        default=True,
+    )
+
     # Creation & Cloning
     new_asset_id: StringProperty(name="New Asset ID", default="custom_mesh_01")
     new_category: EnumProperty(
