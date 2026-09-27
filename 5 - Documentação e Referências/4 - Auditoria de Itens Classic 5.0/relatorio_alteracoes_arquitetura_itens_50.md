@@ -78,3 +78,14 @@ Os números de compatibilidade não equivalem a funcionamento integral: um item 
 - Foi removido o bypass legado que considerava qualquer arma ou armadura válida para qualquer classe. Também foi removida a cópia indevida de nível mínimo/máximo de outras classes quando a classe consultada possui valor zero.
 - Resultado do verificador: 100% de igualdade nas 24 posições oficialmente mapeadas; zero divergências de `restrict` ou `restrict_max`; XML XSD válido.
 - Os indicadores gerais permanecem em 71.465 compatíveis, 0 divergentes comprovados e 8.199 pendentes, pois essas matrizes ainda não faziam parte das pendências contabilizadas antes desta etapa.
+
+## Etapa 7 — modificadores diretos de atributos
+
+- O auditor passou a comparar, por item e por tupla completa, operação, `StatEnum`, valor e flag `bonus` dos atributos base, `bonus_attrN` e `stat_enchant` oficiais. A presença genérica de um bloco `<modifiers>` não é mais aceita como comprovação.
+- Foram adicionados 4.010 modificadores oficiais ausentes em 1.585 templates, sem remover modificadores existentes e sem sobrescrever colisões de valor. Fonte e produto final permanecem idênticos.
+- Foram comprovados os mapeamentos adicionais de resistências `ar*`, `magical_resist` e `questexpboost`; o XML e o enum Java já possuem os `StatEnum` correspondentes. O caso representativo `101301113` recebeu `BOOST_QUEST_XP_RATE=10%` e o manastone `167000524` recebeu `MAGICAL_RESIST=300`.
+- Permanecem preservados para investigação 1.853 conflitos de valor/semântica e 461 itens com campos sem mapeamento comprovado: 389 `alldefendratio`, 66 `bleedreduceratio`, quatro `elementaldefendall` e dois manastones `elementaldefendall`.
+- `alldefendratio` não foi convertido para `PVP_DEFEND_RATIO`: o item oficial `110100842` informa 30, enquanto o template legado possui 50, evidenciando que a equivalência direta seria incorreta. Os demais campos ambíguos também não foram inferidos.
+- A matriz integral agora registra 1.660 itens com pendência específica de modificador, sendo 461 com nome ainda não mapeado e 1.204 com ao menos uma tupla oficial ausente; há sobreposição entre os grupos.
+- A regressão automatizada executou 25 testes em Java 25, todos aprovados, incluindo a carga real de `BOOST_QUEST_XP_RATE=10` e `MAGICAL_RESIST=300` a partir dos templates sincronizados.
+- Indicadores após esta etapa: 71.316 compatíveis nos campos auditados, 0 divergências comprovadas e 8.348 pendentes. A queda nominal de compatíveis decorre da auditoria mais rigorosa, não de regressão: diferenças antes ocultas por um bloco `<modifiers>` não vazio passaram a ser explicitadas.

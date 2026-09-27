@@ -20,6 +20,8 @@ from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
 
+import rebuild_50_item_templates as templates
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_CLIENT = PROJECT_ROOT / "5 - Documentação e Referências" / "3 - Client 5.0 - Dados Extraidos"
@@ -82,7 +84,7 @@ CLIENT_FIELDS = set(DIRECT_FIELDS) | set(ACTION_FIELDS) | set(CLASS_FIELDS) | {
     "magical_hit_accuracy", "magical_skill_boost", "reduce_max", "cannot_changeskin", "can_dye", "item_drop_permitted",
     "cannot_extraction", "cash_item",
     "stat_enchant_type", "stat_enchant_value", "abyss_point", "abyss_item", "charge_level",
-} | {name for _, name in BOOL_MASK} | {name + "_max" for name in CLASS_FIELDS}
+} | set(templates.BASE_MODS) | {name for _, name in BOOL_MASK} | {name + "_max" for name in CLASS_FIELDS}
 
 
 def meaningful(value: str | None) -> bool:
@@ -147,11 +149,23 @@ def read_server(path: Path) -> dict[str, dict]:
             actions.add("stigma")
         weapon = element.find("weapon_stats")
         modifiers = element.find("modifiers")
+        modifier_values = collections.Counter()
+        if modifiers is not None:
+            for modifier in modifiers.iter():
+                if modifier.tag not in ("add", "sub", "rate", "set", "abs", "mean"):
+                    continue
+                try:
+                    value = int(float(modifier.attrib.get("value", "")))
+                except ValueError:
+                    continue
+                modifier_values[(modifier.tag, modifier.attrib.get("name"), value,
+                                 modifier.attrib.get("bonus", "false") == "true")] += 1
         items[element.attrib["id"]] = {
             "attrs": dict(element.attrib),
             "actions": actions,
             "weapon": dict(weapon.attrib) if weapon is not None else {},
             "modifier_count": len(modifiers) if modifiers is not None else 0,
+            "modifiers": modifier_values,
             "children": {child.tag for child in element},
         }
         element.clear()
@@ -287,10 +301,12 @@ def compare_item(client: dict[str, str] | None, server: dict | None, strings: di
     for field, action in ACTION_FIELDS.items():
         if meaningful(client.get(field)) and action not in server["actions"]:
             pending.append(f"acao {action} indicada por {field}")
-    if any(key.startswith("bonus_attr") and meaningful(value) for key, value in client.items()) and server["modifier_count"] == 0:
-        pending.append("bonus_attr oficial sem modifier no template")
-    if meaningful(client.get("stat_enchant_type")) and server["modifier_count"] == 0:
-        pending.append("stat de manastone sem modifier no template")
+    unmapped = collections.Counter()
+    expected_modifiers = collections.Counter(templates.gen_mods(client, unmapped))
+    for name, count in sorted(unmapped.items()):
+        pending.append(f"modifier oficial sem mapeamento:{name} ({count}x)")
+    for (operation, stat, value, bonus), count in sorted((expected_modifiers - server["modifiers"]).items()):
+        pending.append(f"modifier oficial ausente:{operation}:{stat}:{value}:bonus={str(bonus).lower()} ({count}x)")
     if differences:
         status = "DIVERGENTE_COMPROVADO"
     elif pending:

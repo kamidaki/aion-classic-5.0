@@ -259,6 +259,18 @@ class ClassicItemSystemsTest {
 		assertEquals(39, fledglingSword.getMaxLevelRestrict(com.aionemu.gameserver.model.PlayerClass.SOUL_REAPER));
 	}
 
+	@Test void directOfficialModifiersMissingFromLegacyTemplatesAreLoaded() {
+		var questBoost = DataManager.ITEM_DATA.getItemTemplate(101301113);
+		assertEquals(10, questBoost.getModifiers().stream()
+			.filter(m -> m.getName() == com.aionemu.gameserver.model.stats.container.StatEnum.BOOST_QUEST_XP_RATE && m.isBonus())
+			.mapToInt(m -> m.getValue()).sum());
+
+		var magicResistStone = DataManager.ITEM_DATA.getItemTemplate(167000524);
+		assertEquals(300, magicResistStone.getModifiers().stream()
+			.filter(m -> m.getName() == com.aionemu.gameserver.model.stats.container.StatEnum.MAGICAL_RESIST && m.isBonus())
+			.mapToInt(m -> m.getValue()).sum());
+	}
+
 	@Test void environmentMatchesOfficialSixtyBytePayload() throws Exception {
 		int previous = GSConfig.CHARACTER_REENTRY_TIME;
 		try {
