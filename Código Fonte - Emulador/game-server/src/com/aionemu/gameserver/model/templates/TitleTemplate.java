@@ -28,6 +28,8 @@ public class TitleTemplate implements StatOwner, L10n {
 	private int nameId;
 	@XmlAttribute(name = "desc")
 	private String description;
+	@XmlAttribute(name = "available")
+	private Boolean available;
 
 	public int getTitleId() {
 		return titleId;
@@ -44,6 +46,11 @@ public class TitleTemplate implements StatOwner, L10n {
 
 	public String getDesc() {
 		return description;
+	}
+
+	/** Whether this title exists in the current client catalog. */
+	public boolean isAvailable() {
+		return available == null || available;
 	}
 
 	public List<StatFunction> getModifiers() {

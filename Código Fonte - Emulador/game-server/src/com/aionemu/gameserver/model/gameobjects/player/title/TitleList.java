@@ -29,6 +29,10 @@ public class TitleList {
 
 	public void setOwner(Player owner) {
 		this.owner = owner;
+		if (!containsAvailable(owner.getCommonData().getTitleId()))
+			owner.getCommonData().setTitleId(-1);
+		if (!containsAvailable(owner.getCommonData().getBonusTitleId()))
+			owner.getCommonData().setBonusTitleId(-1);
 	}
 
 	public Player getOwner() {
@@ -37,6 +41,11 @@ public class TitleList {
 
 	public boolean contains(int titleId) {
 		return titles.containsKey(titleId);
+	}
+
+	public boolean containsAvailable(int titleId) {
+		Title title = titles.get(titleId);
+		return title != null && title.getTemplate().isAvailable();
 	}
 
 	public void addEntry(int titleId, int remaining) {
@@ -52,6 +61,8 @@ public class TitleList {
 		if (tt == null) {
 			throw new IllegalArgumentException("Invalid title id " + titleId);
 		}
+		if (!tt.isAvailable())
+			return false;
 		if (owner != null) {
 			if (owner.getRace() != tt.getRace() && tt.getRace() != Race.PC_ALL) {
 				PacketSendUtility.sendMessage(owner, "This title is not available for your race.");
@@ -78,6 +89,10 @@ public class TitleList {
 	}
 
 	public void setDisplayTitle(int titleId) {
+		if (titleId != -1 && titleId != 0xFFFF && !containsAvailable(titleId))
+			return;
+		if (titleId == 0xFFFF)
+			titleId = -1;
 		PacketSendUtility.sendPacket(owner, SM_TITLE_INFO.selfTitle(titleId, owner.getCommonData().getBonusTitleId()));
 		PacketSendUtility.broadcastPacketAndReceive(owner, (new SM_TITLE_INFO(owner, titleId)));
 		owner.getCommonData().setTitleId(titleId);
@@ -85,6 +100,10 @@ public class TitleList {
 	}
 
 	public void setBonusTitle(int bonusTitleId) {
+		if (bonusTitleId != -1 && bonusTitleId != 0xFFFF && !containsAvailable(bonusTitleId))
+			return;
+		if (bonusTitleId == 0xFFFF)
+			bonusTitleId = -1;
 		PacketSendUtility.sendPacket(owner, new SM_TITLE_INFO(6, bonusTitleId));
 		if (owner.getCommonData().getBonusTitleId() > 0) {
 			if (owner.getGameStats() != null) {
@@ -113,7 +132,21 @@ public class TitleList {
 		return titles.size();
 	}
 
+	public int availableSize() {
+		return (int) titles.values().stream().filter(title -> title.getTemplate().isAvailable()).count();
+	}
+
 	public Collection<Title> getTitles() {
 		return titles.values();
+	}
+
+	public Collection<Title> getAvailableTitles() {
+		return titles.values().stream().filter(title -> title.getTemplate().isAvailable()).toList();
+	}
+
+	public void applyBonusTitleStats() {
+		int bonusTitleId = owner.getCommonData().getBonusTitleId();
+		if (containsAvailable(bonusTitleId) && owner.getGameStats() != null)
+			TitleChangeListener.onBonusTitleChange(owner.getGameStats(), bonusTitleId, true);
 	}
 }

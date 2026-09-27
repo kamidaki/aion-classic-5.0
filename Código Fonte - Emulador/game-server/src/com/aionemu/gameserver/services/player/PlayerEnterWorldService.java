@@ -196,7 +196,7 @@ public final class PlayerEnterWorldService {
 			}
 
 			// 4. Titulo ativo (Action 1, 11 bytes canonicos no 5.0)
-			client.sendPacket(new SM_TITLE_INFO(pcd.getTitleId()));
+			client.sendPacket(SM_TITLE_INFO.selfTitle(pcd.getTitleId(), pcd.getBonusTitleId()));
 
 			// 5. Animacoes / Motions
 			client.sendPacket(new SM_MOTION(player.getMotions().getMotions().values()));

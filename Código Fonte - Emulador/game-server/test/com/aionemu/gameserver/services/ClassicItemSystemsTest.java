@@ -18,6 +18,7 @@ import com.aionemu.gameserver.dataholders.AssemblyItemsData;
 import com.aionemu.gameserver.dataholders.TitleData;
 import com.aionemu.gameserver.dataholders.SielHammerData;
 import com.aionemu.gameserver.model.gameobjects.Item;
+import com.aionemu.gameserver.model.gameobjects.player.title.TitleList;
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.items.ItemSlot;
 import com.aionemu.gameserver.model.items.ItemMask;
@@ -36,6 +37,7 @@ import com.aionemu.gameserver.network.aion.clientpackets.CM_REMOVE_STIGMA;
 import com.aionemu.gameserver.network.factories.AionPacketHandlerFactory;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_COMBAT_TALENT_REWARD_UPDATE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_INVENTORY_ADD_ITEM;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_TITLE_INFO;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemAddType;
 import com.aionemu.gameserver.network.aion.iteminfo.ItemInfoBlob;
 import com.aionemu.gameserver.network.aion.iteminfo.ItemInfoBlob.ItemBlobType;
@@ -258,6 +260,7 @@ class ClassicItemSystemsTest {
 
 	@Test void legacyTitleCardsAreHammerMaterialsInsteadOfUsableTitles() {
 		assertEquals(374, DataManager.TITLE_DATA.size());
+		assertEquals(74, DataManager.TITLE_DATA.availableSize());
 		for (int itemId : new int[] {169610000, 169611001, 169611028, 169611068}) {
 			var legacyCard = DataManager.ITEM_DATA.getItemTemplate(itemId);
 			assertTrue(legacyCard.getActions() == null || legacyCard.getActions().getItemActions().stream()
@@ -269,6 +272,16 @@ class ClassicItemSystemsTest {
 			.anyMatch(com.aionemu.gameserver.model.templates.item.actions.TitleAddAction.class::isInstance));
 		assertNotNull(DataManager.TITLE_DATA.getTitleTemplate(408));
 		assertNotNull(DataManager.TITLE_DATA.getTitleTemplate(481));
+		assertFalse(DataManager.TITLE_DATA.getTitleTemplate(1).isAvailable());
+		assertTrue(DataManager.TITLE_DATA.getTitleTemplate(408).isAvailable());
+
+		var persisted = new TitleList();
+		persisted.addEntry(1, 0);
+		persisted.addEntry(408, 0);
+		assertEquals(2, persisted.size());
+		assertEquals(1, persisted.availableSize());
+		assertFalse(persisted.containsAvailable(1));
+		assertTrue(persisted.containsAvailable(408));
 	}
 
 	@Test void officialClassicTitlesPreservePreciseRatiosAndCriticalDamageBoost() {
@@ -292,6 +305,23 @@ class ClassicItemSystemsTest {
 		})
 			assertEquals(25, title.getModifiers().stream().filter(m -> m.getName() == stat)
 				.mapToInt(m -> m.getValue()).sum());
+	}
+
+	@Test void titleListPacketExposesOnlyCurrentClassicTitles() throws Exception {
+		var titles = new TitleList();
+		titles.addEntry(1, 0);
+		titles.addEntry(408, 0);
+		var packet = new SM_TITLE_INFO();
+		var titleListField = SM_TITLE_INFO.class.getDeclaredField("titleList");
+		titleListField.setAccessible(true);
+		titleListField.set(packet, titles);
+
+		byte[] payload = body(packet);
+		var buffer = ByteBuffer.wrap(payload).order(ByteOrder.LITTLE_ENDIAN);
+		assertEquals(0, Byte.toUnsignedInt(buffer.get()));
+		assertEquals(0, Byte.toUnsignedInt(buffer.get()));
+		assertEquals(1, Short.toUnsignedInt(buffer.getShort()));
+		assertEquals(408, buffer.getInt());
 	}
 
 	@Test void classicTitlePermilleModifierKeepsTenthsOfPercent() {

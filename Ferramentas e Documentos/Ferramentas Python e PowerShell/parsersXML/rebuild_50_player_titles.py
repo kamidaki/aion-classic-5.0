@@ -128,6 +128,14 @@ def generate(raw: bytes) -> tuple[bytes, collections.Counter, list[int]]:
     text = raw.decode("utf-8")
     # Permite reexecução idempotente, substituindo somente a faixa Classic atual.
     text = re.sub(r'\s*<title id="(?:4(?:0[8-9]|[1-7][0-9]|8[01]))"(?=\s).*?</title>', "", text, flags=re.S)
+    # Templates fora do catálogo atual permanecem apenas para leitura histórica.
+    def mark_legacy(match: re.Match) -> str:
+        title_id = int(match.group(1))
+        tag = match.group(0)
+        if title_id not in ids and ' available=' not in tag:
+            return tag[:-1] + ' available="false">'
+        return tag
+    text = re.sub(r'<title id="(\d+)"[^>]*>', mark_legacy, text)
     insertion = "\n" + "\n".join(rendered) + "\n"
     text = text.replace("</player_titles>", insertion + "</player_titles>")
     return text.encode("utf-8"), pending, ids
@@ -154,6 +162,7 @@ def main() -> None:
         "rebuild_50_player_titles.py\n"
         f"títulos oficiais reconstruídos: {len(ids)} ({min(ids)}..{max(ids)})\n"
         f"títulos legados preservados para compatibilidade: {sum(title_id < 408 for title_id in all_ids)}\n"
+        f"títulos indisponíveis para o cliente atual: {sum(node.get('available') == 'false' for node in root.findall('title'))}\n"
         f"atributos oficiais sem mapeamento: {sum(pending.values())}\n"
         + "".join(f"  {name}: {count}\n" for name, count in sorted(pending.items())),
         encoding="utf-8")

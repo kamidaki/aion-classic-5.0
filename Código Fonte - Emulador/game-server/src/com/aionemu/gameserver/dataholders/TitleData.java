@@ -39,4 +39,8 @@ public class TitleData {
 	public int size() {
 		return titles.size();
 	}
+
+	public int availableSize() {
+		return (int) titles.values().stream().filter(TitleTemplate::isAvailable).count();
+	}
 }

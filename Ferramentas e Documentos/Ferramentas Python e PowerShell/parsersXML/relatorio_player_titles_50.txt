@@ -1,4 +1,5 @@
 rebuild_50_player_titles.py
 títulos oficiais reconstruídos: 74 (408..481)
 títulos legados preservados para compatibilidade: 300
+títulos indisponíveis para o cliente atual: 300
 atributos oficiais sem mapeamento: 0

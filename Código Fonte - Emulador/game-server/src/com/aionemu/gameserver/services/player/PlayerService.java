@@ -187,6 +187,7 @@ public class PlayerService {
 
 		// Apply equipment stats (items and manastones were loaded in account)
 		player.getEquipment().onLoadApplyEquipmentStats();
+		player.getTitleList().applyBonusTitleStats();
 
 		var punishmentsFuture = CompletableFuture.runAsync(() -> PlayerPunishmentsDAO.loadPlayerPunishments(player));
 		var effectsFuture = CompletableFuture.runAsync(() -> PlayerEffectsDAO.loadPlayerEffects(player));

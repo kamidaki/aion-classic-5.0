@@ -34,7 +34,7 @@ public class CM_TITLE_SET extends AionClientPacket {
 	protected void runImpl() {
 		Player player = getConnection().getActivePlayer();
 		if (titleId != 0xFFFF)
-			if (!player.getTitleList().contains(titleId))
+			if (!player.getTitleList().containsAvailable(titleId))
 				return;
 
 		player.getTitleList().setDisplayTitle(titleId);

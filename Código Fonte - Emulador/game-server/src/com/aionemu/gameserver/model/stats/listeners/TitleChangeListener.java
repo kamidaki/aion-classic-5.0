@@ -11,7 +11,7 @@ public class TitleChangeListener {
 
 	public static void onBonusTitleChange(CreatureGameStats<?> cgs, int titleId, boolean isSet) {
 		TitleTemplate tt = DataManager.TITLE_DATA.getTitleTemplate(titleId);
-		if (tt == null) {
+		if (tt == null || !tt.isAvailable()) {
 			return;
 		}
 		if (!isSet) {

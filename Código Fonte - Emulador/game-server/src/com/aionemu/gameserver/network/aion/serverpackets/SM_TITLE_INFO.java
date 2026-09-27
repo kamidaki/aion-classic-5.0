@@ -64,8 +64,8 @@ public class SM_TITLE_INFO extends AionServerPacket {
 		switch (action) {
 			case 0:
 				writeC(0x00);
-				writeH(titleList.size());
-				for (Title title : titleList.getTitles()) {
+				writeH(titleList.availableSize());
+				for (Title title : titleList.getAvailableTitles()) {
 					writeD(title.getId());
 					writeD(title.secondsUntilExpiration());
 				}

@@ -26,7 +26,7 @@ public class CM_BONUS_TITLE extends AionClientPacket {
 	protected void runImpl() {
 		Player player = getConnection().getActivePlayer();
 		if (bonusTitleId != 0xFFFF)
-			if (!player.getTitleList().contains(bonusTitleId))
+			if (!player.getTitleList().containsAvailable(bonusTitleId))
 				return;
 
 		player.getTitleList().setBonusTitle(bonusTitleId);

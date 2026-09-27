@@ -16,5 +16,6 @@
 		<xs:attribute name="nameId" type="xs:int" use="required"/>
 		<xs:attribute name="desc" type="xs:string" use="required"/>
 		<xs:attribute name="race" type="Race" use="required"/>
+		<xs:attribute name="available" type="xs:boolean" use="optional" default="true"/>
 	</xs:complexType>
 </xs:schema>
