@@ -4,7 +4,7 @@ A production-quality visual asset library, 3D model viewer, animation player, an
 
 ---
 
-## 🌟 Overview: The Complete Aion Asset Pipeline
+## Overview: The Complete Aion Asset Pipeline
 
 The **Lost Academy - Importador de Modelos 3D (Aion Model Library)** turns Blender into an authoritative editing environment for Aion 3D assets, operating seamlessly on the complete cycle:
 
@@ -14,30 +14,30 @@ Whether modifying official characters, monsters, weapons, wings, and armor, or c
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
-### 1. 🔍 High-Performance Asset Indexer & Search
+### 1. High-Performance Asset Indexer & Search
 - **Recursive Fast Scanner**: Discovers all models (`.cgf`, `.cga`), skeletons, animation lists (`.cal`), and keyframe sequences (`.caf`) across loose directories and encrypted/compressed `.pak` archives without loading full meshes into memory.
 - **Categorization Engine**: Classifies assets into 12 authoritative categories: `NPC`, `MONSTER`, `CHARACTER`, `WEAPON`, `ARMOR`, `WINGS`, `PET_MOUNT`, `BUILDING`, `PROP`, `VEGETATION`, `OBJECT`, and `EFFECT`.
 - **Sub-Millisecond Search**: Multi-predicate query matching by name, template ID, file path, bone count, or animation tag.
 - **Automated Thumbnail Generator**: Renders and caches high-definition PNG icons with studio lighting in `.aion_model_thumbs/`.
 - **Persistent Disk Caching**: Saves index metadata to `.aion_model_index.json` for instantaneous startup.
 
-### 2. 🎮 Universal Multi-Client Support
+### 2. Universal Multi-Client Support
 Auto-detects and seamlessly parses all Aion client generations:
 - **GameForge Classic (EU)**: BXML templates, XOR-32 obfuscated PAK archives.
 - **Aion Live Clássico (América do Sul)**: UTF-8/16 XML, custom NPC tables (`Npcs_LostAcademy.pak`), Standard Zip PAKs.
 - **Aion 3.9 Legacy (This Aion Brasil)**: UTF-16LE XML with BOM, legacy CryEngine structures.
 - **Aion Classic 5.0 Emulator**: Hybrid loose and archive structures.
 
-### 3. 🎬 Dedicated 3D Viewer & Animation Transport
+### 3. Dedicated 3D Viewer & Animation Transport
 - **Isolated Staging Collection**: Automatically creates and manages the `Aion_Model_Viewer` scene collection.
 - **3-Point Studio Lighting**: Calibrated Key, Fill, and Rim sun lighting for optimal Material Preview.
 - **Viewport Presets & Controls**: One-click Front, Side, Top, Perspective/Orthographic toggle, and Auto-Framing.
 - **CAL Animation Sequencer**: Lists all animation sequences bound to the model's `.cal` definition.
 - **Live Timeline Transport**: Play, pause, stop, step forward/backward, and adjust frame ranges directly from the N-Panel.
 
-### 4. 🛠️ Comprehensive Asset Editors
+### 4. Comprehensive Asset Editors
 - **Mesh & Geometry Editor**: Edit Mode, Sculpt Mode, and outward normals recalculation.
 - **UV Coordinate Editor**: Angle-based unwrapping and margin-controlled island packing.
 - **Skeleton & Armature Editor**: Add bones, reparent, rename, and automatically synchronize vertex groups on skinned meshes.
@@ -45,7 +45,7 @@ Auto-detects and seamlessly parses all Aion client generations:
 - **Model Creator**: Convert arbitrary Blender meshes into authoritative CryEngine `.cgf` models with UVs, materials, and skin weights.
 - **Model Cloner**: Duplicate existing client assets into independent new entries with custom IDs and paths.
 
-### 5. 🛡️ Transactional Safe Save Pipeline (Zero Client Corruption)
+### 5. Transactional Safe Save Pipeline (Zero Client Corruption)
 - **Safety Switch (`allow_client_write`)**: Read-only safety guard enabled by default. Modifications are routed safely to the `Safe Export Directory`.
 - **Pre-Write Validation**: Verifies binary headers, vertex counts, and chunk tables before disk write.
 - **Atomic Staging**: Prepares all updates in a temporary staging directory before swapping files.
@@ -55,21 +55,34 @@ Auto-detects and seamlessly parses all Aion client generations:
 
 ---
 
-## 📦 Installation
+## Instalação e Configuração
 
-1. Clone or download the repository into Blender's addons directory:
+O add-on suporta dois métodos oficiais de instalação:
+
+### Método A: Instalação via Arquivo .ZIP (Recomendado)
+1. No Blender (4.0 a 5.2+ LTS), acesse o menu superior: **Edit > Preferences > Add-ons**.
+2. Clique no botão de instalação (no Blender 4.2+ / 5.x: clique na seta no canto superior direito e escolha **Install from Disk...**).
+3. Selecione o arquivo de distribuição:
+   ```text
+   D:\AION CLASSIC 5.0 - EMULADOR\Ferramentas e Documentos\Blender - Aion Plugins\importador-modelos3d-lostacademy.zip
    ```
+4. Na lista de complementos, ative a caixa de seleção ao lado de:
+   `Import-Export: Lost Academy - Importador de Modelos 3D (Aion Model Library)`
+
+### Método B: Instalação via Pasta / Link Simbólico
+1. Localização canônica no repositório:
+   ```text
    D:\AION CLASSIC 5.0 - EMULADOR\Ferramentas e Documentos\Blender - Aion Plugins\importador-modelos3d-lostacademy
    ```
-2. Open Blender (4.0, 4.1, 4.2, 5.0, 5.2+ LTS).
-3. Go to **Edit > Preferences > Add-ons**.
-4. In the search bar, type `Lost Academy` or `Aion Model Library`.
-5. Enable the checkbox next to **Import-Export: Lost Academy - Importador de Modelos 3D (Aion Model Library)**.
-6. The addon panel will appear in the 3D Viewport Sidebar (`N-Panel`) under the **Aion Models** tab.
+2. Crie o link simbólico para a pasta de addons do Blender:
+   ```powershell
+   cmd /c mklink /D "%APPDATA%\Blender Foundation\Blender\5.2\scripts\addons\importador-modelos3d-lostacademy" "D:\AION CLASSIC 5.0 - EMULADOR\Ferramentas e Documentos\Blender - Aion Plugins\importador-modelos3d-lostacademy"
+   ```
+3. Abra o Blender, acesse **Edit > Preferences > Add-ons**, localize `Lost Academy - Importador de Modelos 3D` e marque a caixa para ativar.
 
 ---
 
-## 🕹️ User Guide: Step-by-Step Workflow
+## User Guide: Step-by-Step Workflow
 
 ### Step 1: Client Detection & Asset Scanning
 1. Open the **Aion Models** tab on the 3D Viewport sidebar (`N`).
@@ -107,7 +120,7 @@ Auto-detects and seamlessly parses all Aion client generations:
 
 ---
 
-## 🧪 Automated Verification Suite
+## Automated Verification Suite
 
 The repository includes a 15-test automated verification test suite executed headless via Blender Python:
 
@@ -134,7 +147,7 @@ The repository includes a 15-test automated verification test suite executed hea
 
 ---
 
-## 🏛️ Architecture & File Structure
+## Architecture & File Structure
 
 ```
 importador-modelos3d-lostacademy/
@@ -212,7 +225,7 @@ importador-modelos3d-lostacademy/
 
 ---
 
-## 📄 License & Credits
+## License & Credits
 
 - Developed for the **LostAcademy** project.
 - Compatible with all official and private Aion CryEngine 1.x / 2.x client files.

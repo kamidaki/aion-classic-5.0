@@ -125,18 +125,18 @@ The 15-test test suite (`validation/run_model_tests.py`) passed with 100% succes
 
 | Test ID | Subsystem Tested | Result | Duration | Notes |
 |:---|:---|:---:|:---:|:---|
-| **01** | Addon Registration | ✅ PASS | 0.05s | All properties, operators, panels registered |
-| **02** | Multi-Client Discovery | ✅ PASS | 0.08s | Discovered GameForge, Live SA, and 3.9 |
-| **03** | Client Asset Scanner | ✅ PASS | 7.14s | Scanned 350 assets across 12 categories |
-| **04** | Database & Disk Cache | ✅ PASS | 0.12s | Search & JSON serialization verified |
-| **05** | Thumbnail Generator | ✅ PASS | 0.25s | Rendered PNG icon in studio lighting |
-| **06** | Model Loader & Staging | ✅ PASS | 0.40s | Armature, Mesh, UVMap, Materials, Action |
-| **07** | Viewport Controls | ✅ PASS | 0.02s | 3-point lighting and camera framing |
-| **08** | Animation Player | ✅ PASS | 0.05s | Play, pause, stop, frame range stepping |
-| **09** | Mesh Editor & Normals | ✅ PASS | 0.08s | Vertex tweak & outward normals |
-| **10** | Skeleton Editor | ✅ PASS | 0.06s | Added bone `Bip01 TestWing` to rig |
-| **11** | Material Editor | ✅ PASS | 0.04s | Roughness, emission, backface culling |
-| **12** | Safe Save (Read-Only) | ✅ PASS | 0.15s | Verified safe export directory routing |
-| **13** | Live Save & Backups | ✅ PASS | 0.10s | Atomic write and `.bak` creation |
-| **14** | Rollback | ✅ PASS | 0.04s | Restored original file byte-for-byte |
-| **15** | Creator & Cloner | ✅ PASS | 0.22s | Created new CGF & cloned asset |
+| **01** | Addon Registration | PASS | 0.05s | All properties, operators, panels registered |
+| **02** | Multi-Client Discovery | PASS | 0.08s | Discovered GameForge, Live SA, and 3.9 |
+| **03** | Client Asset Scanner | PASS | 7.14s | Scanned 350 assets across 12 categories |
+| **04** | Database & Disk Cache | PASS | 0.12s | Search & JSON serialization verified |
+| **05** | Thumbnail Generator | PASS | 0.25s | Rendered PNG icon in studio lighting |
+| **06** | Model Loader & Staging | PASS | 0.40s | Armature, Mesh, UVMap, Materials, Action |
+| **07** | Viewport Controls | PASS | 0.02s | 3-point lighting and camera framing |
+| **08** | Animation Player | PASS | 0.05s | Play, pause, stop, frame range stepping |
+| **09** | Mesh Editor & Normals | PASS | 0.08s | Vertex tweak & outward normals |
+| **10** | Skeleton Editor | PASS | 0.06s | Added bone `Bip01 TestWing` to rig |
+| **11** | Material Editor | PASS | 0.04s | Roughness, emission, backface culling |
+| **12** | Safe Save (Read-Only) | PASS | 0.15s | Verified safe export directory routing |
+| **13** | Live Save & Backups | PASS | 0.10s | Atomic write and `.bak` creation |
+| **14** | Rollback | PASS | 0.04s | Restored original file byte-for-byte |
+| **15** | Creator & Cloner | PASS | 0.22s | Created new CGF & cloned asset |

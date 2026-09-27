@@ -246,7 +246,7 @@ O fluxo de Salvamento Direto elimina completamente etapas manuais de conversão,
 ```text
 [ Editar Mapa no Blender ]
            │
-           ▼
+           v
 [ Clicar em 'Direct Save Map' ]
            │
            ├── 1. Identifica objetos, brushes, vegetação e terreno modificados
@@ -254,7 +254,7 @@ O fluxo de Salvamento Direto elimina completamente etapas manuais de conversão,
            ├── 3. Cria backup de segurança Level.pak.bak
            └── 4. Criptografa (XOR-32) e comprime (Deflate) em Level.pak
            │
-           ▼
+           v
 [ Abrir Cliente Aion ]  --->  Alterações visíveis imediatamente no jogo!
 ```
 

@@ -95,7 +95,7 @@ class AssetDatabase:
         Fast multi-predicate search across all indexed assets.
         Query matches name, ID, model path, and animation state tags.
         """
-        clean_q = query.strip().lower()
+        clean_q = (query or "").strip().lower()
         tokens = clean_q.split() if clean_q else []
 
         # Candidate pool based on category
