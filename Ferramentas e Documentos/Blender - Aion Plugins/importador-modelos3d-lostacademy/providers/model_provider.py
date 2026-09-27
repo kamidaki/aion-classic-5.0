@@ -24,12 +24,55 @@ from ..formats.cgf.writer import write_cgf, patch_cgf
 from ..indexer.asset_entry import AssetEntry
 
 
+def _read_matrix44(matrix_values: List[float]) -> Tuple[Tuple[float, ...], ...]:
+    return (
+        tuple(matrix_values[0:4]),
+        tuple(matrix_values[4:8]),
+        tuple(matrix_values[8:12]),
+        (
+            matrix_values[12] / 100.0,
+            matrix_values[13] / 100.0,
+            matrix_values[14] / 100.0,
+            matrix_values[15],
+        ),
+    )
+
+
+def _composed_node_matrix(node: Dict[str, Any], all_nodes: Dict[Any, Any]) -> Matrix:
+    chain = []
+    current = node
+    seen = set()
+    while isinstance(current, dict):
+        cid = current.get("header", {}).get("chunk_id") if isinstance(current.get("header"), dict) else None
+        if cid in seen:
+            break
+        if cid is not None:
+            seen.add(cid)
+        chain.append(current)
+        parent_id = current.get("parent_id")
+        if parent_id in (None, -1, 0xFFFFFFFF):
+            break
+        current = all_nodes.get(parent_id)
+
+    matrix = Matrix.Identity(4)
+    for chain_node in reversed(chain):
+        trans = chain_node.get("transform")
+        if trans and len(trans) == 16:
+            local_mat = Matrix(_read_matrix44(trans)).transposed()
+            matrix = matrix @ local_mat
+    return matrix
+
+
+def _safe_uv_idx(idx: int, length: int) -> int:
+    return idx if 0 <= idx < length else 0
+
+
 class ModelProvider(IModelProvider):
     """High-level asset loader and serializer."""
 
     def __init__(self, client_provider: AionClientProvider):
         self.client_prov = client_provider
-        self.tex_prov = TextureProvider(client_provider.catalog, client_provider.root)
+        self.tex_prov = TextureProvider(client_provider.catalog, client_provider.root, client_provider)
         self.mat_prov = MaterialProvider(self.tex_prov)
         self.skel_prov = SkeletonProvider()
         self.anim_prov = AnimationProvider()
@@ -42,6 +85,7 @@ class ModelProvider(IModelProvider):
         load_animation: bool = True,
     ) -> Optional[bpy.types.Object]:
         """Loads a model asset into Blender with meshes, materials, armature, and idle animation."""
+        self.client_prov.ensure_category_paks_indexed(entry.model_path)
         cgf_bytes = self.client_prov.resolve_cgf_bytes(entry.model_path)
         if not cgf_bytes:
             return None
@@ -58,6 +102,9 @@ class ModelProvider(IModelProvider):
         nodes = parsed_cgf.get("nodes", {})
         if not nodes:
             return None
+
+        all_materials = parsed_cgf.get("all_materials", [])
+        all_nodes = parsed_cgf.get("all_nodes") or parsed_cgf.get("nodes") or {}
 
         bone_names = parsed_cgf.get("bone_names", [])
         bone_initial_pos = parsed_cgf.get("bone_initial_pos", [])
@@ -85,51 +132,114 @@ class ModelProvider(IModelProvider):
             node_name = node_data.get("name") or f"{entry.name}_Mesh"
             positions = mesh_chunk.get("vertices", {}).get("position", [])
             faces_v = mesh_chunk.get("faces", {}).get("v", [])
+            faces_m = mesh_chunk.get("faces", {}).get("material", [])
+            smoothing_groups = mesh_chunk.get("faces", {}).get("smoothing_group", [])
 
             if not positions or not faces_v:
                 continue
 
             m_data = bpy.data.meshes.new(f"{node_name}_Mesh")
             m_data.from_pydata(positions, [], faces_v)
-            m_data.update()
 
-            # Assign UVs
+            # Assign Smoothing
+            if smoothing_groups and len(smoothing_groups) == len(m_data.polygons):
+                for blender_poly, sg in zip(m_data.polygons, smoothing_groups):
+                    if sg != 0:
+                        blender_poly.use_smooth = True
+            else:
+                for blender_poly in m_data.polygons:
+                    blender_poly.use_smooth = True
+
+            # Assign Material Slots & Polygon Material Indices
+            mat_info = node_data.get("material") if isinstance(node_data.get("material"), dict) else {}
+            is_multi = mat_info.get("mtl_type") == 2 or bool(mat_info.get("sub_materials"))
+            use_mat_ids: List[int] = []
+            mat_slot_by_id: Dict[int, int] = {}
+
+            def slot_for(mat_id: int) -> int:
+                slot = mat_slot_by_id.get(mat_id)
+                if slot is None:
+                    slot = len(use_mat_ids)
+                    use_mat_ids.append(mat_id)
+                    mat_slot_by_id[mat_id] = slot
+                return slot
+
+            if faces_m and len(faces_m) == len(m_data.polygons):
+                for blender_poly, mat_id in zip(m_data.polygons, faces_m):
+                    blender_poly.material_index = slot_for(mat_id)
+            else:
+                use_mat_ids = [0]
+
+            # Assign UVs (direct u, v matching CryEngine & DDS coordinates)
             uvs_data = mesh_chunk.get("uvs", {}).get("uvs", [])
             uv_faces = mesh_chunk.get("uv_faces", {}).get("face_uvs", [])
             if uvs_data and m_data.polygons:
                 uv_layer = m_data.uv_layers.new(name="UVMap")
-                for poly_idx, poly in enumerate(m_data.polygons):
-                    for loop_idx in poly.loop_indices:
-                        vert_idx = m_data.loops[loop_idx].vertex_index
-                        if uv_faces and poly_idx < len(uv_faces):
-                            # CryEngine Face UV mapping
-                            corner_i = list(poly.vertices).index(vert_idx)
-                            uv_idx = uv_faces[poly_idx][corner_i]
-                            if uv_idx < len(uvs_data):
-                                u, v = uvs_data[uv_idx]
-                                uv_layer.data[loop_idx].uv = (u, 1.0 - v)
-                        elif vert_idx < len(uvs_data):
-                            u, v = uvs_data[vert_idx]
-                            uv_layer.data[loop_idx].uv = (u, 1.0 - v)
+                flat_uv = [0.0] * (len(m_data.loops) * 2)
+                uv_len = len(uvs_data)
 
+                if uv_faces and len(uv_faces) == len(m_data.polygons):
+                    for uv_face, blender_poly in zip(uv_faces, m_data.polygons):
+                        for face_uvidx, loop_index in zip(uv_face, blender_poly.loop_indices):
+                            uv = uvs_data[_safe_uv_idx(face_uvidx, uv_len)]
+                            base = loop_index * 2
+                            flat_uv[base] = uv[0]
+                            flat_uv[base + 1] = uv[1]
+                else:
+                    for blender_poly in m_data.polygons:
+                        for loop_index in blender_poly.loop_indices:
+                            vert_idx = m_data.loops[loop_index].vertex_index
+                            if vert_idx < uv_len:
+                                uv = uvs_data[vert_idx]
+                                base = loop_index * 2
+                                flat_uv[base] = uv[0]
+                                flat_uv[base + 1] = uv[1]
+
+                uv_layer.data.foreach_set("uv", flat_uv)
+
+            m_data.update()
             mesh_obj = bpy.data.objects.new(node_name, m_data)
             target_collection.objects.link(mesh_obj)
             created_objects.append(mesh_obj)
 
-            # Assign Materials
-            mtl_chunk = node_data.get("material")
-            if mtl_chunk:
+            # Assign Materials to slots
+            if is_multi:
+                sub_materials = mat_info.get("sub_materials", [])
+                for mat_id in use_mat_ids:
+                    m_dict = None
+                    if 0 <= mat_id < len(all_materials):
+                        m_dict = all_materials[mat_id]
+                    elif 0 <= mat_id < len(sub_materials):
+                        m_dict = sub_materials[mat_id]
+                    else:
+                        m_dict = mat_info
+
+                    mat_name = m_dict.get("name") or f"{entry.name}_Mat_{mat_id}"
+                    mat = self.mat_prov.create_material(
+                        material_name=mat_name,
+                        mtl_chunk=m_dict,
+                    )
+                    mesh_obj.data.materials.append(mat)
+            elif mat_info:
                 mat = self.mat_prov.create_material(
-                    material_name=mtl_chunk.get("name", "Aion_Material"),
-                    mtl_chunk=mtl_chunk,
+                    material_name=mat_info.get("name", f"{entry.name}_Material"),
+                    mtl_chunk=mat_info,
                 )
                 mesh_obj.data.materials.append(mat)
 
-            # Bind Skin Weights & Armature Modifier
+            # Apply Node World Transform & Parenting
+            node_mat = _composed_node_matrix(node_data, all_nodes)
             skin_weights = mesh_chunk.get("skin_weights", [])
+
             if rig_obj and skin_weights:
                 self.skel_prov.apply_skin_weights(mesh_obj, bone_names, skin_weights, rig_obj)
                 mesh_obj.parent = rig_obj
+                mesh_obj.matrix_parent_inverse = rig_obj.matrix_world.inverted()
+            else:
+                mesh_obj.matrix_world = node_mat
+                if rig_obj:
+                    mesh_obj.parent = rig_obj
+                    mesh_obj.matrix_parent_inverse = rig_obj.matrix_world.inverted()
 
         # 3. Load Idle Animation if requested
         if rig_obj and load_animation and entry.model_path:

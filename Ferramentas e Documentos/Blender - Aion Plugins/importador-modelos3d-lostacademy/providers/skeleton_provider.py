@@ -28,7 +28,9 @@ class SkeletonProvider(ISkeletonProvider):
             return None
 
         arm_data = bpy.data.armatures.new(f"{name}_Armature")
+        arm_data.display_type = "WIRE"
         rig_obj = bpy.data.objects.new(f"{name}_Rig", arm_data)
+        rig_obj.show_in_front = False
         collection.objects.link(rig_obj)
         bpy.context.view_layer.objects.active = rig_obj
 
@@ -47,19 +49,29 @@ class SkeletonProvider(ISkeletonProvider):
                 head_pos = Vector((0.0, 0.0, float(i) * 0.05))
 
             eb.head = head_pos
-            eb.tail = head_pos + Vector((0.0, 0.0, 0.05))
+            eb.tail = head_pos + Vector((0.0, 0.0, 0.04))
             edit_bones[i] = eb
 
-        # 2. Configure parent-child relationships and tail orientation
+        # 2. Configure parent-child relationships and clean tail orientations
+        parent_tails_set = set()
         for i, b_info in enumerate(bone_anim):
             pid = b_info.get("parent_id", -1)
             if pid >= 0 and pid in edit_bones:
                 eb = edit_bones[i]
                 parent_eb = edit_bones[pid]
                 eb.parent = parent_eb
-                dist = (eb.head - parent_eb.head).length
-                if dist > 0.005:
-                    parent_eb.tail = eb.head
+                if pid not in parent_tails_set:
+                    dist = (eb.head - parent_eb.head).length
+                    if dist > 0.005:
+                        parent_eb.tail = eb.head
+                        parent_tails_set.add(pid)
+
+        # 3. Orient leaf bones along parent bone direction instead of vertical spike
+        for i, eb in edit_bones.items():
+            if i not in parent_tails_set and eb.parent:
+                parent_dir = (eb.parent.tail - eb.parent.head)
+                if parent_dir.length > 0.001:
+                    eb.tail = eb.head + parent_dir.normalized() * 0.03
 
         bpy.ops.object.mode_set(mode="OBJECT")
         return rig_obj

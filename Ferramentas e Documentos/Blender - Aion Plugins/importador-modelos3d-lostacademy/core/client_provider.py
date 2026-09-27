@@ -94,7 +94,7 @@ class AionClientProvider:
 
         # 3. Textures
         if self.textures_dir and self.textures_dir.is_dir():
-            for p in self.textures_dir.glob("*.pak"):
+            for p in self.textures_dir.rglob("*.pak"):
                 self.catalog.index_pak(p)
 
     def get_world_pak_path(self) -> Optional[Path]:

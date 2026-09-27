@@ -17,9 +17,10 @@ from ..core.pak_engine import AionCatalogIndex
 class TextureProvider(ITextureProvider):
     """Manages DDS texture resolution and image datablock caching."""
 
-    def __init__(self, catalog: AionCatalogIndex, client_root: Path):
+    def __init__(self, catalog: AionCatalogIndex, client_root: Path, client_provider: Any = None):
         self.catalog = catalog
         self.client_root = client_root
+        self.client_prov = client_provider
         self._image_cache: Dict[str, bpy.types.Image] = {}
         self._temp_extracted_dir = Path(tempfile.mkdtemp(prefix="aion_tex_cache_"))
 
@@ -39,6 +40,10 @@ class TextureProvider(ITextureProvider):
         entry_info = self.catalog.find_file(clean_rel)
         if not entry_info:
             entry_info = self.catalog.find_file(Path(clean_rel).name)
+
+        if not entry_info and self.client_prov and hasattr(self.client_prov, "ensure_category_paks_indexed"):
+            self.client_prov.ensure_category_paks_indexed(clean_rel)
+            entry_info = self.catalog.find_file(clean_rel) or self.catalog.find_file(Path(clean_rel).name)
 
         if entry_info:
             pak_path, entry = entry_info
