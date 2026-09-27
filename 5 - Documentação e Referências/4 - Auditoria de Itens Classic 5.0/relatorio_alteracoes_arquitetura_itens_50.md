@@ -1,0 +1,37 @@
+# Alterações de arquitetura e dados — auditoria de itens Classic 5.0 EU
+
+## Escopo desta etapa
+
+- Catálogo canônico definido como `data/europe/Items/client_items.xml`; as cinco outras variantes foram inventariadas separadamente e não foram mescladas.
+- Auditor anterior corrigido para localizar `data/Strings`; a execução passou de 0 para 248.529 strings carregadas.
+- Gerador protegido para preservar nomes localizados por padrão. A troca do texto exibido agora exige `--atualizar-nomes` explícito.
+- Auditor individual novo, por streaming, sem caminhos absolutos e sem alterar o emulador.
+- 58 referências `desc` ausentes foram preenchidas pelos IDs oficiais da camada Europe. Nenhum comportamento Java foi usado para contornar dados XML.
+
+## Arquivos afetados
+
+- `Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xml`: 58 atributos `desc` corrigidos.
+- `Emulador - Produto Final/GameServer/data/static_data/items/item_templates.xml`: cópia idêntica à fonte.
+- `Ferramentas e Documentos/Ferramentas Python e PowerShell/parsersXML/rebuild_50_item_templates.py`: seleção EU, descoberta correta de strings e proteção de localização.
+- `Ferramentas e Documentos/Ferramentas Python e PowerShell/parsersXML/audit_50_items_complete.py`: geração da matriz por ID, inventário arquitetural, comparação de variantes e matriz de testes.
+
+## Java, pacotes e banco de dados
+
+Nenhum serviço Java, handler, serializer, opcode ou schema SQL foi alterado nesta etapa. Eles foram apenas inventariados. A matriz contém 433 arquivos Java relacionados, 51 arquivos de dados e 68 PCAPs oficiais disponíveis. Alterações nessas camadas dependem da análise específica de cada divergência e de evidência oficial.
+
+## Indicadores após a correção
+
+| Indicador | Resultado |
+| --- | ---: |
+| Itens oficiais Europe | 79.664 |
+| Itens no emulador | 79.664 |
+| Compatíveis nos campos auditados | 22.560 |
+| Divergentes comprovados | 55.798 |
+| Pendentes de relação/protocolo | 1.306 |
+| Itens corrigidos nesta etapa | 58 |
+| Itens implementados nesta etapa | 0 |
+| Descrições ainda divergentes | 0 |
+| Testes Java executados | 19/19 aprovados |
+| Grupos end-to-end concluídos | 0/15 |
+
+Os números de compatibilidade não equivalem a funcionamento integral: um item só pode ser declarado validado após dados, comportamento, protocolo, persistência e teste no cliente estarem comprovados.

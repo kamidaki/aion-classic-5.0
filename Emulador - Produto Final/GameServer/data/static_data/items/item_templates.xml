@@ -9336,7 +9336,7 @@
 	<item_template id="100001418" name="Ensina como fazer prolix carpete." level="1" cName="npc_sword_yun_01" mask="23676" item_group="SWORD" quality="COMMON" price="5" restrict="1 1 1 1 1 1 1 1 1 1 0 1 1 0 0 0 0 1 1 0 0 1 1 0 0" desc="795199" attack_type="PHYSICAL" max_enchant="15" m_slots="1" enchant_group="common_enchant" client_mask="35388">
 		<weapon_stats min_damage="235" max_damage="319" attack_speed="1400" critical="50" physical_accuracy="870" parry="0" magical_accuracy="285" boost_magical_skill="0" attack_range="1500" hit_count="2"/>
 	</item_template>
-	<item_template id="100001419" name="npc_weapon_stella_guard_aphsar_01" level="1" cName="npc_weapon_stella_guard_aphsar_01" mask="23676" item_group="SWORD" quality="COMMON" price="5" restrict="1 1 1 1 1 1 1 1 1 1 0 1 1 0 0 0 0 1 1 0 0 1 1 0 0" desc="0" attack_type="PHYSICAL" max_enchant="15" m_slots="1" enchant_group="common_enchant" client_mask="35388">
+	<item_template id="100001419" name="npc_weapon_stella_guard_aphsar_01" level="1" cName="npc_weapon_stella_guard_aphsar_01" mask="23676" item_group="SWORD" quality="COMMON" price="5" restrict="1 1 1 1 1 1 1 1 1 1 0 1 1 0 0 0 0 1 1 0 0 1 1 0 0" desc="795200" attack_type="PHYSICAL" max_enchant="15" m_slots="1" enchant_group="common_enchant" client_mask="35388">
 		<weapon_stats min_damage="235" max_damage="319" attack_speed="1400" critical="50" physical_accuracy="870" parry="0" magical_accuracy="285" boost_magical_skill="0" attack_range="1500" hit_count="2"/>
 	</item_template>
 	<item_template id="100001420" name="Ensina como fazer a decoração da parede de Makron." level="1" cName="npc_weapon_stella_guard_aphsar_03" mask="23676" item_group="SWORD" quality="COMMON" price="5" restrict="1 1 1 1 1 1 1 1 1 1 0 1 1 0 0 0 0 1 1 0 0 1 1 0 0" desc="795201" attack_type="PHYSICAL" max_enchant="15" m_slots="1" enchant_group="common_enchant" client_mask="35388">
@@ -377641,7 +377641,7 @@
 			<add name="EVASION" value="74" bonus="true"/>
 		</modifiers>
 	</item_template>
-	<item_template id="125003071" name="ac_head_n_u2_p_58a" level="58" cName="ac_head_n_u2_p_58a" mask="54014" item_group="HEAD" quality="UNIQUE" price="3999559" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="0" enchant_group="unique_enchant" max_enchant="15" client_mask="33662">
+	<item_template id="125003071" name="ac_head_n_u2_p_58a" level="58" cName="ac_head_n_u2_p_58a" mask="54014" item_group="HEAD" quality="UNIQUE" price="3999559" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="789262" enchant_group="unique_enchant" max_enchant="15" client_mask="33662">
 		<modifiers>
 			<add name="MAXHP" value="330" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="55" bonus="true"/>
@@ -501437,10 +501437,10 @@
 	<item_template id="188600128" name="Fluxo de construção menor" level="1" cName="classic_cash_scroll_init_coolt_IDTartaros_H_01" mask="24698" item_group="PACK_SCROLL" quality="RARE" price="5" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="795305" max_stack_count="100" activate_target="STANDALONE" activate_count="1" casting_delay="1000" client_mask="25402"/>
 	<item_template id="188600129" name="Fluxo de construção" level="1" cName="classic_event_scroll_init_coolt_IDTartaros_H_01" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="795306" max_stack_count="100" activate_target="STANDALONE" activate_count="1" casting_delay="1000" client_mask="24872"/>
 	<item_template id="188600130" name="Maior fluxo de construção" level="1" cName="classic_scroll_init_coolt_IDTartaros_H_01" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" restrict="58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 0 58" desc="795307" max_stack_count="100" activate_target="STANDALONE" activate_count="1" casting_delay="1000" client_mask="24872"/>
-	<item_template id="188600131" name="classic_cash_scroll_init_coolt_IDFist" level="1" cName="classic_cash_scroll_init_coolt_IDFist" mask="24698" item_group="PACK_SCROLL" quality="RARE" price="5" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 0 55" desc="0" max_stack_count="100" activate_target="STANDALONE" activate_count="1" casting_delay="1000" client_mask="25402"/>
+	<item_template id="188600131" name="classic_cash_scroll_init_coolt_IDFist" level="1" cName="classic_cash_scroll_init_coolt_IDFist" mask="24698" item_group="PACK_SCROLL" quality="RARE" price="5" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 0 55" desc="797663" max_stack_count="100" activate_target="STANDALONE" activate_count="1" casting_delay="1000" client_mask="25402"/>
 	<item_template id="188600132" name="Chave do peito de guerra brilhante" level="1" cName="classic_event_scroll_init_coolt_IDFist" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 0 55" desc="797664" max_stack_count="100" activate_target="STANDALONE" activate_count="1" casting_delay="1000" client_mask="24872"/>
 	<item_template id="188600133" name="Abre o depósito de fundos de guerra pesados." level="1" cName="classic_scroll_init_coolt_IDFist" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 0 55" desc="797665" max_stack_count="100" activate_target="STANDALONE" activate_count="1" casting_delay="1000" client_mask="24872"/>
-	<item_template id="188600134" name="classic_cash_scroll_init_coolt_IDFist_01" level="1" cName="classic_cash_scroll_init_coolt_IDFist_01" mask="24698" item_group="PACK_SCROLL" quality="RARE" price="5" restrict="20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 0 20" desc="0" max_stack_count="100" activate_target="STANDALONE" activate_count="1" casting_delay="1000" client_mask="25402"/>
+	<item_template id="188600134" name="classic_cash_scroll_init_coolt_IDFist_01" level="1" cName="classic_cash_scroll_init_coolt_IDFist_01" mask="24698" item_group="PACK_SCROLL" quality="RARE" price="5" restrict="20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 0 20" desc="797666" max_stack_count="100" activate_target="STANDALONE" activate_count="1" casting_delay="1000" client_mask="25402"/>
 	<item_template id="188600135" name="Cat Arma Guest Bloom" level="1" cName="classic_event_scroll_init_coolt_IDFist_01" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" restrict="20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 0 20" desc="797667" max_stack_count="100" activate_target="STANDALONE" activate_count="1" casting_delay="1000" client_mask="24872"/>
 	<item_template id="188600136" name="Um bloom de hóspedes" level="1" cName="classic_scroll_init_coolt_IDFist_01" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" restrict="20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 0 20" desc="797668" max_stack_count="100" activate_target="STANDALONE" activate_count="1" casting_delay="1000" client_mask="24872"/>
 	<item_template id="188600137" name="Mithril Ore Guest Bloom. Você pode obter maior minério de Mithril se o bloom do hóspede for bom cuidado. O fertilizante do bloom do hóspede é necessário para o cultivo adequado." level="1" cName="classic_cash_scroll_init_coolt_IDDranamine_War_01" mask="24698" item_group="PACK_SCROLL" quality="RARE" price="5" restrict="56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 0 56" desc="798913" max_stack_count="100" activate_target="STANDALONE" activate_count="1" casting_delay="1000" client_mask="25402"/>
@@ -511710,11 +511710,11 @@
 	<item_template id="166003128" name="Grand Master&amp;#39;s Catalium Chausses" level="128" cName="supply_matter_enchant_128" mask="20092" item_group="ENCHANTMENT" quality="COMMON" price="640" desc="815410" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872"/>
 	<item_template id="166003129" name="Calções de pano de catálio" level="129" cName="supply_matter_enchant_129" mask="20092" item_group="ENCHANTMENT" quality="COMMON" price="645" desc="815411" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872"/>
 	<item_template id="166003130" name="Calções duráveis ​​de pano de catálio" level="130" cName="supply_matter_enchant_130" mask="20092" item_group="ENCHANTMENT" quality="COMMON" price="650" desc="815412" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872"/>
-	<item_template id="166004100" name="pcbang_matter_enchant_100" level="100" cName="pcbang_matter_enchant_100" mask="20092" item_group="ENCHANTMENT" quality="COMMON" price="500" desc="0" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872"/>
-	<item_template id="166004105" name="pcbang_matter_enchant_105" level="105" cName="pcbang_matter_enchant_105" mask="20092" item_group="ENCHANTMENT" quality="COMMON" price="525" desc="0" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872"/>
-	<item_template id="166004110" name="pcbang_matter_enchant_110" level="110" cName="pcbang_matter_enchant_110" mask="20092" item_group="ENCHANTMENT" quality="COMMON" price="550" desc="0" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872"/>
-	<item_template id="166004115" name="pcbang_matter_enchant_115" level="115" cName="pcbang_matter_enchant_115" mask="20092" item_group="ENCHANTMENT" quality="COMMON" price="575" desc="0" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872"/>
-	<item_template id="166004120" name="pcbang_matter_enchant_120" level="120" cName="pcbang_matter_enchant_120" mask="20092" item_group="ENCHANTMENT" quality="COMMON" price="600" desc="0" race="PC_ALL" max_stack_count="100" item_type="NORMAL" enchant_essence="true" client_mask="24872"/>
+	<item_template id="166004100" name="pcbang_matter_enchant_100" level="100" cName="pcbang_matter_enchant_100" mask="20092" item_group="ENCHANTMENT" quality="COMMON" price="500" desc="806392" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872"/>
+	<item_template id="166004105" name="pcbang_matter_enchant_105" level="105" cName="pcbang_matter_enchant_105" mask="20092" item_group="ENCHANTMENT" quality="COMMON" price="525" desc="806393" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872"/>
+	<item_template id="166004110" name="pcbang_matter_enchant_110" level="110" cName="pcbang_matter_enchant_110" mask="20092" item_group="ENCHANTMENT" quality="COMMON" price="550" desc="806394" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872"/>
+	<item_template id="166004115" name="pcbang_matter_enchant_115" level="115" cName="pcbang_matter_enchant_115" mask="20092" item_group="ENCHANTMENT" quality="COMMON" price="575" desc="806395" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872"/>
+	<item_template id="166004120" name="pcbang_matter_enchant_120" level="120" cName="pcbang_matter_enchant_120" mask="20092" item_group="ENCHANTMENT" quality="COMMON" price="600" desc="806396" race="PC_ALL" max_stack_count="100" item_type="NORMAL" enchant_essence="true" client_mask="24872"/>
 	<item_template id="166005000" name="Anel de fogo de Jormungand" level="111" cName="event_devaday_matter_enchant_111" mask="20092" item_group="ENCHANTMENT" quality="COMMON" price="555" desc="816723" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872"/>
 	<item_template id="166010000" name="Pedra de Encantamento (Guaranteed Success)" level="1" cName="matter_enchant_100_percent" mask="20092" item_group="ENCHANTMENT" quality="EPIC" price="5" desc="814631" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872"/>
 	<item_template id="166010001" name="[Evento] Pedra de Encantamento (Guaranteed Success)" level="1" cName="event_matter_enchant_100_percent" mask="20092" item_group="ENCHANTMENT" quality="EPIC" price="5" desc="814632" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872"/>
@@ -520247,20 +520247,20 @@
 	<item_template id="186020530" name="Feito por Goldrinyerk Limited" level="1" cName="classic_event_new_year_luck_sack_coin" mask="20092" item_group="COINS" quality="UNIQUE" price="5" desc="820323" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872"/>
 	<item_template id="186020532" name="Feito por Goldrinyerk Limited" level="55" cName="classic_event_new_year_ap_jewel_1000" mask="20092" item_group="DROP_MATERIAL" quality="LEGENDARY" price="1" desc="820365" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24876"/>
 	<item_template id="186020534" name="Canhão de Éter, encharcado de sombra" level="1" cName="world_ru_deva_event_coin" mask="20092" item_group="COINS" quality="EPIC" price="5" desc="820441" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872"/>
-	<item_template id="186020589" name="world_ru_dungeon_running_coin_01" level="1" cName="world_ru_dungeon_running_coin_01" mask="20092" item_group="COINS" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872"/>
-	<item_template id="186020590" name="world_ru_dungeon_running_coin_02" level="1" cName="world_ru_dungeon_running_coin_02" mask="20092" item_group="COINS" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872"/>
-	<item_template id="186020591" name="world_ru_dungeon_running_coin_03" level="1" cName="world_ru_dungeon_running_coin_03" mask="20092" item_group="COINS" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872"/>
-	<item_template id="186020592" name="world_ru_dungeon_running_coin_04" level="1" cName="world_ru_dungeon_running_coin_04" mask="20092" item_group="COINS" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872"/>
-	<item_template id="186020593" name="world_ru_dungeon_running_coin_05" level="1" cName="world_ru_dungeon_running_coin_05" mask="20092" item_group="COINS" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872"/>
-	<item_template id="186020620" name="world_ru_gm_event_box_key_01" level="1" cName="world_ru_gm_event_box_key_01" mask="20092" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872"/>
-	<item_template id="186020621" name="world_ru_gm_event_box_key_02" level="1" cName="world_ru_gm_event_box_key_02" mask="20092" item_group="DROP_MATERIAL" quality="RARE" price="5" desc="0" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872"/>
-	<item_template id="186020622" name="world_ru_gm_event_box_key_03" level="1" cName="world_ru_gm_event_box_key_03" mask="20092" item_group="DROP_MATERIAL" quality="LEGENDARY" price="5" desc="0" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872"/>
-	<item_template id="186020623" name="world_ru_gm_event_box_key_04" level="1" cName="world_ru_gm_event_box_key_04" mask="3708" item_group="DROP_MATERIAL" quality="UNIQUE" price="5" desc="0" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24840"/>
-	<item_template id="186020624" name="world_ru_gm_event_box_key_05" level="1" cName="world_ru_gm_event_box_key_05" mask="3708" item_group="DROP_MATERIAL" quality="EPIC" price="5" desc="0" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24840"/>
-	<item_template id="186020625" name="world_ru_gm_event_box_key_06" level="1" cName="world_ru_gm_event_box_key_06" mask="3708" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24840"/>
-	<item_template id="186020626" name="world_ru_gm_event_box_key_01_piece" level="1" cName="world_ru_gm_event_box_key_01_piece" mask="20092" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872"/>
-	<item_template id="186020627" name="world_ru_gm_event_final_reward_01" level="1" cName="world_ru_gm_event_final_reward_01" mask="20092" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872"/>
-	<item_template id="186020628" name="world_ru_gm_event_coin_01" level="1" cName="world_ru_gm_event_coin_01" mask="20092" item_group="COINS" quality="LEGENDARY" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
+	<item_template id="186020589" name="world_ru_dungeon_running_coin_01" level="1" cName="world_ru_dungeon_running_coin_01" mask="20092" item_group="COINS" quality="COMMON" price="5" desc="824344" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872"/>
+	<item_template id="186020590" name="world_ru_dungeon_running_coin_02" level="1" cName="world_ru_dungeon_running_coin_02" mask="20092" item_group="COINS" quality="COMMON" price="5" desc="824345" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872"/>
+	<item_template id="186020591" name="world_ru_dungeon_running_coin_03" level="1" cName="world_ru_dungeon_running_coin_03" mask="20092" item_group="COINS" quality="COMMON" price="5" desc="824346" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872"/>
+	<item_template id="186020592" name="world_ru_dungeon_running_coin_04" level="1" cName="world_ru_dungeon_running_coin_04" mask="20092" item_group="COINS" quality="COMMON" price="5" desc="824347" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872"/>
+	<item_template id="186020593" name="world_ru_dungeon_running_coin_05" level="1" cName="world_ru_dungeon_running_coin_05" mask="20092" item_group="COINS" quality="COMMON" price="5" desc="824348" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872"/>
+	<item_template id="186020620" name="world_ru_gm_event_box_key_01" level="1" cName="world_ru_gm_event_box_key_01" mask="20092" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="824564" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872"/>
+	<item_template id="186020621" name="world_ru_gm_event_box_key_02" level="1" cName="world_ru_gm_event_box_key_02" mask="20092" item_group="DROP_MATERIAL" quality="RARE" price="5" desc="824565" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872"/>
+	<item_template id="186020622" name="world_ru_gm_event_box_key_03" level="1" cName="world_ru_gm_event_box_key_03" mask="20092" item_group="DROP_MATERIAL" quality="LEGENDARY" price="5" desc="824566" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872"/>
+	<item_template id="186020623" name="world_ru_gm_event_box_key_04" level="1" cName="world_ru_gm_event_box_key_04" mask="3708" item_group="DROP_MATERIAL" quality="UNIQUE" price="5" desc="824567" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24840"/>
+	<item_template id="186020624" name="world_ru_gm_event_box_key_05" level="1" cName="world_ru_gm_event_box_key_05" mask="3708" item_group="DROP_MATERIAL" quality="EPIC" price="5" desc="824568" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24840"/>
+	<item_template id="186020625" name="world_ru_gm_event_box_key_06" level="1" cName="world_ru_gm_event_box_key_06" mask="3708" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="824569" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24840"/>
+	<item_template id="186020626" name="world_ru_gm_event_box_key_01_piece" level="1" cName="world_ru_gm_event_box_key_01_piece" mask="20092" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="824570" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872"/>
+	<item_template id="186020627" name="world_ru_gm_event_final_reward_01" level="1" cName="world_ru_gm_event_final_reward_01" mask="20092" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="824571" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872"/>
+	<item_template id="186020628" name="world_ru_gm_event_coin_01" level="1" cName="world_ru_gm_event_coin_01" mask="20092" item_group="COINS" quality="LEGENDARY" price="5" desc="824572" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
 	<item_template id="188000006" name="Design: iluminação de parede de titânio" level="50" cName="item_abyss_light_siege02_IDArena" mask="20092" item_group="PACK_SCROLL" quality="LEGENDARY" price="500000" desc="785306" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
 	<item_template id="188000007" name="Design: tapete fess" level="50" cName="item_abyss_dark_siege02_IDArena" mask="20092" item_group="PACK_SCROLL" quality="LEGENDARY" price="500000" desc="785307" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
 	<item_template id="188000008" name="Ensina como fazer uma cama de fibra Sobi." level="50" cName="item_abyss_light_siege02_legion" mask="20092" item_group="PACK_SCROLL" quality="LEGENDARY" price="5" desc="786853" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="17208"/>
@@ -520314,122 +520314,122 @@
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040221" name="world_wrap_ru_dungeon_running_reward_01" level="1" cName="world_wrap_ru_dungeon_running_reward_01" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="EPIC" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16648">
+	<item_template id="188040221" name="world_wrap_ru_dungeon_running_reward_01" level="1" cName="world_wrap_ru_dungeon_running_reward_01" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="EPIC" price="5" desc="824339" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16648">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040222" name="world_wrap_ru_dungeon_running_reward_02" level="1" cName="world_wrap_ru_dungeon_running_reward_02" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="EPIC" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16648">
+	<item_template id="188040222" name="world_wrap_ru_dungeon_running_reward_02" level="1" cName="world_wrap_ru_dungeon_running_reward_02" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="EPIC" price="5" desc="824340" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16648">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040223" name="world_wrap_ru_dungeon_running_reward_03" level="1" cName="world_wrap_ru_dungeon_running_reward_03" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="EPIC" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16648">
+	<item_template id="188040223" name="world_wrap_ru_dungeon_running_reward_03" level="1" cName="world_wrap_ru_dungeon_running_reward_03" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="EPIC" price="5" desc="824341" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16648">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040224" name="world_wrap_ru_dungeon_running_reward_04" level="1" cName="world_wrap_ru_dungeon_running_reward_04" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="EPIC" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16648">
+	<item_template id="188040224" name="world_wrap_ru_dungeon_running_reward_04" level="1" cName="world_wrap_ru_dungeon_running_reward_04" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="EPIC" price="5" desc="824342" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16648">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040225" name="world_wrap_ru_dungeon_running_reward_05" level="1" cName="world_wrap_ru_dungeon_running_reward_05" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="EPIC" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16648">
+	<item_template id="188040225" name="world_wrap_ru_dungeon_running_reward_05" level="1" cName="world_wrap_ru_dungeon_running_reward_05" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="EPIC" price="5" desc="824343" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16648">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040279" name="world_wrap_ru_ldf4b_questscroll" level="1" cName="world_wrap_ru_ldf4b_questscroll" casting_delay="1000" mask="3708" item_group="QUEST" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16648">
+	<item_template id="188040279" name="world_wrap_ru_ldf4b_questscroll" level="1" cName="world_wrap_ru_ldf4b_questscroll" casting_delay="1000" mask="3708" item_group="QUEST" quality="COMMON" price="5" desc="824562" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16648">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040280" name="world_wrap_ru_gm_event_reward_01" level="66" cName="world_wrap_ru_gm_event_reward_01" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="UNIQUE" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16648">
+	<item_template id="188040280" name="world_wrap_ru_gm_event_reward_01" level="66" cName="world_wrap_ru_gm_event_reward_01" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="UNIQUE" price="5" desc="824563" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16648">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040326" name="world_wrap_ru_event_autumn_festival_01" level="66" cName="world_wrap_ru_event_autumn_festival_01" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640">
+	<item_template id="188040326" name="world_wrap_ru_event_autumn_festival_01" level="66" cName="world_wrap_ru_event_autumn_festival_01" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="824646" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040327" name="world_wrap_ru_event_autumn_festival_02" level="66" cName="world_wrap_ru_event_autumn_festival_02" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640">
+	<item_template id="188040327" name="world_wrap_ru_event_autumn_festival_02" level="66" cName="world_wrap_ru_event_autumn_festival_02" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="824647" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040328" name="world_wrap_ru_event_autumn_festival_03" level="66" cName="world_wrap_ru_event_autumn_festival_03" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640">
+	<item_template id="188040328" name="world_wrap_ru_event_autumn_festival_03" level="66" cName="world_wrap_ru_event_autumn_festival_03" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="824648" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040329" name="world_wrap_ru_event_autumn_festival_04" level="66" cName="world_wrap_ru_event_autumn_festival_04" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640">
+	<item_template id="188040329" name="world_wrap_ru_event_autumn_festival_04" level="66" cName="world_wrap_ru_event_autumn_festival_04" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="824649" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040330" name="world_wrap_ru_event_autumn_festival_05" level="66" cName="world_wrap_ru_event_autumn_festival_05" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640">
+	<item_template id="188040330" name="world_wrap_ru_event_autumn_festival_05" level="66" cName="world_wrap_ru_event_autumn_festival_05" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="824650" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040331" name="world_wrap_ru_event_autumn_festival_06" level="66" cName="world_wrap_ru_event_autumn_festival_06" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640">
+	<item_template id="188040331" name="world_wrap_ru_event_autumn_festival_06" level="66" cName="world_wrap_ru_event_autumn_festival_06" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="824651" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040332" name="world_wrap_ru_event_autumn_festival_enchant" level="66" cName="world_wrap_ru_event_autumn_festival_enchant" casting_delay="1000" mask="20092" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680">
+	<item_template id="188040332" name="world_wrap_ru_event_autumn_festival_enchant" level="66" cName="world_wrap_ru_event_autumn_festival_enchant" casting_delay="1000" mask="20092" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="824652" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040333" name="world_wrap_ru_event_autumn_festival_title" level="66" cName="world_wrap_ru_event_autumn_festival_title" casting_delay="1000" mask="20092" item_group="DROP_MATERIAL" quality="RARE" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680">
+	<item_template id="188040333" name="world_wrap_ru_event_autumn_festival_title" level="66" cName="world_wrap_ru_event_autumn_festival_title" casting_delay="1000" mask="20092" item_group="DROP_MATERIAL" quality="RARE" price="5" desc="824653" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040334" name="world_wrap_ru_event_autumn_festival_matter" level="66" cName="world_wrap_ru_event_autumn_festival_matter" casting_delay="1000" mask="20092" item_group="DROP_MATERIAL" quality="LEGENDARY" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680">
+	<item_template id="188040334" name="world_wrap_ru_event_autumn_festival_matter" level="66" cName="world_wrap_ru_event_autumn_festival_matter" casting_delay="1000" mask="20092" item_group="DROP_MATERIAL" quality="LEGENDARY" price="5" desc="824654" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040335" name="world_wrap_ru_event_autumn_festival_title_token" level="66" cName="world_wrap_ru_event_autumn_festival_title_token" casting_delay="1000" mask="20092" item_group="DROP_MATERIAL" quality="UNIQUE" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680">
+	<item_template id="188040335" name="world_wrap_ru_event_autumn_festival_title_token" level="66" cName="world_wrap_ru_event_autumn_festival_title_token" casting_delay="1000" mask="20092" item_group="DROP_MATERIAL" quality="UNIQUE" price="5" desc="824655" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040352" name="world_wrap_davanion_coupon_2026_jp" level="10" cName="world_wrap_davanion_coupon_2026_jp" casting_delay="1500" mask="20092" item_group="DROP_MATERIAL" quality="UNIQUE" price="5" desc="0" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872">
+	<item_template id="188040352" name="world_wrap_davanion_coupon_2026_jp" level="10" cName="world_wrap_davanion_coupon_2026_jp" casting_delay="1500" mask="20092" item_group="DROP_MATERIAL" quality="UNIQUE" price="5" desc="824767" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040353" name="world_wrap_ru_devapass_legion_premium_01" level="1" cName="world_wrap_ru_devapass_legion_premium_01" casting_delay="1000" mask="3708" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="0" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24840">
+	<item_template id="188040353" name="world_wrap_ru_devapass_legion_premium_01" level="1" cName="world_wrap_ru_devapass_legion_premium_01" casting_delay="1000" mask="3708" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="824771" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24840">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040463" name="world_wrap_ru_event_matter_promotion_01" level="10" cName="world_wrap_ru_event_matter_promotion_01" casting_delay="1000" mask="20092" item_group="DROP_MATERIAL" quality="RARE" price="5" desc="0" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872">
+	<item_template id="188040463" name="world_wrap_ru_event_matter_promotion_01" level="10" cName="world_wrap_ru_event_matter_promotion_01" casting_delay="1000" mask="20092" item_group="DROP_MATERIAL" quality="RARE" price="5" desc="825131" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040515" name="world_wrap_ru_event_dark_dragon_promotion_01" level="1" cName="world_wrap_ru_event_dark_dragon_promotion_01" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="UNIQUE" price="1" desc="0" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24832">
+	<item_template id="188040515" name="world_wrap_ru_event_dark_dragon_promotion_01" level="1" cName="world_wrap_ru_event_dark_dragon_promotion_01" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="UNIQUE" price="1" desc="825405" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24832">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040516" name="world_wrap_ru_event_dark_dragon_promotion_02" level="1" cName="world_wrap_ru_event_dark_dragon_promotion_02" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="EPIC" price="1" desc="0" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24832">
+	<item_template id="188040516" name="world_wrap_ru_event_dark_dragon_promotion_02" level="1" cName="world_wrap_ru_event_dark_dragon_promotion_02" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="EPIC" price="1" desc="825407" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24832">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040517" name="world_wrap_ru_event_dark_dragon_promotion_03" level="1" cName="world_wrap_ru_event_dark_dragon_promotion_03" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="UNIQUE" price="150000" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="20736">
+	<item_template id="188040517" name="world_wrap_ru_event_dark_dragon_promotion_03" level="1" cName="world_wrap_ru_event_dark_dragon_promotion_03" casting_delay="1000" mask="3708" item_group="DROP_MATERIAL" quality="UNIQUE" price="150000" desc="825409" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="20736">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188040528" name="wrap_cash_dragon_mysterious_pot_select_box" level="1" cName="wrap_cash_dragon_mysterious_pot_select_box" casting_delay="1500" mask="3708" item_group="COMBINATION" quality="UNIQUE" price="0" desc="0" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24840">
+	<item_template id="188040528" name="wrap_cash_dragon_mysterious_pot_select_box" level="1" cName="wrap_cash_dragon_mysterious_pot_select_box" casting_delay="1500" mask="3708" item_group="COMBINATION" quality="UNIQUE" price="0" desc="825434" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24840">
 		<actions>
 			<decompose/>
 		</actions>
@@ -526139,12 +526139,12 @@
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188055271" name="wrap_PCBANG_event_scroll_critical_phy_60a" level="1" cName="wrap_PCBANG_event_scroll_critical_phy_60a" casting_delay="1000" mask="20092" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872">
+	<item_template id="188055271" name="wrap_PCBANG_event_scroll_critical_phy_60a" level="1" cName="wrap_PCBANG_event_scroll_critical_phy_60a" casting_delay="1000" mask="20092" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="805291" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188055272" name="wrap_PCBANG_event_scroll_critical_mag_60a" level="1" cName="wrap_PCBANG_event_scroll_critical_mag_60a" casting_delay="1000" mask="20092" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872">
+	<item_template id="188055272" name="wrap_PCBANG_event_scroll_critical_mag_60a" level="1" cName="wrap_PCBANG_event_scroll_critical_mag_60a" casting_delay="1000" mask="20092" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="805292" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872">
 		<actions>
 			<decompose/>
 		</actions>
@@ -547511,14 +547511,14 @@
 	<item_template id="188100461" name="Doublet de couro Fenris" level="1" cName="assembly_world_wrap_ru_acc_n_e2_idyun_65_select_petal" mask="20092" item_group="DROP_MATERIAL" quality="EPIC" price="5" desc="820663" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872"/>
 	<item_template id="188100462" name="O dupleto de couro de Richelle" level="1" cName="assembly_world_wrap_ru_acc_n_e2_idyun_65_select_stem" mask="20092" item_group="DROP_MATERIAL" quality="EPIC" price="5" desc="820664" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872"/>
 	<item_template id="188100476" name="Ensina como fazer túnica premium de pano de Jormungand." level="1" cName="assembly_world_wrap_ru_event_enchant_essence_random" mask="3708" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="824144" race="PC_ALL" max_stack_count="10" item_type="NORMAL" client_mask="24840"/>
-	<item_template id="188100479" name="assembly_ru_autumn_festival_enchant_box" level="66" cName="assembly_ru_autumn_festival_enchant_box" mask="20092" item_group="COMBINATION" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
-	<item_template id="188100480" name="assembly_ru_autumn_festival_enchant_key" level="66" cName="assembly_ru_autumn_festival_enchant_key" mask="20092" item_group="KEY" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
-	<item_template id="188100481" name="assembly_ru_autumn_festival_title_box" level="66" cName="assembly_ru_autumn_festival_title_box" mask="20092" item_group="COMBINATION" quality="RARE" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
-	<item_template id="188100482" name="assembly_ru_autumn_festival_title_key" level="66" cName="assembly_ru_autumn_festival_title_key" mask="20092" item_group="KEY" quality="RARE" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
-	<item_template id="188100483" name="assembly_ru_autumn_festival_matter_box" level="66" cName="assembly_ru_autumn_festival_matter_box" mask="20092" item_group="COMBINATION" quality="LEGENDARY" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
-	<item_template id="188100484" name="assembly_ru_autumn_festival_matter_key" level="66" cName="assembly_ru_autumn_festival_matter_key" mask="20092" item_group="KEY" quality="LEGENDARY" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
-	<item_template id="188100485" name="assembly_ru_autumn_festival_title_token_box" level="66" cName="assembly_ru_autumn_festival_title_token_box" mask="20092" item_group="COMBINATION" quality="UNIQUE" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
-	<item_template id="188100486" name="assembly_ru_autumn_festival_title_token_key" level="66" cName="assembly_ru_autumn_festival_title_token_key" mask="20092" item_group="KEY" quality="UNIQUE" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
+	<item_template id="188100479" name="assembly_ru_autumn_festival_enchant_box" level="66" cName="assembly_ru_autumn_festival_enchant_box" mask="20092" item_group="COMBINATION" quality="COMMON" price="5" desc="824656" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
+	<item_template id="188100480" name="assembly_ru_autumn_festival_enchant_key" level="66" cName="assembly_ru_autumn_festival_enchant_key" mask="20092" item_group="KEY" quality="COMMON" price="5" desc="824657" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
+	<item_template id="188100481" name="assembly_ru_autumn_festival_title_box" level="66" cName="assembly_ru_autumn_festival_title_box" mask="20092" item_group="COMBINATION" quality="RARE" price="5" desc="824658" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
+	<item_template id="188100482" name="assembly_ru_autumn_festival_title_key" level="66" cName="assembly_ru_autumn_festival_title_key" mask="20092" item_group="KEY" quality="RARE" price="5" desc="824659" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
+	<item_template id="188100483" name="assembly_ru_autumn_festival_matter_box" level="66" cName="assembly_ru_autumn_festival_matter_box" mask="20092" item_group="COMBINATION" quality="LEGENDARY" price="5" desc="824660" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
+	<item_template id="188100484" name="assembly_ru_autumn_festival_matter_key" level="66" cName="assembly_ru_autumn_festival_matter_key" mask="20092" item_group="KEY" quality="LEGENDARY" price="5" desc="824661" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
+	<item_template id="188100485" name="assembly_ru_autumn_festival_title_token_box" level="66" cName="assembly_ru_autumn_festival_title_token_box" mask="20092" item_group="COMBINATION" quality="UNIQUE" price="5" desc="824662" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
+	<item_template id="188100486" name="assembly_ru_autumn_festival_title_token_key" level="66" cName="assembly_ru_autumn_festival_title_token_key" mask="20092" item_group="KEY" quality="UNIQUE" price="5" desc="824663" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
 	<item_template id="188500022" name="MACE durável do dragão do céu" level="1" cName="classic_cash_add_customize_motion_cloudmaster_03" mask="20092" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="780622" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17210"/>
 	<item_template id="188500023" name="Maça durável do imperador do dragão do céu" level="1" cName="classic_cash_add_customize_motion_special_shop_01_01" mask="20092" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="780624" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17210"/>
 	<item_template id="188500024" name="Maça durável do dragão com chifres" level="1" cName="classic_cash_add_customize_motion_special_shop_01_02" mask="20092" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="780626" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17210"/>
@@ -550284,5 +550284,5 @@
 	<item_template id="190020126" name="Colar de malevita durável" level="1" cName="world_us_event_petcard_ware_r_cherubim_30day" mask="20092" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="783306" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
 	<item_template id="190020127" name="Colar de malevita durável nobre" level="1" cName="world_us_event_petcard_ware_r_cherubim_90day" mask="20092" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="783307" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
 	<item_template id="190020128" name="Colar durável de corundo" level="1" cName="event_petcard_mult_Dragonzmeygreen_30DAY" mask="20092" item_group="DROP_MATERIAL" quality="UNIQUE" price="5" desc="783324" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
-	<item_template id="190060272" name="world_ru_petcard_FairyDevilRed" level="1" cName="world_ru_petcard_FairyDevilRed" mask="20092" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="0" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
+	<item_template id="190060272" name="world_ru_petcard_FairyDevilRed" level="1" cName="world_ru_petcard_FairyDevilRed" mask="20092" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="824769" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
 </item_templates>

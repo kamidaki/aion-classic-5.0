@@ -1,0 +1,553 @@
+﻿camada;arquivo;bytes
+dados;Código Fonte - Emulador/game-server/data/static_data/battle_pass/battlepass_reward.xml;57885
+dados;Código Fonte - Emulador/game-server/data/static_data/battle_pass/battlepass_reward.xsd;1443
+dados;Código Fonte - Emulador/game-server/data/static_data/cosmetic_items/cosmetic_items.xml;48151
+dados;Código Fonte - Emulador/game-server/data/static_data/cosmetic_items/cosmetic_items.xsd;1670
+dados;Código Fonte - Emulador/game-server/data/static_data/custom_drop/fly_loot.xml;26229
+dados;Código Fonte - Emulador/game-server/data/static_data/custom_drop/fly_loot.xsd;1294
+dados;Código Fonte - Emulador/game-server/data/static_data/decomposable_items/decomposable_items.xml;5189165
+dados;Código Fonte - Emulador/game-server/data/static_data/decomposable_items/decomposable_items.xsd;6086
+dados;Código Fonte - Emulador/game-server/data/static_data/enchants/enchant_templates.xml;172044
+dados;Código Fonte - Emulador/game-server/data/static_data/enchants/enchant_templates.xsd;1137
+dados;Código Fonte - Emulador/game-server/data/static_data/global_drops/rules/rules_crafting_materials.xml;51005
+dados;Código Fonte - Emulador/game-server/data/static_data/global_drops/rules/rules_equipment.xml;558195
+dados;Código Fonte - Emulador/game-server/data/static_data/global_drops/rules/rules_recipes.xml;50500
+dados;Código Fonte - Emulador/game-server/data/static_data/item_sets/item_sets.xml;606913
+dados;Código Fonte - Emulador/game-server/data/static_data/item_sets/item_sets.xsd;1417
+dados;Código Fonte - Emulador/game-server/data/static_data/items/assembly_items.xml;5650
+dados;Código Fonte - Emulador/game-server/data/static_data/items/assembly_items.xsd;638
+dados;Código Fonte - Emulador/game-server/data/static_data/items/classic_item_systems.xml;239974
+dados;Código Fonte - Emulador/game-server/data/static_data/items/classic_item_systems.xsd;2112
+dados;Código Fonte - Emulador/game-server/data/static_data/items/global_trade.xml;656076
+dados;Código Fonte - Emulador/game-server/data/static_data/items/global_trade.xsd;1017
+dados;Código Fonte - Emulador/game-server/data/static_data/items/item_compose.xml;13433
+dados;Código Fonte - Emulador/game-server/data/static_data/items/item_compose.xsd;2239
+dados;Código Fonte - Emulador/game-server/data/static_data/items/item_groups.xml;268167
+dados;Código Fonte - Emulador/game-server/data/static_data/items/item_groups.xsd;14191
+dados;Código Fonte - Emulador/game-server/data/static_data/items/item_purifications.xml;602660
+dados;Código Fonte - Emulador/game-server/data/static_data/items/item_purifications.xsd;1245
+dados;Código Fonte - Emulador/game-server/data/static_data/items/item_random_bonuses.xml;1062094
+dados;Código Fonte - Emulador/game-server/data/static_data/items/item_random_bonuses.xsd;897
+dados;Código Fonte - Emulador/game-server/data/static_data/items/item_restriction_cleanups.xml;830
+dados;Código Fonte - Emulador/game-server/data/static_data/items/item_restriction_cleanups.xsd;829
+dados;Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xml;41947168
+dados;Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xsd;33680
+dados;Código Fonte - Emulador/game-server/data/static_data/items/item_upgrade.xml;638694
+dados;Código Fonte - Emulador/game-server/data/static_data/items/item_upgrade.xsd;3004
+dados;Código Fonte - Emulador/game-server/data/static_data/items/multi_return_item.xml;7103
+dados;Código Fonte - Emulador/game-server/data/static_data/items/multi_return_item.xsd;956
+dados;Código Fonte - Emulador/game-server/data/static_data/items/option_clear.xml;60036
+dados;Código Fonte - Emulador/game-server/data/static_data/items/option_clear.xsd;852
+dados;Código Fonte - Emulador/game-server/data/static_data/items/siel_anvil.xml;135908
+dados;Código Fonte - Emulador/game-server/data/static_data/items/siel_anvil.xsd;2042
+dados;Código Fonte - Emulador/game-server/data/static_data/items/siel_hammer.xml;484914
+dados;Código Fonte - Emulador/game-server/data/static_data/items/siel_hammer.xsd;1557
+dados;Código Fonte - Emulador/game-server/data/static_data/npc_trade_list.xml;157185
+dados;Código Fonte - Emulador/game-server/data/static_data/npc_trade_list.xsd;1579
+dados;Código Fonte - Emulador/game-server/data/static_data/recipe/recipe_templates.xml;5268171
+dados;Código Fonte - Emulador/game-server/data/static_data/recipe/recipe_templates.xsd;1925
+dados;Código Fonte - Emulador/game-server/data/static_data/skill_tree/craft_skill_tree.xml;344
+dados;Código Fonte - Emulador/game-server/data/static_data/spawns/Npcs/Custom/Morph_Recipe_Merchants.xml;340
+dados;Código Fonte - Emulador/game-server/data/static_data/spawns/Npcs/Custom/Warehouse_Managers.xml;315
+dados;Código Fonte - Emulador/game-server/data/static_data/storage_expander/warehouse_expander.xml;2479
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/ai/AITemplate.java;3354
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/configs/main/CraftConfig.java;1136
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/configs/main/GlobalTradeConfig.java;1954
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/controllers/observer/ItemUseObserver.java;1500
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dao/BrokerDAO.java;5153
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dao/CombatTalentRewardDAO.java;3641
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dao/CraftCooldownsDAO.java;2496
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dao/GlobalTradeDAO.java;5067
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dao/InventoryDAO.java;18670
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dao/ItemCooldownsDAO.java;3154
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dao/ItemStoneListDAO.java;10676
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dao/PlayerEquipmentSettingDAO.java;3275
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dao/PlayerRecipesDAO.java;1886
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dao/PlayerRegisteredItemsDAO.java;11776
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dao/RewardServiceDAO.java;2209
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dao/VeteranRewardDAO.java;1719
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/AssemblyItemsData.java;841
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/BattlePassRewardData.java;1412
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/ClassicItemSystemsData.java;3366
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/CosmeticItemsData.java;1217
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/DecomposableItemsData.java;2410
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/EnchantData.java;1472
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/FlyLootData.java;1892
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/GlobalTradeData.java;2545
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/ItemComposeData.java;1568
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/ItemData.java;3655
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/ItemGroupsData.java;11821
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/ItemPurificationData.java;1827
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/ItemRandomBonusData.java;3425
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/ItemRestrictionCleanupData.java;1014
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/ItemSetData.java;1460
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/ItemUpgradeData.java;1660
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/MultiReturnItemData.java;1115
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/RecipeData.java;1566
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/TradeListData.java;3167
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/WarehouseExpandData.java;1147
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/dataholders/loadingutils/adapters/NpcEquipmentList.java;256
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/broker/BrokerItemMask.java;13751
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/broker/BrokerMessages.java;322
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/broker/BrokerPlayerCache.java;2135
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/broker/BrokerRace.java;146
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/broker/filter/BrokerAllAcceptFilter.java;316
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/broker/filter/BrokerContainsExtraFilter.java;560
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/broker/filter/BrokerContainsFilter.java;551
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/broker/filter/BrokerFilter.java;317
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/broker/filter/BrokerMinMaxFilter.java;554
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/broker/filter/BrokerPlayerClassExtraFilter.java;632
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/broker/filter/BrokerPlayerClassFilter.java;589
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/broker/filter/BrokerRecipeFilter.java;1327
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/craft/ExpertQuestsList.java;2159
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/craft/MasterQuestsList.java;1839
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/craft/Profession.java;2121
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/drop/DropItem.java;4785
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/drop/FlyRewardType.java;215
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/enchants/EnchantEffect.java;1850
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/enchants/EnchantList.java;803
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/enchants/EnchantStat.java;680
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/enchants/EnchantTemplateData.java;774
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/enchants/EnchantmentStone.java;1649
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/gameobjects/BrokerItem.java;9212
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/gameobjects/Item.java;32948
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/gameobjects/UseableItemObject.java;9268
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/gameobjects/player/Equipment.java;43859
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/gameobjects/player/RecipeList.java;1473
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/gameobjects/player/battlePass/BattlePassReward.java;1046
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/gameobjects/player/equipmentset/EquipSettingActivator.java;479
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/gameobjects/player/equipmentset/EquipmentSetting.java;561
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/globaltrade/GlobalTradeCurrency.java;790
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/globaltrade/GlobalTradeListing.java;4208
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/instance/playerreward/CruciblePlayerReward.java;1128
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/instance/playerreward/HarmonyGroupReward.java;1196
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/instance/playerreward/InstancePlayerReward.java;852
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/instance/playerreward/PvPArenaPlayerReward.java;4324
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/instance/playerreward/PvpInstancePlayerReward.java;5500
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/items/ChargeInfo.java;3252
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/items/GodStone.java;1910
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/items/IdianStone.java;4078
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/items/ItemCooldown.java;578
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/items/ItemId.java;195
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/items/ItemMask.java;1138
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/items/ItemSlot.java;4517
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/items/ItemStone.java;1594
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/items/ManaStone.java;1003
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/items/NpcEquippedGear.java;1971
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/items/PendingTuneResult.java;806
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/items/RandomBonusEffect.java;1070
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/items/storage/IStorage.java;4092
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/items/storage/ItemStorage.java;3907
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/items/storage/LegionStorageProxy.java;5555
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/items/storage/PlayerStorage.java;3882
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/items/storage/Storage.java;12199
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/items/storage/StorageType.java;3231
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/limiteditems/LimitedItem.java;1367
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/limiteditems/LimitedTradeNpc.java;452
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/stats/listeners/ItemEquipmentListener.java;9269
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/team/alliance/events/ChangeAllianceLootRulesEvent.java;896
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/team/common/legacy/LootGroupRules.java;4329
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/team/common/legacy/LootRuleType.java;312
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/team/group/events/ChangeGroupLootRulesEvent.java;848
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/team/league/events/LeagueLootRulesChangeEvent.java;882
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/team/legion/LegionWarehouse.java;5806
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/LegionDominionReward.java;729
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/ai/AITemplate.java;761
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/battle_pass/BattlePassRewardTemplate.java;1597
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/battle_pass/EnchantRequired.java;489
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/battle_pass/PassReward.java;589
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/challenge/ChallengeReward.java;710
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/challenge/ContributionReward.java;880
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/challenge/RewardType.java;387
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/chest/KeyItem.java;653
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/cosmeticitems/CosmeticItemTemplate.java;2141
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/event/InventoryDrop.java;889
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/event/upgradearcade/ArcadeRewardItem.java;652
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/event/upgradearcade/ArcadeRewards.java;641
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/globaldrops/GlobalDropItem.java;1924
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/housing/HousingMoveableItem.java;487
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/housing/HousingPassiveItem.java;458
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/housing/HousingUseableItem.java;1525
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/housing/UseItemAction.java;953
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/Acquisition.java;1063
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/AcquisitionType.java;466
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/AssembledItem.java;512
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/AssemblyItem.java;909
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/DecomposableItemInfo.java;2430
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/DecomposableSet.java;2271
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/DecomposableSetItem.java;2043
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/Disposition.java;572
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ExceedEnchantSkillSetType.java;3691
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ExtraInventory.java;505
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ExtractedItemsCollection.java;755
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/GodstoneInfo.java;1192
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/Idian.java;637
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/Improvement.java;1090
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ItemActivationTarget.java;928
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ItemAttackType.java;774
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ItemComposeRecipe.java;2757
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ItemQuality.java;725
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ItemTemplate.java;18172
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ItemType.java;324
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ItemUpgradeTemplate.java;5150
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ItemUseLimits.java;2596
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/LeftHandSlot.java;153
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/MultiReturnItem.java;593
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/OptionClearTemplate.java;937
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/OptionClearType.java;346
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/RandomItem.java;1144
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/RandomType.java;1454
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/RequireSkill.java;600
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ResultedItem.java;2302
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ResultedItemsCollection.java;710
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ReturnLocList.java;756
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/SielAnvilRecipe.java;3472
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/SielHammerTable.java;2260
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/Stigma.java;3255
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/TradeinItem.java;677
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/TradeinList.java;618
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/WeaponStats.java;1730
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/WeaponType.java;1285
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/AbstractItemAction.java;1221
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/AdoptPetAction.java;948
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/AnimationAddAction.java;4009
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/ApExtractAction.java;6993
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/AssemblyItemAction.java;4966
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/ChargeAction.java;5954
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/CompositionAction.java;3484
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/CosmeticItemAction.java;3470
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/CraftLearnAction.java;1694
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/DecomposeAction.java;27370
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/DecorateAction.java;834
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/DyeAction.java;4842
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/EmotionLearnAction.java;3035
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/EnchantItemAction.java;10457
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/ExpExtractAction.java;4351
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/ExpandInventoryAction.java;2120
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/ExtractAction.java;3313
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/FireworksUseAction.java;1491
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/InstanceTimeClear.java;3919
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/ItemActions.java;5107
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/MegaphoneAction.java;1787
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/MultiReturnAction.java;3161
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/PackAction.java;5358
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/PolishAction.java;5027
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/QuestStartAction.java;4105
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/ReadAction.java;2844
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/RemodelAction.java;829
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/SkillLearnAction.java;3129
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/SkillUseAction.java;4191
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/SummonHouseObjectAction.java;1004
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/TitleAddAction.java;2063
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/ToyPetSpawnAction.java;5399
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/TuningAction.java;5885
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/UseTarget.java;467
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/bonuses/RandomBonusSet.java;916
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/bonuses/StatBonusType.java;300
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/enums/ArmorType.java;161
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/enums/EquipType.java;184
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/enums/ItemGroup.java;7970
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/enums/ItemSubType.java;1025
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/purification/ItemPurificationTemplate.java;857
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/purification/PurificationResult.java;1276
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/purification/RequiredMaterial.java;664
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemgroups/BonusItemGroup.java;1186
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemgroups/BossGroup.java;668
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemgroups/CraftItemGroup.java;738
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemgroups/CraftRecipeGroup.java;748
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemgroups/EnchantGroup.java;746
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemgroups/EventGroup.java;745
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemgroups/FeedEntries.java;2546
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemgroups/FeedGroups.java;3006
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemgroups/FeedItemGroup.java;921
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemgroups/FoodGroup.java;725
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemgroups/GatherGroup.java;670
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemgroups/ItemGroupIndex.java;158
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemgroups/ItemRaceEntry.java;3188
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemgroups/ManastoneGroup.java;678
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemgroups/MedalGroup.java;745
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemgroups/MedicineGroup.java;745
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemgroups/OreGroup.java;666
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemset/FullBonus.java;1142
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemset/ItemPart.java;539
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemset/ItemSetTemplate.java;1344
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/itemset/PartBonus.java;962
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/npc/MassiveLoot.java;1161
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/pet/PetRewards.java;973
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/portal/ItemReq.java;767
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/portal/PortalItem.java;823
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/quest/CollectItem.java;838
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/quest/CollectItems.java;1501
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/quest/InventoryItem.java;849
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/quest/InventoryItems.java;1301
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/quest/QuestItems.java;1023
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/quest/QuestWorkItems.java;1217
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/quest/Rewards.java;1862
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/recipe/ComboProduct.java;534
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/recipe/Component.java;587
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/recipe/ComponentsData.java;577
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/recipe/RecipeTemplate.java;4422
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/restriction/ItemCleanupTemplate.java;1019
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/rewards/ArenaRewardItem.java;290
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/rewards/BonusType.java;1090
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/rewards/CraftItem.java;1280
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/rewards/CraftRecipe.java;1063
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/rewards/CraftReward.java;907
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/rewards/FoodItem.java;376
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/rewards/FullRewardItem.java;672
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/rewards/IdLevelReward.java;903
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/rewards/MedicineItem.java;367
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/rewards/RewardEntryItem.java;367
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/rewards/RewardItem.java;480
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/siegelocation/SiegeLegionReward.java;650
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/siegelocation/SiegeReward.java;1226
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/survey/SurveyItem.java;258
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/tradelist/TradeListTemplate.java;2879
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/tradelist/TradeNpcType.java;496
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/trade/Exchange.java;1686
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/trade/ExchangeItem.java;1091
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/trade/RepurchaseList.java;886
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/trade/TradeItem.java;607
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/trade/TradeList.java;3484
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/trade/TradePSItem.java;841
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_BATTLE_PASS_REWARD.java;1052
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_BROKER_CANCEL_REGISTERED.java;1205
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_BROKER_LIST.java;1322
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_BROKER_REGISTERED.java;1116
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_BROKER_SEARCH.java;1557
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_BROKER_SELL_WINDOW.java;879
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_BROKER_SETTLE_ACCOUNT.java;1128
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_BROKER_SETTLE_LIST.java;1175
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_BUY_BROKER_ITEM.java;1261
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_BUY_ITEM.java;5203
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_BUY_TRADE_IN_TRADE.java;1370
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_CHARGE_ITEM.java;1486
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_COMBAT_TALENT_REWARD.java;761
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_CRAFT.java;1890
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_DELETE_ITEM.java;1697
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_EQUIPMENT_CHANGE.java;1579
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_EQUIPMENT_CHANGE_USE.java;2539
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_EQUIP_ITEM.java;2730
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_EXCHANGE_ADD_ITEM.java;887
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_FUSION_DIALOG_ACK.java;1716
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_FUSION_WEAPONS.java;1150
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_GLOBAL_TRADE_AVG_PRICE.java;1130
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_GLOBAL_TRADE_BUY.java;931
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_GLOBAL_TRADE_CANCEL.java;983
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_GLOBAL_TRADE_COLLECT.java;1164
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_GLOBAL_TRADE_COMMIT.java;1285
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_GLOBAL_TRADE_HISTORY.java;1294
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_GLOBAL_TRADE_LIST.java;2118
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_GLOBAL_TRADE_MYLIST.java;1196
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_GLOBAL_TRADE_SALESLOG.java;1355
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_GLOBAL_TRADE_STATE.java;927
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_GODSTONE_CLEAR.java;1398
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_GODSTONE_SOCKET.java;1586
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_GROUP_LOOT.java;1624
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_ITEM_COMPOSE.java;2526
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_ITEM_COUNT_LIST.java;1965
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_ITEM_PURIFICATION.java;1661
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_ITEM_REMODEL.java;937
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_ITEM_UPGRADE.java;1279
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_ITEM_UPGRADE_CANCEL.java;1230
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_LOOT_ITEM.java;904
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_MANASTONE.java;5344
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_MOVE_ITEM.java;1064
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_RECIPE_DELETE.java;741
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_RECIPE_LIST.java;1026
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_REGISTER_BROKER_ITEM.java;1441
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_REPLACE_ITEM.java;1084
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_SPLIT_ITEM.java;1166
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_START_LOOT.java;1462
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_UNWRAP_ITEM.java;1476
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_USE_ITEM.java;5071
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/iteminfo/AccessoryInfoBlobEntry.java;1088
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/iteminfo/ArmorInfoBlobEntry.java;1040
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/iteminfo/BonusInfoBlobEntry.java;736
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/iteminfo/CompositeItemBlobEntry.java;4970
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/iteminfo/ConditioningInfoBlobEntry.java;530
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/iteminfo/EnchantInfoBlobEntry.java;3167
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/iteminfo/EquippedSlotBlobEntry.java;722
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/iteminfo/ExtraInfoBlobEntry.java;615
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/iteminfo/GeneralInfoBlobEntry.java;1124
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/iteminfo/ItemBlobEntry.java;1060
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/iteminfo/ItemInfoBlob.java;6161
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/iteminfo/ManaStoneInfoBlobEntry.java;3356
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/iteminfo/ShieldInfoBlobEntry.java;1075
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/iteminfo/StigmaInfoBlobEntry.java;2151
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/iteminfo/StigmaShardInfoBlobEntry.java;506
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/iteminfo/WeaponInfoBlobEntry.java;961
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/iteminfo/WingInfoBlobEntry.java;836
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/GlobalTradeItemDetail.java;2727
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_BROKER_SERVICE.java;8174
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_CLASSIC_ENCHANT_ANIMATION.java;908
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_COMBAT_TALENT_REWARDS.java;852
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_COMBAT_TALENT_REWARD_UPDATE.java;660
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_CRAFT_ANIMATION.java;784
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_CRAFT_UPDATE.java;1818
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_DELETE_ITEM.java;860
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_DELETE_WAREHOUSE_ITEM.java;898
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_EXCHANGE_ADD_ITEM.java;1154
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_GLOBAL_TRADE_AVG_PRICE.java;1250
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_GLOBAL_TRADE_BUY.java;692
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_GLOBAL_TRADE_CANCEL.java;681
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_GLOBAL_TRADE_COLLECT.java;599
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_GLOBAL_TRADE_COMMIT.java;828
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_GLOBAL_TRADE_HISTORY.java;748
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_GLOBAL_TRADE_LIST.java;2198
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_GLOBAL_TRADE_MYLIST.java;1438
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_GLOBAL_TRADE_SALESLOG.java;2407
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_GLOBAL_TRADE_STATE.java;711
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_GROUP_LOOT.java;1288
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_INVENTORY_ADD_ITEM.java;2585
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_INVENTORY_INFO.java;3141
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_INVENTORY_UPDATE_ITEM.java;2087
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_ITEM_COMPOSE_EVENT.java;1016
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_ITEM_COMPOSE_RESULT.java;1169
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_ITEM_COOLDOWN.java;938
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_ITEM_UPGRADE_EVENT.java;1085
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_ITEM_UPGRADE_RESULT.java;1156
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_ITEM_USAGE_ANIMATION.java;2547
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_LEARN_RECIPE.java;505
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_LOAD_EQUIPMENT_CHANGE.java;860
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_LOOT_ITEMLIST.java;1780
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_LOOT_STATUS.java;1450
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_RECIPE_COOLDOWN.java;1152
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_RECIPE_DELETE.java;486
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_RECIPE_LIST.java;609
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_SELL_ITEM.java;1898
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_STORYBOOK_ITEM_RESULT.java;1110
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_TRADELIST.java;3483
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_TRADE_IN_LIST.java;1219
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_UNWRAP_ITEM.java;549
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_WAREHOUSE_ADD_ITEM.java;2083
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_WAREHOUSE_INFO.java;4126
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_WAREHOUSE_UPDATE_ITEM.java;1915
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/S_ACHIEVEMENT_REWARD_NOTI.java;510
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/S_REWARD_ACHIEVEMENT_EVENT_RESULT.java;710
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/questEngine/handlers/models/CraftingRewardsData.java;1169
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/questEngine/handlers/models/FountainRewardsData.java;1140
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/questEngine/handlers/models/ItemCollectingData.java;1945
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/questEngine/handlers/models/ItemOrdersData.java;1030
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/questEngine/handlers/models/RelicRewardsData.java;1128
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/questEngine/handlers/models/xmlQuest/conditions/PcInventoryCondition.java;1472
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/questEngine/handlers/models/xmlQuest/operations/ActionItemUseOperation.java;1843
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/questEngine/handlers/models/xmlQuest/operations/CollectItemQuestOperation.java;1101
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/questEngine/handlers/models/xmlQuest/operations/GiveItemOperation.java;833
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/questEngine/handlers/models/xmlQuest/operations/TakeItemOperation.java;780
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/questEngine/handlers/template/CraftingRewards.java;3188
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/questEngine/handlers/template/FountainRewards.java;2642
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/questEngine/handlers/template/ItemCollecting.java;6493
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/questEngine/handlers/template/ItemOrders.java;4363
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/questEngine/handlers/template/RelicRewards.java;3506
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/ArmsfusionService.java;10261
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/BrokerService.java;28140
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/ClassicEnchantService.java;4883
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/CombatTalentRewardService.java;3500
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/EnchantService.java;28024
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/LimitedItemTradeService.java;2535
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/RecipeService.java;2707
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/TradeService.java;16537
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/WarehouseService.java;6704
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/WeaponFusionSplitService.java;4274
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/craft/CraftService.java;10862
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/craft/CraftSkillUpdateService.java;7213
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/craft/RelinquishCraftStatus.java;5257
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/craft/SielAnvilService.java;14314
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/craft/SielHammerService.java;10987
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/globaltrade/GlobalTradeService.java;29381
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/HouseObjectFactory.java;4242
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/ItemActionService.java;3416
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/ItemChargeService.java;7479
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/ItemComposeService.java;9840
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/ItemFactory.java;1290
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/ItemMoveService.java;10157
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/ItemPacketService.java;14670
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/ItemPurificationService.java;6504
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/ItemRemodelService.java;5286
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/ItemRestrictionService.java;3061
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/ItemService.java;9136
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/ItemSocketService.java;16834
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/ItemSplitService.java;6538
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/ItemUpgradeService.java;12586
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/reward/AdventService.java;6465
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/reward/BonusService.java;2924
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/reward/StarterKitService.java;3683
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/reward/VeteranRewardService.java;26815
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/reward/WebRewardService.java;9322
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/trade/PricesService.java;3236
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/skillengine/action/ItemUseAction.java;1712
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/skillengine/condition/ItemChargeCondition.java;1026
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/skillengine/task/AbstractCraftTask.java;1602
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/skillengine/task/CraftingTask.java;6646
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/taskmanager/tasks/TemporaryTradeTimeTask.java;2037
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/utils/stats/DropRewardEnum.java;1156
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/utils/stats/XPRewardEnum.java;1358
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/01_Login_World/Asmodians/01_Login_World_Asmodians_2026-08-27_10-08-12_00001_20260827100812.pcapng;323456
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/01_Login_World/Elyos/01_Login_World_Elyos_2026-08-27_10-03-03_00001_20260827100304.pcapng;296668
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/02_Character_Creation/Asmodians/02_Character_Creation_Asmodians_2026-08-27_11-58-49_00001_20260827115849.pcapng;16240
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/02_Character_Creation/Elyos/02_Character_Creation_Elyos_2026-08-27_10-10-24_00001_20260827101024.pcapng;6536
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/03_Tutorial/Asmodians/07_Sorcerer/03_Tutorial_Asmodians_07_Sorcerer_2026-09-25_09-44-17_00001_20260925094417.pcapng;2138800
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/03_Tutorial/Elyos/01_Soul_Reaper/03_Tutorial_Elyos_01_Soul_Reaper_2026-08-27_12-31-54_00001_20260827123154.pcapng;1953412
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/03_Tutorial/Elyos/01_Soul_Reaper/03_Tutorial_Elyos_01_Soul_Reaper_2026-08-27_12-59-34_00001_20260827125934.pcapng;16288
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/03_Tutorial/Elyos/02_Phoenix/03_Tutorial_Elyos_02_Phoenix_2026-09-25_01-16-15_00001_20260925011615.pcapng;1389684
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/05_Combate_Skills/Asmodians/05_Combate_Skills_Asmodians_2026-09-14_01-44-16_00001_20260914014416.pcapng;464476
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/05_Combate_Skills/Asmodians/05_Combate_Skills_Asmodians_2026-09-14_02-05-16_00001_20260914020516.pcapng;785532
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/05_Combate_Skills/Asmodians/05_Combate_Skills_Asmodians_2026-09-14_09-46-56_00001_20260914094656.pcapng;848300
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/05_Combate_Skills/Asmodians/05_Combate_Skills_Asmodians_2026-09-15_17-30-12_00001_20260915173012.pcapng;519272
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/05_Combate_Skills/Asmodians/05_Combate_Skills_Asmodians_2026-09-20_17-31-30_00001_20260920173130.pcapng;577728
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/05_Combate_Skills/Asmodians/05_Combate_Skills_Asmodians_Brawler_2026-09-14_02-33-04_00001_20260914023304.pcapng;575564
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/05_Combate_Skills/Asmodians/05_Combate_Skills_Asmodians_Cleric2_2026-09-14_01-01-48_00001_20260914010149.pcapng;458116
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/05_Combate_Skills/Asmodians/05_Combate_Skills_Asmodians_Cleric3_2026-09-14_01-31-44_00001_20260914013145.pcapng;403412
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/05_Combate_Skills/Asmodians/05_Combate_Skills_Asmodians_Cleric_2026-09-14_00-47-03_00001_20260914004703.pcapng;384176
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/05_Combate_Skills/Asmodians/05_Combate_Skills_Asmodians_Quick_Glider_2026-09-14_08-47-39_00001_20260914084739.pcapng;539896
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/05_Combate_Skills/Asmodians/05_Combate_Skills_Asmodians_Revenant_2026-09-14_02-37-24_00001_20260914023724.pcapng;515340
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/05_Combate_Skills/Asmodians/05_Combate_Skills_Asmodians_SM_2026-09-14_00-50-22_00001_20260914005022.pcapng;410020
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/05_Combate_Skills/Elyos/05_Combate_Skills_Elyos_2026-09-14_02-57-16_00001_20260914025716.pcapng;501116
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novo_Global_Auction_House_and_Altar_of_Transcendences_5.0_2026-09-11_18-30-13_00001_20260911183013.pcapng;410588
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_5.0_2026-09-12_23-04-46_00001_20260912230446.pcapng;1820
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_5.0_2026-09-13_05-05-25_00001_20260913050525.pcapng;1042580
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_5.0_2026-09-13_19-11-18_00001_20260913191118.pcapng;480
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_5.0_2026-09-16_05-01-15_00001_20260916050115.pcapng;2088540
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_5.0_2026-09-21_14-56-23_00001_20260921145623.pcapng;1043788
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_5.0_2026-09-21_15-16-24_00001_20260921151624.pcapng;809280
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_5.0_2026-09-22_14-40-15_00001_20260922144015.pcapng;27395452
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_5.0_2026-09-22_16-14-48_00001_20260922161448.pcapng;27319252
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_Aplicando_Godstone5.0_2026-09-11_19-50-37_00001_20260911195037.pcapng;487740
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_Black_Cloud_Mail_5.0_2026-09-14_08-44-22_00001_20260914084422.pcapng;422568
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_Book_of_Legends5.0_2026-09-11_18-54-27_00001_20260911185427.pcapng;400844
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_Enchantando_5.0_2026-09-11_18-04-32_00001_20260911180432.pcapng;375716
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_Global_Auction_House_5.0_2026-09-11_18-07-56_00001_20260911180756.pcapng;540620
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_Inshagle_5.0_2026-09-12_23-33-41_00001_20260912233341.pcapng;8872728
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_Inventario_5.0_2026-09-11_17-28-40_00001_20260911172840.pcapng;418380
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_Moreth_5.0_2026-09-11_18-25-04_00001_20260911182504.pcapng;349236
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_Poeta_5.0_2026-09-12_22-41-50_00001_20260912224150.pcapng;2348048
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_Removendo_Godstone_5.0_2026-09-11_22-05-10_00001_20260911220510.pcapng;465552
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_Removendo_Manastone_5.0_2026-09-11_22-08-20_00001_20260911220820.pcapng;468804
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_Siel_Anvil_5.0_2026-09-11_18-20-22_00001_20260911182022.pcapng;369080
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_Siel_Hammer_5.0_2026-09-11_17-56-12_00001_20260911175612.pcapng;383580
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_Stigma2_5.0_2026-09-14_22-13-22_00001_20260914221322.pcapng;841652
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_Stigma_5.0_2026-09-11_17-35-47_00001_20260911173548.pcapng;587468
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_Tiamaranta_ZonaNeutra_Asmo_5.0_2026-09-13_01-26-03_00001_20260913012603.pcapng;4490092
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/07_Deletar_Personagem_Voltar_Servidores/Elyos_Asmodians/07_Deletar_Personagem_Voltar_Servidores_Elyos_2026-08-27_12-22-45_00001_20260827122245.pcapng;35232
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/08_Spawns_Mapas/Gelkmaros/08_Spawns_Mapas_Gelkmaros_2026-09-12_21-06-08_00001_20260912210609.pcapng;2509412
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/08_Spawns_Mapas/Tiamaranta_Mesa/08_Spawns_Mapas_Tiamaranta_Mesa_2026-09-15_05-09-38_00001_20260915050938.pcapng;1248536
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/08_Spawns_Mapas/Tiamaranta_Mesa/08_Spawns_Mapas_Tiamaranta_Mesa_2026-09-16_05-22-24_00001_20260916052224.pcapng;3365400
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/08_Spawns_Mapas/Tiamaranta_Mesa/08_Spawns_Mapas_Tiamaranta_Mesa_2026-09-17_07-13-15_00001_20260917071315.pcapng;8549924
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/100_fusao_weapons/oficial_fusao_arma_limpa_00001_20260906031028.pcapng;959952
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/100_fusao_weapons/oficial_fusao_detalhada_00001_20260906022117.pcapng;1014000
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/100_fusao_weapons/oficial_login_com_fusao_00001_20260906024513.pcapng;421960
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/100_fusao_weapons/oficial_troca_de_arma_00001_20260906014754.pcapng;311904
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/Outros/CombatTalent_2026-09-19_00-07-06_00001_20260919000706.pcapng;922520
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/Outros/Phoenix_2026-09-19_00-03-45_00001_20260919000345.pcapng;421416
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/Outros/QuestBundleTIamaranta_2026-09-18_23-52-41_00001_20260918235241.pcapng;149568
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/Outros/aumentariventario_2026-09-19_00-15-58_00001_20260919001558.pcapng;1045820
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/Outros/deletando_item_2026-09-18_23-46-55_00001_20260918234655.pcapng;484076
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/Outros/express_2026-09-18_23-49-42_00001_20260918234942.pcapng;18964
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/Outros/outros_2026-09-21_05-50-07_00001_20260921055007.pcapng;1790032
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/Outros/outros_2026-09-21_06-10-28_00001_20260921061028.pcapng;969408
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/Outros/outros_2026-09-21_14-43-57_00001_20260921144357.pcapng;552172
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/Outros/tutorial-2026-08-28.pcapng;2754884
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/outros2/outros2_2026-09-22_09-41-59_00001_20260922094159.pcapng;5655092
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/outros2/outros2_2026-09-22_10-23-39_00001_20260922102339.pcapng;3521212
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/outros2/outros2_2026-09-22_19-22-46_00001_20260922192246.pcapng;33576

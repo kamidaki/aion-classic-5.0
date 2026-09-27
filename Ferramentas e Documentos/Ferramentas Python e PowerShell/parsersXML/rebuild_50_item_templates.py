@@ -159,7 +159,15 @@ def iter_depth1(path, keep=None):
 def load_strings(client_dir):
     n2id, n2b = {}, {}
     pat = re.compile(r'<string>\s*<id>(\d+)</id>\s*<name>([^<]+)</name>(?:\s*<body>([^<]*)</body>)?', re.S)
-    for p in sorted(glob.glob(os.path.join(glob.escape(os.path.join(client_dir, "Strings", "strings")), "*.xml"))):
+    candidates = (
+        os.path.join(client_dir, "data", "Strings"),
+        os.path.join(client_dir, "Strings", "strings"),
+        os.path.join(client_dir, "Strings"),
+    )
+    strings_dir = next((p for p in candidates if os.path.isdir(p)), None)
+    if strings_dir is None:
+        return n2id, n2b
+    for p in sorted(glob.glob(os.path.join(glob.escape(strings_dir), "*.xml"))):
         raw = open(p, "rb").read()
         text = raw.decode("utf-16", "ignore") if raw[:2] in (b"\xff\xfe", b"\xfe\xff") else raw.decode("utf-8", "ignore")
         for sid, sname, body in pat.findall(text):
@@ -555,12 +563,16 @@ def verify(same, srv, cli, ctx):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--cliente", default=os.environ.get("AION_CLIENT_XML_DIR", DEFAULT_CLIENT_DIR))
+    ap.add_argument("--catalogo", default=os.path.join("data", "europe", "Items", "client_items.xml"),
+                    help="client_items.xml relativo a --cliente; o padrao e a camada Europe do cliente EU")
+    ap.add_argument("--atualizar-nomes", action="store_true",
+                    help="tambem troca o nome exibido pelo corpo da string extraida; por padrao preserva a localizacao do servidor")
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument("--verificar", action="store_true")
     g.add_argument("--aplicar", action="store_true")
     args = ap.parse_args()
 
-    client_items_xml = os.path.join(args.cliente, "data", "items", "client_items.xml")
+    client_items_xml = os.path.join(args.cliente, args.catalogo)
     if not os.path.isfile(client_items_xml):
         sys.exit(f"client_items.xml nao encontrado em {client_items_xml}. Informe --cliente ou AION_CLIENT_XML_DIR.")
     src = os.path.join(backup_manager.SERVER_DATA_DIR, REL_XML)
@@ -638,9 +650,10 @@ def main():
         s = srv[i]
         head = text[s["head"][0]:s["head"][1]]
         desc_key = (cli[i].get("desc") or "").upper()
-        new_name = ctx.n2b.get(desc_key) or s["attrs"].get("name", "")
+        new_name = (ctx.n2b.get(desc_key) or s["attrs"].get("name", "")) if args.atualizar_nomes else s["attrs"].get("name", "")
         new_head = re.sub(r'(\sdesc=")[^"]*(")', lambda m: m.group(1) + ctx.n2id[desc_key] + m.group(2), head, count=1)
-        new_head = re.sub(r'(\sname=")[^"]*(")', lambda m: m.group(1) + esc(new_name) + m.group(2), new_head, count=1)
+        if args.atualizar_nomes:
+            new_head = re.sub(r'(\sname=")[^"]*(")', lambda m: m.group(1) + esc(new_name) + m.group(2), new_head, count=1)
         edits.append((s["head"][0], s["head"][1], new_head))
         report.append((i, "texto", s["attrs"].get("cName", ""), cli[i].get("name", ""), s["attrs"].get("name", ""), new_name))
     edits.sort()
