@@ -215,6 +215,9 @@ def compare_item(client: dict[str, str] | None, server: dict | None, strings: di
         raw = client.get(source)
         if raw is None or raw == "":
             continue
+        if source == "casting_delay" and int(raw) > 2_147_483_647:
+            pending.append(f"casting_delay={raw} excede xs:int/Java int")
+            continue
         expected, actual = transform(raw), attrs.get(target, server_defaults.get(target))
         if str(expected) != str(actual):
             differences.append(f"{target}:{expected}!={actual or '<ausente>'}")

@@ -18,6 +18,7 @@ import com.aionemu.gameserver.model.items.ItemSlot;
 import com.aionemu.gameserver.model.items.ItemMask;
 import com.aionemu.gameserver.model.templates.item.enums.ItemGroup;
 import com.aionemu.gameserver.model.templates.item.enums.EquipType;
+import com.aionemu.gameserver.model.templates.item.ItemActivationTarget;
 import com.aionemu.gameserver.configs.main.GSConfig;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 import com.aionemu.gameserver.network.aion.AionConnection;
@@ -201,6 +202,15 @@ class ClassicItemSystemsTest {
 		assertTrue(sword.isCanFuse());
 		assertEquals(24188, sword.getMask());
 		assertEquals(35644, sword.getClientMask());
+	}
+
+	@Test void itemUseFieldsMatchRepresentativeOfficialRecords() {
+		var targeted = DataManager.ITEM_DATA.getItemTemplate(164000103);
+		assertEquals(ItemActivationTarget.TARGET, targeted.getActivationTarget());
+		assertEquals(1, targeted.getActivationCount());
+		assertEquals(120, DataManager.ITEM_DATA.getItemTemplate(164000140).getExpireTime());
+		assertEquals(2000, DataManager.ITEM_DATA.getItemTemplate(160010536).getCastingDelay());
+		assertEquals(10, DataManager.ITEM_DATA.getItemTemplate(100000378).getActivationCount());
 	}
 
 	@Test void environmentMatchesOfficialSixtyBytePayload() throws Exception {

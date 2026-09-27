@@ -45,3 +45,10 @@ Os números de compatibilidade não equivalem a funcionamento integral: um item 
 - Resultado do verificador: `mask` 100% idêntica nos 79.664 itens; `client_mask` 100% idêntica na matriz integral; XML XSD válido.
 - Foi corrigido também o predicado de missão da máscara de wire: 1.422 registros com `<quest>0</quest>` deixaram de receber indevidamente o bit de quest. Os 298 registros com `<quest>1</quest>` permanecem marcados.
 - Indicadores após esta etapa: 42.656 compatíveis nos campos diretos, 28.907 divergentes comprovados e 8.101 pendentes de relações que exigem validação adicional.
+
+## Etapa 3 — campos diretos de utilização e tempo
+
+- Foram sincronizados `activate_target`, `activate_count`, `casting_delay`, `expire_time`, `return_world` e `return_alias` em 9.583 templates.
+- Alvo, contagem, expiração e retorno agora têm 100% de igualdade com a camada Europe; delays representáveis também foram sincronizados.
+- Oito itens permanecem pendentes porque o cliente informa `casting_delay=4000000000`, valor fora de `xs:int` e `Java int`. O valor não foi truncado nem convertido sem prova do significado do sentinel unsigned.
+- Indicadores após esta etapa: 49.500 compatíveis nos campos diretos, 20.673 divergentes comprovados e 9.491 pendentes de relações/valores que exigem validação adicional.
