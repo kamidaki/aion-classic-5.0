@@ -54,8 +54,8 @@ class IAnimationProvider(abc.ABC):
         rig_obj: bpy.types.Object,
         caf_bytes: bytes,
         action_name: str,
-        bone_names: List[str],
-        bone_anim: List[Dict[str, Any]],
+        bone_names: Optional[List[str]] = None,
+        bone_anim: Optional[List[Dict[str, Any]]] = None,
     ) -> Optional[bpy.types.Action]:
         pass
 

@@ -62,13 +62,16 @@ def parse_caf(data: bytes) -> Dict[str, Any]:
         "frame_count": 0,
     }
 
+    chunks_list: List[Tuple[int, int, int, int]] = []
     for _ in range(num_chunks):
         raw_type = struct.unpack("<I", stream.read(4))[0]
         ver = struct.unpack("<I", stream.read(4))[0]
         off = struct.unpack("<I", stream.read(4))[0]
         cid = struct.unpack("<I", stream.read(4))[0]
+        chunks_list.append((raw_type, ver, off, cid))
 
-        curr = stream.tell()
+    # Pass 1: Parse Timing chunk first
+    for raw_type, ver, off, cid in chunks_list:
         if raw_type == CHUNK_TIMING:
             stream.seek(off + 16)
             s_tick = struct.unpack("<f", stream.read(4))[0]
@@ -80,23 +83,31 @@ def parse_caf(data: bytes) -> Dict[str, Any]:
             timing["frame_start"] = start_frame
             timing["frame_end"] = end_frame
             timing["frame_count"] = max(1, end_frame - start_frame + 1)
-        elif raw_type == CHUNK_CONTROLLER:
+            break
+
+    tpf = timing["ticks_per_frame"] if timing["ticks_per_frame"] > 0 else 160
+
+    # Pass 2: Parse Controller chunks using accurate tick / tpf frame timestamps
+    for raw_type, ver, off, cid in chunks_list:
+        if raw_type == CHUNK_CONTROLLER:
             stream.seek(off)
             kcount, ctrl_id = struct.unpack("<II", stream.read(8))
             keys: List[Dict[str, Any]] = []
             for frame_idx in range(kcount):
-                floats = struct.unpack("<8f", stream.read(32))
-                # Layout: [time, px, py, pz, qx, qy, qz, qw]
+                tick = struct.unpack("<i", stream.read(4))[0]
+                px, py, pz = struct.unpack("<3f", stream.read(12))
+                qx, qy, qz, qw = struct.unpack("<4f", stream.read(16))
+                # Layout: [tick, px, py, pz, qx, qy, qz, qw]
                 # CryEngine units: cm -> meters (/ 100)
                 # Blender quaternion: (w, x, y, z)
+                frame_time = tick / float(tpf)
                 keys.append({
-                    "frame": frame_idx,
-                    "pos": (floats[1] / 100.0, floats[2] / 100.0, floats[3] / 100.0),
-                    "quat": (floats[7], floats[4], floats[5], floats[6]),
+                    "tick": tick,
+                    "frame": frame_time,
+                    "pos": (px / 100.0, py / 100.0, pz / 100.0),
+                    "quat": (qw, qx, qy, qz),
                 })
             controllers[ctrl_id] = keys
-
-        stream.seek(curr)
 
     return {
         "timing": timing,

@@ -38,41 +38,39 @@ class SkeletonProvider(ISkeletonProvider):
         bpy.ops.object.mode_set(mode="EDIT")
         edit_bones: Dict[int, bpy.types.EditBone] = {}
 
-        # 1. Create bones with head positions (cm -> meters / 100)
+        # 1. Precalculate 4x4 bind matrices from bone_initial_pos (cm -> meters)
+        bind_matrices: List[Matrix] = []
+        for i, m in enumerate(bone_initial_pos):
+            if m and len(m) >= 12:
+                rot_3x3 = Matrix((
+                    (m[0], m[1], m[2]),
+                    (m[3], m[4], m[5]),
+                    (m[6], m[7], m[8]),
+                ))
+                pos = Vector((m[9] / 100.0, m[10] / 100.0, m[11] / 100.0))
+                bind_mat = Matrix.Translation(pos) @ rot_3x3.to_4x4()
+            else:
+                bind_mat = Matrix.Translation(Vector((0.0, 0.0, float(i) * 0.05)))
+            bind_matrices.append(bind_mat)
+
+        # 2. Create bones with authoritative bind matrix orientation
         for i, b_name in enumerate(bone_names):
             eb = arm_data.edit_bones.new(b_name)
             eb.use_deform = True
-            m = bone_initial_pos[i] if i < len(bone_initial_pos) else None
-            if m and len(m) >= 12:
-                # floats 9, 10, 11 are bone origin in cm
-                head_pos = Vector((m[9] / 100.0, m[10] / 100.0, m[11] / 100.0))
-            else:
-                head_pos = Vector((0.0, 0.0, float(i) * 0.05))
-
-            eb.head = head_pos
-            eb.tail = head_pos + Vector((0.0, 0.0, 0.04))
+            mat = bind_matrices[i] if i < len(bind_matrices) else Matrix.Identity(4)
+            eb.head = mat.translation
+            bone_dir = mat.to_3x3().col[1].normalized()
+            if bone_dir.length < 0.001:
+                bone_dir = Vector((0.0, 1.0, 0.0))
+            eb.tail = eb.head + bone_dir * 0.05
+            eb.matrix = mat
             edit_bones[i] = eb
 
-        # 2. Configure parent-child relationships and clean tail orientations
-        parent_tails_set = set()
+        # 3. Configure parent-child relationships
         for i, b_info in enumerate(bone_anim):
             pid = b_info.get("parent_id", -1)
             if pid >= 0 and pid in edit_bones:
-                eb = edit_bones[i]
-                parent_eb = edit_bones[pid]
-                eb.parent = parent_eb
-                if pid not in parent_tails_set:
-                    dist = (eb.head - parent_eb.head).length
-                    if dist > 0.005:
-                        parent_eb.tail = eb.head
-                        parent_tails_set.add(pid)
-
-        # 3. Orient leaf bones along parent bone direction instead of vertical spike
-        for i, eb in edit_bones.items():
-            if i not in parent_tails_set and eb.parent:
-                parent_dir = (eb.parent.tail - eb.parent.head)
-                if parent_dir.length > 0.001:
-                    eb.tail = eb.head + parent_dir.normalized() * 0.03
+                edit_bones[i].parent = edit_bones[pid]
 
         bpy.ops.object.mode_set(mode="OBJECT")
         return rig_obj

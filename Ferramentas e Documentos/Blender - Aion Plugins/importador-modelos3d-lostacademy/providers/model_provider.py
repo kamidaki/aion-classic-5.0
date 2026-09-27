@@ -176,11 +176,21 @@ class ModelProvider(IModelProvider):
                         eb.use_deform = True
                         m = bone_initial_pos[i] if i < len(bone_initial_pos) else None
                         if m and len(m) >= 12:
-                            head_pos = Vector((m[9] / 100.0, m[10] / 100.0, m[11] / 100.0))
+                            rot_3x3 = Matrix((
+                                (m[0], m[1], m[2]),
+                                (m[3], m[4], m[5]),
+                                (m[6], m[7], m[8]),
+                            ))
+                            pos = Vector((m[9] / 100.0, m[10] / 100.0, m[11] / 100.0))
+                            mat = Matrix.Translation(pos) @ rot_3x3.to_4x4()
                         else:
-                            head_pos = Vector((0.0, 0.0, 1.5))
-                        eb.head = head_pos
-                        eb.tail = head_pos + Vector((0.0, 0.0, 0.04))
+                            mat = Matrix.Translation(Vector((0.0, 0.0, 1.5)))
+                        eb.head = mat.translation
+                        bone_dir = mat.to_3x3().col[1].normalized()
+                        if bone_dir.length < 0.001:
+                            bone_dir = Vector((0.0, 1.0, 0.0))
+                        eb.tail = eb.head + bone_dir * 0.05
+                        eb.matrix = mat
                         # Hierarchy attachment
                         if "hair" in b_name.lower() and "Bip01 Head" in rig_obj.data.edit_bones:
                             eb.parent = rig_obj.data.edit_bones["Bip01 Head"]
