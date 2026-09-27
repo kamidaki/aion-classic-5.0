@@ -1,0 +1,362 @@
+"""
+High-Performance Aion Client Asset Scanner.
+Discovers models, NPCs, monsters, characters, weapons, armor, props, vegetation,
+skeletons, animations, materials, and textures without loading full meshes into Blender memory.
+"""
+
+from __future__ import annotations
+import io
+import re
+import struct
+import time
+from pathlib import Path
+from typing import Callable, Dict, List, Optional, Set, Tuple
+
+try:
+    from config.settings import (
+        FLAVOR_GAMEFORGE,
+        FLAVOR_LIVE_CLASSICO,
+        FLAVOR_AION_39,
+        FLAVOR_GENERIC,
+    )
+    from core.client_detector import detect_client_flavor
+    from core.pak_engine import AionCatalogIndex, AionPakArchive
+except ImportError:
+    from ..config.settings import (
+        FLAVOR_GAMEFORGE,
+        FLAVOR_LIVE_CLASSICO,
+        FLAVOR_AION_39,
+        FLAVOR_GENERIC,
+    )
+    from ..core.client_detector import detect_client_flavor
+    from ..core.pak_engine import AionCatalogIndex, AionPakArchive
+
+from .asset_entry import AssetEntry
+from .dependency_graph import DependencyGraph
+
+
+def classify_asset_category(rel_path: str) -> str:
+    """Classifies an asset into an authoritative category based on directory structure and name."""
+    p_lower = rel_path.lower().replace("\\", "/")
+
+    if "/monster/" in p_lower or "monster" in p_lower.split("/")[-1]:
+        return "MONSTER"
+    if "/npc/" in p_lower or "npc" in p_lower.split("/")[-1]:
+        return "NPC"
+    if "/pc/" in p_lower or "/character/" in p_lower:
+        return "CHARACTER"
+    if "/weapon/" in p_lower or "/weapons/" in p_lower or "/shield/" in p_lower:
+        return "WEAPON"
+    if "/armor/" in p_lower or "/costume/" in p_lower or "/item/" in p_lower:
+        return "ARMOR"
+    if "/wing/" in p_lower or "/wings/" in p_lower:
+        return "WINGS"
+    if "/pet/" in p_lower or "/ride/" in p_lower or "/mount/" in p_lower:
+        return "PET_MOUNT"
+    if any(k in p_lower for k in ("/building/", "/buildings/", "/structure/", "/fortress/", "castle", "bunker", "tower", "bridge", "house", "wall")):
+        return "BUILDING"
+    if any(k in p_lower for k in ("/vegetation/", "/tree/", "/plant/", "cliff", "rock", "bush", "grass", "flower")):
+        return "VEGETATION"
+    if "/effect/" in p_lower or "/effects/" in p_lower or "/fx/" in p_lower:
+        return "EFFECT"
+    if "/prop/" in p_lower or "/props/" in p_lower or "furniture" in p_lower:
+        return "PROP"
+
+    return "OBJECT"
+
+
+def inspect_cgf_header_metadata(cgf_bytes: bytes) -> Dict[str, Any]:
+    """
+    Lightly inspects the chunk table of a CGF without loading vertex arrays.
+    Returns: bone_count, vertex_count, triangle_count, material_count, has_skeleton.
+    """
+    meta = {
+        "has_skeleton": False,
+        "bone_count": 0,
+        "vertex_count": 0,
+        "triangle_count": 0,
+        "material_count": 0,
+    }
+    if len(cgf_bytes) < 32:
+        return meta
+
+    try:
+        stream = io.BytesIO(cgf_bytes)
+        # Skip signature null-terminated string
+        while True:
+            b = stream.read(1)
+            if not b or b == b"\x00":
+                break
+        stream.read(1)  # terminator
+        type_of_file = struct.unpack("<I", stream.read(4))[0]
+        if type_of_file != 0xFFFF0000:
+            return meta
+
+        version = struct.unpack("<I", stream.read(4))[0]
+        table_offset = struct.unpack("<I", stream.read(4))[0]
+
+        stream.seek(table_offset)
+        num_chunks = struct.unpack("<I", stream.read(4))[0]
+
+        for _ in range(min(num_chunks, 128)):
+            raw_type, ver, off, cid = struct.unpack("<IIII", stream.read(16))
+            if raw_type == 0xCCCC0005:  # BoneNameList
+                meta["has_skeleton"] = True
+                curr = stream.tell()
+                stream.seek(off)
+                meta["bone_count"] = struct.unpack("<I", stream.read(4))[0]
+                stream.seek(curr)
+            elif raw_type == 0xCCCC0000:  # Mesh
+                curr = stream.tell()
+                # 16-byte header + 2 bytes bools + 2 bytes reserved = 20 bytes
+                stream.seek(off + 20)
+                nv, nuv, nf = struct.unpack("<3I", stream.read(12))
+                meta["vertex_count"] = max(meta["vertex_count"], nv)
+                meta["triangle_count"] = max(meta["triangle_count"], nf)
+                stream.seek(curr)
+            elif raw_type == 0xCCCC000C:  # Mtl
+                meta["material_count"] += 1
+
+    except Exception:
+        pass
+
+    return meta
+
+
+class ClientScanner:
+    """Scans an Aion client to discover all models and their dependency relationships."""
+
+    def __init__(self, client_root: str | Path):
+        self.root = Path(client_root).resolve()
+        self.flavor = detect_client_flavor(self.root)
+        self.catalog = AionCatalogIndex(self.root)
+        self.dep_graph = DependencyGraph()
+
+    def scan(
+        self,
+        progress_callback: Optional[Callable[[int, int, str], None]] = None,
+        max_assets: Optional[int] = None,
+    ) -> Tuple[List[AssetEntry], DependencyGraph]:
+        """
+        Executes comprehensive client scanning.
+        Returns list of AssetEntry items and the populated DependencyGraph.
+        """
+        self.dep_graph.clear()
+        t0 = time.time()
+
+        # 1. Index common PAKs and Category PAKs
+        cand_dirs = [
+            self.root / "levels" / "common",
+            self.root / "Levels" / "common",
+            self.root / "objects",
+            self.root / "Objects",
+            self.root / "data" / "npcs",
+            self.root / "Data" / "NPCs",
+            self.root / "data" / "items",
+            self.root / "Data" / "items",
+            self.root / "textures",
+            self.root / "Textures",
+        ]
+
+        pak_files: List[Path] = []
+        for cd in cand_dirs:
+            if cd.is_dir():
+                for p in cd.rglob("*.pak"):
+                    pak_files.append(p)
+                    self.catalog.index_pak(p)
+
+        # 2. Extract NPC templates mapping (ID -> Name, Model)
+        npc_templates = self._load_npc_templates()
+
+        # 3. Discover all CGF / CGA models in the catalog and loose on disk
+        model_entries: Dict[str, Tuple[Optional[str], bool]] = {}  # rel_path -> (pak_name, is_loose)
+
+        # Catalog entries
+        for lower_name, (pak_path, entry) in self.catalog._path_to_pak_entry.items():
+            if lower_name.endswith(".cgf") or lower_name.endswith(".cga"):
+                try:
+                    rel_dir = Path(pak_path).parent.relative_to(self.root).as_posix()
+                except ValueError:
+                    rel_dir = ""
+
+                clean_entry = entry.name.replace("\\", "/").strip().lstrip("/")
+                if rel_dir and not clean_entry.lower().startswith(rel_dir.lower()):
+                    full_rel = f"{rel_dir}/{clean_entry}"
+                else:
+                    full_rel = clean_entry
+                model_entries[full_rel] = (Path(pak_path).name, False)
+
+        # Loose files
+        for obj_dir_name in ("objects", "Objects"):
+            obj_p = self.root / obj_dir_name
+            if obj_p.is_dir():
+                for f in obj_p.rglob("*.cgf"):
+                    rel = f.relative_to(self.root).as_posix()
+                    if rel not in model_entries:
+                        model_entries[rel] = (None, True)
+
+        total_models = len(model_entries)
+        assets: List[AssetEntry] = []
+        scanned_count = 0
+
+        def _model_priority(item):
+            rel_lower = item[0].lower()
+            if "/npc/" in rel_lower or "npc" in rel_lower:
+                return (0, rel_lower)
+            if "/monster/" in rel_lower or "monster" in rel_lower:
+                return (1, rel_lower)
+            if "/pc/" in rel_lower or "/character/" in rel_lower:
+                return (2, rel_lower)
+            if "/weapon/" in rel_lower or "/shield/" in rel_lower:
+                return (3, rel_lower)
+            if "/armor/" in rel_lower or "/item/" in rel_lower:
+                return (4, rel_lower)
+            return (5, rel_lower)
+
+        sorted_models = sorted(model_entries.items(), key=_model_priority)
+        if max_assets:
+            sorted_models = sorted_models[:max_assets]
+
+        for rel_path, (pak_name, is_loose) in sorted_models:
+            scanned_count += 1
+            if progress_callback and scanned_count % 100 == 0:
+                progress_callback(scanned_count, total_models, rel_path)
+
+            base_name = Path(rel_path).stem
+            clean_rel = rel_path.replace("\\", "/").strip().lstrip("/")
+            category = classify_asset_category(clean_rel)
+
+            # Match with NPC template if available
+            npc_match = npc_templates.get(clean_rel.lower()) or npc_templates.get(base_name.lower())
+            asset_id = npc_match["id"] if npc_match else f"model_{abs(hash(clean_rel)) % 1000000:06d}"
+            asset_name = npc_match["name"] if npc_match else base_name.replace("_", " ").title()
+
+            # Find matching .cal animation list
+            cal_path = self._find_matching_cal(clean_rel)
+            animations: List[str] = []
+            idle_anim: Optional[str] = None
+
+            if cal_path:
+                animations, idle_anim = self._inspect_cal(cal_path)
+
+            # Read lightweight chunk metadata from CGF
+            cgf_bytes = self.catalog.extract_file(clean_rel)
+            if not cgf_bytes and is_loose:
+                loose_f = self.root / clean_rel
+                if loose_f.is_file():
+                    cgf_bytes = loose_f.read_bytes()
+
+            header_meta = inspect_cgf_header_metadata(cgf_bytes) if cgf_bytes else {}
+
+            entry = AssetEntry(
+                asset_id=asset_id,
+                name=asset_name,
+                category=category,
+                model_path=clean_rel,
+                client_flavor=self.flavor,
+                source_pak=pak_name,
+                is_loose=is_loose,
+                has_skeleton=header_meta.get("has_skeleton", bool(animations)),
+                bone_count=header_meta.get("bone_count", 0),
+                skeleton_path=clean_rel if header_meta.get("has_skeleton") else None,
+                cal_path=cal_path,
+                idle_animation=idle_anim,
+                animations=animations,
+                animation_count=len(animations),
+                vertex_count=header_meta.get("vertex_count", 0),
+                triangle_count=header_meta.get("triangle_count", 0),
+                file_size=len(cgf_bytes) if cgf_bytes else 0,
+            )
+
+            self._register_dependencies(entry)
+            assets.append(entry)
+
+        return assets, self.dep_graph
+
+    def scan_all(self, max_assets: Optional[int] = None) -> List[AssetEntry]:
+        """Convenience method returning just the list of scanned AssetEntry objects."""
+        return self.scan(max_assets=max_assets)[0]
+
+    def _find_matching_cal(self, cgf_rel: str) -> Optional[str]:
+        """Finds the corresponding .cal file for a model path."""
+        p = Path(cgf_rel)
+        parent = p.parent.as_posix()
+        stem = p.stem
+
+        cands = [
+            f"{parent}/{stem}.cal",
+            f"{stem}.cal",
+            f"{parent}/{stem.split('_')[0]}.cal",
+        ]
+        for c in cands:
+            entry = self.catalog.find_file(c)
+            if entry:
+                return entry[1].name
+            loose = self.root / c
+            if loose.is_file():
+                return c
+        return None
+
+    def _inspect_cal(self, cal_rel: str) -> Tuple[List[str], Optional[str]]:
+        """Parses state names and default idle animation from a CAL file."""
+        try:
+            from formats.cgf.cal_parser import parse_cal, find_default_idle_animation
+        except ImportError:
+            from ..formats.cgf.cal_parser import parse_cal, find_default_idle_animation
+
+        data = self.catalog.extract_file(cal_rel)
+        if not data:
+            loose = self.root / cal_rel
+            if loose.is_file():
+                data = loose.read_bytes()
+
+        if not data:
+            return [], None
+
+        cal_map = parse_cal(data)
+        states = list(cal_map.keys())
+        idle = find_default_idle_animation(cal_map)
+        return states, idle
+
+    def _load_npc_templates(self) -> Dict[str, Dict[str, str]]:
+        """Loads NPC names and mesh references from client_npcs.xml or client_npcs.bxml."""
+        results: Dict[str, Dict[str, str]] = {}
+        for pak_path, arc in self.catalog._archives.items():
+            for name in arc.entries.keys():
+                if "client_npc" in name.lower() and (name.endswith(".xml") or name.endswith(".bxml")):
+                    raw_bytes = arc.read_file(name)
+                    if raw_bytes:
+                        self._parse_npc_xml_chunk(raw_bytes, results)
+        return results
+
+    def _parse_npc_xml_chunk(self, raw_bytes: bytes, out_dict: Dict[str, Dict[str, str]]) -> None:
+        """Extracts (id, name, mesh) tuples from XML/BXML bytes."""
+        text = raw_bytes.decode("utf-16le", errors="ignore")
+        if "<npc_client" not in text:
+            text = raw_bytes.decode("latin-1", errors="ignore")
+
+        # Regex for id, name, mesh
+        for match in re.finditer(r'<npc_client[^>]*id="(\d+)"[^>]*name="([^"]+)"[^>]*mesh="([^"]+)"', text):
+            nid, name, mesh = match.groups()
+            clean_mesh = mesh.replace("\\", "/").strip().lower()
+            mesh_stem = Path(clean_mesh).stem.lower()
+            item = {"id": nid, "name": name, "mesh": mesh}
+            out_dict[clean_mesh] = item
+            out_dict[mesh_stem] = item
+
+    def _register_dependencies(self, entry: AssetEntry) -> None:
+        """Links asset nodes in the dependency graph."""
+        # Asset -> Model
+        self.dep_graph.add_dependency(entry.asset_id, entry.model_path)
+        # Model -> Skeleton
+        if entry.skeleton_path:
+            self.dep_graph.add_dependency(entry.model_path, entry.skeleton_path)
+        # Model -> CAL
+        if entry.cal_path:
+            self.dep_graph.add_dependency(entry.model_path, entry.cal_path)
+            # CAL -> Idle CAF
+            if entry.idle_animation:
+                self.dep_graph.add_dependency(entry.cal_path, entry.idle_animation)
+
+
+Scanner = ClientScanner
