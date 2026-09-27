@@ -38,19 +38,32 @@ Suporta importação abrangente de mapas de larga escala, reconstrução de shad
 
 ### Procedimento de Instalação
 
-#### Método A: Instalação pelas Preferências do Blender (Recomendado)
-1. No Blender, abra `Editar (Edit)` > `Preferências (Preferences)` > `Extensões / Add-ons`.
-2. Clique na seta do menu superior direito e selecione **Instalar a partir do disco... (Install from Disk...)**.
-3. Selecione a pasta ou o arquivo `.zip` do `importador-mapas-lostacademy`.
-4. Na barra de pesquisa, digite `Lost Academy` ou `Aion Map Toolkit`.
-5. Marque a caixa de seleção ao lado de **Import-Export: Lost Academy - Aion Map Toolkit** para ativá-lo.
+O addon suporta **duas formas de instalação equivalentes no Blender**: via arquivo comprimido `.zip` ou selecionando diretamente a pasta do projeto descompactada.
 
-#### Método B: Cópia Direta da Pasta
-Copie a pasta `importador-mapas-lostacademy` diretamente para o diretório de addons do Blender:
-```text
-%APPDATA%\Blender Foundation\Blender\<versao>\scripts\addons\importador-mapas-lostacademy
-```
-Reinicie o Blender e ative o addon nas Preferências.
+#### Método A: Instalação via Arquivo ZIP (Recomendado e Universal)
+1. Localize o arquivo de instalação `.zip` gerado na pasta de ferramentas:
+   ```text
+   D:\AION CLASSIC 5.0 - EMULADOR\Ferramentas e Documentos\Blender - Aion Plugins\importador-mapas-lostacademy.zip
+   ```
+2. No Blender, abra o menu superior: **Editar (Edit)** > **Preferências (Preferences)** > aba **Extensões / Add-ons**.
+3. No canto superior direito, clique no menu de opções (ícone de seta/três pontos) e selecione **Instalar a partir do disco... (Install from Disk...)** ou **Instalar de Arquivo... (Install from File...)**.
+4. Navegue até a pasta de plugins e selecione o arquivo `importador-mapas-lostacademy.zip`.
+5. O Blender descompacta e registra o plugin automaticamente em sua pasta de extensões.
+6. Na barra de busca de add-ons, digite `Lost Academy` ou `Aion Map Toolkit`.
+7. Marque a caixa de seleção ao lado de **Import-Export: Lost Academy - Aion Map Toolkit** para ativá-lo.
+
+#### Método B: Instalação Selecionando a Pasta ou Cópia Direta
+1. **Pela Interface do Blender (Blender 4.2+ / 5.x LTS)**:
+   * Em `Preferências` > `Add-ons` > **Instalar a partir do disco...**, você também pode selecionar diretamente o diretório descompactado:
+     ```text
+     D:\AION CLASSIC 5.0 - EMULADOR\Ferramentas e Documentos\Blender - Aion Plugins\importador-mapas-lostacademy
+     ```
+2. **Por Cópia Direta no Sistema de Arquivos**:
+   * Copie a pasta `importador-mapas-lostacademy` diretamente para a pasta de scripts do seu Blender:
+     ```text
+     %APPDATA%\Blender Foundation\Blender\<versao>\scripts\addons\importador-mapas-lostacademy
+     ```
+3. Reinicie o Blender e ative o plugin na lista de Add-ons.
 
 ---
 

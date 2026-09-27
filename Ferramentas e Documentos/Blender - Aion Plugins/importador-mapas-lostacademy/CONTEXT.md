@@ -2,7 +2,9 @@
 
 **Versão do Documento:** 1.1.0 (Versão do Toolkit: 0.7.0)  
 **Ambiente Alvo:** Blender 4.0 - 5.2+ LTS, Python 3.10 - 3.11  
-**Localização do Projeto:** `D:\GameForge\aionclassic\Aion Classic - Editor\importador-mapas-lostacademy`
+**Localização Canônica do Projeto:** `D:\AION CLASSIC 5.0 - EMULADOR\Ferramentas e Documentos\Blender - Aion Plugins\importador-mapas-lostacademy`  
+**Pacote Instalável (.ZIP):** `D:\AION CLASSIC 5.0 - EMULADOR\Ferramentas e Documentos\Blender - Aion Plugins\importador-mapas-lostacademy.zip`  
+**Modalidades de Instalação Suportadas:** Instalação via arquivo comprimido `.zip` ou seleção direta da pasta fonte no Blender.
 
 ---
 
