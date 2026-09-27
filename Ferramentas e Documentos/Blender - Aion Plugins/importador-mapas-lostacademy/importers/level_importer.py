@@ -250,6 +250,7 @@ def import_level(
     import_collision: bool = True,
     import_npcs: bool = True,
     import_npc_models: bool = True,
+    animate_npcs: bool = True,
     import_monsters: bool = True,
     import_friendly_npcs: bool = True,
     import_ambient_creatures: bool = True,
