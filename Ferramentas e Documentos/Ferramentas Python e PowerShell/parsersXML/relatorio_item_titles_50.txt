@@ -1,7 +1,7 @@
 sync_50_item_titles.py
 catálogo: data/europe/Items/client_items.xml
 títulos oficiais: data/PC/client_titles.xml
-títulos no player_titles.xml: 300
+títulos no player_titles.xml: 374
 
 == cartão legado elegível no Siel's Hammer: 336
   169610000: título legado 101, crush=item_crush_result_common_token_1, desc_long=STR_OLD_TITLE_NOTICE_DESC
@@ -344,7 +344,7 @@ títulos no player_titles.xml: 300
 == cash_title fora do catálogo atual: 1
   169611050: título legado 279, crush=-, desc_long=STR_EVENT_ADD_TITLE281_DESC
 
-== título Classic sem template no servidor (não alterado): 74
+== titleadd validado: 74
   169611175: título 408, minutos 0
   169611176: título 409, minutos 0
   169611177: título 410, minutos 0
@@ -419,3 +419,5 @@ títulos no player_titles.xml: 300
   169611246: título 479, minutos 0
   169611247: título 480, minutos 0
   169611248: título 481, minutos 0
+
+== título Classic sem template no servidor (não alterado): 0

@@ -2,12 +2,12 @@
   "fonte_cliente": "5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data/europe/Items/client_items.xml",
   "sha256_cliente": "0db9fe61322d0b93049f3aa1914afa8748a26d7dcc027eb3704a2b57c585828d",
   "fonte_emulador": "Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xml",
-  "sha256_emulador": "cb54ecaec4863cdd581a971e38af631af97b44a63239114ee1d7758c39702f9f",
+  "sha256_emulador": "10d15a080e1920084b8eac6b7e6c1ef2160f251e750afcffe9a91f0432d71d1f",
   "itens_oficiais": 79664,
   "itens_emulador": 79664,
   "itens_por_status": {
-    "COMPATIVEL_NOS_CAMPOS_AUDITADOS": 73560,
-    "PENDENTE_RELACAO": 6104
+    "COMPATIVEL_NOS_CAMPOS_AUDITADOS": 73634,
+    "PENDENTE_RELACAO": 6030
   },
   "itens_por_categoria": {
     "acessorios": 3831,
@@ -28,7 +28,7 @@
   "strings_de_item_resolvidas": 78262,
   "skills_oficiais_indexadas": 12114,
   "titulos_oficiais_indexados": 74,
-  "titulos_servidor_indexados": 300,
+  "titulos_servidor_indexados": 374,
   "itens_siel_hammer_indexados": 4446,
   "arquitetura_por_camada": {
     "java": 433,

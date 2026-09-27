@@ -2052,4 +2052,569 @@
 			<rate name="SPEED" value="5" bonus="true"/>
 		</modifiers>
 	</title>
+
+	<title id="408" nameId="1803041" desc="최후의 날개" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="80" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-50" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="50" bonus="true"/>
+			<add name="CRITICAL_DAMAGE_BOOST" value="8" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="25" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="25" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="409" nameId="1803042" desc="예리한 검날" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<add name="POWER" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="410" nameId="1803043" desc="굳건한 방패" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<add name="HEALTH" value="5" bonus="true"/>
+			<add name="BLOCK" value="31" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="411" nameId="1803044" desc="치명적인 일격" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<add name="AGILITY" value="5" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="30" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="412" nameId="1803045" desc="사냥꾼의 눈동자" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<add name="ACCURACY" value="5" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="10" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="413" nameId="1803046" desc="폭주하는 마력" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="35" bonus="true"/>
+			<add name="KNOWLEDGE" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="414" nameId="1803047" desc="영혼의 지배자" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="35" bonus="true"/>
+			<add name="WILL" value="5" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="10" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="415" nameId="1803048" desc="성스러운 광휘" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="35" bonus="true"/>
+			<add name="MAXHP" value="1120" bonus="true"/>
+			<add name="HEAL_BOOST" value="30" bonus="true"/>
+			<add name="PVP_DEFEND_RATIO" value="30" bonus="true"/>
+			<add name="PVE_DEFEND_RATIO" value="30" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="416" nameId="1803049" desc="전장의 기도" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<add name="POWER" value="1" bonus="true"/>
+			<add name="HEAL_BOOST" value="30" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="417" nameId="1803050" desc="냉혹한 집행" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="10" bonus="true"/>
+			<add name="PHYSICAL_ACCURACY" value="27" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="10" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="418" nameId="1803051" desc="폭풍의 주먹" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="21" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="15" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="15" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="419" nameId="1803052" desc="빛의 섬광" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="27" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="10" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="420" nameId="1803053" desc="불꽃의 탄환" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="18" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="10" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="421" nameId="1803054" desc="마력 깃든 검날" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="5" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="27" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="15" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="15" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="422" nameId="1803055" desc="오늘만 사는" race="PC_ALL">
+		<modifiers>
+			<add name="PVP_ATTACK_RATIO" value="50" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="50" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="423" nameId="1803056" desc="붉은 날개의 투사" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="55" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-25" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="25" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="21" bonus="true"/>
+			<add name="CRITICAL_DAMAGE_BOOST" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="424" nameId="1803057" desc="운명을 거스르는" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="55" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-25" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="25" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+			<add name="CRITICAL_DAMAGE_BOOST" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="425" nameId="1803058" desc="운명에 저항하는" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="55" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-25" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="25" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="426" nameId="1803059" desc="신성한 그림자" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="55" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-28" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="10" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="427" nameId="1803060" desc="황혼의 결투자" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="55" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="28" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="10" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="428" nameId="1803061" desc="타락한 날개" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="55" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-26" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="26" bonus="true"/>
+			<add name="PVP_DEFEND_RATIO" value="20" bonus="true"/>
+			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="429" nameId="1803062" desc="별빛의 사도" race="PC_ALL">
+		<modifiers>
+			<permille name="ATTACK_SPEED" value="-30" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="30" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="20" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="430" nameId="1803063" desc="망각의 성흔" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="50" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="35" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="431" nameId="1803064" desc="세계를 구원한 영웅" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="53" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-20" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="20" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="432" nameId="1803065" desc="신성의 파편을 품은" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="53" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-20" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="20" bonus="true"/>
+			<add name="PVP_DEFEND_RATIO" value="20" bonus="true"/>
+			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="433" nameId="1803066" desc="심연의 왕좌를 정복한" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="55" bonus="true"/>
+			<add name="EVASION" value="21" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="18" bonus="true"/>
+			<add name="BLOCK" value="31" bonus="true"/>
+			<add name="PARRY" value="31" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="434" nameId="1803067" desc="전장의 맹세" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="55" bonus="true"/>
+			<add name="MAGIC_SKILL_BOOST_RESIST" value="35" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="435" nameId="1803068" desc="든든한 동료" race="PC_ALL">
+		<modifiers>
+			<permille name="BOOST_CASTING_TIME" value="30" bonus="true"/>
+			<add name="HEAL_BOOST" value="50" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="436" nameId="1803069" desc="행동대장" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="65" bonus="true"/>
+			<permille name="FLY_SPEED" value="65" bonus="true"/>
+			<add name="FLY_TIME" value="50" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="437" nameId="1803070" desc="힘이 되는" race="PC_ALL">
+		<modifiers>
+			<add name="POWER" value="1" bonus="true"/>
+			<add name="HEALTH" value="1" bonus="true"/>
+			<add name="AGILITY" value="1" bonus="true"/>
+			<add name="ACCURACY" value="1" bonus="true"/>
+			<add name="KNOWLEDGE" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="438" nameId="1803071" desc="자유로운 영혼" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="62" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="115" bonus="true"/>
+			<add name="MAXHP" value="150" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="439" nameId="1803072" desc="차원을 넘은" race="PC_ALL">
+		<modifiers>
+			<add name="REGEN_HP" value="15" bonus="true"/>
+			<add name="MAXHP" value="360" bonus="true"/>
+			<add name="REGEN_MP" value="15" bonus="true"/>
+			<add name="MAXMP" value="360" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="440" nameId="1803073" desc="엉뚱한" race="PC_ALL">
+		<modifiers>
+			<permille name="ATTACK_SPEED" value="-30" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="30" bonus="true"/>
+			<add name="POWER" value="1" bonus="true"/>
+			<add name="FLY_TIME" value="50" bonus="true"/>
+			<rate name="FLY_SPEED" value="6" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="441" nameId="1803074" desc="섬세한" race="PC_ALL">
+		<modifiers>
+			<permille name="ATTACK_SPEED" value="-30" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="30" bonus="true"/>
+			<add name="KNOWLEDGE" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="442" nameId="1803075" desc="검은구름 명예 지부장" race="PC_ALL">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="443" nameId="1803076" desc="검은구름 특별 지부장" race="PC_ALL">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="444" nameId="1803077" desc="신성의 수호자" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<rate name="FLY_SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="445" nameId="1803078" desc="피에 젖은" race="PC_ALL">
+		<modifiers>
+			<add name="PVP_ATTACK_RATIO" value="20" bonus="true"/>
+			<add name="PVP_DEFEND_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="446" nameId="1803079" desc="현상금 사냥꾼" race="PC_ALL">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<add name="FLY_TIME" value="30" bonus="true"/>
+			<rate name="FLY_SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="447" nameId="1803080" desc="결계탑 수호자" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<rate name="FLY_SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="448" nameId="1803081" desc="피로 물든" race="PC_ALL">
+		<modifiers>
+			<add name="PVP_ATTACK_RATIO" value="20" bonus="true"/>
+			<add name="PVP_DEFEND_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="449" nameId="1803082" desc="전문 해결사" race="PC_ALL">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="450" nameId="1803083" desc="자매회의 지도자" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="451" nameId="1803084" desc="형제회의 지도자" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="452" nameId="1803085" desc="현상금 조사원" race="PC_ALL">
+		<modifiers>
+			<add name="MAXHP" value="200" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="20" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="453" nameId="1803086" desc="전문 조사원" race="PC_ALL">
+		<modifiers>
+			<add name="MAXHP" value="200" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="20" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="454" nameId="1803087" desc="영광의 승리자" race="PC_ALL">
+		<modifiers>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="10" bonus="true"/>
+			<add name="MAXHP" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="455" nameId="1803088" desc="재능의 기대주" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="12" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="10" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="456" nameId="1803089" desc="환영 날개를 알고 있는" race="PC_ALL">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="457" nameId="1803090" desc="소년을 이끌어준" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_DEFENSE" value="35" bonus="true"/>
+			<add name="MAXHP" value="60" bonus="true"/>
+			<add name="FLY_TIME" value="30" bonus="true"/>
+			<rate name="FLY_SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="458" nameId="1803091" desc="피의 흔적" race="PC_ALL">
+		<modifiers>
+			<add name="PVP_ATTACK_RATIO" value="20" bonus="true"/>
+			<add name="PVP_DEFEND_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="459" nameId="1803092" desc="군단 지원대의 파수꾼" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<rate name="FLY_SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="460" nameId="1803093" desc="군단 지원대의 수호자" race="PC_ALL">
+		<modifiers>
+			<add name="MAXHP" value="200" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="20" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="461" nameId="1803094" desc="수호신장 최초 선봉자" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="15" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="5" bonus="true"/>
+			<add name="MAXHP" value="100" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="462" nameId="1803095" desc="수호신장 최후 목격자" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="10" bonus="true"/>
+			<add name="MAXHP" value="100" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="463" nameId="1803096" desc="미궁 탐험가" race="PC_ALL">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<add name="MAXHP" value="100" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="464" nameId="1803097" desc="미궁 탐험가 II" race="PC_ALL">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="465" nameId="1803098" desc="미궁 탐험가 III" race="PC_ALL">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="56" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="466" nameId="1803099" desc="크랄 사냥꾼" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="2" bonus="true"/>
+			<add name="FLY_TIME" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="467" nameId="1803100" desc="인내심 있는" race="PC_ALL">
+		<modifiers>
+			<add name="EVASION" value="3" bonus="true"/>
+			<add name="PHYSICAL_ACCURACY" value="6" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="468" nameId="1803101" desc="영혼의 조력자" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="5" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<add name="PARRY" value="8" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="469" nameId="1803102" desc="수사반장" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="1" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="8" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="470" nameId="1803103" desc="불패의 용사" race="PC_ALL">
+		<modifiers>
+			<add name="MAXHP" value="50" bonus="true"/>
+			<add name="FLY_TIME" value="15" bonus="true"/>
+			<rate name="FLY_SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="471" nameId="1803104" desc="운명에 맞선" race="PC_ALL">
+		<modifiers>
+			<add name="MAXHP" value="52" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="30" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="472" nameId="1803105" desc="불굴의 개척자" race="PC_ALL">
+		<modifiers>
+			<add name="MAGICAL_ACCURACY" value="6" bonus="true"/>
+			<add name="MAXMP" value="28" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="473" nameId="1803106" desc="역전의 용사" race="PC_ALL">
+		<modifiers>
+			<add name="MAXHP" value="50" bonus="true"/>
+			<add name="FLY_TIME" value="5" bonus="true"/>
+			<rate name="FLY_SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="474" nameId="1803107" desc="운명을 바꾼" race="PC_ALL">
+		<modifiers>
+			<add name="MAXHP" value="52" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="30" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="475" nameId="1803108" desc="온정이 넘치는" race="PC_ALL">
+		<modifiers>
+			<add name="HEAL_BOOST" value="12" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+			<add name="MAXHP" value="50" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="476" nameId="1803109" desc="집요한 추적자" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="7" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="477" nameId="1803110" desc="눈썰미가 좋은" race="PC_ALL">
+		<modifiers>
+			<add name="EVASION" value="10" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="10" bonus="true"/>
+			<add name="BLOCK" value="10" bonus="true"/>
+			<add name="PARRY" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="478" nameId="1803111" desc="소중한" race="PC_ALL">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="479" nameId="1803112" desc="아트레이아의 절대자" race="PC_ALL">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-3" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="480" nameId="1803113" desc="투지의 추격자" race="PC_ALL">
+		<modifiers>
+			<add name="PVP_ATTACK_RATIO" value="20" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="481" nameId="1803192" desc="초월한 후예" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="65" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-38" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="38" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="20" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
 </player_titles>

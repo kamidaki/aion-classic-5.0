@@ -34,6 +34,7 @@ public enum StatEnum {
 	PHYSICAL_ATTACK(25), // Attack
 	PHYSICAL_ACCURACY(30), // Accuracy
 	PHYSICAL_CRITICAL(34), // Critical Strike
+	CRITICAL_DAMAGE_BOOST, // Classic title CriticalDamageBoost, percentage points
 	PHYSICAL_DEFENSE(26), // Physical Def
 	MAIN_HAND_HITS,
 	MAIN_HAND_ACCURACY,

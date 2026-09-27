@@ -94,6 +94,9 @@ public class AttackUtil {
 					}
 				}
 			}
+			float criticalDamageBoost = attacker.getGameStats().getStat(StatEnum.CRITICAL_DAMAGE_BOOST, 0).getCurrent() / 100f;
+			mainMultiplier += criticalDamageBoost;
+			offMultiplier += criticalDamageBoost;
 			if (attacked instanceof Player) {
 				int fortitude;
 				if (!attacker.getAttackType().isMagical() && element == SkillElement.NONE) { // if stat != null ? why
@@ -193,7 +196,8 @@ public class AttackUtil {
 		return damage - reduceVal;
 	}
 
-	private static float calculateWeaponCritical(SkillElement element, Creature attacked, float damage, ItemGroup group, int critAddDmg, StatEnum stat, boolean isMain) {
+	private static float calculateWeaponCritical(Creature attacker, SkillElement element, Creature attacked, float damage, ItemGroup group, int critAddDmg,
+		StatEnum stat, boolean isMain) {
 		float coeficient = 1.5f;
 		if (element == SkillElement.NONE && group != null) {
 			coeficient = getWeaponMultiplier(group);
@@ -209,7 +213,7 @@ public class AttackUtil {
 		}
 
 		// add critical add dmg
-		coeficient += critAddDmg / 100f;
+		coeficient += (critAddDmg + attacker.getGameStats().getStat(StatEnum.CRITICAL_DAMAGE_BOOST, 0).getCurrent()) / 100f;
 		return damage * coeficient;
 	}
 
@@ -327,7 +331,7 @@ public class AttackUtil {
 		if (status.isCritical()) {
 			int critAddDmg = template.calculateCritAddDmg(effect);
 			StatEnum stat = element == SkillElement.NONE ? StatEnum.PHYSICAL_CRITICAL_DAMAGE_REDUCE : StatEnum.MAGICAL_CRITICAL_DAMAGE_REDUCE;
-			damage = calculateWeaponCritical(element, effected, damage, getWeaponGroup(effector, true), critAddDmg, stat, true);
+			damage = calculateWeaponCritical(effector, element, effected, damage, getWeaponGroup(effector, true), critAddDmg, stat, true);
 		}
 
 		if (isPhysical) {
@@ -484,7 +488,7 @@ public class AttackUtil {
 				status = calculateMagicalStatus(effector, effected, template.getCritProbMod2(), true, effect.getSkillTemplate().isMcritApplied());
 			if (status == AttackStatus.CRITICAL) {
 				int critAddDmg = template.calculateCritAddDmg(effect);
-				damage = calculateWeaponCritical(template.getElement(), effected, damage, getWeaponGroup(effector, true), critAddDmg,
+				damage = calculateWeaponCritical(effector, template.getElement(), effected, damage, getWeaponGroup(effector, true), critAddDmg,
 					StatEnum.MAGICAL_CRITICAL_DAMAGE_REDUCE, true);
 			}
 			damage = StatFunctions.adjustDamageByPvpOrPveModifiers(effector, effected, damage, effect.getPvpDamage(), false, template.getElement());

@@ -256,7 +256,7 @@ class ClassicItemSystemsTest {
 	}
 
 	@Test void legacyTitleCardsAreHammerMaterialsInsteadOfUsableTitles() {
-		assertEquals(300, DataManager.TITLE_DATA.size());
+		assertEquals(374, DataManager.TITLE_DATA.size());
 		for (int itemId : new int[] {169610000, 169611001, 169611028, 169611068}) {
 			var legacyCard = DataManager.ITEM_DATA.getItemTemplate(itemId);
 			assertTrue(legacyCard.getActions() == null || legacyCard.getActions().getItemActions().stream()
@@ -264,9 +264,47 @@ class ClassicItemSystemsTest {
 			assertNotNull(DataManager.SIEL_HAMMER_DATA.getTable(itemId));
 		}
 		var currentCard = DataManager.ITEM_DATA.getItemTemplate(169611175);
-		assertTrue(currentCard.getActions() == null || currentCard.getActions().getItemActions().stream()
-			.noneMatch(com.aionemu.gameserver.model.templates.item.actions.TitleAddAction.class::isInstance));
-		assertNull(DataManager.TITLE_DATA.getTitleTemplate(408));
+		assertTrue(currentCard.getActions().getItemActions().stream()
+			.anyMatch(com.aionemu.gameserver.model.templates.item.actions.TitleAddAction.class::isInstance));
+		assertNotNull(DataManager.TITLE_DATA.getTitleTemplate(408));
+		assertNotNull(DataManager.TITLE_DATA.getTitleTemplate(481));
+	}
+
+	@Test void officialClassicTitlesPreservePreciseRatiosAndCriticalDamageBoost() {
+		var title = DataManager.TITLE_DATA.getTitleTemplate(408);
+		assertEquals(Race.PC_ALL, title.getRace());
+		assertEquals(1803041, title.getL10nId());
+		assertEquals(80, title.getModifiers().stream()
+			.filter(com.aionemu.gameserver.model.stats.calc.functions.StatPermilleFunction.class::isInstance)
+			.filter(m -> m.getName() == com.aionemu.gameserver.model.stats.container.StatEnum.SPEED)
+			.mapToInt(m -> m.getValue()).sum());
+		assertEquals(-50, title.getModifiers().stream()
+			.filter(com.aionemu.gameserver.model.stats.calc.functions.StatPermilleFunction.class::isInstance)
+			.filter(m -> m.getName() == com.aionemu.gameserver.model.stats.container.StatEnum.ATTACK_SPEED)
+			.mapToInt(m -> m.getValue()).sum());
+		assertEquals(8, title.getModifiers().stream()
+			.filter(m -> m.getName() == com.aionemu.gameserver.model.stats.container.StatEnum.CRITICAL_DAMAGE_BOOST)
+			.mapToInt(m -> m.getValue()).sum());
+		for (var stat : new com.aionemu.gameserver.model.stats.container.StatEnum[] {
+			com.aionemu.gameserver.model.stats.container.StatEnum.PVP_ATTACK_RATIO,
+			com.aionemu.gameserver.model.stats.container.StatEnum.PVE_ATTACK_RATIO
+		})
+			assertEquals(25, title.getModifiers().stream().filter(m -> m.getName() == stat)
+				.mapToInt(m -> m.getValue()).sum());
+	}
+
+	@Test void classicTitlePermilleModifierKeepsTenthsOfPercent() {
+		var movement = new com.aionemu.gameserver.model.stats.calc.AdditionStat(
+			com.aionemu.gameserver.model.stats.container.StatEnum.SPEED, 1000, null);
+		new com.aionemu.gameserver.model.stats.calc.functions.StatPermilleFunction(
+			com.aionemu.gameserver.model.stats.container.StatEnum.SPEED, 58, true).apply(movement);
+		assertEquals(1058, movement.getCurrent());
+
+		var attackDelay = new com.aionemu.gameserver.model.stats.calc.AdditionStat(
+			com.aionemu.gameserver.model.stats.container.StatEnum.ATTACK_SPEED, 1000, null);
+		new com.aionemu.gameserver.model.stats.calc.functions.StatPermilleFunction(
+			com.aionemu.gameserver.model.stats.container.StatEnum.ATTACK_SPEED, -35, true).apply(attackDelay);
+		assertEquals(965, attackDelay.getCurrent());
 	}
 
 	@Test void itemCoreFieldsMatchRepresentativeOfficialRecords() {

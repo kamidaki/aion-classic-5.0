@@ -521274,80 +521274,376 @@
 	<item_template id="169611172" name="Colar de opala durável" level="1" cName="EVENT_ADD_TITLE313_3Day" mask="16472" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816002" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16696" activate_count="1"/>
 	<item_template id="169611173" name="Colar durável" level="1" cName="EVENT_ADD_TITLE315_3Day" mask="16472" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816003" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16696" activate_count="1"/>
 	<item_template id="169611174" name="Catalium resistente Hauberk" level="1" cName="world_RU_event_add_title_407" mask="0" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="816380" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640" activate_count="1"/>
-	<item_template id="169611175" name="Salada de carne de dragão com molho de óleo e plumbo" level="1" cName="NEW_ALL_TITLE408" mask="16458" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="816852" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611176" name="Carne de dragão frito com plumbo" level="1" cName="NEW_ALL_TITLE409" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816853" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611177" name="Sopa de óleo de carne de dragão com plumbo" level="1" cName="NEW_ALL_TITLE410" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816854" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611178" name="Omelete de carne de dragão frito por óleo com plumbo" level="1" cName="NEW_ALL_TITLE411" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816855" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611179" name="Carne de dragão picante frito com óleo com Pepento" level="1" cName="NEW_ALL_TITLE412" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816856" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611180" name="Carne de dragão frito com pepento" level="1" cName="NEW_ALL_TITLE413" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816857" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611181" name="Carne de dragão assada por óleo com Pepento" level="1" cName="NEW_ALL_TITLE414" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816858" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611182" name="Geléia aether" level="1" cName="NEW_ALL_TITLE415" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816859" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611183" name="Cristal de tempo idium" level="1" cName="NEW_ALL_TITLE416" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816860" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611184" name="Óleo de chama para conchas de canhão" level="1" cName="NEW_ALL_TITLE417" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816861" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611185" name="Doublet de couro de catalium" level="1" cName="NEW_ALL_TITLE418" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816862" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611186" name="Calções de couro de catalium" level="1" cName="NEW_ALL_TITLE419" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816863" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611187" name="Sapatos de couro de catalium" level="1" cName="NEW_ALL_TITLE420" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816864" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611188" name="Manoplas de couro de catalium" level="1" cName="NEW_ALL_TITLE421" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816865" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611189" name="Spaulders de couro de catalium" level="1" cName="NEW_ALL_TITLE422" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816866" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611190" name="Catalium Cheather Hat" level="1" cName="NEW_ALL_TITLE423" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816867" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611191" name="Dupleto de couro durável de catálio" level="1" cName="NEW_ALL_TITLE424" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816868" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611192" name="Calções de couro de catálio duráveis" level="1" cName="NEW_ALL_TITLE425" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816869" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611193" name="Sapatos duráveis ​​de couro de catálio" level="1" cName="NEW_ALL_TITLE426" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816870" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611194" name="Manoplas de couro durável de catálio" level="1" cName="NEW_ALL_TITLE427" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816871" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611195" name="Spaulders de couro durável de catálio" level="1" cName="NEW_ALL_TITLE428" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816872" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611196" name="Chapéu de couro durável de catálio" level="1" cName="NEW_ALL_TITLE429" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816873" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611197" name="Dupleto de couro de catálions resistente" level="1" cName="NEW_ALL_TITLE430" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816874" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611198" name="Calções de couro de catálions resistentes" level="1" cName="NEW_ALL_TITLE431" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816875" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611199" name="Sapatos de couro de catálions resistentes" level="1" cName="NEW_ALL_TITLE432" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816876" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611200" name="Manelas de couro de catálions resistentes" level="1" cName="NEW_ALL_TITLE433" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816877" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611201" name="Spaulders de couro de catálio" level="1" cName="NEW_ALL_TITLE434" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816878" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611202" name="Chapéu de couro robusto de catálio" level="1" cName="NEW_ALL_TITLE435" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816879" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611203" name="Doublet de couro de catálio de especialista" level="1" cName="NEW_ALL_TITLE436" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816880" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611204" name="Calções de couro de catálio de especialista" level="1" cName="NEW_ALL_TITLE437" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816881" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611205" name="Sapatos de couro de catalium de especialistas" level="1" cName="NEW_ALL_TITLE438" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816882" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611206" name="Manoplas de couro de catalium de especialistas" level="1" cName="NEW_ALL_TITLE439" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816883" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611207" name="Spaulders de couro de catalium de especialistas" level="1" cName="NEW_ALL_TITLE440" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816884" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611208" name="Catalium de Catalium de especialista chapéu" level="1" cName="NEW_ALL_TITLE441" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816885" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169611209" name="Doublet de couro de catalium do artesão" level="1" cName="NEW_ALL_TITLE442" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816886" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611210" name="Calças de couro de catálions do artesão" level="1" cName="NEW_ALL_TITLE443" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816887" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611211" name="Sapatos de couro de catalium do artesão" level="1" cName="NEW_ALL_TITLE444" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816888" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611212" name="Manoplas de couro de catalium do artesão" level="1" cName="NEW_ALL_TITLE445" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816889" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611213" name="Spaulders de couro do Craftman&amp;#39;s Catalium" level="1" cName="NEW_ALL_TITLE446" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816890" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611214" name="Catalium Catalium Catalium Chaping" level="1" cName="NEW_ALL_TITLE447" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816891" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611215" name="Doublet de couro do Catálio do Mestre" level="1" cName="NEW_ALL_TITLE448" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816892" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611216" name="Calças de couro de catálions mestre" level="1" cName="NEW_ALL_TITLE449" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816893" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611217" name="Sapatos de couro de catalium mestre" level="1" cName="NEW_ALL_TITLE450" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816894" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611218" name="Manoplas de couro de catálions mestre" level="1" cName="NEW_ALL_TITLE451" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816895" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611219" name="Spaulders de couro de catalium mestre" level="1" cName="NEW_ALL_TITLE452" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816896" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611220" name="Chapéu de couro de catalium mestre" level="1" cName="NEW_ALL_TITLE453" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816897" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611221" name="Doublet de couro do Catálio do Grão -Mestre" level="1" cName="NEW_ALL_TITLE454" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816898" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611222" name="Calcinhas de couro de catalium grão -mestre" level="1" cName="NEW_ALL_TITLE455" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816899" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611223" name="Sapatos de couro de catalium grão -mestre" level="1" cName="NEW_ALL_TITLE456" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816900" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611224" name="Manoplas de couro do Grand Master Catalium" level="1" cName="NEW_ALL_TITLE457" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816901" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611225" name="Grand Master&amp;#39;s Catalium Couro Spaulders" level="1" cName="NEW_ALL_TITLE458" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816902" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611226" name="Grão -mestre de Catalium Cheather Hat" level="1" cName="NEW_ALL_TITLE459" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816903" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611227" name="O dupleto de couro de Jormungand" level="1" cName="NEW_ALL_TITLE460" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816904" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611228" name="Recreios de couro de Jormungand" level="1" cName="NEW_ALL_TITLE461" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816905" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611229" name="Os sapatos de couro de Jormungand" level="1" cName="NEW_ALL_TITLE462" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816906" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611230" name="As manoplas de couro de Jormungand" level="1" cName="NEW_ALL_TITLE463" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816907" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611231" name="Spaulders de couro de Jormungand" level="1" cName="NEW_ALL_TITLE464" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816908" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611232" name="Chapéu de couro de Jormungand" level="1" cName="NEW_ALL_TITLE465" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816909" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611233" name="Jormungand&amp;#39;s Mestreful Couro Doublet" level="1" cName="NEW_ALL_TITLE466" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816910" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611234" name="Calças de couro magistral de Jormungand" level="1" cName="NEW_ALL_TITLE467" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816911" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611235" name="Sapatos de couro magistral de Jormungand" level="1" cName="NEW_ALL_TITLE468" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816912" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611236" name="Manoplas de couro magistral de Jormungand" level="1" cName="NEW_ALL_TITLE469" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816913" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611237" name="Spaulders de couro magistral de Jormungand" level="1" cName="NEW_ALL_TITLE470" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816914" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611238" name="Chapéu de couro magistral de Jormungand" level="1" cName="NEW_ALL_TITLE471" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816915" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611239" name="Jormungand&amp;#39;s Premium Couro Doublet" level="1" cName="NEW_ALL_TITLE472" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816916" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611240" name="Calças de couro premium de Jormungand" level="1" cName="NEW_ALL_TITLE473" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816917" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611241" name="Sapatos de couro premium de Jormungand" level="1" cName="NEW_ALL_TITLE474" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816918" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611242" name="Manoplas de couro premium de Jormungand" level="1" cName="NEW_ALL_TITLE475" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816919" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611243" name="Spaulders de couro premium de Jormungand" level="1" cName="NEW_ALL_TITLE476" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816920" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611244" name="Chapéu de couro premium de Jormungand" level="1" cName="NEW_ALL_TITLE477" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816921" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611245" name="Túnica de pano de catálio" level="1" cName="NEW_ALL_TITLE478" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816922" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611246" name="Calções de pano de catálio" level="1" cName="NEW_ALL_TITLE479" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816923" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611247" name="Sapatos de pano de catálio" level="1" cName="NEW_ALL_TITLE480" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816924" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611248" name="Design: Maça de Catálio Sturdy" level="1" cName="NEW_ALL_TITLE481" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="817152" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
+	<item_template id="169611175" name="Salada de carne de dragão com molho de óleo e plumbo" level="1" cName="NEW_ALL_TITLE408" mask="16458" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="816852" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="408"/>
+		</actions>
+	</item_template>
+	<item_template id="169611176" name="Carne de dragão frito com plumbo" level="1" cName="NEW_ALL_TITLE409" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816853" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="409"/>
+		</actions>
+	</item_template>
+	<item_template id="169611177" name="Sopa de óleo de carne de dragão com plumbo" level="1" cName="NEW_ALL_TITLE410" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816854" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="410"/>
+		</actions>
+	</item_template>
+	<item_template id="169611178" name="Omelete de carne de dragão frito por óleo com plumbo" level="1" cName="NEW_ALL_TITLE411" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816855" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="411"/>
+		</actions>
+	</item_template>
+	<item_template id="169611179" name="Carne de dragão picante frito com óleo com Pepento" level="1" cName="NEW_ALL_TITLE412" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816856" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="412"/>
+		</actions>
+	</item_template>
+	<item_template id="169611180" name="Carne de dragão frito com pepento" level="1" cName="NEW_ALL_TITLE413" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816857" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="413"/>
+		</actions>
+	</item_template>
+	<item_template id="169611181" name="Carne de dragão assada por óleo com Pepento" level="1" cName="NEW_ALL_TITLE414" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816858" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="414"/>
+		</actions>
+	</item_template>
+	<item_template id="169611182" name="Geléia aether" level="1" cName="NEW_ALL_TITLE415" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816859" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="415"/>
+		</actions>
+	</item_template>
+	<item_template id="169611183" name="Cristal de tempo idium" level="1" cName="NEW_ALL_TITLE416" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816860" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="416"/>
+		</actions>
+	</item_template>
+	<item_template id="169611184" name="Óleo de chama para conchas de canhão" level="1" cName="NEW_ALL_TITLE417" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816861" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="417"/>
+		</actions>
+	</item_template>
+	<item_template id="169611185" name="Doublet de couro de catalium" level="1" cName="NEW_ALL_TITLE418" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816862" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="418"/>
+		</actions>
+	</item_template>
+	<item_template id="169611186" name="Calções de couro de catalium" level="1" cName="NEW_ALL_TITLE419" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816863" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="419"/>
+		</actions>
+	</item_template>
+	<item_template id="169611187" name="Sapatos de couro de catalium" level="1" cName="NEW_ALL_TITLE420" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816864" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="420"/>
+		</actions>
+	</item_template>
+	<item_template id="169611188" name="Manoplas de couro de catalium" level="1" cName="NEW_ALL_TITLE421" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="816865" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="421"/>
+		</actions>
+	</item_template>
+	<item_template id="169611189" name="Spaulders de couro de catalium" level="1" cName="NEW_ALL_TITLE422" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816866" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="422"/>
+		</actions>
+	</item_template>
+	<item_template id="169611190" name="Catalium Cheather Hat" level="1" cName="NEW_ALL_TITLE423" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816867" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="423"/>
+		</actions>
+	</item_template>
+	<item_template id="169611191" name="Dupleto de couro durável de catálio" level="1" cName="NEW_ALL_TITLE424" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816868" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="424"/>
+		</actions>
+	</item_template>
+	<item_template id="169611192" name="Calções de couro de catálio duráveis" level="1" cName="NEW_ALL_TITLE425" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816869" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="425"/>
+		</actions>
+	</item_template>
+	<item_template id="169611193" name="Sapatos duráveis ​​de couro de catálio" level="1" cName="NEW_ALL_TITLE426" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816870" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="426"/>
+		</actions>
+	</item_template>
+	<item_template id="169611194" name="Manoplas de couro durável de catálio" level="1" cName="NEW_ALL_TITLE427" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816871" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="427"/>
+		</actions>
+	</item_template>
+	<item_template id="169611195" name="Spaulders de couro durável de catálio" level="1" cName="NEW_ALL_TITLE428" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816872" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="428"/>
+		</actions>
+	</item_template>
+	<item_template id="169611196" name="Chapéu de couro durável de catálio" level="1" cName="NEW_ALL_TITLE429" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816873" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="429"/>
+		</actions>
+	</item_template>
+	<item_template id="169611197" name="Dupleto de couro de catálions resistente" level="1" cName="NEW_ALL_TITLE430" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816874" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="430"/>
+		</actions>
+	</item_template>
+	<item_template id="169611198" name="Calções de couro de catálions resistentes" level="1" cName="NEW_ALL_TITLE431" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816875" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="431"/>
+		</actions>
+	</item_template>
+	<item_template id="169611199" name="Sapatos de couro de catálions resistentes" level="1" cName="NEW_ALL_TITLE432" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816876" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="432"/>
+		</actions>
+	</item_template>
+	<item_template id="169611200" name="Manelas de couro de catálions resistentes" level="1" cName="NEW_ALL_TITLE433" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816877" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="433"/>
+		</actions>
+	</item_template>
+	<item_template id="169611201" name="Spaulders de couro de catálio" level="1" cName="NEW_ALL_TITLE434" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816878" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="434"/>
+		</actions>
+	</item_template>
+	<item_template id="169611202" name="Chapéu de couro robusto de catálio" level="1" cName="NEW_ALL_TITLE435" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816879" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="435"/>
+		</actions>
+	</item_template>
+	<item_template id="169611203" name="Doublet de couro de catálio de especialista" level="1" cName="NEW_ALL_TITLE436" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816880" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="436"/>
+		</actions>
+	</item_template>
+	<item_template id="169611204" name="Calções de couro de catálio de especialista" level="1" cName="NEW_ALL_TITLE437" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816881" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="437"/>
+		</actions>
+	</item_template>
+	<item_template id="169611205" name="Sapatos de couro de catalium de especialistas" level="1" cName="NEW_ALL_TITLE438" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816882" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="438"/>
+		</actions>
+	</item_template>
+	<item_template id="169611206" name="Manoplas de couro de catalium de especialistas" level="1" cName="NEW_ALL_TITLE439" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816883" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="439"/>
+		</actions>
+	</item_template>
+	<item_template id="169611207" name="Spaulders de couro de catalium de especialistas" level="1" cName="NEW_ALL_TITLE440" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816884" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="440"/>
+		</actions>
+	</item_template>
+	<item_template id="169611208" name="Catalium de Catalium de especialista chapéu" level="1" cName="NEW_ALL_TITLE441" mask="16458" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="816885" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="441"/>
+		</actions>
+	</item_template>
+	<item_template id="169611209" name="Doublet de couro de catalium do artesão" level="1" cName="NEW_ALL_TITLE442" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816886" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="442"/>
+		</actions>
+	</item_template>
+	<item_template id="169611210" name="Calças de couro de catálions do artesão" level="1" cName="NEW_ALL_TITLE443" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816887" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="443"/>
+		</actions>
+	</item_template>
+	<item_template id="169611211" name="Sapatos de couro de catalium do artesão" level="1" cName="NEW_ALL_TITLE444" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816888" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="444"/>
+		</actions>
+	</item_template>
+	<item_template id="169611212" name="Manoplas de couro de catalium do artesão" level="1" cName="NEW_ALL_TITLE445" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816889" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="445"/>
+		</actions>
+	</item_template>
+	<item_template id="169611213" name="Spaulders de couro do Craftman&amp;#39;s Catalium" level="1" cName="NEW_ALL_TITLE446" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816890" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="446"/>
+		</actions>
+	</item_template>
+	<item_template id="169611214" name="Catalium Catalium Catalium Chaping" level="1" cName="NEW_ALL_TITLE447" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816891" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="447"/>
+		</actions>
+	</item_template>
+	<item_template id="169611215" name="Doublet de couro do Catálio do Mestre" level="1" cName="NEW_ALL_TITLE448" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816892" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="448"/>
+		</actions>
+	</item_template>
+	<item_template id="169611216" name="Calças de couro de catálions mestre" level="1" cName="NEW_ALL_TITLE449" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816893" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="449"/>
+		</actions>
+	</item_template>
+	<item_template id="169611217" name="Sapatos de couro de catalium mestre" level="1" cName="NEW_ALL_TITLE450" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816894" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="450"/>
+		</actions>
+	</item_template>
+	<item_template id="169611218" name="Manoplas de couro de catálions mestre" level="1" cName="NEW_ALL_TITLE451" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816895" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="451"/>
+		</actions>
+	</item_template>
+	<item_template id="169611219" name="Spaulders de couro de catalium mestre" level="1" cName="NEW_ALL_TITLE452" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816896" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="452"/>
+		</actions>
+	</item_template>
+	<item_template id="169611220" name="Chapéu de couro de catalium mestre" level="1" cName="NEW_ALL_TITLE453" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816897" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="453"/>
+		</actions>
+	</item_template>
+	<item_template id="169611221" name="Doublet de couro do Catálio do Grão -Mestre" level="1" cName="NEW_ALL_TITLE454" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816898" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="454"/>
+		</actions>
+	</item_template>
+	<item_template id="169611222" name="Calcinhas de couro de catalium grão -mestre" level="1" cName="NEW_ALL_TITLE455" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816899" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="455"/>
+		</actions>
+	</item_template>
+	<item_template id="169611223" name="Sapatos de couro de catalium grão -mestre" level="1" cName="NEW_ALL_TITLE456" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816900" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="456"/>
+		</actions>
+	</item_template>
+	<item_template id="169611224" name="Manoplas de couro do Grand Master Catalium" level="1" cName="NEW_ALL_TITLE457" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816901" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="457"/>
+		</actions>
+	</item_template>
+	<item_template id="169611225" name="Grand Master&amp;#39;s Catalium Couro Spaulders" level="1" cName="NEW_ALL_TITLE458" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816902" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="458"/>
+		</actions>
+	</item_template>
+	<item_template id="169611226" name="Grão -mestre de Catalium Cheather Hat" level="1" cName="NEW_ALL_TITLE459" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816903" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="459"/>
+		</actions>
+	</item_template>
+	<item_template id="169611227" name="O dupleto de couro de Jormungand" level="1" cName="NEW_ALL_TITLE460" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816904" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="460"/>
+		</actions>
+	</item_template>
+	<item_template id="169611228" name="Recreios de couro de Jormungand" level="1" cName="NEW_ALL_TITLE461" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816905" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="461"/>
+		</actions>
+	</item_template>
+	<item_template id="169611229" name="Os sapatos de couro de Jormungand" level="1" cName="NEW_ALL_TITLE462" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816906" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="462"/>
+		</actions>
+	</item_template>
+	<item_template id="169611230" name="As manoplas de couro de Jormungand" level="1" cName="NEW_ALL_TITLE463" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816907" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="463"/>
+		</actions>
+	</item_template>
+	<item_template id="169611231" name="Spaulders de couro de Jormungand" level="1" cName="NEW_ALL_TITLE464" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816908" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="464"/>
+		</actions>
+	</item_template>
+	<item_template id="169611232" name="Chapéu de couro de Jormungand" level="1" cName="NEW_ALL_TITLE465" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816909" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="465"/>
+		</actions>
+	</item_template>
+	<item_template id="169611233" name="Jormungand&amp;#39;s Mestreful Couro Doublet" level="1" cName="NEW_ALL_TITLE466" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816910" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="466"/>
+		</actions>
+	</item_template>
+	<item_template id="169611234" name="Calças de couro magistral de Jormungand" level="1" cName="NEW_ALL_TITLE467" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816911" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="467"/>
+		</actions>
+	</item_template>
+	<item_template id="169611235" name="Sapatos de couro magistral de Jormungand" level="1" cName="NEW_ALL_TITLE468" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816912" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="468"/>
+		</actions>
+	</item_template>
+	<item_template id="169611236" name="Manoplas de couro magistral de Jormungand" level="1" cName="NEW_ALL_TITLE469" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816913" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="469"/>
+		</actions>
+	</item_template>
+	<item_template id="169611237" name="Spaulders de couro magistral de Jormungand" level="1" cName="NEW_ALL_TITLE470" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816914" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="470"/>
+		</actions>
+	</item_template>
+	<item_template id="169611238" name="Chapéu de couro magistral de Jormungand" level="1" cName="NEW_ALL_TITLE471" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816915" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="471"/>
+		</actions>
+	</item_template>
+	<item_template id="169611239" name="Jormungand&amp;#39;s Premium Couro Doublet" level="1" cName="NEW_ALL_TITLE472" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816916" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="472"/>
+		</actions>
+	</item_template>
+	<item_template id="169611240" name="Calças de couro premium de Jormungand" level="1" cName="NEW_ALL_TITLE473" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816917" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="473"/>
+		</actions>
+	</item_template>
+	<item_template id="169611241" name="Sapatos de couro premium de Jormungand" level="1" cName="NEW_ALL_TITLE474" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816918" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="474"/>
+		</actions>
+	</item_template>
+	<item_template id="169611242" name="Manoplas de couro premium de Jormungand" level="1" cName="NEW_ALL_TITLE475" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816919" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="475"/>
+		</actions>
+	</item_template>
+	<item_template id="169611243" name="Spaulders de couro premium de Jormungand" level="1" cName="NEW_ALL_TITLE476" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816920" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="476"/>
+		</actions>
+	</item_template>
+	<item_template id="169611244" name="Chapéu de couro premium de Jormungand" level="1" cName="NEW_ALL_TITLE477" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816921" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="477"/>
+		</actions>
+	</item_template>
+	<item_template id="169611245" name="Túnica de pano de catálio" level="1" cName="NEW_ALL_TITLE478" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="816922" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="478"/>
+		</actions>
+	</item_template>
+	<item_template id="169611246" name="Calções de pano de catálio" level="1" cName="NEW_ALL_TITLE479" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816923" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="479"/>
+		</actions>
+	</item_template>
+	<item_template id="169611247" name="Sapatos de pano de catálio" level="1" cName="NEW_ALL_TITLE480" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816924" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1">
+		<actions>
+			<titleadd titleid="480"/>
+		</actions>
+	</item_template>
+	<item_template id="169611248" name="Design: Maça de Catálio Sturdy" level="1" cName="NEW_ALL_TITLE481" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="817152" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1">
+		<actions>
+			<titleadd titleid="481"/>
+		</actions>
+	</item_template>
 	<item_template id="169620500" name="Revolver Adamantium Éter do Craftsman" level="1" cName="event_questexpboost_01" mask="24648" item_group="QUEST" quality="COMMON" price="180000" desc="809572" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_count="1">
 		<actions>
 			<skilluse skillid="11371" level="1"/>
