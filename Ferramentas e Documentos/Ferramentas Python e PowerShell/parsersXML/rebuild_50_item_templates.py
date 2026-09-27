@@ -56,6 +56,7 @@ RESTRICT_SOURCES = ["warrior", "fighter", "knight", "scout", "assassin", "ranger
                     "orchestrator", "lumines", "engineer", "gunner", "runewarrior", "runeblade", None, "gunner"]
 ORD_ALL = 23
 CLASS_FIELDS = sorted({f for f in RESTRICT_SOURCES if f})
+CLASS_MAX_FIELDS = [f + "_max" for f in CLASS_FIELDS]
 
 QUALITY = {"junk": "JUNK", "common": "COMMON", "rare": "RARE", "legend": "LEGEND", "unique": "UNIQUE", "epic": "EPIC", "mythic": "MYTHIC"}
 RACE = {"pc_light": "ELYOS", "pc_dark": "ASMODIANS"}
@@ -118,7 +119,7 @@ KEEP = {"id", "name", "desc", "level", "price", "quality", "max_stack_count", "i
         "craft_recipe_info", "cosmetic_name", "dyeing_color", "cash_title", "cash_available_minute",
         "disassembly_item", "mgrouptag", "tag", "quest", "icon_name", "stat_enchant_type", "stat_enchant_value"} \
     | {f for _, f in MASK_FLAGS} | set(BASE_MODS) | {c for _, c, _ in WS_FIELDS} | {"reduce_max"} \
-    | set(CLASS_FIELDS) | set(NOT_GENERATED)
+    | set(CLASS_FIELDS) | set(CLASS_MAX_FIELDS) | set(NOT_GENERATED)
 
 BLOCK_RE = re.compile(r'\t<item_template\b([^>]*?)(/>|>(.*?)</item_template>)', re.S)
 ATTR_RE = re.compile(r'(\w+)="([^"]*)"')
@@ -210,6 +211,8 @@ def gen_mask(d):
 
 
 def gen_restrict(d, suffix=""):
+    if not any(f and f + suffix in d for f in RESTRICT_SOURCES):
+        return [0 if suffix else 1] * len(RESTRICT_SOURCES)
     return [(num(d.get(f + suffix)) or 0) if f else 0 for f in RESTRICT_SOURCES]
 
 
@@ -517,7 +520,12 @@ def verify(same, srv, cli, ctx):
             c["ws_ok"] += all(current_ws.get(k, "0") == v for k, v in t["ws"] if k in ("min_damage", "max_damage", "attack_speed", "hit_count", "attack_range"))
         if "restrict" in la:
             c["r_n"] += 1
-            c["r_ok"] += "restrict" in ga and ga["restrict"].split()[:12] == la["restrict"].split()[:12]
+            expected_restrict = ga.get("restrict", " ".join("1" for _ in RESTRICT_SOURCES)).split()
+            current_restrict = la["restrict"].split()
+            if len(current_restrict) < len(RESTRICT_SOURCES):
+                fill = str(min(int(v) for v in current_restrict)) if current_restrict and all(int(v) for v in current_restrict) else "0"
+                current_restrict += [fill] * (len(RESTRICT_SOURCES) - len(current_restrict))
+            c["r_ok"] += all(current_restrict[i] == expected_restrict[i] for i in range(len(RESTRICT_SOURCES)) if i != ORD_ALL)
         c["r_pres"] += ("restrict" in ga) == ("restrict" in la)
         for k in ("level", "desc", "quality", "race", "item_type", "attack_type", "activate_target", "activate_count", "casting_delay", "expire_time"):
             lv, gv = la.get(k, DEFAULTS.get(k)), ga.get(k, DEFAULTS.get(k))
@@ -549,7 +557,7 @@ def verify(same, srv, cli, ctx):
     N = c["n"]
     print(f"  modifiers iguais (onde o servidor tem) {pct(c['mods_ok'], c['mods_n'])} ({c['mods_n']}) | manastones {pct(c['stone_ok'], c['stone_n'])} ({c['stone_n']})")
     print(f"  weapon_stats (dano/vel/alcance) {pct(c['ws_ok'], c['ws_n'])}  ({c['ws_n']} armas)")
-    print(f"  restrict: presenca {pct(c['r_pres'], N)} | 12 classes classicas iguais {pct(c['r_ok'], c['r_n'])}")
+    print(f"  restrict: presenca {pct(c['r_pres'], N)} | 24 entradas mapeadas iguais {pct(c['r_ok'], c['r_n'])}")
     for k in ("level", "desc", "quality", "race", "item_type", "attack_type", "activate_target", "activate_count", "casting_delay", "expire_time"):
         print(f"  {k:<16} {pct(c[k + '_ok'], c[k + '_n'])}  ({c[k + '_n']})")
     print(f"  mask identico                  {pct(c['mask_ok'], N)}  (diferenca esperada: regras de troca/armazem da 4.8 x 5.0)")

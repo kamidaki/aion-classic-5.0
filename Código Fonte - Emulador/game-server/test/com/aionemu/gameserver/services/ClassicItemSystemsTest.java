@@ -245,6 +245,20 @@ class ClassicItemSystemsTest {
 		assertEquals(70, DataManager.ITEM_DATA.getItemTemplate(115000011).getWeaponStats().getReduceMax());
 	}
 
+	@Test void classAndLevelRestrictionsMatchOfficialMatrices() {
+		var sorcererRobe = DataManager.ITEM_DATA.getItemTemplate(110100972);
+		assertTrue(sorcererRobe.isClassSpecific(com.aionemu.gameserver.model.PlayerClass.SORCERER));
+		assertEquals(50, sorcererRobe.getRequiredLevel(com.aionemu.gameserver.model.PlayerClass.SORCERER));
+		assertFalse(sorcererRobe.isClassSpecific(com.aionemu.gameserver.model.PlayerClass.SPIRIT_MASTER));
+		assertEquals(-1, sorcererRobe.getRequiredLevel(com.aionemu.gameserver.model.PlayerClass.SPIRIT_MASTER));
+
+		var fledglingSword = DataManager.ITEM_DATA.getItemTemplate(100001115);
+		assertTrue(fledglingSword.isClassSpecific(com.aionemu.gameserver.model.PlayerClass.PHOENIX));
+		assertEquals(25, fledglingSword.getRequiredLevel(com.aionemu.gameserver.model.PlayerClass.PHOENIX));
+		assertEquals(0, fledglingSword.getMaxLevelRestrict(com.aionemu.gameserver.model.PlayerClass.PHOENIX));
+		assertEquals(39, fledglingSword.getMaxLevelRestrict(com.aionemu.gameserver.model.PlayerClass.SOUL_REAPER));
+	}
+
 	@Test void environmentMatchesOfficialSixtyBytePayload() throws Exception {
 		int previous = GSConfig.CHARACTER_REENTRY_TIME;
 		try {

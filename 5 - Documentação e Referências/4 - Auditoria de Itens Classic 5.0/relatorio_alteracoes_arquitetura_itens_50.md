@@ -69,3 +69,12 @@ Os números de compatibilidade não equivalem a funcionamento integral: um item 
 - Foram corrigidas 314 diferenças de dano mínimo, 314 de dano máximo, 284 de crítico, 2.550 de precisão física, 613 de aparo, 2.985 de precisão mágica, 412 de poder mágico e 68 de bloqueio máximo. Velocidade, alcance e número de golpes já estavam corretos.
 - O auditor não registra mais divergências nem pendências em `weapon_stats`; o XML permanece válido contra o XSD e fonte/produto final continuam idênticos.
 - Indicadores após esta etapa: 71.465 compatíveis nos campos diretos, 0 divergentes comprovados e 8.199 pendentes de relações/valores que exigem validação adicional.
+
+## Etapa 6 — restrições de classe e faixa de nível
+
+- Foram sincronizadas as matrizes `restrict` e `restrict_max` em 4.866 templates: 4.787 restrições mínimas e 141 restrições máximas alteradas.
+- O mapeamento usa a ordem real dos 25 ordinais de `PlayerClass`; 24 posições possuem fonte oficial. A posição `PlayerClass.ALL`, sem campo correspondente no cliente, preserva seu valor efetivo anterior e não é inventada.
+- O parser passou a carregar também os campos oficiais `*_max`, anteriormente descartados, e o auditor agora compara as matrizes após aplicar exatamente a expansão usada pelo JAXB/Java.
+- Foi removido o bypass legado que considerava qualquer arma ou armadura válida para qualquer classe. Também foi removida a cópia indevida de nível mínimo/máximo de outras classes quando a classe consultada possui valor zero.
+- Resultado do verificador: 100% de igualdade nas 24 posições oficialmente mapeadas; zero divergências de `restrict` ou `restrict_max`; XML XSD válido.
+- Os indicadores gerais permanecem em 71.465 compatíveis, 0 divergentes comprovados e 8.199 pendentes, pois essas matrizes ainda não faziam parte das pendências contabilizadas antes desta etapa.

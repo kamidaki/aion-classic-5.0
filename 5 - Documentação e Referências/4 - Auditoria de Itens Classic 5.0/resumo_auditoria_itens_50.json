@@ -2,7 +2,7 @@
   "fonte_cliente": "5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data/europe/Items/client_items.xml",
   "sha256_cliente": "0db9fe61322d0b93049f3aa1914afa8748a26d7dcc027eb3704a2b57c585828d",
   "fonte_emulador": "Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xml",
-  "sha256_emulador": "017af0fa90491f93420ec5bf01da9c2df90e5637ef24df2784e8b06a006f63cf",
+  "sha256_emulador": "8a366fc760d6bda414201873726edb5f466bcc9a834ab143cb56ad2253617543",
   "itens_oficiais": 79664,
   "itens_emulador": 79664,
   "itens_por_status": {

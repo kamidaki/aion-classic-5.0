@@ -5,7 +5,7 @@
 - Itens oficiais: **79664**.
 - Templates do emulador: **79664**.
 - Strings oficiais resolvidas: **78262**.
-- Fonte e produto final sincronizados: **sim** (`017af0fa90491f93420ec5bf01da9c2df90e5637ef24df2784e8b06a006f63cf`).
+- Fonte e produto final sincronizados: **sim** (`8a366fc760d6bda414201873726edb5f466bcc9a834ab143cb56ad2253617543`).
 
 ## Classificacao individual
 

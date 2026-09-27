@@ -30,7 +30,7 @@ dados;Código Fonte - Emulador/game-server/data/static_data/items/item_random_bo
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_random_bonuses.xsd;897
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_restriction_cleanups.xml;830
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_restriction_cleanups.xsd;829
-dados;Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xml;42325537
+dados;Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xml;42640575
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xsd;33680
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_upgrade.xml;638694
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_upgrade.xsd;3004
@@ -187,7 +187,7 @@ java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templ
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ItemAttackType.java;774
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ItemComposeRecipe.java;2757
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ItemQuality.java;761
-java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ItemTemplate.java;18172
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ItemTemplate.java;17622
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ItemType.java;324
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ItemUpgradeTemplate.java;5150
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/ItemUseLimits.java;2596

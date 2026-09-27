@@ -46,6 +46,9 @@ ATTACK = {"physical": "PHYSICAL", "magic": "MAGICAL", "magical": "MAGICAL"}
 CLASS_FIELDS = ("warrior", "fighter", "knight", "scout", "assassin", "ranger", "mage", "wizard", "elementalist",
                 "cleric", "priest", "chanter", "monk", "thunderer", "striker", "battlemaster", "orchestrator",
                 "lumines", "engineer", "gunner", "runewarrior", "runeblade")
+RESTRICT_SOURCES = ("warrior", "fighter", "knight", "scout", "assassin", "ranger", "mage", "wizard", "elementalist",
+                    "cleric", "priest", "chanter", "monk", "thunderer", "thunderer", "striker", "battlemaster",
+                    "orchestrator", "lumines", "engineer", "gunner", "runewarrior", "runeblade", None, "gunner")
 BOOL_MASK = ((1, "lore"), (2, "can_exchange"), (4, "can_sell_to_npc"),
              (8, "can_deposit_to_character_warehouse"), (16, "can_deposit_to_account_warehouse"),
              (32, "can_deposit_to_guild_warehouse"), (64, "breakable"), (128, "soul_bind"),
@@ -79,11 +82,32 @@ CLIENT_FIELDS = set(DIRECT_FIELDS) | set(ACTION_FIELDS) | set(CLASS_FIELDS) | {
     "magical_hit_accuracy", "magical_skill_boost", "reduce_max", "cannot_changeskin", "can_dye", "item_drop_permitted",
     "cannot_extraction", "cash_item",
     "stat_enchant_type", "stat_enchant_value", "abyss_point", "abyss_item", "charge_level",
-} | {name for _, name in BOOL_MASK}
+} | {name for _, name in BOOL_MASK} | {name + "_max" for name in CLASS_FIELDS}
 
 
 def meaningful(value: str | None) -> bool:
     return value is not None and value.strip().lower() not in ("", "0", "false", "none", "no")
+
+
+def expected_restriction(item: dict[str, str], suffix: str = "") -> list[int]:
+    present = any(source and source + suffix in item for source in RESTRICT_SOURCES)
+    if not present:
+        return [0 if suffix else 1] * len(RESTRICT_SOURCES)
+    return [int(item.get(source + suffix, "0") or 0) if source else 0 for source in RESTRICT_SOURCES]
+
+
+def effective_server_restriction(raw: str | None, maximum: bool = False) -> list[int]:
+    size = len(RESTRICT_SOURCES)
+    if raw is None:
+        return [0 if maximum else 1] * size
+    values = [int(value) for value in raw.split()]
+    if len(values) >= size:
+        return values[:size]
+    result = values + [0] * (size - len(values))
+    if values and all(values):
+        fill = max(values) if maximum else min(values)
+        result[len(values):] = [fill] * (size - len(values))
+    return result
 
 
 def sha256(path: Path) -> str:
@@ -252,6 +276,14 @@ def compare_item(client: dict[str, str] | None, server: dict | None, strings: di
         actual = server["weapon"].get(target_name, "0")
         if actual != expected:
             differences.append(f"weapon.{target_name}:{expected}!={actual}")
+    expected_min = expected_restriction(client)
+    actual_min = effective_server_restriction(attrs.get("restrict"))
+    if any(expected_min[i] != actual_min[i] for i in range(len(RESTRICT_SOURCES)) if i != 23):
+        differences.append("restrict:" + " ".join(map(str, expected_min)) + "!=" + " ".join(map(str, actual_min)))
+    expected_max = expected_restriction(client, "_max")
+    actual_max = effective_server_restriction(attrs.get("restrict_max"), maximum=True)
+    if any(expected_max[i] != actual_max[i] for i in range(len(RESTRICT_SOURCES)) if i != 23):
+        differences.append("restrict_max:" + " ".join(map(str, expected_max)) + "!=" + " ".join(map(str, actual_max)))
     for field, action in ACTION_FIELDS.items():
         if meaningful(client.get(field)) and action not in server["actions"]:
             pending.append(f"acao {action} indicada por {field}")
