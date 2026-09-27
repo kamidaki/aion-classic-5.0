@@ -111,3 +111,14 @@ Os números de compatibilidade não equivalem a funcionamento integral: um item 
 - A regressão automatizada executou 29 testes em Java 25, todos aprovados. Foram cobertos os quatro valores oficiais, limites inferior/superior, dano mínimo, carga do template e separação de `BLEED_RESISTANCE`.
 - O produto final foi recompilado e sincronizado: JAR `b507257dcf58a5774b72e336c091603aa8a6419edb826d307aa504cdf6bbb136` e ZIP `c91f4a94b6899fcd3b98b8653f2d714528915acfd907515a8c7557141f6c8667` coincidem com os artefatos gerados pelo Maven.
 - Indicadores após esta etapa: 72.961 compatíveis nos campos auditados, 0 divergências comprovadas e 6.703 pendentes. Cinco dos 66 itens continuam pendentes por relações não ligadas aos modificadores.
+
+## Etapa 10 — ações oficiais de ativação de skills
+
+- O sincronizador `fix_50_item_activation_skill.py` passou a usar como catálogo canônico `data/europe/Items/client_items.xml`, resolver nomes pelo `data/skills/client_skills.xml` oficial e exigir que o ID exista no `skill_templates.xml` do servidor antes de alterar um item.
+- Foram inseridas 198 ações `skilluse` ausentes. Entre os casos recuperados estão consumíveis, pergaminhos, itens de missão, invocações e itens de transformação; nenhuma skill ou efeito foi inventado.
+- Quatro ações existentes de itens de missão tinham `level="0"`; os IDs 182202194, 182205692, 182206724 e 182206726 foram alinhados ao `activation_level=1` oficial.
+- O verificador cobre individualmente os 2.508 registros com `activation_skill`: 2.388 nomes oficiais estão resolvidos para o mesmo `skillid` e `level` carregado pelo servidor. Os 120 valores numéricos pequenos (5, 6, 8, 9 e 11), todos em equipamentos, não foram tratados como IDs de skill e permanecem pendentes de um dicionário oficial de semântica.
+- O fluxo Java existente foi preservado: `SkillUseAction` valida pelo `SkillEngine`, inicia a skill com o template do item, e a remoção/cooldown ocorre no pagamento dos custos do cast. Esta etapa não declara validação end-to-end desse fluxo no cliente.
+- Fonte e produto final permanecem idênticos e válidos contra o XSD, com SHA-256 `cc6f409ac280112dbc9160fc9e12caf795d2f9faafb7435b06a81f7c437130b8`. Uma segunda execução terminou idempotente, com zero inserções e zero correções.
+- A regressão automatizada executou os 21 testes de `ClassicItemSystemsTest` em Java 25, todos aprovados. A nova cobertura verifica ação/alvo, níveis 1 e 5 e garante que um código numérico de equipamento não seja convertido em `skilluse`.
+- Indicadores após esta etapa: 73.158 compatíveis nos campos auditados, 0 divergências comprovadas e 6.506 pendentes. Os 15 grupos de testes end-to-end continuam em 0/15.

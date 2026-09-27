@@ -2,12 +2,12 @@
   "fonte_cliente": "5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data/europe/Items/client_items.xml",
   "sha256_cliente": "0db9fe61322d0b93049f3aa1914afa8748a26d7dcc027eb3704a2b57c585828d",
   "fonte_emulador": "Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xml",
-  "sha256_emulador": "1522da2c9cd765c039cbce52666b77e142641c341473f55f78a76f342bb50ce0",
+  "sha256_emulador": "cc6f409ac280112dbc9160fc9e12caf795d2f9faafb7435b06a81f7c437130b8",
   "itens_oficiais": 79664,
   "itens_emulador": 79664,
   "itens_por_status": {
-    "COMPATIVEL_NOS_CAMPOS_AUDITADOS": 72961,
-    "PENDENTE_RELACAO": 6703
+    "COMPATIVEL_NOS_CAMPOS_AUDITADOS": 73158,
+    "PENDENTE_RELACAO": 6506
   },
   "itens_por_categoria": {
     "acessorios": 3831,
@@ -26,6 +26,7 @@
     "utilizaveis": 440
   },
   "strings_de_item_resolvidas": 78262,
+  "skills_oficiais_indexadas": 12114,
   "arquitetura_por_camada": {
     "java": 433,
     "dados": 51,

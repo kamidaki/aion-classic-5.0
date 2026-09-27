@@ -216,6 +216,23 @@ class ClassicItemSystemsTest {
 		assertEquals(10, DataManager.ITEM_DATA.getItemTemplate(100000378).getActivationCount());
 	}
 
+	@Test void namedActivationSkillsUseOfficialSkillAndLevel() {
+		var targeted = DataManager.ITEM_DATA.getItemTemplate(164000103).getActions().getSkillUseAction();
+		assertEquals(10320, targeted.getSkillId());
+		assertEquals(1, targeted.getLevel());
+
+		var flightPotion = DataManager.ITEM_DATA.getItemTemplate(162002043).getActions().getSkillUseAction();
+		assertEquals(9911, flightPotion.getSkillId());
+		assertEquals(5, flightPotion.getLevel());
+
+		var questItem = DataManager.ITEM_DATA.getItemTemplate(182202194).getActions().getSkillUseAction();
+		assertEquals(2257, questItem.getSkillId());
+		assertEquals(1, questItem.getLevel());
+
+		var numericClientCode = DataManager.ITEM_DATA.getItemTemplate(110301469);
+		assertTrue(numericClientCode.getActions() == null || numericClientCode.getActions().getSkillUseAction() == null);
+	}
+
 	@Test void itemCoreFieldsMatchRepresentativeOfficialRecords() {
 		var divinityRing = DataManager.ITEM_DATA.getItemTemplate(122001561);
 		assertEquals(ItemQuality.DIVINITY, divinityRing.getItemQuality());

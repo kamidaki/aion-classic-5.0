@@ -352600,6 +352600,7 @@
 			<add name="PARRY" value="20" bonus="true"/>
 		</modifiers>
 		<actions>
+			<skilluse skillid="10373" level="1"/>
 			<remodel type="1"/>
 		</actions>
 	</item_template>
@@ -444565,6 +444566,9 @@
 		<uselimits usedelay="15000" usedelayid="32"/>
 	</item_template>
 	<item_template id="164000015" name="Rolagem de defesa física menor" level="10" cName="scroll_alchemy_02a" mask="24702" max_stack_count="1000" quality="COMMON" price="900" desc="702556" activate_target="STANDALONE" activate_count="1" item_group="PACK_SCROLL" client_mask="25406">
+		<actions>
+			<skilluse skillid="9924" level="1"/>
+		</actions>
 		<uselimits usedelay="15000" usedelayid="31"/>
 	</item_template>
 	<item_template id="164000016" name="Rolagem de menor precisão" level="10" cName="scroll_alchemy_04a" mask="24702" max_stack_count="1000" quality="COMMON" price="900" desc="702558" activate_target="STANDALONE" activate_count="1" item_group="PACK_SCROLL" client_mask="25406">
@@ -444583,6 +444587,9 @@
 		<uselimits usedelay="15000" usedelayid="31"/>
 	</item_template>
 	<item_template id="164000019" name="Menor Resista Magic Scroll" level="10" cName="scroll_alchemy_09a" mask="24702" max_stack_count="1000" quality="COMMON" price="900" desc="702563" activate_target="STANDALONE" activate_count="1" item_group="PACK_SCROLL" client_mask="25406">
+		<actions>
+			<skilluse skillid="9925" level="1"/>
+		</actions>
 		<uselimits usedelay="15000" usedelayid="31"/>
 	</item_template>
 	<item_template id="164000020" name="Rolagem de ataque menor mágico" level="10" cName="scroll_alchemy_10a" mask="24702" max_stack_count="1000" quality="COMMON" price="900" desc="702564" item_group="PACK_SCROLL" client_mask="25406">
@@ -445069,8 +445076,16 @@
 		</actions>
 		<uselimits usedelay="600000" usedelayid="16"/>
 	</item_template>
-	<item_template id="164000103" name="Bênção da concentração" level="50" cName="Item_Q_Wonkiock_skill" mask="24644" max_stack_count="100" quality="RARE" price="500000" race="ELYOS" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50" desc="753616" item_group="PACK_SCROLL" client_mask="24868" activate_target="TARGET" activate_count="1"/>
-	<item_template id="164000104" name="Bênção da devoção" level="50" cName="Item_Q_Wonkiock_Da_skill" mask="24644" max_stack_count="100" quality="RARE" price="500000" race="ASMODIANS" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50" desc="753617" item_group="PACK_SCROLL" client_mask="24868" activate_target="TARGET" activate_count="1"/>
+	<item_template id="164000103" name="Bênção da concentração" level="50" cName="Item_Q_Wonkiock_skill" mask="24644" max_stack_count="100" quality="RARE" price="500000" race="ELYOS" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50" desc="753616" item_group="PACK_SCROLL" client_mask="24868" activate_target="TARGET" activate_count="1">
+		<actions>
+			<skilluse skillid="10320" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164000104" name="Bênção da devoção" level="50" cName="Item_Q_Wonkiock_Da_skill" mask="24644" max_stack_count="100" quality="RARE" price="500000" race="ASMODIANS" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50" desc="753617" item_group="PACK_SCROLL" client_mask="24868" activate_target="TARGET" activate_count="1">
+		<actions>
+			<skilluse skillid="10321" level="1"/>
+		</actions>
+	</item_template>
 	<item_template id="164000106" name="Ingison Illusion Fortaleza Scroll" level="50" cName="scroll_return_lf4" casting_delay="10000" mask="24652" max_stack_count="1000" quality="COMMON" price="11700" race="ELYOS" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50" desc="754243" return_world="210050000" return_alias="LF4_RETURN_AREA_1" activate_target="STANDALONE" activate_count="1" item_group="PACK_SCROLL" client_mask="24876">
 		<actions>
 			<skilluse level="1" skillid="8198"/>
@@ -467155,7 +467170,7 @@
 	</item_template>
 	<item_template id="182202194" name="Emissor de ondas de choque" level="1" cName="quest_3722a" casting_delay="2000" mask="16449" item_group="QUEST" quality="COMMON" price="1" race="ELYOS" desc="1107587" activate_target="STANDALONE" activate_count="1" client_mask="17697">
 		<actions>
-			<skilluse level="0" skillid="2257"/>
+			<skilluse level="1" skillid="2257"/>
 		</actions>
 		<uselimits usedelay="120000" usedelayid="61" usearea="IDDREADGION_02_ITEMUSEAREA_Q3722"/>
 		<inventory id="2"/>
@@ -469242,7 +469257,7 @@
 	</item_template>
 	<item_template id="182205692" name="Emissor de ondas de choque" level="1" cName="quest_4722a" casting_delay="2000" mask="16449" item_group="QUEST" quality="COMMON" price="1" race="ASMODIANS" desc="1107881" activate_target="STANDALONE" activate_count="1" client_mask="17697">
 		<actions>
-			<skilluse level="0" skillid="2258"/>
+			<skilluse level="1" skillid="2258"/>
 		</actions>
 		<uselimits usedelay="120000" usedelayid="61" usearea="IDDREADGION_02_ITEMUSEAREA_Q3722"/>
 		<inventory id="2"/>
@@ -470039,7 +470054,7 @@
 	</item_template>
 	<item_template id="182206724" name="Vegetais temperados da Moonflower" level="1" cName="quest_11031b" casting_delay="2000" mask="16449" item_group="QUEST" quality="COMMON" price="1" race="ELYOS" desc="1130602" activate_target="STANDALONE" activate_count="1" client_mask="17697">
 		<actions>
-			<skilluse level="0" skillid="2253"/>
+			<skilluse level="1" skillid="2253"/>
 		</actions>
 		<uselimits usedelay="30000" usedelayid="61"/>
 		<inventory id="2"/>
@@ -470049,7 +470064,7 @@
 	</item_template>
 	<item_template id="182206726" name="Tentáculos experientes" level="1" cName="quest_11032b" casting_delay="2000" mask="16449" item_group="QUEST" quality="COMMON" price="1" race="ELYOS" desc="1130606" activate_target="STANDALONE" activate_count="1" client_mask="17697">
 		<actions>
-			<skilluse level="0" skillid="2254"/>
+			<skilluse level="1" skillid="2254"/>
 		</actions>
 		<uselimits usedelay="30000" usedelayid="61"/>
 		<inventory id="2"/>
@@ -481262,6 +481277,9 @@
 		<uselimits usedelayid="4"/>
 	</item_template>
 	<item_template id="188011001" name="ASMODIAN STIGMA MASTER SOPELAÇÃO" level="20" cName="test_summon_Aud" mask="24702" max_stack_count="100" quality="COMMON" price="1000" race="ASMODIANS" restrict="20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20" desc="770030" activate_target="STANDALONE" activate_count="1" item_group="DROP_MATERIAL" client_mask="25406">
+		<actions>
+			<skilluse skillid="9884" level="1"/>
+		</actions>
 		<uselimits usedelayid="4"/>
 	</item_template>
 	<item_template id="188020000" name="Pedra de ativação do artefato" level="25" cName="item_abyss_material_drive_artifact_g1" mask="24702" max_stack_count="100" quality="COMMON" price="10000" desc="716570" item_group="DROP_MATERIAL" client_mask="25406"/>
@@ -510611,7 +510629,11 @@
 		</actions>
 		<uselimits usedelay="5000" usedelayid="25"/>
 	</item_template>
-	<item_template id="160010446" name="Projeto: iluminação de parede de Adamantium" level="1" cName="event_doguri_buff_item_sack" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="785325" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1"/>
+	<item_template id="160010446" name="Projeto: iluminação de parede de Adamantium" level="1" cName="event_doguri_buff_item_sack" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="785325" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10604" level="1"/>
+		</actions>
+	</item_template>
 	<item_template id="160010447" name="Artesanato: brincos turquesa durável" level="40" cName="cash_candy_l_halloween_pumkin_Phy_01" mask="24666" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="785842" race="ELYOS" max_stack_count="1000" item_type="NORMAL" activate_target="STANDALONE" activate_count="1" client_mask="24890">
 		<actions>
 			<skilluse skillid="10608" level="1"/>
@@ -510894,9 +510916,21 @@
 		</actions>
 		<uselimits usedelay="10" usedelayid="0"/>
 	</item_template>
-	<item_template id="160010494" name="Ensina como fazer o sofá do Gravekeeper Basaim." level="1" cName="IDGods_Descent_Q_Item_Trans_Candy_Lumiel" mask="0" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="795385" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="160010495" name="Ensina como fazer a cama da tranquilidade." level="1" cName="IDGods_Descent_Q_Item_Trans_Candy_Ariel" mask="0" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="795386" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="160010496" name="Ensina como fazer a cama de Daturum." level="1" cName="IDGods_Descent_Q_Item_Trans_Candy_Azphel" mask="0" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="795387" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640" activate_target="STANDALONE" activate_count="1"/>
+	<item_template id="160010494" name="Ensina como fazer o sofá do Gravekeeper Basaim." level="1" cName="IDGods_Descent_Q_Item_Trans_Candy_Lumiel" mask="0" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="795385" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10677" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="160010495" name="Ensina como fazer a cama da tranquilidade." level="1" cName="IDGods_Descent_Q_Item_Trans_Candy_Ariel" mask="0" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="795386" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10678" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="160010496" name="Ensina como fazer a cama de Daturum." level="1" cName="IDGods_Descent_Q_Item_Trans_Candy_Azphel" mask="0" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="795387" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16640" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10679" level="1"/>
+		</actions>
+	</item_template>
 	<item_template id="160010497" name="Espada de Gulare" level="1" cName="Item_Trans_Ariel_01" mask="16506" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="795429" race="PC_ALL" max_stack_count="1" item_type="NORMAL" activate_target="STANDALONE" activate_count="1000" client_mask="17210">
 		<actions>
 			<skilluse skillid="20738" level="1"/>
@@ -511353,174 +511387,842 @@
 		</actions>
 		<uselimits usedelay="5000" usedelayid="25"/>
 	</item_template>
-	<item_template id="162002037" name="Design: Pedra Elementar" level="50" cName="Event_harvest_potion_mp_50a" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781249" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="162002038" name="Projeto: Maior Pedra Elementar" level="50" cName="Event_harvest_potion_hp_mp_50a" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781250" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="162002039" name="Arco durável do imperador do dragão com chifres" level="60" cName="Event_remedy_hp_60a" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="781200" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50"/>
-	<item_template id="162002040" name="O arco durável do Imperador do Dragão Noble Horned" level="60" cName="Event_remedy_mp_60a" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="781201" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50"/>
-	<item_template id="162002041" name="Expedição do Guardian Longbow" level="60" cName="Event_potion_hp_60a" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="781202" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50"/>
-	<item_template id="162002042" name="Longbow do comando do guardião" level="60" cName="Event_potion_mp_60a" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="781203" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50"/>
-	<item_template id="162002043" name="Aro longo do Guardian Sentinel" level="50" cName="Event_potion_flytime_60A" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="781204" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50"/>
-	<item_template id="162002044" name="Longbow do líder do esquadrão de defesa do Guardian" level="60" cName="Event_potion_hp_mp_60a" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781205" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 0 0 1 50"/>
-	<item_template id="162002045" name="Arco dos seres" level="60" cName="Event_remedy_hp_mp_60a" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="781212" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50"/>
-	<item_template id="162002046" name="Arco de Eden" level="30" cName="Event_potion_arena_cure_hp_50a" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="781214" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="162002047" name="Artesanato Balic: colar de malevita durável do Imperador Noble Horned Dragon" level="60" cName="Event_potion_hp_mp_60b" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="788630" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50"/>
-	<item_template id="162002048" name="Aumenta a precisão mágica em 8 pontos e resiste a magia em 4 pontos quando fixados no soquete Manatone de um item. Selecione o Manatone clicando duas vezes (ou clicando com o botão direito do mouse) e selecione o item para o soquete." level="50" cName="supply_harvest_potion_hp_mp_50a" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="803390" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="162003503" name="Balic Craft: Noble Horned Dragon Emperor Durable Jewel Ring" level="10" cName="potion_flytime_48b" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="4600" desc="788638" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" restrict="10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1 10"/>
-	<item_template id="162003504" name="Asmodian_carpet_m_06" level="65" cName="remedy_hp_65a" mask="24702" item_group="PACK_SCROLL" quality="COMMON" price="4000" desc="790724" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55"/>
-	<item_template id="162003505" name="Tapete quadrado sofisticado" level="65" cName="remedy_mp_65a" mask="24702" item_group="PACK_SCROLL" quality="COMMON" price="4000" desc="790725" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55"/>
-	<item_template id="162003506" name="Carpete redondo Tikel" level="65" cName="remedy_hp_mp_65a" mask="24702" item_group="PACK_SCROLL" quality="RARE" price="4000" desc="790726" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55"/>
-	<item_template id="162003507" name="Carpete redondo Twisp" level="65" cName="potion_hp_65a" mask="24702" item_group="PACK_SCROLL" quality="RARE" price="5300" desc="790727" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55"/>
-	<item_template id="162003508" name="Xilix b type_carpet_s" level="65" cName="potion_mp_65a" mask="24702" item_group="PACK_SCROLL" quality="RARE" price="5300" desc="790728" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55"/>
-	<item_template id="162003509" name="Carpete nobre Anathe" level="65" cName="potion_hp_mp_65a" mask="24702" item_group="PACK_SCROLL" quality="LEGEND" price="5300" desc="790729" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55"/>
-	<item_template id="162003510" name="Pequeno tapete de hoca nobre" level="10" cName="potion_flytime_60b" mask="24702" item_group="PACK_SCROLL" quality="RARE" price="5700" desc="790730" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1" restrict="10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1 10"/>
-	<item_template id="162003511" name="Árvore Solorius nevada" level="60" cName="potion_cure_hp_60b" mask="24652" item_group="PACK_SCROLL" quality="RARE" price="400" desc="797623" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24876" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="162003512" name="Item para modificar a aparência. A modificação é possível, independentemente do tipo de armadura." level="60" cName="Event_pcbang_remedy_hp_mp_60a" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="802758" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50"/>
-	<item_template id="162003513" name="Livro de feitiços da Phon para NPC" level="30" cName="wind_supply_potion_cure_physical_30a" mask="24652" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="814452" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24876" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="162003514" name="Ensina como fazer um nobre pergaminho à prova de fogo." level="50" cName="remedy_newc_hp_mp_50a" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="480" desc="818872" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="162003515" name="Ensina como fazer rolagem à prova d&amp;#39;água nobre." level="55" cName="remedy_newc_hp_mp_60a" mask="24650" item_group="PACK_SCROLL" quality="RARE" price="5" desc="818874" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24874" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="162003516" name="Ensina como fazer maior rolagem de corrida." level="50" cName="potion_newc_hp_mp_50a" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="480" desc="818876" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="162003517" name="Ensina como fazer maior rolagem de coragem." level="55" cName="potion_newc_hp_mp_60a" mask="24650" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="818878" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24874" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="162003518" name="Ensina como fazer Pedra Potencializadora: HP +80." level="30" cName="potion_newc_cure_physical_30a" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="1200" desc="818880" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="162003519" name="Ensina como fazer Pedra Potencializadora: precisão +24." level="30" cName="potion_newc_arena_cure_hp_50a" mask="24650" item_group="PACK_SCROLL" quality="RARE" price="5" desc="818882" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24874" activate_target="STANDALONE" activate_count="1"/>
+	<item_template id="162002037" name="Design: Pedra Elementar" level="50" cName="Event_harvest_potion_mp_50a" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781249" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10231" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162002038" name="Projeto: Maior Pedra Elementar" level="50" cName="Event_harvest_potion_hp_mp_50a" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781250" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10232" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162002039" name="Arco durável do imperador do dragão com chifres" level="60" cName="Event_remedy_hp_60a" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="781200" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50">
+		<actions>
+			<skilluse skillid="10031" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162002040" name="O arco durável do Imperador do Dragão Noble Horned" level="60" cName="Event_remedy_mp_60a" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="781201" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50">
+		<actions>
+			<skilluse skillid="10030" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162002041" name="Expedição do Guardian Longbow" level="60" cName="Event_potion_hp_60a" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="781202" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50">
+		<actions>
+			<skilluse skillid="9962" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162002042" name="Longbow do comando do guardião" level="60" cName="Event_potion_mp_60a" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="781203" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50">
+		<actions>
+			<skilluse skillid="9963" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162002043" name="Aro longo do Guardian Sentinel" level="50" cName="Event_potion_flytime_60A" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="781204" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50">
+		<actions>
+			<skilluse skillid="9911" level="5"/>
+		</actions>
+	</item_template>
+	<item_template id="162002044" name="Longbow do líder do esquadrão de defesa do Guardian" level="60" cName="Event_potion_hp_mp_60a" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781205" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 0 0 1 50">
+		<actions>
+			<skilluse skillid="10024" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162002045" name="Arco dos seres" level="60" cName="Event_remedy_hp_mp_60a" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="781212" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50">
+		<actions>
+			<skilluse skillid="10029" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162002046" name="Arco de Eden" level="30" cName="Event_potion_arena_cure_hp_50a" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="781214" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="9914" level="2"/>
+		</actions>
+	</item_template>
+	<item_template id="162002047" name="Artesanato Balic: colar de malevita durável do Imperador Noble Horned Dragon" level="60" cName="Event_potion_hp_mp_60b" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="788630" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50">
+		<actions>
+			<skilluse skillid="10024" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162002048" name="Aumenta a precisão mágica em 8 pontos e resiste a magia em 4 pontos quando fixados no soquete Manatone de um item. Selecione o Manatone clicando duas vezes (ou clicando com o botão direito do mouse) e selecione o item para o soquete." level="50" cName="supply_harvest_potion_hp_mp_50a" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="803390" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10232" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162003503" name="Balic Craft: Noble Horned Dragon Emperor Durable Jewel Ring" level="10" cName="potion_flytime_48b" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="4600" desc="788638" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" restrict="10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1 10">
+		<actions>
+			<skilluse skillid="10640" level="4"/>
+		</actions>
+	</item_template>
+	<item_template id="162003504" name="Asmodian_carpet_m_06" level="65" cName="remedy_hp_65a" mask="24702" item_group="PACK_SCROLL" quality="COMMON" price="4000" desc="790724" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55">
+		<actions>
+			<skilluse skillid="10641" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162003505" name="Tapete quadrado sofisticado" level="65" cName="remedy_mp_65a" mask="24702" item_group="PACK_SCROLL" quality="COMMON" price="4000" desc="790725" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55">
+		<actions>
+			<skilluse skillid="10642" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162003506" name="Carpete redondo Tikel" level="65" cName="remedy_hp_mp_65a" mask="24702" item_group="PACK_SCROLL" quality="RARE" price="4000" desc="790726" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55">
+		<actions>
+			<skilluse skillid="10643" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162003507" name="Carpete redondo Twisp" level="65" cName="potion_hp_65a" mask="24702" item_group="PACK_SCROLL" quality="RARE" price="5300" desc="790727" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55">
+		<actions>
+			<skilluse skillid="10644" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162003508" name="Xilix b type_carpet_s" level="65" cName="potion_mp_65a" mask="24702" item_group="PACK_SCROLL" quality="RARE" price="5300" desc="790728" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55">
+		<actions>
+			<skilluse skillid="10645" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162003509" name="Carpete nobre Anathe" level="65" cName="potion_hp_mp_65a" mask="24702" item_group="PACK_SCROLL" quality="LEGEND" price="5300" desc="790729" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55">
+		<actions>
+			<skilluse skillid="10646" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162003510" name="Pequeno tapete de hoca nobre" level="10" cName="potion_flytime_60b" mask="24702" item_group="PACK_SCROLL" quality="RARE" price="5700" desc="790730" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1" restrict="10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1 10">
+		<actions>
+			<skilluse skillid="10640" level="5"/>
+		</actions>
+	</item_template>
+	<item_template id="162003511" name="Árvore Solorius nevada" level="60" cName="potion_cure_hp_60b" mask="24652" item_group="PACK_SCROLL" quality="RARE" price="400" desc="797623" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24876" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10712" level="2"/>
+		</actions>
+	</item_template>
+	<item_template id="162003512" name="Item para modificar a aparência. A modificação é possível, independentemente do tipo de armadura." level="60" cName="Event_pcbang_remedy_hp_mp_60a" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="802758" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50">
+		<actions>
+			<skilluse skillid="10029" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162003513" name="Livro de feitiços da Phon para NPC" level="30" cName="wind_supply_potion_cure_physical_30a" mask="24652" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="814452" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24876" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="9909" level="2"/>
+		</actions>
+	</item_template>
+	<item_template id="162003514" name="Ensina como fazer um nobre pergaminho à prova de fogo." level="50" cName="remedy_newc_hp_mp_50a" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="480" desc="818872" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10185" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162003515" name="Ensina como fazer rolagem à prova d&amp;#39;água nobre." level="55" cName="remedy_newc_hp_mp_60a" mask="24650" item_group="PACK_SCROLL" quality="RARE" price="5" desc="818874" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24874" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10029" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162003516" name="Ensina como fazer maior rolagem de corrida." level="50" cName="potion_newc_hp_mp_50a" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="480" desc="818876" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10190" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162003517" name="Ensina como fazer maior rolagem de coragem." level="55" cName="potion_newc_hp_mp_60a" mask="24650" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="818878" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24874" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10024" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="162003518" name="Ensina como fazer Pedra Potencializadora: HP +80." level="30" cName="potion_newc_cure_physical_30a" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="1200" desc="818880" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="9909" level="2"/>
+		</actions>
+	</item_template>
+	<item_template id="162003519" name="Ensina como fazer Pedra Potencializadora: precisão +24." level="30" cName="potion_newc_arena_cure_hp_50a" mask="24650" item_group="PACK_SCROLL" quality="RARE" price="5" desc="818882" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24874" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="9914" level="2"/>
+		</actions>
+	</item_template>
 	<item_template id="163000006" name="Design: BEMPLATO DE CATÁLIO ROUS" level="1" cName="login_darkknight_arrow" mask="16508" item_group="ARROW" quality="COMMON" price="1" desc="817703" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="17212" return_alias="FALSE"/>
-	<item_template id="164001008" name="Eos Return Scroll" level="55" cName="scroll_return_l_ldf3_01" mask="24652" item_group="PACK_SCROLL" quality="COMMON" price="14300" desc="790869" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24876" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800010000" return_alias="START01_01" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55"/>
-	<item_template id="164001009" name="Minox Return Scroll" level="55" cName="scroll_return_d_ldf3_01" mask="24652" item_group="PACK_SCROLL" quality="COMMON" price="14300" desc="790870" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24876" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800010000" return_alias="START02_01" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55"/>
-	<item_template id="164001010" name="Laphsaran Return Scroll" level="56" cName="scroll_return_l_ldf10" mask="24652" item_group="PACK_SCROLL" quality="COMMON" price="15800" desc="795859" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24876" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800030000" return_alias="START01_01" restrict="56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 1 56"/>
-	<item_template id="164001011" name="Laphsaran Return Scroll" level="56" cName="scroll_return_d_ldf10" mask="24652" item_group="PACK_SCROLL" quality="COMMON" price="15800" desc="795860" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24876" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800030000" return_alias="START02_01" restrict="56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 1 56"/>
-	<item_template id="164001012" name="[Evento] Laphsaran (Eos) Return Scroll" level="56" cName="event_scroll_return_l_ldf10" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="797566" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800030000" return_alias="START01_01" restrict="56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 1 56"/>
-	<item_template id="164001013" name="[Evento] Laphsaran (Minox) Return Scroll" level="56" cName="event_scroll_return_d_ldf10" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="797567" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800030000" return_alias="START02_01" restrict="56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 1 56"/>
-	<item_template id="164001014" name="Canhão de retaliação" level="60" cName="scroll_return_l_ldf4b_01" mask="24652" item_group="PACK_SCROLL" quality="COMMON" price="20020" desc="805605" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24876" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800040000" return_alias="START01_01" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 1 60"/>
-	<item_template id="164001015" name="Canhão de Éter de Taran" level="60" cName="scroll_return_d_ldf4b_01" mask="24652" item_group="PACK_SCROLL" quality="COMMON" price="20020" desc="805606" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24876" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800040000" return_alias="START02_01" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 1 60"/>
-	<item_template id="164001016" name="Éter Canhão de Octanu" level="60" cName="scroll_return_island_ldf4b_01" mask="24654" item_group="PACK_SCROLL" quality="COMMON" price="100000" desc="805607" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24878" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800040000" return_alias="START_ISLAND_01" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 1 60"/>
-	<item_template id="164001017" name="Canhão do rei" level="60" cName="event_scroll_return_l_ldf4b_01" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="805615" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800040000" return_alias="START01_01" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 1 60"/>
-	<item_template id="164001018" name="Canhão de Éter de Makama" level="60" cName="event_scroll_return_d_ldf4b_01" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="805616" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800040000" return_alias="START02_01" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 1 60"/>
-	<item_template id="164001019" name="Ensina a habilidade, convocar o espírito da água V." level="60" cName="scroll_return_Teva_OP" mask="24652" item_group="PACK_SCROLL" quality="COMMON" price="50000" desc="807436" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24876" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800060000" return_alias="ALIAS_OP" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 1 60"/>
-	<item_template id="164001020" name="Ensina a habilidade Divina Concentrada GRASP I." level="60" cName="scroll_return_Teva_island_A_01" mask="24654" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807370" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24878" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800060000" return_alias="SECRET_ISLAND_01" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 1 60"/>
-	<item_template id="164001021" name="Ensina a habilidade Slash Slash Slash I." level="60" cName="scroll_return_Teva_island_B_01" mask="24654" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807371" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24878" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800060000" return_alias="SECRET_ISLAND_02" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 1 60"/>
-	<item_template id="164001022" name="Ensina a habilidade de mudança de ar I." level="60" cName="scroll_return_Teva_island_C_01" mask="24654" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807372" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24878" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800060000" return_alias="SECRET_ISLAND_03" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 1 60"/>
-	<item_template id="164001023" name="Ensina o rugido da habilidade de encorajamento I." level="60" cName="scroll_return_Teva_island_D_01" mask="24654" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807373" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24878" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800060000" return_alias="SECRET_ISLAND_04" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 1 60"/>
-	<item_template id="164001024" name="Revolver de Sheluk Éter" level="1" cName="scroll_Tiamat_Reward_ticket_01" mask="24641" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="809570" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24865" activate_target="STANDALONE" activate_count="1" casting_delay="5000" return_world="800080000" return_alias="TIAMAT_REWARD_MAIN_ROOM"/>
-	<item_template id="164005015" name="Horned Dragon King Durável Jerkin" level="1" cName="Item_Summon_StigmaMaster_Party_D" mask="24702" item_group="PACK_SCROLL" quality="RARE" price="1250000" desc="781429" race="ASMODIANS" max_stack_count="100" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1" casting_delay="3000"/>
-	<item_template id="164005016" name="Noble Horned Dragon King&amp;#39;s Durable Jerkin" level="1" cName="Item_Summon_StigmaMaster_Force_D" mask="24702" item_group="PACK_SCROLL" quality="LEGEND" price="1000000" desc="781430" race="ASMODIANS" max_stack_count="100" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1" casting_delay="3000"/>
-	<item_template id="164005017" name="Jerkin durável do Imperador Horned Dragon" level="1" cName="Item_Summon_StigmaMaster_Legion_D" mask="24702" item_group="PACK_SCROLL" quality="UNIQUE" price="1250000" desc="781431" race="ASMODIANS" max_stack_count="100" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1" casting_delay="3000"/>
-	<item_template id="164005018" name="Luvas caídas" level="1" cName="Event_Item_Summon_StigmaMaster_Private_L" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="781617" race="ELYOS" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="3000"/>
-	<item_template id="164005019" name="Luvas solitárias" level="1" cName="Event_Item_Summon_StigmaMaster_Party_L" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="781618" race="ELYOS" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="3000"/>
-	<item_template id="164005020" name="Luvas solitárias" level="1" cName="Event_Item_Summon_StigmaMaster_Force_L" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781619" race="ELYOS" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="3000"/>
-	<item_template id="164005021" name="Luvas solitárias" level="1" cName="Event_Item_Summon_StigmaMaster_Legion_L" mask="24648" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="781620" race="ELYOS" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="3000"/>
-	<item_template id="164005022" name="Luvas de balaurbona" level="1" cName="Event_Item_Summon_StigmaMaster_Private_D" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="781621" race="ASMODIANS" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="3000"/>
-	<item_template id="164005023" name="Luvas de balaurbona" level="1" cName="Event_Item_Summon_StigmaMaster_Party_D" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="781622" race="ASMODIANS" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="3000"/>
-	<item_template id="164005024" name="Luvas de balaurbona" level="1" cName="Event_Item_Summon_StigmaMaster_Force_D" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781623" race="ASMODIANS" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="3000"/>
-	<item_template id="164005025" name="Luvas dos esquecidos" level="1" cName="Event_Item_Summon_StigmaMaster_Legion_D" mask="24648" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="781624" race="ASMODIANS" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="3000"/>
-	<item_template id="164005026" name="A quarta caixa de lembrança criada pelo Morcadic Wanderer Group. Ele contém uma variedade de artigos diversos. Clique duas vezes para abrir." level="1" cName="Item_Summon_Monster_An_60" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="796219" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005027" name="Esta caixa contém um item romântico para mudar sua aparência por um dia. Clique duas vezes para obter um dos conjuntos dos amantes apaixonados, os conjuntos de vestidos sinceros dos amantes ou um gancho de cabelo." level="1" cName="Item_Summon_Monster_Ae_60" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="796220" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005028" name="Esta caixa contém um item do traje da corte. Clique duas vezes para obter um dos conjuntos Pierrot, luvas, sapatos ou chapéu. A mudança de aparência dura um dia." level="1" cName="Item_Summon_Monster_Ah_60" mask="24648" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="796221" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005029" name="Esta caixa conside um item da fantasia de uniforme escolar. Clique duas vezes para obter um dos uniformes escolares Spiffy, uniforme azul de marinheiro, chapéus infantis de Raffia ou boinas com fibra. A mudança de aparência dura um dia." level="1" cName="Item_Summon_Monster_Al_60" mask="24648" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="796222" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005030" name="A quarta caixa de lembrança criada pelo Morcadic Wanderer Group. Ele contém uma variedade de artigos diversos. Clique duas vezes para abrir." level="1" cName="Item_Summon_Monster_Sub1_An_60" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="796219" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005031" name="Esta caixa contém um item romântico para mudar sua aparência por um dia. Clique duas vezes para obter um dos conjuntos dos amantes apaixonados, os conjuntos de vestidos sinceros dos amantes ou um gancho de cabelo." level="1" cName="Item_Summon_Monster_Sub1_Ae_60" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="796220" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005032" name="Esta caixa contém um item do traje da corte. Clique duas vezes para obter um dos conjuntos Pierrot, luvas, sapatos ou chapéu. A mudança de aparência dura um dia." level="1" cName="Item_Summon_Monster_Sub1_Ah_60" mask="24648" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="796221" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005033" name="Esta caixa conside um item da fantasia de uniforme escolar. Clique duas vezes para obter um dos uniformes escolares Spiffy, uniforme azul de marinheiro, chapéus infantis de Raffia ou boinas com fibra. A mudança de aparência dura um dia." level="1" cName="Item_Summon_Monster_Sub1_Al_60" mask="24648" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="796222" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005034" name="A quarta caixa de lembrança criada pelo Morcadic Wanderer Group. Ele contém uma variedade de artigos diversos. Clique duas vezes para abrir." level="1" cName="Item_Summon_Monster_Sub2_An_60" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="796219" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005035" name="Esta caixa contém um item romântico para mudar sua aparência por um dia. Clique duas vezes para obter um dos conjuntos dos amantes apaixonados, os conjuntos de vestidos sinceros dos amantes ou um gancho de cabelo." level="1" cName="Item_Summon_Monster_Sub2_Ae_60" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="796220" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005036" name="Esta caixa contém um item do traje da corte. Clique duas vezes para obter um dos conjuntos Pierrot, luvas, sapatos ou chapéu. A mudança de aparência dura um dia." level="1" cName="Item_Summon_Monster_Sub2_Ah_60" mask="24648" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="796221" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005037" name="Esta caixa conside um item da fantasia de uniforme escolar. Clique duas vezes para obter um dos uniformes escolares Spiffy, uniforme azul de marinheiro, chapéus infantis de Raffia ou boinas com fibra. A mudança de aparência dura um dia." level="1" cName="Item_Summon_Monster_Sub2_Al_60" mask="24648" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="796222" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005038" name="[Conteúdo especial] Bebida com sabor de hortelã-pimenta" level="1" cName="Item_Event_Summon_XmasRudolph_60n" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="798134" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="5000"/>
-	<item_template id="164005039" name="[Evento] Red Soot Bunny Summoning Scroll" level="1" cName="Item_Event_Summon_XmasRabbit_60n" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="798135" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="5000"/>
-	<item_template id="164005040" name="A chance de obter itens de criaturas de caça aumenta em 30 %%, enquanto esse efeito estiver ativo. Dura 1 hora e não pode ser usado novamente por 1 hora." level="1" cName="Item_Event_Summon_DrakanRider_Blue_60_Ae" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="798503" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005041" name="Cantor experiente" level="1" cName="Item_Event_Summon_Krall_Pr_60_Ae" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="798584" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005042" name="Rolagem de convocação: Mestre do Estigma (Grupo)" level="1" cName="Item_Event_Summon_ChestCommon_60_An" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="798603" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005043" name="Scroll de convocação: Mestre do Estigma (Guilda)" level="1" cName="Item_Event_Summon_Elementalking_Cristal_60_Ae" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="798605" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005044" name="Convoca um mestre de estigma. Somente os Daevas que fazem parte de um grupo podem usar o mestre do estigma convocado." level="1" cName="Item_Event_Summon_choco_60_Ae" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="798607" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005045" name="Um bilhete de loteria sem folha de prata. Os números da sorte são 7 24 38 21 8 15." level="1" cName="Item_IDDokkaebi_HandMirror" mask="1" item_group="PACK_SCROLL" quality="RARE" price="5" desc="799546" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16641" activate_target="STANDALONE" activate_count="1" casting_delay="3000"/>
-	<item_template id="164005046" name="Balance-test_chainmail_helm_e1_65a" level="1" cName="Item_Event_Summon_Elementalking_Cristal_60_Ae_02" mask="24680" item_group="PACK_SCROLL" quality="RARE" price="5" desc="800117" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="25384" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005047" name="Armas de teste" level="1" cName="world_jp_Item_siel_summon_quest_30day" mask="24648" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="800558" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1000" casting_delay="2500" expire_time="43200"/>
-	<item_template id="164005048" name="Armas de teste" level="1" cName="world_jp_Item_siel_summon_quest_7day" mask="24648" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="800559" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1000" casting_delay="2500" expire_time="10080"/>
-	<item_template id="164005049" name="Ornamento puro de aris chainmail" level="1" cName="Item_Summon_Flare_Ctrl_03" mask="24640" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="801108" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000" expire_time="60"/>
-	<item_template id="164005050" name="Ornamento de placa pura de Aris" level="1" cName="Item_Summon_Flare_Ctrl_04" mask="24640" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="801109" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000" expire_time="60"/>
-	<item_template id="164005051" name="Ferilla Guestbloom" level="1" cName="Item_Summon_Flare_Ctrl_05" mask="24640" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="801110" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000" expire_time="60"/>
-	<item_template id="164005052" name="Ferilla Guestbloom. Você pode obter ferrilhas frescas se o bloom do hóspede for bom cuidado. O fertilizante do bloom do hóspede é necessário para o cultivo adequado." level="1" cName="Item_Summon_Flare_Ctrl_06" mask="24640" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="801111" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000" expire_time="60"/>
-	<item_template id="164005053" name="Glorious Guardian Conqueror&amp;#39;s Ploth Tunic" level="1" cName="Item_Event_Wind_DrakanRider_01" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="802552" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005054" name="Contém medalhas. Clique duas vezes para abrir." level="1" cName="Item_Summon_LDF4b_Storybook_Box_01" mask="24640" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="803094" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005055" name="Contém medalhas. Clique duas vezes para abrir." level="1" cName="Item_Summon_LDF4b_Storybook_Box_02" mask="24640" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="803095" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005056" name="Contém medalhas. Clique duas vezes para abrir." level="1" cName="Item_Summon_LDF4b_Storybook_Box_03" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="803096" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005057" name="[Conteúdo especial] Manoplas de couro de Mastarius" level="1" cName="Item_Summon_LDF4b_Legion_01" mask="24640" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="803126" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000" expire_time="480"/>
-	<item_template id="164005058" name="[Conteúdo Especial] Manoplas de Chainmail de Mastarius" level="1" cName="Item_Summon_LDF4b_Legion_02" mask="24640" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="803127" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000" expire_time="480"/>
-	<item_template id="164005059" name="Revólver do lago" level="1" cName="Item_Event_Summon_fighter_60_Ae" mask="24648" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="804398" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005060" name="Revólver de sabedoria" level="1" cName="Item_Summon_LDF4b_Storybook_Box_01_b" mask="24640" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="804478" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005061" name="Revólver de sabedoria" level="1" cName="Item_Summon_LDF4b_Storybook_Box_02_b" mask="24640" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="804479" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005062" name="Revólver de sabedoria" level="1" cName="Item_Summon_LDF4b_Storybook_Box_03_b" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="804480" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005063" name="Revolver da morte" level="1" cName="Item_Summon_LDF4b_Storybook_Box_03_c" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="804481" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005064" name="Revolver da morte" level="1" cName="Item_Summon_LDF4b_Storybook_Box_03_d" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="804482" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005065" name="Fatia de primavera iv" level="1" cName="Item_Valentine_Event_LDF4b_Summon_choco" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="807068" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005066" name="Trape do sono II" level="1" cName="Item_Valentine_Event_LDF4b_Summon_choco_small" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807356" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005067" name="Golpe de Vento Estrondoso III" level="1" cName="Item_Valentine_Event_LDF4b_Summon_choco_big" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807358" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005068" name="Ensina a armadilha de habilidade: armadilha de choque I." level="1" cName="Item_Summon_LDF4b_Teva_GoldenTree" mask="24641" item_group="PACK_SCROLL" quality="RARE" price="5" desc="807378" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24865" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005069" name="Danado e velho Shard" level="1" cName="EVENT_Express_LevelUp_MONSTER_1" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="813890" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="3000"/>
-	<item_template id="164005070" name="Escalas raras danificadas" level="1" cName="EVENT_Express_LevelUp_MONSTER_2" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="813891" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="3000"/>
-	<item_template id="164005071" name="Perna danificada de um inseto raro" level="1" cName="EVENT_Express_LevelUp_MONSTER_3" mask="24640" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="813892" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="3000"/>
-	<item_template id="164005072" name="Osso danificado de monstro" level="1" cName="EVENT_Express_LevelUp_MONSTER_4" mask="24640" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="813893" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="3000"/>
-	<item_template id="164005073" name="Pó de metal danificado" level="1" cName="EVENT_Express_LevelUp_MONSTER_5" mask="24640" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="813894" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="3000"/>
-	<item_template id="164005074" name="Espada Grande de Jormungand" level="1" cName="item_summon_event_ldf4_protect" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="814830" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164005075" name="Colar de fogo reluzente de Jormungand" level="1" cName="item_rank_summon_mimic" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="815476" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000"/>
-	<item_template id="164006014" name="Cortinas prolix" level="55" cName="item_idarena_pvp_01e" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784555" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006015" name="Carpete quadrado de Ruko" level="55" cName="item_idarena_pvp_02e" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784556" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006016" name="Tapete quadrado fess" level="55" cName="item_idarena_pvp_03e" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784557" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006017" name="Carpet Sobi" level="55" cName="item_idarena_pvp_04e" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784558" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006018" name="Carpete de Linon" level="55" cName="item_idarena_pvp_05e" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784559" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006019" name="Prolix Carpet" level="55" cName="item_idarena_pvp_06e" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784560" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006020" name="Ka Meeg" level="55" cName="item_idarena_pvp_01e_01" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784567" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006021" name="Mesa de jantar Ulmus" level="55" cName="item_idarena_pvp_02e_01" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784568" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006022" name="Mesa de jantar Egrarasi" level="55" cName="item_idarena_pvp_03e_01" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784569" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006023" name="Nabul" level="55" cName="item_idarena_pvp_04e_01" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784570" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006024" name="Pequeno sofá de couro fino" level="55" cName="item_idarena_pvp_05e_01" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784571" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006025" name="Couch de couro grosso pequeno" level="55" cName="item_idarena_pvp_06e_01" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784572" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006026" name="Manoplas de couro NPC de peito antigo" level="1" cName="Item_Summon_Test_Following_L" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="806887" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006027" name="Novos Abismo NPC Chainmail Gauntlets" level="1" cName="Item_Summon_Test_Following_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="806888" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006028" name="Novas manoplas de placa npc abyss" level="1" cName="Item_Summon_Test_Servant_L" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="806889" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006029" name="Novos Spaulders de Pano NPC Abismo" level="1" cName="Item_Summon_Test_Homing_L" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="806890" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006030" name="Spaulders de pano de Beritra para NPC" level="1" cName="Item_Summon_Test_Totem_L" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="806891" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006031" name="Spaulders de pano de peito antigo" level="1" cName="Item_Summon_Test_Trap_L" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="806892" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006032" name="Novos Spaulders" level="1" cName="Item_Summon_Test_Servant_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="806893" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006033" name="Spaulders de couro de Beritra para NPC" level="1" cName="Item_Summon_Test_Homing_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="806894" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006034" name="Spaulders de couro NPC de peito antigo" level="1" cName="Item_Summon_Test_Totem_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="806895" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006035" name="Novos Spaulders de Chainmail NPC Abismo" level="1" cName="Item_Summon_Test_Trap_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="806896" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="164006036" name="Calças de pano duráveis ​​da sálvia" level="1" cName="Item_Summon_Following_zaif" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808447" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006037" name="Calças de couro duráveis ​​de raios" level="1" cName="Item_Summon_Following_Kuillus_Dyn_Mini" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808448" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006038" name="Calças de couro duráveis ​​de raios" level="1" cName="Item_Summon_Following_Kuillus_Dyn_PD" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808449" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006039" name="Chausses duráveis ​​de misericórdia" level="1" cName="Item_Summon_Following_Seiren_Queen" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="808450" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006040" name="Chausses duráveis ​​de misericórdia" level="1" cName="Item_Summon_Following_Griffon" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808451" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006041" name="Placas duráveis ​​Greaves de coragem" level="1" cName="Item_Summon_Following_ShellizardBigNamed" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="808452" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006042" name="Placas duráveis ​​Greaves de coragem" level="1" cName="Item_Summon_Following_CondorDFlyingNamed" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="808453" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006043" name="Sapatos de pano duráveis ​​da sálvia" level="1" cName="Item_Summon_Following_ElementalEarth3" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808454" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006044" name="Sapatos de pano duráveis ​​da sálvia" level="1" cName="Item_Summon_Following_ManduriGiantNmd" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="808455" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006045" name="Sapatos de couro duráveis ​​de raios" level="1" cName="Item_Summon_Following_Lobster" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808456" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006046" name="Sapatos de couro duráveis ​​de raios" level="1" cName="Item_Summon_Following_Cherubim3Named" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="808457" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006047" name="Sabatons de misericórdia de cadeia durável" level="1" cName="Item_Summon_Following_Fungus" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808458" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006048" name="Sabatons de misericórdia de cadeia durável" level="1" cName="Item_Summon_Following_SilikaCannon" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808459" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006049" name="Calças de pano duráveis ​​da sálvia" level="1" cName="Item_Summon_Following_zaif_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808447" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006050" name="Calças de couro duráveis ​​de raios" level="1" cName="Item_Summon_Following_Kuillus_Dyn_Mini_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808448" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006051" name="Calças de couro duráveis ​​de raios" level="1" cName="Item_Summon_Following_Kuillus_Dyn_PD_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808449" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006052" name="Chausses duráveis ​​de misericórdia" level="1" cName="Item_Summon_Following_Seiren_Queen_D" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="808450" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006053" name="Chausses duráveis ​​de misericórdia" level="1" cName="Item_Summon_Following_Griffon_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808451" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006054" name="Placas duráveis ​​Greaves de coragem" level="1" cName="Item_Summon_Following_ShellizardBigNamed_D" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="808452" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006055" name="Placas duráveis ​​Greaves de coragem" level="1" cName="Item_Summon_Following_CondorDFlyingNamed_D" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="808453" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006056" name="Sapatos de pano duráveis ​​da sálvia" level="1" cName="Item_Summon_Following_ElementalEarth3_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808454" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006057" name="Sapatos de pano duráveis ​​da sálvia" level="1" cName="Item_Summon_Following_ManduriGiantNmd_D" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="808455" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006058" name="Sapatos de couro duráveis ​​de raios" level="1" cName="Item_Summon_Following_Lobster_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808456" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006059" name="Sapatos de couro duráveis ​​de raios" level="1" cName="Item_Summon_Following_Cherubim3Named_D" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="808457" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006060" name="Sabatons de misericórdia de cadeia durável" level="1" cName="Item_Summon_Following_Fungus_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808458" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006061" name="Sabatons de misericórdia de cadeia durável" level="1" cName="Item_Summon_Following_SilikaCannon_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808459" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120"/>
-	<item_template id="164006062" name="Asas de honra brancas" level="1" cName="Item_Summon_Following_Seiren_Queen_R" mask="24642" item_group="PACK_SCROLL" quality="RARE" price="5" desc="811171" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="24866" activate_target="STANDALONE" activate_count="1000"/>
-	<item_template id="164006063" name="Asas negras de invencibilidade" level="1" cName="Item_Summon_Following_ShellizardBigNamed_R" mask="24642" item_group="PACK_SCROLL" quality="RARE" price="5" desc="811172" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="24866" activate_target="STANDALONE" activate_count="1000"/>
-	<item_template id="164006064" name="Essas asas só podem ser usadas por Elyos." level="1" cName="Item_Summon_Following_CondorDFlyingNamed_R" mask="24642" item_group="PACK_SCROLL" quality="RARE" price="5" desc="811173" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="24866" activate_target="STANDALONE" activate_count="1000"/>
-	<item_template id="164006065" name="Essas asas só podem ser usadas por asmodianos." level="1" cName="Item_Summon_Following_ManduriGiantNmd_R" mask="24642" item_group="PACK_SCROLL" quality="RARE" price="5" desc="811174" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="24866" activate_target="STANDALONE" activate_count="1000"/>
-	<item_template id="164006066" name="Pacote contendo livro de habilidades úteis" level="1" cName="Item_Summon_Following_Cherubim3Named_R" mask="24642" item_group="PACK_SCROLL" quality="RARE" price="5" desc="811175" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="24866" activate_target="STANDALONE" activate_count="1000"/>
-	<item_template id="164006067" name="Asas de honra brancas" level="1" cName="Item_Summon_Following_Seiren_Queen_D_R" mask="24642" item_group="PACK_SCROLL" quality="RARE" price="5" desc="811171" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="24866" activate_target="STANDALONE" activate_count="1000"/>
-	<item_template id="164006068" name="Asas negras de invencibilidade" level="1" cName="Item_Summon_Following_ShellizardBigNamed_D_R" mask="24642" item_group="PACK_SCROLL" quality="RARE" price="5" desc="811172" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="24866" activate_target="STANDALONE" activate_count="1000"/>
-	<item_template id="164006069" name="Essas asas só podem ser usadas por Elyos." level="1" cName="Item_Summon_Following_CondorDFlyingNamed_D_R" mask="24642" item_group="PACK_SCROLL" quality="RARE" price="5" desc="811173" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="24866" activate_target="STANDALONE" activate_count="1000"/>
-	<item_template id="164006070" name="Essas asas só podem ser usadas por asmodianos." level="1" cName="Item_Summon_Following_ManduriGiantNmd_D_R" mask="24642" item_group="PACK_SCROLL" quality="RARE" price="5" desc="811174" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="24866" activate_target="STANDALONE" activate_count="1000"/>
-	<item_template id="164006071" name="Pacote contendo livro de habilidades úteis" level="1" cName="Item_Summon_Following_Cherubim3Named_D_R" mask="24642" item_group="PACK_SCROLL" quality="RARE" price="5" desc="811175" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="24866" activate_target="STANDALONE" activate_count="1000"/>
-	<item_template id="164006072" name="Polearme de Gan" level="1" cName="Item_Summon_Following_Event_Fungy" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="811980" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000"/>
-	<item_template id="164006073" name="Polearme de Gan" level="1" cName="Item_Summon_Following_Event_Fungy_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="811980" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000"/>
+	<item_template id="164001008" name="Eos Return Scroll" level="55" cName="scroll_return_l_ldf3_01" mask="24652" item_group="PACK_SCROLL" quality="COMMON" price="14300" desc="790869" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24876" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800010000" return_alias="START01_01" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55">
+		<actions>
+			<skilluse skillid="8198" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164001009" name="Minox Return Scroll" level="55" cName="scroll_return_d_ldf3_01" mask="24652" item_group="PACK_SCROLL" quality="COMMON" price="14300" desc="790870" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24876" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800010000" return_alias="START02_01" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55">
+		<actions>
+			<skilluse skillid="8198" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164001010" name="Laphsaran Return Scroll" level="56" cName="scroll_return_l_ldf10" mask="24652" item_group="PACK_SCROLL" quality="COMMON" price="15800" desc="795859" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24876" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800030000" return_alias="START01_01" restrict="56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 1 56">
+		<actions>
+			<skilluse skillid="8198" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164001011" name="Laphsaran Return Scroll" level="56" cName="scroll_return_d_ldf10" mask="24652" item_group="PACK_SCROLL" quality="COMMON" price="15800" desc="795860" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24876" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800030000" return_alias="START02_01" restrict="56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 1 56">
+		<actions>
+			<skilluse skillid="8198" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164001012" name="[Evento] Laphsaran (Eos) Return Scroll" level="56" cName="event_scroll_return_l_ldf10" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="797566" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800030000" return_alias="START01_01" restrict="56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 1 56">
+		<actions>
+			<skilluse skillid="8198" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164001013" name="[Evento] Laphsaran (Minox) Return Scroll" level="56" cName="event_scroll_return_d_ldf10" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="797567" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800030000" return_alias="START02_01" restrict="56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 1 56">
+		<actions>
+			<skilluse skillid="8198" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164001014" name="Canhão de retaliação" level="60" cName="scroll_return_l_ldf4b_01" mask="24652" item_group="PACK_SCROLL" quality="COMMON" price="20020" desc="805605" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24876" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800040000" return_alias="START01_01" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 1 60">
+		<actions>
+			<skilluse skillid="8198" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164001015" name="Canhão de Éter de Taran" level="60" cName="scroll_return_d_ldf4b_01" mask="24652" item_group="PACK_SCROLL" quality="COMMON" price="20020" desc="805606" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24876" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800040000" return_alias="START02_01" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 1 60">
+		<actions>
+			<skilluse skillid="8198" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164001016" name="Éter Canhão de Octanu" level="60" cName="scroll_return_island_ldf4b_01" mask="24654" item_group="PACK_SCROLL" quality="COMMON" price="100000" desc="805607" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24878" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800040000" return_alias="START_ISLAND_01" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 1 60">
+		<actions>
+			<skilluse skillid="8198" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164001017" name="Canhão do rei" level="60" cName="event_scroll_return_l_ldf4b_01" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="805615" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800040000" return_alias="START01_01" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 1 60">
+		<actions>
+			<skilluse skillid="8198" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164001018" name="Canhão de Éter de Makama" level="60" cName="event_scroll_return_d_ldf4b_01" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="805616" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800040000" return_alias="START02_01" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 1 60">
+		<actions>
+			<skilluse skillid="8198" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164001019" name="Ensina a habilidade, convocar o espírito da água V." level="60" cName="scroll_return_Teva_OP" mask="24652" item_group="PACK_SCROLL" quality="COMMON" price="50000" desc="807436" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24876" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800060000" return_alias="ALIAS_OP" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 1 60">
+		<actions>
+			<skilluse skillid="8198" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164001020" name="Ensina a habilidade Divina Concentrada GRASP I." level="60" cName="scroll_return_Teva_island_A_01" mask="24654" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807370" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24878" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800060000" return_alias="SECRET_ISLAND_01" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 1 60">
+		<actions>
+			<skilluse skillid="8198" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164001021" name="Ensina a habilidade Slash Slash Slash I." level="60" cName="scroll_return_Teva_island_B_01" mask="24654" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807371" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24878" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800060000" return_alias="SECRET_ISLAND_02" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 1 60">
+		<actions>
+			<skilluse skillid="8198" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164001022" name="Ensina a habilidade de mudança de ar I." level="60" cName="scroll_return_Teva_island_C_01" mask="24654" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807372" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24878" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800060000" return_alias="SECRET_ISLAND_03" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 1 60">
+		<actions>
+			<skilluse skillid="8198" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164001023" name="Ensina o rugido da habilidade de encorajamento I." level="60" cName="scroll_return_Teva_island_D_01" mask="24654" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807373" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24878" activate_target="STANDALONE" activate_count="1" casting_delay="10000" return_world="800060000" return_alias="SECRET_ISLAND_04" restrict="60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 1 60">
+		<actions>
+			<skilluse skillid="8198" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164001024" name="Revolver de Sheluk Éter" level="1" cName="scroll_Tiamat_Reward_ticket_01" mask="24641" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="809570" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24865" activate_target="STANDALONE" activate_count="1" casting_delay="5000" return_world="800080000" return_alias="TIAMAT_REWARD_MAIN_ROOM">
+		<actions>
+			<skilluse skillid="8198" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005015" name="Horned Dragon King Durável Jerkin" level="1" cName="Item_Summon_StigmaMaster_Party_D" mask="24702" item_group="PACK_SCROLL" quality="RARE" price="1250000" desc="781429" race="ASMODIANS" max_stack_count="100" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1" casting_delay="3000">
+		<actions>
+			<skilluse skillid="10472" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005016" name="Noble Horned Dragon King&amp;#39;s Durable Jerkin" level="1" cName="Item_Summon_StigmaMaster_Force_D" mask="24702" item_group="PACK_SCROLL" quality="LEGEND" price="1000000" desc="781430" race="ASMODIANS" max_stack_count="100" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1" casting_delay="3000">
+		<actions>
+			<skilluse skillid="10473" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005017" name="Jerkin durável do Imperador Horned Dragon" level="1" cName="Item_Summon_StigmaMaster_Legion_D" mask="24702" item_group="PACK_SCROLL" quality="UNIQUE" price="1250000" desc="781431" race="ASMODIANS" max_stack_count="100" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1" casting_delay="3000">
+		<actions>
+			<skilluse skillid="10474" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005018" name="Luvas caídas" level="1" cName="Event_Item_Summon_StigmaMaster_Private_L" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="781617" race="ELYOS" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="3000">
+		<actions>
+			<skilluse skillid="10471" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005019" name="Luvas solitárias" level="1" cName="Event_Item_Summon_StigmaMaster_Party_L" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="781618" race="ELYOS" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="3000">
+		<actions>
+			<skilluse skillid="10472" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005020" name="Luvas solitárias" level="1" cName="Event_Item_Summon_StigmaMaster_Force_L" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781619" race="ELYOS" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="3000">
+		<actions>
+			<skilluse skillid="10473" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005021" name="Luvas solitárias" level="1" cName="Event_Item_Summon_StigmaMaster_Legion_L" mask="24648" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="781620" race="ELYOS" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="3000">
+		<actions>
+			<skilluse skillid="10474" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005022" name="Luvas de balaurbona" level="1" cName="Event_Item_Summon_StigmaMaster_Private_D" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="781621" race="ASMODIANS" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="3000">
+		<actions>
+			<skilluse skillid="10471" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005023" name="Luvas de balaurbona" level="1" cName="Event_Item_Summon_StigmaMaster_Party_D" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="781622" race="ASMODIANS" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="3000">
+		<actions>
+			<skilluse skillid="10472" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005024" name="Luvas de balaurbona" level="1" cName="Event_Item_Summon_StigmaMaster_Force_D" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="781623" race="ASMODIANS" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="3000">
+		<actions>
+			<skilluse skillid="10473" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005025" name="Luvas dos esquecidos" level="1" cName="Event_Item_Summon_StigmaMaster_Legion_D" mask="24648" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="781624" race="ASMODIANS" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="3000">
+		<actions>
+			<skilluse skillid="10474" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005026" name="A quarta caixa de lembrança criada pelo Morcadic Wanderer Group. Ele contém uma variedade de artigos diversos. Clique duas vezes para abrir." level="1" cName="Item_Summon_Monster_An_60" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="796219" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10704" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005027" name="Esta caixa contém um item romântico para mudar sua aparência por um dia. Clique duas vezes para obter um dos conjuntos dos amantes apaixonados, os conjuntos de vestidos sinceros dos amantes ou um gancho de cabelo." level="1" cName="Item_Summon_Monster_Ae_60" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="796220" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10705" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005028" name="Esta caixa contém um item do traje da corte. Clique duas vezes para obter um dos conjuntos Pierrot, luvas, sapatos ou chapéu. A mudança de aparência dura um dia." level="1" cName="Item_Summon_Monster_Ah_60" mask="24648" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="796221" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10706" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005029" name="Esta caixa conside um item da fantasia de uniforme escolar. Clique duas vezes para obter um dos uniformes escolares Spiffy, uniforme azul de marinheiro, chapéus infantis de Raffia ou boinas com fibra. A mudança de aparência dura um dia." level="1" cName="Item_Summon_Monster_Al_60" mask="24648" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="796222" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10707" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005030" name="A quarta caixa de lembrança criada pelo Morcadic Wanderer Group. Ele contém uma variedade de artigos diversos. Clique duas vezes para abrir." level="1" cName="Item_Summon_Monster_Sub1_An_60" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="796219" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10704" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005031" name="Esta caixa contém um item romântico para mudar sua aparência por um dia. Clique duas vezes para obter um dos conjuntos dos amantes apaixonados, os conjuntos de vestidos sinceros dos amantes ou um gancho de cabelo." level="1" cName="Item_Summon_Monster_Sub1_Ae_60" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="796220" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10705" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005032" name="Esta caixa contém um item do traje da corte. Clique duas vezes para obter um dos conjuntos Pierrot, luvas, sapatos ou chapéu. A mudança de aparência dura um dia." level="1" cName="Item_Summon_Monster_Sub1_Ah_60" mask="24648" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="796221" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10706" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005033" name="Esta caixa conside um item da fantasia de uniforme escolar. Clique duas vezes para obter um dos uniformes escolares Spiffy, uniforme azul de marinheiro, chapéus infantis de Raffia ou boinas com fibra. A mudança de aparência dura um dia." level="1" cName="Item_Summon_Monster_Sub1_Al_60" mask="24648" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="796222" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10707" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005034" name="A quarta caixa de lembrança criada pelo Morcadic Wanderer Group. Ele contém uma variedade de artigos diversos. Clique duas vezes para abrir." level="1" cName="Item_Summon_Monster_Sub2_An_60" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="796219" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10704" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005035" name="Esta caixa contém um item romântico para mudar sua aparência por um dia. Clique duas vezes para obter um dos conjuntos dos amantes apaixonados, os conjuntos de vestidos sinceros dos amantes ou um gancho de cabelo." level="1" cName="Item_Summon_Monster_Sub2_Ae_60" mask="24648" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="796220" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10705" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005036" name="Esta caixa contém um item do traje da corte. Clique duas vezes para obter um dos conjuntos Pierrot, luvas, sapatos ou chapéu. A mudança de aparência dura um dia." level="1" cName="Item_Summon_Monster_Sub2_Ah_60" mask="24648" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="796221" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10706" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005037" name="Esta caixa conside um item da fantasia de uniforme escolar. Clique duas vezes para obter um dos uniformes escolares Spiffy, uniforme azul de marinheiro, chapéus infantis de Raffia ou boinas com fibra. A mudança de aparência dura um dia." level="1" cName="Item_Summon_Monster_Sub2_Al_60" mask="24648" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="796222" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10707" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005038" name="[Conteúdo especial] Bebida com sabor de hortelã-pimenta" level="1" cName="Item_Event_Summon_XmasRudolph_60n" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="798134" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="5000">
+		<actions>
+			<skilluse skillid="10715" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005039" name="[Evento] Red Soot Bunny Summoning Scroll" level="1" cName="Item_Event_Summon_XmasRabbit_60n" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="798135" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="5000">
+		<actions>
+			<skilluse skillid="10716" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005040" name="A chance de obter itens de criaturas de caça aumenta em 30 %%, enquanto esse efeito estiver ativo. Dura 1 hora e não pode ser usado novamente por 1 hora." level="1" cName="Item_Event_Summon_DrakanRider_Blue_60_Ae" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="798503" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10753" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005041" name="Cantor experiente" level="1" cName="Item_Event_Summon_Krall_Pr_60_Ae" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="798584" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10754" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005042" name="Rolagem de convocação: Mestre do Estigma (Grupo)" level="1" cName="Item_Event_Summon_ChestCommon_60_An" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="798603" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10755" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005043" name="Scroll de convocação: Mestre do Estigma (Guilda)" level="1" cName="Item_Event_Summon_Elementalking_Cristal_60_Ae" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="798605" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10756" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005044" name="Convoca um mestre de estigma. Somente os Daevas que fazem parte de um grupo podem usar o mestre do estigma convocado." level="1" cName="Item_Event_Summon_choco_60_Ae" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="798607" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10757" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005045" name="Um bilhete de loteria sem folha de prata. Os números da sorte são 7 24 38 21 8 15." level="1" cName="Item_IDDokkaebi_HandMirror" mask="1" item_group="PACK_SCROLL" quality="RARE" price="5" desc="799546" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16641" activate_target="STANDALONE" activate_count="1" casting_delay="3000">
+		<actions>
+			<skilluse skillid="10776" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005046" name="Balance-test_chainmail_helm_e1_65a" level="1" cName="Item_Event_Summon_Elementalking_Cristal_60_Ae_02" mask="24680" item_group="PACK_SCROLL" quality="RARE" price="5" desc="800117" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="25384" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10782" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005047" name="Armas de teste" level="1" cName="world_jp_Item_siel_summon_quest_30day" mask="24648" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="800558" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1000" casting_delay="2500" expire_time="43200">
+		<actions>
+			<skilluse skillid="10783" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005048" name="Armas de teste" level="1" cName="world_jp_Item_siel_summon_quest_7day" mask="24648" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="800559" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1000" casting_delay="2500" expire_time="10080">
+		<actions>
+			<skilluse skillid="10783" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005049" name="Ornamento puro de aris chainmail" level="1" cName="Item_Summon_Flare_Ctrl_03" mask="24640" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="801108" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000" expire_time="60">
+		<actions>
+			<skilluse skillid="10809" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005050" name="Ornamento de placa pura de Aris" level="1" cName="Item_Summon_Flare_Ctrl_04" mask="24640" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="801109" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000" expire_time="60">
+		<actions>
+			<skilluse skillid="10810" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005051" name="Ferilla Guestbloom" level="1" cName="Item_Summon_Flare_Ctrl_05" mask="24640" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="801110" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000" expire_time="60">
+		<actions>
+			<skilluse skillid="10811" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005052" name="Ferilla Guestbloom. Você pode obter ferrilhas frescas se o bloom do hóspede for bom cuidado. O fertilizante do bloom do hóspede é necessário para o cultivo adequado." level="1" cName="Item_Summon_Flare_Ctrl_06" mask="24640" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="801111" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000" expire_time="60">
+		<actions>
+			<skilluse skillid="10812" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005053" name="Glorious Guardian Conqueror&amp;#39;s Ploth Tunic" level="1" cName="Item_Event_Wind_DrakanRider_01" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="802552" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10823" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005054" name="Contém medalhas. Clique duas vezes para abrir." level="1" cName="Item_Summon_LDF4b_Storybook_Box_01" mask="24640" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="803094" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10828" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005055" name="Contém medalhas. Clique duas vezes para abrir." level="1" cName="Item_Summon_LDF4b_Storybook_Box_02" mask="24640" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="803095" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10829" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005056" name="Contém medalhas. Clique duas vezes para abrir." level="1" cName="Item_Summon_LDF4b_Storybook_Box_03" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="803096" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10830" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005057" name="[Conteúdo especial] Manoplas de couro de Mastarius" level="1" cName="Item_Summon_LDF4b_Legion_01" mask="24640" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="803126" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000" expire_time="480">
+		<actions>
+			<skilluse skillid="10836" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005058" name="[Conteúdo Especial] Manoplas de Chainmail de Mastarius" level="1" cName="Item_Summon_LDF4b_Legion_02" mask="24640" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="803127" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000" expire_time="480">
+		<actions>
+			<skilluse skillid="10837" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005059" name="Revólver do lago" level="1" cName="Item_Event_Summon_fighter_60_Ae" mask="24648" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="804398" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10944" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005060" name="Revólver de sabedoria" level="1" cName="Item_Summon_LDF4b_Storybook_Box_01_b" mask="24640" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="804478" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10828" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005061" name="Revólver de sabedoria" level="1" cName="Item_Summon_LDF4b_Storybook_Box_02_b" mask="24640" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="804479" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10829" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005062" name="Revólver de sabedoria" level="1" cName="Item_Summon_LDF4b_Storybook_Box_03_b" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="804480" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10830" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005063" name="Revolver da morte" level="1" cName="Item_Summon_LDF4b_Storybook_Box_03_c" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="804481" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10830" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005064" name="Revolver da morte" level="1" cName="Item_Summon_LDF4b_Storybook_Box_03_d" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="804482" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="10830" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005065" name="Fatia de primavera iv" level="1" cName="Item_Valentine_Event_LDF4b_Summon_choco" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="807068" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="11319" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005066" name="Trape do sono II" level="1" cName="Item_Valentine_Event_LDF4b_Summon_choco_small" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807356" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="11335" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005067" name="Golpe de Vento Estrondoso III" level="1" cName="Item_Valentine_Event_LDF4b_Summon_choco_big" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807358" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="11336" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005068" name="Ensina a armadilha de habilidade: armadilha de choque I." level="1" cName="Item_Summon_LDF4b_Teva_GoldenTree" mask="24641" item_group="PACK_SCROLL" quality="RARE" price="5" desc="807378" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24865" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="11337" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005069" name="Danado e velho Shard" level="1" cName="EVENT_Express_LevelUp_MONSTER_1" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="813890" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="3000">
+		<actions>
+			<skilluse skillid="11643" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005070" name="Escalas raras danificadas" level="1" cName="EVENT_Express_LevelUp_MONSTER_2" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="813891" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="3000">
+		<actions>
+			<skilluse skillid="11644" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005071" name="Perna danificada de um inseto raro" level="1" cName="EVENT_Express_LevelUp_MONSTER_3" mask="24640" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="813892" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="3000">
+		<actions>
+			<skilluse skillid="11645" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005072" name="Osso danificado de monstro" level="1" cName="EVENT_Express_LevelUp_MONSTER_4" mask="24640" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="813893" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="3000">
+		<actions>
+			<skilluse skillid="11646" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005073" name="Pó de metal danificado" level="1" cName="EVENT_Express_LevelUp_MONSTER_5" mask="24640" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="813894" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1" casting_delay="3000">
+		<actions>
+			<skilluse skillid="11647" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005074" name="Espada Grande de Jormungand" level="1" cName="item_summon_event_ldf4_protect" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="814830" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="11650" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164005075" name="Colar de fogo reluzente de Jormungand" level="1" cName="item_rank_summon_mimic" mask="24648" item_group="PACK_SCROLL" quality="RARE" price="5" desc="815476" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1" casting_delay="10000">
+		<actions>
+			<skilluse skillid="11656" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006014" name="Cortinas prolix" level="55" cName="item_idarena_pvp_01e" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784555" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10383" level="4"/>
+		</actions>
+	</item_template>
+	<item_template id="164006015" name="Carpete quadrado de Ruko" level="55" cName="item_idarena_pvp_02e" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784556" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10384" level="4"/>
+		</actions>
+	</item_template>
+	<item_template id="164006016" name="Tapete quadrado fess" level="55" cName="item_idarena_pvp_03e" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784557" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10385" level="4"/>
+		</actions>
+	</item_template>
+	<item_template id="164006017" name="Carpet Sobi" level="55" cName="item_idarena_pvp_04e" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784558" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10386" level="4"/>
+		</actions>
+	</item_template>
+	<item_template id="164006018" name="Carpete de Linon" level="55" cName="item_idarena_pvp_05e" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784559" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10387" level="4"/>
+		</actions>
+	</item_template>
+	<item_template id="164006019" name="Prolix Carpet" level="55" cName="item_idarena_pvp_06e" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784560" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10388" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006020" name="Ka Meeg" level="55" cName="item_idarena_pvp_01e_01" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784567" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10383" level="4"/>
+		</actions>
+	</item_template>
+	<item_template id="164006021" name="Mesa de jantar Ulmus" level="55" cName="item_idarena_pvp_02e_01" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784568" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10384" level="4"/>
+		</actions>
+	</item_template>
+	<item_template id="164006022" name="Mesa de jantar Egrarasi" level="55" cName="item_idarena_pvp_03e_01" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784569" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10385" level="4"/>
+		</actions>
+	</item_template>
+	<item_template id="164006023" name="Nabul" level="55" cName="item_idarena_pvp_04e_01" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784570" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10386" level="4"/>
+		</actions>
+	</item_template>
+	<item_template id="164006024" name="Pequeno sofá de couro fino" level="55" cName="item_idarena_pvp_05e_01" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784571" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10387" level="4"/>
+		</actions>
+	</item_template>
+	<item_template id="164006025" name="Couch de couro grosso pequeno" level="55" cName="item_idarena_pvp_06e_01" mask="16508" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784572" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17212" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10388" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006026" name="Manoplas de couro NPC de peito antigo" level="1" cName="Item_Summon_Test_Following_L" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="806887" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="11263" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006027" name="Novos Abismo NPC Chainmail Gauntlets" level="1" cName="Item_Summon_Test_Following_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="806888" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="11264" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006028" name="Novas manoplas de placa npc abyss" level="1" cName="Item_Summon_Test_Servant_L" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="806889" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="11265" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006029" name="Novos Spaulders de Pano NPC Abismo" level="1" cName="Item_Summon_Test_Homing_L" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="806890" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="11266" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006030" name="Spaulders de pano de Beritra para NPC" level="1" cName="Item_Summon_Test_Totem_L" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="806891" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="11267" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006031" name="Spaulders de pano de peito antigo" level="1" cName="Item_Summon_Test_Trap_L" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="806892" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="11268" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006032" name="Novos Spaulders" level="1" cName="Item_Summon_Test_Servant_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="806893" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="11269" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006033" name="Spaulders de couro de Beritra para NPC" level="1" cName="Item_Summon_Test_Homing_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="806894" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="11270" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006034" name="Spaulders de couro NPC de peito antigo" level="1" cName="Item_Summon_Test_Totem_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="806895" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="11271" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006035" name="Novos Spaulders de Chainmail NPC Abismo" level="1" cName="Item_Summon_Test_Trap_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="806896" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="11272" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006036" name="Calças de pano duráveis ​​da sálvia" level="1" cName="Item_Summon_Following_zaif" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808447" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11345" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006037" name="Calças de couro duráveis ​​de raios" level="1" cName="Item_Summon_Following_Kuillus_Dyn_Mini" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808448" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11346" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006038" name="Calças de couro duráveis ​​de raios" level="1" cName="Item_Summon_Following_Kuillus_Dyn_PD" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808449" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11347" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006039" name="Chausses duráveis ​​de misericórdia" level="1" cName="Item_Summon_Following_Seiren_Queen" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="808450" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11348" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006040" name="Chausses duráveis ​​de misericórdia" level="1" cName="Item_Summon_Following_Griffon" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808451" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11349" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006041" name="Placas duráveis ​​Greaves de coragem" level="1" cName="Item_Summon_Following_ShellizardBigNamed" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="808452" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11350" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006042" name="Placas duráveis ​​Greaves de coragem" level="1" cName="Item_Summon_Following_CondorDFlyingNamed" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="808453" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11351" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006043" name="Sapatos de pano duráveis ​​da sálvia" level="1" cName="Item_Summon_Following_ElementalEarth3" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808454" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11352" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006044" name="Sapatos de pano duráveis ​​da sálvia" level="1" cName="Item_Summon_Following_ManduriGiantNmd" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="808455" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11353" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006045" name="Sapatos de couro duráveis ​​de raios" level="1" cName="Item_Summon_Following_Lobster" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808456" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11354" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006046" name="Sapatos de couro duráveis ​​de raios" level="1" cName="Item_Summon_Following_Cherubim3Named" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="808457" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11355" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006047" name="Sabatons de misericórdia de cadeia durável" level="1" cName="Item_Summon_Following_Fungus" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808458" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11356" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006048" name="Sabatons de misericórdia de cadeia durável" level="1" cName="Item_Summon_Following_SilikaCannon" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808459" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11357" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006049" name="Calças de pano duráveis ​​da sálvia" level="1" cName="Item_Summon_Following_zaif_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808447" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11358" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006050" name="Calças de couro duráveis ​​de raios" level="1" cName="Item_Summon_Following_Kuillus_Dyn_Mini_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808448" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11359" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006051" name="Calças de couro duráveis ​​de raios" level="1" cName="Item_Summon_Following_Kuillus_Dyn_PD_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808449" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11360" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006052" name="Chausses duráveis ​​de misericórdia" level="1" cName="Item_Summon_Following_Seiren_Queen_D" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="808450" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11361" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006053" name="Chausses duráveis ​​de misericórdia" level="1" cName="Item_Summon_Following_Griffon_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808451" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11362" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006054" name="Placas duráveis ​​Greaves de coragem" level="1" cName="Item_Summon_Following_ShellizardBigNamed_D" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="808452" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11363" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006055" name="Placas duráveis ​​Greaves de coragem" level="1" cName="Item_Summon_Following_CondorDFlyingNamed_D" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="808453" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11364" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006056" name="Sapatos de pano duráveis ​​da sálvia" level="1" cName="Item_Summon_Following_ElementalEarth3_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808454" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11365" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006057" name="Sapatos de pano duráveis ​​da sálvia" level="1" cName="Item_Summon_Following_ManduriGiantNmd_D" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="808455" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11366" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006058" name="Sapatos de couro duráveis ​​de raios" level="1" cName="Item_Summon_Following_Lobster_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808456" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11367" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006059" name="Sapatos de couro duráveis ​​de raios" level="1" cName="Item_Summon_Following_Cherubim3Named_D" mask="24640" item_group="PACK_SCROLL" quality="RARE" price="5" desc="808457" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11368" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006060" name="Sabatons de misericórdia de cadeia durável" level="1" cName="Item_Summon_Following_Fungus_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808458" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11369" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006061" name="Sabatons de misericórdia de cadeia durável" level="1" cName="Item_Summon_Following_SilikaCannon_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808459" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000" expire_time="120">
+		<actions>
+			<skilluse skillid="11370" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006062" name="Asas de honra brancas" level="1" cName="Item_Summon_Following_Seiren_Queen_R" mask="24642" item_group="PACK_SCROLL" quality="RARE" price="5" desc="811171" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="24866" activate_target="STANDALONE" activate_count="1000">
+		<actions>
+			<skilluse skillid="11399" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006063" name="Asas negras de invencibilidade" level="1" cName="Item_Summon_Following_ShellizardBigNamed_R" mask="24642" item_group="PACK_SCROLL" quality="RARE" price="5" desc="811172" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="24866" activate_target="STANDALONE" activate_count="1000">
+		<actions>
+			<skilluse skillid="11400" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006064" name="Essas asas só podem ser usadas por Elyos." level="1" cName="Item_Summon_Following_CondorDFlyingNamed_R" mask="24642" item_group="PACK_SCROLL" quality="RARE" price="5" desc="811173" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="24866" activate_target="STANDALONE" activate_count="1000">
+		<actions>
+			<skilluse skillid="11401" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006065" name="Essas asas só podem ser usadas por asmodianos." level="1" cName="Item_Summon_Following_ManduriGiantNmd_R" mask="24642" item_group="PACK_SCROLL" quality="RARE" price="5" desc="811174" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="24866" activate_target="STANDALONE" activate_count="1000">
+		<actions>
+			<skilluse skillid="11402" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006066" name="Pacote contendo livro de habilidades úteis" level="1" cName="Item_Summon_Following_Cherubim3Named_R" mask="24642" item_group="PACK_SCROLL" quality="RARE" price="5" desc="811175" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="24866" activate_target="STANDALONE" activate_count="1000">
+		<actions>
+			<skilluse skillid="11403" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006067" name="Asas de honra brancas" level="1" cName="Item_Summon_Following_Seiren_Queen_D_R" mask="24642" item_group="PACK_SCROLL" quality="RARE" price="5" desc="811171" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="24866" activate_target="STANDALONE" activate_count="1000">
+		<actions>
+			<skilluse skillid="11404" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006068" name="Asas negras de invencibilidade" level="1" cName="Item_Summon_Following_ShellizardBigNamed_D_R" mask="24642" item_group="PACK_SCROLL" quality="RARE" price="5" desc="811172" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="24866" activate_target="STANDALONE" activate_count="1000">
+		<actions>
+			<skilluse skillid="11405" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006069" name="Essas asas só podem ser usadas por Elyos." level="1" cName="Item_Summon_Following_CondorDFlyingNamed_D_R" mask="24642" item_group="PACK_SCROLL" quality="RARE" price="5" desc="811173" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="24866" activate_target="STANDALONE" activate_count="1000">
+		<actions>
+			<skilluse skillid="11406" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006070" name="Essas asas só podem ser usadas por asmodianos." level="1" cName="Item_Summon_Following_ManduriGiantNmd_D_R" mask="24642" item_group="PACK_SCROLL" quality="RARE" price="5" desc="811174" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="24866" activate_target="STANDALONE" activate_count="1000">
+		<actions>
+			<skilluse skillid="11407" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006071" name="Pacote contendo livro de habilidades úteis" level="1" cName="Item_Summon_Following_Cherubim3Named_D_R" mask="24642" item_group="PACK_SCROLL" quality="RARE" price="5" desc="811175" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="24866" activate_target="STANDALONE" activate_count="1000">
+		<actions>
+			<skilluse skillid="11408" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006072" name="Polearme de Gan" level="1" cName="Item_Summon_Following_Event_Fungy" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="811980" race="ELYOS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000">
+		<actions>
+			<skilluse skillid="11426" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="164006073" name="Polearme de Gan" level="1" cName="Item_Summon_Following_Event_Fungy_D" mask="24640" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="811980" race="ASMODIANS" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="STANDALONE" activate_count="1000">
+		<actions>
+			<skilluse skillid="11427" level="1"/>
+		</actions>
+	</item_template>
 	<item_template id="166001010" name="Um tapete quadrado fez um uso conveniente." level="10" cName="event_matter_enchant_10" mask="24648" item_group="ENCHANTMENT" quality="COMMON" price="50" desc="790961" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872"/>
 	<item_template id="166001011" name="Um tapete feito de Anathe Prex processado." level="11" cName="event_matter_enchant_11" mask="24648" item_group="ENCHANTMENT" quality="COMMON" price="55" desc="790962" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872"/>
 	<item_template id="166001012" name="Um tapete feito de hoca processado prex." level="12" cName="event_matter_enchant_12" mask="24648" item_group="ENCHANTMENT" quality="COMMON" price="60" desc="790963" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872"/>
@@ -519870,16 +520572,56 @@
 	<item_template id="169611246" name="Calções de pano de catálio" level="1" cName="NEW_ALL_TITLE479" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816923" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
 	<item_template id="169611247" name="Sapatos de pano de catálio" level="1" cName="NEW_ALL_TITLE480" mask="16456" item_group="PACK_SCROLL" quality="RARE" price="5" desc="816924" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16680" activate_count="1"/>
 	<item_template id="169611248" name="Design: Maça de Catálio Sturdy" level="1" cName="NEW_ALL_TITLE481" mask="16458" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="817152" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="16682" activate_count="1"/>
-	<item_template id="169620500" name="Revolver Adamantium Éter do Craftsman" level="1" cName="event_questexpboost_01" mask="24648" item_group="QUEST" quality="COMMON" price="180000" desc="809572" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_count="1"/>
-	<item_template id="169620501" name="Revolver Adamantium Éter do especialista" level="1" cName="event_questexpboost_02" mask="24648" item_group="QUEST" quality="COMMON" price="180000" desc="809573" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_count="1"/>
-	<item_template id="169620502" name="REVOLVERS DUAMANTIUM DUAMANTIUM" level="1" cName="event_questexpboost_03" mask="24648" item_group="QUEST" quality="COMMON" price="180000" desc="809574" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_count="1"/>
-	<item_template id="169620503" name="REVOLVERS ADAMANTIUM DUAMANTIUM DUAMANTIO" level="1" cName="event_questexpboost_04" mask="24648" item_group="QUEST" quality="COMMON" price="180000" desc="809575" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_count="1"/>
-	<item_template id="169625018" name="Espada Espiritual Primal" level="1" cName="Classic_DRBOOST_PCBANG_01" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="780566" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="169625019" name="Polearme durável do rei do dragão nobre" level="1" cName="Classic_DRBOOST_PCBANG_02" mask="24698" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="781032" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="25402" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="169625020" name="Npc_temple 2nd divinization_hero_plate_head" level="1" cName="classic_us_event_dropboost_01" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="783974" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="169625021" name="Fluxo de armadura melhor especialista" level="1" cName="classic_jp_event_dropboost_01" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784369" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="169625022" name="O melhor fluxo de armadura do supremo" level="1" cName="classic_jp_bm_dropboost_01" mask="24702" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784371" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1"/>
-	<item_template id="169625023" name="Artesanato: digno nobre hoca durável Pauldrons" level="1" cName="event_break_dropboost_01" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="788254" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1"/>
+	<item_template id="169620500" name="Revolver Adamantium Éter do Craftsman" level="1" cName="event_questexpboost_01" mask="24648" item_group="QUEST" quality="COMMON" price="180000" desc="809572" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_count="1">
+		<actions>
+			<skilluse skillid="11371" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="169620501" name="Revolver Adamantium Éter do especialista" level="1" cName="event_questexpboost_02" mask="24648" item_group="QUEST" quality="COMMON" price="180000" desc="809573" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_count="1">
+		<actions>
+			<skilluse skillid="11372" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="169620502" name="REVOLVERS DUAMANTIUM DUAMANTIUM" level="1" cName="event_questexpboost_03" mask="24648" item_group="QUEST" quality="COMMON" price="180000" desc="809574" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_count="1">
+		<actions>
+			<skilluse skillid="11373" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="169620503" name="REVOLVERS ADAMANTIUM DUAMANTIUM DUAMANTIO" level="1" cName="event_questexpboost_04" mask="24648" item_group="QUEST" quality="COMMON" price="180000" desc="809575" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_count="1">
+		<actions>
+			<skilluse skillid="11374" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="169625018" name="Espada Espiritual Primal" level="1" cName="Classic_DRBOOST_PCBANG_01" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="780566" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10370" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="169625019" name="Polearme durável do rei do dragão nobre" level="1" cName="Classic_DRBOOST_PCBANG_02" mask="24698" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="781032" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="25402" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10370" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="169625020" name="Npc_temple 2nd divinization_hero_plate_head" level="1" cName="classic_us_event_dropboost_01" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="783974" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10553" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="169625021" name="Fluxo de armadura melhor especialista" level="1" cName="classic_jp_event_dropboost_01" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784369" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10553" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="169625022" name="O melhor fluxo de armadura do supremo" level="1" cName="classic_jp_bm_dropboost_01" mask="24702" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="784371" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="25406" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10553" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="169625023" name="Artesanato: digno nobre hoca durável Pauldrons" level="1" cName="event_break_dropboost_01" mask="24648" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="788254" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1">
+		<actions>
+			<skilluse skillid="10635" level="1"/>
+		</actions>
+	</item_template>
 	<item_template id="169700000" name="Colar de malevita durável do dragão nobre dragão" level="20" cName="event_charging_siel_aura_60" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="783344" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" casting_delay="1500" restrict_max="20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 0 20"/>
 	<item_template id="169700001" name="Colar de malevita durável do Imperador Sky Dragon" level="25" cName="event_charging_siel_aura_120" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="783346" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" casting_delay="1500" expire_time="120" restrict_max="25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 0 25"/>
 	<item_template id="169700002" name="Você pode entrar novamente na instância do &lt;Solus Crisol&gt;. No entanto, você deve esperar 10 minutos depois de usar o rolo se deixar o campo de treinamento e desejar entrar novamente." level="5" cName="event_charging_siel_aura_1" mask="16456" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="783616" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" casting_delay="1500" restrict_max="5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 0 5"/>
@@ -519974,7 +520716,11 @@
 	<item_template id="182209900" name="Você mantém a memória do governante vivo." level="1" cName="quest_10100a" mask="1" item_group="QUEST" quality="COMMON" price="1" desc="1800276" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17665"/>
 	<item_template id="182209901" name="Você mantém a memória do herói vivo." level="1" cName="quest_10101a" mask="24640" item_group="QUEST" quality="COMMON" price="1" desc="1800278" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="25888"/>
 	<item_template id="182209902" name="[Anômalo] O mapa do médico" level="1" cName="quest_10101b" mask="24640" item_group="QUEST" quality="COMMON" price="1" desc="1800280" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="25888"/>
-	<item_template id="182209903" name="Lunacy Ginseng" level="1" cName="quest_10103a" mask="8193" item_group="QUEST" quality="COMMON" price="1" desc="1800284" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="25857" activate_target="STANDALONE" activate_count="1000" casting_delay="3000"/>
+	<item_template id="182209903" name="Lunacy Ginseng" level="1" cName="quest_10103a" mask="8193" item_group="QUEST" quality="COMMON" price="1" desc="1800284" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="25857" activate_target="STANDALONE" activate_count="1000" casting_delay="3000">
+		<actions>
+			<skilluse skillid="10607" level="1"/>
+		</actions>
+	</item_template>
 	<item_template id="182209904" name="[Anômalo] Obtendo materiais (4)" level="1" cName="quest_10103b" mask="8197" item_group="QUEST" quality="COMMON" price="10" desc="1800288" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="25861"/>
 	<item_template id="182209905" name="[Progress] Elyos Script Quest 2" level="1" cName="quest_10108a" mask="1" item_group="QUEST" quality="COMMON" price="1" desc="1800301" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="17665"/>
 	<item_template id="182209930" name="Um item de Richelle" level="1" cName="quest_10120a" mask="24640" item_group="QUEST" quality="COMMON" price="1" desc="1800314" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="25888"/>
@@ -520232,8 +520978,16 @@
 	<item_template id="186020444" name="O arco de Chaparu" level="1" cName="classic_event_ringmaker_basic_ring" mask="24648" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="813695" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872"/>
 	<item_template id="186020445" name="As manoplas de couro de Sauri" level="1" cName="Temebo_UnConTreasureMap" mask="24648" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="813712" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872"/>
 	<item_template id="186020446" name="Sabatons de Placas de Chapana" level="1" cName="classic_LDF4b_Supply_Amber_Coin" mask="24641" item_group="COINS" quality="COMMON" price="260000" desc="813760" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="24865" expire_time="40"/>
-	<item_template id="186020447" name="Funcionários de batalha sem fim" level="1" cName="EVENT_Express_LevelUp_MONSTERBALL_WORLD" mask="24642" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="813876" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24866" activate_target="TARGET" activate_count="1" casting_delay="3000"/>
-	<item_template id="186020448" name="Funcionários de batalha sem fim" level="1" cName="EVENT_Express_LevelUp_MONSTERBALL" mask="24640" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="813876" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="TARGET" activate_count="1" casting_delay="3000"/>
+	<item_template id="186020447" name="Funcionários de batalha sem fim" level="1" cName="EVENT_Express_LevelUp_MONSTERBALL_WORLD" mask="24642" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="813876" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24866" activate_target="TARGET" activate_count="1" casting_delay="3000">
+		<actions>
+			<skilluse skillid="11643" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="186020448" name="Funcionários de batalha sem fim" level="1" cName="EVENT_Express_LevelUp_MONSTERBALL" mask="24640" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="813876" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864" activate_target="TARGET" activate_count="1" casting_delay="3000">
+		<actions>
+			<skilluse skillid="11643" level="1"/>
+		</actions>
+	</item_template>
 	<item_template id="186020449" name="Livro de feitiço de batalha sem fim" level="1" cName="EVENT_Express_LevelUp_BOOSTER" mask="24642" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="813878" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24866"/>
 	<item_template id="186020450" name="Manoplas de Chainmail NPC do meio ambiente (masculino)" level="1" cName="classic_event_ez_challenge_ticket_01" mask="24640" item_group="DROP_MATERIAL" quality="COMMON" price="150000" desc="814184" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24864"/>
 	<item_template id="186020451" name="Mercihant NPC 1&amp;#39;s Shoes (feminino)" level="1" cName="classic_seed_enchant_material_01" mask="24650" item_group="DROP_MATERIAL" quality="EPIC" price="5" desc="814307" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24874"/>
@@ -520327,14 +521081,46 @@
 	<item_template id="186020626" name="world_ru_gm_event_box_key_01_piece" level="1" cName="world_ru_gm_event_box_key_01_piece" mask="24648" item_group="DROP_MATERIAL" quality="COMMON" price="5" desc="824570" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" client_mask="24872"/>
 	<item_template id="186020627" name="world_ru_gm_event_final_reward_01" level="1" cName="world_ru_gm_event_final_reward_01" mask="24648" item_group="DROP_MATERIAL" quality="DIVINITY" price="5" desc="824571" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872"/>
 	<item_template id="186020628" name="world_ru_gm_event_coin_01" level="1" cName="world_ru_gm_event_coin_01" mask="16456" item_group="COINS" quality="LEGEND" price="5" desc="824572" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
-	<item_template id="188000006" name="Design: iluminação de parede de titânio" level="50" cName="item_abyss_light_siege02_IDArena" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="500000" desc="785306" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_target="STANDALONE" activate_count="1" casting_delay="10000" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50"/>
-	<item_template id="188000007" name="Design: tapete fess" level="50" cName="item_abyss_dark_siege02_IDArena" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="500000" desc="785307" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_target="STANDALONE" activate_count="1" casting_delay="10000" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50"/>
-	<item_template id="188000008" name="Ensina como fazer uma cama de fibra Sobi." level="50" cName="item_abyss_light_siege02_legion" mask="16504" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="786853" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="17208" activate_target="STANDALONE" activate_count="1" casting_delay="10000" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50"/>
-	<item_template id="188000009" name="Ensina como fazer iluminação ao ar livre Adamantium." level="50" cName="item_abyss_dark_siege02_legion" mask="16504" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="786854" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="17208" activate_target="STANDALONE" activate_count="1" casting_delay="10000" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50"/>
-	<item_template id="188010012" name="Balic Craft: Noble Horned Dragon King&amp;#39;s Durable Espada Grande" level="55" cName="item_abyss_light_siege_summon_cannon_g4" mask="16460" item_group="PACK_SCROLL" quality="COMMON" price="700000" desc="788601" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16684" activate_target="STANDALONE" activate_count="1" casting_delay="15000" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55"/>
-	<item_template id="188010013" name="Balic Craft: Noble Horned Dragon King&amp;#39;s Durable Espada" level="55" cName="item_abyss_dark_siege_summon_cannon_g4" mask="16460" item_group="PACK_SCROLL" quality="COMMON" price="700000" desc="788599" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16684" activate_target="STANDALONE" activate_count="1" casting_delay="15000" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55"/>
-	<item_template id="188010014" name="Balic Craft: Noble Horned Dragon King&amp;#39;s Durable Espada Grande" level="55" cName="item_abyss_light_siege_summon_cannon_g4_b" mask="16460" item_group="PACK_SCROLL" quality="COMMON" price="105000" desc="788601" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16684" activate_target="STANDALONE" activate_count="1" casting_delay="15000" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55"/>
-	<item_template id="188010015" name="Balic Craft: Noble Horned Dragon King&amp;#39;s Durable Espada" level="55" cName="item_abyss_dark_siege_summon_cannon_g4_b" mask="16460" item_group="PACK_SCROLL" quality="COMMON" price="105000" desc="788599" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16684" activate_target="STANDALONE" activate_count="1" casting_delay="15000" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55"/>
+	<item_template id="188000006" name="Design: iluminação de parede de titânio" level="50" cName="item_abyss_light_siege02_IDArena" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="500000" desc="785306" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_target="STANDALONE" activate_count="1" casting_delay="10000" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50">
+		<actions>
+			<skilluse skillid="12121" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="188000007" name="Design: tapete fess" level="50" cName="item_abyss_dark_siege02_IDArena" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="500000" desc="785307" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_target="STANDALONE" activate_count="1" casting_delay="10000" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50">
+		<actions>
+			<skilluse skillid="12122" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="188000008" name="Ensina como fazer uma cama de fibra Sobi." level="50" cName="item_abyss_light_siege02_legion" mask="16504" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="786853" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="17208" activate_target="STANDALONE" activate_count="1" casting_delay="10000" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50">
+		<actions>
+			<skilluse skillid="12121" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="188000009" name="Ensina como fazer iluminação ao ar livre Adamantium." level="50" cName="item_abyss_dark_siege02_legion" mask="16504" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="786854" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="17208" activate_target="STANDALONE" activate_count="1" casting_delay="10000" restrict="50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 1 50">
+		<actions>
+			<skilluse skillid="12122" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="188010012" name="Balic Craft: Noble Horned Dragon King&amp;#39;s Durable Espada Grande" level="55" cName="item_abyss_light_siege_summon_cannon_g4" mask="16460" item_group="PACK_SCROLL" quality="COMMON" price="700000" desc="788601" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16684" activate_target="STANDALONE" activate_count="1" casting_delay="15000" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55">
+		<actions>
+			<skilluse skillid="12126" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="188010013" name="Balic Craft: Noble Horned Dragon King&amp;#39;s Durable Espada" level="55" cName="item_abyss_dark_siege_summon_cannon_g4" mask="16460" item_group="PACK_SCROLL" quality="COMMON" price="700000" desc="788599" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16684" activate_target="STANDALONE" activate_count="1" casting_delay="15000" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55">
+		<actions>
+			<skilluse skillid="12127" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="188010014" name="Balic Craft: Noble Horned Dragon King&amp;#39;s Durable Espada Grande" level="55" cName="item_abyss_light_siege_summon_cannon_g4_b" mask="16460" item_group="PACK_SCROLL" quality="COMMON" price="105000" desc="788601" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16684" activate_target="STANDALONE" activate_count="1" casting_delay="15000" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55">
+		<actions>
+			<skilluse skillid="12126" level="1"/>
+		</actions>
+	</item_template>
+	<item_template id="188010015" name="Balic Craft: Noble Horned Dragon King&amp;#39;s Durable Espada" level="55" cName="item_abyss_dark_siege_summon_cannon_g4_b" mask="16460" item_group="PACK_SCROLL" quality="COMMON" price="105000" desc="788599" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16684" activate_target="STANDALONE" activate_count="1" casting_delay="15000" restrict="55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 1 55">
+		<actions>
+			<skilluse skillid="12127" level="1"/>
+		</actions>
+	</item_template>
 	<item_template id="188040165" name="Ensina como fazer o dupleto de couro do Catalium do mestre." level="1" cName="world_wrap_ru_dungeon_runing_01" casting_delay="1000" mask="8" item_group="DROP_MATERIAL" quality="EPIC" price="5" desc="824114" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16648" activate_target="STANDALONE" activate_count="1">
 		<actions>
 			<decompose/>

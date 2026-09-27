@@ -78,7 +78,7 @@ ACTION_FIELDS = {
     "cash_title": "titleadd", "dyeing_color": "dye", "quest": "queststart",
 }
 CLIENT_FIELDS = set(DIRECT_FIELDS) | set(ACTION_FIELDS) | set(CLASS_FIELDS) | {
-    "id", "name", "desc", "weapon_type", "armor_type", "equipment_slots", "attack_type", "activate_target",
+    "id", "name", "desc", "weapon_type", "armor_type", "equipment_slots", "attack_type", "activate_target", "activation_level",
     "max_enchant_level", "option_slot_bonus", "m_slots", "mgrouptag", "tag", "icon_name", "quest",
     "min_damage", "max_damage", "attack_delay", "critical", "hit_accuracy", "parry", "attack_range", "hit_count",
     "magical_hit_accuracy", "magical_skill_boost", "reduce_max", "cannot_changeskin", "can_dye", "item_drop_permitted",
@@ -142,9 +142,11 @@ def read_server(path: Path) -> dict[str, dict]:
         if element.tag != "item_template":
             continue
         actions = set()
+        action_attrs = {}
         action_root = element.find("actions")
         if action_root is not None:
             actions = {child.tag for child in action_root}
+            action_attrs = {child.tag: dict(child.attrib) for child in action_root}
         if element.find("stigma") is not None:
             actions.add("stigma")
         weapon = element.find("weapon_stats")
@@ -165,6 +167,7 @@ def read_server(path: Path) -> dict[str, dict]:
         items[element.attrib["id"]] = {
             "attrs": dict(element.attrib),
             "actions": actions,
+            "action_attrs": action_attrs,
             "weapon": dict(weapon.attrib) if weapon is not None else {},
             "modifier_count": len(modifiers) if modifiers is not None else 0,
             "modifiers": modifier_values,
@@ -172,6 +175,21 @@ def read_server(path: Path) -> dict[str, dict]:
         }
         element.clear()
     return items
+
+
+def load_client_skill_ids(client_root: Path) -> dict[str, str]:
+    path = client_root / "data" / "skills" / "client_skills.xml"
+    result = {}
+    if not path.is_file():
+        return result
+    for _, element in ET.iterparse(path, events=("end",)):
+        if element.tag == "skill_base_client":
+            name = (element.findtext("name") or "").strip().lower()
+            skill_id = (element.findtext("id") or "").strip()
+            if name and skill_id:
+                result.setdefault(name, skill_id)
+            element.clear()
+    return result
 
 
 def load_strings(client_root: Path, wanted: set[str]) -> dict[str, tuple[str, str]]:
@@ -237,7 +255,8 @@ def expected_client_mask(item: dict[str, str]) -> str:
     return str(value)
 
 
-def compare_item(client: dict[str, str] | None, server: dict | None, strings: dict[str, tuple[str, str]]) -> dict:
+def compare_item(client: dict[str, str] | None, server: dict | None, strings: dict[str, tuple[str, str]],
+                 skill_ids: dict[str, str] | None = None) -> dict:
     if client is None:
         return {"status": "LEGADO_SO_EMULADOR", "differences": ["id ausente no cliente oficial"], "pending": []}
     if server is None:
@@ -301,8 +320,22 @@ def compare_item(client: dict[str, str] | None, server: dict | None, strings: di
     if any(expected_max[i] != actual_max[i] for i in range(len(RESTRICT_SOURCES)) if i != 23):
         differences.append("restrict_max:" + " ".join(map(str, expected_max)) + "!=" + " ".join(map(str, actual_max)))
     for field, action in ACTION_FIELDS.items():
-        if meaningful(client.get(field)) and action not in server["actions"]:
+        raw_action = client.get(field)
+        if field == "activation_skill" and meaningful(raw_action) and raw_action.isdigit():
+            pending.append(f"activation_skill numerico={raw_action} requer dicionario oficial; nao e skill id")
+        elif meaningful(raw_action) and action not in server["actions"]:
             pending.append(f"acao {action} indicada por {field}")
+        elif field == "activation_skill" and meaningful(raw_action) and skill_ids is not None:
+            expected_id = skill_ids.get(raw_action.lower())
+            if expected_id is None:
+                pending.append(f"activation_skill sem ID no client_skills:{raw_action}")
+            else:
+                actual = server["action_attrs"].get("skilluse", {})
+                if actual.get("skillid") != expected_id:
+                    differences.append(f"skilluse.skillid:{expected_id}!={actual.get('skillid', '<ausente>')}")
+                expected_level = client.get("activation_level") or "1"
+                if actual.get("level", "1") != expected_level:
+                    differences.append(f"skilluse.level:{expected_level}!={actual.get('level', '1')}")
     unmapped = collections.Counter()
     expected_modifiers = collections.Counter(templates.gen_mods(client, unmapped))
     for name, count in sorted(unmapped.items()):
@@ -324,7 +357,8 @@ def associated_systems(item: dict[str, str], server: dict | None) -> list[str]:
     if item.get("enchant_group") or meaningful(item.get("no_enchant")): systems.append("encantamento")
     if meaningful(item.get("can_composite_weapon")): systems.append("fusao")
     if meaningful(item.get("craft_recipe_info")): systems.append("crafting")
-    if meaningful(item.get("activation_skill")): systems.extend(("uso", "skills"))
+    activation_skill = item.get("activation_skill", "")
+    if meaningful(activation_skill) and not activation_skill.isdigit(): systems.extend(("uso", "skills"))
     if meaningful(item.get("expire_time")): systems.append("temporarios")
     if meaningful(item.get("can_exchange")): systems.append("comercio")
     if server:
@@ -399,13 +433,14 @@ def main() -> None:
     output.mkdir(parents=True, exist_ok=True)
     client = read_client(client_path)
     server = read_server(SERVER_ITEMS)
+    skill_ids = load_client_skill_ids(client_root)
     wanted_strings = {item.get("desc", "").upper() for item in client.values() if item.get("desc")}
     strings = load_strings(client_root, wanted_strings)
     ids = sorted(set(client) | set(server), key=int)
     status_count, category_count, rows = collections.Counter(), collections.Counter(), []
     for item_id in ids:
         ci, si = client.get(item_id), server.get(item_id)
-        result = compare_item(ci, si, strings)
+        result = compare_item(ci, si, strings, skill_ids)
         cat = category(ci) if ci else "legado"
         status_count[result["status"]] += 1
         category_count[cat] += 1
@@ -440,7 +475,7 @@ def main() -> None:
         "itens_oficiais": len(client), "itens_emulador": len(server),
         "itens_por_status": dict(sorted(status_count.items())),
         "itens_por_categoria": dict(sorted(category_count.items())),
-        "strings_de_item_resolvidas": len(strings), "arquitetura_por_camada": architecture,
+        "strings_de_item_resolvidas": len(strings), "skills_oficiais_indexadas": len(skill_ids), "arquitetura_por_camada": architecture,
         "variantes_catalogo_cliente": catalog_variants,
         "itens_diferentes_por_variante_contra_europe": variant_differences,
         "criterio": "Compatibilidade limitada aos campos de equivalencia direta; pendencias nao contam como validadas.",
