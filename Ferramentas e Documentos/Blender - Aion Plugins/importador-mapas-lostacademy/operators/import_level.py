@@ -314,6 +314,11 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
         description="Load 3D CGF meshes for monsters, humanoids, and Shugos",
         default=True,
     )
+    animate_npcs: BoolProperty(
+        name="Animate NPCs (Armatures & Idle CAF)",
+        description="Build armature rigs, assign vertex skinning, and play looping idle animations on NPCs",
+        default=True,
+    )
     import_monsters: BoolProperty(
         name="Monsters & Hostiles",
         description="Spawn monsters, wild creatures, and enemy mobs",
