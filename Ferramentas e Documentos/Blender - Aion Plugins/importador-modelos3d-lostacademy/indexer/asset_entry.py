@@ -59,6 +59,11 @@ class AssetEntry:
         return cls(**d)
 
     @property
+    def poly_count(self) -> int:
+        """Alias for triangle_count for UI display consistency."""
+        return self.triangle_count
+
+    @property
     def display_label(self) -> str:
         """User-friendly label shown in grids and list views."""
         if self.name and self.name != Path(self.model_path).stem:

@@ -168,11 +168,11 @@ class AION_OT_filter_assets(bpy.types.Operator):
             item.model_path = entry.model_path
             item.skeleton_path = entry.skeleton_path or ""
             item.cal_path = entry.cal_path or ""
-            item.poly_count = entry.poly_count
-            item.vertex_count = entry.vertex_count
-            item.bone_count = entry.bone_count
-            item.anim_count = len(entry.animations)
-            item.is_modified = entry.is_modified
+            item.poly_count = getattr(entry, "triangle_count", getattr(entry, "poly_count", 0))
+            item.vertex_count = getattr(entry, "vertex_count", 0)
+            item.bone_count = getattr(entry, "bone_count", 0)
+            item.anim_count = len(entry.animations) if getattr(entry, "animations", None) else getattr(entry, "animation_count", 0)
+            item.is_modified = bool(getattr(entry, "is_modified", False))
 
         if settings.active_asset_index >= len(settings.asset_items):
             settings.active_asset_index = max(0, len(settings.asset_items) - 1)
@@ -256,11 +256,39 @@ class AION_OT_load_asset(bpy.types.Operator):
 
         # 4. Populate active animation list
         settings.active_anims.clear()
-        if entry.animations:
-            for anim_name, caf_path in entry.animations.items():
-                anim_item = settings.active_anims.add()
-                anim_item.name = anim_name
-                anim_item.caf_path = caf_path
+        if entry.cal_path:
+            try:
+                try:
+                    from formats.cgf.cal_parser import parse_cal
+                except ImportError:
+                    from ..formats.cgf.cal_parser import parse_cal
+                cal_bytes = client_prov.catalog.extract_file(entry.cal_path)
+                if not cal_bytes and (Path(settings.client_path) / entry.cal_path).is_file():
+                    cal_bytes = (Path(settings.client_path) / entry.cal_path).read_bytes()
+                if cal_bytes:
+                    cal_map = parse_cal(cal_bytes)
+                    for state_name, caf_rel in cal_map.items():
+                        anim_item = settings.active_anims.add()
+                        anim_item.name = state_name
+                        anim_item.caf_path = caf_rel
+            except Exception:
+                pass
+
+        if not settings.active_anims and entry.animations:
+            if isinstance(entry.animations, dict):
+                for anim_name, caf_path in entry.animations.items():
+                    anim_item = settings.active_anims.add()
+                    anim_item.name = anim_name
+                    anim_item.caf_path = str(caf_path)
+            elif isinstance(entry.animations, list):
+                for item in entry.animations:
+                    anim_item = settings.active_anims.add()
+                    if isinstance(item, (list, tuple)) and len(item) == 2:
+                        anim_item.name = str(item[0])
+                        anim_item.caf_path = str(item[1])
+                    else:
+                        anim_item.name = str(item)
+                        anim_item.caf_path = str(item)
 
         # 5. Frame camera & set shading
         if settings.camera_auto_frame:
