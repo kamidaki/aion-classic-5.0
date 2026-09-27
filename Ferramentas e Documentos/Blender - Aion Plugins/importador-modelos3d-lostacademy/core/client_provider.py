@@ -309,3 +309,191 @@ class AionClientProvider:
                     break
 
         return cal_mapping, caf_bytes
+
+    def get_available_classes(self) -> List[Tuple[str, str, str]]:
+        """
+        Dynamically extracts available character classes from the client's PC.pak (client_character_class_info.xml).
+        Returns list of (id, display_name, description) tuples formatted for Blender EnumProperty.
+        Falls back to canonical 8 classic classes if client data is not available.
+        """
+        CLASS_MAP = {
+            "Fighter": ("GLADIATOR", "Gladiador", "Gladiador (Placas, Espadão / Lança)"),
+            "Knight": ("TEMPLAR", "Templário", "Templário (Placas, Espada + Escudo)"),
+            "Ranger": ("RANGER", "Arqueiro", "Arqueiro (Couro, Arco)"),
+            "Assassin": ("ASSASSIN", "Assassino", "Assassino (Couro, Duplas Adagas)"),
+            "Wizard": ("SORCERER", "Feiticeiro", "Feiticeiro (Tecido, Orbe / Livro)"),
+            "Elementallist": ("SPIRITMASTER", "Espiritualista", "Espiritualista (Tecido, Orbe / Livro)"),
+            "Priest": ("CLERIC", "Clérigo", "Clérigo (Malha, Maça + Escudo)"),
+            "Chanter": ("CHANTER", "Cantor", "Cantor (Malha, Cajado)"),
+            "Thunderer": ("THUNDERER", "Carrasco / Executor", "Carrasco / Thunderer (Couro, Correntes)"),
+            "Gunner": ("GUNSLINGER", "Atirador", "Atirador (Couro, Pistolas Mágicas)"),
+            "Runeblade": ("RUNEBLADE", "Lâmina Rúnica", "Lâmina Rúnica (Tecido, Espada Mágica)"),
+            "BattleMaster": ("BATTLEMASTER", "Mestre da Batalha", "Mestre da Batalha (Combate Físico)"),
+            "Lumines": ("LUMINES", "Lumines", "Lumines (Canalizador Luminoso)"),
+        }
+
+        # Fallback 8 classic classes
+        FALLBACK_CLASSES = [
+            ("GLADIATOR", "Gladiador", "Gladiador (Placas, Espadão / Lança)"),
+            ("TEMPLAR", "Templário", "Templário (Placas, Espada + Escudo)"),
+            ("RANGER", "Arqueiro", "Arqueiro (Couro, Arco)"),
+            ("ASSASSIN", "Assassino", "Assassino (Couro, Duplas Adagas)"),
+            ("SORCERER", "Feiticeiro", "Feiticeiro (Tecido, Orbe / Livro)"),
+            ("SPIRITMASTER", "Espiritualista", "Espiritualista (Tecido, Orbe / Livro)"),
+            ("CLERIC", "Clérigo", "Clérigo (Malha, Maça + Escudo)"),
+            ("CHANTER", "Cantor", "Cantor (Malha, Cajado)"),
+        ]
+
+        if not self.data_dir:
+            return FALLBACK_CLASSES
+
+        pc_paks = []
+        for pd in [self.data_dir / "PC", self.data_dir / "pc"]:
+            if pd.is_dir():
+                pc_paks.extend(pd.glob("*.pak"))
+
+        found_classes: List[Tuple[str, str, str]] = []
+        seen_keys = set()
+
+        for pak in pc_paks:
+            try:
+                arc = self.catalog.get_archive(pak)
+                for name in arc.entries:
+                    if "class" in name.lower() and name.endswith(".xml"):
+                        raw = arc.read_file(name)
+                        if not raw:
+                            continue
+                        # Scan BXML or plain XML
+                        idx = raw.find(b"c\x00h\x00a\x00r\x00a\x00c\x00t\x00e\x00r\x00_\x00c\x00l\x00a\x00s\x00s\x00")
+                        if idx != -1:
+                            text = raw[idx:].decode("utf-16le", errors="replace")
+                            items = [it.strip() for it in text.split("\x00") if it.strip()]
+                            for token in items:
+                                if token in CLASS_MAP and CLASS_MAP[token][0] not in seen_keys:
+                                    seen_keys.add(CLASS_MAP[token][0])
+                                    found_classes.append(CLASS_MAP[token])
+                        else:
+                            # Plain XML
+                            text = raw.decode("utf-8", errors="ignore")
+                            for k, v in CLASS_MAP.items():
+                                if k in text and v[0] not in seen_keys:
+                                    seen_keys.add(v[0])
+                                    found_classes.append(v)
+            except Exception:
+                pass
+
+        return found_classes if found_classes else FALLBACK_CLASSES
+
+    def get_npc_templates(self) -> Dict[str, Dict[str, Any]]:
+        """
+        Parses client_npcs.xml (BXML and XML) from npcs.pak and resolves string tags from Strings.pak.
+        Returns a dictionary mapping normalized CGF paths and stems to {id, name, clean_name, mesh, model_path}.
+        """
+        if self._templates_cache is not None:
+            return self._templates_cache
+
+        import re
+
+        # 1. Load string translations from Strings.pak or Translation directory
+        str_map: Dict[str, str] = {}
+        str_paks = []
+        if self.data_dir:
+            for sd in [self.data_dir / "Strings", self.data_dir / "strings"]:
+                if sd.is_dir():
+                    str_paks.extend(sd.glob("*.pak"))
+
+        for str_pak in str_paks:
+            try:
+                arc = self.catalog.get_archive(str_pak)
+                for fname in ("client_strings_monster.xml", "client_strings_npc.xml", "client_strings_dic_monster.xml"):
+                    raw = arc.read_file(fname)
+                    if not raw:
+                        continue
+                    idx = raw.find(b"s\x00t\x00r\x00i\x00n\x00g\x00")
+                    if idx != -1:
+                        text = raw[idx:].decode("utf-16le", errors="replace")
+                        items = [it.strip() for it in text.split("\x00") if it.strip()]
+                        for i in range(len(items) - 1):
+                            t = items[i]
+                            if t.startswith("STR_"):
+                                val = items[i + 1]
+                                if val and not val.startswith("STR_") and not val.isdigit():
+                                    str_map[t] = val
+            except Exception:
+                pass
+
+        # 2. Parse client_npcs.xml
+        templates: Dict[str, Dict[str, Any]] = {}
+        npc_paks = self.get_npcs_pak_paths()
+
+        def clean_name(raw: str) -> str:
+            n = re.sub(r"_\d+_[a-zA-Z]+$", "", raw)
+            n = re.sub(r"_\d+$", "", n)
+            return n.replace("_", " ").strip().title()
+
+        for pak in npc_paks:
+            try:
+                arc = self.catalog.get_archive(pak)
+                for fname in arc.entries:
+                    if "client_npc" in fname.lower() and (fname.endswith(".xml") or fname.endswith(".bxml")):
+                        raw = arc.read_file(fname)
+                        if not raw:
+                            continue
+
+                        # Check BXML
+                        idx = raw.find(b"n\x00p\x00c\x00_\x00c\x00l\x00i\x00e\x00n\x00t\x00")
+                        if idx != -1:
+                            text = raw[idx:].decode("utf-16le", errors="replace")
+                            items = [it.strip() for it in text.split("\x00") if it.strip()]
+                            i = 0
+                            n_items = len(items)
+                            while i < n_items:
+                                token = items[i]
+                                if token.isdigit() and len(token) in (6, 7):
+                                    npc_id = token
+                                    raw_n = items[i + 1] if i + 1 < n_items and not items[i + 1].isdigit() and not items[i + 1].startswith("STR_") and "/" not in items[i + 1] else ""
+                                    desc_tag = ""
+                                    for j in range(i + 1, min(i + 25, n_items)):
+                                        if items[j].startswith("STR_"):
+                                            desc_tag = items[j]
+                                        elif "/" in items[j] and any(items[j].lower().startswith(p) for p in ("monster", "npc", "pc", "skill_object", "level_object", "event_object")):
+                                            mesh_dir = items[j]
+                                            if j + 1 < n_items and not items[j + 1].isdigit() and not items[j + 1].startswith("STR_") and "/" not in items[j + 1]:
+                                                mesh_file = items[j + 1]
+                                                cgf_rel = f"objects/{mesh_dir.lower()}/{mesh_file.lower()}.cgf"
+
+                                                # Resolve display name
+                                                string_val = str_map.get(desc_tag, "")
+                                                # Use string translation if ASCII/Roman, otherwise clean English internal name
+                                                if string_val and string_val.isascii() and string_val.lower() != "body":
+                                                    display_base = string_val.strip()
+                                                elif raw_n:
+                                                    display_base = clean_name(raw_n)
+                                                else:
+                                                    display_base = clean_name(mesh_file)
+
+                                                display_name = f"{display_base} [{npc_id}]"
+
+                                                info = {
+                                                    "id": npc_id,
+                                                    "name": display_name,
+                                                    "clean_name": display_base,
+                                                    "raw_name": raw_n,
+                                                    "mesh": mesh_file,
+                                                    "model_path": cgf_rel,
+                                                }
+
+                                                if cgf_rel not in templates:
+                                                    templates[cgf_rel] = info
+                                                stem_key = mesh_file.lower()
+                                                if stem_key not in templates:
+                                                    templates[stem_key] = info
+                                            break
+                                    i += 2
+                                else:
+                                    i += 1
+            except Exception:
+                pass
+
+        self._templates_cache = templates
+        return templates

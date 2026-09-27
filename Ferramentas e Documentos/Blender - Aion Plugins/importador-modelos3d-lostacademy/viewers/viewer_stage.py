@@ -30,12 +30,51 @@ class ViewerStage:
 
     @staticmethod
     def clear_stage_objects() -> None:
-        """Removes previously inspected model objects from the viewer stage."""
+        """Removes previously inspected model objects and orphan data to completely eliminate duplicate meshes and flickering."""
         col = ViewerStage.get_or_create_stage_collection()
+        to_delete = set()
+
         for obj in list(col.objects):
-            # Do not delete lights or cameras
             if obj.type not in ("LIGHT", "CAMERA"):
+                to_delete.add(obj)
+                for child in getattr(obj, "children_recursive", []):
+                    to_delete.add(child)
+
+        # Also search active scene for any lingering Aion preview objects or rigs
+        scene = bpy.context.scene
+        for obj in list(scene.objects):
+            if obj.type not in ("LIGHT", "CAMERA") and obj.name.startswith(("Aion_", "mannequin_", "auto_")):
+                to_delete.add(obj)
+
+        for obj in to_delete:
+            try:
+                # Clear animation action
+                if obj.animation_data and obj.animation_data.action:
+                    act = obj.animation_data.action
+                    obj.animation_data.action = None
+                    if act.users == 0:
+                        bpy.data.actions.remove(act)
+
+                # Unlink from all collections
+                for c in list(obj.users_collection):
+                    c.objects.unlink(obj)
+
+                m_data = obj.data if obj.type == "MESH" else None
+                a_data = obj.data if obj.type == "ARMATURE" else None
+
                 bpy.data.objects.remove(obj, do_unlink=True)
+
+                if m_data and m_data.users == 0:
+                    bpy.data.meshes.remove(m_data)
+                if a_data and a_data.users == 0:
+                    bpy.data.armatures.remove(a_data)
+            except Exception:
+                pass
+
+        try:
+            bpy.data.orphans_purge(do_local_ids=True, do_linked_ids=True, do_recursive=True)
+        except Exception:
+            pass
 
     @classmethod
     def setup_studio_lighting(cls) -> None:

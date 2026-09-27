@@ -177,7 +177,7 @@ class AION_PT_character_preview(bpy.types.Panel):
 
 class AION_PT_asset_details(bpy.types.Panel):
     """Metadata details of the loaded asset."""
-    bl_label = "Detalhes do Modelo"
+    bl_label = "Detalhes do Modelo 3D"
     bl_idname = "AION_PT_asset_details"
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
@@ -188,26 +188,46 @@ class AION_PT_asset_details(bpy.types.Panel):
         layout = self.layout
         settings = context.scene.aion_model_lib
 
-        if not settings.active_asset_id:
+        if not settings.active_asset_id and not settings.active_asset_name:
             layout.label(text="Nenhum modelo carregado no visualizador", icon="INFO")
             return
 
         box = layout.box()
-        box.label(text=f"Modelo: {settings.active_asset_name}", icon="OBJECT_DATA")
-        box.label(text=f"Categoria: {settings.active_category}")
-        box.label(text=f"Polígonos: {settings.active_poly_count:,} | Vértices: {settings.active_vertex_count:,}")
-        box.label(text=f"Ossos: {settings.active_bone_count}")
+        col = box.column(align=True)
+        col.label(text=f"Nome: {settings.active_asset_name}", icon="OBJECT_DATA")
+        if settings.active_asset_id:
+            col.label(text=f"ID do Asset: {settings.active_asset_id}", icon="COMMUNITY")
+        col.label(text=f"Categoria: {settings.active_category}", icon="FILE_FOLDER")
 
+        # Geometry and Rig Statistics
+        g_box = box.box()
+        g_col = g_box.column(align=True)
+        g_col.label(text="Estatísticas Geométricas:", icon="MESH_DATA")
+        row = g_col.row(align=True)
+        row.label(text=f"Polígonos: {settings.active_poly_count:,}")
+        row.label(text=f"Vértices: {settings.active_vertex_count:,}")
+        row2 = g_col.row(align=True)
+        row2.label(text=f"Ossos: {settings.active_bone_count}")
+        row2.label(text=f"Animações: {len(settings.active_anims)}")
+
+        # File paths
         p_box = box.box()
-        p_box.scale_y = 0.8
-        p_box.label(text=f"Caminho: {settings.active_model_path}")
+        p_col = p_box.column(align=True)
+        p_col.label(text="Arquivos de Origem:", icon="FILE_TEXT")
+        p_col.scale_y = 0.85
+        p_col.label(text=f"CGF: {settings.active_model_path}")
+        if settings.active_cal_path:
+            p_col.label(text=f"CAL: {settings.active_cal_path}")
         if settings.active_skeleton_path:
-            p_box.label(text=f"Esqueleto: {settings.active_skeleton_path}")
+            p_col.label(text=f"Esqueleto: {settings.active_skeleton_path}")
 
         if settings.active_is_modified:
             m_box = layout.box()
             m_box.alert = True
             m_box.label(text="O modelo possui modificações não salvas!", icon="MODIFIER")
+        else:
+            status_box = box.box()
+            status_box.label(text="Status: Original do Cliente (Intacto)", icon="CHECKMARK")
 
 
 class AION_PT_viewport_controls(bpy.types.Panel):

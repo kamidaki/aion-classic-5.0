@@ -200,10 +200,12 @@ class ClientScanner:
                     self.catalog.index_pak(p)
 
         # 2. Extract NPC templates mapping (ID -> Name, Model)
-        npc_templates = self._load_npc_templates()
+        from ..core.client_provider import AionClientProvider
+        client_provider = AionClientProvider(self.root)
+        npc_templates = client_provider.get_npc_templates()
 
         # 3. Discover all CGF / CGA models in the catalog and loose on disk
-        model_entries: Dict[str, Tuple[Optional[str], bool]] = {}  # rel_path -> (pak_name, is_loose)
+        model_entries: Dict[str, Tuple[str, Optional[str], bool]] = {}  # norm_lower -> (full_rel, pak_name, is_loose)
 
         # Catalog entries
         for lower_name, (pak_path, entry) in self.catalog._path_to_pak_entry.items():
@@ -218,7 +220,10 @@ class ClientScanner:
                     full_rel = f"{rel_dir}/{clean_entry}"
                 else:
                     full_rel = clean_entry
-                model_entries[full_rel] = (Path(pak_path).name, False)
+
+                norm_key = full_rel.lower()
+                if norm_key not in model_entries:
+                    model_entries[norm_key] = (full_rel, Path(pak_path).name, False)
 
         # Loose files
         for obj_dir_name in ("objects", "Objects"):
@@ -226,8 +231,9 @@ class ClientScanner:
             if obj_p.is_dir():
                 for f in obj_p.rglob("*.cgf"):
                     rel = f.relative_to(self.root).as_posix()
-                    if rel not in model_entries:
-                        model_entries[rel] = (None, True)
+                    norm_key = rel.lower()
+                    if norm_key not in model_entries:
+                        model_entries[norm_key] = (rel, None, True)
 
         total_models = len(model_entries)
         assets: List[AssetEntry] = []
@@ -247,23 +253,27 @@ class ClientScanner:
                 return (4, rel_lower)
             return (5, rel_lower)
 
-        sorted_models = sorted(model_entries.items(), key=_model_priority)
+        sorted_models = sorted(model_entries.values(), key=_model_priority)
         if max_assets:
             sorted_models = sorted_models[:max_assets]
 
-        for rel_path, (pak_name, is_loose) in sorted_models:
+        for rel_path, pak_name, is_loose in sorted_models:
             scanned_count += 1
             if progress_callback and scanned_count % 100 == 0:
                 progress_callback(scanned_count, total_models, rel_path)
 
-            base_name = Path(rel_path).stem
             clean_rel = rel_path.replace("\\", "/").strip().lstrip("/")
+            base_name = Path(clean_rel).stem
             category = classify_asset_category(clean_rel)
 
             # Match with NPC template if available
             npc_match = npc_templates.get(clean_rel.lower()) or npc_templates.get(base_name.lower())
-            asset_id = npc_match["id"] if npc_match else f"model_{abs(hash(clean_rel)) % 1000000:06d}"
-            asset_name = npc_match["name"] if npc_match else base_name.replace("_", " ").title()
+            if npc_match:
+                asset_id = str(npc_match["id"])
+                asset_name = npc_match["name"]
+            else:
+                asset_id = f"item_{base_name.lower()}"
+                asset_name = base_name.replace("_", " ").title()
 
             # Find matching .cal animation list
             cal_path = self._find_matching_cal(clean_rel)

@@ -51,11 +51,16 @@ class AssetDatabase:
         self.is_loaded = False
 
     def add_entry(self, entry: AssetEntry) -> None:
+        clean_path = entry.model_path.lower().replace("\\", "/").strip().lstrip("/")
+        # Deduplication: Ensure each unique 3D model path is registered only once
+        if clean_path in self._path_to_id:
+            return
+
         self._entries[entry.asset_id] = entry
-        clean_path = entry.model_path.lower().replace("\\", "/")
         self._path_to_id[clean_path] = entry.asset_id
         stem = Path(clean_path).stem
-        self._path_to_id[stem] = entry.asset_id
+        if stem not in self._path_to_id:
+            self._path_to_id[stem] = entry.asset_id
 
         cat = entry.category
         if cat not in self._category_index:

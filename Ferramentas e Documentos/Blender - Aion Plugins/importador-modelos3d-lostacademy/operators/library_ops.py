@@ -220,7 +220,16 @@ class AION_OT_load_asset(bpy.types.Operator):
                 if o.type == "ARMATURE":
                     target_rig = o
                     break
-            # If no armature in stage, assemble character mannequin first
+
+            # Verify that existing rig matches selected race and class
+            if target_rig:
+                rig_race = target_rig.get("aion_race")
+                rig_class = target_rig.get("aion_class")
+                if rig_race != settings.character_race or rig_class != settings.character_class:
+                    ViewerStage.clear_stage_objects()
+                    target_rig = None
+
+            # If no armature in stage or race/class changed, assemble character mannequin first
             if not target_rig:
                 target_rig = MannequinProvider.assemble_class_character(
                     client_provider=client_prov,
@@ -229,6 +238,9 @@ class AION_OT_load_asset(bpy.types.Operator):
                     class_name=settings.character_class,
                     target_collection=stage_col,
                 )
+                if target_rig:
+                    target_rig["aion_race"] = settings.character_race
+                    target_rig["aion_class"] = settings.character_class
         else:
             ViewerStage.clear_stage_objects()
 
@@ -388,6 +400,9 @@ class AION_OT_load_class_preset(bpy.types.Operator):
         if not rig:
             self.report({"ERROR"}, "Falha ao montar personagem da classe.")
             return {"CANCELLED"}
+
+        rig["aion_race"] = settings.character_race
+        rig["aion_class"] = settings.character_class
 
         settings.active_asset_name = f"{settings.character_race} {settings.character_class}"
         settings.active_category = "CHARACTER"

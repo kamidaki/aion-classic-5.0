@@ -66,6 +66,31 @@ def _composed_node_matrix(node: Dict[str, Any], all_nodes: Dict[Any, Any]) -> Ma
 def _safe_uv_idx(idx: int, length: int) -> int:
     return idx if 0 <= idx < length else 0
 
+def _is_collision_or_nodraw_node(node: Dict[str, Any], mat_info: Dict[str, Any]) -> bool:
+    name = str(node.get("name", "")).strip()
+    if name.startswith("$") or name.startswith("phys_") or name.startswith("collision_"):
+        return True
+
+    mat_name = str(mat_info.get("name", "")).lower()
+    mat_shader = str(mat_info.get("shader", "")).lower()
+    mat_template = str(mat_info.get("material_template", "")).lower()
+
+    if "nodraw" in mat_name or "nodraw" in mat_shader or "mat_nodraw" in mat_template:
+        return True
+
+    diffuse = mat_info.get("texture_diffuse")
+    has_diffuse = bool(isinstance(diffuse, dict) and (diffuse.get("name") or diffuse.get("long_name")))
+    opacity = float(mat_info.get("opacity", 1.0) or 1.0)
+    if not has_diffuse and opacity == 0.0:
+        return True
+
+    is_primitive_shape = any(name.lower().startswith(p) for p in ("box", "sphere", "cylinder", "capsule", "phys"))
+    mtl_flag = mat_info.get("mtl_flag", {}) if isinstance(mat_info.get("mtl_flag"), dict) else {}
+    if is_primitive_shape and (mtl_flag.get("physicalize") or mat_info.get("mtl_collide", 0.0) > 0) and not has_diffuse:
+        return True
+
+    return False
+
 
 def detect_mesh_slot(model_path: str, category: str = "") -> str:
     """Classifies an asset into an equipment/body slot for mannequin dressing and replacement."""
@@ -206,6 +231,10 @@ class ModelProvider(IModelProvider):
             if not mesh_chunk:
                 continue
 
+            mat_info = node_data.get("material") if isinstance(node_data.get("material"), dict) else {}
+            if _is_collision_or_nodraw_node(node_data, mat_info):
+                continue
+
             node_name = node_data.get("name") or f"{entry.name}_Mesh"
             positions = mesh_chunk.get("vertices", {}).get("position", [])
             faces_v = mesh_chunk.get("faces", {}).get("v", [])
@@ -315,48 +344,55 @@ class ModelProvider(IModelProvider):
                 self.skel_prov.apply_skin_weights(mesh_obj, bone_names, skin_weights, rig_obj)
                 mesh_obj.parent = rig_obj
                 mesh_obj.matrix_parent_inverse = rig_obj.matrix_world.inverted()
-            else:
-                mesh_obj.matrix_world = node_mat
-                if rig_obj:
-                    equip_bone = None
+            elif rig_obj:
+                # Unskinned mesh
+                equip_bone = None
+                is_dressing_room = (target_rig is not None)
+
+                # 1. Check if node has explicit parent bone in CGF node hierarchy
+                parent_id = node_data.get("parent_id")
+                parent_node = all_nodes.get(parent_id) if parent_id not in (None, -1, 0xFFFFFFFF) else None
+                if parent_node and parent_node.get("name") in rig_obj.data.bones:
+                    equip_bone = parent_node.get("name")
+                elif is_dressing_room:
+                    # Equipment bone mapping only for dressing room equips
                     entry_cat = getattr(entry, "category", "")
                     entry_name_lower = (entry.name + " " + (entry.model_path or "")).lower()
 
-                    # 1. Headgear / Helmets / Hats / Caps / Masks / Glasses / Hair
-                    if any(k in entry_name_lower for k in ("cap", "hat", "helm", "helmet", "_hd_", "_head", "hair", "mask", "glasses", "horn", "tiara", "crown")):
-                        for candidate in ("Bip01 Head", "Bip01 HeadNub", "Head", "bip01 head"):
-                            if hasattr(rig_obj, "data") and candidate in rig_obj.data.bones:
+                    if any(k in entry_name_lower for k in ("cap", "hat", "helm", "helmet", "_hd_", "mask", "glasses", "horn", "tiara", "crown")):
+                        for candidate in ("Bip01 Head", "Head"):
+                            if candidate in rig_obj.data.bones:
+                                equip_bone = candidate
+                                break
+                    elif "shield" in entry_name_lower or "sh_" in entry_name_lower or slot == "weapon_sub":
+                        for candidate in ("Bip01 L Hand", "Shield", "Dummy_Shield"):
+                            if candidate in rig_obj.data.bones:
+                                equip_bone = candidate
+                                break
+                    elif entry_cat == "WEAPON" or slot == "weapon_main" or any(k in entry_name_lower for k in ("sword", "dagger", "spear", "mace", "staff", "bow", "gun", "harp", "wp_", "sw_", "da_", "ts_", "pa_", "st_", "ma_")):
+                        for candidate in ("Bip01 R Hand", "Weapon_R", "Dummy_Weapon_R"):
+                            if candidate in rig_obj.data.bones:
+                                equip_bone = candidate
+                                break
+                    elif entry_cat == "WINGS" or "wing" in entry_name_lower or slot == "wings":
+                        for candidate in ("Bip01 Spine2", "Bip01 Spine1"):
+                            if candidate in rig_obj.data.bones:
                                 equip_bone = candidate
                                 break
 
-                    # 2. Shields / Offhand
-                    elif "shield" in entry_name_lower or "sh_" in entry_name_lower:
-                        for candidate in ("Bip01 L Hand", "Shield", "Dummy_Shield", "bip01 l hand"):
-                            if hasattr(rig_obj, "data") and candidate in rig_obj.data.bones:
-                                equip_bone = candidate
-                                break
+                mesh_obj.matrix_world = node_mat
 
-                    # 3. Weapons
-                    elif entry_cat == "WEAPON" or any(k in entry_name_lower for k in ("sword", "dagger", "spear", "mace", "staff", "bow", "gun", "harp", "wp_", "sw_", "da_", "ts_", "pa_", "st_", "ma_")):
-                        for candidate in ("Bip01 R Hand", "Weapon_R", "Dummy_Weapon_R", "bip01 r hand"):
-                            if hasattr(rig_obj, "data") and candidate in rig_obj.data.bones:
-                                equip_bone = candidate
-                                break
-
-                    # 4. Wings
-                    elif entry_cat == "WINGS" or "wing" in entry_name_lower:
-                        for candidate in ("Bip01 Spine2", "Bip01 Spine1", "bip01 spine2"):
-                            if hasattr(rig_obj, "data") and candidate in rig_obj.data.bones:
-                                equip_bone = candidate
-                                break
-
-                    if equip_bone:
-                        mesh_obj.parent = rig_obj
-                        mesh_obj.parent_type = "BONE"
-                        mesh_obj.parent_bone = equip_bone
-                    else:
-                        mesh_obj.parent = rig_obj
-                        mesh_obj.matrix_parent_inverse = rig_obj.matrix_world.inverted()
+                if equip_bone and equip_bone in rig_obj.pose.bones:
+                    mesh_obj.parent = rig_obj
+                    mesh_obj.parent_type = "BONE"
+                    mesh_obj.parent_bone = equip_bone
+                    bone_mat_world = rig_obj.matrix_world @ rig_obj.pose.bones[equip_bone].matrix
+                    mesh_obj.matrix_parent_inverse = bone_mat_world.inverted()
+                else:
+                    mesh_obj.parent = rig_obj
+                    mesh_obj.matrix_parent_inverse = rig_obj.matrix_world.inverted()
+            else:
+                mesh_obj.matrix_world = node_mat
 
         # 3. Load Idle Animation if requested
         if rig_obj and load_animation and entry.model_path:

@@ -56,6 +56,33 @@ def on_filter_updated(self: Any, context: bpy.types.Context) -> None:
         pass
 
 
+def get_character_classes_callback(self: Any, context: Optional[bpy.types.Context]) -> List[Tuple[str, str, str]]:
+    """Dynamically queries the detected client for valid player character classes."""
+    FALLBACK = [
+        ("GLADIATOR", "Gladiador", "Gladiador (Placas, Espadão / Lança)"),
+        ("TEMPLAR", "Templário", "Templário (Placas, Espada + Escudo)"),
+        ("RANGER", "Arqueiro", "Arqueiro (Couro, Arco)"),
+        ("ASSASSIN", "Assassino", "Assassino (Couro, Duplas Adagas)"),
+        ("SORCERER", "Feiticeiro", "Feiticeiro (Tecido, Orbe / Livro)"),
+        ("SPIRITMASTER", "Espiritualista", "Espiritualista (Tecido, Orbe / Livro)"),
+        ("CLERIC", "Clérigo", "Clérigo (Malha, Maça + Escudo)"),
+        ("CHANTER", "Cantor", "Cantor (Malha, Cajado)"),
+    ]
+
+    try:
+        ctx = context or bpy.context
+        if ctx and hasattr(ctx, "scene") and hasattr(ctx.scene, "aion_model_lib"):
+            cpath = ctx.scene.aion_model_lib.client_path
+            if cpath and Path(cpath).is_dir():
+                from ..core.client_provider import AionClientProvider
+                cp = AionClientProvider(cpath)
+                return cp.get_available_classes()
+    except Exception:
+        pass
+
+    return FALLBACK
+
+
 class AionModelLibrarySettings(bpy.types.PropertyGroup):
     """Main settings and state for the Aion Model Library addon."""
 
@@ -180,23 +207,11 @@ class AionModelLibrarySettings(bpy.types.PropertyGroup):
         ],
         default='LF',
     )
+
     character_class: EnumProperty(
         name="Classe",
         description="Selecione a classe Aion para visualizar conjunto completo de armadura e armas",
-        items=[
-            ('GLADIATOR', 'Gladiador', 'Gladiador (Placas, Espadão / Lança)'),
-            ('TEMPLAR', 'Templário', 'Templário (Placas, Espada + Escudo)'),
-            ('RANGER', 'Arqueiro', 'Arqueiro (Couro, Arco)'),
-            ('ASSASSIN', 'Assassino', 'Assassino (Couro, Duplas Adagas)'),
-            ('SORCERER', 'Feiticeiro', 'Feiticeiro (Tecido, Orbe / Livro)'),
-            ('SPIRITMASTER', 'Espiritualista', 'Espiritualista (Tecido, Orbe / Livro)'),
-            ('CLERIC', 'Clérigo', 'Clérigo (Malha, Maça + Escudo)'),
-            ('CHANTER', 'Cantor', 'Cantor (Malha, Cajado)'),
-            ('GUNSLINGER', 'Atirador', 'Atirador (Couro, Pistolas Mágicas)'),
-            ('SONGWEAVER', 'Bardo', 'Bardo (Tecido, Harpa)'),
-            ('AETHERTECH', 'Cavaleiro Mecânico', 'Cavaleiro Mecânico (Malha, Chave Espada / Robô)'),
-        ],
-        default='GLADIATOR',
+        items=get_character_classes_callback,
     )
     auto_complete_humanoid: BoolProperty(
         name="Auto-Completar Corpo Humanoide",

@@ -24,16 +24,4 @@ class NPCProvider:
         return self._templates_cache.get(str(npc_id))
 
     def _load_templates(self) -> None:
-        raw_sources = self.client_prov.read_npc_templates_data()
-        for src_name, data in raw_sources:
-            text = data.decode("utf-16le", errors="ignore")
-            if "<npc_client" not in text:
-                text = data.decode("latin-1", errors="ignore")
-            import re
-            for m in re.finditer(r'<npc_client[^>]*id="(\d+)"[^>]*name="([^"]+)"[^>]*mesh="([^"]+)"', text):
-                nid, name, mesh = m.groups()
-                self._templates_cache[nid] = {
-                    "id": nid,
-                    "name": name,
-                    "mesh": mesh,
-                }
+        self._templates_cache = self.client_prov.get_npc_templates()

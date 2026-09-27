@@ -76,15 +76,27 @@ CLASS_PRESETS = {
         "weapon_bone": "Bip01 R Hand",
         "sub_bone": "Bip01 L Hand",
     },
-    "SONGWEAVER": {
-        "armor_type": "rb",
-        "weapon_main": "objects/npc/event_object/luminarie/harp_2.cgf",
+    "THUNDERER": {
+        "armor_type": "lt",
+        "weapon_main": "objects/items/ts_idarena01t.cgf",
         "weapon_sub": None,
-        "weapon_bone": "Bip01 L Hand",
+        "weapon_bone": "Bip01 R Hand",
     },
-    "AETHERTECH": {
-        "armor_type": "ch",
-        "weapon_main": "objects/items/cb_housing02a_l.cgf",
+    "RUNEBLADE": {
+        "armor_type": "rb",
+        "weapon_main": "objects/items/sw_yunnpc01.cgf",
+        "weapon_sub": None,
+        "weapon_bone": "Bip01 R Hand",
+    },
+    "BATTLEMASTER": {
+        "armor_type": "lt",
+        "weapon_main": None,
+        "weapon_sub": None,
+        "weapon_bone": "Bip01 R Hand",
+    },
+    "LUMINES": {
+        "armor_type": "rb",
+        "weapon_main": "objects/items/or_idelemental01ac.cgf",
         "weapon_sub": None,
         "weapon_bone": "Bip01 R Hand",
     },
@@ -152,16 +164,18 @@ class MannequinProvider:
 
         if cn == "GLADIATOR":
             wtype = "2hand"
-        elif cn in ("TEMPLAR", "CLERIC", "AETHERTECH"):
+        elif cn in ("TEMPLAR", "CLERIC", "RUNEBLADE"):
             wtype = "1hand"
         elif cn == "RANGER":
             wtype = "bow"
         elif cn in ("ASSASSIN", "GUNSLINGER"):
             wtype = "2weapon"
-        elif cn in ("SORCERER", "SPIRITMASTER", "SONGWEAVER"):
+        elif cn in ("SORCERER", "SPIRITMASTER", "LUMINES"):
             wtype = "orb"
         elif cn == "CHANTER":
             wtype = "staff"
+        elif cn in ("THUNDERER", "BATTLEMASTER"):
+            wtype = "2hand"
         else:
             wtype = "2hand"
 
@@ -177,10 +191,12 @@ class MannequinProvider:
             "GUNSLINGER": f"{asmo_pfx}_nidle_scout_001_loop.caf",
             "SORCERER": f"{asmo_pfx}_nidle_mage_001_loop.caf",
             "SPIRITMASTER": f"{asmo_pfx}_nidle_mage_001_loop.caf",
-            "SONGWEAVER": f"{asmo_pfx}_nidle_mage_001_loop.caf",
             "CLERIC": f"{asmo_pfx}_nidle_cleric_001_loop.caf",
             "CHANTER": f"{asmo_pfx}_nidle_cleric_001_loop.caf",
-            "AETHERTECH": f"{asmo_pfx}_nidle_cleric_001_loop.caf",
+            "THUNDERER": f"{asmo_pfx}_nidle_warrior_001_loop.caf",
+            "RUNEBLADE": f"{asmo_pfx}_nidle_mage_001_loop.caf",
+            "BATTLEMASTER": f"{asmo_pfx}_nidle_warrior_001_loop.caf",
+            "LUMINES": f"{asmo_pfx}_nidle_mage_001_loop.caf",
         }
 
         normal_idle = asmo_idle_map.get(cn, f"{pfx}_nidle_001_loop.caf") if is_asmo else f"{pfx}_nidle_001_loop.caf"
@@ -361,14 +377,18 @@ class MannequinProvider:
         mpath = loaded_entry.model_path.lower()
 
         needed_slots = []
-        if "head" not in mpath and "helm" not in mpath:
+        # Torso / Body: essential for chest, arms, shoulders!
+        if not any(k in mpath for k in ("body", "torso", "chest", "shirt", "tunic", "dress", "robe")):
+            needed_slots.append(("Body", base_parts.get("body")))
+        if not any(k in mpath for k in ("head", "helm", "cap", "hat", "mask", "glasses")):
             needed_slots.append(("Head", base_parts.get("head")))
+        if not any(k in mpath for k in ("hair", "head", "helm", "cap", "hat", "mask")):
             needed_slots.append(("Hair", base_parts.get("hair")))
-        if "foot" not in mpath and "feet" not in mpath:
+        if not any(k in mpath for k in ("foot", "feet", "boot", "shoe")):
             needed_slots.append(("Feet", base_parts.get("feet")))
-        if "hand" not in mpath and "glove" not in mpath:
+        if not any(k in mpath for k in ("hand", "glove", "gauntlet", "bracer")):
             needed_slots.append(("Hands", base_parts.get("hands")))
-        if "leg" not in mpath and "pants" not in mpath and "body" in mpath and pfx in ("LF", "LM", "DF", "DM"):
+        if not any(k in mpath for k in ("leg", "pants", "trouser", "skirt")) and pfx in ("LF", "LM", "DF", "DM"):
             needed_slots.append(("Legs", base_parts.get("legs")))
 
         for slot_name, part_path in needed_slots:
