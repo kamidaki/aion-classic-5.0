@@ -61,3 +61,11 @@ Os números de compatibilidade não equivalem a funcionamento integral: um item 
 - Cinco registros oficiais com `max_stack_count=0` (`gold`, `testball`, `arcanium`, `QUNA` e `FREE_QUNA`) ficaram pendentes. O zero não foi aplicado onde alteraria a operação do inventário sem evidência do significado especial.
 - Resultado do verificador: nível, qualidade, raça, tipo de item e tipo de ataque com 100% de igualdade; XML XSD válido. Não restam divergências comprovadas nos campos diretos atualmente auditados.
 - Indicadores após esta etapa: 66.805 compatíveis nos campos diretos, 0 divergentes comprovados e 12.859 pendentes de relações/valores que exigem validação adicional.
+
+## Etapa 5 — atributos diretos de armas e escudos
+
+- Foram sincronizados os onze atributos diretos de `weapon_stats` em 3.974 templates: dano mínimo/máximo, velocidade, crítico, precisão física, aparo, precisão mágica, poder mágico, alcance, número de golpes e bloqueio máximo.
+- Atributos ausentes no XML agora são comparados pelo auditor com o valor efetivo `0` usado pelo Java, eliminando falsos positivos sem materializar zeros desnecessários nos templates.
+- Foram corrigidas 314 diferenças de dano mínimo, 314 de dano máximo, 284 de crítico, 2.550 de precisão física, 613 de aparo, 2.985 de precisão mágica, 412 de poder mágico e 68 de bloqueio máximo. Velocidade, alcance e número de golpes já estavam corretos.
+- O auditor não registra mais divergências nem pendências em `weapon_stats`; o XML permanece válido contra o XSD e fonte/produto final continuam idênticos.
+- Indicadores após esta etapa: 71.465 compatíveis nos campos diretos, 0 divergentes comprovados e 8.199 pendentes de relações/valores que exigem validação adicional.

@@ -76,7 +76,7 @@ CLIENT_FIELDS = set(DIRECT_FIELDS) | set(ACTION_FIELDS) | set(CLASS_FIELDS) | {
     "id", "name", "desc", "weapon_type", "armor_type", "equipment_slots", "attack_type", "activate_target",
     "max_enchant_level", "option_slot_bonus", "m_slots", "mgrouptag", "tag", "icon_name", "quest",
     "min_damage", "max_damage", "attack_delay", "critical", "hit_accuracy", "parry", "attack_range", "hit_count",
-    "magical_hit_accuracy", "magical_skill_boost", "cannot_changeskin", "can_dye", "item_drop_permitted",
+    "magical_hit_accuracy", "magical_skill_boost", "reduce_max", "cannot_changeskin", "can_dye", "item_drop_permitted",
     "cannot_extraction", "cash_item",
     "stat_enchant_type", "stat_enchant_value", "abyss_point", "abyss_item", "charge_level",
 } | {name for _, name in BOOL_MASK}
@@ -237,7 +237,10 @@ def compare_item(client: dict[str, str] | None, server: dict | None, strings: di
     weapon_map = (("min_damage", "min_damage", 1), ("max_damage", "max_damage", 1),
                   ("attack_delay", "attack_speed", 1), ("critical", "critical", 1),
                   ("hit_accuracy", "physical_accuracy", 1), ("parry", "parry", 1),
-                  ("attack_range", "attack_range", 1000), ("hit_count", "hit_count", 1))
+                  ("magical_hit_accuracy", "magical_accuracy", 1),
+                  ("magical_skill_boost", "boost_magical_skill", 1),
+                  ("attack_range", "attack_range", 1000), ("hit_count", "hit_count", 1),
+                  ("reduce_max", "reduce_max", 1))
     for source, target_name, multiplier in weapon_map:
         raw = client.get(source)
         if raw in (None, ""):
@@ -246,9 +249,9 @@ def compare_item(client: dict[str, str] | None, server: dict | None, strings: di
             expected = str(int(round(float(raw) * multiplier)))
         except ValueError:
             continue
-        actual = server["weapon"].get(target_name)
+        actual = server["weapon"].get(target_name, "0")
         if actual != expected:
-            pending.append(f"weapon.{target_name}:{expected}!={actual or '<ausente>'} (mapeamento requer validacao)")
+            differences.append(f"weapon.{target_name}:{expected}!={actual}")
     for field, action in ACTION_FIELDS.items():
         if meaningful(client.get(field)) and action not in server["actions"]:
             pending.append(f"acao {action} indicada por {field}")

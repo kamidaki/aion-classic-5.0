@@ -228,6 +228,23 @@ class ClassicItemSystemsTest {
 		assertEquals(5, DataManager.ITEM_DATA.getItemTemplate(188100001).getPrice());
 	}
 
+	@Test void weaponStatsMatchRepresentativeOfficialRecords() {
+		var starterSword = DataManager.ITEM_DATA.getItemTemplate(100000001).getWeaponStats();
+		assertEquals(16, starterSword.getMinDamage());
+		assertEquals(20, starterSword.getMaxDamage());
+		assertEquals(0, starterSword.getPhysicalAccuracy());
+		assertEquals(173, starterSword.getParry());
+		assertEquals(50, starterSword.getCritical());
+		assertEquals(1400, starterSword.getAttackSpeed());
+		assertEquals(1500, starterSword.getAttackRange());
+		assertEquals(2, starterSword.getHitCount());
+		assertEquals(10, DataManager.ITEM_DATA.getItemTemplate(100000086).getWeaponStats().getMagicalAccuracy());
+		var testSword = DataManager.ITEM_DATA.getItemTemplate(100001010).getWeaponStats();
+		assertEquals(100, testSword.getBoostMagicalSkill());
+		assertEquals(100, testSword.getMagicalAccuracy());
+		assertEquals(70, DataManager.ITEM_DATA.getItemTemplate(115000011).getWeaponStats().getReduceMax());
+	}
+
 	@Test void environmentMatchesOfficialSixtyBytePayload() throws Exception {
 		int previous = GSConfig.CHARACTER_REENTRY_TIME;
 		try {

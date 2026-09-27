@@ -513,7 +513,8 @@ def verify(same, srv, cli, ctx):
         lw = re.search(r"<weapon_stats\b([^>]*)/?>", s["inner"])
         if lw and t["ws"]:
             c["ws_n"] += 1
-            c["ws_ok"] += all(dict(ATTR_RE.findall(lw.group(1))).get(k) == v for k, v in t["ws"] if k in ("min_damage", "max_damage", "attack_speed", "hit_count", "attack_range"))
+            current_ws = dict(ATTR_RE.findall(lw.group(1)))
+            c["ws_ok"] += all(current_ws.get(k, "0") == v for k, v in t["ws"] if k in ("min_damage", "max_damage", "attack_speed", "hit_count", "attack_range"))
         if "restrict" in la:
             c["r_n"] += 1
             c["r_ok"] += "restrict" in ga and ga["restrict"].split()[:12] == la["restrict"].split()[:12]
