@@ -36,8 +36,9 @@ public class AssemblyItemAction extends AbstractItemAction {
 		if (assemblyItem == null) {
 			return false;
 		}
-		for (Integer itemId : assemblyItem.getParts()) {
-			if (player.getInventory().getFirstItemByItemId(itemId) == null) {
+		Map<Integer, Long> requiredCounts = getRequiredCounts(assemblyItem);
+		for (Map.Entry<Integer, Long> requiredCount : requiredCounts.entrySet()) {
+			if (player.getInventory().getItemCountByItemId(requiredCount.getKey()) < requiredCount.getValue()) {
 				return false;
 			}
 		}
@@ -81,7 +82,7 @@ public class AssemblyItemAction extends AbstractItemAction {
 		synchronized (player.getInventory()) {
 			if (player.getInventory().getItemByObjId(parentItem.getObjectId()) != parentItem)
 				return;
-			Map<Integer, Long> requiredCounts = assemblyItem.getParts().stream().collect(Collectors.groupingBy(id -> id, Collectors.counting()));
+			Map<Integer, Long> requiredCounts = getRequiredCounts(assemblyItem);
 			for (Map.Entry<Integer, Long> requiredCount : requiredCounts.entrySet()) {
 				if (player.getInventory().getItemCountByItemId(requiredCount.getKey()) < requiredCount.getValue()) {
 					PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem
@@ -107,13 +108,23 @@ public class AssemblyItemAction extends AbstractItemAction {
 					.getItemTemplate().getTemplateId(), 0, 2, 0), true);
 				return;
 			}
+			if (ItemService.addItem(player, assemblyItem.getId(), 1) != 0) {
+				for (Integer itemId : decreasedParts)
+					ItemService.addItem(player, itemId, 1);
+				PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem
+					.getItemTemplate().getTemplateId(), 0, 2, 0), true);
+				return;
+			}
 			player.startCooldown(parentItem);
 			PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem
 				.getItemTemplate().getTemplateId(), 0, 1, 0), true);
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_USE_ITEM(parentItem.getL10n()));
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ASSEMBLY_ITEM_SUCCEEDED());
-			ItemService.addItem(player, assemblyItem.getId(), 1);
 		}
+	}
+
+	private static Map<Integer, Long> getRequiredCounts(AssemblyItem assemblyItem) {
+		return assemblyItem.getParts().stream().collect(Collectors.groupingBy(id -> id, Collectors.counting()));
 	}
 
 	public AssemblyItem getAssemblyItem() {

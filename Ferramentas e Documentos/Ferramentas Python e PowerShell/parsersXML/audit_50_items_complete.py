@@ -256,7 +256,7 @@ def expected_client_mask(item: dict[str, str]) -> str:
 
 
 def compare_item(client: dict[str, str] | None, server: dict | None, strings: dict[str, tuple[str, str]],
-                 skill_ids: dict[str, str] | None = None) -> dict:
+                 skill_ids: dict[str, str] | None = None, item_name_ids: dict[str, list[str]] | None = None) -> dict:
     if client is None:
         return {"status": "LEGADO_SO_EMULADOR", "differences": ["id ausente no cliente oficial"], "pending": []}
     if server is None:
@@ -336,6 +336,16 @@ def compare_item(client: dict[str, str] | None, server: dict | None, strings: di
                 expected_level = client.get("activation_level") or "1"
                 if actual.get("level", "1") != expected_level:
                     differences.append(f"skilluse.level:{expected_level}!={actual.get('level', '1')}")
+        elif field == "assembly_item" and meaningful(raw_action) and item_name_ids is not None:
+            targets = item_name_ids.get(raw_action.lower(), [])
+            if not targets:
+                pending.append(f"assembly_item sem resultado no catálogo:{raw_action}")
+            elif len(targets) != 1:
+                pending.append(f"assembly_item ambiguo:{raw_action}={','.join(targets)}")
+            else:
+                actual = server["action_attrs"].get("assemble", {}).get("item")
+                if actual != targets[0]:
+                    differences.append(f"assemble.item:{targets[0]}!={actual or '<ausente>'}")
     unmapped = collections.Counter()
     expected_modifiers = collections.Counter(templates.gen_mods(client, unmapped))
     for name, count in sorted(unmapped.items()):
@@ -434,13 +444,17 @@ def main() -> None:
     client = read_client(client_path)
     server = read_server(SERVER_ITEMS)
     skill_ids = load_client_skill_ids(client_root)
+    item_name_ids = collections.defaultdict(list)
+    for item_id, item in client.items():
+        if item.get("name"):
+            item_name_ids[item["name"].lower()].append(item_id)
     wanted_strings = {item.get("desc", "").upper() for item in client.values() if item.get("desc")}
     strings = load_strings(client_root, wanted_strings)
     ids = sorted(set(client) | set(server), key=int)
     status_count, category_count, rows = collections.Counter(), collections.Counter(), []
     for item_id in ids:
         ci, si = client.get(item_id), server.get(item_id)
-        result = compare_item(ci, si, strings, skill_ids)
+        result = compare_item(ci, si, strings, skill_ids, item_name_ids)
         cat = category(ci) if ci else "legado"
         status_count[result["status"]] += 1
         category_count[cat] += 1

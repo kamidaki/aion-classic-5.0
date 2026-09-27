@@ -13,6 +13,7 @@ import com.aionemu.gameserver.dataholders.ClassicItemSystemsData;
 import com.aionemu.gameserver.dataholders.CubeExpandData;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.dataholders.ItemData;
+import com.aionemu.gameserver.dataholders.AssemblyItemsData;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.items.ItemSlot;
@@ -44,6 +45,8 @@ class ClassicItemSystemsTest {
 			.createUnmarshaller().unmarshal(new File("data/static_data/items/classic_item_systems.xml"));
 		DataManager.ITEM_DATA = (ItemData) JAXBContext.newInstance(ItemData.class).createUnmarshaller()
 			.unmarshal(new File("data/static_data/items/item_templates.xml"));
+		DataManager.ASSEMBLY_ITEM_DATA = (AssemblyItemsData) JAXBContext.newInstance(AssemblyItemsData.class).createUnmarshaller()
+			.unmarshal(new File("data/static_data/items/assembly_items.xml"));
 		DataManager.CUBEEXPANDER_DATA = (CubeExpandData) JAXBContext.newInstance(CubeExpandData.class)
 			.createUnmarshaller().unmarshal(new File("data/static_data/storage_expander/cube_expander.xml"));
 	}
@@ -231,6 +234,19 @@ class ClassicItemSystemsTest {
 
 		var numericClientCode = DataManager.ITEM_DATA.getItemTemplate(110301469);
 		assertTrue(numericClientCode.getActions() == null || numericClientCode.getActions().getSkillUseAction() == null);
+	}
+
+	@Test void assemblyPartsResolveToOfficialResultGroups() {
+		assertEquals(313, DataManager.ASSEMBLY_ITEM_DATA.size());
+		assertEquals(java.util.List.of(188100001, 188100002, 188100003, 188100004, 188100005),
+			DataManager.ASSEMBLY_ITEM_DATA.getAssemblyItem(186000018).getParts());
+		assertEquals(java.util.List.of(188100351), DataManager.ASSEMBLY_ITEM_DATA.getAssemblyItem(100001518).getParts());
+
+		var action = DataManager.ITEM_DATA.getItemTemplate(188100351).getActions().getItemActions().stream()
+			.filter(com.aionemu.gameserver.model.templates.item.actions.AssemblyItemAction.class::isInstance)
+			.map(com.aionemu.gameserver.model.templates.item.actions.AssemblyItemAction.class::cast)
+			.findFirst().orElseThrow();
+		assertEquals(100001518, action.getAssemblyItem().getId());
 	}
 
 	@Test void itemCoreFieldsMatchRepresentativeOfficialRecords() {

@@ -14,7 +14,7 @@ dados;Código Fonte - Emulador/game-server/data/static_data/global_drops/rules/r
 dados;Código Fonte - Emulador/game-server/data/static_data/global_drops/rules/rules_recipes.xml;50500
 dados;Código Fonte - Emulador/game-server/data/static_data/item_sets/item_sets.xml;606913
 dados;Código Fonte - Emulador/game-server/data/static_data/item_sets/item_sets.xsd;1417
-dados;Código Fonte - Emulador/game-server/data/static_data/items/assembly_items.xml;5650
+dados;Código Fonte - Emulador/game-server/data/static_data/items/assembly_items.xml;15126
 dados;Código Fonte - Emulador/game-server/data/static_data/items/assembly_items.xsd;638
 dados;Código Fonte - Emulador/game-server/data/static_data/items/classic_item_systems.xml;239974
 dados;Código Fonte - Emulador/game-server/data/static_data/items/classic_item_systems.xsd;2112
@@ -30,7 +30,7 @@ dados;Código Fonte - Emulador/game-server/data/static_data/items/item_random_bo
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_random_bonuses.xsd;897
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_restriction_cleanups.xml;830
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_restriction_cleanups.xsd;829
-dados;Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xml;43022372
+dados;Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xml;43056224
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xsd;33680
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_upgrade.xml;638694
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_upgrade.xsd;3004
@@ -212,7 +212,7 @@ java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templ
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/AdoptPetAction.java;948
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/AnimationAddAction.java;4009
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/ApExtractAction.java;6993
-java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/AssemblyItemAction.java;4966
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/AssemblyItemAction.java;5516
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/ChargeAction.java;5954
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/CompositionAction.java;3484
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/CosmeticItemAction.java;3470
