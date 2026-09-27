@@ -6,6 +6,7 @@ import java.nio.ByteOrder;
 import java.util.Arrays;
 import java.util.HexFormat;
 import javax.xml.bind.JAXBContext;
+import javax.xml.parsers.DocumentBuilderFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -360,6 +361,23 @@ class ClassicItemSystemsTest {
 		assertEquals(300, magicResistStone.getModifiers().stream()
 			.filter(m -> m.getName() == com.aionemu.gameserver.model.stats.container.StatEnum.MAGICAL_RESIST && m.isBonus())
 			.mapToInt(m -> m.getValue()).sum());
+	}
+
+	@Test void questsDoNotGrantTitlesMissingFromTheCurrentClientCatalog() throws Exception {
+		var document = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+			.parse(new File("data/static_data/quest_data/quest_data.xml"));
+		var rewards = document.getElementsByTagName("rewards");
+		var extendedRewards = document.getElementsByTagName("extended_rewards");
+		for (var nodes : new org.w3c.dom.NodeList[] { rewards, extendedRewards }) {
+			for (int i = 0; i < nodes.getLength(); i++) {
+				var title = nodes.item(i).getAttributes().getNamedItem("title");
+				if (title != null) {
+					int titleId = Integer.parseInt(title.getNodeValue());
+					assertTrue(titleId >= 408 && titleId <= 481,
+						"quest reward references legacy title " + title.getNodeValue());
+				}
+			}
+		}
 	}
 
 	@Test void compositeOfficialModifiersExpandToEveryAffectedStat() {

@@ -5418,7 +5418,7 @@
 		<rewards exp="1476088" ap="50">
 			<reward_item item_id="182005204" count="1" />
 		</rewards>
-		<extended_rewards title="45" />
+		<extended_rewards />
 		<quest_work_items>
 			<quest_work_item item_id="182202156" count="1" />
 			<quest_work_item item_id="182202157" count="1" />
@@ -10005,7 +10005,7 @@
 		<rewards exp="140439">
 			<reward_item item_id="141000002" count="100" />
 		</rewards>
-		<extended_rewards gold="16100" title="127">
+		<extended_rewards gold="16100">
 			<reward_item item_id="188053553" count="1" />
 		</extended_rewards>
 	</quest>
@@ -13153,7 +13153,7 @@
 		<rewards exp="1476088" ap="50">
 			<reward_item item_id="182005204" count="1" />
 		</rewards>
-		<extended_rewards title="145" />
+		<extended_rewards />
 		<quest_work_items>
 			<quest_work_item item_id="182205668" count="1" />
 			<quest_work_item item_id="182205669" count="1" />
@@ -16414,7 +16414,7 @@
 		<quest_kill step="0" var="0" count="1" npc_ids="214698" seq="0" />
 	</quest>
 	<quest id="3121" name="Archaeologist Pyrrha" nameId="1141744" quest_zone="Theobomos" minlevel_permitted="46" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="QUEST">
-		<rewards exp="1965399" title="47" />
+		<rewards exp="1965399" />
 		<quest_kill step="0" var="0" count="1" npc_ids="214615" seq="0" />
 		<quest_kill step="0" var="1" count="1" npc_ids="214616" seq="1" />
 		<quest_kill step="0" var="2" count="1" npc_ids="214617" seq="2" />
@@ -16978,7 +16978,7 @@
 		<collect_items>
 			<collect_item item_id="182215333" count="1" />
 		</collect_items>
-		<rewards exp="3509468" title="11" />
+		<rewards exp="3509468" />
 		<quest_drop npc_id="211031" item_id="182215333" chance="80" drop_each_member="1" collecting_step="1" />
 		<class_permitted>RIDER</class_permitted>
 	</quest>
@@ -17361,7 +17361,7 @@
 		<collect_items>
 			<collect_item item_id="182215334" count="10" />
 		</collect_items>
-		<rewards exp="2222468" title="23" />
+		<rewards exp="2222468" />
 		<quest_drop npc_id="211101" item_id="182215334" drop_each_member="1" collecting_step="1" />
 		<quest_drop npc_id="211131" item_id="182215334" drop_each_member="1" collecting_step="1" />
 		<quest_drop npc_id="211111" item_id="182215334" drop_each_member="1" collecting_step="1" />
@@ -17379,7 +17379,7 @@
 		<collect_items>
 			<collect_item item_id="182215335" count="1" />
 		</collect_items>
-		<rewards exp="4440264" title="24" />
+		<rewards exp="4440264" />
 		<quest_drop npc_id="212211" item_id="182215335" drop_each_member="1" />
 		<start_conditions>
 			<unfinished>1500</unfinished>
@@ -17741,7 +17741,7 @@
 	</quest>
 	<quest id="3912" name="Intenção de Lady Yustiel" nameId="1103011" quest_zone="Sanctum" minlevel_permitted="17" max_repeat_count="30" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="IMPORTANT">
 		<rewards exp="750" />
-		<extended_rewards title="39" />
+		<extended_rewards />
 		<start_conditions>
 			<finished quest_id="3911" />
 		</start_conditions>
@@ -19630,7 +19630,7 @@
 		<quest_kill step="0" var="0" count="1" npc_ids="214662" seq="0" />
 	</quest>
 	<quest id="4120" name="Vengeful Spirit Consolation" nameId="1141730" quest_zone="Adma Stronghold" minlevel_permitted="46" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="IMPORTANT">
-		<rewards exp="6937236" title="97">
+		<rewards exp="6937236">
 			<selectable_reward_item item_id="112101614" count="1" />
 			<selectable_reward_item item_id="112301716" count="1" />
 			<selectable_reward_item item_id="112301718" count="1" />
@@ -20216,7 +20216,7 @@
 		<collect_items>
 			<collect_item item_id="182215325" count="3" />
 		</collect_items>
-		<rewards exp="405255" title="59">
+		<rewards exp="405255">
 			<selectable_reward_item item_id="111100766" count="1" />
 			<selectable_reward_item item_id="111300771" count="1" />
 			<selectable_reward_item item_id="111500754" count="1" />
@@ -20628,7 +20628,7 @@
 		<collect_items>
 			<collect_item item_id="182215329" count="1" />
 		</collect_items>
-		<rewards exp="12697289" title="73">
+		<rewards exp="12697289">
 			<reward_item item_id="121000760" count="1" />
 		</rewards>
 		<quest_drop npc_id="213741" item_id="182215329" drop_each_member="1" collecting_step="3" />
@@ -21158,7 +21158,7 @@
 	</quest>
 	<quest id="4933" name="Intenção do Senhor Marchutan" nameId="1104223" quest_zone="Pandaemonium" minlevel_permitted="17" max_repeat_count="30" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="IMPORTANT">
 		<rewards exp="750" />
-		<extended_rewards title="139" />
+		<extended_rewards />
 		<start_conditions>
 			<finished quest_id="4932" />
 		</start_conditions>
@@ -28274,7 +28274,7 @@
 		<collect_items>
 			<collect_item item_id="182213114" count="10" />
 		</collect_items>
-		<rewards exp="13589616" title="202">
+		<rewards exp="13589616">
 			<selectable_reward_item item_id="123001241" count="1" />
 			<selectable_reward_item item_id="123001242" count="1" />
 			<reward_item item_id="170490011" count="1" />
@@ -28342,7 +28342,7 @@
 		<class_permitted>WARRIOR SCOUT MAGE PRIEST ENGINEER ARTIST GLADIATOR TEMPLAR ASSASSIN RANGER SORCERER SPIRIT_MASTER CHANTER CLERIC GUNNER BARD</class_permitted>
 	</quest>
 	<quest id="10064" name="The Oldest of Foes" nameId="1136313" quest_zone="Tiamaranta" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" use_class_reward="1" race_permitted="ELYOS" category="MISSION">
-		<rewards exp="16585247" title="204" />
+		<rewards exp="16585247" />
 		<start_conditions>
 			<finished quest_id="10063" />
 		</start_conditions>
@@ -28429,10 +28429,10 @@
 		<class_permitted>WARRIOR SCOUT MAGE PRIEST ENGINEER ARTIST GLADIATOR TEMPLAR ASSASSIN RANGER SORCERER SPIRIT_MASTER CHANTER CLERIC GUNNER BARD</class_permitted>
 	</quest>
 	<quest id="10073" name="Shattered Alliance" nameId="1137086" quest_zone="Tiamat Stronghold" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
-		<rewards exp="8027013" title="249">
+		<rewards exp="8027013">
 			<reward_item item_id="186000147" count="3" />
 		</rewards>
-		<rewards exp="10124161" title="249">
+		<rewards exp="10124161">
 			<reward_item item_id="186000147" count="3" />
 		</rewards>
 		<start_conditions>
@@ -31164,7 +31164,7 @@
 		<collect_items>
 			<collect_item item_id="182215336" count="1" />
 		</collect_items>
-		<rewards exp="10236874" title="149" />
+		<rewards exp="10236874" />
 		<quest_drop npc_id="216182" item_id="182215336" drop_each_member="1" collecting_step="1" />
 		<quest_drop npc_id="216263" item_id="182215336" drop_each_member="1" collecting_step="1" />
 		<start_conditions>
@@ -31601,7 +31601,7 @@
 		</start_conditions>
 	</quest>
 	<quest id="11512" name="[Group] Lovers Lost" nameId="1136041" quest_zone="Sarpan" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="QUEST" restricted="true">
-		<rewards exp="6907092" title="201">
+		<rewards exp="6907092">
 			<selectable_reward_item item_id="114101272" count="1" />
 			<selectable_reward_item item_id="114301278" count="1" />
 			<selectable_reward_item item_id="114501236" count="1" />
@@ -31711,7 +31711,7 @@
 		</rewards>
 	</quest>
 	<quest id="11523" name="The Shining Spear" nameId="1136938" quest_zone="Siel's Spear" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="QUEST">
-		<rewards exp="1214899" title="205" />
+		<rewards exp="1214899" />
 		<start_conditions>
 			<finished quest_id="41454" />
 		</start_conditions>
@@ -32147,7 +32147,7 @@
 		</quest_work_items>
 	</quest>
 	<quest id="12052" name="Tulin's in Trouble" nameId="1136875" quest_zone="Tiamaranta" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="QUEST">
-		<rewards gold="79445" exp="5344692" title="203">
+		<rewards gold="79445" exp="5344692">
 			<selectable_reward_item item_id="162000081" count="9" />
 			<selectable_reward_item item_id="162000080" count="9" />
 		</rewards>
@@ -32277,7 +32277,7 @@
 		</start_conditions>
 	</quest>
 	<quest id="12068" name="A Hands-On Experience" nameId="1141748" quest_zone="Tiamaranta" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="IMPORTANT">
-		<rewards exp="47614136" title="204" />
+		<rewards exp="47614136" />
 		<class_permitted>RIDER</class_permitted>
 	</quest>
 	<quest id="12400" name="Build a Better Greatsword" nameId="1136651" quest_zone="Weapon Enchants" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="QUEST">
@@ -34842,7 +34842,7 @@
 		</start_conditions>
 	</quest>
 	<quest id="13530" name="[Hero] A Hero's Reward" nameId="1141537" quest_zone="Hero" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" use_class_reward="1" race_permitted="ELYOS" category="QUEST">
-		<rewards gold="150660" exp="2584915" title="263">
+		<rewards gold="150660" exp="2584915">
 			<reward_item item_id="152012593" count="1" />
 		</rewards>
 		<start_conditions>
@@ -36130,7 +36130,7 @@
 		<collect_items>
 			<collect_item item_id="182215316" count="10" />
 		</collect_items>
-		<rewards exp="228880" title="5">
+		<rewards exp="228880">
 			<selectable_reward_item item_id="125004133" />
 			<selectable_reward_item item_id="125004134" />
 			<selectable_reward_item item_id="125004135" />
@@ -36164,7 +36164,7 @@
 		<collect_items>
 			<collect_item item_id="182215317" count="1" />
 		</collect_items>
-		<rewards exp="228880" title="2">
+		<rewards exp="228880">
 			<selectable_reward_item item_id="100001736" />
 			<selectable_reward_item item_id="100101333" />
 			<selectable_reward_item item_id="100201502" />
@@ -36180,7 +36180,7 @@
 			<selectable_reward_item item_id="102101071" />
 			<reward_item item_id="162001057" count="5" />
 		</rewards>
-		<rewards exp="228880" title="2">
+		<rewards exp="228880">
 			<selectable_reward_item item_id="100001736" />
 			<selectable_reward_item item_id="100101333" />
 			<selectable_reward_item item_id="100201502" />
@@ -36276,7 +36276,7 @@
 		<collect_items>
 			<collect_item item_id="182215322" count="1" />
 		</collect_items>
-		<rewards exp="893476" title="10">
+		<rewards exp="893476">
 			<selectable_reward_item item_id="125004149" />
 			<selectable_reward_item item_id="125004150" />
 			<selectable_reward_item item_id="125004151" />
@@ -36284,7 +36284,7 @@
 			<reward_item item_id="162000005" count="5" />
 			<reward_item item_id="162000010" count="5" />
 		</rewards>
-		<rewards exp="893476" title="10">
+		<rewards exp="893476">
 			<selectable_reward_item item_id="125004149" />
 			<selectable_reward_item item_id="125004150" />
 			<selectable_reward_item item_id="125004151" />
@@ -36319,7 +36319,7 @@
 		</start_conditions>
 	</quest>
 	<quest id="14026" name="A Lone Defense" nameId="1129885" quest_zone="Eltnen" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
-		<rewards exp="3504765" title="12">
+		<rewards exp="3504765">
 			<selectable_reward_item item_id="110101843" />
 			<selectable_reward_item item_id="110301826" />
 			<selectable_reward_item item_id="110301828" />
@@ -36330,7 +36330,7 @@
 			<reward_item item_id="186000003" count="40" />
 			<reward_item item_id="162001057" count="5" />
 		</rewards>
-		<rewards exp="3504765" title="12">
+		<rewards exp="3504765">
 			<selectable_reward_item item_id="110101843" />
 			<selectable_reward_item item_id="110301826" />
 			<selectable_reward_item item_id="110301828" />
@@ -36347,7 +36347,7 @@
 		</start_conditions>
 	</quest>
 	<quest id="14030" name="Retrieved Memory" nameId="1129931" quest_zone="Bare Truth" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
-		<rewards exp="8755085" title="49">
+		<rewards exp="8755085">
 			<selectable_reward_item item_id="120000888" count="1" />
 			<selectable_reward_item item_id="120000889" count="1" />
 			<reward_item item_id="186000005" count="1" />
@@ -36394,7 +36394,7 @@
 		</rewards>
 	</quest>
 	<quest id="14043" name="Drawling Balaur" nameId="1129903" quest_zone="Abyss" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
-		<rewards exp="654335" ap="800" title="30">
+		<rewards exp="654335" ap="800">
 			<reward_item item_id="188051193" count="1" />
 			<reward_item item_id="186000031" count="2" />
 		</rewards>
@@ -36431,7 +36431,7 @@
 		</start_conditions>
 	</quest>
 	<quest id="14047" name="Chaining Memories" nameId="1129907" quest_zone="Abyss" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
-		<rewards exp="8306873" ap="3000" title="46">
+		<rewards exp="8306873" ap="3000">
 			<reward_item item_id="187000035" />
 			<reward_item item_id="186000031" count="4" />
 			<reward_item item_id="162001057" count="5" />
@@ -36521,7 +36521,7 @@
 		<quest_drop npc_id="233860" item_id="182215345" drop_each_member="1" collecting_step="3" />
 	</quest>
 	<quest id="14054" name="Krall-ing to Kralltumagna" nameId="1129912" quest_zone="Heiron" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
-		<rewards exp="13809218" title="25">
+		<rewards exp="13809218">
 			<selectable_reward_item item_id="110101847" />
 			<selectable_reward_item item_id="110301834" />
 			<selectable_reward_item item_id="110301836" />
@@ -36531,7 +36531,7 @@
 			<reward_item item_id="188053408" count="4" />
 			<reward_item item_id="162001057" count="5" />
 		</rewards>
-		<rewards exp="13809218" title="25">
+		<rewards exp="13809218">
 			<selectable_reward_item item_id="110101847" />
 			<selectable_reward_item item_id="110301834" />
 			<selectable_reward_item item_id="110301836" />
@@ -36598,7 +36598,7 @@
 		<collect_items>
 			<collect_item item_id="182215398" count="3" />
 		</collect_items>
-		<rewards exp="39395438" title="202">
+		<rewards exp="39395438">
 			<reward_item item_id="170490011" count="1" />
 			<reward_item item_id="188052786" count="1" />
 			<reward_item item_id="188052787" count="1" />
@@ -36669,7 +36669,7 @@
 		</quest_work_items>
 	</quest>
 	<quest id="14091" name="Identity Business" nameId="1129938" quest_zone="Tiamat Stronghold" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
-		<rewards exp="16139345" title="249">
+		<rewards exp="16139345">
 			<reward_item item_id="186000147" count="3" />
 			<reward_item item_id="110501361" count="1" />
 		</rewards>
@@ -39167,13 +39167,13 @@
 		<collect_items>
 			<collect_item item_id="182213259" count="10" />
 		</collect_items>
-		<rewards title="239" />
+		<rewards />
 	</quest>
 	<quest id="18220" name="Arena of Glory Challenge 2" nameId="1199531" quest_zone="Empyrean Crucible" minlevel_permitted="56" max_repeat_count="1" race_permitted="ELYOS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="182213259" count="10" />
 		</collect_items>
-		<rewards title="240" />
+		<rewards />
 		<start_conditions>
 			<finished quest_id="18219" />
 		</start_conditions>
@@ -39182,7 +39182,7 @@
 		<collect_items>
 			<collect_item item_id="182213259" count="10" />
 		</collect_items>
-		<rewards title="241" />
+		<rewards />
 		<start_conditions>
 			<finished quest_id="18220" />
 		</start_conditions>
@@ -39191,7 +39191,7 @@
 		<collect_items>
 			<collect_item item_id="182213259" count="10" />
 		</collect_items>
-		<rewards title="242" />
+		<rewards />
 		<start_conditions>
 			<finished quest_id="18221" />
 		</start_conditions>
@@ -39200,7 +39200,7 @@
 		<collect_items>
 			<collect_item item_id="182213259" count="10" />
 		</collect_items>
-		<rewards title="243">
+		<rewards>
 			<reward_item item_id="160010238" count="1" />
 		</rewards>
 		<start_conditions>
@@ -40290,7 +40290,7 @@
 		<class_permitted>WARRIOR SCOUT MAGE PRIEST ENGINEER ARTIST RIDER</class_permitted>
 	</quest>
 	<quest id="18700" name="[Grupo] invasão da prisão" nameId="1125700" quest_zone="Raksang" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="QUEST" restricted="true">
-		<rewards gold="47000" exp="6907092" title="208">
+		<rewards gold="47000" exp="6907092">
 			<selectable_reward_item item_id="121001059" count="1" />
 			<selectable_reward_item item_id="121001060" count="1" />
 		</rewards>
@@ -40938,7 +40938,7 @@
 		</start_conditions>
 	</quest>
 	<quest id="18802" name="[Housing] And A Home for Every Daeva" nameId="1136586" quest_zone="Oriel" minlevel_permitted="21" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="SEEN_MARKER">
-		<rewards exp="12951" title="206">
+		<rewards exp="12951">
 			<reward_item item_id="169500952" count="1" />
 			<reward_item item_id="182213159" count="1" />
 		</rewards>
@@ -41557,7 +41557,7 @@
 		<quest_drop npc_id="702769" item_id="182215756" drop_each_member="2" />
 	</quest>
 	<quest id="18954" name="A prova de vitória" nameId="1801083" quest_zone="Drakenspire Depths" minlevel_permitted="65" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="QUEST">
-		<rewards gold="903960" exp="7927072" title="293" />
+		<rewards gold="903960" exp="7927072" />
 		<quest_work_items>
 			<quest_work_item item_id="182215754" />
 		</quest_work_items>
@@ -41931,7 +41931,7 @@
 		</start_conditions>
 	</quest>
 	<quest id="19056" name="[Expert] Construction Expert" nameId="1130013" quest_zone="Sanctum" minlevel_permitted="29" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="SIGNIFICANT">
-		<rewards exp="58283" title="36">
+		<rewards exp="58283">
 			<selectable_reward_item item_id="170020006" count="1" />
 			<selectable_reward_item item_id="170120005" count="1" />
 			<selectable_reward_item item_id="170200012" count="1" />
@@ -42067,11 +42067,11 @@
 		</quest_work_items>
 	</quest>
 	<quest id="19074" name="The Technist Preceptor's Task" nameId="1140752" quest_zone="Sanctum" minlevel_permitted="31" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="IMPORTANT" restricted="true">
-		<rewards exp="633457" title="38" />
+		<rewards exp="633457" />
 		<class_permitted>ENGINEER GUNNER</class_permitted>
 	</quest>
 	<quest id="19075" name="The Muse Preceptor's Task" nameId="1140753" quest_zone="Sanctum" minlevel_permitted="31" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="IMPORTANT" restricted="true">
-		<rewards exp="633457" title="38" />
+		<rewards exp="633457" />
 		<class_permitted>ARTIST BARD</class_permitted>
 	</quest>
 	<quest id="19076" name="A New Preceptor" nameId="1140754" quest_zone="Sanctum" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="IMPORTANT">
@@ -42089,7 +42089,7 @@
 		</quest_work_items>
 	</quest>
 	<quest id="19078" name="Master Aethertech" nameId="1141640" quest_zone="Sanctum" minlevel_permitted="31" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="IMPORTANT" restricted="true">
-		<rewards exp="633457" title="38" />
+		<rewards exp="633457" />
 		<class_permitted>ENGINEER RIDER</class_permitted>
 	</quest>
 	<quest id="19500" name="Ganhando o estigma do templário" nameId="1124000" quest_zone="Cloister of Kaisinel" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
@@ -43013,7 +43013,7 @@
 		<collect_items>
 			<collect_item item_id="182213120" count="10" />
 		</collect_items>
-		<rewards exp="13589616" title="213">
+		<rewards exp="13589616">
 			<selectable_reward_item item_id="123001241" count="1" />
 			<selectable_reward_item item_id="123001242" count="1" />
 			<reward_item item_id="170490011" count="1" />
@@ -43081,7 +43081,7 @@
 		<class_permitted>WARRIOR SCOUT MAGE PRIEST ENGINEER ARTIST GLADIATOR TEMPLAR ASSASSIN RANGER SORCERER SPIRIT_MASTER CHANTER CLERIC GUNNER BARD</class_permitted>
 	</quest>
 	<quest id="20064" name="Nemesis" nameId="1136319" quest_zone="Tiamaranta" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" use_class_reward="1" race_permitted="ASMODIANS" category="MISSION">
-		<rewards exp="16585247" title="215" />
+		<rewards exp="16585247" />
 		<start_conditions>
 			<finished quest_id="20063" />
 		</start_conditions>
@@ -43168,10 +43168,10 @@
 		<class_permitted>WARRIOR SCOUT MAGE PRIEST ENGINEER ARTIST GLADIATOR TEMPLAR ASSASSIN RANGER SORCERER SPIRIT_MASTER CHANTER CLERIC GUNNER BARD</class_permitted>
 	</quest>
 	<quest id="20073" name="Alliances Undone" nameId="1137090" quest_zone="Tiamat Stronghold" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
-		<rewards exp="8027013" title="250">
+		<rewards exp="8027013">
 			<reward_item item_id="186000147" count="3" />
 		</rewards>
-		<rewards exp="10124161" title="250">
+		<rewards exp="10124161">
 			<reward_item item_id="186000147" count="3" />
 		</rewards>
 		<start_conditions>
@@ -46168,7 +46168,7 @@
 		</start_conditions>
 	</quest>
 	<quest id="21511" name="[Group] The Stink of Victory" nameId="1136063" quest_zone="Sarpan" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="QUEST" restricted="true">
-		<rewards exp="6907092" title="212">
+		<rewards exp="6907092">
 			<selectable_reward_item item_id="114101276" count="1" />
 			<selectable_reward_item item_id="114301282" count="1" />
 			<selectable_reward_item item_id="114501240" count="1" />
@@ -46283,7 +46283,7 @@
 		</rewards>
 	</quest>
 	<quest id="21522" name="The Shadow Spear" nameId="1136939" quest_zone="Siel's Spear" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="QUEST">
-		<rewards exp="1214899" title="216" />
+		<rewards exp="1214899" />
 		<start_conditions>
 			<finished quest_id="41454" />
 		</start_conditions>
@@ -46723,7 +46723,7 @@
 		</quest_work_items>
 	</quest>
 	<quest id="22052" name="Asmodian Unleashed" nameId="1136913" quest_zone="Tiamaranta" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="QUEST">
-		<rewards gold="79445" exp="5344692" title="214">
+		<rewards gold="79445" exp="5344692">
 			<selectable_reward_item item_id="162000081" count="9" />
 			<selectable_reward_item item_id="162000080" count="9" />
 		</rewards>
@@ -46851,7 +46851,7 @@
 		</start_conditions>
 	</quest>
 	<quest id="22068" name="To Tiamaranta's Eye" nameId="1141732" quest_zone="Tiamaranta" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="IMPORTANT">
-		<rewards exp="31028889" title="215" />
+		<rewards exp="31028889" />
 		<class_permitted>WARRIOR SCOUT MAGE PRIEST ENGINEER ARTIST RIDER</class_permitted>
 	</quest>
 	<quest id="22400" name="The Perfect Greatsword" nameId="1136736" quest_zone="Weapon Enchants" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="QUEST">
@@ -49391,7 +49391,7 @@
 		</start_conditions>
 	</quest>
 	<quest id="23530" name="[Hero] Just Rewards" nameId="1141542" quest_zone="Hero" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" use_class_reward="1" race_permitted="ASMODIANS" category="QUEST">
-		<rewards gold="150660" exp="2584915" title="264">
+		<rewards gold="150660" exp="2584915">
 			<reward_item item_id="152012593" count="1" />
 		</rewards>
 		<start_conditions>
@@ -50634,7 +50634,7 @@
 		</start_conditions>
 	</quest>
 	<quest id="24016" name="A Strange New Threat" nameId="1129892" quest_zone="Altgard" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
-		<rewards exp="228880" title="57">
+		<rewards exp="228880">
 			<selectable_reward_item item_id="100001737" />
 			<selectable_reward_item item_id="100101334" />
 			<selectable_reward_item item_id="100201503" />
@@ -50700,7 +50700,7 @@
 		</start_conditions>
 	</quest>
 	<quest id="24022" name="Sneak Behind the Ice Claw" nameId="1129895" quest_zone="Morheim" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
-		<rewards exp="893476" title="58">
+		<rewards exp="893476">
 			<selectable_reward_item item_id="125004153" />
 			<selectable_reward_item item_id="125004154" />
 			<selectable_reward_item item_id="125004155" />
@@ -50792,7 +50792,7 @@
 		</start_conditions>
 	</quest>
 	<quest id="24026" name="A Hand from Each Side" nameId="1129899" quest_zone="Morheim" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
-		<rewards exp="3504765" title="60">
+		<rewards exp="3504765">
 			<selectable_reward_item item_id="114101704" />
 			<selectable_reward_item item_id="114301833" />
 			<selectable_reward_item item_id="114301835" />
@@ -50802,7 +50802,7 @@
 			<reward_item item_id="186000008" count="20" />
 			<reward_item item_id="162001057" count="5" />
 		</rewards>
-		<rewards exp="3504765" title="60">
+		<rewards exp="3504765">
 			<selectable_reward_item item_id="114101704" />
 			<selectable_reward_item item_id="114301833" />
 			<selectable_reward_item item_id="114301835" />
@@ -50825,7 +50825,7 @@
 		<collect_items>
 			<collect_item item_id="182215391" count="1" />
 		</collect_items>
-		<rewards exp="8755085" title="99">
+		<rewards exp="8755085">
 			<selectable_reward_item item_id="120000892" count="1" />
 			<selectable_reward_item item_id="120000893" count="1" />
 			<reward_item item_id="188052797" count="1" />
@@ -50882,7 +50882,7 @@
 		</rewards>
 	</quest>
 	<quest id="24043" name="Lazy Language Lessons" nameId="1129919" quest_zone="Reshanta" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
-		<rewards exp="404426" ap="800" title="80">
+		<rewards exp="404426" ap="800">
 			<reward_item item_id="188051193" count="1" />
 			<reward_item item_id="186000031" count="2" />
 		</rewards>
@@ -50907,7 +50907,7 @@
 		</start_conditions>
 	</quest>
 	<quest id="24046" name="The Shadow Calls" nameId="1129922" quest_zone="Reshanta" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
-		<rewards exp="5404521" ap="2500" title="96">
+		<rewards exp="5404521" ap="2500">
 			<reward_item item_id="187000036" count="1" />
 			<reward_item item_id="186000031" count="4" />
 			<reward_item item_id="162001057" count="5" />
@@ -51009,7 +51009,7 @@
 		<class_permitted>ENGINEER ARTIST GLADIATOR TEMPLAR ASSASSIN RANGER SORCERER SPIRIT_MASTER CHANTER CLERIC GUNNER BARD RIDER</class_permitted>
 	</quest>
 	<quest id="24054" name="Crisis in Beluslan" nameId="1129927" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
-		<rewards exp="13809218" title="74">
+		<rewards exp="13809218">
 			<selectable_reward_item item_id="110101848" />
 			<selectable_reward_item item_id="110301835" />
 			<selectable_reward_item item_id="110301837" />
@@ -51063,7 +51063,7 @@
 		<collect_items>
 			<collect_item item_id="182215355" count="1" />
 		</collect_items>
-		<rewards exp="25124811" title="150">
+		<rewards exp="25124811">
 			<selectable_reward_item item_id="115001179" count="1" />
 			<selectable_reward_item item_id="115001180" count="1" />
 			<reward_item item_id="188052800" count="1" />
@@ -51105,7 +51105,7 @@
 		<collect_items>
 			<collect_item item_id="182215401" count="3" />
 		</collect_items>
-		<rewards exp="26532106" title="213">
+		<rewards exp="26532106">
 			<reward_item item_id="102100706" count="1" />
 			<reward_item item_id="188052802" count="1" />
 			<reward_item item_id="188052803" count="1" />
@@ -51184,7 +51184,7 @@
 		</quest_work_items>
 	</quest>
 	<quest id="24091" name="Unending Mission" nameId="1129947" quest_zone="Tiamat Stronghold" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
-		<rewards exp="8027013" title="250">
+		<rewards exp="8027013">
 			<selectable_reward_item item_id="110101479" count="1" />
 			<selectable_reward_item item_id="110301387" count="1" />
 			<selectable_reward_item item_id="110501362" count="1" />
@@ -53528,13 +53528,13 @@
 		<collect_items>
 			<collect_item item_id="182213259" count="10" />
 		</collect_items>
-		<rewards title="244" />
+		<rewards />
 	</quest>
 	<quest id="28220" name="Back for More" nameId="1199536" quest_zone="Empyrean Crucible" minlevel_permitted="56" max_repeat_count="1" race_permitted="ASMODIANS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="182213259" count="10" />
 		</collect_items>
-		<rewards title="245" />
+		<rewards />
 		<start_conditions>
 			<finished quest_id="28219" />
 		</start_conditions>
@@ -53543,7 +53543,7 @@
 		<collect_items>
 			<collect_item item_id="182213259" count="10" />
 		</collect_items>
-		<rewards title="246" />
+		<rewards />
 		<start_conditions>
 			<finished quest_id="28220" />
 		</start_conditions>
@@ -53552,7 +53552,7 @@
 		<collect_items>
 			<collect_item item_id="182213259" count="10" />
 		</collect_items>
-		<rewards title="247" />
+		<rewards />
 		<start_conditions>
 			<finished quest_id="28221" />
 		</start_conditions>
@@ -53561,7 +53561,7 @@
 		<collect_items>
 			<collect_item item_id="182213259" count="10" />
 		</collect_items>
-		<rewards title="248">
+		<rewards>
 			<reward_item item_id="160010238" count="1" />
 		</rewards>
 		<start_conditions>
@@ -54651,7 +54651,7 @@
 		<class_permitted>WARRIOR SCOUT MAGE PRIEST ENGINEER ARTIST RIDER</class_permitted>
 	</quest>
 	<quest id="28700" name="[Grupo] Raksang: a prisão da morte" nameId="1125715" quest_zone="Raksang" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="QUEST" restricted="true">
-		<rewards gold="47000" exp="6907092" title="219">
+		<rewards gold="47000" exp="6907092">
 			<selectable_reward_item item_id="121001061" count="1" />
 			<selectable_reward_item item_id="121001062" count="1" />
 		</rewards>
@@ -55197,7 +55197,7 @@
 		</start_conditions>
 	</quest>
 	<quest id="28802" name="[Housing] Be It Ever So Humble" nameId="1136604" quest_zone="Pernon" minlevel_permitted="21" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="SEEN_MARKER">
-		<rewards exp="12951" title="217">
+		<rewards exp="12951">
 			<reward_item item_id="169500953" count="1" />
 			<reward_item item_id="182213160" count="1" />
 		</rewards>
@@ -55805,7 +55805,7 @@
 		<quest_drop npc_id="702769" item_id="182215757" drop_each_member="2" />
 	</quest>
 	<quest id="28954" name="A prova de vitória" nameId="1801088" quest_zone="Drakenspire Depths" minlevel_permitted="65" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="QUEST">
-		<rewards gold="903960" exp="7927072" title="294" />
+		<rewards gold="903960" exp="7927072" />
 		<quest_work_items>
 			<quest_work_item item_id="182215755" />
 		</quest_work_items>
@@ -56179,7 +56179,7 @@
 		</start_conditions>
 	</quest>
 	<quest id="29056" name="[Expert] Expert Constructor" nameId="1130023" quest_zone="Pandaemonium" minlevel_permitted="29" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="SIGNIFICANT">
-		<rewards exp="58283" title="86">
+		<rewards exp="58283">
 			<selectable_reward_item item_id="170020006" count="1" />
 			<selectable_reward_item item_id="170120005" count="1" />
 			<selectable_reward_item item_id="170200012" count="1" />
@@ -56321,11 +56321,11 @@
 		</quest_work_items>
 	</quest>
 	<quest id="29074" name="The Technist Preceptor's Test" nameId="1140760" quest_zone="Pandaemonium" minlevel_permitted="31" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="IMPORTANT" restricted="true">
-		<rewards exp="633457" title="88" />
+		<rewards exp="633457" />
 		<class_permitted>ENGINEER GUNNER</class_permitted>
 	</quest>
 	<quest id="29075" name="The Muse Preceptor's Test" nameId="1140761" quest_zone="Pandaemonium" minlevel_permitted="31" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="IMPORTANT" restricted="true">
-		<rewards exp="633457" title="88" />
+		<rewards exp="633457" />
 		<class_permitted>ARTIST BARD</class_permitted>
 	</quest>
 	<quest id="29076" name="A New Preceptor" nameId="1140762" quest_zone="Pandaemonium" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="IMPORTANT">
@@ -56343,7 +56343,7 @@
 		</quest_work_items>
 	</quest>
 	<quest id="29078" name="Aethertech Master's Test" nameId="1141645" quest_zone="Pandaemonium" minlevel_permitted="31" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="IMPORTANT" restricted="true">
-		<rewards exp="633457" title="88" />
+		<rewards exp="633457" />
 		<class_permitted>ENGINEER RIDER</class_permitted>
 	</quest>
 	<quest id="29500" name="Ganhando o estigma do templário" nameId="1124750" quest_zone="Convent of Marchutan" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
@@ -59908,7 +59908,7 @@
 		<quest_drop npc_id="217296" item_id="182212504" chance="100" drop_each_member="1" collecting_step="0" />
 	</quest>
 	<quest id="30514" name="(More talking)" nameId="1801107" quest_zone="Rentus Base" minlevel_permitted="57" max_repeat_count="1" race_permitted="ELYOS" category="IMPORTANT" restricted="true" data_driven="true">
-		<rewards gold="598320" exp="5097837" title="211" />
+		<rewards gold="598320" exp="5097837" />
 		<quest_kill step="0" var="1" count="1" npc_ids="217310" seq="1" />
 		<quest_kill step="0" var="2" count="1" npc_ids="217311" seq="2" />
 		<start_conditions>
@@ -60015,7 +60015,7 @@
 		<quest_drop npc_id="217296" item_id="182212510" chance="100" drop_each_member="1" collecting_step="0" />
 	</quest>
 	<quest id="30564" name="[Instance/Group] A última esperança" nameId="1801110" quest_zone="Rentus Base" minlevel_permitted="57" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" restricted="true" data_driven="true">
-		<rewards gold="598320" exp="5097837" title="222" />
+		<rewards gold="598320" exp="5097837" />
 		<quest_kill step="0" var="1" count="1" npc_ids="217310" seq="1" />
 		<quest_kill step="0" var="2" count="1" npc_ids="217311" seq="2" />
 		<start_conditions>
@@ -60294,7 +60294,7 @@
 		</rewards>
 	</quest>
 	<quest id="30751" name="[Alliance] Death to the Dragon Lord!" nameId="1137122" quest_zone="Tiamat Stronghold" minlevel_permitted="60" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="IMPORTANT" target="ALLIANCE">
-		<rewards exp="7086913" title="250">
+		<rewards exp="7086913">
 			<reward_item item_id="166000193" count="1" />
 		</rewards>
 		<start_conditions>
@@ -63894,13 +63894,13 @@
 		</start_conditions>
 	</quest>
 	<quest id="41470" name="The Elyos of Siel's Spear" nameId="1137081" quest_zone="Siel's Spear" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="QUEST">
-		<rewards exp="6074497" title="237" />
+		<rewards exp="6074497" />
 		<start_conditions>
 			<finished quest_id="41468" />
 		</start_conditions>
 	</quest>
 	<quest id="41471" name="The Asmodian of Siel's Spear" nameId="1137082" quest_zone="Siel's Spear" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="QUEST">
-		<rewards exp="6074497" title="238" />
+		<rewards exp="6074497" />
 		<start_conditions>
 			<finished quest_id="41468" />
 		</start_conditions>

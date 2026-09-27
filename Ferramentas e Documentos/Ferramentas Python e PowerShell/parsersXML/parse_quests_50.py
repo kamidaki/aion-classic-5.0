@@ -193,19 +193,20 @@ def parse_item_and_count(raw_str):
         cnt = int(parts[1])
     return iname, cnt
 
-def resolve_title_id(title_str):
-    """Converte strings de título como 'light_title45' ou 'dark_title27' para IDs inteiros válidos."""
+def resolve_title_id(title_str, title_map):
+    """Resolve somente títulos presentes no catálogo oficial atual.
+
+    Campos como ``light_title45`` e ``dark_title27`` ainda existem em cinco
+    quests do cliente, mas não existem mais em ``client_titles.xml``. Eles são
+    resíduos do sistema antigo e não podem voltar a criar recompensas 1..300.
+    """
     if not title_str:
         return None
-    title_str = title_str.strip()
-    if title_str.isdigit():
-        return int(title_str)
-    m = re.search(r'dark_title(\d+)', title_str, re.IGNORECASE)
-    if m:
-        return 100 + int(m.group(1))
-    m = re.search(r'light_title(\d+)', title_str, re.IGNORECASE)
-    if m:
-        return int(m.group(1))
+    normalized = title_str.strip().lower()
+    if normalized in title_map:
+        return title_map[normalized]
+    if normalized.isdigit() and int(normalized) in title_map.values():
+        return int(normalized)
     return None
 
 # -----------------------------------------------------------------------------
@@ -249,6 +250,20 @@ def load_all_items():
             item_map[iname.strip().lower()] = int(iid.strip())
     print(f"  -> Total de itens mapeados: {len(item_map):,}")
     return item_map
+
+def load_all_titles():
+    print("[3/7] Carregando client_titles.xml...")
+    p = os.path.join(CLIENT_DATA_DIR, "PC", "client_titles.xml")
+    raw = open(p, "rb").read()
+    root = ET.fromstring(aion_bxml.decodifica(raw) if aion_bxml.e_bxml(p) else raw.decode("utf-8", errors="ignore"))
+    title_map = {}
+    for title in root:
+        title_id = title.findtext("id")
+        title_name = title.findtext("name")
+        if title_id and title_name:
+            title_map[title_name.strip().lower()] = int(title_id.strip())
+    print(f"  -> Total de títulos atuais mapeados: {len(title_map):,}")
+    return title_map
 
 def load_all_npcs(name_to_body):
     print("[3/6] Carregando client_npcs.xml...")
@@ -365,7 +380,7 @@ COMBINE_SKILL_MAP = {
     'aerial_gathering': '30003',
 }
 
-def build_quest_element(c_q, name_to_id, name_to_body, item_map, npc_name_to_id, drops_by_quest, kills_by_quest):
+def build_quest_element(c_q, name_to_id, name_to_body, item_map, title_map, npc_name_to_id, drops_by_quest, kills_by_quest):
     """Constrói um elemento <quest> estritamente conforme quest_data.xsd."""
     quest_id = c_q.findtext("id", "").strip()
     code_name = c_q.findtext("name", "").strip()
@@ -466,7 +481,7 @@ def build_quest_element(c_q, name_to_id, name_to_body, item_map, npc_name_to_id,
         gold = c_q.findtext(f"reward_gold{g}")
         ap = c_q.findtext(f"reward_abyss_point{g}")
         title = c_q.findtext(f"reward_title{g}")
-        title_id = resolve_title_id(title)
+        title_id = resolve_title_id(title, title_map)
         
         selectable_items = []
         for s_idx in range(1, 15):
@@ -507,7 +522,7 @@ def build_quest_element(c_q, name_to_id, name_to_body, item_map, npc_name_to_id,
     exp_ext = c_q.findtext("reward_exp_ext")
     ap_ext = c_q.findtext("reward_abyss_point_ext")
     title_ext = c_q.findtext("reward_title_ext")
-    title_ext_id = resolve_title_id(title_ext)
+    title_ext_id = resolve_title_id(title_ext, title_map)
 
     ext_sel_items = []
     for s_idx in range(1, 15):
@@ -696,7 +711,7 @@ def build_quest_element(c_q, name_to_id, name_to_body, item_map, npc_name_to_id,
 
     return elem
 
-def update_quest_data(client_quests_root, name_to_id, name_to_body, item_map, npc_name_to_id, drops_by_quest, kills_by_quest):
+def update_quest_data(client_quests_root, name_to_id, name_to_body, item_map, title_map, npc_name_to_id, drops_by_quest, kills_by_quest):
     print("[5/6] Atualizando quest_data/quest_data.xml...")
     server_path = os.path.join(GAME_SERVER_DIR, "data", "static_data", "quest_data", "quest_data.xml")
     tree = ET.parse(server_path)
@@ -715,7 +730,7 @@ def update_quest_data(client_quests_root, name_to_id, name_to_body, item_map, np
         qid = c_q.findtext("id", "").strip()
         if not qid:
             continue
-        new_elem = build_quest_element(c_q, name_to_id, name_to_body, item_map, npc_name_to_id, drops_by_quest, kills_by_quest)
+        new_elem = build_quest_element(c_q, name_to_id, name_to_body, item_map, title_map, npc_name_to_id, drops_by_quest, kills_by_quest)
         if qid in server_quests:
             idx, old_elem = server_quests[qid]
             root.remove(old_elem)
@@ -739,9 +754,21 @@ def update_quest_data(client_quests_root, name_to_id, name_to_body, item_map, np
             else:
                 del q.attrib["combineskill"]
 
+    # Quests antigas preservadas pelo servidor ainda podem conter recompensas
+    # 1..300. Apenas IDs declarados no client_titles.xml atual são válidos.
+    valid_title_ids = set(title_map.values())
+    removed_legacy_titles = 0
+    for q in root.findall("quest"):
+        for rewards in list(q.findall("rewards")) + list(q.findall("extended_rewards")):
+            title = rewards.get("title")
+            if title and (not title.isdigit() or int(title) not in valid_title_ids):
+                del rewards.attrib["title"]
+                removed_legacy_titles += 1
+
     ET.indent(root, space="\t")
     tree.write(server_path, encoding="utf-8", xml_declaration=True)
     print(f"  -> quest_data.xml gravado: {len(root):,} missões ({added_count} adicionadas, {updated_count} atualizadas).")
+    print(f"  -> Recompensas de títulos legados removidas: {removed_legacy_titles:,}.")
 
     try:
         import lxml.etree
@@ -1065,6 +1092,7 @@ def main():
 
     name_to_id, name_to_body = load_all_strings()
     item_map = load_all_items()
+    title_map = load_all_titles()
     npc_name_to_id, npc_id_to_name, npc_id_to_realname = load_all_npcs(name_to_body)
     drops_by_quest, kills_by_quest = load_quest_monsters(npc_name_to_id, item_map)
 
@@ -1074,7 +1102,7 @@ def main():
     client_quests_root = ET.fromstring(aion_bxml.decodifica(raw_q) if aion_bxml.e_bxml(quest_xml_path) else raw_q.decode("utf-8", errors="ignore"))
     print(f"  -> Total de missões encontradas no cliente 5.0: {len(client_quests_root):,}")
 
-    update_quest_data(client_quests_root, name_to_id, name_to_body, item_map, npc_name_to_id, drops_by_quest, kills_by_quest)
+    update_quest_data(client_quests_root, name_to_id, name_to_body, item_map, title_map, npc_name_to_id, drops_by_quest, kills_by_quest)
     generate_50_quest_scripts(client_quests_root, name_to_body, npc_name_to_id, kills_by_quest)
     generate_mission_handlers(client_quests_root, name_to_body, npc_name_to_id, npc_id_to_name, npc_id_to_realname, kills_by_quest)
     sync_all_to_final()
