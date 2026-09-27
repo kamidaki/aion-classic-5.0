@@ -84,11 +84,15 @@ class AION_PT_client_header(bpy.types.Panel):
         row.operator("aion_model.detect_client", icon="VIEWZOOM")
         row.label(text=f"Flavor: {settings.client_flavor}")
 
-        # Scan Button
+        # Scan / Cache Buttons
         box = layout.box()
         row = box.row(align=True)
-        scan_label = "Scan Client Assets" if settings.scanned_total_count == 0 else f"Rescan ({settings.scanned_total_count})"
-        row.operator("aion_model.scan_assets", text=scan_label, icon="FILE_REFRESH")
+        scan_label = "Scan Client Assets" if settings.scanned_total_count == 0 else f"Load Cache ({settings.scanned_total_count:,})"
+        op = row.operator("aion_model.scan_assets", text=scan_label, icon="FILE_REFRESH")
+        op.force_rescan = False
+        if settings.scanned_total_count > 0:
+            rescan_op = row.operator("aion_model.scan_assets", text="Force Rescan", icon="FILE_CACHE")
+            rescan_op.force_rescan = True
 
         # Safety Write Toggle
         safety_box = layout.box()

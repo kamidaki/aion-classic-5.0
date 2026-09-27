@@ -239,14 +239,16 @@ class ClientScanner:
             if cal_path:
                 animations, idle_anim = self._inspect_cal(cal_path)
 
-            # Read lightweight chunk metadata from CGF
-            cgf_bytes = self.catalog.extract_file(clean_rel)
-            if not cgf_bytes and is_loose:
-                loose_f = self.root / clean_rel
-                if loose_f.is_file():
-                    cgf_bytes = loose_f.read_bytes()
-
-            header_meta = inspect_cgf_header_metadata(cgf_bytes) if cgf_bytes else {}
+            # Read lightweight chunk metadata from CGF (optimized: only for characters/creatures/rigged models)
+            header_meta = {}
+            if cal_path or category in {"NPC", "MONSTER", "CHARACTER", "WINGS", "PET_MOUNT", "WEAPON", "ARMOR"}:
+                cgf_bytes = self.catalog.extract_file(clean_rel)
+                if not cgf_bytes and is_loose:
+                    loose_f = self.root / clean_rel
+                    if loose_f.is_file():
+                        cgf_bytes = loose_f.read_bytes()
+                if cgf_bytes:
+                    header_meta = inspect_cgf_header_metadata(cgf_bytes)
 
             entry = AssetEntry(
                 asset_id=asset_id,

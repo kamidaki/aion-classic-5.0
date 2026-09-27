@@ -90,6 +90,8 @@ class AION_OT_scan_assets(bpy.types.Operator):
     bl_description = "Scan client folder and PAKs to index all 3D models"
     bl_options = {"REGISTER"}
 
+    force_rescan: bpy.props.BoolProperty(name="Force Full Rescan", default=False)
+
     def execute(self, context: bpy.types.Context) -> set[str]:
         settings = context.scene.aion_model_lib
         client_dir = settings.client_path
@@ -97,11 +99,26 @@ class AION_OT_scan_assets(bpy.types.Operator):
             self.report({"ERROR"}, "Please select a valid Aion client folder first.")
             return {"CANCELLED"}
 
+        client_path = Path(client_dir)
         db = AssetDatabase.get()
-        # Scan with progress
-        scanner = Scanner(client_root=Path(client_dir))
+
+        # Check if cache exists on disk for instant loading (0.1s instead of 3 minutes)
+        if not self.force_rescan and db.load_cache(client_path):
+            settings.scanned_total_count = db.total_count
+            bpy.ops.aion_model.filter_assets()
+            self.report(
+                {"INFO"},
+                f"Loaded {db.total_count} assets instantly from index cache! (Click Rescan to rebuild)",
+            )
+            return {"FINISHED"}
+
+        # Perform fast scan
+        scanner = Scanner(client_root=client_path)
         scanned_assets = scanner.scan_all()
         db.load_from_entries(scanned_assets)
+
+        # Persist index cache to disk
+        db.save_cache(client_path)
 
         settings.scanned_total_count = len(scanned_assets)
 
@@ -110,7 +127,7 @@ class AION_OT_scan_assets(bpy.types.Operator):
 
         self.report(
             {"INFO"},
-            f"Successfully scanned {len(scanned_assets)} assets across {len(db.get_categories())} categories.",
+            f"Successfully scanned {len(scanned_assets)} assets across {len(db.get_categories())} categories (cached to disk).",
         )
         return {"FINISHED"}
 
@@ -125,13 +142,21 @@ class AION_OT_filter_assets(bpy.types.Operator):
     def execute(self, context: bpy.types.Context) -> set[str]:
         settings = context.scene.aion_model_lib
         db = AssetDatabase.get()
+
+        # Auto-load cache if database in memory is empty but client has saved cache
+        if db.total_count == 0 and settings.client_path:
+            p = Path(settings.client_path)
+            if p.is_dir() and db.load_cache(p):
+                settings.scanned_total_count = db.total_count
+
         if not db.all_assets:
+            settings.asset_items.clear()
             return {"FINISHED"}
 
         cat = None if settings.category_filter == "ALL" else settings.category_filter
-        q = settings.search_query.strip() if settings.search_query else None
+        q = (settings.search_query or "").strip()
 
-        filtered = db.search(query=q, category=cat, limit=300)
+        filtered = db.search(query=q, category=cat, limit=500)
 
         # Populate asset_items
         settings.asset_items.clear()
