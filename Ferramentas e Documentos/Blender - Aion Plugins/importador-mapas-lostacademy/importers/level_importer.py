@@ -294,6 +294,11 @@ def import_level(
 
     clean_material_cache()
     clear_texture_cache()
+    try:
+        from .armature_importer import ArmatureCache
+        ArmatureCache.get().clear()
+    except Exception:
+        pass
 
     if load_cgf is None:
         from . import cgf_importer
@@ -867,6 +872,10 @@ def import_level(
         bpy.data.collections.remove(preview_collection)
 
     advance_progress("complete", "Level import complete")
+    try:
+        bpy.context.view_layer.update()
+    except Exception:
+        pass
     import gc
     gc.collect()
     return LevelImportResult(

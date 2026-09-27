@@ -1,14 +1,8 @@
 """
-Aion World NPC & Monster Spawning System for Blender.
-
-Instantiates authoritative NPCs, monsters, and critters from:
-1. Data/world/world.pak -> client_world_<map>.xml
-2. Data/npcs/npcs.pak -> client_npcs.xml
-3. mission_mission0.xml placeables
-
-Supports CryEngine skeleton rigs, bone hierarchies, vertex skin weighting,
-looping idle animations (.cal / .caf), high-performance GPU hardware mesh instancing,
-correct world positioning, terrain ground-snapping, and hierarchical collections.
+Aion World NPC & Entity Spawner.
+Extracts NPC spawns from level/world data, resolves templates & 3D models (CGF),
+supports CryEngine skeleton rigs & idle animations (.caf/.cal),
+and spawns entities into categorized Blender collections with ground terrain alignment.
 """
 
 from __future__ import annotations
@@ -17,38 +11,35 @@ import io
 import math
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Set, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import bpy
 from mathutils import Euler, Matrix, Vector
 
 from core.client_provider import AionClientProvider
-from core.pak_engine import AionPakArchive, get_pak_resolver
 from formats.cgf.parser import get_cgf
 from formats.level.npc_spawns import (
     NpcSpawn,
     NpcTemplate,
-    parse_client_npc_templates,
     parse_world_npc_spawns,
+    parse_npc_templates,
 )
 from importers.armature_importer import (
-    apply_caf_animation,
-    apply_skin_weights,
     build_npc_armature,
+    apply_skin_weights,
+    apply_caf_animation,
+    ArmatureCache,
 )
 
 
 @dataclass(frozen=True)
 class NpcImportResult:
-    """Statistics and result summary for NPC spawning pass."""
     spawns_found: int = 0
     spawns_placed: int = 0
-    templates_resolved: int = 0
+    animated_rigs_created: int = 0
     models_loaded: int = 0
+    missing_models: int = 0
     instances_created: int = 0
-    animated_npcs_count: int = 0
-    missing_models_count: int = 0
-    collection_name: str = "NPCS"
 
     @property
     def spawned_count(self) -> int:
@@ -59,34 +50,27 @@ class NpcImportResult:
         return self.models_loaded
 
 
-# Global memory cache for parsed NPC templates across map loads: client_path -> templates
-_GLOBAL_NPC_TEMPLATES_CACHE: Dict[str, Dict[str, NpcTemplate]] = {}
+_NPC_TEMPLATE_CACHE: Dict[str, Dict[str, NpcTemplate]] = {}
 
 
-def get_cached_npc_templates(client_root: Path | str) -> Dict[str, NpcTemplate]:
-    """Retrieves or loads client_npcs.xml templates via AionClientProvider."""
-    global _GLOBAL_NPC_TEMPLATES_CACHE
-    c_key = str(Path(client_root).resolve()).lower()
-    if c_key in _GLOBAL_NPC_TEMPLATES_CACHE:
-        return _GLOBAL_NPC_TEMPLATES_CACHE[c_key]
+def get_cached_npc_templates(client_path: Path) -> Dict[str, NpcTemplate]:
+    """Caches NPC templates per client root to eliminate redundant XML parsing."""
+    client_key = str(client_path.resolve())
+    if client_key in _NPC_TEMPLATE_CACHE:
+        return _NPC_TEMPLATE_CACHE[client_key]
 
-    provider = AionClientProvider(client_root)
-    merged: Dict[str, NpcTemplate] = {}
-
+    provider = AionClientProvider(client_path)
+    all_templates: Dict[str, NpcTemplate] = {}
     for t_name, t_bytes in provider.read_npc_templates_data():
-        try:
-            tmpls = parse_client_npc_templates(t_bytes)
-            merged.update(tmpls)
-        except Exception as exc:
-            print(f"[AION NPC] Warning parsing template {t_name}: {exc}")
+        if t_bytes:
+            try:
+                parsed = parse_npc_templates(t_bytes)
+                all_templates.update(parsed)
+            except Exception as exc:
+                print(f"[AION NPC] Warning parsing template table {t_name}: {exc}")
 
-    _GLOBAL_NPC_TEMPLATES_CACHE[c_key] = merged
-    return merged
-
-
-def clear_npc_template_cache() -> None:
-    global _GLOBAL_NPC_TEMPLATES_CACHE
-    _GLOBAL_NPC_TEMPLATES_CACHE.clear()
+    _NPC_TEMPLATE_CACHE[client_key] = all_templates
+    return all_templates
 
 
 def _get_map_name_from_level_dir(level_dir: Path) -> str:
@@ -207,21 +191,17 @@ def create_world_npcs(
     friendly_col = _get_or_create_collection(npcs_root_col, "NPCs - Friendly")
     monsters_col = _get_or_create_collection(npcs_root_col, "Monsters & Hostiles")
     ambient_col = _get_or_create_collection(npcs_root_col, "NPCs - Ambient Fauna")
-    templates_col = _get_or_create_collection(npcs_root_col, ".NPC_Templates")
-    templates_col.hide_viewport = True
-    templates_col.hide_render = True
 
-    # 4. Cache template datablocks
-    # static_mesh_cache: norm_ref -> bpy.types.Mesh
+    # 4. Cache template datablocks (shared in bpy.data, no dummy scene objects!)
     static_meshes: Dict[str, bpy.types.Mesh] = {}
-    # rig_template_cache: norm_ref -> (template_rig_obj, template_mesh_obj, action)
-    rig_templates: Dict[str, Tuple[bpy.types.Object, bpy.types.Object, Optional[bpy.types.Action], List[str], List[Any]]] = {}
+    animated_data: Dict[str, Tuple[bpy.types.Armature, bpy.types.Mesh, bytes, List[str], List[Dict[str, Any]], List[Any]]] = {}
+    action_cache: Dict[str, Optional[bpy.types.Action]] = {}
 
     def get_or_import_npc_asset(cgf_ref: str, npc_name_clean: str):
         """
         Loads CGF mesh and skeleton.
-        Returns: ('ANIMATED', rig_obj, mesh_obj, action, bone_names, skin_weights)
-              or ('STATIC', mesh_datablock)
+        Returns: ('ANIMATED', arm_data, mesh_data, caf_bytes, bone_names, bone_anim, skin_weights)
+              or ('STATIC', mesh_data)
               or ('NONE', None)
         """
         if not cgf_ref or not load_models:
@@ -230,9 +210,8 @@ def create_world_npcs(
         norm_ref = cgf_ref.replace("\\", "/").strip().lstrip("/").lower()
 
         # Check existing rig template
-        if animate_npcs and norm_ref in rig_templates:
-            tpl_rig, tpl_mesh, action, b_names, s_weights = rig_templates[norm_ref]
-            return "ANIMATED", tpl_rig, tpl_mesh, action, b_names, s_weights
+        if animate_npcs and norm_ref in animated_data:
+            return ("ANIMATED",) + animated_data[norm_ref]
 
         # Check existing static mesh
         if norm_ref in static_meshes:
@@ -240,7 +219,6 @@ def create_world_npcs(
 
         # Extract CGF bytes
         cgf_bytes = provider.resolve_cgf_bytes(norm_ref)
-
         if not cgf_bytes:
             return "NONE", None
 
@@ -276,32 +254,24 @@ def create_world_npcs(
         # If skeleton present and animation requested:
         if animate_npcs and bone_names and bone_initial_pos:
             try:
-                # 1. Build template rig
-                tpl_rig = build_npc_armature(npc_name_clean, bone_names, bone_initial_pos, bone_anim, templates_col)
+                # Build Armature datablock
+                arm_data = build_npc_armature(npc_name_clean, bone_names, bone_initial_pos, bone_anim, collection=None)
+                if isinstance(arm_data, bpy.types.Object):
+                    arm_data = arm_data.data
 
-                # 2. Build template mesh
+                # Build Mesh datablock
                 m_data = bpy.data.meshes.new(f"{npc_name_clean}_Mesh")
                 m_data.from_pydata(verts_pos, [], faces_v)
                 m_data.update()
 
-                tpl_mesh = bpy.data.objects.new(f"{npc_name_clean}_Skin", m_data)
-                templates_col.objects.link(tpl_mesh)
-                tpl_mesh.parent = tpl_rig
-
-                # Apply skinning weights & armature modifier
-                apply_skin_weights(tpl_mesh, bone_names, skin_weights, tpl_rig)
-
-                # 3. Resolve and apply idle animation
+                # Resolve CAF animation bytes
                 cal_map, caf_bytes = provider.resolve_animation_asset(norm_ref)
-                action = None
-                if caf_bytes:
-                    action_name = f"{npc_name_clean}_Idle"
-                    action = apply_caf_animation(tpl_rig, caf_bytes, bone_names, bone_anim, action_name)
 
-                rig_templates[norm_ref] = (tpl_rig, tpl_mesh, action, bone_names, skin_weights)
-                return "ANIMATED", tpl_rig, tpl_mesh, action, bone_names, skin_weights
+                record = (arm_data, m_data, caf_bytes or b"", bone_names, bone_anim, skin_weights)
+                animated_data[norm_ref] = record
+                return ("ANIMATED",) + record
             except Exception as exc:
-                print(f"[AION NPC] Skeleton import failed for {norm_ref}, falling back to static mesh: {exc}")
+                print(f"[AION NPC] Skeleton build failed for {norm_ref}, falling back to static: {exc}")
 
         # Static mesh fallback
         try:
@@ -375,10 +345,9 @@ def create_world_npcs(
         res_type, *res_data = get_or_import_npc_asset(cgf_ref, name)
 
         if res_type == "ANIMATED":
-            tpl_rig, tpl_mesh, action, b_names, s_weights = res_data
-            # Create instance rig
-            rig_inst = bpy.data.objects.new(f"{obj_name}_Rig", tpl_rig.data)
-            mesh_inst = bpy.data.objects.new(obj_name, tpl_mesh.data)
+            arm_data, m_data, caf_bytes, b_names, b_anim, s_weights = res_data
+            rig_inst = bpy.data.objects.new(f"{obj_name}_Rig", arm_data)
+            mesh_inst = bpy.data.objects.new(obj_name, m_data)
 
             target_col.objects.link(rig_inst)
             target_col.objects.link(mesh_inst)
@@ -386,9 +355,20 @@ def create_world_npcs(
             mesh_inst.parent = rig_inst
             apply_skin_weights(mesh_inst, b_names, s_weights, rig_inst)
 
-            if action:
+            # Resolve / attach idle action
+            norm_ref = cgf_ref.replace("\\", "/").strip().lstrip("/").lower()
+            if norm_ref not in action_cache:
+                act = None
+                if caf_bytes:
+                    act_name = f"{name}_Idle"
+                    act = apply_caf_animation(rig_inst, caf_bytes, b_names, b_anim, act_name)
+                action_cache[norm_ref] = act
+            else:
+                act = action_cache[norm_ref]
+
+            if act:
                 rig_inst.animation_data_create()
-                rig_inst.animation_data.action = action
+                rig_inst.animation_data.action = act
 
             rig_inst.location = (x, y, z)
             rig_inst.rotation_euler = Euler((0.0, 0.0, yaw_rad), "XYZ")
@@ -428,27 +408,35 @@ def create_world_npcs(
             # Fallback marker empty
             obj = bpy.data.objects.new(obj_name, None)
             obj.empty_display_type = "SINGLE_ARROW" if category != "monster" else "SPHERE"
-            obj.empty_display_size = 1.0
             obj.location = (x, y, z)
             obj.rotation_euler = Euler((0.0, 0.0, yaw_rad), "XYZ")
             obj.scale = (scale, scale, scale)
 
-            obj["aion_source_type"] = "npc_empty"
+            obj["aion_source_type"] = "npc_marker"
             obj["aion_npc_id"] = npc_id
             obj["aion_npc_name"] = name
+            if title:
+                obj["aion_npc_title"] = title
+            if cgf_ref:
+                obj["aion_cgf_reference"] = cgf_ref
 
             target_col.objects.link(obj)
             placed_count += 1
-            if load_models:
-                missing_models += 1
+            instances_created += 1
+            missing_models += 1
+
+    # Prune empty subcollections in NPCS
+    for sub in (friendly_col, monsters_col, ambient_col):
+        if len(sub.objects) == 0 and len(sub.children) == 0:
+            if sub.name in npcs_root_col.children.keys():
+                npcs_root_col.children.unlink(sub)
+            bpy.data.collections.remove(sub)
 
     return NpcImportResult(
         spawns_found=len(spawns),
         spawns_placed=placed_count,
-        templates_resolved=resolved_templates_count,
-        models_loaded=len(static_meshes) + len(rig_templates),
+        animated_rigs_created=animated_count,
+        models_loaded=len(static_meshes) + len(animated_data),
+        missing_models=missing_models,
         instances_created=instances_created,
-        animated_npcs_count=animated_count,
-        missing_models_count=missing_models,
-        collection_name="NPCS",
     )

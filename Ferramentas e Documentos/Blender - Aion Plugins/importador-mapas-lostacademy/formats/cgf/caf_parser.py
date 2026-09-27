@@ -33,9 +33,9 @@ def parse_caf(data: bytes) -> Dict[str, Any]:
         return {}
 
     stream = io.BytesIO(data)
-    # Check signature
+    # Check signature safely (max 64 bytes)
     sig = ""
-    while True:
+    while len(sig) < 64:
         b = stream.read(1)
         if not b or b == b"\x00":
             break
@@ -44,6 +44,9 @@ def parse_caf(data: bytes) -> Dict[str, Any]:
     # Read signature terminator
     stream.read(1)
 
+    if stream.tell() + 12 > len(data):
+        return {}
+
     type_of_file = struct.unpack("<I", stream.read(4))[0]
     if type_of_file != 0xFFFF0001:
         return {}  # Not an animation chunk file
@@ -51,8 +54,13 @@ def parse_caf(data: bytes) -> Dict[str, Any]:
     version = struct.unpack("<I", stream.read(4))[0]
     table_offset = struct.unpack("<I", stream.read(4))[0]
 
+    if table_offset + 4 > len(data):
+        return {}
+
     stream.seek(table_offset)
     num_chunks = struct.unpack("<I", stream.read(4))[0]
+    if num_chunks > 10000:
+        return {}
 
     controllers: Dict[int, List[Dict[str, Any]]] = {}
     timing: Dict[str, Any] = {
@@ -63,13 +71,15 @@ def parse_caf(data: bytes) -> Dict[str, Any]:
     }
 
     for _ in range(num_chunks):
+        if stream.tell() + 16 > len(data):
+            break
         raw_type = struct.unpack("<I", stream.read(4))[0]
         ver = struct.unpack("<I", stream.read(4))[0]
         off = struct.unpack("<I", stream.read(4))[0]
         cid = struct.unpack("<I", stream.read(4))[0]
 
         curr = stream.tell()
-        if raw_type == CHUNK_TIMING:
+        if raw_type == CHUNK_TIMING and off + 48 <= len(data):
             stream.seek(off + 16)
             s_tick = struct.unpack("<f", stream.read(4))[0]
             tpf = struct.unpack("<I", stream.read(4))[0]
@@ -80,21 +90,19 @@ def parse_caf(data: bytes) -> Dict[str, Any]:
             timing["frame_start"] = start_frame
             timing["frame_end"] = end_frame
             timing["frame_count"] = max(1, end_frame - start_frame + 1)
-        elif raw_type == CHUNK_CONTROLLER:
+        elif raw_type == CHUNK_CONTROLLER and off + 8 <= len(data):
             stream.seek(off)
             kcount, ctrl_id = struct.unpack("<II", stream.read(8))
             keys: List[Dict[str, Any]] = []
-            for frame_idx in range(kcount):
-                floats = struct.unpack("<8f", stream.read(32))
-                # Layout: [time, px, py, pz, qx, qy, qz, qw]
-                # CryEngine units: cm -> meters (/ 100)
-                # Blender quaternion: (w, x, y, z)
-                keys.append({
-                    "frame": frame_idx,
-                    "pos": (floats[1] / 100.0, floats[2] / 100.0, floats[3] / 100.0),
-                    "quat": (floats[7], floats[4], floats[5], floats[6]),
-                })
-            controllers[ctrl_id] = keys
+            if off + 8 + kcount * 32 <= len(data) and kcount < 100000:
+                for frame_idx in range(kcount):
+                    floats = struct.unpack("<8f", stream.read(32))
+                    keys.append({
+                        "frame": frame_idx,
+                        "pos": (floats[1] / 100.0, floats[2] / 100.0, floats[3] / 100.0),
+                        "quat": (floats[7], floats[4], floats[5], floats[6]),
+                    })
+                controllers[ctrl_id] = keys
 
         stream.seek(curr)
 
