@@ -165,6 +165,7 @@ class ClientScanner:
         self.flavor = detect_client_flavor(self.root)
         self.catalog = AionCatalogIndex(self.root)
         self.dep_graph = DependencyGraph()
+        self._cal_cache: Dict[str, Tuple[List[str], Optional[str]]] = {}
 
     def scan(
         self,
@@ -334,17 +335,25 @@ class ClientScanner:
             f"{stem}.cal",
             f"{parent}/{stem.split('_')[0]}.cal",
         ]
+        # Fast path: check catalog first
         for c in cands:
             entry = self.catalog.find_file(c)
             if entry:
                 return entry[1].name
+
+        # Fallback: check loose files
+        for c in cands:
             loose = self.root / c
             if loose.is_file():
                 return c
         return None
 
     def _inspect_cal(self, cal_rel: str) -> Tuple[List[str], Optional[str]]:
-        """Parses state names and default idle animation from a CAL file."""
+        """Parses state names and default idle animation from a CAL file (cached)."""
+        clean_key = cal_rel.lower()
+        if clean_key in self._cal_cache:
+            return self._cal_cache[clean_key]
+
         try:
             from formats.cgf.cal_parser import parse_cal, find_default_idle_animation
         except ImportError:
@@ -357,12 +366,15 @@ class ClientScanner:
                 data = loose.read_bytes()
 
         if not data:
+            self._cal_cache[clean_key] = ([], None)
             return [], None
 
         cal_map = parse_cal(data)
         states = list(cal_map.keys())
         idle = find_default_idle_animation(cal_map)
-        return states, idle
+        res = (states, idle)
+        self._cal_cache[clean_key] = res
+        return res
 
     def _load_npc_templates(self) -> Dict[str, Dict[str, str]]:
         """Loads NPC names and mesh references from client_npcs.xml or client_npcs.bxml."""

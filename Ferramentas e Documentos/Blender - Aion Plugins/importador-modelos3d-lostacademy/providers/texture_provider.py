@@ -69,12 +69,17 @@ class TextureProvider(ITextureProvider):
         if cached and cached.name in bpy.data.images:
             return cached
 
+        img_name = Path(clean_key).name
+        existing_img = bpy.data.images.get(img_name)
+        if existing_img and existing_img.has_data:
+            self._image_cache[clean_key] = existing_img
+            return existing_img
+
         file_path = self.resolve_texture_file(rel_path)
         if not file_path or not file_path.is_file():
             return None
 
         try:
-            img_name = Path(clean_key).name
             img = bpy.data.images.load(str(file_path), check_existing=True)
             img.name = img_name
             self._image_cache[clean_key] = img

@@ -77,6 +77,11 @@ class MaterialProvider(IMaterialProvider):
         if cached and cached.name in bpy.data.materials:
             return cached
 
+        existing = bpy.data.materials.get(clean_name)
+        if existing and existing.node_tree and len(existing.node_tree.nodes) > 1:
+            self._material_cache[clean_name] = existing
+            return existing
+
         mat = bpy.data.materials.new(name=clean_name)
         mat.use_nodes = True
         nodes = mat.node_tree.nodes

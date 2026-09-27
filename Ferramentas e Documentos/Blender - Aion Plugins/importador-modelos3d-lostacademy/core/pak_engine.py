@@ -102,12 +102,13 @@ def deobfuscate_stream(data: bytes | bytearray) -> bytes:
     """XOR-decrypt the first min(32, len) bytes of an Aion compressed/stored stream."""
     if not data:
         return b""
-    arr = bytearray(data)
-    count = min(32, len(arr))
-    off = len(arr) & 0x3FF
-    for i in range(count):
-        arr[i] ^= AION_XOR_TABLE[off + i]
-    return bytes(arr)
+    length = len(data)
+    count = min(32, length)
+    off = length & 0x3FF
+    header = bytes(data[i] ^ AION_XOR_TABLE[off + i] for i in range(count))
+    if count == length:
+        return header
+    return header + data[count:]
 
 
 class AionPakEntry:
@@ -143,6 +144,7 @@ class AionPakArchive:
         self.filepath = str(filepath)
         self.entries: Dict[str, AionPakEntry] = {}
         self._zip: Optional[zipfile.ZipFile] = None
+        self._file_handle: Optional[io.BufferedReader] = None
         self._load_central_directory()
 
     def __enter__(self) -> "AionPakArchive":
@@ -152,6 +154,12 @@ class AionPakArchive:
         self.close()
 
     def close(self) -> None:
+        if self._file_handle is not None:
+            try:
+                self._file_handle.close()
+            except Exception:
+                pass
+            self._file_handle = None
         if self._zip is not None:
             try:
                 self._zip.close()
@@ -277,7 +285,11 @@ class AionPakArchive:
         if not os.path.isfile(self.filepath):
             return None
 
-        with open(self.filepath, "rb") as f:
+        try:
+            if self._file_handle is None or self._file_handle.closed:
+                self._file_handle = open(self.filepath, "rb")
+            f = self._file_handle
+
             f.seek(entry.local_offset, os.SEEK_SET)
             sig = f.read(4)
             if sig != SIG_LOCAL:
@@ -310,6 +322,8 @@ class AionPakArchive:
                         return None
             else:
                 return None
+        except Exception:
+            return None
 
 
 class AionLevelUnpacker:
@@ -401,6 +415,7 @@ class AionCatalogIndex:
         self._basename_to_pak_entry: Dict[str, Tuple[Path, AionPakEntry]] = {}
         self._indexed_paks: Set[str] = set()
         self._archives: Dict[str, AionPakArchive] = {}
+        self._file_cache: Dict[str, bytes] = {}
 
     def get_archive(self, pak_path: Path | str) -> AionPakArchive:
         key = str(pak_path).lower()
@@ -455,13 +470,25 @@ class AionCatalogIndex:
         return len(self._indexed_paks)
 
     def extract_file(self, rel_path: str) -> Optional[bytes]:
-        """Extracts and decompresses a file directly from indexed PAKs."""
+        """Extracts and decompresses a file directly from indexed PAKs with LRU caching for small files."""
+        clean_key = rel_path.replace("\\", "/").strip().lstrip("/").lower()
+        if clean_key in self._file_cache:
+            return self._file_cache[clean_key]
+
         entry_info = self.find_entry(rel_path)
         if not entry_info:
             return None
         pak_path, entry = entry_info
         archive = self.get_archive(pak_path)
-        return archive.read_entry(entry)
+        data = archive.read_entry(entry)
+
+        if data is not None and len(data) <= 524288:  # Cache files <= 512KB
+            if len(self._file_cache) >= 256:
+                first_key = next(iter(self._file_cache))
+                del self._file_cache[first_key]
+            self._file_cache[clean_key] = data
+
+        return data
 
 
 class AionClientPakResolver:

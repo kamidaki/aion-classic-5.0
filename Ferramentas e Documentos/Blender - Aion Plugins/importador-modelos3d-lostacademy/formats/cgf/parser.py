@@ -169,55 +169,44 @@ def get_chunk(chunk_type, byte_data, offset):
 
 
 def read_vertices(stream, vertices_count):
+    if vertices_count <= 0:
+        return {"position": [], "normal": []}
+    raw = _read_exact(stream, vertices_count * 24, "vertices chunk")
     position = []
     normal = []
-
-    for i in range(vertices_count):
-        position.append([read_f32(stream, "vertex x") / 100,
-                         read_f32(stream, "vertex y") / 100,
-                         read_f32(stream, "vertex z") / 100])
-        normal.append([read_f32(stream, "normal x"),
-                       read_f32(stream, "normal y"),
-                       read_f32(stream, "normal z")])
-
-    return {"position": position,
-            "normal": normal}
+    for x, y, z, nx, ny, nz in struct.iter_unpack("<6f", raw):
+        position.append([x * 0.01, y * 0.01, z * 0.01])
+        normal.append([nx, ny, nz])
+    return {"position": position, "normal": normal}
 
 
 def read_faces(stream, vertices_count):
+    if vertices_count <= 0:
+        return {"v": [], "material": [], "smoothing_group": []}
+    raw = _read_exact(stream, vertices_count * 20, "faces chunk")
     fp = []
     mat = []
     smoothing_group = []
-    for i in range(vertices_count):
-        fp.append([read_u32(stream, "face vertex 0"),
-                   read_u32(stream, "face vertex 1"),
-                   read_u32(stream, "face vertex 2")])
-
-        mat.append(read_u32(stream, "face material"))
-
-        smoothing_group.append(read_u32(stream, "face smoothing group"))
-
-    return {"v": fp,
-            "material": mat,
-            "smoothing_group": smoothing_group}
+    for v0, v1, v2, m, sg in struct.iter_unpack("<5I", raw):
+        fp.append([v0, v1, v2])
+        mat.append(m)
+        smoothing_group.append(sg)
+    return {"v": fp, "material": mat, "smoothing_group": smoothing_group}
 
 
 def read_uvs(stream, vertices_count):
-    uv = []
-    for i in range(vertices_count):
-        uv.append([read_f32(stream, "uv u"),
-                   read_f32(stream, "uv v")])
-
+    if vertices_count <= 0:
+        return {"uvs": []}
+    raw = _read_exact(stream, vertices_count * 8, "uvs chunk")
+    uv = [[u, v] for u, v in struct.iter_unpack("<2f", raw)]
     return {"uvs": uv}
 
 
 def read_uvfaces(stream, vertices_count):
-    uv = []
-    for i in range(vertices_count):
-        uv.append([read_u32(stream, "face uv 0"),
-                   read_u32(stream, "face uv 1"),
-                   read_u32(stream, "face uv 2")])
-
+    if vertices_count <= 0:
+        return {"face_uvs": []}
+    raw = _read_exact(stream, vertices_count * 12, "uv faces chunk")
+    uv = [[u0, u1, u2] for u0, u1, u2 in struct.iter_unpack("<3I", raw)]
     return {"face_uvs": uv}
 
 
@@ -245,10 +234,10 @@ def read_string_per(stream):
 
 
 def read_array(stream, size):
-    list_ = []
-    for i in range(size):
-        list_.append(read_f32(stream, "float array"))
-    return list_
+    if size <= 0:
+        return []
+    raw = _read_exact(stream, size * 4, "float array")
+    return list(struct.unpack(f"<{size}f", raw))
 
 
 def read_matrix44(m_list):
@@ -261,92 +250,62 @@ def read_matrix44(m_list):
 
 
 def check_if_not_null(stream, size):
-    for i in range(size):
-        short_byte = int.from_bytes(_read_exact(stream, 2, "reserved u16"), byteorder='little')
-        if short_byte != 0:
-            _emit_parser_event(
-                "material_reserved_nonzero",
-                CATEGORY_MATERIAL,
-                context="mtl_type_2_padding",
-                detail={"value": short_byte, "index": i},
-            )
+    if size <= 0:
+        return
+    raw = _read_exact(stream, size * 2, "reserved u16s")
+    if any(raw):
+        for i, val in enumerate(struct.iter_unpack("<H", raw)):
+            if val[0] != 0:
+                _emit_parser_event(
+                    "material_reserved_nonzero",
+                    CATEGORY_MATERIAL,
+                    context="mtl_type_2_padding",
+                    detail={"value": val[0], "index": i},
+                )
 
 
 def check_for_null(stream, size, chunk_type):
-    for i in range(size):
-        if _read_exact(stream, 1, "reserved byte") != b'\x00':
-            _emit_parser_event(
-                "unsupported_chunk_padding_nonzero",
-                _chunk_category(chunk_type),
-                context=chunk_type,
-                detail={"index": i},
-            )
+    if size <= 0:
+        return
+    raw = _read_exact(stream, size, "reserved bytes")
+    if any(raw):
+        for i, b in enumerate(raw):
+            if b != 0:
+                _emit_parser_event(
+                    "unsupported_chunk_padding_nonzero",
+                    _chunk_category(chunk_type),
+                    context=chunk_type,
+                    detail={"index": i},
+                )
 
 
 def check_for_null_textures(stream, size, chunk_type):
-    for i in range(size):
-        temp = _read_exact(stream, 1, "texture reserved byte")
-        if temp != b'\x00' and temp != b'\xff':
+    if size <= 0:
+        return
+    raw = _read_exact(stream, size, "texture reserved bytes")
+    for i, b in enumerate(raw):
+        if b != 0 and b != 0xFF:
             _emit_parser_event(
                 "material_texture_padding_nonzero",
                 CATEGORY_TEXTURE,
                 context=chunk_type,
-                detail={"index": i, "value_hex": temp.hex()},
+                detail={"index": i, "value_hex": bytes([b]).hex()},
             )
 
 
 def de_bi_op(mtl_flags):
-    values = {"wire": 0,
-              "two_sided": 0,
-              "facemap": 0,
-              "faceted": 0,
-              "additive": 0,
-              "substractive": 0,
-              "cry_shader": 0,
-              "physicalize": 0,
-              "additive_decal": 0,
-              "use_glossiness": 0}
-
-    if mtl_flags >= 512:
-        values["use_glossiness"] = 1
-        mtl_flags = mtl_flags - 512
-
-    if mtl_flags >= 256:
-        values["additive_decal"] = 1
-        mtl_flags = mtl_flags - 256
-
-    if mtl_flags >= 128:
-        values["physicalize"] = 1
-        mtl_flags = mtl_flags - 128
-
-    if mtl_flags >= 64:
-        values["cry_shader"] = 1
-        mtl_flags = mtl_flags - 64
-
-    if mtl_flags >= 32:
-        values["substractive"] = 1
-        mtl_flags = mtl_flags - 32
-
-    if mtl_flags >= 16:
-        values["additive"] = 1
-        mtl_flags = mtl_flags - 16
-
-    if mtl_flags >= 8:
-        values["faceted"] = 1
-        mtl_flags = mtl_flags - 8
-
-    if mtl_flags >= 4:
-        values["facemap"] = 1
-        mtl_flags = mtl_flags - 4
-
-    if mtl_flags >= 2:
-        values["two_sided"] = 1
-        mtl_flags = mtl_flags - 2
-
-    if mtl_flags >= 1:
-        values["wire"] = 1
-
-    return values
+    return {
+        "wire": 1 if (mtl_flags & 1) else 0,
+        "two_sided": 1 if (mtl_flags & 2) else 0,
+        "facemap": 1 if (mtl_flags & 4) else 0,
+        "faceted": 1 if (mtl_flags & 8) else 0,
+        "additive": 1 if (mtl_flags & 16) else 0,
+        "substractive": 1 if (mtl_flags & 32) else 0,
+        "cry_shader": 1 if (mtl_flags & 64) else 0,
+        "physicalize": 1 if (mtl_flags & 128) else 0,
+        "additive_decal": 1 if (mtl_flags & 256) else 0,
+        "use_glossiness": 1 if (mtl_flags & 512) else 0,
+    }
 
 # Световые эффекты (нихуя не понятно
 
@@ -458,20 +417,19 @@ def get_mesh_chunk(stream, offset):
     if has_vertex_weights:
         for _ in range(num_vertices):
             num_links = read_u32(stream, "vertex num links")
-            links = []
-            for _ in range(num_links):
-                bone_id = read_u32(stream, "link bone id")
-                stream.seek(12, 1)
-                weight = read_f32(stream, "link weight")
-                links.append((bone_id, weight))
+            if num_links == 0:
+                skin_weights.append([])
+                continue
+            raw_links = _read_exact(stream, num_links * 20, "vertex links")
+            links = [(b_id, w) for b_id, w in struct.iter_unpack("<I12xf", raw_links)]
             skin_weights.append(links)
 
     if has_vertex_colors:
-        colors_vertx = []
-        for vrt in range(num_vertices):
-            colors_vertx.append({"r": read_u8(stream, "vertex color r"),
-                                 "g": read_u8(stream, "vertex color g"),
-                                 "b": read_u8(stream, "vertex color b")})
+        raw_colors = _read_exact(stream, num_vertices * 3, "vertex colors")
+        colors_vertx = [
+            {"r": r, "g": g, "b": b}
+            for r, g, b in struct.iter_unpack("<3B", raw_colors)
+        ]
 
     mesh_chunk_dict.update({"header": header})
     mesh_chunk_dict.update({"skin_weights": skin_weights})

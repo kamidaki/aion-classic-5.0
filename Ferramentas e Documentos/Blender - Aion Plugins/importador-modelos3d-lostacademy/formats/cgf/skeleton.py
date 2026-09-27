@@ -37,11 +37,10 @@ def parse_bone_initial_pos(stream: io.BytesIO, offset: int) -> List[Tuple[float,
     stream.seek(offset)
     mesh_id = struct.unpack("<I", stream.read(4))[0]
     count = struct.unpack("<I", stream.read(4))[0]
-    matrices: List[Tuple[float, ...]] = []
-    for _ in range(count):
-        m = struct.unpack("<12f", stream.read(48))
-        matrices.append(m)
-    return matrices
+    if count <= 0:
+        return []
+    raw = stream.read(count * 48)
+    return list(struct.iter_unpack("<12f", raw))
 
 
 def parse_bone_anim(stream: io.BytesIO, offset: int) -> List[Dict[str, Any]]:
@@ -79,11 +78,10 @@ def parse_mesh_skin_weights(
     vertex_weights: List[List[Tuple[int, float]]] = []
     for _ in range(num_vertices):
         num_links = struct.unpack("<I", stream.read(4))[0]
-        links: List[Tuple[int, float]] = []
-        for _ in range(num_links):
-            bone_id = struct.unpack("<I", stream.read(4))[0]
-            stream.seek(12, io.SEEK_CUR)  # skip 3 floats offset
-            weight = struct.unpack("<f", stream.read(4))[0]
-            links.append((bone_id, weight))
+        if num_links == 0:
+            vertex_weights.append([])
+            continue
+        raw_links = stream.read(num_links * 20)
+        links = [(b_id, w) for b_id, w in struct.iter_unpack("<I12xf", raw_links)]
         vertex_weights.append(links)
     return vertex_weights

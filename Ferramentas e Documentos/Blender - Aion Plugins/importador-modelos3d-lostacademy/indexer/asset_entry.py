@@ -65,22 +65,32 @@ class AssetEntry:
 
     @property
     def display_label(self) -> str:
-        """User-friendly label shown in grids and list views."""
-        if self.name and self.name != Path(self.model_path).stem:
-            return f"{self.name} ({Path(self.model_path).stem})"
-        return Path(self.model_path).stem or self.name
+        """Cached user-friendly label shown in grids and list views."""
+        lbl = getattr(self, "_display_label", None)
+        if lbl is None:
+            stem = Path(self.model_path).stem
+            if self.name and self.name != stem:
+                lbl = f"{self.name} ({stem})"
+            else:
+                lbl = stem or self.name
+            self._display_label = lbl
+        return lbl
 
     @property
     def search_string(self) -> str:
-        """Precomputed lowercase string for instantaneous search matching."""
-        terms = [
-            self.asset_id,
-            self.name,
-            self.category,
-            self.model_path,
-            Path(self.model_path).name,
-            self.idle_animation or "",
-            "skeleton" if self.has_skeleton else "static",
-        ]
-        terms.extend(self.animations[:5])
-        return " ".join(t.lower() for t in terms if t)
+        """Cached lowercase string for instantaneous search matching."""
+        s = getattr(self, "_search_string", None)
+        if s is None:
+            terms = [
+                self.asset_id,
+                self.name,
+                self.category,
+                self.model_path,
+                Path(self.model_path).name,
+                self.idle_animation or "",
+                "skeleton" if self.has_skeleton else "static",
+            ]
+            terms.extend(self.animations[:5])
+            s = " ".join(t.lower() for t in terms if t)
+            self._search_string = s
+        return s
