@@ -311,6 +311,7 @@ class ClassicItemSystemsTest {
 		var titles = new TitleList();
 		titles.addEntry(1, 0);
 		titles.addEntry(408, 0);
+		titles.addEntry(481, 0);
 		var packet = new SM_TITLE_INFO();
 		var titleListField = SM_TITLE_INFO.class.getDeclaredField("titleList");
 		titleListField.setAccessible(true);
@@ -320,9 +321,13 @@ class ClassicItemSystemsTest {
 		var buffer = ByteBuffer.wrap(payload).order(ByteOrder.LITTLE_ENDIAN);
 		assertEquals(0, Byte.toUnsignedInt(buffer.get()));
 		assertEquals(0, Byte.toUnsignedInt(buffer.get()));
-		assertEquals(1, Short.toUnsignedInt(buffer.getShort()));
+		assertEquals(2, Short.toUnsignedInt(buffer.getShort()));
 		assertEquals(408, buffer.getInt());
 		assertEquals(0, buffer.getInt());
+		assertEquals(0, Byte.toUnsignedInt(buffer.get()));
+		assertEquals(481, buffer.getInt());
+		assertEquals(0, buffer.getInt());
+		assertEquals(0, Byte.toUnsignedInt(buffer.get()));
 		assertFalse(buffer.hasRemaining());
 	}
 
