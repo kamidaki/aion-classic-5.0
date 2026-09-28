@@ -228,6 +228,12 @@ class ClassicItemSystemsTest {
 		assertEquals(10, DataManager.ITEM_DATA.getItemTemplate(100000378).getActivationCount());
 	}
 
+	@Test void officialInventoryFlagsRouteItemsToTheirSpecialCubes() {
+		assertEquals(1, DataManager.ITEM_DATA.getItemTemplate(160001286).getExtraInventoryId()); // extra_inventory, inserted
+		assertEquals(1, DataManager.ITEM_DATA.getItemTemplate(182206759).getExtraInventoryId()); // extra_inventory, corrected from id 0
+		assertEquals(2, DataManager.ITEM_DATA.getItemTemplate(182206922).getExtraInventoryId()); // quest cube
+	}
+
 	@Test void namedActivationSkillsUseOfficialSkillAndLevel() {
 		var targeted = DataManager.ITEM_DATA.getItemTemplate(164000103).getActions().getSkillUseAction();
 		assertEquals(10320, targeted.getSkillId());

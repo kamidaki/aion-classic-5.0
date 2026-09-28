@@ -75,13 +75,14 @@ DIRECT_FIELDS = {
 ACTION_FIELDS = {
     "activation_skill": "skilluse", "skill_to_learn": "skilllearn", "gain_skill1": "stigma",
     "craft_recipe_info": "craftlearn", "disassembly_item": "decompose", "cosmetic_name": "cosmetic",
-    "toy_pet_name": "toypetspawn", "func_pet_name": "adoptpet", "extra_inventory": "expandinventory",
+    "toy_pet_name": "toypetspawn", "func_pet_name": "adoptpet",
     "assembly_item": "assemble", "reset_instance_coolt_sync_id": "instancetimeclear",
-    "cash_title": "titleadd", "dyeing_color": "dye", "quest": "queststart",
+    "cash_title": "titleadd", "dyeing_color": "dye",
 }
 CLIENT_FIELDS = set(DIRECT_FIELDS) | set(ACTION_FIELDS) | set(CLASS_FIELDS) | {
     "id", "name", "desc", "weapon_type", "armor_type", "equipment_slots", "attack_type", "activate_target", "activation_level",
     "max_enchant_level", "option_slot_bonus", "m_slots", "mgrouptag", "tag", "icon_name", "quest",
+    "extra_inventory",
     "min_damage", "max_damage", "attack_delay", "critical", "hit_accuracy", "parry", "attack_range", "hit_count",
     "magical_hit_accuracy", "magical_skill_boost", "reduce_max", "cannot_changeskin", "can_dye", "item_drop_permitted",
     "cannot_extraction", "cash_item", "cash_available_minute", "can_crush", "crush_name", "desc_long",
@@ -152,6 +153,7 @@ def read_server(path: Path) -> dict[str, dict]:
         if element.find("stigma") is not None:
             actions.add("stigma")
         weapon = element.find("weapon_stats")
+        inventory = element.find("inventory")
         modifiers = element.find("modifiers")
         modifier_values = collections.Counter()
         if modifiers is not None:
@@ -171,6 +173,7 @@ def read_server(path: Path) -> dict[str, dict]:
             "actions": actions,
             "action_attrs": action_attrs,
             "weapon": dict(weapon.attrib) if weapon is not None else {},
+            "inventory": dict(inventory.attrib) if inventory is not None else {},
             "modifier_count": len(modifiers) if modifiers is not None else 0,
             "modifiers": modifier_values,
             "children": {child.tag for child in element},
@@ -287,6 +290,18 @@ def compare_item(client: dict[str, str] | None, server: dict | None, strings: di
         expected, actual = transform(raw), attrs.get(target, server_defaults.get(target))
         if str(expected) != str(actual):
             differences.append(f"{target}:{expected}!={actual or '<ausente>'}")
+
+    # `extra_inventory` identifies the destination cube and is represented by
+    # <inventory id="...">. It does not expand the player's inventory.
+    # `quest` is an item flag/category (also encoded in client_mask), not a
+    # quest id and therefore is not evidence for a queststart action.
+    expected_extra_inventory = meaningful(client.get("extra_inventory")) or meaningful(client.get("quest"))
+    actual_inventory_id = server["inventory"].get("id", "0")
+    actual_extra_inventory = actual_inventory_id not in ("", "0")
+    if expected_extra_inventory and not actual_extra_inventory:
+        differences.append("inventory.extra:true!=false")
+    elif actual_extra_inventory and not expected_extra_inventory:
+        pending.append(f"inventory especial legado sem flag oficial:id={actual_inventory_id}")
     attack = client.get("attack_type", "").lower()
     if attack and ATTACK.get(attack, attack.upper()) != attrs.get("attack_type"):
         differences.append(f"attack_type:{ATTACK.get(attack, attack.upper())}!={attrs.get('attack_type', '<ausente>')}")

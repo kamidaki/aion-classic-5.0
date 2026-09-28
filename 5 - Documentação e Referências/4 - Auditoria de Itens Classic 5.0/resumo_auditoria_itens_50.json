@@ -2,12 +2,12 @@
   "fonte_cliente": "5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data/europe/Items/client_items.xml",
   "sha256_cliente": "0db9fe61322d0b93049f3aa1914afa8748a26d7dcc027eb3704a2b57c585828d",
   "fonte_emulador": "Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xml",
-  "sha256_emulador": "10d15a080e1920084b8eac6b7e6c1ef2160f251e750afcffe9a91f0432d71d1f",
+  "sha256_emulador": "f2cffd21ee937958043fe3798d3b2b6367e1c1adf56e586723a541e16c379789",
   "itens_oficiais": 79664,
   "itens_emulador": 79664,
   "itens_por_status": {
-    "COMPATIVEL_NOS_CAMPOS_AUDITADOS": 73634,
-    "PENDENTE_RELACAO": 6030
+    "COMPATIVEL_NOS_CAMPOS_AUDITADOS": 79112,
+    "PENDENTE_RELACAO": 552
   },
   "itens_por_categoria": {
     "acessorios": 3831,
@@ -33,7 +33,7 @@
   "arquitetura_por_camada": {
     "java": 433,
     "dados": 51,
-    "pcap": 68
+    "pcap": 70
   },
   "variantes_catalogo_cliente": {
     "5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data/europe/Items/client_items.xml": {

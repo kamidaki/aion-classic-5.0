@@ -30,7 +30,7 @@ dados;Código Fonte - Emulador/game-server/data/static_data/items/item_random_bo
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_random_bonuses.xsd;897
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_restriction_cleanups.xml;830
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_restriction_cleanups.xsd;829
-dados;Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xml;43052354
+dados;Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xml;43107886
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xsd;33680
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_upgrade.xml;638694
 dados;Código Fonte - Emulador/game-server/data/static_data/items/item_upgrade.xsd;3004
@@ -236,7 +236,7 @@ java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templ
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/ReadAction.java;2844
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/RemodelAction.java;829
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/SkillLearnAction.java;3129
-java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/SkillUseAction.java;4191
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/SkillUseAction.java;4297
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/SummonHouseObjectAction.java;1004
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/TitleAddAction.java;2181
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/model/templates/item/actions/ToyPetSpawnAction.java;5399
@@ -344,7 +344,7 @@ java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aio
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_GODSTONE_CLEAR.java;1398
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_GODSTONE_SOCKET.java;1586
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_GROUP_LOOT.java;1624
-java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_ITEM_COMPOSE.java;2526
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_ITEM_COMPOSE.java;2532
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_ITEM_COUNT_LIST.java;1965
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_ITEM_PURIFICATION.java;1661
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/clientpackets/CM_ITEM_REMODEL.java;937
@@ -403,7 +403,7 @@ java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aio
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_INVENTORY_INFO.java;3141
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_INVENTORY_UPDATE_ITEM.java;2087
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_ITEM_COMPOSE_EVENT.java;1016
-java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_ITEM_COMPOSE_RESULT.java;1169
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_ITEM_COMPOSE_RESULT.java;1159
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_ITEM_COOLDOWN.java;938
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_ITEM_UPGRADE_EVENT.java;1085
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/network/aion/serverpackets/SM_ITEM_UPGRADE_RESULT.java;1156
@@ -459,7 +459,7 @@ java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/gl
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/HouseObjectFactory.java;4242
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/ItemActionService.java;3416
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/ItemChargeService.java;7479
-java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/ItemComposeService.java;9840
+java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/ItemComposeService.java;10331
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/ItemFactory.java;1290
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/ItemMoveService.java;10157
 java;Código Fonte - Emulador/game-server/src/com/aionemu/gameserver/services/item/ItemPacketService.java;14670
@@ -513,6 +513,7 @@ pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/0
 pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_5.0_2026-09-21_15-16-24_00001_20260921151624.pcapng;809280
 pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_5.0_2026-09-22_14-40-15_00001_20260922144015.pcapng;27395452
 pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_5.0_2026-09-22_16-14-48_00001_20260922161448.pcapng;27319252
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_5.0_2026-09-27_22-01-50_00001_20260927220151.pcapng;942608
 pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_Aplicando_Godstone5.0_2026-09-11_19-50-37_00001_20260911195037.pcapng;487740
 pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_Black_Cloud_Mail_5.0_2026-09-14_08-44-22_00001_20260914084422.pcapng;422568
 pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/06_Sistemas_Novos_5.0/06_Sistemas_Novos_Book_of_Legends5.0_2026-09-11_18-54-27_00001_20260911185427.pcapng;400844
@@ -547,6 +548,7 @@ pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/O
 pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/Outros/outros_2026-09-21_05-50-07_00001_20260921055007.pcapng;1790032
 pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/Outros/outros_2026-09-21_06-10-28_00001_20260921061028.pcapng;969408
 pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/Outros/outros_2026-09-21_14-43-57_00001_20260921144357.pcapng;552172
+pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/Outros/outros_2026-09-27_16-39-33_00001_20260927163933.pcapng;32060288
 pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/Outros/tutorial-2026-08-28.pcapng;2754884
 pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/outros2/outros2_2026-09-22_09-41-59_00001_20260922094159.pcapng;5655092
 pcap;Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/outros2/outros2_2026-09-22_10-23-39_00001_20260922102339.pcapng;3521212
