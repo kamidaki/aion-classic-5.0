@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class CM_QUEST_TELEPORT extends AionClientPacket {
 
 	private static final ConcurrentHashMap<Integer, Long> cooldowns = new ConcurrentHashMap<>();
-	private static final long COOLDOWN_MILLIS = 10_000L; // 10s de tolerância para reutilizar
+	private static final long COOLDOWN_MILLIS = 5_000L; // 5s de tolerância para reutilizar
 
 	private int questId;
 	private int npcId;
@@ -46,7 +46,7 @@ public class CM_QUEST_TELEPORT extends AionClientPacket {
 		final int playerId = player.getObjectId();
 		final long now = System.currentTimeMillis();
 
-		// Checagem de cooldown para evitar flood do botão de teleporte (10s de tolerância)
+		// Checagem de cooldown para evitar flood do botão de teleporte (5s de tolerância)
 		Long expireAt = cooldowns.get(playerId);
 		if (expireAt != null) {
 			if (now < expireAt) {
@@ -83,7 +83,7 @@ public class CM_QUEST_TELEPORT extends AionClientPacket {
 			return;
 		}
 
-		// Aplica cooldown de 10 segundos com limpeza agendada apropriada
+		// Aplica cooldown de 5 segundos com limpeza agendada apropriada
 		final long newExpireAt = now + COOLDOWN_MILLIS;
 		cooldowns.put(playerId, newExpireAt);
 		ThreadPoolManager.getInstance().schedule(() -> cooldowns.remove(playerId, newExpireAt), COOLDOWN_MILLIS, TimeUnit.MILLISECONDS);
