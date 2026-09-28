@@ -195,8 +195,9 @@ public final class PlayerEnterWorldService {
 				client.sendPacket(new SM_ITEM_COOLDOWN(Collections.emptyMap()));
 			}
 
-			// 4. Titulo ativo (Action 1, 11 bytes canonicos no 5.0)
+			// 4. Titulo ativo e colecao adquirida (Action 1 seguida da Action 0 no wire oficial)
 			client.sendPacket(SM_TITLE_INFO.selfTitle(pcd.getTitleId(), pcd.getBonusTitleId()));
+			client.sendPacket(new SM_TITLE_INFO(player));
 
 			// 5. Animacoes / Motions
 			client.sendPacket(new SM_MOTION(player.getMotions().getMotions().values()));

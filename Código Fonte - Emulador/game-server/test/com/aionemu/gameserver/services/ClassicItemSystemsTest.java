@@ -322,6 +322,19 @@ class ClassicItemSystemsTest {
 		assertEquals(0, Byte.toUnsignedInt(buffer.get()));
 		assertEquals(1, Short.toUnsignedInt(buffer.getShort()));
 		assertEquals(408, buffer.getInt());
+		assertEquals(0, buffer.getInt());
+		assertFalse(buffer.hasRemaining());
+	}
+
+	@Test void selfTitlePacketUsesZeroWhenNoBonusTitleIsSelected() throws Exception {
+		byte[] payload = body(SM_TITLE_INFO.selfTitle(463, -1));
+		assertArrayEquals(new byte[] {
+			1,
+			(byte) 0xCF, 0x01,
+			(byte) 0xCF, 0x01,
+			0, 0,
+			0, 0, 0, 0
+		}, payload);
 	}
 
 	@Test void classicTitlePermilleModifierKeepsTenthsOfPercent() {

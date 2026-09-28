@@ -73,7 +73,7 @@ public class SM_TITLE_INFO extends AionServerPacket {
 			case 1: // self set (Classic 5.0: 11 bytes: writeC(1) + 3 shorts + writeD(0))
 				writeH(titleId);
 				writeH(titleId);
-				writeH(bonusTitleId != 0 ? bonusTitleId : titleId);
+				writeH(bonusTitleId > 0 ? bonusTitleId : 0);
 				writeD(0);
 				break;
 			case 2:
