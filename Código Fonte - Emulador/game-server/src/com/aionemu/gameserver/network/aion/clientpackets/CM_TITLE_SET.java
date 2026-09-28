@@ -33,7 +33,8 @@ public class CM_TITLE_SET extends AionClientPacket {
 	@Override
 	protected void runImpl() {
 		Player player = getConnection().getActivePlayer();
-		if (titleId != 0xFFFF)
+		// Classic envia FFFFFFFF nos dois D para remover o título; o formato antigo usava apenas H FFFF.
+		if (titleId != -1 && titleId != 0xFFFF)
 			if (!player.getTitleList().containsAvailable(titleId))
 				return;
 

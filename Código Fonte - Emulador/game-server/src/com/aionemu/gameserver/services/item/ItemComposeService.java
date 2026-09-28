@@ -15,7 +15,6 @@ import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.items.storage.Storage;
 import com.aionemu.gameserver.model.templates.item.ItemComposeRecipe;
-import com.aionemu.gameserver.model.templates.item.ItemComposeRecipe.Grade;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ITEM_COMPOSE_EVENT;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ITEM_COMPOSE_RESULT;
@@ -205,15 +204,12 @@ public final class ItemComposeService {
 
 				List<SM_ITEM_COMPOSE_RESULT.Reward> wireResults = new java.util.ArrayList<>(quantity);
 				Map<Integer, Long> rewards = new LinkedHashMap<>();
-				int upgraded = 0;
 				for (int i = 0; i < quantity; i++) {
 					ItemComposeRecipe.Result result = recipe.roll(ThreadLocalRandom.current().nextInt(10000));
-					wireResults.add(new SM_ITEM_COMPOSE_RESULT.Reward(result.getItemId(), result.getCount()));
-					if (result.getGrade() != Grade.SAME)
-						upgraded++;
+					wireResults.add(new SM_ITEM_COMPOSE_RESULT.Reward(result.getGrade().ordinal(), result.getItemId(), result.getCount()));
 					rewards.merge(result.getItemId(), result.getCount(), Long::sum);
 				}
-				PacketSendUtility.sendPacket(requester, new SM_ITEM_COMPOSE_RESULT(recipe.getId(), quantity, upgraded, wireResults));
+				PacketSendUtility.sendPacket(requester, new SM_ITEM_COMPOSE_RESULT(recipe.getId(), quantity, wireResults));
 				rewards.forEach((itemId, count) -> ItemService.addItem(requester, itemId, count, true, RESULT_PREDICATE));
 				log.info("Altar: {} fez {}x receita {} ({}) -> {}", requester.getName(), quantity, recipe.getId(), recipe.getName(), rewards);
 				return true;

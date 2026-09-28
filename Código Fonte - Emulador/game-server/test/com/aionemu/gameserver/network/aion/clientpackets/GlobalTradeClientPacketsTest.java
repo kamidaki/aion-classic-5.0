@@ -49,6 +49,13 @@ class GlobalTradeClientPacketsTest {
 	}
 
 	@Test
+	void clearTitleRequestUsesTwoNegativeIntsInClassic() throws Exception {
+		CM_TITLE_SET clear = read(new CM_TITLE_SET(0x09B, EnumSet.of(State.IN_GAME)), "ffffffffffffffff");
+		assertEquals(-1, field(clear, "titleId"));
+		assertEquals(-1, field(clear, "bonusTitleId"));
+	}
+
+	@Test
 	void searchRequestFromCapture() throws Exception {
 		// Inshagle: busca por nome na categoria 3020000, 14 itemIds
 		CM_GLOBAL_TRADE_LIST search = read(new CM_GLOBAL_TRADE_LIST(0x1EE, EnumSet.of(State.IN_GAME)),

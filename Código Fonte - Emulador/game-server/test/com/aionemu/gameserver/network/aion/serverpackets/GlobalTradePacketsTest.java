@@ -115,12 +115,12 @@ class GlobalTradePacketsTest {
 	void composePacketsMatchOfficialCapture() throws Exception {
 		assertEquals("1000000001e8030000", HEX.formatHex(body(new SM_ITEM_COMPOSE_EVENT(16, SM_ITEM_COMPOSE_EVENT.STARTED, 1000))));
 		assertEquals("10000000010001000d8b350b0100000000000000",
-			HEX.formatHex(body(new SM_ITEM_COMPOSE_RESULT(16, 1, 1, List.of(new SM_ITEM_COMPOSE_RESULT.Reward(188058381, 1))))));
+			HEX.formatHex(body(new SM_ITEM_COMPOSE_RESULT(16, 1, List.of(new SM_ITEM_COMPOSE_RESULT.Reward(1, 188058381, 1))))));
 		assertEquals("05000000010001005f84350b0100000000000000",
-			HEX.formatHex(body(new SM_ITEM_COMPOSE_RESULT(5, 1, 1, List.of(new SM_ITEM_COMPOSE_RESULT.Reward(188056671, 1))))));
-		assertEquals("10000000020000000c8b350b01000000000000000c8b350b0100000000000000",
-			HEX.formatHex(body(new SM_ITEM_COMPOSE_RESULT(16, 2, 0,
-				List.of(new SM_ITEM_COMPOSE_RESULT.Reward(188058380, 1), new SM_ITEM_COMPOSE_RESULT.Reward(188058380, 1))))));
+			HEX.formatHex(body(new SM_ITEM_COMPOSE_RESULT(5, 1, List.of(new SM_ITEM_COMPOSE_RESULT.Reward(1, 188056671, 1))))));
+		assertEquals("10000000020000000c8b350b010000000000000000000c8b350b0100000000000000",
+			HEX.formatHex(body(new SM_ITEM_COMPOSE_RESULT(16, 2,
+				List.of(new SM_ITEM_COMPOSE_RESULT.Reward(0, 188058380, 1), new SM_ITEM_COMPOSE_RESULT.Reward(0, 188058380, 1))))));
 	}
 
 	private static GlobalTradeListing listing(long id, int itemId, long count, long price, State state) {
