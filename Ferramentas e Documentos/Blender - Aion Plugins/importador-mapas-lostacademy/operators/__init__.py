@@ -6,6 +6,10 @@ from __future__ import annotations
 
 import bpy
 
+from .cleanup_operators import (
+    AION_OT_clean_wind_drivers,
+    AION_OT_purge_unused_data,
+)
 from .editing_operators import (
     AION_OT_randomize_transforms,
     AION_OT_snap_to_terrain,
@@ -30,6 +34,8 @@ CLASSES = (
     AION_OT_randomize_transforms,
     AION_OT_sync_terrain,
     AION_OT_toggle_animation,
+    AION_OT_clean_wind_drivers,
+    AION_OT_purge_unused_data,
 )
 
 

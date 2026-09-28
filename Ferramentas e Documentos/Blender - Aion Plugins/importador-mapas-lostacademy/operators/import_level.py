@@ -159,8 +159,8 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
     # Vegetation
     import_vegetation: BoolProperty(
         name="Vegetation",
-        description="Master switch for all vegetation elements",
-        default=True,
+        description="Master switch for all vegetation elements (can add thousands of objects; enable when needed)",
+        default=False,
     )
     import_trees: BoolProperty(
         name="Trees & Forest",
@@ -216,7 +216,7 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
     import_skybox: BoolProperty(
         name="Static Skybox Background (Experimental)",
         description="Camera-only upper sky; preserves lighting. Reference orientation, no atmosphere or clouds",
-        default=True,
+        default=False,
     )
     import_environment_lighting: BoolProperty(
         name="Environment Lighting Preview (Experimental)",
@@ -239,7 +239,7 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
     import_static_lights: BoolProperty(
         name="Import Static Lights",
         description="Create optional point lights from staticdeferredlights.lst using confirmed raw coordinates",
-        default=True,
+        default=False,
     )
     static_lights_mode: EnumProperty(
         name="Static Lights Mode",
@@ -270,7 +270,7 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
     import_mission_placeables: BoolProperty(
         name="Import Obelisks & Placeables",
         description="Import hardcoded client Obelisks, pedestals, client NPCs (fauna/critters), and placeables from mission_mission0.xml",
-        default=True,
+        default=False,
     )
     apply_mission_angles: BoolProperty(
         name="Apply Mission Angles",
@@ -280,7 +280,7 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
     import_particle_effects: BoolProperty(
         name="Import Particle Effects",
         description="Create ParticleEffect markers/sprites from entitycontexts*.lst and matching .prt libraries",
-        default=True,
+        default=False,
     )
     import_cga_entities: BoolProperty(
         name="Import CGA Entities",
@@ -307,17 +307,17 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
     import_npcs: BoolProperty(
         name="NPCs & World Spawns",
         description="Import authoritative NPC spawns from client_world XML",
-        default=True,
+        default=False,
     )
     import_npc_models: BoolProperty(
         name="Resolve & Load 3D NPC Models",
         description="Load 3D CGF meshes for monsters, humanoids, and Shugos",
-        default=True,
+        default=False,
     )
     animate_npcs: BoolProperty(
         name="Animate NPCs (Armatures & Idle CAF)",
         description="Build armature rigs, assign vertex skinning, and play looping idle animations on NPCs",
-        default=True,
+        default=False,
     )
     import_monsters: BoolProperty(
         name="Monsters & Hostiles",

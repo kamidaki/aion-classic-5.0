@@ -158,24 +158,7 @@ class LevelImportResult:
     npc_result: object | None = None
 
 
-def _apply_vegetation_wind_sway(collection, cgf_ref: str) -> None:
-    ref_lower = cgf_ref.lower()
-    is_veg = any(k in ref_lower for k in ("tree", "plant", "greens", "grass", "flower", "leaf", "bush", "fern", "vine", "weed"))
-    if not is_veg or collection is None:
-        return
 
-    import zlib
-    seed = (zlib.crc32(cgf_ref.encode("utf-8")) % 100) / 10.0
-
-    for obj in collection.all_objects:
-        if obj.type == "MESH" and "Aion_Wind" not in obj.modifiers:
-            try:
-                mod = obj.modifiers.new("Aion_Wind", type="SIMPLE_DEFORM")
-                mod.deform_method = "BEND"
-                drv = mod.driver_add("angle")
-                drv.driver.expression = f"sin(frame * 0.045 + {seed:.2f}) * 0.05 + sin(frame * 0.02 + {seed:.2f}) * 0.02"
-            except Exception:
-                pass
 
 
 def select_level_cgf_templates(
@@ -217,21 +200,21 @@ def import_level(
     import_props: bool = True,
     import_rocks: bool = True,
     import_interactive_objects: bool = True,
-    import_vegetation: bool = True,
+    import_vegetation: bool = False,
     import_trees: bool = True,
-    import_grass: bool = True,
+    import_grass: bool = False,
     import_bushes_flowers: bool = True,
     import_water: bool = True,
     import_textured_liquid_surface: bool = True,
     liquid_kind: str = LIQUID_KIND_AUTO,
     liquid_preset: str = LIQUID_PRESET_AUTO,
-    import_static_lights: bool = True,
+    import_static_lights: bool = False,
     static_lights_mode: str = STATIC_LIGHTS_MODE_POINT_LIGHT,
     static_lights_power: float = DEFAULT_STATIC_LIGHT_POWER,
-    import_mission_placeables: bool = True,
+    import_mission_placeables: bool = False,
     apply_mission_angles: bool = True,
     mission_placeables_limit: int | None = None,
-    import_particle_effects: bool = True,
+    import_particle_effects: bool = False,
     import_cga_entities: bool = True,
     animate_cga_controllers: bool = True,
     apply_smoothing_groups: bool = False,
@@ -241,16 +224,16 @@ def import_level(
     load_cgf: Callable | None = None,
     get_cgf_import_report: Callable | None = None,
     progress_callback: Callable[[LevelImportProgress], None] | None = None,
-    import_skybox: bool = True,
+    import_skybox: bool = False,
     skybox_time_option: str = "Daylight",
     import_environment_lighting: bool = True,
     environment_sun_energy: float = 2.0,
     environment_ambient_strength: float = 0.3,
     terrain_lod: int = 2,
     import_collision: bool = True,
-    import_npcs: bool = True,
-    import_npc_models: bool = True,
-    animate_npcs: bool = True,
+    import_npcs: bool = False,
+    import_npc_models: bool = False,
+    animate_npcs: bool = False,
     import_monsters: bool = True,
     import_friendly_npcs: bool = True,
     import_ambient_creatures: bool = True,
@@ -289,12 +272,22 @@ def import_level(
         import_npcs = False
         import_collision = True
 
-    from materials.material_manager import clean_material_cache
+    from materials.material_manager import clean_material_cache, set_session_pak_catalog
     from materials.texture_loader import clear_texture_cache, purge_orphan_datablocks
 
     clean_material_cache()
     clear_texture_cache()
     purge_orphan_datablocks()
+
+    try:
+        from core.pak_engine import get_pak_resolver
+        resolver = get_pak_resolver(client_root)
+        if resolver:
+            resolver.ensure_catalog()
+            set_session_pak_catalog(resolver.catalog)
+    except Exception:
+        pass
+
     try:
         from .armature_importer import ArmatureCache
         ArmatureCache.get().clear()
@@ -571,8 +564,8 @@ def import_level(
             new_collections,
             preview_collection,
         )
-        if imported_collection is not None:
-            apply_vegetation_wind_sway(imported_collection, template.normalized_reference)
+        # NOTE: Wind sway is NOT applied here — Python expression drivers freeze PLAY.
+        # Static SIMPLE_DEFORM is applied by wind_system only on explicit user request.
         placement_limit = (
             max_placements_per_template
             if limited_preview
@@ -910,6 +903,11 @@ def import_level(
     advance_progress("complete", "Level import complete")
     try:
         bpy.context.view_layer.update()
+    except Exception:
+        pass
+    try:
+        from materials.material_manager import set_session_pak_catalog
+        set_session_pak_catalog(None)
     except Exception:
         pass
     import gc

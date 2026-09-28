@@ -125,8 +125,8 @@ class AionSceneSettings(bpy.types.PropertyGroup):
     # Vegetation
     import_vegetation: BoolProperty(
         name="Vegetation",
-        description="Master switch for all vegetation elements",
-        default=True,
+        description="Master switch for all vegetation elements (can add thousands of objects; enable when needed)",
+        default=False,
     )
     import_trees: BoolProperty(
         name="Trees & Forest",
@@ -170,19 +170,19 @@ class AionSceneSettings(bpy.types.PropertyGroup):
     import_skybox: BoolProperty(
         name="Skybox Background",
         description="Import camera skybox background and physical skydome",
-        default=True,
+        default=False,
     )
     import_static_lights: BoolProperty(
         name="Static Deferred Lights",
         description="Import point lights from staticdeferredlights.lst",
-        default=True,
+        default=False,
     )
 
     # Effects & Dynamics
     import_particle_effects: BoolProperty(
         name="Particle Effects",
         description="Import particle effects and sprites from entitycontexts",
-        default=True,
+        default=False,
     )
     import_cga_entities: BoolProperty(
         name="CGA Dynamic Entities",
@@ -197,7 +197,7 @@ class AionSceneSettings(bpy.types.PropertyGroup):
     import_placeables: BoolProperty(
         name="Obelisks & Placeables",
         description="Import obelisks, pedestals, and mission placeables",
-        default=True,
+        default=False,
     )
     import_collision: BoolProperty(
         name="Collision Geometry",
@@ -209,17 +209,17 @@ class AionSceneSettings(bpy.types.PropertyGroup):
     import_npcs: BoolProperty(
         name="NPCs & World Spawns",
         description="Import authoritative NPC spawns from client_world XML",
-        default=True,
+        default=False,
     )
     import_npc_models: BoolProperty(
         name="Resolve & Load 3D NPC Models",
         description="Load 3D CGF meshes for monsters, humanoids, and Shugos",
-        default=True,
+        default=False,
     )
     animate_npcs: BoolProperty(
         name="Animate NPCs (Armatures & Idle CAF)",
         description="Build armature rigs, assign vertex skinning, and play looping idle animations on NPCs",
-        default=True,
+        default=False,
     )
     import_monsters: BoolProperty(
         name="Monsters & Hostiles",

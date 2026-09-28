@@ -21,11 +21,26 @@ from .texture_loader import load_texture_from_pak_bytes
 
 _MATERIAL_CACHE: Dict[str, str] = {}
 _TEXTURE_SLOT_CACHE: Dict[Tuple[str, str, str, str], str] = {}
+_SESSION_PAK_CATALOG = None
+
+
+def set_session_pak_catalog(catalog) -> None:
+    """Sets a shared PAK catalog index for the active level import session."""
+    global _SESSION_PAK_CATALOG
+    _SESSION_PAK_CATALOG = catalog
+
+
+def get_session_pak_catalog():
+    """Gets the active shared PAK catalog index."""
+    global _SESSION_PAK_CATALOG
+    return _SESSION_PAK_CATALOG
 
 
 def clean_material_cache() -> None:
+    global _SESSION_PAK_CATALOG
     _MATERIAL_CACHE.clear()
     _TEXTURE_SLOT_CACHE.clear()
+    _SESSION_PAK_CATALOG = None
 
 
 clear_cache = clean_material_cache
@@ -100,43 +115,28 @@ def resolve_texture_slot(
     # 4. PAK catalog byte extraction (for textures that are never extracted to disk)
     if not result and client_root:
         try:
-            from core.pak_engine import AionCatalogIndex
-            _pak_cat_key = os.path.normcase(os.path.abspath(client_root))
-            if not hasattr(resolve_texture_slot, "_pak_catalog_cache"):
-                resolve_texture_slot._pak_catalog_cache = {}
-            cat = resolve_texture_slot._pak_catalog_cache.get(_pak_cat_key)
+            cat = _SESSION_PAK_CATALOG
             if cat is None:
-                cat = AionCatalogIndex(client_root)
-                # Index texture PAKs
-                import glob as _glob
-                tex_root = os.path.join(client_root, "textures")
-                if not os.path.isdir(tex_root):
-                    tex_root = os.path.join(client_root, "Textures")
-                if os.path.isdir(tex_root):
-                    for pak_f in _glob.glob(os.path.join(tex_root, "*.pak")):
-                        cat.index_pak(pak_f)
-                # Also index object texture paks if within objects folder
-                obj_root = os.path.join(client_root, "objects")
-                if not os.path.isdir(obj_root):
-                    obj_root = os.path.join(client_root, "Objects")
-                resolve_texture_slot._pak_catalog_cache[_pak_cat_key] = cat
-            # Try to extract by long name then by short name
-            for candidate in (tex_long, tex_name):
-                if not candidate:
-                    continue
-                rel = candidate.replace("\\", "/").lstrip("/")
-                dds_bytes = cat.extract_file(rel)
-                if not dds_bytes:
-                    dds_bytes = cat.extract_file(os.path.basename(rel))
-                if dds_bytes:
-                    img = load_texture_from_pak_bytes(rel, dds_bytes)
-                    if img and img.filepath:
-                        result = os.path.normcase(os.path.abspath(bpy.path.abspath(img.filepath)))
-                    elif img:
-                        # Packed — return a sentinel with the cache key
-                        result = f"__pak__:{rel}"
-                    if result:
-                        break
+                resolver = get_pak_resolver(client_root)
+                if resolver:
+                    cat = resolver.catalog
+
+            if cat is not None:
+                for candidate in (tex_long, tex_name):
+                    if not candidate:
+                        continue
+                    rel = candidate.replace("\\", "/").lstrip("/")
+                    dds_bytes = cat.extract_file(rel)
+                    if not dds_bytes:
+                        dds_bytes = cat.extract_file(os.path.basename(rel))
+                    if dds_bytes:
+                        img = load_texture_from_pak_bytes(rel, dds_bytes)
+                        if img and img.filepath:
+                            result = os.path.normcase(os.path.abspath(bpy.path.abspath(img.filepath)))
+                        elif img:
+                            result = f"__pak__:{rel}"
+                        if result:
+                            break
         except Exception:
             pass
 

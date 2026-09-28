@@ -67,8 +67,8 @@ def create_water_plane(
     # Subdivide so wave modifier and displacement have physical vertices
     subdiv = water_object.modifiers.new("Aion_WaterSubdiv", type="SUBSURF")
     subdiv.subdivision_type = "SIMPLE"
-    subdiv.levels = 4
-    subdiv.render_levels = 4
+    subdiv.levels = 1
+    subdiv.render_levels = 1
 
     context.scene.collection.objects.link(water_object)
 

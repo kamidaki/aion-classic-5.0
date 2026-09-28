@@ -74,6 +74,9 @@ class AION_PT_level_io(AION_PT_base, bpy.types.Panel):
         row.prop(settings, "import_lod3", text="LOD 3")
         box_opt.prop(settings, "use_mesh_instancing")
         box_opt.prop(settings, "optimize_material_preview")
+        row_clean = box_opt.row(align=True)
+        row_clean.operator("aion.clean_wind_drivers", text="Fix Playback Freeze", icon="PLAY")
+        row_clean.operator("aion.purge_unused_data", text="Purge RAM", icon="TRASH")
 
         # Category Switches
         box_cat = layout.box()
