@@ -290,10 +290,11 @@ def import_level(
         import_collision = True
 
     from materials.material_manager import clean_material_cache
-    from materials.texture_loader import clear_texture_cache
+    from materials.texture_loader import clear_texture_cache, purge_orphan_datablocks
 
     clean_material_cache()
     clear_texture_cache()
+    purge_orphan_datablocks()
     try:
         from .armature_importer import ArmatureCache
         ArmatureCache.get().clear()
@@ -422,6 +423,25 @@ def import_level(
     for cat_name, cat_col in category_collections.items():
         if cat_name != "ROOT":
             preview_collection.children.link(cat_col)
+
+    templates_col = category_collections[".TEMPLATES"]
+    templates_col.hide_viewport = True
+    templates_col.hide_render = True
+
+    def _exclude_layer_col(layer_col, target_col):
+        if layer_col.collection == target_col:
+            layer_col.exclude = True
+            return True
+        for child in layer_col.children:
+            if _exclude_layer_col(child, target_col):
+                return True
+        return False
+
+    if hasattr(context, "view_layer") and context.view_layer and hasattr(context.view_layer, "layer_collection"):
+        try:
+            _exclude_layer_col(context.view_layer.layer_collection, templates_col)
+        except Exception:
+            pass
 
     objects_before = len(bpy.data.objects)
     meshes_before = len(bpy.data.meshes)

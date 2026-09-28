@@ -71,6 +71,23 @@ def create_level_cgf_placement_instances(
     mesh_objs = [o for o in template_collection.objects if o.type == "MESH"] if template_collection else []
     can_use_direct_mesh = use_mesh_instancing and (len(mesh_objs) >= 1)
 
+    # Determine link target collection
+    category = getattr(placements[0], "category", "PROPS") if placements else "PROPS"
+    if isinstance(target_collection, dict):
+        dest_col = target_collection.get(category) or target_collection.get("PROPS") or target_collection.get("ROOT")
+        # Partition placements into sub-collections per template when multiple placements exist to prevent Outliner lockup
+        if template_collection and len(placements) > 1 and hasattr(dest_col, "children"):
+            sub_name = f"{template_collection.name}_inst"
+            sub_col = dest_col.children.get(sub_name)
+            if sub_col is None:
+                sub_col = bpy.data.collections.new(sub_name)
+                dest_col.children.link(sub_col)
+            link_target = sub_col
+        else:
+            link_target = dest_col
+    else:
+        link_target = target_collection
+
     for placement in placements[:max_placements]:
         try:
             matrix = _placement_matrix(placement)
@@ -86,12 +103,6 @@ def create_level_cgf_placement_instances(
             )
             continue
         summary = _summarize_transform(placement, matrix)
-
-        category = getattr(placement, "category", "PROPS")
-        if isinstance(target_collection, dict):
-            dest_col = target_collection.get(category) or target_collection.get("PROPS") or target_collection.get("ROOT")
-        else:
-            dest_col = target_collection
 
         if can_use_direct_mesh:
             if len(mesh_objs) == 1:
@@ -111,7 +122,7 @@ def create_level_cgf_placement_instances(
                     matrix=matrix,
                     mesh_offset=mesh_offset,
                 )
-                dest_col.objects.link(instance)
+                link_target.objects.link(instance)
                 instances.append(instance)
             else:
                 # Multi-mesh template: direct GPU mesh instancing for all sub-meshes
@@ -130,7 +141,7 @@ def create_level_cgf_placement_instances(
                     matrix=matrix,
                     mesh_offset=mesh_offset,
                 )
-                dest_col.objects.link(root_instance)
+                link_target.objects.link(root_instance)
                 instances.append(root_instance)
 
                 try:
@@ -146,7 +157,7 @@ def create_level_cgf_placement_instances(
                     sub_inst.matrix_world = matrix @ sub_mesh.matrix_world
                     sub_inst.parent = root_instance
                     sub_inst.matrix_parent_inverse = inv_root_mat
-                    dest_col.objects.link(sub_inst)
+                    link_target.objects.link(sub_inst)
                     instances.append(sub_inst)
         else:
             instance = bpy.data.objects.new(
@@ -164,7 +175,7 @@ def create_level_cgf_placement_instances(
                 cgf_reference=placement.cgf_reference,
                 matrix=matrix,
             )
-            dest_col.objects.link(instance)
+            link_target.objects.link(instance)
             instances.append(instance)
 
         summaries.append(summary)

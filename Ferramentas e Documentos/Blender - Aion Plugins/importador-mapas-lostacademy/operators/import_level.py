@@ -169,8 +169,8 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
     )
     import_grass: BoolProperty(
         name="Grass & Cover",
-        description="Import grass fields, weeds, and ground cover",
-        default=True,
+        description="Import grass fields, weeds, and ground cover (over 10,000 objects on full maps; enable if required)",
+        default=False,
     )
     import_bushes_flowers: BoolProperty(
         name="Bushes & Flowers",
@@ -299,8 +299,8 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
     )
     import_collision: BoolProperty(
         name="Collision Geometry",
-        description="Import invisible collision walls and walk obstacles",
-        default=True,
+        description="Import invisible collision walls and walk obstacles (recommended False for visual scene editing)",
+        default=False,
     )
 
     # NPCs & World Spawns (Section 7)
@@ -343,18 +343,18 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
     )
     import_lod1: BoolProperty(
         name="LOD 1 (Medium Detail)",
-        description="Import level-of-detail 1 models",
-        default=True,
+        description="Import level-of-detail 1 models (disabled by default to prevent overlapping duplicates)",
+        default=False,
     )
     import_lod2: BoolProperty(
         name="LOD 2 (Low Detail)",
         description="Import level-of-detail 2 models",
-        default=True,
+        default=False,
     )
     import_lod3: BoolProperty(
         name="LOD 3 (Distant Detail)",
         description="Import level-of-detail 3 models",
-        default=True,
+        default=False,
     )
 
     # Engine Performance Options
@@ -392,6 +392,30 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
         min=1,
         max=60,
     )
+
+    def invoke(self, context, event):
+        settings = getattr(context.scene, "aion_settings", None)
+        if settings:
+            for prop_name in (
+                "client_root", "terrain_lod",
+                "import_terrain", "import_terrain_textures", "import_terrain_blend_attributes",
+                "import_terrain_blend_shader", "import_terrain_shadows",
+                "import_buildings", "import_structures", "import_doors_portals",
+                "import_props", "import_rocks", "import_interactive_objects",
+                "import_vegetation", "import_trees", "import_grass", "import_bushes_flowers",
+                "import_water", "import_textured_liquid_surface",
+                "import_lighting", "import_environment_lighting", "import_skybox", "import_static_lights",
+                "import_collision", "import_npcs", "import_npc_models", "animate_npcs",
+                "import_monsters", "import_friendly_npcs", "import_ambient_creatures",
+                "import_lod0", "import_lod1", "import_lod2", "import_lod3",
+                "use_mesh_instancing", "optimize_material_preview", "multithreaded_io",
+            ):
+                if hasattr(settings, prop_name) and hasattr(self, prop_name):
+                    try:
+                        setattr(self, prop_name, getattr(settings, prop_name))
+                    except Exception:
+                        pass
+        return super().invoke(context, event)
 
     def execute(self, context):
         raw_path = str(self.filepath).strip() if getattr(self, "filepath", None) else ""
@@ -431,10 +455,11 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
             return {"CANCELLED"}
 
         from materials.material_manager import clean_material_cache
-        from materials.texture_loader import clear_texture_cache
+        from materials.texture_loader import clear_texture_cache, purge_orphan_datablocks
 
         clean_material_cache()
         clear_texture_cache()
+        purge_orphan_datablocks()
 
         visual_mode = self.import_mode == "VISUAL"
         effective_import_terrain = self.import_terrain if visual_mode else True

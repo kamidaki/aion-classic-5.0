@@ -135,8 +135,8 @@ class AionSceneSettings(bpy.types.PropertyGroup):
     )
     import_grass: BoolProperty(
         name="Grass & Cover",
-        description="Import grass fields, weeds, and ground cover",
-        default=True,
+        description="Import dense grass fields and weeds (over 10,000 objects on full maps; enable if detailed grass cover is required)",
+        default=False,
     )
     import_bushes_flowers: BoolProperty(
         name="Bushes & Flowers",
@@ -201,8 +201,8 @@ class AionSceneSettings(bpy.types.PropertyGroup):
     )
     import_collision: BoolProperty(
         name="Collision Geometry",
-        description="Import invisible collision walls and walk obstacles",
-        default=True,
+        description="Import invisible collision walls and walk obstacles (recommended False for visual scene editing)",
+        default=False,
     )
 
     # NPCs & World Spawns (Section 7)
@@ -245,18 +245,18 @@ class AionSceneSettings(bpy.types.PropertyGroup):
     )
     import_lod1: BoolProperty(
         name="LOD 1 (Medium Detail)",
-        description="Import level-of-detail 1 models",
-        default=True,
+        description="Import level-of-detail 1 models (disabled by default to prevent overlapping duplicates)",
+        default=False,
     )
     import_lod2: BoolProperty(
         name="LOD 2 (Low Detail)",
         description="Import level-of-detail 2 models",
-        default=True,
+        default=False,
     )
     import_lod3: BoolProperty(
         name="LOD 3 (Distant Detail)",
         description="Import level-of-detail 3 models",
-        default=True,
+        default=False,
     )
 
     # Engine Performance Options

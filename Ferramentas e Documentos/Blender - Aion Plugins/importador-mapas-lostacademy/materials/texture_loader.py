@@ -58,12 +58,6 @@ def load_texture_image(
     if image is None:
         return None
 
-    # Keep image pinned in memory so viewport navigation never unloads it
-    try:
-        image.use_fake_user = True
-    except Exception:
-        pass
-
     # Configure color space
     try:
         if colorspace == "Non-Color":
@@ -85,4 +79,26 @@ def clear_texture_cache() -> None:
     _IMAGE_CACHE.clear()
 
 
+def purge_orphan_datablocks() -> None:
+    """Purges unreferenced images and materials from Blender's memory."""
+    try:
+        # Purge unused images that have no users
+        for img in list(bpy.data.images):
+            try:
+                if img.users == 0 and not img.use_fake_user:
+                    bpy.data.images.remove(img)
+            except Exception:
+                pass
+        # Purge unused materials
+        for mat in list(bpy.data.materials):
+            try:
+                if mat.users == 0 and not mat.use_fake_user:
+                    bpy.data.materials.remove(mat)
+            except Exception:
+                pass
+    except Exception:
+        pass
+
+
 clear_cache = clear_texture_cache
+
