@@ -23,11 +23,16 @@ class AnimationPlayer:
             bpy.ops.screen.animation_play()
 
     @staticmethod
-    def stop() -> None:
-        """Stops playback and rewinds to frame start."""
+    def stop(rig_obj: Optional[bpy.types.Object] = None) -> None:
+        """Stops playback, rewinds to frame start, and cleanly resets pose bones if rig provided."""
         if bpy.context.screen.is_animation_playing:
             bpy.ops.screen.animation_play()
         bpy.context.scene.frame_set(bpy.context.scene.frame_start)
+        if rig_obj and getattr(rig_obj, "type", None) == "ARMATURE" and getattr(rig_obj, "pose", None):
+            for pb in rig_obj.pose.bones:
+                pb.location = (0.0, 0.0, 0.0)
+                pb.rotation_quaternion = (1.0, 0.0, 0.0, 0.0)
+                pb.scale = (1.0, 1.0, 1.0)
 
     @staticmethod
     def restart() -> None:

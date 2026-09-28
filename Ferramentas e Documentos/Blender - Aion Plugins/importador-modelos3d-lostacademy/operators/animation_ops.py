@@ -41,7 +41,16 @@ class AION_OT_stop_animation(bpy.types.Operator):
     bl_options = {"INTERNAL"}
 
     def execute(self, context: bpy.types.Context) -> set[str]:
-        AnimationPlayer.stop()
+        rig_obj = None
+        if context.active_object and context.active_object.type == "ARMATURE":
+            rig_obj = context.active_object
+        else:
+            stage_col = ViewerStage.get_or_create_stage_collection()
+            for o in stage_col.objects:
+                if o.type == "ARMATURE":
+                    rig_obj = o
+                    break
+        AnimationPlayer.stop(rig_obj)
         return {"FINISHED"}
 
 

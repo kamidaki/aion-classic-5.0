@@ -39,13 +39,14 @@ class SkeletonProvider(ISkeletonProvider):
         edit_bones: Dict[int, bpy.types.EditBone] = {}
 
         # 1. Precalculate 4x4 bind matrices from bone_initial_pos (cm -> meters)
+        # CryEngine 1 chunk 0xCCCC0012 stores columns: col0=m[0..2], col1=m[3..5], col2=m[6..8], pos=m[9..11]
         bind_matrices: List[Matrix] = []
         for i, m in enumerate(bone_initial_pos):
             if m and len(m) >= 12:
                 rot_3x3 = Matrix((
-                    (m[0], m[1], m[2]),
-                    (m[3], m[4], m[5]),
-                    (m[6], m[7], m[8]),
+                    (m[0], m[3], m[6]),
+                    (m[1], m[4], m[7]),
+                    (m[2], m[5], m[8]),
                 ))
                 pos = Vector((m[9] / 100.0, m[10] / 100.0, m[11] / 100.0))
                 bind_mat = Matrix.Translation(pos) @ rot_3x3.to_4x4()
@@ -123,14 +124,13 @@ class SkeletonProvider(ISkeletonProvider):
 
         for idx, bone in enumerate(arm_data.bones):
             # Matrix in cm (head position at floats 9, 10, 11)
-            # Bone matrix in local / rest space
+            # Bone matrix in local / rest space stored with column-major rotation:
+            # col0: [m[0][0], m[1][0], m[2][0]], col1: [m[0][1], m[1][1], m[2][1]], col2: [m[0][2], m[1][2], m[2][2]]
             m = bone.matrix_local
-            # 4x3 row major:
-            # [m00, m01, m02, m10, m11, m12, m20, m21, m22, pos_x*100, pos_y*100, pos_z*100]
             mat_12 = (
-                m[0][0], m[0][1], m[0][2],
-                m[1][0], m[1][1], m[1][2],
-                m[2][0], m[2][1], m[2][2],
+                m[0][0], m[1][0], m[2][0],
+                m[0][1], m[1][1], m[2][1],
+                m[0][2], m[1][2], m[2][2],
                 bone.head_local.x * 100.0,
                 bone.head_local.y * 100.0,
                 bone.head_local.z * 100.0,

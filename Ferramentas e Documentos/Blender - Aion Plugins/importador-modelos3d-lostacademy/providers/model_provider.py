@@ -202,9 +202,9 @@ class ModelProvider(IModelProvider):
                         m = bone_initial_pos[i] if i < len(bone_initial_pos) else None
                         if m and len(m) >= 12:
                             rot_3x3 = Matrix((
-                                (m[0], m[1], m[2]),
-                                (m[3], m[4], m[5]),
-                                (m[6], m[7], m[8]),
+                                (m[0], m[3], m[6]),
+                                (m[1], m[4], m[7]),
+                                (m[2], m[5], m[8]),
                             ))
                             pos = Vector((m[9] / 100.0, m[10] / 100.0, m[11] / 100.0))
                             mat = Matrix.Translation(pos) @ rot_3x3.to_4x4()
@@ -398,13 +398,19 @@ class ModelProvider(IModelProvider):
         if rig_obj and load_animation and entry.model_path:
             cal_map, caf_bytes = self.client_prov.resolve_animation_asset(entry.model_path)
             if caf_bytes:
-                self.anim_prov.load_animation(
+                action = self.anim_prov.load_animation(
                     rig_obj=rig_obj,
                     caf_bytes=caf_bytes,
                     action_name=f"{entry.name}_Idle",
                     bone_names=bone_names,
                     bone_anim=bone_anim,
                 )
+                if action:
+                    start = int(action.frame_range[0])
+                    end = int(action.frame_range[1])
+                    from ..viewers.animation_player import AnimationPlayer
+                    AnimationPlayer.set_frame_range(start, end)
+                    AnimationPlayer.play()
 
         # Return root (Rig if present, otherwise first mesh)
         return rig_obj if rig_obj else (created_objects[0] if created_objects else None)
