@@ -14,8 +14,8 @@ import com.aionemu.gameserver.services.item.ItemComposeService;
 /**
  * C_START_ITEM_COMPOSE provável, decodificado 0x154 (cru 0x22E): fusão no Altar of Transcendence, aberto pelo quick menu, sem NPC.
  * <p>
- * Captura (2 de 2, 19 bytes): [D receita][H n][n x (D itemId, D quantidade)][D 0][C quantidade de fusões], com n = 1 e 6 itens. Com n = 1
- * o mesmo corpo também lê como [n x (D itemId, Q quantidade)][C], então os dois tamanhos são aceitos.
+ * Capturas com uma e duas fusões (19 bytes): [D receita][H n][n x (D itemId, D quantidade por fusão)][D 0][C quantidade de fusões].
+ * Com n = 1 o mesmo corpo também lê como [n x (D itemId, Q quantidade)][C], então os dois tamanhos são aceitos.
  */
 public class CM_ITEM_COMPOSE extends AionClientPacket {
 

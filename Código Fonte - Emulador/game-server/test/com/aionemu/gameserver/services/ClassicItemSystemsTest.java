@@ -342,6 +342,10 @@ class ClassicItemSystemsTest {
 		}, payload);
 	}
 
+	@Test void acquiredTitlePacketMatchesOfficialReturnTitleCapture() throws Exception {
+		assertArrayEquals(HexFormat.of().parseHex("06cc010000bb4c0f2e"), body(SM_TITLE_INFO.acquiredTitle(460, 0x2E0F4CBB)));
+	}
+
 	@Test void classicTitlePermilleModifierKeepsTenthsOfPercent() {
 		var movement = new com.aionemu.gameserver.model.stats.calc.AdditionStat(
 			com.aionemu.gameserver.model.stats.container.StatEnum.SPEED, 1000, null);

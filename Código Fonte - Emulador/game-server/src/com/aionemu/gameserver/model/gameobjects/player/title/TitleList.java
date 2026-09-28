@@ -82,6 +82,7 @@ public class TitleList {
 			else
 				PacketSendUtility.sendPacket(owner, SM_SYSTEM_MESSAGE.STR_MSG_GET_CASH_TITLE(tt.getL10n()));
 
+			PacketSendUtility.sendPacket(owner, SM_TITLE_INFO.acquiredTitle(titleId, owner.getObjectId()));
 			PacketSendUtility.sendPacket(owner, new SM_TITLE_INFO(owner));
 			return true;
 		}
@@ -104,7 +105,7 @@ public class TitleList {
 			return;
 		if (bonusTitleId == 0xFFFF)
 			bonusTitleId = -1;
-		PacketSendUtility.sendPacket(owner, new SM_TITLE_INFO(6, bonusTitleId));
+		PacketSendUtility.sendPacket(owner, SM_TITLE_INFO.selfTitle(owner.getCommonData().getTitleId(), bonusTitleId));
 		if (owner.getCommonData().getBonusTitleId() > 0) {
 			if (owner.getGameStats() != null) {
 				TitleChangeListener.onBonusTitleChange(owner.getGameStats(), owner.getCommonData().getBonusTitleId(), false);

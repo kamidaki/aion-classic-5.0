@@ -12,7 +12,7 @@ import com.aionemu.gameserver.network.aion.AionServerPacket;
 public class SM_TITLE_INFO extends AionServerPacket {
 
 	private TitleList titleList;
-	private int action; // 0: list, 1: self set, 3: broad set
+	private int action; // 0: list, 1: self set, 3: broad set, 6: acquired/returned title
 	private int titleId;
 	private int bonusTitleId;
 	private int playerObjId;
@@ -36,6 +36,15 @@ public class SM_TITLE_INFO extends AionServerPacket {
 		return packet;
 	}
 
+	/** Classic 5.0: evento enviado antes da lista quando um título é adquirido ou devolvido à coleção. */
+	public static SM_TITLE_INFO acquiredTitle(int titleId, int playerObjId) {
+		SM_TITLE_INFO packet = new SM_TITLE_INFO();
+		packet.action = 6;
+		packet.titleId = titleId;
+		packet.playerObjId = playerObjId;
+		return packet;
+	}
+
 	public SM_TITLE_INFO(Player player, int titleId) {
 		this.action = 3;
 		this.playerObjId = player.getObjectId();
@@ -51,11 +60,6 @@ public class SM_TITLE_INFO extends AionServerPacket {
 		this.action = 5;
 		this.playerObjId = player.getObjectId();
 		this.titleId = flag ? 1 : 0;
-	}
-
-	public SM_TITLE_INFO(int action, int bonusTitleId) {
-		this.action = action;
-		this.bonusTitleId = bonusTitleId;
 	}
 
 	@Override
@@ -91,8 +95,9 @@ public class SM_TITLE_INFO extends AionServerPacket {
 				writeD(playerObjId);
 				writeH(titleId);
 				break;
-			case 6:// Title wich will take BonusStats from
-				writeH(bonusTitleId);
+			case 6: // título adquirido/devolvido: captura Classic 5.0 [C 6][D título][D jogador]
+				writeD(titleId);
+				writeD(playerObjId);
 				break;
 		}
 	}

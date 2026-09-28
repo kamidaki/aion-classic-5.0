@@ -15,6 +15,7 @@ import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.items.storage.Storage;
 import com.aionemu.gameserver.model.templates.item.ItemComposeRecipe;
+import com.aionemu.gameserver.model.templates.item.ItemComposeRecipe.Grade;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ITEM_COMPOSE_EVENT;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ITEM_COMPOSE_RESULT;
@@ -51,7 +52,7 @@ public final class ItemComposeService {
 
 	/**
 	 * @param materials
-	 *          itemId -> quantidade para todas as fusões do pedido
+	 *          itemId -> quantidade consumida por fusão (o cliente envia a quantidade de fusões separadamente)
 	 */
 	public static void start(Player player, int recipeId, Map<Integer, Long> materials, int quantity) {
 		synchronized (player) {
@@ -86,13 +87,25 @@ public final class ItemComposeService {
 		long total = 0;
 		Storage inventory = player.getInventory();
 		for (Map.Entry<Integer, Long> material : materials.entrySet()) {
-			if (!recipe.isMaterial(material.getKey()) || inventory.getItemCountByItemId(material.getKey()) < material.getValue())
+			long required;
+			try {
+				required = Math.multiplyExact(material.getValue(), quantity);
+				total = Math.addExact(total, material.getValue());
+			} catch (ArithmeticException e) {
 				return MSG_NOT_ENOUGH_MATERIAL;
-			total += material.getValue();
+			}
+			if (!recipe.isMaterial(material.getKey()) || inventory.getItemCountByItemId(material.getKey()) < required)
+				return MSG_NOT_ENOUGH_MATERIAL;
 		}
-		if (total != (long) recipe.getMaterialCount() * quantity)
+		if (total != recipe.getMaterialCount())
 			return MSG_NOT_ENOUGH_MATERIAL;
-		if (inventory.getKinah() < recipe.getFee() * quantity)
+		long fee;
+		try {
+			fee = Math.multiplyExact(recipe.getFee(), quantity);
+		} catch (ArithmeticException e) {
+			return MSG_NOT_ENOUGH_FEE;
+		}
+		if (inventory.getKinah() < fee)
 			return MSG_NOT_ENOUGH_FEE;
 		if (!hasRoom(player, recipe, quantity))
 			return MSG_FULL_INVENTORY;
@@ -186,16 +199,21 @@ public final class ItemComposeService {
 				Storage inventory = requester.getInventory();
 				inventory.decreaseKinah(recipe.getFee() * quantity, ItemUpdateType.DEC_KINAH_ITEM_COMPOSE);
 				for (Map.Entry<Integer, Long> material : materials.entrySet())
-					if (!inventory.decreaseByItemId(material.getKey(), material.getValue(), ItemUpdateType.DEC_ITEM_COMPOSE_MATERIAL))
-						log.error("Altar: material {} x{} de {} sumiu depois da conferência", material.getKey(), material.getValue(), requester.getName());
+					if (!inventory.decreaseByItemId(material.getKey(), material.getValue() * quantity, ItemUpdateType.DEC_ITEM_COMPOSE_MATERIAL))
+						log.error("Altar: material {} x{} de {} sumiu depois da conferência", material.getKey(), material.getValue() * quantity,
+							requester.getName());
 
+				List<SM_ITEM_COMPOSE_RESULT.Reward> wireResults = new java.util.ArrayList<>(quantity);
 				Map<Integer, Long> rewards = new LinkedHashMap<>();
+				int upgraded = 0;
 				for (int i = 0; i < quantity; i++) {
 					ItemComposeRecipe.Result result = recipe.roll(ThreadLocalRandom.current().nextInt(10000));
+					wireResults.add(new SM_ITEM_COMPOSE_RESULT.Reward(result.getItemId(), result.getCount()));
+					if (result.getGrade() != Grade.SAME)
+						upgraded++;
 					rewards.merge(result.getItemId(), result.getCount(), Long::sum);
 				}
-				PacketSendUtility.sendPacket(requester, new SM_ITEM_COMPOSE_RESULT(recipe.getId(), quantity,
-					rewards.entrySet().stream().map(e -> new SM_ITEM_COMPOSE_RESULT.Reward(e.getKey(), e.getValue())).toList()));
+				PacketSendUtility.sendPacket(requester, new SM_ITEM_COMPOSE_RESULT(recipe.getId(), quantity, upgraded, wireResults));
 				rewards.forEach((itemId, count) -> ItemService.addItem(requester, itemId, count, true, RESULT_PREDICATE));
 				log.info("Altar: {} fez {}x receita {} ({}) -> {}", requester.getName(), quantity, recipe.getId(), recipe.getName(), rewards);
 				return true;

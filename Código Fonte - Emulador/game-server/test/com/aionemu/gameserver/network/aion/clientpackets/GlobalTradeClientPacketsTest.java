@@ -28,6 +28,12 @@ class GlobalTradeClientPacketsTest {
 		assertEquals(Map.of(186020497, 6L), field(titles, "materials"));
 		assertEquals(1, field(titles, "quantity"));
 
+		CM_ITEM_COMPOSE twoTitles = read(new CM_ITEM_COMPOSE(0x22E, EnumSet.of(State.IN_GAME)),
+			"1000000001009172160b060000000000000002");
+		assertNull(field(twoTitles, "invalid"));
+		assertEquals(Map.of(186020497, 6L), field(twoTitles, "materials"));
+		assertEquals(2, field(twoTitles, "quantity"));
+
 		CM_ITEM_COMPOSE manastones = read(new CM_ITEM_COMPOSE(0x22E, EnumSet.of(State.IN_GAME)), "050000000100cb38f409060000000000000001");
 		assertNull(field(manastones, "invalid"));
 		assertEquals(Map.of(167000267, 6L), field(manastones, "materials"));
