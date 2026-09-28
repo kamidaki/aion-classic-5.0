@@ -19,6 +19,7 @@ from ..providers.model_provider import ModelProvider
 from ..providers.mannequin_provider import MannequinProvider
 from ..viewers.display_modes import set_shading_mode
 from ..viewers.viewer_stage import ViewerStage
+from ..viewers.stage_layout import apply_lineup_offset
 
 logger = logging.getLogger(__name__)
 
@@ -157,7 +158,16 @@ class AION_OT_filter_assets(bpy.types.Operator):
         cat = None if settings.category_filter == "ALL" else settings.category_filter
         q = (settings.search_query or "").strip()
 
-        filtered = db.search(query=q, category=cat, limit=500)
+        filtered = db.search(query=q, category=cat, limit=200)
+
+        # Calcula quantos resultados foram omitidos pelo limite de 200
+        # sem fazer uma segunda query completa — usa o pool de candidatos da categoria.
+        if cat and cat != "ALL":
+            candidate_count = len(db._category_index.get(cat, []))
+        else:
+            candidate_count = db.total_count
+        omitted = max(0, candidate_count - len(filtered)) if len(filtered) >= 200 else 0
+
 
         # Populate asset_items
         settings.asset_items.clear()
@@ -178,7 +188,10 @@ class AION_OT_filter_assets(bpy.types.Operator):
         if settings.active_asset_index >= len(settings.asset_items):
             settings.active_asset_index = max(0, len(settings.asset_items) - 1)
 
+        settings.filter_omitted_count = omitted
+
         return {"FINISHED"}
+
 
 
 class AION_OT_load_asset(bpy.types.Operator):
@@ -242,7 +255,11 @@ class AION_OT_load_asset(bpy.types.Operator):
                     target_rig["aion_race"] = settings.character_race
                     target_rig["aion_class"] = settings.character_class
         else:
-            ViewerStage.clear_stage_objects()
+            # ISOLATED mode: respect multi_model_mode toggle
+            if not settings.multi_model_mode:
+                ViewerStage.clear_stage_objects()
+                model_prov.mat_prov.clear_cache()
+                model_prov.tex_prov.clear_cache()
 
         if settings.studio_lighting and not any(o.type == "LIGHT" for o in stage_col.objects):
             ViewerStage.setup_studio_lighting()
@@ -277,11 +294,17 @@ class AION_OT_load_asset(bpy.types.Operator):
             self.report({"ERROR"}, f"Não foi possível carregar a geometria de {entry.name}.")
             return {"CANCELLED"}
 
+        # Apply stage layout offset (LINEUP = beside existing, FOCUS = at origin)
+        if settings.preview_mode == "ISOLATED":
+            layout_mode = "LINEUP" if settings.multi_model_mode else "FOCUS"
+            apply_lineup_offset(root_obj, mode=layout_mode)
+
         # 3. Update active settings metadata
         settings.active_asset_id = entry.asset_id
         settings.active_asset_name = entry.name
         settings.active_category = entry.category
         settings.active_model_path = entry.model_path
+        settings.active_asset_path = entry.model_path
         settings.active_skeleton_path = entry.skeleton_path or ""
         settings.active_cal_path = entry.cal_path or ""
         settings.active_is_modified = entry.is_modified
@@ -346,6 +369,39 @@ class AION_OT_load_asset(bpy.types.Operator):
         if settings.camera_auto_frame:
             ViewerStage.frame_object(root_obj)
 
+        # 6. Auto-discover sounds for the loaded model
+        try:
+            from ..providers.sound_provider import SoundProvider
+            sp = SoundProvider.get(client_prov.catalog, Path(settings.client_path))
+            sounds = sp.get_sounds_for_model(entry)
+            settings.model_sounds.clear()
+            for s in sounds:
+                item = settings.model_sounds.add()
+                item.name = s.get("name", "")
+                item.file = s.get("file", "")
+                item.category = s.get("category", "EFEITO")
+                item.anim_name = s.get("anim_name", "")
+                item.when = float(s.get("when", 0.0))
+            settings.active_sound_index = 0
+        except Exception as e:
+            logger.debug("Sound auto-discovery: %s", e)
+
+        # 7. Apply VFX if enabled
+        if settings.enable_vfx and root_obj:
+            try:
+                from ..providers.effect_provider import EffectProvider
+                EffectProvider.get().apply_vfx(
+                    root_obj=root_obj,
+                    element=settings.vfx_element,
+                    intensity=settings.vfx_intensity,
+                    show_glow=settings.vfx_show_glow,
+                    show_lights=settings.vfx_show_lights,
+                    show_particles=settings.vfx_show_particles,
+                )
+            except Exception as e:
+                logger.debug("VFX auto-apply: %s", e)
+
+
         set_shading_mode("MATERIAL")
 
         self.report({"INFO"}, f"Modelo {entry.name} ({entry.category}) carregado!")
@@ -367,6 +423,52 @@ class AION_OT_clear_stage(bpy.types.Operator):
         settings.active_anims.clear()
         self.report({"INFO"}, "Palco do visualizador limpo com sucesso.")
         return {"FINISHED"}
+
+
+class AION_OT_remove_active_model(bpy.types.Operator):
+    """Removes the active or selected model from the viewer stage."""
+    bl_idname = "aion_model.remove_active_model"
+    bl_label = "Remover Modelo Selecionado"
+    bl_description = "Remove o modelo atualmente selecionado do palco"
+    bl_options = {"REGISTER", "UNDO"}
+
+    def execute(self, context: bpy.types.Context) -> set[str]:
+        active_obj = context.active_object
+        stage_col = ViewerStage.get_or_create_stage_collection()
+        target_rig = None
+        if active_obj:
+            if active_obj in stage_col.objects.values():
+                target_rig = active_obj if active_obj.type == "ARMATURE" else active_obj.parent
+            elif active_obj.parent and active_obj.parent in stage_col.objects.values():
+                target_rig = active_obj.parent
+
+        if not target_rig:
+            stage_rigs = [o for o in stage_col.objects if o.type == "ARMATURE"]
+            if stage_rigs:
+                target_rig = stage_rigs[-1]
+
+        if not target_rig:
+            self.report({"WARNING"}, "Nenhum modelo do palco selecionado para remoção.")
+            return {"CANCELLED"}
+
+        to_delete = [target_rig] + list(target_rig.children)
+        for obj in to_delete:
+            if obj.type == "MESH" and obj.data:
+                mesh_data = obj.data
+                bpy.data.objects.remove(obj, do_unlink=True)
+                if mesh_data.users == 0:
+                    bpy.data.meshes.remove(mesh_data)
+            elif obj.type == "ARMATURE" and obj.data:
+                arm_data = obj.data
+                bpy.data.objects.remove(obj, do_unlink=True)
+                if arm_data.users == 0:
+                    bpy.data.armatures.remove(arm_data)
+            else:
+                bpy.data.objects.remove(obj, do_unlink=True)
+
+        self.report({"INFO"}, "Modelo removido do palco com sucesso.")
+        return {"FINISHED"}
+
 
 
 class AION_OT_load_class_preset(bpy.types.Operator):
@@ -496,6 +598,7 @@ CLASSES = (
     AION_OT_filter_assets,
     AION_OT_load_asset,
     AION_OT_clear_stage,
+    AION_OT_remove_active_model,
     AION_OT_load_class_preset,
     AION_OT_equip_selected_asset,
 )

@@ -74,13 +74,21 @@ class MaterialProvider(IMaterialProvider):
         """Constructs a Principled BSDF material tree matching Aion shader properties."""
         clean_name = material_name.split("(")[0].strip() or "Aion_Material"
         cached = self._material_cache.get(clean_name)
-        if cached and cached.name in bpy.data.materials:
-            return cached
+        if cached:
+            try:
+                if cached.name in bpy.data.materials and cached.node_tree:
+                    return cached
+            except ReferenceError:
+                self._material_cache.pop(clean_name, None)
 
         existing = bpy.data.materials.get(clean_name)
-        if existing and existing.node_tree and len(existing.node_tree.nodes) > 1:
-            self._material_cache[clean_name] = existing
-            return existing
+        if existing:
+            try:
+                if existing.name and existing.node_tree and len(existing.node_tree.nodes) > 1:
+                    self._material_cache[clean_name] = existing
+                    return existing
+            except ReferenceError:
+                pass
 
         mat = bpy.data.materials.new(name=clean_name)
         mat.use_nodes = True
@@ -263,3 +271,8 @@ class MaterialProvider(IMaterialProvider):
             params["two_sided"] = not mat.use_backface_culling
 
         return params
+
+    def clear_cache(self) -> None:
+        """Clears stale in-memory material references."""
+        self._material_cache.clear()
+

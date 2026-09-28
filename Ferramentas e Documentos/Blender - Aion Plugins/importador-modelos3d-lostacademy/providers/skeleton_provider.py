@@ -74,6 +74,15 @@ class SkeletonProvider(ISkeletonProvider):
                 edit_bones[i].parent = edit_bones[pid]
 
         bpy.ops.object.mode_set(mode="OBJECT")
+
+        # Store ctrl_id as custom property on each bone for animation lookup
+        for i, b_info in enumerate(bone_anim):
+            b_name = bone_names[i] if i < len(bone_names) else None
+            if b_name and b_name in rig_obj.data.bones:
+                cid = int(b_info.get("ctrl_id", 0))
+                cid = cid if cid < 0x80000000 else cid - 0x100000000
+                rig_obj.data.bones[b_name]["ctrl_id"] = cid
+
         return rig_obj
 
     def apply_skin_weights(
@@ -139,7 +148,11 @@ class SkeletonProvider(ISkeletonProvider):
 
             pid = name_to_idx.get(bone.parent.name, -1) if bone.parent else -1
             nch = len(bone.children)
-            ctrl_id = binascii.crc32(bone.name.encode("latin-1"))
+            stored_cid = bone.get("ctrl_id")
+            if stored_cid is not None:
+                ctrl_id = int(stored_cid) & 0xFFFFFFFF
+            else:
+                ctrl_id = binascii.crc32(bone.name.encode("latin-1"))
 
             bone_anim.append({
                 "bone_id": idx,

@@ -4,10 +4,15 @@ Provides fast O(1) lookups, sub-millisecond full-text search, and category filte
 """
 
 from __future__ import annotations
+import gzip
 import json
+import logging
 import time
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
+
+logger = logging.getLogger(__name__)
+
 
 try:
     from config.settings import INDEX_CACHE_FILENAME
@@ -144,7 +149,12 @@ class AssetDatabase:
         return client_root / INDEX_CACHE_FILENAME
 
     def save_cache(self, client_root: Path) -> bool:
-        """Serializes current index to disk cache for fast reloading."""
+        """Serializes current index to disk cache for fast reloading.
+
+        Usa ``separators=(',', ':')`` para eliminar whitespace desnecessário.
+        Quando o JSON gerado supera 10 MB, salva em formato comprimido ``.json.gz``
+        e remove o arquivo ``.json`` anterior (se existir) para evitar duplicatas.
+        """
         try:
             cache_file = self.get_cache_file(client_root)
             data = {
@@ -154,19 +164,66 @@ class AssetDatabase:
                 "total_entries": len(self._entries),
                 "entries": [e.to_dict() for e in self._entries.values()],
             }
-            cache_file.write_text(json.dumps(data, indent=2), encoding="utf-8")
+            # Gera JSON compacto (sem espaços/newlines)
+            raw_json = json.dumps(data, separators=(",", ":"))
+            raw_bytes = raw_json.encode("utf-8")
+
+            _10MB = 10 * 1024 * 1024
+            if len(raw_bytes) > _10MB:
+                # Salva comprimido
+                gz_file = cache_file.with_suffix(cache_file.suffix + ".gz")
+                with gzip.open(gz_file, "wb") as fgz:
+                    fgz.write(raw_bytes)
+                # Remove o arquivo JSON descomprimido anterior para não desperdiçar espaço
+                if cache_file.is_file():
+                    cache_file.unlink(missing_ok=True)
+                logger.info(
+                    "Cache salvo comprimido: %s (%.1f MB → %.1f MB)",
+                    gz_file.name,
+                    len(raw_bytes) / 1024 / 1024,
+                    gz_file.stat().st_size / 1024 / 1024,
+                )
+            else:
+                cache_file.write_bytes(raw_bytes)
             return True
         except Exception:
             return False
 
     def load_cache(self, client_root: Path) -> bool:
-        """Loads index from disk cache if valid."""
+        """Loads index from disk cache if valid.
+
+        Suporta ambos os formatos: ``.json`` e ``.json.gz``.
+        Emite warning quando o arquivo descomprimido supera 50 MB.
+        """
         cache_file = self.get_cache_file(client_root)
-        if not cache_file.is_file():
+        gz_file = cache_file.with_suffix(cache_file.suffix + ".gz")
+
+        _50MB = 50 * 1024 * 1024
+
+        raw_bytes: Optional[bytes] = None
+        if gz_file.is_file():
+            # Prefere o formato comprimido
+            try:
+                with gzip.open(gz_file, "rb") as fgz:
+                    raw_bytes = fgz.read()
+            except Exception:
+                raw_bytes = None
+        if raw_bytes is None and cache_file.is_file():
+            file_size = cache_file.stat().st_size
+            if file_size > _50MB:
+                logger.warning(
+                    "Cache JSON não comprimido muito grande: %.1f MB (%s). "
+                    "Considere reescanear para gerar cache .gz.",
+                    file_size / 1024 / 1024,
+                    cache_file.name,
+                )
+            raw_bytes = cache_file.read_bytes()
+
+        if raw_bytes is None:
             return False
 
         try:
-            content = json.loads(cache_file.read_text(encoding="utf-8"))
+            content = json.loads(raw_bytes.decode("utf-8"))
             entries = content.get("entries", [])
             self.clear()
             self.client_root = client_root
@@ -180,6 +237,7 @@ class AssetDatabase:
             return True
         except Exception:
             return False
+
 
     def scan_client(self, client_root: Path, max_assets: Optional[int] = None) -> int:
         """Scans the client and populates the database."""

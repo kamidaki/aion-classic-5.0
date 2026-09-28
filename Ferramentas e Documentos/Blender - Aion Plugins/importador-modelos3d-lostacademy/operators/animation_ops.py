@@ -54,6 +54,22 @@ class AION_OT_stop_animation(bpy.types.Operator):
         return {"FINISHED"}
 
 
+def _find_caf_bytes(client_prov, caf_rel_path: str, source_model_path: str = "") -> Optional[bytes]:
+    """Resolve CAF bytes using client provider's find_caf_bytes with fallback."""
+    if hasattr(client_prov, "find_caf_bytes"):
+        return client_prov.find_caf_bytes(caf_rel_path, source_model_path=source_model_path)
+
+    catalog = client_prov.catalog
+    data = catalog.extract_file(caf_rel_path)
+    if data:
+        return data
+    caf_name = Path(caf_rel_path).name
+    data = catalog.extract_file(caf_name)
+    if data:
+        return data
+    return None
+
+
 class AION_OT_switch_animation(bpy.types.Operator):
     """Switches the active animation on the loaded model armature."""
     bl_idname = "aion_model.switch_animation"
@@ -101,12 +117,9 @@ class AION_OT_switch_animation(bpy.types.Operator):
             self.report({"ERROR"}, "Provedor do cliente não disponível.")
             return {"CANCELLED"}
 
-        # Extract CAF bytes
-        client_prov.ensure_category_paks_indexed(caf_rel)
-        caf_bytes = client_prov.catalog.extract_file(caf_rel)
-        if not caf_bytes:
-            caf_name = Path(caf_rel).name
-            caf_bytes = client_prov.catalog.extract_file(caf_name)
+        # Extract CAF bytes using robust multi-strategy resolver
+        source_model = getattr(settings, "active_model_path", "") or getattr(settings, "active_asset_path", "")
+        caf_bytes = _find_caf_bytes(client_prov, caf_rel, source_model_path=source_model)
 
         if not caf_bytes:
             self.report({"ERROR"}, f"Arquivo de animação CAF '{caf_rel}' não encontrado nos PAKs do cliente.")

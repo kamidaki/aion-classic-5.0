@@ -98,20 +98,42 @@ class AnimationProvider(IAnimationProvider):
 
         # Map controller IDs to bone names via CRC32
         ctrl_to_bone: Dict[int, str] = {}
+
+        def register_cid(raw_id: Any, bone_name: str) -> None:
+            if raw_id is None:
+                return
+            try:
+                c = int(raw_id)
+            except (ValueError, TypeError):
+                return
+            ctrl_to_bone[c] = bone_name
+            ctrl_to_bone[c & 0xFFFFFFFF] = bone_name
+            s = c if c < 0x80000000 else c - 0x100000000
+            ctrl_to_bone[s] = bone_name
+
         if bone_anim and bone_names:
             for i, b_info in enumerate(bone_anim):
                 cid = b_info.get("ctrl_id")
                 if cid is not None and i < len(bone_names):
-                    ctrl_to_bone[cid] = bone_names[i]
+                    register_cid(cid, bone_names[i])
 
         if rig_obj.data and hasattr(rig_obj.data, "bones"):
             for b_name in rig_obj.data.bones.keys():
-                ctrl_to_bone[binascii.crc32(b_name.encode("latin-1"))] = b_name
-                ctrl_to_bone[binascii.crc32(b_name.lower().encode("latin-1"))] = b_name
+                register_cid(binascii.crc32(b_name.encode("latin-1")), b_name)
+                register_cid(binascii.crc32(b_name.lower().encode("latin-1")), b_name)
+
+        # Also check custom property ctrl_id stored per-bone by skeleton_provider
+        if rig_obj.data and hasattr(rig_obj.data, "bones"):
+            for b_data in rig_obj.data.bones:
+                stored_cid = b_data.get("ctrl_id")
+                if stored_cid is not None:
+                    register_cid(stored_cid, b_data.name)
 
         bone_tracks: Dict[str, List[Dict[str, Any]]] = {}
         for cid, keys in controllers.items():
             b_name = ctrl_to_bone.get(cid)
+            if not b_name:
+                b_name = ctrl_to_bone.get(int(cid) & 0xFFFFFFFF)
             if b_name and rig_obj.data and b_name in rig_obj.data.bones:
                 bone_tracks[b_name] = keys
 
@@ -147,39 +169,41 @@ class AnimationProvider(IAnimationProvider):
 
         orig_frame = bpy.context.scene.frame_current
 
-        # Mathematically exact local basis pose keyframing:
-        # matrix_basis = rest_local.inverted() @ local_anim
-        # Guarantees zero depsgraph lag, zero compound skew down hierarchies,
-        # perfectly seamless looping (frame 0 == frame end), and 100% clean rest pose when stopped.
+        # Pre-calculate rest matrices for all bones
+        rest_matrices = {}
+        for b_data in rig_obj.data.bones:
+            rest_matrices[b_data.name] = b_data.matrix_local
+
         for f in range(frame_start, frame_end + 1):
             bpy.context.scene.frame_set(f)
+            bpy.context.view_layer.update()  # CRITICAL: sync depsgraph
 
             for bn in eval_order:
                 if bn not in rig_obj.pose.bones:
                     continue
                 pbone = rig_obj.pose.bones[bn]
+                pbone.rotation_mode = "QUATERNION"
                 bone_data = rig_obj.data.bones[bn]
-                bind_mat = bone_data.matrix_local
-
-                if bone_data.parent:
-                    rest_local = bone_data.parent.matrix_local.inverted() @ bind_mat
-                else:
-                    rest_local = bind_mat
 
                 if bn in bone_tracks:
                     pos_v, quat_v = sample_controller(bone_tracks[bn], float(f))
-                    # CryEngine quaternion is conjugated for Blender active rotation
                     quat_v = quat_v.conjugated()
                     local_mat = Matrix.Translation(pos_v) @ quat_v.to_matrix().to_4x4()
                 else:
-                    local_mat = rest_local
+                    # Use rest pose local matrix relative to parent
+                    if bone_data.parent:
+                        local_mat = bone_data.parent.matrix_local.inverted_safe() @ bone_data.matrix_local
+                    else:
+                        local_mat = bone_data.matrix_local
 
-                basis_mat = rest_local.inverted() @ local_mat
+                if bone_data.parent:
+                    rest_local = bone_data.parent.matrix_local.inverted_safe() @ bone_data.matrix_local
+                else:
+                    rest_local = bone_data.matrix_local
 
-                pbone.location = basis_mat.translation
-                pbone.rotation_quaternion = basis_mat.to_quaternion()
-                pbone.scale = basis_mat.to_scale()
-
+                # Compute local pose basis in bone rest space
+                basis_mat = rest_local.inverted_safe() @ local_mat
+                pbone.matrix_basis = basis_mat
                 pbone.keyframe_insert("location", frame=f)
                 pbone.keyframe_insert("rotation_quaternion", frame=f)
                 pbone.keyframe_insert("scale", frame=f)

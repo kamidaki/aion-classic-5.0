@@ -128,6 +128,36 @@ class TransactionManager:
                 if not entry_info:
                     entry_info = catalog.find_file(Path(clean_rel).name)
 
+                if not entry_info:
+                    # Search candidate PAK archives in parent directories
+                    parent_p = root / Path(clean_rel).parent
+                    candidate_dirs = [parent_p]
+                    lower_rel = clean_rel.lower()
+                    if "npc" in lower_rel:
+                        candidate_dirs.extend([root / "data" / "npcs", root / "Data" / "NPCs", root / "data" / "europe" / "Npcs"])
+                    if "string" in lower_rel:
+                        candidate_dirs.extend([root / "data" / "Strings", root / "data" / "strings"])
+                    if "objects" in lower_rel or "mesh" in lower_rel:
+                        candidate_dirs.extend([parent_p, parent_p.parent])
+
+                    fname = Path(clean_rel).name
+                    for c_dir in candidate_dirs:
+                        if c_dir.is_dir():
+                            for p in c_dir.glob("*.pak"):
+                                try:
+                                    arc = catalog.get_archive(p)
+                                    for target_key in (clean_rel, fname, fname.lower()):
+                                        matched_entry = arc.entries.get(target_key.lower())
+                                        if matched_entry:
+                                            entry_info = (p, matched_entry)
+                                            break
+                                    if entry_info:
+                                        break
+                                except Exception:
+                                    pass
+                        if entry_info:
+                            break
+
                 if entry_info:
                     pak_path, entry = entry_info
                     if pak_path not in pak_updates:
@@ -137,6 +167,7 @@ class TransactionManager:
                     # Default: save as loose file in client directory structure
                     loose_cand.parent.mkdir(parents=True, exist_ok=True)
                     loose_updates[loose_cand] = data
+
 
         staging_dir = Path(tempfile.mkdtemp(prefix="aion_tx_stage_"))
 
@@ -168,6 +199,12 @@ class TransactionManager:
 
             # 3. Process PAK archive updates
             for pak_file, entries_dict in pak_updates.items():
+                # Close any open archive handles in catalog index before modifying pak
+                pak_key = str(pak_file).lower()
+                if pak_key in catalog._archives:
+                    catalog._archives[pak_key].close()
+                    del catalog._archives[pak_key]
+
                 if create_backups and pak_file.is_file():
                     bak_pak = pak_file.with_suffix(".pak.bak")
                     if not bak_pak.exists():

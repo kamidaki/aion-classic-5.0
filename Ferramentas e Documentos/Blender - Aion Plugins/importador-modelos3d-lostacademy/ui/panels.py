@@ -137,12 +137,27 @@ class AION_PT_asset_browser(bpy.types.Panel):
             rows=6,
         )
 
+        # Aviso de paginação: mostra quantos resultados foram ocultados pelo limite de 200
+        if settings.filter_omitted_count > 0:
+            warn_row = layout.row()
+            warn_row.alert = True
+            warn_row.label(
+                text=f"+ {settings.filter_omitted_count:,} resultado(s) omitido(s) — refine a busca para ver mais.",
+                icon="INFO",
+            )
+
         # Action buttons
         btn_row = layout.row(align=True)
         btn_row.scale_y = 1.3
         btn_row.operator("aion_model.load_asset", text="Carregar no Visualizador", icon="RESTRICT_VIEW_OFF")
         btn_row.operator("aion_model.equip_asset", text="Equipar no Personagem", icon="USER")
-        btn_row.operator("aion_model.clear_stage", text="Limpar Palco", icon="TRASH")
+
+        clear_row = layout.row(align=True)
+        clear_row.operator("aion_model.remove_active_model", text="Remover Selecionado", icon="X")
+        clear_row.operator("aion_model.clear_stage", text="Limpar Palco Inteiro", icon="TRASH")
+
+        # Multi-model lineup toggle
+        layout.prop(settings, "multi_model_mode", icon="DUPLICATE")
 
 
 class AION_PT_character_preview(bpy.types.Panel):
@@ -370,14 +385,96 @@ class AION_PT_creation(bpy.types.Panel):
         layout.operator("aion_model.clone_asset", text="Clonar Modelo Ativo", icon="DUPLICATE")
 
 
+class AION_UL_sound_list(bpy.types.UIList):
+    """UIList for discovered audio tracks."""
+    def draw_item(self, context, layout, data, item, icon, active_data, active_propname, index):
+        if self.layout_type in {"DEFAULT", "COMPACT"}:
+            row = layout.row(align=True)
+            cat_icon = "SPEAKER"
+            if item.category == "VOZ":
+                cat_icon = "COMMUNITY"
+            elif item.category == "ATAQUE":
+                cat_icon = "ARMATURE_DATA"
+            elif item.category == "MAGIA":
+                cat_icon = "FORCE_VORTEX"
+            elif item.category in ("MORTE", "DANO"):
+                cat_icon = "COLORSET_01_VEC"
+
+            row.label(text=f"[{item.category}] {item.name}", icon=cat_icon)
+            if item.when > 0:
+                row.label(text=f"{item.when:.2f}s")
+
+
+class AION_PT_audio_vfx(bpy.types.Panel):
+    """Audio playback and Visual Effects (VFX) inspection panel."""
+    bl_label = "Áudio & Efeitos Visuais (VFX)"
+    bl_idname = "AION_PT_audio_vfx"
+    bl_space_type = "VIEW_3D"
+    bl_region_type = "UI"
+    bl_category = PANEL_CATEGORY
+    bl_options = {"DEFAULT_CLOSED"}
+
+    def draw(self, context: bpy.types.Context) -> None:
+        layout = self.layout
+        settings = context.scene.aion_model_lib
+
+        # ---------------- Audio Section ----------------
+        box_audio = layout.box()
+        h_row = box_audio.row(align=True)
+        h_row.label(text="Áudio do Modelo 3D", icon="SPEAKER")
+        h_row.prop(settings, "enable_sound", text="")
+
+        if settings.enable_sound:
+            col_a = box_audio.column(align=True)
+            col_a.prop(settings, "sound_volume", slider=True)
+            col_a.prop(settings, "sound_pitch", slider=True)
+
+            box_audio.template_list(
+                "AION_UL_sound_list",
+                "",
+                settings,
+                "model_sounds",
+                settings,
+                "active_sound_index",
+                rows=4,
+            )
+
+            ctrl_row = box_audio.row(align=True)
+            ctrl_row.operator("aion_model.play_sound", text="Tocar Som", icon="PLAY")
+            ctrl_row.operator("aion_model.stop_sound", text="Parar", icon="PAUSE")
+            ctrl_row.operator("aion_model.refresh_sounds", text="", icon="FILE_REFRESH")
+
+        # ---------------- VFX Section ----------------
+        box_vfx = layout.box()
+        v_row = box_vfx.row(align=True)
+        v_row.label(text="Efeitos Visuais Mágicos (VFX)", icon="FORCE_VORTEX")
+        v_row.prop(settings, "enable_vfx", text="")
+
+        col_v = box_vfx.column(align=True)
+        col_v.prop(settings, "vfx_element")
+        col_v.prop(settings, "vfx_intensity", slider=True)
+
+        opt_box = box_vfx.box()
+        opt_col = opt_box.column(align=True)
+        opt_col.prop(settings, "vfx_show_glow")
+        opt_col.prop(settings, "vfx_show_lights")
+        opt_col.prop(settings, "vfx_show_particles")
+
+        btn_row = box_vfx.row(align=True)
+        btn_row.operator("aion_model.apply_vfx", text="Aplicar Efeito", icon="FORCE_VORTEX")
+        btn_row.operator("aion_model.remove_vfx", text="Remover", icon="X")
+
+
 CLASSES = (
     AION_UL_asset_list,
+    AION_UL_sound_list,
     AION_PT_client_header,
     AION_PT_asset_browser,
     AION_PT_character_preview,
     AION_PT_asset_details,
     AION_PT_viewport_controls,
     AION_PT_animation_player,
+    AION_PT_audio_vfx,
     AION_PT_editors,
     AION_PT_save_export,
     AION_PT_creation,
@@ -392,3 +489,4 @@ def register() -> None:
 def unregister() -> None:
     for cls in reversed(CLASSES):
         bpy.utils.unregister_class(cls)
+

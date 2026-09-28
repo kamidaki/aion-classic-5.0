@@ -893,17 +893,21 @@ def update_pak_archive(
         eocd += struct.pack("<HHHHIIH", 0, 0, len(file_records), len(file_records), cd_size, cd_offset, 0)
         dst_f.write(eocd)
 
+    # Close source archive handle before swapping
+    archive.close()
+
     total_size = tmp_out.stat().st_size
     # Validate written archive
     val_arc = AionPakArchive(tmp_out)
-    if len(val_arc.entries) != len(file_records):
-        tmp_out.unlink()
-        raise IOError(f"PAK validation failed: expected {len(file_records)} entries, got {len(val_arc.entries)}")
+    valid_count = len(val_arc.entries)
+    val_arc.close()
+    if valid_count != len(file_records):
+        if tmp_out.exists():
+            tmp_out.unlink()
+        raise IOError(f"PAK validation failed: expected {len(file_records)} entries, got {valid_count}")
 
-    # Atomic swap
-    if target_pak.exists():
-        target_pak.unlink()
-    tmp_out.rename(target_pak)
+    # Atomic swap (os.replace handles overwrite atomically on Windows)
+    os.replace(str(tmp_out), str(target_pak))
     return len(updated_keys), total_size
 
 

@@ -93,3 +93,40 @@ class ITextureProvider(abc.ABC):
     @abc.abstractmethod
     def get_texture_image(self, rel_path: str) -> Optional[bpy.types.Image]:
         pass
+
+
+class ISoundProvider(abc.ABC):
+    """Interface for resolving, extracting, and playing model sounds."""
+
+    @abc.abstractmethod
+    def get_sounds_for_model(self, entry: AssetEntry) -> List[Dict[str, Any]]:
+        pass
+
+    @abc.abstractmethod
+    def play_sound(self, sound_rel_or_file: str, volume: float = 1.0, pitch: float = 1.0) -> bool:
+        pass
+
+    @abc.abstractmethod
+    def stop_all_sounds(self) -> None:
+        pass
+
+
+class IEffectProvider(abc.ABC):
+    """Interface for managing visual effects on inspected 3D models."""
+
+    @abc.abstractmethod
+    def apply_vfx(
+        self,
+        root_obj: bpy.types.Object,
+        element: str = "FIRE",
+        intensity: float = 1.0,
+        show_glow: bool = True,
+        show_lights: bool = True,
+        show_particles: bool = True,
+    ) -> bool:
+        pass
+
+    @abc.abstractmethod
+    def remove_vfx(self, root_obj: Optional[bpy.types.Object] = None) -> None:
+        pass
+

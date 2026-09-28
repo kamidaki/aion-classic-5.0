@@ -8,6 +8,8 @@ from . import animation_ops
 from . import editing_ops
 from . import save_ops
 from . import creation_ops
+from . import sound_ops
+from . import effect_ops
 
 MODULES = (
     library_ops,
@@ -16,6 +18,8 @@ MODULES = (
     editing_ops,
     save_ops,
     creation_ops,
+    sound_ops,
+    effect_ops,
 )
 
 

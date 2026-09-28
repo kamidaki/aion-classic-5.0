@@ -44,11 +44,20 @@ class AionClientProvider:
         self.shaders_dir = self._resolve_subpath("shaders", "Shaders")
 
         self.catalog = AionCatalogIndex(self.root)
-        self._init_catalog()
+        # Catálogo de PAKs é inicializado de forma lazy — __init__ deve ser instantâneo.
+        self._catalog_initialized: bool = False
 
         # Cache of parsed templates and world spawns
         self._templates_cache: Optional[Dict[str, Any]] = None
         self._world_spawns_cache: Dict[str, List[Any]] = {}
+
+    def _ensure_catalog_initialized(self) -> None:
+        """Garante que o catálogo de PAKs foi indexado (lazy, executa apenas uma vez)."""
+        if self._catalog_initialized:
+            return
+        self._init_catalog()
+        self._catalog_initialized = True
+
 
     def _resolve_subpath(self, *candidates: str) -> Optional[Path]:
         for c in candidates:
@@ -134,7 +143,9 @@ class AionClientProvider:
 
     def read_world_spawns_data(self, map_name: str) -> Optional[bytes]:
         """Reads client_world_<map>.xml or .bxml bytes from World.pak or local map dir."""
+        self._ensure_catalog_initialized()
         clean_map = map_name.strip().lower()
+
 
         # 1. Check world.pak
         wp = self.get_world_pak_path()
@@ -157,7 +168,9 @@ class AionClientProvider:
 
     def read_npc_templates_data(self) -> List[Tuple[str, bytes]]:
         """Reads NPC archetype templates XML/BXML data from available NPC PAK archives."""
+        self._ensure_catalog_initialized()
         paks = self.get_npcs_pak_paths()
+
         results: List[Tuple[str, bytes]] = []
 
         for pak_path in paks:
@@ -210,7 +223,9 @@ class AionClientProvider:
         """Resolves and extracts CGF model bytes dynamically."""
         if not cgf_relative_path:
             return None
+        self._ensure_catalog_initialized()
         self.ensure_category_paks_indexed(cgf_relative_path)
+
         clean_path = cgf_relative_path.replace("\\", "/").strip().lstrip("/")
         b = self.catalog.extract_file(clean_path)
         if not b:
@@ -232,7 +247,9 @@ class AionClientProvider:
         if not cgf_relative_path:
             return None, None
 
+        self._ensure_catalog_initialized()
         self.ensure_category_paks_indexed(cgf_relative_path)
+
 
         clean_path = cgf_relative_path.replace("\\", "/").strip().lstrip("/")
         base_name = Path(clean_path).stem
@@ -310,6 +327,75 @@ class AionClientProvider:
 
         return cal_mapping, caf_bytes
 
+    def find_caf_bytes(self, caf_relative_path: str, source_model_path: str = "") -> Optional[bytes]:
+        """
+        Resolves CAF animation bytes with multi-tier fallback:
+        1. Checks in the same PAK/folder where source_model_path is located.
+        2. Checks catalog for exact relative path and bare filename.
+        3. Scans & indexes known candidate PAK folders (objects/npc, objects/monster, data/animations, etc.).
+        4. Retries catalog extraction.
+        """
+        if not caf_relative_path:
+            return None
+
+        self._ensure_catalog_initialized()
+
+        clean_caf = caf_relative_path.replace("\\", "/").strip().lstrip("/")
+        caf_name = Path(clean_caf).name
+
+        # 1. Check parent folder / PAK of source model if provided
+        if source_model_path and self.root:
+            clean_source = source_model_path.replace("\\", "/").strip().lstrip("/")
+            parent_dir = Path(clean_source).parent
+            cand_parents = [
+                self.root / parent_dir,
+                self.root / "objects" / parent_dir,
+                self.root / "Objects" / parent_dir,
+            ]
+            for full_parent in cand_parents:
+                if full_parent.is_dir():
+                    paks = list(full_parent.glob("*Mesh*.pak")) + list(full_parent.glob("*Anim*.pak")) + list(full_parent.glob("*.pak"))
+                    for pak in paks:
+                        arc = self.catalog.get_archive(pak)
+                        for cand in (clean_caf, caf_name, f"{parent_dir.name}/{caf_name}"):
+                            data = arc.read_file(cand)
+                            if data:
+                                return data
+
+        # 2. Check catalog directly
+        data = self.catalog.extract_file(clean_caf)
+        if data:
+            return data
+        data = self.catalog.extract_file(caf_name)
+        if data:
+            return data
+
+        # 3. Ensure candidate PAKs indexed
+        self.ensure_category_paks_indexed(clean_caf)
+        if source_model_path:
+            self.ensure_category_paks_indexed(source_model_path)
+
+        anim_search_folders = [
+            "objects/npc",
+            "objects/monster",
+            "data/animations",
+            "animations",
+            "npc",
+            "monster",
+        ]
+        for folder in anim_search_folders:
+            f_path = self.root / folder
+            if f_path.is_dir():
+                for p in f_path.glob("*.pak"):
+                    self.catalog.index_pak(p)
+
+        # 4. Retry catalog extraction
+        data = self.catalog.extract_file(clean_caf)
+        if data:
+            return data
+        data = self.catalog.extract_file(caf_name)
+        return data
+
     def get_available_classes(self) -> List[Tuple[str, str, str]]:
         """
         Dynamically extracts available character classes from the client's PC.pak (client_character_class_info.xml).
@@ -347,7 +433,9 @@ class AionClientProvider:
         if not self.data_dir:
             return FALLBACK_CLASSES
 
+        self._ensure_catalog_initialized()
         pc_paks = []
+
         for pd in [self.data_dir / "PC", self.data_dir / "pc"]:
             if pd.is_dir():
                 pc_paks.extend(pd.glob("*.pak"))
@@ -392,7 +480,9 @@ class AionClientProvider:
         if self._templates_cache is not None:
             return self._templates_cache
 
+        self._ensure_catalog_initialized()
         import re
+
 
         # 1. Load string translations from Strings.pak or Translation directory
         str_map: Dict[str, str] = {}

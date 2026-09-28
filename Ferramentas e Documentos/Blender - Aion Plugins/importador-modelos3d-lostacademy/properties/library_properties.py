@@ -30,6 +30,16 @@ class AionAnimItem(bpy.types.PropertyGroup):
     caf_path: StringProperty(name="CAF Path", default="")
 
 
+class AionSoundItem(bpy.types.PropertyGroup):
+    """Represents a discovered sound effect or voice track for the loaded model."""
+    name: StringProperty(name="Nome do Som", default="")
+    file: StringProperty(name="Arquivo", default="")
+    category: StringProperty(name="Categoria", default="EFEITO")
+    anim_name: StringProperty(name="Animação", default="")
+    when: FloatProperty(name="Momento (s)", default=0.0)
+
+
+
 class AionAssetItem(bpy.types.PropertyGroup):
     """Represents a single model asset in the UI asset list."""
     asset_id: StringProperty(name="Asset ID", default="")
@@ -56,31 +66,68 @@ def on_filter_updated(self: Any, context: bpy.types.Context) -> None:
         pass
 
 
+# ---------------------------------------------------------------------------
+# Cache global para o EnumProperty de classes — NUNCA fazer I/O no callback!
+# ---------------------------------------------------------------------------
+_CACHED_CLASSES = None
+
+_CLASSES_FALLBACK = [
+    ("GLADIATOR", "Gladiador", "Gladiador (Placas, Espadão / Lança)"),
+    ("TEMPLAR", "Templário", "Templário (Placas, Espada + Escudo)"),
+    ("RANGER", "Arqueiro", "Arqueiro (Couro, Arco)"),
+    ("ASSASSIN", "Assassino", "Assassino (Couro, Duplas Adagas)"),
+    ("SORCERER", "Feiticeiro", "Feiticeiro (Tecido, Orbe / Livro)"),
+    ("SPIRITMASTER", "Espiritualista", "Espiritualista (Tecido, Orbe / Livro)"),
+    ("CLERIC", "Clérigo", "Clérigo (Malha, Maça + Escudo)"),
+    ("CHANTER", "Cantor", "Cantor (Malha, Cajado)"),
+]
+
+
 def get_character_classes_callback(self: Any, context: Optional[bpy.types.Context]) -> List[Tuple[str, str, str]]:
-    """Dynamically queries the detected client for valid player character classes."""
-    FALLBACK = [
-        ("GLADIATOR", "Gladiador", "Gladiador (Placas, Espadão / Lança)"),
-        ("TEMPLAR", "Templário", "Templário (Placas, Espada + Escudo)"),
-        ("RANGER", "Arqueiro", "Arqueiro (Couro, Arco)"),
-        ("ASSASSIN", "Assassino", "Assassino (Couro, Duplas Adagas)"),
-        ("SORCERER", "Feiticeiro", "Feiticeiro (Tecido, Orbe / Livro)"),
-        ("SPIRITMASTER", "Espiritualista", "Espiritualista (Tecido, Orbe / Livro)"),
-        ("CLERIC", "Clérigo", "Clérigo (Malha, Maça + Escudo)"),
-        ("CHANTER", "Cantor", "Cantor (Malha, Cajado)"),
-    ]
+    """Retorna classes de personagem a partir do cache global — SEM I/O de disco.
 
-    try:
-        ctx = context or bpy.context
-        if ctx and hasattr(ctx, "scene") and hasattr(ctx.scene, "aion_model_lib"):
-            cpath = ctx.scene.aion_model_lib.client_path
-            if cpath and Path(cpath).is_dir():
-                from ..core.client_provider import AionClientProvider
-                cp = AionClientProvider(cpath)
-                return cp.get_available_classes()
-    except Exception:
-        pass
+    O cache é populado de forma assíncrona por :func:`populate_classes_cache`.
+    Enquanto não populado, retorna o FALLBACK estático imediatamente para que
+    a UI não congele.
+    """
+    global _CACHED_CLASSES
+    if _CACHED_CLASSES is not None:
+        return _CACHED_CLASSES
+    return _CLASSES_FALLBACK
 
-    return FALLBACK
+
+def invalidate_classes_cache() -> None:
+    """Zera o cache de classes, forçando recarga na próxima chamada a populate_classes_cache."""
+    global _CACHED_CLASSES
+    _CACHED_CLASSES = None
+
+
+def populate_classes_cache(client_path: str) -> None:
+    """Popula o cache de classes fazendo I/O em uma thread de background.
+
+    Deve ser chamada após o usuário definir/alterar o caminho do cliente,
+    NUNCA dentro de um callback de propriedade ou redesenho de UI.
+
+    Args:
+        client_path: Caminho raiz do cliente Aion.
+    """
+    import threading
+
+    def _worker():
+        global _CACHED_CLASSES
+        try:
+            if not client_path or not Path(client_path).is_dir():
+                return
+            from ..core.client_provider import AionClientProvider
+            cp = AionClientProvider(client_path)
+            result = cp.get_available_classes()
+            if result:
+                _CACHED_CLASSES = result
+        except Exception:
+            pass  # Mantém o FALLBACK em caso de erro
+
+    t = threading.Thread(target=_worker, daemon=True)
+    t.start()
 
 
 class AionModelLibrarySettings(bpy.types.PropertyGroup):
@@ -142,12 +189,18 @@ class AionModelLibrarySettings(bpy.types.PropertyGroup):
         name="Total de Modelos Escaneados",
         default=0,
     )
+    filter_omitted_count: IntProperty(
+        name="Resultados Omitidos",
+        description="Número de modelos ocultados pelo limite de exibição de 200 itens",
+        default=0,
+    )
 
     # Active loaded asset metadata
     active_asset_id: StringProperty(name="ID do Modelo", default="")
     active_asset_name: StringProperty(name="Nome do Modelo", default="")
     active_category: StringProperty(name="Categoria", default="")
     active_model_path: StringProperty(name="Caminho do Modelo", default="")
+    active_asset_path: StringProperty(name="Caminho do Asset (Alias)", default="")
     active_skeleton_path: StringProperty(name="Caminho do Esqueleto", default="")
     active_cal_path: StringProperty(name="Caminho do CAL", default="")
     active_is_modified: BoolProperty(name="Modificado", default=False)
@@ -219,6 +272,13 @@ class AionModelLibrarySettings(bpy.types.PropertyGroup):
         default=True,
     )
 
+    # Multi-Model Viewport
+    multi_model_mode: BoolProperty(
+        name="Modo Multi-Modelo (Fileira)",
+        description="Quando ativo, cada novo modelo é posicionado ao lado dos já carregados em vez de substituir. Cria uma fileira comparativa.",
+        default=False,
+    )
+
     # Creation & Cloning
     new_asset_id: StringProperty(name="ID do Novo Modelo", default="custom_mesh_01")
     new_category: EnumProperty(
@@ -236,9 +296,76 @@ class AionModelLibrarySettings(bpy.types.PropertyGroup):
         default="objects/custom/cloned_asset_01.cgf",
     )
 
+    # Audio & Sound System
+    enable_sound: BoolProperty(
+        name="Ativar Áudio dos Modelos",
+        description="Permite reproduzir efeitos sonoros, vozes de monstros/NPCs e impactos de combate",
+        default=True,
+    )
+    sound_volume: FloatProperty(
+        name="Volume do Áudio",
+        description="Controle de volume para reprodução dos sons dos modelos 3D",
+        default=1.0,
+        min=0.0,
+        max=2.0,
+    )
+    sound_pitch: FloatProperty(
+        name="Pitch / Velocidade",
+        description="Ajuste de afinação e velocidade do som",
+        default=1.0,
+        min=0.5,
+        max=2.0,
+    )
+    model_sounds: CollectionProperty(type=AionSoundItem)
+    active_sound_index: IntProperty(name="Som Selecionado", default=0)
+
+    # Visual Effects (VFX) System
+    enable_vfx: BoolProperty(
+        name="Ativar Efeitos Visuais (VFX)",
+        description="Aplica auras mágicas elementais, emissão de brilho e luzes nos sockets do modelo",
+        default=False,
+    )
+    vfx_element: EnumProperty(
+        name="Elemento VFX",
+        description="Selecione o elemento ou tema visual do efeito",
+        items=[
+            ("FIRE", "Fogo / Chamas", "Chamas rubras e brasas ardentes"),
+            ("FROST", "Gelo / Geada", "Gelo ciano e névoa ártica cintilante"),
+            ("LIGHTNING", "Eletricidade / Raios", "Faíscas elétricas e relâmpagos"),
+            ("SHADOW", "Sombra / Trevas", "Vórtice sombrio e aura de trevas"),
+            ("POISON", "Veneno / Ácido", "Glow cáustico esmeralda tóxico"),
+            ("DIVINE", "Sagrado / Celestial", "Luz celestial dourada e radiante"),
+            ("AION_AETHER", "Aether Clássico (Aion)", "Energia aethérica azul e ciano"),
+        ],
+        default="FIRE",
+    )
+    vfx_intensity: FloatProperty(
+        name="Intensidade VFX",
+        description="Multiplicador de intensidade para brilho emissivo, luzes e partículas",
+        default=1.0,
+        min=0.1,
+        max=5.0,
+    )
+    vfx_show_glow: BoolProperty(
+        name="Brilho Emissivo (Shader)",
+        description="Ativa brilho emissivo com pulsação suave nos materiais da malha",
+        default=True,
+    )
+    vfx_show_lights: BoolProperty(
+        name="Luzes nos Sockets",
+        description="Cria fontes de luz pontuais nos sockets (olhos, mãos, cabeça)",
+        default=True,
+    )
+    vfx_show_particles: BoolProperty(
+        name="Emissores de Partículas",
+        description="Cria emissores de partículas mágicas anexados aos sockets",
+        default=True,
+    )
+
 
 CLASSES = (
     AionAnimItem,
+    AionSoundItem,
     AionAssetItem,
     AionModelLibrarySettings,
 )
@@ -255,3 +382,4 @@ def unregister_properties() -> None:
         del bpy.types.Scene.aion_model_lib
     for cls in reversed(CLASSES):
         bpy.utils.unregister_class(cls)
+
