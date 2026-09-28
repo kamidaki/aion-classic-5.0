@@ -32,8 +32,9 @@ class AION_PT_main_panel(AION_PT_base, bpy.types.Panel):
         # Status box
         active_level = settings.loaded_level_dir
         box = layout.box()
-        if active_level and Path(active_level).exists():
-            box.label(text=f"Active Map: {Path(active_level).name}", icon="WORLD")
+        if active_level:
+            map_name = str(active_level).replace("\\", "/").rstrip("/").split("/")[-1]
+            box.label(text=f"Active Map: {map_name}", icon="WORLD")
         else:
             box.label(text="No Level Loaded", icon="INFO")
 
@@ -204,7 +205,8 @@ class AION_PT_inspector(AION_PT_base, bpy.types.Panel):
             col = box.column(align=True)
             col.label(text=f"Source Type: {src_type}")
             if src_ref:
-                col.label(text=f"Ref: {Path(src_ref).name}")
+                ref_name = str(src_ref).replace("\\", "/").split("/")[-1]
+                col.label(text=f"Ref: {ref_name}")
             if src_idx is not None:
                 col.label(text=f"Index: {src_idx}")
         else:

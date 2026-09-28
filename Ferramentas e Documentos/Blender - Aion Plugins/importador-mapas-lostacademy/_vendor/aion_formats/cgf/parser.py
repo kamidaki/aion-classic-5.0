@@ -455,23 +455,31 @@ def get_mesh_chunk(stream, offset):
         uv_faces = {"face_uvs": []}
 
     if has_vertex_colors:
-        colors_vertx = []
-        for vrt in range(num_vertices):
-            colors_vertx.append({"r": read_u8(stream, "vertex color r"),
-                                 "g": read_u8(stream, "vertex color g"),
-                                 "b": read_u8(stream, "vertex color b")})
+        try:
+            raw_colors = _read_exact(stream, num_vertices * 3, "vertex colors")
+            colors_vertx = [
+                {"r": r, "g": g, "b": b}
+                for r, g, b in struct.iter_unpack("<3B", raw_colors)
+            ]
+        except Exception:
+            colors_vertx = []
 
     skin_weights = []
     if has_vertex_weights:
         for _ in range(num_vertices):
-            num_links = read_u32(stream, "vertex num links")
-            links = []
-            for _ in range(num_links):
-                bone_id = read_u32(stream, "link bone id")
-                stream.seek(12, 1)
-                weight = read_f32(stream, "link weight")
-                links.append((bone_id, weight))
-            skin_weights.append(links)
+            try:
+                num_links = read_u32(stream, "vertex num links")
+                if num_links == 0:
+                    skin_weights.append([])
+                    continue
+                raw_links = _read_exact(stream, num_links * 20, "vertex links")
+                links = [(b_id, w) for b_id, w in struct.iter_unpack("<I12xf", raw_links)]
+                skin_weights.append(links)
+            except Exception:
+                skin_weights.append([])
+                break
+        while len(skin_weights) < num_vertices:
+            skin_weights.append([])
 
     mesh_chunk_dict.update({"header": header})
     mesh_chunk_dict.update({"skin_weights": skin_weights})
@@ -889,8 +897,11 @@ def is_physical_node(node, all_mats):
 
 def get_cgf(file_stream, diagnostics=False, file_path=None):
     collector = _new_diagnostics_collector(file_stream, diagnostics, file_path)
-    with _DiagnosticsScope(collector):
-        return _parse_cgf(file_stream, collector)
+    try:
+        with _DiagnosticsScope(collector):
+            return _parse_cgf(file_stream, collector)
+    except Exception as exc:
+        return _finish_with_error({"error": str(exc)}, collector, f"parse_exception_{type(exc).__name__}")
 
 
 def _parse_cgf(file_stream, collector):

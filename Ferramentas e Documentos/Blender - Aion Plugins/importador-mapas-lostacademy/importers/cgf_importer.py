@@ -139,6 +139,7 @@ def create_mesh_from_node(
     animate_texture_sequences: bool = True,
     texture_animation_fps: int = 10,
     animate_shader_uv_scroll: bool = True,
+    optimize_material_preview: bool = True,
 ) -> Optional[bpy.types.Object]:
     mesh_chunk = node.get("mesh")
     if not mesh_chunk:
@@ -207,6 +208,7 @@ def create_mesh_from_node(
             animate_texture_sequences=animate_texture_sequences,
             texture_animation_fps=texture_animation_fps,
             animate_shader_uv_scroll=animate_shader_uv_scroll,
+            optimize_material_preview=optimize_material_preview,
         )
         mesh.materials.append(mat)
     elif is_multi:
@@ -219,6 +221,7 @@ def create_mesh_from_node(
                 animate_texture_sequences=animate_texture_sequences,
                 texture_animation_fps=texture_animation_fps,
                 animate_shader_uv_scroll=animate_shader_uv_scroll,
+                optimize_material_preview=optimize_material_preview,
             )
             mesh.materials.append(mat)
 
@@ -237,6 +240,7 @@ def load(
     animate_shader_uv_scroll: bool = True,
     animate_cga_controllers: bool = True,
     client_root: Optional[str] = None,
+    optimize_material_preview: bool = True,
 ) -> dict:
     global _LAST_IMPORT_REPORT
     path = Path(filepath)
@@ -246,8 +250,27 @@ def load(
     file_name = path.name
     aion_path = str(path.parent)
 
-    with open(path, "rb") as f:
-        cgf_file = get_cgf(f, diagnostics=True, file_path=str(path))
+    try:
+        with open(path, "rb") as f:
+            cgf_file = get_cgf(f, diagnostics=True, file_path=str(path))
+    except Exception as exc:
+        _LAST_IMPORT_REPORT = CgfImportReport(
+            filepath=str(path),
+            import_mode=import_mode,
+            result="ERROR",
+            reason_code="parse_exception",
+            reason=str(exc),
+            file_exists=True,
+            parser_node_count=0,
+            parser_mesh_node_count=0,
+            parser_material_count=0,
+            candidate_mesh_node_count=0,
+            objects_created=0,
+            parser_coverage_counts={},
+            unsupported_chunks={},
+            unused_material_fields={},
+        )
+        return {"CANCELLED"}
 
     if not isinstance(cgf_file, dict) or cgf_file.get("error"):
         return {"CANCELLED"}
@@ -277,6 +300,7 @@ def load(
             animate_texture_sequences=animate_texture_sequences,
             texture_animation_fps=texture_animation_fps,
             animate_shader_uv_scroll=animate_shader_uv_scroll,
+            optimize_material_preview=optimize_material_preview,
         )
         if obj is None:
             continue

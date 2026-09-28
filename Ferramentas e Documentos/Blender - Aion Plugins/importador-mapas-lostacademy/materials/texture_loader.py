@@ -83,3 +83,6 @@ def load_texture_image(
 
 def clear_texture_cache() -> None:
     _IMAGE_CACHE.clear()
+
+
+clear_cache = clear_texture_cache

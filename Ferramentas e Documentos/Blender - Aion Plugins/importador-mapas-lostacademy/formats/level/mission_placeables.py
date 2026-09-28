@@ -45,16 +45,11 @@ _PAK_RESOLVER_CACHE: dict[str, object] = {}
 def _get_pak_resolver(client_root: Path | None):
     if not client_root:
         return None
-    key = str(client_root).lower()
-    if key not in _PAK_RESOLVER_CACHE:
-        try:
-            from core.pak_engine import AionClientPakResolver
-            resolver = AionClientPakResolver(client_root)
-            resolver.ensure_catalog()
-            _PAK_RESOLVER_CACHE[key] = resolver
-        except Exception:
-            _PAK_RESOLVER_CACHE[key] = None
-    return _PAK_RESOLVER_CACHE.get(key)
+    try:
+        from core.pak_engine import get_pak_resolver
+        return get_pak_resolver(client_root)
+    except Exception:
+        return None
 
 
 @dataclass(frozen=True)

@@ -44,11 +44,18 @@ class AionClientProvider:
         self.shaders_dir = self._resolve_subpath("shaders", "Shaders")
 
         self.catalog = AionCatalogIndex(self.root)
-        self._init_catalog()
+        self._catalog_initialized: bool = False
 
         # Cache of parsed templates and world spawns
         self._templates_cache: Optional[Dict[str, Any]] = None
         self._world_spawns_cache: Dict[str, List[Any]] = {}
+
+    def _ensure_catalog_initialized(self) -> None:
+        """Indexes common PAKs across client structure lazily on first access."""
+        if self._catalog_initialized:
+            return
+        self._init_catalog()
+        self._catalog_initialized = True
 
     def _resolve_subpath(self, *candidates: str) -> Optional[Path]:
         for c in candidates:
@@ -134,6 +141,7 @@ class AionClientProvider:
 
     def read_world_spawns_data(self, map_name: str) -> Optional[bytes]:
         """Reads client_world_<map>.xml or .bxml bytes from World.pak or local map dir."""
+        self._ensure_catalog_initialized()
         clean_map = map_name.strip().lower()
 
         # 1. Check world.pak
@@ -157,6 +165,7 @@ class AionClientProvider:
 
     def read_npc_templates_data(self) -> List[Tuple[str, bytes]]:
         """Reads NPC archetype templates XML/BXML data from available NPC PAK archives."""
+        self._ensure_catalog_initialized()
         paks = self.get_npcs_pak_paths()
         results: List[Tuple[str, bytes]] = []
 

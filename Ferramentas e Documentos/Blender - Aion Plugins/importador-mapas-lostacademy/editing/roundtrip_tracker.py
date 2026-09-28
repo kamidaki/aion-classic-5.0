@@ -38,15 +38,18 @@ def tag_object_instance(
     *,
     reference: Optional[str] = None,
     original_matrix: Optional[Matrix] = None,
+    mesh_offset: Optional[Matrix] = None,
 ) -> None:
     """Tags a Blender object with metadata for round-trip tracking."""
     ref = reference or cgf_reference or ""
     mat = original_matrix if original_matrix is not None else (matrix if matrix is not None else obj.matrix_world)
 
-    obj["aion_source_type"] = source_type
+    obj["aion_source_type"] = str(source_type).strip().lower()
     obj["aion_source_index"] = source_index
     obj["aion_reference"] = ref
     obj["aion_orig_matrix"] = [float(v) for row in mat for v in row]
+    if mesh_offset is not None:
+        obj["aion_mesh_offset"] = [float(v) for row in mesh_offset for v in row]
 
 
 def get_object_metadata(obj: bpy.types.Object) -> Optional[dict]:
@@ -54,10 +57,11 @@ def get_object_metadata(obj: bpy.types.Object) -> Optional[dict]:
     if "aion_source_type" not in obj:
         return None
     return {
-        "source_type": str(obj["aion_source_type"]),
+        "source_type": str(obj["aion_source_type"]).strip().lower(),
         "source_index": int(obj.get("aion_source_index", -1)),
         "reference": str(obj.get("aion_reference", "")),
         "orig_matrix": obj.get("aion_orig_matrix"),
+        "mesh_offset": obj.get("aion_mesh_offset"),
     }
 
 
@@ -103,7 +107,25 @@ def collect_scene_changes(scene: bpy.types.Scene) -> dict[str, list[ObjectChange
         sidx = meta["source_index"]
         ref = meta["reference"]
         orig_vals = meta.get("orig_matrix")
-        curr_mat = obj.matrix_world.copy()
+        mesh_offset_vals = meta.get("mesh_offset")
+
+        # If the template submesh had a local transform offset, inverse-multiply it
+        # to recover the exact authoritative placement transform:
+        if mesh_offset_vals and len(mesh_offset_vals) == 16:
+            offset_mat = Matrix(
+                (
+                    mesh_offset_vals[0:4],
+                    mesh_offset_vals[4:8],
+                    mesh_offset_vals[8:12],
+                    mesh_offset_vals[12:16],
+                )
+            )
+            try:
+                curr_mat = obj.matrix_world @ offset_mat.inverted()
+            except Exception:
+                curr_mat = obj.matrix_world.copy()
+        else:
+            curr_mat = obj.matrix_world.copy()
 
         is_mod = matrix_has_changed(curr_mat, orig_vals) if orig_vals else True
         is_new = sidx < 0

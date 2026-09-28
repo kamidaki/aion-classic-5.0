@@ -45,43 +45,37 @@ def parse_objects_lst(path: str | Path | bytes | bytearray, level_data: Optional
         raise ValueError(f"objects.lst header 0x{header:x} does not match 0x{OBJECTS_LST_HEADER:x}")
 
     magic = _position_scale(level_data)
+    inv_magic = 1.0 / magic
+    deg_scale = 360.0 / 255.0
     placements = []
-    offset = 4
 
-    while offset + OBJECTS_LST_RECORD_SIZE <= len(data):
-        record = data[offset : offset + OBJECTS_LST_RECORD_SIZE]
-        x_pos = int.from_bytes(record[0:2], "little")
-        y_pos = int.from_bytes(record[2:4], "little")
-        z_pos = int.from_bytes(record[4:6], "little")
-        vegetation_index = int.from_bytes(record[6:7], "little")
-        unknown_byte = int.from_bytes(record[7:8], "little")
-        scale = struct.unpack("<f", record[8:12])[0]
-        heading_raw = int.from_bytes(record[12:16], "little")
-        heading_degrees = heading_raw * 360 / 255
-        vegetation_file = (
-            level_data.vegetation_files[vegetation_index]
-            if level_data and vegetation_index < len(level_data.vegetation_files)
-            else None
-        )
+    veg_files = level_data.vegetation_files if level_data else None
+    veg_len = len(veg_files) if veg_files else 0
 
+    record_count = (len(data) - 4) // OBJECTS_LST_RECORD_SIZE
+    records_end = 4 + record_count * OBJECTS_LST_RECORD_SIZE
+
+    # High-speed vectorized C unpack: 3 uint16, 2 uint8, 1 float, 1 uint32 (16 bytes)
+    unpacker = struct.iter_unpack("<3HBBfI", data[4:records_end])
+    for x_pos, y_pos, z_pos, veg_idx, unk_b, scale, heading_raw in unpacker:
+        v_file = veg_files[veg_idx] if veg_idx < veg_len else None
         placements.append(
             ObjectPlacement(
-                vegetation_index=vegetation_index,
-                vegetation_file=vegetation_file,
+                vegetation_index=veg_idx,
+                vegetation_file=v_file,
                 raw_position=(x_pos, y_pos, z_pos),
-                position=(x_pos / magic, y_pos / magic, z_pos / magic),
+                position=(x_pos * inv_magic, y_pos * inv_magic, z_pos * inv_magic),
                 scale=scale,
                 heading_raw=heading_raw,
-                heading_degrees=heading_degrees,
-                unknown_byte=unknown_byte,
+                heading_degrees=heading_raw * deg_scale,
+                unknown_byte=unk_b,
             )
         )
-        offset += OBJECTS_LST_RECORD_SIZE
 
     return ObjectsList(
         header=header,
         placements=tuple(placements),
-        trailing_bytes=data[offset:],
+        trailing_bytes=data[records_end:],
     )
 
 
@@ -121,4 +115,3 @@ def write_objects_lst(path: str | Path, objects_list: ObjectsList, level_data: O
     target_path.parent.mkdir(parents=True, exist_ok=True)
     target_path.write_bytes(bytes(out))
     return len(out)
-

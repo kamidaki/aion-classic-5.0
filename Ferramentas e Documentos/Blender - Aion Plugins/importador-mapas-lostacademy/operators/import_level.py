@@ -624,10 +624,12 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
             )
             else {"INFO"}
         )
-        if hasattr(context.scene, "aion_settings"):
-            context.scene.aion_settings.loaded_level_dir = str(effective_level_dir)
-            context.scene.aion_settings.client_root = str(client_root)
-            context.scene.aion_settings.status_message = f"Loaded {effective_level_dir.name}"
+        settings = getattr(context.scene, "aion_settings", None)
+        if settings:
+            settings.loaded_level_dir = str(target_level_dir)
+            settings.level_path = str(target_level_dir)
+            settings.client_root = str(client_root)
+            settings.status_message = f"Loaded {target_level_dir.name}"
 
         self.report(
             report_type,

@@ -305,10 +305,10 @@ def create_physical_skydome(
     with an unlit celestial sky and cloud gradient shader.
     """
     import bpy
-    from core.pak_engine import AionClientPakResolver
+    from core.pak_engine import get_pak_resolver
 
-    resolver = AionClientPakResolver(client_root)
-    skydome_cgf = resolver.resolve_resource("skydome.cgf")
+    resolver = get_pak_resolver(client_root)
+    skydome_cgf = resolver.resolve_resource("skydome.cgf") if resolver else None
 
     col_name = "Aion Sky & Environment"
     sky_col = bpy.data.collections.get(col_name)

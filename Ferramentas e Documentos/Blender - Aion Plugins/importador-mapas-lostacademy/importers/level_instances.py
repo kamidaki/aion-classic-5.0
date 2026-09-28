@@ -60,15 +60,16 @@ def create_level_cgf_placement_instances(
         raise ValueError("max_placements must be >= 1")
 
     import bpy
+    from mathutils import Matrix
+    from editing.roundtrip_tracker import tag_object_instance
 
     instances = []
     summaries = []
     placement_skips = []
 
-    # Detect if single-mesh direct instancing is available (orders of magnitude faster than Collection empties)
+    # Detect if direct mesh instancing is available (hardware GPU instancing)
     mesh_objs = [o for o in template_collection.objects if o.type == "MESH"] if template_collection else []
-    can_use_direct_mesh = use_mesh_instancing and (len(mesh_objs) == 1)
-    single_mesh = mesh_objs[0] if can_use_direct_mesh else None
+    can_use_direct_mesh = use_mesh_instancing and (len(mesh_objs) >= 1)
 
     for placement in placements[:max_placements]:
         try:
@@ -86,13 +87,67 @@ def create_level_cgf_placement_instances(
             continue
         summary = _summarize_transform(placement, matrix)
 
-        if single_mesh is not None:
-            # High-performance hardware mesh instancing: share vertex/index buffers directly
-            instance = bpy.data.objects.new(
-                f"{template_collection.name}_{placement.source_type}_{placement.source_index}",
-                single_mesh.data,
-            )
-            instance.matrix_world = matrix @ single_mesh.matrix_world
+        category = getattr(placement, "category", "PROPS")
+        if isinstance(target_collection, dict):
+            dest_col = target_collection.get(category) or target_collection.get("PROPS") or target_collection.get("ROOT")
+        else:
+            dest_col = target_collection
+
+        if can_use_direct_mesh:
+            if len(mesh_objs) == 1:
+                # Single-mesh template: share vertex/index buffers directly
+                single_mesh = mesh_objs[0]
+                instance = bpy.data.objects.new(
+                    f"{template_collection.name}_{placement.source_type}_{placement.source_index}",
+                    single_mesh.data,
+                )
+                mesh_offset = single_mesh.matrix_world
+                instance.matrix_world = matrix @ mesh_offset
+                tag_object_instance(
+                    instance,
+                    source_type=placement.source_type,
+                    source_index=placement.source_index,
+                    cgf_reference=placement.cgf_reference,
+                    matrix=matrix,
+                    mesh_offset=mesh_offset,
+                )
+                dest_col.objects.link(instance)
+                instances.append(instance)
+            else:
+                # Multi-mesh template: direct GPU mesh instancing for all sub-meshes
+                # Completely eliminates heavy COLLECTION instancing that freezes the Blender depsgraph
+                root_instance = bpy.data.objects.new(
+                    f"{template_collection.name}_{placement.source_type}_{placement.source_index}_0",
+                    mesh_objs[0].data,
+                )
+                mesh_offset = mesh_objs[0].matrix_world
+                root_instance.matrix_world = matrix @ mesh_offset
+                tag_object_instance(
+                    root_instance,
+                    source_type=placement.source_type,
+                    source_index=placement.source_index,
+                    cgf_reference=placement.cgf_reference,
+                    matrix=matrix,
+                    mesh_offset=mesh_offset,
+                )
+                dest_col.objects.link(root_instance)
+                instances.append(root_instance)
+
+                try:
+                    inv_root_mat = root_instance.matrix_world.inverted()
+                except Exception:
+                    inv_root_mat = Matrix.Identity(4)
+
+                for sub_idx, sub_mesh in enumerate(mesh_objs[1:], start=1):
+                    sub_inst = bpy.data.objects.new(
+                        f"{template_collection.name}_{placement.source_type}_{placement.source_index}_{sub_idx}",
+                        sub_mesh.data,
+                    )
+                    sub_inst.matrix_world = matrix @ sub_mesh.matrix_world
+                    sub_inst.parent = root_instance
+                    sub_inst.matrix_parent_inverse = inv_root_mat
+                    dest_col.objects.link(sub_inst)
+                    instances.append(sub_inst)
         else:
             instance = bpy.data.objects.new(
                 f"{template_collection.name}_{placement.source_type}_{placement.source_index}",
@@ -102,24 +157,16 @@ def create_level_cgf_placement_instances(
             instance.instance_collection = template_collection
             instance.empty_display_size = 0.001
             instance.matrix_world = matrix
+            tag_object_instance(
+                instance,
+                source_type=placement.source_type,
+                source_index=placement.source_index,
+                cgf_reference=placement.cgf_reference,
+                matrix=matrix,
+            )
+            dest_col.objects.link(instance)
+            instances.append(instance)
 
-        from editing.roundtrip_tracker import tag_object_instance
-        tag_object_instance(
-            instance,
-            source_type=placement.source_type,
-            source_index=placement.source_index,
-            cgf_reference=placement.cgf_reference,
-            matrix=matrix,
-        )
-
-        category = getattr(placement, "category", "PROPS")
-        if isinstance(target_collection, dict):
-            dest_col = target_collection.get(category) or target_collection.get("PROPS") or target_collection.get("ROOT")
-        else:
-            dest_col = target_collection
-
-        dest_col.objects.link(instance)
-        instances.append(instance)
         summaries.append(summary)
 
     return PlacementInstanceBatch(
@@ -208,8 +255,6 @@ def _summarize_transform(placement: LevelCgfJob, matrix) -> PlacementTransformSu
     matrix_values = tuple(float(value) for row in matrix for value in row)
     if len(matrix_values) != 16:
         raise ValueError(f"placement matrix must contain 16 values, got {len(matrix_values)}")
-    if not all(math.isfinite(value) for value in matrix_values):
-        raise ValueError("placement matrix contains NaN or infinity")
 
     identity = (
         1.0, 0.0, 0.0, 0.0,
@@ -217,6 +262,7 @@ def _summarize_transform(placement: LevelCgfJob, matrix) -> PlacementTransformSu
         0.0, 0.0, 1.0, 0.0,
         0.0, 0.0, 0.0, 1.0,
     )
+    is_non_default = (matrix_values != identity)
     return PlacementTransformSummary(
         source_type=placement.source_type,
         source_index=placement.source_index,
@@ -224,8 +270,5 @@ def _summarize_transform(placement: LevelCgfJob, matrix) -> PlacementTransformSu
         translation=(matrix_values[3], matrix_values[7], matrix_values[11]),
         scale=placement.scale,
         heading_degrees=placement.heading_degrees,
-        is_non_default=any(
-            not math.isclose(value, identity_value, rel_tol=1e-9, abs_tol=1e-9)
-            for value, identity_value in zip(matrix_values, identity)
-        ),
+        is_non_default=is_non_default,
     )

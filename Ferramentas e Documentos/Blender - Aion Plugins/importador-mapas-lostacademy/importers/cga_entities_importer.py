@@ -128,6 +128,7 @@ def create_cga_entities(
             animate_shader_uv_scroll=animate_shader_uv_scroll,
             animate_cga_controllers=animate_cga_controllers,
             texture_animation_fps=texture_animation_fps,
+            client_root=str(client_root_path),
         )
         controller_count = getattr(report, "cga_controller_count", 0) if report else 0
         timing_present = bool(getattr(report, "cga_timing_present", False)) if report else False
@@ -203,6 +204,7 @@ def _cga_template_collection(
     animate_shader_uv_scroll: bool,
     animate_cga_controllers: bool,
     texture_animation_fps: int,
+    client_root: str | None = None,
 ):
     key = (str(candidate.resolved_path), import_mode)
     cached = template_cache.get(key)
@@ -212,16 +214,32 @@ def _cga_template_collection(
     import bpy
 
     collections_before = set(bpy.data.collections)
-    result = load_cgf(
-        context,
-        str(candidate.resolved_path),
-        import_mode=import_mode,
-        apply_smoothing_groups=apply_smoothing_groups,
-        animate_texture_sequences=animate_texture_sequences,
-        animate_shader_uv_scroll=animate_shader_uv_scroll,
-        animate_cga_controllers=animate_cga_controllers,
-        texture_animation_fps=texture_animation_fps,
-    )
+    try:
+        try:
+            result = load_cgf(
+                context,
+                str(candidate.resolved_path),
+                import_mode=import_mode,
+                apply_smoothing_groups=apply_smoothing_groups,
+                animate_texture_sequences=animate_texture_sequences,
+                animate_shader_uv_scroll=animate_shader_uv_scroll,
+                animate_cga_controllers=animate_cga_controllers,
+                texture_animation_fps=texture_animation_fps,
+                client_root=client_root,
+            )
+        except TypeError:
+            result = load_cgf(
+                context,
+                str(candidate.resolved_path),
+                import_mode=import_mode,
+                apply_smoothing_groups=apply_smoothing_groups,
+                animate_texture_sequences=animate_texture_sequences,
+                animate_shader_uv_scroll=animate_shader_uv_scroll,
+                animate_cga_controllers=animate_cga_controllers,
+                texture_animation_fps=texture_animation_fps,
+            )
+    except Exception as exc:
+        return None, None, None, f"cga_error_{type(exc).__name__}"
     report = get_cgf_import_report() if get_cgf_import_report is not None else None
     if result != {"FINISHED"}:
         reason_code = getattr(report, "reason_code", None) or "unknown"

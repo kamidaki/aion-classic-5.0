@@ -7,11 +7,25 @@ LAND_MAP_BYTES_PER_SAMPLE = 3
 LAND_MAP_HEIGHT_SCALE = 32
 
 
-@dataclass(frozen=True)
 class LandMapSample:
-    height_raw: int
-    height: float
-    color: int
+    __slots__ = ("height_raw", "height", "color")
+
+    def __init__(self, height_raw: int, height: float, color: int):
+        self.height_raw = height_raw
+        self.height = height
+        self.color = color
+
+    def __repr__(self) -> str:
+        return f"LandMapSample(height_raw={self.height_raw}, height={self.height}, color={self.color})"
+
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, LandMapSample):
+            return False
+        return (
+            self.height_raw == other.height_raw
+            and math.isclose(self.height, other.height, rel_tol=1e-7, abs_tol=1e-7)
+            and self.color == other.color
+        )
 
 
 @dataclass(frozen=True)
@@ -33,23 +47,30 @@ def parse_land_map_h32(path: str | Path) -> LandMap:
     if remainder:
         raise ValueError("land_map.h32 size is not divisible by 3 bytes per sample")
 
-    width = int(math.sqrt(sample_count))
+    width = int(math.isqrt(sample_count))
     if width * width != sample_count:
         raise ValueError(f"land_map.h32 sample count {sample_count} is not a square grid")
 
+    inv_scale = 1.0 / LAND_MAP_HEIGHT_SCALE
     samples = []
-    for offset in range(0, sample_count * LAND_MAP_BYTES_PER_SAMPLE, LAND_MAP_BYTES_PER_SAMPLE):
-        height_raw = int.from_bytes(data[offset : offset + 2], byteorder="little")
-        color = int.from_bytes(data[offset + 2 : offset + 3], byteorder="little")
-        samples.append(
-            LandMapSample(
-                height_raw=height_raw,
-                height=height_raw / LAND_MAP_HEIGHT_SCALE,
-                color=color,
-            )
-        )
+    min_h = float("inf")
+    max_h = float("-inf")
 
-    heights = tuple(sample.height for sample in samples)
+    # Fast bitwise unpack directly from bytes (avoids 1,000,000 slice allocations and int.from_bytes calls)
+    for offset in range(0, sample_count * LAND_MAP_BYTES_PER_SAMPLE, LAND_MAP_BYTES_PER_SAMPLE):
+        h_raw = data[offset] | (data[offset + 1] << 8)
+        c = data[offset + 2]
+        h = h_raw * inv_scale
+        if h < min_h:
+            min_h = h
+        if h > max_h:
+            max_h = h
+        samples.append(LandMapSample(h_raw, h, c))
+
+    if min_h == float("inf"):
+        min_h = 0.0
+        max_h = 0.0
+
     return LandMap(
         width=width,
         height=width,
@@ -57,8 +78,8 @@ def parse_land_map_h32(path: str | Path) -> LandMap:
         bytes_per_sample=LAND_MAP_BYTES_PER_SAMPLE,
         height_scale=LAND_MAP_HEIGHT_SCALE,
         samples=tuple(samples),
-        min_height=min(heights) if heights else 0.0,
-        max_height=max(heights) if heights else 0.0,
+        min_height=min_h,
+        max_height=max_h,
         trailing_bytes=data[sample_count * LAND_MAP_BYTES_PER_SAMPLE :],
     )
 
@@ -89,4 +110,3 @@ def write_land_map_h32(path: str | Path, land_map: LandMap) -> int:
     target_path.parent.mkdir(parents=True, exist_ok=True)
     target_path.write_bytes(bytes(out))
     return len(out)
-

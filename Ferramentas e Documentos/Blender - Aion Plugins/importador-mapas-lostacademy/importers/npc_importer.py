@@ -7,8 +7,12 @@ and spawns entities into categorized Blender collections with ground terrain ali
 
 from __future__ import annotations
 
+import gzip
 import io
+import json
 import math
+import os
+import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -53,13 +57,76 @@ class NpcImportResult:
 _NPC_TEMPLATE_CACHE: Dict[str, Dict[str, NpcTemplate]] = {}
 
 
+def _get_npc_cache_file(client_path: Path) -> Path:
+    cache_dir = client_path / ".aion_cache"
+    try:
+        cache_dir.mkdir(parents=True, exist_ok=True)
+        test_file = cache_dir / ".perm_check"
+        test_file.write_text("ok", encoding="utf-8")
+        test_file.unlink()
+        return cache_dir / "npc_templates.json"
+    except Exception:
+        temp_cache = Path(tempfile.gettempdir()) / "aion_blender_cache" / "npcs"
+        temp_cache.mkdir(parents=True, exist_ok=True)
+        return temp_cache / "npc_templates.json"
+
+
 def get_cached_npc_templates(client_path: Path) -> Dict[str, NpcTemplate]:
-    """Caches NPC templates per client root to eliminate redundant XML parsing."""
+    """Caches NPC templates per client root with fast disk persistence (.json.gz)."""
     client_key = str(client_path.resolve())
     if client_key in _NPC_TEMPLATE_CACHE:
         return _NPC_TEMPLATE_CACHE[client_key]
 
+    cache_file = _get_npc_cache_file(client_path)
+    gz_file = cache_file.with_name(cache_file.name + ".gz")
+
+    # Check npcs.pak mtime for cache invalidation
     provider = AionClientProvider(client_path)
+    npc_paks = provider.get_npcs_pak_paths()
+    latest_mtime = max((p.stat().st_mtime for p in npc_paks if p.is_file()), default=0.0)
+
+    # 1. Try reading from disk cache (.json.gz or .json)
+    raw_bytes: Optional[bytes] = None
+    if gz_file.is_file():
+        try:
+            with gzip.open(gz_file, "rb") as f_gz:
+                raw_bytes = f_gz.read()
+        except Exception:
+            raw_bytes = None
+
+    if raw_bytes is None and cache_file.is_file():
+        try:
+            raw_bytes = cache_file.read_bytes()
+        except Exception:
+            raw_bytes = None
+
+    if raw_bytes is not None:
+        try:
+            payload = json.loads(raw_bytes.decode("utf-8"))
+            if isinstance(payload, dict) and payload.get("version") == 1:
+                cached_mtime = payload.get("pak_mtime", 0.0)
+                if abs(cached_mtime - latest_mtime) < 1.0 or latest_mtime == 0.0:
+                    loaded_templates: Dict[str, NpcTemplate] = {}
+                    for item in payload.get("templates", []):
+                        # [id, name, title, cgf_reference, scale, category, race, idle_animation]
+                        t = NpcTemplate(
+                            id=item[0],
+                            name=item[1],
+                            title=item[2] if len(item) > 2 else "",
+                            cgf_reference=item[3] if len(item) > 3 else "",
+                            scale=item[4] if len(item) > 4 else 1.0,
+                            category=item[5] if len(item) > 5 else "npc",
+                            race=item[6] if len(item) > 6 else "",
+                            idle_animation=item[7] if len(item) > 7 else "",
+                        )
+                        loaded_templates[t.id] = t
+                    if loaded_templates:
+                        _NPC_TEMPLATE_CACHE[client_key] = loaded_templates
+                        return loaded_templates
+        except Exception:
+            pass
+
+    # 2. Parse from XML tables if not in disk cache
     all_templates: Dict[str, NpcTemplate] = {}
     for t_name, t_bytes in provider.read_npc_templates_data():
         if t_bytes:
@@ -70,7 +137,35 @@ def get_cached_npc_templates(client_path: Path) -> Dict[str, NpcTemplate]:
                 print(f"[AION NPC] Warning parsing template table {t_name}: {exc}")
 
     _NPC_TEMPLATE_CACHE[client_key] = all_templates
+
+    # 3. Save to disk cache for instantaneous subsequent loads
+    if all_templates:
+        try:
+            tpl_list = [
+                [t.id, t.name, t.title, t.cgf_reference, t.scale, t.category, t.race, t.idle_animation]
+                for t in all_templates.values()
+            ]
+            payload = {
+                "version": 1,
+                "pak_mtime": latest_mtime,
+                "templates": tpl_list,
+            }
+            raw_json = json.dumps(payload, separators=(",", ":"))
+            json_bytes = raw_json.encode("utf-8")
+            with gzip.open(gz_file, "wb") as f_gz:
+                f_gz.write(json_bytes)
+            if cache_file.is_file():
+                cache_file.unlink(missing_ok=True)
+        except Exception:
+            pass
+
     return all_templates
+
+
+def clear_cache() -> None:
+    """Clears in-memory NPC template cache."""
+    global _NPC_TEMPLATE_CACHE
+    _NPC_TEMPLATE_CACHE.clear()
 
 
 def _get_map_name_from_level_dir(level_dir: Path) -> str:

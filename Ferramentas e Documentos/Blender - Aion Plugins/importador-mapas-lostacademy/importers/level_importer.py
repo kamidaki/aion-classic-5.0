@@ -460,15 +460,31 @@ def import_level(
             total=progress_total,
         )
         collections_before = set(bpy.data.collections)
-        result = load_cgf(
-            context,
-            str(template.resolved_path),
-            import_mode=template.import_mode,
-            apply_smoothing_groups=apply_smoothing_groups,
-            animate_texture_sequences=animate_texture_sequences,
-            animate_shader_uv_scroll=animate_shader_uv_scroll,
-            texture_animation_fps=texture_animation_fps,
-        )
+        try:
+            try:
+                result = load_cgf(
+                    context,
+                    str(template.resolved_path),
+                    import_mode=template.import_mode,
+                    apply_smoothing_groups=apply_smoothing_groups,
+                    animate_texture_sequences=animate_texture_sequences,
+                    animate_shader_uv_scroll=animate_shader_uv_scroll,
+                    texture_animation_fps=texture_animation_fps,
+                    client_root=str(client_root),
+                    optimize_material_preview=optimize_material_preview,
+                )
+            except TypeError:
+                result = load_cgf(
+                    context,
+                    str(template.resolved_path),
+                    import_mode=template.import_mode,
+                    apply_smoothing_groups=apply_smoothing_groups,
+                    animate_texture_sequences=animate_texture_sequences,
+                    animate_shader_uv_scroll=animate_shader_uv_scroll,
+                    texture_animation_fps=texture_animation_fps,
+                )
+        except Exception as exc:
+            result = {"CANCELLED"}
         import_report = (
             get_cgf_import_report()
             if get_cgf_import_report is not None

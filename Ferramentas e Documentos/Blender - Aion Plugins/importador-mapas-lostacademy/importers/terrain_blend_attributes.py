@@ -105,6 +105,19 @@ def _pack_sample_colors_subsampled(
     pad = MATERIALS_PER_ATTRIBUTE - len(indices)
     sample_colors = array("f")
     all_samples = blend_weights.samples
+    all_materials = blend_weights.used_material_indices
+
+    # Precompute uniform 4-float vectors for all materials (eliminates 250,000+ dict creations)
+    uniform_vectors = {}
+    for m in all_materials:
+        vec = []
+        for mat_id in indices:
+            vec.append(1.0 if m == mat_id else 0.0)
+        if pad > 0:
+            vec.extend([0.0] * pad)
+        uniform_vectors[m] = tuple(vec)
+
+    zero_vector = (0.0,) * MATERIALS_PER_ATTRIBUTE
 
     for r in rows:
         row_offset = r * orig_width
@@ -112,8 +125,14 @@ def _pack_sample_colors_subsampled(
             sample = all_samples[row_offset + c]
             weights = sample.weights
             if not weights:
-                sample_colors.extend((0.0, 0.0, 0.0, 0.0))
+                sample_colors.extend(zero_vector)
                 continue
+            if len(weights) == 1:
+                # Fast path: uniform point (over 90% of terrain samples)
+                sample_colors.extend(uniform_vectors.get(sample.material_index, zero_vector))
+                continue
+
+            # Boundary point with mixed materials
             w_dict = dict(weights)
             for mat_id in indices:
                 sample_colors.append(float(w_dict.get(mat_id, 0.0)))

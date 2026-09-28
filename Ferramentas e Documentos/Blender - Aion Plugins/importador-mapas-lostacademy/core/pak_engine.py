@@ -12,7 +12,9 @@ Supports:
 
 from __future__ import annotations
 
+import gzip
 import io
+import json
 import os
 import shutil
 import struct
@@ -143,6 +145,7 @@ class AionPakArchive:
         self.filepath = str(filepath)
         self.entries: Dict[str, AionPakEntry] = {}
         self._zip: Optional[zipfile.ZipFile] = None
+        self._file_handle: Optional[io.BufferedReader] = None
         self._load_central_directory()
 
     def __enter__(self) -> "AionPakArchive":
@@ -152,6 +155,12 @@ class AionPakArchive:
         self.close()
 
     def close(self) -> None:
+        if self._file_handle is not None:
+            try:
+                self._file_handle.close()
+            except Exception:
+                pass
+            self._file_handle = None
         if self._zip is not None:
             try:
                 self._zip.close()
@@ -348,15 +357,17 @@ class AionLevelUnpacker:
 
         cache_dir.mkdir(parents=True, exist_ok=True)
         archive = AionPakArchive(pak_path)
-
-        for rel_file in cls.LEVEL_CRITICAL_FILES:
-            entry = archive.entries.get(rel_file.lower())
-            if entry:
-                dest = cache_dir / rel_file
-                data = archive.read_entry(entry)
-                if data is not None:
-                    dest.parent.mkdir(parents=True, exist_ok=True)
-                    dest.write_bytes(data)
+        try:
+            for rel_file in cls.LEVEL_CRITICAL_FILES:
+                entry = archive.entries.get(rel_file.lower())
+                if entry:
+                    dest = cache_dir / rel_file
+                    data = archive.read_entry(entry)
+                    if data is not None:
+                        dest.parent.mkdir(parents=True, exist_ok=True)
+                        dest.write_bytes(data)
+        finally:
+            archive.close()
 
         # Unpack all level-specific PAKs (e.g. lf1.pak, leveletc.pak, terrainlm.pak, levellm.pak)
         for extra_pak in level_path.glob("*.pak"):
@@ -364,18 +375,21 @@ class AionLevelUnpacker:
                 continue
             try:
                 extra_archive = AionPakArchive(extra_pak)
-                for entry in extra_archive.entries.values():
-                    dest = cache_dir / entry.name
-                    if not dest.exists():
-                        data = extra_archive.read_entry(entry)
-                        if data is not None:
-                            dest.parent.mkdir(parents=True, exist_ok=True)
-                            dest.write_bytes(data)
-                            if dest.name.lower() == "cover_low_shadow.dds":
-                                shadow_alt = cache_dir / "terrain" / "cover_low_shadow.dds"
-                                if not shadow_alt.exists():
-                                    shadow_alt.parent.mkdir(parents=True, exist_ok=True)
-                                    shadow_alt.write_bytes(data)
+                try:
+                    for entry in extra_archive.entries.values():
+                        dest = cache_dir / entry.name
+                        if not dest.exists():
+                            data = extra_archive.read_entry(entry)
+                            if data is not None:
+                                dest.parent.mkdir(parents=True, exist_ok=True)
+                                dest.write_bytes(data)
+                                if dest.name.lower() == "cover_low_shadow.dds":
+                                    shadow_alt = cache_dir / "terrain" / "cover_low_shadow.dds"
+                                    if not shadow_alt.exists():
+                                        shadow_alt.parent.mkdir(parents=True, exist_ok=True)
+                                        shadow_alt.write_bytes(data)
+                finally:
+                    extra_archive.close()
             except Exception:
                 pass
 
@@ -401,6 +415,7 @@ class AionCatalogIndex:
         self._basename_to_pak_entry: Dict[str, Tuple[Path, AionPakEntry]] = {}
         self._indexed_paks: Set[str] = set()
         self._archives: Dict[str, AionPakArchive] = {}
+        self._file_cache: Dict[str, bytes] = {}
 
     def get_archive(self, pak_path: Path | str) -> AionPakArchive:
         key = str(pak_path).lower()
@@ -448,18 +463,164 @@ class AionCatalogIndex:
         base = clean_lower.split("/")[-1]
         return self._basename_to_pak_entry.get(base)
 
+    find_file = find_entry
+
     @property
     def indexed_paks_count(self) -> int:
         return len(self._indexed_paks)
 
     def extract_file(self, rel_path: str) -> Optional[bytes]:
-        """Extracts and decompresses a file directly from indexed PAKs."""
+        """Extracts and decompresses a file directly from indexed PAKs with LRU caching for small files."""
+        clean_key = rel_path.replace("\\", "/").strip().lstrip("/").lower()
+        if clean_key in self._file_cache:
+            return self._file_cache[clean_key]
+
         entry_info = self.find_entry(rel_path)
         if not entry_info:
             return None
         pak_path, entry = entry_info
         archive = self.get_archive(pak_path)
-        return archive.read_entry(entry)
+        data = archive.read_entry(entry)
+
+        if data is not None and len(data) <= 524288:  # Cache files <= 512KB
+            if len(self._file_cache) >= 256:
+                first_key = next(iter(self._file_cache))
+                del self._file_cache[first_key]
+            self._file_cache[clean_key] = data
+
+        return data
+
+    def save_cache(self, cache_file: Path | str) -> bool:
+        """Serializes current catalog index to disk cache using compact JSON and transparent gzip."""
+        try:
+            cache_path = Path(cache_file)
+            cache_path.parent.mkdir(parents=True, exist_ok=True)
+            entries_list = []
+            for lower_name, (pak_path, entry) in self._path_to_pak_entry.items():
+                try:
+                    rel_pak = os.path.relpath(pak_path, self.client_root).replace("\\", "/")
+                except Exception:
+                    rel_pak = str(pak_path).replace("\\", "/")
+                entries_list.append([
+                    lower_name,
+                    entry.name,
+                    entry.method,
+                    entry.csize,
+                    entry.usize,
+                    entry.crc,
+                    entry.local_offset,
+                    rel_pak,
+                ])
+
+            indexed_paks_list = []
+            for p in self._indexed_paks:
+                try:
+                    rel_p = os.path.relpath(p, self.client_root).replace("\\", "/")
+                except Exception:
+                    rel_p = str(p).replace("\\", "/")
+                indexed_paks_list.append(rel_p)
+
+            payload = {
+                "version": 1,
+                "timestamp": time.time(),
+                "client_root": str(self.client_root),
+                "indexed_paks": indexed_paks_list,
+                "entries": entries_list,
+            }
+            raw_json = json.dumps(payload, separators=(",", ":"))
+            raw_bytes = raw_json.encode("utf-8")
+
+            _1MB = 1024 * 1024
+            gz_path = cache_path.with_name(cache_path.name + ".gz") if not cache_path.name.endswith(".gz") else cache_path
+
+            if len(raw_bytes) > _1MB or cache_path.name.endswith(".gz"):
+                with gzip.open(gz_path, "wb") as f_gz:
+                    f_gz.write(raw_bytes)
+                if not cache_path.name.endswith(".gz") and cache_path.is_file():
+                    cache_path.unlink(missing_ok=True)
+            else:
+                cache_path.write_bytes(raw_bytes)
+                if gz_path != cache_path and gz_path.is_file():
+                    gz_path.unlink(missing_ok=True)
+            return True
+        except Exception:
+            return False
+
+    def load_cache(self, cache_file: Path | str) -> bool:
+        """Loads catalog index from disk cache (supporting both .json and .json.gz)."""
+        try:
+            cache_path = Path(cache_file)
+            gz_path = cache_path.with_name(cache_path.name + ".gz") if not cache_path.name.endswith(".gz") else cache_path
+
+            raw_bytes: Optional[bytes] = None
+            if gz_path.is_file():
+                try:
+                    with gzip.open(gz_path, "rb") as f_gz:
+                        raw_bytes = f_gz.read()
+                except Exception:
+                    raw_bytes = None
+
+            if raw_bytes is None and cache_path.is_file():
+                raw_bytes = cache_path.read_bytes()
+
+            if raw_bytes is None:
+                return False
+
+            data = json.loads(raw_bytes.decode("utf-8"))
+            if not isinstance(data, dict) or data.get("version") != 1:
+                return False
+
+            entries_list = data.get("entries", [])
+            indexed_paks_list = data.get("indexed_paks", [])
+
+            pak_path_cache: Dict[str, Tuple[Path, str]] = {}
+            for rel_p in indexed_paks_list:
+                fp = self.client_root / rel_p if not os.path.isabs(rel_p) else Path(rel_p)
+                pair = (fp, str(fp))
+                pak_path_cache[rel_p] = pair
+                self._indexed_paks.add(pair[1].lower())
+
+            path_to_pak = self._path_to_pak_entry
+            base_to_pak = self._basename_to_pak_entry
+            client_root = self.client_root
+
+            for item in entries_list:
+                # [lower_name, name, method, csize, usize, crc, local_offset, rel_pak]
+                lower_name, name, method, csize, usize, crc, loc_offset, rel_pak = item
+                pair = pak_path_cache.get(rel_pak)
+                if pair is None:
+                    fp = client_root / rel_pak if not os.path.isabs(rel_pak) else Path(rel_pak)
+                    pair = (fp, str(fp))
+                    pak_path_cache[rel_pak] = pair
+                    self._indexed_paks.add(pair[1].lower())
+
+                full_pak, pak_str = pair
+                entry = AionPakEntry(
+                    name=name,
+                    method=method,
+                    csize=csize,
+                    usize=usize,
+                    crc=crc,
+                    local_offset=loc_offset,
+                    pak_path=pak_str,
+                )
+                val = (full_pak, entry)
+                path_to_pak[lower_name] = val
+                idx = lower_name.rfind("/")
+                base = lower_name[idx + 1 :] if idx != -1 else lower_name
+                if base not in base_to_pak:
+                    base_to_pak[base] = val
+
+            return len(self._path_to_pak_entry) > 0
+        except Exception:
+            return False
+
+    def close(self) -> None:
+        """Closes all open pak archive handles in catalog."""
+        for arc in self._archives.values():
+            arc.close()
+        self._archives.clear()
+        self._file_cache.clear()
 
 
 class AionClientPakResolver:
@@ -492,7 +653,11 @@ class AionClientPakResolver:
     def ensure_catalog(self) -> None:
         if self._catalog_initialized:
             return
-        self._catalog_initialized = True
+
+        cache_file = self.cache_dir / "catalog_index.json"
+        if self.catalog.load_cache(cache_file):
+            self._catalog_initialized = True
+            return
 
         # Index common texture & mesh PAKs
         common_dir = self.client_root / "levels" / "common"
@@ -526,6 +691,41 @@ class AionClientPakResolver:
         if shaders_dir.is_dir():
             for pak_file in shaders_dir.rglob("*.pak"):
                 self.catalog.index_pak(pak_file)
+
+        self._catalog_initialized = True
+
+        try:
+            self.catalog.save_cache(cache_file)
+        except Exception:
+            pass
+
+    def _index_candidates_for_ref(self, clean: str) -> None:
+        """On-demand indexing of candidate PAK directories for resources not yet in catalog."""
+        clean_norm = clean.replace("\\", "/").strip().lstrip("/").lower()
+        parts = clean_norm.split("/")
+        if not parts:
+            return
+
+        if len(parts) > 1:
+            cand_dir = self.client_root / Path(*parts[:-1])
+            if cand_dir.is_dir():
+                self.catalog.index_directory_paks(cand_dir, "*.pak")
+            if len(parts) > 2:
+                cand_parent = self.client_root / Path(*parts[:-2])
+                if cand_parent.is_dir():
+                    self.catalog.index_directory_paks(cand_parent, "*.pak")
+
+        if clean_norm.startswith("objects/"):
+            obj_dir = self.client_root / "objects"
+            if len(parts) >= 2:
+                sub_dir = obj_dir / parts[1]
+                if sub_dir.is_dir():
+                    self.catalog.index_directory_paks(sub_dir, "*.pak")
+
+    def close(self) -> None:
+        """Closes catalog archives and releases all file locks."""
+        if self.catalog:
+            self.catalog.close()
 
     def resolve_resource(self, reference: str) -> Optional[Path]:
         """
@@ -561,6 +761,10 @@ class AionClientPakResolver:
         # 3. Ensure catalog index is loaded and query it
         self.ensure_catalog()
         match = self.catalog.find_entry(clean)
+        if not match:
+            self._index_candidates_for_ref(clean)
+            match = self.catalog.find_entry(clean)
+
         if match:
             pak_path, entry = match
             arc = self.catalog.get_archive(pak_path)
@@ -710,9 +914,7 @@ def pack_level_directory(source_dir: str | Path, output_pak: str | Path, create_
         f.write(eocd)
 
     total_bytes = tmp_out.stat().st_size
-    if target_pak.exists():
-        target_pak.unlink()
-    tmp_out.rename(target_pak)
+    os.replace(str(tmp_out), str(target_pak))
     return len(file_records), total_bytes
 
 

@@ -24,8 +24,8 @@ class ArmatureCache:
     _instance: Optional["ArmatureCache"] = None
 
     def __init__(self):
-        self._armatures: Dict[str, bpy.types.Armature] = {}
-        self._actions: Dict[str, bpy.types.Action] = {}
+        self._armatures: Dict[str, str] = {}
+        self._actions: Dict[str, str] = {}
 
     @classmethod
     def get(cls) -> "ArmatureCache":
@@ -36,6 +36,46 @@ class ArmatureCache:
     def clear(self) -> None:
         self._armatures.clear()
         self._actions.clear()
+
+    clear_cache = clear
+
+    def get_armature(self, key: str) -> Optional[bpy.types.Armature]:
+        name = self._armatures.get(key)
+        if not name:
+            return None
+        try:
+            arm = bpy.data.armatures.get(name)
+            if arm is not None and arm.name == name:
+                return arm
+        except (ReferenceError, Exception):
+            pass
+        self._armatures.pop(key, None)
+        return None
+
+    def set_armature(self, key: str, arm: bpy.types.Armature) -> None:
+        try:
+            self._armatures[key] = arm.name
+        except (ReferenceError, Exception):
+            pass
+
+    def get_action(self, key: str) -> Optional[bpy.types.Action]:
+        name = self._actions.get(key)
+        if not name:
+            return None
+        try:
+            act = bpy.data.actions.get(name)
+            if act is not None and act.name == name:
+                return act
+        except (ReferenceError, Exception):
+            pass
+        self._actions.pop(key, None)
+        return None
+
+    def set_action(self, key: str, act: bpy.types.Action) -> None:
+        try:
+            self._actions[key] = act.name
+        except (ReferenceError, Exception):
+            pass
 
 
 def build_npc_armature(
@@ -57,10 +97,10 @@ def build_npc_armature(
     cache = ArmatureCache.get()
     cache_key = f"arm_{npc_name}_{len(bone_names)}"
 
-    arm_data = cache._armatures.get(cache_key)
-    if arm_data is None or arm_data.name not in bpy.data.armatures:
+    arm_data = cache.get_armature(cache_key)
+    if arm_data is None:
         arm_data = bpy.data.armatures.new(f"{npc_name}_Armature")
-        cache._armatures[cache_key] = arm_data
+        cache.set_armature(cache_key, arm_data)
 
         scene_col = bpy.context.scene.collection
         temp_name = f"__aion_temp_rig_{npc_name}__"
@@ -175,11 +215,11 @@ def apply_caf_animation(
         return None
 
     cache = ArmatureCache.get()
-    if action_name in cache._actions and cache._actions[action_name].name in bpy.data.actions:
-        action = cache._actions[action_name]
+    cached_action = cache.get_action(action_name)
+    if cached_action is not None:
         rig_obj.animation_data_create()
-        rig_obj.animation_data.action = action
-        return action
+        rig_obj.animation_data.action = cached_action
+        return cached_action
 
     parsed = parse_caf(caf_data)
     if not parsed or not parsed.get("controllers"):
@@ -234,5 +274,5 @@ def apply_caf_animation(
             if not has_cycles:
                 fc.modifiers.new(type="CYCLES")
 
-    cache._actions[action_name] = action
+    cache.set_action(action_name, action)
     return action

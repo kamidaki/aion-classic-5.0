@@ -19,10 +19,15 @@ from .shader_interpreter import interpret_and_build_material_graph
 
 
 _MATERIAL_CACHE: Dict[str, str] = {}
+_TEXTURE_SLOT_CACHE: Dict[Tuple[str, str, str, str], str] = {}
 
 
 def clean_material_cache() -> None:
     _MATERIAL_CACHE.clear()
+    _TEXTURE_SLOT_CACHE.clear()
+
+
+clear_cache = clean_material_cache
 
 
 def _clean_texture_path(value: Any) -> str:
@@ -57,37 +62,48 @@ def resolve_texture_slot(
 
     tex_name = _clean_texture_path(texture_dict.get("name"))
     tex_long = _clean_texture_path(texture_dict.get("long_name"))
-    model_dir = os.path.dirname(model_path) if os.path.isfile(model_path) else model_path
+    if not tex_name and not tex_long:
+        return ""
 
+    model_dir = os.path.dirname(model_path) if os.path.isfile(model_path) else model_path
+    cache_key = (tex_name, tex_long, model_dir, client_root or "")
+    cached = _TEXTURE_SLOT_CACHE.get(cache_key)
+    if cached is not None:
+        return cached
+
+    result = ""
     # Check direct disk paths first
     if tex_long and client_root:
         disk_path = os.path.normcase(os.path.abspath(os.path.join(client_root, tex_long)))
         if os.path.isfile(disk_path):
-            return disk_path
+            result = disk_path
 
-    if tex_name and model_dir:
+    if not result and tex_name and model_dir:
         disk_path = os.path.normcase(os.path.abspath(os.path.join(model_dir, tex_name)))
         if os.path.isfile(disk_path):
-            return disk_path
+            result = disk_path
 
     # Use PAK resolver
-    if client_root:
+    if not result and client_root:
         resolver = get_pak_resolver(client_root)
         if resolver:
             if tex_long:
                 resolved = resolver.resolve_resource(tex_long)
                 if resolved and os.path.isfile(str(resolved)):
-                    return os.path.normcase(os.path.abspath(str(resolved)))
-            if tex_name:
+                    result = os.path.normcase(os.path.abspath(str(resolved)))
+            if not result and tex_name:
                 resolved = resolver.resolve_resource(tex_name)
                 if resolved and os.path.isfile(str(resolved)):
-                    return os.path.normcase(os.path.abspath(str(resolved)))
+                    result = os.path.normcase(os.path.abspath(str(resolved)))
 
-    if tex_long and client_root:
-        return os.path.normcase(os.path.abspath(os.path.join(client_root, tex_long)))
-    if tex_name and model_dir:
-        return os.path.normcase(os.path.abspath(os.path.join(model_dir, tex_name)))
-    return ""
+    if not result:
+        if tex_long and client_root:
+            result = os.path.normcase(os.path.abspath(os.path.join(client_root, tex_long)))
+        elif tex_name and model_dir:
+            result = os.path.normcase(os.path.abspath(os.path.join(model_dir, tex_name)))
+
+    _TEXTURE_SLOT_CACHE[cache_key] = result
+    return result
 
 
 def get_or_create_aion_material(
@@ -98,6 +114,7 @@ def get_or_create_aion_material(
     animate_texture_sequences: bool = True,
     texture_animation_fps: int = 10,
     animate_shader_uv_scroll: bool = True,
+    optimize_material_preview: bool = True,
 ) -> bpy.types.Material:
     """
     Retrieves or creates a Blender material for an Aion CGF material chunk.
@@ -203,6 +220,7 @@ def get_or_create_aion_material(
         resolved_textures,
         animate_uv_scroll=animate_shader_uv_scroll,
         uv_scroll_speed=uv_scroll_speed,
+        optimize_material_preview=optimize_material_preview,
     )
 
     # Attach Aion metadata to the material datablock

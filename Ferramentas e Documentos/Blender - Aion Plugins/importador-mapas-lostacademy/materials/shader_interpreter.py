@@ -16,17 +16,24 @@ import bpy
 from .texture_loader import load_texture_image
 
 
-def safe_set_blend_method(mat: bpy.types.Material, method: str) -> None:
+def safe_set_blend_method(
+    mat: bpy.types.Material,
+    method: str,
+    optimize_material_preview: bool = True,
+) -> None:
     """Sets material blend and surface render methods safely across Blender 4.0 - 5.2+."""
     try:
-        mat.blend_method = method
+        if optimize_material_preview and method in ("HASHED", "CLIP"):
+            mat.blend_method = "CLIP"
+        else:
+            mat.blend_method = method
     except (AttributeError, TypeError):
         pass
     try:
         # In Blender 4.2+ / 5.2 (EEVEE Next):
         # DITHERED uses early-Z testing for maximum viewport performance
         if method == "BLEND":
-            mat.surface_render_method = "BLENDED"
+            mat.surface_render_method = "DITHERED" if optimize_material_preview else "BLENDED"
         elif method in ("CLIP", "HASHED", "OPAQUE"):
             mat.surface_render_method = "DITHERED"
     except (AttributeError, TypeError):
@@ -85,6 +92,7 @@ def interpret_and_build_material_graph(
     animate_uv_scroll: bool = False,
     uv_scroll_speed: tuple[float, float] = (0.0, 0.0),
     texture_sequence_node: Optional[bpy.types.Node] = None,
+    optimize_material_preview: bool = True,
 ) -> Dict[str, Any]:
     """
     Constructs a complete, accurate Blender shader graph for an Aion material.
@@ -195,7 +203,7 @@ def interpret_and_build_material_graph(
         links.new(emission.outputs["Emission"], mix.inputs[2])
         links.new(mix.outputs["Shader"], output_node.inputs["Surface"])
 
-        safe_set_blend_method(mat, "BLEND")
+        safe_set_blend_method(mat, "BLEND", optimize_material_preview=optimize_material_preview)
         safe_set_two_sided(mat, is_two_sided)
         return {"mode": "additive", "shader": shader_name}
 
@@ -258,7 +266,7 @@ def interpret_and_build_material_graph(
         links.new(mapping.outputs["Vector"], op_node.inputs["Vector"])
         if alpha_in:
             links.new(op_node.outputs["Color"], alpha_in)
-        safe_set_blend_method(mat, "BLEND" if scalar_opacity else "CLIP")
+        safe_set_blend_method(mat, "BLEND" if scalar_opacity else "CLIP", optimize_material_preview=optimize_material_preview)
     elif is_waterfall:
         if alpha_in and diffuse_node:
             links.new(diffuse_node.outputs["Alpha"], alpha_in)
@@ -266,17 +274,17 @@ def interpret_and_build_material_graph(
         if trans_socket:
             trans_socket.default_value = 0.5
         bsdf.inputs["Roughness"].default_value = 0.1
-        safe_set_blend_method(mat, "BLEND")
+        safe_set_blend_method(mat, "BLEND", optimize_material_preview=optimize_material_preview)
         safe_set_two_sided(mat, True)
     elif is_water_surface:
         if alpha_in:
             alpha_in.default_value = 0.65
-        safe_set_blend_method(mat, "BLEND")
+        safe_set_blend_method(mat, "BLEND", optimize_material_preview=optimize_material_preview)
         safe_set_two_sided(mat, True)
     elif diffuse_node and is_cutout:
         if alpha_in:
             links.new(diffuse_node.outputs["Alpha"], alpha_in)
-        safe_set_blend_method(mat, "CLIP")
+        safe_set_blend_method(mat, "CLIP", optimize_material_preview=optimize_material_preview)
         try:
             mat.alpha_threshold = 0.33
         except (AttributeError, TypeError):
@@ -292,11 +300,11 @@ def interpret_and_build_material_graph(
                 links.new(mult.outputs["Value"], alpha_in)
             else:
                 alpha_in.default_value = scalar_opacity
-        safe_set_blend_method(mat, "BLEND")
+        safe_set_blend_method(mat, "BLEND", optimize_material_preview=optimize_material_preview)
     elif diffuse_node:
-        safe_set_blend_method(mat, "OPAQUE")
+        safe_set_blend_method(mat, "OPAQUE", optimize_material_preview=optimize_material_preview)
     else:
-        safe_set_blend_method(mat, "OPAQUE")
+        safe_set_blend_method(mat, "OPAQUE", optimize_material_preview=optimize_material_preview)
 
     # Normal Map (texture_bump)
     if bump_path and os.path.isfile(bump_path):
