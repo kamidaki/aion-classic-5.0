@@ -13,7 +13,7 @@ from typing import Any, Dict, Optional
 
 import bpy
 
-from .texture_loader import load_texture_image
+from .texture_loader import load_texture_image, load_texture_from_pak_bytes, _PAK_IMAGE_CACHE
 
 
 def safe_set_blend_method(
@@ -61,7 +61,7 @@ def _get_bsdf_socket(bsdf: bpy.types.Node, *candidate_names: str) -> Optional[bp
 
 def _fast_dds_has_alpha(filepath: Optional[str]) -> bool:
     """Fast non-blocking DDS header inspection (<0.001ms, 0 Python pixel allocations)."""
-    if not filepath or not os.path.isfile(filepath):
+    if not filepath or filepath.startswith("__pak__:") or not os.path.isfile(filepath):
         return False
     try:
         with open(filepath, "rb") as f:
@@ -81,6 +81,27 @@ def _fast_dds_has_alpha(filepath: Optional[str]) -> bool:
     except Exception:
         pass
     return False
+
+
+def _load_tex(filepath: Optional[str], colorspace: str = "sRGB") -> Optional[bpy.types.Image]:
+    """Load a texture image from either a disk path or a PAK cache sentinel (prefix '__pak__:')."""
+    if not filepath:
+        return None
+    if filepath.startswith("__pak__:"):
+        pak_key = filepath[len("__pak__:"):]
+        norm_key = pak_key.lower().replace("\\", "/")
+        img_name = _PAK_IMAGE_CACHE.get(norm_key)
+        if img_name:
+            try:
+                img = bpy.data.images.get(img_name)
+                if img is not None:
+                    return img
+            except (ReferenceError, Exception):
+                pass
+        return None
+    if not os.path.isfile(filepath):
+        return None
+    return load_texture_image(filepath, colorspace=colorspace)
 
 
 def interpret_and_build_material_graph(
@@ -189,10 +210,10 @@ def interpret_and_build_material_graph(
         emission.inputs["Strength"].default_value = max(1.5, emission_strength * 2.0)
 
         tex_node = texture_sequence_node
-        if tex_node is None and diffuse_path and os.path.isfile(diffuse_path):
+        if tex_node is None and diffuse_path and (diffuse_path.startswith("__pak__:") or os.path.isfile(diffuse_path)):
             tex_node = nodes.new("ShaderNodeTexImage")
             tex_node.location = (-300, 100)
-            tex_node.image = load_texture_image(diffuse_path, colorspace="sRGB")
+            tex_node.image = _load_tex(diffuse_path, "sRGB")
             links.new(mapping.outputs["Vector"], tex_node.inputs["Vector"])
 
         if tex_node:
@@ -227,10 +248,10 @@ def interpret_and_build_material_graph(
         bsdf.inputs["Base Color"].default_value = (r, g, b, 1.0)
 
     diffuse_node = texture_sequence_node
-    if diffuse_node is None and diffuse_path and os.path.isfile(diffuse_path):
+    if diffuse_node is None and diffuse_path and (diffuse_path.startswith("__pak__:") or os.path.isfile(diffuse_path)):
         diffuse_node = nodes.new("ShaderNodeTexImage")
         diffuse_node.location = (-300, 200)
-        diffuse_node.image = load_texture_image(diffuse_path, colorspace="sRGB")
+        diffuse_node.image = _load_tex(diffuse_path, "sRGB")
         links.new(mapping.outputs["Vector"], diffuse_node.inputs["Vector"])
 
     if diffuse_node:
@@ -259,10 +280,10 @@ def interpret_and_build_material_graph(
     except Exception:
         pass
 
-    if opacity_path and os.path.isfile(opacity_path):
+    if opacity_path and (opacity_path.startswith("__pak__:") or os.path.isfile(opacity_path)):
         op_node = nodes.new("ShaderNodeTexImage")
         op_node.location = (-300, -50)
-        op_node.image = load_texture_image(opacity_path, colorspace="Non-Color")
+        op_node.image = _load_tex(opacity_path, "Non-Color")
         links.new(mapping.outputs["Vector"], op_node.inputs["Vector"])
         if alpha_in:
             links.new(op_node.outputs["Color"], alpha_in)
@@ -307,10 +328,10 @@ def interpret_and_build_material_graph(
         safe_set_blend_method(mat, "OPAQUE", optimize_material_preview=optimize_material_preview)
 
     # Normal Map (texture_bump)
-    if bump_path and os.path.isfile(bump_path):
+    if bump_path and (bump_path.startswith("__pak__:") or os.path.isfile(bump_path)):
         normal_tex = nodes.new("ShaderNodeTexImage")
         normal_tex.location = (-300, -300)
-        normal_tex.image = load_texture_image(bump_path, colorspace="Non-Color")
+        normal_tex.image = _load_tex(bump_path, "Non-Color")
         links.new(mapping.outputs["Vector"], normal_tex.inputs["Vector"])
 
         normal_map = nodes.new("ShaderNodeNormalMap")
@@ -336,10 +357,10 @@ def interpret_and_build_material_graph(
     if specular_in:
         specular_in.default_value = max(0.0, min(1.0, spec_level)) if spec_level > 0 else 0.5
 
-    if gloss_path and os.path.isfile(gloss_path) and roughness_in:
+    if gloss_path and (gloss_path.startswith("__pak__:") or os.path.isfile(gloss_path)) and roughness_in:
         gloss_node = nodes.new("ShaderNodeTexImage")
         gloss_node.location = (-300, -550)
-        gloss_node.image = load_texture_image(gloss_path, colorspace="Non-Color")
+        gloss_node.image = _load_tex(gloss_path, "Non-Color")
         links.new(mapping.outputs["Vector"], gloss_node.inputs["Vector"])
 
         invert = nodes.new("ShaderNodeInvert")
@@ -352,10 +373,10 @@ def interpret_and_build_material_graph(
     emission_color_in = _get_bsdf_socket(bsdf, "Emission Color", "Emission")
     emission_strength_in = bsdf.inputs.get("Emission Strength")
 
-    if filter_path and os.path.isfile(filter_path):
+    if filter_path and (filter_path.startswith("__pak__:") or os.path.isfile(filter_path)):
         filter_tex = nodes.new("ShaderNodeTexImage")
         filter_tex.location = (-300, 500)
-        filter_tex.image = load_texture_image(filter_path, colorspace="sRGB")
+        filter_tex.image = _load_tex(filter_path, "sRGB")
         links.new(mapping.outputs["Vector"], filter_tex.inputs["Vector"])
         if emission_color_in:
             links.new(filter_tex.outputs["Color"], emission_color_in)
@@ -376,10 +397,10 @@ def interpret_and_build_material_graph(
             subsurf_weight_in.default_value = 0.15
         if subsurf_color_in and diffuse_node:
             links.new(diffuse_node.outputs["Color"], subsurf_color_in)
-    elif subsurf_path and os.path.isfile(subsurf_path):
+    elif subsurf_path and (subsurf_path.startswith("__pak__:") or os.path.isfile(subsurf_path)):
         sub_node = nodes.new("ShaderNodeTexImage")
         sub_node.location = (-300, 350)
-        sub_node.image = load_texture_image(subsurf_path, colorspace="sRGB")
+        sub_node.image = _load_tex(subsurf_path, "sRGB")
         links.new(mapping.outputs["Vector"], sub_node.inputs["Vector"])
         if subsurf_color_in:
             links.new(sub_node.outputs["Color"], subsurf_color_in)

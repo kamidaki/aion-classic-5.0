@@ -102,3 +102,67 @@ def purge_orphan_datablocks() -> None:
 
 clear_cache = clear_texture_cache
 
+
+_PAK_IMAGE_CACHE: Dict[str, str] = {}
+
+
+def load_texture_from_pak_bytes(
+    cache_key: str,
+    dds_bytes: bytes,
+    *,
+    colorspace: str = "sRGB",
+    name_hint: str = "AionTex",
+) -> Optional[bpy.types.Image]:
+    """
+    Loads a texture from raw DDS bytes extracted from a PAK archive.
+    Uses Blender's packed image API to avoid temp file I/O.
+    cache_key: unique identifier for this texture (e.g. normalized PAK path)
+    """
+    if not dds_bytes:
+        return None
+
+    norm_key = cache_key.lower().replace("\\", "/")
+
+    # Check in-memory cache first
+    if norm_key in _PAK_IMAGE_CACHE:
+        img_name = _PAK_IMAGE_CACHE[norm_key]
+        try:
+            img = bpy.data.images.get(img_name)
+            if img is not None:
+                return img
+        except (ReferenceError, Exception):
+            _PAK_IMAGE_CACHE.pop(norm_key, None)
+
+    try:
+        import tempfile
+        ext = Path(cache_key).suffix or ".dds"
+        safe_stem = Path(cache_key).stem[:40].replace("/", "_").replace("\\", "_")
+        fname = f"aion_tex_{safe_stem}{ext}"
+        tmp_dir = Path(tempfile.gettempdir()) / "aion_blender_textures"
+        tmp_dir.mkdir(parents=True, exist_ok=True)
+        tmp_path = tmp_dir / fname
+
+        if not tmp_path.is_file():
+            tmp_path.write_bytes(dds_bytes)
+
+        image = bpy.data.images.load(str(tmp_path), check_existing=True)
+        if image is None:
+            return None
+
+        # Configure color space
+        try:
+            if colorspace == "Non-Color":
+                image.colorspace_settings.name = "Non-Color"
+            else:
+                image.colorspace_settings.name = "sRGB"
+        except Exception:
+            pass
+
+        _PAK_IMAGE_CACHE[norm_key] = image.name
+        # Also register in main cache by disk path
+        norm_disk = os.path.normcase(os.path.abspath(str(tmp_path)))
+        _IMAGE_CACHE[norm_disk] = image.name
+        return image
+    except Exception:
+        return None
+
