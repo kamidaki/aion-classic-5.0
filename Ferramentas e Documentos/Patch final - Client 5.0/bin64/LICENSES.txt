@@ -1,0 +1,54 @@
+AION client uses these libraries zlib, BeeCrypt, OpenSSL in it.
+This file describes the license of each library.
+
+1. zlib, A massively spiffy yet delicately unobtrusive compression library. 
+
+You can download zlib at http://www.zlib.net/, and zlib license is this:
+
+/* zlib.h -- interface of the 'zlib' general purpose compression library
+  version 1.2.3, July 18th, 2005
+
+  Copyright (C) 1995-2004 Jean-loup Gailly and Mark Adler
+
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
+
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
+
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
+
+  Jean-loup Gailly jloup@gzip.org
+  Mark Adler madler@alumni.caltech.edu
+
+*/
+
+
+2. BeeCrypt, which is an ongoing project to provide a strong and fast cryptography toolkit.
+
+You can download BeeCrypt at http://sourceforge.net/projects/beecrypt
+
+BeeCrypt uses GNU Lesser General Public License, 
+which is http://www.gnu.org/licenses/lgpl.html
+
+
+3. OpenSSL, which is a Secure Socket Layer (SSL v2/v3) and Transport Layer Security (TLS v1) protocols as well as a full-strength general purpose cryptography library.
+
+You can download OpenSSL at http://openssl.org
+
+OpenSSL uses BSD-style Open Source license, and you can see OpenSSL License information here:
+
+http://openssl.org/source/license.html
+
+
+4. FMOD Ex SoundSystem Copyright ?2005-2008 Firelight Technologies Pty, Ltd.
+
+
