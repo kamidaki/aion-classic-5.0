@@ -80,6 +80,14 @@ class QuestPacketsWireTest {
 		assertEquals("d95b0f2efa230080e02e000002", HEX.formatHex(body(new SM_USE_OBJECT(0x2e0f5bd9, 0x800023fa, 12000, 2))));
 	}
 
+	@Test
+	void questTeleportSystemMessagesMatchOfficialIds() {
+		assertEquals(1401742, SM_SYSTEM_MESSAGE.STR_MSG_CANNOT_TELEPORT_IN_THIS_STATE().getId());
+		assertEquals(1401743, SM_SYSTEM_MESSAGE.STR_MSG_CANNOT_TELEPORT_TARGET_NOT_APPEARED().getId());
+		assertEquals(1401744, SM_SYSTEM_MESSAGE.STR_MSG_CANNOT_TELEPORT_TARGET_IN_OTHER_REGION().getId());
+		assertEquals(1401745, SM_SYSTEM_MESSAGE.STR_MSG_CANNOT_TELEPORT_IN_COMBAT_MODE().getId());
+	}
+
 	private static byte[] body(AionServerPacket packet) throws Exception {
 		ByteBuffer buffer = ByteBuffer.allocate(256).order(ByteOrder.LITTLE_ENDIAN);
 		packet.setBuf(buffer);
