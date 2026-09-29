@@ -29,9 +29,11 @@ import com.aionemu.gameserver.world.World;
  * <li>C_GUILD 0x12 [D candidato] recusa (S 0x154 2); 0x11 aceita (S 0x154 1, S 0x6E do candidato offline com STR_GUILD_INVITE_HE_JOINED e
  * histórico de entrada).</li>
  * </ul>
+ * Na Nova Pasta 2026-09-29 17:59: entrada direta na Connection Lost (forma 1), três candidatos no S 0x152 e três aceites offline seguidos.
+ * <p>
  * PENDENTE_DE_COMPROVACAO: critério e ordem da lista geral (50 Legions de nível 5 em 34 + 16, sem a Lost Academy de nível 1; aqui as 50 da raça
- * com mais contribuição, 34 por pacote), a forma de entrada 1 (entrada direta, sem captura), o aviso ao líder online de um candidato novo (aqui só
- * o S 0x152 de novo), o que o candidato online recebe ao ser aceito ou recusado, e quem vê a aba (permissão Invite/Approve).
+ * com mais contribuição, 34 por pacote) e a ordem da busca pelo nome, o aviso ao líder online de um candidato novo (aqui só o S 0x152 de novo),
+ * o que o candidato online recebe ao ser aceito ou recusado, e quem vê a aba (permissão Invite/Approve).
  */
 public class LegionApplicantService {
 
@@ -81,10 +83,9 @@ public class LegionApplicantService {
 			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1401881)); // STR_MSG_GUILD_CANT_JOIN_MAX_MEMBER
 			return;
 		}
-		if (legion.getJoinType() == 1) { // Everyone can join
+		if (legion.getJoinType() == 1) { // Everyone can join: entra direto, sem S 0x151 (Connection Lost, Nova Pasta 2026-09-29 17:59)
 			LegionApplicantDAO.delete(player.getObjectId());
-			if (LegionService.getInstance().addToLegion(legion, player, player))
-				PacketSendUtility.sendPacket(player, new SM_LEGION_APPLICATION());
+			LegionService.getInstance().addToLegion(legion, player, player);
 			return;
 		}
 		LegionApplicant applicant = new LegionApplicant(player.getObjectId(), legionId, player.getName(),

@@ -7,11 +7,9 @@ import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 
 /**
- * S 0x152, candidatos da Legion (aba Applicant), no login do membro: [H 0] sem candidatos; com o Schelp, [H 0xFFFF] e ([D personagem][S nome]
- * [C classe][C sexo][H nível][S apresentação][D hora]) (Nova Pasta 2026-09-29 16:49, 40 b, sobra 0).
- * <p>
- * PENDENTE_DE_COMPROVACAO: o H com mais de um candidato (0xFFFF com um só) e se o C depois da classe é o sexo ou a raça (os dois valem 1 no
- * Schelp).
+ * S 0x152, candidatos da Legion (aba Applicant), no login do membro: [H -n] e n x ([D personagem][S nome][C classe][C sexo][H nível]
+ * [S apresentação][D hora]), pelo id do personagem (Nova Pasta 2026-09-29 16:49: [H 0] e [H -1] com o Schelp; 17:59: [H -3] com Sclepius,
+ * Kodrarik e Sertralina, todos Asmodianos, sexo 0, 0 e 1; sobra 0 nos três).
  */
 public class SM_LEGION_APPLICANT_LIST extends AionServerPacket {
 
@@ -23,7 +21,7 @@ public class SM_LEGION_APPLICANT_LIST extends AionServerPacket {
 
 	@Override
 	protected void writeImpl(AionConnection con) {
-		writeH(applicants.isEmpty() ? 0 : 0xFFFF);
+		writeH(-applicants.size());
 		for (LegionApplicant applicant : applicants) {
 			writeD(applicant.playerId());
 			writeS(applicant.name());

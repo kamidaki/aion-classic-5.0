@@ -39,7 +39,7 @@ public final class LegionApplicantDAO {
 
 	private static final String COLUMNS = "player_id, legion_id, name, player_class, gender, level, intro, apply_time, refused";
 	private static final String LOAD_BY_PLAYER = "SELECT " + COLUMNS + " FROM legion_applicant WHERE player_id=?";
-	private static final String LOAD_BY_LEGION = "SELECT " + COLUMNS + " FROM legion_applicant WHERE legion_id=? AND refused=0 ORDER BY apply_time";
+	private static final String LOAD_BY_LEGION = "SELECT " + COLUMNS + " FROM legion_applicant WHERE legion_id=? AND refused=0 ORDER BY player_id";
 	private static final String STORE = "REPLACE INTO legion_applicant (" + COLUMNS + ") VALUES (?,?,?,?,?,?,?,?,?)";
 	private static final String REFUSE = "UPDATE legion_applicant SET refused=1 WHERE player_id=? AND legion_id=?";
 	private static final String DELETE = "DELETE FROM legion_applicant WHERE player_id=?";

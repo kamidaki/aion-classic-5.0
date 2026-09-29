@@ -177,6 +177,12 @@ class LegionPacketsTest {
 		assertEquals("ffff" + "bb4c0f2e" + schelp + "0b01" + "3c00" + teste + "9916bc6a", HEX.formatHex(body(new SM_LEGION_APPLICANT_LIST(List.of(
 			new LegionApplicant(0x2E0F4CBB, 0x2E003817, "Schelp", 11, 1, 60, "Teste", 0x6ABC1699, false))))));
 		assertEquals("0000", HEX.formatHex(body(new SM_LEGION_APPLICANT_LIST(List.of()))));
+		// 17:59: três candidatos, [H -3]
+		assertEquals("fdff" + "1f2e0f2e" + HEX.formatHex("Sclepius\0".getBytes(StandardCharsets.UTF_16LE)) + "0a00" + "3c00"
+			+ HEX.formatHex("safa\0".getBytes(StandardCharsets.UTF_16LE)) + "5627bc6a", HEX.formatHex(Arrays.copyOf(body(new SM_LEGION_APPLICANT_LIST(List.of(
+				new LegionApplicant(0x2E0F2E1F, 0x2E003817, "Sclepius", 10, 0, 60, "safa", 0x6ABC2756, false),
+				new LegionApplicant(0x2E0F34A1, 0x2E003817, "Kodrarik", 1, 0, 60, "s", 0x6ABC26EE, false),
+				new LegionApplicant(0x2E0F4FB1, 0x2E003817, "Sertralina", 2, 1, 60, "re", 0x6ABC2716, false)))), 42)));
 		assertEquals("bb4c0f2e01", HEX.formatHex(body(new SM_LEGION_APPLICANT_RESULT(0x2E0F4CBB, SM_LEGION_APPLICANT_RESULT.ACCEPTED))));
 		NetworkConfig.GAMESERVER_ID = 23;
 		LegionMember member = member(new Legion(0x2E003817, "Lost Academy"), 0x2E0F4CBB, "Schelp", PlayerClass.CHANTER, 60, LegionRank.VOLUNTEER,
