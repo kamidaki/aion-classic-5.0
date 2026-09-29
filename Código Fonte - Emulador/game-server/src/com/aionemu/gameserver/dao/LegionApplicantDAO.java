@@ -44,7 +44,7 @@ public final class LegionApplicantDAO {
 	private static final String REFUSE = "UPDATE legion_applicant SET refused=1 WHERE player_id=? AND legion_id=?";
 	private static final String DELETE = "DELETE FROM legion_applicant WHERE player_id=?";
 	private static final String SEARCH = "SELECT l.id FROM legions l JOIN legion_members m ON m.legion_id=l.id AND m.`rank`='BRIGADE_GENERAL'"
-		+ " JOIN players p ON p.id=m.player_id WHERE p.race=? AND l.disband_time=0 AND (? IS NULL OR l.name LIKE ?)"
+		+ " JOIN players p ON p.id=m.player_id WHERE p.race=? AND l.disband_time=0 AND (? IS NULL OR %s LIKE ?)"
 		+ " ORDER BY l.contribution_points DESC, l.id LIMIT ?";
 
 	private LegionApplicantDAO() {
@@ -114,12 +114,15 @@ public final class LegionApplicantDAO {
 
 	/**
 	 * @param name
-	 *          parte do nome, ou null para todas
+	 *          parte do texto, ou null para todas
+	 * @param intro
+	 *          procura na apresentação em vez do nome
 	 * @return ids das Legions da raça, pela contribuição
 	 */
-	public static List<Integer> search(Race race, String name, int limit) {
+	public static List<Integer> search(Race race, String name, boolean intro, int limit) {
 		List<Integer> ids = new ArrayList<>();
-		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement stmt = con.prepareStatement(SEARCH)) {
+		try (Connection con = DatabaseFactory.getConnection();
+			PreparedStatement stmt = con.prepareStatement(SEARCH.formatted(intro ? "l.join_intro" : "l.name"))) {
 			stmt.setString(1, race.name());
 			stmt.setString(2, name);
 			stmt.setString(3, name == null ? null : "%" + name.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_") + "%");

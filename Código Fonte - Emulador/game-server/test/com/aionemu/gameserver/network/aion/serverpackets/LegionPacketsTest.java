@@ -184,6 +184,11 @@ class LegionPacketsTest {
 				new LegionApplicant(0x2E0F34A1, 0x2E003817, "Kodrarik", 1, 0, 60, "s", 0x6ABC26EE, false),
 				new LegionApplicant(0x2E0F4FB1, 0x2E003817, "Sertralina", 2, 1, 60, "re", 0x6ABC2716, false)))), 42)));
 		assertEquals("bb4c0f2e01", HEX.formatHex(body(new SM_LEGION_APPLICANT_RESULT(0x2E0F4CBB, SM_LEGION_APPLICANT_RESULT.ACCEPTED))));
+		// 18:08: candidata nova para o líder online (S 0x153) e busca pela apresentação sem resultado
+		assertEquals("f127462e" + HEX.formatHex("Kimmie\0".getBytes(StandardCharsets.UTF_16LE)) + "0b01" + "0300"
+			+ HEX.formatHex("oi\0".getBytes(StandardCharsets.UTF_16LE)) + "3f29bc6a", HEX.formatHex(body(new SM_LEGION_APPLICANT_ADD(
+				new LegionApplicant(0x2E4627F1, 0x2E003817, "Kimmie", 11, 1, 3, "oi", 0x6ABC293F, false)))));
+		assertEquals("000001", HEX.formatHex(body(new SM_LEGION_SEARCH_LIST(List.of(), true))));
 		NetworkConfig.GAMESERVER_ID = 23;
 		LegionMember member = member(new Legion(0x2E003817, "Lost Academy"), 0x2E0F4CBB, "Schelp", PlayerClass.CHANTER, 60, LegionRank.VOLUNTEER,
 			120010000, false, 0x6ABC16FC);

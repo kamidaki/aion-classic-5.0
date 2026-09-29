@@ -361,8 +361,8 @@ public class Legion extends AionObject {
 	}
 
 	/**
-	 * @return forma de entrada: 0 Join on approval (a candidatura do Schelp com 0 foi para a aprovação, Nova Pasta 2026-09-29 16:49 e print),
-	 *         1 Everyone can join e 2 Closed to applications (pela ordem dos cliques 1, 0, 2, 0; PENDENTE_DE_COMPROVACAO)
+	 * @return forma de entrada: 0 Join on approval (a candidatura do Schelp foi para a aprovação, 16:49), 1 Everyone can join (entrada direta na
+	 *         Connection Lost, 17:59) e 2 Closed to applications ("Joining not possible" na busca, print de 18:08)
 	 */
 	public synchronized int getJoinType() {
 		return joinType;
@@ -383,14 +383,15 @@ public class Legion extends AionObject {
 	}
 
 	/**
-	 * @return atividade de campanha (Campaign Activity), trocada uma vez por dia
+	 * @return atividade de campanha (Campaign Activity), trocada uma vez por dia: 0 nenhuma, 1 PvE e 2 PvP pela coluna Main Activity da busca
+	 *         (print de 2026-09-29 18:08: Dragon Lords 1, mmhmm 2); 3 Gathering/Crafting pela ordem (PENDENTE_DE_COMPROVACAO)
 	 */
 	public synchronized int getCampaignActivity() {
 		return campaignActivity;
 	}
 
 	/**
-	 * @return caixas de Legion Activity (Friendship/Freedom) em bits
+	 * @return caixas de Legion Activity em bits: 1 Friendship e 2 Freedom (Main Activity da busca: Dragon Lords 1, Made In Greece 2, Evolution 3)
 	 */
 	public synchronized int getLegionActivity() {
 		return legionActivity;

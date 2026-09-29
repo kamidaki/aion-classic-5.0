@@ -12,6 +12,7 @@ import com.aionemu.gameserver.model.team.legion.Legion;
 import com.aionemu.gameserver.model.team.legion.LegionApplicant;
 import com.aionemu.gameserver.model.team.legion.LegionMember;
 import com.aionemu.gameserver.model.team.legion.LegionPermissionsMask;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_LEGION_APPLICANT_ADD;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_LEGION_APPLICANT_LIST;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_LEGION_APPLICANT_RESULT;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_LEGION_APPLICATION;
@@ -31,9 +32,12 @@ import com.aionemu.gameserver.world.World;
  * </ul>
  * Na Nova Pasta 2026-09-29 17:59: entrada direta na Connection Lost (forma 1), três candidatos no S 0x152 e três aceites offline seguidos.
  * <p>
+ * Na Nova Pasta 2026-09-29 18:08 (dois clientes): o líder online recebe o candidato novo no S 0x153 e a candidata online aceita recebe a
+ * entrada normal, o S 0x151 vazio e STR_GUILD_JOIN_APPORVE.
+ * <p>
  * PENDENTE_DE_COMPROVACAO: critério e ordem da lista geral (50 Legions de nível 5 em 34 + 16, sem a Lost Academy de nível 1; aqui as 50 da raça
- * com mais contribuição, 34 por pacote) e a ordem da busca pelo nome, o aviso ao líder online de um candidato novo (aqui só o S 0x152 de novo),
- * o que o candidato online recebe ao ser aceito ou recusado, e quem vê a aba (permissão Invite/Approve).
+ * com mais contribuição, 34 por pacote) e a ordem da busca, o que o candidato online recebe ao ser recusado (aqui STR_GUILD_JOIN_REFUSAL e o
+ * S 0x151 vazio, como no login), o aviso ao cancelar e quem vê a aba (permissão Invite/Approve).
  */
 public class LegionApplicantService {
 
@@ -47,9 +51,14 @@ public class LegionApplicantService {
 	private LegionApplicantService() {
 	}
 
-	public void search(Player player, String name) {
+	/**
+	 * @param text
+	 *          trecho do nome ou da apresentação ({@code intro}), ou null para a lista geral
+	 */
+	public void search(Player player, String text, boolean intro) {
 		List<SM_LEGION_SEARCH_LIST.Entry> entries = new ArrayList<>();
-		for (int legionId : LegionApplicantDAO.search(player.getRace(), name == null || name.isBlank() ? null : name.trim(), SEARCH_LIMIT)) {
+		String filter = text == null || text.isBlank() ? null : text.trim();
+		for (int legionId : LegionApplicantDAO.search(player.getRace(), filter, intro && filter != null, SEARCH_LIMIT)) {
 			Legion legion = LegionService.getInstance().getLegion(legionId);
 			LegionMember leader = leaderOf(legion);
 			if (leader != null)
@@ -93,7 +102,9 @@ public class LegionApplicantService {
 			(int) (System.currentTimeMillis() / 1000), false);
 		if (LegionApplicantDAO.store(applicant)) {
 			PacketSendUtility.sendPacket(player, new SM_LEGION_APPLICATION(legionId, legion.getName()));
-			refreshApprovers(legion);
+			for (Player member : legion.getOnlinePlayers()) // S 0x153 para o líder online (Nova Pasta 2026-09-29 18:08)
+				if (member.getLegionMember() != null && member.getLegionMember().hasRights(LegionPermissionsMask.INVITE))
+					PacketSendUtility.sendPacket(member, new SM_LEGION_APPLICANT_ADD(applicant));
 		}
 	}
 
@@ -103,9 +114,6 @@ public class LegionApplicantService {
 			return;
 		LegionApplicantDAO.delete(player.getObjectId());
 		PacketSendUtility.sendPacket(player, new SM_LEGION_APPLICATION());
-		Legion legion = LegionService.getInstance().getLegion(legionId);
-		if (legion != null)
-			refreshApprovers(legion);
 	}
 
 	/**
@@ -129,8 +137,11 @@ public class LegionApplicantService {
 		LegionApplicantDAO.delete(playerId);
 		PacketSendUtility.sendPacket(approver, new SM_LEGION_APPLICANT_RESULT(playerId, SM_LEGION_APPLICANT_RESULT.ACCEPTED));
 		if (target != null) {
-			if (LegionService.getInstance().addToLegion(legion, target, approver))
+			// Kimmie online (Nova Pasta 2026-09-29 18:08): a entrada normal, o S 0x151 vazio e STR_GUILD_JOIN_APPORVE
+			if (LegionService.getInstance().addToLegion(legion, target, approver)) {
 				PacketSendUtility.sendPacket(target, new SM_LEGION_APPLICATION());
+				PacketSendUtility.sendPacket(target, new SM_SYSTEM_MESSAGE(1401890)); // STR_GUILD_JOIN_APPORVE
+			}
 		} else {
 			LegionService.getInstance().addOfflineMember(legion, playerId);
 		}
@@ -189,12 +200,6 @@ public class LegionApplicantService {
 		List<LegionApplicant> applicants = member != null && member.hasRights(LegionPermissionsMask.INVITE)
 			? LegionApplicantDAO.loadByLegion(member.getLegion().getLegionId()) : List.of();
 		PacketSendUtility.sendPacket(player, new SM_LEGION_APPLICANT_LIST(applicants));
-	}
-
-	private void refreshApprovers(Legion legion) {
-		for (Player member : legion.getOnlinePlayers())
-			if (member.getLegionMember() != null && member.getLegionMember().hasRights(LegionPermissionsMask.INVITE))
-				sendApplicants(member);
 	}
 
 	private static LegionMember leaderOf(Legion legion) {

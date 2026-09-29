@@ -310,6 +310,7 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(336, SM_LEGION_SEARCH_LIST.class); // resultado da busca de Legion (0x0150)
 		addPacketOpcode(337, SM_LEGION_APPLICATION.class); // candidatura do personagem (0x0151)
 		addPacketOpcode(338, SM_LEGION_APPLICANT_LIST.class); // candidatos da Legion (0x0152)
+		addPacketOpcode(339, SM_LEGION_APPLICANT_ADD.class); // candidato novo para o membro online (0x0153)
 		addPacketOpcode(340, SM_LEGION_APPLICANT_RESULT.class); // aceite ou recusa de candidato (0x0154)
 		addPacketOpcode(342, SM_LEGION_DONATION_MEMBERS.class); // pontos de produção por membro (0x0156)
 		addPacketOpcode(343, SM_LEGION_DONATION_POINTS.class); // pontos de produção da Legion no dia (0x0157)
