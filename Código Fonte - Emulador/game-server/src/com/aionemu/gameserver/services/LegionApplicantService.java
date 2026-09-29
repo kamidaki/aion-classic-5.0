@@ -35,9 +35,10 @@ import com.aionemu.gameserver.world.World;
  * Na Nova Pasta 2026-09-29 18:08 (dois clientes): o líder online recebe o candidato novo no S 0x153 e a candidata online aceita recebe a
  * entrada normal, o S 0x151 vazio e STR_GUILD_JOIN_APPORVE.
  * <p>
- * PENDENTE_DE_COMPROVACAO: critério e ordem da lista geral (50 Legions de nível 5 em 34 + 16, sem a Lost Academy de nível 1; aqui as 50 da raça
- * com mais contribuição, 34 por pacote) e a ordem da busca, o que o candidato online recebe ao ser recusado (aqui STR_GUILD_JOIN_REFUSAL e o
- * S 0x151 vazio, como no login), o aviso ao cancelar e quem vê a aba (permissão Invite/Approve).
+ * Na 18:22, a recusa com o candidato online: S 0x151 vazio e STR_GUILD_JOIN_REFUSAL. A lista geral é o ranking de Legions da raça (as 50 da
+ * busca na ordem do Abyss Ranking de Legions, print de 18:22), 34 por pacote como nas capturas.
+ * <p>
+ * PENDENTE_DE_COMPROVACAO: a ordem da busca por texto (aqui pela contribuição), o aviso ao cancelar e quem vê a aba (permissão Invite/Approve).
  */
 public class LegionApplicantService {
 
@@ -159,9 +160,10 @@ public class LegionApplicantService {
 		if (target == null) {
 			LegionApplicantDAO.refuse(playerId, applicant.legionId());
 		} else {
+			// Kimmie online (Nova Pasta 2026-09-29 18:22): o S 0x151 vazio e depois STR_GUILD_JOIN_REFUSAL
 			LegionApplicantDAO.delete(playerId);
-			PacketSendUtility.sendPacket(target, new SM_SYSTEM_MESSAGE(1401889)); // STR_GUILD_JOIN_REFUSAL
 			PacketSendUtility.sendPacket(target, new SM_LEGION_APPLICATION());
+			PacketSendUtility.sendPacket(target, new SM_SYSTEM_MESSAGE(1401889)); // STR_GUILD_JOIN_REFUSAL
 		}
 	}
 

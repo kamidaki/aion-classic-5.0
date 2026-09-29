@@ -46,6 +46,9 @@ public final class LegionApplicantDAO {
 	private static final String SEARCH = "SELECT l.id FROM legions l JOIN legion_members m ON m.legion_id=l.id AND m.`rank`='BRIGADE_GENERAL'"
 		+ " JOIN players p ON p.id=m.player_id WHERE p.race=? AND l.disband_time=0 AND (? IS NULL OR %s LIKE ?)"
 		+ " ORDER BY l.contribution_points DESC, l.id LIMIT ?";
+	// lista geral = ranking de Legions da raça (print de 2026-09-29 18:22: a busca e o Abyss Ranking de Legions na mesma ordem)
+	private static final String RANKING = "SELECT l.id FROM legions l JOIN legion_members m ON m.legion_id=l.id AND m.`rank`='BRIGADE_GENERAL'"
+		+ " JOIN players p ON p.id=m.player_id WHERE p.race=? AND l.disband_time=0 AND l.rank_pos > 0 ORDER BY l.rank_pos LIMIT ?";
 
 	private LegionApplicantDAO() {
 	}
@@ -117,10 +120,12 @@ public final class LegionApplicantDAO {
 	 *          parte do texto, ou null para todas
 	 * @param intro
 	 *          procura na apresentação em vez do nome
-	 * @return ids das Legions da raça, pela contribuição
+	 * @return ids das Legions da raça: a lista geral pelo ranking, a busca pela contribuição
 	 */
 	public static List<Integer> search(Race race, String name, boolean intro, int limit) {
 		List<Integer> ids = new ArrayList<>();
+		if (name == null)
+			return ranking(race, limit);
 		try (Connection con = DatabaseFactory.getConnection();
 			PreparedStatement stmt = con.prepareStatement(SEARCH.formatted(intro ? "l.join_intro" : "l.name"))) {
 			stmt.setString(1, race.name());
@@ -133,6 +138,21 @@ public final class LegionApplicantDAO {
 			}
 		} catch (SQLException e) {
 			log.error("Could not search legions", e);
+		}
+		return ids;
+	}
+
+	private static List<Integer> ranking(Race race, int limit) {
+		List<Integer> ids = new ArrayList<>();
+		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement stmt = con.prepareStatement(RANKING)) {
+			stmt.setString(1, race.name());
+			stmt.setInt(2, limit);
+			try (ResultSet rs = stmt.executeQuery()) {
+				while (rs.next())
+					ids.add(rs.getInt(1));
+			}
+		} catch (SQLException e) {
+			log.error("Could not load legion ranking", e);
 		}
 		return ids;
 	}
