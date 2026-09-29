@@ -59,8 +59,15 @@ public class SM_LEGION_INFO extends AionServerPacket {
 		writeB(new byte[11]); // 0 nas 11 variantes
 		writeD(legion.getGrowthLevel());
 		writeD(legion.getGrowthExp());
-		// PENDENTE_DE_COMPROVACAO: +8 e +16 valem 10 e 314 na Org Asmo, +24 vai de 0 a 10 na Lost Academy depois do primeiro aviso
-		writeB(new byte[24]);
+		// essência e fragmentos como no S 0x163: Org Asmo com 10 e 314, os mesmos da janela oficial (Legion Essence / Essence Fragments)
+		writeD(0);
+		writeD(legion.getEssence());
+		writeD(0);
+		writeD(legion.getEssencePiece());
+		writeD(0);
+		// PENDENTE_DE_COMPROVACAO: 0 a 10 na Lost Academy depois das 10 produções de moeda (produções do personagem ou pontos da Legion no dia;
+		// com um membro só os dois coincidem)
+		writeD(0);
 	}
 
 	/**
