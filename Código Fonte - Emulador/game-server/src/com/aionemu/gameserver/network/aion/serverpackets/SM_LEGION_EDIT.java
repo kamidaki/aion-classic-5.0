@@ -51,8 +51,8 @@ public class SM_LEGION_EDIT extends AionServerPacket {
 				writeH(legion.getLegionaryPermission());
 				writeH(legion.getVolunteerPermission());
 				break;
-			case 0x03: // Change Legion Contributions
-				writeQ(legion.getContributionPoints());
+			case 0x03: // Change Legion Contributions: D na 5.0 (03 25 cf f6 0d, Org Asmo 13/09; 4 de 4 com 5 b)
+				writeD((int) Math.min(legion.getContributionPoints(), Integer.MAX_VALUE));
 				break;
 			case 0x04:
 				writeQ(legion.getLegionWarehouse().getKinah());

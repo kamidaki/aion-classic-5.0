@@ -49,6 +49,7 @@
 	<xs:include schemaLocation="items/global_trade.xsd" />
 	<xs:include schemaLocation="items/item_compose.xsd" />
 	<xs:include schemaLocation="items/item_upgrade.xsd" />
+	<xs:include schemaLocation="legion/legion_settings.xsd" />
 	<xs:include schemaLocation="moros/moros.xsd" />
 	<xs:include schemaLocation="storybook/storybook.xsd" />
 	<xs:include schemaLocation="legion_dominion_template.xsd" />
@@ -176,6 +177,7 @@
 					<xs:element ref="global_trade" minOccurs="0" />
 					<xs:element ref="item_composes" minOccurs="0" />
 					<xs:element ref="item_upgrades" minOccurs="0" />
+					<xs:element ref="legion_settings" minOccurs="0" />
 					<xs:element ref="moros" minOccurs="0" />
 					<xs:element ref="storybooks" minOccurs="0" />
 					<xs:element ref="pet_buffs" minOccurs="0" />

@@ -181,7 +181,9 @@ public class AionPacketHandlerFactory {
 		// C_DEAD_RESTART na 5.0 é dec 0x000D [C tipo]: 7 de 7 nas capturas, sempre depois do S_RESURRECT_INFO (0xC0) e seguido da ressurreição.
 		// O dec 0x0005 da 4.8 é outro pacote na 5.0 (7 b, 08 00 00 00 00 00 00, um por sessão), que o CM_REVIVE lia como revive no obelisco.
 		addPacket(CM_REVIVE.class, 0xE7, State.IN_GAME); // 0x000D C_DEAD_RESTART (5.0 Classic)
-		addPacket(CM_REVIVE.class, 0x00FF, State.IN_GAME); // 0x0005 C_DEAD_RESTART (5.0 Classic)
+		// C_GUILD: 68 de 69 com [C 08][D 0][H 0] -> S_GUILD_INFO (pedido de info depois de cada troca de mapa; 22/09 16:14). Os demais
+		// subcódigos seguem o layout da 4.8, sem captura do lado do cliente (PENDENTE_DE_COMPROVACAO).
+		addPacket(CM_LEGION.class, 0x00FF, State.IN_GAME); // 0x0005 C_GUILD
 		addPacket(CM_REVIVE.class, 0x0005, State.IN_GAME); // Raw alias
 		addPacket(CM_REVIVE.class, 0xEF, State.IN_GAME); // Legacy fallback
 		addPacket(CM_TELEPORT_SELECT.class, 0x116, State.IN_GAME); // 0x005C TELEPORT_SELECT (5.0 Classic wire)
@@ -207,7 +209,8 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_CHARGE_ITEM.class, 0x124, State.IN_GAME); // CHARGE_ITEM
 		addPacket(CM_GUILD_JOIN_REQUEST.class, 0x1EA, State.IN_GAME); // GUILD_JOIN_REQUEST
 		addPacket(CM_GUILD_JOIN_CANCEL.class, 0x1EB, State.IN_GAME); // GUILD_JOIN_CANCEL
-		addPacket(CM_GUILD_TABS.class, 0xFD, State.IN_GAME); // GUILD_TABS
+		// [D Legion] -> S_GUILD_EMBLEM_IMG_BEGIN + S_GUILD_EMBLEM_IMG_DATA (12 de 12; 22/09 16:14 e 10:23). Aqui ficava um CM_GUILD_TABS vazio.
+		addPacket(CM_LEGION_SEND_EMBLEM.class, 0xFD, State.IN_GAME); // 0x0007 C_REQUEST_GUILD_EMBLEM_IMG
 		addPacket(CM_EQUIPMENT_CHANGE.class, 0x182, State.IN_GAME); // EQUIPMENT_CHANGE
 		addPacket(CM_EQUIPMENT_CHANGE_USE.class, 0x183, State.IN_GAME); // EQUIPMENT_CHANGE_USE
 		// Wardrobe 5.0: capturas 06_Sistemas_Novos_5.0 de 2026-09-21 14:56 e 15:16. A 2.4/2.7 tinha REGISTER..EXTEND seguidos em 0xF5-0xFA.

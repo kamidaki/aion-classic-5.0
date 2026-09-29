@@ -73,6 +73,7 @@ public final class DataManager {
 	public static GlobalTradeData GLOBAL_TRADE_DATA;
 	public static ItemComposeData ITEM_COMPOSE_DATA;
 	public static ItemUpgradeData ITEM_UPGRADE_DATA;
+	public static LegionSettingsData LEGION_SETTINGS_DATA;
 	public static MorosData MOROS_DATA;
 	public static StorybookData STORYBOOK_DATA;
 	public static ItemRestrictionCleanupData ITEM_CLEAN_UP;
@@ -232,6 +233,7 @@ public final class DataManager {
 		GLOBAL_TRADE_DATA = data.globalTradeData;
 		ITEM_COMPOSE_DATA = data.itemComposeData;
 		ITEM_UPGRADE_DATA = data.itemUpgradeData;
+		LEGION_SETTINGS_DATA = data.legionSettingsData;
 		MOROS_DATA = data.morosData;
 		STORYBOOK_DATA = data.storybookData;
 		UPGRADE_ARCADE_DATA = data.upgradeArcadeData;

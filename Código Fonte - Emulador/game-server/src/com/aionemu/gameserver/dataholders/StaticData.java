@@ -303,6 +303,8 @@ public class StaticData {
 	public ItemComposeData itemComposeData;
 	@XmlElement(name = "item_upgrades")
 	public ItemUpgradeData itemUpgradeData;
+	@XmlElement(name = "legion_settings")
+	public LegionSettingsData legionSettingsData;
 	@XmlElement(name = "moros")
 	public MorosData morosData;
 	@XmlElement(name = "storybooks")
@@ -429,6 +431,7 @@ public class StaticData {
 		log.info("Loaded " + worldRaidData.size() + " world raid locations");
 		log.info("Loaded " + killBountyData.size() + " kill bounty templates");
 		log.info("Loaded " + legionDominionData.size() + " legion dominion locations");
+		log.info("Loaded " + legionSettingsData.size() + " legion levels");
 		log.info("Loaded " + skillAliasLocationData.size() + " skill alias locations");
 		log.info("Loaded " + signetDataTemplates.size() + " signet data templates");
 	}

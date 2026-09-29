@@ -31,6 +31,9 @@ public class SM_LEGION_ADD_MEMBER extends AionServerPacket {
 		writeC(player.getCommonData().getPlayerClass().getClassId());
 		writeC(player.getLevel());
 		writeD(player.getPosition().getMapId());
+		// 5.0: online e hora do último logoff entre o mapa e o servidor, como no S_CHANGE_GUILD_MEMBER_INFO (39 a 65 b, 24 de 24 nas capturas)
+		writeC(0x01);
+		writeD(0);
 		writeD(NetworkConfig.GAMESERVER_ID); // TODO: add to account model?
 		writeD(msgId);
 		writeS(text);

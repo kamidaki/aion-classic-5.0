@@ -15,6 +15,7 @@ import com.aionemu.gameserver.dao.InventoryDAO;
 import com.aionemu.gameserver.dao.ItemStoneListDAO;
 import com.aionemu.gameserver.dao.LegionDAO;
 import com.aionemu.gameserver.dao.LegionMemberDAO;
+import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.DialogAction;
 import com.aionemu.gameserver.model.DialogPage;
 import com.aionemu.gameserver.model.gameobjects.Item;
@@ -44,7 +45,6 @@ public class LegionService {
 	private static final Logger log = LoggerFactory.getLogger(LegionService.class);
 	private final Map<Integer, Legion> legionsById = new ConcurrentHashMap<>();
 	private final Map<Integer, LegionMember> legionMemberById = new ConcurrentHashMap<>();
-	private static final int MAX_LEGION_LEVEL = 8;
 
 	private LegionRestrictions legionRestrictions = new LegionRestrictions();
 
@@ -109,6 +109,13 @@ public class LegionService {
 			return null;
 		}
 		return legion;
+	}
+
+	/**
+	 * @return kinah para criar a Legion: o gold do nível 1 do client_guild_setting.xml
+	 */
+	private static long getCreationPrice() {
+		return DataManager.LEGION_SETTINGS_DATA.getLevel(1).getKinah();
 	}
 
 	public Legion getLegion(int legionId) {
@@ -208,14 +215,12 @@ public class LegionService {
 			Legion legion = new Legion(IDFactory.getInstance().nextId(), legionName);
 			legion.addLegionMember(activePlayer.getObjectId());
 
-			activePlayer.getInventory().decreaseKinah(LegionConfig.LEGION_CREATE_REQUIRED_KINAH);
+			activePlayer.getInventory().decreaseKinah(getCreationPrice());
 
 			storeLegion(legion, true);
-			addLegionMember(legion, activePlayer, LegionRank.BRIGADE_GENERAL);
+			// criação oficial (Lost Academy 22/09): o STR_GUILD_CREATED vem dentro do S_ADD_GUILD_MEMBER do líder e o histórico só registra CREATE
+			addLegionMember(legion, activePlayer, LegionRank.BRIGADE_GENERAL, 1300235, legion.getName());
 			addHistory(legion, "", LegionHistoryAction.CREATE);
-			addHistory(legion, activePlayer.getName(), LegionHistoryAction.JOIN);
-
-			PacketSendUtility.sendPacket(activePlayer, SM_SYSTEM_MESSAGE.STR_GUILD_CREATED(legion.getName()));
 		}
 	}
 
@@ -672,10 +677,14 @@ public class LegionService {
 	 * This method will add a new legion member to a legion with VOLUNTEER rank
 	 */
 	private void addLegionMember(Legion legion, Player player) {
-		addLegionMember(legion, player, LegionRank.VOLUNTEER);
+		addLegionMember(legion, player, LegionRank.VOLUNTEER, 1300260, player.getName());
 	}
 
-	private void addLegionMember(Legion legion, Player player, LegionRank rank) {
+	/**
+	 * @param msgId
+	 *          mensagem do S_ADD_GUILD_MEMBER: 1300260 (STR_GUILD_INVITE_HE_JOINED) na entrada, 1300235 (STR_GUILD_CREATED) na criação
+	 */
+	private void addLegionMember(Legion legion, Player player, LegionRank rank, int msgId, String msgParam) {
 		// Set legion member of player and save in the database
 		player.setLegionMember(new LegionMember(player.getObjectId(), legion));
 		player.getLegionMember().setPlayerData(player);
@@ -689,7 +698,7 @@ public class LegionService {
 		updateLegionMemberList(player, false, player.getObjectId());
 
 		// Send legion member info to the members
-		PacketSendUtility.broadcastToLegion(legion, new SM_LEGION_ADD_MEMBER(player, false, 1300260, player.getName()));
+		PacketSendUtility.broadcastToLegion(legion, new SM_LEGION_ADD_MEMBER(player, false, msgId, msgParam));
 		// Send legion emblem information
 		LegionEmblem legionEmblem = legion.getLegionEmblem();
 		PacketSendUtility.broadcastPacket(player, new SM_LEGION_UPDATE_EMBLEM(legion.getLegionId(), legionEmblem), true);
@@ -766,6 +775,9 @@ public class LegionService {
 		// Send current announcement to player
 		displayLegionAnnouncement(activePlayer, legion.getAnnouncement());
 
+		// login oficial: a primeira página do histórico geral vem sem pedido do cliente (23 de 23 sessões com lista de membros)
+		PacketSendUtility.sendPacket(activePlayer, new SM_LEGION_HISTORY(legion.getHistory(LegionHistoryAction.Type.LEGION), LegionHistoryAction.Type.LEGION));
+
 		if (legion.isDisbanding())
 			PacketSendUtility.sendPacket(activePlayer, new SM_LEGION_EDIT(0x06, legion.getDisbandTime()));
 
@@ -780,7 +792,9 @@ public class LegionService {
 		LegionMember legionMember = player.getLegionMember();
 		Legion legion = legionMember.getLegion();
 		legion.getLegionWarehouse().unsetInUse(player.getObjectId());
-		updateMemberInfo(player);
+		legionMember.setPlayerData(player);
+		// logoff oficial (Kamidakii 22/09, 3 de 3): só S_DELETE_GUILD_MEMBER com a flag de membro e a hora da saída, sem S_CHANGE_GUILD_MEMBER_INFO
+		PacketSendUtility.broadcastToLegion(legion, SM_LEGION_LEAVE_MEMBER.logout(legionMember), player.getObjectId());
 		storeLegion(legion);
 		storeLegionMember(player.getLegionMember());
 		legion.removeBonus();
@@ -806,7 +820,7 @@ public class LegionService {
 			} else if (activePlayer.isLegionMember()) {
 				PacketSendUtility.sendPacket(activePlayer, SM_SYSTEM_MESSAGE.STR_GUILD_CREATE_ALREADY_BELONGS_TO_GUILD());
 				return false;
-			} else if (activePlayer.getInventory().getKinah() < LegionConfig.LEGION_CREATE_REQUIRED_KINAH) {
+			} else if (activePlayer.getInventory().getKinah() < getCreationPrice()) {
 				PacketSendUtility.sendPacket(activePlayer, SM_SYSTEM_MESSAGE.STR_GUILD_CREATE_NOT_ENOUGH_MONEY());
 				return false;
 			}
@@ -910,12 +924,12 @@ public class LegionService {
 
 		private boolean canChangeLevel(Player activePlayer) {
 			Legion legion = activePlayer.getLegion();
-			int levelContributionPrice = legion.getContributionPrice();
+			long levelContributionPrice = legion.getContributionPrice();
 			if (!activePlayer.getLegionMember().isBrigadeGeneral()) {
 				PacketSendUtility.sendPacket(activePlayer, SM_SYSTEM_MESSAGE.STR_GUILD_CHANGE_LEVEL_DONT_HAVE_RIGHT());
 				return false;
 			}
-			if (legion.getLegionLevel() == MAX_LEGION_LEVEL) {
+			if (legion.getLegionLevel() >= DataManager.LEGION_SETTINGS_DATA.getMaxLevel()) {
 				PacketSendUtility.sendPacket(activePlayer, SM_SYSTEM_MESSAGE.STR_GUILD_CHANGE_LEVEL_CANT_LEVEL_UP());
 				return false;
 			}
@@ -1099,6 +1113,14 @@ public class LegionService {
 			List<LegionMember> allMembers = legion.getMembers();
 			if (excludedPlayerId != null)
 				allMembers.removeIf(member -> member.getObjectId() == excludedPlayerId);
+			if (allMembers.isEmpty()) { // criação oficial: S_GUILD_MEMBER_INFO vazio (01 00 00)
+				SM_LEGION_MEMBERLIST empty = new SM_LEGION_MEMBERLIST(allMembers, true, true);
+				if (broadcastToLegion)
+					PacketSendUtility.broadcastToLegion(legion, empty);
+				else
+					PacketSendUtility.sendPacket(player, empty);
+				return;
+			}
 			SplitList<LegionMember> legionMemberSplitList = new FixedElementCountSplitList<>(allMembers, true, 80);
 			legionMemberSplitList.forEach(part -> {
 				if (broadcastToLegion)

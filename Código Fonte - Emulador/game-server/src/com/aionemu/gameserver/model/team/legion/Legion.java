@@ -8,7 +8,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.aionemu.gameserver.configs.main.LegionConfig;
+import com.aionemu.gameserver.dataholders.DataManager;
+import com.aionemu.gameserver.dataholders.LegionSettingsData;
 import com.aionemu.gameserver.model.gameobjects.AionObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.team.legion.LegionHistoryAction.Type;
@@ -26,7 +27,8 @@ public class Legion extends AionObject {
 	private int legionLevel = 1;
 	private long contributionPoints = 0;
 	private List<Integer> memberIds = new CopyOnWriteArrayList<>();
-	private short deputyPermission = 0x1E0C;
+	// padrão de Legion recém-criada no S_GUILD_INFO 5.0 (AinzOO 11/09 e Lost Academy 22/09): o Deputy já vem com 0x2000 e 0x4000
+	private short deputyPermission = 0x7E0C;
 	private short centurionPermission = 0x1C08;
 	private short legionaryPermission = 0x1800;
 	private short volunteerPermission = 0x800;
@@ -39,6 +41,10 @@ public class Legion extends AionObject {
 	private int occupiedLegionDominion = 0;
 	private int currentLegionDominion = 0;
 	private int lastLegionDominion = 0;
+	// Nível de crescimento (client_guild_growth.xml). A Legion recém-criada chega com nível 1 e exp 0 no S_GUILD_INFO (Lost Academy 22/09);
+	// a Org Asmo (13/09 a 27/09) veio com 44 e 88500. PENDENTE_DE_COMPROVACAO: como a exp é ganha; sem isso não há o que persistir.
+	private int growthLevel = 1;
+	private int growthExp = 0;
 
 	public Legion(int legionId, String legionName) {
 		super(legionId);
@@ -141,107 +147,42 @@ public class Legion extends AionObject {
 	}
 
 	/**
-	 * This method will check whether a legion has enough members to level up
-	 *
-	 * @return true or false
+	 * @return o próximo nível do legion_settings.xml, ou null se a Legion já está no último
+	 */
+	public LegionSettingsData.Level getNextLevel() {
+		return DataManager.LEGION_SETTINGS_DATA.getLevel(legionLevel + 1);
+	}
+
+	/**
+	 * @return true se a Legion tem os membros exigidos pelo próximo nível (min_member do client_guild_setting.xml)
 	 */
 	public boolean hasRequiredMembers() {
-		int memberSize = getMemberIds().size();
-		switch (getLegionLevel()) {
-			case 1:
-				return memberSize >= LegionConfig.LEGION_LEVEL2_REQUIRED_MEMBERS;
-			case 2:
-				return memberSize >= LegionConfig.LEGION_LEVEL3_REQUIRED_MEMBERS;
-			case 3:
-				return memberSize >= LegionConfig.LEGION_LEVEL4_REQUIRED_MEMBERS;
-			case 4:
-				return memberSize >= LegionConfig.LEGION_LEVEL5_REQUIRED_MEMBERS;
-			case 5:
-				return memberSize >= LegionConfig.LEGION_LEVEL6_REQUIRED_MEMBERS;
-			case 6:
-				return memberSize >= LegionConfig.LEGION_LEVEL7_REQUIRED_MEMBERS;
-			case 7:
-				return memberSize >= LegionConfig.LEGION_LEVEL8_REQUIRED_MEMBERS;
-		}
-		return false;
+		LegionSettingsData.Level next = getNextLevel();
+		return next != null && getMemberIds().size() >= next.getRequiredMembers();
 	}
 
 	/**
-	 * This method will return the kinah price required to level up
-	 *
-	 * @return int
+	 * @return kinah para subir ao próximo nível (gold do client_guild_setting.xml), ou 0 no último nível
 	 */
-	public int getKinahPrice() {
-		switch (getLegionLevel()) {
-			case 1:
-				return LegionConfig.LEGION_LEVEL2_REQUIRED_KINAH;
-			case 2:
-				return LegionConfig.LEGION_LEVEL3_REQUIRED_KINAH;
-			case 3:
-				return LegionConfig.LEGION_LEVEL4_REQUIRED_KINAH;
-			case 4:
-				return LegionConfig.LEGION_LEVEL5_REQUIRED_KINAH;
-			case 5:
-				return LegionConfig.LEGION_LEVEL6_REQUIRED_KINAH;
-			case 6:
-				return LegionConfig.LEGION_LEVEL7_REQUIRED_KINAH;
-			case 7:
-				return LegionConfig.LEGION_LEVEL8_REQUIRED_KINAH;
-		}
-		return 0;
+	public long getKinahPrice() {
+		LegionSettingsData.Level next = getNextLevel();
+		return next == null ? 0 : next.getKinah();
 	}
 
 	/**
-	 * This method will return the contribution points required to level up
-	 *
-	 * @return int
+	 * @return pontos de contribuição para subir ao próximo nível (exp do client_guild_setting.xml), ou 0 no último nível
 	 */
-	public int getContributionPrice() {
-		switch (getLegionLevel()) {
-			case 1:
-				return LegionConfig.LEGION_LEVEL2_REQUIRED_CONTRIBUTION;
-			case 2:
-				return LegionConfig.LEGION_LEVEL3_REQUIRED_CONTRIBUTION;
-			case 3:
-				return LegionConfig.LEGION_LEVEL4_REQUIRED_CONTRIBUTION;
-			case 4:
-				return LegionConfig.LEGION_LEVEL5_REQUIRED_CONTRIBUTION;
-			case 5:
-				return LegionConfig.LEGION_LEVEL6_REQUIRED_CONTRIBUTION;
-			case 6:
-				return LegionConfig.LEGION_LEVEL7_REQUIRED_CONTRIBUTION;
-			case 7:
-				return LegionConfig.LEGION_LEVEL8_REQUIRED_CONTRIBUTION;
-		}
-		return 0;
+	public long getContributionPrice() {
+		LegionSettingsData.Level next = getNextLevel();
+		return next == null ? 0 : next.getRequiredContribution();
 	}
 
 	/**
-	 * This method will return true if a legion is able to add a member
-	 *
-	 * @return
+	 * @return true se o nível atual ainda tem vaga (max_member do client_guild_setting.xml)
 	 */
 	private boolean canAddMember() {
-		int memberSize = getMemberIds().size();
-		switch (getLegionLevel()) {
-			case 1:
-				return memberSize < LegionConfig.LEGION_LEVEL1_MAX_MEMBERS;
-			case 2:
-				return memberSize < LegionConfig.LEGION_LEVEL2_MAX_MEMBERS;
-			case 3:
-				return memberSize < LegionConfig.LEGION_LEVEL3_MAX_MEMBERS;
-			case 4:
-				return memberSize < LegionConfig.LEGION_LEVEL4_MAX_MEMBERS;
-			case 5:
-				return memberSize < LegionConfig.LEGION_LEVEL5_MAX_MEMBERS;
-			case 6:
-				return memberSize < LegionConfig.LEGION_LEVEL6_MAX_MEMBERS;
-			case 7:
-				return memberSize < LegionConfig.LEGION_LEVEL7_MAX_MEMBERS;
-			case 8:
-				return memberSize < LegionConfig.LEGION_LEVEL8_MAX_MEMBERS;
-		}
-		return false;
+		LegionSettingsData.Level current = DataManager.LEGION_SETTINGS_DATA.getLevel(legionLevel);
+		return current != null && getMemberIds().size() < current.getMaxMembers();
 	}
 
 	public Announcement getAnnouncement() {
@@ -363,6 +304,14 @@ public class Legion extends AionObject {
 
 	public boolean hasBonus() {
 		return hasBonus.get();
+	}
+
+	public int getGrowthLevel() {
+		return growthLevel;
+	}
+
+	public int getGrowthExp() {
+		return growthExp;
 	}
 
 	public int getOccupiedLegionDominion() {
