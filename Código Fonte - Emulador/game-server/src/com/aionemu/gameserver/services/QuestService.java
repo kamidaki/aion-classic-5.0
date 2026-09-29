@@ -60,6 +60,7 @@ import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.utils.audit.AuditLogger;
 import com.aionemu.gameserver.utils.stats.AbyssRankEnum;
 import com.aionemu.gameserver.utils.time.ServerTime;
+import com.aionemu.gameserver.dataholders.LegionMissionData;
 
 /**
  * @author Lost Academy Team & Durak
@@ -109,6 +110,7 @@ public final class QuestService {
 			qs.setNextRepeatTime(calculateRepeatDate(player, template));
 		PacketSendUtility.sendPacket(player, new SM_QUEST_ACTION(ActionType.UPDATE, qs));
 		QuestEngine.getInstance().onQuestCompleted(player, id);
+		LegionMissionService.getInstance().onEvent(player, LegionMissionData.ActionType.QUESTCLEAR, id, 1, 0);
 		if (template.getNpcFactionId() != 0)
 			player.getNpcFactions().completeQuest(template);
 		player.getController().updateNearbyQuests();

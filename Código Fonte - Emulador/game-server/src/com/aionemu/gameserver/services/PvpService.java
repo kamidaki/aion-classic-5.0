@@ -44,6 +44,7 @@ import com.aionemu.gameserver.utils.audit.AuditLogger;
 import com.aionemu.gameserver.utils.collections.Predicates;
 import com.aionemu.gameserver.utils.stats.StatFunctions;
 import com.aionemu.gameserver.world.zone.ZoneInstance;
+import com.aionemu.gameserver.dataholders.LegionMissionData;
 
 /**
  * @author Lost Academy Team & Durak
@@ -251,6 +252,7 @@ public class PvpService {
 				QuestEngine.getInstance().onKillInZone(new QuestEnv(victim, p, 0), zone.getAreaTemplate().getZoneName().name());
 			QuestEngine.getInstance().onKillInWorld(new QuestEnv(victim, p, 0), victim.getWorldId());
 			QuestEngine.getInstance().onKillRanked(new QuestEnv(victim, p, 0), victim.getAbyssRank().getRank());
+			LegionMissionService.getInstance().onEvent(p, LegionMissionData.ActionType.PVP, victim.getWorldId(), 1, 0);
 		}
 	}
 

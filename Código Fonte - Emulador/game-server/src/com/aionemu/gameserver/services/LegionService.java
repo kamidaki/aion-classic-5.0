@@ -15,6 +15,7 @@ import com.aionemu.gameserver.dao.InventoryDAO;
 import com.aionemu.gameserver.dao.ItemStoneListDAO;
 import com.aionemu.gameserver.dao.LegionDAO;
 import com.aionemu.gameserver.dao.LegionMemberDAO;
+import com.aionemu.gameserver.dao.LegionMissionDAO;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.DialogAction;
 import com.aionemu.gameserver.model.DialogPage;
@@ -139,6 +140,7 @@ public class LegionService {
 		InventoryDAO.loadStorage(legion.getLegionId(), legion.getLegionWarehouse());
 		ItemStoneListDAO.load(legion.getLegionWarehouse().getItems());
 		LegionDAO.loadHistory(legion);
+		LegionMissionDAO.loadGrowth(legion);
 	}
 
 	private LegionMember getLegionMember(String name) {
@@ -712,6 +714,7 @@ public class LegionService {
 		// criação oficial: lista do dia, produção, moedas e pontos vêm junto com a entrada do líder (22/09 10:23)
 		LegionDonationService.getInstance().sendState(player);
 		LegionCraftService.getInstance().sendState(player);
+		LegionMissionService.getInstance().sendState(player);
 		legion.addBonus();
 	}
 
@@ -776,6 +779,7 @@ public class LegionService {
 		updateLegionMemberList(activePlayer, false);
 		LegionDonationService.getInstance().sendState(activePlayer);
 		LegionCraftService.getInstance().sendState(activePlayer);
+		LegionMissionService.getInstance().sendState(activePlayer);
 
 		// Send current announcement to player
 		displayLegionAnnouncement(activePlayer, legion.getAnnouncement());

@@ -507,6 +507,37 @@ CREATE TABLE `legion_donation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
+-- Table structure for `legion_growth`
+-- ----------------------------
+DROP TABLE IF EXISTS `legion_growth`;
+CREATE TABLE `legion_growth` (
+  `legion_id` int NOT NULL,
+  `level` int NOT NULL DEFAULT '1',
+  `exp` int NOT NULL DEFAULT '0',
+  `essence` int NOT NULL DEFAULT '0',
+  `essence_piece` int NOT NULL DEFAULT '0',
+  PRIMARY KEY (`legion_id`),
+  CONSTRAINT `legion_growth_legion_fk` FOREIGN KEY (`legion_id`) REFERENCES `legions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Table structure for `legion_mission`
+-- ----------------------------
+DROP TABLE IF EXISTS `legion_mission`;
+CREATE TABLE `legion_mission` (
+  `owner_type` tinyint NOT NULL,
+  `owner_id` int NOT NULL,
+  `mission_id` int NOT NULL,
+  `instance_id` bigint NOT NULL,
+  `last_instance_id` bigint NOT NULL,
+  `period_start` bigint NOT NULL,
+  `last_update` bigint NOT NULL,
+  `rewarded_stages` int NOT NULL DEFAULT '0',
+  `actions` varchar(1024) NOT NULL DEFAULT '',
+  PRIMARY KEY (`owner_type`,`owner_id`,`mission_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
 -- Table structure for `legion_dominion_locations`
 -- ----------------------------
 DROP TABLE IF EXISTS `legion_dominion_locations`;

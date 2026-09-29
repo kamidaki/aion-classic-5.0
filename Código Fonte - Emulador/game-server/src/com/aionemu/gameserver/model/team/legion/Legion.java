@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.aionemu.gameserver.dataholders.DataManager;
+import com.aionemu.gameserver.dataholders.LegionGrowthData;
 import com.aionemu.gameserver.dataholders.LegionSettingsData;
 import com.aionemu.gameserver.model.gameobjects.AionObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -41,10 +42,12 @@ public class Legion extends AionObject {
 	private int occupiedLegionDominion = 0;
 	private int currentLegionDominion = 0;
 	private int lastLegionDominion = 0;
-	// Nível de crescimento (client_guild_growth.xml). A Legion recém-criada chega com nível 1 e exp 0 no S_GUILD_INFO (Lost Academy 22/09);
-	// a Org Asmo (13/09 a 27/09) veio com 44 e 88500. PENDENTE_DE_COMPROVACAO: como a exp é ganha; sem isso não há o que persistir.
+	// Crescimento (legion_growth.xml, do client_guild_growth.xml): a Legion recém-criada chega com nível 1 e exp 0 no S_GUILD_INFO (Lost Academy
+	// 22/09) e ganha exp, essência e fragmentos com as missões (S 0x164 e S 0x163); a Org Asmo estava no nível 44 com 88500.
 	private int growthLevel = 1;
 	private int growthExp = 0;
+	private int essence = 0;
+	private int essencePiece = 0;
 
 	public Legion(int legionId, String legionName) {
 		super(legionId);
@@ -306,12 +309,53 @@ public class Legion extends AionObject {
 		return hasBonus.get();
 	}
 
-	public int getGrowthLevel() {
+	public synchronized int getGrowthLevel() {
 		return growthLevel;
 	}
 
-	public int getGrowthExp() {
+	public synchronized int getGrowthExp() {
 		return growthExp;
+	}
+
+	public synchronized int getEssence() {
+		return essence;
+	}
+
+	public synchronized int getEssencePiece() {
+		return essencePiece;
+	}
+
+	public synchronized void setGrowth(int growthLevel, int growthExp, int essence, int essencePiece) {
+		this.growthLevel = growthLevel;
+		this.growthExp = growthExp;
+		this.essence = essence;
+		this.essencePiece = essencePiece;
+	}
+
+	/**
+	 * Soma exp de crescimento e sobe quantos níveis ela pagar (cada nível pede a exp do legion_growth.xml e dá a essência dele). No último nível a
+	 * exp não acumula.
+	 *
+	 * @return níveis ganhos
+	 */
+	public synchronized int addGrowthExp(int amount) {
+		int gained = 0;
+		growthExp += amount;
+		for (LegionGrowthData.Level next; (next = DataManager.LEGION_GROWTH_DATA.getLevel(growthLevel + 1)) != null && growthExp >= next.getExp();) {
+			growthExp -= next.getExp();
+			growthLevel++;
+			essence += next.getEssence();
+			essencePiece += next.getEssencePiece();
+			gained++;
+		}
+		if (DataManager.LEGION_GROWTH_DATA.getLevel(growthLevel + 1) == null)
+			growthExp = 0;
+		return gained;
+	}
+
+	public synchronized void addEssence(int essence, int essencePiece) {
+		this.essence += essence;
+		this.essencePiece += essencePiece;
 	}
 
 	public int getOccupiedLegionDominion() {

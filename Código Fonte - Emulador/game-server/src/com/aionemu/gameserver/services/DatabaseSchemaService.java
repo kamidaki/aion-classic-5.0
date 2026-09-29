@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import com.aionemu.commons.database.DatabaseFactory;
 import com.aionemu.gameserver.dao.AccountQunaDAO;
 import com.aionemu.gameserver.dao.LegionDonationDAO;
+import com.aionemu.gameserver.dao.LegionMissionDAO;
 import com.aionemu.gameserver.dao.PlayerMorosDAO;
 import com.aionemu.gameserver.dao.PlayerStorybookDAO;
 import com.aionemu.gameserver.dao.PlayerWardrobeDAO;
@@ -117,6 +118,10 @@ public class DatabaseSchemaService {
 		executeSql(con, LegionDonationDAO.CREATE_LEGION_TABLE);
 		executeSql(con, LegionDonationDAO.CREATE_PLAYER_TABLE);
 		executeSql(con, LegionDonationDAO.CREATE_CRAFT_TABLE);
+
+		// legion_mission / legion_growth (missões da Legion e crescimento, S 0x15C/0x15D/0x163/0x164)
+		executeSql(con, LegionMissionDAO.CREATE_MISSION_TABLE);
+		executeSql(con, LegionMissionDAO.CREATE_GROWTH_TABLE);
 
 		// 9. player_participation_points (Pontos de Participação Lost Academy)
 		executeSql(con,

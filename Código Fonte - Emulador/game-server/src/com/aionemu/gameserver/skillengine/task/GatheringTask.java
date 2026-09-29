@@ -16,6 +16,8 @@ import com.aionemu.gameserver.services.item.ItemService;
 import com.aionemu.gameserver.skillengine.model.Effect;
 import com.aionemu.gameserver.skillengine.model.Skill;
 import com.aionemu.gameserver.utils.PacketSendUtility;
+import com.aionemu.gameserver.dataholders.LegionMissionData;
+import com.aionemu.gameserver.services.LegionMissionService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -81,6 +83,7 @@ public class GatheringTask extends AbstractCraftTask {
 		ItemService.addItem(requester, material.getItemId(), Rates.GATHERING_COUNT.calcResult(requester, 1));
 		requester.getPosition().getWorldMapInstance().getInstanceHandler().onGather(requester, (Gatherable) responder);
 		((Gatherable) responder).getController().rewardPlayer(requester);
+		LegionMissionService.getInstance().onEvent(requester, LegionMissionData.ActionType.GATHERING, material.getItemId(), 1, 0);
 		return true;
 	}
 

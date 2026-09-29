@@ -50,6 +50,8 @@ import com.aionemu.gameserver.utils.stats.StatFunctions;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.geo.GeoService;
 import com.aionemu.gameserver.world.zone.ZoneInstance;
+import com.aionemu.gameserver.dataholders.LegionMissionData;
+import com.aionemu.gameserver.services.LegionMissionService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -232,6 +234,7 @@ public class NpcController extends CreatureController<Npc> {
 					rewardAp *= apMultiplier;
 
 					QuestEngine.getInstance().onKill(new QuestEnv(getOwner(), player, 0));
+					LegionMissionService.getInstance().onEvent(player, LegionMissionData.ActionType.HUNT, getOwner().getNpcId(), 1, getOwner().getLevel());
 					EventService.getInstance().onPveKill(player, getOwner());
 					player.getCommonData().addExp(rewardXp, Rates.XP_HUNTING, getOwner().getObjectTemplate().getL10n());
 					player.getCommonData().addDp(rewardDp);

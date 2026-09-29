@@ -19,6 +19,8 @@ import com.aionemu.gameserver.services.item.ItemPacketService.ItemAddType;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemDeleteType;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
 import com.aionemu.gameserver.services.item.ItemService;
+import com.aionemu.gameserver.dataholders.LegionMissionData;
+import com.aionemu.gameserver.services.LegionMissionService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -183,8 +185,11 @@ public abstract class Storage implements IStorage {
 		if (actor != null) {
 			actor.getController().markInventoryDirty();
 			ItemPacketService.sendStorageUpdatePacket(actor, storageType, item, addType);
-			if (storageType == StorageType.CUBE)
+			if (storageType == StorageType.CUBE) {
 				QuestEngine.getInstance().onItemGet(actor, item.getItemId());
+				LegionMissionService.getInstance().onEvent(actor, LegionMissionData.ActionType.COLLECTITEM, item.getItemId(),
+					(int) Math.min(item.getItemCount(), Integer.MAX_VALUE), 0);
+			}
 		}
 		return item;
 	}

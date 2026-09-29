@@ -31,6 +31,8 @@ import com.aionemu.gameserver.services.instance.InstanceService;
 import com.aionemu.gameserver.services.rift.RiftInformer;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.World;
+import com.aionemu.gameserver.dataholders.LegionMissionData;
+import com.aionemu.gameserver.services.LegionMissionService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -134,6 +136,7 @@ public class CM_LEVEL_READY extends AionClientPacket {
 		WeatherService.getInstance().loadWeather(activePlayer);
 
 		QuestEngine.getInstance().onEnterWorld(activePlayer);
+		LegionMissionService.getInstance().onEvent(activePlayer, LegionMissionData.ActionType.ENTERWORLD, activePlayer.getWorldId(), 1, 0);
 
 		activePlayer.getController().onEnterWorld();
 		InstanceService.onEnterInstance(activePlayer);

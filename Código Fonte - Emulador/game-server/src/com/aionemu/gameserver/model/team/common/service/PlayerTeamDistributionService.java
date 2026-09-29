@@ -22,6 +22,8 @@ import com.aionemu.gameserver.services.abyss.AbyssPointsService;
 import com.aionemu.gameserver.services.drop.DropRegistrationService;
 import com.aionemu.gameserver.utils.PositionUtil;
 import com.aionemu.gameserver.utils.stats.StatFunctions;
+import com.aionemu.gameserver.dataholders.LegionMissionData;
+import com.aionemu.gameserver.services.LegionMissionService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -120,6 +122,7 @@ public class PlayerTeamDistributionService {
 		public void accept(Player member) {
 			if (member.isOnline() && PositionUtil.isInRange(member, owner, disableRangeChecks ? 9999 : GroupConfig.GROUP_MAX_DISTANCE)) {
 				QuestEngine.getInstance().onKill(new QuestEnv(owner, member, 0));
+				LegionMissionService.getInstance().onEvent(member, LegionMissionData.ActionType.HUNT, owner.getNpcId(), 1, owner.getLevel());
 
 				if (member.isMentor()) {
 					mentorCount++;
