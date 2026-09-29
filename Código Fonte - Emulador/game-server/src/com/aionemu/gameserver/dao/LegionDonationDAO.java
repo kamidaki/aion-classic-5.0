@@ -54,13 +54,14 @@ public final class LegionDonationDAO {
 		"  `donated` VARCHAR(512) NOT NULL DEFAULT ''," +
 		"  `craft_start` INT NOT NULL DEFAULT 0," +
 		"  `crafting` TINYINT NOT NULL DEFAULT 0," +
+		"  `bookmark` TINYINT NOT NULL DEFAULT 0," +
 		"  PRIMARY KEY (`legion_id`, `recipe_id`)," +
 		"  CONSTRAINT `legion_craft_legion_fk` FOREIGN KEY (`legion_id`) REFERENCES `legions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE" +
 		") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
 
-	private static final String LOAD_CRAFT = "SELECT recipe_id, donated, craft_start, crafting FROM legion_craft WHERE legion_id=?";
-	private static final String STORE_CRAFT = "INSERT INTO legion_craft (legion_id, recipe_id, donated, craft_start, crafting) VALUES (?,?,?,?,?)"
-		+ " ON DUPLICATE KEY UPDATE donated=VALUES(donated), craft_start=VALUES(craft_start), crafting=VALUES(crafting)";
+	private static final String LOAD_CRAFT = "SELECT recipe_id, donated, craft_start, crafting, bookmark FROM legion_craft WHERE legion_id=?";
+	private static final String STORE_CRAFT = "INSERT INTO legion_craft (legion_id, recipe_id, donated, craft_start, crafting, bookmark) VALUES (?,?,?,?,?,?)"
+		+ " ON DUPLICATE KEY UPDATE donated=VALUES(donated), craft_start=VALUES(craft_start), crafting=VALUES(crafting), bookmark=VALUES(bookmark)";
 	private static final String LOAD_BOARD = "SELECT day, selection, points FROM legion_donation WHERE legion_id=?";
 	private static final String STORE_BOARD = "INSERT INTO legion_donation (legion_id, day, selection, points) VALUES (?,?,?,?)"
 		+ " ON DUPLICATE KEY UPDATE day=VALUES(day), selection=VALUES(selection), points=VALUES(points)";
@@ -152,6 +153,7 @@ public final class LegionDonationDAO {
 				while (rs.next()) {
 					board.setDonated(rs.getInt(1), LegionCraftBoard.parseDonated(rs.getString(2)));
 					board.setCraft(rs.getInt(1), rs.getInt(3), rs.getBoolean(4));
+					board.setBookmarked(rs.getInt(1), rs.getBoolean(5));
 				}
 			}
 		}
@@ -165,6 +167,7 @@ public final class LegionDonationDAO {
 			stmt.setString(3, board.getDonatedText(recipeId));
 			stmt.setInt(4, board.getCraftStart(recipeId));
 			stmt.setBoolean(5, board.isCrafting(recipeId));
+			stmt.setBoolean(6, board.isBookmarked(recipeId));
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			log.error("Could not store legion craft " + recipeId + " of legion " + legionId, e);

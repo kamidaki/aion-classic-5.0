@@ -21,6 +21,7 @@ public enum LegionHistoryAction {
 	ITEM_WITHDRAW(16, Type.WAREHOUSE), // Parameter: name
 	KINAH_DEPOSIT(17, Type.WAREHOUSE), // Parameter: name
 	KINAH_WITHDRAW(18, Type.WAREHOUSE), // Parameter: name
+	CAMPAIGN_CHANGE(27, Type.LEGION), // 5.0, troca da atividade de campanha (Nova Pasta 2026-09-29 16:14), sem parâmetros
 	// 5.0, histórico de produção (tipo 3) da Lost Academy (Nova Pasta 2026-09-29 16:02 e outros2 2026-09-22 19:22)
 	CRAFT_START(20, Type.CRAFT), // name = quem iniciou, description = [item_text:produto]
 	CRAFT_COMPLETE(21, Type.CRAFT), // name = [item_text:produto]

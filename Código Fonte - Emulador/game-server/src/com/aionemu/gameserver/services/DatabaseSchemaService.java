@@ -191,10 +191,22 @@ public class DatabaseSchemaService {
 			log.info("Adicionando colunas de produção na tabela legion_craft...");
 			executeSql(con, "ALTER TABLE `legion_craft` ADD COLUMN `craft_start` INT NOT NULL DEFAULT 0, ADD COLUMN `crafting` TINYINT NOT NULL DEFAULT 0;");
 		}
+		// legion_craft: favorito de produção (C_GUILD 0x16, C de cada receita no S 0x15A)
+		if (!hasColumn(con, "legion_craft", "bookmark")) {
+			log.info("Adicionando coluna 'bookmark' na tabela legion_craft...");
+			executeSql(con, "ALTER TABLE `legion_craft` ADD COLUMN `bookmark` TINYINT NOT NULL DEFAULT 0;");
+		}
+		// legions: Legion Join Settings e Legion Activity (C_GUILD 0x10/0x17, S_GUILD_INFO)
+		if (!hasColumn(con, "legions", "join_type")) {
+			log.info("Adicionando colunas de entrada e atividade na tabela legions...");
+			executeSql(con, "ALTER TABLE `legions` ADD COLUMN `join_type` TINYINT NOT NULL DEFAULT 0, ADD COLUMN `join_min_level` SMALLINT NOT NULL DEFAULT 0,"
+				+ " ADD COLUMN `join_intro` VARCHAR(64) NOT NULL DEFAULT '', ADD COLUMN `campaign_activity` INT NOT NULL DEFAULT 0,"
+				+ " ADD COLUMN `legion_activity` INT NOT NULL DEFAULT 0, ADD COLUMN `campaign_change_time` INT NOT NULL DEFAULT 0;");
+		}
 		// legion_history: ações de produção da 5.0 (aba 3), valores tirados do LegionHistoryAction
 		String historyTypes = java.util.Arrays.stream(LegionHistoryAction.values()).map(a -> "'" + a.name() + "'")
 			.collect(java.util.stream.Collectors.joining(","));
-		if (!columnTypeContains(con, "legion_history", "history_type", "'" + LegionHistoryAction.ESSENCE_COMPLETE.name() + "'")) {
+		if (!columnTypeContains(con, "legion_history", "history_type", "'" + LegionHistoryAction.CAMPAIGN_CHANGE.name() + "'")) {
 			log.info("Atualizando os tipos de history_type na tabela legion_history...");
 			executeSql(con, "ALTER TABLE `legion_history` MODIFY `history_type` enum(" + historyTypes + ") NOT NULL;");
 		}

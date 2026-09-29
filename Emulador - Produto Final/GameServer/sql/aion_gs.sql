@@ -491,6 +491,7 @@ CREATE TABLE `legion_craft` (
   `donated` varchar(512) NOT NULL DEFAULT '',
   `craft_start` int NOT NULL DEFAULT '0',
   `crafting` tinyint NOT NULL DEFAULT '0',
+  `bookmark` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`legion_id`,`recipe_id`),
   CONSTRAINT `legion_craft_legion_fk` FOREIGN KEY (`legion_id`) REFERENCES `legions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -588,7 +589,7 @@ CREATE TABLE `legion_history` (
   `id` int NOT NULL AUTO_INCREMENT,
   `legion_id` int NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `history_type` enum('CREATE','JOIN','KICK','APPOINTED','EMBLEM_REGISTER','EMBLEM_MODIFIED','ITEM_DEPOSIT','ITEM_WITHDRAW','KINAH_DEPOSIT','KINAH_WITHDRAW','LEVEL_UP','DEFENSE','OCCUPATION','LEGION_RENAME','CHARACTER_RENAME','CRAFT_START','CRAFT_COMPLETE','ESSENCE_START','ESSENCE_COMPLETE') NOT NULL,
+  `history_type` enum('CREATE','JOIN','KICK','APPOINTED','EMBLEM_REGISTER','EMBLEM_MODIFIED','ITEM_DEPOSIT','ITEM_WITHDRAW','KINAH_DEPOSIT','KINAH_WITHDRAW','LEVEL_UP','DEFENSE','OCCUPATION','LEGION_RENAME','CHARACTER_RENAME','CRAFT_START','CRAFT_COMPLETE','ESSENCE_START','ESSENCE_COMPLETE','CAMPAIGN_CHANGE') NOT NULL,
   `name` varchar(50) NOT NULL,
   `description` varchar(30) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
@@ -623,7 +624,7 @@ CREATE TABLE `legions` (
   `name` varchar(32) NOT NULL,
   `level` int NOT NULL DEFAULT '1',
   `contribution_points` bigint NOT NULL DEFAULT '0',
-  `deputy_permission` int NOT NULL DEFAULT '7692',
+  `deputy_permission` int NOT NULL DEFAULT '32268',
   `centurion_permission` int NOT NULL DEFAULT '7176',
   `legionary_permission` int NOT NULL DEFAULT '6144',
   `volunteer_permission` int NOT NULL DEFAULT '2048',
@@ -633,6 +634,12 @@ CREATE TABLE `legions` (
   `occupied_legion_dominion` int NOT NULL DEFAULT '0',
   `last_legion_dominion` int NOT NULL DEFAULT '0',
   `current_legion_dominion` int NOT NULL DEFAULT '0',
+  `join_type` tinyint NOT NULL DEFAULT '0',
+  `join_min_level` smallint NOT NULL DEFAULT '0',
+  `join_intro` varchar(64) NOT NULL DEFAULT '',
+  `campaign_activity` int NOT NULL DEFAULT '0',
+  `legion_activity` int NOT NULL DEFAULT '0',
+  `campaign_change_time` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_unique` (`name`),
   KEY `rank_pos` (`rank_pos`)

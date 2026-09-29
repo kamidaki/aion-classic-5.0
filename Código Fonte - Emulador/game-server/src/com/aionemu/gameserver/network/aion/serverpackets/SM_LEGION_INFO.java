@@ -15,8 +15,8 @@ import com.aionemu.gameserver.services.abyss.AbyssRankingCache;
  * [S nome][C nível][D posição no ranking][H x4 permissões Deputy/Centurion/Legionary/Volunteer]
  * [D pontos de contribuição][D ?][D 0][D 0]
  * até 7 x ([S aviso][D hora]), com [S ""] no fim quando são menos de 7
- * [S descrição]
- * [11 b 0][D nível de crescimento][D exp de crescimento][24 b]
+ * [S apresentação][C forma de entrada][H nível mínimo][D atividade de campanha][D atividade da Legion] (os mesmos do S 0x9D 0B/0C)
+ * [D nível de crescimento][D exp de crescimento][24 b]
  * </pre>
  *
  * A 4.8 mandava Q de contribuição, horário de dissolução e três D de Legion Dominion no lugar do bloco de 16 b, e não tinha descrição nem o
@@ -55,8 +55,12 @@ public class SM_LEGION_INFO extends AionServerPacket {
 		writeD(0);
 		writeD(0);
 		writeAnnouncements();
-		writeS(""); // PENDENTE_DE_COMPROVACAO: texto da Legion (Org Asmo: "Legion BR - PvPvE - Discord Obg"), sem origem no servidor ainda
-		writeB(new byte[11]); // 0 nas 11 variantes
+		// Legion Join Settings e Legion Activity (Nova Pasta 2026-09-29 16:40/16:49: "Teste" depois do C_GUILD 0x10 com o texto, campanha 2)
+		writeS(legion.getJoinIntro());
+		writeC(legion.getJoinType());
+		writeH(legion.getJoinMinLevel());
+		writeD(legion.getCampaignActivity());
+		writeD(legion.getLegionActivity());
 		writeD(legion.getGrowthLevel());
 		writeD(legion.getGrowthExp());
 		// essência e fragmentos como no S 0x163: Org Asmo com 10 e 314, os mesmos da janela oficial (Legion Essence / Essence Fragments)

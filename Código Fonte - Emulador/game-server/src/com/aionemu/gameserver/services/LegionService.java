@@ -2,6 +2,7 @@ package com.aionemu.gameserver.services;
 
 import java.nio.ByteBuffer;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,7 @@ import com.aionemu.gameserver.dao.LegionDAO;
 import com.aionemu.gameserver.dao.LegionMemberDAO;
 import com.aionemu.gameserver.dao.LegionMissionDAO;
 import com.aionemu.gameserver.dataholders.DataManager;
+import com.aionemu.gameserver.dataholders.LegionMissionData;
 import com.aionemu.gameserver.model.DialogAction;
 import com.aionemu.gameserver.model.DialogPage;
 import com.aionemu.gameserver.model.gameobjects.Item;
@@ -395,6 +397,58 @@ public class LegionService {
 		storeLegion(legionMember.getLegion());
 		PacketSendUtility.broadcastToLegion(legionMember.getLegion(), new SM_LEGION_EDIT(0x02, legionMember.getLegion()));
 		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_GUILD_CHANGE_RIGHT_DONE()); // S 0x9D 02 e depois 1300284 (Nova Pasta 2026-09-29 16:14, 5 de 5)
+	}
+
+	/**
+	 * C_GUILD 0x10 [S apresentação][C forma de entrada][H nível mínimo], a janela Legion Join Settings: o oficial devolve os mesmos valores no
+	 * S 0x9D 0B, sem mensagem, e os manda no S_GUILD_INFO dos logins seguintes (Nova Pasta 2026-09-29 16:14 e 16:40: formas 1, 0, 2 e 0 e depois
+	 * o texto "Teste"). PENDENTE_DE_COMPROVACAO: quem pode mudar (só o Brigade General nas capturas; usa-se a permissão Edit), se o 0x9D 0B vai
+	 * para a Legion inteira e o nível máximo aceito (STR_GUILD_CHANGE_JOIN_CAN_NOT_LEVEL_SETTING, limitado ao nível máximo do personagem).
+	 */
+	public void changeJoinSettings(Player player, String intro, int joinType, int minLevel) {
+		LegionMember legionMember = player.getLegionMember();
+		if (!legionMember.hasRights(LegionPermissionsMask.EDIT) || joinType > 2 || intro == null || intro.length() > 32)
+			return;
+		int maxLevel = DataManager.PLAYER_EXPERIENCE_TABLE.getMaxLevel();
+		if (minLevel > maxLevel) {
+			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1401977, String.valueOf(maxLevel))); // STR_GUILD_CHANGE_JOIN_CAN_NOT_LEVEL_SETTING
+			return;
+		}
+		Legion legion = legionMember.getLegion();
+		legion.setJoinSettings(joinType, minLevel, intro);
+		storeLegion(legion);
+		PacketSendUtility.broadcastToLegion(legion, new SM_LEGION_EDIT(0x0B, legion));
+	}
+
+	/**
+	 * C_GUILD 0x17 [D atividade de campanha][D atividade da Legion], a janela Legion Activity (Nova Pasta 2026-09-29 16:14 e 16:40):
+	 * <ul>
+	 * <li>trocar a campanha grava a ação 27 no histórico geral (S 0x9D 08) e responde S 0x9D 0C;</li>
+	 * <li>outra troca de campanha no mesmo dia responde STR_MSG_GUILD_ACTIVITY_CHANGE_FAIL1 sem 0x9D 0C (1, 3 e 0 recusados depois do 2);</li>
+	 * <li>mudar só as caixas Friendship/Freedom (bits 1 e 2 pela ordem da janela) responde só o S 0x9D 0C.</li>
+	 * </ul>
+	 * PENDENTE_DE_COMPROVACAO: o nome de cada código de campanha, quando a campanha passa a valer para as missões (o S 0x15C depois da troca para 2
+	 * ainda veio com as missões 4, 5 e 12, sem atividade), a virada do dia (usa-se a das missões diárias) e quem pode mudar (permissão Edit).
+	 */
+	public void changeActivity(Player player, int campaignActivity, int legionActivity) {
+		LegionMember legionMember = player.getLegionMember();
+		if (!legionMember.hasRights(LegionPermissionsMask.EDIT))
+			return;
+		Legion legion = legionMember.getLegion();
+		Instant now = Instant.now();
+		boolean campaignChanged;
+		synchronized (legion) {
+			campaignChanged = campaignActivity != legion.getCampaignActivity();
+			if (campaignChanged && legion.getCampaignChangeTime() >= LegionMissionService.periodStart(LegionMissionData.Period.DAILY, now)) {
+				PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1402014)); // STR_MSG_GUILD_ACTIVITY_CHANGE_FAIL1
+				return;
+			}
+			legion.setActivity(campaignActivity, legionActivity, campaignChanged ? (int) now.getEpochSecond() : legion.getCampaignChangeTime());
+		}
+		storeLegion(legion);
+		if (campaignChanged)
+			addHistory(legion, "", LegionHistoryAction.CAMPAIGN_CHANGE);
+		PacketSendUtility.broadcastToLegion(legion, new SM_LEGION_EDIT(0x0C, legion));
 	}
 
 	/**

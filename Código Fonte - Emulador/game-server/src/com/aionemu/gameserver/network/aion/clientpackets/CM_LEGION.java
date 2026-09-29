@@ -8,7 +8,6 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.team.legion.Legion;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_LEGION_EDIT;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_LEGION_INFO;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.services.LegionCraftService;
@@ -34,7 +33,11 @@ public class CM_LEGION extends AionClientPacket {
 	private short legionarPermission;
 	private short volunteerPermission;
 	private int rank;
-	private byte[] setting;
+	private String joinIntro;
+	private int joinType;
+	private int joinMinLevel;
+	private int campaignActivity;
+	private int legionActivity;
 	private String legionName;
 	private String charName;
 	private String newNickname;
@@ -121,8 +124,10 @@ public class CM_LEGION extends AionClientPacket {
 				charName = readS();
 				newNickname = readS();
 				break;
-			case 0x10: // 5 b, devolvidos no S 0x9D 0B (a 4.8 lia [D domínio])
-				setting = readB(5);
+			case 0x10: // Legion Join Settings: [S apresentação][C forma de entrada][H nível mínimo] (a 4.8 lia [D domínio])
+				joinIntro = readS();
+				joinType = readUC();
+				joinMinLevel = readUH();
 				break;
 			// produção de moedas: [D grupo][D índice] da lista do dia (S 0x159)
 			case 0x13:
@@ -148,8 +153,9 @@ public class CM_LEGION extends AionClientPacket {
 				bookmarkRecipe = readD();
 				bookmarked = readC() != 0;
 				break;
-			case 0x17: // [D][D], devolvidos no S 0x9D 0C
-				setting = readB(8);
+			case 0x17: // Legion Activity: [D atividade de campanha][D atividade da Legion]
+				campaignActivity = readD();
+				legionActivity = readD();
 				break;
 			default:
 				LoggerFactory.getLogger(CM_LEGION.class).warn("Unknown Legion exOpcode 0x" + Integer.toHexString(exOpcode).toUpperCase());
@@ -196,10 +202,8 @@ public class CM_LEGION extends AionClientPacket {
 				case 0x0E -> LegionService.getInstance().requestChangeLevel(activePlayer);
 				// change nickname
 				case 0x0F -> LegionService.getInstance().changeNickname(activePlayer, charName, newNickname);
-				// PENDENTE_DE_COMPROVACAO: o que a janela muda com o 0x10 ("00 00 02 00 00" e zeros) e o 0x17 ([D 2][D 1, 3 e 0]; o primeiro deixou a ação
-				// 27 no histórico geral). O oficial só devolveu os mesmos bytes, sem mensagem; nada é guardado.
-				case 0x10 -> sendPacket(new SM_LEGION_EDIT(0x0B, setting));
-				case 0x17 -> sendPacket(new SM_LEGION_EDIT(0x0C, setting));
+				case 0x10 -> LegionService.getInstance().changeJoinSettings(activePlayer, joinIntro, joinType, joinMinLevel);
+				case 0x17 -> LegionService.getInstance().changeActivity(activePlayer, campaignActivity, legionActivity);
 				case 0x13 -> LegionDonationService.getInstance().produce(activePlayer, donationGroup, donationIndex);
 				case 0x14 -> LegionCraftService.getInstance().donate(activePlayer, craftRecipe, LegionCraftService.requested(craftItemIds, craftCounts));
 				case 0x15 -> LegionCraftService.getInstance().produce(activePlayer, produceRecipe);

@@ -48,6 +48,13 @@ public class Legion extends AionObject {
 	private int growthExp = 0;
 	private int essence = 0;
 	private int essencePiece = 0;
+	// Legion Join Settings (C_GUILD 0x10) e Legion Activity (C_GUILD 0x17), devolvidos no S 0x9D 0B/0C e no S_GUILD_INFO (Nova Pasta 2026-09-29)
+	private int joinType = 0;
+	private int joinMinLevel = 0;
+	private String joinIntro = "";
+	private int campaignActivity = 0;
+	private int legionActivity = 0;
+	private int campaignChangeTime = 0;
 
 	public Legion(int legionId, String legionName) {
 		super(legionId);
@@ -351,6 +358,54 @@ public class Legion extends AionObject {
 		if (DataManager.LEGION_GROWTH_DATA.getLevel(growthLevel + 1) == null)
 			growthExp = 0;
 		return gained;
+	}
+
+	/**
+	 * @return forma de entrada: 0, 1 ou 2 pela ordem da janela (Everyone can join, Join on approval, Closed to applications)
+	 */
+	public synchronized int getJoinType() {
+		return joinType;
+	}
+
+	public synchronized int getJoinMinLevel() {
+		return joinMinLevel;
+	}
+
+	public synchronized String getJoinIntro() {
+		return joinIntro;
+	}
+
+	public synchronized void setJoinSettings(int joinType, int joinMinLevel, String joinIntro) {
+		this.joinType = joinType;
+		this.joinMinLevel = joinMinLevel;
+		this.joinIntro = joinIntro == null ? "" : joinIntro;
+	}
+
+	/**
+	 * @return atividade de campanha (Campaign Activity), trocada uma vez por dia
+	 */
+	public synchronized int getCampaignActivity() {
+		return campaignActivity;
+	}
+
+	/**
+	 * @return caixas de Legion Activity (Friendship/Freedom) em bits
+	 */
+	public synchronized int getLegionActivity() {
+		return legionActivity;
+	}
+
+	/**
+	 * @return hora (s) da última troca de atividade de campanha
+	 */
+	public synchronized int getCampaignChangeTime() {
+		return campaignChangeTime;
+	}
+
+	public synchronized void setActivity(int campaignActivity, int legionActivity, int campaignChangeTime) {
+		this.campaignActivity = campaignActivity;
+		this.legionActivity = legionActivity;
+		this.campaignChangeTime = campaignChangeTime;
 	}
 
 	public synchronized void addEssence(int essence, int essencePiece) {

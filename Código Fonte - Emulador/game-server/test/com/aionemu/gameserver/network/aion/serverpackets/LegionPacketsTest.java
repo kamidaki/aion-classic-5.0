@@ -146,8 +146,16 @@ class LegionPacketsTest {
 		legion.setLegionPermissions((short) 0x7E1C, (short) 0x1C08, (short) 0x1800, (short) 0x0800);
 		assertEquals("02" + "1c7e081c00180008", HEX.formatHex(body(new SM_LEGION_EDIT(0x02, legion))));
 		assertEquals("0100000001", HEX.formatHex(body(new SM_LEGION_CRAFT_BOOKMARK(1, true))));
-		assertEquals("0b0000020000", HEX.formatHex(body(new SM_LEGION_EDIT(0x0B, HEX.parseHex("0000020000")))));
-		assertEquals("0c0200000001000000", HEX.formatHex(body(new SM_LEGION_EDIT(0x0C, HEX.parseHex("0200000001000000")))));
+		// Legion Join Settings (16:40: forma 2 sem texto e depois "Teste") e Legion Activity (campanha 2, Friendship e Freedom)
+		legion.setJoinSettings(2, 0, "");
+		assertEquals("0b0000020000", HEX.formatHex(body(new SM_LEGION_EDIT(0x0B, legion))));
+		legion.setJoinSettings(0, 0, "Teste");
+		assertEquals("0b" + "54006500730074006500" + "0000" + "00" + "0000", HEX.formatHex(body(new SM_LEGION_EDIT(0x0B, legion))));
+		legion.setActivity(2, 3, 0);
+		assertEquals("0c0200000003000000", HEX.formatHex(body(new SM_LEGION_EDIT(0x0C, legion))));
+		// favorito no C de cada receita do S 0x15A (logins de 16:40 e 16:49)
+		byte[] craft = body(new SM_LEGION_CRAFT_LIST(List.of(new SM_LEGION_CRAFT_LIST.Recipe(1, 0, true, List.of()))));
+		assertEquals("0100" + "01000000" + "00000000" + "00000000" + "0000" + "01" + "01", HEX.formatHex(craft));
 		assertTrue(LegionPermissionsMask.CRAFT.can(0x7E0C) && !LegionPermissionsMask.CRAFT.can(0x5E0C));
 		assertTrue(LegionPermissionsMask.BUFF.can(0x7E0C) && !LegionPermissionsMask.BUFF.can(0x3E0C));
 	}

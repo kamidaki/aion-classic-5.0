@@ -1,8 +1,10 @@
 package com.aionemu.gameserver.model.team.legion;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -13,6 +15,7 @@ public class LegionCraftBoard {
 	private final Map<Integer, Map<Integer, Long>> donatedByRecipe = new HashMap<>();
 	private final Map<Integer, Integer> craftStartByRecipe = new HashMap<>();
 	private final Map<Integer, Boolean> craftingByRecipe = new HashMap<>();
+	private final Set<Integer> bookmarks = new HashSet<>();
 
 	/**
 	 * @return hora (s) do último início de produção da receita, 0 se nunca produziu; o S 0x15A a mostra mesmo depois de concluída (Nova Pasta
@@ -53,6 +56,20 @@ public class LegionCraftBoard {
 				crafting.put(recipe, craftStartByRecipe.getOrDefault(recipe, 0));
 		});
 		return crafting;
+	}
+
+	/**
+	 * Favorito de produção, da Legion inteira: o C final da receita no S 0x15A dos logins seguintes (Nova Pasta 2026-09-29 16:40 e 16:49).
+	 */
+	public synchronized boolean isBookmarked(int recipeId) {
+		return bookmarks.contains(recipeId);
+	}
+
+	public synchronized void setBookmarked(int recipeId, boolean bookmarked) {
+		if (bookmarked)
+			bookmarks.add(recipeId);
+		else
+			bookmarks.remove(recipeId);
 	}
 
 	public synchronized long getDonated(int recipeId, int itemId) {

@@ -10,13 +10,18 @@ import com.aionemu.gameserver.network.aion.AionServerPacket;
  * <p>
  * No login e na criação vem a lista inteira (40 receitas, 1059 b, Lost Academy 22/09); depois de uma doação ou produção, só a receita (34 b e
  * 18 b). O início da produção é a hora em que a Lost Academy fez uma essência (receita 1, 0x6AB2FFCC, 22/09 19:22). PENDENTE_DE_COMPROVACAO: o
- * segundo D e o C de cada receita, 0 em todas as variantes.
+ * segundo D, 0 em todas as variantes. O C de cada receita é o favorito (C_GUILD 0x16): 1 nas receitas 1 a 3 e 13 nos logins da Nova Pasta
+ * 2026-09-29 16:40 e 16:49 depois de marcá-las, 0 depois de desmarcar.
  */
 public class SM_LEGION_CRAFT_LIST extends AionServerPacket {
 
 	public record Component(int itemId, long donated) {}
 
-	public record Recipe(int recipeId, int craftStart, List<Component> components) {
+	public record Recipe(int recipeId, int craftStart, boolean bookmarked, List<Component> components) {
+
+		public Recipe(int recipeId, int craftStart, List<Component> components) {
+			this(recipeId, craftStart, false, components);
+		}
 
 		public Recipe(int recipeId, List<Component> components) {
 			this(recipeId, 0, components);
@@ -41,7 +46,7 @@ public class SM_LEGION_CRAFT_LIST extends AionServerPacket {
 				writeD(component.itemId());
 				writeD((int) Math.min(component.donated(), Integer.MAX_VALUE));
 			}
-			writeC(0);
+			writeC(recipe.bookmarked() ? 1 : 0);
 		}
 		writeC(1);
 	}

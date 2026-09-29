@@ -150,10 +150,11 @@ public class LegionCraftService {
 	}
 
 	/**
-	 * C_GUILD 0x16 [D receita][C marcado]: favorito de produção, respondido com S 0x167 com os mesmos valores (Nova Pasta 2026-09-29 16:14, receitas
-	 * 1 a 3). O favorito está na caixa "Craft/Favourite" da janela de permissões; sem ela, STR_MSG_GUILD_MAKING_BOOKMARK_DONT_HAVE_RIGHT.
-	 * PENDENTE_DE_COMPROVACAO: onde o favorito volta no login (nenhuma captura de login depois de marcar), se vai para a Legion inteira e o
-	 * tempo de espera de STR_MSG_GUILD_MAKING_BOOKMARK_FAIL; por isso não é guardado.
+	 * C_GUILD 0x16 [D receita][C marcado]: favorito de produção, respondido com S 0x167 com os mesmos valores (Nova Pasta 2026-09-29 16:14, 16:40 e
+	 * 16:49, marcar e desmarcar). É da Legion: volta no C de cada receita do S 0x15A nos logins seguintes. O favorito está na caixa
+	 * "Craft/Favourite" da janela de permissões; sem ela, STR_MSG_GUILD_MAKING_BOOKMARK_DONT_HAVE_RIGHT. PENDENTE_DE_COMPROVACAO: se o S 0x167
+	 * vai para a Legion inteira (só um membro online nas capturas) e o tempo de espera de STR_MSG_GUILD_MAKING_BOOKMARK_FAIL (dois cliques em
+	 * 0,7 s foram aceitos).
 	 */
 	public void bookmark(Player player, int recipeId, boolean bookmarked) {
 		LegionCraftData.Recipe recipe = DataManager.LEGION_CRAFT_DATA.getRecipe(recipeId);
@@ -165,7 +166,14 @@ public class LegionCraftService {
 			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1401972)); // STR_MSG_GUILD_MAKING_BOOKMARK_DONT_HAVE_RIGHT
 			return;
 		}
-		PacketSendUtility.sendPacket(player, new SM_LEGION_CRAFT_BOOKMARK(recipeId, bookmarked));
+		LegionCraftBoard board = getBoard(player.getLegion());
+		if (board == null) {
+			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1402000)); // STR_MSG_GUILD_MAKING_BOOKMARK_FAIL_2
+			return;
+		}
+		board.setBookmarked(recipeId, bookmarked);
+		LegionDonationDAO.storeCraft(player.getLegion().getLegionId(), recipeId, board);
+		PacketSendUtility.broadcastToLegion(player.getLegion(), new SM_LEGION_CRAFT_BOOKMARK(recipeId, bookmarked));
 	}
 
 	private void produceEssence(Player player, Legion legion, LegionCraftBoard board, LegionCraftData.Recipe recipe) {
@@ -245,7 +253,7 @@ public class LegionCraftService {
 		List<SM_LEGION_CRAFT_LIST.Component> components = new ArrayList<>();
 		for (LegionCraftData.Component component : recipe.getDonatableComponents())
 			components.add(new SM_LEGION_CRAFT_LIST.Component(component.getItemId(), board.getDonated(recipe.getId(), component.getItemId())));
-		return new SM_LEGION_CRAFT_LIST.Recipe(recipe.getId(), board.getCraftStart(recipe.getId()), components);
+		return new SM_LEGION_CRAFT_LIST.Recipe(recipe.getId(), board.getCraftStart(recipe.getId()), board.isBookmarked(recipe.getId()), components);
 	}
 
 	private LegionCraftBoard getBoard(Legion legion) {

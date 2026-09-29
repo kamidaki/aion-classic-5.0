@@ -29,7 +29,7 @@ public class LegionDAO {
 	private static final String SELECT_LEGION_QUERY1 = "SELECT * FROM legions WHERE id=?";
 	private static final String SELECT_LEGION_QUERY2 = "SELECT * FROM legions WHERE name=?";
 	private static final String DELETE_LEGION_QUERY = "DELETE FROM legions WHERE id = ?";
-	private static final String UPDATE_LEGION_QUERY = "UPDATE legions SET name=?, level=?, contribution_points=?, deputy_permission=?, centurion_permission=?, legionary_permission=?, volunteer_permission=?, disband_time=?, occupied_legion_dominion=?, last_legion_dominion=?, current_legion_dominion=? WHERE id=?";
+	private static final String UPDATE_LEGION_QUERY = "UPDATE legions SET name=?, level=?, contribution_points=?, deputy_permission=?, centurion_permission=?, legionary_permission=?, volunteer_permission=?, disband_time=?, occupied_legion_dominion=?, last_legion_dominion=?, current_legion_dominion=?, join_type=?, join_min_level=?, join_intro=?, campaign_activity=?, legion_activity=?, campaign_change_time=? WHERE id=?";
 	/** Announcement Queries **/
 	private static final String INSERT_ANNOUNCEMENT_QUERY = "INSERT INTO legion_announcement_list(`legion_id`, `announcement`, `date`) VALUES (?, ?, ?)";
 	private static final String SELECT_ANNOUNCEMENT_QUERY = "SELECT * FROM legion_announcement_list WHERE legion_id = ? ORDER BY date DESC LIMIT 1";
@@ -87,7 +87,13 @@ public class LegionDAO {
 				stmt.setInt(9, legion.getOccupiedLegionDominion());
 				stmt.setInt(10, legion.getLastLegionDominion());
 				stmt.setInt(11, legion.getCurrentLegionDominion());
-				stmt.setInt(12, legion.getLegionId());
+				stmt.setInt(12, legion.getJoinType());
+				stmt.setInt(13, legion.getJoinMinLevel());
+				stmt.setString(14, legion.getJoinIntro());
+				stmt.setInt(15, legion.getCampaignActivity());
+				stmt.setInt(16, legion.getLegionActivity());
+				stmt.setInt(17, legion.getCampaignChangeTime());
+				stmt.setInt(18, legion.getLegionId());
 				stmt.execute();
 			}
 		});
@@ -117,6 +123,8 @@ public class LegionDAO {
 					legion[0].setOccupiedLegionDominion(resultSet.getInt("occupied_legion_dominion"));
 					legion[0].setLastLegionDominion(resultSet.getInt("last_legion_dominion"));
 					legion[0].setCurrentLegionDominion(resultSet.getInt("current_legion_dominion"));
+					legion[0].setJoinSettings(resultSet.getInt("join_type"), resultSet.getInt("join_min_level"), resultSet.getString("join_intro"));
+					legion[0].setActivity(resultSet.getInt("campaign_activity"), resultSet.getInt("legion_activity"), resultSet.getInt("campaign_change_time"));
 				}
 			}
 		});
@@ -148,6 +156,8 @@ public class LegionDAO {
 					legion[0].setOccupiedLegionDominion(resultSet.getInt("occupied_legion_dominion"));
 					legion[0].setLastLegionDominion(resultSet.getInt("last_legion_dominion"));
 					legion[0].setCurrentLegionDominion(resultSet.getInt("current_legion_dominion"));
+					legion[0].setJoinSettings(resultSet.getInt("join_type"), resultSet.getInt("join_min_level"), resultSet.getString("join_intro"));
+					legion[0].setActivity(resultSet.getInt("campaign_activity"), resultSet.getInt("legion_activity"), resultSet.getInt("campaign_change_time"));
 				}
 			}
 		});

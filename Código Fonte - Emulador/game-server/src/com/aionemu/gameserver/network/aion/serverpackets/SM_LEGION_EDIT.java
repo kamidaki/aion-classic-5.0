@@ -14,7 +14,6 @@ public class SM_LEGION_EDIT extends AionServerPacket {
 	private Legion legion;
 	private int unixTime;
 	private String announcement;
-	private byte[] setting;
 
 	public SM_LEGION_EDIT(int type) {
 		this.type = type;
@@ -28,14 +27,6 @@ public class SM_LEGION_EDIT extends AionServerPacket {
 	public SM_LEGION_EDIT(int type, int unixTime) {
 		this.type = type;
 		this.unixTime = unixTime;
-	}
-
-	/**
-	 * 0x0B e 0x0C devolvem os bytes do C_GUILD 0x10 e 0x17 (Nova Pasta 2026-09-29 16:14, 2 de 2 e 3 de 3).
-	 */
-	public SM_LEGION_EDIT(int type, byte[] setting) {
-		this.type = type;
-		this.setting = setting;
 	}
 
 	public SM_LEGION_EDIT(Legion.Announcement announcement) {
@@ -77,9 +68,14 @@ public class SM_LEGION_EDIT extends AionServerPacket {
 				break;
 			case 0x08: // aviso de histórico geral (o cliente pede a aba 0 com o 0xFFFF)
 				break;
-			case 0x0B: // C_GUILD 0x10 devolvido: 5 b
-			case 0x0C: // C_GUILD 0x17 devolvido: [D][D]
-				writeB(setting);
+			case 0x0B: // Legion Join Settings, como o C_GUILD 0x10 (Nova Pasta 2026-09-29 16:14 e 16:40, 7 de 7)
+				writeS(legion.getJoinIntro());
+				writeC(legion.getJoinType());
+				writeH(legion.getJoinMinLevel());
+				break;
+			case 0x0C: // Legion Activity, como o C_GUILD 0x17 (Nova Pasta 2026-09-29 16:14 e 16:40, 6 de 6)
+				writeD(legion.getCampaignActivity());
+				writeD(legion.getLegionActivity());
 				break;
 		}
 	}
