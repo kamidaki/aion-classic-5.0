@@ -361,7 +361,8 @@ public class Legion extends AionObject {
 	}
 
 	/**
-	 * @return forma de entrada: 0, 1 ou 2 pela ordem da janela (Everyone can join, Join on approval, Closed to applications)
+	 * @return forma de entrada: 0 Join on approval (a candidatura do Schelp com 0 foi para a aprovação, Nova Pasta 2026-09-29 16:49 e print),
+	 *         1 Everyone can join e 2 Closed to applications (pela ordem dos cliques 1, 0, 2, 0; PENDENTE_DE_COMPROVACAO)
 	 */
 	public synchronized int getJoinType() {
 		return joinType;
