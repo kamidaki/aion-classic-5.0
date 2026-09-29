@@ -246,7 +246,7 @@ public final class PlayerEnterWorldService {
 			player.setState(CreatureState.ACTIVE);
 			client.sendPacket(new SM_PLAYER_SPAWN(player));
 			client.sendPacket(new SM_GAME_TIME());
-			client.sendPacket(new SM_UNK_0151());
+			LegionApplicantService.getInstance().onEnterWorld(player); // S 0x151
 			sendWarehouseItemInfos(client, player);
 
 			// 12. Tax Info, Dungeon Cooltimes, Abyss Rank, Status Info

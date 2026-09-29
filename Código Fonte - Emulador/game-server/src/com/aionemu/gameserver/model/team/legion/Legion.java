@@ -88,7 +88,7 @@ public class Legion extends AionObject {
 		return streamMembers().collect(Collectors.toList());
 	}
 
-	private Stream<LegionMember> streamMembers() {
+	public Stream<LegionMember> streamMembers() {
 		return memberIds.stream().map(LegionService.getInstance()::getLegionMember).filter(Objects::nonNull);
 	}
 

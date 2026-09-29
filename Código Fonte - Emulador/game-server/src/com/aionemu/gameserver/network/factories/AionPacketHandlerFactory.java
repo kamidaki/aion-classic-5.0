@@ -209,8 +209,10 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_ABYSS_RANKING_PLAYERS.class, 0x177, State.IN_GAME); // ABYSS_RANKING_PLAYERS
 		addPacket(CM_WINDSTREAM.class, 0x13C, State.IN_GAME); // 0x0046 WIND_PATH / WINDSTREAM
 		addPacket(CM_CHARGE_ITEM.class, 0x124, State.IN_GAME); // CHARGE_ITEM
-		addPacket(CM_GUILD_JOIN_REQUEST.class, 0x1EA, State.IN_GAME); // GUILD_JOIN_REQUEST
-		addPacket(CM_GUILD_JOIN_CANCEL.class, 0x1EB, State.IN_GAME); // GUILD_JOIN_CANCEL
+		// busca de Legion e candidatura (Nova Pasta 2026-09-29 16:49); os stubs GUILD_JOIN_REQUEST/CANCEL estavam trocados com a busca
+		addPacket(CM_LEGION_SEARCH.class, 0x1EA, State.IN_GAME); // dec 0x118 [C modo][H 0 | S nome] -> S 0x150
+		addPacket(CM_LEGION_APPLY.class, 0x1EB, State.IN_GAME); // dec 0x119 [D Legion][S nome][C 0][S apresentação] -> S 0x151
+		addPacket(CM_LEGION_APPLY_CANCEL.class, 0x1E8, State.IN_GAME); // dec 0x11A [D Legion] -> S 0x151 vazio
 		// [D Legion] -> S_GUILD_EMBLEM_IMG_BEGIN + S_GUILD_EMBLEM_IMG_DATA (12 de 12; 22/09 16:14 e 10:23). Aqui ficava um CM_GUILD_TABS vazio.
 		addPacket(CM_LEGION_SEND_EMBLEM.class, 0xFD, State.IN_GAME); // 0x0007 C_REQUEST_GUILD_EMBLEM_IMG
 		addPacket(CM_EQUIPMENT_CHANGE.class, 0x182, State.IN_GAME); // EQUIPMENT_CHANGE

@@ -10,6 +10,7 @@ import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_LEGION_INFO;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
+import com.aionemu.gameserver.services.LegionApplicantService;
 import com.aionemu.gameserver.services.LegionCraftService;
 import com.aionemu.gameserver.services.LegionDonationService;
 import com.aionemu.gameserver.services.LegionService;
@@ -20,7 +21,8 @@ import com.aionemu.gameserver.utils.Util;
  * 0x00 [D NPC][S nome] (2 de 2), 0x01 [D 0][S nome] (1), 0x06 [D cargo][S nome] (1), 0x08 [D 0][H 0] (15), 0x09 [D 0][S aviso] (1).
  * 0x13 [D grupo][D índice] é a produção de moedas (LegionDonationService, 10 de 10) 0x14 [D receita][H n]{[D item][D qtd]} a doação para a produção e
  * 0x15 [D receita] a produção (LegionCraftService, 1 de 1 cada). 0x16 [D receita][C marcado] é o favorito de produção (Nova Pasta 2026-09-29 16:14,
- * 3 de 3) e 0x0D [H]x4 as permissões (5 de 5); 0x02 [D 0][H 0] sair (1 de 1).
+ * 3 de 3) e 0x0D [H]x4 as permissões (5 de 5); 0x02 [D 0][H 0] sair (1 de 1); 0x11/0x12 [D candidato] aceitar/recusar candidato (16:49,
+ * 1 de 1 cada).
  * As demais seguem o layout da 4.8 (PENDENTE_DE_COMPROVACAO).
  *
  * @author Lost Academy Team & Durak
@@ -48,6 +50,7 @@ public class CM_LEGION extends AionClientPacket {
 	private int craftRecipe;
 	private int produceRecipe;
 	private int bookmarkRecipe;
+	private int applicantId;
 	private boolean bookmarked;
 	private int[] craftItemIds;
 	private long[] craftCounts;
@@ -149,6 +152,10 @@ public class CM_LEGION extends AionClientPacket {
 			case 0x15:
 				produceRecipe = readD();
 				break;
+			case 0x11: // aceitar candidato
+			case 0x12: // recusar candidato
+				applicantId = readD();
+				break;
 			case 0x16:
 				bookmarkRecipe = readD();
 				bookmarked = readC() != 0;
@@ -207,6 +214,8 @@ public class CM_LEGION extends AionClientPacket {
 				case 0x13 -> LegionDonationService.getInstance().produce(activePlayer, donationGroup, donationIndex);
 				case 0x14 -> LegionCraftService.getInstance().donate(activePlayer, craftRecipe, LegionCraftService.requested(craftItemIds, craftCounts));
 				case 0x15 -> LegionCraftService.getInstance().produce(activePlayer, produceRecipe);
+				case 0x11 -> LegionApplicantService.getInstance().accept(activePlayer, applicantId);
+				case 0x12 -> LegionApplicantService.getInstance().refuse(activePlayer, applicantId);
 				case 0x16 -> LegionCraftService.getInstance().bookmark(activePlayer, bookmarkRecipe, bookmarked);
 			}
 		} else {

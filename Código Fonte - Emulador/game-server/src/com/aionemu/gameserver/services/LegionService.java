@@ -245,6 +245,24 @@ public class LegionService {
 		return false;
 	}
 
+	/**
+	 * Entrada de um personagem offline, o candidato aceito pela aba Applicant: S 0x6E com online 0 e STR_GUILD_INVITE_HE_JOINED e o histórico de
+	 * entrada (Nova Pasta 2026-09-29 16:49). No próximo login ele entra como qualquer membro.
+	 */
+	public boolean addOfflineMember(Legion legion, int playerObjId) {
+		PlayerCommonData playerCommonData = PlayerService.getOrLoadPlayerCommonData(playerObjId);
+		if (playerCommonData == null || !legion.addLegionMember(playerObjId))
+			return false;
+		LegionMember legionMember = new LegionMember(playerObjId, legion);
+		legionMember.setPlayerData(playerCommonData);
+		legionMember.setRank(LegionRank.VOLUNTEER);
+		LegionMemberDAO.saveNewLegionMember(legionMember);
+		legionMemberById.put(playerObjId, legionMember);
+		PacketSendUtility.broadcastToLegion(legion, new SM_LEGION_ADD_MEMBER(legionMember, 1300260, legionMember.getName()));
+		addHistory(legion, legionMember.getName(), LegionHistoryAction.JOIN);
+		return true;
+	}
+
 	public void invitePlayerToLegion(Player activePlayer, String targetName) {
 		Player targetPlayer = World.getInstance().getPlayer(targetName);
 		if (legionRestrictions.canInvitePlayer(activePlayer, targetPlayer)) {
@@ -852,6 +870,7 @@ public class LegionService {
 
 		// Send current announcement to player
 		displayLegionAnnouncement(activePlayer, legion.getAnnouncement());
+		LegionApplicantService.getInstance().sendApplicants(activePlayer); // S 0x152 depois do aviso, como no login oficial
 
 
 		if (legion.isDisbanding())

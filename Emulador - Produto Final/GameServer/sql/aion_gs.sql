@@ -582,6 +582,26 @@ CREATE TABLE `legion_emblems` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
+-- Table structure for `legion_applicant`
+-- ----------------------------
+DROP TABLE IF EXISTS `legion_applicant`;
+CREATE TABLE `legion_applicant` (
+  `player_id` int NOT NULL,
+  `legion_id` int NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `player_class` tinyint NOT NULL,
+  `gender` tinyint NOT NULL,
+  `level` tinyint NOT NULL,
+  `intro` varchar(64) NOT NULL DEFAULT '',
+  `apply_time` int NOT NULL,
+  `refused` tinyint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`player_id`),
+  KEY `legion_id` (`legion_id`),
+  CONSTRAINT `legion_applicant_player_fk` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `legion_applicant_legion_fk` FOREIGN KEY (`legion_id`) REFERENCES `legions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
 -- Table structure for `legion_history`
 -- ----------------------------
 DROP TABLE IF EXISTS `legion_history`;

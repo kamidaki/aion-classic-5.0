@@ -7,6 +7,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.HexFormat;
@@ -25,6 +26,7 @@ import com.aionemu.gameserver.dataholders.LegionSettingsData;
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.PlayerClass;
 import com.aionemu.gameserver.model.team.legion.Legion;
+import com.aionemu.gameserver.model.team.legion.LegionApplicant;
 import com.aionemu.gameserver.model.team.legion.LegionHistoryAction;
 import com.aionemu.gameserver.model.team.legion.LegionHistoryEntry;
 import com.aionemu.gameserver.model.team.legion.LegionMember;
@@ -158,6 +160,29 @@ class LegionPacketsTest {
 		assertEquals("0100" + "01000000" + "00000000" + "00000000" + "0000" + "01" + "01", HEX.formatHex(craft));
 		assertTrue(LegionPermissionsMask.CRAFT.can(0x7E0C) && !LegionPermissionsMask.CRAFT.can(0x5E0C));
 		assertTrue(LegionPermissionsMask.BUFF.can(0x7E0C) && !LegionPermissionsMask.BUFF.can(0x3E0C));
+	}
+
+	@Test
+	void applicantPacketsMatchNovaPasta() throws Exception {
+		// Nova Pasta 2026-09-29 16:49: busca pela Lost Academy (S 0x150, 77 b), candidatura do Schelp (S 0x151, 30 b), lista do líder (S 0x152, 40 b),
+		// aceite (S 0x154) e a entrada do Schelp offline (S 0x6E, 53 b)
+		String lostAcademy = HEX.formatHex("Lost Academy\0".getBytes(StandardCharsets.UTF_16LE));
+		String teste = HEX.formatHex("Teste\0".getBytes(StandardCharsets.UTF_16LE));
+		String schelp = HEX.formatHex("Schelp\0".getBytes(StandardCharsets.UTF_16LE));
+		assertEquals("0100" + "1738002e" + lostAcademy + HEX.formatHex("Kodra\0".getBytes(StandardCharsets.UTF_16LE)) + "01" + "02000000" + teste + "00"
+			+ "0000" + "02000000" + "00000000" + "01000000" + "01", HEX.formatHex(body(new SM_LEGION_SEARCH_LIST(List.of(
+				new SM_LEGION_SEARCH_LIST.Entry(0x2E003817, "Lost Academy", "Kodra", 1, 2, "Teste", 0, 0, 2, 0, 1)), true))));
+		assertEquals("1738002e" + lostAcademy, HEX.formatHex(body(new SM_LEGION_APPLICATION(0x2E003817, "Lost Academy"))));
+		assertEquals("000000000000", HEX.formatHex(body(new SM_LEGION_APPLICATION())));
+		assertEquals("ffff" + "bb4c0f2e" + schelp + "0b01" + "3c00" + teste + "9916bc6a", HEX.formatHex(body(new SM_LEGION_APPLICANT_LIST(List.of(
+			new LegionApplicant(0x2E0F4CBB, 0x2E003817, "Schelp", 11, 1, 60, "Teste", 0x6ABC1699, false))))));
+		assertEquals("0000", HEX.formatHex(body(new SM_LEGION_APPLICANT_LIST(List.of()))));
+		assertEquals("bb4c0f2e01", HEX.formatHex(body(new SM_LEGION_APPLICANT_RESULT(0x2E0F4CBB, SM_LEGION_APPLICANT_RESULT.ACCEPTED))));
+		NetworkConfig.GAMESERVER_ID = 23;
+		LegionMember member = member(new Legion(0x2E003817, "Lost Academy"), 0x2E0F4CBB, "Schelp", PlayerClass.CHANTER, 60, LegionRank.VOLUNTEER,
+			120010000, false, 0x6ABC16FC);
+		assertEquals("bb4c0f2e" + schelp + "04000b3c" + "10352707" + "00" + "fc16bc6a" + "17000000" + "24d71300" + schelp,
+			HEX.formatHex(body(new SM_LEGION_ADD_MEMBER(member, 1300260, "Schelp"))));
 	}
 
 	@Test
