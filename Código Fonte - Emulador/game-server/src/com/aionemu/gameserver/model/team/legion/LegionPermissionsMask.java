@@ -12,9 +12,8 @@ public enum LegionPermissionsMask {
 	WH_DEPOSIT(0x1000),
 	ARTIFACT(0x400),
 	GUARDIAN_STONE(0x800),
-	// Nova Pasta 2026-09-29 16:14: C_GUILD 0x0D do Deputy com 0x5E0C e 0x3E0C (as duas caixas novas desmarcadas, uma de cada vez) e 0x7E1C com
-	// tudo marcado; a ordem das linhas da janela (Craft/Favourite antes de Enchant/Activate/Reset Buff) dá 0x2000 à produção e 0x4000 ao buff.
-	// PENDENTE_DE_COMPROVACAO: a ligação de cada envio à caixa desmarcada.
+	// Nova Pasta 2026-09-29 16:40: as caixas do Tribunus (Deputy) desmarcadas uma a uma de cima para baixo deram 0x7C1C, 0x7C14, 0x7C04, 0x7C00,
+	// 0x6C00, 0x6800, 0x6000, 0x4000 e 0; a penúltima é Craft/Favourite e a última Enchant/Activate/Reset Buff.
 	CRAFT(0x2000),
 	BUFF(0x4000);
 
