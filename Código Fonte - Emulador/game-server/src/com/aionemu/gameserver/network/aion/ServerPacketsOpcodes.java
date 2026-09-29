@@ -321,6 +321,7 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(356, SM_LEGION_GROWTH.class); // nível e exp de crescimento da Legion (0x0164)
 		addPacketOpcode(357, SM_LEGION_COIN.class); // moedas pessoais da Legion (0x0165)
 		addPacketOpcode(358, SM_SP_UPDATE_OTHER.class); // SP de um jogador para quem o vê (0x0166, 6 b)
+		addPacketOpcode(359, SM_LEGION_CRAFT_BOOKMARK.class); // favorito de produção da Legion (0x0167)
 		addPacketOpcode(0x169, SM_MOROS_INFO.class); // Moreth, Chronicle of Time: [H nível][D pontos][D 0][H registros] (40 de 40 capturas)
 		addPacketOpcode(368, SM_UNK_0170.class); // [S_UNK_0170] (0x0170)
 		addPacketOpcode(371, SM_UNK_0173.class); // [S_UNK_0173] (0x0173)

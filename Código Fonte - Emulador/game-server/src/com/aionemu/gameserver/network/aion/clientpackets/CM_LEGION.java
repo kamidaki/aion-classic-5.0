@@ -8,6 +8,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.team.legion.Legion;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_LEGION_EDIT;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_LEGION_INFO;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.services.LegionCraftService;
@@ -19,7 +20,8 @@ import com.aionemu.gameserver.utils.Util;
  * C_GUILD (dec 0x05). Sub-ações conferidas na criação da Lost Academy (outros2 2026-09-22 10:23, lado cliente com a chave ressincronizada):
  * 0x00 [D NPC][S nome] (2 de 2), 0x01 [D 0][S nome] (1), 0x06 [D cargo][S nome] (1), 0x08 [D 0][H 0] (15), 0x09 [D 0][S aviso] (1).
  * 0x13 [D grupo][D índice] é a produção de moedas (LegionDonationService, 10 de 10) 0x14 [D receita][H n]{[D item][D qtd]} a doação para a produção e
- * 0x15 [D receita] a produção (LegionCraftService, 1 de 1 cada).
+ * 0x15 [D receita] a produção (LegionCraftService, 1 de 1 cada). 0x16 [D receita][C marcado] é o favorito de produção (Nova Pasta 2026-09-29 16:14,
+ * 3 de 3) e 0x0D [H]x4 as permissões (5 de 5); 0x02 [D 0][H 0] sair (1 de 1).
  * As demais seguem o layout da 4.8 (PENDENTE_DE_COMPROVACAO).
  *
  * @author Lost Academy Team & Durak
@@ -32,7 +34,7 @@ public class CM_LEGION extends AionClientPacket {
 	private short legionarPermission;
 	private short volunteerPermission;
 	private int rank;
-	private int legionDominionId;
+	private byte[] setting;
 	private String legionName;
 	private String charName;
 	private String newNickname;
@@ -42,6 +44,8 @@ public class CM_LEGION extends AionClientPacket {
 	private int donationIndex;
 	private int craftRecipe;
 	private int produceRecipe;
+	private int bookmarkRecipe;
+	private boolean bookmarked;
 	private int[] craftItemIds;
 	private long[] craftCounts;
 
@@ -117,8 +121,8 @@ public class CM_LEGION extends AionClientPacket {
 				charName = readS();
 				newNickname = readS();
 				break;
-			case 0x10: // selected legion dominion
-				legionDominionId = readD();
+			case 0x10: // 5 b, devolvidos no S 0x9D 0B (a 4.8 lia [D domínio])
+				setting = readB(5);
 				break;
 			// produção de moedas: [D grupo][D índice] da lista do dia (S 0x159)
 			case 0x13:
@@ -139,6 +143,13 @@ public class CM_LEGION extends AionClientPacket {
 			// produção: [D receita] (Lost Academy 22/09 19:22: receita 1, 10 fragmentos -> 1 essência)
 			case 0x15:
 				produceRecipe = readD();
+				break;
+			case 0x16:
+				bookmarkRecipe = readD();
+				bookmarked = readC() != 0;
+				break;
+			case 0x17: // [D][D], devolvidos no S 0x9D 0C
+				setting = readB(8);
 				break;
 			default:
 				LoggerFactory.getLogger(CM_LEGION.class).warn("Unknown Legion exOpcode 0x" + Integer.toHexString(exOpcode).toUpperCase());
@@ -185,11 +196,14 @@ public class CM_LEGION extends AionClientPacket {
 				case 0x0E -> LegionService.getInstance().requestChangeLevel(activePlayer);
 				// change nickname
 				case 0x0F -> LegionService.getInstance().changeNickname(activePlayer, charName, newNickname);
-				// select Legion Dominion to participate
-				case 0x10 -> LegionService.getInstance().joinLegionDominion(activePlayer, legionDominionId);
+				// PENDENTE_DE_COMPROVACAO: o que a janela muda com o 0x10 ("00 00 02 00 00" e zeros) e o 0x17 ([D 2][D 1, 3 e 0]; o primeiro deixou a ação
+				// 27 no histórico geral). O oficial só devolveu os mesmos bytes, sem mensagem; nada é guardado.
+				case 0x10 -> sendPacket(new SM_LEGION_EDIT(0x0B, setting));
+				case 0x17 -> sendPacket(new SM_LEGION_EDIT(0x0C, setting));
 				case 0x13 -> LegionDonationService.getInstance().produce(activePlayer, donationGroup, donationIndex);
 				case 0x14 -> LegionCraftService.getInstance().donate(activePlayer, craftRecipe, LegionCraftService.requested(craftItemIds, craftCounts));
 				case 0x15 -> LegionCraftService.getInstance().produce(activePlayer, produceRecipe);
+				case 0x16 -> LegionCraftService.getInstance().bookmark(activePlayer, bookmarkRecipe, bookmarked);
 			}
 		} else {
 			switch (exOpcode) {

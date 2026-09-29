@@ -18,6 +18,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.items.ItemId;
 import com.aionemu.gameserver.model.team.legion.Legion;
 import com.aionemu.gameserver.model.team.legion.LegionCraftBoard;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_LEGION_CRAFT_BOOKMARK;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_LEGION_CRAFT_LIST;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_LEGION_ESSENCE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
@@ -25,6 +26,7 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.services.item.ItemFactory;
 import com.aionemu.gameserver.model.team.legion.LegionHistoryAction;
+import com.aionemu.gameserver.model.team.legion.LegionPermissionsMask;
 import com.aionemu.gameserver.model.items.storage.LegionStorageProxy;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.dao.InventoryDAO;
@@ -124,8 +126,8 @@ public class LegionCraftService {
 	 * STR_MSG_GUILD_MAKING_START [item] e histórico 20; craft_time minutos depois, STR_MSG_GUILD_MAKING_COMPLETION [item],
 	 * STR_MSG_GUILD_MAKING_COMPLETION_2, histórico 21 e S 0x15A, e o produto vai para o armazém da Legion (retirado dele na mesma captura).</li>
 	 * </ul>
-	 * PENDENTE_DE_COMPROVACAO: a permissão de produção (0x2000 ou 0x4000; quem produziu era o Brigade General) e o que acontece com o armazém
-	 * cheio.
+	 * Sem a permissão de produção (LegionPermissionsMask.CRAFT), STR_MSG_GUILD_MAKING_DONT_HAVE_RIGHT. PENDENTE_DE_COMPROVACAO: o que acontece
+	 * com o armazém cheio.
 	 */
 	public void produce(Player player, int recipeId) {
 		Legion legion = player.getLegion();
@@ -135,12 +137,35 @@ public class LegionCraftService {
 			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1401981)); // STR_MSG_GUILD_MAKING_FAIL
 			return;
 		}
+		if (!player.getLegionMember().hasRights(LegionPermissionsMask.CRAFT)) {
+			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1401985)); // STR_MSG_GUILD_MAKING_DONT_HAVE_RIGHT
+			return;
+		}
 		if (recipe.isEssenceRecipe())
 			produceEssence(player, legion, board, recipe);
 		else if (recipe.getProductId() != 0)
 			produceItem(player, legion, board, recipe);
 		else
 			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1401981)); // STR_MSG_GUILD_MAKING_FAIL
+	}
+
+	/**
+	 * C_GUILD 0x16 [D receita][C marcado]: favorito de produção, respondido com S 0x167 com os mesmos valores (Nova Pasta 2026-09-29 16:14, receitas
+	 * 1 a 3). O favorito está na caixa "Craft/Favourite" da janela de permissões; sem ela, STR_MSG_GUILD_MAKING_BOOKMARK_DONT_HAVE_RIGHT.
+	 * PENDENTE_DE_COMPROVACAO: onde o favorito volta no login (nenhuma captura de login depois de marcar), se vai para a Legion inteira e o
+	 * tempo de espera de STR_MSG_GUILD_MAKING_BOOKMARK_FAIL; por isso não é guardado.
+	 */
+	public void bookmark(Player player, int recipeId, boolean bookmarked) {
+		LegionCraftData.Recipe recipe = DataManager.LEGION_CRAFT_DATA.getRecipe(recipeId);
+		if (recipe == null || !DataManager.LEGION_CRAFT_DATA.getRecipes(player.getRace()).contains(recipe)) {
+			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1402000)); // STR_MSG_GUILD_MAKING_BOOKMARK_FAIL_2
+			return;
+		}
+		if (!player.getLegionMember().hasRights(LegionPermissionsMask.CRAFT)) {
+			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1401972)); // STR_MSG_GUILD_MAKING_BOOKMARK_DONT_HAVE_RIGHT
+			return;
+		}
+		PacketSendUtility.sendPacket(player, new SM_LEGION_CRAFT_BOOKMARK(recipeId, bookmarked));
 	}
 
 	private void produceEssence(Player player, Legion legion, LegionCraftBoard board, LegionCraftData.Recipe recipe) {

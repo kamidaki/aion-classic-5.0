@@ -392,7 +392,9 @@ public class LegionService {
 			return;
 		}
 		legionMember.getLegion().setLegionPermissions(deputyPermission, centurionPermission, legionarPermission, volunteerPermission);
+		storeLegion(legionMember.getLegion());
 		PacketSendUtility.broadcastToLegion(legionMember.getLegion(), new SM_LEGION_EDIT(0x02, legionMember.getLegion()));
+		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_GUILD_CHANGE_RIGHT_DONE()); // S 0x9D 02 e depois 1300284 (Nova Pasta 2026-09-29 16:14, 5 de 5)
 	}
 
 	/**

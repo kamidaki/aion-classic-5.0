@@ -28,6 +28,7 @@ import com.aionemu.gameserver.model.team.legion.Legion;
 import com.aionemu.gameserver.model.team.legion.LegionHistoryAction;
 import com.aionemu.gameserver.model.team.legion.LegionHistoryEntry;
 import com.aionemu.gameserver.model.team.legion.LegionMember;
+import com.aionemu.gameserver.model.team.legion.LegionPermissionsMask;
 import com.aionemu.gameserver.model.team.legion.LegionRank;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
@@ -136,6 +137,19 @@ class LegionPacketsTest {
 		assertEquals("010001000000ccffb26a0000000000000001",
 			HEX.formatHex(body(new SM_LEGION_CRAFT_LIST(List.of(new SM_LEGION_CRAFT_LIST.Recipe(1, 0x6AB2FFCC, List.of()))))));
 		assertEquals("01000000000000000000000000000000", HEX.formatHex(body(new SM_LEGION_ESSENCE(1, 0))));
+	}
+
+	@Test
+	void permissionsAndBookmarkMatchNovaPasta() throws Exception {
+		// Nova Pasta 2026-09-29 16:14: C_GUILD 0x0D devolvido no S 0x9D 02 e o favorito da receita 1 no S 0x167
+		Legion legion = new Legion(1, "Lost Academy");
+		legion.setLegionPermissions((short) 0x7E1C, (short) 0x1C08, (short) 0x1800, (short) 0x0800);
+		assertEquals("02" + "1c7e081c00180008", HEX.formatHex(body(new SM_LEGION_EDIT(0x02, legion))));
+		assertEquals("0100000001", HEX.formatHex(body(new SM_LEGION_CRAFT_BOOKMARK(1, true))));
+		assertEquals("0b0000020000", HEX.formatHex(body(new SM_LEGION_EDIT(0x0B, HEX.parseHex("0000020000")))));
+		assertEquals("0c0200000001000000", HEX.formatHex(body(new SM_LEGION_EDIT(0x0C, HEX.parseHex("0200000001000000")))));
+		assertTrue(LegionPermissionsMask.CRAFT.can(0x7E0C) && !LegionPermissionsMask.CRAFT.can(0x5E0C));
+		assertTrue(LegionPermissionsMask.BUFF.can(0x7E0C) && !LegionPermissionsMask.BUFF.can(0x3E0C));
 	}
 
 	@Test
