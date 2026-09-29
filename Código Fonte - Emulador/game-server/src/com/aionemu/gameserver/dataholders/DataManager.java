@@ -76,6 +76,8 @@ public final class DataManager {
 	public static LegionSettingsData LEGION_SETTINGS_DATA;
 	public static LegionDonationData LEGION_DONATION_DATA;
 	public static LegionCraftData LEGION_CRAFT_DATA;
+	public static LegionMissionData LEGION_MISSION_DATA;
+	public static LegionGrowthData LEGION_GROWTH_DATA;
 	public static MorosData MOROS_DATA;
 	public static StorybookData STORYBOOK_DATA;
 	public static ItemRestrictionCleanupData ITEM_CLEAN_UP;
@@ -238,6 +240,8 @@ public final class DataManager {
 		LEGION_SETTINGS_DATA = data.legionSettingsData;
 		LEGION_DONATION_DATA = data.legionDonationData;
 		LEGION_CRAFT_DATA = data.legionCraftData;
+		LEGION_MISSION_DATA = data.legionMissionData;
+		LEGION_GROWTH_DATA = data.legionGrowthData;
 		MOROS_DATA = data.morosData;
 		STORYBOOK_DATA = data.storybookData;
 		UPGRADE_ARCADE_DATA = data.upgradeArcadeData;

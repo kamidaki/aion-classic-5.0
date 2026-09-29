@@ -74,6 +74,8 @@
 	<import file="legion/legion_settings.xml" />
 	<import file="legion/legion_donation.xml" />
 	<import file="legion/legion_craft.xml" />
+	<import file="legion/legion_mission.xml" />
+	<import file="legion/legion_growth.xml" />
 	<import file="moros/moros.xml" />
 	<import file="storybook/storybook.xml" />
 	<import file="item_sets/item_sets.xml" />

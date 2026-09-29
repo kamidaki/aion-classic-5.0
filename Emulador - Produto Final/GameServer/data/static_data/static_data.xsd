@@ -52,6 +52,8 @@
 	<xs:include schemaLocation="legion/legion_settings.xsd" />
 	<xs:include schemaLocation="legion/legion_donation.xsd" />
 	<xs:include schemaLocation="legion/legion_craft.xsd" />
+	<xs:include schemaLocation="legion/legion_mission.xsd" />
+	<xs:include schemaLocation="legion/legion_growth.xsd" />
 	<xs:include schemaLocation="moros/moros.xsd" />
 	<xs:include schemaLocation="storybook/storybook.xsd" />
 	<xs:include schemaLocation="legion_dominion_template.xsd" />
@@ -182,6 +184,8 @@
 					<xs:element ref="legion_settings" minOccurs="0" />
 					<xs:element ref="legion_donation" minOccurs="0" />
 					<xs:element ref="legion_craft" minOccurs="0" />
+					<xs:element ref="legion_mission" minOccurs="0" />
+					<xs:element ref="legion_growth" minOccurs="0" />
 					<xs:element ref="moros" minOccurs="0" />
 					<xs:element ref="storybooks" minOccurs="0" />
 					<xs:element ref="pet_buffs" minOccurs="0" />

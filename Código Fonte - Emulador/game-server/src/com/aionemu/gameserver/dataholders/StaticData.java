@@ -303,6 +303,10 @@ public class StaticData {
 	public ItemComposeData itemComposeData;
 	@XmlElement(name = "item_upgrades")
 	public ItemUpgradeData itemUpgradeData;
+	@XmlElement(name = "legion_mission")
+	public LegionMissionData legionMissionData;
+	@XmlElement(name = "legion_growth")
+	public LegionGrowthData legionGrowthData;
 	@XmlElement(name = "legion_craft")
 	public LegionCraftData legionCraftData;
 	@XmlElement(name = "legion_donation")
@@ -438,6 +442,8 @@ public class StaticData {
 		log.info("Loaded " + legionSettingsData.size() + " legion levels");
 		log.info("Loaded " + legionDonationData.size() + " legion donation groups");
 		log.info("Loaded " + legionCraftData.size() + " legion craft recipes");
+		log.info("Loaded " + legionMissionData.size() + " legion missions");
+		log.info("Loaded " + legionGrowthData.size() + " legion growth levels");
 		log.info("Loaded " + skillAliasLocationData.size() + " skill alias locations");
 		log.info("Loaded " + signetDataTemplates.size() + " signet data templates");
 	}
