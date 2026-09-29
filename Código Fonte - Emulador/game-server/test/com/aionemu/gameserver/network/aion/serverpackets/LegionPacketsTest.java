@@ -122,6 +122,23 @@ class LegionPacketsTest {
 	}
 
 	@Test
+	void essenceProductionMatchesLostAcademy() throws Exception {
+		LegionCraftData data = (LegionCraftData) JAXBContext.newInstance(LegionCraftData.class).createUnmarshaller()
+			.unmarshal(new File("data/static_data/legion/legion_craft.xml"));
+		LegionCraftData.Recipe essence = data.getRecipe(1);
+		assertTrue(essence.isEssenceRecipe());
+		assertEquals(10, essence.getEssencePieceCost());
+		assertEquals(1, essence.getEssenceCount());
+		assertTrue(data.getRecipe(3).isEssenceRecipe());
+		assertFalse(data.getRecipe(501).isEssenceRecipe());
+		// outros2 2026-09-22 19:22: C_GUILD [15][D 1] -> fragmentos 10 -> 0, receita 1 com a hora de início, essência 0 -> 1
+		assertEquals("00000000000000000000000000000000", HEX.formatHex(body(new SM_LEGION_ESSENCE(0, 0))));
+		assertEquals("010001000000ccffb26a0000000000000001",
+			HEX.formatHex(body(new SM_LEGION_CRAFT_LIST(List.of(new SM_LEGION_CRAFT_LIST.Recipe(1, 0x6AB2FFCC, List.of()))))));
+		assertEquals("01000000000000000000000000000000", HEX.formatHex(body(new SM_LEGION_ESSENCE(1, 0))));
+	}
+
+	@Test
 	void donationPacketsMatchLostAcademy() throws Exception {
 		// criação: primeira lista do dia (grupo 13 = candy_dark, Legion asmodiana)
 		Map<Integer, Integer> selection = new LinkedHashMap<>();

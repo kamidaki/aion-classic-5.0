@@ -18,7 +18,8 @@ import com.aionemu.gameserver.utils.Util;
 /**
  * C_GUILD (dec 0x05). Sub-ações conferidas na criação da Lost Academy (outros2 2026-09-22 10:23, lado cliente com a chave ressincronizada):
  * 0x00 [D NPC][S nome] (2 de 2), 0x01 [D 0][S nome] (1), 0x06 [D cargo][S nome] (1), 0x08 [D 0][H 0] (15), 0x09 [D 0][S aviso] (1).
- * 0x13 [D grupo][D índice] é a produção de moedas (LegionDonationService, 10 de 10) e 0x14 [D receita][H n]{[D item][D qtd]} a doação para a produção (LegionCraftService, 1 de 1).
+ * 0x13 [D grupo][D índice] é a produção de moedas (LegionDonationService, 10 de 10) 0x14 [D receita][H n]{[D item][D qtd]} a doação para a produção e
+ * 0x15 [D receita] a produção (LegionCraftService, 1 de 1 cada).
  * As demais seguem o layout da 4.8 (PENDENTE_DE_COMPROVACAO).
  *
  * @author Lost Academy Team & Durak
@@ -40,6 +41,7 @@ public class CM_LEGION extends AionClientPacket {
 	private int donationGroup;
 	private int donationIndex;
 	private int craftRecipe;
+	private int produceRecipe;
 	private int[] craftItemIds;
 	private long[] craftCounts;
 
@@ -134,6 +136,10 @@ public class CM_LEGION extends AionClientPacket {
 					craftCounts[i] = readD() & 0xFFFFFFFFL;
 				}
 				break;
+			// produção: [D receita] (Lost Academy 22/09 19:22: receita 1, 10 fragmentos -> 1 essência)
+			case 0x15:
+				produceRecipe = readD();
+				break;
 			default:
 				LoggerFactory.getLogger(CM_LEGION.class).warn("Unknown Legion exOpcode 0x" + Integer.toHexString(exOpcode).toUpperCase());
 				break;
@@ -183,6 +189,7 @@ public class CM_LEGION extends AionClientPacket {
 				case 0x10 -> LegionService.getInstance().joinLegionDominion(activePlayer, legionDominionId);
 				case 0x13 -> LegionDonationService.getInstance().produce(activePlayer, donationGroup, donationIndex);
 				case 0x14 -> LegionCraftService.getInstance().donate(activePlayer, craftRecipe, LegionCraftService.requested(craftItemIds, craftCounts));
+				case 0x15 -> LegionCraftService.getInstance().produce(activePlayer, produceRecipe);
 			}
 		} else {
 			switch (exOpcode) {

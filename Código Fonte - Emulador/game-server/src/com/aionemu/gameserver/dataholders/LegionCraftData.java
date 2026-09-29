@@ -76,6 +76,9 @@ public class LegionCraftData {
 		@XmlAttribute(name = "product_count")
 		private int productCount;
 
+		@XmlAttribute(name = "essence_count")
+		private int essenceCount;
+
 		@XmlElements({ @XmlElement(name = "kinah", type = Kinah.class), @XmlElement(name = "item", type = Item.class),
 			@XmlElement(name = "essence", type = Essence.class), @XmlElement(name = "essence_piece", type = EssencePiece.class) })
 		private List<Component> components = new ArrayList<>();
@@ -98,6 +101,27 @@ public class LegionCraftData {
 
 		public int getProductCount() {
 			return productCount;
+		}
+
+		/**
+		 * @return essências que a receita produz (receitas 1 a 3 do client_guild_craft), 0 nas de item
+		 */
+		public int getEssenceCount() {
+			return essenceCount;
+		}
+
+		/**
+		 * @return fragmentos de essência que a receita consome
+		 */
+		public long getEssencePieceCost() {
+			return components.stream().filter(c -> c instanceof EssencePiece).mapToLong(Component::getCount).sum();
+		}
+
+		/**
+		 * @return true para a produção de essência a partir só de fragmentos, sem tempo (receita 1: 10 fragmentos, 1 essência)
+		 */
+		public boolean isEssenceRecipe() {
+			return essenceCount > 0 && productId == 0 && craftTime == 0 && components.stream().allMatch(c -> c instanceof EssencePiece);
 		}
 
 		/**

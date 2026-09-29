@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.dao.LegionDonationDAO;
+import com.aionemu.gameserver.dao.LegionMissionDAO;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.dataholders.LegionCraftData;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -18,6 +19,7 @@ import com.aionemu.gameserver.model.items.ItemId;
 import com.aionemu.gameserver.model.team.legion.Legion;
 import com.aionemu.gameserver.model.team.legion.LegionCraftBoard;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_LEGION_CRAFT_LIST;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_LEGION_ESSENCE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
@@ -103,6 +105,42 @@ public class LegionCraftService {
 		}
 		PacketSendUtility.broadcastToLegion(legion, new SM_LEGION_CRAFT_LIST(List.of(toPacket(recipe, board))));
 		LegionDonationService.getInstance().addCraftPoints(player, points);
+	}
+
+	/**
+	 * C_GUILD 0x15 [D receita]: produção. Só a de essência (receitas 1 a 3, fragmentos -> essência, sem tempo) está comprovada: a Lost Academy fez
+	 * uma essência com 10 fragmentos (outros2 2026-09-22 19:22) e recebeu S 0x163 com os fragmentos descontados, STR_MSG_GUILD_MAKING_START_ESSENCE,
+	 * S 0x15A com a hora de início, S 0x163 com a essência, STR_GUILD_GET_ESSENCE, STR_MSG_GUILD_MAKING_COMPLETION_ESSENCE e o S 0x15A de novo.
+	 * <p>
+	 * PENDENTE_DE_COMPROVACAO: a produção de item (tempo, produto no armazém) e a permissão de produção (0x2000 ou 0x4000; quem produziu era o
+	 * Brigade General).
+	 */
+	public void produce(Player player, int recipeId) {
+		Legion legion = player.getLegion();
+		LegionCraftData.Recipe recipe = DataManager.LEGION_CRAFT_DATA.getRecipe(recipeId);
+		if (legion == null || recipe == null || !DataManager.LEGION_CRAFT_DATA.getRecipes(player.getRace()).contains(recipe) || !recipe.isEssenceRecipe()) {
+			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1401981)); // STR_MSG_GUILD_MAKING_FAIL
+			return;
+		}
+		int cost = (int) recipe.getEssencePieceCost();
+		synchronized (legion) {
+			if (legion.getEssencePiece() < cost) {
+				PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1401984)); // STR_MSG_GUILD_MAKING_MATERIAL_SCARCE
+				return;
+			}
+			legion.addEssence(0, -cost);
+			PacketSendUtility.broadcastToLegion(legion, new SM_LEGION_ESSENCE(legion.getEssence(), legion.getEssencePiece()));
+			PacketSendUtility.broadcastToLegion(legion, new SM_SYSTEM_MESSAGE(1401970)); // STR_MSG_GUILD_MAKING_START_ESSENCE
+			SM_LEGION_CRAFT_LIST recipeUpdate = new SM_LEGION_CRAFT_LIST(
+				List.of(new SM_LEGION_CRAFT_LIST.Recipe(recipeId, (int) (System.currentTimeMillis() / 1000), List.of())));
+			PacketSendUtility.broadcastToLegion(legion, recipeUpdate);
+			legion.addEssence(recipe.getEssenceCount(), 0);
+			LegionMissionDAO.storeGrowth(legion);
+			PacketSendUtility.broadcastToLegion(legion, new SM_LEGION_ESSENCE(legion.getEssence(), legion.getEssencePiece()));
+			PacketSendUtility.broadcastToLegion(legion, new SM_SYSTEM_MESSAGE(1401979, String.valueOf(recipe.getEssenceCount()))); // STR_GUILD_GET_ESSENCE
+			PacketSendUtility.broadcastToLegion(legion, new SM_SYSTEM_MESSAGE(1401971)); // STR_MSG_GUILD_MAKING_COMPLETION_ESSENCE
+			PacketSendUtility.broadcastToLegion(legion, recipeUpdate);
+		}
 	}
 
 	private static SM_LEGION_CRAFT_LIST.Recipe toPacket(LegionCraftData.Recipe recipe, LegionCraftBoard board) {
