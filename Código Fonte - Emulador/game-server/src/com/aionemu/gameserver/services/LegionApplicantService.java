@@ -38,7 +38,8 @@ import com.aionemu.gameserver.world.World;
  * Na 18:22, a recusa com o candidato online: S 0x151 vazio e STR_GUILD_JOIN_REFUSAL. A lista geral é o ranking de Legions da raça (as 50 da
  * busca na ordem do Abyss Ranking de Legions, print de 18:22), 34 por pacote como nas capturas.
  * <p>
- * PENDENTE_DE_COMPROVACAO: a ordem da busca por texto (aqui pela contribuição), o aviso ao cancelar e quem vê a aba (permissão Invite/Approve).
+ * Só quem tem a permissão Invite/Approve vê e responde os candidatos. A busca por texto segue a contribuição (ordem oficial desconhecida).
+ * PENDENTE_DE_COMPROVACAO: o pacote que tira o candidato da aba do líder online quando ele cancela (aqui o S 0x152 de novo).
  */
 public class LegionApplicantService {
 
@@ -115,6 +116,12 @@ public class LegionApplicantService {
 			return;
 		LegionApplicantDAO.delete(player.getObjectId());
 		PacketSendUtility.sendPacket(player, new SM_LEGION_APPLICATION());
+		// o candidato some da aba do líder, sem mensagem (confirmado em jogo); sem captura do lado do líder, a lista vai de novo no S 0x152
+		Legion legion = LegionService.getInstance().getLegion(legionId);
+		if (legion != null)
+			for (Player member : legion.getOnlinePlayers())
+				if (member.getLegionMember() != null && member.getLegionMember().hasRights(LegionPermissionsMask.INVITE))
+					sendApplicants(member);
 	}
 
 	/**
