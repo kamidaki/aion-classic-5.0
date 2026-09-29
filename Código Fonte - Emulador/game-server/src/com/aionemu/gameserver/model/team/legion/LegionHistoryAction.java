@@ -20,7 +20,12 @@ public enum LegionHistoryAction {
 	ITEM_DEPOSIT(15, Type.WAREHOUSE), // Parameter: name
 	ITEM_WITHDRAW(16, Type.WAREHOUSE), // Parameter: name
 	KINAH_DEPOSIT(17, Type.WAREHOUSE), // Parameter: name
-	KINAH_WITHDRAW(18, Type.WAREHOUSE); // Parameter: name
+	KINAH_WITHDRAW(18, Type.WAREHOUSE), // Parameter: name
+	// 5.0, histórico de produção (tipo 3) da Lost Academy (Nova Pasta 2026-09-29 16:02 e outros2 2026-09-22 19:22)
+	CRAFT_START(20, Type.CRAFT), // name = quem iniciou, description = [item_text:produto]
+	CRAFT_COMPLETE(21, Type.CRAFT), // name = [item_text:produto]
+	ESSENCE_START(24, Type.CRAFT), // name = quem iniciou
+	ESSENCE_COMPLETE(25, Type.CRAFT); // sem parâmetros
 
 	private final byte id;
 	private final Type type;
@@ -38,5 +43,8 @@ public enum LegionHistoryAction {
 		return type;
 	}
 
-	public enum Type { LEGION, REWARD, WAREHOUSE }
+	/**
+	 * Aba do histórico: o cliente pede cada uma pelo número (dec 0xFFFF [D página][C tipo]); a 3 é a de produção da 5.0.
+	 */
+	public enum Type { LEGION, REWARD, WAREHOUSE, CRAFT }
 }

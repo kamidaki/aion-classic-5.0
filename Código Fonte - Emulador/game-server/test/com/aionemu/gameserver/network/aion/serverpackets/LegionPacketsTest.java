@@ -139,6 +139,23 @@ class LegionPacketsTest {
 	}
 
 	@Test
+	void itemCraftMatchesNovaPasta() throws Exception {
+		// Nova Pasta 2026-09-29 16:02: 10000 kinah doados para a receita 300 e, depois do C_GUILD [15][D 300], a produção iniciada
+		assertEquals("01002c01000000000000000000000100" + "0134df0a" + "10270000" + "0001", HEX.formatHex(body(new SM_LEGION_CRAFT_LIST(
+			List.of(new SM_LEGION_CRAFT_LIST.Recipe(300, List.of(new SM_LEGION_CRAFT_LIST.Component(182400001, 10000))))))));
+		assertEquals("01002c010000960bbc6a000000000100" + "0134df0a" + "00000000" + "0001", HEX.formatHex(body(new SM_LEGION_CRAFT_LIST(
+			List.of(new SM_LEGION_CRAFT_LIST.Recipe(300, 0x6ABC0B96, List.of(new SM_LEGION_CRAFT_LIST.Component(182400001, 0))))))));
+		// avisos de histórico: 08 geral, 0A armazém, 0D produção
+		assertEquals("0a", HEX.formatHex(body(new SM_LEGION_EDIT(0x0A))));
+		assertEquals("0d", HEX.formatHex(body(new SM_LEGION_EDIT(0x0D))));
+		// aba 3 com o início de produção: ação 20, quem produziu e [item_text:produto]
+		byte[] history = body(new SM_LEGION_HISTORY(List.of(new LegionHistoryEntry(1, 0x6ABC0B5A, LegionHistoryAction.CRAFT_START, "Kodra",
+			"[item_text:188053047]")), LegionHistoryAction.Type.CRAFT));
+		assertEquals("010000000000000001000000" + "5a0bbc6a" + "1400" + "4b006f00640072006100", HEX.formatHex(Arrays.copyOf(history, 28)));
+		assertEquals("0300", HEX.formatHex(Arrays.copyOfRange(history, history.length - 2, history.length)));
+	}
+
+	@Test
 	void donationPacketsMatchLostAcademy() throws Exception {
 		// criação: primeira lista do dia (grupo 13 = candy_dark, Legion asmodiana)
 		Map<Integer, Integer> selection = new LinkedHashMap<>();

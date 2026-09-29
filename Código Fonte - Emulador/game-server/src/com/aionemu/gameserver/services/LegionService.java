@@ -672,7 +672,20 @@ public class LegionService {
 		LegionHistoryEntry historyEntry = LegionDAO.insertHistory(legion.getLegionId(), action, name, description);
 		List<LegionHistoryEntry> removedEntries = legion.addHistory(historyEntry);
 		LegionDAO.deleteHistory(legion.getLegionId(), removedEntries);
-		PacketSendUtility.broadcastToLegion(legion, new SM_LEGION_HISTORY(legion.getHistory(action.getType()), action.getType()));
+		// 5.0: o servidor só avisa que o histórico mudou (S 0x9D 08, e 0A para o armazém ou 0D para a produção) e o cliente pede a página
+		// (Nova Pasta 2026-09-29 16:02; entrada do Kamidakii em 22/09: só 08). PENDENTE_DE_COMPROVACAO: o aviso da aba de recompensas.
+		switch (action.getType()) {
+			case REWARD -> PacketSendUtility.broadcastToLegion(legion, new SM_LEGION_HISTORY(legion.getHistory(action.getType()), action.getType()));
+			case LEGION -> PacketSendUtility.broadcastToLegion(legion, new SM_LEGION_EDIT(0x08));
+			case WAREHOUSE -> {
+				PacketSendUtility.broadcastToLegion(legion, new SM_LEGION_EDIT(0x08));
+				PacketSendUtility.broadcastToLegion(legion, new SM_LEGION_EDIT(0x0A));
+			}
+			case CRAFT -> {
+				PacketSendUtility.broadcastToLegion(legion, new SM_LEGION_EDIT(0x08));
+				PacketSendUtility.broadcastToLegion(legion, new SM_LEGION_EDIT(0x0D));
+			}
+		}
 	}
 
 	/**
@@ -784,8 +797,6 @@ public class LegionService {
 		// Send current announcement to player
 		displayLegionAnnouncement(activePlayer, legion.getAnnouncement());
 
-		// login oficial: a primeira página do histórico geral vem sem pedido do cliente (23 de 23 sessões com lista de membros)
-		PacketSendUtility.sendPacket(activePlayer, new SM_LEGION_HISTORY(legion.getHistory(LegionHistoryAction.Type.LEGION), LegionHistoryAction.Type.LEGION));
 
 		if (legion.isDisbanding())
 			PacketSendUtility.sendPacket(activePlayer, new SM_LEGION_EDIT(0x06, legion.getDisbandTime()));

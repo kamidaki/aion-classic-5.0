@@ -267,7 +267,7 @@ public class Legion extends AionObject {
 		List<LegionHistoryEntry> history = legionHistoryByType.get(type);
 		synchronized (history) {
 			history.addFirst(entry);
-			if (type == Type.REWARD || type == Type.WAREHOUSE) {
+			if (type == Type.REWARD || type == Type.WAREHOUSE || type == Type.CRAFT) {
 				long maxMillis = System.currentTimeMillis() / 1000 - Duration.ofDays(365).toSeconds();
 				while (history.getLast().epochSeconds() < maxMillis)
 					removedEntries.add(history.removeLast());

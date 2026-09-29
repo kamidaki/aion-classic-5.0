@@ -11,6 +11,49 @@ import java.util.stream.Collectors;
 public class LegionCraftBoard {
 
 	private final Map<Integer, Map<Integer, Long>> donatedByRecipe = new HashMap<>();
+	private final Map<Integer, Integer> craftStartByRecipe = new HashMap<>();
+	private final Map<Integer, Boolean> craftingByRecipe = new HashMap<>();
+
+	/**
+	 * @return hora (s) do último início de produção da receita, 0 se nunca produziu; o S 0x15A a mostra mesmo depois de concluída (Nova Pasta
+	 *         2026-09-29 16:02)
+	 */
+	public synchronized int getCraftStart(int recipeId) {
+		return craftStartByRecipe.getOrDefault(recipeId, 0);
+	}
+
+	public synchronized boolean isCrafting(int recipeId) {
+		return craftingByRecipe.getOrDefault(recipeId, false);
+	}
+
+	public synchronized void setCraft(int recipeId, int craftStart, boolean crafting) {
+		craftStartByRecipe.put(recipeId, craftStart);
+		craftingByRecipe.put(recipeId, crafting);
+	}
+
+	/**
+	 * Começa a produção: os materiais doados são consumidos (o S 0x15A do início volta com as doações em 0).
+	 */
+	public synchronized void startCraft(int recipeId, int now) {
+		donatedByRecipe.remove(recipeId);
+		setCraft(recipeId, now, true);
+	}
+
+	public synchronized void finishCraft(int recipeId) {
+		craftingByRecipe.put(recipeId, false);
+	}
+
+	/**
+	 * @return receitas em produção com a hora de início
+	 */
+	public synchronized Map<Integer, Integer> getCrafting() {
+		Map<Integer, Integer> crafting = new HashMap<>();
+		craftingByRecipe.forEach((recipe, active) -> {
+			if (active)
+				crafting.put(recipe, craftStartByRecipe.getOrDefault(recipe, 0));
+		});
+		return crafting;
+	}
 
 	public synchronized long getDonated(int recipeId, int itemId) {
 		return donatedByRecipe.getOrDefault(recipeId, Map.of()).getOrDefault(itemId, 0L);

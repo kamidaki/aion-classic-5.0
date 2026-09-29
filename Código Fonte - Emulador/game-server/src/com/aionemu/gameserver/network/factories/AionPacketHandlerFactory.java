@@ -108,8 +108,9 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_EXCHANGE_LOCK.class, 0x131, State.IN_GAME); // 0x0043 EXCHANGE_LOCK
 		addPacket(CM_EXCHANGE_CANCEL.class, 0x12F, State.IN_GAME); // 0x0055 EXCHANGE_CANCEL
 		addPacket(CM_EXCHANGE_OK.class, 0x12E, State.IN_GAME); // 0x0054 EXCHANGE_OK
-		// O cru 0xF5 (dec 0xFFFF) na 5.0 é [D 0][C 0..3], 186 de 186 nas capturas, mandado no login e depois de cada S_GUILD_INFO: não é pedido
-		// de troca, e o CM_EXCHANGE_REQUEST respondia "no one to trade with" a cada um. O pedido de troca da 5.0 não aparece em nenhuma captura.
+		// O cru 0xF5 (dec 0xFFFF) na 5.0 é [D página][C aba 0..3], o pedido de histórico da Legion (respondido com o S 0x0C da aba), e não pedido de
+		// troca: o CM_EXCHANGE_REQUEST respondia "no one to trade with" a cada um. O pedido de troca da 5.0 não aparece em nenhuma captura.
+		addPacket(CM_LEGION_HISTORY.class, 0xF5, State.IN_GAME); // 0xFFFF C_REQUEST_GUILD_HISTORY
 		addPacket(CM_INIT_LEVEL.class, 0x12C, State.IN_GAME); // 0x0056 INIT_LEVEL (5.0 Classic)
 		addPacket(CM_PRIVATE_STORE.class, 0x13D, State.IN_GAME); // 0x0047 PRIVATE_STORE
 		addPacket(CM_PRIVATE_STORE_NAME.class, 0x13A, State.IN_GAME); // 0x0048 PRIVATE_STORE_NAME

@@ -13,6 +13,7 @@ import com.aionemu.commons.database.DatabaseFactory;
 import com.aionemu.gameserver.dao.AccountQunaDAO;
 import com.aionemu.gameserver.dao.LegionDonationDAO;
 import com.aionemu.gameserver.dao.LegionMissionDAO;
+import com.aionemu.gameserver.model.team.legion.LegionHistoryAction;
 import com.aionemu.gameserver.dao.PlayerMorosDAO;
 import com.aionemu.gameserver.dao.PlayerStorybookDAO;
 import com.aionemu.gameserver.dao.PlayerWardrobeDAO;
@@ -185,6 +186,18 @@ public class DatabaseSchemaService {
 			log.info("Adicionando coluna 'wardrobe_skin' na tabela inventory...");
 			executeSql(con, "ALTER TABLE `inventory` ADD COLUMN `wardrobe_skin` boolean NOT NULL DEFAULT '0' AFTER `item_skin`;");
 		}
+		// legion_craft: início e estado da produção de item da Legion (S 0x15A), 29/09
+		if (!hasColumn(con, "legion_craft", "craft_start")) {
+			log.info("Adicionando colunas de produção na tabela legion_craft...");
+			executeSql(con, "ALTER TABLE `legion_craft` ADD COLUMN `craft_start` INT NOT NULL DEFAULT 0, ADD COLUMN `crafting` TINYINT NOT NULL DEFAULT 0;");
+		}
+		// legion_history: ações de produção da 5.0 (aba 3), valores tirados do LegionHistoryAction
+		String historyTypes = java.util.Arrays.stream(LegionHistoryAction.values()).map(a -> "'" + a.name() + "'")
+			.collect(java.util.stream.Collectors.joining(","));
+		if (!columnTypeContains(con, "legion_history", "history_type", "'" + LegionHistoryAction.ESSENCE_COMPLETE.name() + "'")) {
+			log.info("Atualizando os tipos de history_type na tabela legion_history...");
+			executeSql(con, "ALTER TABLE `legion_history` MODIFY `history_type` enum(" + historyTypes + ") NOT NULL;");
+		}
 	}
 
 	public static boolean hasTable(Connection con, String tableName) {
@@ -202,6 +215,20 @@ public class DatabaseSchemaService {
 		} catch (SQLException e) {
 			log.warn("Erro ao checar existência da tabela {}: {}", tableName, e.getMessage());
 			return false;
+		}
+	}
+
+	private static boolean columnTypeContains(Connection con, String tableName, String columnName, String text) {
+		try (java.sql.PreparedStatement stmt = con.prepareStatement(
+			"SELECT COLUMN_TYPE FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND COLUMN_NAME = ?")) {
+			stmt.setString(1, tableName);
+			stmt.setString(2, columnName);
+			try (ResultSet rs = stmt.executeQuery()) {
+				return !rs.next() || rs.getString(1).contains(text);
+			}
+		} catch (SQLException e) {
+			log.warn("Erro ao checar o tipo da coluna {} na tabela {}: {}", columnName, tableName, e.getMessage());
+			return true;
 		}
 	}
 
