@@ -9,6 +9,8 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.player.PlayerAppearance;
 import com.aionemu.gameserver.model.gameobjects.player.PlayerCommonData;
 import com.aionemu.gameserver.model.items.GodStone;
+import com.aionemu.gameserver.model.team.legion.Legion;
+import com.aionemu.gameserver.model.team.legion.LegionEmblem;
 import com.aionemu.gameserver.network.aion.AionConnection;
 
 /**
@@ -75,14 +77,30 @@ public class SM_PLAYER_INFO extends AbstractPlayerInfoPacket {
 		// 5. Nome do jogador em UTF-16LE com terminador nulo
 		writeS(player.getName(true));
 
-		// 6. Bloco de Título / Mentoring / Casting (16 bytes)
+		// 6. Bloco de Título / Mentoring / Casting (6 bytes)
 		writeH(pcd.getTitleId());
 		writeH(player.getCommonData().isHaveMentorFlag() ? 1 : 0);
 		writeH(player.getCastingSkillId());
-		writeB(new byte[10]);
 
-		// 7. Padding (2B) + %HP (4B) + Máscara de Equipamentos (4B) (10 bytes)
-		writeH(0);
+		// 7. Legion: [D id][C emblema][C tipo][C a][C r][C g][C b][S nome], zerado e com nome vazio fora de Legion (Durak/AinzOO, Chinike/Org Asmo e
+		// Kamidakii sem Legion, capturas oficiais). O nome é o que o cliente mostra sob o personagem.
+		Legion legion = player.getLegion();
+		if (legion != null) {
+			LegionEmblem emblem = legion.getLegionEmblem();
+			writeD(legion.getLegionId());
+			writeC(emblem.getEmblemId());
+			writeC(emblem.getEmblemType().getValue());
+			writeC(emblem.getColor_a());
+			writeC(emblem.getColor_r());
+			writeC(emblem.getColor_g());
+			writeC(emblem.getColor_b());
+			writeS(legion.getName());
+		} else {
+			writeB(new byte[10]);
+			writeS("");
+		}
+
+		// 8. %HP (4B) + Máscara de Equipamentos (4B)
 		int maxHp = player.getLifeStats().getMaxHp();
 		int currHp = player.getLifeStats().getCurrentHp();
 		writeD(maxHp > 0 ? (100 * currHp / maxHp) : 100);
