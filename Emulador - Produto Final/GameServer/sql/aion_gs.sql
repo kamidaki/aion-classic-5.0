@@ -482,6 +482,31 @@ CREATE TABLE `legion_announcement_list` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
+-- Table structure for `legion_craft`
+-- ----------------------------
+DROP TABLE IF EXISTS `legion_craft`;
+CREATE TABLE `legion_craft` (
+  `legion_id` int NOT NULL,
+  `recipe_id` int NOT NULL,
+  `donated` varchar(512) NOT NULL DEFAULT '',
+  PRIMARY KEY (`legion_id`,`recipe_id`),
+  CONSTRAINT `legion_craft_legion_fk` FOREIGN KEY (`legion_id`) REFERENCES `legions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Table structure for `legion_donation`
+-- ----------------------------
+DROP TABLE IF EXISTS `legion_donation`;
+CREATE TABLE `legion_donation` (
+  `legion_id` int NOT NULL,
+  `day` date NOT NULL,
+  `selection` varchar(255) NOT NULL DEFAULT '',
+  `points` int NOT NULL DEFAULT '0',
+  PRIMARY KEY (`legion_id`),
+  CONSTRAINT `legion_donation_legion_fk` FOREIGN KEY (`legion_id`) REFERENCES `legions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
 -- Table structure for `legion_dominion_locations`
 -- ----------------------------
 DROP TABLE IF EXISTS `legion_dominion_locations`;
@@ -1077,6 +1102,23 @@ CREATE TABLE `towns` (
   `race` enum('ELYOS','ASMODIANS') NOT NULL,
   `level_up_date` timestamp NOT NULL DEFAULT '1970-01-01 07:00:01',
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Table structure for `player_legion_donation`
+-- ----------------------------
+DROP TABLE IF EXISTS `player_legion_donation`;
+CREATE TABLE `player_legion_donation` (
+  `player_id` int NOT NULL,
+  `day` date DEFAULT NULL,
+  `count_today` int NOT NULL DEFAULT '0',
+  `points_today` int NOT NULL DEFAULT '0',
+  `points_total` int NOT NULL DEFAULT '0',
+  `streak` int NOT NULL DEFAULT '0',
+  `last_production_day` date DEFAULT NULL,
+  `coins` int NOT NULL DEFAULT '0',
+  PRIMARY KEY (`player_id`),
+  CONSTRAINT `player_legion_donation_player_fk` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------

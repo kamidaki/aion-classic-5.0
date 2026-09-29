@@ -709,6 +709,9 @@ public class LegionService {
 		// Update legion member's appearance in game
 		PacketSendUtility.broadcastPacket(player,
 			new SM_LEGION_UPDATE_TITLE(player.getObjectId(), legion.getLegionId(), legion.getName(), player.getLegionMember().getRank()), true);
+		// criação oficial: lista do dia, produção, moedas e pontos vêm junto com a entrada do líder (22/09 10:23)
+		LegionDonationService.getInstance().sendState(player);
+		LegionCraftService.getInstance().sendState(player);
 		legion.addBonus();
 	}
 
@@ -771,6 +774,8 @@ public class LegionService {
 		// Send legion info packets
 		PacketSendUtility.sendPacket(activePlayer, new SM_LEGION_INFO(legion));
 		updateLegionMemberList(activePlayer, false);
+		LegionDonationService.getInstance().sendState(activePlayer);
+		LegionCraftService.getInstance().sendState(activePlayer);
 
 		// Send current announcement to player
 		displayLegionAnnouncement(activePlayer, legion.getAnnouncement());

@@ -10,13 +10,15 @@ import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_LEGION_INFO;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
+import com.aionemu.gameserver.services.LegionCraftService;
+import com.aionemu.gameserver.services.LegionDonationService;
 import com.aionemu.gameserver.services.LegionService;
 import com.aionemu.gameserver.utils.Util;
 
 /**
  * C_GUILD (dec 0x05). Sub-ações conferidas na criação da Lost Academy (outros2 2026-09-22 10:23, lado cliente com a chave ressincronizada):
  * 0x00 [D NPC][S nome] (2 de 2), 0x01 [D 0][S nome] (1), 0x06 [D cargo][S nome] (1), 0x08 [D 0][H 0] (15), 0x09 [D 0][S aviso] (1).
- * 0x13 [D grupo][D índice] é a doação de item e 0x14 a doação para produção, do sistema novo da 5.0, ainda sem tratamento no servidor.
+ * 0x13 [D grupo][D índice] é a produção de moedas (LegionDonationService, 10 de 10) e 0x14 [D receita][H n]{[D item][D qtd]} a doação para a produção (LegionCraftService, 1 de 1).
  * As demais seguem o layout da 4.8 (PENDENTE_DE_COMPROVACAO).
  *
  * @author Lost Academy Team & Durak
@@ -35,6 +37,11 @@ public class CM_LEGION extends AionClientPacket {
 	private String newNickname;
 	private String announcement;
 	private String newSelfIntro;
+	private int donationGroup;
+	private int donationIndex;
+	private int craftRecipe;
+	private int[] craftItemIds;
+	private long[] craftCounts;
 
 	public CM_LEGION(int opcode, Set<State> validStates) {
 		super(opcode, validStates);
@@ -111,6 +118,22 @@ public class CM_LEGION extends AionClientPacket {
 			case 0x10: // selected legion dominion
 				legionDominionId = readD();
 				break;
+			// produção de moedas: [D grupo][D índice] da lista do dia (S 0x159)
+			case 0x13:
+				donationGroup = readD();
+				donationIndex = readD();
+				break;
+			// doação para a produção: [D receita][H n] n x ([D item][D quantidade]); kinah vai como o item 182400001
+			case 0x14:
+				craftRecipe = readD();
+				int count = readUH();
+				craftItemIds = new int[count];
+				craftCounts = new long[count];
+				for (int i = 0; i < count; i++) {
+					craftItemIds[i] = readD();
+					craftCounts[i] = readD() & 0xFFFFFFFFL;
+				}
+				break;
 			default:
 				LoggerFactory.getLogger(CM_LEGION.class).warn("Unknown Legion exOpcode 0x" + Integer.toHexString(exOpcode).toUpperCase());
 				break;
@@ -158,6 +181,8 @@ public class CM_LEGION extends AionClientPacket {
 				case 0x0F -> LegionService.getInstance().changeNickname(activePlayer, charName, newNickname);
 				// select Legion Dominion to participate
 				case 0x10 -> LegionService.getInstance().joinLegionDominion(activePlayer, legionDominionId);
+				case 0x13 -> LegionDonationService.getInstance().produce(activePlayer, donationGroup, donationIndex);
+				case 0x14 -> LegionCraftService.getInstance().donate(activePlayer, craftRecipe, LegionCraftService.requested(craftItemIds, craftCounts));
 			}
 		} else {
 			switch (exOpcode) {

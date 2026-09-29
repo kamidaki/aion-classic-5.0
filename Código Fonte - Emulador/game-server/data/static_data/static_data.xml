@@ -72,6 +72,8 @@
 	<import file="items/item_compose.xml" />
 	<import file="items/item_upgrade.xml" />
 	<import file="legion/legion_settings.xml" />
+	<import file="legion/legion_donation.xml" />
+	<import file="legion/legion_craft.xml" />
 	<import file="moros/moros.xml" />
 	<import file="storybook/storybook.xml" />
 	<import file="item_sets/item_sets.xml" />

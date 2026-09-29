@@ -40,6 +40,13 @@ public class LegionConfig {
 	public static int LEGION_EMBLEM_REQUIRED_KINAH;
 
 	/**
+	 * Produções de moeda por personagem e por dia (C_GUILD 0x13). PENDENTE_DE_COMPROVACAO: nas capturas oficiais só se chegou a 10 sem a
+	 * mensagem de limite (STR_MSG_GUILD_DONATION_MAX_COUNT).
+	 */
+	@Property(key = "gameserver.legion.donation.dailylimit", defaultValue = "10")
+	public static int LEGION_DONATION_DAILY_LIMIT;
+
+	/**
 	 * Enable/disable Legion Warehouse
 	 */
 	@Property(key = "gameserver.legion.warehouse", defaultValue = "true")

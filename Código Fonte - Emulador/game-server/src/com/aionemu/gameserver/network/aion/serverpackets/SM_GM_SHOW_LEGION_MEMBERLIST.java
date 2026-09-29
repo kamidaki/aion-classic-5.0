@@ -15,7 +15,7 @@ public class SM_GM_SHOW_LEGION_MEMBERLIST extends SM_LEGION_MEMBERLIST {
 	}
 
 	@Override
-	protected void writeLegionMember(LegionMember legionMember) {
+	protected void writeLegionMember(LegionMember legionMember, int[] donationPoints) {
 		writeD(legionMember.getObjectId());
 		writeS(legionMember.getName());
 		writeC(legionMember.getPlayerClass().getClassId());

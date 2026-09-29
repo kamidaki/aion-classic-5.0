@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.database.DatabaseFactory;
 import com.aionemu.gameserver.dao.AccountQunaDAO;
+import com.aionemu.gameserver.dao.LegionDonationDAO;
 import com.aionemu.gameserver.dao.PlayerMorosDAO;
 import com.aionemu.gameserver.dao.PlayerStorybookDAO;
 import com.aionemu.gameserver.dao.PlayerWardrobeDAO;
@@ -111,6 +112,11 @@ public class DatabaseSchemaService {
 
 		// 8. account_quna (Classic 5.0 Quna: saldo por conta, S 0x11B)
 		executeSql(con, AccountQunaDAO.CREATE_TABLE);
+
+		// legion_donation / player_legion_donation (produção de moedas da Legion 5.0, C_GUILD 0x13)
+		executeSql(con, LegionDonationDAO.CREATE_LEGION_TABLE);
+		executeSql(con, LegionDonationDAO.CREATE_PLAYER_TABLE);
+		executeSql(con, LegionDonationDAO.CREATE_CRAFT_TABLE);
 
 		// 9. player_participation_points (Pontos de Participação Lost Academy)
 		executeSql(con,

@@ -10,14 +10,19 @@ import java.nio.ByteOrder;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.HexFormat;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.bind.JAXBContext;
 
 import org.junit.jupiter.api.Test;
 
 import com.aionemu.gameserver.configs.network.NetworkConfig;
+import com.aionemu.gameserver.dataholders.LegionCraftData;
 import com.aionemu.gameserver.dataholders.LegionSettingsData;
+import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.PlayerClass;
 import com.aionemu.gameserver.model.team.legion.Legion;
 import com.aionemu.gameserver.model.team.legion.LegionHistoryAction;
@@ -34,6 +39,26 @@ import com.aionemu.gameserver.network.aion.AionServerPacket;
 class LegionPacketsTest {
 
 	private static final HexFormat HEX = HexFormat.of();
+
+	private static final String OFFICIAL_CRAFT_LIST = ""
+		+ "28000100000000000000000000000000000200000000000000000000000000000300000000000000000000000000000d000000000000000000000001"
+		+ "000134df0a00000000000e000000000000000000000001000134df0a00000000000f000000000000000000000001000134df0a000000000010000000"
+		+ "000000000000000001000134df0a000000000011000000000000000000000001000134df0a000000000012000000000000000000000001000134df0a"
+		+ "000000000013000000000000000000000001000134df0a000000000018000000000000000000000001000134df0a0000000000190000000000000000"
+		+ "00000001000134df0a00000000001a000000000000000000000001000134df0a00000000001b000000000000000000000001000134df0a0000000000"
+		+ "660000000000000000000000040086590f09000000001db80f09000000001eb80f09000000000bd7180a000000000067000000000000000000000004"
+		+ "0088590f090000000021b80f090000000022b80f09000000000cd7180a0000000000c9000000000000000000000006003bc80f09000000003cc80f09"
+		+ "000000003dc80f09000000003ec80f09000000003fc80f090000000040c80f0900000000002c010000000000000000000001000134df0a0000000000"
+		+ "2d010000000000000000000002000134df0a000000003823160b00000000002e010000000000000000000002000134df0a000000003823160b000000"
+		+ "00002f010000000000000000000002000134df0a000000003823160b000000000030010000000000000000000002000134df0a000000003823160b00"
+		+ "0000000031010000000000000000000002000134df0a000000003823160b000000000032010000000000000000000002000134df0a00000000382316"
+		+ "0b000000000033010000000000000000000002000134df0a000000003823160b000000000034010000000000000000000002000134df0a0000000038"
+		+ "23160b000000000090010000000000000000000001000134df0a000000000091010000000000000000000001000134df0a0000000000920100000000"
+		+ "00000000000001000134df0a000000000093010000000000000000000001000134df0a000000000094010000000000000000000001000134df0a0000"
+		+ "00000095010000000000000000000001000134df0a000000000097010000000000000000000001000134df0a00000000009801000000000000000000"
+		+ "0001000134df0a000000000099010000000000000000000001000134df0a0000000000f5010000000000000000000002000134df0a00000000e87116"
+		+ "0b0000000000f7010000000000000000000001004023160b0000000000f801000000000000000000000100f871160b0000000000fa01000000000000"
+		+ "0000000001003c72160b0000000000fb010000000000000000000001003c72160b000000000001";
 
 	@Test
 	void guildInfoOfNewLegion() throws Exception {
@@ -64,14 +89,56 @@ class LegionPacketsTest {
 		Legion legion = new Legion(1, "AinzOO");
 		LegionMember durak = member(legion, 0x2E0F3384, "Durak", PlayerClass.GLADIATOR, 60, LegionRank.BRIGADE_GENERAL, 110010000, true, 0);
 		assertEquals("01ffff84330f2e44007500720061006b000000013c00000000909e8e06010000000000000000170000000000000000000000",
-			HEX.formatHex(body(new SM_LEGION_MEMBERLIST(List.of(durak), true, true))));
+			HEX.formatHex(body(new SM_LEGION_MEMBERLIST(List.of(durak), true, true, new int[][] { { 0, 0 } }))));
 
 		LegionMember ahlirom = member(legion, 0x2E23861A, "Ahlirom", PlayerClass.RANGER, 46, LegionRank.VOLUNTEER, 120030000,
 			false, 0x6882D0D4);
 		assertEquals("01" + "ffff" + "1a86232e410068006c00690072006f006d000000052e00000004308327070000000000d4d08268000000000000000000000000",
-			HEX.formatHex(body(new SM_LEGION_MEMBERLIST(List.of(ahlirom), true, true))));
+			HEX.formatHex(body(new SM_LEGION_MEMBERLIST(List.of(ahlirom), true, true, new int[][] { { 0, 0 } }))));
 
-		assertEquals("010000", HEX.formatHex(body(new SM_LEGION_MEMBERLIST(List.of(), true, true)))); // criação: lista vazia
+		// Org Asmo 16/09: Adnama offline com 0 pontos hoje e 61 no total (os mesmos do S 0x156)
+		LegionMember adnama = member(new Legion(2, "Org Asmo"), 0x2E0F59D3, "Adnama", PlayerClass.CLERIC, 60, LegionRank.VOLUNTEER, 220070000,
+			false, 0x686AFD48);
+		assertEquals("01ffff" + "d3590f2e410064006e0061006d00610000000a3c0000000470001e0d000000000048fd6a6800000000000000003d000000",
+			HEX.formatHex(body(new SM_LEGION_MEMBERLIST(List.of(adnama), true, true, new int[][] { { 0, 61 } }))));
+
+		assertEquals("010000", HEX.formatHex(body(new SM_LEGION_MEMBERLIST(List.of(), true, true, new int[0][])))); // criação: lista vazia
+	}
+
+	@Test
+	void craftListMatchesLostAcademyCreation() throws Exception {
+		LegionCraftData data = (LegionCraftData) JAXBContext.newInstance(LegionCraftData.class).createUnmarshaller()
+			.unmarshal(new File("data/static_data/legion/legion_craft.xml"));
+		List<SM_LEGION_CRAFT_LIST.Recipe> recipes = new ArrayList<>();
+		for (LegionCraftData.Recipe recipe : data.getRecipes(Race.ASMODIANS))
+			recipes.add(new SM_LEGION_CRAFT_LIST.Recipe(recipe.getId(),
+				recipe.getDonatableComponents().stream().map(c -> new SM_LEGION_CRAFT_LIST.Component(c.getItemId(), 0)).toList()));
+		// criação da Lost Academy (asmodiana): as 40 receitas ativas de raça all + dark, sem doação, 1059 b
+		assertEquals(OFFICIAL_CRAFT_LIST, HEX.formatHex(body(new SM_LEGION_CRAFT_LIST(recipes))));
+		// doação do Kodra para a 501: 1 kinah e 1 classic_iddramata_01_essence
+		assertEquals("0100f5010000000000000000000002000134df0a01000000e871160b010000000001",
+			HEX.formatHex(body(new SM_LEGION_CRAFT_LIST(List.of(new SM_LEGION_CRAFT_LIST.Recipe(501,
+				List.of(new SM_LEGION_CRAFT_LIST.Component(182400001, 1), new SM_LEGION_CRAFT_LIST.Component(186020328, 1))))))));
+	}
+
+	@Test
+	void donationPacketsMatchLostAcademy() throws Exception {
+		// criação: primeira lista do dia (grupo 13 = candy_dark, Legion asmodiana)
+		Map<Integer, Integer> selection = new LinkedHashMap<>();
+		int[][] pairs = { { 7, 14 }, { 8, 8 }, { 9, 8 }, { 10, 1 }, { 11, 12 }, { 13, 1 }, { 14, 1 }, { 15, 3 } };
+		for (int[] pair : pairs)
+			selection.put(pair[0], pair[1]);
+		assertEquals("0800070000000e000000080000000800000009000000080000000a000000010000000b0000000c0000000d000000010000000e000000010000000f00000003000000",
+			HEX.formatHex(body(new SM_LEGION_DONATION_LIST(selection))));
+		// primeira produção do Kodra: [13][D 10][D 1]
+		assertEquals("0100d95b0f2e010000000100000001",
+			HEX.formatHex(body(new SM_LEGION_DONATION_MEMBERS(List.of(new SM_LEGION_DONATION_MEMBERS.Entry(0x2E0F5BD9, 1, 1))))));
+		assertEquals("8d0c0200", HEX.formatHex(body(new SM_LEGION_COIN(0x20C8D))));
+		assertEquals("0100000001000000", HEX.formatHex(body(new SM_LEGION_DONATION_STATUS(1, 1))));
+		assertEquals("01000000", HEX.formatHex(body(new SM_LEGION_DONATION_POINTS(1))));
+		assertEquals("19000000000043641500015b006900740065006d003a003100360032003000300030003000360039005d00000000",
+			HEX.formatHex(body(new SM_SYSTEM_MESSAGE(1401923, "[item:162000069]")))); // 46 b, captura
+		assertEquals("190000000000416415000000", HEX.formatHex(body(new SM_SYSTEM_MESSAGE(1401921))));
 	}
 
 	@Test

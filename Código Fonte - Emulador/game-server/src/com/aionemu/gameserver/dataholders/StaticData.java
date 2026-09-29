@@ -303,6 +303,10 @@ public class StaticData {
 	public ItemComposeData itemComposeData;
 	@XmlElement(name = "item_upgrades")
 	public ItemUpgradeData itemUpgradeData;
+	@XmlElement(name = "legion_craft")
+	public LegionCraftData legionCraftData;
+	@XmlElement(name = "legion_donation")
+	public LegionDonationData legionDonationData;
 	@XmlElement(name = "legion_settings")
 	public LegionSettingsData legionSettingsData;
 	@XmlElement(name = "moros")
@@ -432,6 +436,8 @@ public class StaticData {
 		log.info("Loaded " + killBountyData.size() + " kill bounty templates");
 		log.info("Loaded " + legionDominionData.size() + " legion dominion locations");
 		log.info("Loaded " + legionSettingsData.size() + " legion levels");
+		log.info("Loaded " + legionDonationData.size() + " legion donation groups");
+		log.info("Loaded " + legionCraftData.size() + " legion craft recipes");
 		log.info("Loaded " + skillAliasLocationData.size() + " skill alias locations");
 		log.info("Loaded " + signetDataTemplates.size() + " signet data templates");
 	}
