@@ -181,8 +181,8 @@ public class AionPacketHandlerFactory {
 		// C_DEAD_RESTART na 5.0 é dec 0x000D [C tipo]: 7 de 7 nas capturas, sempre depois do S_RESURRECT_INFO (0xC0) e seguido da ressurreição.
 		// O dec 0x0005 da 4.8 é outro pacote na 5.0 (7 b, 08 00 00 00 00 00 00, um por sessão), que o CM_REVIVE lia como revive no obelisco.
 		addPacket(CM_REVIVE.class, 0xE7, State.IN_GAME); // 0x000D C_DEAD_RESTART (5.0 Classic)
-		// C_GUILD: 68 de 69 com [C 08][D 0][H 0] -> S_GUILD_INFO (pedido de info depois de cada troca de mapa; 22/09 16:14). Os demais
-		// subcódigos seguem o layout da 4.8, sem captura do lado do cliente (PENDENTE_DE_COMPROVACAO).
+		// C_GUILD: [C 08][D 0][H 0] -> S_GUILD_INFO depois de cada troca de mapa (83 de 100). Criar, convidar, cargo e aviso conferidos na
+		// criação da Lost Academy (22/09 10:23); ver CM_LEGION.
 		addPacket(CM_LEGION.class, 0x00FF, State.IN_GAME); // 0x0005 C_GUILD
 		addPacket(CM_REVIVE.class, 0x0005, State.IN_GAME); // Raw alias
 		addPacket(CM_REVIVE.class, 0xEF, State.IN_GAME); // Legacy fallback

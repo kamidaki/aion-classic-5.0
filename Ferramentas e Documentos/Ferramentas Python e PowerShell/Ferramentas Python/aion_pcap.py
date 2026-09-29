@@ -293,6 +293,31 @@ def chave_sem_skey(fluxo, do_servidor, amostra=3000):
     return melhores[0][1]
 
 
+def separa_ressincronizando(fluxo, do_servidor, marcos=None, amostra=300):
+    """Como o `separa` com `CifraDaChave(chave_sem_skey(...))`, mas recupera a chave de novo onde o checksum quebra.
+
+    Um segmento perdido pela captura tira a chave de sincronia (ela avanca pelo tamanho dos corpos). Antes, um pacote que nao fechava
+    fazia o `chave_sem_skey` desistir da direcao inteira: a criacao da Lost Academy (outros2 2026-09-22 10:23) saia sem o lado do
+    cliente, com a quebra no pacote 811 de 2562. Devolve `(pacotes, tempos)`, so com pacotes que fecham.
+    """
+    pacotes, tempos, inicio = [], [], 0
+    while inicio < len(fluxo):
+        chave = chave_sem_skey(fluxo[inicio:], do_servidor, amostra)
+        if chave is None:
+            break
+        r = separa(fluxo[inicio:], CifraDaChave(chave), do_servidor, marcos, base=inicio)
+        t = separa.tempos
+        quebra = next((i for i, (_, _, fecha) in enumerate(r) if not fecha), None)
+        n = len(r) if quebra is None else quebra
+        pacotes += r[:n]
+        tempos += t[:n] if t else []
+        if quebra is None:
+            break
+        for _ in range(max(quebra, 1)):             # sem nenhum pacote bom, pula o que quebrou
+            inicio += struct.unpack_from("<H", fluxo, inicio)[0]
+    return pacotes, tempos
+
+
 def abre_todas(caminho, porta=7777, sem_skey=False):
     """Toda sessao de jogo da captura, nao so a primeira.
 
@@ -317,14 +342,11 @@ def abre_todas(caminho, porta=7777, sem_skey=False):
             cliente = separa(volta, Cifra(seed), False, marcos_volta)
             tempo_cliente = separa.tempos
         elif sem_skey:
-            seed, k_srv = None, chave_sem_skey(fluxo, True)
-            if k_srv is None:
+            seed = None
+            servidor, tempo_servidor = separa_ressincronizando(fluxo, True, marcos)
+            if not servidor:
                 continue
-            servidor = separa(fluxo, CifraDaChave(k_srv), True, marcos)
-            tempo_servidor = separa.tempos
-            k_cli = chave_sem_skey(volta, False) if volta else None
-            cliente = separa(volta, CifraDaChave(k_cli), False, marcos_volta) if k_cli is not None else []
-            tempo_cliente = separa.tempos if k_cli is not None else []
+            cliente, tempo_cliente = separa_ressincronizando(volta, False, marcos_volta) if volta else ([], [])
         else:
             continue
         sessoes.append({

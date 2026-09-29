@@ -14,6 +14,11 @@ import com.aionemu.gameserver.services.LegionService;
 import com.aionemu.gameserver.utils.Util;
 
 /**
+ * C_GUILD (dec 0x05). Sub-ações conferidas na criação da Lost Academy (outros2 2026-09-22 10:23, lado cliente com a chave ressincronizada):
+ * 0x00 [D NPC][S nome] (2 de 2), 0x01 [D 0][S nome] (1), 0x06 [D cargo][S nome] (1), 0x08 [D 0][H 0] (15), 0x09 [D 0][S aviso] (1).
+ * 0x13 [D grupo][D índice] é a doação de item e 0x14 a doação para produção, do sistema novo da 5.0, ainda sem tratamento no servidor.
+ * As demais seguem o layout da 4.8 (PENDENTE_DE_COMPROVACAO).
+ *
  * @author Lost Academy Team & Durak
  */
 public class CM_LEGION extends AionClientPacket {
@@ -42,7 +47,7 @@ public class CM_LEGION extends AionClientPacket {
 		switch (exOpcode) {
 			// Create a legion
 			case 0x00:
-				readD(); // 00 78 19 00 40
+				readD(); // objeto do NPC da criação (08 19 02 80 na captura)
 				legionName = readS();
 				break;
 			// Invite to legion

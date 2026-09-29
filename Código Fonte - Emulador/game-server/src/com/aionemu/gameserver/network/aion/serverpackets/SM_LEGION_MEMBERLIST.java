@@ -44,7 +44,9 @@ public class SM_LEGION_MEMBERLIST extends AionServerPacket {
 		// 5.0 (lista de 38 membros da Org Asmo, 16/09, sem sobra): servidor só de quem está online (23; 121 em Tiamaranta), 0 para os offline.
 		// A 4.8 mandava casa e porta antes do servidor; na 5.0 as duas posições finais são outras.
 		writeD(legionMember.isOnline() ? NetworkConfig.GAMESERVER_ID : 0);
-		writeD(0); // PENDENTE_DE_COMPROVACAO: 1 só para um membro online (Chinike), 0 nos demais
-		writeD(0); // PENDENTE_DE_COMPROVACAO: valor por membro (0 a 1001 na Org Asmo), sem origem conhecida
+		// doações do membro hoje e no total: os mesmos valores do S 0x156 (Chinike 1 e 126, Adnama 0 e 61). O servidor ainda não tem o sistema
+		// de doação (C_GUILD 0x13/0x14), então os dois ficam em 0 para todos.
+		writeD(0);
+		writeD(0);
 	}
 }
