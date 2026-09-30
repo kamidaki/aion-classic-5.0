@@ -106,6 +106,7 @@ public class PlayerLeaveWorldService {
 			MorosService.onLogout(player);
 			DecomposeAction.selectionClosed(player);
 			PlayerMoveTaskManager.getInstance().removePlayer(player);
+			com.aionemu.gameserver.network.aion.clientpackets.CM_QUEST_TELEPORT.onPlayerLogout(player.getObjectId());
 			SiegeService.getInstance().getRvrEventPlayers().remove(player);
 
 			if (player.isDead()) {

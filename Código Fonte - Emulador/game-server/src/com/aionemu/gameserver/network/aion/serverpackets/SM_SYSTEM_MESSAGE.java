@@ -29046,6 +29046,34 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 		return new SM_SYSTEM_MESSAGE(1403774, baseName);
 	}
 
+	/**
+	 * Você não pode se teletransportar para o alvo da missão enquanto estiver neste estado.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_MSG_CANNOT_TELEPORT_IN_THIS_STATE() {
+		return new SM_SYSTEM_MESSAGE(1401742);
+	}
+
+	/**
+	 * No momento, você não pode se teletransportar para o alvo da missão porque ele ainda não apareceu.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_MSG_CANNOT_TELEPORT_TARGET_NOT_APPEARED() {
+		return new SM_SYSTEM_MESSAGE(1401743);
+	}
+
+	/**
+	 * Você não pode se teletransportar para um alvo localizado em outra região. Você deve estar na mesma região.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_MSG_CANNOT_TELEPORT_TARGET_IN_OTHER_REGION() {
+		return new SM_SYSTEM_MESSAGE(1401744);
+	}
+
+	/**
+	 * Você não pode se teletransportar para o alvo da missão enquanto estiver no modo de combate.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_MSG_CANNOT_TELEPORT_IN_COMBAT_MODE() {
+		return new SM_SYSTEM_MESSAGE(1401745);
+	}
+
 	private int msgId;
 	private byte chatType;
 	private int senderObjId;
