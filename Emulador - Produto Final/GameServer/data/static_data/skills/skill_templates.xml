@@ -5657,7 +5657,7 @@
 			<mp value="2" delta="0"/>
 		</startconditions>
 		<effects>
-			<provoker skill_id="8410" provoke_target="ME" duration2="60000" effectid="104691" e="1" noresist="true" hittype="EVERYHIT" hittypeprob2="1000" element="WIND"/>
+			<provoker skill_id="8410" provoke_target="ME" duration2="60000" effectid="104691" e="1" noresist="true" hittype="EVERYHIT" hittypeprob2="100" element="WIND"/>
 		</effects>
 		<actions>
 			<mpuse value="2" delta="0"/>
@@ -5670,7 +5670,7 @@
 			<mp value="2" delta="0"/>
 		</startconditions>
 		<effects>
-			<provoker skill_id="8411" provoke_target="OPPONENT" duration2="60000" effectid="104701" e="1" noresist="true" hittype="EVERYHIT" hittypeprob2="1000" element="WIND"/>
+			<provoker skill_id="8411" provoke_target="OPPONENT" duration2="60000" effectid="104701" e="1" noresist="true" hittype="EVERYHIT" hittypeprob2="100" element="WIND"/>
 		</effects>
 		<actions>
 			<mpuse value="2" delta="0"/>
@@ -12157,7 +12157,7 @@
 			<mp value="52" delta="0"/>
 			</startconditions>
 		<effects>
-			<provoker skill_id="8483" provoke_target="OPPONENT" duration2="120000" effectid="109191" e="1" noresist="true" hittype="NMLATK" hittypeprob2="2" element="WATER" hoptype="SKILLLV" hopb="467"/>
+			<provoker skill_id="8483" provoke_target="OPPONENT" duration2="120000" effectid="109191" e="1" noresist="true" hittype="NMLATK" hittypeprob2="20" element="WATER" hoptype="SKILLLV" hopb="467"/>
 		</effects>
 		<actions>
 			<mpuse value="52" delta="0"/>
@@ -12900,7 +12900,7 @@
 			<mp value="51" delta="0"/>
 		</startconditions>
 		<effects>
-			<provoker skill_id="8270" provoke_target="OPPONENT" duration2="1800000" effectid="109691" e="1" noresist="true" hittype="NMLATK" hittypeprob2="5" element="WIND" hoptype="SKILLLV" hopb="230"/>
+			<provoker skill_id="8270" provoke_target="OPPONENT" duration2="1800000" effectid="109691" e="1" noresist="true" hittype="NMLATK" hittypeprob2="50" element="WIND" hoptype="SKILLLV" hopb="230"/>
 		</effects>
 		<actions>
 			<mpuse value="51" delta="0"/>
@@ -12913,7 +12913,7 @@
 			<mp value="58" delta="0"/>
 		</startconditions>
 		<effects>
-			<provoker skill_id="8365" provoke_target="OPPONENT" duration2="1800000" effectid="109691" e="1" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="5" element="WIND" hoptype="SKILLLV" hopb="338"/>
+			<provoker skill_id="8365" provoke_target="OPPONENT" duration2="1800000" effectid="109691" e="1" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="50" element="WIND" hoptype="SKILLLV" hopb="338"/>
 		</effects>
 		<actions>
 			<mpuse value="58" delta="0"/>
@@ -12926,7 +12926,7 @@
 			<mp value="79" delta="0"/>
 		</startconditions>
 		<effects>
-			<provoker skill_id="8366" provoke_target="OPPONENT" duration2="1800000" effectid="109691" e="1" basiclvl="40" noresist="true" hittype="NMLATK" hittypeprob2="5" element="WIND" hoptype="SKILLLV" hopb="512"/>
+			<provoker skill_id="8366" provoke_target="OPPONENT" duration2="1800000" effectid="109691" e="1" basiclvl="40" noresist="true" hittype="NMLATK" hittypeprob2="50" element="WIND" hoptype="SKILLLV" hopb="512"/>
 		</effects>
 		<actions>
 			<mpuse value="79" delta="0"/>
@@ -13210,7 +13210,7 @@
 			<mp value="94" delta="0"/>
 		</startconditions>
 		<effects>
-			<provoker skill_id="8392" provoke_target="OPPONENT" duration2="1800000" effectid="109691" e="1" basiclvl="60" noresist="true" hittype="NMLATK" hittypeprob2="5" element="WIND" hoptype="SKILLLV" hopb="672"/>
+			<provoker skill_id="8392" provoke_target="OPPONENT" duration2="1800000" effectid="109691" e="1" basiclvl="60" noresist="true" hittype="NMLATK" hittypeprob2="50" element="WIND" hoptype="SKILLLV" hopb="672"/>
 		</effects>
 		<actions>
 			<mpuse value="94" delta="0"/>
@@ -33434,7 +33434,7 @@
 			<weapon weapon="CHAINBLADE"/>
 		</startconditions>
 		<effects>
-			<provoker provoke_target="OPPONENT" duration2="1800000" effectid="102291" e="1" noresist="true" hittype="NMLATK" hittypeprob2="10" element="EARTH" hoptype="SKILLLV" hopb="327"/>
+			<provoker provoke_target="OPPONENT" duration2="1800000" effectid="102291" e="1" noresist="true" hittype="NMLATK" hittypeprob2="100" element="EARTH" hoptype="SKILLLV" hopb="327"/>
 		</effects>
 		<actions>
 			<mpuse value="55" delta="5"/>
@@ -33448,7 +33448,7 @@
 			<weapon weapon="CHAINBLADE"/>
 		</startconditions>
 		<effects>
-			<provoker provoke_target="OPPONENT" duration2="1800000" effectid="102291" e="1" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="10" element="EARTH" hoptype="SKILLLV" hopb="466"/>
+			<provoker provoke_target="OPPONENT" duration2="1800000" effectid="102291" e="1" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="100" element="EARTH" hoptype="SKILLLV" hopb="466"/>
 		</effects>
 		<actions>
 			<mpuse value="82" delta="5"/>
@@ -33462,7 +33462,7 @@
 			<weapon weapon="CHAINBLADE"/>
 		</startconditions>
 		<effects>
-			<provoker provoke_target="OPPONENT" duration2="1800000" effectid="102291" e="1" basiclvl="40" noresist="true" hittype="NMLATK" hittypeprob2="10" element="EARTH" hoptype="SKILLLV" hopb="628"/>
+			<provoker provoke_target="OPPONENT" duration2="1800000" effectid="102291" e="1" basiclvl="40" noresist="true" hittype="NMLATK" hittypeprob2="100" element="EARTH" hoptype="SKILLLV" hopb="628"/>
 		</effects>
 		<actions>
 			<mpuse value="132" delta="5"/>
@@ -34977,7 +34977,7 @@
 		</startconditions>
 		<effects>
 			<reflector hitvalue="100" radius="10" duration2="12000" effectid="153" e="1" noresist="true" hoptype="SKILLLV" hopb="512"/>
-			<provoker skill_id="8768" provoke_target="OPPONENT" duration2="12000" effectid="124832" e="2" noresist="true" element="WIND" preeffect="1" preeffect_prob="100"/>
+			<provoker skill_id="8768" provoke_target="OPPONENT" duration2="12000" effectid="124832" e="2" noresist="true" element="WIND" preeffect="1" preeffect_prob="100" hittypeprob2="1000"/>
 			<statup duration2="12000" effectid="124833" e="3" noresist="true" element="WIND" preeffect="1" preeffect_prob="100">
 				<change stat="PVP_DEFEND_RATIO" func="ADD" value="180"/>
 			</statup>
@@ -35597,7 +35597,7 @@
 			<mp value="58" delta="2"/>
 		</startconditions>
 		<effects>
-			<provoker skill_id="8770" provoke_target="ME" duration2="20000" effectid="125271" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="467"/>
+			<provoker skill_id="8770" provoke_target="ME" duration2="20000" effectid="125271" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="467" hittypeprob2="1000"/>
 		<reflector e="2" hitvalue="700" radius="30" value="0" duration2="20000" effectid="155" noresist="true" hittypeprob2="1000" hoptype="SKILLLV" preeffect="1"/></effects>
 		<actions>
 			<mpuse value="58" delta="2"/>
@@ -39075,7 +39075,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker skill_id="8288" provoke_target="ME" duration2="6500" effectid="184491" e="1" noresist="true" hittype="NMLATK" hittypeprob2="1000" element="WIND"/>
+			<provoker skill_id="8288" provoke_target="ME" duration2="6500" effectid="184491" e="1" noresist="true" hittype="NMLATK" hittypeprob2="100" element="WIND"/>
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
@@ -39088,7 +39088,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker skill_id="8289" provoke_target="ME" duration2="6500" effectid="184491" e="1" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="1000" element="WIND"/>
+			<provoker skill_id="8289" provoke_target="ME" duration2="6500" effectid="184491" e="1" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="100" element="WIND"/>
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
@@ -56899,7 +56899,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker skill_id="8444" provoke_target="OPPONENT" duration2="300000" effectid="102291" e="1" noresist="true" hittype="NMLATK" hittypeprob2="100" element="EARTH" hoptype="SKILLLV" hopb="385" hopa="43"/>
+			<provoker skill_id="8444" provoke_target="OPPONENT" duration2="300000" effectid="102291" e="1" noresist="true" hittype="NMLATK" hittypeprob2="170" element="EARTH" hoptype="SKILLLV" hopb="385" hopa="43"/>
 		</effects>
 		<actions>
 			<mpuse value="110" delta="10"/>
@@ -57050,7 +57050,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker skill_id="8445" provoke_target="OPPONENT" duration2="300000" effectid="109691" e="1" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="200" element="WIND" hoptype="SKILLLV" hopb="385" hopa="43"/>
+			<provoker skill_id="8445" provoke_target="OPPONENT" duration2="300000" effectid="109691" e="1" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="120" element="WIND" hoptype="SKILLLV" hopb="385" hopa="43"/>
 		</effects>
 		<actions>
 			<mpuse value="254" delta="10"/>
@@ -57079,7 +57079,7 @@
 			<mp value="18" delta="0"/>
 		</startconditions>
 		<effects>
-			<provoker skill_id="8446" provoke_target="ME" duration2="180000" effectid="104191" e="1" noresist="true" element="EARTH" hittype="EVERYHIT" hittypeprob2="200" hoptype="SKILLLV" hopb="385" hopa="43"/>
+			<provoker skill_id="8446" provoke_target="ME" duration2="180000" effectid="104191" e="1" noresist="true" element="EARTH" hittype="EVERYHIT" hittypeprob2="120" hoptype="SKILLLV" hopb="385" hopa="43"/>
 		</effects>
 		<actions>
 			<mpuse value="18" delta="0"/>
@@ -57182,7 +57182,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker skill_id="8444" provoke_target="OPPONENT" duration2="150000" effectid="102291" e="1" noresist="true" hittype="NMLATK" hittypeprob2="50" element="EARTH" hoptype="SKILLLV" hopb="385" hopa="43"/>
+			<provoker skill_id="8444" provoke_target="OPPONENT" duration2="150000" effectid="102291" e="1" noresist="true" hittype="NMLATK" hittypeprob2="120" element="EARTH" hoptype="SKILLLV" hopb="385" hopa="43"/>
 		</effects>
 		<actions>
 			<mpuse value="280" delta="0"/>
@@ -57253,7 +57253,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker skill_id="8445" provoke_target="OPPONENT" duration2="150000" effectid="109691" e="1" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="100" element="WIND" hoptype="SKILLLV" hopb="385" hopa="43"/>
+			<provoker skill_id="8445" provoke_target="OPPONENT" duration2="150000" effectid="109691" e="1" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="150" element="WIND" hoptype="SKILLLV" hopb="385" hopa="43"/>
 		</effects>
 		<actions>
 			<mpuse value="528" delta="0"/>
@@ -68469,7 +68469,7 @@
 	<skill_template skill_id="16921" name="Fire Sparkle" nameId="288295" delayId="449" stack="NWI_REFLECTORPROV_FIRE" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="NPC_BUFF" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="35" penalty_skill_id="16386">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<effects>
-			<provoker skill_id="16386" provoke_target="OPPONENT" effectid="10169211" e="1" noresist="true" hittype="EVERYHIT" hittypeprob2="25" element="FIRE" hoptype="SKILLLV" hopb="60" hopa="60"/>
+			<provoker skill_id="16386" provoke_target="OPPONENT" effectid="10169211" e="1" noresist="true" hittype="EVERYHIT" hittypeprob2="250" element="FIRE" hoptype="SKILLLV" hopb="60" hopa="60"/>
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
@@ -82693,7 +82693,7 @@
 	<skill_template skill_id="17908" name="Dor suspeita" nameId="291675" delayId="6" stack="BNAS_TYPE6PROVPOISON_NC" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="NPC_BUFF" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" penalty_skill_id="17907">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<effects>
-			<provoker skill_id="17907" provoke_target="OPPONENT" effectid="10179081" e="1" noresist="true" hittype="EVERYHIT" hittypeprob2="50" element="EARTH" hoptype="SKILLLV" hopb="60" hopa="60"/>
+			<provoker skill_id="17907" provoke_target="OPPONENT" effectid="10179081" e="1" noresist="true" hittype="EVERYHIT" hittypeprob2="500" element="EARTH" hoptype="SKILLLV" hopb="60" hopa="60"/>
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
@@ -110475,7 +110475,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker skill_id="20092" provoke_target="OPPONENT" effectid="10201021" e="1" hittype="EVERYHIT" hittypeprob2="25" element="EARTH" hoptype="SKILLLV" hopb="60" hopa="60"/>
+			<provoker skill_id="20092" provoke_target="OPPONENT" effectid="10201021" e="1" hittype="EVERYHIT" hittypeprob2="250" element="EARTH" hoptype="SKILLLV" hopb="60" hopa="60"/>
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
@@ -112187,7 +112187,7 @@
 		</startconditions>
 		<effects>
 			<reflector hitvalue="100" radius="10" duration2="25000" effectid="153" e="1" noresist="true" hoptype="SKILLLV" hopb="512"/>
-			<provoker skill_id="8768" provoke_target="OPPONENT" duration2="25000" effectid="115662" e="2" noresist="true" element="WIND" preeffect="1" preeffect_prob="100"/>
+			<provoker skill_id="8768" provoke_target="OPPONENT" duration2="25000" effectid="115662" e="2" noresist="true" element="WIND" preeffect="1" preeffect_prob="100" hittypeprob2="1000"/>
 		</effects>
 		<motion name="THBuff" instant_skill="true"/>
 	</skill_template>
@@ -112904,7 +112904,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="8775" provoke_target="OPPONENT" effectid="125441" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hopb="230"/>
+			<provoker e="1" skill_id="8775" provoke_target="OPPONENT" effectid="125441" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hopb="230" hittypeprob2="200"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2545" name="Inferno de dor infinita" nameId="2281038" delayId="726" stack="MOROS_VICTORY_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="72000" duration="0">
@@ -112928,7 +112928,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9134" provoke_target="OPPONENT" effectid="125441" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hopb="230"/>
+			<provoker e="1" skill_id="9134" provoke_target="OPPONENT" effectid="125441" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hopb="230" hittypeprob2="200"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2551" name="Recupera a energia do repouso em 5% a 35%." nameId="2281074" delayId="95" stack="FI_GLORY_DESTRUCTBLOW_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
@@ -131317,7 +131317,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9134" provoke_target="OPPONENT" effectid="125441" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hopb="230"/>
+			<provoker e="1" skill_id="9134" provoke_target="OPPONENT" effectid="125441" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hopb="230" hittypeprob2="200"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="3943" name="Crit. dano Bonus" nameId="2286715" delayId="63" stack="P_CRITICALDAMAGEBOOST" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -138167,7 +138167,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9615" provoke_target="ME" effectid="144391" basiclvl="20" noresist="true" hittype="NMLATK"/>
+			<provoker e="1" skill_id="9615" provoke_target="ME" effectid="144391" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4462" name="Armadilha de picada de pico" nameId="2287944" delayId="4462" stack="RB_HEAL_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -138176,7 +138176,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9616" provoke_target="ME" effectid="144401" basiclvl="20" noresist="true" hittype="NMLATK"/>
+			<provoker e="1" skill_id="9616" provoke_target="ME" effectid="144401" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4463" name="Impregnable II" nameId="2287945" delayId="4463" stack="RB_ARALLUP_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -138185,7 +138185,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9617" provoke_target="ME" effectid="144411" basiclvl="20" noresist="true" hittype="NMLATK"/>
+			<provoker e="1" skill_id="9617" provoke_target="ME" effectid="144411" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4464" name="STR_RB_P_MaxHpUp_G2" stack="RB_P_MAXHPUP_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" dispel_category="NONE" activation="PASSIVE" duration="0" cooldown="0">
@@ -138209,7 +138209,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9618" provoke_target="ME" radius="4" effectid="144431" basiclvl="20" noresist="true" hittype="NMLATK"/>
+			<provoker e="1" skill_id="9618" provoke_target="ME" radius="4" effectid="144431" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4466" name="Armadilha de colisão" nameId="2287948" delayId="4466" stack="RB_DARK_WEAKENING_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -138218,7 +138218,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9619" provoke_target="OPPONENT" effectid="144441" basiclvl="20" noresist="true" hittype="NMLATK"/>
+			<provoker e="1" skill_id="9619" provoke_target="OPPONENT" effectid="144441" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4467" name="Construa uma armadilha com um alcance ao seu redor. A armadilha explodirá depois de ser definida e lança os oponentes que estão dentro de um raio de 3m." nameId="2287949" delayId="4467" stack="RB_SILENCE_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -138251,7 +138251,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9621" provoke_target="OPPONENT" effectid="144471" basiclvl="20" noresist="true" hittype="NMLATK"/>
+			<provoker e="1" skill_id="9621" provoke_target="OPPONENT" effectid="144471" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4470" name="Armadilha de clarividência" nameId="2287952" delayId="4470" stack="RB_DISPEL_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -138260,7 +138260,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9622" provoke_target="OPPONENT" effectid="144481" basiclvl="20" noresist="true" hittype="NMLATK"/>
+			<provoker e="1" skill_id="9622" provoke_target="OPPONENT" effectid="144481" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4471" name="No Escape II" nameId="2287953" delayId="4471" stack="RB_BIND_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -147396,7 +147396,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9058" provoke_target="ME" radius="100" effectid="1108041" basiclvl="20" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV"/>
+			<provoker e="1" skill_id="9058" provoke_target="ME" radius="100" effectid="1108041" basiclvl="20" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10894" name="Lâmina de areia" nameId="2285918" delayId="10894" stack="GENERAL_PANTS_ROBE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -147405,7 +147405,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9059" provoke_target="ME" radius="100" effectid="1108051" basiclvl="20" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV"/>
+			<provoker e="1" skill_id="9059" provoke_target="ME" radius="100" effectid="1108051" basiclvl="20" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10895" name="Lâmina de areia" nameId="2285918" delayId="10895" stack="GENERAL_SHOULDER_ROBE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -147414,7 +147414,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9060" provoke_target="ME" radius="100" effectid="1108061" basiclvl="20" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV"/>
+			<provoker e="1" skill_id="9060" provoke_target="ME" radius="100" effectid="1108061" basiclvl="20" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10896" name="Lâmina de areia" nameId="2285918" delayId="10896" stack="GENERAL_GLOVE_ROBE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -147423,7 +147423,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9061" provoke_target="ME" radius="100" effectid="1108071" basiclvl="20" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV"/>
+			<provoker e="1" skill_id="9061" provoke_target="ME" radius="100" effectid="1108071" basiclvl="20" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10897" name="Lâmina de areia" nameId="2285918" delayId="10897" stack="GENERAL_SHOES_ROBE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -147432,7 +147432,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9062" provoke_target="ME" radius="100" effectid="1108081" basiclvl="20" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV"/>
+			<provoker e="1" skill_id="9062" provoke_target="ME" radius="100" effectid="1108081" basiclvl="20" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10898" name="Controle de choque" nameId="2285926" delayId="10898" stack="GENERAL_TORSO_PLATE_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -147486,7 +147486,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9068" provoke_target="OPPONENT" radius="100" effectid="1107891" basiclvl="30" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV"/>
+			<provoker e="1" skill_id="9068" provoke_target="OPPONENT" radius="100" effectid="1107891" basiclvl="30" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10904" name="Restrição impiedosa" nameId="2285928" delayId="10904" stack="GENERAL_PANTS_CHAIN1_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -147495,7 +147495,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9069" provoke_target="OPPONENT" radius="100" effectid="1107901" basiclvl="30" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV"/>
+			<provoker e="1" skill_id="9069" provoke_target="OPPONENT" radius="100" effectid="1107901" basiclvl="30" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10905" name="Restrição impiedosa" nameId="2285928" delayId="10905" stack="GENERAL_SHOULDER_CHAIN1_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -147504,7 +147504,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9070" provoke_target="OPPONENT" radius="100" effectid="1107911" basiclvl="30" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV"/>
+			<provoker e="1" skill_id="9070" provoke_target="OPPONENT" radius="100" effectid="1107911" basiclvl="30" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10906" name="Restrição impiedosa" nameId="2285928" delayId="10906" stack="GENERAL_GLOVE_CHAIN1_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -147513,7 +147513,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9071" provoke_target="OPPONENT" radius="100" effectid="1107921" basiclvl="30" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV"/>
+			<provoker e="1" skill_id="9071" provoke_target="OPPONENT" radius="100" effectid="1107921" basiclvl="30" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10907" name="Restrição impiedosa" nameId="2285928" delayId="10907" stack="GENERAL_SHOES_CHAIN1_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -147522,7 +147522,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9072" provoke_target="OPPONENT" radius="100" effectid="1107931" basiclvl="30" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV"/>
+			<provoker e="1" skill_id="9072" provoke_target="OPPONENT" radius="100" effectid="1107931" basiclvl="30" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10908" name="Areia de areia" nameId="2285930" delayId="10908" stack="GENERAL_TORSO_CHAIN2_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -147576,7 +147576,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9078" provoke_target="ME" radius="100" effectid="1107991" basiclvl="30" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV"/>
+			<provoker e="1" skill_id="9078" provoke_target="ME" radius="100" effectid="1107991" basiclvl="30" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10914" name="Você está temporariamente atordoado." nameId="2285932" delayId="10914" stack="GENERAL_PANTS_LEATHER_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -147585,7 +147585,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9079" provoke_target="ME" radius="100" effectid="1108001" basiclvl="30" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV"/>
+			<provoker e="1" skill_id="9079" provoke_target="ME" radius="100" effectid="1108001" basiclvl="30" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10915" name="Você está temporariamente atordoado." nameId="2285932" delayId="10915" stack="GENERAL_SHOULDER_LEATHER_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -147594,7 +147594,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9080" provoke_target="ME" radius="100" effectid="1108011" basiclvl="30" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV"/>
+			<provoker e="1" skill_id="9080" provoke_target="ME" radius="100" effectid="1108011" basiclvl="30" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10916" name="Você está temporariamente atordoado." nameId="2285932" delayId="10916" stack="GENERAL_GLOVE_LEATHER_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -147603,7 +147603,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9081" provoke_target="ME" radius="100" effectid="1108021" basiclvl="30" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV"/>
+			<provoker e="1" skill_id="9081" provoke_target="ME" radius="100" effectid="1108021" basiclvl="30" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10917" name="Você está temporariamente atordoado." nameId="2285932" delayId="10917" stack="GENERAL_SHOES_LEATHER_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -147612,7 +147612,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9082" provoke_target="ME" radius="100" effectid="1108031" basiclvl="30" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV"/>
+			<provoker e="1" skill_id="9082" provoke_target="ME" radius="100" effectid="1108031" basiclvl="30" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hittypeprob2="100"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="10918" name="Transformação: Tigre Branco" nameId="2285934" delayId="10918" stack="GENERAL_TORSO_ROBE_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -152425,11 +152425,32 @@
 			</xpboost>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11339" name="Apostle Ariel’s Blessing" nameId="2286464" delayId="11339" stack="ITEM_SKILL_TRANS_ARIELAPOSTLE_RING_01" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
-		<properties first_target="TARGET" target_type="ONLYONE"/>
+	<skill_template skill_id="11339" name="Apostle Ariel’s Blessing" nameId="2286464" delayId="11339" stack="ITEM_SKILL_TRANS_ARIELAPOSTLE_RING_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" tslot_level="3">
+		<properties first_target="TARGET" target_relation="FRIEND" target_type="ONLYONE"/>
+		<startconditions>
+			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false"/>
+		</useconditions>
+		<effects>
+			<polymorph e="1" model="202666" type="PC" duration2="3600000" effectid="170" basiclvl="160" noresist="true"/>
+			<convertheal type="HP" hittype="EVERYHIT" hittypeprob2="20" value="2147483647" hitvalue="0" duration2="3600000" e="2" noresist="true" preeffect="1" preeffect_prob="100"/>
+		</effects>
 	</skill_template>
-	<skill_template skill_id="11340" name="Efeito do Mantra da Celeridade" nameId="2286465" delayId="11340" stack="ITEM_SKILL_TRANS_ARIEL_RING_01" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
-		<properties first_target="TARGET" target_type="ONLYONE"/>
+	<skill_template skill_id="11340" name="Efeito do Mantra da Celeridade" nameId="2286465" delayId="11340" stack="ITEM_SKILL_TRANS_ARIEL_RING_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" tslot_level="3">
+		<properties first_target="TARGET" target_relation="FRIEND" target_type="ONLYONE"/>
+		<startconditions>
+			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false"/>
+		</useconditions>
+		<effects>
+			<polymorph e="1" model="202651" type="PC" duration2="3600000" effectid="170" basiclvl="160" noresist="true"/>
+			<convertheal type="HP" hittype="EVERYHIT" hittypeprob2="50" value="2147483647" hitvalue="0" duration2="3600000" e="2" noresist="true" preeffect="1" preeffect_prob="100"/>
+			<provoker skill_id="8865" provoke_target="OPPONENT" e="3" critprobmod2="100" noresist="true" element="WIND" hittype="EVERYHIT" hittypeprob2="6" preeffect="2" preeffect_prob="100"/>
+		</effects>
 	</skill_template>
 	<skill_template skill_id="11341" name="Apostle Ariel’s Blessing" nameId="2286464" delayId="11341" stack="ITEM_SKILL_TRANS_ARIELAPOSTLE_RING_02" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
@@ -152455,11 +152476,18 @@
 			<skilllauncher e="1" skill_id="11340" value="1" noresist="true"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11343" name="Apostle Ariel’s Blessing" nameId="2286464" delayId="11343" stack="ITEM_SKILL_TRANS_ARIELAPOSTLE_RING_03" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
-		<properties first_target="ME" target_type="ONLYONE" first_target_range="1"/>
+	<skill_template skill_id="11343" name="Apostle Ariel’s Blessing" nameId="2286464" delayId="11343" stack="ITEM_SKILL_TRANS_ARIELAPOSTLE_RING_03" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" first_target_range="1"/>
+		<effects>
+			<convertheal type="HP" hittype="EVERYHIT" hittypeprob2="20" value="2147483647" hitvalue="0" e="1" noresist="true"/>
+		</effects>
 	</skill_template>
-	<skill_template skill_id="11344" name="Efeito do Mantra da Celeridade" nameId="2286465" delayId="11344" stack="ITEM_SKILL_TRANS_ARIEL_RING_03" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
-		<properties first_target="ME" target_type="ONLYONE" first_target_range="1"/>
+	<skill_template skill_id="11344" name="Efeito do Mantra da Celeridade" nameId="2286465" delayId="11344" stack="ITEM_SKILL_TRANS_ARIEL_RING_03" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" first_target_range="1"/>
+		<effects>
+			<convertheal type="HP" hittype="EVERYHIT" hittypeprob2="50" value="2147483647" hitvalue="0" e="1" noresist="true"/>
+			<provoker skill_id="8865" provoke_target="OPPONENT" e="2" critprobmod2="100" noresist="true" element="WIND" hittype="EVERYHIT" hittypeprob2="6" preeffect="1" preeffect_prob="100"/>
+		</effects>
 	</skill_template>
 	<skill_template skill_id="11345" name="Golpe desorientador" nameId="2286498" delayId="11345" stack="ITEM_SKILL_SUMMON_FOLLOWING_ZAIF" lvl="1" skilltype="MAGICAL" skillsubtype="SUMMON" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>

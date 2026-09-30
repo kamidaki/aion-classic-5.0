@@ -120,7 +120,8 @@ public class ProvokerEffect extends ShieldEffect {
 			if (!isCrit && !isShockImmune)
 				return false;
 		}
-		float chance = hitTypeProb > 100 ? hitTypeProb / 10f : hitTypeProb;
+		// hittypeprob2 = effectN_reserved_cond1_prob2 do cliente, em por mil (Ariel Ring: 500 = 50%, 6 = 0,6%)
+		float chance = hitTypeProb / 10f;
 		if (Rnd.chance() >= chance)
 			return false;
 		if (hitType == null || hitType == HitType.EVERYHIT || hitType == HitType.CRITICAL)
