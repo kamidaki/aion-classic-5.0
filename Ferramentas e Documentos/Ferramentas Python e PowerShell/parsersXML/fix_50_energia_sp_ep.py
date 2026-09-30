@@ -36,7 +36,7 @@ import collections
 from xml.sax.saxutils import quoteattr
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
-RAIZ = os.path.abspath(os.path.join(AQUI, "..", ".."))
+RAIZ = os.path.abspath(os.path.join(AQUI, "..", "..", ".."))
 XMLS = r"G:\Projetos AION\XMLS AION CLASSIC\data"
 TEMPLATES = os.path.join(RAIZ, "Código Fonte - Emulador", "game-server", "data", "static_data", "skills", "skill_templates.xml")
 
