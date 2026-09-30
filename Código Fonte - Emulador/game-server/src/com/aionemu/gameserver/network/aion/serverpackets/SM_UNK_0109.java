@@ -1,16 +1,16 @@
 package com.aionemu.gameserver.network.aion.serverpackets;
 
-import com.aionemu.gameserver.network.aion.AionConnection;
-import com.aionemu.gameserver.network.aion.AionServerPacket;
-
 /**
- * Opcode 0x0109 (265) - SM_UNK_0109 (3 bytes)
- * Official Classic 5.0: writeH(1) + writeC(0).
+ * Legacy alias for SM_TUTORIAL_GUIDE_STATE (0x0109).
+ * @deprecated Use {@link SM_TUTORIAL_GUIDE_STATE} instead.
  */
-public class SM_UNK_0109 extends AionServerPacket {
-    @Override
-    protected void writeImpl(AionConnection con) {
-        writeH(1);
-        writeC(0);
+@Deprecated
+public class SM_UNK_0109 extends SM_TUTORIAL_GUIDE_STATE {
+    public SM_UNK_0109() {
+        super();
+    }
+
+    public SM_UNK_0109(int guideId, int state) {
+        super(guideId, state);
     }
 }

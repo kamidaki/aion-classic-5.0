@@ -176,8 +176,7 @@ public final class PlayerEnterWorldService {
 			StigmaService.onPlayerLogin(player);
 			InstanceService.onPlayerLogin(player);
 
-			// 1. SM_VERSION_CHECK (sync feature flags & HUD visibility) & SM_ENTER_WORLD_CHECK (0x0133)
-			client.sendPacket(new SM_VERSION_CHECK());
+			// 1. SM_ENTER_WORLD_CHECK (0x0133)
 			client.sendPacket(new SM_ENTER_WORLD_CHECK(player.getObjectId()));
 
 			// 2. Skills: pacote unico com todas as skills aprendidas
@@ -209,14 +208,14 @@ public final class PlayerEnterWorldService {
 			StorybookService.onEnterWorld(player); // S 0x14C e 0x14D
 			MorosService.onEnterWorld(player); // S 0x169, logo depois do 0x14D como na captura
 			com.lostacademy.lostsocket.secure.SecureAreaService.getInstance().onEnterWorld(player); // S 0x16B (SM_ALTER_INFO)
-			client.sendPacket(new SM_UNK_0177());
+			client.sendPacket(new SM_EQUIPMENT_VIEW_STATE());
 			client.sendPacket(new SM_UNK_0197(player.getObjectId()));
 			client.sendPacket(new SM_UNK_01A8(player.getObjectId()));
 			client.sendPacket(new SM_UNK_01BA());
 
 			// 6. Tutorial Hint (MANDATORIO para o cliente Classic 5.0 fechar carregamento e enviar CM_LEVEL_READY)
 			client.sendPacket(new SM_TUTORIAL_HINT());
-			client.sendPacket(new SM_UNK_0109());
+			client.sendPacket(new SM_TUTORIAL_GUIDE_STATE());
 
 			// 7. UI Settings & Shortcuts
 			byte[] uiSettings = player.getPlayerSettings().getUiSettings();
@@ -240,7 +239,7 @@ public final class PlayerEnterWorldService {
 			// 9.1 Channel & Bind Point
 			client.sendPacket(new SM_CHANNEL_INFO(player.getPosition()));
 			TeleportService.sendObeliskBindPoint(player);
-			client.sendPacket(new SM_UNK_0146(player.getObjectId()));
+			client.sendPacket(new SM_PLAYER_OBJECT_ID_ECHO(player.getObjectId()));
 
 			// 11. World & Time & Warehouse
 			player.setState(CreatureState.ACTIVE);

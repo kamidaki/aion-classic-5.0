@@ -2,7 +2,6 @@ package com.aionemu.gameserver.network.aion.serverpackets;
 
 import java.util.Calendar;
 
-import com.aionemu.gameserver.configs.main.CustomConfig;
 import com.aionemu.gameserver.configs.main.GSConfig;
 import com.aionemu.gameserver.configs.main.MembershipConfig;
 import com.aionemu.gameserver.configs.network.NetworkConfig;
@@ -16,10 +15,6 @@ public class SM_VERSION_CHECK extends AionServerPacket {
 	private int characterLimitCount;
 	private final int characterFactionsMode;
 	private final int characterCreateMode;
-
-	public SM_VERSION_CHECK() {
-		this(192);
-	}
 
 	public SM_VERSION_CHECK(com.aionemu.gameserver.model.EventTheme eventTheme) {
 		this(192);
@@ -83,16 +78,11 @@ public class SM_VERSION_CHECK extends AionServerPacket {
 			}
 			writeH(port);
 		}
-		boolean isStaff = con != null && (
-			(con.getActivePlayer() != null && con.getActivePlayer().isStaff()) ||
-			(con.getAccount() != null && con.getAccount().getAccessLevel() > 0)
-		);
-		boolean showSecureAreaUi = isStaff || CustomConfig.SECURE_AREA_UI_ENABLE;
-		int ffaAlterFlag = showSecureAreaUi ? 0 : 1; // 1 tells Game.dll 0x180365910 to close/hide alter_console_dialog
-
-		writeD(0);
-		writeC(ffaAlterFlag);
+		// Cauda oficial, igual nas 14 sessoes capturadas: D 667, C 0, C 1, D 0.
+		// O C em +0x5c e um modo global do Game.dll (31 leituras); 1 derruba o cliente na lista de personagens.
+		writeD(667);
 		writeC(0);
+		writeC(1);
 		writeD(0);
 	}
 }

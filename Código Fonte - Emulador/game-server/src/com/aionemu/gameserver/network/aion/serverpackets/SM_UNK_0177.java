@@ -1,17 +1,16 @@
 package com.aionemu.gameserver.network.aion.serverpackets;
 
-import com.aionemu.gameserver.network.aion.AionConnection;
-import com.aionemu.gameserver.network.aion.AionServerPacket;
-
 /**
- * Opcode 0x0177 (375) - SM_UNK_0177 (6 bytes)
- * Official Classic 5.0 wire: writeH(0) + writeH(1) + writeH(0).
+ * Legacy alias for SM_EQUIPMENT_VIEW_STATE (0x0177).
+ * @deprecated Use {@link SM_EQUIPMENT_VIEW_STATE} instead.
  */
-public class SM_UNK_0177 extends AionServerPacket {
-    @Override
-    protected void writeImpl(AionConnection con) {
-        writeH(0);
-        writeH(1);
-        writeH(0);
+@Deprecated
+public class SM_UNK_0177 extends SM_EQUIPMENT_VIEW_STATE {
+    public SM_UNK_0177() {
+        super();
+    }
+
+    public SM_UNK_0177(int viewType, int count, int state) {
+        super(viewType, count, state);
     }
 }

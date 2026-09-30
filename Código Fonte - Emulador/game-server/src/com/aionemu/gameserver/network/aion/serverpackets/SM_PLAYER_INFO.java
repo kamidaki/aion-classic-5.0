@@ -201,7 +201,11 @@ public class SM_PLAYER_INFO extends AbstractPlayerInfoPacket {
 		writeD(0);
 		writeD(0);
 		writeD(0);
-		writeD(0);
+		// H a 10 bytes do fim: a skill que transformou. Sem ela o cliente nao remonta o corpo das transformacoes de deus/apostolo (que
+		// dependem do reserved20 LM/LF/DM/DF da skill) e o personagem fica sem modelo depois de trocar de mapa, so com armas e efeito.
+		// Oficial: 10687 (Lumiel), 10498 (panda marinho), 10359, 2607; 0 em quem nao esta transformado.
+		writeH(player.getTransformModel().changesAppearance() ? player.getTransformModel().getSkillId() : 0);
+		writeH(0);
 		writeD(0);
 		writeH(300);
 	}

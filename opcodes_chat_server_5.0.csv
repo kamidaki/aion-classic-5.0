@@ -1,0 +1,5 @@
+decimal,hex,wire,direção,nome,classe,payload_min,payload_max,ocorrencias,status,evidencia,observacao
+26,0x001A,0x001A,S->C,S2C_CHANNEL_CHATTING,SM_CHANNEL_CHATTING,141,141,1,CONFIRMADO,COMPROVADO,Observado no ChatServer oficial (1x).
+16386,0x4002,0x4002,S->C,S2C_SIGNATURE_LOGIN_RESULT,SM_SIGNATURE_LOGIN_RESULT,8,8,1,CONFIRMADO,COMPROVADO,Observado no ChatServer oficial (1x).
+16401,0x4011,0x4011,S->C,S2C_JOINED_CHANNEL,SM_JOINED_CHANNEL,10,10,9,CONFIRMADO,COMPROVADO,Observado no ChatServer oficial (9x).
+16433,0x4031,0x4031,S->C,S2C_CHANNEL_INFO_RESULT,SM_CHANNEL_RESPONSE,6,6,1,CONFIRMADO,COMPROVADO,Observado no ChatServer oficial (1x).

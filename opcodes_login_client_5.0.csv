@@ -1,0 +1,7 @@
+decimal,hex,wire,direção,nome,classe,payload_min,payload_max,ocorrencias,status,evidencia,observacao
+0,0x00,0x00,C->S,LOGIN,CM_LOGIN,-,-,0,PACOTE LEGADO,HIPÓTESE,"Registrado no LoginServer (Estado AUTHED_GG). Na captura subida-1-60, autenticação ocorreu via STS (Porta 6600)."
+2,0x02,0x02,C->S,PLAY,CM_PLAY,-,-,0,PACOTE LEGADO,HIPÓTESE,"Registrado no LoginServer (Estado AUTHED_LOGIN). Na captura subida-1-60, autenticação ocorreu via STS (Porta 6600)."
+5,0x05,0x05,C->S,SERVER_LIST,CM_SERVER_LIST,-,-,0,PACOTE LEGADO,HIPÓTESE,"Registrado no LoginServer (Estado AUTHED_LOGIN). Na captura subida-1-60, autenticação ocorreu via STS (Porta 6600)."
+7,0x07,0x07,C->S,AUTH_GG,CM_AUTH_GG,-,-,0,PACOTE LEGADO,HIPÓTESE,"Registrado no LoginServer (Estado CONNECTED). Na captura subida-1-60, autenticação ocorreu via STS (Porta 6600)."
+8,0x08,0x08,C->S,UPDATE_SESSION,CM_UPDATE_SESSION,-,-,0,PACOTE LEGADO,HIPÓTESE,"Registrado no LoginServer (Estado CONNECTED). Na captura subida-1-60, autenticação ocorreu via STS (Porta 6600)."
+11,0x0B,0x0B,C->S,LOGIN,CM_LOGIN,-,-,0,PACOTE LEGADO,HIPÓTESE,"Registrado no LoginServer (Estado AUTHED_GG). Na captura subida-1-60, autenticação ocorreu via STS (Porta 6600)."

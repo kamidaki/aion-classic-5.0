@@ -1,0 +1,12 @@
+decimal,hex,wire,direção,nome,classe,payload_min,payload_max,ocorrencias,status,evidencia,observacao
+2,0x02,0x02,S->C,ACCOUNT_BANNED,SM_ACCOUNT_BANNED,-,-,0,PACOTE LEGADO,HIPÓTESE,Registrado no LoginServer. Requer captura dedicada na porta 2106 para validação no 5.0 EU.
+9,0x09,0x09,S->C,ACCOUNT_BANNED_2,SM_ACCOUNT_BANNED_2,-,-,0,PACOTE LEGADO,HIPÓTESE,Registrado no LoginServer. Requer captura dedicada na porta 2106 para validação no 5.0 EU.
+8,0x08,0x08,S->C,ACCOUNT_KICK,SM_ACCOUNT_KICK,-,-,0,PACOTE LEGADO,HIPÓTESE,Registrado no LoginServer. Requer captura dedicada na porta 2106 para validação no 5.0 EU.
+11,0x0B,0x0B,S->C,AUTH_GG,SM_AUTH_GG,-,-,0,PACOTE LEGADO,HIPÓTESE,Registrado no LoginServer. Requer captura dedicada na porta 2106 para validação no 5.0 EU.
+0,0x00,0x00,S->C,INIT,SM_INIT,-,-,0,PACOTE LEGADO,HIPÓTESE,Registrado no LoginServer. Requer captura dedicada na porta 2106 para validação no 5.0 EU.
+1,0x01,0x01,S->C,LOGIN_FAIL,SM_LOGIN_FAIL,-,-,0,PACOTE LEGADO,HIPÓTESE,Registrado no LoginServer. Requer captura dedicada na porta 2106 para validação no 5.0 EU.
+3,0x03,0x03,S->C,LOGIN_OK,SM_LOGIN_OK,-,-,0,PACOTE LEGADO,HIPÓTESE,Registrado no LoginServer. Requer captura dedicada na porta 2106 para validação no 5.0 EU.
+6,0x06,0x06,S->C,PLAY_FAIL,SM_PLAY_FAIL,-,-,0,PACOTE LEGADO,HIPÓTESE,Registrado no LoginServer. Requer captura dedicada na porta 2106 para validação no 5.0 EU.
+7,0x07,0x07,S->C,PLAY_OK,SM_PLAY_OK,-,-,0,PACOTE LEGADO,HIPÓTESE,Registrado no LoginServer. Requer captura dedicada na porta 2106 para validação no 5.0 EU.
+4,0x04,0x04,S->C,SERVER_LIST,SM_SERVER_LIST,-,-,0,PACOTE LEGADO,HIPÓTESE,Registrado no LoginServer. Requer captura dedicada na porta 2106 para validação no 5.0 EU.
+12,0x0C,0x0C,S->C,UPDATE_SESSION,SM_UPDATE_SESSION,-,-,0,PACOTE LEGADO,HIPÓTESE,Registrado no LoginServer. Requer captura dedicada na porta 2106 para validação no 5.0 EU.
