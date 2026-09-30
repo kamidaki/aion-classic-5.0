@@ -39,7 +39,25 @@ public class AnimationAddAction extends AbstractItemAction {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ITEM_COLOR_ERROR());
 			return false;
 		}
+		if (!givesAnything(player)) {
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_CUSTOMANIMATION_ALREADY_HAS_MOTION());
+			return false;
+		}
 		return true;
+	}
+
+	/**
+	 * The item is refused when the player already has every motion it gives. A permanent card still upgrades a timed motion.
+	 */
+	private boolean givesAnything(Player player) {
+		for (Integer motionId : new Integer[] { idle, run, jump, rest, shop }) {
+			if (motionId == null)
+				continue;
+			Motion owned = player.getMotions().getMotions().get(motionId);
+			if (owned == null || owned.isExpired() || minutes == null && owned.getExpireTime() != 0)
+				return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -98,7 +116,7 @@ public class AnimationAddAction extends AbstractItemAction {
 
 	private void addMotion(Player player, int motionId) {
 		Motion motion = new Motion(motionId, minutes == null ? 0 : (int) (System.currentTimeMillis() / 1000) + minutes * 60, true);
-		player.getMotions().add(motion, true);
-		PacketSendUtility.sendPacket(player, new SM_MOTION((short) motion.getId(), motion.secondsUntilExpiration()));
+		if (player.getMotions().add(motion, true))
+			PacketSendUtility.sendPacket(player, new SM_MOTION((short) motion.getId(), motion.secondsUntilExpiration()));
 	}
 }

@@ -42,8 +42,7 @@ public class SM_MOTION extends AionServerPacket {
 	}
 
 	/**
-	 * @param motionId
-	 * @param remainingTime
+	 * Answer to CM_MOTION: the change as the client sent it (motion id 0 = slot cleared).
 	 */
 	public SM_MOTION(short motionId, byte type) {
 		this.action = 5;
@@ -86,7 +85,8 @@ public class SM_MOTION extends AionServerPacket {
 				writeH(motionId);
 				writeD(remainingTime);
 				break;
-			case 5: // Set motion
+			case 5: // Set motion, the same [H count][H id][C slot] of CM_MOTION (motion.pcapng: 05 01 00 02 00 02)
+				writeH(1);
 				writeH(motionId);
 				writeC(type);
 				break;

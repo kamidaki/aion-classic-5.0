@@ -42,7 +42,7 @@ public class EmotionLearnAction extends AbstractItemAction {
 			return false;
 		}
 		if (player.getEmotions() != null && player.getEmotions().contains(emotionId)) {
-			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_TOOLTIP_LEARNED_EMOTION());
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_SOCIALACTION_ALREADY_HAS_SKILL());
 			return false;
 		}
 		return true;

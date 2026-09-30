@@ -193,7 +193,7 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_TELEPORT_SELECT.class, 0x16E, State.IN_GAME); // 0x0094 TELEPORT_SELECT (Flight & Teleport NPCs)
 		addPacket(CM_TELEPORT_SELECT.class, 0x0094, State.IN_GAME); // Raw alias
 		addPacket(CM_PLAYER_SEARCH.class, 0x155, State.IN_GAME); // PLAYER_SEARCH (0x155 Who Key 'V')
-		addPacket(CM_MOTION.class, 0x12D, State.IN_GAME); // MOTION
+		addPacket(CM_MOTION.class, 0x125, State.IN_GAME); // 0x004F MOTION (motion.pcapng; o 0x12D = dec 0x0057 nunca chega)
 		addPacket(CM_FUSION_WEAPONS.class, 0x1A5, State.IN_GAME); // FUSION_WEAPONS
 		addPacket(CM_BREAK_WEAPONS.class, 0x1A2, State.IN_GAME); // BREAK_WEAPONS
 		addPacket(CM_PET.class, 0x9C, State.IN_GAME); // PET
