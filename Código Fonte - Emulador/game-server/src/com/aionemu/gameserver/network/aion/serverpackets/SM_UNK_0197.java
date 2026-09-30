@@ -1,26 +1,15 @@
 package com.aionemu.gameserver.network.aion.serverpackets;
 
-import com.aionemu.gameserver.network.aion.AionConnection;
-import com.aionemu.gameserver.network.aion.AionServerPacket;
-
 /**
- * Opcode 0x0197 (407) - SM_UNK_0197 (6 bytes)
- * Official Classic 5.0 warmup: writeD(objectId) + writeH(0).
+ * @deprecated Use {@link SM_AVATAR_PRESENCE_INIT} instead.
  */
-public class SM_UNK_0197 extends AionServerPacket {
-    private final int objectId;
-
+@Deprecated
+public class SM_UNK_0197 extends SM_AVATAR_PRESENCE_INIT {
     public SM_UNK_0197(int objectId) {
-        this.objectId = objectId;
+        super(objectId);
     }
 
     public SM_UNK_0197() {
-        this(0);
-    }
-
-    @Override
-    protected void writeImpl(AionConnection con) {
-        writeD(objectId);
-        writeH(0);
+        super(0);
     }
 }

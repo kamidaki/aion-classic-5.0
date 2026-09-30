@@ -202,16 +202,16 @@ public final class PlayerEnterWorldService {
 			client.sendPacket(new SM_MOTION(player.getMotions().getMotions().values()));
 
 			// 5.1 Classic 5.0 Warmup Sequence (from official Wireshark PCAP)
-			client.sendPacket(new SM_UNK_01C2());
+			client.sendPacket(new SM_CHALLENGE_GUIDE_TABS());
 			PlayerWardrobeService.getInstance().onEnterWorld(player); // S 0x122, logo antes do 0x138 como na captura
-			client.sendPacket(new SM_UNK_0138());
+			client.sendPacket(new SM_RANKING_BADGE());
 			StorybookService.onEnterWorld(player); // S 0x14C e 0x14D
 			MorosService.onEnterWorld(player); // S 0x169, logo depois do 0x14D como na captura
 			com.lostacademy.lostsocket.secure.SecureAreaService.getInstance().onEnterWorld(player); // S 0x16B (SM_ALTER_INFO)
 			client.sendPacket(new SM_EQUIPMENT_VIEW_STATE());
-			client.sendPacket(new SM_UNK_0197(player.getObjectId()));
-			client.sendPacket(new SM_UNK_01A8(player.getObjectId()));
-			client.sendPacket(new SM_UNK_01BA());
+			client.sendPacket(new SM_AVATAR_PRESENCE_INIT(player.getObjectId()));
+			client.sendPacket(new SM_AVATAR_PRESENCE_SYNC(player.getObjectId()));
+			client.sendPacket(new SM_REGION_CHAT_CHANNEL_INFO());
 
 			// 6. Tutorial Hint (MANDATORIO para o cliente Classic 5.0 fechar carregamento e enviar CM_LEVEL_READY)
 			client.sendPacket(new SM_TUTORIAL_HINT());
@@ -226,7 +226,7 @@ public final class PlayerEnterWorldService {
 			if (shortcuts != null) {
 				client.sendPacket(new SM_UI_SETTINGS(shortcuts, 1));
 			}
-			client.sendPacket(new SM_UNK_01C0());
+			client.sendPacket(new SM_TUTORIAL_LOAD_COMPLETED());
 
 			// 8. Inventario: equipados primeiro (isFirst=true), nao-equipados em blocos de 10 (isFirst=false), terminador vazio, status, estigmas
 			sendItemInfos(client, player);
@@ -252,7 +252,7 @@ public final class PlayerEnterWorldService {
 			client.sendPacket(new SM_PRICES());
 			client.sendPacket(new SM_INSTANCE_INFO((byte) 2, player));
 			client.sendPacket(new SM_ABYSS_RANK(player));
-			client.sendPacket(new SM_UNK_0191());
+			client.sendPacket(new SM_RENDER_GRAPHIC_INIT());
 			client.sendPacket(new SM_STATS_INFO(player));
 			CombatTalentRewardService.sendProgress(player);
 			QunaService.onEnterWorld(player); // S 0x11B com o saldo da conta; o oficial não manda no login (lê do STS)

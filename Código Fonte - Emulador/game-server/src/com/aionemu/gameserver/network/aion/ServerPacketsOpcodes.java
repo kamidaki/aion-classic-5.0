@@ -261,9 +261,9 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(437, SM_RANKING_READY.class); // [S_UNK_01B5] (0x1B5)
 
 		// 52 Classic 5.0 Opcodes mapped directly from official Wireshark PCAPs
-		addPacketOpcode(95, SM_UNK_005F.class); // [S_UNK_005F] (0x005F)
+		addPacketOpcode(95, SM_SPECIAL_CURRENCY_SLOTS.class); // [S_SPECIAL_CURRENCY_SLOTS] (0x005F)
 		addPacketOpcode(146, SM_ENTER_WORLD_NOTIFY.class); // [S_ENTER_WORLD_NOTIFY] (0x0092)
-		addPacketOpcode(188, SM_UNK_00BC.class); // [S_UNK_00BC] (0x00BC)
+		addPacketOpcode(188, SM_DEFAULT_EMOTION_LIST.class); // [S_DEFAULT_EMOTION_LIST] (0x00BC)
 		addPacketOpcode(197, SM_CREATURE_STATE_UPDATE.class); // [S_CREATURE_STATE_UPDATE] (0x00C5)
 		// Subida 1-60: 0x104 (212/95 b) logo apos o C_USE_ITEM de caixa selectable, 0x105 (9 b) depois do C_SELECT_DISASSEMBLY_ITEM
 		addPacketOpcode(260, SM_FIRST_SHOW_DECOMPOSABLE.class); // [S_DISASSEMBLY_ITEMLIST] (0x0104)
@@ -271,13 +271,13 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(265, SM_TUTORIAL_GUIDE_STATE.class); // [S_TUTORIAL_GUIDE_STATE] (0x0109)
 		addPacketOpcode(272, SM_ACHIEVEMENT_SEASON_EVENT_INFO.class); // [S_ACHIEVEMENT_SEASON_EVENT_INFO] (0x0110)
 		addPacketOpcode(275, SM_SPECIAL_SHOP_ITEM_LIST.class); // [S_SPECIAL_SHOP_ITEM_LIST] (0x0113)
-		addPacketOpcode(295, SM_UNK_0127.class); // [S_UNK_0127] (0x0127)
+		addPacketOpcode(295, SM_CUBE_TAB_EXPANSION_INFO.class); // [S_CUBE_TAB_EXPANSION_INFO] (0x0127)
 		addPacketOpcode(297, SM_RECOMMENDED_PLAYERS_LIST.class); // [S_RECOMMENDED_PLAYERS_LIST] (0x0129)
 		addPacketOpcode(304, SM_RANK_LIST.class); // [S_RANK_LIST] (0x0130)
 		addPacketOpcode(305, SM_RANK_INFO.class); // [S_RANK_INFO] (0x0131)
 		addPacketOpcode(309, SM_AUTO_GROUP_STATUS.class); // [S_AUTO_GROUP_STATUS] (0x0135)
 		addPacketOpcode(312, SM_RANKING_BADGE.class); // [S_RANKING_BADGE] (0x0138)
-		addPacketOpcode(314, SM_UNK_013A.class); // [S_UNK_013A] (0x013A)
+		addPacketOpcode(314, SM_LEGION_HOUSING_NOTICE.class); // [S_LEGION_HOUSING_NOTICE] (0x013A)
 		// Global Auction House 5.0 (capturas de 2026-09-11 a 13). A ordem dos nomes é a do enum S_GLOBAL_TRADE_* (LIST, MYLIST, BUY, COMMIT,
 		// CANCEL, SALESLOG, COLLECT, AVG_PRICE, STATE, HISTORY), que casa com a função de todos os capturados a partir de 0x13C.
 		addPacketOpcode(0x13C, SM_GLOBAL_TRADE_LIST.class); // [S_GLOBAL_TRADE_LIST]
@@ -299,7 +299,7 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(326, SM_PLAYER_OBJECT_ID_ECHO.class); // [S_PLAYER_OBJECT_ID_ECHO] (0x0146)
 		addPacketOpcode(328, SM_COMBAT_TALENT_REWARDS.class); // [S_COMBAT_POWER_REWARD_INFO] (0x0148)
 		addPacketOpcode(329, SM_COMBAT_TALENT_REWARD_UPDATE.class); // [S_COMBAT_POWER_REWARD_UPDATE] (0x0149)
-		addPacketOpcode(330, SM_UNK_014A.class); // [S_UNK_014A] (0x014A)
+		addPacketOpcode(330, SM_NETWORK_SYNC_ACK.class); // [S_NETWORK_SYNC_ACK] (0x014A)
 		addPacketOpcode(331, SM_SP_UPDATE.class); // SP do próprio Revenant (0x014B, 2 b)
 		// Book of Legends 5.0 (captura 06_Sistemas_Novos_Book_of_Legends, 11/09): nomes do enum S_USER_STORY_BOOK_* do Game.dll
 		addPacketOpcode(0x14C, SM_STORYBOOK_FINISHED_LIST.class); // [S_USER_STORY_BOOK_FINISHED_LIST_LOAD]
@@ -319,7 +319,7 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(346, SM_LEGION_CRAFT_LIST.class); // receitas de produção da Legion (0x015A)
 		addPacketOpcode(348, SM_LEGION_MISSION_LIST.class); // missões da Legion (0x015C)
 		addPacketOpcode(349, SM_LEGION_MISSION_UPDATE.class); // progresso de missão da Legion (0x015D)
-		addPacketOpcode(350, SM_UNK_015E.class); // [S_UNK_015E] (0x015E)
+		addPacketOpcode(350, SM_LEGION_TERRITORY_INFO.class); // [S_LEGION_TERRITORY_INFO] (0x015E)
 		addPacketOpcode(355, SM_LEGION_ESSENCE.class); // essência e fragmentos da Legion (0x0163)
 		addPacketOpcode(356, SM_LEGION_GROWTH.class); // nível e exp de crescimento da Legion (0x0164)
 		addPacketOpcode(357, SM_LEGION_COIN.class); // moedas pessoais da Legion (0x0165)
@@ -335,24 +335,24 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(384, SM_WORLD_VARIABLE.class); // [S_WORLD_VARIABLE] (0x0180) — variaveis de mundo do mapa
 		addPacketOpcode(385, SM_COMBAT_BURST_EFFECT.class); // [S_COMBAT_BURST_EFFECT] (0x0181)
 		addPacketOpcode(386, SM_COMBAT_BURST_REMOVE.class); // [S_COMBAT_BURST_REMOVE] (0x0182)
-		addPacketOpcode(387, SM_UNK_0183.class); // [S_UNK_0183] (0x0183)
+		addPacketOpcode(387, SM_CAMERA_VIEW_MODE.class); // [S_CAMERA_VIEW_MODE] (0x0183)
 		addPacketOpcode(391, SM_CAMP_PVP_ZONE.class); // [S_ZONE_PVP] (0x0187) — zona PvP das torres de Tiamaranta
-		addPacketOpcode(396, SM_UNK_018C.class); // [S_UNK_018C] (0x018C)
-		addPacketOpcode(401, SM_UNK_0191.class); // [S_UNK_0191] (0x0191)
-		addPacketOpcode(407, SM_UNK_0197.class); // [S_UNK_0197] (0x0197)
+		addPacketOpcode(396, SM_TERRAIN_SECTOR_INFO.class); // [S_TERRAIN_SECTOR_INFO] (0x018C)
+		addPacketOpcode(401, SM_RENDER_GRAPHIC_INIT.class); // [S_RENDER_GRAPHIC_INIT] (0x0191)
+		addPacketOpcode(407, SM_AVATAR_PRESENCE_INIT.class); // [S_AVATAR_PRESENCE_INIT] (0x0197)
 		addPacketOpcode(413, SM_ZONE_STATE_LIST.class); // [S_ZONE_STATE_LIST] (0x019D) — lista de zonas do mapa na entrada
 		// SM_UNK_019D saiu: era um blob fixo com zonas DF4_* de outro mapa e nunca era enviado
-		addPacketOpcode(424, SM_UNK_01A8.class); // [S_UNK_01A8] (0x01A8)
-		addPacketOpcode(426, SM_UNK_01AA.class); // [S_UNK_01AA] (0x01AA)
-		addPacketOpcode(427, SM_UNK_01AB.class); // [S_UNK_01AB] (0x01AB)
-		addPacketOpcode(428, SM_UNK_01AC.class); // [S_UNK_01AC] (0x01AC)
-		addPacketOpcode(431, SM_UNK_01AF.class); // [S_UNK_01AF] (0x01AF)
-		addPacketOpcode(435, SM_UNK_01B3.class); // [S_UNK_01B3] (0x01B3)
-		addPacketOpcode(442, SM_UNK_01BA.class); // [S_UNK_01BA] (0x01BA)
+		addPacketOpcode(424, SM_AVATAR_PRESENCE_SYNC.class); // [S_AVATAR_PRESENCE_SYNC] (0x01A8)
+		addPacketOpcode(426, SM_COSMETIC_TITLE_INIT.class); // [S_COSMETIC_TITLE_INIT] (0x01AA)
+		addPacketOpcode(427, SM_SIEL_ANVIL_POINTS_INFO.class); // [S_SIEL_ANVIL_POINTS_INFO] (0x01AB)
+		addPacketOpcode(428, SM_MAP_ZONE_BOUNDS.class); // [S_MAP_ZONE_BOUNDS] (0x01AC)
+		addPacketOpcode(431, SM_RADAR_INITIAL_STATE.class); // [S_RADAR_INITIAL_STATE] (0x01AF)
+		addPacketOpcode(435, SM_MAILBOX_INITIAL_STATUS.class); // [S_MAILBOX_INITIAL_STATUS] (0x01B3)
+		addPacketOpcode(442, SM_REGION_CHAT_CHANNEL_INFO.class); // [S_REGION_CHAT_CHANNEL_INFO] (0x01BA)
 		addPacketOpcode(445, SM_HUNT_OBJECTIVE_PROGRESS.class); // [S_HUNT_OBJECTIVE_PROGRESS] (0x01BD)
-		addPacketOpcode(448, SM_UNK_01C0.class); // [S_UNK_01C0] (0x01C0)
-		addPacketOpcode(450, SM_UNK_01C2.class); // [S_UNK_01C2] (0x01C2)
-		addPacketOpcode(453, SM_UNK_01C5.class); // [S_UNK_01C5] (0x01C5)
+		addPacketOpcode(448, SM_TUTORIAL_LOAD_COMPLETED.class); // [S_TUTORIAL_LOAD_COMPLETED] (0x01C0)
+		addPacketOpcode(450, SM_CHALLENGE_GUIDE_TABS.class); // [S_CHALLENGE_GUIDE_TABS] (0x01C2)
+		addPacketOpcode(453, SM_ENTER_WORLD_HANDSHAKE_ACK.class); // [S_ENTER_WORLD_HANDSHAKE_ACK] (0x01C5)
 		addPacketOpcode(0x1A3, SM_SIEL_ANVIL_START.class);
 		addPacketOpcode(0x1C3, SM_CLASSIC_ENCHANT_ANIMATION.class);
 		addPacketOpcode(0x1A4, SM_SIEL_ANVIL_RESULT.class);

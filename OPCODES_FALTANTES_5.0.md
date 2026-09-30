@@ -157,41 +157,45 @@ Os 16 pacotes classificados como **Blobs Fixos de Inicialização** foram descob
 2. **Invariância de Conteúdo (Payload Estático)**: Ao comparar sessões distintas e jogadores diferentes na mesma versão, os bytes desses 16 pacotes são **100% idênticos e estáticos**, servindo como confirmações de estado do motor (ACKs de subsistemas de áudio, mapa estático, câmera e abas padrão).
 3. **Ausência de Gatilhos de Gameplay**: Ao contrário dos pacotes de alta/média prioridade (que disparam em combate, mortes de NPCs ou troca de equipamentos), esses 16 pacotes **nunca mais voltam a ser disparados durante o gameplay normal**.
 
-### Tabela de Registro dos 16 Blobs Fixos
+### Tabela de Registro dos Blobs Fixos Refatorados
 
-| Opcode Dec | Opcode Hex | Wire Hex | Classe Java | Tamanho | Estrutura de Bytes Observada | Subsistema de UI / Engine |
+| Opcode Dec | Opcode Hex | Wire Hex | Nome Semântico | Classe Legada | Tamanho | Estrutura de Bytes / Função |
 |---|---|---|---|---|---|---|
-| **188** | `0x00BC` | `0x0154` | `SM_UNK_00BC` | 2 bytes | `00 00` (`writeH(0)`) | Handshake de lista de emoções / animações padrão. |
-| **295** | `0x0127` | `0x013F` | `SM_UNK_0127` | 20 bytes | `writeD(9)` + 9 shorts (`0x0001`..`0x0008`) | Inicialização de abas desbloqueadas de interface (Cubo/Bolsa). |
-| **314** | `0x013A` | `0x012A` | `SM_UNK_013A` | 6 bytes | `writeD(0)` + `writeH(0)` | Sinalização inicial de módulo de legion / habitação. |
-| **387** | `0x0183` | `0x0293` | `SM_UNK_0183` | 2 bytes | `01 00` (`writeH(1)`) | Flag de modo de câmera e visão panorâmica de mapa. |
-| **396** | `0x018C` | `0x0284` | `SM_UNK_018C` | 216 bytes | Tabela estática de 20 setores de malha | Dimensões e parâmetros de malha física do terreno ativo. |
-| **401** | `0x0191` | `0x0281` | `SM_UNK_0191` | 8 bytes | `30 48 52 46` (`FRH0`) + `writeD(416)` | Handshake de sincronização de engine gráfica/render. |
-| **407** | `0x0197` | `0x028F` | `SM_UNK_0197` | 6 bytes | `writeD(playerObjectId)` + `writeH(0)` | Confirmação de inicialização do avatar local no cliente. |
-| **424** | `0x01A8` | `0x02B8` | `SM_UNK_01A8` | 6 bytes | `writeD(playerObjectId)` + `writeH(0)` | Sincronização secundária de presença do avatar. |
-| **426** | `0x01AA` | `0x02BA` | `SM_UNK_01AA` | 3 bytes | `01 00 00` (`writeH(1)` + `writeC(0)`) | Inicialização de títulos e insígnias cosméticas. |
-| **427** | `0x01AB` | `0x02BB` | `SM_UNK_01AB` | 3 bytes | `00 00 02` (`writeH(0)` + `writeC(2)`) | Mapa de pontos de voo/teleporte rápidos. |
-| **428** | `0x01AC` | `0x02A4` | `SM_UNK_01AC` | 254 bytes | Tabela de 23 pares de Zone IDs | Mapeamento de sub-regiões e limites do mapa atual. |
-| **431** | `0x01AF` | `0x02A7` | `SM_UNK_01AF` | 5 bytes | `writeD(0)` + `writeC(0)` | Estado inicial do minimapa e radar de área. |
-| **435** | `0x01B3` | `0x02A3` | `SM_UNK_01B3` | 2 bytes | `00 00` (`writeH(0)`) | Notificação inicial de caixa de correio vazia. |
-| **442** | `0x01BA` | `0x02AA` | `SM_UNK_01BA` | 3 bytes | `01 00 00` (`writeH(1)` + `writeC(0)`) | Ativação dos canais padrão de chat de região. |
-| **448** | `0x01C0` | `0x0250` | `SM_UNK_01C0` | 2 bytes | `00 00` (`writeH(0)`) | Sinalizador de finalização de carregamento de tutorial. |
-| **450** | `0x01C2` | `0x0252` | `SM_UNK_01C2` | 14 bytes | `writeH(2)` + `writeH(5)` + `writeD(0)`... | Registro inicial de abas do guia de desafios/missões. |
-| **453** | `0x01C5` | `0x025D` | `SM_UNK_01C5` | 3 bytes | `00 00 02` (`writeH(0)` + `writeC(2)`) | ACK final de conclusão do handshake de entrada de mundo. |
+| **95** | `0x005F` | `0x00B2` | `SM_SPECIAL_CURRENCY_SLOTS` | `SM_UNK_005F` | 134 bytes | Tabela estática de 11 slots de moedas/tokens especiais do cliente. |
+| **188** | `0x00BC` | `0x0154` | `SM_DEFAULT_EMOTION_LIST` | `SM_UNK_00BC` | 2 bytes | Handshake de lista de emoções / animações padrão (`writeH(0)`). |
+| **295** | `0x0127` | `0x013F` | `SM_CUBE_TAB_EXPANSION_INFO` | `SM_UNK_0127` | 20 bytes | Inicialização de abas desbloqueadas de interface (Cubo/Bolsa). |
+| **314** | `0x013A` | `0x012A` | `SM_LEGION_HOUSING_NOTICE` | `SM_UNK_013A` | 6 bytes | Sinalização inicial de módulo de legion / habitação (`writeD(0)` + `writeH(0)`). |
+| **330** | `0x014A` | `0x0120` | `SM_NETWORK_SYNC_ACK` | `SM_UNK_014A` | 0 bytes | Pacote vazio de confirmação/sync de subsistema de rede. |
+| **350** | `0x015E` | `0x0216` | `SM_LEGION_TERRITORY_INFO` | `SM_UNK_015E` | 22 bytes | Estado inicial de território / domínio de legião (`writeD(1)` + `writeH(1)` + zeros). |
+| **387** | `0x0183` | `0x0293` | `SM_CAMERA_VIEW_MODE` | `SM_UNK_0183` | 2 bytes | Flag de modo de câmera e visão panorâmica de mapa (`writeH(1)`). |
+| **396** | `0x018C` | `0x0284` | `SM_TERRAIN_SECTOR_INFO` | `SM_UNK_018C` | 216 bytes | Tabela estática de 20 setores de malha física do terreno ativo. |
+| **401** | `0x0191` | `0x0281` | `SM_RENDER_GRAPHIC_INIT` | `SM_UNK_0191` | 8 bytes | Handshake de sincronização de engine gráfica/render (`FRH0` + `writeD(416)`). |
+| **407** | `0x0197` | `0x028F` | `SM_AVATAR_PRESENCE_INIT` | `SM_UNK_0197` | 6 bytes | Confirmação de presença do avatar local no cliente (`writeD(objectId)` + `writeH(0)`). |
+| **424** | `0x01A8` | `0x02B8` | `SM_AVATAR_PRESENCE_SYNC` | `SM_UNK_01A8` | 6 bytes | Sincronização secundária de presença do avatar (`writeD(objectId)` + `writeH(0)`). |
+| **426** | `0x01AA` | `0x02BA` | `SM_COSMETIC_TITLE_INIT` | `SM_UNK_01AA` | 3 bytes | Inicialização de títulos e insígnias cosméticas (`writeH(1)` + `writeC(0)`). |
+| **427** | `0x01AB` | `0x02BB` | `SM_SIEL_ANVIL_POINTS_INFO` | `SM_UNK_01AB` | 3+ bytes | Pontos de produção da Bigorna de Siel (Siel Anvil). |
+| **428** | `0x01AC` | `0x02A4` | `SM_MAP_ZONE_BOUNDS` | `SM_UNK_01AC` | 254 bytes | Tabela de 23 pares de Zone IDs e limites do mapa atual. |
+| **431** | `0x01AF` | `0x02A7` | `SM_RADAR_INITIAL_STATE` | `SM_UNK_01AF` | 5 bytes | Estado inicial do minimapa e radar de área (`writeD(0)` + `writeC(0)`). |
+| **435** | `0x01B3` | `0x02A3` | `SM_MAILBOX_INITIAL_STATUS` | `SM_UNK_01B3` | 2 bytes | Notificação inicial de status de caixa de correio (`writeH(0)`). |
+| **442** | `0x01BA` | `0x02AA` | `SM_REGION_CHAT_CHANNEL_INFO` | `SM_UNK_01BA` | 3 bytes | Ativação dos canais padrão de chat de região (`writeH(1)` + `writeC(0)`). |
+| **448** | `0x01C0` | `0x0250` | `SM_TUTORIAL_LOAD_COMPLETED` | `SM_UNK_01C0` | 2 bytes | Sinalizador de finalização de carregamento de tutorial (`writeH(0)`). |
+| **450** | `0x01C2` | `0x0252` | `SM_CHALLENGE_GUIDE_TABS` | `SM_UNK_01C2` | 14 bytes | Registro inicial de abas do guia de desafios/missões. |
+| **453** | `0x01C5` | `0x025D` | `SM_ENTER_WORLD_HANDSHAKE_ACK` | `SM_UNK_01C5` | 3 bytes | ACK final de conclusão do handshake de entrada de mundo (`writeH(0)` + `writeC(2)`). |
 
 ---
 
-## 7 Pacotes de Média Prioridade a Refatorar
+## 7 Pacotes de Média Prioridade (Concluídos)
 
-| Opcode Dec | Opcode Hex | Wire Hex | Nome Provisório | Novo Nome Semântico Proposto | Ocorrências | Tamanho | Função Identificada |
-|---|---|---|---|---|---|---|---|
-| **385** | `0x0181` | `0x0291` | `SM_UNK_0181` | `SM_COMBAT_BURST_EFFECT` | 48 | 38 bytes | Aplicação de efeito de combate/abnormal effect com coordenadas de impacto 3D (`skillId`, `targetId`, `duration`, `x`, `y`, `z`). É o par do `SM_COMBAT_BURST_REMOVE` (0x0182). |
-| **309** | `0x0135` | `0x012D` | `SM_UNK_0135` | `SM_AUTO_GROUP_STATUS` | 4 | 19 bytes | Atualização de status de matchmaking / fila de grupo automático e arenas (`instanceId`, `status`, `minLevel`, `maxLevel`). |
-| **272** | `0x0110` | `0x0100` | `SM_UNK_0110` | `SM_ACHIEVEMENT_SEASON_EVENT_INFO` | 1 | 36 bytes | Informação de temporada ativa de evento e passe de batalha (`seasonEventId`, `status`, flags). |
-| **275** | `0x0113` | `0x0103` | `SM_UNK_0113` | `SM_SPECIAL_SHOP_ITEM_LIST` | 1 | 756 bytes | Lista de 58 itens/recompensas de loja de evento e moeda especial Classic 5.0. |
-| **375** | `0x0177` | `0x02EF` | `SM_UNK_0177` | `SM_EQUIPMENT_VIEW_STATE` | 1 | 6 bytes | Estado de visualização de equipamento e guarda-roupa (`writeH(type)`, `writeH(count)`, `writeH(state)`). |
-| **265** | `0x0109` | `0x0119` | `SM_UNK_0109` | `SM_TUTORIAL_GUIDE_STATE` | 1 | 3 bytes | Estado de exibição de guias de interface e tutoriais rápidos (`writeH(guideId)`, `writeC(state)`). |
-| **368** | `0x0170` | `0x02E0` | `SM_UNK_0170` | `SM_ZONE_HAZARD_LIST` | 1 | 2 bytes | Lista de zonas de perigo ambiental / clima dinâmico ativas no mapa (`writeH(count)`). |
+| Opcode Dec | Opcode Hex | Wire Hex | Nome Semântico | Ocorrências | Tamanho | Função Identificada |
+|---|---|---|---|---|---|---|
+| **385** | `0x0181` | `0x0291` | `SM_COMBAT_BURST_EFFECT` | 48 | 38 bytes | Aplicação de efeito de combate com coordenadas 3D (`skillId`, `targetId`, `duration`, `x, y, z`). |
+| **309** | `0x0135` | `0x012D` | `SM_AUTO_GROUP_STATUS` | 4 | 19 bytes | Matchmaking / fila de auto group e arenas (`instanceId`, `status`, `minLevel`, `maxLevel`). |
+| **272** | `0x0110` | `0x0100` | `SM_ACHIEVEMENT_SEASON_EVENT_INFO` | 1 | 36 bytes | Informação de temporada ativa de evento e passe de batalha. |
+| **275** | `0x0113` | `0x0103` | `SM_SPECIAL_SHOP_ITEM_LIST` | 1 | 756 bytes | Lista de 58 itens/recompensas da loja especial Classic 5.0. |
+| **375** | `0x0177` | `0x02EF` | `SM_EQUIPMENT_VIEW_STATE` | 1 | 6 bytes | Estado de visualização de equipamento e guarda-roupa (`type`, `count`, `state`). |
+| **265** | `0x0109` | `0x0119` | `SM_TUTORIAL_GUIDE_STATE` | 1 | 3 bytes | Estado de exibição de guias de interface e tutoriais rápidos (`guideId`, `state`). |
+| **368** | `0x0170` | `0x02E0` | `SM_ZONE_HAZARD_LIST` | 1 | 2 bytes | Lista de zonas de perigo ambiental / clima dinâmico ativas no mapa. |
+
 
 
 

@@ -1,16 +1,8 @@
 package com.aionemu.gameserver.network.aion.serverpackets;
 
-import com.aionemu.gameserver.network.aion.AionConnection;
-import com.aionemu.gameserver.network.aion.AionServerPacket;
-
 /**
- * Opcode 0x01AF (431) - SM_UNK_01AF (5 bytes)
- * Official Classic 5.0 wire: writeD(0) + writeC(0).
+ * @deprecated Use {@link SM_RADAR_INITIAL_STATE} instead.
  */
-public class SM_UNK_01AF extends AionServerPacket {
-    @Override
-    protected void writeImpl(AionConnection con) {
-        writeD(0);
-        writeC(0);
-    }
+@Deprecated
+public class SM_UNK_01AF extends SM_RADAR_INITIAL_STATE {
 }

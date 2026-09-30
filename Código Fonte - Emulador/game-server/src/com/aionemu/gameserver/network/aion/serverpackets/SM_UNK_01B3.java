@@ -1,15 +1,8 @@
 package com.aionemu.gameserver.network.aion.serverpackets;
 
-import com.aionemu.gameserver.network.aion.AionConnection;
-import com.aionemu.gameserver.network.aion.AionServerPacket;
-
 /**
- * Opcode 0x01B3 (435) - SM_UNK_01B3 (2 bytes)
- * Official Classic 5.0 wire: writeH(0).
+ * @deprecated Use {@link SM_MAILBOX_INITIAL_STATUS} instead.
  */
-public class SM_UNK_01B3 extends AionServerPacket {
-    @Override
-    protected void writeImpl(AionConnection con) {
-        writeH(0);
-    }
+@Deprecated
+public class SM_UNK_01B3 extends SM_MAILBOX_INITIAL_STATUS {
 }

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 import java.sql.SQLException;
 import com.aionemu.gameserver.dao.SielAnvilDAO;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_UNK_01AB;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_SIEL_ANVIL_POINTS_INFO;
 import com.aionemu.gameserver.GameServer;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.Item;
@@ -31,7 +31,7 @@ public final class SielAnvilService {
 	private static final int CRAFT_ERROR = 1403926;
 	private SielAnvilService() { }
 	public static void sendProgress(Player player) {
-		try { PacketSendUtility.sendPacket(player, new SM_UNK_01AB(SielAnvilDAO.load(player.getObjectId()))); }
+		try { PacketSendUtility.sendPacket(player, new SM_SIEL_ANVIL_POINTS_INFO(SielAnvilDAO.load(player.getObjectId()))); }
 		catch (SQLException e) { org.slf4j.LoggerFactory.getLogger(SielAnvilService.class).error("Cannot load Siel Anvil progress for {}", player.getObjectId(), e); }
 	}
 
