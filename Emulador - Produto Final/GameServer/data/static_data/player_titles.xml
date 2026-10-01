@@ -1428,7 +1428,7 @@
 			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="216" nameId="1199343" desc_en="You’re the first Brigade General to have conquered a fortress." desc_pt="Você é o primeiro idéia de Brigada a conquistar uma fortaleza." race="ASMODIANS" available="false">
+	<title id="216" nameId="1199343" desc_en="You’re the first Brigade General to have conquered a fortress." desc_pt="Você é o primeiro General de Brigada a conquistar uma fortaleza." race="ASMODIANS" available="false">
 		<modifiers>
 			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
@@ -2467,7 +2467,7 @@
 			<rate name="SPEED" value="4" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="461" nameId="1803094" desc_en="First Guardian General Vanquisher" desc_pt="Primeiro Guardião idéia Conquistador" race="PC_ALL">
+	<title id="461" nameId="1803094" desc_en="First Guardian General Vanquisher" desc_pt="Primeiro General Guardião Conquistador" race="PC_ALL">
 		<modifiers>
 			<add name="PHYSICAL_ACCURACY" value="15" bonus="true"/>
 			<add name="MAGICAL_ACCURACY" value="5" bonus="true"/>

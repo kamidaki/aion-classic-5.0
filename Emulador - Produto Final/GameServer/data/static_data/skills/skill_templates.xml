@@ -5558,7 +5558,7 @@
 		</actions>
 		<motion name="Areafire"/>
 	</skill_template>
-	<skill_template skill_id="463" name_en="Earth Shackle II" name_pt="Região autónoma da madeira da Terra II" nameId="287090" delayId="175" stack="KN_EARTHSHACKLE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="3000" duration="0" cancel_rate="20">
+	<skill_template skill_id="463" name_en="Earth Shackle II" name_pt="madeira da Terra II" nameId="287090" delayId="175" stack="KN_EARTHSHACKLE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="3000" duration="0" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="15" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="9" delta="0"/>
@@ -41991,7 +41991,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 		</effects>
 		<motion name="NormalFire"/>
 	</skill_template>
-	<skill_template skill_id="8684" name_en="Flight Time Increase" name_pt="Aumento do andamento de voo" nameId="702137" stack="CAPTCHA_FLYTIME" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="8684" name_en="Flight Time Increase" name_pt="Aumento do tempo de voo" nameId="702137" stack="CAPTCHA_FLYTIME" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_species="PC"/>
 		<startconditions>
 			<target value="PC"/>
@@ -43085,7 +43085,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			<procmphealinstant delta="100" e="2" element="WIND" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9864" name_en="Maximum Flight Time Increase Test Scroll 1" name_pt="Andamento de voo máximo Aumentar o rolo de teste 1" nameId="281641" name_desc="item_test_flymaxtime_01" stack="ITEM_TEST_FLYMAXTIME" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9864" name_en="Maximum Flight Time Increase Test Scroll 1" name_pt="tempo de voo máximo Aumentar o rolo de teste 1" nameId="281641" name_desc="item_test_flymaxtime_01" stack="ITEM_TEST_FLYMAXTIME" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -43099,7 +43099,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9865" name_en="Maximum Flight Time Increase Test Scroll 2" name_pt="Andamento de voo máximo Aumentar o rolo de teste 2" nameId="281642" name_desc="item_test_flymaxtime_02" stack="ITEM_TEST_FLYMAXTIME" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9865" name_en="Maximum Flight Time Increase Test Scroll 2" name_pt="tempo de voo máximo Aumentar o rolo de teste 2" nameId="281642" name_desc="item_test_flymaxtime_02" stack="ITEM_TEST_FLYMAXTIME" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -43725,7 +43725,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			<dispeldebuffmental delta="1" e="1" noresist="true" element="WATER"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9911" name_en="Flight Time Increase" name_pt="Aumento do andamento de voo" nameId="702137" name_desc="item_potion_flytime" stack="ITEM_POTION_FLYTIME" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9911" name_en="Flight Time Increase" name_pt="Aumento do tempo de voo" nameId="702137" name_desc="item_potion_flytime" stack="ITEM_POTION_FLYTIME" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -44619,7 +44619,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9973" name_en="Increase Maximum HP, Maximum MP and Maximum Flight Time" name_pt="Aumente o máximo de hp, MP máximo e andamento de vôo máximo" nameId="740387" name_desc="food_fp_maxhp_maxmp_6" stack="FOOD_FP_MAXHP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9973" name_en="Increase Maximum HP, Maximum MP and Maximum Flight Time" name_pt="Aumente o máximo de hp, MP máximo e tempo de voo máximo" nameId="740387" name_desc="food_fp_maxhp_maxmp_6" stack="FOOD_FP_MAXHP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -44705,7 +44705,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9977" name_en="Increase Magic Boost, Magical Accuracy, Maximum HP and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica, HP máximo e andamento de vôo máximo" nameId="295922" name_desc="food_fp_msboost_maccuracy_maxhp_6" stack="FOOD_FP_MSBOOST_MACCURACY_MAXHP_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9977" name_en="Increase Magic Boost, Magical Accuracy, Maximum HP and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica, HP máximo e tempo de voo máximo" nameId="295922" name_desc="food_fp_msboost_maccuracy_maxhp_6" stack="FOOD_FP_MSBOOST_MACCURACY_MAXHP_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -44897,7 +44897,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9986" name_en="Increase Maximum HP, Maximum MP and Maximum Flight Time" name_pt="Aumente o máximo de hp, MP máximo e andamento de vôo máximo" nameId="740387" name_desc="combo_food_fp_maxhp_maxmp_6" stack="FOOD_FP_MAXHP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9986" name_en="Increase Maximum HP, Maximum MP and Maximum Flight Time" name_pt="Aumente o máximo de hp, MP máximo e tempo de voo máximo" nameId="740387" name_desc="combo_food_fp_maxhp_maxmp_6" stack="FOOD_FP_MAXHP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -44983,7 +44983,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9990" name_en="Increase Magic Boost, Magical Accuracy, Maximum HP and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica, HP máximo e andamento de vôo máximo" nameId="295928" name_desc="combo_food_fp_msboost_maccuracy_maxhp_6" stack="COMBO_FOOD_FP_MSBOOST_MACCURACY_MAXHP_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9990" name_en="Increase Magic Boost, Magical Accuracy, Maximum HP and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica, HP máximo e tempo de voo máximo" nameId="295928" name_desc="combo_food_fp_msboost_maccuracy_maxhp_6" stack="COMBO_FOOD_FP_MSBOOST_MACCURACY_MAXHP_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -46594,7 +46594,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10075" name_en="Increase Maximum HP, Maximum MP and Maximum Flight Time" name_pt="Aumente o máximo de hp, MP máximo e andamento de vôo máximo" nameId="740387" name_desc="food_fp_maxhp_maxmp_4" stack="FOOD_FP_MAXHP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10075" name_en="Increase Maximum HP, Maximum MP and Maximum Flight Time" name_pt="Aumente o máximo de hp, MP máximo e tempo de voo máximo" nameId="740387" name_desc="food_fp_maxhp_maxmp_4" stack="FOOD_FP_MAXHP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -46734,7 +46734,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10082" name_en="Increase Maximum HP, Maximum MP and Maximum Flight Time" name_pt="Aumente o máximo de hp, MP máximo e andamento de vôo máximo" nameId="740387" name_desc="food_fp_maxhp_maxmp_5" stack="FOOD_FP_MAXHP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10082" name_en="Increase Maximum HP, Maximum MP and Maximum Flight Time" name_pt="Aumente o máximo de hp, MP máximo e tempo de voo máximo" nameId="740387" name_desc="food_fp_maxhp_maxmp_5" stack="FOOD_FP_MAXHP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47150,7 +47150,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10107" name_en="Increase Maximum HP, Maximum MP and Maximum Flight Time" name_pt="Aumente o máximo de hp, MP máximo e andamento de vôo máximo" nameId="740387" name_desc="combo_food_fp_maxhp_maxmp_4" stack="FOOD_FP_MAXHP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10107" name_en="Increase Maximum HP, Maximum MP and Maximum Flight Time" name_pt="Aumente o máximo de hp, MP máximo e tempo de voo máximo" nameId="740387" name_desc="combo_food_fp_maxhp_maxmp_4" stack="FOOD_FP_MAXHP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47290,7 +47290,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10114" name_en="Increase Maximum HP, Maximum MP and Maximum Flight Time" name_pt="Aumente o máximo de hp, MP máximo e andamento de vôo máximo" nameId="740387" name_desc="combo_food_fp_maxhp_maxmp_5" stack="FOOD_FP_MAXHP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10114" name_en="Increase Maximum HP, Maximum MP and Maximum Flight Time" name_pt="Aumente o máximo de hp, MP máximo e tempo de voo máximo" nameId="740387" name_desc="combo_food_fp_maxhp_maxmp_5" stack="FOOD_FP_MAXHP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -48890,7 +48890,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			<procmphealinstant value="2350" e="1" noresist="true" element="WATER"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10201" name_en="Recover Abyss Flight Time" name_pt="Recuperar o andamento de voo do Abismo" nameId="739385" name_desc="item_potion_a_flytime" stack="ITEM_POTION_A_FLYTIME" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10201" name_en="Recover Abyss Flight Time" name_pt="Recuperar o tempo de voo do Abismo" nameId="739385" name_desc="item_potion_a_flytime" stack="ITEM_POTION_A_FLYTIME" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -49680,7 +49680,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10257" name_en="Recover Abyss Flight Time" name_pt="Recuperar o andamento de voo do Abismo" nameId="739385" name_desc="item_potion_a_flytime_02" stack="ITEM_POTION_A_FLYTIME" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10257" name_en="Recover Abyss Flight Time" name_pt="Recuperar o tempo de voo do Abismo" nameId="739385" name_desc="item_potion_a_flytime_02" stack="ITEM_POTION_A_FLYTIME" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -52636,7 +52636,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10441" name_en="Transformation: Inquin" name_pt="Você foi atacado e ágora está sangrando." nameId="2280121" stack="CLASSIC_CANDY_L_SHAPE_PENGUINGREEN_MAG_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
+	<skill_template skill_id="10441" name_en="Transformation: Inquin" name_pt="Você foi atacado e agora está sangrando." nameId="2280121" stack="CLASSIC_CANDY_L_SHAPE_PENGUINGREEN_MAG_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -52656,7 +52656,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10442" name_en="Transformation: Inquin" name_pt="Você foi atacado e ágora está sangrando." nameId="2280121" stack="CLASSIC_CANDY_L_SHAPE_PENGUINNAVYBLUE_MAG_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
+	<skill_template skill_id="10442" name_en="Transformation: Inquin" name_pt="Você foi atacado e agora está sangrando." nameId="2280121" stack="CLASSIC_CANDY_L_SHAPE_PENGUINNAVYBLUE_MAG_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -52676,7 +52676,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10443" name_en="Transformation: Inquin" name_pt="Você foi atacado e ágora está sangrando." nameId="2280121" stack="CLASSIC_CANDY_L_SHAPE_PENGUINORANGE_MAG_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
+	<skill_template skill_id="10443" name_en="Transformation: Inquin" name_pt="Você foi atacado e agora está sangrando." nameId="2280121" stack="CLASSIC_CANDY_L_SHAPE_PENGUINORANGE_MAG_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -52696,7 +52696,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10444" name_en="Transformation: Inquin" name_pt="Você foi atacado e ágora está sangrando." nameId="2280121" stack="CLASSIC_CANDY_L_SHAPE_PENGUINRED_MAG_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
+	<skill_template skill_id="10444" name_en="Transformation: Inquin" name_pt="Você foi atacado e agora está sangrando." nameId="2280121" stack="CLASSIC_CANDY_L_SHAPE_PENGUINRED_MAG_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -52716,7 +52716,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10445" name_en="Transformation: Inquin" name_pt="Você foi atacado e ágora está sangrando." nameId="2280121" stack="CLASSIC_CANDY_L_SHAPE_PENGUINVIOLET_MAG_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
+	<skill_template skill_id="10445" name_en="Transformation: Inquin" name_pt="Você foi atacado e agora está sangrando." nameId="2280121" stack="CLASSIC_CANDY_L_SHAPE_PENGUINVIOLET_MAG_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -52736,7 +52736,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10446" name_en="Transformation: Inquin" name_pt="Você foi atacado e ágora está sangrando." nameId="2280121" stack="CLASSIC_CANDY_L_SHAPE_PENGUINYELLOW_MAG_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
+	<skill_template skill_id="10446" name_en="Transformation: Inquin" name_pt="Você foi atacado e agora está sangrando." nameId="2280121" stack="CLASSIC_CANDY_L_SHAPE_PENGUINYELLOW_MAG_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -52756,7 +52756,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10447" name_en="Transformation: Inquin" name_pt="Você foi atacado e ágora está sangrando." nameId="2280123" stack="CLASSIC_CANDY_L_SHAPE_PENGUINGREEN_HYD_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
+	<skill_template skill_id="10447" name_en="Transformation: Inquin" name_pt="Você foi atacado e agora está sangrando." nameId="2280123" stack="CLASSIC_CANDY_L_SHAPE_PENGUINGREEN_HYD_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -52776,7 +52776,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10448" name_en="Transformation: Inquin" name_pt="Você foi atacado e ágora está sangrando." nameId="2280123" stack="CLASSIC_CANDY_L_SHAPE_PENGUINNAVYBLUE_HYD_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
+	<skill_template skill_id="10448" name_en="Transformation: Inquin" name_pt="Você foi atacado e agora está sangrando." nameId="2280123" stack="CLASSIC_CANDY_L_SHAPE_PENGUINNAVYBLUE_HYD_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -52796,7 +52796,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10449" name_en="Transformation: Inquin" name_pt="Você foi atacado e ágora está sangrando." nameId="2280123" stack="CLASSIC_CANDY_L_SHAPE_PENGUINORANGE_HYD_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
+	<skill_template skill_id="10449" name_en="Transformation: Inquin" name_pt="Você foi atacado e agora está sangrando." nameId="2280123" stack="CLASSIC_CANDY_L_SHAPE_PENGUINORANGE_HYD_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -52816,7 +52816,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10450" name_en="Transformation: Inquin" name_pt="Você foi atacado e ágora está sangrando." nameId="2280123" stack="CLASSIC_CANDY_L_SHAPE_PENGUINRED_HYD_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
+	<skill_template skill_id="10450" name_en="Transformation: Inquin" name_pt="Você foi atacado e agora está sangrando." nameId="2280123" stack="CLASSIC_CANDY_L_SHAPE_PENGUINRED_HYD_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -52836,7 +52836,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10451" name_en="Transformation: Inquin" name_pt="Você foi atacado e ágora está sangrando." nameId="2280123" stack="CLASSIC_CANDY_L_SHAPE_PENGUINVIOLET_HYD_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
+	<skill_template skill_id="10451" name_en="Transformation: Inquin" name_pt="Você foi atacado e agora está sangrando." nameId="2280123" stack="CLASSIC_CANDY_L_SHAPE_PENGUINVIOLET_HYD_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -52856,7 +52856,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10452" name_en="Transformation: Inquin" name_pt="Você foi atacado e ágora está sangrando." nameId="2280123" stack="CLASSIC_CANDY_L_SHAPE_PENGUINYELLOW_HYD_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
+	<skill_template skill_id="10452" name_en="Transformation: Inquin" name_pt="Você foi atacado e agora está sangrando." nameId="2280123" stack="CLASSIC_CANDY_L_SHAPE_PENGUINYELLOW_HYD_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -55158,7 +55158,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10570" name_en="Lemonade Transformation" name_pt="O calor faz com que você sofra danos em intervalos regulares, mas seu medidor de vôo se regenera ao mesmo andamento." nameId="2280398" stack="CLASSIC_CANDY_L_SHAPE_SODA_PHY_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
+	<skill_template skill_id="10570" name_en="Lemonade Transformation" name_pt="O calor faz com que você sofra danos em intervalos regulares, mas seu medidor de vôo se regenera ao mesmo tempo." nameId="2280398" stack="CLASSIC_CANDY_L_SHAPE_SODA_PHY_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -55218,7 +55218,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10573" name_en="Lemonade Transformation" name_pt="O calor faz com que você sofra danos em intervalos regulares, mas seu medidor de vôo se regenera ao mesmo andamento." nameId="2280398" stack="CLASSIC_CANDY_D_SHAPE_SODA_PHY_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
+	<skill_template skill_id="10573" name_en="Lemonade Transformation" name_pt="O calor faz com que você sofra danos em intervalos regulares, mas seu medidor de vôo se regenera ao mesmo tempo." nameId="2280398" stack="CLASSIC_CANDY_D_SHAPE_SODA_PHY_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -92832,7 +92832,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="normalfire" instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="18557" name_en="Captain's Might" name_pt="Região autónoma da madeira do capitão" nameId="294130" delayId="100" stack="BNFI_PMATKUP_SELF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="18557" name_en="Captain's Might" name_pt="madeira do capitão" nameId="294130" delayId="100" stack="BNFI_PMATKUP_SELF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -115036,7 +115036,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</actions>
 		<motion name="elsummon2"/>
 	</skill_template>
-	<skill_template skill_id="2702" name_en="스킬 쿨타임 초기화" name_pt="Redefinir Andamento de Recarga de Habilidade" nameId="2281710" delayId="727" stack="SKILLCOOLTIMERESET_TEST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="5" duration="0" cancel_rate="20">
+	<skill_template skill_id="2702" name_en="스킬 쿨타임 초기화" name_pt="Redefinir tempo de recarga de Habilidade" nameId="2281710" delayId="727" stack="SKILLCOOLTIMERESET_TEST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="5" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="58" delta="2"/>
@@ -139998,7 +139998,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 	<skill_template skill_id="8785" name_en="Stunned" name_pt="Atordoado" nameId="294349" delayId="8785" stack="NORMALATTACK_STAGGER_5" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="3000">
 		<properties first_target="TARGET" target_type="ONLYONE" first_target_range="10" awr="true"/>
 	</skill_template>
-	<skill_template skill_id="8786" name_en="Siel’s Rapids" name_pt="Sua alma estava aflita, tornando você incapaz de controlar seu próprio corpo por um certo período de andamento. Esse estado pode ser remediado usando magia física de cura." nameId="2281349" delayId="8786" stack="IDPHAISTOS_WATERBOOM_ATTACK" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="5" ammospeed="60">
+	<skill_template skill_id="8786" name_en="Siel’s Rapids" name_pt="Sua alma estava aflita, tornando você incapaz de controlar seu próprio corpo por um certo período de tempo. Esse estado pode ser remediado usando magia física de cura." nameId="2281349" delayId="8786" stack="IDPHAISTOS_WATERBOOM_ATTACK" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="5" ammospeed="60">
 		<properties first_target="TARGET" first_target_range="1" target_relation="ENEMY" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -140326,7 +140326,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="8822" name_en="스킬 쿨타임 초기화" name_pt="Redefinir Andamento de Recarga de Habilidade" nameId="2281710" delayId="8822" stack="BM_RESET_LOWLEG" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="8822" name_en="스킬 쿨타임 초기화" name_pt="Redefinir tempo de recarga de Habilidade" nameId="2281710" delayId="8822" stack="BM_RESET_LOWLEG" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" target_type="ONLYONE" first_target_range="1"/>
 		<effects>
 			<skillcooltimereset first_cd="768" last_cd="772" delta="100" e="1" noresist="true"/>
@@ -140835,7 +140835,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<skillcooltimereset e="1" delta="30" noresist="true"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="8871" name_en="Oath of Accuracy Effect" name_pt="Você sofre danos contínuos com o ferrão de Bibaroka por um certo período de andamento." nameId="2283848" delayId="8871" stack="AS_HITMANMIND_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+	<skill_template skill_id="8871" name_en="Oath of Accuracy Effect" name_pt="Você sofre danos contínuos com o ferrão de Bibaroka por um certo período de tempo." nameId="2283848" delayId="8871" stack="AS_HITMANMIND_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="ME" first_target_range="1" target_distance="25" target_relation="MYPARTY" target_type="PARTY" target_maxcount="6" effective_range="25"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -145006,7 +145006,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<dispel e="1" dispeltype="EFFECTID" noresist="true" element="WATER"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10640" name_en="Flight Time Increase" name_pt="Aumento do andamento de voo" nameId="702137" delayId="10640" stack="ITEM_POTION_FLYTIME2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10640" name_en="Flight Time Increase" name_pt="Aumento do tempo de voo" nameId="702137" delayId="10640" stack="ITEM_POTION_FLYTIME2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -154958,7 +154958,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 		</effects>
 		<motion name="PointFire3"/>
 	</skill_template>
-	<skill_template skill_id="19855" name_en="Time-Out Removal" name_pt="Remoção de andamento limite" nameId="2286468" delayId="19855" stack="IDTIAMAT_PARALYZEDISPEL" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="19855" name_en="Time-Out Removal" name_pt="Remoção de tempo limite" nameId="2286468" delayId="19855" stack="IDTIAMAT_PARALYZEDISPEL" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_species="PC" first_target_range="2" target_distance="90" target_relation="ALL" target_type="AREA" target_maxcount="24" effective_range="90" effective_altitude="30"/>
 		<startconditions>
 			<target value="PC"/>
@@ -155993,7 +155993,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 		</effects>
 		<motion name="Normalfire"/>
 	</skill_template>
-	<skill_template skill_id="19947" name_en="Flame Cyclone" name_pt="Região autónoma da madeira de Caçador" nameId="2287909" delayId="19947" stack="IDDRAGONLORD_FXMON_BLAZETORNADO2_NORMALFIRE_FX" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="19947" name_en="Flame Cyclone" name_pt="madeira de Caçador" nameId="2287909" delayId="19947" stack="IDDRAGONLORD_FXMON_BLAZETORNADO2_NORMALFIRE_FX" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="35" target_distance="3" target_relation="ENEMY" target_type="AREA" target_maxcount="95" effective_range="3" effective_altitude="5"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H"/>
@@ -157333,7 +157333,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="PointFire1"/>
 	</skill_template>
-	<skill_template skill_id="20607" name_en="Siel’s Rapids" name_pt="Sua alma estava aflita, tornando você incapaz de controlar seu próprio corpo por um certo período de andamento. Esse estado pode ser remediado usando magia física de cura." nameId="2281349" delayId="104" stack="IDPHAISTOS_WATERBOOM" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="6000" dispel_category="STUN" ammospeed="60">
+	<skill_template skill_id="20607" name_en="Siel’s Rapids" name_pt="Sua alma estava aflita, tornando você incapaz de controlar seu próprio corpo por um certo período de tempo. Esse estado pode ser remediado usando magia física de cura." nameId="2281349" delayId="104" stack="IDPHAISTOS_WATERBOOM" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="6000" dispel_category="STUN" ammospeed="60">
 		<properties first_target="TARGET" first_target_range="50" target_distance="20" target_relation="ENEMY" target_type="AREA" target_maxcount="24" effective_range="20" effective_altitude="6"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -157537,7 +157537,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
-	<skill_template skill_id="20625" name_en="Siel’s Rapids" name_pt="Sua alma estava aflita, tornando você incapaz de controlar seu próprio corpo por um certo período de andamento. Esse estado pode ser remediado usando magia física de cura." nameId="2281349" delayId="104" stack="IDPHAISTOS_WATERBOOM_SHIELD" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="2000" dispel_category="BUFF">
+	<skill_template skill_id="20625" name_en="Siel’s Rapids" name_pt="Sua alma estava aflita, tornando você incapaz de controlar seu próprio corpo por um certo período de tempo. Esse estado pode ser remediado usando magia física de cura." nameId="2281349" delayId="104" stack="IDPHAISTOS_WATERBOOM_SHIELD" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="2000" dispel_category="BUFF">
 		<properties first_target="TARGET" first_target_range="50" target_distance="1" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -157568,7 +157568,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="areafire3"/>
 	</skill_template>
-	<skill_template skill_id="20628" name_en="Siel’s Rapids" name_pt="Sua alma estava aflita, tornando você incapaz de controlar seu próprio corpo por um certo período de andamento. Esse estado pode ser remediado usando magia física de cura." nameId="2281349" delayId="20628" stack="TEST_01_NORMALFIRE1_STUN" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="STUN">
+	<skill_template skill_id="20628" name_en="Siel’s Rapids" name_pt="Sua alma estava aflita, tornando você incapaz de controlar seu próprio corpo por um certo período de tempo. Esse estado pode ser remediado usando magia física de cura." nameId="2281349" delayId="20628" stack="TEST_01_NORMALFIRE1_STUN" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="STUN">
 		<properties first_target="ME" first_target_range="50" target_distance="50" target_relation="ENEMY" target_type="AREA" target_maxcount="6" effective_range="50" effective_altitude="50"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -158339,7 +158339,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="PointFire1"/>
 	</skill_template>
-	<skill_template skill_id="20698" name_en="Siel’s Rapids" name_pt="Sua alma estava aflita, tornando você incapaz de controlar seu próprio corpo por um certo período de andamento. Esse estado pode ser remediado usando magia física de cura." nameId="2281349" delayId="104" stack="IDTARTAROS_PHAISTOS_WATERBOOM" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="6000" dispel_category="STUN" ammospeed="60">
+	<skill_template skill_id="20698" name_en="Siel’s Rapids" name_pt="Sua alma estava aflita, tornando você incapaz de controlar seu próprio corpo por um certo período de tempo. Esse estado pode ser remediado usando magia física de cura." nameId="2281349" delayId="104" stack="IDTARTAROS_PHAISTOS_WATERBOOM" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="6000" dispel_category="STUN" ammospeed="60">
 		<properties first_target="TARGET" first_target_range="50" target_distance="20" target_relation="ENEMY" target_type="AREA" target_maxcount="24" effective_range="20" effective_altitude="6"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -159236,7 +159236,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="NormalFire"/>
 	</skill_template>
-	<skill_template skill_id="20791" name_en="Protective Hand" name_pt="A defesa física e a supressão mágica aumentam bastante por um período de andamento." nameId="2283445" delayId="20791" stack="IDINFINITY_BUFF_MAXHP" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF" tslot_level="2">
+	<skill_template skill_id="20791" name_en="Protective Hand" name_pt="A defesa física e a supressão mágica aumentam bastante por um período de tempo." nameId="2283445" delayId="20791" stack="IDINFINITY_BUFF_MAXHP" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF" tslot_level="2">
 		<properties first_target="ME" target_species="PC" first_target_range="100" target_distance="50" target_relation="ALL" target_type="AREA" target_maxcount="5" effective_range="50" effective_altitude="30"/>
 		<startconditions>
 			<target value="PC"/>
@@ -160365,7 +160365,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
-	<skill_template skill_id="20895" name_en="Grievous Blow" name_pt="Todos os ataques físicos são refletidos de volta ao inimigo por um certo período de andamento." nameId="2283691" delayId="1" stack="IDINFINITY_15F_NORMALATK" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="20895" name_en="Grievous Blow" name_pt="Todos os ataques físicos são refletidos de volta ao inimigo por um certo período de tempo." nameId="2283691" delayId="1" stack="IDINFINITY_15F_NORMALATK" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="4" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -160391,7 +160391,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="MultiATK"/>
 	</skill_template>
-	<skill_template skill_id="20897" name_en="Crippling Cut" name_pt="Todos os ataques mágicos são refletidos de volta ao inimigo por um certo período de andamento." nameId="2283695" delayId="1" stack="IDINFINITY_15F_POWERATK" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="20897" name_en="Crippling Cut" name_pt="Todos os ataques mágicos são refletidos de volta ao inimigo por um certo período de tempo." nameId="2283695" delayId="1" stack="IDINFINITY_15F_POWERATK" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="4" target_relation="ALL" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -164885,7 +164885,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 	<skill_template skill_id="21280" name_en="Continuum Guardian Arachi Summoning Skill" name_pt="Invocação do Guardião do Contínuo Arachi" nameId="2285206" delayId="21280" stack="NPC_SUMMON_LDF4B_LEGION_02" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
-	<skill_template skill_id="21281" name_en="Mutant Ruthless Ossek Summoning Skill" name_pt="O protetor de magma e o protetor de calor compartilham uma fonte de energia. Se você não eliminar os dois ao mesmo andamento, eles serão revividos." nameId="2285565" delayId="21281" stack="NPC_SUMMON_LDF4B_LEGION_01_SP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="21281" name_en="Mutant Ruthless Ossek Summoning Skill" name_pt="O protetor de magma e o protetor de calor compartilham uma fonte de energia. Se você não eliminar os dois ao mesmo tempo, eles serão revividos." nameId="2285565" delayId="21281" stack="NPC_SUMMON_LDF4B_LEGION_01_SP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
 	<skill_template skill_id="21282" name_en="Mutant Arachi Summoning Skill" name_pt="Calor seco" nameId="2285566" delayId="21282" stack="NPC_SUMMON_LDF4B_LEGION_02_SP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">

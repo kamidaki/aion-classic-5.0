@@ -6468,7 +6468,7 @@
 			<reward_item item_id="152201382" count="1" />
 		</rewards>
 	</quest>
-	<quest id="1905" name_en="[Craft] A Betua Wood Offering" name_pt="[Fabricação] Uma oferta de região autónoma da madeira de Betua" nameId="1102905" quest_zone="Sanctum" minlevel_permitted="10" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="1905" name_en="[Craft] A Betua Wood Offering" name_pt="[Fabricação] Uma oferta de madeira de Betua" nameId="1102905" quest_zone="Sanctum" minlevel_permitted="10" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="152020087" count="3" />
 		</collect_items>
@@ -12348,7 +12348,7 @@
 	<quest id="2628" name_en="Restive Spirits" name_pt="Espíritos inquietos" nameId="1103928" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards gold="53500" exp="2815297" />
 	</quest>
-	<quest id="2629" name_en="Once a Friend, Now an Enemy" name_pt="Uma vez um amigo, ágora um inimigo" nameId="1103929" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="30" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="2629" name_en="Once a Friend, Now an Enemy" name_pt="Uma vez um amigo, agora um inimigo" nameId="1103929" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="30" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards gold="15000" exp="1970708" />
 		<extended_rewards gold="24000">
 			<reward_item item_id="188053555" count="1" />
@@ -20427,7 +20427,7 @@
 			<finished quest_id="2529" />
 		</start_conditions>
 	</quest>
-	<quest id="4516" name_en="So Close, Yet So Far" name_pt="Tão perto, mas até ágora" nameId="1103766" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="10" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="4516" name_en="So Close, Yet So Far" name_pt="Tão perto, mas até agora" nameId="1103766" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="10" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards gold="3600" exp="690971">
 			<reward_item item_id="162000043" count="5" />
 		</rewards>
@@ -22857,7 +22857,7 @@
 			<quest_work_item item_id="182290279" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="5300" name_en="Wooden Staff Completion" name_pt="Conclusão da equipe de região autónoma da madeira" nameId="1190123" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40008" combine_skillpoint="1">
+	<quest id="5300" name_en="Wooden Staff Completion" name_pt="Conclusão da equipe de madeira" nameId="1190123" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40008" combine_skillpoint="1">
 		<collect_items>
 			<collect_item item_id="182290440" count="3" />
 		</collect_items>
@@ -22866,7 +22866,7 @@
 			<quest_work_item item_id="182290123" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="5301" name_en="Wooden Tableware Supplies" name_pt="Suprimentos de utensílios de mesa de região autónoma da madeira" nameId="1190124" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40008" combine_skillpoint="10">
+	<quest id="5301" name_en="Wooden Tableware Supplies" name_pt="Suprimentos de utensílios de mesa de madeira" nameId="1190124" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40008" combine_skillpoint="10">
 		<collect_items>
 			<collect_item item_id="182290441" count="6" />
 		</collect_items>
@@ -22875,7 +22875,7 @@
 			<quest_work_item item_id="182290124" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="5302" name_en="Wooden Cutting Board Supplies" name_pt="Suprimentos de tábua de corte de região autónoma da madeira" nameId="1190125" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40008" combine_skillpoint="20">
+	<quest id="5302" name_en="Wooden Cutting Board Supplies" name_pt="Suprimentos de tábua de corte de madeira" nameId="1190125" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40008" combine_skillpoint="20">
 		<collect_items>
 			<collect_item item_id="182290442" count="6" />
 		</collect_items>
@@ -22902,7 +22902,7 @@
 			<quest_work_item item_id="182290127" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="5305" name_en="Wooden Box Supplies" name_pt="Suprimentos de caixa de região autónoma da madeira" nameId="1190128" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40008" combine_skillpoint="50">
+	<quest id="5305" name_en="Wooden Box Supplies" name_pt="Suprimentos de caixa de madeira" nameId="1190128" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40008" combine_skillpoint="50">
 		<collect_items>
 			<collect_item item_id="182290445" count="6" />
 		</collect_items>
@@ -22956,7 +22956,7 @@
 			<quest_work_item item_id="182290133" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="5311" name_en="Wooden Rake Supplies" name_pt="Suprimentos de ancinho de região autónoma da madeira" nameId="1190134" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40008" combine_skillpoint="110">
+	<quest id="5311" name_en="Wooden Rake Supplies" name_pt="Suprimentos de ancinho de madeira" nameId="1190134" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40008" combine_skillpoint="110">
 		<collect_items>
 			<collect_item item_id="182290451" count="9" />
 		</collect_items>
@@ -22965,7 +22965,7 @@
 			<quest_work_item item_id="182290134" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="5312" name_en="Koa Wooden Door Supplies" name_pt="Suprimentos de porta de região autónoma da madeira koa" nameId="1190135" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40008" combine_skillpoint="120">
+	<quest id="5312" name_en="Koa Wooden Door Supplies" name_pt="Suprimentos de porta de madeira koa" nameId="1190135" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40008" combine_skillpoint="120">
 		<collect_items>
 			<collect_item item_id="182290452" count="9" />
 		</collect_items>
@@ -23010,7 +23010,7 @@
 			<quest_work_item item_id="182290139" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="5317" name_en="Wood Cabinet Supplies" name_pt="Suprimentos de gabinete de região autónoma da madeira" nameId="1190140" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40008" combine_skillpoint="170">
+	<quest id="5317" name_en="Wood Cabinet Supplies" name_pt="Suprimentos de gabinete de madeira" nameId="1190140" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40008" combine_skillpoint="170">
 		<collect_items>
 			<collect_item item_id="182290457" count="9" />
 		</collect_items>
@@ -23020,7 +23020,7 @@
 			<quest_work_item item_id="182290280" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="5318" name_en="Wooden Ladder Supplies" name_pt="Suprimentos de escada de região autónoma da madeira" nameId="1190141" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40008" combine_skillpoint="180">
+	<quest id="5318" name_en="Wooden Ladder Supplies" name_pt="Suprimentos de escada de madeira" nameId="1190141" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40008" combine_skillpoint="180">
 		<collect_items>
 			<collect_item item_id="182290458" count="9" />
 		</collect_items>
@@ -23048,7 +23048,7 @@
 			<quest_work_item item_id="182290281" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="5321" name_en="Wooden Bed Supplies" name_pt="Suprimentos de cama de região autónoma da madeira" nameId="1190144" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40008" combine_skillpoint="210">
+	<quest id="5321" name_en="Wooden Bed Supplies" name_pt="Suprimentos de cama de madeira" nameId="1190144" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40008" combine_skillpoint="210">
 		<collect_items>
 			<collect_item item_id="182290461" count="12" />
 		</collect_items>
@@ -23105,7 +23105,7 @@
 			<quest_work_item item_id="182290284" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="5327" name_en="Wooden Mallet Supplies" name_pt="Maço de região autónoma da madeira" nameId="1190150" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40008" combine_skillpoint="270">
+	<quest id="5327" name_en="Wooden Mallet Supplies" name_pt="Maço de madeira" nameId="1190150" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40008" combine_skillpoint="270">
 		<collect_items>
 			<collect_item item_id="182290467" count="12" />
 		</collect_items>
@@ -25557,7 +25557,7 @@
 			<quest_work_item item_id="182291279" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="6300" name_en="Wooden Staff Completion" name_pt="Conclusão da equipe de região autónoma da madeira" nameId="1195124" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40008" combine_skillpoint="1">
+	<quest id="6300" name_en="Wooden Staff Completion" name_pt="Conclusão da equipe de madeira" nameId="1195124" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40008" combine_skillpoint="1">
 		<collect_items>
 			<collect_item item_id="182291440" count="3" />
 		</collect_items>
@@ -25566,7 +25566,7 @@
 			<quest_work_item item_id="182291123" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="6301" name_en="Wooden Tableware Supplies" name_pt="Suprimentos de utensílios de mesa de região autónoma da madeira" nameId="1195125" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40008" combine_skillpoint="10">
+	<quest id="6301" name_en="Wooden Tableware Supplies" name_pt="Suprimentos de utensílios de mesa de madeira" nameId="1195125" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40008" combine_skillpoint="10">
 		<collect_items>
 			<collect_item item_id="182291441" count="6" />
 		</collect_items>
@@ -25575,7 +25575,7 @@
 			<quest_work_item item_id="182291124" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="6302" name_en="Wooden Cutting Board Supplies" name_pt="Suprimentos de tábua de corte de região autónoma da madeira" nameId="1195126" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40008" combine_skillpoint="20">
+	<quest id="6302" name_en="Wooden Cutting Board Supplies" name_pt="Suprimentos de tábua de corte de madeira" nameId="1195126" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40008" combine_skillpoint="20">
 		<collect_items>
 			<collect_item item_id="182291442" count="6" />
 		</collect_items>
@@ -25602,7 +25602,7 @@
 			<quest_work_item item_id="182291127" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="6305" name_en="Wooden Box Supplies" name_pt="Suprimentos de caixa de região autónoma da madeira" nameId="1195129" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40008" combine_skillpoint="50">
+	<quest id="6305" name_en="Wooden Box Supplies" name_pt="Suprimentos de caixa de madeira" nameId="1195129" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40008" combine_skillpoint="50">
 		<collect_items>
 			<collect_item item_id="182291445" count="6" />
 		</collect_items>
@@ -25656,7 +25656,7 @@
 			<quest_work_item item_id="182291133" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="6311" name_en="Wooden Rake Supplies" name_pt="Suprimentos de ancinho de região autónoma da madeira" nameId="1195135" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40008" combine_skillpoint="110">
+	<quest id="6311" name_en="Wooden Rake Supplies" name_pt="Suprimentos de ancinho de madeira" nameId="1195135" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40008" combine_skillpoint="110">
 		<collect_items>
 			<collect_item item_id="182291451" count="9" />
 		</collect_items>
@@ -25665,7 +25665,7 @@
 			<quest_work_item item_id="182291134" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="6312" name_en="Wrud Wooden Door Supplies" name_pt="Suprimentos de porta de região autónoma da madeira wrud" nameId="1195136" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40008" combine_skillpoint="120">
+	<quest id="6312" name_en="Wrud Wooden Door Supplies" name_pt="Suprimentos de porta de madeira wrud" nameId="1195136" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40008" combine_skillpoint="120">
 		<collect_items>
 			<collect_item item_id="182291452" count="9" />
 		</collect_items>
@@ -25710,7 +25710,7 @@
 			<quest_work_item item_id="182291139" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="6317" name_en="Wood Cabinet Supplies" name_pt="Suprimentos de gabinete de região autónoma da madeira" nameId="1195141" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40008" combine_skillpoint="170">
+	<quest id="6317" name_en="Wood Cabinet Supplies" name_pt="Suprimentos de gabinete de madeira" nameId="1195141" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40008" combine_skillpoint="170">
 		<collect_items>
 			<collect_item item_id="182291457" count="9" />
 		</collect_items>
@@ -25720,7 +25720,7 @@
 			<quest_work_item item_id="182291280" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="6318" name_en="Wooden Ladder Supplies" name_pt="Suprimentos de escada de região autónoma da madeira" nameId="1195142" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40008" combine_skillpoint="180">
+	<quest id="6318" name_en="Wooden Ladder Supplies" name_pt="Suprimentos de escada de madeira" nameId="1195142" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40008" combine_skillpoint="180">
 		<collect_items>
 			<collect_item item_id="182291458" count="9" />
 		</collect_items>
@@ -25748,7 +25748,7 @@
 			<quest_work_item item_id="182291281" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="6321" name_en="Wooden Bed Supplies" name_pt="Suprimentos de cama de região autónoma da madeira" nameId="1195145" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40008" combine_skillpoint="210">
+	<quest id="6321" name_en="Wooden Bed Supplies" name_pt="Suprimentos de cama de madeira" nameId="1195145" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40008" combine_skillpoint="210">
 		<collect_items>
 			<collect_item item_id="182291461" count="12" />
 		</collect_items>
@@ -25805,7 +25805,7 @@
 			<quest_work_item item_id="182291284" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="6327" name_en="Wooden Mallet Supplies" name_pt="Maço de região autónoma da madeira" nameId="1195151" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40008" combine_skillpoint="270">
+	<quest id="6327" name_en="Wooden Mallet Supplies" name_pt="Maço de madeira" nameId="1195151" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40008" combine_skillpoint="270">
 		<collect_items>
 			<collect_item item_id="182291467" count="12" />
 		</collect_items>
@@ -31393,7 +31393,7 @@
 			<finished quest_id="10021" />
 		</start_conditions>
 	</quest>
-	<quest id="11457" name_en="Wood-n't You Know It?" name_pt="Região autónoma da madeira-você não sabe disso?" nameId="1125507" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="11457" name_en="Wood-n't You Know It?" name_pt="madeira-você não sabe disso?" nameId="1125507" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="182209506" count="1" />
 		</collect_items>
@@ -45984,7 +45984,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 			<finished quest_id="20021" />
 		</start_conditions>
 	</quest>
-	<quest id="21457" name_en="Heart of Wood" name_pt="Coração de região autónoma da madeira" nameId="1125519" quest_zone="Gelkmaros" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="21457" name_en="Heart of Wood" name_pt="Coração de madeira" nameId="1125519" quest_zone="Gelkmaros" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="182209517" count="1" />
 		</collect_items>
@@ -51812,7 +51812,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 		</rewards>
 		<quest_drop npc_id="702750" item_id="182215704" drop_each_member="1" />
 	</quest>
-	<quest id="25020" name_en="Rotron Cursed Tree Wood" name_pt="Região autónoma da madeira de Árvore Amaldiçoada por Rotron" nameId="1800837" quest_zone="Enshar" minlevel_permitted="57" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
+	<quest id="25020" name_en="Rotron Cursed Tree Wood" name_pt="madeira de Árvore Amaldiçoada por Rotron" nameId="1800837" quest_zone="Enshar" minlevel_permitted="57" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215705" count="10" />
 		</collect_items>
@@ -61362,7 +61362,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<reward_item item_id="188051125" count="1" />
 		</rewards>
 	</quest>
-	<quest id="37006" name_en="[Daily] Now You See Them..." name_pt="[Diária] Ágora você os vê .." nameId="1126145" quest_zone="STR_FACTION_Mentee_Li" minlevel_permitted="99" maxlevel_permitted="39" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="FACTION">
+	<quest id="37006" name_en="[Daily] Now You See Them..." name_pt="[Diária] Agora você os vê .." nameId="1126145" quest_zone="STR_FACTION_Mentee_Li" minlevel_permitted="99" maxlevel_permitted="39" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="FACTION">
 		<rewards exp="178500">
 			<reward_item item_id="186000004" count="9" />
 			<reward_item item_id="188051125" count="1" />
@@ -72995,7 +72995,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<reward_item item_id="185000199" count="1" />
 		</rewards>
 	</quest>
-	<quest id="80629" name_en="Broken off from a set of Noble Odiums and now fallen to pieces." name_pt="Fragmentado de um conjunto de Ódios Nobres e ágora reduzido a pedaços." nameId="1800326" quest_zone="Event" minlevel_permitted="30" max_repeat_count="255" race_permitted="ELYOS" category="EVENT">
+	<quest id="80629" name_en="Broken off from a set of Noble Odiums and now fallen to pieces." name_pt="Fragmentado de um conjunto de Ódios Nobres e agora reduzido a pedaços." nameId="1800326" quest_zone="Event" minlevel_permitted="30" max_repeat_count="255" race_permitted="ELYOS" category="EVENT">
 		<collect_items>
 			<collect_item item_id="160010400" count="1" />
 			<collect_item item_id="160010401" count="1" />
@@ -73775,7 +73775,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 		<quest_drop npc_id="219033" item_id="182215810" drop_each_member="1" />
 		<quest_drop npc_id="215081" item_id="182215810" drop_each_member="1" />
 	</quest>
-	<quest id="80728" name_en="The faded pendant gives you a sense of how much time has passed." name_pt="O pingente desbotado dá uma noção de quanto andamento já se passou." nameId="1801313" quest_zone="Event" minlevel_permitted="40" max_repeat_count="1" cannot_share="true" race_permitted="PC_ALL" category="EVENT" data_driven="true">
+	<quest id="80728" name_en="The faded pendant gives you a sense of how much time has passed." name_pt="O pingente desbotado dá uma noção de quanto tempo já se passou." nameId="1801313" quest_zone="Event" minlevel_permitted="40" max_repeat_count="1" cannot_share="true" race_permitted="PC_ALL" category="EVENT" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215811" count="6" />
 		</collect_items>

@@ -5893,7 +5893,7 @@
 		<weapon_stats hit_count="2" attack_range="1500" parry="173" critical="50" attack_speed="1400" max_damage="20" min_damage="16"/>
 		<idian burn_attack="29" burn_defend="12"/>
 	</item_template>
-	<item_template id="100000909" name_en="All Timeout Test Cash Sword" name_pt="Teste de andamento limite espada de dinheiro" level="1" cName="test_sword_time_01" mask="24136" item_group="SWORD" quality="COMMON" price="5" desc="752851" attack_type="PHYSICAL" expire_time="5" enchant_group="common_enchant" client_mask="39208">
+	<item_template id="100000909" name_en="All Timeout Test Cash Sword" name_pt="Teste de tempo limite espada de dinheiro" level="1" cName="test_sword_time_01" mask="24136" item_group="SWORD" quality="COMMON" price="5" desc="752851" attack_type="PHYSICAL" expire_time="5" enchant_group="common_enchant" client_mask="39208">
 		<actions>
 			<remodel type="3" minutes="3"/>
 		</actions>
@@ -187053,7 +187053,7 @@
 			<add name="MAXMP" value="56" bonus="true"/>
 		</modifiers>
 	</item_template>
-	<item_template id="112300293" name_en="Assassin's Shoulderguards" name_pt="Assassino -deve -serrgões" level="47" cName="lt_shoulder_n_r1_47a" mask="53502" item_group="LT_SHOULDER" quality="RARE" price="814950" option_slot_bonus="1" restrict="47 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47" desc="708780" max_enchant="15" m_slots="2" enchant_group="rare_enchant" client_mask="33406">
+	<item_template id="112300293" name_en="Assassin's Shoulderguards" name_pt="Assassino  de Placas de Ombro" level="47" cName="lt_shoulder_n_r1_47a" mask="53502" item_group="LT_SHOULDER" quality="RARE" price="814950" option_slot_bonus="1" restrict="47 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47" desc="708780" max_enchant="15" m_slots="2" enchant_group="rare_enchant" client_mask="33406">
 		<modifiers>
 			<add name="EVASION" value="100"/>
 			<add name="MAGICAL_RESIST" value="60"/>
@@ -187077,7 +187077,7 @@
 			<add name="MAXMP" value="38" bonus="true"/>
 		</modifiers>
 	</item_template>
-	<item_template id="112300296" name_en="Sura's Shoulderguards" name_pt="Sura -deve -serrgões" level="27" cName="lt_shoulder_d_n_r1_27a" mask="53502" item_group="LT_SHOULDER" quality="RARE" price="46900" option_slot_bonus="1" restrict="27 27 27 27 27 27 27 27 27 27 27 27 27 27 27 27 27" desc="709852" max_enchant="15" m_slots="2" enchant_group="rare_enchant" client_mask="33406">
+	<item_template id="112300296" name_en="Sura's Shoulderguards" name_pt="Sura  de Placas de Ombro" level="27" cName="lt_shoulder_d_n_r1_27a" mask="53502" item_group="LT_SHOULDER" quality="RARE" price="46900" option_slot_bonus="1" restrict="27 27 27 27 27 27 27 27 27 27 27 27 27 27 27 27 27" desc="709852" max_enchant="15" m_slots="2" enchant_group="rare_enchant" client_mask="33406">
 		<modifiers>
 			<add name="EVASION" value="73"/>
 			<add name="MAGICAL_RESIST" value="39"/>
@@ -189102,7 +189102,7 @@
 			<add name="MAGICAL_RESIST" value="10" bonus="true"/>
 		</modifiers>
 	</item_template>
-	<item_template id="112300547" name_en="Assassin's Shoulderguards" name_pt="Assassino -deve -serrgões" level="47" cName="lt_shoulder_n_r1_47b" mask="53502" item_group="LT_SHOULDER" quality="RARE" price="814950" option_slot_bonus="1" restrict="47 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47" desc="721684" max_enchant="15" m_slots="2" enchant_group="rare_enchant" client_mask="33406">
+	<item_template id="112300547" name_en="Assassin's Shoulderguards" name_pt="Assassino  de Placas de Ombro" level="47" cName="lt_shoulder_n_r1_47b" mask="53502" item_group="LT_SHOULDER" quality="RARE" price="814950" option_slot_bonus="1" restrict="47 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47" desc="721684" max_enchant="15" m_slots="2" enchant_group="rare_enchant" client_mask="33406">
 		<modifiers>
 			<add name="EVASION" value="100"/>
 			<add name="MAGICAL_RESIST" value="60"/>
@@ -189158,7 +189158,7 @@
 			<add name="EVASION" value="11" bonus="true"/>
 		</modifiers>
 	</item_template>
-	<item_template id="112300554" name_en="Assassin's Shoulderguards" name_pt="Assassino -deve -serrgões" level="47" cName="lt_shoulder_n_r1_47c" mask="53502" item_group="LT_SHOULDER" quality="RARE" price="814950" option_slot_bonus="1" restrict="47 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47" desc="721691" max_enchant="15" m_slots="2" enchant_group="rare_enchant" client_mask="33406">
+	<item_template id="112300554" name_en="Assassin's Shoulderguards" name_pt="Assassino  de Placas de Ombro" level="47" cName="lt_shoulder_n_r1_47c" mask="53502" item_group="LT_SHOULDER" quality="RARE" price="814950" option_slot_bonus="1" restrict="47 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47" desc="721691" max_enchant="15" m_slots="2" enchant_group="rare_enchant" client_mask="33406">
 		<modifiers>
 			<add name="EVASION" value="100"/>
 			<add name="MAGICAL_RESIST" value="60"/>
@@ -189182,7 +189182,7 @@
 			<add name="MAGICAL_RESIST" value="6" bonus="true"/>
 		</modifiers>
 	</item_template>
-	<item_template id="112300557" name_en="Sura's Shoulderguards" name_pt="Sura -deve -serrgões" level="27" cName="lt_shoulder_d_n_r1_27b" mask="53502" item_group="LT_SHOULDER" quality="RARE" price="46900" option_slot_bonus="1" restrict="27 27 27 27 27 27 27 27 27 27 27 27 27 27 27 27 27" desc="721694" max_enchant="15" m_slots="2" enchant_group="rare_enchant" client_mask="33406">
+	<item_template id="112300557" name_en="Sura's Shoulderguards" name_pt="Sura  de Placas de Ombro" level="27" cName="lt_shoulder_d_n_r1_27b" mask="53502" item_group="LT_SHOULDER" quality="RARE" price="46900" option_slot_bonus="1" restrict="27 27 27 27 27 27 27 27 27 27 27 27 27 27 27 27 27" desc="721694" max_enchant="15" m_slots="2" enchant_group="rare_enchant" client_mask="33406">
 		<modifiers>
 			<add name="EVASION" value="73"/>
 			<add name="MAGICAL_RESIST" value="39"/>
@@ -189238,7 +189238,7 @@
 			<add name="EVASION" value="7" bonus="true"/>
 		</modifiers>
 	</item_template>
-	<item_template id="112300564" name_en="Sura's Shoulderguards" name_pt="Sura -deve -serrgões" level="27" cName="lt_shoulder_d_n_r1_27c" mask="53502" item_group="LT_SHOULDER" quality="RARE" price="46900" option_slot_bonus="1" restrict="27 27 27 27 27 27 27 27 27 27 27 27 27 27 27 27 27" desc="721701" max_enchant="15" m_slots="2" enchant_group="rare_enchant" client_mask="33406">
+	<item_template id="112300564" name_en="Sura's Shoulderguards" name_pt="Sura  de Placas de Ombro" level="27" cName="lt_shoulder_d_n_r1_27c" mask="53502" item_group="LT_SHOULDER" quality="RARE" price="46900" option_slot_bonus="1" restrict="27 27 27 27 27 27 27 27 27 27 27 27 27 27 27 27 27" desc="721701" max_enchant="15" m_slots="2" enchant_group="rare_enchant" client_mask="33406">
 		<modifiers>
 			<add name="EVASION" value="73"/>
 			<add name="MAGICAL_RESIST" value="39"/>
@@ -449632,7 +449632,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 			<add name="PHYSICAL_CRITICAL" value="21" bonus="true"/>
 		</modifiers>
 	</item_template>
-	<item_template id="167000590" name_en="Manastone: Max. Flight Time +9" name_pt="Pedra de Mana: Max. Andamento de Voo +9" level="60" cName="matter_option_l_flytime" mask="24666" item_group="MANASTONE" quality="LEGEND" price="100" desc="810620" max_stack_count="10000" activate_count="1" combat_power="51" client_mask="24890">
+	<item_template id="167000590" name_en="Manastone: Max. Flight Time +9" name_pt="Pedra de Mana: Max. tempo de voo +9" level="60" cName="matter_option_l_flytime" mask="24666" item_group="MANASTONE" quality="LEGEND" price="100" desc="810620" max_stack_count="10000" activate_count="1" combat_power="51" client_mask="24890">
 		<modifiers>
 			<add name="FLY_TIME" value="9" bonus="true"/>
 		</modifiers>
@@ -449702,7 +449702,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 			<add name="PHYSICAL_CRITICAL" value="30" bonus="true"/>
 		</modifiers>
 	</item_template>
-	<item_template id="167000604" name_en="Manastone: Max. Flight Time +14" name_pt="Pedra de Mana: Max. Andamento de Voo +14" level="60" cName="matter_option_u_flytime" mask="24666" item_group="MANASTONE" quality="UNIQUE" price="100" desc="814761" max_stack_count="10000" activate_count="1" combat_power="81" client_mask="24890">
+	<item_template id="167000604" name_en="Manastone: Max. Flight Time +14" name_pt="Pedra de Mana: Max. tempo de voo +14" level="60" cName="matter_option_u_flytime" mask="24666" item_group="MANASTONE" quality="UNIQUE" price="100" desc="814761" max_stack_count="10000" activate_count="1" combat_power="81" client_mask="24890">
 		<modifiers>
 			<add name="FLY_TIME" value="14" bonus="true"/>
 		</modifiers>
@@ -467456,7 +467456,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182201423" name_en="Shining Scale" name_pt="Escala brilhante" level="1" cName="quest_1460a" mask="24640" max_stack_count="100" item_group="QUEST" quality="COMMON" price="1" desc="1106942" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182201424" name_en="Crude Wood Bottle" name_pt="Garrafa de região autónoma da madeira bruta" level="1" cName="quest_3303a" mask="24640" max_stack_count="100" item_group="QUEST" quality="COMMON" price="1" desc="1106944" client_mask="25888">
+	<item_template id="182201424" name_en="Crude Wood Bottle" name_pt="Garrafa de madeira bruta" level="1" cName="quest_3303a" mask="24640" max_stack_count="100" item_group="QUEST" quality="COMMON" price="1" desc="1106944" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182201425" name_en="Ruthless Fangwing Wings" name_pt="Asas de fangwing implacáveis" level="1" cName="quest_3310a" mask="24640" max_stack_count="100" item_group="QUEST" quality="COMMON" price="1" desc="1106946" client_mask="25888">
@@ -470389,7 +470389,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 		<uselimits usedelay="2000" usedelayid="41"/>
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182205669" name_en="Wood Armour" name_pt="Armadura de região autónoma da madeira" level="1" cName="quest_2718b" mask="16449" item_group="QUEST" quality="COMMON" price="1" desc="1107837" client_mask="17697">
+	<item_template id="182205669" name_en="Wood Armour" name_pt="Armadura de madeira" level="1" cName="quest_2718b" mask="16449" item_group="QUEST" quality="COMMON" price="1" desc="1107837" client_mask="17697">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182205670" name_en="Pressa Muffin" name_pt="Pressin Queque" level="1" cName="quest_2718c" mask="16449" item_group="QUEST" quality="COMMON" price="1" desc="1107839" client_mask="17697">
@@ -472882,10 +472882,10 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182207853" name_en="Fundin's Report" name_pt="Relatório do Fundin" level="1" cName="quest_21063b" mask="16449" item_group="QUEST" quality="COMMON" price="1" race="ASMODIANS" desc="1132106" client_mask="17697">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182207854" name_en="Wood Board" name_pt="Placa de região autónoma da madeira" level="1" cName="quest_21100a" mask="24640" max_stack_count="100" item_group="QUEST" quality="COMMON" price="1" race="ASMODIANS" desc="1132110" client_mask="25888">
+	<item_template id="182207854" name_en="Wood Board" name_pt="Placa de madeira" level="1" cName="quest_21100a" mask="24640" max_stack_count="100" item_group="QUEST" quality="COMMON" price="1" race="ASMODIANS" desc="1132110" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182207855" name_en="Cursed Tree Wood" name_pt="Região autónoma da madeira da árvore amaldiçoada" level="1" cName="quest_21101a" mask="16449" item_group="QUEST" quality="COMMON" price="1" race="ASMODIANS" desc="1132112" client_mask="17697">
+	<item_template id="182207855" name_en="Cursed Tree Wood" name_pt="madeira da árvore amaldiçoada" level="1" cName="quest_21101a" mask="16449" item_group="QUEST" quality="COMMON" price="1" race="ASMODIANS" desc="1132112" client_mask="17697">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182207856" name_en="Debris Fragment" name_pt="Fragmento de detritos" level="1" cName="quest_21104a" mask="24640" max_stack_count="100" item_group="QUEST" quality="COMMON" price="1" race="ASMODIANS" desc="1132114" client_mask="25888">
@@ -473515,7 +473515,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 		<uselimits usedelay="2000" usedelayid="41"/>
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182208063" name_en="Split Wooden Board" name_pt="Placa de região autónoma da madeira dividida" level="1" cName="doc_quest_3087a" mask="16449" quality="COMMON" price="1" desc="1115132" activate_target="STANDALONE" activate_count="1000" item_group="QUEST" client_mask="17697">
+	<item_template id="182208063" name_en="Split Wooden Board" name_pt="Placa de madeira dividida" level="1" cName="doc_quest_3087a" mask="16449" quality="COMMON" price="1" desc="1115132" activate_target="STANDALONE" activate_count="1000" item_group="QUEST" client_mask="17697">
 		<actions>
 			<read/>
 		</actions>
@@ -474087,7 +474087,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182209505" name_en="Mutant Chromosome" name_pt="Cromossomo mutante" level="1" cName="quest_11456a" mask="24640" max_stack_count="100" item_group="QUEST" quality="COMMON" price="1" race="ELYOS" desc="1131010" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182209506" name_en="Wooden Core" name_pt="Núcleo de região autónoma da madeira" level="1" cName="quest_11457a" mask="16448" item_group="QUEST" quality="COMMON" price="1" race="ELYOS" desc="1131012" client_mask="17696">
+	<item_template id="182209506" name_en="Wooden Core" name_pt="Núcleo de madeira" level="1" cName="quest_11457a" mask="16448" item_group="QUEST" quality="COMMON" price="1" race="ELYOS" desc="1131012" client_mask="17696">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182209507" name_en="Research Report" name_pt="Relatório de pesquisa" level="1" cName="quest_11458a" mask="16448" item_group="QUEST" quality="COMMON" price="1" race="ELYOS" desc="1131014" client_mask="17696">
@@ -474124,7 +474124,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182209516" name_en="Insect Sample" name_pt="Amostra de insetos" level="1" cName="quest_21456a" mask="24640" max_stack_count="100" item_group="QUEST" quality="COMMON" price="1" race="ASMODIANS" desc="1131032" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182209517" name_en="Core Wood" name_pt="Região autónoma da madeira n amer central telefônica. • 1 central" level="1" cName="quest_21457a" mask="16448" item_group="QUEST" quality="COMMON" price="1" race="ASMODIANS" desc="1131034" client_mask="17696">
+	<item_template id="182209517" name_en="Core Wood" name_pt="madeira n amer central telefônica. • 1 central" level="1" cName="quest_21457a" mask="16448" item_group="QUEST" quality="COMMON" price="1" race="ASMODIANS" desc="1131034" client_mask="17696">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182209518" name_en="Research Report" name_pt="Relatório de pesquisa" level="1" cName="quest_21458a" mask="16448" item_group="QUEST" quality="COMMON" price="1" race="ASMODIANS" desc="1131036" client_mask="17696">
@@ -474718,7 +474718,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 		<uselimits usedelay="2000" usedelayid="61"/>
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182211022" name_en="Wood Staff" name_pt="Funcionários da região autónoma da madeira" level="1" cName="quest_46509a" mask="16449" item_group="QUEST" quality="COMMON" price="1" race="ASMODIANS" desc="1134044" client_mask="17697">
+	<item_template id="182211022" name_en="Wood Staff" name_pt="Funcionários da madeira" level="1" cName="quest_46509a" mask="16449" item_group="QUEST" quality="COMMON" price="1" race="ASMODIANS" desc="1134044" client_mask="17697">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182211023" name_en="Bait 2" name_pt="Isca 2" level="1" cName="quest_46511a" mask="16449" item_group="QUEST" quality="COMMON" price="1" race="ASMODIANS" desc="1134046" client_mask="17697">
@@ -476051,7 +476051,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182215230" name_en="Puca Skull" name_pt="Crânio de Puca" level="1" cName="quest_9639a" mask="24640" item_group="QUEST" quality="COMMON" price="1" desc="1800835" max_stack_count="100" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182215231" name_en="Rotron Cursed Tree Wood" name_pt="Região autónoma da madeira de Árvore Amaldiçoada por Rotron" level="1" cName="quest_9640a" mask="24640" item_group="QUEST" quality="COMMON" price="1" desc="1800837" max_stack_count="100" client_mask="25888">
+	<item_template id="182215231" name_en="Rotron Cursed Tree Wood" name_pt="madeira de Árvore Amaldiçoada por Rotron" level="1" cName="quest_9640a" mask="24640" item_group="QUEST" quality="COMMON" price="1" desc="1800837" max_stack_count="100" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182215232" name_en="Avad Fighter’s Emergency Rations" name_pt="Rações de Emergência do Lutador Avad" level="1" cName="quest_60101a" mask="24640" item_group="QUEST" quality="COMMON" price="1" desc="1800907" race="ELYOS" max_stack_count="100" client_mask="25888">
@@ -476444,7 +476444,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182215345" name_en="테스트_9662b" name_pt="테스트_9662b" level="1" cName="quest_9661b" mask="8193" item_group="QUEST" quality="COMMON" price="1" desc="1801423" max_stack_count="100" client_mask="25857">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182215346" name_en="Cinderwood" name_pt="Região autónoma da madeira cinzenta" level="1" cName="quest_31002a" mask="16449" item_group="QUEST" quality="COMMON" price="1" desc="1801473" client_mask="17697">
+	<item_template id="182215346" name_en="Cinderwood" name_pt="madeira cinzenta" level="1" cName="quest_31002a" mask="16449" item_group="QUEST" quality="COMMON" price="1" desc="1801473" client_mask="17697">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182215347" name_en="Flamehunger Fan" name_pt="Ventilador Fome de Chamas" level="1" cName="quest_31002b" mask="16449" item_group="QUEST" quality="COMMON" price="1" desc="1801474" client_mask="17697">
@@ -477255,7 +477255,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182215600" name_en="Mookie Steelthorns" name_pt="Mookie Espinho-de-Aço" level="1" cName="quest_20161b" mask="24640" item_group="QUEST" quality="COMMON" price="1" desc="1802633" race="ASMODIANS" max_stack_count="100" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182215601" name_en="Wood Board" name_pt="Placa de região autónoma da madeira" level="1" cName="quest_20162a" mask="24640" item_group="QUEST" quality="COMMON" price="1" desc="1802634" race="ASMODIANS" max_stack_count="100" client_mask="25888">
+	<item_template id="182215601" name_en="Wood Board" name_pt="Placa de madeira" level="1" cName="quest_20162a" mask="24640" item_group="QUEST" quality="COMMON" price="1" desc="1802634" race="ASMODIANS" max_stack_count="100" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182215602" name_en="Flute" name_pt="Flauta" level="1" cName="quest_20162b" mask="16449" item_group="QUEST" quality="COMMON" price="1" desc="1802635" race="ASMODIANS" client_mask="17697">
@@ -477910,13 +477910,13 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182290122" name_en="Issued Tough Leather Pad" name_pt="Bloco de couro resistente emitido" level="1" cName="item_part_ta_q5240_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1191123" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182290123" name_en="Coarse Wooden Staff" name_pt="Funcionários grossos de região autónoma da madeira" level="1" cName="item_part_ha_q5300_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1191124" item_group="QUEST" client_mask="25888">
+	<item_template id="182290123" name_en="Coarse Wooden Staff" name_pt="Funcionários grossos de madeira" level="1" cName="item_part_ha_q5300_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1191124" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182290124" name_en="Issued Betua Wood" name_pt="Emitiu Betua Região autónoma da madeira" level="1" cName="item_part_ha_q5301_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1191125" item_group="QUEST" client_mask="25888">
+	<item_template id="182290124" name_en="Issued Betua Wood" name_pt="Emitiu Betua madeira" level="1" cName="item_part_ha_q5301_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1191125" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182290125" name_en="Issued Betua Wood" name_pt="Emitiu Betua Região autónoma da madeira" level="1" cName="item_part_ha_q5302_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1191126" item_group="QUEST" client_mask="25888">
+	<item_template id="182290125" name_en="Issued Betua Wood" name_pt="Emitiu Betua madeira" level="1" cName="item_part_ha_q5302_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1191126" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182290126" name_en="Issued Silver Ingot" name_pt="Emitido lingote de prata" level="1" cName="item_part_ha_q5303_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1191127" item_group="QUEST" client_mask="25888">
@@ -477931,7 +477931,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182290129" name_en="Issued Silver Ingot" name_pt="Emitido lingote de prata" level="1" cName="item_part_ha_q5306_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1191130" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182290130" name_en="Issued Betua Wood" name_pt="Emitiu Betua Região autónoma da madeira" level="1" cName="item_part_ha_q5307_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1191131" item_group="QUEST" client_mask="25888">
+	<item_template id="182290130" name_en="Issued Betua Wood" name_pt="Emitiu Betua madeira" level="1" cName="item_part_ha_q5307_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1191131" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182290131" name_en="Issued Betua Board" name_pt="Emitiu Quadro Betua" level="1" cName="item_part_ha_q5308_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1191132" item_group="QUEST" client_mask="25888">
@@ -477988,7 +477988,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182290148" name_en="Cracked Ulmus Staff" name_pt="Funcionários Ulmus rachados" level="1" cName="item_part_ha_q5325_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1191149" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182290149" name_en="Issued Ulmus Wood" name_pt="Emitiu Ulmus Região autónoma da madeira" level="1" cName="item_part_ha_q5326_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1191150" item_group="QUEST" client_mask="25888">
+	<item_template id="182290149" name_en="Issued Ulmus Wood" name_pt="Emitiu Ulmus madeira" level="1" cName="item_part_ha_q5326_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1191150" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182290150" name_en="Issued Ulmus Rod" name_pt="Emitiu Ulmus Haste" level="1" cName="item_part_ha_q5327_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1191151" item_group="QUEST" client_mask="25888">
@@ -478396,7 +478396,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182290284" name_en="Issued Sobi Textile" name_pt="Emitiu Sobi têxtil" level="1" cName="item_part_ha_q5326_b" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1191285" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182290285" name_en="Issued Ulmus Wood" name_pt="Emitiu Ulmus Região autónoma da madeira" level="1" cName="item_part_ha_q5327_b" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1191286" item_group="QUEST" client_mask="25888">
+	<item_template id="182290285" name_en="Issued Ulmus Wood" name_pt="Emitiu Ulmus madeira" level="1" cName="item_part_ha_q5327_b" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1191286" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182290286" name_en="Issued Egrasi Board" name_pt="Conselho EGRASI emitido" level="1" cName="item_part_ha_q5332_b" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1191287" item_group="QUEST" client_mask="25888">
@@ -478861,13 +478861,13 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182290439" name_en="Governor's Leather Belt" name_pt="Cinturão de couro do governador" level="1" cName="item_ta_q5240" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192123" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182290440" name_en="Finished Wooden Staff" name_pt="Pessoal de região autónoma da madeira acabado" level="1" cName="item_ha_q5300" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192124" item_group="QUEST" client_mask="25888">
+	<item_template id="182290440" name_en="Finished Wooden Staff" name_pt="Pessoal de madeira acabado" level="1" cName="item_ha_q5300" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192124" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182290441" name_en="Wooden Bowl" name_pt="Tigela de região autónoma da madeira" level="1" cName="item_ha_q5301" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192125" item_group="QUEST" client_mask="25888">
+	<item_template id="182290441" name_en="Wooden Bowl" name_pt="Tigela de madeira" level="1" cName="item_ha_q5301" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192125" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182290442" name_en="Wooden Cutting Board" name_pt="Tábua de corte de região autónoma da madeira" level="1" cName="item_ha_q5302" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192126" item_group="QUEST" client_mask="25888">
+	<item_template id="182290442" name_en="Wooden Cutting Board" name_pt="Tábua de corte de madeira" level="1" cName="item_ha_q5302" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192126" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182290443" name_en="Silver Fork" name_pt="Garfo de Prata" level="1" cName="item_ha_q5303" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192127" item_group="QUEST" client_mask="25888">
@@ -478876,7 +478876,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182290444" name_en="Tent Support" name_pt="Suporte de tenda" level="1" cName="item_ha_q5304" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192128" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182290445" name_en="Wooden Box" name_pt="Caixa de região autónoma da madeira" level="1" cName="item_ha_q5305" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192129" item_group="QUEST" client_mask="25888">
+	<item_template id="182290445" name_en="Wooden Box" name_pt="Caixa de madeira" level="1" cName="item_ha_q5305" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192129" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182290446" name_en="Silver Candlestick" name_pt="Castiçal de prata" level="1" cName="item_ha_q5306" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192130" item_group="QUEST" client_mask="25888">
@@ -478894,10 +478894,10 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182290450" name_en="Shiny Silver Earrings" name_pt="Brincos prateados brilhantes" level="1" cName="item_ha_q5310" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192134" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182290451" name_en="Wooden Rake" name_pt="Aço de região autónoma da madeira" level="1" cName="item_ha_q5311" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192135" item_group="QUEST" client_mask="25888">
+	<item_template id="182290451" name_en="Wooden Rake" name_pt="Aço de madeira" level="1" cName="item_ha_q5311" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192135" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182290452" name_en="Koa Wooden Door" name_pt="Koa de região autónoma da madeira por" level="1" cName="item_ha_q5312" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192136" item_group="QUEST" client_mask="25888">
+	<item_template id="182290452" name_en="Koa Wooden Door" name_pt="Koa de madeira por" level="1" cName="item_ha_q5312" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192136" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182290453" name_en="Gold Identification Tag" name_pt="Etiqueta de identificação de ouro" level="1" cName="item_ha_q5313" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192137" item_group="QUEST" client_mask="25888">
@@ -478912,10 +478912,10 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182290456" name_en="Golden Decoration" name_pt="Decoração de ouro" level="1" cName="item_ha_q5316" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192140" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182290457" name_en="Wood Cabinet" name_pt="Armário de região autónoma da madeira" level="1" cName="item_ha_q5317" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192141" item_group="QUEST" client_mask="25888">
+	<item_template id="182290457" name_en="Wood Cabinet" name_pt="Armário de madeira" level="1" cName="item_ha_q5317" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192141" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182290458" name_en="Wooden Ladder" name_pt="Escada de região autónoma da madeira" level="1" cName="item_ha_q5318" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192142" item_group="QUEST" client_mask="25888">
+	<item_template id="182290458" name_en="Wooden Ladder" name_pt="Escada de madeira" level="1" cName="item_ha_q5318" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192142" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182290459" name_en="Drum" name_pt="Tambor" level="1" cName="item_ha_q5319" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192143" item_group="QUEST" client_mask="25888">
@@ -478924,7 +478924,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182290460" name_en="Koa Bowstave" name_pt="Haste de Arco de Koa" level="1" cName="item_ha_q5320" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192144" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182290461" name_en="Wooden Bed" name_pt="Cama de região autónoma da madeira" level="1" cName="item_ha_q5321" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192145" item_group="QUEST" client_mask="25888">
+	<item_template id="182290461" name_en="Wooden Bed" name_pt="Cama de madeira" level="1" cName="item_ha_q5321" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192145" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182290462" name_en="Mailbox" name_pt="Caixa de correio" level="1" cName="item_ha_q5322" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192146" item_group="QUEST" client_mask="25888">
@@ -478942,7 +478942,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182290466" name_en="Balaur Training Dummy" name_pt="Balaur Treination manequim" level="1" cName="item_ha_q5326" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192150" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182290467" name_en="Wooden Mallet" name_pt="Martelo de região autónoma da madeira" level="1" cName="item_ha_q5327" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192151" item_group="QUEST" client_mask="25888">
+	<item_template id="182290467" name_en="Wooden Mallet" name_pt="Martelo de madeira" level="1" cName="item_ha_q5327" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192151" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182290468" name_en="Platinum Earrings" name_pt="Brincos de platina" level="1" cName="item_ha_q5328" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1192152" item_group="QUEST" client_mask="25888">
@@ -479599,13 +479599,13 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182291122" name_en="Issued Tough Leather Pad" name_pt="Bloco de couro resistente emitido" level="1" cName="item_part_d_ta_q6240_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1196123" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182291123" name_en="Coarse Wooden Staff" name_pt="Funcionários grossos de região autónoma da madeira" level="1" cName="item_part_d_ha_q6300_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1196124" item_group="QUEST" client_mask="25888">
+	<item_template id="182291123" name_en="Coarse Wooden Staff" name_pt="Funcionários grossos de madeira" level="1" cName="item_part_d_ha_q6300_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1196124" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182291124" name_en="Issued Tecoma Wood" name_pt="Emitiu Tecoma Região autónoma da madeira" level="1" cName="item_part_d_ha_q6301_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1196125" item_group="QUEST" client_mask="25888">
+	<item_template id="182291124" name_en="Issued Tecoma Wood" name_pt="Emitiu Tecoma madeira" level="1" cName="item_part_d_ha_q6301_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1196125" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182291125" name_en="Issued Tecoma Wood" name_pt="Emitiu Tecoma Região autónoma da madeira" level="1" cName="item_part_d_ha_q6302_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1196126" item_group="QUEST" client_mask="25888">
+	<item_template id="182291125" name_en="Issued Tecoma Wood" name_pt="Emitiu Tecoma madeira" level="1" cName="item_part_d_ha_q6302_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1196126" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182291126" name_en="Issued Silver Ingot" name_pt="Emitido lingote de prata" level="1" cName="item_part_d_ha_q6303_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1196127" item_group="QUEST" client_mask="25888">
@@ -479620,7 +479620,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182291129" name_en="Issued Silver Ingot" name_pt="Emitido lingote de prata" level="1" cName="item_part_d_ha_q6306_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1196130" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182291130" name_en="Issued Tecoma Wood" name_pt="Emitiu Tecoma Região autónoma da madeira" level="1" cName="item_part_d_ha_q6307_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1196131" item_group="QUEST" client_mask="25888">
+	<item_template id="182291130" name_en="Issued Tecoma Wood" name_pt="Emitiu Tecoma madeira" level="1" cName="item_part_d_ha_q6307_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1196131" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182291131" name_en="Issued Tecoma Board" name_pt="Conselho de Tecoma emitido" level="1" cName="item_part_d_ha_q6308_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1196132" item_group="QUEST" client_mask="25888">
@@ -479677,7 +479677,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182291148" name_en="Cracked Salix Staff" name_pt="Funcionários da Salix rachada" level="1" cName="item_part_d_ha_q6325_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1196149" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182291149" name_en="Issued Salix Wood" name_pt="Emitiu Salix Região autónoma da madeira" level="1" cName="item_part_d_ha_q6326_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1196150" item_group="QUEST" client_mask="25888">
+	<item_template id="182291149" name_en="Issued Salix Wood" name_pt="Emitiu Salix madeira" level="1" cName="item_part_d_ha_q6326_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1196150" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182291150" name_en="Issued Salix Rod" name_pt="Emitiu Salix Haste" level="1" cName="item_part_d_ha_q6327_a" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1196151" item_group="QUEST" client_mask="25888">
@@ -480085,7 +480085,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182291284" name_en="Issued Xilix Textile" name_pt="Emitido Xilix têxtil" level="1" cName="item_part_d_ha_q6326_b" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1196285" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182291285" name_en="Issued Salix Wood" name_pt="Emitiu Salix Região autónoma da madeira" level="1" cName="item_part_d_ha_q6327_b" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1196286" item_group="QUEST" client_mask="25888">
+	<item_template id="182291285" name_en="Issued Salix Wood" name_pt="Emitiu Salix madeira" level="1" cName="item_part_d_ha_q6327_b" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1196286" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182291286" name_en="Issued Asvata Board" name_pt="Conselho de ASVATA emitido" level="1" cName="item_part_d_ha_q6332_b" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1196287" item_group="QUEST" client_mask="25888">
@@ -480550,13 +480550,13 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182291439" name_en="Governor's Leather Belt" name_pt="Cinturão de couro do governador" level="1" cName="item_d_ta_q6240" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197123" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182291440" name_en="Finished Wooden Staff" name_pt="Pessoal de região autónoma da madeira acabado" level="1" cName="item_d_ha_q6300" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197124" item_group="QUEST" client_mask="25888">
+	<item_template id="182291440" name_en="Finished Wooden Staff" name_pt="Pessoal de madeira acabado" level="1" cName="item_d_ha_q6300" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197124" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182291441" name_en="Wooden Bowl" name_pt="Tigela de região autónoma da madeira" level="1" cName="item_d_ha_q6301" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197125" item_group="QUEST" client_mask="25888">
+	<item_template id="182291441" name_en="Wooden Bowl" name_pt="Tigela de madeira" level="1" cName="item_d_ha_q6301" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197125" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182291442" name_en="Wooden Cutting Board" name_pt="Tábua de corte de região autónoma da madeira" level="1" cName="item_d_ha_q6302" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197126" item_group="QUEST" client_mask="25888">
+	<item_template id="182291442" name_en="Wooden Cutting Board" name_pt="Tábua de corte de madeira" level="1" cName="item_d_ha_q6302" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197126" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182291443" name_en="Silver Fork" name_pt="Garfo de Prata" level="1" cName="item_d_ha_q6303" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197127" item_group="QUEST" client_mask="25888">
@@ -480565,7 +480565,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182291444" name_en="Tent Support" name_pt="Suporte de tenda" level="1" cName="item_d_ha_q6304" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197128" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182291445" name_en="Wooden Box" name_pt="Caixa de região autónoma da madeira" level="1" cName="item_d_ha_q6305" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197129" item_group="QUEST" client_mask="25888">
+	<item_template id="182291445" name_en="Wooden Box" name_pt="Caixa de madeira" level="1" cName="item_d_ha_q6305" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197129" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182291446" name_en="Silver Candlestick" name_pt="Castiçal de prata" level="1" cName="item_d_ha_q6306" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197130" item_group="QUEST" client_mask="25888">
@@ -480583,10 +480583,10 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182291450" name_en="Shiny Silver Earrings" name_pt="Brincos prateados brilhantes" level="1" cName="item_d_ha_q6310" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197134" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182291451" name_en="Wooden Rake" name_pt="Aço de região autónoma da madeira" level="1" cName="item_d_ha_q6311" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197135" item_group="QUEST" client_mask="25888">
+	<item_template id="182291451" name_en="Wooden Rake" name_pt="Aço de madeira" level="1" cName="item_d_ha_q6311" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197135" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182291452" name_en="Wrud Wooden Door" name_pt="Porta de região autónoma da madeira WRUD" level="1" cName="item_d_ha_q6312" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197136" item_group="QUEST" client_mask="25888">
+	<item_template id="182291452" name_en="Wrud Wooden Door" name_pt="Porta de madeira WRUD" level="1" cName="item_d_ha_q6312" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197136" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182291453" name_en="Gold Identification Tag" name_pt="Etiqueta de identificação de ouro" level="1" cName="item_d_ha_q6313" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197137" item_group="QUEST" client_mask="25888">
@@ -480601,10 +480601,10 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182291456" name_en="Golden Decoration" name_pt="Decoração de ouro" level="1" cName="item_d_ha_q6316" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197140" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182291457" name_en="Wood Cabinet" name_pt="Armário de região autónoma da madeira" level="1" cName="item_d_ha_q6317" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197141" item_group="QUEST" client_mask="25888">
+	<item_template id="182291457" name_en="Wood Cabinet" name_pt="Armário de madeira" level="1" cName="item_d_ha_q6317" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197141" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182291458" name_en="Wooden Ladder" name_pt="Escada de região autónoma da madeira" level="1" cName="item_d_ha_q6318" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197142" item_group="QUEST" client_mask="25888">
+	<item_template id="182291458" name_en="Wooden Ladder" name_pt="Escada de madeira" level="1" cName="item_d_ha_q6318" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197142" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182291459" name_en="Drum" name_pt="Tambor" level="1" cName="item_d_ha_q6319" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197143" item_group="QUEST" client_mask="25888">
@@ -480613,7 +480613,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182291460" name_en="Wrud Bowstave" name_pt="Haste de Arco de Wrud" level="1" cName="item_d_ha_q6320" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197144" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182291461" name_en="Wooden Bed" name_pt="Cama de região autónoma da madeira" level="1" cName="item_d_ha_q6321" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197145" item_group="QUEST" client_mask="25888">
+	<item_template id="182291461" name_en="Wooden Bed" name_pt="Cama de madeira" level="1" cName="item_d_ha_q6321" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197145" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182291462" name_en="Mailbox" name_pt="Caixa de correio" level="1" cName="item_d_ha_q6322" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197146" item_group="QUEST" client_mask="25888">
@@ -480631,7 +480631,7 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 	<item_template id="182291466" name_en="Balaur Training Dummy" name_pt="Balaur Treination manequim" level="1" cName="item_d_ha_q6326" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197150" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
-	<item_template id="182291467" name_en="Wooden Mallet" name_pt="Martelo de região autónoma da madeira" level="1" cName="item_d_ha_q6327" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197151" item_group="QUEST" client_mask="25888">
+	<item_template id="182291467" name_en="Wooden Mallet" name_pt="Martelo de madeira" level="1" cName="item_d_ha_q6327" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197151" item_group="QUEST" client_mask="25888">
 		<inventory id="2"/>
 	</item_template>
 	<item_template id="182291468" name_en="Platinum Earrings" name_pt="Brincos de platina" level="1" cName="item_d_ha_q6328" mask="24640" max_stack_count="100" quality="COMMON" price="1" desc="1197152" item_group="QUEST" client_mask="25888">
@@ -519168,7 +519168,7 @@ Este item desaparecerá ao término do evento." level="1" cName="classic_event_s
 	<item_template id="167002019" name_en="[Event] Manastone: Crit Strike +11" name_pt="[Evento] Pedra de Mana: crítico Golpe +11" level="30" cName="event_matter_option_r_physicalcritical_30" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="782065" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872" activate_count="1">
 <modifiers><add name="PHYSICAL_CRITICAL" value="11" bonus="true" /></modifiers>
 	</item_template>
-	<item_template id="167002020" name_en="[Event] Manastone: Max. Flight Time +4" name_pt="[Evento] Pedra de Mana: Max. Andamento de Voo +4" level="30" cName="event_matter_option_r_flytime_30" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="782066" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872" activate_count="1">
+	<item_template id="167002020" name_en="[Event] Manastone: Max. Flight Time +4" name_pt="[Evento] Pedra de Mana: Max. tempo de voo +4" level="30" cName="event_matter_option_r_flytime_30" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="782066" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872" activate_count="1">
 <modifiers><add name="FLY_TIME" value="4" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="167002021" name_en="[Event] Manastone: Magical Accuracy +8" name_pt="[Evento] Pedra de Mana: mgico precisão +8" level="30" cName="event_matter_option_r_magical_accuracy_30" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="782067" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872" activate_count="1">
@@ -519201,7 +519201,7 @@ Este item desaparecerá ao término do evento." level="1" cName="classic_event_s
 	<item_template id="167002030" name_en="[Event] Manastone: Crit Strike +13" name_pt="[Evento] Pedra de Mana: crítico Golpe +13" level="40" cName="event_matter_option_r_physicalcritical_40" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="782076" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872" activate_count="1">
 <modifiers><add name="PHYSICAL_CRITICAL" value="13" bonus="true" /></modifiers>
 	</item_template>
-	<item_template id="167002031" name_en="[Event] Manastone: Max. Flight Time +5" name_pt="[Evento] Pedra de Mana: Max. Andamento de Voo +5" level="40" cName="event_matter_option_r_flytime_40" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="782077" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872" activate_count="1">
+	<item_template id="167002031" name_en="[Event] Manastone: Max. Flight Time +5" name_pt="[Evento] Pedra de Mana: Max. tempo de voo +5" level="40" cName="event_matter_option_r_flytime_40" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="782077" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872" activate_count="1">
 <modifiers><add name="FLY_TIME" value="5" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="167002032" name_en="[Event] Manastone: Magical Accuracy +10" name_pt="[Evento] Pedra de Mana: mgico precisão +10" level="40" cName="event_matter_option_r_magical_accuracy_40" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="782078" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872" activate_count="1">
@@ -519237,7 +519237,7 @@ Este item desaparecerá ao término do evento." level="1" cName="classic_event_s
 	<item_template id="167002042" name_en="[Event] Manastone: Crit Strike +15" name_pt="[Evento] Pedra de Mana: crítico Golpe +15" level="50" cName="event_matter_option_r_physicalcritical_50" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="782088" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="23" client_mask="24872" activate_count="1">
 <modifiers><add name="PHYSICAL_CRITICAL" value="15" bonus="true" /></modifiers>
 	</item_template>
-	<item_template id="167002043" name_en="[Event] Manastone: Max. Flight Time +6" name_pt="[Evento] Pedra de Mana: Max. Andamento de Voo +6" level="50" cName="event_matter_option_r_flytime_50" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="782089" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="23" client_mask="24872" activate_count="1">
+	<item_template id="167002043" name_en="[Event] Manastone: Max. Flight Time +6" name_pt="[Evento] Pedra de Mana: Max. tempo de voo +6" level="50" cName="event_matter_option_r_flytime_50" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="782089" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="23" client_mask="24872" activate_count="1">
 <modifiers><add name="FLY_TIME" value="6" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="167002044" name_en="[Event] Manastone: Magical Accuracy +12" name_pt="[Evento] Pedra de Mana: mgico precisão +12" level="50" cName="event_matter_option_r_magical_accuracy_50" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="782090" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="23" client_mask="24872" activate_count="1">
@@ -519270,7 +519270,7 @@ Este item desaparecerá ao término do evento." level="1" cName="classic_event_s
 	<item_template id="167002053" name_en="[Event] Manastone: Crit Strike +17" name_pt="[Evento] Pedra de Mana: crítico Golpe +17" level="60" cName="event_matter_option_r_physicalcritical_60" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="782099" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="31" client_mask="24872" activate_count="1">
 <modifiers><add name="PHYSICAL_CRITICAL" value="17" bonus="true" /></modifiers>
 	</item_template>
-	<item_template id="167002054" name_en="[Event] Manastone: Max. Flight Time +7" name_pt="[Evento] Pedra de Mana: Max. Andamento de Voo +7" level="60" cName="event_matter_option_r_flytime_60" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="782100" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="31" client_mask="24872" activate_count="1">
+	<item_template id="167002054" name_en="[Event] Manastone: Max. Flight Time +7" name_pt="[Evento] Pedra de Mana: Max. tempo de voo +7" level="60" cName="event_matter_option_r_flytime_60" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="782100" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="31" client_mask="24872" activate_count="1">
 <modifiers><add name="FLY_TIME" value="7" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="167002055" name_en="[Event] Manastone: Magical Accuracy +14" name_pt="[Evento] Pedra de Mana: mgico precisão +14" level="60" cName="event_matter_option_r_magical_accuracy_60" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="782101" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="31" client_mask="24872" activate_count="1">
@@ -519783,16 +519783,16 @@ Este item desaparecerá ao término do evento." level="1" cName="classic_event_s
 	<item_template id="167002224" name_en="[Supply] Manastone: Evasion +17" name_pt="[Suprimento] Pedra de Mana: esquiva +17" level="60" cName="supply_matter_option_r_dodge_60" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="803251" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="31" client_mask="24872" activate_count="1">
 <modifiers><add name="EVASION" value="17" bonus="true" /></modifiers>
 	</item_template>
-	<item_template id="167002225" name_en="[Supply] Manastone: Max. Flight Time +4" name_pt="[Suprimento] Pedra de Mana: Max. Andamento de Voo +4" level="30" cName="supply_matter_option_r_flytime_30" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="803252" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872" activate_count="1">
+	<item_template id="167002225" name_en="[Supply] Manastone: Max. Flight Time +4" name_pt="[Suprimento] Pedra de Mana: Max. tempo de voo +4" level="30" cName="supply_matter_option_r_flytime_30" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="803252" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872" activate_count="1">
 <modifiers><add name="FLY_TIME" value="4" bonus="true" /></modifiers>
 	</item_template>
-	<item_template id="167002226" name_en="[Supply] Manastone: Max. Flight Time +5" name_pt="[Suprimento] Pedra de Mana: Max. Andamento de Voo +5" level="40" cName="supply_matter_option_r_flytime_40" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="803253" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872" activate_count="1">
+	<item_template id="167002226" name_en="[Supply] Manastone: Max. Flight Time +5" name_pt="[Suprimento] Pedra de Mana: Max. tempo de voo +5" level="40" cName="supply_matter_option_r_flytime_40" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="803253" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872" activate_count="1">
 <modifiers><add name="FLY_TIME" value="5" bonus="true" /></modifiers>
 	</item_template>
-	<item_template id="167002227" name_en="[Supply] Manastone: Max. Flight Time +6" name_pt="[Suprimento] Pedra de Mana: Max. Andamento de Voo +6" level="50" cName="supply_matter_option_r_flytime_50" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="803254" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="23" client_mask="24872" activate_count="1">
+	<item_template id="167002227" name_en="[Supply] Manastone: Max. Flight Time +6" name_pt="[Suprimento] Pedra de Mana: Max. tempo de voo +6" level="50" cName="supply_matter_option_r_flytime_50" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="803254" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="23" client_mask="24872" activate_count="1">
 <modifiers><add name="FLY_TIME" value="6" bonus="true" /></modifiers>
 	</item_template>
-	<item_template id="167002228" name_en="[Supply] Manastone: Max. Flight Time +7" name_pt="[Suprimento] Pedra de Mana: Max. Andamento de Voo +7" level="60" cName="supply_matter_option_r_flytime_60" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="803255" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="31" client_mask="24872" activate_count="1">
+	<item_template id="167002228" name_en="[Supply] Manastone: Max. Flight Time +7" name_pt="[Suprimento] Pedra de Mana: Max. tempo de voo +7" level="60" cName="supply_matter_option_r_flytime_60" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="803255" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="31" client_mask="24872" activate_count="1">
 <modifiers><add name="FLY_TIME" value="7" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="167002229" name_en="[Supply] Manastone: HP +55" name_pt="[Suprimento] Pedra de Mana: HP +55" level="20" cName="supply_matter_option_r_hp_20" mask="24648" item_group="MANASTONE" quality="RARE" price="100" desc="803256" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" client_mask="24872" activate_count="1">
@@ -519948,7 +519948,7 @@ Este item desaparecerá ao término do evento." level="1" cName="classic_event_s
 	<item_template id="167002279" name_en="[Event] Manastone: Crit Strike +21" name_pt="[Evento] Pedra de Mana: crítico Golpe +21" level="60" cName="event_matter_option_l_physicalcritical" mask="24648" item_group="MANASTONE" quality="LEGEND" price="100" desc="814670" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="51" client_mask="24872" activate_count="1">
 <modifiers><add name="PHYSICAL_CRITICAL" value="21" bonus="true" /></modifiers>
 	</item_template>
-	<item_template id="167002280" name_en="[Event] Manastone: Max. Flight Time +9" name_pt="[Evento] Pedra de Mana: Max. Andamento de Voo +9" level="60" cName="event_matter_option_l_flytime" mask="24648" item_group="MANASTONE" quality="LEGEND" price="100" desc="814671" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="51" client_mask="24872" activate_count="1">
+	<item_template id="167002280" name_en="[Event] Manastone: Max. Flight Time +9" name_pt="[Evento] Pedra de Mana: Max. tempo de voo +9" level="60" cName="event_matter_option_l_flytime" mask="24648" item_group="MANASTONE" quality="LEGEND" price="100" desc="814671" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="51" client_mask="24872" activate_count="1">
 <modifiers><add name="FLY_TIME" value="9" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="167002281" name_en="[Event] Manastone: Magical Accuracy +18" name_pt="[Evento] Pedra de Mana: mgico precisão +18" level="60" cName="event_matter_option_l_magical_accuracy" mask="24648" item_group="MANASTONE" quality="LEGEND" price="100" desc="814672" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="51" client_mask="24872" activate_count="1">
@@ -519990,7 +519990,7 @@ Este item desaparecerá ao término do evento." level="1" cName="classic_event_s
 	<item_template id="167002293" name_en="[Supply] Manastone: Crit Strike +21" name_pt="[Suprimento] Pedra de Mana: crítico Golpe +21" level="60" cName="supply_matter_option_l_physicalcritical" mask="24648" item_group="MANASTONE" quality="LEGEND" price="100" desc="814809" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="51" client_mask="24872" activate_count="1">
 <modifiers><add name="PHYSICAL_CRITICAL" value="21" bonus="true" /></modifiers>
 	</item_template>
-	<item_template id="167002294" name_en="[Supply] Manastone: Max. Flight Time +9" name_pt="[Suprimento] Pedra de Mana: Max. Andamento de Voo +9" level="60" cName="supply_matter_option_l_flytime" mask="24648" item_group="MANASTONE" quality="LEGEND" price="100" desc="814810" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="51" client_mask="24872" activate_count="1">
+	<item_template id="167002294" name_en="[Supply] Manastone: Max. Flight Time +9" name_pt="[Suprimento] Pedra de Mana: Max. tempo de voo +9" level="60" cName="supply_matter_option_l_flytime" mask="24648" item_group="MANASTONE" quality="LEGEND" price="100" desc="814810" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="51" client_mask="24872" activate_count="1">
 <modifiers><add name="FLY_TIME" value="9" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="167002295" name_en="[Supply] Manastone: Magical Accuracy +18" name_pt="[Suprimento] Pedra de Mana: mgico precisão +18" level="60" cName="supply_matter_option_l_magical_accuracy" mask="24648" item_group="MANASTONE" quality="LEGEND" price="100" desc="814811" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="51" client_mask="24872" activate_count="1">
@@ -520032,7 +520032,7 @@ Este item desaparecerá ao término do evento." level="1" cName="classic_event_s
 	<item_template id="167002307" name_en="[Supply] Manastone: Crit Strike +30" name_pt="[Suprimento] Pedra de Mana: crítico Golpe +30" level="60" cName="supply_matter_option_u_physicalcritical" mask="24648" item_group="MANASTONE" quality="UNIQUE" price="100" desc="815075" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="81" client_mask="24872" activate_count="1">
 <modifiers><add name="PHYSICAL_CRITICAL" value="30" bonus="true" /></modifiers>
 	</item_template>
-	<item_template id="167002308" name_en="[Supply] Manastone: Max. Flight Time +14" name_pt="[Suprimento] Pedra de Mana: Max. Andamento de Voo +14" level="60" cName="supply_matter_option_u_flytime" mask="24648" item_group="MANASTONE" quality="UNIQUE" price="100" desc="815076" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="81" client_mask="24872" activate_count="1">
+	<item_template id="167002308" name_en="[Supply] Manastone: Max. Flight Time +14" name_pt="[Suprimento] Pedra de Mana: Max. tempo de voo +14" level="60" cName="supply_matter_option_u_flytime" mask="24648" item_group="MANASTONE" quality="UNIQUE" price="100" desc="815076" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="81" client_mask="24872" activate_count="1">
 <modifiers><add name="FLY_TIME" value="14" bonus="true" /></modifiers>
 	</item_template>
 	<item_template id="167002309" name_en="[Supply] Manastone: Magical Accuracy +29" name_pt="[Suprimento] Pedra de Mana: mgico precisão +29" level="60" cName="supply_matter_option_u_magicau_accuracy" mask="24648" item_group="MANASTONE" quality="UNIQUE" price="100" desc="815077" race="PC_ALL" max_stack_count="10000" item_type="NORMAL" combat_power="81" client_mask="24872" activate_count="1">
@@ -529278,12 +529278,12 @@ Este item desaparecerá ao término do evento." level="1" cName="classic_event_s
 	<item_template id="169611107" name_en="[Event] [Title Card] Mighty AION (30 days)" name_pt="[Evento] [cartão de Ttulo] Poderoso AION (30 dias)" level="1" cName="world_cn_event_add_title_347" mask="16472" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="798893" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16696" activate_count="1"/>
 	<item_template id="169611108" name_en="[Event] [Title Card] Former Governor (90 days)" name_pt="[Evento] [cartão de Ttulo] formador Governador (90 dias)" level="60" cName="event_add_title_348" mask="16456" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="798995" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="129601"/>
 	<item_template id="169611109" name_en="[Event] [Title Card] Former Commander (90 days)" name_pt="[Evento] [cartão de Ttulo] formador Comandante (90 dias)" level="60" cName="event_add_title_349" mask="16456" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="798996" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="129601"/>
-	<item_template id="169611110" name_en="[Event] [Title Card] Former Great General (90 days)" name_pt="[Evento] [cartão de Ttulo] formador Grande idéia (90 dias)" level="60" cName="event_add_title_350" mask="16456" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="798997" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="129601"/>
+	<item_template id="169611110" name_en="[Event] [Title Card] Former Great General (90 days)" name_pt="[Evento] [cartão de Ttulo] formador Grande General (90 dias)" level="60" cName="event_add_title_350" mask="16456" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="798997" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="129601"/>
 	<item_template id="169611111" name_en="[Event] [Title Card] Former General (90 days)" name_pt="[Evento] [cartão de Ttulo] formador idéia (90 dias)" level="60" cName="event_add_title_351" mask="16456" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="798998" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="129601"/>
 	<item_template id="169611112" name_en="[Event] [Title Card] Former 5-Star Officer (90 days)" name_pt="[Evento] [cartão de Ttulo] formador 5-Estrela oficial (90 dias)" level="60" cName="event_add_title_352" mask="16456" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="798999" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1" expire_time="129601"/>
 	<item_template id="169611113" name_en="[Event] [Title Card] Erstwhile Governor" name_pt="[Evento] [cartão de Ttulo] Outrora Governador" level="1" cName="event_add_title_353" mask="16456" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="799096" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
 	<item_template id="169611114" name_en="[Event] [Title Card] Erstwhile Commander" name_pt="[Evento] [cartão de Ttulo] Outrora Comandante" level="1" cName="event_add_title_354" mask="16456" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="799097" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
-	<item_template id="169611115" name_en="[Event] [Title Card] Erstwhile Great General" name_pt="[Evento] [cartão de Ttulo] Outrora Grande idéia" level="1" cName="event_add_title_355" mask="16456" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="799098" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
+	<item_template id="169611115" name_en="[Event] [Title Card] Erstwhile Great General" name_pt="[Evento] [cartão de Ttulo] Outrora Grande General" level="1" cName="event_add_title_355" mask="16456" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="799098" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
 	<item_template id="169611116" name_en="[Event] [Title Card] Erstwhile General" name_pt="[Evento] [cartão de Ttulo] Outrora idéia" level="1" cName="event_add_title_356" mask="16456" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="799099" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
 	<item_template id="169611117" name_en="[Event] [Title Card] Erstwhile Officer" name_pt="[Evento] [cartão de Ttulo] Outrora oficial" level="1" cName="event_add_title_357" mask="16456" item_group="PACK_SCROLL" quality="EPIC" price="5" desc="799100" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
 	<item_template id="169611118" name_en="[Event] [Title Card] Treasured" name_pt="[Evento] [cartão de Ttulo] Entesourado" level="1" cName="event_add_title_358" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="799564" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_count="1"/>
@@ -532532,7 +532532,7 @@ Este item desaparecerá ao término do evento." level="1" cName="classic_event_s
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188054361" name_en="[Event] Noble Great General’s Clothing Chest" name_pt="[Evento] Baú de Vestimenta de Nobre Grande idéia" level="1" cName="wrap_event_deva_assemble_reward_03" casting_delay="1500" mask="16456" item_group="DROP_MATERIAL" quality="LEGEND" price="5" desc="799116" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_target="STANDALONE" activate_count="1">
+	<item_template id="188054361" name_en="[Event] Noble Great General’s Clothing Chest" name_pt="[Evento] Baú de Vestimenta de Nobre Grande General" level="1" cName="wrap_event_deva_assemble_reward_03" casting_delay="1500" mask="16456" item_group="DROP_MATERIAL" quality="LEGEND" price="5" desc="799116" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680" activate_target="STANDALONE" activate_count="1">
 		<actions>
 			<decompose/>
 		</actions>
@@ -532542,12 +532542,12 @@ Este item desaparecerá ao término do evento." level="1" cName="classic_event_s
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188054363" name_en="[Event] Great General’s Inquin Clothing Chest" name_pt="[Evento] Baú de Inquin Vestimenta de Grande idéia" level="1" cName="wrap_event_deva_assemble_reward_Penguin_01" casting_delay="1500" mask="24648" item_group="DROP_MATERIAL" quality="LEGEND" price="5" desc="799118" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1">
+	<item_template id="188054363" name_en="[Event] Great General’s Inquin Clothing Chest" name_pt="[Evento] Baú de Inquin Vestimenta de Grande General" level="1" cName="wrap_event_deva_assemble_reward_Penguin_01" casting_delay="1500" mask="24648" item_group="DROP_MATERIAL" quality="LEGEND" price="5" desc="799118" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1">
 		<actions>
 			<decompose/>
 		</actions>
 	</item_template>
-	<item_template id="188054364" name_en="[Event] Great General’s Kitten Clothing Chest" name_pt="[Evento] Baú de Gatinho Vestimenta de Grande idéia" level="1" cName="wrap_event_deva_assemble_reward_CatBalck_01" casting_delay="1500" mask="24648" item_group="DROP_MATERIAL" quality="LEGEND" price="5" desc="799119" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1">
+	<item_template id="188054364" name_en="[Event] Great General’s Kitten Clothing Chest" name_pt="[Evento] Baú de Gatinho Vestimenta de Grande General" level="1" cName="wrap_event_deva_assemble_reward_CatBalck_01" casting_delay="1500" mask="24648" item_group="DROP_MATERIAL" quality="LEGEND" price="5" desc="799119" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_target="STANDALONE" activate_count="1">
 		<actions>
 			<decompose/>
 		</actions>

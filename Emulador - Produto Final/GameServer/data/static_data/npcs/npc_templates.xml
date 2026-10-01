@@ -50149,7 +50149,7 @@
 		</stats>
 		<bound_radius front="0.87" side="0.8" upper="1.34" />
 	</npc_template>
-	<npc_template npc_id="211067" level="33" name_en="Drifting Wooden Box" name_pt="Caixa de região autónoma da madeira à deriva" name_id="302797" height="0.6" group_drop="FAKEBOX" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="MONSTER" ai="noaction" srange="8" sangle="270" attack_speed="2645" hpgauge="3" floatcorpse="true">
+	<npc_template npc_id="211067" level="33" name_en="Drifting Wooden Box" name_pt="Caixa de madeira à deriva" name_id="302797" height="0.6" group_drop="FAKEBOX" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="MONSTER" ai="noaction" srange="8" sangle="270" attack_speed="2645" hpgauge="3" floatcorpse="true">
 		<stats maxHp="46" />
 		<bound_radius front="0.43" side="0.43" upper="1.4" />
 	</npc_template>
@@ -50171,7 +50171,7 @@
 		</stats>
 		<bound_radius front="0.87" side="0.8" upper="1.34" />
 	</npc_template>
-	<npc_template npc_id="211071" level="34" name_en="Drifting Wooden Box" name_pt="Caixa de região autónoma da madeira à deriva" name_id="302801" height="0.6" group_drop="FAKEBOX" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="MONSTER" ai="noaction" srange="8" sangle="270" attack_speed="2645" hpgauge="3" floatcorpse="true">
+	<npc_template npc_id="211071" level="34" name_en="Drifting Wooden Box" name_pt="Caixa de madeira à deriva" name_id="302801" height="0.6" group_drop="FAKEBOX" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="MONSTER" ai="noaction" srange="8" sangle="270" attack_speed="2645" hpgauge="3" floatcorpse="true">
 		<stats maxHp="49" />
 		<bound_radius front="0.43" side="0.43" upper="1.4" />
 	</npc_template>
@@ -55895,7 +55895,7 @@
 		<stats maxHp="58" />
 		<bound_radius front="1.4" side="1.4" upper="2.08" />
 	</npc_template>
-	<npc_template npc_id="211868" level="39" name_en="Changarnerk Wooden Box" name_pt="Caixa de região autónoma da madeira de Chuparnerk" name_id="314032" height="1.28" group_drop="TREASUREBOX2" rank="NOVICE" rating="NORMAL" race="CONSTRUCT" tribe="MONSTER" ai="noaction" srange="7" sangle="240" attack_speed="2415" hpgauge="2">
+	<npc_template npc_id="211868" level="39" name_en="Changarnerk Wooden Box" name_pt="Caixa de madeira de Chuparnerk" name_id="314032" height="1.28" group_drop="TREASUREBOX2" rank="NOVICE" rating="NORMAL" race="CONSTRUCT" tribe="MONSTER" ai="noaction" srange="7" sangle="240" attack_speed="2415" hpgauge="2">
 		<stats maxHp="61" />
 		<bound_radius front="1.4" side="1.4" upper="2.08" />
 	</npc_template>
@@ -57335,7 +57335,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212066" level="29" name_en="Crack Kaidan Slicer" name_pt="Fatiador de crack Kaidan" name_id="304507" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2090" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212066" level="29" name_en="Crack Kaidan Slicer" name_pt="Fatiador de Kaidan de Elite" name_id="304507" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2090" hpgauge="11" cancel_level="40">
 		<stats maxHp="16288">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -57344,7 +57344,7 @@
 		</equipment>
 		<bound_radius front="0.77" side="0.3955" upper="2.04" />
 	</npc_template>
-	<npc_template npc_id="212067" level="30" name_en="Crack Kaidan Slicer" name_pt="Fatiador de crack Kaidan" name_id="304508" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2090" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212067" level="30" name_en="Crack Kaidan Slicer" name_pt="Fatiador de Kaidan de Elite" name_id="304508" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2090" hpgauge="11" cancel_level="40">
 		<stats maxHp="17153">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -64267,15 +64267,15 @@
 		<stats maxHp="1" />
 		<bound_radius front="1.4" side="1.4" upper="2.08" />
 	</npc_template>
-	<npc_template npc_id="212956" level="38" name_en="Red Wooden Box" name_pt="Caixa de região autónoma da madeira vermelha" name_id="314033" height="1.28" group_drop="TREASUREBOX2" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="MONSTER" ai="noaction" srange="7" sangle="240" attack_speed="2000" hpgauge="3" cancel_level="0">
+	<npc_template npc_id="212956" level="38" name_en="Red Wooden Box" name_pt="Caixa de madeira vermelha" name_id="314033" height="1.28" group_drop="TREASUREBOX2" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="MONSTER" ai="noaction" srange="7" sangle="240" attack_speed="2000" hpgauge="3" cancel_level="0">
 		<stats maxHp="1" />
 		<bound_radius front="1.4" side="1.4" upper="2.08" />
 	</npc_template>
-	<npc_template npc_id="212957" level="38" name_en="Worn Wooden Box" name_pt="Caixa de região autónoma da madeira gasta" name_id="314034" height="1.28" group_drop="TREASUREBOX2" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="MONSTER" ai="noaction" srange="7" sangle="240" attack_speed="2000" hpgauge="3" cancel_level="0">
+	<npc_template npc_id="212957" level="38" name_en="Worn Wooden Box" name_pt="Caixa de madeira gasta" name_id="314034" height="1.28" group_drop="TREASUREBOX2" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="MONSTER" ai="noaction" srange="7" sangle="240" attack_speed="2000" hpgauge="3" cancel_level="0">
 		<stats maxHp="1" />
 		<bound_radius front="1.4" side="1.4" upper="2.08" />
 	</npc_template>
-	<npc_template npc_id="212958" level="38" name_en="Iron-clad Wooden Box" name_pt="Caixa de região autónoma da madeira vestida de ferro" name_id="314035" height="1.28" group_drop="TREASUREBOX2" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="MONSTER" ai="noaction" srange="7" sangle="240" attack_speed="2000" hpgauge="3" cancel_level="0">
+	<npc_template npc_id="212958" level="38" name_en="Iron-clad Wooden Box" name_pt="Caixa de madeira vestida de ferro" name_id="314035" height="1.28" group_drop="TREASUREBOX2" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="MONSTER" ai="noaction" srange="7" sangle="240" attack_speed="2000" hpgauge="3" cancel_level="0">
 		<stats maxHp="1" />
 		<bound_radius front="1.4" side="1.4" upper="2.08" />
 	</npc_template>
@@ -77444,7 +77444,7 @@
 		</stats>
 		<bound_radius front="1.2675" side="1.9800001" upper="1.875" />
 	</npc_template>
-	<npc_template npc_id="214595" level="50" name_en="Slimy Wooden Box" name_pt="Caixa de região autónoma da madeira viscosa" name_id="318074" height="1.34" group_drop="MIMIC" rank="EXPERT" rating="NORMAL" race="CONSTRUCT" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2185" hpgauge="5" floatcorpse="true" cancel_level="80">
+	<npc_template npc_id="214595" level="50" name_en="Slimy Wooden Box" name_pt="Caixa de madeira viscosa" name_id="318074" height="1.34" group_drop="MIMIC" rank="EXPERT" rating="NORMAL" race="CONSTRUCT" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2185" hpgauge="5" floatcorpse="true" cancel_level="80">
 		<stats maxHp="13036">
 			<speeds walk="5.25" group_walk="7" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
@@ -77689,11 +77689,11 @@
 		<stats maxHp="1" />
 		<bound_radius front="1.4" side="1.4" upper="2.08" />
 	</npc_template>
-	<npc_template npc_id="214632" level="49" name_en="Slimy Wooden Box" name_pt="Caixa de região autónoma da madeira viscosa" name_id="318219" height="0.6" group_drop="FAKEBOX" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="MONSTER" ai="noaction" srange="7" sangle="240" attack_speed="2000" hpgauge="3" floatcorpse="true" cancel_level="0">
+	<npc_template npc_id="214632" level="49" name_en="Slimy Wooden Box" name_pt="Caixa de madeira viscosa" name_id="318219" height="0.6" group_drop="FAKEBOX" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="MONSTER" ai="noaction" srange="7" sangle="240" attack_speed="2000" hpgauge="3" floatcorpse="true" cancel_level="0">
 		<stats maxHp="1" />
 		<bound_radius front="0.43" side="0.43" upper="1.4" />
 	</npc_template>
-	<npc_template npc_id="214633" level="49" name_en="Mossy Wooden Box" name_pt="Caixa de região autónoma da madeira musgosa" name_id="318220" height="0.6" group_drop="FAKEBOX" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="MONSTER" ai="noaction" srange="7" sangle="240" attack_speed="2000" hpgauge="3" floatcorpse="true" cancel_level="0">
+	<npc_template npc_id="214633" level="49" name_en="Mossy Wooden Box" name_pt="Caixa de madeira musgosa" name_id="318220" height="0.6" group_drop="FAKEBOX" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="MONSTER" ai="noaction" srange="7" sangle="240" attack_speed="2000" hpgauge="3" floatcorpse="true" cancel_level="0">
 		<stats maxHp="1" />
 		<bound_radius front="0.43" side="0.43" upper="1.4" />
 	</npc_template>
@@ -109195,7 +109195,7 @@
 		</equipment>
 		<bound_radius front="1" side="0.85" upper="2.3" />
 	</npc_template>
-	<npc_template npc_id="219258" level="60" name_en="Mud Spirit" name_pt="Termine aqui e ágora." name_id="342685" height="1" group_drop="DRAKANSCOUTF" rank="VETERAN" rating="ELITE" race="ELEMENTAL" tribe="MONSTER" type="MONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2100" hpgauge="3" cancel_level="20">
+	<npc_template npc_id="219258" level="60" name_en="Mud Spirit" name_pt="Termine aqui e agora." name_id="342685" height="1" group_drop="DRAKANSCOUTF" rank="VETERAN" rating="ELITE" race="ELEMENTAL" tribe="MONSTER" type="MONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2100" hpgauge="3" cancel_level="20">
 		<stats maxHp="112158" msup="307">
 			<speeds walk="1.2" group_walk="1.2" run="8" run_fight="6" group_run_fight="8" />
 		</stats>
@@ -109205,7 +109205,7 @@
 		</equipment>
 		<bound_radius front="0.35" side="0.35" upper="1" />
 	</npc_template>
-	<npc_template npc_id="219259" level="60" name_en="Mud Spirit" name_pt="Termine aqui e ágora." name_id="342685" height="1" group_drop="DRAKANSCOUTF" rank="VETERAN" rating="ELITE" race="ELEMENTAL" tribe="MONSTER" type="MONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2100" hpgauge="3" cancel_level="20">
+	<npc_template npc_id="219259" level="60" name_en="Mud Spirit" name_pt="Termine aqui e agora." name_id="342685" height="1" group_drop="DRAKANSCOUTF" rank="VETERAN" rating="ELITE" race="ELEMENTAL" tribe="MONSTER" type="MONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2100" hpgauge="3" cancel_level="20">
 		<stats maxHp="112158" msup="307">
 			<speeds walk="1.2" group_walk="1.2" run="8" run_fight="6" group_run_fight="8" />
 		</stats>
@@ -109215,7 +109215,7 @@
 		</equipment>
 		<bound_radius front="0.35" side="0.35" upper="1" />
 	</npc_template>
-	<npc_template npc_id="219260" level="60" name_en="Mud Spirit" name_pt="Termine aqui e ágora." name_id="342685" height="1" group_drop="DRAKANCLERICF" rank="VETERAN" rating="ELITE" race="ELEMENTAL" tribe="MONSTER" type="MONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2100" hpgauge="3" cancel_level="20">
+	<npc_template npc_id="219260" level="60" name_en="Mud Spirit" name_pt="Termine aqui e agora." name_id="342685" height="1" group_drop="DRAKANCLERICF" rank="VETERAN" rating="ELITE" race="ELEMENTAL" tribe="MONSTER" type="MONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2100" hpgauge="3" cancel_level="20">
 		<stats maxHp="109084" msup="307">
 			<speeds walk="1.2" group_walk="1.2" run="8" run_fight="6" group_run_fight="8" />
 		</stats>
@@ -109225,7 +109225,7 @@
 		</equipment>
 		<bound_radius front="0.35" side="0.35" upper="1" />
 	</npc_template>
-	<npc_template npc_id="219261" level="60" name_en="Mud Spirit" name_pt="Termine aqui e ágora." name_id="342685" height="1" group_drop="DRAKANCLERICF" rank="VETERAN" rating="ELITE" race="ELEMENTAL" tribe="MONSTER" type="MONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2100" hpgauge="3" cancel_level="20">
+	<npc_template npc_id="219261" level="60" name_en="Mud Spirit" name_pt="Termine aqui e agora." name_id="342685" height="1" group_drop="DRAKANCLERICF" rank="VETERAN" rating="ELITE" race="ELEMENTAL" tribe="MONSTER" type="MONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2100" hpgauge="3" cancel_level="20">
 		<stats maxHp="109084" msup="307">
 			<speeds walk="1.2" group_walk="1.2" run="8" run_fight="6" group_run_fight="8" />
 		</stats>
@@ -109235,7 +109235,7 @@
 		</equipment>
 		<bound_radius front="0.35" side="0.35" upper="1" />
 	</npc_template>
-	<npc_template npc_id="219262" level="60" name_en="Mud Spirit" name_pt="Termine aqui e ágora." name_id="342685" height="1" group_drop="DRAKANCLERICF" rank="VETERAN" rating="ELITE" race="ELEMENTAL" tribe="MONSTER" type="MONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2100" hpgauge="3" cancel_level="20">
+	<npc_template npc_id="219262" level="60" name_en="Mud Spirit" name_pt="Termine aqui e agora." name_id="342685" height="1" group_drop="DRAKANCLERICF" rank="VETERAN" rating="ELITE" race="ELEMENTAL" tribe="MONSTER" type="MONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2100" hpgauge="3" cancel_level="20">
 		<stats maxHp="109084" msup="307">
 			<speeds walk="1.2" group_walk="1.2" run="8" run_fight="6" group_run_fight="8" />
 		</stats>
@@ -110149,7 +110149,7 @@
 		</equipment>
 		<bound_radius front="0.3412" side="0.3412" upper="0.4795" />
 	</npc_template>
-	<npc_template npc_id="219387" level="60" name_en="Mud Spirit" name_pt="Termine aqui e ágora." name_id="342685" height="1" group_drop="DRAKANSCOUTF" rank="EXPERT" rating="ELITE" race="ELEMENTAL" tribe="MONSTER" type="MONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2100" hpgauge="3" cancel_level="20">
+	<npc_template npc_id="219387" level="60" name_en="Mud Spirit" name_pt="Termine aqui e agora." name_id="342685" height="1" group_drop="DRAKANSCOUTF" rank="EXPERT" rating="ELITE" race="ELEMENTAL" tribe="MONSTER" type="MONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2100" hpgauge="3" cancel_level="20">
 		<stats maxHp="95816" msup="207">
 			<speeds walk="1.2" group_walk="1.2" run="8" run_fight="6" group_run_fight="8" />
 		</stats>
@@ -117202,7 +117202,7 @@
 		</equipment>
 		<bound_radius front="4" side="4" upper="6.2" />
 	</npc_template>
-	<npc_template npc_id="220197" level="65" name_en="Kulik Egg" name_pt="Inspetor de campo de região autónoma da madeira rubinista" name_id="344274" height="2.1" group_drop="DARK" rank="EXPERT" rating="HERO" race="ASMODIANS" tribe="DF5_GUARD_03_DARK" type="MONSTER" ai="aggressive" srange="18" arange="2" attack_speed="2040" hpgauge="4" cancel_level="0">
+	<npc_template npc_id="220197" level="65" name_en="Kulik Egg" name_pt="Inspetor de campo de madeira rubinista" name_id="344274" height="2.1" group_drop="DARK" rank="EXPERT" rating="HERO" race="ASMODIANS" tribe="DF5_GUARD_03_DARK" type="MONSTER" ai="aggressive" srange="18" arange="2" attack_speed="2040" hpgauge="4" cancel_level="0">
 		<stats maxHp="511574" msup="957">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -142205,13 +142205,13 @@
 		</stats>
 		<bound_radius front="4.105" side="4.105" upper="20.4" />
 	</npc_template>
-	<npc_template npc_id="259613" level="60" name_en="Petrification Incarnate" name_pt="Ágora vou mostrar o significado do verdadeiro medo!" name_id="344658" height="20.4" title_id="344810" group_drop="DRAGON" rank="VETERAN" rating="LEGENDARY" race="DRAKAN" tribe="F4GUARD_DRAGON" type="ABYSS_GUARD" abyss_type="BOSS" ai="aggressive" srange="20" arange="6" attack_speed="3000" hpgauge="26" cancel_level="0">
+	<npc_template npc_id="259613" level="60" name_en="Petrification Incarnate" name_pt="Agora vou mostrar o significado do verdadeiro medo!" name_id="344658" height="20.4" title_id="344810" group_drop="DRAGON" rank="VETERAN" rating="LEGENDARY" race="DRAKAN" tribe="F4GUARD_DRAGON" type="ABYSS_GUARD" abyss_type="BOSS" ai="aggressive" srange="20" arange="6" attack_speed="3000" hpgauge="26" cancel_level="0">
 		<stats maxHp="15159733" msup="261">
 			<speeds walk="7.5" group_walk="7.5" run="7.5" run_fight="7.5" group_run_fight="7.5" />
 		</stats>
 		<bound_radius front="4.105" side="4.105" upper="20.4" />
 	</npc_template>
-	<npc_template npc_id="259614" level="60" name_en="Petrification Incarnate" name_pt="Então aí está você! Você nós causou muita dor. Ágora é hora de você pagar!" name_id="344659" height="20.4" title_id="344810" group_drop="DRAGON" rank="VETERAN" rating="LEGENDARY" race="DRAKAN" tribe="F4GUARD_DRAGON" type="ABYSS_GUARD" abyss_type="BOSS" ai="aggressive" srange="20" arange="6" attack_speed="3000" hpgauge="26" cancel_level="0">
+	<npc_template npc_id="259614" level="60" name_en="Petrification Incarnate" name_pt="Então aí está você! Você nós causou muita dor. Agora é hora de você pagar!" name_id="344659" height="20.4" title_id="344810" group_drop="DRAGON" rank="VETERAN" rating="LEGENDARY" race="DRAKAN" tribe="F4GUARD_DRAGON" type="ABYSS_GUARD" abyss_type="BOSS" ai="aggressive" srange="20" arange="6" attack_speed="3000" hpgauge="26" cancel_level="0">
 		<stats maxHp="15159733" msup="261">
 			<speeds walk="7.5" group_walk="7.5" run="7.5" run_fight="7.5" group_run_fight="7.5" />
 		</stats>
@@ -226052,7 +226052,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="278068" level="53" name_en="Ammu" name_pt="Há muito andamento" name_id="313068" height="1.8" title_id="315026" group_drop="DARK" rank="SEASONED" rating="ELITE" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="10" arange="4" attack_speed="1900" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="278068" level="53" name_en="Ammu" name_pt="Há muito tempo" name_id="313068" height="1.8" title_id="315026" group_drop="DARK" rank="SEASONED" rating="ELITE" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="10" arange="4" attack_speed="1900" hpgauge="12" cancel_level="30">
 		<stats maxHp="70018">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -231094,7 +231094,7 @@
 		</equipment>
 		<bound_radius front="0.3375" side="0.4725" upper="2.7" />
 	</npc_template>
-	<npc_template npc_id="279117" level="1" name_en="Artefact Sentinel" name_pt="Tu causou muita tristeza no meu navio. Ágora é hora de pagar!" name_id="342625" height="2.4" group_drop="LIGHT" rank="VETERAN" rating="ELITE" race="GCHIEF_LIGHT" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="artifact_protector" srange="10" arange="37" attack_speed="2260" hpgauge="21" cancel_level="20">
+	<npc_template npc_id="279117" level="1" name_en="Artefact Sentinel" name_pt="Tu causou muita tristeza no meu navio. Agora é hora de pagar!" name_id="342625" height="2.4" group_drop="LIGHT" rank="VETERAN" rating="ELITE" race="GCHIEF_LIGHT" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="artifact_protector" srange="10" arange="37" attack_speed="2260" hpgauge="21" cancel_level="20">
 		<stats maxHp="130432" msup="817">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -250249,7 +250249,7 @@
 		</equipment>
 		<bound_radius front="0.5" side="0.5" upper="1.8" />
 	</npc_template>
-	<npc_template npc_id="281416" level="55" name_en="Oddwood" name_pt="Região autónoma da madeira estranha" name_id="319804" height="3.81" group_drop="ROTTENTREE" rank="VETERAN" rating="ELITE" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="aggressive" srange="20" sangle="240" arange="30" attack_speed="2594" hpgauge="14" cancel_level="20">
+	<npc_template npc_id="281416" level="55" name_en="Oddwood" name_pt="madeira estranha" name_id="319804" height="3.81" group_drop="ROTTENTREE" rank="VETERAN" rating="ELITE" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="aggressive" srange="20" sangle="240" arange="30" attack_speed="2594" hpgauge="14" cancel_level="20">
 		<stats maxHp="74194" />
 		<bound_radius front="1.245" side="0.825" upper="3.81" />
 	</npc_template>
@@ -306785,7 +306785,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700176" level="1" name_en="Wooden Prison" name_pt="Prisão de região autónoma da madeira" name_id="350801" height="5" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" tribe="MONSTER" type="MONSTER" ai="onedmg_passive" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700176" level="1" name_en="Wooden Prison" name_pt="Prisão de madeira" name_id="350801" height="5" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" tribe="MONSTER" type="MONSTER" ai="onedmg_passive" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="20" />
 		<bound_radius front="2.5" side="2.5" upper="5" />
 		<talk_info distance="5" can_talk_invisible="false" />
@@ -307310,7 +307310,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700281" level="1" name_en="Wooden Box" name_pt="Caixa de região autónoma da madeira" name_id="350929" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="quest_use_item" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700281" level="1" name_en="Wooden Box" name_pt="Caixa de madeira" name_id="350929" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="quest_use_item" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
@@ -307868,7 +307868,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="3" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700395" level="1" name_en="Old Wooden Box" name_pt="Caixa de região autónoma da madeira velha" name_id="371114" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="quest_use_item" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700395" level="1" name_en="Old Wooden Box" name_pt="Caixa de madeira velha" name_id="371114" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="quest_use_item" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="3" delay="3" is_dialog="true" can_talk_invisible="false" />
@@ -310291,7 +310291,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700944" level="1" name_en="Suspicious Wooden Box" name_pt="Caixa de região autónoma da madeira suspeita" name_id="371617" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="useitem" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700944" level="1" name_en="Suspicious Wooden Box" name_pt="Caixa de madeira suspeita" name_id="371617" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="useitem" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="145" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
@@ -310631,7 +310631,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="701008" level="1" name_en="Wooden Box" name_pt="Caixa de região autónoma da madeira" name_id="461110" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="useitem" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="701008" level="1" name_en="Wooden Box" name_pt="Caixa de madeira" name_id="461110" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="useitem" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="105" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="5" can_talk_invisible="false" />
@@ -340283,7 +340283,7 @@
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="800441" level="60" name_en="Robust Wooden Box" name_pt="Caixa de Região autónoma da madeira Robusta" name_id="462427" height="2" group_drop="LIGHT" rank="EXPERT" rating="HERO" race="BROWNIE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3" cancel_level="0">
+	<npc_template npc_id="800441" level="60" name_en="Robust Wooden Box" name_pt="Caixa de madeira Robusta" name_id="462427" height="2" group_drop="LIGHT" rank="EXPERT" rating="HERO" race="BROWNIE" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3" cancel_level="0">
 		<stats maxHp="3871652">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -347516,7 +347516,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801002" level="65" name_en="Persistent Reshanta Flag Legion Kisk (Asmodian)" name_pt="Baú do tesouro do Balaur Guardião idéia" name_id="463047" height="1.8" group_drop="DARK" rank="EXPERT" rating="HERO" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="noaction" srange="0" arange="37" attack_speed="2000" hpgauge="21" cancel_level="0">
+	<npc_template npc_id="801002" level="65" name_en="Persistent Reshanta Flag Legion Kisk (Asmodian)" name_pt="Baú do tesouro do Balaur General Guardião" name_id="463047" height="1.8" group_drop="DARK" rank="EXPERT" rating="HERO" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="noaction" srange="0" arange="37" attack_speed="2000" hpgauge="21" cancel_level="0">
 		<stats maxHp="466030" msup="957">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -363561,7 +363561,7 @@
 		<bound_radius front="0.75" side="1.05" upper="6" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802483" level="65" name_en="Major Vasharti Treasure Chest" name_pt="Ágora" name_id="464716" height="2.5" group_drop="LIGHT" rank="DISCIPLINED" rating="ELITE" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="aggressive" srange="7" arange="2" attack_speed="2000" hpgauge="3" cancel_level="40">
+	<npc_template npc_id="802483" level="65" name_en="Major Vasharti Treasure Chest" name_pt="Agora" name_id="464716" height="2.5" group_drop="LIGHT" rank="DISCIPLINED" rating="ELITE" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="aggressive" srange="7" arange="2" attack_speed="2000" hpgauge="3" cancel_level="40">
 		<stats maxHp="149032">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>

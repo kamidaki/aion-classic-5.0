@@ -522,11 +522,11 @@
 		<petfunction id="1030000" type="WING"/>
 		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.7"/>
 	</pet>
-	<pet id="900110" name_en="Sticky Wooden Box" name_pt="Caixa de região autónoma da madeira pegajosa" nameid="1607489" condition_reward="188051378">
+	<pet id="900110" name_en="Sticky Wooden Box" name_pt="Caixa de madeira pegajosa" nameid="1607489" condition_reward="188051378">
 		<petfunction id="1030000" type="WING"/>
 		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.6"/>
 	</pet>
-	<pet id="900111" name_en="Muddy Wooden Box" name_pt="Caixa de região autónoma da madeira lamacenta" nameid="1607491" condition_reward="188051378">
+	<pet id="900111" name_en="Muddy Wooden Box" name_pt="Caixa de madeira lamacenta" nameid="1607491" condition_reward="188051378">
 		<petfunction id="1030000" type="WING"/>
 		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.6"/>
 	</pet>
