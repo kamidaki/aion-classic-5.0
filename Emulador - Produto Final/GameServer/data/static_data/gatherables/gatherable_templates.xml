@@ -783,7 +783,7 @@ Clique duas vezes para abrir." />
 			<material rate="1400000" nameid="811607" itemid="152000222" name_en="[Event] Fine Power Shard Chest (1,000)" name_pt="[Evento]Baú de Fino Poder estilhaço (1,000)" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="400215" name_en="Noble Prismatic Doomsayer’s Wing Selection Box" name_pt="Nobre prismático Arauto da Perdição’s Asa Caixa de Seleção" nameId="811692" sourceType="METAL" harvestCount="3" skillLevel="499" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="60">
+	<gatherable_template id="400215" name_en="Noble Prismatic Doomsayer’s Wing Selection Box" name_pt="Asa Caixa de Seleção de Nobre prismático Arauto da Perdição" nameId="811692" sourceType="METAL" harvestCount="3" skillLevel="499" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="60">
 		<materials>
 			<material rate="5800000" nameid="811608" itemid="152000223" name_en="[Event] Rare Manastone Bundle (Level 60)" name_pt="[Evento] Pacote de Pedras de Mana Raras (Nível 60)" />
 			<material rate="2800000" nameid="811609" itemid="152000224" name_en="[Event] Heroic Godstone Selection Box" name_pt="[Evento] Heroico Pedra Divina Caixa de Seleção" />
@@ -1782,13 +1782,13 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="400507" name_en="Sobi" name_pt="Sala" nameId="701994" sourceType="PLANT" harvestCount="3" skillLevel="235" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30">
 		<materials>
 			<material rate="8000000" nameid="702061" itemid="152000603" name_en="Sobi Fibre" name_pt="Fibra Sobi" />
-			<material rate="2000000" nameid="775001" itemid="152000609" name_en="Esoterrace Legionary's Tunic" name_pt="Esoterrace Legionário's Túnica" />
+			<material rate="2000000" nameid="775001" itemid="152000609" name_en="Esoterrace Legionary's Tunic" name_pt="Túnica de Esoterrace Legionário" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="400508" name_en="Sobi" name_pt="Sala" nameId="701994" sourceType="PLANT" harvestCount="3" skillLevel="235" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30">
 		<materials>
 			<material rate="8000000" nameid="702061" itemid="152000603" name_en="Sobi Fibre" name_pt="Fibra Sobi" />
-			<material rate="2000000" nameid="775001" itemid="152000609" name_en="Esoterrace Legionary's Tunic" name_pt="Esoterrace Legionário's Túnica" />
+			<material rate="2000000" nameid="775001" itemid="152000609" name_en="Esoterrace Legionary's Tunic" name_pt="Túnica de Esoterrace Legionário" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="400509" name_en="Linon" name_pt="Linho" nameId="701995" sourceType="PLANT" harvestCount="3" skillLevel="335" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="40">
@@ -1814,7 +1814,7 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="400512" name_en="Prolix" name_pt="Prolixo" nameId="748601" sourceType="PLANT" harvestCount="3" skillLevel="415" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="7996950" nameid="748657" itemid="152000605" name_en="Prolix Fibre" name_pt="Fibra prolix" />
-			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Esoterrace Legionário's Túnica" />
+			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Túnica de Esoterrace Legionário" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 		</materials>
@@ -1828,14 +1828,14 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="400514" name_en="Prolix" name_pt="Prolixo" nameId="748601" sourceType="PLANT" harvestCount="3" skillLevel="415" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50" reqItem="122001454" reqItemNameId="794662" checkType="1">
 		<materials>
 			<material rate="7996400" nameid="748657" itemid="152000605" name_en="Prolix Fibre" name_pt="Fibra prolix" />
-			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Esoterrace Legionário's Túnica" />
+			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Túnica de Esoterrace Legionário" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 			<material rate="550" nameid="794570" itemid="170040028" name_en="외형 확인 로브 신발_a08a_마족" name_pt="외형 확인 로브 신발_a08a_마족" />
 		</materials>
 		<exmaterials>
 			<material rate="7946400" nameid="748657" itemid="152000605" name_en="Prolix Fibre" name_pt="Fibra prolix" />
-			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Esoterrace Legionário's Túnica" />
+			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Túnica de Esoterrace Legionário" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 			<material rate="50000" nameid="1136798" itemid="182213196" name_en="Noble Dew" name_pt="Noble Dew" />
@@ -1845,14 +1845,14 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="400515" name_en="Prolix" name_pt="Prolixo" nameId="748601" sourceType="PLANT" harvestCount="3" skillLevel="415" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50" reqItem="122001454" reqItemNameId="794662" checkType="1">
 		<materials>
 			<material rate="7996400" nameid="748657" itemid="152000605" name_en="Prolix Fibre" name_pt="Fibra prolix" />
-			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Esoterrace Legionário's Túnica" />
+			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Túnica de Esoterrace Legionário" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 			<material rate="550" nameid="794570" itemid="170040028" name_en="외형 확인 로브 신발_a08a_마족" name_pt="외형 확인 로브 신발_a08a_마족" />
 		</materials>
 		<exmaterials>
 			<material rate="7946400" nameid="748657" itemid="152000605" name_en="Prolix Fibre" name_pt="Fibra prolix" />
-			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Esoterrace Legionário's Túnica" />
+			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Túnica de Esoterrace Legionário" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 			<material rate="50000" nameid="1136798" itemid="182213196" name_en="Noble Dew" name_pt="Noble Dew" />
@@ -1898,19 +1898,19 @@ Clique duas vezes para abrir." nameId="811693" sourceType="PLANT" harvestCount="
 	<gatherable_template id="400555" name_en="Xilix" name_pt="Xilix" nameId="703596" sourceType="PLANT" harvestCount="3" skillLevel="260" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30">
 		<materials>
 			<material rate="8000000" nameid="703624" itemid="152000653" name_en="Xilix Fibre" name_pt="Fibra Xilix" />
-			<material rate="2000000" nameid="775009" itemid="152000659" name_en="Esoterrace Legionary's Jerkin" name_pt="Esoterrace Legionário's Gibão" />
+			<material rate="2000000" nameid="775009" itemid="152000659" name_en="Esoterrace Legionary's Jerkin" name_pt="Gibão de Esoterrace Legionário" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="400556" name_en="Xilix" name_pt="Xilix" nameId="703596" sourceType="PLANT" harvestCount="3" skillLevel="260" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30">
 		<materials>
 			<material rate="8000000" nameid="703624" itemid="152000653" name_en="Xilix Fibre" name_pt="Fibra Xilix" />
-			<material rate="2000000" nameid="775009" itemid="152000659" name_en="Esoterrace Legionary's Jerkin" name_pt="Esoterrace Legionário's Gibão" />
+			<material rate="2000000" nameid="775009" itemid="152000659" name_en="Esoterrace Legionary's Jerkin" name_pt="Gibão de Esoterrace Legionário" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="400557" name_en="Xilix" name_pt="Xilix" nameId="703596" sourceType="PLANT" harvestCount="3" skillLevel="260" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30">
 		<materials>
 			<material rate="8000000" nameid="703624" itemid="152000653" name_en="Xilix Fibre" name_pt="Fibra Xilix" />
-			<material rate="2000000" nameid="775009" itemid="152000659" name_en="Esoterrace Legionary's Jerkin" name_pt="Esoterrace Legionário's Gibão" />
+			<material rate="2000000" nameid="775009" itemid="152000659" name_en="Esoterrace Legionary's Jerkin" name_pt="Gibão de Esoterrace Legionário" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="400558" name_en="Anathe" name_pt="Anathe" nameId="715706" sourceType="PLANT" harvestCount="3" skillLevel="330" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="40">
@@ -2938,33 +2938,33 @@ Clique duas vezes para abrir." nameId="811704" sourceType="FISH" harvestCount="3
 	<gatherable_template id="400903" name_en="Litrea" name_pt="Litreia" nameId="702008" sourceType="SHELL" harvestCount="3" skillLevel="305" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="40">
 		<materials>
 			<material rate="9993000" nameid="702075" itemid="152001003" name_en="Litrea" name_pt="Litreia" />
-			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Mikaro's Memento" />
+			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Memento de Mikaro" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="400904" name_en="Litrea" name_pt="Litreia" nameId="743037" sourceType="SHELL" harvestCount="3" skillLevel="305" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="40">
 		<materials>
 			<material rate="9993000" nameid="702075" itemid="152001003" name_en="Litrea" name_pt="Litreia" />
-			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Mikaro's Memento" />
+			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Memento de Mikaro" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="400905" name_en="Anevra" name_pt="Anevra" nameId="748608" sourceType="SHELL" harvestCount="3" skillLevel="440" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="9991400" nameid="748705" itemid="152001004" name_en="Anevra" name_pt="Anevra" />
-			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Mikaro's Memento" />
+			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Memento de Mikaro" />
 			<material rate="1600" nameid="765537" itemid="115001091" name_en="Mikaron's Superior Plate" name_pt="Placa superior de Mikaron" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="400906" name_en="Feena" name_pt="Feena" nameId="748609" sourceType="SHELL" harvestCount="3" skillLevel="475" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="9991400" nameid="748707" itemid="152001005" name_en="Feena" name_pt="Feena" />
-			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Mikaro's Memento" />
+			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Memento de Mikaro" />
 			<material rate="1600" nameid="765537" itemid="115001091" name_en="Mikaron's Superior Plate" name_pt="Placa superior de Mikaron" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="400907" name_en="Anevra" name_pt="Anevra" nameId="748608" sourceType="SHELL" harvestCount="3" skillLevel="440" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="9989800" nameid="748705" itemid="152001004" name_en="Anevra" name_pt="Anevra" />
-			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Mikaro's Memento" />
+			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Memento de Mikaro" />
 			<material rate="1600" nameid="765537" itemid="115001091" name_en="Mikaron's Superior Plate" name_pt="Placa superior de Mikaron" />
 			<material rate="1600" nameid="794565" itemid="170040023" name_en="외형 확인 판금 하의_p05a" name_pt="외형 확인 판금 하의_p05a" />
 		</materials>
@@ -2972,7 +2972,7 @@ Clique duas vezes para abrir." nameId="811704" sourceType="FISH" harvestCount="3
 	<gatherable_template id="400908" name_en="Feena" name_pt="Feena" nameId="748609" sourceType="SHELL" harvestCount="3" skillLevel="475" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="9989800" nameid="748707" itemid="152001005" name_en="Feena" name_pt="Feena" />
-			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Mikaro's Memento" />
+			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Memento de Mikaro" />
 			<material rate="1600" nameid="765537" itemid="115001091" name_en="Mikaron's Superior Plate" name_pt="Placa superior de Mikaron" />
 			<material rate="1600" nameid="794565" itemid="170040023" name_en="외형 확인 판금 하의_p05a" name_pt="외형 확인 판금 하의_p05a" />
 		</materials>
@@ -3012,7 +3012,7 @@ Clique duas vezes para abrir." nameId="811706" sourceType="SHELL" harvestCount="
 	<gatherable_template id="400953" name_en="Almeha" name_pt="Almeha" nameId="715712" sourceType="SHELL" harvestCount="3" skillLevel="280" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30">
 		<materials>
 			<material rate="9993000" nameid="706005" itemid="152001053" name_en="Almeha" name_pt="Almeha" />
-			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Mikaro's Memento" />
+			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Memento de Mikaro" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="400954" name_en="Blicora" name_pt="Blicora" nameId="723649" sourceType="SHELL" harvestCount="3" skillLevel="85" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100">
@@ -3023,21 +3023,21 @@ Clique duas vezes para abrir." nameId="811706" sourceType="SHELL" harvestCount="
 	<gatherable_template id="400955" name_en="Poma" name_pt="Poma" nameId="751134" sourceType="SHELL" harvestCount="3" skillLevel="415" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="9991400" nameid="751179" itemid="152001055" name_en="Poma" name_pt="Poma" />
-			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Mikaro's Memento" />
+			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Memento de Mikaro" />
 			<material rate="1600" nameid="765537" itemid="115001091" name_en="Mikaron's Superior Plate" name_pt="Placa superior de Mikaron" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="400956" name_en="Gorocle" name_pt="Gorocle" nameId="751135" sourceType="SHELL" harvestCount="3" skillLevel="465" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="9991400" nameid="751181" itemid="152001056" name_en="Gorocle" name_pt="Gorocle" />
-			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Mikaro's Memento" />
+			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Memento de Mikaro" />
 			<material rate="1600" nameid="765537" itemid="115001091" name_en="Mikaron's Superior Plate" name_pt="Placa superior de Mikaron" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="400957" name_en="Poma" name_pt="Poma" nameId="751134" sourceType="SHELL" harvestCount="3" skillLevel="415" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="9989800" nameid="751179" itemid="152001055" name_en="Poma" name_pt="Poma" />
-			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Mikaro's Memento" />
+			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Memento de Mikaro" />
 			<material rate="1600" nameid="765537" itemid="115001091" name_en="Mikaron's Superior Plate" name_pt="Placa superior de Mikaron" />
 			<material rate="1600" nameid="794565" itemid="170040023" name_en="외형 확인 판금 하의_p05a" name_pt="외형 확인 판금 하의_p05a" />
 		</materials>
@@ -3045,7 +3045,7 @@ Clique duas vezes para abrir." nameId="811706" sourceType="SHELL" harvestCount="
 	<gatherable_template id="400958" name_en="Gorocle" name_pt="Gorocle" nameId="751135" sourceType="SHELL" harvestCount="3" skillLevel="465" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="9989800" nameid="751181" itemid="152001056" name_en="Gorocle" name_pt="Gorocle" />
-			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Mikaro's Memento" />
+			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Memento de Mikaro" />
 			<material rate="1600" nameid="765537" itemid="115001091" name_en="Mikaron's Superior Plate" name_pt="Placa superior de Mikaron" />
 			<material rate="1600" nameid="794565" itemid="170040023" name_en="외형 확인 판금 하의_p05a" name_pt="외형 확인 판금 하의_p05a" />
 		</materials>
@@ -3912,7 +3912,7 @@ Clique duas vezes para abrir." nameId="811706" sourceType="SHELL" harvestCount="
 	<gatherable_template id="401104" name_en="Huge Sobi" name_pt="Enorme Sobi" nameId="703544" sourceType="PLANT" harvestCount="12" skillLevel="235" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30">
 		<materials>
 			<material rate="8000000" nameid="702061" itemid="152000603" name_en="Sobi Fibre" name_pt="Fibra Sobi" />
-			<material rate="2000000" nameid="775001" itemid="152000609" name_en="Esoterrace Legionary's Tunic" name_pt="Esoterrace Legionário's Túnica" />
+			<material rate="2000000" nameid="775001" itemid="152000609" name_en="Esoterrace Legionary's Tunic" name_pt="Túnica de Esoterrace Legionário" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="401105" name_en="Huge Meon" name_pt="Enorme meon" nameId="703545" sourceType="BERRY" harvestCount="12" skillLevel="220" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30">
@@ -3990,7 +3990,7 @@ Clique duas vezes para abrir." nameId="811706" sourceType="SHELL" harvestCount="
 	<gatherable_template id="401117" name_en="Huge Prolix" name_pt="Enorme prolix" nameId="751626" sourceType="PLANT" harvestCount="12" skillLevel="415" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="8000000" nameid="748657" itemid="152000605" name_en="Prolix Fibre" name_pt="Fibra prolix" />
-			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Esoterrace Legionário's Túnica" />
+			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Túnica de Esoterrace Legionário" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="401118" name_en="Upon opening, you receive one of many different items.
@@ -4208,7 +4208,7 @@ Clique duas vezes para abrir." nameId="811707" sourceType="ID" harvestCount="3" 
 			<material rate="1000000" nameid="765083" itemid="162000074" name_en="Vitality Crystal" name_pt="Vitalidade Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="402002" name_en="Horned Dragon Emperor’s Dragon Claws" name_pt="Chifrudo Dragão imperador’s Garras de Dragão" nameId="795747" sourceType="NOBLEMETAL" harvestCount="3" skillLevel="400" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="200" lvlLimit="50" reqItem="169405036" reqItemNameId="764400" checkType="2" eraseValue="1">
+	<gatherable_template id="402002" name_en="Horned Dragon Emperor’s Dragon Claws" name_pt="Garras de Dragão de Chifrudo Dragão imperador" nameId="795747" sourceType="NOBLEMETAL" harvestCount="3" skillLevel="400" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="200" lvlLimit="50" reqItem="169405036" reqItemNameId="764400" checkType="2" eraseValue="1">
 		<materials>
 			<material rate="4839400" nameid="765053" itemid="188051608" name_en="Chunk of Sand" name_pt="Pedaço de areia" />
 			<material rate="2752000" nameid="765054" itemid="188050720" name_en="Chunk of Rock" name_pt="Pedaço de rocha" />
@@ -4688,12 +4688,12 @@ Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="403500" name_en="Allows the use of the title &lt;Challenger&gt;, increasing your movement speed by +4%%." name_pt="Permite o(a) use de o(a) ttulo &lt;Desafiador&gt;, aumentando Seu(Sua) velocidade de movimento em +4%%." nameId="791633" sourceType="HERB" harvestCount="5" skillLevel="1" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
+	<gatherable_template id="403500" name_en="Allows the use of the title &lt;Challenger&gt;, increasing your movement speed by +4%%." name_pt="Permite o(a) use do(a) ttulo &lt;Desafiador&gt;, aumentando Seu(Sua) velocidade de movimento em +4%%." nameId="791633" sourceType="HERB" harvestCount="5" skillLevel="1" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
 		<materials>
 			<material rate="200000" nameid="791681" itemid="182006806" name_en="Contains a Greater Ancient Crown.
 Double-click to open." name_pt="Contém um(a) Maior Antigo coroa.
 Clique duas vezes para abrir." />
-			<material rate="5000000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="5000000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="3800000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -4703,19 +4703,19 @@ Clique duas vezes para abrir." />
 			<material rate="2700000" nameid="791681" itemid="182006806" name_en="Contains a Greater Ancient Crown.
 Double-click to open." name_pt="Contém um(a) Maior Antigo coroa.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="3800000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="403501" name_en="Padmarashka’s Cave Treasure Chest" name_pt="Padmarashka’s Caverna Baú do Tesouro" nameId="791634" sourceType="SHELL" harvestCount="5" skillLevel="1" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
+	<gatherable_template id="403501" name_en="Padmarashka’s Cave Treasure Chest" name_pt="Caverna Baú do Tesouro de Padmarashka" nameId="791634" sourceType="SHELL" harvestCount="5" skillLevel="1" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
 		<materials>
 			<material rate="200000" nameid="791682" itemid="182006807" name_en="Contains a Major Ancient Crown.
 Double-click to open." name_pt="Contém um(a) superior Antigo coroa.
 Clique duas vezes para abrir." />
-			<material rate="5000000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="5000000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="3800000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -4725,7 +4725,7 @@ Clique duas vezes para abrir." />
 			<material rate="2700000" nameid="791682" itemid="182006807" name_en="Contains a Major Ancient Crown.
 Double-click to open." name_pt="Contém um(a) superior Antigo coroa.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="3800000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -4739,7 +4739,7 @@ Clique duas vezes para abrir." nameId="791635" sourceType="METAL" harvestCount="
 			<material rate="200000" nameid="791683" itemid="182006808" name_en="Contains an Azure Gold Medal.
 Double-click to open." name_pt="Contém um(a) azul-celeste ouro Medalha.
 Clique duas vezes para abrir." />
-			<material rate="5000000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="5000000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="3800000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -4749,7 +4749,7 @@ Clique duas vezes para abrir." />
 			<material rate="2700000" nameid="791683" itemid="182006808" name_en="Contains an Azure Gold Medal.
 Double-click to open." name_pt="Contém um(a) azul-celeste ouro Medalha.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="3800000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -4761,7 +4761,7 @@ Clique duas vezes para abrir." />
 			<material rate="2225000" nameid="791684" itemid="182006809" name_en="Contains a Platinum Medal.
 Double-click to open." name_pt="Contém um(a) Platina Medalha.
 Clique duas vezes para abrir." />
-			<material rate="5000000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="5000000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="1775000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -4771,7 +4771,7 @@ Clique duas vezes para abrir." />
 			<material rate="4725000" nameid="791684" itemid="182006809" name_en="Contains a Platinum Medal.
 Double-click to open." name_pt="Contém um(a) Platina Medalha.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="1775000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -4783,7 +4783,7 @@ Clique duas vezes para abrir." />
 			<material rate="2225000" nameid="791685" itemid="182006810" name_en="Contains an Enchantment Material Chest (Level 91–100).
 Double-click to open." name_pt="Contém um(a) Baú de Encantamento de Materiais (Nvel 91–100).
 Clique duas vezes para abrir." />
-			<material rate="5000000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="5000000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="1775000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -4793,7 +4793,7 @@ Clique duas vezes para abrir." />
 			<material rate="4725000" nameid="791685" itemid="182006810" name_en="Contains an Enchantment Material Chest (Level 91–100).
 Double-click to open." name_pt="Contém um(a) Baú de Encantamento de Materiais (Nvel 91–100).
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="1775000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -4805,7 +4805,7 @@ Clique duas vezes para abrir." />
 			<material rate="2225000" nameid="791686" itemid="182006811" name_en="Contains 100 Premium Power Shards.
 Double-click to open." name_pt="Contém 100 Premium Poder estilhaços.
 Clique duas vezes para abrir." />
-			<material rate="5000000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="5000000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="1775000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -4815,7 +4815,7 @@ Clique duas vezes para abrir." />
 			<material rate="4725000" nameid="791686" itemid="182006811" name_en="Contains 100 Premium Power Shards.
 Double-click to open." name_pt="Contém 100 Premium Poder estilhaços.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="1775000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -4827,7 +4827,7 @@ Clique duas vezes para abrir." />
 			<material rate="2225000" nameid="791687" itemid="182006812" name_en="Contains a Godstone Bundle.
 Double-click to open." name_pt="Contém um(a) Pedra Divina Pacote.
 Clique duas vezes para abrir." />
-			<material rate="5000000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="5000000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="1775000" nameid="795305" itemid="152011093" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -4835,7 +4835,7 @@ Clique duas vezes para abrir." />
 			<material rate="4725000" nameid="791687" itemid="182006812" name_en="Contains a Godstone Bundle.
 Double-click to open." name_pt="Contém um(a) Pedra Divina Pacote.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="1775000" nameid="795305" itemid="152011093" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -4845,7 +4845,7 @@ Clique duas vezes para abrir." />
 			<material rate="2225000" nameid="791689" itemid="182006814" name_en="Contains a New Daeva Entry Scroll.
 Double-click to open." name_pt="Contém um(a) novo Daeva Pergaminho de Entrada.
 Clique duas vezes para abrir." />
-			<material rate="5000000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="5000000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="1775000" nameid="795305" itemid="152011093" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -4853,7 +4853,7 @@ Clique duas vezes para abrir." />
 			<material rate="4725000" nameid="791689" itemid="182006814" name_en="Contains a New Daeva Entry Scroll.
 Double-click to open." name_pt="Contém um(a) novo Daeva Pergaminho de Entrada.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="1775000" nameid="795305" itemid="152011093" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -4863,7 +4863,7 @@ Clique duas vezes para abrir." />
 			<material rate="2225000" nameid="791688" itemid="182006813" name_en="Contains a Godstone Bundle.
 Double-click to open." name_pt="Contém um(a) Pedra Divina Pacote.
 Clique duas vezes para abrir." />
-			<material rate="5000000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="5000000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="1775000" nameid="795305" itemid="152011093" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -4871,7 +4871,7 @@ Clique duas vezes para abrir." />
 			<material rate="4725000" nameid="791688" itemid="182006813" name_en="Contains a Godstone Bundle.
 Double-click to open." name_pt="Contém um(a) Pedra Divina Pacote.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="1775000" nameid="795305" itemid="152011093" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -4881,7 +4881,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791690" itemid="182006815" name_en="Contains a Normal Daeva Entry Scroll.
 Double-click to open." name_pt="Contém um(a) normal.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -4889,7 +4889,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791690" itemid="182006815" name_en="Contains a Normal Daeva Entry Scroll.
 Double-click to open." name_pt="Contém um(a) normal.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -4899,7 +4899,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791691" itemid="182006816" name_en="Contains a Major Diamond.
 Double-click to open." name_pt="Contém um(a) superior Diamante.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -4907,7 +4907,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791691" itemid="182006816" name_en="Contains a Major Diamond.
 Double-click to open." name_pt="Contém um(a) superior Diamante.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -4917,7 +4917,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791692" itemid="182006817" name_en="Contains a Large Rare Manastone Bundle.
 Double-click to open." name_pt="Contém um(a) Grande Pacote de Pedras de Mana Raras.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -4925,7 +4925,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791692" itemid="182006817" name_en="Contains a Large Rare Manastone Bundle.
 Double-click to open." name_pt="Contém um(a) Grande Pacote de Pedras de Mana Raras.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -4935,7 +4935,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791693" itemid="182006818" name_en="Contains a Major Rare Manastone Bundle.
 Double-click to open." name_pt="Contém um(a) superior Pacote de Pedras de Mana Raras.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -4943,7 +4943,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791693" itemid="182006818" name_en="Contains a Major Rare Manastone Bundle.
 Double-click to open." name_pt="Contém um(a) superior Pacote de Pedras de Mana Raras.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -4953,7 +4953,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791694" itemid="182006819" name_en="Contains a Rare Manastone Bundle (Level 60).
 Double-click to open." name_pt="Contém um(a) Pacote de Pedras de Mana Raras (Nível 60).
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -4961,7 +4961,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791694" itemid="182006819" name_en="Contains a Rare Manastone Bundle (Level 60).
 Double-click to open." name_pt="Contém um(a) Pacote de Pedras de Mana Raras (Nível 60).
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -4971,7 +4971,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791695" itemid="182006820" name_en="Contains a Greater Ancient Crown.
 Double-click to open." name_pt="Contém um(a) Maior Antigo coroa.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -4979,7 +4979,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791695" itemid="182006820" name_en="Contains a Greater Ancient Crown.
 Double-click to open." name_pt="Contém um(a) Maior Antigo coroa.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -4989,7 +4989,7 @@ Clique duas vezes para abrir." />
 			<material rate="5500000" nameid="791696" itemid="182006821" name_en="Contains a Major Ancient Crown.
 Double-click to open." name_pt="Contém um(a) superior Antigo coroa.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="1000000" nameid="795307" itemid="152011095" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -4997,7 +4997,7 @@ Clique duas vezes para abrir." />
 			<material rate="5500000" nameid="791696" itemid="182006821" name_en="Contains a Major Ancient Crown.
 Double-click to open." name_pt="Contém um(a) superior Antigo coroa.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="1000000" nameid="795307" itemid="152011095" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -5007,7 +5007,7 @@ Clique duas vezes para abrir." />
 			<material rate="5500000" nameid="791697" itemid="182006822" name_en="Contains an Azure Gold Medal.
 Double-click to open." name_pt="Contém um(a) azul-celeste ouro Medalha.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="1000000" nameid="795307" itemid="152011095" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -5015,7 +5015,7 @@ Clique duas vezes para abrir." />
 			<material rate="5500000" nameid="791697" itemid="182006822" name_en="Contains an Azure Gold Medal.
 Double-click to open." name_pt="Contém um(a) azul-celeste ouro Medalha.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="1000000" nameid="795307" itemid="152011095" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -5025,7 +5025,7 @@ Clique duas vezes para abrir." />
 			<material rate="5500000" nameid="791698" itemid="182006823" name_en="Contains a Platinum Medal.
 Double-click to open." name_pt="Contém um(a) Platina Medalha.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="1000000" nameid="795307" itemid="152011095" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -5033,7 +5033,7 @@ Clique duas vezes para abrir." />
 			<material rate="5500000" nameid="791698" itemid="182006823" name_en="Contains a Platinum Medal.
 Double-click to open." name_pt="Contém um(a) Platina Medalha.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="1000000" nameid="795307" itemid="152011095" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -5043,7 +5043,7 @@ Clique duas vezes para abrir." />
 			<material rate="5700000" nameid="791699" itemid="182006824" name_en="Contains an Enchantment Material Chest (Level 91–100).
 Double-click to open." name_pt="Contém um(a) Baú de Encantamento de Materiais (Nvel 91–100).
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -5051,63 +5051,63 @@ Clique duas vezes para abrir." />
 			<material rate="5700000" nameid="791699" itemid="182006824" name_en="Contains an Enchantment Material Chest (Level 91–100).
 Double-click to open." name_pt="Contém um(a) Baú de Encantamento de Materiais (Nvel 91–100).
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
 	<gatherable_template id="403519" name_en="Rare Manastone Bundle Material Chest (Level 60)" name_pt="Pacote de Pedras de Mana Raras Baú de Materiais (Nível 60)" nameId="791652" sourceType="FISH" harvestCount="5" skillLevel="240" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="De Elite: n. elite idéia de Brigada’s Armadura Caixa de Seleção" />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite idéia de Brigada" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="De Elite: n. elite idéia de Brigada’s Armadura Caixa de Seleção" />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite idéia de Brigada" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
 	<gatherable_template id="403520" name_en="Greater Ancient Crown Material Chest" name_pt="Maior Antigo coroa Baú de Materiais" nameId="791653" sourceType="JEWELRY" harvestCount="5" skillLevel="240" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791701" itemid="182006826" name_en="Elite Guardian Brigade General’s Armour Selection Box" name_pt="De Elite: n. elite do General de Brigada Guardião Armadura Caixa de Seleção" />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="5700000" nameid="791701" itemid="182006826" name_en="Elite Guardian Brigade General’s Armour Selection Box" name_pt="De Elite do General de Brigada Guardião Armadura Caixa de Seleção" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791701" itemid="182006826" name_en="Elite Guardian Brigade General’s Armour Selection Box" name_pt="De Elite: n. elite do General de Brigada Guardião Armadura Caixa de Seleção" />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="5700000" nameid="791701" itemid="182006826" name_en="Elite Guardian Brigade General’s Armour Selection Box" name_pt="De Elite do General de Brigada Guardião Armadura Caixa de Seleção" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
 	<gatherable_template id="403521" name_en="Major Ancient Crown Material Chest" name_pt="Superior Antigo coroa Baú de Materiais" nameId="791654" sourceType="HERB" harvestCount="5" skillLevel="280" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="De Elite: n. elite Arconte idéia de Brigada’s Armadura Caixa de Seleção" />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite Arconte idéia de Brigada" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="De Elite: n. elite Arconte idéia de Brigada’s Armadura Caixa de Seleção" />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite Arconte idéia de Brigada" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
 	<gatherable_template id="403522" name_en="Azure Gold Medal Material Chest" name_pt="Azul-celeste ouro Medalha Baú de Materiais" nameId="791655" sourceType="SHELL" harvestCount="5" skillLevel="280" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791703" itemid="182006828" name_en="Fine Brigade General’s Accessory Selection Box" name_pt="Fino idéia de Brigada’s acessório Caixa de Seleção" />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="5700000" nameid="791703" itemid="182006828" name_en="Fine Brigade General’s Accessory Selection Box" name_pt="acessório Caixa de Seleção de Fino idéia de Brigada" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791703" itemid="182006828" name_en="Fine Brigade General’s Accessory Selection Box" name_pt="Fino idéia de Brigada’s acessório Caixa de Seleção" />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="5700000" nameid="791703" itemid="182006828" name_en="Fine Brigade General’s Accessory Selection Box" name_pt="acessório Caixa de Seleção de Fino idéia de Brigada" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -5115,13 +5115,13 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="403523" name_en="Platinum Medal Material Chest" name_pt="Platina Medalha Baú de Materiais" nameId="791656" sourceType="JEWELRY" harvestCount="5" skillLevel="280" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
 			<material rate="5700000" nameid="791704" itemid="182006829" name_en="Fine Guardian Brigade General’s Accessory Selection Box" name_pt="Fino do General de Brigada Guardião acessório Caixa de Seleção" />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
 			<material rate="5700000" nameid="791704" itemid="182006829" name_en="Fine Guardian Brigade General’s Accessory Selection Box" name_pt="Fino do General de Brigada Guardião acessório Caixa de Seleção" />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -5523,28 +5523,28 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="409028" name_en="Poma" name_pt="Poma" nameId="751134" sourceType="SHELL" harvestCount="32" skillLevel="415" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="9991400" nameid="751179" itemid="152001055" name_en="Poma" name_pt="Poma" />
-			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Mikaro's Memento" />
+			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Memento de Mikaro" />
 			<material rate="1600" nameid="765537" itemid="115001091" name_en="Mikaron's Superior Plate" name_pt="Placa superior de Mikaron" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="409029" name_en="Gorocle" name_pt="Gorocle" nameId="751135" sourceType="SHELL" harvestCount="32" skillLevel="465" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="9991400" nameid="751181" itemid="152001056" name_en="Gorocle" name_pt="Gorocle" />
-			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Mikaro's Memento" />
+			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Memento de Mikaro" />
 			<material rate="1600" nameid="765537" itemid="115001091" name_en="Mikaron's Superior Plate" name_pt="Placa superior de Mikaron" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="409030" name_en="Anevra" name_pt="Anevra" nameId="748608" sourceType="SHELL" harvestCount="32" skillLevel="440" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="9991400" nameid="748705" itemid="152001004" name_en="Anevra" name_pt="Anevra" />
-			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Mikaro's Memento" />
+			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Memento de Mikaro" />
 			<material rate="1600" nameid="765537" itemid="115001091" name_en="Mikaron's Superior Plate" name_pt="Placa superior de Mikaron" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="409031" name_en="Feena" name_pt="Feena" nameId="748609" sourceType="SHELL" harvestCount="32" skillLevel="475" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="9991400" nameid="748707" itemid="152001005" name_en="Feena" name_pt="Feena" />
-			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Mikaro's Memento" />
+			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Memento de Mikaro" />
 			<material rate="1600" nameid="765537" itemid="115001091" name_en="Mikaron's Superior Plate" name_pt="Placa superior de Mikaron" />
 		</materials>
 	</gatherable_template>
@@ -5641,7 +5641,7 @@ Clique duas vezes para abrir." />
 			<material rate="7996950" nameid="748657" itemid="152000605" name_en="Prolix Fibre" name_pt="Fibra prolix" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
-			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Esoterrace Legionário's Túnica" />
+			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Túnica de Esoterrace Legionário" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="409044" name_en="Korie Log" name_pt="Registro Korie" nameId="751123" sourceType="TREE" harvestCount="32" skillLevel="410" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
@@ -5729,7 +5729,7 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="409053" name_en="Terradew Ralloc" name_pt="Terradew Ralloc" nameId="786601" sourceType="VEGETABLE" harvestCount="1" skillLevel="30" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="9991400" nameid="751181" itemid="152001056" name_en="Gorocle" name_pt="Gorocle" />
-			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Mikaro's Memento" />
+			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Memento de Mikaro" />
 			<material rate="1600" nameid="765537" itemid="115001091" name_en="Mikaron's Superior Plate" name_pt="Placa superior de Mikaron" />
 		</materials>
 	</gatherable_template>
@@ -5885,14 +5885,14 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="409064" name_en="Adamantium" name_pt="Adamantio" nameId="701966" sourceType="METAL" harvestCount="3" skillLevel="200" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50" reqItem="122001454" reqItemNameId="794662" checkType="1">
 		<materials>
 			<material rate="7996400" nameid="748657" itemid="152000605" name_en="Prolix Fibre" name_pt="Fibra prolix" />
-			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Esoterrace Legionário's Túnica" />
+			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Túnica de Esoterrace Legionário" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 			<material rate="550" nameid="794570" itemid="170040028" name_en="외형 확인 로브 신발_a08a_마족" name_pt="외형 확인 로브 신발_a08a_마족" />
 		</materials>
 		<exmaterials>
 			<material rate="7946950" nameid="748657" itemid="152000605" name_en="Prolix Fibre" name_pt="Fibra prolix" />
-			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Esoterrace Legionário's Túnica" />
+			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Túnica de Esoterrace Legionário" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 			<material rate="50000" nameid="1136798" itemid="182213196" name_en="Noble Dew" name_pt="Noble Dew" />
@@ -5901,14 +5901,14 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="409065" name_en="Topaz" name_pt="Topázio" nameId="701969" sourceType="JEWELRY" harvestCount="1" skillLevel="145" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50" reqItem="122001454" reqItemNameId="794662" checkType="1">
 		<materials>
 			<material rate="7996400" nameid="748657" itemid="152000605" name_en="Prolix Fibre" name_pt="Fibra prolix" />
-			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Esoterrace Legionário's Túnica" />
+			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Túnica de Esoterrace Legionário" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 			<material rate="550" nameid="794570" itemid="170040028" name_en="외형 확인 로브 신발_a08a_마족" name_pt="외형 확인 로브 신발_a08a_마족" />
 		</materials>
 		<exmaterials>
 			<material rate="7946950" nameid="748657" itemid="152000605" name_en="Prolix Fibre" name_pt="Fibra prolix" />
-			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Esoterrace Legionário's Túnica" />
+			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Túnica de Esoterrace Legionário" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 			<material rate="50000" nameid="1136798" itemid="182213196" name_en="Noble Dew" name_pt="Noble Dew" />
@@ -6220,14 +6220,14 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="409092" name_en="Malevite Miasma" name_pt="Miasma maluco" nameId="751118" sourceType="NOBLEMETAL" harvestCount="1" skillLevel="460" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50" reqItem="122001454" reqItemNameId="794662" checkType="1">
 		<materials>
 			<material rate="7996400" nameid="748657" itemid="152000605" name_en="Prolix Fibre" name_pt="Fibra prolix" />
-			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Esoterrace Legionário's Túnica" />
+			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Túnica de Esoterrace Legionário" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 			<material rate="550" nameid="794570" itemid="170040028" name_en="외형 확인 로브 신발_a08a_마족" name_pt="외형 확인 로브 신발_a08a_마족" />
 		</materials>
 		<exmaterials>
 			<material rate="7946400" nameid="748657" itemid="152000605" name_en="Prolix Fibre" name_pt="Fibra prolix" />
-			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Esoterrace Legionário's Túnica" />
+			<material rate="2000000" nameid="775003" itemid="152000611" name_en="Esoterrace Legionary's Tunic" name_pt="Túnica de Esoterrace Legionário" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 			<material rate="50000" nameid="1136798" itemid="182213196" name_en="Noble Dew" name_pt="Noble Dew" />
@@ -6398,7 +6398,7 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="409109" name_en="Magical Aether" name_pt="Éter mágico" nameId="751136" sourceType="OD" harvestCount="1" skillLevel="425" harvestSkill="30003" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="9989800" nameid="748705" itemid="152001004" name_en="Anevra" name_pt="Anevra" />
-			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Mikaro's Memento" />
+			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Memento de Mikaro" />
 			<material rate="1600" nameid="765537" itemid="115001091" name_en="Mikaron's Superior Plate" name_pt="Placa superior de Mikaron" />
 			<material rate="1600" nameid="794565" itemid="170040023" name_en="외형 확인 판금 하의_p05a" name_pt="외형 확인 판금 하의_p05a" />
 		</materials>
@@ -6406,7 +6406,7 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="409110" name_en="Magical Aether" name_pt="Éter mágico" nameId="751136" sourceType="OD" harvestCount="1" skillLevel="450" harvestSkill="30003" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="9989800" nameid="748707" itemid="152001005" name_en="Feena" name_pt="Feena" />
-			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Mikaro's Memento" />
+			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Memento de Mikaro" />
 			<material rate="1600" nameid="765537" itemid="115001091" name_en="Mikaron's Superior Plate" name_pt="Placa superior de Mikaron" />
 			<material rate="1600" nameid="794565" itemid="170040023" name_en="외형 확인 판금 하의_p05a" name_pt="외형 확인 판금 하의_p05a" />
 		</materials>
@@ -6414,7 +6414,7 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="409111" name_en="Huge Nanyu Log" name_pt="Log Nanyu enorme" nameId="751625" sourceType="TREE" harvestCount="1" skillLevel="480" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="9989800" nameid="751179" itemid="152001055" name_en="Poma" name_pt="Poma" />
-			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Mikaro's Memento" />
+			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Memento de Mikaro" />
 			<material rate="1600" nameid="765537" itemid="115001091" name_en="Mikaron's Superior Plate" name_pt="Placa superior de Mikaron" />
 			<material rate="1600" nameid="794565" itemid="170040023" name_en="외형 확인 판금 하의_p05a" name_pt="외형 확인 판금 하의_p05a" />
 		</materials>
@@ -6422,7 +6422,7 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="409112" name_en="Huge Drenite" name_pt="Enorme drenita" nameId="751622" sourceType="NOBLEMETAL" harvestCount="1" skillLevel="400" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="9989800" nameid="751181" itemid="152001056" name_en="Gorocle" name_pt="Gorocle" />
-			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Mikaro's Memento" />
+			<material rate="7000" nameid="744697" itemid="152001054" name_en="Mikaron's Memento" name_pt="Memento de Mikaro" />
 			<material rate="1600" nameid="765537" itemid="115001091" name_en="Mikaron's Superior Plate" name_pt="Placa superior de Mikaron" />
 			<material rate="1600" nameid="794565" itemid="170040023" name_en="외형 확인 판금 하의_p05a" name_pt="외형 확인 판금 하의_p05a" />
 		</materials>
@@ -6885,12 +6885,12 @@ Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="409140" name_en="Allows the use of the title &lt;Challenger&gt;, increasing your movement speed by +4%%." name_pt="Permite o(a) use de o(a) ttulo &lt;Desafiador&gt;, aumentando Seu(Sua) velocidade de movimento em +4%%." nameId="791633" sourceType="HERB" harvestCount="32" skillLevel="1" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
+	<gatherable_template id="409140" name_en="Allows the use of the title &lt;Challenger&gt;, increasing your movement speed by +4%%." name_pt="Permite o(a) use do(a) ttulo &lt;Desafiador&gt;, aumentando Seu(Sua) velocidade de movimento em +4%%." nameId="791633" sourceType="HERB" harvestCount="32" skillLevel="1" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
 		<materials>
 			<material rate="200000" nameid="791681" itemid="182006806" name_en="Contains a Greater Ancient Crown.
 Double-click to open." name_pt="Contém um(a) Maior Antigo coroa.
 Clique duas vezes para abrir." />
-			<material rate="5000000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="5000000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="3800000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -6900,19 +6900,19 @@ Clique duas vezes para abrir." />
 			<material rate="2700000" nameid="791681" itemid="182006806" name_en="Contains a Greater Ancient Crown.
 Double-click to open." name_pt="Contém um(a) Maior Antigo coroa.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="3800000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="409141" name_en="Padmarashka’s Cave Treasure Chest" name_pt="Padmarashka’s Caverna Baú do Tesouro" nameId="791634" sourceType="SHELL" harvestCount="32" skillLevel="1" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
+	<gatherable_template id="409141" name_en="Padmarashka’s Cave Treasure Chest" name_pt="Caverna Baú do Tesouro de Padmarashka" nameId="791634" sourceType="SHELL" harvestCount="32" skillLevel="1" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
 		<materials>
 			<material rate="200000" nameid="791682" itemid="182006807" name_en="Contains a Major Ancient Crown.
 Double-click to open." name_pt="Contém um(a) superior Antigo coroa.
 Clique duas vezes para abrir." />
-			<material rate="5000000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="5000000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="3800000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -6922,7 +6922,7 @@ Clique duas vezes para abrir." />
 			<material rate="2700000" nameid="791682" itemid="182006807" name_en="Contains a Major Ancient Crown.
 Double-click to open." name_pt="Contém um(a) superior Antigo coroa.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="3800000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -6936,7 +6936,7 @@ Clique duas vezes para abrir." nameId="791635" sourceType="METAL" harvestCount="
 			<material rate="200000" nameid="791683" itemid="182006808" name_en="Contains an Azure Gold Medal.
 Double-click to open." name_pt="Contém um(a) azul-celeste ouro Medalha.
 Clique duas vezes para abrir." />
-			<material rate="5000000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="5000000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="3800000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -6946,7 +6946,7 @@ Clique duas vezes para abrir." />
 			<material rate="2700000" nameid="791683" itemid="182006808" name_en="Contains an Azure Gold Medal.
 Double-click to open." name_pt="Contém um(a) azul-celeste ouro Medalha.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="3800000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -6958,7 +6958,7 @@ Clique duas vezes para abrir." />
 			<material rate="2225000" nameid="791684" itemid="182006809" name_en="Contains a Platinum Medal.
 Double-click to open." name_pt="Contém um(a) Platina Medalha.
 Clique duas vezes para abrir." />
-			<material rate="5000000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="5000000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="1775000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -6968,7 +6968,7 @@ Clique duas vezes para abrir." />
 			<material rate="4725000" nameid="791684" itemid="182006809" name_en="Contains a Platinum Medal.
 Double-click to open." name_pt="Contém um(a) Platina Medalha.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="1775000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -6980,7 +6980,7 @@ Clique duas vezes para abrir." />
 			<material rate="2225000" nameid="791685" itemid="182006810" name_en="Contains an Enchantment Material Chest (Level 91–100).
 Double-click to open." name_pt="Contém um(a) Baú de Encantamento de Materiais (Nvel 91–100).
 Clique duas vezes para abrir." />
-			<material rate="5000000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="5000000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="1775000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -6990,7 +6990,7 @@ Clique duas vezes para abrir." />
 			<material rate="4725000" nameid="791685" itemid="182006810" name_en="Contains an Enchantment Material Chest (Level 91–100).
 Double-click to open." name_pt="Contém um(a) Baú de Encantamento de Materiais (Nvel 91–100).
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="1775000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -7002,7 +7002,7 @@ Clique duas vezes para abrir." />
 			<material rate="2225000" nameid="791686" itemid="182006811" name_en="Contains 100 Premium Power Shards.
 Double-click to open." name_pt="Contém 100 Premium Poder estilhaços.
 Clique duas vezes para abrir." />
-			<material rate="5000000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="5000000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="1775000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -7012,7 +7012,7 @@ Clique duas vezes para abrir." />
 			<material rate="4725000" nameid="791686" itemid="182006811" name_en="Contains 100 Premium Power Shards.
 Double-click to open." name_pt="Contém 100 Premium Poder estilhaços.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="1775000" nameid="795304" itemid="152011092" name_en="Contains 10 [Event] Shimmering Manastone Selection Boxes and a certain chance to contain a further [Event] 100 Manastone Bundle or [Event] Shimmering Manastone Selection Box.
 Double-click to open." name_pt="Contém 10 [Evento] Cintilante Manastone seleção Caixas e a certo chance.
 Clique duas vezes para abrir." />
@@ -7024,7 +7024,7 @@ Clique duas vezes para abrir." />
 			<material rate="2225000" nameid="791687" itemid="182006812" name_en="Contains a Godstone Bundle.
 Double-click to open." name_pt="Contém um(a) Pedra Divina Pacote.
 Clique duas vezes para abrir." />
-			<material rate="5000000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="5000000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="1775000" nameid="795305" itemid="152011093" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -7032,7 +7032,7 @@ Clique duas vezes para abrir." />
 			<material rate="4725000" nameid="791687" itemid="182006812" name_en="Contains a Godstone Bundle.
 Double-click to open." name_pt="Contém um(a) Pedra Divina Pacote.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="1775000" nameid="795305" itemid="152011093" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -7042,7 +7042,7 @@ Clique duas vezes para abrir." />
 			<material rate="2225000" nameid="791688" itemid="182006813" name_en="Contains a Godstone Bundle.
 Double-click to open." name_pt="Contém um(a) Pedra Divina Pacote.
 Clique duas vezes para abrir." />
-			<material rate="5000000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="5000000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="1775000" nameid="795305" itemid="152011093" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -7050,7 +7050,7 @@ Clique duas vezes para abrir." />
 			<material rate="4725000" nameid="791688" itemid="182006813" name_en="Contains a Godstone Bundle.
 Double-click to open." name_pt="Contém um(a) Pedra Divina Pacote.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="1775000" nameid="795305" itemid="152011093" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -7060,7 +7060,7 @@ Clique duas vezes para abrir." />
 			<material rate="2225000" nameid="791689" itemid="182006814" name_en="Contains a New Daeva Entry Scroll.
 Double-click to open." name_pt="Contém um(a) novo Daeva Pergaminho de Entrada.
 Clique duas vezes para abrir." />
-			<material rate="5000000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="5000000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="1775000" nameid="795305" itemid="152011093" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -7068,7 +7068,7 @@ Clique duas vezes para abrir." />
 			<material rate="4725000" nameid="791689" itemid="182006814" name_en="Contains a New Daeva Entry Scroll.
 Double-click to open." name_pt="Contém um(a) novo Daeva Pergaminho de Entrada.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="1775000" nameid="795305" itemid="152011093" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -7078,7 +7078,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791690" itemid="182006815" name_en="Contains a Normal Daeva Entry Scroll.
 Double-click to open." name_pt="Contém um(a) normal.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -7086,7 +7086,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791690" itemid="182006815" name_en="Contains a Normal Daeva Entry Scroll.
 Double-click to open." name_pt="Contém um(a) normal.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -7096,7 +7096,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791691" itemid="182006816" name_en="Contains a Major Diamond.
 Double-click to open." name_pt="Contém um(a) superior Diamante.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -7104,7 +7104,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791691" itemid="182006816" name_en="Contains a Major Diamond.
 Double-click to open." name_pt="Contém um(a) superior Diamante.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -7114,7 +7114,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791692" itemid="182006817" name_en="Contains a Large Rare Manastone Bundle.
 Double-click to open." name_pt="Contém um(a) Grande Pacote de Pedras de Mana Raras.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -7122,7 +7122,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791692" itemid="182006817" name_en="Contains a Large Rare Manastone Bundle.
 Double-click to open." name_pt="Contém um(a) Grande Pacote de Pedras de Mana Raras.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -7132,7 +7132,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791693" itemid="182006818" name_en="Contains a Major Rare Manastone Bundle.
 Double-click to open." name_pt="Contém um(a) superior Pacote de Pedras de Mana Raras.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -7140,7 +7140,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791693" itemid="182006818" name_en="Contains a Major Rare Manastone Bundle.
 Double-click to open." name_pt="Contém um(a) superior Pacote de Pedras de Mana Raras.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -7150,7 +7150,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791694" itemid="182006819" name_en="Contains a Rare Manastone Bundle (Level 60).
 Double-click to open." name_pt="Contém um(a) Pacote de Pedras de Mana Raras (Nível 60).
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -7158,7 +7158,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791694" itemid="182006819" name_en="Contains a Rare Manastone Bundle (Level 60).
 Double-click to open." name_pt="Contém um(a) Pacote de Pedras de Mana Raras (Nível 60).
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -7168,7 +7168,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791695" itemid="182006820" name_en="Contains a Greater Ancient Crown.
 Double-click to open." name_pt="Contém um(a) Maior Antigo coroa.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -7176,7 +7176,7 @@ Clique duas vezes para abrir." />
 			<material rate="5000000" nameid="791695" itemid="182006820" name_en="Contains a Greater Ancient Crown.
 Double-click to open." name_pt="Contém um(a) Maior Antigo coroa.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="1500000" nameid="795306" itemid="152011094" name_en="[Event] Entry Scroll for Wall of Lament" name_pt="[Evento] Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -7186,7 +7186,7 @@ Clique duas vezes para abrir." />
 			<material rate="5500000" nameid="791696" itemid="182006821" name_en="Contains a Major Ancient Crown.
 Double-click to open." name_pt="Contém um(a) superior Antigo coroa.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="1000000" nameid="795307" itemid="152011095" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -7194,7 +7194,7 @@ Clique duas vezes para abrir." />
 			<material rate="5500000" nameid="791696" itemid="182006821" name_en="Contains a Major Ancient Crown.
 Double-click to open." name_pt="Contém um(a) superior Antigo coroa.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="1000000" nameid="795307" itemid="152011095" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -7204,7 +7204,7 @@ Clique duas vezes para abrir." />
 			<material rate="5500000" nameid="791697" itemid="182006822" name_en="Contains an Azure Gold Medal.
 Double-click to open." name_pt="Contém um(a) azul-celeste ouro Medalha.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="1000000" nameid="795307" itemid="152011095" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -7212,7 +7212,7 @@ Clique duas vezes para abrir." />
 			<material rate="5500000" nameid="791697" itemid="182006822" name_en="Contains an Azure Gold Medal.
 Double-click to open." name_pt="Contém um(a) azul-celeste ouro Medalha.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="1000000" nameid="795307" itemid="152011095" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -7222,7 +7222,7 @@ Clique duas vezes para abrir." />
 			<material rate="5500000" nameid="791698" itemid="182006823" name_en="Contains a Platinum Medal.
 Double-click to open." name_pt="Contém um(a) Platina Medalha.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="1000000" nameid="795307" itemid="152011095" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -7230,7 +7230,7 @@ Clique duas vezes para abrir." />
 			<material rate="5500000" nameid="791698" itemid="182006823" name_en="Contains a Platinum Medal.
 Double-click to open." name_pt="Contém um(a) Platina Medalha.
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="1000000" nameid="795307" itemid="152011095" name_en="Entry Scroll for Wall of Lament" name_pt="Pergaminho de Entrada para Muro de Lamento" />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -7240,7 +7240,7 @@ Clique duas vezes para abrir." />
 			<material rate="5700000" nameid="791699" itemid="182006824" name_en="Contains an Enchantment Material Chest (Level 91–100).
 Double-click to open." name_pt="Contém um(a) Baú de Encantamento de Materiais (Nvel 91–100).
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
@@ -7248,63 +7248,63 @@ Clique duas vezes para abrir." />
 			<material rate="5700000" nameid="791699" itemid="182006824" name_en="Contains an Enchantment Material Chest (Level 91–100).
 Double-click to open." name_pt="Contém um(a) Baú de Encantamento de Materiais (Nvel 91–100).
 Clique duas vezes para abrir." />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
 	<gatherable_template id="409159" name_en="Rare Manastone Bundle Material Chest (Level 60)" name_pt="Pacote de Pedras de Mana Raras Baú de Materiais (Nível 60)" nameId="791652" sourceType="FISH" harvestCount="32" skillLevel="240" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="De Elite: n. elite idéia de Brigada’s Armadura Caixa de Seleção" />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite idéia de Brigada" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="De Elite: n. elite idéia de Brigada’s Armadura Caixa de Seleção" />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite idéia de Brigada" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
 	<gatherable_template id="409160" name_en="Greater Ancient Crown Material Chest" name_pt="Maior Antigo coroa Baú de Materiais" nameId="791653" sourceType="JEWELRY" harvestCount="32" skillLevel="240" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791701" itemid="182006826" name_en="Elite Guardian Brigade General’s Armour Selection Box" name_pt="De Elite: n. elite do General de Brigada Guardião Armadura Caixa de Seleção" />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="5700000" nameid="791701" itemid="182006826" name_en="Elite Guardian Brigade General’s Armour Selection Box" name_pt="De Elite do General de Brigada Guardião Armadura Caixa de Seleção" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791701" itemid="182006826" name_en="Elite Guardian Brigade General’s Armour Selection Box" name_pt="De Elite: n. elite do General de Brigada Guardião Armadura Caixa de Seleção" />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="5700000" nameid="791701" itemid="182006826" name_en="Elite Guardian Brigade General’s Armour Selection Box" name_pt="De Elite do General de Brigada Guardião Armadura Caixa de Seleção" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
 	<gatherable_template id="409161" name_en="Major Ancient Crown Material Chest" name_pt="Superior Antigo coroa Baú de Materiais" nameId="791654" sourceType="HERB" harvestCount="32" skillLevel="280" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="De Elite: n. elite Arconte idéia de Brigada’s Armadura Caixa de Seleção" />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite Arconte idéia de Brigada" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="De Elite: n. elite Arconte idéia de Brigada’s Armadura Caixa de Seleção" />
-			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Brigão’s Login Tela masculino Sapatos (Asmodian)" />
+			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite Arconte idéia de Brigada" />
+			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
 	<gatherable_template id="409162" name_en="Azure Gold Medal Material Chest" name_pt="Azul-celeste ouro Medalha Baú de Materiais" nameId="791655" sourceType="SHELL" harvestCount="32" skillLevel="280" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791703" itemid="182006828" name_en="Fine Brigade General’s Accessory Selection Box" name_pt="Fino idéia de Brigada’s acessório Caixa de Seleção" />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="5700000" nameid="791703" itemid="182006828" name_en="Fine Brigade General’s Accessory Selection Box" name_pt="acessório Caixa de Seleção de Fino idéia de Brigada" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791703" itemid="182006828" name_en="Fine Brigade General’s Accessory Selection Box" name_pt="Fino idéia de Brigada’s acessório Caixa de Seleção" />
-			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Brigão’s Login Tela masculino Sapatos (Elyos)" />
+			<material rate="5700000" nameid="791703" itemid="182006828" name_en="Fine Brigade General’s Accessory Selection Box" name_pt="acessório Caixa de Seleção de Fino idéia de Brigada" />
+			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -7312,13 +7312,13 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="409163" name_en="Platinum Medal Material Chest" name_pt="Platina Medalha Baú de Materiais" nameId="791656" sourceType="JEWELRY" harvestCount="32" skillLevel="280" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
 			<material rate="5700000" nameid="791704" itemid="182006829" name_en="Fine Guardian Brigade General’s Accessory Selection Box" name_pt="Fino do General de Brigada Guardião acessório Caixa de Seleção" />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
 			<material rate="5700000" nameid="791704" itemid="182006829" name_en="Fine Guardian Brigade General’s Accessory Selection Box" name_pt="Fino do General de Brigada Guardião acessório Caixa de Seleção" />
-			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Brigão’s Login Tela feminino Sapatos (Elyos)" />
+			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
@@ -7616,11 +7616,11 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="409196" name_en="Sobi" name_pt="Sala" nameId="701994" sourceType="PLANT" harvestCount="32" skillLevel="235" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30">
 		<materials>
 			<material rate="8000000" nameid="702061" itemid="152000603" name_en="Sobi Fibre" name_pt="Fibra Sobi" />
-			<material rate="2000000" nameid="775001" itemid="152000609" name_en="Esoterrace Legionary's Tunic" name_pt="Esoterrace Legionário's Túnica" />
+			<material rate="2000000" nameid="775001" itemid="152000609" name_en="Esoterrace Legionary's Tunic" name_pt="Túnica de Esoterrace Legionário" />
 		</materials>
 		<exmaterials>
 			<material rate="8000000" nameid="702061" itemid="152000603" name_en="Sobi Fibre" name_pt="Fibra Sobi" />
-			<material rate="2000000" nameid="775001" itemid="152000609" name_en="Esoterrace Legionary's Tunic" name_pt="Esoterrace Legionário's Túnica" />
+			<material rate="2000000" nameid="775001" itemid="152000609" name_en="Esoterrace Legionary's Tunic" name_pt="Túnica de Esoterrace Legionário" />
 		</exmaterials>
 	</gatherable_template>
 	<gatherable_template id="409197" name_en="Zeyla" name_pt="Zeila" nameId="702003" sourceType="VEGETABLE" harvestCount="32" skillLevel="240" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30">
@@ -7871,7 +7871,7 @@ Clique duas vezes para abrir." />
 			<material rate="1400000" nameid="811607" itemid="152000222" name_en="[Event] Fine Power Shard Chest (1,000)" name_pt="[Evento]Baú de Fino Poder estilhaço (1,000)" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="409218" name_en="Noble Prismatic Doomsayer’s Wing Selection Box" name_pt="Nobre prismático Arauto da Perdição’s Asa Caixa de Seleção" nameId="811692" sourceType="METAL" harvestCount="32" skillLevel="499" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="60">
+	<gatherable_template id="409218" name_en="Noble Prismatic Doomsayer’s Wing Selection Box" name_pt="Asa Caixa de Seleção de Nobre prismático Arauto da Perdição" nameId="811692" sourceType="METAL" harvestCount="32" skillLevel="499" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="60">
 		<materials>
 			<material rate="5800000" nameid="811608" itemid="152000223" name_en="[Event] Rare Manastone Bundle (Level 60)" name_pt="[Evento] Pacote de Pedras de Mana Raras (Nível 60)" />
 			<material rate="2800000" nameid="811609" itemid="152000224" name_en="[Event] Heroic Godstone Selection Box" name_pt="[Evento] Heroico Pedra Divina Caixa de Seleção" />

@@ -12,7 +12,7 @@
 	<teleloc_template loc_id="11" mapid="220040000" name_en="Beluslan" name_pt="Beluslan" name_id="400498" posX="398.3" posY="400.8" posZ="222.79721" heading="23"/><!-- teleport -->
 	<teleloc_template loc_id="12" mapid="210010000" name_en="Akarios Village" name_pt="Aldeia Akarios" name_id="400499"/><!-- flying -->
 	<teleloc_template loc_id="13" mapid="210010000" name_en="Melponeh's Campsite" name_pt="O acampamento de Melponeh" name_id="400500"/><!-- flying -->
-	<teleloc_template loc_id="14" mapid="210030000" name_en="Verteron Citadel" name_pt="Eles derramam a Cidadela" name_id="400501"/><!-- flying -->
+	<teleloc_template loc_id="14" mapid="210030000" name_en="Verteron Citadel" name_pt="Cidadela de Verteron" name_id="400501"/><!-- flying -->
 	<teleloc_template loc_id="15" mapid="210030000" name_en="Pilgrims Respite" name_pt="Pilgrims descanso" name_id="400502"/><!-- flying -->
 	<teleloc_template loc_id="16" mapid="210030000" name_en="Verteron Observatory" name_pt="Observatório Verteron" name_id="400503"/><!-- flying -->
 	<teleloc_template loc_id="17" mapid="220010000" name_en="Aldelle Village" name_pt="Aldeia" name_id="400504"/><!-- flying -->
@@ -24,8 +24,8 @@
 	<teleloc_template loc_id="23" mapid="210020000" name_en="Agairon Village" name_pt="Aldeia Agairón" name_id="400595"/><!-- flying -->
 	<teleloc_template loc_id="24" mapid="110010000" name_en="Elyos Square" name_pt="Praça Elyos" name_id="400508" posX="1460.36" posY="1448.84" posZ="572.87524" heading="7"/><!-- teleport -->
 	<teleloc_template loc_id="25" mapid="110010000" name_en="Divine Road" name_pt="Estrada divina" name_id="400509" posX="1930.9" posY="1516.9" posZ="590.0108" heading="60"/><!-- teleport -->
-	<teleloc_template loc_id="28" mapid="210040000" name_en="New Heiron Gate" name_pt="Novo portão HION" name_id="400596"/><!-- flying -->
-	<teleloc_template loc_id="29" mapid="210040000" name_en="Heiron Observatory" name_pt="Observatório HION" name_id="400597"/><!-- flying -->
+	<teleloc_template loc_id="28" mapid="210040000" name_en="New Heiron Gate" name_pt="Novo Portão de Heiron" name_id="400596"/><!-- flying -->
+	<teleloc_template loc_id="29" mapid="210040000" name_en="Heiron Observatory" name_pt="Observatório de Heiron" name_id="400597"/><!-- flying -->
 	<teleloc_template loc_id="30" mapid="210040000" name_en="Arbolu's Haven" name_pt="Refúgio de Arbolu" name_id="400598"/><!-- flying -->
 	<teleloc_template loc_id="31" mapid="210040000" name_en="Jeiaparan Village" name_pt="Vila de Jeiaparan" name_id="400599"/><!-- flying -->
 	<teleloc_template loc_id="32" mapid="220030000" name_en="Basfelt Village" name_pt="Vila Basfelada" name_id="400600"/><!-- flying -->
@@ -69,7 +69,7 @@
 	<teleloc_template loc_id="76" mapid="400010000" name_en="Kysis Fortress Area" name_pt="Área de Fortaleza Kysis" name_id="400886" posX="2533.71" posY="2090.47" posZ="3049.97" heading="91"/><!-- teleport -->
 	<teleloc_template loc_id="77" mapid="400010000" name_en="Miren Fortress Area" name_pt="Miren Fortaleza Área" name_id="400887" posX="1789.7555" posY="2314.2678" posZ="2949.6802" heading="7"/><!-- teleport -->
 	<teleloc_template loc_id="78" mapid="220040000" name_en="Beluslan Fortress" name_pt="Fortaleza de Beluslan" name_id="400929"/><!-- flying -->
-	<teleloc_template loc_id="79" mapid="220040000" name_en="Besfer Refugee Camp" name_pt="Besfer Campo de Refugiados" name_id="400930"/><!-- flying -->
+	<teleloc_template loc_id="79" mapid="220040000" name_en="Besfer Refugee Camp" name_pt="Campo de Refugiados de Besfer" name_id="400930"/><!-- flying -->
 	<teleloc_template loc_id="80" mapid="220040000" name_en="Red Mane Cavern" name_pt="Caverna Juba Vermelha" name_id="400931"/><!-- flying -->
 	<teleloc_template loc_id="81" mapid="210060000" name_en="Theobomos" name_pt="Teóbomo" name_id="400939" posX="1396.1299" posY="1559.8954" posZ="30.875" heading="105"/><!-- teleport -->
 	<teleloc_template loc_id="82" mapid="220050000" name_en="Brusthonin" name_pt="Brustonina" name_id="400940" posX="2917.251" posY="2417.4087" posZ="15.24525" heading="23"/><!-- teleport -->
@@ -86,7 +86,7 @@
 	<teleloc_template loc_id="93" mapid="220070000" name_en="Vorgaltem Citadel" name_pt="Cidadela de Vorgaltem" name_id="401503" posX="1134.0906" posY="859.5303" posZ="310.71643"/>
 	<teleloc_template loc_id="94" mapid="220070000" name_en="Crimson Temple" name_pt="Templo Carmesim" name_id="401504" posX="1817.5825" posY="1097.0817" posZ="327.5661"/>
 	<teleloc_template loc_id="95" mapid="110010000" name_en="Outer Dock" name_pt="Doca externa" name_id="401542" posX="1743.5588" posY="2059.158" posZ="518.0106"/>
-	<teleloc_template loc_id="96" mapid="210050000" name_en="Outer Port of Inggison" name_pt="Porto externo da Inglaterra" name_id="401543" posX="1369.6293" posY="360.29944" posZ="589.57605" heading="17"/><!-- teleport -->
+	<teleloc_template loc_id="96" mapid="210050000" name_en="Outer Port of Inggison" name_pt="Porto Externo de Inggison" name_id="401543" posX="1369.6293" posY="360.29944" posZ="589.57605" heading="17"/><!-- teleport -->
 	<teleloc_template loc_id="97" mapid="120010000" name_en="Pandaemonium Airship Dock" name_pt="Doca de aeronave do Pandaemonium" name_id="401544" posX="943.9" posY="1126.1" posZ="206.9"/><!-- teleport -->
 	<teleloc_template loc_id="98" mapid="220070000" name_en="Gelkmaros Airship Dock" name_pt="Gelkmaros n bot labaça de dirigível" name_id="401545" posX="1888.2524" posY="2847.2727" posZ="554.9964" heading="98"/><!-- teleport -->
 	<teleloc_template loc_id="99" mapid="210050000" name_en="Inggison Illusion Fortress" name_pt="Fortaleza de Ilusão Inggison" name_id="401546"/><!-- flying -->
@@ -202,18 +202,18 @@
 	<teleloc_template loc_id="327" mapid="600090000" name_en="Balaur Ruins" name_pt="Frente do posto avançado sul" name_id="404272" posX="1098" posY="1251" posZ="178" heading="0"/><!-- new teleport 4.7.1 -->
 	<teleloc_template loc_id="328" mapid="600090000" name_en="Tursin Tribal Flag" name_pt="Kaldor" name_id="404273" posX="421.4091" posY="1372.543" posZ="163.6858" heading="83"/>
 	<teleloc_template loc_id="329" mapid="600090000" name_en="Black Claw Totem" name_pt="Kaldor" name_id="404274" posX="1267.398" posY="1362.599" posZ="196.0841" heading="75"/>
-	<teleloc_template loc_id="332" mapid="600100000" name_en="Sanctum Gate" name_pt="Campo de Expedição de Elger" name_id="404277" posX="115.133" posY="128.6176" posZ="347.898" heading="80"/>
-	<teleloc_template loc_id="333" mapid="600100000" name_en="Pandaemonium Entrance" name_pt="Posto avançado da Helgund Patrulha" name_id="404278" posX="1850.624" posY="1782.898" posZ="305.539" heading="60"/>
-	<teleloc_template loc_id="334" mapid="600100000" name_en="Pandaemonium Entrance" name_pt="Assentamento de capa" name_id="404279"/><!-- new Flying Levinshor 4.7.1 NA -->
+	<teleloc_template loc_id="332" mapid="600100000" name_en="Sanctum Gate" name_pt="Portão de Sanctum" name_id="404277" posX="115.133" posY="128.6176" posZ="347.898" heading="80"/>
+	<teleloc_template loc_id="333" mapid="600100000" name_en="Pandaemonium Entrance" name_pt="Entrada de Pandaemônio" name_id="404278" posX="1850.624" posY="1782.898" posZ="305.539" heading="60"/>
+	<teleloc_template loc_id="334" mapid="600100000" name_en="Pandaemonium Entrance" name_pt="Entrada de Pandaemônio" name_id="404279"/><!-- new Flying Levinshor 4.7.1 NA -->
 	<teleloc_template loc_id="335" mapid="600100000" name_en="Griffoen" name_pt="Assentamento de capa" name_id="404280"/><!-- new Flying Levinshor 4.7.1 NA -->
 	<teleloc_template loc_id="336" mapid="600100000" name_en="Habrok" name_pt="Popoku Liquidação" name_id="404281"/><!-- new Flying Levinshor 4.7.1 NA -->
 	<teleloc_template loc_id="337" mapid="600100000" name_en="Griffoen" name_pt="Popoku Liquidação" name_id="404282"/><!-- new Flying Levinshor 4.7.1 NA -->
 	<teleloc_template loc_id="338" mapid="600100000" name_en="Habrok" name_pt="Platea de Puncurah" name_id="404283" posX="1073.641" posY="1493.381" posZ="273.1417" heading="90"/><!-- new teleport 4.7.1 -->
-	<teleloc_template loc_id="339" mapid="600100000" name_en="Exalted Path" name_pt="Rota de marcha da tropa da expedição" name_id="404284" posX="951.184" posY="684.544" posZ="284.8648" heading="45"/><!-- new teleport 4.7.1 -->
-	<teleloc_template loc_id="340" mapid="600100000" name_en="Elyos Square West" name_pt="Bacia de Tiamat" name_id="404285"/><!-- new teleport 4.7.1 -->
-	<teleloc_template loc_id="341" mapid="600100000" name_en="Elyos Square East" name_pt="Bacia de Tiamat" name_id="404286"/><!-- new teleport 4.7.1 -->
-	<teleloc_template loc_id="342" mapid="400020000" name_en="Library of the Sages" name_pt="Para basear" name_id="404290" posX="209.47366" posY="175.34723" posZ="1489.4998" heading="43"/><!-- new teleport 4.7.1 -->
-	<teleloc_template loc_id="343" mapid="400020000" name_en="Temporary" name_pt="Para basear" name_id="404291" posX="175.95262" posY="1838.0282" posZ="1489.4702" heading="4"/><!-- new teleport 4.7.1 -->
+	<teleloc_template loc_id="339" mapid="600100000" name_en="Exalted Path" name_pt="Caminho Exaltado" name_id="404284" posX="951.184" posY="684.544" posZ="284.8648" heading="45"/><!-- new teleport 4.7.1 -->
+	<teleloc_template loc_id="340" mapid="600100000" name_en="Elyos Square West" name_pt="Praça Elyos Oeste" name_id="404285"/><!-- new teleport 4.7.1 -->
+	<teleloc_template loc_id="341" mapid="600100000" name_en="Elyos Square East" name_pt="Praça Elyos Leste" name_id="404286"/><!-- new teleport 4.7.1 -->
+	<teleloc_template loc_id="342" mapid="400020000" name_en="Library of the Sages" name_pt="Biblioteca dos Sábios" name_id="404290" posX="209.47366" posY="175.34723" posZ="1489.4998" heading="43"/><!-- new teleport 4.7.1 -->
+	<teleloc_template loc_id="343" mapid="400020000" name_en="Temporary" name_pt="Temporário" name_id="404291" posX="175.95262" posY="1838.0282" posZ="1489.4702" heading="4"/><!-- new teleport 4.7.1 -->
 	<teleloc_template loc_id="344" mapid="400020000" name_en="Garden of Decay: Western Site" name_pt="Para basear" name_id="404292" posX="1844.2397" posY="1868.1226" posZ="1489.5593" heading="102"/><!-- new teleport 4.7.1 -->
 	<teleloc_template loc_id="345" mapid="400020000" name_en="Garden of Decay: Eastern Site" name_pt="Para basear" name_id="404293" posX="1875.5597" posY="202.80507" posZ="1489.649" heading="69"/><!-- new teleport 4.7.1 -->
 	<teleloc_template loc_id="346" mapid="400040000" name_en="Crest of Wrath: Western Site" name_pt="Para basear" name_id="404294" posX="209.47366" posY="175.34723" posZ="1489.4998" heading="43"/><!-- new teleport 4.7.1 -->
@@ -221,13 +221,13 @@
 	<teleloc_template loc_id="348" mapid="400040000" name_en="Fissure Splitter: Site" name_pt="Para basear" name_id="404296" posX="1844.2397" posY="1868.1226" posZ="1489.5593" heading="102"/><!-- new teleport 4.7.1 -->
 	<teleloc_template loc_id="349" mapid="400040000" name_en="Shrine of Petrification: Site" name_pt="Para basear" name_id="404297" posX="1875.5597" posY="202.80507" posZ="1489.649" heading="69"/><!-- new teleport 4.7.1 -->
 	<teleloc_template loc_id="350" mapid="400050000" name_en="Gravity Ruins: Site" name_pt="Para basear" name_id="404298" posX="209.47366" posY="175.34723" posZ="1489.4998" heading="43"/><!-- new teleport 4.7.1 -->
-	<teleloc_template loc_id="351" mapid="400050000" name_en="Pandaemonium Plaza" name_pt="Para basear" name_id="404299" posX="175.95262" posY="1838.0282" posZ="1489.4702" heading="4"/><!-- new teleport 4.7.1 -->
-	<teleloc_template loc_id="352" mapid="400050000" name_en="Pandaemonium Plaza South" name_pt="Para basear" name_id="404300" posX="1844.2397" posY="1868.1226" posZ="1489.5593" heading="102"/><!-- new teleport 4.7.1 -->
-	<teleloc_template loc_id="353" mapid="400050000" name_en="Pandaemonium Plaza North" name_pt="Para basear" name_id="404301" posX="1875.5597" posY="202.80507" posZ="1489.649" heading="69"/><!-- new teleport 4.7.1 -->
-	<teleloc_template loc_id="354" mapid="400060000" name_en="Great Temple of Pandaemonium" name_pt="Para basear" name_id="404302" posX="209.47366" posY="175.34723" posZ="1489.4998" heading="43"/><!-- new teleport 4.7.1 -->
-	<teleloc_template loc_id="355" mapid="400060000" name_en="Temple of Gold" name_pt="Para basear" name_id="404303" posX="175.95262" posY="1838.0282" posZ="1489.4702" heading="4"/><!-- new teleport 4.7.1 -->
-	<teleloc_template loc_id="356" mapid="400060000" name_en="Triniel Coliseum" name_pt="Para basear" name_id="404304" posX="1844.2397" posY="1868.1226" posZ="1489.5593" heading="102"/><!-- new teleport 4.7.1 -->
-	<teleloc_template loc_id="357" mapid="400060000" name_en="Temple of Knowledge" name_pt="Para basear" name_id="404305" posX="1875.5597" posY="202.80507" posZ="1489.649" heading="69"/><!-- new teleport 4.7.1 -->
+	<teleloc_template loc_id="351" mapid="400050000" name_en="Pandaemonium Plaza" name_pt="Praça de Pandaemônio" name_id="404299" posX="175.95262" posY="1838.0282" posZ="1489.4702" heading="4"/><!-- new teleport 4.7.1 -->
+	<teleloc_template loc_id="352" mapid="400050000" name_en="Pandaemonium Plaza South" name_pt="Praça de Pandaemônio Sul" name_id="404300" posX="1844.2397" posY="1868.1226" posZ="1489.5593" heading="102"/><!-- new teleport 4.7.1 -->
+	<teleloc_template loc_id="353" mapid="400050000" name_en="Pandaemonium Plaza North" name_pt="Praça de Pandaemônio Norte" name_id="404301" posX="1875.5597" posY="202.80507" posZ="1489.649" heading="69"/><!-- new teleport 4.7.1 -->
+	<teleloc_template loc_id="354" mapid="400060000" name_en="Great Temple of Pandaemonium" name_pt="Grande Templo de Pandaemônio" name_id="404302" posX="209.47366" posY="175.34723" posZ="1489.4998" heading="43"/><!-- new teleport 4.7.1 -->
+	<teleloc_template loc_id="355" mapid="400060000" name_en="Temple of Gold" name_pt="Templo de Ouro" name_id="404303" posX="175.95262" posY="1838.0282" posZ="1489.4702" heading="4"/><!-- new teleport 4.7.1 -->
+	<teleloc_template loc_id="356" mapid="400060000" name_en="Triniel Coliseum" name_pt="Coliseu Triniel" name_id="404304" posX="1844.2397" posY="1868.1226" posZ="1489.5593" heading="102"/><!-- new teleport 4.7.1 -->
+	<teleloc_template loc_id="357" mapid="400060000" name_en="Temple of Knowledge" name_pt="Templo do Conhecimento" name_id="404305" posX="1875.5597" posY="202.80507" posZ="1489.649" heading="69"/><!-- new teleport 4.7.1 -->
 	<teleloc_template loc_id="358" mapid="600090000" name_en="Secret Black Cloud Headquarters" name_pt="Fortaleza Anoha" name_id="404267" posX="755.8279" posY="274.5816" posZ="155.6706" heading="68"/><!-- new teleport 4.7.1 -->
 	<teleloc_template loc_id="359" mapid="600090000" name_en="Secret Base (Under Construction)" name_pt="Fortaleza Anoha" name_id="404268" posX="755.8279" posY="274.5816" posZ="155.6706" heading="68"/><!-- new teleport 4.7.1 -->
 	<teleloc_template loc_id="364" mapid="600090000" name_en="Observation Post Ruins" name_pt="Ruínas do Posto de Observação" name_id="404407" posX="272.1277" posY="1167.3938" posZ="128.95413" heading="60"/><!-- new teleport 4.7.1 -->
