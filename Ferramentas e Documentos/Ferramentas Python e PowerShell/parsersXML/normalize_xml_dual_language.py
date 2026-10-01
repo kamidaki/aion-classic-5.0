@@ -78,6 +78,56 @@ def escape_xml_attr(val: str) -> str:
                .replace("<", "&lt;")
                .replace(">", "&gt;"))
 
+def extract_existing_raw_names(attrs: str) -> Tuple[str, str]:
+    m_en = re.search(r'\bname_en\s*=\s*"([^"]*)"', attrs)
+    m_pt = re.search(r'\bname_pt\s*=\s*"([^"]*)"', attrs)
+    m_legacy = re.search(r'\bname\s*=\s*"([^"]*)"', attrs)
+
+    en = m_en.group(1) if m_en else ""
+    pt = m_pt.group(1) if m_pt else ""
+    legacy = m_legacy.group(1) if m_legacy else ""
+
+    final_en = en if en != "" else legacy
+    final_pt = pt if pt != "" else legacy
+    return final_en, final_pt
+
+def extract_existing_raw_descs(attrs: str) -> Tuple[str, str]:
+    m_en = re.search(r'\bdesc_en\s*=\s*"([^"]*)"', attrs)
+    m_pt = re.search(r'\bdesc_pt\s*=\s*"([^"]*)"', attrs)
+    m_legacy = re.search(r'\bdesc\s*=\s*"([^"]*)"', attrs)
+
+    en = m_en.group(1) if m_en else ""
+    pt = m_pt.group(1) if m_pt else ""
+    legacy = m_legacy.group(1) if m_legacy else ""
+
+    final_en = en if en != "" else legacy
+    final_pt = pt if pt != "" else legacy
+    return final_en, final_pt
+
+def update_dual_name_attrs(attrs: str, name_en: str, name_pt: str) -> str:
+    m = re.search(r'\s+\b(?:name_en|name_pt|name)\b\s*=\s*"[^"]*"', attrs)
+    clean_en = escape_xml_attr(name_en)
+    clean_pt = escape_xml_attr(name_pt)
+    replacement = f' name_en="{clean_en}" name_pt="{clean_pt}"'
+    if m:
+        pos = m.start()
+        stripped = re.sub(r'\s+\b(?:name_en|name_pt|name)\b\s*=\s*"[^"]*"', '', attrs)
+        return stripped[:pos] + replacement + stripped[pos:]
+    else:
+        return replacement + attrs
+
+def update_dual_desc_attrs(attrs: str, desc_en: str, desc_pt: str) -> str:
+    m = re.search(r'\s+\b(?:desc_en|desc_pt|desc)\b\s*=\s*"[^"]*"', attrs)
+    clean_en = escape_xml_attr(desc_en)
+    clean_pt = escape_xml_attr(desc_pt)
+    replacement = f' desc_en="{clean_en}" desc_pt="{clean_pt}"'
+    if m:
+        pos = m.start()
+        stripped = re.sub(r'\s+\b(?:desc_en|desc_pt|desc)\b\s*=\s*"[^"]*"', '', attrs)
+        return stripped[:pos] + replacement + stripped[pos:]
+    else:
+        return replacement + attrs
+
 def load_string_tables(dir_path: str) -> Tuple[Dict[int, str], Dict[str, str]]:
     id_map: Dict[int, str] = {}
     name_map: Dict[str, str] = {}
@@ -157,9 +207,7 @@ class DualLanguageNormalizer:
                 st['total'] += 1
                 prefix, attrs, suffix = m.group(1), m.group(2), m.group(3)
                 
-                # Extrair atributos
-                name_m = name_attr_pat.search(attrs)
-                current_name = clean_text(name_m.group(1)) if name_m else ""
+                raw_en, raw_pt = extract_existing_raw_names(attrs)
                 
                 desc_m = desc_pat.search(attrs)
                 desc_id = int(desc_m.group(1)) if desc_m else None
@@ -195,19 +243,14 @@ class DualLanguageNormalizer:
                 if name_pt:
                     st['resolved_pt'] += 1
                 else:
-                    name_pt = current_name if current_name else (name_en if name_en else "Item")
+                    name_pt = clean_text(raw_pt) if raw_pt else (clean_text(raw_en) if raw_en else (name_en if name_en else "Item"))
 
                 if name_en:
                     st['resolved_en'] += 1
                 else:
-                    name_en = name_pt if name_pt else (current_name if current_name else "Item")
+                    name_en = clean_text(raw_en) if raw_en else (clean_text(raw_pt) if raw_pt else (name_pt if name_pt else "Item"))
 
-                # Substituir atributo 'name' por 'name_en' e 'name_pt'
-                if name_m:
-                    new_attrs = name_attr_pat.sub(f' name_en="{escape_xml_attr(name_en)}" name_pt="{escape_xml_attr(name_pt)}"', attrs, count=1)
-                else:
-                    new_attrs = f' name_en="{escape_xml_attr(name_en)}" name_pt="{escape_xml_attr(name_pt)}"' + attrs
-
+                new_attrs = update_dual_name_attrs(attrs, name_en, name_pt)
                 new_line = line[:m.start(1)] + prefix + new_attrs + suffix + line[m.end(3):]
                 new_lines.append(new_line)
             else:
@@ -244,14 +287,14 @@ class DualLanguageNormalizer:
                 st['total'] += 1
                 prefix, attrs, suffix = m.group(1), m.group(2), m.group(3)
                 
-                name_m = name_attr_pat.search(attrs)
-                raw_name = name_m.group(1) if name_m else ""
+                raw_en, raw_pt = extract_existing_raw_names(attrs)
+                raw_name = raw_pt if raw_pt is not None and raw_pt != "" else raw_en
                 
                 nameid_m = nameid_pat.search(attrs)
                 name_id = int(nameid_m.group(1)) if nameid_m else None
 
                 # Caso especial: nós invisíveis com name=" " ou name=""
-                if raw_name.strip() == "":
+                if raw_name == " " or (raw_name == "" and not name_id):
                     name_en = " " if raw_name == " " else ""
                     name_pt = " " if raw_name == " " else ""
                     st['resolved_pt'] += 1
@@ -269,18 +312,14 @@ class DualLanguageNormalizer:
                     if name_pt:
                         st['resolved_pt'] += 1
                     else:
-                        name_pt = current_name if current_name else (name_en if name_en else "NPC")
+                        name_pt = clean_text(raw_pt) if raw_pt else (clean_text(raw_en) if raw_en else (name_en if name_en else "NPC"))
 
                     if name_en:
                         st['resolved_en'] += 1
                     else:
-                        name_en = current_name if current_name else (name_pt if name_pt else "NPC")
+                        name_en = clean_text(raw_en) if raw_en else (clean_text(raw_pt) if raw_pt else (name_pt if name_pt else "NPC"))
 
-                if name_m:
-                    new_attrs = name_attr_pat.sub(f' name_en="{escape_xml_attr(name_en)}" name_pt="{escape_xml_attr(name_pt)}"', attrs, count=1)
-                else:
-                    new_attrs = f' name_en="{escape_xml_attr(name_en)}" name_pt="{escape_xml_attr(name_pt)}"' + attrs
-
+                new_attrs = update_dual_name_attrs(attrs, name_en, name_pt)
                 new_line = line[:m.start(1)] + prefix + new_attrs + suffix + line[m.end(3):]
                 new_lines.append(new_line)
             else:
@@ -318,8 +357,7 @@ class DualLanguageNormalizer:
                 st['total'] += 1
                 prefix, attrs, suffix = m.group(1), m.group(2), m.group(3)
                 
-                name_m = name_attr_pat.search(attrs)
-                current_name = clean_text(name_m.group(1)) if name_m else ""
+                raw_en, raw_pt = extract_existing_raw_names(attrs)
                 
                 nameid_m = nameid_pat.search(attrs)
                 name_id = int(nameid_m.group(1)) if nameid_m else None
@@ -346,18 +384,14 @@ class DualLanguageNormalizer:
                 if name_pt:
                     st['resolved_pt'] += 1
                 else:
-                    name_pt = current_name if current_name else (name_en if name_en else "Skill")
+                    name_pt = clean_text(raw_pt) if raw_pt else (clean_text(raw_en) if raw_en else (name_en if name_en else "Skill"))
 
                 if name_en:
                     st['resolved_en'] += 1
                 else:
-                    name_en = name_pt if name_pt else (current_name if current_name else "Skill")
+                    name_en = clean_text(raw_en) if raw_en else (clean_text(raw_pt) if raw_pt else (name_pt if name_pt else "Skill"))
 
-                if name_m:
-                    new_attrs = name_attr_pat.sub(f' name_en="{escape_xml_attr(name_en)}" name_pt="{escape_xml_attr(name_pt)}"', attrs, count=1)
-                else:
-                    new_attrs = f' name_en="{escape_xml_attr(name_en)}" name_pt="{escape_xml_attr(name_pt)}"' + attrs
-
+                new_attrs = update_dual_name_attrs(attrs, name_en, name_pt)
                 new_line = line[:m.start(1)] + prefix + new_attrs + suffix + line[m.end(3):]
                 new_lines.append(new_line)
             else:
@@ -395,8 +429,7 @@ class DualLanguageNormalizer:
                 st['total'] += 1
                 prefix, attrs, suffix = m.group(1), m.group(2), m.group(3)
                 
-                name_m = name_attr_pat.search(attrs)
-                current_name = clean_text(name_m.group(1)) if name_m else ""
+                raw_en, raw_pt = extract_existing_raw_names(attrs)
                 
                 nameid_m = nameid_pat.search(attrs)
                 name_id = int(nameid_m.group(1)) if nameid_m else None
@@ -423,18 +456,14 @@ class DualLanguageNormalizer:
                 if name_pt:
                     st['resolved_pt'] += 1
                 else:
-                    name_pt = current_name if current_name else (name_en if name_en else f"Quest {qid}")
+                    name_pt = clean_text(raw_pt) if raw_pt else (clean_text(raw_en) if raw_en else (name_en if name_en else f"Quest {qid}"))
 
                 if name_en:
                     st['resolved_en'] += 1
                 else:
-                    name_en = current_name if current_name else (name_pt if name_pt else f"Quest {qid}")
+                    name_en = clean_text(raw_en) if raw_en else (clean_text(raw_pt) if raw_pt else (name_pt if name_pt else f"Quest {qid}"))
 
-                if name_m:
-                    new_attrs = name_attr_pat.sub(f' name_en="{escape_xml_attr(name_en)}" name_pt="{escape_xml_attr(name_pt)}"', attrs, count=1)
-                else:
-                    new_attrs = f' name_en="{escape_xml_attr(name_en)}" name_pt="{escape_xml_attr(name_pt)}"' + attrs
-
+                new_attrs = update_dual_name_attrs(attrs, name_en, name_pt)
                 new_line = line[:m.start(1)] + prefix + new_attrs + suffix + line[m.end(3):]
                 new_lines.append(new_line)
             else:
@@ -476,8 +505,7 @@ class DualLanguageNormalizer:
             if gm:
                 st_g['total'] += 1
                 prefix, attrs, suffix = gm.group(1), gm.group(2), gm.group(3)
-                name_m = name_attr_pat.search(attrs)
-                current_name = clean_text(name_m.group(1)) if name_m else ""
+                raw_en, raw_pt = extract_existing_raw_names(attrs)
                 
                 nid_m = nameid_pat.search(attrs)
                 nid = int(nid_m.group(1)) if nid_m else None
@@ -486,24 +514,19 @@ class DualLanguageNormalizer:
                 name_en = self.en_id.get(nid, "") if nid else ""
 
                 if name_pt: st_g['resolved_pt'] += 1
-                else: name_pt = current_name if current_name else (name_en if name_en else "Gatherable")
+                else: name_pt = clean_text(raw_pt) if raw_pt else (clean_text(raw_en) if raw_en else (name_en if name_en else "Gatherable"))
 
                 if name_en: st_g['resolved_en'] += 1
-                else: name_en = current_name if current_name else (name_pt if name_pt else "Gatherable")
+                else: name_en = clean_text(raw_en) if raw_en else (clean_text(raw_pt) if raw_pt else (name_pt if name_pt else "Gatherable"))
 
-                if name_m:
-                    new_attrs = name_attr_pat.sub(f' name_en="{escape_xml_attr(name_en)}" name_pt="{escape_xml_attr(name_pt)}"', attrs, count=1)
-                else:
-                    new_attrs = f' name_en="{escape_xml_attr(name_en)}" name_pt="{escape_xml_attr(name_pt)}"' + attrs
-
+                new_attrs = update_dual_name_attrs(attrs, name_en, name_pt)
                 new_line = line[:gm.start(1)] + prefix + new_attrs + suffix + line[gm.end(3):]
                 new_lines.append(new_line)
 
             elif mm:
                 st_m['total'] += 1
                 prefix, attrs, suffix = mm.group(1), mm.group(2), mm.group(3)
-                name_m = name_attr_pat.search(attrs)
-                current_name = clean_text(name_m.group(1)) if name_m else ""
+                raw_en, raw_pt = extract_existing_raw_names(attrs)
 
                 nid_m = mat_nameid_pat.search(attrs)
                 nid = int(nid_m.group(1)) if nid_m else None
@@ -512,16 +535,12 @@ class DualLanguageNormalizer:
                 name_en = self.en_id.get(nid, "") if nid else ""
 
                 if name_pt: st_m['resolved_pt'] += 1
-                else: name_pt = current_name if current_name else (name_en if name_en else "Material")
+                else: name_pt = clean_text(raw_pt) if raw_pt else (clean_text(raw_en) if raw_en else (name_en if name_en else "Material"))
 
                 if name_en: st_m['resolved_en'] += 1
-                else: name_en = current_name if current_name else (name_pt if name_pt else "Material")
+                else: name_en = clean_text(raw_en) if raw_en else (clean_text(raw_pt) if raw_pt else (name_pt if name_pt else "Material"))
 
-                if name_m:
-                    new_attrs = name_attr_pat.sub(f' name_en="{escape_xml_attr(name_en)}" name_pt="{escape_xml_attr(name_pt)}"', attrs, count=1)
-                else:
-                    new_attrs = f' name_en="{escape_xml_attr(name_en)}" name_pt="{escape_xml_attr(name_pt)}"' + attrs
-
+                new_attrs = update_dual_name_attrs(attrs, name_en, name_pt)
                 new_line = line[:mm.start(1)] + prefix + new_attrs + suffix + line[mm.end(3):]
                 new_lines.append(new_line)
             else:
@@ -558,9 +577,7 @@ class DualLanguageNormalizer:
             if m:
                 st['total'] += 1
                 prefix, attrs, suffix = m.group(1), m.group(2), m.group(3)
-                
-                name_m = name_attr_pat.search(attrs)
-                current_name = clean_text(name_m.group(1)) if name_m else ""
+                raw_en, raw_pt = extract_existing_raw_names(attrs)
                 
                 nid_m = nameid_pat.search(attrs)
                 nid = int(nid_m.group(1)) if nid_m else None
@@ -569,16 +586,12 @@ class DualLanguageNormalizer:
                 name_en = self.en_id.get(nid, "") if nid else ""
 
                 if name_pt: st['resolved_pt'] += 1
-                else: name_pt = current_name if current_name else (name_en if name_en else "Pet")
+                else: name_pt = clean_text(raw_pt) if raw_pt else (clean_text(raw_en) if raw_en else (name_en if name_en else "Pet"))
 
                 if name_en: st['resolved_en'] += 1
-                else: name_en = current_name if current_name else (name_pt if name_pt else "Pet")
+                else: name_en = clean_text(raw_en) if raw_en else (clean_text(raw_pt) if raw_pt else (name_pt if name_pt else "Pet"))
 
-                if name_m:
-                    new_attrs = name_attr_pat.sub(f' name_en="{escape_xml_attr(name_en)}" name_pt="{escape_xml_attr(name_pt)}"', attrs, count=1)
-                else:
-                    new_attrs = f' name_en="{escape_xml_attr(name_en)}" name_pt="{escape_xml_attr(name_pt)}"' + attrs
-
+                new_attrs = update_dual_name_attrs(attrs, name_en, name_pt)
                 new_line = line[:m.start(1)] + prefix + new_attrs + suffix + line[m.end(3):]
                 new_lines.append(new_line)
             else:
@@ -614,9 +627,7 @@ class DualLanguageNormalizer:
             if m:
                 st['total'] += 1
                 prefix, attrs, suffix = m.group(1), m.group(2), m.group(3)
-                
-                name_m = name_attr_pat.search(attrs)
-                current_name = clean_text(name_m.group(1)) if name_m else ""
+                raw_en, raw_pt = extract_existing_raw_names(attrs)
                 
                 cname_m = cname_pat.search(attrs)
                 cname = cname_m.group(1).strip() if cname_m else ""
@@ -635,16 +646,12 @@ class DualLanguageNormalizer:
                             break
 
                 if name_pt: st['resolved_pt'] += 1
-                else: name_pt = current_name if current_name else (name_en if name_en else "Map")
+                else: name_pt = clean_text(raw_pt) if raw_pt else (clean_text(raw_en) if raw_en else (name_en if name_en else "Map"))
 
                 if name_en: st['resolved_en'] += 1
-                else: name_en = current_name if current_name else (name_pt if name_pt else "Map")
+                else: name_en = clean_text(raw_en) if raw_en else (clean_text(raw_pt) if raw_pt else (name_pt if name_pt else "Map"))
 
-                if name_m:
-                    new_attrs = name_attr_pat.sub(f' name_en="{escape_xml_attr(name_en)}" name_pt="{escape_xml_attr(name_pt)}"', attrs, count=1)
-                else:
-                    new_attrs = f' name_en="{escape_xml_attr(name_en)}" name_pt="{escape_xml_attr(name_pt)}"' + attrs
-
+                new_attrs = update_dual_name_attrs(attrs, name_en, name_pt)
                 new_line = line[:m.start(1)] + prefix + new_attrs + suffix + line[m.end(3):]
                 new_lines.append(new_line)
             else:
@@ -680,9 +687,7 @@ class DualLanguageNormalizer:
             if m:
                 st['total'] += 1
                 prefix, attrs, suffix = m.group(1), m.group(2), m.group(3)
-                
-                name_m = name_attr_pat.search(attrs)
-                current_name = clean_text(name_m.group(1)) if name_m else ""
+                raw_en, raw_pt = extract_existing_raw_names(attrs)
                 
                 nid_m = nameid_pat.search(attrs)
                 nid = int(nid_m.group(1)) if nid_m else None
@@ -691,16 +696,12 @@ class DualLanguageNormalizer:
                 name_en = self.en_id.get(nid, "") if nid else ""
 
                 if name_pt: st['resolved_pt'] += 1
-                else: name_pt = current_name if current_name else (name_en if name_en else "Teleport")
+                else: name_pt = clean_text(raw_pt) if raw_pt else (clean_text(raw_en) if raw_en else (name_en if name_en else "Teleport"))
 
                 if name_en: st['resolved_en'] += 1
-                else: name_en = current_name if current_name else (name_pt if name_pt else "Teleport")
+                else: name_en = clean_text(raw_en) if raw_en else (clean_text(raw_pt) if raw_pt else (name_pt if name_pt else "Teleport"))
 
-                if name_m:
-                    new_attrs = name_attr_pat.sub(f' name_en="{escape_xml_attr(name_en)}" name_pt="{escape_xml_attr(name_pt)}"', attrs, count=1)
-                else:
-                    new_attrs = f' name_en="{escape_xml_attr(name_en)}" name_pt="{escape_xml_attr(name_pt)}"' + attrs
-
+                new_attrs = update_dual_name_attrs(attrs, name_en, name_pt)
                 new_line = line[:m.start(1)] + prefix + new_attrs + suffix + line[m.end(3):]
                 new_lines.append(new_line)
             else:
@@ -728,7 +729,6 @@ class DualLanguageNormalizer:
         new_lines = []
         st = self.stats['titles']
         pat = re.compile(r'(<title\b)([^>]*)(>)')
-        desc_attr_pat = re.compile(r'\s+desc="([^"]*)"')
         nameid_pat = re.compile(r'\bnameId="(\d+)"')
 
         for line in lines:
@@ -736,9 +736,7 @@ class DualLanguageNormalizer:
             if m:
                 st['total'] += 1
                 prefix, attrs, suffix = m.group(1), m.group(2), m.group(3)
-                
-                desc_m = desc_attr_pat.search(attrs)
-                current_desc = clean_text(desc_m.group(1)) if desc_m else ""
+                raw_en, raw_pt = extract_existing_raw_descs(attrs)
                 
                 nid_m = nameid_pat.search(attrs)
                 nid = int(nid_m.group(1)) if nid_m else None
@@ -747,16 +745,12 @@ class DualLanguageNormalizer:
                 desc_en = self.en_id.get(nid, "") if nid else ""
 
                 if desc_pt: st['resolved_pt'] += 1
-                else: desc_pt = current_desc if current_desc else (desc_en if desc_en else "Title")
+                else: desc_pt = clean_text(raw_pt) if raw_pt else (clean_text(raw_en) if raw_en else (desc_en if desc_en else "Title"))
 
                 if desc_en: st['resolved_en'] += 1
-                else: desc_en = current_desc if current_desc else (desc_pt if desc_pt else "Title")
+                else: desc_en = clean_text(raw_en) if raw_en else (clean_text(raw_pt) if raw_pt else (desc_pt if desc_pt else "Title"))
 
-                if desc_m:
-                    new_attrs = desc_attr_pat.sub(f' desc_en="{escape_xml_attr(desc_en)}" desc_pt="{escape_xml_attr(desc_pt)}"', attrs, count=1)
-                else:
-                    new_attrs = f' desc_en="{escape_xml_attr(desc_en)}" desc_pt="{escape_xml_attr(desc_pt)}"' + attrs
-
+                new_attrs = update_dual_desc_attrs(attrs, desc_en, desc_pt)
                 new_line = line[:m.start(1)] + prefix + new_attrs + suffix + line[m.end(3):]
                 new_lines.append(new_line)
             else:
@@ -784,28 +778,21 @@ class DualLanguageNormalizer:
         new_lines = []
         st = self.stats['item_sets']
         pat = re.compile(r'(<itemset\b)([^>]*)(>)')
-        name_attr_pat = re.compile(r'\s+name="([^"]*)"')
 
         for line in lines:
             m = pat.search(line)
             if m:
                 st['total'] += 1
                 prefix, attrs, suffix = m.group(1), m.group(2), m.group(3)
-                
-                name_m = name_attr_pat.search(attrs)
-                current_name = clean_text(name_m.group(1)) if name_m else ""
+                raw_en, raw_pt = extract_existing_raw_names(attrs)
 
-                name_pt = current_name
-                name_en = current_name
+                name_pt = clean_text(raw_pt) if raw_pt else clean_text(raw_en)
+                name_en = clean_text(raw_en) if raw_en else clean_text(raw_pt)
 
                 st['resolved_pt'] += 1
                 st['resolved_en'] += 1
 
-                if name_m:
-                    new_attrs = name_attr_pat.sub(f' name_en="{escape_xml_attr(name_en)}" name_pt="{escape_xml_attr(name_pt)}"', attrs, count=1)
-                else:
-                    new_attrs = f' name_en="{escape_xml_attr(name_en)}" name_pt="{escape_xml_attr(name_pt)}"' + attrs
-
+                new_attrs = update_dual_name_attrs(attrs, name_en, name_pt)
                 new_line = line[:m.start(1)] + prefix + new_attrs + suffix + line[m.end(3):]
                 new_lines.append(new_line)
             else:

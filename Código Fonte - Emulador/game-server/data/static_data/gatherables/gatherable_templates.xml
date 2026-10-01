@@ -1916,14 +1916,14 @@ Clique duas vezes para abrir." nameId="811693" sourceType="PLANT" harvestCount="
 	<gatherable_template id="400558" name_en="Anathe" name_pt="Anathe" nameId="715706" sourceType="PLANT" harvestCount="3" skillLevel="330" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="40">
 		<materials>
 			<material rate="7997500" nameid="715716" itemid="152000654" name_en="Anathe Fibre" name_pt="E fibra" />
-			<material rate="2000000" nameid="775010" itemid="152000660" name_en="Tac NCO's Divine Hauberk" name_pt="do Oficial Tático Divino Cota de Malha" />
+			<material rate="2000000" nameid="775010" itemid="152000660" name_en="Tac NCO's Divine Hauberk" name_pt="Cota de Malha Divina do Oficial Tático" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="400559" name_en="Anathe" name_pt="Anathe" nameId="715706" sourceType="PLANT" harvestCount="3" skillLevel="330" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="40">
 		<materials>
 			<material rate="7997500" nameid="715716" itemid="152000654" name_en="Anathe Fibre" name_pt="E fibra" />
-			<material rate="2000000" nameid="775010" itemid="152000660" name_en="Tac NCO's Divine Hauberk" name_pt="do Oficial Tático Divino Cota de Malha" />
+			<material rate="2000000" nameid="775010" itemid="152000660" name_en="Tac NCO's Divine Hauberk" name_pt="Cota de Malha Divina do Oficial Tático" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 		</materials>
 	</gatherable_template>
@@ -1936,14 +1936,14 @@ Clique duas vezes para abrir." nameId="811693" sourceType="PLANT" harvestCount="
 	<gatherable_template id="400561" name_en="Anathe" name_pt="Anathe" nameId="743020" sourceType="PLANT" harvestCount="3" skillLevel="330" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="40">
 		<materials>
 			<material rate="7997500" nameid="715716" itemid="152000654" name_en="Anathe Fibre" name_pt="E fibra" />
-			<material rate="2000000" nameid="775010" itemid="152000660" name_en="Tac NCO's Divine Hauberk" name_pt="do Oficial Tático Divino Cota de Malha" />
+			<material rate="2000000" nameid="775010" itemid="152000660" name_en="Tac NCO's Divine Hauberk" name_pt="Cota de Malha Divina do Oficial Tático" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="400562" name_en="Hoca" name_pt="n professor universitário." nameId="751125" sourceType="PLANT" harvestCount="3" skillLevel="470" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="7996950" nameid="751169" itemid="152000656" name_en="Hoca Fibre" name_pt="Fibra Hodja" />
-			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="do Oficial Tático Divino Cota de Malha" />
+			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="Cota de Malha Divina do Oficial Tático" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 		</materials>
@@ -1951,14 +1951,14 @@ Clique duas vezes para abrir." nameId="811693" sourceType="PLANT" harvestCount="
 	<gatherable_template id="400563" name_en="Hoca" name_pt="n professor universitário." nameId="751125" sourceType="PLANT" harvestCount="3" skillLevel="470" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50" reqItem="122001454" reqItemNameId="794662" checkType="1">
 		<materials>
 			<material rate="7996400" nameid="751169" itemid="152000656" name_en="Hoca Fibre" name_pt="Fibra Hodja" />
-			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="do Oficial Tático Divino Cota de Malha" />
+			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="Cota de Malha Divina do Oficial Tático" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 			<material rate="550" nameid="794570" itemid="170040028" name_en="외형 확인 로브 신발_a08a_마족" name_pt="외형 확인 로브 신발_a08a_마족" />
 		</materials>
 		<exmaterials>
 			<material rate="7946400" nameid="751169" itemid="152000656" name_en="Hoca Fibre" name_pt="Fibra Hodja" />
-			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="do Oficial Tático Divino Cota de Malha" />
+			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="Cota de Malha Divina do Oficial Tático" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 			<material rate="50000" nameid="1136798" itemid="182213196" name_en="Noble Dew" name_pt="Noble Dew" />
@@ -1968,14 +1968,14 @@ Clique duas vezes para abrir." nameId="811693" sourceType="PLANT" harvestCount="
 	<gatherable_template id="400564" name_en="Hoca" name_pt="n professor universitário." nameId="751125" sourceType="PLANT" harvestCount="3" skillLevel="470" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50" reqItem="122001454" reqItemNameId="794662" checkType="1">
 		<materials>
 			<material rate="7996400" nameid="751169" itemid="152000656" name_en="Hoca Fibre" name_pt="Fibra Hodja" />
-			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="do Oficial Tático Divino Cota de Malha" />
+			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="Cota de Malha Divina do Oficial Tático" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 			<material rate="550" nameid="794570" itemid="170040028" name_en="외형 확인 로브 신발_a08a_마족" name_pt="외형 확인 로브 신발_a08a_마족" />
 		</materials>
 		<exmaterials>
 			<material rate="7946400" nameid="751169" itemid="152000656" name_en="Hoca Fibre" name_pt="Fibra Hodja" />
-			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="do Oficial Tático Divino Cota de Malha" />
+			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="Cota de Malha Divina do Oficial Tático" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 			<material rate="50000" nameid="1136798" itemid="182213196" name_en="Noble Dew" name_pt="Noble Dew" />
@@ -4068,7 +4068,7 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="401157" name_en="Huge Hoca" name_pt="HOCA enorme" nameId="751631" sourceType="PLANT" harvestCount="12" skillLevel="470" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="8000000" nameid="751169" itemid="152000656" name_en="Hoca Fibre" name_pt="Fibra Hodja" />
-			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="do Oficial Tático Divino Cota de Malha" />
+			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="Cota de Malha Divina do Oficial Tático" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="401158" name_en="Huge Weathered Object" name_pt="Enorme objeto desgastado" nameId="765538" sourceType="NOBLEMETAL" harvestCount="12" skillLevel="400" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="200" lvlLimit="50" reqItem="169405035" reqItemNameId="764399" checkType="2" eraseValue="1">
@@ -5633,7 +5633,7 @@ Clique duas vezes para abrir." />
 			<material rate="7996950" nameid="751169" itemid="152000656" name_en="Hoca Fibre" name_pt="Fibra Hodja" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
-			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="do Oficial Tático Divino Cota de Malha" />
+			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="Cota de Malha Divina do Oficial Tático" />
 		</materials>
 	</gatherable_template>
 	<gatherable_template id="409043" name_en="Prolix" name_pt="Prolixo" nameId="748601" sourceType="PLANT" harvestCount="32" skillLevel="415" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
@@ -5917,14 +5917,14 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="409066" name_en="Aquamarine" name_pt="Água-Marinha" nameId="701970" sourceType="JEWELRY" harvestCount="1" skillLevel="155" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50" reqItem="122001454" reqItemNameId="794662" checkType="1">
 		<materials>
 			<material rate="7996400" nameid="751169" itemid="152000656" name_en="Hoca Fibre" name_pt="Fibra Hodja" />
-			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="do Oficial Tático Divino Cota de Malha" />
+			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="Cota de Malha Divina do Oficial Tático" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 			<material rate="550" nameid="794570" itemid="170040028" name_en="외형 확인 로브 신발_a08a_마족" name_pt="외형 확인 로브 신발_a08a_마족" />
 		</materials>
 		<exmaterials>
 			<material rate="7946950" nameid="751169" itemid="152000656" name_en="Hoca Fibre" name_pt="Fibra Hodja" />
-			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="do Oficial Tático Divino Cota de Malha" />
+			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="Cota de Malha Divina do Oficial Tático" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 			<material rate="50000" nameid="1136798" itemid="182213196" name_en="Noble Dew" name_pt="Noble Dew" />
@@ -5933,14 +5933,14 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="409067" name_en="Zircon" name_pt="Zircão" nameId="701971" sourceType="JEWELRY" harvestCount="1" skillLevel="185" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50" reqItem="122001454" reqItemNameId="794662" checkType="1">
 		<materials>
 			<material rate="7996400" nameid="751169" itemid="152000656" name_en="Hoca Fibre" name_pt="Fibra Hodja" />
-			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="do Oficial Tático Divino Cota de Malha" />
+			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="Cota de Malha Divina do Oficial Tático" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 			<material rate="550" nameid="794570" itemid="170040028" name_en="외형 확인 로브 신발_a08a_마족" name_pt="외형 확인 로브 신발_a08a_마족" />
 		</materials>
 		<exmaterials>
 			<material rate="7946950" nameid="751169" itemid="152000656" name_en="Hoca Fibre" name_pt="Fibra Hodja" />
-			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="do Oficial Tático Divino Cota de Malha" />
+			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="Cota de Malha Divina do Oficial Tático" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 			<material rate="50000" nameid="1136798" itemid="182213196" name_en="Noble Dew" name_pt="Noble Dew" />
@@ -6237,14 +6237,14 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="409094" name_en="Corundum" name_pt="Corindo" nameId="751120" sourceType="JEWELRY" harvestCount="1" skillLevel="450" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50" reqItem="122001454" reqItemNameId="794662" checkType="1">
 		<materials>
 			<material rate="7996400" nameid="751169" itemid="152000656" name_en="Hoca Fibre" name_pt="Fibra Hodja" />
-			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="do Oficial Tático Divino Cota de Malha" />
+			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="Cota de Malha Divina do Oficial Tático" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 			<material rate="550" nameid="794570" itemid="170040028" name_en="외형 확인 로브 신발_a08a_마족" name_pt="외형 확인 로브 신발_a08a_마족" />
 		</materials>
 		<exmaterials>
 			<material rate="7946400" nameid="751169" itemid="152000656" name_en="Hoca Fibre" name_pt="Fibra Hodja" />
-			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="do Oficial Tático Divino Cota de Malha" />
+			<material rate="2000000" nameid="775011" itemid="152000661" name_en="Tac NCO's Divine Hauberk" name_pt="Cota de Malha Divina do Oficial Tático" />
 			<material rate="2500" nameid="744694" itemid="152000655" name_en="Pseron's Memento" name_pt="Memento de Pseron" />
 			<material rate="550" nameid="765533" itemid="101500828" name_en="Eftidi's Flowers" name_pt="Flores de Eftidi" />
 			<material rate="50000" nameid="1136798" itemid="182213196" name_en="Noble Dew" name_pt="Noble Dew" />

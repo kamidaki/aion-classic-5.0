@@ -44017,7 +44017,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.87" />
 	</npc_template>
-	<npc_template npc_id="210160" level="7" name_en="Tursin Big Boss" name_pt="Grande chefe de Tursin" name_id="300131" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="NORMAL" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="210160" level="7" name_en="Tursin Big Boss" name_pt="Grande Chefe Tursin" name_id="300131" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="NORMAL" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="747">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -46098,11 +46098,11 @@
 		</stats>
 		<bound_radius front="0.4" side="0.9" upper="1.73" />
 	</npc_template>
-	<npc_template npc_id="210524" level="17" name_en="Big Cargo Box" name_pt="Grande caixa de carga" name_id="300663" height="0.6" group_drop="FAKEBOX" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2415" hpgauge="3" floatcorpse="true">
+	<npc_template npc_id="210524" level="17" name_en="Big Cargo Box" name_pt="Caixa Grande de Carga" name_id="300663" height="0.6" group_drop="FAKEBOX" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2415" hpgauge="3" floatcorpse="true">
 		<stats maxHp="23" />
 		<bound_radius front="0.43" side="0.43" upper="1.4" />
 	</npc_template>
-	<npc_template npc_id="210525" level="17" name_en="Big Cargo Box" name_pt="Grande caixa de carga" name_id="300664" height="1.34" group_drop="MIMIC" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2415" hpgauge="3" floatcorpse="true">
+	<npc_template npc_id="210525" level="17" name_en="Big Cargo Box" name_pt="Caixa Grande de Carga" name_id="300664" height="1.34" group_drop="MIMIC" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2415" hpgauge="3" floatcorpse="true">
 		<stats maxHp="2312">
 			<speeds walk="5.25" group_walk="7" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
@@ -47309,7 +47309,7 @@
 		</equipment>
 		<bound_radius front="0.96" side="0.66" upper="0.88" />
 	</npc_template>
-	<npc_template npc_id="210683" level="6" name_en="Fierce Grey Worg" name_pt="Feroz cinza Worg" name_id="301042" height="1.07" group_drop="ZAIF" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="ZAIF_ABROWNIEFELLER_LF1" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2142" cast_speed="100" hpgauge="3">
+	<npc_template npc_id="210683" level="6" name_en="Fierce Grey Worg" name_pt="Worg Cinzento Feroz" name_id="301042" height="1.07" group_drop="ZAIF" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="ZAIF_ABROWNIEFELLER_LF1" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2142" cast_speed="100" hpgauge="3">
 		<stats maxHp="619">
 			<speeds walk="1.084" group_walk="1.084" run="7.23" run_fight="5" group_run_fight="7.23" />
 		</stats>
@@ -47361,7 +47361,7 @@
 		</equipment>
 		<bound_radius front="0.4" side="0.4" upper="1.84" />
 	</npc_template>
-	<npc_template npc_id="210689" level="16" name_en="Tiny Arachna" name_pt="Pequeno Arachna" name_id="301048" height="2.94" group_drop="OCTASIDE_BABY" rank="NOVICE" rating="NORMAL" race="BEAST" tribe="OCTASIDEBABY" ai="aggressive" srange="6" arange="2" attack_speed="2570" hpgauge="2" floatcorpse="true">
+	<npc_template npc_id="210689" level="16" name_en="Tiny Arachna" name_pt="Arachna Pequena" name_id="301048" height="2.94" group_drop="OCTASIDE_BABY" rank="NOVICE" rating="NORMAL" race="BEAST" tribe="OCTASIDEBABY" ai="aggressive" srange="6" arange="2" attack_speed="2570" hpgauge="2" floatcorpse="true">
 		<stats maxHp="88">
 			<speeds walk="2.1" group_walk="2.1" run="7.2" run_fight="5.2" group_run_fight="7.2" />
 		</stats>
@@ -49432,7 +49432,7 @@
 		</stats>
 		<bound_radius front="0.525" side="0.51" upper="1.31" />
 	</npc_template>
-	<npc_template npc_id="210978" level="35" name_en="Fierce Rynoce" name_pt="Feroz Rynoce" name_id="301302" height="2.51" group_drop="RHINOCE" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2142" hpgauge="3">
+	<npc_template npc_id="210978" level="35" name_en="Fierce Rynoce" name_pt="Rynoce Feroz" name_id="301302" height="2.51" group_drop="RHINOCE" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2142" hpgauge="3">
 		<stats maxHp="7130">
 			<speeds walk="1.09" group_walk="1.09" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
@@ -49492,7 +49492,7 @@
 		</stats>
 		<bound_radius front="0.525" side="0.51" upper="1.31" />
 	</npc_template>
-	<npc_template npc_id="210988" level="36" name_en="Fierce Rynoce" name_pt="Feroz Rynoce" name_id="301310" height="2.51" group_drop="RHINOCE" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2142" hpgauge="3">
+	<npc_template npc_id="210988" level="36" name_en="Fierce Rynoce" name_pt="Rynoce Feroz" name_id="301310" height="2.51" group_drop="RHINOCE" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2142" hpgauge="3">
 		<stats maxHp="7469">
 			<speeds walk="1.09" group_walk="1.09" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
@@ -61669,13 +61669,13 @@
 		</stats>
 		<bound_radius front="1.08" side="1.068" upper="2.94" />
 	</npc_template>
-	<npc_template npc_id="212623" level="28" name_en="Tiny Gold Arachna" name_pt="Pequeno Arachna de ouro" name_id="306444" height="2.94" group_drop="OCTASIDE_BABY" rank="NOVICE" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="6" sangle="240" arange="2" attack_speed="2326" hpgauge="2" floatcorpse="true">
+	<npc_template npc_id="212623" level="28" name_en="Tiny Gold Arachna" name_pt="Arachna Pequena de ouro" name_id="306444" height="2.94" group_drop="OCTASIDE_BABY" rank="NOVICE" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="6" sangle="240" arange="2" attack_speed="2326" hpgauge="2" floatcorpse="true">
 		<stats maxHp="385">
 			<speeds walk="2.1" group_walk="2.1" run="7.2" run_fight="5.5" group_run_fight="7.2" />
 		</stats>
 		<bound_radius front="0.54" side="0.534" upper="2.94" />
 	</npc_template>
-	<npc_template npc_id="212624" level="29" name_en="Tiny Gold Arachna" name_pt="Pequeno Arachna de ouro" name_id="306445" height="2.94" group_drop="OCTASIDE_BABY" rank="NOVICE" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="6" sangle="240" arange="2" attack_speed="2326" hpgauge="2" floatcorpse="true">
+	<npc_template npc_id="212624" level="29" name_en="Tiny Gold Arachna" name_pt="Arachna Pequena de ouro" name_id="306445" height="2.94" group_drop="OCTASIDE_BABY" rank="NOVICE" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="6" sangle="240" arange="2" attack_speed="2326" hpgauge="2" floatcorpse="true">
 		<stats maxHp="412">
 			<speeds walk="2.1" group_walk="2.1" run="7.2" run_fight="5.5" group_run_fight="7.2" />
 		</stats>
@@ -250122,7 +250122,7 @@
 		</stats>
 		<bound_radius front="0.8355" side="0.8685" upper="0.5883" />
 	</npc_template>
-	<npc_template npc_id="281399" level="52" name_en="Tiny Arachna" name_pt="Pequeno Arachna" name_id="319460" height="0.882" group_drop="OCTACIDE" rank="NOVICE" rating="NORMAL" tribe="FRILLFAIMAMBABY" type="MONSTER" ai="aggressive" srange="8" arange="2" attack_speed="1357" hpgauge="2" floatcorpse="true">
+	<npc_template npc_id="281399" level="52" name_en="Tiny Arachna" name_pt="Arachna Pequena" name_id="319460" height="0.882" group_drop="OCTACIDE" rank="NOVICE" rating="NORMAL" tribe="FRILLFAIMAMBABY" type="MONSTER" ai="aggressive" srange="8" arange="2" attack_speed="1357" hpgauge="2" floatcorpse="true">
 		<stats maxHp="3719">
 			<speeds walk="1.3" group_walk="1.3" run="4" run_fight="5" group_run_fight="4" />
 		</stats>
@@ -309345,7 +309345,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700761" level="1" name_en="Half-rotten Animal Carcass" name_pt="Carcaça de animalia semi-roteado" name_id="371496" height="1.4" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="quest_use_item" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700761" level="1" name_en="Half-rotten Animal Carcass" name_pt="Carcaça de Animal Semipodre" name_id="371496" height="1.4" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="quest_use_item" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.175" side="0.245" upper="1.4" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
@@ -309861,13 +309861,13 @@
 		<bound_radius front="0.3" side="0.42" upper="0.24" />
 		<talk_info distance="3" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700866" level="20" name_en="Personal Tundra Kisk" name_pt="Tundra Kisk pessoal" name_id="399000" height="1" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="kisk" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700866" level="20" name_en="Personal Tundra Kisk" name_pt="Kisk Individual de Tundra" name_id="399000" height="1" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="kisk" attack_speed="2000" hpgauge="3">
 		<stats maxHp="4000" />
 		<kisk_stats resurrects="3" members="1" usemask="3" />
 		<bound_radius front="0.125" side="0.175" upper="1" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700867" level="20" name_en="Personal Marine Kisk" name_pt="Kisk marinho pessoal" name_id="399001" height="1" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="kisk" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700867" level="20" name_en="Personal Marine Kisk" name_pt="Kisk Individual Marinho" name_id="399001" height="1" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="kisk" attack_speed="2000" hpgauge="3">
 		<stats maxHp="4000" />
 		<kisk_stats resurrects="3" members="1" usemask="3" />
 		<bound_radius front="0.125" side="0.175" upper="1" />
@@ -309981,13 +309981,13 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700886" level="1" name_en="Personal Tundra Kisk" name_pt="Tundra Kisk pessoal" name_id="399000" height="1" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="kisk" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700886" level="1" name_en="Personal Tundra Kisk" name_pt="Kisk Individual de Tundra" name_id="399000" height="1" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="kisk" attack_speed="2000" hpgauge="3">
 		<stats maxHp="4000" />
 		<kisk_stats resurrects="3" members="1" usemask="3" />
 		<bound_radius front="0.125" side="0.175" upper="1" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700887" level="1" name_en="Personal Marine Kisk" name_pt="Kisk marinho pessoal" name_id="399001" height="1" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="kisk" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700887" level="1" name_en="Personal Marine Kisk" name_pt="Kisk Individual Marinho" name_id="399001" height="1" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="kisk" attack_speed="2000" hpgauge="3">
 		<stats maxHp="4000" />
 		<kisk_stats resurrects="3" members="1" usemask="3" />
 		<bound_radius front="0.125" side="0.175" upper="1" />
@@ -314447,12 +314447,12 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="6" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730203" level="1" name_en="Large Gun Deck Entrance" name_pt="Entrada grande no convés de pistola" name_id="371291" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730203" level="1" name_en="Large Gun Deck Entrance" name_pt="Entrada Principal do Convés de Canhões" name_id="371291" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="6" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730204" level="1" name_en="Large Gun Deck Exit" name_pt="Grande saída do convés de pistola" name_id="371292" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730204" level="1" name_en="Large Gun Deck Exit" name_pt="Saída Principal do Convés de Canhões" name_id="371292" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="6" delay="3" can_talk_invisible="false" />

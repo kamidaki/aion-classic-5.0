@@ -15524,7 +15524,7 @@
 			<quest_work_item item_id="182208026" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="3037" name_en="Wanderer's Staff" name_pt="Pessoal do Andarilho" nameId="1113036" quest_zone="Theobomos" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="3037" name_en="Wanderer's Staff" name_pt="Cajado do Andarilho" nameId="1113036" quest_zone="Theobomos" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<rewards exp="3884596">
 			<reward_item item_id="164000093" count="2" />
 		</rewards>
@@ -37353,7 +37353,8 @@
 		<rewards gold="15024" exp="15024" />
 	</quest>
 	<quest id="15025" name_en="A stone wrapped in Aion’s mysterious energy.
-Used to activate the Artefact of the Inception." name_pt="Uma pedra envolta na misteriosa energia de Aion.
+Used to activate the Artefact of the Inception." name_pt="Uma pedra envolta na misteriosa energia de Aion.
+
 Usada para ativar o Artefato do Princípio." nameId="1800737" quest_zone="Cygnea" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="QUEST" data_driven="true">
 		<rewards gold="15025" exp="15025" />
 	</quest>
@@ -37361,7 +37362,8 @@ Usada para ativar o Artefato do Princípio." nameId="1800737" quest_zone="Cygnea
 		<rewards gold="15026" exp="15026" />
 	</quest>
 	<quest id="15027" name_en="A stone wrapped in Aion’s mysterious energy.
-Used to activate the Artefact of the Inception." name_pt="Uma pedra envolta na misteriosa energia de Aion.
+Used to activate the Artefact of the Inception." name_pt="Uma pedra envolta na misteriosa energia de Aion.
+
 Usada para ativar o Artefato do Princípio." nameId="1800739" quest_zone="Cygnea" minlevel_permitted="99" max_repeat_count="1" race_permitted="ELYOS" category="QUEST">
 		<rewards gold="15027" exp="15027" />
 	</quest>
@@ -41537,7 +41539,8 @@ Usada para ativar o Artefato do Princípio." nameId="1800739" quest_zone="Cygnea
 		<rewards gold="75330" exp="1723277" />
 	</quest>
 	<quest id="18951" name_en="This portion of the confidential report contains information on the Tiamat Legion’s Blood Drana supply. 
-Combine the parts of the document to learn its contents." name_pt="Esta parte do relatório confidencial contém informações sobre o suprimento de Drana de Sangue da Legião de Tiamat.
+Combine the parts of the document to learn its contents." name_pt="Esta parte do relatório confidencial contém informações sobre o suprimento de Drana de Sangue da Legião de Tiamat.
+
 combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" quest_zone="Drakenspire Depths" minlevel_permitted="65" max_repeat_count="255" race_permitted="ELYOS" category="QUEST" target="ALLIANCE" data_driven="true">
 		<rewards exp="5548951">
 			<reward_item item_id="188053797" count="1" />
@@ -44791,12 +44794,14 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 		</rewards>
 	</quest>
 	<quest id="21209" name_en="Balaur Bind Point 1 (Infiltration1)
-21209 - 21210" name_pt="Balaur Ponto de Retorno 1 (Infiltration1)
+21209 - 21210" name_pt="Balaur Ponto de Retorno 1 (Infiltration1)
+
 21209 - 21210" nameId="1127112" quest_zone="Gelkmaros" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards />
 	</quest>
 	<quest id="21210" name_en="Balaur Bind Point 1 (Infiltration2)
-21209 - 21210" name_pt="Balaur Ponto de Retorno 1 (Infiltration2)
+21209 - 21210" name_pt="Balaur Ponto de Retorno 1 (Infiltration2)
+
 21209 - 21210" nameId="1127113" quest_zone="Gelkmaros" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards />
 		<start_conditions>
@@ -44849,12 +44854,14 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 		</quest_work_items>
 	</quest>
 	<quest id="21218" name_en="Balaur Bind Point 2 (Infiltration1)
-21218 - 21219" name_pt="Balaur Ponto de Retorno 2 (Infiltration1)
+21218 - 21219" name_pt="Balaur Ponto de Retorno 2 (Infiltration1)
+
 21218 - 21219" nameId="1127121" quest_zone="Gelkmaros" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards />
 	</quest>
 	<quest id="21219" name_en="Balaur Bind Point 2 (Infiltration1)
-21218 - 21219" name_pt="Balaur Ponto de Retorno 2 (Infiltration1)
+21218 - 21219" name_pt="Balaur Ponto de Retorno 2 (Infiltration1)
+
 21218 - 21219" nameId="1127122" quest_zone="Gelkmaros" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards />
 		<start_conditions>
@@ -60029,7 +60036,8 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 		<quest_drop npc_id="217296" item_id="182212510" chance="100" drop_each_member="1" collecting_step="0" />
 	</quest>
 	<quest id="30564" name_en="These are worn by all researchers in the High-Security Lab. 
-In this uniform you’ll be able to disguise yourself as a researcher." name_pt="Usado por todos os pesquisadores no Laboratório de Alta Segurança.
+In this uniform you’ll be able to disguise yourself as a researcher." name_pt="Usado por todos os pesquisadores no Laboratório de Alta Segurança.
+
 Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801110" quest_zone="Rentus Base" minlevel_permitted="57" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" restricted="true" data_driven="true">
 		<rewards gold="598320" exp="5097837" />
 		<quest_kill step="0" var="1" count="1" npc_ids="217310" seq="1" />
@@ -73798,7 +73806,8 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 		<quest_drop npc_id="216183" item_id="182215814" chance="80" drop_each_member="1" />
 	</quest>
 	<quest id="80730" name_en="This note was found in the belongings.
-Double-click to read." name_pt="Este bilhete foi encontrado entre os pertences.
+Double-click to read." name_pt="Este bilhete foi encontrado entre os pertences.
+
 Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permitted="50" max_repeat_count="1" cannot_share="true" race_permitted="PC_ALL" category="EVENT" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215813" count="2" />
