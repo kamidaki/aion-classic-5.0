@@ -1,433 +1,586 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Script de Refinamento e Qualidade de Localização Round 2 - Aion Classic 5.0 PT-BR
-Focado em:
-1. Lugares e Zonas (client_strings_level.xml, dic_place.xml) - Capitais, Reshanta, Elysea, Asmodae, Verteron, Hotspots
-2. NPCs e Títulos (client_strings_npc.xml) - Patentes, possessivos ('s), teletransporte entre zonas
-3. Monstros (client_strings_monster.xml) - Remoção de ': n. elite', artefatos, nomes invertidos
-4. Magias e Habilidades (client_strings_skill.xml) - Aprisionamento do Éter, Cajados, Posturas, termos de combate
-5. Itens e Equipamentos (client_strings_item.xml, item2.xml) - 'Funcionários' -> 'Cajado', 'deveriam/deveres' -> 'Ombreiras',
-   'Eles derramam' -> 'Verteron', 'Manastone' -> 'Pedra de Mana', remoção de ': n. elite', conversão de possessivos 's
-6. Limpeza geral do artefato 'Bedotia geayi' -> 'Zona' em todos os 15 arquivos XML afetados
+Script de Auditoria e Refinamento de Traducao - Round 2 (Deep Quality & Clean-up)
+Aion Classic 5.0 PT-BR Localization
+
+Escopo:
+1. Eliminacao de palavras duplicadas residuais ('de de Elite' -> 'de Elite', 'de de' -> 'de', 'do Dragao Dragao Garras' -> 'Garras do Dragao', etc.)
+2. Correcao de insercoes anomalas com apostrofo ingles no meio de substantivos:
+   - '[Entidade]’Colar s' -> 'Colar de [Entidade]' / 'Colar do [Entidade]'
+   - '[Entidade]’Brinco s' -> 'Brinco de [Entidade]' / 'Brinco do [Entidade]'
+   - '[Entidade]’Anel s' -> 'Anel de [Entidade]' / 'Anel do [Entidade]'
+   - '[Entidade]’[Recipiente] de s [Item]' -> '[Recipiente] de [Item] de [Entidade]'
+3. Normalizacao de nomes e titulos com genitivo ingles ('Owner’s Item' -> 'Item de Owner' / 'Item do Owner'):
+   - General de Brigada, Comodoro, Batalha, Yasba, Vidar, Fasimedes, Mastarius, Veille, Triniel, Valetta, Sunayaka, Lodas, etc.
+4. Extirpacao de falsos cognatos grotescos:
+   - 'palito de fosforo' / 'partidas' quando referente a 'match' -> 'correspondente a' / 'combina com'
+   - 'resultado ou ponto final Engrenagem' -> 'Equipamento Final'
+   - 'suicidio esquadrao' -> 'Esquadrao Suicida'
+   - 'funcionarios' (Staff) -> 'Cajado'
+   - 'deputado' (MP / Deputy) -> 'MP' / 'Subcomandante'
+   - 'cardapio' (Menu) -> 'menu'
+   - 'Ministro' (Lesser/Minor) -> 'Pergaminho Menor'
+   - 'area em forma de ventilador' -> 'area em leque'
+5. Refinamento de descricoes de itens de quebra-cabeca (Puzzles/Obras de Arte).
+6. Ajuste de termos militares Balaur: 'Guilda Indratu/Bakarma/Anuhart' -> 'Legiao Indratu/Bakarma/Anuhart'.
+7. Correcao de verbos de acao em ingles vazados ('Deals pesado dano' -> 'Causa dano pesado').
 """
 
+import glob
 import os
-import sys
 import re
-import argparse
+import sys
+import xml.etree.ElementTree as ET
 
 sys.stdout.reconfigure(encoding='utf-8')
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 STRINGS_DIR = os.path.join(BASE_DIR, 'Ferramentas e Documentos', 'Client e Coletas', 'Tradução - Português Brasil', 'strings')
-EN_DIR = os.path.join(BASE_DIR, 'Ferramentas e Documentos', 'Client e Coletas', 'Client 5.0 - Dados Extraidos', 'Idioma em Inglês', 'strings')
 
-# Mapeamento estrito de Hotspots corrompidos em client_strings_level.xml
-HOTSPOT_FIXES = {
-    'STR_HOTSPOT_LC1_01': 'Caminho Exaltado',
-    'STR_HOTSPOT_LC1_02': 'Praça Elyos Oeste',
-    'STR_HOTSPOT_LC1_03': 'Praça Elyos Leste',
-    'STR_HOTSPOT_LC1_04': 'Liceu',
-    'STR_HOTSPOT_LC1_05': 'Coliseu',
-    'STR_HOTSPOT_LC1_06': 'Salão da Prosperidade',
-    'STR_HOTSPOT_LC1_07': 'Biblioteca dos Sábios',
-    'STR_HOTSPOT_LC1_08': 'Temporário',
-    'STR_HOTSPOT_DC1_01': 'Praça de Pandaemônio',
-    'STR_HOTSPOT_DC1_02': 'Praça de Pandaemônio Sul',
-    'STR_HOTSPOT_DC1_03': 'Praça de Pandaemônio Norte',
-    'STR_HOTSPOT_DC1_04': 'Grande Templo de Pandaemônio',
-    'STR_HOTSPOT_DC1_05': 'Templo de Ouro',
-    'STR_HOTSPOT_DC1_06': 'Coliseu Triniel',
-    'STR_HOTSPOT_DC1_07': 'Templo do Conhecimento',
-    'STR_HOTSPOT_LF4_01': 'Fortaleza da Ilusão de Inggison',
-    'STR_HOTSPOT_LF4_02': 'Acampamento dos Investigadores',
-    'STR_HOTSPOT_LF4_03': 'Vale de Phanoe',
-    'STR_HOTSPOT_LF4_04': 'Acampamento de Philon',
-    'STR_HOTSPOT_LF4_05': 'Santuário de Soteria',
-    'STR_HOTSPOT_LF4_06': 'Rocha das Duas Mãos',
-    'STR_HOTSPOT_LF4_07': 'Base de Instalação de Obelisco',
-    'STR_HOTSPOT_LF4_08': 'Posto de Observação de Undirborg',
-    'STR_HOTSPOT_LF4_09': 'Posto Avançado de Inggison',
-    'STR_HOTSPOT_LF4_10': 'Posto de Observação de Angrief',
-    'STR_HOTSPOT_LF4_11': 'Portão Desmoronado',
-    'STR_HOTSPOT_LF4_12': 'Fossa de Inggison',
-    'STR_HOTSPOT_LF4_13': 'Posto de Observação de Hanarkand',
-    'STR_HOTSPOT_DF4_01': 'Fortaleza de Gelkmaros',
-    'STR_HOTSPOT_DF4_02': 'Campo de Batalha de Antagor',
-    'STR_HOTSPOT_DF4_03': 'Acampamento de Pesquisa de Éter',
-    'STR_HOTSPOT_DF4_04': 'Encruzilhada Queda de Espírito',
-    'STR_HOTSPOT_DF4_05': 'Vila dos Refugiados de Rhonnam',
-    'STR_HOTSPOT_DF4_06': 'Acampamento Farbin',
-    'STR_HOTSPOT_DF4_07': 'Posto de Guarda de Antagor',
-    'STR_HOTSPOT_DF4_08': 'Cânion Submerso',
-    'STR_HOTSPOT_DF4_09': 'Posto de Observação Subterrâneo',
-    'STR_HOTSPOT_DF4_10': 'Base de Defesa de Gelkmaros',
-    'STR_HOTSPOT_DF4_11': 'Acampamento da Expedição',
-    'STR_HOTSPOT_DF4_12': 'Acampamento de Batalrion',
-    'STR_HOTSPOT_DF4_13': 'Laboratório Biológico de Naduka',
-    'STR_HOTSPOT_DF4_14': 'Posto de Batedores de Vorgaltem',
-    'STR_HOTSPOT_DF4_15': 'Posto de Observação da Fazenda de Drana',
-    'STR_HOTSPOT_LDF4_Teva_01': 'Zona de Controle: Ruínas da Gravidade',
-    'STR_HOTSPOT_LDF4_Teva_02': 'Zona de Controle: Divisor de Fendas',
-    'STR_HOTSPOT_LDF4_Teva_03': 'Zona de Controle: Santuário da Petrificação',
-    'STR_HOTSPOT_LDF4_Teva_04': 'Zona de Controle: Brasão da Ira'
-}
-
-# Correções cruciais de zonas e regiões em client_strings_level.xml
-LEVEL_EXACT_FIXES = {
-    'STR_WORLD_NAME_LIGHT': 'Elísea',
-    'STR_WORLD_NAME_DARK': 'Asmodae',
-    'STR_WORLD_NAME_ABYSS': 'Reshanta',
-    'STR_SZ_LF1_VERTERRON_STRONGHOLD': 'Cidadela de Verteron',
-    'STR_SIGN_RS_LF1A_01': 'Cidadela de Verteron',
-    'STR_LF1A_Airport_SUB_Verterron': 'Cidadela de Verteron',
-    'STR_LF4_SZ_Sky': 'Céus de Inggison',
-    'STR_LF4_Airport_ZONE': 'Porto Externo de Inggison',
-    'STR_SZ_IDAb1_Dreadgion_19': 'Área Especial',
-    'STR_SZ_iddreadgion_02_19': 'Área Especial',
-    'STR_ZONE_NAME_LDF4b': 'Platô de Tiamaranta',
-    'STR_LDF4b_SZ_All': 'Platô de Tiamaranta',
-    'STR_LDF4b_SZ_T2_S11': 'Portão Oeste do Olho de Tiamaranta',
-    'STR_LDF4b_SZ_T3_S8': 'Portão Leste do Olho de Tiamaranta',
-    'STR_LDF4b_SZ_T4_S7': 'Portão Sul do Olho de Tiamaranta',
-    'STR_TP_toLDF4B': 'Movendo-se para Sarpan.',
-    'STR_LDF4b_Airport_ZONE_OP_L': 'Tiamaranta',
-    'STR_LDF4b_Airport_ZONE_OP_D': 'Tiamaranta',
-    'STR_UI_ZONE_MAP_LDF4B_TOP': 'Céus do Platô de Tiamaranta',
-    'STR_UI_ZONE_MAP_LDF4B_BOTTOM': 'Solo do Platô de Tiamaranta',
-    'STR_UI_ZONE_MAP_LDF4B_DOWN': 'Caverna Basilika do Platô de Tiamaranta',
-    'STR_Tiamat_Down_Entrance_L': 'Entrada do Olho de Tiamaranta (Elyos)',
-    'STR_Tiamat_Down_Entrance_D': 'Entrada do Olho de Tiamaranta (Asmodiano)',
-    'STR_Tiamat_Down_Exit_L': 'Saída do Olho de Tiamaranta (Elyos)',
-    'STR_Tiamat_Down_Exit_D': 'Saída do Olho de Tiamaranta (Asmodiano)',
-    'STR_TP_toLC1': 'Teleporte para o Caminho Exaltado de Sanctum',
-    'STR_TP_toDC1': 'Teleporte para a Ponte Vifrost de Pandaemônio',
-    'STR_SZ_DC1_SUB_C': 'Praça de Pandaemônio',
-    'STR_LF3_SZ_A1': 'Novo Portão de Heiron',
-    'STR_LF3_SZ_D1': 'Observatório de Heiron',
-    'STR_LF3_Airport_SUB_Interdica': 'Novo Portão de Heiron',
-    'STR_LF3_Airport_SUB_Tower': 'Observatório de Heiron',
-    'STR_SIGN_RS_LF3_A1': 'Novo Portão de Heiron',
-    'STR_SIGN_RS_LF3_D1': 'Observatório de Heiron',
-    'STR_TP_toLF3': 'Viajando para Heiron.',
-    'STR_SIGN_RS_LF2_ToLF3': 'Estrada para Heiron',
-    'STR_LF2_SZ_LF2_ToLF3': 'Estrada para Heiron',
-    'STR_Ab1_SZ_1211_I': 'Fissura Ocidental de Reshanta',
-    'STR_ZONE_NAME_LC1a': 'Portão de Sanctum',
-    'STR_ZONE_NAME_DC1a': 'Entrada de Pandaemônio',
-    'STR_SZ_DC1_SUB_9': 'Entrada de Pandaemônio',
-    'STR_SZ_DC1_SUB_1': 'Grande Templo de Pandaemônio',
-    'STR_DF3_Airport_SUB_Amsnir': 'Campo de Refugiados de Besfer',
-    'STR_SIGN_RS_DF3_E1': 'Campo de Refugiados de Besfer',
-    'STR_DF3_SZ_E1': 'Campo de Refugiados de Besfer',
-    'STR_IDTiamatLab_War_SZ_C_SUB_01': 'Acampamento Nuvem Negra',
-    'STR_LDF4b_SZ_OP_A2': 'Campo de Batalha de Kamar',
-    'STR_LDF4b_SZ_OP_A3': 'Campo de Batalha de Kamar',
-    'STR_ZONE_IDdranamine_War_SZ_03': 'Campo de Batalha de Tiamat',
-    'STR_LDF4b_SZ_Tower_Near_L_1': 'Campo de Batalha de Tiamat'
-}
-
-# Correções de Skills
-SKILL_EXACT_FIXES = {
-    'STR_SYSTEM_SKILL_OpenAerial': 'Aprisionamento do Éter',
-    'STR_SKILL_WI_WizardryHook_G1': 'Aprisionamento do Éter I',
-    'STR_SKILL_WI_WizardryHook_G2': 'Aprisionamento do Éter II',
-    'STR_SKILL_WI_WizardryHook_G3': 'Aprisionamento do Éter III',
-    'STR_SKILL_WI_WizardryHook_G4': 'Aprisionamento do Éter IV',
-    'STR_SKILL_WI_WizardryHook_G5': 'Aprisionamento do Éter V',
-    'STR_SKILL_WI_WizardryHook_G6': 'Aprisionamento do Éter VI',
-    'STR_SKILL_P_EQUIP_Staff_G1': 'Treinamento Avançado com Cajado I',
-    'STR_SKILL_CH_EQUIP_Staff': 'Treinamento Avançado com Cajado I',
-    'STR_SKILL_RA_MarksmanMode_G1': 'Postura de Atirador de Elite I',
-    'STR_SKILL_HolyWraith': 'Aparição Sagrada',
-    'STR_SKILL_HolyWraith_DESC': 'Aparição Sagrada',
-    'STR_Arena_pvp01_S1_heal': 'Aura da Bênção',
-    'STR_BNFI_SanctuaryStatup_IDRW_Abnormal': 'Você está protegido pelo Santuário. Você não pode ser ferido por nenhum meio.'
-}
-
-def clean_body_text(filename, sname, body):
-    orig = body
-    
-    # 1. Hotspots em level.xml
-    if filename == 'client_strings_level.xml':
-        if sname in HOTSPOT_FIXES:
-            return HOTSPOT_FIXES[sname]
-        if sname in LEVEL_EXACT_FIXES:
-            return LEVEL_EXACT_FIXES[sname]
-            
-    # 2. Skills exatas
-    if filename == 'client_strings_skill.xml':
-        if sname in SKILL_EXACT_FIXES:
-            return SKILL_EXACT_FIXES[sname]
-
-    # 3. Eliminar "Bedotia geayi" (artefato que substituiu Zona/Região)
-    if 'bedotia geayi' in body.lower():
-        # Substituições contextuais elegantes
-        body = re.sub(r'Sem\s+bedotia\s*geayi\s+PVP\b', 'Zona Segura (Não-PvP)', body, flags=re.IGNORECASE)
-        body = re.sub(r'Sem\s+bedotia\s*geayi\s+de\s+duelo\b', 'Zona Sem Duelo', body, flags=re.IGNORECASE)
-        body = re.sub(r'Bedotia\s*geayi\s+PVP\b', 'Zona PvP', body, flags=re.IGNORECASE)
-        body = re.sub(r'Bedotia\s*geayi\s+de\s+Carga\b', 'Zona de Carga', body, flags=re.IGNORECASE)
-        body = re.sub(r'Bedotia\s*geayi\s+de\s+queda\b', 'Zona de Salto', body, flags=re.IGNORECASE)
-        body = re.sub(r'Bedotia\s*geayi\s+da\s+prisão\b', 'Zona Prisional', body, flags=re.IGNORECASE)
-        body = re.sub(r'Bedotia\s*geayi\s+restrita\b', 'Zona Restrita', body, flags=re.IGNORECASE)
-        body = re.sub(r'Bedotia\s*geayi\s+residencial\b', 'Área Residencial', body, flags=re.IGNORECASE)
-        body = re.sub(r'Bedotia\s*geayi\s+instanciada\b', 'zona instanciada', body, flags=re.IGNORECASE)
-        body = re.sub(r'bedotia\s*geayi\s+instanciada\b', 'zona instanciada', body, flags=re.IGNORECASE)
-        body = re.sub(r'nesta\s+bedotia\s*geayi\b', 'nesta zona', body, flags=re.IGNORECASE)
-        body = re.sub(r'da\s+bedotia\s*geayi\b', 'da zona', body, flags=re.IGNORECASE)
-        body = re.sub(r'na\s+bedotia\s*geayi\b', 'na zona', body, flags=re.IGNORECASE)
-        body = re.sub(r'Bedotia\s*geayi\s+de\s+teste\b', 'Zona de Teste', body, flags=re.IGNORECASE)
-        body = re.sub(r'Bedotia\s*geayi\s+de\s+interceptação\b', 'Zona de Interceptação', body, flags=re.IGNORECASE)
-        body = re.sub(r'Bedotia\s*geayi\b', 'Zona', body)
-        body = re.sub(r'bedotia\s*geayi\b', 'zona', body)
-
-    # 4. Eliminar ": n. elite" e variantes de dicionário
-    if ': n. elite' in body.lower() or ':n. elite' in body.lower():
-        body = re.sub(r':\s*n\.\s*elite\b', '', body, flags=re.IGNORECASE)
-        # Se ficou 'Elite  Posto' ou 'Elite Posto'
-        body = re.sub(r'\bElite\s+Posto\s+(\d+)\s+([A-Za-zÀ-ÿ]+)\s+(.+)$', r'\3 \2 de Elite de Posto \1', body)
-        # Limpar repetições geradas como 'de elite de Elite'
-        body = re.sub(r'\bde\s+elite\s+de\s+Elite\b', 'de Elite', body, flags=re.IGNORECASE)
-        body = re.sub(r'\bElite:\s*', 'Elite ', body)
-
-    # 5. Outros marcadores de dicionário
-    if 'significa: n. meio' in body:
-        body = body.replace('significa: n. meio', 'meio')
-    if 'Internet: n. a internet café' in body:
-        body = body.replace('Internet: n. a internet café', 'Lan House')
-    if 'animalia de estimação' in body:
-        body = body.replace('animalia de estimação', 'animal de estimação')
-    if 'Moeda comerciante' in body:
-        body = body.replace('Moeda comerciante', 'Comerciante de Moedas')
-    if 'Comércio Corretor' in body:
-        body = body.replace('Comércio Corretor', 'Corretor de Comércio')
-    if 'o Fenda' in body:
-        body = body.replace('o Fenda', 'a Fenda')
-    if 'O idéia de Brigada' in body:
-        body = body.replace('O idéia de Brigada', 'O General de Brigada')
-
-    # 6. NPCs: Teletransporte entre zonas e patentes
-    if filename == 'client_strings_npc.xml':
-        if sname and sname.startswith('STR_OBJ_Zone_Teleport_'):
-            body = re.sub(r'^.*?teletransporte de\s+(.+)$', r'Teletransporte Entre Zonas de \1', body, flags=re.IGNORECASE)
-            body = body.replace('santuário', 'Sanctum').replace('poeta', 'Poeta').replace('verteron', 'Verteron').replace('heiron', 'Heiron')
-        if "Fenris's Fangs" in body:
-            body = body.replace("Fenris's Fangs", "Presas de Fenris").replace("de Presas de Fenris", "das Presas de Fenris")
-        if "Manir's tio" in body:
-            body = body.replace("Manir's tio", "Tio de Manir")
-        if "Nezekan's Escudo Legionário" in body:
-            body = body.replace("Nezekan's Escudo Legionário", "Legionário do Escudo de Nezekan")
-        if "TALOC's Jovem Galho" in body or "Taloc's Jovem Galho" in body:
-            body = body.replace("TALOC's Jovem Galho", "Broto de Taloc").replace("Taloc's Jovem Galho", "Broto de Taloc")
-        if "Charlirunerk's Daemons" in body:
-            body = re.sub(r"Charlirunerk's\s+Daemons.*", "Demônios de Charlirunerk", body)
-
-    # 7. Monstros: Núcleos de artefato e chefes
-    if filename == 'client_strings_monster.xml':
-        if "Metamor's Grama" in body:
-            body = body.replace("Metamor's Grama", "Restaurador")
-        body = re.sub(r'^Feroz\s+([A-Za-zÀ-ÿ]+)$', r'\1 Feroz', body)
-        body = re.sub(r'^Poderoso\s+(Petrahulk|Duque|Stallari)', r'\1 Poderoso', body)
-
-    # 8. Skills: Combate, termos e descrições
-    if filename == 'client_strings_skill.xml':
-        body = body.replace('Éter\'s Manter', 'Aprisionamento do Éter')
-        body = body.replace('n transferência de crédito (em banco).', 'giro')
-        body = body.replace('puts ele em o', 'coloca-o no')
-        body = body.replace('puts ele no', 'coloca-o no')
-        body = body.replace('voador alvo', 'alvo voador')
-        body = body.replace('Enters postura modo e blocks inimigo\'s Ataque por usando Bloqueio.', 'Entra no modo de postura e bloqueia ataques inimigos com Bloqueio.')
-        body = body.replace("restaura o alvo's HP", "restaura o HP do alvo")
-        body = body.replace("restaura o alvo’s HP", "restaura o HP do alvo")
-        body = body.replace("o alvo's HP", "o HP do alvo")
-        body = body.replace("o alvo’s HP", "o HP do alvo")
-        body = body.replace("o alvo’s ", "o ")
-        body = body.replace("o alvo's ", "o ")
-        body = body.replace("inimigo's Ataque", "ataques inimigos")
-        body = body.replace("inimigo’s Ataque", "ataques inimigos")
-        body = body.replace("Sagrado Aparição", "Aparição Sagrada")
-        body = body.replace("Mágico Implosão", "Implosão Mágica")
-        body = body.replace("Mágico Mantra", "Mantra Mágico")
-
-    # 9. Itens:
-    if filename in ['client_strings_item.xml', 'client_strings_item2.xml']:
-        # A. Manastone -> Pedra de Mana
-        if 'Manastone' in body:
-            body = re.sub(r'\bManastone:\s*', 'Pedra de Mana: ', body)
-            body = re.sub(r'\bAleatrio\s+Manastone\b', 'Pedra de Mana Aleatória', body)
-            body = re.sub(r'\bCaixa\s+de\s+Amor\s+Manastone\b', 'Caixa de Amor de Pedra de Mana', body)
-            body = re.sub(r'\bManastone\b', 'Pedra de Mana', body)
-
-        # B. 'Funcionários' para armas do tipo Cajado (Staff)
-        if 'Funcionários' in body:
-            body = re.sub(r'\bFuncionários\s+de\s+', 'Cajado de ', body)
-            body = re.sub(r'\bFuncionários\s+do\s+', 'Cajado do ', body)
-            body = re.sub(r'\bFuncionários\s+da\s+', 'Cajado da ', body)
-            body = re.sub(r'\bFuncionários\s+asmodianos\b', 'Cajado Asmodiano', body)
-            body = re.sub(r'\bFuncionários\s+sombreados\b', 'Cajado Sombreado', body)
-            body = re.sub(r'\bFuncionários\s+do\s+PNJ\b', 'Cajado do PNJ', body)
-            body = re.sub(r'\bFuncionários\s+avançados\b', 'Cajado Avançado', body)
-            body = re.sub(r'\bFuncionários\b', 'Cajado', body)
-
-        # C. Ombreiras traduzidas bizarramente como 'deveriam', 'deveres', 'deveriores', 'suergões de deveres', 'Devergúndios'
-        if any(w in body.lower() for w in ['deveriam', 'deveriores', 'deveres', 'suergões', 'devergúndios', 'servanguard']):
-            body = re.sub(r'\bEles derramam plantas deveriam\b', 'Ombreiras de Verteron', body)
-            body = re.sub(r'\bDevergúndios de deveres de viajantes\b', 'Ombreiras do Viajante', body)
-            body = re.sub(r'\bServiços de deveres do cultivador\b', 'Ombreiras do Cultivador', body)
-            body = re.sub(r'\bPatriota\'s deveriores\b', 'Ombreiras do Patriota', body)
-            body = re.sub(r'\bFlorestas deveriam ser criadas\b', 'Ombreiras da Floresta', body)
-            body = re.sub(r'\bDesolação deveriam gerar\b', 'Ombreiras da Desolação', body)
-            body = re.sub(r'\bPNJ Asmodiano deveriam\b', 'Ombreiras de PNJ Asmodiano', body)
-            body = re.sub(r'\bKromede inspirou a masmorra NPC deveriam\b', 'Ombreiras de Masmorra de Kromede (PNJ)', body)
-            body = re.sub(r'\bServiços de deveres de aventureiro\b', 'Ombreiras do Aventureiro', body)
-            body = re.sub(r'\bServiços de deveres de conselhos sábios\b', 'Ombreiras do Sábio Conselho', body)
-            body = re.sub(r'\bServiços de deveres do líder sábio\b', 'Ombreiras do Sábio Líder', body)
-            body = re.sub(r'\bNobre grosso deveriores de servões\b', 'Ombreiras Nobres Grossas', body)
-            body = re.sub(r'\bNobre Grost o grosso Durável deveriam ser criados\b', 'Ombreiras Nobres Duráveis Grossas', body)
-            body = re.sub(r'\bsuergões de deveres duráveis\s*​​finos e finos\b', 'ombreiras finas e duráveis', body)
-            body = re.sub(r'\b([A-Za-zÀ-ÿ]+)\'s\s+ServanGuards\b', r'Ombreiras de \1', body)
-            body = re.sub(r'\b-deveriores\b', ' Ombreiras', body)
-            body = re.sub(r'\bdeveriam\b', 'Ombreiras', body)
-
-        # D. 'Eles derramam' -> Verteron em armas/itens
-        if 'Eles derramam' in body:
-            body = re.sub(r'Eles\s+derramam\s+espada\s+da\s+guarda', 'Espada do Guardião de Verteron', body)
-            body = re.sub(r'Eles\s+derramam\s+maça\s+guardião', 'Maça do Guardião de Verteron', body)
-            body = re.sub(r'Eles\s+derramam\s+Adaga\s+guardião', 'Adaga do Guardião de Verteron', body)
-            body = re.sub(r'Eles\s+derramam\s+arco\s+do\s+guardião', 'Arco do Guardião de Verteron', body)
-            body = re.sub(r'Eles\s+derramam\s+Arqueiro\s+Gibão', 'Gibão de Arqueiro de Verteron', body)
-            body = re.sub(r'Eles\s+derramam\s+vambraces\s*\(Arqueiro\)', 'Braçadeiras de Arqueiro de Verteron', body)
-            body = re.sub(r'Eles\s+derramam\s+calças\s*\(Arqueiro\)', 'Calças de Arqueiro de Verteron', body)
-            body = re.sub(r'Eles\s+derramam\s+vambraces\s*\(assassino\)', 'Braçadeiras de Assassino de Verteron', body)
-            body = re.sub(r'Eles\s+derramam\s+Grevas\s+de\s+Placas', 'Grevas de Placa de Verteron', body)
-            body = re.sub(r'Eles\s+derramam\s+espada', 'Espada de Verteron', body)
-            body = re.sub(r'Eles\s+derramam\s+maça', 'Maça de Verteron', body)
-            body = re.sub(r'Eles\s+derramam\s+adaga', 'Adaga de Verteron', body)
-            body = re.sub(r'Eles\s+derramam\s+arco', 'Arco de Verteron', body)
-            body = re.sub(r'Eles\s+derramam\s+túnica', 'Túnica de Verteron', body)
-            body = re.sub(r'Eles\s+derramam\s+sapatos', 'Sapatos de Verteron', body)
-            body = re.sub(r'Eles\s+derramam\s+calças', 'Calças de Verteron', body)
-            body = re.sub(r'Eles\s+derramam\s+brogans', 'Botas de Malha de Verteron', body)
-            body = re.sub(r'Eles\s+derramam\s+gancho\s+de\s+cabelo', 'Grampo de Cabelo de Verteron', body)
-            body = re.sub(r'Eles\s+derramam\s+para\s+baixo', 'Capuz de Penas de Verteron', body)
-            body = re.sub(r'Eles\s+derramam\s+banda', 'Cinto de Verteron', body)
-            body = re.sub(r'Eles\s+derramam\s+a\s+Cidadela', 'Cidadela de Verteron', body)
-            body = re.sub(r'Eles\s+derramam', 'de Verteron', body)
-
-        # E. Aberrações específicas
-        if 'Os dias da sala de estar' in body:
-            body = body.replace('Os dias da sala de estar', 'Adaga de Stua')
-        if 'Abow Arco de Kaliga' in body:
-            body = body.replace('Abow Arco de Kaliga', 'Arco de Kaliga')
-        if 'Kromede inspirou Masmorra NPC Arco' in body:
-            body = body.replace('Kromede inspirou Masmorra NPC Arco', 'Arco de Masmorra de Kromede (PNJ)')
-
-        # F. Possessivos 's / ’s em nomes de itens (ex: "Poderoso Grogget's Adaga" -> "Adaga Poderosa de Grogget")
-        if "'s " in body or "’s " in body:
-            # Padrão: Poderoso Nome's Item
-            m_pod = re.match(r'^Poderoso\s+([A-Za-zÀ-ÿ0-9\s\-]+?)[\'’]s\s+(.+)$', body)
-            if m_pod:
-                owner = m_pod.group(1).strip()
-                item = m_pod.group(2).strip()
-                fem_items = ['adaga', 'espada', 'maça', 'cota', 'túnica', 'luva', 'bota', 'ombreira', 'perneira', 'faixa', 'tiara', 'armadura']
-                adj = 'Poderosa' if any(item.lower().startswith(x) for x in fem_items) else 'Poderoso'
-                body = f"{item} {adj} de {owner}"
-            else:
-                # Padrão: [Prefixo: ]Nome's Item
-                # Não aplicar se for descrição longa (ex: contém ponto final ou quebra de linha)
-                if '\n' not in body and not body.endswith('.'):
-                    m_gen = re.match(r'^(Projeto:\s*|Receita:\s*|Design:\s*)?([A-Za-zÀ-ÿ0-9\s\-]+?)[\'’]s\s+(.+)$', body)
-                    if m_gen:
-                        prefix = m_gen.group(1) or ''
-                        owner = m_gen.group(2).strip()
-                        item = m_gen.group(3).strip()
-                        
-                        # Artigo/Preposição
-                        prep = "de"
-                        if owner.lower() in ['caminhante', 'sentinela', 'assassino', 'patriota', 'membro', 'comandante', 'capitão']:
-                            prep = "do"
-                        elif owner.lower() in ['gárgula']:
-                            prep = "da"
-                            
-                        body = f"{prefix}{item} {prep} {owner}".strip()
-
-        # G. Preposições compostas robotizadas de o(a) / em o(a)
-        if any(u in body for u in ['de o(a)', 'em o(a)', 'de a(o)', 'em a(o)', 'a o(a)']):
-            body = body.replace('de o(a)', 'do(a)').replace('em o(a)', 'no(a)').replace('a o(a)', 'ao(à)')
-
-    # Limpeza final de espaços redundantes mantendo tags
-    body = re.sub(r'[ \t]{2,}', ' ', body)
-    return body
-
-def process_file(filepath, apply_changes=False):
-    filename = os.path.basename(filepath)
+def read_xml_utf16(filepath):
     with open(filepath, 'rb') as f:
         data = f.read()
+    if data.startswith(b'\xff\xfe'):
+        return data[2:].decode('utf-16le', errors='replace')
+    elif data.startswith(b'\xfe\xff'):
+        return data[2:].decode('utf-16be', errors='replace')
+    elif data.startswith(b'\xef\xbb\xbf'):
+        return data[3:].decode('utf-8', errors='replace')
+    return data.decode('utf-8', errors='replace')
 
-    encoding = 'utf-16le' if data.startswith(b'\xff\xfe') else ('utf-8-sig' if data.startswith(b'\xef\xbb\xbf') else 'utf-8')
-    text = data.decode(encoding, errors='ignore')
+def write_xml_utf16(filepath, content):
+    with open(filepath, 'wb') as f:
+        f.write(b'\xff\xfe')
+        f.write(content.encode('utf-16le'))
 
-    modified_count = 0
+def apply_refinements(text, fname):
+    mod_count = 0
+    stats = {}
 
-    def replacer(match):
-        nonlocal modified_count
-        full_match = match.group(0)
-        s_id = match.group(1)
-        s_name = match.group(2) or ''
-        s_body = match.group(3)
+    def track(cat, n):
+        nonlocal mod_count
+        if n > 0:
+            mod_count += n
+            stats[cat] = stats.get(cat, 0) + n
 
-        new_body = clean_body_text(filename, s_name.strip(), s_body)
-        if new_body != s_body:
-            modified_count += 1
-            name_part = f"<name>{s_name}</name>" if s_name else ""
-            return f"<string><id>{s_id}</id>{name_part}<body>{new_body}</body></string>"
-        return full_match
+    # -------------------------------------------------------------
+    # 1. Broken inserted apostrophes (Colar, Brinco, Anel, Bolsa, Pacote)
+    # -------------------------------------------------------------
+    def fix_inserted_apostrophe(m):
+        prefix = m.group(1).strip()
+        item_type = m.group(2).strip()
+        low = prefix.lower()
+        if low in ['batalha']:
+            return f'{item_type} de {prefix}'
+        elif low in ['centurião', 'tribuno', 'legado', 'comandante', 'comodoro', 'general de brigada', 'primus pilus', 'devourer']:
+            if low == 'devourer':
+                return f'{item_type} do Devorador'
+            return f'{item_type} do {prefix}'
+        elif low in ['guardião', 'arconte']:
+            return f'{item_type} do {prefix}'
+        return f'{item_type} de {prefix}'
 
-    pattern = re.compile(r'<string>\s*<id>([^<]*)</id>\s*(?:<name>([^<]*)</name>\s*)?<body>([^<]*)</body>\s*</string>')
-    new_text = pattern.sub(replacer, text)
+    p_ins_jewel = re.compile(r'([A-Za-zÀ-ÿ\s]+)[’\'](Colar|Brinco|Anel)\s*s\b')
+    text, n = p_ins_jewel.subn(fix_inserted_apostrophe, text)
+    track("Joias com apóstrofo invertido", n)
 
-    if apply_changes and modified_count > 0:
-        if encoding == 'utf-16le':
-            out_bytes = b'\xff\xfe' + new_text.encode('utf-16le')
-        elif encoding == 'utf-8-sig':
-            out_bytes = b'\xef\xbb\xbf' + new_text.encode('utf-8')
+    # Containers: [Owner]’[Container] de s [Item]
+    def fix_inserted_container(m):
+        owner = m.group(1).strip()
+        container = m.group(2).strip()
+        item = m.group(3).strip()
+        low_owner = owner.lower()
+        if low_owner in ['recruta', 'aprendiz', 'intendente', 'aventureiro', 'general de brigada', 'brigada']:
+            art = 'do'
+            if low_owner == 'brigada': owner = 'General de Brigada'
+        elif low_owner in ['guarda']:
+            art = 'da'
         else:
-            out_bytes = new_text.encode('utf-8')
+            art = 'de'
+        return f'{container} de {item} {art} {owner}'
 
-        with open(filepath, 'wb') as f:
-            f.write(out_bytes)
+    p_ins_cont = re.compile(r'([A-Za-zÀ-ÿ]+)[’\']([A-Za-zÀ-ÿ]+)\s+de\s+s\s+([A-Za-zÀ-ÿ]+)', re.I)
+    text, n = p_ins_cont.subn(fix_inserted_container, text)
+    track("Recipientes com apóstrofo invertido", n)
 
-    return modified_count
+    # -------------------------------------------------------------
+    # 2. Duplicate Words
+    # -------------------------------------------------------------
+    p_de_elite = re.compile(r'\bde\s+de\s+elite\b', re.I)
+    text, n = p_de_elite.subn('de Elite', text)
+    track("Duplicação 'de de Elite'", n)
+
+    p_de_guard = re.compile(r'\bde\s+de\s+Guardião\b', re.I)
+    text, n = p_de_guard.subn('do Guardião', text)
+    track("Duplicação 'de de Guardião'", n)
+
+    p_de_arc = re.compile(r'\bde\s+de\s+Arconte\b', re.I)
+    text, n = p_de_arc.subn('do Arconte', text)
+    track("Duplicação 'de de Arconte'", n)
+
+    p_dede = re.compile(r'\bde\s+de\b', re.I)
+    text, n = p_dede.subn('de', text)
+    track("Duplicação geral 'de de'", n)
+
+    dragon_map = [
+        (re.compile(r'Verdadeiro\s+do\s+Dragão\s+Dragão\s+Garras', re.I), 'Garras do Dragão Real'),
+        (re.compile(r'Nobre\s+Verdadeiro\s+do\s+Dragão\s+Dragão\s+Garras', re.I), 'Garras Nobres do Dragão Real'),
+        (re.compile(r'Branco\s+do\s+Dragão\s+Dragão\s+Garras', re.I), 'Garras do Dragão Branco'),
+        (re.compile(r'Nobre\s+Branco\s+do\s+Dragão\s+Dragão\s+Garras', re.I), 'Garras Nobres do Dragão Branco'),
+        (re.compile(r'Sábio\s+do\s+Dragão\s+Dragão\s+Garras', re.I), 'Garras do Dragão Sábio'),
+        (re.compile(r'Nobre\s+Sábio\s+do\s+Dragão\s+Dragão\s+Garras', re.I), 'Garras Nobres do Dragão Sábio'),
+        (re.compile(r'Celeste\s+do\s+Dragão\s+Dragão\s+Garras', re.I), 'Garras do Imperador Dragão Celeste'),
+        (re.compile(r'Nobre\s+Celeste\s+do\s+Dragão\s+Dragão\s+Garras', re.I), 'Garras Nobres do Imperador Dragão Celeste'),
+        (re.compile(r'Estrela\s+do\s+Dragão\s+Dragão\s+Garras', re.I), 'Garras do Dragão Estelar'),
+        (re.compile(r'Nobre\s+Estrela\s+do\s+Dragão\s+Dragão\s+Garras', re.I), 'Garras Nobres do Dragão Estelar'),
+        (re.compile(r'Preto\s+do\s+Dragão\s+Dragão\s+Garras', re.I), 'Garras do Dragão Negro'),
+        (re.compile(r'Nobre\s+Preto\s+do\s+Dragão\s+Dragão\s+Garras', re.I), 'Garras Nobres do Dragão Negro'),
+        (re.compile(r'Sombrio\s+do\s+Dragão\s+Dragão\s+Garras', re.I), 'Garras do Dragão Sombrio'),
+        (re.compile(r'Nobre\s+Sombrio\s+do\s+Dragão\s+Dragão\s+Garras', re.I), 'Garras Nobres do Dragão Sombrio'),
+        (re.compile(r'Chifrudo\s+do\s+Dragão\s+Dragão\s+Garras', re.I), 'Garras do Dragão Chifrudo'),
+        (re.compile(r'Nobre\s+Chifrudo\s+do\s+Dragão\s+Dragão\s+Garras', re.I), 'Garras Nobres do Dragão Chifrudo'),
+        (re.compile(r'Sunstorm\s+do\s+Dragão\s+Dragão\s+Garras', re.I), 'Garras da Tempestade Solar do Dragão'),
+        (re.compile(r'Cinto\s+do\s+Dragão\s+Dragão', re.I), 'Cinto do Dragão'),
+        (re.compile(r'do\s+Dragão\s+Dragão\s+Garras', re.I), 'Garras do Dragão'),
+        (re.compile(r'engrenagem\s+de\s+engrenagem\s+de\s+engrenagem', re.I), 'Equipamento Final'),
+        (re.compile(r'Ministro\s+de\s+vento\s+furioso\s+de\s+vento\s+furioso', re.I), 'Pergaminho Menor do Vento Furioso'),
+    ]
+    for reg, repl in dragon_map:
+        text, n = reg.subn(repl, text)
+        track("Duplicações 'Dragão Dragão' e afins", n)
+
+    # -------------------------------------------------------------
+    # 3. Match / Matches False Friends ('palito de fósforo', 'partidas')
+    # -------------------------------------------------------------
+    match_map = [
+        (re.compile(r'palito\s+de\s+fósforo\s+Seu\(Sua\)\s+Facção', re.I), 'correspondente à sua Facção'),
+        (re.compile(r'palito\s+de\s+fósforo\s+Seu\(Sua\)\s+classe', re.I), 'correspondente à sua classe'),
+        (re.compile(r'que\s+palito\s+de\s+fósforo\s+Seu\(Sua\)\s+Facção', re.I), 'correspondente à sua Facção'),
+        (re.compile(r'para\s+palito\s+de\s+fósforo\s+Seu\(Sua\)\s+classe', re.I), 'correspondente à sua classe'),
+        (re.compile(r'Eles\(as\)’re\s+quadril\s+e\s+palito\s+de\s+fósforo\s+o\(a\)\s+Dragão\s+Manto\.', re.I), 'São estilosas e combinam com o Manto do Dragão.'),
+        (re.compile(r'a\s+boxe\s+palito\s+de', re.I), 'uma luta de boxe'),
+        (re.compile(r'que\s+partidas\s+Seu\(Sua\)\s+Facção', re.I), 'correspondente à sua Facção'),
+        (re.compile(r'que\s+partidas\s+Seu\(Sua\)\s+classe', re.I), 'correspondente à sua classe'),
+        (re.compile(r'que\s+partidas\s+o\(a\)\s+escola\s+uniforme', re.I), 'que combina com o uniforme escolar'),
+    ]
+    for reg, repl in match_map:
+        text, n = reg.subn(repl, text)
+        track("Falso cognato 'match' (palito de fósforo / partidas)", n)
+
+    # -------------------------------------------------------------
+    # 4. 'resultado ou ponto final' (End-game Gear / UI End)
+    # -------------------------------------------------------------
+    end_gear_map = [
+        (re.compile(r'Projeto:\s*resultado\s+ou\s+ponto\s+final\s+Engrenagem\s+Névoa\s+Detector', re.I), 'Projeto: Detector de Névoa de Equipamento Final'),
+        (re.compile(r'Luz\s+de\s+Resultado\s+ou\s+ponto\s+final\s+Engrenagem', re.I), 'Luz de Equipamento Final'),
+        (re.compile(r'n\s+poeta\s+esplendor\s+Luz\s+de\s+Resultado\s+ou\s+ponto\s+final\s+Engrenagem', re.I), 'Luz Resplandecente de Poeta do Equipamento Final'),
+        (re.compile(r'Item\s+da\s+Missão\s+de\s+Engrenagem\s+resultado\s+ou\s+ponto\s+final', re.I), 'Item da Missão de Equipamento Final'),
+        (re.compile(r'Teste\s+resultado\s+ou\s+ponto\s+final\s+Engrenagem\s+Lendable\s+Classe\s+Espada', re.I), 'Espada de Teste de Equipamento Final'),
+        (re.compile(r'Teste\s+resultado\s+ou\s+ponto\s+final\s+Engrenagem\s+mito\s+Classe\s+Espada', re.I), 'Espada Mítica de Teste de Equipamento Final'),
+        (re.compile(r'PNJ\s+Elyos\s+resultado\s+ou\s+ponto\s+final\s+Engrenagem\s+Orbe\s+02', re.I), 'Orbe 02 de NPC Elyos de Equipamento Final'),
+        (re.compile(r'resultado\s+ou\s+ponto\s+final\s+Engrenagem\s+Mármore\s+Edifício', re.I), 'Edifício Residencial de Mármore Superior'),
+        (re.compile(r'Perímetro\s+de\s+segurança\s+de\s+fúria\s+de\s+Antriksha\s+resultado\s+ou\s+ponto\s+final', re.I), 'Perímetro de Segurança da Fúria de Antriksha Final'),
+        (re.compile(r'Cerimônia\s+de\s+engrenagem\s+a\s+etapa', re.I), 'Cerimônia de Equipamento Daevanion'),
+        (re.compile(r'armadura\s+de\s+engrenagem\s+a\s+etapa', re.I), 'armadura de equipamento Daevanion'),
+        (re.compile(r'arma\s+de\s+engrenagem\s+definitiva', re.I), 'arma de equipamento definitivo'),
+        (re.compile(r'itens\s+de\s+engrenagem\s+a\s+etapa', re.I), 'itens de equipamento Daevanion'),
+        (re.compile(r'Fazendo\s+a\s+melhor\s+arma\s+de\s+engrenagem', re.I), 'Criando a Melhor Arma Daevanion'),
+    ]
+    for reg, repl in end_gear_map:
+        text, n = reg.subn(repl, text)
+        track("Tradução errônea 'resultado ou ponto final Engrenagem'", n)
+
+    if fname == 'stringtable_dialog.xml':
+        dialog_btn_map = [
+            (re.compile(r'(<name>STR_DLG_START_MENU_DEVA_PASS</name>\s*<body>)resultado ou ponto final(</body>)'), r'\1Encerrar\2'),
+            (re.compile(r'(<name>STR_DLG_START_MENU_AION_LOOK</name>\s*<body>)Detalhes RESULTADO OU PONTO FINAL(</body>)'), r'\1Encerrar Detalhes\2'),
+            (re.compile(r'(<name>STR_DLG_START_MENU_N_SHOP</name>\s*<body>)Informações sobre ingressos RESULTADO OU PONTO FINAL(</body>)'), r'\1Encerrar Informações de Ingressos\2'),
+            (re.compile(r'(<name>STR_DLG_START_MENU_QUNA_MARKET</name>\s*<body>)Você pode comprar ingressos RESULTADO OU PONTO FINAL na loja da Aion\.(</body>)'), r'\1Você pode comprar ingressos na Loja Aion.\2'),
+            (re.compile(r'(<name>STR_DLG_START_MENU_CHARACTER_SETECTION</name>\s*<body>)Detalhes RESULTADO OU PONTO FINAL(</body>)'), r'\1Encerrar Detalhes\2'),
+            (re.compile(r'(<name>STR_DLG_START_MENU_ACCESS_REWARD</name>\s*<body>)Níveis RESULTADO OU PONTO FINAL(</body>)'), r'\1Encerrar Níveis\2'),
+            (re.compile(r'(<name>STR_GUILD_AUTH_DIALOG__SUBMASTER</name>\s*<body>)Deputado(</body>)'), r'\1Subcomandante\2'),
+        ]
+        for reg, repl in dialog_btn_map:
+            text, n = reg.subn(repl, text)
+            track("Botões de Menu Inicial 'Encerrar'", n)
+
+    if fname == 'client_strings_ui.xml':
+        ui_rank_map = [
+            (re.compile(r'(<name>STR_GUILD_RANK_NAME_SUBMASTER</name>\s*<body>)Deputado(</body>)'), r'\1Subcomandante\2'),
+        ]
+        for reg, repl in ui_rank_map:
+            text, n = reg.subn(repl, text)
+            track("Cargo de Legião Subcomandante", n)
+
+    # -------------------------------------------------------------
+    # 5. Suicídio Esquadrão -> Esquadrão Suicida
+    # -------------------------------------------------------------
+    p_suicide = re.compile(r'suicídio\s+esquadrão', re.I)
+    text, n = p_suicide.subn('Esquadrão Suicida', text)
+    track("'Suicídio esquadrão' -> 'Esquadrão Suicida'", n)
+
+    p_suicide_wings = re.compile(r'Asas\s+de\s+(?:De\s+)?Elite\s+(Guardião|Arconte)\s+Esquadrão\s+Suicida', re.I)
+    text, n = p_suicide_wings.subn(r'Asas do Esquadrão Suicida do \1 de Elite', text)
+    track("Sintaxe Asas do Esquadrão Suicida", n)
+
+    p_suicide_tunic = re.compile(r'Túnica\s+de\s+(?:De\s+)?Elite\s+(Guardião|Arconte)\s+Esquadrão\s+Suicida', re.I)
+    text, n = p_suicide_tunic.subn(r'Túnica do Esquadrão Suicida do \1 de Elite', text)
+    track("Sintaxe Túnica do Esquadrão Suicida", n)
+
+    # -------------------------------------------------------------
+    # 6. 'funcionários' (Staff / Cajado)
+    # -------------------------------------------------------------
+    staff_map = [
+        (re.compile(r'%Dos\s+funcionários\s+da\s+Nanyu\s+de\s+%0', re.I), '%Do Cajado de Nanyu de %0'),
+        (re.compile(r'Projeto:\s*funcionários\s+dignos\s+de\s+koa', re.I), 'Projeto: Cajado Nobre de Koa'),
+        (re.compile(r'Projeto:\s*funcionários\s+dignos\s+de\s+EGRASI', re.I), 'Projeto: Cajado Nobre de Egrasi'),
+        (re.compile(r'Projeto\s+Balic:\s*funcionários\s+do\s+dragão\s+sábio', re.I), 'Projeto Balaur: Cajado do Dragão Sábio'),
+        (re.compile(r'Projeto\s+Balic:\s*funcionários\s+do\s+Dragão\s+Sábio', re.I), 'Projeto Balaur: Cajado do Dragão Sábio'),
+        (re.compile(r'Ensina\s+como\s+criar\s+funcionários\s+de\s+Betua\.', re.I), 'Ensina como criar Cajado de Betua.'),
+        (re.compile(r'(<name>STR_VENDOR_DIALOG__VENDOR_TAB_FRAME_WIDGET2_WEAPON_EXT_WEAPON_LIST_WIDGET1_ITEM15</name>\s*<body>)Funcionários(</body>)'), r'\1Cajado\2'),
+    ]
+    for reg, repl in staff_map:
+        text, n = reg.subn(repl, text)
+        track("Falso cognato 'funcionários' -> 'Cajado'", n)
+
+    # -------------------------------------------------------------
+    # 7. 'deputado' / 'deputados' (MP / Subcomandante)
+    # -------------------------------------------------------------
+    deputado_map = [
+        (re.compile(r'Digno\s+Durável\s+e\s+Deputados', re.I), 'Ombreiras de Couro Duráveis e Dignas'),
+        (re.compile(r'e\s+seu\s+deputado\s+por', re.I), 'e seu MP por'),
+        (re.compile(r'aumenta\s+seu\s+deputado', re.I), 'aumenta seu DP'),
+        (re.compile(r'deputado\s+Comandante', re.I), 'Vice-comandante'),
+        (re.compile(r'Deputado\s+Lohan', re.I), 'Subcomandante Lohan'),
+        (re.compile(r'Deputado\s+Lagel', re.I), 'Subcomandante Lagel'),
+        (re.compile(r'Deputado\s+Hanuman', re.I), 'Subcomandante Hanuman'),
+        (re.compile(r'deputado\s+Hanuman', re.I), 'Subcomandante Hanuman'),
+        (re.compile(r'Deputado\s+Lamipedon', re.I), 'Subcomandante Lamipedon'),
+        (re.compile(r'Bubu\s+DEPUTADO', re.I), 'Bubu Mep'),
+        (re.compile(r'Budu\s+DEPUTADO', re.I), 'Bubu Mep'),
+        (re.compile(r'Roooo-M-DEPUTADO', re.I), 'Roooo-M-MP'),
+        (re.compile(r'Dano\s+adicional\s+ao\s+deputado', re.I), 'Dano adicional ao MP'),
+        (re.compile(r'As\s+habilidades\s+não\s+custam\s+que\s+não\s+seja\s+deputado\s+para\s+usar\.', re.I), 'As habilidades não consomem MP ao serem usadas.'),
+    ]
+    for reg, repl in deputado_map:
+        text, n = reg.subn(repl, text)
+        track("Falso cognato 'deputado' -> 'MP' / 'Subcomandante'", n)
+
+    # -------------------------------------------------------------
+    # 8. 'Ministro' (Lesser/Minor)
+    # -------------------------------------------------------------
+    ministro_map = [
+        (re.compile(r'Ministro\s+de\s+rolagem\s+à\s+prova\s+de\s+terra', re.I), 'Pergaminho Menor de Resistência à Terra'),
+        (re.compile(r'Ministro\s+anti-choque\s+físico', re.I), 'Pergaminho Menor Anti-Choque Físico'),
+        (re.compile(r'Projeto:\s*Ministro\s+de\s+Rolagem\s+Anti-choque\s+física', re.I), 'Projeto: Pergaminho Menor Anti-Choque Físico'),
+        (re.compile(r'Projeto:\s*Ministro\s+Mágico\s+Anti-Choque\s+Rolagem', re.I), 'Projeto: Pergaminho Menor Anti-Choque Mágico'),
+        (re.compile(r'\[Recompensa\s+da\s+Guilda\]\s*Ministro\s+de\s+vento\s+furioso', re.I), '[Recompensa da Legião] Pergaminho Menor do Vento Furioso'),
+        (re.compile(r'\[Conteúdo\s+especial\]\s*Ministro\s+de\s+vento\s+furioso\s+com\s+raiva', re.I), '[Evento] Pergaminho Menor do Vento Furioso'),
+        (re.compile(r'\[Conteúdo\s+especial\]\s*Ministro\s+anti-choque\s+de\s+pergaminho', re.I), '[Evento] Pergaminho Menor Anti-Choque'),
+        (re.compile(r'Ministro\s+1\s+legal\.\s*2\s+legítimo\.\s*3\s+lícito\.\s*4\s+válido\.', re.I), 'Traje de Banho Elegante'),
+    ]
+    for reg, repl in ministro_map:
+        text, n = reg.subn(repl, text)
+        track("Falso cognato 'Ministro' -> 'Pergaminho Menor'", n)
+
+    # -------------------------------------------------------------
+    # 9. 'cardápio' -> 'menu'
+    # -------------------------------------------------------------
+    p_cardapio = re.compile(r'\bcardápio\b', re.I)
+    def fix_cardapio(m):
+        w = m.group(0)
+        return 'Menu' if w[0].isupper() else 'menu'
+    text, n = p_cardapio.subn(fix_cardapio, text)
+    track("Falso cognato 'cardápio' -> 'menu'", n)
+
+    # -------------------------------------------------------------
+    # 10. Ventilador -> Em leque / Atiçar
+    # -------------------------------------------------------------
+    fan_map = [
+        (re.compile(r'área\s+em\s+forma\s+de\s+ventilador', re.I), 'área em leque'),
+        (re.compile(r'se\s+espalha\s+em\s+forma\s+de\s+ventilador', re.I), 'se espalha em leque'),
+        (re.compile(r'Ventilador\s+Chamas\s+da\s+Vingança', re.I), 'Atiçar as Chamas da Vingança'),
+        (re.compile(r'Ventilador\s+Fome\s+de\s+Chamas', re.I), 'Atiçar a Fome de Chamas'),
+        (re.compile(r'Conjunto\s+de\s+ventiladores\s+definitivo', re.I), 'Pacote de Torcedor Definitivo'),
+    ]
+    for reg, repl in fan_map:
+        text, n = reg.subn(repl, text)
+        track("Correção 'ventilador' -> 'leque' / 'atiçar'", n)
+
+    # -------------------------------------------------------------
+    # 11. Entidades Nominais com Apóstrofo Inglês ('s)
+    # -------------------------------------------------------------
+    apostrophe_titles = [
+        (re.compile(r'General\s+de\s+Brigada[’\']s\s+Mão/pé/Ombreiras\s+Armadura\s+Caixa\s+de\s+Seleção', re.I), 'Caixa de Seleção de Armadura de Mão/Pé/Ombro do General de Brigada'),
+        (re.compile(r'General\s+de\s+Brigada[’\']s\s+Mão,\s*pé\s+e\s+armadura\s+de\s+ombro\s+seleção\s+Caixas', re.I), 'Caixas de Seleção de Armadura de Mão, Pé e Ombro do General de Brigada'),
+        (re.compile(r'General\s+de\s+Brigada[’\']s\s+Armadura\s+Caixa\s+de\s+Seleção', re.I), 'Caixa de Seleção de Armadura do General de Brigada'),
+        (re.compile(r'General\s+de\s+Brigada[’\']s\s+Armadura\s+Caixa', re.I), 'Caixa de Armadura do General de Brigada'),
+        (re.compile(r'General\s+de\s+Brigada[’\']s\s+Arma\s+Caixa\s+de\s+Seleção', re.I), 'Caixa de Seleção de Armas do General de Brigada'),
+        (re.compile(r'General\s+de\s+Brigada[’\']s\s+Arma\s+Caixa', re.I), 'Caixa de Armas do General de Brigada'),
+        (re.compile(r'General\s+de\s+Brigada[’\']s\s+Armadura', re.I), 'Armadura do General de Brigada'),
+        (re.compile(r'General\s+de\s+Brigada[’\']s\s+Arma', re.I), 'Arma do General de Brigada'),
+        (re.compile(r'Comodoro[’\']s\s+Armadura\s+Caixa', re.I), 'Caixa de Armadura do Comodoro'),
+        (re.compile(r'Comodoro[’\']s\s+acessório\s+Caixa', re.I), 'Caixa de Acessórios do Comodoro'),
+        (re.compile(r'Batalha[’\']s\s+armadura\s+de\s+ombro', re.I), 'Ombreiras de Batalha'),
+        (re.compile(r'Batalha[’\']s\s+Manter', re.I), 'Prisão da Batalha'),
+        (re.compile(r'Guarda[’\']s\s+Aurora\s+Cerimonial', re.I), 'Traje Cerimonial da Aurora da Guarda'),
+        (re.compile(r'Guarda[’\']s\s+congelado\s+Cerimonial', re.I), 'Traje Cerimonial Congelado da Guarda'),
+        (re.compile(r'Yasba[’\']s\s+Graça', re.I), 'Graça de Yasba'),
+        (re.compile(r'Sunayaka[’\']s\s+Tesouro\s+Câmara', re.I), 'Câmara do Tesouro de Sunayaka'),
+        (re.compile(r'Sunayaka[’\']s\s+Treasure\s+Chamber', re.I), 'Câmara do Tesouro de Sunayaka'),
+        (re.compile(r'Lodas[’\']\s+Amuleto[s]?\s+III', re.I), 'Amuleto de Lodas III'),
+        (re.compile(r'Vidar[’\']s\s+Dignidade', re.I), 'Dignidade de Vidar'),
+        (re.compile(r'Bollvig[’\']s\s+Tragédia', re.I), 'Tragédia de Bollvig'),
+        (re.compile(r'Fasimedes[’\']\s+Majestade', re.I), 'Majestade de Fasimedes'),
+        (re.compile(r'Sigyn[’\']s\s+Inteligência', re.I), 'Inteligência de Sigyn'),
+        (re.compile(r'Bóreas[’\']s\s+Encorajamento', re.I), 'Encorajamento de Boreas'),
+        (re.compile(r'Thrasymedes[’\']\s+Esperteza', re.I), 'Esperteza de Thrasymedes'),
+        (re.compile(r'Khrudgelmir[’\']s\s+Tacitância', re.I), 'Taciturnidade de Khrudgelmir'),
+        (re.compile(r'Marchutan[’\']s\s+Ascensão\s+Assistente', re.I), 'Assistente de Ascensão de Marchutan'),
+        (re.compile(r'Marchutan[’\']s\s+Amuletos\s+I', re.I), 'Amuletos de Marchutan I'),
+        (re.compile(r'imperador[’\']s\s+Lâminas\s+em\s+Corrente', re.I), 'Lâminas em Corrente do Imperador'),
+        (re.compile(r'Atreia[’\']s\s+Campeão', re.I), 'Campeão de Atreia'),
+        (re.compile(r'Bruxa[’\']s\s+Manto', re.I), 'Manto da Bruxa'),
+        (re.compile(r'Phaestos[’\']\s+disco', re.I), 'Disco de Phaestos'),
+        (re.compile(r'Phaestos[’\']\s+Disc', re.I), 'Disco de Phaestos'),
+        (re.compile(r'Fortuneers[’\']\s+Stigma\s+Caixa\s+de', re.I), 'Caixa de Estigmas dos Fortuneers'),
+        (re.compile(r'Comerciantes[’\']\s+Armadura\s+Baú\s+de', re.I), 'Baú de Armadura dos Comerciantes'),
+        (re.compile(r'Dragão\s+Negro[’\']s\b', re.I), 'do Dragão Negro'),
+        (re.compile(r'Dragão\s+Branco[’\']s\b', re.I), 'do Dragão Branco'),
+        (re.compile(r'Apsu[’\']s\s+Assassino', re.I), 'Assassino de Apsu'),
+        (re.compile(r'Apsu[’\']s\s+Guerreiro', re.I), 'Guerreiro de Apsu'),
+        (re.compile(r'Apsu[’\']s\s+Laphsaran\s+Guerreiro', re.I), 'Guerreiro de Laphsaran de Apsu'),
+        (re.compile(r'Apsu[’\']s\s+Recon\s+esquadrão', re.I), 'Esquadrão de Reconhecimento de Apsu'),
+        (re.compile(r'Tiamat[’\']s\s+Sombra', re.I), 'Sombra de Tiamat'),
+        (re.compile(r'Tiamat[’\']s\s+Guerreiro', re.I), 'Guerreiro de Tiamat'),
+        (re.compile(r'Tiamat[’\']s\s+Santuário\s+teste\s+mensagem', re.I), 'Mensagem de Teste do Santuário de Tiamat'),
+        (re.compile(r'Senhor\s+dos\s+Dragões[’\']s\s+servo', re.I), 'Servo do Senhor dos Dragões'),
+        (re.compile(r'Rukibuki[’\']s\s+Ilusão', re.I), 'Ilusão de Rukibuki'),
+        (re.compile(r'Lisandro[’\']s\s+Treinamento\s+Grounds', re.I), 'Campo de Treinamento de Lisandro'),
+        (re.compile(r'Granir[’\']s\s+Treinamento\s+Lounds', re.I), 'Campo de Treinamento de Granir'),
+        (re.compile(r'Kard[’\']s\s+Acampamento', re.I), 'Acampamento de Kard'),
+        (re.compile(r'Manir[’\']s\s+Acampamento', re.I), 'Acampamento de Manir'),
+        (re.compile(r'Metamor[’\']s\s+aperto', re.I), 'Aperto de Metamor'),
+        (re.compile(r'Raksha[’\']s\s+Cripta', re.I), 'Cripta de Raksha'),
+        (re.compile(r'Mahisha[’\']s\s+Ninho', re.I), 'Ninho de Mahisha'),
+        (re.compile(r'Beluslan[’\']s\s+Telhado', re.I), 'Telhado de Beluslan'),
+        (re.compile(r'Alukina[’\']s\s+Palácio', re.I), 'Palácio de Alukina'),
+        (re.compile(r'Notícias\s+do\s+Arbolu[’\']s\s+Refúgio', re.I), 'Notícias do Refúgio de Arbolu'),
+        (re.compile(r'\[coleta\]\s*Sora[’\']s\s+Energia\s+Reforço', re.I), '[Coleta] Reforço de Energia de Sora'),
+        (re.compile(r'\[Experto\]\s*Armousmith[’\']s\s+a\s+etapa\s+Exame', re.I), '[Especialista] Teste Final de Armeiro'),
+        (re.compile(r'Feira[’\']s\s+Pesca\s+Haste', re.I), 'Vara de Pesca de Feira'),
+        (re.compile(r'Stephano[’\']s\s+Espada', re.I), 'Espada de Stephano'),
+        (re.compile(r'\[Diário\]\s*Skafir[’\']s\s+Ordem', re.I), '[Diário] Ordens de Skafir'),
+        (re.compile(r'\[Diário\]\s*Retinoa[’\']s\s+Pedido', re.I), '[Diário] Pedido de Retinoa'),
+        (re.compile(r'\[Diário\]\s*Thiamin[’\']s\s+Pedido', re.I), '[Diário] Pedido de Thiamin'),
+        (re.compile(r'Derrote\s+Inggison[’\']s\s+Balaur', re.I), 'Derrote os Balaur de Inggison'),
+        (re.compile(r'Grendal[’\']s\s+Gountlets', re.I), 'Manoplas de Grendal'),
+        (re.compile(r'Kaisinel[’\']s\s+Adjuntante', re.I), 'Ajudante de Kaisinel'),
+        (re.compile(r'Éter[’\']s\s+Manter', re.I), 'Prisão de Éter'),
+        (re.compile(r'Assistindo\s+olho[’\']s\s+Aperto', re.I), 'Aperto do Olho Vigilante'),
+        (re.compile(r'Morati[’\']s\s+fera\s+de\s+estimação\s+Porgus', re.I), 'o porgus de estimação de Morati'),
+        (re.compile(r'Beshmundir\s+templo[’\']s', re.I), 'Templo de Beshmundir'),
+        (re.compile(r'Tobu[’\']s\s+fera\s+de\s+estimação', re.I), 'animal de estimação de Tobu'),
+        (re.compile(r'Vigia[’\']s\s+Colina', re.I), 'Colina do Vigia'),
+        (re.compile(r'Dragão[’\']s\s+Brasa', re.I), 'Brasa do Dragão'),
+        (re.compile(r'Taloc[’\']s\s+concavidade', re.I), 'Cavidade de Taloc'),
+        (re.compile(r'Pixiebelle[’\']s\s+Lingote', re.I), 'Lingote de Pixiebelle'),
+        (re.compile(r'Gellmar[’\']s\s+Wardstone', re.I), 'Pedra de Proteção de Gellmar'),
+        (re.compile(r'Pauno[’\']s\s+Lanterna\s+comemorativa', re.I), 'Lanterna Comemorativa de Pauno'),
+        (re.compile(r'norte\s+de\s+Elim[’\']s\s+Campos', re.I), 'norte dos Campos dos Elims'),
+        (re.compile(r'Shugo[’\']s\s+Bits\s+e\s+Bobs', re.I), 'Bugigangas de Shugo'),
+        (re.compile(r'Don[’\']t\s+machucar\s+me!', re.I), 'Não me machuque!'),
+        (re.compile(r'C[’\']Mooooon\.\s*Vámos!', re.I), 'Vamos lá!'),
+        (re.compile(r'você[’\']tenho\s+recebido\s+ajudar\s+do\s+GM', re.I), 'Você recebeu ajuda do GM'),
+        (re.compile(r'i[’\']irá\s+ajuda\s+você', re.I), 'eu o ajudarei'),
+        (re.compile(r'se\s+você[’\']re\s+ser\s+atacado', re.I), 'se você for atacado'),
+        (re.compile(r'lá[’\']s\s+a\s+Alto\s+chance', re.I), 'Há uma alta chance'),
+        (re.compile(r'lá[’\']s\s+a\s+magro\s+chance', re.I), 'Há uma pequena chance'),
+        (re.compile(r'Lá[’\']s\s+a\s+alto\s+chance', re.I), 'Há uma alta chance'),
+        (re.compile(r'Lá[’\']s\s+a\s+magro\s+chance', re.I), 'Há uma pequena chance'),
+        (re.compile(r'Você[’\']irá\s+receber\s+a\s+Especial', re.I), 'Você receberá um item especial'),
+        (re.compile(r'Você[’\']irá\s+receber', re.I), 'Você receberá'),
+    ]
+    for reg, repl in apostrophe_titles:
+        text, n = reg.subn(repl, text)
+        track("Títulos e nomes com genitivo saxão ('s)", n)
+
+    # Specific named entities owner-item reordering:
+    # e.g. 'Mastarius’ Arma' -> 'Arma de Mastarius'
+    def fix_owner_item(m):
+        owner = m.group(1)
+        item = m.group(2)
+        return f'{item} de {owner}'
+
+    p_owners = re.compile(r'\b(Mastarius|Veille|Triniel|Valetta|Votan|Bakarma|Charna|Yustiel|Sunayaka|Vidar|Fasimedes|Sigyn|Bóreas|Thrasymedes|Khrudgelmir)[’\']s?\s+([A-Za-zÀ-ÿ]+)', re.I)
+    text, n = p_owners.subn(fix_owner_item, text)
+    track("Inversão de posse 'Owner's Item' -> 'Item de Owner'", n)
+
+    # -------------------------------------------------------------
+    # 12. Receitas de Manufatura com Apóstrofo ('s)
+    # -------------------------------------------------------------
+    recipe_apostrophes = [
+        (re.compile(r'Basilisco[’\']s\s+Concha\s+Osso\s+Montantes', re.I), 'Espadões de Osso de Basilisco'),
+        (re.compile(r'Fera[’\']s\s+Montantes', re.I), 'Espadões da Fera'),
+        (re.compile(r'Lenda[’\']s\s+Espadas', re.I), 'Espadas Lendárias'),
+        (re.compile(r'Akairun[’\']s\s+Lanças', re.I), 'Lanças de Akairun'),
+        (re.compile(r'Devourer[’\']s\s+Espadas', re.I), 'Espadas do Devorador'),
+        (re.compile(r'Dragão\s+Branco[’\']s\s+Adagas', re.I), 'Adagas do Dragão Branco'),
+        (re.compile(r'Dragão\s+Branco[’\']s\s+Espadas', re.I), 'Espadas do Dragão Branco'),
+        (re.compile(r'Dragão\s+Branco[’\']s\s+Maces', re.I), 'Maças do Dragão Branco'),
+        (re.compile(r'Dragão\s+Branco[’\']s\s+Montantes', re.I), 'Espadões do Dragão Branco'),
+        (re.compile(r'Dragão\s+Branco[’\']s\s+Lanças', re.I), 'Lanças do Dragão Branco'),
+        (re.compile(r'Basilisco[’\']s\s+Concha\s+Osso\s+Calções\s+de\s+Malha', re.I), 'Calções de Malha de Osso de Basilisco'),
+        (re.compile(r'Basilisco[’\']s\s+Concha\s+Osso\s+de\s+Grevas\s+de\s+Placa', re.I), 'Grevas de Placa de Osso de Basilisco'),
+        (re.compile(r'Eracus[’\']s\s+Ombreiras\s+de\s+Malha', re.I), 'Ombreiras de Malha de Eracus'),
+        (re.compile(r'Eracus[’\']s\s+Shoulderplates', re.I), 'Ombreiras de Placa de Eracus'),
+        (re.compile(r'Carmesim\s+Guerreiro[’\']s\s+Manoplas\s+de\s+Malha', re.I), 'Manoplas de Malha do Guerreiro Carmesim'),
+        (re.compile(r'Carmesim\s+Guerreiro[’\']s\s+de\s+Placas\s+Manoplas', re.I), 'Manoplas de Placa do Guerreiro Carmesim'),
+        (re.compile(r'gigantesco\s+Klaw[’\']s\s+Cota\s+de\s+Malha', re.I), 'Cota de Malha do Klaw Gigante'),
+        (re.compile(r'gigantesco\s+Klaw[’\']s\s+Peitorais', re.I), 'Peitorais do Klaw Gigante'),
+        (re.compile(r'Unfest[’\']s\s+Ombreiras\s+de\s+Malha', re.I), 'Ombreiras de Malha de Unfest'),
+        (re.compile(r'Unfest[’\']s\s+Shoulderplates', re.I), 'Ombreiras de Placa de Unfest'),
+        (re.compile(r'Akairun[’\']s\s+de\s+Placas\s+Helms', re.I), 'Elmos de Placa de Akairun'),
+    ]
+    for reg, repl in recipe_apostrophes:
+        text, n = reg.subn(repl, text)
+        track("Receitas de manufatura com apóstrofo", n)
+
+    # -------------------------------------------------------------
+    # 13. Nomes de Legiões Balaur ('Guilda' -> 'Legião')
+    # -------------------------------------------------------------
+    legion_fixes = [
+        (re.compile(r'\bGuilda\s+Indratu\b', re.I), 'Legião Indratu'),
+        (re.compile(r'\bGuilda\s+Bakarma\b', re.I), 'Legião Bakarma'),
+        (re.compile(r'\bGuilda\s+de\s+Anuhart\b', re.I), 'Legião de Anuhart'),
+        (re.compile(r'\bGuilda\s+Anuhart\b', re.I), 'Legião de Anuhart'),
+        (re.compile(r'\bGuilda\s+de\s+Bollvig\b', re.I), 'Legião de Bollvig'),
+        (re.compile(r'\bGuilda\s+do\s+Céu\s+Vermelho\b', re.I), 'Legião do Céu Vermelho'),
+    ]
+    for reg, repl in legion_fixes:
+        text, n = reg.subn(repl, text)
+        track("Legiões Balaur ('Guilda' -> 'Legião')", n)
+
+    # -------------------------------------------------------------
+    # 14. Descrições de Quebra-cabeças / Pinturas
+    # -------------------------------------------------------------
+    puzzle_pattern = re.compile(
+        r'(<string>\s*<id>(\d+)</id>\s*<name>STR_CLASSIC_PUZZLE([A-J])_PIECE_DESC</name>\s*<body>)'
+        r'(?:A|Um\(a\))\s+([^<]+?)\s+Fragmento\s+de\s+Pintura\.\s*o\(a\)\s+adquirido\s+obra\s+de\s+arte\s+Fragmento\s+pode\s+ser\s+adicionado\s+inferior\.\s*•\s*1\s+inferiormente\.\s*2\s+embaixo\s+Menu\s+Inicial\s*→\s*Livro\s+de\s+Lenda\.\s*\\nClique\s+duas\s+vezes\s+unneeded\s+pintura\s+Fragmentos\s+ou\s+use\s+(?:o\(a\)\s+)?(?:cardápio|menu)\s+no\(a\)\s+Livro\s+de\s+Lenda\s+para\s+desmontar\s+eles\(as\)\s+em\s+Pintura\s+poeira\.'
+        r'(</body>)',
+        re.DOTALL
+    )
+    def fix_puzzle_desc(m):
+        header = m.group(1)
+        name_target = m.group(4).strip()
+        footer = m.group(5)
+        if 'Tiamat' in name_target:
+            pname = 'da Pintura de Tiamat'
+        elif 'Brohum' in name_target:
+            pname = 'da Pintura de Brohum'
+        elif 'Dramata' in name_target:
+            pname = 'da Pintura de Dramata'
+        elif 'Eltar' in name_target:
+            pname = 'da Pintura do Daeva de Eltar'
+        elif 'Apheta' in name_target:
+            pname = 'da Pintura de Apheta'
+        elif 'Laphsaran' in name_target:
+            pname = 'da Pintura de Laphsaran'
+        elif 'Lumiel' in name_target:
+            pname = 'da Pintura de Lumiel'
+        elif 'Dokkaebi' in name_target:
+            pname = 'da Pintura do Reino Dokkaebi'
+        elif 'Tiamaranta' in name_target:
+            pname = 'da Pintura de Tiamaranta'
+        elif 'Balic' in name_target:
+            pname = 'da Pintura do Tesouro Balaur'
+        else:
+            pname = f'da Pintura de {name_target}'
+        
+        body = (f'Um Fragmento {pname}. O fragmento de obra de arte obtido pode ser adicionado ao Livro de Lendas '
+                f'(Menu Inicial → Livro de Lendas).\\nClique duas vezes em fragmentos de pintura sobressalentes '
+                f'ou use o menu no Livro de Lendas para desmontá-los em Poeira de Pintura.')
+        return f'{header}{body}{footer}'
+
+    text, n = puzzle_pattern.subn(fix_puzzle_desc, text)
+    track("Descrições de Peças de Pintura (Livro de Lendas)", n)
+
+    # -------------------------------------------------------------
+    # 15. Verbos e Construções Residuais em Inglês
+    # -------------------------------------------------------------
+    leaked_english = [
+        (re.compile(r'Deals\s+pesado\s+dano\s+para\s+inimigos\s+no\(a\)\s+n\s+vizinhança\s+e\s+paralisa\s+eles\(as\)\.\\nSó\s+pode\s+ser\s+usado\s+no\s+Coliseu\s+do\s+Crisol\.', re.I),
+         'Causa dano pesado a inimigos nos arredores e os paralisa.\\nSó pode ser usado no Coliseu do Crisol.'),
+        (re.compile(r'De\s+Tahabata\s+habilidade\s+dano\s+decreases\s+por\s+\[%e1\.StatUp\.RemainTime\]\.', re.I),
+         'O dano das habilidades de Tahabata diminui por [%e1.StatUp.RemainTime].'),
+        (re.compile(r'Adiciona\s+a\s+Arma\s+efeito\s+que\s+deals\s+(\d+)\s+fogo\s+dano\s+para\s+a\s+alvo\s+com\s+5%%?\s+probabilidade\.', re.I),
+         r'Adiciona à arma um efeito que causa \1 de dano de fogo ao alvo com 5%% de probabilidade.'),
+        (re.compile(r'Você\s+ganho\s+50%%?\s+adicional\s+XP\s+de\s+coleta,\s+Artesanato,\s+e\s+caça\s+criaturas\s+enquanto\s+Verdin[’\']s\s+Amuleto\s+II\s+é?estiver\s+ativo\.', re.I),
+         'Você ganha 50%% a mais de EXP por coleta, artesanato e caça enquanto o Amuleto de Verdin II estiver ativo.'),
+        (re.compile(r'Você\s+ganho\s+100%%?\s+adicional\s+XP\s+de\s+coleta,\s+Artesanato,\s+e\s+caça\s+criaturas\s+enquanto\s+Verdin[’\']s\s+Amuleto\s+III\s+é?estiver\s+ativo\.', re.I),
+         'Você ganha 100%% a mais de EXP por coleta, artesanato e caça enquanto o Amuleto de Verdin III estiver ativo.'),
+        (re.compile(r'Você\s+recebe\s+30%%?\s+mais\s+XP\s+de\s+caça,\s+coleta\s+e\s+Artesanato\s+enquanto\s+este\(a\)\s+amuleto[’\']s\s+efeitos\s+último\.', re.I),
+         'Você recebe 30%% mais EXP por caça, coleta e artesanato enquanto os efeitos deste amuleto durarem.'),
+        (re.compile(r'Você\s+pode\s+trocar\s+eles\(as\)\s+for\s+mais\s+valioso\s+itens\.', re.I),
+         'Você pode trocá-los por itens mais valiosos.'),
+    ]
+    for reg, repl in leaked_english:
+        text, n = reg.subn(repl, text)
+        track("Frases residuais em inglês nos itens", n)
+
+    return text, mod_count, stats
 
 def main():
-    parser = argparse.ArgumentParser(description="Refinamento de Localização Round 2 - Itens, Skills, NPCs, Lugares")
-    parser.add_argument('--aplicar', action='store_true', help="Aplica as alterações nos arquivos XML")
-    parser.add_argument('--verificar', action='store_true', help="Apenas simula e exibe métricas")
-    args = parser.parse_args()
+    print("=" * 75)
+    print("INICIANDO AUDITORIA E REFINAMENTO ROUND 2 — AION CLASSIC 5.0 PT-BR")
+    print("=" * 75)
 
-    apply_changes = args.aplicar
-    mode_str = "APLICAÇÃO REAL" if apply_changes else "VERIFICAÇÃO / SIMULAÇÃO"
-    print(f"=======================================================")
-    print(f"REFINAMENTO DE LOCALIZAÇÃO ROUND 2 ({mode_str})")
-    print(f"=======================================================")
+    xml_files = sorted(glob.glob(os.path.join(STRINGS_DIR, "*.xml")))
+    print(f"Total de arquivos XML encontrados na pasta strings: {len(xml_files)}\n")
 
-    total_modified = 0
-    file_counts = {}
+    grand_total = 0
+    all_category_stats = {}
+    modified_files = []
 
-    for fname in sorted(os.listdir(STRINGS_DIR)):
-        if fname.endswith('.xml'):
-            fpath = os.path.join(STRINGS_DIR, fname)
-            count = process_file(fpath, apply_changes=apply_changes)
-            if count > 0:
-                file_counts[fname] = count
-                total_modified += count
+    for fpath in xml_files:
+        fname = os.path.basename(fpath)
+        content = read_xml_utf16(fpath)
+        new_content, count, file_stats = apply_refinements(content, fname)
 
-    for fname, count in file_counts.items():
-        print(f"  {fname}: {count:,} strings refinadas")
+        if count > 0:
+            # Validate XML parse
+            try:
+                # Encode matching declaration utf-16
+                ET.fromstring(b'\xff\xfe' + new_content.encode('utf-16le'))
+            except ET.ParseError as pe:
+                print(f"[ERRO DE SINTAXE XML] {fname}: {pe}")
+                sys.exit(1)
 
-    print(f"=======================================================")
-    print(f"TOTAL DE STRINGS REFINADAS (ROUND 2): {total_modified:,}")
-    print(f"=======================================================")
+            # Write updated UTF-16 LE
+            write_xml_utf16(fpath, new_content)
+            grand_total += count
+            modified_files.append((fname, count))
+            print(f"✔ [{fname}] -> {count} refinamentos aplicados com sucesso.")
+            for cat, c in file_stats.items():
+                all_category_stats[cat] = all_category_stats.get(cat, 0) + c
+        else:
+            print(f"• [{fname}] -> 0 pendências (arquivo já 100% limpo).")
 
-if __name__ == '__main__':
+    print("\n" + "=" * 75)
+    print("RELATÓRIO CONSOLIDADO DO REFINAMENTO ROUND 2:")
+    print("=" * 75)
+    print(f"Total geral de strings refinadas: {grand_total}")
+    print(f"Total de arquivos aprimorados: {len(modified_files)} de {len(xml_files)}\n")
+
+    print("Estatísticas por Categoria:")
+    for cat, c in sorted(all_category_stats.items(), key=lambda x: x[1], reverse=True):
+        print(f"  - {cat}: {c}")
+
+    print("\nDetalhamento por Arquivo:")
+    for fname, cnt in modified_files:
+        print(f"  - {fname}: {cnt}")
+    print("=" * 75)
+
+if __name__ == "__main__":
     main()
