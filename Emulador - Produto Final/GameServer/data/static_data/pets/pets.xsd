@@ -29,6 +29,8 @@
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:int"/>
 		<xs:attribute name="name" type="xs:string"/>
+		<xs:attribute name="name_en" type="xs:string"/>
+		<xs:attribute name="name_pt" type="xs:string"/>
 		<xs:attribute name="nameid" type="xs:int"/>
 		<xs:attribute name="condition_reward" type="xs:int"/>
 	</xs:complexType>

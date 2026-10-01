@@ -160,6 +160,8 @@
 		<xs:attribute name="level" type="xs:int"/>
 		<xs:attribute name="id" type="itemId" use="required"/>
 		<xs:attribute name="name" type="xs:string"/>
+		<xs:attribute name="name_en" type="xs:string"/>
+		<xs:attribute name="name_pt" type="xs:string"/>
 		<xs:attribute name="cName" type="xs:string"/>
 		<xs:attribute name="casting_delay" type="xs:int"/>
 		<xs:attribute name="tempering_name" type="xs:string"/>
