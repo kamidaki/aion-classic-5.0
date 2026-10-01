@@ -17,7 +17,7 @@ entradas antigas no decomposable_items.xml antes: 1913
   188052281
   188052684
   188052685
-  188052686
+  188052686c:\Users\Sclepius\AppData\Local\Packages\MicrosoftWindows.Client.Core_cw5n1h2txyewy\TempState\ScreenClip\{C2517833-4B25-421D-9BC8-1F1EDD7243CD}.png
   188053614
 
 == casting_delay do cliente fora do intervalo (mantido o do servidor): 4

@@ -10,7 +10,7 @@ mod tray;
 mod ui;
 mod webview;
 
-use config::load_config;
+use config::{ensure_database_properties, load_config};
 use db_manager::DbManagerMulti;
 use job_object::JobObjectGuard;
 use logs::LogCenter;
@@ -91,6 +91,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let cfg_path = "config.json";
     let mut cfg = load_config(cfg_path);
+    for path in ensure_database_properties(&cfg)? {
+        println!("[OK] Configuração JDBC gerada: {}", path);
+    }
 
     // Dynamic HTTP Port Allocation: If preferred port is in use (e.g. by another emulator like Florensia),
     // automatically find and bind the next free port.

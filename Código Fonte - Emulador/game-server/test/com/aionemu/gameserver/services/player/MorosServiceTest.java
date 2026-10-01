@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.bind.JAXBContext;
 
@@ -52,17 +53,45 @@ class MorosServiceTest {
 	}
 
 	@Test
+	void everyRecordedUnitCostsOneRecord() {
+		// janela do cliente em 29/09: uma pilha de 20 previa "0 + 20/20", e o cliente limita o que se põe aos registros disponíveis
+		assertEquals(20, MorosService.totalUnits(Map.of(0xC04083FE, 20L)));
+		assertEquals(23, MorosService.totalUnits(Map.of(1, 20L, 2, 3L)));
+		assertEquals(1, MorosService.totalUnits(Map.of(1, 1L)));
+
+		PlayerMoros moros = new PlayerMoros(1, 0, List.of());
+		moros.useRecords((int) MorosService.totalUnits(Map.of(0xC04083FE, 20L)), 0, 1_000);
+		assertEquals(0, moros.getRecords(MorosService.MAX_RECORDS), "a pilha de 20 gasta os 20 registros, não 1");
+		assertEquals(1, moros.restore(1_000), "o 1o registro volta no 1o intervalo de tempo");
+		assertEquals(1, moros.getRecords(MorosService.MAX_RECORDS));
+		assertEquals(19, moros.restore(20_000), "os outros voltam sequencialmente a cada intervalo");
+		assertEquals(20, moros.getRecords(MorosService.MAX_RECORDS));
+	}
+
+	@Test
 	void recordsComeBackOneByOne() {
 		PlayerMoros moros = new PlayerMoros(1, 0, List.of());
 		assertEquals(20, moros.getRecords(MorosService.MAX_RECORDS));
-		moros.useRecords(1, 1_000);
-		moros.useRecords(2, 2_000);
+		moros.useRecords(1, 0, 1_000); // agendado para 1_000
+		moros.useRecords(2, 500, 1_000); // agendados para 2_000 e 3_000
 		assertEquals(17, moros.getRecords(MorosService.MAX_RECORDS));
 		assertEquals(1_000, moros.getNextRestoreTime());
 		assertEquals(1, moros.restore(1_500));
 		assertEquals(18, moros.getRecords(MorosService.MAX_RECORDS));
-		assertEquals(2, moros.restore(2_000));
+		assertEquals(2_000, moros.getNextRestoreTime());
+		assertEquals(1, moros.restore(2_000));
+		assertEquals(19, moros.getRecords(MorosService.MAX_RECORDS));
+		assertEquals(3_000, moros.getNextRestoreTime());
+		assertEquals(1, moros.restore(3_000));
 		assertEquals(0, moros.getNextRestoreTime());
 		assertEquals(20, moros.getRecords(MorosService.MAX_RECORDS));
+	}
+
+	@Test
+	void normalizeLegacyIdenticalTimestamps() {
+		PlayerMoros moros = new PlayerMoros(1, 0, List.of(10_000L, 10_000L, 10_000L));
+		moros.normalizeRestoreTimes(5_000L, 1_000L);
+		List<Long> times = moros.getRestoreTimes();
+		assertEquals(List.of(10_000L, 11_000L, 12_000L), times);
 	}
 }

@@ -53,6 +53,9 @@ public class SkillLearnService {
 		}
 		if (skill.isCraftingSkill() || skill.isMorphSkill())
 			RecipeService.autoLearnRecipes(player, skillId, skillLevel);
+		if (skillId == 3858) {
+			removeSkill(player, 182);
+		}
 		syncBlendedSkills(player);
 	}
 
@@ -87,6 +90,11 @@ public class SkillLearnService {
 				player.getSkillList().addSkill(player, 30002, player.getSkillList().getSkillLevel(30001));
 			removeSkill(player, 30001);
 		}
+
+		// replace charge with charge reboot if learned
+		if (player.getSkillList().isSkillPresent(3858) && player.getSkillList().isSkillPresent(182)) {
+			removeSkill(player, 182);
+		}
 		syncBlendedSkills(player);
 	}
 
@@ -102,6 +110,8 @@ public class SkillLearnService {
 			if (!template.isAutolearn())
 				continue;
 			if (template.getSkillId() == 30001 && player.getCommonData().isDaeva()) // no human gathering for daevas
+				continue;
+			if (template.getSkillId() == 182 && player.getSkillList().isSkillPresent(3858))
 				continue;
 
 			player.getSkillList().addSkill(player, template.getSkillId(), template.getSkillLevel());

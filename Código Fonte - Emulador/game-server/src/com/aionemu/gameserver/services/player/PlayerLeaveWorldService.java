@@ -137,6 +137,11 @@ public class PlayerLeaveWorldService {
 			if (summon != null)
 				SummonsService.release(summon, UnsummonType.LOGOUT); // puts the summoning skill on cooldown, so store cooldowns afterwards
 			PlayerCooldownsDAO.storePlayerCooldowns(player);
+			try {
+				int cp = com.aionemu.gameserver.services.CombatTalentService.calculateCombatPower(player);
+				com.aionemu.gameserver.dao.CombatPowerDAO.storeCombatPower(player.getObjectId(), cp);
+			} catch (Exception ignored) {
+			}
 			if (player.getPet() != null)
 				player.getPet().getController().delete();
 			if (player.getPostman() != null)

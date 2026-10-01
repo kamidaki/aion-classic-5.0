@@ -41,6 +41,7 @@ public class CM_ENTER_WORLD extends AionClientPacket {
 			return;
 		}
 		CharacterPasskey chaPasskey = client.getAccount().getCharacterPasskey();
+		client.getAccount().setLastPlayerObjectId(objectId);
 		chaPasskey.setObjectId(objectId);
 		chaPasskey.setConnectType(ConnectType.ENTER);
 

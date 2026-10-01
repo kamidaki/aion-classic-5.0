@@ -68,6 +68,7 @@ public class KiskService {
 		if (kisk != null) {
 			kisk.addPlayer(player);
 			this.boundButOfflinePlayer.remove(player.getObjectId());
+			TeleportService.sendKiskBindPoint(player);
 		}
 	}
 

@@ -23,7 +23,7 @@ import com.aionemu.gameserver.model.instance.InstanceBuff;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_STATS_INFO;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_UNK_01BD;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_HUNT_OBJECTIVE_PROGRESS;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.services.drop.DropRegistrationService;
@@ -140,7 +140,7 @@ public class LandOfShadowsInstance extends GeneralInstanceHandler {
 			spawn(daRaca(804125), 649.47f, 529.19f, 339.62f, (byte) 105);
 		});
 		depois(4200, () -> sendMsg(new SM_SYSTEM_MESSAGE(1404457))); // Normal_Kill_UI_Start
-		depois(4850, () -> enviaObjetivo(SM_UNK_01BD.NORMAL, 1)); // a captura usa contador interno 1 para exibir 0/20
+		depois(4850, () -> enviaObjetivo(SM_HUNT_OBJECTIVE_PROGRESS.NORMAL, 1)); // a captura usa contador interno 1 para exibir 0/20
 		depois(4400, () -> {
 			sendMsg(new SM_SYSTEM_MESSAGE(1404330)); // Asphel_01
 			apaga(VEU, 675.36f, 518.71f);
@@ -291,7 +291,7 @@ public class LandOfShadowsInstance extends GeneralInstanceHandler {
 			case 804139 -> { // area do primeiro named: fecha o caminho ate ele morrer
 				sendMsg(new SM_SYSTEM_MESSAGE(1404333)); // Ariel_03
 				sendMsg(new SM_SYSTEM_MESSAGE(1404456)); // Named_Kill_UI_Start
-				depois(750, () -> enviaObjetivo(SM_UNK_01BD.NAMED, 1));
+				depois(750, () -> enviaObjetivo(SM_HUNT_OBJECTIVE_PROGRESS.NAMED, 1));
 				depois(1000, () -> spawn(VEU, 610.01f, 617.78f, 360.93f, (byte) 0));
 				depois(4300, () -> {
 					sendMsg(new SM_SYSTEM_MESSAGE(1404334)); // Asphel_03
@@ -304,7 +304,7 @@ public class LandOfShadowsInstance extends GeneralInstanceHandler {
 				depois(2100, () -> {
 					sendMsg(new SM_SYSTEM_MESSAGE(1404444)); // Boss1_01
 					sendMsg(new SM_SYSTEM_MESSAGE(1404455)); // Boss_Kill_UI_Start
-					depois(650, () -> enviaObjetivo(SM_UNK_01BD.BOSS, 1));
+					depois(650, () -> enviaObjetivo(SM_HUNT_OBJECTIVE_PROGRESS.BOSS, 1));
 				});
 			}
 			case 804141 -> { // boss 2
@@ -325,11 +325,11 @@ public class LandOfShadowsInstance extends GeneralInstanceHandler {
 	/** Atualiza os tres contadores do painel. O protocolo usa progresso + 1 (1 exibe zero). */
 	private void atualizaObjetivos(int npcId) {
 		if (npcId >= 224300 && npcId <= 224316 && npcId != 224305 && npcId != 224310 && npcId != 224315)
-			avancaObjetivo(normaisMortos, 20, SM_UNK_01BD.NORMAL, VAR_NORMAIS);
+			avancaObjetivo(normaisMortos, 20, SM_HUNT_OBJECTIVE_PROGRESS.NORMAL, VAR_NORMAIS);
 		else if (npcId == 224305 || npcId == 224310 || npcId == 224315 || npcId == 224318 || npcId == 224320)
-			avancaObjetivo(namedsMortos, 5, SM_UNK_01BD.NAMED, VAR_NAMEDS);
+			avancaObjetivo(namedsMortos, 5, SM_HUNT_OBJECTIVE_PROGRESS.NAMED, VAR_NAMEDS);
 		else if (npcId == 224333 || npcId == 224334 || npcId == 224335)
-			avancaObjetivo(bossesMortos, 3, SM_UNK_01BD.BOSS, VAR_BOSSES);
+			avancaObjetivo(bossesMortos, 3, SM_HUNT_OBJECTIVE_PROGRESS.BOSS, VAR_BOSSES);
 	}
 
 	private void avancaObjetivo(AtomicInteger progresso, int maximo, int objetivo, int varId) {
@@ -345,7 +345,7 @@ public class LandOfShadowsInstance extends GeneralInstanceHandler {
 	}
 
 	private void enviaObjetivo(int objetivo, int contador) {
-		PacketSendUtility.broadcastToMap(instance, new SM_UNK_01BD(objetivo, contador));
+		PacketSendUtility.broadcastToMap(instance, new SM_HUNT_OBJECTIVE_PROGRESS(objetivo, contador));
 	}
 
 	private int nivelCubo(Npc npc) {
@@ -409,9 +409,9 @@ public class LandOfShadowsInstance extends GeneralInstanceHandler {
 		apaga(VEU, 675.36f, 518.71f);
 		if (getNpc(daRaca(804135)) == null)
 			spawn(daRaca(804135), 700.53f, 500.77f, 338.25f, (byte) 30);
-		enviaObjetivo(SM_UNK_01BD.NORMAL, normaisMortos.get() + 1);
-		enviaObjetivo(SM_UNK_01BD.NAMED, namedsMortos.get() + 1);
-		enviaObjetivo(SM_UNK_01BD.BOSS, bossesMortos.get() + 1);
+		enviaObjetivo(SM_HUNT_OBJECTIVE_PROGRESS.NORMAL, normaisMortos.get() + 1);
+		enviaObjetivo(SM_HUNT_OBJECTIVE_PROGRESS.NAMED, namedsMortos.get() + 1);
+		enviaObjetivo(SM_HUNT_OBJECTIVE_PROGRESS.BOSS, bossesMortos.get() + 1);
 
 		if (checkpoint >= 2)
 			deleteAliveNpcs(804140);

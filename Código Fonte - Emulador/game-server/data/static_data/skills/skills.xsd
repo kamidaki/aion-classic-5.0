@@ -42,6 +42,7 @@
 		<xs:attribute name="req_dispel_level" type="xs:int" />
 		<xs:attribute name="req_dispel_count" type="xs:int" />
 		<xs:attribute name="activation" type="activationAttribute" use="required" />
+		<xs:attribute name="target_races" type="SkillTargetRaceList" />
 		<xs:attribute name="stigma" type="StigmaType" />
 		<xs:attribute name="ammospeed" type="xs:int" />
 		<xs:attribute name="duration" type="xs:int" use="required" />

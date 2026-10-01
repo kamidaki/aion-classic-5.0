@@ -96,8 +96,17 @@ public class TransformModel {
 		this.updateVisually();
 	}
 
+	/**
+	 * O oficial so manda o S_POLYMORPH depois do S_PUT_USER, e o modelo 0 so para os outros: nas capturas os 18 S_POLYMORPH com modelo 0
+	 * eram sempre de outro jogador, nunca do dono da sessao. Mandar o modelo 0 para o proprio dono deixava o personagem sem modelo nenhum.
+	 */
 	public void updateVisually() {
-		PacketSendUtility.broadcastPacketAndReceive(owner, new SM_TRANSFORM(owner));
+		if (!owner.isSpawned()) // no login e no teleporte o modelo vai no proprio S_PUT_USER
+			return;
+		if (getModelId() == 0) // candy "SHAPE_INVISIBLE" (reserved9 "0"): so atributos, sem trocar a aparencia de quem usou
+			PacketSendUtility.broadcastPacket(owner, new SM_TRANSFORM(owner));
+		else
+			PacketSendUtility.broadcastPacketAndReceive(owner, new SM_TRANSFORM(owner));
 	}
 
 	private void updateTribeVisually() {
@@ -174,8 +183,15 @@ public class TransformModel {
 	}
 
 	/**
-	 * Modelo que o S_PUT_USER nao consegue levar: la o D do modelo com 0 quer dizer "sem transformacao", entao o oficial
-	 * manda o template e logo depois o S_POLYMORPH com o modelo 0 (captura outros2 de 2026-09-22, candy 10813).
+	 * @return true se a transformacao troca a aparencia; o candy "SHAPE_INVISIBLE" (modelo 0) so da atributos
+	 */
+	public boolean changesAppearance() {
+		return active && modelId != 0;
+	}
+
+	/**
+	 * Modelo que o S_PUT_USER nao consegue levar: la o D do modelo com 0 quer dizer "sem transformacao", entao o oficial manda o template e
+	 * logo depois o S_POLYMORPH com o modelo 0 -- so para os outros jogadores (18 de 18 nas capturas), nunca para o dono.
 	 */
 	public boolean needsPolymorphOnSpawn() {
 		return isActive() && getModelId() == 0;

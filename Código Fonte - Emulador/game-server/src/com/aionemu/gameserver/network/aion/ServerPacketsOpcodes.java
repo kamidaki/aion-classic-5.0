@@ -359,6 +359,7 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(0x1C4, SM_SIEL_HAMMER_EVENT.class);
 		addPacketOpcode(0x1A2, SM_SIEL_HAMMER_RESULT.class);
 		addPacketOpcode(363, SM_ALTER_INFO.class); // [S_ALTER_INFO] (0x016B)
+		addPacketOpcode(382, SM_MEMO_TOKEN.class); // [S_MEMO_TOKEN / S_MEMOPAD_AUTH] (0x017E / Wire 0x0296)
 	}
 
 	static int getOpcode(Class<? extends AionServerPacket> packetClass) {

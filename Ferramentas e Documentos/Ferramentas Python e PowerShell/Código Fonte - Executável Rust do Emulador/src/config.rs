@@ -1,6 +1,7 @@
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fs;
+use std::io;
 use std::path::Path;
 
 #[derive(Debug, Deserialize, Serialize, Clone)]
@@ -322,4 +323,158 @@ pub fn load_config(path_str: &str) -> RootConfig {
         let _ = fs::write(p, json);
     }
     default_cfg
+}
+
+/// Materializa as credenciais do `config.json` no formato consumido pelos
+/// servidores Java. Arquivos completos existentes são preservados, pois podem
+/// ter sido configurados manualmente e são a fonte principal quando
+/// `auto_read_properties` está habilitado.
+pub fn ensure_database_properties(config: &RootConfig) -> io::Result<Vec<String>> {
+    let mut database_ids: Vec<&String> = config.databases.keys().collect();
+    database_ids.sort();
+
+    let mut generated = Vec::new();
+    for database_id in database_ids {
+        let database = &config.databases[database_id];
+        if database.properties_file.trim().is_empty() {
+            continue;
+        }
+
+        let path = Path::new(&database.properties_file);
+        if let Ok(existing) = fs::read_to_string(path) {
+            let mut has_url = false;
+            let mut has_user = false;
+            let mut has_password = false;
+            for line in existing.lines() {
+                let trimmed = line.trim_start();
+                if trimmed.is_empty() || trimmed.starts_with('#') || trimmed.starts_with('!') {
+                    continue;
+                }
+                if let Some((key, _)) = trimmed.split_once('=') {
+                    match key.trim() {
+                        "database.url" => has_url = true,
+                        "database.user" => has_user = true,
+                        "database.password" => has_password = true,
+                        _ => {}
+                    }
+                }
+            }
+            if has_url && has_user && has_password {
+                continue;
+            }
+        }
+
+        if database.host.trim().is_empty()
+            || database.user.trim().is_empty()
+            || database.database.trim().is_empty()
+        {
+            return Err(io::Error::new(
+                io::ErrorKind::InvalidInput,
+                format!(
+                    "Configuração do banco '{}' incompleta: host, user e database são obrigatórios",
+                    database_id
+                ),
+            ));
+        }
+
+        for (field, value) in [
+            ("host", &database.host),
+            ("user", &database.user),
+            ("password", &database.password),
+            ("database", &database.database),
+        ] {
+            if value.contains(['\r', '\n']) {
+                return Err(io::Error::new(
+                    io::ErrorKind::InvalidInput,
+                    format!(
+                        "Configuração do banco '{}': o campo {} não pode conter quebra de linha",
+                        database_id, field
+                    ),
+                ));
+            }
+        }
+
+        if let Some(parent) = path.parent() {
+            fs::create_dir_all(parent)?;
+        }
+        let content = format!(
+            "# Gerado automaticamente pelo Aion Classic - EMULADOR.\n\
+database.url=jdbc:mysql://{}:{}/{}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC\n\
+database.user={}\n\
+database.password={}\n",
+            database.host,
+            database.port,
+            database.database,
+            database.user,
+            database.password
+        );
+        fs::write(path, content)?;
+        generated.push(path.to_string_lossy().to_string());
+    }
+
+    Ok(generated)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::time::{SystemTime, UNIX_EPOCH};
+
+    fn test_directory(name: &str) -> std::path::PathBuf {
+        let unique = SystemTime::now()
+            .duration_since(UNIX_EPOCH)
+            .unwrap()
+            .as_nanos();
+        std::env::temp_dir().join(format!("aion-launcher-{}-{}-{}", name, std::process::id(), unique))
+    }
+
+    fn config_for(path: &Path) -> RootConfig {
+        let mut config = RootConfig::default();
+        config.databases.clear();
+        config.databases.insert(
+            "gs".to_string(),
+            DatabaseSettings {
+                auto_read_properties: true,
+                host: "127.0.0.1".to_string(),
+                port: 3306,
+                user: "aion".to_string(),
+                password: "secret".to_string(),
+                database: "aionclassic_gs".to_string(),
+                properties_file: path.to_string_lossy().to_string(),
+                label: "Game Server".to_string(),
+                color: "#32CD32".to_string(),
+            },
+        );
+        config
+    }
+
+    #[test]
+    fn creates_missing_database_properties() {
+        let dir = test_directory("create");
+        let path = dir.join("config/network/database.properties");
+        let generated = ensure_database_properties(&config_for(&path)).unwrap();
+        let content = fs::read_to_string(&path).unwrap();
+
+        assert_eq!(generated, vec![path.to_string_lossy().to_string()]);
+        assert!(content.contains("database.url=jdbc:mysql://127.0.0.1:3306/aionclassic_gs"));
+        assert!(content.contains("database.user=aion"));
+        assert!(content.contains("database.password=secret"));
+
+        fs::remove_dir_all(dir).unwrap();
+    }
+
+    #[test]
+    fn preserves_complete_existing_database_properties() {
+        let dir = test_directory("preserve");
+        let path = dir.join("database.properties");
+        fs::create_dir_all(&dir).unwrap();
+        let original = "database.url=jdbc:mysql://db.internal:3307/custom\ndatabase.user=manual\ndatabase.password=manual-secret\n";
+        fs::write(&path, original).unwrap();
+
+        let generated = ensure_database_properties(&config_for(&path)).unwrap();
+
+        assert!(generated.is_empty());
+        assert_eq!(fs::read_to_string(&path).unwrap(), original);
+        fs::remove_dir_all(dir).unwrap();
+    }
 }

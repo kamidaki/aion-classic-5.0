@@ -504,5 +504,16 @@ public class PlayerDAO {
 		}
 	}
 
+	public static void storeGender(int playerObjectId, Gender gender) {
+		try (Connection con = DatabaseFactory.getConnection();
+				 PreparedStatement stmt = con.prepareStatement("UPDATE players SET gender=? WHERE id=?")) {
+			stmt.setString(1, gender.toString());
+			stmt.setInt(2, playerObjectId);
+			stmt.execute();
+		} catch (Exception e) {
+			log.error("Error storing gender: " + gender + " for player: " + playerObjectId, e);
+		}
+	}
+
 	public record PlayerAndLegionInfo(int playerId, String name, int legionId, LegionRank legionRank) {}
 }

@@ -1,0 +1,20 @@
+fix_50_moros_passiva.py
+
+== chance do provoker acrescentada: 3
+  2544 Moros_Promise_G1: hittypeprob2=20
+  2550 Moros_Promise_G2: hittypeprob2=20
+  3942 Moros_Promise_G3: hittypeprob2=20
+
+== raças de alvo acrescentadas: 8
+  2545 Moros_Victory_G1: DRAKAN LIZARDMAN NAGA
+  2546 Moros_Victory_G2: DRAKAN LIZARDMAN NAGA
+  2547 Moros_Victory_G3: DRAKAN LIZARDMAN NAGA
+  2548 Moros_Victory_G4: DRAKAN LIZARDMAN NAGA
+  2549 Moros_Victory_G5: DRAKAN LIZARDMAN NAGA
+  8775 Moros_Promise_G1_Proc: DRAKAN LIZARDMAN NAGA
+  9134 Moros_Promise_G2_Proc: DRAKAN LIZARDMAN NAGA
+  9267 Moros_Promise_G3_Proc: DRAKAN LIZARDMAN NAGA
+
+== raça do cliente sem Race no emulador (fora): 2
+  9134 Moros_Promise_G2_Proc: ['morosmon']
+  9267 Moros_Promise_G3_Proc: ['morosmon']

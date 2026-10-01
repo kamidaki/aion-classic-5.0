@@ -42,14 +42,10 @@ public class CM_QUIT extends AionClientPacket {
 		boolean charEditScreen = false;
 
 		if (player != null) {
-			charEditScreen = player.getCommonData().isInEditMode();
-			if (charEditScreen) {
-				VisibleObject target = player.getTarget();
-				if (!(target instanceof Npc npc) || (!npc.getObjectTemplate().supportsAction(DialogAction.EDIT_CHARACTER_ALL) && !npc.getObjectTemplate().supportsAction(DialogAction.EDIT_CHARACTER_GENDER)) || !PositionUtil.isInTalkRange(player, npc)) {
-					AuditLogger.log(player, "tried to enter the plastic surgery screen without targeting the respective npc within talk distance");
-					return;
-				}
+			if (con.getAccount() != null) {
+				con.getAccount().setLastPlayerObjectId(player.getObjectId());
 			}
+			charEditScreen = player.getCommonData().isInEditMode();
 			if (stayConnected) { // update char selection info
 				player.getAccountData().setVisibleItems(player.getEquipment().getEquippedForAppearance());
 				for (PlayerAccountData plAccData : con.getAccount().getPlayerAccDataList())

@@ -30,6 +30,7 @@ public class AionPacketHandlerFactory {
 		// ==========================================
 		addPacket(CM_VERSION_CHECK.class, 0xF2, State.CONNECTED); // 0x0000 VERSION
 		addPacket(CM_TIME_CHECK.class, 0xE0, State.CONNECTED, State.AUTHED, State.IN_GAME); // 0x0012 SYNC_TIME
+		addPacket(CM_TIME_CHECK.class, 0xF7, State.CONNECTED, State.AUTHED, State.IN_GAME); // 0x00F7 SYNC_TIME (5.0 Classic lobby/authed)
 		addPacket(CM_L2AUTH_LOGIN_CHECK.class, 0x182, State.CONNECTED); // 0x00F0 HQ_LOGIN
 		addPacket(CM_L2AUTH_LOGIN_CHECK.class, 0x117, State.CONNECTED); // 0x005D L2AUTH_LOGIN
 		addPacket(CM_L2AUTH_LOGIN_CHECK.class, 0x11F, State.CONNECTED); // Legacy fallback
@@ -52,7 +53,9 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_DELETE_CHARACTER.class, 0x68, State.AUTHED); // Raw alias
 		addPacket(CM_RESTORE_CHARACTER.class, 0x11B, State.AUTHED); // 0x011B WIRE RESTORE_CHARACTER (dec=0x0069)
 		addPacket(CM_RESTORE_CHARACTER.class, 0x69, State.AUTHED); // Raw alias
-		addPacket(CM_CHARACTER_EDIT.class, 0xED, State.AUTHED); // 0x0017 CHARACTER_EDIT
+		addPacket(CM_CHARACTER_EDIT.class, 0xE5, State.AUTHED); // 0x000F C_EDIT_CHARACTER (5.0 Classic Plastic Surgery confirmation)
+		addPacket(CM_CHARACTER_EDIT.class, 0x0F, State.AUTHED); // Raw alias dec
+		addPacket(CM_CHARACTER_EDIT.class, 0xED, State.AUTHED); // Legacy fallback
 		addPacket(CM_CHECK_NICKNAME.class, 0x143, State.AUTHED); // 0x00B1 CHECK_NICKNAME
 		addPacket(CM_CHECK_NICKNAME.class, 0xB1, State.AUTHED); // Raw alias
 		addPacket(CM_MAY_LOGIN_INTO_GAME.class, 0x179, State.AUTHED, State.IN_GAME); // 0x008B SA_ACCOUNT_ITEM_QUERY
@@ -66,8 +69,8 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_MAY_QUIT.class, 0x04, State.AUTHED, State.IN_GAME); // Raw alias
 		addPacket(CM_QUIT.class, 0xF1, State.AUTHED, State.IN_GAME); // 0x0003 ASK_QUIT
 		addPacket(CM_SHOW_BLOCKLIST.class, 0x14A, State.IN_GAME); // 0x00B8 SHOW_BLOCKLIST
-		addPacket(CM_SHOW_BLOCKLIST.class, 0x15A, State.IN_GAME); // 0x00A8 C_QUERY_BLOCK (5.0 Classic)
-		addPacket(CM_RECONNECT_AUTH.class, 0x17A, State.AUTHED); // Legacy fallback
+		addPacket(CM_SECURITY_TOKEN.class, 0x15A, State.AUTHED, State.IN_GAME); // 0x00A8 C_REQ_WEB_SESSIONKEY (5.0 Classic)
+		addPacket(CM_RECONNECT_AUTH.class, 0x17A, State.AUTHED); // 0x0088 C_RECONNECT_AUTH (Classic 5.0)
 		addPacket(CM_PING.class, 0xC6, State.AUTHED, State.IN_GAME); // 0x002C ALIVE / PING
 		addPacket(CM_PING.class, 0x22B, State.AUTHED, State.IN_GAME); // 0x0159 PING_159
 
@@ -251,7 +254,6 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_CLIENT_PING_SYNC.class, 0x0151, State.IN_GAME, State.AUTHED); // 0x00A3 CLIENT_PING_SYNC (5.0 Classic)
 		addPacket(CM_SPLIT_ITEM.class, 0x014F, State.IN_GAME); // 0x00B5 SPLIT_ITEM (5.0 Classic: [D origem][Q qtd][C armazem][D destino][C armazem][H slot], 20 b)
 		addPacket(CM_CLIENT_SCENE_ACK.class, 0x01A7, State.IN_GAME); // 0x00CD CLIENT_SCENE_ACK (5.0 Classic)
-		addPacket(CM_CLIENT_MOTION_ACK.class, 0x0181, State.IN_GAME); // 0x00F3 CLIENT_MOTION_ACK (5.0 Classic)
 		addPacket(CM_CLIENT_WORLD_EVENT_ACK.class, 0x01E4, State.IN_GAME); // 0x010E CLIENT_WORLD_EVENT_ACK (5.0 Classic)
 		addPacket(CM_CLIENT_STATUS_HEARTBEAT.class, 0x02DF, State.IN_GAME, State.AUTHED); // 0x0225 CLIENT_STATUS_HEARTBEAT (5.0 Classic)
 
@@ -264,8 +266,7 @@ public class AionPacketHandlerFactory {
 		// sem alias em 0x00C1: esse e o cru do CM_BUY_ITEM (dec 0x0033) e o registro por ultimo apagava a compra e a venda
 		addPacket(CM_MAY_QUIT.class, 0x00FE, State.IN_GAME); // 0x0004 READY_TO_QUIT
 		addPacket(CM_MAY_QUIT.class, 0x0004, State.IN_GAME);
-		addPacket(CM_RECONNECT_AUTH.class, 0x014A, State.AUTHED); // 0x00B8 RECONNECT_AUTH
-		addPacket(CM_RECONNECT_AUTH.class, 0x00B8, State.AUTHED);
+		addPacket(CM_RECONNECT_AUTH.class, 0x017A, State.AUTHED);
 		addPacket(CM_CLIENT_PERF_METRICS.class, 0x00C5, State.IN_GAME);
 		addPacket(CM_CLIENT_PERF_METRICS.class, 0x03DC, State.IN_GAME, State.AUTHED); // 0x0326 client perf/window state telemetry
 		addPacket(CM_CLIENT_PERF_METRICS.class, 0x0326, State.IN_GAME, State.AUTHED);
@@ -280,9 +281,18 @@ public class AionPacketHandlerFactory {
 		// RANKING 5.0 (Combat Power Ranking 1000..1003)
 		// ==========================================
 		addPacket(CM_RANKING_INFO.class, 0x01B6, State.IN_GAME); // 0x01B6 WIRE CM_RANKING_INFO (dec=0x00BC)
-		addPacket(CM_RANKING_INFO.class, 0x00BC, State.IN_GAME); // Raw alias
 		addPacket(CM_RANKING_SUBSCRIBE.class, 0x0181, State.IN_GAME, State.AUTHED); // 0x0181 WIRE CM_RANKING_SUBSCRIBE (dec=0x00F3)
-		addPacket(CM_RANKING_SUBSCRIBE.class, 0x00F3, State.IN_GAME, State.AUTHED); // Raw alias
+
+		// ==========================================
+		// MEMOPAD & MACRO & LOCATE 5.0
+		// ==========================================
+		addPacket(CM_MEMO_TOKEN_REQUEST.class, 0x01D2, State.IN_GAME); // 0x0120 MEMOPAD TOKEN REQ
+		addPacket(CM_MEMO_TOKEN_ACK.class, 0x01D3, State.IN_GAME); // 0x0121 MEMOPAD TOKEN ACK
+		addPacket(CM_MACRO_CREATE.class, 0x017D, State.IN_GAME); // 0x0087 SAVE_MACRO / MEMO
+		addPacket(CM_MACRO_DELETE.class, 0x0142, State.IN_GAME); // 0x00B0 DELETE_MACRO
+		addPacket(CM_LOCATE_PLAYER.class, 0x01A4, State.IN_GAME); // 0x00CE LOCATE / FIND PLAYER
+		addPacket(CM_PREVIEW_TOGGLE.class, 0x01E1, State.IN_GAME); // 0x0113 PREVIEW / AION LOOK TOGGLE
+		addPacket(CM_GLOBAL_TRADE_LIST.class, 0x01F6, State.IN_GAME); // 0x00FC GLOBAL_TRADE_LIST
 	}
 
 	public AionPacketHandler getPacketHandler() {

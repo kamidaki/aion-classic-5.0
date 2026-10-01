@@ -44,12 +44,45 @@ public final class PlayerMoros {
 	}
 
 	/**
-	 * Gasta {@code count} registros, que voltam em {@code restoreAt}.
+	 * Gasta {@code count} registros, enfileirando cada um para voltar de forma sequencial
+	 * a cada {@code restoreDelay} (1 ponto a cada 30 minutos).
 	 */
+	public synchronized void useRecords(int count, long now, long restoreDelay) {
+		long lastTime = restoreTimes.isEmpty() ? now : Math.max(now, restoreTimes.getLast());
+		for (int i = 0; i < count; i++) {
+			lastTime += restoreDelay;
+			restoreTimes.add(lastTime);
+		}
+		Collections.sort(restoreTimes);
+	}
+
+	@Deprecated
 	public synchronized void useRecords(int count, long restoreAt) {
 		for (int i = 0; i < count; i++)
 			restoreTimes.add(restoreAt);
 		Collections.sort(restoreTimes);
+	}
+
+	/**
+	 * Garante que os registros pendentes estejam espaçados de 1 em 1 por {@code restoreDelay}
+	 * (corrige dados legados no banco que possam ter gravado o mesmo timestamp para multiplos registros).
+	 */
+	public synchronized void normalizeRestoreTimes(long now, long restoreDelay) {
+		if (restoreTimes.isEmpty())
+			return;
+		Collections.sort(restoreTimes);
+		long nextValidTime = now;
+		for (int i = 0; i < restoreTimes.size(); i++) {
+			long t = restoreTimes.get(i);
+			if (t <= now) {
+				continue;
+			}
+			if (t < nextValidTime) {
+				t = nextValidTime;
+				restoreTimes.set(i, t);
+			}
+			nextValidTime = t + restoreDelay;
+		}
 	}
 
 	/**

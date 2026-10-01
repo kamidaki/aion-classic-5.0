@@ -459,7 +459,7 @@ public final class GlobalTradeService {
 			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_RESTRICTED));
 			return false;
 		}
-		if (player.getLevel() < GlobalTradeConfig.MIN_LEVEL || player.getPlayerClass().isStartingClass()) {
+		if (player.getLevel() < GlobalTradeConfig.MIN_LEVEL) {
 			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_BELOW_STANDARD));
 			return false;
 		}

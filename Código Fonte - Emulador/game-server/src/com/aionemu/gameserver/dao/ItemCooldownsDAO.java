@@ -60,7 +60,7 @@ public class ItemCooldownsDAO {
 			return;
 
 		itemCoolDowns = new HashMap<>(itemCoolDowns);
-		itemCoolDowns.values().removeIf(itemCooldown -> itemCooldown == null || itemCooldown.getReuseTime() - System.currentTimeMillis() <= 30000);
+		itemCoolDowns.values().removeIf(itemCooldown -> itemCooldown == null || itemCooldown.getReuseTime() <= System.currentTimeMillis());
 
 		if (itemCoolDowns.isEmpty())
 			return;

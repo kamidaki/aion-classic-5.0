@@ -48,6 +48,18 @@ public class Account implements Iterable<PlayerAccountData> {
 	private PassportsList playerPassports;
 	private Timestamp lastStamp;
 	private AccountSielEnergy accountSielEnergy;
+	private int lastPlayerObjectId = 0;
+
+	public int getLastPlayerObjectId() {
+		if (lastPlayerObjectId == 0 && !players.isEmpty()) {
+			return players.values().iterator().next().getPlayerCommonData().getPlayerObjId();
+		}
+		return lastPlayerObjectId;
+	}
+
+	public void setLastPlayerObjectId(int lastPlayerObjectId) {
+		this.lastPlayerObjectId = lastPlayerObjectId;
+	}
 
 	public String getSecurityToken() {
 		return securityToken;

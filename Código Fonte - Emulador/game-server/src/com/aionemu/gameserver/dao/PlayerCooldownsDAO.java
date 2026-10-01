@@ -56,7 +56,7 @@ public class PlayerCooldownsDAO {
 			return;
 
 		cooldowns = new HashMap<>(cooldowns);
-		cooldowns.values().removeIf(reuseTime -> reuseTime == null || reuseTime - System.currentTimeMillis() <= 28000);
+		cooldowns.values().removeIf(reuseTime -> reuseTime == null || reuseTime <= System.currentTimeMillis());
 
 		if (cooldowns.isEmpty())
 			return;

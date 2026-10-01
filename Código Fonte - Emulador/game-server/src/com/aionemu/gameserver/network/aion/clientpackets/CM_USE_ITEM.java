@@ -32,6 +32,7 @@ public class CM_USE_ITEM extends AionClientPacket {
 
 	private int uniqueItemId;
 	private int targetItemId, syncId, indexReturn;
+	private int count = 1;
 
 	public CM_USE_ITEM(int opcode, Set<State> validStates) {
 		super(opcode, validStates);
@@ -41,6 +42,7 @@ public class CM_USE_ITEM extends AionClientPacket {
 	protected void readImpl() {
 		uniqueItemId = readD();
 		byte type = readC();
+		count = 1;
 		switch (type) {
 			case 2:
 				targetItemId = readD();
@@ -49,7 +51,14 @@ public class CM_USE_ITEM extends AionClientPacket {
 				syncId = readD();
 				break;
 			case 6:
-				indexReturn = readD();
+				count = readD();
+				if (getRemainingBytes() >= 4) {
+					readD(); // unk (0 no pcapng oficial)
+				}
+				if (count <= 0) {
+					count = 1;
+				}
+				indexReturn = count;
 				break;
 		}
 	}
@@ -115,6 +124,9 @@ public class CM_USE_ITEM extends AionClientPacket {
 			} else if (itemAction instanceof InstanceTimeClear) {
 				if (itemAction.canAct(player, item, targetItem, syncId))
 					actions.add(itemAction);
+			} else if (itemAction instanceof DecomposeAction) {
+				if (itemAction.canAct(player, item, targetItem, count))
+					actions.add(itemAction);
 			} else if (itemAction.canAct(player, item, targetItem)) {
 				actions.add(itemAction);
 			}
@@ -128,9 +140,10 @@ public class CM_USE_ITEM extends AionClientPacket {
 				case DyeAction _ -> itemAction.act(player, item, targetItem, targetHouseObject);
 				case MultiReturnAction _ -> itemAction.act(player, item, targetItem, indexReturn);
 				case InstanceTimeClear _ -> itemAction.act(player, item, targetItem, syncId);
+				case DecomposeAction _ -> itemAction.act(player, item, targetItem, count);
 				default -> itemAction.act(player, item, targetItem);
 			}
 		}
-		LegionMissionService.getInstance().onEvent(player, LegionMissionData.ActionType.ITEMPLAY, item.getItemId(), 1, 0);
+		LegionMissionService.getInstance().onEvent(player, LegionMissionData.ActionType.ITEMPLAY, item.getItemId(), count, 0);
 	}
 }

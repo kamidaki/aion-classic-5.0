@@ -112904,22 +112904,22 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="8775" provoke_target="OPPONENT" effectid="125441" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hopb="230" hittypeprob2="200"/>
+			<provoker e="1" skill_id="8775" provoke_target="OPPONENT" effectid="125441" noresist="true" hittype="NMLATK" hittypeprob2="20" element="WIND" hoptype="SKILLLV" hopb="230"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="2545" name="Inferno de dor infinita" nameId="2281038" delayId="726" stack="MOROS_VICTORY_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="72000" duration="0">
+	<skill_template skill_id="2545" name="Inferno de dor infinita" nameId="2281038" delayId="726" stack="MOROS_VICTORY_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" target_races="DRAKAN LIZARDMAN NAGA" activation="ACTIVE" cooldown="72000" duration="0">
 		<properties first_target="TARGET" target_type="ONLYONE" first_target_range="15"/>
 	</skill_template>
-	<skill_template skill_id="2546" name="Flores de fogo tremeluzentes causam danos importantes a todos os grupos. Os danos são distribuídos entre os membros do grupo, o que significa que quanto menos membros do grupo existem, mais danos que um jogador individual leva." nameId="2281039" delayId="726" stack="MOROS_VICTORY_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="60000" duration="0">
+	<skill_template skill_id="2546" name="Flores de fogo tremeluzentes causam danos importantes a todos os grupos. Os danos são distribuídos entre os membros do grupo, o que significa que quanto menos membros do grupo existem, mais danos que um jogador individual leva." nameId="2281039" delayId="726" stack="MOROS_VICTORY_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" target_races="DRAKAN LIZARDMAN NAGA" activation="ACTIVE" cooldown="60000" duration="0">
 		<properties first_target="TARGET" target_type="ONLYONE" first_target_range="15"/>
 	</skill_template>
-	<skill_template skill_id="2547" name="[Anômalo] Energia de vela queimação" nameId="2281040" delayId="726" stack="MOROS_VICTORY_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="48000" duration="0">
+	<skill_template skill_id="2547" name="[Anômalo] Energia de vela queimação" nameId="2281040" delayId="726" stack="MOROS_VICTORY_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" target_races="DRAKAN LIZARDMAN NAGA" activation="ACTIVE" cooldown="48000" duration="0">
 		<properties first_target="TARGET" target_type="ONLYONE" first_target_range="15"/>
 	</skill_template>
-	<skill_template skill_id="2548" name="Você recebeu energia de vela ardente. O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281041" delayId="726" stack="MOROS_VICTORY_G4" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="33000" duration="0">
+	<skill_template skill_id="2548" name="Você recebeu energia de vela ardente. O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281041" delayId="726" stack="MOROS_VICTORY_G4" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" target_races="DRAKAN LIZARDMAN NAGA" activation="ACTIVE" cooldown="33000" duration="0">
 		<properties first_target="TARGET" target_type="ONLYONE" first_target_range="15"/>
 	</skill_template>
-	<skill_template skill_id="2549" name="[Anômalo] Energia mágica da vela" nameId="2281042" delayId="726" stack="MOROS_VICTORY_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="18000" duration="0">
+	<skill_template skill_id="2549" name="[Anômalo] Energia mágica da vela" nameId="2281042" delayId="726" stack="MOROS_VICTORY_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" target_races="DRAKAN LIZARDMAN NAGA" activation="ACTIVE" cooldown="18000" duration="0">
 		<properties first_target="TARGET" target_type="ONLYONE" first_target_range="15"/>
 	</skill_template>
 	<skill_template skill_id="2550" name="Bombardeio repetido" nameId="2281057" delayId="2550" stack="MOROS_PROMISE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -112928,7 +112928,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9134" provoke_target="OPPONENT" effectid="125441" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hopb="230" hittypeprob2="200"/>
+			<provoker e="1" skill_id="9134" provoke_target="OPPONENT" effectid="125441" noresist="true" hittype="NMLATK" hittypeprob2="20" element="WIND" hoptype="SKILLLV" hopb="230"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2551" name="Recupera a energia do repouso em 5% a 35%." nameId="2281074" delayId="95" stack="FI_GLORY_DESTRUCTBLOW_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
@@ -113181,7 +113181,7 @@
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="2568" name="STR_RA_QuickSetting_UP_G1" stack="RA_QUICKSETTING_UP_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" req_dispel_level="1" cancel_rate="20" delayId="67">
+	<skill_template skill_id="2568" name="STR_RA_QuickSetting_UP_G1" stack="RA_QUICKSETTING_UP_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" req_dispel_level="1" cancel_rate="20" delayId="67">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
 			<boostskillcastingtime duration2="5000" effectid="123861" e="1">
@@ -113213,7 +113213,7 @@
 		</actions>
 		<motion name="WindBlade"/>
 	</skill_template>
-	<skill_template skill_id="2570" name="STR_WI_Hibernation_UP_G1" stack="WI_HIBERNATION_UP_G1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="60" req_dispel_level="1" cancel_rate="30" delayId="68">
+	<skill_template skill_id="2570" name="STR_WI_Hibernation_UP_G1" stack="WI_HIBERNATION_UP_G1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="600" req_dispel_level="1" cancel_rate="30" delayId="68">
 		<properties first_target="TARGET" first_target_range="15" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="446" delta="18"/>
@@ -114611,7 +114611,7 @@
 		</actions>
 		<motion name="PHBurst"/>
 	</skill_template>
-	<skill_template skill_id="2662" name="STR_AS_Stigma_ShadowWalk_pvp" stack="AS_STIGMA_SHADOWWALK_PVP" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="EXTRA" activation="ACTIVE" duration="0" cooldown="180" cancel_rate="20" delayId="346">
+	<skill_template skill_id="2662" name="STR_AS_Stigma_ShadowWalk_pvp" stack="AS_STIGMA_SHADOWWALK_PVP" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="EXTRA" activation="ACTIVE" duration="0" cooldown="1800" cancel_rate="20" delayId="346">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="8" delta="0"/>
@@ -114647,7 +114647,7 @@
 		</actions>
 		<motion name="debuff"/>
 	</skill_template>
-	<skill_template skill_id="2664" name="STR_EL_FireFear_pvp" stack="EL_FIREFEAR_PVP" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_MENTAL" activation="ACTIVE" duration="0" cooldown="300" req_dispel_level="1" cancel_rate="20" delayId="661">
+	<skill_template skill_id="2664" name="STR_EL_FireFear_pvp" stack="EL_FIREFEAR_PVP" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_MENTAL" activation="ACTIVE" duration="0" cooldown="3000" req_dispel_level="1" cancel_rate="20" delayId="661">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="12" delta="0"/>
@@ -114724,7 +114724,7 @@
 		</effects>
 	</skill_template>
 	
-	<skill_template skill_id="2670" name="STR_ALL_GlideATK_FI" stack="ALL_GLIDEATK_FI" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="60" cancel_rate="10" delayId="756">
+	<skill_template skill_id="2670" name="STR_ALL_GlideATK_FI" stack="ALL_GLIDEATK_FI" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="600" cancel_rate="10" delayId="756">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="4" target_distance="3" effective_range="3" effective_altitude="5"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -114735,7 +114735,7 @@
 			</effects>
 		</skill_template>
 	
-	<skill_template skill_id="2671" name="STR_ALL_GlideATK_KN" stack="ALL_GLIDEATK_KN" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" duration="0" cooldown="60" req_dispel_level="1" cancel_rate="10" delayId="756">
+	<skill_template skill_id="2671" name="STR_ALL_GlideATK_KN" stack="ALL_GLIDEATK_KN" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" duration="0" cooldown="600" req_dispel_level="1" cancel_rate="10" delayId="756">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="4" target_distance="3" effective_range="3" effective_altitude="5"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -114746,7 +114746,7 @@
 			</effects>
 		</skill_template>
 	
-	<skill_template skill_id="2672" name="STR_ALL_GlideATK_RA" stack="ALL_GLIDEATK_RA" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="60" req_dispel_level="1" cancel_rate="10" delayId="756">
+	<skill_template skill_id="2672" name="STR_ALL_GlideATK_RA" stack="ALL_GLIDEATK_RA" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="600" req_dispel_level="1" cancel_rate="10" delayId="756">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="4" target_distance="3" effective_range="3" effective_altitude="5"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -114758,7 +114758,7 @@
 			</effects>
 		</skill_template>
 	
-	<skill_template skill_id="2673" name="STR_ALL_GlideATK_AS" stack="ALL_GLIDEATK_AS" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="60" req_dispel_level="1" cancel_rate="10" delayId="756" penalty_skill_id="8843">
+	<skill_template skill_id="2673" name="STR_ALL_GlideATK_AS" stack="ALL_GLIDEATK_AS" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="600" req_dispel_level="1" cancel_rate="10" delayId="756" penalty_skill_id="8843">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="4" target_distance="3" effective_range="3" effective_altitude="5"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -114770,7 +114770,7 @@
 			</effects>
 		</skill_template>
 	
-	<skill_template skill_id="2674" name="STR_ALL_GlideATK_WI" stack="ALL_GLIDEATK_WI" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="60" req_dispel_level="1" cancel_rate="10" delayId="756">
+	<skill_template skill_id="2674" name="STR_ALL_GlideATK_WI" stack="ALL_GLIDEATK_WI" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="600" req_dispel_level="1" cancel_rate="10" delayId="756">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="4" target_distance="3" effective_range="3" effective_altitude="5"/>
 		<startconditions>
 			<chain category="WI_GLIDEATK_1TH"/>
@@ -114785,7 +114785,7 @@
 			</effects>
 		</skill_template>
 	
-	<skill_template skill_id="2675" name="STR_ALL_GlideATK_EL" stack="ALL_GLIDEATK_EL" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="60" cancel_rate="10" delayId="756">
+	<skill_template skill_id="2675" name="STR_ALL_GlideATK_EL" stack="ALL_GLIDEATK_EL" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="600" cancel_rate="10" delayId="756">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="4" target_distance="5" effective_range="5" effective_altitude="5"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -114796,7 +114796,7 @@
 			</effects>
 		</skill_template>
 	
-	<skill_template skill_id="2676" name="STR_ALL_GlideATK_PR" stack="ALL_GLIDEATK_PR_LIGHT" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="60" cancel_rate="10" delayId="756">
+	<skill_template skill_id="2676" name="STR_ALL_GlideATK_PR" stack="ALL_GLIDEATK_PR_LIGHT" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="600" cancel_rate="10" delayId="756">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -114807,7 +114807,7 @@
 			</effects>
 		</skill_template>
 	
-	<skill_template skill_id="2677" name="STR_ALL_GlideATK_PR" stack="ALL_GLIDEATK_PR_DARK" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="60" cancel_rate="10" delayId="756">
+	<skill_template skill_id="2677" name="STR_ALL_GlideATK_PR" stack="ALL_GLIDEATK_PR_DARK" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="600" cancel_rate="10" delayId="756">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -114818,7 +114818,7 @@
 			</effects>
 		</skill_template>
 	
-	<skill_template skill_id="2678" name="STR_ALL_GlideATK_CH" stack="ALL_GLIDEATK_CH" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="60" req_dispel_level="1" cancel_rate="10" delayId="756">
+	<skill_template skill_id="2678" name="STR_ALL_GlideATK_CH" stack="ALL_GLIDEATK_CH" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="600" req_dispel_level="1" cancel_rate="10" delayId="756">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="4" target_distance="3" effective_range="3" effective_altitude="5"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -114829,7 +114829,7 @@
 			</effects>
 		</skill_template>
 	
-	<skill_template skill_id="2679" name="STR_ALL_GlideATK_TH" stack="ALL_GLIDEATK_TH" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="60" cancel_rate="10" delayId="756">
+	<skill_template skill_id="2679" name="STR_ALL_GlideATK_TH" stack="ALL_GLIDEATK_TH" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="600" cancel_rate="10" delayId="756">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="4" target_distance="3" effective_range="3" effective_altitude="5"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -115043,7 +115043,7 @@
 		</actions>
 		<motion name="radpatk"/>
 	</skill_template>
-	<skill_template skill_id="2703" name="STR_TH_ReturnShadow_new_G1" stack="TH_RETURNSHADOW_NEW_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="12" cancel_rate="30" delayId="209" chain_skill_prob="100">
+	<skill_template skill_id="2703" name="STR_TH_ReturnShadow_new_G1" stack="TH_RETURNSHADOW_NEW_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="120" cancel_rate="30" delayId="209" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="100" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<sp value="10"/>
@@ -115156,7 +115156,7 @@
 			</statboost>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="2731" name="STR_ALL_GlideATK_BM" stack="ALL_GLIDEATK_BM" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="60" cancel_rate="10">
+	<skill_template skill_id="2731" name="STR_ALL_GlideATK_BM" stack="ALL_GLIDEATK_BM" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="600" cancel_rate="10">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="4" target_distance="3" effective_range="3" effective_altitude="5"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -117055,7 +117055,7 @@
 			<dispel e="3" dispeltype="EFFECTID" accmod2="2000" element="FIRE" preeffect="1"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="2906" name="STR_ST_bspin_G1" stack="ST_BSPIN_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="30" req_dispel_level="5" cancel_rate="10" delayId="782">
+	<skill_template skill_id="2906" name="STR_ST_bspin_G1" stack="ST_BSPIN_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="300" req_dispel_level="5" cancel_rate="10" delayId="782">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -117068,7 +117068,7 @@
 			</effects>
 		</skill_template>
 	
-	<skill_template skill_id="2907" name="STR_ST_bspin_G2" stack="ST_BSPIN_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="30" req_dispel_level="5" cancel_rate="10" delayId="782">
+	<skill_template skill_id="2907" name="STR_ST_bspin_G2" stack="ST_BSPIN_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="300" req_dispel_level="5" cancel_rate="10" delayId="782">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -117081,7 +117081,7 @@
 			</effects>
 		</skill_template>
 	
-	<skill_template skill_id="2908" name="STR_ST_bspin_G3" stack="ST_BSPIN_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="30" req_dispel_level="5" cancel_rate="10" delayId="782">
+	<skill_template skill_id="2908" name="STR_ST_bspin_G3" stack="ST_BSPIN_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="300" req_dispel_level="5" cancel_rate="10" delayId="782">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -117094,7 +117094,7 @@
 			</effects>
 		</skill_template>
 	
-	<skill_template skill_id="2909" name="STR_ST_bspin_G4" stack="ST_BSPIN_G4" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="30" req_dispel_level="5" cancel_rate="10" delayId="782">
+	<skill_template skill_id="2909" name="STR_ST_bspin_G4" stack="ST_BSPIN_G4" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="300" req_dispel_level="5" cancel_rate="10" delayId="782">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -117107,7 +117107,7 @@
 			</effects>
 		</skill_template>
 	
-	<skill_template skill_id="2910" name="STR_ST_bspin_G5" stack="ST_BSPIN_G5" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="30" req_dispel_level="5" cancel_rate="10" delayId="782">
+	<skill_template skill_id="2910" name="STR_ST_bspin_G5" stack="ST_BSPIN_G5" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="300" req_dispel_level="5" cancel_rate="10" delayId="782">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -117120,7 +117120,7 @@
 			</effects>
 		</skill_template>
 	
-	<skill_template skill_id="2911" name="STR_ST_bspin_G6" stack="ST_BSPIN_G6" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="30" req_dispel_level="5" cancel_rate="10" delayId="782">
+	<skill_template skill_id="2911" name="STR_ST_bspin_G6" stack="ST_BSPIN_G6" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="300" req_dispel_level="5" cancel_rate="10" delayId="782">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -117272,14 +117272,14 @@
 			</statboost>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="2927" name="STR_ST_critical1_G1" stack="ST_CRITICAL_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="60" req_dispel_level="2" cancel_rate="20" delayId="788">
+	<skill_template skill_id="2927" name="STR_ST_critical1_G1" stack="ST_CRITICAL_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="600" req_dispel_level="2" cancel_rate="20" delayId="788">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" awr="true"/>
 		<effects>
 			<onetimeboostskillcritical count="1" value="1000" duration2="10000" e="1"/>
 			</effects>
 		</skill_template>
 	
-	<skill_template skill_id="2928" name="STR_ST_critical2_G1" stack="ST_SUPERCRITICAL_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="60" req_dispel_level="2" cancel_rate="20" delayId="788">
+	<skill_template skill_id="2928" name="STR_ST_critical2_G1" stack="ST_SUPERCRITICAL_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="600" req_dispel_level="2" cancel_rate="20" delayId="788">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" awr="true"/>
 		<effects>
 			<onetimeboostskillcritical count="1" value="1000" duration2="15000" e="1"/>
@@ -118052,7 +118052,7 @@
 		</actions>
 		<motion name="Tiger5"/>
 	</skill_template>
-	<skill_template skill_id="3004" name="Slayer's Stance II (Light)" nameId="2282112" delayId="744" stack="AS_ATTACKROAR_L_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="5" activation="ACTIVE" cooldown="120" duration="0" cancel_rate="20">
+	<skill_template skill_id="3004" name="Slayer's Stance II (Light)" nameId="2282112" delayId="744" stack="AS_ATTACKROAR_L_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="5" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="60" delta="2"/>
@@ -118072,7 +118072,7 @@
 		<motion name="DefendRoar" instant_skill="true"/>
 		</skill_template>
 	
-	<skill_template skill_id="3005" name="Slayer's Stance II (Dark)" nameId="2282112" delayId="745" stack="AS_ATTACKROAR_D_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="5" activation="ACTIVE" cooldown="120" duration="0" cancel_rate="20">
+	<skill_template skill_id="3005" name="Slayer's Stance II (Dark)" nameId="2282112" delayId="745" stack="AS_ATTACKROAR_D_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="5" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="60" delta="2"/>
@@ -118668,7 +118668,7 @@
 		</actions>
 		<motion name="Normalshot"/>
 	</skill_template>
-	<skill_template skill_id="3041" name="Luta contra a retirada i" nameId="295056" delayId="237" stack="RA_CRISISCOUNTER_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="60" duration="0" penalty_skill_id="8674" cancel_rate="20" chain_skill_prob="100">
+	<skill_template skill_id="3041" name="Luta contra a retirada i" nameId="295056" delayId="237" stack="RA_CRISISCOUNTER_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" penalty_skill_id="8674" cancel_rate="20" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="6" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="87" delta="0"/>
@@ -118684,7 +118684,7 @@
 		<motion name="BackDash2" instant_skill="true"/>
 		</skill_template>
 	
-	<skill_template skill_id="3042" name="Grenada após tremor" nameId="2280956" delayId="742" stack="RA_SCREAMSHOT_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="5" activation="ACTIVE" cooldown="24" duration="0" ammospeed="40" cancel_rate="10">
+	<skill_template skill_id="3042" name="Grenada após tremor" nameId="2280956" delayId="742" stack="RA_SCREAMSHOT_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="5" activation="ACTIVE" cooldown="240" duration="0" ammospeed="40" cancel_rate="10">
 		<properties first_target="TARGET" target_relation="ENEMY" target_type="ONLYONE" awr="true" target_status="OPENAERIAL STUMBLE STUN SPIN STAGGER"/>
 		<startconditions>
 			<mp value="60" delta="2"/>
@@ -118763,7 +118763,7 @@
 		</actions>
 		<motion name="DownShot"/>
 	</skill_template>
-	<skill_template skill_id="3047" name="STR_SKILL_RA_Light_SnakeBiteTrap_G1" stack="RA_LIGHT_SNAKEBITETRAP_G1" lvl="1" skilltype="MAGICAL" skillsubtype="SUMMONTRAP" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="120" cancel_rate="30" delayId="804">
+	<skill_template skill_id="3047" name="STR_SKILL_RA_Light_SnakeBiteTrap_G1" stack="RA_LIGHT_SNAKEBITETRAP_G1" lvl="1" skilltype="MAGICAL" skillsubtype="SUMMONTRAP" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="1200" cancel_rate="30" delayId="804">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -118774,7 +118774,7 @@
 		<motion name="trapfire"/>
 		</skill_template>
 	
-	<skill_template skill_id="3048" name="STR_SKILL_RA_Light_SnakeBiteTrap_G1" stack="RA_DARK_SNAKEBITETRAP_G1" lvl="1" skilltype="MAGICAL" skillsubtype="SUMMONTRAP" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="120" cancel_rate="30" delayId="804">
+	<skill_template skill_id="3048" name="STR_SKILL_RA_Light_SnakeBiteTrap_G1" stack="RA_DARK_SNAKEBITETRAP_G1" lvl="1" skilltype="MAGICAL" skillsubtype="SUMMONTRAP" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="1200" cancel_rate="30" delayId="804">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -118868,7 +118868,7 @@
 		</actions>
 		<motion name="PowerATK"/>
 	</skill_template>
-	<skill_template skill_id="3054" name="Francento Boss: Valores para impulso mágico, supressão mágica e taxa de ataque crítico." nameId="2280950" delayId="741" stack="KN_DEFENDSHIELD_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="40" duration="0" penalty_skill_id="8769" cancel_rate="20">
+	<skill_template skill_id="3054" name="Francento Boss: Valores para impulso mágico, supressão mágica e taxa de ataque crítico." nameId="2280950" delayId="741" stack="KN_DEFENDSHIELD_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="400" duration="0" penalty_skill_id="8769" cancel_rate="20">
 		<properties first_target="TARGETORME" first_target_range="25" target_relation="MYPARTY" target_type="ONLYONE" target_species="PC"/>
 		<startconditions>
 			<mp value="60" delta="2"/>
@@ -119067,7 +119067,7 @@
 		</actions>
 		<motion name="TripleSnacher"/>
 	</skill_template>
-	<skill_template skill_id="3066" name="Cadeia de sofrimento IV" nameId="295504" delayId="410" stack="PR_PAINLINKS_G5" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="60" duration="2000" cancel_rate="20">
+	<skill_template skill_id="3066" name="Cadeia de sofrimento IV" nameId="295504" delayId="410" stack="PR_PAINLINKS_G5" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="2000" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" revision_distance="12" target_species="PC"/>
 		<startconditions>
 			<mp value="396" delta="8"/>
@@ -119090,7 +119090,7 @@
 		<motion name="debuff"/>
 		</skill_template>
 	
-	<skill_template skill_id="3067" name="Quebrar a memória iv" nameId="295503" delayId="409" stack="PR_MEMORYBLUR_G5" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NONE" activation="ACTIVE" cooldown="60" duration="0" cancel_rate="20">
+	<skill_template skill_id="3067" name="Quebrar a memória iv" nameId="295503" delayId="409" stack="PR_MEMORYBLUR_G5" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
 		<properties first_target="TARGETORME" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="264" delta="5"/>
@@ -119235,7 +119235,7 @@
 		</actions>
 		<motion name="Pointfire3"/>
 	</skill_template>
-	<skill_template skill_id="3076" name="Véu impermeável i" nameId="295119" delayId="394" stack="PR_INVINSIBLEVEILL_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="60" duration="0" cancel_rate="20" chain_skill_prob="100">
+	<skill_template skill_id="3076" name="Véu impermeável i" nameId="295119" delayId="394" stack="PR_INVINSIBLEVEILL_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20" chain_skill_prob="100">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="170" delta="4"/>
@@ -119271,7 +119271,7 @@
 		</actions>
 		<motion name="Lightning2"/>
 	</skill_template>
-	<skill_template skill_id="3078" name="Escudo abençoado i" nameId="283720" delayId="292" stack="PR_BLESSEDSHIELD_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="120" duration="0" cancel_rate="20">
+	<skill_template skill_id="3078" name="Escudo abençoado i" nameId="283720" delayId="292" stack="PR_BLESSEDSHIELD_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="560" delta="0"/>
@@ -119288,7 +119288,7 @@
 		<motion name="alterfire" speed="50" instant_skill="true"/>
 		</skill_template>
 	
-	<skill_template skill_id="3079" name="Você escalou o canhão do espaço-tempo. Agora você pode usar sua habilidade especial." nameId="2280976" delayId="751" stack="PR_HEALLIFE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="120" duration="0" cancel_rate="20">
+	<skill_template skill_id="3079" name="Você escalou o canhão do espaço-tempo. Agora você pode usar sua habilidade especial." nameId="2280976" delayId="751" stack="PR_HEALLIFE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
 		<properties first_target="TARGETORME" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="60" delta="2"/>
@@ -119340,7 +119340,7 @@
 		</actions>
 		<motion name="HarshPain"/>
 	</skill_template>
-	<skill_template skill_id="3082" name="STR_SKILL_PR_OffensiveMode_G1" stack="PR_OFFENSIVEMODE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="60" req_dispel_level="1" cancel_rate="20" delayId="809">
+	<skill_template skill_id="3082" name="STR_SKILL_PR_OffensiveMode_G1" stack="PR_OFFENSIVEMODE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="600" req_dispel_level="1" cancel_rate="20" delayId="809">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="223" delta="10"/>
@@ -119656,7 +119656,7 @@
 		</actions>
 		<motion name="poweratk"/>
 	</skill_template>
-	<skill_template skill_id="3102" name="STR_SKILL_CH_PhoenixStep_G1" stack="CH_PHOENIXSTEP_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" req_dispel_level="1" cancel_rate="20" delayId="812" chain_skill_prob="100">
+	<skill_template skill_id="3102" name="STR_SKILL_CH_PhoenixStep_G1" stack="CH_PHOENIXSTEP_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" req_dispel_level="1" cancel_rate="20" delayId="812" chain_skill_prob="100">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_status="STUN STAGGER STUMBLE SPIN OPENAERIAL"/>
 		<startconditions>
 			<mp value="212" delta="0"/>
@@ -119914,7 +119914,7 @@
 		</actions>
 		<motion name="Pointfire4"/>
 	</skill_template>
-	<skill_template skill_id="3118" name="Implosão mágica iv" nameId="295590" delayId="625" stack="EL_MANAREVERSE_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" dispel_category="ALL" req_dispel_level="1" activation="ACTIVE" cooldown="30" duration="0" cancel_rate="20">
+	<skill_template skill_id="3118" name="Implosão mágica iv" nameId="295590" delayId="625" stack="EL_MANAREVERSE_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" dispel_category="ALL" req_dispel_level="1" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="333" delta="7"/>
@@ -119960,7 +119960,7 @@
 		</actions>
 		<motion name="Hellpain"/>
 	</skill_template>
-	<skill_template skill_id="3121" name="Ignite o céu 6" nameId="295585" delayId="424" stack="EL_ENCHANTMENTBURST_G7" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="30" duration="0" cancel_rate="30">
+	<skill_template skill_id="3121" name="Ignite o céu 6" nameId="295585" delayId="424" stack="EL_ENCHANTMENTBURST_G7" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="30">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="249" delta="5"/>
@@ -119975,7 +119975,7 @@
 		<motion name="debuff"/>
 		</skill_template>
 	
-	<skill_template skill_id="3122" name="Murcha a escuridão i" nameId="295211" delayId="721" stack="EL_ENERVATIONCURSE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="60" duration="0" cancel_rate="20">
+	<skill_template skill_id="3122" name="Murcha a escuridão i" nameId="295211" delayId="721" stack="EL_ENERVATIONCURSE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" revision_distance="12" target_distance="3" effective_range="3" effective_altitude="4"/>
 		<startconditions>
 			<mp value="312" delta="6"/>
@@ -120050,7 +120050,7 @@
 		</actions>
 		<motion name="HellCurse"/>
 	</skill_template>
-	<skill_template skill_id="3126" name="STR_SKILL_EL_DispelExplosion_G1" stack="EL_DISPELEXPLOSION_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="DEBUFF" dispel_category="ALL" activation="ACTIVE" duration="0" cooldown="24" req_dispel_level="1" cancel_rate="20" delayId="818" chain_skill_prob="100">
+	<skill_template skill_id="3126" name="STR_SKILL_EL_DispelExplosion_G1" stack="EL_DISPELEXPLOSION_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="DEBUFF" dispel_category="ALL" activation="ACTIVE" duration="0" cooldown="240" req_dispel_level="1" cancel_rate="20" delayId="818" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="257" delta="5"/>
@@ -120185,7 +120185,7 @@
 		</actions>
 		<motion name="UpperShock"/>
 	</skill_template>
-	<skill_template skill_id="3135" name="Ion Flux Concentration I" nameId="2280715" delayId="734" stack="TH_OVERLOAD_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="90" duration="0" cancel_rate="20">
+	<skill_template skill_id="3135" name="Ion Flux Concentration I" nameId="2280715" delayId="734" stack="TH_OVERLOAD_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="900" duration="0" cancel_rate="20">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<weapon weapon="CHAINBLADE"/>
@@ -120674,7 +120674,7 @@
 	<skill_template skill_id="3171" name="Medo grito i" nameId="283948" delayId="430" stack="CONTROLTEST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="600" duration="1500">
 		<properties first_target="TARGETORME" target_type="AREA" first_target_range="1" target_distance="15" effective_range="15" effective_altitude="4"/>
 	</skill_template>
-	<skill_template skill_id="3172" name="STR_BM_Control_G1" stack="BM_CONTROL_G1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_MENTAL" activation="ACTIVE" duration="2000" cooldown="180" req_dispel_level="5" cancel_rate="30" delayId="430">
+	<skill_template skill_id="3172" name="STR_BM_Control_G1" stack="BM_CONTROL_G1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_MENTAL" activation="ACTIVE" duration="2000" cooldown="1800" req_dispel_level="5" cancel_rate="30" delayId="430">
 		<properties first_target="TARGET" first_target_range="3" target_relation="ENEMY" target_type="AREA" target_maxcount="4" awr="true" revision_distance="12" target_distance="8" effective_dist="8" effective_angle="120" effective_altitude="4"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -120685,7 +120685,7 @@
 			</effects>
 		</skill_template>
 	
-	<skill_template skill_id="3173" name="STR_CH_Control_G1" stack="CH_CONTROL_G1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_MENTAL" activation="ACTIVE" duration="2000" cooldown="300" req_dispel_level="5" cancel_rate="30" delayId="430">
+	<skill_template skill_id="3173" name="STR_CH_Control_G1" stack="CH_CONTROL_G1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_MENTAL" activation="ACTIVE" duration="2000" cooldown="3000" req_dispel_level="5" cancel_rate="30" delayId="430">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="10" revision_distance="12" target_distance="7" effective_range="7" effective_altitude="4"/>
 		<startconditions>
 			<weapon weapon="MACE STAFF"/>
@@ -120739,7 +120739,7 @@
 		</effects>
 		<motion name="heal" speed="120"/>
 	</skill_template>
-	<skill_template skill_id="3178" name="STR_EL_TerrorSpirit_pvp_G1" stack="EL_TERRORSPIRIT_PVP" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_MENTAL" activation="ACTIVE" duration="1500" cooldown="90" req_dispel_level="1" cancel_rate="30" delayId="831">
+	<skill_template skill_id="3178" name="STR_EL_TerrorSpirit_pvp_G1" stack="EL_TERRORSPIRIT_PVP" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_MENTAL" activation="ACTIVE" duration="1500" cooldown="900" req_dispel_level="1" cancel_rate="30" delayId="831">
 		<properties first_target="ME" first_target_range="1" target_relation="ENEMY" target_type="AREA" target_maxcount="6" target_distance="15" effective_range="15" effective_altitude="4"/>
 		<startconditions>
 			<mp value="19" delta="0"/>
@@ -120787,7 +120787,7 @@
 		</effects>
 	</skill_template>
 	
-	<skill_template skill_id="3181" name="STR_CH_Control_pvp_G1" stack="CH_CONTROL_PVP" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_MENTAL" activation="ACTIVE" duration="2000" cooldown="180" req_dispel_level="5" cancel_rate="30" delayId="834">
+	<skill_template skill_id="3181" name="STR_CH_Control_pvp_G1" stack="CH_CONTROL_PVP" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_MENTAL" activation="ACTIVE" duration="2000" cooldown="1800" req_dispel_level="5" cancel_rate="30" delayId="834">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="3" revision_distance="12" target_distance="5" effective_range="5" effective_altitude="4"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -120849,7 +120849,7 @@
 			<mpuse value="228" delta="3"/>
 		</actions>
 	</skill_template>
-	<skill_template skill_id="3186" name="STR_EL_HellFlame_G1" stack="EL_HELLFLAME_G1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="2000" cooldown="60" req_dispel_level="5" cancel_rate="30" delayId="840">
+	<skill_template skill_id="3186" name="STR_EL_HellFlame_G1" stack="EL_HELLFLAME_G1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="2000" cooldown="600" req_dispel_level="5" cancel_rate="30" delayId="840">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="12" revision_distance="12" target_distance="10" effective_range="10" effective_altitude="4"/>
 		<startconditions>
 			<mp value="228" delta="3"/>
@@ -124084,7 +124084,7 @@
 		</actions>
 		<motion name="Normalshot"/>
 	</skill_template>
-	<skill_template skill_id="3436" name="STR_AS_AttackRoar_forte_G1" stack="AS_ATTACKROAR_L_FORTE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" req_dispel_level="5" cancel_rate="20" delayId="944">
+	<skill_template skill_id="3436" name="STR_AS_AttackRoar_forte_G1" stack="AS_ATTACKROAR_L_FORTE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" req_dispel_level="5" cancel_rate="20" delayId="944">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="58" delta="2"/>
@@ -124105,7 +124105,7 @@
 		<motion name="DefendRoar"/>
 		</skill_template>
 	
-	<skill_template skill_id="3437" name="STR_AS_AttackRoar_forte_G2" stack="AS_ATTACKROAR_L_FORTE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" req_dispel_level="5" cancel_rate="20" delayId="944">
+	<skill_template skill_id="3437" name="STR_AS_AttackRoar_forte_G2" stack="AS_ATTACKROAR_L_FORTE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" req_dispel_level="5" cancel_rate="20" delayId="944">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="60" delta="2"/>
@@ -124126,7 +124126,7 @@
 		<motion name="DefendRoar"/>
 		</skill_template>
 	
-	<skill_template skill_id="3438" name="STR_AS_AttackRoar_forte_G1" stack="AS_ATTACKROAR_D_FORTE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" req_dispel_level="5" cancel_rate="20" delayId="945">
+	<skill_template skill_id="3438" name="STR_AS_AttackRoar_forte_G1" stack="AS_ATTACKROAR_D_FORTE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" req_dispel_level="5" cancel_rate="20" delayId="945">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="58" delta="2"/>
@@ -124147,7 +124147,7 @@
 		<motion name="DefendRoar"/>
 		</skill_template>
 	
-	<skill_template skill_id="3439" name="STR_AS_AttackRoar_forte_G2" stack="AS_ATTACKROAR_D_FORTE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" req_dispel_level="5" cancel_rate="20" delayId="945">
+	<skill_template skill_id="3439" name="STR_AS_AttackRoar_forte_G2" stack="AS_ATTACKROAR_D_FORTE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" req_dispel_level="5" cancel_rate="20" delayId="945">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="60" delta="2"/>
@@ -124246,7 +124246,7 @@
 		</actions>
 		<motion name="FiBuff"/>
 	</skill_template>
-	<skill_template skill_id="3446" name="STR_SKILL_EL_TerrorSpirit_forte_G1" stack="EL_TERRORSPIRIT_FORTE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_MENTAL" activation="ACTIVE" duration="1000" cooldown="60" req_dispel_level="1" cancel_rate="30" delayId="947">
+	<skill_template skill_id="3446" name="STR_SKILL_EL_TerrorSpirit_forte_G1" stack="EL_TERRORSPIRIT_FORTE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_MENTAL" activation="ACTIVE" duration="1000" cooldown="600" req_dispel_level="1" cancel_rate="30" delayId="947">
 		<properties first_target="ME" first_target_range="1" target_relation="ENEMY" target_type="AREA" target_maxcount="6" target_distance="15" effective_range="15" effective_altitude="4"/>
 		<startconditions>
 			<mp value="520" delta="0"/>
@@ -124315,7 +124315,7 @@
 		</actions>
 		<motion name="debuff"/>
 	</skill_template>
-	<skill_template skill_id="3450" name="STR_SKILL_WI_ManaBoost_forte_G1" stack="WI_MANABOOST_FORTE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="180" req_dispel_level="1" cancel_rate="20" delayId="950">
+	<skill_template skill_id="3450" name="STR_SKILL_WI_ManaBoost_forte_G1" stack="WI_MANABOOST_FORTE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1800" req_dispel_level="1" cancel_rate="20" delayId="950">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="734" delta="15"/>
@@ -124408,7 +124408,7 @@
 		</actions>
 		<motion name="prheal1"/>
 	</skill_template>
-	<skill_template skill_id="3455" name="STR_SKILL_PR_OffensiveMode_forte_G1" stack="PR_OFFENSIVEMODE_FORTE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="60" req_dispel_level="1" cancel_rate="20" delayId="952">
+	<skill_template skill_id="3455" name="STR_SKILL_PR_OffensiveMode_forte_G1" stack="PR_OFFENSIVEMODE_FORTE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="600" req_dispel_level="1" cancel_rate="20" delayId="952">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="223" delta="10"/>
@@ -125284,7 +125284,7 @@
 		</actions>
 		<motion name="SnatchATK"/>
 	</skill_template>
-	<skill_template skill_id="3533" name="Provocando golpe severo iv" nameId="295387" delayId="210" stack="KN_BRAINBREAK_G5" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="12" duration="0" cancel_rate="10">
+	<skill_template skill_id="3533" name="Provocando golpe severo iv" nameId="295387" delayId="210" stack="KN_BRAINBREAK_G5" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="120" duration="0" cancel_rate="10">
 		<properties first_target="TARGET" first_target_range="1" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<weapon weapon="GREATSWORD DAGGER MACE POLEARM STAFF SWORD"/>
@@ -125718,7 +125718,7 @@
 		</actions>
 		<motion name="Normalshot"/>
 	</skill_template>
-	<skill_template skill_id="3562" name="Fleshcutter Arrow II" nameId="292173" delayId="312" stack="RA_WOUNDINGARROW_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="24" duration="0" ammospeed="40" cancel_rate="10" chain_skill_prob="100">
+	<skill_template skill_id="3562" name="Fleshcutter Arrow II" nameId="292173" delayId="312" stack="RA_WOUNDINGARROW_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="240" duration="0" ammospeed="40" cancel_rate="10" chain_skill_prob="100">
 		<properties first_target="TARGET" target_relation="ENEMY" target_type="ONLYONE" awr="true" target_maxcount="1"/>
 		<startconditions>
 			<mp value="89" delta="0"/>
@@ -125798,7 +125798,7 @@
 		</actions>
 		<motion name="Normalshot"/>
 	</skill_template>
-	<skill_template skill_id="3570" name="Whisper calmante III" nameId="287216" delayId="265" stack="RA_BREEZEOFCALM_G4" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NONE" activation="ACTIVE" cooldown="120" duration="0" cancel_rate="20">
+	<skill_template skill_id="3570" name="Whisper calmante III" nameId="287216" delayId="265" stack="RA_BREEZEOFCALM_G4" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NONE" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
 		<properties first_target="TARGETORME" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="92" delta="0"/>
@@ -126236,7 +126236,7 @@
 		</actions>
 		<motion name="alterfire"/>
 	</skill_template>
-	<skill_template skill_id="3598" name="Implosão mágica iv" nameId="295590" delayId="625" stack="EL_MANAREVERSE_G6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" dispel_category="ALL" req_dispel_level="1" activation="ACTIVE" cooldown="30" duration="0" cancel_rate="20">
+	<skill_template skill_id="3598" name="Implosão mágica iv" nameId="295590" delayId="625" stack="EL_MANAREVERSE_G6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" dispel_category="ALL" req_dispel_level="1" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="355" delta="7"/>
@@ -126831,7 +126831,7 @@
 		</actions>
 		<motion name="elsummon2"/>
 	</skill_template>
-	<skill_template skill_id="3635" name="Caminha de gelo iv" nameId="295561" delayId="572" stack="WI_LIGHT_FROSTPILLAR_G5" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="60" duration="0" cancel_rate="30">
+	<skill_template skill_id="3635" name="Caminha de gelo iv" nameId="295561" delayId="572" stack="WI_LIGHT_FROSTPILLAR_G5" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="30">
 		<properties first_target="POINT" first_target_range="25" target_relation="ENEMY" target_type="POINT" target_maxcount="1"/>
 		<startconditions>
 			<mp value="328" delta="6"/>
@@ -126845,7 +126845,7 @@
 		<motion name="Pointfire2"/>
 		</skill_template>
 	
-	<skill_template skill_id="3636" name="Caminha de gelo iv" nameId="295562" delayId="572" stack="WI_DARK_FROSTPILLAR_G5" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="60" duration="0" cancel_rate="30">
+	<skill_template skill_id="3636" name="Caminha de gelo iv" nameId="295562" delayId="572" stack="WI_DARK_FROSTPILLAR_G5" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="30">
 		<properties first_target="POINT" first_target_range="25" target_relation="ENEMY" target_type="POINT" target_maxcount="1"/>
 		<startconditions>
 			<mp value="328" delta="6"/>
@@ -127107,7 +127107,7 @@
 		</actions>
 		<motion name="alterfire"/>
 	</skill_template>
-	<skill_template skill_id="3653" name="Cadeia de sofrimento IV" nameId="295504" delayId="410" stack="PR_PAINLINKS_G6" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="60" duration="2000" cancel_rate="20">
+	<skill_template skill_id="3653" name="Cadeia de sofrimento IV" nameId="295504" delayId="410" stack="PR_PAINLINKS_G6" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="2000" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" revision_distance="12" target_species="PC"/>
 		<startconditions>
 			<mp value="412" delta="8"/>
@@ -127243,7 +127243,7 @@
 		</actions>
 		<motion name="alterfire" instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="3661" name="SOMPAÇÃO Santo Servo IV" nameId="287180" delayId="425" stack="PR_LIGHT_HOLYSERVENT_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="30" duration="0" cancel_rate="20">
+	<skill_template skill_id="3661" name="SOMPAÇÃO Santo Servo IV" nameId="287180" delayId="425" stack="PR_LIGHT_HOLYSERVENT_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="171" delta="4"/>
@@ -127258,7 +127258,7 @@
 		<motion name="alterfire" speed="50" instant_skill="true"/>
 		</skill_template>
 	
-	<skill_template skill_id="3662" name="SOMPAÇÃO Santo Servo IV" nameId="287152" delayId="425" stack="PR_DARK_HOLYSERVENT_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="30" duration="0" cancel_rate="20">
+	<skill_template skill_id="3662" name="SOMPAÇÃO Santo Servo IV" nameId="287152" delayId="425" stack="PR_DARK_HOLYSERVENT_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="171" delta="4"/>
@@ -127273,7 +127273,7 @@
 		<motion name="alterfire" speed="50" instant_skill="true"/>
 		</skill_template>
 	
-	<skill_template skill_id="3663" name="Invocar o servo de cura II" nameId="295129" delayId="396" stack="PR_LIGHT_HEALINGSERVENT_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="60" duration="1000" cancel_rate="20">
+	<skill_template skill_id="3663" name="Invocar o servo de cura II" nameId="295129" delayId="396" stack="PR_LIGHT_HEALINGSERVENT_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="600" duration="1000" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="271" delta="2"/>
@@ -127291,7 +127291,7 @@
 		<motion name="alterfire"/>
 		</skill_template>
 	
-	<skill_template skill_id="3664" name="Invocar o servo de cura II" nameId="295130" delayId="397" stack="PR_DARK_HEALINGSERVENT_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="60" duration="1000" cancel_rate="20">
+	<skill_template skill_id="3664" name="Invocar o servo de cura II" nameId="295130" delayId="397" stack="PR_DARK_HEALINGSERVENT_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="600" duration="1000" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="271" delta="2"/>
@@ -127419,7 +127419,7 @@
 		</actions>
 		<motion name="prheal1"/>
 	</skill_template>
-	<skill_template skill_id="3671" name="Escudo abençoado i" nameId="283720" delayId="292" stack="PR_BLESSEDSHIELD_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="120" duration="0" cancel_rate="20">
+	<skill_template skill_id="3671" name="Escudo abençoado i" nameId="283720" delayId="292" stack="PR_BLESSEDSHIELD_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="570" delta="0"/>
@@ -127465,7 +127465,7 @@
 		</actions>
 		<motion name="prHeal1"/>
 	</skill_template>
-	<skill_template skill_id="3674" name="Palavra de destruição II" nameId="296833" delayId="463" stack="PR_GODSVOICE_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="1800" duration="0" ammospeed="30" cancel_rate="10">
+	<skill_template skill_id="3674" name="Palavra de destruição II" nameId="296833" delayId="463" stack="PR_GODSVOICE_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="18000" duration="0" ammospeed="30" cancel_rate="10">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="12" target_distance="20" effective_range="20" effective_altitude="4"/>
 		<startconditions>
 			<dp value="4000"/>
@@ -127813,7 +127813,7 @@
 		</actions>
 		<motion name="FrontDash"/>
 	</skill_template>
-	<skill_template skill_id="3698" name="Ion Flux Concentration I" nameId="2280715" delayId="734" stack="TH_OVERLOAD_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="90" duration="0" cancel_rate="20">
+	<skill_template skill_id="3698" name="Ion Flux Concentration I" nameId="2280715" delayId="734" stack="TH_OVERLOAD_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="900" duration="0" cancel_rate="20">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<weapon weapon="CHAINBLADE"/>
@@ -128385,7 +128385,7 @@
 			<stun duration2="1500" effectid="20000" e="2" accmod2="2000" element="WIND" preeffect="1" hoptype="SKILLLV"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="3742" name="STR_ST_bspin_G7" stack="ST_BSPIN_G7" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="30" req_dispel_level="5" cancel_rate="10" delayId="782">
+	<skill_template skill_id="3742" name="STR_ST_bspin_G7" stack="ST_BSPIN_G7" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="300" req_dispel_level="5" cancel_rate="10" delayId="782">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -128863,7 +128863,7 @@
 		</actions>
 		<motion name="breakATK"/>
 	</skill_template>
-	<skill_template skill_id="3778" name="STR_SKILL_RA_SealingArrow_G1" stack="RA_SEALINGARROW_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="30" req_dispel_level="1" cancel_rate="10" delayId="902">
+	<skill_template skill_id="3778" name="STR_SKILL_RA_SealingArrow_G1" stack="RA_SEALINGARROW_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="300" req_dispel_level="1" cancel_rate="10" delayId="902">
 		<properties first_target="TARGET" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<mp value="199" delta="3"/>
@@ -129306,7 +129306,7 @@
 		</actions>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="3808" name="STR_SKILL_PR_RaiseRepentance_G1" stack="PR_RAISEREPENTANCE_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="8" req_dispel_level="1" cancel_rate="10" delayId="930">
+	<skill_template skill_id="3808" name="STR_SKILL_PR_RaiseRepentance_G1" stack="PR_RAISEREPENTANCE_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="80" req_dispel_level="1" cancel_rate="10" delayId="930">
 		<properties first_target="TARGET" first_target_range="1" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<mp value="117" delta="1"/>
@@ -129434,7 +129434,7 @@
 			<skillatk e="1" value="673" delta="12" hoptype="DAMAGE"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="3817" name="STR_SKILL_PR_SagesWisdom_new_G1" stack="PR_SAGESWISDOM_NEW_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="180" req_dispel_level="1" cancel_rate="20" delayId="433">
+	<skill_template skill_id="3817" name="STR_SKILL_PR_SagesWisdom_new_G1" stack="PR_SAGESWISDOM_NEW_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1800" req_dispel_level="1" cancel_rate="20" delayId="433">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="187" delta="0"/>
@@ -129572,7 +129572,7 @@
 		</effects>
 		<motion name="THBurst2"/>
 	</skill_template>
-	<skill_template skill_id="3827" name="STR_SKILL_CH_PhoenixStep_G1" stack="CH_PHOENIXSTEP_NEW_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" req_dispel_level="1" cancel_rate="20" delayId="812" chain_skill_prob="100">
+	<skill_template skill_id="3827" name="STR_SKILL_CH_PhoenixStep_G1" stack="CH_PHOENIXSTEP_NEW_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" req_dispel_level="1" cancel_rate="20" delayId="812" chain_skill_prob="100">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_status="STUN STAGGER STUMBLE SPIN OPENAERIAL"/>
 		<startconditions>
 			<mp value="212" delta="0"/>
@@ -129589,7 +129589,7 @@
 			</actions>
 		</skill_template>
 	
-	<skill_template skill_id="3828" name="STR_SKILL_WI_ArcaneBoost_G1" stack="WI_ARCANEBOOST_NEW_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="30" req_dispel_level="1" cancel_rate="20" delayId="595">
+	<skill_template skill_id="3828" name="STR_SKILL_WI_ArcaneBoost_G1" stack="WI_ARCANEBOOST_NEW_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="300" req_dispel_level="1" cancel_rate="20" delayId="595">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="229" delta="0"/>
@@ -129605,7 +129605,7 @@
 		<motion name="Buff"/>
 		</skill_template>
 	
-	<skill_template skill_id="3829" name="STR_SKILL_SC_TrueShotMind_G1" stack="SC_TRUESHOTMIND_NEW_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1" req_dispel_level="1" cancel_rate="20" delayId="718">
+	<skill_template skill_id="3829" name="STR_SKILL_SC_TrueShotMind_G1" stack="SC_TRUESHOTMIND_NEW_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="10" req_dispel_level="1" cancel_rate="20" delayId="718">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="199" delta="0"/>
@@ -129693,7 +129693,7 @@
 		</actions>
 		<motion name="PhBurst" speed="70"/>
 	</skill_template>
-	<skill_template skill_id="3834" name="STR_SKILL_EL_TerrorSpirit_G2" stack="EL_TERRORSPIRIT_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_MENTAL" activation="ACTIVE" duration="1500" cooldown="60" req_dispel_level="1" cancel_rate="30" delayId="430">
+	<skill_template skill_id="3834" name="STR_SKILL_EL_TerrorSpirit_G2" stack="EL_TERRORSPIRIT_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_MENTAL" activation="ACTIVE" duration="1500" cooldown="600" req_dispel_level="1" cancel_rate="30" delayId="430">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="6" target_distance="15" effective_range="15" effective_altitude="4"/>
 		<startconditions>
 			<mp value="525" delta="0"/>
@@ -129714,7 +129714,7 @@
 		<motion name="debuff"/>
 		</skill_template>
 	
-	<skill_template skill_id="3835" name="STR_SKILL_EL_TerrorSpirit_forte_G2" stack="EL_TERRORSPIRIT_FORTE_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_MENTAL" activation="ACTIVE" duration="1000" cooldown="60" req_dispel_level="1" cancel_rate="30" delayId="947">
+	<skill_template skill_id="3835" name="STR_SKILL_EL_TerrorSpirit_forte_G2" stack="EL_TERRORSPIRIT_FORTE_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_MENTAL" activation="ACTIVE" duration="1000" cooldown="600" req_dispel_level="1" cancel_rate="30" delayId="947">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="6" target_distance="15" effective_range="15" effective_altitude="4"/>
 		<startconditions>
 			<mp value="525" delta="0"/>
@@ -129749,7 +129749,7 @@
 		</actions>
 		<motion name="RapidShot"/>
 	</skill_template>
-	<skill_template skill_id="3837" name="STR_SKILL_SC_TrueShotMind_G2" stack="SC_TRUESHOTMIND_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1" req_dispel_level="1" cancel_rate="20" delayId="718">
+	<skill_template skill_id="3837" name="STR_SKILL_SC_TrueShotMind_G2" stack="SC_TRUESHOTMIND_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="10" req_dispel_level="1" cancel_rate="20" delayId="718">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="212" delta="0"/>
@@ -129811,7 +129811,7 @@
 		</actions>
 		<motion name="THcloseaerial"/>
 	</skill_template>
-	<skill_template skill_id="3841" name="STR_ST_bspin_G8" stack="ST_BSPIN_AD_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="30" req_dispel_level="5" cancel_rate="10" delayId="782">
+	<skill_template skill_id="3841" name="STR_ST_bspin_G8" stack="ST_BSPIN_AD_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="300" req_dispel_level="5" cancel_rate="10" delayId="782">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -129903,7 +129903,7 @@
 		</actions>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="3847" name="STR_SKILL_PR_HealingGrace_G2" stack="PR_HEALINGGRACE_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" req_dispel_level="1" cancel_rate="20" delayId="11">
+	<skill_template skill_id="3847" name="STR_SKILL_PR_HealingGrace_G2" stack="PR_HEALINGGRACE_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" req_dispel_level="1" cancel_rate="20" delayId="11">
 		<properties first_target="ME" target_relation="MYPARTY" target_type="PARTY" target_maxcount="6" target_distance="25" effective_range="25"/>
 		<startconditions>
 			<mp value="235" delta="5"/>
@@ -131317,7 +131317,7 @@
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<provoker e="1" skill_id="9134" provoke_target="OPPONENT" effectid="125441" noresist="true" hittype="NMLATK" element="WIND" hoptype="SKILLLV" hopb="230" hittypeprob2="200"/>
+			<provoker e="1" skill_id="9134" provoke_target="OPPONENT" effectid="125441" noresist="true" hittype="NMLATK" hittypeprob2="20" element="WIND" hoptype="SKILLLV" hopb="230"/>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="3943" name="Crit. dano Bonus" nameId="2286715" delayId="63" stack="P_CRITICALDAMAGEBOOST" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -131389,7 +131389,7 @@
 			<mpuse value="203" delta="0"/>
 		</actions>
 	</skill_template>
-	<skill_template skill_id="3948" name="STR_AS_Re_Stigma_ShadowWalk_G1" stack="AS_RE_STIGMA_SHADOWWALK_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="EXTRA" activation="ACTIVE" duration="0" cooldown="60" cancel_rate="20" delayId="345" penalty_skill_id="9139">
+	<skill_template skill_id="3948" name="STR_AS_Re_Stigma_ShadowWalk_G1" stack="AS_RE_STIGMA_SHADOWWALK_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="EXTRA" activation="ACTIVE" duration="0" cooldown="600" cancel_rate="20" delayId="345" penalty_skill_id="9139">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="124" delta="0"/>
@@ -131518,7 +131518,7 @@
 		</actions>
 		<motion name="normalfire2"/>
 	</skill_template>
-	<skill_template skill_id="3957" name="STR_AS_Re_AttackRoar_G1" stack="AS_RE_ATTACKROAR_L_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="90" req_dispel_level="5" cancel_rate="20" delayId="744">
+	<skill_template skill_id="3957" name="STR_AS_Re_AttackRoar_G1" stack="AS_RE_ATTACKROAR_L_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="900" req_dispel_level="5" cancel_rate="20" delayId="744">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="60" delta="2"/>
@@ -131541,7 +131541,7 @@
 		<motion name="DefendRoar"/>
 		</skill_template>
 	
-	<skill_template skill_id="3958" name="STR_AS_Re_AttackRoar_G1" stack="AS_RE_ATTACKROAR_D_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="90" req_dispel_level="5" cancel_rate="20" delayId="745">
+	<skill_template skill_id="3958" name="STR_AS_Re_AttackRoar_G1" stack="AS_RE_ATTACKROAR_D_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="900" req_dispel_level="5" cancel_rate="20" delayId="745">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="60" delta="2"/>
@@ -131564,7 +131564,7 @@
 		<motion name="DefendRoar"/>
 		</skill_template>
 	
-	<skill_template skill_id="3959" name="STR_AS_Re_AttackRoar_forte_G1" stack="AS_RE_ATTACKROAR_L_FORTE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="90" req_dispel_level="5" cancel_rate="20" delayId="944">
+	<skill_template skill_id="3959" name="STR_AS_Re_AttackRoar_forte_G1" stack="AS_RE_ATTACKROAR_L_FORTE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="900" req_dispel_level="5" cancel_rate="20" delayId="944">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="60" delta="2"/>
@@ -131587,7 +131587,7 @@
 		<motion name="DefendRoar"/>
 		</skill_template>
 	
-	<skill_template skill_id="3960" name="STR_AS_Re_AttackRoar_forte_G1" stack="AS_RE_ATTACKROAR_D_FORTE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="90" req_dispel_level="5" cancel_rate="20" delayId="945">
+	<skill_template skill_id="3960" name="STR_AS_Re_AttackRoar_forte_G1" stack="AS_RE_ATTACKROAR_D_FORTE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="900" req_dispel_level="5" cancel_rate="20" delayId="945">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="60" delta="2"/>
@@ -131669,7 +131669,7 @@
 			<mpuse value="115" delta="0"/>
 		</actions>
 	</skill_template>
-	<skill_template skill_id="3964" name="STR_New_AS_Re_AttackRoar_G1" stack="NEW_AS_RE_ATTACKROAR_L_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="90" req_dispel_level="5" cancel_rate="20" delayId="744">
+	<skill_template skill_id="3964" name="STR_New_AS_Re_AttackRoar_G1" stack="NEW_AS_RE_ATTACKROAR_L_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="900" req_dispel_level="5" cancel_rate="20" delayId="744">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="60" delta="2"/>
@@ -131692,7 +131692,7 @@
 		<motion name="DefendRoar"/>
 		</skill_template>
 	
-	<skill_template skill_id="3965" name="STR_New_AS_Re_AttackRoar_G1" stack="NEW_AS_RE_ATTACKROAR_D_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="90" req_dispel_level="5" cancel_rate="20" delayId="745">
+	<skill_template skill_id="3965" name="STR_New_AS_Re_AttackRoar_G1" stack="NEW_AS_RE_ATTACKROAR_D_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="900" req_dispel_level="5" cancel_rate="20" delayId="745">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="60" delta="2"/>
@@ -131715,7 +131715,7 @@
 		<motion name="DefendRoar"/>
 		</skill_template>
 	
-	<skill_template skill_id="3966" name="STR_New_AS_Re_AttackRoar_forte_G1" stack="NEW_AS_RE_ATTACKROAR_L_FORTE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="90" req_dispel_level="5" cancel_rate="20" delayId="944">
+	<skill_template skill_id="3966" name="STR_New_AS_Re_AttackRoar_forte_G1" stack="NEW_AS_RE_ATTACKROAR_L_FORTE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="900" req_dispel_level="5" cancel_rate="20" delayId="944">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="60" delta="2"/>
@@ -131738,7 +131738,7 @@
 		<motion name="DefendRoar"/>
 		</skill_template>
 	
-	<skill_template skill_id="3967" name="STR_New_AS_Re_AttackRoar_forte_G1" stack="NEW_AS_RE_ATTACKROAR_D_FORTE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="90" req_dispel_level="5" cancel_rate="20" delayId="945">
+	<skill_template skill_id="3967" name="STR_New_AS_Re_AttackRoar_forte_G1" stack="NEW_AS_RE_ATTACKROAR_D_FORTE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="900" req_dispel_level="5" cancel_rate="20" delayId="945">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="60" delta="2"/>
@@ -131963,7 +131963,7 @@
 		</effects>
 		<motion name="THBurst2"/>
 	</skill_template>
-	<skill_template skill_id="3985" name="STR_ST_flyingkick_AD_G1" stack="ST_FLYINGKICK_AD_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="12" req_dispel_level="1" cancel_rate="10" delayId="768" chain_skill_prob="100">
+	<skill_template skill_id="3985" name="STR_ST_flyingkick_AD_G1" stack="ST_FLYINGKICK_AD_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="120" req_dispel_level="1" cancel_rate="10" delayId="768" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<chain category="ST_CHAINB_1TH" time="2000"/>
@@ -135211,7 +135211,7 @@
 		</effects>
 		<motion name="Thparry"/>
 	</skill_template>
-	<skill_template skill_id="4233" name="STR_TH_Overload_AD_G1" stack="TH_OVERLOAD_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="60" req_dispel_level="1" cancel_rate="20" delayId="734">
+	<skill_template skill_id="4233" name="STR_TH_Overload_AD_G1" stack="TH_OVERLOAD_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="600" req_dispel_level="1" cancel_rate="20" delayId="734">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<weapon weapon="CHAINBLADE"/>
@@ -135245,7 +135245,7 @@
 		</effects>
 		<motion name="THBurst2"/>
 	</skill_template>
-	<skill_template skill_id="4235" name="STR_ST_SuperCritical_AD_G1" stack="ST_SUPERCRITICAL_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="60" req_dispel_level="2" cancel_rate="20" delayId="788">
+	<skill_template skill_id="4235" name="STR_ST_SuperCritical_AD_G1" stack="ST_SUPERCRITICAL_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="600" req_dispel_level="2" cancel_rate="20" delayId="788">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" awr="true"/>
 		<effects>
 			<onetimeboostskillcritical count="1" value="1000" duration2="10000" e="1"/>
@@ -135445,7 +135445,7 @@
 		</actions>
 		<motion name="Pointfire3" speed="50"/>
 	</skill_template>
-	<skill_template skill_id="4249" name="STR_SKILL_WI_ManaBoost_AD_G1" stack="WI_MANABOOST_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" req_dispel_level="1" cancel_rate="20" delayId="554">
+	<skill_template skill_id="4249" name="STR_SKILL_WI_ManaBoost_AD_G1" stack="WI_MANABOOST_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" req_dispel_level="1" cancel_rate="20" delayId="554">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="734" delta="15"/>
@@ -137849,7 +137849,7 @@
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4432" name="STR_RB_Execution_G1" stack="RB_EXECUTION_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="30" cancel_rate="20" delayId="1908">
+	<skill_template skill_id="4432" name="STR_RB_Execution_G1" stack="RB_EXECUTION_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="300" cancel_rate="20" delayId="1908">
 		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<hp value="5" delta="0" ratio="true"/>
@@ -137864,7 +137864,7 @@
 			</actions>
 		</skill_template>
 	
-	<skill_template skill_id="4433" name="STR_RB_Execution_G2" stack="RB_EXECUTION_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="30" cancel_rate="20" delayId="1908">
+	<skill_template skill_id="4433" name="STR_RB_Execution_G2" stack="RB_EXECUTION_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="300" cancel_rate="20" delayId="1908">
 		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<hp value="10" delta="0" ratio="true"/>
@@ -137879,7 +137879,7 @@
 			</actions>
 		</skill_template>
 	
-	<skill_template skill_id="4434" name="STR_RB_Execution_G3" stack="RB_EXECUTION_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="30" cancel_rate="20" delayId="1908">
+	<skill_template skill_id="4434" name="STR_RB_Execution_G3" stack="RB_EXECUTION_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" dispel_category="NONE" activation="ACTIVE" duration="0" cooldown="300" cancel_rate="20" delayId="1908">
 		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<hp value="15" delta="0" ratio="true"/>
@@ -137942,7 +137942,7 @@
 			</actions>
 		</skill_template>
 	
-	<skill_template skill_id="4440" name="STR_RB_Isolation_G1" stack="RB_ISOLATION_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="MAINTAIN" duration="0" cooldown="30" req_dispel_level="1" cancel_rate="10" delayId="1911">
+	<skill_template skill_id="4440" name="STR_RB_Isolation_G1" stack="RB_ISOLATION_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="MAINTAIN" duration="0" cooldown="300" req_dispel_level="1" cancel_rate="10" delayId="1911">
 		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<mp value="76" delta="0"/>
@@ -138548,7 +138548,7 @@
 		</actions>
 		<motion name="PhBurst" speed="70"/>
 	</skill_template>
-	<skill_template skill_id="4499" name="STR_SKILL_EL_TerrorSpirit_G2" stack="EL_TERRORSPIRIT_AD_G1_EVT" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_MENTAL" activation="ACTIVE" duration="1500" cooldown="60" req_dispel_level="1" cancel_rate="30" delayId="430">
+	<skill_template skill_id="4499" name="STR_SKILL_EL_TerrorSpirit_G2" stack="EL_TERRORSPIRIT_AD_G1_EVT" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_MENTAL" activation="ACTIVE" duration="1500" cooldown="600" req_dispel_level="1" cancel_rate="30" delayId="430">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="6" target_distance="15" effective_range="15" effective_altitude="4"/>
 		<startconditions>
 			<mp value="525" delta="0"/>
@@ -138583,7 +138583,7 @@
 		</actions>
 		<motion name="RapidShot"/>
 	</skill_template>
-	<skill_template skill_id="4501" name="STR_SKILL_SC_TrueShotMind_G2" stack="SC_TRUESHOTMIND_AD_G1_EVT" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1" req_dispel_level="1" cancel_rate="20" delayId="718">
+	<skill_template skill_id="4501" name="STR_SKILL_SC_TrueShotMind_G2" stack="SC_TRUESHOTMIND_AD_G1_EVT" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="10" req_dispel_level="1" cancel_rate="20" delayId="718">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="212" delta="0"/>
@@ -138645,7 +138645,7 @@
 		</actions>
 		<motion name="THcloseaerial"/>
 	</skill_template>
-	<skill_template skill_id="4505" name="STR_ST_bspin_G8" stack="ST_BSPIN_AD_G1_EVT" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="30" req_dispel_level="5" cancel_rate="10" delayId="782">
+	<skill_template skill_id="4505" name="STR_ST_bspin_G8" stack="ST_BSPIN_AD_G1_EVT" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" duration="0" cooldown="300" req_dispel_level="5" cancel_rate="10" delayId="782">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -138708,7 +138708,7 @@
 		</actions>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="4509" name="STR_SKILL_PR_HealingGrace_G2" stack="PR_HEALINGGRACE_AD_G1_EVT" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" req_dispel_level="1" cancel_rate="20" delayId="11">
+	<skill_template skill_id="4509" name="STR_SKILL_PR_HealingGrace_G2" stack="PR_HEALINGGRACE_AD_G1_EVT" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" req_dispel_level="1" cancel_rate="20" delayId="11">
 		<properties first_target="ME" target_relation="MYPARTY" target_type="PARTY" target_maxcount="6" target_distance="25" effective_range="25"/>
 		<startconditions>
 			<mp value="235" delta="5"/>
@@ -138846,7 +138846,7 @@
 		</actions>
 		<motion name="PhBurst"/>
 	</skill_template>
-	<skill_template skill_id="4517" name="STR_TH_Overload_AD_G1" stack="TH_OVERLOAD_AD_G1_EVT" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="60" req_dispel_level="1" cancel_rate="20" delayId="734">
+	<skill_template skill_id="4517" name="STR_TH_Overload_AD_G1" stack="TH_OVERLOAD_AD_G1_EVT" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="600" req_dispel_level="1" cancel_rate="20" delayId="734">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<weapon weapon="CHAINBLADE"/>
@@ -138863,7 +138863,7 @@
 		<motion name="THBurst2"/>
 		</skill_template>
 	
-	<skill_template skill_id="4518" name="STR_ST_SuperCritical_AD_G1" stack="ST_SUPERCRITICAL_AD_G1_EVT" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="60" req_dispel_level="2" cancel_rate="20" delayId="788">
+	<skill_template skill_id="4518" name="STR_ST_SuperCritical_AD_G1" stack="ST_SUPERCRITICAL_AD_G1_EVT" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="600" req_dispel_level="2" cancel_rate="20" delayId="788">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" awr="true"/>
 		<effects>
 			<onetimeboostskillcritical count="1" value="1000" duration2="10000" e="1"/>
@@ -139037,7 +139037,7 @@
 		</actions>
 		<motion name="Pointfire3" speed="50"/>
 	</skill_template>
-	<skill_template skill_id="4530" name="STR_SKILL_WI_ManaBoost_AD_G1" stack="WI_MANABOOST_AD_G1_EVT" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" req_dispel_level="1" cancel_rate="20" delayId="554">
+	<skill_template skill_id="4530" name="STR_SKILL_WI_ManaBoost_AD_G1" stack="WI_MANABOOST_AD_G1_EVT" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" req_dispel_level="1" cancel_rate="20" delayId="554">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="734" delta="15"/>
@@ -139904,7 +139904,7 @@
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="8775" name="Moreth: Promise (Effect)" nameId="2281049" delayId="8775" stack="MOROS_PROMISE_G1_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="8775" name="Moreth: Promise (Effect)" nameId="2281049" delayId="8775" stack="MOROS_PROMISE_G1_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" target_races="DRAKAN LIZARDMAN NAGA" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="1" target_relation="ENEMY" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -143084,7 +143084,7 @@
 	<skill_template skill_id="9133" name="Ensina como fazer um instrumento reluzente de cordas Koa durável." nameId="810362" delayId="9133" stack="ITEM_SKILL_PROC_COURSEWOUND_E1_60A" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" target_type="ONLYONE" first_target_range="1"/>
 	</skill_template>
-	<skill_template skill_id="9134" name="Moreth: Promise (Effect)" nameId="2281049" delayId="9134" stack="MOROS_PROMISE_G2_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="9134" name="Moreth: Promise (Effect)" nameId="2281049" delayId="9134" stack="MOROS_PROMISE_G2_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" target_races="DRAKAN LIZARDMAN NAGA" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="1" target_relation="ENEMY" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -144247,7 +144247,7 @@
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9267" name="Moreth: Promise (Effect)" nameId="2281049" delayId="9267" stack="MOROS_PROMISE_G3_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="9267" name="Moreth: Promise (Effect)" nameId="2281049" delayId="9267" stack="MOROS_PROMISE_G3_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" target_races="DRAKAN LIZARDMAN NAGA" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="1" target_relation="ENEMY" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -146750,7 +146750,7 @@
 	<skill_template skill_id="10826" name="Onda de resfriamento IV" nameId="2284078" delayId="10826" stack="WIND_XP_BOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE" first_target_range="1"/>
 	</skill_template>
-	<skill_template skill_id="10827" name="STR_Classic_Wind_ShoulderFlySpeed_G1" stack="CLASSIC_WIND_SHOULDERFLYSPEED_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" delayId="2">
+	<skill_template skill_id="10827" name="STR_Classic_Wind_ShoulderFlySpeed_G1" stack="CLASSIC_WIND_SHOULDERFLYSPEED_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" delayId="2">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
 			<statup effectid="1108271" e="1" duration2="5000">
@@ -146812,7 +146812,7 @@
 	<skill_template skill_id="10837" name="Greve de esmagamento em chamas" nameId="2285568" delayId="10837" stack="NPC_SUMMON_LDF4B_LEGION_02_CTRL" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
-	<skill_template skill_id="10839" name="STR_Classic_Wind_ShoulderFlySpeed_G2" stack="CLASSIC_WIND_SHOULDERFLYSPEED_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" delayId="2">
+	<skill_template skill_id="10839" name="STR_Classic_Wind_ShoulderFlySpeed_G2" stack="CLASSIC_WIND_SHOULDERFLYSPEED_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" delayId="2">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
 			<statup effectid="1108381" e="1" duration2="20000">
@@ -146822,7 +146822,7 @@
 		<motion name="PhBurst"/>
 		</skill_template>
 	
-	<skill_template skill_id="10840" name="STR_Classic_Wind_ShoulderFlySpeed_G3" stack="CLASSIC_WIND_SHOULDERFLYSPEED_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" delayId="2">
+	<skill_template skill_id="10840" name="STR_Classic_Wind_ShoulderFlySpeed_G3" stack="CLASSIC_WIND_SHOULDERFLYSPEED_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" delayId="2">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
 			<statup effectid="1108381" e="1" duration2="40000">
@@ -148311,7 +148311,7 @@
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10979" name="STR_Classic_Wind_ShoulderFlySpeed_G1" stack="CLASSIC_WIND_SHOULDERFLYSPEED_GLOVE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" delayId="2">
+	<skill_template skill_id="10979" name="STR_Classic_Wind_ShoulderFlySpeed_G1" stack="CLASSIC_WIND_SHOULDERFLYSPEED_GLOVE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" delayId="2">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
 			<statup effectid="1109751" e="1" duration2="5000">
@@ -148321,7 +148321,7 @@
 		<motion name="PhBurst"/>
 		</skill_template>
 	
-	<skill_template skill_id="10980" name="STR_Classic_Wind_ShoulderFlySpeed_G1" stack="CLASSIC_WIND_SHOULDERFLYSPEED_TORSO_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" delayId="2">
+	<skill_template skill_id="10980" name="STR_Classic_Wind_ShoulderFlySpeed_G1" stack="CLASSIC_WIND_SHOULDERFLYSPEED_TORSO_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" delayId="2">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
 			<statup effectid="1109761" e="1" duration2="5000">
@@ -148331,7 +148331,7 @@
 		<motion name="PhBurst"/>
 		</skill_template>
 	
-	<skill_template skill_id="10981" name="STR_Classic_Wind_ShoulderFlySpeed_G1" stack="CLASSIC_WIND_SHOULDERFLYSPEED_PANTS_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" delayId="2">
+	<skill_template skill_id="10981" name="STR_Classic_Wind_ShoulderFlySpeed_G1" stack="CLASSIC_WIND_SHOULDERFLYSPEED_PANTS_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" delayId="2">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
 			<statup effectid="1109771" e="1" duration2="5000">
@@ -148341,7 +148341,7 @@
 		<motion name="PhBurst"/>
 		</skill_template>
 	
-	<skill_template skill_id="10982" name="STR_Classic_Wind_ShoulderFlySpeed_G1" stack="CLASSIC_WIND_SHOULDERFLYSPEED_SHOES_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" delayId="2">
+	<skill_template skill_id="10982" name="STR_Classic_Wind_ShoulderFlySpeed_G1" stack="CLASSIC_WIND_SHOULDERFLYSPEED_SHOES_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" delayId="2">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
 			<statup effectid="1109781" e="1" duration2="5000">
@@ -148351,7 +148351,7 @@
 		<motion name="PhBurst"/>
 		</skill_template>
 	
-	<skill_template skill_id="10983" name="STR_Classic_Wind_ShoulderFlySpeed_G2" stack="CLASSIC_WIND_SHOULDERFLYSPEED_GLOVE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" delayId="2">
+	<skill_template skill_id="10983" name="STR_Classic_Wind_ShoulderFlySpeed_G2" stack="CLASSIC_WIND_SHOULDERFLYSPEED_GLOVE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" delayId="2">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
 			<statup effectid="1109791" e="1" duration2="20000">
@@ -148361,7 +148361,7 @@
 		<motion name="PhBurst"/>
 		</skill_template>
 	
-	<skill_template skill_id="10984" name="STR_Classic_Wind_ShoulderFlySpeed_G2" stack="CLASSIC_WIND_SHOULDERFLYSPEED_TORSO_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" delayId="2">
+	<skill_template skill_id="10984" name="STR_Classic_Wind_ShoulderFlySpeed_G2" stack="CLASSIC_WIND_SHOULDERFLYSPEED_TORSO_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" delayId="2">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
 			<statup effectid="1109801" e="1" duration2="20000">
@@ -148371,7 +148371,7 @@
 		<motion name="PhBurst"/>
 		</skill_template>
 	
-	<skill_template skill_id="10985" name="STR_Classic_Wind_ShoulderFlySpeed_G2" stack="CLASSIC_WIND_SHOULDERFLYSPEED_PANTS_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" delayId="2">
+	<skill_template skill_id="10985" name="STR_Classic_Wind_ShoulderFlySpeed_G2" stack="CLASSIC_WIND_SHOULDERFLYSPEED_PANTS_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" delayId="2">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
 			<statup effectid="1109811" e="1" duration2="20000">
@@ -148381,7 +148381,7 @@
 		<motion name="PhBurst"/>
 		</skill_template>
 	
-	<skill_template skill_id="10986" name="STR_Classic_Wind_ShoulderFlySpeed_G2" stack="CLASSIC_WIND_SHOULDERFLYSPEED_SHOES_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" delayId="2">
+	<skill_template skill_id="10986" name="STR_Classic_Wind_ShoulderFlySpeed_G2" stack="CLASSIC_WIND_SHOULDERFLYSPEED_SHOES_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" delayId="2">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
 			<statup effectid="1109821" e="1" duration2="20000">
@@ -148391,7 +148391,7 @@
 		<motion name="PhBurst"/>
 		</skill_template>
 	
-	<skill_template skill_id="10987" name="STR_Classic_Wind_ShoulderFlySpeed_G3" stack="CLASSIC_WIND_SHOULDERFLYSPEED_GLOVE_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" delayId="2">
+	<skill_template skill_id="10987" name="STR_Classic_Wind_ShoulderFlySpeed_G3" stack="CLASSIC_WIND_SHOULDERFLYSPEED_GLOVE_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" delayId="2">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
 			<statup effectid="1109831" e="1" duration2="40000">
@@ -148401,7 +148401,7 @@
 		<motion name="PhBurst"/>
 		</skill_template>
 	
-	<skill_template skill_id="10988" name="STR_Classic_Wind_ShoulderFlySpeed_G3" stack="CLASSIC_WIND_SHOULDERFLYSPEED_TORSO_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" delayId="2">
+	<skill_template skill_id="10988" name="STR_Classic_Wind_ShoulderFlySpeed_G3" stack="CLASSIC_WIND_SHOULDERFLYSPEED_TORSO_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" delayId="2">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
 			<statup effectid="1109841" e="1" duration2="40000">
@@ -148411,7 +148411,7 @@
 		<motion name="PhBurst"/>
 		</skill_template>
 	
-	<skill_template skill_id="10989" name="STR_Classic_Wind_ShoulderFlySpeed_G3" stack="CLASSIC_WIND_SHOULDERFLYSPEED_PANTS_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" delayId="2">
+	<skill_template skill_id="10989" name="STR_Classic_Wind_ShoulderFlySpeed_G3" stack="CLASSIC_WIND_SHOULDERFLYSPEED_PANTS_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" delayId="2">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
 			<statup effectid="1109851" e="1" duration2="40000">
@@ -148421,7 +148421,7 @@
 		<motion name="PhBurst"/>
 		</skill_template>
 	
-	<skill_template skill_id="10990" name="STR_Classic_Wind_ShoulderFlySpeed_G3" stack="CLASSIC_WIND_SHOULDERFLYSPEED_SHOES_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="120" delayId="2">
+	<skill_template skill_id="10990" name="STR_Classic_Wind_ShoulderFlySpeed_G3" stack="CLASSIC_WIND_SHOULDERFLYSPEED_SHOES_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1200" delayId="2">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<effects>
 			<statup effectid="1109861" e="1" duration2="40000">

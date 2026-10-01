@@ -60,7 +60,8 @@ public class SkillUseAction extends AbstractItemAction {
 		List<EffectTemplate> effects = skill.getSkillTemplate().getEffects().getEffects();
 		if (!effects.isEmpty()) {
 			for (EffectTemplate template : effects) {
-				if (player.isTransformed() && template instanceof TransformEffect) { // Cant use transform items while already transformed
+				// Cant use transform items while already transformed. O candy "SHAPE_INVISIBLE" (modelo 0) nao troca a aparencia, entao nao conta
+				if (player.getTransformModel().changesAppearance() && template instanceof TransformEffect) {
 					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_SKILL_CAN_NOT_CAST_IN_SHAPECHANGE());
 					return false;
 				}

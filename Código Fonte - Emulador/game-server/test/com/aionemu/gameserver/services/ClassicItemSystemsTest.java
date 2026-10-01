@@ -493,6 +493,14 @@ class ClassicItemSystemsTest {
 		assertEquals(1300455, ByteBuffer.wrap(body).order(ByteOrder.LITTLE_ENDIAN).getInt(6));
 	}
 
+	@Test void firstShowDecomposableWritesBatchCount() throws Exception {
+		var options = java.util.List.of(new com.aionemu.gameserver.network.aion.serverpackets.SM_FIRST_SHOW_DECOMPOSABLE.Option(160000001, 1));
+		byte[] body2 = body(new com.aionemu.gameserver.network.aion.serverpackets.SM_FIRST_SHOW_DECOMPOSABLE(12345, 2, options));
+		assertEquals(2, ByteBuffer.wrap(body2).order(ByteOrder.LITTLE_ENDIAN).getInt(8));
+		byte[] body5 = body(new com.aionemu.gameserver.network.aion.serverpackets.SM_FIRST_SHOW_DECOMPOSABLE(12345, 5, options));
+		assertEquals(5, ByteBuffer.wrap(body5).order(ByteOrder.LITTLE_ENDIAN).getInt(8));
+	}
+
 	private static byte[] body(AionServerPacket packet) throws Exception {
 		ByteBuffer buffer = ByteBuffer.allocate(2048).order(ByteOrder.LITTLE_ENDIAN);
 		packet.setBuf(buffer);

@@ -2,7 +2,7 @@
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 CLIENT = ROOT / 'Ferramentas e Documentos/Client e Coletas/Client 5.0 - Dados Extraidos/data/items'
 SERVER = ROOT / 'Código Fonte - Emulador/game-server/data/static_data'
 
@@ -64,12 +64,27 @@ def generate():
             item_id = items.get(name)
             if item_id != source.findtext('id'):
                 raise ValueError(f'Item elegível ausente ou divergente: {name}')
-            table_id = tables[source.findtext('crush_name').lower()]
+            crush_name = source.findtext('crush_name', '').lower()
+            quality = source.findtext('quality', '').lower()
+            if 'title' in name or source.findtext('cash_title'):
+                if quality == 'rare' and crush_name in ('item_crush_result_common_token_1', 'item_crush_result_common_title'):
+                    crush_name = 'item_crush_result_rare_title'
+                elif quality == 'legend' and crush_name in ('item_crush_result_common_token_1', 'item_crush_result_common_title'):
+                    crush_name = 'item_crush_result_legend_title'
+                elif quality == 'unique' and crush_name in ('item_crush_result_common_token_1', 'item_crush_result_common_title'):
+                    crush_name = 'item_crush_result_unique_title'
+                elif quality == 'epic' and crush_name in ('item_crush_result_common_token_1', 'item_crush_result_common_title'):
+                    crush_name = 'item_crush_result_epic_title'
+            table_id = tables[crush_name]
             ET.SubElement(result, 'item', item_id=item_id, table_id=table_id)
             eligible += 1
         source.clear()
     ET.indent(result, space='\t')
-    ET.ElementTree(result).write(SERVER / 'items/siel_hammer.xml', encoding='utf-8', xml_declaration=True)
+    target_src = SERVER / 'items/siel_hammer.xml'
+    target_dist = ROOT / 'Emulador - Produto Final/GameServer/data/static_data/items/siel_hammer.xml'
+    ET.ElementTree(result).write(target_src, encoding='utf-8', xml_declaration=True)
+    if target_dist.parent.exists():
+        ET.ElementTree(result).write(target_dist, encoding='utf-8', xml_declaration=True)
     print(f'{len(tables)} tabelas e {eligible} itens elegíveis exportados do cliente oficial 5.0.')
 
 

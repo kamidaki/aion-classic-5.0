@@ -123,11 +123,7 @@ public class ToyPetSpawnAction extends AbstractItemAction {
 
 		// ShowFinalAction
 		KiskService.getInstance().regKisk(kisk, objOwnerId);
-
-		if (kisk.getMaxMembers() > 1)
-			kisk.getController().onDialogRequest(player);
-		else
-			KiskService.getInstance().onBind(kisk, player);
+		KiskService.getInstance().onBind(kisk, player);
 	}
 
 	private boolean isPutKiskZone(Player player) {

@@ -50,28 +50,25 @@ public class RankingService {
 		int updateTime = (int) (System.currentTimeMillis() / 1000);
 		this.lastUpdateTimestamp = updateTime;
 
-		// 1. Gather players from World and DB
+		// 1. Gather all players from DB via CombatPowerDAO (includes offline with real CP)
 		Map<Integer, RankingCandidate> candidateMap = new HashMap<>();
 
-		// From DB (AbyssRankDAO)
 		try {
-			List<RankingListPlayer> dbPlayers = AbyssRankDAO.loadRankingListPlayers();
-			if (dbPlayers != null) {
-				for (RankingListPlayer dbp : dbPlayers) {
-					int baseCp = dbp.level() * 300 + (dbp.ap() > 0 ? (int) Math.min(15000, dbp.ap() / 50) : 0);
-					candidateMap.put(dbp.id(), new RankingCandidate(
-						dbp.id(), dbp.name(), dbp.race().getRaceId(), dbp.playerClass().getClassId(), baseCp, dbp.oldPosition()
-					));
-				}
+			List<com.aionemu.gameserver.dao.CombatPowerDAO.PlayerCombatPowerEntry> dbPlayers = com.aionemu.gameserver.dao.CombatPowerDAO.loadAllCandidates();
+			for (var dbp : dbPlayers) {
+				candidateMap.put(dbp.playerId(), new RankingCandidate(
+					dbp.playerId(), dbp.name(), dbp.race().getRaceId(), dbp.playerClass().getClassId(), dbp.combatPower(), dbp.oldRank()
+				));
 			}
 		} catch (Exception e) {
 			log.warn("Could not load DB players for ranking: " + e.getMessage());
 		}
 
-		// Live players in world (exact combat power calculation)
+		// 2. Live players in world (calculate live combat power and persist to DB)
 		try {
 			for (Player player : World.getInstance().getAllPlayers()) {
 				int cp = CombatTalentService.calculateCombatPower(player);
+				com.aionemu.gameserver.dao.CombatPowerDAO.storeCombatPower(player.getObjectId(), cp);
 				int oldRank = 0;
 				if (candidateMap.containsKey(player.getObjectId())) {
 					oldRank = candidateMap.get(player.getObjectId()).oldRank();
@@ -157,6 +154,10 @@ public class RankingService {
 	}
 
 	public List<SM_RANK_LIST> getRankListPackets(int rankingType) {
+		int now = (int) (System.currentTimeMillis() / 1000);
+		if (now - lastUpdateTimestamp >= 300) {
+			refreshRankings();
+		}
 		List<SM_RANK_LIST> list = cachedPackets.get(rankingType);
 		if (list == null) {
 			refreshRankings();

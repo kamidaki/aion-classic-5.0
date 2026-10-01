@@ -464,7 +464,7 @@ public class PlayerController extends CreatureController<Player> {
 	public void useSkill(SkillTemplate template, int targetType, float x, float y, float z, int clientHitTime, int skillLevel) {
 		Player player = getOwner();
 		Skill skill = SkillEngine.getInstance().getSkillFor(player, template, player.getTarget());
-		if (skill == null && player.isTransformed()) {
+		if (skill == null && player.getTransformModel().getPanelId() > 0) { // so a forma com painel concede skills; candy de stats nao
 			SkillPanel panel = DataManager.PANEL_SKILL_DATA.getSkillPanel(player.getTransformModel().getPanelId());
 			int panelSkillLevel = panel == null ? 0 : panel.getSkillLevel(template.getSkillId());
 			if (panelSkillLevel > 0) {

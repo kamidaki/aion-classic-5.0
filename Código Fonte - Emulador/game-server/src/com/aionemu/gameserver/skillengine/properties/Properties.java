@@ -114,6 +114,8 @@ public class Properties {
 			return result;
 		if (targetSpecies != null && !TargetSpeciesProperty.set(this, result))
 			return result;
+		if (!TargetRaceProperty.set(result, skillTemplate))
+			return result;
 		if (targetType != null && !MaxCountProperty.set(this, result))
 			return result;
 		result.valid = true;

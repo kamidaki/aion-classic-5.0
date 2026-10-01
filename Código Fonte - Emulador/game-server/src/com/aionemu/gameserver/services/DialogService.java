@@ -27,6 +27,7 @@ import com.aionemu.gameserver.model.templates.tradelist.TradeListTemplate;
 import com.aionemu.gameserver.model.templates.tradelist.TradeListTemplate.TradeTab;
 import com.aionemu.gameserver.model.templates.zone.ZoneClassName;
 import com.aionemu.gameserver.model.templates.zone.ZoneTemplate;
+import com.aionemu.gameserver.network.aion.clientpackets.CM_CHARACTER_EDIT;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.questEngine.QuestEngine;
 import com.aionemu.gameserver.questEngine.model.QuestEnv;
@@ -218,7 +219,12 @@ public class DialogService {
 					break;
 				case EDIT_CHARACTER_ALL:
 				case EDIT_CHARACTER_GENDER: // (2.5) and (4.3)
-					PacketSendUtility.sendPacket(player, new SM_PLASTIC_SURGERY(player, dialogActionId == EDIT_CHARACTER_GENDER));
+					boolean isGender = dialogActionId == DialogAction.EDIT_CHARACTER_GENDER;
+					boolean hasTicket = CM_CHARACTER_EDIT.checkOrRemoveTicket(player, isGender, false);
+					if (!hasTicket) {
+						PacketSendUtility.sendPacket(player, isGender ? SM_SYSTEM_MESSAGE.STR_EDIT_CHAR_GENDER_CANT_NO_ITEM() : SM_SYSTEM_MESSAGE.STR_EDIT_CHAR_ALL_CANT_NO_ITEM());
+					}
+					PacketSendUtility.sendPacket(player, new SM_PLASTIC_SURGERY(player, isGender));
 					player.getCommonData().setInEditMode(true);
 					break;
 				case MATCH_MAKER: // dredgion

@@ -17,10 +17,16 @@ public class SM_FIRST_SHOW_DECOMPOSABLE extends AionServerPacket {
 	public record Option(int itemId, int count) {}
 
 	private final int objectId;
+	private final int count;
 	private final List<Option> options;
 
 	public SM_FIRST_SHOW_DECOMPOSABLE(int objectId, List<Option> options) {
+		this(objectId, 1, options);
+	}
+
+	public SM_FIRST_SHOW_DECOMPOSABLE(int objectId, int count, List<Option> options) {
 		this.objectId = objectId;
+		this.count = Math.max(1, count);
 		this.options = options.size() > 255 ? options.subList(0, 255) : options;
 	}
 
@@ -28,7 +34,7 @@ public class SM_FIRST_SHOW_DECOMPOSABLE extends AionServerPacket {
 	protected void writeImpl(AionConnection con) {
 		writeD(objectId);
 		writeD(0);
-		writeD(1);
+		writeD(count);
 		writeD(0);
 		writeC(options.size());
 		int index = 0;

@@ -17,6 +17,7 @@ import com.aionemu.gameserver.skillengine.SkillEngine;
 import com.aionemu.gameserver.skillengine.model.Effect;
 import com.aionemu.gameserver.skillengine.model.HitType;
 import com.aionemu.gameserver.skillengine.model.ProvokeTarget;
+import com.aionemu.gameserver.skillengine.model.SkillTemplate;
 import com.aionemu.gameserver.skillengine.model.SkillType;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.PositionUtil;
@@ -85,6 +86,10 @@ public class ProvokerEffect extends ShieldEffect {
 
 	private boolean shouldApply(Creature effector, Creature target, int attackSkillId, AttackStatus status) {
 		if (provokeTarget == ProvokeTarget.OPPONENT && target == effector)
+			return false;
+		// target_race_restriction do proc (5.0): as passivas do Moreth só disparam contra Drakan, Lizardman e Naga
+		SkillTemplate provoked = DataManager.SKILL_DATA.getSkillTemplate(skillId);
+		if (provoked != null && !provoked.canTargetRace(provokeTarget == ProvokeTarget.ME ? effector : target))
 			return false;
 		if (radius > 0 && !PositionUtil.isInRange(effector, target, radius, false))
 			return false;

@@ -26,7 +26,9 @@ import com.aionemu.gameserver.utils.ThreadPoolManager;
 
 /**
  * Moreth, Chronicle of Time (MOROS) do Classic 5.0: o jogador grava itens do inventário (C 0x111), que somem e viram pontos; os pontos sobem o
- * nível, e cada nível dá a sua passiva (moros/moros.xml). Cada item gravado gasta um registro, que volta sozinho depois de 30 min.
+ * nível, e cada nível dá a sua passiva (moros/moros.xml). Cada **unidade** gravada gasta um registro, que volta sozinho depois de 30 min: a
+ * janela do cliente de 29/09 previa "0 + 20/20" para uma pilha de 20 e limita o que se põe nos espaços ao número de registros disponíveis (nos
+ * pedidos do log os totais caíam 20, 19, 18... junto com os registros).
  * <p>
  * Capturas: o 0x169 sai no login logo depois do 0x14D e a cada gravação, depois dos 0x1C (motivo 0xFA), sem mensagem de sistema. A passiva não vai
  * no S_ADD_SKILL (o cliente mostra a skill pelo nível do 0x169), então é aplicada direto como efeito. Pontos por gravação: soma de ponto x
@@ -76,6 +78,7 @@ public final class MorosService {
 			log.warn("Moreth: nível {} de {} fora dos dados, voltando ao máximo", moros.getLevel(), player.getName());
 			moros.setLevelAndPoints(DataManager.MOROS_DATA.getMaxLevel(), 0);
 		}
+		moros.normalizeRestoreTimes(System.currentTimeMillis(), RESTORE_MILLIS);
 		moros.restore(System.currentTimeMillis()); // o que venceu com o personagem fora volta sem aviso
 		player.setMoros(moros);
 		applyPassive(player, moros.getLevel());
@@ -119,6 +122,7 @@ public final class MorosService {
 			MorosData data = DataManager.MOROS_DATA;
 			Storage inventory = player.getInventory();
 			long basePoints = 0;
+			long records = totalUnits(items); // um registro por unidade gravada, não por pilha
 			for (Map.Entry<Integer, Long> entry : items.entrySet()) {
 				Item item = inventory.getItemByObjId(entry.getKey());
 				basePoints += data.getPoint(item.getItemId()) * entry.getValue();
@@ -128,7 +132,7 @@ public final class MorosService {
 			int oldLevel = moros.getLevel();
 			long gained = basePoints * data.getLevel(oldLevel).getRate() / 100;
 			addPoints(moros, gained);
-			moros.useRecords(items.size(), System.currentTimeMillis() + RESTORE_MILLIS);
+			moros.useRecords((int) records, System.currentTimeMillis(), RESTORE_MILLIS);
 			InventoryDAO.store(player);
 			PlayerMorosDAO.store(player.getObjectId(), moros);
 			sendInfo(player);
@@ -139,8 +143,8 @@ public final class MorosService {
 				applyPassive(player, moros.getLevel());
 			}
 			scheduleRestore(player);
-			log.info("Moreth: {} gravou {} ({} pontos x {}% = {}), nível {} -> {} com {} pontos", player.getName(), items, basePoints,
-				data.getLevel(oldLevel).getRate(), gained, oldLevel, moros.getLevel(), moros.getPoints());
+			log.info("Moreth: {} gravou {} ({} pontos x {}% = {}, {} registros), nível {} -> {} com {} pontos", player.getName(), items, basePoints,
+				data.getLevel(oldLevel).getRate(), gained, records, oldLevel, moros.getLevel(), moros.getPoints());
 		}
 	}
 
@@ -154,7 +158,7 @@ public final class MorosService {
 			return MSG_RECORD_CAN_NOT;
 		if (moros.getLevel() >= DataManager.MOROS_DATA.getMaxLevel())
 			return MSG_UNRECORDABLE_POINT;
-		if (items.size() > moros.getRecords(MAX_RECORDS))
+		if (totalUnits(items) > moros.getRecords(MAX_RECORDS))
 			return MSG_UNRECORDABLE_COUNT;
 		Storage inventory = player.getInventory();
 		for (Map.Entry<Integer, Long> entry : items.entrySet()) {
@@ -171,6 +175,13 @@ public final class MorosService {
 				return MSG_TEMPORARY_EXCHANGE_ITEM;
 		}
 		return 0;
+	}
+
+	/**
+	 * @return quantas unidades o pedido grava, que é quantos registros ele gasta
+	 */
+	static long totalUnits(Map<Integer, Long> items) {
+		return items.values().stream().mapToLong(Long::longValue).sum();
 	}
 
 	/**

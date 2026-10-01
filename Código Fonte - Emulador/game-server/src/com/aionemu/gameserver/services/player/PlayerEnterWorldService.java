@@ -234,6 +234,14 @@ public final class PlayerEnterWorldService {
 			// 9. SM_LOAD_EQUIPMENT_CHANGE
 			PacketSendUtility.sendPacket(player, new SM_LOAD_EQUIPMENT_CHANGE(player));
 
+			// Reenvio de cooldowns apos carregar atalhos da UI e itens do inventario para atualizar icones visuais
+			if (player.getItemCoolDowns() != null && !player.getItemCoolDowns().isEmpty()) {
+				client.sendPacket(new SM_ITEM_COOLDOWN(player.getItemCoolDowns()));
+			}
+			if (player.getSkillCoolDowns() != null && !player.getSkillCoolDowns().isEmpty()) {
+				client.sendPacket(new SM_SKILL_COOLDOWN(player, player.getSkillCoolDowns(), false));
+			}
+
 			playerLoggedIn(player);
 
 			// 9.1 Channel & Bind Point

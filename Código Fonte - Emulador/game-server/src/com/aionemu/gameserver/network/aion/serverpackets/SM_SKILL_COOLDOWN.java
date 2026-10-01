@@ -23,10 +23,11 @@ public class SM_SKILL_COOLDOWN extends AionServerPacket {
 	}
 
 	public SM_SKILL_COOLDOWN(Player player, Map<Integer, Long> cooldownExpirationMillisByCooldownId, boolean notify) {
+		long now = System.currentTimeMillis();
 		for (PlayerSkillEntry skill : player.getSkillList().getAllSkills()) {
 			int cooldownId = DataManager.SKILL_DATA.getSkillTemplate(skill.getSkillId()).getCooldownId();
 			Long cooldownExpirationMillis = cooldownExpirationMillisByCooldownId.get(cooldownId);
-			if (cooldownExpirationMillis != null)
+			if (cooldownExpirationMillis != null && (notify || cooldownExpirationMillis > now))
 				cooldowns.add(new Cooldown(skill.getSkillId(), cooldownExpirationMillis));
 		}
 		// The game plays the same icon cooldown animation for all skills that share a cooldownId and the last entry per cooldownId wins, so we sort by

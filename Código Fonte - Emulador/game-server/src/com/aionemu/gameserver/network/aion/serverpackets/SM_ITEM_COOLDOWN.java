@@ -1,5 +1,7 @@
 package com.aionemu.gameserver.network.aion.serverpackets;
-
+ 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import com.aionemu.gameserver.model.items.ItemCooldown;
@@ -11,7 +13,7 @@ import com.aionemu.gameserver.network.aion.AionServerPacket;
  */
 public class SM_ITEM_COOLDOWN extends AionServerPacket {
 
-	private Map<Integer, ItemCooldown> cooldowns;
+	private final Map<Integer, ItemCooldown> cooldowns;
 
 	public SM_ITEM_COOLDOWN(Map<Integer, ItemCooldown> cooldowns) {
 		this.cooldowns = cooldowns;
@@ -19,12 +21,22 @@ public class SM_ITEM_COOLDOWN extends AionServerPacket {
 
 	@Override
 	protected void writeImpl(AionConnection con) {
-		writeH(cooldowns.size());
+		if (cooldowns == null || cooldowns.isEmpty()) {
+			writeH(0);
+			return;
+		}
 		long currentTime = System.currentTimeMillis();
+		List<Map.Entry<Integer, ItemCooldown>> active = new ArrayList<>();
 		for (Map.Entry<Integer, ItemCooldown> entry : cooldowns.entrySet()) {
+			if (entry.getValue() != null && entry.getValue().getReuseTime() > currentTime) {
+				active.add(entry);
+			}
+		}
+		writeH(active.size());
+		for (Map.Entry<Integer, ItemCooldown> entry : active) {
 			writeH(entry.getKey());
-			int left = (int) ((entry.getValue().getReuseTime() - currentTime) / 1000);
-			writeD(left > 0 ? left : 0);
+			int left = (int) Math.max(0, (entry.getValue().getReuseTime() - currentTime) / 1000);
+			writeD(left);
 			writeD(entry.getValue().getUseDelay());
 		}
 	}

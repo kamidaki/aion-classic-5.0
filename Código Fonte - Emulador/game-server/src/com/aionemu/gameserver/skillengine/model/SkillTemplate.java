@@ -1,9 +1,13 @@
 package com.aionemu.gameserver.skillengine.model;
 
+import java.util.List;
+
 import javax.xml.bind.annotation.*;
 
 import com.aionemu.gameserver.controllers.attack.AttackStatus;
 import com.aionemu.gameserver.dataholders.DataManager;
+import com.aionemu.gameserver.model.Race;
+import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.templates.L10n;
 import com.aionemu.gameserver.skillengine.action.Actions;
 import com.aionemu.gameserver.skillengine.action.ItemUseAction;
@@ -65,6 +69,13 @@ public class SkillTemplate implements L10n {
 	private int reqDispelCount;
 	@XmlAttribute(name = "activation", required = true)
 	private ActivationAttribute activationAttribute;
+	/**
+	 * target_race_restriction do cliente 5.0: só vale contra alvo de uma destas raças. Das 8 skills que têm a marca, 3 são os procs do Moreth
+	 * (Drakan, Lizardman e Naga) e 5 são as ativas do Moros_Victory. Lista vazia = sem restrição.
+	 */
+	@XmlList
+	@XmlAttribute(name = "target_races")
+	private List<Race> targetRaces;
 	@XmlAttribute(required = true)
 	private int duration;
 	@XmlAttribute(name = "toggle_timer")
@@ -211,6 +222,20 @@ public class SkillTemplate implements L10n {
 
 	public StigmaType getStigmaType() {
 		return stigmaType;
+	}
+
+	/**
+	 * @return as raças de alvo que a skill aceita, ou vazio se ela vale contra qualquer um
+	 */
+	public List<Race> getTargetRaces() {
+		return targetRaces == null ? List.of() : targetRaces;
+	}
+
+	/**
+	 * @return true se a skill pode ser usada contra {@code target} (sem restrição de raça, ou com a raça dele na lista)
+	 */
+	public boolean canTargetRace(Creature target) {
+		return targetRaces == null || targetRaces.isEmpty() || target != null && targetRaces.contains(target.getRace());
 	}
 
 	public ActivationAttribute getActivationAttribute() {

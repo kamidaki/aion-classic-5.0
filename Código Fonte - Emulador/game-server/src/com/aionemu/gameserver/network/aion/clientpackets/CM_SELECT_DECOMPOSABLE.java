@@ -49,10 +49,14 @@ public class CM_SELECT_DECOMPOSABLE extends AionClientPacket {
 		Player player = getConnection().getActivePlayer();
 		if (player == null || player.isDead() || !player.isSpawned())
 			return;
+		DecomposeAction.OpenSelection selection = DecomposeAction.getOpenSelection(player);
+		int count = (selection != null && selection.boxObjId() == objectId) ? selection.count() : 1;
 		DecomposeAction.selectionClosed(player);
 		Item item = player.getInventory().getItemByObjId(objectId);
-		if (item == null)
+		if (item == null || item.getItemCount() < count) {
+			reject(player);
 			return;
+		}
 		List<SelectableReward> rewards = DecomposeAction.getSelectableRewards(player, item.getItemId());
 		// hasTask nao serve: o ITEM_USE de qualquer uso anterior ja concluido continua no mapa e bloquearia a escolha para sempre
 		if (rewards == null || index >= rewards.size() || player.getController().hasScheduledTask(TaskId.ITEM_USE) || player.hasCooldown(item)) {
@@ -65,7 +69,7 @@ public class CM_SELECT_DECOMPOSABLE extends AionClientPacket {
 			return;
 		}
 		SelectableReward reward = rewards.get(index);
-		DecomposeAction.castThen(player, item, DecomposeAction.CANCEL_END_CODE, () -> finish(player, item, reward), () -> reject(player));
+		DecomposeAction.castThen(player, item, DecomposeAction.CANCEL_END_CODE, () -> finish(player, item, reward, count), () -> reject(player));
 	}
 
 	/** Resultado "cancelado" (objeto 0), o mesmo que o oficial manda quando a barra de uso e interrompida: fecha a espera do cliente. */
@@ -73,8 +77,8 @@ public class CM_SELECT_DECOMPOSABLE extends AionClientPacket {
 		PacketSendUtility.sendPacket(player, new SM_SECONDARY_SHOW_DECOMPOSABLE(0, SM_SECONDARY_SHOW_DECOMPOSABLE.CANCELED));
 	}
 
-	private static void finish(Player player, Item item, SelectableReward reward) {
-		if (player.getInventory().getItemByObjId(item.getObjectId()) == null) {
+	private static void finish(Player player, Item item, SelectableReward reward, int count) {
+		if (player.getInventory().getItemByObjId(item.getObjectId()) == null || item.getItemCount() < count) {
 			reject(player);
 			return;
 		}
@@ -82,15 +86,17 @@ public class CM_SELECT_DECOMPOSABLE extends AionClientPacket {
 			true);
 		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_USE_ITEM(item.getL10n()));
 		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_UNCOMPRESS_COMPRESSED_ITEM_SUCCEEDED(item.getL10n()));
-		if (!player.getInventory().decreaseByObjectId(item.getObjectId(), 1)) {
+		if (!player.getInventory().decreaseByObjectId(item.getObjectId(), count)) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_DECOMPOSE_ITEM_NO_TARGET_ITEM());
 			reject(player);
 			return;
 		}
 		player.startCooldown(item);
 		PacketSendUtility.sendPacket(player, new SM_SECONDARY_SHOW_DECOMPOSABLE(item.getObjectId(), SM_SECONDARY_SHOW_DECOMPOSABLE.OK));
-		int count = Rnd.get(reward.minCount(), reward.maxCount());
-		ItemService.addItem(player, reward.itemId(), count, true, reward.predicate());
+		for (int i = 0; i < count; i++) {
+			int rewardCount = Rnd.get(reward.minCount(), reward.maxCount());
+			ItemService.addItem(player, reward.itemId(), rewardCount, true, reward.predicate());
+		}
 	}
 
 }

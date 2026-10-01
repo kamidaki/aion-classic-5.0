@@ -172,6 +172,10 @@ public class LoginServer {
 			account.setAllowedHddSerial(client.getHddSerial());
 			sendPacket(new SM_CHANGE_ALLOWED_HDD_SERIAL(account));
 		}
+		AionConnection oldClient = loggedInAccounts.remove(accountId);
+		if (oldClient != null && oldClient != client) {
+			oldClient.close();
+		}
 		kickOnlineCharacters(account);
 		client.setAccount(account);
 		client.setState(AionConnection.State.AUTHED);
@@ -216,9 +220,13 @@ public class LoginServer {
 			PlayerCommonData pcd = accountData.getPlayerCommonData();
 			if (pcd.isOnline()) {
 				Player player = World.getInstance().getPlayer(pcd.getPlayerObjId());
-				if (player != null && player.getClientConnection() != null) {
-					player.getClientConnection().close(SM_SYSTEM_MESSAGE.STR_KICK_ANOTHER_USER_TRY_LOGIN()); // kick
+				if (player != null) {
+					if (player.getClientConnection() != null) {
+						player.getClientConnection().close(SM_SYSTEM_MESSAGE.STR_KICK_ANOTHER_USER_TRY_LOGIN()); // kick
+					}
+					com.aionemu.gameserver.services.player.PlayerLeaveWorldService.leaveWorld(player);
 				}
+				pcd.setOnline(false);
 			}
 		}
 	}
@@ -227,10 +235,11 @@ public class LoginServer {
 	 * Starts reconnection to LoginServer procedure. LoginServer in response will send reconnection key.
 	 */
 	public void requestAuthReconnection(int accountId, AionConnection client) {
-		if (isUp() && client.equals(loggedInAccounts.get(accountId)))
+		AionConnection current = loggedInAccounts.get(accountId);
+		if (isUp() && (current == null || client.equals(current)))
 			lsCon.sendPacket(new SM_ACCOUNT_RECONNECT_KEY(client.getAccount().getId()));
 		else
-			client.close(/* closePacket */);
+			client.close();
 	}
 
 	/**

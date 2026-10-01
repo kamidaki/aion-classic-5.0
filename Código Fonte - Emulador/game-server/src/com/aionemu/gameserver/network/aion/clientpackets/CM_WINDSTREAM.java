@@ -82,8 +82,8 @@ public class CM_WINDSTREAM extends AionClientPacket {
 				player.setFlightPath(null);
 				PacketSendUtility.broadcastPacket(player, new SM_EMOTION(player, state == 2 ? EmotionType.WINDSTREAM_END : EmotionType.WINDSTREAM_EXIT),
 					true);
-				if (player.isTransformed()) // send sm_transform if player is transformed
-					PacketSendUtility.broadcastPacketAndReceive(player, new SM_TRANSFORM(player));
+				if (player.isTransformed()) // send sm_transform if player is transformed (o modelo 0 nao vai para o dono, ver TransformModel)
+					player.getTransformModel().updateVisually();
 				break;
 			case 4: // ?
 				break;
