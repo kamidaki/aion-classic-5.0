@@ -525,7 +525,7 @@ Clique duas vezes para abrir." nameId="811701" sourceType="VEGETABLE" harvestCou
 			<material rate="10000000" nameid="751141" itemid="152000120" name_en="Pure Voluspar Ore" name_pt="Também horas de vuluspar" />
 		</materials>
 	</gatherable_template>
-	<gatherable_template id="400112" name_en="Trade Guild Adventurer’s Seal Chest" name_pt="Comércio Guilda Aventureiro’Baú de s selo" nameId="811694" sourceType="NOBLEMETAL" harvestCount="3" skillLevel="499" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="60">
+	<gatherable_template id="400112" name_en="Trade Guild Adventurer’s Seal Chest" name_pt="Baú de selo de Comércio Guilda Aventureiro" nameId="811694" sourceType="NOBLEMETAL" harvestCount="3" skillLevel="499" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="60">
 		<materials>
 			<material rate="5800000" nameid="811614" itemid="152000123" name_en="[Event] Forgotten Weapon Chest" name_pt="[Evento] Esquecido Baú de Armas" />
 			<material rate="2800000" nameid="811615" itemid="152000124" name_en="[Event] High-level Skill Book/Stigma Selection Box" name_pt="[Evento] Alto-Habilidade nível Livro/Stigma Caixa de Seleção" />
@@ -1468,21 +1468,21 @@ Clique duas vezes para abrir e receber um item aleatório do seu conteúdo." />
 			<material rate="10000000" nameid="702014" itemid="152000501" name_en="Betua Log" name_pt="O log de log" />
 		</materials>
 	</gatherable_template>
-	<gatherable_template id="400403" name_en="Koa Log" name_pt="Antigo guerra" nameId="701975" sourceType="TREE" harvestCount="3" skillLevel="140" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100">
+	<gatherable_template id="400403" name_en="Koa Log" name_pt="Tora de Koa" nameId="701975" sourceType="TREE" harvestCount="3" skillLevel="140" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100">
 		<materials>
-			<material rate="8000000" nameid="702042" itemid="152000502" name_en="Koa Log" name_pt="Antigo guerra" />
+			<material rate="8000000" nameid="702042" itemid="152000502" name_en="Koa Log" name_pt="Tora de Koa" />
 			<material rate="2000000" nameid="774984" itemid="152000506" name_en="Linon Fibre Bundle" name_pt="Pacote de Linon Fibra" />
 		</materials>
 	</gatherable_template>
-	<gatherable_template id="400404" name_en="Koa Log" name_pt="Antigo guerra" nameId="701975" sourceType="TREE" harvestCount="3" skillLevel="140" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100">
+	<gatherable_template id="400404" name_en="Koa Log" name_pt="Tora de Koa" nameId="701975" sourceType="TREE" harvestCount="3" skillLevel="140" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100">
 		<materials>
-			<material rate="8000000" nameid="702042" itemid="152000502" name_en="Koa Log" name_pt="Antigo guerra" />
+			<material rate="8000000" nameid="702042" itemid="152000502" name_en="Koa Log" name_pt="Tora de Koa" />
 			<material rate="2000000" nameid="774984" itemid="152000506" name_en="Linon Fibre Bundle" name_pt="Pacote de Linon Fibra" />
 		</materials>
 	</gatherable_template>
-	<gatherable_template id="400405" name_en="Koa Log" name_pt="Antigo guerra" nameId="701975" sourceType="TREE" harvestCount="3" skillLevel="140" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100">
+	<gatherable_template id="400405" name_en="Koa Log" name_pt="Tora de Koa" nameId="701975" sourceType="TREE" harvestCount="3" skillLevel="140" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100">
 		<materials>
-			<material rate="8000000" nameid="702042" itemid="152000502" name_en="Koa Log" name_pt="Antigo guerra" />
+			<material rate="8000000" nameid="702042" itemid="152000502" name_en="Koa Log" name_pt="Tora de Koa" />
 			<material rate="2000000" nameid="774984" itemid="152000506" name_en="Linon Fibre Bundle" name_pt="Pacote de Linon Fibra" />
 		</materials>
 	</gatherable_template>
@@ -1526,7 +1526,7 @@ Clique duas vezes para abrir e receber um item aleatório do seu conteúdo." />
 	</gatherable_template>
 	<gatherable_template id="400412" name_en="Koa Log" name_pt="Antigo guerra" nameId="723641" sourceType="TREE" harvestCount="3" skillLevel="140" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100">
 		<materials>
-			<material rate="8000000" nameid="702042" itemid="152000502" name_en="Koa Log" name_pt="Antigo guerra" />
+			<material rate="8000000" nameid="702042" itemid="152000502" name_en="Koa Log" name_pt="Tora de Koa" />
 			<material rate="2000000" nameid="774984" itemid="152000506" name_en="Linon Fibre Bundle" name_pt="Pacote de Linon Fibra" />
 		</materials>
 	</gatherable_template>
@@ -4152,7 +4152,7 @@ Clique duas vezes para abrir." />
 			<material rate="400000" nameid="752419" itemid="152000327" name_en="Dazzling Turquoise Ore" name_pt="Minério turquesa deslumbrante" />
 		</materials>
 	</gatherable_template>
-	<gatherable_template id="401166" name_en="Noble Horned Dragon King’s Dragon Claws (A)" name_pt="Nobre Chifrudo do Rei Dragão Garras de Dragão (A)" nameId="795746" sourceType="NOBLEMETAL" harvestCount="12" skillLevel="400" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="200" lvlLimit="50" reqItem="169405036" reqItemNameId="764400" checkType="2" eraseValue="1">
+	<gatherable_template id="401166" name_en="Noble Horned Dragon King’s Dragon Claws (A)" name_pt="Garras de Dragão (A) Nobre do Rei Dragão Chifrudo" nameId="795746" sourceType="NOBLEMETAL" harvestCount="12" skillLevel="400" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="200" lvlLimit="50" reqItem="169405036" reqItemNameId="764400" checkType="2" eraseValue="1">
 		<materials>
 			<material rate="2615000" nameid="765053" itemid="188051608" name_en="Chunk of Sand" name_pt="Pedaço de areia" />
 			<material rate="4135000" nameid="765054" itemid="188050720" name_en="Chunk of Rock" name_pt="Pedaço de rocha" />
@@ -5058,13 +5058,13 @@ Clique duas vezes para abrir." />
 	</gatherable_template>
 	<gatherable_template id="403519" name_en="Rare Manastone Bundle Material Chest (Level 60)" name_pt="Pacote de Pedras de Mana Raras Baú de Materiais (Nível 60)" nameId="791652" sourceType="FISH" harvestCount="5" skillLevel="240" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite idéia de Brigada" />
+			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite General de Brigada" />
 			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite idéia de Brigada" />
+			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite General de Brigada" />
 			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
@@ -5086,13 +5086,13 @@ Clique duas vezes para abrir." />
 	</gatherable_template>
 	<gatherable_template id="403521" name_en="Major Ancient Crown Material Chest" name_pt="Superior Antigo coroa Baú de Materiais" nameId="791654" sourceType="HERB" harvestCount="5" skillLevel="280" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite Arconte idéia de Brigada" />
+			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite Arconte General de Brigada" />
 			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite Arconte idéia de Brigada" />
+			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite Arconte General de Brigada" />
 			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
@@ -5100,13 +5100,13 @@ Clique duas vezes para abrir." />
 	</gatherable_template>
 	<gatherable_template id="403522" name_en="Azure Gold Medal Material Chest" name_pt="Azul-celeste ouro Medalha Baú de Materiais" nameId="791655" sourceType="SHELL" harvestCount="5" skillLevel="280" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791703" itemid="182006828" name_en="Fine Brigade General’s Accessory Selection Box" name_pt="acessório Caixa de Seleção de Fino idéia de Brigada" />
+			<material rate="5700000" nameid="791703" itemid="182006828" name_en="Fine Brigade General’s Accessory Selection Box" name_pt="acessório Caixa de Seleção de Fino General de Brigada" />
 			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791703" itemid="182006828" name_en="Fine Brigade General’s Accessory Selection Box" name_pt="acessório Caixa de Seleção de Fino idéia de Brigada" />
+			<material rate="5700000" nameid="791703" itemid="182006828" name_en="Fine Brigade General’s Accessory Selection Box" name_pt="acessório Caixa de Seleção de Fino General de Brigada" />
 			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
@@ -7255,13 +7255,13 @@ Clique duas vezes para abrir." />
 	</gatherable_template>
 	<gatherable_template id="409159" name_en="Rare Manastone Bundle Material Chest (Level 60)" name_pt="Pacote de Pedras de Mana Raras Baú de Materiais (Nível 60)" nameId="791652" sourceType="FISH" harvestCount="32" skillLevel="240" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite idéia de Brigada" />
+			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite General de Brigada" />
 			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite idéia de Brigada" />
+			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite General de Brigada" />
 			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
@@ -7283,13 +7283,13 @@ Clique duas vezes para abrir." />
 	</gatherable_template>
 	<gatherable_template id="409161" name_en="Major Ancient Crown Material Chest" name_pt="Superior Antigo coroa Baú de Materiais" nameId="791654" sourceType="HERB" harvestCount="32" skillLevel="280" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite Arconte idéia de Brigada" />
+			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite Arconte General de Brigada" />
 			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite Arconte idéia de Brigada" />
+			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite Arconte General de Brigada" />
 			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
@@ -7297,13 +7297,13 @@ Clique duas vezes para abrir." />
 	</gatherable_template>
 	<gatherable_template id="409162" name_en="Azure Gold Medal Material Chest" name_pt="Azul-celeste ouro Medalha Baú de Materiais" nameId="791655" sourceType="SHELL" harvestCount="32" skillLevel="280" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791703" itemid="182006828" name_en="Fine Brigade General’s Accessory Selection Box" name_pt="acessório Caixa de Seleção de Fino idéia de Brigada" />
+			<material rate="5700000" nameid="791703" itemid="182006828" name_en="Fine Brigade General’s Accessory Selection Box" name_pt="acessório Caixa de Seleção de Fino General de Brigada" />
 			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791703" itemid="182006828" name_en="Fine Brigade General’s Accessory Selection Box" name_pt="acessório Caixa de Seleção de Fino idéia de Brigada" />
+			<material rate="5700000" nameid="791703" itemid="182006828" name_en="Fine Brigade General’s Accessory Selection Box" name_pt="acessório Caixa de Seleção de Fino General de Brigada" />
 			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
@@ -7459,13 +7459,13 @@ Clique duas vezes para abrir." />
 			<material rate="10000000" nameid="702051" itemid="152000804" name_en="Lapia" name_pt="Lápia" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="409180" name_en="Koa Log" name_pt="Antigo guerra" nameId="701975" sourceType="TREE" harvestCount="32" skillLevel="140" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100">
+	<gatherable_template id="409180" name_en="Koa Log" name_pt="Tora de Koa" nameId="701975" sourceType="TREE" harvestCount="32" skillLevel="140" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100">
 		<materials>
-			<material rate="8000000" nameid="702042" itemid="152000502" name_en="Koa Log" name_pt="Antigo guerra" />
+			<material rate="8000000" nameid="702042" itemid="152000502" name_en="Koa Log" name_pt="Tora de Koa" />
 			<material rate="2000000" nameid="774984" itemid="152000506" name_en="Linon Fibre Bundle" name_pt="Pacote de Linon Fibra" />
 		</materials>
 		<exmaterials>
-			<material rate="8000000" nameid="702042" itemid="152000502" name_en="Koa Log" name_pt="Antigo guerra" />
+			<material rate="8000000" nameid="702042" itemid="152000502" name_en="Koa Log" name_pt="Tora de Koa" />
 			<material rate="2000000" nameid="774984" itemid="152000506" name_en="Linon Fibre Bundle" name_pt="Pacote de Linon Fibra" />
 		</exmaterials>
 	</gatherable_template>
@@ -7897,7 +7897,7 @@ Clique duas vezes para abrir." nameId="811693" sourceType="PLANT" harvestCount="
 			<material rate="1400000" nameid="811613" itemid="152000614" name_en="[Event] Forsaken Weapon Chest" name_pt="[Evento] Abandonado Baú de Armas" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="409220" name_en="Trade Guild Adventurer’s Seal Chest" name_pt="Comércio Guilda Aventureiro’Baú de s selo" nameId="811694" sourceType="NOBLEMETAL" harvestCount="32" skillLevel="499" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="60">
+	<gatherable_template id="409220" name_en="Trade Guild Adventurer’s Seal Chest" name_pt="Baú de selo de Comércio Guilda Aventureiro" nameId="811694" sourceType="NOBLEMETAL" harvestCount="32" skillLevel="499" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="60">
 		<materials>
 			<material rate="5800000" nameid="811614" itemid="152000123" name_en="[Event] Forgotten Weapon Chest" name_pt="[Evento] Esquecido Baú de Armas" />
 			<material rate="2800000" nameid="811615" itemid="152000124" name_en="[Event] High-level Skill Book/Stigma Selection Box" name_pt="[Evento] Alto-Habilidade nível Livro/Stigma Caixa de Seleção" />
