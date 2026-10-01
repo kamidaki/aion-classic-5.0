@@ -1576,7 +1576,7 @@
 		</equipment>
 		<bound_radius front="0.125" side="0.175" upper="1" />
 	</npc_template>
-	<npc_template npc_id="203029" level="1" name_en="Female 150%" name_pt="Mulher 150%" name_id="350005" height="3" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="203029" level="1" name_en="Female 150%" name_pt="Feminino 150%" name_id="350005" height="3" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="5110">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -1592,7 +1592,7 @@
 		</equipment>
 		<bound_radius front="0.375" side="0.525" upper="3" />
 	</npc_template>
-	<npc_template npc_id="203030" level="1" name_en="Female 120%" name_pt="Mulher 120%" name_id="350006" height="2.4" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="203030" level="1" name_en="Female 120%" name_pt="Feminino 120%" name_id="350006" height="2.4" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="5110">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="8.5" group_run_fight="4.2" />
 		</stats>
@@ -1608,7 +1608,7 @@
 		</equipment>
 		<bound_radius front="0.3" side="0.42" upper="2.4" />
 	</npc_template>
-	<npc_template npc_id="203031" level="1" name_en="Female 70%" name_pt="Mulher 70%" name_id="350007" height="1.4" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="203031" level="1" name_en="Female 70%" name_pt="Feminino 70%" name_id="350007" height="1.4" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="5110">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -1624,7 +1624,7 @@
 		</equipment>
 		<bound_radius front="0.175" side="0.245" upper="1.4" />
 	</npc_template>
-	<npc_template npc_id="203032" level="1" name_en="Female 50%" name_pt="Mulher 50%" name_id="350008" height="1" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="203032" level="1" name_en="Female 50%" name_pt="Feminino 50%" name_id="350008" height="1" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="5110">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -1639,7 +1639,7 @@
 		</equipment>
 		<bound_radius front="0.125" side="0.175" upper="1" />
 	</npc_template>
-	<npc_template npc_id="203033" level="1" name_en="Female 150%" name_pt="Mulher 150%" name_id="350005" height="3" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="203033" level="1" name_en="Female 150%" name_pt="Feminino 150%" name_id="350005" height="3" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="5110">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -1654,7 +1654,7 @@
 		</equipment>
 		<bound_radius front="0.375" side="0.525" upper="3" />
 	</npc_template>
-	<npc_template npc_id="203034" level="1" name_en="Female 120%" name_pt="Mulher 120%" name_id="350006" height="2.4" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="203034" level="1" name_en="Female 120%" name_pt="Feminino 120%" name_id="350006" height="2.4" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="5110">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -1669,7 +1669,7 @@
 		</equipment>
 		<bound_radius front="0.3" side="0.42" upper="2.4" />
 	</npc_template>
-	<npc_template npc_id="203035" level="1" name_en="Female 70%" name_pt="Mulher 70%" name_id="350007" height="1.4" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="203035" level="1" name_en="Female 70%" name_pt="Feminino 70%" name_id="350007" height="1.4" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="5110">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -1684,7 +1684,7 @@
 		</equipment>
 		<bound_radius front="0.175" side="0.245" upper="1.4" />
 	</npc_template>
-	<npc_template npc_id="203036" level="1" name_en="Female 50%" name_pt="Mulher 50%" name_id="350008" height="1" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="203036" level="1" name_en="Female 50%" name_pt="Feminino 50%" name_id="350008" height="1" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="5110">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -1758,7 +1758,7 @@
 		</equipment>
 		<bound_radius front="0.225" side="0.315" upper="1.8" />
 	</npc_template>
-	<npc_template npc_id="203041" level="1" name_en="Female 110%" name_pt="Mulher 110%" name_id="350011" height="2.2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="203041" level="1" name_en="Female 110%" name_pt="Feminino 110%" name_id="350011" height="2.2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="5110">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -1772,7 +1772,7 @@
 		</equipment>
 		<bound_radius front="0.275" side="0.385" upper="2.2" />
 	</npc_template>
-	<npc_template npc_id="203042" level="1" name_en="Female 90%" name_pt="Mulher 90%" name_id="350012" height="1.8" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="203042" level="1" name_en="Female 90%" name_pt="Feminino 90%" name_id="350012" height="1.8" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="5110">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -1786,7 +1786,7 @@
 		</equipment>
 		<bound_radius front="0.225" side="0.315" upper="1.8" />
 	</npc_template>
-	<npc_template npc_id="203043" level="1" name_en="Female 110%" name_pt="Mulher 110%" name_id="350011" height="2.2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="203043" level="1" name_en="Female 110%" name_pt="Feminino 110%" name_id="350011" height="2.2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="5110">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -1800,7 +1800,7 @@
 		</equipment>
 		<bound_radius front="0.275" side="0.385" upper="2.2" />
 	</npc_template>
-	<npc_template npc_id="203044" level="1" name_en="Female 90%" name_pt="Mulher 90%" name_id="350012" height="1.8" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="203044" level="1" name_en="Female 90%" name_pt="Feminino 90%" name_id="350012" height="1.8" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="MONSTER" ai="general" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="5110">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -4544,7 +4544,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="46" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="203245" level="1" name_en="Test Asmodian Handicrafting Master" name_pt="Teste o mestre de desvantagem de asmodianos" name_id="350120" height="2" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="10" sangle="300" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="203245" level="1" name_en="Test Asmodian Handicrafting Master" name_pt="Mestre de Artesanato Asmodiano (Teste)" name_id="350120" height="2" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="10" sangle="300" attack_speed="2000" hpgauge="3">
 		<stats maxHp="2961">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -4628,7 +4628,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2 3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="203251" level="1" name_en="Test Asmodian Handicrafting Merchant" name_pt="Teste o comerciante de deficiência de asmodianos" name_id="350126" height="2" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="10" sangle="300" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="203251" level="1" name_en="Test Asmodian Handicrafting Merchant" name_pt="Comerciante de Artesanato Asmodiano (Teste)" name_id="350126" height="2" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="10" sangle="300" attack_speed="2000" hpgauge="3">
 		<stats maxHp="2961">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -5412,7 +5412,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2 3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="203307" level="1" name_en="Handicrafting Skill Merchant (Elyos)" name_pt="Mercador de habilidades para deficiência (Elyos)" name_id="350184" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="10" sangle="300" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="203307" level="1" name_en="Handicrafting Skill Merchant (Elyos)" name_pt="Mercador de Artesanato (Elyos)" name_id="350184" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="10" sangle="300" attack_speed="2000" hpgauge="3">
 		<stats maxHp="2961">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -5496,7 +5496,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2 3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="203313" level="1" name_en="Handicrafting Skill Merchant (Asmodian)" name_pt="Mercador de habilidades para deficiência (Asmodiano)" name_id="350190" height="2" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="10" sangle="300" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="203313" level="1" name_en="Handicrafting Skill Merchant (Asmodian)" name_pt="Mercador de Artesanato (Asmodiano)" name_id="350190" height="2" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="10" sangle="300" attack_speed="2000" hpgauge="3">
 		<stats maxHp="2961">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -34272,7 +34272,7 @@
 		<stats maxHp="30726" />
 		<bound_radius front="0.5" side="0.7" upper="1.8" />
 	</npc_template>
-	<npc_template npc_id="207543" level="45" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389589" height="1.02" group_drop="NONE" rank="EXPERT" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="207543" level="45" name_en="Holy Servant" name_pt="Servo Sagrado" name_id="389589" height="1.02" group_drop="NONE" rank="EXPERT" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="5" cancel_level="80">
 		<stats maxHp="810" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -35537,7 +35537,7 @@
 		<stats maxHp="9848" />
 		<bound_radius front="0.6" side="1.728" upper="3" />
 	</npc_template>
-	<npc_template npc_id="207642" level="42" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389688" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207642" level="42" name_en="Holy Servant" name_pt="Servo Sagrado" name_id="389688" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="10162" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -35545,7 +35545,7 @@
 		<stats maxHp="10260" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="207644" level="52" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389690" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207644" level="52" name_en="Holy Servant" name_pt="Servo Sagrado" name_id="389690" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="9869" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -35553,7 +35553,7 @@
 		<stats maxHp="9478" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="207646" level="42" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389692" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207646" level="42" name_en="Holy Servant" name_pt="Servo Sagrado" name_id="389692" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="9380" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -35561,7 +35561,7 @@
 		<stats maxHp="9283" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="207648" level="52" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389694" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207648" level="52" name_en="Holy Servant" name_pt="Servo Sagrado" name_id="389694" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="9380" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -35904,7 +35904,7 @@
 		</equipment>
 		<bound_radius front="0.3" side="0.42" upper="2.4" />
 	</npc_template>
-	<npc_template npc_id="207677" level="43" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389699" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207677" level="43" name_en="Holy Servant" name_pt="Servo Sagrado" name_id="389699" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="10260" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -35957,7 +35957,7 @@
 		</equipment>
 		<bound_radius front="0.3" side="0.42" upper="2.4" />
 	</npc_template>
-	<npc_template npc_id="207682" level="43" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389704" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207682" level="43" name_en="Holy Servant" name_pt="Servo Sagrado" name_id="389704" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="9869" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -36014,7 +36014,7 @@
 		</equipment>
 		<bound_radius front="0.3" side="0.42" upper="2.4" />
 	</npc_template>
-	<npc_template npc_id="207688" level="53" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389710" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207688" level="53" name_en="Holy Servant" name_pt="Servo Sagrado" name_id="389710" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="9576" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -36071,7 +36071,7 @@
 		</equipment>
 		<bound_radius front="0.3" side="0.42" upper="2.4" />
 	</npc_template>
-	<npc_template npc_id="207694" level="53" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389716" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207694" level="53" name_en="Holy Servant" name_pt="Servo Sagrado" name_id="389716" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="9771" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -36236,7 +36236,7 @@
 		</equipment>
 		<bound_radius front="0.2625" side="0.3675" upper="2.1" />
 	</npc_template>
-	<npc_template npc_id="207709" level="56" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389731" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207709" level="56" name_en="Holy Servant" name_pt="Servo Sagrado" name_id="389731" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="9576" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -36382,7 +36382,7 @@
 		</equipment>
 		<bound_radius front="0.2625" side="0.3675" upper="2.1" />
 	</npc_template>
-	<npc_template npc_id="207722" level="56" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389744" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207722" level="56" name_en="Holy Servant" name_pt="Servo Sagrado" name_id="389744" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="1561" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -36390,7 +36390,7 @@
 		<stats maxHp="1561" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="207724" level="20" name_en="Elyos Guard Fighter Elite Standard Lv3 20 Level" name_pt="Elyos Guarda Lutador Elite padrão Lv3 20 Nível" name_id="389746" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="2" attack_speed="2100" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="207724" level="20" name_en="Elyos Guard Fighter Elite Standard Lv3 20 Level" name_pt="Guarda Guerreiro Elyos de Elite (Nv. 20)" name_id="389746" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="2" attack_speed="2100" hpgauge="12" cancel_level="30">
 		<stats maxHp="12818">
 			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -36406,7 +36406,7 @@
 		</equipment>
 		<bound_radius front="0.2" side="0.28" upper="1.6" />
 	</npc_template>
-	<npc_template npc_id="207725" level="25" name_en="Elyos Guard Fighter Elite Standard Lv3 25 Level" name_pt="Elyos Guarda Lutador Elite padrão Lv3 25 Nível" name_id="389747" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="2" attack_speed="2100" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="207725" level="25" name_en="Elyos Guard Fighter Elite Standard Lv3 25 Level" name_pt="Guarda Guerreiro Elyos de Elite (Nv. 25)" name_id="389747" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="2" attack_speed="2100" hpgauge="12" cancel_level="30">
 		<stats maxHp="21255">
 			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -36422,7 +36422,7 @@
 		</equipment>
 		<bound_radius front="0.2" side="0.28" upper="1.6" />
 	</npc_template>
-	<npc_template npc_id="207726" level="30" name_en="Elyos Guard Fighter Elite Standard Lv3 30 Level" name_pt="Elyos Guarda Lutador Elite padrão Lv3 30 Nível" name_id="389748" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="2" attack_speed="2100" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="207726" level="30" name_en="Elyos Guard Fighter Elite Standard Lv3 30 Level" name_pt="Guarda Guerreiro Elyos de Elite (Nv. 30)" name_id="389748" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="2" attack_speed="2100" hpgauge="12" cancel_level="30">
 		<stats maxHp="31028">
 			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -36438,7 +36438,7 @@
 		</equipment>
 		<bound_radius front="0.2" side="0.28" upper="1.6" />
 	</npc_template>
-	<npc_template npc_id="207727" level="35" name_en="Elyos Guard Fighter Elite Standard Lv3 35 Level" name_pt="Elyos Guarda Lutador Elite padrão Lv3 35 Nível" name_id="389749" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="2" attack_speed="2100" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="207727" level="35" name_en="Elyos Guard Fighter Elite Standard Lv3 35 Level" name_pt="Guarda Guerreiro Elyos de Elite (Nv. 35)" name_id="389749" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="2" attack_speed="2100" hpgauge="12" cancel_level="30">
 		<stats maxHp="43422">
 			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -36454,7 +36454,7 @@
 		</equipment>
 		<bound_radius front="0.2" side="0.28" upper="1.6" />
 	</npc_template>
-	<npc_template npc_id="207728" level="40" name_en="Elyos Guard Fighter Elite Standard Lv3 40 Level" name_pt="Elyos Guarda Lutador Elite padrão Lv3 40 Nível" name_id="389750" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="2" attack_speed="2100" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="207728" level="40" name_en="Elyos Guard Fighter Elite Standard Lv3 40 Level" name_pt="Guarda Guerreiro Elyos de Elite (Nv. 40)" name_id="389750" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="2" attack_speed="2100" hpgauge="12" cancel_level="30">
 		<stats maxHp="58097">
 			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -36470,7 +36470,7 @@
 		</equipment>
 		<bound_radius front="0.2" side="0.28" upper="1.6" />
 	</npc_template>
-	<npc_template npc_id="207729" level="45" name_en="Elyos Guard Fighter Elite Standard Lv3 45 Level" name_pt="Elyos Guarda Lutador Elite padrão Lv3 45 Nível" name_id="389751" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="2" attack_speed="2100" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="207729" level="45" name_en="Elyos Guard Fighter Elite Standard Lv3 45 Level" name_pt="Guarda Guerreiro Elyos de Elite (Nv. 45)" name_id="389751" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="2" attack_speed="2100" hpgauge="12" cancel_level="30">
 		<stats maxHp="75108">
 			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -36486,7 +36486,7 @@
 		</equipment>
 		<bound_radius front="0.2" side="0.28" upper="1.6" />
 	</npc_template>
-	<npc_template npc_id="207730" level="50" name_en="Elyos Guard Fighter Elite Standard Lv3 50 Level" name_pt="Elyos Guarda Lutador Elite padrão Lv3 50 Nível" name_id="389752" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="30" arange="2" attack_speed="2100" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="207730" level="50" name_en="Elyos Guard Fighter Elite Standard Lv3 50 Level" name_pt="Guarda Guerreiro Elyos de Elite (Nv. 50)" name_id="389752" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="30" arange="2" attack_speed="2100" hpgauge="12" cancel_level="30">
 		<stats maxHp="92669">
 			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -36502,7 +36502,7 @@
 		</equipment>
 		<bound_radius front="0.2" side="0.28" upper="1.6" />
 	</npc_template>
-	<npc_template npc_id="207731" level="20" name_en="Elyos Guard Sorcerer Elite Standard Lv3 20 Level" name_pt="Elyos Guarda Feiticeiro Elite padrão Lv3 20 Nível" name_id="389753" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="37" attack_speed="2300" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="207731" level="20" name_en="Elyos Guard Sorcerer Elite Standard Lv3 20 Level" name_pt="Guarda Feiticeiro Elyos de Elite (Nv. 20)" name_id="389753" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="37" attack_speed="2300" hpgauge="12" cancel_level="30">
 		<stats maxHp="12942">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -36515,7 +36515,7 @@
 		</equipment>
 		<bound_radius front="0.2" side="0.28" upper="1.6" />
 	</npc_template>
-	<npc_template npc_id="207732" level="25" name_en="Elyos Guard Sorcerer Elite Standard Lv3 25 Level" name_pt="Elyos Guarda Feiticeiro Elite padrão Lv3 25 Nível" name_id="389754" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="37" attack_speed="2300" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="207732" level="25" name_en="Elyos Guard Sorcerer Elite Standard Lv3 25 Level" name_pt="Guarda Feiticeiro Elyos de Elite (Nv. 25)" name_id="389754" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="37" attack_speed="2300" hpgauge="12" cancel_level="30">
 		<stats maxHp="20850">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -36528,7 +36528,7 @@
 		</equipment>
 		<bound_radius front="0.2" side="0.28" upper="1.6" />
 	</npc_template>
-	<npc_template npc_id="207733" level="30" name_en="Elyos Guard Sorcerer Elite Standard Lv3 30 Level" name_pt="Elyos Guarda Feiticeiro Elite padrão Lv3 30 Nível" name_id="389755" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="37" attack_speed="2300" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="207733" level="30" name_en="Elyos Guard Sorcerer Elite Standard Lv3 30 Level" name_pt="Guarda Feiticeiro Elyos de Elite (Nv. 30)" name_id="389755" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="37" attack_speed="2300" hpgauge="12" cancel_level="30">
 		<stats maxHp="31329">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -36541,7 +36541,7 @@
 		</equipment>
 		<bound_radius front="0.2" side="0.28" upper="1.6" />
 	</npc_template>
-	<npc_template npc_id="207734" level="35" name_en="Elyos Guard Sorcerer Elite Standard Lv3 35 Level" name_pt="Elyos Guarda Feiticeiro Elite padrão Lv3 35 Nível" name_id="389756" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="37" attack_speed="2300" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="207734" level="35" name_en="Elyos Guard Sorcerer Elite Standard Lv3 35 Level" name_pt="Guarda Feiticeiro Elyos de Elite (Nv. 35)" name_id="389756" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="37" attack_speed="2300" hpgauge="12" cancel_level="30">
 		<stats maxHp="42579">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -36554,7 +36554,7 @@
 		</equipment>
 		<bound_radius front="0.2" side="0.28" upper="1.6" />
 	</npc_template>
-	<npc_template npc_id="207735" level="40" name_en="Elyos Guard Sorcerer Elite Standard Lv3 40 Level" name_pt="Elyos Guarda Feiticeiro Elite padrão Lv3 40 Nível" name_id="389757" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="37" attack_speed="2300" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="207735" level="40" name_en="Elyos Guard Sorcerer Elite Standard Lv3 40 Level" name_pt="Guarda Feiticeiro Elyos de Elite (Nv. 40)" name_id="389757" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="37" attack_speed="2300" hpgauge="12" cancel_level="30">
 		<stats maxHp="58097">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -36567,7 +36567,7 @@
 		</equipment>
 		<bound_radius front="0.2" side="0.28" upper="1.6" />
 	</npc_template>
-	<npc_template npc_id="207736" level="45" name_en="Elyos Guard Sorcerer Elite Standard Lv3 45 Level" name_pt="Elyos Guarda Feiticeiro Elite padrão Lv3 45 Nível" name_id="389758" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="37" attack_speed="2300" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="207736" level="45" name_en="Elyos Guard Sorcerer Elite Standard Lv3 45 Level" name_pt="Guarda Feiticeiro Elyos de Elite (Nv. 45)" name_id="389758" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="25" arange="37" attack_speed="2300" hpgauge="12" cancel_level="30">
 		<stats maxHp="75108">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -36580,7 +36580,7 @@
 		</equipment>
 		<bound_radius front="0.2" side="0.28" upper="1.6" />
 	</npc_template>
-	<npc_template npc_id="207737" level="50" name_en="Elyos Guard Sorcerer Elite Standard Lv3 50 Level" name_pt="Elyos Guarda Feiticeiro Elite padrão Lv3 50 Nível" name_id="389759" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="30" arange="37" attack_speed="2300" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="207737" level="50" name_en="Elyos Guard Sorcerer Elite Standard Lv3 50 Level" name_pt="Guarda Feiticeiro Elyos de Elite (Nv. 50)" name_id="389759" height="1.6" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="30" arange="37" attack_speed="2300" hpgauge="12" cancel_level="30">
 		<stats maxHp="94504">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -47399,7 +47399,7 @@
 		</equipment>
 		<bound_radius front="0.77" side="0.3955" upper="2.04" />
 	</npc_template>
-	<npc_template npc_id="210694" level="18" name_en="Crack Krall Tower Wallarm" name_pt="Wallarm da torre Krall crack" name_id="301053" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="NORMAL" race="KRALL" tribe="TOWERMAN" ai="aggressive" srange="17" sangle="240" arange="20" attack_speed="2260" hpgauge="3">
+	<npc_template npc_id="210694" level="18" name_en="Crack Krall Tower Wallarm" name_pt="Guarda-Muralha da Torre Krall de Elite" name_id="301053" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="NORMAL" race="KRALL" tribe="TOWERMAN" ai="aggressive" srange="17" sangle="240" arange="20" attack_speed="2260" hpgauge="3">
 		<stats maxHp="1441" />
 		<equipment>
 			<item>101700007</item>
@@ -48494,7 +48494,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="210839" level="28" name_en="Kaidan Wallarm" name_pt="Wallarm Kaidan" name_id="301182" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="210839" level="28" name_en="Kaidan Wallarm" name_pt="Guarda-Muralha Kaidan" name_id="301182" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
 		<stats maxHp="20216">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -48872,7 +48872,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="210892" level="30" name_en="Crack Kaidan Plantygrunt" name_pt="Crack Kaidan Plantygrunt" name_id="301226" height="1.77" group_drop="KRALLSHAMAN" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="16" attack_speed="2244" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="210892" level="30" name_en="Crack Kaidan Plantygrunt" name_pt="Grunhidor Kaidan de Elite" name_id="301226" height="1.77" group_drop="KRALLSHAMAN" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="16" attack_speed="2244" hpgauge="11" cancel_level="40">
 		<stats maxHp="36036">
 			<speeds walk="0.778" group_walk="0.778" run="7" run_fight="6" group_run_fight="7" />
 		</stats>
@@ -48882,7 +48882,7 @@
 		</equipment>
 		<bound_radius front="0.9415" side="0.6435" upper="1.77" />
 	</npc_template>
-	<npc_template npc_id="210893" level="30" name_en="Crack Kaidan Scout" name_pt="Crack Kaidan Batedor" name_id="301227" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="2260" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="210893" level="30" name_en="Crack Kaidan Scout" name_pt="Batedor Kaidan de Elite" name_id="301227" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="2260" hpgauge="11" cancel_level="40">
 		<stats maxHp="31028">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -50020,7 +50020,7 @@
 		</stats>
 		<bound_radius front="0.5" side="1.56" upper="1.3" />
 	</npc_template>
-	<npc_template npc_id="211049" level="31" name_en="Cracktooth Ettin" name_pt="Você crackdoot" name_id="302779" height="1.1" group_drop="ETTIN" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="ETTIN" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="211049" level="31" name_en="Cracktooth Ettin" name_pt="Ettin Dente-Rachado" name_id="302779" height="1.1" group_drop="ETTIN" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="ETTIN" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="5712">
 			<speeds walk="0.75" group_walk="0.75" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
@@ -50820,7 +50820,7 @@
 		</stats>
 		<bound_radius front="1.105" side="1.625" upper="2.3582" />
 	</npc_template>
-	<npc_template npc_id="211167" level="39" name_en="Crack Kishar Wallarm" name_pt="Wallarm de crack kishar" name_id="302897" height="2.05" group_drop="KRALLWARRIOR" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="13" cancel_level="20">
+	<npc_template npc_id="211167" level="39" name_en="Crack Kishar Wallarm" name_pt="Guarda-Muralha Kishar de Elite" name_id="302897" height="2.05" group_drop="KRALLWARRIOR" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="13" cancel_level="20">
 		<stats maxHp="62884">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -50829,7 +50829,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="211168" level="39" name_en="Crack Kishar Loudmouth" name_pt="Crack kishar Desbocado" name_id="302898" height="2.04" group_drop="KRALLSCOUT" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="2260" hpgauge="13" cancel_level="20">
+	<npc_template npc_id="211168" level="39" name_en="Crack Kishar Loudmouth" name_pt="Desbocado Kishar de Elite" name_id="302898" height="2.04" group_drop="KRALLSCOUT" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="2260" hpgauge="13" cancel_level="20">
 		<stats maxHp="49736">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -50875,7 +50875,7 @@
 		</stats>
 		<bound_radius front="0.52" side="0.54" upper="0.88" />
 	</npc_template>
-	<npc_template npc_id="211175" level="40" name_en="Crack Kishar Wallarm" name_pt="Wallarm de crack kishar" name_id="302905" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1995" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="211175" level="40" name_en="Crack Kishar Wallarm" name_pt="Guarda-Muralha Kishar de Elite" name_id="302905" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1995" hpgauge="11" cancel_level="40">
 		<stats maxHp="32830">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -50884,7 +50884,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="211176" level="40" name_en="Crack Kishar Loudmouth" name_pt="Crack kishar Desbocado" name_id="302906" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="1995" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="211176" level="40" name_en="Crack Kishar Loudmouth" name_pt="Desbocado Kishar de Elite" name_id="302906" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="1995" hpgauge="11" cancel_level="40">
 		<stats maxHp="32830">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -55219,7 +55219,7 @@
 		</equipment>
 		<bound_radius front="0.79800004" side="0.55799997" upper="1.65" />
 	</npc_template>
-	<npc_template npc_id="211775" level="37" name_en="Crack Kaidan Warmonger" name_pt="Crack Kaidan Guerreiro" name_id="304094" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="211775" level="37" name_en="Crack Kaidan Warmonger" name_pt="Guerreiro Kaidan de Elite" name_id="304094" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
 		<stats maxHp="32885">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -55228,7 +55228,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="211776" level="38" name_en="Crack Kaidan Warmonger" name_pt="Crack Kaidan Guerreiro" name_id="304095" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="211776" level="38" name_en="Crack Kaidan Warmonger" name_pt="Guerreiro Kaidan de Elite" name_id="304095" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
 		<stats maxHp="34537">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -55518,7 +55518,7 @@
 		</stats>
 		<bound_radius front="1.225" side="0.975" upper="2.855" />
 	</npc_template>
-	<npc_template npc_id="211816" level="37" name_en="Crack Kaidan Patrol" name_pt="Patrulha Kaidan de crack" name_id="304138" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2486" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="211816" level="37" name_en="Crack Kaidan Patrol" name_pt="Patrulha Kaidan de Elite" name_id="304138" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2486" hpgauge="11" cancel_level="40">
 		<stats maxHp="26009">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -55527,7 +55527,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="211817" level="38" name_en="Crack Kaidan Patrol" name_pt="Patrulha Kaidan de crack" name_id="304139" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2486" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="211817" level="38" name_en="Crack Kaidan Patrol" name_pt="Patrulha Kaidan de Elite" name_id="304139" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2486" hpgauge="11" cancel_level="40">
 		<stats maxHp="27316">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -55662,7 +55662,7 @@
 		</equipment>
 		<bound_radius front="0.77" side="0.3955" upper="2.04" />
 	</npc_template>
-	<npc_template npc_id="211833" level="29" name_en="Trainee Kaidan Wallarm" name_pt="Wallarm do estagiário Kaidan" name_id="304163" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="NORMAL" race="KRALL" tribe="KRALL_TRAINING" ai="aggressive" srange="13" sangle="140" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="211833" level="29" name_en="Trainee Kaidan Wallarm" name_pt="Guarda-Muralha do estagiário Kaidan" name_id="304163" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="NORMAL" race="KRALL" tribe="KRALL_TRAINING" ai="aggressive" srange="13" sangle="140" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="4996">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -55851,7 +55851,7 @@
 		<stats maxHp="65" />
 		<bound_radius front="2.8" side="2.8" upper="3.36" />
 	</npc_template>
-	<npc_template npc_id="211862" level="37" name_en="Crack Pathrunner" name_pt="Crack Pathrunner" name_id="304185" height="2.665" group_drop="KRALLWARRIOR" rank="VETERAN" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2625" hpgauge="14" cancel_level="20">
+	<npc_template npc_id="211862" level="37" name_en="Crack Pathrunner" name_pt="Corredor de Trilhas de Elite" name_id="304185" height="2.665" group_drop="KRALLWARRIOR" rank="VETERAN" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2625" hpgauge="14" cancel_level="20">
 		<stats maxHp="51515">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="14" group_run_fight="7.6" />
 		</stats>
@@ -55860,7 +55860,7 @@
 		</equipment>
 		<bound_radius front="1.755" side="0.91" upper="2.665" />
 	</npc_template>
-	<npc_template npc_id="211863" level="38" name_en="Crack Pathrunner" name_pt="Crack Pathrunner" name_id="304186" height="2.665" group_drop="KRALLWARRIOR" rank="VETERAN" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2625" hpgauge="14" cancel_level="20">
+	<npc_template npc_id="211863" level="38" name_en="Crack Pathrunner" name_pt="Corredor de Trilhas de Elite" name_id="304186" height="2.665" group_drop="KRALLWARRIOR" rank="VETERAN" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2625" hpgauge="14" cancel_level="20">
 		<stats maxHp="54102">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="14" group_run_fight="7.6" />
 		</stats>
@@ -56906,7 +56906,7 @@
 		</equipment>
 		<bound_radius front="0.79800004" side="0.55799997" upper="1.65" />
 	</npc_template>
-	<npc_template npc_id="212019" level="37" name_en="Crack Kaidan Slasher" name_pt="Crack kaidan retalhador" name_id="304370" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212019" level="37" name_en="Crack Kaidan Slasher" name_pt="Retalhador Kaidan de Elite" name_id="304370" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
 		<stats maxHp="32885">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -56915,7 +56915,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212020" level="38" name_en="Crack Kaidan Slasher" name_pt="Crack kaidan retalhador" name_id="304371" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212020" level="38" name_en="Crack Kaidan Slasher" name_pt="Retalhador Kaidan de Elite" name_id="304371" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
 		<stats maxHp="34537">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -56942,7 +56942,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212023" level="38" name_en="Crack Kaidan Smasher" name_pt="Crack kaidan n pedação" name_id="304374" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212023" level="38" name_en="Crack Kaidan Smasher" name_pt="Esmagador Kaidan de Elite" name_id="304374" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
 		<stats maxHp="34537">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -56951,7 +56951,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212024" level="39" name_en="Crack Kaidan Smasher" name_pt="Crack kaidan n pedação" name_id="304375" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212024" level="39" name_en="Crack Kaidan Smasher" name_pt="Esmagador Kaidan de Elite" name_id="304375" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
 		<stats maxHp="62884">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -56960,7 +56960,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212025" level="40" name_en="Crack Kaidan Skullcracker" name_pt="Crack kaidan skullcracker" name_id="304376" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212025" level="40" name_en="Crack Kaidan Skullcracker" name_pt="Quebra-Crânios Kaidan de Elite" name_id="304376" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
 		<stats maxHp="38238">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -56969,7 +56969,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212026" level="37" name_en="Crack Kaidan Blocker" name_pt="Bloqueador de crack Kaidan" name_id="304377" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2486" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212026" level="37" name_en="Crack Kaidan Blocker" name_pt="Bloqueador Kaidan de Elite" name_id="304377" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2486" hpgauge="11" cancel_level="40">
 		<stats maxHp="26009">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -56978,7 +56978,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212027" level="38" name_en="Crack Kaidan Blocker" name_pt="Bloqueador de crack Kaidan" name_id="304378" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2486" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212027" level="38" name_en="Crack Kaidan Blocker" name_pt="Bloqueador Kaidan de Elite" name_id="304378" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2486" hpgauge="11" cancel_level="40">
 		<stats maxHp="27316">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -57032,7 +57032,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212033" level="40" name_en="Crack Kaidan Captain" name_pt="Crack Kaidan Capitão" name_id="304384" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2486" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212033" level="40" name_en="Crack Kaidan Captain" name_pt="Capitão Kaidan de Elite" name_id="304384" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2486" hpgauge="11" cancel_level="40">
 		<stats maxHp="30243">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -57068,7 +57068,7 @@
 		</equipment>
 		<bound_radius front="0.77" side="0.3955" upper="2.04" />
 	</npc_template>
-	<npc_template npc_id="212037" level="38" name_en="Crack Kaidan Outrider" name_pt="Crack Kaidan Outlider" name_id="304388" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2486" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212037" level="38" name_en="Crack Kaidan Outrider" name_pt="Batedor Kaidan de Elite" name_id="304388" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2486" hpgauge="11" cancel_level="40">
 		<stats maxHp="27316">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -57077,7 +57077,7 @@
 		</equipment>
 		<bound_radius front="0.77" side="0.3955" upper="2.04" />
 	</npc_template>
-	<npc_template npc_id="212038" level="39" name_en="Crack Kaidan Outrider" name_pt="Crack Kaidan Outlider" name_id="304389" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2486" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212038" level="39" name_en="Crack Kaidan Outrider" name_pt="Batedor Kaidan de Elite" name_id="304389" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2486" hpgauge="11" cancel_level="40">
 		<stats maxHp="28540">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -57086,7 +57086,7 @@
 		</equipment>
 		<bound_radius front="0.77" side="0.3955" upper="2.04" />
 	</npc_template>
-	<npc_template npc_id="212039" level="40" name_en="Crack Outrider Boss" name_pt="Crack Outlider Chefe" name_id="304390" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2486" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212039" level="40" name_en="Crack Outrider Boss" name_pt="Chefe Batedor de Elite" name_id="304390" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2486" hpgauge="11" cancel_level="40">
 		<stats maxHp="30243">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -57095,7 +57095,7 @@
 		</equipment>
 		<bound_radius front="0.77" side="0.3955" upper="2.04" />
 	</npc_template>
-	<npc_template npc_id="212040" level="38" name_en="Crack Kaidan Lancer" name_pt="Crack kaidan lanceiro" name_id="304391" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="2486" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212040" level="38" name_en="Crack Kaidan Lancer" name_pt="Lanceiro Kaidan de Elite" name_id="304391" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="2486" hpgauge="11" cancel_level="40">
 		<stats maxHp="27316">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -57105,7 +57105,7 @@
 		</equipment>
 		<bound_radius front="0.77" side="0.3955" upper="2.04" />
 	</npc_template>
-	<npc_template npc_id="212041" level="39" name_en="Crack Kaidan Lancer" name_pt="Crack kaidan lanceiro" name_id="304392" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="2486" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212041" level="39" name_en="Crack Kaidan Lancer" name_pt="Lanceiro Kaidan de Elite" name_id="304392" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="2486" hpgauge="11" cancel_level="40">
 		<stats maxHp="28540">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -57125,7 +57125,7 @@
 		</equipment>
 		<bound_radius front="0.77" side="0.3955" upper="2.04" />
 	</npc_template>
-	<npc_template npc_id="212043" level="38" name_en="Crack Kaidan Chucker" name_pt="Crack kaidan chucker" name_id="304394" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="2486" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212043" level="38" name_en="Crack Kaidan Chucker" name_pt="kaidan de Elite chucker" name_id="304394" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="2486" hpgauge="11" cancel_level="40">
 		<stats maxHp="27316">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -57135,7 +57135,7 @@
 		</equipment>
 		<bound_radius front="0.77" side="0.3955" upper="2.04" />
 	</npc_template>
-	<npc_template npc_id="212044" level="39" name_en="Crack Kaidan Chucker" name_pt="Crack kaidan chucker" name_id="304395" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="2486" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212044" level="39" name_en="Crack Kaidan Chucker" name_pt="kaidan de Elite chucker" name_id="304395" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="2486" hpgauge="11" cancel_level="40">
 		<stats maxHp="54709">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -57185,7 +57185,7 @@
 		</equipment>
 		<bound_radius front="0.9415" side="0.6435" upper="1.77" />
 	</npc_template>
-	<npc_template npc_id="212049" level="38" name_en="Crack Kaidan Soothsayer" name_pt="Adivinho Crack Kaidan" name_id="304400" height="1.77" group_drop="KRALLSHAMAN" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="16" attack_speed="2530" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212049" level="38" name_en="Crack Kaidan Soothsayer" name_pt="Adivinho Kaidan de Elite" name_id="304400" height="1.77" group_drop="KRALLSHAMAN" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="16" attack_speed="2530" hpgauge="11" cancel_level="40">
 		<stats maxHp="26060">
 			<speeds walk="0.778" group_walk="0.778" run="7" run_fight="6" group_run_fight="7" />
 		</stats>
@@ -57195,7 +57195,7 @@
 		</equipment>
 		<bound_radius front="0.9415" side="0.6435" upper="1.77" />
 	</npc_template>
-	<npc_template npc_id="212050" level="39" name_en="Crack Kaidan Soothsayer" name_pt="Adivinho Crack Kaidan" name_id="304401" height="1.77" group_drop="KRALLSHAMAN" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="16" attack_speed="2530" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212050" level="39" name_en="Crack Kaidan Soothsayer" name_pt="Adivinho Kaidan de Elite" name_id="304401" height="1.77" group_drop="KRALLSHAMAN" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="16" attack_speed="2530" hpgauge="11" cancel_level="40">
 		<stats maxHp="27228">
 			<speeds walk="0.778" group_walk="0.778" run="7" run_fight="6" group_run_fight="7" />
 		</stats>
@@ -57281,7 +57281,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212060" level="29" name_en="Crack Kaidan Wallarm" name_pt="Crack Kaidan Wallarm" name_id="304501" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212060" level="29" name_en="Crack Kaidan Wallarm" name_pt="Kaidan de Elite Guarda-Muralha" name_id="304501" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
 		<stats maxHp="21586">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -57290,7 +57290,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212061" level="30" name_en="Crack Kaidan Wallarm" name_pt="Crack Kaidan Wallarm" name_id="304502" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212061" level="30" name_en="Crack Kaidan Wallarm" name_pt="Kaidan de Elite Guarda-Muralha" name_id="304502" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
 		<stats maxHp="22734">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -57317,7 +57317,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212064" level="29" name_en="Crack Kaidan Grappler" name_pt="Crack kaidan grappler" name_id="304505" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212064" level="29" name_en="Crack Kaidan Grappler" name_pt="kaidan de Elite grappler" name_id="304505" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
 		<stats maxHp="22568">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -57326,7 +57326,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212065" level="30" name_en="Crack Kaidan Grappler" name_pt="Crack kaidan grappler" name_id="304506" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212065" level="30" name_en="Crack Kaidan Grappler" name_pt="kaidan de Elite grappler" name_id="304506" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2310" hpgauge="11" cancel_level="40">
 		<stats maxHp="23767">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -57353,7 +57353,7 @@
 		</equipment>
 		<bound_radius front="0.77" side="0.3955" upper="2.04" />
 	</npc_template>
-	<npc_template npc_id="212068" level="29" name_en="Kaidan Superior Trooper" name_pt="Crack kaidan pargo" name_id="304509" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2090" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212068" level="29" name_en="Kaidan Superior Trooper" name_pt="kaidan de Elite pargo" name_id="304509" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2090" hpgauge="11" cancel_level="40">
 		<stats maxHp="16288">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -57362,7 +57362,7 @@
 		</equipment>
 		<bound_radius front="0.77" side="0.3955" upper="2.04" />
 	</npc_template>
-	<npc_template npc_id="212069" level="30" name_en="Kaidan Superior Trooper" name_pt="Crack kaidan pargo" name_id="304510" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2090" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212069" level="30" name_en="Kaidan Superior Trooper" name_pt="kaidan de Elite pargo" name_id="304510" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2090" hpgauge="11" cancel_level="40">
 		<stats maxHp="17153">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -57371,7 +57371,7 @@
 		</equipment>
 		<bound_radius front="0.77" side="0.3955" upper="2.04" />
 	</npc_template>
-	<npc_template npc_id="212070" level="29" name_en="Crack Kaidan Loudmouth" name_pt="Crack kaidan Desbocado" name_id="304511" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="2486" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212070" level="29" name_en="Crack Kaidan Loudmouth" name_pt="kaidan de Elite Desbocado" name_id="304511" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="2486" hpgauge="11" cancel_level="40">
 		<stats maxHp="17073">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -57381,7 +57381,7 @@
 		</equipment>
 		<bound_radius front="0.77" side="0.3955" upper="2.04" />
 	</npc_template>
-	<npc_template npc_id="212071" level="30" name_en="Crack Kaidan Loudmouth" name_pt="Crack kaidan Desbocado" name_id="304512" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="2486" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212071" level="30" name_en="Crack Kaidan Loudmouth" name_pt="kaidan de Elite Desbocado" name_id="304512" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="2486" hpgauge="11" cancel_level="40">
 		<stats maxHp="17980">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -57411,7 +57411,7 @@
 		</equipment>
 		<bound_radius front="0.9415" side="0.6435" upper="1.77" />
 	</npc_template>
-	<npc_template npc_id="212074" level="29" name_en="Crack Kaidan Witchdoctor" name_pt="Crack kaidan witchdoctor" name_id="304515" height="1.77" group_drop="KRALLSHAMAN" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="16" attack_speed="2530" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212074" level="29" name_en="Crack Kaidan Witchdoctor" name_pt="kaidan de Elite witchdoctor" name_id="304515" height="1.77" group_drop="KRALLSHAMAN" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="16" attack_speed="2530" hpgauge="11" cancel_level="40">
 		<stats maxHp="16288">
 			<speeds walk="0.778" group_walk="0.778" run="7" run_fight="6" group_run_fight="7" />
 		</stats>
@@ -57421,7 +57421,7 @@
 		</equipment>
 		<bound_radius front="0.9415" side="0.6435" upper="1.77" />
 	</npc_template>
-	<npc_template npc_id="212075" level="30" name_en="Crack Kaidan Witchdoctor" name_pt="Crack kaidan witchdoctor" name_id="304516" height="1.77" group_drop="KRALLSHAMAN" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="16" attack_speed="2530" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212075" level="30" name_en="Crack Kaidan Witchdoctor" name_pt="kaidan de Elite witchdoctor" name_id="304516" height="1.77" group_drop="KRALLSHAMAN" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="16" attack_speed="2530" hpgauge="11" cancel_level="40">
 		<stats maxHp="17153">
 			<speeds walk="0.778" group_walk="0.778" run="7" run_fight="6" group_run_fight="7" />
 		</stats>
@@ -57431,7 +57431,7 @@
 		</equipment>
 		<bound_radius front="0.9415" side="0.6435" upper="1.77" />
 	</npc_template>
-	<npc_template npc_id="212076" level="30" name_en="Crack Kaidan Lama" name_pt="Crack kaidan lama" name_id="304517" height="1.77" group_drop="KRALLSHAMAN" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="16" attack_speed="2040" hpgauge="13" cancel_level="20">
+	<npc_template npc_id="212076" level="30" name_en="Crack Kaidan Lama" name_pt="kaidan de Elite lama" name_id="304517" height="1.77" group_drop="KRALLSHAMAN" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="16" attack_speed="2040" hpgauge="13" cancel_level="20">
 		<stats maxHp="31630">
 			<speeds walk="0.778" group_walk="0.778" run="7" run_fight="6" group_run_fight="7" />
 		</stats>
@@ -58599,7 +58599,7 @@
 		</stats>
 		<bound_radius front="0.56" side="0.56" upper="2.59" />
 	</npc_template>
-	<npc_template npc_id="212212" level="38" name_en="Crack Kishar Charger" name_pt="Carregador Crack Kishar" name_id="305024" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2205" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212212" level="38" name_en="Crack Kishar Charger" name_pt="Carregador Kishar de Elite" name_id="305024" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2205" hpgauge="11" cancel_level="40">
 		<stats maxHp="60189">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -58608,7 +58608,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212213" level="41" name_en="Crack Kishar Cracker" name_pt="Crack kishar cracker" name_id="305025" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2205" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212213" level="41" name_en="Crack Kishar Cracker" name_pt="kishar de Elite cracker" name_id="305025" height="2.05" group_drop="KRALLWARRIOR" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2205" hpgauge="11" cancel_level="40">
 		<stats maxHp="44582">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -58617,7 +58617,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212214" level="38" name_en="Crack Kishar Grappler" name_pt="Crack kishar grappler" name_id="305026" height="2.05" group_drop="KRALLWARRIOR" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="13" cancel_level="20">
+	<npc_template npc_id="212214" level="38" name_en="Crack Kishar Grappler" name_pt="kishar de Elite grappler" name_id="305026" height="2.05" group_drop="KRALLWARRIOR" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="13" cancel_level="20">
 		<stats maxHp="62924">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -58626,7 +58626,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212215" level="39" name_en="Crack Kishar Grappler" name_pt="Crack kishar grappler" name_id="305027" height="2.05" group_drop="KRALLWARRIOR" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="13" cancel_level="20">
+	<npc_template npc_id="212215" level="39" name_en="Crack Kishar Grappler" name_pt="kishar de Elite grappler" name_id="305027" height="2.05" group_drop="KRALLWARRIOR" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="13" cancel_level="20">
 		<stats maxHp="65743">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -58644,7 +58644,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212217" level="38" name_en="Crack Kishar Raider" name_pt="Crack kishar invasor" name_id="305029" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1995" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212217" level="38" name_en="Crack Kishar Raider" name_pt="kishar de Elite invasor" name_id="305029" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1995" hpgauge="11" cancel_level="40">
 		<stats maxHp="45415">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -58653,7 +58653,7 @@
 		</equipment>
 		<bound_radius front="0.77" side="0.3955" upper="2.04" />
 	</npc_template>
-	<npc_template npc_id="212218" level="39" name_en="Crack Kishar Raider" name_pt="Crack kishar invasor" name_id="305030" height="2.04" group_drop="KRALLSCOUT" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1900" hpgauge="13" cancel_level="20">
+	<npc_template npc_id="212218" level="39" name_en="Crack Kishar Raider" name_pt="kishar de Elite invasor" name_id="305030" height="2.04" group_drop="KRALLSCOUT" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1900" hpgauge="13" cancel_level="20">
 		<stats maxHp="47449">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -58662,7 +58662,7 @@
 		</equipment>
 		<bound_radius front="0.77" side="0.3955" upper="2.04" />
 	</npc_template>
-	<npc_template npc_id="212219" level="40" name_en="Kishar Superior Trooper" name_pt="Crack Kishar Soldado" name_id="305031" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1995" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212219" level="40" name_en="Kishar Superior Trooper" name_pt="Kishar de Elite Soldado" name_id="305031" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1995" hpgauge="11" cancel_level="40">
 		<stats maxHp="50278">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -58671,7 +58671,7 @@
 		</equipment>
 		<bound_radius front="0.77" side="0.3955" upper="2.04" />
 	</npc_template>
-	<npc_template npc_id="212220" level="41" name_en="Kishar Superior Trooper" name_pt="Crack Kishar Soldado" name_id="305032" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1995" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212220" level="41" name_en="Kishar Superior Trooper" name_pt="Kishar de Elite Soldado" name_id="305032" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1995" hpgauge="11" cancel_level="40">
 		<stats maxHp="33639">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -58822,7 +58822,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212236" level="42" name_en="Insane Slicer" name_pt="Crack insano" name_id="305048" height="2.04" group_drop="KRALLSCOUT" rank="EXPERT" rating="NORMAL" race="KRALL" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1900" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="212236" level="42" name_en="Insane Slicer" name_pt="insano de Elite" name_id="305048" height="2.04" group_drop="KRALLSCOUT" rank="EXPERT" rating="NORMAL" race="KRALL" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1900" hpgauge="5" cancel_level="80">
 		<stats maxHp="9698">
 			<speeds walk="2" group_walk="2" run="7.8" run_fight="5.3" group_run_fight="8.8" />
 		</stats>
@@ -58938,7 +58938,7 @@
 		</equipment>
 		<bound_radius front="1.755" side="0.91" upper="2.665" />
 	</npc_template>
-	<npc_template npc_id="212248" level="40" name_en="Insane Slicer Boss" name_pt="Chefe de Crack Louco" name_id="305060" height="2.6519997" group_drop="KRALLSCOUT" rank="EXPERT" rating="NORMAL" race="KRALL" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1900" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="212248" level="40" name_en="Insane Slicer Boss" name_pt="Chefe de Louco de Elite" name_id="305060" height="2.6519997" group_drop="KRALLSCOUT" rank="EXPERT" rating="NORMAL" race="KRALL" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1900" hpgauge="5" cancel_level="80">
 		<stats maxHp="63258">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="14" group_run_fight="8.8" />
 		</stats>
@@ -58967,7 +58967,7 @@
 		</equipment>
 		<bound_radius front="0.77" side="0.3955" upper="2.04" />
 	</npc_template>
-	<npc_template npc_id="212251" level="40" name_en="Crack Kishar Crusher" name_pt="Crack kishar triturador" name_id="305063" height="2.05" group_drop="KRALLWARRIOR" rank="EXPERT" rating="NORMAL" race="BEAST" tribe="AGGRESSIVE1_AAGGRESSIVE2" ai="aggressive" srange="9" sangle="240" arange="2" attack_speed="2205" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="212251" level="40" name_en="Crack Kishar Crusher" name_pt="kishar de Elite triturador" name_id="305063" height="2.05" group_drop="KRALLWARRIOR" rank="EXPERT" rating="NORMAL" race="BEAST" tribe="AGGRESSIVE1_AAGGRESSIVE2" ai="aggressive" srange="9" sangle="240" arange="2" attack_speed="2205" hpgauge="5" cancel_level="80">
 		<stats maxHp="11693">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -58976,7 +58976,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212252" level="41" name_en="Crack Kishar Stabber" name_pt="Crack Kishar Sabber" name_id="305064" height="2.04" group_drop="KRALLSCOUT" rank="EXPERT" rating="NORMAL" race="BEAST" tribe="AGGRESSIVE1_AAGGRESSIVE2" ai="aggressive" srange="9" sangle="240" arange="20" attack_speed="2373" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="212252" level="41" name_en="Crack Kishar Stabber" name_pt="Kishar de Elite Sabber" name_id="305064" height="2.04" group_drop="KRALLSCOUT" rank="EXPERT" rating="NORMAL" race="BEAST" tribe="AGGRESSIVE1_AAGGRESSIVE2" ai="aggressive" srange="9" sangle="240" arange="20" attack_speed="2373" hpgauge="5" cancel_level="80">
 		<stats maxHp="9283">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -59063,7 +59063,7 @@
 		</equipment>
 		<bound_radius front="1.12" side="1.55" upper="2.601" />
 	</npc_template>
-	<npc_template npc_id="212261" level="42" name_en="Crack Kishar Slasher" name_pt="Crack kishar retalhador" name_id="305073" height="2.05" group_drop="KRALLWARRIOR" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="13" cancel_level="20">
+	<npc_template npc_id="212261" level="42" name_en="Crack Kishar Slasher" name_pt="kishar de Elite retalhador" name_id="305073" height="2.05" group_drop="KRALLWARRIOR" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="13" cancel_level="20">
 		<stats maxHp="72720">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -59628,7 +59628,7 @@
 		</equipment>
 		<bound_radius front="0.35" side="0.35" upper="1.87" />
 	</npc_template>
-	<npc_template npc_id="212326" level="38" name_en="Crack Kishar Scout" name_pt="Crack Kishar Batedor" name_id="305138" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="1995" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="212326" level="38" name_en="Crack Kishar Scout" name_pt="Kishar de Elite Batedor" name_id="305138" height="2.04" group_drop="KRALLSCOUT" rank="DISCIPLINED" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="1995" hpgauge="11" cancel_level="40">
 		<stats maxHp="47604">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -60701,7 +60701,7 @@
 		</stats>
 		<bound_radius front="1.124" side="1.732" upper="2.168" />
 	</npc_template>
-	<npc_template npc_id="212496" level="35" name_en="Halabana Fighter" name_pt="Lutador's" name_id="305957" height="1.92" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="270" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="212496" level="35" name_en="Halabana Fighter" name_pt="Guerreiro Halabana" name_id="305957" height="1.92" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="270" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="7161">
 			<speeds walk="2.25" group_walk="2.25" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
@@ -61193,7 +61193,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212565" level="41" name_en="Kishar Big Wallarm" name_pt="Wallarm Big: .sint. grande Big: .sint. grande" name_id="306030" height="2.05" group_drop="KRALLWARRIOR" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="13" cancel_level="20">
+	<npc_template npc_id="212565" level="41" name_en="Kishar Big Wallarm" name_pt="Guarda-Muralha Big: .sint. grande Big: .sint. grande" name_id="306030" height="2.05" group_drop="KRALLWARRIOR" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="13" cancel_level="20">
 		<stats maxHp="73102">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -61309,7 +61309,7 @@
 		</equipment>
 		<bound_radius front="0.9415" side="0.6435" upper="1.77" />
 	</npc_template>
-	<npc_template npc_id="212577" level="41" name_en="Crack Kishar Crusher" name_pt="Crack kishar triturador" name_id="306042" height="2.05" group_drop="KRALLWARRIOR" rank="EXPERT" rating="NORMAL" race="BEAST" tribe="AGGRESSIVE1_AAGGRESSIVE2" ai="aggressive" srange="9" sangle="240" arange="2" attack_speed="2205" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="212577" level="41" name_en="Crack Kishar Crusher" name_pt="kishar de Elite triturador" name_id="306042" height="2.05" group_drop="KRALLWARRIOR" rank="EXPERT" rating="NORMAL" race="BEAST" tribe="AGGRESSIVE1_AAGGRESSIVE2" ai="aggressive" srange="9" sangle="240" arange="2" attack_speed="2205" hpgauge="5" cancel_level="80">
 		<stats maxHp="32712">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -61318,7 +61318,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212578" level="41" name_en="Crack Kishar Stabber" name_pt="Crack Kishar Sabber" name_id="306043" height="2.04" group_drop="KRALLSCOUT" rank="EXPERT" rating="NORMAL" race="BEAST" tribe="AGGRESSIVE1_AAGGRESSIVE2" ai="aggressive" srange="9" sangle="240" arange="20" attack_speed="2373" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="212578" level="41" name_en="Crack Kishar Stabber" name_pt="Kishar de Elite Sabber" name_id="306043" height="2.04" group_drop="KRALLSCOUT" rank="EXPERT" rating="NORMAL" race="BEAST" tribe="AGGRESSIVE1_AAGGRESSIVE2" ai="aggressive" srange="9" sangle="240" arange="20" attack_speed="2373" hpgauge="5" cancel_level="80">
 		<stats maxHp="24748">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6.3" group_run_fight="8.8" />
 		</stats>
@@ -61553,7 +61553,7 @@
 		</stats>
 		<bound_radius front="1.2425" side="0.42" upper="3.4925" />
 	</npc_template>
-	<npc_template npc_id="212606" level="45" name_en="Dark Mage Lich" name_pt="Sombrio Mago Lich" name_id="306081" height="2.66" group_drop="LICH" rank="EXPERT" rating="NORMAL" race="UNDEAD" tribe="DARK_LICH" ai="aggressive" srange="7" sangle="240" arange="16" attack_speed="2657" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="212606" level="45" name_en="Dark Mage Lich" name_pt="Lich Mago Sombrio" name_id="306081" height="2.66" group_drop="LICH" rank="EXPERT" rating="NORMAL" race="UNDEAD" tribe="DARK_LICH" ai="aggressive" srange="7" sangle="240" arange="16" attack_speed="2657" hpgauge="5" cancel_level="80">
 		<stats maxHp="47609">
 			<speeds walk="1.13" group_walk="1.13" run="6" run_fight="4.5" group_run_fight="6" />
 		</stats>
@@ -63344,7 +63344,7 @@
 		</equipment>
 		<bound_radius front="0.52" side="0.5395" upper="1.014" />
 	</npc_template>
-	<npc_template npc_id="212865" level="39" name_en="Mist Mane General" name_pt="idéia de névoa" name_id="306754" height="2.4" group_drop="LYCANF" rank="VETERAN" rating="ELITE" race="LYCAN" tribe="LYCAN_HUNTER" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="2825" hpgauge="14" cancel_level="20">
+	<npc_template npc_id="212865" level="39" name_en="Mist Mane General" name_pt="General da Crina da Névoa" name_id="306754" height="2.4" group_drop="LYCANF" rank="VETERAN" rating="ELITE" race="LYCAN" tribe="LYCAN_HUNTER" ai="aggressive" srange="8" sangle="240" arange="20" attack_speed="2825" hpgauge="14" cancel_level="20">
 		<stats maxHp="44702">
 			<speeds walk="1.037" group_walk="1.037" run="8" run_fight="6" group_run_fight="8" />
 		</stats>
@@ -65089,7 +65089,7 @@
 		</stats>
 		<bound_radius front="0.4" side="1.9" upper="2.33" />
 	</npc_template>
-	<npc_template npc_id="213070" level="34" name_en="Holy Amethyst" name_pt="Sagrado Ametista" name_id="308011" height="1.3259999" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="AGGRESSIVESINGLEMONSTER" ai="servant" srange="7" sangle="240" arange="16" attack_speed="2185" hpgauge="3">
+	<npc_template npc_id="213070" level="34" name_en="Holy Amethyst" name_pt="Ametista Sagrada" name_id="308011" height="1.3259999" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="AGGRESSIVESINGLEMONSTER" ai="servant" srange="7" sangle="240" arange="16" attack_speed="2185" hpgauge="3">
 		<stats maxHp="6481">
 			<speeds walk="4.5" group_walk="4.5" run="9" run_fight="6.5" group_run_fight="9" />
 		</stats>
@@ -71733,7 +71733,7 @@
 		</equipment>
 		<bound_radius front="0.62999994" side="0.426" upper="1.44" />
 	</npc_template>
-	<npc_template npc_id="213842" level="25" name_en="Dark Daeva Warrior" name_pt="Sombrio Daeva Guerreiro" name_id="315906" height="1.85" group_drop="HUMAN" rank="EXPERT" rating="ELITE" race="DEMIHUMANOID" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="aggressive" srange="8" sangle="270" arange="2" attack_speed="2100" hpgauge="13" cancel_level="20">
+	<npc_template npc_id="213842" level="25" name_en="Dark Daeva Warrior" name_pt="Guerreiro Daeva Sombrio" name_id="315906" height="1.85" group_drop="HUMAN" rank="EXPERT" rating="ELITE" race="DEMIHUMANOID" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="aggressive" srange="8" sangle="270" arange="2" attack_speed="2100" hpgauge="13" cancel_level="20">
 		<stats maxHp="21255">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
@@ -76519,13 +76519,13 @@
 		</stats>
 		<bound_radius front="0.539" side="0.9114999" upper="1.687" />
 	</npc_template>
-	<npc_template npc_id="214471" level="48" name_en="Divine Trico" name_pt="Divino Trico" name_id="317582" height="3.2230003" group_drop="TRICORN" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="TRICON" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="3">
+	<npc_template npc_id="214471" level="48" name_en="Divine Trico" name_pt="Trico Divino" name_id="317582" height="3.2230003" group_drop="TRICORN" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="TRICON" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="3">
 		<stats maxHp="11201">
 			<speeds walk="0.85" group_walk="0.85" run="8" run_fight="6" group_run_fight="8" />
 		</stats>
 		<bound_radius front="0.889" side="1.4595" upper="3.223" />
 	</npc_template>
-	<npc_template npc_id="214472" level="49" name_en="Divine Trico" name_pt="Divino Trico" name_id="317583" height="3.2230003" group_drop="TRICORN" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="TRICON" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="3">
+	<npc_template npc_id="214472" level="49" name_en="Divine Trico" name_pt="Trico Divino" name_id="317583" height="3.2230003" group_drop="TRICORN" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="TRICON" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="3">
 		<stats maxHp="11578">
 			<speeds walk="0.85" group_walk="0.85" run="8" run_fight="6" group_run_fight="8" />
 		</stats>
@@ -99827,7 +99827,7 @@
 		</equipment>
 		<bound_radius front="0.9" side="1.7010001" upper="1.495" />
 	</npc_template>
-	<npc_template npc_id="217215" level="25" name_en="Shirking Nochsana General" name_pt="Esquivando-se do idéia Nochsana" name_id="323020" height="4.6" title_id="314423" group_drop="DRAKANFIGHTER" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="10" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="217215" level="25" name_en="Shirking Nochsana General" name_pt="General Esquivo de Nochsana" name_id="323020" height="4.6" title_id="314423" group_drop="DRAKANFIGHTER" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="10" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="3981">
 			<speeds walk="1.07" group_walk="1.38" run="6" run_fight="6" group_run_fight="8" />
 		</stats>
@@ -102055,7 +102055,7 @@
 		</equipment>
 		<bound_radius front="1.064" side="0.744" upper="2.2" />
 	</npc_template>
-	<npc_template npc_id="217497" level="55" name_en="Crack Kaidan Smasher" name_pt="Crack kaidan n pedação" name_id="323449" height="2.87" group_drop="KRALLWARRIOR" rank="VETERAN" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="50" sangle="240" arange="2" attack_speed="2100" hpgauge="14" floatcorpse="true" cancel_level="20">
+	<npc_template npc_id="217497" level="55" name_en="Crack Kaidan Smasher" name_pt="Esmagador Kaidan de Elite" name_id="323449" height="2.87" group_drop="KRALLWARRIOR" rank="VETERAN" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="50" sangle="240" arange="2" attack_speed="2100" hpgauge="14" floatcorpse="true" cancel_level="20">
 		<stats maxHp="71191">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -113660,7 +113660,7 @@
 		</equipment>
 		<bound_radius front="0.56" side="0.56" upper="3.92" />
 	</npc_template>
-	<npc_template npc_id="219868" level="65" name_en="Henash Headquarters Battle Overseer" name_pt="Supervisor de Batalha do Quartel- idéia de Henash" name_id="343918" height="1" title_id="344173" group_drop="DARK" rank="EXPERT" rating="HERO" race="DRAKAN" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="10" arange="2" attack_speed="2260" hpgauge="12" cancel_level="0">
+	<npc_template npc_id="219868" level="65" name_en="Henash Headquarters Battle Overseer" name_pt="Supervisor de Batalha do Quartel-General de Henash" name_id="343918" height="1" title_id="344173" group_drop="DARK" rank="EXPERT" rating="HERO" race="DRAKAN" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="10" arange="2" attack_speed="2260" hpgauge="12" cancel_level="0">
 		<stats maxHp="511574" msup="957">
 			<speeds walk="1.38" group_walk="2.9" run="6" run_fight="8" group_run_fight="11.25" />
 		</stats>
@@ -113720,7 +113720,7 @@
 		</equipment>
 		<bound_radius front="0.45" side="0.45" upper="3.24" />
 	</npc_template>
-	<npc_template npc_id="219872" level="65" name_en="Henash Headquarters Air Combat Officer" name_pt="Oficial de combate aéreo do quartel- idéia de Henash" name_id="343922" height="2.2" group_drop="DARK" rank="VETERAN" rating="ELITE" race="BEAST" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="10" arange="2" attack_speed="2260" hpgauge="12" cancel_level="20">
+	<npc_template npc_id="219872" level="65" name_en="Henash Headquarters Air Combat Officer" name_pt="Oficial de Combate Aéreo do Quartel-General de Henash" name_id="343922" height="2.2" group_drop="DARK" rank="VETERAN" rating="ELITE" race="BEAST" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="10" arange="2" attack_speed="2260" hpgauge="12" cancel_level="20">
 		<stats maxHp="107" msup="817">
 			<speeds walk="2" group_walk="2" run="8" run_fight="9" group_run_fight="6" />
 		</stats>
@@ -123534,7 +123534,7 @@
 		</equipment>
 		<bound_radius front="0.3" side="0.3" upper="1.69" />
 	</npc_template>
-	<npc_template npc_id="253020" level="26" name_en="General Luhut" name_pt="idéia Luhut" name_id="301843" height="2.805" group_drop="UNDEADDARK_WI" rank="SEASONED" rating="NORMAL" race="UNDEAD" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="aggressive" srange="15" sangle="240" arange="37" attack_speed="2530" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="253020" level="26" name_en="General Luhut" name_pt="General Luhut" name_id="301843" height="2.805" group_drop="UNDEADDARK_WI" rank="SEASONED" rating="NORMAL" race="UNDEAD" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="aggressive" srange="15" sangle="240" arange="37" attack_speed="2530" hpgauge="4" cancel_level="90">
 		<stats maxHp="3987">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="14" group_run_fight="6" />
 		</stats>
@@ -211548,7 +211548,7 @@
 		</equipment>
 		<bound_radius front="0.9" side="0.57" upper="2.76" />
 	</npc_template>
-	<npc_template npc_id="271803" level="1" name_en="Primus General" name_pt="Primeiro idéia" name_id="317658" height="2.7" title_id="314323" group_drop="LIGHT" rank="VETERAN" rating="LEGENDARY" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" abyss_type="GUARD" ai="aggressive" srange="10" arange="4" attack_speed="2040" hpgauge="27" cancel_level="20">
+	<npc_template npc_id="271803" level="1" name_en="Primus General" name_pt="General Primus" name_id="317658" height="2.7" title_id="314323" group_drop="LIGHT" rank="VETERAN" rating="LEGENDARY" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" abyss_type="GUARD" ai="aggressive" srange="10" arange="4" attack_speed="2040" hpgauge="27" cancel_level="20">
 		<stats maxHp="4079696">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -212838,7 +212838,7 @@
 		</equipment>
 		<bound_radius front="0.3375" side="0.4725" upper="2.7" />
 	</npc_template>
-	<npc_template npc_id="271899" level="50" name_en="Primus General" name_pt="Primeiro idéia" name_id="317758" height="2.7" title_id="314328" group_drop="DARK" rank="VETERAN" rating="LEGENDARY" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" abyss_type="GUARD" ai="aggressive" srange="10" arange="4" attack_speed="2040" hpgauge="27" cancel_level="0">
+	<npc_template npc_id="271899" level="50" name_en="Primus General" name_pt="General Primus" name_id="317758" height="2.7" title_id="314328" group_drop="DARK" rank="VETERAN" rating="LEGENDARY" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" abyss_type="GUARD" ai="aggressive" srange="10" arange="4" attack_speed="2040" hpgauge="27" cancel_level="0">
 		<stats maxHp="5024">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -212898,7 +212898,7 @@
 		</equipment>
 		<bound_radius front="0.3375" side="0.4725" upper="2.7" />
 	</npc_template>
-	<npc_template npc_id="271903" level="50" name_en="Primus General" name_pt="Primeiro idéia" name_id="317762" height="3" title_id="314328" group_drop="DRAKANCLERIC" rank="VETERAN" rating="LEGENDARY" race="DRAKAN" tribe="GUARD_DRAGON" type="ABYSS_GUARD" abyss_type="GUARD" ai="aggressive" srange="10" arange="4" attack_speed="2040" hpgauge="27" cancel_level="0">
+	<npc_template npc_id="271903" level="50" name_en="Primus General" name_pt="General Primus" name_id="317762" height="3" title_id="314328" group_drop="DRAKANCLERIC" rank="VETERAN" rating="LEGENDARY" race="DRAKAN" tribe="GUARD_DRAGON" type="ABYSS_GUARD" abyss_type="GUARD" ai="aggressive" srange="10" arange="4" attack_speed="2040" hpgauge="27" cancel_level="0">
 		<stats maxHp="5042">
 			<speeds walk="1.07" group_walk="1.38" run="6" run_fight="7" group_run_fight="8" />
 		</stats>
@@ -212908,7 +212908,7 @@
 		</equipment>
 		<bound_radius front="1.2" side="2.28" upper="3" />
 	</npc_template>
-	<npc_template npc_id="271904" level="1" name_en="Primus General" name_pt="Primeiro idéia" name_id="317763" height="3" title_id="314328" group_drop="DRAKANCLERIC" rank="VETERAN" rating="LEGENDARY" race="DRAKAN" tribe="GUARD_DRAGON" type="ABYSS_GUARD" abyss_type="GUARD" ai="aggressive" srange="10" arange="4" attack_speed="2040" hpgauge="27" cancel_level="0">
+	<npc_template npc_id="271904" level="1" name_en="Primus General" name_pt="General Primus" name_id="317763" height="3" title_id="314328" group_drop="DRAKANCLERIC" rank="VETERAN" rating="LEGENDARY" race="DRAKAN" tribe="GUARD_DRAGON" type="ABYSS_GUARD" abyss_type="GUARD" ai="aggressive" srange="10" arange="4" attack_speed="2040" hpgauge="27" cancel_level="0">
 		<stats maxHp="6078708">
 			<speeds walk="1.07" group_walk="1.38" run="6" run_fight="7" group_run_fight="8" />
 		</stats>
@@ -218580,15 +218580,15 @@
 		<stats maxHp="2828" />
 		<bound_radius front="2.014" side="0.7239999" upper="3.19" />
 	</npc_template>
-	<npc_template npc_id="276203" level="1" name_en="Daevic Efflux Artefact Core" name_pt="artefato Núcleo Metator's Witrils" name_id="305144" height="3.19" group_drop="ARTIFACT_LIGHT_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" srange="10" attack_speed="2000" hpgauge="10" cancel_level="50">
+	<npc_template npc_id="276203" level="1" name_en="Daevic Efflux Artefact Core" name_pt="Núcleo do Artefato Efluxo Daévico" name_id="305144" height="3.19" group_drop="ARTIFACT_LIGHT_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" srange="10" attack_speed="2000" hpgauge="10" cancel_level="50">
 		<stats maxHp="2882" />
 		<bound_radius front="2.014" side="0.7239999" upper="3.19" />
 	</npc_template>
-	<npc_template npc_id="276204" level="40" name_en="Daevic Efflux Artefact Core" name_pt="artefato Núcleo Metator's Witrils" name_id="305145" height="3.19" group_drop="ARTIFACT_DARK_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL_DARK" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" srange="10" attack_speed="2000" hpgauge="10" cancel_level="50">
+	<npc_template npc_id="276204" level="40" name_en="Daevic Efflux Artefact Core" name_pt="Núcleo do Artefato Efluxo Daévico" name_id="305145" height="3.19" group_drop="ARTIFACT_DARK_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL_DARK" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" srange="10" attack_speed="2000" hpgauge="10" cancel_level="50">
 		<stats maxHp="2800" />
 		<bound_radius front="2.014" side="0.7239999" upper="3.19" />
 	</npc_template>
-	<npc_template npc_id="276205" level="1" name_en="Daevic Efflux Artefact Core" name_pt="artefato Núcleo Metator's Witrils" name_id="305146" height="3.19" group_drop="ARTIFACT_DRAGON_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL_DRAGON" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" srange="10" attack_speed="2000" hpgauge="10" cancel_level="50">
+	<npc_template npc_id="276205" level="1" name_en="Daevic Efflux Artefact Core" name_pt="Núcleo do Artefato Efluxo Daévico" name_id="305146" height="3.19" group_drop="ARTIFACT_DRAGON_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL_DRAGON" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" srange="10" attack_speed="2000" hpgauge="10" cancel_level="50">
 		<stats maxHp="2800" />
 		<bound_radius front="2.014" side="0.7239999" upper="3.19" />
 	</npc_template>
@@ -238414,7 +238414,7 @@
 		</equipment>
 		<bound_radius front="3.92" side="1.4" upper="10.5" />
 	</npc_template>
-	<npc_template npc_id="279663" level="1" name_en="Asmodian Guardian General" name_pt="Asmodiano Guardião idéia" name_id="343614" height="10.5" title_id="343813" group_drop="DRAKANFIGHTER" rank="EXPERT" rating="ELITE" race="GCHIEF_DARK" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="aggressive" srange="20" arange="37" attack_speed="2100" hpgauge="27" cancel_level="20">
+	<npc_template npc_id="279663" level="1" name_en="Asmodian Guardian General" name_pt="General Guardião Asmodiano" name_id="343614" height="10.5" title_id="343813" group_drop="DRAKANFIGHTER" rank="EXPERT" rating="ELITE" race="GCHIEF_DARK" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="aggressive" srange="20" arange="37" attack_speed="2100" hpgauge="27" cancel_level="20">
 		<stats maxHp="137146" msup="621">
 			<speeds walk="0" group_walk="11.2" run="0" run_fight="0" group_run_fight="42" />
 		</stats>
@@ -238423,7 +238423,7 @@
 		</equipment>
 		<bound_radius front="3.675" side="2.065" upper="10.5" />
 	</npc_template>
-	<npc_template npc_id="279664" level="1" name_en="Asmodian Guardian General" name_pt="Asmodiano Guardião idéia" name_id="343615" height="10.5" title_id="343813" group_drop="DRAKANFIGHTER" rank="VETERAN" rating="ELITE" race="GCHIEF_DARK" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="aggressive" srange="20" arange="37" attack_speed="2100" hpgauge="27" cancel_level="20">
+	<npc_template npc_id="279664" level="1" name_en="Asmodian Guardian General" name_pt="General Guardião Asmodiano" name_id="343615" height="10.5" title_id="343813" group_drop="DRAKANFIGHTER" rank="VETERAN" rating="ELITE" race="GCHIEF_DARK" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="aggressive" srange="20" arange="37" attack_speed="2100" hpgauge="27" cancel_level="20">
 		<stats maxHp="172861" msup="817">
 			<speeds walk="0" group_walk="11.2" run="0" run_fight="0" group_run_fight="42" />
 		</stats>
@@ -238432,7 +238432,7 @@
 		</equipment>
 		<bound_radius front="3.675" side="2.065" upper="10.5" />
 	</npc_template>
-	<npc_template npc_id="279665" level="1" name_en="Asmodian Guardian General" name_pt="Asmodiano Guardião idéia" name_id="343616" height="10.5" title_id="343813" group_drop="DRAKANFIGHTER" rank="VETERAN" rating="ELITE" race="GCHIEF_DARK" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="aggressive" srange="20" arange="37" attack_speed="2100" hpgauge="27" cancel_level="20">
+	<npc_template npc_id="279665" level="1" name_en="Asmodian Guardian General" name_pt="General Guardião Asmodiano" name_id="343616" height="10.5" title_id="343813" group_drop="DRAKANFIGHTER" rank="VETERAN" rating="ELITE" race="GCHIEF_DARK" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="aggressive" srange="20" arange="37" attack_speed="2100" hpgauge="27" cancel_level="20">
 		<stats maxHp="172861" msup="817">
 			<speeds walk="0" group_walk="11.2" run="0" run_fight="0" group_run_fight="42" />
 		</stats>
@@ -238441,7 +238441,7 @@
 		</equipment>
 		<bound_radius front="3.675" side="2.065" upper="10.5" />
 	</npc_template>
-	<npc_template npc_id="279666" level="1" name_en="Asmodian Guardian General" name_pt="Asmodiano Guardião idéia" name_id="343617" height="10.5" title_id="343813" group_drop="DRAKANFIGHTER" rank="VETERAN" rating="ELITE" race="GCHIEF_DARK" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="aggressive" srange="20" arange="37" attack_speed="2100" hpgauge="27" cancel_level="20">
+	<npc_template npc_id="279666" level="1" name_en="Asmodian Guardian General" name_pt="General Guardião Asmodiano" name_id="343617" height="10.5" title_id="343813" group_drop="DRAKANFIGHTER" rank="VETERAN" rating="ELITE" race="GCHIEF_DARK" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="aggressive" srange="20" arange="37" attack_speed="2100" hpgauge="27" cancel_level="20">
 		<stats maxHp="172861" msup="817">
 			<speeds walk="0" group_walk="11.2" run="0" run_fight="0" group_run_fight="42" />
 		</stats>
@@ -238450,7 +238450,7 @@
 		</equipment>
 		<bound_radius front="3.675" side="2.065" upper="10.5" />
 	</npc_template>
-	<npc_template npc_id="279667" level="1" name_en="Asmodian Guardian General" name_pt="Asmodiano Guardião idéia" name_id="343618" height="10.5" title_id="343813" group_drop="DRAKANSCOUT" rank="NOVICE" rating="ELITE" race="GCHIEF_DARK" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="aggressive" srange="20" arange="37" attack_speed="2100" hpgauge="27" cancel_level="50">
+	<npc_template npc_id="279667" level="1" name_en="Asmodian Guardian General" name_pt="General Guardião Asmodiano" name_id="343618" height="10.5" title_id="343813" group_drop="DRAKANSCOUT" rank="NOVICE" rating="ELITE" race="GCHIEF_DARK" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="aggressive" srange="20" arange="37" attack_speed="2100" hpgauge="27" cancel_level="50">
 		<stats maxHp="43274">
 			<speeds walk="0" group_walk="11.2" run="0" run_fight="0" group_run_fight="42" />
 		</stats>
@@ -250032,7 +250032,7 @@
 		</equipment>
 		<bound_radius front="0.4" side="0.4" upper="1.84" />
 	</npc_template>
-	<npc_template npc_id="281387" level="55" name_en="General Kane" name_pt="idéia Kane" name_id="319284" height="3" group_drop="DRAKANFIGHTER" rank="VETERAN" rating="ELITE" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="10" arange="2" attack_speed="2100" hpgauge="14" cancel_level="20">
+	<npc_template npc_id="281387" level="55" name_en="General Kane" name_pt="General Kane" name_id="319284" height="3" group_drop="DRAKANFIGHTER" rank="VETERAN" rating="ELITE" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="10" arange="2" attack_speed="2100" hpgauge="14" cancel_level="20">
 		<stats maxHp="310635">
 			<speeds walk="1.38" group_walk="1.38" run="8" run_fight="14" group_run_fight="8" />
 		</stats>
@@ -258832,7 +258832,7 @@
 		</stats>
 		<bound_radius front="1.495" side="1.235" upper="6.5" />
 	</npc_template>
-	<npc_template npc_id="283116" level="60" name_en="Brigade General Vasharti" name_pt="idéia de Brigada Vasharti" name_id="345781" height="3" group_drop="FXMON" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="MONSTER" ai="tahabataaltar" srange="40" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="283116" level="60" name_en="Brigade General Vasharti" name_pt="General de Brigada Vasharti" name_id="345781" height="3" group_drop="FXMON" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="MONSTER" ai="tahabataaltar" srange="40" attack_speed="2000" hpgauge="3">
 		<stats maxHp="23691" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -258844,25 +258844,25 @@
 		</stats>
 		<bound_radius front="0.6" side="1.5" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="283118" level="60" name_en="Brigade General Vasharti" name_pt="idéia de Brigada Vasharti" name_id="345783" height="3" group_drop="FXMON" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="MONSTER" ai="tahabataaltar" srange="40" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="283118" level="60" name_en="Brigade General Vasharti" name_pt="General de Brigada Vasharti" name_id="345783" height="3" group_drop="FXMON" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="MONSTER" ai="tahabataaltar" srange="40" attack_speed="2000" hpgauge="3">
 		<stats maxHp="23691" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.6" side="1.5" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="283119" level="60" name_en="Brigade General Vasharti" name_pt="idéia de Brigada Vasharti" name_id="345784" height="3" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="MONSTER" ai="tahabataaltar" srange="40" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="283119" level="60" name_en="Brigade General Vasharti" name_pt="General de Brigada Vasharti" name_id="345784" height="3" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="MONSTER" ai="tahabataaltar" srange="40" attack_speed="2000" hpgauge="3">
 		<stats maxHp="23691" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.6" side="1.5" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="283120" level="60" name_en="Brigade General Vasharti" name_pt="idéia de Brigada Vasharti" name_id="345785" height="3" group_drop="FXMON" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="MONSTER" ai="tahabataaltar" srange="40" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="283120" level="60" name_en="Brigade General Vasharti" name_pt="General de Brigada Vasharti" name_id="345785" height="3" group_drop="FXMON" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="MONSTER" ai="tahabataaltar" srange="40" attack_speed="2000" hpgauge="3">
 		<stats maxHp="23691" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.6" side="1.5" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="283121" level="60" name_en="Brigade General Vasharti" name_pt="idéia de Brigada Vasharti" name_id="345786" height="3" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="MONSTER" ai="tahabataaltar2" srange="40" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="283121" level="60" name_en="Brigade General Vasharti" name_pt="General de Brigada Vasharti" name_id="345786" height="3" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="MONSTER" ai="tahabataaltar2" srange="40" attack_speed="2000" hpgauge="3">
 		<stats maxHp="23691" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -259127,19 +259127,19 @@
 		</stats>
 		<bound_radius front="0.6" side="1.5" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="283166" level="60" name_en="Brigade General Vasharti" name_pt="idéia de Brigada Vasharti" name_id="345781" height="3" group_drop="DRAKANCLERIC" rank="VETERAN" rating="ELITE" tribe="XDRAKAN" type="MONSTER" ai="aggressive_no_loot" srange="40" arange="2" attack_speed="2000" hpgauge="3" cancel_level="20">
+	<npc_template npc_id="283166" level="60" name_en="Brigade General Vasharti" name_pt="General de Brigada Vasharti" name_id="345781" height="3" group_drop="DRAKANCLERIC" rank="VETERAN" rating="ELITE" tribe="XDRAKAN" type="MONSTER" ai="aggressive_no_loot" srange="40" arange="2" attack_speed="2000" hpgauge="3" cancel_level="20">
 		<stats maxHp="134000" msup="207">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.6" side="1.5" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="283167" level="60" name_en="Brigade General Vasharti" name_pt="idéia de Brigada Vasharti" name_id="345783" height="3" group_drop="NONE" rank="EXPERT" rating="ELITE" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="40" attack_speed="2000" hpgauge="3" cancel_level="20">
+	<npc_template npc_id="283167" level="60" name_en="Brigade General Vasharti" name_pt="General de Brigada Vasharti" name_id="345783" height="3" group_drop="NONE" rank="EXPERT" rating="ELITE" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="40" attack_speed="2000" hpgauge="3" cancel_level="20">
 		<stats maxHp="134000" msup="207" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.6" side="1.5" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="283168" level="60" name_en="Brigade General Vasharti" name_pt="idéia de Brigada Vasharti" name_id="345785" height="3" group_drop="NONE" rank="EXPERT" rating="ELITE" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="40" attack_speed="2000" hpgauge="3" cancel_level="20">
+	<npc_template npc_id="283168" level="60" name_en="Brigade General Vasharti" name_pt="General de Brigada Vasharti" name_id="345785" height="3" group_drop="NONE" rank="EXPERT" rating="ELITE" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="40" attack_speed="2000" hpgauge="3" cancel_level="20">
 		<stats maxHp="150300" msup="207" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -259169,7 +259169,7 @@
 		</stats>
 		<bound_radius front="0.6" side="1.5" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="283173" level="60" name_en="Brigade General Vasharti" name_pt="idéia de Brigada Vasharti" name_id="345786" height="3" group_drop="FXMON" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="MONSTER" ai="general" srange="40" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="283173" level="60" name_en="Brigade General Vasharti" name_pt="General de Brigada Vasharti" name_id="345786" height="3" group_drop="FXMON" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" type="MONSTER" ai="general" srange="40" attack_speed="2000" hpgauge="3">
 		<stats maxHp="23691" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -276851,7 +276851,7 @@
 		</equipment>
 		<bound_radius front="0.525" side="0.525" upper="2.805" />
 	</npc_template>
-	<npc_template npc_id="290134" level="26" name_en="General Luhut" name_pt="idéia Luhut" name_id="315810" height="2.805" group_drop="UNDEADDARK_WI" rank="SEASONED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="15" sangle="240" arange="37" attack_speed="2530" hpgauge="4" floatcorpse="true" cancel_level="90">
+	<npc_template npc_id="290134" level="26" name_en="General Luhut" name_pt="General Luhut" name_id="315810" height="2.805" group_drop="UNDEADDARK_WI" rank="SEASONED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="15" sangle="240" arange="37" attack_speed="2530" hpgauge="4" floatcorpse="true" cancel_level="90">
 		<stats maxHp="4367">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="4.5" group_run_fight="6" />
 		</stats>
@@ -307435,7 +307435,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700306" level="1" name_en="Petralith Cores" name_pt="Petralith's Núcleo" name_id="350979" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="useitem" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700306" level="1" name_en="Petralith Cores" name_pt="Núcleo de Petralith" name_id="350979" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="useitem" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="111" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
@@ -307961,7 +307961,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700412" level="1" name_en="Holy Servant of Guardian General" name_pt="Sagrado servo do Guardião idéia" name_id="371140" height="5.1" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="servant" srange="10" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700412" level="1" name_en="Holy Servant of Guardian General" name_pt="Servo Sagrado do General Guardião" name_id="371140" height="5.1" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="servant" srange="10" attack_speed="2000" hpgauge="3">
 		<stats maxHp="111" />
 		<bound_radius front="2.25" side="2.8" upper="6.9" />
 		<talk_info distance="15" delay="2" can_talk_invisible="false" />
@@ -308263,7 +308263,7 @@
 		<bound_radius front="0.5" side="0.7" upper="4" />
 		<talk_info distance="3" delay="4" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700472" level="45" name_en="Golden Fortress Crate" name_pt="Dourado Fortaleza Caixote" name_id="371201" height="4" group_drop="DRAGONBOX" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700472" level="45" name_en="Golden Fortress Crate" name_pt="Baú Dourado da Fortaleza" name_id="371201" height="4" group_drop="DRAGONBOX" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="11878" />
 		<bound_radius front="0.5" side="0.7" upper="4" />
 		<talk_info distance="3" delay="10" can_talk_invisible="false" />
@@ -308273,22 +308273,22 @@
 		<bound_radius front="0.75" side="1.05" upper="6" />
 		<talk_info distance="3" delay="10" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700474" level="45" name_en="Magic Fortress Crate" name_pt="Mágico Fortaleza Caixote" name_id="371203" height="8" group_drop="DRAGONBOX" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700474" level="45" name_en="Magic Fortress Crate" name_pt="Baú Mágico da Fortaleza" name_id="371203" height="8" group_drop="DRAGONBOX" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="11878" />
 		<bound_radius front="1" side="1.4" upper="8" />
 		<talk_info distance="3" delay="15" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700475" level="45" name_en="Golden Abyss Crate" name_pt="Caixote de Dourado Abismo" name_id="371204" height="4" group_drop="TREASUREBOX3" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700475" level="45" name_en="Golden Abyss Crate" name_pt="Baú Dourado do Abismo" name_id="371204" height="4" group_drop="TREASUREBOX3" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="11878" />
 		<bound_radius front="0.5" side="0.7" upper="4" />
 		<talk_info distance="3" delay="10" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700476" level="45" name_en="Jeweled Abyss Crate" name_pt="Jóias Abismo Caixote" name_id="371205" height="6" group_drop="TREASUREBOX3" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700476" level="45" name_en="Jeweled Abyss Crate" name_pt="Baú de Joias do Abismo" name_id="371205" height="6" group_drop="TREASUREBOX3" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="11878" />
 		<bound_radius front="0.75" side="1.05" upper="6" />
 		<talk_info distance="3" delay="10" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700477" level="45" name_en="Magic Abyss Crate" name_pt="Mágico Abismo Caixote" name_id="371206" height="8" group_drop="TREASUREBOX3" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700477" level="45" name_en="Magic Abyss Crate" name_pt="Baú Mágico do Abismo" name_id="371206" height="8" group_drop="TREASUREBOX3" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="chest" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="11878" />
 		<bound_radius front="1" side="1.4" upper="8" />
 		<talk_info distance="3" delay="15" can_talk_invisible="false" />
@@ -310606,7 +310606,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="3" delay="1" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="701003" level="60" name_en="Pinwheel" name_pt="Mágico Wastwheel" name_id="371779" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="useitem" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="701003" level="60" name_en="Pinwheel" name_pt="Moinho de Vento" name_id="371779" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="useitem" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="23691" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="3" delay="1" can_talk_invisible="false" />
@@ -313856,7 +313856,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730086" level="1" name_en="Femme Fatale of History 9" name_pt="mulher fatal: 1 determinado pelo destino da história 9" name_id="350939" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730086" level="1" name_en="Femme Fatale of History 9" name_pt="Mulher Fatal da História 9" name_id="350939" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
@@ -314487,7 +314487,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="6" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730211" level="1" name_en="Dark Poeta Abyss Gate" name_pt="Sombrio Poeta Portão do Abismo" name_id="371304" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730211" level="1" name_en="Dark Poeta Abyss Gate" name_pt="Portão do Abismo de Dark Poeta" name_id="371304" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="177" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="7" delay="5" is_dialog="true" can_talk_invisible="false" />
@@ -315050,52 +315050,52 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730326" level="1" name_en="Kaliga's Sword Rack" name_pt="Kaliga's Espada Rack" name_id="371678" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730326" level="1" name_en="Kaliga's Sword Rack" name_pt="Suporte de Espadas de Kaliga" name_id="371678" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730327" level="1" name_en="Kaliga's Greatsword Rack" name_pt="Breatsword de Kaliga" name_id="371679" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730327" level="1" name_en="Kaliga's Greatsword Rack" name_pt="Suporte de Espadões de Kaliga" name_id="371679" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730328" level="1" name_en="Kaliga's Dagger Rack" name_pt="Rack de Adaga de Kaliga" name_id="371680" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730328" level="1" name_en="Kaliga's Dagger Rack" name_pt="Suporte de Adagas de Kaliga" name_id="371680" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730329" level="1" name_en="Kaliga's Polearm Rack" name_pt="Rack de Alabarda da Kaliga" name_id="371681" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730329" level="1" name_en="Kaliga's Polearm Rack" name_pt="Suporte de Armas de Haste de Kaliga" name_id="371681" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730330" level="1" name_en="Kaliga's Bow Rack" name_pt="Rack de arco de Kaliga" name_id="371682" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730330" level="1" name_en="Kaliga's Bow Rack" name_pt="Suporte de Arcos de Kaliga" name_id="371682" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730331" level="1" name_en="Kaliga's Mace Rack" name_pt="Kaliga é minha rack feminina" name_id="371683" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730331" level="1" name_en="Kaliga's Mace Rack" name_pt="Suporte de Maças de Kaliga" name_id="371683" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730332" level="1" name_en="Kaliga's Staff Rack" name_pt="Rack de funcionários da Kaliga" name_id="371684" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730332" level="1" name_en="Kaliga's Staff Rack" name_pt="Suporte de Cajados de Kaliga" name_id="371684" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730333" level="1" name_en="Kaliga's Spellbook Rack" name_pt="Rack de livro de feitiços da Kaliga" name_id="371685" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730333" level="1" name_en="Kaliga's Spellbook Rack" name_pt="Suporte de Livros de Feitiço de Kaliga" name_id="371685" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730334" level="1" name_en="Kaliga's Orb Rack" name_pt="Suporte de Orbe de Kaliga" name_id="371686" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730334" level="1" name_en="Kaliga's Orb Rack" name_pt="Suporte de Orbes de Kaliga" name_id="371686" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730335" level="1" name_en="Kaliga's Shield Rack" name_pt="Rack de escudo da Kaliga" name_id="371687" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730335" level="1" name_en="Kaliga's Shield Rack" name_pt="Suporte de Escudos de Kaliga" name_id="371687" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
@@ -316712,7 +316712,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="6" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730643" level="1" name_en="Mysterious Document" name_pt="&lt;Para base&gt;" name_id="465233" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730643" level="1" name_en="Mysterious Document" name_pt="&lt;Para a Base&gt;" name_id="465233" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="102" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" />
 		</stats>
@@ -316987,7 +316987,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730674" level="60" name_en="Pandaemonium Teleporter" name_pt="Os mortos" name_id="465455" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="useitem" sangle="0" attack_speed="2000" hpgauge="3" srange="20">
+	<npc_template npc_id="730674" level="60" name_en="Pandaemonium Teleporter" name_pt="Teletransportador de Pandaemônio" name_id="465455" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="useitem" sangle="0" attack_speed="2000" hpgauge="3" srange="20">
 		<stats maxHp="23691" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -317018,12 +317018,12 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748002" level="1" name_en="Femme Fatale of History 2" name_pt="mulher fatal: 1 determinado pelo destino da História 2" name_id="371460" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748002" level="1" name_en="Femme Fatale of History 2" name_pt="Mulher Fatal da História 2" name_id="371460" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748003" level="1" name_en="Femme Fatale of History 10" name_pt="mulher fatal: 1 determinado pelo destino da história 10" name_id="371461" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748003" level="1" name_en="Femme Fatale of History 10" name_pt="Mulher Fatal da História 10" name_id="371461" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
@@ -336204,7 +336204,7 @@
 		<bound_radius front="1" side="1" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="800116" level="56" name_en="Headquarters’ Ramparts" name_pt="Muralhas do Quartel- idéia" name_id="462100" height="2" group_drop="NONE" rank="NOVICE" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="general" srange="10" sangle="300" attack_speed="2415" hpgauge="20">
+	<npc_template npc_id="800116" level="56" name_en="Headquarters’ Ramparts" name_pt="Muralhas do Quartel-General" name_id="462100" height="2" group_drop="NONE" rank="NOVICE" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="general" srange="10" sangle="300" attack_speed="2415" hpgauge="20">
 		<stats maxHp="12733" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -348644,7 +348644,7 @@
 		<bound_radius front="1" side="0.25" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801083" level="65" name_en="Raksang’s Second String" name_pt="Baú do tesouro do Guardião idéia" name_id="463169" height="1.8" group_drop="LIGHT" rank="EXPERT" rating="HERO" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="2000" hpgauge="3" cancel_level="0">
+	<npc_template npc_id="801083" level="65" name_en="Raksang’s Second String" name_pt="Segunda Corda de Raksang" name_id="463169" height="1.8" group_drop="LIGHT" rank="EXPERT" rating="HERO" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="2000" hpgauge="3" cancel_level="0">
 		<stats maxHp="466030" msup="957">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -348659,7 +348659,7 @@
 		<bound_radius front="1" side="0.25" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801084" level="65" name_en="Raksang’s Third String" name_pt="Baú do tesouro do Guardião idéia" name_id="463170" height="1.8" group_drop="LIGHT" rank="EXPERT" rating="HERO" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="2000" hpgauge="3" cancel_level="0">
+	<npc_template npc_id="801084" level="65" name_en="Raksang’s Third String" name_pt="Terceira Corda de Raksang" name_id="463170" height="1.8" group_drop="LIGHT" rank="EXPERT" rating="HERO" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="2000" hpgauge="3" cancel_level="0">
 		<stats maxHp="466030" msup="957">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -358557,7 +358557,7 @@
 		<bound_radius front="0.5" side="0.7" upper="4" />
 		<talk_info distance="5" delay="2" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801965" level="1" name_en="Protectorate’s Treasure Crate" name_pt="Caixote de Tesouro do Protetorado" name_id="464339" height="4" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal_dialog" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="801965" level="1" name_en="Protectorate’s Treasure Crate" name_pt="Baú do Tesouro do Protetorado" name_id="464339" height="4" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal_dialog" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -366741,7 +366741,7 @@
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802757" level="65" name_en="Abyss Rift" name_pt="Saberá" name_id="464890" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="6" srange="20">
+	<npc_template npc_id="802757" level="65" name_en="Abyss Rift" name_pt="Fenda do Abismo" name_id="464890" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="6" srange="20">
 		<stats maxHp="28386" >
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -367896,37 +367896,37 @@ Status: Ativo" name_id="465110" height="2" group_drop="NONE" rank="DISCIPLINED" 
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2 3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802918" level="70" name_en="Teleport Shugo (Teva)" name_pt="&lt;Para base&gt;" name_id="465210" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="7" arange="2" srange="20">
+	<npc_template npc_id="802918" level="70" name_en="Teleport Shugo (Teva)" name_pt="&lt;Para a Base&gt;" name_id="465210" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="7" arange="2" srange="20">
 		<stats maxHp="23568" >
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802919" level="70" name_en="Teleport Shugo (Teva)" name_pt="&lt;Para base&gt;" name_id="465211" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="7" arange="2" srange="20">
+	<npc_template npc_id="802919" level="70" name_en="Teleport Shugo (Teva)" name_pt="&lt;Para a Base&gt;" name_id="465211" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="7" arange="2" srange="20">
 		<stats maxHp="23568" >
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802920" level="65" name_en="Abyss Rift" name_pt="&lt;Para base&gt;" name_id="465217" height="1" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="7" srange="20">
+	<npc_template npc_id="802920" level="65" name_en="Abyss Rift" name_pt="&lt;Para a Base&gt;" name_id="465217" height="1" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="7" srange="20">
 		<stats maxHp="28386" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802921" level="65" name_en="Abyss Rift" name_pt="&lt;Para base&gt;" name_id="465218" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="7" srange="20">
+	<npc_template npc_id="802921" level="65" name_en="Abyss Rift" name_pt="&lt;Para a Base&gt;" name_id="465218" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="7" srange="20">
 		<stats maxHp="28386" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802922" level="70" name_en="Teleport Shugo (Runar, Teva)" name_pt="&lt;Para base&gt;" name_id="465242" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="7" arange="2" srange="20">
+	<npc_template npc_id="802922" level="70" name_en="Teleport Shugo (Runar, Teva)" name_pt="&lt;Para a Base&gt;" name_id="465242" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="7" arange="2" srange="20">
 		<stats maxHp="23568" >
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802923" level="65" name_en="Teleporter Shugo (Secret Black Cloud Station)" name_pt="&lt;Para base&gt;" name_id="465262" title_id="465265" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="7" arange="2" srange="20">
+	<npc_template npc_id="802923" level="65" name_en="Teleporter Shugo (Secret Black Cloud Station)" name_pt="&lt;Para a Base&gt;" name_id="465262" title_id="465265" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="7" arange="2" srange="20">
 		<stats maxHp="28386" >
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -371448,7 +371448,7 @@ Through the mediation of the Black Cloud Merchants,
 		</stats>
 		<bound_radius front="1" side="0.25" upper="2" />
 	</npc_template>
-	<npc_template npc_id="803861" level="65" name_en="Teleporter to 3rd Level" name_pt="Uma rede" name_id="465625" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="7" srange="20">
+	<npc_template npc_id="803861" level="65" name_en="Teleporter to 3rd Level" name_pt="Teletransportador para o 3º Nível" name_id="465625" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="USEALL" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="7" srange="20">
 		<stats maxHp="28386" >
 			<speeds walk="0.5" group_walk="0.5" run="6" run_fight="6" group_run_fight="6" />
 		</stats>

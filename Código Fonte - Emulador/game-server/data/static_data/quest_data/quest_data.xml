@@ -7064,7 +7064,7 @@
 			<unfinished>1972 1974 1978 1980 1982</unfinished>
 		</start_conditions>
 	</quest>
-	<quest id="1977" name_en="[Expert] Expert of Handicrafting" name_pt="[Experto] especialista em deficiência" nameId="1102977" quest_zone="Sanctum" minlevel_permitted="29" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="SIGNIFICANT">
+	<quest id="1977" name_en="[Expert] Expert of Handicrafting" name_pt="[Experto] especialista em Artesanato" nameId="1102977" quest_zone="Sanctum" minlevel_permitted="29" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="SIGNIFICANT">
 		<collect_items>
 			<collect_item item_id="182206896" count="1" />
 		</collect_items>
