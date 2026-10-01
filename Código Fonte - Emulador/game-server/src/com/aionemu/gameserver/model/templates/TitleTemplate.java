@@ -26,6 +26,14 @@ public class TitleTemplate implements StatOwner, L10n {
 	private Race race;
 	@XmlAttribute(name = "nameId")
 	private int nameId;
+	@XmlAttribute(name = "desc_en")
+	private String descEn;
+	@XmlAttribute(name = "desc_pt")
+	private String descPt;
+	@XmlAttribute(name = "name_en")
+	private String nameEn;
+	@XmlAttribute(name = "name_pt")
+	private String namePt;
 	@XmlAttribute(name = "desc")
 	private String description;
 	@XmlAttribute(name = "available")
@@ -45,7 +53,37 @@ public class TitleTemplate implements StatOwner, L10n {
 	}
 
 	public String getDesc() {
-		return description;
+		if (descPt != null && !descPt.isEmpty()) {
+			return descPt;
+		}
+		if (namePt != null && !namePt.isEmpty()) {
+			return namePt;
+		}
+		if (description != null && !description.isEmpty()) {
+			return description;
+		}
+		return descEn != null ? descEn : (nameEn != null ? nameEn : "");
+	}
+
+	public String getDescEn() {
+		if (descEn != null && !descEn.isEmpty()) {
+			return descEn;
+		}
+		if (nameEn != null && !nameEn.isEmpty()) {
+			return nameEn;
+		}
+		if (description != null && !description.isEmpty()) {
+			return description;
+		}
+		return descPt != null ? descPt : (namePt != null ? namePt : "");
+	}
+
+	public String getName() {
+		return getDesc();
+	}
+
+	public String getNameEn() {
+		return getDescEn();
 	}
 
 	/** Whether this title exists in the current client catalog. */

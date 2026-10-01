@@ -96,6 +96,11 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	private GodstoneInfo godstoneInfo;
 	@XmlElement(name = "stigma")
 	private Stigma stigma;
+	@XmlAttribute(name = "name_en")
+	private String nameEn;
+	@XmlAttribute(name = "name_pt")
+	private String namePt;
+	@Deprecated
 	@XmlAttribute(name = "name")
 	private String name;
 	@XmlJavaTypeAdapter(SpaceSeparatedBytesAdapter.class)
@@ -396,7 +401,24 @@ public class ItemTemplate extends VisibleObjectTemplate {
 
 	@Override
 	public String getName() {
-		return name == null ? "" : name;
+		if (namePt != null && !namePt.isEmpty()) {
+			return namePt;
+		}
+		if (name != null && !name.isEmpty()) {
+			return name;
+		}
+		return nameEn == null ? "" : nameEn;
+	}
+
+	@Override
+	public String getNameEn() {
+		if (nameEn != null && !nameEn.isEmpty()) {
+			return nameEn;
+		}
+		if (name != null && !name.isEmpty()) {
+			return name;
+		}
+		return namePt == null ? "" : namePt;
 	}
 
 	@Override

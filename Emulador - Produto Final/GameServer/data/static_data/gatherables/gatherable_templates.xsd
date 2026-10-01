@@ -23,6 +23,8 @@
 		<xs:attribute name="sourceType" type="xs:string"/>
 		<xs:attribute name="nameId" type="xs:int"/>
 		<xs:attribute name="name" type="xs:string"/>
+		<xs:attribute name="name_en" type="xs:string"/>
+		<xs:attribute name="name_pt" type="xs:string"/>
 		<xs:attribute name="desc" type="xs:string"/>
 		<xs:attribute name="id" type="xs:int"/>
 		<xs:attribute name="captcha" type="xs:int"/>
@@ -50,6 +52,8 @@
 	</xs:complexType>
 	<xs:complexType name="Material">
 		<xs:attribute name="name" type="xs:string"/>
+		<xs:attribute name="name_en" type="xs:string"/>
+		<xs:attribute name="name_pt" type="xs:string"/>
 		<xs:attribute name="itemid" type="xs:int"/>
 		<xs:attribute name="nameid" type="xs:int"/>
 		<xs:attribute name="rate" type="xs:int"/>

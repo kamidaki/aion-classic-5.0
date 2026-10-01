@@ -20,6 +20,15 @@ public abstract class VisibleObjectTemplate implements L10n {
 	public abstract String getName();
 
 	/**
+	 * For Npcs and items it will return official English name from templates xml
+	 * 
+	 * @return English name of object
+	 */
+	public String getNameEn() {
+		return getName();
+	}
+
+	/**
 	 * @return
 	 */
 	public BoundRadius getBoundRadius() {
