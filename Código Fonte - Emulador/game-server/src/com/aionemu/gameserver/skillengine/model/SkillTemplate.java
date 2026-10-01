@@ -33,7 +33,12 @@ public class SkillTemplate implements L10n {
 
 	@XmlAttribute(name = "skill_id", required = true)
 	private int skillId;
-	@XmlAttribute(required = true)
+	@XmlAttribute(name = "name_en")
+	private String nameEn;
+	@XmlAttribute(name = "name_pt")
+	private String namePt;
+	@Deprecated
+	@XmlAttribute
 	private String name;
 	@XmlAttribute(required = true)
 	private int nameId;
@@ -153,7 +158,23 @@ public class SkillTemplate implements L10n {
 	}
 
 	public String getName() {
-		return name;
+		if (namePt != null && !namePt.isEmpty()) {
+			return namePt;
+		}
+		if (name != null && !name.isEmpty()) {
+			return name;
+		}
+		return nameEn == null ? "" : nameEn;
+	}
+
+	public String getNameEn() {
+		if (nameEn != null && !nameEn.isEmpty()) {
+			return nameEn;
+		}
+		if (name != null && !name.isEmpty()) {
+			return name;
+		}
+		return namePt == null ? "" : namePt;
 	}
 
 	@Override

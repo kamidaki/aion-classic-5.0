@@ -21,6 +21,11 @@ public class GatherableTemplate extends VisibleObjectTemplate {
 	protected ExMaterials exmaterials;
 	@XmlAttribute
 	protected int id;
+	@XmlAttribute(name = "name_en")
+	protected String nameEn;
+	@XmlAttribute(name = "name_pt")
+	protected String namePt;
+	@Deprecated
 	@XmlAttribute
 	protected String name;
 	@XmlAttribute
@@ -143,7 +148,24 @@ public class GatherableTemplate extends VisibleObjectTemplate {
 	 */
 	@Override
 	public String getName() {
-		return name;
+		if (namePt != null && !namePt.isEmpty()) {
+			return namePt;
+		}
+		if (name != null && !name.isEmpty()) {
+			return name;
+		}
+		return nameEn == null ? "" : nameEn;
+	}
+
+	@Override
+	public String getNameEn() {
+		if (nameEn != null && !nameEn.isEmpty()) {
+			return nameEn;
+		}
+		if (name != null && !name.isEmpty()) {
+			return name;
+		}
+		return namePt == null ? "" : namePt;
 	}
 
 	/**

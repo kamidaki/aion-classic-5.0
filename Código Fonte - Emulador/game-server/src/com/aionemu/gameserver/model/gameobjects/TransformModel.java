@@ -173,6 +173,10 @@ public class TransformModel {
 		return active;
 	}
 
+	public boolean changesAppearance() {
+		return active && modelId > 0;
+	}
+
 	/**
 	 * Modelo que o S_PUT_USER nao consegue levar: la o D do modelo com 0 quer dizer "sem transformacao", entao o oficial
 	 * manda o template e logo depois o S_POLYMORPH com o modelo 0 (captura outros2 de 2026-09-22, candy 10813).

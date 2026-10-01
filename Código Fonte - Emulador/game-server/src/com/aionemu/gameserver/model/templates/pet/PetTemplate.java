@@ -24,7 +24,14 @@ public class PetTemplate extends VisibleObjectTemplate implements L10n {
 	@XmlAttribute(name = "id", required = true)
 	private int id;
 
-	@XmlAttribute(name = "name", required = true)
+	@XmlAttribute(name = "name_en")
+	private String nameEn;
+
+	@XmlAttribute(name = "name_pt")
+	private String namePt;
+
+	@Deprecated
+	@XmlAttribute(name = "name")
 	private String name;
 
 	@XmlAttribute(name = "nameid", required = true)
@@ -49,7 +56,24 @@ public class PetTemplate extends VisibleObjectTemplate implements L10n {
 
 	@Override
 	public String getName() {
-		return name;
+		if (namePt != null && !namePt.isEmpty()) {
+			return namePt;
+		}
+		if (name != null && !name.isEmpty()) {
+			return name;
+		}
+		return nameEn == null ? "" : nameEn;
+	}
+
+	@Override
+	public String getNameEn() {
+		if (nameEn != null && !nameEn.isEmpty()) {
+			return nameEn;
+		}
+		if (name != null && !name.isEmpty()) {
+			return name;
+		}
+		return namePt == null ? "" : namePt;
 	}
 
 	@Override

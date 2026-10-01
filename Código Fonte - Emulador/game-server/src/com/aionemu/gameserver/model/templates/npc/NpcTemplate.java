@@ -31,6 +31,13 @@ public class NpcTemplate extends CreatureTemplate {
 	@XmlAttribute(name = "title_id")
 	private int titleId;
 
+	@XmlAttribute(name = "name_en")
+	private String nameEn;
+
+	@XmlAttribute(name = "name_pt")
+	private String namePt;
+
+	@Deprecated
 	@XmlAttribute(name = "name")
 	private String name;
 
@@ -142,7 +149,24 @@ public class NpcTemplate extends CreatureTemplate {
 
 	@Override
 	public String getName() {
-		return name;
+		if (namePt != null && !namePt.isEmpty()) {
+			return namePt;
+		}
+		if (name != null && !name.isEmpty()) {
+			return name;
+		}
+		return nameEn == null ? "" : nameEn;
+	}
+
+	@Override
+	public String getNameEn() {
+		if (nameEn != null && !nameEn.isEmpty()) {
+			return nameEn;
+		}
+		if (name != null && !name.isEmpty()) {
+			return name;
+		}
+		return namePt == null ? "" : namePt;
 	}
 
 	public float getHeight() {

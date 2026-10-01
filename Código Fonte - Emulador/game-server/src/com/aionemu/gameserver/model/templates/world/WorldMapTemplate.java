@@ -22,6 +22,13 @@ import com.aionemu.gameserver.world.zone.ZoneAttributes;
 @XmlAccessorType(XmlAccessType.NONE)
 public class WorldMapTemplate {
 
+	@XmlAttribute(name = "name_en")
+	private String nameEn = "";
+
+	@XmlAttribute(name = "name_pt")
+	private String namePt = "";
+
+	@Deprecated
 	@XmlAttribute(name = "name")
 	private String name = "";
 
@@ -82,7 +89,23 @@ public class WorldMapTemplate {
 	private int flags;
 
 	public String getName() {
-		return name;
+		if (namePt != null && !namePt.isEmpty()) {
+			return namePt;
+		}
+		if (name != null && !name.isEmpty()) {
+			return name;
+		}
+		return nameEn != null ? nameEn : "";
+	}
+
+	public String getNameEn() {
+		if (nameEn != null && !nameEn.isEmpty()) {
+			return nameEn;
+		}
+		if (name != null && !name.isEmpty()) {
+			return name;
+		}
+		return namePt != null ? namePt : "";
 	}
 
 	public String getCName() {

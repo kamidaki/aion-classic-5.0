@@ -23,6 +23,11 @@ public class ItemSetTemplate implements StatOwner {
 	@XmlElement(required = true)
 	protected List<PartBonus> partbonus;
 	protected FullBonus fullbonus;
+	@XmlAttribute(name = "name_en")
+	protected String nameEn;
+	@XmlAttribute(name = "name_pt")
+	protected String namePt;
+	@Deprecated
 	@XmlAttribute
 	protected String name;
 	@XmlAttribute
@@ -48,7 +53,23 @@ public class ItemSetTemplate implements StatOwner {
 	}
 
 	public String getName() {
-		return name;
+		if (namePt != null && !namePt.isEmpty()) {
+			return namePt;
+		}
+		if (name != null && !name.isEmpty()) {
+			return name;
+		}
+		return nameEn == null ? "" : nameEn;
+	}
+
+	public String getNameEn() {
+		if (nameEn != null && !nameEn.isEmpty()) {
+			return nameEn;
+		}
+		if (name != null && !name.isEmpty()) {
+			return name;
+		}
+		return namePt == null ? "" : namePt;
 	}
 
 	public int getId() {
