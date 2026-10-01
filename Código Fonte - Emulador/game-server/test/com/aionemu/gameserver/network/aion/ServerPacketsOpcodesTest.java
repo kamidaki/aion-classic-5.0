@@ -16,7 +16,9 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_EQUIP_SLOT_UPDATE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_COMBAT_BURST_REMOVE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_HUNT_OBJECTIVE_PROGRESS;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_TUTORIAL_GUIDE_STATE;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_ACHIEVEMENT_SEASON_EVENT_INFO;
+import com.aionemu.gameserver.network.aion.serverpackets.S_CLEAR_ACHIEVEMENT_EVENT;
+import com.aionemu.gameserver.network.aion.serverpackets.S_PROGRESS_ACHIEVEMENT;
+import com.aionemu.gameserver.network.aion.serverpackets.S_REWARD_ACHIEVEMENT_EVENT_RESULT;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SPECIAL_SHOP_ITEM_LIST;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_AUTO_GROUP_STATUS;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ZONE_HAZARD_LIST;
@@ -36,7 +38,8 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_AVATAR_PRESENCE_SYNC
 import com.aionemu.gameserver.network.aion.serverpackets.SM_COSMETIC_TITLE_INIT;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SIEL_ANVIL_POINTS_INFO;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_MAP_ZONE_BOUNDS;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_RADAR_INITIAL_STATE;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_BIND_POINT_TELEPORT;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_CHANNEL_CHATTING_PERMISSION;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_MAILBOX_INITIAL_STATUS;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_REGION_CHAT_CHANNEL_INFO;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_TUTORIAL_LOAD_COMPLETED;
@@ -78,7 +81,11 @@ public class ServerPacketsOpcodesTest {
 	@Test
 	public void mediumPriorityRefactoredPacketsUseOfficialOpcodes() {
 		assertEquals(265, ServerPacketsOpcodes.getOpcode(SM_TUTORIAL_GUIDE_STATE.class));
-		assertEquals(272, ServerPacketsOpcodes.getOpcode(SM_ACHIEVEMENT_SEASON_EVENT_INFO.class));
+		// 0x110/0x115/0x116 pela tabela de registro de pacotes do Game.dll 5.0 (S_PROGRESS_ACHIEVEMENT, S_REWARD_ACHIEVEMENT_EVENT_RESULT,
+		// S_CLEAR_ACHIEVEMENT_EVENT); o 0x110 estava catalogado como SM_ACHIEVEMENT_SEASON_EVENT_INFO
+		assertEquals(272, ServerPacketsOpcodes.getOpcode(S_PROGRESS_ACHIEVEMENT.class));
+		assertEquals(277, ServerPacketsOpcodes.getOpcode(S_REWARD_ACHIEVEMENT_EVENT_RESULT.class));
+		assertEquals(278, ServerPacketsOpcodes.getOpcode(S_CLEAR_ACHIEVEMENT_EVENT.class));
 		assertEquals(275, ServerPacketsOpcodes.getOpcode(SM_SPECIAL_SHOP_ITEM_LIST.class));
 		assertEquals(309, ServerPacketsOpcodes.getOpcode(SM_AUTO_GROUP_STATUS.class));
 		assertEquals(368, ServerPacketsOpcodes.getOpcode(SM_ZONE_HAZARD_LIST.class));
@@ -102,7 +109,9 @@ public class ServerPacketsOpcodesTest {
 		assertEquals(426, ServerPacketsOpcodes.getOpcode(SM_COSMETIC_TITLE_INIT.class));
 		assertEquals(427, ServerPacketsOpcodes.getOpcode(SM_SIEL_ANVIL_POINTS_INFO.class));
 		assertEquals(428, ServerPacketsOpcodes.getOpcode(SM_MAP_ZONE_BOUNDS.class));
-		assertEquals(431, ServerPacketsOpcodes.getOpcode(SM_RADAR_INITIAL_STATE.class));
+		// 0x128 e 0x1AF pela tabela do Game.dll: S_CHANNEL_CHATTING_PERMISSION e S_HOTSPOT (o 0x1AF estava catalogado como SM_RADAR_INITIAL_STATE)
+		assertEquals(296, ServerPacketsOpcodes.getOpcode(SM_CHANNEL_CHATTING_PERMISSION.class));
+		assertEquals(431, ServerPacketsOpcodes.getOpcode(SM_BIND_POINT_TELEPORT.class));
 		assertEquals(435, ServerPacketsOpcodes.getOpcode(SM_MAILBOX_INITIAL_STATUS.class));
 		assertEquals(442, ServerPacketsOpcodes.getOpcode(SM_REGION_CHAT_CHANNEL_INFO.class));
 		assertEquals(448, ServerPacketsOpcodes.getOpcode(SM_TUTORIAL_LOAD_COMPLETED.class));

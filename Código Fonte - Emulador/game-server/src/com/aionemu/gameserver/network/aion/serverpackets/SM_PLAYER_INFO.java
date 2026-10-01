@@ -2,7 +2,6 @@ package com.aionemu.gameserver.network.aion.serverpackets;
 
 import java.util.List;
 
-import com.aionemu.gameserver.model.Gender;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.CustomPlayerState;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -119,7 +118,7 @@ public class SM_PLAYER_INFO extends AbstractPlayerInfoPacket {
 		writeC(playerAppearance.getTattoo());
 		writeC(playerAppearance.getFaceContour());
 		writeC(playerAppearance.getExpression());
-		writeC(pcd.getGender() == Gender.FEMALE ? 6 : 5);
+		writeC(playerAppearance.getFaceExpression());
 		writeC(playerAppearance.getJawLine());
 		writeC(playerAppearance.getForehead());
 		writeC(playerAppearance.getEyeHeight());

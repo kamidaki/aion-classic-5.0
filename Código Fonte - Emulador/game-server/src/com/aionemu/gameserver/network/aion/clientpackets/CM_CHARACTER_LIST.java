@@ -30,7 +30,8 @@ public class CM_CHARACTER_LIST extends AionClientPacket {
 
 	@Override
 	protected void runImpl() {
-		log.debug("[CHARACTER_LIST_PACKET] CM_CHARACTER_LIST recebido! Enviando SM_ACCOUNT_PROPERTIES e SM_CHARACTER_LIST para accountId={}", getConnection().getAccount() != null ? getConnection().getAccount().getId() : "null");
+		// INFO: e o que mostra se o cliente voltou a pedir a lista depois da tela de edicao
+		log.info("[CHARACTER_LIST] Pedido da conta {}", getConnection().getAccount() != null ? getConnection().getAccount().getId() : "null");
 		boolean isGM = getConnection().getAccount() != null && getConnection().getAccount().getAccessLevel() >= AdminConfig.GM_PANEL;
 		sendPacket(new SM_ACCOUNT_PROPERTIES(isGM));
 		sendPacket(new SM_CHARACTER_LIST(0, playOk2));

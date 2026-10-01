@@ -28,6 +28,8 @@ public class CM_CLOSE_DIALOG extends AionClientPacket {
 	@Override
 	protected void runImpl() {
 		Player player = getConnection().getActivePlayer();
+		if (player == null) // tela de edicao de personagem: o jogador ja saiu do mundo
+			return;
 		VisibleObject target = player.getKnownList().getObject(targetObjectId);
 		if (target == null)
 			return;

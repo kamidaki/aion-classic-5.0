@@ -73,7 +73,7 @@ public class SpawnsData {
 				addMercenarySpawns(map);
 			}
 		}
-		if (!(parent instanceof EventTemplate))
+		if (parent instanceof StaticData)
 			templates = null;
 	}
 
@@ -238,14 +238,10 @@ public class SpawnsData {
 		File xml = new File(folder + "/New/" + fileName);
 		String schema = "./data/static_data/spawns/spawns.xsd";
 		SpawnsData data = xml.isFile() ? JAXBUtil.deserialize(xml, SpawnsData.class, schema) : new SpawnsData();
-		SpawnMap spawnMap = data.templates == null ? null
-			: data.templates.stream().filter(m -> m.getMapId() == visibleObject.getWorldId()).findFirst().orElse(null);
+		SpawnMap spawnMap = data.getTemplates().stream().filter(m -> m.getMapId() == visibleObject.getWorldId()).findFirst().orElse(null);
 		if (spawnMap == null) {
 			spawnMap = new SpawnMap(visibleObject.getWorldId());
-			if (data.templates == null)
-				data.templates = Collections.singletonList(spawnMap);
-			else
-				data.templates.add(spawnMap);
+			data.getTemplates().add(spawnMap);
 		}
 		Spawn oldGroup = findSpawnTemplate(spawnMap, spawn, delete); // find in new file
 		if (oldGroup == null) {
@@ -277,7 +273,10 @@ public class SpawnsData {
 		} else if (!delete)
 			oldGroup.getSpawnSpotTemplates().add(spot);
 
-		xml.getParentFile().mkdir();
+		File parentDir = xml.getParentFile();
+		if (parentDir != null && !parentDir.exists()) {
+			parentDir.mkdirs();
+		}
 		try {
 			Files.writeString(xml.toPath(), JAXBUtil.serialize(data, schema));
 		} catch (Exception e) {
@@ -295,25 +294,44 @@ public class SpawnsData {
 
 	private Spawn loadSpawnsFromTemplateFiles(String folder, String schema, SpawnTemplate spawn, boolean exactMatch) {
 		AtomicReference<Spawn> match = new AtomicReference<>();
+		Path folderPath = Paths.get(folder);
+		if (!Files.exists(folderPath)) {
+			return null;
+		}
 		try {
-			Files.walkFileTree(Paths.get(folder), new SimpleFileVisitor<>() {
+			Files.walkFileTree(folderPath, new SimpleFileVisitor<>() {
+
+				@Override
+				public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) {
+					if (dir.getFileName() != null && dir.getFileName().toString().equalsIgnoreCase("New")) {
+						return FileVisitResult.SKIP_SUBTREE;
+					}
+					return FileVisitResult.CONTINUE;
+				}
 
 				@Override
 				public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
 					if (attrs.isRegularFile() && file.toString().toLowerCase().endsWith(".xml")) {
-						for (SpawnMap spawnMap : JAXBUtil.deserialize(file.toFile(), SpawnsData.class, schema).templates) {
-							Spawn s = findSpawnTemplate(spawnMap, spawn, exactMatch);
-							if (s != null) {
-								match.set(s);
-								return FileVisitResult.TERMINATE;
+						try {
+							SpawnsData fileData = JAXBUtil.deserialize(file.toFile(), SpawnsData.class, schema);
+							if (fileData != null && fileData.getTemplates() != null) {
+								for (SpawnMap spawnMap : fileData.getTemplates()) {
+									Spawn s = findSpawnTemplate(spawnMap, spawn, exactMatch);
+									if (s != null) {
+										match.set(s);
+										return FileVisitResult.TERMINATE;
+									}
+								}
 							}
+						} catch (Exception e) {
+							log.warn("Could not deserialize spawn template file: " + file, e);
 						}
 					}
 					return FileVisitResult.CONTINUE;
 				}
 			});
 		} catch (IOException e) {
-			log.error("", e);
+			log.error("Error reading spawn template files from folder: " + folder, e);
 		}
 		return match.get();
 	}
@@ -328,7 +346,9 @@ public class SpawnsData {
 	}
 
 	private boolean positionMatches(SpawnTemplate spawn, SpawnSpotTemplate spawnSpotTemplate) {
-		return spawnSpotTemplate.getX() == spawn.getX() && spawnSpotTemplate.getY() == spawn.getY() && spawnSpotTemplate.getZ() == spawn.getZ()
+		return Math.abs(spawnSpotTemplate.getX() - spawn.getX()) < 0.001f
+			&& Math.abs(spawnSpotTemplate.getY() - spawn.getY()) < 0.001f
+			&& Math.abs(spawnSpotTemplate.getZ() - spawn.getZ()) < 0.001f
 			&& spawnSpotTemplate.getHeading() == spawn.getHeading();
 	}
 
@@ -463,6 +483,9 @@ public class SpawnsData {
 	}
 
 	public List<SpawnMap> getTemplates() {
+		if (templates == null) {
+			templates = new ArrayList<>();
+		}
 		return templates;
 	}
 

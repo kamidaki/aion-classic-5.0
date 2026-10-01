@@ -51,7 +51,10 @@ public class SpawnMap {
 	}
 
 	public List<Spawn> getSpawns() {
-		return spawns == null ? Collections.emptyList() : spawns;
+		if (spawns == null) {
+			spawns = new ArrayList<>();
+		}
+		return spawns;
 	}
 
 	public List<BaseSpawn> getBaseSpawns() {

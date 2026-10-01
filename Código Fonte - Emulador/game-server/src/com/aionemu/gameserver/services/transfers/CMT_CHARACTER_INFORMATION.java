@@ -92,6 +92,7 @@ public class CMT_CHARACTER_INFORMATION extends BaseClientPacket<AionConnection> 
 		playerAppearance.setTattoo(readUC());
 		playerAppearance.setFaceContour(readUC());
 		playerAppearance.setExpression(readUC());
+		playerAppearance.setFaceExpression(readUC());
 		playerAppearance.setJawLine(readUC());
 		playerAppearance.setForehead(readUC());
 		playerAppearance.setEyeHeight(readUC());

@@ -19,8 +19,6 @@ import com.aionemu.gameserver.utils.stats.AbyssRankEnum;
  */
 public class CM_CHAT_MESSAGE_PUBLIC extends AionClientPacket {
 
-	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(CM_CHAT_MESSAGE_PUBLIC.class);
-
 	/**
 	 * Chat type
 	 */
@@ -31,60 +29,19 @@ public class CM_CHAT_MESSAGE_PUBLIC extends AionClientPacket {
 	 */
 	private String message;
 
-	private boolean isLookSurgeryRequest = false;
-	private boolean isLookGenderSwitch = false;
-
 	public CM_CHAT_MESSAGE_PUBLIC(int opcode, Set<State> validStates) {
 		super(opcode, validStates);
 	}
 
 	@Override
 	protected void readImpl() {
-		// Se o payload tiver 4 bytes, trata-se de requisicao do AION Look (SHIFT+R) com o NPC de aparencia/genero
-		if (getRemainingBytes() == 4) {
-			int npcId = readD();
-			// 798390: Palentine (Elyos Beauty/Plastic Surgery), 798392: Marra (Asmo Beauty/Plastic Surgery)
-			// 798391: Andu (Elyos Gender Change), 798393: Daskin (Asmo Gender Change)
-			if (npcId == 798390 || npcId == 798392) {
-				isLookSurgeryRequest = true;
-				isLookGenderSwitch = false;
-				log.info("[AION_LOOK] Recebida requisicao de aparencia (Modify Appearance) para npcId={}", npcId);
-				return;
-			} else if (npcId == 798391 || npcId == 798393) {
-				isLookSurgeryRequest = true;
-				isLookGenderSwitch = true;
-				log.info("[AION_LOOK] Recebida requisicao de genero (Change Gender) para npcId={}", npcId);
-				return;
-			}
-		}
-
-		try {
-			byte rawType = (byte) readC();
-			type = ChatType.getChatType(rawType);
-			message = readS();
-		} catch (Exception e) {
-			type = null;
-			message = null;
-			if (getRemainingBytes() > 0) {
-				readB(getRemainingBytes());
-			}
-		}
+		type = ChatType.getChatType(readC());
+		message = readS();
 	}
 
 	@Override
 	protected void runImpl() {
 		final Player player = getConnection().getActivePlayer();
-		if (player == null)
-			return;
-
-		if (isLookSurgeryRequest) {
-			player.getCommonData().setInEditMode(true);
-			PacketSendUtility.sendPacket(player, new com.aionemu.gameserver.network.aion.serverpackets.SM_PLASTIC_SURGERY(player, isLookGenderSwitch));
-			return;
-		}
-
-		if (type == null || message == null)
-			return;
 
 		if (ChatProcessor.getInstance().handleChatCommand(player, message))
 			return;

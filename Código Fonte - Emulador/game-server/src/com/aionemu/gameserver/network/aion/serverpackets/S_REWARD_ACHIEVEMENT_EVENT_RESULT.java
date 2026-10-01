@@ -17,5 +17,6 @@ public class S_REWARD_ACHIEVEMENT_EVENT_RESULT extends AionServerPacket {
 		writeC(1); // don't touch
 		writeD(this.battlePassQuest.getId());
 		writeQ(this.battlePassQuest.getObjectId());
+		writeC(this.battlePassQuest.getState().getValue()); // 15 b no oficial (aionlook.pcapng): termina com o estado, 3 = COMPLETE
 	}
 }

@@ -68,9 +68,15 @@ public class Delete extends AdminCommand {
 			}
 		}
 
+		boolean saved = DataManager.SPAWNS_DATA.saveSpawn(target, true);
 		target.getController().delete();
-		if (DataManager.SPAWNS_DATA.saveSpawn(target, true))
-			sendInfo(admin, "Spawn removed permanently. " + target.getClass().getSimpleName() + " will not spawn on server start anymore.");
+		if (saved) {
+			if (notifyOnFail)
+				sendInfo(admin, "Spawn removed permanently. " + target.getClass().getSimpleName() + " will not spawn on server start anymore.");
+		} else {
+			if (notifyOnFail)
+				sendInfo(admin, "Spawn removed from world, but could not be saved permanently to XML.");
+		}
 		return true;
 	}
 }

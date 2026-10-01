@@ -34,6 +34,7 @@ public class PlayerAppearanceDAO {
 					pa.setTattoo(resultSet.getInt("tattoo"));
 					pa.setFaceContour(resultSet.getInt("face_contour"));
 					pa.setExpression(resultSet.getInt("expression"));
+					pa.setFaceExpression(resultSet.getInt("face_expression"));
 					pa.setJawLine(resultSet.getInt("jaw_line"));
 					pa.setSkinRGB(resultSet.getInt("skin_rgb"));
 					pa.setHairRGB(resultSet.getInt("hair_rgb"));
@@ -110,9 +111,9 @@ public class PlayerAppearanceDAO {
 			+ "brow_height, brow_angle, brow_shape, nose, nose_bridge, nose_width, nose_tip, "
 			+ "cheek, lip_height, mouth_size, lip_size, smile, lip_shape, jaw_height, chin_jut, ear_shape,"
 			+ "head_size, neck, neck_length, shoulders, shoulder_size , torso, chest, waist, hips, arm_thickness, arm_length, hand_size,"
-			+ "leg_thickness, leg_length, foot_size, facial_rate, voice, height)" + " VALUES "
+			+ "leg_thickness, leg_length, foot_size, facial_rate, voice, height, face_expression)" + " VALUES "
 			+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
-			+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?" + ")", new IUStH() {
+			+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?" + ")", new IUStH() {
 
 			@Override
 			public void handleInsertUpdate(PreparedStatement ps) throws SQLException {
@@ -170,6 +171,7 @@ public class PlayerAppearanceDAO {
 				ps.setInt(52, pa.getFacialRate());
 				ps.setInt(53, pa.getVoice());
 				ps.setFloat(54, pa.getHeight());
+				ps.setInt(55, pa.getFaceExpression());
 				ps.execute();
 			}
 		});

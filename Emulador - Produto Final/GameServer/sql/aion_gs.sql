@@ -713,6 +713,7 @@ CREATE TABLE `player_appearance` (
   `tattoo` int NOT NULL,
   `face_contour` int NOT NULL,
   `expression` int NOT NULL,
+  `face_expression` int NOT NULL DEFAULT '0',
   `jaw_line` int NOT NULL,
   `skin_rgb` int NOT NULL,
   `hair_rgb` int NOT NULL,

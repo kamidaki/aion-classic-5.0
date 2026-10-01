@@ -231,10 +231,10 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(268, SM_NPSHOP_GOODS_LIST.class); // [S_RESPONSE_NPSHOP_GOODS_LIST] (0x10C, captura Black Cloud Mail)
 		addPacketOpcode(269, SM_NPSHOP_GOODS_RECV.class); // [S_RESPONSE_NPSHOP_GOODS_RECV] (0x10D, captura Black Cloud Mail)
 		addPacketOpcode(270, S_SERVER_ENV.class); // [S_SERVER_ENV] (0x10E)
-		addPacketOpcode(271, S_PROGRESS_ACHIEVEMENT.class); // [S_PROGRESS_ACHIEVEMENT] (0x10F)
 		addPacketOpcode(274, S_CREATE_ACHIEVEMENT_EVENT.class); // [S_CREATE_ACHIEVEMENT_EVENT] (0x112, wire 0x102, 68 b)
 		addPacketOpcode(276, S_ACHIEVEMENT_REWARD_NOTI.class); // [S_ACHIEVEMENT_REWARD_NOTI] (0x114)
-		addPacketOpcode(277, S_CLEAR_ACHIEVEMENT_EVENT.class); // [S_CLEAR_ACHIEVEMENT_EVENT] (0x115)
+		addPacketOpcode(277, S_REWARD_ACHIEVEMENT_EVENT_RESULT.class); // [S_REWARD_ACHIEVEMENT_EVENT_RESULT] (0x115) (nomes e numeros da tabela de registro de pacotes do Game.dll 5.0: lea r8,[nome] seguido de mov [rbp+x],opcode)
+		addPacketOpcode(278, S_CLEAR_ACHIEVEMENT_EVENT.class); // [S_CLEAR_ACHIEVEMENT_EVENT] (0x116, 0 b na entrada oficial; estava no 0x115)
 		addPacketOpcode(279, S_BATTLEPASS_LIST.class); // [S_BATTLEPASS_LIST] (0x117, wire 0x10F, 234 b)
 		addPacketOpcode(280, S_BATTLEPASS_UPDATED.class); // [S_BATTLEPASS_UPDATED] (0x118, wire 0x108, 232 b)
 		addPacketOpcode(281, S_GAMEPASS_INFO.class); // [S_GAMEPASS_INFO] (0x119)
@@ -247,7 +247,7 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(291, SM_USER_CLASSIC_WARDROBE_INFO_UPDATED.class); // [S_USER_CLASSIC_WARDROBE_INFO_UPDATED] (0x123): sem captura; 0x124 na 2.4
 		addPacketOpcode(292, SM_USER_CLASSIC_WARDROBE_DATA_UPDATED.class); // [S_USER_CLASSIC_WARDROBE_DATA_UPDATED] (0x124): 5 de 5; 0x125 na 2.4
 		addPacketOpcode(293, SM_AFTER_SIEGE_LOCINFO_475.class); // [S_ABYSS_INFO_GAB1_SPEC]
-		addPacketOpcode(296, SM_BIND_POINT_TELEPORT.class); // [S_HOTSPOT]
+		addPacketOpcode(296, SM_CHANNEL_CHATTING_PERMISSION.class); // [S_CHANNEL_CHATTING_PERMISSION] (0x128, tabela do Game.dll; estava com o SM_BIND_POINT_TELEPORT)
 		addPacketOpcode(298, SM_UPGRADE_ARCADE.class); // [S_GOTCHA_NOTIFY]
 		// 299 SM_ATREIAN_PASSPORT removed: 4.8 retail residue not present in Classic 5.0
 		addPacketOpcode(302, SM_LEGION_DOMINION_RANK.class); // [S_LEGION_DOMINION_RANKING]
@@ -269,7 +269,7 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(260, SM_FIRST_SHOW_DECOMPOSABLE.class); // [S_DISASSEMBLY_ITEMLIST] (0x0104)
 		addPacketOpcode(261, SM_SECONDARY_SHOW_DECOMPOSABLE.class); // [S_SELECT_DISASSEMBLY_ITEM_RESULT] (0x0105)
 		addPacketOpcode(265, SM_TUTORIAL_GUIDE_STATE.class); // [S_TUTORIAL_GUIDE_STATE] (0x0109)
-		addPacketOpcode(272, SM_ACHIEVEMENT_SEASON_EVENT_INFO.class); // [S_ACHIEVEMENT_SEASON_EVENT_INFO] (0x0110)
+		addPacketOpcode(272, S_PROGRESS_ACHIEVEMENT.class); // [S_PROGRESS_ACHIEVEMENT] (0x110; estava no 0x10F, que e o S_LOAD_ACHIEVEMENT) (nomes e numeros da tabela de registro de pacotes do Game.dll 5.0: lea r8,[nome] seguido de mov [rbp+x],opcode)
 		addPacketOpcode(275, SM_SPECIAL_SHOP_ITEM_LIST.class); // [S_SPECIAL_SHOP_ITEM_LIST] (0x0113)
 		addPacketOpcode(295, SM_CUBE_TAB_EXPANSION_INFO.class); // [S_CUBE_TAB_EXPANSION_INFO] (0x0127)
 		addPacketOpcode(297, SM_RECOMMENDED_PLAYERS_LIST.class); // [S_RECOMMENDED_PLAYERS_LIST] (0x0129)
@@ -346,7 +346,7 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(426, SM_COSMETIC_TITLE_INIT.class); // [S_COSMETIC_TITLE_INIT] (0x01AA)
 		addPacketOpcode(427, SM_SIEL_ANVIL_POINTS_INFO.class); // [S_SIEL_ANVIL_POINTS_INFO] (0x01AB)
 		addPacketOpcode(428, SM_MAP_ZONE_BOUNDS.class); // [S_MAP_ZONE_BOUNDS] (0x01AC)
-		addPacketOpcode(431, SM_RADAR_INITIAL_STATE.class); // [S_RADAR_INITIAL_STATE] (0x01AF)
+		addPacketOpcode(431, SM_BIND_POINT_TELEPORT.class); // [S_HOTSPOT] (0x1AF, tabela do Game.dll; o oficial manda [C 0][D 0] na entrada, 5 b)
 		addPacketOpcode(435, SM_MAILBOX_INITIAL_STATUS.class); // [S_MAILBOX_INITIAL_STATUS] (0x01B3)
 		addPacketOpcode(442, SM_REGION_CHAT_CHANNEL_INFO.class); // [S_REGION_CHAT_CHANNEL_INFO] (0x01BA)
 		addPacketOpcode(445, SM_HUNT_OBJECTIVE_PROGRESS.class); // [S_HUNT_OBJECTIVE_PROGRESS] (0x01BD)

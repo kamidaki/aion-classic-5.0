@@ -46,7 +46,9 @@ public abstract class AbstractCharacterEditPacket extends AionClientPacket {
 		playerAppearance.setTattoo(readUC());
 		playerAppearance.setFaceContour(readUC());
 		playerAppearance.setExpression(readUC());
-		readC(); // always 4 o0 // 5 in 1.5.x
+		// expressao da tela de aparencia: so este byte mudou ao trocar a expressao no Aion Look (00 -> 06, 30/09), e as criacoes oficiais
+		// trazem 0 ou 5 aqui (02_Character_Creation, subida-1-60)
+		playerAppearance.setFaceExpression(readUC());
 		playerAppearance.setJawLine(readUC());
 		playerAppearance.setForehead(readUC());
 

@@ -242,6 +242,18 @@ public class PlayerCommonData extends CreatureTemplate {
 
 	public void setInEditMode(boolean isInEditMode) {
 		this.isInEditMode = isInEditMode;
+		if (!isInEditMode)
+			pendingCharacterEdit = null;
+	}
+
+	private PendingCharacterEdit pendingCharacterEdit;
+
+	public PendingCharacterEdit getPendingCharacterEdit() {
+		return pendingCharacterEdit;
+	}
+
+	public void setPendingCharacterEdit(PendingCharacterEdit pendingCharacterEdit) {
+		this.pendingCharacterEdit = pendingCharacterEdit;
 	}
 
 	public boolean isReadyForSalvationPoints() {

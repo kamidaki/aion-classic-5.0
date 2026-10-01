@@ -14,6 +14,8 @@ public class PlayerAppearance {
 	private int tattoo;
 	private int faceContour; // 2.5
 	private int expression; // 2.5
+	/** "Expression" da tela de aparencia do 5.0: o byte logo depois do expression, que o emulador lia como "sempre 4" e escrevia 5/6 pelo genero */
+	private int faceExpression;
 	private int jawLine; // 2.5
 	private int skinRGB;
 	private int hairRGB;
@@ -167,6 +169,14 @@ public class PlayerAppearance {
 	 */
 	public void setExpression(int expression) {
 		this.expression = expression;
+	}
+
+	public int getFaceExpression() {
+		return faceExpression;
+	}
+
+	public void setFaceExpression(int faceExpression) {
+		this.faceExpression = faceExpression;
 	}
 
 	/**

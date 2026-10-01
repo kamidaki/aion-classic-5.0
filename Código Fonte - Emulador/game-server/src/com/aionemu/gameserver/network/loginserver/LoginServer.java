@@ -235,8 +235,10 @@ public class LoginServer {
 	 * Starts reconnection to LoginServer procedure. LoginServer in response will send reconnection key.
 	 */
 	public void requestAuthReconnection(int accountId, AionConnection client) {
+		// a chave volta pelo authReconnectionResponse, que procura a conexao neste mesmo mapa: sem ela registrada a resposta se perde
 		AionConnection current = loggedInAccounts.get(accountId);
-		if (isUp() && (current == null || client.equals(current)))
+		log.info("[RECONNECT_AUTH] Conta {} pediu a volta a selecao de servidor (LS={}, conexao registrada={})", accountId, isUp(), client.equals(current));
+		if (isUp() && client.equals(current))
 			lsCon.sendPacket(new SM_ACCOUNT_RECONNECT_KEY(client.getAccount().getId()));
 		else
 			client.close();
@@ -248,8 +250,11 @@ public class LoginServer {
 	 */
 	public void authReconnectionResponse(int accountId, int reconnectKey) {
 		AionConnection client = loggedInAccounts.get(accountId);
-		if (client == null)
+		if (client == null) {
+			log.warn("[RECONNECT_AUTH] Chave do LS para a conta {} sem conexao registrada; o cliente nao recebe o S_RECONNECT_KEY", accountId);
 			return;
+		}
+		log.info("[RECONNECT_AUTH] S_RECONNECT_KEY enviado para a conta {}", accountId);
 		client.close(new SM_RECONNECT_KEY(reconnectKey));
 	}
 

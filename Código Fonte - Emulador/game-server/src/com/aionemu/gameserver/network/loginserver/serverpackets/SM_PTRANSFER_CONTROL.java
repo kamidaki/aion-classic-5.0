@@ -115,6 +115,7 @@ public class SM_PTRANSFER_CONTROL extends LsServerPacket {
 				writeC(playerAppearance.getTattoo());
 				writeC(playerAppearance.getFaceContour());
 				writeC(playerAppearance.getExpression());
+				writeC(playerAppearance.getFaceExpression());
 				writeC(playerAppearance.getJawLine());
 				writeC(playerAppearance.getForehead());
 				writeC(playerAppearance.getEyeHeight());

@@ -181,6 +181,10 @@ public final class PlayerEnterWorldService {
 
 			// 2. Skills: pacote unico com todas as skills aprendidas
 			client.sendPacket(new SM_SKILL_LIST(player.getSkillList().getAllSkills()));
+			// conquistas e passe: S_CLEAR_ACHIEVEMENT_EVENT, S_CREATE_ACHIEVEMENT_EVENT e S_BATTLEPASS_LIST, logo depois das skills como na entrada
+			// oficial (aionlook.pcapng: 0x116, 0x112 ... 0x117). O servico existia mas nunca era chamado; sem esse estado o cliente manda o C 0x112
+			// no mapa pronto e so troca de cena 12 s depois (suspeita da tela preta do Aion Look, em teste em 01/10)
+			BattlePassService.getInstance().onEnterWorld(player);
 
 			// 3. Cooldowns
 			if (player.getSkillCoolDowns() != null) {
@@ -293,6 +297,10 @@ public final class PlayerEnterWorldService {
 
 			// 17. Receitas & Stats
 			client.sendPacket(new SM_RECIPE_LIST(player.getRecipeList().getRecipeList()));
+			// S_BUDDY_LIST sem pedido, logo depois das receitas, como na entrada oficial (aionlook.pcapng: S 0x83 depois do S 0xD0/0xA4). O emulador
+			// nao mandava; o cliente entao nunca seguia com o C 0xB8 (bloqueados) e o C 0x86 (chat). Suspeita, em teste em 01/10: a tela preta do
+			// Aion Look (o cliente so troca de cena ~12 s depois do mapa pronto)
+			client.sendPacket(new SM_FRIEND_LIST());
 			com.aionemu.gameserver.services.craft.SielAnvilService.sendProgress(player);
 			player.getLifeStats().updateCurrentStats();
 
@@ -334,6 +342,9 @@ public final class PlayerEnterWorldService {
 			client.sendPacket(new SM_CHAT_ACCUSE(player));
 			client.sendPacket(new SM_SPAM_FILTER_FLAG(player));
 			client.sendPacket(new SM_CHANNEL_CHATTING_BLACKLIST_SETTING());
+			client.sendPacket(new SM_CHANNEL_CHATTING_PERMISSION()); // logo depois do 0x12C, como no oficial; sem ela o cliente nao entra no chat
+			// DIAGNOSTICO TEMPORARIO (01/10): pacotes crus da entrada oficial lidos de config/diag_entrada_oficial.txt; sem o arquivo nao manda nada
+			SM_DIAG_RAW.loadEnterWorldPackets().forEach(client::sendPacket);
 		} else {
 			log.warn("[ENTER_WORLD] Falha ao ativar player. objectId={}, player={}, setActivePlayer_ok={}",
 				objectId, player, player != null);

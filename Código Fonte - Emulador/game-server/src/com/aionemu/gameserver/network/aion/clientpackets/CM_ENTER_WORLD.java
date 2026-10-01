@@ -7,6 +7,8 @@ import com.aionemu.gameserver.dao.PlayerPasskeyDAO;
 import com.aionemu.gameserver.model.account.Account;
 import com.aionemu.gameserver.model.account.CharacterPasskey;
 import com.aionemu.gameserver.model.account.CharacterPasskey.ConnectType;
+import com.aionemu.gameserver.model.account.PlayerAccountData;
+import com.aionemu.gameserver.model.gameobjects.player.PendingCharacterEdit;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
@@ -38,6 +40,19 @@ public class CM_ENTER_WORLD extends AionClientPacket {
 	protected void runImpl() {
 		final AionConnection client = getConnection();
 		if (client.getAccount() == null) {
+			return;
+		}
+		PlayerAccountData editing = client.getAccount().getPlayerAccountData(objectId);
+		if (editing != null && editing.getPlayerCommonData().isInEditMode()) {
+			// saida da tela de edicao, cancelada ou confirmada (C_EDIT_CHARACTER deixa a edicao pendente): na captura oficial aionlook.pcapng o
+			// mundo volta direto, sem S_2ND_PASSWORD. Pelo startEnterWorld o jogador comum ainda bateria no CHARACTER_REENTRY_TIME, ja que acabou
+			// de sair do mundo
+			PendingCharacterEdit edit = editing.getPlayerCommonData().getPendingCharacterEdit(); // o enterWorld limpa o modo edicao
+			log.info("[CHARACTER_EDIT] Saida da tela de edicao para objectId={} ({})", objectId, edit != null ? "confirmada" : "cancelada");
+			editing.getPlayerCommonData().setInEditMode(false);
+			PlayerEnterWorldService.enterWorld(client, objectId);
+			if (edit != null && client.getActivePlayer() != null)
+				CM_CHARACTER_EDIT.applyPendingEdit(client.getActivePlayer(), edit);
 			return;
 		}
 		CharacterPasskey chaPasskey = client.getAccount().getCharacterPasskey();

@@ -219,13 +219,7 @@ public class DialogService {
 					break;
 				case EDIT_CHARACTER_ALL:
 				case EDIT_CHARACTER_GENDER: // (2.5) and (4.3)
-					boolean isGender = dialogActionId == DialogAction.EDIT_CHARACTER_GENDER;
-					boolean hasTicket = CM_CHARACTER_EDIT.checkOrRemoveTicket(player, isGender, false);
-					if (!hasTicket) {
-						PacketSendUtility.sendPacket(player, isGender ? SM_SYSTEM_MESSAGE.STR_EDIT_CHAR_GENDER_CANT_NO_ITEM() : SM_SYSTEM_MESSAGE.STR_EDIT_CHAR_ALL_CANT_NO_ITEM());
-					}
-					PacketSendUtility.sendPacket(player, new SM_PLASTIC_SURGERY(player, isGender));
-					player.getCommonData().setInEditMode(true);
+					CM_CHARACTER_EDIT.openEditScreen(player, dialogActionId == DialogAction.EDIT_CHARACTER_GENDER, "NPC " + npc.getNpcId());
 					break;
 				case MATCH_MAKER: // dredgion
 					if (AutoGroupConfig.AUTO_GROUP_ENABLE) {

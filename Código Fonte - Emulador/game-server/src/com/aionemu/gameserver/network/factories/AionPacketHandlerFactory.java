@@ -30,7 +30,6 @@ public class AionPacketHandlerFactory {
 		// ==========================================
 		addPacket(CM_VERSION_CHECK.class, 0xF2, State.CONNECTED); // 0x0000 VERSION
 		addPacket(CM_TIME_CHECK.class, 0xE0, State.CONNECTED, State.AUTHED, State.IN_GAME); // 0x0012 SYNC_TIME
-		addPacket(CM_TIME_CHECK.class, 0xF7, State.CONNECTED, State.AUTHED, State.IN_GAME); // 0x00F7 SYNC_TIME (5.0 Classic lobby/authed)
 		addPacket(CM_L2AUTH_LOGIN_CHECK.class, 0x182, State.CONNECTED); // 0x00F0 HQ_LOGIN
 		addPacket(CM_L2AUTH_LOGIN_CHECK.class, 0x117, State.CONNECTED); // 0x005D L2AUTH_LOGIN
 		addPacket(CM_L2AUTH_LOGIN_CHECK.class, 0x11F, State.CONNECTED); // Legacy fallback
@@ -72,7 +71,7 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_SECURITY_TOKEN.class, 0x15A, State.AUTHED, State.IN_GAME); // 0x00A8 C_REQ_WEB_SESSIONKEY (5.0 Classic)
 		addPacket(CM_RECONNECT_AUTH.class, 0x17A, State.AUTHED); // 0x0088 C_RECONNECT_AUTH (Classic 5.0)
 		addPacket(CM_PING.class, 0xC6, State.AUTHED, State.IN_GAME); // 0x002C ALIVE / PING
-		addPacket(CM_PING.class, 0x22B, State.AUTHED, State.IN_GAME); // 0x0159 PING_159
+		addPacket(CM_CLIENT_STAGE_CHANGE.class, 0x22B, State.AUTHED, State.IN_GAME); // 0x00AB troca de cena, sem resposta no oficial
 
 		// ==========================================
 		// IN-GAME WORLD & GAMEPLAY (5.0 Classic)
@@ -249,7 +248,9 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_STORYBOOK_REGISTER.class, 0x19E, State.IN_GAME); // 0x00E4 C_USER_STORY_BOOK_REGISTER_ITEM [D livro]
 		addPacket(CM_CLIENT_PING_STATE.class, 0x222, State.IN_GAME); // 0x0150 CLIENT_PING_STATE (5.0 Classic)
 		addPacket(CM_SHOW_DIALOG.class, 0x00F6, State.IN_GAME); // 0xFFFC USE_OBJECT
-		addPacket(CM_CLOSE_DIALOG.class, 0x00F7, State.IN_GAME); // 0xFFFD STOP_USE_OBJECT
+		// [D obj do NPC], 4 b, confirmado na captura oficial. Chega tambem em AUTHED: o cliente fecha o dialogo do NPC de cirurgia ja na
+		// tela de edicao. O 0xF7 era tratado ali como CM_TIME_CHECK e respondia um S_SYNC_TIME com o id do NPC no lugar do relogio
+		addPacket(CM_CLOSE_DIALOG.class, 0x00F7, State.AUTHED, State.IN_GAME); // 0xFFFD STOP_USE_OBJECT
 		addPacket(CM_CLIENT_SYNC_ACTION.class, 0x00F0, State.IN_GAME, State.AUTHED); // 0x0002 CLIENT_SYNC_ACTION (5.0 Classic)
 		addPacket(CM_CLIENT_PING_SYNC.class, 0x0151, State.IN_GAME, State.AUTHED); // 0x00A3 CLIENT_PING_SYNC (5.0 Classic)
 		addPacket(CM_SPLIT_ITEM.class, 0x014F, State.IN_GAME); // 0x00B5 SPLIT_ITEM (5.0 Classic: [D origem][Q qtd][C armazem][D destino][C armazem][H slot], 20 b)
@@ -291,7 +292,7 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_MACRO_CREATE.class, 0x017D, State.IN_GAME); // 0x0087 SAVE_MACRO / MEMO
 		addPacket(CM_MACRO_DELETE.class, 0x0142, State.IN_GAME); // 0x00B0 DELETE_MACRO
 		addPacket(CM_LOCATE_PLAYER.class, 0x01A4, State.IN_GAME); // 0x00CE LOCATE / FIND PLAYER
-		addPacket(CM_PREVIEW_TOGGLE.class, 0x01E1, State.IN_GAME); // 0x0113 PREVIEW / AION LOOK TOGGLE
+		addPacket(CM_AIONLOOK_EDIT_CHARACTER.class, 0x01E1, State.IN_GAME); // 0x0113 Aion Look: alterar aparencia/genero (captura oficial aionlook)
 		addPacket(CM_GLOBAL_TRADE_LIST.class, 0x01F6, State.IN_GAME); // 0x00FC GLOBAL_TRADE_LIST
 	}
 
