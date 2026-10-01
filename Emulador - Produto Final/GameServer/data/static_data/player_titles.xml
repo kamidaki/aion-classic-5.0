@@ -1679,7 +1679,7 @@
 			<rate name="SPEED" value="4" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="251" nameId="1199993" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+	<title id="251" nameId="1199993" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
 		<modifiers>
 			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
 			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
@@ -1753,7 +1753,7 @@
 			<rate name="SPEED" value="3" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="261" nameId="1199933" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+	<title id="261" nameId="1199933" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
 		<modifiers>
 			<add name="WATER_RESISTANCE" value="50" bonus="true"/>
 			<add name="WIND_RESISTANCE" value="80" bonus="true"/>
@@ -1761,7 +1761,7 @@
 			<add name="EARTH_RESISTANCE" value="150" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="262" nameId="1199935" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+	<title id="262" nameId="1199935" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
 		<modifiers>
 			<add name="ROOT_RESISTANCE" value="50" bonus="true"/>
 			<add name="STUN_RESISTANCE" value="80" bonus="true"/>
@@ -1769,7 +1769,7 @@
 			<add name="OPENAERIAL_RESISTANCE" value="150" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="263" nameId="1199939" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" race="ELYOS" available="false">
+	<title id="263" nameId="1199939" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="ELYOS" available="false">
 		<modifiers>
 			<add name="MAGICAL_RESIST" value="12" bonus="true"/>
 			<rate name="SPEED" value="5" bonus="true"/>
@@ -1777,7 +1777,7 @@
 			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="264" nameId="1199942" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" race="ASMODIANS" available="false">
+	<title id="264" nameId="1199942" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="ASMODIANS" available="false">
 		<modifiers>
 			<add name="MAGICAL_RESIST" value="12" bonus="true"/>
 			<rate name="SPEED" value="5" bonus="true"/>
@@ -1785,7 +1785,7 @@
 			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="265" nameId="1199943" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+	<title id="265" nameId="1199943" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
 		<modifiers>
 			<rate name="SPEED" value="3" bonus="true"/>
 			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
@@ -1793,21 +1793,21 @@
 			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="266" nameId="1199944" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+	<title id="266" nameId="1199944" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
 		<modifiers>
 			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
 			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
 			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="267" nameId="1199945" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+	<title id="267" nameId="1199945" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
 		<modifiers>
 			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
 			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
 			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="268" nameId="1199949" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+	<title id="268" nameId="1199949" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
 		<modifiers>
 			<add name="MAXHP" value="500" bonus="true"/>
 			<rate name="SPEED" value="5" bonus="true"/>
@@ -1815,12 +1815,12 @@
 			<rate name="BOOST_CASTING_TIME" value="3" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="269" nameId="1199951" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+	<title id="269" nameId="1199951" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
 		<modifiers>
 			<rate name="SPEED" value="1" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="270" nameId="1199955" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+	<title id="270" nameId="1199955" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
 		<modifiers>
 			<rate name="ATTACK_SPEED" value="-3" bonus="true"/>
 			<add name="PHYSICAL_CRITICAL" value="10" bonus="true"/>
@@ -1828,7 +1828,7 @@
 			<add name="MAXHP" value="120" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="271" nameId="1199956" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+	<title id="271" nameId="1199956" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
 		<modifiers>
 			<rate name="BOOST_CASTING_TIME" value="3" bonus="true"/>
 			<add name="MAGICAL_CRITICAL" value="8" bonus="true"/>
@@ -1836,19 +1836,19 @@
 			<add name="MAXHP" value="120" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="272" nameId="1199959" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+	<title id="272" nameId="1199959" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
 		<modifiers>
 			<rate name="SPEED" value="3" bonus="true"/>
 			<rate name="ATTACK_SPEED" value="-4" bonus="true"/>
 			<rate name="BOOST_CASTING_TIME" value="4" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="273" nameId="1199981" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+	<title id="273" nameId="1199981" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
 		<modifiers>
 			<rate name="SPEED" value="5" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="274" nameId="1199983" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+	<title id="274" nameId="1199983" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
 		<modifiers>
 			<add name="PVP_DEFEND_RATIO" value="20" bonus="true"/>
 			<rate name="SPEED" value="5" bonus="true"/>
@@ -1856,7 +1856,7 @@
 			<rate name="BOOST_CASTING_TIME" value="4" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="275" nameId="1199993" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+	<title id="275" nameId="1199993" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
 		<modifiers>
 			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
 			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
@@ -1864,7 +1864,7 @@
 			<add name="FLY_TIME" value="5" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="276" nameId="1199995" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+	<title id="276" nameId="1199995" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
 		<modifiers>
 			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
 			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
@@ -2009,7 +2009,7 @@
 			<add name="MAGICAL_CRITICAL" value="5" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="295" nameId="1199943" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+	<title id="295" nameId="1199943" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
 		<modifiers>
 			<rate name="SPEED" value="3" bonus="true"/>
 			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>

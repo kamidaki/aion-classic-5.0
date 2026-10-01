@@ -10335,7 +10335,7 @@
 			<reward_item item_id="141000002" count="100" />
 		</rewards>
 	</quest>
-	<quest id="2406" name_en="[Group] Striking the Elite" name_pt="[Grupo] atingindo a elite: n. elite" nameId="1103606" quest_zone="Morheim" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="2406" name_en="[Group] Striking the Elite" name_pt="[Grupo] atingindo a elite" nameId="1103606" quest_zone="Morheim" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards exp="1807399">
 			<reward_item item_id="186020512" count="6" />
 			<reward_item item_id="141000002" count="100" />
@@ -39213,7 +39213,7 @@ Usada para ativar o Artefato do Princípio." nameId="1800739" quest_zone="Cygnea
 			<finished quest_id="18222" />
 		</start_conditions>
 	</quest>
-	<quest id="18224" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199937" quest_zone="Empyrean Crucible" minlevel_permitted="61" max_repeat_count="255" cannot_share="true" race_permitted="PC_ALL" category="QUEST">
+	<quest id="18224" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199937" quest_zone="Empyrean Crucible" minlevel_permitted="61" max_repeat_count="255" cannot_share="true" race_permitted="PC_ALL" category="QUEST">
 		<rewards exp="4128210">
 			<selectable_reward_item item_id="164000154" count="7" />
 			<selectable_reward_item item_id="164000158" count="7" />
@@ -50236,7 +50236,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 			<quest_work_item item_id="182215550" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="23817" name_en="Kill the Krall Elite Prison Guard" name_pt="Elimine o Guarda Prisional Krall de Elite: n. elite" nameId="1800173" quest_zone="Kaldor" minlevel_permitted="65" max_repeat_count="255" cannot_share="true" race_permitted="ASMODIANS" category="IMPORTANT" repeat_cycle="SAT" data_driven="true">
+	<quest id="23817" name_en="Kill the Krall Elite Prison Guard" name_pt="Elimine o Guarda Prisional Krall de Elite" nameId="1800173" quest_zone="Kaldor" minlevel_permitted="65" max_repeat_count="255" cannot_share="true" race_permitted="ASMODIANS" category="IMPORTANT" repeat_cycle="SAT" data_driven="true">
 		<rewards gold="150660" exp="3446553">
 			<reward_item item_id="186000242" count="10" />
 			<reward_item item_id="186000236" count="50" />
@@ -51984,7 +51984,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 		<quest_drop npc_id="219727" item_id="182215722" drop_each_member="1" />
 		<quest_drop npc_id="219737" item_id="182215722" drop_each_member="1" />
 	</quest>
-	<quest id="25070" name_en="Elite Guardian Squad Leader’s Memories" name_pt="Memórias do Líder de Esquadrão Guardião de Elite: n. elite" nameId="1800851" quest_zone="Enshar" minlevel_permitted="61" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
+	<quest id="25070" name_en="Elite Guardian Squad Leader’s Memories" name_pt="Memórias do Líder de Esquadrão Guardião de Elite" nameId="1800851" quest_zone="Enshar" minlevel_permitted="61" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
 		<rewards gold="133740" exp="9756478">
 			<selectable_reward_item item_id="162000122" count="28" />
 			<selectable_reward_item item_id="162000123" count="28" />
@@ -51997,7 +51997,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 			<quest_work_item item_id="182215723" />
 		</quest_work_items>
 	</quest>
-	<quest id="25073" name_en="Elite Archon Squad Leader’s Memories" name_pt="Memórias do Líder de Esquadrão Arconte de Elite: n. elite" nameId="1800854" quest_zone="Enshar" minlevel_permitted="61" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
+	<quest id="25073" name_en="Elite Archon Squad Leader’s Memories" name_pt="Memórias do Líder de Esquadrão Arconte de Elite" nameId="1800854" quest_zone="Enshar" minlevel_permitted="61" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215725" count="1" />
 		</collect_items>
@@ -52009,7 +52009,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 			<quest_work_item item_id="182215725" />
 		</quest_work_items>
 	</quest>
-	<quest id="25080" name_en="Elite Archon Centurion’s Memories" name_pt="Memórias do Centurião Arconte de Elite: n. elite" nameId="1800855" quest_zone="Enshar" minlevel_permitted="62" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
+	<quest id="25080" name_en="Elite Archon Centurion’s Memories" name_pt="Memórias do Centurião Arconte de Elite" nameId="1800855" quest_zone="Enshar" minlevel_permitted="62" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215727" count="10" />
 		</collect_items>
@@ -52021,7 +52021,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 		</rewards>
 		<quest_drop npc_id="702751" item_id="182215727" drop_each_member="1" />
 	</quest>
-	<quest id="25081" name_en="Elite Archon Tribunus’ Memories" name_pt="Memórias do Tribuno Arconte de Elite: n. elite" nameId="1800856" quest_zone="Enshar" minlevel_permitted="62" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
+	<quest id="25081" name_en="Elite Archon Tribunus’ Memories" name_pt="Memórias do Tribuno Arconte de Elite" nameId="1800856" quest_zone="Enshar" minlevel_permitted="62" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215732" count="10" />
 		</collect_items>
@@ -52045,7 +52045,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 		<quest_drop npc_id="219759" item_id="182215728" drop_each_member="1" />
 		<quest_kill step="2" var="1" count="1" npc_ids="220037" seq="0" />
 	</quest>
-	<quest id="25084" name_en="Elite Guardian Squad Leader’s Friend" name_pt="Amigo do Líder de Esquadrão Guardião de Elite: n. elite" nameId="1800859" quest_zone="Enshar" minlevel_permitted="62" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
+	<quest id="25084" name_en="Elite Guardian Squad Leader’s Friend" name_pt="Amigo do Líder de Esquadrão Guardião de Elite" nameId="1800859" quest_zone="Enshar" minlevel_permitted="62" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215730" count="10" />
 		</collect_items>
@@ -52056,7 +52056,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 		</rewards>
 		<quest_drop npc_id="219750" item_id="182215730" drop_each_member="1" />
 	</quest>
-	<quest id="25085" name_en="Elite Guardian Centurion’s Friend" name_pt="Amigo do Centurião Guardião de Elite: n. elite" nameId="1800860" quest_zone="Enshar" minlevel_permitted="62" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
+	<quest id="25085" name_en="Elite Guardian Centurion’s Friend" name_pt="Amigo do Centurião Guardião de Elite" nameId="1800860" quest_zone="Enshar" minlevel_permitted="62" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215731" count="1" />
 		</collect_items>
@@ -52065,7 +52065,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 		</rewards>
 		<quest_drop npc_id="220039" item_id="182215731" drop_each_member="1" />
 	</quest>
-	<quest id="25090" name_en="Elite Guardian Tribunus’ Friend" name_pt="Amigo do Tribuno Guardião de Elite: n. elite" nameId="1800861" quest_zone="Enshar" minlevel_permitted="64" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
+	<quest id="25090" name_en="Elite Guardian Tribunus’ Friend" name_pt="Amigo do Tribuno Guardião de Elite" nameId="1800861" quest_zone="Enshar" minlevel_permitted="64" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
 		<rewards gold="146220" exp="9981788">
 			<selectable_reward_item item_id="160003584" count="12" />
 			<selectable_reward_item item_id="160003585" count="12" />
@@ -52073,7 +52073,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 		</rewards>
 		<quest_kill step="0" var="1" count="1" npc_ids="220042" seq="0" />
 	</quest>
-	<quest id="25091" name_en="Elite Archon Squad Leader’s Friend" name_pt="Amigo do Líder de Esquadrão Arconte de Elite: n. elite" nameId="1800862" quest_zone="Enshar" minlevel_permitted="64" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
+	<quest id="25091" name_en="Elite Archon Squad Leader’s Friend" name_pt="Amigo do Líder de Esquadrão Arconte de Elite" nameId="1800862" quest_zone="Enshar" minlevel_permitted="64" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215734" count="1" />
 		</collect_items>
@@ -52087,7 +52087,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 			<finished quest_id="25090" />
 		</start_conditions>
 	</quest>
-	<quest id="25092" name_en="Elite Archon Centurion’s Friend" name_pt="Amigo do Centurião Arconte de Elite: n. elite" nameId="1800863" quest_zone="Enshar" minlevel_permitted="64" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
+	<quest id="25092" name_en="Elite Archon Centurion’s Friend" name_pt="Amigo do Centurião Arconte de Elite" nameId="1800863" quest_zone="Enshar" minlevel_permitted="64" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215735" count="10" />
 		</collect_items>
@@ -52100,7 +52100,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 		<quest_drop npc_id="219795" item_id="182215735" drop_each_member="1" />
 		<quest_drop npc_id="219796" item_id="182215735" drop_each_member="1" />
 	</quest>
-	<quest id="25093" name_en="Elite Archon Tribunus’ Friend" name_pt="Amigo do Tribuno Arconte de Elite: n. elite" nameId="1800864" quest_zone="Enshar" minlevel_permitted="64" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
+	<quest id="25093" name_en="Elite Archon Tribunus’ Friend" name_pt="Amigo do Tribuno Arconte de Elite" nameId="1800864" quest_zone="Enshar" minlevel_permitted="64" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
 		<rewards gold="146220" exp="9981788">
 			<selectable_reward_item item_id="162000119" count="32" />
 			<selectable_reward_item item_id="162000120" count="32" />
@@ -52108,7 +52108,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 		</rewards>
 		<quest_kill step="0" var="1" count="1" npc_ids="220044" seq="0" />
 	</quest>
-	<quest id="25094" name_en="A glorious title for Daevas who collected all of the Elite Guardian Squad Leader’s armour." name_pt="Um título glorioso para Daevas que coletaram todas as armaduras do Líder de Esquadrão Guardião de Elite: n. elite." nameId="1800865" quest_zone="Enshar" minlevel_permitted="64" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
+	<quest id="25094" name_en="A glorious title for Daevas who collected all of the Elite Guardian Squad Leader’s armour." name_pt="Um título glorioso para Daevas que coletaram todas as armaduras do Líder de Esquadrão Guardião de Elite." nameId="1800865" quest_zone="Enshar" minlevel_permitted="64" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215736" count="10" />
 		</collect_items>
@@ -53589,7 +53589,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 			<finished quest_id="28222" />
 		</start_conditions>
 	</quest>
-	<quest id="28224" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199938" quest_zone="Empyrean Crucible" minlevel_permitted="61" max_repeat_count="255" cannot_share="true" race_permitted="PC_ALL" category="QUEST">
+	<quest id="28224" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199938" quest_zone="Empyrean Crucible" minlevel_permitted="61" max_repeat_count="255" cannot_share="true" race_permitted="PC_ALL" category="QUEST">
 		<rewards exp="4128210">
 			<selectable_reward_item item_id="164000155" count="7" />
 			<selectable_reward_item item_id="164000159" count="7" />
@@ -61332,7 +61332,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<reward_item item_id="188051123" count="1" />
 		</rewards>
 	</quest>
-	<quest id="37002" name_en="[Daily] Elite (Homework) Assignment" name_pt="[Diária] Tarefa de Elite: n. elite (Lição de Homes)" nameId="1126141" quest_zone="STR_FACTION_Mentee_Li" minlevel_permitted="99" maxlevel_permitted="20" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="FACTION">
+	<quest id="37002" name_en="[Daily] Elite (Homework) Assignment" name_pt="[Diária] Tarefa de Elite (Lição de Homes)" nameId="1126141" quest_zone="STR_FACTION_Mentee_Li" minlevel_permitted="99" maxlevel_permitted="20" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="FACTION">
 		<rewards exp="27600">
 			<reward_item item_id="186000002" count="10" />
 			<reward_item item_id="188051123" count="1" />
@@ -70788,7 +70788,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<finished quest_id="80386" />
 		</start_conditions>
 	</quest>
-	<quest id="80388" name_en="[Event] Teva Challenge 13" name_pt="[Progresso] eliminou o Elite: n. elite Balaur Nutemagna" nameId="1802500" quest_zone="Event" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="PC_ALL" category="EVENT">
+	<quest id="80388" name_en="[Event] Teva Challenge 13" name_pt="[Progresso] eliminou o Elite Balaur Nutemagna" nameId="1802500" quest_zone="Event" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="PC_ALL" category="EVENT">
 		<collect_items>
 			<collect_item item_id="186020403" count="3" />
 		</collect_items>
@@ -71430,7 +71430,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<selectable_reward_item item_id="187060088" />
 		</rewards>
 	</quest>
-	<quest id="80473" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199961" quest_zone="Katalam" minlevel_permitted="65" max_repeat_count="255" cannot_share="true" race_permitted="ELYOS" category="EVENT" repeat_cycle="FRI">
+	<quest id="80473" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199961" quest_zone="Katalam" minlevel_permitted="65" max_repeat_count="255" cannot_share="true" race_permitted="ELYOS" category="EVENT" repeat_cycle="FRI">
 		<collect_items>
 			<collect_item item_id="186000320" count="1" />
 		</collect_items>
@@ -71438,7 +71438,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<reward_item item_id="188052668" count="1" />
 		</rewards>
 	</quest>
-	<quest id="80474" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199962" quest_zone="Katalam" minlevel_permitted="65" max_repeat_count="255" cannot_share="true" race_permitted="ASMODIANS" category="EVENT" repeat_cycle="FRI">
+	<quest id="80474" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199962" quest_zone="Katalam" minlevel_permitted="65" max_repeat_count="255" cannot_share="true" race_permitted="ASMODIANS" category="EVENT" repeat_cycle="FRI">
 		<collect_items>
 			<collect_item item_id="186000320" count="1" />
 		</collect_items>
@@ -71446,7 +71446,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<reward_item item_id="188052668" count="1" />
 		</rewards>
 	</quest>
-	<quest id="80475" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199963" quest_zone="Event" minlevel_permitted="10" max_repeat_count="255" cannot_share="true" race_permitted="PC_ALL" category="EVENT" repeat_cycle="ALL">
+	<quest id="80475" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199963" quest_zone="Event" minlevel_permitted="10" max_repeat_count="255" cannot_share="true" race_permitted="PC_ALL" category="EVENT" repeat_cycle="ALL">
 		<collect_items>
 			<collect_item item_id="164000280" count="10" />
 		</collect_items>
@@ -71455,7 +71455,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<reward_item item_id="125045194" />
 		</rewards>
 	</quest>
-	<quest id="80476" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199964" quest_zone="Event" minlevel_permitted="10" max_repeat_count="255" cannot_share="true" race_permitted="PC_ALL" category="EVENT" repeat_cycle="ALL">
+	<quest id="80476" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199964" quest_zone="Event" minlevel_permitted="10" max_repeat_count="255" cannot_share="true" race_permitted="PC_ALL" category="EVENT" repeat_cycle="ALL">
 		<collect_items>
 			<collect_item item_id="164000280" count="10" />
 		</collect_items>
@@ -71463,7 +71463,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<reward_item item_id="169600198" />
 		</rewards>
 	</quest>
-	<quest id="80477" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199965" quest_zone="Event" minlevel_permitted="10" max_repeat_count="255" cannot_share="true" race_permitted="PC_ALL" category="EVENT" repeat_cycle="ALL">
+	<quest id="80477" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199965" quest_zone="Event" minlevel_permitted="10" max_repeat_count="255" cannot_share="true" race_permitted="PC_ALL" category="EVENT" repeat_cycle="ALL">
 		<collect_items>
 			<collect_item item_id="164000280" count="10" />
 		</collect_items>
@@ -71472,7 +71472,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<reward_item item_id="125045194" />
 		</rewards>
 	</quest>
-	<quest id="80478" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199966" quest_zone="Event" minlevel_permitted="10" max_repeat_count="255" cannot_share="true" race_permitted="PC_ALL" category="EVENT" repeat_cycle="ALL">
+	<quest id="80478" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199966" quest_zone="Event" minlevel_permitted="10" max_repeat_count="255" cannot_share="true" race_permitted="PC_ALL" category="EVENT" repeat_cycle="ALL">
 		<collect_items>
 			<collect_item item_id="164000280" count="10" />
 		</collect_items>
@@ -71480,12 +71480,12 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<reward_item item_id="169600198" />
 		</rewards>
 	</quest>
-	<quest id="80479" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199973" quest_zone="Event" minlevel_permitted="30" max_repeat_count="1" race_permitted="ELYOS" category="EVENT">
+	<quest id="80479" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199973" quest_zone="Event" minlevel_permitted="30" max_repeat_count="1" race_permitted="ELYOS" category="EVENT">
 		<rewards gold="30000" exp="20000">
 			<reward_item item_id="160010084" count="5" />
 		</rewards>
 	</quest>
-	<quest id="80480" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199974" quest_zone="Event" minlevel_permitted="30" max_repeat_count="1" race_permitted="ELYOS" category="EVENT">
+	<quest id="80480" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199974" quest_zone="Event" minlevel_permitted="30" max_repeat_count="1" race_permitted="ELYOS" category="EVENT">
 		<collect_items>
 			<collect_item item_id="182215418" count="15" />
 		</collect_items>
@@ -71500,7 +71500,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<finished quest_id="80479" />
 		</start_conditions>
 	</quest>
-	<quest id="80481" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199975" quest_zone="Event" minlevel_permitted="30" max_repeat_count="1" race_permitted="ELYOS" category="EVENT">
+	<quest id="80481" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199975" quest_zone="Event" minlevel_permitted="30" max_repeat_count="1" race_permitted="ELYOS" category="EVENT">
 		<rewards gold="40000" exp="40000">
 			<reward_item item_id="182215419" count="1" />
 		</rewards>
@@ -71508,7 +71508,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<finished quest_id="80480" />
 		</start_conditions>
 	</quest>
-	<quest id="80482" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199976" quest_zone="Event" minlevel_permitted="30" max_repeat_count="1" race_permitted="ELYOS" category="EVENT">
+	<quest id="80482" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199976" quest_zone="Event" minlevel_permitted="30" max_repeat_count="1" race_permitted="ELYOS" category="EVENT">
 		<collect_items>
 			<collect_item item_id="182215419" count="1" />
 		</collect_items>
@@ -71526,12 +71526,12 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<finished quest_id="80481" />
 		</start_conditions>
 	</quest>
-	<quest id="80483" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199977" quest_zone="Event" minlevel_permitted="30" max_repeat_count="1" race_permitted="ASMODIANS" category="EVENT">
+	<quest id="80483" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199977" quest_zone="Event" minlevel_permitted="30" max_repeat_count="1" race_permitted="ASMODIANS" category="EVENT">
 		<rewards gold="30000" exp="20000">
 			<reward_item item_id="160010085" count="5" />
 		</rewards>
 	</quest>
-	<quest id="80484" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199978" quest_zone="Event" minlevel_permitted="30" max_repeat_count="1" race_permitted="ASMODIANS" category="EVENT">
+	<quest id="80484" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199978" quest_zone="Event" minlevel_permitted="30" max_repeat_count="1" race_permitted="ASMODIANS" category="EVENT">
 		<collect_items>
 			<collect_item item_id="182215420" count="15" />
 		</collect_items>
@@ -71546,7 +71546,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<finished quest_id="80483" />
 		</start_conditions>
 	</quest>
-	<quest id="80485" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199979" quest_zone="Event" minlevel_permitted="30" max_repeat_count="1" race_permitted="ASMODIANS" category="EVENT">
+	<quest id="80485" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199979" quest_zone="Event" minlevel_permitted="30" max_repeat_count="1" race_permitted="ASMODIANS" category="EVENT">
 		<rewards gold="40000" exp="40000">
 			<reward_item item_id="182215421" count="1" />
 		</rewards>
@@ -71554,7 +71554,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<finished quest_id="80484" />
 		</start_conditions>
 	</quest>
-	<quest id="80486" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199980" quest_zone="Event" minlevel_permitted="30" max_repeat_count="1" race_permitted="ASMODIANS" category="EVENT">
+	<quest id="80486" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199980" quest_zone="Event" minlevel_permitted="30" max_repeat_count="1" race_permitted="ASMODIANS" category="EVENT">
 		<collect_items>
 			<collect_item item_id="182215421" count="1" />
 		</collect_items>
@@ -72378,12 +72378,12 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 		</rewards>
 		<gender_permitted>FEMALE</gender_permitted>
 	</quest>
-	<quest id="80553" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199985" quest_zone="Event" minlevel_permitted="10" max_repeat_count="1" race_permitted="ELYOS" category="EVENT">
+	<quest id="80553" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199985" quest_zone="Event" minlevel_permitted="10" max_repeat_count="1" race_permitted="ELYOS" category="EVENT">
 		<rewards gold="30000" exp="20000">
 			<reward_item item_id="182215444" count="1" />
 		</rewards>
 	</quest>
-	<quest id="80554" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199986" quest_zone="Event" minlevel_permitted="10" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="EVENT">
+	<quest id="80554" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199986" quest_zone="Event" minlevel_permitted="10" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="EVENT">
 		<rewards gold="50000" exp="20000">
 			<reward_item item_id="164002009" count="5" />
 		</rewards>
@@ -72394,7 +72394,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<quest_work_item item_id="182215444" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="80555" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199987" quest_zone="Event" minlevel_permitted="10" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="EVENT">
+	<quest id="80555" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199987" quest_zone="Event" minlevel_permitted="10" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="EVENT">
 		<collect_items>
 			<collect_item item_id="182215446" count="1" />
 		</collect_items>
@@ -72406,7 +72406,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<finished quest_id="80554" />
 		</start_conditions>
 	</quest>
-	<quest id="80556" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199988" quest_zone="Event" minlevel_permitted="10" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="EVENT">
+	<quest id="80556" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199988" quest_zone="Event" minlevel_permitted="10" max_repeat_count="1" cannot_share="true" race_permitted="ELYOS" category="EVENT">
 		<rewards gold="200000" exp="50000">
 			<reward_item item_id="188052667" count="3" />
 		</rewards>
@@ -72414,12 +72414,12 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<finished quest_id="80555" />
 		</start_conditions>
 	</quest>
-	<quest id="80557" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199989" quest_zone="Event" minlevel_permitted="10" max_repeat_count="1" race_permitted="ASMODIANS" category="EVENT">
+	<quest id="80557" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199989" quest_zone="Event" minlevel_permitted="10" max_repeat_count="1" race_permitted="ASMODIANS" category="EVENT">
 		<rewards gold="30000" exp="20000">
 			<reward_item item_id="182215445" count="1" />
 		</rewards>
 	</quest>
-	<quest id="80558" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199990" quest_zone="Event" minlevel_permitted="10" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="EVENT">
+	<quest id="80558" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199990" quest_zone="Event" minlevel_permitted="10" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="EVENT">
 		<rewards gold="50000" exp="20000">
 			<reward_item item_id="164002009" count="5" />
 		</rewards>
@@ -72430,7 +72430,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<quest_work_item item_id="182215445" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="80559" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199991" quest_zone="Event" minlevel_permitted="10" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="EVENT">
+	<quest id="80559" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199991" quest_zone="Event" minlevel_permitted="10" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="EVENT">
 		<collect_items>
 			<collect_item item_id="182215447" count="1" />
 		</collect_items>
@@ -72442,7 +72442,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<finished quest_id="80558" />
 		</start_conditions>
 	</quest>
-	<quest id="80560" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de bedotia geayi 1199900-1199998 / atualizar após uso" nameId="1199992" quest_zone="Event" minlevel_permitted="10" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="EVENT">
+	<quest id="80560" name_en="(unused) New zone tab name range 1199900-1199998 / update after use" name_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" nameId="1199992" quest_zone="Event" minlevel_permitted="10" max_repeat_count="1" cannot_share="true" race_permitted="ASMODIANS" category="EVENT">
 		<rewards gold="200000" exp="50000">
 			<reward_item item_id="188052667" count="3" />
 		</rewards>
@@ -77171,7 +77171,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 		<rewards exp="428214867" />
 		<quest_kill seq="0" npc_ids="215778 215779" count="2" var="0" step="0" />
 	</quest>
-	<quest id="14726" name_en="Hanarkand Drakan Elite" name_pt="Hanarkand Drakan Elite: n. elite" nameId="1802755" quest_zone="Inggison" minlevel_permitted="50" maxlevel_permitted="65" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST" can_report="true">
+	<quest id="14726" name_en="Hanarkand Drakan Elite" name_pt="Hanarkand Drakan Elite" nameId="1802755" quest_zone="Inggison" minlevel_permitted="50" maxlevel_permitted="65" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST" can_report="true">
 		<rewards exp="428214867" />
 		<quest_kill seq="0" npc_ids="215768 217043 217044 215769 217045 217046 215770 217047 217048 215771 217049 217050 215772 217051 217052" count="15" var="0" step="0" />
 	</quest>
@@ -77248,7 +77248,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 	<quest id="19037" name_en="Temporary" name_pt="Temporário" nameId="1124537" quest_zone="Sanctum" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<rewards gold="19037" />
 	</quest>
-	<quest id="19100" name_en="Elite Guardian Squad Leader’s Memories" name_pt="Memórias do Líder de Esquadrão Guardião de Elite: n. elite" nameId="1800851" quest_zone="Sanctum" minlevel_permitted="30" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="SEEN_MARKER">
+	<quest id="19100" name_en="Elite Guardian Squad Leader’s Memories" name_pt="Memórias do Líder de Esquadrão Guardião de Elite" nameId="1800851" quest_zone="Sanctum" minlevel_permitted="30" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="SEEN_MARKER">
 		<rewards>
 			<reward_item item_id="110900425" count="1" />
 		</rewards>
@@ -77262,7 +77262,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<reward_item item_id="110900428" count="1" />
 		</rewards>
 	</quest>
-	<quest id="19101" name_en="Elite Guardian Centurion’s Memories" name_pt="Memórias do Centurião Guardião de Elite: n. elite" nameId="1800852" quest_zone="Sanctum" minlevel_permitted="40" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="SEEN_MARKER">
+	<quest id="19101" name_en="Elite Guardian Centurion’s Memories" name_pt="Memórias do Centurião Guardião de Elite" nameId="1800852" quest_zone="Sanctum" minlevel_permitted="40" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="SEEN_MARKER">
 		<rewards>
 			<reward_item item_id="110900429" count="1" />
 		</rewards>
@@ -77276,7 +77276,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<reward_item item_id="110900432" count="1" />
 		</rewards>
 	</quest>
-	<quest id="19102" name_en="Elite Guardian Tribunus’ Memories" name_pt="Memórias do Tribuno Guardião de Elite: n. elite" nameId="1800853" quest_zone="Sanctum" minlevel_permitted="50" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="SEEN_MARKER">
+	<quest id="19102" name_en="Elite Guardian Tribunus’ Memories" name_pt="Memórias do Tribuno Guardião de Elite" nameId="1800853" quest_zone="Sanctum" minlevel_permitted="50" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="SEEN_MARKER">
 		<rewards>
 			<reward_item item_id="110900433" count="1" />
 		</rewards>
@@ -80245,7 +80245,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 	<quest id="29037" name_en="Temporary" name_pt="Temporário" nameId="1124837" quest_zone="Pandaemonium" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards gold="29037" />
 	</quest>
-	<quest id="29100" name_en="Elite Archon Squad Leader’s Memories" name_pt="Memórias do Líder de Esquadrão Arconte de Elite: n. elite" nameId="1800854" quest_zone="Pandaemonium" minlevel_permitted="30" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="SEEN_MARKER">
+	<quest id="29100" name_en="Elite Archon Squad Leader’s Memories" name_pt="Memórias do Líder de Esquadrão Arconte de Elite" nameId="1800854" quest_zone="Pandaemonium" minlevel_permitted="30" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="SEEN_MARKER">
 		<rewards>
 			<reward_item item_id="110900441" count="1" />
 		</rewards>
@@ -80259,7 +80259,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<reward_item item_id="110900444" count="1" />
 		</rewards>
 	</quest>
-	<quest id="29101" name_en="Elite Archon Centurion’s Memories" name_pt="Memórias do Centurião Arconte de Elite: n. elite" nameId="1800855" quest_zone="Pandaemonium" minlevel_permitted="40" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="SEEN_MARKER">
+	<quest id="29101" name_en="Elite Archon Centurion’s Memories" name_pt="Memórias do Centurião Arconte de Elite" nameId="1800855" quest_zone="Pandaemonium" minlevel_permitted="40" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="SEEN_MARKER">
 		<rewards>
 			<reward_item item_id="110900445" count="1" />
 		</rewards>
@@ -80273,7 +80273,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<reward_item item_id="110900448" count="1" />
 		</rewards>
 	</quest>
-	<quest id="29102" name_en="Elite Archon Tribunus’ Memories" name_pt="Memórias do Tribuno Arconte de Elite: n. elite" nameId="1800856" quest_zone="Pandaemonium" minlevel_permitted="50" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="SEEN_MARKER">
+	<quest id="29102" name_en="Elite Archon Tribunus’ Memories" name_pt="Memórias do Tribuno Arconte de Elite" nameId="1800856" quest_zone="Pandaemonium" minlevel_permitted="50" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="SEEN_MARKER">
 		<rewards>
 			<reward_item item_id="110900449" count="1" />
 		</rewards>
@@ -82514,7 +82514,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<reward_item item_id="188057157" count="1" />
 		</rewards>
 	</quest>
-	<quest id="41908" name_en="[Elite Field Mission] Gravity Ruins: Collect Blood Drana Crystals" name_pt="[Elite: n. elite campo Missão] gravidade Ruína: Colete sangue Drana Cristais" nameId="1802295" quest_zone="Teva Field Mission" minlevel_permitted="65" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="PC_ALL" category="QUEST">
+	<quest id="41908" name_en="[Elite Field Mission] Gravity Ruins: Collect Blood Drana Crystals" name_pt="[Elite campo Missão] gravidade Ruína: Colete sangue Drana Cristais" nameId="1802295" quest_zone="Teva Field Mission" minlevel_permitted="65" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="PC_ALL" category="QUEST">
 		<collect_items>
 			<collect_item item_id="182215513" count="3" />
 		</collect_items>
@@ -82522,7 +82522,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<reward_item item_id="188057154" count="1" />
 		</rewards>
 	</quest>
-	<quest id="41909" name_en="[Elite Field Mission] Fissure Splitter: Collect Blood Drana Crystals" name_pt="[Elite: n. elite campo Missão] fissura Splitter: Colete sangue Drana Cristais" nameId="1802296" quest_zone="Teva Field Mission" minlevel_permitted="65" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="PC_ALL" category="QUEST">
+	<quest id="41909" name_en="[Elite Field Mission] Fissure Splitter: Collect Blood Drana Crystals" name_pt="[Elite campo Missão] fissura Splitter: Colete sangue Drana Cristais" nameId="1802296" quest_zone="Teva Field Mission" minlevel_permitted="65" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="PC_ALL" category="QUEST">
 		<collect_items>
 			<collect_item item_id="182215516" count="3" />
 		</collect_items>
@@ -82530,7 +82530,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<reward_item item_id="188057155" count="1" />
 		</rewards>
 	</quest>
-	<quest id="41910" name_en="[Elite Field Mission] Shrine of Petrification: Collect Blood Drana Crystals" name_pt="[Missão de Campo de Elite: n. elite] Santuário da Petrificação: Cristais Colete sangue Drana" nameId="1802297" quest_zone="Teva Field Mission" minlevel_permitted="65" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="PC_ALL" category="QUEST">
+	<quest id="41910" name_en="[Elite Field Mission] Shrine of Petrification: Collect Blood Drana Crystals" name_pt="[Missão de Campo de Elite] Santuário da Petrificação: Cristais Colete sangue Drana" nameId="1802297" quest_zone="Teva Field Mission" minlevel_permitted="65" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="PC_ALL" category="QUEST">
 		<collect_items>
 			<collect_item item_id="182215519" count="3" />
 		</collect_items>
@@ -82538,7 +82538,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<reward_item item_id="188057156" count="1" />
 		</rewards>
 	</quest>
-	<quest id="41911" name_en="[Elite Field Mission] Crest of Wrath: Collect Blood Drana Crystals" name_pt="[Missão de Campo de Elite: n. elite] Crista da Ira: Cristais Colete sangue Drana" nameId="1802298" quest_zone="Teva Field Mission" minlevel_permitted="65" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="PC_ALL" category="QUEST">
+	<quest id="41911" name_en="[Elite Field Mission] Crest of Wrath: Collect Blood Drana Crystals" name_pt="[Missão de Campo de Elite] Crista da Ira: Cristais Colete sangue Drana" nameId="1802298" quest_zone="Teva Field Mission" minlevel_permitted="65" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="PC_ALL" category="QUEST">
 		<collect_items>
 			<collect_item item_id="182215522" count="3" />
 		</collect_items>
@@ -83303,7 +83303,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<reward_item item_id="188053536" count="1" />
 		</rewards>
 	</quest>
-	<quest id="60042" name_en="Kill the Krall Elite Prison Guard" name_pt="Elimine o Guarda Prisional Krall de Elite: n. elite" nameId="1800173" quest_zone="Steel Rake" minlevel_permitted="99" max_repeat_count="4" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="IMPORTANT">
+	<quest id="60042" name_en="Kill the Krall Elite Prison Guard" name_pt="Elimine o Guarda Prisional Krall de Elite" nameId="1800173" quest_zone="Steel Rake" minlevel_permitted="99" max_repeat_count="4" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="IMPORTANT">
 		<rewards exp="1974220" />
 		<extended_rewards>
 			<selectable_reward_item item_id="113100878" count="1" />
@@ -83836,7 +83836,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<finished quest_id="60108" />
 		</start_conditions>
 	</quest>
-	<quest id="60110" name_en="[Weekly] Mission to Investigate the Abyss Rift" name_pt="[Semanal] Missão de Investigação do Abismo Fenda" nameId="1801547" quest_zone="Laphsaran" minlevel_permitted="58" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="60110" name_en="[Weekly] Mission to Investigate the Abyss Rift" name_pt="[Semanal] Missão de Investigação do Abisma Fenda" nameId="1801547" quest_zone="Laphsaran" minlevel_permitted="58" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="182215349" count="3" />
 		</collect_items>
@@ -83925,7 +83925,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 	<quest id="69016" name_en="[Golden Wind] [Weekly] [9th Garrison] Blocking the Western Laphsaran Battlefield" name_pt="[Vento Dourado] [Semanal] [9ª Guarnição] Bloqueando o Campo de Batalha de Laphsaran Ocidental" nameId="1801634" quest_zone="Laphsaran" minlevel_permitted="99" maxlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<rewards />
 	</quest>
-	<quest id="69017" name_en="[Golden Wind] [Weekly] Mission to Investigate the Abyss Rift" name_pt="[Dourado Vento] [Semanal] Missão de Investigação do Abismo Fenda" nameId="1801635" quest_zone="Laphsaran" minlevel_permitted="99" maxlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="69017" name_en="[Golden Wind] [Weekly] Mission to Investigate the Abyss Rift" name_pt="[Dourado Vento] [Semanal] Missão de Investigação do Abisma Fenda" nameId="1801635" quest_zone="Laphsaran" minlevel_permitted="99" maxlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<rewards />
 		<start_conditions>
 			<finished quest_id="31000" />
@@ -84240,7 +84240,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<reward_item item_id="188053536" count="1" />
 		</rewards>
 	</quest>
-	<quest id="70042" name_en="Eliminate the Krall Elite Prison Guard" name_pt="Elimine o Guarda Prisional Krall de Elite: n. elite" nameId="1800181" quest_zone="Steel Rake" minlevel_permitted="99" max_repeat_count="4" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="IMPORTANT">
+	<quest id="70042" name_en="Eliminate the Krall Elite Prison Guard" name_pt="Elimine o Guarda Prisional Krall de Elite" nameId="1800181" quest_zone="Steel Rake" minlevel_permitted="99" max_repeat_count="4" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="IMPORTANT">
 		<rewards exp="1974220" />
 		<extended_rewards>
 			<selectable_reward_item item_id="113100878" count="1" />
@@ -84773,7 +84773,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<finished quest_id="70108" />
 		</start_conditions>
 	</quest>
-	<quest id="70110" name_en="[Weekly] Mission to Investigate the Abyss Rift" name_pt="[Semanal] Missão de Investigação do Abismo Fenda" nameId="1801548" quest_zone="Laphsaran" minlevel_permitted="58" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="70110" name_en="[Weekly] Mission to Investigate the Abyss Rift" name_pt="[Semanal] Missão de Investigação do Abisma Fenda" nameId="1801548" quest_zone="Laphsaran" minlevel_permitted="58" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="182215350" count="3" />
 		</collect_items>
@@ -84862,7 +84862,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 	<quest id="79016" name_en="[Golden Wind] [Weekly] [9th Garrison] Destroying the Western Laphsaran Battlefield" name_pt="[Vento Dourado] [Semanal] [9ª Guarnição] Destruindo o Campo de Batalha de Laphsaran Ocidental" nameId="1801655" quest_zone="Laphsaran" minlevel_permitted="99" maxlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards />
 	</quest>
-	<quest id="79017" name_en="[Golden Wind] [Weekly] Mission to Investigate the Abyss Rift" name_pt="[Dourado Vento] [Semanal] Missão de Investigação do Abismo Fenda" nameId="1801656" quest_zone="Laphsaran" minlevel_permitted="99" maxlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="79017" name_en="[Golden Wind] [Weekly] Mission to Investigate the Abyss Rift" name_pt="[Dourado Vento] [Semanal] Missão de Investigação do Abisma Fenda" nameId="1801656" quest_zone="Laphsaran" minlevel_permitted="99" maxlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards />
 		<start_conditions>
 			<finished quest_id="31001" />

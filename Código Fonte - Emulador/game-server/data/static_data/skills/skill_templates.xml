@@ -564,7 +564,7 @@
 			</wpnmastery>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="53" name_en="Advanced Staff Training I" name_pt="Funcionários avançados I" nameId="281919" delayId="53" stack="P_EQUIP_STAFF_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="53" name_en="Advanced Staff Training I" name_pt="Treinamento Avançado com Cajado I" nameId="281919" delayId="53" stack="P_EQUIP_STAFF_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -630,7 +630,7 @@
 			</wpnmastery>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="59" name_en="Advanced Staff Training I" name_pt="Funcionários avançados I" nameId="281929" delayId="58" stack="CH_EQUIP_STAFF" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="59" name_en="Advanced Staff Training I" name_pt="Treinamento Avançado com Cajado I" nameId="281929" delayId="58" stack="CH_EQUIP_STAFF" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -8520,7 +8520,7 @@
 		</actions>
 		<motion name="Angleshot"/>
 	</skill_template>
-	<skill_template skill_id="692" name_en="Sniper Stance I" name_pt="Atirador de Elite: n. elite Postura I" nameId="286172" delayId="271" stack="RA_MARKSMANMODE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="TOGGLE" cooldown="600" duration="0" cancel_rate="20">
+	<skill_template skill_id="692" name_en="Sniper Stance I" name_pt="Postura de Atirador de Elite I" nameId="286172" delayId="271" stack="RA_MARKSMANMODE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="TOGGLE" cooldown="600" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<effects>
 			<weaponstatboost effectid="106881" e="1" noresist="true" hoptype="SKILLLV" hopb="587">
@@ -20178,7 +20178,7 @@
 		</actions>
 		<motion name="Pointfire4"/>
 	</skill_template>
-	<skill_template skill_id="1503" name_en="Aether's Hold I" name_pt="Éter's Manter I" nameId="282677" delayId="435" stack="WI_WIZARDRYHOOK_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="600" duration="2800" ground="true" cancel_rate="30">
+	<skill_template skill_id="1503" name_en="Aether's Hold I" name_pt="Aprisionamento do Éter I" nameId="282677" delayId="435" stack="WI_WIZARDRYHOOK_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="600" duration="2800" ground="true" cancel_rate="30">
 		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" revision_distance="12"/>
 		<startconditions>
 			<mp value="134" delta="4"/>
@@ -20197,7 +20197,7 @@
 		</actions>
 		<motion name="Pointfire3"/>
 	</skill_template>
-	<skill_template skill_id="1504" name_en="Aether's Hold II" name_pt="Éter's Manter II" nameId="283844" delayId="435" stack="WI_WIZARDRYHOOK_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="600" duration="2800" ground="true" cancel_rate="30">
+	<skill_template skill_id="1504" name_en="Aether's Hold II" name_pt="Aprisionamento do Éter II" nameId="283844" delayId="435" stack="WI_WIZARDRYHOOK_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="600" duration="2800" ground="true" cancel_rate="30">
 		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" revision_distance="12"/>
 		<startconditions>
 			<mp value="193" delta="4"/>
@@ -20236,7 +20236,7 @@
 		</actions>
 		<motion name="Pointfire3"/>
 	</skill_template>
-	<skill_template skill_id="1506" name_en="Aether's Hold III" name_pt="Éter's Manter III" nameId="287364" delayId="435" stack="WI_WIZARDRYHOOK_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="600" duration="2800" ground="true" cancel_rate="30">
+	<skill_template skill_id="1506" name_en="Aether's Hold III" name_pt="Aprisionamento do Éter III" nameId="287364" delayId="435" stack="WI_WIZARDRYHOOK_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="600" duration="2800" ground="true" cancel_rate="30">
 		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" revision_distance="12"/>
 		<startconditions>
 			<mp value="240" delta="6"/>
@@ -36116,7 +36116,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 		</actions>
 		<motion name="phburst"/>
 	</skill_template>
-	<skill_template skill_id="8221" name_en="Aether's Hold" name_pt="Éter's Manter" nameId="281693" stack="OPENAERIALTH" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="3000" cancel_rate="5">
+	<skill_template skill_id="8221" name_en="Aether's Hold" name_pt="Aprisionamento do Éter" nameId="281693" stack="OPENAERIALTH" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="3000" cancel_rate="5">
 		<properties first_target="TARGET" first_target_range="10" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -36142,7 +36142,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 		</effects>
 		<motion name="phburst"/>
 	</skill_template>
-	<skill_template skill_id="8224" name_en="Aether's Hold" name_pt="Éter's Manter" nameId="281693" stack="SYSTEM_SKILL_OPENAERIAL" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="3000" cancel_rate="5">
+	<skill_template skill_id="8224" name_en="Aether's Hold" name_pt="Aprisionamento do Éter" nameId="281693" stack="SYSTEM_SKILL_OPENAERIAL" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="3000" cancel_rate="5">
 		<properties first_target="TARGET" first_target_range="10" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -39546,7 +39546,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="8488" name_en="Magic Mantra II Effect" name_pt="Efeito Mágico Mantra II" nameId="291282" stack="SKILL_CH_CHANT_IMPROVEDMAGIC_EFFECT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="CHANT" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="8488" name_en="Magic Mantra II Effect" name_pt="Efeito Mantra Mágico II" nameId="291282" stack="SKILL_CH_CHANT_IMPROVEDMAGIC_EFFECT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="CHANT" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -39560,7 +39560,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="8489" name_en="Magic Mantra III Effect" name_pt="Efeito Mágico Mantra III" nameId="291283" stack="SKILL_CH_CHANT_IMPROVEDMAGIC_EFFECT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="CHANT" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="8489" name_en="Magic Mantra III Effect" name_pt="Efeito Mantra Mágico III" nameId="291283" stack="SKILL_CH_CHANT_IMPROVEDMAGIC_EFFECT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="CHANT" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -40907,7 +40907,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 			<shield percent="true" hitvalue="100" value="100000000" duration2="6000" effectid="154" e="1" basiclvl="220" noresist="true" hittype="EVERYHIT" hittypeprob2="1000"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="8594" name_en="Magic Mantra IV Effect" name_pt="Efeito Mágico Mantra IV" nameId="295626" stack="SKILL_CH_CHANT_IMPROVEDMAGIC_EFFECT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="CHANT" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="8594" name_en="Magic Mantra IV Effect" name_pt="Efeito Mantra Mágico IV" nameId="295626" stack="SKILL_CH_CHANT_IMPROVEDMAGIC_EFFECT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="CHANT" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -41918,7 +41918,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 		</effects>
 		<motion name="phburst"/>
 	</skill_template>
-	<skill_template skill_id="8678" name_en="Aether's Hold" name_pt="Éter's Manter" nameId="281693" stack="SYSTEM_SKILL_OPENAERIAL" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="3000" cancel_rate="5">
+	<skill_template skill_id="8678" name_en="Aether's Hold" name_pt="Aprisionamento do Éter" nameId="281693" stack="SYSTEM_SKILL_OPENAERIAL" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="3000" cancel_rate="5">
 		<properties first_target="TARGET" first_target_range="10" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -64535,7 +64535,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
-	<skill_template skill_id="16665" name_en="Aerial Snare" name_pt="Éter's Manter" nameId="285579" delayId="2" stack="NFI_OPENAERIAL_NR" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="40">
+	<skill_template skill_id="16665" name_en="Aerial Snare" name_pt="Aprisionamento do Éter" nameId="285579" delayId="2" stack="NFI_OPENAERIAL_NR" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="40">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -74427,7 +74427,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="chainatk1"/>
 	</skill_template>
-	<skill_template skill_id="17324" name_en="Aerial Snare" name_pt="Éter's Manter" nameId="290118" delayId="2" stack="DGAS_OPENAERIAL_NR" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="30">
+	<skill_template skill_id="17324" name_en="Aerial Snare" name_pt="Aprisionamento do Éter" nameId="290118" delayId="2" stack="DGAS_OPENAERIAL_NR" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="30">
 		<properties first_target="TARGET" first_target_range="4" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -76454,7 +76454,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
-	<skill_template skill_id="17460" name_en="Aerial Snare" name_pt="Éter's Manter" nameId="290396" delayId="2" stack="GNFI_OPENARTA_ADDSHSUATT" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="3500" penalty_skill_id="16406" cancel_rate="35">
+	<skill_template skill_id="17460" name_en="Aerial Snare" name_pt="Aprisionamento do Éter" nameId="290396" delayId="2" stack="GNFI_OPENARTA_ADDSHSUATT" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="3500" penalty_skill_id="16406" cancel_rate="35">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="AREA" target_maxcount="2" effective_angle="240" target_distance="5" effective_dist="5" effective_altitude="5"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -77356,7 +77356,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="17523" name_en="Pet Rule 3: No wagging your tail!" name_pt="Regra 3 do animalia de estimação: sem abanar seu rabo!" nameId="290534" delayId="1" stack="NPET_AIMBACKTA_TRAIN" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="1000" cancel_rate="65">
+	<skill_template skill_id="17523" name_en="Pet Rule 3: No wagging your tail!" name_pt="Regra 3 do animal de estimação: sem abanar seu rabo!" nameId="290534" delayId="1" stack="NPET_AIMBACKTA_TRAIN" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="1000" cancel_rate="65">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="AREA" target_maxcount="8" effective_angle="240" target_distance="5" effective_dist="5" effective_altitude="5"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -77399,7 +77399,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
-	<skill_template skill_id="17526" name_en="Pet Rule 1: Pay attention to your master!" name_pt="Regra 1 do animalia de estimação: preste atenção ao seu mestre!" nameId="290540" delayId="4" stack="NPET_SLOWSATKTA_TRAIN" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="35">
+	<skill_template skill_id="17526" name_en="Pet Rule 1: Pay attention to your master!" name_pt="Regra 1 do animal de estimação: preste atenção ao seu mestre!" nameId="290540" delayId="4" stack="NPET_SLOWSATKTA_TRAIN" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="35">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="AREA" target_maxcount="4" effective_angle="240" target_distance="5" effective_dist="5" effective_altitude="5"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -83897,7 +83897,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="openaerial"/>
 	</skill_template>
-	<skill_template skill_id="17991" name_en="Wide Area Aerial Snare II" name_pt="Éter's Manter com grande efeito Raio II" nameId="291901" delayId="2" stack="AGC_OPENAERIALTA_MID" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2500">
+	<skill_template skill_id="17991" name_en="Wide Area Aerial Snare II" name_pt="Aprisionamento do Éter com grande efeito Raio II" nameId="291901" delayId="2" stack="AGC_OPENAERIALTA_MID" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2500">
 		<properties first_target="TARGET" first_target_range="37" target_relation="ENEMY" target_type="AREA" target_maxcount="48" target_distance="17" effective_range="17" effective_altitude="17"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -84500,7 +84500,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="multiatk"/>
 	</skill_template>
-	<skill_template skill_id="18029" name_en="Aerial Snare" name_pt="Éter's Manter" nameId="292435" delayId="1" stack="BNFI_OPENARIALTA20_LC" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="3500" cancel_rate="35">
+	<skill_template skill_id="18029" name_en="Aerial Snare" name_pt="Aprisionamento do Éter" nameId="292435" delayId="1" stack="BNFI_OPENARIALTA20_LC" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="3500" cancel_rate="35">
 		<properties first_target="TARGET" first_target_range="37" target_relation="ENEMY" target_type="AREA" target_maxcount="24" target_distance="20" effective_range="20" effective_altitude="20"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -102066,7 +102066,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="phbuff"/>
 	</skill_template>
-	<skill_template skill_id="19215" name_en="Cross Spinning" name_pt="n transferência de crédito (em banco). cruzado" nameId="296562" delayId="1" stack="NWA_SATKTA_IDNOVICE" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="35">
+	<skill_template skill_id="19215" name_en="Cross Spinning" name_pt="giro cruzado" nameId="296562" delayId="1" stack="NWA_SATKTA_IDNOVICE" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="35">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="AREA" target_maxcount="6" target_distance="6" effective_range="6" effective_altitude="5"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -106819,7 +106819,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="areafire"/>
 	</skill_template>
-	<skill_template skill_id="19552" name_en="Clutch of Futility" name_pt="Éter's Manter de Escuridão" nameId="297544" delayId="1" stack="IDARENA_S8_OPENAERIAL_AREA" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="3000">
+	<skill_template skill_id="19552" name_en="Clutch of Futility" name_pt="Aprisionamento do Éter de Escuridão" nameId="297544" delayId="1" stack="IDARENA_S8_OPENAERIAL_AREA" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="3000">
 		<properties first_target="TARGET" first_target_range="37" target_relation="ENEMY" target_type="AREA" target_maxcount="6" target_distance="5" effective_range="5" effective_altitude="10"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -107679,7 +107679,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
-	<skill_template skill_id="19627" name_en="Aerial Snare" name_pt="Éter's Manter" nameId="297667" delayId="1" stack="IDARENA_OPENAERIAL" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="3000">
+	<skill_template skill_id="19627" name_en="Aerial Snare" name_pt="Aprisionamento do Éter" nameId="297667" delayId="1" stack="IDARENA_OPENAERIAL" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="3000">
 		<properties first_target="TARGET" first_target_range="17" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -109191,7 +109191,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="heal"/>
 	</skill_template>
-	<skill_template skill_id="19774" name_en="Aether's Hold I" name_pt="Éter's Manter I" nameId="297948" delayId="23" stack="IDARENA_SOLO_S5_MA_WIZARDRYHOOK" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="30">
+	<skill_template skill_id="19774" name_en="Aether's Hold I" name_pt="Aprisionamento do Éter I" nameId="297948" delayId="23" stack="IDARENA_SOLO_S5_MA_WIZARDRYHOOK" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="30">
 		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -110045,7 +110045,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
-	<skill_template skill_id="20053" name_en="Blessing Aura" name_pt="Bênção Aura" nameId="298640" delayId="7" stack="ARENA_PVP01_S1_HEAL" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="20053" name_en="Blessing Aura" name_pt="Aura da Bênção" nameId="298640" delayId="7" stack="ARENA_PVP01_S1_HEAL" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="37" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -126714,7 +126714,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</actions>
 		<motion name="Areafire2"/>
 	</skill_template>
-	<skill_template skill_id="3627" name_en="Aether’s Hold IV" name_pt="Apreensão Etérea IV" nameId="2285329" delayId="435" stack="WI_WIZARDRYHOOK_G4" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="600" duration="2800" cancel_rate="30">
+	<skill_template skill_id="3627" name_en="Aether’s Hold IV" name_pt="Aprisionamento do Éter IV" nameId="2285329" delayId="435" stack="WI_WIZARDRYHOOK_G4" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="600" duration="2800" cancel_rate="30">
 		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" revision_distance="12"/>
 		<startconditions>
 			<mp value="249" delta="6"/>
@@ -145042,13 +145042,13 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 	<skill_template skill_id="10648" name_en="추가 채집 숙련 포인트 획득_02" name_pt="추가 채집 숙련 포인트 획득_02" nameId="791116" delayId="10648" stack="TEST_GATHER_BOOST_02" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
-	<skill_template skill_id="10649" name_en="Lesser Collector’s Wisdom" name_pt="Menor Colecionador’s Sabedoria" nameId="791293" delayId="10649" stack="GATHER_BOOST_50" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10649" name_en="Lesser Collector’s Wisdom" name_pt="Sabedoria de Menor Colecionador" nameId="791293" delayId="10649" stack="GATHER_BOOST_50" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
 	<skill_template skill_id="10650" name_en="Normal Collector’s Wisdom" name_pt="Normal" nameId="791294" delayId="10650" stack="GATHER_BOOST_100" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
-	<skill_template skill_id="10651" name_en="Greater Collector’s Wisdom" name_pt="Maior Colecionador’s Sabedoria" nameId="791295" delayId="10651" stack="GATHER_BOOST_200" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10651" name_en="Greater Collector’s Wisdom" name_pt="Sabedoria de Maior Colecionador" nameId="791295" delayId="10651" stack="GATHER_BOOST_200" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
 	<skill_template skill_id="10652" name_en="Lesser Guild Wisdom" name_pt="Menor Guilda Sabedoria" nameId="791299" delayId="10652" stack="COMBINE_BOOST_50" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
@@ -145069,13 +145069,13 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 	<skill_template skill_id="10657" name_en="Greater Combat Wisdom" name_pt="Maior combate Sabedoria" nameId="791307" delayId="10657" stack="AP_BOOST_200" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
-	<skill_template skill_id="10658" name_en="Lesser Collector’s Insight" name_pt="Menor Colecionador’s n discernimento" nameId="791495" delayId="10658" stack="GATHER_BOOST_SHORT_50" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10658" name_en="Lesser Collector’s Insight" name_pt="n discernimento de Menor Colecionador" nameId="791495" delayId="10658" stack="GATHER_BOOST_SHORT_50" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
 	<skill_template skill_id="10659" name_en="Normal Collector’s Insight" name_pt="Normal" nameId="791496" delayId="10659" stack="GATHER_BOOST_SHORT_100" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
-	<skill_template skill_id="10660" name_en="Greater Collector’s Insight" name_pt="Maior Colecionador’s n discernimento" nameId="791497" delayId="10660" stack="GATHER_BOOST_SHORT_200" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10660" name_en="Greater Collector’s Insight" name_pt="n discernimento de Maior Colecionador" nameId="791497" delayId="10660" stack="GATHER_BOOST_SHORT_200" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
 	<skill_template skill_id="10661" name_en="Keen Eyes" name_pt="Interessado Eyes" nameId="791537" delayId="10661" stack="ITEM_SEED_OF_SEARCH2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
@@ -145426,10 +145426,10 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<skilllauncher e="1" skill_id="10691" value="1" noresist="true"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10702" name_en="A skill which summons a Mysterious Book during the Space-Time Rift campaign." name_pt="Uma habilidade que invoca um Livro Misterioso durante a campanha Espaço-Andamento Fenda." nameId="2283261" delayId="10702" stack="SKILL_ITEM_LDF10_SUMMON_NPC_PRIVATE_L" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10702" name_en="A skill which summons a Mysterious Book during the Space-Time Rift campaign." name_pt="Uma habilidade que invoca um Livro Misterioso durante a campanha Espaço-Andamenta Fenda." nameId="2283261" delayId="10702" stack="SKILL_ITEM_LDF10_SUMMON_NPC_PRIVATE_L" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
-	<skill_template skill_id="10703" name_en="A skill which summons a Mysterious Book during the Space-Time Rift campaign." name_pt="Uma habilidade que invoca um Livro Misterioso durante a campanha Espaço-Andamento Fenda." nameId="2283262" delayId="10703" stack="SKILL_ITEM_LDF10_SUMMON_NPC_PRIVATE_D" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10703" name_en="A skill which summons a Mysterious Book during the Space-Time Rift campaign." name_pt="Uma habilidade que invoca um Livro Misterioso durante a campanha Espaço-Andamenta Fenda." nameId="2283262" delayId="10703" stack="SKILL_ITEM_LDF10_SUMMON_NPC_PRIVATE_D" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
 	<skill_template skill_id="10704" name_en="Skill which summons monsters to a certain location" name_pt="Mãos, mais rápido que a luz eu" nameId="2283271" delayId="10704" stack="NPC_SUMMON_MONSTER_AN_60" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
@@ -155301,10 +155301,10 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 	<skill_template skill_id="19888" name_en="You are carrying the bomb." name_pt="você está carrying o bomba." nameId="2287466" delayId="19888" stack="IDF4RE_2NAMED_SHAPECHANGE_01" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE" first_target_range="2"/>
 	</skill_template>
-	<skill_template skill_id="19889" name_en="Drop Bomb" name_pt="Consome um fragmento dimensional para convocar um membro do grupo na mesma bedotia geayi ao seu lado. Essa habilidade não pode ser usada em determinadas áreas." nameId="2287469" delayId="239" stack="IDF4RE_2NAMED_SUMMON_GUNNERBIGBOMB" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="2000">
+	<skill_template skill_id="19889" name_en="Drop Bomb" name_pt="Consome um fragmento dimensional para convocar um membro do grupo na mesma zona ao seu lado. Essa habilidade não pode ser usada em determinadas áreas." nameId="2287469" delayId="239" stack="IDF4RE_2NAMED_SUMMON_GUNNERBIGBOMB" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="2000">
 		<properties first_target="ME" target_type="ONLYONE" first_target_range="1"/>
 	</skill_template>
-	<skill_template skill_id="19890" name_en="Drop Bomb" name_pt="Consome um fragmento dimensional para convocar um membro do grupo na mesma bedotia geayi ao seu lado. Essa habilidade não pode ser usada em determinadas áreas." nameId="2287469" delayId="1" stack="IDF4RE_2NAMED_SUMMON_DISPEL" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF" cancel_rate="35">
+	<skill_template skill_id="19890" name_en="Drop Bomb" name_pt="Consome um fragmento dimensional para convocar um membro do grupo na mesma zona ao seu lado. Essa habilidade não pode ser usada em determinadas áreas." nameId="2287469" delayId="1" stack="IDF4RE_2NAMED_SUMMON_DISPEL" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF" cancel_rate="35">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ALL" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -159158,7 +159158,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="PowerAtk"/>
 	</skill_template>
-	<skill_template skill_id="20787" name_en="Lightning Smash" name_pt="Éter's Manter" nameId="2283452" delayId="20787" stack="IDINFINITY_FIRESTORM_STUN" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="2500" dispel_category="DEBUFF_PHYSICAL">
+	<skill_template skill_id="20787" name_en="Lightning Smash" name_pt="Aprisionamento do Éter" nameId="2283452" delayId="20787" stack="IDINFINITY_FIRESTORM_STUN" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="2500" dispel_category="DEBUFF_PHYSICAL">
 		<properties first_target="TARGET" first_target_range="30" target_distance="28" target_relation="ENEMY" target_type="AREA" target_maxcount="20" effective_dist="28" effective_angle="90" effective_altitude="10"/>
 		<useconditions>
 			<playermove allow="false"/>
