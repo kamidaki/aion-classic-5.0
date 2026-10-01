@@ -7680,7 +7680,7 @@
 		</actions>
 		<motion name="Normalshot"/>
 	</skill_template>
-	<skill_template skill_id="643" name_en="Hunter's Might I" name_pt="Caçador's Homem I" nameId="293533" delayId="255" stack="RA_HUNTERMIND_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
+	<skill_template skill_id="643" name_en="Hunter's Might I" name_pt="Poder do Caçador I" nameId="293533" delayId="255" stack="RA_HUNTERMIND_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="165" delta="0"/>
@@ -11207,7 +11207,7 @@
 		</actions>
 		<motion name="twistatk" speed="85"/>
 	</skill_template>
-	<skill_template skill_id="857" name_en="Frontal Strike II" name_pt="Ataque n frontal: a) osso frontal II" nameId="286802" delayId="77" stack="AS_FRONTASSAULT_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="10" chain_skill_prob="100">
+	<skill_template skill_id="857" name_en="Frontal Strike II" name_pt="Golpe Frontal II" nameId="286802" delayId="77" stack="AS_FRONTASSAULT_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="10" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="1" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="30" delta="0"/>
@@ -11539,7 +11539,7 @@
 		</actions>
 		<motion name="PhBuff" speed="85" instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="877" name_en="Shadow Walk I" name_pt="Sombra passeio: a) caminhada a pé. b) lugar em que se passeia habitualmente. c) calçada. 2 o andar a pé ou a passo lento I" nameId="286812" delayId="345" stack="AS_SHADOWWALK_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
+	<skill_template skill_id="877" name_en="Shadow Walk I" name_pt="Passo da Sombra I" nameId="286812" delayId="345" stack="AS_SHADOWWALK_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<mp value="59" delta="0"/>
@@ -12581,7 +12581,7 @@
 		</actions>
 		<motion name="signetexp1"/>
 	</skill_template>
-	<skill_template skill_id="948" name_en="Shadow Walk I" name_pt="Sombra passeio: a) caminhada a pé. b) lugar em que se passeia habitualmente. c) calçada. 2 o andar a pé ou a passo lento I" nameId="293001" delayId="345" stack="AS_STIGMA_SHADOWWALK_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="EXTRA" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
+	<skill_template skill_id="948" name_en="Shadow Walk I" name_pt="Passo da Sombra I" nameId="293001" delayId="345" stack="AS_STIGMA_SHADOWWALK_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="EXTRA" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="124" delta="0"/>
@@ -15466,7 +15466,7 @@
 			</wpnmastery>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="1157" name_en="Advanced Staff Training II" name_pt="Funcionários avançados II" nameId="289278" delayId="451" stack="P_EQUIP_STAFF_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="1157" name_en="Advanced Staff Training II" name_pt="Treinamento Avançado com Cajado II" nameId="289278" delayId="451" stack="P_EQUIP_STAFF_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -15488,7 +15488,7 @@
 			</wpnmastery>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="1159" name_en="Advanced Staff Training III" name_pt="Funcionários avançados III" nameId="289282" delayId="453" stack="P_EQUIP_STAFF_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="1159" name_en="Advanced Staff Training III" name_pt="Treinamento Avançado com Cajado III" nameId="289282" delayId="453" stack="P_EQUIP_STAFF_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -15705,7 +15705,7 @@
 			</boostheal>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="1175" name_en="Advanced Staff Training IV" name_pt="Funcionários avançados IV" nameId="292089" delayId="453" stack="P_EQUIP_STAFF_G4" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="1175" name_en="Advanced Staff Training IV" name_pt="Treinamento Avançado com Cajado IV" nameId="292089" delayId="453" stack="P_EQUIP_STAFF_G4" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -17595,7 +17595,7 @@
 			</wpnmastery>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="1301" name_en="Advanced Staff Training II" name_pt="Funcionários avançados II" nameId="289286" delayId="519" stack="CH_EQUIP_STAFF_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="1301" name_en="Advanced Staff Training II" name_pt="Treinamento Avançado com Cajado II" nameId="289286" delayId="519" stack="CH_EQUIP_STAFF_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -17617,7 +17617,7 @@
 			</wpnmastery>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="1303" name_en="Advanced Staff Training III" name_pt="Funcionários avançados III" nameId="289290" delayId="521" stack="CH_EQUIP_STAFF_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="1303" name_en="Advanced Staff Training III" name_pt="Treinamento Avançado com Cajado III" nameId="289290" delayId="521" stack="CH_EQUIP_STAFF_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -39760,7 +39760,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="8505" name_en="Restorative Grasp Effect" name_pt="Efeito de alcance de Metamor" nameId="291577" stack="SKILL_ABYSS_ARTIFACT_HANDOFMIRAGE_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="8505" name_en="Restorative Grasp Effect" name_pt="Efeito de Aperto Restaurador" nameId="291577" stack="SKILL_ABYSS_ARTIFACT_HANDOFMIRAGE_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="1" target_relation="ENEMY" target_type="ONLYONE" target_species="PC"/>
 		<startconditions>
 			<target value="PC"/>
@@ -40334,7 +40334,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="8552" name_en="Transformation: Guardian General I" name_pt="Transformação: idéia Divino I" nameId="292940" stack="SKILL_DARK_AVATAR_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
+	<skill_template skill_id="8552" name_en="Transformation: Guardian General I" name_pt="Transformação: General Divino I" nameId="292940" stack="SKILL_DARK_AVATAR_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -40354,7 +40354,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="8553" name_en="Transformation: Guardian General II" name_pt="Transformação: idéia Divino II" nameId="292941" stack="SKILL_DARK_AVATAR_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
+	<skill_template skill_id="8553" name_en="Transformation: Guardian General II" name_pt="Transformação: General Divino II" nameId="292941" stack="SKILL_DARK_AVATAR_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -40374,7 +40374,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="8554" name_en="Transformation: Guardian General III" name_pt="Transformação: idéia Divino III" nameId="292942" stack="SKILL_DARK_AVATAR_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
+	<skill_template skill_id="8554" name_en="Transformation: Guardian General III" name_pt="Transformação: General Divino III" nameId="292942" stack="SKILL_DARK_AVATAR_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -40394,7 +40394,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="8555" name_en="Transformation: Guardian General IV" name_pt="Transformação: idéia Divino IV" nameId="292943" stack="SKILL_DARK_AVATAR_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
+	<skill_template skill_id="8555" name_en="Transformation: Guardian General IV" name_pt="Transformação: General Divino IV" nameId="292943" stack="SKILL_DARK_AVATAR_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -40414,7 +40414,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="8556" name_en="Transformation: Guardian General V" name_pt="Transformação: idéia Divino V" nameId="292944" stack="SKILL_DARK_AVATAR_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
+	<skill_template skill_id="8556" name_en="Transformation: Guardian General V" name_pt="Transformação: General Divino V" nameId="292944" stack="SKILL_DARK_AVATAR_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -40434,7 +40434,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="8557" name_en="Transformation: Guardian General I" name_pt="Transformação: idéia Divino I" nameId="292945" stack="SKILL_LIGHT_AVATAR_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
+	<skill_template skill_id="8557" name_en="Transformation: Guardian General I" name_pt="Transformação: General Divino I" nameId="292945" stack="SKILL_LIGHT_AVATAR_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -40454,7 +40454,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="8558" name_en="Transformation: Guardian General II" name_pt="Transformação: idéia Divino II" nameId="292946" stack="SKILL_LIGHT_AVATAR_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
+	<skill_template skill_id="8558" name_en="Transformation: Guardian General II" name_pt="Transformação: General Divino II" nameId="292946" stack="SKILL_LIGHT_AVATAR_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -40474,7 +40474,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="8559" name_en="Transformation: Guardian General III" name_pt="Transformação: idéia Divino III" nameId="292947" stack="SKILL_LIGHT_AVATAR_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
+	<skill_template skill_id="8559" name_en="Transformation: Guardian General III" name_pt="Transformação: General Divino III" nameId="292947" stack="SKILL_LIGHT_AVATAR_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -40494,7 +40494,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="8560" name_en="Transformation: Guardian General IV" name_pt="Transformação: idéia Divino IV" nameId="292948" stack="SKILL_LIGHT_AVATAR_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
+	<skill_template skill_id="8560" name_en="Transformation: Guardian General IV" name_pt="Transformação: General Divino IV" nameId="292948" stack="SKILL_LIGHT_AVATAR_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -40514,7 +40514,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="8561" name_en="Transformation: Guardian General V" name_pt="Transformação: idéia Divino V" nameId="292949" stack="SKILL_LIGHT_AVATAR_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
+	<skill_template skill_id="8561" name_en="Transformation: Guardian General V" name_pt="Transformação: General Divino V" nameId="292949" stack="SKILL_LIGHT_AVATAR_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -58599,7 +58599,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="Normalfire"/>
 	</skill_template>
-	<skill_template skill_id="11885" name_en="Transformation: Guardian General I" name_pt="Transformação: idéia Divino I" nameId="288673" stack="ABYSS_RANKERSKILL_LIGHT_AVATAR_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="ACTIVE" cooldown="36000" duration="2000" cancel_rate="0" avatar="true">
+	<skill_template skill_id="11885" name_en="Transformation: Guardian General I" name_pt="Transformação: General Divino I" nameId="288673" stack="ABYSS_RANKERSKILL_LIGHT_AVATAR_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="ACTIVE" cooldown="36000" duration="2000" cancel_rate="0" avatar="true">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -58617,7 +58617,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</actions>
 		<motion name="PhBurst"/>
 	</skill_template>
-	<skill_template skill_id="11886" name_en="Transformation: Guardian General II" name_pt="Transformação: idéia Divino II" nameId="288676" stack="ABYSS_RANKERSKILL_LIGHT_AVATAR_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="ACTIVE" cooldown="36000" duration="2000" cancel_rate="0" avatar="true">
+	<skill_template skill_id="11886" name_en="Transformation: Guardian General II" name_pt="Transformação: General Divino II" nameId="288676" stack="ABYSS_RANKERSKILL_LIGHT_AVATAR_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="ACTIVE" cooldown="36000" duration="2000" cancel_rate="0" avatar="true">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -58635,7 +58635,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</actions>
 		<motion name="PhBurst"/>
 	</skill_template>
-	<skill_template skill_id="11887" name_en="Transformation: Guardian General III" name_pt="Transformação: idéia Divino III" nameId="288678" stack="ABYSS_RANKERSKILL_LIGHT_AVATAR_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="ACTIVE" cooldown="36000" duration="2000" cancel_rate="0" avatar="true">
+	<skill_template skill_id="11887" name_en="Transformation: Guardian General III" name_pt="Transformação: General Divino III" nameId="288678" stack="ABYSS_RANKERSKILL_LIGHT_AVATAR_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="ACTIVE" cooldown="36000" duration="2000" cancel_rate="0" avatar="true">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -58653,7 +58653,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</actions>
 		<motion name="PhBurst"/>
 	</skill_template>
-	<skill_template skill_id="11888" name_en="Transformation: Guardian General IV" name_pt="Transformação: idéia Divino IV" nameId="288680" stack="ABYSS_RANKERSKILL_LIGHT_AVATAR_G4" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="ACTIVE" cooldown="36000" duration="2000" cancel_rate="0" avatar="true">
+	<skill_template skill_id="11888" name_en="Transformation: Guardian General IV" name_pt="Transformação: General Divino IV" nameId="288680" stack="ABYSS_RANKERSKILL_LIGHT_AVATAR_G4" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="ACTIVE" cooldown="36000" duration="2000" cancel_rate="0" avatar="true">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -58671,7 +58671,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</actions>
 		<motion name="PhBurst"/>
 	</skill_template>
-	<skill_template skill_id="11889" name_en="Transformation: Guardian General V" name_pt="Transformação: idéia Divino V" nameId="288682" stack="ABYSS_RANKERSKILL_LIGHT_AVATAR_G5" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="ACTIVE" cooldown="36000" duration="2000" cancel_rate="0" avatar="true">
+	<skill_template skill_id="11889" name_en="Transformation: Guardian General V" name_pt="Transformação: General Divino V" nameId="288682" stack="ABYSS_RANKERSKILL_LIGHT_AVATAR_G5" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="ACTIVE" cooldown="36000" duration="2000" cancel_rate="0" avatar="true">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -58689,7 +58689,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</actions>
 		<motion name="PhBurst"/>
 	</skill_template>
-	<skill_template skill_id="11890" name_en="Transformation: Guardian General I" name_pt="Transformação: idéia Divino I" nameId="288684" stack="ABYSS_RANKERSKILL_DARK_AVATAR_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="ACTIVE" cooldown="36000" duration="2000" cancel_rate="0" avatar="true">
+	<skill_template skill_id="11890" name_en="Transformation: Guardian General I" name_pt="Transformação: General Divino I" nameId="288684" stack="ABYSS_RANKERSKILL_DARK_AVATAR_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="ACTIVE" cooldown="36000" duration="2000" cancel_rate="0" avatar="true">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -58707,7 +58707,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</actions>
 		<motion name="PhBurst"/>
 	</skill_template>
-	<skill_template skill_id="11891" name_en="Transformation: Guardian General II" name_pt="Transformação: idéia Divino II" nameId="288686" stack="ABYSS_RANKERSKILL_DARK_AVATAR_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="ACTIVE" cooldown="36000" duration="2000" cancel_rate="0" avatar="true">
+	<skill_template skill_id="11891" name_en="Transformation: Guardian General II" name_pt="Transformação: General Divino II" nameId="288686" stack="ABYSS_RANKERSKILL_DARK_AVATAR_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="ACTIVE" cooldown="36000" duration="2000" cancel_rate="0" avatar="true">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -58725,7 +58725,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</actions>
 		<motion name="PhBurst"/>
 	</skill_template>
-	<skill_template skill_id="11892" name_en="Transformation: Guardian General III" name_pt="Transformação: idéia Divino III" nameId="288688" stack="ABYSS_RANKERSKILL_DARK_AVATAR_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="ACTIVE" cooldown="36000" duration="2000" cancel_rate="0" avatar="true">
+	<skill_template skill_id="11892" name_en="Transformation: Guardian General III" name_pt="Transformação: General Divino III" nameId="288688" stack="ABYSS_RANKERSKILL_DARK_AVATAR_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="ACTIVE" cooldown="36000" duration="2000" cancel_rate="0" avatar="true">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -58743,7 +58743,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</actions>
 		<motion name="PhBurst"/>
 	</skill_template>
-	<skill_template skill_id="11893" name_en="Transformation: Guardian General IV" name_pt="Transformação: idéia Divino IV" nameId="288690" stack="ABYSS_RANKERSKILL_DARK_AVATAR_G4" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="ACTIVE" cooldown="36000" duration="2000" cancel_rate="0" avatar="true">
+	<skill_template skill_id="11893" name_en="Transformation: Guardian General IV" name_pt="Transformação: General Divino IV" nameId="288690" stack="ABYSS_RANKERSKILL_DARK_AVATAR_G4" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="ACTIVE" cooldown="36000" duration="2000" cancel_rate="0" avatar="true">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -58761,7 +58761,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</actions>
 		<motion name="PhBurst"/>
 	</skill_template>
-	<skill_template skill_id="11894" name_en="Transformation: Guardian General V" name_pt="Transformação: idéia Divino V" nameId="288692" stack="ABYSS_RANKERSKILL_DARK_AVATAR_G5" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="ACTIVE" cooldown="36000" duration="2000" cancel_rate="0" avatar="true">
+	<skill_template skill_id="11894" name_en="Transformation: Guardian General V" name_pt="Transformação: General Divino V" nameId="288692" stack="ABYSS_RANKERSKILL_DARK_AVATAR_G5" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="2" dispel_category="BUFF" activation="ACTIVE" cooldown="36000" duration="2000" cancel_rate="0" avatar="true">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -58968,7 +58968,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</actions>
 		<motion name="pointfire3"/>
 	</skill_template>
-	<skill_template skill_id="11907" name_en="Transformation: Guardian General I" name_pt="Transformação: idéia Divino I" nameId="292940" stack="DARK_AVATAR_G1_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
+	<skill_template skill_id="11907" name_en="Transformation: Guardian General I" name_pt="Transformação: General Divino I" nameId="292940" stack="DARK_AVATAR_G1_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -58988,7 +58988,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11908" name_en="Transformation: Guardian General II" name_pt="Transformação: idéia Divino II" nameId="292941" stack="DARK_AVATAR_G2_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
+	<skill_template skill_id="11908" name_en="Transformation: Guardian General II" name_pt="Transformação: General Divino II" nameId="292941" stack="DARK_AVATAR_G2_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -59008,7 +59008,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11909" name_en="Transformation: Guardian General III" name_pt="Transformação: idéia Divino III" nameId="292942" stack="DARK_AVATAR_G3_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
+	<skill_template skill_id="11909" name_en="Transformation: Guardian General III" name_pt="Transformação: General Divino III" nameId="292942" stack="DARK_AVATAR_G3_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -59028,7 +59028,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11910" name_en="Transformation: Guardian General IV" name_pt="Transformação: idéia Divino IV" nameId="292943" stack="DARK_AVATAR_G4_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
+	<skill_template skill_id="11910" name_en="Transformation: Guardian General IV" name_pt="Transformação: General Divino IV" nameId="292943" stack="DARK_AVATAR_G4_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -59048,7 +59048,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11911" name_en="Transformation: Guardian General V" name_pt="Transformação: idéia Divino V" nameId="292944" stack="DARK_AVATAR_G5_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
+	<skill_template skill_id="11911" name_en="Transformation: Guardian General V" name_pt="Transformação: General Divino V" nameId="292944" stack="DARK_AVATAR_G5_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -59068,7 +59068,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11912" name_en="Transformation: Guardian General I" name_pt="Transformação: idéia Divino I" nameId="292945" stack="LIGHT_AVATAR_G1_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
+	<skill_template skill_id="11912" name_en="Transformation: Guardian General I" name_pt="Transformação: General Divino I" nameId="292945" stack="LIGHT_AVATAR_G1_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -59088,7 +59088,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11913" name_en="Transformation: Guardian General II" name_pt="Transformação: idéia Divino II" nameId="292946" stack="LIGHT_AVATAR_G2_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
+	<skill_template skill_id="11913" name_en="Transformation: Guardian General II" name_pt="Transformação: General Divino II" nameId="292946" stack="LIGHT_AVATAR_G2_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -59108,7 +59108,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11914" name_en="Transformation: Guardian General III" name_pt="Transformação: idéia Divino III" nameId="292947" stack="LIGHT_AVATAR_G3_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
+	<skill_template skill_id="11914" name_en="Transformation: Guardian General III" name_pt="Transformação: General Divino III" nameId="292947" stack="LIGHT_AVATAR_G3_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -59128,7 +59128,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11915" name_en="Transformation: Guardian General IV" name_pt="Transformação: idéia Divino IV" nameId="292948" stack="LIGHT_AVATAR_G4_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
+	<skill_template skill_id="11915" name_en="Transformation: Guardian General IV" name_pt="Transformação: General Divino IV" nameId="292948" stack="LIGHT_AVATAR_G4_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -59148,7 +59148,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11916" name_en="Transformation: Guardian General V" name_pt="Transformação: idéia Divino V" nameId="292949" stack="LIGHT_AVATAR_G5_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
+	<skill_template skill_id="11916" name_en="Transformation: Guardian General V" name_pt="Transformação: General Divino V" nameId="292949" stack="LIGHT_AVATAR_G5_L" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" dispel_category="BUFF" activation="PROVOKED" cooldown="0" duration="0" cancel_rate="0" avatar="true">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -59323,7 +59323,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<spellatk checktime="4000" value="800" duration2="12000" effectid="197732" e="2" basiclvl="100" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="12044" name_en="Restorative Grasp" name_pt="Metamor's aperto" nameId="288792" stack="SKILL_ABYSS_ARTIFACT_HANDOFMIRAGE" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="12044" name_en="Restorative Grasp" name_pt="Aperto Restaurador" nameId="288792" stack="SKILL_ABYSS_ARTIFACT_HANDOFMIRAGE" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="255" target_species="PC"/>
 		<startconditions>
 			<target value="PC"/>
@@ -59929,7 +59929,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<spellatk checktime="5000" value="50" duration2="600000" effectid="197782" e="2" basiclvl="120" element="FIRE" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="12089" name_en="Restorative Grasp" name_pt="Metamor's aperto" nameId="292762" stack="SKILL_ABYSS_ARTIFACT_HANDOFMIRAGE" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="12089" name_en="Restorative Grasp" name_pt="Aperto Restaurador" nameId="292762" stack="SKILL_ABYSS_ARTIFACT_HANDOFMIRAGE" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="255" target_species="PC"/>
 		<startconditions>
 			<target value="PC"/>
@@ -60220,7 +60220,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="12110" name_en="Alukina's Mischief" name_pt="Alkina's Mischif" nameId="294731" stack="DF4_ARTIFACT_LEGENDOFPHANTOM1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="12110" name_en="Alukina's Mischief" name_pt="Travessura de Alukina" nameId="294731" stack="DF4_ARTIFACT_LEGENDOFPHANTOM1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="255" target_species="PC"/>
 		<startconditions>
 			<target value="PC"/>
@@ -68368,7 +68368,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
-	<skill_template skill_id="16914" name_en="Peck Face" name_pt="face: a) cara Bicada" nameId="288277" delayId="1" stack="NPR_BLINDSHORT_PO_EYE" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="1000" cancel_rate="55">
+	<skill_template skill_id="16914" name_en="Peck Face" name_pt="Bicada na Face" nameId="288277" delayId="1" stack="NPR_BLINDSHORT_PO_EYE" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="1000" cancel_rate="55">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -72287,7 +72287,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="multiatk"/>
 	</skill_template>
-	<skill_template skill_id="17177" name_en="Frontal Strike" name_pt="Ataque n frontal: a) osso frontal" nameId="289548" delayId="2" stack="GAS_SATKSPINSTUN_NR" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="35">
+	<skill_template skill_id="17177" name_en="Frontal Strike" name_pt="Golpe Frontal" nameId="289548" delayId="2" stack="GAS_SATKSPINSTUN_NR" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="35">
 		<properties first_target="TARGET" first_target_range="4" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -74368,7 +74368,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
-	<skill_template skill_id="17320" name_en="Frontal Strike" name_pt="Ataque n frontal: a) osso frontal" nameId="290107" delayId="2" stack="DGAS_SATKSPINSTUN_NR" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="35">
+	<skill_template skill_id="17320" name_en="Frontal Strike" name_pt="Golpe Frontal" nameId="290107" delayId="2" stack="DGAS_SATKSPINSTUN_NR" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="35">
 		<properties first_target="TARGET" first_target_range="4" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -75820,7 +75820,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="stuckatk"/>
 	</skill_template>
-	<skill_template skill_id="17415" name_en="Long Range Frontal Strike" name_pt="Golpe n frontal: a) osso frontal de longo alcance" nameId="290342" delayId="14" stack="GNAS_SIGNET1LONGTA_FRONT" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2500" ammospeed="25" cancel_rate="35">
+	<skill_template skill_id="17415" name_en="Long Range Frontal Strike" name_pt="Golpe Frontal de Longo Alcance" nameId="290342" delayId="14" stack="GNAS_SIGNET1LONGTA_FRONT" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2500" ammospeed="25" cancel_rate="35">
 		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="AREA" target_maxcount="3" target_distance="5" effective_range="5" effective_altitude="5"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -78203,7 +78203,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="17580" name_en="Frontal Strike" name_pt="Ataque n frontal: a) osso frontal" nameId="290761" delayId="2" stack="DGFI_H_SATKSPINSTUN_NR" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="35">
+	<skill_template skill_id="17580" name_en="Frontal Strike" name_pt="Golpe Frontal" nameId="290761" delayId="2" stack="DGFI_H_SATKSPINSTUN_NR" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="35">
 		<properties first_target="TARGET" first_target_range="4" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -84192,7 +84192,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="pointfire"/>
 	</skill_template>
-	<skill_template skill_id="18009" name_en="Wrath of Deity General" name_pt="Ira da divindade idéia" nameId="291914" delayId="1" stack="AGC_ONESHOTONEKILL_NR" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000" ammospeed="100">
+	<skill_template skill_id="18009" name_en="Wrath of Deity General" name_pt="Ira da General Divino" nameId="291914" delayId="1" stack="AGC_ONESHOTONEKILL_NR" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000" ammospeed="100">
 		<properties first_target="TARGET" first_target_range="37" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="48"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -90050,7 +90050,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
-	<skill_template skill_id="18361" name_en="Engine Explosion" name_pt="Explosão do motor. • driver" nameId="292618" delayId="1" stack="AWI_SPELLATK_LC_ARFR_CARRIER" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000">
+	<skill_template skill_id="18361" name_en="Engine Explosion" name_pt="Explosão do Motor" nameId="292618" delayId="1" stack="AWI_SPELLATK_LC_ARFR_CARRIER" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000">
 		<properties first_target="ME" first_target_range="50" target_relation="ALL" target_type="AREA" target_maxcount="96" target_distance="18" effective_range="18" effective_altitude="18"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -90941,7 +90941,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
-	<skill_template skill_id="18422" name_en="Encouragement of Deity General I" name_pt="Encorajamento da divindade idéia I" nameId="292956" delayId="6" stack="AGC_SUPPMATTACK_TA" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2500">
+	<skill_template skill_id="18422" name_en="Encouragement of Deity General I" name_pt="Encorajamento da General Divino I" nameId="292956" delayId="6" stack="AGC_SUPPMATTACK_TA" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2500">
 		<properties first_target="TARGET" first_target_range="37" target_relation="FRIEND" target_type="AREA" target_maxcount="48" target_distance="37" effective_range="37" effective_altitude="37"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -90977,7 +90977,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="phburst"/>
 	</skill_template>
-	<skill_template skill_id="18424" name_en="Encouragement of Deity General III" name_pt="Incentivo da divindade idéia III" nameId="292958" delayId="6" stack="AGC_SUPPMATTACKTA_LR" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2500">
+	<skill_template skill_id="18424" name_en="Encouragement of Deity General III" name_pt="Incentivo da General Divino III" nameId="292958" delayId="6" stack="AGC_SUPPMATTACKTA_LR" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2500">
 		<properties first_target="TARGET" first_target_range="37" target_relation="FRIEND" target_type="AREA" target_maxcount="48" target_distance="37" effective_range="37" effective_altitude="37"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -96243,7 +96243,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="areaatk"/>
 	</skill_template>
-	<skill_template skill_id="18807" name_en="Queen's Welcoming" name_pt="rainha's Bolsa" nameId="294902" name_desc="BNFI_Summon_Nr" delayId="1" stack="BNFI_SUMMON" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="3000" cancel_rate="0">
+	<skill_template skill_id="18807" name_en="Queen's Welcoming" name_pt="Boas-vindas da Rainha" nameId="294902" name_desc="BNFI_Summon_Nr" delayId="1" stack="BNFI_SUMMON" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="3000" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -99213,7 +99213,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="closeaerial"/>
 	</skill_template>
-	<skill_template skill_id="19013" name_en="Frontal Strike" name_pt="Ataque n frontal: a) osso frontal" nameId="289548" delayId="2" stack="GAS_SATKSPINSTUN_NR" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="35">
+	<skill_template skill_id="19013" name_en="Frontal Strike" name_pt="Golpe Frontal" nameId="289548" delayId="2" stack="GAS_SATKSPINSTUN_NR" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="35">
 		<properties first_target="TARGET" first_target_range="4" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -100544,7 +100544,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="debuff"/>
 	</skill_template>
-	<skill_template skill_id="19105" name_en="Encouragement of Deity General III" name_pt="Incentivo da divindade idéia III" nameId="292958" delayId="6" stack="AGC_SUPPMATTACKTA_LR" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2000">
+	<skill_template skill_id="19105" name_en="Encouragement of Deity General III" name_pt="Incentivo da General Divino III" nameId="292958" delayId="6" stack="AGC_SUPPMATTACKTA_LR" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2000">
 		<properties first_target="TARGET" first_target_range="37" target_relation="FRIEND" target_type="AREA" target_maxcount="96" target_distance="37" effective_range="37" effective_altitude="37"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -104211,7 +104211,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="19369" name_en="Royal Swordsmanship" name_pt="Espada n philos realidade. • 1 real" nameId="297000" name_desc="IDYun_CallOfDude" delayId="2" stack="IDYUN_CALLOFDUDE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="3000" ammospeed="25" cancel_rate="0">
+	<skill_template skill_id="19369" name_en="Royal Swordsmanship" name_pt="Esgrima Real" nameId="297000" name_desc="IDYun_CallOfDude" delayId="2" stack="IDYUN_CALLOFDUDE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="3000" ammospeed="25" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="AREA" target_maxcount="6" target_distance="6" effective_range="6" effective_altitude="30"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -105998,7 +105998,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="NormalFire"/>
 	</skill_template>
-	<skill_template skill_id="19496" name_en="Underneath the Talon" name_pt="Mantenha-se no n britânico (amer verificar) cheque. a cheque for $10.. on boston / um cheque de $10.. pagável em boston. em branco cheque 1 carta branca. 2 cheque em branco. crossed cheque cruzado. viajante’s cheque de viagem." nameId="297175" delayId="8" stack="STATION_HUGEN_SLOW" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="25">
+	<skill_template skill_id="19496" name_en="Underneath the Talon" name_pt="Sob a Garra" nameId="297175" delayId="8" stack="STATION_HUGEN_SLOW" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="25">
 		<properties first_target="TARGET" first_target_range="12" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="6"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -110248,7 +110248,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="normalfire" instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="20068" name_en="Blessing Aura" name_pt="Bênção Aura" nameId="298682" delayId="7" stack="ARENA_PVP02_S1_HEAL" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="20068" name_en="Blessing Aura" name_pt="Aura da Bênção" nameId="298682" delayId="7" stack="ARENA_PVP02_S1_HEAL" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="37" target_relation="ALL" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -110292,7 +110292,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="20072" name_en="Blessing Aura" name_pt="Bênção Aura" nameId="298694" delayId="7" stack="ARENA_PVP02_S2_HEAL" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="20072" name_en="Blessing Aura" name_pt="Aura da Bênção" nameId="298694" delayId="7" stack="ARENA_PVP02_S2_HEAL" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="37" target_relation="ALL" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -110896,7 +110896,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="buff" instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="20357" name_en="Blessing Aura" name_pt="Bênção Aura" nameId="299598" delayId="7" stack="ARENA_PVP01_S6_BUFF01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="20357" name_en="Blessing Aura" name_pt="Aura da Bênção" nameId="299598" delayId="7" stack="ARENA_PVP01_S6_BUFF01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="37" target_relation="ALL" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -112319,7 +112319,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire"/>
 	</skill_template>
-	<skill_template skill_id="20539" name_en="Dragon Lord’s Wrath" name_pt="Senhor dos Dragões’s Ira" nameId="2280872" delayId="100" stack="IDLDF1_ALLATKUP_SELF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="1000" cancel_rate="0">
+	<skill_template skill_id="20539" name_en="Dragon Lord’s Wrath" name_pt="Ira do Senhor dos Dragões" nameId="2280872" delayId="100" stack="IDLDF1_ALLATKUP_SELF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="1000" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -117152,7 +117152,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<stun duration2="1500" effectid="20000" e="2" accmod2="2000" element="WIND" preeffect="1" hoptype="SKILLLV"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="2913" name_en="Roundhouse Kick II" name_pt="Eco n material ou objeto mole. • 1 macio II" nameId="2282581" delayId="783" stack="ST_SPINKK_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="600" duration="0" dispel_category="STUN" req_dispel_level="1" cancel_rate="10">
+	<skill_template skill_id="2913" name_en="Roundhouse Kick II" name_pt="Chute Giratório II" nameId="2282581" delayId="783" stack="ST_SPINKK_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="600" duration="0" dispel_category="STUN" req_dispel_level="1" cancel_rate="10">
 		<properties first_target="TARGET" effective_angle="120" awr="true" first_target_range="2" target_distance="8" target_relation="ENEMY" target_type="AREA" target_maxcount="4" effective_dist="8" effective_altitude="4"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -119773,7 +119773,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</actions>
 		<motion name="Pointfire4"/>
 	</skill_template>
-	<skill_template skill_id="3109" name_en="Lumiel’s Wrath II" name_pt="Latel's Ira II" nameId="2282252" delayId="568" stack="WI_ABYSALSLAYER_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="18000" duration="2000" cancel_rate="20">
+	<skill_template skill_id="3109" name_en="Lumiel’s Wrath II" name_pt="Ira de Lumiel II" nameId="2282252" delayId="568" stack="WI_ABYSALSLAYER_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="18000" duration="2000" cancel_rate="20">
 		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_distance="10" target_relation="ENEMY" target_type="AREA" target_maxcount="5" effective_range="10" effective_altitude="4"/>
 		<startconditions>
 			<dp value="4000"/>
@@ -120556,7 +120556,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mpheal e="2" checktime="3000" value="63" delta="2" duration2="10000" effectid="118232" basiclvl="100" noresist="true" preeffect="1"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="3161" name_en="Return: Wave" name_pt="Transformação na semelhança do idéia Divino" nameId="2283322" delayId="447" stack="RETURNHOME1_SKIN_12" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="12000" duration="6000" cancel_rate="100000">
+	<skill_template skill_id="3161" name_en="Return: Wave" name_pt="Retorno: Onda" nameId="2283322" delayId="447" stack="RETURNHOME1_SKIN_12" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="12000" duration="6000" cancel_rate="100000">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<selfflying restriction="GROUND"/>
@@ -123856,7 +123856,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mpuse value="268" delta="1"/>
 		</actions>
 	</skill_template>
-	<skill_template skill_id="3420" name_en="Holy Deluge I" name_pt="Sagrado Dilúvio I" nameId="2284362" delayId="873" stack="LU_RAINTHUNDER_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="600" duration="0" dispel_category="STUN" req_dispel_level="1" cancel_rate="10" pvp_damage="80" chain_skill_prob="100">
+	<skill_template skill_id="3420" name_en="Holy Deluge I" name_pt="Dilúvio Sagrado I" nameId="2284362" delayId="873" stack="LU_RAINTHUNDER_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="600" duration="0" dispel_category="STUN" req_dispel_level="1" cancel_rate="10" pvp_damage="80" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="15" target_distance="5" target_relation="ENEMY" target_type="AREA" target_maxcount="6" effective_range="5" effective_altitude="4" revision_distance="12"/>
 		<startconditions>
 			<mp value="130" delta="1"/>
@@ -132261,7 +132261,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</actions>
 		<motion name="Checkshot"/>
 	</skill_template>
-	<skill_template skill_id="4011" name_en="Debilitating Volley VI (not used)" name_pt="Debilitante Saraivada VI (não usado)" nameId="2286943" delayId="1803" stack="GU_CURBINGFIRECHAIN_G6" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="10" duration="0" cancel_rate="10" ammospeed="40" chain_skill_prob="100">
+	<skill_template skill_id="4011" name_en="Debilitating Volley VI (not used)" name_pt="Saraivada Debilitante VI (não usado)" nameId="2286943" delayId="1803" stack="GU_CURBINGFIRECHAIN_G6" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="10" duration="0" cancel_rate="10" ammospeed="40" chain_skill_prob="100">
 		<properties first_target="TARGET" awr="true" target_relation="ENEMY" target_type="ONLYONE" revision_distance="3"/>
 		<startconditions>
 			<mp value="49" delta="0"/>
@@ -134613,7 +134613,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 	<skill_template skill_id="4171" name_en="Retreat Shot V (Not used)" name_pt="Disparo de Recuo V (Não em uso)" nameId="2287226" delayId="1850" stack="GU_BACKSTEPPINGSNIPE_G5" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="600" duration="0">
 		<properties first_target="TARGET" target_type="ONLYONE" first_target_range="10" revision_distance="3"/>
 	<startconditions><mp value="73" delta="0"/><weapon weapon="GUN_1H"/></startconditions><actions><mpuse value="73" delta="0"/></actions></skill_template>
-	<skill_template skill_id="4172" name_en="Retreat Shot VI (Unused)" name_pt="Retreat Disparo VI (não utilizado)" nameId="2287227" delayId="1850" stack="GU_BACKSTEPPINGSNIPE_G6" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="600" duration="0">
+	<skill_template skill_id="4172" name_en="Retreat Shot VI (Unused)" name_pt="Disparo em Retirada VI (não utilizado)" nameId="2287227" delayId="1850" stack="GU_BACKSTEPPINGSNIPE_G6" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="600" duration="0">
 		<properties first_target="TARGET" target_type="ONLYONE" first_target_range="10" revision_distance="3"/>
 	<startconditions><mp value="81" delta="0"/><weapon weapon="GUN_1H"/></startconditions><actions><mpuse value="81" delta="0"/></actions></skill_template>
 	<skill_template skill_id="4173" name_en="Retreat Shot VII (Unused)" name_pt="Disparo de Recuo VII (Não em uso)" nameId="2287228" delayId="1850" stack="GU_BACKSTEPPINGSNIPE_G7" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="600" duration="0">
@@ -144285,7 +144285,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 	<skill_template skill_id="9403" name_en="Nyerk Fever Bonus Effect" name_pt="Efeito de Nyerk Febre Bonus" nameId="2287848" delayId="9403" stack="IDED_FEVER_BUFF_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="AREA" first_target_range="1" target_distance="50" effective_range="50" effective_altitude="30"/>
 	</skill_template>
-	<skill_template skill_id="9600" name_en="Final Vengeance I Bonus Effect" name_pt="Efeito de a etapa Vingança I Bonus" nameId="2287971" delayId="9600" stack="RB_PROC_REFLECTION_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
+	<skill_template skill_id="9600" name_en="Final Vengeance I Bonus Effect" name_pt="Efeito de Bônus de Vingança Final I" nameId="2287971" delayId="9600" stack="RB_PROC_REFLECTION_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -144473,7 +144473,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<bind duration2="8000" effectid="20014" e="1" basiclvl="20" element="FIRE"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9624" name_en="Final Vengeance III Bonus Effect" name_pt="Efeito de a etapa Vingança III Bonus" nameId="2288119" delayId="9624" stack="RB_PROC_REFLECTION_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
+	<skill_template skill_id="9624" name_en="Final Vengeance III Bonus Effect" name_pt="Efeito de Bônus de Vingança Final III" nameId="2288119" delayId="9624" stack="RB_PROC_REFLECTION_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -144615,13 +144615,13 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<skillcooltimereset e="1" delta="100" noresist="true"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9641" name_en="Final Execution Bonus Effect" name_pt="Efeito de a etapa Execução Bonus" nameId="2288137" delayId="9641" stack="RB_PROC_EXECUTION_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="9641" name_en="Final Execution Bonus Effect" name_pt="Efeito de Bônus de Execução Final" nameId="2288137" delayId="9641" stack="RB_PROC_EXECUTION_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" target_type="ONLYONE" first_target_range="1"/>
 	</skill_template>
-	<skill_template skill_id="9642" name_en="Final Execution Bonus Effect" name_pt="Efeito de a etapa Execução Bonus" nameId="2288137" delayId="9642" stack="RB_PROC_EXECUTION_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="9642" name_en="Final Execution Bonus Effect" name_pt="Efeito de Bônus de Execução Final" nameId="2288137" delayId="9642" stack="RB_PROC_EXECUTION_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" target_type="ONLYONE" first_target_range="1"/>
 	</skill_template>
-	<skill_template skill_id="9643" name_en="Final Execution Bonus Effect" name_pt="Efeito de a etapa Execução Bonus" nameId="2288137" delayId="9643" stack="RB_PROC_EXECUTION_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="9643" name_en="Final Execution Bonus Effect" name_pt="Efeito de Bônus de Execução Final" nameId="2288137" delayId="9643" stack="RB_PROC_EXECUTION_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" target_type="ONLYONE" first_target_range="1"/>
 	</skill_template>
 	<skill_template skill_id="9644" name_en="Rocksteady I stack(s)" name_pt="Pilhas Estável I" nameId="2288148" delayId="9644" stack="RB_PROC_STONEBODY" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
@@ -146307,7 +146307,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10774" name_en="Dokkaebi Eye" name_pt="Criador's Ferrão" nameId="2283835" delayId="10774" stack="ITEM_IDDOKKAEBI_DOKKAEBIGAMTU_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10774" name_en="Dokkaebi Eye" name_pt="Olho de Dokkaebi" nameId="2283835" delayId="10774" stack="ITEM_IDDOKKAEBI_DOKKAEBIGAMTU_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -146326,7 +146326,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<shield e="1" percent="true" hitvalue="38" hitdelta="2" value="100000" duration2="30000" effectid="154" basiclvl="205" noresist="true" hittypeprob2="1000" hoptype="SKILLLV" hopb="1"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10776" name_en="Shining Mirror" name_pt="Brilhante Espelho" nameId="799546" delayId="10776" stack="ITEM_SKILL_IDDOKKAEBI_HANDMIRROR" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10776" name_en="Shining Mirror" name_pt="Espelho Brilhante" nameId="799546" delayId="10776" stack="ITEM_SKILL_IDDOKKAEBI_HANDMIRROR" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE" first_target_range="2"/>
 	</skill_template>
 	<skill_template skill_id="10777" name_en="Greater Lunaris Scroll" name_pt="Maior Lunaris Pergaminho" nameId="800083" delayId="10777" stack="WORLD_JP_SELBM_SCROLL_MAGICALBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
@@ -147136,7 +147136,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10866" name_en="Magic Boost 23, HP 102" name_pt="Golpe n frontal: a) osso frontal em larga escala" nameId="2285783" delayId="10866" stack="CLASSIC_WIND_A_MAGBOOSTHP" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10866" name_en="Magic Boost 23, HP 102" name_pt="Poder Mágico 23, HP 102" nameId="2285783" delayId="10866" stack="CLASSIC_WIND_A_MAGBOOSTHP" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -147148,7 +147148,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10867" name_en="Magical Accuracy 14, HP 89" name_pt="Golpe n frontal: a) osso frontal em larga escala" nameId="2285784" delayId="10867" stack="CLASSIC_WIND_A_MAGACCHP" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10867" name_en="Magical Accuracy 14, HP 89" name_pt="Precisão Mágica 14, HP 89" nameId="2285784" delayId="10867" stack="CLASSIC_WIND_A_MAGACCHP" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -147922,7 +147922,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10944" name_en="[Event] Doctor Elyosnik (5 Star General) Summoning Skill" name_pt="[Evento] Habilidade de Invocação do Doutor Elyosnik ( idéia 5 Estrelas)" nameId="2285988" delayId="10944" stack="ITEM_SKILL_EVENT_SUMMON_FIGHTER_60_AE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10944" name_en="[Event] Doctor Elyosnik (5 Star General) Summoning Skill" name_pt="[Evento] Habilidade de Invocação do Doutor Elyosnik (General 5 Estrelas)" nameId="2285988" delayId="10944" stack="ITEM_SKILL_EVENT_SUMMON_FIGHTER_60_AE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
 	<skill_template skill_id="10945" name_en="Targeted Destruction" name_pt="Destruição Alvejada" nameId="2284072" delayId="10945" stack="WING_SKILL_60_TORSO_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -149617,7 +149617,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11091" name_en="Magic Boost 23, HP 102" name_pt="Golpe n frontal: a) osso frontal em larga escala" nameId="2285783" delayId="11091" stack="CLASSIC_WIND_A_MAGBOOSTHP_GLOVE" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="11091" name_en="Magic Boost 23, HP 102" name_pt="Poder Mágico 23, HP 102" nameId="2285783" delayId="11091" stack="CLASSIC_WIND_A_MAGBOOSTHP_GLOVE" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -149629,7 +149629,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11092" name_en="Magic Boost 23, HP 102" name_pt="Golpe n frontal: a) osso frontal em larga escala" nameId="2285783" delayId="11092" stack="CLASSIC_WIND_A_MAGBOOSTHP_SHOULDER" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="11092" name_en="Magic Boost 23, HP 102" name_pt="Poder Mágico 23, HP 102" nameId="2285783" delayId="11092" stack="CLASSIC_WIND_A_MAGBOOSTHP_SHOULDER" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -149641,7 +149641,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11093" name_en="Magic Boost 23, HP 102" name_pt="Golpe n frontal: a) osso frontal em larga escala" nameId="2285783" delayId="11093" stack="CLASSIC_WIND_A_MAGBOOSTHP_PANTS" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="11093" name_en="Magic Boost 23, HP 102" name_pt="Poder Mágico 23, HP 102" nameId="2285783" delayId="11093" stack="CLASSIC_WIND_A_MAGBOOSTHP_PANTS" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -149653,7 +149653,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11094" name_en="Magic Boost 23, HP 102" name_pt="Golpe n frontal: a) osso frontal em larga escala" nameId="2285783" delayId="11094" stack="CLASSIC_WIND_A_MAGBOOSTHP_SHOES" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="11094" name_en="Magic Boost 23, HP 102" name_pt="Poder Mágico 23, HP 102" nameId="2285783" delayId="11094" stack="CLASSIC_WIND_A_MAGBOOSTHP_SHOES" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -149665,7 +149665,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11095" name_en="Magical Accuracy 14, HP 89" name_pt="Golpe n frontal: a) osso frontal em larga escala" nameId="2285784" delayId="11095" stack="CLASSIC_WIND_A_MAGACCHP_GLOVE" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="11095" name_en="Magical Accuracy 14, HP 89" name_pt="Precisão Mágica 14, HP 89" nameId="2285784" delayId="11095" stack="CLASSIC_WIND_A_MAGACCHP_GLOVE" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -149677,7 +149677,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11096" name_en="Magical Accuracy 14, HP 89" name_pt="Golpe n frontal: a) osso frontal em larga escala" nameId="2285784" delayId="11096" stack="CLASSIC_WIND_A_MAGACCHP_SHOULDER" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="11096" name_en="Magical Accuracy 14, HP 89" name_pt="Precisão Mágica 14, HP 89" nameId="2285784" delayId="11096" stack="CLASSIC_WIND_A_MAGACCHP_SHOULDER" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -149689,7 +149689,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11097" name_en="Magical Accuracy 14, HP 89" name_pt="Golpe n frontal: a) osso frontal em larga escala" nameId="2285784" delayId="11097" stack="CLASSIC_WIND_A_MAGACCHP_PANTS" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="11097" name_en="Magical Accuracy 14, HP 89" name_pt="Precisão Mágica 14, HP 89" nameId="2285784" delayId="11097" stack="CLASSIC_WIND_A_MAGACCHP_PANTS" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -149701,7 +149701,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11098" name_en="Magical Accuracy 14, HP 89" name_pt="Golpe n frontal: a) osso frontal em larga escala" nameId="2285784" delayId="11098" stack="CLASSIC_WIND_A_MAGACCHP_SHOES" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="11098" name_en="Magical Accuracy 14, HP 89" name_pt="Precisão Mágica 14, HP 89" nameId="2285784" delayId="11098" stack="CLASSIC_WIND_A_MAGACCHP_SHOES" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -150997,7 +150997,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<provoker e="1" skill_id="9101" provoke_target="OPPONENT" radius="100" effectid="1112041" basiclvl="20" noresist="true" hittypeprob2="10" element="WIND" hoptype="SKILLLV"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11207" name_en="Aether’s Hold I" name_pt="Éter’s Manter I" nameId="2286107" delayId="11207" stack="SEED_SKILL_OPEN_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="11207" name_en="Aether’s Hold I" name_pt="Aprisionamento do Éter I" nameId="2286107" delayId="11207" stack="SEED_SKILL_OPEN_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -151551,7 +151551,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11256" name_en="Magic Boost 23, HP 102" name_pt="Golpe n frontal: a) osso frontal em larga escala" nameId="2285783" delayId="11256" stack="CLASSIC_WIND_A_MAGBOOSTHP_TORSO" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="11256" name_en="Magic Boost 23, HP 102" name_pt="Poder Mágico 23, HP 102" nameId="2285783" delayId="11256" stack="CLASSIC_WIND_A_MAGBOOSTHP_TORSO" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -151563,7 +151563,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11257" name_en="Magical Accuracy 14, HP 89" name_pt="Golpe n frontal: a) osso frontal em larga escala" nameId="2285784" delayId="11257" stack="CLASSIC_WIND_A_MAGACCHP_TORSO" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="11257" name_en="Magical Accuracy 14, HP 89" name_pt="Precisão Mágica 14, HP 89" nameId="2285784" delayId="11257" stack="CLASSIC_WIND_A_MAGACCHP_TORSO" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -152829,7 +152829,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11390" name_en="Phantom Yellowed Tome" name_pt="Escape saída: a) ato ou efeito de sair. b) lugar por onde se sai. 2 morte. • sair. 2 morrer." nameId="2286748" delayId="11390" stack="ITEM_SKILL_NPC_SUMMON_TEVA_QNMD_01" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="11390" name_en="Phantom Yellowed Tome" name_pt="Tomo Amarelado Fantasma" nameId="2286748" delayId="11390" stack="ITEM_SKILL_NPC_SUMMON_TEVA_QNMD_01" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
 	<skill_template skill_id="11391" name_en="Phantom Faded Ampoule" name_pt="Onda de resfriamento" nameId="2286749" delayId="11391" stack="ITEM_SKILL_NPC_SUMMON_TEVA_QNMD_02" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
@@ -153983,7 +153983,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<procatk_instant e="1" value="4000" noresist="true" element="EARTH"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="12132" name_en="Fissure Rend" name_pt="Crack faz" nameId="299290" delayId="12132" stack="LDF4B_T1_ARTIFACT_CRACK_STUMBLE_MPATK_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="12132" name_en="Fissure Rend" name_pt="Fissura Dilacerante" nameId="299290" delayId="12132" stack="LDF4B_T1_ARTIFACT_CRACK_STUMBLE_MPATK_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" target_type="ONLYONE" first_target_range="2"/>
 	</skill_template>
 	<skill_template skill_id="12133" name_en="Gravity’s Shock" name_pt="O choque da gravidade" nameId="299292" delayId="12133" stack="LDF4B_T2_ARTIFACT_GRAVITY_DD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
@@ -154060,7 +154060,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 	<skill_template skill_id="12140" name_en="Tranquil Cloak" name_pt="Capa tranquila" nameId="299306" delayId="12140" stack="LDF4B_C3_ARTIFACT_TIAMAT_HEAL_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" target_type="ONLYONE" first_target_range="2"/>
 	</skill_template>
-	<skill_template skill_id="12141" name_en="Centre Shield" name_pt="escudo n amer central telefônica. • 1 central" nameId="299308" delayId="12141" stack="LDF4B_C3_ARTIFACT_TIAMAT_STATUP_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+	<skill_template skill_id="12141" name_en="Centre Shield" name_pt="Escudo Central" nameId="299308" delayId="12141" stack="LDF4B_C3_ARTIFACT_TIAMAT_STATUP_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="TARGET" target_species="PC" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<target value="PC"/>
@@ -154082,7 +154082,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="12142" name_en="Transformation: Guardian General I" name_pt="Transformação: idéia Divino I" nameId="288673" delayId="12142" stack="ABYSS_RANKERSKILL_LIGHT_AVATAR_G1_EVENT" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="2000" dispel_category="BUFF" tslot_level="2">
+	<skill_template skill_id="12142" name_en="Transformation: Guardian General I" name_pt="Transformação: General Divino I" nameId="288673" delayId="12142" stack="ABYSS_RANKERSKILL_LIGHT_AVATAR_G1_EVENT" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="2000" dispel_category="BUFF" tslot_level="2">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -154100,7 +154100,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 		</effects>
 		<motion name="PhBurst"/>
 	</skill_template>
-	<skill_template skill_id="12143" name_en="Transformation: Guardian General I" name_pt="Transformação: idéia Divino I" nameId="288684" delayId="12143" stack="ABYSS_RANKERSKILL_DARK_AVATAR_G1_EVENT" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="2000" dispel_category="BUFF" tslot_level="2">
+	<skill_template skill_id="12143" name_en="Transformation: Guardian General I" name_pt="Transformação: General Divino I" nameId="288684" delayId="12143" stack="ABYSS_RANKERSKILL_DARK_AVATAR_G1_EVENT" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="2000" dispel_category="BUFF" tslot_level="2">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -155458,7 +155458,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
-	<skill_template skill_id="19899" name_en="Ancient Mirror Shield" name_pt="Antigo Espelho escudo" nameId="2287535" delayId="10" stack="IDCUBEQ_BNMA_SHIELD_HOLYSERVANT" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+	<skill_template skill_id="19899" name_en="Ancient Mirror Shield" name_pt="Escudo de Espelho Antigo" nameId="2287535" delayId="10" stack="IDCUBEQ_BNMA_SHIELD_HOLYSERVANT" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_maxcount="1" target_type="ONLYONE"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -157032,7 +157032,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="NormalFire"/>
 	</skill_template>
-	<skill_template skill_id="20579" name_en="Insanity" name_pt="Ataque n frontal: a) osso frontal" nameId="2281130" delayId="1501" stack="LF5_24_NAMEDBUFF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+	<skill_template skill_id="20579" name_en="Insanity" name_pt="Golpe Frontal" nameId="2281130" delayId="1501" stack="LF5_24_NAMEDBUFF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="ME" target_species="NPC" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<target value="NPC"/>
@@ -158055,7 +158055,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="NormalFire"/>
 	</skill_template>
-	<skill_template skill_id="20671" name_en="Frontal Strike" name_pt="Ataque n frontal: a) osso frontal" nameId="2281591" delayId="2" stack="IDRAKSHA_SATKSA_NR" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2500">
+	<skill_template skill_id="20671" name_en="Frontal Strike" name_pt="Golpe Frontal" nameId="2281591" delayId="2" stack="IDRAKSHA_SATKSA_NR" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2500">
 		<properties first_target="ME" effective_angle="240" first_target_range="2" target_distance="5" target_relation="ENEMY" target_type="AREA" target_maxcount="8" effective_dist="5" effective_altitude="5"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -159043,7 +159043,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
-	<skill_template skill_id="20771" name_en="Large-Scale Frontal Strike" name_pt="Você se transforma na semelhança do idéia Divino por 30 minutos. Sua velocidade de movimento é aumentada em 3 %%, impulso mágico em 15 pontos e precisão em 60 pontos. Você sente como se pudesse usar habilidades ainda mais poderosas. A transformação termina quando você é registrado." nameId="2283307" delayId="20771" stack="EVENT_BASEBALL_FIREBALL" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="3500">
+	<skill_template skill_id="20771" name_en="Large-Scale Frontal Strike" name_pt="Golpe Frontal em Larga Escala" nameId="2283307" delayId="20771" stack="EVENT_BASEBALL_FIREBALL" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="3500">
 		<properties first_target="TARGET" first_target_range="2" target_distance="16" target_relation="ENEMY" target_type="AREA" target_maxcount="8" effective_range="16" effective_altitude="5"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -159053,7 +159053,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="AreaATK2"/>
 	</skill_template>
-	<skill_template skill_id="20772" name_en="Falling Strike" name_pt="Você se transforma na semelhança do idéia Divino por 30 minutos. Sua velocidade de movimento é aumentada em 3 %%, impulso mágico em 15 pontos e precisão em 60 pontos. Você sente como se pudesse usar habilidades ainda mais poderosas. A transformação termina quando você é registrado." nameId="2283308" delayId="20772" stack="EVENT_BASEBALL_FIRESTORM" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="3000">
+	<skill_template skill_id="20772" name_en="Falling Strike" name_pt="Golpe Descendente" nameId="2283308" delayId="20772" stack="EVENT_BASEBALL_FIRESTORM" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="3000">
 		<properties first_target="TARGET" effective_angle="120" first_target_range="2" target_distance="25" target_relation="ENEMY" target_type="AREA" target_maxcount="8" effective_dist="25" effective_altitude="5"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -161435,7 +161435,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 	<skill_template skill_id="20974" name_en="Dranium Battle Spirit" name_pt="O ataque físico e mágico, bem como o impulso mágico, aumentam por um certo andamento." nameId="2283574" delayId="20974" stack="IDDRANAMINE_WAR_PHYBUFF_TEST1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="AREA" first_target_range="2" target_distance="20" effective_range="20" effective_altitude="30"/>
 	</skill_template>
-	<skill_template skill_id="20975" name_en="Controlled Takun the Terrible" name_pt="Controlado Takun o n coisa terrível. • 1 terrível" nameId="2286825" delayId="2" stack="IDEVENT_04_TRIBECHANGE_TEAMA" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="20975" name_en="Controlled Takun the Terrible" name_pt="Takun, o Terrível, Controlado" nameId="2286825" delayId="2" stack="IDEVENT_04_TRIBECHANGE_TEAMA" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" target_type="ONLYONE" first_target_range="2"/>
 	</skill_template>
 	<skill_template skill_id="20976" name_en="Controlled Gojira" name_pt="Gojira controlada" nameId="2286826" delayId="2" stack="IDEVENT_04_TRIBECHANGE_TEAMB" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
@@ -166727,7 +166727,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="normalfire" speed="70"/>
 	</skill_template>
-	<skill_template skill_id="21455" name_en="Frontal Attack" name_pt="Ataque n frontal: a) osso frontal" nameId="2286310" delayId="21455" stack="IDTIAMAT_DRAKANARCHER_FRONTATK" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" ammospeed="25">
+	<skill_template skill_id="21455" name_en="Frontal Attack" name_pt="Ataque Frontal" nameId="2286310" delayId="21455" stack="IDTIAMAT_DRAKANARCHER_FRONTATK" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" ammospeed="25">
 		<properties first_target="ME" first_target_range="1" target_distance="10" target_relation="ENEMY" target_type="AREA" target_maxcount="12" effective_dist="10" effective_angle="90" effective_altitude="30"/>
 		<useconditions>
 			<playermove allow="false"/>

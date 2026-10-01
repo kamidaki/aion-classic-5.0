@@ -37,7 +37,7 @@ class MorosPassiveSkillTest {
 
 	@Test
 	void provokerChanceComesFromTheClient() throws Exception {
-		assumeTrue(Files.exists(CLIENT_SKILLS), "Dados extraídos do cliente 5.0 não estão disponíveis neste checkout");
+		assumeTrue(Files.exists(CLIENT_SKILLS) && isTextXml(CLIENT_SKILLS), "Dados extraídos do cliente 5.0 em texto XML não estão disponíveis neste checkout");
 		Map<Integer, Element> cliente = clientById(parse(CLIENT_SKILLS));
 		Map<Integer, Element> servidor = templateById(parse(SKILLS));
 		for (Map.Entry<Integer, Integer> passiva : PASSIVAS.entrySet()) {
@@ -95,6 +95,15 @@ class MorosPassiveSkillTest {
 		Path legacy = Path.of("..", "..", "Ferramentas e Documentos", "Client e Coletas", "Client 5.0 - Dados Extraidos");
 		Path canonical = Path.of("..", "..", "5 - Documentação e Referências", "3 - Client 5.0 - Dados Extraidos");
 		return Files.exists(canonical) ? canonical : legacy;
+	}
+
+	private static boolean isTextXml(Path path) {
+		try (java.io.InputStream is = Files.newInputStream(path)) {
+			byte[] header = is.readNBytes(5);
+			return header.length >= 1 && (header[0] == '<' || (header.length >= 2 && header[0] == (byte) 0xFF && header[1] == (byte) 0xFE));
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	private static Document parse(Path path) throws Exception {

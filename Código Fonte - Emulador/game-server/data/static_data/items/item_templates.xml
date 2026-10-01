@@ -518296,7 +518296,7 @@ Este item desaparecerá ao término do evento." level="1" cName="classic_event_s
 		</actions>
 		<uselimits usedelay="2000" usedelayid="39"/>
 	</item_template>
-	<item_template id="164005045" name_en="Shining Mirror" name_pt="Brilhante Espelho" level="1" cName="Item_IDDokkaebi_HandMirror" mask="1" item_group="PACK_SCROLL" quality="RARE" price="5" desc="799546" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16641" activate_target="STANDALONE" activate_count="1" casting_delay="3000">
+	<item_template id="164005045" name_en="Shining Mirror" name_pt="Espelho Brilhante" level="1" cName="Item_IDDokkaebi_HandMirror" mask="1" item_group="PACK_SCROLL" quality="RARE" price="5" desc="799546" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16641" activate_target="STANDALONE" activate_count="1" casting_delay="3000">
 		<actions>
 			<skilluse skillid="10776" level="1"/>
 		</actions>
