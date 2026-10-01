@@ -343,8 +343,6 @@ public final class PlayerEnterWorldService {
 			client.sendPacket(new SM_SPAM_FILTER_FLAG(player));
 			client.sendPacket(new SM_CHANNEL_CHATTING_BLACKLIST_SETTING());
 			client.sendPacket(new SM_CHANNEL_CHATTING_PERMISSION()); // logo depois do 0x12C, como no oficial; sem ela o cliente nao entra no chat
-			// DIAGNOSTICO TEMPORARIO (01/10): pacotes crus da entrada oficial lidos de config/diag_entrada_oficial.txt; sem o arquivo nao manda nada
-			SM_DIAG_RAW.loadEnterWorldPackets().forEach(client::sendPacket);
 		} else {
 			log.warn("[ENTER_WORLD] Falha ao ativar player. objectId={}, player={}, setActivePlayer_ok={}",
 				objectId, player, player != null);

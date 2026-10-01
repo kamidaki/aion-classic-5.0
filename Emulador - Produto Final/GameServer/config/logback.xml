@@ -227,17 +227,6 @@
 	<logger name="PLAYERTRANSFER">
 		<appender-ref ref="app_playertransfer" />
 	</logger>
-	<!-- DIAGNOSTICO TEMPORARIO (01/10, tela preta do Aion Look): todo pacote que o cliente manda, com opcode cru e decodificado -->
-	<appender name="app_pacotes_cliente" class="ch.qos.logback.core.FileAppender">
-		<file>${logFolder}/pacotes_cliente.log</file>
-		<append>false</append>
-		<encoder>
-			<Pattern>${date} %message%n</Pattern>
-		</encoder>
-	</appender>
-	<logger name="com.aionemu.gameserver.network.aion.AionPacketHandler" level="DEBUG" additivity="false">
-		<appender-ref ref="app_pacotes_cliente" />
-	</logger>
 	<logger name="org.quartz" level="WARN" /> <!-- disable info messages from quartz lib (cron service) -->
 	<root level="INFO">
 		<appender-ref ref="out_console" />
