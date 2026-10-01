@@ -4987,7 +4987,7 @@
 		</actions>
 		<motion name="PhBurst2" speed="90"/>
 	</skill_template>
-	<skill_template skill_id="425" name_en="Holy Shield II" name_pt="El el santo escudo II" nameId="286294" delayId="176" stack="KN_HOLYWRATH_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
+	<skill_template skill_id="425" name_en="Holy Shield II" name_pt="Sagrado escudo II" nameId="286294" delayId="176" stack="KN_HOLYWRATH_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="73" delta="0"/>
@@ -6518,7 +6518,7 @@
 			</statboost>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="527" name_en="Holy Shield III" name_pt="El el santo escudo III" nameId="292038" delayId="176" stack="KN_HOLYWRATH_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
+	<skill_template skill_id="527" name_en="Holy Shield III" name_pt="Sagrado escudo III" nameId="292038" delayId="176" stack="KN_HOLYWRATH_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="83" delta="0"/>
@@ -14033,7 +14033,7 @@
 		</actions>
 		<motion name="alterfire" speed="50" instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="1067" name_en="Summon Holy Servant II" name_pt="Convocar o El el santo Servo II" nameId="286111" delayId="425" stack="PR_DARK_HOLYSERVENT_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
+	<skill_template skill_id="1067" name_en="Summon Holy Servant II" name_pt="Convocar o Sagrado Servo II" nameId="286111" delayId="425" stack="PR_DARK_HOLYSERVENT_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="90" delta="3"/>
@@ -14284,7 +14284,7 @@
 		</actions>
 		<motion name="alterfire" speed="50" instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="1084" name_en="Summon Holy Servant II" name_pt="Convocar o El el santo Servo II" nameId="286113" delayId="425" stack="PR_LIGHT_HOLYSERVENT_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
+	<skill_template skill_id="1084" name_en="Summon Holy Servant II" name_pt="Convocar o Sagrado Servo II" nameId="286113" delayId="425" stack="PR_LIGHT_HOLYSERVENT_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="90" delta="3"/>
@@ -15032,7 +15032,7 @@
 		</actions>
 		<motion name="alterfire" speed="70" instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="1131" name_en="Summon Holy Servant IV" name_pt="SOMPAÇÃO El el santo Servo IV" nameId="287180" delayId="425" stack="PR_LIGHT_HOLYSERVENT_G4" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
+	<skill_template skill_id="1131" name_en="Summon Holy Servant IV" name_pt="SOMPAÇÃO Sagrado Servo IV" nameId="287180" delayId="425" stack="PR_LIGHT_HOLYSERVENT_G4" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="162" delta="4"/>
@@ -15046,7 +15046,7 @@
 		</actions>
 		<motion name="alterfire" speed="50" instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="1132" name_en="Summon Holy Servant IV" name_pt="SOMPAÇÃO El el santo Servo IV" nameId="287152" delayId="425" stack="PR_DARK_HOLYSERVENT_G4" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
+	<skill_template skill_id="1132" name_en="Summon Holy Servant IV" name_pt="SOMPAÇÃO Sagrado Servo IV" nameId="287152" delayId="425" stack="PR_DARK_HOLYSERVENT_G4" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="162" delta="4"/>
@@ -16091,7 +16091,7 @@
 		</actions>
 		<motion name="Buff" instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="1201" name_en="Safer Ward I" name_pt="Ala mais rio rio segura I" nameId="293584" delayId="471" stack="CH_PROTECTSELF_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
+	<skill_template skill_id="1201" name_en="Safer Ward I" name_pt="Ala mais segura I" nameId="293584" delayId="471" stack="CH_PROTECTSELF_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="74" delta="3"/>
@@ -16108,7 +16108,7 @@
 		</actions>
 		<motion name="PhBuff"/>
 	</skill_template>
-	<skill_template skill_id="1202" name_en="Safer Ward II" name_pt="Ala mais rio rio segura II" nameId="293587" delayId="471" stack="CH_PROTECTSELF_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
+	<skill_template skill_id="1202" name_en="Safer Ward II" name_pt="Ala mais segura II" nameId="293587" delayId="471" stack="CH_PROTECTSELF_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="97" delta="3"/>
@@ -16125,7 +16125,7 @@
 		</actions>
 		<motion name="PhBuff"/>
 	</skill_template>
-	<skill_template skill_id="1203" name_en="Safer Ward III" name_pt="Ala mais rio rio segura III" nameId="293588" delayId="471" stack="CH_PROTECTSELF_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
+	<skill_template skill_id="1203" name_en="Safer Ward III" name_pt="Ala mais segura III" nameId="293588" delayId="471" stack="CH_PROTECTSELF_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="122" delta="2"/>
@@ -16156,7 +16156,7 @@
 		</effects>
 		<motion name="chant" speed="50" instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="1206" name_en="Safer Ward IV" name_pt="Ala mais rio rio segura IV" nameId="293589" delayId="471" stack="CH_PROTECTSELF_G4" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
+	<skill_template skill_id="1206" name_en="Safer Ward IV" name_pt="Ala mais segura IV" nameId="293589" delayId="471" stack="CH_PROTECTSELF_G4" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="139" delta="3"/>
@@ -16194,7 +16194,7 @@
 		</effects>
 		<motion name="chant" speed="50" instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="1210" name_en="Safer Ward V" name_pt="Ala mais rio rio segura V" nameId="293590" delayId="471" stack="CH_PROTECTSELF_G5" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
+	<skill_template skill_id="1210" name_en="Safer Ward V" name_pt="Ala mais segura V" nameId="293590" delayId="471" stack="CH_PROTECTSELF_G5" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="156" delta="3"/>
@@ -18360,7 +18360,7 @@
 		</actions>
 		<motion name="Normalfire"/>
 	</skill_template>
-	<skill_template skill_id="1362" name_en="Ice Chain I" name_pt="Cadeia de gelão i I" nameId="283041" delayId="116" stack="MA_ICEGRAB_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="100" duration="2000" cancel_rate="10" chain_skill_prob="100">
+	<skill_template skill_id="1362" name_en="Ice Chain I" name_pt="Cadeia de gelão I" nameId="283041" delayId="116" stack="MA_ICEGRAB_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="100" duration="2000" cancel_rate="10" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" revision_distance="12"/>
 		<startconditions>
 			<mp value="42" delta="1"/>
@@ -19237,7 +19237,7 @@
 		</actions>
 		<motion name="alterfire" instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="1446" name_en="Ice Harpoon I" name_pt="Arpão Gelão i I" nameId="293028" delayId="591" stack="WI_STIGMA_ICELANCE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="60" duration="2500" ammospeed="50" cancel_rate="20">
+	<skill_template skill_id="1446" name_en="Ice Harpoon I" name_pt="Arpão Gelão I" nameId="293028" delayId="591" stack="WI_STIGMA_ICELANCE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="60" duration="2500" ammospeed="50" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" revision_distance="12"/>
 		<startconditions>
 			<mp value="281" delta="3"/>
@@ -19434,7 +19434,7 @@
 		</actions>
 		<motion name="Pointfire4"/>
 	</skill_template>
-	<skill_template skill_id="1457" name_en="Ice Sheet I" name_pt="Caminha de gelão i I" nameId="286365" delayId="572" stack="WI_DARK_FROSTPILLAR_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="30">
+	<skill_template skill_id="1457" name_en="Ice Sheet I" name_pt="Caminha de gelão I" nameId="286365" delayId="572" stack="WI_DARK_FROSTPILLAR_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="30">
 		<properties first_target="POINT" first_target_range="25" target_relation="ENEMY" target_type="POINT" target_maxcount="1"/>
 		<startconditions>
 			<mp value="150" delta="4"/>
@@ -19719,7 +19719,7 @@
 		</actions>
 		<motion name="Pointfire4"/>
 	</skill_template>
-	<skill_template skill_id="1476" name_en="Hydro Eruption I" name_pt="Erupção Erupção I" nameId="282475" delayId="111" stack="WI_HYDROPRESS_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="120" duration="2500" cancel_rate="20">
+	<skill_template skill_id="1476" name_en="Hydro Eruption I" name_pt="Erupção I" nameId="282475" delayId="111" stack="WI_HYDROPRESS_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="120" duration="2500" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" revision_distance="12"/>
 		<startconditions>
 			<mp value="158" delta="8"/>
@@ -19735,7 +19735,7 @@
 		</actions>
 		<motion name="Pointfire2"/>
 	</skill_template>
-	<skill_template skill_id="1477" name_en="Hydro Eruption II" name_pt="Erupção Erupção II" nameId="283832" delayId="111" stack="WI_HYDROPRESS_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="120" duration="2500" cancel_rate="20">
+	<skill_template skill_id="1477" name_en="Hydro Eruption II" name_pt="Erupção II" nameId="283832" delayId="111" stack="WI_HYDROPRESS_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="120" duration="2500" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" revision_distance="12"/>
 		<startconditions>
 			<mp value="331" delta="5"/>
@@ -19751,7 +19751,7 @@
 		</actions>
 		<motion name="Pointfire2"/>
 	</skill_template>
-	<skill_template skill_id="1478" name_en="Hydro Eruption III" name_pt="Erupção Erupção III" nameId="283878" delayId="111" stack="WI_HYDROPRESS_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="120" duration="2500" cancel_rate="20">
+	<skill_template skill_id="1478" name_en="Hydro Eruption III" name_pt="Erupção III" nameId="283878" delayId="111" stack="WI_HYDROPRESS_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="120" duration="2500" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" revision_distance="12"/>
 		<startconditions>
 			<mp value="451" delta="5"/>
@@ -19799,7 +19799,7 @@
 		</actions>
 		<motion name="Pointfire2"/>
 	</skill_template>
-	<skill_template skill_id="1481" name_en="Ice Sheet I" name_pt="Caminha de gelão i I" nameId="286389" delayId="572" stack="WI_LIGHT_FROSTPILLAR_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="30">
+	<skill_template skill_id="1481" name_en="Ice Sheet I" name_pt="Caminha de gelão I" nameId="286389" delayId="572" stack="WI_LIGHT_FROSTPILLAR_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="30">
 		<properties first_target="POINT" first_target_range="25" target_relation="ENEMY" target_type="POINT" target_maxcount="1"/>
 		<startconditions>
 			<mp value="150" delta="4"/>
@@ -20357,7 +20357,7 @@
 		</actions>
 		<motion name="Normalfire"/>
 	</skill_template>
-	<skill_template skill_id="1513" name_en="Hydro Eruption IV" name_pt="Erupção Erupção IV" nameId="287334" delayId="111" stack="WI_HYDROPRESS_G4" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="120" duration="2500" cancel_rate="20">
+	<skill_template skill_id="1513" name_en="Hydro Eruption IV" name_pt="Erupção IV" nameId="287334" delayId="111" stack="WI_HYDROPRESS_G4" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="120" duration="2500" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" revision_distance="12"/>
 		<startconditions>
 			<mp value="558" delta="6"/>
@@ -20660,7 +20660,7 @@
 		</actions>
 		<motion name="alterfire"/>
 	</skill_template>
-	<skill_template skill_id="1532" name_en="Ice Wave I" name_pt="Onda de gelão i I" nameId="287306" delayId="585" stack="WI_AREATIDAL_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="600" duration="3000" cancel_rate="30">
+	<skill_template skill_id="1532" name_en="Ice Wave I" name_pt="Onda de gelão I" nameId="287306" delayId="585" stack="WI_AREATIDAL_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="600" duration="3000" cancel_rate="30">
 		<properties first_target="POINT" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="6" revision_distance="12" target_distance="5" effective_range="5" effective_altitude="4"/>
 		<startconditions>
 			<mp value="1036" delta="0"/>
@@ -20716,7 +20716,7 @@
 			</boostspellattack>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="1536" name_en="Ice Cyclone I" name_pt="Ciclone de gelão i I" nameId="287330" delayId="589" stack="WI_GLACIALSWAM_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="2000" cancel_rate="30">
+	<skill_template skill_id="1536" name_en="Ice Cyclone I" name_pt="Ciclone de gelão I" nameId="287330" delayId="589" stack="WI_GLACIALSWAM_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="2000" cancel_rate="30">
 		<properties first_target="TARGET" first_target_range="25" target_type="ONLYONE" revision_distance="12"/>
 		<startconditions>
 			<mp value="571" delta="6"/>
@@ -21724,7 +21724,7 @@
 		</actions>
 		<motion name="Pointfire3" speed="50"/>
 	</skill_template>
-	<skill_template skill_id="1599" name_en="Ice Sheet III" name_pt="Folha de gelão i III" nameId="292275" delayId="572" stack="WI_LIGHT_FROSTPILLAR_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="30">
+	<skill_template skill_id="1599" name_en="Ice Sheet III" name_pt="Folha de gelão III" nameId="292275" delayId="572" stack="WI_LIGHT_FROSTPILLAR_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="30">
 		<properties first_target="POINT" first_target_range="25" target_relation="ENEMY" target_type="POINT" target_maxcount="1"/>
 		<startconditions>
 			<mp value="276" delta="3"/>
@@ -21737,7 +21737,7 @@
 		</actions>
 		<motion name="Pointfire2"/>
 	</skill_template>
-	<skill_template skill_id="1600" name_en="Ice Sheet III" name_pt="Folha de gelão i III" nameId="292277" delayId="572" stack="WI_DARK_FROSTPILLAR_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="30">
+	<skill_template skill_id="1600" name_en="Ice Sheet III" name_pt="Folha de gelão III" nameId="292277" delayId="572" stack="WI_DARK_FROSTPILLAR_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="30">
 		<properties first_target="POINT" first_target_range="25" target_relation="ENEMY" target_type="POINT" target_maxcount="1"/>
 		<startconditions>
 			<mp value="276" delta="3"/>
@@ -23445,7 +23445,7 @@
 		</actions>
 		<motion name="elsummon1"/>
 	</skill_template>
-	<skill_template skill_id="1702" name_en="Summon Wind Spirit IV" name_pt="Invocar Espírito Espírito IV" nameId="286976" delayId="415" stack="EL_LIGHT_SUMMON_WINDELEMENTAL_G4" lvl="1" skilltype="MAGICAL" skillsubtype="SUMMON" tslot="NONE" activation="ACTIVE" cooldown="50" duration="4500" ground="true" cancel_rate="30">
+	<skill_template skill_id="1702" name_en="Summon Wind Spirit IV" name_pt="Invocar Espírito IV" nameId="286976" delayId="415" stack="EL_LIGHT_SUMMON_WINDELEMENTAL_G4" lvl="1" skilltype="MAGICAL" skillsubtype="SUMMON" tslot="NONE" activation="ACTIVE" cooldown="50" duration="4500" ground="true" cancel_rate="30">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="473" delta="0"/>
@@ -23463,7 +23463,7 @@
 		</actions>
 		<motion name="elsummon2"/>
 	</skill_template>
-	<skill_template skill_id="1703" name_en="Summon Wind Spirit IV" name_pt="Invocar Espírito Espírito IV" nameId="286940" delayId="415" stack="EL_DARK_SUMMON_WINDELEMENTAL_G4" lvl="1" skilltype="MAGICAL" skillsubtype="SUMMON" tslot="NONE" activation="ACTIVE" cooldown="50" duration="4500" ground="true" cancel_rate="5">
+	<skill_template skill_id="1703" name_en="Summon Wind Spirit IV" name_pt="Invocar Espírito IV" nameId="286940" delayId="415" stack="EL_DARK_SUMMON_WINDELEMENTAL_G4" lvl="1" skilltype="MAGICAL" skillsubtype="SUMMON" tslot="NONE" activation="ACTIVE" cooldown="50" duration="4500" ground="true" cancel_rate="5">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="473" delta="0"/>
@@ -24952,7 +24952,7 @@
 		</actions>
 		<motion name="debuff"/>
 	</skill_template>
-	<skill_template skill_id="1790" name_en="Absorb Vitality VI" name_pt="Absorver vitalidade vi VI" nameId="292307" delayId="648" stack="EL_DRAINENERGY_G6" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="120" duration="0" cancel_rate="20">
+	<skill_template skill_id="1790" name_en="Absorb Vitality VI" name_pt="Absorver vitalidade VI" nameId="292307" delayId="648" stack="EL_DRAINENERGY_G6" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="120" duration="0" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" revision_distance="12"/>
 		<startconditions>
 			<mp value="250" delta="0"/>
@@ -28067,7 +28067,7 @@
 		</actions>
 		<motion name="PhBurst"/>
 	</skill_template>
-	<skill_template skill_id="2058" name_en="Holy Shield IV" name_pt="El el santo escudo IV" nameId="295403" delayId="176" stack="KN_HOLYWRATH_G4" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
+	<skill_template skill_id="2058" name_en="Holy Shield IV" name_pt="Sagrado escudo IV" nameId="295403" delayId="176" stack="KN_HOLYWRATH_G4" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="100" delta="0"/>
@@ -29736,7 +29736,7 @@
 		</actions>
 		<motion name="heal"/>
 	</skill_template>
-	<skill_template skill_id="2155" name_en="Flash of Recovery VI" name_pt="Flash de recuperação vi VI" nameId="295506" delayId="454" stack="PR_FIRSTAID_G6" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
+	<skill_template skill_id="2155" name_en="Flash of Recovery VI" name_pt="Flash de recuperação VI" nameId="295506" delayId="454" stack="PR_FIRSTAID_G6" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
 		<properties first_target="TARGETORME" first_target_range="23" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="288" delta="3"/>
@@ -29822,7 +29822,7 @@
 		</effects>
 		<motion name="chchant2" speed="50" instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="2161" name_en="Pentacle Shock III" name_pt="choque Choque III" nameId="295512" delayId="498" stack="CH_PENTACLESHOCK_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="240" duration="0" cancel_rate="10" chain_skill_prob="100">
+	<skill_template skill_id="2161" name_en="Pentacle Shock III" name_pt="choque III" nameId="295512" delayId="498" stack="CH_PENTACLESHOCK_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="240" duration="0" cancel_rate="10" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="1" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<mp value="118" delta="0"/>
@@ -29953,7 +29953,7 @@
 		</actions>
 		<motion name="chant" speed="50" instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="2169" name_en="Safer Ward VI" name_pt="Ala mais rio rio segura VI" nameId="295520" delayId="471" stack="CH_PROTECTSELF_G6" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
+	<skill_template skill_id="2169" name_en="Safer Ward VI" name_pt="Ala mais segura VI" nameId="295520" delayId="471" stack="CH_PROTECTSELF_G6" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="178" delta="4"/>
@@ -30141,7 +30141,7 @@
 		</actions>
 		<motion name="alterfire" instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="2182" name_en="Healing Conduit VII" name_pt="Conduta de cura vii VII" nameId="295533" delayId="492" stack="CH_HEALINGTANK_G7" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
+	<skill_template skill_id="2182" name_en="Healing Conduit VII" name_pt="Conduta de cura vii" nameId="295533" delayId="492" stack="CH_HEALINGTANK_G7" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="1200" duration="0" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="1" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<mp value="136" delta="2"/>
@@ -30928,7 +30928,7 @@
 		</actions>
 		<motion name="elsummon2"/>
 	</skill_template>
-	<skill_template skill_id="2229" name_en="Absorb Vitality VII" name_pt="Absorver vitalidade vii VII" nameId="295581" delayId="648" stack="EL_DRAINENERGY_G7" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="120" duration="0" cancel_rate="20">
+	<skill_template skill_id="2229" name_en="Absorb Vitality VII" name_pt="Absorver vitalidade vii" nameId="295581" delayId="648" stack="EL_DRAINENERGY_G7" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="120" duration="0" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" revision_distance="12"/>
 		<startconditions>
 			<mp value="277" delta="7"/>
@@ -36386,7 +36386,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="8241" name_en="Clement Mind Mantra I Effect" name_pt="Mente Mente Mantra I Efeito" nameId="281773" stack="SYSTEM_SKILL_CH_AURASTATUPAREAMPREGENEFFECT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="CHANT" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="8241" name_en="Clement Mind Mantra I Effect" name_pt="Mente Mantra I Efeito" nameId="281773" stack="SYSTEM_SKILL_CH_AURASTATUPAREAMPREGENEFFECT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="CHANT" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -36431,7 +36431,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="8244" name_en="Celerity Mantra II Effect" name_pt="Mantra Mantra II Efeito" nameId="283310" stack="SYSTEM_SKILL_CH_AURASTATUPAREASPEEDEFFECT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="CHANT" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="8244" name_en="Celerity Mantra II Effect" name_pt="Mantra II Efeito" nameId="283310" stack="SYSTEM_SKILL_CH_AURASTATUPAREASPEEDEFFECT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="CHANT" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -36848,7 +36848,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="8275" name_en="Aura: Holy Shield II Effect" name_pt="Aura: Efeito El el santo escudo II" nameId="283972" stack="SKILL_KN_AURA_HOLYWRATH_EFFECT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="CHANT" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="8275" name_en="Aura: Holy Shield II Effect" name_pt="Aura: Efeito Sagrado escudo II" nameId="283972" stack="SKILL_KN_AURA_HOLYWRATH_EFFECT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="CHANT" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -36877,7 +36877,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="8277" name_en="Clement Mind Mantra II Effect" name_pt="Mente Mente Mantra II Efeito" nameId="283976" stack="SKILL_CH_CHANT_CLEMENTMIND_EFFECT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="CHANT" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="8277" name_en="Clement Mind Mantra II Effect" name_pt="Mente Mantra II Efeito" nameId="283976" stack="SKILL_CH_CHANT_CLEMENTMIND_EFFECT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="CHANT" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -36988,7 +36988,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="8284" name_en="Celerity Mantra III Effect" name_pt="Mantra Mantra III Efeito" nameId="283990" stack="SKILL_CH_CHANT_IMPROVEDMOVE_EFFECT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="CHANT" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="8284" name_en="Celerity Mantra III Effect" name_pt="Mantra III Efeito" nameId="283990" stack="SKILL_CH_CHANT_IMPROVEDMOVE_EFFECT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="CHANT" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -37481,7 +37481,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="8313" name_en="Aurora Heal" name_pt="Aurora polar polar cura" nameId="284202" stack="SYSTEM_SKILL_ARTIFACT_AURORAHEAL" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="8313" name_en="Aurora Heal" name_pt="Aurora cura" nameId="284202" stack="SYSTEM_SKILL_ARTIFACT_AURORAHEAL" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_species="PC"/>
 		<startconditions>
 			<target value="PC"/>
@@ -38427,7 +38427,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="8398" name_en="Clement Mind Mantra III Effect" name_pt="Mente Mente Mantra III Efeito" nameId="287713" stack="SKILL_CH_CHANT_CLEMENTMIND_EFFECT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="CHANT" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="8398" name_en="Clement Mind Mantra III Effect" name_pt="Mente Mantra III Efeito" nameId="287713" stack="SKILL_CH_CHANT_CLEMENTMIND_EFFECT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="CHANT" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -38458,7 +38458,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="8400" name_en="Celerity Mantra IV Effect" name_pt="Mantra Mantra IV Efeito" nameId="287717" stack="SKILL_CH_CHANT_IMPROVEDMOVE_EFFECT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="CHANT" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="8400" name_en="Celerity Mantra IV Effect" name_pt="Mantra IV Efeito" nameId="287717" stack="SKILL_CH_CHANT_IMPROVEDMOVE_EFFECT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="CHANT" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -40045,7 +40045,7 @@ Habilidade de Estigma" nameId="2280826" stack="SB_GATHER_SUCCESS_G1" lvl="1" ski
 			<prochealinstant value="1159" delta="12" e="1" noresist="true"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="8530" name_en="Holy Precept I Effect" name_pt="El el santo preceito eu afeto" nameId="292390" stack="SKILL_PR_HOLYPRECEPT_BUFF" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="8530" name_en="Holy Precept I Effect" name_pt="Sagrado preceito eu afeto" nameId="292390" stack="SKILL_PR_HOLYPRECEPT_BUFF" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -48690,7 +48690,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			<mpheal checktime="2000" value="148" duration2="20000" effectid="218232" e="4" noresist="true" element="WATER" preeffect="3" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10185" name_en="Major Recovery Potion" name_pt="chefe poção de recuperação" nameId="729378" name_desc="remedy_hp_mp_50" stack="REMEDY_HP_MP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10185" name_en="Major Recovery Potion" name_pt="Chefe poção de recuperação" nameId="729378" name_desc="remedy_hp_mp_50" stack="REMEDY_HP_MP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -50776,7 +50776,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			<shield percent="true" hitvalue="50" value="10000000" duration2="600000" effectid="154" e="2" noresist="true" hittype="EVERYHIT" hittypeprob2="1000" condrace="GCHIEF_DARK" element="EARTH" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10319" name_en="Piece of Cake Effect" name_pt="peça de efeito de bolo" nameId="752783" name_desc="event_dish_cake_01" stack="EVENT_DISH_CAKE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10319" name_en="Piece of Cake Effect" name_pt="Peça de efeito de bolo" nameId="752783" name_desc="event_dish_cake_01" stack="EVENT_DISH_CAKE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -58529,7 +58529,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statboost>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="11880" name_en="Abyss Rank Rewarding Test Passive Skill 2" name_pt="ABISMO Posto Posto Recomling Habilidade teste Habilidade 2 2" nameId="285461" stack="TEST_LIGHT_RANKERSKILL_PASSIVE_02" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="11880" name_en="Abyss Rank Rewarding Test Passive Skill 2" name_pt="ABISMO Posto Recomling Habilidade teste Habilidade 2" nameId="285461" stack="TEST_LIGHT_RANKERSKILL_PASSIVE_02" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -62944,7 +62944,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="16556" name_en="Blindside Attack" name_pt="Ataque Ataque" nameId="284424" delayId="1" stack="NAS_MOVEBEHIND_NR" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="500" cancel_rate="35">
+	<skill_template skill_id="16556" name_en="Blindside Attack" name_pt="Ataque" nameId="284424" delayId="1" stack="NAS_MOVEBEHIND_NR" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="500" cancel_rate="35">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -63876,7 +63876,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="16619" name_en="Blindside Attack" name_pt="Ataque Ataque" nameId="284704" delayId="1" stack="GNSC_SATKBACK_NR" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="65">
+	<skill_template skill_id="16619" name_en="Blindside Attack" name_pt="Ataque" nameId="284704" delayId="1" stack="GNSC_SATKBACK_NR" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="65">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -71626,7 +71626,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="jumpingatk"/>
 	</skill_template>
-	<skill_template skill_id="17137" name_en="Summon Holy Servant" name_pt="Invocar El el santo Servo" nameId="289441" delayId="9" stack="GRP_HOLYSERVANT_NR" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="1000">
+	<skill_template skill_id="17137" name_en="Summon Holy Servant" name_pt="Invocar Sagrado Servo" nameId="289441" delayId="9" stack="GRP_HOLYSERVANT_NR" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="1000">
 		<properties first_target="ME" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -75707,7 +75707,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
-	<skill_template skill_id="17408" name_en="Blindside Attack" name_pt="Ataque Ataque" nameId="290323" delayId="1" stack="GNAS_AIMBACKLONG_CHAIN1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="1000" ammospeed="25" cancel_rate="65">
+	<skill_template skill_id="17408" name_en="Blindside Attack" name_pt="Ataque" nameId="290323" delayId="1" stack="GNAS_AIMBACKLONG_CHAIN1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="1000" ammospeed="25" cancel_rate="65">
 		<properties first_target="TARGET" first_target_range="16" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -75724,7 +75724,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="chainatk1" speed="70"/>
 	</skill_template>
-	<skill_template skill_id="17409" name_en="Blindside Attack" name_pt="Ataque Ataque" nameId="290325" delayId="1" stack="GNAS_AIMBACKSATK_CHAIN1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="1000" cancel_rate="65">
+	<skill_template skill_id="17409" name_en="Blindside Attack" name_pt="Ataque" nameId="290325" delayId="1" stack="GNAS_AIMBACKSATK_CHAIN1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="1000" cancel_rate="65">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -76194,7 +76194,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
-	<skill_template skill_id="17442" name_en="Spike Trap Effect II" name_pt="Efeito de Armadilha Armadilha II" nameId="286594" stack="NPC_SKILL_NPCSPIKETRAP" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="17442" name_en="Spike Trap Effect II" name_pt="Efeito de Armadilha II" nameId="286594" stack="NPC_SKILL_NPCSPIKETRAP" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2" target_relation="ENEMY" target_type="AREA" target_maxcount="1" target_distance="5" effective_range="5" effective_altitude="5"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -76205,7 +76205,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
-	<skill_template skill_id="17443" name_en="Spike Trap Effect III" name_pt="Efeito de Armadilha Armadilha III" nameId="286596" stack="NPC_SKILL_NPCSPIKETRAP" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="17443" name_en="Spike Trap Effect III" name_pt="Efeito de Armadilha III" nameId="286596" stack="NPC_SKILL_NPCSPIKETRAP" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2" target_relation="ENEMY" target_type="AREA" target_maxcount="1" target_distance="5" effective_range="5" effective_altitude="5"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -77087,7 +77087,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="PowerATK"/>
 	</skill_template>
-	<skill_template skill_id="17502" name_en="Explosion Trap II Effect" name_pt="Efeito Armadilha Armadilha II de Explosão" nameId="286713" delayId="1" stack="EXPLOSIONTRAP_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="500" cancel_rate="0">
+	<skill_template skill_id="17502" name_en="Explosion Trap II Effect" name_pt="Efeito Armadilha II de Explosão" nameId="286713" delayId="1" stack="EXPLOSIONTRAP_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="500" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="ENEMY" target_type="AREA" target_maxcount="4" target_distance="5" effective_range="5" effective_altitude="5"/>
 		<effects>
 			<spellatkinstant value="660" delta="16" e="1" critprobmod2="100" element="EARTH" hoptype="DAMAGE"/>
@@ -77208,7 +77208,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="PowerATK"/>
 	</skill_template>
-	<skill_template skill_id="17513" name_en="Spike Trap Effect II" name_pt="Efeito de Armadilha Armadilha II" nameId="286731" delayId="1" stack="SPIKETRAP_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="500" cancel_rate="0">
+	<skill_template skill_id="17513" name_en="Spike Trap Effect II" name_pt="Efeito de Armadilha II" nameId="286731" delayId="1" stack="SPIKETRAP_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="500" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="ENEMY" target_type="AREA" target_maxcount="1" target_distance="5" effective_range="5" effective_altitude="5"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -77221,7 +77221,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="PowerATK"/>
 	</skill_template>
-	<skill_template skill_id="17514" name_en="Spike Trap Effect III" name_pt="Efeito de Armadilha Armadilha III" nameId="286733" delayId="1" stack="SPIKETRAP_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="500" cancel_rate="0">
+	<skill_template skill_id="17514" name_en="Spike Trap Effect III" name_pt="Efeito de Armadilha III" nameId="286733" delayId="1" stack="SPIKETRAP_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="500" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="ENEMY" target_type="AREA" target_maxcount="1" target_distance="5" effective_range="5" effective_altitude="5"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -77234,7 +77234,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="PowerATK"/>
 	</skill_template>
-	<skill_template skill_id="17515" name_en="Summon Holy Servant I Effect" name_pt="Convocar o el el santo servo eu efeito" nameId="286735" stack="HOLYSERVENT_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="0">
+	<skill_template skill_id="17515" name_en="Summon Holy Servant I Effect" name_pt="Convocar em Sanctum servo eu efeito" nameId="286735" stack="HOLYSERVENT_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<hp value="300" delta="0"/>
@@ -78262,7 +78262,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="pointfire2"/>
 	</skill_template>
-	<skill_template skill_id="17584" name_en="Explosion Trap III Effect" name_pt="Efeito Armadilha Armadilha III de Explosão" nameId="287728" delayId="1" stack="EXPLOSIONTRAP_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="500" cancel_rate="0">
+	<skill_template skill_id="17584" name_en="Explosion Trap III Effect" name_pt="Efeito Armadilha III de Explosão" nameId="287728" delayId="1" stack="EXPLOSIONTRAP_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="500" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="ENEMY" target_type="AREA" target_maxcount="4" target_distance="5" effective_range="5" effective_altitude="5"/>
 		<effects>
 			<spellatkinstant value="825" delta="21" e="1" critprobmod2="100" element="EARTH" hoptype="DAMAGE"/>
@@ -78280,7 +78280,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="PowerATK"/>
 	</skill_template>
-	<skill_template skill_id="17586" name_en="Shock Trap II Effect" name_pt="Efeito Armadilha Armadilha II" nameId="287731" delayId="1" stack="SHOCKTRAP_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="500" cancel_rate="0">
+	<skill_template skill_id="17586" name_en="Shock Trap II Effect" name_pt="Efeito Armadilha II" nameId="287731" delayId="1" stack="SHOCKTRAP_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="500" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="ENEMY" target_type="AREA" target_maxcount="1" target_distance="5" effective_range="5" effective_altitude="5"/>
 		<effects>
 			<spellatkinstant value="427" delta="4" e="1" critprobmod2="100" element="EARTH" hoptype="DAMAGE"/>
@@ -78292,7 +78292,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="PowerATK"/>
 	</skill_template>
-	<skill_template skill_id="17587" name_en="Spike Trap Effect IV" name_pt="Efeito de Armadilha Armadilha IV" nameId="287733" stack="SPIKETRAP_G4" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="500" cancel_rate="0">
+	<skill_template skill_id="17587" name_en="Spike Trap Effect IV" name_pt="Efeito de Armadilha IV" nameId="287733" stack="SPIKETRAP_G4" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="500" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="ENEMY" target_type="AREA" target_maxcount="1" target_distance="5" effective_range="5" effective_altitude="5"/>
 		<effects>
 			<root resistchance="70" duration2="25000" randomtime="6000" effectid="20003" e="1" basiclvl="60" critprobmod2="100" element="EARTH" hoptype="SKILLLV" hopb="3397"/>
@@ -79156,7 +79156,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
-	<skill_template skill_id="17650" name_en="Spirit Defence Position IV Fire" name_pt="Defesa do Espírito Posição IV IV fogo" nameId="291016" stack="EL_PET_DEFENCEPOSITION_G4_FIRE" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="17650" name_en="Spirit Defence Position IV Fire" name_pt="Defesa do Espírito Posição IV fogo" nameId="291016" stack="EL_PET_DEFENCEPOSITION_G4_FIRE" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -80042,7 +80042,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
-	<skill_template skill_id="17719" name_en="Summon Holy Servant" name_pt="Invocar El el santo Servo" nameId="290870" delayId="9" stack="DGPR_HOLYSERVANT_NR" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="1000">
+	<skill_template skill_id="17719" name_en="Summon Holy Servant" name_pt="Invocar Sagrado Servo" nameId="290870" delayId="9" stack="DGPR_HOLYSERVANT_NR" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="1000">
 		<properties first_target="ME" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -81272,7 +81272,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
-	<skill_template skill_id="17814" name_en="Spirit Siegebreaker" name_pt="Breakbreaker de Cerco Cerco" nameId="288672" stack="NPC_SKILL_ABYSS_SIEGE_PET" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="10000">
+	<skill_template skill_id="17814" name_en="Spirit Siegebreaker" name_pt="Breakbreaker de Cerco" nameId="288672" stack="NPC_SKILL_ABYSS_SIEGE_PET" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="10000">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -84176,7 +84176,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
-	<skill_template skill_id="18008" name_en="Spirit Siegebreaker" name_pt="Breakbreaker de Cerco Cerco" nameId="288672" stack="NPC_SKILL_ABYSS_SIEGE_PET" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="10000">
+	<skill_template skill_id="18008" name_en="Spirit Siegebreaker" name_pt="Breakbreaker de Cerco" nameId="288672" stack="NPC_SKILL_ABYSS_SIEGE_PET" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="10000">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -88072,7 +88072,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="18233" name_en="Rise, my faithful servant." name_pt="ação de levantar ou subir. 2 ascensão, rio rio meu fiel servo." nameId="294008" delayId="2" stack="BNWI_SPELLATKKLRKDTA15_SU" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="3000" penalty_skill_id="16471">
+	<skill_template skill_id="18233" name_en="Rise, my faithful servant." name_pt="ação de levantar ou subir. 2 ascensão, meu fiel servo." nameId="294008" delayId="2" stack="BNWI_SPELLATKKLRKDTA15_SU" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="3000" penalty_skill_id="16471">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="7" target_distance="10" effective_range="10" effective_altitude="10"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -88447,7 +88447,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
-	<skill_template skill_id="18259" name_en="Ice Sheet III" name_pt="Folha de gelão i III" nameId="292328" delayId="1" stack="NPC_SKILL_FROSTPILLAR" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="18259" name_en="Ice Sheet III" name_pt="Folha de gelão III" nameId="292328" delayId="1" stack="NPC_SKILL_FROSTPILLAR" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2" target_relation="ENEMY" target_type="AREA" target_maxcount="8" target_distance="5" effective_range="5" effective_altitude="5"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -88571,7 +88571,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
-	<skill_template skill_id="18269" name_en="Spirit Substitution IV Fire" name_pt="Substituição IV IV fogo" nameId="292343" stack="NPC_SKILL_EV_ORDER_EXPLODE_WIND" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="MAINTAIN" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="18269" name_en="Spirit Substitution IV Fire" name_pt="Substituição IV fogo" nameId="292343" stack="NPC_SKILL_EV_ORDER_EXPLODE_WIND" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="MAINTAIN" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="15" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="6" effective_width="7"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -90647,7 +90647,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="pointfire"/>
 	</skill_template>
-	<skill_template skill_id="18402" name_en="Spirit Siegebreaker" name_pt="Breakbreaker de Cerco Cerco" nameId="292867" stack="NPC_SKILL_ABYSS_SIEGE_PET" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="10000">
+	<skill_template skill_id="18402" name_en="Spirit Siegebreaker" name_pt="Breakbreaker de Cerco" nameId="292867" stack="NPC_SKILL_ABYSS_SIEGE_PET" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="10000">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -90663,7 +90663,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="pointfire"/>
 	</skill_template>
-	<skill_template skill_id="18403" name_en="Spirit Siegebreaker" name_pt="Breakbreaker de Cerco Cerco" nameId="292867" stack="NPC_SKILL_ABYSS_SIEGE_PET" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="10000">
+	<skill_template skill_id="18403" name_en="Spirit Siegebreaker" name_pt="Breakbreaker de Cerco" nameId="292867" stack="NPC_SKILL_ABYSS_SIEGE_PET" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="10000">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -90679,7 +90679,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="pointfire"/>
 	</skill_template>
-	<skill_template skill_id="18404" name_en="Spirit Siegebreaker" name_pt="Breakbreaker de Cerco Cerco" nameId="292868" stack="NPC_SKILL_ABYSS_SIEGE_PET" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="10000" cancel_rate="0">
+	<skill_template skill_id="18404" name_en="Spirit Siegebreaker" name_pt="Breakbreaker de Cerco" nameId="292868" stack="NPC_SKILL_ABYSS_SIEGE_PET" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="10000" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -90695,7 +90695,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="pointfire"/>
 	</skill_template>
-	<skill_template skill_id="18405" name_en="Spirit Siegebreaker" name_pt="Breakbreaker de Cerco Cerco" nameId="292868" stack="NPC_SKILL_ABYSS_SIEGE_PET" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="10000" cancel_rate="0">
+	<skill_template skill_id="18405" name_en="Spirit Siegebreaker" name_pt="Breakbreaker de Cerco" nameId="292868" stack="NPC_SKILL_ABYSS_SIEGE_PET" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="10000" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -93172,7 +93172,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="poweratk" speed="70"/>
 	</skill_template>
-	<skill_template skill_id="18585" name_en="Holy Servant" name_pt="El el santo servo" nameId="294205" delayId="1" stack="BNWI_SMALLBURST_BEAM_LC" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="3000" ammospeed="35" cancel_rate="30">
+	<skill_template skill_id="18585" name_en="Holy Servant" name_pt="Sagrado servo" nameId="294205" delayId="1" stack="BNWI_SMALLBURST_BEAM_LC" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="3000" ammospeed="35" cancel_rate="30">
 		<properties first_target="TARGET" first_target_range="37" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -100314,7 +100314,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="19090" name_en="Spinning Smash" name_pt="esmagamento esmagamento" nameId="296066" name_desc="IDCatacombs_TombDrakan_Area90ATK" delayId="1101" stack="IDCATACOMBS_TOMBDRAKAN_AREA90ATK" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="19090" name_en="Spinning Smash" name_pt="esmagamento" nameId="296066" name_desc="IDCatacombs_TombDrakan_Area90ATK" delayId="1101" stack="IDCATACOMBS_TOMBDRAKAN_AREA90ATK" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="ME" first_target_range="3" target_relation="ENEMY" target_type="AREA" target_maxcount="12" target_distance="6" effective_range="6" effective_altitude="20"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -105998,7 +105998,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="NormalFire"/>
 	</skill_template>
-	<skill_template skill_id="19496" name_en="Underneath the Talon" name_pt="Mantenha-se no n britânico (amer verificar) cheque. a cheque for $10.. on boston / um cheque de $10.. pagável em boston. em branco cheque 1 carta branca. 2 cheque em branco. crossed cheque cheque cruzado. viajante’s cheque cheque de viagem." nameId="297175" delayId="8" stack="STATION_HUGEN_SLOW" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="25">
+	<skill_template skill_id="19496" name_en="Underneath the Talon" name_pt="Mantenha-se no n britânico (amer verificar) cheque. a cheque for $10.. on boston / um cheque de $10.. pagável em boston. em branco cheque 1 carta branca. 2 cheque em branco. crossed cheque cruzado. viajante’s cheque de viagem." nameId="297175" delayId="8" stack="STATION_HUGEN_SLOW" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="25">
 		<properties first_target="TARGET" first_target_range="12" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="6"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -109095,7 +109095,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="alterfire"/>
 	</skill_template>
-	<skill_template skill_id="19766" name_en="Summon Holy Servant II" name_pt="Convocar o El el santo Servo II" nameId="297927" delayId="22" stack="IDARENA_SOLO_S5_PR_HOLYSERVENT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="30">
+	<skill_template skill_id="19766" name_en="Summon Holy Servant II" name_pt="Convocar o Sagrado Servo II" nameId="297927" delayId="22" stack="IDARENA_SOLO_S5_PR_HOLYSERVENT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="30">
 		<properties first_target="TARGET" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -109493,7 +109493,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
-	<skill_template skill_id="19796" name_en="Blindside Attack" name_pt="Ataque Ataque" nameId="284424" delayId="1" stack="NAS_MOVEBEHIND_NR" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="1000">
+	<skill_template skill_id="19796" name_en="Blindside Attack" name_pt="Ataque" nameId="284424" delayId="1" stack="NAS_MOVEBEHIND_NR" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="1000">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="AREA" target_maxcount="1" target_distance="7" effective_range="7" effective_altitude="5"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -112019,7 +112019,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="Normalfire"/>
 	</skill_template>
-	<skill_template skill_id="20517" name_en="Spinning Smash" name_pt="esmagamento esmagamento" nameId="296066" delayId="1101" stack="UNDERPASS_TOMBDRAKAN_AREA90ATK" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="20517" name_en="Spinning Smash" name_pt="esmagamento" nameId="296066" delayId="1101" stack="UNDERPASS_TOMBDRAKAN_AREA90ATK" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="ME" first_target_range="10" target_relation="ENEMY" target_type="AREA" target_maxcount="96" target_distance="6" effective_range="6" effective_altitude="20"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -117202,7 +117202,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<stun duration2="1500" effectid="20000" e="2" accmod2="2000" element="WIND" preeffect="1" hoptype="SKILLLV"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="2918" name_en="Axe Chop I" name_pt="Machado Machado I" nameId="2282588" delayId="784" stack="ST_DOWN_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="10">
+	<skill_template skill_id="2918" name_en="Axe Chop I" name_pt="Machado I" nameId="2282588" delayId="784" stack="ST_DOWN_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="10">
 		<properties first_target="TARGET" awr="true" first_target_range="3" target_relation="ENEMY" target_type="ONLYONE" target_status="OPENAERIAL"/>
 		<effects>
 			<skillatk e="1" value="996" delta="3" hoptype="DAMAGE"/>
@@ -117216,7 +117216,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<closeaerial e="2" noresist="true" element="FIRE" preeffect="1"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="2920" name_en="Axe Chop III" name_pt="Machado Machado III" nameId="2282590" delayId="784" stack="ST_DOWN_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="10">
+	<skill_template skill_id="2920" name_en="Axe Chop III" name_pt="Machado III" nameId="2282590" delayId="784" stack="ST_DOWN_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="10">
 		<properties first_target="TARGET" awr="true" first_target_range="3" target_relation="ENEMY" target_type="ONLYONE" target_status="OPENAERIAL"/>
 		<effects>
 			<skillatk e="1" value="1204" delta="4" hoptype="DAMAGE"/>
@@ -117230,7 +117230,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<closeaerial e="2" noresist="true" element="FIRE" preeffect="1"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="2922" name_en="Axe Chop V" name_pt="Machado Machado V" nameId="2282592" delayId="784" stack="ST_DOWN_G5" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="10">
+	<skill_template skill_id="2922" name_en="Axe Chop V" name_pt="Machado V" nameId="2282592" delayId="784" stack="ST_DOWN_G5" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="10">
 		<properties first_target="TARGET" awr="true" first_target_range="3" target_relation="ENEMY" target_type="ONLYONE" target_status="OPENAERIAL"/>
 		<effects>
 			<skillatk e="1" value="1324" delta="6" hoptype="DAMAGE"/>
@@ -123856,7 +123856,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mpuse value="268" delta="1"/>
 		</actions>
 	</skill_template>
-	<skill_template skill_id="3420" name_en="Holy Deluge I" name_pt="El el santo Dilúvio I" nameId="2284362" delayId="873" stack="LU_RAINTHUNDER_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="600" duration="0" dispel_category="STUN" req_dispel_level="1" cancel_rate="10" pvp_damage="80" chain_skill_prob="100">
+	<skill_template skill_id="3420" name_en="Holy Deluge I" name_pt="Sagrado Dilúvio I" nameId="2284362" delayId="873" stack="LU_RAINTHUNDER_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="600" duration="0" dispel_category="STUN" req_dispel_level="1" cancel_rate="10" pvp_damage="80" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="15" target_distance="5" target_relation="ENEMY" target_type="AREA" target_maxcount="6" effective_range="5" effective_altitude="4" revision_distance="12"/>
 		<startconditions>
 			<mp value="130" delta="1"/>
@@ -126467,7 +126467,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</actions>
 		<motion name="elsummon2"/>
 	</skill_template>
-	<skill_template skill_id="3612" name_en="Summon Wind Spirit V" name_pt="Invocar Espírito Espírito V" nameId="2285175" delayId="415" stack="EL_LIGHT_SUMMON_WINDELEMENTAL_G5" lvl="1" skilltype="MAGICAL" skillsubtype="SUMMON" tslot="NONE" activation="ACTIVE" cooldown="50" duration="4500" cancel_rate="30">
+	<skill_template skill_id="3612" name_en="Summon Wind Spirit V" name_pt="Invocar Espírito V" nameId="2285175" delayId="415" stack="EL_LIGHT_SUMMON_WINDELEMENTAL_G5" lvl="1" skilltype="MAGICAL" skillsubtype="SUMMON" tslot="NONE" activation="ACTIVE" cooldown="50" duration="4500" cancel_rate="30">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="610" delta="0"/>
@@ -126483,7 +126483,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</actions>
 		<motion name="elsummon2"/>
 	</skill_template>
-	<skill_template skill_id="3613" name_en="Summon Wind Spirit V" name_pt="Invocar Espírito Espírito V" nameId="2285176" delayId="415" stack="EL_DARK_SUMMON_WINDELEMENTAL_G5" lvl="1" skilltype="MAGICAL" skillsubtype="SUMMON" tslot="NONE" activation="ACTIVE" cooldown="50" duration="4500" cancel_rate="30">
+	<skill_template skill_id="3613" name_en="Summon Wind Spirit V" name_pt="Invocar Espírito V" nameId="2285176" delayId="415" stack="EL_DARK_SUMMON_WINDELEMENTAL_G5" lvl="1" skilltype="MAGICAL" skillsubtype="SUMMON" tslot="NONE" activation="ACTIVE" cooldown="50" duration="4500" cancel_rate="30">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="610" delta="0"/>
@@ -127252,7 +127252,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</actions>
 		<motion name="alterfire" instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="3661" name_en="Summon Holy Servant IV" name_pt="SOMPAÇÃO El el santo Servo IV" nameId="287180" delayId="425" stack="PR_LIGHT_HOLYSERVENT_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="30" duration="0" cancel_rate="20">
+	<skill_template skill_id="3661" name_en="Summon Holy Servant IV" name_pt="SOMPAÇÃO Sagrado Servo IV" nameId="287180" delayId="425" stack="PR_LIGHT_HOLYSERVENT_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="30" duration="0" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="171" delta="4"/>
@@ -127267,7 +127267,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		<motion name="alterfire" speed="50" instant_skill="true"/>
 		</skill_template>
 	
-	<skill_template skill_id="3662" name_en="Summon Holy Servant IV" name_pt="SOMPAÇÃO El el santo Servo IV" nameId="287152" delayId="425" stack="PR_DARK_HOLYSERVENT_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="30" duration="0" cancel_rate="20">
+	<skill_template skill_id="3662" name_en="Summon Holy Servant IV" name_pt="SOMPAÇÃO Sagrado Servo IV" nameId="287152" delayId="425" stack="PR_DARK_HOLYSERVENT_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="30" duration="0" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="171" delta="4"/>
@@ -127548,7 +127548,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</effects>
 		<motion name="chchant1" speed="50" instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="3680" name_en="Safer Ward VII" name_pt="Ala mais rio rio segura VII" nameId="2285380" delayId="471" stack="CH_PROTECTSELF_G7" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="1200" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+	<skill_template skill_id="3680" name_en="Safer Ward VII" name_pt="Ala mais segura VII" nameId="2285380" delayId="471" stack="CH_PROTECTSELF_G7" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="1200" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="187" delta="4"/>
@@ -127754,7 +127754,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</actions>
 		<motion name="smashATK"/>
 	</skill_template>
-	<skill_template skill_id="3693" name_en="Pentacle Shock IV" name_pt="choque Choque IV" nameId="2285393" delayId="498" stack="CH_PENTACLESHOCK_G4" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="240" duration="0" cancel_rate="10" chain_skill_prob="100">
+	<skill_template skill_id="3693" name_en="Pentacle Shock IV" name_pt="choque IV" nameId="2285393" delayId="498" stack="CH_PENTACLESHOCK_G4" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="240" duration="0" cancel_rate="10" chain_skill_prob="100">
 		<properties first_target="TARGET" awr="true" first_target_range="1" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="128" delta="0"/>
@@ -145033,7 +145033,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 	<skill_template skill_id="10645" name_en="Mana Treatment" name_pt="Tratamento de mana" nameId="702134" delayId="10645" stack="ITEM_POTION_MP_65" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
-	<skill_template skill_id="10646" name_en="Exquisite Recovery Serum" name_pt="n almofadinha recuperação soro" nameId="790722" delayId="10646" stack="POTION_HP_MP_65" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10646" name_en="Exquisite Recovery Serum" name_pt="N almofadinha recuperação soro" nameId="790722" delayId="10646" stack="POTION_HP_MP_65" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
 	<skill_template skill_id="10647" name_en="추가 채집 숙련 포인트 획득_01" name_pt="추가 채집 숙련 포인트 획득_01" nameId="791115" delayId="10647" stack="TEST_GATHER_BOOST_01" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
@@ -145045,7 +145045,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 	<skill_template skill_id="10649" name_en="Lesser Collector’s Wisdom" name_pt="Menor Colecionador’s Sabedoria" nameId="791293" delayId="10649" stack="GATHER_BOOST_50" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
-	<skill_template skill_id="10650" name_en="Normal Collector’s Wisdom" name_pt="normal" nameId="791294" delayId="10650" stack="GATHER_BOOST_100" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10650" name_en="Normal Collector’s Wisdom" name_pt="Normal" nameId="791294" delayId="10650" stack="GATHER_BOOST_100" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
 	<skill_template skill_id="10651" name_en="Greater Collector’s Wisdom" name_pt="Maior Colecionador’s Sabedoria" nameId="791295" delayId="10651" stack="GATHER_BOOST_200" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
@@ -145054,7 +145054,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 	<skill_template skill_id="10652" name_en="Lesser Guild Wisdom" name_pt="Menor Guilda Sabedoria" nameId="791299" delayId="10652" stack="COMBINE_BOOST_50" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
-	<skill_template skill_id="10653" name_en="Normal Guild Wisdom" name_pt="normal" nameId="791300" delayId="10653" stack="COMBINE_BOOST_100" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10653" name_en="Normal Guild Wisdom" name_pt="Normal" nameId="791300" delayId="10653" stack="COMBINE_BOOST_100" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
 	<skill_template skill_id="10654" name_en="Greater Guild Wisdom" name_pt="Maior Guilda Sabedoria" nameId="791301" delayId="10654" stack="COMBINE_BOOST_200" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
@@ -145063,7 +145063,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 	<skill_template skill_id="10655" name_en="Lesser Combat Wisdom" name_pt="Menor combate Sabedoria" nameId="791305" delayId="10655" stack="AP_BOOST_50" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
-	<skill_template skill_id="10656" name_en="Normal Combat Wisdom" name_pt="normal" nameId="791306" delayId="10656" stack="AP_BOOST_100" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10656" name_en="Normal Combat Wisdom" name_pt="Normal" nameId="791306" delayId="10656" stack="AP_BOOST_100" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
 	<skill_template skill_id="10657" name_en="Greater Combat Wisdom" name_pt="Maior combate Sabedoria" nameId="791307" delayId="10657" stack="AP_BOOST_200" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
@@ -145072,7 +145072,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 	<skill_template skill_id="10658" name_en="Lesser Collector’s Insight" name_pt="Menor Colecionador’s n discernimento" nameId="791495" delayId="10658" stack="GATHER_BOOST_SHORT_50" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
-	<skill_template skill_id="10659" name_en="Normal Collector’s Insight" name_pt="normal" nameId="791496" delayId="10659" stack="GATHER_BOOST_SHORT_100" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10659" name_en="Normal Collector’s Insight" name_pt="Normal" nameId="791496" delayId="10659" stack="GATHER_BOOST_SHORT_100" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
 	<skill_template skill_id="10660" name_en="Greater Collector’s Insight" name_pt="Maior Colecionador’s n discernimento" nameId="791497" delayId="10660" stack="GATHER_BOOST_SHORT_200" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
@@ -145532,7 +145532,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<skilllauncher e="1" skill_id="20739" value="1" noresist="true"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10714" name_en="Increases max. HP, max. MP and movement speed." name_pt="aumenta max. HP, max. MP e Velocidade de Movimento." nameId="797808" delayId="10714" stack="CLASSIC_EVENT_BUFF_FOOD_MAXHP_MAXMP_SPEED_01" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" activation="ACTIVE" cooldown="0" duration="0" conflict_id="22">
+	<skill_template skill_id="10714" name_en="Increases max. HP, max. MP and movement speed." name_pt="Aumenta max. HP, max. MP e Velocidade de Movimento." nameId="797808" delayId="10714" stack="CLASSIC_EVENT_BUFF_FOOD_MAXHP_MAXMP_SPEED_01" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" activation="ACTIVE" cooldown="0" duration="0" conflict_id="22">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -146776,7 +146776,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 	<skill_template skill_id="10829" name_en="Normal Tiamaranta Safe Summoning Skill" name_pt="Poder: Rajada i" nameId="2285197" delayId="10829" stack="NPC_SUMMON_LDF4B_STORYBOOK_BOX_02" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
-	<skill_template skill_id="10830" name_en="Lesser Tiamaranta Safe Summoning Skill" name_pt="Habilidade de Invocação Rio rio segura de Tiamaranta Menor" nameId="2285198" delayId="10830" stack="NPC_SUMMON_LDF4B_STORYBOOK_BOX_03" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10830" name_en="Lesser Tiamaranta Safe Summoning Skill" name_pt="Habilidade de Invocação Rio segura de Tiamaranta Menor" nameId="2285198" delayId="10830" stack="NPC_SUMMON_LDF4B_STORYBOOK_BOX_03" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
 	<skill_template skill_id="10831" name_en="Concentrated Cold Aura" name_pt="Aura Fria Concentrada" nameId="2285199" delayId="10831" stack="LDF4B_TOWER_EXTINGUISH_ITEM_SKILL" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" ammospeed="40">
@@ -154988,7 +154988,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 		</effects>
 		<motion name="NormalFire"/>
 	</skill_template>
-	<skill_template skill_id="19860" name_en="Blindside Attack" name_pt="Ataque Ataque" nameId="2286698" delayId="1" stack="PALLOW_KUILLUS_DYN_MINI_STUN" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="2500" dispel_category="STUN" cancel_rate="35">
+	<skill_template skill_id="19860" name_en="Blindside Attack" name_pt="Ataque" nameId="2286698" delayId="1" stack="PALLOW_KUILLUS_DYN_MINI_STUN" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="2500" dispel_category="STUN" cancel_rate="35">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -160085,7 +160085,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="AreaATK"/>
 	</skill_template>
-	<skill_template skill_id="20877" name_en="Retreating Slash" name_pt="Sair Kamar Cerco Cerco Carro de combate" nameId="2283641" delayId="1" stack="IDINFINITY_11F_LONGSTUMBLE" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="2500">
+	<skill_template skill_id="20877" name_en="Retreating Slash" name_pt="Sair Kamar Cerco Carro de combate" nameId="2283641" delayId="1" stack="IDINFINITY_11F_LONGSTUMBLE" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="2500">
 		<properties first_target="TARGET" first_target_range="37" target_distance="10" target_relation="ENEMY" target_type="AREA" target_maxcount="24" effective_range="10" effective_altitude="20"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -161442,7 +161442,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 	<skill_template skill_id="20980" name_en="Spirit Explosion" name_pt="O poderoso choque elétrico do Arlequim causa 236.880 danos a um oponente." nameId="2283819" delayId="100" stack="IDDOKKAEBI_GEUSEUNDAE_BOOM" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="AREA" first_target_range="1" target_distance="100" effective_range="100" effective_altitude="5"/>
 	</skill_template>
-	<skill_template skill_id="20981" name_en="Burn" name_pt="Você ficou preso no ar com a habilidade Manter de Éter jejum jejum" nameId="2283820" delayId="100" stack="IDDOKKAEBI_HAETAE_BREATH" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="20981" name_en="Burn" name_pt="Você ficou preso no ar com a habilidade Manter de Éter jejum" nameId="2283820" delayId="100" stack="IDDOKKAEBI_HAETAE_BREATH" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="10" target_distance="15" target_relation="ENEMY" target_type="AREA" target_maxcount="24" effective_dist="15" effective_angle="90" effective_altitude="10"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -161836,7 +161836,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 	<skill_template skill_id="21018" name_en="Battleship Blessing" name_pt="[Anômalo] Calor da fogueira sagrada" nameId="2283887" delayId="21018" stack="HP_MOVESPEED_STATUP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
 		<properties first_target="ME" target_type="AREA" first_target_range="10" target_distance="10" effective_range="10" effective_altitude="5"/>
 	</skill_template>
-	<skill_template skill_id="21019" name_en="Enhanced Intelligence" name_pt="Ala mais rio rio segura" nameId="2286400" delayId="1" stack="BLDF4B_BOSSHEXAD_STATUP1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="NPC_BUFF">
+	<skill_template skill_id="21019" name_en="Enhanced Intelligence" name_pt="Ala mais segura" nameId="2286400" delayId="1" stack="BLDF4B_BOSSHEXAD_STATUP1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="NPC_BUFF">
 		<properties first_target="TARGET" target_species="PC" first_target_range="10" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<target value="PC"/>
@@ -161958,7 +161958,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="NormalFire"/>
 	</skill_template>
-	<skill_template skill_id="21035" name_en="Burn" name_pt="Você ficou preso no ar com a habilidade Manter de Éter jejum jejum" nameId="2283820" delayId="100" stack="HAETAERAID_BREATH" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="21035" name_en="Burn" name_pt="Você ficou preso no ar com a habilidade Manter de Éter jejum" nameId="2283820" delayId="100" stack="HAETAERAID_BREATH" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" target_type="AREA" first_target_range="10" target_distance="25" effective_dist="25" effective_angle="90" effective_altitude="10"/>
 	</skill_template>
 	<skill_template skill_id="21036" name_en="Inferno" name_pt="O ataque de fogos de artifício do Arlequim o surpreendeu." nameId="2283817" delayId="100" stack="HAETAERAID_ROAR" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="4000">

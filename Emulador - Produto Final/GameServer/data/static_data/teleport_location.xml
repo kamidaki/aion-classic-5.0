@@ -15,12 +15,12 @@
 	<teleloc_template loc_id="14" mapid="210030000" name_en="Verteron Citadel" name_pt="Eles derramam a Cidadela" name_id="400501"/><!-- flying -->
 	<teleloc_template loc_id="15" mapid="210030000" name_en="Pilgrims Respite" name_pt="Pilgrims descanso" name_id="400502"/><!-- flying -->
 	<teleloc_template loc_id="16" mapid="210030000" name_en="Verteron Observatory" name_pt="Observatório Verteron" name_id="400503"/><!-- flying -->
-	<teleloc_template loc_id="17" mapid="220010000" name_en="Aldelle Village" name_pt="Aldeia Aldeia" name_id="400504"/><!-- flying -->
+	<teleloc_template loc_id="17" mapid="220010000" name_en="Aldelle Village" name_pt="Aldeia" name_id="400504"/><!-- flying -->
 	<teleloc_template loc_id="18" mapid="220010000" name_en="Anturoon Crossing" name_pt="Travessia de Anturoon" name_id="400505"/><!-- flying -->
 	<teleloc_template loc_id="19" mapid="220030000" name_en="Altgard Fortress" name_pt="Altgard Fortaleza" name_id="400506"/><!-- flying -->
 	<teleloc_template loc_id="20" mapid="220030000" name_en="Trader's Berth" name_pt="Beito do Comerciante" name_id="400507"/><!-- flying -->
 	<teleloc_template loc_id="21" mapid="210020000" name_en="Eltnen Fortress" name_pt="Fortaleza de Eltnen" name_id="400593"/><!-- flying -->
-	<teleloc_template loc_id="22" mapid="210020000" name_en="Golden Bough Garrison" name_pt="guarnição guarnição" name_id="400594"/><!-- flying -->
+	<teleloc_template loc_id="22" mapid="210020000" name_en="Golden Bough Garrison" name_pt="guarnição" name_id="400594"/><!-- flying -->
 	<teleloc_template loc_id="23" mapid="210020000" name_en="Agairon Village" name_pt="Aldeia Agairón" name_id="400595"/><!-- flying -->
 	<teleloc_template loc_id="24" mapid="110010000" name_en="Elyos Square" name_pt="Praça Elyos" name_id="400508" posX="1460.36" posY="1448.84" posZ="572.87524" heading="7"/><!-- teleport -->
 	<teleloc_template loc_id="25" mapid="110010000" name_en="Divine Road" name_pt="Estrada divina" name_id="400509" posX="1930.9" posY="1516.9" posZ="590.0108" heading="60"/><!-- teleport -->

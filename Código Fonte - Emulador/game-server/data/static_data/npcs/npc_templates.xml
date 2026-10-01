@@ -596,7 +596,7 @@
 		</stats>
 		<bound_radius front="0.3" side="0.3" upper="1.7" />
 	</npc_template>
-	<npc_template npc_id="202513" level="1" name_en="Mine Lepharist" name_pt="Rio rio meu lefarista" name_id="353349" height="1.85" title_id="350453" group_drop="LEPHAR" rank="EXPERT" rating="NORMAL" race="DEMIHUMANOID" tribe="GENERAL_DARK" type="GENERAL" ai="noaction" srange="8" sangle="270" attack_speed="1900" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="202513" level="1" name_en="Mine Lepharist" name_pt="Meu lefarista" name_id="353349" height="1.85" title_id="350453" group_drop="LEPHAR" rank="EXPERT" rating="NORMAL" race="DEMIHUMANOID" tribe="GENERAL_DARK" type="GENERAL" ai="noaction" srange="8" sangle="270" attack_speed="1900" hpgauge="5" cancel_level="80">
 		<stats maxHp="8006">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
@@ -3768,7 +3768,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="203185" level="10" name_en="Fungen Boy Shroomy" name_pt="FUNGEN Chocolates chocolates garoto Shroomy" name_id="351087" height="1.26" title_id="350450" group_drop="FUNGUS" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="3" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="203185" level="10" name_en="Fungen Boy Shroomy" name_pt="FUNGEN Chocolates garoto Shroomy" name_id="351087" height="1.26" title_id="350450" group_drop="FUNGUS" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="3" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="1392">
 			<speeds walk="0.694" group_walk="0.694" run="4.2" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -10894,7 +10894,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="203825" level="47" name_en="Atia" name_pt="contra contra" name_id="351317" height="2" title_id="350304" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="7" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="203825" level="47" name_en="Atia" name_pt="contra" name_id="351317" height="2" title_id="350304" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="simple_abyssguard" srange="7" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="12868">
 			<speeds walk="1.3" group_walk="1.3" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -20892,7 +20892,7 @@
 		<bound_radius front="0.3" side="0.42" upper="2.4" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="204613" level="41" name_en="Cursed Ganges" name_pt="Rio rio ganges amaldiçoado" name_id="352024" height="2.2" group_drop="GRAVEKNIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="204613" level="41" name_en="Cursed Ganges" name_pt="Ganges amaldiçoado" name_id="352024" height="2.2" group_drop="GRAVEKNIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="9876">
 			<speeds walk="1.491" group_walk="1.491" run="7" run_fight="6" group_run_fight="7" />
 		</stats>
@@ -22791,7 +22791,7 @@
 		<bound_radius front="0.615" side="0.4" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="204797" level="46" name_en="Hikan" name_pt="Hikan Hikan" name_id="353312" height="1.68" title_id="350679" group_drop="LYCANM" rank="NOVICE" rating="ELITE" race="LYCAN" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="10" sangle="270" arange="2" attack_speed="2000" hpgauge="10" cancel_level="50">
+	<npc_template npc_id="204797" level="46" name_en="Hikan" name_pt="Hikan" name_id="353312" height="1.68" title_id="350679" group_drop="LYCANM" rank="NOVICE" rating="ELITE" race="LYCAN" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="10" sangle="270" arange="2" attack_speed="2000" hpgauge="10" cancel_level="50">
 		<stats maxHp="40670">
 			<speeds walk="0.6" group_walk="0.6" run="7" run_fight="3.6" group_run_fight="7" />
 		</stats>
@@ -23912,7 +23912,7 @@
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="205050" level="1" name_en="Guardian Gatekeeper" name_pt="Guardião guardião" name_id="355050" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="10" sangle="355" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="205050" level="1" name_en="Guardian Gatekeeper" name_pt="Guardião" name_id="355050" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="10" sangle="355" attack_speed="2000" hpgauge="3">
 		<stats maxHp="7445">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -34272,7 +34272,7 @@
 		<stats maxHp="30726" />
 		<bound_radius front="0.5" side="0.7" upper="1.8" />
 	</npc_template>
-	<npc_template npc_id="207543" level="45" name_en="Holy Servant" name_pt="El el santo servo" name_id="389589" height="1.02" group_drop="NONE" rank="EXPERT" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="207543" level="45" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389589" height="1.02" group_drop="NONE" rank="EXPERT" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="5" cancel_level="80">
 		<stats maxHp="810" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -35537,7 +35537,7 @@
 		<stats maxHp="9848" />
 		<bound_radius front="0.6" side="1.728" upper="3" />
 	</npc_template>
-	<npc_template npc_id="207642" level="42" name_en="Holy Servant" name_pt="El el santo servo" name_id="389688" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207642" level="42" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389688" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="10162" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -35545,7 +35545,7 @@
 		<stats maxHp="10260" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="207644" level="52" name_en="Holy Servant" name_pt="El el santo servo" name_id="389690" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207644" level="52" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389690" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="9869" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -35553,7 +35553,7 @@
 		<stats maxHp="9478" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="207646" level="42" name_en="Holy Servant" name_pt="El el santo servo" name_id="389692" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207646" level="42" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389692" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="9380" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -35561,7 +35561,7 @@
 		<stats maxHp="9283" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="207648" level="52" name_en="Holy Servant" name_pt="El el santo servo" name_id="389694" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207648" level="52" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389694" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="9380" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -35904,7 +35904,7 @@
 		</equipment>
 		<bound_radius front="0.3" side="0.42" upper="2.4" />
 	</npc_template>
-	<npc_template npc_id="207677" level="43" name_en="Holy Servant" name_pt="El el santo servo" name_id="389699" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207677" level="43" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389699" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="10260" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -35957,7 +35957,7 @@
 		</equipment>
 		<bound_radius front="0.3" side="0.42" upper="2.4" />
 	</npc_template>
-	<npc_template npc_id="207682" level="43" name_en="Holy Servant" name_pt="El el santo servo" name_id="389704" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207682" level="43" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389704" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="9869" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -36014,7 +36014,7 @@
 		</equipment>
 		<bound_radius front="0.3" side="0.42" upper="2.4" />
 	</npc_template>
-	<npc_template npc_id="207688" level="53" name_en="Holy Servant" name_pt="El el santo servo" name_id="389710" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207688" level="53" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389710" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="9576" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -36071,7 +36071,7 @@
 		</equipment>
 		<bound_radius front="0.3" side="0.42" upper="2.4" />
 	</npc_template>
-	<npc_template npc_id="207694" level="53" name_en="Holy Servant" name_pt="El el santo servo" name_id="389716" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207694" level="53" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389716" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="9771" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -36236,7 +36236,7 @@
 		</equipment>
 		<bound_radius front="0.2625" side="0.3675" upper="2.1" />
 	</npc_template>
-	<npc_template npc_id="207709" level="56" name_en="Holy Servant" name_pt="El el santo servo" name_id="389731" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207709" level="56" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389731" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="GUARD" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="9576" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -36382,7 +36382,7 @@
 		</equipment>
 		<bound_radius front="0.2625" side="0.3675" upper="2.1" />
 	</npc_template>
-	<npc_template npc_id="207722" level="56" name_en="Holy Servant" name_pt="El el santo servo" name_id="389744" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207722" level="56" name_en="Holy Servant" name_pt="Sagrado servo" name_id="389744" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="1561" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -37792,7 +37792,7 @@
 		</equipment>
 		<bound_radius front="0.2625" side="0.3675" upper="2.1" />
 	</npc_template>
-	<npc_template npc_id="207821" level="45" name_en="Holy Servant" name_pt="El el santo servo" name_id="311207" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="PROTECTGUARD_LIGHT" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207821" level="45" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311207" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ELYOS" tribe="PROTECTGUARD_LIGHT" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="9283" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -37919,7 +37919,7 @@
 		</equipment>
 		<bound_radius front="0.2625" side="0.3675" upper="2.1" />
 	</npc_template>
-	<npc_template npc_id="207832" level="45" name_en="Holy Servant" name_pt="El el santo servo" name_id="311238" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="PROTECTGUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="207832" level="45" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311238" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" race="ASMODIANS" tribe="PROTECTGUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="9771" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -44224,7 +44224,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="210183" level="17" name_en="Veteran Tursin Scout" name_pt="Batedor Batedor de Vetera" name_id="300153" height="2.04" group_drop="KRALLSCOUT" rank="EXPERT" rating="NORMAL" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1900" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="210183" level="17" name_en="Veteran Tursin Scout" name_pt="Batedor de Vetera" name_id="300153" height="2.04" group_drop="KRALLSCOUT" rank="EXPERT" rating="NORMAL" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1900" hpgauge="5" cancel_level="80">
 		<stats maxHp="2972">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6" group_run_fight="8.8" />
 		</stats>
@@ -44233,7 +44233,7 @@
 		</equipment>
 		<bound_radius front="0.77" side="0.3955" upper="2.04" />
 	</npc_template>
-	<npc_template npc_id="210184" level="18" name_en="Veteran Tursin Scout" name_pt="Batedor Batedor de Vetera" name_id="300154" height="2.04" group_drop="KRALLSCOUT" rank="EXPERT" rating="NORMAL" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1900" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="210184" level="18" name_en="Veteran Tursin Scout" name_pt="Batedor de Vetera" name_id="300154" height="2.04" group_drop="KRALLSCOUT" rank="EXPERT" rating="NORMAL" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1900" hpgauge="5" cancel_level="80">
 		<stats maxHp="3186">
 			<speeds walk="2" group_walk="2" run="8.8" run_fight="6" group_run_fight="8.8" />
 		</stats>
@@ -54010,7 +54010,7 @@
 		</equipment>
 		<bound_radius front="0.73800004" side="0.48" upper="2.4" />
 	</npc_template>
-	<npc_template npc_id="211615" level="40" name_en="Brutal Mist Mane Major" name_pt="juba juba brutal Névoa principal" name_id="303639" height="2.3" group_drop="LYCANM" rank="SEASONED" rating="ELITE" race="LYCAN" tribe="LYCAN" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="211615" level="40" name_en="Brutal Mist Mane Major" name_pt="juba brutal Névoa principal" name_id="303639" height="2.3" group_drop="LYCANM" rank="SEASONED" rating="ELITE" race="LYCAN" tribe="LYCAN" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="12" cancel_level="30">
 		<stats maxHp="58097">
 			<speeds walk="1.07" group_walk="1.07" run="8" run_fight="6" group_run_fight="8" />
 		</stats>
@@ -55028,25 +55028,25 @@
 		</stats>
 		<bound_radius front="1.2425" side="0.42" upper="3.4925" />
 	</npc_template>
-	<npc_template npc_id="211746" level="31" name_en="Alluring Temptress" name_pt="Sedutora sedutora" name_id="304020" height="3.64" group_drop="SUCCUBUS" rank="DISCIPLINED" rating="ELITE" race="DEMIHUMANOID" tribe="SUCCUBUS_ELITE" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2300" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="211746" level="31" name_en="Alluring Temptress" name_pt="Sedutora" name_id="304020" height="3.64" group_drop="SUCCUBUS" rank="DISCIPLINED" rating="ELITE" race="DEMIHUMANOID" tribe="SUCCUBUS_ELITE" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2300" hpgauge="11" cancel_level="40">
 		<stats maxHp="22112">
 			<speeds walk="1.5" group_walk="1.5" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
 		<bound_radius front="1.17" side="1.17" upper="4.24" />
 	</npc_template>
-	<npc_template npc_id="211747" level="32" name_en="Alluring Temptress" name_pt="Sedutora sedutora" name_id="304021" height="3.64" group_drop="SUCCUBUS" rank="EXPERT" rating="NORMAL" race="DEMIHUMANOID" tribe="SUCCUBUS_ELITE" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2299" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="211747" level="32" name_en="Alluring Temptress" name_pt="Sedutora" name_id="304021" height="3.64" group_drop="SUCCUBUS" rank="EXPERT" rating="NORMAL" race="DEMIHUMANOID" tribe="SUCCUBUS_ELITE" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2299" hpgauge="5" cancel_level="80">
 		<stats maxHp="22112">
 			<speeds walk="1.5" group_walk="1.5" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
 		<bound_radius front="1.17" side="1.17" upper="4.24" />
 	</npc_template>
-	<npc_template npc_id="211748" level="31" name_en="Enticing Temptress" name_pt="Sedutora sedutora" name_id="304022" height="4.2" group_drop="SUCCUBUS" rank="EXPERT" rating="NORMAL" race="DEMIHUMANOID" tribe="SUCCUBUS_ELITE" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2299" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="211748" level="31" name_en="Enticing Temptress" name_pt="Sedutora" name_id="304022" height="4.2" group_drop="SUCCUBUS" rank="EXPERT" rating="NORMAL" race="DEMIHUMANOID" tribe="SUCCUBUS_ELITE" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2299" hpgauge="5" cancel_level="80">
 		<stats maxHp="20858">
 			<speeds walk="1.5" group_walk="1.5" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
 		<bound_radius front="1.35" side="1.35" upper="4.8" />
 	</npc_template>
-	<npc_template npc_id="211749" level="32" name_en="Enticing Temptress" name_pt="Sedutora sedutora" name_id="304023" height="4.2" group_drop="SUCCUBUS" rank="EXPERT" rating="NORMAL" race="DEMIHUMANOID" tribe="SUCCUBUS_ELITE" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2299" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="211749" level="32" name_en="Enticing Temptress" name_pt="Sedutora" name_id="304023" height="4.2" group_drop="SUCCUBUS" rank="EXPERT" rating="NORMAL" race="DEMIHUMANOID" tribe="SUCCUBUS_ELITE" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2299" hpgauge="5" cancel_level="80">
 		<stats maxHp="22112">
 			<speeds walk="1.5" group_walk="1.5" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
@@ -55115,13 +55115,13 @@
 		</stats>
 		<bound_radius front="1" side="3" upper="4.65" />
 	</npc_template>
-	<npc_template npc_id="211760" level="28" name_en="Seductive Temptress" name_pt="Sedutora sedutora" name_id="304034" height="2.8" group_drop="SUCCUBUS" rank="EXPERT" rating="NORMAL" race="DEMIHUMANOID" tribe="SUCCUBUS_ELITE" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2299" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="211760" level="28" name_en="Seductive Temptress" name_pt="Sedutora" name_id="304034" height="2.8" group_drop="SUCCUBUS" rank="EXPERT" rating="NORMAL" race="DEMIHUMANOID" tribe="SUCCUBUS_ELITE" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2299" hpgauge="5" cancel_level="80">
 		<stats maxHp="4454">
 			<speeds walk="1.5" group_walk="1.5" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
 		<bound_radius front="0.9" side="0.9" upper="3.4" />
 	</npc_template>
-	<npc_template npc_id="211761" level="29" name_en="Seductive Temptress" name_pt="Sedutora sedutora" name_id="304035" height="2.8" group_drop="SUCCUBUS" rank="EXPERT" rating="NORMAL" race="DEMIHUMANOID" tribe="SUCCUBUS_ELITE" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2299" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="211761" level="29" name_en="Seductive Temptress" name_pt="Sedutora" name_id="304035" height="2.8" group_drop="SUCCUBUS" rank="EXPERT" rating="NORMAL" race="DEMIHUMANOID" tribe="SUCCUBUS_ELITE" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2299" hpgauge="5" cancel_level="80">
 		<stats maxHp="4757">
 			<speeds walk="1.5" group_walk="1.5" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
@@ -55341,7 +55341,7 @@
 		</stats>
 		<bound_radius front="0.25" side="0.75" upper="0.42" />
 	</npc_template>
-	<npc_template npc_id="211793" level="35" name_en="MuMu Mon" name_pt="Mumu rio rio meu" name_id="304114" height="1.95" group_drop="RATMANWARRIORM" rank="NOVICE" rating="ELITE" race="BROWNIE" tribe="BROWNIE" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2100" hpgauge="10" cancel_level="50">
+	<npc_template npc_id="211793" level="35" name_en="MuMu Mon" name_pt="Mumu meu" name_id="304114" height="1.95" group_drop="RATMANWARRIORM" rank="NOVICE" rating="ELITE" race="BROWNIE" tribe="BROWNIE" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2100" hpgauge="10" cancel_level="50">
 		<stats maxHp="23165">
 			<speeds walk="1.462" group_walk="0.585" run="9.35" run_fight="14" group_run_fight="9.35" />
 		</stats>
@@ -55771,7 +55771,7 @@
 		</stats>
 		<bound_radius front="2.0735002" side="2.4375" upper="2.6" />
 	</npc_template>
-	<npc_template npc_id="211848" level="29" name_en="Seductive Temptress" name_pt="Sedutora sedutora" name_id="304179" height="3.64" group_drop="SUCCUBUS" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="SUCCUBUS_ELITE" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2300" hpgauge="3">
+	<npc_template npc_id="211848" level="29" name_en="Seductive Temptress" name_pt="Sedutora" name_id="304179" height="3.64" group_drop="SUCCUBUS" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="SUCCUBUS_ELITE" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2300" hpgauge="3">
 		<stats maxHp="3748">
 			<speeds walk="1.5" group_walk="1.5" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
@@ -58255,7 +58255,7 @@
 		</equipment>
 		<bound_radius front="0.3" side="0.3" upper="1.7" />
 	</npc_template>
-	<npc_template npc_id="212181" level="42" name_en="Head Chef Pamsey" name_pt="Chef Chef Pamsey" name_id="304993" height="2.125" title_id="350453" group_drop="LEPHAR" rank="SEASONED" rating="ELITE" race="CONSTRUCT" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="9" sangle="240" arange="2" attack_speed="2346" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="212181" level="42" name_en="Head Chef Pamsey" name_pt="Chef Pamsey" name_id="304993" height="2.125" title_id="350453" group_drop="LEPHAR" rank="SEASONED" rating="ELITE" race="CONSTRUCT" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="9" sangle="240" arange="2" attack_speed="2346" hpgauge="12" cancel_level="30">
 		<stats maxHp="62884">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="14" group_run_fight="6" />
 		</stats>
@@ -58776,7 +58776,7 @@
 		</equipment>
 		<bound_radius front="1.22395" side="0.83655" upper="2.301" />
 	</npc_template>
-	<npc_template npc_id="212231" level="39" name_en="Head Chef Paparu" name_pt="Chef Chef Paparu" name_id="305043" height="2.2" group_drop="BROWNIEF" rank="EXPERT" rating="ELITE" race="BEAST" tribe="BROWNIE" type="MONSTER" ai="aggressive" srange="6" sangle="0" arange="2" attack_speed="2100" hpgauge="13" cancel_level="20">
+	<npc_template npc_id="212231" level="39" name_en="Head Chef Paparu" name_pt="Chef Paparu" name_id="305043" height="2.2" group_drop="BROWNIEF" rank="EXPERT" rating="ELITE" race="BEAST" tribe="BROWNIE" type="MONSTER" ai="aggressive" srange="6" sangle="0" arange="2" attack_speed="2100" hpgauge="13" cancel_level="20">
 		<stats maxHp="61686">
 			<speeds walk="2" group_walk="2" run="7" run_fight="5" group_run_fight="7" />
 		</stats>
@@ -60515,7 +60515,7 @@
 		</stats>
 		<bound_radius front="1.4" side="0.72" upper="4.6" />
 	</npc_template>
-	<npc_template npc_id="212465" level="32" name_en="Wasp Vespine" name_pt="Vespa vespa" name_id="305926" height="2.9" group_drop="VESPA" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2081" hpgauge="3" floatcorpse="true">
+	<npc_template npc_id="212465" level="32" name_en="Wasp Vespine" name_pt="Vespa" name_id="305926" height="2.9" group_drop="VESPA" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2081" hpgauge="3" floatcorpse="true">
 		<stats maxHp="5268">
 			<speeds walk="5" group_walk="5" run="7.3" run_fight="5.5" group_run_fight="7.3" />
 		</stats>
@@ -61259,7 +61259,7 @@
 		</equipment>
 		<bound_radius front="0.9415" side="0.6435" upper="1.77" />
 	</npc_template>
-	<npc_template npc_id="212572" level="40" name_en="Kishar Weird Eerie" name_pt="Kishar estranho estranho" name_id="306037" height="1.77" group_drop="KRALLSHAMAN" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="16" attack_speed="2300" hpgauge="13" cancel_level="20">
+	<npc_template npc_id="212572" level="40" name_en="Kishar Weird Eerie" name_pt="Kishar estranho" name_id="306037" height="1.77" group_drop="KRALLSHAMAN" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="16" attack_speed="2300" hpgauge="13" cancel_level="20">
 		<stats maxHp="50278">
 			<speeds walk="0.778" group_walk="0.778" run="7" run_fight="6" group_run_fight="7" />
 		</stats>
@@ -61269,7 +61269,7 @@
 		</equipment>
 		<bound_radius front="0.9415" side="0.6435" upper="1.77" />
 	</npc_template>
-	<npc_template npc_id="212573" level="41" name_en="Kishar Weird Eerie" name_pt="Kishar estranho estranho" name_id="306038" height="1.77" group_drop="KRALLSHAMAN" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="16" attack_speed="2300" hpgauge="13" cancel_level="20">
+	<npc_template npc_id="212573" level="41" name_en="Kishar Weird Eerie" name_pt="Kishar estranho" name_id="306038" height="1.77" group_drop="KRALLSHAMAN" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" ai="aggressive" srange="8" sangle="240" arange="16" attack_speed="2300" hpgauge="13" cancel_level="20">
 		<stats maxHp="52761">
 			<speeds walk="0.778" group_walk="0.778" run="7" run_fight="6" group_run_fight="7" />
 		</stats>
@@ -61779,7 +61779,7 @@
 		</equipment>
 		<bound_radius front="0.315" side="0.315" upper="1.71" />
 	</npc_template>
-	<npc_template npc_id="212638" level="36" name_en="Halabana Healer" name_pt="Curandeiro Curandeiro" name_id="306459" height="1.8899999" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="270" arange="2" attack_speed="2040" hpgauge="3">
+	<npc_template npc_id="212638" level="36" name_en="Halabana Healer" name_pt="Curandeiro" name_id="306459" height="1.8899999" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="270" arange="2" attack_speed="2040" hpgauge="3">
 		<stats maxHp="6819">
 			<speeds walk="2" group_walk="2" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
@@ -61791,7 +61791,7 @@
 		</equipment>
 		<bound_radius front="0.315" side="0.315" upper="1.89" />
 	</npc_template>
-	<npc_template npc_id="212639" level="37" name_en="Halabana Healer" name_pt="Curandeiro Curandeiro" name_id="306460" height="1.8899999" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="270" arange="2" attack_speed="2040" hpgauge="3">
+	<npc_template npc_id="212639" level="37" name_en="Halabana Healer" name_pt="Curandeiro" name_id="306460" height="1.8899999" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="270" arange="2" attack_speed="2040" hpgauge="3">
 		<stats maxHp="7079">
 			<speeds walk="2" group_walk="2" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
@@ -61922,7 +61922,7 @@
 		</stats>
 		<bound_radius front="0.9" side="0.89" upper="1.47" />
 	</npc_template>
-	<npc_template npc_id="212658" level="28" name_en="Third Baby of Octanu" name_pt="Terceiro Filhote de de octanu" name_id="306541" height="1.47" group_drop="OCTASIDE_BABY" rank="EXPERT" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="6" sangle="240" arange="2" attack_speed="1938" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="212658" level="28" name_en="Third Baby of Octanu" name_pt="Terceiro Filhote de octanu" name_id="306541" height="1.47" group_drop="OCTASIDE_BABY" rank="EXPERT" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="6" sangle="240" arange="2" attack_speed="1938" hpgauge="5" cancel_level="80">
 		<stats maxHp="4454">
 			<speeds walk="2.1" group_walk="2.1" run="7.2" run_fight="5.5" group_run_fight="6" />
 		</stats>
@@ -63114,7 +63114,7 @@
 		</stats>
 		<bound_radius front="1.078" side="0.9135" upper="2.1" />
 	</npc_template>
-	<npc_template npc_id="212841" level="34" name_en="Flame Branch Flavi" name_pt="Flavi Flavi" name_id="306730" height="2.284" group_drop="SHADOWSTALKER" rank="SEASONED" rating="ELITE" race="MAGICALMONSTER" tribe="FIRETEMPLE_MOB" ai="aggressive" srange="7" sangle="240" arange="16" attack_speed="2415" hpgauge="12" floatcorpse="true" cancel_level="30">
+	<npc_template npc_id="212841" level="34" name_en="Flame Branch Flavi" name_pt="Flavi" name_id="306730" height="2.284" group_drop="SHADOWSTALKER" rank="SEASONED" rating="ELITE" race="MAGICALMONSTER" tribe="FIRETEMPLE_MOB" ai="aggressive" srange="7" sangle="240" arange="16" attack_speed="2415" hpgauge="12" floatcorpse="true" cancel_level="30">
 		<stats maxHp="45264">
 			<speeds walk="1.5" group_walk="1.5" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
@@ -65089,7 +65089,7 @@
 		</stats>
 		<bound_radius front="0.4" side="1.9" upper="2.33" />
 	</npc_template>
-	<npc_template npc_id="213070" level="34" name_en="Holy Amethyst" name_pt="El el santo Ametista" name_id="308011" height="1.3259999" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="AGGRESSIVESINGLEMONSTER" ai="servant" srange="7" sangle="240" arange="16" attack_speed="2185" hpgauge="3">
+	<npc_template npc_id="213070" level="34" name_en="Holy Amethyst" name_pt="Sagrado Ametista" name_id="308011" height="1.3259999" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="AGGRESSIVESINGLEMONSTER" ai="servant" srange="7" sangle="240" arange="16" attack_speed="2185" hpgauge="3">
 		<stats maxHp="6481">
 			<speeds walk="4.5" group_walk="4.5" run="9" run_fight="6.5" group_run_fight="9" />
 		</stats>
@@ -65395,7 +65395,7 @@
 		</stats>
 		<bound_radius front="0.9" side="0.75" upper="2.55" />
 	</npc_template>
-	<npc_template npc_id="213118" level="45" name_en="Icy Earth Spirit" name_pt="Espírito da terra theropithecus theropithecus gelada" name_id="308059" height="2.55" group_drop="ELEMENTALEARTH3" rank="DISCIPLINED" rating="NORMAL" race="ELEMENTAL" tribe="ELEMENTAL_EARTH" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2040" hpgauge="3">
+	<npc_template npc_id="213118" level="45" name_en="Icy Earth Spirit" name_pt="Espírito da terra theropithecus gelada" name_id="308059" height="2.55" group_drop="ELEMENTALEARTH3" rank="DISCIPLINED" rating="NORMAL" race="ELEMENTAL" tribe="ELEMENTAL_EARTH" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2040" hpgauge="3">
 		<stats maxHp="10850">
 			<speeds walk="1.5" group_walk="1.5" run="8" run_fight="6" group_run_fight="8" />
 		</stats>
@@ -65455,13 +65455,13 @@
 		</stats>
 		<bound_radius front="0.3773" side="0.63805" upper="1.1809" />
 	</npc_template>
-	<npc_template npc_id="213128" level="44" name_en="Frostmane Trico" name_pt="Juba Theropithecus theropithecus gelada Trico" name_id="308069" height="3.2230003" group_drop="TRICORN" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2081" hpgauge="3">
+	<npc_template npc_id="213128" level="44" name_en="Frostmane Trico" name_pt="Juba Theropithecus gelada Trico" name_id="308069" height="3.2230003" group_drop="TRICORN" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2081" hpgauge="3">
 		<stats maxHp="9450">
 			<speeds walk="0.85" group_walk="0.85" run="8" run_fight="6" group_run_fight="8" />
 		</stats>
 		<bound_radius front="0.889" side="1.4595" upper="3.223" />
 	</npc_template>
-	<npc_template npc_id="213129" level="45" name_en="Frostmane Trico" name_pt="Juba Theropithecus theropithecus gelada Trico" name_id="308070" height="3.2230003" group_drop="TRICORN" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2081" hpgauge="3">
+	<npc_template npc_id="213129" level="45" name_en="Frostmane Trico" name_pt="Juba Theropithecus gelada Trico" name_id="308070" height="3.2230003" group_drop="TRICORN" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2081" hpgauge="3">
 		<stats maxHp="9864">
 			<speeds walk="0.85" group_walk="0.85" run="8" run_fight="6" group_run_fight="8" />
 		</stats>
@@ -66364,7 +66364,7 @@
 		</equipment>
 		<bound_radius front="0.52" side="0.52" upper="1.92" />
 	</npc_template>
-	<npc_template npc_id="213263" level="36" name_en="Mine Drudge" name_pt="Rio rio meu Servo" name_id="315132" height="1.76" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="213263" level="36" name_en="Mine Drudge" name_pt="Meu Servo" name_id="315132" height="1.76" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="7501">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
@@ -66376,7 +66376,7 @@
 		</equipment>
 		<bound_radius front="0.4" side="0.4" upper="1.76" />
 	</npc_template>
-	<npc_template npc_id="213264" level="37" name_en="Mine Drudge" name_pt="Rio rio meu Servo" name_id="315133" height="1.92" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="213264" level="37" name_en="Mine Drudge" name_pt="Meu Servo" name_id="315133" height="1.92" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="7787">
 			<speeds walk="2.25" group_walk="2.25" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
@@ -66400,7 +66400,7 @@
 		</equipment>
 		<bound_radius front="0.4" side="0.4" upper="1.76" />
 	</npc_template>
-	<npc_template npc_id="213266" level="37" name_en="Mine Overseer" name_pt="O superintendente do rio rio meu" name_id="315135" height="1.76" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="213266" level="37" name_en="Mine Overseer" name_pt="O superintendente do meu" name_id="315135" height="1.76" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="8141">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
@@ -66412,7 +66412,7 @@
 		</equipment>
 		<bound_radius front="0.4" side="0.4" upper="1.76" />
 	</npc_template>
-	<npc_template npc_id="213267" level="38" name_en="Mine Overseer" name_pt="O superintendente do rio rio meu" name_id="315136" height="1.76" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="213267" level="38" name_en="Mine Overseer" name_pt="O superintendente do meu" name_id="315136" height="1.76" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="8550">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
@@ -66424,7 +66424,7 @@
 		</equipment>
 		<bound_radius front="0.4" side="0.4" upper="1.76" />
 	</npc_template>
-	<npc_template npc_id="213268" level="37" name_en="Mine Trooper" name_pt="Soldado Rio rio meu" name_id="315137" height="1.8899999" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1900" hpgauge="3">
+	<npc_template npc_id="213268" level="37" name_en="Mine Trooper" name_pt="Soldado Meu" name_id="315137" height="1.8899999" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1900" hpgauge="3">
 		<stats maxHp="5876">
 			<speeds walk="2" group_walk="2" run="6" run_fight="5" group_run_fight="4.2" />
 		</stats>
@@ -66436,7 +66436,7 @@
 		</equipment>
 		<bound_radius front="0.315" side="0.315" upper="1.89" />
 	</npc_template>
-	<npc_template npc_id="213269" level="38" name_en="Mine Trooper" name_pt="Soldado Rio rio meu" name_id="315138" height="1.8899999" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1900" hpgauge="3">
+	<npc_template npc_id="213269" level="38" name_en="Mine Trooper" name_pt="Soldado Meu" name_id="315138" height="1.8899999" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1900" hpgauge="3">
 		<stats maxHp="6171">
 			<speeds walk="2" group_walk="2" run="6" run_fight="5" group_run_fight="4.2" />
 		</stats>
@@ -66558,7 +66558,7 @@
 		</equipment>
 		<bound_radius front="0.4" side="0.4" upper="1.85" />
 	</npc_template>
-	<npc_template npc_id="213278" level="36" name_en="Mine Peon" name_pt="Rio rio meu peão" name_id="315147" height="1.92" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="213278" level="36" name_en="Mine Peon" name_pt="Meu peão" name_id="315147" height="1.92" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="7501">
 			<speeds walk="2.25" group_walk="2.25" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
@@ -66570,7 +66570,7 @@
 		</equipment>
 		<bound_radius front="0.52" side="0.52" upper="1.92" />
 	</npc_template>
-	<npc_template npc_id="213279" level="37" name_en="Mine Peon" name_pt="Rio rio meu peão" name_id="315148" height="1.76" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="213279" level="37" name_en="Mine Peon" name_pt="Meu peão" name_id="315148" height="1.76" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="3">
 		<stats maxHp="7787">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
@@ -66630,7 +66630,7 @@
 		</equipment>
 		<bound_radius front="0.4" side="0.4" upper="1.76" />
 	</npc_template>
-	<npc_template npc_id="213284" level="38" name_en="Mine Bodyguard" name_pt="Rio rio meu guarda-costas" name_id="315153" height="1.76" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="ELITE" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2205" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="213284" level="38" name_en="Mine Bodyguard" name_pt="Meu guarda-costas" name_id="315153" height="1.76" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="ELITE" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2205" hpgauge="11" cancel_level="40">
 		<stats maxHp="42124">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
@@ -66764,7 +66764,7 @@
 		</equipment>
 		<bound_radius front="0.315" side="0.315" upper="1.71" />
 	</npc_template>
-	<npc_template npc_id="213295" level="37" name_en="Mine Chanter" name_pt="O rio rio meu canta" name_id="315164" height="1.92" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="ELITE" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="213295" level="37" name_en="Mine Chanter" name_pt="O meu canta" name_id="315164" height="1.92" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="ELITE" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="11" cancel_level="40">
 		<stats maxHp="34878">
 			<speeds walk="2.25" group_walk="2.25" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
@@ -66776,7 +66776,7 @@
 		</equipment>
 		<bound_radius front="0.52" side="0.52" upper="1.92" />
 	</npc_template>
-	<npc_template npc_id="213296" level="38" name_en="Mine Chanter" name_pt="O rio rio meu canta" name_id="315165" height="1.92" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="ELITE" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="213296" level="38" name_en="Mine Chanter" name_pt="O meu canta" name_id="315165" height="1.92" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="ELITE" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="11" cancel_level="40">
 		<stats maxHp="36630">
 			<speeds walk="2.25" group_walk="2.25" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
@@ -66788,7 +66788,7 @@
 		</equipment>
 		<bound_radius front="0.52" side="0.52" upper="1.92" />
 	</npc_template>
-	<npc_template npc_id="213297" level="37" name_en="Mine High Priest" name_pt="Rio rio meu sumô sacerdote" name_id="315166" height="1.92" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="ELITE" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="213297" level="37" name_en="Mine High Priest" name_pt="Meu sumô sacerdote" name_id="315166" height="1.92" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="ELITE" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="11" cancel_level="40">
 		<stats maxHp="34878">
 			<speeds walk="2.25" group_walk="2.25" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
@@ -66800,7 +66800,7 @@
 		</equipment>
 		<bound_radius front="0.52" side="0.52" upper="1.92" />
 	</npc_template>
-	<npc_template npc_id="213298" level="38" name_en="Mine High Priest" name_pt="Rio rio meu sumô sacerdote" name_id="315167" height="1.92" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="ELITE" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="213298" level="38" name_en="Mine High Priest" name_pt="Meu sumô sacerdote" name_id="315167" height="1.92" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="ELITE" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="11" cancel_level="40">
 		<stats maxHp="36630">
 			<speeds walk="2.25" group_walk="2.25" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
@@ -69385,7 +69385,7 @@
 		</equipment>
 		<bound_radius front="0.52" side="0.52" upper="1.92" />
 	</npc_template>
-	<npc_template npc_id="213567" level="36" name_en="Mine Outrider" name_pt="Rio rio meu Outlider" name_id="315533" height="1.8899999" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="6" sangle="240" arange="2" attack_speed="1900" hpgauge="3">
+	<npc_template npc_id="213567" level="36" name_en="Mine Outrider" name_pt="Meu Outlider" name_id="315533" height="1.8899999" title_id="350453" group_drop="LEPHAR" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="6" sangle="240" arange="2" attack_speed="1900" hpgauge="3">
 		<stats maxHp="5660">
 			<speeds walk="2" group_walk="2" run="6" run_fight="5" group_run_fight="4.2" />
 		</stats>
@@ -78050,7 +78050,7 @@
 		</stats>
 		<bound_radius front="2.0625" side="0.7125" upper="3.97" />
 	</npc_template>
-	<npc_template npc_id="214693" level="50" name_en="Chief Maid Miladi" name_pt="Empregada Empregada Miladi" name_id="318192" height="2.5070002" group_drop="VAMPIRE" rank="DISCIPLINED" rating="ELITE" race="DEMIHUMANOID" tribe="AGGRESSIVESUPPORTMONSTER" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2300" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="214693" level="50" name_en="Chief Maid Miladi" name_pt="Empregada Miladi" name_id="318192" height="2.5070002" group_drop="VAMPIRE" rank="DISCIPLINED" rating="ELITE" race="DEMIHUMANOID" tribe="AGGRESSIVESUPPORTMONSTER" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2300" hpgauge="11" cancel_level="40">
 		<stats maxHp="48164">
 			<speeds walk="1.86" group_walk="1.86" run="7.5" run_fight="14" group_run_fight="7.5" />
 		</stats>
@@ -79849,7 +79849,7 @@
 		</stats>
 		<bound_radius front="0.55" side="0.55" upper="1.1" />
 	</npc_template>
-	<npc_template npc_id="214904" level="50" name_en="Brigade General Anuhart" name_pt="Brigada idéia Anuhart" name_id="318565" height="5.4" title_id="314375" group_drop="DRAKANFIGHTER" rank="VETERAN" rating="HERO" race="DRAKAN" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="10" arange="2" attack_speed="2100" hpgauge="21" cancel_level="0">
+	<npc_template npc_id="214904" level="50" name_en="Brigade General Anuhart" name_pt="General de Brigada Anuhart" name_id="318565" height="5.4" title_id="314375" group_drop="DRAKANFIGHTER" rank="VETERAN" rating="HERO" race="DRAKAN" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="10" arange="2" attack_speed="2100" hpgauge="21" cancel_level="0">
 		<stats maxHp="810838">
 			<speeds walk="1.38" group_walk="1.38" run="8" run_fight="8" group_run_fight="8" />
 		</stats>
@@ -80544,7 +80544,7 @@
 		</equipment>
 		<bound_radius front="1.08" side="0.48" upper="2.028" />
 	</npc_template>
-	<npc_template npc_id="214977" level="44" name_en="Steel Rake Sniper" name_pt="Franco-Atirador da Aço Aço" name_id="318636" height="2.028" group_drop="SHULACKRANGER" rank="NOVICE" rating="ELITE" race="SHULACK" tribe="SHULACK" type="MONSTER" ai="aggressive" srange="9" sangle="240" arange="20" attack_speed="2260" hpgauge="10" cancel_level="50">
+	<npc_template npc_id="214977" level="44" name_en="Steel Rake Sniper" name_pt="Franco-Atirador da Ancinho de Aço" name_id="318636" height="2.028" group_drop="SHULACKRANGER" rank="NOVICE" rating="ELITE" race="SHULACK" tribe="SHULACK" type="MONSTER" ai="aggressive" srange="9" sangle="240" arange="20" attack_speed="2260" hpgauge="10" cancel_level="50">
 		<stats maxHp="26971">
 			<speeds walk="1.875" group_walk="1.875" run="7" run_fight="7" group_run_fight="7" />
 		</stats>
@@ -80554,7 +80554,7 @@
 		</equipment>
 		<bound_radius front="1.08" side="0.48" upper="2.028" />
 	</npc_template>
-	<npc_template npc_id="214978" level="44" name_en="Steel Rake Sniper" name_pt="Franco-Atirador da Aço Aço" name_id="318637" height="2.028" group_drop="SHULACKRANGER" rank="NOVICE" rating="ELITE" race="SHULACK" tribe="SHULACK" type="MONSTER" ai="aggressive" srange="9" sangle="240" arange="20" attack_speed="2260" hpgauge="10" cancel_level="50">
+	<npc_template npc_id="214978" level="44" name_en="Steel Rake Sniper" name_pt="Franco-Atirador da Ancinho de Aço" name_id="318637" height="2.028" group_drop="SHULACKRANGER" rank="NOVICE" rating="ELITE" race="SHULACK" tribe="SHULACK" type="MONSTER" ai="aggressive" srange="9" sangle="240" arange="20" attack_speed="2260" hpgauge="10" cancel_level="50">
 		<stats maxHp="26971">
 			<speeds walk="1.875" group_walk="1.875" run="7" run_fight="7" group_run_fight="7" />
 		</stats>
@@ -80564,7 +80564,7 @@
 		</equipment>
 		<bound_radius front="1.08" side="0.48" upper="2.028" />
 	</npc_template>
-	<npc_template npc_id="214979" level="44" name_en="Steel Rake Sniper" name_pt="Franco-Atirador da Aço Aço" name_id="318638" height="2.028" group_drop="SHULACKRANGER" rank="NOVICE" rating="ELITE" race="SHULACK" tribe="SHULACK" type="MONSTER" ai="aggressive" srange="9" sangle="240" arange="20" attack_speed="2260" hpgauge="10" cancel_level="50">
+	<npc_template npc_id="214979" level="44" name_en="Steel Rake Sniper" name_pt="Franco-Atirador da Ancinho de Aço" name_id="318638" height="2.028" group_drop="SHULACKRANGER" rank="NOVICE" rating="ELITE" race="SHULACK" tribe="SHULACK" type="MONSTER" ai="aggressive" srange="9" sangle="240" arange="20" attack_speed="2260" hpgauge="10" cancel_level="50">
 		<stats maxHp="26971">
 			<speeds walk="1.875" group_walk="1.875" run="7" run_fight="7" group_run_fight="7" />
 		</stats>
@@ -80574,7 +80574,7 @@
 		</equipment>
 		<bound_radius front="1.08" side="0.48" upper="2.028" />
 	</npc_template>
-	<npc_template npc_id="214980" level="44" name_en="Steel Rake Sniper" name_pt="Franco-Atirador da Aço Aço" name_id="318639" height="2.028" group_drop="SHULACKRANGER" rank="DISCIPLINED" rating="ELITE" race="SHULACK" tribe="SHULACK" type="MONSTER" ai="aggressive" srange="9" sangle="240" arange="20" attack_speed="2260" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="214980" level="44" name_en="Steel Rake Sniper" name_pt="Franco-Atirador da Ancinho de Aço" name_id="318639" height="2.028" group_drop="SHULACKRANGER" rank="DISCIPLINED" rating="ELITE" race="SHULACK" tribe="SHULACK" type="MONSTER" ai="aggressive" srange="9" sangle="240" arange="20" attack_speed="2260" hpgauge="11" cancel_level="40">
 		<stats maxHp="44254">
 			<speeds walk="1.875" group_walk="1.875" run="7" run_fight="7" group_run_fight="7" />
 		</stats>
@@ -80584,7 +80584,7 @@
 		</equipment>
 		<bound_radius front="1.08" side="0.48" upper="2.028" />
 	</npc_template>
-	<npc_template npc_id="214981" level="44" name_en="Steel Rake Sniper" name_pt="Franco-Atirador da Aço Aço" name_id="318640" height="2.028" group_drop="SHULACKRANGER" rank="DISCIPLINED" rating="ELITE" race="SHULACK" tribe="SHULACK" type="MONSTER" ai="aggressive" srange="9" sangle="240" arange="20" attack_speed="2260" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="214981" level="44" name_en="Steel Rake Sniper" name_pt="Franco-Atirador da Ancinho de Aço" name_id="318640" height="2.028" group_drop="SHULACKRANGER" rank="DISCIPLINED" rating="ELITE" race="SHULACK" tribe="SHULACK" type="MONSTER" ai="aggressive" srange="9" sangle="240" arange="20" attack_speed="2260" hpgauge="11" cancel_level="40">
 		<stats maxHp="44254">
 			<speeds walk="1.875" group_walk="1.875" run="7" run_fight="7" group_run_fight="7" />
 		</stats>
@@ -80594,7 +80594,7 @@
 		</equipment>
 		<bound_radius front="1.08" side="0.48" upper="2.028" />
 	</npc_template>
-	<npc_template npc_id="214982" level="44" name_en="Steel Rake Sniper" name_pt="Franco-Atirador da Aço Aço" name_id="318641" height="2.028" group_drop="SHULACKRANGER" rank="NOVICE" rating="ELITE" race="SHULACK" tribe="SHULACK" type="MONSTER" ai="aggressive" srange="2" arange="20" attack_speed="2260" hpgauge="10" cancel_level="50">
+	<npc_template npc_id="214982" level="44" name_en="Steel Rake Sniper" name_pt="Franco-Atirador da Ancinho de Aço" name_id="318641" height="2.028" group_drop="SHULACKRANGER" rank="NOVICE" rating="ELITE" race="SHULACK" tribe="SHULACK" type="MONSTER" ai="aggressive" srange="2" arange="20" attack_speed="2260" hpgauge="10" cancel_level="50">
 		<stats maxHp="26971">
 			<speeds walk="1.875" group_walk="1.875" run="7" run_fight="7" group_run_fight="7" />
 		</stats>
@@ -80604,7 +80604,7 @@
 		</equipment>
 		<bound_radius front="1.08" side="0.48" upper="2.028" />
 	</npc_template>
-	<npc_template npc_id="214983" level="44" name_en="Steel Rake Sniper" name_pt="Franco-Atirador da Aço Aço" name_id="318642" height="2.028" group_drop="SHULACKRANGER" rank="NOVICE" rating="ELITE" race="SHULACK" tribe="SHULACK" type="MONSTER" ai="aggressive" srange="9" sangle="240" arange="20" attack_speed="2260" hpgauge="10" cancel_level="50">
+	<npc_template npc_id="214983" level="44" name_en="Steel Rake Sniper" name_pt="Franco-Atirador da Ancinho de Aço" name_id="318642" height="2.028" group_drop="SHULACKRANGER" rank="NOVICE" rating="ELITE" race="SHULACK" tribe="SHULACK" type="MONSTER" ai="aggressive" srange="9" sangle="240" arange="20" attack_speed="2260" hpgauge="10" cancel_level="50">
 		<stats maxHp="26971">
 			<speeds walk="1.875" group_walk="1.875" run="7" run_fight="7" group_run_fight="7" />
 		</stats>
@@ -80614,7 +80614,7 @@
 		</equipment>
 		<bound_radius front="1.08" side="0.48" upper="2.028" />
 	</npc_template>
-	<npc_template npc_id="214984" level="44" name_en="Steel Rake Sniper" name_pt="Franco-Atirador da Aço Aço" name_id="318643" height="2.028" group_drop="SHULACKRANGER" rank="DISCIPLINED" rating="ELITE" race="SHULACK" tribe="SHULACK" type="MONSTER" ai="aggressive" srange="9" sangle="240" arange="20" attack_speed="2260" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="214984" level="44" name_en="Steel Rake Sniper" name_pt="Franco-Atirador da Ancinho de Aço" name_id="318643" height="2.028" group_drop="SHULACKRANGER" rank="DISCIPLINED" rating="ELITE" race="SHULACK" tribe="SHULACK" type="MONSTER" ai="aggressive" srange="9" sangle="240" arange="20" attack_speed="2260" hpgauge="11" cancel_level="40">
 		<stats maxHp="44254">
 			<speeds walk="1.875" group_walk="1.875" run="7" run_fight="7" group_run_fight="7" />
 		</stats>
@@ -83244,7 +83244,7 @@
 		</equipment>
 		<bound_radius front="0.95" side="0.7125" upper="3.325" />
 	</npc_template>
-	<npc_template npc_id="215280" level="50" name_en="Tahabata Pyrelord" name_pt="Pyrelord Pyrelord" name_id="318949" height="10" title_id="314375" group_drop="DRAGON" rank="VETERAN" rating="HERO" race="DRAKAN" tribe="DRAGON" type="MONSTER" ai="tahabata_pyrelord" srange="30" arange="4" attack_speed="2300" hpgauge="21" cancel_level="0">
+	<npc_template npc_id="215280" level="50" name_en="Tahabata Pyrelord" name_pt="Pyrelord" name_id="318949" height="10" title_id="314375" group_drop="DRAGON" rank="VETERAN" rating="HERO" race="DRAKAN" tribe="DRAGON" type="MONSTER" ai="tahabata_pyrelord" srange="30" arange="4" attack_speed="2300" hpgauge="21" cancel_level="0">
 		<stats maxHp="1027990">
 			<speeds walk="6.75" group_walk="6.75" run="6.75" run_fight="13" group_run_fight="6.75" />
 		</stats>
@@ -85207,7 +85207,7 @@
 		</stats>
 		<bound_radius front="1.3" side="1.3" upper="4.155" />
 	</npc_template>
-	<npc_template npc_id="215525" level="52" name_en="Icy Seafoam" name_pt="Espuma theropithecus theropithecus gelada" name_id="319547" height="4" group_drop="FOAM" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="FETHLOT" ai="aggressive" srange="8" arange="16" attack_speed="2300" hpgauge="3" floatcorpse="true">
+	<npc_template npc_id="215525" level="52" name_en="Icy Seafoam" name_pt="Espuma theropithecus gelada" name_id="319547" height="4" group_drop="FOAM" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="FETHLOT" ai="aggressive" srange="8" arange="16" attack_speed="2300" hpgauge="3" floatcorpse="true">
 		<stats maxHp="10229">
 			<speeds walk="1.4" group_walk="1.4" run="7" run_fight="7" group_run_fight="7" />
 		</stats>
@@ -97362,7 +97362,7 @@
 		</equipment>
 		<bound_radius front="1.2" side="0.9" upper="4.2" />
 	</npc_template>
-	<npc_template npc_id="216942" level="55" name_en="Holy Orkanimum" name_pt="El el santo Orkanimum" name_id="322560" height="6" group_drop="SILIKA" rank="EXPERT" rating="ELITE" race="MAGICALMONSTER" tribe="CRYSTAL" type="MONSTER" ai="aggressive" srange="10" arange="30" attack_speed="2373" hpgauge="13" cancel_level="20">
+	<npc_template npc_id="216942" level="55" name_en="Holy Orkanimum" name_pt="Sagrado Orkanimum" name_id="322560" height="6" group_drop="SILIKA" rank="EXPERT" rating="ELITE" race="MAGICALMONSTER" tribe="CRYSTAL" type="MONSTER" ai="aggressive" srange="10" arange="30" attack_speed="2373" hpgauge="13" cancel_level="20">
 		<stats maxHp="82183">
 			<speeds walk="3" group_walk="3" run="12" run_fight="12" group_run_fight="5" />
 		</stats>
@@ -97426,13 +97426,13 @@
 		<stats maxHp="3128672" />
 		<bound_radius front="9.38" side="4.9" upper="18.2" />
 	</npc_template>
-	<npc_template npc_id="216953" level="53" name_en="Holy Orkanimum" name_pt="El el santo Orkanimum" name_id="322571" height="6" group_drop="SILIKA" rank="EXPERT" rating="ELITE" race="MAGICALMONSTER" tribe="CRYSTAL" type="MONSTER" ai="aggressive" srange="10" arange="30" attack_speed="2373" hpgauge="13" cancel_level="20">
+	<npc_template npc_id="216953" level="53" name_en="Holy Orkanimum" name_pt="Sagrado Orkanimum" name_id="322571" height="6" group_drop="SILIKA" rank="EXPERT" rating="ELITE" race="MAGICALMONSTER" tribe="CRYSTAL" type="MONSTER" ai="aggressive" srange="10" arange="30" attack_speed="2373" hpgauge="13" cancel_level="20">
 		<stats maxHp="5330">
 			<speeds walk="3" group_walk="3" run="12" run_fight="12" group_run_fight="5" />
 		</stats>
 		<bound_radius front="0.675" side="0.84" upper="1.53" />
 	</npc_template>
-	<npc_template npc_id="216954" level="54" name_en="Holy Orkanimum" name_pt="El el santo Orkanimum" name_id="322572" height="6" group_drop="SILIKA" rank="EXPERT" rating="ELITE" race="MAGICALMONSTER" tribe="CRYSTAL" type="MONSTER" ai="aggressive" srange="10" arange="30" attack_speed="2373" hpgauge="13" cancel_level="20">
+	<npc_template npc_id="216954" level="54" name_en="Holy Orkanimum" name_pt="Sagrado Orkanimum" name_id="322572" height="6" group_drop="SILIKA" rank="EXPERT" rating="ELITE" race="MAGICALMONSTER" tribe="CRYSTAL" type="MONSTER" ai="aggressive" srange="10" arange="30" attack_speed="2373" hpgauge="13" cancel_level="20">
 		<stats maxHp="5430">
 			<speeds walk="3" group_walk="3" run="12" run_fight="12" group_run_fight="5" />
 		</stats>
@@ -99333,7 +99333,7 @@
 		</equipment>
 		<bound_radius front="0.6" side="0.6225" upper="1.17" />
 	</npc_template>
-	<npc_template npc_id="217160" level="99" name_en="Shrew MuMu" name_pt="Mumu Mumu" name_id="322941" height="1.3259999" group_drop="RATMANSCOUTM" rank="DISCIPLINED" rating="NORMAL" race="BROWNIE" tribe="MONSTER" ai="aggressive" srange="10" sangle="240" arange="2" attack_speed="2000" hpgauge="3" cancel_level="0">
+	<npc_template npc_id="217160" level="99" name_en="Shrew MuMu" name_pt="Mumu" name_id="322941" height="1.3259999" group_drop="RATMANSCOUTM" rank="DISCIPLINED" rating="NORMAL" race="BROWNIE" tribe="MONSTER" ai="aggressive" srange="10" sangle="240" arange="2" attack_speed="2000" hpgauge="3" cancel_level="0">
 		<stats maxHp="121">
 			<speeds walk="0.6" group_walk="0.6" run="7" run_fight="5" group_run_fight="7" />
 		</stats>
@@ -99384,7 +99384,7 @@
 		</stats>
 		<bound_radius front="0.75" side="0.6" upper="3.085" />
 	</npc_template>
-	<npc_template npc_id="217166" level="50" name_en="Tahabata Pyrelord" name_pt="Pyrelord Pyrelord" name_id="322947" height="10" title_id="314375" group_drop="DRAGON" rank="VETERAN" rating="HERO" race="DRAKAN" tribe="DRAGON" ai="tahabata_pyrelord" srange="30" arange="4" attack_speed="2300" hpgauge="21" cancel_level="0">
+	<npc_template npc_id="217166" level="50" name_en="Tahabata Pyrelord" name_pt="Pyrelord" name_id="322947" height="10" title_id="314375" group_drop="DRAGON" rank="VETERAN" rating="HERO" race="DRAKAN" tribe="DRAGON" ai="tahabata_pyrelord" srange="30" arange="4" attack_speed="2300" hpgauge="21" cancel_level="0">
 		<stats maxHp="1541985">
 			<speeds walk="6.75" group_walk="6.75" run="6.75" run_fight="13" group_run_fight="6.75" />
 		</stats>
@@ -100459,7 +100459,7 @@
 		</stats>
 		<bound_radius front="0.65" side="0.55" upper="3.7" />
 	</npc_template>
-	<npc_template npc_id="217309" level="60" name_en="Brigade General Vasharti" name_pt="Brigada idéia Vasharti" name_id="323201" height="8.4" title_id="314425" group_drop="DRAKANRIDER" rank="VETERAN" rating="HERO" race="GCHIEF_DARK" tribe="IDYUN_XDRAKAN" type="MONSTER" ai="captain_xasta" srange="8" arange="2" attack_speed="2415" hpgauge="26" cancel_level="0">
+	<npc_template npc_id="217309" level="60" name_en="Brigade General Vasharti" name_pt="General de Brigada Vasharti" name_id="323201" height="8.4" title_id="314425" group_drop="DRAKANRIDER" rank="VETERAN" rating="HERO" race="GCHIEF_DARK" tribe="IDYUN_XDRAKAN" type="MONSTER" ai="captain_xasta" srange="8" arange="2" attack_speed="2415" hpgauge="26" cancel_level="0">
 		<stats maxHp="302911" msup="207">
 			<speeds walk="3.2" group_walk="7.2" run="8" run_fight="8" group_run_fight="8" />
 		</stats>
@@ -103086,7 +103086,7 @@
 		<stats maxHp="1115318" />
 		<bound_radius front="3.75" side="3.75" upper="17.1" />
 	</npc_template>
-	<npc_template npc_id="217608" level="55" name_en="Tahabata Pyrelord" name_pt="Pyrelord Pyrelord" name_id="323560" height="10" group_drop="DRAGON" rank="VETERAN" rating="HERO" race="DRAKAN" tribe="DRAGON" ai="aggressive" srange="50" arange="4" attack_speed="2300" hpgauge="21" floatcorpse="true" cancel_level="0">
+	<npc_template npc_id="217608" level="55" name_en="Tahabata Pyrelord" name_pt="Pyrelord" name_id="323560" height="10" group_drop="DRAGON" rank="VETERAN" rating="HERO" race="DRAKAN" tribe="DRAGON" ai="aggressive" srange="50" arange="4" attack_speed="2300" hpgauge="21" floatcorpse="true" cancel_level="0">
 		<stats maxHp="1115318">
 			<speeds walk="6.75" group_walk="6.75" run="6.75" run_fight="13" group_run_fight="6.75" />
 		</stats>
@@ -103972,13 +103972,13 @@
 		</stats>
 		<bound_radius front="0.45149997" side="0.41474998" upper="0.595" />
 	</npc_template>
-	<npc_template npc_id="217721" level="35" name_en="Dawn Frost Potcrab" name_pt="Caranguejo da Aurora polar polar Geada" name_id="323715" height="0.595" title_id="314438" group_drop="POTCRAB" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="3">
+	<npc_template npc_id="217721" level="35" name_en="Dawn Frost Potcrab" name_pt="Caranguejo da Aurora Geada" name_id="323715" height="0.595" title_id="314438" group_drop="POTCRAB" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="3">
 		<stats maxHp="6820">
 			<speeds walk="1" group_walk="1" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
 		<bound_radius front="0.45149997" side="0.41474998" upper="0.595" />
 	</npc_template>
-	<npc_template npc_id="217722" level="36" name_en="Dawn Frost Potcrab" name_pt="Caranguejo da Aurora polar polar Geada" name_id="323716" height="0.595" title_id="314438" group_drop="POTCRAB" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="3">
+	<npc_template npc_id="217722" level="36" name_en="Dawn Frost Potcrab" name_pt="Caranguejo da Aurora Geada" name_id="323716" height="0.595" title_id="314438" group_drop="POTCRAB" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="3">
 		<stats maxHp="7144">
 			<speeds walk="1" group_walk="1" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
@@ -104020,13 +104020,13 @@
 		</stats>
 		<bound_radius front="0.5625" side="0.4225" upper="0.88" />
 	</npc_template>
-	<npc_template npc_id="217729" level="35" name_en="Dawn Frost Starcrab" name_pt="Caranguejo Estelar da Aurora polar polar Geada" name_id="323723" height="0.88" title_id="314438" group_drop="STARCRAB" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="3">
+	<npc_template npc_id="217729" level="35" name_en="Dawn Frost Starcrab" name_pt="Caranguejo Estelar da Aurora Geada" name_id="323723" height="0.88" title_id="314438" group_drop="STARCRAB" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="3">
 		<stats maxHp="6820">
 			<speeds walk="0.57" group_walk="0.57" run="7" run_fight="5" group_run_fight="7" />
 		</stats>
 		<bound_radius front="0.5625" side="0.4225" upper="0.88" />
 	</npc_template>
-	<npc_template npc_id="217730" level="36" name_en="Dawn Frost Starcrab" name_pt="Caranguejo Estelar da Aurora polar polar Geada" name_id="323724" height="0.88" title_id="314438" group_drop="STARCRAB" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="3">
+	<npc_template npc_id="217730" level="36" name_en="Dawn Frost Starcrab" name_pt="Caranguejo Estelar da Aurora Geada" name_id="323724" height="0.88" title_id="314438" group_drop="STARCRAB" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="3">
 		<stats maxHp="7144">
 			<speeds walk="0.57" group_walk="0.57" run="7" run_fight="5" group_run_fight="7" />
 		</stats>
@@ -105098,7 +105098,7 @@
 		</stats>
 		<bound_radius front="0.6" side="0.6" upper="2.91" />
 	</npc_template>
-	<npc_template npc_id="218214" level="55" name_en="Weakened Holy Servant" name_pt="El el santo servo enfraquecido" name_id="324215" height="1.02" group_drop="NONE" rank="NOVICE" rating="NORMAL" race="MAGICALMONSTER" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="servant" srange="50" arange="25" attack_speed="2100" hpgauge="2" floatcorpse="true">
+	<npc_template npc_id="218214" level="55" name_en="Weakened Holy Servant" name_pt="Sagrado servo enfraquecido" name_id="324215" height="1.02" group_drop="NONE" rank="NOVICE" rating="NORMAL" race="MAGICALMONSTER" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="servant" srange="50" arange="25" attack_speed="2100" hpgauge="2" floatcorpse="true">
 		<stats maxHp="1924" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -105692,19 +105692,19 @@
 		<stats maxHp="92835" />
 		<bound_radius front="3.6" side="2.95" upper="4.7" />
 	</npc_template>
-	<npc_template npc_id="218806" level="50" name_en="Casus Manor Chief Maid" name_pt="Casus Mansão Empregada Empregada" name_id="325662" height="2.6160002" title_id="372153" group_drop="VAMPIRE" rank="SEASONED" rating="NORMAL" race="DEMIHUMANOID" tribe="AGGRESSIVESUPPORTMONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1900" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="218806" level="50" name_en="Casus Manor Chief Maid" name_pt="Casus Mansão Empregada" name_id="325662" height="2.6160002" title_id="372153" group_drop="VAMPIRE" rank="SEASONED" rating="NORMAL" race="DEMIHUMANOID" tribe="AGGRESSIVESUPPORTMONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1900" hpgauge="4" cancel_level="90">
 		<stats maxHp="5013">
 			<speeds walk="1" group_walk="1.86" run="9" run_fight="9" group_run_fight="7.5" />
 		</stats>
 		<bound_radius front="1.65" side="0.57" upper="3.316" />
 	</npc_template>
-	<npc_template npc_id="218807" level="55" name_en="Casus Manor Chief Maid" name_pt="Casus Mansão Empregada Empregada" name_id="325662" height="2.6160002" title_id="372153" group_drop="VAMPIRE" rank="SEASONED" rating="NORMAL" race="DEMIHUMANOID" tribe="AGGRESSIVESUPPORTMONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1900" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="218807" level="55" name_en="Casus Manor Chief Maid" name_pt="Casus Mansão Empregada" name_id="325662" height="2.6160002" title_id="372153" group_drop="VAMPIRE" rank="SEASONED" rating="NORMAL" race="DEMIHUMANOID" tribe="AGGRESSIVESUPPORTMONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1900" hpgauge="4" cancel_level="90">
 		<stats maxHp="15544">
 			<speeds walk="1" group_walk="1.86" run="9" run_fight="9" group_run_fight="7.5" />
 		</stats>
 		<bound_radius front="1.65" side="0.57" upper="3.316" />
 	</npc_template>
-	<npc_template npc_id="218808" level="60" name_en="Casus Manor Chief Maid" name_pt="Casus Mansão Empregada Empregada" name_id="325662" height="2.6160002" title_id="372153" group_drop="VAMPIRE" rank="SEASONED" rating="NORMAL" race="DEMIHUMANOID" tribe="AGGRESSIVESUPPORTMONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1900" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="218808" level="60" name_en="Casus Manor Chief Maid" name_pt="Casus Mansão Empregada" name_id="325662" height="2.6160002" title_id="372153" group_drop="VAMPIRE" rank="SEASONED" rating="NORMAL" race="DEMIHUMANOID" tribe="AGGRESSIVESUPPORTMONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="1900" hpgauge="4" cancel_level="90">
 		<stats maxHp="19821">
 			<speeds walk="1" group_walk="1.86" run="9" run_fight="9" group_run_fight="7.5" />
 		</stats>
@@ -106193,7 +106193,7 @@
 		</equipment>
 		<bound_radius front="5.5" side="5.5" upper="6.8" />
 	</npc_template>
-	<npc_template npc_id="218906" level="60" name_en="Nether Slime" name_pt="Bakarma Especial Especial" name_id="325895" height="5.5" group_drop="SIEGEWEAPON" rank="SEASONED" rating="NORMAL" race="MAGICALMONSTER" tribe="IDYUN_XDRAKAN" type="ABYSS_GUARD" ai="aggressive" srange="10" sangle="180" arange="2" attack_speed="2142" hpgauge="20" cancel_level="90">
+	<npc_template npc_id="218906" level="60" name_en="Nether Slime" name_pt="Bakarma Especial" name_id="325895" height="5.5" group_drop="SIEGEWEAPON" rank="SEASONED" rating="NORMAL" race="MAGICALMONSTER" tribe="IDYUN_XDRAKAN" type="ABYSS_GUARD" ai="aggressive" srange="10" sangle="180" arange="2" attack_speed="2142" hpgauge="20" cancel_level="90">
 		<stats maxHp="30017">
 			<speeds walk="0.6" group_walk="0.6" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
@@ -110793,7 +110793,7 @@
 		</stats>
 		<bound_radius front="0.4" side="0.4" upper="1.76" />
 	</npc_template>
-	<npc_template npc_id="219469" level="55" name_en="Mutant Mine Trooper" name_pt="Soldado Dialeto dialeto mineiro Mutante" name_id="343023" title_id="350453" height="1.372" group_drop="CHERUBIM" rank="DISCIPLINED" rating="ELITE" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" attack_speed="1900" hpgauge="3" cancel_level="40" arange="2">
+	<npc_template npc_id="219469" level="55" name_en="Mutant Mine Trooper" name_pt="Soldado Dialeto mineiro Mutante" name_id="343023" title_id="350453" height="1.372" group_drop="CHERUBIM" rank="DISCIPLINED" rating="ELITE" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" attack_speed="1900" hpgauge="3" cancel_level="40" arange="2">
 		<stats maxHp="5546" >
 			<speeds walk="2" group_walk="2" run="6" run_fight="5" group_run_fight="4.2" />
 		</stats>
@@ -110853,7 +110853,7 @@
 		</stats>
 		<bound_radius front="0.52" side="0.52" upper="1.92" />
 	</npc_template>
-	<npc_template npc_id="219479" level="60" name_en="Mutant Mine Labourer" name_pt="Trabalhador Dialeto dialeto mineiro Mutante" name_id="343033" title_id="350453" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" sangle="0" attack_speed="2100" hpgauge="3" cancel_level="50" arange="2" srange="8">
+	<npc_template npc_id="219479" level="60" name_en="Mutant Mine Labourer" name_pt="Trabalhador Dialeto mineiro Mutante" name_id="343033" title_id="350453" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" sangle="0" attack_speed="2100" hpgauge="3" cancel_level="50" arange="2" srange="8">
 		<stats maxHp="10" >
 			<speeds walk="2.25" group_walk="2.25" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
@@ -111212,7 +111212,7 @@
 		</equipment>
 		<bound_radius front="1" side="1" upper="4.3" />
 	</npc_template>
-	<npc_template npc_id="219525" level="65" name_en="Mutant Frostmane Trico" name_pt="Mutante Juba Theropithecus theropithecus gelada Trico" name_id="343079" height="3.223" group_drop="BROWNIEF" rank="NOVICE" rating="ELITE" race="MAGICALMONSTER" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="aggressive" srange="7" arange="2" attack_speed="2142" hpgauge="3" cancel_level="50">
+	<npc_template npc_id="219525" level="65" name_en="Mutant Frostmane Trico" name_pt="Mutante Juba Theropithecus gelada Trico" name_id="343079" height="3.223" group_drop="BROWNIEF" rank="NOVICE" rating="ELITE" race="MAGICALMONSTER" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="aggressive" srange="7" arange="2" attack_speed="2142" hpgauge="3" cancel_level="50">
 		<stats maxHp="4062" attack="1000" abnormal_resist="1">
 			<speeds walk="0.85" group_walk="0.85" run="8" run_fight="6" group_run_fight="8" />
 		</stats>
@@ -113041,7 +113041,7 @@
 		</stats>
 		<bound_radius front="0.52" side="0.52" upper="2.405" />
 	</npc_template>
-	<npc_template npc_id="219796" level="65" name_en="Mutant Mine Trooper" name_pt="Soldado Dialeto dialeto mineiro Mutante" name_id="343350" title_id="350453" height="2.7" group_drop="VARANUS" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" arange="2" attack_speed="1900" cast_speed="800" hpgauge="3">
+	<npc_template npc_id="219796" level="65" name_en="Mutant Mine Trooper" name_pt="Soldado Dialeto mineiro Mutante" name_id="343350" title_id="350453" height="2.7" group_drop="VARANUS" rank="DISCIPLINED" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" arange="2" attack_speed="1900" cast_speed="800" hpgauge="3">
 		<stats maxHp="18699">
 			<speeds walk="2" group_walk="2" run="6" run_fight="5" group_run_fight="4.2" />
 		</stats>
@@ -120022,7 +120022,7 @@
 		</equipment>
 		<bound_radius front="0.325" side="0.455" upper="2.6" />
 	</npc_template>
-	<npc_template npc_id="221007" level="65" name_en="Reian Naduka Priest Warrior" name_pt="Asmodian Asmodian Guardião" name_id="345873" height="2.59" tribe="LDF4B_FANATIC" type="MONSTER" ai="aggressive" srange="8" arange="2" attack_speed="2100" hpgauge="3" rating="NORMAL" rank="SEASONED" race="DEMIHUMANOID" group_drop="NONE" title_id="345961">
+	<npc_template npc_id="221007" level="65" name_en="Reian Naduka Priest Warrior" name_pt="Asmodian Guardião" name_id="345873" height="2.59" tribe="LDF4B_FANATIC" type="MONSTER" ai="aggressive" srange="8" arange="2" attack_speed="2100" hpgauge="3" rating="NORMAL" rank="SEASONED" race="DEMIHUMANOID" group_drop="NONE" title_id="345961">
 		<stats maxHp="35000">
 			<speeds walk="1.457" group_walk="1.457" run="5" run_fight="7" group_run_fight="8" />
 		</stats>
@@ -121218,17 +121218,17 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="250010" level="1" name_en="Aurora Heal Artefact - Elyos" name_pt="Aurora polar polar cura artefato - Elyos" name_id="301434" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" abyss_type="ARTIFACT" ai="artifact" srange="8" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="250010" level="1" name_en="Aurora Heal Artefact - Elyos" name_pt="Aurora cura artefato - Elyos" name_id="301434" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" abyss_type="ARTIFACT" ai="artifact" srange="8" attack_speed="2100" hpgauge="3">
 		<stats maxHp="108" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="250011" level="1" name_en="Aurora Heal Artefact - Asmodians" name_pt="Aurora polar polar cura artefato - asmodianos" name_id="301435" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" abyss_type="ARTIFACT" ai="artifact" srange="8" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="250011" level="1" name_en="Aurora Heal Artefact - Asmodians" name_pt="Aurora cura artefato - asmodianos" name_id="301435" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" abyss_type="ARTIFACT" ai="artifact" srange="8" attack_speed="2100" hpgauge="3">
 		<stats maxHp="114" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="250012" level="1" name_en="Aurora Heal Artefact - Balaur" name_pt="Aurora polar polar curar artefato - Balaur" name_id="301436" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="DRAGON" tribe="GENERAL_DRAGON" type="GENERAL" abyss_type="ARTIFACT" ai="artifact" srange="8" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="250012" level="1" name_en="Aurora Heal Artefact - Balaur" name_pt="Aurora curar artefato - Balaur" name_id="301436" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="DRAGON" tribe="GENERAL_DRAGON" type="GENERAL" abyss_type="ARTIFACT" ai="artifact" srange="8" attack_speed="2100" hpgauge="3">
 		<stats maxHp="106" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
@@ -121338,91 +121338,91 @@
 		</stats>
 		<bound_radius front="5" side="4.2" upper="7.395" />
 	</npc_template>
-	<npc_template npc_id="250031" level="1" name_en="Aurora Heal Defence NPC – Elyos Level 1" name_pt="Aurora polar polar Cura Defesa NPC - Elyos Nível 1" name_id="301455" height="2.92" group_drop="TRICORN" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD_LIGHTMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="general" srange="10" sangle="270" arange="2" attack_speed="2100" cast_speed="100" hpgauge="3">
+	<npc_template npc_id="250031" level="1" name_en="Aurora Heal Defence NPC – Elyos Level 1" name_pt="Aurora Cura Defesa NPC - Elyos Nível 1" name_id="301455" height="2.92" group_drop="TRICORN" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD_LIGHTMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="general" srange="10" sangle="270" arange="2" attack_speed="2100" cast_speed="100" hpgauge="3">
 		<stats maxHp="3981">
 			<speeds walk="1.057" group_walk="1.057" run="8" run_fight="6" group_run_fight="8" />
 		</stats>
 		<bound_radius front="0.5065" side="1.652" upper="2.92" />
 	</npc_template>
-	<npc_template npc_id="250032" level="1" name_en="Aurora Heal Defence NPC – Elyos Level 2" name_pt="Aurora polar polar Cura Defesa NPC - Elyos Nível 2" name_id="301456" height="2.93" group_drop="TRICORN" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD_LIGHTMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="general" srange="10" sangle="270" arange="2" attack_speed="2100" cast_speed="100" hpgauge="3">
+	<npc_template npc_id="250032" level="1" name_en="Aurora Heal Defence NPC – Elyos Level 2" name_pt="Aurora Cura Defesa NPC - Elyos Nível 2" name_id="301456" height="2.93" group_drop="TRICORN" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD_LIGHTMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="general" srange="10" sangle="270" arange="2" attack_speed="2100" cast_speed="100" hpgauge="3">
 		<stats maxHp="3981">
 			<speeds walk="1.057" group_walk="1.057" run="8" run_fight="6" group_run_fight="8" />
 		</stats>
 		<bound_radius front="0.5065" side="1.652" upper="2.93" />
 	</npc_template>
-	<npc_template npc_id="250033" level="1" name_en="Aurora Heal Defence NPC – Elyos Level 3" name_pt="Aurora polar polar Cura Defesa NPC - Elyos Nível 3" name_id="301457" height="2.94" group_drop="TRICORN" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD_LIGHTMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="general" srange="10" sangle="270" arange="2" attack_speed="2100" cast_speed="100" hpgauge="3">
+	<npc_template npc_id="250033" level="1" name_en="Aurora Heal Defence NPC – Elyos Level 3" name_pt="Aurora Cura Defesa NPC - Elyos Nível 3" name_id="301457" height="2.94" group_drop="TRICORN" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD_LIGHTMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="general" srange="10" sangle="270" arange="2" attack_speed="2100" cast_speed="100" hpgauge="3">
 		<stats maxHp="3981">
 			<speeds walk="1.057" group_walk="1.057" run="8" run_fight="6" group_run_fight="8" />
 		</stats>
 		<bound_radius front="0.5065" side="1.652" upper="2.94" />
 	</npc_template>
-	<npc_template npc_id="250034" level="1" name_en="Aurora Heal Defence NPC – Elyos Level 4" name_pt="Aurora polar polar Cura Defesa NPC - Elyos Nível 4" name_id="301458" height="2.94" group_drop="TRICORN" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD_LIGHTMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="general" srange="10" sangle="270" arange="2" attack_speed="2100" cast_speed="100" hpgauge="3">
+	<npc_template npc_id="250034" level="1" name_en="Aurora Heal Defence NPC – Elyos Level 4" name_pt="Aurora Cura Defesa NPC - Elyos Nível 4" name_id="301458" height="2.94" group_drop="TRICORN" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD_LIGHTMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="general" srange="10" sangle="270" arange="2" attack_speed="2100" cast_speed="100" hpgauge="3">
 		<stats maxHp="3981">
 			<speeds walk="1.057" group_walk="1.057" run="8" run_fight="6" group_run_fight="8" />
 		</stats>
 		<bound_radius front="0.5065" side="1.652" upper="2.94" />
 	</npc_template>
-	<npc_template npc_id="250035" level="1" name_en="Aurora Heal Defence NPC – Elyos Level 5" name_pt="Aurora polar polar Cura Defesa NPC - Elyos Nível 5" name_id="301459" height="2.94" group_drop="TRICORN" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD_LIGHTMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="general" srange="10" sangle="270" arange="2" attack_speed="2100" cast_speed="100" hpgauge="3">
+	<npc_template npc_id="250035" level="1" name_en="Aurora Heal Defence NPC – Elyos Level 5" name_pt="Aurora Cura Defesa NPC - Elyos Nível 5" name_id="301459" height="2.94" group_drop="TRICORN" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GUARD_LIGHTMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="general" srange="10" sangle="270" arange="2" attack_speed="2100" cast_speed="100" hpgauge="3">
 		<stats maxHp="3981">
 			<speeds walk="1.057" group_walk="1.057" run="8" run_fight="6" group_run_fight="8" />
 		</stats>
 		<bound_radius front="0.5065" side="1.652" upper="2.94" />
 	</npc_template>
-	<npc_template npc_id="250036" level="1" name_en="Aurora Heal Defence NPC – Asmodians Level 1" name_pt="Aurora polar polar Cura Defesa NPC - Asmodianos Nível 1" name_id="301460" height="2.895" group_drop="LICH" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARKMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="general" srange="10" sangle="270" arange="25" attack_speed="2100" cast_speed="100" hpgauge="3">
+	<npc_template npc_id="250036" level="1" name_en="Aurora Heal Defence NPC – Asmodians Level 1" name_pt="Aurora Cura Defesa NPC - Asmodianos Nível 1" name_id="301460" height="2.895" group_drop="LICH" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARKMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="general" srange="10" sangle="270" arange="25" attack_speed="2100" cast_speed="100" hpgauge="3">
 		<stats maxHp="3981">
 			<speeds walk="1.024" group_walk="1.024" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
 		<bound_radius front="1.646" side="0.766" upper="2.895" />
 	</npc_template>
-	<npc_template npc_id="250037" level="1" name_en="Aurora Heal Defence NPC – Asmodians Level 2" name_pt="Aurora polar polar Cura Defesa NPC - Asmodianos Nível 2" name_id="301461" height="2.895" group_drop="LICH" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARKMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="general" srange="10" sangle="270" arange="25" attack_speed="2100" cast_speed="100" hpgauge="3">
+	<npc_template npc_id="250037" level="1" name_en="Aurora Heal Defence NPC – Asmodians Level 2" name_pt="Aurora Cura Defesa NPC - Asmodianos Nível 2" name_id="301461" height="2.895" group_drop="LICH" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARKMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="general" srange="10" sangle="270" arange="25" attack_speed="2100" cast_speed="100" hpgauge="3">
 		<stats maxHp="3981">
 			<speeds walk="1.024" group_walk="1.024" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
 		<bound_radius front="1.646" side="0.766" upper="2.895" />
 	</npc_template>
-	<npc_template npc_id="250038" level="1" name_en="Aurora Heal Defence NPC – Asmodians Level 3" name_pt="Aurora polar polar Cura Defesa NPC - Asmodianos Nível 3" name_id="301462" height="2.895" group_drop="LICH" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARKMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="general" srange="10" sangle="270" arange="25" attack_speed="2100" cast_speed="100" hpgauge="3">
+	<npc_template npc_id="250038" level="1" name_en="Aurora Heal Defence NPC – Asmodians Level 3" name_pt="Aurora Cura Defesa NPC - Asmodianos Nível 3" name_id="301462" height="2.895" group_drop="LICH" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARKMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="general" srange="10" sangle="270" arange="25" attack_speed="2100" cast_speed="100" hpgauge="3">
 		<stats maxHp="3981">
 			<speeds walk="1.024" group_walk="1.024" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
 		<bound_radius front="1.646" side="0.766" upper="2.895" />
 	</npc_template>
-	<npc_template npc_id="250039" level="1" name_en="Aurora Heal Defence NPC – Asmodians Level 4" name_pt="Aurora polar polar Cura Defesa NPC - Asmodianos Nível 4" name_id="301463" height="2.895" group_drop="LICH" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARKMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="general" srange="10" sangle="270" arange="25" attack_speed="2100" cast_speed="100" hpgauge="3">
+	<npc_template npc_id="250039" level="1" name_en="Aurora Heal Defence NPC – Asmodians Level 4" name_pt="Aurora Cura Defesa NPC - Asmodianos Nível 4" name_id="301463" height="2.895" group_drop="LICH" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARKMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="general" srange="10" sangle="270" arange="25" attack_speed="2100" cast_speed="100" hpgauge="3">
 		<stats maxHp="3981">
 			<speeds walk="1.024" group_walk="1.024" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
 		<bound_radius front="1.646" side="0.766" upper="2.895" />
 	</npc_template>
-	<npc_template npc_id="250040" level="1" name_en="Aurora Heal Defence NPC – Asmodians Level 5" name_pt="Aurora polar polar Cura Defesa NPC - Asmodianos Nível 5" name_id="301464" height="2.895" group_drop="LICH" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARKMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="general" srange="10" sangle="270" arange="25" attack_speed="2100" cast_speed="100" hpgauge="3">
+	<npc_template npc_id="250040" level="1" name_en="Aurora Heal Defence NPC – Asmodians Level 5" name_pt="Aurora Cura Defesa NPC - Asmodianos Nível 5" name_id="301464" height="2.895" group_drop="LICH" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARKMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="general" srange="10" sangle="270" arange="25" attack_speed="2100" cast_speed="100" hpgauge="3">
 		<stats maxHp="3981">
 			<speeds walk="1.024" group_walk="1.024" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
 		<bound_radius front="1.646" side="0.766" upper="2.895" />
 	</npc_template>
-	<npc_template npc_id="250041" level="1" name_en="Aurora Heal Defence NPC – Balaur Level 1" name_pt="Aurora polar polar Cura Defesa NPC - Balaur Nível 1" name_id="301465" height="3.135" group_drop="DRAKE" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" tribe="GUARD_DRAGONMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="aggressive" srange="10" sangle="270" arange="2" attack_speed="2100" cast_speed="100" hpgauge="3">
+	<npc_template npc_id="250041" level="1" name_en="Aurora Heal Defence NPC – Balaur Level 1" name_pt="Aurora Cura Defesa NPC - Balaur Nível 1" name_id="301465" height="3.135" group_drop="DRAKE" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" tribe="GUARD_DRAGONMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="aggressive" srange="10" sangle="270" arange="2" attack_speed="2100" cast_speed="100" hpgauge="3">
 		<stats maxHp="3981">
 			<speeds walk="2.578" group_walk="2.578" run="9" run_fight="6.5" group_run_fight="9" />
 		</stats>
 		<bound_radius front="5" side="4.2" upper="7.395" />
 	</npc_template>
-	<npc_template npc_id="250042" level="1" name_en="Aurora Heal Defence NPC – Balaur Level 2" name_pt="Aurora polar polar Cura Defesa NPC - Balaur Nível 2" name_id="301466" height="3.135" group_drop="DRAKE" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" tribe="GUARD_DRAGONMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="aggressive" srange="10" sangle="270" arange="2" attack_speed="2100" cast_speed="100" hpgauge="3">
+	<npc_template npc_id="250042" level="1" name_en="Aurora Heal Defence NPC – Balaur Level 2" name_pt="Aurora Cura Defesa NPC - Balaur Nível 2" name_id="301466" height="3.135" group_drop="DRAKE" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" tribe="GUARD_DRAGONMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="aggressive" srange="10" sangle="270" arange="2" attack_speed="2100" cast_speed="100" hpgauge="3">
 		<stats maxHp="3981">
 			<speeds walk="2.578" group_walk="2.578" run="9" run_fight="6.5" group_run_fight="9" />
 		</stats>
 		<bound_radius front="5" side="4.2" upper="7.395" />
 	</npc_template>
-	<npc_template npc_id="250043" level="1" name_en="Aurora Heal Defence NPC – Balaur Level 3" name_pt="Aurora polar polar Cura Defesa NPC - Balaur Nível 3" name_id="301467" height="3.135" group_drop="DRAKE" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" tribe="GUARD_DRAGONMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="aggressive" srange="10" sangle="270" arange="2" attack_speed="2100" cast_speed="100" hpgauge="3">
+	<npc_template npc_id="250043" level="1" name_en="Aurora Heal Defence NPC – Balaur Level 3" name_pt="Aurora Cura Defesa NPC - Balaur Nível 3" name_id="301467" height="3.135" group_drop="DRAKE" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" tribe="GUARD_DRAGONMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="aggressive" srange="10" sangle="270" arange="2" attack_speed="2100" cast_speed="100" hpgauge="3">
 		<stats maxHp="3981">
 			<speeds walk="2.578" group_walk="2.578" run="9" run_fight="6.5" group_run_fight="9" />
 		</stats>
 		<bound_radius front="5" side="4.2" upper="7.395" />
 	</npc_template>
-	<npc_template npc_id="250044" level="1" name_en="Aurora Heal Defence NPC – Balaur Level 4" name_pt="Aurora polar polar Cura Defesa NPC - Balaur Nível 4" name_id="301468" height="3.135" group_drop="DRAKE" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" tribe="GUARD_DRAGONMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="aggressive" srange="10" sangle="270" arange="2" attack_speed="2100" cast_speed="100" hpgauge="3">
+	<npc_template npc_id="250044" level="1" name_en="Aurora Heal Defence NPC – Balaur Level 4" name_pt="Aurora Cura Defesa NPC - Balaur Nível 4" name_id="301468" height="3.135" group_drop="DRAKE" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" tribe="GUARD_DRAGONMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="aggressive" srange="10" sangle="270" arange="2" attack_speed="2100" cast_speed="100" hpgauge="3">
 		<stats maxHp="3981">
 			<speeds walk="2.578" group_walk="2.578" run="9" run_fight="6.5" group_run_fight="9" />
 		</stats>
 		<bound_radius front="5" side="4.2" upper="7.395" />
 	</npc_template>
-	<npc_template npc_id="250045" level="1" name_en="Aurora Heal Defence NPC – Balaur Level 5" name_pt="Aurora polar polar Cura Defesa NPC - Balaur Nível 5" name_id="301469" height="3.135" group_drop="DRAKE" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" tribe="GUARD_DRAGONMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="aggressive" srange="10" sangle="270" arange="2" attack_speed="2100" cast_speed="100" hpgauge="3">
+	<npc_template npc_id="250045" level="1" name_en="Aurora Heal Defence NPC – Balaur Level 5" name_pt="Aurora Cura Defesa NPC - Balaur Nível 5" name_id="301469" height="3.135" group_drop="DRAKE" rank="DISCIPLINED" rating="NORMAL" race="DRAKAN" tribe="GUARD_DRAGONMA" type="ABYSS_GUARD" abyss_type="BOSS" ai="aggressive" srange="10" sangle="270" arange="2" attack_speed="2100" cast_speed="100" hpgauge="3">
 		<stats maxHp="3981">
 			<speeds walk="2.578" group_walk="2.578" run="9" run_fight="6.5" group_run_fight="9" />
 		</stats>
@@ -123417,7 +123417,7 @@
 		</equipment>
 		<bound_radius front="0.35" side="0.35" upper="1.87" />
 	</npc_template>
-	<npc_template npc_id="253007" level="26" name_en="Brigade General Akius" name_pt="Brigada idéia Akius" name_id="301840" height="2.805" group_drop="UNDEADLIGHT_FI" rank="SEASONED" rating="NORMAL" race="UNDEAD" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="aggressive" srange="15" sangle="240" arange="4" attack_speed="2310" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="253007" level="26" name_en="Brigade General Akius" name_pt="General de Brigada Akius" name_id="301840" height="2.805" group_drop="UNDEADLIGHT_FI" rank="SEASONED" rating="NORMAL" race="UNDEAD" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="aggressive" srange="15" sangle="240" arange="4" attack_speed="2310" hpgauge="4" cancel_level="90">
 		<stats maxHp="5284">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="4.5" group_run_fight="6" />
 		</stats>
@@ -141787,7 +141787,7 @@
 		</stats>
 		<bound_radius front="2.014" side="0.724" upper="3.19" />
 	</npc_template>
-	<npc_template npc_id="259486" level="1" name_en="Wrath’s Mutation Artefact Core" name_pt="Ammodian Ammodian Ammodiano" name_id="345240" height="3.19" group_drop="ARTIFACT_DRAGON_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL_DRAGON" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" sangle="0" attack_speed="2000" hpgauge="10" cancel_level="50" srange="0">
+	<npc_template npc_id="259486" level="1" name_en="Wrath’s Mutation Artefact Core" name_pt="Ammodian Ammodiano" name_id="345240" height="3.19" group_drop="ARTIFACT_DRAGON_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL_DRAGON" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" sangle="0" attack_speed="2000" hpgauge="10" cancel_level="50" srange="0">
 		<stats maxHp="63102" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -142477,7 +142477,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="259648" level="1" name_en="Petrifying Smash Artefact Core" name_pt="Ammodian Ammodian Ammodiano" name_id="345241" height="3.19" group_drop="ARTIFACT_LIGHT_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" sangle="0" attack_speed="2000" hpgauge="10" cancel_level="50" srange="0">
+	<npc_template npc_id="259648" level="1" name_en="Petrifying Smash Artefact Core" name_pt="Ammodian Ammodiano" name_id="345241" height="3.19" group_drop="ARTIFACT_LIGHT_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" sangle="0" attack_speed="2000" hpgauge="10" cancel_level="50" srange="0">
 		<stats maxHp="63102" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -142856,13 +142856,13 @@
 		</stats>
 		<bound_radius front="2.014" side="0.724" upper="3.19" />
 	</npc_template>
-	<npc_template npc_id="259685" level="1" name_en="Golem Mutator Artefact Core" name_pt="Ammodian Ammodian Ammodiano" name_id="345245" height="3.19" group_drop="ARTIFACT_DARK_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL_DARK" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" sangle="0" attack_speed="2000" hpgauge="10" cancel_level="50" srange="0">
+	<npc_template npc_id="259685" level="1" name_en="Golem Mutator Artefact Core" name_pt="Ammodian Ammodiano" name_id="345245" height="3.19" group_drop="ARTIFACT_DARK_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL_DARK" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" sangle="0" attack_speed="2000" hpgauge="10" cancel_level="50" srange="0">
 		<stats maxHp="63102" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="2.014" side="0.724" upper="3.19" />
 	</npc_template>
-	<npc_template npc_id="259686" level="1" name_en="Golem Mutator Artefact Core" name_pt="Ammodian Ammodian Ammodiano" name_id="345246" height="3.19" group_drop="ARTIFACT_DRAGON_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL_DRAGON" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" sangle="0" attack_speed="2000" hpgauge="10" cancel_level="50" srange="0">
+	<npc_template npc_id="259686" level="1" name_en="Golem Mutator Artefact Core" name_pt="Ammodian Ammodiano" name_id="345246" height="3.19" group_drop="ARTIFACT_DRAGON_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL_DRAGON" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" sangle="0" attack_speed="2000" hpgauge="10" cancel_level="50" srange="0">
 		<stats maxHp="63102" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -196012,7 +196012,7 @@
 		<bound_radius front="0.75" side="0.475" upper="2.3" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="269215" level="50" name_en="Aurora" name_pt="aurora polar polar" name_id="302408" height="2" title_id="315008" group_drop="LIGHT" rank="EXPERT" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="ABYSS_GUARD" abyss_type="ETC" ai="general" srange="10" sangle="240" arange="2" attack_speed="2100" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="269215" level="50" name_en="Aurora" name_pt="aurora" name_id="302408" height="2" title_id="315008" group_drop="LIGHT" rank="EXPERT" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="ABYSS_GUARD" abyss_type="ETC" ai="general" srange="10" sangle="240" arange="2" attack_speed="2100" hpgauge="5" cancel_level="80">
 		<stats maxHp="30679">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4" group_run_fight="4.2" />
 		</stats>
@@ -217758,15 +217758,15 @@
 		<stats maxHp="5775" />
 		<bound_radius front="1.4" side="1.4" upper="7.6" />
 	</npc_template>
-	<npc_template npc_id="275124" level="1" name_en="Siel's Piercing Wrath Artefact Core" name_pt="Núcleo de artefato de ira de de Siel Piercing" name_id="312682" height="3.19" group_drop="ARTIFACT_LIGHT_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" sangle="0" attack_speed="2100" hpgauge="10" cancel_level="50">
+	<npc_template npc_id="275124" level="1" name_en="Siel's Piercing Wrath Artefact Core" name_pt="Núcleo de artefato de ira de Siel Piercing" name_id="312682" height="3.19" group_drop="ARTIFACT_LIGHT_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" sangle="0" attack_speed="2100" hpgauge="10" cancel_level="50">
 		<stats maxHp="5775" />
 		<bound_radius front="2.014" side="0.7239999" upper="3.19" />
 	</npc_template>
-	<npc_template npc_id="275125" level="1" name_en="Siel's Piercing Wrath Artefact Core" name_pt="Núcleo de artefato de ira de de Siel Piercing" name_id="312683" height="3.19" group_drop="ARTIFACT_DARK_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL_DARK" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" sangle="0" attack_speed="2100" hpgauge="10" cancel_level="50">
+	<npc_template npc_id="275125" level="1" name_en="Siel's Piercing Wrath Artefact Core" name_pt="Núcleo de artefato de ira de Siel Piercing" name_id="312683" height="3.19" group_drop="ARTIFACT_DARK_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL_DARK" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" sangle="0" attack_speed="2100" hpgauge="10" cancel_level="50">
 		<stats maxHp="2828" />
 		<bound_radius front="2.014" side="0.7239999" upper="3.19" />
 	</npc_template>
-	<npc_template npc_id="275126" level="1" name_en="Siel's Piercing Wrath Artefact Core" name_pt="Núcleo de artefato de ira de de Siel Piercing" name_id="312684" height="3.19" group_drop="ARTIFACT_DRAGON_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL_DRAGON" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" sangle="0" attack_speed="2100" hpgauge="10" cancel_level="50">
+	<npc_template npc_id="275126" level="1" name_en="Siel's Piercing Wrath Artefact Core" name_pt="Núcleo de artefato de ira de Siel Piercing" name_id="312684" height="3.19" group_drop="ARTIFACT_DRAGON_CORE" rank="NOVICE" rating="ELITE" race="CONSTRUCT" tribe="GENERAL_DRAGON" type="MONSTER" abyss_type="ARTIFACT_EFFECT_CORE" ai="noaction" sangle="0" attack_speed="2100" hpgauge="10" cancel_level="50">
 		<stats maxHp="2828" />
 		<bound_radius front="2.014" side="0.7239999" upper="3.19" />
 	</npc_template>
@@ -227497,7 +227497,7 @@
 		<bound_radius front="0.3" side="0.42" upper="2.4" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="278511" level="45" name_en="Minon" name_pt="Rio rio meu" name_id="313511" height="2" title_id="315010" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="278511" level="45" name_en="Minon" name_pt="Meu" name_id="313511" height="2" title_id="315010" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="12428">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -230982,7 +230982,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="2.565" upper="3.375" />
 	</npc_template>
-	<npc_template npc_id="279109" level="65" name_en="Elyos Artefact: Fires of Hell" name_pt="Você se arrependerá de entrar no rio rio meu domínio!" name_id="342617" height="2" group_drop="LIGHT" rank="NOVICE" rating="ELITE" race="ELYOS" tribe="GENERAL" type="ABYSS_GUARD" ai="general" srange="10" arange="37" attack_speed="2100" hpgauge="3" cancel_level="50">
+	<npc_template npc_id="279109" level="65" name_en="Elyos Artefact: Fires of Hell" name_pt="Você se arrependerá de entrar no meu domínio!" name_id="342617" height="2" group_drop="LIGHT" rank="NOVICE" rating="ELITE" race="ELYOS" tribe="GENERAL" type="ABYSS_GUARD" ai="general" srange="10" arange="37" attack_speed="2100" hpgauge="3" cancel_level="50">
 		<stats maxHp="43274">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -231094,7 +231094,7 @@
 		</equipment>
 		<bound_radius front="0.3375" side="0.4725" upper="2.7" />
 	</npc_template>
-	<npc_template npc_id="279117" level="1" name_en="Artefact Sentinel" name_pt="Tu causou muita tristeza no rio rio meu navio. Ágora é hora de pagar!" name_id="342625" height="2.4" group_drop="LIGHT" rank="VETERAN" rating="ELITE" race="GCHIEF_LIGHT" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="artifact_protector" srange="10" arange="37" attack_speed="2260" hpgauge="21" cancel_level="20">
+	<npc_template npc_id="279117" level="1" name_en="Artefact Sentinel" name_pt="Tu causou muita tristeza no meu navio. Ágora é hora de pagar!" name_id="342625" height="2.4" group_drop="LIGHT" rank="VETERAN" rating="ELITE" race="GCHIEF_LIGHT" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="artifact_protector" srange="10" arange="37" attack_speed="2260" hpgauge="21" cancel_level="20">
 		<stats maxHp="130432" msup="817">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -231634,7 +231634,7 @@
 		<bound_radius front="0.3375" side="0.4725" upper="2.7" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="279159" level="65" name_en="Artefact Shepherd" name_pt="Fora do rio rio meu caminho!" name_id="342667" height="3.375" group_drop="AB_CASTLEDOOR" rank="VETERAN" rating="LEGENDARY" race="DRAKAN" tribe="F4GUARD_DRAGON" type="ABYSS_GUARD" abyss_type="GUARD" ai="aggressive" srange="10" attack_speed="2040" hpgauge="5" cancel_level="0" arange="4">
+	<npc_template npc_id="279159" level="65" name_en="Artefact Shepherd" name_pt="Fora do meu caminho!" name_id="342667" height="3.375" group_drop="AB_CASTLEDOOR" rank="VETERAN" rating="LEGENDARY" race="DRAKAN" tribe="F4GUARD_DRAGON" type="ABYSS_GUARD" abyss_type="GUARD" ai="aggressive" srange="10" attack_speed="2040" hpgauge="5" cancel_level="0" arange="4">
 		<stats maxHp="30173444" msup="1335" >
 			<speeds walk="1.07" group_walk="1.38" run="6" run_fight="7" group_run_fight="8" />
 		</stats>
@@ -233874,7 +233874,7 @@
 		</equipment>
 		<bound_radius front="0.3375" side="0.4725" upper="2.7" />
 	</npc_template>
-	<npc_template npc_id="279321" level="65" name_en="Phanoe Valley Base Murderer" name_pt="Espírito Velho do Geada Geada" name_id="342917" height="2.4" group_drop="LIGHT" rank="NOVICE" rating="ELITE" race="ASMODIANS" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="aggressive" srange="10" arange="2" attack_speed="1900" hpgauge="5" cancel_level="50">
+	<npc_template npc_id="279321" level="65" name_en="Phanoe Valley Base Murderer" name_pt="Espírito Velho do Geada" name_id="342917" height="2.4" group_drop="LIGHT" rank="NOVICE" rating="ELITE" race="ASMODIANS" tribe="F4GUARD_DARK" type="ABYSS_GUARD" ai="aggressive" srange="10" arange="2" attack_speed="1900" hpgauge="5" cancel_level="50">
 		<stats maxHp="45360" >
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -246037,7 +246037,7 @@
 		</stats>
 		<bound_radius front="3.5" side="3.5" upper="17" />
 	</npc_template>
-	<npc_template npc_id="280778" level="42" name_en="Head Chef Pamsey" name_pt="Chef Chef Pamsey" name_id="316165" height="1.7" title_id="350453" group_drop="LEPHAR" rank="EXPERT" rating="HERO" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="12" sangle="240" arange="2" attack_speed="2040" hpgauge="20" cancel_level="0">
+	<npc_template npc_id="280778" level="42" name_en="Head Chef Pamsey" name_pt="Chef Pamsey" name_id="316165" height="1.7" title_id="350453" group_drop="LEPHAR" rank="EXPERT" rating="HERO" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="12" sangle="240" arange="2" attack_speed="2040" hpgauge="20" cancel_level="0">
 		<stats maxHp="4239">
 			<speeds walk="1.419" group_walk="1.419" run="6" run_fight="14" group_run_fight="6" />
 		</stats>
@@ -249709,7 +249709,7 @@
 		</equipment>
 		<bound_radius front="1.15" side="0.8625" upper="4.025" />
 	</npc_template>
-	<npc_template npc_id="281344" level="50" name_en="Holy Servant of Adhati" name_pt="El el santo servo de adhati" name_id="319227" height="0.918" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN_SERVANT" ai="servant" srange="15" arange="37" attack_speed="2645" cast_speed="100" hpgauge="3">
+	<npc_template npc_id="281344" level="50" name_en="Holy Servant of Adhati" name_pt="Sagrado servo de adhati" name_id="319227" height="0.918" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN_SERVANT" ai="servant" srange="15" arange="37" attack_speed="2645" cast_speed="100" hpgauge="3">
 		<stats maxHp="10054" />
 		<bound_radius front="0.405" side="0.504" upper="2.718" />
 	</npc_template>
@@ -250397,13 +250397,13 @@
 		<stats maxHp="23691" />
 		<bound_radius front="0.6" side="1.728" upper="3" />
 	</npc_template>
-	<npc_template npc_id="281441" level="65" name_en="Holy Servant I" name_pt="El el santo servo i" name_id="320059" height="3.06" group_drop="NONE" rank="VETERAN" rating="ELITE" tribe="GUARD_DARK" type="MONSTER" ai="servant" srange="20" arange="16" attack_speed="2100" hpgauge="14" cancel_level="20">
+	<npc_template npc_id="281441" level="65" name_en="Holy Servant I" name_pt="Sagrado servo i" name_id="320059" height="3.06" group_drop="NONE" rank="VETERAN" rating="ELITE" tribe="GUARD_DARK" type="MONSTER" ai="servant" srange="20" arange="16" attack_speed="2100" hpgauge="14" cancel_level="20">
 		<stats maxHp="1387073" msup="817" attack="1953" pdef="1571" mresist="1875" macc="1900" spell_resist="102">
 			<speeds walk="4.5" group_walk="4.5" run="9" run_fight="6.5" group_run_fight="9" />
 		</stats>
 		<bound_radius front="1.35" side="1.68" upper="4.86" />
 	</npc_template>
-	<npc_template npc_id="281442" level="65" name_en="Holy Servant II" name_pt="El el santo Servo II" name_id="320060" height="3.06" group_drop="NONE" rank="VETERAN" rating="ELITE" tribe="GUARD_DARK" type="MONSTER" ai="servant" srange="20" arange="16" attack_speed="2100" hpgauge="14" cancel_level="20">
+	<npc_template npc_id="281442" level="65" name_en="Holy Servant II" name_pt="Sagrado Servo II" name_id="320060" height="3.06" group_drop="NONE" rank="VETERAN" rating="ELITE" tribe="GUARD_DARK" type="MONSTER" ai="servant" srange="20" arange="16" attack_speed="2100" hpgauge="14" cancel_level="20">
 		<stats maxHp="1387073" msup="817" attack="1953" pdef="1571" mresist="1875" macc="1900" spell_resist="102">
 			<speeds walk="3.15" group_walk="3.15" run="9" run_fight="6.5" group_run_fight="9" />
 		</stats>
@@ -251507,7 +251507,7 @@
 		</equipment>
 		<bound_radius front="1" side="0.75" upper="3.5" />
 	</npc_template>
-	<npc_template npc_id="281621" level="55" name_en="Holy Servant" name_pt="El el santo servo" name_id="321381" height="0.918" group_drop="NONE" rank="VETERAN" rating="ELITE" tribe="XDRAKAN_SERVANT" ai="enemyservant" srange="10" sangle="240" arange="37" attack_speed="2645" cast_speed="100" hpgauge="14" cancel_level="20">
+	<npc_template npc_id="281621" level="55" name_en="Holy Servant" name_pt="Sagrado servo" name_id="321381" height="0.918" group_drop="NONE" rank="VETERAN" rating="ELITE" tribe="XDRAKAN_SERVANT" ai="enemyservant" srange="10" sangle="240" arange="37" attack_speed="2645" cast_speed="100" hpgauge="14" cancel_level="20">
 		<stats maxHp="1313" />
 		<bound_radius front="0.405" side="0.504" upper="2.718" />
 	</npc_template>
@@ -251596,7 +251596,7 @@
 		</equipment>
 		<bound_radius front="1" side="0.75" upper="3.5" />
 	</npc_template>
-	<npc_template npc_id="281631" level="55" name_en="Holy Servant" name_pt="El el santo servo" name_id="321391" height="0.918" group_drop="NONE" rank="VETERAN" rating="ELITE" tribe="XDRAKAN_SERVANT" ai="servant" srange="10" sangle="240" arange="37" attack_speed="2645" cast_speed="100" hpgauge="14" cancel_level="20">
+	<npc_template npc_id="281631" level="55" name_en="Holy Servant" name_pt="Sagrado servo" name_id="321391" height="0.918" group_drop="NONE" rank="VETERAN" rating="ELITE" tribe="XDRAKAN_SERVANT" ai="servant" srange="10" sangle="240" arange="37" attack_speed="2645" cast_speed="100" hpgauge="14" cancel_level="20">
 		<stats maxHp="1313" />
 		<bound_radius front="0.405" side="0.504" upper="2.718" />
 	</npc_template>
@@ -251689,7 +251689,7 @@
 		</equipment>
 		<bound_radius front="1" side="0.75" upper="3.5" />
 	</npc_template>
-	<npc_template npc_id="281642" level="55" name_en="Holy Servant" name_pt="El el santo servo" name_id="321402" height="0.918" group_drop="NONE" rank="VETERAN" rating="ELITE" tribe="XDRAKAN_SERVANT" ai="servant" srange="10" sangle="240" arange="37" attack_speed="2645" cast_speed="100" hpgauge="14" cancel_level="20">
+	<npc_template npc_id="281642" level="55" name_en="Holy Servant" name_pt="Sagrado servo" name_id="321402" height="0.918" group_drop="NONE" rank="VETERAN" rating="ELITE" tribe="XDRAKAN_SERVANT" ai="servant" srange="10" sangle="240" arange="37" attack_speed="2645" cast_speed="100" hpgauge="14" cancel_level="20">
 		<stats maxHp="1313" />
 		<bound_radius front="0.405" side="0.504" upper="2.718" />
 	</npc_template>
@@ -251802,7 +251802,7 @@
 		</stats>
 		<bound_radius front="0.55" side="0.55" upper="1.1" />
 	</npc_template>
-	<npc_template npc_id="281659" level="55" name_en="Holy Servant" name_pt="El el santo servo" name_id="321514" height="1.02" group_drop="NONE" rank="EXPERT" rating="HERO" tribe="MONSTER" type="MONSTER" ai="isbariyaServants" srange="10" attack_speed="2100" hpgauge="20" cancel_level="0">
+	<npc_template npc_id="281659" level="55" name_en="Holy Servant" name_pt="Sagrado servo" name_id="321514" height="1.02" group_drop="NONE" rank="EXPERT" rating="HERO" tribe="MONSTER" type="MONSTER" ai="isbariyaServants" srange="10" attack_speed="2100" hpgauge="20" cancel_level="0">
 		<stats maxHp="327176" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -253553,7 +253553,7 @@
 		</equipment>
 		<bound_radius front="1.15" side="0.8625" upper="4.025" />
 	</npc_template>
-	<npc_template npc_id="281891" level="55" name_en="Holy Orkanimum" name_pt="El el santo Orkanimum" name_id="322452" height="1.02" group_drop="SILIKA" rank="SEASONED" rating="ELITE" tribe="CRYSTAL" type="MONSTER" ai="aggressive" srange="10" arange="30" attack_speed="2373" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="281891" level="55" name_en="Holy Orkanimum" name_pt="Sagrado Orkanimum" name_id="322452" height="1.02" group_drop="SILIKA" rank="SEASONED" rating="ELITE" tribe="CRYSTAL" type="MONSTER" ai="aggressive" srange="10" arange="30" attack_speed="2373" hpgauge="12" cancel_level="30">
 		<stats maxHp="5521">
 			<speeds walk="3" group_walk="3" run="12" run_fight="12" group_run_fight="5" />
 		</stats>
@@ -253674,13 +253674,13 @@
 		</stats>
 		<bound_radius front="0.45" side="0.445" upper="0.735" />
 	</npc_template>
-	<npc_template npc_id="281913" level="53" name_en="Holy Orkanimum" name_pt="El el santo Orkanimum" name_id="322478" height="1.02" group_drop="SILIKA" rank="SEASONED" rating="ELITE" tribe="CRYSTAL" type="MONSTER" ai="aggressive" srange="10" arange="30" attack_speed="2373" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="281913" level="53" name_en="Holy Orkanimum" name_pt="Sagrado Orkanimum" name_id="322478" height="1.02" group_drop="SILIKA" rank="SEASONED" rating="ELITE" tribe="CRYSTAL" type="MONSTER" ai="aggressive" srange="10" arange="30" attack_speed="2373" hpgauge="12" cancel_level="30">
 		<stats maxHp="5313">
 			<speeds walk="3" group_walk="3" run="12" run_fight="12" group_run_fight="5" />
 		</stats>
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="281914" level="54" name_en="Holy Orkanimum" name_pt="El el santo Orkanimum" name_id="322479" height="1.02" group_drop="SILIKA" rank="SEASONED" rating="ELITE" tribe="CRYSTAL" type="MONSTER" ai="aggressive" srange="10" arange="30" attack_speed="2373" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="281914" level="54" name_en="Holy Orkanimum" name_pt="Sagrado Orkanimum" name_id="322479" height="1.02" group_drop="SILIKA" rank="SEASONED" rating="ELITE" tribe="CRYSTAL" type="MONSTER" ai="aggressive" srange="10" arange="30" attack_speed="2373" hpgauge="12" cancel_level="30">
 		<stats maxHp="5431">
 			<speeds walk="3" group_walk="3" run="12" run_fight="12" group_run_fight="5" />
 		</stats>
@@ -255292,7 +255292,7 @@
 		<stats maxHp="60667" />
 		<bound_radius front="0.6" side="1.728" upper="3" />
 	</npc_template>
-	<npc_template npc_id="282106" level="55" name_en="Holy Orkanimum" name_pt="El el santo Orkanimum" name_id="322861" height="3" group_drop="NONE" rank="NOVICE" rating="ELITE" tribe="CRYSTAL" type="MONSTER" ai="aggressive" srange="50" attack_speed="2205" hpgauge="10" cancel_level="50">
+	<npc_template npc_id="282106" level="55" name_en="Holy Orkanimum" name_pt="Sagrado Orkanimum" name_id="322861" height="3" group_drop="NONE" rank="NOVICE" rating="ELITE" tribe="CRYSTAL" type="MONSTER" ai="aggressive" srange="50" attack_speed="2205" hpgauge="10" cancel_level="50">
 		<stats maxHp="60667" />
 		<bound_radius front="0.6" side="1.728" upper="3" />
 	</npc_template>
@@ -257027,7 +257027,7 @@
 		</stats>
 		<bound_radius front="0.6" side="1.5" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="282381" level="1" name_en="Safer Ward" name_pt="Ala mais rio rio segura" name_id="323633" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="useitem" srange="1" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="282381" level="1" name_en="Safer Ward" name_pt="Ala mais segura" name_id="323633" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="useitem" srange="1" attack_speed="2000" hpgauge="3">
 		<stats maxHp="23691" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
@@ -258670,7 +258670,7 @@
 		</stats>
 		<bound_radius front="0.6" side="1.5" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="283090" level="1" name_en="Kiss of Fire" name_pt="Asmodian Asmodian Guardião" name_id="345764" height="2.05" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="IDYUN_XDRAKAN" type="MONSTER" ai="aggressive" srange="50" attack_speed="2100" hpgauge="2" arange="2">
+	<npc_template npc_id="283090" level="1" name_en="Kiss of Fire" name_pt="Asmodian Guardião" name_id="345764" height="2.05" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="IDYUN_XDRAKAN" type="MONSTER" ai="aggressive" srange="50" attack_speed="2100" hpgauge="2" arange="2">
 		<stats maxHp="23691" >
 			<speeds walk="3.2" group_walk="7.2" run="8" run_fight="8" group_run_fight="8" />
 		</stats>
@@ -258712,7 +258712,7 @@
 		</stats>
 		<bound_radius front="0.275" side="0.385" upper="1.98" />
 	</npc_template>
-	<npc_template npc_id="283097" level="60" name_en="Inhibitor Sikar" name_pt="Asmodian Asmodian Guardião" name_id="345792" title_id="314425" height="2.05" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="IDYUN_XDRAKAN" type="MONSTER" ai="distortedspace" srange="80" attack_speed="2260" hpgauge="10" arange="2">
+	<npc_template npc_id="283097" level="60" name_en="Inhibitor Sikar" name_pt="Asmodian Guardião" name_id="345792" title_id="314425" height="2.05" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="IDYUN_XDRAKAN" type="MONSTER" ai="distortedspace" srange="80" attack_speed="2260" hpgauge="10" arange="2">
 		<stats maxHp="23691" >
 			<speeds walk="3" group_walk="2" run="12" run_fight="12" group_run_fight="6" />
 		</stats>
@@ -258730,7 +258730,7 @@
 		</stats>
 		<bound_radius front="0.6" side="1.5" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="283100" level="60" name_en="Inhibitor Sikar" name_pt="Asmodian Asmodian Guardião" name_id="345792" height="3" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="IDYUN_XDRAKAN" type="MONSTER" ai="aggressive" srange="80" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="283100" level="60" name_en="Inhibitor Sikar" name_pt="Asmodian Guardião" name_id="345792" height="3" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="IDYUN_XDRAKAN" type="MONSTER" ai="aggressive" srange="80" attack_speed="2000" hpgauge="3">
 		<stats maxHp="23691" >
 			<speeds walk="2" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -259045,7 +259045,7 @@
 		</stats>
 		<bound_radius front="0.65" side="0.55" upper="3.7" />
 	</npc_template>
-	<npc_template npc_id="283151" level="60" name_en="Brigade General Vasharti" name_pt="Brigada idéia Vasharti" name_id="323201" title_id="314425" height="2.05" group_drop="NONE" rank="EXPERT" rating="ELITE" tribe="IDYUN_XDRAKAN" type="MONSTER" ai="aggressive" srange="8" attack_speed="2100" hpgauge="22" cancel_level="20" arange="2">
+	<npc_template npc_id="283151" level="60" name_en="Brigade General Vasharti" name_pt="General de Brigada Vasharti" name_id="323201" title_id="314425" height="2.05" group_drop="NONE" rank="EXPERT" rating="ELITE" tribe="IDYUN_XDRAKAN" type="MONSTER" ai="aggressive" srange="8" attack_speed="2100" hpgauge="22" cancel_level="20" arange="2">
 		<stats maxHp="6020" msup="207" >
 			<speeds walk="3.2" group_walk="7.2" run="8" run_fight="8" group_run_fight="8" />
 		</stats>
@@ -259175,7 +259175,7 @@
 		</stats>
 		<bound_radius front="0.6" side="1.5" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="283174" level="60" name_en="Inhibitor Sikar" name_pt="Asmodian Asmodian Guardião" name_id="345792" title_id="314425" height="2.05" group_drop="FXMON" rank="DISCIPLINED" rating="NORMAL" tribe="IDYUN_XDRAKAN" type="MONSTER" ai="general" srange="80" attack_speed="2260" hpgauge="10" arange="2">
+	<npc_template npc_id="283174" level="60" name_en="Inhibitor Sikar" name_pt="Asmodian Guardião" name_id="345792" title_id="314425" height="2.05" group_drop="FXMON" rank="DISCIPLINED" rating="NORMAL" tribe="IDYUN_XDRAKAN" type="MONSTER" ai="general" srange="80" attack_speed="2260" hpgauge="10" arange="2">
 		<stats maxHp="6036" >
 			<speeds walk="3" group_walk="2" run="12" run_fight="12" group_run_fight="6" />
 		</stats>
@@ -275647,7 +275647,7 @@
 		</equipment>
 		<bound_radius front="1.4" side="1.05" upper="4.2" />
 	</npc_template>
-	<npc_template npc_id="286934" level="55" name_en="Tahabata Pyrelord" name_pt="Pyrelord Pyrelord" name_id="318949" height="10" group_drop="DRAGON" rank="EXPERT" rating="HERO" tribe="DRAGON" ai="aggressive" srange="10" arange="4" attack_speed="2100" hpgauge="20" cancel_level="0">
+	<npc_template npc_id="286934" level="55" name_en="Tahabata Pyrelord" name_pt="Pyrelord" name_id="318949" height="10" group_drop="DRAGON" rank="EXPERT" rating="HERO" tribe="DRAGON" ai="aggressive" srange="10" arange="4" attack_speed="2100" hpgauge="20" cancel_level="0">
 		<stats maxHp="324047">
 			<speeds walk="6.75" group_walk="6.75" run="6.75" run_fight="13" group_run_fight="6.75" />
 		</stats>
@@ -275817,7 +275817,7 @@
 		</equipment>
 		<bound_radius front="1.4" side="1.05" upper="4.2" />
 	</npc_template>
-	<npc_template npc_id="286956" level="1" name_en="Tahabata Pyrelord" name_pt="Pyrelord Pyrelord" name_id="318949" height="4.14" group_drop="DRAKANCLERIC" rank="DISCIPLINED" rating="NORMAL" tribe="MONSTER" ai="aggressive" srange="10" sangle="240" arange="4" attack_speed="2100" hpgauge="20" type="MONSTER">
+	<npc_template npc_id="286956" level="1" name_en="Tahabata Pyrelord" name_pt="Pyrelord" name_id="318949" height="4.14" group_drop="DRAKANCLERIC" rank="DISCIPLINED" rating="NORMAL" tribe="MONSTER" ai="aggressive" srange="10" sangle="240" arange="4" attack_speed="2100" hpgauge="20" type="MONSTER">
 		<stats maxHp="23691">
 			<speeds walk="1.07" group_walk="1.07" run="8" run_fight="14" group_run_fight="8" />
 		</stats>
@@ -275854,7 +275854,7 @@
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="286961" level="1" name_en="Tahabata Pyrelord" name_pt="Pyrelord Pyrelord" name_id="318949" height="2.92" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" ai="noaction" sangle="0" arange="20" attack_speed="2040" hpgauge="5" floatcorpse="true" type="GENERAL" srange="10">
+	<npc_template npc_id="286961" level="1" name_en="Tahabata Pyrelord" name_pt="Pyrelord" name_id="318949" height="2.92" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" ai="noaction" sangle="0" arange="20" attack_speed="2040" hpgauge="5" floatcorpse="true" type="GENERAL" srange="10">
 		<stats maxHp="2312" >
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -276797,7 +276797,7 @@
 		</stats>
 		<bound_radius front="1.4219999" side="0.53550005" upper="3.245" />
 	</npc_template>
-	<npc_template npc_id="290128" level="26" name_en="Brigade General Akius" name_pt="Brigada idéia Akius" name_id="315804" height="2.805" group_drop="UNDEADLIGHT_FI" rank="SEASONED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="15" sangle="240" arange="4" attack_speed="2310" hpgauge="4" floatcorpse="true" cancel_level="90">
+	<npc_template npc_id="290128" level="26" name_en="Brigade General Akius" name_pt="General de Brigada Akius" name_id="315804" height="2.805" group_drop="UNDEADLIGHT_FI" rank="SEASONED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="15" sangle="240" arange="4" attack_speed="2310" hpgauge="4" floatcorpse="true" cancel_level="90">
 		<stats maxHp="5284">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="4.5" group_run_fight="6" />
 		</stats>
@@ -279703,15 +279703,15 @@
 		</equipment>
 		<bound_radius front="0.2625" side="0.3675" upper="2.1" />
 	</npc_template>
-	<npc_template npc_id="294733" level="12" name_en="Holy Servant" name_pt="El el santo servo" name_id="311205" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="294733" level="12" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311205" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="1103" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="294734" level="40" name_en="Holy Servant" name_pt="El el santo servo" name_id="311206" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="294734" level="40" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311206" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="734" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="294735" level="45" name_en="Holy Servant" name_pt="El el santo servo" name_id="311207" height="1.02" group_drop="NONE" rank="EXPERT" rating="NORMAL" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="294735" level="45" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311207" height="1.02" group_drop="NONE" rank="EXPERT" rating="NORMAL" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="5" cancel_level="80">
 		<stats maxHp="1149" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -280084,15 +280084,15 @@
 		</equipment>
 		<bound_radius front="0.2625" side="0.3675" upper="2.1" />
 	</npc_template>
-	<npc_template npc_id="294766" level="12" name_en="Holy Servant" name_pt="El el santo servo" name_id="311238" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="294766" level="12" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311238" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="1149" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="294767" level="40" name_en="Holy Servant" name_pt="El el santo servo" name_id="311239" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="294767" level="40" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311239" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="734" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="294768" level="45" name_en="Holy Servant" name_pt="El el santo servo" name_id="311240" height="1.02" group_drop="NONE" rank="EXPERT" rating="NORMAL" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="294768" level="45" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311240" height="1.02" group_drop="NONE" rank="EXPERT" rating="NORMAL" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="5" cancel_level="80">
 		<stats maxHp="1196" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -280120,15 +280120,15 @@
 		<stats maxHp="9660" />
 		<bound_radius front="0.6" side="1.728" upper="3" />
 	</npc_template>
-	<npc_template npc_id="294775" level="12" name_en="Holy Servant" name_pt="El el santo servo" name_id="311247" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD_DRAGON" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="294775" level="12" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311247" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD_DRAGON" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="1161" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="294776" level="40" name_en="Holy Servant" name_pt="El el santo servo" name_id="311248" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD_DRAGON" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="294776" level="40" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311248" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD_DRAGON" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="734" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="294777" level="45" name_en="Holy Servant" name_pt="El el santo servo" name_id="311249" height="1.02" group_drop="NONE" rank="EXPERT" rating="NORMAL" tribe="GUARD_DRAGON" ai="servant" srange="25" attack_speed="2000" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="294777" level="45" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311249" height="1.02" group_drop="NONE" rank="EXPERT" rating="NORMAL" tribe="GUARD_DRAGON" ai="servant" srange="25" attack_speed="2000" hpgauge="5" cancel_level="80">
 		<stats maxHp="1126" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -283928,7 +283928,7 @@
 		</equipment>
 		<bound_radius front="0.2625" side="0.3675" upper="2.1" />
 	</npc_template>
-	<npc_template npc_id="295140" level="50" name_en="Holy Servant" name_pt="El el santo servo" name_id="311206" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="295140" level="50" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311206" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="1161" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -284055,7 +284055,7 @@
 		</equipment>
 		<bound_radius front="0.2625" side="0.3675" upper="2.1" />
 	</npc_template>
-	<npc_template npc_id="295151" level="50" name_en="Holy Servant" name_pt="El el santo servo" name_id="311239" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="295151" level="50" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311239" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="1208" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -284067,7 +284067,7 @@
 		<stats maxHp="1139" />
 		<bound_radius front="0.6" side="1.728" upper="3" />
 	</npc_template>
-	<npc_template npc_id="295154" level="50" name_en="Holy Servant" name_pt="El el santo servo" name_id="311248" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD_DRAGON" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="295154" level="50" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311248" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD_DRAGON" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="1131" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -294715,7 +294715,7 @@
 		</equipment>
 		<bound_radius front="0.2625" side="0.3675" upper="2.1" />
 	</npc_template>
-	<npc_template npc_id="296070" level="50" name_en="Holy Servant" name_pt="El el santo servo" name_id="311206" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="296070" level="50" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311206" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="1103" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -294842,7 +294842,7 @@
 		</equipment>
 		<bound_radius front="0.2625" side="0.3675" upper="2.1" />
 	</npc_template>
-	<npc_template npc_id="296081" level="50" name_en="Holy Servant" name_pt="El el santo servo" name_id="311239" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="296081" level="50" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311239" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="1184" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -294854,7 +294854,7 @@
 		<stats maxHp="926" />
 		<bound_radius front="0.6" side="1.728" upper="3" />
 	</npc_template>
-	<npc_template npc_id="296084" level="50" name_en="Holy Servant" name_pt="El el santo servo" name_id="311248" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD_DRAGON" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="296084" level="50" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311248" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="GUARD_DRAGON" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="5020" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -297497,7 +297497,7 @@
 		</equipment>
 		<bound_radius front="0.75" side="0.475" upper="2.3" />
 	</npc_template>
-	<npc_template npc_id="296346" level="47" name_en="Holy Servant" name_pt="El el santo servo" name_id="311248" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="NNAGA" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="296346" level="47" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311248" height="1.02" group_drop="NONE" rank="SEASONED" rating="NORMAL" tribe="NNAGA" ai="servant" srange="25" attack_speed="2000" hpgauge="4" cancel_level="90">
 		<stats maxHp="1003" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -298814,7 +298814,7 @@
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="296473" level="55" name_en="Holy Servant" name_pt="El el santo servo" name_id="321260" height="1.02" group_drop="NONE" rank="SEASONED" rating="ELITE" tribe="GUARD" ai="servant" srange="15" arange="2" attack_speed="2000" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="296473" level="55" name_en="Holy Servant" name_pt="Sagrado servo" name_id="321260" height="1.02" group_drop="NONE" rank="SEASONED" rating="ELITE" tribe="GUARD" ai="servant" srange="15" arange="2" attack_speed="2000" hpgauge="12" cancel_level="30">
 		<stats maxHp="94498" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -298948,7 +298948,7 @@
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="296486" level="55" name_en="Holy Servant" name_pt="El el santo servo" name_id="321273" height="1.02" group_drop="NONE" rank="SEASONED" rating="ELITE" tribe="GUARD_DARK" ai="servant" srange="15" arange="2" attack_speed="2000" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="296486" level="55" name_en="Holy Servant" name_pt="Sagrado servo" name_id="321273" height="1.02" group_drop="NONE" rank="SEASONED" rating="ELITE" tribe="GUARD_DARK" ai="servant" srange="15" arange="2" attack_speed="2000" hpgauge="12" cancel_level="30">
 		<stats maxHp="94498" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -299189,7 +299189,7 @@
 		</stats>
 		<bound_radius front="1.8119999" side="1.788" upper="4.96" />
 	</npc_template>
-	<npc_template npc_id="296509" level="55" name_en="Holy Servant" name_pt="El el santo servo" name_id="321586" height="1.02" group_drop="NONE" rank="SEASONED" rating="ELITE" tribe="GUARD_DRAGON" ai="servant" srange="15" arange="2" attack_speed="2000" hpgauge="12" cancel_level="30">
+	<npc_template npc_id="296509" level="55" name_en="Holy Servant" name_pt="Sagrado servo" name_id="321586" height="1.02" group_drop="NONE" rank="SEASONED" rating="ELITE" tribe="GUARD_DRAGON" ai="servant" srange="15" arange="2" attack_speed="2000" hpgauge="12" cancel_level="30">
 		<stats maxHp="94498" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -300942,7 +300942,7 @@
 		</equipment>
 		<bound_radius front="0.2625" side="0.3675" upper="2.1" />
 	</npc_template>
-	<npc_template npc_id="296644" level="53" name_en="Holy Servant" name_pt="El el santo servo" name_id="311207" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="296644" level="53" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311207" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
 		<stats maxHp="5329" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -300950,7 +300950,7 @@
 		<stats maxHp="5329" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="296646" level="54" name_en="Holy Servant" name_pt="El el santo servo" name_id="311207" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="296646" level="54" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311207" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
 		<stats maxHp="5429" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -300958,7 +300958,7 @@
 		<stats maxHp="5429" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="296648" level="55" name_en="Holy Servant" name_pt="El el santo servo" name_id="311207" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="296648" level="55" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311207" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
 		<stats maxHp="5674" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -300966,7 +300966,7 @@
 		<stats maxHp="5674" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="296650" level="57" name_en="Holy Servant" name_pt="El el santo servo" name_id="311207" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="296650" level="57" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311207" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
 		<stats maxHp="6265" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -300974,7 +300974,7 @@
 		<stats maxHp="6265" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="296652" level="58" name_en="Holy Servant" name_pt="El el santo servo" name_id="311207" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="296652" level="58" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311207" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
 		<stats maxHp="5829" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -300982,7 +300982,7 @@
 		<stats maxHp="5829" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="296654" level="60" name_en="Holy Servant" name_pt="El el santo servo" name_id="311207" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="296654" level="60" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311207" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
 		<stats maxHp="6047" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -302446,7 +302446,7 @@
 		</equipment>
 		<bound_radius front="0.2625" side="0.3675" upper="2.1" />
 	</npc_template>
-	<npc_template npc_id="296754" level="53" name_en="Holy Servant" name_pt="El el santo servo" name_id="311240" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="296754" level="53" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311240" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
 		<stats maxHp="5336" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -302454,7 +302454,7 @@
 		<stats maxHp="5336" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="296756" level="54" name_en="Holy Servant" name_pt="El el santo servo" name_id="311240" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="296756" level="54" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311240" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
 		<stats maxHp="5436" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -302462,7 +302462,7 @@
 		<stats maxHp="5436" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="296758" level="55" name_en="Holy Servant" name_pt="El el santo servo" name_id="311240" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="296758" level="55" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311240" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
 		<stats maxHp="5674" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -302470,7 +302470,7 @@
 		<stats maxHp="5674" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="296760" level="57" name_en="Holy Servant" name_pt="El el santo servo" name_id="311240" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="296760" level="57" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311240" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
 		<stats maxHp="6265" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -302478,7 +302478,7 @@
 		<stats maxHp="6265" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="296762" level="58" name_en="Holy Servant" name_pt="El el santo servo" name_id="311240" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="296762" level="58" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311240" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
 		<stats maxHp="5804" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -302486,7 +302486,7 @@
 		<stats maxHp="5804" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="296764" level="60" name_en="Holy Servant" name_pt="El el santo servo" name_id="311240" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="296764" level="60" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311240" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD_DARK" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
 		<stats maxHp="7236" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -304005,7 +304005,7 @@
 		<stats maxHp="1499" />
 		<bound_radius front="0.6" side="1.728" upper="3" />
 	</npc_template>
-	<npc_template npc_id="296884" level="55" name_en="Holy Servant" name_pt="El el santo servo" name_id="311249" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD_DRAGON" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
+	<npc_template npc_id="296884" level="55" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311249" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD_DRAGON" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40">
 		<stats maxHp="5674" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -304907,7 +304907,7 @@
 		</equipment>
 		<bound_radius front="0.6" side="1.728" upper="3" />
 	</npc_template>
-	<npc_template npc_id="296993" level="65" name_en="Holy Servant" name_pt="El el santo servo" name_id="311249" height="1.02" group_drop="DARK" rank="DISCIPLINED" rating="ELITE" tribe="GUARD_DRAGON" ai="servant" srange="25" arange="2" attack_speed="2000" hpgauge="11" cancel_level="40" type="ABYSS_GUARD">
+	<npc_template npc_id="296993" level="65" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311249" height="1.02" group_drop="DARK" rank="DISCIPLINED" rating="ELITE" tribe="GUARD_DRAGON" ai="servant" srange="25" arange="2" attack_speed="2000" hpgauge="11" cancel_level="40" type="ABYSS_GUARD">
 		<stats maxHp="147934">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -305208,7 +305208,7 @@
 		</equipment>
 		<bound_radius front="1.2" side="2.268" upper="2.76" />
 	</npc_template>
-	<npc_template npc_id="297013" level="65" name_en="Holy Servant" name_pt="El el santo servo" name_id="321260" height="1.02" group_drop="DARK" rank="VETERAN" rating="ELITE" tribe="GUARD" ai="servant" srange="15" arange="2" attack_speed="2000" hpgauge="12" cancel_level="20" type="ABYSS_GUARD">
+	<npc_template npc_id="297013" level="65" name_en="Holy Servant" name_pt="Sagrado servo" name_id="321260" height="1.02" group_drop="DARK" rank="VETERAN" rating="ELITE" tribe="GUARD" ai="servant" srange="15" arange="2" attack_speed="2000" hpgauge="12" cancel_level="20" type="ABYSS_GUARD">
 		<stats maxHp="223597" msup="817">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -305240,7 +305240,7 @@
 		</equipment>
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="297015" level="65" name_en="Holy Servant" name_pt="El el santo servo" name_id="321273" height="1.02" group_drop="DARK" rank="VETERAN" rating="ELITE" tribe="GUARD_DARK" ai="servant" srange="15" arange="2" attack_speed="2000" hpgauge="12" cancel_level="20" type="ABYSS_GUARD">
+	<npc_template npc_id="297015" level="65" name_en="Holy Servant" name_pt="Sagrado servo" name_id="321273" height="1.02" group_drop="DARK" rank="VETERAN" rating="ELITE" tribe="GUARD_DARK" ai="servant" srange="15" arange="2" attack_speed="2000" hpgauge="12" cancel_level="20" type="ABYSS_GUARD">
 		<stats maxHp="234373" msup="817">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -305395,7 +305395,7 @@
 		</equipment>
 		<bound_radius front="1.812" side="1.788" upper="3.96" />
 	</npc_template>
-	<npc_template npc_id="297025" level="1" name_en="Holy Servant" name_pt="El el santo servo" name_id="321586" height="1.02" group_drop="LIGHT" rank="VETERAN" rating="HERO" tribe="GUARD_DRAGON" ai="servant" srange="15" arange="2" attack_speed="2000" hpgauge="12" cancel_level="0" type="ABYSS_GUARD">
+	<npc_template npc_id="297025" level="1" name_en="Holy Servant" name_pt="Sagrado servo" name_id="321586" height="1.02" group_drop="LIGHT" rank="VETERAN" rating="HERO" tribe="GUARD_DRAGON" ai="servant" srange="15" arange="2" attack_speed="2000" hpgauge="12" cancel_level="0" type="ABYSS_GUARD">
 		<stats maxHp="1583399" msup="207">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -305655,7 +305655,7 @@
 		</equipment>
 		<bound_radius front="1.2" side="2.268" upper="2.76" />
 	</npc_template>
-	<npc_template npc_id="297043" level="1" name_en="Holy Servant" name_pt="El el santo servo" name_id="321260" height="1.02" group_drop="DARK" rank="NOVICE" rating="ELITE" tribe="GUARD" ai="servant" srange="15" arange="2" attack_speed="2000" hpgauge="12" cancel_level="50" type="ABYSS_GUARD">
+	<npc_template npc_id="297043" level="1" name_en="Holy Servant" name_pt="Sagrado servo" name_id="321260" height="1.02" group_drop="DARK" rank="NOVICE" rating="ELITE" tribe="GUARD" ai="servant" srange="15" arange="2" attack_speed="2000" hpgauge="12" cancel_level="50" type="ABYSS_GUARD">
 		<stats maxHp="72883">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -305670,7 +305670,7 @@
 		</equipment>
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="297044" level="1" name_en="Holy Servant" name_pt="El el santo servo" name_id="321273" height="1.02" group_drop="DARK" rank="NOVICE" rating="ELITE" tribe="GUARD_DARK" ai="servant" srange="15" arange="2" attack_speed="2000" hpgauge="12" cancel_level="50" type="ABYSS_GUARD">
+	<npc_template npc_id="297044" level="1" name_en="Holy Servant" name_pt="Sagrado servo" name_id="321273" height="1.02" group_drop="DARK" rank="NOVICE" rating="ELITE" tribe="GUARD_DARK" ai="servant" srange="15" arange="2" attack_speed="2000" hpgauge="12" cancel_level="50" type="ABYSS_GUARD">
 		<stats maxHp="72883">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -305686,7 +305686,7 @@
 		</equipment>
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="297045" level="1" name_en="Holy Servant" name_pt="El el santo servo" name_id="321586" height="1.02" group_drop="DARK" rank="NOVICE" rating="ELITE" tribe="GUARD_DRAGON" ai="servant" srange="15" arange="2" attack_speed="2000" hpgauge="12" cancel_level="50" type="ABYSS_GUARD">
+	<npc_template npc_id="297045" level="1" name_en="Holy Servant" name_pt="Sagrado servo" name_id="321586" height="1.02" group_drop="DARK" rank="NOVICE" rating="ELITE" tribe="GUARD_DRAGON" ai="servant" srange="15" arange="2" attack_speed="2000" hpgauge="12" cancel_level="50" type="ABYSS_GUARD">
 		<stats maxHp="72883">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -305713,7 +305713,7 @@
 		</stats>
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="297048" level="1" name_en="Holy Servant" name_pt="El el santo servo" name_id="311249" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD_DRAGON" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40" type="ABYSS_GUARD">
+	<npc_template npc_id="297048" level="1" name_en="Holy Servant" name_pt="Sagrado servo" name_id="311249" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="ELITE" tribe="GUARD_DRAGON" ai="servant" srange="25" attack_speed="2000" hpgauge="11" cancel_level="40" type="ABYSS_GUARD">
 		<stats maxHp="5547" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -307961,7 +307961,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700412" level="1" name_en="Holy Servant of Guardian General" name_pt="El el santo servo do Guardião idéia" name_id="371140" height="5.1" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="servant" srange="10" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700412" level="1" name_en="Holy Servant of Guardian General" name_pt="Sagrado servo do Guardião idéia" name_id="371140" height="5.1" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="servant" srange="10" attack_speed="2000" hpgauge="3">
 		<stats maxHp="111" />
 		<bound_radius front="2.25" side="2.8" upper="6.9" />
 		<talk_info distance="15" delay="2" can_talk_invisible="false" />
@@ -308899,7 +308899,7 @@
 		<bound_radius front="0.3" side="0.42" upper="2.4" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700611" level="1" name_en="Blue Aerial Aether Searcher" name_pt="Buscador azul aéreo aéreo" name_id="371340" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="quest_use_item" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700611" level="1" name_en="Blue Aerial Aether Searcher" name_pt="Buscador azul aéreo" name_id="371340" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="quest_use_item" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
@@ -308909,7 +308909,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700613" level="1" name_en="Old Aerial Aether Searcher" name_pt="Velho Aéter Aéter pesquisador" name_id="371342" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="quest_use_item" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700613" level="1" name_en="Old Aerial Aether Searcher" name_pt="Velho Aéter pesquisador" name_id="371342" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="quest_use_item" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
@@ -310191,12 +310191,12 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700924" level="1" name_en="Secret Safe Door" name_pt="Porta rio rio segura secreta" name_id="371632" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700924" level="1" name_en="Secret Safe Door" name_pt="Porta do Cofre secreta" name_id="371632" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700925" level="1" name_en="Secret Safe Door" name_pt="Porta rio rio segura secreta" name_id="371633" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700925" level="1" name_en="Secret Safe Door" name_pt="Porta do Cofre secreta" name_id="371633" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="144" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="25" can_talk_invisible="false" />
@@ -314427,7 +314427,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="6" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730199" level="1" name_en="Grogget's Safe Door" name_pt="Porta rio rio segura de Grogget" name_id="371287" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730199" level="1" name_en="Grogget's Safe Door" name_pt="Porta do Cofre de Grogget" name_id="371287" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="6" delay="3" can_talk_invisible="false" />
@@ -317407,27 +317407,27 @@
 		</stats>
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="749062" level="24" name_en="Holy Servant" name_pt="El el santo servo" name_id="392005" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL_DARK" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
+	<npc_template npc_id="749062" level="24" name_en="Holy Servant" name_pt="Sagrado servo" name_id="392005" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL_DARK" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
 		<stats maxHp="810" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="749063" level="36" name_en="Holy Servant" name_pt="El el santo servo" name_id="392005" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL_DARK" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
+	<npc_template npc_id="749063" level="36" name_en="Holy Servant" name_pt="Sagrado servo" name_id="392005" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL_DARK" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
 		<stats maxHp="1080" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="749064" level="44" name_en="Holy Servant" name_pt="El el santo servo" name_id="392005" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL_DARK" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
+	<npc_template npc_id="749064" level="44" name_en="Holy Servant" name_pt="Sagrado servo" name_id="392005" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL_DARK" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
 		<stats maxHp="1540" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="749065" level="24" name_en="Holy Servant" name_pt="El el santo servo" name_id="392005" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
+	<npc_template npc_id="749065" level="24" name_en="Holy Servant" name_pt="Sagrado servo" name_id="392005" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
 		<stats maxHp="810" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="749066" level="36" name_en="Holy Servant" name_pt="El el santo servo" name_id="392005" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
+	<npc_template npc_id="749066" level="36" name_en="Holy Servant" name_pt="Sagrado servo" name_id="392005" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
 		<stats maxHp="1080" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="749067" level="40" name_en="Holy Servant" name_pt="El el santo servo" name_id="392005" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
+	<npc_template npc_id="749067" level="40" name_en="Holy Servant" name_pt="Sagrado servo" name_id="392005" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
 		<stats maxHp="1540" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -317554,11 +317554,11 @@
 		<stats maxHp="1" />
 		<bound_radius front="0.6" side="1.728" upper="3" />
 	</npc_template>
-	<npc_template npc_id="749098" level="59" name_en="Holy Servant" name_pt="El el santo servo" name_id="392005" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
+	<npc_template npc_id="749098" level="59" name_en="Holy Servant" name_pt="Sagrado servo" name_id="392005" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
 		<stats maxHp="810" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
-	<npc_template npc_id="749099" level="59" name_en="Holy Servant" name_pt="El el santo servo" name_id="392005" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL_DARK" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
+	<npc_template npc_id="749099" level="59" name_en="Holy Servant" name_pt="Sagrado servo" name_id="392005" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL_DARK" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
 		<stats maxHp="810" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
@@ -318733,7 +318733,7 @@
 		<bound_radius front="1.755" side="0.91" upper="2.665" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2 3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="780123" level="60" name_en="Daevansinnrinerk" name_pt="Oito oito" name_id="465759" height="1.8" tribe="USEALL" type="GENERAL" ai="general" srange="20" attack_speed="2000" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" group_drop="NONE">
+	<npc_template npc_id="780123" level="60" name_en="Daevansinnrinerk" name_pt="Oito" name_id="465759" height="1.8" tribe="USEALL" type="GENERAL" ai="general" srange="20" attack_speed="2000" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" group_drop="NONE">
 		<stats maxHp="20000">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -332615,7 +332615,7 @@
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="68 69" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="799848" level="50" name_en="Columba" name_pt="São são columba" name_id="355162" height="1.8" title_id="370254" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="799848" level="50" name_en="Columba" name_pt="São columba" name_id="355162" height="1.8" title_id="370254" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="14614">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -346854,14 +346854,14 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="800942" level="60" name_en="Elyos Guardian General" name_pt="idéia Guardião Elyos" name_id="462973" height="10.5" title_id="462951" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="GCHIEF_LIGHT" tribe="F4GUARD_LIGHT" type="GUARD" ai="general" srange="20" arange="37" attack_speed="2100" hpgauge="27">
+	<npc_template npc_id="800942" level="60" name_en="Elyos Guardian General" name_pt="General Guardião Elyos" name_id="462973" height="10.5" title_id="462951" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="GCHIEF_LIGHT" tribe="F4GUARD_LIGHT" type="GUARD" ai="general" srange="20" arange="37" attack_speed="2100" hpgauge="27">
 		<stats maxHp="23691">
 			<speeds walk="0" group_walk="11.2" run="0" run_fight="0" group_run_fight="42" />
 		</stats>
 		<bound_radius front="3.92" side="1.4" upper="10.5" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="68 69" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="800943" level="60" name_en="Asmodian Guardian General" name_pt="idéia Guardião Asmodiano" name_id="462974" height="10.5" title_id="462952" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="GCHIEF_DARK" tribe="F4GUARD_DARK" type="GUARD" ai="general" srange="20" arange="37" attack_speed="2100" hpgauge="27">
+	<npc_template npc_id="800943" level="60" name_en="Asmodian Guardian General" name_pt="General Guardião Asmodiano" name_id="462974" height="10.5" title_id="462952" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="GCHIEF_DARK" tribe="F4GUARD_DARK" type="GUARD" ai="general" srange="20" arange="37" attack_speed="2100" hpgauge="27">
 		<stats maxHp="23691">
 			<speeds walk="0" group_walk="11.2" run="0" run_fight="0" group_run_fight="42" />
 		</stats>
@@ -350421,7 +350421,7 @@
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801218" level="10" name_en="Elyos Guardian General" name_pt="idéia Guardião Elyos" name_id="463339" height="10.5" title_id="463341" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="GCHIEF_LIGHT" tribe="F4GUARD_LIGHT" type="GUARD" ai="general" srange="20" sangle="240" arange="37" attack_speed="2100" hpgauge="27">
+	<npc_template npc_id="801218" level="10" name_en="Elyos Guardian General" name_pt="General Guardião Elyos" name_id="463339" height="10.5" title_id="463341" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="GCHIEF_LIGHT" tribe="F4GUARD_LIGHT" type="GUARD" ai="general" srange="20" sangle="240" arange="37" attack_speed="2100" hpgauge="27">
 		<stats maxHp="1392">
 			<speeds walk="0" group_walk="11.2" run="0" run_fight="0" group_run_fight="42" />
 		</stats>
@@ -350438,7 +350438,7 @@
 		<bound_radius front="3.92" side="1.4" upper="10.5" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801219" level="10" name_en="Asmodian Guardian General" name_pt="idéia Guardião Asmodiano" name_id="463340" height="10.5" title_id="463342" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="GCHIEF_DARK" tribe="F4GUARD_DARK" type="GUARD" ai="general" srange="20" sangle="240" arange="37" attack_speed="2100" hpgauge="27">
+	<npc_template npc_id="801219" level="10" name_en="Asmodian Guardian General" name_pt="General Guardião Asmodiano" name_id="463340" height="10.5" title_id="463342" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="GCHIEF_DARK" tribe="F4GUARD_DARK" type="GUARD" ai="general" srange="20" sangle="240" arange="37" attack_speed="2100" hpgauge="27">
 		<stats maxHp="1392">
 			<speeds walk="0" group_walk="11.2" run="0" run_fight="0" group_run_fight="42" />
 		</stats>
@@ -375094,7 +375094,7 @@ Through the mediation of the Black Cloud Merchants,
 		</stats>
 		<bound_radius front="1.8" side="2.4" upper="2.844" />
 	</npc_template>
-	<npc_template npc_id="220980" level="65" name_id="345846" name_en="Poison Mine" name_pt="Asmodian Asmodian Guardião" height="2.844" rank="DISCIPLINED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="3" hpgauge="3" attack_speed="2000">
+	<npc_template npc_id="220980" level="65" name_id="345846" name_en="Poison Mine" name_pt="Asmodian Guardião" height="2.844" rank="DISCIPLINED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="3" hpgauge="3" attack_speed="2000">
 		<stats maxHp="21107">
 			<speeds walk="2.0" run="6.0" run_fight="6.0" />
 		</stats>
@@ -375648,7 +375648,7 @@ Through the mediation of the Black Cloud Merchants,
 	<npc_template npc_id="220555" level="65" name_id="344946" name_en="Goldenwing Murmur" name_pt="Murmúrio de Asas Douradas" height="2.708" rank="DISCIPLINED" rating="NORMAL" tribe="MONSTER" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100"><stats maxHp="35000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="2.488" side="0.672" upper="2.708" /></npc_template>
 	<npc_template npc_id="220556" level="65" name_id="344947" name_en="Mottled Murmur" name_pt="Murmúrio Manchado" height="3.385" rank="DISCIPLINED" rating="NORMAL" tribe="MONSTER" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100"><stats maxHp="35000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="3.11" side="0.84" upper="3.385" /></npc_template>
 	<npc_template npc_id="220557" level="65" name_id="344948" name_en="Mottled Murmur" name_pt="Murmúrio Manchado" height="3.385" rank="DISCIPLINED" rating="NORMAL" tribe="MONSTER" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100"><stats maxHp="35000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="3.11" side="0.84" upper="3.385" /></npc_template>
-	<npc_template npc_id="220569" level="70" name_id="344960" title_id="345166" name_en="Deputy Brigade General Lucarn" name_pt="Vício- idéia de Brigada Lucarn" height="3.6" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" ai="aggressive" srange="8" hpgauge="14" attack_speed="2000"><stats maxHp="292083"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100901093</item></equipment><bound_radius front="0.50" side="0.50" upper="2.00" /></npc_template>
+	<npc_template npc_id="220569" level="70" name_id="344960" title_id="345166" name_en="Deputy Brigade General Lucarn" name_pt="Vice-General de Brigada Lucarn" height="3.6" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" ai="aggressive" srange="8" hpgauge="14" attack_speed="2000"><stats maxHp="292083"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100901093</item></equipment><bound_radius front="0.50" side="0.50" upper="2.00" /></npc_template>
 	<npc_template npc_id="220574" level="65" name_id="345168" name_en="Balic Aether Cannon" name_pt="Recrutamento de Miren de Alto Classificação" height="6" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" ai="aggressive" srange="10" hpgauge="5" attack_speed="2185"><stats maxHp="23810"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="3" side="4" upper="6" /></npc_template>
 	<npc_template npc_id="220579" level="70" name_id="344969" title_id="345166" name_en="Aide Kaimar" name_pt="Ajudante Kaimar" height="3.24" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" ai="aggressive" srange="8" hpgauge="14" attack_speed="2000"><stats maxHp="292083"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100501030</item></equipment><bound_radius front="0.45" side="0.45" upper="3.24" /></npc_template>
 	<npc_template npc_id="220590" level="65" name_id="344980" title_id="345166" name_en="Raging Phernind" name_pt="Phernind Enfurecido" height="5.8" rank="DISCIPLINED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100"><stats maxHp="35000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="2.5" side="1.38" upper="5.8" /></npc_template>
@@ -375675,7 +375675,7 @@ Through the mediation of the Black Cloud Merchants,
 	<npc_template npc_id="220646" level="1" name_id="345036" title_id="345166" name_en="Taida the Enraged" name_pt="Taida, o Enfurecido" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" hpgauge="14" attack_speed="2000"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="1.485" side="2.58" upper="4.65" /></npc_template>
 	<npc_template npc_id="220658" level="1" name_id="345048" title_id="345166" name_en="Combat Captain Danika" name_pt="Meio de escavação de asmodianos de Krotan" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" ai="aggressive" srange="8" hpgauge="14" attack_speed="2000"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100901093</item></equipment><bound_radius front="0.5" side="0.25" upper="3.6" /></npc_template>
 	<npc_template npc_id="220663" level="65" name_id="345168" name_en="Balic Aether Cannon" name_pt="Recrutamento de Miren de Alto Classificação" height="6" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" ai="aggressive" srange="10" hpgauge="5" attack_speed="2185"><stats maxHp="23810"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="3" side="4" upper="6" /></npc_template>
-	<npc_template npc_id="220668" level="70" name_id="345057" title_id="345166" name_en="Deputy Brigade General Kutma" name_pt="Vício- idéia de Brigada Kutma" height="3.24" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" ai="aggressive" srange="8" hpgauge="14" attack_speed="2000"><stats maxHp="292083"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100501030</item></equipment><bound_radius front="0.45" side="0.225" upper="3.24" /></npc_template>
+	<npc_template npc_id="220668" level="70" name_id="345057" title_id="345166" name_en="Deputy Brigade General Kutma" name_pt="Vice-General de Brigada Kutma" height="3.24" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" ai="aggressive" srange="8" hpgauge="14" attack_speed="2000"><stats maxHp="292083"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100501030</item></equipment><bound_radius front="0.45" side="0.225" upper="3.24" /></npc_template>
 	<npc_template npc_id="220670" level="70" name_id="345059" title_id="345166" name_en="Tempestuous Ardor" name_pt="Ardor Tempestuoso" height="4.27" rank="DISCIPLINED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" hpgauge="14" attack_speed="2000"><stats maxHp="292083"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="1.05" side="0.7" upper="4.27" /></npc_template>
 	<npc_template npc_id="220677" level="65" name_id="345066" title_id="345166" name_en="Tindertryst" name_pt="Tindertryst" height="4.9" rank="DISCIPLINED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100"><stats maxHp="35000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="1.4" side="1.05" upper="4.9" /></npc_template>
 	<npc_template npc_id="220683" level="70" name_id="345072" title_id="345166" name_en="Reclusive Krata" name_pt="Krata Recluso" height="3.33" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="14" attack_speed="2000"><stats maxHp="292083"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>101300656</item><item>125002283</item><item>110600969</item><item>111600948</item><item>114600927</item><item>112600923</item><item>113600932</item></equipment><bound_radius front="0.63" side="0.63" upper="3.33" /></npc_template>
@@ -375695,7 +375695,7 @@ Through the mediation of the Black Cloud Merchants,
 	<npc_template npc_id="220724" level="65" name_id="345113" name_en="Hotspring Monitor" name_pt="Perseguidor experiente" height="1.1025" rank="DISCIPLINED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100"><stats maxHp="35000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.975" side="2.925" upper="1.1025" /></npc_template>
 	<npc_template npc_id="220725" level="65" name_id="345114" name_en="Rock Gnarl" name_pt="Poderoso Stallari" height="4.68" rank="DISCIPLINED" rating="NORMAL" tribe="MONSTER" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100"><stats maxHp="35000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="1.3" side="1.75" upper="4.68" /></npc_template>
 	<npc_template npc_id="220726" level="65" name_id="345115" name_en="Rock Gnarl" name_pt="Poderoso Stallari" height="4.68" rank="DISCIPLINED" rating="NORMAL" tribe="MONSTER" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100"><stats maxHp="35000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="1.3" side="1.75" upper="4.68" /></npc_template>
-	<npc_template npc_id="220741" level="70" name_id="345130" title_id="345166" name_en="Deputy Brigade General Talaba" name_pt="Vício- idéia de Brigada Talaba" height="3.6" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" ai="aggressive" srange="8" hpgauge="14" attack_speed="2000"><stats maxHp="292083"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100901093</item></equipment><bound_radius front="0.5" side="0.25" upper="3.6" /></npc_template>
+	<npc_template npc_id="220741" level="70" name_id="345130" title_id="345166" name_en="Deputy Brigade General Talaba" name_pt="Vice-General de Brigada Talaba" height="3.6" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" ai="aggressive" srange="8" hpgauge="14" attack_speed="2000"><stats maxHp="292083"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100901093</item></equipment><bound_radius front="0.5" side="0.25" upper="3.6" /></npc_template>
 	<npc_template npc_id="220746" level="65" name_id="345168" name_en="Balic Aether Cannon" name_pt="Recrutamento de Miren de Alto Classificação" height="6" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" ai="aggressive" srange="10" hpgauge="5" attack_speed="2185"><stats maxHp="23810"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="3" side="4" upper="6" /></npc_template>
 	<npc_template npc_id="220751" level="1" name_id="345139" title_id="345166" name_en="Bodyguard Captain Daira" name_pt="Capitão dos Guarda-Costas Daira" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="XDRAKAN" ai="aggressive" srange="8" hpgauge="14" attack_speed="2000"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100501030</item></equipment><bound_radius front="0.45" side="0.225" upper="3.24" /></npc_template>
 	<npc_template npc_id="220765" level="65" name_id="345153" title_id="345166" name_en="Flameclaw Firzan" name_pt="Firzan Garra-de-Fogo" height="5.797" rank="DISCIPLINED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100"><stats maxHp="35000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="2.64" side="4.675" upper="5.797" /></npc_template>
@@ -375738,7 +375738,7 @@ Through the mediation of the Black Cloud Merchants,
 	<npc_template npc_id="221031" level="65" name_id="345897" title_id="345966" name_en="Reian Satra Priest Assassin" name_pt="Assassino Sacerdote Satra Reian" height="2.405" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="1900"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100201260</item><item>100201260</item><item>125003206</item><item>110301395</item><item>111301338</item><item>114301398</item><item>112301282</item><item>113301362</item></equipment><bound_radius front="0.455" side="0.455" upper="2.405" /></npc_template>
 	<npc_template npc_id="221032" level="65" name_id="345898" title_id="345966" name_en="Reian Satra Priest Warrior" name_pt="Guerreiro Sacerdote Satra Reian" height="2.59" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100001418</item><item>125003208</item><item>110601324</item><item>111601291</item><item>114601280</item><item>112601267</item><item>113501338</item></equipment><bound_radius front="0.50" side="0.50" upper="2.00" /></npc_template>
 	<npc_template npc_id="221033" level="65" name_id="345899" title_id="345966" name_en="Reian Satra Priest Pacifier" name_pt="Pacificador Sacerdote Satra Reian" height="2.028" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2040"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>101501120</item><item>125003207</item><item>110550971</item><item>111501313</item><item>114501337</item><item>112501256</item><item>113501330</item></equipment><bound_radius front="0.36" side="0.36" upper="2.028" /></npc_template>
-	<npc_template npc_id="221034" level="65" name_id="345900" title_id="345966" name_en="Reian Satra Priest Scout" name_pt="Asmodian Asmodian Guardião" height="2.22" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="10" hpgauge="3" attack_speed="2260"><stats maxHp="20158"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>101700028</item><item>163000003</item><item>125003206</item><item>110301395</item><item>111301338</item><item>114301398</item><item>112301282</item><item>113301362</item></equipment><bound_radius front="0.42" side="0.42" upper="2.22" /></npc_template>
+	<npc_template npc_id="221034" level="65" name_id="345900" title_id="345966" name_en="Reian Satra Priest Scout" name_pt="Asmodian Guardião" height="2.22" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="10" hpgauge="3" attack_speed="2260"><stats maxHp="20158"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>101700028</item><item>163000003</item><item>125003206</item><item>110301395</item><item>111301338</item><item>114301398</item><item>112301282</item><item>113301362</item></equipment><bound_radius front="0.42" side="0.42" upper="2.22" /></npc_template>
 	<npc_template npc_id="221035" level="65" name_id="345901" title_id="345966" name_en="Reian Satra Priest Mage" name_pt="Mago Sacerdote Satra Reian" height="2.028" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2300"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100600021</item><item>125300035</item><item>110101476</item><item>111101346</item><item>114101394</item><item>112101300</item><item>113101364</item></equipment><bound_radius front="0.36" side="0.36" upper="2.028" /></npc_template>
 	<npc_template npc_id="221036" level="1" name_id="345902" title_id="345967" name_en="Reian Satra Priest Assassin" name_pt="Assassino Sacerdote Satra Reian" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="1900"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.455" side="0.455" upper="2.405" /></npc_template>
 	<npc_template npc_id="221037" level="1" name_id="345903" title_id="345967" name_en="Reian Satra Priest Warrior" name_pt="Guerreiro Sacerdote Satra Reian" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.50" side="0.50" upper="2.00" /></npc_template>
@@ -375765,7 +375765,7 @@ Through the mediation of the Black Cloud Merchants,
 	<npc_template npc_id="221058" level="1" name_id="345924" title_id="345971" name_en="Reian Satra Priest Pacifier" name_pt="Pacificador Sacerdote Satra Reian" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2040"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.36" side="0.36" upper="2.028" /></npc_template>
 	<npc_template npc_id="221059" level="1" name_id="345925" title_id="345971" name_en="Reian Satra Priest Scout" name_pt="Batedor Sacerdote Satra Reian" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="10" hpgauge="3" attack_speed="2260"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.42" side="0.42" upper="2.22" /></npc_template>
 	<npc_template npc_id="221060" level="1" name_id="345926" title_id="345971" name_en="Reian Satra Priest Mage" name_pt="Mago Sacerdote Satra Reian" height="1.00" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2300"><stats maxHp="1000"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><bound_radius front="0.36" side="0.36" upper="2.028" /></npc_template>
-	<npc_template npc_id="221061" level="65" name_id="345927" title_id="345972" name_en="Reian Satra Priest Assassin" name_pt="Asmodian Asmodian Guardião" height="2.405" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="1900"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100201260</item><item>100201260</item><item>125003206</item><item>110301395</item><item>111301338</item><item>114301398</item><item>112301282</item><item>113301362</item></equipment><bound_radius front="0.455" side="0.455" upper="2.405" /></npc_template>
+	<npc_template npc_id="221061" level="65" name_id="345927" title_id="345972" name_en="Reian Satra Priest Assassin" name_pt="Asmodian Guardião" height="2.405" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="1900"><stats maxHp="19232"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100201260</item><item>100201260</item><item>125003206</item><item>110301395</item><item>111301338</item><item>114301398</item><item>112301282</item><item>113301362</item></equipment><bound_radius front="0.455" side="0.455" upper="2.405" /></npc_template>
 	<npc_template npc_id="221062" level="65" name_id="345928" title_id="345972" name_en="Reian Satra Priest Warrior" name_pt="Guerreiro Sacerdote Satra Reian" height="2.59" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2100"><stats maxHp="25488"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>100001418</item><item>125003208</item><item>110601324</item><item>111601291</item><item>114601280</item><item>112601267</item><item>113501338</item></equipment><bound_radius front="0.50" side="0.50" upper="2.00" /></npc_template>
 	<npc_template npc_id="221063" level="65" name_id="345929" title_id="345972" name_en="Reian Satra Priest Pacifier" name_pt="Pacificador Sacerdote Satra Reian" height="2.028" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="8" hpgauge="3" attack_speed="2040"><stats maxHp="23171"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>101501120</item><item>125003207</item><item>110550971</item><item>111501313</item><item>114501337</item><item>112501256</item><item>113501330</item></equipment><bound_radius front="0.36" side="0.36" upper="2.028" /></npc_template>
 	<npc_template npc_id="221064" level="65" name_id="345930" title_id="345972" name_en="Reian Satra Priest Scout" name_pt="Batedor Sacerdote Satra Reian" height="2.22" rank="DISCIPLINED" rating="NORMAL" tribe="LDF4B_FANATIC" ai="aggressive" srange="10" hpgauge="3" attack_speed="2260"><stats maxHp="20158"><speeds walk="2.00" run="6.00" run_fight="6.00" /></stats><equipment><item>101700028</item><item>163000003</item><item>125003206</item><item>110301395</item><item>111301338</item><item>114301398</item><item>112301282</item><item>113301362</item></equipment><bound_radius front="0.42" side="0.42" upper="2.22" /></npc_template>

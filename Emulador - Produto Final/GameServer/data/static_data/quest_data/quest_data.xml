@@ -5257,7 +5257,7 @@
 			<finished quest_id="1691" />
 		</start_conditions>
 	</quest>
-	<quest id="1693" name_en="Are You My Father?" name_pt="Você é rio rio meu pai?" nameId="1102884" quest_zone="Heiron" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="1693" name_en="Are You My Father?" name_pt="Você é meu pai?" nameId="1102884" quest_zone="Heiron" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<rewards exp="2108696">
 			<reward_item item_id="162002048" count="1" />
 		</rewards>
@@ -12968,7 +12968,7 @@
 			<finished quest_id="2669" />
 		</start_conditions>
 	</quest>
-	<quest id="2696" name_en="[Spy/Group] The Enemy of My Enemy" name_pt="[espião/grupo] O inimigo do rio rio meu inimigo" nameId="1103996" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="2696" name_en="[Spy/Group] The Enemy of My Enemy" name_pt="[espião/grupo] O inimigo do meu inimigo" nameId="1103996" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards exp="2954681">
 			<reward_item item_id="186000390" count="12" />
 		</rewards>
@@ -14344,7 +14344,7 @@
 			<quest_work_item item_id="182207013" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="2920" name_en="Elementary, My Dear Daeva" name_pt="Elementar, rio rio meu querido Daeva" nameId="1104120" quest_zone="Pandaemonium" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="2920" name_en="Elementary, My Dear Daeva" name_pt="Elementar, meu querido Daeva" nameId="1104120" quest_zone="Pandaemonium" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards exp="1500">
 			<reward_item item_id="141000002" count="100" />
 		</rewards>
@@ -17523,7 +17523,7 @@
 			<quest_work_item item_id="182202193" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="3722" name_en="[Daily] My New Toy" name_pt="[Grupo] Rio rio meu novo brinquedo" nameId="1104719" quest_zone="Chantra Dredgion" minlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="3722" name_en="[Daily] My New Toy" name_pt="[Grupo] Meu novo brinquedo" nameId="1104719" quest_zone="Chantra Dredgion" minlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<rewards exp="3953541" ap="1200" />
 		<quest_work_items>
 			<quest_work_item item_id="182202194" count="1" />
@@ -17561,7 +17561,7 @@
 		<quest_drop npc_id="216881" item_id="182202197" chance="100" drop_each_member="1" collecting_step="0" />
 		<quest_drop npc_id="216884" item_id="182202197" chance="100" drop_each_member="1" collecting_step="0" />
 	</quest>
-	<quest id="3725" name_en="[Group] My Lucky Number" name_pt="[Grupo] Rio rio meu número de sorte" nameId="1104722" quest_zone="Chantra Dredgion" minlevel_permitted="99" maxlevel_permitted="99" max_repeat_count="255" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="3725" name_en="[Group] My Lucky Number" name_pt="[Grupo] Meu número de sorte" nameId="1104722" quest_zone="Chantra Dredgion" minlevel_permitted="99" maxlevel_permitted="99" max_repeat_count="255" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<rewards exp="3953541">
 			<reward_item item_id="186000030" count="1" />
 		</rewards>
@@ -19739,7 +19739,7 @@
 			<finished quest_id="4205" />
 		</start_conditions>
 	</quest>
-	<quest id="4207" name_en="The Steel Rake’s Logbook" name_pt="[Instância] O diário de bordo de aço aço" nameId="1104234" quest_zone="Pandaemonium" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="4207" name_en="The Steel Rake’s Logbook" name_pt="[Instância] O diário de bordo do Ancinho de Aço" nameId="1104234" quest_zone="Pandaemonium" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="182209102" count="1" />
 		</collect_items>
@@ -23690,7 +23690,7 @@
 			<quest_work_item item_id="182290211" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="5507" name_en="Shelled Venera Supplies" name_pt="Suprimentos de programa programa venera com casca" nameId="1190212" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40001" combine_skillpoint="70">
+	<quest id="5507" name_en="Shelled Venera Supplies" name_pt="Suprimentos de programa venera com casca" nameId="1190212" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40001" combine_skillpoint="70">
 		<collect_items>
 			<collect_item item_id="182290529" count="6" />
 		</collect_items>
@@ -23880,7 +23880,7 @@
 			<quest_work_item item_id="182290232" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="5528" name_en="Battered Megrim Supplies" name_pt="Megrim Megrim Atrado" nameId="1190233" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40001" combine_skillpoint="280">
+	<quest id="5528" name_en="Battered Megrim Supplies" name_pt="Megrim Atrado" nameId="1190233" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40001" combine_skillpoint="280">
 		<collect_items>
 			<collect_item item_id="182290550" count="12" />
 		</collect_items>
@@ -26580,7 +26580,7 @@
 			<quest_work_item item_id="182291232" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="6528" name_en="Battered Megrim Supplies" name_pt="Megrim Megrim Atrado" nameId="1195234" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40001" combine_skillpoint="280">
+	<quest id="6528" name_en="Battered Megrim Supplies" name_pt="Megrim Atrado" nameId="1195234" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40001" combine_skillpoint="280">
 		<collect_items>
 			<collect_item item_id="182291550" count="12" />
 		</collect_items>
@@ -27622,10 +27622,10 @@
 			<finished quest_id="9632" />
 		</start_conditions>
 	</quest>
-	<quest id="9635" name_en="[테스트] 안전한 하객 맞이(미사용)" name_pt="[Teste] Recepção Rio rio segura dos Convidados (Não Usado)" nameId="1800797" quest_zone="Event" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="9635" name_en="[테스트] 안전한 하객 맞이(미사용)" name_pt="[Teste] Recepção Rio segura dos Convidados (Não Usado)" nameId="1800797" quest_zone="Event" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<rewards gold="9635" exp="9635" />
 	</quest>
-	<quest id="9636" name_en="[테스트] 안전한 하객 맞이(미사용)" name_pt="[Teste] Recepção Rio rio segura dos Convidados (Não Usado)" nameId="1800803" quest_zone="Event" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="9636" name_en="[테스트] 안전한 하객 맞이(미사용)" name_pt="[Teste] Recepção Rio segura dos Convidados (Não Usado)" nameId="1800803" quest_zone="Event" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards gold="9636" exp="9636" />
 	</quest>
 	<quest id="9637" name_en="[테스트] 누가 잃어버린 가방일까?" name_pt="[Teste] De Quem é a Bolsa Perdida?" nameId="1800828" quest_zone="Event" minlevel_permitted="55" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
@@ -27640,7 +27640,7 @@
 		</rewards>
 		<quest_kill seq="0" npc_ids="215972" count="1" var="0" step="0" />
 	</quest>
-	<quest id="9639" name_en="[테스트] 안전한 하객 맞이" name_pt="[Teste] Recepção Rio rio segura dos Convidados" nameId="1800839" quest_zone="Event" minlevel_permitted="55" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="9639" name_en="[테스트] 안전한 하객 맞이" name_pt="[Teste] Recepção Rio segura dos Convidados" nameId="1800839" quest_zone="Event" minlevel_permitted="55" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="182215230" count="5" />
 		</collect_items>
@@ -27651,7 +27651,7 @@
 			<finished quest_id="9633" />
 		</start_conditions>
 	</quest>
-	<quest id="9640" name_en="[테스트] 안전한 하객 맞이" name_pt="[Teste] Recepção Rio rio segura dos Convidados" nameId="1800840" quest_zone="Event" minlevel_permitted="55" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="9640" name_en="[테스트] 안전한 하객 맞이" name_pt="[Teste] Recepção Rio segura dos Convidados" nameId="1800840" quest_zone="Event" minlevel_permitted="55" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="182215231" count="5" />
 		</collect_items>
@@ -30233,7 +30233,7 @@
 			<reward_item item_id="186000163" count="2" />
 		</rewards>
 	</quest>
-	<quest id="11202" name_en="A Safer Crater" name_pt="Uma cratera mais rio rio segura" nameId="1125128" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="10" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="11202" name_en="A Safer Crater" name_pt="Uma cratera mais segura" nameId="1125128" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="10" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<rewards gold="52900" exp="1902500" />
 	</quest>
 	<quest id="11203" name_en="Essence of Sulphur" name_pt="Essência do enxofre" nameId="1125129" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
@@ -31349,7 +31349,7 @@
 			<finished quest_id="11451" />
 		</start_conditions>
 	</quest>
-	<quest id="11453" name_en="Fruit of My Labor" name_pt="Fruto do rio rio meu trabalho" nameId="1125503" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="11453" name_en="Fruit of My Labor" name_pt="Fruto do meu trabalho" nameId="1125503" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<rewards exp="550500">
 			<selectable_reward_item item_id="162000064" count="1" />
 			<selectable_reward_item item_id="162000065" count="1" />
@@ -37665,7 +37665,7 @@ Usada para ativar o Artefato do Princípio." nameId="1800739" quest_zone="Cygnea
 	<quest id="15084" name_en="[테스트] 부케 만들기" name_pt="[Teste] Fazendo o Buquê" nameId="1800796" quest_zone="Cygnea" minlevel_permitted="99" max_repeat_count="1" race_permitted="ELYOS" category="QUEST">
 		<rewards gold="15084" exp="15084" />
 	</quest>
-	<quest id="15085" name_en="[테스트] 안전한 하객 맞이(미사용)" name_pt="[Teste] Recepção Rio rio segura dos Convidados (Não Usado)" nameId="1800797" quest_zone="Cygnea" minlevel_permitted="99" max_repeat_count="1" race_permitted="ELYOS" category="QUEST">
+	<quest id="15085" name_en="[테스트] 안전한 하객 맞이(미사용)" name_pt="[Teste] Recepção Rio segura dos Convidados (Não Usado)" nameId="1800797" quest_zone="Cygnea" minlevel_permitted="99" max_repeat_count="1" race_permitted="ELYOS" category="QUEST">
 		<rewards gold="15085" exp="15085" />
 	</quest>
 	<quest id="15086" name_en="[테스트] 누가 잃어버린 가방일까?(미사용)" name_pt="[Teste] De Quem é a Bolsa Perdida? (Não Usado)" nameId="1800798" quest_zone="Cygnea" minlevel_permitted="99" max_repeat_count="1" race_permitted="ELYOS" category="QUEST">
@@ -37683,7 +37683,7 @@ Usada para ativar o Artefato do Princípio." nameId="1800739" quest_zone="Cygnea
 	<quest id="15090" name_en="[테스트] 부케 만들기" name_pt="[Teste] Fazendo o Buquê" nameId="1800802" quest_zone="Cygnea" minlevel_permitted="99" max_repeat_count="1" race_permitted="ELYOS" category="QUEST" data_driven="true">
 		<rewards gold="15090" exp="15090" />
 	</quest>
-	<quest id="15091" name_en="[테스트] 안전한 하객 맞이(미사용)" name_pt="[Teste] Recepção Rio rio segura dos Convidados (Não Usado)" nameId="1800803" quest_zone="Cygnea" minlevel_permitted="99" max_repeat_count="1" race_permitted="ELYOS" category="QUEST" data_driven="true">
+	<quest id="15091" name_en="[테스트] 안전한 하객 맞이(미사용)" name_pt="[Teste] Recepção Rio segura dos Convidados (Não Usado)" nameId="1800803" quest_zone="Cygnea" minlevel_permitted="99" max_repeat_count="1" race_permitted="ELYOS" category="QUEST" data_driven="true">
 		<rewards gold="15091" exp="15091" />
 	</quest>
 	<quest id="15092" name_en="Dripping Bag" name_pt="Bolsa Gotejante" nameId="1800804" quest_zone="Cygnea" minlevel_permitted="99" max_repeat_count="1" race_permitted="ELYOS" category="QUEST" data_driven="true">
@@ -51828,7 +51828,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 		<quest_drop npc_id="220028" item_id="182215705" drop_each_member="1" />
 		<quest_drop npc_id="220029" item_id="182215705" drop_each_member="1" />
 	</quest>
-	<quest id="25022" name_en="[테스트] 안전한 하객 맞이" name_pt="[Teste] Recepção Rio rio segura dos Convidados" nameId="1800839" quest_zone="Enshar" minlevel_permitted="57" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
+	<quest id="25022" name_en="[테스트] 안전한 하객 맞이" name_pt="[Teste] Recepção Rio segura dos Convidados" nameId="1800839" quest_zone="Enshar" minlevel_permitted="57" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215707" count="5" />
 			<collect_item item_id="182215708" count="5" />
@@ -51845,7 +51845,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 			<quest_work_item item_id="182215709" />
 		</quest_work_items>
 	</quest>
-	<quest id="25023" name_en="[테스트] 안전한 하객 맞이" name_pt="[Teste] Recepção Rio rio segura dos Convidados" nameId="1800840" quest_zone="Enshar" minlevel_permitted="57" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
+	<quest id="25023" name_en="[테스트] 안전한 하객 맞이" name_pt="[Teste] Recepção Rio segura dos Convidados" nameId="1800840" quest_zone="Enshar" minlevel_permitted="57" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215710" count="3" />
 		</collect_items>
@@ -51935,7 +51935,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 		<quest_drop npc_id="219719" item_id="182215717" drop_each_member="1" />
 		<quest_drop npc_id="219724" item_id="182215718" drop_each_member="1" />
 	</quest>
-	<quest id="25051" name_en="A glorious title for Daevas who have completed Phaestos’ Disc." name_pt="Um título glorioso para Daevas que completaram o Música música disco de Phaestos." nameId="1800846" quest_zone="Enshar" minlevel_permitted="59" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
+	<quest id="25051" name_en="A glorious title for Daevas who have completed Phaestos’ Disc." name_pt="Um título glorioso para Daevas que completaram o Música disco de Phaestos." nameId="1800846" quest_zone="Enshar" minlevel_permitted="59" max_repeat_count="1" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
 		<collect_items>
 			<collect_item item_id="182215721" count="1" />
 		</collect_items>
@@ -57190,7 +57190,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 		</inventory_items>
 		<rewards exp="767900" />
 	</quest>
-	<quest id="30026" name_en="Noble Siel's Supreme Orb" name_pt="Orbe Supremo de Siel Siel" nameId="1114226" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="30026" name_en="Noble Siel's Supreme Orb" name_pt="Orbe Supremo de Siel" nameId="1114226" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="100500701" count="1" />
 			<collect_item item_id="186000095" count="1" />
@@ -57346,7 +57346,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 			<noacquired>30001</noacquired>
 		</start_conditions>
 	</quest>
-	<quest id="30051" name_en="[Daily] Banishing the Shadowborn" name_pt="[Diária] banindo o nascido nascido" nameId="1114265" quest_zone="Silentera Canyon" minlevel_permitted="99" max_repeat_count="255" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="30051" name_en="[Daily] Banishing the Shadowborn" name_pt="[Diária] banindo o nascido" nameId="1114265" quest_zone="Silentera Canyon" minlevel_permitted="99" max_repeat_count="255" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<rewards exp="2849620">
 			<reward_item item_id="188053485" count="1" />
 		</rewards>
@@ -59941,7 +59941,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 			<reward_item item_id="186000242" count="1" />
 		</rewards>
 	</quest>
-	<quest id="30516" name_en="Lab Coat" name_pt="Jaleco ltd ltd de Laboratório" nameId="1801109" quest_zone="Rentus Base" minlevel_permitted="65" max_repeat_count="255" race_permitted="ELYOS" category="QUEST" restricted="true" data_driven="true">
+	<quest id="30516" name_en="Lab Coat" name_pt="Jaleco ltd de Laboratório" nameId="1801109" quest_zone="Rentus Base" minlevel_permitted="65" max_repeat_count="255" race_permitted="ELYOS" category="QUEST" restricted="true" data_driven="true">
 		<rewards exp="3568486">
 			<reward_item item_id="186000236" count="5" />
 		</rewards>
@@ -61449,7 +61449,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<reward_item item_id="188051127" count="1" />
 		</rewards>
 	</quest>
-	<quest id="37110" name_en="[Daily] My Young Apprentice" name_pt="[Diária] rio rio meu jovem aprendiz" nameId="1126158" quest_zone="STR_FACTION_Mentor_Li" minlevel_permitted="99" maxlevel_permitted="55" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="FACTION">
+	<quest id="37110" name_en="[Daily] My Young Apprentice" name_pt="[Diária] meu jovem aprendiz" nameId="1126158" quest_zone="STR_FACTION_Mentor_Li" minlevel_permitted="99" maxlevel_permitted="55" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="FACTION">
 		<rewards exp="1791700">
 			<reward_item item_id="186000114" count="2" />
 			<reward_item item_id="188051127" count="1" />
@@ -65278,7 +65278,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<reward_item item_id="186000390" count="14" />
 		</rewards>
 	</quest>
-	<quest id="45037" name_en="[Daily] Gone Gone Gorgons!" name_pt="[Diária] Foi Foi Gorgons!" nameId="1128037" quest_zone="STR_FACTION_GuardianOfTower" minlevel_permitted="99" maxlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="FACTION">
+	<quest id="45037" name_en="[Daily] Gone Gone Gorgons!" name_pt="[Diária] Foi Gorgons!" nameId="1128037" quest_zone="STR_FACTION_GuardianOfTower" minlevel_permitted="99" maxlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="FACTION">
 		<rewards exp="910765">
 			<reward_item item_id="186000390" count="18" />
 		</rewards>
@@ -68817,7 +68817,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 			<reward_item item_id="125040165" count="1" />
 		</extended_rewards>
 	</quest>
-	<quest id="80121" name_en="[Event] Chitter-Chitter Glimma" name_pt="[Anômalo] Chitter Chitter Glimma" nameId="1180121" quest_zone="Pandaemonium" minlevel_permitted="25" maxlevel_permitted="34" max_repeat_count="4" cannot_share="false" cannot_giveup="false" race_permitted="ASMODIANS" category="EVENT">
+	<quest id="80121" name_en="[Event] Chitter-Chitter Glimma" name_pt="[Anômalo] Chitter Glimma" nameId="1180121" quest_zone="Pandaemonium" minlevel_permitted="25" maxlevel_permitted="34" max_repeat_count="4" cannot_share="false" cannot_giveup="false" race_permitted="ASMODIANS" category="EVENT">
 		<collect_items>
 			<collect_item item_id="160010154" count="15" />
 		</collect_items>
@@ -77036,7 +77036,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 		<quest_drop npc_id="215698" item_id="182215633" chance="100" drop_each_member="1" collecting_step="0" />
 		<quest_drop npc_id="215699" item_id="182215633" chance="100" drop_each_member="1" collecting_step="0" />
 	</quest>
-	<quest id="14635" name_en="A Safer Crater" name_pt="Uma cratera mais rio rio segura" nameId="1802731" quest_zone="Inggison" minlevel_permitted="40" maxlevel_permitted="65" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="IMPORTANT">
+	<quest id="14635" name_en="A Safer Crater" name_pt="Uma cratera mais segura" nameId="1802731" quest_zone="Inggison" minlevel_permitted="40" maxlevel_permitted="65" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="IMPORTANT">
 		<rewards gold="16000" exp="105332950">
 			<selectable_reward_item item_id="164002104" count="5" />
 			<selectable_reward_item item_id="164002105" count="5" />
@@ -81388,7 +81388,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<finished quest_id="31000" />
 		</start_conditions>
 	</quest>
-	<quest id="31007" name_en="[Skin Swap] The Aeon Temple Guard’s Coat Will Be Mine!" name_pt="[Troca de Pele] O Casaco do Guarda do Templo de Éon geológico será rio rio meu!" nameId="1801576" quest_zone="The Dokkaebi Realm" minlevel_permitted="56" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="31007" name_en="[Skin Swap] The Aeon Temple Guard’s Coat Will Be Mine!" name_pt="[Troca de Pele] O Casaco do Guarda do Templo de Éon geológico será meu!" nameId="1801576" quest_zone="The Dokkaebi Realm" minlevel_permitted="56" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<rewards>
 			<reward_item item_id="188054620" count="1" />
 		</rewards>
@@ -81422,7 +81422,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<finished quest_id="31001" />
 		</start_conditions>
 	</quest>
-	<quest id="31009" name_en="[Skin Swap] The Aeon Temple Guard’s Coat Will Be Mine!" name_pt="[Troca de Pele] O Casaco do Guarda do Templo de Éon geológico será rio rio meu!" nameId="1801578" quest_zone="The Dokkaebi Realm" minlevel_permitted="56" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="31009" name_en="[Skin Swap] The Aeon Temple Guard’s Coat Will Be Mine!" name_pt="[Troca de Pele] O Casaco do Guarda do Templo de Éon geológico será meu!" nameId="1801578" quest_zone="The Dokkaebi Realm" minlevel_permitted="56" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards>
 			<reward_item item_id="188054620" count="1" />
 		</rewards>

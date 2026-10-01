@@ -535,7 +535,7 @@
 		<petfunction id="1030000" type="WING"/>
 		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.7"/>
 	</pet>
-	<pet id="900113" name_en="Waxy Humpback Worg" name_pt="Worg Worg" nameid="1607495" condition_reward="188051378">
+	<pet id="900113" name_en="Waxy Humpback Worg" name_pt="Worg" nameid="1607495" condition_reward="188051378">
 		<petfunction id="1030000" type="WING"/>
 		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.7"/>
 	</pet>

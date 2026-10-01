@@ -228,7 +228,7 @@
 			<add name="PHYSICAL_DEFENSE" value="10" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="37" nameId="1100936" desc_en="Miragent Holy Templar" desc_pt="Miragent El el santo Templário" race="ELYOS" available="false">
+	<title id="37" nameId="1100936" desc_en="Miragent Holy Templar" desc_pt="Miragent Sagrado Templário" race="ELYOS" available="false">
 		<modifiers>
 			<add name="MAXHP" value="80" bonus="true"/>
 			<rate name="SPEED" value="3" bonus="true"/>
@@ -378,7 +378,7 @@
 			<add name="MAXHP" value="40" bonus="true"/>
 		</modifiers>
 	</title>
-	<title id="61" nameId="1101110" desc_en="Shugo Chef" desc_pt="Chef Chef" race="ASMODIANS" available="false">
+	<title id="61" nameId="1101110" desc_en="Shugo Chef" desc_pt="Chef" race="ASMODIANS" available="false">
 		<modifiers>
 			<add name="EVASION" value="6" bonus="true"/>
 			<add name="FLY_TIME" value="2" bonus="true"/>
