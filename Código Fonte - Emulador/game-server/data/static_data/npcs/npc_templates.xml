@@ -24778,7 +24778,7 @@
 		<bound_radius front="0.6" side="0.6225" upper="1.17" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="205172" level="45" name_en="BuBu Mep" name_pt="Budu DEPUTADO" name_id="354329" height="1.3259999" title_id="370058" group_drop="RATMANSCOUTM" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="10" arange="10" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="205172" level="45" name_en="BuBu Mep" name_pt="Bubu Mep" name_id="354329" height="1.3259999" title_id="370058" group_drop="RATMANSCOUTM" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="10" arange="10" attack_speed="2000" hpgauge="3">
 		<stats maxHp="11836">
 			<speeds walk="0.6" group_walk="0.6" run="7" run_fight="5" group_run_fight="7" />
 		</stats>
@@ -59456,7 +59456,7 @@
 		</equipment>
 		<bound_radius front="1" side="1.9" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="212306" level="48" name_en="Deputy Hanuman" name_pt="Deputado Hanuman" name_id="305118" height="3.91" group_drop="DRAKANFIGHTER" rank="EXPERT" rating="LEGENDARY" race="DRAKAN" tribe="DRAKANDF3BOSS" ai="aggressive" srange="16" sangle="240" arange="2" attack_speed="2520" hpgauge="26" cancel_level="0">
+	<npc_template npc_id="212306" level="48" name_en="Deputy Hanuman" name_pt="Subcomandante Hanuman" name_id="305118" height="3.91" group_drop="DRAKANFIGHTER" rank="EXPERT" rating="LEGENDARY" race="DRAKAN" tribe="DRAKANDF3BOSS" ai="aggressive" srange="16" sangle="240" arange="2" attack_speed="2520" hpgauge="26" cancel_level="0">
 		<stats maxHp="3764273">
 			<speeds walk="1.07" group_walk="1.07" run="8" run_fight="14" group_run_fight="8" />
 		</stats>
@@ -61855,7 +61855,7 @@
 		</stats>
 		<bound_radius front="5.25" side="3" upper="5.5" />
 	</npc_template>
-	<npc_template npc_id="212649" level="28" name_en="Deputy Lamipedon" name_pt="Deputado Lamipedon" name_id="306532" height="1.88" group_drop="UNDEADLIGHT_NAMED" rank="EXPERT" rating="NORMAL" race="UNDEAD" tribe="GHOSTLIGHT" type="MONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2310" cast_speed="100" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="212649" level="28" name_en="Deputy Lamipedon" name_pt="Subcomandante Lamipedon" name_id="306532" height="1.88" group_drop="UNDEADLIGHT_NAMED" rank="EXPERT" rating="NORMAL" race="UNDEAD" tribe="GHOSTLIGHT" type="MONSTER" ai="aggressive" srange="7" sangle="240" arange="2" attack_speed="2310" cast_speed="100" hpgauge="5" cancel_level="80">
 		<stats maxHp="5903">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="6" group_run_fight="6" />
 		</stats>
@@ -74666,13 +74666,13 @@
 		</stats>
 		<bound_radius front="1.224" side="1.283" upper="2.818" />
 	</npc_template>
-	<npc_template npc_id="214187" level="45" name_en="Coral Reef Tipolid" name_pt="Tipolid de recife de n coral: 1 espécie de pólipo. 2 rochedos formados pelos esqueletos desse pólipo. 3 cor vermelho-coral. • 1 feito de coral. 2 coralino" name_id="317299" height="2.168" group_drop="HIPPOLIZARD" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="3" floatcorpse="true">
+	<npc_template npc_id="214187" level="45" name_en="Coral Reef Tipolid" name_pt="Tipolid de recife de coral. 2 coralino" name_id="317299" height="2.168" group_drop="HIPPOLIZARD" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="3" floatcorpse="true">
 		<stats maxHp="10850">
 			<speeds walk="0.795" group_walk="0.795" run="8.44" run_fight="6" group_run_fight="8.44" />
 		</stats>
 		<bound_radius front="1.124" side="1.732" upper="2.168" />
 	</npc_template>
-	<npc_template npc_id="214188" level="46" name_en="Coral Reef Tipolid" name_pt="Tipolid de recife de n coral: 1 espécie de pólipo. 2 rochedos formados pelos esqueletos desse pólipo. 3 cor vermelho-coral. • 1 feito de coral. 2 coralino" name_id="317300" height="2.168" group_drop="HIPPOLIZARD" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="3" floatcorpse="true">
+	<npc_template npc_id="214188" level="46" name_en="Coral Reef Tipolid" name_pt="Tipolid de recife de coral. 2 coralino" name_id="317300" height="2.168" group_drop="HIPPOLIZARD" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2142" hpgauge="3" floatcorpse="true">
 		<stats maxHp="11374">
 			<speeds walk="0.795" group_walk="0.795" run="8.44" run_fight="6" group_run_fight="8.44" />
 		</stats>
@@ -74744,7 +74744,7 @@
 		</stats>
 		<bound_radius front="0.98" side="0.504" upper="3.73" />
 	</npc_template>
-	<npc_template npc_id="214200" level="47" name_en="Fin Vespine" name_pt="fim: a) termo Vespine" name_id="317312" height="2.03" group_drop="VESPA" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2081" hpgauge="3" floatcorpse="true">
+	<npc_template npc_id="214200" level="47" name_en="Fin Vespine" name_pt="Fim Vespine" name_id="317312" height="2.03" group_drop="VESPA" rank="DISCIPLINED" rating="NORMAL" race="BEAST" tribe="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2081" hpgauge="3" floatcorpse="true">
 		<stats maxHp="10675">
 			<speeds walk="5" group_walk="5" run="7.3" run_fight="5.5" group_run_fight="7.3" />
 		</stats>
@@ -77225,7 +77225,7 @@
 		</stats>
 		<bound_radius front="1.2" side="1.74" upper="1.32" />
 	</npc_template>
-	<npc_template npc_id="214564" level="46" name_en="Petrified Koar" name_pt="n coral: 1 espécie de pólipo. 2 rochedos formados pelos esqueletos desse pólipo. 3 cor vermelho-coral. • 1 feito de coral. 2 coralino petrificado" name_id="318043" height="4.68" group_drop="MAIDENGOLEM" rank="EXPERT" rating="NORMAL" race="CONSTRUCT" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" sangle="240" arange="16" attack_speed="2645" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="214564" level="46" name_en="Petrified Koar" name_pt="coral. 2 coralino petrificado" name_id="318043" height="4.68" group_drop="MAIDENGOLEM" rank="EXPERT" rating="NORMAL" race="CONSTRUCT" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="8" sangle="240" arange="16" attack_speed="2645" hpgauge="5" cancel_level="80">
 		<stats maxHp="11127">
 			<speeds walk="1.5" group_walk="1.5" run="7" run_fight="5" group_run_fight="7" />
 		</stats>
@@ -94169,7 +94169,7 @@
 		</equipment>
 		<bound_radius front="1.7" side="1.275" upper="5.1" />
 	</npc_template>
-	<npc_template npc_id="216575" level="55" name_en="Elder Malekor" name_pt="n coral: 1 espécie de pólipo. 2 rochedos formados pelos esqueletos desse pólipo. 3 cor vermelho-coral. • 1 feito de coral. 2 coralino de tinta anciã" name_id="321796" height="4.55" title_id="314407" group_drop="DRAKANMAGE" rank="EXPERT" rating="HERO" race="DRAGON" tribe="XDRAKAN" ai="aggressive" srange="10" arange="2" attack_speed="2300" hpgauge="20" cancel_level="0">
+	<npc_template npc_id="216575" level="55" name_en="Elder Malekor" name_pt="coral. 2 coralino de tinta anciã" name_id="321796" height="4.55" title_id="314407" group_drop="DRAKANMAGE" rank="EXPERT" rating="HERO" race="DRAGON" tribe="XDRAKAN" ai="aggressive" srange="10" arange="2" attack_speed="2300" hpgauge="20" cancel_level="0">
 		<stats maxHp="259212">
 			<speeds walk="1.07" group_walk="1.38" run="6" run_fight="15" group_run_fight="8" />
 		</stats>
@@ -114043,7 +114043,7 @@
 		</equipment>
 		<bound_radius front="1.625" side="2.275" upper="2.5493" />
 	</npc_template>
-	<npc_template npc_id="219895" level="65" name_en="Apsu’s Assassin" name_pt="Apsu’s Assassino" name_id="343945" height="2.2" title_id="344180" group_drop="DARK" rank="VETERAN" rating="ELITE" race="DRAGON" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="8" arange="2" attack_speed="2305" hpgauge="3" cancel_level="20">
+	<npc_template npc_id="219895" level="65" name_en="Apsu’s Assassin" name_pt="Assassino de Apsu" name_id="343945" height="2.2" title_id="344180" group_drop="DARK" rank="VETERAN" rating="ELITE" race="DRAGON" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="8" arange="2" attack_speed="2305" hpgauge="3" cancel_level="20">
 		<stats maxHp="259293" msup="817">
 			<speeds walk="1.5" group_walk="1.5" run="6.86" run_fight="6.86" group_run_fight="6.86" />
 		</stats>
@@ -114101,7 +114101,7 @@
 		</equipment>
 		<bound_radius front="1.3325" side="0.949" upper="3.1265" />
 	</npc_template>
-	<npc_template npc_id="219899" level="65" name_en="Apsu’s Warrior" name_pt="Apsu’s Guerreiro" name_id="343949" height="2.2" title_id="344180" group_drop="DARK" rank="VETERAN" rating="ELITE" race="LIZARDMAN" tribe="AGGRESSIVESUPPORTMONSTER" type="MONSTER" ai="aggressive" srange="8" arange="2" attack_speed="2305" hpgauge="3" cancel_level="20">
+	<npc_template npc_id="219899" level="65" name_en="Apsu’s Warrior" name_pt="Guerreiro de Apsu" name_id="343949" height="2.2" title_id="344180" group_drop="DARK" rank="VETERAN" rating="ELITE" race="LIZARDMAN" tribe="AGGRESSIVESUPPORTMONSTER" type="MONSTER" ai="aggressive" srange="8" arange="2" attack_speed="2305" hpgauge="3" cancel_level="20">
 		<stats maxHp="235721" msup="817">
 			<speeds walk="1.76" group_walk="1.76" run="7" run_fight="6" group_run_fight="7" />
 		</stats>
@@ -115822,7 +115822,7 @@
 		</equipment>
 		<bound_radius front="0.725" side="1.625" upper="2.25" />
 	</npc_template>
-	<npc_template npc_id="220086" level="65" name_en="Apsu’s Laphsaran Warrior" name_pt="Apsu’s Laphsaran Guerreiro" name_id="344171" height="2.2" group_drop="DARK" rank="VETERAN" rating="HERO" race="LIZARDMAN" tribe="AGGRESSIVESUPPORTMONSTER" type="MONSTER" ai="aggressive" srange="8" arange="2" attack_speed="2463" hpgauge="3" cancel_level="0">
+	<npc_template npc_id="220086" level="65" name_en="Apsu’s Laphsaran Warrior" name_pt="Guerreiro de Laphsaran de Apsu" name_id="344171" height="2.2" group_drop="DARK" rank="VETERAN" rating="HERO" race="LIZARDMAN" tribe="AGGRESSIVESUPPORTMONSTER" type="MONSTER" ai="aggressive" srange="8" arange="2" attack_speed="2463" hpgauge="3" cancel_level="0">
 		<stats maxHp="1825793" msup="1002">
 			<speeds walk="1.76" group_walk="1.76" run="7" run_fight="6" group_run_fight="7" />
 		</stats>
@@ -123606,7 +123606,7 @@
 		</equipment>
 		<bound_radius front="0.3" side="0.3" upper="1.69" />
 	</npc_template>
-	<npc_template npc_id="253028" level="26" name_en="Deputy Lohan" name_pt="Deputado Lohan" name_id="301845" height="2.805" group_drop="UNDEADLIGHT_PR" rank="SEASONED" rating="NORMAL" race="UNDEAD" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="aggressive" srange="15" sangle="240" arange="4" attack_speed="2244" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="253028" level="26" name_en="Deputy Lohan" name_pt="Subcomandante Lohan" name_id="301845" height="2.805" group_drop="UNDEADLIGHT_PR" rank="SEASONED" rating="NORMAL" race="UNDEAD" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="aggressive" srange="15" sangle="240" arange="4" attack_speed="2244" hpgauge="4" cancel_level="90">
 		<stats maxHp="4804">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="4.5" group_run_fight="6" />
 		</stats>
@@ -123642,7 +123642,7 @@
 		</equipment>
 		<bound_radius front="0.4" side="0.4" upper="1.92" />
 	</npc_template>
-	<npc_template npc_id="253032" level="26" name_en="Deputy Lagel" name_pt="Deputado Lagel" name_id="301846" height="2.805" group_drop="UNDEADDARK_RA" rank="SEASONED" rating="NORMAL" race="UNDEAD" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="aggressive" srange="15" sangle="240" arange="37" attack_speed="2486" hpgauge="4" cancel_level="90">
+	<npc_template npc_id="253032" level="26" name_en="Deputy Lagel" name_pt="Subcomandante Lagel" name_id="301846" height="2.805" group_drop="UNDEADDARK_RA" rank="SEASONED" rating="NORMAL" race="UNDEAD" tribe="AGGRESSIVESINGLEMONSTER" type="MONSTER" ai="aggressive" srange="15" sangle="240" arange="37" attack_speed="2486" hpgauge="4" cancel_level="90">
 		<stats maxHp="4179">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="4.5" group_run_fight="6" />
 		</stats>
@@ -139935,7 +139935,7 @@
 		</equipment>
 		<bound_radius front="1.2" side="0.9" upper="3.6" />
 	</npc_template>
-	<npc_template npc_id="259108" level="60" name_en="Elyos Artefact Gunner" name_pt="&lt;Rukibuki's Ilusão&gt;" name_id="344470" height="2.7" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" abyss_type="GUARD" ai="aggressive" srange="15" arange="37" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="259108" level="60" name_en="Elyos Artefact Gunner" name_pt="&lt;Ilusão de Rukibuki&gt;" name_id="344470" height="2.7" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" abyss_type="GUARD" ai="aggressive" srange="15" arange="37" attack_speed="2000" hpgauge="3">
 		<stats maxHp="13653">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -142948,7 +142948,7 @@
 		</equipment>
 		<bound_radius front="0.3375" side="0.4725" upper="2.7" />
 	</npc_template>
-	<npc_template npc_id="259692" level="1" name_en="Asmodian Protector of Resolve" name_pt="&lt;Rukibuki's Ilusão&gt;" name_id="344712" height="2.7" group_drop="DARK" rank="VETERAN" rating="ELITE" race="GCHIEF_DARK" tribe="F4GUARD_DARK" type="ABYSS_GUARD" abyss_type="BOSS" ai="artifact_protector" srange="15" arange="37" attack_speed="2000" hpgauge="3" cancel_level="20">
+	<npc_template npc_id="259692" level="1" name_en="Asmodian Protector of Resolve" name_pt="&lt;Ilusão de Rukibuki&gt;" name_id="344712" height="2.7" group_drop="DARK" rank="VETERAN" rating="ELITE" race="GCHIEF_DARK" tribe="F4GUARD_DARK" type="ABYSS_GUARD" abyss_type="BOSS" ai="artifact_protector" srange="15" arange="37" attack_speed="2000" hpgauge="3" cancel_level="20">
 		<stats maxHp="174535" msup="207" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -257035,7 +257035,7 @@
 		<stats maxHp="23691" />
 		<bound_radius front="0.9" side="2.25" upper="3.075" />
 	</npc_template>
-	<npc_template npc_id="282383" level="1" name_en="Ragnarok Bomber" name_pt="n india sati: 1 costume hindu de queimar a viúva com os restos mortais do seu marido. 2 a viúva queimada. Lacaio convocado" name_id="323635" height="1.9" group_drop="NEUTL2" rank="EXPERT" rating="ELITE" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="50" arange="2" attack_speed="2000" hpgauge="13" cancel_level="20">
+	<npc_template npc_id="282383" level="1" name_en="Ragnarok Bomber" name_pt="Sati Lacaio convocado" name_id="323635" height="1.9" group_drop="NEUTL2" rank="EXPERT" rating="ELITE" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="50" arange="2" attack_speed="2000" hpgauge="13" cancel_level="20">
 		<stats maxHp="106212">
 			<speeds walk="2" group_walk="2" run="3" run_fight="3" group_run_fight="3" />
 		</stats>
@@ -276824,7 +276824,7 @@
 		</equipment>
 		<bound_radius front="0.525" side="0.525" upper="2.805" />
 	</npc_template>
-	<npc_template npc_id="290131" level="26" name_en="Deputy Lohan" name_pt="Deputado Lohan" name_id="315807" height="2.805" group_drop="UNDEADLIGHT_PR" rank="SEASONED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="15" sangle="240" arange="4" attack_speed="2244" hpgauge="4" floatcorpse="true" cancel_level="90">
+	<npc_template npc_id="290131" level="26" name_en="Deputy Lohan" name_pt="Subcomandante Lohan" name_id="315807" height="2.805" group_drop="UNDEADLIGHT_PR" rank="SEASONED" rating="NORMAL" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="15" sangle="240" arange="4" attack_speed="2244" hpgauge="4" floatcorpse="true" cancel_level="90">
 		<stats maxHp="4804">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="4.5" group_run_fight="6" />
 		</stats>
@@ -307559,7 +307559,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700331" level="1" name_en="Coral Reef" name_pt="Recife de n coral: 1 espécie de pólipo. 2 rochedos formados pelos esqueletos desse pólipo. 3 cor vermelho-coral. • 1 feito de coral. 2 coralino" name_id="371014" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="quest_use_item" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700331" level="1" name_en="Coral Reef" name_pt="Recife de coral. 2 coralino" name_id="371014" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="quest_use_item" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
@@ -307748,7 +307748,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="6" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700371" level="1" name_en="Draupnir Cave Exit" name_pt="Draupnir Caverna saída: a) ato ou efeito de sair. b) lugar por onde se sai. 2 morte. • sair. 2 morrer." name_id="350921" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700371" level="1" name_en="Draupnir Cave Exit" name_pt="Draupnir Caverna Saída" name_id="350921" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="6" delay="3" can_talk_invisible="false" />
@@ -308859,7 +308859,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="10" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700603" level="1" name_en="Hidden Library Exit" name_pt="saída: a) ato ou efeito de sair. b) lugar por onde se sai. 2 morte. • sair. 2 morrer. de biblioteca oculta" name_id="371330" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="portal" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700603" level="1" name_en="Hidden Library Exit" name_pt="Saída de biblioteca oculta" name_id="371330" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="portal" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="10" can_talk_invisible="false" />
@@ -309080,7 +309080,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700706" level="1" name_en="Rebirthing Chamber Exit" name_pt="saída: a) ato ou efeito de sair. b) lugar por onde se sai. 2 morte. • sair. 2 morrer. de câmara de renascimento" name_id="371393" height="1" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="portal" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="700706" level="1" name_en="Rebirthing Chamber Exit" name_pt="Saída de câmara de renascimento" name_id="371393" height="1" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="portal" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.125" side="0.175" upper="1" />
 		<talk_info distance="5" delay="5" can_talk_invisible="false" />
@@ -312738,14 +312738,14 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="6" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="701525" level="65" name_en="Military Pack Brax" name_pt="Jormungand Ponte saída: a) ato ou efeito de sair. b) lugar por onde se sai. 2 morte. • sair. 2 morrer. (bônus)" name_id="464248" height="2.4" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="701525" level="65" name_en="Military Pack Brax" name_pt="Jormungand Ponte Saída (bônus)" name_id="464248" height="2.4" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="21107" >
 			<speeds walk="1.8" group_walk="1.5" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
 		<bound_radius front="0.3" side="0.42" upper="2.4" />
 		<talk_info distance="6" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="701526" level="65" name_en="Heavy Pack Brax" name_pt="saída: a) ato ou efeito de sair. b) lugar por onde se sai. 2 morte. • sair. 2 morrer. Runadium (bônus)" name_id="464249" height="2.4" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="701526" level="65" name_en="Heavy Pack Brax" name_pt="Saída Runadium (bônus)" name_id="464249" height="2.4" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="21107" >
 			<speeds walk="1.8" group_walk="1.5" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -313636,7 +313636,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="3" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730040" level="1" name_en="Secret Passage of Indratu Legion" name_pt="Passagem secreta da Guilda Indratu" name_id="350862" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="portal" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730040" level="1" name_en="Secret Passage of Indratu Legion" name_pt="Passagem secreta da Legião Indratu" name_id="350862" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="portal" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="6" delay="3" is_dialog="true" can_talk_invisible="false" />
@@ -314270,7 +314270,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="6" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730168" level="1" name_en="Theobomos Lab Exit" name_pt="Theobomos Laboratório saída: a) ato ou efeito de sair. b) lugar por onde se sai. 2 morte. • sair. 2 morrer." name_id="371130" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730168" level="1" name_en="Theobomos Lab Exit" name_pt="Theobomos Laboratório Saída" name_id="371130" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="6" delay="3" is_dialog="true" can_talk_invisible="false" />
@@ -314671,7 +314671,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="8" delay="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730250" level="1" name_en="Jotun Studio Exit" name_pt="saída: a) ato ou efeito de sair. b) lugar por onde se sai. 2 morte. • sair. 2 morrer. de estúdio de Joten" name_id="371435" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="useitem" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730250" level="1" name_en="Jotun Studio Exit" name_pt="Saída de estúdio de Joten" name_id="371435" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="useitem" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="101" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="8" delay="5" is_dialog="true" can_talk_invisible="false" />
@@ -315391,7 +315391,7 @@
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="730401" level="65" name_en="Iron Citadel Exit" name_pt="Rentus Base saída: a) ato ou efeito de sair. b) lugar por onde se sai. 2 morte. • sair. 2 morrer." name_id="371818" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730401" level="65" name_en="Iron Citadel Exit" name_pt="Rentus Base Saída" name_id="371818" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
@@ -317043,7 +317043,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748007" level="1" name_en="Legendary Weapons, Volume 1" name_pt="Armas lendárias, n volume: 1 tomo 1" name_id="371465" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748007" level="1" name_en="Legendary Weapons, Volume 1" name_pt="Armas lendárias, Volume 1" name_id="371465" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
@@ -347198,7 +347198,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="800977" level="60" name_en="무트이" name_pt="&lt;Kaisinel's Adjuntante&gt;" name_id="463016" height="1.375" title_id="463022" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="800977" level="60" name_en="무트이" name_pt="&lt;Ajudante de Kaisinel&gt;" name_id="463016" height="1.375" title_id="463022" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="23691">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -357515,7 +357515,7 @@
 		<bound_radius front="0.1275" side="0.1275" upper="1.02" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801874" level="56" name_en="Siel’s Follower Kearinerk" name_pt="Fim - FIM: A) TERMO" name_id="464036" title_id="464040" height="2.3375" group_drop="DARK" rank="NOVICE" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="general" srange="20" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="801874" level="56" name_en="Siel’s Follower Kearinerk" name_pt="Fim - Fim" name_id="464036" title_id="464040" height="2.3375" group_drop="DARK" rank="NOVICE" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="general" srange="20" attack_speed="2000" hpgauge="3">
 		<stats maxHp="12733">
 			<speeds walk="0.9" group_walk="1.03" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
@@ -357529,7 +357529,7 @@
 		<bound_radius front="0.1275" side="0.1275" upper="1.02" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801875" level="56" name_en="Siel’s Follower Kearinerk" name_pt="Fim - FIM: A) TERMO" name_id="464036" title_id="464040" height="2.3375" group_drop="DARK" rank="NOVICE" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="general" srange="20" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="801875" level="56" name_en="Siel’s Follower Kearinerk" name_pt="Fim - Fim" name_id="464036" title_id="464040" height="2.3375" group_drop="DARK" rank="NOVICE" rating="NORMAL" race="BROWNIE" tribe="USEALL" type="GENERAL" ai="general" srange="20" attack_speed="2000" hpgauge="3">
 		<stats maxHp="12733">
 			<speeds walk="0.9" group_walk="1.03" run="7" run_fight="5.5" group_run_fight="7" />
 		</stats>
@@ -360150,7 +360150,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" subdialog_type="FORT_CAPTURE" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802113" level="65" name_en="Iron Citadel Exit" name_pt="Rentus Base saída: a) ato ou efeito de sair. b) lugar por onde se sai. 2 morte. • sair. 2 morrer." name_id="371818" height="28.5714" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" srange="20" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="802113" level="65" name_en="Iron Citadel Exit" name_pt="Rentus Base Saída" name_id="371818" height="28.5714" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" srange="20" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="26116">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -360165,7 +360165,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" subdialog_type="FORT_CAPTURE" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802114" level="65" name_en="Iron Citadel Exit" name_pt="Rentus Base saída: a) ato ou efeito de sair. b) lugar por onde se sai. 2 morte. • sair. 2 morrer." name_id="371818" height="2.5" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" srange="20" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="802114" level="65" name_en="Iron Citadel Exit" name_pt="Rentus Base Saída" name_id="371818" height="2.5" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" srange="20" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="26116">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>

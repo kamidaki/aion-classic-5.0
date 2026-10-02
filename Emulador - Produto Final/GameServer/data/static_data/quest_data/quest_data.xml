@@ -622,7 +622,7 @@
 	<quest id="1061" name_en="[Group] FINAL" name_pt="[Grupo] a etapa" nameId="1102110" quest_zone="STR_QUEST_ZONE51" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="QUEST">
 		<rewards />
 	</quest>
-	<quest id="1062" name_en="Indratu Legion" name_pt="Guilda Indratu" nameId="1102111" quest_zone="Heiron" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="QUEST">
+	<quest id="1062" name_en="Indratu Legion" name_pt="Legião Indratu" nameId="1102111" quest_zone="Heiron" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="182201622" count="1" />
 		</collect_items>
@@ -1811,7 +1811,7 @@
 			<acquired>1018</acquired>
 		</start_conditions>
 	</quest>
-	<quest id="1222" name_en="[Manastone Bundle] Union Blues" name_pt="[Pedra Potencializadora Pacote] união: a) associação Blues" nameId="1129700" quest_zone="Verteron" minlevel_permitted="99" max_repeat_count="255" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="1222" name_en="[Manastone Bundle] Union Blues" name_pt="[Pedra Potencializadora Pacote] União Blues" nameId="1129700" quest_zone="Verteron" minlevel_permitted="99" max_repeat_count="255" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="167000258" count="10" />
 			<collect_item item_id="167000260" count="10" />
@@ -4362,7 +4362,7 @@
 		</collect_items>
 		<rewards gold="54570" exp="2467774" />
 	</quest>
-	<quest id="1586" name_en="News from Arbolu's Haven" name_pt="Notícias do Arbolu's Refúgio" nameId="1102786" quest_zone="Heiron" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="1586" name_en="News from Arbolu's Haven" name_pt="Notícias do Refúgio de Arbolu" nameId="1102786" quest_zone="Heiron" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<rewards exp="2467774">
 			<reward_item item_id="141000002" count="100" />
 		</rewards>
@@ -6526,7 +6526,7 @@
 			<reward_item item_id="141000002" count="100" />
 		</rewards>
 	</quest>
-	<quest id="1912" name_en="Familiar Food" name_pt="Comida n familiar: 1 íntimo" nameId="1102912" quest_zone="Sanctum" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="1912" name_en="Familiar Food" name_pt="Comida familiar" nameId="1102912" quest_zone="Sanctum" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="186000012" count="3" />
 		</collect_items>
@@ -8004,7 +8004,7 @@
 		</rewards>
 		<quest_kill seq="0" npc_ids="700290" count="1" var="0" step="0" />
 	</quest>
-	<quest id="2061" name_en="Suppressing the Bakarma Legion" name_pt="Suprimindo a Guilda Bakarma" nameId="1103161" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="2061" name_en="Suppressing the Bakarma Legion" name_pt="Suprimindo a Legião Bakarma" nameId="1103161" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="134061239">
 			<reward_item item_id="188055287" count="1" />
 		</rewards>
@@ -8088,7 +8088,7 @@
 			<reward_item item_id="186000390" count="32" />
 		</rewards>
 	</quest>
-	<quest id="2092" name_en="Graves of the Red Sky Legion" name_pt="Túmulos da Guilda do Céu Vermelho" nameId="1103192" quest_zone="Brusthonin" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="2092" name_en="Graves of the Red Sky Legion" name_pt="Túmulos da Legião do Céu Vermelho" nameId="1103192" quest_zone="Brusthonin" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="182209008" count="6" />
 		</collect_items>
@@ -9204,7 +9204,7 @@
 			<quest_work_item item_id="182203249" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="2275" name_en="A Change of Diet" name_pt="[coleta] Uma mudança no cardápio" nameId="1103375" quest_zone="Altgard" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="2275" name_en="A Change of Diet" name_pt="[coleta] Uma mudança no menu" nameId="1103375" quest_zone="Altgard" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="152000052" count="9" />
 		</collect_items>
@@ -10728,7 +10728,7 @@
 			<reward_item item_id="141000002" count="100" />
 		</rewards>
 	</quest>
-	<quest id="2455" name_en="Sora's Energy Booster" name_pt="[coleta] Sora's Energia Reforço" nameId="1103655" quest_zone="Morheim" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="2455" name_en="Sora's Energy Booster" name_pt="[Coleta] Reforço de Energia de Sora" nameId="1103655" quest_zone="Morheim" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="152000754" count="15" />
 		</collect_items>
@@ -12009,7 +12009,7 @@
 	<quest id="2584" name_en="The Starturtle and the Sprigg" name_pt="O Starturtle e o Sprigg" nameId="1103884" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards />
 	</quest>
-	<quest id="2585" name_en="Priceless Coral" name_pt="n coral: 1 espécie de pólipo. 2 rochedos formados pelos esqueletos desse pólipo. 3 cor vermelho-coral. • 1 feito de coral. 2 coralino inestimável" nameId="1103885" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="2585" name_en="Priceless Coral" name_pt="coral. 2 coralino inestimável" nameId="1103885" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="182204457" count="7" />
 		</collect_items>
@@ -12404,7 +12404,7 @@
 			<finished quest_id="2060" />
 		</start_conditions>
 	</quest>
-	<quest id="2635" name_en="[Group] Bakarma Legion Garrison" name_pt="guarnição da Guilda Bakarma" nameId="1103935" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="2635" name_en="[Group] Bakarma Legion Garrison" name_pt="guarnição da Legião Bakarma" nameId="1103935" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards exp="1970708">
 			<reward_item item_id="186000390" count="12" />
 		</rewards>
@@ -12752,7 +12752,7 @@
 			<quest_work_item item_id="182204501" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="2671" name_en="[Group] Decimating Bakarma Legion" name_pt="Enfraquecendo a Guilda Bakarma" nameId="1103971" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="2671" name_en="[Group] Decimating Bakarma Legion" name_pt="Enfraquecendo a Legião Bakarma" nameId="1103971" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards gold="44060" exp="2574895">
 			<reward_item item_id="141000001" count="100" />
 			<reward_item item_id="186020512" count="6" />
@@ -14848,7 +14848,7 @@
 			<unfinished>2974 2976 2978 2980 2982</unfinished>
 		</start_conditions>
 	</quest>
-	<quest id="2973" name_en="[Expert] Weaponsmith's Final Exam" name_pt="[Experto] Armousmith's a etapa Exame" nameId="1104173" quest_zone="Pandaemonium" minlevel_permitted="29" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="SIGNIFICANT">
+	<quest id="2973" name_en="[Expert] Weaponsmith's Final Exam" name_pt="[Especialista] Teste Final de Armeiro" nameId="1104173" quest_zone="Pandaemonium" minlevel_permitted="29" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="SIGNIFICANT">
 		<collect_items>
 			<collect_item item_id="182207946" count="1" />
 		</collect_items>
@@ -15018,7 +15018,7 @@
 		<chanter_selectable_reward item_id="113500827" count="1" />
 		<chanter_selectable_reward item_id="110500849" count="1" />
 	</quest>
-	<quest id="2990" name_en="Making the Daevanion Weapon" name_pt="Fazendo a melhor arma de engrenagem" nameId="1104190" quest_zone="STR_QUEST_ZONE27" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="2990" name_en="Making the Daevanion Weapon" name_pt="Criando a Melhor Arma Daevanion" nameId="1104190" quest_zone="STR_QUEST_ZONE27" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="182207065" count="150" />
 		</collect_items>
@@ -15248,13 +15248,13 @@
 			<selectable_reward_item item_id="115000827" count="1" />
 		</rewards>
 	</quest>
-	<quest id="2997" name_en="Daevanion Ceremony" name_pt="Cerimônia de engrenagem a etapa" nameId="1104197" quest_zone="STR_QUEST_ZONE27" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="2997" name_en="Daevanion Ceremony" name_pt="Cerimônia de Equipamento Daevanion" nameId="1104197" quest_zone="STR_QUEST_ZONE27" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards gold="2990" />
 	</quest>
-	<quest id="2998" name_en="Daevanion Ceremony" name_pt="Cerimônia de engrenagem a etapa" nameId="1104198" quest_zone="STR_QUEST_ZONE27" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="2998" name_en="Daevanion Ceremony" name_pt="Cerimônia de Equipamento Daevanion" nameId="1104198" quest_zone="STR_QUEST_ZONE27" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards gold="2990" />
 	</quest>
-	<quest id="2999" name_en="Daevanion Ceremony" name_pt="Cerimônia de engrenagem a etapa" nameId="1104199" quest_zone="STR_QUEST_ZONE27" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="2999" name_en="Daevanion Ceremony" name_pt="Cerimônia de Equipamento Daevanion" nameId="1104199" quest_zone="STR_QUEST_ZONE27" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards gold="2990" />
 	</quest>
 	<quest id="3001" name_en="Unearthing the Truth" name_pt="Desenterrar a verdade" nameId="1113000" quest_zone="Theobomos" minlevel_permitted="20" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
@@ -18781,7 +18781,7 @@
 		</extended_rewards>
 		<quest_drop npc_id="700385" item_id="182209027" chance="100" drop_each_member="0" collecting_step="0" />
 	</quest>
-	<quest id="4046" name_en="BuBu Mep's Wedding Preparation" name_pt="Preparação do casamento de Bubu DEPUTADO" nameId="1114045" quest_zone="Brusthonin" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="4046" name_en="BuBu Mep's Wedding Preparation" name_pt="Preparação do casamento de Bubu Mep" nameId="1114045" quest_zone="Brusthonin" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="169400053" count="3" />
 			<collect_item item_id="152025059" count="1" />
@@ -20280,7 +20280,7 @@
 			<finished quest_id="4705" />
 		</start_conditions>
 	</quest>
-	<quest id="4504" name_en="More Priceless Coral" name_pt="Mais n coral: 1 espécie de pólipo. 2 rochedos formados pelos esqueletos desse pólipo. 3 cor vermelho-coral. • 1 feito de coral. 2 coralino inestimável" nameId="1103754" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="10" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="4504" name_en="More Priceless Coral" name_pt="Mais coral. 2 coralino inestimável" nameId="1103754" quest_zone="Beluslan" minlevel_permitted="99" max_repeat_count="10" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="182204535" count="9" />
 		</collect_items>
@@ -23490,7 +23490,7 @@
 			<quest_work_item item_id="182290300" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="5427" name_en="Daevanion Mist Detector Supplies" name_pt="Suprimentos de detector de névoa de engrenagem de engrenagem de engrenagem" nameId="1190191" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40007" combine_skillpoint="270">
+	<quest id="5427" name_en="Daevanion Mist Detector Supplies" name_pt="Suprimentos de detector de névoa de Equipamento Final" nameId="1190191" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="TASK" combineskill="40007" combine_skillpoint="270">
 		<collect_items>
 			<collect_item item_id="182290508" count="12" />
 		</collect_items>
@@ -26190,7 +26190,7 @@
 			<quest_work_item item_id="182291300" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="6427" name_en="Daevanion Mist Detector Supplies" name_pt="Suprimentos de detector de névoa de engrenagem de engrenagem de engrenagem" nameId="1195192" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40007" combine_skillpoint="270">
+	<quest id="6427" name_en="Daevanion Mist Detector Supplies" name_pt="Suprimentos de detector de névoa de Equipamento Final" nameId="1195192" minlevel_permitted="9" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="TASK" combineskill="40007" combine_skillpoint="270">
 		<collect_items>
 			<collect_item item_id="182291508" count="12" />
 		</collect_items>
@@ -42189,7 +42189,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 			<finished quest_id="19600" />
 		</start_conditions>
 	</quest>
-	<quest id="19606" name_en="Lunch Menu" name_pt="Cardápio do Almoço" nameId="1800351" quest_zone="Wisplight Abbey" minlevel_permitted="46" maxlevel_permitted="65" max_repeat_count="255" repeat_cycle="ALL" cannot_share="true" race_permitted="ELYOS" category="IMPORTANT" data_driven="true">
+	<quest id="19606" name_en="Lunch Menu" name_pt="Menu do Almoço" nameId="1800351" quest_zone="Wisplight Abbey" minlevel_permitted="46" maxlevel_permitted="65" max_repeat_count="255" repeat_cycle="ALL" cannot_share="true" race_permitted="ELYOS" category="IMPORTANT" data_driven="true">
 		<inventory_items>
 			<inventory_item item_id="164000335" />
 		</inventory_items>
@@ -42200,7 +42200,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 			<finished quest_id="19600" />
 		</start_conditions>
 	</quest>
-	<quest id="19607" name_en="A piece of paper detailing the lunch menu." name_pt="Um pedaço de papel detalhando o cardápio do almoço." nameId="1800352" quest_zone="Wisplight Abbey" minlevel_permitted="48" maxlevel_permitted="65" max_repeat_count="255" repeat_cycle="ALL" cannot_share="true" race_permitted="ELYOS" category="IMPORTANT" data_driven="true">
+	<quest id="19607" name_en="A piece of paper detailing the lunch menu." name_pt="Um pedaço de papel detalhando o menu do almoço." nameId="1800352" quest_zone="Wisplight Abbey" minlevel_permitted="48" maxlevel_permitted="65" max_repeat_count="255" repeat_cycle="ALL" cannot_share="true" race_permitted="ELYOS" category="IMPORTANT" data_driven="true">
 		<inventory_items>
 			<inventory_item item_id="164000335" />
 		</inventory_items>
@@ -42211,7 +42211,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 			<finished quest_id="19600" />
 		</start_conditions>
 	</quest>
-	<quest id="19608" name_en="Lunch Menu" name_pt="Cardápio do Almoço" nameId="1800353" quest_zone="Wisplight Abbey" minlevel_permitted="50" maxlevel_permitted="65" max_repeat_count="255" repeat_cycle="ALL" cannot_share="true" race_permitted="ELYOS" category="IMPORTANT" data_driven="true">
+	<quest id="19608" name_en="Lunch Menu" name_pt="Menu do Almoço" nameId="1800353" quest_zone="Wisplight Abbey" minlevel_permitted="50" maxlevel_permitted="65" max_repeat_count="255" repeat_cycle="ALL" cannot_share="true" race_permitted="ELYOS" category="IMPORTANT" data_driven="true">
 		<inventory_items>
 			<inventory_item item_id="164000335" />
 		</inventory_items>
@@ -42222,7 +42222,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 			<finished quest_id="19600" />
 		</start_conditions>
 	</quest>
-	<quest id="19609" name_en="A piece of paper detailing the lunch menu." name_pt="Um pedaço de papel detalhando o cardápio do almoço." nameId="1800354" quest_zone="Wisplight Abbey" minlevel_permitted="50" maxlevel_permitted="55" max_repeat_count="255" repeat_cycle="ALL" cannot_share="true" race_permitted="ELYOS" category="IMPORTANT" data_driven="true">
+	<quest id="19609" name_en="A piece of paper detailing the lunch menu." name_pt="Um pedaço de papel detalhando o menu do almoço." nameId="1800354" quest_zone="Wisplight Abbey" minlevel_permitted="50" maxlevel_permitted="55" max_repeat_count="255" repeat_cycle="ALL" cannot_share="true" race_permitted="ELYOS" category="IMPORTANT" data_driven="true">
 		<inventory_items>
 			<inventory_item item_id="164000335" />
 		</inventory_items>
@@ -46092,7 +46092,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 		<quest_kill seq="0" npc_ids="215467" count="1" var="0" step="0" />
 		<quest_kill seq="1" npc_ids="215480" count="1" var="0" step="0" />
 	</quest>
-	<quest id="21468" name_en="The Struggle Within" name_pt="A luta n interior: 1 parte interna. 2 parte interior de um país. 3 assuntos internos de um país. • 1 interior" nameId="1125534" quest_zone="Talocs Hollow" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="21468" name_en="The Struggle Within" name_pt="A luta interior" nameId="1125534" quest_zone="Talocs Hollow" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards gold="50240" exp="2679500" />
 	</quest>
 	<quest id="21500" name_en="Nojolf? No Problem!" name_pt="Nojolf? No Problem!" nameId="1136052" quest_zone="Sarpan" minlevel_permitted="99" max_repeat_count="1" race_permitted="ASMODIANS" category="QUEST" restricted="true">
@@ -56533,7 +56533,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 			<finished quest_id="29600" />
 		</start_conditions>
 	</quest>
-	<quest id="29613" name_en="Brown Arachna Spawn Poison" name_pt="Veneno de n proletário: membro da classe operária. de Arácnida Marrom" nameId="1800401" quest_zone="Fatebound Abbey" minlevel_permitted="99" maxlevel_permitted="65" max_repeat_count="255" repeat_cycle="ALL" cannot_share="true" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
+	<quest id="29613" name_en="Brown Arachna Spawn Poison" name_pt="Veneno de Operário Arácnida Marrom" nameId="1800401" quest_zone="Fatebound Abbey" minlevel_permitted="99" maxlevel_permitted="65" max_repeat_count="255" repeat_cycle="ALL" cannot_share="true" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
 		<inventory_items>
 			<inventory_item item_id="164000336" />
 		</inventory_items>
@@ -56621,7 +56621,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 			<finished quest_id="29600" />
 		</start_conditions>
 	</quest>
-	<quest id="29621" name_en="Brown Arachna Spawn Poison" name_pt="Veneno de n proletário: membro da classe operária. de Arácnida Marrom" nameId="1800409" quest_zone="Fatebound Abbey" minlevel_permitted="99" maxlevel_permitted="65" max_repeat_count="255" repeat_cycle="ALL" cannot_share="true" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
+	<quest id="29621" name_en="Brown Arachna Spawn Poison" name_pt="Veneno de Operário Arácnida Marrom" nameId="1800409" quest_zone="Fatebound Abbey" minlevel_permitted="99" maxlevel_permitted="65" max_repeat_count="255" repeat_cycle="ALL" cannot_share="true" race_permitted="ASMODIANS" category="IMPORTANT" data_driven="true">
 		<inventory_items>
 			<inventory_item item_id="164000336" />
 		</inventory_items>
@@ -57514,7 +57514,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 	<quest id="30112" name_en="Friend of the Family" name_pt="Amigo da família" nameId="1114244" quest_zone="Gelkmaros" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards exp="767900" />
 	</quest>
-	<quest id="30113" name_en="[Group] Fan Flames of Vengeance" name_pt="[Grupo] Ventilador Chamas da Vingança" nameId="1114245" quest_zone="STR_QUEST_ZONE39" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="30113" name_en="[Group] Fan Flames of Vengeance" name_pt="[Grupo] Atiçar as Chamas da Vingança" nameId="1114245" quest_zone="STR_QUEST_ZONE39" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards gold="53570" exp="4892300" />
 		<start_conditions>
 			<finished quest_id="30103" />
@@ -75294,7 +75294,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<finished quest_id="10168" />
 		</start_conditions>
 	</quest>
-	<quest id="10170" name_en="Defeat Inggison’s Balaur" name_pt="Derrote Inggison’s Balaur" nameId="1802582" quest_zone="Inggison" minlevel_permitted="55" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="10170" name_en="Defeat Inggison’s Balaur" name_pt="Derrote os Balaur de Inggison" nameId="1802582" quest_zone="Inggison" minlevel_permitted="55" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<collect_items>
 			<collect_item item_id="182215591" count="1" />
 			<collect_item item_id="182215592" count="1" />
@@ -75770,7 +75770,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<reward_item item_id="186000190" count="3" />
 		</rewards>
 	</quest>
-	<quest id="11414" name_en="[Weekly] [3rd Garrison] Dranium Work Camp Information" name_pt="[Semanal] [3rd guarnição] Dranium trabalho: a) labor Campo Informação" nameId="1801557" quest_zone="Laphsaran" minlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="11414" name_en="[Weekly] [3rd Garrison] Dranium Work Camp Information" name_pt="[Semanal] [3rd guarnição] Dranium Trabalho Campo Informação" nameId="1801557" quest_zone="Laphsaran" minlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="182209934" count="1" />
 		</collect_items>
@@ -76502,7 +76502,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<quest_work_item item_id="182215479" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="12200" name_en="[Daily] Retinoa’s Request" name_pt="[Diário] Retinoa’s Pedido" nameId="1802103" quest_zone="Tiamaranta Mesa" minlevel_permitted="60" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST" can_report="true">
+	<quest id="12200" name_en="[Daily] Retinoa’s Request" name_pt="[Diário] Pedido de Retinoa" nameId="1802103" quest_zone="Tiamaranta Mesa" minlevel_permitted="60" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST" can_report="true">
 		<rewards exp="50000000">
 			<reward_item item_id="188055668" count="1" />
 			<reward_item item_id="188055668" count="1" />
@@ -78879,7 +78879,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<reward_item item_id="188054402" count="1" />
 		</rewards>
 	</quest>
-	<quest id="22100" name_en="[Daily] Skafir’s Orders" name_pt="[Diário] Skafir’s Ordem" nameId="1802018" quest_zone="Tiamaranta Mesa" minlevel_permitted="60" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="SEEN_MARKER">
+	<quest id="22100" name_en="[Daily] Skafir’s Orders" name_pt="[Diário] Ordens de Skafir" nameId="1802018" quest_zone="Tiamaranta Mesa" minlevel_permitted="60" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="SEEN_MARKER">
 		<rewards>
 			<reward_item item_id="188059933" count="1" />
 			<reward_item item_id="188059934" count="1" />
@@ -79511,7 +79511,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<quest_work_item item_id="182215480" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="22200" name_en="[Daily] Thiamin’s Request" name_pt="[Diário] Thiamin’s Pedido" nameId="1802109" quest_zone="Tiamaranta Mesa" minlevel_permitted="60" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST" can_report="true">
+	<quest id="22200" name_en="[Daily] Thiamin’s Request" name_pt="[Diário] Pedido de Thiamin" nameId="1802109" quest_zone="Tiamaranta Mesa" minlevel_permitted="60" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST" can_report="true">
 		<rewards exp="50000000">
 			<reward_item item_id="188055668" count="1" />
 			<reward_item item_id="188055668" count="1" />
@@ -83904,7 +83904,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 	<quest id="69009" name_en="[Golden Wind] [Weekly] [2nd Garrison] Drakan in the Fortress" name_pt="[Vento Dourado] [Semanal] [2ª Guarnição] Drakan na Fortaleza" nameId="1801627" quest_zone="Laphsaran" minlevel_permitted="99" maxlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<rewards />
 	</quest>
-	<quest id="69010" name_en="[Golden Wind] [Weekly] [3rd Garrison] Dranium Work Camp Information" name_pt="[Dourado Vento] [Semanal] [3rd guarnição] Dranium trabalho: a) labor Campo Informação" nameId="1801628" quest_zone="Laphsaran" minlevel_permitted="99" maxlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="69010" name_en="[Golden Wind] [Weekly] [3rd Garrison] Dranium Work Camp Information" name_pt="[Dourado Vento] [Semanal] [3rd guarnição] Dranium Trabalho Campo Informação" nameId="1801628" quest_zone="Laphsaran" minlevel_permitted="99" maxlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<rewards />
 	</quest>
 	<quest id="69011" name_en="[Golden Wind] [Weekly] [4th Garrison] Collecting Reian Belongings" name_pt="[Dourado Vento] [Semanal] [4th guarnição] Colecionismo Reian Belongings" nameId="1801629" quest_zone="Laphsaran" minlevel_permitted="99" maxlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
@@ -84841,7 +84841,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 	<quest id="79009" name_en="[Golden Wind] [Weekly] [2nd Garrison] Killing Drakan in the Fortress" name_pt="[Vento Dourado] [Semanal] [2ª Guarnição] Matando Drakan na Fortaleza" nameId="1801648" quest_zone="Laphsaran" minlevel_permitted="99" maxlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards />
 	</quest>
-	<quest id="79010" name_en="[Golden Wind] [Weekly] [3rd Garrison] Dranium Work Camp Information" name_pt="[Dourado Vento] [Semanal] [3rd guarnição] Dranium trabalho: a) labor Campo Informação" nameId="1801649" quest_zone="Laphsaran" minlevel_permitted="99" maxlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
+	<quest id="79010" name_en="[Golden Wind] [Weekly] [3rd Garrison] Dranium Work Camp Information" name_pt="[Dourado Vento] [Semanal] [3rd guarnição] Dranium Trabalho Campo Informação" nameId="1801649" quest_zone="Laphsaran" minlevel_permitted="99" maxlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">
 		<rewards />
 	</quest>
 	<quest id="79011" name_en="[Golden Wind] [Weekly] [4th Garrison] Collecting Reian Belongings" name_pt="[Dourado Vento] [Semanal] [4th guarnição] Colecionismo Reian Belongings" nameId="1801650" quest_zone="Laphsaran" minlevel_permitted="99" maxlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="QUEST">

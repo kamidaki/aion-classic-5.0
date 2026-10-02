@@ -2865,7 +2865,7 @@
 		</actions>
 		<motion name="PhBurst" speed="70" instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="288" name_en="Stigma Doom Lure I" name_pt="Estigma Atração fatal: 1 determinado pelo destino I" nameId="286250" delayId="145" stack="FI_STUNNINGSNACHER_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="3000" duration="1500" cancel_rate="10">
+	<skill_template skill_id="288" name_en="Stigma Doom Lure I" name_pt="Estigma Atração Fatal I" nameId="286250" delayId="145" stack="FI_STUNNINGSNACHER_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="3000" duration="1500" cancel_rate="10">
 		<properties first_target="TARGET" first_target_range="15" target_relation="ENEMY" target_type="ONLYONE" awr="true" target_status="BIND" revision_distance="12"/>
 		<startconditions>
 			<mp value="36" delta="0"/>
@@ -55492,7 +55492,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10588" name_en="Transformation: Trump Aristorabbit" name_pt="Escape do espaço-andamento i" nameId="2280798" stack="CLASSIC_CANDY_L_SHAPE_TRUMPRABBIT_MAG_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
+	<skill_template skill_id="10588" name_en="Transformation: Trump Aristorabbit" name_pt="Escape do espaço-tempo i" nameId="2280798" stack="CLASSIC_CANDY_L_SHAPE_TRUMPRABBIT_MAG_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -55552,7 +55552,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10591" name_en="Transformation: Trump Aristorabbit" name_pt="Escape do espaço-andamento i" nameId="2280798" stack="CLASSIC_CANDY_D_SHAPE_TRUMPRABBIT_MAG_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
+	<skill_template skill_id="10591" name_en="Transformation: Trump Aristorabbit" name_pt="Escape do espaço-tempo i" nameId="2280798" stack="CLASSIC_CANDY_D_SHAPE_TRUMPRABBIT_MAG_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" tslot_level="3" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -62974,7 +62974,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
-	<skill_template skill_id="16558" name_en="Fatal Disease" name_pt="Doença fatal: 1 determinado pelo destino" nameId="284420" delayId="2" stack="NAS_DISEASE_FATAL" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="3500" cancel_rate="35">
+	<skill_template skill_id="16558" name_en="Fatal Disease" name_pt="Doença Fatal" nameId="284420" delayId="2" stack="NAS_DISEASE_FATAL" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="3500" cancel_rate="35">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -81308,7 +81308,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="pointfire"/>
 	</skill_template>
-	<skill_template skill_id="17817" name_en="Fatal Reflection" name_pt="Reflexão fatal: 1 determinado pelo destino" nameId="291418" delayId="6" stack="BNEL_REFLECT100_SELF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="17817" name_en="Fatal Reflection" name_pt="Reflexão Fatal" nameId="291418" delayId="6" stack="BNEL_REFLECT100_SELF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -81937,7 +81937,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="17857" name_en="Fatal Reflection" name_pt="Reflexão fatal: 1 determinado pelo destino" nameId="291526" delayId="10" stack="NBEL_REFLEC120S100_SELF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="17857" name_en="Fatal Reflection" name_pt="Reflexão Fatal" nameId="291526" delayId="10" stack="NBEL_REFLEC120S100_SELF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -83031,7 +83031,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="17931" name_en="Fatal Disease" name_pt="Doença fatal: 1 determinado pelo destino" nameId="291811" delayId="12" stack="NAS_DISEASEPOI_NR" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="2500" ammospeed="25" cancel_rate="35">
+	<skill_template skill_id="17931" name_en="Fatal Disease" name_pt="Doença Fatal" nameId="291811" delayId="12" stack="NAS_DISEASEPOI_NR" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="2500" ammospeed="25" cancel_rate="35">
 		<properties first_target="TARGET" first_target_range="16" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -90205,7 +90205,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="18372" name_en="Fatal Energy" name_pt="Energia fatal: 1 determinado pelo destino" nameId="285557" delayId="13" stack="NCH_SUPCRITICALSA_NR" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="1000" cancel_rate="40">
+	<skill_template skill_id="18372" name_en="Fatal Energy" name_pt="Energia Fatal" nameId="285557" delayId="13" stack="NCH_SUPCRITICALSA_NR" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="1000" cancel_rate="40">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="AREA" target_maxcount="4" target_distance="5" effective_range="5" effective_altitude="5"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -91114,7 +91114,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="phbuff"/>
 	</skill_template>
-	<skill_template skill_id="18433" name_en="Fatal Reflection" name_pt="Reflexão fatal: 1 determinado pelo destino" nameId="293135" delayId="6" stack="CHF_REFM15_SELF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="18433" name_en="Fatal Reflection" name_pt="Reflexão Fatal" nameId="293135" delayId="6" stack="CHF_REFM15_SELF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="40" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -91124,7 +91124,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="phbuff"/>
 	</skill_template>
-	<skill_template skill_id="18434" name_en="Fatal Reflection" name_pt="Reflexão fatal: 1 determinado pelo destino" nameId="293186" delayId="6" stack="CSUM_REF_SELF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="18434" name_en="Fatal Reflection" name_pt="Reflexão Fatal" nameId="293186" delayId="6" stack="CSUM_REF_SELF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="40" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -108480,7 +108480,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="pointfire"/>
 	</skill_template>
-	<skill_template skill_id="19686" name_en="Fatal Reflection" name_pt="Reflexão fatal: 1 determinado pelo destino" nameId="291526" delayId="10" stack="NBEL_REFLEC120S100_SELF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="19686" name_en="Fatal Reflection" name_pt="Reflexão Fatal" nameId="291526" delayId="10" stack="NBEL_REFLEC120S100_SELF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -155326,7 +155326,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 		</effects>
 		<motion name="NormalFire"/>
 	</skill_template>
-	<skill_template skill_id="19888" name_en="You are carrying the bomb." name_pt="você está carrying o bomba." nameId="2287466" delayId="19888" stack="IDF4RE_2NAMED_SHAPECHANGE_01" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="19888" name_en="You are carrying the bomb." name_pt="você está carregando a bomba." nameId="2287466" delayId="19888" stack="IDF4RE_2NAMED_SHAPECHANGE_01" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE" first_target_range="2"/>
 	</skill_template>
 	<skill_template skill_id="19889" name_en="Drop Bomb" name_pt="Consome um fragmento dimensional para convocar um membro do grupo na mesma zona ao seu lado. Essa habilidade não pode ser usada em determinadas áreas." nameId="2287469" delayId="239" stack="IDF4RE_2NAMED_SUMMON_GUNNERBIGBOMB" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="2000">
@@ -157621,7 +157621,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="PhBuff"/>
 	</skill_template>
-	<skill_template skill_id="20632" name_en="Fatal Reflection" name_pt="Reflexão fatal: 1 determinado pelo destino" nameId="293135" delayId="6" stack="CHF_REFM15_SELF_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+	<skill_template skill_id="20632" name_en="Fatal Reflection" name_pt="Reflexão Fatal" nameId="293135" delayId="6" stack="CHF_REFM15_SELF_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="ME" first_target_range="40" target_relation="FRIEND" target_maxcount="1" target_type="ONLYONE"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>

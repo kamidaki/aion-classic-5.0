@@ -4272,7 +4272,7 @@ Clique duas vezes para abrir." nameId="811707" sourceType="ID" harvestCount="3" 
 			<material rate="1000000" nameid="765083" itemid="162000074" name_en="Vitality Crystal" name_pt="Vitalidade Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="403000" name_en="A ticket which prepares you for the summer." name_pt="A Bilhete que prepares Você for o(a) verão." nameId="791609" sourceType="HERB" harvestCount="5" skillLevel="1" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405197" reqItemNameId="791705" checkType="2" eraseValue="1">
+	<gatherable_template id="403000" name_en="A ticket which prepares you for the summer." name_pt="Um Bilhete que prepares Você for o(a) verão." nameId="791609" sourceType="HERB" harvestCount="5" skillLevel="1" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405197" reqItemNameId="791705" checkType="2" eraseValue="1">
 		<materials>
 			<material rate="200000" nameid="791657" itemid="182006782" name_en="Enchantment Material Chest (Level 91–100)" name_pt="Baú de Encantamento de Materiais (Nvel 91–100)" />
 			<material rate="5000000" nameid="794538" itemid="182006858" name_en="외형 확인 로브 하의_a08a_마족" name_pt="외형 확인 로브 하의_a08a_마족" />
@@ -4840,7 +4840,7 @@ Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="403507" name_en="You can choose whether you want to re-enter the Indratu Fortress, Fire Temple, Aetherogenetics Lab, Alquimia Research Centre, Adma Stronghold, Nochsana Training Camp, Azoturan Fortress or Haramel instances one more time." name_pt="Você pode Escolha se Você deseja re- entrar o(a) Indratu Fortaleza, Templo do Fogo, Aetherogenetics Laboratório, Alquimia Pesquisa n centro: 1 meio. 2 núcleo, Adma Fortaleza, CAMPO DE TREINAMENTO DE NOCHSANA, Azoturan Fortaleza ou Haramel instâncias um mais andamento." nameId="791641" sourceType="JEWELRY" harvestCount="5" skillLevel="80" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
+	<gatherable_template id="403507" name_en="You can choose whether you want to re-enter the Indratu Fortress, Fire Temple, Aetherogenetics Lab, Alquimia Research Centre, Adma Stronghold, Nochsana Training Camp, Azoturan Fortress or Haramel instances one more time." name_pt="Você pode Escolha se Você deseja re- entrar o(a) Indratu Fortaleza, Templo do Fogo, Aetherogenetics Laboratório, Alquimia Pesquisa Centro, Adma Fortaleza, CAMPO DE TREINAMENTO DE NOCHSANA, Azoturan Fortaleza ou Haramel instâncias um mais andamento." nameId="791641" sourceType="JEWELRY" harvestCount="5" skillLevel="80" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
 		<materials>
 			<material rate="2225000" nameid="791689" itemid="182006814" name_en="Contains a New Daeva Entry Scroll.
 Double-click to open." name_pt="Contém um(a) novo Daeva Pergaminho de Entrada.
@@ -4858,7 +4858,7 @@ Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="403508" name_en="You can choose whether you want to re-enter the Indratu Fortress, Fire Temple, Aetherogenetics Lab, Alquimia Research Centre, Theobomos Lab, Nochsana Training Camp, Azoturan Fortress or Haramel instances one more time." name_pt="Você pode Escolha se Você deseja re- entrar o(a) Indratu Fortaleza, Templo do Fogo, Aetherogenetics Laboratório, Alquimia Pesquisa n centro: 1 meio. 2 núcleo, Laboratrio de Theobomos, CAMPO DE TREINAMENTO DE NOCHSANA, Azoturan Fortaleza ou Haramel instâncias um mais andamento." nameId="791640" sourceType="SHELL" harvestCount="5" skillLevel="80" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
+	<gatherable_template id="403508" name_en="You can choose whether you want to re-enter the Indratu Fortress, Fire Temple, Aetherogenetics Lab, Alquimia Research Centre, Theobomos Lab, Nochsana Training Camp, Azoturan Fortress or Haramel instances one more time." name_pt="Você pode Escolha se Você deseja re- entrar o(a) Indratu Fortaleza, Templo do Fogo, Aetherogenetics Laboratório, Alquimia Pesquisa Centro, Laboratrio de Theobomos, CAMPO DE TREINAMENTO DE NOCHSANA, Azoturan Fortaleza ou Haramel instâncias um mais andamento." nameId="791640" sourceType="SHELL" harvestCount="5" skillLevel="80" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
 		<materials>
 			<material rate="2225000" nameid="791688" itemid="182006813" name_en="Contains a Godstone Bundle.
 Double-click to open." name_pt="Contém um(a) Pedra Divina Pacote.
@@ -4876,7 +4876,7 @@ Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="403509" name_en="You can choose whether you want to re-enter Draupnir Cave, Dark Poeta, Steel Rake, Taloc’s Hollow or the Nightmare instance one more time." name_pt="Você pode Escolha se Você deseja re- entrar Caverna Draupnir, Poeta Sombria, Aço de Ao, Taloc’s concavidade ou o(a) Pesadelo instância um mais andamento." nameId="791642" sourceType="VEGETABLE" harvestCount="5" skillLevel="120" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="2">
+	<gatherable_template id="403509" name_en="You can choose whether you want to re-enter Draupnir Cave, Dark Poeta, Steel Rake, Taloc’s Hollow or the Nightmare instance one more time." name_pt="Você pode Escolha se Você deseja re- entrar Caverna Draupnir, Poeta Sombria, Aço de Ao, Cavidade de Taloc ou o(a) Pesadelo instância um mais andamento." nameId="791642" sourceType="VEGETABLE" harvestCount="5" skillLevel="120" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="2">
 		<materials>
 			<material rate="5000000" nameid="791690" itemid="182006815" name_en="Contains a Normal Daeva Entry Scroll.
 Double-click to open." name_pt="Contém um(a) normal.
@@ -4894,7 +4894,7 @@ Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="403510" name_en="You can choose whether you want to re-enter Draupnir Cave, Dark Poeta, Steel Rake, Taloc’s Hollow or the Nightmare instance one more time." name_pt="Você pode Escolha se Você deseja re- entrar Caverna Draupnir, Poeta Sombria, Aço de Ao, Taloc’s concavidade ou o(a) Pesadelo instância um mais andamento." nameId="791643" sourceType="FISH" harvestCount="5" skillLevel="120" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="2">
+	<gatherable_template id="403510" name_en="You can choose whether you want to re-enter Draupnir Cave, Dark Poeta, Steel Rake, Taloc’s Hollow or the Nightmare instance one more time." name_pt="Você pode Escolha se Você deseja re- entrar Caverna Draupnir, Poeta Sombria, Aço de Ao, Cavidade de Taloc ou o(a) Pesadelo instância um mais andamento." nameId="791643" sourceType="FISH" harvestCount="5" skillLevel="120" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="2">
 		<materials>
 			<material rate="5000000" nameid="791691" itemid="182006816" name_en="Contains a Major Diamond.
 Double-click to open." name_pt="Contém um(a) superior Diamante.
@@ -5058,13 +5058,13 @@ Clique duas vezes para abrir." />
 	</gatherable_template>
 	<gatherable_template id="403519" name_en="Rare Manastone Bundle Material Chest (Level 60)" name_pt="Pacote de Pedras de Mana Raras Baú de Materiais (Nível 60)" nameId="791652" sourceType="FISH" harvestCount="5" skillLevel="240" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite General de Brigada" />
+			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de Elite General de Brigada" />
 			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite General de Brigada" />
+			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de Elite General de Brigada" />
 			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
@@ -5086,13 +5086,13 @@ Clique duas vezes para abrir." />
 	</gatherable_template>
 	<gatherable_template id="403521" name_en="Major Ancient Crown Material Chest" name_pt="Superior Antigo coroa Baú de Materiais" nameId="791654" sourceType="HERB" harvestCount="5" skillLevel="280" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite Arconte General de Brigada" />
+			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de Elite Arconte General de Brigada" />
 			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite Arconte General de Brigada" />
+			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de Elite Arconte General de Brigada" />
 			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
@@ -7037,7 +7037,7 @@ Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="409147" name_en="You can choose whether you want to re-enter the Indratu Fortress, Fire Temple, Aetherogenetics Lab, Alquimia Research Centre, Theobomos Lab, Nochsana Training Camp, Azoturan Fortress or Haramel instances one more time." name_pt="Você pode Escolha se Você deseja re- entrar o(a) Indratu Fortaleza, Templo do Fogo, Aetherogenetics Laboratório, Alquimia Pesquisa n centro: 1 meio. 2 núcleo, Laboratrio de Theobomos, CAMPO DE TREINAMENTO DE NOCHSANA, Azoturan Fortaleza ou Haramel instâncias um mais andamento." nameId="791640" sourceType="SHELL" harvestCount="32" skillLevel="80" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
+	<gatherable_template id="409147" name_en="You can choose whether you want to re-enter the Indratu Fortress, Fire Temple, Aetherogenetics Lab, Alquimia Research Centre, Theobomos Lab, Nochsana Training Camp, Azoturan Fortress or Haramel instances one more time." name_pt="Você pode Escolha se Você deseja re- entrar o(a) Indratu Fortaleza, Templo do Fogo, Aetherogenetics Laboratório, Alquimia Pesquisa Centro, Laboratrio de Theobomos, CAMPO DE TREINAMENTO DE NOCHSANA, Azoturan Fortaleza ou Haramel instâncias um mais andamento." nameId="791640" sourceType="SHELL" harvestCount="32" skillLevel="80" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
 		<materials>
 			<material rate="2225000" nameid="791688" itemid="182006813" name_en="Contains a Godstone Bundle.
 Double-click to open." name_pt="Contém um(a) Pedra Divina Pacote.
@@ -7055,7 +7055,7 @@ Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="409148" name_en="You can choose whether you want to re-enter the Indratu Fortress, Fire Temple, Aetherogenetics Lab, Alquimia Research Centre, Adma Stronghold, Nochsana Training Camp, Azoturan Fortress or Haramel instances one more time." name_pt="Você pode Escolha se Você deseja re- entrar o(a) Indratu Fortaleza, Templo do Fogo, Aetherogenetics Laboratório, Alquimia Pesquisa n centro: 1 meio. 2 núcleo, Adma Fortaleza, CAMPO DE TREINAMENTO DE NOCHSANA, Azoturan Fortaleza ou Haramel instâncias um mais andamento." nameId="791641" sourceType="JEWELRY" harvestCount="32" skillLevel="80" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
+	<gatherable_template id="409148" name_en="You can choose whether you want to re-enter the Indratu Fortress, Fire Temple, Aetherogenetics Lab, Alquimia Research Centre, Adma Stronghold, Nochsana Training Camp, Azoturan Fortress or Haramel instances one more time." name_pt="Você pode Escolha se Você deseja re- entrar o(a) Indratu Fortaleza, Templo do Fogo, Aetherogenetics Laboratório, Alquimia Pesquisa Centro, Adma Fortaleza, CAMPO DE TREINAMENTO DE NOCHSANA, Azoturan Fortaleza ou Haramel instâncias um mais andamento." nameId="791641" sourceType="JEWELRY" harvestCount="32" skillLevel="80" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
 		<materials>
 			<material rate="2225000" nameid="791689" itemid="182006814" name_en="Contains a New Daeva Entry Scroll.
 Double-click to open." name_pt="Contém um(a) novo Daeva Pergaminho de Entrada.
@@ -7073,7 +7073,7 @@ Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="409149" name_en="You can choose whether you want to re-enter Draupnir Cave, Dark Poeta, Steel Rake, Taloc’s Hollow or the Nightmare instance one more time." name_pt="Você pode Escolha se Você deseja re- entrar Caverna Draupnir, Poeta Sombria, Aço de Ao, Taloc’s concavidade ou o(a) Pesadelo instância um mais andamento." nameId="791642" sourceType="VEGETABLE" harvestCount="32" skillLevel="120" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="2">
+	<gatherable_template id="409149" name_en="You can choose whether you want to re-enter Draupnir Cave, Dark Poeta, Steel Rake, Taloc’s Hollow or the Nightmare instance one more time." name_pt="Você pode Escolha se Você deseja re- entrar Caverna Draupnir, Poeta Sombria, Aço de Ao, Cavidade de Taloc ou o(a) Pesadelo instância um mais andamento." nameId="791642" sourceType="VEGETABLE" harvestCount="32" skillLevel="120" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="2">
 		<materials>
 			<material rate="5000000" nameid="791690" itemid="182006815" name_en="Contains a Normal Daeva Entry Scroll.
 Double-click to open." name_pt="Contém um(a) normal.
@@ -7091,7 +7091,7 @@ Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="409150" name_en="You can choose whether you want to re-enter Draupnir Cave, Dark Poeta, Steel Rake, Taloc’s Hollow or the Nightmare instance one more time." name_pt="Você pode Escolha se Você deseja re- entrar Caverna Draupnir, Poeta Sombria, Aço de Ao, Taloc’s concavidade ou o(a) Pesadelo instância um mais andamento." nameId="791643" sourceType="FISH" harvestCount="32" skillLevel="120" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="2">
+	<gatherable_template id="409150" name_en="You can choose whether you want to re-enter Draupnir Cave, Dark Poeta, Steel Rake, Taloc’s Hollow or the Nightmare instance one more time." name_pt="Você pode Escolha se Você deseja re- entrar Caverna Draupnir, Poeta Sombria, Aço de Ao, Cavidade de Taloc ou o(a) Pesadelo instância um mais andamento." nameId="791643" sourceType="FISH" harvestCount="32" skillLevel="120" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="2">
 		<materials>
 			<material rate="5000000" nameid="791691" itemid="182006816" name_en="Contains a Major Diamond.
 Double-click to open." name_pt="Contém um(a) superior Diamante.
@@ -7255,13 +7255,13 @@ Clique duas vezes para abrir." />
 	</gatherable_template>
 	<gatherable_template id="409159" name_en="Rare Manastone Bundle Material Chest (Level 60)" name_pt="Pacote de Pedras de Mana Raras Baú de Materiais (Nível 60)" nameId="791652" sourceType="FISH" harvestCount="32" skillLevel="240" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite General de Brigada" />
+			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de Elite General de Brigada" />
 			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite General de Brigada" />
+			<material rate="5700000" nameid="791700" itemid="182006825" name_en="Elite Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de Elite General de Brigada" />
 			<material rate="2500000" nameid="794672" itemid="182006859" name_en="Brawler’s Login Screen Male Shoes (Elyos)" name_pt="Login Tela masculino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
@@ -7283,13 +7283,13 @@ Clique duas vezes para abrir." />
 	</gatherable_template>
 	<gatherable_template id="409161" name_en="Major Ancient Crown Material Chest" name_pt="Superior Antigo coroa Baú de Materiais" nameId="791654" sourceType="HERB" harvestCount="32" skillLevel="280" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite Arconte General de Brigada" />
+			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de Elite Arconte General de Brigada" />
 			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de De Elite Arconte General de Brigada" />
+			<material rate="5700000" nameid="791702" itemid="182006827" name_en="Elite Archon Brigade General’s Armour Selection Box" name_pt="Armadura Caixa de Seleção de Elite Arconte General de Brigada" />
 			<material rate="2500000" nameid="794674" itemid="182006861" name_en="Brawler’s Login Screen Male Shoes (Asmodian)" name_pt="Login Tela masculino Sapatos (Asmodian) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
