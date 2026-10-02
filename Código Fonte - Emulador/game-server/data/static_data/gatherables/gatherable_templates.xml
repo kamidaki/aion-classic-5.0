@@ -528,13 +528,13 @@ Clique duas vezes para abrir." nameId="811701" sourceType="VEGETABLE" harvestCou
 	<gatherable_template id="400112" name_en="Trade Guild Adventurer’s Seal Chest" name_pt="Baú de selo de Comércio Guilda Aventureiro" nameId="811694" sourceType="NOBLEMETAL" harvestCount="3" skillLevel="499" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="60">
 		<materials>
 			<material rate="5800000" nameid="811614" itemid="152000123" name_en="[Event] Forgotten Weapon Chest" name_pt="[Evento] Esquecido Baú de Armas" />
-			<material rate="2800000" nameid="811615" itemid="152000124" name_en="[Event] High-level Skill Book/Stigma Selection Box" name_pt="[Evento] Alto-Habilidade nível Livro/Stigma Caixa de Seleção" />
-			<material rate="1400000" nameid="811616" itemid="152000125" name_en="[Event] High-Level Stigma Selection Box" name_pt="[Evento] Alto-Nível Stigma Caixa de Seleção" />
+			<material rate="2800000" nameid="811615" itemid="152000124" name_en="[Event] High-level Skill Book/Stigma Selection Box" name_pt="[Evento] Caixa de Seleção de Alto-Habilidade nível Livro/Stigma" />
+			<material rate="1400000" nameid="811616" itemid="152000125" name_en="[Event] High-Level Stigma Selection Box" name_pt="[Evento] Caixa de Seleção de Alto-Nível Stigma" />
 		</materials>
 		<exmaterials>
 			<material rate="5800000" nameid="811614" itemid="152000123" name_en="[Event] Forgotten Weapon Chest" name_pt="[Evento] Esquecido Baú de Armas" />
-			<material rate="2800000" nameid="811615" itemid="152000124" name_en="[Event] High-level Skill Book/Stigma Selection Box" name_pt="[Evento] Alto-Habilidade nível Livro/Stigma Caixa de Seleção" />
-			<material rate="1400000" nameid="811616" itemid="152000125" name_en="[Event] High-Level Stigma Selection Box" name_pt="[Evento] Alto-Nível Stigma Caixa de Seleção" />
+			<material rate="2800000" nameid="811615" itemid="152000124" name_en="[Event] High-level Skill Book/Stigma Selection Box" name_pt="[Evento] Caixa de Seleção de Alto-Habilidade nível Livro/Stigma" />
+			<material rate="1400000" nameid="811616" itemid="152000125" name_en="[Event] High-Level Stigma Selection Box" name_pt="[Evento] Caixa de Seleção de Alto-Nível Stigma" />
 		</exmaterials>
 	</gatherable_template>
 	<gatherable_template id="400151" name_en="Silver" name_pt="Prata" nameId="702095" sourceType="NOBLEMETAL" harvestCount="3" skillLevel="35" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100">
@@ -786,12 +786,12 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="400215" name_en="Noble Prismatic Doomsayer’s Wing Selection Box" name_pt="Asa Caixa de Seleção de Nobre prismático Arauto da Perdição" nameId="811692" sourceType="METAL" harvestCount="3" skillLevel="499" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="60">
 		<materials>
 			<material rate="5800000" nameid="811608" itemid="152000223" name_en="[Event] Rare Manastone Bundle (Level 60)" name_pt="[Evento] Pacote de Pedras de Mana Raras (Nível 60)" />
-			<material rate="2800000" nameid="811609" itemid="152000224" name_en="[Event] Heroic Godstone Selection Box" name_pt="[Evento] Heroico Pedra Divina Caixa de Seleção" />
+			<material rate="2800000" nameid="811609" itemid="152000224" name_en="[Event] Heroic Godstone Selection Box" name_pt="[Evento] Caixa de Seleção de Heroico Pedra Divina" />
 			<material rate="1400000" nameid="811610" itemid="152000225" name_en="[Event] Enchantment Stone (Level 100–105) Box" name_pt="[Evento] Pedra de Encantamento (Nvel 100–105) Caixa" />
 		</materials>
 		<exmaterials>
 			<material rate="5800000" nameid="811608" itemid="152000223" name_en="[Event] Rare Manastone Bundle (Level 60)" name_pt="[Evento] Pacote de Pedras de Mana Raras (Nível 60)" />
-			<material rate="2800000" nameid="811609" itemid="152000224" name_en="[Event] Heroic Godstone Selection Box" name_pt="[Evento] Heroico Pedra Divina Caixa de Seleção" />
+			<material rate="2800000" nameid="811609" itemid="152000224" name_en="[Event] Heroic Godstone Selection Box" name_pt="[Evento] Caixa de Seleção de Heroico Pedra Divina" />
 			<material rate="1400000" nameid="811610" itemid="152000225" name_en="[Event] Enchantment Stone (Level 100–105) Box" name_pt="[Evento] Pedra de Encantamento (Nvel 100–105) Caixa" />
 		</exmaterials>
 	</gatherable_template>
@@ -1118,7 +1118,7 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="400323" name_en="Corundum" name_pt="Corindo" nameId="748597" sourceType="JEWELRY" harvestCount="1" skillLevel="390" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="5465790" nameid="748635" itemid="152000320" name_en="Corundum Ore" name_pt="Borda de Coríndon" />
-			<material rate="3700000" nameid="748637" itemid="152000321" name_en="Big Corundum Ore" name_pt="Big: .sint. grande Coríndon minério" />
+			<material rate="3700000" nameid="748637" itemid="152000321" name_en="Big Corundum Ore" name_pt="Grande Coríndon minério" />
 			<material rate="800000" nameid="752418" itemid="152000326" name_en="Dazzling Corundum Ore" name_pt="O minério de Coríndon deslumbrante" />
 			<material rate="25000" nameid="744459" itemid="162000066" name_en="Recovery Crystal" name_pt="Cristal de recuperação" />
 			<material rate="7500" nameid="744691" itemid="152000319" name_en="Dukiron's Memento" name_pt="Memento de Dukiron" />
@@ -1147,14 +1147,14 @@ Clique duas vezes para abrir." />
 	</gatherable_template>
 	<gatherable_template id="400326" name_en="Trade Guild Kinah Bundle" name_pt="Pacote de Comércio Guilda Kinah" nameId="811695" sourceType="JEWELRY" harvestCount="3" skillLevel="499" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="60">
 		<materials>
-			<material rate="5800000" nameid="811617" itemid="152000332" name_en="[Event] High-Level Stigma Selection Box" name_pt="[Evento] Alto-Nível Stigma Caixa de Seleção" />
+			<material rate="5800000" nameid="811617" itemid="152000332" name_en="[Event] High-Level Stigma Selection Box" name_pt="[Evento] Caixa de Seleção de Alto-Nível Stigma" />
 			<material rate="2800000" nameid="811618" itemid="152000333" name_en="[Event] Shimmering Teva Treasure Chest" name_pt="[Evento] Cintilante Teva Baú do Tesouro" />
 			<material rate="1400000" nameid="811619" itemid="152000334" name_en="When opened, grants 1,000 high-quality sealing stones.
 Double-click to open." name_pt="quando aberto, concede 1,000 Alto-qualidade sealing pedra.
 Clique duas vezes para abrir." />
 		</materials>
 		<exmaterials>
-			<material rate="5800000" nameid="811617" itemid="152000332" name_en="[Event] High-Level Stigma Selection Box" name_pt="[Evento] Alto-Nível Stigma Caixa de Seleção" />
+			<material rate="5800000" nameid="811617" itemid="152000332" name_en="[Event] High-Level Stigma Selection Box" name_pt="[Evento] Caixa de Seleção de Alto-Nível Stigma" />
 			<material rate="2800000" nameid="811618" itemid="152000333" name_en="[Event] Shimmering Teva Treasure Chest" name_pt="[Evento] Cintilante Teva Baú do Tesouro" />
 			<material rate="1400000" nameid="811619" itemid="152000334" name_en="When opened, grants 1,000 high-quality sealing stones.
 Double-click to open." name_pt="quando aberto, concede 1,000 Alto-qualidade sealing pedra.
@@ -1376,7 +1376,7 @@ Clique duas vezes para abrir e receber um item aleatório do seu conteúdo." />
 	<gatherable_template id="400372" name_en="Corundum" name_pt="Corindo" nameId="751120" sourceType="JEWELRY" harvestCount="1" skillLevel="390" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="5465790" nameid="748635" itemid="152000320" name_en="Corundum Ore" name_pt="Borda de Coríndon" />
-			<material rate="3700000" nameid="748637" itemid="152000321" name_en="Big Corundum Ore" name_pt="Big: .sint. grande Coríndon minério" />
+			<material rate="3700000" nameid="748637" itemid="152000321" name_en="Big Corundum Ore" name_pt="Grande Coríndon minério" />
 			<material rate="800000" nameid="752418" itemid="152000326" name_en="Dazzling Corundum Ore" name_pt="O minério de Coríndon deslumbrante" />
 			<material rate="25000" nameid="744459" itemid="162000066" name_en="Recovery Crystal" name_pt="Cristal de recuperação" />
 			<material rate="7500" nameid="744691" itemid="152000319" name_en="Dukiron's Memento" name_pt="Memento de Dukiron" />
@@ -1406,7 +1406,7 @@ Clique duas vezes para abrir e receber um item aleatório do seu conteúdo." />
 	<gatherable_template id="400375" name_en="Corundum" name_pt="Corindo" nameId="751120" sourceType="JEWELRY" harvestCount="1" skillLevel="450" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="5464080" nameid="748635" itemid="152000320" name_en="Corundum Ore" name_pt="Borda de Coríndon" />
-			<material rate="3700000" nameid="748637" itemid="152000321" name_en="Big Corundum Ore" name_pt="Big: .sint. grande Coríndon minério" />
+			<material rate="3700000" nameid="748637" itemid="152000321" name_en="Big Corundum Ore" name_pt="Grande Coríndon minério" />
 			<material rate="800000" nameid="752418" itemid="152000326" name_en="Dazzling Corundum Ore" name_pt="O minério de Coríndon deslumbrante" />
 			<material rate="25000" nameid="744459" itemid="162000066" name_en="Recovery Crystal" name_pt="Cristal de recuperação" />
 			<material rate="7500" nameid="744691" itemid="152000319" name_en="Dukiron's Memento" name_pt="Memento de Dukiron" />
@@ -1428,7 +1428,7 @@ Clique duas vezes para abrir e receber um item aleatório do seu conteúdo." />
 	<gatherable_template id="400377" name_en="Corundum" name_pt="Corindo" nameId="751120" sourceType="JEWELRY" harvestCount="1" skillLevel="450" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="5464080" nameid="748635" itemid="152000320" name_en="Corundum Ore" name_pt="Borda de Coríndon" />
-			<material rate="3700000" nameid="748637" itemid="152000321" name_en="Big Corundum Ore" name_pt="Big: .sint. grande Coríndon minério" />
+			<material rate="3700000" nameid="748637" itemid="152000321" name_en="Big Corundum Ore" name_pt="Grande Coríndon minério" />
 			<material rate="800000" nameid="752418" itemid="152000326" name_en="Dazzling Corundum Ore" name_pt="O minério de Coríndon deslumbrante" />
 			<material rate="25000" nameid="744459" itemid="162000066" name_en="Recovery Crystal" name_pt="Cristal de recuperação" />
 			<material rate="7500" nameid="744691" itemid="152000319" name_en="Dukiron's Memento" name_pt="Memento de Dukiron" />
@@ -1863,12 +1863,12 @@ Clique duas vezes para abrir." />
 Double-click to open." name_pt="quando aberto, Você pode Escolha e receber um jogo de Nobre prismático Arauto da Perdição’s Asas.
 Clique duas vezes para abrir." nameId="811693" sourceType="PLANT" harvestCount="3" skillLevel="499" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="60">
 		<materials>
-			<material rate="5800000" nameid="811611" itemid="152000612" name_en="[Event] Craftable Armour Selection Box" name_pt="[Evento] Craftable Armadura Caixa de Seleção" />
+			<material rate="5800000" nameid="811611" itemid="152000612" name_en="[Event] Craftable Armour Selection Box" name_pt="[Evento] Caixa de Seleção de Craftable Armadura" />
 			<material rate="2800000" nameid="811612" itemid="152000613" name_en="[Event] Derelict Weapon Chest" name_pt="[Evento] Abandonado Baú de Armas" />
 			<material rate="1400000" nameid="811613" itemid="152000614" name_en="[Event] Forsaken Weapon Chest" name_pt="[Evento] Abandonado Baú de Armas" />
 		</materials>
 		<exmaterials>
-			<material rate="5800000" nameid="811611" itemid="152000612" name_en="[Event] Craftable Armour Selection Box" name_pt="[Evento] Craftable Armadura Caixa de Seleção" />
+			<material rate="5800000" nameid="811611" itemid="152000612" name_en="[Event] Craftable Armour Selection Box" name_pt="[Evento] Caixa de Seleção de Craftable Armadura" />
 			<material rate="2800000" nameid="811612" itemid="152000613" name_en="[Event] Derelict Weapon Chest" name_pt="[Evento] Abandonado Baú de Armas" />
 			<material rate="1400000" nameid="811613" itemid="152000614" name_en="[Event] Forsaken Weapon Chest" name_pt="[Evento] Abandonado Baú de Armas" />
 		</exmaterials>
@@ -3970,7 +3970,7 @@ Clique duas vezes para abrir." nameId="811706" sourceType="SHELL" harvestCount="
 	<gatherable_template id="401114" name_en="Huge Corundum" name_pt="Corundo enorme" nameId="751623" sourceType="JEWELRY" harvestCount="6" skillLevel="450" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="7600000" nameid="748635" itemid="152000320" name_en="Corundum Ore" name_pt="Borda de Coríndon" />
-			<material rate="2000000" nameid="748637" itemid="152000321" name_en="Big Corundum Ore" name_pt="Big: .sint. grande Coríndon minério" />
+			<material rate="2000000" nameid="748637" itemid="152000321" name_en="Big Corundum Ore" name_pt="Grande Coríndon minério" />
 			<material rate="400000" nameid="752418" itemid="152000326" name_en="Dazzling Corundum Ore" name_pt="O minério de Coríndon deslumbrante" />
 		</materials>
 	</gatherable_template>
@@ -4048,7 +4048,7 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="401154" name_en="Huge Corundum" name_pt="Corundo enorme" nameId="751628" sourceType="JEWELRY" harvestCount="6" skillLevel="450" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="7600000" nameid="748635" itemid="152000320" name_en="Corundum Ore" name_pt="Borda de Coríndon" />
-			<material rate="2000000" nameid="748637" itemid="152000321" name_en="Big Corundum Ore" name_pt="Big: .sint. grande Coríndon minério" />
+			<material rate="2000000" nameid="748637" itemid="152000321" name_en="Big Corundum Ore" name_pt="Grande Coríndon minério" />
 			<material rate="400000" nameid="752418" itemid="152000326" name_en="Dazzling Corundum Ore" name_pt="O minério de Coríndon deslumbrante" />
 		</materials>
 	</gatherable_template>
@@ -4134,7 +4134,7 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="401163" name_en="Huge Corundum" name_pt="Corundo enorme" nameId="751623" sourceType="JEWELRY" harvestCount="6" skillLevel="450" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="7600000" nameid="748635" itemid="152000320" name_en="Corundum Ore" name_pt="Borda de Coríndon" />
-			<material rate="2000000" nameid="748637" itemid="152000321" name_en="Big Corundum Ore" name_pt="Big: .sint. grande Coríndon minério" />
+			<material rate="2000000" nameid="748637" itemid="152000321" name_en="Big Corundum Ore" name_pt="Grande Coríndon minério" />
 			<material rate="400000" nameid="752418" itemid="152000326" name_en="Dazzling Corundum Ore" name_pt="O minério de Coríndon deslumbrante" />
 		</materials>
 	</gatherable_template>
@@ -4588,7 +4588,7 @@ Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="403019" name_en="[Event] Fine Elemental Defence Scroll Selection Box" name_pt="[Evento] Fino Elemental defesa Pergaminho Caixa de Seleção" nameId="791628" sourceType="FISH" harvestCount="5" skillLevel="240" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405197" reqItemNameId="791705" checkType="2" eraseValue="3">
+	<gatherable_template id="403019" name_en="[Event] Fine Elemental Defence Scroll Selection Box" name_pt="[Evento] Caixa de Seleção de Fino Elemental defesa Pergaminho" nameId="791628" sourceType="FISH" harvestCount="5" skillLevel="240" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405197" reqItemNameId="791705" checkType="2" eraseValue="3">
 		<materials>
 			<material rate="5700000" nameid="791676" itemid="182006801" name_en="Contains a Normal Daeva Entry Scroll.
 Double-click to open." name_pt="Contém um(a) normal.
@@ -4840,7 +4840,7 @@ Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="403507" name_en="You can choose whether you want to re-enter the Indratu Fortress, Fire Temple, Aetherogenetics Lab, Alquimia Research Centre, Adma Stronghold, Nochsana Training Camp, Azoturan Fortress or Haramel instances one more time." name_pt="Você pode Escolha se Você deseja re- entrar o(a) Indratu Fortaleza, Templo do Fogo, Aetherogenetics Laboratório, Alquimia Pesquisa Centro, Adma Fortaleza, CAMPO DE TREINAMENTO DE NOCHSANA, Azoturan Fortaleza ou Haramel instâncias um mais andamento." nameId="791641" sourceType="JEWELRY" harvestCount="5" skillLevel="80" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
+	<gatherable_template id="403507" name_en="You can choose whether you want to re-enter the Indratu Fortress, Fire Temple, Aetherogenetics Lab, Alquimia Research Centre, Adma Stronghold, Nochsana Training Camp, Azoturan Fortress or Haramel instances one more time." name_pt="Você pode Escolha se Você deseja re- entrar o(a) Indratu Fortaleza, Templo do Fogo, Aetherogenetics Laboratório, Alquimia Pesquisa Centro, Adma Fortaleza, CAMPO DE TREINAMENTO DE NOCHSANA, Azoturan Fortaleza ou Haramel instâncias um mais tempo." nameId="791641" sourceType="JEWELRY" harvestCount="5" skillLevel="80" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
 		<materials>
 			<material rate="2225000" nameid="791689" itemid="182006814" name_en="Contains a New Daeva Entry Scroll.
 Double-click to open." name_pt="Contém um(a) novo Daeva Pergaminho de Entrada.
@@ -4858,7 +4858,7 @@ Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="403508" name_en="You can choose whether you want to re-enter the Indratu Fortress, Fire Temple, Aetherogenetics Lab, Alquimia Research Centre, Theobomos Lab, Nochsana Training Camp, Azoturan Fortress or Haramel instances one more time." name_pt="Você pode Escolha se Você deseja re- entrar o(a) Indratu Fortaleza, Templo do Fogo, Aetherogenetics Laboratório, Alquimia Pesquisa Centro, Laboratrio de Theobomos, CAMPO DE TREINAMENTO DE NOCHSANA, Azoturan Fortaleza ou Haramel instâncias um mais andamento." nameId="791640" sourceType="SHELL" harvestCount="5" skillLevel="80" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
+	<gatherable_template id="403508" name_en="You can choose whether you want to re-enter the Indratu Fortress, Fire Temple, Aetherogenetics Lab, Alquimia Research Centre, Theobomos Lab, Nochsana Training Camp, Azoturan Fortress or Haramel instances one more time." name_pt="Você pode Escolha se Você deseja re- entrar o(a) Indratu Fortaleza, Templo do Fogo, Aetherogenetics Laboratório, Alquimia Pesquisa Centro, Laboratrio de Theobomos, CAMPO DE TREINAMENTO DE NOCHSANA, Azoturan Fortaleza ou Haramel instâncias um mais tempo." nameId="791640" sourceType="SHELL" harvestCount="5" skillLevel="80" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
 		<materials>
 			<material rate="2225000" nameid="791688" itemid="182006813" name_en="Contains a Godstone Bundle.
 Double-click to open." name_pt="Contém um(a) Pedra Divina Pacote.
@@ -4876,7 +4876,7 @@ Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="403509" name_en="You can choose whether you want to re-enter Draupnir Cave, Dark Poeta, Steel Rake, Taloc’s Hollow or the Nightmare instance one more time." name_pt="Você pode Escolha se Você deseja re- entrar Caverna Draupnir, Poeta Sombria, Aço de Ao, Cavidade de Taloc ou o(a) Pesadelo instância um mais andamento." nameId="791642" sourceType="VEGETABLE" harvestCount="5" skillLevel="120" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="2">
+	<gatherable_template id="403509" name_en="You can choose whether you want to re-enter Draupnir Cave, Dark Poeta, Steel Rake, Taloc’s Hollow or the Nightmare instance one more time." name_pt="Você pode Escolha se Você deseja re- entrar Caverna Draupnir, Poeta Sombria, Aço de Ao, Cavidade de Taloc ou o(a) Pesadelo instância um mais tempo." nameId="791642" sourceType="VEGETABLE" harvestCount="5" skillLevel="120" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="2">
 		<materials>
 			<material rate="5000000" nameid="791690" itemid="182006815" name_en="Contains a Normal Daeva Entry Scroll.
 Double-click to open." name_pt="Contém um(a) normal.
@@ -4894,7 +4894,7 @@ Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="403510" name_en="You can choose whether you want to re-enter Draupnir Cave, Dark Poeta, Steel Rake, Taloc’s Hollow or the Nightmare instance one more time." name_pt="Você pode Escolha se Você deseja re- entrar Caverna Draupnir, Poeta Sombria, Aço de Ao, Cavidade de Taloc ou o(a) Pesadelo instância um mais andamento." nameId="791643" sourceType="FISH" harvestCount="5" skillLevel="120" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="2">
+	<gatherable_template id="403510" name_en="You can choose whether you want to re-enter Draupnir Cave, Dark Poeta, Steel Rake, Taloc’s Hollow or the Nightmare instance one more time." name_pt="Você pode Escolha se Você deseja re- entrar Caverna Draupnir, Poeta Sombria, Aço de Ao, Cavidade de Taloc ou o(a) Pesadelo instância um mais tempo." nameId="791643" sourceType="FISH" harvestCount="5" skillLevel="120" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="2">
 		<materials>
 			<material rate="5000000" nameid="791691" itemid="182006816" name_en="Contains a Major Diamond.
 Double-click to open." name_pt="Contém um(a) superior Diamante.
@@ -5072,13 +5072,13 @@ Clique duas vezes para abrir." />
 	</gatherable_template>
 	<gatherable_template id="403520" name_en="Greater Ancient Crown Material Chest" name_pt="Maior Antigo coroa Baú de Materiais" nameId="791653" sourceType="JEWELRY" harvestCount="5" skillLevel="240" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791701" itemid="182006826" name_en="Elite Guardian Brigade General’s Armour Selection Box" name_pt="De Elite do General de Brigada Guardião Armadura Caixa de Seleção" />
+			<material rate="5700000" nameid="791701" itemid="182006826" name_en="Elite Guardian Brigade General’s Armour Selection Box" name_pt="Caixa de Seleção de De Elite do General de Brigada Guardião Armadura" />
 			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791701" itemid="182006826" name_en="Elite Guardian Brigade General’s Armour Selection Box" name_pt="De Elite do General de Brigada Guardião Armadura Caixa de Seleção" />
+			<material rate="5700000" nameid="791701" itemid="182006826" name_en="Elite Guardian Brigade General’s Armour Selection Box" name_pt="Caixa de Seleção de De Elite do General de Brigada Guardião Armadura" />
 			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
@@ -5114,13 +5114,13 @@ Clique duas vezes para abrir." />
 	</gatherable_template>
 	<gatherable_template id="403523" name_en="Platinum Medal Material Chest" name_pt="Platina Medalha Baú de Materiais" nameId="791656" sourceType="JEWELRY" harvestCount="5" skillLevel="280" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791704" itemid="182006829" name_en="Fine Guardian Brigade General’s Accessory Selection Box" name_pt="Fino do General de Brigada Guardião acessório Caixa de Seleção" />
+			<material rate="5700000" nameid="791704" itemid="182006829" name_en="Fine Guardian Brigade General’s Accessory Selection Box" name_pt="Caixa de Seleção de Fino do General de Brigada Guardião acessório" />
 			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791704" itemid="182006829" name_en="Fine Guardian Brigade General’s Accessory Selection Box" name_pt="Fino do General de Brigada Guardião acessório Caixa de Seleção" />
+			<material rate="5700000" nameid="791704" itemid="182006829" name_en="Fine Guardian Brigade General’s Accessory Selection Box" name_pt="Caixa de Seleção de Fino do General de Brigada Guardião acessório" />
 			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
@@ -5223,7 +5223,7 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="409007" name_en="Corundum" name_pt="Corindo" nameId="748597" sourceType="JEWELRY" harvestCount="32" skillLevel="450" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="5467500" nameid="748635" itemid="152000320" name_en="Corundum Ore" name_pt="Borda de Coríndon" />
-			<material rate="3700000" nameid="748637" itemid="152000321" name_en="Big Corundum Ore" name_pt="Big: .sint. grande Coríndon minério" />
+			<material rate="3700000" nameid="748637" itemid="152000321" name_en="Big Corundum Ore" name_pt="Grande Coríndon minério" />
 			<material rate="800000" nameid="752418" itemid="152000326" name_en="Dazzling Corundum Ore" name_pt="O minério de Coríndon deslumbrante" />
 			<material rate="25000" nameid="744459" itemid="162000066" name_en="Recovery Crystal" name_pt="Cristal de recuperação" />
 			<material rate="7500" nameid="744691" itemid="152000319" name_en="Dukiron's Memento" name_pt="Memento de Dukiron" />
@@ -6154,7 +6154,7 @@ Clique duas vezes para abrir." />
 			<material rate="750" nameid="794567" itemid="170040025" name_en="외형 확인 로브 신발_a07a_천족" name_pt="외형 확인 로브 신발_a07a_천족" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="409081" name_en="Condensed Time Echoes" name_pt="Condensado Andamento Ecoa" nameId="794254" sourceType="JEWELRY" harvestCount="1" skillLevel="1" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
+	<gatherable_template id="409081" name_en="Condensed Time Echoes" name_pt="Condensado Tempo Ecoa" nameId="794254" sourceType="JEWELRY" harvestCount="1" skillLevel="1" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="7492670" nameid="748627" itemid="152000214" name_en="Drenite Ore" name_pt="Minério drenito" />
 			<material rate="2000000" nameid="748629" itemid="152000215" name_en="Greater Drenite Ore" name_pt="Maior minério de drenita" />
@@ -6169,7 +6169,7 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="409083" name_en="Wintermellow" name_pt="Wintermellow" nameId="789713" sourceType="HERB" harvestCount="3" skillLevel="1" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="50">
 		<materials>
 			<material rate="5464080" nameid="748635" itemid="152000320" name_en="Corundum Ore" name_pt="Borda de Coríndon" />
-			<material rate="3700000" nameid="748637" itemid="152000321" name_en="Big Corundum Ore" name_pt="Big: .sint. grande Coríndon minério" />
+			<material rate="3700000" nameid="748637" itemid="152000321" name_en="Big Corundum Ore" name_pt="Grande Coríndon minério" />
 			<material rate="800000" nameid="752418" itemid="152000326" name_en="Dazzling Corundum Ore" name_pt="O minério de Coríndon deslumbrante" />
 			<material rate="25000" nameid="744459" itemid="162000066" name_en="Recovery Crystal" name_pt="Cristal de recuperação" />
 			<material rate="7500" nameid="744691" itemid="152000319" name_en="Dukiron's Memento" name_pt="Memento de Dukiron" />
@@ -6785,7 +6785,7 @@ Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="409135" name_en="[Event] Fine Elemental Defence Scroll Selection Box" name_pt="[Evento] Fino Elemental defesa Pergaminho Caixa de Seleção" nameId="791628" sourceType="FISH" harvestCount="32" skillLevel="240" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405197" reqItemNameId="791705" checkType="2" eraseValue="3">
+	<gatherable_template id="409135" name_en="[Event] Fine Elemental Defence Scroll Selection Box" name_pt="[Evento] Caixa de Seleção de Fino Elemental defesa Pergaminho" nameId="791628" sourceType="FISH" harvestCount="32" skillLevel="240" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405197" reqItemNameId="791705" checkType="2" eraseValue="3">
 		<materials>
 			<material rate="5700000" nameid="791676" itemid="182006801" name_en="Contains a Normal Daeva Entry Scroll.
 Double-click to open." name_pt="Contém um(a) normal.
@@ -7037,7 +7037,7 @@ Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="409147" name_en="You can choose whether you want to re-enter the Indratu Fortress, Fire Temple, Aetherogenetics Lab, Alquimia Research Centre, Theobomos Lab, Nochsana Training Camp, Azoturan Fortress or Haramel instances one more time." name_pt="Você pode Escolha se Você deseja re- entrar o(a) Indratu Fortaleza, Templo do Fogo, Aetherogenetics Laboratório, Alquimia Pesquisa Centro, Laboratrio de Theobomos, CAMPO DE TREINAMENTO DE NOCHSANA, Azoturan Fortaleza ou Haramel instâncias um mais andamento." nameId="791640" sourceType="SHELL" harvestCount="32" skillLevel="80" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
+	<gatherable_template id="409147" name_en="You can choose whether you want to re-enter the Indratu Fortress, Fire Temple, Aetherogenetics Lab, Alquimia Research Centre, Theobomos Lab, Nochsana Training Camp, Azoturan Fortress or Haramel instances one more time." name_pt="Você pode Escolha se Você deseja re- entrar o(a) Indratu Fortaleza, Templo do Fogo, Aetherogenetics Laboratório, Alquimia Pesquisa Centro, Laboratrio de Theobomos, CAMPO DE TREINAMENTO DE NOCHSANA, Azoturan Fortaleza ou Haramel instâncias um mais tempo." nameId="791640" sourceType="SHELL" harvestCount="32" skillLevel="80" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
 		<materials>
 			<material rate="2225000" nameid="791688" itemid="182006813" name_en="Contains a Godstone Bundle.
 Double-click to open." name_pt="Contém um(a) Pedra Divina Pacote.
@@ -7055,7 +7055,7 @@ Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="409148" name_en="You can choose whether you want to re-enter the Indratu Fortress, Fire Temple, Aetherogenetics Lab, Alquimia Research Centre, Adma Stronghold, Nochsana Training Camp, Azoturan Fortress or Haramel instances one more time." name_pt="Você pode Escolha se Você deseja re- entrar o(a) Indratu Fortaleza, Templo do Fogo, Aetherogenetics Laboratório, Alquimia Pesquisa Centro, Adma Fortaleza, CAMPO DE TREINAMENTO DE NOCHSANA, Azoturan Fortaleza ou Haramel instâncias um mais andamento." nameId="791641" sourceType="JEWELRY" harvestCount="32" skillLevel="80" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
+	<gatherable_template id="409148" name_en="You can choose whether you want to re-enter the Indratu Fortress, Fire Temple, Aetherogenetics Lab, Alquimia Research Centre, Adma Stronghold, Nochsana Training Camp, Azoturan Fortress or Haramel instances one more time." name_pt="Você pode Escolha se Você deseja re- entrar o(a) Indratu Fortaleza, Templo do Fogo, Aetherogenetics Laboratório, Alquimia Pesquisa Centro, Adma Fortaleza, CAMPO DE TREINAMENTO DE NOCHSANA, Azoturan Fortaleza ou Haramel instâncias um mais tempo." nameId="791641" sourceType="JEWELRY" harvestCount="32" skillLevel="80" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="1">
 		<materials>
 			<material rate="2225000" nameid="791689" itemid="182006814" name_en="Contains a New Daeva Entry Scroll.
 Double-click to open." name_pt="Contém um(a) novo Daeva Pergaminho de Entrada.
@@ -7073,7 +7073,7 @@ Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="409149" name_en="You can choose whether you want to re-enter Draupnir Cave, Dark Poeta, Steel Rake, Taloc’s Hollow or the Nightmare instance one more time." name_pt="Você pode Escolha se Você deseja re- entrar Caverna Draupnir, Poeta Sombria, Aço de Ao, Cavidade de Taloc ou o(a) Pesadelo instância um mais andamento." nameId="791642" sourceType="VEGETABLE" harvestCount="32" skillLevel="120" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="2">
+	<gatherable_template id="409149" name_en="You can choose whether you want to re-enter Draupnir Cave, Dark Poeta, Steel Rake, Taloc’s Hollow or the Nightmare instance one more time." name_pt="Você pode Escolha se Você deseja re- entrar Caverna Draupnir, Poeta Sombria, Aço de Ao, Cavidade de Taloc ou o(a) Pesadelo instância um mais tempo." nameId="791642" sourceType="VEGETABLE" harvestCount="32" skillLevel="120" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="2">
 		<materials>
 			<material rate="5000000" nameid="791690" itemid="182006815" name_en="Contains a Normal Daeva Entry Scroll.
 Double-click to open." name_pt="Contém um(a) normal.
@@ -7091,7 +7091,7 @@ Clique duas vezes para abrir." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</exmaterials>
 	</gatherable_template>
-	<gatherable_template id="409150" name_en="You can choose whether you want to re-enter Draupnir Cave, Dark Poeta, Steel Rake, Taloc’s Hollow or the Nightmare instance one more time." name_pt="Você pode Escolha se Você deseja re- entrar Caverna Draupnir, Poeta Sombria, Aço de Ao, Cavidade de Taloc ou o(a) Pesadelo instância um mais andamento." nameId="791643" sourceType="FISH" harvestCount="32" skillLevel="120" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="2">
+	<gatherable_template id="409150" name_en="You can choose whether you want to re-enter Draupnir Cave, Dark Poeta, Steel Rake, Taloc’s Hollow or the Nightmare instance one more time." name_pt="Você pode Escolha se Você deseja re- entrar Caverna Draupnir, Poeta Sombria, Aço de Ao, Cavidade de Taloc ou o(a) Pesadelo instância um mais tempo." nameId="791643" sourceType="FISH" harvestCount="32" skillLevel="120" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="2">
 		<materials>
 			<material rate="5000000" nameid="791691" itemid="182006816" name_en="Contains a Major Diamond.
 Double-click to open." name_pt="Contém um(a) superior Diamante.
@@ -7269,13 +7269,13 @@ Clique duas vezes para abrir." />
 	</gatherable_template>
 	<gatherable_template id="409160" name_en="Greater Ancient Crown Material Chest" name_pt="Maior Antigo coroa Baú de Materiais" nameId="791653" sourceType="JEWELRY" harvestCount="32" skillLevel="240" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791701" itemid="182006826" name_en="Elite Guardian Brigade General’s Armour Selection Box" name_pt="De Elite do General de Brigada Guardião Armadura Caixa de Seleção" />
+			<material rate="5700000" nameid="791701" itemid="182006826" name_en="Elite Guardian Brigade General’s Armour Selection Box" name_pt="Caixa de Seleção de De Elite do General de Brigada Guardião Armadura" />
 			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791701" itemid="182006826" name_en="Elite Guardian Brigade General’s Armour Selection Box" name_pt="De Elite do General de Brigada Guardião Armadura Caixa de Seleção" />
+			<material rate="5700000" nameid="791701" itemid="182006826" name_en="Elite Guardian Brigade General’s Armour Selection Box" name_pt="Caixa de Seleção de De Elite do General de Brigada Guardião Armadura" />
 			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
@@ -7311,13 +7311,13 @@ Clique duas vezes para abrir." />
 	</gatherable_template>
 	<gatherable_template id="409163" name_en="Platinum Medal Material Chest" name_pt="Platina Medalha Baú de Materiais" nameId="791656" sourceType="JEWELRY" harvestCount="32" skillLevel="280" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="30" reqItem="169405200" reqItemNameId="791708" checkType="2" eraseValue="3">
 		<materials>
-			<material rate="5700000" nameid="791704" itemid="182006829" name_en="Fine Guardian Brigade General’s Accessory Selection Box" name_pt="Fino do General de Brigada Guardião acessório Caixa de Seleção" />
+			<material rate="5700000" nameid="791704" itemid="182006829" name_en="Fine Guardian Brigade General’s Accessory Selection Box" name_pt="Caixa de Seleção de Fino do General de Brigada Guardião acessório" />
 			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
 		</materials>
 		<exmaterials>
-			<material rate="5700000" nameid="791704" itemid="182006829" name_en="Fine Guardian Brigade General’s Accessory Selection Box" name_pt="Fino do General de Brigada Guardião acessório Caixa de Seleção" />
+			<material rate="5700000" nameid="791704" itemid="182006829" name_en="Fine Guardian Brigade General’s Accessory Selection Box" name_pt="Caixa de Seleção de Fino do General de Brigada Guardião acessório" />
 			<material rate="2500000" nameid="794673" itemid="182006860" name_en="Brawler’s Login Screen Female Shoes (Elyos)" name_pt="Login Tela feminino Sapatos (Elyos) de Brigão" />
 			<material rate="800000" nameid="795308" itemid="152011096" name_en="Lets you re-enter the &lt;Wall of Lament&gt; instance." name_pt="Permite reentrar na instância &lt;Wall of Lament&gt;." />
 			<material rate="1000000" nameid="800993" itemid="182006983" name_en="Life Crystal" name_pt="Vida Cristal" />
@@ -7874,12 +7874,12 @@ Clique duas vezes para abrir." />
 	<gatherable_template id="409218" name_en="Noble Prismatic Doomsayer’s Wing Selection Box" name_pt="Asa Caixa de Seleção de Nobre prismático Arauto da Perdição" nameId="811692" sourceType="METAL" harvestCount="32" skillLevel="499" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="60">
 		<materials>
 			<material rate="5800000" nameid="811608" itemid="152000223" name_en="[Event] Rare Manastone Bundle (Level 60)" name_pt="[Evento] Pacote de Pedras de Mana Raras (Nível 60)" />
-			<material rate="2800000" nameid="811609" itemid="152000224" name_en="[Event] Heroic Godstone Selection Box" name_pt="[Evento] Heroico Pedra Divina Caixa de Seleção" />
+			<material rate="2800000" nameid="811609" itemid="152000224" name_en="[Event] Heroic Godstone Selection Box" name_pt="[Evento] Caixa de Seleção de Heroico Pedra Divina" />
 			<material rate="1400000" nameid="811610" itemid="152000225" name_en="[Event] Enchantment Stone (Level 100–105) Box" name_pt="[Evento] Pedra de Encantamento (Nvel 100–105) Caixa" />
 		</materials>
 		<exmaterials>
 			<material rate="5800000" nameid="811608" itemid="152000223" name_en="[Event] Rare Manastone Bundle (Level 60)" name_pt="[Evento] Pacote de Pedras de Mana Raras (Nível 60)" />
-			<material rate="2800000" nameid="811609" itemid="152000224" name_en="[Event] Heroic Godstone Selection Box" name_pt="[Evento] Heroico Pedra Divina Caixa de Seleção" />
+			<material rate="2800000" nameid="811609" itemid="152000224" name_en="[Event] Heroic Godstone Selection Box" name_pt="[Evento] Caixa de Seleção de Heroico Pedra Divina" />
 			<material rate="1400000" nameid="811610" itemid="152000225" name_en="[Event] Enchantment Stone (Level 100–105) Box" name_pt="[Evento] Pedra de Encantamento (Nvel 100–105) Caixa" />
 		</exmaterials>
 	</gatherable_template>
@@ -7887,12 +7887,12 @@ Clique duas vezes para abrir." />
 Double-click to open." name_pt="quando aberto, Você pode Escolha e receber um jogo de Nobre prismático Arauto da Perdição’s Asas.
 Clique duas vezes para abrir." nameId="811693" sourceType="PLANT" harvestCount="32" skillLevel="499" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="60">
 		<materials>
-			<material rate="5800000" nameid="811611" itemid="152000612" name_en="[Event] Craftable Armour Selection Box" name_pt="[Evento] Craftable Armadura Caixa de Seleção" />
+			<material rate="5800000" nameid="811611" itemid="152000612" name_en="[Event] Craftable Armour Selection Box" name_pt="[Evento] Caixa de Seleção de Craftable Armadura" />
 			<material rate="2800000" nameid="811612" itemid="152000613" name_en="[Event] Derelict Weapon Chest" name_pt="[Evento] Abandonado Baú de Armas" />
 			<material rate="1400000" nameid="811613" itemid="152000614" name_en="[Event] Forsaken Weapon Chest" name_pt="[Evento] Abandonado Baú de Armas" />
 		</materials>
 		<exmaterials>
-			<material rate="5800000" nameid="811611" itemid="152000612" name_en="[Event] Craftable Armour Selection Box" name_pt="[Evento] Craftable Armadura Caixa de Seleção" />
+			<material rate="5800000" nameid="811611" itemid="152000612" name_en="[Event] Craftable Armour Selection Box" name_pt="[Evento] Caixa de Seleção de Craftable Armadura" />
 			<material rate="2800000" nameid="811612" itemid="152000613" name_en="[Event] Derelict Weapon Chest" name_pt="[Evento] Abandonado Baú de Armas" />
 			<material rate="1400000" nameid="811613" itemid="152000614" name_en="[Event] Forsaken Weapon Chest" name_pt="[Evento] Abandonado Baú de Armas" />
 		</exmaterials>
@@ -7900,25 +7900,25 @@ Clique duas vezes para abrir." nameId="811693" sourceType="PLANT" harvestCount="
 	<gatherable_template id="409220" name_en="Trade Guild Adventurer’s Seal Chest" name_pt="Baú de selo de Comércio Guilda Aventureiro" nameId="811694" sourceType="NOBLEMETAL" harvestCount="32" skillLevel="499" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="60">
 		<materials>
 			<material rate="5800000" nameid="811614" itemid="152000123" name_en="[Event] Forgotten Weapon Chest" name_pt="[Evento] Esquecido Baú de Armas" />
-			<material rate="2800000" nameid="811615" itemid="152000124" name_en="[Event] High-level Skill Book/Stigma Selection Box" name_pt="[Evento] Alto-Habilidade nível Livro/Stigma Caixa de Seleção" />
-			<material rate="1400000" nameid="811616" itemid="152000125" name_en="[Event] High-Level Stigma Selection Box" name_pt="[Evento] Alto-Nível Stigma Caixa de Seleção" />
+			<material rate="2800000" nameid="811615" itemid="152000124" name_en="[Event] High-level Skill Book/Stigma Selection Box" name_pt="[Evento] Caixa de Seleção de Alto-Habilidade nível Livro/Stigma" />
+			<material rate="1400000" nameid="811616" itemid="152000125" name_en="[Event] High-Level Stigma Selection Box" name_pt="[Evento] Caixa de Seleção de Alto-Nível Stigma" />
 		</materials>
 		<exmaterials>
 			<material rate="5800000" nameid="811614" itemid="152000123" name_en="[Event] Forgotten Weapon Chest" name_pt="[Evento] Esquecido Baú de Armas" />
-			<material rate="2800000" nameid="811615" itemid="152000124" name_en="[Event] High-level Skill Book/Stigma Selection Box" name_pt="[Evento] Alto-Habilidade nível Livro/Stigma Caixa de Seleção" />
-			<material rate="1400000" nameid="811616" itemid="152000125" name_en="[Event] High-Level Stigma Selection Box" name_pt="[Evento] Alto-Nível Stigma Caixa de Seleção" />
+			<material rate="2800000" nameid="811615" itemid="152000124" name_en="[Event] High-level Skill Book/Stigma Selection Box" name_pt="[Evento] Caixa de Seleção de Alto-Habilidade nível Livro/Stigma" />
+			<material rate="1400000" nameid="811616" itemid="152000125" name_en="[Event] High-Level Stigma Selection Box" name_pt="[Evento] Caixa de Seleção de Alto-Nível Stigma" />
 		</exmaterials>
 	</gatherable_template>
 	<gatherable_template id="409221" name_en="Trade Guild Kinah Bundle" name_pt="Pacote de Comércio Guilda Kinah" nameId="811695" sourceType="JEWELRY" harvestCount="32" skillLevel="499" harvestSkill="30002" successAdj="100" failureAdj="100" aerialAdj="100" lvlLimit="60">
 		<materials>
-			<material rate="5800000" nameid="811617" itemid="152000332" name_en="[Event] High-Level Stigma Selection Box" name_pt="[Evento] Alto-Nível Stigma Caixa de Seleção" />
+			<material rate="5800000" nameid="811617" itemid="152000332" name_en="[Event] High-Level Stigma Selection Box" name_pt="[Evento] Caixa de Seleção de Alto-Nível Stigma" />
 			<material rate="2800000" nameid="811618" itemid="152000333" name_en="[Event] Shimmering Teva Treasure Chest" name_pt="[Evento] Cintilante Teva Baú do Tesouro" />
 			<material rate="1400000" nameid="811619" itemid="152000334" name_en="When opened, grants 1,000 high-quality sealing stones.
 Double-click to open." name_pt="quando aberto, concede 1,000 Alto-qualidade sealing pedra.
 Clique duas vezes para abrir." />
 		</materials>
 		<exmaterials>
-			<material rate="5800000" nameid="811617" itemid="152000332" name_en="[Event] High-Level Stigma Selection Box" name_pt="[Evento] Alto-Nível Stigma Caixa de Seleção" />
+			<material rate="5800000" nameid="811617" itemid="152000332" name_en="[Event] High-Level Stigma Selection Box" name_pt="[Evento] Caixa de Seleção de Alto-Nível Stigma" />
 			<material rate="2800000" nameid="811618" itemid="152000333" name_en="[Event] Shimmering Teva Treasure Chest" name_pt="[Evento] Cintilante Teva Baú do Tesouro" />
 			<material rate="1400000" nameid="811619" itemid="152000334" name_en="When opened, grants 1,000 high-quality sealing stones.
 Double-click to open." name_pt="quando aberto, concede 1,000 Alto-qualidade sealing pedra.

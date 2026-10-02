@@ -18866,7 +18866,7 @@
 		</actions>
 		<motion name="Pointfire3"/>
 	</skill_template>
-	<skill_template skill_id="1424" name_en="Time and Space Jump I" name_pt="Salto de andamento e espaço I" nameId="295173" delayId="548" stack="WI_DIEMSIONJUMP_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20" chain_skill_prob="100">
+	<skill_template skill_id="1424" name_en="Time and Space Jump I" name_pt="Salto de tempo e espaço I" nameId="295173" delayId="548" stack="WI_DIEMSIONJUMP_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20" chain_skill_prob="100">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<mp value="100" delta="0"/>
@@ -27770,7 +27770,7 @@
 		</actions>
 		<motion name="ChainATK1"/>
 	</skill_template>
-	<skill_template skill_id="2039" name_en="Weakening Blow VI" name_pt="Golpe VI enfraquecendo VI" nameId="295382" delayId="98" stack="FI_ENFEEBLEHIT_G6" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="210" duration="0" cancel_rate="10">
+	<skill_template skill_id="2039" name_en="Weakening Blow VI" name_pt="Golpe Enfraquecedor VI" nameId="295382" delayId="98" stack="FI_ENFEEBLEHIT_G6" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="210" duration="0" cancel_rate="10">
 		<properties first_target="TARGET" first_target_range="1" target_relation="ENEMY" target_type="ONLYONE" awr="true"/>
 		<startconditions>
 			<mp value="126" delta="0"/>
@@ -32677,7 +32677,7 @@
 		</effects>
 		<motion instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="2338" name_en="Steel Skin" name_pt="Transformação do zagueiro da natureza" nameId="2280047" stack="GM_IRONSKIN_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="100" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
+	<skill_template skill_id="2338" name_en="Steel Skin" name_pt="Transformação do defensor da natureza" nameId="2280047" stack="GM_IRONSKIN_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="100" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0" noremoveatdie="true">
 		<properties first_target="TARGET" first_target_range="10" target_relation="FRIEND" target_type="ONLYONE" target_species="PC"/>
 		<startconditions>
 			<target value="PC"/>
@@ -32687,7 +32687,7 @@
 		</effects>
 		<motion instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="2339" name_en="Healing Hands ... New flesh, develop" name_pt="Você se transformou no zagueiro da natureza." nameId="2280050" stack="GM_HEAL_G1" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="2339" name_en="Healing Hands ... New flesh, develop" name_pt="Você se transformou no defensor da natureza." nameId="2280050" stack="GM_HEAL_G1" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="10" target_relation="FRIEND" target_type="ONLYONE" target_species="PC"/>
 		<startconditions>
 			<target value="PC"/>
@@ -33302,7 +33302,7 @@
 		</actions>
 		<motion name="mendingT7"/>
 	</skill_template>
-	<skill_template skill_id="2377" name_en="Return: Angel Feathers" name_pt="O espaço -andamento foi aberto e o alterar(-se) ego de Tiamat foi enviado para um futuro n archit portal." nameId="2280330" delayId="447" stack="RETURNHOME1_SKIN_07" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="12000" duration="6000" cancel_rate="100000">
+	<skill_template skill_id="2377" name_en="Return: Angel Feathers" name_pt="O espaço -tempo foi aberto e o alterar(-se) ego de Tiamat foi enviado para um futuro n archit portal." nameId="2280330" delayId="447" stack="RETURNHOME1_SKIN_07" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="12000" duration="6000" cancel_rate="100000">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<selfflying restriction="GROUND"/>
@@ -43139,7 +43139,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			<procfphealinstant percent="true" delta="50" e="1" element="WIND"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9868" name_en="Flying Cooldown Reduction Potion 1" name_pt="Poção de redução de recarga de andamento voador 1" nameId="281645" name_desc="item_test_flycooltime_01" stack="ITEM_TEST_FLYCOOLTIME" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9868" name_en="Flying Cooldown Reduction Potion 1" name_pt="Poção de redução de recarga de tempo voador 1" nameId="281645" name_desc="item_test_flycooltime_01" stack="ITEM_TEST_FLYCOOLTIME" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -43149,7 +43149,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			<playermove allow="false"/>
 		</useconditions>
 	</skill_template>
-	<skill_template skill_id="9869" name_en="Flying Cooldown Reduction Potion 2" name_pt="Poção de redução de recarga de andamento voador 2" nameId="281646" name_desc="item_test_flycooltime_02" stack="ITEM_TEST_FLYCOOLTIME" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9869" name_en="Flying Cooldown Reduction Potion 2" name_pt="Poção de redução de recarga de tempo voador 2" nameId="281646" name_desc="item_test_flycooltime_02" stack="ITEM_TEST_FLYCOOLTIME" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -43792,7 +43792,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			<procmphealinstant value="1180" e="2" noresist="true" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9916" name_en="Divine Crucible HP Healing Remedy" name_pt="Remédio de cura HP cadinho divino" nameId="297763" name_desc="item_arena_potion_cure_hp_60" stack="ITEM_ARENA_POTION_CURE_HP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9916" name_en="Divine Crucible HP Healing Remedy" name_pt="Remédio de Cura HP do Crisol Divino" nameId="297763" name_desc="item_arena_potion_cure_hp_60" stack="ITEM_ARENA_POTION_CURE_HP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -43874,7 +43874,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9922" name_en="Crucible Recovery Potion" name_pt="Poção de recuperação cadinho" nameId="297765" name_desc="item_arena_potion_hp_mp_50" stack="ITEM_ARENA_POTION_HP_MP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9922" name_en="Crucible Recovery Potion" name_pt="Poção de Recuperação do Crisol" nameId="297765" name_desc="item_arena_potion_hp_mp_50" stack="ITEM_ARENA_POTION_HP_MP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -43887,7 +43887,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			<procmphealinstant value="3000" e="2" noresist="true" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9923" name_en="Divine Crucible Recovery Potion" name_pt="Poção de recuperação cadinho divina" nameId="297766" name_desc="item_arena_potion_hp_mp_60" stack="ITEM_ARENA_POTION_HP_MP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9923" name_en="Divine Crucible Recovery Potion" name_pt="Poção de Recuperação do Crisol Divina" nameId="297766" name_desc="item_arena_potion_hp_mp_60" stack="ITEM_ARENA_POTION_HP_MP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -44519,7 +44519,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9968" name_en="Increase Evasion, Resist Magic and Maximum Flight Time" name_pt="Aumentar a evasão, resistir à magia e andamento máximo de voo" nameId="740382" name_desc="food_fp_dodge_Mresist_6" stack="FOOD_FP_DODGE_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9968" name_en="Increase Evasion, Resist Magic and Maximum Flight Time" name_pt="Aumentar a evasão, resistir à magia e tempo máximo de voo" nameId="740382" name_desc="food_fp_dodge_Mresist_6" stack="FOOD_FP_DODGE_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -44539,7 +44539,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9969" name_en="Increase Physical Attack, Accuracy and Maximum Flight Time" name_pt="Aumentar o ataque físico, precisão e andamento máximo de voo" nameId="740383" name_desc="food_fp_phyAttack_accuracy_6" stack="FOOD_FP_PHYATTACK_ACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9969" name_en="Increase Physical Attack, Accuracy and Maximum Flight Time" name_pt="Aumentar o ataque físico, precisão e tempo máximo de voo" nameId="740383" name_desc="food_fp_phyAttack_accuracy_6" stack="FOOD_FP_PHYATTACK_ACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -44559,7 +44559,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9970" name_en="Increase Magic Boost, Magical Accuracy and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica e andamento máximo de vôo" nameId="740384" name_desc="food_fp_msboost_Maccuracy_6" stack="FOOD_FP_MSBOOST_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9970" name_en="Increase Magic Boost, Magical Accuracy and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica e tempo máximo de voo" nameId="740384" name_desc="food_fp_msboost_Maccuracy_6" stack="FOOD_FP_MSBOOST_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -44639,7 +44639,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9974" name_en="Increase Physical Attack, Magic Boost and Maximum Flight Time" name_pt="Aumentar o ataque físico, impulso mágico e andamento máximo de voo" nameId="740388" name_desc="food_fp_phyAttack_msboost_6" stack="FOOD_FP_PHYATTACK_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9974" name_en="Increase Physical Attack, Magic Boost and Maximum Flight Time" name_pt="Aumentar o ataque físico, impulso mágico e tempo máximo de voo" nameId="740388" name_desc="food_fp_phyAttack_msboost_6" stack="FOOD_FP_PHYATTACK_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -44659,7 +44659,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9975" name_en="Increase Physical Attack, Accuracy, Maximum HP and Maximum Flight Time" name_pt="Aumentar ataques físicos, precisão, HP máxima e andamento máximo de vôo" nameId="295920" name_desc="food_fp_phyAttack_accuracy_maxhp_6" stack="FOOD_FP_PHYATTACK_ACCURACY_MAXHP_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9975" name_en="Increase Physical Attack, Accuracy, Maximum HP and Maximum Flight Time" name_pt="Aumentar ataques físicos, precisão, HP máxima e tempo máximo de voo" nameId="295920" name_desc="food_fp_phyAttack_accuracy_maxhp_6" stack="FOOD_FP_PHYATTACK_ACCURACY_MAXHP_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -44682,7 +44682,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9976" name_en="Increase Critical Strike, Accuracy, Evasion and Maximum Flight Time" name_pt="Aumenta o Golpe crítica, precisão, evasão e andamento máximo de voo" nameId="295921" name_desc="food_fp_critical_accuracy_dodge_6" stack="FOOD_FP_CRITICAL_ACCURACY_DODGE_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9976" name_en="Increase Critical Strike, Accuracy, Evasion and Maximum Flight Time" name_pt="Aumenta o Golpe crítica, precisão, evasão e tempo máximo de voo" nameId="295921" name_desc="food_fp_critical_accuracy_dodge_6" stack="FOOD_FP_CRITICAL_ACCURACY_DODGE_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -44728,7 +44728,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9978" name_en="Increases Magic Boost, magical accuracy, maximum MP and maximum flight time" name_pt="Aumentar o impulso mágico, precisão mágica, potência mágica máxima, HP máximo e andamento máximo de voo" nameId="295923" name_desc="food_fp_msboost_maccuracy_maxmp_6" stack="FOOD_FP_MSBOOST_MACCURACY_MAXMP_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9978" name_en="Increases Magic Boost, magical accuracy, maximum MP and maximum flight time" name_pt="Aumentar o impulso mágico, precisão mágica, potência mágica máxima, HP máximo e tempo máximo de voo" nameId="295923" name_desc="food_fp_msboost_maccuracy_maxmp_6" stack="FOOD_FP_MSBOOST_MACCURACY_MAXMP_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -44751,7 +44751,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9979" name_en="Increases evasion, maximum HP, maximum MP and maximum flight time" name_pt="Aumente o máximo de hp, potência mágica máxima, evasão e andamento máximo de vôo" nameId="295924" name_desc="food_fp_maxhp_maxmp_dodge_6" stack="FOOD_FP_MAXHP_MAXMP_DODGE_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9979" name_en="Increases evasion, maximum HP, maximum MP and maximum flight time" name_pt="Aumente o máximo de hp, potência mágica máxima, evasão e tempo máximo de voo" nameId="295924" name_desc="food_fp_maxhp_maxmp_dodge_6" stack="FOOD_FP_MAXHP_MAXMP_DODGE_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -44797,7 +44797,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9981" name_en="Increase Evasion, Resist Magic and Maximum Flight Time" name_pt="Aumentar a evasão, resistir à magia e andamento máximo de voo" nameId="740382" name_desc="combo_food_fp_dodge_Mresist_6" stack="FOOD_FP_DODGE_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9981" name_en="Increase Evasion, Resist Magic and Maximum Flight Time" name_pt="Aumentar a evasão, resistir à magia e tempo máximo de voo" nameId="740382" name_desc="combo_food_fp_dodge_Mresist_6" stack="FOOD_FP_DODGE_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -44817,7 +44817,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9982" name_en="Increase Physical Attack, Accuracy and Maximum Flight Time" name_pt="Aumentar o ataque físico, precisão e andamento máximo de voo" nameId="740383" name_desc="combo_food_fp_phyAttack_accuracy_6" stack="FOOD_FP_PHYATTACK_ACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9982" name_en="Increase Physical Attack, Accuracy and Maximum Flight Time" name_pt="Aumentar o ataque físico, precisão e tempo máximo de voo" nameId="740383" name_desc="combo_food_fp_phyAttack_accuracy_6" stack="FOOD_FP_PHYATTACK_ACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -44837,7 +44837,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9983" name_en="Increase Magic Boost, Magical Accuracy and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica e andamento máximo de vôo" nameId="740384" name_desc="combo_food_fp_msboost_Maccuracy_6" stack="FOOD_FP_MSBOOST_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9983" name_en="Increase Magic Boost, Magical Accuracy and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica e tempo máximo de voo" nameId="740384" name_desc="combo_food_fp_msboost_Maccuracy_6" stack="FOOD_FP_MSBOOST_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -44917,7 +44917,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9987" name_en="Increase Physical Attack, Magic Boost and Maximum Flight Time" name_pt="Aumentar o ataque físico, impulso mágico e andamento máximo de voo" nameId="740388" name_desc="combo_food_fp_phyAttack_msboost_6" stack="FOOD_FP_PHYATTACK_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9987" name_en="Increase Physical Attack, Magic Boost and Maximum Flight Time" name_pt="Aumentar o ataque físico, impulso mágico e tempo máximo de voo" nameId="740388" name_desc="combo_food_fp_phyAttack_msboost_6" stack="FOOD_FP_PHYATTACK_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -44937,7 +44937,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9988" name_en="Increase Physical Attack, Accuracy, Maximum HP and Maximum Flight Time" name_pt="Aumentar ataques físicos, precisão, HP máxima e andamento máximo de vôo" nameId="295926" name_desc="combo_food_fp_phyAttack_accuracy_maxhp_6" stack="COMBO_FOOD_FP_PHYATTACK_ACCURACY_MAXHP_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9988" name_en="Increase Physical Attack, Accuracy, Maximum HP and Maximum Flight Time" name_pt="Aumentar ataques físicos, precisão, HP máxima e tempo máximo de voo" nameId="295926" name_desc="combo_food_fp_phyAttack_accuracy_maxhp_6" stack="COMBO_FOOD_FP_PHYATTACK_ACCURACY_MAXHP_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -44960,7 +44960,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9989" name_en="Increase Critical Strike, Accuracy, Evasion and Maximum Flight Time" name_pt="Aumenta o Golpe crítica, precisão, evasão e andamento máximo de voo" nameId="295927" name_desc="combo_food_fp_critical_accuracy_dodge_6" stack="COMBO_FOOD_FP_CRITICAL_ACCURACY_DODGE_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9989" name_en="Increase Critical Strike, Accuracy, Evasion and Maximum Flight Time" name_pt="Aumenta o Golpe crítica, precisão, evasão e tempo máximo de voo" nameId="295927" name_desc="combo_food_fp_critical_accuracy_dodge_6" stack="COMBO_FOOD_FP_CRITICAL_ACCURACY_DODGE_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45006,7 +45006,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9991" name_en="Increases Magic Boost, magical accuracy, maximum MP and maximum flight time" name_pt="Aumentar o impulso mágico, precisão mágica, potência mágica máxima, HP máximo e andamento máximo de voo" nameId="295929" name_desc="combo_food_fp_msboost_maccuracy_maxmp_6" stack="COMBO_FOOD_FP_MSBOOST_MACCURACY_MAXMP_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9991" name_en="Increases Magic Boost, magical accuracy, maximum MP and maximum flight time" name_pt="Aumentar o impulso mágico, precisão mágica, potência mágica máxima, HP máximo e tempo máximo de voo" nameId="295929" name_desc="combo_food_fp_msboost_maccuracy_maxmp_6" stack="COMBO_FOOD_FP_MSBOOST_MACCURACY_MAXMP_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45029,7 +45029,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9992" name_en="Increases evasion, maximum HP, maximum MP and maximum flight time" name_pt="Aumente o máximo de hp, potência mágica máxima, evasão e andamento máximo de vôo" nameId="295930" name_desc="combo_food_fp_maxhp_maxmp_dodge_6" stack="COMBO_FOOD_FP_MAXHP_MAXMP_DODGE_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9992" name_en="Increases evasion, maximum HP, maximum MP and maximum flight time" name_pt="Aumente o máximo de hp, potência mágica máxima, evasão e tempo máximo de voo" nameId="295930" name_desc="combo_food_fp_maxhp_maxmp_dodge_6" stack="COMBO_FOOD_FP_MAXHP_MAXMP_DODGE_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45075,7 +45075,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9994" name_en="Increase Physical Attack, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o ataque físico, todas as defesas elementares e andamento máximo de vôo" nameId="740397" name_desc="food_dr_fp_phyattack_6" stack="FOOD_DR_FP_PHYATTACK" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9994" name_en="Increase Physical Attack, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o ataque físico, todas as defesas elementares e tempo máximo de voo" nameId="740397" name_desc="food_dr_fp_phyattack_6" stack="FOOD_DR_FP_PHYATTACK" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45098,7 +45098,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9995" name_en="Increase Maximum HP, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a HP máxima, todas as defesas elementares e andamento máximo de voo" nameId="740398" name_desc="food_dr_fp_maxhp_6" stack="FOOD_DR_FP_MAXHP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9995" name_en="Increase Maximum HP, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a HP máxima, todas as defesas elementares e tempo máximo de voo" nameId="740398" name_desc="food_dr_fp_maxhp_6" stack="FOOD_DR_FP_MAXHP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45121,7 +45121,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9996" name_en="Increase Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão, todas as defesas elementares e andamento máximo de voo" nameId="740399" name_desc="food_dr_fp_hitAccuracy_6" stack="FOOD_DR_FP_HITACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9996" name_en="Increase Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão, todas as defesas elementares e tempo máximo de voo" nameId="740399" name_desc="food_dr_fp_hitAccuracy_6" stack="FOOD_DR_FP_HITACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45144,7 +45144,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9997" name_en="Increase Evasion, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar evasão, todas as defesas elementares e andamento máximo de voo" nameId="740400" name_desc="food_dr_fp_dodge_6" stack="FOOD_DR_FP_DODGE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9997" name_en="Increase Evasion, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar evasão, todas as defesas elementares e tempo máximo de voo" nameId="740400" name_desc="food_dr_fp_dodge_6" stack="FOOD_DR_FP_DODGE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45167,7 +45167,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9998" name_en="Increase Magic Boost, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o aumento mágico, todas as defesas elementares e andamento máximo de vôo" nameId="740401" name_desc="food_dr_fp_msboost_6" stack="FOOD_DR_FP_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9998" name_en="Increase Magic Boost, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o aumento mágico, todas as defesas elementares e tempo máximo de voo" nameId="740401" name_desc="food_dr_fp_msboost_6" stack="FOOD_DR_FP_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45190,7 +45190,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9999" name_en="Increase Maximum MP, All Elemental Defences and Maximum Flight Time" name_pt="Aumente o MP máximo, todas as defesas elementares e andamento máximo de voo" nameId="740402" name_desc="food_dr_fp_maxmp_6" stack="FOOD_DR_FP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="9999" name_en="Increase Maximum MP, All Elemental Defences and Maximum Flight Time" name_pt="Aumente o MP máximo, todas as defesas elementares e tempo máximo de voo" nameId="740402" name_desc="food_dr_fp_maxmp_6" stack="FOOD_DR_FP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45213,7 +45213,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10000" name_en="Increase Magical Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão mágica, todas as defesas elementares e andamento máximo de voo" nameId="740403" name_desc="food_dr_fp_Maccuracy_6" stack="FOOD_DR_FP_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10000" name_en="Increase Magical Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão mágica, todas as defesas elementares e tempo máximo de voo" nameId="740403" name_desc="food_dr_fp_Maccuracy_6" stack="FOOD_DR_FP_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45236,7 +45236,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10001" name_en="Increase Resist Magic, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a magia resistente, todas as defesas elementares e andamento máximo de voo" nameId="740404" name_desc="food_dr_fp_Mresist_6" stack="FOOD_DR_FP_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10001" name_en="Increase Resist Magic, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a magia resistente, todas as defesas elementares e tempo máximo de voo" nameId="740404" name_desc="food_dr_fp_Mresist_6" stack="FOOD_DR_FP_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45259,7 +45259,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10002" name_en="Increase Physical Attack, Magic Boost, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o ataque físico, impulso mágico, todas as defesas elementares e andamento máximo de vôo" nameId="295932" name_desc="food_dr_fp_phyattack_msboost_6" stack="FOOD_DR_FP_PHYATTACK_MSBOOST_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10002" name_en="Increase Physical Attack, Magic Boost, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o ataque físico, impulso mágico, todas as defesas elementares e tempo máximo de voo" nameId="295932" name_desc="food_dr_fp_phyattack_msboost_6" stack="FOOD_DR_FP_PHYATTACK_MSBOOST_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45285,7 +45285,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10003" name_en="Increase Maximum HP, Physical Attack, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o HP máximo, ataque físico, todas as defesas elementares e andamento máximo de vôo" nameId="295933" name_desc="food_dr_fp_maxhp_phyattack_6" stack="FOOD_DR_FP_MAXHP_PHYATTACK_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10003" name_en="Increase Maximum HP, Physical Attack, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o HP máximo, ataque físico, todas as defesas elementares e tempo máximo de voo" nameId="295933" name_desc="food_dr_fp_maxhp_phyattack_6" stack="FOOD_DR_FP_MAXHP_PHYATTACK_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45311,7 +45311,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10004" name_en="Increase Physical Attack, Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o ataque físico, precisão, todas as defesas elementares e andamento máximo de voo" nameId="295934" name_desc="food_dr_fp_phyAttack_accuracy_6" stack="FOOD_DR_FP_PHTATTACK_ACCURACY_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10004" name_en="Increase Physical Attack, Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o ataque físico, precisão, todas as defesas elementares e tempo máximo de voo" nameId="295934" name_desc="food_dr_fp_phyAttack_accuracy_6" stack="FOOD_DR_FP_PHTATTACK_ACCURACY_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45337,7 +45337,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10005" name_en="Increase Evasion, Resist Magic, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar evasão, resistir à magia, todas as defesas elementares e andamento máximo de voo" nameId="295935" name_desc="food_dr_fp_dodge_Mresist_6" stack="FOOD_DR_FP_DODGE_MRESIST_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10005" name_en="Increase Evasion, Resist Magic, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar evasão, resistir à magia, todas as defesas elementares e tempo máximo de voo" nameId="295935" name_desc="food_dr_fp_dodge_Mresist_6" stack="FOOD_DR_FP_DODGE_MRESIST_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45363,7 +45363,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10006" name_en="Increase Magic Boost, Magical Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica, todas as defesas elementares e andamento máximo de voo" nameId="295936" name_desc="food_dr_fp_msboost_Maccuracy_6" stack="FOOD_DR_FP_MSBOOST_MACCURACY_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10006" name_en="Increase Magic Boost, Magical Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica, todas as defesas elementares e tempo máximo de voo" nameId="295936" name_desc="food_dr_fp_msboost_Maccuracy_6" stack="FOOD_DR_FP_MSBOOST_MACCURACY_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45389,7 +45389,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10007" name_en="Increase Maximum HP, Magic Boost, All Elemental Defences and Maximum Flight Time" name_pt="Aumente o máximo de hp, impulso mágico, todas as defesas elementares e andamento máximo de vôo" nameId="295937" name_desc="food_dr_fp_maxmp_msboost_6" stack="FOOD_DR_FP_MAXMP_MSBOOST_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10007" name_en="Increase Maximum HP, Magic Boost, All Elemental Defences and Maximum Flight Time" name_pt="Aumente o máximo de hp, impulso mágico, todas as defesas elementares e tempo máximo de voo" nameId="295937" name_desc="food_dr_fp_maxmp_msboost_6" stack="FOOD_DR_FP_MAXMP_MSBOOST_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45415,7 +45415,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10008" name_en="Increases maximum HP, maximum MP, all Elemental Defences and maximum flight time" name_pt="Aumente o máximo de hp, potência mágica máxima, todas as defesas elementares e andamento máximo de voo" nameId="295938" name_desc="food_dr_fp_maxhp_maxmp_6" stack="FOOD_DR_FP_MAXHP_MAXMP_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10008" name_en="Increases maximum HP, maximum MP, all Elemental Defences and maximum flight time" name_pt="Aumente o máximo de hp, potência mágica máxima, todas as defesas elementares e tempo máximo de voo" nameId="295938" name_desc="food_dr_fp_maxhp_maxmp_6" stack="FOOD_DR_FP_MAXHP_MAXMP_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45441,7 +45441,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10009" name_en="Increase Physical Attack, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o ataque físico, todas as defesas elementares e andamento máximo de vôo" nameId="740413" name_desc="combo_food_dr_fp_phyattack_6" stack="COMBO_FOOD_DR_FP_PHYATTACK" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10009" name_en="Increase Physical Attack, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o ataque físico, todas as defesas elementares e tempo máximo de voo" nameId="740413" name_desc="combo_food_dr_fp_phyattack_6" stack="COMBO_FOOD_DR_FP_PHYATTACK" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45464,7 +45464,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10010" name_en="Increase Maximum HP, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a HP máxima, todas as defesas elementares e andamento máximo de voo" nameId="740414" name_desc="combo_food_dr_fp_maxhp_6" stack="COMBO_FOOD_DR_FP_MAXHP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10010" name_en="Increase Maximum HP, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a HP máxima, todas as defesas elementares e tempo máximo de voo" nameId="740414" name_desc="combo_food_dr_fp_maxhp_6" stack="COMBO_FOOD_DR_FP_MAXHP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45487,7 +45487,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10011" name_en="Increase Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão, todas as defesas elementares e andamento máximo de voo" nameId="740415" name_desc="combo_food_dr_fp_hitAccuracy_6" stack="COMBO_FOOD_DR_FP_HITACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10011" name_en="Increase Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão, todas as defesas elementares e tempo máximo de voo" nameId="740415" name_desc="combo_food_dr_fp_hitAccuracy_6" stack="COMBO_FOOD_DR_FP_HITACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45510,7 +45510,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10012" name_en="Increase Evasion, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar evasão, todas as defesas elementares e andamento máximo de voo" nameId="740416" name_desc="combo_food_dr_fp_dodge_6" stack="COMBO_FOOD_DR_FP_DODGE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10012" name_en="Increase Evasion, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar evasão, todas as defesas elementares e tempo máximo de voo" nameId="740416" name_desc="combo_food_dr_fp_dodge_6" stack="COMBO_FOOD_DR_FP_DODGE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45533,7 +45533,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10013" name_en="Increase Magic Boost, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o aumento mágico, todas as defesas elementares e andamento máximo de vôo" nameId="740417" name_desc="combo_food_dr_fp_msboost_6" stack="COMBO_FOOD_DR_FP_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10013" name_en="Increase Magic Boost, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o aumento mágico, todas as defesas elementares e tempo máximo de voo" nameId="740417" name_desc="combo_food_dr_fp_msboost_6" stack="COMBO_FOOD_DR_FP_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45556,7 +45556,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10014" name_en="Increase Maximum MP, All Elemental Defences and Maximum Flight Time" name_pt="Aumente o MP máximo, todas as defesas elementares e andamento máximo de voo" nameId="740418" name_desc="combo_food_dr_fp_maxmp_6" stack="COMBO_FOOD_DR_FP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10014" name_en="Increase Maximum MP, All Elemental Defences and Maximum Flight Time" name_pt="Aumente o MP máximo, todas as defesas elementares e tempo máximo de voo" nameId="740418" name_desc="combo_food_dr_fp_maxmp_6" stack="COMBO_FOOD_DR_FP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45579,7 +45579,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10015" name_en="Increase Magical Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão mágica, todas as defesas elementares e andamento máximo de voo" nameId="740419" name_desc="combo_food_dr_fp_Maccuracy_6" stack="COMBO_FOOD_DR_FP_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10015" name_en="Increase Magical Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão mágica, todas as defesas elementares e tempo máximo de voo" nameId="740419" name_desc="combo_food_dr_fp_Maccuracy_6" stack="COMBO_FOOD_DR_FP_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45602,7 +45602,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10016" name_en="Increase Resist Magic, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a magia resistente, todas as defesas elementares e andamento máximo de voo" nameId="740420" name_desc="combo_food_dr_fp_Mresist_6" stack="COMBO_FOOD_DR_FP_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10016" name_en="Increase Resist Magic, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a magia resistente, todas as defesas elementares e tempo máximo de voo" nameId="740420" name_desc="combo_food_dr_fp_Mresist_6" stack="COMBO_FOOD_DR_FP_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45625,7 +45625,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10017" name_en="Increase Physical Attack, Magic Boost, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o ataque físico, impulso mágico, todas as defesas elementares e andamento máximo de vôo" nameId="295939" name_desc="combo_food_dr_fp_phyattack_msboost_6" stack="COMBO_FOOD_DR_FP_PHYATTACK_MSBOOST_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10017" name_en="Increase Physical Attack, Magic Boost, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o ataque físico, impulso mágico, todas as defesas elementares e tempo máximo de voo" nameId="295939" name_desc="combo_food_dr_fp_phyattack_msboost_6" stack="COMBO_FOOD_DR_FP_PHYATTACK_MSBOOST_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45651,7 +45651,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10018" name_en="Increase Maximum HP, Physical Attack, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o HP máximo, ataque físico, todas as defesas elementares e andamento máximo de vôo" nameId="295940" name_desc="combo_food_dr_fp_maxhp_phyattack_6" stack="COMBO_FOOD_DR_FP_MAXHP_PHYATTACK_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10018" name_en="Increase Maximum HP, Physical Attack, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o HP máximo, ataque físico, todas as defesas elementares e tempo máximo de voo" nameId="295940" name_desc="combo_food_dr_fp_maxhp_phyattack_6" stack="COMBO_FOOD_DR_FP_MAXHP_PHYATTACK_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45677,7 +45677,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10019" name_en="Increase Physical Attack, Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o ataque físico, precisão, todas as defesas elementares e andamento máximo de voo" nameId="295941" name_desc="combo_food_dr_fp_phyAttack_accuracy_6" stack="COMBO_FOOD_DR_FP_PHYATTACK_ACCURACY_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10019" name_en="Increase Physical Attack, Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o ataque físico, precisão, todas as defesas elementares e tempo máximo de voo" nameId="295941" name_desc="combo_food_dr_fp_phyAttack_accuracy_6" stack="COMBO_FOOD_DR_FP_PHYATTACK_ACCURACY_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45703,7 +45703,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10020" name_en="Increase Evasion, Resist Magic, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar evasão, resistir à magia, todas as defesas elementares e andamento máximo de voo" nameId="295942" name_desc="combo_food_dr_fp_dodge_Mresist_6" stack="COMBO_FOOD_DR_FP_DODGE_MRESIST_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10020" name_en="Increase Evasion, Resist Magic, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar evasão, resistir à magia, todas as defesas elementares e tempo máximo de voo" nameId="295942" name_desc="combo_food_dr_fp_dodge_Mresist_6" stack="COMBO_FOOD_DR_FP_DODGE_MRESIST_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45729,7 +45729,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10021" name_en="Increase Magic Boost, Magical Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica, todas as defesas elementares e andamento máximo de voo" nameId="295943" name_desc="combo_food_dr_fp_msboost_Maccuracy_6" stack="COMBO_FOOD_DR_FP_MSBOOST_MACCURACY_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10021" name_en="Increase Magic Boost, Magical Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica, todas as defesas elementares e tempo máximo de voo" nameId="295943" name_desc="combo_food_dr_fp_msboost_Maccuracy_6" stack="COMBO_FOOD_DR_FP_MSBOOST_MACCURACY_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45755,7 +45755,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10022" name_en="Increase Maximum HP, Magic Boost, All Elemental Defences and Maximum Flight Time" name_pt="Aumente o máximo de hp, impulso mágico, todas as defesas elementares e andamento máximo de vôo" nameId="295944" name_desc="combo_food_dr_fp_maxmp_msboost_6" stack="COMBO_FOOD_DR_FP_MAXMP_MSBOOST_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10022" name_en="Increase Maximum HP, Magic Boost, All Elemental Defences and Maximum Flight Time" name_pt="Aumente o máximo de hp, impulso mágico, todas as defesas elementares e tempo máximo de voo" nameId="295944" name_desc="combo_food_dr_fp_maxmp_msboost_6" stack="COMBO_FOOD_DR_FP_MAXMP_MSBOOST_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -45781,7 +45781,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10023" name_en="Increases maximum HP, maximum MP, all Elemental Defences and maximum flight time" name_pt="Aumente o máximo de hp, potência mágica máxima, todas as defesas elementares e andamento máximo de voo" nameId="295945" name_desc="combo_food_dr_fp_maxhp_maxmp_6" stack="COMBO_FOOD_DR_FP_MAXHP_MAXMP_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10023" name_en="Increases maximum HP, maximum MP, all Elemental Defences and maximum flight time" name_pt="Aumente o máximo de hp, potência mágica máxima, todas as defesas elementares e tempo máximo de voo" nameId="295945" name_desc="combo_food_dr_fp_maxhp_maxmp_6" stack="COMBO_FOOD_DR_FP_MAXHP_MAXMP_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -46494,7 +46494,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10070" name_en="Increase Evasion, Resist Magic and Maximum Flight Time" name_pt="Aumentar a evasão, resistir à magia e andamento máximo de voo" nameId="740382" name_desc="food_fp_dodge_Mresist_4" stack="FOOD_FP_DODGE_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10070" name_en="Increase Evasion, Resist Magic and Maximum Flight Time" name_pt="Aumentar a evasão, resistir à magia e tempo máximo de voo" nameId="740382" name_desc="food_fp_dodge_Mresist_4" stack="FOOD_FP_DODGE_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -46514,7 +46514,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10071" name_en="Increase Physical Attack, Accuracy and Maximum Flight Time" name_pt="Aumentar o ataque físico, precisão e andamento máximo de voo" nameId="740383" name_desc="food_fp_phyAttack_accuracy_4" stack="FOOD_FP_PHYATTACK_ACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10071" name_en="Increase Physical Attack, Accuracy and Maximum Flight Time" name_pt="Aumentar o ataque físico, precisão e tempo máximo de voo" nameId="740383" name_desc="food_fp_phyAttack_accuracy_4" stack="FOOD_FP_PHYATTACK_ACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -46534,7 +46534,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10072" name_en="Increase Magic Boost, Magical Accuracy and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica e andamento máximo de vôo" nameId="740384" name_desc="food_fp_msboost_Maccuracy_4" stack="FOOD_FP_MSBOOST_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10072" name_en="Increase Magic Boost, Magical Accuracy and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica e tempo máximo de voo" nameId="740384" name_desc="food_fp_msboost_Maccuracy_4" stack="FOOD_FP_MSBOOST_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -46614,7 +46614,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10076" name_en="Increase Physical Attack, Magic Boost and Maximum Flight Time" name_pt="Aumentar o ataque físico, impulso mágico e andamento máximo de voo" nameId="740388" name_desc="food_fp_phyAttack_msboost_4" stack="FOOD_FP_PHYATTACK_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10076" name_en="Increase Physical Attack, Magic Boost and Maximum Flight Time" name_pt="Aumentar o ataque físico, impulso mágico e tempo máximo de voo" nameId="740388" name_desc="food_fp_phyAttack_msboost_4" stack="FOOD_FP_PHYATTACK_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -46634,7 +46634,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10077" name_en="Increase Evasion, Resist Magic and Maximum Flight Time" name_pt="Aumentar a evasão, resistir à magia e andamento máximo de voo" nameId="740382" name_desc="food_fp_dodge_Mresist_5" stack="FOOD_FP_DODGE_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10077" name_en="Increase Evasion, Resist Magic and Maximum Flight Time" name_pt="Aumentar a evasão, resistir à magia e tempo máximo de voo" nameId="740382" name_desc="food_fp_dodge_Mresist_5" stack="FOOD_FP_DODGE_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -46654,7 +46654,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10078" name_en="Increase Physical Attack, Accuracy and Maximum Flight Time" name_pt="Aumentar o ataque físico, precisão e andamento máximo de voo" nameId="740383" name_desc="food_fp_phyAttack_accuracy_5" stack="FOOD_FP_PHYATTACK_ACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10078" name_en="Increase Physical Attack, Accuracy and Maximum Flight Time" name_pt="Aumentar o ataque físico, precisão e tempo máximo de voo" nameId="740383" name_desc="food_fp_phyAttack_accuracy_5" stack="FOOD_FP_PHYATTACK_ACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -46674,7 +46674,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10079" name_en="Increase Magic Boost, Magical Accuracy and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica e andamento máximo de vôo" nameId="740384" name_desc="food_fp_msboost_Maccuracy_5" stack="FOOD_FP_MSBOOST_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10079" name_en="Increase Magic Boost, Magical Accuracy and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica e tempo máximo de voo" nameId="740384" name_desc="food_fp_msboost_Maccuracy_5" stack="FOOD_FP_MSBOOST_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -46754,7 +46754,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10083" name_en="Increase Physical Attack, Magic Boost and Maximum Flight Time" name_pt="Aumentar o ataque físico, impulso mágico e andamento máximo de voo" nameId="740388" name_desc="food_fp_phyAttack_msboost_5" stack="FOOD_FP_PHYATTACK_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10083" name_en="Increase Physical Attack, Magic Boost and Maximum Flight Time" name_pt="Aumentar o ataque físico, impulso mágico e tempo máximo de voo" nameId="740388" name_desc="food_fp_phyAttack_msboost_5" stack="FOOD_FP_PHYATTACK_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47050,7 +47050,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10102" name_en="Increase Evasion, Resist Magic and Maximum Flight Time" name_pt="Aumentar a evasão, resistir à magia e andamento máximo de voo" nameId="740382" name_desc="combo_food_fp_dodge_Mresist_4" stack="FOOD_FP_DODGE_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10102" name_en="Increase Evasion, Resist Magic and Maximum Flight Time" name_pt="Aumentar a evasão, resistir à magia e tempo máximo de voo" nameId="740382" name_desc="combo_food_fp_dodge_Mresist_4" stack="FOOD_FP_DODGE_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47070,7 +47070,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10103" name_en="Increase Physical Attack, Accuracy and Maximum Flight Time" name_pt="Aumentar o ataque físico, precisão e andamento máximo de voo" nameId="740383" name_desc="combo_food_fp_phyAttack_accuracy_4" stack="FOOD_FP_PHYATTACK_ACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10103" name_en="Increase Physical Attack, Accuracy and Maximum Flight Time" name_pt="Aumentar o ataque físico, precisão e tempo máximo de voo" nameId="740383" name_desc="combo_food_fp_phyAttack_accuracy_4" stack="FOOD_FP_PHYATTACK_ACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47090,7 +47090,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10104" name_en="Increase Magic Boost, Magical Accuracy and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica e andamento máximo de vôo" nameId="740384" name_desc="combo_food_fp_msboost_Maccuracy_4" stack="FOOD_FP_MSBOOST_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10104" name_en="Increase Magic Boost, Magical Accuracy and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica e tempo máximo de voo" nameId="740384" name_desc="combo_food_fp_msboost_Maccuracy_4" stack="FOOD_FP_MSBOOST_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47170,7 +47170,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10108" name_en="Increase Physical Attack, Magic Boost and Maximum Flight Time" name_pt="Aumentar o ataque físico, impulso mágico e andamento máximo de voo" nameId="740388" name_desc="combo_food_fp_phyAttack_msboost_4" stack="FOOD_FP_PHYATTACK_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10108" name_en="Increase Physical Attack, Magic Boost and Maximum Flight Time" name_pt="Aumentar o ataque físico, impulso mágico e tempo máximo de voo" nameId="740388" name_desc="combo_food_fp_phyAttack_msboost_4" stack="FOOD_FP_PHYATTACK_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47190,7 +47190,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10109" name_en="Increase Evasion, Resist Magic and Maximum Flight Time" name_pt="Aumentar a evasão, resistir à magia e andamento máximo de voo" nameId="740382" name_desc="combo_food_fp_dodge_Mresist_5" stack="FOOD_FP_DODGE_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10109" name_en="Increase Evasion, Resist Magic and Maximum Flight Time" name_pt="Aumentar a evasão, resistir à magia e tempo máximo de voo" nameId="740382" name_desc="combo_food_fp_dodge_Mresist_5" stack="FOOD_FP_DODGE_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47210,7 +47210,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10110" name_en="Increase Physical Attack, Accuracy and Maximum Flight Time" name_pt="Aumentar o ataque físico, precisão e andamento máximo de voo" nameId="740383" name_desc="combo_food_fp_phyAttack_accuracy_5" stack="FOOD_FP_PHYATTACK_ACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10110" name_en="Increase Physical Attack, Accuracy and Maximum Flight Time" name_pt="Aumentar o ataque físico, precisão e tempo máximo de voo" nameId="740383" name_desc="combo_food_fp_phyAttack_accuracy_5" stack="FOOD_FP_PHYATTACK_ACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47230,7 +47230,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10111" name_en="Increase Magic Boost, Magical Accuracy and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica e andamento máximo de vôo" nameId="740384" name_desc="combo_food_fp_msboost_Maccuracy_5" stack="FOOD_FP_MSBOOST_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10111" name_en="Increase Magic Boost, Magical Accuracy and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica e tempo máximo de voo" nameId="740384" name_desc="combo_food_fp_msboost_Maccuracy_5" stack="FOOD_FP_MSBOOST_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47310,7 +47310,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10115" name_en="Increase Physical Attack, Magic Boost and Maximum Flight Time" name_pt="Aumentar o ataque físico, impulso mágico e andamento máximo de voo" nameId="740388" name_desc="combo_food_fp_phyAttack_msboost_5" stack="FOOD_FP_PHYATTACK_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10115" name_en="Increase Physical Attack, Magic Boost and Maximum Flight Time" name_pt="Aumentar o ataque físico, impulso mágico e tempo máximo de voo" nameId="740388" name_desc="combo_food_fp_phyAttack_msboost_5" stack="FOOD_FP_PHYATTACK_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47490,7 +47490,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10124" name_en="Increase Physical Attack, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o ataque físico, todas as defesas elementares e andamento máximo de vôo" nameId="740397" name_desc="food_dr_fp_phyattack_4" stack="FOOD_DR_FP_PHYATTACK" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10124" name_en="Increase Physical Attack, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o ataque físico, todas as defesas elementares e tempo máximo de voo" nameId="740397" name_desc="food_dr_fp_phyattack_4" stack="FOOD_DR_FP_PHYATTACK" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47513,7 +47513,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10125" name_en="Increase Maximum HP, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a HP máxima, todas as defesas elementares e andamento máximo de voo" nameId="740398" name_desc="food_dr_fp_maxhp_4" stack="FOOD_DR_FP_MAXHP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10125" name_en="Increase Maximum HP, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a HP máxima, todas as defesas elementares e tempo máximo de voo" nameId="740398" name_desc="food_dr_fp_maxhp_4" stack="FOOD_DR_FP_MAXHP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47536,7 +47536,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10126" name_en="Increase Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão, todas as defesas elementares e andamento máximo de voo" nameId="740399" name_desc="food_dr_fp_hitAccuracy_4" stack="FOOD_DR_FP_HITACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10126" name_en="Increase Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão, todas as defesas elementares e tempo máximo de voo" nameId="740399" name_desc="food_dr_fp_hitAccuracy_4" stack="FOOD_DR_FP_HITACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47559,7 +47559,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10127" name_en="Increase Evasion, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar evasão, todas as defesas elementares e andamento máximo de voo" nameId="740400" name_desc="food_dr_fp_dodge_4" stack="FOOD_DR_FP_DODGE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10127" name_en="Increase Evasion, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar evasão, todas as defesas elementares e tempo máximo de voo" nameId="740400" name_desc="food_dr_fp_dodge_4" stack="FOOD_DR_FP_DODGE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47582,7 +47582,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10128" name_en="Increase Magic Boost, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o aumento mágico, todas as defesas elementares e andamento máximo de vôo" nameId="740401" name_desc="food_dr_fp_msboost_4" stack="FOOD_DR_FP_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10128" name_en="Increase Magic Boost, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o aumento mágico, todas as defesas elementares e tempo máximo de voo" nameId="740401" name_desc="food_dr_fp_msboost_4" stack="FOOD_DR_FP_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47605,7 +47605,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10129" name_en="Increase Maximum MP, All Elemental Defences and Maximum Flight Time" name_pt="Aumente o MP máximo, todas as defesas elementares e andamento máximo de voo" nameId="740402" name_desc="food_dr_fp_maxmp_4" stack="FOOD_DR_FP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10129" name_en="Increase Maximum MP, All Elemental Defences and Maximum Flight Time" name_pt="Aumente o MP máximo, todas as defesas elementares e tempo máximo de voo" nameId="740402" name_desc="food_dr_fp_maxmp_4" stack="FOOD_DR_FP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47628,7 +47628,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10130" name_en="Increase Magical Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão mágica, todas as defesas elementares e andamento máximo de voo" nameId="740403" name_desc="food_dr_fp_Maccuracy_4" stack="FOOD_DR_FP_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10130" name_en="Increase Magical Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão mágica, todas as defesas elementares e tempo máximo de voo" nameId="740403" name_desc="food_dr_fp_Maccuracy_4" stack="FOOD_DR_FP_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47651,7 +47651,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10131" name_en="Increase Resist Magic, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a magia resistente, todas as defesas elementares e andamento máximo de voo" nameId="740404" name_desc="food_dr_fp_Mresist_4" stack="FOOD_DR_FP_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10131" name_en="Increase Resist Magic, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a magia resistente, todas as defesas elementares e tempo máximo de voo" nameId="740404" name_desc="food_dr_fp_Mresist_4" stack="FOOD_DR_FP_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47674,7 +47674,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10132" name_en="Increase Physical Attack, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o ataque físico, todas as defesas elementares e andamento máximo de vôo" nameId="740397" name_desc="food_dr_fp_phyattack_5" stack="FOOD_DR_FP_PHYATTACK" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10132" name_en="Increase Physical Attack, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o ataque físico, todas as defesas elementares e tempo máximo de voo" nameId="740397" name_desc="food_dr_fp_phyattack_5" stack="FOOD_DR_FP_PHYATTACK" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47697,7 +47697,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10133" name_en="Increase Maximum HP, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a HP máxima, todas as defesas elementares e andamento máximo de voo" nameId="740398" name_desc="food_dr_fp_maxhp_5" stack="FOOD_DR_FP_MAXHP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10133" name_en="Increase Maximum HP, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a HP máxima, todas as defesas elementares e tempo máximo de voo" nameId="740398" name_desc="food_dr_fp_maxhp_5" stack="FOOD_DR_FP_MAXHP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47720,7 +47720,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10134" name_en="Increase Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão, todas as defesas elementares e andamento máximo de voo" nameId="740399" name_desc="food_dr_fp_hitAccuracy_5" stack="FOOD_DR_FP_HITACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10134" name_en="Increase Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão, todas as defesas elementares e tempo máximo de voo" nameId="740399" name_desc="food_dr_fp_hitAccuracy_5" stack="FOOD_DR_FP_HITACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47743,7 +47743,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10135" name_en="Increase Evasion, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar evasão, todas as defesas elementares e andamento máximo de voo" nameId="740400" name_desc="food_dr_fp_dodge_5" stack="FOOD_DR_FP_DODGE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10135" name_en="Increase Evasion, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar evasão, todas as defesas elementares e tempo máximo de voo" nameId="740400" name_desc="food_dr_fp_dodge_5" stack="FOOD_DR_FP_DODGE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47766,7 +47766,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10136" name_en="Increase Magic Boost, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o aumento mágico, todas as defesas elementares e andamento máximo de vôo" nameId="740401" name_desc="food_dr_fp_msboost_5" stack="FOOD_DR_FP_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10136" name_en="Increase Magic Boost, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o aumento mágico, todas as defesas elementares e tempo máximo de voo" nameId="740401" name_desc="food_dr_fp_msboost_5" stack="FOOD_DR_FP_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47789,7 +47789,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10137" name_en="Increase Maximum MP, All Elemental Defences and Maximum Flight Time" name_pt="Aumente o MP máximo, todas as defesas elementares e andamento máximo de voo" nameId="740402" name_desc="food_dr_fp_maxmp_5" stack="FOOD_DR_FP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10137" name_en="Increase Maximum MP, All Elemental Defences and Maximum Flight Time" name_pt="Aumente o MP máximo, todas as defesas elementares e tempo máximo de voo" nameId="740402" name_desc="food_dr_fp_maxmp_5" stack="FOOD_DR_FP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47812,7 +47812,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10138" name_en="Increase Magical Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão mágica, todas as defesas elementares e andamento máximo de voo" nameId="740403" name_desc="food_dr_fp_Maccuracy_5" stack="FOOD_DR_FP_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10138" name_en="Increase Magical Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão mágica, todas as defesas elementares e tempo máximo de voo" nameId="740403" name_desc="food_dr_fp_Maccuracy_5" stack="FOOD_DR_FP_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -47835,7 +47835,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10139" name_en="Increase Resist Magic, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a magia resistente, todas as defesas elementares e andamento máximo de voo" nameId="740404" name_desc="food_dr_fp_Mresist_5" stack="FOOD_DR_FP_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10139" name_en="Increase Resist Magic, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a magia resistente, todas as defesas elementares e tempo máximo de voo" nameId="740404" name_desc="food_dr_fp_Mresist_5" stack="FOOD_DR_FP_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -48018,7 +48018,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10148" name_en="Increase Physical Attack, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o ataque físico, todas as defesas elementares e andamento máximo de vôo" nameId="740413" name_desc="combo_food_dr_fp_phyattack_4" stack="COMBO_FOOD_DR_FP_PHYATTACK" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10148" name_en="Increase Physical Attack, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o ataque físico, todas as defesas elementares e tempo máximo de voo" nameId="740413" name_desc="combo_food_dr_fp_phyattack_4" stack="COMBO_FOOD_DR_FP_PHYATTACK" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -48041,7 +48041,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10149" name_en="Increase Maximum HP, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a HP máxima, todas as defesas elementares e andamento máximo de voo" nameId="740414" name_desc="combo_food_dr_fp_maxhp_4" stack="COMBO_FOOD_DR_FP_MAXHP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10149" name_en="Increase Maximum HP, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a HP máxima, todas as defesas elementares e tempo máximo de voo" nameId="740414" name_desc="combo_food_dr_fp_maxhp_4" stack="COMBO_FOOD_DR_FP_MAXHP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -48064,7 +48064,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10150" name_en="Increase Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão, todas as defesas elementares e andamento máximo de voo" nameId="740415" name_desc="combo_food_dr_fp_hitAccuracy_4" stack="COMBO_FOOD_DR_FP_HITACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10150" name_en="Increase Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão, todas as defesas elementares e tempo máximo de voo" nameId="740415" name_desc="combo_food_dr_fp_hitAccuracy_4" stack="COMBO_FOOD_DR_FP_HITACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -48087,7 +48087,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10151" name_en="Increase Evasion, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar evasão, todas as defesas elementares e andamento máximo de voo" nameId="740416" name_desc="combo_food_dr_fp_dodge_4" stack="COMBO_FOOD_DR_FP_DODGE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10151" name_en="Increase Evasion, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar evasão, todas as defesas elementares e tempo máximo de voo" nameId="740416" name_desc="combo_food_dr_fp_dodge_4" stack="COMBO_FOOD_DR_FP_DODGE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -48110,7 +48110,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10152" name_en="Increase Magic Boost, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o aumento mágico, todas as defesas elementares e andamento máximo de vôo" nameId="740417" name_desc="combo_food_dr_fp_msboost_4" stack="COMBO_FOOD_DR_FP_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10152" name_en="Increase Magic Boost, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o aumento mágico, todas as defesas elementares e tempo máximo de voo" nameId="740417" name_desc="combo_food_dr_fp_msboost_4" stack="COMBO_FOOD_DR_FP_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -48133,7 +48133,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10153" name_en="Increase Maximum MP, All Elemental Defences and Maximum Flight Time" name_pt="Aumente o MP máximo, todas as defesas elementares e andamento máximo de voo" nameId="740418" name_desc="combo_food_dr_fp_maxmp_4" stack="COMBO_FOOD_DR_FP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10153" name_en="Increase Maximum MP, All Elemental Defences and Maximum Flight Time" name_pt="Aumente o MP máximo, todas as defesas elementares e tempo máximo de voo" nameId="740418" name_desc="combo_food_dr_fp_maxmp_4" stack="COMBO_FOOD_DR_FP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -48156,7 +48156,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10154" name_en="Increase Magical Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão mágica, todas as defesas elementares e andamento máximo de voo" nameId="740419" name_desc="combo_food_dr_fp_Maccuracy_4" stack="COMBO_FOOD_DR_FP_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10154" name_en="Increase Magical Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão mágica, todas as defesas elementares e tempo máximo de voo" nameId="740419" name_desc="combo_food_dr_fp_Maccuracy_4" stack="COMBO_FOOD_DR_FP_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -48179,7 +48179,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10155" name_en="Increase Resist Magic, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a magia resistente, todas as defesas elementares e andamento máximo de voo" nameId="740420" name_desc="combo_food_dr_fp_Mresist_4" stack="COMBO_FOOD_DR_FP_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10155" name_en="Increase Resist Magic, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a magia resistente, todas as defesas elementares e tempo máximo de voo" nameId="740420" name_desc="combo_food_dr_fp_Mresist_4" stack="COMBO_FOOD_DR_FP_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -48202,7 +48202,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10156" name_en="Increase Physical Attack, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o ataque físico, todas as defesas elementares e andamento máximo de vôo" nameId="740413" name_desc="combo_food_dr_fp_phyattack_5" stack="COMBO_FOOD_DR_FP_PHYATTACK" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10156" name_en="Increase Physical Attack, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o ataque físico, todas as defesas elementares e tempo máximo de voo" nameId="740413" name_desc="combo_food_dr_fp_phyattack_5" stack="COMBO_FOOD_DR_FP_PHYATTACK" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -48225,7 +48225,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10157" name_en="Increase Maximum HP, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a HP máxima, todas as defesas elementares e andamento máximo de voo" nameId="740414" name_desc="combo_food_dr_fp_maxhp_5" stack="COMBO_FOOD_DR_FP_MAXHP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10157" name_en="Increase Maximum HP, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a HP máxima, todas as defesas elementares e tempo máximo de voo" nameId="740414" name_desc="combo_food_dr_fp_maxhp_5" stack="COMBO_FOOD_DR_FP_MAXHP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -48248,7 +48248,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10158" name_en="Increase Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão, todas as defesas elementares e andamento máximo de voo" nameId="740415" name_desc="combo_food_dr_fp_hitAccuracy_5" stack="COMBO_FOOD_DR_FP_HITACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10158" name_en="Increase Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão, todas as defesas elementares e tempo máximo de voo" nameId="740415" name_desc="combo_food_dr_fp_hitAccuracy_5" stack="COMBO_FOOD_DR_FP_HITACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -48271,7 +48271,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10159" name_en="Increase Evasion, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar evasão, todas as defesas elementares e andamento máximo de voo" nameId="740416" name_desc="combo_food_dr_fp_dodge_5" stack="COMBO_FOOD_DR_FP_DODGE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10159" name_en="Increase Evasion, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar evasão, todas as defesas elementares e tempo máximo de voo" nameId="740416" name_desc="combo_food_dr_fp_dodge_5" stack="COMBO_FOOD_DR_FP_DODGE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -48294,7 +48294,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10160" name_en="Increase Magic Boost, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o aumento mágico, todas as defesas elementares e andamento máximo de vôo" nameId="740417" name_desc="combo_food_dr_fp_msboost_5" stack="COMBO_FOOD_DR_FP_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10160" name_en="Increase Magic Boost, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar o aumento mágico, todas as defesas elementares e tempo máximo de voo" nameId="740417" name_desc="combo_food_dr_fp_msboost_5" stack="COMBO_FOOD_DR_FP_MSBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -48317,7 +48317,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10161" name_en="Increase Maximum MP, All Elemental Defences and Maximum Flight Time" name_pt="Aumente o MP máximo, todas as defesas elementares e andamento máximo de voo" nameId="740418" name_desc="combo_food_dr_fp_maxmp_5" stack="COMBO_FOOD_DR_FP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10161" name_en="Increase Maximum MP, All Elemental Defences and Maximum Flight Time" name_pt="Aumente o MP máximo, todas as defesas elementares e tempo máximo de voo" nameId="740418" name_desc="combo_food_dr_fp_maxmp_5" stack="COMBO_FOOD_DR_FP_MAXMP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -48340,7 +48340,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10162" name_en="Increase Magical Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão mágica, todas as defesas elementares e andamento máximo de voo" nameId="740419" name_desc="combo_food_dr_fp_Maccuracy_5" stack="COMBO_FOOD_DR_FP_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10162" name_en="Increase Magical Accuracy, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a precisão mágica, todas as defesas elementares e tempo máximo de voo" nameId="740419" name_desc="combo_food_dr_fp_Maccuracy_5" stack="COMBO_FOOD_DR_FP_MACCURACY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -48363,7 +48363,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" stack="
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10163" name_en="Increase Resist Magic, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a magia resistente, todas as defesas elementares e andamento máximo de voo" nameId="740420" name_desc="combo_food_dr_fp_Mresist_5" stack="COMBO_FOOD_DR_FP_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="10163" name_en="Increase Resist Magic, All Elemental Defences and Maximum Flight Time" name_pt="Aumentar a magia resistente, todas as defesas elementares e tempo máximo de voo" nameId="740420" name_desc="combo_food_dr_fp_Mresist_5" stack="COMBO_FOOD_DR_FP_MRESIST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -53528,7 +53528,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10487" name_en="Increase Physical Attack, Accuracy and Maximum Flight Time" name_pt="Aumentar o ataque físico, precisão e andamento máximo de voo" nameId="740383" stack="CLASSIC_EVENT_FOOD_FP_PHYATTACK_ACCURACY_5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="10487" name_en="Increase Physical Attack, Accuracy and Maximum Flight Time" name_pt="Aumentar o ataque físico, precisão e tempo máximo de voo" nameId="740383" stack="CLASSIC_EVENT_FOOD_FP_PHYATTACK_ACCURACY_5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -53548,7 +53548,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10488" name_en="Increase Magic Boost, Magical Accuracy and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica e andamento máximo de vôo" nameId="740384" stack="CLASSIC_EVENT_FOOD_FP_MSBOOST_MACCURACY_5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="10488" name_en="Increase Magic Boost, Magical Accuracy and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica e tempo máximo de voo" nameId="740384" stack="CLASSIC_EVENT_FOOD_FP_MSBOOST_MACCURACY_5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -54878,7 +54878,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10556" name_en="Increase Physical Attack, Accuracy and Maximum Flight Time" name_pt="Aumentar o ataque físico, precisão e andamento máximo de voo" nameId="740383" stack="CLASSIC_EVENT_FOOD_FP_PHYATTACK_ACCURACY_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="10556" name_en="Increase Physical Attack, Accuracy and Maximum Flight Time" name_pt="Aumentar o ataque físico, precisão e tempo máximo de voo" nameId="740383" stack="CLASSIC_EVENT_FOOD_FP_PHYATTACK_ACCURACY_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -54898,7 +54898,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10557" name_en="Increase Magic Boost, Magical Accuracy and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica e andamento máximo de vôo" nameId="740384" stack="CLASSIC_EVENT_FOOD_FP_MSBOOST_MACCURACY_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="10557" name_en="Increase Magic Boost, Magical Accuracy and Maximum Flight Time" name_pt="Aumentar o impulso mágico, precisão mágica e tempo máximo de voo" nameId="740384" stack="CLASSIC_EVENT_FOOD_FP_MSBOOST_MACCURACY_6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="SPEC" conflict_id="22" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -95704,7 +95704,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="multiatk"/>
 	</skill_template>
-	<skill_template skill_id="18770" name_en="Incite Fury" name_pt="vt incitar fúria" nameId="294774" delayId="2" stack="BNPR_STATUPPHYSICAL_NR" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="40">
+	<skill_template skill_id="18770" name_en="Incite Fury" name_pt="Incitar Fúria" nameId="294774" delayId="2" stack="BNPR_STATUPPHYSICAL_NR" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="40">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -97576,7 +97576,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
-	<skill_template skill_id="18901" name_en="Time Wrinkle" name_pt="Ruga do andamento" nameId="295313" name_desc="IDCatacombs_Shulack_Blind" delayId="2" stack="IDCATACOMBS_SHULACK_BLIND" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="18901" name_en="Time Wrinkle" name_pt="Ruga do tempo" nameId="295313" name_desc="IDCatacombs_Shulack_Blind" delayId="2" stack="IDCATACOMBS_SHULACK_BLIND" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -104747,7 +104747,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
-	<skill_template skill_id="19404" name_en="Time Wrinkle" name_pt="Ruga do andamento" nameId="297072" delayId="1" stack="IDFOREST_WAVE_TRICODARK_HIDE" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="19404" name_en="Time Wrinkle" name_pt="Ruga do tempo" nameId="297072" delayId="1" stack="IDFOREST_WAVE_TRICODARK_HIDE" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -109703,7 +109703,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
-	<skill_template skill_id="19811" name_en="Hunt Time" name_pt="Andamento de caça" nameId="298002" delayId="1" stack="IDARENA_SOLO_S3_KALNIFR_ATKDEFUP_BUFF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="500">
+	<skill_template skill_id="19811" name_en="Hunt Time" name_pt="Tempo de caça" nameId="298002" delayId="1" stack="IDARENA_SOLO_S3_KALNIFR_ATKDEFUP_BUFF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="500">
 		<properties first_target="TARGET" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -112905,7 +112905,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 	<skill_template skill_id="220" name_en="Loot Chance +50%%, Abyss Points Earned +5%%" name_pt="Corpo enfraquecido" nameId="2285581" delayId="220" stack="ENCHANT_EFFECT_PVE_DRBOOST_50_APBOOST_5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 	</skill_template>
-	<skill_template skill_id="2544" name_en="Moreth: Promise of Time I" name_pt="Moreth: Promessa do Andamento I" nameId="2281037" delayId="2544" stack="MOROS_PROMISE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="2544" name_en="Moreth: Promise of Time I" name_pt="Moreth: Promessa do Tempo I" nameId="2281037" delayId="2544" stack="MOROS_PROMISE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -112931,7 +112931,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 	<skill_template skill_id="2549" name_en="Moreth: Moment of Triumph" name_pt="[Anômalo] Energia mágica da vela" nameId="2281042" delayId="726" stack="MOROS_VICTORY_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" target_races="DRAKAN LIZARDMAN NAGA" activation="ACTIVE" cooldown="18000" duration="0">
 		<properties first_target="TARGET" target_type="ONLYONE" first_target_range="15"/>
 	</skill_template>
-	<skill_template skill_id="2550" name_en="Moreth: Promise of Time II" name_pt="Moreth: Promessa do Andamento II" nameId="2281057" delayId="2550" stack="MOROS_PROMISE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="2550" name_en="Moreth: Promise of Time II" name_pt="Moreth: Promessa do Tempo II" nameId="2281057" delayId="2550" stack="MOROS_PROMISE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -123003,7 +123003,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mpuse value="868" delta="1"/>
 		</actions>
 	</skill_template>
-	<skill_template skill_id="3359" name_en="Time Lapse I" name_pt="Lapso de Andamento I" nameId="2284301" delayId="2200" stack="LU_RESET_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NONE" activation="ACTIVE" cooldown="18000" duration="0" cancel_rate="10">
+	<skill_template skill_id="3359" name_en="Time Lapse I" name_pt="Lapso de Tempo I" nameId="2284301" delayId="2200" stack="LU_RESET_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NONE" activation="ACTIVE" cooldown="18000" duration="0" cancel_rate="10">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<dp value="4000"/>
@@ -123231,7 +123231,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<spellatkinstant value="965" delta="22" e="2" element="WATER" preeffect="1" preeffect_prob="100"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="3377" name_en="Time Portal I" name_pt="n archit portal do Andamento I" nameId="2284331" delayId="864" stack="LU_OPENPORTAL_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="200" duration="500" cancel_rate="10" penalty_skill_id="9025">
+	<skill_template skill_id="3377" name_en="Time Portal I" name_pt="n archit Portal do Tempo I" nameId="2284331" delayId="864" stack="LU_OPENPORTAL_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="200" duration="500" cancel_rate="10" penalty_skill_id="9025">
 		<properties first_target="ME" first_target_range="1" target_type="ONLYONE"/>
 		<startconditions>
 			<mp value="125" delta="1"/>
@@ -130734,7 +130734,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="3900" name_en="Complete Ranking Buff" name_pt="O andamento de conjuração para todas as habilidades é aumentado em 50 %%." nameId="2286250" delayId="3900" stack="RANKING_BUFF_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" tslot_level="2">
+	<skill_template skill_id="3900" name_en="Complete Ranking Buff" name_pt="O Tempo de conjuração para todas as habilidades é aumentado em 50 %%." nameId="2286250" delayId="3900" stack="RANKING_BUFF_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" tslot_level="2">
 		<properties first_target="ME" target_species="PC" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<target value="PC"/>
@@ -130926,7 +130926,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</effects>
 		<motion name="buff"/>
 	</skill_template>
-	<skill_template skill_id="3914" name_en="Complete Ranking Buff" name_pt="O andamento de conjuração para todas as habilidades é aumentado em 50 %%." nameId="2286250" delayId="3914" stack="RANKING_BUFF_L_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" tslot_level="2">
+	<skill_template skill_id="3914" name_en="Complete Ranking Buff" name_pt="O Tempo de conjuração para todas as habilidades é aumentado em 50 %%." nameId="2286250" delayId="3914" stack="RANKING_BUFF_L_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" tslot_level="2">
 		<properties first_target="ME" target_species="PC" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
 			<target value="PC"/>
@@ -131320,7 +131320,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			</effects>
 		</skill_template>
 	
-	<skill_template skill_id="3942" name_en="Moreth: Promise of Time II" name_pt="Moreth: Promessa do Andamento II" nameId="2286717" delayId="3942" stack="MOROS_PROMISE_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="3942" name_en="Moreth: Promise of Time II" name_pt="Moreth: Promessa do Tempo II" nameId="2286717" delayId="3942" stack="MOROS_PROMISE_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -135770,7 +135770,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</effects>
 		<motion name="normalfire2"/>
 	</skill_template>
-	<skill_template skill_id="4270" name_en="Moreth: Promise of Time II" name_pt="Moreth: Promessa do Andamento II" nameId="2286717" delayId="4270" stack="MOROS_PROMISE_G4" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="4270" name_en="Moreth: Promise of Time II" name_pt="Moreth: Promessa do Tempo II" nameId="2286717" delayId="4270" stack="MOROS_PROMISE_G4" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -139858,7 +139858,7 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4620" name_en="(미사용) 최대 비행시간 I" name_pt="(Não em uso) Andamento Máximo de Voo I" nameId="2288680" delayId="4620" stack="ALL_PASSIVE_MAXFP_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="4620" name_en="(미사용) 최대 비행시간 I" name_pt="(Não em uso) Tempo Máximo de Voo I" nameId="2288680" delayId="4620" stack="ALL_PASSIVE_MAXFP_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -142958,7 +142958,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<skillcooltimereset delay_ids="784 791 936" delta="100" e="1" noresist="true"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9120" name_en="Confident Defence Effect" name_pt="O andamento de conjuração mágico foi reduzido e você pode usar habilidades sem consumir MP." nameId="2286173" delayId="9120" stack="CH_STEELSTANCE_G1_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
+	<skill_template skill_id="9120" name_en="Confident Defence Effect" name_pt="O Tempo de conjuração mágico foi reduzido e você pode usar habilidades sem consumir MP." nameId="2286173" delayId="9120" stack="CH_STEELSTANCE_G1_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -144192,7 +144192,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9250" name_en="Molto Forte Effect" name_pt="Seu andamento de conjuração de habilidade é aumentado e sua velocidade de ataque diminuiu." nameId="2287568" delayId="9250" stack="LU_FORTEP_AD_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+	<skill_template skill_id="9250" name_en="Molto Forte Effect" name_pt="Seu Tempo de conjuração de habilidade é aumentado e sua velocidade de ataque diminuiu." nameId="2287568" delayId="9250" stack="LU_FORTEP_AD_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="ME" first_target_range="1" target_distance="25" target_relation="MYPARTY" target_type="PARTY" target_maxcount="6" effective_range="25"/>
 	<effects><statup duration2="120000" effectid="190241" e="1" basiclvl="30" noresist="true"/><boostskillcastingtime duration2="120000" effectid="190242" e="2" basiclvl="30" noresist="true" preeffect="1" preeffect_prob="100"/></effects></skill_template>
 	<skill_template skill_id="9251" name_en="Surprise Attack Bonus Effect" name_pt="Efeito Bônus de Ataque Surpresa" nameId="2287603" delayId="9251" stack="AS_RE_BLINDSIDE_AD_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
@@ -152677,7 +152677,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 	<skill_template skill_id="11374" name_en="Test Experience Points Attachment4_Test" name_pt="Testar Pontos de Experiência Attachment4_Test" nameId="2286597" delayId="11374" stack="QUESTEXP_BOOST_04" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE" first_target_range="1"/>
 	</skill_template>
-	<skill_template skill_id="11375" name_en="Status Grant_TestExperience_Test" name_pt="Sua habilidade no andamento de conjuração é aumentada." nameId="2286602" delayId="11375" stack="QUESTEXP_BOOST_05" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+	<skill_template skill_id="11375" name_en="Status Grant_TestExperience_Test" name_pt="Sua habilidade no Tempo de conjuração é aumentada." nameId="2286602" delayId="11375" stack="QUESTEXP_BOOST_05" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE" first_target_range="1"/>
 	</skill_template>
 	<skill_template skill_id="11376" name_en="Status Grant_TestExperience_Test" name_pt="Concessão de Estado_Experiência_Teste" nameId="2286603" delayId="11376" stack="QUESTEXP_BOOST_06" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
@@ -154177,7 +154177,7 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 		</effects>
 		<motion name="NormalfireHD"/>
 	</skill_template>
-	<skill_template skill_id="16978" name_en="Aether Big Bang" name_pt="Éter Big: .sint. grande Bang" nameId="288658" delayId="17" stack="TEST_GB_STANCE2_BOD" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="4000">
+	<skill_template skill_id="16978" name_en="Aether Big Bang" name_pt="Éter Grande Bang" nameId="288658" delayId="17" stack="TEST_GB_STANCE2_BOD" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="4000">
 		<properties first_target="TARGET" first_target_range="100" target_distance="70" target_relation="ENEMY" target_type="AREA" target_maxcount="48" effective_range="70" effective_altitude="70"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -156689,7 +156689,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
-	<skill_template skill_id="20549" name_en="Activate Paralysis Trap" name_pt="Os danos distribuídos entre todos os alvos são totalizados e os danos são adicionados ao longo do andamento." nameId="2281029" delayId="20549" stack="IDARENA_TEAM01_S1_TRAP_02_STUN" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="STUN">
+	<skill_template skill_id="20549" name_en="Activate Paralysis Trap" name_pt="Os danos distribuídos entre todos os alvos são totalizados e os danos são adicionados ao longo do tempo." nameId="2281029" delayId="20549" stack="IDARENA_TEAM01_S1_TRAP_02_STUN" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="STUN">
 		<properties first_target="ME" target_species="PC" first_target_range="2" target_distance="6" target_relation="ENEMY" target_type="AREA" target_maxcount="10" effective_range="6" effective_altitude="2"/>
 		<startconditions>
 			<target value="PC"/>
@@ -156731,7 +156731,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="Buff"/>
 	</skill_template>
-	<skill_template skill_id="20553" name_en="기존 스킬 이름" name_pt="Os danos distribuídos entre todos os alvos são totalizados e os danos são adicionados ao longo do andamento." nameId="2281033" delayId="6" stack="NGR_XDRAKANBUFF_TEST" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="3000" dispel_category="BUFF">
+	<skill_template skill_id="20553" name_en="기존 스킬 이름" name_pt="Os danos distribuídos entre todos os alvos são totalizados e os danos são adicionados ao longo do tempo." nameId="2281033" delayId="6" stack="NGR_XDRAKANBUFF_TEST" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="3000" dispel_category="BUFF">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -158960,7 +158960,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<spellatkinstant e="1" value="1000" delta="1" noresist="true" element="FIRE" hoptype="DAMAGE"/>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="20763" name_en="Iron Storm" name_pt="Causa danos ao longo do andamento e causa altos danos adicionais no a etapa." nameId="2283287" delayId="20763" stack="IDFIST_JAGI_STUN" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="2500" dispel_category="STUN" ammospeed="60">
+	<skill_template skill_id="20763" name_en="Iron Storm" name_pt="Causa danos ao longo do tempo e causa altos danos adicionais no a etapa." nameId="2283287" delayId="20763" stack="IDFIST_JAGI_STUN" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="2500" dispel_category="STUN" ammospeed="60">
 		<properties first_target="TARGET" first_target_range="20" target_distance="1" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1"/>
 		<useconditions>
 			<playermove allow="false"/>
@@ -159863,7 +159863,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 	<skill_template skill_id="20855" name_en="Dranium Battle Participation" name_pt="Use Artilharia de Defesa Aérea" nameId="2283503" delayId="2" stack="IDDRANAMINE_WAR_TRIBE_TEAMB" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" target_type="ONLYONE" first_target_range="2"/>
 	</skill_template>
-	<skill_template skill_id="20856" name_en="Dranium Battle Spirit" name_pt="O ataque físico e mágico, bem como o impulso mágico, aumentam por um certo andamento." nameId="2283574" delayId="1" stack="IDDRANAMINE_WAR_PHYBUFF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+	<skill_template skill_id="20856" name_en="Dranium Battle Spirit" name_pt="O ataque físico e mágico, bem como o impulso mágico, aumentam por um certo tempo." nameId="2283574" delayId="1" stack="IDDRANAMINE_WAR_PHYBUFF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="ME" first_target_range="2" target_distance="20" target_relation="FRIEND" target_type="AREA" target_maxcount="24" effective_range="20" effective_altitude="30"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -159879,7 +159879,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="NormalFire"/>
 	</skill_template>
-	<skill_template skill_id="20857" name_en="Dranium Battlefield Protection" name_pt="O ataque físico e mágico, bem como o impulso mágico, aumentam por um certo andamento." nameId="2283577" delayId="1" stack="IDDRANAMINE_WAR_MAGBUFF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+	<skill_template skill_id="20857" name_en="Dranium Battlefield Protection" name_pt="O ataque físico e mágico, bem como o impulso mágico, aumentam por um certo tempo." nameId="2283577" delayId="1" stack="IDDRANAMINE_WAR_MAGBUFF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="ME" first_target_range="2" target_distance="20" target_relation="FRIEND" target_type="AREA" target_maxcount="24" effective_range="20" effective_altitude="30"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -159895,7 +159895,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="NormalFire"/>
 	</skill_template>
-	<skill_template skill_id="20858" name_en="Alashane’s Wrath" name_pt="O ataque físico e mágico, bem como o impulso mágico, aumentam por um certo andamento." nameId="2283580" delayId="1" stack="IDDRANAMINE_WAR_MONSTERBUFF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+	<skill_template skill_id="20858" name_en="Alashane’s Wrath" name_pt="O ataque físico e mágico, bem como o impulso mágico, aumentam por um certo tempo." nameId="2283580" delayId="1" stack="IDDRANAMINE_WAR_MONSTERBUFF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="ME" first_target_range="2" target_distance="20" target_relation="FRIEND" target_type="AREA" target_maxcount="24" effective_range="20" effective_altitude="30"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -159911,7 +159911,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="NormalFire"/>
 	</skill_template>
-	<skill_template skill_id="20859" name_en="Cruel Alashane’s Wrath" name_pt="O ataque físico e mágico, bem como o impulso mágico, aumentam por um certo andamento." nameId="2283583" delayId="1" stack="IDDRANAMINE_WAR_BOSSBUFF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+	<skill_template skill_id="20859" name_en="Cruel Alashane’s Wrath" name_pt="O ataque físico e mágico, bem como o impulso mágico, aumentam por um certo tempo." nameId="2283583" delayId="1" stack="IDDRANAMINE_WAR_BOSSBUFF" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="ME" first_target_range="2" target_distance="20" target_relation="FRIEND" target_type="AREA" target_maxcount="24" effective_range="20" effective_altitude="30"/>
 		<startconditions>
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
@@ -160068,7 +160068,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="AreaFire"/>
 	</skill_template>
-	<skill_template skill_id="20873" name_en="Aether’s Hold of Darkness" name_pt="Você foi iniciado em um estado em pânico, e seu MP sofrerá danos contínuos por um certo andamento." nameId="2283630" delayId="1" stack="IDINFINITY_7F_OPENAERIAL_AREA" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="3000">
+	<skill_template skill_id="20873" name_en="Aether’s Hold of Darkness" name_pt="Você foi iniciado em um estado em pânico, e seu MP sofrerá danos contínuos por um certo tempo." nameId="2283630" delayId="1" stack="IDINFINITY_7F_OPENAERIAL_AREA" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="3000">
 		<properties first_target="TARGET" target_type="AREA" first_target_range="37" target_distance="5" effective_range="5" effective_altitude="10"/>
 	</skill_template>
 	<skill_template skill_id="20874" name_en="Hellish Visitation" name_pt="Visita infernal" nameId="2283633" delayId="1" stack="IDINFINITY_7F_SKILLATK_CA_AREA" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="3000">
@@ -161432,7 +161432,7 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="AreaATK"/>
 	</skill_template>
-	<skill_template skill_id="20974" name_en="Dranium Battle Spirit" name_pt="O ataque físico e mágico, bem como o impulso mágico, aumentam por um certo andamento." nameId="2283574" delayId="20974" stack="IDDRANAMINE_WAR_PHYBUFF_TEST1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="20974" name_en="Dranium Battle Spirit" name_pt="O ataque físico e mágico, bem como o impulso mágico, aumentam por um certo tempo." nameId="2283574" delayId="20974" stack="IDDRANAMINE_WAR_PHYBUFF_TEST1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="AREA" first_target_range="2" target_distance="20" effective_range="20" effective_altitude="30"/>
 	</skill_template>
 	<skill_template skill_id="20975" name_en="Controlled Takun the Terrible" name_pt="Takun, o Terrível, Controlado" nameId="2286825" delayId="2" stack="IDEVENT_04_TRIBECHANGE_TEAMA" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">

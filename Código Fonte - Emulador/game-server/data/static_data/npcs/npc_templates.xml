@@ -40404,7 +40404,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="209145" level="56" name_en="Defender Commander" name_pt="Comandante do zagueiro" name_id="393012" height="2.5" title_id="370324" group_drop="LIGHT" rank="VETERAN" rating="HERO" race="ELYOS" tribe="PROTECTGUARD_LIGHT" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2260" hpgauge="21" cancel_level="0">
+	<npc_template npc_id="209145" level="56" name_en="Defender Commander" name_pt="Comandante do defensor" name_id="393012" height="2.5" title_id="370324" group_drop="LIGHT" rank="VETERAN" rating="HERO" race="ELYOS" tribe="PROTECTGUARD_LIGHT" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2260" hpgauge="21" cancel_level="0">
 		<stats maxHp="1059403" />
 		<equipment>
 			<item>113600643</item>
@@ -40418,7 +40418,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="209146" level="57" name_en="Defender Commander" name_pt="Comandante do zagueiro" name_id="393012" height="2.5" title_id="370324" group_drop="LIGHT" rank="VETERAN" rating="HERO" race="ELYOS" tribe="PROTECTGUARD_LIGHT" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2260" hpgauge="21" cancel_level="0">
+	<npc_template npc_id="209146" level="57" name_en="Defender Commander" name_pt="Comandante do defensor" name_id="393012" height="2.5" title_id="370324" group_drop="LIGHT" rank="VETERAN" rating="HERO" race="ELYOS" tribe="PROTECTGUARD_LIGHT" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2260" hpgauge="21" cancel_level="0">
 		<stats maxHp="1136699" />
 		<equipment>
 			<item>113600643</item>
@@ -40432,7 +40432,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="209147" level="57" name_en="Defender Centurion" name_pt="Zagueiro centurião" name_id="393013" height="2.5" title_id="370324" group_drop="LIGHT" rank="MASTER" rating="HERO" race="ELYOS" tribe="PROTECTGUARD_LIGHT" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2260" hpgauge="22" cancel_level="0">
+	<npc_template npc_id="209147" level="57" name_en="Defender Centurion" name_pt="Defensor centurião" name_id="393013" height="2.5" title_id="370324" group_drop="LIGHT" rank="MASTER" rating="HERO" race="ELYOS" tribe="PROTECTGUARD_LIGHT" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2260" hpgauge="22" cancel_level="0">
 		<stats maxHp="2420562" />
 		<equipment>
 			<item>113601020</item>
@@ -40485,7 +40485,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="209151" level="56" name_en="Defender Commander" name_pt="Comandante do zagueiro" name_id="393012" height="2.5" title_id="370324" group_drop="LIGHT" rank="VETERAN" rating="HERO" race="ELYOS" tribe="PROTECTGUARD_LIGHT" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2300" hpgauge="21" cancel_level="0">
+	<npc_template npc_id="209151" level="56" name_en="Defender Commander" name_pt="Comandante do defensor" name_id="393012" height="2.5" title_id="370324" group_drop="LIGHT" rank="VETERAN" rating="HERO" race="ELYOS" tribe="PROTECTGUARD_LIGHT" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2300" hpgauge="21" cancel_level="0">
 		<stats maxHp="1010695" />
 		<equipment>
 			<item>113600643</item>
@@ -40498,7 +40498,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="209152" level="57" name_en="Defender Commander" name_pt="Comandante do zagueiro" name_id="393012" height="2.5" title_id="370324" group_drop="LIGHT" rank="VETERAN" rating="HERO" race="ELYOS" tribe="PROTECTGUARD_LIGHT" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2300" hpgauge="21" cancel_level="0">
+	<npc_template npc_id="209152" level="57" name_en="Defender Commander" name_pt="Comandante do defensor" name_id="393012" height="2.5" title_id="370324" group_drop="LIGHT" rank="VETERAN" rating="HERO" race="ELYOS" tribe="PROTECTGUARD_LIGHT" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2300" hpgauge="21" cancel_level="0">
 		<stats maxHp="5732" />
 		<equipment>
 			<item>113600643</item>
@@ -40511,7 +40511,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="209153" level="57" name_en="Defender Centurion" name_pt="Zagueiro centurião" name_id="393013" height="2.5" title_id="370324" group_drop="LIGHT" rank="MASTER" rating="HERO" race="ELYOS" tribe="PROTECTGUARD_LIGHT" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2300" hpgauge="22" cancel_level="0">
+	<npc_template npc_id="209153" level="57" name_en="Defender Centurion" name_pt="Defensor centurião" name_id="393013" height="2.5" title_id="370324" group_drop="LIGHT" rank="MASTER" rating="HERO" race="ELYOS" tribe="PROTECTGUARD_LIGHT" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2300" hpgauge="22" cancel_level="0">
 		<stats maxHp="2309272" />
 		<equipment>
 			<item>113601020</item>
@@ -42377,7 +42377,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="209345" level="56" name_en="Defender Commander" name_pt="Comandante do zagueiro" name_id="393012" height="2.5" title_id="370325" group_drop="DARK" rank="VETERAN" rating="HERO" race="ASMODIANS" tribe="PROTECTGUARD_DARK" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2260" hpgauge="21" cancel_level="0">
+	<npc_template npc_id="209345" level="56" name_en="Defender Commander" name_pt="Comandante do defensor" name_id="393012" height="2.5" title_id="370325" group_drop="DARK" rank="VETERAN" rating="HERO" race="ASMODIANS" tribe="PROTECTGUARD_DARK" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2260" hpgauge="21" cancel_level="0">
 		<stats maxHp="5620" />
 		<equipment>
 			<item>113600649</item>
@@ -42391,7 +42391,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="209346" level="57" name_en="Defender Commander" name_pt="Comandante do zagueiro" name_id="393012" height="2.5" title_id="370325" group_drop="DARK" rank="VETERAN" rating="HERO" race="ASMODIANS" tribe="PROTECTGUARD_DARK" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2260" hpgauge="21" cancel_level="0">
+	<npc_template npc_id="209346" level="57" name_en="Defender Commander" name_pt="Comandante do defensor" name_id="393012" height="2.5" title_id="370325" group_drop="DARK" rank="VETERAN" rating="HERO" race="ASMODIANS" tribe="PROTECTGUARD_DARK" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2260" hpgauge="21" cancel_level="0">
 		<stats maxHp="1136699" />
 		<equipment>
 			<item>113600649</item>
@@ -42405,7 +42405,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="209347" level="57" name_en="Defender Centurion" name_pt="Zagueiro centurião" name_id="393013" height="2.5" title_id="370325" group_drop="DARK" rank="MASTER" rating="HERO" race="ASMODIANS" tribe="PROTECTGUARD_DARK" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2260" hpgauge="22" cancel_level="0">
+	<npc_template npc_id="209347" level="57" name_en="Defender Centurion" name_pt="Defensor centurião" name_id="393013" height="2.5" title_id="370325" group_drop="DARK" rank="MASTER" rating="HERO" race="ASMODIANS" tribe="PROTECTGUARD_DARK" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2260" hpgauge="22" cancel_level="0">
 		<stats maxHp="5720" />
 		<equipment>
 			<item>113601021</item>
@@ -42458,7 +42458,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="209351" level="56" name_en="Defender Commander" name_pt="Comandante do zagueiro" name_id="393012" height="2.5" title_id="370325" group_drop="DARK" rank="VETERAN" rating="HERO" race="ASMODIANS" tribe="PROTECTGUARD_DARK" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2300" hpgauge="21" cancel_level="0">
+	<npc_template npc_id="209351" level="56" name_en="Defender Commander" name_pt="Comandante do defensor" name_id="393012" height="2.5" title_id="370325" group_drop="DARK" rank="VETERAN" rating="HERO" race="ASMODIANS" tribe="PROTECTGUARD_DARK" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2300" hpgauge="21" cancel_level="0">
 		<stats maxHp="1010695" />
 		<equipment>
 			<item>113600649</item>
@@ -42471,7 +42471,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="209352" level="57" name_en="Defender Commander" name_pt="Comandante do zagueiro" name_id="393012" height="2.5" title_id="370325" group_drop="DARK" rank="VETERAN" rating="HERO" race="ASMODIANS" tribe="PROTECTGUARD_DARK" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2300" hpgauge="21" cancel_level="0">
+	<npc_template npc_id="209352" level="57" name_en="Defender Commander" name_pt="Comandante do defensor" name_id="393012" height="2.5" title_id="370325" group_drop="DARK" rank="VETERAN" rating="HERO" race="ASMODIANS" tribe="PROTECTGUARD_DARK" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2300" hpgauge="21" cancel_level="0">
 		<stats maxHp="5738" />
 		<equipment>
 			<item>113600649</item>
@@ -42484,7 +42484,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="209353" level="57" name_en="Defender Centurion" name_pt="Zagueiro centurião" name_id="393013" height="2.5" title_id="370325" group_drop="DARK" rank="MASTER" rating="HERO" race="ASMODIANS" tribe="PROTECTGUARD_DARK" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2300" hpgauge="22" cancel_level="0">
+	<npc_template npc_id="209353" level="57" name_en="Defender Centurion" name_pt="Defensor centurião" name_id="393013" height="2.5" title_id="370325" group_drop="DARK" rank="MASTER" rating="HERO" race="ASMODIANS" tribe="PROTECTGUARD_DARK" type="GUARD" ai="aggressive" srange="20" arange="20" attack_speed="2300" hpgauge="22" cancel_level="0">
 		<stats maxHp="2309272" />
 		<equipment>
 			<item>113601021</item>
@@ -61193,7 +61193,7 @@
 		</equipment>
 		<bound_radius front="1.35" side="0.7" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="212565" level="41" name_en="Kishar Big Wallarm" name_pt="Guarda-Muralha Big: .sint. grande Big: .sint. grande" name_id="306030" height="2.05" group_drop="KRALLWARRIOR" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="13" cancel_level="20">
+	<npc_template npc_id="212565" level="41" name_en="Kishar Big Wallarm" name_pt="Guarda-Muralha Grande Grande" name_id="306030" height="2.05" group_drop="KRALLWARRIOR" rank="EXPERT" rating="ELITE" race="KRALL" tribe="KRALL" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="13" cancel_level="20">
 		<stats maxHp="73102">
 			<speeds walk="2" group_walk="2" run="7.6" run_fight="5.5" group_run_fight="7.6" />
 		</stats>
@@ -72676,7 +72676,7 @@
 		</equipment>
 		<bound_radius front="0.4" side="0.4" upper="1.85" />
 	</npc_template>
-	<npc_template npc_id="213952" level="44" name_en="Special Defender" name_pt="Zagueiro especial" name_id="316219" height="1.85" title_id="350453" group_drop="LEPHAR" rank="EXPERT" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="270" arange="2" attack_speed="1680" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="213952" level="44" name_en="Special Defender" name_pt="Defensor especial" name_id="316219" height="1.85" title_id="350453" group_drop="LEPHAR" rank="EXPERT" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="270" arange="2" attack_speed="1680" hpgauge="5" cancel_level="80">
 		<stats maxHp="7922">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
@@ -72692,7 +72692,7 @@
 		</equipment>
 		<bound_radius front="0.4" side="0.4" upper="1.85" />
 	</npc_template>
-	<npc_template npc_id="213953" level="45" name_en="Special Defender" name_pt="Zagueiro especial" name_id="316220" height="1.85" title_id="350453" group_drop="LEPHAR" rank="EXPERT" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="270" arange="2" attack_speed="1680" hpgauge="5" cancel_level="80">
+	<npc_template npc_id="213953" level="45" name_en="Special Defender" name_pt="Defensor especial" name_id="316220" height="1.85" title_id="350453" group_drop="LEPHAR" rank="EXPERT" rating="NORMAL" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="270" arange="2" attack_speed="1680" hpgauge="5" cancel_level="80">
 		<stats maxHp="8319">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
@@ -98132,7 +98132,7 @@
 		</stats>
 		<bound_radius front="4.55" side="2.6" upper="5.1" />
 	</npc_template>
-	<npc_template npc_id="217015" level="55" name_en="Luminos Seaswept" name_pt="n poeta esplendor Seaswept" name_id="322679" height="4" group_drop="FOAM" rank="SEASONED" rating="NORMAL" race="MAGICALMONSTER" tribe="FETHLOT" ai="aggressive" srange="8" arange="16" attack_speed="2300" hpgauge="4" floatcorpse="true" cancel_level="90">
+	<npc_template npc_id="217015" level="55" name_en="Luminos Seaswept" name_pt="Resplendor Marítimo" name_id="322679" height="4" group_drop="FOAM" rank="SEASONED" rating="NORMAL" race="MAGICALMONSTER" tribe="FETHLOT" ai="aggressive" srange="8" arange="16" attack_speed="2300" hpgauge="4" floatcorpse="true" cancel_level="90">
 		<stats maxHp="17271">
 			<speeds walk="1.4" group_walk="1.4" run="7" run_fight="7" group_run_fight="7" />
 		</stats>
@@ -104369,7 +104369,7 @@
 		<stats maxHp="2457377" />
 		<bound_radius front="0.5" side="0.7" upper="1.8" />
 	</npc_template>
-	<npc_template npc_id="217779" level="1" name_en="S3_Bonus_Spirit Time Attack Alert Timer" name_pt="S3_bonus_spirit Andamento Alerta Temporizador" name_id="323793" height="2.3" group_drop="DRAKANFIGHTER" rank="MASTER" rating="HERO" race="DRAKAN" tribe="USEALL" type="MONSTER" ai="general" srange="15" attack_speed="2000" hpgauge="22" cancel_level="0">
+	<npc_template npc_id="217779" level="1" name_en="S3_Bonus_Spirit Time Attack Alert Timer" name_pt="S3_bonus_spirit Tempo Alerta Temporizador" name_id="323793" height="2.3" group_drop="DRAKANFIGHTER" rank="MASTER" rating="HERO" race="DRAKAN" tribe="USEALL" type="MONSTER" ai="general" srange="15" attack_speed="2000" hpgauge="22" cancel_level="0">
 		<stats maxHp="2457377">
 			<speeds walk="20" group_walk="20" run="20" run_fight="20" group_run_fight="20" />
 		</stats>
@@ -108407,13 +108407,13 @@
 		</stats>
 		<bound_radius front="0.4" side="0.4" upper="1.85" />
 	</npc_template>
-	<npc_template npc_id="219160" level="1" name_en="Special Defender" name_pt="Zagueiro especial" name_id="316219" title_id="350453" height="0.63" group_drop="PARROT" rank="NOVICE" rating="JUNK" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="3" floatcorpse="true">
+	<npc_template npc_id="219160" level="1" name_en="Special Defender" name_pt="Defensor especial" name_id="316219" title_id="350453" height="0.63" group_drop="PARROT" rank="NOVICE" rating="JUNK" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="3" floatcorpse="true">
 		<stats maxHp="2">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
 		<bound_radius front="0.4" side="0.4" upper="1.85" />
 	</npc_template>
-	<npc_template npc_id="219161" level="1" name_en="Special Defender" name_pt="Zagueiro especial" name_id="316220" title_id="350453" height="0.63" group_drop="PARROT" rank="NOVICE" rating="JUNK" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="3" floatcorpse="true">
+	<npc_template npc_id="219161" level="1" name_en="Special Defender" name_pt="Defensor especial" name_id="316220" title_id="350453" height="0.63" group_drop="PARROT" rank="NOVICE" rating="JUNK" race="DEMIHUMANOID" tribe="LEHPAR" type="MONSTER" ai="aggressive" srange="8" sangle="240" arange="2" attack_speed="2100" hpgauge="3" floatcorpse="true">
 		<stats maxHp="121">
 			<speeds walk="1.457" group_walk="1.457" run="6" run_fight="5" group_run_fight="6" />
 		</stats>
@@ -117927,7 +117927,7 @@
 		</equipment>
 		<bound_radius front="0.5" side="0.5" upper="1" />
 	</npc_template>
-	<npc_template npc_id="220247" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Andamento" name_id="344296" height="2" group_drop="LIGHT" rank="EXPERT" rating="HERO" race="CONSTRUCT" tribe="USEALL" type="MONSTER" ai="aggressive" srange="22" arange="2" attack_speed="2000" hpgauge="3" cancel_level="0">
+	<npc_template npc_id="220247" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Tempo" name_id="344296" height="2" group_drop="LIGHT" rank="EXPERT" rating="HERO" race="CONSTRUCT" tribe="USEALL" type="MONSTER" ai="aggressive" srange="22" arange="2" attack_speed="2000" hpgauge="3" cancel_level="0">
 		<stats maxHp="511574" msup="957">
 			<speeds walk="0" group_walk="7.2" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -117942,7 +117942,7 @@
 		</equipment>
 		<bound_radius front="0.5" side="0.5" upper="1" />
 	</npc_template>
-	<npc_template npc_id="220248" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Andamento" name_id="344296" height="2" group_drop="LIGHT" rank="VETERAN" rating="ELITE" race="CONSTRUCT" tribe="USEALL" type="MONSTER" ai="aggressive" srange="22" arange="2" attack_speed="2000" hpgauge="3" cancel_level="20">
+	<npc_template npc_id="220248" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Tempo" name_id="344296" height="2" group_drop="LIGHT" rank="VETERAN" rating="ELITE" race="CONSTRUCT" tribe="USEALL" type="MONSTER" ai="aggressive" srange="22" arange="2" attack_speed="2000" hpgauge="3" cancel_level="20">
 		<stats maxHp="259293" msup="817">
 			<speeds walk="0" group_walk="7.2" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -117957,7 +117957,7 @@
 		</equipment>
 		<bound_radius front="0.5" side="0.5" upper="1" />
 	</npc_template>
-	<npc_template npc_id="220249" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Andamento" name_id="344296" height="2" group_drop="LIGHT" rank="VETERAN" rating="ELITE" race="CONSTRUCT" tribe="USEALL" type="MONSTER" ai="aggressive" srange="22" arange="37" attack_speed="2000" hpgauge="3" cancel_level="20">
+	<npc_template npc_id="220249" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Tempo" name_id="344296" height="2" group_drop="LIGHT" rank="VETERAN" rating="ELITE" race="CONSTRUCT" tribe="USEALL" type="MONSTER" ai="aggressive" srange="22" arange="37" attack_speed="2000" hpgauge="3" cancel_level="20">
 		<stats maxHp="195648" msup="817">
 			<speeds walk="0" group_walk="7.2" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -117971,7 +117971,7 @@
 		</equipment>
 		<bound_radius front="0.5" side="0.5" upper="1" />
 	</npc_template>
-	<npc_template npc_id="220250" level="65" name_en="Inggness, Daeva of Time" name_pt="Inggness, Daeva do Andamento" name_id="344297" height="2" group_drop="LIGHT" rank="VETERAN" rating="ELITE" race="CONSTRUCT" tribe="USEALL" type="MONSTER" ai="aggressive" srange="22" arange="2" attack_speed="2000" hpgauge="3" cancel_level="20">
+	<npc_template npc_id="220250" level="65" name_en="Inggness, Daeva of Time" name_pt="Inggness, Daeva do Tempo" name_id="344297" height="2" group_drop="LIGHT" rank="VETERAN" rating="ELITE" race="CONSTRUCT" tribe="USEALL" type="MONSTER" ai="aggressive" srange="22" arange="2" attack_speed="2000" hpgauge="3" cancel_level="20">
 		<stats maxHp="235721" msup="817">
 			<speeds walk="0" group_walk="7.2" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -117985,7 +117985,7 @@
 		</equipment>
 		<bound_radius front="0.5" side="0.5" upper="1" />
 	</npc_template>
-	<npc_template npc_id="220251" level="65" name_en="Inggness, Daeva of Time" name_pt="Inggness, Daeva do Andamento" name_id="344297" height="2" group_drop="LIGHT" rank="EXPERT" rating="HERO" race="CONSTRUCT" tribe="USEALL" type="MONSTER" ai="aggressive" srange="22" arange="2" attack_speed="2000" hpgauge="3" cancel_level="0">
+	<npc_template npc_id="220251" level="65" name_en="Inggness, Daeva of Time" name_pt="Inggness, Daeva do Tempo" name_id="344297" height="2" group_drop="LIGHT" rank="EXPERT" rating="HERO" race="CONSTRUCT" tribe="USEALL" type="MONSTER" ai="aggressive" srange="22" arange="2" attack_speed="2000" hpgauge="3" cancel_level="0">
 		<stats maxHp="511574" msup="957">
 			<speeds walk="0" group_walk="7.2" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -118000,7 +118000,7 @@
 		</equipment>
 		<bound_radius front="0.5" side="0.5" upper="1" />
 	</npc_template>
-	<npc_template npc_id="220252" level="65" name_en="Inggness, Daeva of Time" name_pt="Inggness, Daeva do Andamento" name_id="344297" height="2" group_drop="LIGHT" rank="VETERAN" rating="ELITE" race="CONSTRUCT" tribe="USEALL" type="MONSTER" ai="aggressive" srange="22" arange="2" attack_speed="2000" hpgauge="3" cancel_level="20">
+	<npc_template npc_id="220252" level="65" name_en="Inggness, Daeva of Time" name_pt="Inggness, Daeva do Tempo" name_id="344297" height="2" group_drop="LIGHT" rank="VETERAN" rating="ELITE" race="CONSTRUCT" tribe="USEALL" type="MONSTER" ai="aggressive" srange="22" arange="2" attack_speed="2000" hpgauge="3" cancel_level="20">
 		<stats maxHp="259293" msup="817">
 			<speeds walk="0" group_walk="7.2" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -118015,7 +118015,7 @@
 		</equipment>
 		<bound_radius front="0.5" side="0.5" upper="1" />
 	</npc_template>
-	<npc_template npc_id="220253" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Andamento" name_id="344296" height="2" group_drop="LIGHT" rank="VETERAN" rating="ELITE" race="MAGICALMONSTER" tribe="USEALL" type="MONSTER" ai="aggressive" srange="20" arange="37" attack_speed="2000" hpgauge="3" cancel_level="20">
+	<npc_template npc_id="220253" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Tempo" name_id="344296" height="2" group_drop="LIGHT" rank="VETERAN" rating="ELITE" race="MAGICALMONSTER" tribe="USEALL" type="MONSTER" ai="aggressive" srange="20" arange="37" attack_speed="2000" hpgauge="3" cancel_level="20">
 		<stats maxHp="195648" msup="817">
 			<speeds walk="0" group_walk="7.2" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -118029,7 +118029,7 @@
 		</equipment>
 		<bound_radius front="0.5" side="0.5" upper="1" />
 	</npc_template>
-	<npc_template npc_id="220254" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Andamento" name_id="344296" height="2" group_drop="LIGHT" rank="VETERAN" rating="ELITE" race="MAGICALMONSTER" tribe="USEALL" type="MONSTER" ai="aggressive" srange="20" arange="2" attack_speed="2000" hpgauge="3" cancel_level="20">
+	<npc_template npc_id="220254" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Tempo" name_id="344296" height="2" group_drop="LIGHT" rank="VETERAN" rating="ELITE" race="MAGICALMONSTER" tribe="USEALL" type="MONSTER" ai="aggressive" srange="20" arange="2" attack_speed="2000" hpgauge="3" cancel_level="20">
 		<stats maxHp="235721" msup="817">
 			<speeds walk="0" group_walk="7.2" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -122799,7 +122799,7 @@
 		</stats>
 		<bound_radius front="11.22" side="9.3" upper="12.06" />
 	</npc_template>
-	<npc_template npc_id="251018" level="50" name_en="Ancient Defender" name_pt="Zagueiro antigo" name_id="304598" height="6.5" group_drop="BONEDRAKE_GUARDIAN" rank="DISCIPLINED" rating="NORMAL" race="UNDEAD" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="10" sangle="240" arange="4" attack_speed="2090" hpgauge="3">
+	<npc_template npc_id="251018" level="50" name_en="Ancient Defender" name_pt="Defensor antigo" name_id="304598" height="6.5" group_drop="BONEDRAKE_GUARDIAN" rank="DISCIPLINED" rating="NORMAL" race="UNDEAD" tribe="AGGRESSIVESINGLEMONSTER" ai="aggressive" srange="10" sangle="240" arange="4" attack_speed="2090" hpgauge="3">
 		<stats maxHp="10054">
 			<speeds walk="2.578" group_walk="2.578" run="9" run_fight="7" group_run_fight="9" />
 		</stats>
@@ -232827,7 +232827,7 @@
 		</equipment>
 		<bound_radius front="0.3375" side="0.4725" upper="2.7" />
 	</npc_template>
-	<npc_template npc_id="279243" level="1" name_en="Viscum Swamp Base Sentinel" name_pt="Zagueiro do Ranx" name_id="342839" height="2.4" group_drop="LIGHT" rank="EXPERT" rating="ELITE" race="GCHIEF_LIGHT" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="artifact_protector" srange="10" arange="37" attack_speed="2260" hpgauge="12" cancel_level="20">
+	<npc_template npc_id="279243" level="1" name_en="Viscum Swamp Base Sentinel" name_pt="Defensor do Ranx" name_id="342839" height="2.4" group_drop="LIGHT" rank="EXPERT" rating="ELITE" race="GCHIEF_LIGHT" tribe="F4GUARD_LIGHT" type="ABYSS_GUARD" ai="artifact_protector" srange="10" arange="37" attack_speed="2260" hpgauge="12" cancel_level="20">
 		<stats maxHp="137146" msup="621">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -259307,19 +259307,19 @@
 		</stats>
 		<bound_radius front="0.78" side="1.95" upper="2.665" />
 	</npc_template>
-	<npc_template npc_id="283196" level="60" name_en="Magic Ward of Time Acceleration" name_pt="Barreira Mágica da Aceleração do Andamento" name_id="346151" height="5.88" group_drop="OCTASIDE" rank="EXPERT" rating="LEGENDARY" tribe="USEALL" type="MONSTER" ai="aggressive" srange="40" arange="3" attack_speed="2000" hpgauge="3" cancel_level="0">
+	<npc_template npc_id="283196" level="60" name_en="Magic Ward of Time Acceleration" name_pt="Barreira Mágica da Aceleração do Tempo" name_id="346151" height="5.88" group_drop="OCTASIDE" rank="EXPERT" rating="LEGENDARY" tribe="USEALL" type="MONSTER" ai="aggressive" srange="40" arange="3" attack_speed="2000" hpgauge="3" cancel_level="0">
 		<stats maxHp="6046" msup="261">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.6" side="1.5" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="283197" level="60" name_en="Slowed Time" name_pt="Andamento Desacelerado" name_id="346153" height="3" group_drop="TEMPESTELEMENTAL_F" rank="EXPERT" rating="LEGENDARY" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="40" arange="3" attack_speed="2000" hpgauge="3" cancel_level="0">
+	<npc_template npc_id="283197" level="60" name_en="Slowed Time" name_pt="Tempo Desacelerado" name_id="346153" height="3" group_drop="TEMPESTELEMENTAL_F" rank="EXPERT" rating="LEGENDARY" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="40" arange="3" attack_speed="2000" hpgauge="3" cancel_level="0">
 		<stats maxHp="6046" msup="261">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.6" side="1.5" upper="2.05" />
 	</npc_template>
-	<npc_template npc_id="283198" level="60" name_en="Magic Ward of Time Acceleration" name_pt="Barreira Mágica da Aceleração do Andamento" name_id="346152" height="3" group_drop="ELEMENTALKING" rank="EXPERT" rating="LEGENDARY" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="40" arange="50" attack_speed="2000" hpgauge="3" cancel_level="0">
+	<npc_template npc_id="283198" level="60" name_en="Magic Ward of Time Acceleration" name_pt="Barreira Mágica da Aceleração do Tempo" name_id="346152" height="3" group_drop="ELEMENTALKING" rank="EXPERT" rating="LEGENDARY" tribe="XDRAKAN" type="MONSTER" ai="aggressive" srange="40" arange="50" attack_speed="2000" hpgauge="3" cancel_level="0">
 		<stats maxHp="6014" msup="261" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -307375,7 +307375,7 @@
 		<bound_radius front="0.25" side="0.35" upper="3.2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="700294" level="1" name_en="Big Aether Bomb" name_pt="Big: .sint. grande Éter Bomba" name_id="350966" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="GENERAL" ai="useitem" sangle="0" attack_speed="2100" hpgauge="3">
+	<npc_template npc_id="700294" level="1" name_en="Big Aether Bomb" name_pt="Grande Éter Bomba" name_id="350966" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="GENERAL" ai="useitem" sangle="0" attack_speed="2100" hpgauge="3">
 		<stats maxHp="3" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
@@ -313871,7 +313871,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730089" level="1" name_en="Frozen in Time" name_pt="Congelado no andamento" name_id="350942" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730089" level="1" name_en="Frozen in Time" name_pt="Congelado no Tempo" name_id="350942" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
@@ -314507,7 +314507,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730215" level="1" name_en="Time Relic" name_pt="Relíquia do andamento" name_id="371311" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730215" level="1" name_en="Time Relic" name_pt="Relíquia do Tempo" name_id="371311" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="6" delay="10" is_dialog="true" can_talk_invisible="false" />
@@ -315308,12 +315308,12 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730384" level="1" name_en="Crucible Abyss Gate" name_pt="Portão do abismo cadinho" name_id="354992" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="useitem" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730384" level="1" name_en="Crucible Abyss Gate" name_pt="Portão do Crisol Abissal" name_id="354992" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="useitem" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="18756" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730385" level="1" name_en="Crucible Abyss Gate" name_pt="Portão do abismo cadinho" name_id="354993" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="useitem" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730385" level="1" name_en="Crucible Abyss Gate" name_pt="Portão do Crisol Abissal" name_id="354993" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="useitem" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="18756" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
@@ -315639,12 +315639,12 @@
 		<bound_radius front="1" side="0.25" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730459" level="1" name_en="Crucible Rift" name_pt="Fenda do Cadinho" name_id="371896" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="cruciblerift" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730459" level="1" name_en="Crucible Rift" name_pt="Fenda do Crisol" name_id="371896" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="cruciblerift" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730460" level="1" name_en="Crucible Rift" name_pt="Fenda do Cadinho" name_id="371897" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="cruciblerift" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730460" level="1" name_en="Crucible Rift" name_pt="Fenda do Crisol" name_id="371897" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="cruciblerift" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
@@ -330652,7 +330652,7 @@
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 	</npc_template>
-	<npc_template npc_id="799632" level="55" name_en="Crucible Guard" name_pt="Guarda cadinho" name_id="354630" height="2.16" title_id="370381" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="799632" level="55" name_en="Crucible Guard" name_pt="Guarda do Crisol" name_id="354630" height="2.16" title_id="370381" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="18756">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -330668,7 +330668,7 @@
 		</equipment>
 		<bound_radius front="0.3" side="0.42" upper="2.16" />
 	</npc_template>
-	<npc_template npc_id="799633" level="55" name_en="Crucible Guard" name_pt="Guarda cadinho" name_id="354631" height="2.16" title_id="370381" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="799633" level="55" name_en="Crucible Guard" name_pt="Guarda do Crisol" name_id="354631" height="2.16" title_id="370381" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="18756">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -330683,7 +330683,7 @@
 		</equipment>
 		<bound_radius front="0.3" side="0.42" upper="2.16" />
 	</npc_template>
-	<npc_template npc_id="799634" level="55" name_en="Crucible Guard" name_pt="Guarda cadinho" name_id="354645" height="2.16" title_id="370381" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="799634" level="55" name_en="Crucible Guard" name_pt="Guarda do Crisol" name_id="354645" height="2.16" title_id="370381" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="18756">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -330698,7 +330698,7 @@
 		</equipment>
 		<bound_radius front="0.3" side="0.42" upper="2.16" />
 	</npc_template>
-	<npc_template npc_id="799635" level="55" name_en="Crucible Guard" name_pt="Guarda cadinho" name_id="354646" height="2.16" title_id="370381" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="799635" level="55" name_en="Crucible Guard" name_pt="Guarda do Crisol" name_id="354646" height="2.16" title_id="370381" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="18756">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -340633,7 +340633,7 @@
 		<bound_radius front="0.7" side="0.444" upper="1.375" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2 3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="800467" level="1" name_en="천족 한정 판매 서버 저장 테스트 슈고_02" name_pt="A última vez que estive na taberna, eles se alinharam em mesas opostas e lançaram insultos um para o outro a noite toda. É apenas uma questão de andamento até que uma luta saia." name_id="462453" height="2" title_id="462452" group_drop="LIGHT" rank="VETERAN" rating="LEGENDARY" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3" cancel_level="0" arange="2" srange="20">
+	<npc_template npc_id="800467" level="1" name_en="천족 한정 판매 서버 저장 테스트 슈고_02" name_pt="A última vez que estive na taberna, eles se alinharam em mesas opostas e lançaram insultos um para o outro a noite toda. É apenas uma questão de tempo até que uma luta saia." name_id="462453" height="2" title_id="462452" group_drop="LIGHT" rank="VETERAN" rating="LEGENDARY" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3" cancel_level="0" arange="2" srange="20">
 		<stats maxHp="180897075">
 			<speeds walk="1.5" group_walk="1.5" run="4.23" run_fight="4.23" group_run_fight="4.23" />
 		</stats>
@@ -340665,7 +340665,7 @@
 		<bound_radius front="0.7" side="0.444" upper="1.375" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2 3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="800471" level="60" name_en="천족 한정 판매 서버 저장 테스트 슈고_02" name_pt="A última vez que estive na taberna, eles se alinharam em mesas opostas e lançaram insultos um para o outro a noite toda. É apenas uma questão de andamento até que uma luta saia." name_id="462454" title_id="462452" height="2" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="2000" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" group_drop="NONE">
+	<npc_template npc_id="800471" level="60" name_en="천족 한정 판매 서버 저장 테스트 슈고_02" name_pt="A última vez que estive na taberna, eles se alinharam em mesas opostas e lançaram insultos um para o outro a noite toda. É apenas uma questão de tempo até que uma luta saia." name_id="462454" title_id="462452" height="2" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" arange="2" attack_speed="2000" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" group_drop="NONE">
 		<stats maxHp="20000">
 			<speeds walk="1.5" group_walk="1.5" run="4.23" run_fight="4.23" group_run_fight="4.23" />
 		</stats>
@@ -342359,7 +342359,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="800610" level="1" name_en="Disco Ball Man" name_pt="Teste: Elyos - Infiltrado - Espaço e Andamento - Guardião" name_id="462607" height="2.2" group_drop="DARK" rank="DISCIPLINED" rating="ELITE" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="240" arange="2" attack_speed="2100" hpgauge="21" cancel_level="40">
+	<npc_template npc_id="800610" level="1" name_en="Disco Ball Man" name_pt="Teste: Elyos - Infiltrado - espaço e tempo - Guardião" name_id="462607" height="2.2" group_drop="DARK" rank="DISCIPLINED" rating="ELITE" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="240" arange="2" attack_speed="2100" hpgauge="21" cancel_level="40">
 		<stats maxHp="403456">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="7" group_run_fight="6" />
 		</stats>
@@ -342373,7 +342373,7 @@
 		<bound_radius front="0.3" side="0.42" upper="2.4" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="800611" level="1" name_en="Disco Ball Party Guest" name_pt="Teste: Asmodianos - Infiltração - Espaço e Andamento - Guardião" name_id="462608" height="2.2" group_drop="DARK" rank="DISCIPLINED" rating="ELITE" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="240" arange="2" attack_speed="2000" hpgauge="3" cancel_level="40">
+	<npc_template npc_id="800611" level="1" name_en="Disco Ball Party Guest" name_pt="Teste: Asmodianos - Infiltração - espaço e tempo - Guardião" name_id="462608" height="2.2" group_drop="DARK" rank="DISCIPLINED" rating="ELITE" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="240" arange="2" attack_speed="2000" hpgauge="3" cancel_level="40">
 		<stats maxHp="463974">
 			<speeds walk="1.5" group_walk="1.5" run="10" run_fight="5.5" group_run_fight="4.2" />
 		</stats>
@@ -348391,7 +348391,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801063" level="65" name_en="Time Generator" name_pt="Gerador de Andamento" name_id="463134" height="1.98" title_id="463135" group_drop="DARK" rank="EXPERT" rating="HERO" race="DRAKAN" tribe="MONSTER" type="GENERAL" ai="general" srange="20" arange="16" attack_speed="2000" hpgauge="3" cancel_level="0">
+	<npc_template npc_id="801063" level="65" name_en="Time Generator" name_pt="Gerador de Tempo" name_id="463134" height="1.98" title_id="463135" group_drop="DARK" rank="EXPERT" rating="HERO" race="DRAKAN" tribe="MONSTER" type="GENERAL" ai="general" srange="20" arange="16" attack_speed="2000" hpgauge="3" cancel_level="0">
 		<stats maxHp="466030" msup="957">
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -348573,7 +348573,7 @@
 		<bound_radius front="1" side="0.25" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801078" level="65" name_en="IDRaksha_SensoryArea_07" name_pt="O zagueiro de Lisandro" name_id="463152" height="1.8" group_drop="LIGHT" rank="EXPERT" rating="HERO" race="ELYOS" tribe="USEALL" type="GENERAL" ai="general" srange="10" arange="2" attack_speed="2000" hpgauge="3" cancel_level="0">
+	<npc_template npc_id="801078" level="65" name_en="IDRaksha_SensoryArea_07" name_pt="O defensor de Lisandro" name_id="463152" height="1.8" group_drop="LIGHT" rank="EXPERT" rating="HERO" race="ELYOS" tribe="USEALL" type="GENERAL" ai="general" srange="10" arange="2" attack_speed="2000" hpgauge="3" cancel_level="0">
 		<stats maxHp="466030" msup="957">
 			<speeds walk="0.5" group_walk="0.5" run="6" run_fight="6" group_run_fight="6" />
 		</stats>
@@ -355826,28 +355826,28 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801703" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Andamento" name_id="344296" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="3000" hpgauge="3">
+	<npc_template npc_id="801703" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Tempo" name_id="344296" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="3000" hpgauge="3">
 		<stats maxHp="26116" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.2725" side="0.3815" upper="2.18" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="35" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801704" level="65" name_en="Inggness, Daeva of Time" name_pt="Inggness, Daeva do Andamento" name_id="344297" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="3000" hpgauge="3">
+	<npc_template npc_id="801704" level="65" name_en="Inggness, Daeva of Time" name_pt="Inggness, Daeva do Tempo" name_id="344297" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="3000" hpgauge="3">
 		<stats maxHp="26116" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="35" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801705" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Andamento" name_id="344296" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="801705" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Tempo" name_id="344296" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="26116" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.2725" side="0.3815" upper="2.18" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="35" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801706" level="65" name_en="Inggness, Daeva of Time" name_pt="Inggness, Daeva do Andamento" name_id="344297" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="801706" level="65" name_en="Inggness, Daeva of Time" name_pt="Inggness, Daeva do Tempo" name_id="344297" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="26116" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -355917,14 +355917,14 @@
 		<bound_radius front="1.007" side="0.362" upper="1.595" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801716" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Andamento" name_id="344296" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="801716" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Tempo" name_id="344296" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="26116" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.2725" side="0.3815" upper="2.18" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="35" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801717" level="65" name_en="Inggness, Daeva of Time" name_pt="Inggness, Daeva do Andamento" name_id="344297" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="801717" level="65" name_en="Inggness, Daeva of Time" name_pt="Inggness, Daeva do Tempo" name_id="344297" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="26116" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -355938,42 +355938,42 @@
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801719" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Andamento" name_id="344296" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="3000" hpgauge="3">
+	<npc_template npc_id="801719" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Tempo" name_id="344296" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="3000" hpgauge="3">
 		<stats maxHp="26116" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.2725" side="0.3815" upper="2.18" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="35" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801720" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Andamento" name_id="344296" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="3000" hpgauge="3">
+	<npc_template npc_id="801720" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Tempo" name_id="344296" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="3000" hpgauge="3">
 		<stats maxHp="26116" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.2725" side="0.3815" upper="2.18" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="35" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801721" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Andamento" name_id="344296" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="3000" hpgauge="3">
+	<npc_template npc_id="801721" level="65" name_en="Inggril, Daeva of Time" name_pt="Inggril, Daeva do Tempo" name_id="344296" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="3000" hpgauge="3">
 		<stats maxHp="26116" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.2725" side="0.3815" upper="2.18" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="35" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801722" level="1" name_en="Inggness, Daeva of Time" name_pt="Inggness, Daeva do Andamento" name_id="344297" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="3000" hpgauge="3">
+	<npc_template npc_id="801722" level="1" name_en="Inggness, Daeva of Time" name_pt="Inggness, Daeva do Tempo" name_id="344297" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="3000" hpgauge="3">
 		<stats maxHp="26116" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="35" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801723" level="1" name_en="Inggness, Daeva of Time" name_pt="Inggness, Daeva do Andamento" name_id="344297" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="3000" hpgauge="3">
+	<npc_template npc_id="801723" level="1" name_en="Inggness, Daeva of Time" name_pt="Inggness, Daeva do Tempo" name_id="344297" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="3000" hpgauge="3">
 		<stats maxHp="26116" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="35" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801724" level="1" name_en="Inggness, Daeva of Time" name_pt="Inggness, Daeva do Andamento" name_id="344297" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="3000" hpgauge="3">
+	<npc_template npc_id="801724" level="1" name_en="Inggness, Daeva of Time" name_pt="Inggness, Daeva do Tempo" name_id="344297" height="1.8" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="30" arange="2" attack_speed="3000" hpgauge="3">
 		<stats maxHp="26116" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
@@ -367771,7 +367771,7 @@ Status: Active" name_pt="&lt;Para o 3º Refúgio Aspida&gt;" name_id="464988" he
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802899" level="65" name_en="Magic Ward of Time Acceleration" name_pt="Barreira Mágica da Aceleração do Andamento" name_id="346151" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="XDRAKAN" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="7" srange="5">
+	<npc_template npc_id="802899" level="65" name_en="Magic Ward of Time Acceleration" name_pt="Barreira Mágica da Aceleração do Tempo" name_id="346151" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="XDRAKAN" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="7" srange="5">
 		<stats maxHp="28386" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>

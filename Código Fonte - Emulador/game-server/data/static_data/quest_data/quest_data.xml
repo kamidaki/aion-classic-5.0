@@ -4463,7 +4463,7 @@
 			<reward_item item_id="188053555" count="1" />
 		</extended_rewards>
 	</quest>
-	<quest id="1597" name_en="Give Me a Break" name_pt="Dá um andamento" nameId="1102797" quest_zone="Heiron" minlevel_permitted="99" max_repeat_count="30" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="1597" name_en="Give Me a Break" name_pt="Dá um tempo" nameId="1102797" quest_zone="Heiron" minlevel_permitted="99" max_repeat_count="30" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<rewards gold="28000" exp="1622877">
 			<reward_item item_id="162000023" count="20" />
 		</rewards>
@@ -16733,7 +16733,7 @@
 			<finished quest_id="3311" />
 		</start_conditions>
 	</quest>
-	<quest id="3313" name_en="Reel Time" name_pt="Andamento do carretel" nameId="1102610" quest_zone="Eltnen" minlevel_permitted="99" max_repeat_count="10" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="3313" name_en="Reel Time" name_pt="Tempo do carretel" nameId="1102610" quest_zone="Eltnen" minlevel_permitted="99" max_repeat_count="10" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<collect_items>
 			<collect_item item_id="182201429" count="5" />
 			<collect_item item_id="182201430" count="3" />
@@ -29841,7 +29841,7 @@
 	<quest id="11109" name_en="The Negotiators" name_pt="Os negociadores" nameId="1125085" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<rewards gold="10350" exp="813600" />
 	</quest>
-	<quest id="11110" name_en="Killing Time" name_pt="Matar andamento" nameId="1125086" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="10" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="11110" name_en="Killing Time" name_pt="Matar tempo" nameId="1125086" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="10" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<rewards gold="6900" exp="1491600">
 			<selectable_reward_item item_id="160001289" count="3" />
 			<selectable_reward_item item_id="160001291" count="3" />
@@ -30343,7 +30343,7 @@
 	<quest id="11213" name_en="Damn Tree Creatures" name_pt="Maldita criaturas de árvores" nameId="1125139" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<rewards gold="182250" exp="3411900" />
 	</quest>
-	<quest id="11214" name_en="[Alliance] Moras's Cool Judgment" name_pt="[Aliança] O julgamento 1 legal. 2 legítimo. 3 lícito. 4 válido. de Moras" nameId="1125140" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
+	<quest id="11214" name_en="[Alliance] Moras's Cool Judgment" name_pt="[Aliança] O Julgamento Legítimo de Moras" nameId="1125140" quest_zone="Inggison" minlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="QUEST">
 		<rewards exp="2628600" ap="1000">
 			<reward_item item_id="186000163" count="2" />
 		</rewards>
@@ -37768,7 +37768,7 @@ Usada para ativar o Artefato do Princípio." nameId="1800739" quest_zone="Cygnea
 	<quest id="15109" name_en="A glorious title granted to Daevas who complete Tempus in the blink of an eye." name_pt="Um título glorioso concedido aos Daevas que completam Tempus em um piscar de olhos." nameId="1800821" quest_zone="Cygnea" minlevel_permitted="99" max_repeat_count="1" race_permitted="ELYOS" category="QUEST">
 		<rewards gold="15109" exp="15109" />
 	</quest>
-	<quest id="15200" name_en="Moreth, Chronicle of Time" name_pt="Moreth, Crônica do Andamento" nameId="1801071" quest_zone="Cygnea" minlevel_permitted="65" max_repeat_count="255" cannot_share="true" race_permitted="ELYOS" category="QUEST">
+	<quest id="15200" name_en="Moreth, Chronicle of Time" name_pt="Moreth, Crônica do Tempo" nameId="1801071" quest_zone="Cygnea" minlevel_permitted="65" max_repeat_count="255" cannot_share="true" race_permitted="ELYOS" category="QUEST">
 		<rewards exp="4825175" gp="100" />
 		<quest_work_items>
 			<quest_work_item item_id="182215750" />
@@ -39019,12 +39019,12 @@ Usada para ativar o Artefato do Princípio." nameId="1800739" quest_zone="Cygnea
 			<finished quest_id="18030" />
 		</start_conditions>
 	</quest>
-	<quest id="18200" name_en="The Crucible" name_pt="O cadinho" nameId="1129600" quest_zone="Empyrean Crucible" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="IMPORTANT">
+	<quest id="18200" name_en="The Crucible" name_pt="o Crisol" nameId="1129600" quest_zone="Empyrean Crucible" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="IMPORTANT">
 		<rewards exp="2713924">
 			<reward_item item_id="186000130" count="10" />
 		</rewards>
 	</quest>
-	<quest id="18201" name_en="The First Rule of the Crucible" name_pt="A primeira regra do cadinho" nameId="1129601" quest_zone="Empyrean Crucible" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="SEEN_MARKER">
+	<quest id="18201" name_en="The First Rule of the Crucible" name_pt="A primeira regra do Crisol" nameId="1129601" quest_zone="Empyrean Crucible" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ELYOS" category="SEEN_MARKER">
 		<rewards exp="5427847">
 			<reward_item item_id="186000130" count="30" />
 		</rewards>
@@ -53395,7 +53395,7 @@ combinar as partes do documento para descobrir seu conteúdo." nameId="1801080" 
 			<finished quest_id="28030" />
 		</start_conditions>
 	</quest>
-	<quest id="28200" name_en="Entering the Crucible" name_pt="Entrando no cadinho" nameId="1129606" quest_zone="Empyrean Crucible" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ASMODIANS" category="IMPORTANT">
+	<quest id="28200" name_en="Entering the Crucible" name_pt="Entrando no Crisol" nameId="1129606" quest_zone="Empyrean Crucible" minlevel_permitted="99" max_repeat_count="1" cannot_share="false" cannot_giveup="false" race_permitted="ASMODIANS" category="IMPORTANT">
 		<rewards exp="2713924">
 			<reward_item item_id="186000130" count="10" />
 		</rewards>
@@ -61014,7 +61014,7 @@ Com este uniforme você poderá se disfarçar como um pesquisador." nameId="1801
 		<quest_kill seq="0" npc_ids="206134" count="1" var="0" step="0" />
 		<quest_kill seq="1" npc_ids="216610" count="1" var="0" step="0" />
 	</quest>
-	<quest id="36508" name_en="[Daily] No Time for Tricks" name_pt="[Diária] Não há andamento para truques" nameId="1126094" quest_zone="STR_FACTION_BountyHunter_Li" minlevel_permitted="99" maxlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="FACTION">
+	<quest id="36508" name_en="[Daily] No Time for Tricks" name_pt="[Diária] Não há tempo para truques" nameId="1126094" quest_zone="STR_FACTION_BountyHunter_Li" minlevel_permitted="99" maxlevel_permitted="99" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="ELYOS" category="FACTION">
 		<rewards exp="1117800">
 			<reward_item item_id="186000102" count="1" />
 			<reward_item item_id="188050737" count="1" />
@@ -74778,7 +74778,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<quest_work_item item_id="182215145" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="10006" name_en="Time Hiatus" name_pt="Hiato de andamento" nameId="1135577" quest_zone="Tiarkh Testing Lab" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
+	<quest id="10006" name_en="Time Hiatus" name_pt="Hiato de tempo" nameId="1135577" quest_zone="Tiarkh Testing Lab" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ELYOS" category="MISSION">
 		<rewards exp="739125152" />
 		<quest_kill seq="0" npc_ids="219067" count="1" var="0" step="10" />
 		<start_conditions>
@@ -77987,7 +77987,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<quest_work_item item_id="182215146" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="20006" name_en="Time Interrupted" name_pt="Andamento interrompido" nameId="1135578" quest_zone="Tiarkh Testing Lab" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
+	<quest id="20006" name_en="Time Interrupted" name_pt="Tempo interrompido" nameId="1135578" quest_zone="Tiarkh Testing Lab" minlevel_permitted="99" max_repeat_count="1" cannot_share="true" cannot_giveup="true" race_permitted="ASMODIANS" category="MISSION">
 		<rewards exp="739125152" />
 		<quest_kill seq="0" npc_ids="219067" count="1" var="0" step="10" />
 		<start_conditions>
@@ -82668,7 +82668,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<reward_item item_id="188057155" count="1" />
 		</rewards>
 	</quest>
-	<quest id="41924" name_en="[Challenge Request] Meet Nambreuk Hiding in the Gravity Ruins Within the Allotted Time!" name_pt="[Solicitação de desafio] Encontre Nambreuk escondido nas ruínas gravitacionais dentro do andamento estipulado!" nameId="1802311" quest_zone="Teva" minlevel_permitted="65" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="PC_ALL" category="SEEN_MARKER">
+	<quest id="41924" name_en="[Challenge Request] Meet Nambreuk Hiding in the Gravity Ruins Within the Allotted Time!" name_pt="[Solicitação de desafio] Encontre Nambreuk escondido nas ruínas gravitacionais dentro do tempo estipulado!" nameId="1802311" quest_zone="Teva" minlevel_permitted="65" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="PC_ALL" category="SEEN_MARKER">
 		<inventory_items>
 			<inventory_item item_id="182215491" count="1" />
 		</inventory_items>
@@ -82713,7 +82713,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<quest_work_item item_id="182215530" count="1" />
 		</quest_work_items>
 	</quest>
-	<quest id="41927" name_en="[Challenge Request] Meet Bukbreuk Hidden in the Gravity Ruins Within the Time Limit!" name_pt="[Solicitação de desafio] Conheça Bukbreuk escondido nas ruínas gravitacionais dentro do limite de andamento!" nameId="1802314" quest_zone="Teva" minlevel_permitted="65" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="PC_ALL" category="SEEN_MARKER">
+	<quest id="41927" name_en="[Challenge Request] Meet Bukbreuk Hidden in the Gravity Ruins Within the Time Limit!" name_pt="[Solicitação de desafio] Conheça Bukbreuk escondido nas ruínas gravitacionais dentro do limite de tempo!" nameId="1802314" quest_zone="Teva" minlevel_permitted="65" max_repeat_count="255" cannot_share="true" cannot_giveup="false" race_permitted="PC_ALL" category="SEEN_MARKER">
 		<inventory_items>
 			<inventory_item item_id="182215494" count="1" />
 		</inventory_items>
@@ -83022,7 +83022,7 @@ Clique duas vezes para ler." nameId="1801315" quest_zone="Event" minlevel_permit
 			<reward_item item_id="188056812" count="1" />
 		</rewards>
 	</quest>
-	<quest id="55006" name_en="[Event] Reception Time! (Asmodian)" name_pt="[Evento] Recepção Andamento! (Asmodiano)" nameId="1802532" quest_zone="Event" minlevel_permitted="10" maxlevel_permitted="59" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="EVENT">
+	<quest id="55006" name_en="[Event] Reception Time! (Asmodian)" name_pt="[Evento] Recepção Tempo! (Asmodiano)" nameId="1802532" quest_zone="Event" minlevel_permitted="10" maxlevel_permitted="59" max_repeat_count="1" cannot_share="true" cannot_giveup="false" race_permitted="ASMODIANS" category="EVENT">
 		<rewards gold="30000">
 			<reward_item item_id="188056812" count="1" />
 		</rewards>
