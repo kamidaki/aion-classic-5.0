@@ -36,7 +36,13 @@ public enum PlayerClass implements L10n {
 	SOUL_REAPER(25, 914138, true, 115, 115, 100, 100, 120, 110, 360, 520, 50),
 	ALL(26, 0, false, 100, 100, 100, 100, 100, 100, 360, 400, 0),
 	// Backward-compatibility aliases
-	GUNNER(22, 913662, false, 100, 105, 105, 100, 100, 100, 360, 400, 0);
+	GUNNER(22, 913662, false, 100, 105, 105, 100, 100, 100, 360, 400, 0),
+	// Bard do Live 5.8 (classe nova, harpa): base ARTIST e especializacao BARD nos ids vagos 17 e 20 do cliente
+	// 5.0, que conhece classes de 0 a 26. Nomes = strings proprias 1990003/1990004. Atributos provisorios,
+	// iguais aos do LUMINESS (a outra linha de artista), ate termos os do Bard. Ficam no fim do enum: o
+	// "restrict" dos itens e indexado pelo ordinal(), e inserir no meio deslocaria as classes seguintes.
+	ARTIST(17, 1990003, false, 90, 90, 100, 100, 120, 110, 320, 520, 50),
+	BARD(20, 1990004, true, 90, 90, 100, 100, 120, 110, 320, 520, 50);
 
 	/** This id is used on client side */
 	private final byte classId;
@@ -140,8 +146,12 @@ public enum PlayerClass implements L10n {
 				return BRAWLER;
 			case 18:
 				return ORCHESTRATOR;
+			case 17:
+				return ARTIST;
 			case 19:
 				return LUMINESS;
+			case 20:
+				return BARD;
 			case 21:
 				return ENGINEER;
 			case 22:
@@ -176,7 +186,7 @@ public enum PlayerClass implements L10n {
 		if ("MARTIAL_ARTIST".equalsIgnoreCase(fieldName) || "BATTLE_MASTER".equalsIgnoreCase(fieldName)) return BRAWLER;
 		if ("GUNNER".equalsIgnoreCase(fieldName) || "ENGINEER".equalsIgnoreCase(fieldName)) return PHOENIX;
 		if ("REAPER".equalsIgnoreCase(fieldName) || "RUNEBLADE".equalsIgnoreCase(fieldName)) return SOUL_REAPER;
-		if ("ORCHESTRATOR".equalsIgnoreCase(fieldName) || "LUMINES".equalsIgnoreCase(fieldName) || "ARTIST".equalsIgnoreCase(fieldName)) return LUMINESS;
+		if ("ORCHESTRATOR".equalsIgnoreCase(fieldName) || "LUMINES".equalsIgnoreCase(fieldName) ) return LUMINESS;
 		return null;
 	}
 
@@ -230,6 +240,9 @@ public enum PlayerClass implements L10n {
 			case ORCHESTRATOR:
 			case LUMINESS:
 				return LUMINESS;
+			case ARTIST:
+			case BARD:
+				return BARD;
 			case ENGINEER:
 			case PHOENIX:
 			case GUNNER:
@@ -269,6 +282,7 @@ public enum PlayerClass implements L10n {
 			case REVENANT, THUNDERER -> "textures/ui/EMBLEM/icon_emblem_revenant.dds";
 			case BRAWLER, STRIKER -> "textures/ui/EMBLEM/icon_emblem_brawler.dds";
 			case LUMINESS -> "textures/ui/EMBLEM/icon_emblem_luminess.dds";
+			case ARTIST, BARD -> "textures/ui/EMBLEM/icon_emblem_bard.dds";
 			case PHOENIX -> "textures/ui/EMBLEM/icon_emblem_phoenix.dds";
 			case SOUL_REAPER, REAPER -> "textures/ui/EMBLEM/icon_emblem_soul_reaper.dds";
 			case ALL -> "";

@@ -121,15 +121,25 @@ def subarvore(registros, raiz, pai_em=PRT_PAI_58):
     return sorted(dentro)
 
 
+#: O mesmo para o `.fxc`: o ultimo campo do registro, oito bytes antes do fim nas duas versoes.
+FXC_PAI_58, FXC_PAI_50 = 1386, 1572
+#: Cabecalho de um `.prt` novo: o `campo` dos `.prt` do 5.0.
+PRT_VERSAO_50, PRT_CAMPO_50 = 2, 1904
+
+
 def acrescenta_prt(prt50, prt58, raizes):
     """`prt50` com os efeitos `raizes` de `prt58` (cada um com seus filhos), convertidos.
 
     Os registros vao para o fim, e o indice do pai de cada um e refeito para a posicao nova.
+    `prt50 = None` cria uma biblioteca nova so com eles.
     Devolve `(bytes novos, nomes de todos os registros acrescentados)`.
     """
-    versao, campo, destino = le(prt50, b"CRY")
-    if len(destino[0]) != PRT_50:
-        raise FxInvalido(f"o destino tem registro de {len(destino[0])} bytes, esperava {PRT_50}")
+    if prt50 is None:
+        versao, campo, destino = PRT_VERSAO_50, PRT_CAMPO_50, []
+    else:
+        versao, campo, destino = le(prt50, b"CRY")
+        if len(destino[0]) != PRT_50:
+            raise FxInvalido(f"o destino tem registro de {len(destino[0])} bytes, esperava {PRT_50}")
     origem = le(prt58, b"CRY")[2]
     tem = {nome(r).lower() for r in destino}
     novo_indice = {}
@@ -147,6 +157,35 @@ def acrescenta_prt(prt50, prt58, raizes):
         struct.pack_into("<i", r, PRT_PAI_50, novo_indice[pai] if pai >= 0 else -1)
         saida.append(bytes(r))
     return grava(b"CRY", versao, campo, saida), [nome(origem[i]) for i in novos]
+
+
+def acrescenta_fxc(fxc50, fxc58, raizes):
+    """`fxc50` com os efeitos compostos `raizes` de `fxc58` (cada um com seus filhos), convertidos.
+
+    Como [`acrescenta_prt`]: os registros vao para o fim e o pai e refeito. Devolve
+    `(bytes novos, nomes acrescentados)`.
+    """
+    versao, sub, destino = le(fxc50, b"FXC")
+    if sub != FXC_SUB_50 or len(destino[0]) != FXC_50:
+        raise FxInvalido(f"o destino nao e um .fxc do 5.0 (sub {sub}, registro {len(destino[0])})")
+    _v, sub58, origem = le(fxc58, b"FXC")
+    if sub58 != FXC_SUB_58 or len(origem[0]) != FXC_58:
+        raise FxInvalido("a origem nao e um .fxc do 5.8")
+    tem = {nome(r).lower() for r in destino}
+    novo_indice, novos = {}, []
+    for raiz in raizes:
+        for i in subarvore(origem, raiz, FXC_PAI_58):
+            if nome(origem[i]).lower() in tem:
+                raise FxInvalido(f"{nome(origem[i])} ja existe no 5.0")
+            novo_indice[i] = len(destino) + len(novos)
+            novos.append(i)
+    saida = list(destino)
+    for i in novos:
+        r = bytearray(fxc_58_para_50(origem[i]))
+        pai = struct.unpack_from("<i", origem[i], FXC_PAI_58)[0]
+        struct.pack_into("<i", r, FXC_PAI_50, novo_indice[pai] if pai >= 0 else -1)
+        saida.append(bytes(r))
+    return grava(b"FXC", versao, sub, saida), [nome(origem[i]) for i in novos]
 
 
 # --------------------------------------------------------------------------------------------
@@ -303,6 +342,28 @@ def indexa_fxc(indice50, indice58, biblioteca):
             raise FxInvalido(f"entrada de tipo {tipo} em {biblioteca}: copia nao implementada")
     destino[0].append((lib, novas))
     return grava_indice_fxc(destino)
+
+
+def indexa_fxc_nomes(indice50, indice58, nomes):
+    """`namelist_fxc.index` do 5.0 com os efeitos `nomes` numa biblioteca que ele ja tem.
+
+    So entradas de valor 0 (sem dado nas secoes 1 a 3) sao copiadas; outro tipo para com erro.
+    """
+    secoes = le_indice_fxc(indice50)
+    origem = {lib: dict(entradas) for lib, entradas in le_indice_fxc(indice58)[0]}
+    por_lib = {lib: entradas for lib, entradas in secoes[0]}
+    for n in nomes:
+        lib, k = chave(n.split(".", 1)[0]), chave(n)
+        if lib not in por_lib:
+            raise FxInvalido(f"a biblioteca de {n} nao esta no indice do 5.0")
+        valor = origem.get(lib, {}).get(k)
+        if valor is None:
+            raise FxInvalido(f"{n} nao esta no indice do 5.8")
+        if valor != 0:
+            raise FxInvalido(f"{n}: entrada de valor {valor:#x}, copia nao implementada")
+        if k not in dict(por_lib[lib]):
+            por_lib[lib].append((k, 0))
+    return grava_indice_fxc(secoes)
 
 
 def fxc_para_50(fxc58):

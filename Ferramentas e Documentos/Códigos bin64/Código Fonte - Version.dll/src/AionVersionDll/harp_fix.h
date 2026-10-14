@@ -17,6 +17,8 @@
 #if defined(_M_AMD64)
 static constexpr int kHarpWeaponType = 19;
 static void HarpPatchEnchantTables();
+static void HarpPatchClassIconsOnce();
+static void HarpPatchAnimationSuffixOnce();
 
 using HarpParseWeaponType = int (__fastcall*)(const wchar_t*);
 using HarpWeaponSuffix = void* (__fastcall*)(int, int, char*, size_t);
@@ -25,6 +27,8 @@ static HarpWeaponSuffix s_harpSuffix = nullptr;
 
 static int __fastcall HarpParseWeaponTypeHook(const wchar_t* name) {
     HarpPatchEnchantTables();
+    HarpPatchClassIconsOnce();
+    HarpPatchAnimationSuffixOnce();
     if (name && _wcsicmp(name, L"2h_harp") == 0) return kHarpWeaponType;
     return s_harpParse(name);
 }
@@ -185,10 +189,103 @@ static constexpr int kHarpTypeNameString = 1990001;
 
 static const wchar_t* __fastcall HarpWeaponTypeNameHook(int type) {
     HarpPatchEnchantTables();
+    HarpPatchClassIconsOnce();
     if (type != kHarpWeaponType) return s_harpTypeName(type);
     const int key = 0; // string table manager
     void** manager = s_harpFindManager(s_harpRegistry() + 0x10, &key);
     return s_harpString(*manager, kHarpTypeNameString);
+}
+
+// ---- Bard class ------------------------------------------------------------------------------
+// The 5.0 client knows classes 0..26; 14, 17, 20 and 23 are empty slots in every per-class table.
+// The Bard of Live 5.8 takes 17 (base, "artist") and 20 (the playable class, "bard").
+static constexpr int kBardBaseClass = 17;
+static constexpr int kBardClass = 20;
+
+// Class name: const wchar_t* f(string table, classId), a switch over 0..25 that leaves the empty
+// slots blank. The names are strings of the client data: STR_CLASS_NAME_ARTIST / _BARD.
+using HarpClassName = const wchar_t* (__fastcall*)(void*, int);
+static HarpClassName s_harpClassName = nullptr;
+static constexpr int kBardBaseClassNameString = 1990003;
+static constexpr int kBardClassNameString = 1990004;
+
+static const wchar_t* __fastcall HarpClassNameHook(void* table, int classId) {
+    HarpPatchClassIconsOnce();
+    if (classId == kBardBaseClass) return s_harpString(table, kBardBaseClassNameString);
+    if (classId == kBardClass) return s_harpString(table, kBardClassNameString);
+    return s_harpClassName(table, classId);
+}
+
+// Class icon: a table of Skin names (const char*), one per class id 0..26, read by the UI. The
+// empty slots hold "", so the icon of a Bard kept whatever the widget showed before (Lumines).
+// The Skins v4_class_artist / v4_class_bard come with the client data (version4.xml).
+static constexpr int kHarpClassIconSlots = 27;
+static const char kBardBaseClassIcon[] = "v4_class_artist";
+static const char kBardClassIcon[] = "v4_class_bard";
+
+// Patched on first use, like the enchant tables: writing into Game.dll while it is still being
+// loaded makes its protector (WinLicense) fail the DLL initialization (error 1114).
+static const char** s_harpClassIcons = nullptr;
+static volatile LONG s_harpClassIconsDone = 0;
+static bool HarpPatchClassIcons(const char** table);
+
+static void HarpPatchEmblemsOnce();
+
+static void HarpPatchClassIconsOnce() {
+    HarpPatchEmblemsOnce();
+    if (s_harpClassIconsDone || !s_harpClassIcons) return;
+    if (InterlockedExchange(&s_harpClassIconsDone, 1)) return;
+    __try {
+        OutputDebugStringA(HarpPatchClassIcons(s_harpClassIcons) ? "[Harp] Class icons patched.\n" :
+                           "[Harp] Class icon table not patched.\n");
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+}
+
+// Class emblem (the big icon of the target window, Textures\UI\Emblem\icon_emblem_<name>): a
+// table of {int classId; wchar_t name[260]} filled by an initializer, where each empty slot copies
+// the name of the class before it -- slot 20 says "lumines". Patched on first use as well.
+static constexpr size_t kHarpEmblemStride = 0x20c;
+static wchar_t* s_harpEmblemNames = nullptr; // name of slot 0; slot i at + i * stride
+static volatile LONG s_harpEmblemsDone = 0;
+
+static bool HarpPatchEmblemName(int slot, const wchar_t* expected, const wchar_t* name) {
+    wchar_t* text = (wchar_t*)((BYTE*)s_harpEmblemNames + slot * kHarpEmblemStride);
+    if (*(int*)((BYTE*)text - 4) != slot || wcscmp(text, expected) != 0) return false;
+    DWORD old;
+    if (!VirtualProtect(text, 64, PAGE_EXECUTE_READWRITE, &old)) return false;
+    wcscpy_s(text, 32, name);
+    VirtualProtect(text, 64, old, &old);
+    return true;
+}
+
+static void HarpPatchEmblemsOnce() {
+    if (s_harpEmblemsDone || !s_harpEmblemNames) return;
+    __try {
+        // Not filled yet (first calls can come before the initializer): try again later.
+        const wchar_t* lumines = (const wchar_t*)((BYTE*)s_harpEmblemNames + 19 * kHarpEmblemStride);
+        if (wcscmp(lumines, L"lumines") != 0) return;
+        if (InterlockedExchange(&s_harpEmblemsDone, 1)) return;
+        const bool ok = HarpPatchEmblemName(kBardBaseClass, L"battlemaster", L"artist") &&
+                        HarpPatchEmblemName(kBardClass, L"lumines", L"bard");
+        OutputDebugStringA(ok ? "[Harp] Class emblems patched.\n" : "[Harp] Class emblems not patched.\n");
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+}
+
+static bool HarpPatchClassIcons(const char** table) {
+    // Sanity check: the slots around the Bard must be the ones of this build.
+    if (strcmp(table[19], "v4_class_lumines") != 0 || strcmp(table[22], "v4_class_gunner") != 0 ||
+        table[kBardBaseClass][0] || table[kBardClass][0]) return false;
+    DWORD old;
+    if (!VirtualProtect(&table[kBardBaseClass], (kBardClass - kBardBaseClass + 1) * sizeof(char*),
+                        PAGE_EXECUTE_READWRITE, &old)) return false;
+    table[kBardBaseClass] = kBardBaseClassIcon;
+    table[kBardClass] = kBardClassIcon;
+    VirtualProtect(&table[kBardBaseClass], (kBardClass - kBardBaseClass + 1) * sizeof(char*), old, &old);
+    return true;
 }
 
 // Damage animation name: f(character, ?, char out[0x100]). With the weapon drawn it builds
@@ -256,6 +353,113 @@ static void HarpPatchEnchantTables() {
     }
     __except (EXCEPTION_EXECUTE_HANDLER) {
     }
+}
+
+// Class key: the lowercase class name ("lumines", "runeblade"...), in char and in wchar_t. It fills
+// "[%class]" in sound file names -- the login voice is vlogin2_<class>_<gender><race><voice>.ogg --
+// and the class of scripts. The empty slots answer "none".
+using HarpClassKey = const char* (__fastcall*)(int);
+using HarpClassKeyW = const wchar_t* (__fastcall*)(int);
+static HarpClassKey s_harpClassKey = nullptr;
+static HarpClassKeyW s_harpClassKeyW = nullptr;
+
+static const char* __fastcall HarpClassKeyHook(int classId) {
+    if (classId == kBardBaseClass) return "artist";
+    if (classId == kBardClass) return "bard";
+    return s_harpClassKey(classId);
+}
+
+static const wchar_t* __fastcall HarpClassKeyWHook(int classId) {
+    if (classId == kBardBaseClass) return L"artist";
+    if (classId == kBardClass) return L"bard";
+    return s_harpClassKeyW(classId);
+}
+
+// Animation class suffix: the animation name builder has a switch on the class id that copies
+// "_lumines", "_runeblade"... into the name (Nidle_<class>_lobby_001, nidle_<class>_001, ...).
+// The empty slots jump to the default case, an empty suffix. Two new cases are added: a small
+// stub, allocated right after Game.dll (jump table entries are unsigned offsets from its base),
+// loads "_artist" / "_bard" and jumps back to the common copy, like the other cases.
+static BYTE* s_harpSuffixSwitch = nullptr; // movsxd rax,[rbx+0C0h] of the switch
+static BYTE* s_harpImageBase = nullptr;
+static SIZE_T s_harpImageSize = 0;
+static volatile LONG s_harpSuffixDone = 0;
+
+static BYTE* HarpAllocateNear(BYTE* from, SIZE_T size) {
+    SYSTEM_INFO info;
+    GetSystemInfo(&info);
+    const ULONG_PTR step = info.dwAllocationGranularity;
+    ULONG_PTR at = ((ULONG_PTR)from + step - 1) & ~(step - 1);
+    for (int i = 0; i < 4096; ++i, at += step) {
+        void* p = VirtualAlloc((void*)at, size, MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE);
+        if (p) return (BYTE*)p;
+    }
+    return nullptr;
+}
+
+static BYTE* HarpSuffixCase(BYTE* stub, BYTE* join, const char* suffix) {
+    // lea rdx,[rip+5]; jmp join; "suffix"
+    stub[0] = 0x48; stub[1] = 0x8d; stub[2] = 0x15;
+    *(int32_t*)(stub + 3) = 5;
+    stub[7] = 0xe9;
+    *(int32_t*)(stub + 8) = (int32_t)(join - (stub + 12));
+    strcpy_s((char*)stub + 12, 16, suffix);
+    return stub + 32;
+}
+
+static void HarpPatchAnimationSuffixOnce() {
+    if (s_harpSuffixDone || !s_harpSuffixSwitch) return;
+    if (InterlockedExchange(&s_harpSuffixDone, 1)) return;
+    __try {
+        BYTE* s = s_harpSuffixSwitch;
+        BYTE* fallback = s + 16 + *(int32_t*)(s + 12);  // ja target: empty suffix
+        BYTE* base = s + 23 + *(int32_t*)(s + 19);      // lea rdx,[image base]
+        uint32_t* table = (uint32_t*)(base + *(int32_t*)(s + 26));
+        BYTE* join = s + 47 + *(int32_t*)(s + 43);      // jmp of case 0
+        if (base != s_harpImageBase || base + table[kBardBaseClass] != fallback ||
+            base + table[kBardClass] != fallback || base + table[19] == fallback) {
+            OutputDebugStringA("[Harp] Animation suffix switch not as expected.\n");
+            return;
+        }
+        BYTE* stub = HarpAllocateNear(s_harpImageBase + s_harpImageSize, 64);
+        if (!stub || stub < base || stub + 64 - base > 0x7fffffff) {
+            OutputDebugStringA("[Harp] No memory near Game.dll for the animation suffix.\n");
+            return;
+        }
+        BYTE* bard = HarpSuffixCase(stub, join, "_artist");
+        HarpSuffixCase(bard, join, "_bard");
+        FlushInstructionCache(GetCurrentProcess(), stub, 64);
+        DWORD old;
+        if (!VirtualProtect(&table[kBardBaseClass], (kBardClass - kBardBaseClass + 1) * 4,
+                            PAGE_EXECUTE_READWRITE, &old)) return;
+        table[kBardBaseClass] = (uint32_t)(stub - base);
+        table[kBardClass] = (uint32_t)(bard - base);
+        VirtualProtect(&table[kBardBaseClass], (kBardClass - kBardBaseClass + 1) * 4, old, &old);
+        OutputDebugStringA("[Harp] Animation suffixes _artist/_bard added.\n");
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+}
+
+// Character list: builds each slot (class, emblem, level...) and reads the emblem table directly,
+// often before any other hook here has run. The data patches go in right before it.
+using HarpCharacterSlot = void* (__fastcall*)(void*, void*, void*, void*);
+static HarpCharacterSlot s_harpCharacterSlot = nullptr;
+
+static void* __fastcall HarpCharacterSlotHook(void* self, void* a2, void* a3, void* a4) {
+    HarpPatchClassIconsOnce();
+    HarpPatchAnimationSuffixOnce();
+    return s_harpCharacterSlot(self, a2, a3, a4);
+}
+
+// Called when a LoadLibrary returns. When it is the one of Game.dll, its initialization (CRT
+// initializers and protector included) is over: the data patches go in now, before the first
+// screen is drawn -- the character list builds the class emblem before any of the hooks above runs.
+static void HarpOnModuleLoaded(HMODULE module) {
+    if (!module || module != GetModuleHandleW(L"game.dll")) return;
+    HarpPatchEnchantTables();
+    HarpPatchClassIconsOnce();
+    HarpPatchAnimationSuffixOnce();
 }
 
 static SRWLOCK s_harpLock = SRWLOCK_INIT;
@@ -380,6 +584,59 @@ static void InstallHarpFix(HMODULE module) {
         };
         static const char enchantBoostMask[] = "xxxxxxxxxxxxxxxxx????xxxxx";
         static const size_t enchantLea = 14; // lea is 7 bytes, rel32 at +3
+        // Class name: cmp edx,1Ah; ja blank; cmp edx,19h; ja blank; movsxd rax,edx;
+        // lea r8,[image]; mov edx,[r8+rax*4+table]; add rdx,r8; jmp rdx
+        static const BYTE className[] = {
+            0x83,0xfa,0x1a,0x0f,0x87,0,0,0,0,0x83,0xfa,0x19,0x0f,0x87,0,0,0,0,0x48,0x63,0xc2,
+            0x4c,0x8d,0x05,0,0,0,0,0x41,0x8b,0x94,0x80,0,0,0,0,0x49,0x03,0xd0,0xff,0xe2
+        };
+        static const char classNameMask[] = "xxxxx????xxxxx????xxxxxx????xxxx????xxxxx";
+        static_assert(sizeof(classNameMask) - 1 == sizeof(className), "Class name signature mask length");
+        // A reader of the class icon table: movsx rdx,byte [rsi+18h]; lea rax,[table];
+        // lea rcx,[skins]; mov rdx,[rax+rdx*8]; call
+        static const BYTE classIcon[] = {
+            0x48,0x0f,0xbe,0x56,0x18,0x48,0x8d,0x05,0,0,0,0,0x48,0x8d,0x0d,0,0,0,0,0x48,0x8b,0x14,
+            0xd0,0xe8
+        };
+        static const char classIconMask[] = "xxxxxxxx????xxx????xxxxx";
+        static const size_t classIconLea = 5; // lea rax,[rip+rel32], 7 bytes
+        static_assert(sizeof(classIconMask) - 1 == sizeof(classIcon), "Class icon signature mask length");
+        // Class emblem name: cmp rbx,1Bh; jae other; imul rdx,rax,20Ch; lea rax,[names]
+        static const BYTE emblem[] = {
+            0x48,0x83,0xfb,0x1b,0x73,0,0x48,0x69,0xd0,0x0c,0x02,0x00,0x00,0x48,0x8d,0x05
+        };
+        static const char emblemMask[] = "xxxxx?xxxxxxxxxx";
+        static const size_t emblemLea = 13;
+        static_assert(sizeof(emblemMask) - 1 == sizeof(emblem), "Class emblem signature mask length");
+        // Character list slot: mov [rsp+8],rcx; push rbp/r12/r13/r14; lea rbp,[rsp-488h];
+        // sub rsp,588h; mov r14,-1; lea r8,[rsp+68h]; xor r12d,r12d
+        static const BYTE characterSlot[] = {
+            0x48,0x89,0x4c,0x24,0x08,0x55,0x41,0x54,0x41,0x55,0x41,0x56,0x48,0x8d,0xac,0x24,
+            0x78,0xfb,0xff,0xff,0x48,0x81,0xec,0x88,0x05,0x00,0x00,0x49,0xc7,0xc6,0xff,0xff
+        };
+        static const char characterSlotMask[] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+        static_assert(sizeof(characterSlotMask) - 1 == sizeof(characterSlot), "Character slot mask length");
+        // Animation class suffix switch: movsxd rax,[rbx+0C0h]; cmp eax,19h; ja none;
+        // lea rdx,[base]; mov ecx,[rdx+rax*4+table]; add rcx,rdx; jmp rcx; lea rdx,"_warrior"; jmp
+        static const BYTE suffixSwitch[] = {
+            0x48,0x63,0x83,0xc0,0x00,0x00,0x00,0x83,0xf8,0x19,0x0f,0x87,0,0,0,0,0x48,0x8d,0x15,
+            0,0,0,0,0x8b,0x8c,0x82,0,0,0,0,0x48,0x03,0xca,0xff,0xe1,0x48,0x8d,0x15,0,0,0,0,0xe9
+        };
+        static const char suffixSwitchMask[] = "xxxxxxxxxxxx????xxx????xxx????xxxxxxxx????x";
+        static_assert(sizeof(suffixSwitchMask) - 1 == sizeof(suffixSwitch), "Suffix switch mask length");
+        // Class key, char and wchar_t: push rbp; lea rbp,[rsp-57h]; sub rsp,0E0h; cmp ecx,1Bh;
+        // jl table; lea rax,[empty]; add rsp,0E0h. The two differ only in that lea, kept whole.
+        static const BYTE classKey[] = {
+            0x40,0x55,0x48,0x8d,0x6c,0x24,0xa9,0x48,0x81,0xec,0xe0,0x00,0x00,0x00,0x83,0xf9,
+            0x1b,0x7c,0x10,0x48,0x8d,0x05,0x4f,0xa9,0x8b,0x00,0x48,0x81,0xc4,0xe0,0x00,0x00
+        };
+        static const BYTE classKeyW[] = {
+            0x40,0x55,0x48,0x8d,0x6c,0x24,0xa9,0x48,0x81,0xec,0xe0,0x00,0x00,0x00,0x83,0xf9,
+            0x1b,0x7c,0x10,0x48,0x8d,0x05,0x66,0x62,0x9b,0x00,0x48,0x81,0xc4,0xe0,0x00,0x00
+        };
+        static const char classKeyMask[] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+        static_assert(sizeof(classKeyMask) - 1 == sizeof(classKey), "Class key mask length");
+        static_assert(sizeof(classKeyMask) - 1 == sizeof(classKeyW), "Class key mask length");
         static_assert(sizeof(typeNameMask) - 1 == sizeof(typeName), "Harp type name signature mask length");
         static_assert(sizeof(damageMask) - 1 == sizeof(damage), "Harp damage signature mask length");
         static_assert(sizeof(damageCheckMask) - 1 == sizeof(damageCheck), "Harp damage check mask length");
@@ -455,6 +712,43 @@ static void InstallHarpFix(HMODULE module) {
             else
                 OutputDebugStringA("[Harp] Enchant table not found.\n");
         }
+        BYTE* classNameStart = QunaFindUnique(base, nt, className, classNameMask, sizeof(className));
+        if (!classNameStart) {
+            OutputDebugStringA("[Harp] Unsupported client; class name signature not found.\n");
+            __leave;
+        }
+        s_harpClassName = (HarpClassName)classNameStart;
+        BYTE* characterSlotStart = QunaFindUnique(base, nt, characterSlot, characterSlotMask, sizeof(characterSlot));
+        if (!characterSlotStart) {
+            OutputDebugStringA("[Harp] Unsupported client; character slot signature not found.\n");
+            __leave;
+        }
+        s_harpCharacterSlot = (HarpCharacterSlot)characterSlotStart;
+        s_harpClassKey = (HarpClassKey)QunaFindUnique(base, nt, classKey, classKeyMask, sizeof(classKey));
+        s_harpClassKeyW = (HarpClassKeyW)QunaFindUnique(base, nt, classKeyW, classKeyMask, sizeof(classKeyW));
+        if (!s_harpClassKey || !s_harpClassKeyW) {
+            OutputDebugStringA("[Harp] Unsupported client; class key signatures not found.\n");
+            __leave;
+        }
+        s_harpImageBase = base;
+        s_harpImageSize = image;
+        s_harpSuffixSwitch = QunaFindUnique(base, nt, suffixSwitch, suffixSwitchMask, sizeof(suffixSwitch));
+        if (!s_harpSuffixSwitch) OutputDebugStringA("[Harp] Animation suffix switch not found.\n");
+        // The icon table is only located here; it is written on first use (HarpPatchClassIconsOnce).
+        BYTE* iconReader = QunaFindUnique(base, nt, classIcon, classIconMask, sizeof(classIcon));
+        BYTE* iconLea = iconReader ? iconReader + classIconLea : nullptr;
+        const char** icons = iconLea ? (const char**)(iconLea + 7 + *(int32_t*)(iconLea + 3)) : nullptr;
+        if (icons && (BYTE*)icons >= base && (BYTE*)(icons + kHarpClassIconSlots) <= base + image)
+            s_harpClassIcons = icons;
+        else
+            OutputDebugStringA("[Harp] Class icon table not found.\n");
+        BYTE* emblemCode = QunaFindUnique(base, nt, emblem, emblemMask, sizeof(emblem));
+        BYTE* emblemLeaAt = emblemCode ? emblemCode + emblemLea : nullptr;
+        BYTE* names = emblemLeaAt ? emblemLeaAt + 7 + *(int32_t*)(emblemLeaAt + 3) : nullptr;
+        if (names && names - 4 >= base && names + 27 * kHarpEmblemStride <= base + image)
+            s_harpEmblemNames = (wchar_t*)names;
+        else
+            OutputDebugStringA("[Harp] Class emblem table not found.\n");
         s_harpTypeName = (HarpWeaponTypeName)typeNameStart;
         s_harpRegistry = (HarpRegistry)typeNameTo[0];
         s_harpFindManager = (HarpFindManager)typeNameTo[1];
@@ -492,6 +786,10 @@ static void InstallHarpFix(HMODULE module) {
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpRanged, HarpRangedAttackHook);
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpTypeName, HarpWeaponTypeNameHook);
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpDamage, HarpDamageAnimationHook);
+        if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpClassName, HarpClassNameHook);
+        if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpCharacterSlot, HarpCharacterSlotHook);
+        if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpClassKey, HarpClassKeyHook);
+        if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpClassKeyW, HarpClassKeyWHook);
         if (error == NO_ERROR) error = DetourTransactionCommit();
         else DetourTransactionAbort();
         OutputDebugStringA(error == NO_ERROR ? "[Harp] Weapon type hooks installed.\n" :
@@ -503,4 +801,5 @@ static void InstallHarpFix(HMODULE module) {
 }
 #else
 static void InstallHarpFix(HMODULE) {}
+static void HarpOnModuleLoaded(HMODULE) {}
 #endif

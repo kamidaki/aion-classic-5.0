@@ -161,6 +161,49 @@ no cliente de teste por `Ferramentas Python/teste_harpa_58.py` a partir de um cl
 | Nome do tipo (`STR_TOOLTIP_HARP`, id 1990001) | `client_strings_ui.xml` das 4 línguas | `--strings` |
 | Nome do item de teste (`STR_TEST_HARP_58`, id 1990002) | `client_strings_item.xml` das 4 línguas | `--strings`; o `desc` do item aponta para ela |
 
+## Classe Bard (ids 17 e 20)
+
+O cliente 5.0 conhece classes de 0 a 26: varios pontos do `Game.dll` barram ids acima de 26
+(`cmp classe, 1Ah; ja`), e os vagos 14, 17, 20 e 23 ja tem lugar, vazio ou copiado do vizinho,
+em todas as tabelas por classe. No Live 5.8 o Bard e a especializacao da base `artist`; aqui
+`artist` = 17 (base, nao jogavel) e `bard` = 20. Nesta versao nao ha ascensao: o personagem nasce
+na classe avancada.
+
+| Onde | O que faz | Para 17/20 |
+|---|---|---|
+| `0xA3A2F0` (hook) | nome da classe (`STR_CLASS_NAME_*`) | strings 1990003 "Muse" / 1990004 "Songweaver" |
+| `0x366340`, `0x366490` (hooks) | nome em minusculas, char e wchar_t (`[%class]` dos sons, scripts) | `artist` / `bard` (era `none`) |
+| `0x649C70` (hook) | monta cada posicao da lista de personagens | aplica as trocas de dados antes |
+| tabela de Skins `v4_class_*` (dado) | icone pequeno | `v4_class_artist` / `v4_class_bard` |
+| tabela `icon_emblem_<nome>` (dado, preenchida na inicializacao) | emblema grande (alvo, selecao) | `artist` / `bard` (era `battlemaster` / `lumines`) |
+| switch do sufixo de animacao `0x931F44` (dado + 2 casos novos) | `Nidle_<classe>_lobby_001` etc. | `_artist` / `_bard`, num trecho alocado logo depois do `Game.dll` |
+
+**Escrever no `Game.dll` durante o carregamento quebra o jogo:** o protetor (WinLicense) faz a
+inicializacao falhar (erro 1114, "Cannot find NCCrashReporter.dll"). Todo dado e escrito depois:
+quando o `LoadLibrary` do `Game.dll` retorna, antes de montar a lista de personagens ou no primeiro
+uso de outro hook -- o que vier primeiro.
+
+Dados (`teste_harpa_58.py`):
+
+| Passo | O que grava |
+|---|---|
+| `--strings` / `--icone-classe` | strings (tipo, classes, item), emblemas do 5.8 e os Skins/`Preset v4_class_icon` 17/20 nas 5 copias do `version4.xml` |
+| `--classe-animacoes` | 82 entradas por raca (selecao, criacao, idle no mundo) e os `.caf` que faltam, com a mesma correcao dos dedos |
+| `--vozes` | `vlogin2_bard_*` / `vlogin2_artist_*` (32, em ingles) nos paks de voz |
+| `--efeito` | `FC_Sys_LoginStage.AR.*`, particulas `sys_lobby.Bard.*` e `skill_ba_songofrest` (fechamento transitivo das citadas), materiais `.fxm`, o modelo `string_FX` e texturas -- junto com o projetil da harpa |
+
+O `.fxm` (material de efeito) tem o mesmo leiaute nas duas versoes (registro de 1936 bytes); os
+campos que diferem nos registros comuns sao lixo de memoria no 5.0 e zero no 5.8. So o 4o byte do
+cabecalho muda (0 no 5.0, `h` no 5.8).
+
+No servidor: `ARTIST(17)` e `BARD(20)` no fim do `PlayerClass` (o `restrict` dos itens e indexado
+pelo `ordinal()`), atributos provisorios iguais aos do `LUMINESS`; `//set class` sem a validacao
+de ascensao.
+
+Falta para a classe: botao na tela de criacao, skills e habilidade de equipar harpa
+(`required_harp`), e 4 texturas e o `MON_Kaisinel_MRT.V3.ShockwaveTrap`, que nao existem nem no
+5.8 limpo.
+
 ## Pendências conhecidas
 
 - **Requisito de arma das skills** (`required_harp`, `0xB2FF50`): fica para as skills do Bard.
@@ -186,4 +229,5 @@ verificação até aqui foi em jogo, um hook por vez:
 | 3 | harpa no braço esquerdo sacada e nas costas guardada |
 | 4 e 5 | varinha na mão direita, some ao guardar, equipar e desequipar corretos |
 | 6 | nota musical sai no ataque básico, com som e efeito de acerto, sem crash |
+| classe Bard (1a) | nome "Songweaver", ícone e emblema (alvo, seleção, primeira exibição), animação, efeito, som e voz da seleção |
 | 7, 8 e encantamento | tooltip mostra "Harpa", dano com animação de harpa, bônus de encantamento igual ao do orbe |

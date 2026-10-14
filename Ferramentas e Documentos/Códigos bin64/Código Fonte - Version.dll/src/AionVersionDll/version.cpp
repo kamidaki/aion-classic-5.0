@@ -261,6 +261,7 @@ static HMODULE WINAPI zzLoadLibraryA(LPCSTR lpLibFileName) {
     HMODULE h = real_LoadLibraryA(lpLibFileName);
     if (h) {
         PatchAllLoadedLanguageModules();
+        HarpOnModuleLoaded(h);
     }
     return h;
 }
@@ -270,6 +271,7 @@ static HMODULE WINAPI zzLoadLibraryExA(LPCSTR lpLibFileName, HANDLE hFile, DWORD
     HMODULE h = real_LoadLibraryExA(lpLibFileName, hFile, dwFlags);
     if (h && !(dwFlags & (LOAD_LIBRARY_AS_DATAFILE | LOAD_LIBRARY_AS_IMAGE_RESOURCE))) {
         PatchAllLoadedLanguageModules();
+        HarpOnModuleLoaded(h);
     }
     return h;
 }
@@ -279,6 +281,7 @@ static HMODULE WINAPI zzLoadLibraryW(LPCWSTR lpLibFileName) {
     HMODULE h = real_LoadLibraryW(lpLibFileName);
     if (h) {
         PatchAllLoadedLanguageModules();
+        HarpOnModuleLoaded(h);
     }
     return h;
 }
@@ -288,6 +291,7 @@ static HMODULE WINAPI zzLoadLibraryExW(LPCWSTR lpLibFileName, HANDLE hFile, DWOR
     HMODULE h = real_LoadLibraryExW(lpLibFileName, hFile, dwFlags);
     if (h && !(dwFlags & (LOAD_LIBRARY_AS_DATAFILE | LOAD_LIBRARY_AS_IMAGE_RESOURCE))) {
         PatchAllLoadedLanguageModules();
+        HarpOnModuleLoaded(h);
     }
     return h;
 }

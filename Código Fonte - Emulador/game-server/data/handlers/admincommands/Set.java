@@ -37,7 +37,8 @@ public class Set extends AdminCommand {
 
 		if (params[0].equals("class")) {
 			PlayerClass playerClass = PlayerClass.valueOf(params[1].toUpperCase());
-			ClassChangeService.setClass(target, playerClass, true, true);
+			// Sem a validacao de ascensao: no 5.0 o personagem ja nasce na classe avancada.
+			ClassChangeService.setClass(target, playerClass, false, true);
 		} else if (params[0].equals("level")) {
 			int level = Math.min(GSConfig.PLAYER_MAX_LEVEL, Integer.parseInt(params[1]));
 			target.getCommonData().setLevel(level);

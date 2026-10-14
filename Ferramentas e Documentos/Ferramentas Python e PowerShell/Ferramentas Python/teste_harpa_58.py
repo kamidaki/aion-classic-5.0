@@ -24,6 +24,9 @@ Uso:
     python teste_harpa_58.py --componente lista|marcadores|animacoes|sons|itens|dll original|harpa
                                                desliga ou religa uma peca, para isolar um defeito
     python teste_harpa_58.py --marcadores copia do 5.8 os marcadores e sons das animacoes de harpa
+    python teste_harpa_58.py --icone-classe   icone pequeno das classes do Bard (emblemas do 5.8 e Skins)
+    python teste_harpa_58.py --vozes      voz da selecao do Bard/Artist (vlogin2_*) nos paks de voz
+    python teste_harpa_58.py --classe-animacoes   selecao/criacao/idle do Bard (as 4 racas)
     python teste_harpa_58.py --racas      harpa no LF, DM e DF (animacoes do LF, listas e marcadores)
     python teste_harpa_58.py --strings    nome do tipo de arma (STR_TOOLTIP_HARP) nas linguas do cliente
     python teste_harpa_58.py --desfaz   restaura os paks e tira o template do servidor
@@ -67,6 +70,10 @@ FXC_DO_PROJETIL = "fxc/fc_sys_hit.fxc"
 INDICE_PRT = "prt/namelist_prt.index"
 INDICE_FXC = "fxc/namelist_fxc.index"
 PAK_SOM_DO_PROJETIL = r"sounds\effect\artist\artist.pak"
+#: Selecao do Bard (marcador Nselect_bard_lobby_001): efeito FC_Sys_LoginStage.AR.<raca> e o som
+#: que o marcador toca como arquivo.
+FXC_DA_SELECAO = "fxc/fc_sys_loginstage.fxc"
+SONS_DA_SELECAO = (r"Sounds\effect\artist\skill_harp_SongofAromatherapy_cast.ogg",)
 ATAQUE_SERVIDOR = {"attack_range": "25000", "attack_speed": "2400", "attack_type": "MAGICAL_WATER"}
 #: Itens de tentativas anteriores (harpa como livro e como lamina em corrente): saem do servidor.
 IDS_ANTIGOS = (100699901, 102499901)
@@ -270,6 +277,49 @@ def acrescenta_item(bxml, id_base, id_novo, nome_novo, mesh):
     return bytes(saida), quantos, ordenado
 
 
+def troca_skinrefs(bxml, preset, por_estado):
+    """Troca o `name` de `<SkinRef state=N>` de um `<Preset name=preset>` (XML binario).
+
+    `por_estado = {"20": "v4_class_bard", ...}`. O documento e relido e regravado inteiro; as
+    strings novas vao para o fim da tabela.
+    """
+    if bxml[0] != 0x80:
+        raise ValueError("nao e XML binario")
+    tam, o = _varint(bxml, 1)
+    tab = _Tabela(bxml[o:o + tam])
+    o += tam
+    raiz, fim = _le_elemento(bxml, o)
+    if fim != len(bxml):
+        raise ValueError("sobraram bytes depois da raiz")
+    trocados = set()
+
+    def atributo(el, nome):
+        for k, v in el[2]:
+            if tab.texto(k) == nome:
+                return tab.texto(v)
+        return None
+
+    def troca(el):
+        nome, texto, atributos, filhos = el
+        if tab.texto(nome) == "Preset" and atributo(el, "name") == preset:
+            novos = []
+            for f in filhos:
+                estado = atributo(f, "state")
+                if tab.texto(f[0]) == "SkinRef" and estado in por_estado:
+                    attrs = [(k, tab.acrescenta(por_estado[estado]) if tab.texto(k) == "name" else v)
+                             for k, v in f[2]]
+                    f = (f[0], f[1], attrs, f[3])
+                    trocados.add(estado)
+                novos.append(f)
+            return (nome, texto, atributos, novos)
+        return (nome, texto, atributos, [troca(f) for f in filhos])
+
+    raiz = troca(raiz)
+    if trocados != set(por_estado):
+        raise ValueError(f"Preset {preset}: estados nao achados {sorted(set(por_estado) - trocados)}")
+    return bytes([0x80]) + _grava_varint(len(tab.bruto)) + bytes(tab.bruto) + _grava_elemento(raiz)
+
+
 def acrescenta_filhos(bxml, novos):
     """Acrescenta elementos (`xml.etree` Element) no fim dos filhos da raiz de um XML binario.
 
@@ -284,8 +334,15 @@ def acrescenta_filhos(bxml, novos):
     ini_raiz = o
     _nome, o = _varint(bxml, o)
     flags, o = _varint(bxml, o)
-    if flags != 4:
-        raise ValueError(f"raiz com flags {flags}, esperava so filhos")
+    if not flags & 4 or flags > 7:
+        raise ValueError(f"raiz com flags {flags}, esperava filhos")
+    # Texto e atributos da raiz (ex.: <Preload name=...>) ficam como estao; so o contador muda.
+    if flags & 1:
+        _texto, o = _varint(bxml, o)
+    if flags & 2:
+        n, o = _varint(bxml, o)
+        for _ in range(2 * n):
+            _x, o = _varint(bxml, o)
     pos_contador = o
     quantos, o = _varint(bxml, o)
 
@@ -1003,7 +1060,7 @@ def aplica_animacao():
     _confere_pak(caminho, len(idx), {n: "novo" for n in novos})
     print(f"OK  {PAK_ANIMACAO}: +{len(novos)} animacoes de harpa")
 
-    _grava_listas("lm", entradas_oficiais_de_harpa(cafs))
+    _grava_listas("lm", _todas_as_entradas("lm"))
 
 
 def _pak_da_lista(raca, extensao):
@@ -1106,7 +1163,114 @@ def aplica_racas():
     """Harpa no LF, DM e DF: animacoes do LF, listas das tres racas e marcadores das quatro."""
     aplica_animacao_lf()
     for raca in OUTRAS_RACAS:
-        _grava_listas(raca, entradas_oficiais_de_harpa(cafs_de_harpa(PASTA_DAS_ANIMACOES[raca]), raca))
+        _grava_listas(raca, _todas_as_entradas(raca))
+    aplica_marcadores(("lm",) + OUTRAS_RACAS)
+
+
+# --------------------------------------------------------------------------------------------
+# Animacoes da classe Bard (selecao, criacao, idle no mundo)
+# --------------------------------------------------------------------------------------------
+#
+# O `Game.dll` monta o nome dessas animacoes com o sufixo da classe (Nidle_<classe>_lobby_001,
+# Nselect_<classe>_lobby_001, Nidle_<classe>_create_001, nidle_<classe>_001...); o `harp_fix.h`
+# acrescenta os sufixos "_artist" e "_bard" (classes 17 e 20). As entradas vem do `.cal` do 5.8,
+# so as de nome que o 5.0 monta: as variantes por arma do lobby (Nidle_Bard_orb_lobby_001...) sao
+# do Live, nenhuma classe do 5.0 as usa.
+
+_TOKEN_DE_CLASSE = re.compile(r"(?i)(^|_)(bard|artist)(_|$)")
+_ARMAS_DO_LOBBY = re.compile(
+    r"(?i)_(1hand|dagger|mace|2hand|2weapon|staff|polearm|bow|orb|book|1gun|2gun|cannon|harp|"
+    r"keyblade|noweapon)_lobby_")
+#: Pak de cada pasta de animacao que recebe os `.caf` de classe. Nenhum outro passo mexe nele
+#: (o LM 020 e o LF 019 sao os das animacoes de harpa, regravados por `--racas`/`--dedos-*`).
+PAKS_DE_ANIMACAO_DE_CLASSE = {
+    "lm": r"objects\pc\lm\animation\Animation_Animations_019.pak",
+    "lf": r"objects\pc\lf\animation\Animation_Animations_018.pak",
+    "dm": r"objects\pc\dm\animation\Animation_Animations_001.pak",
+    "df": r"objects\pc\df\animation\Animation_Animations_001.pak",
+}
+
+
+def entradas_de_classe(raca):
+    """As entradas do `<raca>.cal` do 5.8 com o nome da classe Bard/Artist, para o 5.0.
+
+    Devolve `[(nome, caminho no formato do .cal, prob ou -1)]` e os `.caf` que elas pedem,
+    `{pasta: {arquivo}}`.
+    """
+    import glob
+    cal = None
+    for p in sorted(glob.glob(os.path.join(LIVE_CLIENTE, "Objects", "PC2", raca, "mesh", "*.pak"))):
+        d, idx = aion_pak.abre(p)
+        e = next((x for x in idx if x.nome.lower() == f"{raca}.cal"), None)
+        if e:
+            cal = aion_pak.le(d, e).decode("latin-1")
+            break
+    saida, arquivos = [], {}
+    for linha in cal.splitlines():
+        m = re.match(r"\s*([^\s=/][^\s=]*)\s*=\s*(\S+\.caf)(.*)", linha, re.I)
+        if not m or not _TOKEN_DE_CLASSE.search(m.group(1)) or "harp" in m.group(1).lower() \
+                or _ARMAS_DO_LOBBY.search(m.group(1)):
+            continue
+        partes = m.group(2).replace("/", "\\").split("\\")
+        arquivo, pasta = partes[-1], partes[-3].upper()
+        prob = re.search(r"prob\s*=\s*([\d.]+)", m.group(3))
+        prob = struct.unpack("<f", struct.pack("<f", float(prob.group(1))))[0] if prob else -1.0
+        saida.append((m.group(1), f"PC\\{pasta}\\Animation\\{arquivo}", prob))
+        arquivos.setdefault(pasta.lower(), set()).add(arquivo)
+    return saida, arquivos
+
+
+def _todas_as_entradas(raca):
+    """Harpa + classe: o que vai no `<raca>.cal`/`.cab` (sempre os dois, numa gravacao so)."""
+    harpa = entradas_oficiais_de_harpa(cafs_de_harpa(PASTA_DAS_ANIMACOES[raca]), raca)
+    classe, _arquivos = entradas_de_classe(raca)
+    nomes = {n.lower() for n, _a, _p in harpa}
+    return harpa + [e for e in classe if e[0].lower() not in nomes]
+
+
+def aplica_animacoes_de_classe():
+    """Animacoes de selecao/criacao/idle do Bard nas quatro racas, listas e marcadores."""
+    import glob
+    pedidos = {}
+    for raca in ("lm", "lf", "dm", "df"):
+        for pasta, arquivos in entradas_de_classe(raca)[1].items():
+            pedidos.setdefault(pasta, set()).update(arquivos)
+    for pasta, arquivos in sorted(pedidos.items()):
+        rel = PAKS_DE_ANIMACAO_DE_CLASSE[pasta]
+        caminho = os.path.join(CLIENTE, rel)
+        origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
+        # O que o 5.0 ja tem nessa pasta (originais) nao vem do 5.8.
+        tem = set()
+        for p in glob.glob(os.path.join(CLIENTE, "objects", "pc", pasta, "animation", "*.pak")):
+            q = p + SUFIXO_BACKUP if os.path.exists(p + SUFIXO_BACKUP) else p
+            tem |= {e.nome.lower() for e in aion_pak.abre(q)[1]}
+        faltam = sorted(a for a in arquivos if a.lower() not in tem)
+        if not faltam:
+            continue
+        do58 = do_58(os.path.join("Objects", "PC2", pasta, "animation"), faltam)
+        if len(do58) != len(faltam):
+            raise ValueError(f"faltou no 5.8: {sorted(set(faltam) - set(do58))}")
+        # Dedos: a mesma variante das animacoes de harpa (so a posicao, esqueleto da pasta).
+        posicoes = posicoes_de_referencia_50(pasta)
+        novos = {}
+        for nome, dados in do58.items():
+            novos[nome], _ = so_posicao_dos_dedos(dados, posicoes)
+            valida_so_posicao(dados, novos[nome], posicoes)
+        d0, idx0 = aion_pak.abre(origem)
+        _backup(caminho)
+        if origem != caminho:
+            shutil.copy2(origem, caminho)
+        regrava_pak(caminho, acrescenta=novos)
+        d1, idx1 = aion_pak.abre(caminho)
+        por_nome = {e.nome: e for e in idx1}
+        for nome, dados in novos.items():
+            if aion_pak.le(d1, por_nome[nome]) != dados:
+                raise ValueError(f"{nome}: o que saiu do pak nao e o que foi gravado")
+        if len(idx1) != len(idx0) + len(novos):
+            raise ValueError(f"{rel}: contagem de entradas nao fecha")
+        print(f"OK  {rel}: +{len(novos)} ({', '.join(sorted(novos))})")
+    for raca in ("lm", "lf", "dm", "df"):
+        _grava_listas(raca, _todas_as_entradas(raca))
     aplica_marcadores(("lm",) + OUTRAS_RACAS)
 
 
@@ -1143,47 +1307,163 @@ def aplica_efeito():
     fxc = aion_fx.fxc_para_50(aion_pak.le(d58, m58[FXC_DO_PROJETIL]))
     if FXC_DO_PROJETIL in m50:
         raise ValueError(f"{FXC_DO_PROJETIL} ja existe no 5.0")
-    # Sem entrada nos indices de nomes o efeito nao existe para o jogo (ver `aion_fx.py`).
     efeitos = [aion_fx.nome(r) for r in aion_fx.le(fxc, b"FXC")[2]]
     biblioteca = efeitos[0].split(".", 1)[0]
-    indices = {}
-    for nome_do_indice, novo in (
-        (INDICE_PRT, lambda a, b: aion_fx.indexa_prt(a, b, particulas)),
-        (INDICE_FXC, lambda a, b: aion_fx.indexa_fxc(a, b, biblioteca)),
-    ):
-        indices[m50[nome_do_indice].nome] = novo(aion_pak.le(d50, m50[nome_do_indice]),
-                                                 aion_pak.le(d58, m58[nome_do_indice]))
+    troca = {m50[PRT_DO_PROJETIL].nome: prt}
+    acrescenta = {FXC_DO_PROJETIL: fxc}
+
+    # Selecao do Bard: os efeitos FC_Sys_LoginStage.AR.* (com os filhos) no .fxc que o 5.0 ja tem,
+    # e as particulas que eles citam -- em bibliotecas que o 5.0 tem (sys_lobby) ou nao
+    # (skill_ba_songofrest, que vira arquivo novo so com o que e citado).
+    fxc_lobby50 = aion_pak.le(d50, m50[FXC_DA_SELECAO])
+    fxc_lobby58 = aion_pak.le(d58, m58[FXC_DA_SELECAO])
+    raizes_lobby = [aion_fx.nome(r) for r in aion_fx.le(fxc_lobby58, b"FXC")[2]
+                    if ".AR." in aion_fx.nome(r)
+                    and struct.unpack_from("<i", r, aion_fx.FXC_PAI_58)[0] < 0]
+    fxc_lobby, efeitos_lobby = aion_fx.acrescenta_fxc(fxc_lobby50, fxc_lobby58, raizes_lobby)
+    troca[m50[FXC_DA_SELECAO].nome] = fxc_lobby
+    citadas = set()
+    for r in aion_fx.le(fxc_lobby58, b"FXC")[2]:
+        if aion_fx.nome(r) in efeitos_lobby:
+            citadas.update(s.decode("latin-1") for s in re.findall(rb"[\x20-\x7e]{4,}", r)
+                           if b"." in s and not s.startswith(b"FC_Sys_LoginStage"))
+    # Uma particula pode disparar outras pelo nome (campos de string sem caminho): as citadas que o
+    # 5.0 nao tem entram tambem, sempre pela raiz da arvore delas no 5.8, ate fechar. Vale para as
+    # particulas da harpa (sys_hit) e as da selecao.
+    prts = {PRT_DO_PROJETIL: prt}  # chave -> .prt do 5.0 ja com o que foi acrescentado
+
+    def atual(chave):
+        if chave in prts:
+            return prts[chave]
+        return aion_pak.le(d50, m50[chave]) if chave in m50 else None
+
+    def nomes_de(dados):
+        return {aion_fx.nome(r).lower() for r in aion_fx.le(dados, b"CRY")[2]} if dados else set()
+
+    def citadas_por(dados, nomes):
+        saida = set()
+        for r in aion_fx.le(dados, b"CRY")[2]:
+            if aion_fx.nome(r) in nomes:
+                for i in range(1, 9):
+                    s = r[i * 128:(i + 1) * 128].split(b"\0")[0].decode("latin-1")
+                    if s and "\\" not in s and "/" not in s and "." in s:
+                        saida.add(s)
+        return saida
+
+    particulas_lobby, sem_fonte = [], []
+    pendentes = set(citadas) | citadas_por(prt, set(particulas))
+    while pendentes:
+        por_lib = {}
+        for c in pendentes:
+            por_lib.setdefault(f"prt/{c.split('.', 1)[0].lower()}.prt", set()).add(c)
+        pendentes = set()
+        for chave, nomes in sorted(por_lib.items()):
+            ja = nomes_de(atual(chave))
+            faltam = sorted(n for n in nomes if n.lower() not in ja)
+            if not faltam:
+                continue
+            if chave not in m58:
+                # Citada e sem fonte nem no 5.8 limpo (ex.: MON_Kaisinel_MRT.V3.ShockwaveTrap): fica
+                # de fora, como no proprio 5.8.
+                sem_fonte.extend(faltam)
+                continue
+            dados58 = aion_pak.le(d58, m58[chave])
+            regs58 = aion_fx.le(dados58, b"CRY")[2]
+            por_nome = {aion_fx.nome(r).lower(): i for i, r in enumerate(regs58)}
+            raizes_novas = set()
+            for n in faltam:
+                i = por_nome.get(n.lower())
+                if i is None:
+                    raise ValueError(f"{n} nao esta em {chave} do 5.8")
+                while struct.unpack_from("<i", regs58[i], aion_fx.PRT_PAI_58)[0] >= 0:
+                    i = struct.unpack_from("<i", regs58[i], aion_fx.PRT_PAI_58)[0]
+                raizes_novas.add(aion_fx.nome(regs58[i]))
+            novo, nomes_novos = aion_fx.acrescenta_prt(atual(chave), dados58, sorted(raizes_novas))
+            prts[chave] = novo
+            particulas_lobby += nomes_novos
+            pendentes |= citadas_por(novo, set(nomes_novos))
+    # Citadas sem .prt: podem ser materiais de efeito (mat/<biblioteca>.fxm, aplicados a meshes de
+    # efeito, como BA_mrt_injury.v4.flow_line2). O registro do .fxm tem o mesmo leiaute nas duas
+    # versoes (1936 bytes; os campos que diferem nos registros comuns sao lixo de memoria no 5.0 e
+    # zero no 5.8); o 4o byte do cabecalho e 0 no 5.0 e 'h' no 5.8, e fica o do 5.0. Nao ha indice
+    # de nomes de material.
+    materiais = {}
+    for n in sorted(set(sem_fonte)):
+        chave = f"mat/{n.split('.', 1)[0].lower()}.fxm"
+        if chave in m58 and chave not in m50:
+            dados = bytearray(aion_pak.le(d58, m58[chave]))
+            if dados[:3] != b"EFM" or (len(dados) - 9) != struct.unpack_from("<I", dados, 5)[0] * 1936:
+                raise ValueError(f"{chave}: .fxm com formato inesperado")
+            dados[3] = 0
+            materiais[m58[chave].nome] = bytes(dados)
+    if materiais:
+        acrescenta.update(materiais)
+        sem_fonte = [n for n in sem_fonte
+                     if f"mat/{n.split('.', 1)[0].lower()}.fxm" not in {k.lower() for k in materiais}]
+        print(f"    materiais de efeito: {', '.join(sorted(materiais))}")
+    prt = prts[PRT_DO_PROJETIL]
+    troca[m50[PRT_DO_PROJETIL].nome] = prt
+    prts_novos = {k: v for k, v in prts.items() if k != PRT_DO_PROJETIL}
+    for chave, novo in prts_novos.items():
+        if chave in m50:
+            troca[m50[chave].nome] = novo
+        else:
+            acrescenta[m58[chave].nome] = novo
+    print(f"    selecao do Bard: {len(efeitos_lobby)} efeitos em {FXC_DA_SELECAO}, "
+          f"{len(particulas_lobby)} particulas ({', '.join(sorted(prts_novos))})")
+    if sem_fonte:
+        print(f"    particulas citadas sem fonte nem no 5.8: {sorted(set(sem_fonte))}")
+
+    # Sem entrada nos indices de nomes o efeito nao existe para o jogo (ver `aion_fx.py`).
+    i_prt = aion_pak.le(d50, m50[INDICE_PRT])
+    i_fxc = aion_pak.le(d50, m50[INDICE_FXC])
+    i_prt58, i_fxc58 = aion_pak.le(d58, m58[INDICE_PRT]), aion_pak.le(d58, m58[INDICE_FXC])
+    i_prt = aion_fx.indexa_prt(i_prt, i_prt58, particulas + particulas_lobby)
+    i_fxc = aion_fx.indexa_fxc(i_fxc, i_fxc58, biblioteca)
+    i_fxc = aion_fx.indexa_fxc_nomes(i_fxc, i_fxc58, efeitos_lobby)
+    troca[m50[INDICE_PRT].nome] = i_prt
+    troca[m50[INDICE_FXC].nome] = i_fxc
+
     _backup(caminho)
     if origem != caminho:
         shutil.copy2(origem, caminho)
-    regrava_pak(caminho, troca={m50[PRT_DO_PROJETIL].nome: prt, **indices},
-                acrescenta={FXC_DO_PROJETIL: fxc})
-    _confere_pak(caminho, len(m50), {m50[PRT_DO_PROJETIL].nome: "troca", FXC_DO_PROJETIL: "novo",
-                                     **{n: "troca" for n in indices}})
-    print(f"    indices de nomes: +{len(particulas)} em {INDICE_PRT}, +{len(efeitos)} em {INDICE_FXC}")
-    print(f"OK  {PAK_EFEITOS}: {PRT_DO_PROJETIL} +{len(particulas)} ({', '.join(particulas)})")
-    print(f"    {FXC_DO_PROJETIL} novo ({', '.join(efeitos)})")
+    regrava_pak(caminho, troca=troca, acrescenta=acrescenta)
+    _confere_pak(caminho, len(m50), {**{n: "troca" for n in troca}, **{n: "novo" for n in acrescenta}})
+    print(f"    indices de nomes: +{len(particulas) + len(particulas_lobby)} em {INDICE_PRT}, "
+          f"+{len(efeitos) + len(efeitos_lobby)} em {INDICE_FXC}")
+    print(f"OK  {PAK_EFEITOS}: {PRT_DO_PROJETIL} +{len(particulas)}, {FXC_DO_PROJETIL} novo, "
+          f"{FXC_DA_SELECAO} +{len(efeitos_lobby)}, {', '.join(sorted(prts_novos))}")
 
-    # Arquivos que essas particulas citam: texturas e meshes de efeito, e o som do disparo.
-    v, campo, registros = aion_fx.le(prt, b"CRY")
+    # Arquivos que essas particulas citam: texturas e meshes de efeito, e sons.
     citados = set()
-    for r in registros:
-        if aion_fx.nome(r) in particulas:
-            citados.update(r[i * 128:(i + 1) * 128].split(b"\0")[0].decode("latin-1")
-                           for i in range(1, 9))
-            citados.add(r[2718:2978].split(b"\0")[0].decode("latin-1"))
+    todas = set(particulas) | set(particulas_lobby)
+    for dados, nomes in [(b, todas) for b in prts.values()]:
+        for r in aion_fx.le(dados, b"CRY")[2]:
+            if aion_fx.nome(r) in nomes:
+                citados.update(r[i * 128:(i + 1) * 128].split(b"\0")[0].decode("latin-1")
+                               for i in range(1, 9))
+                citados.add(r[2718:2978].split(b"\0")[0].decode("latin-1"))
+    for dados in materiais.values():
+        citados.update(s.decode("latin-1") for s in re.findall(rb"[\x20-\x7e]{5,}", dados)
+                       if b"\\" in s or b"/" in s)
+    citados = {c.replace("/", "\\") for c in citados}
     citados.discard("")
+    # Som do marcador da selecao do Bard (AnimationMarkers), tocado como arquivo.
+    citados.update(SONS_DA_SELECAO)
     tem = set()
     for p in glob.glob(os.path.join(CLIENTE, "Effects", "*.pak")) + \
-            glob.glob(os.path.join(CLIENTE, "sounds", "effect", "**", "*.pak"), recursive=True):
-        tem.update(e.nome.lower().replace("/", "\\").rsplit("\\", 1)[-1] for e in aion_pak.abre(p)[1])
+            glob.glob(os.path.join(CLIENTE, "sounds", "effect", "**", "*.pak"), recursive=True) + \
+            glob.glob(os.path.join(CLIENTE, "textures", "**", "*.pak"), recursive=True):
+        # Os originais: os paks gravados aqui sao refeitos a partir deles.
+        q = p + SUFIXO_BACKUP if os.path.exists(p + SUFIXO_BACKUP) else p
+        tem.update(e.nome.lower().replace("/", "\\").rsplit("\\", 1)[-1] for e in aion_pak.abre(q)[1])
     faltam = sorted(c for c in citados if "\\" in c and c.lower().rsplit("\\", 1)[-1] not in tem)
     sons = [c for c in faltam if c.lower().startswith("sounds\\effect\\artist\\")]
     if sons:
         caminho = os.path.join(CLIENTE, PAK_SOM_DO_PROJETIL)
         origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
         _d, idx = aion_pak.abre(origem)
-        novos = do_58(os.path.dirname(PAK_SOM_DO_PROJETIL), [s.rsplit("\\", 1)[-1] for s in sons])
+        novos = do_58(os.path.dirname(PAK_SOM_DO_PROJETIL), sorted({s.rsplit("\\", 1)[-1] for s in sons}))
         _backup(caminho)
         if origem != caminho:
             shutil.copy2(origem, caminho)
@@ -1191,10 +1471,119 @@ def aplica_efeito():
         _confere_pak(caminho, len(idx), {n: "novo" for n in novos})
         print(f"OK  {PAK_SOM_DO_PROJETIL}: +{len(novos)} ({', '.join(novos)})")
         faltam = [c for c in faltam if c.rsplit("\\", 1)[-1].lower() not in {n.lower() for n in novos}]
+    # Meshes e texturas de efeito: vao para o pak do 5.0 de mesmo caminho do pak do 5.8 que as tem
+    # (Effects\ e Objects\, menos objects\items, cujos modelos tem passo proprio logo abaixo).
+    por_pak = {}
+    soltos = [c for c in faltam if not c.lower().startswith("objects\\items\\")]
+    for p in glob.glob(os.path.join(LIVE_CLIENTE, "Effects", "*.pak")) + \
+            glob.glob(os.path.join(LIVE_CLIENTE, "Objects", "**", "*.pak"), recursive=True):
+        rel58 = os.path.relpath(p, LIVE_CLIENTE)
+        if rel58.lower().startswith("objects\\items\\"):
+            continue
+        try:
+            d, idx = aion_pak.abre(p)
+        except aion_pak.PakInvalido:
+            continue
+        for e in idx:
+            base_nome = e.nome.lower().replace("/", "\\").rsplit("\\", 1)[-1]
+            for c in soltos:
+                if c.lower().rsplit("\\", 1)[-1] == base_nome:
+                    por_pak.setdefault(rel58, {})[e.nome] = aion_pak.le(d, e)
+    # O 5.0 nem sempre tem o pak de mesmo caminho: objects\misc\boids\x.dds esta no 5.8 em
+    # Objects\misc\Mesh_Textures_003.pak (entrada "boids/x.dds") e no 5.0 em
+    # objects\misc\boids\boids_Textures.pak (entrada "x.dds"). Ai vai para o pak de texturas da
+    # pasta do arquivo, com o nome relativo a ela.
+    remapeado = {}
+    for rel, arquivos in por_pak.items():
+        if os.path.exists(os.path.join(CLIENTE, rel)):
+            remapeado.setdefault(rel, {}).update(arquivos)
+            continue
+        for nome_58, dados in arquivos.items():
+            pasta = os.path.join(os.path.dirname(rel), os.path.dirname(nome_58.replace("/", "\\")))
+            alvo = [p for p in glob.glob(os.path.join(CLIENTE, pasta, "*.pak"))
+                    if "textures" in os.path.basename(p).lower() and nome_58.lower().endswith(".dds")]
+            if len(alvo) != 1:
+                print(f"    {nome_58} ({rel}): sem pak de destino no 5.0, fica de fora")
+                continue
+            remapeado.setdefault(os.path.relpath(alvo[0], CLIENTE), {})[nome_58.replace("\\", "/").rsplit("/", 1)[-1]] = dados
+    por_pak = remapeado
+    for rel, arquivos in sorted(por_pak.items()):
+        if rel.lower() == PAK_EFEITOS.lower():
+            raise ValueError(f"{list(arquivos)} vai no {PAK_EFEITOS}, que acabou de ser gravado")
+        caminho = os.path.join(CLIENTE, rel)
+        origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
+        _d, idx = aion_pak.abre(origem)
+        _backup(caminho)
+        if origem != caminho:
+            shutil.copy2(origem, caminho)
+        regrava_pak(caminho, acrescenta=arquivos)
+        _confere_pak(caminho, len(idx), {n: "novo" for n in arquivos})
+        print(f"OK  {rel}: +{len(arquivos)} ({', '.join(arquivos)})")
+        trazidos = {n.lower().replace("/", "\\").rsplit("\\", 1)[-1] for n in arquivos}
+        faltam = [c for c in faltam if c.lower().rsplit("\\", 1)[-1] not in trazidos]
+    # Modelos de item citados por particulas (objects\items\string_FX.cgf, as cordas de luz da
+    # harpa): o modelo inteiro -- .cgf, .cal, .saf, os .caf que o .cal lista e as texturas.
+    modelos = [c for c in faltam if c.lower().startswith("objects\\items\\") and c.lower().endswith(".cgf")]
+    if modelos:
+        trazidos = aplica_modelos_de_efeito([c.rsplit("\\", 1)[-1] for c in modelos])
+        faltam = [c for c in faltam if c.rsplit("\\", 1)[-1].lower() not in trazidos]
     print(f"    arquivos citados que continuam faltando no 5.0: {faltam or 'nenhum'}")
     sem_barra = sorted(c for c in citados if "\\" not in c)
     if sem_barra:
         print(f"    outros efeitos citados (nao conferidos): {sem_barra}")
+
+
+#: Paks de `objects\items` que recebem modelos citados por efeitos. Nenhum outro passo os regrava
+#: (a harpa vai no Mesh_Meshes_024 e no Mesh_Textures_047).
+PAK_MODELO_DE_EFEITO = r"objects\items\Mesh_Meshes_021.pak"
+PAK_ANIMACAO_DE_EFEITO = r"objects\items\Animation_Animations_007.pak"
+PAK_TEXTURA_DE_EFEITO = r"objects\items\Mesh_Textures_043.pak"
+
+
+def aplica_modelos_de_efeito(cgfs):
+    """Traz do 5.8 os modelos de item `cgfs` (nomes de .cgf) com tudo o que eles usam.
+
+    Devolve os nomes (minusculos) dos arquivos trazidos.
+    """
+    import glob
+    arquivos58 = {}
+    for p in glob.glob(os.path.join(LIVE_CLIENTE, "Objects", "items", "*.pak")):
+        d, idx = aion_pak.abre(p)
+        for e in idx:
+            arquivos58.setdefault(e.nome.lower(), (d, e))
+    malhas, animacoes, texturas = {}, {}, {}
+    for cgf in cgfs:
+        base = cgf.rsplit(".", 1)[0].lower()
+        for ext in (".cgf", ".cal", ".saf"):
+            if base + ext in arquivos58:
+                d, e = arquivos58[base + ext]
+                malhas[e.nome] = aion_pak.le(d, e)
+        cal = next((v for k, v in malhas.items() if k.lower() == base + ".cal"), None)
+        if cal:
+            for caf in re.findall(r"=\s*\S*?([^\\/\s]+\.caf)", cal.decode("latin-1"), re.I):
+                d, e = arquivos58[caf.lower()]
+                animacoes[e.nome] = aion_pak.le(d, e)
+        for k, (d, e) in arquivos58.items():
+            if k.endswith(".dds") and (k == base + ".dds" or k.startswith(base + "_")):
+                texturas[e.nome] = aion_pak.le(d, e)
+    trazidos = set()
+    for rel, novos in ((PAK_MODELO_DE_EFEITO, malhas), (PAK_ANIMACAO_DE_EFEITO, animacoes),
+                       (PAK_TEXTURA_DE_EFEITO, texturas)):
+        if not novos:
+            continue
+        caminho = os.path.join(CLIENTE, rel)
+        origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
+        _d, idx = aion_pak.abre(origem)
+        if {e.nome.lower() for e in idx} & {n.lower() for n in novos}:
+            raise ValueError(f"{rel} ja tem parte de {sorted(novos)}")
+        _backup(caminho)
+        if origem != caminho:
+            shutil.copy2(origem, caminho)
+        regrava_pak(caminho, acrescenta=novos)
+        _confere_pak(caminho, len(idx), {n: "novo" for n in novos})
+        print(f"OK  {rel}: +{len(novos)} ({', '.join(sorted(novos))})")
+        trazidos |= {n.lower() for n in novos}
+    return trazidos
 
 
 def aplica_marcadores(racas=("lm",)):
@@ -1221,7 +1610,10 @@ def aplica_marcadores(racas=("lm",)):
         entrada = next(e for e in idx if e.nome.lower() == f"{raca}.xml")
         bxml = aion_pak.le(d, entrada)
         existentes = set(re.findall(r'<animation [^>]*name="([^"]*)"', aion_bxml.decodifica(bxml).lower()))
-        novos = [a for a in raiz58 if "harp" in a.get("name", "").lower()
+        # Harpa e as animacoes com o nome da classe Bard (selecao, criacao, idle).
+        novos = [a for a in raiz58 if ("harp" in a.get("name", "").lower()
+                                       or (_TOKEN_DE_CLASSE.search(a.get("name", ""))
+                                           and not _ARMAS_DO_LOBBY.search(a.get("name", ""))))
                  and a.get("name").lower() not in existentes]
         novo, quantos = acrescenta_filhos(bxml, novos)
         conferido = aion_bxml.decodifica(novo)
@@ -1270,6 +1662,12 @@ def aplica_marcadores(racas=("lm",)):
 STRINGS = (
     ("strings/client_strings_ui.xml", 1990001, "STR_TOOLTIP_HARP",
      {"ENG": "Harp", "DEU": "Harfe", "FRA": "Harpe", "BRA": "Harpa"}),
+    # Nome das classes do Bard (ids de classe 17 e 20, ver `harp_fix.h`). Ingles = o do Live:
+    # STR_CLASS_NAME_ARTIST "Muse" (904317) e STR_CLASS_NAME_BARD "Songweaver" (904318).
+    ("strings/client_strings_ui.xml", 1990003, "STR_CLASS_NAME_ARTIST",
+     {"ENG": "Muse", "DEU": "Muse", "FRA": "Muse", "BRA": "Musa"}),
+    ("strings/client_strings_ui.xml", 1990004, "STR_CLASS_NAME_BARD",
+     {"ENG": "Songweaver", "DEU": "Barde", "FRA": "Barde", "BRA": "Bardo"}),
     ("strings/client_strings_item.xml", 1990002, "STR_TEST_HARP_58",
      {"ENG": "Test Harp 5.8", "DEU": "Testharfe 5.8", "FRA": "Harpe de test 5.8",
       "BRA": "Harpa de Teste 5.8"}),
@@ -1291,68 +1689,226 @@ def _string_xml(id_string, nome, texto):
             f"    <body>{texto}</body>\n  </string>\n")
 
 
-def aplica_strings():
+#: Icone pequeno das classes do Bard. O cliente pega o icone da classe pelo nome de um Skin
+#: (`v4_class_<classe>`, tabela por id no `Game.dll`); nos ids 17 e 20 a tabela esta vazia e o
+#: `harp_fix.h` poe os nomes abaixo. Os Skins apontam para os emblemas do Live 5.8 (64x64), que
+#: sao tambem o `getIconImage` do servidor.
+PAK_EMBLEMAS = r"textures\ui\EMBLEM\EMBLEM.pak"
+EMBLEMAS_DA_CLASSE = ("Icon_emblem_Artist.dds", "Icon_emblem_Bard.dds")
+SKINS_DA_CLASSE = (
+    '<Skin name="v4_class_artist" src_image="0,0,64,64" texture="textures/ui/emblem/icon_emblem_artist" />',
+    '<Skin name="v4_class_bard" src_image="0,0,64,64" texture="textures/ui/emblem/icon_emblem_bard" />',
+)
+#: Preset de icone por id de classe (state = id): nos vagos o Classic deixou variantes de outras
+#: classes (17 = battleMaster2, 20 = lumines2); passam a ser os Skins do Bard.
+PRESET_DE_ICONE = "v4_class_icon"
+ESTADOS_DO_ICONE = {"17": "v4_class_artist", "20": "v4_class_bard"}
+#: Onde esta o `version4.xml` (os Skins da interface): o geral e as copias de cada lingua. O do
+#: BRA esta no `Data.pak`, ZIP comum com XML em UTF-16.
+PAKS_DE_SKINS = (
+    (r"data\ui\preload\preload.pak", "version4.xml"),
+    (r"l10n\ENG\Data\Data.pak", "ui/preload/version4.xml"),
+    (r"l10n\DEU\Data\Data.pak", "ui/preload/version4.xml"),
+    (r"l10n\FRA\data\data.pak", "ui/preload/version4.xml"),
+    (r"l10n\BRA\Data\Data.pak", "ui/preload/version4.xml"),
+)
+
+
+def _regrava_zip(caminho, origem, muda):
+    """Regrava um pak ZIP comum trocando entradas: `muda = {nome em minusculas: f(bytes) -> bytes}`."""
+    import zipfile
+    tmp = caminho + ".tmp_harpa58"
+    feitas = set()
+    with zipfile.ZipFile(origem) as zi, zipfile.ZipFile(tmp, "w") as zo:
+        for info in zi.infolist():
+            dados = zi.read(info)
+            f = muda.get(info.filename.lower())
+            if f:
+                dados = f(dados)
+                feitas.add(info.filename.lower())
+            zo.writestr(info, dados, compress_type=info.compress_type)
+    if feitas != set(muda):
+        os.remove(tmp)
+        raise ValueError(f"{caminho}: nao achei {sorted(set(muda) - feitas)}")
+    os.replace(tmp, caminho)
+    with zipfile.ZipFile(caminho) as z:
+        if z.testzip() is not None:
+            raise ValueError(f"{caminho}: ZIP gravado com erro")
+
+
+def aplica_icone_classe():
+    import xml.etree.ElementTree as ET
+    import aion_bxml
+    caminho = os.path.join(CLIENTE, PAK_EMBLEMAS)
+    origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
+    _d, idx = aion_pak.abre(origem)
+    novos = do_58(os.path.dirname(PAK_EMBLEMAS), EMBLEMAS_DA_CLASSE)
+    if len(novos) != len(EMBLEMAS_DA_CLASSE):
+        raise ValueError(f"faltou no 5.8: {sorted(set(EMBLEMAS_DA_CLASSE) - set(novos))}")
+    _backup(caminho)
+    if origem != caminho:
+        shutil.copy2(origem, caminho)
+    regrava_pak(caminho, acrescenta=novos)
+    _confere_pak(caminho, len(idx), {n: "novo" for n in novos})
+    print(f"OK  {PAK_EMBLEMAS}: +{len(novos)} ({', '.join(novos)})")
+
+    aplica_interface()
+
+
+def _strings_por_arquivo(lingua):
+    por_arquivo = {}
+    for arquivo, id_string, nome, textos in STRINGS:
+        por_arquivo.setdefault(arquivo, []).append((id_string, nome, textos[lingua]))
+    return por_arquivo
+
+
+def _alteracoes_de_interface():
+    """`{pak: {arquivo: [(tipo, dados)]}}` com as strings e os Skins do Bard, pak por pak.
+
+    O `Data.pak` de ENG/DEU/FRA recebe os dois: cada pak e regravado uma vez so, a partir do
+    original, com tudo o que vai nele (dois passos separados apagariam um ao outro).
+    """
+    alteracoes = {}
+    for lingua, rel in PAKS_DE_STRINGS.items():
+        for arquivo, novas in _strings_por_arquivo(lingua).items():
+            alteracoes.setdefault(rel, {}).setdefault(arquivo, []).append(("strings", novas))
+    for rel, arquivo in PAKS_DE_SKINS:
+        alteracoes.setdefault(rel, {}).setdefault(arquivo.lower(), []).append(("skins", SKINS_DA_CLASSE))
+    return alteracoes
+
+
+def _preset_de_icone(xml):
+    """Inicio e fim do `<Preset ... name="v4_class_icon">` num XML de texto, qualquer ordem de atributos."""
+    m = re.search(r'<Preset [^>]*\bname="%s"[^>]*>' % PRESET_DE_ICONE, xml)
+    if not m:
+        raise ValueError(f"sem o Preset {PRESET_DE_ICONE}")
+    return m.start(), xml.index("</Preset>", m.end())
+
+
+def _confere_interface(rel, arquivo, lido, pedidos):
+    for tipo, itens in pedidos:
+        if tipo == "strings":
+            for id_string, nome, texto in itens:
+                bloco = re.search(r"<string>\s*<id>%d</id>.*?</string>" % id_string, lido, re.S)
+                assert bloco and f"<body>{texto}</body>" in bloco.group(0), (rel, id_string)
+                assert lido.count(f"<id>{id_string}</id>") == 1
+                print(f"OK  {rel}: {nome} = {id_string} '{texto}'")
+        else:
+            for s in itens:
+                n = re.search(r'name="([^"]+)"', s).group(1)
+                assert lido.count(f'<Skin name="{n}"') == 1, (rel, n)
+            a, b = _preset_de_icone(lido)
+            refs = {re.search(r'\bstate="(\d+)"', r).group(1): re.search(r'\bname="([^"]*)"', r).group(1)
+                    for r in re.findall(r"<SkinRef ([^>]*)>", lido[a:b])}
+            for estado, nome in ESTADOS_DO_ICONE.items():
+                assert refs.get(estado) == nome, (rel, estado, refs.get(estado))
+            print(f"OK  {rel}: {arquivo} com os Skins de classe e o {PRESET_DE_ICONE} 17/20")
+
+
+def aplica_interface():
+    """Strings (nomes do tipo de arma, das classes e do item) e Skins do icone de classe."""
     import zipfile
     import xml.etree.ElementTree as ET
     import aion_bxml
-    for lingua, rel in PAKS_DE_STRINGS.items():
+    for rel, arquivos in _alteracoes_de_interface().items():
         caminho = os.path.join(CLIENTE, rel)
         # Sempre a partir do original: reaplicar nao duplica.
         origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
-        por_arquivo = {}
-        for arquivo, id_string, nome, textos in STRINGS:
-            por_arquivo.setdefault(arquivo, []).append((id_string, nome, textos[lingua]))
-        lidos = {}
-        if lingua == "BRA":
-            with zipfile.ZipFile(origem) as z:
-                entradas = [(i, z.read(i)) for i in z.infolist()]
-            _backup(caminho)
-            tmp = caminho + ".tmp_harpa58"
-            with zipfile.ZipFile(tmp, "w") as z:
-                for info, dados in entradas:
-                    novas = por_arquivo.get(info.filename.lower())
-                    if novas:
-                        xml = dados.decode("utf-16")
-                        for id_string, _n, _t in novas:
+        if rel.startswith("l10n\\BRA"):
+            def muda(dados, pedidos=None):
+                xml = dados.decode("utf-16")
+                for tipo, itens in pedidos:
+                    if tipo == "strings":
+                        for id_string, _n, _t in itens:
                             if f"<id>{id_string}</id>" in xml:
                                 raise ValueError(f"{rel}: o id {id_string} ja existe")
                         fim = xml.rindex("</strings>")
-                        xml = xml[:fim] + "".join(_string_xml(*n) for n in novas) + xml[fim:]
-                        dados = xml.encode("utf-16")
-                    z.writestr(info, dados, compress_type=info.compress_type)
-            os.replace(tmp, caminho)
-            with zipfile.ZipFile(caminho) as z:
-                assert z.testzip() is None and len(z.infolist()) == len(entradas)
-                for arquivo in por_arquivo:
-                    lidos[arquivo] = z.read(arquivo).decode("utf-16")
-        else:
-            d, idx = aion_pak.abre(origem)
-            troca = {}
-            for arquivo, novas in por_arquivo.items():
-                entrada = next(e for e in idx if e.nome.lower() == arquivo)
-                bxml = aion_pak.le(d, entrada)
-                texto_xml = aion_bxml.decodifica(bxml)
-                for id_string, _n, _t in novas:
-                    if f"<id>{id_string}</id>" in texto_xml:
-                        raise ValueError(f"{rel}: o id {id_string} ja existe")
-                troca[entrada.nome], _ = acrescenta_filhos(
-                    bxml, [ET.fromstring(_string_xml(*n)) for n in novas])
+                        xml = xml[:fim] + "".join(_string_xml(*n) for n in itens) + xml[fim:]
+                    else:
+                        fim = xml.rindex("</Preload>")
+                        xml = xml[:fim] + "".join(f"  {s}\n" for s in itens) + xml[fim:]
+                        a, b = _preset_de_icone(xml)
+                        bloco = xml[a:b]
+                        for estado, nome in ESTADOS_DO_ICONE.items():
+                            # A ordem dos atributos muda de um XML para outro.
+                            bloco, n = re.subn(
+                                r'<SkinRef ([^>]*\bstate="%s"[^>]*)>' % estado,
+                                lambda m, nome=nome: "<SkinRef " + re.sub(
+                                    r'\bname="[^"]*"', f'name="{nome}"', m.group(1)) + ">", bloco)
+                            if n != 1:
+                                raise ValueError(f"{rel}: {PRESET_DE_ICONE} sem o estado {estado}")
+                        xml = xml[:a] + bloco + xml[b:]
+                return xml.encode("utf-16")
             _backup(caminho)
-            if origem != caminho:
-                shutil.copy2(origem, caminho)
-            regrava_pak(caminho, troca=troca)
-            _confere_pak(caminho, len(idx), {n: "troca" for n in troca})
-            d2, idx2 = aion_pak.abre(caminho)
-            for arquivo in por_arquivo:
-                e2 = next(e for e in idx2 if e.nome.lower() == arquivo)
-                lidos[arquivo] = aion_bxml.decodifica(aion_pak.le(d2, e2))
-        for arquivo, novas in por_arquivo.items():
-            for id_string, nome, texto in novas:
-                lido = lidos[arquivo]
-                bloco = re.search(r"<string>\s*<id>%d</id>.*?</string>" % id_string, lido, re.S)
-                assert bloco and f"<body>{texto}</body>" in bloco.group(0)
-                assert lido.count(f"<id>{id_string}</id>") == 1
-                print(f"OK  {rel}: {nome} = {id_string} '{texto}'")
+            _regrava_zip(caminho, origem, {a: (lambda d, p=p: muda(d, p)) for a, p in arquivos.items()})
+            with zipfile.ZipFile(caminho) as z:
+                for arquivo, pedidos in arquivos.items():
+                    _confere_interface(rel, arquivo, z.read(arquivo).decode("utf-16"), pedidos)
+            continue
+        d, idx = aion_pak.abre(origem)
+        troca = {}
+        for arquivo, pedidos in arquivos.items():
+            entrada = next(e for e in idx if e.nome.lower() == arquivo)
+            bxml = aion_pak.le(d, entrada)
+            texto_xml = aion_bxml.decodifica(bxml)
+            novos, presets = [], False
+            for tipo, itens in pedidos:
+                if tipo == "strings":
+                    for id_string, _n, _t in itens:
+                        if f"<id>{id_string}</id>" in texto_xml:
+                            raise ValueError(f"{rel}: o id {id_string} ja existe")
+                    novos += [ET.fromstring(_string_xml(*n)) for n in itens]
+                else:
+                    novos += [ET.fromstring(s) for s in itens]
+                    presets = True
+            troca[entrada.nome], _ = acrescenta_filhos(bxml, novos)
+            if presets:
+                troca[entrada.nome] = troca_skinrefs(troca[entrada.nome], PRESET_DE_ICONE, ESTADOS_DO_ICONE)
+        _backup(caminho)
+        if origem != caminho:
+            shutil.copy2(origem, caminho)
+        regrava_pak(caminho, troca=troca)
+        _confere_pak(caminho, len(idx), {n: "troca" for n in troca})
+        d2, idx2 = aion_pak.abre(caminho)
+        por_nome = {e.nome.lower(): e for e in idx2}
+        for arquivo, pedidos in arquivos.items():
+            _confere_interface(rel, arquivo, aion_bxml.decodifica(aion_pak.le(d2, por_nome[arquivo])), pedidos)
+
+
+def aplica_strings():
+    aplica_interface()
+
+
+#: Voz da selecao (marcador `login2`): vlogin2_<classe>_<sexo><raca><voz>.ogg, com a classe que o
+#: `harp_fix.h` responde ("bard", "artist"). O 5.0 tem essas vozes no pak geral e no de cada
+#: lingua; as do Live 5.8 sao em ingles, e vao para todos.
+PAKS_DE_VOZ = (
+    r"Sounds\voice\login\login.pak",
+    r"l10n\ENG\sounds\voice\login\login.pak",
+    r"l10n\DEU\sounds\voice\login\login.pak",
+    r"l10n\FRA\sounds\voice\login\login.pak",
+)
+PAK_DE_VOZ_58 = r"Sounds\voice\login\login.pak"
+
+
+def aplica_vozes():
+    d58, idx58 = aion_pak.abre(os.path.join(LIVE_CLIENTE, PAK_DE_VOZ_58))
+    vozes = {e.nome: aion_pak.le(d58, e) for e in idx58
+             if re.match(r"(?i)vlogin\d_(bard|artist)_", e.nome)}
+    if len(vozes) != 32:
+        raise ValueError(f"esperava 32 vozes do Bard/Artist no 5.8, vieram {len(vozes)}")
+    for rel in PAKS_DE_VOZ:
+        caminho = os.path.join(CLIENTE, rel)
+        origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
+        _d, idx = aion_pak.abre(origem)
+        ja = {e.nome.lower() for e in idx}
+        novos = {n: b for n, b in vozes.items() if n.lower() not in ja}
+        _backup(caminho)
+        if origem != caminho:
+            shutil.copy2(origem, caminho)
+        regrava_pak(caminho, acrescenta=novos)
+        _confere_pak(caminho, len(idx), {n: "novo" for n in novos})
+        print(f"OK  {rel}: +{len(novos)} vozes (vlogin2_bard_*, vlogin2_artist_*)")
 
 
 def _paks_com_backup():
@@ -1361,6 +1917,9 @@ def _paks_com_backup():
               os.path.dirname(os.path.join(CLIENTE, PAK_MARCADORES))]
     raizes += [os.path.dirname(os.path.join(CLIENTE, rel)) for rel in PAKS_DE_ITENS]
     raizes += [os.path.dirname(os.path.join(CLIENTE, rel)) for rel in PAKS_DE_STRINGS.values()]
+    raizes += [os.path.dirname(os.path.join(CLIENTE, rel)) for rel, _a in PAKS_DE_SKINS]
+    raizes.append(os.path.dirname(os.path.join(CLIENTE, PAK_EMBLEMAS)))
+    raizes += [os.path.dirname(os.path.join(CLIENTE, rel)) for rel in PAKS_DE_VOZ]
     # `data\items` contem `special\` e `special2\`: sem repetir.
     vistos = set()
     for raiz in raizes:
@@ -1402,6 +1961,12 @@ if __name__ == "__main__":
         aplica_marcadores()
     elif "--strings" in sys.argv:
         aplica_strings()
+    elif "--icone-classe" in sys.argv:
+        aplica_icone_classe()
+    elif "--vozes" in sys.argv:
+        aplica_vozes()
+    elif "--classe-animacoes" in sys.argv:
+        aplica_animacoes_de_classe()
     elif "--racas" in sys.argv:
         aplica_racas()
     else:
