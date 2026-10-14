@@ -9,7 +9,7 @@ Detours (`src/AionVersionDll/harp_fix.h`).
 O comportamento de referência é sempre o do tipo 8 no `Game.dll` do Live 5.8, lido de um dump
 de memória daquele cliente.
 
-Estado: em teste no cliente de teste, só no **bin64**, com o Elyos masculino. Sem commit.
+Estado: em teste no cliente de teste, só no **bin64**. as quatro raças testadas em jogo (LF, DM e DF com `--racas`).
 
 ## Enum de tipo de arma no 5.0
 
@@ -153,9 +153,9 @@ no cliente de teste por `Ferramentas Python/teste_harpa_58.py` a partir de um cl
 |---|---|---|
 | Item com `<weapon_type>2h_harp</weapon_type>` | `client_items.xml` (4 paks) | hoje só o item de teste `100599901` |
 | Mesh, texturas, ícone e a varinha padrão | `objects\items`, `data\items` | `HA_C001`, `Ha_test_stick` |
-| Animações `*_harp_*` | `objects\pc\lm\animation` | 217 arquivos |
-| Lista de animações do modelo | `lm.cal` e `lm.cab` | o jogo usa o `.cab`, cifrado (ver `aion_cab.py`) |
-| Marcadores das animações | `data\AnimationMarkers\lm.xml` | instante de sacar/guardar, ponto de acerto, sons |
+| Animações `*_harp_*` | `objects\pc\lm\animation` e `objects\pc\lf\animation` | 217 do LM e 220 do LF; o DM usa as do LM e o DF as do LF, como no 5.8 |
+| Lista de animações do modelo | `<raça>.cal` e `<raça>.cab` das quatro raças | o jogo usa o `.cab`, cifrado (ver `aion_cab.py`) |
+| Marcadores das animações | `data\AnimationMarkers\<raça>.xml` | instante de sacar/guardar, ponto de acerto, sons |
 | Projétil e efeito de acerto | `Effects\Effects_Meshes.pak` | registro com tamanho diferente no 5.8 (ver `aion_fx.py`) |
 | Sons | `sounds\motion`, `sounds\effect\artist` | |
 | Nome do tipo (`STR_TOOLTIP_HARP`, id 1990001) | `client_strings_ui.xml` das 4 línguas | `--strings` |
@@ -168,7 +168,8 @@ no cliente de teste por `Ferramentas Python/teste_harpa_58.py` a partir de um cl
 - **Dedos.** O esqueleto do 5.8 tem cinco dedos de três falanges e o do 5.0 três de duas, com
   outra pose de referência. As animações de harpa precisam de conversão nas trilhas de dedo;
   há duas variantes em avaliação, nenhuma fixada.
-- **Outras raças e sexos.** Só o Elyos masculino tem animações, lista e marcadores.
+- **Outras raças e sexos.** LF, DM e DF instalados com `--racas` (dedos na variante só de posição,
+  a mesma do LM), testados em jogo.
 - **Servidor.** O item de teste ainda usa o grupo de orbe no emulador.
 - **Mão do ataque básico.** O cliente escolhe `cattack_harp_001` ou `_002` pelo campo de mão do
   `S_ATTACK`; o emulador sorteia 1/2 pelo id do item de teste (`CreatureController`), até existir

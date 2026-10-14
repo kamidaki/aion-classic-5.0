@@ -24,6 +24,7 @@ Uso:
     python teste_harpa_58.py --componente lista|marcadores|animacoes|sons|itens|dll original|harpa
                                                desliga ou religa uma peca, para isolar um defeito
     python teste_harpa_58.py --marcadores copia do 5.8 os marcadores e sons das animacoes de harpa
+    python teste_harpa_58.py --racas      harpa no LF, DM e DF (animacoes do LF, listas e marcadores)
     python teste_harpa_58.py --strings    nome do tipo de arma (STR_TOOLTIP_HARP) nas linguas do cliente
     python teste_harpa_58.py --desfaz   restaura os paks e tira o template do servidor
 """
@@ -537,10 +538,11 @@ def aplica():
             print(f"OK  {rel}: {id_novo} {r}")
 
 
-def _paks_de_animacao():
-    pasta = os.path.join(CLIENTE, PASTA_ANIMACAO)
+def _paks_de_animacao(raca="lm"):
+    rel = os.path.join("objects", "pc", raca, "animation")
+    pasta = os.path.join(CLIENTE, rel)
     return sorted(
-        os.path.join(PASTA_ANIMACAO, a) for a in os.listdir(pasta) if a.lower().endswith(".pak")
+        os.path.join(rel, a) for a in os.listdir(pasta) if a.lower().endswith(".pak")
     )
 
 
@@ -759,12 +761,12 @@ def so_posicao_dos_dedos(caf, posicoes):
     return bytes(d), mexidas
 
 
-def posicoes_de_referencia_50():
-    """Posicao local (em relacao ao osso pai) dos 12 ossos de dedo na bind pose do `lm.cgf` do 5.0."""
-    caminho = os.path.join(CLIENTE, PAK_CAL)
+def posicoes_de_referencia_50(raca="lm"):
+    """Posicao local (em relacao ao osso pai) dos 12 ossos de dedo na bind pose do `<raca>.cgf` do 5.0."""
+    caminho = os.path.join(CLIENTE, "objects", "pc", raca, "mesh", "Mesh_Meshes_000.pak")
     origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
     d, idx = aion_pak.abre(origem)
-    cgf = aion_pak.le(d, next(e for e in idx if e.nome.lower() == "lm.cgf"))
+    cgf = aion_pak.le(d, next(e for e in idx if e.nome.lower() == f"{raca}.cgf"))
     _tipo, _versao, tabela = struct.unpack_from("<III", cgf, 8)
     chunks = sorted(
         (struct.unpack_from("<IIII", cgf, tabela + 4 + i * 16)
@@ -795,7 +797,7 @@ def posicoes_de_referencia_50():
         delta = [bind[i][9 + k] - pai[9 + k] for k in range(3)]
         posicoes[nome] = tuple(sum(delta[k] * pai[3 * eixo + k] for k in range(3)) for eixo in range(3))
     if len(posicoes) != len(OSSOS_DE_DEDO):
-        raise ValueError("nem todos os ossos de dedo estao no lm.cgf do 5.0")
+        raise ValueError(f"nem todos os ossos de dedo estao no {raca}.cgf do 5.0")
     return posicoes
 
 
@@ -908,7 +910,7 @@ def alterna_componente(nome, estado):
         print(f"OK  {rel}: {estado}")
 
 
-def entradas_oficiais_de_harpa(cafs):
+def entradas_oficiais_de_harpa(cafs, raca="lm"):
     """As entradas de harpa do `lm.cal` do Live 5.8, apontadas para arquivos que o 5.0 tem.
 
     Substitui a derivacao a partir das entradas de orbe ([`linhas_de_harpa`]), que errava em 69
@@ -916,38 +918,44 @@ def entradas_oficiais_de_harpa(cafs):
     `.caf` de harpa trazido do 5.8 quando e um deles; senao, o arquivo de mesmo nome que o
     proprio 5.0 ja tem (as animacoes genericas, que nao dependem da arma). Devolve
     `[(nome, caminho no formato do .cal, prob ou -1)]`.
+
+    `raca` e a lista lida (`lm`, `lf`, `dm`, `df`). A pasta de cada alvo e a que o 5.8 aponta: la
+    o DM usa as animacoes de harpa do LM e o DF as do LF. `cafs` sao os de harpa dessa pasta.
     """
     import glob
     cal = None
-    for p in sorted(glob.glob(os.path.join(LIVE_CLIENTE, r"Objects\PC2\lm\mesh", "*.pak"))):
+    for p in sorted(glob.glob(os.path.join(LIVE_CLIENTE, "Objects", "PC2", raca, "mesh", "*.pak"))):
         d, idx = aion_pak.abre(p)
-        e = next((x for x in idx if x.nome.lower() == "lm.cal"), None)
+        e = next((x for x in idx if x.nome.lower() == f"{raca}.cal"), None)
         if e:
             cal = aion_pak.le(d, e).decode("latin-1")
             break
     if cal is None:
-        raise ValueError("nao achei o lm.cal do 5.8")
+        raise ValueError(f"nao achei o {raca}.cal do 5.8")
     harpa = {c.lower(): c for c in cafs}
-    do50 = {}
-    for rel in _paks_de_animacao():
-        p = os.path.join(CLIENTE, rel)
-        p = p + SUFIXO_BACKUP if os.path.exists(p + SUFIXO_BACKUP) else p
-        for e in aion_pak.abre(p)[1]:
-            do50.setdefault(e.nome.lower(), e.nome)
+    do50 = {}  # pasta -> {arquivo em minusculas: nome} dos paks originais do 5.0
     saida, sem_arquivo = [], []
     for linha in cal.splitlines():
         m = re.match(r"\s*([^\s=/][^\s=]*)\s*=\s*(\S+\.caf)(.*)", linha, re.I)
         if not m or "harp" not in m.group(1).lower():
             continue
-        arquivo = m.group(2).replace("/", "\\").rsplit("\\", 1)[-1]
-        nome_real = harpa.get(arquivo.lower()) or do50.get(arquivo.lower())
+        partes = m.group(2).replace("/", "\\").split("\\")
+        arquivo, pasta = partes[-1], partes[-3].upper()
+        if pasta not in do50:
+            do50[pasta] = {}
+            for rel in _paks_de_animacao(pasta.lower()):
+                p = os.path.join(CLIENTE, rel)
+                p = p + SUFIXO_BACKUP if os.path.exists(p + SUFIXO_BACKUP) else p
+                for e in aion_pak.abre(p)[1]:
+                    do50[pasta].setdefault(e.nome.lower(), e.nome)
+        nome_real = harpa.get(arquivo.lower()) or do50[pasta].get(arquivo.lower())
         if not nome_real:
             sem_arquivo.append(m.group(1))
             continue
         prob = re.search(r"prob\s*=\s*([\d.]+)", m.group(3))
         # O .cab guarda a prob em float de 32 bits.
         prob = struct.unpack("<f", struct.pack("<f", float(prob.group(1))))[0] if prob else None
-        saida.append((m.group(1), "PC\\LM\\Animation\\" + nome_real, prob if prob is not None else -1.0))
+        saida.append((m.group(1), f"PC\\{pasta}\\Animation\\" + nome_real, prob if prob is not None else -1.0))
     print(f"    lista oficial do 5.8: {len(saida)} entradas de harpa; sem arquivo no 5.0: {len(sem_arquivo)}"
           + (f" ({', '.join(sem_arquivo[:8])}{'...' if len(sem_arquivo) > 8 else ''})" if sem_arquivo else ""))
     return saida
@@ -989,12 +997,28 @@ def aplica_animacao():
     _confere_pak(caminho, len(idx), {n: "novo" for n in novos})
     print(f"OK  {PAK_ANIMACAO}: +{len(novos)} animacoes de harpa")
 
-    oficiais = entradas_oficiais_de_harpa(cafs)
+    _grava_listas("lm", entradas_oficiais_de_harpa(cafs))
 
-    caminho = os.path.join(CLIENTE, PAK_CAL)
-    origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
-    d, idx = aion_pak.abre(origem)
-    entrada = next(e for e in idx if e.nome.lower() == "lm.cal")
+
+def _pak_da_lista(raca, extensao):
+    """O pak de malhas da raca que guarda `<raca>.cal` ou `<raca>.cab` (o original, se ha backup)."""
+    for rel in sorted(os.listdir(os.path.join(CLIENTE, "objects", "pc", raca, "mesh"))):
+        if not rel.lower().endswith(".pak"):
+            continue
+        rel = os.path.join("objects", "pc", raca, "mesh", rel)
+        caminho = os.path.join(CLIENTE, rel)
+        origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
+        d, idx = aion_pak.abre(origem)
+        entrada = next((e for e in idx if e.nome.lower() == f"{raca}.{extensao}"), None)
+        if entrada:
+            return rel, caminho, origem, d, idx, entrada
+    raise ValueError(f"nao achei o {raca}.{extensao} no 5.0")
+
+
+def _grava_listas(raca, oficiais):
+    """Declara as entradas de harpa no `<raca>.cal` e no `<raca>.cab` (a partir dos originais)."""
+    import aion_cab
+    rel, caminho, origem, d, idx, entrada = _pak_da_lista(raca, "cal")
     cal = aion_pak.le(d, entrada).decode("latin-1")
     existentes = {m.group(1).lower() for m in re.finditer(r"(?m)^\s*([^\s=/][^\s=]*)\s*=", cal)}
     oficiais = [o for o in oficiais if o[0].lower() not in existentes]
@@ -1007,12 +1031,9 @@ def aplica_animacao():
         shutil.copy2(origem, caminho)
     regrava_pak(caminho, troca={entrada.nome: cal.encode("latin-1")})
     _confere_pak(caminho, len(idx), {entrada.nome: "troca"})
-    print(f"OK  {PAK_CAL}: lm.cal com +{len(novas)} entradas de harpa")
+    print(f"OK  {rel}: {raca}.cal com +{len(novas)} entradas de harpa")
 
-    caminho = os.path.join(CLIENTE, PAK_CAB)
-    origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
-    d, idx = aion_pak.abre(origem)
-    entrada = next(e for e in idx if e.nome.lower() == "lm.cab")
+    rel, caminho, origem, d, idx, entrada = _pak_da_lista(raca, "cab")
     registros = aion_cab.le(aion_pak.le(d, entrada))
     ja = {r[0].lower() for r in registros}
     novos = [(n, "Objects\\" + alvo, 0, prob) for n, alvo, prob in oficiais if n.lower() not in ja]
@@ -1026,7 +1047,61 @@ def aplica_animacao():
         shutil.copy2(origem, caminho)
     regrava_pak(caminho, troca={entrada.nome: cab})
     _confere_pak(caminho, len(idx), {entrada.nome: "troca"})
-    print(f"OK  {PAK_CAB}: lm.cab com +{len(novos)} registros de harpa ({len(registros)} no total)")
+    print(f"OK  {rel}: {raca}.cab com +{len(novos)} registros de harpa ({len(registros)} no total)")
+
+
+#: As outras racas. No 5.8 o DM usa as animacoes de harpa do LM e o DF as do LF (as listas
+#: `dm.cal`/`df.cal` apontam para `PC2\LM` e `PC2\LF`); so o LF tem `.caf` proprios.
+OUTRAS_RACAS = ("lf", "dm", "df")
+PASTA_DAS_ANIMACOES = {"lm": "lm", "lf": "lf", "dm": "lm", "df": "lf"}
+#: Pak que recebe os `.caf` de harpa do LF: a ultima do LF, como a 020 no LM.
+PAK_ANIMACAO_LF = r"objects\pc\lf\animation\Animation_Animations_019.pak"
+
+
+def cafs_de_harpa(pasta):
+    """Os `.caf` de harpa do 5.8 de uma pasta de animacoes (`lm` ou `lf`)."""
+    return sorted(a for a in os.listdir(LIVE_ANIMACAO)
+                  if a.lower().startswith(pasta + "_") and a.lower().endswith(".caf"))
+
+
+def aplica_animacao_lf():
+    """Poe os `.caf` de harpa do LF, so com a posicao dos dedos trocada (a variante do LM)."""
+    posicoes = posicoes_de_referencia_50("lf")
+    novos = {}
+    for a in cafs_de_harpa("lf"):
+        with open(os.path.join(LIVE_ANIMACAO, a), "rb") as f:
+            original = f.read()
+        novos[a], _mexidas = so_posicao_dos_dedos(original, posicoes)
+        valida_so_posicao(original, novos[a], posicoes)
+    caminho = os.path.join(CLIENTE, PAK_ANIMACAO_LF)
+    origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
+    d0, idx0 = aion_pak.abre(origem)
+    ja = {e.nome.lower() for e in idx0}
+    repetidos = sorted(n for n in novos if n.lower() in ja)
+    if repetidos:
+        raise ValueError(f"{PAK_ANIMACAO_LF} ja tem {repetidos[:5]}")
+    _backup(caminho)
+    if origem != caminho:
+        shutil.copy2(origem, caminho)
+    regrava_pak(caminho, acrescenta=novos)
+    # Releitura: os novos conferem byte a byte e as entradas antigas nao mudaram.
+    d1, idx1 = aion_pak.abre(caminho)
+    por_nome = {e.nome: e for e in idx1}
+    for a, dados in novos.items():
+        if aion_pak.le(d1, por_nome[a]) != dados:
+            raise ValueError(f"{a}: o que saiu do pak nao e o que foi gravado")
+    for e in idx0:
+        if aion_pak.le(d0, e) != aion_pak.le(d1, por_nome[e.nome]):
+            raise ValueError(f"{e.nome}: entrada antiga do pak mudou")
+    print(f"OK  {PAK_ANIMACAO_LF}: +{len(novos)} animacoes de harpa (so a posicao dos dedos trocada)")
+
+
+def aplica_racas():
+    """Harpa no LF, DM e DF: animacoes do LF, listas das tres racas e marcadores das quatro."""
+    aplica_animacao_lf()
+    for raca in OUTRAS_RACAS:
+        _grava_listas(raca, entradas_oficiais_de_harpa(cafs_de_harpa(PASTA_DAS_ANIMACOES[raca]), raca))
+    aplica_marcadores(("lm",) + OUTRAS_RACAS)
 
 
 def aplica_efeito():
@@ -1116,39 +1191,46 @@ def aplica_efeito():
         print(f"    outros efeitos citados (nao conferidos): {sem_barra}")
 
 
-def aplica_marcadores():
-    """Copia do cliente 5.8 os marcadores das animacoes de harpa do LM, e os sons que eles tocam.
+def aplica_marcadores(racas=("lm",)):
+    """Copia do cliente 5.8 os marcadores das animacoes de harpa, e os sons que eles tocam.
 
-    O `AnimationMarkers\\lm.xml` diz, por animacao, em que instante cada coisa acontece: quando a
-    arma passa do osso das costas para o da mao (`equip_weapon`), o ponto de acerto (`hitpoint`),
-    sons, efeitos e rastros. Sem a entrada, a animacao toca mas a arma so troca de osso no fim.
+    O `AnimationMarkers\\<raca>.xml` diz, por animacao, em que instante cada coisa acontece:
+    quando a arma passa do osso das costas para o da mao (`equip_weapon`), o ponto de acerto
+    (`hitpoint`), sons, efeitos e rastros. Sem a entrada, a animacao toca mas a arma so troca de
+    osso no fim. As quatro racas estao no mesmo pak, e o pak e sempre regravado a partir do
+    original: por isso todas as racas pedidas vao numa gravacao so.
     """
     import xml.etree.ElementTree as ET
     import aion_bxml
     sys.setrecursionlimit(10000)
 
     d58, idx58 = aion_pak.abre(os.path.join(LIVE_CLIENTE, PAK_MARCADORES))
-    xml58 = aion_bxml.decodifica(aion_pak.le(d58, next(e for e in idx58 if e.nome.lower() == "lm.xml")))
-    raiz58 = ET.fromstring(xml58.split("?>", 1)[1])
-
     caminho = os.path.join(CLIENTE, PAK_MARCADORES)
     origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
     d, idx = aion_pak.abre(origem)
-    entrada = next(e for e in idx if e.nome.lower() == "lm.xml")
-    bxml = aion_pak.le(d, entrada)
-    existentes = set(re.findall(r'<animation [^>]*name="([^"]*)"', aion_bxml.decodifica(bxml).lower()))
-    novos = [a for a in raiz58 if "harp" in a.get("name", "").lower()
-             and a.get("name").lower() not in existentes]
-    novo, quantos = acrescenta_filhos(bxml, novos)
-    conferido = aion_bxml.decodifica(novo)
-    assert conferido.count("<animation ") == quantos + len(novos)
-    assert 'name="cdraw_harp_001"' in conferido
+    troca, todos_novos = {}, []
+    for raca in racas:
+        xml58 = aion_bxml.decodifica(aion_pak.le(d58, next(e for e in idx58 if e.nome.lower() == f"{raca}.xml")))
+        raiz58 = ET.fromstring(xml58.split("?>", 1)[1])
+        entrada = next(e for e in idx if e.nome.lower() == f"{raca}.xml")
+        bxml = aion_pak.le(d, entrada)
+        existentes = set(re.findall(r'<animation [^>]*name="([^"]*)"', aion_bxml.decodifica(bxml).lower()))
+        novos = [a for a in raiz58 if "harp" in a.get("name", "").lower()
+                 and a.get("name").lower() not in existentes]
+        novo, quantos = acrescenta_filhos(bxml, novos)
+        conferido = aion_bxml.decodifica(novo)
+        assert conferido.count("<animation ") == quantos + len(novos)
+        assert 'name="cdraw_harp_001"' in conferido.lower()
+        troca[entrada.nome] = novo
+        todos_novos += novos
+        print(f"    {raca}.xml: +{len(novos)} animacoes de harpa ({quantos + len(novos)} no total)")
     _backup(caminho)
     if origem != caminho:
         shutil.copy2(origem, caminho)
-    regrava_pak(caminho, troca={entrada.nome: novo})
-    _confere_pak(caminho, len(idx), {entrada.nome: "troca"})
-    print(f"OK  {PAK_MARCADORES}: lm.xml com +{len(novos)} animacoes de harpa ({quantos + len(novos)} no total)")
+    regrava_pak(caminho, troca=troca)
+    _confere_pak(caminho, len(idx), {n: "troca" for n in troca})
+    print(f"OK  {PAK_MARCADORES}: {', '.join(r + '.xml' for r in racas)}")
+    novos = todos_novos
 
     # Sons de movimento que esses marcadores tocam e o 5.0 nao tem.
     pedidos = set()
@@ -1313,5 +1395,7 @@ if __name__ == "__main__":
         aplica_marcadores()
     elif "--strings" in sys.argv:
         aplica_strings()
+    elif "--racas" in sys.argv:
+        aplica_racas()
     else:
         aplica()
