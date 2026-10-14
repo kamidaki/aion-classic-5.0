@@ -185,4 +185,4 @@ verificação até aqui foi em jogo, um hook por vez:
 | 3 | harpa no braço esquerdo sacada e nas costas guardada |
 | 4 e 5 | varinha na mão direita, some ao guardar, equipar e desequipar corretos |
 | 6 | nota musical sai no ataque básico, com som e efeito de acerto, sem crash |
-| 7, 8 e encantamento | aguardando teste |
+| 7, 8 e encantamento | tooltip mostra "Harpa", dano com animação de harpa, bônus de encantamento igual ao do orbe |
