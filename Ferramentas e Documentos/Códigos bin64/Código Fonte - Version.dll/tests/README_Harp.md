@@ -27,7 +27,7 @@ Estado: em teste no cliente de teste, só no **bin64**, com o Elyos masculino. S
 
 O tipo fica num byte do registro do item em memória (`item + 0x1C7`).
 
-## Os seis hooks
+## Os hooks
 
 Os endereços são RVA neste build do `Game.dll` (MD5 `c6b7cfe04ccfdead16695d988e48058d`). A
 instalação não usa endereço fixo: procura a assinatura de cada função e só instala se cada uma
@@ -41,8 +41,11 @@ aparecer uma única vez.
 | 4 | Prende a mesh de uma mão no personagem | `0x38D5D0` | cria a segunda mesh, a varinha |
 | 5 | Monta o caminho da mesh da arma | `0x285320` | segunda mesh = `<mesh>_stick.cgf` |
 | 6 | Prepara o ataque básico à distância | `0x912A70` | efeito de acerto `sys_hit.hit.harp` |
+| 7 | Nome do tipo de arma no tooltip | `0x582FB0` | string `STR_TOOLTIP_HARP` (id 1990001) |
+| 8 | Nome da animação de dano | `0x9456F0` | `csdamage_harp_001` |
+| — | Tabelas de bônus de encantamento (dados) | `0x1527A90`, `0x1527B30` | índice 19 = o do orbe |
 
-Para qualquer outro tipo, os seis chamam a função original e devolvem o resultado dela sem
+Para qualquer outro tipo, os hooks chamam a função original e devolvem o resultado dela sem
 mexer.
 
 ### 1. Nome do tipo (`0x7DCD90`)
@@ -93,6 +96,54 @@ padrão do Live. A checagem de existência é a do próprio cliente (`0x426C10`)
 para orbe, livro, pistola e arco. O hook preenche `sys_hit.hit.harp` (em `tiro + 0x20`) quando a
 arma da mão é uma harpa e a função original deixou o campo vazio.
 
+### 7. Nome do tipo no tooltip (`0x582FB0`)
+
+`const wchar_t* f(int tipo)`: tabela de salto de 1 a 18, cada caso busca uma `STR_TOOLTIP_*` na
+tabela de strings; acima disso devolve nulo e o tooltip fica sem o tipo. O hook faz a mesma busca
+(as três chamadas do primeiro caso, em +0x31, +0x3E e +0x4B) com o id 1990001. O 5.8 chama essa
+string `STR_TOOLTIP_HARP` com o id 904448, que no 5.0 já é outra string; a faixa 1.900.000 a
+2.199.999 está livre em todas as línguas. O texto vem dos dados (`teste_harpa_58.py --strings`):
+"Harp" (o do Live), "Harpa", "Harfe", "Harpe".
+
+### 8. Animação de dano (`0x9456F0`)
+
+`f(personagem, ?, char saida[0x100])`. Com a arma sacada monta `c` + `sdamage` + sufixo + `_001`
+a partir de uma lista própria de sufixos, sem a harpa; o 19 caía em `csdamage_noweapon_001`. O
+hook escreve `csdamage_harp_001` quando a mão principal é harpa e a secundária vazia, com a
+mesma regra da original: só se o modelo tem a animação (chamadas em +0x2D5 e +0x2E5).
+
+### Bônus de encantamento no tooltip
+
+Duas tabelas estáticas `{por nível até +10, por nível acima}` por tipo de arma, com 20 posições:
+ataque em `0x1527A90` e magic boost em `0x1527B30`. A 19 fica zerada. O servidor encanta `HARP`
+igual a `ORB` (`enchant_templates.xml`: 4 de ataque e 20 de magic boost por nível), então a
+entrada do orbe (4/6 e 20/30) é copiada para a 19. A cópia é feita no primeiro uso (parser do
+`weapon_type` ou nome do tipo no tooltip): quando os hooks são instalados, os inicializadores do
+`Game.dll` podem ainda não ter rodado e as tabelas estão zeradas. As tabelas são achadas pelo código do tooltip
+que as carrega (`lea r12`/`lea r13`); o inicializador delas se repete em centenas de unidades
+de compilação e não serve de assinatura. O 5.8 não tem essas tabelas.
+
+## Os outros leitores do tipo de arma
+
+O byte `item + 0x1C7` é lido em 133 pontos de 52 funções, e o tipo guardado no personagem
+(`+0x384` mão principal, `+0x388` secundária) em mais alguns. Conferidos um a um, com o dump do
+5.8 (onde a harpa é o tipo 8) quando houve dúvida:
+
+| Onde | O que faz | Com o tipo 19 |
+|---|---|---|
+| `0x1E6B20`, `0x319EC0`, `0x5D93A0`, `0x6FA280`, `0x933690` | nome de animação pelo sufixo | hook 2 |
+| `0x1794E0`, `0x38AD50`, `0x38AE00` | guardam o tipo no personagem | sem mudança |
+| `0x1A3570`, `0x3A6270`, `0x4D1D20`, `0x782EA0`, `0x592C40`, `0x388040`, `0x38DCC0` | comparam o tipo de dois itens | sem mudança |
+| `0x585EF0`…`0x58CCF0` | tooltip de encantamento | tabelas acima |
+| `0x4083B0`, `0x5859E0` | texto do tipo (busca, tooltip) | hook 7 |
+| `0x912F80` | efeito de acerto corpo a corpo | nenhum, igual ao livro e ao 5.8 |
+| `0xA805D0`, `0xA804A0` | prévia do personagem | usa os hooks 3 e 5; a varinha não aparece |
+| `0x38B963`, `0x9FEA2B`, `0x287390`, `0x9FE850`, `0xA81EC0`, `0xA82260` | casos de lâmina em corrente (8), pistola (12), espada rúnica (14) | não se aplica |
+| `0x388350` | esconde o escudo com arma de duas mãos | o 5.8 inclui a harpa; sem efeito, o servidor não deixa escudo com ela |
+| `0x8E2730` | arco (13) | não se aplica |
+| `0x166420` | só testa se é arma | sem mudança |
+| `0xB2FF50` | requisito de arma da skill: vetor de 19 posições no template | o 19 lê o campo seguinte (`required_shield`): a harpa não libera skill de outra arma, mas `required_harp` precisa de hook (fase das skills) |
+
 ## O que os hooks não fazem sozinhos
 
 O `Game.dll` só aponta nomes; os arquivos precisam existir no cliente. Tudo abaixo é dado, posto
@@ -107,13 +158,13 @@ no cliente de teste por `Ferramentas Python/teste_harpa_58.py` a partir de um cl
 | Marcadores das animações | `data\AnimationMarkers\lm.xml` | instante de sacar/guardar, ponto de acerto, sons |
 | Projétil e efeito de acerto | `Effects\Effects_Meshes.pak` | registro com tamanho diferente no 5.8 (ver `aion_fx.py`) |
 | Sons | `sounds\motion`, `sounds\effect\artist` | |
+| Nome do tipo (`STR_TOOLTIP_HARP`, id 1990001) | `client_strings_ui.xml` das 4 línguas | `--strings` |
+| Nome do item de teste (`STR_TEST_HARP_58`, id 1990002) | `client_strings_item.xml` das 4 línguas | `--strings`; o `desc` do item aponta para ela |
 
 ## Pendências conhecidas
 
-- **Outros leitores do tipo de arma.** O campo `item + 0x1C7` é lido em cerca de 80 pontos do
-  `Game.dll`. Só os seis acima foram tratados. Faltam, entre outros: as janelas de prévia do
-  personagem (`0xA805D0`), a animação de dano (`0x9456F0`, com lista própria de sufixos) e o
-  requisito de arma das skills (`required_harp`).
+- **Requisito de arma das skills** (`required_harp`, `0xB2FF50`): fica para as skills do Bard.
+- **Varinha nas janelas de prévia:** a prévia não passa pelo hook 4.
 - **Dedos.** O esqueleto do 5.8 tem cinco dedos de três falanges e o do 5.0 três de duas, com
   outra pose de referência. As animações de harpa precisam de conversão nas trilhas de dedo;
   há duas variantes em avaliação, nenhuma fixada.
@@ -134,3 +185,4 @@ verificação até aqui foi em jogo, um hook por vez:
 | 3 | harpa no braço esquerdo sacada e nas costas guardada |
 | 4 e 5 | varinha na mão direita, some ao guardar, equipar e desequipar corretos |
 | 6 | nota musical sai no ataque básico, com som e efeito de acerto, sem crash |
+| 7, 8 e encantamento | aguardando teste |

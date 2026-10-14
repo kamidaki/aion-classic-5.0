@@ -24,7 +24,8 @@ Uso:
     python teste_harpa_58.py --componente lista|marcadores|animacoes|sons|itens|dll original|harpa
                                                desliga ou religa uma peca, para isolar um defeito
     python teste_harpa_58.py --marcadores copia do 5.8 os marcadores e sons das animacoes de harpa
-    python teste_harpa_58.py --desfaz    restaura os paks e tira o template do servidor
+    python teste_harpa_58.py --strings    nome do tipo de arma (STR_TOOLTIP_HARP) nas linguas do cliente
+    python teste_harpa_58.py --desfaz   restaura os paks e tira o template do servidor
 """
 import math
 import os
@@ -233,7 +234,8 @@ def acrescenta_item(bxml, id_base, id_novo, nome_novo, mesh):
     if base is None:
         raise ValueError(f"item-base {id_base} nao encontrado")
 
-    troca = {"id": str(id_novo), "name": nome_novo, "mesh": mesh, "weapon_type": TIPO_DE_ARMA,
+    troca = {"id": str(id_novo), "name": nome_novo, "desc": DESC_DO_ITEM, "mesh": mesh,
+             "weapon_type": TIPO_DE_ARMA,
              "icon_name": ICONE, **ATAQUE_CLIENTE}
     filhos = []
     for nome, texto, atributos, netos in base[3]:
@@ -1171,11 +1173,105 @@ def aplica_marcadores():
     print(f"OK  {PAK_SONS}: +{len(novos_sons)} sons; faltam {len(sem)}: {', '.join(sem)}")
 
 
+#: Strings novas, `(arquivo, id, nome, {lingua: texto})`. A faixa 1.900.000 a 2.199.999 esta
+#: livre em todas as linguas do 5.0.
+#: - Nome do tipo de arma no tooltip: o `harp_fix.h` pede o id 1990001 para o tipo 19. O 5.8 usa
+#:   STR_TOOLTIP_HARP com o id 904448, que no 5.0 ja e outra string. Ingles = o do Live
+#:   (l10n/eng do Riftshade); os outros sao traducao nossa.
+#: - Nome do item de teste: o clone herdava o `desc` do orbe (STR_TEST_ORB_18A).
+STRINGS = (
+    ("strings/client_strings_ui.xml", 1990001, "STR_TOOLTIP_HARP",
+     {"ENG": "Harp", "DEU": "Harfe", "FRA": "Harpe", "BRA": "Harpa"}),
+    ("strings/client_strings_item.xml", 1990002, "STR_TEST_HARP_58",
+     {"ENG": "Test Harp 5.8", "DEU": "Testharfe 5.8", "FRA": "Harpe de test 5.8",
+      "BRA": "Harpa de Teste 5.8"}),
+)
+DESC_DO_ITEM = "STR_TEST_HARP_58"
+#: ENG/DEU/FRA: XML binario no pak ofuscado. BRA: ZIP comum com XML em UTF-16; o
+#: `z_Patch001.pak` vem depois do `Data.pak` e traz os `client_strings_*.xml` inteiros.
+PAKS_DE_STRINGS = {
+    "ENG": r"l10n\ENG\Data\Data.pak",
+    "DEU": r"l10n\DEU\Data\Data.pak",
+    "FRA": r"l10n\FRA\data\data.pak",
+    "BRA": r"l10n\BRA\Data\z_Patch001.pak",
+}
+
+
+def _string_xml(id_string, nome, texto):
+    return (f"  <string>\n    <id>{id_string}</id>\n    <name>{nome}</name>\n"
+            f"    <body>{texto}</body>\n  </string>\n")
+
+
+def aplica_strings():
+    import zipfile
+    import xml.etree.ElementTree as ET
+    import aion_bxml
+    for lingua, rel in PAKS_DE_STRINGS.items():
+        caminho = os.path.join(CLIENTE, rel)
+        # Sempre a partir do original: reaplicar nao duplica.
+        origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
+        por_arquivo = {}
+        for arquivo, id_string, nome, textos in STRINGS:
+            por_arquivo.setdefault(arquivo, []).append((id_string, nome, textos[lingua]))
+        lidos = {}
+        if lingua == "BRA":
+            with zipfile.ZipFile(origem) as z:
+                entradas = [(i, z.read(i)) for i in z.infolist()]
+            _backup(caminho)
+            tmp = caminho + ".tmp_harpa58"
+            with zipfile.ZipFile(tmp, "w") as z:
+                for info, dados in entradas:
+                    novas = por_arquivo.get(info.filename.lower())
+                    if novas:
+                        xml = dados.decode("utf-16")
+                        for id_string, _n, _t in novas:
+                            if f"<id>{id_string}</id>" in xml:
+                                raise ValueError(f"{rel}: o id {id_string} ja existe")
+                        fim = xml.rindex("</strings>")
+                        xml = xml[:fim] + "".join(_string_xml(*n) for n in novas) + xml[fim:]
+                        dados = xml.encode("utf-16")
+                    z.writestr(info, dados, compress_type=info.compress_type)
+            os.replace(tmp, caminho)
+            with zipfile.ZipFile(caminho) as z:
+                assert z.testzip() is None and len(z.infolist()) == len(entradas)
+                for arquivo in por_arquivo:
+                    lidos[arquivo] = z.read(arquivo).decode("utf-16")
+        else:
+            d, idx = aion_pak.abre(origem)
+            troca = {}
+            for arquivo, novas in por_arquivo.items():
+                entrada = next(e for e in idx if e.nome.lower() == arquivo)
+                bxml = aion_pak.le(d, entrada)
+                texto_xml = aion_bxml.decodifica(bxml)
+                for id_string, _n, _t in novas:
+                    if f"<id>{id_string}</id>" in texto_xml:
+                        raise ValueError(f"{rel}: o id {id_string} ja existe")
+                troca[entrada.nome], _ = acrescenta_filhos(
+                    bxml, [ET.fromstring(_string_xml(*n)) for n in novas])
+            _backup(caminho)
+            if origem != caminho:
+                shutil.copy2(origem, caminho)
+            regrava_pak(caminho, troca=troca)
+            _confere_pak(caminho, len(idx), {n: "troca" for n in troca})
+            d2, idx2 = aion_pak.abre(caminho)
+            for arquivo in por_arquivo:
+                e2 = next(e for e in idx2 if e.nome.lower() == arquivo)
+                lidos[arquivo] = aion_bxml.decodifica(aion_pak.le(d2, e2))
+        for arquivo, novas in por_arquivo.items():
+            for id_string, nome, texto in novas:
+                lido = lidos[arquivo]
+                bloco = re.search(r"<string>\s*<id>%d</id>.*?</string>" % id_string, lido, re.S)
+                assert bloco and f"<body>{texto}</body>" in bloco.group(0)
+                assert lido.count(f"<id>{id_string}</id>") == 1
+                print(f"OK  {rel}: {nome} = {id_string} '{texto}'")
+
+
 def _paks_com_backup():
     raizes = [os.path.join(CLIENTE, "objects"), os.path.join(CLIENTE, "sounds"),
               os.path.join(CLIENTE, "Effects"),
               os.path.dirname(os.path.join(CLIENTE, PAK_MARCADORES))]
     raizes += [os.path.dirname(os.path.join(CLIENTE, rel)) for rel in PAKS_DE_ITENS]
+    raizes += [os.path.dirname(os.path.join(CLIENTE, rel)) for rel in PAKS_DE_STRINGS.values()]
     # `data\items` contem `special\` e `special2\`: sem repetir.
     vistos = set()
     for raiz in raizes:
@@ -1215,5 +1311,7 @@ if __name__ == "__main__":
             sys.argv[sys.argv.index("--dedos-variante") + 1]])
     elif "--marcadores" in sys.argv:
         aplica_marcadores()
+    elif "--strings" in sys.argv:
+        aplica_strings()
     else:
         aplica()

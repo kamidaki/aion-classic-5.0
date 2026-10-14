@@ -16,6 +16,7 @@
 // still do not know 19.
 #if defined(_M_AMD64)
 static constexpr int kHarpWeaponType = 19;
+static void HarpPatchEnchantTables();
 
 using HarpParseWeaponType = int (__fastcall*)(const wchar_t*);
 using HarpWeaponSuffix = void* (__fastcall*)(int, int, char*, size_t);
@@ -23,6 +24,7 @@ static HarpParseWeaponType s_harpParse = nullptr;
 static HarpWeaponSuffix s_harpSuffix = nullptr;
 
 static int __fastcall HarpParseWeaponTypeHook(const wchar_t* name) {
+    HarpPatchEnchantTables();
     if (name && _wcsicmp(name, L"2h_harp") == 0) return kHarpWeaponType;
     return s_harpParse(name);
 }
@@ -168,6 +170,94 @@ static void* __fastcall HarpRangedAttackHook(int hand, int arg2, int arg3, BYTE*
     return result;
 }
 
+// Weapon type name shown in tooltips: const wchar_t* f(type), a switch over 1..18 that looks
+// each name up in the string table. The harp uses STR_TOOLTIP_HARP, which the 5.0 strings do
+// not have: the client data gets it under kHarpTypeNameString (the 5.8 id, 904448, is taken).
+using HarpWeaponTypeName = const wchar_t* (__fastcall*)(int);
+using HarpRegistry = BYTE* (__fastcall*)();
+using HarpFindManager = void** (__fastcall*)(BYTE*, const int*);
+using HarpString = const wchar_t* (__fastcall*)(void*, int);
+static HarpWeaponTypeName s_harpTypeName = nullptr;
+static HarpRegistry s_harpRegistry = nullptr;
+static HarpFindManager s_harpFindManager = nullptr;
+static HarpString s_harpString = nullptr;
+static constexpr int kHarpTypeNameString = 1990001;
+
+static const wchar_t* __fastcall HarpWeaponTypeNameHook(int type) {
+    HarpPatchEnchantTables();
+    if (type != kHarpWeaponType) return s_harpTypeName(type);
+    const int key = 0; // string table manager
+    void** manager = s_harpFindManager(s_harpRegistry() + 0x10, &key);
+    return s_harpString(*manager, kHarpTypeNameString);
+}
+
+// Damage animation name: f(character, ?, char out[0x100]). With the weapon drawn it builds
+// c + sdamage + <suffix> + _001 from a list of its own, without the harp; the 19 fell back to
+// csdamage_noweapon_001. Same rule as the original: keep the name only when the model has it.
+using HarpDamageAnimation = void* (__fastcall*)(BYTE*, void*, char*);
+using HarpIsModel = int (__fastcall*)(BYTE*);
+using HarpHasAnimation = int (__fastcall*)(void*, const char*);
+static HarpDamageAnimation s_harpDamage = nullptr;
+static HarpIsModel s_harpIsModel = nullptr;
+static HarpHasAnimation s_harpHasAnimation = nullptr;
+static constexpr size_t kHarpDamageNameSize = 0x100;
+
+static void* __fastcall HarpDamageAnimationHook(BYTE* character, void* arg2, char* out) {
+    void* result = s_harpDamage(character, arg2, out);
+    __try {
+        if (character && out) {
+            const int state = *(const int*)(character + kHarpCharacterWeaponState);
+            const int* types = (const int*)(character + kHarpCharacterMainWeaponType);
+            static const char name[] = "csdamage_harp_001";
+            if ((state == 1 || state == 5) && types[0] == kHarpWeaponType && types[1] == 0 &&
+                (!s_harpIsModel(character) || s_harpHasAnimation(*(void**)(character + 8), name)))
+                strncpy_s(out, kHarpDamageNameSize, name, _TRUNCATE);
+        }
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+    return result;
+}
+
+// Enchant bonus shown in tooltips: two static tables of {per level up to +10, per level above},
+// indexed by weapon type, with 20 slots -- the 19th is left at zero. The server enchants HARP
+// exactly like ORB (enchant_templates.xml), so the harp gets the orb entry.
+static constexpr int kHarpOrbWeaponType = 9;
+
+// The tables are filled by Game.dll's initializers, which may not have run yet when the hooks
+// are installed (from a LoadLibrary made during Game.dll's own startup). So they are patched on
+// first use: the parser runs when the client loads its items, and the tooltip asks for the
+// weapon type name before reading the tables.
+static int32_t* s_harpEnchantTables[2] = {};
+static volatile LONG s_harpEnchantPatched = 0;
+
+static bool HarpCopyOrbEnchant(int32_t* table) {
+    int32_t* orb = table + kHarpOrbWeaponType * 2;
+    int32_t* harp = table + kHarpWeaponType * 2;
+    if (harp[0] == orb[0] && harp[1] == orb[1]) return orb[0] != 0;
+    if (!orb[0] || !orb[1] || harp[0] || harp[1]) return false;
+    DWORD old;
+    // The packed image keeps code and data in one section: keep the page executable.
+    if (!VirtualProtect(harp, 8, PAGE_EXECUTE_READWRITE, &old)) return false;
+    harp[0] = orb[0];
+    harp[1] = orb[1];
+    VirtualProtect(harp, 8, old, &old);
+    return true;
+}
+
+static void HarpPatchEnchantTables() {
+    if (s_harpEnchantPatched) return;
+    __try {
+        bool done = true;
+        for (int32_t* table : s_harpEnchantTables)
+            done = table && HarpCopyOrbEnchant(table) && done;
+        if (done && !InterlockedExchange(&s_harpEnchantPatched, 1))
+            OutputDebugStringA("[Harp] Enchant tables patched.\n");
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+}
+
 static SRWLOCK s_harpLock = SRWLOCK_INIT;
 static bool s_harpChecked = false;
 
@@ -248,6 +338,53 @@ static void InstallHarpFix(HMODULE module) {
             0x70,0xd0,0x44,0x8b,0xf1
         };
         static const char rangedMask[] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+        // Weapon type name: push rbp; mov rbp,rsp; sub rsp,20h; dec ecx; cmp ecx,11h; ja default;
+        // jump table; first case (sword): mov [rbp+10h],0; call registry; lea rdx,[rbp+10h];
+        // lea rcx,[rax+10h]; call find; mov edx,STR_TOOLTIP_SWORD; mov rcx,[rax]; call string
+        static const BYTE typeName[] = {
+            0x40,0x55,0x48,0x8b,0xec,0x48,0x83,0xec,0x20,0xff,0xc9,0x83,0xf9,0x11,0x0f,0x87,
+            0,0,0,0,0x48,0x63,0xc1,0x48,0x8d,0x15,0,0,0,0,0x8b,0x8c,0x82,0,0,0,0,0x48,0x03,
+            0xca,0xff,0xe1,0xc7,0x45,0x10,0x00,0x00,0x00,0x00,0xe8,0,0,0,0,0x48,0x8d,0x55,0x10,
+            0x48,0x8d,0x48,0x10,0xe8,0,0,0,0,0xba,0xdd,0xa9,0x03,0x00,0x48,0x8b,0x08,0xe8
+        };
+        static const char typeNameMask[] =
+            "xxxxxxxxxxxxxxxx????xxxxxx????xxx????xxxxxxxxxxxxx????xxxxxxxxx????xxxxxxxxx";
+        static const size_t typeNameCalls[] = { 0x31, 0x3e, 0x4b };
+        // Damage animation: mov [rsp+8],rbx; mov [rsp+10h],rdi; push rbp; lea rbp,[rsp-160h];
+        // sub rsp,260h; mov eax,[rcx+2D0h]; mov rdi,r8; dec eax; mov rbx,rcx; test eax,-5;
+        // je drawn; lea r8,"n%s_001"
+        static const BYTE damage[] = {
+            0x48,0x89,0x5c,0x24,0x08,0x48,0x89,0x7c,0x24,0x10,0x55,0x48,0x8d,0xac,0x24,0xa0,
+            0xfe,0xff,0xff,0x48,0x81,0xec,0x60,0x02,0x00,0x00,0x8b,0x81,0xd0,0x02,0x00,0x00,
+            0x49,0x8b,0xf8,0xff,0xc8,0x48,0x8b,0xd9,0xa9,0xfb,0xff,0xff,0xff,0x74,0x0c,0x4c,
+            0x8d,0x05
+        };
+        static const char damageMask[] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+        // Its fallback to the no-weapon name: mov rcx,rbx; call is-model; test eax,eax; je done;
+        // mov rcx,[rbx+8]; mov rdx,rdi; call has-animation; test eax,eax; jne done; lea r8,...
+        static const BYTE damageCheck[] = {
+            0x48,0x8b,0xcb,0xe8,0,0,0,0,0x85,0xc0,0x74,0,0x48,0x8b,0x4b,0x08,0x48,0x8b,0xd7,
+            0xe8,0,0,0,0,0x85,0xc0,0x75,0,0x4c,0x8d,0x05
+        };
+        static const char damageCheckMask[] = "xxxx????xxx?xxxxxxxx????xxx?xxx";
+        // Enchant tables, from the tooltip code that loads them: movzx eax,word [rax+18Eh] (or
+        // 19Eh); ...; lea r12/r13,[table]
+        static const BYTE enchantAttack[] = {
+            0x0f,0xb7,0x80,0x8e,0x01,0x00,0x00,0xeb,0x02,0x8b,0xc7,0x0f,0xb7,0xc0,0x4c,0x8d,
+            0x25,0,0,0,0,0x41,0x89,0x46,0x08,0x41,0xbd,0x0a,0x00,0x00,0x00
+        };
+        static const char enchantAttackMask[] = "xxxxxxxxxxxxxxxxx????xxxxxxxxxx";
+        static const BYTE enchantBoost[] = {
+            0x0f,0xb7,0x80,0x9e,0x01,0x00,0x00,0xeb,0x02,0x8b,0xc6,0x0f,0xbf,0xe8,0x4c,0x8d,
+            0x2d,0,0,0,0,0x8b,0x43,0x10,0x8b,0xfe
+        };
+        static const char enchantBoostMask[] = "xxxxxxxxxxxxxxxxx????xxxxx";
+        static const size_t enchantLea = 14; // lea is 7 bytes, rel32 at +3
+        static_assert(sizeof(typeNameMask) - 1 == sizeof(typeName), "Harp type name signature mask length");
+        static_assert(sizeof(damageMask) - 1 == sizeof(damage), "Harp damage signature mask length");
+        static_assert(sizeof(damageCheckMask) - 1 == sizeof(damageCheck), "Harp damage check mask length");
+        static_assert(sizeof(enchantAttackMask) - 1 == sizeof(enchantAttack), "Harp enchant mask length");
+        static_assert(sizeof(enchantBoostMask) - 1 == sizeof(enchantBoost), "Harp enchant mask length");
         static_assert(sizeof(rangedMask) - 1 == sizeof(ranged), "Harp ranged signature mask length");
         static_assert(sizeof(attachMask) - 1 == sizeof(attach), "Harp attach signature mask length");
         static_assert(sizeof(meshPathMask) - 1 == sizeof(meshPath), "Harp mesh path signature mask length");
@@ -287,6 +424,44 @@ static void InstallHarpFix(HMODULE module) {
             OutputDebugStringA("[Harp] Unsupported client; ranged attack signature not found.\n");
             __leave;
         }
+        auto target = [&](BYTE* call) -> BYTE* {
+            BYTE* to = call[0] == 0xe8 ? call + 5 + *(int32_t*)(call + 1) : nullptr;
+            return to && to >= base && to < base + image ? to : nullptr;
+        };
+        BYTE* typeNameStart = QunaFindUnique(base, nt, typeName, typeNameMask, sizeof(typeName));
+        BYTE* typeNameTo[3] = {};
+        for (size_t i = 0; typeNameStart && i < 3; ++i) typeNameTo[i] = target(typeNameStart + typeNameCalls[i]);
+        BYTE* damageStart = QunaFindUnique(base, nt, damage, damageMask, sizeof(damage));
+        BYTE* check = QunaFindUnique(base, nt, damageCheck, damageCheckMask, sizeof(damageCheck));
+        BYTE* isModel = check ? target(check + 3) : nullptr;
+        BYTE* hasAnimation = check ? target(check + 0x13) : nullptr;
+        if (!typeNameTo[0] || !typeNameTo[1] || !typeNameTo[2] || !damageStart || !isModel ||
+            !hasAnimation || check < damageStart || check > damageStart + 0x400) {
+            OutputDebugStringA("[Harp] Unsupported client; tooltip/damage signatures not found.\n");
+            __leave;
+        }
+        // The enchant tables are data, patched on first use (HarpPatchEnchantTables).
+        const struct { const BYTE* pattern; const char* mask; size_t size; } enchantSigs[] = {
+            { enchantAttack, enchantAttackMask, sizeof(enchantAttack) },
+            { enchantBoost, enchantBoostMask, sizeof(enchantBoost) },
+        };
+        for (size_t i = 0; i < 2; ++i) {
+            BYTE* found = QunaFindUnique(base, nt, enchantSigs[i].pattern, enchantSigs[i].mask,
+                                         enchantSigs[i].size);
+            BYTE* lea = found ? found + enchantLea : nullptr;
+            BYTE* table = lea ? lea + 7 + *(int32_t*)(lea + 3) : nullptr;
+            if (table && table >= base && table + 20 * 8 <= base + image)
+                s_harpEnchantTables[i] = (int32_t*)table;
+            else
+                OutputDebugStringA("[Harp] Enchant table not found.\n");
+        }
+        s_harpTypeName = (HarpWeaponTypeName)typeNameStart;
+        s_harpRegistry = (HarpRegistry)typeNameTo[0];
+        s_harpFindManager = (HarpFindManager)typeNameTo[1];
+        s_harpString = (HarpString)typeNameTo[2];
+        s_harpDamage = (HarpDamageAnimation)damageStart;
+        s_harpIsModel = (HarpIsModel)isModel;
+        s_harpHasAnimation = (HarpHasAnimation)hasAnimation;
         s_harpRanged = (HarpRangedAttack)rangedStart;
         s_harpFileExists = (HarpFileExists)exists;
         s_harpAttach = (HarpAttachWeapon)attachStart;
@@ -315,6 +490,8 @@ static void InstallHarpFix(HMODULE module) {
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpAttach, HarpAttachWeaponHook);
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpMeshPath, HarpWeaponMeshPathHook);
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpRanged, HarpRangedAttackHook);
+        if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpTypeName, HarpWeaponTypeNameHook);
+        if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpDamage, HarpDamageAnimationHook);
         if (error == NO_ERROR) error = DetourTransactionCommit();
         else DetourTransactionAbort();
         OutputDebugStringA(error == NO_ERROR ? "[Harp] Weapon type hooks installed.\n" :
