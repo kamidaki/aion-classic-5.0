@@ -12,6 +12,7 @@
 #include "detours.h"
 #include "siel_hammer_fix.h"
 #include "quna_fix.h"
+#include "harp_fix.h"
 
 // =========================================================================
 //  Version.dll - Mod & Compatibility Hook for Aion Classic 5.0
@@ -244,6 +245,7 @@ static void PatchAllLoadedLanguageModules() {
             if (_wcsicmp(name, L"game.dll") == 0) {
                 InstallSielHammerFix(h);
                 InstallQunaFix(h);
+                InstallHarpFix(h);
             }
             PatchLanguageTableInModule(h);
             BypassCountryCheckInCryEngineModule(h);

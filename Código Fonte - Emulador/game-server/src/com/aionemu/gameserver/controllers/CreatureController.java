@@ -338,6 +338,15 @@ public abstract class CreatureController<T extends Creature> extends VisibleObje
 			attackHandAnimation = getOwner().getAi().modifyAttackHandAnimation(attackHandAnimation);
 			attackTypeAnimation = getOwner().getAi().getAttackTypeAnimation(target);
 		}
+		// Harpa: o cliente escolhe a animacao do ataque basico pelo campo de mao do S_ATTACK -- 1 toca
+		// cattack_harp_001 e 2 toca cattack_harp_002 (provado em jogo em 14/10/2026). Sorteado a cada ataque.
+		// TEMPORARIO: a harpa ainda e reconhecida pelo id do item de teste (100599901, grupo ORB no servidor);
+		// com os itens do Bard passa a ser ItemGroup.HARP.
+		if (getOwner() instanceof Player p) {
+			Item arma = p.getEquipment().getMainHandWeapon();
+			if (arma != null && arma.getItemId() == 100599901)
+				attackHandAnimation = Rnd.nextInt(2) == 0 ? AttackHandAnimation.OFF_HAND : AttackHandAnimation.RANDOM;
+		}
 
 		int damage = 0;
 		for (AttackResult result : attackResult) {
