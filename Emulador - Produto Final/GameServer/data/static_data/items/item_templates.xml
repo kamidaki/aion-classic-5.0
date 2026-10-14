@@ -27700,7 +27700,7 @@
 		<weapon_stats hit_count="1" attack_range="2500" boost_magical_skill="240" magical_accuracy="75" attack_speed="2200" max_damage="81" min_damage="65"/>
 		<idian burn_attack="46" burn_defend="15"/>
 	</item_template>
-	<item_template id="100599901" name_en="Test Harp 5.8 (test_harp_58_01)" name_pt="Harpa de Teste 5.8" level="13" cName="test_harp_58_01" mask="23676" item_group="ORB" quality="COMMON" price="12550" restrict="13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13" desc="700250" attack_type="MAGICAL_WATER" max_enchant="15" m_slots="1" enchant_group="common_enchant" client_mask="35388">
+	<item_template id="100599901" name_en="Test Harp 5.8 (test_harp_58_01)" name_pt="Harpa de Teste 5.8" level="13" cName="test_harp_58_01" mask="23676" item_group="HARP" quality="COMMON" price="12550" restrict="13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13" desc="1990002" attack_type="MAGICAL_WATER" max_enchant="15" m_slots="1" enchant_group="common_enchant" client_mask="35388">
 		<modifiers>
 			<add name="MAXMP" value="83" bonus="true"/>
 		</modifiers>

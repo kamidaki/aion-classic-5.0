@@ -34,6 +34,7 @@ import com.aionemu.gameserver.model.stats.container.StatEnum;
 import com.aionemu.gameserver.model.templates.item.GodstoneInfo;
 import com.aionemu.gameserver.model.templates.item.ItemAttackType;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
+import com.aionemu.gameserver.model.templates.item.enums.ItemGroup;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS.LOG;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS.TYPE;
@@ -340,13 +341,8 @@ public abstract class CreatureController<T extends Creature> extends VisibleObje
 		}
 		// Harpa: o cliente escolhe a animacao do ataque basico pelo campo de mao do S_ATTACK -- 1 toca
 		// cattack_harp_001 e 2 toca cattack_harp_002 (provado em jogo em 14/10/2026). Sorteado a cada ataque.
-		// TEMPORARIO: a harpa ainda e reconhecida pelo id do item de teste (100599901, grupo ORB no servidor);
-		// com os itens do Bard passa a ser ItemGroup.HARP.
-		if (getOwner() instanceof Player p) {
-			Item arma = p.getEquipment().getMainHandWeapon();
-			if (arma != null && arma.getItemId() == 100599901)
-				attackHandAnimation = Rnd.nextInt(2) == 0 ? AttackHandAnimation.OFF_HAND : AttackHandAnimation.RANDOM;
-		}
+		if (getOwner() instanceof Player p && p.getEquipment().getMainHandWeaponType() == ItemGroup.HARP)
+			attackHandAnimation = Rnd.nextInt(2) == 0 ? AttackHandAnimation.OFF_HAND : AttackHandAnimation.RANDOM;
 
 		int damage = 0;
 		for (AttackResult result : attackResult) {

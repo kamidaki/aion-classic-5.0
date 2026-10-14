@@ -170,10 +170,10 @@ no cliente de teste por `Ferramentas Python/teste_harpa_58.py` a partir de um cl
   há duas variantes em avaliação, nenhuma fixada.
 - **Outras raças e sexos.** LF, DM e DF instalados com `--racas` (dedos na variante só de posição,
   a mesma do LM), testados em jogo.
-- **Servidor.** O item de teste ainda usa o grupo de orbe no emulador.
-- **Mão do ataque básico.** O cliente escolhe `cattack_harp_001` ou `_002` pelo campo de mão do
-  `S_ATTACK`; o emulador sorteia 1/2 pelo id do item de teste (`CreatureController`), até existir
-  o grupo `HARP` no servidor.
+- **Servidor.** O item de teste usa `item_group="HARP"` no emulador (slot de duas mãos,
+  encantamento igual ao orbe, tempos de skill `harp` do `motion_times.xml`) e `desc` = 1990002, a
+  mesma string do cliente. O cliente escolhe `cattack_harp_001` ou `_002` pelo campo de mão do
+  `S_ATTACK`; o `CreatureController` sorteia 1/2 para toda arma do grupo `HARP`.
 
 ## Testes
 

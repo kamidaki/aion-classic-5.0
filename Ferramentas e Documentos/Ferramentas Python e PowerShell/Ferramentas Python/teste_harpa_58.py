@@ -444,6 +444,12 @@ def acrescenta_template(caminho, id_base, id_novo, nome_novo, nome_pt):
     novo = re.sub(r'name_en="[^"]*"', f'name_en="Test Harp 5.8 ({nome_novo})"', novo, count=1)
     novo = re.sub(r'name_pt="[^"]*"', 'name_pt="%s"' % nome_pt, novo, count=1)
     novo = re.sub(r'cName="[^"]*"', f'cName="{nome_novo}"', novo, count=1)
+    # Grupo da arma no servidor (o clone vem do orbe) e o nome que vai nos pacotes: o mesmo
+    # STR_TEST_HARP_58 que o `client_items.xml` usa.
+    for atributo, valor in (("item_group", "HARP"), ("desc", str(ID_DO_NOME_DO_ITEM))):
+        novo, n = re.subn(r'\b%s="[^"]*"' % atributo, f'{atributo}="{valor}"', novo, count=1)
+        if n != 1:
+            raise ValueError(f"{caminho}: o template-base nao tem {atributo}")
     for atributo, valor in ATAQUE_SERVIDOR.items():
         novo, n = re.subn(r'\b%s="[^"]*"' % atributo, f'{atributo}="{valor}"', novo, count=1)
         if n != 1:
@@ -1269,6 +1275,7 @@ STRINGS = (
       "BRA": "Harpa de Teste 5.8"}),
 )
 DESC_DO_ITEM = "STR_TEST_HARP_58"
+ID_DO_NOME_DO_ITEM = 1990002
 #: ENG/DEU/FRA: XML binario no pak ofuscado. BRA: ZIP comum com XML em UTF-16; o
 #: `z_Patch001.pak` vem depois do `Data.pak` e traz os `client_strings_*.xml` inteiros.
 PAKS_DE_STRINGS = {
