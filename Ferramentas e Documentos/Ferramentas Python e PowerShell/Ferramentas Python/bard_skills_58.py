@@ -58,13 +58,42 @@ LOTE = ("P_EQUIP_EnhancedHarp_G1", "P_EQUIP_Harp_G1", "Ar_SongofAir_G1", "Ar_Son
         "Ar_SongofFire_G3", "Ar_SongofHeal_G4", "Ar_SongofRelax_G3", "Ar_Songofshield_G3",
         "Ba_MagicalDestruction_G1", "Ba_SongofAdvance_G1", "Ba_SongofAnger_G3", "Ba_SongofDelayDamage_G3",
         "Ba_SongofEarth_G1", "Ba_SongofFirm_G1", "Ba_SongofLand_G2", "Ba_SongofManaReverse_G1",
-        "Ba_SongofRegeneration_G1", "Ba_SongofSerenity_1_G1", "Ba_songofBrave_G1")
+        "Ba_SongofRegeneration_G1", "Ba_SongofSerenity_1_G1", "Ba_songofBrave_G1",
+        # lote 4: niveis 21-30, sem as Charge
+        "Ar_SongofAir_G5", "Ba_SongofEmergentHeal_G2", "Ba_SongofStamina_G1", "Ar_SongofCold_G5",
+        "Ba_SongofShock_G1", "Ar_SongofFire_G4", "Ar_SongofHeal_G5", "Ar_SongofRelax_G4",
+        "Ar_Songofshield_G4", "BA_BardsGift_G1", "Ba_SongofAnger_G4", "Ba_SongofDelayDamage_G4",
+        "Ba_SongofEagle_G1", "Ba_SongofLand_G3", "P_EQUIP_Harp_G2", "Ar_SongofAir_G6",
+        "Ba_MagicalDestruction_G2", "Ba_SongofEarth_G2", "Ba_SongofFirm_G2", "Ba_SongofManaReverse_G2",
+        "Ba_SongofRegeneration_G2", "Ba_SongofSerenity_1_G2", "Ba_songofBrave_G2",
+        "Ba_SongofEmergentHeal_G3", "Ba_SongofStamina_G2", "Ar_SongofCold_G6", "Ba_SongofResurrection_G1",
+        "Ba_SongofShock_G2", "Ar_SongofFire_G5", "Ar_SongofHeal_G6", "Ar_SongofRelax_G5",
+        "Ar_Songofshield_G5", "Ba_SongofAnger_G5", "Ba_SongofDelayDamage_G5", "Ba_SongofEagle_G2",
+        "Ba_SongofLand_G4", "Ba_SongofMinddamage_G1",
+        # lote 5: niveis 31-40, sem as Charge
+        "Ar_SongofAir_G7", "Ba_SongofDestroy_G1", "Ba_MagicalDestruction_G3", "Ba_SongofEarth_G3",
+        "Ba_SongofEmergentHeal_G4", "Ba_SongofFirm_G3", "Ba_SongofRegeneration_G3", "Ba_SongofSerenity_1_G3",
+        "Ba_SongofStamina_G3", "Ba_songofBrave_G3", "Ar_SongofCold_G7", "Ba_SongofShock_G3",
+        "Ar_SongofFire_G6", "Ar_SongofHeal_G7", "Ar_SongofRelax_G6", "Ar_Songofshield_G6",
+        "Ba_SongofAnger_G6", "Ba_SongofDelayDamage_G6", "Ba_SongofEagle_G3", "Ba_SongofLand_G5",
+        "Ba_SongofMinddamage_G2", "Ba_SongofWind_G1", "Ar_SongofAir_G8", "Ba_SongofEmergentHeal_G5",
+        "Ba_SongofStamina_G4", "Ar_SongofCold_G8", "Ba_MagicalDestruction_G4", "Ba_SongofEarth_G4",
+        "Ba_SongofFirm_G4", "Ba_SongofRegeneration_G4", "Ba_SongofSerenity_1_G4", "Ba_SongogPeace_G1",
+        "Ba_songofBrave_G4", "Ba_SongofShock_G4", "Ar_SongofFire_G7", "Ar_SongofHeal_G8",
+        "Ar_SongofRelax_G7", "Ar_Songofshield_G7", "Ba_SongofAnger_G7", "Ba_SongofBind_G1",
+        "Ba_SongofDelayDamage_G7", "Ba_SongofEagle_G4", "Ba_SongofHope_G1", "Ba_SongofLand_G6",
+        "Ba_SongofMinddamage_G3", "Ba_SongofWind_G2", "P_EQUIP_Harp_G3")
 
 
 def _dependencias():
     """Skills que as do lote disparam pelo nome (DelayedSkill...): entram junto, sem aprendizado."""
     texto = open(BARD_SKILLS_58, encoding="utf-8").read()
     nomes = set(re.findall(r"<name>([^<]+)</name>", texto))
+    # As que o 5.0 ja tem (CL_ResurrectDebuff do Ba_SongofResurrection) ficam com o id do 5.0; as
+    # do Bard ja trazidas (ids a partir de ID_BASE) continuam dependencia.
+    cliente50 = open(os.path.join(REPO_DADOS, "client_skills.xml"), encoding="utf-8").read()
+    nomes -= {n for i, n in re.findall(r"<skill_base_client>\s*<id>(\d+)</id>\s*<name>([^<]+)</name>", cliente50)
+              if int(i) < ID_BASE}
     saida = []
     for bloco in re.findall(r"<skill_base_client>(.*?)</skill_base_client>", texto, re.S):
         d = dict(re.findall(r"<([A-Za-z0-9_]+)>([^<]*)</\1>", bloco))
@@ -75,16 +104,21 @@ def _dependencias():
     return tuple(sorted(saida))
 
 
-DEPENDENCIAS = _dependencias()
 #: Skills do Bard no 5.8 que o 5.0 ja tem com o mesmo nome: so entram no aprendizado.
 JA_NO_50 = ("P_EQUIP_EnhancedCloth_G1", "P_EQUIP_EnhancedRobe_G1", "P_EQUIP_Robe_G1",
             "P_HealMastery_G1", "P_StatBoostMagiclOffense_G1", "Aromatherapy_G1", "Mending_G2",
             "Aromatherapy_G2", "Mending_G3",
-            "P_StatBoostMaxMP_G1", "P_StatBoostElementalDefendAll_G1", "Aromatherapy_G3", "Mending_G4")
+            "P_StatBoostMaxMP_G1", "P_StatBoostElementalDefendAll_G1", "Aromatherapy_G3", "Mending_G4",
+            "Aromatherapy_G4", "Mending_G5", "P_BoostHateDown_G1", "P_HealMastery_G2", "Aromatherapy_G5",
+            "Mending_G6", "P_StatBoostMCReduceRate_G1", "ALL_ShockReflect_G1", "P_HealMastery_G3")
+#: No aprendizado do Bard no 5.8, mas sem definicao no bard_skills.xml nem skill no 5.0 (skills comuns
+#: do 5.8 alem das do 5.0): ficam de fora por enquanto.
+SEM_FONTE = ("Aromatherapy_G6", "Aromatherapy_G7", "Mending_G7", "Mending_G8")
 ID_BASE = 22000
 ID_BASE_APRENDIZADO = 90000
 ID_BASE_STRING = 1991000
 CLASSE = "BARD"
+DEPENDENCIAS = _dependencias()
 
 
 def _skills_58():
@@ -355,8 +389,20 @@ def _corpo_wpn_mastery(d):
 #: efeito -- shield/statup: CH_ProtectSelf_G1 (1201) e 161; mphealinstant: 1370; mpheal: 1490 e
 #: 21308; boostheal: P_HealMastery_G1 (108) e 1146 (reserved9=1 -> <onfly/>); delayedskill: 18683.
 #: Cabecalho, properties, custo e motion seguem o que o gerador fez nas irmas do Bard (22134...).
-EFEITOS_MANUAIS = {"Shield", "StatUp", "MPHeal_Instant", "MpHeal", "BoostHealEffect", "DelayedSkill"}
-STAT_DO_CLIENTE = {"pvpdefendratio": "PVP_DEFEND_RATIO"}
+#: fphealinstant: RA_RestoreWing_G1 (701) e 20059; resurrect: CL_Revive_G1 (972, reserved6 = a
+#: skill do debuff pelo nome); statup com reserved6=1/reserved9=1: FI_BoostWing_G1 (335).
+EFEITOS_MANUAIS = {"Shield", "StatUp", "MPHeal_Instant", "MpHeal", "BoostHealEffect", "DelayedSkill",
+                   "FPHeal_Instant", "Resurrect", "BoostSkillCastingTime", "Heal_Instant", "Rebirth"}
+#: Token do StatUp -> (stat, sinal). O sinal e o que o 5.0 usa: attackDelay positivo no cliente vira
+#: ATTACK_SPEED negativo em 351 de 372 statup oficiais (menos atraso = mais rapido); speed, 366 de 366 igual.
+STAT_DO_CLIENTE = {"pvpdefendratio": ("PVP_DEFEND_RATIO", 1), "flyspeed": ("FLY_SPEED", 1),
+                   "speed": ("SPEED", 1), "attackdelay": ("ATTACK_SPEED", -1), "maxhp": ("MAXHP", 1)}
+#: reserved3 do BoostSkillCastingTime: PR_SagesWisdom_G1 (none), CH_NightWish_G1 (Heal), RA_TrapperMode_G1.
+CASTING_DO_CLIENTE = {"none": "BOOST_CASTING_TIME", "heal": "BOOST_CASTING_TIME_HEAL",
+                      "summontrap": "BOOST_CASTING_TIME_TRAP"}
+#: heal_instant: KN_LayHand_G1 (428); rebirth: PR_ReviveHand_G1 (1041, reserved6 = debuff pelo nome).
+#: Elemento do cliente -> SkillElement do servidor (Air vira WIND, como no RA_RestoreWing_G1).
+ELEMENTO = {"air": "WIND"}
 _ENUM = {"targetorme": "TARGETORME", "debuffphy": "DEBUFF_PHYSICAL"}
 
 
@@ -369,7 +415,8 @@ def _efeitos(d):
 
 
 #: Os que o gerador reprova; StatUp e MPHeal_Instant ele faz sozinho, so entram aqui junto deles.
-REPROVADOS_NO_GERADOR = {"Shield", "MpHeal", "BoostHealEffect", "DelayedSkill"}
+REPROVADOS_NO_GERADOR = {"Shield", "MpHeal", "BoostHealEffect", "DelayedSkill", "FPHeal_Instant", "Resurrect",
+                         "BoostSkillCastingTime", "Rebirth"}
 
 
 def _manual(d):
@@ -392,7 +439,7 @@ def _efeito_manual(d, k, ids):
     if g("noresist") == "1":
         comum.append(("noresist", "true"))
     if g("reserved10", "") and tipo not in ("Shield",):
-        comum.append(("element", g("reserved10").upper()))
+        comum.append(("element", ELEMENTO.get(g("reserved10").lower(), g("reserved10").upper())))
     if g("cond_preeffect", ""):
         comum += [("preeffect", g("cond_preeffect")[1:]), ("preeffect_prob", g("cond_preeffect_prob2", "100"))]
     hop = [("hoptype", g("hop_type").upper()), ("hopb", g("hop_b"))] if g("hop_type", "") and g("hop_b") != "0" else []
@@ -404,9 +451,40 @@ def _efeito_manual(d, k, ids):
             pares += [("hittype", g("reserved_cond1").upper()), ("hittypeprob2", g("reserved_cond1_prob2", "1000"))]
         return f"\t\t\t<shield {attrs(pares + hop)}/>\n"
     if tipo == "StatUp":
-        stat = STAT_DO_CLIENTE[g("reserved13").lower()]
-        return (f"\t\t\t<statup {attrs(comum + hop)}>\n"
-                f"\t\t\t\t<change stat=\"{stat}\" func=\"ADD\" value=\"{g('reserved2')}\"/>\n\t\t\t</statup>\n")
+        # 1o stat: reserved13/reserved2/reserved6; 2o: reserved14/reserved4/reserved7 (FI_BerserkStance_G1).
+        changes = ""
+        for campo_stat, campo_valor, campo_pct in (("reserved13", "reserved2", "reserved6"),
+                                                   ("reserved14", "reserved4", "reserved7")):
+            if not g(campo_stat, ""):
+                continue
+            stat, sinal = STAT_DO_CLIENTE[g(campo_stat).lower()]
+            func = "PERCENT" if g(campo_pct) == "1" else "ADD"
+            valor = int(g(campo_valor)) * sinal
+            changes += f"\t\t\t\t<change stat=\"{stat}\" func=\"{func}\" value=\"{valor}\""
+            if g("reserved9") == "1":
+                changes += ">\n\t\t\t\t\t<conditions>\n\t\t\t\t\t\t<onfly/>\n\t\t\t\t\t</conditions>\n\t\t\t\t</change>\n"
+            else:
+                changes += "/>\n"
+        return f"\t\t\t<statup {attrs(comum + hop)}>\n{changes}\t\t\t</statup>\n"
+    if tipo == "BoostSkillCastingTime":
+        stat = CASTING_DO_CLIENTE[g("reserved3", "none").lower()]
+        return (f"\t\t\t<boostskillcastingtime {attrs(comum + hop)}>\n"
+                f"\t\t\t\t<change stat=\"{stat}\" func=\"PERCENT\" value=\"{g('reserved2')}\"/>\n"
+                "\t\t\t</boostskillcastingtime>\n")
+    if tipo == "Heal_Instant":
+        pares = [("value", g("reserved2"))] + ([("delta", g("reserved1"))] if g("reserved1") != "0" else []) + \
+                ([("percent", "true")] if g("reserved6") == "1" else []) + comum
+        return f"\t\t\t<healinstant {attrs(pares + hop)}/>\n"
+    if tipo == "Rebirth":
+        pares = [("resurrect_percent", g("reserved2")), ("skill_id", ids[g("reserved6")])] + comum
+        return f"\t\t\t<rebirth {attrs(pares + hop)}/>\n"
+    if tipo == "FPHeal_Instant":
+        pares = [("value", g("reserved2"))] + ([("delta", g("reserved1"))] if g("reserved1") != "0" else []) + \
+                ([("percent", "true")] if g("reserved6") == "1" else []) + comum
+        return f"\t\t\t<fphealinstant {attrs(pares + hop)}/>\n"
+    if tipo == "Resurrect":
+        pares = [("skill_id", ids[g("reserved6")])] + comum
+        return f"\t\t\t<resurrect {attrs(pares + hop)}/>\n"
     if tipo == "MPHeal_Instant":
         pares = [("value", g("reserved2")), ("delta", g("reserved1"))] + \
                 ([("percent", "true")] if g("reserved6") == "1" else []) + comum
@@ -452,19 +530,40 @@ def _template_manual(id_novo, d, nome, ids):
         p = [("first_target", alvo)]
         if alvo == "TARGETORME" and d.get("revision_distance"):
             p.append(("revision_distance", int(d["revision_distance"]) * 2))
+        if (d.get("target_species_restriction") or "").upper() == "PC":  # CL_Revive_G1 (972)
+            p.append(("target_species", "PC"))
         p += [("first_target_range", d.get("first_target_valid_distance") or "0"),
               ("target_relation", _enum(d.get("target_relation_restriction") or "All")),
               ("target_type", _enum(d.get("target_range") or "OnlyOne"))]
+        # Area: raio e altura do cliente (21308, KN_Recover_G1); sem eles o raio fica 0.
+        if (d.get("target_range") or "").lower() in ("area", "party"):
+            p += [("target_maxcount", d.get("target_maxcount") or "1"),
+                  ("target_distance", d.get("target_range_opt1") or "0"),
+                  ("effective_range", d.get("target_range_opt1") or "0")]
+            if d.get("target_range_opt3"):
+                p.append(("effective_altitude", d["target_range_opt3"]))
         props = "\t\t<properties " + " ".join(f'{a}="{v}"' for a, v in p) + "/>\n"
     corpo = props
     custo = d.get("cost_parameter", "").upper() == "MP" and d.get("cost_end")
-    if custo:
-        corpo += f'\t\t<startconditions>\n\t\t\t<mp value="{d["cost_end"]}" delta="{d.get("cost_end_lv") or 0}"/>\n\t\t</startconditions>\n'
+    # Custo em DP (cost_dp): <dp> e <dpuse>, como o gerador faz no Ba_SongofAnger_G1.
+    dp = d.get("cost_dp") if d.get("cost_dp") not in (None, "", "0") else None
+    if custo or dp:
+        corpo += "\t\t<startconditions>\n"
+        if custo:
+            corpo += f'\t\t\t<mp value="{d["cost_end"]}" delta="{d.get("cost_end_lv") or 0}"/>\n'
+        if dp:
+            corpo += f'\t\t\t<dp value="{dp}"/>\n'
+        corpo += "\t\t</startconditions>\n"
     if passiva or d.get("move_casting") != "1":
         corpo += '\t\t<useconditions>\n\t\t\t<playermove allow="false"/>\n\t\t</useconditions>\n'
     corpo += "\t\t<effects>\n" + "".join(_efeito_manual(d, k, ids) for k in _efeitos(d)) + "\t\t</effects>\n"
-    if custo:
-        corpo += f'\t\t<actions>\n\t\t\t<mpuse value="{d["cost_end"]}" delta="{d.get("cost_end_lv") or 0}"/>\n\t\t</actions>\n'
+    if custo or dp:
+        corpo += "\t\t<actions>\n"
+        if custo:
+            corpo += f'\t\t\t<mpuse value="{d["cost_end"]}" delta="{d.get("cost_end_lv") or 0}"/>\n'
+        if dp:
+            corpo += f'\t\t\t<dpuse value="{dp}"/>\n'
+        corpo += "\t\t</actions>\n"
     if not passiva and d.get("motion_name"):
         corpo += f'\t\t<motion name="{d["motion_name"]}"/>\n'
     return "\t<skill_template " + " ".join(f'{k}="{_xml_attr(v)}"' for k, v in attrs) + ">\n" + corpo + "\t</skill_template>\n"
@@ -488,9 +587,9 @@ def _template_minimo(id_novo, campos, textos_por_nome, ids=None):
 
 def aplica_servidor(convertidas, linhas, textos):
     textos_por_nome = {nome: (id_string, t["ENG"]) for _a, id_string, nome, t in textos}
-    ids_50 = _ids_50()
-    ids = {nome: i for nome, (i, _c) in convertidas.items()}
-    ids.update({nome: ids_50[nome] for nome in JA_NO_50})
+    # Nome -> id: as do 5.0 (JA_NO_50 e as citadas pelo nome, como o CL_ResurrectDebuff 8296) e as do lote.
+    ids = dict(_ids_50())
+    ids.update({nome: i for nome, (i, _c) in convertidas.items()})
     novos = {i: _template_minimo(i, c, textos_por_nome, ids) for i, c in convertidas.values()}
     arvore = "".join(f'\t<skill name="{nome.lower()}" skillId="{ids[nome]}" skillLevel="1" minLevel="{nivel}" '
                      f'race="PC_ALL" classId="{CLASSE}" autoLearn="true" />\n' for _l, nome, nivel in linhas)
@@ -533,7 +632,47 @@ def aplica_servidor(convertidas, linhas, textos):
         print(f"OK  {base}: +{len(novos)} templates minimos, +{len(linhas)} linhas {CLASSE} na arvore")
 
 
+def confere_servidor():
+    """As duas copias do servidor: iguais, validas no static_data.xsd agregado, todo template do lote
+    com efeito e com o <chain> igual ao do cliente (category/precategory/time). Devolve os erros."""
+    from lxml import etree
+    skills = _skills_58()
+    ids = ids_novos(skills)
+    erros = []
+    textos = []
+    for base in SERVIDOR:
+        with open(os.path.join(base, TEMPLATES_REL), encoding="utf-8", newline="") as f:
+            textos.append(f.read())
+    if textos[0] != textos[1]:
+        erros.append("as duas copias do skill_templates.xml diferem")
+    esquema = etree.XMLSchema(etree.parse(os.path.join(SERVIDOR[1], "static_data.xsd")))
+    for rel in (TEMPLATES_REL, ARVORE_REL):
+        if not esquema.validate(etree.parse(os.path.join(SERVIDOR[1], rel))):
+            erros.append(f"{rel}: {list(esquema.error_log)[0]}")
+    blocos = {sid: textos[1][ini:fim] for sid, ini, fim in _templates(textos[1])}
+    for nome in LOTE + DEPENDENCIAS:
+        d = dict(skills[nome][1])
+        bloco = blocos.get(ids[nome], "")
+        if "<effects>" not in bloco:
+            erros.append(f"{nome}: sem efeito")
+        cadeias = [dict(re.findall(r'(\w+)="([^"]*)"', c)) for c in re.findall(r"<chain ([^>]*)/>", bloco)]
+        quer = {}
+        if d.get("chain_category_name"):
+            quer["category"] = d["chain_category_name"].upper()
+            if d.get("prechain_category_name"):
+                quer["precategory"] = d["prechain_category_name"].upper()
+            if d.get("chain_time") and d["chain_time"] != "0":
+                quer["time"] = d["chain_time"]
+        if (cadeias or [{}])[0] != quer or len(cadeias) > 1:
+            erros.append(f"{nome}: <chain> {cadeias} != cliente {quer}")
+    return erros
+
+
 def main():
+    if "--confere-servidor" in sys.argv:
+        erros = confere_servidor()
+        print("\n".join(erros) if erros else "OK  servidor: copias iguais, XSD valido, efeitos e cadeias do Bard iguais ao cliente")
+        sys.exit(1 if erros else 0)
     skills = _skills_58()
     ids = ids_novos(skills)
     convertidas, fora = converte(skills, ids, _campos_50())
@@ -557,7 +696,8 @@ def main():
         aplica_servidor(convertidas, linhas, textos)
         print("Proximo: rebuild_50_skill_effects.py --ids <ids do Bard> --aplicar (corpo dos templates minimos),")
         print("depois fix_50_chain.py (<chain> do cliente: sem ele a skill que abre a cadeia a reseta) e")
-        print("levar so os templates 22xxx do Bard para as duas copias do servidor.")
+        print("levar so os templates 22xxx do Bard para as duas copias do servidor, e por fim")
+        print("bard_skills_58.py --confere-servidor (sai com erro se alguma cadeia ou copia nao bate).")
         return
     arquivos_de_icone = icones(convertidas)
     aplica_cliente(convertidas, linhas, arquivos_de_icone)
