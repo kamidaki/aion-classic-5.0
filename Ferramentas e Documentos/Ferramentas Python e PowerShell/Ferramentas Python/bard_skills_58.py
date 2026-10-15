@@ -82,7 +82,41 @@ LOTE = ("P_EQUIP_EnhancedHarp_G1", "P_EQUIP_Harp_G1", "Ar_SongofAir_G1", "Ar_Son
         "Ba_songofBrave_G4", "Ba_SongofShock_G4", "Ar_SongofFire_G7", "Ar_SongofHeal_G8",
         "Ar_SongofRelax_G7", "Ar_Songofshield_G7", "Ba_SongofAnger_G7", "Ba_SongofBind_G1",
         "Ba_SongofDelayDamage_G7", "Ba_SongofEagle_G4", "Ba_SongofHope_G1", "Ba_SongofLand_G6",
-        "Ba_SongofMinddamage_G3", "Ba_SongofWind_G2", "P_EQUIP_Harp_G3")
+        "Ba_SongofMinddamage_G3", "Ba_SongofWind_G2", "P_EQUIP_Harp_G3",
+        # lote 6: niveis 41-50, sem as Charge
+        "Ar_SongofAir_G9", "Ba_SongofEmergentHeal_G6", "Ba_SongofRefreshMind_G1", "Ba_SongofStamina_G5",
+        "Ar_SongofCold_G9", "Ba_SongogPeace_G2", "Ba_MagicalDestruction_G5", "Ba_SongofEarth_G5",
+        "Ba_SongofFirm_G5", "Ba_SongofRegeneration_G5", "Ba_SongofSerenity_1_G5", "Ba_SongofShock_G5",
+        "Ba_songofBrave_G5", "Ar_SongofFire_G8", "Ar_SongofHeal_G9", "Ar_SongofRelax_G8",
+        "Ar_Songofshield_G8", "Ba_DelayParalyze_G1", "Ba_PlayingStylesChangeA_G1", "Ba_PlayingStylesChangeB_G1",
+        "Ba_SongofAnger_G8", "Ba_SongofDelayDamage_G8", "Ba_SongofEagle_G5", "Ba_SongofLand_G7",
+        "Ba_SongofMinddamage_G4", "Ba_SongofPain_G1", "Ba_SongofWarmth_G1", "Ba_SongofWind_G3",
+        "Ar_SongofAir_G10", "Ba_SongofMentalic_G1", "Ba_SongofAppreciation_G1", "Ba_SongofEmergentHeal_G7",
+        "Ba_SongofRefreshMind_G2", "Ba_SongofStamina_G6", "Ar_SongofCold_G10", "Ba_SongofGreatHeal_G1",
+        "Ba_SongofSoulextinction_G1", "Ba_SongogPeace_G3", "Ba_SongofPain_G2", "Ba_SongofResistance_G1",
+        "Ba_SongofShock_G6", "Ba_SongofWarmth_G2", "Ar_SongofFire_G9", "Ar_SongofHeal_G10",
+        "Ar_SongofRelax_G9", "Ar_Songofshield_G9", "Ba_MagicalDestruction_G6", "Ba_SongofAnger_G9",
+        "Ba_SongofDelayDamage_G9", "Ba_SongofEagle_G6", "Ba_SongofEarth_G6", "Ba_SongofFirm_G6",
+        "Ba_SongofLand_G8", "Ba_SongofMinddamage_G5", "Ba_SongofRegeneration_G6", "Ba_SongofSerenity_1_G6",
+        "Ba_SongofWind_G4", "Ba_songofBrave_G6", "P_EQUIP_Harp_G4",
+        # lote 7: niveis 51-60, sem as Charge
+        "Ar_SongofAir_G11", "Ba_SongofMentalic_G2", "Ba_SongofWeight_G1", "Ba_SongofAppreciation_G2",
+        "Ba_SongofEmergentHeal_G8", "Ba_SongofInjury_G1", "Ba_SongofRefreshMind_G3", "Ar_SongofCold_G11",
+        "Ba_SongofGreatHeal_G2", "Ba_SongofPain_G3", "Ba_SongofSoulextinction_G2", "Ba_SongofWarmth_G3",
+        "Ba_SongogPeace_G4", "Ba_SongofResistance_G2", "Ba_SongofShock_G7", "Ba_SongofTidalwave_G1",
+        "Ar_SongofFire_G10", "Ar_SongofHeal_G11", "Ar_SongofRelax_G10", "Ar_Songofshield_G10",
+        "Ba_MassDispel_G1", "Ba_SongofAnger_G10", "Ba_SongofBless_G1", "Ba_SongofDelayDamage_G10",
+        "Ba_SongofEagle_G7", "Ba_SongofGale_G1", "Ba_SongofIllusion_G1", "Ba_SongofLand_G9",
+        "Ba_SongofMinddamage_G6", "Ba_SongofWind_G5", "Ar_SongofAir_G12", "Ba_MagicalDestruction_G7",
+        "Ba_SongofEarth_G7", "Ba_SongofGust_G1", "Ba_SongofMentalic_G3", "Ba_SongofRegeneration_G7",
+        "Ba_SongofSerenity_1_G7", "Ba_SongofWeight_G2", "BA_FocusDefence_G1", "Ba_SongofAppreciation_G3",
+        "Ba_SongofEmergentHeal_G9", "Ba_SongofInjury_G2", "Ba_SongofPain_G4", "Ba_SongofRefreshMind_G4",
+        "Ba_SongofWarmth_G4", "Ar_SongofCold_G12", "Ba_SongofGreatHeal_G3", "Ba_SongofSoulextinction_G3",
+        "Ba_SongogPeace_G5", "Ba_SongofBless_G2", "Ba_SongofGale_G2", "Ba_SongofIllusion_G2",
+        "Ba_SongofResistance_G3", "Ba_SongofShock_G8", "Ba_SongofTidalwave_G2", "Ar_SongofFire_G11",
+        "Ar_SongofHeal_G12", "Ar_SongofRelax_G11", "Ar_Songofshield_G11", "Ba_SongofAnger_G11",
+        "Ba_SongofDelayDamage_G11", "Ba_SongofEagle_G8", "Ba_SongofLand_G10", "Ba_SongofMinddamage_G7",
+        "Ba_SongofWind_G6")
 
 
 def _dependencias():
@@ -110,10 +144,14 @@ JA_NO_50 = ("P_EQUIP_EnhancedCloth_G1", "P_EQUIP_EnhancedRobe_G1", "P_EQUIP_Robe
             "Aromatherapy_G2", "Mending_G3",
             "P_StatBoostMaxMP_G1", "P_StatBoostElementalDefendAll_G1", "Aromatherapy_G3", "Mending_G4",
             "Aromatherapy_G4", "Mending_G5", "P_BoostHateDown_G1", "P_HealMastery_G2", "Aromatherapy_G5",
-            "Mending_G6", "P_StatBoostMCReduceRate_G1", "ALL_ShockReflect_G1", "P_HealMastery_G3")
+            "Mending_G6", "P_StatBoostMCReduceRate_G1", "ALL_ShockReflect_G1", "P_HealMastery_G3",
+            "P_StatBoostMagiclOffense_G2", "P_BoostHateDown_G2", "P_StatBoostMaxMP_G2", "P_HealMastery_G4",
+            "P_StatBoostMagiclOffense_G3", "P_StatBoostMCReduceRate_G2", "P_StatBoostMaxMP_G3")
 #: No aprendizado do Bard no 5.8, mas sem definicao no bard_skills.xml nem skill no 5.0 (skills comuns
 #: do 5.8 alem das do 5.0): ficam de fora por enquanto.
-SEM_FONTE = ("Aromatherapy_G6", "Aromatherapy_G7", "Mending_G7", "Mending_G8")
+SEM_FONTE = ("Aromatherapy_G6", "Aromatherapy_G7", "Mending_G7", "Mending_G8", "Aromatherapy_G8", "Mending_G9",
+             "Aromatherapy_G9", "Mending_G10",
+             "Aromatherapy_G10", "Mending_G11", "Aromatherapy_G11", "Mending_G12")
 ID_BASE = 22000
 ID_BASE_APRENDIZADO = 90000
 ID_BASE_STRING = 1991000
@@ -195,6 +233,9 @@ def strings(convertidas):
     saida, sem_texto = [], []
     for nome in nomes:
         texto = eng.get(nome.lower())
+        if texto is not None:
+            # Quebra de linha como no 5.0 (1.501 textos de skill com \n, nenhum com \r\n); o 5.8 traz \r\n.
+            texto = texto.replace("\r\n", "\n")
         if texto is None:
             # Citado e sem texto no proprio 5.8 (355 skills do Live tem desc_abnormal assim, ex.:
             # STR_Ba_SongofDelayDamage_sys_Abnormal): o campo fica como no 5.8, sem string.
@@ -205,6 +246,14 @@ def strings(convertidas):
     if sem_texto:
         print(f"    textos citados sem texto nem no 5.8 (ficam sem string): {', '.join(sem_texto)}")
     return saida
+
+
+@lru_cache(maxsize=None)
+def EFEITOS_CITADOS():
+    """Os nomes de efeito (fc_<biblioteca>.<efeito>) que o lote cita nos campos *_fx."""
+    skills = _skills_58()
+    return frozenset(valor for nome in LOTE + DEPENDENCIAS for _tag, valor in skills[nome][1]
+                     if valor.lower().startswith("fc_"))
 
 
 @lru_cache(maxsize=None)
@@ -392,7 +441,8 @@ def _corpo_wpn_mastery(d):
 #: fphealinstant: RA_RestoreWing_G1 (701) e 20059; resurrect: CL_Revive_G1 (972, reserved6 = a
 #: skill do debuff pelo nome); statup com reserved6=1/reserved9=1: FI_BoostWing_G1 (335).
 EFEITOS_MANUAIS = {"Shield", "StatUp", "MPHeal_Instant", "MpHeal", "BoostHealEffect", "DelayedSkill",
-                   "FPHeal_Instant", "Resurrect", "BoostSkillCastingTime", "Heal_Instant", "Rebirth"}
+                   "FPHeal_Instant", "Resurrect", "BoostSkillCastingTime", "Heal_Instant", "Rebirth",
+                   "DispelDebuff", "DeboostHealAmount"}
 #: Token do StatUp -> (stat, sinal). O sinal e o que o 5.0 usa: attackDelay positivo no cliente vira
 #: ATTACK_SPEED negativo em 351 de 372 statup oficiais (menos atraso = mais rapido); speed, 366 de 366 igual.
 STAT_DO_CLIENTE = {"pvpdefendratio": ("PVP_DEFEND_RATIO", 1), "flyspeed": ("FLY_SPEED", 1),
@@ -416,7 +466,7 @@ def _efeitos(d):
 
 #: Os que o gerador reprova; StatUp e MPHeal_Instant ele faz sozinho, so entram aqui junto deles.
 REPROVADOS_NO_GERADOR = {"Shield", "MpHeal", "BoostHealEffect", "DelayedSkill", "FPHeal_Instant", "Resurrect",
-                         "BoostSkillCastingTime", "Rebirth"}
+                         "BoostSkillCastingTime", "Rebirth", "DeboostHealAmount"}
 
 
 def _manual(d):
@@ -475,6 +525,15 @@ def _efeito_manual(d, k, ids):
         pares = [("value", g("reserved2"))] + ([("delta", g("reserved1"))] if g("reserved1") != "0" else []) + \
                 ([("percent", "true")] if g("reserved6") == "1" else []) + comum
         return f"\t\t\t<healinstant {attrs(pares + hop)}/>\n"
+    if tipo == "DispelDebuff":  # PR_HolyGrail_G1 (1165), PR_Tranquility_G1 (1042)
+        pares = [("dispel_level", g("reserved16")), ("power", g("reserved18")), ("value", g("reserved2"))] + comum
+        return f"\t\t\t<dispeldebuff {attrs(pares + hop)}/>\n"
+    if tipo == "DeboostHealAmount":
+        # HEAL_SKILL_DEBOOST com o valor do cliente negado, nos 4 oficiais (PR_CourseWound_G1: 50 -> -50).
+        # O Ba_SongofBless tem -6: +6, "increases the effect of HP recovery received".
+        return (f"\t\t\t<deboostheal {attrs(comum + hop)}>\n"
+                f"\t\t\t\t<change stat=\"HEAL_SKILL_DEBOOST\" func=\"PERCENT\" value=\"{-int(g('reserved2'))}\"/>\n"
+                "\t\t\t</deboostheal>\n")
     if tipo == "Rebirth":
         pares = [("resurrect_percent", g("reserved2")), ("skill_id", ids[g("reserved6")])] + comum
         return f"\t\t\t<rebirth {attrs(pares + hop)}/>\n"

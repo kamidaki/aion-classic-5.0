@@ -1663,7 +1663,15 @@ def aplica_efeito():
     fxc_das_skills = bard_skills_58.FXC_DAS_SKILLS()
     for chave_fxc in fxc_das_skills:
         if chave_fxc in m50:
-            raise ValueError(f"{chave_fxc} ja existe no 5.0")
+            # Biblioteca que o 5.0 ja tem (fc_pr_restorelife do Cleric, fc_cast_evopoint): vale a do
+            # 5.0, desde que tenha todo efeito que as skills citam.
+            tem = {aion_fx.nome(r).lower() for r in aion_fx.le(aion_pak.le(d50, m50[chave_fxc]), b"FXC")[2]}
+            biblioteca_lib = chave_fxc[4:-4]
+            faltam = {v for v in bard_skills_58.EFEITOS_CITADOS()
+                      if v.lower().startswith(biblioteca_lib + ".") and v.lower() not in tem}
+            if faltam:
+                raise ValueError(f"{chave_fxc} ja existe no 5.0, mas sem {sorted(faltam)}")
+            continue
         fxc58_skill = aion_pak.le(d58, m58[chave_fxc])
         acrescenta[m58[chave_fxc].nome] = aion_fx.fxc_para_50(fxc58_skill)
         regs = aion_fx.le(fxc58_skill, b"FXC")[2]
