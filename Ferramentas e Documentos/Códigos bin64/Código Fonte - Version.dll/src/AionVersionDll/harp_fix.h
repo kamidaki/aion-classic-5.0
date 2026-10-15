@@ -548,6 +548,29 @@ static HarpPoint s_harpBardPoint[2][2];      // [race][male, female]
 static HarpCamera s_harpBardCamera[2][2];    // [race][male, female]
 static float s_harpSavedPoints[2][2][6];     // the Lumines data while bard mode is on
 static float s_harpSavedCameras[2][2][7];
+static bool s_harpPlatformSwapped = false;   // the Bard data is in the table (bard mode on)
+
+// The level loaders run again each time the creation screen opens (the screen itself is built
+// once): they write the Lumines point and camera of position 10 over the Bard data while bard
+// mode is still on. Those values become the saved Lumines data and the Bard data goes back.
+static void HarpKeepPlatform() {
+    if (!s_harpPlatformSwapped || !s_harpPreviewData) return;
+    for (int r = 0; r < 2; ++r) {
+        const int base = (r ? kPreviewDark : kPreviewLight) + 2 * kBardButtonSlot;
+        for (int g = 0; g < 2; ++g) {
+            float* point = (float*)(s_harpPreviewData + kPreviewPoints + (base + g) * 24);
+            float* camera = (float*)(s_harpPreviewData + kPreviewCameras + (base + g - kPreviewCamera) * 0x1c);
+            if (memcmp(point, s_harpBardPoint[r][g].v, sizeof(s_harpBardPoint[r][g].v)) != 0) {
+                memcpy(s_harpSavedPoints[r][g], point, sizeof(s_harpSavedPoints[r][g]));
+                memcpy(point, s_harpBardPoint[r][g].v, sizeof(s_harpBardPoint[r][g].v));
+            }
+            if (memcmp(camera, s_harpBardCamera[r][g].v, sizeof(s_harpBardCamera[r][g].v)) != 0) {
+                memcpy(s_harpSavedCameras[r][g], camera, sizeof(s_harpSavedCameras[r][g]));
+                memcpy(camera, s_harpBardCamera[r][g].v, sizeof(s_harpBardCamera[r][g].v));
+            }
+        }
+    }
+}
 
 static const char* const kBardPointNames[2][2] = {
     { "CLASS_Position_L26", "CLASS_Position_L27" },
@@ -573,6 +596,7 @@ static void __fastcall HarpPointLoaderHook(void* a1, const char* name, const flo
                     memcpy(s_harpBardPoint[r][g].v + 3, rot, 12);
                     s_harpBardPoint[r][g].ok = true;
                 }
+        HarpKeepPlatform();
     }
     __except (EXCEPTION_EXECUTE_HANDLER) {
     }
@@ -589,6 +613,7 @@ static void __fastcall HarpCameraLoaderHook(void* a1, const char* name, const fl
                     s_harpBardCamera[r][g].v[6] = fov;
                     s_harpBardCamera[r][g].ok = true;
                 }
+        HarpKeepPlatform();
     }
     __except (EXCEPTION_EXECUTE_HANDLER) {
     }
@@ -663,18 +688,17 @@ static void HarpSetBardMode(bool on, bool build) {
     if (s_harpBardMode == on) return;
     s_harpBardMode = on;
     if (!s_harpReleasePreview || !s_harpBuildPreviews || !s_harpPreviewData) return;
-    static bool swapped = false;
     __try {
         for (int base : { kPreviewLight, kPreviewDark }) {
             s_harpReleasePreview(nullptr, base + 2 * kBardButtonSlot);
             s_harpReleasePreview(nullptr, base + 2 * kBardButtonSlot + 1);
         }
-        if (on && !swapped && HarpBardPlatformLoaded()) {
+        if (on && !s_harpPlatformSwapped && HarpBardPlatformLoaded()) {
             HarpSwapPlatform(true);
-            swapped = true;
-        } else if (!on && swapped) {
+            s_harpPlatformSwapped = true;
+        } else if (!on && s_harpPlatformSwapped) {
             HarpSwapPlatform(false);
-            swapped = false;
+            s_harpPlatformSwapped = false;
         }
         if (build) s_harpBuildPreviews(nullptr);
     }
