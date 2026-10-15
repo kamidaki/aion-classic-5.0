@@ -822,7 +822,10 @@ def main():
         if mo:
             linhas.append("\t\t<motion" + xml_attrs(mo) + " />\n")
         linhas.append("\t</skill_template>")
-        edits.append((ini, fim, "".join(linhas)))
+        # Com a quebra do arquivo (CRLF): com LF no meio, os fix_50_* (que procuram os blocos pela
+        # quebra do arquivo) nao achavam o <startconditions> e criavam outro antes do <properties>.
+        eol = "\r\n" if "\r\n" in text[:4096] else "\n"
+        edits.append((ini, fim, "".join(linhas).replace("\n", eol)))
         gerados.append((int(sid), c.get("name"), grupo_de(sid), [t for _, t in tipos]))
 
     por_grupo = collections.Counter(g for _, _, g, _ in gerados)

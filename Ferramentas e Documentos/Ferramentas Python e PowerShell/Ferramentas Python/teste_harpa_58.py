@@ -80,9 +80,6 @@ PAK_SOM_DO_PROJETIL = r"sounds\effect\artist\artist.pak"
 #: que o marcador toca como arquivo.
 FXC_DA_SELECAO = "fxc/fc_sys_loginstage.fxc"
 SONS_DA_SELECAO = (r"Sounds\effect\artist\skill_harp_SongofAromatherapy_cast.ogg",)
-#: Efeitos das skills do Bard ja trazidas (`bard_skills_58.LOTE`): o 5.0 nao tem nenhum destes
-#: arquivos; entram inteiros, com as particulas que citam (os sons vem nas particulas *_sound*).
-FXC_DAS_SKILLS = ("fxc/fc_ar_songofair.fxc", "fxc/fc_ar_songofcold.fxc", "fxc/fc_ar_songofheal.fxc")
 ATAQUE_SERVIDOR = {"attack_range": "25000", "attack_speed": "2400", "attack_type": "MAGICAL_WATER"}
 #: Itens de tentativas anteriores (harpa como livro e como lamina em corrente): saem do servidor.
 IDS_ANTIGOS = (100699901, 102499901)
@@ -1266,7 +1263,7 @@ COMPONENTES = {
     "animacoes": (PAK_ANIMACAO,),
     "sons": (PAK_SONS,),
     "itens": PAKS_DE_ITENS + (PAK_MESH, PAK_TEXTURA),
-    "efeito": (PAK_EFEITOS, PAK_SOM_DO_PROJETIL),
+    "efeito": (PAK_EFEITOS, PAK_SOM_DO_PROJETIL, r"Sounds\effect\effect.pak"),
     "dll": (r"bin64\version.dll",),
 }
 SUFIXO_LIGADO = ".harpa_ligada"
@@ -1660,7 +1657,11 @@ def aplica_efeito():
                            if b"." in s and not s.startswith(b"FC_Sys_LoginStage"))
     # Efeitos das skills do Bard: cada .fxc inteiro, e as particulas que os efeitos citam.
     bibliotecas_skills, efeitos_skills = [], []
-    for chave_fxc in FXC_DAS_SKILLS:
+    # Os .fxc das skills do Bard ja trazidas (bard_skills_58.LOTE), tirados dos campos *_fx delas:
+    # o 5.0 nao tem nenhum; entram inteiros, com as particulas que citam (sons inclusive).
+    import bard_skills_58
+    fxc_das_skills = bard_skills_58.FXC_DAS_SKILLS()
+    for chave_fxc in fxc_das_skills:
         if chave_fxc in m50:
             raise ValueError(f"{chave_fxc} ja existe no 5.0")
         fxc58_skill = aion_pak.le(d58, m58[chave_fxc])
@@ -1785,7 +1786,7 @@ def aplica_efeito():
           f"+{len(efeitos) + len(efeitos_lobby) + len(efeitos_skills)} em {INDICE_FXC}")
     print(f"OK  {PAK_EFEITOS}: {PRT_DO_PROJETIL} +{len(particulas)}, {FXC_DO_PROJETIL} novo, "
           f"{FXC_DA_SELECAO} +{len(efeitos_lobby)}, {', '.join(sorted(prts_novos))}")
-    print(f"OK  efeitos das skills: {', '.join(FXC_DAS_SKILLS)} ({len(efeitos_skills)} efeitos)")
+    print(f"OK  efeitos das skills: {', '.join(fxc_das_skills)} ({len(efeitos_skills)} efeitos)")
 
     # Arquivos que essas particulas citam: texturas e meshes de efeito, e sons.
     citados = set()
@@ -1811,37 +1812,85 @@ def aplica_efeito():
         q = p + SUFIXO_BACKUP if os.path.exists(p + SUFIXO_BACKUP) else p
         tem.update(e.nome.lower().replace("/", "\\").rsplit("\\", 1)[-1] for e in aion_pak.abre(q)[1])
     faltam = sorted(c for c in citados if "\\" in c and c.lower().rsplit("\\", 1)[-1] not in tem)
-    sons = [c for c in faltam if c.lower().startswith("sounds\\effect\\artist\\")]
-    if sons:
-        caminho = os.path.join(CLIENTE, PAK_SOM_DO_PROJETIL)
-        origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
-        _d, idx = aion_pak.abre(origem)
-        novos = do_58(os.path.dirname(PAK_SOM_DO_PROJETIL), sorted({s.rsplit("\\", 1)[-1] for s in sons}))
-        _backup(caminho)
-        if origem != caminho:
-            shutil.copy2(origem, caminho)
-        regrava_pak(caminho, acrescenta=novos)
-        _confere_pak(caminho, len(idx), {n: "novo" for n in novos})
-        print(f"OK  {PAK_SOM_DO_PROJETIL}: +{len(novos)} ({', '.join(novos)})")
-        faltam = [c for c in faltam if c.rsplit("\\", 1)[-1].lower() not in {n.lower() for n in novos}]
+    # Sons: vao para o pak do 5.0 de mesmo caminho do pak do 5.8 que os tem (artist.pak,
+    # effect.pak...), se o 5.0 ainda nao os tiver ali.
+    por_pasta = {}
+    for c in faltam:
+        if c.lower().startswith("sounds\\"):
+            pasta, arquivo = c.rsplit("\\", 1)
+            por_pasta.setdefault(pasta.lower(), set()).add(arquivo.lower())
+    trazidos = set()
+    for pasta, arquivos in sorted(por_pasta.items()):
+        for p58 in sorted(glob.glob(os.path.join(LIVE_CLIENTE, pasta, "*.pak"))):
+            rel = os.path.relpath(p58, LIVE_CLIENTE)
+            caminho = os.path.join(CLIENTE, rel)
+            if not os.path.exists(caminho):
+                continue
+            origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
+            _d, idx = aion_pak.abre(origem)
+            ja = {e.nome.lower() for e in idx}
+            d58, idx58 = aion_pak.abre(p58)
+            novos = {e.nome: aion_pak.le(d58, e) for e in idx58
+                     if e.nome.lower() in arquivos and e.nome.lower() not in ja}
+            trazidos |= arquivos & ja
+            if not novos:
+                continue
+            _backup(caminho)
+            if origem != caminho:
+                shutil.copy2(origem, caminho)
+            regrava_pak(caminho, acrescenta=novos)
+            _confere_pak(caminho, len(idx), {n: "novo" for n in novos})
+            print(f"OK  {rel}: +{len(novos)} ({', '.join(sorted(novos))})")
+            trazidos |= {n.lower() for n in novos}
+    faltam = [c for c in faltam if not (c.lower().startswith("sounds\\")
+                                        and c.rsplit("\\", 1)[-1].lower() in trazidos)]
     # Meshes e texturas de efeito: vao para o pak do 5.0 de mesmo caminho do pak do 5.8 que as tem
     # (Effects\ e Objects\, menos objects\items, cujos modelos tem passo proprio logo abaixo).
-    por_pak = {}
-    soltos = [c for c in faltam if not c.lower().startswith("objects\\items\\")]
-    for p in glob.glob(os.path.join(LIVE_CLIENTE, "Effects", "*.pak")) + \
-            glob.glob(os.path.join(LIVE_CLIENTE, "Objects", "**", "*.pak"), recursive=True):
-        rel58 = os.path.relpath(p, LIVE_CLIENTE)
-        if rel58.lower().startswith("objects\\items\\"):
-            continue
+    def procura_58(nomes):
+        achados = {}
+        bases = {c.lower().rsplit("\\", 1)[-1] for c in nomes}
+        for p in glob.glob(os.path.join(LIVE_CLIENTE, "Effects", "*.pak")) + \
+                glob.glob(os.path.join(LIVE_CLIENTE, "Objects", "**", "*.pak"), recursive=True):
+            rel58 = os.path.relpath(p, LIVE_CLIENTE)
+            if rel58.lower().startswith("objects\\items\\"):
+                continue
+            try:
+                d, idx = aion_pak.abre(p)
+            except aion_pak.PakInvalido:
+                continue
+            for e in idx:
+                if e.nome.lower().replace("/", "\\").rsplit("\\", 1)[-1] in bases:
+                    achados.setdefault(rel58, {})[e.nome] = aion_pak.le(d, e)
+        return achados
+
+    # O que o 5.0 ja tem em objects\ (originais), pelo nome do arquivo: boids\bee.cgf esta no
+    # boids_Meshes.pak do 5.0 e nao precisa vir.
+    tem_objetos = set()
+    for p in glob.glob(os.path.join(CLIENTE, "objects", "**", "*.pak"), recursive=True):
+        q = p + SUFIXO_BACKUP if os.path.exists(p + SUFIXO_BACKUP) else p
         try:
-            d, idx = aion_pak.abre(p)
+            tem_objetos.update(e.nome.lower().replace("/", "\\").rsplit("\\", 1)[-1] for e in aion_pak.abre(q)[1])
         except aion_pak.PakInvalido:
             continue
-        for e in idx:
-            base_nome = e.nome.lower().replace("/", "\\").rsplit("\\", 1)[-1]
-            for c in soltos:
-                if c.lower().rsplit("\\", 1)[-1] == base_nome:
-                    por_pak.setdefault(rel58, {})[e.nome] = aion_pak.le(d, e)
+    faltam = [c for c in faltam if not (c.lower().startswith("objects\\")
+                                        and c.lower().rsplit("\\", 1)[-1] in tem_objetos)]
+    por_pak = procura_58([c for c in faltam if not c.lower().startswith("objects\\items\\")])
+    # Um modelo trazido (.cgf) cita as texturas dele pelo caminho: as que o 5.0 nao tem vem junto
+    # (bee_hornet_fx/bee_hornet_01.cgf do Ba_SongofDelayDamage pede bee_hornet_01*.dds; sem elas
+    # a abelha sai com a textura de erro).
+    texturas_de_modelo = set()
+    for arquivos in por_pak.values():
+        for nome_58, dados in arquivos.items():
+            if nome_58.lower().endswith(".cgf"):
+                for s in re.findall(rb"[\x20-\x7e]{4,}\.dds", dados, re.I):
+                    c = s.decode("latin-1").replace("/", "\\")
+                    if not c.lower().startswith("textures\\defaults\\") \
+                            and c.lower().rsplit("\\", 1)[-1] not in tem | tem_objetos:
+                        texturas_de_modelo.add(c)
+    if texturas_de_modelo:
+        for rel58, arquivos in procura_58(sorted(texturas_de_modelo)).items():
+            por_pak.setdefault(rel58, {}).update(arquivos)
+        print(f"    texturas citadas pelos modelos trazidos: {sorted(texturas_de_modelo)}")
     # O 5.0 nem sempre tem o pak de mesmo caminho: objects\misc\boids\x.dds esta no 5.8 em
     # Objects\misc\Mesh_Textures_003.pak (entrada "boids/x.dds") e no 5.0 em
     # objects\misc\boids\boids_Textures.pak (entrada "x.dds"). Ai vai para o pak de texturas da
@@ -1853,18 +1902,25 @@ def aplica_efeito():
             continue
         for nome_58, dados in arquivos.items():
             pasta = os.path.join(os.path.dirname(rel), os.path.dirname(nome_58.replace("/", "\\")))
+            # Textura no pak de texturas da pasta; modelo (.cgf) no de meshes (Roseleaf.cgf do 5.8
+            # Objects\misc\Mesh_Meshes_002 -> objects\misc\misc_Meshes.pak do 5.0).
+            tipo = "textures" if nome_58.lower().endswith(".dds") else \
+                "meshes" if nome_58.lower().endswith(".cgf") else None
             alvo = [p for p in glob.glob(os.path.join(CLIENTE, pasta, "*.pak"))
-                    if "textures" in os.path.basename(p).lower() and nome_58.lower().endswith(".dds")]
+                    if tipo and os.path.basename(p).lower().endswith(f"_{tipo}.pak")]
             if len(alvo) != 1:
                 print(f"    {nome_58} ({rel}): sem pak de destino no 5.0, fica de fora")
                 continue
             remapeado.setdefault(os.path.relpath(alvo[0], CLIENTE), {})[nome_58.replace("\\", "/").rsplit("/", 1)[-1]] = dados
     por_pak = remapeado
     for rel, arquivos in sorted(por_pak.items()):
-        if rel.lower() == PAK_EFEITOS.lower():
-            raise ValueError(f"{list(arquivos)} vai no {PAK_EFEITOS}, que acabou de ser gravado")
         caminho = os.path.join(CLIENTE, rel)
-        origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
+        if rel.lower() == PAK_EFEITOS.lower():
+            # Arquivos que o 5.8 guarda no proprio Effects_Meshes.pak (v4/cgf/ba_helix2.pep): vao
+            # no pak que acabou de ser gravado acima, acrescentados a ele (nao ao backup).
+            origem = caminho
+        else:
+            origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
         _d, idx = aion_pak.abre(origem)
         _backup(caminho)
         if origem != caminho:
@@ -1904,6 +1960,10 @@ def aplica_modelos_de_efeito(cgfs):
         d, idx = aion_pak.abre(p)
         for e in idx:
             arquivos58.setdefault(e.nome.lower(), (d, e))
+    tem50 = set()  # o que objects\items do 5.0 ja tem (originais)
+    for p in glob.glob(os.path.join(CLIENTE, "objects", "items", "*.pak")):
+        q = p + SUFIXO_BACKUP if os.path.exists(p + SUFIXO_BACKUP) else p
+        tem50.update(e.nome.lower() for e in aion_pak.abre(q)[1])
     malhas, animacoes, texturas = {}, {}, {}
     for cgf in cgfs:
         base = cgf.rsplit(".", 1)[0].lower()
@@ -1919,6 +1979,16 @@ def aplica_modelos_de_efeito(cgfs):
         for k, (d, e) in arquivos58.items():
             if k.endswith(".dds") and (k == base + ".dds" or k.startswith(base + "_")):
                 texturas[e.nome] = aion_pak.le(d, e)
+        # E as que o .cgf cita pelo caminho com outro nome (cello_FX.cgf -> objects\items\cello*.dds),
+        # se o 5.0 ainda nao as tem em objects\items.
+        cgf = next((v for k, v in malhas.items() if k.lower() == base + ".cgf"), b"")
+        for s in re.findall(rb"[\x20-\x7e]{4,}\.dds", cgf, re.I):
+            k = s.decode("latin-1").replace("/", "\\").lower()
+            if k.startswith("objects\\items\\"):
+                k = k.rsplit("\\", 1)[-1]
+                if k in arquivos58 and k not in tem50:
+                    d, e = arquivos58[k]
+                    texturas[e.nome] = aion_pak.le(d, e)
     trazidos = set()
     for rel, novos in ((PAK_MODELO_DE_EFEITO, malhas), (PAK_ANIMACAO_DE_EFEITO, animacoes),
                        (PAK_TEXTURA_DE_EFEITO, texturas)):

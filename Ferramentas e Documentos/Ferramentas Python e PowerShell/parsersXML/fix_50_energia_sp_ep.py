@@ -37,7 +37,10 @@ from xml.sax.saxutils import quoteattr
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.abspath(os.path.join(AQUI, "..", "..", ".."))
-XMLS = r"G:\Projetos AION\XMLS AION CLASSIC\data"
+# XMLs do cliente: os do repositorio (fonte desde 16/09, com as skills do Bard), senao a copia antiga.
+XMLS = os.path.join(RAIZ, "Ferramentas e Documentos", "Client e Coletas", "Client 5.0 - Dados Extraidos", "data")
+if not os.path.exists(os.path.join(XMLS, "skills", "client_skills.xml")):
+    XMLS = r"G:\Projetos AION\XMLS AION CLASSIC\data"
 TEMPLATES = os.path.join(RAIZ, "Código Fonte - Emulador", "game-server", "data", "static_data", "skills", "skill_templates.xml")
 
 FEVER_ID = 3148

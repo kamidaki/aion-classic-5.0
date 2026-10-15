@@ -41,10 +41,46 @@ PASTAS_DO_REPO = ("", "special", "special2")
 
 #: Primeiro lote: as skills do Artist (niveis 1-8 no 5.8) e as passivas de arma/armadura do Bard.
 #: Ar_SongofBattle_1_G1 fica de fora: e "Charge" e o 5.0 nao tem o client_skill_charge.
+#: Segundo lote: as do Bard dos niveis 10-15 (sem as Charge). Ar_SongofRest_G1 fica para o lote
+#: do Ba_Lullaby: o Deform das duas transforma o alvo num NPC do 5.8 que o 5.0 nao tem
+#: (Ar_SongofRest_G1_NPC 201081, Monster/PolyDancer). Sempre acrescentar no fim: a ordem da os ids
+#: das strings.
 LOTE = ("P_EQUIP_EnhancedHarp_G1", "P_EQUIP_Harp_G1", "Ar_SongofAir_G1", "Ar_SongofAir_G2",
-        "Ar_SongofCold_G1", "Ar_SongofCold_G2", "Ar_SongofHeal_G1")
+        "Ar_SongofCold_G1", "Ar_SongofCold_G2", "Ar_SongofHeal_G1",
+        # lote 2
+        "Ar_SongofFire_G1", "Ar_SongofHeal_G2", "Ar_SongofRelax_G1", "Ar_SongofRoot_G1",
+        "Ar_Songofshield_G1", "BA_SeraphicSong_G1", "Ba_SongofAnger_G1", "Ba_SongofDelayDamage_G1",
+        "Ar_SongofAir_G3", "Ar_SongofCold_G3", "Ar_SongofFire_G2",
+        "Ar_SongofHeal_G3", "Ar_SongofRelax_G2", "Ar_Songofshield_G2", "Ba_SongofAnger_G2",
+        "Ba_SongofDelayDamage_G2", "Ba_SongofDimensionDoor_G1", "Ba_SongofLand_G1",
+        # lote 3: niveis 16-20, sem as Charge e sem o Ba_Lullaby_G1 (NPC, ver Ar_SongofRest_G1)
+        "Ar_SongofAir_G4", "Ba_SongofEmergentHeal_G1", "Ar_SongofCold_G4", "Ba_SongofPurify_G1",
+        "Ar_SongofFire_G3", "Ar_SongofHeal_G4", "Ar_SongofRelax_G3", "Ar_Songofshield_G3",
+        "Ba_MagicalDestruction_G1", "Ba_SongofAdvance_G1", "Ba_SongofAnger_G3", "Ba_SongofDelayDamage_G3",
+        "Ba_SongofEarth_G1", "Ba_SongofFirm_G1", "Ba_SongofLand_G2", "Ba_SongofManaReverse_G1",
+        "Ba_SongofRegeneration_G1", "Ba_SongofSerenity_1_G1", "Ba_songofBrave_G1")
+
+
+def _dependencias():
+    """Skills que as do lote disparam pelo nome (DelayedSkill...): entram junto, sem aprendizado."""
+    texto = open(BARD_SKILLS_58, encoding="utf-8").read()
+    nomes = set(re.findall(r"<name>([^<]+)</name>", texto))
+    saida = []
+    for bloco in re.findall(r"<skill_base_client>(.*?)</skill_base_client>", texto, re.S):
+        d = dict(re.findall(r"<([A-Za-z0-9_]+)>([^<]*)</\1>", bloco))
+        if d.get("name") in LOTE:
+            for tag, valor in d.items():
+                if tag.startswith("effect") and valor in nomes and valor not in LOTE and valor not in saida:
+                    saida.append(valor)
+    return tuple(sorted(saida))
+
+
+DEPENDENCIAS = _dependencias()
 #: Skills do Bard no 5.8 que o 5.0 ja tem com o mesmo nome: so entram no aprendizado.
-JA_NO_50 = ("P_EQUIP_EnhancedCloth_G1", "P_EQUIP_EnhancedRobe_G1", "P_EQUIP_Robe_G1")
+JA_NO_50 = ("P_EQUIP_EnhancedCloth_G1", "P_EQUIP_EnhancedRobe_G1", "P_EQUIP_Robe_G1",
+            "P_HealMastery_G1", "P_StatBoostMagiclOffense_G1", "Aromatherapy_G1", "Mending_G2",
+            "Aromatherapy_G2", "Mending_G3",
+            "P_StatBoostMaxMP_G1", "P_StatBoostElementalDefendAll_G1", "Aromatherapy_G3", "Mending_G4")
 ID_BASE = 22000
 ID_BASE_APRENDIZADO = 90000
 ID_BASE_STRING = 1991000
@@ -87,7 +123,7 @@ def _aprendizado_58():
 def converte(skills, ids, campos50):
     """{nome: (id novo, [(tag, texto)])} do lote no formato do 5.0, e os campos que ficaram de fora."""
     saida, fora = {}, {}
-    for nome in LOTE:
+    for nome in LOTE + DEPENDENCIAS:
         _id58, campos = skills[nome]
         novos = []
         for tag, valor in campos:
@@ -122,14 +158,33 @@ def strings(convertidas):
         for _tag, valor in campos:
             if valor.upper().startswith("STR_") and valor not in nomes:
                 nomes.append(valor)
-    saida = []
-    for k, nome in enumerate(nomes):
+    saida, sem_texto = [], []
+    for nome in nomes:
         texto = eng.get(nome.lower())
         if texto is None:
-            raise ValueError(f"sem texto em ingles: {nome}")
-        saida.append(("strings/client_strings_skill.xml", ID_BASE_STRING + k, nome,
+            # Citado e sem texto no proprio 5.8 (355 skills do Live tem desc_abnormal assim, ex.:
+            # STR_Ba_SongofDelayDamage_sys_Abnormal): o campo fica como no 5.8, sem string.
+            sem_texto.append(nome)
+            continue
+        saida.append(("strings/client_strings_skill.xml", ID_BASE_STRING + len(saida), nome,
                       {lingua: texto for lingua in ("ENG", "DEU", "FRA", "BRA")}))
+    if sem_texto:
+        print(f"    textos citados sem texto nem no 5.8 (ficam sem string): {', '.join(sem_texto)}")
     return saida
+
+
+@lru_cache(maxsize=None)
+def FXC_DAS_SKILLS():
+    """Os .fxc dos efeitos que o lote cita (cast_fx, fire_fx, ammo_fx, hit_fx...: fc_<biblioteca>.<efeito>)."""
+    skills = _skills_58()
+    libs = []
+    for nome in LOTE + DEPENDENCIAS:
+        for _tag, valor in skills[nome][1]:
+            if valor.lower().startswith("fc_"):
+                chave = f"fxc/{valor.split('.', 1)[0].lower()}.fxc"
+                if chave not in libs:
+                    libs.append(chave)
+    return tuple(libs)
 
 
 @lru_cache(maxsize=None)
@@ -260,7 +315,9 @@ def _templates(texto):
             fim = fim_tag + 1
         else:
             fim = texto.index("</skill_template>", fim_tag) + len("</skill_template>")
-        if texto.startswith("\n", fim):
+        if texto.startswith("\r\n", fim):  # o arquivo e CRLF
+            fim += 2
+        elif texto.startswith("\n", fim):
             fim += 1
         saida.append((int(m.group(1)), m.start(), fim))
     return saida
@@ -293,8 +350,130 @@ def _corpo_wpn_mastery(d):
             "\t\t\t</wpnmastery>\n\t\t</effects>\n")
 
 
-def _template_minimo(id_novo, campos, textos_por_nome):
+#: Efeitos que o rebuild_50_skill_effects.py nao aprova (poucos exemplos ou presenca < 70%): o
+#: template sai inteiro daqui, com a traducao campo a campo de skills oficiais do 5.0 com o mesmo
+#: efeito -- shield/statup: CH_ProtectSelf_G1 (1201) e 161; mphealinstant: 1370; mpheal: 1490 e
+#: 21308; boostheal: P_HealMastery_G1 (108) e 1146 (reserved9=1 -> <onfly/>); delayedskill: 18683.
+#: Cabecalho, properties, custo e motion seguem o que o gerador fez nas irmas do Bard (22134...).
+EFEITOS_MANUAIS = {"Shield", "StatUp", "MPHeal_Instant", "MpHeal", "BoostHealEffect", "DelayedSkill"}
+STAT_DO_CLIENTE = {"pvpdefendratio": "PVP_DEFEND_RATIO"}
+_ENUM = {"targetorme": "TARGETORME", "debuffphy": "DEBUFF_PHYSICAL"}
+
+
+def _enum(v):
+    return _ENUM.get(v.lower(), v.upper())
+
+
+def _efeitos(d):
+    return [k for k in range(1, 5) if d.get(f"effect{k}_type")]
+
+
+#: Os que o gerador reprova; StatUp e MPHeal_Instant ele faz sozinho, so entram aqui junto deles.
+REPROVADOS_NO_GERADOR = {"Shield", "MpHeal", "BoostHealEffect", "DelayedSkill"}
+
+
+def _manual(d):
+    tipos = {d[f"effect{k}_type"] for k in _efeitos(d)}
+    return bool(tipos & REPROVADOS_NO_GERADOR) and tipos <= EFEITOS_MANUAIS
+
+
+def _efeito_manual(d, k, ids):
+    p = f"effect{k}_"
+    g = lambda c, padrao="0": d.get(p + c) or padrao
+    tipo = d[p + "type"]
+    comum = []
+    if g("remain2") != "0":
+        comum.append(("duration2", g("remain2")))
+    if g("effectid") != "0":
+        comum.append(("effectid", g("effectid")))
+    comum.append(("e", k))
+    if g("basiclv") != "0":
+        comum.append(("basiclvl", g("basiclv")))
+    if g("noresist") == "1":
+        comum.append(("noresist", "true"))
+    if g("reserved10", "") and tipo not in ("Shield",):
+        comum.append(("element", g("reserved10").upper()))
+    if g("cond_preeffect", ""):
+        comum += [("preeffect", g("cond_preeffect")[1:]), ("preeffect_prob", g("cond_preeffect_prob2", "100"))]
+    hop = [("hoptype", g("hop_type").upper()), ("hopb", g("hop_b"))] if g("hop_type", "") and g("hop_b") != "0" else []
+    attrs = lambda pares: " ".join(f'{a}="{_xml_attr(v)}"' for a, v in pares)
+    if tipo == "Shield":
+        pares = [("hitvalue", g("reserved2")), ("hitdelta", g("reserved1")), ("value", g("reserved8")),
+                 ("delta", g("reserved7"))] + ([("percent", "true")] if g("reserved6") == "1" else []) + comum
+        if g("reserved_cond1", ""):
+            pares += [("hittype", g("reserved_cond1").upper()), ("hittypeprob2", g("reserved_cond1_prob2", "1000"))]
+        return f"\t\t\t<shield {attrs(pares + hop)}/>\n"
+    if tipo == "StatUp":
+        stat = STAT_DO_CLIENTE[g("reserved13").lower()]
+        return (f"\t\t\t<statup {attrs(comum + hop)}>\n"
+                f"\t\t\t\t<change stat=\"{stat}\" func=\"ADD\" value=\"{g('reserved2')}\"/>\n\t\t\t</statup>\n")
+    if tipo == "MPHeal_Instant":
+        pares = [("value", g("reserved2")), ("delta", g("reserved1"))] + \
+                ([("percent", "true")] if g("reserved6") == "1" else []) + comum
+        return f"\t\t\t<mphealinstant {attrs(pares + hop)}/>\n"
+    if tipo == "MpHeal":
+        pares = [("checktime", g("checktime")), ("value", g("reserved9")), ("delta", g("reserved8"))] + \
+                ([("percent", "true")] if g("reserved6") == "1" else []) + comum
+        return f"\t\t\t<mpheal {attrs(pares)}/>\n"
+    if tipo == "BoostHealEffect":
+        cond = "\t\t\t\t\t<conditions>\n\t\t\t\t\t\t<onfly/>\n\t\t\t\t\t</conditions>\n" if g("reserved9") == "1" else ""
+        change = f"\t\t\t\t<change stat=\"HEAL_SKILL_BOOST\" func=\"PERCENT\" value=\"{g('reserved2')}\""
+        change += f">\n{cond}\t\t\t\t</change>\n" if cond else "/>\n"
+        return f"\t\t\t<boostheal {attrs(comum)}>\n{change}\t\t\t</boostheal>\n"
+    if tipo == "DelayedSkill":
+        pares = [("skill_id", ids[g("reserved1")]), ("value", g("reserved2"))] + comum
+        return f"\t\t\t<delayedskill {attrs(pares)}/>\n"
+    raise ValueError(tipo)
+
+
+def _template_manual(id_novo, d, nome, ids):
+    passiva = (d.get("activation_attribute") or "").lower() == "passive"
+    attrs = [("skill_id", id_novo), ("name_en", nome[1]), ("name_pt", nome[1]), ("nameId", nome[0]),
+             ("delayId", d.get("delay_id") or id_novo), ("stack", d["name"].upper()), ("lvl", 1),
+             ("skilltype", (d.get("type") or "PHYSICAL").upper()), ("skillsubtype", _enum(d.get("sub_type") or "None")),
+             ("tslot", _enum(d.get("target_slot") or "None")),
+             ("activation", (d.get("activation_attribute") or "ACTIVE").upper()),
+             ("cooldown", int(float(d.get("delay_time") or 0)) // 100),
+             ("duration", 0 if d.get("instant_skill") == "1" else int(float(d.get("casting_delay") or 0)))]
+    if d.get("dispel_category"):
+        attrs.append(("dispel_category", _enum(d["dispel_category"])))
+    if d.get("required_dispel_level"):
+        attrs.append(("req_dispel_level", d["required_dispel_level"]))
+    if d.get("cancel_rate"):
+        attrs.append(("cancel_rate", d["cancel_rate"]))
+    if d.get("ammo_speed"):
+        attrs.append(("ammospeed", d["ammo_speed"]))
+    if d.get("chain_skill_prob2"):
+        attrs.append(("chain_skill_prob", d["chain_skill_prob2"]))
+    alvo = _enum(d.get("first_target") or "Me")
+    if passiva:
+        props = '\t\t<properties first_target="ME"/>\n'
+    else:
+        p = [("first_target", alvo)]
+        if alvo == "TARGETORME" and d.get("revision_distance"):
+            p.append(("revision_distance", int(d["revision_distance"]) * 2))
+        p += [("first_target_range", d.get("first_target_valid_distance") or "0"),
+              ("target_relation", _enum(d.get("target_relation_restriction") or "All")),
+              ("target_type", _enum(d.get("target_range") or "OnlyOne"))]
+        props = "\t\t<properties " + " ".join(f'{a}="{v}"' for a, v in p) + "/>\n"
+    corpo = props
+    custo = d.get("cost_parameter", "").upper() == "MP" and d.get("cost_end")
+    if custo:
+        corpo += f'\t\t<startconditions>\n\t\t\t<mp value="{d["cost_end"]}" delta="{d.get("cost_end_lv") or 0}"/>\n\t\t</startconditions>\n'
+    if passiva or d.get("move_casting") != "1":
+        corpo += '\t\t<useconditions>\n\t\t\t<playermove allow="false"/>\n\t\t</useconditions>\n'
+    corpo += "\t\t<effects>\n" + "".join(_efeito_manual(d, k, ids) for k in _efeitos(d)) + "\t\t</effects>\n"
+    if custo:
+        corpo += f'\t\t<actions>\n\t\t\t<mpuse value="{d["cost_end"]}" delta="{d.get("cost_end_lv") or 0}"/>\n\t\t</actions>\n'
+    if not passiva and d.get("motion_name"):
+        corpo += f'\t\t<motion name="{d["motion_name"]}"/>\n'
+    return "\t<skill_template " + " ".join(f'{k}="{_xml_attr(v)}"' for k, v in attrs) + ">\n" + corpo + "\t</skill_template>\n"
+
+
+def _template_minimo(id_novo, campos, textos_por_nome, ids=None):
     d = dict(campos)
+    if ids is not None and _manual(d):
+        return _template_manual(id_novo, d, textos_por_nome[d["desc"]], ids)
     nome = textos_por_nome[d["desc"]]
     attrs = [("skill_id", id_novo), ("name_en", nome[1]), ("name_pt", nome[1]), ("nameId", nome[0]),
              ("delayId", d.get("delay_id") or id_novo), ("stack", d["name"].upper()), ("lvl", 1),
@@ -309,16 +488,20 @@ def _template_minimo(id_novo, campos, textos_por_nome):
 
 def aplica_servidor(convertidas, linhas, textos):
     textos_por_nome = {nome: (id_string, t["ENG"]) for _a, id_string, nome, t in textos}
-    novos = {i: _template_minimo(i, c, textos_por_nome) for i, c in convertidas.values()}
     ids_50 = _ids_50()
     ids = {nome: i for nome, (i, _c) in convertidas.items()}
     ids.update({nome: ids_50[nome] for nome in JA_NO_50})
+    novos = {i: _template_minimo(i, c, textos_por_nome, ids) for i, c in convertidas.values()}
     arvore = "".join(f'\t<skill name="{nome.lower()}" skillId="{ids[nome]}" skillLevel="1" minLevel="{nivel}" '
                      f'race="PC_ALL" classId="{CLASSE}" autoLearn="true" />\n' for _l, nome, nivel in linhas)
     for base in SERVIDOR:
         caminho = os.path.join(base, TEMPLATES_REL)
         with open(caminho, encoding="utf-8", newline="") as f:
             texto = f.read()
+        # O skill_templates.xml e CRLF: os blocos vao com a quebra do arquivo (com LF, os fix_50_*,
+        # que procuram os blocos pela quebra do arquivo, nao achavam o <startconditions> e criavam
+        # outro antes do <properties> -- o XSD recusou e o servidor nao subiu).
+        eol = "\r\n" if "\r\n" in texto[:4096] else "\n"
         partes, pos = [], 0
         for sid, ini, fim in _templates(texto):  # tira os do Bard de uma execucao anterior
             if sid in novos:
@@ -330,7 +513,7 @@ def aplica_servidor(convertidas, linhas, textos):
         insercoes = []
         for id_novo in sorted(novos):
             depois = next((ini for sid, ini, _f in lista if sid > id_novo), texto.rindex("</skill_data>"))
-            insercoes.append((depois, novos[id_novo]))
+            insercoes.append((depois, novos[id_novo].replace("\n", eol)))
         por_pos = {}
         for pos_ins, bloco in insercoes:  # ja em ordem de skill_id
             por_pos.setdefault(pos_ins, []).append(bloco)
@@ -341,9 +524,10 @@ def aplica_servidor(convertidas, linhas, textos):
         caminho = os.path.join(base, ARVORE_REL)
         with open(caminho, encoding="utf-8", newline="") as f:
             texto = f.read()
-        texto = re.sub(r'\t<skill [^>]*classId="%s"[^>]*/>\n' % CLASSE, "", texto)
+        eol = "\r\n" if "\r\n" in texto[:4096] else "\n"
+        texto = re.sub(r'\t<skill [^>]*classId="%s"[^>]*/>\r?\n' % CLASSE, "", texto)
         fim = texto.rindex("</skill_tree>")
-        texto = texto[:fim] + arvore + texto[fim:]
+        texto = texto[:fim] + arvore.replace("\n", eol) + texto[fim:]
         with open(caminho, "w", encoding="utf-8", newline="") as f:
             f.write(texto)
         print(f"OK  {base}: +{len(novos)} templates minimos, +{len(linhas)} linhas {CLASSE} na arvore")
@@ -359,7 +543,7 @@ def main():
     print("Lote:")
     for nome, (id_novo, campos) in convertidas.items():
         d = dict(campos)
-        print(f"  {nome}: 5.8 {skills[nome][0]} -> {id_novo}, nivel {niveis[nome]}, "
+        print(f"  {nome}: 5.8 {skills[nome][0]} -> {id_novo}, nivel {niveis.get(nome, '- (dependencia)')}, "
               f"{d.get('activation_attribute')}, {d.get('effect1_type')}, motion {d.get('motion_name', '-')}")
     for nome in JA_NO_50:
         print(f"  {nome}: ja no 5.0, nivel {niveis[nome]}")
@@ -371,7 +555,9 @@ def main():
         return
     if "--servidor" in sys.argv:
         aplica_servidor(convertidas, linhas, textos)
-        print("Proximo: rebuild_50_skill_effects.py --aplicar (corpo dos templates minimos).")
+        print("Proximo: rebuild_50_skill_effects.py --ids <ids do Bard> --aplicar (corpo dos templates minimos),")
+        print("depois fix_50_chain.py (<chain> do cliente: sem ele a skill que abre a cadeia a reseta) e")
+        print("levar so os templates 22xxx do Bard para as duas copias do servidor.")
         return
     arquivos_de_icone = icones(convertidas)
     aplica_cliente(convertidas, linhas, arquivos_de_icone)
