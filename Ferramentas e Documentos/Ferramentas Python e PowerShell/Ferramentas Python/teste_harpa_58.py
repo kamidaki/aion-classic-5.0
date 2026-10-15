@@ -30,11 +30,14 @@ Uso:
     python teste_harpa_58.py --painel-criacao   painel da direita da criacao (descricao, atributos, etiquetas)
     python teste_harpa_58.py --vozes      voz da selecao do Bard/Artist (vlogin2_*) nos paks de voz
     python teste_harpa_58.py --classe-animacoes   selecao/criacao/idle do Bard (as 4 racas)
+    python teste_harpa_58.py --corrige-harpa-previa   so a malha e o item da Elyos feminina
+    python teste_harpa_58.py --ajusta-harpa-previa    corrige a altura da malha ja instalada
     python teste_harpa_58.py --racas      harpa no LF, DM e DF (animacoes do LF, listas e marcadores)
     python teste_harpa_58.py --strings    nome do tipo de arma (STR_TOOLTIP_HARP) nas linguas do cliente
     python teste_harpa_58.py --desfaz   restaura os paks e tira o template do servidor
 """
 import math
+import hashlib
 import os
 import re
 import shutil
@@ -77,6 +80,9 @@ PAK_SOM_DO_PROJETIL = r"sounds\effect\artist\artist.pak"
 #: que o marcador toca como arquivo.
 FXC_DA_SELECAO = "fxc/fc_sys_loginstage.fxc"
 SONS_DA_SELECAO = (r"Sounds\effect\artist\skill_harp_SongofAromatherapy_cast.ogg",)
+#: Efeitos das skills do Bard ja trazidas (`bard_skills_58.LOTE`): o 5.0 nao tem nenhum destes
+#: arquivos; entram inteiros, com as particulas que citam (os sons vem nas particulas *_sound*).
+FXC_DAS_SKILLS = ("fxc/fc_ar_songofair.fxc", "fxc/fc_ar_songofcold.fxc", "fxc/fc_ar_songofheal.fxc")
 ATAQUE_SERVIDOR = {"attack_range": "25000", "attack_speed": "2400", "attack_type": "MAGICAL_WATER"}
 #: Itens de tentativas anteriores (harpa como livro e como lamina em corrente): saem do servidor.
 IDS_ANTIGOS = (100699901, 102499901)
@@ -99,15 +105,63 @@ TEXTURAS = (
     "Ha_test_stick.dds", "Ha_test_stick_ddn.dds", "Ha_test_stick_illum.dds",
     "Ha_test_stick_matid.dds", "Ha_test_stick_sp.dds",
 )
-#: Harpas da previa da tela de criacao (so no cliente): as do 5.8, com os ids do 5.8, livres no 5.0.
+#: Harpas da previa da tela de criacao (so no cliente): as duas primeiras sao as do 5.8;
+#: a terceira e exclusiva da Elyos feminina, para corrigir so a malha da harpa.
 #: A animacao de criacao poe o `Lhand_bone` a 30-40 cm da mao, para a origem destes modelos; a
 #: HA_C001 (de teste) tem outra origem e orientacao e fica dentro do corpo na personagem feminina.
 #: Elyos usa a npc_harp_best_01, Asmodiano a npc_harp_idvritra01a_01 (as do Live).
 ITENS_DA_PREVIA = (
     (100500003, 102000908, "npc_harp_best_01", "HA_IDRun01a"),
     (100500003, 102001020, "npc_harp_idvritra01a_01", "HA_IDVritra01a"),
+    (100500003, 102099908, "npc_harp_best_01_elyos_f", "HA_IDRun01a_ElyosF"),
 )
 MESHES_DA_PREVIA = ("HA_IDRun01a.cgf", "HA_IDVritra01a.cgf")
+MESH_ELYOS_F = "HA_IDRun01a_ElyosF.cgf"
+# A rotacao completa entre maos LF/DF inclinava a harpa. So a componente em torno de Y
+# (67,679 graus) vira a face do instrumento e preserva seu eixo longo, que ja aparecia em pe
+# na malha original. O centro medio dos 1209 vertices da HA_IDRun01a.cgf oficial e o pivo;
+# o deslocamento do no e (I - R) * centro. Assim o corpo nao volta para a mao da varinha.
+CORRECAO_HARPA_ELYOS_F = (
+    (0.37979448, 0.0, 0.92507089),
+    (0.0, 1.0, 0.0),
+    (-0.92507089, 0.0, 0.37979448),
+)
+QUAT_HARPA_ELYOS_F = (0.0, 0.5568687105, 0.0, 0.8306005293)
+CENTRO_HARPA_ELYOS_F = (0.07022414, -0.31550619, -0.01984606)
+# Seis centimetros em direcao a camera da previa, expressos no referencial do Lhand_bone
+# na pose DF_Nidle_bard_create. A camera e a animacao permanecem intactas.
+AVANCO_HARPA_ELYOS_F = (-0.02582616, -0.02953973, -0.04539178)
+SHA_HARPA_ELYOS = "23a2648233a13fe8ee770140560de6909193c43caed53c966a01d6d4d743e224"
+
+
+def malha_harpa_elyos_feminina(original):
+    """Corrige o no principal do CGF oficial; os efeitos e a malha original ficam intactos."""
+    if hashlib.sha256(original).hexdigest() != SHA_HARPA_ELYOS:
+        raise ValueError("HA_IDRun01a.cgf nao e a malha oficial conferida do Live 5.8")
+    tabela = struct.unpack_from("<I", original, 16)[0]
+    quantidade = struct.unpack_from("<I", original, tabela)[0]
+    nos = []
+    for i in range(quantidade):
+        tipo, _versao, posicao, _id = struct.unpack_from("<4I", original, tabela + 4 + 16 * i)
+        if tipo == 0xCCCC000B and original[posicao + 16:posicao + 80].split(b"\0", 1)[0] == b"HA_IDRun01a":
+            nos.append(posicao)
+    if len(nos) != 1:
+        raise ValueError("no principal da HA_IDRun01a.cgf nao encontrado uma unica vez")
+    base = nos[0]
+    saida = bytearray(original)
+    rotacao = CORRECAO_HARPA_ELYOS_F
+    posicao = [CENTRO_HARPA_ELYOS_F[i] - sum(rotacao[i][j] * CENTRO_HARPA_ELYOS_F[j]
+                                                for j in range(3)) + AVANCO_HARPA_ELYOS_F[i]
+               for i in range(3)]
+    matriz = [rotacao[j][i] for i in range(3) for j in range(3)]
+    matriz = [matriz[0], matriz[1], matriz[2], 0.0,
+              matriz[3], matriz[4], matriz[5], 0.0,
+              matriz[6], matriz[7], matriz[8], 0.0,
+              *(v * 100 for v in posicao), 1.0]
+    struct.pack_into("<16f", saida, base + 100, *matriz)
+    struct.pack_into("<3f", saida, base + 164, *(v * 100 for v in posicao))
+    struct.pack_into("<4f", saida, base + 176, *QUAT_HARPA_ELYOS_F)
+    return bytes(saida)
 TEXTURAS_DA_PREVIA = (
     "HA_IDRun01a.dds", "HA_IDRun01a_ddn.dds", "HA_IDRun01a_illum.dds", "HA_IDRun01a_matid.dds",
     "HA_IDRun01a_sp.dds",
@@ -280,17 +334,29 @@ def acrescenta_item(bxml, id_base, id_novo, nome_novo, mesh):
     if base is None:
         raise ValueError(f"item-base {id_base} nao encontrado")
 
+    previa = any(id_novo == item[1] for item in ITENS_DA_PREVIA)
     troca = {"id": str(id_novo), "name": nome_novo, "desc": DESC_DO_ITEM, "mesh": mesh,
              "weapon_type": TIPO_DE_ARMA,
              "icon_name": ICONE, **ATAQUE_CLIENTE}
+    if previa:
+        # No Live, as duas harpas da criacao nomeiam explicitamente o osso da harpa.
+        # O orbe usado como molde nao tem esses campos; sem eles a previa herda o
+        # encaixe generico do Classic e a varinha fica fora da pose da harpa.
+        troca.update(material="mat_bow_m", ui_sound_type="Sounds/item/item_att_harp",
+                     equip_bone="Lhand_bone", combat_equip_bone="Lhand_bone")
+    campos_base = {tab.texto(nome) for nome, _texto, _atributos, _netos in base[3]}
     filhos = []
     for nome, texto, atributos, netos in base[3]:
         n = tab.texto(nome)
-        if n in TIRA_FILHOS:
+        if n in TIRA_FILHOS or (previa and n in ("blade_fx", "trail_tex")):
             continue
         if n in troca:
             texto = tab.acrescenta(troca[n])
         filhos.append((nome, texto, atributos, netos))
+        if previa and n == "icon_name":
+            for campo in ("equip_bone", "combat_equip_bone"):
+                if campo not in campos_base:
+                    filhos.append((tab.acrescenta(campo), tab.acrescenta("Lhand_bone"), [], []))
         if n == "material":
             # O projetil vem logo depois de <material>, como nos itens que ja tem um.
             for campo, valor in PROJETIL.items():
@@ -388,6 +454,51 @@ def edita_bxml(bxml, editor):
     raiz = no(tupla)
     editor(raiz)
     return bytes([0x80]) + _grava_varint(len(tab.bruto)) + bytes(tab.bruto) + _grava_elemento(raiz._tupla())
+
+
+def acrescenta_previa_elyos_feminina(bxml):
+    """Acrescenta o item feminino a um client_items.xml ja instalado, preservando os outros itens."""
+    def editor(raiz):
+        base = None
+        for item in raiz.filhos:
+            if item.nome != "client_item":
+                continue
+            identificador = next((f for f in item.filhos if f.nome == "id"), None)
+            if identificador is None:
+                continue
+            numero = int(raiz._tab.texto(identificador._texto))
+            if numero == 102099908:
+                raise ValueError("item feminino Elyos ja existe no client_items.xml")
+            if numero == 102000908:
+                base = item
+        if base is None:
+            raise ValueError("item-base da previa Elyos 102000908 ausente")
+
+        def copia(no):
+            return NoBxml(raiz._tab, no._nome, no._texto, no._attrs, [copia(f) for f in no.filhos])
+
+        item = copia(base)
+        valores = {"id": "102099908", "name": "npc_harp_best_01_elyos_f",
+                   "mesh": "HA_IDRun01a_ElyosF", "material": "mat_bow_m",
+                   "ui_sound_type": "Sounds/item/item_att_harp",
+                   "equip_bone": "Lhand_bone", "combat_equip_bone": "Lhand_bone"}
+        item.filhos = [f for f in item.filhos if f.nome not in ("blade_fx", "trail_tex")]
+        presentes = set()
+        for f in item.filhos:
+            if f.nome in valores:
+                f._texto = raiz._tab.indice(valores[f.nome])
+                presentes.add(f.nome)
+        indice = next(i for i, f in enumerate(item.filhos) if f.nome == "icon_name") + 1
+        for campo in ("equip_bone", "combat_equip_bone"):
+            if campo not in presentes:
+                item.filhos.insert(indice, NoBxml(raiz._tab, raiz._tab.indice(campo),
+                                                 raiz._tab.indice(valores[campo])))
+                indice += 1
+        if presentes | {"equip_bone", "combat_equip_bone"} != set(valores):
+            raise ValueError("item-base da previa Elyos nao tem os campos esperados")
+        raiz.filhos.append(item)
+
+    return edita_bxml(bxml, editor)
 
 
 def troca_skinrefs(bxml, preset, por_estado):
@@ -716,6 +827,7 @@ def aplica():
         if len(novos) != len(nomes):
             raise ValueError(f"faltou no 5.8: {sorted(set(nomes) - set(novos))}")
         if rel == PAK_MESH:
+            novos[MESH_ELYOS_F] = malha_harpa_elyos_feminina(novos["HA_IDRun01a.cgf"])
             for antigo, novo in CAMINHOS_PC2:
                 novos["HA_IDVritra01a.cgf"] = troca_caminho_fixo(novos["HA_IDVritra01a.cgf"], antigo, novo)
         else:
@@ -741,6 +853,71 @@ def aplica():
             tira_template(caminho, id_novo)  # o clone e refeito a cada vez, a partir da base
             r = acrescenta_template(caminho, id_base, id_novo, nome, nome_pt)
             print(f"OK  {rel}: {id_novo} {r}")
+
+
+def aplica_correcao_harpa_previa():
+    """Instala apenas a malha e o item da harpa de criacao da Elyos feminina."""
+    sys.setrecursionlimit(10000)
+    mesh_pak = os.path.join(CLIENTE, PAK_MESH)
+    dados, indice = aion_pak.abre(mesh_pak)
+    por_nome = {e.nome.lower(): e for e in indice}
+    if MESH_ELYOS_F.lower() in por_nome:
+        raise ValueError(f"{MESH_ELYOS_F} ja existe; restaure o backup antes de reaplicar")
+    original = aion_pak.le(dados, por_nome["ha_idrun01a.cgf"])
+    malha = malha_harpa_elyos_feminina(original)
+
+    itens = []
+    for rel in PAKS_DE_ITENS:
+        caminho = os.path.join(CLIENTE, rel)
+        dados, indice_itens = aion_pak.abre(caminho)
+        entrada = next(e for e in indice_itens if e.nome.lower() == "client_items.xml")
+        novo = acrescenta_previa_elyos_feminina(aion_pak.le(dados, entrada))
+        itens.append((rel, caminho, len(indice_itens), entrada.nome, novo))
+
+    sufixo = ".bak_elyos_harpa"
+    for caminho in (mesh_pak, *(item[1] for item in itens)):
+        if os.path.exists(caminho + sufixo):
+            raise ValueError(f"backup da correcao ja existe: {caminho + sufixo}")
+
+    shutil.copy2(mesh_pak, mesh_pak + sufixo)
+    regrava_pak(mesh_pak, acrescenta={MESH_ELYOS_F: malha})
+    _confere_pak(mesh_pak, len(indice), {MESH_ELYOS_F: "novo"})
+    print(f"OK  {PAK_MESH}: +{MESH_ELYOS_F}")
+
+    for rel, caminho, quantidade, nome, novo in itens:
+        shutil.copy2(caminho, caminho + sufixo)
+        regrava_pak(caminho, troca={nome: novo})
+        _confere_pak(caminho, quantidade, {nome: "troca"})
+        print(f"OK  {rel}: +item 102099908")
+    _invalida_cache_de_tabelas()
+
+
+def ajusta_altura_harpa_previa():
+    """Substitui somente a malha feminina instalada com altura anterior conhecida."""
+    caminho = os.path.join(CLIENTE, PAK_MESH)
+    dados, indice = aion_pak.abre(caminho)
+    por_nome = {e.nome.lower(): e for e in indice}
+    feminina = por_nome[MESH_ELYOS_F.lower()]
+    anterior = aion_pak.le(dados, feminina)
+    versoes_anteriores = {
+        "a484723f302cc6488fdcb31ab3a094948cfb0c194d5b436c0dc232247f2c1b14": "baixa",
+        "f0c0bb798154da020ba09dffccb3fae31a60152dd2978b9802ce22fbf7fdb582": "alta",
+        "e5447fd86d68787a96d60969757a9a83b340a0a440838209d2875627ab04de2b": "mao_varinha",
+        "8bb3791c3cfb591a19b33e4ec0e1170cf26fe0f1c84ef5f097701143818bbec1": "deitada",
+        "f4cbba1184a847ea5e9c8a5f38dece31b50d9683a8bc3e32a886b0e63be554dd": "recuada",
+    }
+    versao = versoes_anteriores.get(hashlib.sha256(anterior).hexdigest())
+    if versao is None:
+        raise ValueError("malha feminina instalada nao e a versao anterior esperada")
+    original = aion_pak.le(dados, por_nome["ha_idrun01a.cgf"])
+    corrigida = malha_harpa_elyos_feminina(original)
+    backup = caminho + ".bak_elyos_harpa_altura_" + versao
+    if os.path.exists(backup):
+        raise ValueError(f"backup ja existe: {backup}")
+    shutil.copy2(caminho, backup)
+    regrava_pak(caminho, troca={feminina.nome: corrigida})
+    _confere_pak(caminho, len(indice), {feminina.nome: "troca"})
+    print(f"OK  {PAK_MESH}: {MESH_ELYOS_F} avancada 6 cm")
 
 
 def _paks_de_animacao(raca="lm"):
@@ -1481,6 +1658,20 @@ def aplica_efeito():
         if aion_fx.nome(r) in efeitos_lobby:
             citadas.update(s.decode("latin-1") for s in re.findall(rb"[\x20-\x7e]{4,}", r)
                            if b"." in s and not s.startswith(b"FC_Sys_LoginStage"))
+    # Efeitos das skills do Bard: cada .fxc inteiro, e as particulas que os efeitos citam.
+    bibliotecas_skills, efeitos_skills = [], []
+    for chave_fxc in FXC_DAS_SKILLS:
+        if chave_fxc in m50:
+            raise ValueError(f"{chave_fxc} ja existe no 5.0")
+        fxc58_skill = aion_pak.le(d58, m58[chave_fxc])
+        acrescenta[m58[chave_fxc].nome] = aion_fx.fxc_para_50(fxc58_skill)
+        regs = aion_fx.le(fxc58_skill, b"FXC")[2]
+        proprios = {aion_fx.nome(r) for r in regs}
+        efeitos_skills += sorted(proprios)
+        bibliotecas_skills.append(aion_fx.nome(regs[0]).split(".", 1)[0])
+        for r in regs:
+            citadas.update(c for c in (s.decode("latin-1") for s in re.findall(rb"[\x20-\x7e]{4,}", r))
+                           if "." in c and c not in proprios)
     # Uma particula pode disparar outras pelo nome (campos de string sem caminho): as citadas que o
     # 5.0 nao tem entram tambem, sempre pela raiz da arvore delas no 5.8, ate fechar. Vale para as
     # particulas da harpa (sys_hit) e as da selecao.
@@ -1528,10 +1719,15 @@ def aplica_efeito():
             for n in faltam:
                 i = por_nome.get(n.lower())
                 if i is None:
-                    raise ValueError(f"{n} nao esta em {chave} do 5.8")
+                    # Biblioteca existe mas o nome nao, nem no 5.8 (fc_Ar_SongofAir cita
+                    # skill_Ar_SongofCold.G1.fire_sp): fica de fora, como no proprio 5.8.
+                    sem_fonte.append(n)
+                    continue
                 while struct.unpack_from("<i", regs58[i], aion_fx.PRT_PAI_58)[0] >= 0:
                     i = struct.unpack_from("<i", regs58[i], aion_fx.PRT_PAI_58)[0]
                 raizes_novas.add(aion_fx.nome(regs58[i]))
+            if not raizes_novas:
+                continue
             novo, nomes_novos = aion_fx.acrescenta_prt(atual(chave), dados58, sorted(raizes_novas))
             prts[chave] = novo
             particulas_lobby += nomes_novos
@@ -1574,6 +1770,8 @@ def aplica_efeito():
     i_prt58, i_fxc58 = aion_pak.le(d58, m58[INDICE_PRT]), aion_pak.le(d58, m58[INDICE_FXC])
     i_prt = aion_fx.indexa_prt(i_prt, i_prt58, particulas + particulas_lobby)
     i_fxc = aion_fx.indexa_fxc(i_fxc, i_fxc58, biblioteca)
+    for lib in bibliotecas_skills:
+        i_fxc = aion_fx.indexa_fxc(i_fxc, i_fxc58, lib)
     i_fxc = aion_fx.indexa_fxc_nomes(i_fxc, i_fxc58, efeitos_lobby)
     troca[m50[INDICE_PRT].nome] = i_prt
     troca[m50[INDICE_FXC].nome] = i_fxc
@@ -1584,9 +1782,10 @@ def aplica_efeito():
     regrava_pak(caminho, troca=troca, acrescenta=acrescenta)
     _confere_pak(caminho, len(m50), {**{n: "troca" for n in troca}, **{n: "novo" for n in acrescenta}})
     print(f"    indices de nomes: +{len(particulas) + len(particulas_lobby)} em {INDICE_PRT}, "
-          f"+{len(efeitos) + len(efeitos_lobby)} em {INDICE_FXC}")
+          f"+{len(efeitos) + len(efeitos_lobby) + len(efeitos_skills)} em {INDICE_FXC}")
     print(f"OK  {PAK_EFEITOS}: {PRT_DO_PROJETIL} +{len(particulas)}, {FXC_DO_PROJETIL} novo, "
           f"{FXC_DA_SELECAO} +{len(efeitos_lobby)}, {', '.join(sorted(prts_novos))}")
+    print(f"OK  efeitos das skills: {', '.join(FXC_DAS_SKILLS)} ({len(efeitos_skills)} efeitos)")
 
     # Arquivos que essas particulas citam: texturas e meshes de efeito, e sons.
     citados = set()
@@ -2402,8 +2601,9 @@ def aplica_plataforma_criacao():
 
 
 def _strings_por_arquivo(lingua):
+    import bard_skills_58  # textos das skills do Bard (lote atual), no mesmo pak das outras strings
     por_arquivo = {}
-    for arquivo, id_string, nome, textos in STRINGS:
+    for arquivo, id_string, nome, textos in STRINGS + tuple(bard_skills_58.STRINGS_DAS_SKILLS()):
         por_arquivo.setdefault(arquivo, []).append((id_string, nome, textos[lingua]))
     return por_arquivo
 
@@ -2626,6 +2826,10 @@ def desfaz():
 if __name__ == "__main__":
     if "--desfaz" in sys.argv:
         desfaz()
+    elif "--corrige-harpa-previa" in sys.argv:
+        aplica_correcao_harpa_previa()
+    elif "--ajusta-harpa-previa" in sys.argv:
+        ajusta_altura_harpa_previa()
     elif "--animacao" in sys.argv:
         aplica_animacao()
     elif "--efeito" in sys.argv:

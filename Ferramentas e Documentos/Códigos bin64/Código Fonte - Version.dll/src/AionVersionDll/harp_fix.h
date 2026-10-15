@@ -532,7 +532,10 @@ static constexpr int kPreviewLight = 41, kPreviewDark = 67;
 static constexpr int kPreviewCamera = 10; // camera index = preview index - 10
 // Harps of the preview, the ones of the Live 5.8 creation screen (npc_harp_best_01 / _idvritra01a_01,
 // client data from teste_harpa_58.py): the creation animation holds the weapon bone for their origin.
-static constexpr int kHarpPreviewItem[2] = { 102000908, 102001020 }; // light (Elyos), dark (Asmodian)
+static constexpr int kHarpPreviewItem[2][2] = {
+    { 102000908, 102099908 }, // Elyos: male, female with preview-only harp transform
+    { 102001020, 102001020 }  // Asmodian
+};
 static constexpr int kHarpMaleOutfitClass = 7;  // provisional male outfit (the Lumines one has no male body)
 static constexpr size_t kPreviewPoints = 0x17b0;  // + preview * 24: pos, rot
 static constexpr size_t kPreviewCameras = 0xdbc;  // + camera * 1Ch: pos, rot, fov
@@ -638,7 +641,7 @@ static void __fastcall HarpPreviewOutfitHook(BYTE* part, int race, int classId, 
         void** items = s_harpFindManager(s_harpRegistry() + 0x10, &key);
         if (!items || !*items) return;
         BYTE color[4] = {};
-        const int harp = kHarpPreviewItem[race ? 1 : 0];
+        const int harp = kHarpPreviewItem[race ? 1 : 0][gender ? 1 : 0];
         s_harpItemColor(*items, color, harp, gender);
         *(int*)(part + 1) = harp;
         part[0xa] = color[0];

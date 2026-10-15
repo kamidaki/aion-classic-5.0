@@ -254,6 +254,24 @@ manda criar de novo; ao sair, volta a Luminess. A harpa da previa e a da tela de
 `Lhand_bone` a 30-40 cm da mao para a origem desses modelos; a `HA_C001` de teste tem outra
 origem e fica dentro do corpo da personagem feminina.
 
+Os itens da previa sao clonados de um orbe do Classic. Ao gera-los, o script repoe os campos
+`equip_bone` e `combat_equip_bone` com `Lhand_bone`, como nos itens originais do Live 5.8, alem de
+`mat_bow_m`; tambem retira `blade_fx` e `trail_tex` herdados do orbe. Esses campos sao exclusivos
+dos itens da tela de criacao e nao mudam a harpa de teste equipada no jogo.
+
+Na Elyos feminina, o item da previa e `102099908` com a malha `HA_IDRun01a_ElyosF.cgf`.
+Somente o no principal da malha recebe uma rotacao ao redor do eixo longo Y. O angulo vem
+da componente Y da diferenca angular entre `Lhand_bone` e `Rhand_bone` nas animacoes oficiais
+LF e DF de criacao do Bard. A rotacao usa o centro medio dos vertices da harpa como pivo,
+mantendo o instrumento em pe e longe da mao da varinha. Um deslocamento de 6 cm em direcao
+a camera deixa a harpa ligeiramente a frente; a pose, a varinha e a camera permanecem
+iguais. O Bard masculino Elyos e os Asmodianos
+continuam com os itens e malhas anteriores.
+Para atualizar um cliente de teste ja preparado, execute `teste_harpa_58.py --corrige-harpa-previa`
+e instale a `version.dll` compilada em `bin64`; o script guarda backups `.bak_elyos_harpa` dos
+PAKs alterados. Se ja foi instalada uma malha feminina anterior, execute
+`teste_harpa_58.py --ajusta-harpa-previa` para trocar somente essa malha.
+
 Falta para a classe: roupa oficial da previa (`rb_*_login_*_02` do 5.8), classe 20 no pacote de
 criacao, skills e habilidade de equipar harpa
 (`required_harp`), e 4 texturas e o `MON_Kaisinel_MRT.V3.ShockwaveTrap`, que nao existem nem no
