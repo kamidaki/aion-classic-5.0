@@ -99,8 +99,10 @@ static void __fastcall HarpAttachBoneHook(int itemId, int state, int hand, int f
 // second call and the mesh path function answers "<mesh>_r.cgf" / "<mesh>_l.cgf". In the Live 5.8
 // client type 8 is the harp and the second path is "<mesh>_stick.cgf", with
 // objects/items/ha_test_stick.cgf when the harp has no stick of its own. Both are redone here
-// for 19: the second attach call gets the harp id while the weapon is drawn (the stick is hidden
-// when sheathed), and the path of that call becomes the stick.
+// for 19: the second attach call always gets the harp id, like 0x38BD40 does for type 8 (no
+// state check: with the weapon sheathed the stick gets no bone, hook 3, and is hidden; an empty
+// second call would detach it, which the creation preview does last), and the path of that call
+// becomes the stick.
 using HarpAttachWeapon = void (__fastcall*)(BYTE*, int, int, int, char);
 using HarpWeaponMeshPath = void (__fastcall*)(int, char, int, int, const char*, char*);
 using HarpFileExists = int (__fastcall*)(const char*);
@@ -119,10 +121,7 @@ static void __fastcall HarpAttachWeaponHook(BYTE* character, int mode, int arg3,
     } else {
         const int harp = s_harpMainOwner == character ? s_harpMainItem : 0;
         s_harpMainOwner = nullptr;
-        if (harp && itemId == 0 && character) {
-            const int state = *(const int*)(character + kHarpCharacterWeaponState);
-            if (state == 1 || state == 5) itemId = harp;
-        }
+        if (harp && itemId == 0 && character) itemId = harp;
     }
     s_harpAttach(character, mode, arg3, itemId, right);
 }
@@ -492,9 +491,11 @@ static void HarpSetButtonOn(void* button, bool on) {
     if (button) (*(void (__fastcall**)(void*, int))(*(BYTE**)button + 0x610))(button, on ? 1 : 0);
 }
 
+static void HarpSetBardMode(bool on, bool build = true);
+
 static void* __fastcall HarpCreateInitHook(BYTE* window, void* a2, void* a3, void* a4) {
     void* result = s_harpCreateInit(window, a2, a3, a4);
-    s_harpBardMode = false;
+    HarpSetBardMode(false, false); // the game builds the missing previews when the screen shows
     s_harpBardButton = nullptr;
     __try {
         // The same lookup the original does for class_1..class_13.
@@ -514,12 +515,176 @@ static void* __fastcall HarpCreateInitHook(BYTE* window, void* a2, void* a3, voi
     return result;
 }
 
+// ---- Creation preview -------------------------------------------------------------------------
+// Each button position has a preview character per race and gender, in a table of 98 (light: 41 +
+// 2 * position + gender, dark: 67 + ...). The builder (0x999840) creates the missing ones of the
+// current race at the point of the position in the login level (CLASS_Position_L01..D25, both
+// genders at the same point: the creation animations set them apart) with the class of the position and an outfit hardcoded per class
+// (0x998C80); the select function frames the chosen one with the camera of preview - 10. Points and
+// cameras come from the level entities by name, through two loaders that keep them by index.
+// The Bard shares position 10 with the Lumines and has its own platform in the level (entities
+// below, written by teste_harpa_58.py --plataforma-criacao, laid out like the Artist pair of the
+// Live 5.8 lobby: one point per gender, as its creation animations expect): the loader hooks keep
+// its points and cameras, and bard mode puts them in the place of the Lumines ones (61/62 and cameras 51/52 in
+// light, 87/88 and 77/78 in dark), then releases those previews and builds them again with the
+// class of the mode. Leaving bard mode puts the Lumines data back.
+static constexpr int kPreviewLight = 41, kPreviewDark = 67;
+static constexpr int kPreviewCamera = 10; // camera index = preview index - 10
+// Harps of the preview, the ones of the Live 5.8 creation screen (npc_harp_best_01 / _idvritra01a_01,
+// client data from teste_harpa_58.py): the creation animation holds the weapon bone for their origin.
+static constexpr int kHarpPreviewItem[2] = { 102000908, 102001020 }; // light (Elyos), dark (Asmodian)
+static constexpr int kHarpMaleOutfitClass = 7;  // provisional male outfit (the Lumines one has no male body)
+static constexpr size_t kPreviewPoints = 0x17b0;  // + preview * 24: pos, rot
+static constexpr size_t kPreviewCameras = 0xdbc;  // + camera * 1Ch: pos, rot, fov
+static constexpr size_t kPreviewObjects = 0x20e0; // + preview * 8
+
+struct HarpPoint { float v[6]; bool ok; };   // pos, rot
+struct HarpCamera { float v[7]; bool ok; };  // pos, rot, fov
+static BYTE* s_harpPreviewData = nullptr;    // base of points/cameras/previews (from the builder)
+static HarpPoint s_harpBardPoint[2][2];      // [race][male, female]
+static HarpCamera s_harpBardCamera[2][2];    // [race][male, female]
+static float s_harpSavedPoints[2][2][6];     // the Lumines data while bard mode is on
+static float s_harpSavedCameras[2][2][7];
+
+static const char* const kBardPointNames[2][2] = {
+    { "CLASS_Position_L26", "CLASS_Position_L27" },
+    { "CLASS_Position_D26", "CLASS_Position_D27" },
+};
+static const char* const kBardCameraNames[2][2] = {
+    { "Camera_Light_Bard_M", "Camera_Light_Bard_F" },
+    { "Camera_Dark_Bard_M", "Camera_Dark_Bard_F" },
+};
+
+using HarpPointLoader = void (__fastcall*)(void*, const char*, const float*, const float*);
+using HarpCameraLoader = void (__fastcall*)(void*, const char*, const float*, const float*, float);
+static HarpPointLoader s_harpPointLoader = nullptr;
+static HarpCameraLoader s_harpCameraLoader = nullptr;
+
+static void __fastcall HarpPointLoaderHook(void* a1, const char* name, const float* pos, const float* rot) {
+    s_harpPointLoader(a1, name, pos, rot);
+    __try {
+        for (int r = 0; r < 2 && name && pos && rot; ++r)
+            for (int g = 0; g < 2; ++g)
+                if (_stricmp(name, kBardPointNames[r][g]) == 0) {
+                    memcpy(s_harpBardPoint[r][g].v, pos, 12);
+                    memcpy(s_harpBardPoint[r][g].v + 3, rot, 12);
+                    s_harpBardPoint[r][g].ok = true;
+                }
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+}
+
+static void __fastcall HarpCameraLoaderHook(void* a1, const char* name, const float* pos, const float* rot, float fov) {
+    s_harpCameraLoader(a1, name, pos, rot, fov);
+    __try {
+        for (int r = 0; r < 2 && name && pos && rot; ++r)
+            for (int g = 0; g < 2; ++g)
+                if (_stricmp(name, kBardCameraNames[r][g]) == 0) {
+                    memcpy(s_harpBardCamera[r][g].v, pos, 12);
+                    memcpy(s_harpBardCamera[r][g].v + 3, rot, 12);
+                    s_harpBardCamera[r][g].v[6] = fov;
+                    s_harpBardCamera[r][g].ok = true;
+                }
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+}
+
+static bool HarpBardPlatformLoaded() {
+    for (int r = 0; r < 2; ++r)
+        for (int g = 0; g < 2; ++g)
+            if (!s_harpBardPoint[r][g].ok || !s_harpBardCamera[r][g].ok) return false;
+    return true;
+}
+
+// Puts the Bard platform in the place of position 10 (on), or the saved Lumines data back (off).
+static void HarpSwapPlatform(bool on) {
+    for (int r = 0; r < 2; ++r) {
+        const int base = (r ? kPreviewDark : kPreviewLight) + 2 * kBardButtonSlot;
+        for (int g = 0; g < 2; ++g) {
+            float* point = (float*)(s_harpPreviewData + kPreviewPoints + (base + g) * 24);
+            float* camera = (float*)(s_harpPreviewData + kPreviewCameras + (base + g - kPreviewCamera) * 0x1c);
+            if (on) {
+                memcpy(s_harpSavedPoints[r][g], point, sizeof(s_harpSavedPoints[r][g]));
+                memcpy(s_harpSavedCameras[r][g], camera, sizeof(s_harpSavedCameras[r][g]));
+                memcpy(point, s_harpBardPoint[r][g].v, sizeof(s_harpBardPoint[r][g].v));
+                memcpy(camera, s_harpBardCamera[r][g].v, sizeof(s_harpBardCamera[r][g].v));
+            } else {
+                memcpy(point, s_harpSavedPoints[r][g], sizeof(s_harpSavedPoints[r][g]));
+                memcpy(camera, s_harpSavedCameras[r][g], sizeof(s_harpSavedCameras[r][g]));
+            }
+        }
+    }
+}
+
+// Outfit of a preview part (0..19): writes the item id at +1, then fills its default color.
+using HarpPreviewOutfit = void (__fastcall*)(BYTE*, int, int, int, int);
+using HarpItemColor = void (__fastcall*)(void*, BYTE*, int, int);
+static HarpPreviewOutfit s_harpPreviewOutfit = nullptr;
+static HarpItemColor s_harpItemColor = nullptr;
+
+static void __fastcall HarpPreviewOutfitHook(BYTE* part, int race, int classId, int gender, int index) {
+    if (classId != kBardClass) {
+        s_harpPreviewOutfit(part, race, classId, gender, index);
+        return;
+    }
+    // Provisional: the Lumines outfit (female) or the Sorcerer one (male); the harp of the race in
+    // the main hand (part 0).
+    s_harpPreviewOutfit(part, race, gender ? kBardRideClass : kHarpMaleOutfitClass, gender, index);
+    if (index != 0 || !s_harpItemColor) return;
+    __try {
+        const int key = kHarpItemTable;
+        void** items = s_harpFindManager(s_harpRegistry() + 0x10, &key);
+        if (!items || !*items) return;
+        BYTE color[4] = {};
+        const int harp = kHarpPreviewItem[race ? 1 : 0];
+        s_harpItemColor(*items, color, harp, gender);
+        *(int*)(part + 1) = harp;
+        part[0xa] = color[0];
+        part[0xb] = color[1];
+        part[0xc] = color[2];
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+}
+
+using HarpReleasePreview = void (__fastcall*)(void*, int);
+using HarpBuildPreviews = void (__fastcall*)(void*);
+static HarpReleasePreview s_harpReleasePreview = nullptr;
+static HarpBuildPreviews s_harpBuildPreviews = nullptr;
+
+// Position 10 changes class with the mode: its previews (both races) go, the platform data is
+// swapped, and the builder makes the ones of the current race again with the class the mode gives.
+static void HarpSetBardMode(bool on, bool build) {
+    if (s_harpBardMode == on) return;
+    s_harpBardMode = on;
+    if (!s_harpReleasePreview || !s_harpBuildPreviews || !s_harpPreviewData) return;
+    static bool swapped = false;
+    __try {
+        for (int base : { kPreviewLight, kPreviewDark }) {
+            s_harpReleasePreview(nullptr, base + 2 * kBardButtonSlot);
+            s_harpReleasePreview(nullptr, base + 2 * kBardButtonSlot + 1);
+        }
+        if (on && !swapped && HarpBardPlatformLoaded()) {
+            HarpSwapPlatform(true);
+            swapped = true;
+        } else if (!on && swapped) {
+            HarpSwapPlatform(false);
+            swapped = false;
+        }
+        if (build) s_harpBuildPreviews(nullptr);
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+}
+
 static void __fastcall HarpCreateSelectHook(BYTE* window, int slot, int gender, char flag);
 
 static int __fastcall HarpCreateClickHook(BYTE* window, void** event) {
     void* sender = event ? *event : nullptr;
     if (sender && window == s_harpCreateWindow && sender == s_harpBardButton) {
-        s_harpBardMode = true;
+        HarpSetBardMode(true);
         // Through the hook: s_harpCreateSelect is the trampoline, and the original turns the button
         // of position 10 (Lumines) on -- the hook moves that to the Bard button.
         HarpCreateSelectHook(window, kBardButtonSlot, *s_harpCreateGender, 1);
@@ -528,7 +693,7 @@ static int __fastcall HarpCreateClickHook(BYTE* window, void** event) {
     if (sender && window == s_harpCreateWindow) {
         void** buttons = (void**)(window + kCreateButtons);
         for (int i = 0; i < kCreateButtonCount; ++i)
-            if (buttons[i] == sender) s_harpBardMode = false;
+            if (buttons[i] == sender) HarpSetBardMode(false);
     }
     return s_harpCreateClick(window, event);
 }
@@ -554,8 +719,7 @@ static int __fastcall HarpClassToSlotHook(int classId) {
     return s_harpClassToSlot(classId == kBardClass ? kBardRideClass : classId);
 }
 
-// Creation preview: a preloaded character per class/race/gender; the Bard has none yet and uses
-// the Lumines one (its own preview is the next step).
+// Preview index of a class/race/gender: the Bard uses the ones of position 10 (see above).
 static int __fastcall HarpPreviewSlotHook(int a1, int classId, int gender, int a4) {
     return s_harpPreviewSlot(a1, classId == kBardClass ? kBardRideClass : classId, gender, a4);
 }
@@ -930,6 +1094,68 @@ static void InstallHarpFix(HMODULE module) {
             s_harpClassToSlot = (HarpClassToSlot)toSlot;
             s_harpPreviewSlot = (HarpPreviewSlot)preview;
         }
+        {
+            // Preview outfit: mov [rsp+10h],rbx; push rdi; sub rsp,20h; movsxd rax,[rsp+50h];
+            // mov edi,r9d; mov rbx,rcx; cmp eax,0Ch. Its common end calls the item color at +788h.
+            static const BYTE outfit[] = {
+                0x48,0x89,0x5c,0x24,0x10,0x57,0x48,0x83,0xec,0x20,0x48,0x63,0x44,0x24,0x50,0x41,
+                0x8b,0xf9,0x48,0x8b,0xd9,0x83,0xf8,0x0c
+            };
+            static const size_t outfitColorCall = 0x788;
+            // Point loader: test rdx,rdx; jz; push rbp/rsi/rdi; sub rsp,20h; cmp byte [rdx],0;
+            // mov rsi,r9; mov rbp,r8 -- lea rbx,[rows] at +27h, lea r14,[end] at +33h.
+            static const BYTE points[] = {
+                0x48,0x85,0xd2,0x0f,0x84,0,0,0,0,0x55,0x56,0x57,0x48,0x83,0xec,0x20,0x80,0x3a,0x00,
+                0x49,0x8b,0xf1,0x49,0x8b,0xe8
+            };
+            static const char pointsMask[] = "xxxxx????xxxxxxxxxxxxxxxx";
+            // Camera loader: same shape with push r14 -- lea rbx,[rows] at +28h.
+            static const BYTE cameras[] = {
+                0x48,0x85,0xd2,0x0f,0x84,0,0,0,0,0x55,0x56,0x41,0x56,0x48,0x83,0xec,0x30,0x80,0x3a,
+                0x00,0x49,0x8b,0xe9,0x4d,0x8b,0xf0
+            };
+            static const char camerasMask[] = "xxxxx????xxxxxxxxxxxxxxxxx";
+            // Release one preview: push rbx; sub rsp,20h; movsxd rbx,edx; cmp ebx,61h; ja; lea edx,[rbx+1]
+            static const BYTE release[] = {
+                0x40,0x53,0x48,0x83,0xec,0x20,0x48,0x63,0xda,0x83,0xfb,0x61,0x77,0x44,0x8d,0x53,0x01,
+                0xe8,0,0,0,0,0x48,0x8d,0x0d,0,0,0,0
+            };
+            static const char releaseMask[] = "xxxxxxxxxxxxxxxxxx????xxx????";
+            // Build the previews of the current race: mov [rsp+8],rcx; push rbp/rdi/r12;
+            // lea rbp,[rsp-390h]; sub rsp,4B0h
+            static const BYTE build[] = {
+                0x48,0x89,0x4c,0x24,0x08,0x55,0x57,0x41,0x54,0x48,0x8d,0xac,0x24,0x70,0xfc,0xff,0xff,
+                0x48,0x81,0xec,0xb0,0x04,0x00,0x00
+            };
+            static const char exact24[] = "xxxxxxxxxxxxxxxxxxxxxxxx";
+            static_assert(sizeof(pointsMask) - 1 == sizeof(points), "Points mask length");
+            static_assert(sizeof(camerasMask) - 1 == sizeof(cameras), "Cameras mask length");
+            static_assert(sizeof(releaseMask) - 1 == sizeof(release), "Release mask length");
+            static_assert(sizeof(exact24) - 1 == sizeof(outfit) && sizeof(outfit) == sizeof(build), "Exact mask length");
+            BYTE* outfitAt = QunaFindUnique(base, nt, outfit, exact24, sizeof(outfit));
+            BYTE* pointsAt = QunaFindUnique(base, nt, points, pointsMask, sizeof(points));
+            BYTE* camerasAt = QunaFindUnique(base, nt, cameras, camerasMask, sizeof(cameras));
+            BYTE* releaseAt = QunaFindUnique(base, nt, release, releaseMask, sizeof(release));
+            BYTE* buildAt = QunaFindUnique(base, nt, build, exact24, sizeof(build));
+            auto leaRel = [&](BYTE* at, BYTE b1, BYTE b2, BYTE b3) -> BYTE* {
+                return at && at[0] == b1 && at[1] == b2 && at[2] == b3 ? at + 7 + *(int32_t*)(at + 3) : nullptr;
+            };
+            BYTE* pointRows = pointsAt ? leaRel(pointsAt + 0x27, 0x48, 0x8d, 0x1d) : nullptr;
+            BYTE* pointEnd = pointsAt ? leaRel(pointsAt + 0x33, 0x4c, 0x8d, 0x35) : nullptr;
+            BYTE* cameraRows = camerasAt ? leaRel(camerasAt + 0x28, 0x48, 0x8d, 0x1d) : nullptr;
+            BYTE* color = outfitAt ? target(outfitAt + outfitColorCall) : nullptr;
+            if (!outfitAt || !color || !pointRows || !cameraRows || pointEnd != cameraRows || !releaseAt || !buildAt) {
+                OutputDebugStringA("[Harp] Creation preview signatures not found; Bard preview off.\n");
+            } else {
+                s_harpPreviewOutfit = (HarpPreviewOutfit)outfitAt;
+                s_harpItemColor = (HarpItemColor)color;
+                s_harpPointLoader = (HarpPointLoader)pointsAt;
+                s_harpCameraLoader = (HarpCameraLoader)camerasAt;
+                s_harpReleasePreview = (HarpReleasePreview)releaseAt;
+                s_harpBuildPreviews = (HarpBuildPreviews)buildAt;
+                s_harpPreviewData = leaRel(buildAt + 0x9a, 0x4c, 0x8d, 0x35);
+            }
+        }
         s_harpClassKey = (HarpClassKey)QunaFindUnique(base, nt, classKey, classKeyMask, sizeof(classKey));
         s_harpClassKeyW = (HarpClassKeyW)QunaFindUnique(base, nt, classKeyW, classKeyMask, sizeof(classKeyW));
         s_harpClassFromName = (HarpClassFromName)QunaFindUnique(base, nt, classFromName, classFromNameMask,
@@ -1005,6 +1231,12 @@ static void InstallHarpFix(HMODULE module) {
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpSlotToClass, HarpSlotToClassHook);
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpClassToSlot, HarpClassToSlotHook);
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpPreviewSlot, HarpPreviewSlotHook);
+        if (error == NO_ERROR && s_harpPreviewOutfit)
+            error = DetourAttach(&(PVOID&)s_harpPreviewOutfit, HarpPreviewOutfitHook);
+        if (error == NO_ERROR && s_harpPointLoader)
+            error = DetourAttach(&(PVOID&)s_harpPointLoader, HarpPointLoaderHook);
+        if (error == NO_ERROR && s_harpCameraLoader)
+            error = DetourAttach(&(PVOID&)s_harpCameraLoader, HarpCameraLoaderHook);
         if (error == NO_ERROR) error = DetourTransactionCommit();
         else DetourTransactionAbort();
         OutputDebugStringA(error == NO_ERROR ? "[Harp] Weapon type hooks installed.\n" :

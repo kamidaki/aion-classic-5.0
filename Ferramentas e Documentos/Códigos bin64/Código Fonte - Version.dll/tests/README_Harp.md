@@ -78,9 +78,11 @@ troca `R` por `L`, mão 1 troca `L` por `R`.
 `f(personagem, int modo, int ?, int itemId, char direita)`. Quem atualiza as armas do personagem
 (`0x38BD40`) chama esta função duas vezes: item da mão principal com `direita = 1`, depois o da
 mão secundária com `direita = 0`. Para a lâmina em corrente ele repete o item principal na
-segunda chamada. O hook faz o mesmo para a harpa: se a primeira chamada foi com uma harpa e a
-segunda veio sem item, passa o item da harpa, desde que a arma esteja sacada (estado em
-`personagem + 0x2D0`).
+segunda chamada, sem olhar o estado da arma (`cmp esi, 8; cmove edi, r14d`). O hook faz o mesmo
+para a harpa: se a primeira chamada foi com uma harpa e a segunda veio sem item, passa o item da
+harpa. Com a arma guardada a varinha fica sem osso (hook 3) e some. Uma segunda chamada sem item
+solta o anexo daquela mao: a previa da criacao termina com uma assim (modo 2, estado 0), e a antiga
+condicao "so com a arma sacada" fazia a varinha sumir la.
 
 ### 5. Caminho da segunda mesh (`0x285320`)
 
@@ -137,7 +139,7 @@ O byte `item + 0x1C7` é lido em 133 pontos de 52 funções, e o tipo guardado n
 | `0x585EF0`…`0x58CCF0` | tooltip de encantamento | tabelas acima |
 | `0x4083B0`, `0x5859E0` | texto do tipo (busca, tooltip) | hook 7 |
 | `0x912F80` | efeito de acerto corpo a corpo | nenhum, igual ao livro e ao 5.8 |
-| `0xA805D0`, `0xA804A0` | prévia do personagem | usa os hooks 3 e 5; a varinha não aparece |
+| `0xA805D0`, `0xA804A0` | prévia do personagem | usa os hooks 3 e 5 |
 | `0x38B963`, `0x9FEA2B`, `0x287390`, `0x9FE850`, `0xA81EC0`, `0xA82260` | casos de lâmina em corrente (8), pistola (12), espada rúnica (14) | não se aplica |
 | `0x388350` | esconde o escudo com arma de duas mãos | o 5.8 inclui a harpa; sem efeito, o servidor não deixa escudo com ela |
 | `0x8E2730` | arco (13) | não se aplica |
@@ -213,7 +215,10 @@ que com o modo ligado vale 20.
 | `0x1EF5D0` (hook) | comandos da janela (`sel_class`) | clique no `class_14` -> modo Bard + selecao da posicao 10 **pelo hook** da selecao |
 | `0x1EFA80` (hook) | selecao: acende o botao da posicao, painel, previa | acende o do Bard e apaga o da posicao 10 |
 | `0x9CBD50` / `0x9CBC80` (hooks) | posicao <-> classe | 10 -> 20 no modo Bard; 20 -> posicao 10 |
-| `0x999F80` (hook) | personagem de previa por classe/raca/sexo | 20 usa o da 19 (provisorio; a previa do Bard e o proximo passo) |
+| `0x999F80` (hook) | indice da previa por classe/raca/sexo | 20 usa o da posicao 10 (61/62 luz, 87/88 sombra) |
+| `0x99D1E0` / `0x99C9F0` (hooks) | carregam pontos e cameras das entidades do mapa `login` | guardam os do Bard (`CLASS_Position_L26/L27/D26/D27`, `Camera_<Light|Dark>_Bard_M/F`) |
+| `0x998C80` (hook) | roupa da previa, fixa por classe (ids de item por parte) | classe 20: roupa provisoria (Luminess fem. / Sorcerer masc.) e a harpa oficial da raca na parte 0 |
+| `0x998500` / `0x999840` | solta uma previa / cria as que faltam | chamados ao entrar e sair do modo Bard |
 | `0xA64B00` (hook) | nome de classe -> id ao ler os XMLs (tabela **wchar_t**, `_wcsicmp`; desconhecido = 1Bh) | `artist` = 17, `bard` = 20 |
 
 O painel da direita le o `client_character_class_info.xml` (`data\PC\PC.pak` e
@@ -228,15 +233,35 @@ descricao). A entrada do Bard (`--painel-criacao`) tem `class_name` "Bard", atri
 montado com o hook errado continua valendo ate ser invalidado; o `teste_harpa_58.py` poe
 `ValidTableDump=0` toda vez que grava um pak.
 
-Falta para a classe: previa 3D na criacao (personagem por classe/raca/sexo na tabela `0x15F6620`),
-classe 20 no pacote de criacao, skills e habilidade de equipar harpa
+### Previa 3D na criacao
+
+Cada posicao de botao tem um personagem de previa por raca e sexo (`0x15F6620`, 98 entradas: luz
+41 + 2 x posicao + sexo, sombra 67 + ...). O construtor (`0x999840`) cria os que faltam da raca
+atual no ponto do mapa `levels\login` da posicao (`CLASS_Position_L01..D25`, os dois sexos no mesmo
+ponto: a animacao de criacao os separa), com a classe da posicao e a roupa fixa da classe; a
+selecao enquadra com a camera de indice previa - 10. Pontos e cameras sao entidades do mapa,
+lidas pelo nome (`0x99D1E0` e `0x99C9F0`, que param na primeira linha com a marca 1).
+
+O Bard divide a posicao 10 com a Luminess e tem plataforma propria no mapa
+(`teste_harpa_58.py --plataforma-criacao`): um passo depois do Soul Reaper na fileira de baixo,
+com o casal do Artist do 5.8 (um ponto por sexo, D11/D12 e `Camera_DarkArtistM/F`), transladado e
+com as cameras recuadas pela linha de visao ate a distancia das do Soul Reaper no 5.0. O Elyos
+repete o arranjo Asmodiano: as animacoes de criacao LM/LF do 5.8 tem outra pose que as DM/DF
+(braco direito 76/81 graus), e o Elyos usa as DM/DF (`CRIACAO_DOS_ELYOS`). No modo Bard o
+`harp_fix.h` poe os pontos e cameras do Bard no lugar dos da posicao 10, solta essas previas e
+manda criar de novo; ao sair, volta a Luminess. A harpa da previa e a da tela de criacao do 5.8
+(`npc_harp_best_01` / `npc_harp_idvritra01a_01`, so no cliente): a animacao de criacao segura o
+`Lhand_bone` a 30-40 cm da mao para a origem desses modelos; a `HA_C001` de teste tem outra
+origem e fica dentro do corpo da personagem feminina.
+
+Falta para a classe: roupa oficial da previa (`rb_*_login_*_02` do 5.8), classe 20 no pacote de
+criacao, skills e habilidade de equipar harpa
 (`required_harp`), e 4 texturas e o `MON_Kaisinel_MRT.V3.ShockwaveTrap`, que nao existem nem no
 5.8 limpo.
 
 ## Pendências conhecidas
 
 - **Requisito de arma das skills** (`required_harp`, `0xB2FF50`): fica para as skills do Bard.
-- **Varinha nas janelas de prévia:** a prévia não passa pelo hook 4.
 - **Dedos.** O esqueleto do 5.8 tem cinco dedos de três falanges e o do 5.0 três de duas, com
   outra pose de referência. As animações de harpa precisam de conversão nas trilhas de dedo;
   há duas variantes em avaliação, nenhuma fixada.

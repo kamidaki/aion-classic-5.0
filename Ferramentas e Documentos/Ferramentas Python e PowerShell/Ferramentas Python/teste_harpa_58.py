@@ -26,6 +26,7 @@ Uso:
     python teste_harpa_58.py --marcadores copia do 5.8 os marcadores e sons das animacoes de harpa
     python teste_harpa_58.py --icone-classe   icone pequeno das classes do Bard (emblemas do 5.8 e Skins)
     python teste_harpa_58.py --botao-criacao   botao do Bard na tela de criacao (textura, Preset e layout)
+    python teste_harpa_58.py --plataforma-criacao   plataforma do Bard no mapa da criacao (levels/login)
     python teste_harpa_58.py --painel-criacao   painel da direita da criacao (descricao, atributos, etiquetas)
     python teste_harpa_58.py --vozes      voz da selecao do Bard/Artist (vlogin2_*) nos paks de voz
     python teste_harpa_58.py --classe-animacoes   selecao/criacao/idle do Bard (as 4 racas)
@@ -98,6 +99,41 @@ TEXTURAS = (
     "Ha_test_stick.dds", "Ha_test_stick_ddn.dds", "Ha_test_stick_illum.dds",
     "Ha_test_stick_matid.dds", "Ha_test_stick_sp.dds",
 )
+#: Harpas da previa da tela de criacao (so no cliente): as do 5.8, com os ids do 5.8, livres no 5.0.
+#: A animacao de criacao poe o `Lhand_bone` a 30-40 cm da mao, para a origem destes modelos; a
+#: HA_C001 (de teste) tem outra origem e orientacao e fica dentro do corpo na personagem feminina.
+#: Elyos usa a npc_harp_best_01, Asmodiano a npc_harp_idvritra01a_01 (as do Live).
+ITENS_DA_PREVIA = (
+    (100500003, 102000908, "npc_harp_best_01", "HA_IDRun01a"),
+    (100500003, 102001020, "npc_harp_idvritra01a_01", "HA_IDVritra01a"),
+)
+MESHES_DA_PREVIA = ("HA_IDRun01a.cgf", "HA_IDVritra01a.cgf")
+TEXTURAS_DA_PREVIA = (
+    "HA_IDRun01a.dds", "HA_IDRun01a_ddn.dds", "HA_IDRun01a_illum.dds", "HA_IDRun01a_matid.dds",
+    "HA_IDRun01a_sp.dds",
+    "HA_IDVritra01a.dds", "HA_IDVritra01a_ddn.dds", "HA_IDVritra01a_illum.dds", "HA_IDVritra01a_mask.dds",
+    "HA_IDVritra01a_matid.dds", "HA_IDVritra01a_sp.dds",
+)
+#: A HA_IDVritra01a pede dois efeitos em objects\pc2\male, pasta que o 5.0 nao tem: vao para
+#: objects\items e o caminho no material da mesh (campo de tamanho fixo) passa a apontar para la.
+TEXTURAS_PC2_DA_PREVIA = ("FX_IDVritra01a_n.dds", "FX_IDVritra01a_p.dds")
+CAMINHOS_PC2 = ((rb"objects\pc2\male\fx_idvritra01a_n.dds", rb"objects\items\fx_idvritra01a_n.dds"),
+                (rb"objects\pc2\male\fx_idvritra01a_p.dds", rb"objects\items\fx_idvritra01a_p.dds"))
+
+
+def troca_caminho_fixo(dados, antigo, novo):
+    """Troca um caminho num campo de tamanho fixo (completado com zeros), sem mudar o tamanho."""
+    achados = [i for i in range(len(dados)) if dados.lower().startswith(antigo.lower(), i)]
+    if len(achados) != 1:
+        raise ValueError(f"{antigo!r}: {len(achados)} ocorrencias")
+    i = achados[0]
+    if len(novo) > len(antigo) or dados[i + len(antigo)] != 0:
+        raise ValueError(f"{antigo!r}: campo inesperado")
+    saida = bytearray(dados)
+    saida[i:i + len(antigo)] = novo + bytes(len(antigo) - len(novo))
+    return bytes(saida)
+
+
 TEMPLATES = (
     r"Código Fonte - Emulador\game-server\data\static_data\items\item_templates.xml",
     r"Emulador - Produto Final\GameServer\data\static_data\items\item_templates.xml",
@@ -652,7 +688,7 @@ def aplica():
         entrada = next(e for e in idx if e.nome.lower() == "client_items.xml")
         novo = aion_pak.le(d, entrada)
         quantos = None
-        for id_base, id_novo, nome, mesh, _pt in VARIANTES:
+        for id_base, id_novo, nome, mesh in [v[:4] for v in VARIANTES] + list(ITENS_DA_PREVIA):
             novo, n, ordenado = acrescenta_item(novo, id_base, id_novo, nome, mesh)
             quantos = n if quantos is None else quantos
         _backup(caminho)
@@ -668,16 +704,25 @@ def aplica():
         import aion_bxml
         d2, idx2 = aion_pak.abre(caminho)
         xml = aion_bxml.decodifica(aion_pak.le(d2, next(e for e in idx2 if e.nome == entrada.nome)))
-        assert xml.count("<client_item>") == quantos + len(VARIANTES)
-        for _b, id_novo, _n, mesh, _pt in VARIANTES:
+        novos_itens = [v[:4] for v in VARIANTES] + list(ITENS_DA_PREVIA)
+        assert xml.count("<client_item>") == quantos + len(novos_itens)
+        for _b, id_novo, _n, mesh in novos_itens:
             assert f"<id>{id_novo}</id>" in xml and f"<mesh>{mesh}</mesh>" in xml
-        print(f"OK  {rel}: {quantos} -> {quantos + len(VARIANTES)} itens (ordenado por id: {ordenado})")
+        print(f"OK  {rel}: {quantos} -> {quantos + len(novos_itens)} itens (ordenado por id: {ordenado})")
 
-    for rel, nomes in ((PAK_MESH, MESHES), (PAK_TEXTURA, TEXTURAS)):
+    for rel, nomes in ((PAK_MESH, MESHES + MESHES_DA_PREVIA), (PAK_TEXTURA, TEXTURAS + TEXTURAS_DA_PREVIA)):
         caminho = os.path.join(CLIENTE, rel)
         novos = do_58(r"Objects\items", nomes)
         if len(novos) != len(nomes):
             raise ValueError(f"faltou no 5.8: {sorted(set(nomes) - set(novos))}")
+        if rel == PAK_MESH:
+            for antigo, novo in CAMINHOS_PC2:
+                novos["HA_IDVritra01a.cgf"] = troca_caminho_fixo(novos["HA_IDVritra01a.cgf"], antigo, novo)
+        else:
+            pc2 = do_58(r"Objects\PC2\male", TEXTURAS_PC2_DA_PREVIA)
+            if len(pc2) != len(TEXTURAS_PC2_DA_PREVIA):
+                raise ValueError(f"faltou no 5.8: {sorted(set(TEXTURAS_PC2_DA_PREVIA) - set(pc2))}")
+            novos.update(pc2)
         origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
         _d, idx = aion_pak.abre(origem)
         _backup(caminho)
@@ -1288,6 +1333,14 @@ PAKS_DE_ANIMACAO_DE_CLASSE = {
 }
 
 
+#: Pose da tela de criacao dos Elyos: as animacoes LM/LF_Nidle_bard_create do 5.8 tem a pose do
+#: outro sexo em relacao as DM/DF (braco direito 76 / 81 graus diferente); as DM/DF sao as certas
+#: (Asmodianos conferidos em jogo). O Elyos usa as DM/DF, como o 5.0 ja faz entre LM e DM em outras
+#: classes (esqueletos compativeis). Ver tambem COPIA_DA_SOMBRA (plataforma).
+CRIACAO_DOS_ELYOS = {"lm": r"PC\DM\Animation\DM_Nidle_bard_create_001_loop.caf",
+                     "lf": r"PC\DF\Animation\DF_Nidle_bard_create_001_loop.caf"}
+
+
 def entradas_de_classe(raca):
     """As entradas do `<raca>.cal` do 5.8 com o nome da classe Bard/Artist, para o 5.0.
 
@@ -1314,6 +1367,10 @@ def entradas_de_classe(raca):
         prob = struct.unpack("<f", struct.pack("<f", float(prob.group(1))))[0] if prob else -1.0
         saida.append((m.group(1), f"PC\\{pasta}\\Animation\\{arquivo}", prob))
         arquivos.setdefault(pasta.lower(), set()).add(arquivo)
+    if raca in CRIACAO_DOS_ELYOS:
+        caminho = CRIACAO_DOS_ELYOS[raca]
+        saida = [(n, caminho, p) if re.search(r"(?i)^nidle_(bard|artist)_create_\d+$", n) else (n, c, p)
+                 for n, c, p in saida]
     return saida, arquivos
 
 
@@ -2076,6 +2133,274 @@ def aplica_painel_da_classe():
         print(f"OK  {rel}: {ARQUIVO_DO_PAINEL} com o Bard ({len(antes)} + 1 entradas)")
 
 
+#: Plataforma do Bard no mapa da tela de criacao (`levels\login`). No 5.0 cada classe tem, por raca,
+#: um ponto `CLASS_Position_<L|D>nn` (os dois sexos no mesmo ponto: a animacao de criacao os separa),
+#: duas cameras `Camera_<Light|Dark>_<Classe>_<M|F>`, dois efeitos de particula e uma luz, em
+#: fileiras com um passo de ~8 m; a de baixo termina no Soul Reaper (L24 / D24). No 5.8 cada sexo
+#: tem o seu ponto e as animacoes de criacao do Bard sao feitas para isso: o casal do Artist
+#: (masculino / feminino: D11 / D12 e Camera_DarkArtistM/F; o Elyos repete o Asmodiano) vem
+#: inteiro, com os angulos do 5.8, transladado para um passo depois do Soul Reaper (o meio dos dois
+#: pontos no lugar; o passo e L24 - L22 / D24 - D22, medido no proprio mapa). Os efeitos sao os do
+#: Soul Reaper, um passo adiante. As entidades novas copiam as do Soul Reaper (atributos, Properties,
+#: entitycontexts) trocando nome, ids, posicao e angulos. O `harp_fix.h` le os pontos e cameras do
+#: Bard pelos nomes novos. A luz (`DeferredLight`, guardada em outro arquivo) nao e copiada.
+PAK_DO_MAPA_LOGIN = r"levels\login\Level.pak"
+PAK_DO_MAPA_LOGIN_58 = r"Levels\login\Level.pak"
+PLATAFORMA_DO_BARD = (  # (raca, modelo do Soul Reaper, nome novo, entidade do 5.8 ou None = passo)
+    ("L", "CLASS_Position_L24", "CLASS_Position_L26", "CLASS_Position_D11"),
+    ("L", "CLASS_Position_L24", "CLASS_Position_L27", "CLASS_Position_D12"),
+    ("L", "ParticleEffect_login_magic138", "ParticleEffect_login_magic_bard_L", None),
+    ("L", "ParticleEffect313784", "ParticleEffect_bard_L", None),
+    ("L", "Camera_Light_RuneBlade_M", "Camera_Light_Bard_M", "Camera_DarkArtistM"),
+    ("L", "Camera_Light_RuneBlade_F", "Camera_Light_Bard_F", "Camera_DarkArtistF"),
+    ("D", "CLASS_Position_D24", "CLASS_Position_D26", "CLASS_Position_D11"),
+    ("D", "CLASS_Position_D24", "CLASS_Position_D27", "CLASS_Position_D12"),
+    ("D", "ParticleEffect_login_magic143", "ParticleEffect_login_magic_bard_D", None),
+    ("D", "ParticleEffect313789", "ParticleEffect_bard_D", None),
+    ("D", "Camera_Dark_RuneBlade_M", "Camera_Dark_Bard_M", "Camera_DarkArtistM"),
+    ("D", "Camera_Dark_RuneBlade_F", "Camera_Dark_Bard_F", "Camera_DarkArtistF"),
+)
+PASSO_DA_FILEIRA = {"L": ("CLASS_Position_L22", "CLASS_Position_L24"),
+                    "D": ("CLASS_Position_D22", "CLASS_Position_D24")}
+#: Elyos: as animacoes de criacao LM/LF do 5.8 tem outra pose que as DM/DF (braco direito 76 e 81
+#: graus diferente; a dos Asmodianos e a certa, conferida em jogo). O Elyos usa as DM/DF
+#: (`CRIACAO_DOS_ELYOS`) e, com elas, o mesmo arranjo do casal Asmodiano, so transladado.
+COPIA_DA_SOMBRA = {"CLASS_Position_L26": "CLASS_Position_D26", "CLASS_Position_L27": "CLASS_Position_D27",
+                   "Camera_Light_Bard_M": "Camera_Dark_Bard_M", "Camera_Light_Bard_F": "Camera_Dark_Bard_F"}
+CASAL_DO_58 = {"L": ("CLASS_Position_L11", "CLASS_Position_L12"),
+               "D": ("CLASS_Position_D11", "CLASS_Position_D12")}
+
+
+def _elemento_entity(xml, nome):
+    """(inicio, fim) do `<Entity ... Name="nome">` inteiro, com os filhos."""
+    m = re.search(r'<Entity [^>]*\bName="%s"[^>]*?(/?)>' % re.escape(nome), xml)
+    if not m:
+        raise ValueError(f"mapa sem a entidade {nome}")
+    if m.group(1):
+        return m.start(), m.end()
+    profundidade, p = 1, m.end()
+    marca = re.compile(r'<(/?)Entity\b[^>]*?(/?)>')
+    while profundidade:
+        t = marca.search(xml, p)
+        if t.group(1):
+            profundidade -= 1
+        elif not t.group(2):
+            profundidade += 1
+        p = t.end()
+    return m.start(), p
+
+
+def _attr(tag, chave):
+    return re.search(r'\b%s="([^"]*)"' % chave, tag).group(1)
+
+
+def _troca_attr(tag, chave, valor):
+    return re.sub(r'\b(%s)="[^"]*"' % chave, lambda m: f'{m.group(1)}="{valor}"', tag, count=1)
+
+
+def _vetor(xml, nome, chave):
+    return tuple(float(v) for v in _attr(xml[slice(*_elemento_entity(xml, nome))], chave).split(","))
+
+
+def _numero(v):
+    return f"{v:.5f}".rstrip("0").rstrip(".")
+
+
+def _destinos(xml, xml58):
+    """{nome novo: (posicao, angulos ou None)} de cada entidade da plataforma."""
+    destinos, lugares = {}, {}
+    for raca in ("D", "L"):
+        a, b = PASSO_DA_FILEIRA[raca]
+        pa, pb = _vetor(xml, a, "Pos"), _vetor(xml, b, "Pos")
+        passo = (pb[0] - pa[0], pb[1] - pa[1], 0.0)
+        lugar = (pb[0] + passo[0], pb[1] + passo[1], pb[2])
+        lugares[raca] = lugar
+        m, f = (_vetor(xml58, n, "Pos") for n in CASAL_DO_58[raca])
+        meio = tuple((x + y) / 2 for x, y in zip(m, f))
+        translacao = tuple(l - c for l, c in zip(lugar, meio))
+        for r, modelo, novo, do58 in PLATAFORMA_DO_BARD:
+            if r != raca:
+                continue
+            if raca == "L" and do58:
+                # Elyos: o casal Asmodiano inteiro (pontos, rotacoes, cameras), so transladado.
+                sombra = COPIA_DA_SOMBRA[novo]
+                pos = tuple(p + l - d for p, l, d in zip(destinos[sombra][0], lugar, lugares["D"]))
+                destinos[novo] = (pos, destinos[sombra][1])
+            elif do58 and novo.startswith("Camera_"):
+                # A tela do 5.8 enquadra mais de perto: a camera recua pela propria linha de visao
+                # (mira o mesmo ponto) ate ficar, no plano, a distancia que a camera do Soul Reaper do
+                # mesmo sexo tem do ponto dele no 5.0. Angulos do 5.8. A camera olha para
+                # (sen yaw, -cos yaw) -- conferido nas do 5.0 (Camera_Light_RuneBlade_M -> L24).
+                c58 = tuple(p + t for p, t in zip(_vetor(xml58, do58, "Pos"), translacao))
+                angulos = _vetor(xml58, do58, "Angles")
+                ref = _vetor(xml, modelo, "Pos")
+                dist50 = math.hypot(ref[0] - pb[0], ref[1] - pb[1])
+                dist58 = math.hypot(c58[0] - lugar[0], c58[1] - lugar[1])
+                yaw = math.radians(angulos[2])
+                fx, fy = math.sin(yaw), -math.cos(yaw)
+                recuo = dist50 - dist58
+                destinos[novo] = ((c58[0] - fx * recuo, c58[1] - fy * recuo, c58[2]), angulos)
+            elif do58:
+                pos = tuple(p + t for p, t in zip(_vetor(xml58, do58, "Pos"), translacao))
+                destinos[novo] = (pos, _vetor(xml58, do58, "Angles"))
+            else:
+                destinos[novo] = (tuple(p + d for p, d in zip(_vetor(xml, modelo, "Pos"), passo)), None)
+    return destinos
+
+
+def _ids_novos(xml):
+    """GUID (com sinal, como no XML) e EntityId para cada entidade nova, sem repetir os do mapa."""
+    guids = {int(g) for g in re.findall(r'EntityGUID="(-?\d+)"', xml)}
+    proximo = max(int(i) for i in re.findall(r'EntityId="(\d+)"', xml)) + 1
+    ids = {}
+    for _raca, _modelo, novo, _do58 in PLATAFORMA_DO_BARD:
+        guid = zlib.crc32(novo.encode()) - (1 << 31)
+        while guid in guids:
+            guid += 1
+        guids.add(guid)
+        ids[novo] = (guid, proximo)
+        proximo += 1
+    return ids
+
+
+def plataforma_xml(xml, xml58):
+    if 'Name="CLASS_Position_L26"' in xml:
+        raise ValueError("o mapa ja tem a plataforma do Bard")
+    destinos, ids = _destinos(xml, xml58), _ids_novos(xml)
+    for _raca, modelo, novo, _do58 in PLATAFORMA_DO_BARD:
+        ini, fim = _elemento_entity(xml, modelo)
+        bloco = xml[ini:fim]
+        tag_fim = bloco.index(">") + 1
+        tag = bloco[:tag_fim]
+        pos, angulos = destinos[novo]
+        guid, eid = ids[novo]
+        tag = _troca_attr(tag, "Name", novo)
+        tag = _troca_attr(tag, "EntityGUID", str(guid))
+        tag = _troca_attr(tag, "EntityId", str(eid))
+        tag = _troca_attr(tag, "Pos", ",".join(_numero(v) for v in pos))
+        if angulos:
+            tag = _troca_attr(tag, "Angles", ",".join(_numero(v) for v in angulos))
+        recuo = xml[xml.rindex("\n", 0, ini) + 1:ini]
+        xml = xml[:fim] + "\n" + recuo + tag + bloco[tag_fim:] + xml[fim:]
+    return xml, destinos, ids
+
+
+def _entidades_lst(b):
+    """[(nome, inicio, fim, corpo 0x1110, corpo 0x1120, corpo 0x1130)] do entitycontexts.lst."""
+    n = struct.unpack_from("<I", b, 16)[0]
+    o = struct.unpack_from("<I", b, 12)[0]
+    saida = []
+    while o < len(b):
+        _nv, tag, ini, fim = struct.unpack_from("<4I", b, o)
+        if tag != 0x1100:
+            raise ValueError(f"entitycontexts: bloco {tag:#x} em {o}")
+        partes, p = {}, ini
+        while p < fim:
+            _n2, t2, i2, f2 = struct.unpack_from("<4I", b, p)
+            partes[t2] = b[i2:f2]
+            p = f2
+        corpo = partes[0x1110]
+        tam = struct.unpack_from("<H", corpo, 0)[0]
+        q = 3 + tam
+        tam = struct.unpack_from("<H", corpo, q)[0]
+        nome = corpo[q + 2:q + 2 + tam].decode("latin-1")
+        saida.append((nome, o, fim, corpo, partes[0x1120], partes[0x1130]))
+        o = fim
+    if len(saida) != n:
+        raise ValueError(f"entitycontexts: {len(saida)} entidades, cabecalho diz {n}")
+    return saida
+
+
+def _corpo_1110(corpo, nome, guid, eid, pos_nova, angulos):
+    tam = struct.unpack_from("<H", corpo, 0)[0]
+    classe = corpo[:3 + tam]
+    q = 3 + tam
+    tam = struct.unpack_from("<H", corpo, q)[0]
+    q += 3 + tam
+    zero, _g, _e, zero2 = struct.unpack_from("<4I", corpo, q)
+    q += 16
+    pos = struct.unpack_from("<3f", corpo, q)
+    q += 12
+    resto = bytearray(corpo[q:])
+    if angulos:
+        if not resto[0]:
+            raise ValueError("entitycontexts: modelo sem rotacao")
+        struct.pack_into("<3f", resto, 1, *angulos)
+    r = 1 + (12 if resto[0] else 0)
+    r += 1 + (12 if resto[r] else 0)
+    desloca = [n - p for n, p in zip(pos_nova, pos)]
+    caixa = struct.unpack_from("<6f", resto, r)
+    struct.pack_into("<6f", resto, r, *(c + desloca[i % 3] for i, c in enumerate(caixa)))
+    if r + 24 != len(resto):
+        raise ValueError("entitycontexts: campos alem da caixa")
+    novo_nome = nome.encode("latin-1")
+    return (bytes(classe) + struct.pack("<H", len(novo_nome)) + novo_nome + b"\0" +
+            struct.pack("<4I", zero, guid & 0xffffffff, eid, zero2) +
+            struct.pack("<3f", *pos_nova) + bytes(resto))
+
+
+def plataforma_lst(b, destinos, ids):
+    entidades = {e[0]: e for e in _entidades_lst(b)}
+    saida = bytearray(b)
+    novos = 0
+    for _raca, modelo, novo, _do58 in PLATAFORMA_DO_BARD:
+        if modelo not in entidades:  # cameras so existem no XML
+            continue
+        if novo in entidades:
+            raise ValueError(f"entitycontexts ja tem {novo}")
+        _n, _i, _f, c1110, c1120, c1130 = entidades[modelo]
+        guid, eid = ids[novo]
+        pos, angulos = destinos[novo]
+        partes = ((0x1110, _corpo_1110(c1110, novo, guid, eid, pos, angulos)), (0x1120, c1120), (0x1130, c1130))
+        o = len(saida)
+        corpo = bytearray()
+        p = o + 16
+        for tag, dados in partes:
+            corpo += struct.pack("<4I", 2, tag, p + 16, p + 16 + len(dados)) + dados
+            p += 16 + len(dados)
+        saida += struct.pack("<4I", 1, 0x1100, o + 16, o + 16 + len(corpo)) + corpo
+        novos += 1
+    struct.pack_into("<I", saida, 16, struct.unpack_from("<I", b, 16)[0] + novos)
+    return bytes(saida), novos
+
+
+def aplica_plataforma_criacao():
+    caminho = os.path.join(CLIENTE, PAK_DO_MAPA_LOGIN)
+    origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
+    d, idx = aion_pak.abre(origem)
+    por_nome = {e.nome.lower(): e for e in idx}
+    xml = aion_pak.le(d, por_nome["mission_mission0.xml"]).decode("utf-8")
+    d58, idx58 = aion_pak.abre(os.path.join(LIVE_CLIENTE, PAK_DO_MAPA_LOGIN_58))
+    xml58 = aion_pak.le(d58, next(e for e in idx58 if e.nome.lower() == "mission_mission0.xml")).decode("utf-8")
+    novo_xml, destinos, ids = plataforma_xml(xml, xml58)
+    lst = aion_pak.le(d, por_nome["entitycontexts.lst"])
+    if aion_pak.le(d, por_nome["entitycontexts2.lst"]) != lst:
+        raise ValueError("entitycontexts.lst e entitycontexts2.lst diferem")
+    novo_lst, novos = plataforma_lst(lst, destinos, ids)
+    troca = {por_nome["mission_mission0.xml"].nome: novo_xml.encode("utf-8"),
+             por_nome["entitycontexts.lst"].nome: novo_lst,
+             por_nome["entitycontexts2.lst"].nome: novo_lst}
+    _backup(caminho)
+    if origem != caminho:
+        shutil.copy2(origem, caminho)
+    regrava_pak(caminho, troca=troca)
+    _confere_pak(caminho, len(idx), {n: "troca" for n in troca})
+    # Confere: as entidades antigas intactas, as novas no lugar.
+    d2, idx2 = aion_pak.abre(caminho)
+    por_nome2 = {e.nome.lower(): e for e in idx2}
+    lido = aion_pak.le(d2, por_nome2["entitycontexts.lst"])
+    antes, depois = _entidades_lst(lst), _entidades_lst(lido)
+    assert [e[3:] for e in depois[:len(antes)]] == [e[3:] for e in antes]
+    assert len(depois) == len(antes) + novos
+    lido_xml = aion_pak.le(d2, por_nome2["mission_mission0.xml"]).decode("utf-8")
+    for _raca, _modelo, novo, do58 in PLATAFORMA_DO_BARD:
+        tag = lido_xml[slice(*_elemento_entity(lido_xml, novo))]
+        angulos = re.search(r'\bAngles="([^"]*)"', tag[:tag.index(">")])
+        print(f"OK  {novo}: Pos {_attr(tag, 'Pos')}" + (f" Angles {angulos.group(1)}" if angulos else "") +
+              (f" (de {do58})" if do58 else ""))
+    print(f"OK  {PAK_DO_MAPA_LOGIN}: +{len(PLATAFORMA_DO_BARD)} entidades no XML, +{novos} no entitycontexts")
+
+
 def _strings_por_arquivo(lingua):
     por_arquivo = {}
     for arquivo, id_string, nome, textos in STRINGS:
@@ -2275,6 +2600,7 @@ def _paks_com_backup():
     raizes += [os.path.dirname(os.path.join(CLIENTE, rel)) for rel, _a in PAKS_DA_CRIACAO + PAKS_DO_LOBBY]
     raizes.append(os.path.dirname(os.path.join(CLIENTE, PAK_TEXTURA_DO_BOTAO)))
     raizes.append(os.path.join(CLIENTE, r"data\PC"))  # PAKS_DO_PAINEL (e o special\ dentro)
+    raizes.append(os.path.dirname(os.path.join(CLIENTE, PAK_DO_MAPA_LOGIN)))
     # `data\items` contem `special\` e `special2\`: sem repetir.
     vistos = set()
     for raiz in raizes:
@@ -2322,6 +2648,8 @@ if __name__ == "__main__":
     elif "--botao-criacao" in sys.argv:
         aplica_textura_do_botao()
         aplica_interface()
+    elif "--plataforma-criacao" in sys.argv:
+        aplica_plataforma_criacao()
     elif "--painel-criacao" in sys.argv:
         aplica_painel_da_classe()
         aplica_interface()
