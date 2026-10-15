@@ -200,7 +200,36 @@ No servidor: `ARTIST(17)` e `BARD(20)` no fim do `PlayerClass` (o `restrict` dos
 pelo `ordinal()`), atributos provisorios iguais aos do `LUMINESS`; `//set class` sem a validacao
 de ascensao.
 
-Falta para a classe: botao na tela de criacao, skills e habilidade de equipar harpa
+### Tela de criacao
+
+Os botoes `class_1`..`class_13` (`UI_Create.xml`) ficam num vetor fixo de 13 na janela (`+578h`);
+a posicao do botao (0..12) vira classe num switch (`0x9CBD50`: 10 -> 19 Luminess). O botao do Bard
+(`class_14`, dado novo) nao entra no vetor: o clique liga o "modo Bard" e seleciona a posicao 10,
+que com o modo ligado vale 20.
+
+| Onde | O que faz | Para o Bard |
+|---|---|---|
+| `0x1EF120` (hook) | monta a janela, acha `class_1..13` | acha o `class_14` com a mesma busca e cast |
+| `0x1EF5D0` (hook) | comandos da janela (`sel_class`) | clique no `class_14` -> modo Bard + selecao da posicao 10 **pelo hook** da selecao |
+| `0x1EFA80` (hook) | selecao: acende o botao da posicao, painel, previa | acende o do Bard e apaga o da posicao 10 |
+| `0x9CBD50` / `0x9CBC80` (hooks) | posicao <-> classe | 10 -> 20 no modo Bard; 20 -> posicao 10 |
+| `0x999F80` (hook) | personagem de previa por classe/raca/sexo | 20 usa o da 19 (provisorio; a previa do Bard e o proximo passo) |
+| `0xA64B00` (hook) | nome de classe -> id ao ler os XMLs (tabela **wchar_t**, `_wcsicmp`; desconhecido = 1Bh) | `artist` = 17, `bard` = 20 |
+
+O painel da direita le o `client_character_class_info.xml` (`data\PC\PC.pak` e
+`data\PC\special\special.pak`) pela tabela 87h, procurando pelo id de classe (`0x1D5710`,
+registros de 5Ch: `+4` id convertido do `class_name`, `+8..+1C` atributos, `+20` etiquetas, `+58`
+descricao). A entrada do Bard (`--painel-criacao`) tem `class_name` "Bard", atributos do
+`PlayerClass.BARD`, etiquetas magical/heal/buff/middledistance e a string 1990005
+`STR_UI_Bard_DETAIL` (nossa: o 5.8 nao tem essa tela). Sem `skill_info_list` (nao ha videos).
+
+**Cache das tabelas:** o cliente guarda as tabelas ja convertidas em `data\dump\tables.dmp` e, com
+`ValidTableDump=1` no `data\dump\config.ini`, nao rele os XMLs nem chama o `0xA64B00`. Um cache
+montado com o hook errado continua valendo ate ser invalidado; o `teste_harpa_58.py` poe
+`ValidTableDump=0` toda vez que grava um pak.
+
+Falta para a classe: previa 3D na criacao (personagem por classe/raca/sexo na tabela `0x15F6620`),
+classe 20 no pacote de criacao, skills e habilidade de equipar harpa
 (`required_harp`), e 4 texturas e o `MON_Kaisinel_MRT.V3.ShockwaveTrap`, que nao existem nem no
 5.8 limpo.
 

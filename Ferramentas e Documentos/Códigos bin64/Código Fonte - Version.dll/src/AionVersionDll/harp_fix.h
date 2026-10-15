@@ -375,6 +375,20 @@ static const wchar_t* __fastcall HarpClassKeyWHook(int classId) {
     return s_harpClassKeyW(classId);
 }
 
+// Class name -> id, the reverse: the data loader converts the class fields of the client XMLs with it
+// (a table of wide strings "warrior" 0 ... "runeblade" 25, _wcsicmp; unknown -> 1Bh). The creation
+// screen panel (client_character_class_info, class_name "Bard") is looked up by the class id, so
+// "bard" must be 20. The converted tables are cached in data\dump\tables.dmp: while it is valid the
+// XMLs are not read again and this hook is not called.
+using HarpClassFromName = int (__fastcall*)(const wchar_t*);
+static HarpClassFromName s_harpClassFromName = nullptr;
+
+static int __fastcall HarpClassFromNameHook(const wchar_t* name) {
+    if (name && _wcsicmp(name, L"artist") == 0) return kBardBaseClass;
+    if (name && _wcsicmp(name, L"bard") == 0) return kBardClass;
+    return s_harpClassFromName(name);
+}
+
 // Animation class suffix: the animation name builder has a switch on the class id that copies
 // "_lumines", "_runeblade"... into the name (Nidle_<class>_lobby_001, nidle_<class>_001, ...).
 // The empty slots jump to the default case, an empty suffix. Two new cases are added: a small
@@ -439,6 +453,111 @@ static void HarpPatchAnimationSuffixOnce() {
     }
     __except (EXCEPTION_EXECUTE_HANDLER) {
     }
+}
+
+// ---- Creation screen ---------------------------------------------------------------------------
+// The class buttons class_1..class_13 (UI_Create.xml) are kept in a fixed array of 13 in the window
+// (+578h); a click finds the button's position (0..12) and selects it, and the position becomes the
+// class id in a switch (0 -> 1 ... 10 -> 19 Lumines ... 12 -> 25). The Bard button (class_14, from
+// the client data) is not in that array: clicking it turns "bard mode" on and selects position 10,
+// the Orchestrator/Lumines line, and with the mode on that position means class 20. Every array of
+// 13 stays within its bounds.
+static constexpr int kBardButtonSlot = 10;     // position the Bard rides on
+static constexpr int kBardRideClass = 19;      // class of that position (Lumines)
+static constexpr size_t kCreateButtons = 0x578; // void* buttons[13]
+static constexpr int kCreateButtonCount = 13;
+
+using HarpCreateInit = void* (__fastcall*)(BYTE*, void*, void*, void*);
+using HarpCreateClick = int (__fastcall*)(BYTE*, void**);
+using HarpCreateSelect = void (__fastcall*)(BYTE*, int, int, char);
+using HarpSlotToClass = int (__fastcall*)(int);
+using HarpClassToSlot = int (__fastcall*)(int);
+using HarpPreviewSlot = int (__fastcall*)(int, int, int, int);
+using HarpDynamicCast = void* (__cdecl*)(void*, long, void*, void*, int);
+static HarpCreateInit s_harpCreateInit = nullptr;
+static HarpCreateClick s_harpCreateClick = nullptr;
+static HarpCreateSelect s_harpCreateSelect = nullptr;
+static HarpSlotToClass s_harpSlotToClass = nullptr;
+static HarpClassToSlot s_harpClassToSlot = nullptr;
+static HarpPreviewSlot s_harpPreviewSlot = nullptr;
+static HarpDynamicCast s_harpDynamicCast = nullptr;
+static void* s_harpButtonTypeFrom = nullptr;
+static void* s_harpButtonTypeTo = nullptr;
+static const int* s_harpCreateGender = nullptr; // global read by the original click
+static BYTE* s_harpCreateWindow = nullptr;
+static BYTE* s_harpBardButton = nullptr;
+static volatile bool s_harpBardMode = false;
+
+static void HarpSetButtonOn(void* button, bool on) {
+    if (button) (*(void (__fastcall**)(void*, int))(*(BYTE**)button + 0x610))(button, on ? 1 : 0);
+}
+
+static void* __fastcall HarpCreateInitHook(BYTE* window, void* a2, void* a3, void* a4) {
+    void* result = s_harpCreateInit(window, a2, a3, a4);
+    s_harpBardMode = false;
+    s_harpBardButton = nullptr;
+    __try {
+        // The same lookup the original does for class_1..class_13.
+        char name[] = "class_14";
+        void* widget = (*(void* (__fastcall**)(BYTE*, char*))(*(BYTE**)window + 0x370))(window, name);
+        BYTE* button = widget ? (BYTE*)s_harpDynamicCast(widget, 0, s_harpButtonTypeFrom, s_harpButtonTypeTo, 0) : nullptr;
+        if (button) {
+            *(int*)(button + 0x378) = 0x5d;
+            (*(void (__fastcall**)(void*, int))(*(BYTE**)button + 0x5d0))(button, 0);
+            s_harpBardButton = button;
+            s_harpCreateWindow = window;
+        }
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+        s_harpBardButton = nullptr;
+    }
+    return result;
+}
+
+static void __fastcall HarpCreateSelectHook(BYTE* window, int slot, int gender, char flag);
+
+static int __fastcall HarpCreateClickHook(BYTE* window, void** event) {
+    void* sender = event ? *event : nullptr;
+    if (sender && window == s_harpCreateWindow && sender == s_harpBardButton) {
+        s_harpBardMode = true;
+        // Through the hook: s_harpCreateSelect is the trampoline, and the original turns the button
+        // of position 10 (Lumines) on -- the hook moves that to the Bard button.
+        HarpCreateSelectHook(window, kBardButtonSlot, *s_harpCreateGender, 1);
+        return 1;
+    }
+    if (sender && window == s_harpCreateWindow) {
+        void** buttons = (void**)(window + kCreateButtons);
+        for (int i = 0; i < kCreateButtonCount; ++i)
+            if (buttons[i] == sender) s_harpBardMode = false;
+    }
+    return s_harpCreateClick(window, event);
+}
+
+static void __fastcall HarpCreateSelectHook(BYTE* window, int slot, int gender, char flag) {
+    s_harpCreateSelect(window, slot, gender, flag);
+    if (window != s_harpCreateWindow || !s_harpBardButton || slot < 0) return;
+    __try {
+        const bool bard = s_harpBardMode && slot == kBardButtonSlot;
+        HarpSetButtonOn(s_harpBardButton, bard);
+        if (bard) HarpSetButtonOn(((void**)(window + kCreateButtons))[kBardButtonSlot], false);
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+}
+
+static int __fastcall HarpSlotToClassHook(int slot) {
+    if (s_harpBardMode && slot == kBardButtonSlot) return kBardClass;
+    return s_harpSlotToClass(slot);
+}
+
+static int __fastcall HarpClassToSlotHook(int classId) {
+    return s_harpClassToSlot(classId == kBardClass ? kBardRideClass : classId);
+}
+
+// Creation preview: a preloaded character per class/race/gender; the Bard has none yet and uses
+// the Lumines one (its own preview is the next step).
+static int __fastcall HarpPreviewSlotHook(int a1, int classId, int gender, int a4) {
+    return s_harpPreviewSlot(a1, classId == kBardClass ? kBardRideClass : classId, gender, a4);
 }
 
 // Character list: builds each slot (class, emblem, level...) and reads the emblem table directly,
@@ -636,6 +755,62 @@ static void InstallHarpFix(HMODULE module) {
         };
         static const char classKeyMask[] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
         static_assert(sizeof(classKeyMask) - 1 == sizeof(classKey), "Class key mask length");
+        // Class name -> id: save rbx/rbp/rsi/rdi; push r14; sub rsp,20h; lea r14,[table];
+        // mov rsi,rcx; mov rbx,r14; lea rbp,[end]; xor edi,edi; loop of _stricmp; mov eax,1Bh
+        static const BYTE classFromName[] = {
+            0x48,0x89,0x5c,0x24,0x08,0x48,0x89,0x6c,0x24,0x10,0x48,0x89,0x74,0x24,0x18,0x48,
+            0x89,0x7c,0x24,0x20,0x41,0x56,0x48,0x83,0xec,0x20,0x4c,0x8d,0x35,0,0,0,0,0x48,
+            0x8b,0xf1,0x49,0x8b,0xde,0x48,0x8d,0x2d,0,0,0,0,0x33,0xff,0x48,0x8b,0x0b,0x48,
+            0x8b,0xd6,0xff,0x15,0,0,0,0,0x85,0xc0,0x74,0x12,0xff,0xc7,0x48,0x83,0xc3,0x10,
+            0x48,0x3b,0xdd,0x7c,0xe5,0xb8,0x1b,0x00
+        };
+        static const char classFromNameMask[] =
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx????xxxxxxxxx????xxxxxxxxxx????xxxxxxxxxxxxxxxxxx";
+        static_assert(sizeof(classFromNameMask) - 1 == sizeof(classFromName), "Class from name mask length");
+        // Creation screen. Window init: mov rax,rsp; mov [rax+8],rbx; mov [rax+10h],rbp;
+        // mov [rax+18h],rsi; push rdi/r14/r15; sub rsp,0E0h; movaps [rax-28h],xmm6
+        static const BYTE createInit[] = {
+            0x48,0x8b,0xc4,0x48,0x89,0x58,0x08,0x48,0x89,0x68,0x10,0x48,0x89,0x70,0x18,0x57,
+            0x41,0x56,0x41,0x57,0x48,0x81,0xec,0xe0,0x00,0x00,0x00,0x0f
+        };
+        // Its lookup of each class_N button: find child (vtable+370h), then the RTTI dynamic cast
+        // to the button type -- the cast and the two type descriptors are taken from here.
+        static const BYTE createLookup[] = {
+            0x48,0x8b,0x03,0x48,0x8d,0x54,0x24,0x30,0x48,0x8b,0xcb,0xff,0x90,0x70,0x03,0x00,0x00,
+            0x4c,0x8d,0x0d,0,0,0,0,0x44,0x89,0x74,0x24,0x20,0x48,0x8b,0xc8,0x4c,0x8d,0x05,0,0,0,0,
+            0x33,0xd2,0xe8,0,0,0,0,0x48,0x89,0x07,0x48,0x85,0xc0,0x74,0x18,0xc7,0x80,0x78,0x03,0x00,0x00
+        };
+        static const char createLookupMask[] = "xxxxxxxxxxxxxxxxxxxx????xxxxxxxxxxx????xxx????xxxxxxxxxxxxxx";
+        // Window command handler (create_race_light, sel_class...), exact
+        static const BYTE createClick[] = {
+            0x48,0x89,0x5c,0x24,0x08,0x57,0x48,0x83,0xec,0x30,0x48,0x8b,0xf9,0x48,0x8b,0xda,
+            0x48,0x8b,0x0a,0x48,0x8b,0x01,0xff,0x90,0xb0,0x00,0x00,0x00,0x48,0x8b,0xc8,0x48,
+            0x8d,0x15,0xe2,0x41,0xb3,0x00,0xff,0x15,0x4c,0x60,0xa0,0x00,0x85,0xc0,0x0f,0x84
+        };
+        static const size_t createClickGender = 0x391; // mov r8d,[gender]; mov r9b,1; mov rcx,rdi; call select
+        // Class select: mov [rsp+20h],r9b; push rbp/rsi/r12/r13/r14; lea rbp,[rsp-40h]
+        static const BYTE createSelect[] = {
+            0x44,0x88,0x4c,0x24,0x20,0x55,0x56,0x41,0x54,0x41,0x55,0x41,0x56,0x48,0x8d,0x6c
+        };
+        // Position -> class: cmp ecx,0Ch; ja; movsxd rax,ecx; lea rdx,[base]; mov ecx,[...]
+        static const BYTE slotToClass[] = {
+            0x83,0xf9,0x0c,0x77,0x5e,0x48,0x63,0xc1,0x48,0x8d,0x15,0,0,0,0,0x8b
+        };
+        // Class -> position: dec ecx; cmp ecx,18h; ja; movsxd rax,ecx; lea rdx,[base]
+        static const BYTE classToSlot[] = {
+            0xff,0xc9,0x83,0xf9,0x18,0x77,0x5e,0x48,0x63,0xc1,0x48,0x8d,0x15,0,0,0
+        };
+        static const char slotMask[] = "xxxxxxxxxxx????x";
+        static const char classSlotMask[] = "xxxxxxxxxxxxx???";
+        // Preview character slot: xor ecx,ecx; cmp r9d,1; jne other; lea eax,[rdx-1]; cmp eax,18h
+        static const BYTE previewSlot[] = {
+            0x33,0xc9,0x41,0x83,0xf9,0x01,0x0f,0x85,0,0,0,0,0x8d,0x42,0xff,0x83
+        };
+        static const char previewMask[] = "xxxxxxxx????xxxx";
+        static_assert(sizeof(createLookupMask) - 1 == sizeof(createLookup), "Create lookup mask length");
+        static_assert(sizeof(slotMask) - 1 == sizeof(slotToClass), "Slot mask length");
+        static_assert(sizeof(classSlotMask) - 1 == sizeof(classToSlot), "Class slot mask length");
+        static_assert(sizeof(previewMask) - 1 == sizeof(previewSlot), "Preview mask length");
         static_assert(sizeof(classKeyMask) - 1 == sizeof(classKeyW), "Class key mask length");
         static_assert(sizeof(typeNameMask) - 1 == sizeof(typeName), "Harp type name signature mask length");
         static_assert(sizeof(damageMask) - 1 == sizeof(damage), "Harp damage signature mask length");
@@ -724,9 +899,42 @@ static void InstallHarpFix(HMODULE module) {
             __leave;
         }
         s_harpCharacterSlot = (HarpCharacterSlot)characterSlotStart;
+        {
+            static const char exact28[] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+            static const char exact48[] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+            static const char exact16[] = "xxxxxxxxxxxxxxxx";
+            BYTE* init = QunaFindUnique(base, nt, createInit, exact28, sizeof(createInit));
+            BYTE* lookup = QunaFindUnique(base, nt, createLookup, createLookupMask, sizeof(createLookup));
+            BYTE* click = QunaFindUnique(base, nt, createClick, exact48, sizeof(createClick));
+            BYTE* sel = QunaFindUnique(base, nt, createSelect, exact16, sizeof(createSelect));
+            BYTE* toClass = QunaFindUnique(base, nt, slotToClass, slotMask, sizeof(slotToClass));
+            BYTE* toSlot = QunaFindUnique(base, nt, classToSlot, classSlotMask, sizeof(classToSlot));
+            BYTE* preview = QunaFindUnique(base, nt, previewSlot, previewMask, sizeof(previewSlot));
+            BYTE* g = click ? click + createClickGender : nullptr;
+            // mov r8d,[rip+x]; mov r9b,1; mov rcx,rdi; call select -- the call must land on select.
+            const bool clickOk = g && g[0] == 0x44 && g[1] == 0x8b && g[2] == 0x05 && g[7] == 0x41 &&
+                                 g[8] == 0xb1 && g[9] == 0x01 && g[13] == 0xe8 &&
+                                 g + 18 + *(int32_t*)(g + 14) == sel;
+            if (!init || !lookup || !clickOk || !toClass || !toSlot || !preview) {
+                OutputDebugStringA("[Harp] Unsupported client; creation screen signatures not found.\n");
+                __leave;
+            }
+            s_harpCreateGender = (const int*)(g + 7 + *(int32_t*)(g + 3));
+            s_harpButtonTypeTo = lookup + 24 + *(int32_t*)(lookup + 20);
+            s_harpButtonTypeFrom = lookup + 39 + *(int32_t*)(lookup + 35);
+            s_harpDynamicCast = (HarpDynamicCast)(lookup + 46 + *(int32_t*)(lookup + 42));
+            s_harpCreateInit = (HarpCreateInit)init;
+            s_harpCreateClick = (HarpCreateClick)click;
+            s_harpCreateSelect = (HarpCreateSelect)sel;
+            s_harpSlotToClass = (HarpSlotToClass)toClass;
+            s_harpClassToSlot = (HarpClassToSlot)toSlot;
+            s_harpPreviewSlot = (HarpPreviewSlot)preview;
+        }
         s_harpClassKey = (HarpClassKey)QunaFindUnique(base, nt, classKey, classKeyMask, sizeof(classKey));
         s_harpClassKeyW = (HarpClassKeyW)QunaFindUnique(base, nt, classKeyW, classKeyMask, sizeof(classKeyW));
-        if (!s_harpClassKey || !s_harpClassKeyW) {
+        s_harpClassFromName = (HarpClassFromName)QunaFindUnique(base, nt, classFromName, classFromNameMask,
+                                                                sizeof(classFromName));
+        if (!s_harpClassKey || !s_harpClassKeyW || !s_harpClassFromName) {
             OutputDebugStringA("[Harp] Unsupported client; class key signatures not found.\n");
             __leave;
         }
@@ -790,6 +998,13 @@ static void InstallHarpFix(HMODULE module) {
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpCharacterSlot, HarpCharacterSlotHook);
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpClassKey, HarpClassKeyHook);
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpClassKeyW, HarpClassKeyWHook);
+        if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpClassFromName, HarpClassFromNameHook);
+        if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpCreateInit, HarpCreateInitHook);
+        if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpCreateClick, HarpCreateClickHook);
+        if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpCreateSelect, HarpCreateSelectHook);
+        if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpSlotToClass, HarpSlotToClassHook);
+        if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpClassToSlot, HarpClassToSlotHook);
+        if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpPreviewSlot, HarpPreviewSlotHook);
         if (error == NO_ERROR) error = DetourTransactionCommit();
         else DetourTransactionAbort();
         OutputDebugStringA(error == NO_ERROR ? "[Harp] Weapon type hooks installed.\n" :

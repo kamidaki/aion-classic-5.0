@@ -25,6 +25,8 @@ Uso:
                                                desliga ou religa uma peca, para isolar um defeito
     python teste_harpa_58.py --marcadores copia do 5.8 os marcadores e sons das animacoes de harpa
     python teste_harpa_58.py --icone-classe   icone pequeno das classes do Bard (emblemas do 5.8 e Skins)
+    python teste_harpa_58.py --botao-criacao   botao do Bard na tela de criacao (textura, Preset e layout)
+    python teste_harpa_58.py --painel-criacao   painel da direita da criacao (descricao, atributos, etiquetas)
     python teste_harpa_58.py --vozes      voz da selecao do Bard/Artist (vlogin2_*) nos paks de voz
     python teste_harpa_58.py --classe-animacoes   selecao/criacao/idle do Bard (as 4 racas)
     python teste_harpa_58.py --racas      harpa no LF, DM e DF (animacoes do LF, listas e marcadores)
@@ -277,6 +279,81 @@ def acrescenta_item(bxml, id_base, id_novo, nome_novo, mesh):
     return bytes(saida), quantos, ordenado
 
 
+class NoBxml:
+    """Elemento de um XML binario aberto por [`edita_bxml`]: nome, texto, atributos e filhos."""
+
+    def __init__(self, tab, nome, texto=None, atributos=None, filhos=None):
+        self._tab, self._nome, self._texto = tab, nome, texto
+        self._attrs = list(atributos or [])
+        self.filhos = list(filhos or [])
+
+    @property
+    def nome(self):
+        return self._tab.texto(self._nome)
+
+    def get(self, chave, padrao=None):
+        for k, v in self._attrs:
+            if self._tab.texto(k) == chave:
+                return self._tab.texto(v)
+        return padrao
+
+    def set(self, chave, valor):
+        for i, (k, _v) in enumerate(self._attrs):
+            if self._tab.texto(k) == chave:
+                self._attrs[i] = (k, self._tab.indice(valor))
+                return
+        self._attrs.append((self._tab.indice(chave), self._tab.indice(valor)))
+
+    def novo(self, nome, **atributos):
+        """Elemento novo (sem pai); os atributos na ordem dada."""
+        return NoBxml(self._tab, self._tab.indice(nome), None,
+                      [(self._tab.indice(k), self._tab.indice(v)) for k, v in atributos.items()])
+
+    def procura(self, **atributos):
+        """Primeiro descendente (ou o proprio) com esses atributos."""
+        if all(self.get(k) == v for k, v in atributos.items()):
+            return self
+        for f in self.filhos:
+            achado = f.procura(**atributos)
+            if achado:
+                return achado
+        return None
+
+    def _tupla(self):
+        return (self._nome, self._texto, self._attrs, [f._tupla() for f in self.filhos])
+
+
+def edita_bxml(bxml, editor):
+    """Abre um XML binario, chama `editor(raiz)` (um [`NoBxml`]) e devolve os bytes regravados.
+
+    A tabela de strings original fica como esta; as strings novas vao para o fim dela.
+    """
+    if bxml[0] != 0x80:
+        raise ValueError("nao e XML binario")
+    tam, o = _varint(bxml, 1)
+    tab = _Tabela(bxml[o:o + tam])
+    o += tam
+    tupla, fim = _le_elemento(bxml, o)
+    if fim != len(bxml):
+        raise ValueError("sobraram bytes depois da raiz")
+    indice, pos = {}, 0
+    for parte in bytes(tab.bruto).decode("utf-16le").split("\0")[:-1]:
+        indice.setdefault(parte, pos)
+        pos += len(parte.encode("utf-16le")) // 2 + 1
+
+    def idx(s):
+        if s not in indice:
+            indice[s] = tab.acrescenta(s)
+        return indice[s]
+    tab.indice = idx
+
+    def no(t):
+        return NoBxml(tab, t[0], t[1], t[2], [no(f) for f in t[3]])
+    raiz = no(tupla)
+    editor(raiz)
+    return bytes([0x80]) + _grava_varint(len(tab.bruto)) + bytes(tab.bruto) + _grava_elemento(raiz._tupla())
+
+
 def troca_skinrefs(bxml, preset, por_estado):
     """Troca o `name` de `<SkinRef state=N>` de um `<Preset name=preset>` (XML binario).
 
@@ -461,7 +538,27 @@ def regrava_pak(caminho, troca=None, acrescenta=None):
     os.replace(tmp, caminho)
 
 
+#: O cliente guarda as tabelas de dados ja convertidas em `data\dump\tables.dmp` e, com
+#: `ValidTableDump=1` no `config.ini` ao lado, nao rele os XMLs dos paks (nem passa pelos hooks de
+#: conversao do `harp_fix.h`). Todo pak gravado aqui invalida o cache: o proximo boot remonta.
+CONFIG_DO_CACHE = r"data\dump\config.ini"
+
+
+def _invalida_cache_de_tabelas():
+    caminho = os.path.join(CLIENTE, CONFIG_DO_CACHE)
+    if not os.path.exists(caminho):
+        return
+    with open(caminho, encoding="latin-1") as f:
+        texto = f.read()
+    novo = re.sub(r"(?m)^ValidTableDump=1\s*$", "ValidTableDump=0", texto)
+    if novo != texto:
+        with open(caminho, "w", encoding="latin-1", newline="") as f:
+            f.write(novo)
+        print(f"OK  {CONFIG_DO_CACHE}: ValidTableDump=0 (o cliente remonta o tables.dmp)")
+
+
 def _backup(caminho):
+    _invalida_cache_de_tabelas()  # todo pak gravado passa por aqui antes
     copia = caminho + SUFIXO_BACKUP
     if not os.path.exists(copia):
         shutil.copy2(caminho, copia)
@@ -1668,6 +1765,17 @@ STRINGS = (
      {"ENG": "Muse", "DEU": "Muse", "FRA": "Muse", "BRA": "Musa"}),
     ("strings/client_strings_ui.xml", 1990004, "STR_CLASS_NAME_BARD",
      {"ENG": "Songweaver", "DEU": "Barde", "FRA": "Barde", "BRA": "Bardo"}),
+    # Descricao do painel da tela de criacao (`desc` do client_character_class_info). O Live 5.8 nao
+    # tem essa tela nem esse texto: e nosso.
+    ("strings/client_strings_ui.xml", 1990005, "STR_UI_Bard_DETAIL",
+     {"ENG": "Songweavers fight with the harp: their enchanted melodies heal and empower allies "
+             "and weaken enemies from mid range.",
+      "DEU": "Barden kämpfen mit der Harfe: Ihre verzauberten Melodien heilen und stärken "
+             "Verbündete und schwächen Feinde aus mittlerer Entfernung.",
+      "FRA": "Les bardes combattent à la harpe : leurs mélodies enchantées soignent et renforcent "
+             "les alliés et affaiblissent les ennemis à moyenne distance.",
+      "BRA": "O Bardo luta com a harpa: suas melodias encantadas curam e fortalecem os aliados "
+             "e enfraquecem os inimigos a média distância."}),
     ("strings/client_strings_item.xml", 1990002, "STR_TEST_HARP_58",
      {"ENG": "Test Harp 5.8", "DEU": "Testharfe 5.8", "FRA": "Harpe de test 5.8",
       "BRA": "Harpa de Teste 5.8"}),
@@ -1755,6 +1863,219 @@ def aplica_icone_classe():
     aplica_interface()
 
 
+#: Botao do Bard na tela de criacao (UI_Create.xml, contêiner Class_slots): os 13 botoes ficam em
+#: 1600 px, ~118 px um do outro; com o 14o (class_14, a direita do Orchestrator) o passo cai para
+#: ~109 px. A arte e composta a partir do losango vazio que a propria UI_Create_02 traz (cores sem
+#: alfa; o alfa e a intersecao do dos 13 botoes) com o emblema do Bard (emblem_Job_bard).
+PAK_TEXTURA_DO_BOTAO = r"Textures\UI\UI.pak"
+TEXTURA_DO_BOTAO = "UI_Create_Bard.dds"
+SKINS_DO_BOTAO = (
+    '<Skin name="Lobby_bard_class_button_up" src_image="0,0,150,114" texture="textures/ui/ui_create_bard" />',
+    '<Skin name="Lobby_bard_class_button_over" src_image="0,128,150,114" texture="textures/ui/ui_create_bard" />',
+)
+PRESET_DO_BOTAO = (
+    '<Preset name="Lobby_bard_class_button" type="button">'
+    '<SkinRef main_state="0" name="Lobby_bard_class_button_up" sub_state="up" />'
+    '<SkinRef main_state="0" name="Lobby_bard_class_button_over" sub_state="over" />'
+    '<SkinRef main_state="0" name="Lobby_bard_class_button_over" sub_state="down" />'
+    '<SkinRef main_state="1" name="Lobby_bard_class_button_over" sub_state="up" />'
+    '<SkinRef main_state="1" name="Lobby_bard_class_button_over" sub_state="over" />'
+    '<SkinRef main_state="1" name="Lobby_bard_class_button_over" sub_state="down" />'
+    '</Preset>'
+)
+PAKS_DO_LOBBY = (  # v3_lobby.xml: Skins e Preset do botao
+    (r"data\ui\preload\preload.pak", "v3_lobby.xml"),
+    (r"l10n\ENG\Data\Data.pak", "ui/preload/v3_lobby.xml"),
+    (r"l10n\DEU\Data\Data.pak", "ui/preload/v3_lobby.xml"),
+    (r"l10n\FRA\data\data.pak", "ui/preload/v3_lobby.xml"),
+    (r"l10n\BRA\Data\Data.pak", "ui/preload/v3_lobby.xml"),
+)
+PAKS_DA_CRIACAO = (  # UI_Create.xml: o botao
+    (r"data\ui\ui.pak", "UI_Create.xml"),
+    (r"l10n\ENG\Data\Data.pak", "ui/UI_Create.xml"),
+    (r"l10n\DEU\Data\Data.pak", "ui/UI_Create.xml"),
+    (r"l10n\FRA\data\data.pak", "ui/UI_Create.xml"),
+    (r"l10n\BRA\Data\Data.pak", "ui/UI_Create.xml"),
+)
+#: Ordem dos botoes da esquerda para a direita, e onde o do Bard entra.
+ORDEM_DOS_BOTOES = ("Class13", "Class12", "Class01", "Class02", "Class03", "Class04", "Class05",
+                    "Class06", "Class07", "Class08", "Class09", "Class10", "Class11", "Class14")
+X_DOS_BOTOES = (19, 1439)  # primeiro e ultimo, como no original
+
+
+def _x_do_botao(i):
+    a, b = X_DOS_BOTOES
+    return round(a + i * (b - a) / (len(ORDEM_DOS_BOTOES) - 1))
+
+
+def botao_na_criacao_bxml(bxml):
+    def editor(raiz):
+        slots = raiz.procura(name="Class_slots")
+        por_nome = {f.get("name"): f for f in slots.filhos}
+        if "Class14" in por_nome:
+            raise ValueError("UI_Create ja tem o Class14")
+        modelo = por_nome["Class11"]
+        botao_modelo = modelo.filhos[0]
+        novo = modelo.novo("Widget", frame=modelo.get("frame"), name="Class14", type="container")
+        botao = botao_modelo.novo("Widget")
+        for k, v in botao_modelo._attrs:
+            botao._attrs.append((k, v))
+        botao.set("name", "class_14")
+        botao.set("preset", "Lobby_bard_class_button")
+        novo.filhos.append(botao)
+        slots.filhos.append(novo)
+        por_nome["Class14"] = novo
+        for i, nome in enumerate(ORDEM_DOS_BOTOES):
+            f = por_nome[nome]
+            _x, y, w, h = f.get("frame").split(",")
+            f.set("frame", f"{_x_do_botao(i)},{y},{w},{h}")
+    return edita_bxml(bxml, editor)
+
+
+def botao_na_criacao_texto(xml):
+    a = re.search(r'<Widget [^>]*\bname="Class_slots"[^>]*>', xml)
+    if not a:
+        raise ValueError("UI_Create sem Class_slots")
+    if 'name="Class14"' in xml:
+        raise ValueError("UI_Create ja tem o Class14")
+    # Bloco do Class11 (contêiner + botao), copiado como Class14.
+    m = re.search(r'([ \t]*)<Widget [^>]*\bname="Class11"[^>]*>.*?</Widget>\s*</Widget>', xml[a.end():], re.S)
+    bloco = m.group(0)
+    novo = bloco.replace('name="Class11"', 'name="Class14"').replace('name="class_11"', 'name="class_14"')
+    novo = re.sub(r'preset="Lobby_orchestrator_class_button"', 'preset="Lobby_bard_class_button"', novo)
+    fim_slots = a.end() + m.end()
+    xml = xml[:fim_slots] + "\r\n" + novo + xml[fim_slots:]
+    for i, nome in enumerate(ORDEM_DOS_BOTOES):
+        m = re.search(r'<Widget [^>]*\bname="%s"[^>]*>' % nome, xml)
+        tag = re.sub(r'\bframe="\d+,', f'frame="{_x_do_botao(i)},', m.group(0), count=1)
+        xml = xml[:m.start()] + tag + xml[m.end():]
+    return xml
+
+
+def aplica_textura_do_botao():
+    import io
+    from PIL import Image, ImageFilter, ImageChops
+    caminho = os.path.join(CLIENTE, PAK_TEXTURA_DO_BOTAO)
+    origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
+    d, idx = aion_pak.abre(origem)
+    atlas = Image.open(io.BytesIO(aion_pak.le(d, next(e for e in idx if e.nome.lower() == "ui_create_02.dds")))).convert("RGBA")
+    d2, idx2 = aion_pak.abre(os.path.join(CLIENTE, r"textures\ui\Job_image\Job_image.pak"))
+    simb = Image.open(io.BytesIO(aion_pak.le(d2, next(e for e in idx2 if e.nome.lower() == "emblem_job_bard.dds")))).convert("RGBA")
+
+    def crop(x, y):
+        return atlas.crop((x, y, x + 150, y + 114))
+    ups = [(8, 4), (364, 4), (364, 120), (364, 234), (364, 466), (695, 11), (695, 126), (695, 240),
+           (695, 355), (695, 469), (695, 584), (695, 699), (695, 814)]
+    overs = [(173, 4), (529, 4), (529, 119), (529, 234), (529, 466), (860, 11), (860, 126), (860, 240),
+             (860, 356), (860, 469), (860, 584), (860, 699), (860, 814)]
+
+    def intersecao(lista):
+        a = crop(*lista[0]).split()[3]
+        for p in lista[1:]:
+            a = ImageChops.darker(a, crop(*p).split()[3])
+        return a
+    vazio_up, vazio_over = crop(364, 350), crop(529, 350)
+    vazio_up.putalpha(intersecao(ups))
+    vazio_over.putalpha(intersecao(overs))
+    m = simb.split()[3]
+    m = m.crop(m.getbbox()).point(lambda v: 0 if v < 20 else min(255, int(v * 2.2)))
+    m = m.resize((int(m.size[0] * 76 / m.size[1]), 76), Image.LANCZOS)
+    pos = (75 - m.size[0] // 2, 57 - 38)
+
+    def compoe(base, cor, brilho):
+        img = base.copy()
+        if brilho:
+            g = Image.new("RGBA", img.size, (0, 0, 0, 0))
+            g.paste(Image.new("RGBA", m.size, brilho), pos, m)
+            for _ in range(2):
+                img = Image.alpha_composite(img, g.filter(ImageFilter.GaussianBlur(4)))
+        s = Image.new("RGBA", img.size, (0, 0, 0, 0))
+        s.paste(Image.new("RGBA", m.size, cor), pos, m)
+        return Image.alpha_composite(img, s)
+    tex = Image.new("RGBA", (256, 256), (0, 0, 0, 0))
+    tex.paste(compoe(vazio_up, (92, 104, 128, 255), None), (0, 0))
+    tex.paste(compoe(vazio_over, (255, 255, 255, 255), (140, 200, 255, 255)), (0, 128))
+    saida = io.BytesIO()
+    tex.save(saida, format="DDS")
+    dados = saida.getvalue()
+    if TEXTURA_DO_BOTAO.lower() in {e.nome.lower() for e in idx}:
+        raise ValueError(f"{PAK_TEXTURA_DO_BOTAO} ja tem {TEXTURA_DO_BOTAO}")
+    _backup(caminho)
+    if origem != caminho:
+        shutil.copy2(origem, caminho)
+    regrava_pak(caminho, acrescenta={TEXTURA_DO_BOTAO: dados})
+    _confere_pak(caminho, len(idx), {TEXTURA_DO_BOTAO: "novo"})
+    print(f"OK  {PAK_TEXTURA_DO_BOTAO}: +{TEXTURA_DO_BOTAO} (botao do Bard, 256x256)")
+
+
+#: Painel da direita da tela de criacao (descricao, barras de atributo e as etiquetas):
+#: `client_character_class_info.xml`, uma entrada por classe. O `Game.dll` converte o `class_name`
+#: em id de classe (tabela nome -> id; "Lumines" -> 19) e o painel procura a entrada por esse id.
+#: A entrada do Bard tem `class_name` "Bard", que o `harp_fix.h` faz valer 20. Atributos = os do
+#: `PlayerClass.BARD` do servidor (as barras de todas as classes sao iguais aos do `PlayerClass`);
+#: etiquetas: nossas (o 5.8 nao tem essa tela). Sem `skill_info_list`: nao ha videos do Bard.
+PAKS_DO_PAINEL = (r"data\PC\PC.pak", r"data\PC\special\special.pak")
+ARQUIVO_DO_PAINEL = "client_character_class_info.xml"
+PAINEL_DO_BARD = (("id", "14"), ("class_name", "Bard"), ("desc", "STR_UI_Bard_DETAIL"),
+                  ("str", "90"), ("vit", "90"), ("agi", "100"), ("dex", "100"), ("kno", "120"),
+                  ("wil", "110"))
+ETIQUETAS_DO_BARD = ("magical", "heal", "buff", "middledistance")
+
+
+def painel_do_bard_bxml(bxml):
+    def campo(no, nome):
+        f = next((c for c in no.filhos if c.nome == nome), None)
+        return f._tab.texto(f._texto) if f is not None and f._texto is not None else None
+
+    def editor(raiz):
+        if any(campo(f, "class_name") == "Bard" for f in raiz.filhos):
+            raise ValueError(f"{ARQUIVO_DO_PAINEL} ja tem o Bard")
+        tab = raiz._tab
+
+        def no(nome, texto=None, filhos=()):
+            return NoBxml(tab, tab.indice(nome), None if texto is None else tab.indice(texto),
+                          None, list(filhos))
+        modelo = raiz.filhos[-1]
+        etiquetas = [no("data", filhos=[no("tag", t)]) for t in ETIQUETAS_DO_BARD]
+        raiz.filhos.append(NoBxml(tab, modelo._nome, None, None,
+                                  [no(k, v) for k, v in PAINEL_DO_BARD] +
+                                  [no("tag_list", filhos=etiquetas), no("skill_info_list")]))
+    return edita_bxml(bxml, editor)
+
+
+def aplica_painel_da_classe():
+    for rel in PAKS_DO_PAINEL:
+        caminho = os.path.join(CLIENTE, rel)
+        origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
+        d, idx = aion_pak.abre(origem)
+        entrada = next(e for e in idx if e.nome.lower() == ARQUIVO_DO_PAINEL)
+        original = aion_pak.le(d, entrada)
+        novo = painel_do_bard_bxml(original)
+        _backup(caminho)
+        if origem != caminho:
+            shutil.copy2(origem, caminho)
+        regrava_pak(caminho, troca={entrada.nome: novo})
+        _confere_pak(caminho, len(idx), {entrada.nome: "troca"})
+        d2, idx2 = aion_pak.abre(caminho)
+        lido = aion_pak.le(d2, next(e for e in idx2 if e.nome.lower() == ARQUIVO_DO_PAINEL))
+        # As 13 entradas originais intactas e a do Bard no fim.
+        resumo = []
+
+        def confere(raiz):
+            for f in raiz.filhos:
+                resumo.append({c.nome: (c._tab.texto(c._texto) if c._texto is not None else None)
+                               for c in f.filhos})
+        edita_bxml(lido, confere)
+        antes = []
+        edita_bxml(original, lambda r: antes.extend(
+            {c.nome: (c._tab.texto(c._texto) if c._texto is not None else None) for c in f.filhos}
+            for f in r.filhos))
+        assert resumo[:-1] == antes, rel
+        bard = resumo[-1]
+        assert all(bard[k] == v for k, v in PAINEL_DO_BARD), (rel, bard)
+        print(f"OK  {rel}: {ARQUIVO_DO_PAINEL} com o Bard ({len(antes)} + 1 entradas)")
+
+
 def _strings_por_arquivo(lingua):
     por_arquivo = {}
     for arquivo, id_string, nome, textos in STRINGS:
@@ -1774,6 +2095,10 @@ def _alteracoes_de_interface():
             alteracoes.setdefault(rel, {}).setdefault(arquivo, []).append(("strings", novas))
     for rel, arquivo in PAKS_DE_SKINS:
         alteracoes.setdefault(rel, {}).setdefault(arquivo.lower(), []).append(("skins", SKINS_DA_CLASSE))
+    for rel, arquivo in PAKS_DO_LOBBY:
+        alteracoes.setdefault(rel, {}).setdefault(arquivo.lower(), []).append(("lobby", None))
+    for rel, arquivo in PAKS_DA_CRIACAO:
+        alteracoes.setdefault(rel, {}).setdefault(arquivo.lower(), []).append(("criacao", None))
     return alteracoes
 
 
@@ -1793,6 +2118,20 @@ def _confere_interface(rel, arquivo, lido, pedidos):
                 assert bloco and f"<body>{texto}</body>" in bloco.group(0), (rel, id_string)
                 assert lido.count(f"<id>{id_string}</id>") == 1
                 print(f"OK  {rel}: {nome} = {id_string} '{texto}'")
+        elif tipo == "lobby":
+            assert lido.count('<Skin name="Lobby_bard_class_button_up"') == 1, rel
+            assert lido.count('<Skin name="Lobby_bard_class_button_over"') == 1, rel
+            assert re.search(r'<Preset [^>]*name="Lobby_bard_class_button"', lido), rel
+            print(f"OK  {rel}: {arquivo} com o Preset do botao do Bard")
+        elif tipo == "criacao":
+            xs = []
+            for nome in ORDEM_DOS_BOTOES:
+                tag = re.search(r'<Widget [^>]*\bname="%s"[^>]*>' % nome, lido).group(0)
+                xs.append(int(re.search(r'\bframe="(\d+),', tag).group(1)))
+            assert xs == sorted(xs) and len(set(xs)) == len(xs), (rel, xs)
+            botao = re.search(r'<Widget [^>]*\bname="class_14"[^>]*>', lido).group(0)
+            assert 'preset="Lobby_bard_class_button"' in botao and 'action="sel_class 1"' in botao, rel
+            print(f"OK  {rel}: {arquivo} com o class_14 (x = {xs[0]}..{xs[-1]})")
         else:
             for s in itens:
                 n = re.search(r'name="([^"]+)"', s).group(1)
@@ -1824,6 +2163,12 @@ def aplica_interface():
                                 raise ValueError(f"{rel}: o id {id_string} ja existe")
                         fim = xml.rindex("</strings>")
                         xml = xml[:fim] + "".join(_string_xml(*n) for n in itens) + xml[fim:]
+                    elif tipo == "lobby":
+                        fim = xml.rindex("</Preload>")
+                        xml = xml[:fim] + "".join(f"  {s}\n" for s in SKINS_DO_BOTAO) + \
+                            f"  {PRESET_DO_BOTAO}\n" + xml[fim:]
+                    elif tipo == "criacao":
+                        xml = botao_na_criacao_texto(xml)
                     else:
                         fim = xml.rindex("</Preload>")
                         xml = xml[:fim] + "".join(f"  {s}\n" for s in itens) + xml[fim:]
@@ -1842,8 +2187,9 @@ def aplica_interface():
             _backup(caminho)
             _regrava_zip(caminho, origem, {a: (lambda d, p=p: muda(d, p)) for a, p in arquivos.items()})
             with zipfile.ZipFile(caminho) as z:
+                por_nome = {n.lower(): n for n in z.namelist()}
                 for arquivo, pedidos in arquivos.items():
-                    _confere_interface(rel, arquivo, z.read(arquivo).decode("utf-16"), pedidos)
+                    _confere_interface(rel, arquivo, z.read(por_nome[arquivo]).decode("utf-16"), pedidos)
             continue
         d, idx = aion_pak.abre(origem)
         troca = {}
@@ -1851,9 +2197,13 @@ def aplica_interface():
             entrada = next(e for e in idx if e.nome.lower() == arquivo)
             bxml = aion_pak.le(d, entrada)
             texto_xml = aion_bxml.decodifica(bxml)
-            novos, presets = [], False
+            novos, presets, criacao = [], False, False
             for tipo, itens in pedidos:
-                if tipo == "strings":
+                if tipo == "lobby":
+                    novos += [ET.fromstring(x) for x in SKINS_DO_BOTAO + (PRESET_DO_BOTAO,)]
+                elif tipo == "criacao":
+                    criacao = True
+                elif tipo == "strings":
                     for id_string, _n, _t in itens:
                         if f"<id>{id_string}</id>" in texto_xml:
                             raise ValueError(f"{rel}: o id {id_string} ja existe")
@@ -1864,6 +2214,8 @@ def aplica_interface():
             troca[entrada.nome], _ = acrescenta_filhos(bxml, novos)
             if presets:
                 troca[entrada.nome] = troca_skinrefs(troca[entrada.nome], PRESET_DE_ICONE, ESTADOS_DO_ICONE)
+            if criacao:
+                troca[entrada.nome] = botao_na_criacao_bxml(troca[entrada.nome])
         _backup(caminho)
         if origem != caminho:
             shutil.copy2(origem, caminho)
@@ -1920,6 +2272,9 @@ def _paks_com_backup():
     raizes += [os.path.dirname(os.path.join(CLIENTE, rel)) for rel, _a in PAKS_DE_SKINS]
     raizes.append(os.path.dirname(os.path.join(CLIENTE, PAK_EMBLEMAS)))
     raizes += [os.path.dirname(os.path.join(CLIENTE, rel)) for rel in PAKS_DE_VOZ]
+    raizes += [os.path.dirname(os.path.join(CLIENTE, rel)) for rel, _a in PAKS_DA_CRIACAO + PAKS_DO_LOBBY]
+    raizes.append(os.path.dirname(os.path.join(CLIENTE, PAK_TEXTURA_DO_BOTAO)))
+    raizes.append(os.path.join(CLIENTE, r"data\PC"))  # PAKS_DO_PAINEL (e o special\ dentro)
     # `data\items` contem `special\` e `special2\`: sem repetir.
     vistos = set()
     for raiz in raizes:
@@ -1932,6 +2287,7 @@ def _paks_com_backup():
 
 
 def desfaz():
+    _invalida_cache_de_tabelas()
     for caminho in _paks_com_backup():
         shutil.copy2(caminho + SUFIXO_BACKUP, caminho)
         print(f"restaurado {os.path.relpath(caminho, CLIENTE)}")
@@ -1963,6 +2319,12 @@ if __name__ == "__main__":
         aplica_strings()
     elif "--icone-classe" in sys.argv:
         aplica_icone_classe()
+    elif "--botao-criacao" in sys.argv:
+        aplica_textura_do_botao()
+        aplica_interface()
+    elif "--painel-criacao" in sys.argv:
+        aplica_painel_da_classe()
+        aplica_interface()
     elif "--vozes" in sys.argv:
         aplica_vozes()
     elif "--classe-animacoes" in sys.argv:
