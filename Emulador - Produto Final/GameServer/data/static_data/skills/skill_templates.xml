@@ -112469,6 +112469,110 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="PointShock_NPC" instant_skill="true"/>
 	</skill_template>
+	<skill_template skill_id="22000" name_en="Basic Harp Training" name_pt="Basic Harp Training" nameId="1991000" delayId="22000" stack="P_EQUIP_ENHANCEDHARP_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+		<properties first_target="ME" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<wpnmastery weapon="HARP" effectid="112" e="1" basiclvl="1">
+				<change stat="MAGICAL_ATTACK" func="PERCENT" value="16" />
+			</wpnmastery>
+		</effects>
+	</skill_template>
+	<skill_template skill_id="22001" name_en="Advanced Stringed Instrument Training I" name_pt="Advanced Stringed Instrument Training I" nameId="1991002" delayId="22001" stack="P_EQUIP_HARP_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
+		<properties first_target="ME" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<wpnmastery weapon="HARP" effectid="112" e="1" basiclvl="2">
+				<change stat="MAGICAL_ATTACK" func="PERCENT" value="20" />
+			</wpnmastery>
+		</effects>
+	</skill_template>
+	<skill_template skill_id="22016" name_en="Song of Ice" name_pt="Song of Ice" nameId="1991006" delayId="1258" stack="AR_SONGOFCOLD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="120" duration="1000" cancel_rate="10" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="36" delta="0" />
+			<chain category="A_CHAINA_1TH" time="1000" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="169" delta="9" element="WATER" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="36" delta="0" />
+		</actions>
+		<motion name="Shockattack01" />
+	</skill_template>
+	<skill_template skill_id="22017" name_en="Song of Ice" name_pt="Song of Ice" nameId="1991006" delayId="1258" stack="AR_SONGOFCOLD_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="120" duration="1000" cancel_rate="10" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="46" delta="0" />
+			<chain category="A_CHAINA_1TH" time="1000" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="219" delta="12" element="WATER" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="46" delta="0" />
+		</actions>
+		<motion name="Shockattack01" />
+	</skill_template>
+	<skill_template skill_id="22134" name_en="Soothing Melody" name_pt="Soothing Melody" nameId="1991008" delayId="1269" stack="AR_SONGOFHEAL_G1" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="60" duration="1000" cancel_rate="10" chain_skill_prob="100">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="49" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<healinstant e="1" value="300" delta="6" noresist="true" element="WATER" hoptype="SKILLLV" hopb="1330" />
+		</effects>
+		<actions>
+			<mpuse value="49" delta="0" />
+		</actions>
+		<motion name="GreatSong01" />
+	</skill_template>
+	<skill_template skill_id="22203" name_en="Pulse" name_pt="Pulse" nameId="1991004" delayId="1283" stack="AR_SONGOFAIR_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="20" duration="1000" cancel_rate="10" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="28" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="138" delta="3" element="WIND" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="28" delta="0" />
+		</actions>
+		<motion name="SongAir01" />
+	</skill_template>
+	<skill_template skill_id="22204" name_en="Pulse" name_pt="Pulse" nameId="1991004" delayId="1283" stack="AR_SONGOFAIR_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="20" duration="1000" cancel_rate="10" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="37" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="178" delta="4" element="WIND" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="37" delta="0" />
+		</actions>
+		<motion name="SongAir01" />
+	</skill_template>
 	<skill_template skill_id="30001" name_en="Collection" name_pt="Coleção" nameId="282931" stack="GATHERING_A" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<useconditions>
 			<playermove allow="false"/>

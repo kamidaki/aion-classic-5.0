@@ -31523,4 +31523,14 @@
 	<skill name="fi_re_destructblow_g1" skillId="3857" skillLevel="14" minLevel="75" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="fi_re_seismicdrain_g1" skillId="3860" skillLevel="14" minLevel="75" race="PC_ALL" classId="WARRIOR" skillBook="true" />
 	<skill name="new_fi_re_jumpingcut_g1" skillId="3962" skillLevel="14" minLevel="75" race="PC_ALL" classId="WARRIOR" skillBook="true" />
+	<skill name="ar_songofair_g1" skillId="22203" skillLevel="1" minLevel="1" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="p_equip_enhancedcloth_g1" skillId="4" skillLevel="1" minLevel="1" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="p_equip_enhancedharp_g1" skillId="22000" skillLevel="1" minLevel="1" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="p_equip_enhancedrobe_g1" skillId="67" skillLevel="1" minLevel="1" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ar_songofcold_g1" skillId="22016" skillLevel="1" minLevel="3" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ar_songofheal_g1" skillId="22134" skillLevel="1" minLevel="5" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ar_songofair_g2" skillId="22204" skillLevel="1" minLevel="6" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ar_songofcold_g2" skillId="22017" skillLevel="1" minLevel="8" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="p_equip_harp_g1" skillId="22001" skillLevel="1" minLevel="10" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="p_equip_robe_g1" skillId="70" skillLevel="1" minLevel="10" race="PC_ALL" classId="BARD" autoLearn="true" />
 </skill_tree>

@@ -14,19 +14,34 @@ TOOLS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'Ferr
 if TOOLS_DIR not in sys.path:
     sys.path.insert(0, TOOLS_DIR)
 
-PROJECT_ROOT = os.path.dirname(TOOLS_DIR)
+def _raiz_do_projeto():
+    """A pasta do repositorio: a primeira acima deste arquivo que tem o `Código Fonte - Emulador`
+    (desde a reorganizacao de 24/09 os parsers ficam tres niveis abaixo dela)."""
+    pasta = os.path.dirname(os.path.abspath(__file__))
+    while True:
+        if os.path.isdir(os.path.join(pasta, "Código Fonte - Emulador")):
+            return pasta
+        acima = os.path.dirname(pasta)
+        if acima == pasta:
+            raise RuntimeError("raiz do projeto nao encontrada acima de " + __file__)
+        pasta = acima
+
+
+PROJECT_ROOT = _raiz_do_projeto()
 
 import aion_bxml
 import backup_manager
 
-# Dynamic Client Directory resolution (supports AION_CLIENT_XML_DIR, workspace XMLS AION CLASSIC, or docs)
+# XMLs do cliente: AION_CLIENT_XML_DIR, senao os do repositorio (fonte desde 16/09), senao a copia
+# antiga em "XMLS AION CLASSIC" ao lado do repositorio.
+REPO_CLIENT_DIR = os.path.join(PROJECT_ROOT, "Ferramentas e Documentos", "Client e Coletas", "Client 5.0 - Dados Extraidos")
 ALT_CLIENT_DIR = os.path.join(os.path.dirname(PROJECT_ROOT), "XMLS AION CLASSIC")
 if os.environ.get("AION_CLIENT_XML_DIR") and os.path.exists(os.environ.get("AION_CLIENT_XML_DIR")):
     BASE_CLIENT = os.environ.get("AION_CLIENT_XML_DIR")
-elif os.path.exists(os.path.join(ALT_CLIENT_DIR, "data", "skills", "client_skills.xml")):
-    BASE_CLIENT = ALT_CLIENT_DIR
+elif os.path.exists(os.path.join(REPO_CLIENT_DIR, "data", "skills", "client_skills.xml")):
+    BASE_CLIENT = REPO_CLIENT_DIR
 else:
-    BASE_CLIENT = os.path.join(PROJECT_ROOT, "Ferramentas e Documentos", "Client e Coletas", "Client 5.0 - Dados Extraidos")
+    BASE_CLIENT = ALT_CLIENT_DIR
 
 CLIENT_DATA_DIR = os.path.join(BASE_CLIENT, "data")
 CLIENT_STRINGS_DIR = os.path.join(BASE_CLIENT, "Strings", "strings")
