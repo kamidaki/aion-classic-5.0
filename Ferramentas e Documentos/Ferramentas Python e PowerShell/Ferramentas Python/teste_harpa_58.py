@@ -1882,6 +1882,22 @@ def aplica_efeito():
             continue
     faltam = [c for c in faltam if not (c.lower().startswith("objects\\")
                                         and c.lower().rsplit("\\", 1)[-1] in tem_objetos)]
+    # Os modelos de item que vem logo abaixo (aplica_modelos_de_efeito) tambem citam texturas fora de
+    # objects\items: objects\items\Plants_FX02.cgf (Mvt. 1: Spring) pede effects\v4\cgf\Plants_FX02.dds,
+    # que o 5.0 nao tem. Entram aqui, para irem no Effects_Textures.pak junto com as outras.
+    cgfs_de_item = {c.lower().rsplit("\\", 1)[-1] for c in faltam
+                    if c.lower().startswith("objects\\items\\") and c.lower().endswith(".cgf")}
+    if cgfs_de_item:
+        for p in glob.glob(os.path.join(LIVE_CLIENTE, "Objects", "items", "*.pak")):
+            d_item, idx_item = aion_pak.abre(p)
+            for e in idx_item:
+                if e.nome.lower().replace("/", "\\").rsplit("\\", 1)[-1] in cgfs_de_item:
+                    for s in re.findall(rb"[\x20-\x7e]{4,}\.dds", aion_pak.le(d_item, e), re.I):
+                        c = s.decode("latin-1").replace("/", "\\")
+                        if c.lower().startswith("effects\\") and c.lower().rsplit("\\", 1)[-1] not in tem \
+                                and c not in faltam:
+                            faltam.append(c)
+                            print(f"    textura de efeito citada pelo modelo de item {e.nome}: {c}")
     por_pak = procura_58([c for c in faltam if not c.lower().startswith("objects\\items\\")])
     # Um modelo trazido (.cgf) cita as texturas dele pelo caminho: as que o 5.0 nao tem vem junto
     # (bee_hornet_fx/bee_hornet_01.cgf do Ba_SongofDelayDamage pede bee_hornet_01*.dds; sem elas

@@ -116,7 +116,19 @@ LOTE = ("P_EQUIP_EnhancedHarp_G1", "P_EQUIP_Harp_G1", "Ar_SongofAir_G1", "Ar_Son
         "Ba_SongofResistance_G3", "Ba_SongofShock_G8", "Ba_SongofTidalwave_G2", "Ar_SongofFire_G11",
         "Ar_SongofHeal_G12", "Ar_SongofRelax_G11", "Ar_Songofshield_G11", "Ba_SongofAnger_G11",
         "Ba_SongofDelayDamage_G11", "Ba_SongofEagle_G8", "Ba_SongofLand_G10", "Ba_SongofMinddamage_G7",
-        "Ba_SongofWind_G6")
+        "Ba_SongofWind_G6",
+        # lote 8: niveis 61-65, sem as Charge e sem as EV_ do nivel 66 (sem autolearn nem estigma
+        # no 5.8: vem de outro sistema)
+        "Ar_SongofAir_G13", "Ba_SongofGust_G2", "Ba_SongofMentalic_G4", "Ba_SongofPain_G5",
+        "Ba_SongofWarmth_G5", "Ba_SongofWeight_G3", "BA_FocusDefence_G2", "Ba_MagicalDestruction_G8",
+        "Ba_SongofAppreciation_G4", "Ba_SongofEarth_G8", "Ba_SongofEmergentHeal_G10", "Ba_SongofInjury_G3",
+        "Ba_SongofRefreshMind_G5", "Ba_SongofRegeneration_G8", "Ba_SongofSerenity_1_G8", "Ar_SongofCold_G13",
+        "Ba_SongofBless_G3", "Ba_SongofGale_G3", "Ba_SongofGreatHeal_G4", "Ba_SongofIllusion_G3",
+        "Ba_SongofSoulextinction_G4", "Ba_SongogPeace_G6", "BA_ExcitingMelody_G1", "Ba_SongofResistance_G4",
+        "Ba_SongofShock_G9", "Ba_SongofTidalwave_G3", "Ar_SongofFire_G12", "Ar_SongofHeal_G13",
+        "Ar_SongofRelax_G12", "Ar_Songofshield_G12", "Ba_Sanctuary_G1", "Ba_SongofAnger_G12",
+        "Ba_SongofDelayDamage_G12", "Ba_SongofEagle_G9", "Ba_SongofLand_G11", "Ba_SongofMinddamage_G8",
+        "Ba_SongofPain_G6", "Ba_SongofWarmth_G6", "Ba_SongofWind_G7")
 
 
 def _dependencias():
@@ -151,7 +163,7 @@ JA_NO_50 = ("P_EQUIP_EnhancedCloth_G1", "P_EQUIP_EnhancedRobe_G1", "P_EQUIP_Robe
 #: do 5.8 alem das do 5.0): ficam de fora por enquanto.
 SEM_FONTE = ("Aromatherapy_G6", "Aromatherapy_G7", "Mending_G7", "Mending_G8", "Aromatherapy_G8", "Mending_G9",
              "Aromatherapy_G9", "Mending_G10",
-             "Aromatherapy_G10", "Mending_G11", "Aromatherapy_G11", "Mending_G12")
+             "Aromatherapy_G10", "Mending_G11", "Aromatherapy_G11", "Mending_G12", "Aromatherapy_G12", "Mending_G13")
 ID_BASE = 22000
 ID_BASE_APRENDIZADO = 90000
 ID_BASE_STRING = 1991000
@@ -469,15 +481,20 @@ REPROVADOS_NO_GERADOR = {"Shield", "MpHeal", "BoostHealEffect", "DelayedSkill", 
                          "BoostSkillCastingTime", "Rebirth", "DeboostHealAmount"}
 
 
+def _tipo(valor):
+    """Nome do efeito sem depender da grafia: o proprio 5.0 escreve MPHeal (66), MpHeal (35) e Mpheal (1)."""
+    return {t.lower(): t for t in EFEITOS_MANUAIS}.get(valor.lower(), valor)
+
+
 def _manual(d):
-    tipos = {d[f"effect{k}_type"] for k in _efeitos(d)}
+    tipos = {_tipo(d[f"effect{k}_type"]) for k in _efeitos(d)}
     return bool(tipos & REPROVADOS_NO_GERADOR) and tipos <= EFEITOS_MANUAIS
 
 
 def _efeito_manual(d, k, ids):
     p = f"effect{k}_"
     g = lambda c, padrao="0": d.get(p + c) or padrao
-    tipo = d[p + "type"]
+    tipo = _tipo(d[p + "type"])
     comum = []
     if g("remain2") != "0":
         comum.append(("duration2", g("remain2")))

@@ -112760,6 +112760,23 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="Shockattack01" />
 	</skill_template>
+	<skill_template skill_id="22028" name_en="Song of Ice" name_pt="Song of Ice" nameId="1991006" delayId="1258" stack="AR_SONGOFCOLD_G13" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="120" duration="1000" cancel_rate="10" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="197" delta="0" />
+			<chain category="A_CHAINA_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="765" delta="46" element="WATER" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="197" delta="0" />
+		</actions>
+		<motion name="Shockattack01" />
+	</skill_template>
 	<skill_template skill_id="22029" name_en="Song of Fire" name_pt="Song of Fire" nameId="1991010" delayId="1259" stack="AR_SONGOFFIRE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="100" duration="0" cancel_rate="10" ammospeed="30" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<startconditions>
@@ -112914,6 +112931,20 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="Shockattack02" />
 	</skill_template>
+	<skill_template skill_id="22040" name_en="Song of Fire" name_pt="Song of Fire" nameId="1991010" delayId="1259" stack="AR_SONGOFFIRE_G12" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="100" duration="0" cancel_rate="10" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="233" delta="0" />
+			<chain category="A_CHAINA_2TH" precategory="A_CHAINA_1TH" time="3000" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="914" delta="55" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="233" delta="0" />
+		</actions>
+		<motion name="Shockattack02" />
+	</skill_template>
 	<skill_template skill_id="22041" name_en="Thronesong" name_pt="Thronesong" nameId="1991076" delayId="1260" stack="BA_SONGOFWIND_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<startconditions>
@@ -112995,6 +113026,20 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<actions>
 			<mpuse value="314" delta="0" />
+		</actions>
+		<motion name="Shockattack04" />
+	</skill_template>
+	<skill_template skill_id="22047" name_en="Thronesong" name_pt="Thronesong" nameId="1991076" delayId="1260" stack="BA_SONGOFWIND_G7" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="352" delta="0" />
+			<chain category="A_CHAINA_3TH_1" precategory="A_CHAINA_2TH" time="3000" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="1894" delta="55" element="WIND" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="352" delta="0" />
 		</actions>
 		<motion name="Shockattack04" />
 	</skill_template>
@@ -113138,6 +113183,20 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="Shockattack03" />
 	</skill_template>
+	<skill_template skill_id="22058" name_en="Song of Earth" name_pt="Song of Earth" nameId="1991030" delayId="1261" stack="BA_SONGOFLAND_G11" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="100" duration="0" cancel_rate="10" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="233" delta="0" />
+			<chain category="A_CHAINA_3TH_2" precategory="A_CHAINA_2TH" time="3000" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="1037" delta="63" element="EARTH" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="233" delta="0" />
+		</actions>
+		<motion name="Shockattack03" />
+	</skill_template>
 	<skill_template skill_id="22059" name_en="Bright Strike" name_pt="Bright Strike" nameId="1991060" delayId="1262" stack="BA_SONGOFSHOCK_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="160" duration="0" cancel_rate="10" ammospeed="30" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<startconditions>
@@ -113250,6 +113309,20 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="Shockattack01" />
 	</skill_template>
+	<skill_template skill_id="22067" name_en="Bright Strike" name_pt="Bright Strike" nameId="1991060" delayId="1262" stack="BA_SONGOFSHOCK_G9" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="160" duration="0" cancel_rate="10" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="152" delta="0" />
+			<chain category="A_CHAINC_1TH" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="623" delta="37" element="WIND" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="152" delta="0" />
+		</actions>
+		<motion name="Shockattack01" />
+	</skill_template>
 	<skill_template skill_id="22068" name_en="Bright Stroke" name_pt="Bright Stroke" nameId="1991071" delayId="1263" stack="BA_SONGOFMINDDAMAGE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="140" duration="0" cancel_rate="10" ammospeed="30" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<startconditions>
@@ -113355,6 +113428,21 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="Shockattack02" />
 	</skill_template>
+	<skill_template skill_id="22075" name_en="Bright Stroke" name_pt="Bright Stroke" nameId="1991071" delayId="1263" stack="BA_SONGOFMINDDAMAGE_G8" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="140" duration="0" cancel_rate="10" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="349" delta="0" />
+			<chain category="A_CHAINC_2TH" precategory="A_CHAINC_1TH" time="3000" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="443" delta="25" accmod2="200" element="FIRE" hoptype="DAMAGE" />
+			<mpattackinstant e="2" value="446" element="FIRE" preeffect="1" />
+		</effects>
+		<actions>
+			<mpuse value="349" delta="0" />
+		</actions>
+		<motion name="Shockattack02" />
+	</skill_template>
 	<skill_template skill_id="22076" name_en="Bright Flourish" name_pt="Bright Flourish" nameId="1991104" delayId="1264" stack="BA_SONGOFMENTALIC_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="140" duration="0" cancel_rate="10" ammospeed="30" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<startconditions>
@@ -113397,6 +113485,21 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<actions>
 			<mpuse value="401" delta="0" />
+		</actions>
+		<motion name="Shockattack03" />
+	</skill_template>
+	<skill_template skill_id="22079" name_en="Bright Flourish" name_pt="Bright Flourish" nameId="1991104" delayId="1264" stack="BA_SONGOFMENTALIC_G4" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="140" duration="0" cancel_rate="10" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="449" delta="0" />
+			<chain category="A_CHAINC_3TH" precategory="A_CHAINC_2TH" time="3000" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="557" delta="33" accmod2="200" element="FIRE" hoptype="DAMAGE" />
+			<mpattackinstant e="2" value="818" element="FIRE" preeffect="1" />
+		</effects>
+		<actions>
+			<mpuse value="449" delta="0" />
 		</actions>
 		<motion name="Shockattack03" />
 	</skill_template>
@@ -113554,6 +113657,20 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="SoulShock01"/>
 	</skill_template>
+	<skill_template skill_id="22091" name_en="Syncopated Echo" name_pt="Syncopated Echo" nameId="1991025" delayId="1265" stack="BA_SONGOFDELAYDAMAGE_G12" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="160" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="30" ammospeed="50" chain_skill_prob="100">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
+		<startconditions>
+			<mp value="292" delta="0"/>
+			<chain category="A_CHAIND_1TH" />
+		</startconditions>
+		<effects>
+			<delayedskill skill_id="22739" value="1" duration2="5000" effectid="942171" e="1" element="FIRE"/>
+		</effects>
+		<actions>
+			<mpuse value="292" delta="0"/>
+		</actions>
+		<motion name="SoulShock01"/>
+	</skill_template>
 	<skill_template skill_id="22092" name_en="Fluttered Note" name_pt="Fluttered Note" nameId="1991123" delayId="1266" stack="BA_SONGOFINJURY_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="140" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="20" ammospeed="50" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
 		<startconditions>
@@ -113582,6 +113699,20 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="SongofInjury01"/>
 	</skill_template>
+	<skill_template skill_id="22094" name_en="Fluttered Note" name_pt="Fluttered Note" nameId="1991123" delayId="1266" stack="BA_SONGOFINJURY_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="140" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="20" ammospeed="50" chain_skill_prob="100">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
+		<startconditions>
+			<mp value="244" delta="0"/>
+			<chain category="A_CHAIND_2TH" precategory="A_CHAIND_1TH" time="3000" />
+		</startconditions>
+		<effects>
+			<delayedskill skill_id="22742" value="1" duration2="4500" effectid="947081" e="1" element="FIRE"/>
+		</effects>
+		<actions>
+			<mpuse value="244" delta="0"/>
+		</actions>
+		<motion name="SongofInjury01"/>
+	</skill_template>
 	<skill_template skill_id="22131" name_en="Sonic Splash" name_pt="Sonic Splash" nameId="1991127" delayId="1268" stack="BA_SONGOFTIDALWAVE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<startconditions>
@@ -113607,6 +113738,20 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<actions>
 			<mpuse value="301" delta="0" />
+		</actions>
+		<motion name="MentalicShock02" />
+	</skill_template>
+	<skill_template skill_id="22133" name_en="Sonic Splash" name_pt="Sonic Splash" nameId="1991127" delayId="1268" stack="BA_SONGOFTIDALWAVE_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="337" delta="0" />
+			<chain category="A_CHAINE_2TH" precategory="A_CHAINE_1TH" time="3000" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="1626" delta="99" element="WATER" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="337" delta="0" />
 		</actions>
 		<motion name="MentalicShock02" />
 	</skill_template>
@@ -113814,6 +113959,23 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="GreatSong01" />
 	</skill_template>
+	<skill_template skill_id="22146" name_en="Soothing Melody" name_pt="Soothing Melody" nameId="1991008" delayId="1269" stack="AR_SONGOFHEAL_G13" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="60" duration="1000" cancel_rate="10" chain_skill_prob="100">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="265" delta="0" />
+			<chain category="A_CHAINB_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<healinstant e="1" value="1368" delta="26" noresist="true" element="WATER" hoptype="SKILLLV" hopb="17295" />
+		</effects>
+		<actions>
+			<mpuse value="265" delta="0" />
+		</actions>
+		<motion name="GreatSong01" />
+	</skill_template>
 	<skill_template skill_id="22147" name_en="Soothing Counterpoint" name_pt="Soothing Counterpoint" nameId="1991032" delayId="1270" stack="BA_SONGOFEMERGENTHEAL_G1" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="40" duration="0" cancel_rate="10" chain_skill_prob="100">
 		<properties first_target="TARGETORME" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
 		<startconditions>
@@ -113940,6 +114102,20 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="GreatSong02" />
 	</skill_template>
+	<skill_template skill_id="22156" name_en="Soothing Counterpoint" name_pt="Soothing Counterpoint" nameId="1991032" delayId="1270" stack="BA_SONGOFEMERGENTHEAL_G10" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="40" duration="0" cancel_rate="10" chain_skill_prob="100">
+		<properties first_target="TARGETORME" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="268" delta="0" />
+			<chain category="A_CHAINB_2TH" precategory="A_CHAINB_1TH" time="3000" />
+		</startconditions>
+		<effects>
+			<healinstant e="1" value="1443" delta="28" noresist="true" element="WATER" hoptype="SKILLLV" hopb="13846" />
+		</effects>
+		<actions>
+			<mpuse value="268" delta="0" />
+		</actions>
+		<motion name="GreatSong02" />
+	</skill_template>
 	<skill_template skill_id="22157" name_en="Joyous Carol" name_pt="Joyous Carol" nameId="1991101" delayId="1271" stack="BA_SONGOFWARMTH_G1" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="240" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20" chain_skill_prob="100">
 		<properties first_target="TARGETORME" first_target_range="25" target_relation="FRIEND" target_maxcount="6" target_type="ONLYONE" />
 		<startconditions>
@@ -113996,6 +114172,34 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="buff01" />
 	</skill_template>
+	<skill_template skill_id="22161" name_en="Joyous Carol" name_pt="Joyous Carol" nameId="1991101" delayId="1271" stack="BA_SONGOFWARMTH_G5" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="240" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20" chain_skill_prob="100">
+		<properties first_target="TARGETORME" first_target_range="25" target_relation="FRIEND" target_maxcount="6" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="501" delta="-14" />
+			<chain category="A_CHAINB_3TH_1" precategory="A_CHAINB_2TH" time="3000" />
+		</startconditions>
+		<effects>
+			<healinstant e="1" value="1717" noresist="true" element="WATER" hoptype="SKILLLV" hopb="27299" />
+		</effects>
+		<actions>
+			<mpuse value="501" delta="-14" />
+		</actions>
+		<motion name="buff01" />
+	</skill_template>
+	<skill_template skill_id="22162" name_en="Joyous Carol" name_pt="Joyous Carol" nameId="1991101" delayId="1271" stack="BA_SONGOFWARMTH_G6" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="240" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20" chain_skill_prob="100">
+		<properties first_target="TARGETORME" first_target_range="25" target_relation="FRIEND" target_maxcount="6" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="561" delta="-16" />
+			<chain category="A_CHAINB_3TH_1" precategory="A_CHAINB_2TH" time="3000" />
+		</startconditions>
+		<effects>
+			<healinstant e="1" value="1812" noresist="true" element="WATER" hoptype="SKILLLV" hopb="29089" />
+		</effects>
+		<actions>
+			<mpuse value="561" delta="-16" />
+		</actions>
+		<motion name="buff01" />
+	</skill_template>
 	<skill_template skill_id="22163" name_en="Soothing Finale" name_pt="Soothing Finale" nameId="1991109" delayId="1272" stack="BA_SONGOFGREATHEAL_G1" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="40" duration="0" cancel_rate="20" chain_skill_prob="100">
 		<properties first_target="TARGETORME" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
 		<startconditions>
@@ -114035,6 +114239,20 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<actions>
 			<mpuse value="471" delta="0" />
+		</actions>
+		<motion name="GreatSong03" />
+	</skill_template>
+	<skill_template skill_id="22166" name_en="Soothing Finale" name_pt="Soothing Finale" nameId="1991109" delayId="1272" stack="BA_SONGOFGREATHEAL_G4" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="40" duration="0" cancel_rate="20" chain_skill_prob="100">
+		<properties first_target="TARGETORME" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="527" delta="0" />
+			<chain category="A_CHAINB_3TH_2" precategory="A_CHAINB_2TH" time="3000" />
+		</startconditions>
+		<effects>
+			<healinstant e="1" value="1776" delta="36" noresist="true" element="WATER" hoptype="SKILLLV" hopb="28194" />
+		</effects>
+		<actions>
+			<mpuse value="527" delta="0" />
 		</actions>
 		<motion name="GreatSong03" />
 	</skill_template>
@@ -114159,6 +114377,17 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="SongHeal01"/>
 	</skill_template>
+	<skill_template skill_id="22178" name_en="Resonating Melody" name_pt="Resonating Melody" nameId="1991012" delayId="1273" stack="AR_SONGOFRELAX_G12" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="BUFF" activation="ACTIVE" cooldown="300" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="10" chain_skill_prob="100">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE"/>
+		<startconditions>
+			<chain category="A_CHAINF_1TH" />
+		</startconditions>
+		<effects>
+			<mphealinstant value="1954" delta="38" e="1" noresist="true" element="WATER" hoptype="SKILLLV" hopb="13281"/>
+			<mpheal checktime="2000" value="236" delta="4" duration2="30000" effectid="943042" e="2" noresist="true" element="WATER" preeffect="1" preeffect_prob="100"/>
+		</effects>
+		<motion name="SongHeal01"/>
+	</skill_template>
 	<skill_template skill_id="22179" name_en="Resonant Hymn" name_pt="Resonant Hymn" nameId="1991052" delayId="1274" stack="BA_SONGOFSERENITY_1_G1" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="606" duration="0" cancel_rate="20" chain_skill_prob="100">
 		<properties first_target="TARGETORME" first_target_range="25" target_distance="25" target_relation="MYPARTY" target_maxcount="6" target_type="AREA" />
 		<startconditions>
@@ -114229,6 +114458,16 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="SongEmergentHeal01" />
 	</skill_template>
+	<skill_template skill_id="22186" name_en="Resonant Hymn" name_pt="Resonant Hymn" nameId="1991052" delayId="1274" stack="BA_SONGOFSERENITY_1_G8" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="606" duration="0" cancel_rate="20" chain_skill_prob="100">
+		<properties first_target="TARGETORME" first_target_range="25" target_distance="25" target_relation="MYPARTY" target_maxcount="6" target_type="AREA" />
+		<startconditions>
+			<chain category="A_CHAINF_2TH" precategory="A_CHAINF_1TH" time="3000" />
+		</startconditions>
+		<effects>
+			<mphealinstant e="1" value="2985" noresist="true" element="WATER" hoptype="SKILLLV" hopb="19715" />
+		</effects>
+		<motion name="SongEmergentHeal01" />
+	</skill_template>
 	<skill_template skill_id="22187" name_en="Hymn of Thanksgiving" name_pt="Hymn of Thanksgiving" nameId="1991106" delayId="1275" stack="BA_SONGOFAPPRECIATION_G1" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="BUFF" activation="ACTIVE" cooldown="600" duration="0" req_dispel_level="1" cancel_rate="20" chain_skill_prob="100" penalty_skill_id="8674">
 		<properties first_target="ME" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
 		<startconditions>
@@ -114283,6 +114522,24 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="SongHeal01" />
 	</skill_template>
+	<skill_template skill_id="22190" name_en="Hymn of Thanksgiving" name_pt="Hymn of Thanksgiving" nameId="1991106" delayId="1275" stack="BA_SONGOFAPPRECIATION_G4" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="BUFF" activation="ACTIVE" cooldown="600" duration="0" req_dispel_level="1" cancel_rate="20" chain_skill_prob="100" penalty_skill_id="8674">
+		<properties first_target="ME" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="171" delta="0" />
+			<chain category="A_CHAING_2TH_1" precategory="ALL_CHAINA_1TH" time="3000" />
+		</startconditions>
+		<effects>
+			<healinstant e="1" value="2033" delta="40" noresist="true" element="WATER" hoptype="SKILLLV" hopb="16980" />
+			<heal e="2" checktime="2000" value="150" delta="3" duration2="6000" effectid="947192" noresist="true" hoptype="SKILLLV" preeffect="1" hopb="16158" hopa="458" />
+			<statup duration2="20000" effectid="947193" e="3" noresist="true" preeffect="1">
+				<change stat="PVP_DEFEND_RATIO" func="ADD" value="300" />
+			</statup>
+		</effects>
+		<actions>
+			<mpuse value="171" delta="0" />
+		</actions>
+		<motion name="SongHeal01" />
+	</skill_template>
 	<skill_template skill_id="22191" name_en="Chorus of Fortitude" name_pt="Chorus of Fortitude" nameId="1991114" delayId="1276" stack="BA_SONGOFRESISTANCE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20" ammospeed="30" chain_skill_prob="100" penalty_skill_id="8674">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<startconditions>
@@ -114324,6 +114581,50 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 			<mpuse value="175" delta="0" />
 		</actions>
 		<motion name="SongDestroy01" />
+	</skill_template>
+	<skill_template skill_id="22194" name_en="Chorus of Fortitude" name_pt="Chorus of Fortitude" nameId="1991114" delayId="1276" stack="BA_SONGOFRESISTANCE_G4" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20" ammospeed="30" chain_skill_prob="100" penalty_skill_id="8674">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="196" delta="0" />
+			<chain category="A_CHAING_2TH_2" precategory="ALL_CHAINA_1TH" time="3000" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="943" delta="57" element="WIND" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="196" delta="0" />
+		</actions>
+		<motion name="SongDestroy01" />
+	</skill_template>
+	<skill_template skill_id="22195" name_en="Mvt. 4: Winter" name_pt="Mvt. 4: Winter" nameId="1991151" delayId="1277" stack="BA_SANCTUARY_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="1800" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20" chain_skill_prob="100">
+		<properties first_target="ME" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE"/>
+		<startconditions>
+			<mp value="105" delta="0"/>
+		</startconditions>
+		<effects>
+			<shield hitvalue="2940" hitdelta="60" value="2940" delta="60" duration2="30000" effectid="154" e="1" basiclvl="100" noresist="true" hittype="EVERYHIT" hittypeprob2="1000" hoptype="SKILLLV" hopb="8477"/>
+			<healinstant value="2764" delta="56" e="2" noresist="true" preeffect="1" preeffect_prob="100"/>
+			<mpheal checktime="3000" value="138" delta="3" duration2="30000" effectid="943323" e="3" noresist="true" preeffect="1" preeffect_prob="100"/>
+		</effects>
+		<actions>
+			<mpuse value="105" delta="0"/>
+		</actions>
+		<motion name="Defensebuff01"/>
+	</skill_template>
+	<skill_template skill_id="22196" name_en="Rejuvenating Aria" name_pt="Rejuvenating Aria" nameId="1991148" delayId="1278" stack="BA_EXCITINGMELODY_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="900" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20" chain_skill_prob="100">
+		<properties first_target="ME" revision_distance="3" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="180" delta="0" />
+		</startconditions>
+		<effects>
+			<statup duration2="15000" effectid="943331" e="1" noresist="true" hoptype="SKILLLV" hopb="338">
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-20" />
+			</statup>
+		</effects>
+		<actions>
+			<mpuse value="180" delta="0" />
+		</actions>
+		<motion name="buff02" />
 	</skill_template>
 	<skill_template skill_id="22197" name_en="Captivate" name_pt="Captivate" nameId="1991015" delayId="1279" stack="AR_SONGOFROOT_G1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="160" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="20" ammospeed="50" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
@@ -114369,6 +114670,23 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<actions>
 			<mpuse value="103" delta="0" />
+		</actions>
+		<motion name="SongofWeight01" />
+	</skill_template>
+	<skill_template skill_id="22200" name_en="Adagio" name_pt="Adagio" nameId="1991120" delayId="1280" stack="BA_SONGOFWEIGHT_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="300" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="116" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="310" delta="18" accmod2="100" element="EARTH" hoptype="DAMAGE" />
+			<snare duration2="8000" effectid="20007" e="2" element="EARTH" preeffect="1" hoptype="SKILLLV" hopb="359">
+				<change stat="SPEED" func="PERCENT" value="-60" />
+				<change stat="FLY_SPEED" func="PERCENT" value="-60" />
+			</snare>
+		</effects>
+		<actions>
+			<mpuse value="116" delta="0" />
 		</actions>
 		<motion name="SongofWeight01" />
 	</skill_template>
@@ -114578,6 +114896,22 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="SongAir01" />
 	</skill_template>
+	<skill_template skill_id="22215" name_en="Pulse" name_pt="Pulse" nameId="1991004" delayId="1283" stack="AR_SONGOFAIR_G13" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="20" duration="1000" cancel_rate="10" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="156" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="623" delta="18" element="WIND" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="156" delta="0" />
+		</actions>
+		<motion name="SongAir01" />
+	</skill_template>
 	<skill_template skill_id="22216" name_en="Quaver" name_pt="Quaver" nameId="1991111" delayId="1284" stack="BA_SONGOFSOULEXTINCTION_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="300" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="20" ammospeed="30">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<startconditions>
@@ -114617,6 +114951,20 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<actions>
 			<mpuse value="403" delta="0" />
+		</actions>
+		<motion name="Shockattack04" />
+	</skill_template>
+	<skill_template skill_id="22219" name_en="Quaver" name_pt="Quaver" nameId="1991111" delayId="1284" stack="BA_SONGOFSOULEXTINCTION_G4" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="300" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="451" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="246" delta="13" element="FIRE" hoptype="DAMAGE" />
+			<silence duration2="6000" e="2" randomtime="1500" effectid="20101" element="WIND" preeffect="1" hoptype="SKILLLV" />
+		</effects>
+		<actions>
+			<mpuse value="451" delta="0" />
 		</actions>
 		<motion name="Shockattack04" />
 	</skill_template>
@@ -114796,6 +115144,22 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="Defensebuff01"/>
 	</skill_template>
+	<skill_template skill_id="22237" name_en="Protective Ode" name_pt="Protective Ode" nameId="1991018" delayId="1286" stack="AR_SONGOFSHIELD_G12" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="1200" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE"/>
+		<startconditions>
+			<mp value="395" delta="0"/>
+		</startconditions>
+		<effects>
+			<shield hitvalue="2180" hitdelta="44" value="2180" delta="44" duration2="300000" effectid="154" e="1" basiclvl="100" noresist="true" hittype="EVERYHIT" hittypeprob2="1000" hoptype="SKILLLV" hopb="1014"/>
+			<statup duration2="300000" effectid="943632" e="2" basiclvl="120" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="PVP_DEFEND_RATIO" func="ADD" value="400"/>
+			</statup>
+		</effects>
+		<actions>
+			<mpuse value="395" delta="0"/>
+		</actions>
+		<motion name="Defensebuff01"/>
+	</skill_template>
 	<skill_template skill_id="22238" name_en="Purifying Paean" name_pt="Purifying Paean" nameId="1991034" delayId="1287" stack="BA_SONGOFPURIFY_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="80" duration="0" cancel_rate="20">
 		<properties first_target="TARGETORME" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
 		<startconditions>
@@ -114961,6 +115325,19 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<actions>
 			<mpuse value="320" delta="0" />
+		</actions>
+		<motion name="SongPeace01" />
+	</skill_template>
+	<skill_template skill_id="22250" name_en="Ode to Friendship" name_pt="Ode to Friendship" nameId="1991078" delayId="1289" stack="BA_SONGOGPEACE_G6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="358" delta="0" />
+		</startconditions>
+		<effects>
+			<hostileup e="1" value="-207530" delta="-4235" noresist="true" element="FIRE" hoptype="SKILLLV" />
+		</effects>
+		<actions>
+			<mpuse value="358" delta="0" />
 		</actions>
 		<motion name="SongPeace01" />
 	</skill_template>
@@ -115150,6 +115527,22 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="SongDestroy01" />
 	</skill_template>
+	<skill_template skill_id="22263" name_en="Minstrel's Flair" name_pt="Minstrel's Flair" nameId="1991023" delayId="1291" stack="BA_SONGOFANGER_G12" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<dp value="2000" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="2753" delta="81" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<dpuse value="2000" />
+		</actions>
+		<motion name="SongDestroy01" />
+	</skill_template>
 	<skill_template skill_id="22264" name_en="Symphony of Destruction" name_pt="Symphony of Destruction" nameId="1991073" delayId="1292" stack="BA_SONGOFDESTROY_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="18000" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
 		<properties first_target="ME" first_target_range="25" target_relation="MYPARTY" target_type="PARTY" target_maxcount="6" target_distance="25" effective_range="25" effective_altitude="25"/>
 		<startconditions>
@@ -115239,6 +115632,23 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="SongHeal01"/>
 	</skill_template>
+	<skill_template skill_id="22281" name_en="Chorus of Blessing" name_pt="Chorus of Blessing" nameId="1991131" delayId="1296" stack="BA_SONGOFBLESS_G3" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="BUFF" activation="ACTIVE" cooldown="606" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="MYPARTY" target_type="PARTY" target_maxcount="6" target_distance="25" effective_range="25" effective_altitude="25"/>
+		<startconditions>
+			<mp value="462" delta="0"/>
+		</startconditions>
+		<effects>
+			<dispeldebuff dispel_level="1" power="30" value="2" e="1" noresist="true" hoptype="SKILLLV" hopb="9045"/>
+			<healinstant value="2952" e="2" noresist="true" preeffect="1" preeffect_prob="100"/>
+			<deboostheal duration2="15000" effectid="944193" e="3" noresist="true" element="WATER" preeffect="1" preeffect_prob="100">
+				<change stat="HEAL_SKILL_DEBOOST" func="PERCENT" value="10"/>
+			</deboostheal>
+		</effects>
+		<actions>
+			<mpuse value="462" delta="0"/>
+		</actions>
+		<motion name="SongHeal01"/>
+	</skill_template>
 	<skill_template skill_id="22282" name_en="Treble Cleave" name_pt="Treble Cleave" nameId="1991134" delayId="1297" stack="BA_SONGOFGALE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="606" duration="0" cancel_rate="20">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<startconditions>
@@ -115262,6 +115672,19 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<actions>
 			<mpuse value="343" delta="0" />
+		</actions>
+		<motion name="SongSlow01" />
+	</skill_template>
+	<skill_template skill_id="22284" name_en="Treble Cleave" name_pt="Treble Cleave" nameId="1991134" delayId="1297" stack="BA_SONGOFGALE_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="606" duration="0" cancel_rate="20">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="384" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="2138" element="WIND" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="384" delta="0" />
 		</actions>
 		<motion name="SongSlow01" />
 	</skill_template>
@@ -115489,6 +115912,22 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="MentalicShock01" />
 	</skill_template>
+	<skill_template skill_id="22318" name_en="Sonic Gust" name_pt="Sonic Gust" nameId="1991140" delayId="1352" stack="BA_SONGOFGUST_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="160" duration="1000" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="254" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1031" delta="61" element="WIND" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="254" delta="0" />
+		</actions>
+		<motion name="MentalicShock01" />
+	</skill_template>
 	<skill_template skill_id="22319" name_en="Paean of Pain" name_pt="Paean of Pain" nameId="1991098" delayId="1353" stack="BA_SONGOFPAIN_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="606" duration="1000" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="20" ammospeed="50">
 		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<startconditions>
@@ -115554,6 +115993,40 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<actions>
 			<mpuse value="150" delta="0" />
+		</actions>
+		<motion name="SoulShock01" />
+	</skill_template>
+	<skill_template skill_id="22323" name_en="Paean of Pain" name_pt="Paean of Pain" nameId="1991098" delayId="1353" stack="BA_SONGOFPAIN_G5" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="606" duration="1000" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="20" ammospeed="50">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="165" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatk e="1" checktime="2000" value="576" duration2="8000" effectid="947551" element="FIRE" hoptype="SKILLLV" hopb="1156" />
+			<spellatk e="2" checktime="8000" value="1386" duration2="8000" effectid="944592" noresist="true" element="FIRE" preeffect="1" />
+		</effects>
+		<actions>
+			<mpuse value="165" delta="0" />
+		</actions>
+		<motion name="SoulShock01" />
+	</skill_template>
+	<skill_template skill_id="22324" name_en="Paean of Pain" name_pt="Paean of Pain" nameId="1991098" delayId="1353" stack="BA_SONGOFPAIN_G6" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="606" duration="1000" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="20" ammospeed="50">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="181" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatk e="1" checktime="2000" value="617" duration2="8000" effectid="947551" element="FIRE" hoptype="SKILLLV" hopb="1274" />
+			<spellatk e="2" checktime="8000" value="1483" duration2="8000" effectid="944592" noresist="true" element="FIRE" preeffect="1" />
+		</effects>
+		<actions>
+			<mpuse value="181" delta="0" />
 		</actions>
 		<motion name="SoulShock01" />
 	</skill_template>
@@ -115655,6 +116128,20 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="SongofRefresh01" />
 	</skill_template>
+	<skill_template skill_id="22332" name_en="Hymn of Rejuvenation" name_pt="Hymn of Rejuvenation" nameId="1991049" delayId="1354" stack="BA_SONGOFREGENERATION_G8" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="BUFF" activation="ACTIVE" cooldown="600" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="TARGETORME" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="376" delta="-11" />
+		</startconditions>
+		<effects>
+			<healinstant e="1" value="2193" noresist="true" hoptype="SKILLLV" hopb="1274" />
+			<heal e="2" checktime="2000" value="274" duration2="8000" effectid="944652" noresist="true" preeffect="1" />
+		</effects>
+		<actions>
+			<mpuse value="376" delta="-11" />
+		</actions>
+		<motion name="SongofRefresh01" />
+	</skill_template>
 	<skill_template skill_id="22333" name_en="Inspiration" name_pt="Inspiration" nameId="1991038" delayId="1355" stack="BA_SONGOFADVANCE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="300" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_distance="25" target_relation="FRIEND" target_maxcount="6" target_type="PARTY" />
 		<startconditions>
@@ -115683,6 +116170,26 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 				<change stat="SPIN_RESISTANCE" func="ADD" value="650" />
 				<change stat="OPENAERIAL_RESISTANCE" func="ADD" value="650" />
 				<change stat="PVP_DEFEND_RATIO" func="ADD" value="150" />
+			</statup>
+		</effects>
+		<actions>
+			<mpuse value="422" delta="0" />
+		</actions>
+		<motion name="buff01" />
+	</skill_template>
+	<skill_template skill_id="22335" name_en="Mvt. 1: Spring" name_pt="Mvt. 1: Spring" nameId="1991142" delayId="1356" stack="BA_FOCUSDEFENCE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="1800" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="30">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="422" delta="0" />
+		</startconditions>
+		<effects>
+			<statup duration2="12000" effectid="944741" e="1" noresist="true" hoptype="SKILLLV" hopb="328">
+				<change stat="STUN_RESISTANCE" func="ADD" value="800" />
+				<change stat="STUMBLE_RESISTANCE" func="ADD" value="800" />
+				<change stat="STAGGER_RESISTANCE" func="ADD" value="800" />
+				<change stat="SPIN_RESISTANCE" func="ADD" value="800" />
+				<change stat="OPENAERIAL_RESISTANCE" func="ADD" value="800" />
+				<change stat="PVP_DEFEND_RATIO" func="ADD" value="200" />
 			</statup>
 		</effects>
 		<actions>
@@ -115835,6 +116342,23 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="SongBless02" />
 	</skill_template>
+	<skill_template skill_id="22345" name_en="Stinging Note" name_pt="Stinging Note" nameId="1991041" delayId="1358" stack="BA_SONGOFEARTH_G8" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="300" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="20" ammospeed="50">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="204" delta="-6" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="537" accmod2="250" element="EARTH" hoptype="DAMAGE" />
+			<statdown duration2="8000" effectid="944782" e="2" element="WIND" preeffect="1">
+				<change stat="MAGICAL_RESIST" func="ADD" value="-300" />
+				<change stat="MAGIC_SKILL_BOOST_RESIST" func="ADD" value="200" />
+			</statdown>
+		</effects>
+		<actions>
+			<mpuse value="204" delta="-6" />
+		</actions>
+		<motion name="SongBless02" />
+	</skill_template>
 	<skill_template skill_id="22346" name_en="Composer's Bar" name_pt="Composer's Bar" nameId="1991080" delayId="1359" stack="BA_SONGOFBIND_G1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="300" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="20" ammospeed="50">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<startconditions>
@@ -115880,6 +116404,22 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="SoulShock01" />
 	</skill_template>
+	<skill_template skill_id="22361" name_en="Delusional Dirge" name_pt="Delusional Dirge" nameId="1991136" delayId="1361" stack="BA_SONGOFILLUSION_G3" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="300" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="334" delta="-3" />
+		</startconditions>
+		<effects>
+			<statdown duration2="15000" effectid="945041" e="1" element="FIRE" hoptype="SKILLLV" hopb="16138">
+				<change stat="PHYSICAL_ATTACK" func="ADD" value="-120" />
+				<change stat="BOOST_MAGICAL_SKILL" func="ADD" value="-600" />
+			</statdown>
+		</effects>
+		<actions>
+			<mpuse value="334" delta="-3" />
+		</actions>
+		<motion name="SoulShock01" />
+	</skill_template>
 	<skill_template skill_id="22362" name_en="Resonant Counterpoint" name_pt="Resonant Counterpoint" nameId="1991089" delayId="1362" stack="BA_SONGOFREFRESHMIND_G1" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="60" duration="0" cancel_rate="20">
 		<properties first_target="TARGETORME" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
 		<effects>
@@ -115905,6 +116445,13 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		<properties first_target="TARGETORME" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
 		<effects>
 			<mphealinstant e="1" value="1544" delta="30" noresist="true" element="WATER" hoptype="SKILLLV" hopb="13438" />
+		</effects>
+		<motion name="GreatSong02" />
+	</skill_template>
+	<skill_template skill_id="22366" name_en="Resonant Counterpoint" name_pt="Resonant Counterpoint" nameId="1991089" delayId="1362" stack="BA_SONGOFREFRESHMIND_G5" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="60" duration="0" cancel_rate="20">
+		<properties first_target="TARGETORME" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<effects>
+			<mphealinstant e="1" value="1728" delta="34" noresist="true" element="WATER" hoptype="SKILLLV" hopb="14558" />
 		</effects>
 		<motion name="GreatSong02" />
 	</skill_template>
@@ -116017,6 +116564,22 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<actions>
 			<mpuse value="608" delta="0" />
+		</actions>
+		<motion name="ColdShock01" />
+	</skill_template>
+	<skill_template skill_id="22374" name_en="Combustible Cacophony" name_pt="Combustible Cacophony" nameId="1991036" delayId="1363" stack="BA_MAGICALDESTRUCTION_G8" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="606" duration="0" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" effective_angle="65" first_target_range="25" target_distance="25" target_relation="ENEMY" target_maxcount="12" target_type="AREA" />
+		<startconditions>
+			<mp value="680" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="869" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="680" delta="0" />
 		</actions>
 		<motion name="ColdShock01" />
 	</skill_template>
@@ -116180,6 +116743,26 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="SongofRefresh01"/>
 	</skill_template>
+	<skill_template skill_id="22383" name_en="Soaring Sonnet" name_pt="Soaring Sonnet" nameId="1991064" delayId="1364" stack="BA_SONGOFEAGLE_G9" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="1800" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="AREA" target_maxcount="6" target_distance="25" effective_range="25" effective_altitude="25"/>
+		<startconditions>
+			<mp value="234" delta="0"/>
+		</startconditions>
+		<effects>
+			<fphealinstant value="179" delta="1" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="5947"/>
+			<statup duration2="15000" effectid="945182" e="2" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="FLY_SPEED" func="PERCENT" value="10">
+					<conditions>
+						<onfly/>
+					</conditions>
+				</change>
+			</statup>
+		</effects>
+		<actions>
+			<mpuse value="234" delta="0"/>
+		</actions>
+		<motion name="SongofRefresh01"/>
+	</skill_template>
 	<skill_template skill_id="22384" name_en="Exultation" name_pt="Exultation" nameId="1991094" delayId="1365" stack="BA_PLAYINGSTYLESCHANGEA_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="TOGGLE" cooldown="120" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
 		<effects>
@@ -116204,7 +116787,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="SongChange01" />
 	</skill_template>
-	<skill_template skill_id="22680" name_en="Paralyzed." name_pt="Paralyzed." nameId="1991147" delayId="22680" stack="BA_DELAYPARALYZE_G1_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="DEBUFF" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22680" name_en="Paralyzed." name_pt="Paralyzed." nameId="1991156" delayId="22680" stack="BA_DELAYPARALYZE_G1_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="DEBUFF" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116214,7 +116797,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22728" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991148" delayId="22728" stack="BA_N_SONGOFDELAYDAMAGE_G1_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22728" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22728" stack="BA_N_SONGOFDELAYDAMAGE_G1_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116224,7 +116807,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22729" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991148" delayId="22729" stack="BA_N_SONGOFDELAYDAMAGE_G2_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22729" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22729" stack="BA_N_SONGOFDELAYDAMAGE_G2_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116234,7 +116817,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22730" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991148" delayId="22730" stack="BA_N_SONGOFDELAYDAMAGE_G3_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22730" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22730" stack="BA_N_SONGOFDELAYDAMAGE_G3_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116244,7 +116827,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22731" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991148" delayId="22731" stack="BA_N_SONGOFDELAYDAMAGE_G4_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22731" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22731" stack="BA_N_SONGOFDELAYDAMAGE_G4_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116254,7 +116837,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22732" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991148" delayId="22732" stack="BA_N_SONGOFDELAYDAMAGE_G5_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22732" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22732" stack="BA_N_SONGOFDELAYDAMAGE_G5_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116264,7 +116847,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22733" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991148" delayId="22733" stack="BA_N_SONGOFDELAYDAMAGE_G6_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22733" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22733" stack="BA_N_SONGOFDELAYDAMAGE_G6_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116274,7 +116857,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22734" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991148" delayId="22734" stack="BA_N_SONGOFDELAYDAMAGE_G7_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22734" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22734" stack="BA_N_SONGOFDELAYDAMAGE_G7_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116284,7 +116867,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22735" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991148" delayId="22735" stack="BA_N_SONGOFDELAYDAMAGE_G8_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22735" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22735" stack="BA_N_SONGOFDELAYDAMAGE_G8_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116294,7 +116877,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22736" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991148" delayId="22736" stack="BA_N_SONGOFDELAYDAMAGE_G9_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22736" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22736" stack="BA_N_SONGOFDELAYDAMAGE_G9_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116304,7 +116887,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22737" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991148" delayId="22737" stack="BA_N_SONGOFDELAYDAMAGE_G10_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22737" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22737" stack="BA_N_SONGOFDELAYDAMAGE_G10_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116314,7 +116897,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22738" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991148" delayId="22738" stack="BA_N_SONGOFDELAYDAMAGE_G11_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22738" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22738" stack="BA_N_SONGOFDELAYDAMAGE_G11_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116324,7 +116907,17 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22740" name_en="Fluttered Note Effect" name_pt="Fluttered Note Effect" nameId="1991149" delayId="22740" stack="BA_N_SONGOFINJURY_G1_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22739" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22739" stack="BA_N_SONGOFDELAYDAMAGE_G12_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<procatk_instant e="1" value="925" delta="55" accmod2="100" element="FIRE" />
+		</effects>
+		<motion name="NormalFire" />
+	</skill_template>
+	<skill_template skill_id="22740" name_en="Fluttered Note Effect" name_pt="Fluttered Note Effect" nameId="1991158" delayId="22740" stack="BA_N_SONGOFINJURY_G1_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116334,13 +116927,23 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22741" name_en="Fluttered Note Effect" name_pt="Fluttered Note Effect" nameId="1991149" delayId="22741" stack="BA_N_SONGOFINJURY_G2_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22741" name_en="Fluttered Note Effect" name_pt="Fluttered Note Effect" nameId="1991158" delayId="22741" stack="BA_N_SONGOFINJURY_G2_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
 			<procatk_instant e="1" value="812" delta="49" accmod2="100" element="FIRE" />
+		</effects>
+		<motion name="NormalFire" />
+	</skill_template>
+	<skill_template skill_id="22742" name_en="Fluttered Note Effect" name_pt="Fluttered Note Effect" nameId="1991158" delayId="22742" stack="BA_N_SONGOFINJURY_G3_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<procatk_instant e="1" value="869" delta="52" accmod2="100" element="FIRE" />
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
