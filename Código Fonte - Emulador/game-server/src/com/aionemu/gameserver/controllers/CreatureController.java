@@ -1,6 +1,7 @@
 package com.aionemu.gameserver.controllers;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Future;
@@ -36,6 +37,7 @@ import com.aionemu.gameserver.model.templates.item.ItemAttackType;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.model.templates.item.enums.ItemGroup;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_SKILL_COOLDOWN;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS.LOG;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS.TYPE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_EMOTION;
@@ -496,8 +498,16 @@ public abstract class CreatureController<T extends Creature> extends VisibleObje
 			}
 			int skillId = chargeSkill.getSkills().get(index).getId();
 			ChargeSkill skill = SkillEngine.getInstance().getChargeSkill(getOwner(), skillId, startSkill.getSkillLevel(), index + 1, startSkill);
-			if (skill != null)
-				return skill.useSkill();
+			if (skill != null) {
+				boolean used = skill.useSkill();
+				// 5.0: o cliente nao conhece as skills Charge e so poe o cooldown do S_SKILL_SUCCEDED numa skill aprendida; os estagios 2+ nao sao.
+				// O S_LOAD_SKILL_COOLTIME leva o cooldown as aprendidas do mesmo cooldownId (a skill do estagio 1, a que o jogador usa).
+				if (used && index > 0 && getOwner() instanceof Player player) {
+					int cooldownId = skill.getSkillTemplate().getCooldownId();
+					PacketSendUtility.sendPacket(player, new SM_SKILL_COOLDOWN(player, Map.of(cooldownId, player.getSkillCoolDown(cooldownId)), false));
+				}
+				return used;
+			}
 		} catch (Exception ex) {
 			log.error("Could not use charge skill " + startSkill.getSkillId() + " with charge time " + chargeTimeMillis, ex);
 		} finally {

@@ -973,19 +973,19 @@ def aplica_npcs_servidor():
 
 
 CARGA_REL = os.path.join("skills", "skill_charge.xml")
-#: Tabela do hook de carga do version.dll (charge_fix.h): "skill_id total_ms" por linha, ao lado
-#: do version.dll. O 5.0 nao tem tabela de carga; o hook so precisa saber quais skills carregam e
-#: por quanto tempo, para trocar o segundo C_USE_SKILL pelo pacote 234.
+#: Tabela do hook de carga do version.dll (charge_fix.h): "skill_id ms_estagio1 ms_estagio2 ..." por
+#: linha, ao lado do version.dll. O 5.0 nao tem tabela de carga; o hook precisa saber quais skills
+#: carregam (o segundo aperto vira o pacote 234) e os tempos dos estagios (bolinhas da barra).
 TABELA_DO_HOOK = r"bin64\charge_skills.txt"
 
 
 def aplica_carga_cliente():
     skills = _skills_58()
     ids = ids_novos(skills)
-    linhas = ["# skill_id total_ms (bard_skills_58.py: soma dos estagios do client_skill_charge do 5.8)"]
+    linhas = ["# skill_id ms_estagio1 ms_estagio2 ... (bard_skills_58.py, client_skill_charge do 5.8)"]
     for nome in CARGA:
         _i, _m, estagios = _carga_de(nome)
-        linhas.append(f"{ids[nome]} {sum(t for _s, t in estagios)}")
+        linhas.append(f"{ids[nome]} " + " ".join(str(t) for _s, t in estagios))
     caminho = os.path.join(T.CLIENTE, TABELA_DO_HOOK)
     with open(caminho, "w", encoding="ascii", newline="\r\n") as f:
         f.write("\n".join(linhas) + "\n")

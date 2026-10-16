@@ -2425,6 +2425,71 @@ PAKS_DA_CRIACAO = (  # UI_Create.xml: o botao
     (r"l10n\FRA\data\data.pak", "ui/UI_Create.xml"),
     (r"l10n\BRA\Data\Data.pak", "ui/UI_Create.xml"),
 )
+#: Barra de cast das skills Charge (charge_fix.h). O skill_delay_dialog do 5.8 tem um grupo `charge`
+#: com a barra `v5_gauge_charge` (cor por estagio) e as bolinhas `v5_gauge_charge_step` (estado 0 =
+#: apagada, 1-4 = cores); o do 5.0 so tem a barra comum, mas o preload do 5.0 ja tem os dois presets
+#: e a textura (v5_common, igual a do 5.8). A barra ganha um nome proprio: `delay1` o 5.0 ja usa
+#: para itens 165000000-165009999. As tres bolinhas centradas (todas as Charge do Bard tem 3
+#: estagios); a altura 55 e a do 5.8.
+PAKS_DA_BARRA_DE_CAST = (
+    (r"data\ui\game\game.pak", "skill_delay_dialog.xml"),
+    (r"l10n\ENG\Data\Data.pak", "ui/game/skill_delay_dialog.xml"),
+    (r"l10n\DEU\Data\Data.pak", "ui/game/skill_delay_dialog.xml"),
+    (r"l10n\FRA\data\data.pak", "ui/game/skill_delay_dialog.xml"),
+    # o do BRA e zip com XML de texto, e e o que o cliente em portugues le
+    (r"l10n\BRA\Data\Data.pak", "ui/game/skill_delay_dialog.xml"),
+)
+ALTURA_DA_BARRA_DE_CAST = "55"
+#: Os presets da barra e das bolinhas existem no `version5.xml` do 5.0, mas o `ui_preload.xml` do
+#: 5.0 nao carrega esse arquivo (lista ver5, ver4, version3, version4, hud_s1...): sem eles os
+#: widgets nao tem imagem. Vao para o `version4.xml` (carregado; PAKS_DE_SKINS), iguais ao 5.8.
+PRESETS_DA_CARGA = tuple(
+    [f'<Skin name="v5_gauge_charge_step{s}" src_image="{x},925,18,14" texture="Textures/ui/v5_common" />'
+     for s, x in (("", 279), ("1", 298), ("2", 317), ("3", 336), ("4", 355))]
+    + ['<Preset name="v5_gauge_charge_step" type="static">'
+       + "".join(f'<SkinRef name="v5_gauge_charge_step{s}" state="{k}" />'
+                 for k, s in enumerate(("", "1", "2", "3", "4"))) + "</Preset>"]
+    + [f'<Skin name="v5_gauge_charge{k}" src_image="373,{968 + 14 * (k - 1)},230,12" texture="Textures/ui/v5_common" />'
+       for k in range(1, 5)]
+    + ['<Preset name="v5_gauge_charge" type="gauge">'
+       + "".join(f'<SkinRef main_state="{k}" name="v5_gauge_charge{k}" sub_state="gauge" />' for k in range(1, 5))
+       + "</Preset>"])
+BOLINHAS_DA_CARGA = (("charge_step1", 108), ("charge_step2", 127), ("charge_step3", 146))
+
+
+def barra_de_carga_bxml(bxml):
+    def editor(raiz):
+        if raiz.procura(name="charge_gauge"):
+            raise ValueError("skill_delay_dialog ja tem a charge_gauge")
+        x, y, w, _h = raiz.get("frame").split(",")
+        raiz.set("frame", f"{x},{y},{w},{ALTURA_DA_BARRA_DE_CAST}")
+        barra = raiz.procura(name="delay")
+        raiz.filhos.append(raiz.novo("Widget", flag="not_visible", frame=barra.get("frame"), name="charge_gauge",
+                                     preset="v5_gauge_charge", type="gauge", value_type="float"))
+        for nome, x_bolinha in BOLINHAS_DA_CARGA:
+            raiz.filhos.append(raiz.novo("Widget", flag="not_visible", frame=f"{x_bolinha},34,18,14", name=nome,
+                                         preset="v5_gauge_charge_step", type="static"))
+    return edita_bxml(bxml, editor)
+
+
+def barra_de_carga_texto(xml):
+    """O mesmo de `barra_de_carga_bxml` num XML de texto (o zip do BRA)."""
+    if 'name="charge_gauge"' in xml:
+        raise ValueError("skill_delay_dialog ja tem a charge_gauge")
+    dialogo = re.search(r'<Dialog [^>]*>', xml).group(0)
+    novo = re.sub(r'\bframe="(\d+,\d+,\d+),\d+"', rf'frame="\1,{ALTURA_DA_BARRA_DE_CAST}"', dialogo, count=1)
+    xml = xml.replace(dialogo, novo, 1)
+    barra = re.search(r'<Widget [^>]*\bname="delay"[^>]*>', xml).group(0)
+    frame = re.search(r'\bframe="([^"]+)"', barra).group(1)
+    widgets = [f'  <Widget flag="not_visible" frame="{frame}" name="charge_gauge" preset="v5_gauge_charge" '
+               f'type="gauge" value_type="float">\r\n  </Widget>\r\n']
+    widgets += [f'  <Widget flag="not_visible" frame="{x},34,18,14" name="{nome}" preset="v5_gauge_charge_step" '
+                f'type="static">\r\n  </Widget>\r\n' for nome, x in BOLINHAS_DA_CARGA]
+    fim = xml.rindex("</Dialog>")
+    inicio_da_linha = xml.rindex("\n", 0, fim) + 1
+    return xml[:inicio_da_linha] + "".join(widgets) + xml[inicio_da_linha:]
+
+
 #: Ordem dos botoes da esquerda para a direita, e onde o do Bard entra.
 ORDEM_DOS_BOTOES = ("Class13", "Class12", "Class01", "Class02", "Class03", "Class04", "Class05",
                     "Class06", "Class07", "Class08", "Class09", "Class10", "Class11", "Class14")
@@ -2893,10 +2958,13 @@ def _alteracoes_de_interface():
             alteracoes.setdefault(rel, {}).setdefault(arquivo, []).append(("strings", novas))
     for rel, arquivo in PAKS_DE_SKINS:
         alteracoes.setdefault(rel, {}).setdefault(arquivo.lower(), []).append(("skins", SKINS_DA_CLASSE))
+        alteracoes[rel][arquivo.lower()].append(("presets_carga", PRESETS_DA_CARGA))
     for rel, arquivo in PAKS_DO_LOBBY:
         alteracoes.setdefault(rel, {}).setdefault(arquivo.lower(), []).append(("lobby", None))
     for rel, arquivo in PAKS_DA_CRIACAO:
         alteracoes.setdefault(rel, {}).setdefault(arquivo.lower(), []).append(("criacao", None))
+    for rel, arquivo in PAKS_DA_BARRA_DE_CAST:
+        alteracoes.setdefault(rel, {}).setdefault(arquivo.lower(), []).append(("carga", None))
     return alteracoes
 
 
@@ -2930,6 +2998,15 @@ def _confere_interface(rel, arquivo, lido, pedidos):
             botao = re.search(r'<Widget [^>]*\bname="class_14"[^>]*>', lido).group(0)
             assert 'preset="Lobby_bard_class_button"' in botao and 'action="sel_class 1"' in botao, rel
             print(f"OK  {rel}: {arquivo} com o class_14 (x = {xs[0]}..{xs[-1]})")
+        elif tipo == "presets_carga":
+            for s in itens:
+                tag, n = re.match(r'<(\w+) name="([^"]+)"', s).groups()
+                assert len(re.findall(r'<%s name="%s"' % (tag, n), lido)) == 1, (rel, tag, n)
+            print(f"OK  {rel}: {arquivo} com os presets da barra de carga ({len(itens)})")
+        elif tipo == "carga":
+            for nome in ("charge_gauge",) + tuple(n for n, _x in BOLINHAS_DA_CARGA):
+                assert lido.count(f'name="{nome}"') == 1, (rel, nome)
+            print(f"OK  {rel}: {arquivo} com a charge_gauge e {len(BOLINHAS_DA_CARGA)} bolinhas")
         else:
             for s in itens:
                 n = re.search(r'name="([^"]+)"', s).group(1)
@@ -2967,6 +3044,11 @@ def aplica_interface():
                             f"  {PRESET_DO_BOTAO}\n" + xml[fim:]
                     elif tipo == "criacao":
                         xml = botao_na_criacao_texto(xml)
+                    elif tipo == "carga":
+                        xml = barra_de_carga_texto(xml)
+                    elif tipo == "presets_carga":
+                        fim = xml.rindex("</Preload>")
+                        xml = xml[:fim] + "".join(f"  {s}\n" for s in itens) + xml[fim:]
                     else:
                         fim = xml.rindex("</Preload>")
                         xml = xml[:fim] + "".join(f"  {s}\n" for s in itens) + xml[fim:]
@@ -2995,12 +3077,16 @@ def aplica_interface():
             entrada = next(e for e in idx if e.nome.lower() == arquivo)
             bxml = aion_pak.le(d, entrada)
             texto_xml = aion_bxml.decodifica(bxml)
-            novos, presets, criacao = [], False, False
+            novos, presets, criacao, carga = [], False, False, False
             for tipo, itens in pedidos:
                 if tipo == "lobby":
                     novos += [ET.fromstring(x) for x in SKINS_DO_BOTAO + (PRESET_DO_BOTAO,)]
                 elif tipo == "criacao":
                     criacao = True
+                elif tipo == "carga":
+                    carga = True
+                elif tipo == "presets_carga":
+                    novos += [ET.fromstring(s) for s in itens]
                 elif tipo == "strings":
                     for id_string, _n, _t in itens:
                         if f"<id>{id_string}</id>" in texto_xml:
@@ -3014,6 +3100,8 @@ def aplica_interface():
                 troca[entrada.nome] = troca_skinrefs(troca[entrada.nome], PRESET_DE_ICONE, ESTADOS_DO_ICONE)
             if criacao:
                 troca[entrada.nome] = botao_na_criacao_bxml(troca[entrada.nome])
+            if carga:
+                troca[entrada.nome] = barra_de_carga_bxml(troca[entrada.nome])
         _backup(caminho)
         if origem != caminho:
             shutil.copy2(origem, caminho)

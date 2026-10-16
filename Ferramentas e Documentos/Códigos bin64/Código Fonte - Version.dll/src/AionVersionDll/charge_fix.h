@@ -18,7 +18,16 @@
 // Plain body: [H length][H wire opcode][C 0x6F][H ~wire opcode][payload]; wire = (op + 0xC4) ^ 0x36.
 // C_USE_SKILL (0x21, wire 0xD3) payload starts with [H skill id] (builder at 0x198180).
 // The charge skills come from charge_skills.txt next to version.dll (bard_skills_58.py writes it):
-// one "skill_id total_charge_ms" per line, total = sum of the stage times.
+// one "skill_id stage1_ms stage2_ms ..." per line (charge_time1.. of the 5.8 table).
+//
+// Charge bar: the 5.8 skill_delay_dialog has a charge bar coloured by stage (preset
+// v5_gauge_charge) and one light per stage (v5_gauge_charge_step, state 0 = off, 1-4 = colours).
+// The 5.0 preload already has both presets and the texture; teste_harpa_58.py adds the widgets
+// charge_gauge and charge_step1..3 to the 5.0 dialog, and the frame hook of the dialog (DlgSkillDelay,
+// 0x65F0E0) drives them while a charge runs. Widget calls of the 5.0 UI: find child = dialog
+// vtable+0x368 (name, type: 0x2010 gauge, 0x2025 static); flags at +0x28, bit 1 = visible,
+// vtable+0xD8 (bits, 0) sets and +0xE0 clears; vtable+0x110 (state) as UIActionSetState does;
+// gauge maximum/value = 0xAAD660/0xAAD6A0, called by the frame function itself.
 #if defined(_M_AMD64)
 using ChargeSendPacket = INT_PTR (__fastcall*)(void*, BYTE*, int);
 static ChargeSendPacket s_chargeSend = nullptr;
@@ -30,7 +39,10 @@ static constexpr int kChargeMaxSkills = 64;
 // The server may end the charge a little after the sum of the stages (cast speed only shortens it).
 static constexpr ULONGLONG kChargeMarginMs = 500;
 
+static constexpr int kChargeMaxStages = 4;
 static WORD s_chargeSkillIds[kChargeMaxSkills] = {};
+static DWORD s_chargeStageMs[kChargeMaxSkills][kChargeMaxStages] = {};
+static int s_chargeStageCount[kChargeMaxSkills] = {};
 static DWORD s_chargeTotalMs[kChargeMaxSkills] = {};
 static int s_chargeSkillCount = 0;
 static bool s_chargeTableRead = false;
@@ -42,6 +54,9 @@ static volatile LONG s_chargeActiveSkill = 0;
 static volatile LONG s_chargeCaster = 0;
 static ULONGLONG s_chargeActiveUntil = 0;
 static void* s_chargeConnection = nullptr;
+// Table row of the charge and the moment the server started it (S_USE_SKILL), for the stages.
+static volatile LONG s_chargeIndex = -1;
+static volatile LONG64 s_chargeStartTick = 0;
 
 static void ChargeReadTable() {
     s_chargeTableRead = true;
@@ -60,11 +75,17 @@ static void ChargeReadTable() {
     }
     char line[128];
     while (s_chargeSkillCount < kChargeMaxSkills && fgets(line, sizeof(line), file)) {
-        unsigned skill = 0, total = 0;
-        if (line[0] == '#' || sscanf_s(line, "%u %u", &skill, &total) != 2 || skill == 0 || skill > 0xFFFF) continue;
-        s_chargeSkillIds[s_chargeSkillCount] = (WORD)skill;
-        s_chargeTotalMs[s_chargeSkillCount] = total;
-        ++s_chargeSkillCount;
+        unsigned skill = 0, ms[kChargeMaxStages] = {};
+        if (line[0] == '#') continue;
+        const int read = sscanf_s(line, "%u %u %u %u %u", &skill, &ms[0], &ms[1], &ms[2], &ms[3]);
+        if (read < 2 || skill == 0 || skill > 0xFFFF) continue;
+        const int index = s_chargeSkillCount++;
+        s_chargeSkillIds[index] = (WORD)skill;
+        s_chargeStageCount[index] = read - 1;
+        for (int i = 0; i < read - 1; ++i) {
+            s_chargeStageMs[index][i] = ms[i];
+            s_chargeTotalMs[index] += ms[i];
+        }
     }
     fclose(file);
 }
@@ -91,7 +112,10 @@ static void ChargeOnServerPacket(const BYTE* body, int length) {
     if (!skill) return;
     const LONG caster = *(const LONG*)(body + 5);
     if (wire == kChargeServerUseSkill) {
-        if (!s_chargeCaster && *(const WORD*)(body + 9) == (WORD)skill) InterlockedExchange(&s_chargeCaster, caster);
+        if (!s_chargeCaster && *(const WORD*)(body + 9) == (WORD)skill) {
+            InterlockedExchange64(&s_chargeStartTick, (LONG64)GetTickCount64());
+            InterlockedExchange(&s_chargeCaster, caster);
+        }
         return;
     }
     if (s_chargeCaster && caster == s_chargeCaster) InterlockedExchange(&s_chargeActiveSkill, 0);
@@ -115,7 +139,7 @@ static constexpr int kChargeActionUseSkill = 2;
 static void __fastcall ChargeRequestActionHook(void* player, int action, int id, WORD extra, INT_PTR a5,
                                                 INT_PTR a6, INT_PTR a7, INT_PTR a8) {
     __try {
-        if (action == kChargeActionUseSkill && id > 0 && s_chargeActiveSkill == id &&
+        if (action == kChargeActionUseSkill && id > 0 && s_chargeActiveSkill == id && s_chargeCaster &&
             GetTickCount64() < s_chargeActiveUntil && s_chargeConnection) {
             // Second press while charging: fire the reached stage.
             InterlockedExchange(&s_chargeActiveSkill, 0);
@@ -137,6 +161,7 @@ static INT_PTR __fastcall ChargeSendPacketHook(void* connection, BYTE* body, int
             InterlockedExchange(&s_chargeCaster, 0);
             if (index >= 0) {
                 s_chargeActiveUntil = GetTickCount64() + s_chargeTotalMs[index] + kChargeMarginMs;
+                InterlockedExchange(&s_chargeIndex, index);
                 InterlockedExchange(&s_chargeActiveSkill, s_chargeSkillIds[index]);
             } else {
                 InterlockedExchange(&s_chargeActiveSkill, 0); // Any other skill ends the charge on the server.
@@ -146,6 +171,116 @@ static INT_PTR __fastcall ChargeSendPacketHook(void* connection, BYTE* body, int
     __except (EXCEPTION_EXECUTE_HANDLER) {
     }
     return s_chargeSend(connection, body, length);
+}
+
+// Charge bar in skill_delay_dialog. The frame function (dialog) updates the cast bar from the
+// duration (+0x4F8) and the end (+0x4FC) of the cast, while +0x500 says a cast is shown.
+using ChargeDialogFrame = INT_PTR (__fastcall*)(BYTE*);
+using ChargeGaugeMaximum = void (__fastcall*)(void*, double);
+using ChargeGaugeValue = void (__fastcall*)(void*, double, int);
+using ChargeFindChild = void* (__fastcall*)(void*, const char*, int);
+using ChargeWidgetBits = void (__fastcall*)(void*, INT_PTR, int);
+using ChargeWidgetState = void (__fastcall*)(void*, int);
+static ChargeDialogFrame s_chargeDialogFrame = nullptr;
+static ChargeGaugeMaximum s_chargeGaugeMaximum = nullptr;
+static ChargeGaugeValue s_chargeGaugeValue = nullptr;
+
+static constexpr int kChargeStepWidgets = 3;
+static constexpr int kChargeWidgetGauge = 0x2010;
+static constexpr int kChargeWidgetStatic = 0x2025;
+static constexpr INT_PTR kChargeWidgetVisible = 1;
+static BYTE* s_chargeDialog = nullptr;
+static void* s_chargeGauge = nullptr;
+static void* s_chargeSteps[kChargeStepWidgets] = {};
+static bool s_chargeBarShown = false;
+static int s_chargeBarStage = 0;
+
+template <class Function>
+static Function ChargeVirtual(void* object, size_t offset) {
+    return *(Function*)(*(BYTE**)object + offset);
+}
+
+static void ChargeShowWidget(void* widget, bool show) {
+    if (widget) ChargeVirtual<ChargeWidgetBits>(widget, show ? 0xD8 : 0xE0)(widget, kChargeWidgetVisible, 0);
+}
+
+static void ChargeSetWidgetState(void* widget, int state) {
+    if (widget) ChargeVirtual<ChargeWidgetState>(widget, 0x110)(widget, state);
+}
+
+// Colour (preset state) of stage `stage` of `stages`: 1, 2... and the last one always blue (4), as on 5.8.
+static int ChargeColour(int stage, int stages) {
+    return stage >= stages ? 4 : stage;
+}
+
+static void ChargeHideBar() {
+    ChargeShowWidget(s_chargeGauge, false);
+    for (void* step : s_chargeSteps) ChargeShowWidget(step, false);
+    s_chargeBarShown = false;
+    s_chargeBarStage = 0;
+}
+
+static void ChargeUpdateDialog(BYTE* dialog) {
+    if (dialog != s_chargeDialog) {
+        s_chargeDialog = dialog;
+        s_chargeBarShown = false;
+        s_chargeBarStage = 0;
+        const ChargeFindChild find = ChargeVirtual<ChargeFindChild>(dialog, 0x368);
+        s_chargeGauge = find(dialog, "charge_gauge", kChargeWidgetGauge);
+        for (int i = 0; i < kChargeStepWidgets; ++i) {
+            char name[16];
+            sprintf_s(name, "charge_step%d", i + 1);
+            s_chargeSteps[i] = find(dialog, name, kChargeWidgetStatic);
+        }
+    }
+    if (!s_chargeGauge) return; // Client data without the charge widgets.
+    const LONG index = s_chargeIndex;
+    const bool charging = s_chargeActiveSkill && s_chargeCaster && index >= 0 && index < s_chargeSkillCount &&
+                          dialog[0x500] != 0;
+    if (!charging) {
+        if (s_chargeBarShown) ChargeHideBar();
+        return;
+    }
+    const int stages = s_chargeStageCount[index] < kChargeStepWidgets ? s_chargeStageCount[index] : kChargeStepWidgets;
+    // The server shortens the stages with the cast speed; the dialog has the duration it sent.
+    const DWORD dialogTotal = *(const DWORD*)(dialog + 0x4F8);
+    const double total = dialogTotal ? (double)dialogTotal : (double)s_chargeTotalMs[index];
+    const double scale = s_chargeTotalMs[index] ? total / s_chargeTotalMs[index] : 1.0;
+    const double elapsed = (double)(GetTickCount64() - (ULONGLONG)s_chargeStartTick);
+    if (!s_chargeBarShown) {
+        ChargeShowWidget(s_chargeGauge, true);
+        for (int i = 0; i < kChargeStepWidgets; ++i) ChargeShowWidget(s_chargeSteps[i], i < stages);
+        s_chargeBarShown = true;
+    }
+    // The bar fills again on every stage, as on 5.8: maximum = length of the current stage.
+    int stage = 1;
+    double stageStart = 0;
+    for (int i = 0; i + 1 < stages; ++i) {
+        const double next = stageStart + s_chargeStageMs[index][i] * scale;
+        if (elapsed <= next) break;
+        stage = i + 2;
+        stageStart = next;
+    }
+    const double stageLength = stage == stages ? total - stageStart : s_chargeStageMs[index][stage - 1] * scale;
+    const double inStage = elapsed - stageStart;
+    s_chargeGaugeMaximum(s_chargeGauge, stageLength);
+    s_chargeGaugeValue(s_chargeGauge, inStage < stageLength ? inStage : stageLength, 1);
+    if (stage != s_chargeBarStage) {
+        s_chargeBarStage = stage;
+        ChargeSetWidgetState(s_chargeGauge, ChargeColour(stage, stages));
+        for (int i = 0; i < stages; ++i)
+            ChargeSetWidgetState(s_chargeSteps[i], i < stage ? ChargeColour(i + 1, stages) : 0);
+    }
+}
+
+static INT_PTR __fastcall ChargeDialogFrameHook(BYTE* dialog) {
+    const INT_PTR result = s_chargeDialogFrame(dialog);
+    __try {
+        ChargeUpdateDialog(dialog);
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+    return result;
 }
 
 static SRWLOCK s_chargeLock = SRWLOCK_INIT;
@@ -184,15 +319,28 @@ static void InstallChargeFix(HMODULE module) {
         static const char requestMask[] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
         static_assert(sizeof(requestMask) - 1 == sizeof(request), "Charge request signature mask length");
 
+        // Frame of DlgSkillDelay: push rbx; sub rsp,20h; cmp dword [rcx+4F8h],0; mov rbx,rcx; je;
+        // cmp byte [rcx+500h],0; je. Gauge maximum and value are the calls at +5Ah and +91h.
+        static const BYTE frame[] = {
+            0x40,0x53,0x48,0x83,0xec,0x20,0x83,0xb9,0xf8,0x04,0x00,0x00,0x00,0x48,0x8b,0xd9,
+            0x0f,0x84,0,0,0,0,0x80,0xb9,0x00,0x05,0x00,0x00,0x00,0x0f,0x84,0,0,0,0
+        };
+        static const char frameMask[] = "xxxxxxxxxxxxxxxxxx????xxxxxxxxx????";
+        static_assert(sizeof(frameMask) - 1 == sizeof(frame), "Charge frame signature mask length");
+
         BYTE* sendPacket = QunaFindUnique(base, nt, send, sendMask, sizeof(send));
         BYTE* requestAction = QunaFindUnique(base, nt, request, requestMask, sizeof(request));
+        BYTE* dialogFrame = QunaFindUnique(base, nt, frame, frameMask, sizeof(frame));
         s_chargeChecked = true;
-        if (!sendPacket || !requestAction) {
+        if (!sendPacket || !requestAction || !dialogFrame || dialogFrame[0x5a] != 0xe8 || dialogFrame[0x91] != 0xe8) {
             OutputDebugStringA("[Charge] Unsupported client; signatures not unique.\n");
             __leave;
         }
         s_chargeSend = (ChargeSendPacket)sendPacket;
         s_chargeRequest = (ChargeRequestAction)requestAction;
+        s_chargeDialogFrame = (ChargeDialogFrame)dialogFrame;
+        s_chargeGaugeMaximum = (ChargeGaugeMaximum)(dialogFrame + 0x5f + *(int32_t*)(dialogFrame + 0x5b));
+        s_chargeGaugeValue = (ChargeGaugeValue)(dialogFrame + 0x96 + *(int32_t*)(dialogFrame + 0x92));
         s_qunaServerPacketObserver = ChargeOnServerPacket;
         LONG error = DetourTransactionBegin();
         if (error != NO_ERROR) {
@@ -202,6 +350,7 @@ static void InstallChargeFix(HMODULE module) {
         error = DetourUpdateThread(GetCurrentThread());
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_chargeSend, ChargeSendPacketHook);
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_chargeRequest, ChargeRequestActionHook);
+        if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_chargeDialogFrame, ChargeDialogFrameHook);
         if (error == NO_ERROR) error = DetourTransactionCommit();
         else DetourTransactionAbort();
         OutputDebugStringA(error == NO_ERROR ? "[Charge] Send hook installed.\n" :

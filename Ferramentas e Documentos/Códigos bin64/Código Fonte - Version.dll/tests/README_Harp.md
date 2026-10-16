@@ -352,7 +352,41 @@ Testado em jogo com a Fiery Descant G1:
 - sem o segundo aperto, a carga cancela no fim;
 - um golpe que interrompe libera o proximo aperto para uma carga nova.
 
-Falta mostrar os estagios na barra de cast: as tres bolinhas do 5.8 nao existem na barra do 5.0.
+**Cooldown.** O 5.0 so poe o cooldown do `S_SKILL_SUCCEDED` numa skill aprendida. Os estagios 2+
+nao sao aprendidos, entao o icone da skill do estagio 1 nao mostrava o cooldown. Depois do disparo
+nesses estagios, o servidor (`CreatureController.useChargeSkill`) manda o `S_LOAD_SKILL_COOLTIME`
+(0x33) das aprendidas do mesmo `cooldownId`, com `notify` 0, como na entrada no mundo.
+
+**Barra de carga.** O `skill_delay_dialog` do 5.8 tem a barra `v5_gauge_charge` (cor por estado
+1-4) e as bolinhas `v5_gauge_charge_step` (estado 0 = apagada, 1-4 = cores). Tres achados no 5.0:
+
+- O `ui_preload.xml` do 5.0 nao carrega o `version5.xml`; carrega `ver5`, `ver4`, `version3`,
+  `version4`, `hud_s1`... Os dois presets so existem no `version5.xml`, entao os widgets ficavam
+  sem imagem. O `teste_harpa_58.py` poe os presets e os 9 Skins no `version4.xml`. A textura
+  `v5_common.dds` do 5.0 ja tem as imagens.
+- O diálogo tem 5 copias: `data\ui\game\game.pak` e `l10n\{ENG,DEU,FRA}\Data\Data.pak` (BXML),
+  mais `l10n\BRA\Data\Data.pak` (zip, XML de texto). A barra ganha nome proprio, `charge_gauge`:
+  `delay1` o 5.0 ja usa para os itens 165000000-165009999.
+- Funcoes de widget:
+
+| O que | Onde |
+|---|---|
+| Achar filho por nome | vtable `+0x368` (nome, tipo: 0x2010 gauge, 0x2025 static); so procura, devolve 0 se nao achar |
+| Visivel | flags em `+0x28`, bit 1 (`not_visible` limpa); vtable `+0xD8` liga bits, `+0xE0` desliga |
+| Estado | vtable `+0x110` grava `+0x30`, o mesmo que a `UIActionSetState` faz |
+| Maximo / valor da barra | `0xAAD660` / `0xAAD6A0`, lidos das chamadas da propria funcao de quadro |
+| Quadro do `DlgSkillDelay` | `0x65F0E0`: duracao em `+0x4F8`, fim em `+0x4FC`, cast mostrado em `+0x500` |
+
+O hook de quadro mostra a barra e as bolinhas durante a carga. Como no 5.8, a barra enche de novo a
+cada estagio (tempos do `charge_skills.txt`, escalados pela duracao que o servidor mandou) e muda de
+cor: estagio 1 cor 1, 2 cor 2, o ultimo cor 4 (azul). Testado em jogo: aparecem e acendem.
+
+Ainda faltam, vistos num video do 5.8:
+- as animacoes por estagio: `ccast_harp_SongBattle01_00N` na carga e `cfire_..._00N` no disparo.
+  O 5.0 ja tem as 6; a funcao que toca (`0x948C80`) poe o `_%03d` de `+0x34C` do objeto de animacao;
+- o clarao no personagem a cada troca de estagio;
+- a moldura da barra acesa no estagio 3;
+- o nome com "1Stage/2Stage/3Stage".
 
 ## Pendências conhecidas
 
@@ -360,7 +394,7 @@ Falta mostrar os estagios na barra de cast: as tres bolinhas do 5.8 nao existem 
   `bard_skills_58.py`) ja estao no cliente e no servidor, sem exigir a harpa.
 - **Skills Charge do Bard**: so a Fiery Descant G1 entrou (`CARGA` no `bard_skills_58.py`).
   Faltam as outras 27 familias (Fiery Descant G2-G12, Soothing Hymn, Dragon Song, Blazing/Fiery
-  Requiem, Ba_SongofGravity) e as bolinhas dos estagios na barra de cast.
+  Requiem, Ba_SongofGravity), e as animacoes e efeitos por estagio (ver Skills Charge).
 - **Dedos.** O esqueleto do 5.8 tem cinco dedos de três falanges e o do 5.0 três de duas, com
   outra pose de referência. As animações de harpa precisam de conversão nas trilhas de dedo;
   há duas variantes em avaliação, nenhuma fixada.
