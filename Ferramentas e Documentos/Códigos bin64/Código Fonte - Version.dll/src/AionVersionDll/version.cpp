@@ -13,6 +13,7 @@
 #include "siel_hammer_fix.h"
 #include "quna_fix.h"
 #include "harp_fix.h"
+#include "charge_fix.h"
 
 // =========================================================================
 //  Version.dll - Mod & Compatibility Hook for Aion Classic 5.0
@@ -246,6 +247,7 @@ static void PatchAllLoadedLanguageModules() {
                 InstallSielHammerFix(h);
                 InstallQunaFix(h);
                 InstallHarpFix(h);
+                InstallChargeFix(h);
             }
             PatchLanguageTableInModule(h);
             BypassCountryCheckInCryEngineModule(h);

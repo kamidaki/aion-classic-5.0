@@ -17,6 +17,8 @@ Uso:
     python bard_skills_58.py             grava o cliente de teste e os XMLs extraidos do repo
     python bard_skills_58.py --servidor  templates minimos e arvore do BARD no servidor (as duas copias);
                                          depois o rebuild_50_skill_effects.py --aplicar da o corpo
+    python bard_skills_58.py --carga     depois do rebuild/fix_50_chain: CHARGE + <skillcharge> e o
+                                         skill_charge.xml das skills Charge (ver CARGA)
 """
 import os
 import re
@@ -172,6 +174,57 @@ ID_BASE_STRING = 1991000
 CLASSE = "BARD"
 DEPENDENCIAS = _dependencias()
 
+#: Skills Charge: no 5.8 a skill aprendida (estagio 1, activation_attribute "Charge") carrega sozinha
+#: os estagios do client_skill_charge.xml; um segundo aperto dispara o estagio atingido e, sem ele,
+#: a skill cancela no fim. O 5.0 nao tem nada disso (sem ChargeSkillTable, sem os campos
+#: charge_set_name/min_charge_time, e o leitor de activation_attribute do Game.dll, 0xA0E8A1, so
+#: conhece toggle/active/maintain/passive/provoked): no cliente o estagio 1 entra como Active e o
+#: servidor faz a carga (activation CHARGE + <skillcharge> + skill_charge.xml, passo --carga). O
+#: segundo aperto vira o pacote 234 (C_FIRE_CHARGE_SKILL) pelo version.dll.
+#: Ficam depois de LOTE + DEPENDENCIAS: a ordem da os ids das strings, e assim nada ja gravado muda.
+CARGA = ("Ar_SongofBattle_1_G1",)
+PAK_CARGA_58 = "client_skill_charge.xml"  # no skills.pak do 5.8
+#: Id da entrada no skill_charge.xml do servidor: 1000 + id do 5.8 (o servidor ja tem 1-163, de
+#: outra versao).
+ID_BASE_CARGA = 1000
+
+
+@lru_cache(maxsize=None)
+def CARGAS_58():
+    """{charge_set_name: (id do 5.8, min_charge_time, [(skill, charge_time)...])} do 5.8."""
+    d, idx = aion_pak.abre(os.path.join(T.LIVE_CLIENTE, PAK_SKILLS_58))
+    texto = aion_bxml.decodifica(aion_pak.le(d, next(e for e in idx if e.nome.lower() == PAK_CARGA_58)))
+    saida = {}
+    for bloco in re.findall(r"<skill_charge_client>(.*?)</skill_charge_client>", texto, re.S):
+        c = dict(re.findall(r"<([a-z_0-9]+)>([^<]*)</\1>", bloco))
+        estagios = [(c[f"skill_name{k}"], int(c[f"charge_time{k}"])) for k in range(1, 10) if c.get(f"skill_name{k}")]
+        saida[c["name"]] = (int(c["id"]), int(c["min_charge_time"]), estagios)
+    return saida
+
+
+def _carga_de(nome):
+    """(id do 5.8, min, estagios) da skill Charge `nome`, pelo charge_set_name dela."""
+    texto = open(BARD_SKILLS_58, encoding="utf-8").read()
+    for bloco in re.findall(r"<skill_base_client>(.*?)</skill_base_client>", texto, re.S):
+        if f"<name>{nome}</name>" in bloco:
+            return CARGAS_58()[re.search(r"<charge_set_name>([^<]+)</charge_set_name>", bloco).group(1)]
+    raise KeyError(nome)
+
+
+def _estagios():
+    """Os estagios 2, 3... das skills de CARGA (sem aprendizado, como as dependencias)."""
+    saida = []
+    for nome in CARGA:
+        _i, _m, estagios = _carga_de(nome)
+        assert estagios[0][0] == nome, (nome, estagios)
+        saida += [s for s, _t in estagios[1:] if s not in CARGA and s not in saida]
+    return tuple(saida)
+
+
+ESTAGIOS = _estagios()
+#: Todas as skills do Bard trazidas, na ordem que da os ids das strings.
+TODAS = LOTE + DEPENDENCIAS + CARGA + ESTAGIOS
+
 
 def _skills_58():
     texto = open(BARD_SKILLS_58, encoding="utf-8").read()
@@ -209,12 +262,14 @@ def _aprendizado_58():
 def converte(skills, ids, campos50):
     """{nome: (id novo, [(tag, texto)])} do lote no formato do 5.0, e os campos que ficaram de fora."""
     saida, fora = {}, {}
-    for nome in LOTE + DEPENDENCIAS:
+    for nome in TODAS:
         _id58, campos = skills[nome]
         novos = []
         for tag, valor in campos:
             if tag == "id":
                 valor = str(ids[nome])
+            if tag == "activation_attribute" and valor == "Charge":
+                valor = "Active"  # o 5.0 nao conhece Charge (ver CARGA)
             if tag not in campos50:
                 fora.setdefault(tag, []).append(nome)
                 continue
@@ -225,7 +280,7 @@ def converte(skills, ids, campos50):
 
 def aprendizado(niveis, inicio=ID_BASE_APRENDIZADO):
     """[(id, nome da skill, nivel)] do BARD, na ordem de nivel."""
-    linhas = sorted((niveis[n], n) for n in LOTE + JA_NO_50)
+    linhas = sorted((niveis[n], n) for n in LOTE + JA_NO_50 + CARGA)
     return [(inicio + k, nome, nivel) for k, (nivel, nome) in enumerate(linhas)]
 
 
@@ -266,7 +321,7 @@ def strings(convertidas):
 def EFEITOS_CITADOS():
     """Os nomes de efeito (fc_<biblioteca>.<efeito>) que o lote cita nos campos *_fx."""
     skills = _skills_58()
-    return frozenset(valor for nome in LOTE + DEPENDENCIAS for _tag, valor in skills[nome][1]
+    return frozenset(valor for nome in TODAS for _tag, valor in skills[nome][1]
                      if valor.lower().startswith("fc_"))
 
 
@@ -275,7 +330,7 @@ def FXC_DAS_SKILLS():
     """Os .fxc dos efeitos que o lote cita (cast_fx, fire_fx, ammo_fx, hit_fx...: fc_<biblioteca>.<efeito>)."""
     skills = _skills_58()
     libs = []
-    for nome in LOTE + DEPENDENCIAS:
+    for nome in TODAS:
         for _tag, valor in skills[nome][1]:
             if valor.lower().startswith("fc_"):
                 chave = f"fxc/{valor.split('.', 1)[0].lower()}.fxc"
@@ -917,6 +972,91 @@ def aplica_npcs_servidor():
         print(f"OK  {base}: +{len(blocos)} npc_template")
 
 
+CARGA_REL = os.path.join("skills", "skill_charge.xml")
+#: Tabela do hook de carga do version.dll (charge_fix.h): "skill_id total_ms" por linha, ao lado
+#: do version.dll. O 5.0 nao tem tabela de carga; o hook so precisa saber quais skills carregam e
+#: por quanto tempo, para trocar o segundo C_USE_SKILL pelo pacote 234.
+TABELA_DO_HOOK = r"bin64\charge_skills.txt"
+
+
+def aplica_carga_cliente():
+    skills = _skills_58()
+    ids = ids_novos(skills)
+    linhas = ["# skill_id total_ms (bard_skills_58.py: soma dos estagios do client_skill_charge do 5.8)"]
+    for nome in CARGA:
+        _i, _m, estagios = _carga_de(nome)
+        linhas.append(f"{ids[nome]} {sum(t for _s, t in estagios)}")
+    caminho = os.path.join(T.CLIENTE, TABELA_DO_HOOK)
+    with open(caminho, "w", encoding="ascii", newline="\r\n") as f:
+        f.write("\n".join(linhas) + "\n")
+    print(f"OK  {TABELA_DO_HOOK}: {len(CARGA)} skills Charge")
+
+
+def _bloco_carga(nome, ids):
+    """(id da entrada, texto da <charge>) da skill de CARGA `nome`, com os ids do 5.0."""
+    id58, minimo, estagios = _carga_de(nome)
+    linhas = [f'\t<charge min_time="{minimo}" id="{ID_BASE_CARGA + id58}">\n']
+    linhas += [f'\t\t<skill time="{t}" id="{ids[s]}"/>\n' for s, t in estagios]
+    return ID_BASE_CARGA + id58, "".join(linhas) + "\t</charge>\n"
+
+
+def _template_de_carga(bloco, id_carga):
+    """O template do estagio 1 como o servidor quer: activation CHARGE e <skillcharge> no fim das
+    <startconditions> (ultimo da sequencia do XSD, so o contextskill vem depois)."""
+    eol = "\r\n" if "\r\n" in bloco else "\n"
+    bloco = re.sub(r'activation="[A-Z]+"', 'activation="CHARGE"', bloco, count=1)
+    bloco = re.sub(r"\t\t\t<skillcharge [^>]*/>\r?\n", "", bloco)
+    cond = f'\t\t\t<skillcharge value="{id_carga}"/>{eol}'
+    if "</startconditions>" in bloco:
+        return bloco.replace("\t\t</startconditions>", cond + "\t\t</startconditions>", 1)
+    fim_props = bloco.index(eol, bloco.index("<properties")) + len(eol)
+    return bloco[:fim_props] + f"\t\t<startconditions>{eol}{cond}\t\t</startconditions>{eol}" + bloco[fim_props:]
+
+
+def aplica_carga_servidor():
+    """Depois do rebuild/fix_50_chain (que refazem o template pelo client_skills, onde o estagio 1 e
+    Active): CHARGE + <skillcharge> nos templates de CARGA e as entradas no skill_charge.xml."""
+    skills = _skills_58()
+    ids = ids_novos(skills)
+    for base in SERVIDOR:
+        caminho = os.path.join(base, TEMPLATES_REL)
+        with open(caminho, encoding="utf-8", newline="") as f:
+            texto = f.read()
+        blocos = {sid: (ini, fim) for sid, ini, fim in _templates(texto)}
+        for nome in CARGA:
+            id_carga, _b = _bloco_carga(nome, ids)
+            ini, fim = blocos[ids[nome]]
+            if "<effects>" not in texto[ini:fim]:
+                raise ValueError(f"{nome}: template sem corpo; rodar antes o rebuild_50_skill_effects")
+            texto = texto[:ini] + _template_de_carga(texto[ini:fim], id_carga) + texto[fim:]
+            blocos = {sid: (i, f) for sid, i, f in _templates(texto)}
+        for nome in ESTAGIOS:
+            # Os estagios nao estao no client_skill_learns, e o fix_50_chain so corrige os que estao:
+            # o time="1000" que o gerador inventa fica. time = chain_time do cliente, ou nenhum.
+            tempo = dict(skills[nome][1]).get("chain_time") or "0"
+            ini, fim = blocos[ids[nome]]
+            bloco = re.sub(r'(<chain [^>]*?) time="\d+"', r"\1", texto[ini:fim])
+            if tempo != "0":
+                bloco = re.sub(r"(<chain [^>]*?) ?/>", rf'\1 time="{tempo}" />', bloco, count=1)
+            texto = texto[:ini] + bloco + texto[fim:]
+            blocos = {sid: (i, f) for sid, i, f in _templates(texto)}
+        with open(caminho, "w", encoding="utf-8", newline="") as f:
+            f.write(texto)
+        caminho = os.path.join(base, CARGA_REL)
+        with open(caminho, encoding="utf-8", newline="") as f:
+            texto = f.read()
+        eol = "\r\n" if "\r\n" in texto[:4096] else "\n"
+        texto = texto.replace("\r\n", "\n")
+        novos = dict(_bloco_carga(nome, ids) for nome in CARGA)
+        texto = re.sub(r'\t<charge min_time="\d+" id="(\d+)">\n.*?\t</charge>\n',
+                       lambda m: "" if int(m.group(1)) in novos else m.group(0), texto, flags=re.S)
+        fim = texto.rindex("</skill_charge>")
+        texto = texto[:fim] + "".join(novos[i] for i in sorted(novos)) + texto[fim:]
+        with open(caminho, "w", encoding="utf-8", newline="") as f:
+            f.write(texto.replace("\n", eol))
+        print(f"OK  {base}: {len(CARGA)} skills Charge (CHARGE + skillcharge), {len(novos)} entradas no skill_charge.xml")
+
+
 def confere_servidor():
     """As duas copias do servidor: iguais, validas no static_data.xsd agregado, todo template do lote
     com efeito e com o <chain> igual ao do cliente (category/precategory/time). Devolve os erros."""
@@ -935,7 +1075,7 @@ def confere_servidor():
         if not esquema.validate(etree.parse(os.path.join(SERVIDOR[1], rel))):
             erros.append(f"{rel}: {list(esquema.error_log)[0]}")
     blocos = {sid: textos[1][ini:fim] for sid, ini, fim in _templates(textos[1])}
-    for nome in LOTE + DEPENDENCIAS:
+    for nome in TODAS:
         d = dict(skills[nome][1])
         bloco = blocos.get(ids[nome], "")
         if "<effects>" not in bloco:
@@ -950,6 +1090,21 @@ def confere_servidor():
                 quer["time"] = d["chain_time"]
         if (cadeias or [{}])[0] != quer or len(cadeias) > 1:
             erros.append(f"{nome}: <chain> {cadeias} != cliente {quer}")
+    cargas = []
+    for base in SERVIDOR:
+        with open(os.path.join(base, CARGA_REL), encoding="utf-8", newline="") as f:
+            cargas.append(f.read())
+    if cargas[0] != cargas[1]:
+        erros.append("as duas copias do skill_charge.xml diferem")
+    if not esquema.validate(etree.parse(os.path.join(SERVIDOR[1], CARGA_REL))):
+        erros.append(f"{CARGA_REL}: {list(esquema.error_log)[0]}")
+    for nome in CARGA:
+        id_carga, bloco_carga = _bloco_carga(nome, ids)
+        bloco = blocos.get(ids[nome], "")
+        if 'activation="CHARGE"' not in bloco or f'<skillcharge value="{id_carga}"/>' not in bloco:
+            erros.append(f"{nome}: template sem CHARGE/<skillcharge value=\"{id_carga}\"> (rodar --carga)")
+        if bloco_carga.replace("\n", "\r\n") not in cargas[1] and bloco_carga not in cargas[1]:
+            erros.append(f"{nome}: entrada {id_carga} ausente ou diferente no skill_charge.xml")
     return erros
 
 
@@ -959,6 +1114,9 @@ def main():
         aplica_npcs_cliente()
         aplica_npcs_servidor()
         print("Os textos dos NPCs vao pelo `teste_harpa_58.py --strings`.")
+        return
+    if "--carga" in sys.argv:
+        aplica_carga_servidor()
         return
     if "--confere-servidor" in sys.argv:
         erros = confere_servidor()
@@ -987,12 +1145,14 @@ def main():
         aplica_servidor(convertidas, linhas, textos)
         print("Proximo: rebuild_50_skill_effects.py --ids <ids do Bard> --aplicar (corpo dos templates minimos),")
         print("depois fix_50_chain.py (<chain> do cliente: sem ele a skill que abre a cadeia a reseta) e")
-        print("levar so os templates 22xxx do Bard para as duas copias do servidor, e por fim")
+        print("levar so os templates 22xxx do Bard para as duas copias do servidor, depois")
+        print("bard_skills_58.py --carga (skills Charge) e por fim")
         print("bard_skills_58.py --confere-servidor (sai com erro se alguma cadeia ou copia nao bate).")
         return
     arquivos_de_icone = icones(convertidas)
     aplica_cliente(convertidas, linhas, arquivos_de_icone)
     aplica_repo(convertidas, linhas)
+    aplica_carga_cliente()
     print("Os textos vao pelo `teste_harpa_58.py --strings` (mesmo pak das outras strings).")
 
 

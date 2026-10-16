@@ -310,13 +310,57 @@ A barra de atalhos de um personagem novo vem do cliente (o servidor nao manda at
 e, para a classe 20, sai com as skills da Luminess: outra tabela por classe com a posicao 20
 copiada da vizinha, ainda nao localizada.
 
+### Skills Charge (`charge_fix.h`)
+
+No Live 5.8 a skill aprendida (estagio 1, `activation_attribute` `Charge`) carrega sozinha os
+estagios do `client_skill_charge.xml`. Um segundo aperto dispara o estagio atingido com
+`C_FIRE_CHARGE_SKILL`, opcode 234 sem dados. Sem esse aperto, a skill cancela no fim.
+
+O `Game.dll` 5.0 nao tem nada disso:
+- sem `ChargeSkillTable`;
+- sem os campos `charge_set_name`/`min_charge_time`;
+- o leitor de `activation_attribute` (`0xA0E8A1`) so conhece toggle/active/maintain/passive/provoked;
+- o 234 esta livre na tabela nome -> opcode dos C_.
+
+Por isso no cliente o estagio 1 e `Active`, e quem carrega e o servidor (`activation="CHARGE"`,
+`<skillcharge>` e `skill_charge.xml`). Tres pontos dao o segundo aperto:
+
+| Ponto | O que faz |
+|---|---|
+| `0x88FDE0` (conexao, buffer, tamanho) | envia todo pacote do cliente antes da cifra; um `C_USE_SKILL` de skill Charge marca o inicio da carga |
+| Pacotes do servidor (observador no hook da Quna) | `S_SKILL_CANCELED`/`S_SKILL_SUCCEDED` de quem carrega encerram a marca (golpe com `cancel_rate`, fim do tempo) |
+| `0x9A0E30` (personagem, acao, id, ...) | pedido de acao; com acao 2 (usar skill) da skill em carga, manda o 234 e nao deixa o pedido seguir |
+
+**Por que o pedido de acao, e nao o envio.** Durante um cast o 5.0 guarda o novo pedido em
+`personagem + 0x1900/0x1908` e so manda o `C_USE_SKILL` depois que o cast termina. Provado por
+log: nenhum pacote do cliente durante a carga; o pedido saiu logo depois do `S_SKILL_CANCELED`.
+
+Formato do pacote em claro: `[H tamanho][H op no fio][C 0x6F][H ~op][dados]`, com op no fio =
+`(op + 0xC4) ^ 0x36` (conferido nos 6 opcodes C da captura). O 234 vai como `07 00 98 01 6F 67 FE`.
+
+Do lado do servidor:
+- o `CM_USE_CHARGE_SKILL` tem de estar no `AionPacketHandlerFactory` (fio 0x198); a tabela
+  `AionClientPacketFactory` nao e usada;
+- o handler escolhe o estagio pelo tempo carregado.
+
+A tabela de skills Charge do hook e o `bin64\charge_skills.txt` (`skill_id total_ms`), gravado
+pelo `bard_skills_58.py`.
+
+Testado em jogo com a Fiery Descant G1:
+- disparo com 1,5 s sai o estagio 1;
+- disparo com 9,8 s sai o estagio 3;
+- sem o segundo aperto, a carga cancela no fim;
+- um golpe que interrompe libera o proximo aperto para uma carga nova.
+
+Falta mostrar os estagios na barra de cast: as tres bolinhas do 5.8 nao existem na barra do 5.0.
+
 ## Pendências conhecidas
 
 - **Requisito de arma das skills** (`required_harp`, `0xB2FF50`): as skills do Bard (niveis 1-65,
   `bard_skills_58.py`) ja estao no cliente e no servidor, sem exigir a harpa.
-- **Skills Charge do Bard** (Fiery Descant, Soothing Hymn, Dragon Song, Blazing Requiem, Fiery
-  Requiem, Ba_SongofGravity): o cliente 5.0 nao tem nenhuma skill Charge nem o
-  `client_skill_charge.xml` do 5.8.
+- **Skills Charge do Bard**: so a Fiery Descant G1 entrou (`CARGA` no `bard_skills_58.py`).
+  Faltam as outras 27 familias (Fiery Descant G2-G12, Soothing Hymn, Dragon Song, Blazing/Fiery
+  Requiem, Ba_SongofGravity) e as bolinhas dos estagios na barra de cast.
 - **Dedos.** O esqueleto do 5.8 tem cinco dedos de três falanges e o do 5.0 três de duas, com
   outra pose de referência. As animações de harpa precisam de conversão nas trilhas de dedo;
   há duas variantes em avaliação, nenhuma fixada.

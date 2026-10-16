@@ -29,9 +29,13 @@ static void QunaApplyBalance(const BYTE* body, int length) {
     InterlockedExchange64(s_qunaFree, 0);
 }
 
+// Other fixes that need to see decrypted server packets (charge_fix.h) set this observer.
+static void (*s_qunaServerPacketObserver)(const BYTE*, int) = nullptr;
+
 static INT_PTR __fastcall QunaDispatchPacket(void* connection, int state, BYTE* body, int length) {
     __try {
         QunaApplyBalance(body, length);
+        if (s_qunaServerPacketObserver) s_qunaServerPacketObserver(body, length);
     }
     __except (EXCEPTION_EXECUTE_HANDLER) {
     }

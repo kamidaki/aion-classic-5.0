@@ -113713,6 +113713,58 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="SongofInjury01"/>
 	</skill_template>
+	<skill_template skill_id="22095" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991165" delayId="1267" stack="AR_SONGOFBATTLE_1_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="CHARGE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="26" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+			<skillcharge value="1012"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="129" delta="6" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="26" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22096" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991167" delayId="1267" stack="AR_SONGOFBATTLE_2_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="43" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="251" delta="12" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="43" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22097" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991169" delayId="1267" stack="AR_SONGOFBATTLE_3_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="5000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="69" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="548" delta="25" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="69" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
 	<skill_template skill_id="22131" name_en="Sonic Splash" name_pt="Sonic Splash" nameId="1991127" delayId="1268" stack="BA_SONGOFTIDALWAVE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<startconditions>

@@ -31530,6 +31530,7 @@
 	<skill name="ar_songofcold_g1" skillId="22016" skillLevel="1" minLevel="3" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofheal_g1" skillId="22134" skillLevel="1" minLevel="5" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofair_g2" skillId="22204" skillLevel="1" minLevel="6" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ar_songofbattle_1_g1" skillId="22095" skillLevel="1" minLevel="7" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofcold_g2" skillId="22017" skillLevel="1" minLevel="8" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songoffire_g1" skillId="22029" skillLevel="1" minLevel="10" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofheal_g2" skillId="22135" skillLevel="1" minLevel="10" race="PC_ALL" classId="BARD" autoLearn="true" />
