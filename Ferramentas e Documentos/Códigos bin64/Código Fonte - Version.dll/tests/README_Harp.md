@@ -272,14 +272,51 @@ e instale a `version.dll` compilada em `bin64`; o script guarda backups `.bak_el
 PAKs alterados. Se ja foi instalada uma malha feminina anterior, execute
 `teste_harpa_58.py --ajusta-harpa-previa` para trocar somente essa malha.
 
-Falta para a classe: roupa oficial da previa (`rb_*_login_*_02` do 5.8), classe 20 no pacote de
-criacao, skills e habilidade de equipar harpa
-(`required_harp`), e 4 texturas e o `MON_Kaisinel_MRT.V3.ShockwaveTrap`, que nao existem nem no
-5.8 limpo.
+**Voltar da selecao para a criacao** (f276ae046). A janela de criacao so e montada na primeira vez
+(`0x1EF120` roda 1x), mas os carregadores de ponto e camera (`0x99D1E0`/`0x99C9F0`) rodam a cada
+entrada e regravam os dados da posicao 10 com os da Luminess por cima da plataforma do Bard, com o
+modo Bard ainda ligado (provado por log: create init 1x, loaders de novo com o modo ligado). Com a
+plataforma trocada, os ganchos dos carregadores guardam o valor relido como dado da Luminess e
+repoem o do Bard (`HarpKeepPlatform`).
+
+**Criacao.** O pacote de criacao ja sai com a classe 20: os personagens criados pela tela ficam
+`BARD` no banco. O resto e do servidor (`player_initial_data` e o `startingPlayerClass` do XSD) e
+dos dados (set Novice Songweaver), ver `teste_harpa_58.py`.
+
+Falta para a classe: roupa oficial da previa (`rb_*_login_*_02` do 5.8), habilidade de equipar
+harpa (`required_harp`), e 4 texturas e o `MON_Kaisinel_MRT.V3.ShockwaveTrap`, que nao existem nem
+no 5.8 limpo.
+
+### Em investigacao: itens vermelhos e barra inicial
+
+Para o Bard, o cliente mostra em vermelho (proibido) todo item que nao esta equipado, mas deixa
+equipar e usar (o servidor permite). Os itens do 5.0 dizem as classes por um campo por classe
+(`warrior` ... `orchestrator`, `lumines`, `engineer`, `gunner`); o 5.8 tem tambem `artist` e
+`bard`. Tabelas por classe do `Game.dll` em que 17 e 20 estao vazios (nenhuma delas e, ate aqui,
+a que monta a mascara de classes do item):
+
+| Endereco | O que e | 17 / 20 |
+|---|---|---|
+| `0x366340` / `0x366490` | id -> nome em minusculas (char/wchar_t) | ja tem hook: `artist` / `bard` |
+| `0x9C82A0` | nome -> bit (`1 << classe`) para os presets de aparencia (`face_color`...) | sem bit |
+| `0x99C700` | switch das posicoes da tela de criacao (`CLASS_Position_*`) | sem caso |
+| `0xC481xx` | lista de ponteiros para os nomes em maiusculas (`WARRIOR`...`RUNEBLADE`) | ausentes |
+
+Como `0x366340` ja devolve `bard` e o item continua vermelho, o leitor dos campos de classe do
+`client_items` nao passa por ele. Falta achar esse leitor; a correcao sera ensinar a ele os campos
+`artist`/`bard` e por esses campos nos itens com os valores do 5.8.
+
+A barra de atalhos de um personagem novo vem do cliente (o servidor nao manda atalhos na criacao)
+e, para a classe 20, sai com as skills da Luminess: outra tabela por classe com a posicao 20
+copiada da vizinha, ainda nao localizada.
 
 ## Pendências conhecidas
 
-- **Requisito de arma das skills** (`required_harp`, `0xB2FF50`): fica para as skills do Bard.
+- **Requisito de arma das skills** (`required_harp`, `0xB2FF50`): as skills do Bard (niveis 1-65,
+  `bard_skills_58.py`) ja estao no cliente e no servidor, sem exigir a harpa.
+- **Skills Charge do Bard** (Fiery Descant, Soothing Hymn, Dragon Song, Blazing Requiem, Fiery
+  Requiem, Ba_SongofGravity): o cliente 5.0 nao tem nenhuma skill Charge nem o
+  `client_skill_charge.xml` do 5.8.
 - **Dedos.** O esqueleto do 5.8 tem cinco dedos de três falanges e o do 5.0 três de duas, com
   outra pose de referência. As animações de harpa precisam de conversão nas trilhas de dedo;
   há duas variantes em avaliação, nenhuma fixada.
