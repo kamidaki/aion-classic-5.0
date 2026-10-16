@@ -761,6 +761,7 @@
 			<xs:enumeration value="PRIEST" />
 			<xs:enumeration value="ARTIST" />
 			<xs:enumeration value="ENGINEER" />
+			<xs:enumeration value="BARD" />
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="playerClass">

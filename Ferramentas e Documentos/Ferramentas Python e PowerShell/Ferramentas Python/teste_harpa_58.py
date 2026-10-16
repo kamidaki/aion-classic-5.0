@@ -44,6 +44,7 @@ import shutil
 import struct
 import sys
 import zlib
+from functools import lru_cache
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import aion_pak  # noqa: E402
@@ -785,6 +786,175 @@ def do_58(pasta, nomes):
     return achados
 
 
+# --------------------------------------------------------------------------------------------
+# Set inicial do Bard (Novice Songweaver): clone do set Novice Luminess (atributos) com a malha, o
+# icone e as cores do set Novice Sorcerer. O Lumines01a so tem corpo feminino (LFRB_/DFRB_, nem o 5.8
+# tem o masculino) e o item e gender_permitted female: o Bard masculino ficava invisivel. A malha
+# RB_R105/RB_C002 do Sorcerer e "all". Ids livres no cliente e no servidor.
+# --------------------------------------------------------------------------------------------
+SET_INICIAL_DO_BARD = (  # (Novice Luminess, Novice Sorcerer = malha/icone/cor, id novo)
+    (110101549, 110101547, 110199549), (113101435, 113101433, 113199435), (112101376, 112101374, 112199376),
+    (111101417, 111101415, 111199417), (114101465, 114101463, 114199465), (125003451, 125003449, 125101451))
+ID_BASE_STRING_DO_SET = 1991960
+ARQUIVO_STRINGS_DE_ITEM = "strings/client_strings_item2.xml"
+#: Campos que vem do Sorcerer (o que ele nao tem sai do clone): a tunica da Luminess tem visual_slot
+#: "torso leg" (vestido, ocupa a perna) e escondia a calca do Bard; a do Sorcerer nao tem.
+CAMPOS_DO_MOLDE = ("mesh", "icon_name", "gender_permitted", "default_color_m", "default_color_f", "visual_slot")
+PLAYER_INITIAL_DATA = (
+    r"Código Fonte - Emulador\game-server\data\static_data\player_initial_data.xml",
+    r"Emulador - Produto Final\GameServer\data\static_data\player_initial_data.xml",
+)
+
+
+def _campos_do_item(xml, id_item):
+    m = re.search(r"<client_item>\s*<id>%d</id>.*?</client_item>" % id_item, xml, re.S)
+    if not m:
+        raise ValueError(f"item {id_item} nao esta no client_items")
+    return dict(re.findall(r"<([a-z_0-9]+)>([^<]*)</\1>", m.group(0)))
+
+
+@lru_cache(maxsize=None)
+def _itens_originais():
+    """O client_items.xml original (backup) do pak da Europa, decodificado."""
+    import aion_bxml
+    caminho = os.path.join(CLIENTE, r"data\europe\Items\Items.pak")
+    origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
+    d, idx = aion_pak.abre(origem)
+    return aion_bxml.decodifica(aion_pak.le(d, next(e for e in idx if e.nome.lower() == "client_items.xml")))
+
+
+@lru_cache(maxsize=None)
+def STRINGS_DO_SET():
+    """Nome de cada peca: o da peca da Luminess no 5.0, com Songweaver (STR_CLASS_NAME_BARD) no lugar."""
+    import aion_bxml
+    caminho = os.path.join(CLIENTE, r"l10n\ENG\Data\Data.pak")
+    origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
+    d, idx = aion_pak.abre(origem)
+    texto = aion_bxml.decodifica(aion_pak.le(d, next(e for e in idx if e.nome.lower() == ARQUIVO_STRINGS_DE_ITEM)))
+    saida = []
+    for k, (lum, _sor, _novo) in enumerate(SET_INICIAL_DO_BARD):
+        desc = _campos_do_item(_itens_originais(), lum)["desc"]
+        corpo = re.search(r"<name>%s</name>\s*<body>([^<]*)</body>" % re.escape(desc), texto, re.I).group(1)
+        if "Luminess’" not in corpo:
+            raise ValueError(f"{desc}: nome sem 'Luminess’': {corpo}")
+        nome = desc.replace("_LUMINES_", "_BARD_")
+        corpo = corpo.replace("Luminess’", "Songweaver’s")
+        saida.append((ARQUIVO_STRINGS_DE_ITEM, ID_BASE_STRING_DO_SET + k, nome,
+                      {lingua: corpo for lingua in ("ENG", "DEU", "FRA", "BRA")}))
+    return tuple(saida)
+
+
+def _troca_do_set():
+    """{id novo: (id base, {campo: valor})} do client_item de cada peca."""
+    xml = _itens_originais()
+    textos = {nome: id_string for _a, id_string, nome, _t in STRINGS_DO_SET()}
+    saida = {}
+    for lum, sor, novo in SET_INICIAL_DO_BARD:
+        base, molde = _campos_do_item(xml, lum), _campos_do_item(xml, sor)
+        desc = base["desc"].replace("_LUMINES_", "_BARD_")
+        assert desc in textos
+        troca = {"id": str(novo), "name": base["name"].replace("_lumines_", "_bard_"), "desc": desc}
+        troca.update({c: molde.get(c) for c in CAMPOS_DO_MOLDE if c in molde or c in base})  # None = tirar
+        saida[novo] = (lum, troca)
+    return saida
+
+
+def clona_item(bxml, id_base, id_novo, troca):
+    """`client_items.xml` binario com um clone do item `id_base`, trocando os campos de `troca`
+    (valor None tira o campo do clone)."""
+    tam, o = _varint(bxml, 1)
+    tab = _Tabela(bxml[o:o + tam])
+    o += tam
+    ini_raiz = o
+    _nome, o = _varint(bxml, o)
+    flags, o = _varint(bxml, o)
+    if flags != 4:
+        raise ValueError(f"raiz com flags {flags}, esperava so filhos")
+    pos_contador = o
+    quantos, o = _varint(bxml, o)
+    base, ids, posicoes = None, [], []
+    for _ in range(quantos):
+        posicoes.append(o)
+        item, o = _le_elemento(bxml, o)
+        id_item = next((int(tab.texto(t)) for n, t, _a, _f in item[3] if tab.texto(n) == "id"), None)
+        ids.append(id_item)
+        if id_item == id_base:
+            base = item
+        if id_item == id_novo:
+            raise ValueError(f"o id {id_novo} ja existe neste arquivo")
+    if base is None:
+        raise ValueError(f"item-base {id_base} nao encontrado")
+    faltam = set(troca)
+    filhos = []
+    for nome, texto, atributos, netos in base[3]:
+        n = tab.texto(nome)
+        if n in troca:
+            faltam.discard(n)
+            if troca[n] is None:
+                continue
+            texto = tab.acrescenta(troca[n])
+        filhos.append((nome, texto, atributos, netos))
+    faltam = {c for c in faltam if troca[c] is not None}
+    if faltam:
+        raise ValueError(f"item-base {id_base} sem os campos {sorted(faltam)}")
+    novo = (base[0], base[1], base[2], filhos)
+    ordenado = all(a <= b for a, b in zip(ids, ids[1:]))
+    corte = len(bxml)
+    if ordenado:
+        corte = next((pos for pos, i in zip(posicoes, ids) if i > id_novo), len(bxml))
+    saida = bytearray([0x80])
+    saida += _grava_varint(len(tab.bruto)) + tab.bruto
+    saida += bxml[ini_raiz:pos_contador] + _grava_varint(quantos + 1)
+    saida += bxml[pos_contador + len(_grava_varint(quantos)):corte]
+    saida += _grava_elemento(novo)
+    saida += bxml[corte:]
+    return bytes(saida)
+
+
+def aplica_set_do_bard_servidor():
+    """item_template de cada peca (clone da Luminess, com o nome novo) e o BARD do player_initial_data."""
+    textos = {nome: (id_string, t["ENG"]) for _a, id_string, nome, t in STRINGS_DO_SET()}
+    for rel in TEMPLATES:
+        caminho = os.path.join(REPO, rel)
+        with open(caminho, "rb") as f:
+            texto = f.read().decode("utf-8")
+        for novo, (lum, troca) in _troca_do_set().items():
+            texto = re.sub(_BLOCO % novo, "", texto, flags=re.S)  # o clone e refeito a cada vez
+            m = re.search(_BLOCO % lum, texto, re.S)
+            id_string, nome_en = textos[troca["desc"]]
+            bloco = m.group(0).replace(f'id="{lum}"', f'id="{novo}"', 1)
+            for atributo, valor in (("name_en", nome_en), ("name_pt", nome_en), ("cName", troca["name"]),
+                                    ("desc", str(id_string))):
+                bloco, n = re.subn(r'\b%s="[^"]*"' % atributo, f'{atributo}="{valor}"', bloco, count=1)
+                if n != 1:
+                    raise ValueError(f"{rel}: o template {lum} nao tem {atributo}")
+            texto = texto[:m.end()] + bloco + texto[m.end():]
+        with open(caminho, "wb") as f:
+            f.write(texto.encode("utf-8"))
+        print(f"OK  {rel}: +{len(SET_INICIAL_DO_BARD)} pecas do set Novice Songweaver")
+    for rel in PLAYER_INITIAL_DATA:
+        caminho = os.path.join(REPO, rel)
+        with open(caminho, encoding="utf-8", newline="") as f:
+            texto = f.read()
+        eol = "\r\n" if "\r\n" in texto[:4096] else "\n"
+        texto = re.sub(r"\t<!-- Bard: .*?</player_data>" + re.escape(eol), "", texto, flags=re.S)
+        lum = re.search(r'\t<player_data class="LUMINESS">.*?</player_data>', texto, re.S).group(0)
+        bard = lum.replace('class="LUMINESS"', 'class="BARD"')
+        bard = bard.replace('<item id="102600408" count="1" />',
+                            f'<item id="{VARIANTES[0][1]}" count="1" /> <!-- harpa de teste 5.8 (tipo 19) -->')
+        for lum_id, _sor, novo in SET_INICIAL_DO_BARD:
+            assert f'<item id="{lum_id}" count="1" />' in bard, lum_id
+            bard = bard.replace(f'<item id="{lum_id}" count="1" />', f'<item id="{novo}" count="1" />')
+        bloco = ("\t<!-- Bard: como a Luminess (a posicao 10 da tela de criacao), com a harpa no lugar da arma "
+                 "e o set Novice Songweaver (malha do Sorcerer, os dois sexos); o 5.8 nao traz tabela de itens "
+                 "iniciais no cliente. -->" + eol + bard + eol)
+        fim = texto.rindex("</player_initial_data>")
+        texto = texto[:fim] + bloco + texto[fim:]
+        with open(caminho, "w", encoding="utf-8", newline="") as f:
+            f.write(texto)
+        print(f"OK  {rel}: BARD com a harpa e o set Novice Songweaver")
+
+
 def aplica():
     sys.setrecursionlimit(10000)
     icone = do_58(r"Data\Items", [ICONE + ".dds"])
@@ -799,6 +969,9 @@ def aplica():
         for id_base, id_novo, nome, mesh in [v[:4] for v in VARIANTES] + list(ITENS_DA_PREVIA):
             novo, n, ordenado = acrescenta_item(novo, id_base, id_novo, nome, mesh)
             quantos = n if quantos is None else quantos
+        set_do_bard = _troca_do_set()
+        for id_novo, (id_base, troca) in set_do_bard.items():  # na mesma gravacao (o pak sai do backup)
+            novo = clona_item(novo, id_base, id_novo, troca)
         _backup(caminho)
         if origem != caminho:
             shutil.copy2(origem, caminho)
@@ -813,10 +986,14 @@ def aplica():
         d2, idx2 = aion_pak.abre(caminho)
         xml = aion_bxml.decodifica(aion_pak.le(d2, next(e for e in idx2 if e.nome == entrada.nome)))
         novos_itens = [v[:4] for v in VARIANTES] + list(ITENS_DA_PREVIA)
-        assert xml.count("<client_item>") == quantos + len(novos_itens)
+        assert xml.count("<client_item>") == quantos + len(novos_itens) + len(set_do_bard)
         for _b, id_novo, _n, mesh in novos_itens:
             assert f"<id>{id_novo}</id>" in xml and f"<mesh>{mesh}</mesh>" in xml
-        print(f"OK  {rel}: {quantos} -> {quantos + len(novos_itens)} itens (ordenado por id: {ordenado})")
+        for id_novo, (_b, troca) in set_do_bard.items():
+            campos = _campos_do_item(xml, id_novo)
+            assert all(campos.get(c) == v for c, v in troca.items()), (rel, id_novo)
+        print(f"OK  {rel}: {quantos} -> {quantos + len(novos_itens) + len(set_do_bard)} itens "
+              f"(harpa e set Novice Songweaver; ordenado por id: {ordenado})")
 
     for rel, nomes in ((PAK_MESH, MESHES + MESHES_DA_PREVIA), (PAK_TEXTURA, TEXTURAS + TEXTURAS_DA_PREVIA)):
         caminho = os.path.join(CLIENTE, rel)
@@ -850,6 +1027,7 @@ def aplica():
             tira_template(caminho, id_novo)  # o clone e refeito a cada vez, a partir da base
             r = acrescenta_template(caminho, id_base, id_novo, nome, nome_pt)
             print(f"OK  {rel}: {id_novo} {r}")
+    aplica_set_do_bard_servidor()
 
 
 def aplica_correcao_harpa_previa():
@@ -2697,7 +2875,8 @@ def aplica_plataforma_criacao():
 def _strings_por_arquivo(lingua):
     import bard_skills_58  # textos das skills do Bard (lote atual), no mesmo pak das outras strings
     por_arquivo = {}
-    for arquivo, id_string, nome, textos in STRINGS + tuple(bard_skills_58.STRINGS_DAS_SKILLS()):
+    for arquivo, id_string, nome, textos in STRINGS + tuple(bard_skills_58.STRINGS_DAS_SKILLS()) \
+            + tuple(bard_skills_58.STRINGS_DOS_NPCS()) + STRINGS_DO_SET():
         por_arquivo.setdefault(arquivo, []).append((id_string, nome, textos[lingua]))
     return por_arquivo
 

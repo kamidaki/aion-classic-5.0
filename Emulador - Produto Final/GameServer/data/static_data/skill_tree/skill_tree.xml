@@ -31547,6 +31547,7 @@
 	<skill name="p_statboostmagicloffense_g1" skillId="117" skillLevel="1" minLevel="10" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofair_g3" skillId="22205" skillLevel="1" minLevel="11" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofcold_g3" skillId="22018" skillLevel="1" minLevel="13" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ar_songofrest_g1" skillId="22201" skillLevel="1" minLevel="13" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songoffire_g2" skillId="22030" skillLevel="1" minLevel="15" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofheal_g3" skillId="22136" skillLevel="1" minLevel="15" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofrelax_g2" skillId="22168" skillLevel="1" minLevel="15" race="PC_ALL" classId="BARD" autoLearn="true" />
@@ -31568,6 +31569,7 @@
 	<skill name="ar_songofrelax_g3" skillId="22169" skillLevel="1" minLevel="20" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofshield_g3" skillId="22228" skillLevel="1" minLevel="20" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="aromatherapy_g3" skillId="1826" skillLevel="1" minLevel="20" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ba_lullaby_g1" skillId="22316" skillLevel="1" minLevel="20" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_magicaldestruction_g1" skillId="22367" skillLevel="1" minLevel="20" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofadvance_g1" skillId="22333" skillLevel="1" minLevel="20" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofanger_g3" skillId="22254" skillLevel="1" minLevel="20" race="PC_ALL" classId="BARD" autoLearn="true" />

@@ -338,4 +338,30 @@
 			<item id="169300007" count="100" /> <!-- Power Shard -->
 		</items>
 	</player_data>
-	</player_initial_data>
+		<!-- Bard: como a Luminess (a posicao 10 da tela de criacao), com a harpa no lugar da arma e o set Novice Songweaver (malha do Sorcerer, os dois sexos); o 5.8 nao traz tabela de itens iniciais no cliente. -->
+	<player_data class="BARD">
+		<items>
+			<item id="182400001" count="0" />
+			<item id="182500000" count="0" />
+			<item id="100599901" count="1" /> <!-- harpa de teste 5.8 (tipo 19) -->
+			<item id="110199549" count="1" />
+			<item id="113199435" count="1" />
+			<item id="112199376" count="1" />
+			<item id="111199417" count="1" />
+			<item id="114199465" count="1" />
+			<item id="125101451" count="1" />
+			<item id="123001244" count="1" />
+			<item id="120015075" count="1" />
+			<item id="122001597" count="1" />
+			<item id="121001325" count="1" />
+			<item id="162000002" count="20" /> <!-- Minor Life Potion -->
+			<item id="162000007" count="20" /> <!-- Minor Mana Potion -->
+			<item id="162000012" count="20" /> <!-- Minor Life Serum -->
+			<item id="162000022" count="20" /> <!-- Lesser Healing Potion -->
+			<item id="164000074" count="20" /> <!-- Lesser Running Scroll -->
+			<item id="164000071" count="20" /> <!-- Lesser Courage Scroll -->
+			<item id="164000132" count="20" /> <!-- Lesser Awakening Scroll -->
+			<item id="169300007" count="100" /> <!-- Power Shard -->
+		</items>
+	</player_data>
+</player_initial_data>

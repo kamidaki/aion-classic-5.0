@@ -128,7 +128,9 @@ LOTE = ("P_EQUIP_EnhancedHarp_G1", "P_EQUIP_Harp_G1", "Ar_SongofAir_G1", "Ar_Son
         "Ba_SongofShock_G9", "Ba_SongofTidalwave_G3", "Ar_SongofFire_G12", "Ar_SongofHeal_G13",
         "Ar_SongofRelax_G12", "Ar_Songofshield_G12", "Ba_Sanctuary_G1", "Ba_SongofAnger_G12",
         "Ba_SongofDelayDamage_G12", "Ba_SongofEagle_G9", "Ba_SongofLand_G11", "Ba_SongofMinddamage_G8",
-        "Ba_SongofPain_G6", "Ba_SongofWarmth_G6", "Ba_SongofWind_G7")
+        "Ba_SongofPain_G6", "Ba_SongofWarmth_G6", "Ba_SongofWind_G7",
+        # Requiem e Freestyle: o Deform transforma o alvo nos NPCs de NPCS_DE_DEFORM (--npcs)
+        "Ar_SongofRest_G1", "Ba_Lullaby_G1")
 
 
 def _dependencias():
@@ -454,18 +456,23 @@ def _corpo_wpn_mastery(d):
 #: skill do debuff pelo nome); statup com reserved6=1/reserved9=1: FI_BoostWing_G1 (335).
 EFEITOS_MANUAIS = {"Shield", "StatUp", "MPHeal_Instant", "MpHeal", "BoostHealEffect", "DelayedSkill",
                    "FPHeal_Instant", "Resurrect", "BoostSkillCastingTime", "Heal_Instant", "Rebirth",
-                   "DispelDebuff", "DeboostHealAmount"}
+                   "DispelDebuff", "DeboostHealAmount", "Sleep", "Deform", "StatDown"}
 #: Token do StatUp -> (stat, sinal). O sinal e o que o 5.0 usa: attackDelay positivo no cliente vira
 #: ATTACK_SPEED negativo em 351 de 372 statup oficiais (menos atraso = mais rapido); speed, 366 de 366 igual.
 STAT_DO_CLIENTE = {"pvpdefendratio": ("PVP_DEFEND_RATIO", 1), "flyspeed": ("FLY_SPEED", 1),
-                   "speed": ("SPEED", 1), "attackdelay": ("ATTACK_SPEED", -1), "maxhp": ("MAXHP", 1)}
+                   "speed": ("SPEED", 1), "attackdelay": ("ATTACK_SPEED", -1), "maxhp": ("MAXHP", 1),
+                   # SC_PandemoniumProtect_G1 e RA_ParalyzeArrow_G1: as quatro resistencias com o mesmo valor
+                   "elementaldefendall": (("WATER_RESISTANCE", "WIND_RESISTANCE", "FIRE_RESISTANCE",
+                                           "EARTH_RESISTANCE"), 1),
+                   "magicalresist": ("MAGICAL_RESIST", 1)}
 #: reserved3 do BoostSkillCastingTime: PR_SagesWisdom_G1 (none), CH_NightWish_G1 (Heal), RA_TrapperMode_G1.
 CASTING_DO_CLIENTE = {"none": "BOOST_CASTING_TIME", "heal": "BOOST_CASTING_TIME_HEAL",
                       "summontrap": "BOOST_CASTING_TIME_TRAP"}
 #: heal_instant: KN_LayHand_G1 (428); rebirth: PR_ReviveHand_G1 (1041, reserved6 = debuff pelo nome).
 #: Elemento do cliente -> SkillElement do servidor (Air vira WIND, como no RA_RestoreWing_G1).
 ELEMENTO = {"air": "WIND"}
-_ENUM = {"targetorme": "TARGETORME", "debuffphy": "DEBUFF_PHYSICAL"}
+_ENUM = {"targetorme": "TARGETORME", "debuffphy": "DEBUFF_PHYSICAL",
+         "debuffmen": "DEBUFF_MENTAL"}  # KN_AbsoluteScare_G1 (540)
 
 
 def _enum(v):
@@ -478,7 +485,7 @@ def _efeitos(d):
 
 #: Os que o gerador reprova; StatUp e MPHeal_Instant ele faz sozinho, so entram aqui junto deles.
 REPROVADOS_NO_GERADOR = {"Shield", "MpHeal", "BoostHealEffect", "DelayedSkill", "FPHeal_Instant", "Resurrect",
-                         "BoostSkillCastingTime", "Rebirth", "DeboostHealAmount"}
+                         "BoostSkillCastingTime", "Rebirth", "DeboostHealAmount", "Sleep"}
 
 
 def _tipo(valor):
@@ -503,6 +510,11 @@ def _efeito_manual(d, k, ids):
     comum.append(("e", k))
     if g("basiclv") != "0":
         comum.append(("basiclvl", g("basiclv")))
+    # Acerto e critico do efeito, como o 5.0 escreve (RA_ParalyzeArrow_G1: acc_mod2 50 -> accmod2="50").
+    if g("acc_mod2") != "0":
+        comum.append(("accmod2", g("acc_mod2")))
+    if g("critical_prob_mod2") != "0":
+        comum.append(("critprobmod2", g("critical_prob_mod2")))
     if g("noresist") == "1":
         comum.append(("noresist", "true"))
     if g("reserved10", "") and tipo not in ("Shield",):
@@ -517,22 +529,32 @@ def _efeito_manual(d, k, ids):
         if g("reserved_cond1", ""):
             pares += [("hittype", g("reserved_cond1").upper()), ("hittypeprob2", g("reserved_cond1_prob2", "1000"))]
         return f"\t\t\t<shield {attrs(pares + hop)}/>\n"
-    if tipo == "StatUp":
+    if tipo in ("StatUp", "StatDown"):
         # 1o stat: reserved13/reserved2/reserved6; 2o: reserved14/reserved4/reserved7 (FI_BerserkStance_G1).
+        # No StatDown o 5.0 escreve o valor negado (magicalresist: 26 de 26; elementaldefendall: 44 de 44).
+        negado = -1 if tipo == "StatDown" else 1
         changes = ""
         for campo_stat, campo_valor, campo_pct in (("reserved13", "reserved2", "reserved6"),
                                                    ("reserved14", "reserved4", "reserved7")):
             if not g(campo_stat, ""):
                 continue
-            stat, sinal = STAT_DO_CLIENTE[g(campo_stat).lower()]
+            stats, sinal = STAT_DO_CLIENTE[g(campo_stat).lower()]
             func = "PERCENT" if g(campo_pct) == "1" else "ADD"
-            valor = int(g(campo_valor)) * sinal
-            changes += f"\t\t\t\t<change stat=\"{stat}\" func=\"{func}\" value=\"{valor}\""
-            if g("reserved9") == "1":
-                changes += ">\n\t\t\t\t\t<conditions>\n\t\t\t\t\t\t<onfly/>\n\t\t\t\t\t</conditions>\n\t\t\t\t</change>\n"
-            else:
-                changes += "/>\n"
-        return f"\t\t\t<statup {attrs(comum + hop)}>\n{changes}\t\t\t</statup>\n"
+            valor = int(g(campo_valor)) * sinal * negado
+            for stat in ((stats,) if isinstance(stats, str) else stats):
+                changes += f"\t\t\t\t<change stat=\"{stat}\" func=\"{func}\" value=\"{valor}\""
+                if g("reserved9") == "1":
+                    changes += ">\n\t\t\t\t\t<conditions>\n\t\t\t\t\t\t<onfly/>\n\t\t\t\t\t</conditions>\n\t\t\t\t</change>\n"
+                else:
+                    changes += "/>\n"
+        tag = tipo.lower()
+        return f"\t\t\t<{tag} {attrs(comum + hop)}>\n{changes}\t\t\t</{tag}>\n"
+    if tipo == "Sleep":  # RA_ParalyzeArrow_G1 (695)
+        return f"\t\t\t<sleep {attrs(comum + hop)}/>\n"
+    if tipo == "Deform":
+        # WI_CursedTree_G1 (1454): model = id do NPC citado pelo nome (reserved9), type = reserved8.
+        pares = [("model", NPCS_DE_DEFORM[g("reserved9")]), ("type", g("reserved8", "None").upper())] + comum
+        return f"\t\t\t<deform {attrs(pares + hop)}/>\n"
     if tipo == "BoostSkillCastingTime":
         stat = CASTING_DO_CLIENTE[g("reserved3", "none").lower()]
         return (f"\t\t\t<boostskillcastingtime {attrs(comum + hop)}>\n"
@@ -708,6 +730,193 @@ def aplica_servidor(convertidas, linhas, textos):
         print(f"OK  {base}: +{len(novos)} templates minimos, +{len(linhas)} linhas {CLASSE} na arvore")
 
 
+# --------------------------------------------------------------------------------------------
+# NPCs de Deform: Requiem (Ar_SongofRest_G1) e Freestyle (Ba_Lullaby_G1) transformam o alvo num NPC
+# do 5.8 (a dancarina, Monster/PolyDancer). O cliente acha o NPC pelo nome (reserved9 do Deform); o
+# servidor, pelo id (<deform model=>), como o WI_CursedTree_G1 do 5.0 (NPC 201046, com template).
+# Os ids do 5.8 (201081/201082) sao de monstros de Teva no 5.0: os NPCs ganham ids livres.
+# O modelo e o polymorph do pinguim LM (texturas pc_polymorph/penguinlm*, que o 5.0 ja tem) com uma
+# animacao de PC (LM_Nidle_sleepwalking1/2), que so o 5.8 tem.
+# --------------------------------------------------------------------------------------------
+NPCS_DE_DEFORM = {"Ar_SongofRest_G1_NPC": 299901, "Ba_Lullaby_G1_NPC": 299902}
+ID_BASE_STRING_NPC = 1991900  # faixa propria: nao desloca os ids dos textos das skills
+PAK_NPCS_58 = r"Data\Npcs\Npcs.pak"
+#: As tres copias gerais e as tres da Europa: o cliente usa a de data\europe (so com as gerais o NPC
+#: nao entrava na tabela de NPCs do tables.dmp e o Deform nao mostrava modelo), como nos itens.
+PAKS_DE_NPC = (r"data\npcs\npcs.pak", r"data\npcs\special\special.pak", r"data\npcs\special2\special2.pak",
+               r"data\europe\Npcs\Npcs.pak", r"data\europe\Npcs\special\special.pak",
+               r"data\europe\Npcs\special2\special2.pak")
+#: Paks que nenhum outro passo regrava (o LM 019/020 sao das animacoes de classe e de harpa).
+PAK_MODELO_NPC = r"objects\monster\Mesh_Meshes_037.pak"
+PAK_ANIMACAO_NPC = r"objects\pc\lm\animation\Animation_Animations_018.pak"
+REPO_NPCS = os.path.join(T.REPO, "Ferramentas e Documentos", "Client e Coletas", "Client 5.0 - Dados Extraidos",
+                         "data", "npcs")
+
+
+@lru_cache(maxsize=None)
+def _npcs_58():
+    """{nome: bloco <npc_client> do 5.8} dos NPCs de deform."""
+    d, idx = aion_pak.abre(os.path.join(T.LIVE_CLIENTE, PAK_NPCS_58))
+    texto = aion_bxml.decodifica(aion_pak.le(d, next(e for e in idx if e.nome.lower() == "client_npcs_npc.xml")))
+    saida = {}
+    for nome in NPCS_DE_DEFORM:
+        m = re.search(r"  <npc_client>\s*<id>\d+</id>\s*<name>%s</name>.*?</npc_client>" % re.escape(nome), texto, re.S)
+        if not m:
+            raise ValueError(f"{nome} nao esta no client_npcs do 5.8")
+        saida[nome] = m.group(0)
+    return saida
+
+
+def npcs_convertidos():
+    """{nome: texto do <npc_client> no formato do 5.0}: id novo, so as tags que o 5.0 tem."""
+    texto50 = open(os.path.join(REPO_NPCS, "client_npcs.xml"), encoding="utf-8").read()
+    tags50 = set(re.findall(r"<([a-z0-9_]+)>", texto50))
+    saida = {}
+    for nome, bloco in _npcs_58().items():
+        bloco = re.sub(r"<id>\d+</id>", f"<id>{NPCS_DE_DEFORM[nome]}</id>", bloco, count=1)
+        linhas = [l for l in bloco.split("\n")
+                  if not (re.match(r"\s*<([a-z0-9_]+)>[^<]*</\1>\s*$", l)
+                          and re.match(r"\s*<([a-z0-9_]+)>", l).group(1) not in tags50)]
+        saida[nome] = "\n".join(linhas)
+    return saida
+
+
+@lru_cache(maxsize=None)
+def STRINGS_DOS_NPCS():
+    """Os textos (desc) dos NPCs de deform, do client_strings_npc do 5.8 em ingles."""
+    d, idx = aion_pak.abre(STRINGS_ENG[0])
+    t = aion_bxml.decodifica(aion_pak.le(d, next(e for e in idx if e.nome.lower() == "strings/client_strings_npc.xml")))
+    eng = {m.group(1).lower(): m.group(2) for m in re.finditer(r"<name>([^<]+)</name>\s*<body>(.*?)</body>", t, re.S)}
+    nomes = []
+    for bloco in _npcs_58().values():
+        desc = re.search(r"<desc>([^<]+)</desc>", bloco).group(1)
+        if desc not in nomes:
+            nomes.append(desc)
+    return tuple(("strings/client_strings_npc.xml", ID_BASE_STRING_NPC + k, nome,
+                  {lingua: eng[nome.lower()].replace("\r\n", "\n") for lingua in ("ENG", "DEU", "FRA", "BRA")})
+                 for k, nome in enumerate(nomes))
+
+
+def _arquivos_do_modelo():
+    """({nome: bytes} do modelo, {nome: bytes} das animacoes), do 5.8, prontos para o 5.0."""
+    import glob
+    modelo = {}
+    for p in glob.glob(os.path.join(T.LIVE_CLIENTE, "Objects", "Monster", "Mesh_Meshes_*.pak")):
+        d, idx = aion_pak.abre(p)
+        for e in idx:
+            if e.nome.lower().startswith("polydancer/") and e.nome not in modelo:
+                dados = aion_pak.le(d, e)
+                if e.nome.lower().endswith(".cal"):
+                    # O 5.0 guarda as animacoes de PC em PC\, o 5.8 em PC2\ (como nas animacoes de classe).
+                    dados = dados.replace(b"PC2\\", b"PC\\")
+                modelo[e.nome] = dados
+    cafs = sorted({c.decode("latin-1").replace("/", "\\").rsplit("\\", 1)[-1]
+                   for n, dados in modelo.items() if n.lower().endswith(".cal")
+                   for c in re.findall(rb"=\s*(\S+\.caf)", dados, re.I)})
+    animacoes = T.do_58(os.path.join("Objects", "PC2", "lm", "animation"), cafs)
+    if len(animacoes) != len(cafs) or len(modelo) != 6:
+        raise ValueError(f"modelo da dancarina incompleto no 5.8: {sorted(modelo)} {sorted(animacoes)}")
+    return modelo, animacoes
+
+
+def aplica_npcs_cliente():
+    elementos = [ET.fromstring(t) for t in npcs_convertidos().values()]
+    for rel in PAKS_DE_NPC:
+        caminho = os.path.join(T.CLIENTE, rel)
+        origem = caminho + T.SUFIXO_BACKUP if os.path.exists(caminho + T.SUFIXO_BACKUP) else caminho
+        d, idx = aion_pak.abre(origem)
+        entrada = next(e for e in idx if e.nome.lower() == "client_npcs.xml")
+        bxml = aion_pak.le(d, entrada)
+        texto = aion_bxml.decodifica(bxml)
+        for i in NPCS_DE_DEFORM.values():
+            if f"<id>{i}</id>" in texto:
+                raise ValueError(f"{rel}: o id {i} ja existe")
+        novo, _ = T.acrescenta_filhos(bxml, elementos)
+        T._backup(caminho)
+        if origem != caminho:
+            shutil.copy2(origem, caminho)
+        T.regrava_pak(caminho, troca={entrada.nome: novo})
+        T._confere_pak(caminho, len(idx), {entrada.nome: "troca"})
+        lido = aion_bxml.decodifica(aion_pak.le(*_entrada_do_pak(caminho, "client_npcs.xml")))
+        for nome, i in NPCS_DE_DEFORM.items():
+            assert f"<id>{i}</id>" in lido and f"<name>{nome}</name>" in lido, (rel, nome)
+        print(f"OK  {rel}: +{len(elementos)} NPCs ({', '.join(f'{n} {i}' for n, i in NPCS_DE_DEFORM.items())})")
+    modelo, animacoes = _arquivos_do_modelo()
+    for rel, novos in ((PAK_MODELO_NPC, modelo), (PAK_ANIMACAO_NPC, animacoes)):
+        caminho = os.path.join(T.CLIENTE, rel)
+        origem = caminho + T.SUFIXO_BACKUP if os.path.exists(caminho + T.SUFIXO_BACKUP) else caminho
+        _d, idx = aion_pak.abre(origem)
+        if {e.nome.lower() for e in idx} & {n.lower() for n in novos}:
+            raise ValueError(f"{rel} ja tem parte de {sorted(novos)}")
+        T._backup(caminho)
+        if origem != caminho:
+            shutil.copy2(origem, caminho)
+        T.regrava_pak(caminho, acrescenta=novos)
+        T._confere_pak(caminho, len(idx), {n: "novo" for n in novos})
+        print(f"OK  {rel}: +{len(novos)} ({', '.join(sorted(novos))})")
+
+
+def _entrada_do_pak(caminho, nome):
+    d, idx = aion_pak.abre(caminho)
+    return d, next(e for e in idx if e.nome.lower() == nome)
+
+
+def aplica_npcs_repo():
+    blocos = npcs_convertidos()
+    for pasta in ("", "special", "special2"):
+        caminho = os.path.join(REPO_NPCS, pasta, "client_npcs.xml")
+        if not os.path.exists(caminho):
+            continue
+        with open(caminho, encoding="utf-8", newline="") as f:
+            xml = f.read()
+        nl = "\r\n" if "\r\n" in xml else "\n"
+        xml = xml.replace("\r\n", "\n")
+        for i in NPCS_DE_DEFORM.values():  # reaplicar nao duplica
+            xml = re.sub(r"  <npc_client>\s*<id>%d</id>.*?</npc_client>\n" % i, "", xml, flags=re.S)
+        fim = xml.rindex("</npc_clients>")
+        xml = xml[:fim] + "".join(b + "\n" for b in blocos.values()) + xml[fim:]
+        with open(caminho, "w", encoding="utf-8", newline="") as f:
+            f.write(xml.replace("\n", nl))
+        print(f"OK  repo {os.path.join('npcs', pasta, 'client_npcs.xml')}: +{len(blocos)} NPCs")
+
+
+NPC_TEMPLATES_REL = os.path.join("npcs", "npc_templates.xml")
+
+
+def aplica_npcs_servidor():
+    """npc_template de cada NPC no molde do 201046 (WI_CursedTree_G1_NPC): so o modelo do Deform."""
+    textos = {nome: (i, t["ENG"]) for _a, i, nome, t in STRINGS_DOS_NPCS()}
+    blocos = []
+    for nome, bloco in _npcs_58().items():
+        g = lambda k: re.search(r"<%s>([^<]*)</%s>" % (k, k), bloco).group(1)
+        id_string, texto = textos[g("desc")]
+        meia = lambda v: f"{float(v) / 2:g}"
+        blocos.append(
+            f'\t<npc_template npc_id="{NPCS_DE_DEFORM[nome]}" level="1" name_en="{_xml_attr(texto)}" '
+            f'name_pt="{_xml_attr(texto)}" name_id="{id_string}" height="{float(g("upper")):g}" rank="DISCIPLINED" '
+            f'rating="NORMAL" tribe="GENERAL" type="ABYSS_GUARD" ai="useitem" sangle="0" '
+            f'attack_speed="{g("attack_delay")}" hpgauge="{g("hpgauge_level")}">\n'
+            f'\t\t<stats maxHp="14614">\n'
+            f'\t\t\t<speeds walk="{float(g("move_speed_normal_walk")):g}" group_walk="{float(g("move_speed_normal_walk")):g}" '
+            f'run="{float(g("move_speed_normal_run")):g}" run_fight="{float(g("move_speed_combat_run")):g}" '
+            f'group_run_fight="{float(g("move_speed_combat_run")):g}" />\n'
+            f'\t\t</stats>\n'
+            f'\t\t<bound_radius front="{meia(g("front"))}" side="{meia(g("side"))}" upper="{float(g("upper")):g}" />\n'
+            f'\t</npc_template>\n')
+    for base in SERVIDOR:
+        caminho = os.path.join(base, NPC_TEMPLATES_REL)
+        with open(caminho, encoding="utf-8", newline="") as f:
+            texto = f.read()
+        eol = "\r\n" if "\r\n" in texto[:4096] else "\n"
+        for i in NPCS_DE_DEFORM.values():  # reaplicar nao duplica
+            texto = re.sub(r'\t<npc_template npc_id="%d".*?</npc_template>\r?\n' % i, "", texto, flags=re.S)
+        fim = texto.rindex("</npc_templates>")
+        texto = texto[:fim] + "".join(blocos).replace("\n", eol) + texto[fim:]
+        with open(caminho, "w", encoding="utf-8", newline="") as f:
+            f.write(texto)
+        print(f"OK  {base}: +{len(blocos)} npc_template")
+
+
 def confere_servidor():
     """As duas copias do servidor: iguais, validas no static_data.xsd agregado, todo template do lote
     com efeito e com o <chain> igual ao do cliente (category/precategory/time). Devolve os erros."""
@@ -745,6 +954,12 @@ def confere_servidor():
 
 
 def main():
+    if "--npcs" in sys.argv:
+        aplica_npcs_repo()
+        aplica_npcs_cliente()
+        aplica_npcs_servidor()
+        print("Os textos dos NPCs vao pelo `teste_harpa_58.py --strings`.")
+        return
     if "--confere-servidor" in sys.argv:
         erros = confere_servidor()
         print("\n".join(erros) if erros else "OK  servidor: copias iguais, XSD valido, efeitos e cadeias do Bard iguais ao cliente")

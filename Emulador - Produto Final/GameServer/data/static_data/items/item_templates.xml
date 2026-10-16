@@ -94377,6 +94377,19 @@
 			<add name="CONCENTRATION" value="15" bonus="true"/>
 		</modifiers>
 	</item_template>
+	<item_template id="110199549" name_en="Novice Songweaver’s Tunic" name_pt="Novice Songweaver’s Tunic" level="50" cName="rb_torso_n_l1_bard_1a" mask="53324" item_group="RB_TORSO" quality="LEGEND" price="5" desc="1991960" max_enchant="15" m_slots="3" enchant_group="legend_enchant" client_mask="32812">
+		<modifiers>
+			<add name="PHYSICAL_DEFENSE" value="150"/>
+			<add name="MAGICAL_RESIST" value="128"/>
+			<add name="EVASION" value="193"/>
+			<add name="MAXHP" value="225" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="29" bonus="true"/>
+			<add name="EVASION" value="23" bonus="true"/>
+			<rate name="BOOST_HATE" value="-12" bonus="true"/>
+			<add name="MAXMP" value="615" bonus="true"/>
+			<add name="CONCENTRATION" value="15" bonus="true"/>
+		</modifiers>
+	</item_template>
 	<item_template id="110101550" name_en="Rampaging Tiamat’s Tunic" name_pt="Túnica de Furioso Tiamat" level="70" cName="rb_torso_n_e2_iddragonlord_70a" mask="53326" item_group="RB_TORSO" quality="EPIC" price="5800460" desc="815860" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" combat_power="751" client_mask="32814">
 		<modifiers>
 			<add name="PHYSICAL_DEFENSE" value="255"/>
@@ -141660,6 +141673,18 @@
 			<add name="CONCENTRATION" value="9" bonus="true"/>
 		</modifiers>
 	</item_template>
+	<item_template id="111199417" name_en="Novice Songweaver’s Cloth Gloves" name_pt="Novice Songweaver’s Cloth Gloves" level="50" cName="rb_glove_n_l1_bard_1a" mask="53324" item_group="RB_GLOVE" quality="LEGEND" price="5" desc="1991963" max_enchant="15" m_slots="3" enchant_group="legend_enchant" client_mask="32812">
+		<modifiers>
+			<add name="PHYSICAL_DEFENSE" value="90"/>
+			<add name="MAGICAL_RESIST" value="77"/>
+			<add name="EVASION" value="116"/>
+			<add name="MAXHP" value="112" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-4" bonus="true"/>
+			<add name="MAXMP" value="427" bonus="true"/>
+			<rate name="BOOST_HATE" value="-6" bonus="true"/>
+			<add name="CONCENTRATION" value="9" bonus="true"/>
+		</modifiers>
+	</item_template>
 	<item_template id="111101418" name_en="Rampaging Tiamat’s Cloth Gloves" name_pt="Luvas de Tecido de Furioso Tiamat" level="70" cName="rb_glove_n_e2_iddragonlord_70a" mask="53454" item_group="RB_GLOVE" quality="EPIC" price="2900230" desc="815866" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" combat_power="751" client_mask="32878">
 		<modifiers>
 			<add name="PHYSICAL_DEFENSE" value="152"/>
@@ -186318,6 +186343,19 @@
 			<add name="CONCENTRATION" value="9" bonus="true"/>
 		</modifiers>
 	</item_template>
+	<item_template id="112199376" name_en="Novice Songweaver’s Pauldrons" name_pt="Novice Songweaver’s Pauldrons" level="50" cName="rb_shoulder_n_l1_bard_1a" mask="53324" item_group="RB_SHOULDER" quality="LEGEND" price="5" desc="1991962" max_enchant="15" m_slots="3" enchant_group="legend_enchant" client_mask="32812">
+		<modifiers>
+			<add name="PHYSICAL_DEFENSE" value="90"/>
+			<add name="MAGICAL_RESIST" value="77"/>
+			<add name="EVASION" value="116"/>
+			<add name="MAXHP" value="112" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="14" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="10" bonus="true"/>
+			<rate name="BOOST_HATE" value="-6" bonus="true"/>
+			<add name="MAXMP" value="369" bonus="true"/>
+			<add name="CONCENTRATION" value="9" bonus="true"/>
+		</modifiers>
+	</item_template>
 	<item_template id="112101377" name_en="Rampaging Tiamat’s Pauldrons" name_pt="Brafoneiras de Furioso Tiamat" level="70" cName="rb_shoulder_n_e2_iddragonlord_70a" mask="53454" item_group="RB_SHOULDER" quality="EPIC" price="2900230" desc="815872" item_type="DRACONIC" max_enchant="15" m_slots="6" enchant_group="epic_enchant" combat_power="751" client_mask="32878">
 		<modifiers>
 			<add name="PHYSICAL_DEFENSE" value="152"/>
@@ -230813,6 +230851,19 @@
 		</modifiers>
 	</item_template>
 	<item_template id="113101435" name_en="Novice Luminess’ Cloth Breeches" name_pt="Novice Luminess’ Calções de Tecido" level="50" cName="rb_pants_n_l1_lumines_1a" mask="53324" item_group="RB_PANTS" quality="LEGEND" price="5" desc="813469" max_enchant="15" m_slots="3" enchant_group="legend_enchant" client_mask="32812">
+		<modifiers>
+			<add name="PHYSICAL_DEFENSE" value="120"/>
+			<add name="MAGICAL_RESIST" value="102"/>
+			<add name="EVASION" value="155"/>
+			<add name="MAXHP" value="168" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="22" bonus="true"/>
+			<rate name="FLY_SPEED" value="4" bonus="true"/>
+			<rate name="BOOST_HATE" value="-9" bonus="true"/>
+			<add name="MAXMP" value="492" bonus="true"/>
+			<add name="CONCENTRATION" value="12" bonus="true"/>
+		</modifiers>
+	</item_template>
+	<item_template id="113199435" name_en="Novice Songweaver’s Cloth Breeches" name_pt="Novice Songweaver’s Cloth Breeches" level="50" cName="rb_pants_n_l1_bard_1a" mask="53324" item_group="RB_PANTS" quality="LEGEND" price="5" desc="1991961" max_enchant="15" m_slots="3" enchant_group="legend_enchant" client_mask="32812">
 		<modifiers>
 			<add name="PHYSICAL_DEFENSE" value="120"/>
 			<add name="MAGICAL_RESIST" value="102"/>
@@ -276514,6 +276565,19 @@
 		</modifiers>
 	</item_template>
 	<item_template id="114101465" name_en="Novice Luminess’ Cloth Shoes" name_pt="Novice Luminess’ Sapatos de Tecido" level="50" cName="rb_shoes_n_l1_lumines_1a" mask="53324" item_group="RB_SHOES" quality="LEGEND" price="5" desc="813502" max_enchant="15" m_slots="3" enchant_group="legend_enchant" client_mask="32812">
+		<modifiers>
+			<add name="PHYSICAL_DEFENSE" value="90"/>
+			<add name="MAGICAL_RESIST" value="77"/>
+			<add name="EVASION" value="116"/>
+			<add name="MAXHP" value="112" bonus="true"/>
+			<rate name="SPEED" value="16" bonus="true"/>
+			<add name="EVASION" value="11" bonus="true"/>
+			<rate name="BOOST_HATE" value="-6" bonus="true"/>
+			<add name="MAXMP" value="369" bonus="true"/>
+			<add name="CONCENTRATION" value="9" bonus="true"/>
+		</modifiers>
+	</item_template>
+	<item_template id="114199465" name_en="Novice Songweaver’s Cloth Shoes" name_pt="Novice Songweaver’s Cloth Shoes" level="50" cName="rb_shoes_n_l1_bard_1a" mask="53324" item_group="RB_SHOES" quality="LEGEND" price="5" desc="1991964" max_enchant="15" m_slots="3" enchant_group="legend_enchant" client_mask="32812">
 		<modifiers>
 			<add name="PHYSICAL_DEFENSE" value="90"/>
 			<add name="MAGICAL_RESIST" value="77"/>
@@ -381410,6 +381474,15 @@ Clique duas vezes para converter 1 pedaço de região autónoma da madeira pakir
 		</modifiers>
 	</item_template>
 	<item_template id="125003451" name_en="Novice Luminess’ Cloth Bandana" name_pt="Novice Luminess’ Tecido Bandana" level="1" cName="rb_head_n_l1_lumines_1a" mask="53324" item_group="HEAD" quality="LEGEND" price="5" desc="813515" max_enchant="15" enchant_group="legend_enchant" client_mask="32812">
+		<modifiers>
+			<add name="MAXMP" value="342" bonus="true"/>
+			<add name="EVASION" value="87" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="44" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="49" bonus="true"/>
+			<add name="CONCENTRATION" value="5" bonus="true"/>
+		</modifiers>
+	</item_template>
+	<item_template id="125101451" name_en="Novice Songweaver’s Cloth Bandana" name_pt="Novice Songweaver’s Cloth Bandana" level="1" cName="rb_head_n_l1_bard_1a" mask="53324" item_group="HEAD" quality="LEGEND" price="5" desc="1991965" max_enchant="15" enchant_group="legend_enchant" client_mask="32812">
 		<modifiers>
 			<add name="MAXMP" value="342" bonus="true"/>
 			<add name="EVASION" value="87" bonus="true"/>

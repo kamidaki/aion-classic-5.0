@@ -114690,6 +114690,29 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="SongofWeight01" />
 	</skill_template>
+	<skill_template skill_id="22201" name_en="Requiem" name_pt="Requiem" nameId="1991156" delayId="1281" stack="AR_SONGOFREST_G1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="300" duration="0" dispel_category="DEBUFF_MENTAL" req_dispel_level="1" cancel_rate="30" chain_skill_prob="100">
+		<properties first_target="ME" first_target_range="1" target_relation="ENEMY" target_type="AREA" target_maxcount="6" target_distance="7" effective_range="7" effective_altitude="7"/>
+		<startconditions>
+			<mp value="50" delta="0"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false"/>
+		</useconditions>
+		<effects>
+			<deform model="299901" type="NONE" duration2="6000" effectid="175" e="1" accmod2="50" critprobmod2="100" element="FIRE" hoptype="SKILLLV" hopb="8200"/>
+			<sleep duration2="6000" effectid="20106" e="2" accmod2="50" critprobmod2="100" element="FIRE" preeffect="1" preeffect_prob="100"/>
+			<statup duration2="6000" effectid="943383" e="3" noresist="true" preeffect="1" preeffect_prob="100">
+				<change stat="WATER_RESISTANCE" func="ADD" value="600"/>
+				<change stat="WIND_RESISTANCE" func="ADD" value="600"/>
+				<change stat="FIRE_RESISTANCE" func="ADD" value="600"/>
+				<change stat="EARTH_RESISTANCE" func="ADD" value="600"/>
+			</statup>
+		</effects>
+		<actions>
+			<mpuse value="50" delta="0"/>
+		</actions>
+		<motion name="CrazyDance01"/>
+	</skill_template>
 	<skill_template skill_id="22202" name_en="Sonicportation" name_pt="Sonicportation" nameId="1991028" delayId="1282" stack="BA_SONGOFDIMENSIONDOOR_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20" chain_skill_prob="100">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
 		<startconditions>
@@ -115556,7 +115579,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 				<change stat="SPEED" func="PERCENT" value="10"/>
 				<change stat="ATTACK_SPEED" func="PERCENT" value="-10"/>
 			</statup>
-			<boostskillcastingtime duration2="300000" effectid="944042" e="2" noresist="true" preeffect="1" preeffect_prob="100">
+			<boostskillcastingtime duration2="300000" effectid="944042" e="2" accmod2="500" noresist="true" preeffect="1" preeffect_prob="100">
 				<change stat="BOOST_CASTING_TIME" func="PERCENT" value="10"/>
 			</boostskillcastingtime>
 		</effects>
@@ -115697,7 +115720,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<delayedskill skill_id="22680" value="1" duration2="8000" e="1" element="WATER"/>
+			<delayedskill skill_id="22680" value="1" duration2="8000" e="1" accmod2="250" element="WATER"/>
 		</effects>
 		<actions>
 			<mpuse value="114" delta="0"/>
@@ -115895,6 +115918,26 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 			<mpuse value="180" delta="0" />
 		</actions>
 		<motion name="buff01" />
+	</skill_template>
+	<skill_template skill_id="22316" name_en="Freestyle" name_pt="Freestyle" nameId="1991159" delayId="1351" stack="BA_LULLABY_G1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="300" duration="1700" dispel_category="DEBUFF_MENTAL" req_dispel_level="1" cancel_rate="30" ammospeed="50">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
+		<startconditions>
+			<mp value="137" delta="-4"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false"/>
+		</useconditions>
+		<effects>
+			<deform model="299902" type="NONE" duration2="15000" effectid="175" e="1" accmod2="250" critprobmod2="100" element="FIRE" hoptype="SKILLLV" hopb="8200"/>
+			<sleep duration2="15000" effectid="20106" e="2" accmod2="50" critprobmod2="100" element="FIRE" preeffect="1" preeffect_prob="100"/>
+			<statdown duration2="15000" effectid="944563" e="3" noresist="true" element="FIRE" preeffect="1" preeffect_prob="100">
+				<change stat="MAGICAL_RESIST" func="ADD" value="-300"/>
+			</statdown>
+		</effects>
+		<actions>
+			<mpuse value="137" delta="-4"/>
+		</actions>
+		<motion name="Songsleep01"/>
 	</skill_template>
 	<skill_template skill_id="22317" name_en="Sonic Gust" name_pt="Sonic Gust" nameId="1991140" delayId="1352" stack="BA_SONGOFGUST_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="160" duration="1000" cancel_rate="20" ammospeed="30">
 		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
@@ -116787,7 +116830,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="SongChange01" />
 	</skill_template>
-	<skill_template skill_id="22680" name_en="Paralyzed." name_pt="Paralyzed." nameId="1991156" delayId="22680" stack="BA_DELAYPARALYZE_G1_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="DEBUFF" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22680" name_en="Paralyzed." name_pt="Paralyzed." nameId="1991162" delayId="22680" stack="BA_DELAYPARALYZE_G1_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="DEBUFF" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116797,7 +116840,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22728" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22728" stack="BA_N_SONGOFDELAYDAMAGE_G1_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22728" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991163" delayId="22728" stack="BA_N_SONGOFDELAYDAMAGE_G1_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116807,7 +116850,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22729" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22729" stack="BA_N_SONGOFDELAYDAMAGE_G2_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22729" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991163" delayId="22729" stack="BA_N_SONGOFDELAYDAMAGE_G2_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116817,7 +116860,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22730" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22730" stack="BA_N_SONGOFDELAYDAMAGE_G3_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22730" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991163" delayId="22730" stack="BA_N_SONGOFDELAYDAMAGE_G3_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116827,7 +116870,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22731" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22731" stack="BA_N_SONGOFDELAYDAMAGE_G4_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22731" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991163" delayId="22731" stack="BA_N_SONGOFDELAYDAMAGE_G4_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116837,7 +116880,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22732" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22732" stack="BA_N_SONGOFDELAYDAMAGE_G5_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22732" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991163" delayId="22732" stack="BA_N_SONGOFDELAYDAMAGE_G5_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116847,7 +116890,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22733" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22733" stack="BA_N_SONGOFDELAYDAMAGE_G6_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22733" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991163" delayId="22733" stack="BA_N_SONGOFDELAYDAMAGE_G6_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116857,7 +116900,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22734" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22734" stack="BA_N_SONGOFDELAYDAMAGE_G7_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22734" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991163" delayId="22734" stack="BA_N_SONGOFDELAYDAMAGE_G7_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116867,7 +116910,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22735" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22735" stack="BA_N_SONGOFDELAYDAMAGE_G8_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22735" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991163" delayId="22735" stack="BA_N_SONGOFDELAYDAMAGE_G8_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116877,7 +116920,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22736" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22736" stack="BA_N_SONGOFDELAYDAMAGE_G9_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22736" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991163" delayId="22736" stack="BA_N_SONGOFDELAYDAMAGE_G9_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116887,7 +116930,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22737" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22737" stack="BA_N_SONGOFDELAYDAMAGE_G10_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22737" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991163" delayId="22737" stack="BA_N_SONGOFDELAYDAMAGE_G10_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116897,7 +116940,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22738" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22738" stack="BA_N_SONGOFDELAYDAMAGE_G11_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22738" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991163" delayId="22738" stack="BA_N_SONGOFDELAYDAMAGE_G11_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116907,7 +116950,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22739" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991157" delayId="22739" stack="BA_N_SONGOFDELAYDAMAGE_G12_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22739" name_en="Syncopated Echo Effect" name_pt="Syncopated Echo Effect" nameId="1991163" delayId="22739" stack="BA_N_SONGOFDELAYDAMAGE_G12_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116917,7 +116960,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22740" name_en="Fluttered Note Effect" name_pt="Fluttered Note Effect" nameId="1991158" delayId="22740" stack="BA_N_SONGOFINJURY_G1_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22740" name_en="Fluttered Note Effect" name_pt="Fluttered Note Effect" nameId="1991164" delayId="22740" stack="BA_N_SONGOFINJURY_G1_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116927,7 +116970,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22741" name_en="Fluttered Note Effect" name_pt="Fluttered Note Effect" nameId="1991158" delayId="22741" stack="BA_N_SONGOFINJURY_G2_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22741" name_en="Fluttered Note Effect" name_pt="Fluttered Note Effect" nameId="1991164" delayId="22741" stack="BA_N_SONGOFINJURY_G2_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -116937,7 +116980,7 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="22742" name_en="Fluttered Note Effect" name_pt="Fluttered Note Effect" nameId="1991158" delayId="22742" stack="BA_N_SONGOFINJURY_G3_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
+	<skill_template skill_id="22742" name_en="Fluttered Note Effect" name_pt="Fluttered Note Effect" nameId="1991164" delayId="22742" stack="BA_N_SONGOFINJURY_G3_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
