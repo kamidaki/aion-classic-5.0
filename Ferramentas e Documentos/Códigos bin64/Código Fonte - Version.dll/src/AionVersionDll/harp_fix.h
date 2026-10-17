@@ -398,14 +398,24 @@ static BYTE* s_harpImageBase = nullptr;
 static SIZE_T s_harpImageSize = 0;
 static volatile LONG s_harpSuffixDone = 0;
 
-static BYTE* HarpAllocateNear(BYTE* from, SIZE_T size) {
+// First free block of `size` at or after `from` and below `limit`. The free regions are walked with
+// VirtualQuery: Game.dll loads low (0x4C...), among other modules and heaps, and the 256 MB right
+// after it were sometimes all taken (the Bard then had no lobby animation for the whole session).
+static BYTE* HarpAllocateNear(BYTE* from, BYTE* limit, SIZE_T size) {
     SYSTEM_INFO info;
     GetSystemInfo(&info);
     const ULONG_PTR step = info.dwAllocationGranularity;
-    ULONG_PTR at = ((ULONG_PTR)from + step - 1) & ~(step - 1);
-    for (int i = 0; i < 4096; ++i, at += step) {
-        void* p = VirtualAlloc((void*)at, size, MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE);
-        if (p) return (BYTE*)p;
+    ULONG_PTR at = (ULONG_PTR)from;
+    MEMORY_BASIC_INFORMATION region;
+    while (at < (ULONG_PTR)limit && VirtualQuery((void*)at, &region, sizeof(region))) {
+        const ULONG_PTR end = (ULONG_PTR)region.BaseAddress + region.RegionSize;
+        if (region.State == MEM_FREE) {
+            const ULONG_PTR start = (at + step - 1) & ~(step - 1);
+            if (start + size <= end && start + size <= (ULONG_PTR)limit)
+                if (void* p = VirtualAlloc((void*)start, size, MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE))
+                    return (BYTE*)p;
+        }
+        at = end;
     }
     return nullptr;
 }
@@ -434,7 +444,7 @@ static void HarpPatchAnimationSuffixOnce() {
             OutputDebugStringA("[Harp] Animation suffix switch not as expected.\n");
             return;
         }
-        BYTE* stub = HarpAllocateNear(s_harpImageBase + s_harpImageSize, 64);
+        BYTE* stub = HarpAllocateNear(s_harpImageBase + s_harpImageSize, base + 0x7fffffff, 64);
         if (!stub || stub < base || stub + 64 - base > 0x7fffffff) {
             OutputDebugStringA("[Harp] No memory near Game.dll for the animation suffix.\n");
             return;

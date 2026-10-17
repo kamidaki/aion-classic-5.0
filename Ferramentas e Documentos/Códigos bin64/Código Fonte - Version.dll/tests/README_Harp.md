@@ -180,6 +180,12 @@ na classe avancada.
 | tabela `icon_emblem_<nome>` (dado, preenchida na inicializacao) | emblema grande (alvo, selecao) | `artist` / `bard` (era `battlemaster` / `lumines`) |
 | switch do sufixo de animacao `0x931F44` (dado + 2 casos novos) | `Nidle_<classe>_lobby_001` etc. | `_artist` / `_bard`, num trecho alocado logo depois do `Game.dll` |
 
+O trecho dos casos novos do sufixo (`_artist`/`_bard`) tem de ficar ate 2 GB acima da base do
+`Game.dll` (a tabela de saltos guarda deslocamentos de 32 bits). O `Game.dll` carrega baixo (`0x4C...`),
+entre outros modulos e heaps, e os 256 MB seguintes as vezes estavam todos ocupados: sem trecho, o
+Bard ficava a sessao inteira sem a animacao da selecao. O `HarpAllocateNear` percorre as regioes
+livres com `VirtualQuery` em toda a faixa.
+
 **Escrever no `Game.dll` durante o carregamento quebra o jogo:** o protetor (WinLicense) faz a
 inicializacao falhar (erro 1114, "Cannot find NCCrashReporter.dll"). Todo dado e escrito depois:
 quando o `LoadLibrary` do `Game.dll` retorna, antes de montar a lista de personagens ou no primeiro
