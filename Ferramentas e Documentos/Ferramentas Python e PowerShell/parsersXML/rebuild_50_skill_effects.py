@@ -39,6 +39,7 @@ Fontes (achadas no gabarito, nao supostas):
 Uso (a pasta do cliente e a que contem data/ e Strings/):
     python rebuild_50_skill_effects.py --cliente "<pasta dos XMLs do cliente 5.0>"            (mede, gera e valida)
     python rebuild_50_skill_effects.py --cliente "<pasta dos XMLs do cliente 5.0>" --aplicar  (grava com backup)
+    --ids 22016,22017  limita a geracao a esses skill_id (ex.: so as skills novas de uma classe)
 A pasta tambem pode vir da variavel de ambiente AION_CLIENT_XML_DIR.
 """
 
@@ -626,6 +627,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--cliente", default=os.environ.get("AION_CLIENT_XML_DIR", DEFAULT_CLIENT_DIR))
     ap.add_argument("--aplicar", action="store_true")
+    ap.add_argument("--ids", default="", help="so estes skill_id (lista separada por virgula); os outros stubs ficam como estao")
     ap.add_argument("--limiar", type=float, default=0.85, help="enums+stats")
     ap.add_argument("--limiar-presenca", type=float, default=0.70)
     ap.add_argument("--limiar-numeros", type=float, default=0.70)
@@ -772,7 +774,10 @@ def main():
 
     obrigatorios = obrigatorios_xsd(os.path.join(backup_manager.SERVER_DATA_DIR, REL_XSD))
     edits, gerados, pulados = [], [], collections.Counter()
+    so_ids = {x.strip() for x in args.ids.split(",") if x.strip()}
     for sid in sorted(stubs, key=int):
+        if so_ids and sid not in so_ids:
+            continue
         c = cli[sid]
         tipos = sorted(tipos_do_cliente(c))
         faltando = sorted({t for _, t in tipos if t not in modelos})
@@ -817,7 +822,10 @@ def main():
         if mo:
             linhas.append("\t\t<motion" + xml_attrs(mo) + " />\n")
         linhas.append("\t</skill_template>")
-        edits.append((ini, fim, "".join(linhas)))
+        # Com a quebra do arquivo (CRLF): com LF no meio, os fix_50_* (que procuram os blocos pela
+        # quebra do arquivo) nao achavam o <startconditions> e criavam outro antes do <properties>.
+        eol = "\r\n" if "\r\n" in text[:4096] else "\n"
+        edits.append((ini, fim, "".join(linhas).replace("\n", eol)))
         gerados.append((int(sid), c.get("name"), grupo_de(sid), [t for _, t in tipos]))
 
     por_grupo = collections.Counter(g for _, _, g, _ in gerados)

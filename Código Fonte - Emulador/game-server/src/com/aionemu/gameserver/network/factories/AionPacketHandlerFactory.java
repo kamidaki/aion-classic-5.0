@@ -87,6 +87,7 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_ATTACK.class, 0xD2, State.IN_GAME); // 0x0020 ATTACK
 		addPacket(CM_CASTSPELL.class, 0xD3, State.IN_GAME); // 0x0021 USE_SKILL
 		addPacket(CM_TOGGLE_SKILL_DEACTIVATE.class, 0xD0, State.IN_GAME); // 0x0022 TOGGLE_SKILL
+		addPacket(CM_USE_CHARGE_SKILL.class, 0x198, State.IN_GAME); // 0x00EA FIRE_CHARGE_SKILL (Live 5.8; o 5.0 so manda pelo version.dll, charge_fix.h)
 		addPacket(CM_REMOVE_ALTERED_STATE.class, 0xD1, State.IN_GAME); // 0x0027 REMOVE_BUFF
 		addPacket(CM_USE_ITEM.class, 0xC7, State.IN_GAME); // 0x002D USE_ITEM
 		addPacket(CM_USE_ITEM.class, 0xCF, State.IN_GAME); // Legacy fallback

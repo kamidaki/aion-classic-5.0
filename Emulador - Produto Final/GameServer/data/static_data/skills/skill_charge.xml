@@ -804,4 +804,9 @@
 		<skill time="1200" id="4629"/>
 		<skill time="7000" id="4630"/>
 	</charge>
+	<charge min_time="400" id="1012">
+		<skill time="1500" id="22095"/>
+		<skill time="1500" id="22096"/>
+		<skill time="7000" id="22097"/>
+	</charge>
 </skill_charge>

@@ -1,6 +1,7 @@
 package com.aionemu.gameserver.controllers;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Future;
@@ -30,15 +31,19 @@ import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.model.items.GodStone;
+import com.aionemu.gameserver.model.skill.PlayerSkillEntry;
 import com.aionemu.gameserver.model.stats.container.StatEnum;
 import com.aionemu.gameserver.model.templates.item.GodstoneInfo;
 import com.aionemu.gameserver.model.templates.item.ItemAttackType;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
+import com.aionemu.gameserver.model.templates.item.enums.ItemGroup;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_SKILL_COOLDOWN;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS.LOG;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS.TYPE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_EMOTION;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SKILL_CANCEL;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_SUMMON_PANEL_REMOVE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.services.item.ItemPacketService;
 import com.aionemu.gameserver.skillengine.SkillEngine;
@@ -338,6 +343,10 @@ public abstract class CreatureController<T extends Creature> extends VisibleObje
 			attackHandAnimation = getOwner().getAi().modifyAttackHandAnimation(attackHandAnimation);
 			attackTypeAnimation = getOwner().getAi().getAttackTypeAnimation(target);
 		}
+		// Harpa: o cliente escolhe a animacao do ataque basico pelo campo de mao do S_ATTACK -- 1 toca
+		// cattack_harp_001 e 2 toca cattack_harp_002 (provado em jogo em 14/10/2026). Sorteado a cada ataque.
+		if (getOwner() instanceof Player p && p.getEquipment().getMainHandWeaponType() == ItemGroup.HARP)
+			attackHandAnimation = Rnd.nextInt(2) == 0 ? AttackHandAnimation.OFF_HAND : AttackHandAnimation.RANDOM;
 
 		int damage = 0;
 		for (AttackResult result : attackResult) {
@@ -491,8 +500,21 @@ public abstract class CreatureController<T extends Creature> extends VisibleObje
 			}
 			int skillId = chargeSkill.getSkills().get(index).getId();
 			ChargeSkill skill = SkillEngine.getInstance().getChargeSkill(getOwner(), skillId, startSkill.getSkillLevel(), index + 1, startSkill);
-			if (skill != null)
-				return skill.useSkill();
+			if (skill != null) {
+				boolean used = skill.useSkill();
+				// 5.0: o cliente nao conhece as skills Charge e so poe o cooldown do S_SKILL_SUCCEDED numa skill aprendida; os estagios 2+ nao sao.
+				// S_RESET_SKILL_COOLING_TIME [H skill][C 1] (Game.dll 0x81BBA0, como o S_SKILL_SUCCEDED) grava a duracao do template e avisa a barra de
+				// atalhos; o S_LOAD_SKILL_COOLTIME (0x81BEC0) so grava o fim, e um S_SKILL_CANCELED anterior deixa a duracao em 0 (icone sem cooldown).
+				// O S_LOAD_SKILL_COOLTIME vem depois para acertar o fim com o cooldown do servidor.
+				if (used && index > 0 && getOwner() instanceof Player player) {
+					int cooldownId = skill.getSkillTemplate().getCooldownId();
+					for (PlayerSkillEntry learned : player.getSkillList().getAllSkills())
+						if (DataManager.SKILL_DATA.getSkillTemplate(learned.getSkillId()).getCooldownId() == cooldownId)
+							PacketSendUtility.sendPacket(player, new SM_SUMMON_PANEL_REMOVE(learned.getSkillId()));
+					PacketSendUtility.sendPacket(player, new SM_SKILL_COOLDOWN(player, Map.of(cooldownId, player.getSkillCoolDown(cooldownId)), false));
+				}
+				return used;
+			}
 		} catch (Exception ex) {
 			log.error("Could not use charge skill " + startSkill.getSkillId() + " with charge time " + chargeTimeMillis, ex);
 		} finally {

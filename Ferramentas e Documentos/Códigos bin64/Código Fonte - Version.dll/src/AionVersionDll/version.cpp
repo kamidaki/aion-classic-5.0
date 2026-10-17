@@ -12,6 +12,8 @@
 #include "detours.h"
 #include "siel_hammer_fix.h"
 #include "quna_fix.h"
+#include "harp_fix.h"
+#include "charge_fix.h"
 
 // =========================================================================
 //  Version.dll - Mod & Compatibility Hook for Aion Classic 5.0
@@ -244,6 +246,8 @@ static void PatchAllLoadedLanguageModules() {
             if (_wcsicmp(name, L"game.dll") == 0) {
                 InstallSielHammerFix(h);
                 InstallQunaFix(h);
+                InstallHarpFix(h);
+                InstallChargeFix(h);
             }
             PatchLanguageTableInModule(h);
             BypassCountryCheckInCryEngineModule(h);
@@ -259,6 +263,7 @@ static HMODULE WINAPI zzLoadLibraryA(LPCSTR lpLibFileName) {
     HMODULE h = real_LoadLibraryA(lpLibFileName);
     if (h) {
         PatchAllLoadedLanguageModules();
+        HarpOnModuleLoaded(h);
     }
     return h;
 }
@@ -268,6 +273,7 @@ static HMODULE WINAPI zzLoadLibraryExA(LPCSTR lpLibFileName, HANDLE hFile, DWORD
     HMODULE h = real_LoadLibraryExA(lpLibFileName, hFile, dwFlags);
     if (h && !(dwFlags & (LOAD_LIBRARY_AS_DATAFILE | LOAD_LIBRARY_AS_IMAGE_RESOURCE))) {
         PatchAllLoadedLanguageModules();
+        HarpOnModuleLoaded(h);
     }
     return h;
 }
@@ -277,6 +283,7 @@ static HMODULE WINAPI zzLoadLibraryW(LPCWSTR lpLibFileName) {
     HMODULE h = real_LoadLibraryW(lpLibFileName);
     if (h) {
         PatchAllLoadedLanguageModules();
+        HarpOnModuleLoaded(h);
     }
     return h;
 }
@@ -286,6 +293,7 @@ static HMODULE WINAPI zzLoadLibraryExW(LPCWSTR lpLibFileName, HANDLE hFile, DWOR
     HMODULE h = real_LoadLibraryExW(lpLibFileName, hFile, dwFlags);
     if (h && !(dwFlags & (LOAD_LIBRARY_AS_DATAFILE | LOAD_LIBRARY_AS_IMAGE_RESOURCE))) {
         PatchAllLoadedLanguageModules();
+        HarpOnModuleLoaded(h);
     }
     return h;
 }

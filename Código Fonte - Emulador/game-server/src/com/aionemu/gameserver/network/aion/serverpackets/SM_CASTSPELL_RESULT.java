@@ -8,6 +8,7 @@ import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
+import com.aionemu.gameserver.skillengine.model.ChargeSkill;
 import com.aionemu.gameserver.skillengine.model.Effect;
 import com.aionemu.gameserver.skillengine.model.EffectReserved;
 import com.aionemu.gameserver.skillengine.model.EffectResult;
@@ -27,6 +28,7 @@ public class SM_CASTSPELL_RESULT extends AionServerPacket {
 	private int dashStatus;
 	private int targetType;
 	private final int multiCastStep;
+	private final int motionVariant;
 
 	/**
 	 * @param chainSuccess
@@ -39,6 +41,9 @@ public class SM_CASTSPELL_RESULT extends AionServerPacket {
 		this.effects = effects;
 		this.cooldown = skill.getCooldown();
 		this.multiCastStep = Math.max(1, skill.getMultiCastCount()); // o ChainSkills ja contou este uso antes do pacote sair
+		// O cliente le este campo como a variante da animacao (cfire_<arma>_<motion>_%03d, Game.dll 0x8AB880 -> SetSkillMotion): a da
+		// execucao no multicast e a do estagio na skill Charge (cfire_harp_SongBattle01_003 no estagio 3, como no 5.8).
+		this.motionVariant = skill instanceof ChargeSkill chargeSkill ? chargeSkill.getMotionId() : multiCastStep;
 		this.targetType = 0;
 		this.hitTime = hitTime;
 		this.dashStatus = dashStatus;
@@ -122,7 +127,7 @@ public class SM_CASTSPELL_RESULT extends AionServerPacket {
 			}
 		}
 
-		writeD(multiCastStep); // 5.0: 1, 2 e 3 nas execucoes seguidas da mesma skill multicast
+		writeD(motionVariant); // 5.0: 1, 2 e 3 nas execucoes seguidas da mesma skill multicast; estagio da skill Charge
 		writeH(effects.size());
 		for (Effect effect : effects) {
 			Creature effected = effect.getOriginalEffected();

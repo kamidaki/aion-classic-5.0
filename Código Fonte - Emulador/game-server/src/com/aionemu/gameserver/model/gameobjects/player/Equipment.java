@@ -255,15 +255,17 @@ public class Equipment implements Persistable {
 	}
 
 	private boolean checkInventorySlots(long itemSlotToEquip) {
-		if (owner.getInventory().isFull() && ItemSlot.isTwoHandedWeapon(itemSlotToEquip)) { // weapon slot(s)
-			for (ItemSlot slot : ItemSlot.getSlotsFor(itemSlotToEquip)) {
-				Item equippedWeaponOrShield = equipment.get(slot.getSlotIdMask());
-				if (equippedWeaponOrShield == null || equippedWeaponOrShield.getItemTemplate().isTwoHandWeapon())
-					return true;
-			}
-			return false; // two weapons would need to be unequipped, but there is no free slot
+		// everything equip() will put back into the cube: each replaced item, plus the secondary weapon of a fusion (un-fused on unequip)
+		Set<Item> replaced = new HashSet<>();
+		for (ItemSlot slot : ItemSlot.getSlotsFor(getUnequipSlots(itemSlotToEquip))) {
+			Item equipped = equipment.get(slot.getSlotIdMask());
+			if (equipped != null)
+				replaced.add(equipped);
 		}
-		return true;
+		int itemsBack = 0;
+		for (Item item : replaced)
+			itemsBack += item.hasFusionedItem() ? 2 : 1;
+		return owner.getInventory().getFreeSlots() >= itemsBack - 1; // the item being equipped frees its own slot
 	}
 
 	private boolean checkDualWieldRestriction(Item item, long slot) {
@@ -479,13 +481,17 @@ public class Equipment implements Persistable {
 			return null;
 		}
 
+		Item fusionPart = ArmsfusionService.newFusionPart(fuseWeapon);
+		if (fusionPart == null)
+			return null;
+
 		// Perform fusion directly without NPC and without Kinah
 		owner.getInventory().remove(fuseWeapon);
 		fuseWeapon.setPersistentState(PersistentState.DELETED);
 		InventoryDAO.store(fuseWeapon, owner);
 		ItemPacketService.sendItemDeletePacket(owner, StorageType.CUBE, fuseWeapon, ItemDeleteType.MOVE);
 
-		mainWeapon.setFusionedItem(fuseWeapon);
+		mainWeapon.setFusionedItem(fusionPart);
 		ItemSocketService.copyFusionStones(fuseWeapon, mainWeapon);
 		mainWeapon.setPersistentState(PersistentState.UPDATE_REQUIRED);
 		InventoryDAO.store(mainWeapon, owner);

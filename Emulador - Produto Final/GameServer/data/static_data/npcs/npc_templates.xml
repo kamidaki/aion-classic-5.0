@@ -376978,4 +376978,16 @@ Through the mediation of the Black Cloud Merchants,
 		</stats>
 		<bound_radius front="2.0" side="2.0" upper="2.0" />
 	</npc_template>
+	<npc_template npc_id="299901" level="1" name_en="Dancer" name_pt="Dancer" name_id="1991900" height="8" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="ABYSS_GUARD" ai="useitem" sangle="0" attack_speed="2000" hpgauge="3">
+		<stats maxHp="14614">
+			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
+		</stats>
+		<bound_radius front="0.375" side="0.525" upper="8" />
+	</npc_template>
+	<npc_template npc_id="299902" level="1" name_en="Dancer" name_pt="Dancer" name_id="1991901" height="8" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="ABYSS_GUARD" ai="useitem" sangle="0" attack_speed="2000" hpgauge="3">
+		<stats maxHp="14614">
+			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
+		</stats>
+		<bound_radius front="0.375" side="0.525" upper="8" />
+	</npc_template>
 </npc_templates>
