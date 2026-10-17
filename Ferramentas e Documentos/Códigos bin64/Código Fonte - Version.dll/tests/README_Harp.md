@@ -293,24 +293,35 @@ Falta para a classe: roupa oficial da previa (`rb_*_login_*_02` do 5.8), habilid
 harpa (`required_harp`), e 4 texturas e o `MON_Kaisinel_MRT.V3.ShockwaveTrap`, que nao existem nem
 no 5.8 limpo.
 
-### Em investigacao: itens vermelhos e barra inicial
+### Itens do Bard (`harp_fix.h`, `teste_harpa_58.py`)
 
-Para o Bard, o cliente mostra em vermelho (proibido) todo item que nao esta equipado, mas deixa
-equipar e usar (o servidor permite). Os itens do 5.0 dizem as classes por um campo por classe
-(`warrior` ... `orchestrator`, `lumines`, `engineer`, `gunner`); o 5.8 tem tambem `artist` e
-`bard`. Tabelas por classe do `Game.dll` em que 17 e 20 estao vazios (nenhuma delas e, ate aqui,
-a que monta a mascara de classes do item):
+Para o Bard, o cliente mostrava em vermelho (proibido) todo item que nao estava equipado, mas
+deixava equipar e usar (o servidor permite). Duas causas no `Game.dll`:
 
-| Endereco | O que e | 17 / 20 |
-|---|---|---|
-| `0x366340` / `0x366490` | id -> nome em minusculas (char/wchar_t) | ja tem hook: `artist` / `bard` |
-| `0x9C82A0` | nome -> bit (`1 << classe`) para os presets de aparencia (`face_color`...) | sem bit |
-| `0x99C700` | switch das posicoes da tela de criacao (`CLASS_Position_*`) | sem caso |
-| `0xC481xx` | lista de ponteiros para os nomes em maiusculas (`WARRIOR`...`RUNEBLADE`) | ausentes |
+- **A verificacao recusa as classes base.** `0x7E2450 (item, classe)` devolve "nao pode" direto para
+  toda classe da mascara `0x4924000` (14, 17, 20, 23, 26) e, para as outras, o byte
+  `item + 0x74 + classe`. A mesma mascara aparece em mais 6 lugares, lacos que montam listas de
+  classes na interface. O Bard (20) e jogavel: o `harp_fix.h` tira o bit 20 nos 7 lugares
+  (`0x4824000`), e so se encontrar exatamente 7. O `artist` (17) continua como base.
+- **A tabela de campos do item nao tem `artist`/`bard`.** O `client_items` da o nivel minimo por
+  classe num campo por nome (`<warrior>1</warrior>`). A tabela de campos do ItemTable (getter
+  `0x7DE7F0`, logo antes do leitor `0x7DE800`) tem entradas `[tipo, nome, (tamanho << 32) | offset,
+  0]` e termina num nome vazio. Os campos de classe sao tipo 7, 1 byte em `item + 0x74 + classe`
+  (os `*_max` em `+ 0x8F + classe`); os offsets das classes 14, 17, 20, 23 e 26 estao livres. O
+  `harp_fix.h` copia a tabela com `artist` (0x85), `bard` (0x88), `artist_max` (0xA0) e `bard_max`
+  (0xA3) e aponta o `lea` do getter para a copia.
 
-Como `0x366340` ja devolve `bard` e o item continua vermelho, o leitor dos campos de classe do
-`client_items` nao passa por ele. Falta achar esse leitor; a correcao sera ensinar a ele os campos
-`artist`/`bard` e por esses campos nos itens com os valores do 5.8.
+Dados (`campos_de_classe_do_bard`, no passo de itens do `teste_harpa_58.py`, nos 4 paks com
+`client_items.xml`): todo item ganha `artist`/`bard` (e os `*_max`, se tem os de classe). Regra
+medida no 5.8:
+- item com o mesmo nivel em todas as classes: `bard` = esse nivel (35.829 contra 231);
+- item de outras classes (armas, livros de skill): `bard` = 0;
+- `artist` = `bard` (99,4%).
+
+O nivel sai sempre dos dados do 5.0, porque o 5.8 mudou o nivel de muitos itens. Do 5.8 vem so se o
+Bard pode usar o item, quando ele existe la (`client_items_*.xml` do 5.8 limpo, 167 mil itens). A
+harpa e o set Novice Songweaver ficam liberados. No `Items.pak` da Europa: 72.896 itens decididos
+pelo 5.8 (69.712 pode, 3.184 nao pode), 6.768 pela regra e 10 do Bard. Testado em jogo.
 
 A barra de atalhos de um personagem novo vem do cliente (o servidor nao manda atalhos na criacao)
 e, para a classe 20, sai com as skills da Luminess: outra tabela por classe com a posicao 20
@@ -431,7 +442,26 @@ O 5.0 nao tem a string; o `teste_harpa_58.py` poe `STR_CHARGE_STEP` com o id 199
 atingido. No 5.0, efeito de widget = `0xB62D90 (widget, nome, 1, 1, &deslocamento, slot, &callback
 vazio)`, como o guarda-roupa (`0x6FD212`). As particulas vem do `sys_uifx.prt` do 5.8
 (`EFEITOS_DA_CARGA` no `teste_harpa_58.py`). O `sys_UIfx.Charge.last` (brilho em volta da barra no
-ultimo estagio) ficou de fora: no 5.0 ele se acumula a cada cast.
+ultimo estagio) ficou de fora.
+
+Os efeitos ficam no widget ate alguem remover. O gerenciador de efeitos de widget (`0xB618F0`) tem
+`+0x08 (widget, 0, 1)`, que limpa antes de tocar (o cliente faz assim em `0x1F90E5`), e
+`+0x20 (widget)`, que remove todos (os dialogos chamam ao fechar). A DLL limpa a bolinha antes do
+clarao e remove os efeitos quando a barra some.
+
+**Dois `DlgSkillDelay`.** A barra de cast do alvo (`target_delay_dialog`) e da mesma classe e passa
+pela mesma funcao de quadro e pelo mesmo `SetText`. Quando um inimigo lancava magia com voce no alvo,
+a DLL tratava cada um como "o dialogo" e zerava o estagio a cada quadro. O clarao era tocado de novo a
+cada quadro e parecia em loop, empilhado, e o nome podia ir para o dialogo do alvo. So vale o
+dialogo que tem a `charge_gauge`; os outros ficam numa lista e sao ignorados. Antes disso foram
+descartados, com prova, a particula (a copia crua do `aion_fx` bate 79% com os dados nativos; o
+leitor 0x740 do motor, `0x6D5F0` do `Cry3DEngine.dll`, e de arquivos antigos e bate 66%) e o motor
+(o efeito nativo do guarda-roupa, tocado na bolinha, termina sozinho em cerca de 1 s).
+
+**Widgets fora da carga.** O dialogo mostra os nossos widgets quando abre para um cast. Por isso, fora
+de uma carga, a barra de carga e as bolinhas sao escondidas em todo quadro e no inicio de cada cast
+(quando o dialogo escreve o nome), e nao so depois de uma carga. A carga tambem expira com o tempo
+total dela mais uma margem.
 
 Testado em jogo: cores, nome, clarao, brilho da ponta, animacoes por estagio, cooldown depois de
 Dodge e a barra depois de cancelar.

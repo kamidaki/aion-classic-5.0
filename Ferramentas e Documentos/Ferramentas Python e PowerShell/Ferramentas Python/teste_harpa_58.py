@@ -294,6 +294,98 @@ class _Tabela:
         return i
 
 
+#: Campos de classe do `client_items` (nivel minimo por classe; 0 = nao pode) que o 5.0 tem. O 5.8 tem
+#: tambem `artist` e `bard` (e os `*_max`), que o cliente 5.0 passa a ler pelo `harp_fix.h` (tabela de
+#: campos do ItemTable). Regra do 5.8, medida nos itens dele: com o mesmo nivel em todas as classes, o
+#: `bard` e esse nivel (35.829 contra 231); item de outras classes (armas, livros de skill) tem `bard` 0;
+#: `artist` e igual ao `bard` (99,4%). O nivel sai sempre dos dados do 5.0 (o 5.8 mudou niveis de itens);
+#: do 5.8 vem so se o Bard pode usar o item, quando o item existe la.
+CLASSES_DO_ITEM_50 = ("warrior", "fighter", "knight", "scout", "assassin", "ranger", "mage", "wizard",
+                      "elementalist", "cleric", "priest", "chanter", "monk", "thunderer", "striker",
+                      "battlemaster", "orchestrator", "lumines", "engineer", "gunner", "runewarrior",
+                      "runeblade")
+CAMPOS_DO_BARD = ("artist", "bard")
+ARQUIVOS_DE_ITENS_58 = r"Data\Items\Items.pak"
+
+
+@lru_cache(maxsize=None)
+def _bard_pode_no_58():
+    """{id: o Bard pode usar} de todos os `client_items_*.xml` do 5.8 limpo."""
+    import aion_bxml
+    d, idx = aion_pak.abre(os.path.join(LIVE_CLIENTE, ARQUIVOS_DE_ITENS_58))
+    saida = {}
+    for e in idx:
+        nome = e.nome.lower()
+        if not (nome.startswith("client_items") and nome.endswith(".xml")):
+            continue
+        bruto = aion_pak.le(d, e)
+        texto = aion_bxml.decodifica(bruto) if bruto[:1] == b"\x80" else bruto.decode("utf-8", "replace")
+        for m in re.finditer(r"<client_item>\s*<id>(\d+)</id>(.*?)</client_item>", texto, re.S):
+            bard = re.search(r"<bard>(\d+)</bard>", m.group(2))
+            if bard:
+                saida[int(m.group(1))] = bard.group(1) != "0"
+    return saida
+
+
+def _mais_comum(valores):
+    contagem = {}
+    for v in valores:
+        contagem[v] = contagem.get(v, 0) + 1
+    return max(sorted(contagem), key=lambda v: contagem[v]) if contagem else None
+
+
+def campos_de_classe_do_bard(bxml, ids_do_bard=()):
+    """`client_items.xml` binario com `artist`/`bard` (e `artist_max`/`bard_max`, se o item tem os
+    `*_max` de classe) em todo item. Os ids de `ids_do_bard` (harpa, set do Bard) o Bard sempre pode usar.
+    Devolve os bytes e um resumo {origem da regra: itens}."""
+    if bxml[0] != 0x80:
+        raise ValueError("nao e XML binario")
+    tam, o = _varint(bxml, 1)
+    tab = _Tabela(bxml[o:o + tam])
+    o += tam
+    raiz, fim = _le_elemento(bxml, o)
+    if fim != len(bxml):
+        raise ValueError("sobraram bytes depois da raiz")
+    texto, indice, pos = {}, {}, 0
+    for parte in bytes(tab.bruto).decode("utf-16le").split("\0")[:-1]:
+        texto[pos] = parte
+        indice.setdefault(parte, pos)
+        pos += len(parte.encode("utf-16le")) // 2 + 1
+
+    def idx(s):
+        if s not in indice:
+            indice[s] = tab.acrescenta(s)
+        return indice[s]
+
+    pode58, ids_do_bard = _bard_pode_no_58(), set(ids_do_bard)
+    resumo = {}
+    for item in raiz[3]:
+        if texto[item[0]] != "client_item":
+            continue
+        campos = {texto[f[0]]: texto[f[1]] for f in item[3] if f[1] is not None}
+        if any(c in campos for c in CAMPOS_DO_BARD):
+            raise ValueError(f"item {campos.get('id')} ja tem campo do Bard")
+        id_item = int(campos["id"])
+        niveis = [campos[c] for c in CLASSES_DO_ITEM_50 if c in campos]
+        nivel = _mais_comum([n for n in niveis if n != "0"])
+        if id_item in ids_do_bard:
+            origem, pode = "item do Bard", True
+        elif id_item in pode58:
+            origem, pode = "5.8", pode58[id_item]
+        else:
+            origem, pode = "regra (generico)", len(niveis) == len(CLASSES_DO_ITEM_50) and len(set(niveis)) == 1
+        valor = nivel if pode and nivel else "0"
+        resumo[(origem, valor != "0")] = resumo.get((origem, valor != "0"), 0) + 1
+        novos = [(idx(c), idx(valor), [], []) for c in CAMPOS_DO_BARD]
+        maximos = [campos[c + "_max"] for c in CLASSES_DO_ITEM_50 if c + "_max" in campos]
+        if maximos and valor != "0":
+            maximo = _mais_comum(maximos)
+            novos += [(idx(c + "_max"), idx(maximo), [], []) for c in CAMPOS_DO_BARD]
+        item[3].extend(novos)
+    saida = bytes([0x80]) + _grava_varint(len(tab.bruto)) + bytes(tab.bruto) + _grava_elemento(raiz)
+    return saida, resumo
+
+
 def acrescenta_item(bxml, id_base, id_novo, nome_novo, mesh):
     """Devolve o `client_items.xml` binario com o item novo, e o texto do item clonado."""
     if bxml[0] != 0x80:
@@ -972,6 +1064,8 @@ def aplica():
         set_do_bard = _troca_do_set()
         for id_novo, (id_base, troca) in set_do_bard.items():  # na mesma gravacao (o pak sai do backup)
             novo = clona_item(novo, id_base, id_novo, troca)
+        ids_do_bard = [v[1] for v in VARIANTES] + [v[1] for v in ITENS_DA_PREVIA] + list(set_do_bard)
+        novo, resumo = campos_de_classe_do_bard(novo, ids_do_bard)
         _backup(caminho)
         if origem != caminho:
             shutil.copy2(origem, caminho)
@@ -992,8 +1086,13 @@ def aplica():
         for id_novo, (_b, troca) in set_do_bard.items():
             campos = _campos_do_item(xml, id_novo)
             assert all(campos.get(c) == v for c, v in troca.items()), (rel, id_novo)
+        assert xml.count("<bard>") == xml.count("<client_item>") == xml.count("<artist>")
+        for id_novo in ids_do_bard:
+            assert _campos_do_item(xml, id_novo).get("bard", "0") != "0", (rel, id_novo)
         print(f"OK  {rel}: {quantos} -> {quantos + len(novos_itens) + len(set_do_bard)} itens "
               f"(harpa e set Novice Songweaver; ordenado por id: {ordenado})")
+        print(f"    artist/bard: " + ", ".join(f"{o} {'pode' if p else 'nao pode'} {n}"
+                                               for (o, p), n in sorted(resumo.items())))
 
     for rel, nomes in ((PAK_MESH, MESHES + MESHES_DA_PREVIA), (PAK_TEXTURA, TEXTURAS + TEXTURAS_DA_PREVIA)):
         caminho = os.path.join(CLIENTE, rel)

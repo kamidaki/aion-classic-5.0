@@ -19,6 +19,7 @@ static constexpr int kHarpWeaponType = 19;
 static void HarpPatchEnchantTables();
 static void HarpPatchClassIconsOnce();
 static void HarpPatchAnimationSuffixOnce();
+static void HarpPatchItemClassesOnce();
 
 using HarpParseWeaponType = int (__fastcall*)(const wchar_t*);
 using HarpWeaponSuffix = void* (__fastcall*)(int, int, char*, size_t);
@@ -464,6 +465,111 @@ static void HarpPatchAnimationSuffixOnce() {
     }
 }
 
+// ---- Items of the Bard -------------------------------------------------------------------------
+// client_items gives the minimum level per class in one field per class name (<warrior>1</warrior>):
+// the field table of the item (ItemTable, getter 0x7DE7F0 right before the field parser 0x7DE800)
+// has entries [type, name, (size << 32) | offset, 0], ended by an empty name, and the class fields
+// are type 7, 1 byte at item + 0x74 + class (the *_max ones at + 0x8F + class). The 5.0 has no entry
+// for the classes 14, 17, 20, 23 and 26; the 5.8 data has "artist" and "bard" (and the *_max).
+// The usability check (0x7E2450: item, class) also refuses at once every class of the mask 0x4924000
+// (14, 17, 20, 23, 26, the base classes); the same mask skips them in the class lists (7 places in
+// all). The Bard (20) is playable: its bit leaves the mask, and the table gets the 4 fields at their
+// free offsets. The table is copied with the new entries and the getter's lea points to the copy.
+static BYTE* s_harpItemParse = nullptr; // field parser of ItemTable (0x7DE800)
+static volatile LONG s_harpItemClassesDone = 0;
+static constexpr DWORD kHarpBaseClassMask = 0x4924000;
+static constexpr DWORD kHarpPlayableMask = kHarpBaseClassMask & ~(1u << kBardClass);
+static constexpr int kHarpMaskSites = 7;
+
+struct HarpFieldEntry {
+    ULONG_PTR type;
+    const wchar_t* name;
+    ULONG_PTR sizeOffset;
+    ULONG_PTR zero;
+};
+static constexpr int kHarpClassField = 0x74;
+static constexpr int kHarpClassMaxField = 0x8F;
+static const struct { const wchar_t* name; int offset; } kHarpNewItemFields[] = {
+    {L"artist", kHarpClassField + kBardBaseClass},
+    {L"bard", kHarpClassField + kBardClass},
+    {L"artist_max", kHarpClassMaxField + kBardBaseClass},
+    {L"bard_max", kHarpClassMaxField + kBardClass},
+};
+
+static void HarpWriteCode(void* at, const void* data, SIZE_T size) {
+    DWORD old;
+    if (!VirtualProtect(at, size, PAGE_EXECUTE_READWRITE, &old)) return;
+    memcpy(at, data, size);
+    VirtualProtect(at, size, old, &old);
+    FlushInstructionCache(GetCurrentProcess(), at, size);
+}
+
+static void HarpPatchClassMask() {
+    auto nt = (PIMAGE_NT_HEADERS)(s_harpImageBase + ((PIMAGE_DOS_HEADER)s_harpImageBase)->e_lfanew);
+    BYTE* sites[kHarpMaskSites] = {};
+    int found = 0;
+    PIMAGE_SECTION_HEADER section = IMAGE_FIRST_SECTION(nt);
+    for (WORD i = 0; i < nt->FileHeader.NumberOfSections; ++i, ++section) {
+        if (!(section->Characteristics & IMAGE_SCN_MEM_EXECUTE) || section->Misc.VirtualSize < 5) continue;
+        BYTE* start = s_harpImageBase + section->VirtualAddress;
+        for (DWORD o = 1; o + 4 <= section->Misc.VirtualSize; ++o)  // mov r32, imm32 (B8+r)
+            if (start[o - 1] >= 0xB8 && start[o - 1] <= 0xBF && *(DWORD*)(start + o) == kHarpBaseClassMask) {
+                if (found < kHarpMaskSites) sites[found] = start + o;
+                ++found;
+            }
+    }
+    if (found != kHarpMaskSites) {
+        OutputDebugStringA("[Harp] Base class mask: unexpected number of places.\n");
+        return;
+    }
+    for (BYTE* site : sites) HarpWriteCode(site, &kHarpPlayableMask, sizeof(DWORD));
+}
+
+static void HarpExtendItemFields() {
+    BYTE* getter = s_harpItemParse - 0x10;  // lea rax,[table]; ret; int3 padding
+    if (getter[0] != 0x48 || getter[1] != 0x8D || getter[2] != 0x05 || getter[7] != 0xC3) return;
+    auto table = (const HarpFieldEntry*)(getter + 7 + *(int32_t*)(getter + 3));
+    int count = 0;
+    bool classes = false;
+    for (; count < 1024 && table[count].name && table[count].name[0]; ++count) {
+        const DWORD offset = (DWORD)table[count].sizeOffset;
+        if (!wcscmp(table[count].name, L"warrior"))
+            classes = table[count].type == 7 && table[count].sizeOffset == ((1ull << 32) | kHarpClassField);
+        for (const auto& field : kHarpNewItemFields)
+            if (!wcscmp(table[count].name, field.name) || offset == (DWORD)field.offset) return; // taken
+    }
+    if (count >= 1024 || !classes) {
+        OutputDebugStringA("[Harp] Item field table not as expected.\n");
+        return;
+    }
+    const int added = (int)(sizeof(kHarpNewItemFields) / sizeof(kHarpNewItemFields[0]));
+    const SIZE_T size = (count + added + 1) * sizeof(HarpFieldEntry);
+    BYTE* limit = getter + 7 + 0x7fffffff - size;  // the lea reaches 2 GB
+    auto copy = (HarpFieldEntry*)HarpAllocateNear(s_harpImageBase + s_harpImageSize, limit, size);
+    if (!copy) {
+        OutputDebugStringA("[Harp] No memory near Game.dll for the item field table.\n");
+        return;
+    }
+    memcpy(copy, table, count * sizeof(HarpFieldEntry));
+    for (int i = 0; i < added; ++i)
+        copy[count + i] = {7, kHarpNewItemFields[i].name, (1ull << 32) | (DWORD)kHarpNewItemFields[i].offset, 0};
+    copy[count + added] = table[count];  // the end
+    const int32_t displacement = (int32_t)((BYTE*)copy - (getter + 7));
+    HarpWriteCode(getter + 3, &displacement, sizeof(displacement));
+    OutputDebugStringA("[Harp] Item fields artist/bard added.\n");
+}
+
+static void HarpPatchItemClassesOnce() {
+    if (s_harpItemClassesDone || !s_harpItemParse || !s_harpImageBase) return;
+    if (InterlockedExchange(&s_harpItemClassesDone, 1)) return;
+    __try {
+        HarpPatchClassMask();
+        HarpExtendItemFields();
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+}
+
 // ---- Creation screen ---------------------------------------------------------------------------
 // The class buttons class_1..class_13 (UI_Create.xml) are kept in a fixed array of 13 in the window
 // (+578h); a click finds the button's position (0..12) and selects it, and the position becomes the
@@ -769,6 +875,7 @@ static HarpCharacterSlot s_harpCharacterSlot = nullptr;
 static void* __fastcall HarpCharacterSlotHook(void* self, void* a2, void* a3, void* a4) {
     HarpPatchClassIconsOnce();
     HarpPatchAnimationSuffixOnce();
+    HarpPatchItemClassesOnce();
     return s_harpCharacterSlot(self, a2, a3, a4);
 }
 
@@ -780,6 +887,7 @@ static void HarpOnModuleLoaded(HMODULE module) {
     HarpPatchEnchantTables();
     HarpPatchClassIconsOnce();
     HarpPatchAnimationSuffixOnce();
+    HarpPatchItemClassesOnce();
 }
 
 static SRWLOCK s_harpLock = SRWLOCK_INIT;
@@ -938,6 +1046,13 @@ static void InstallHarpFix(HMODULE module) {
         static_assert(sizeof(characterSlotMask) - 1 == sizeof(characterSlot), "Character slot mask length");
         // Animation class suffix switch: movsxd rax,[rbx+0C0h]; cmp eax,19h; ja none;
         // lea rdx,[base]; mov ecx,[rdx+rax*4+table]; add rcx,rdx; jmp rcx; lea rdx,"_warrior"; jmp
+        // Field parser of ItemTable: push rbp/rbx/rsi/rdi/r13/r14/r15; lea rbp,[rsp-350h]; sub rsp,450h
+        static const BYTE itemParse[] = {
+            0x40,0x55,0x53,0x56,0x57,0x41,0x55,0x41,0x56,0x41,0x57,0x48,0x8d,0xac,0x24,0xb0,0xfc,0xff,0xff,
+            0x48,0x81,0xec,0x50,0x04,0x00,0x00
+        };
+        static const char itemParseMask[] = "xxxxxxxxxxxxxxxxxxxxxxxxxx";
+        static_assert(sizeof(itemParseMask) - 1 == sizeof(itemParse), "Item parser mask length");
         static const BYTE suffixSwitch[] = {
             0x48,0x63,0x83,0xc0,0x00,0x00,0x00,0x83,0xf8,0x19,0x0f,0x87,0,0,0,0,0x48,0x8d,0x15,
             0,0,0,0,0x8b,0x8c,0x82,0,0,0,0,0x48,0x03,0xca,0xff,0xe1,0x48,0x8d,0x15,0,0,0,0,0xe9
@@ -1204,6 +1319,7 @@ static void InstallHarpFix(HMODULE module) {
         s_harpImageBase = base;
         s_harpImageSize = image;
         s_harpSuffixSwitch = QunaFindUnique(base, nt, suffixSwitch, suffixSwitchMask, sizeof(suffixSwitch));
+        s_harpItemParse = QunaFindUnique(base, nt, itemParse, itemParseMask, sizeof(itemParse));
         if (!s_harpSuffixSwitch) OutputDebugStringA("[Harp] Animation suffix switch not found.\n");
         // The icon table is only located here; it is written on first use (HarpPatchClassIconsOnce).
         BYTE* iconReader = QunaFindUnique(base, nt, classIcon, classIconMask, sizeof(classIcon));

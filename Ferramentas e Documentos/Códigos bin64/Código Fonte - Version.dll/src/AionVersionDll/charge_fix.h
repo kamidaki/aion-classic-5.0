@@ -332,11 +332,18 @@ static BYTE* __fastcall ChargeDialogConstructorHook(BYTE* dialog) {
     return result;
 }
 
+static bool ChargeHasWidgets(BYTE* dialog);
+
 static bool ChargeIsDialogName(void* widget) {
     for (BYTE* dialog : s_chargeDialogs)
-        if (dialog && *(void**)dialog == s_chargeDialogVtable && *(void**)(dialog + 0x518) == widget) return true;
+        if (dialog && *(void**)dialog == s_chargeDialogVtable && *(void**)(dialog + 0x518) == widget &&
+            ChargeHasWidgets(dialog))
+            return true;
     return false;
 }
+
+static void ChargeHideBar();
+static void ChargeHideWidgets();
 
 static void __fastcall ChargeSetTextHook(void* widget, const wchar_t* text) {
     __try {
@@ -356,6 +363,8 @@ static void __fastcall ChargeSetTextHook(void* widget, const wchar_t* text) {
                 s_chargeSetText(widget, name);
                 return;
             }
+            if (s_chargeBarShown) ChargeHideBar();
+            else ChargeHideWidgets();
         }
     }
     __except (EXCEPTION_EXECUTE_HANDLER) {
@@ -367,27 +376,80 @@ static void __fastcall ChargeSetTextHook(void* widget, const wchar_t* text) {
 // (widget, effect, 1, 1, offset xyz, slot it writes, empty callback; +0x38 = its target).
 // The 5.8 dialog plays sys_UIfx.Charge.basic on the bubble of the stage reached (Game.dll 5.8
 // 0x442470). Its sys_UIfx.Charge.last on the bar is left out: on 5.0 it piles up on every cast.
+// The effects stay on the widget until removed: the manager of widget effects (0xB618F0) keeps them
+// per widget; its vtable +0x08 (widget, 0, 1) clears them before a new one, as the client does before
+// playing (0x1F90E5), and +0x20 (widget) removes them all, as the dialogs do when they close.
 using ChargePlayEffect = bool (__fastcall*)(void*, const char*, int, int, const float*, INT_PTR, void*);
+using ChargeEffectManager = void* (__fastcall*)();
+using ChargeClearEffects = void (__fastcall*)(void*, void*, int, bool);
+using ChargeRemoveEffects = void (__fastcall*)(void*, void*);
 static ChargePlayEffect s_chargePlayEffect = nullptr;
+static ChargeEffectManager s_chargeEffectManager = nullptr;
 
 static void ChargePlayWidgetEffect(void* widget, const char* effect) {
-    if (!widget || !s_chargePlayEffect) return;
+    if (!widget || !s_chargePlayEffect || !s_chargeEffectManager) return;
+    if (void* manager = s_chargeEffectManager())
+        ChargeVirtual<ChargeClearEffects>(manager, 0x08)(manager, widget, 0, true);
     const float offset[3] = {};
     alignas(16) BYTE callback[0x40] = {};
     s_chargePlayEffect(widget, effect, 1, 1, offset, 0, callback);
 }
 
+static void ChargeRemoveWidgetEffects(void* widget) {
+    if (!widget || !s_chargeEffectManager) return;
+    if (void* manager = s_chargeEffectManager()) ChargeVirtual<ChargeRemoveEffects>(manager, 0x20)(manager, widget);
+}
+
+// The dialog also shows our widgets when it opens for a cast (proven on video: the first cast after
+// login showed the empty charge bar, its light at the start, and the three bubbles), so without a
+// charge they are kept hidden on every frame and at every cast start, not only after a charge.
+static bool ChargeWidgetVisible(void* widget) {
+    return widget && (*(const ULONGLONG*)((BYTE*)widget + 0x28) & kChargeWidgetVisible);
+}
+
+static void ChargeHideWidgets() {
+    if (ChargeWidgetVisible(s_chargeGauge)) ChargeShowWidget(s_chargeGauge, false);
+    for (void* step : s_chargeSteps) {
+        if (!ChargeWidgetVisible(step)) continue;
+        ChargeShowWidget(step, false);
+        ChargeRemoveWidgetEffects(step);
+    }
+}
+
 static void ChargeHideBar() {
-    ChargeShowWidget(s_chargeGauge, false);
-    for (void* step : s_chargeSteps) ChargeShowWidget(step, false);
+    ChargeHideWidgets();
+    for (void* step : s_chargeSteps) ChargeRemoveWidgetEffects(step);
     if (s_chargeDialog) ChargeShowWidget(ChargeNativeBar(s_chargeDialog), true);
     s_chargeBarShown = false;
     s_chargeBarStage = 0;
     ChargeShowStageName(0);
 }
 
+// The frame function runs for every DlgSkillDelay: the own cast bar (skill_delay_dialog, the one with
+// the charge widgets) and the cast bar of the target (target_delay_dialog) when an enemy has one. Taking
+// each as "the dialog" restarted the bar on every frame while a target was casting: the stage went back
+// to 0 and the bubble effect was played again each frame (the endless flash), and the name widget became
+// the target's. Only the dialog with the charge widgets is used; the others are remembered and skipped.
+static constexpr int kChargeOtherDialogs = 8;
+static BYTE* s_chargeOtherDialogs[kChargeOtherDialogs] = {};
+static int s_chargeOtherNext = 0;
+
+static bool ChargeHasWidgets(BYTE* dialog) {
+    return ChargeVirtual<ChargeFindChild>(dialog, 0x368)(dialog, "charge_gauge", kChargeWidgetGauge) != nullptr;
+}
+
+static bool ChargeIsOtherDialog(BYTE* dialog) {
+    for (BYTE* other : s_chargeOtherDialogs)
+        if (other == dialog) return true;
+    if (ChargeHasWidgets(dialog)) return false;
+    s_chargeOtherDialogs[s_chargeOtherNext] = dialog;
+    s_chargeOtherNext = (s_chargeOtherNext + 1) % kChargeOtherDialogs;
+    return true;
+}
+
 static void ChargeUpdateDialog(BYTE* dialog) {
     if (dialog != s_chargeDialog) {
+        if (ChargeIsOtherDialog(dialog)) return;
         s_chargeDialog = dialog;
         s_chargeBarShown = false;
         s_chargeBarStage = 0;
@@ -406,9 +468,10 @@ static void ChargeUpdateDialog(BYTE* dialog) {
     if (!s_chargeGauge) return; // Client data without the charge widgets.
     const LONG index = s_chargeIndex;
     const bool charging = s_chargeActiveSkill && s_chargeCaster && index >= 0 && index < s_chargeSkillCount &&
-                          dialog[0x500] != 0;
+                          dialog[0x500] != 0 && GetTickCount64() < s_chargeActiveUntil;
     if (!charging) {
         if (s_chargeBarShown) ChargeHideBar();
+        else ChargeHideWidgets();
         return;
     }
     const int stages = s_chargeStageCount[index] < kChargeStepWidgets ? s_chargeStageCount[index] : kChargeStepWidgets;
@@ -565,6 +628,14 @@ static void InstallChargeFix(HMODULE module) {
         static const char effectMask[] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
         static_assert(sizeof(effectMask) - 1 == sizeof(effect), "Charge widget effect signature mask length");
         s_chargePlayEffect = (ChargePlayEffect)QunaFindUnique(base, nt, effect, effectMask, sizeof(effect));
+        // Effect manager: sub rsp,28h; mov rax,[instance]; test rax,rax; jnz ...; add qword [count],4B0h
+        static const BYTE effectManager[] = {
+            0x48,0x83,0xec,0x28,0x48,0x8b,0x05,0,0,0,0,0x48,0x85,0xc0,0x0f,0x85,0,0,0,0,0x48,0x81,0x05
+        };
+        static const char effectManagerMask[] = "xxxxxxx????xxxxx????xxx";
+        static_assert(sizeof(effectManagerMask) - 1 == sizeof(effectManager), "Charge effect manager mask length");
+        s_chargeEffectManager = (ChargeEffectManager)QunaFindUnique(base, nt, effectManager, effectManagerMask,
+                                                                    sizeof(effectManager));
         s_chargeChecked = true;
         if (!sendPacket || !requestAction || !dialogFrame || dialogFrame[0x5a] != 0xe8 || dialogFrame[0x91] != 0xe8) {
             OutputDebugStringA("[Charge] Unsupported client; signatures not unique.\n");
