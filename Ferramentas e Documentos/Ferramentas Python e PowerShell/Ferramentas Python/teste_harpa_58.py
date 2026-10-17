@@ -1780,6 +1780,13 @@ def aplica_animacoes_de_classe():
     aplica_marcadores(("lm",) + OUTRAS_RACAS)
 
 
+#: Efeito de interface da barra de carga (skills Charge), tocado pelo `charge_fix.h` como o 5.8 faz
+#: (Game.dll 5.8 0x442470): o clarao na bolinha do estagio atingido. O `sys_uifx.prt` do 5.0 nao tem o
+#: grupo Charge. O sys_UIfx.Charge.last do 5.8 (brilho da barra no ultimo estagio) fica de fora: no 5.0
+#: ele se acumula a cada cast.
+EFEITOS_DA_CARGA = ("sys_UIfx.Charge.basic",)
+
+
 def aplica_efeito():
     """Traz do 5.8 o efeito do projetil da harpa (a nota musical) e o que ele usa."""
     import glob
@@ -1862,6 +1869,7 @@ def aplica_efeito():
     # Uma particula pode disparar outras pelo nome (campos de string sem caminho): as citadas que o
     # 5.0 nao tem entram tambem, sempre pela raiz da arvore delas no 5.8, ate fechar. Vale para as
     # particulas da harpa (sys_hit) e as da selecao.
+    citadas.update(EFEITOS_DA_CARGA)
     prts = {PRT_DO_PROJETIL: prt}  # chave -> .prt do 5.0 ja com o que foi acrescentado
 
     def atual(chave):
@@ -2304,6 +2312,11 @@ STRINGS = (
              "les alliés et affaiblissent les ennemis à moyenne distance.",
       "BRA": "O Bardo luta com a harpa: suas melodias encantadas curam e fortalecem os aliados "
              "e enfraquecem os inimigos a média distância."}),
+    # Estagio da skill Charge no nome da barra de cast ("Fiery Descant 1Stage"): o 5.8 usa
+    # STR_CHARGE_STEP (904606, no 5.0 ja e outra string). O `charge_fix.h` pede o id 1990006.
+    # Ingles = o do Live (video do 5.8); os outros sao traducao nossa.
+    ("strings/client_strings_ui.xml", 1990006, "STR_CHARGE_STEP",
+     {"ENG": "Stage", "DEU": "Stufe", "FRA": "Étape", "BRA": "Estágio"}),
     ("strings/client_strings_item.xml", 1990002, "STR_TEST_HARP_58",
      {"ENG": "Test Harp 5.8", "DEU": "Testharfe 5.8", "FRA": "Harpe de test 5.8",
       "BRA": "Harpa de Teste 5.8"}),
@@ -2454,6 +2467,10 @@ PRESETS_DA_CARGA = tuple(
     + ['<Preset name="v5_gauge_charge" type="gauge">'
        + "".join(f'<SkinRef main_state="{k}" name="v5_gauge_charge{k}" sub_state="gauge" />' for k in range(1, 5))
        + "</Preset>"])
+#: `state_depended` (Game.dll 0xAFCA50 grava +0x354) faz o UIGauge desenhar a imagem do estado (+0x30) e nao
+#: a da fracao preenchida; e o que o 5.8 usa nos gauges com cor por estado (energia do familiar, HP do grupo).
+#: `stage` (+0x328) e quantos retangulos o gauge calcula (0xAADBF0), um por estado: sem ele so o do estado 0
+#: existe. Sem `gradient`, cada um ocupa a barra inteira. 5 = estados 0 a 4.
 BOLINHAS_DA_CARGA = (("charge_step1", 108), ("charge_step2", 127), ("charge_step3", 146))
 
 
@@ -2465,7 +2482,8 @@ def barra_de_carga_bxml(bxml):
         raiz.set("frame", f"{x},{y},{w},{ALTURA_DA_BARRA_DE_CAST}")
         barra = raiz.procura(name="delay")
         raiz.filhos.append(raiz.novo("Widget", flag="not_visible", frame=barra.get("frame"), name="charge_gauge",
-                                     preset="v5_gauge_charge", type="gauge", value_type="float"))
+                                     preset="v5_gauge_charge", stage="5", state_depended="True", type="gauge",
+                                     value_type="float"))
         for nome, x_bolinha in BOLINHAS_DA_CARGA:
             raiz.filhos.append(raiz.novo("Widget", flag="not_visible", frame=f"{x_bolinha},34,18,14", name=nome,
                                          preset="v5_gauge_charge_step", type="static"))
@@ -2482,7 +2500,7 @@ def barra_de_carga_texto(xml):
     barra = re.search(r'<Widget [^>]*\bname="delay"[^>]*>', xml).group(0)
     frame = re.search(r'\bframe="([^"]+)"', barra).group(1)
     widgets = [f'  <Widget flag="not_visible" frame="{frame}" name="charge_gauge" preset="v5_gauge_charge" '
-               f'type="gauge" value_type="float">\r\n  </Widget>\r\n']
+               f'stage="5" state_depended="True" type="gauge" value_type="float">\r\n  </Widget>\r\n']
     widgets += [f'  <Widget flag="not_visible" frame="{x},34,18,14" name="{nome}" preset="v5_gauge_charge_step" '
                 f'type="static">\r\n  </Widget>\r\n' for nome, x in BOLINHAS_DA_CARGA]
     fim = xml.rindex("</Dialog>")

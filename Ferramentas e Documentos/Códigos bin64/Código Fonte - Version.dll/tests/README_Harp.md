@@ -354,8 +354,16 @@ Testado em jogo com a Fiery Descant G1:
 
 **Cooldown.** O 5.0 so poe o cooldown do `S_SKILL_SUCCEDED` numa skill aprendida. Os estagios 2+
 nao sao aprendidos, entao o icone da skill do estagio 1 nao mostrava o cooldown. Depois do disparo
-nesses estagios, o servidor (`CreatureController.useChargeSkill`) manda o `S_LOAD_SKILL_COOLTIME`
-(0x33) das aprendidas do mesmo `cooldownId`, com `notify` 0, como na entrada no mundo.
+nesses estagios, o servidor (`CreatureController.useChargeSkill`) manda, para as aprendidas do mesmo
+`cooldownId`:
+- `S_RESET_SKILL_COOLING_TIME` (0x48, `[H skill][C 1]`, no emulador `SM_SUMMON_PANEL_REMOVE`): o
+  cliente grava a duracao do template e avisa a barra de atalhos (`0x81BBA0`, a mesma do
+  `S_SKILL_SUCCEDED`). O oficial usa esse pacote para o cooldown da skill de invocacao quando o servo
+  morre;
+- depois o `S_LOAD_SKILL_COOLTIME` (0x33), que acerta o fim com o cooldown do servidor.
+
+So o 0x33 nao basta: ele grava apenas o fim (`0x81BEC0`). Um `S_SKILL_CANCELED` anterior (golpe,
+Dodge) deixa a duracao em 0 e o icone fica sem cooldown.
 
 **Barra de carga.** O `skill_delay_dialog` do 5.8 tem a barra `v5_gauge_charge` (cor por estado
 1-4) e as bolinhas `v5_gauge_charge_step` (estado 0 = apagada, 1-4 = cores). Tres achados no 5.0:
@@ -379,14 +387,48 @@ nesses estagios, o servidor (`CreatureController.useChargeSkill`) manda o `S_LOA
 
 O hook de quadro mostra a barra e as bolinhas durante a carga. Como no 5.8, a barra enche de novo a
 cada estagio (tempos do `charge_skills.txt`, escalados pela duracao que o servidor mandou) e muda de
-cor: estagio 1 cor 1, 2 cor 2, o ultimo cor 4 (azul). Testado em jogo: aparecem e acendem.
+cor: estagio 1 cor 1, 2 cor 2, o ultimo cor 4 (azul). Durante a carga a barra nativa escolhida
+(`+0x508/+0x510`, indice em `+0x520`) fica escondida em todo quadro: o cliente a mostra de novo a
+cada inicio de cast. Cada carga nova (inicio do `S_USE_SKILL`) reinicia o estado da barra: um
+cancelamento fecha o dialogo, e o fim da carga nunca passa pela funcao de quadro.
 
-Ainda faltam, vistos num video do 5.8:
-- as animacoes por estagio: `ccast_harp_SongBattle01_00N` na carga e `cfire_..._00N` no disparo.
-  O 5.0 ja tem as 6; a funcao que toca (`0x948C80`) poe o `_%03d` de `+0x34C` do objeto de animacao;
-- o clarao no personagem a cada troca de estagio;
-- a moldura da barra acesa no estagio 3;
-- o nome com "1Stage/2Stage/3Stage".
+Atributos da `charge_gauge`:
+- `state_depended="True"` (`+0x354`, leitor do XML `0xAFCA50`): o desenho (`0xAACFC0`) usa a imagem
+  do estado `+0x30`. Sem ele a imagem sai da fracao preenchida e so o `main_state` 0 aparece;
+- `stage="5"` (`+0x328`): quantos retangulos o gauge calcula (`0xAADBF0`), um por estado. Sem ele so
+  existe o do estado 0. Sem `gradient`, cada um ocupa a barra toda. O 5.8 usa o mesmo par nos gauges
+  com cor por estado (energia do familiar);
+- brilho na ponta do preenchimento: o gauge desenha o `skilldelay` quando `+0x898` esta ligado. O
+  dialogo liga nas barras dele ao carregar (`0x65F074`); na `charge_gauge` quem liga e a DLL.
+
+**Animacao por estagio.** O cast comeca (`0x923420`) com `SetAction` (`0x960880`: personagem, 1,
+0x1C = cast, parametros), que guarda a acao em `+0xBA0/+0xBA4`, os parametros em `+0xBB0..+0xBDB` e
+sinaliza `+0xBA8`. No quadro seguinte, `CharacterObject::StartAnimation` (`0x9373A0`) monta o nome
+(`ccast_harp_SongBattle01` + variante, `0x936270`) com a variante forcada por `+0xB5D`. A cada
+estagio novo a DLL refaz o `SetAction`, com o estagio em `+0xB5D` e a skill do estagio nos parametros
+(`+0x08`, guardada em `+0xBB8`): sai o `ccast_..._00N` (o `_003` em loop) e o `cast_fx` do estagio
+(`FC_Ba_SongofBattle.G1.cast_lv2/lv3`). No disparo, o servidor manda o estagio no campo de variante
+do `SM_CASTSPELL_RESULT` (o mesmo do passo de multicast), e o cliente toca o `cfire_..._00N`.
+Atencao: `0x956230` carrega o modelo e nao toca animacao (chamar deixou o personagem invisivel).
+
+**Nome "Fiery Descant 1Stage".** No 5.8 e o nome + estagio + `STR_CHARGE_STEP` (904606, "Stage").
+O 5.0 nao tem a string; o `teste_harpa_58.py` poe `STR_CHARGE_STEP` com o id 1990006. A DLL:
+- intercepta `UIStatic::SetText` (vtable `+0x288`, `0xB1E380`) no widget do nome (`+0x518`): guarda o
+  nome escrito e, com carga pendente, escreve com o estagio (1 no inicio, antes da resposta do
+  servidor);
+- busca a string como o dialogo busca os textos dele (`0x65F9D7`: gerenciador + `0x10` -> tabela 0
+  -> `0xA34F00`);
+- conhece o dialogo desde o construtor (`0x65EF10`): na primeira carga depois do login o nome e
+  escrito antes do primeiro quadro. Cuidado: `0x65FAF0` e de outro dialogo de cast, nao deste.
+
+**Clarao das bolinhas.** O 5.8 (`0x442470`) toca `sys_UIfx.Charge.basic` na bolinha do estagio
+atingido. No 5.0, efeito de widget = `0xB62D90 (widget, nome, 1, 1, &deslocamento, slot, &callback
+vazio)`, como o guarda-roupa (`0x6FD212`). As particulas vem do `sys_uifx.prt` do 5.8
+(`EFEITOS_DA_CARGA` no `teste_harpa_58.py`). O `sys_UIfx.Charge.last` (brilho em volta da barra no
+ultimo estagio) ficou de fora: no 5.0 ele se acumula a cada cast.
+
+Testado em jogo: cores, nome, clarao, brilho da ponta, animacoes por estagio, cooldown depois de
+Dodge e a barra depois de cancelar.
 
 ## Pendências conhecidas
 
@@ -394,7 +436,7 @@ Ainda faltam, vistos num video do 5.8:
   `bard_skills_58.py`) ja estao no cliente e no servidor, sem exigir a harpa.
 - **Skills Charge do Bard**: so a Fiery Descant G1 entrou (`CARGA` no `bard_skills_58.py`).
   Faltam as outras 27 familias (Fiery Descant G2-G12, Soothing Hymn, Dragon Song, Blazing/Fiery
-  Requiem, Ba_SongofGravity), e as animacoes e efeitos por estagio (ver Skills Charge).
+  Requiem, Ba_SongofGravity).
 - **Dedos.** O esqueleto do 5.8 tem cinco dedos de três falanges e o do 5.0 três de duas, com
   outra pose de referência. As animações de harpa precisam de conversão nas trilhas de dedo;
   há duas variantes em avaliação, nenhuma fixada.
