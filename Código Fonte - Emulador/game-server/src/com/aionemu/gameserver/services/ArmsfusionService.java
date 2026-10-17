@@ -20,6 +20,7 @@ import com.aionemu.gameserver.services.item.ItemSocketService;
 import com.aionemu.gameserver.services.trade.PricesService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.audit.AuditLogger;
+import com.aionemu.gameserver.utils.idfactory.IDFactory;
 
 /**
  * @author Lost Academy Team & Durak
@@ -94,9 +95,14 @@ public class ArmsfusionService {
 		if (fuseWeapon.isEquipped()) {
 			player.getEquipment().unEquipItem(fuseWeapon.getObjectId(), false);
 		}
-		if (!player.getInventory().decreaseByObjectId(fuseWeaponObjId, 1))
+		Item fusionPart = newFusionPart(fuseWeapon);
+		if (fusionPart == null)
 			return;
-		mainWeapon.setFusionedItem(fuseWeapon);
+		if (!player.getInventory().decreaseByObjectId(fuseWeaponObjId, 1)) {
+			IDFactory.getInstance().releaseId(fusionPart.getObjectId());
+			return;
+		}
+		mainWeapon.setFusionedItem(fusionPart);
 		ItemSocketService.copyFusionStones(fuseWeapon, mainWeapon);
 		mainWeapon.setPersistentState(PersistentState.UPDATE_REQUIRED);
 		InventoryDAO.store(mainWeapon, player);
@@ -122,6 +128,24 @@ public class ArmsfusionService {
 		}
 		player.getInventory().decreaseKinah(price);
 		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_COMPOUND_SUCCESS(mainWeapon.getL10n(), fuseWeapon.getL10n()));
+	}
+
+	/**
+	 * The fused weapon's own row is deleted and its object ID released on the next inventory save, so the fused part needs an ID of its own
+	 * (the same thing Item's constructor does when a fused weapon is loaded). Keeping the released ID made the next new item (e.g. a
+	 * looted manastone) share it with the fused part, and the client drew that item in the fusion slot.
+	 */
+	public static Item newFusionPart(Item fuseWeapon) {
+		Item fusionPart = ItemFactory.newItem(fuseWeapon.getItemTemplate().getTemplateId());
+		if (fusionPart == null)
+			return null;
+		if (fuseWeapon.getBonusStatsId() > 0)
+			fusionPart.setBonusStats(fuseWeapon.getBonusStatsId(), false);
+		if (fuseWeapon.getOptionalSockets() > 0)
+			fusionPart.setOptionalSockets(fuseWeapon.getOptionalSockets());
+		if (fuseWeapon.getEnchantLevel() > 0)
+			fusionPart.setEnchantLevel(fuseWeapon.getEnchantLevel());
+		return fusionPart;
 	}
 
 	private static long getBasePricePerLevelSquared(ItemQuality rarity) {
