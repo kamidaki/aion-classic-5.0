@@ -20,6 +20,7 @@ static void HarpPatchEnchantTables();
 static void HarpPatchClassIconsOnce();
 static void HarpPatchAnimationSuffixOnce();
 static void HarpPatchItemClassesOnce();
+static void HarpPatchDefaultKeysOnce();
 
 using HarpParseWeaponType = int (__fastcall*)(const wchar_t*);
 using HarpWeaponSuffix = void* (__fastcall*)(int, int, char*, size_t);
@@ -570,6 +571,73 @@ static void HarpPatchItemClassesOnce() {
     }
 }
 
+// ---- Starting quickbar --------------------------------------------------------------------------
+// A new character's quickbar comes from pc\client_default_key.xml: 36 keys per class, found by the
+// class's position on the creation screen (0 fighter ... 10 lumines ... 12 runeblade). The table's
+// field parser (DefaultKeyTable vtable +0xA0, 0x2C6FF0) turns <class> into that position (0x9CBDF0,
+// unknown name -> 0, the fighter's) and the quickbar builder (0x652460) looks the rows up by the
+// character's class through 0x9CBC80. The Bard has no position of its own, and that function answers
+// 10 (Lumines) for it because the creation screen needs it so (HarpClassToSlotHook): the Bard got the
+// Lumines keys. The Bard gets position 13 in this table only:
+// - the field parser is hooked (it runs while Game.dll loads its tables, before the data patches can be
+//   written; a redirected call there was never reached) and gives "Bard" rows 13;
+// - the builder's call is redirected after the load (it runs in game) to answer 13 for class 20.
+// The creation screen calls keep the Lumines position.
+static constexpr int kBardDefaultKeyPosition = 13;
+using HarpDefaultKeyField = INT_PTR (__fastcall*)(void*, const wchar_t* const*, BYTE*);
+using HarpPositionFromClass = int (__fastcall*)(int);
+static HarpDefaultKeyField s_harpDefaultKeyField = nullptr;
+static BYTE* s_harpDefaultKeyClassCall = nullptr;  // call 0x9CBC80 in the quickbar builder
+static HarpPositionFromClass s_harpPositionFromClass = nullptr;
+static volatile LONG s_harpDefaultKeysDone = 0;
+
+// (table, field: [name, value], row): <class> is the row's +4.
+static INT_PTR __fastcall HarpDefaultKeyFieldHook(void* table, const wchar_t* const* field, BYTE* row) {
+    __try {
+        if (field && row && field[0] && field[1] && !_wcsicmp(field[0], L"class") && !_wcsicmp(field[1], L"bard")) {
+            *(int*)(row + 4) = kBardDefaultKeyPosition;
+            return kBardDefaultKeyPosition;
+        }
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+    return s_harpDefaultKeyField(table, field, row);
+}
+
+static int __fastcall HarpDefaultKeyPositionFromClass(int classId) {
+    if (classId == kBardClass) return kBardDefaultKeyPosition;
+    return s_harpPositionFromClass(classId);
+}
+
+// Points the rel32 call at `call` to `target` through a jump written near Game.dll; returns the old
+// target, or null if the call is not one.
+static BYTE* HarpRedirectCall(BYTE* call, void* target) {
+    if (!call || call[0] != 0xE8) return nullptr;
+    BYTE* old = call + 5 + *(int32_t*)(call + 1);
+    BYTE* stub = HarpAllocateNear(s_harpImageBase + s_harpImageSize, call + 0x7fff0000, 16);
+    if (!stub) return nullptr;
+    stub[0] = 0x48; stub[1] = 0xB8;                    // mov rax, target
+    *(void**)(stub + 2) = target;
+    stub[10] = 0xFF; stub[11] = 0xE0;                  // jmp rax
+    FlushInstructionCache(GetCurrentProcess(), stub, 16);
+    const int32_t displacement = (int32_t)(stub - (call + 5));
+    HarpWriteCode(call + 1, &displacement, sizeof(displacement));
+    return old;
+}
+
+static void HarpPatchDefaultKeysOnce() {
+    if (s_harpDefaultKeysDone || !s_harpDefaultKeyClassCall || !s_harpImageBase) return;
+    if (InterlockedExchange(&s_harpDefaultKeysDone, 1)) return;
+    __try {
+        // The original first: the new function calls it as soon as the redirection is written.
+        s_harpPositionFromClass = (HarpPositionFromClass)(s_harpDefaultKeyClassCall + 5 + *(int32_t*)(s_harpDefaultKeyClassCall + 1));
+        if (!HarpRedirectCall(s_harpDefaultKeyClassCall, HarpDefaultKeyPositionFromClass))
+            OutputDebugStringA("[Harp] Starting quickbar: builder call not redirected.\n");
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+}
+
 // ---- Creation screen ---------------------------------------------------------------------------
 // The class buttons class_1..class_13 (UI_Create.xml) are kept in a fixed array of 13 in the window
 // (+578h); a click finds the button's position (0..12) and selects it, and the position becomes the
@@ -876,6 +944,7 @@ static void* __fastcall HarpCharacterSlotHook(void* self, void* a2, void* a3, vo
     HarpPatchClassIconsOnce();
     HarpPatchAnimationSuffixOnce();
     HarpPatchItemClassesOnce();
+    HarpPatchDefaultKeysOnce();
     return s_harpCharacterSlot(self, a2, a3, a4);
 }
 
@@ -888,6 +957,7 @@ static void HarpOnModuleLoaded(HMODULE module) {
     HarpPatchClassIconsOnce();
     HarpPatchAnimationSuffixOnce();
     HarpPatchItemClassesOnce();
+    HarpPatchDefaultKeysOnce();
 }
 
 static SRWLOCK s_harpLock = SRWLOCK_INIT;
@@ -1320,6 +1390,24 @@ static void InstallHarpFix(HMODULE module) {
         s_harpImageSize = image;
         s_harpSuffixSwitch = QunaFindUnique(base, nt, suffixSwitch, suffixSwitchMask, sizeof(suffixSwitch));
         s_harpItemParse = QunaFindUnique(base, nt, itemParse, itemParseMask, sizeof(itemParse));
+        // Starting quickbar. Field parser of DefaultKeyTable: mov [rsp+8],rbx; push rdi; sub rsp,20h; mov rax,[rdx];
+        // lea rcx,[L""]; test rax,rax; mov rbx,rdx; lea rdx,[L"class"]; mov rdi,r8; cmovne rcx,rax; call [_wcsicmp];
+        // test eax,eax; jne; mov rcx,[rbx+8]; call position-from-name; mov [rdi+4],eax.
+        // Quickbar builder: mov ecx,[rbp+2D8h]; call position-from-class; mov esi,eax; lea rdx,[L"quickbar_option_ex"]
+        static const BYTE keyField[] = {
+            0x48,0x89,0x5c,0x24,0x08,0x57,0x48,0x83,0xec,0x20,0x48,0x8b,0x02,0x48,0x8d,0x0d,0,0,0,0,
+            0x48,0x85,0xc0,0x48,0x8b,0xda,0x48,0x8d,0x15,0,0,0,0,0x49,0x8b,0xf8,0x48,0x0f,0x45,0xc8,
+            0xff,0x15,0,0,0,0,0x85,0xc0,0x75,0x0c,0x48,0x8b,0x4b,0x08,0xe8,0,0,0,0,0x89,0x47,0x04
+        };
+        static const char keyFieldMask[] = "xxxxxxxxxxxxxxxx????xxxxxxxxx????xxxxxxxxx????xxxxxxxxx????xxx";
+        static_assert(sizeof(keyFieldMask) - 1 == sizeof(keyField), "Default key field mask length");
+        static const BYTE keyClass[] = {
+            0x8b,0x8d,0xd8,0x02,0x00,0x00,0xe8,0,0,0,0,0x8b,0xf0,0x48,0x8d,0x15,0,0,0,0
+        };
+        static const char keyClassMask[] = "xxxxxxx????xxxxx????";
+        static_assert(sizeof(keyClassMask) - 1 == sizeof(keyClass), "Default key class mask length");
+        s_harpDefaultKeyField = (HarpDefaultKeyField)QunaFindUnique(base, nt, keyField, keyFieldMask, sizeof(keyField));
+        if (BYTE* k = QunaFindUnique(base, nt, keyClass, keyClassMask, sizeof(keyClass))) s_harpDefaultKeyClassCall = k + 6;
         if (!s_harpSuffixSwitch) OutputDebugStringA("[Harp] Animation suffix switch not found.\n");
         // The icon table is only located here; it is written on first use (HarpPatchClassIconsOnce).
         BYTE* iconReader = QunaFindUnique(base, nt, classIcon, classIconMask, sizeof(classIcon));
@@ -1378,6 +1466,8 @@ static void InstallHarpFix(HMODULE module) {
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpClassKey, HarpClassKeyHook);
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpClassKeyW, HarpClassKeyWHook);
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpClassFromName, HarpClassFromNameHook);
+        if (error == NO_ERROR && s_harpDefaultKeyField)
+            error = DetourAttach(&(PVOID&)s_harpDefaultKeyField, HarpDefaultKeyFieldHook);
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpCreateInit, HarpCreateInitHook);
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpCreateClick, HarpCreateClickHook);
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_harpCreateSelect, HarpCreateSelectHook);

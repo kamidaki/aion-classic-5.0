@@ -323,9 +323,30 @@ Bard pode usar o item, quando ele existe la (`client_items_*.xml` do 5.8 limpo, 
 harpa e o set Novice Songweaver ficam liberados. No `Items.pak` da Europa: 72.896 itens decididos
 pelo 5.8 (69.712 pode, 3.184 nao pode), 6.768 pela regra e 10 do Bard. Testado em jogo.
 
-A barra de atalhos de um personagem novo vem do cliente (o servidor nao manda atalhos na criacao)
-e, para a classe 20, sai com as skills da Luminess: outra tabela por classe com a posicao 20
-copiada da vizinha, ainda nao localizada.
+### Barra de atalhos inicial (`harp_fix.h`, `teste_harpa_58.py --barra-inicial`)
+
+A barra de um personagem novo vem do cliente, porque o servidor nao manda atalhos na criacao. A fonte
+e o `pc\client_default_key.xml`: 36 teclas por classe (1-12 a linha de baixo, 13-24 a do Alt,
+25-36 a do Ctrl), linhas `[class, key_value, skill_name, dark_race_skill]`. A tabela e indexada pela
+posicao da classe na tela de criacao, de 0 a 12:
+- o leitor de campos da `DefaultKeyTable` (vtable `+0xA0`, `0x2C6FF0`) converte o `<class>` em posicao
+  (`0x9CBDF0`; nome desconhecido vira 0, a posicao do Gladiador);
+- o montador da barra (`0x652460`) procura as linhas pela classe do personagem, passando por
+  `0x9CBC80`.
+
+O Bard nao tinha posicao nem linhas, e `0x9CBC80` responde 10 (Luminess) para ele, porque a tela de
+criacao precisa disso (`HarpClassToSlotHook`). Por isso ele recebia as teclas da Luminess. Agora o
+Bard tem a posicao 13 so nessa tabela:
+- **Leitor:** um hook do Detours grava 13 nas linhas `<class>Bard</class>`. Tem de ser hook instalado
+  na carga: o cliente le essa tabela enquanto o `Game.dll` carrega, antes de a DLL poder gravar no
+  codigo. Um redirecionamento da chamada, feito depois, nunca foi alcancado (provado por log e pelo
+  registro no `tables.dmp`).
+- **Montador:** a chamada `0x652492` e redirecionada depois da carga (ele roda no jogo), e a classe 20
+  responde 13. As chamadas da tela de criacao continuam com a posicao da Luminess.
+
+O 5.8 nao tem essa tabela. As 36 linhas do Bard seguem as outras classes: ataque, itens de iniciante,
+Mending, Aromatherapy, pegar item, descansar e voltar para casa, e so a skill que o personagem ja tem
+ao nascer (Pulse, `Ar_SongofAir_G1`, na tecla 2). Testado em jogo com um Bard novo.
 
 ### Skills Charge (`charge_fix.h`)
 

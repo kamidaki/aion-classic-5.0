@@ -34,6 +34,7 @@ Uso:
     python teste_harpa_58.py --ajusta-harpa-previa    corrige a altura da malha ja instalada
     python teste_harpa_58.py --racas      harpa no LF, DM e DF (animacoes do LF, listas e marcadores)
     python teste_harpa_58.py --strings    nome do tipo de arma (STR_TOOLTIP_HARP) nas linguas do cliente
+    python teste_harpa_58.py --barra-inicial   barra de atalhos inicial do Bard (client_default_key.xml)
     python teste_harpa_58.py --desfaz   restaura os paks e tira o template do servidor
 """
 import math
@@ -1045,6 +1046,70 @@ def aplica_set_do_bard_servidor():
         with open(caminho, "w", encoding="utf-8", newline="") as f:
             f.write(texto)
         print(f"OK  {rel}: BARD com a harpa e o set Novice Songweaver")
+
+
+#: Barra de atalhos inicial (`pc\client_default_key.xml`): 36 teclas por classe (1-12 a linha de baixo,
+#: 13-24 a do Alt, 25-36 a do Ctrl), achadas pelo indice da classe na tela de criacao (0x9CBDF0 le o
+#: `class`, 0x652460 procura pela classe do personagem). O Bard nao tinha linhas nem indice e recebia
+#: as da Luminess; o `harp_fix.h` da a ele o indice 13 so nessa tabela. O 5.8 nao tem essa tabela: as
+#: linhas comuns sao as da Luminess (ataque, itens de iniciante, Mending, Aromatherapy, pegar item,
+#: descansar, voltar para casa) e, como nas outras classes, entram so as skills que o personagem ja
+#: tem ao nascer: o Pulse.
+PAK_DA_BARRA_INICIAL = r"data\PC\PC.pak"
+CLASSE_MOLDE_DA_BARRA = "Lumines"
+PREFIXO_DO_MOLDE = "LU_"
+SKILLS_DA_BARRA_DO_BARD = {"2": "Ar_SongofAir_G1"}
+
+
+def barra_inicial_do_bard(bxml):
+    """`client_default_key.xml` binario com as 36 linhas do Bard (classe `Bard`, ids depois do maior)."""
+    def editor(raiz):
+        tab = raiz._tab
+
+        def campos(no):
+            return {tab.texto(f._nome): (tab.texto(f._texto) if f._texto is not None else None) for f in no.filhos}
+
+        linhas = [n for n in raiz.filhos if n.nome == "client_default_key"]
+        if any((campos(n).get("class") or "").lower() == "bard" for n in linhas):
+            raise ValueError("client_default_key ja tem o Bard")
+        molde = [campos(n) for n in linhas if campos(n).get("class") == CLASSE_MOLDE_DA_BARRA]
+        if len(molde) != 36:
+            raise ValueError(f"{CLASSE_MOLDE_DA_BARRA}: {len(molde)} linhas, esperava 36")
+        proximo = max(int(campos(n)["id"]) for n in linhas) + 1
+        for i, c in enumerate(sorted(molde, key=lambda c: int(c["key_value"]))):
+            tecla = c["key_value"]
+            skill = SKILLS_DA_BARRA_DO_BARD.get(tecla)
+            if skill is None and c.get("skill_name") and not c["skill_name"].startswith(PREFIXO_DO_MOLDE):
+                skill = c["skill_name"]
+            valores = [("id", str(proximo + i)), ("name", f"Bard{tecla}"), ("class", "Bard"), ("key_value", tecla)]
+            if skill:
+                valores.append(("skill_name", skill))
+            linha = raiz.novo("client_default_key")
+            linha.filhos = [NoBxml(tab, tab.indice(k), tab.indice(v)) for k, v in valores]
+            raiz.filhos.append(linha)
+    return edita_bxml(bxml, editor)
+
+
+def aplica_barra_inicial():
+    import aion_bxml
+    caminho = os.path.join(CLIENTE, PAK_DA_BARRA_INICIAL)
+    origem = caminho + SUFIXO_BACKUP if os.path.exists(caminho + SUFIXO_BACKUP) else caminho
+    d, idx = aion_pak.abre(origem)
+    entrada = next(e for e in idx if e.nome.lower() == "client_default_key.xml")
+    novo = barra_inicial_do_bard(aion_pak.le(d, entrada))
+    _backup(caminho)
+    if origem != caminho:
+        shutil.copy2(origem, caminho)
+    regrava_pak(caminho, troca={entrada.nome: novo})
+    _confere_pak(caminho, len(idx), {entrada.nome: "troca"})
+    d2, idx2 = aion_pak.abre(caminho)
+    xml = aion_bxml.decodifica(aion_pak.le(d2, next(e for e in idx2 if e.nome == entrada.nome)))
+    linhas = re.findall(r"<client_default_key>(.*?)</client_default_key>", xml, re.S)
+    bard = [l for l in linhas if "<class>Bard</class>" in l]
+    assert len(bard) == 36 and any("<skill_name>Ar_SongofAir_G1</skill_name>" in l for l in bard)
+    assert not any(PREFIXO_DO_MOLDE in l for l in bard)
+    print(f"OK  {PAK_DA_BARRA_INICIAL}: client_default_key.xml com as 36 teclas do Bard "
+          f"({sum('<skill_name>' in l for l in bard)} com atalho)")
 
 
 def aplica():
@@ -3310,6 +3375,8 @@ if __name__ == "__main__":
         ajusta_altura_harpa_previa()
     elif "--animacao" in sys.argv:
         aplica_animacao()
+    elif "--barra-inicial" in sys.argv:
+        aplica_barra_inicial()
     elif "--efeito" in sys.argv:
         aplica_efeito()
     elif "--componente" in sys.argv:
