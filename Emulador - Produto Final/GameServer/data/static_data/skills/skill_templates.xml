@@ -26941,6 +26941,7 @@
 		</startconditions>
 		<effects>
 			<skillatk value="683" delta="16" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
 				<modifiers>
 					<abnormaldamage state="POISON" value="739" delta="17"/>
 				</modifiers>
@@ -68987,7 +68988,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<form value="FORM1"/>
 		</startconditions>
 		<effects>
-			<shield percent="true" hitvalue="90" value="1000000" duration2="20000" effectid="103982" e="1" basiclvl="200" noresist="true" hittype="EVERYHIT" hittypeprob2="1000" hoptype="SKILLLV"/>
+			<shield percent="true" hitvalue="90" value="1000000" duration2="20000" effectid="103982" e="1" basiclvl="200" noresist="true" hittype="EVERYHIT" hittypeprob2="1000" hoptype="SKILLLV">
+				<subeffect skill_id="8218"/>
+			</shield>
 			<healinstant value="75000" e="2" noresist="true" preeffect="1" preeffect_prob="100" hoptype="SKILLLV"/>
 			<hostileup value="30000" e="3" noresist="true" preeffect="1" preeffect_prob="100" hoptype="SKILLLV"/>
 		</effects>
@@ -69004,6 +69007,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 		</startconditions>
 		<effects>
 			<snare effectid="103982" e="1" basiclvl="200" noresist="true" element="WATER" hoptype="SKILLLV">
+				<subeffect skill_id="8218"/>
 				<change stat="SPEED" func="PERCENT" value="-100"/>
 				<change stat="FLY_SPEED" func="PERCENT" value="-100"/>
 			</snare>
@@ -69039,7 +69043,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<dash value="1" delta="0" e="1" noresist="true" hoptype="SKILLLV"/>
+			<dash value="1" delta="0" e="1" noresist="true" hoptype="SKILLLV">
+				<subeffect skill_id="8217"/>
+			</dash>
 			<hostileup value="20000" e="2" noresist="true" preeffect="1" preeffect_prob="100" hoptype="SKILLLV"/>
 			<noreducespellatk value="20000" e="1" noresist="true" element="FIRE" critprobmod2="10" hoptype="DAMAGE"/>
 		</effects>
@@ -72490,7 +72496,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<noreducespellatk value="9999999" e="1" noresist="true" element="WIND" critprobmod2="10" hoptype="DAMAGE"/>
+			<noreducespellatk value="9999999" e="1" noresist="true" element="WIND" critprobmod2="10" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</noreducespellatk>
 			<stumble value="10" duration2="1000" effectid="20003" e="2" noresist="true" accmod2="500" element="EARTH" preeffect="1" preeffect_prob="100" hoptype="SKILLLV"/>
 		</effects>
 		<motion name="NormalFire"/>
@@ -72504,7 +72512,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="85" hoptype="DAMAGE"/>
+			<skillatk e="1" value="85" hoptype="DAMAGE">
+				<subeffect skill_id="8224"/>
+			</skillatk>
 		</effects>
 		<motion name="openaerial"/>
 	</skill_template>
@@ -93770,7 +93780,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant value="10" e="1" element="WIND" critprobmod2="0" hoptype="DAMAGE"/>
+			<spellatkinstant value="10" e="1" element="WIND" critprobmod2="0" hoptype="DAMAGE">
+				<subeffect skill_id="8632"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -93783,7 +93795,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="15" e="1" hoptype="DAMAGE"/>
+			<skillatk value="15" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8635"/>
+			</skillatk>
 			<statdown duration2="5000" duration1="100" effectid="40152" e="2" critprobmod2="100" element="EARTH" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="60" hopa="60">
 				<change stat="PHYSICAL_DEFENSE" func="PERCENT" value="-50"/>
 			</statdown>
@@ -94204,7 +94218,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="500" e="1" hoptype="DAMAGE"/>
+			<skillatk value="500" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8632"/>
+			</skillatk>
 		</effects>
 		<motion name="areafire"/>
 	</skill_template>
@@ -94362,7 +94378,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="129" e="1" hoptype="DAMAGE"/>
+			<skillatk value="129" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8637"/>
+			</skillatk>
 		</effects>
 		<motion name="areaatk2"/>
 	</skill_template>
@@ -94375,7 +94393,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="155" e="1" noresist="true" hoptype="DAMAGE"/>
+			<skillatk value="155" e="1" noresist="true" hoptype="DAMAGE">
+				<subeffect skill_id="8636"/>
+			</skillatk>
 		</effects>
 		<motion name="handbind"/>
 	</skill_template>
@@ -94402,7 +94422,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="200" e="1" hoptype="DAMAGE"/>
+			<skillatk value="200" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8637"/>
+			</skillatk>
 		</effects>
 		<motion name="areaatk2"/>
 	</skill_template>
@@ -94876,7 +94898,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="3500" e="1" noresist="true" hoptype="DAMAGE"/>
+			<skillatk value="3500" e="1" noresist="true" hoptype="DAMAGE">
+				<subeffect skill_id="8633"/>
+			</skillatk>
 		</effects>
 		<motion name="areaatk"/>
 	</skill_template>
@@ -94889,7 +94913,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="3500" e="1" noresist="true" hoptype="DAMAGE"/>
+			<skillatk value="3500" e="1" noresist="true" hoptype="DAMAGE">
+				<subeffect skill_id="8633"/>
+			</skillatk>
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
@@ -95074,7 +95100,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="2" delta="20" e="1" hoptype="DAMAGE"/>
+			<skillatk value="2" delta="20" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8633"/>
+			</skillatk>
 		</effects>
 		<motion name="areaatk"/>
 	</skill_template>
@@ -95127,7 +95155,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="120" e="1" noresist="true" hoptype="DAMAGE"/>
+			<skillatk value="120" e="1" noresist="true" hoptype="DAMAGE">
+				<subeffect skill_id="8633"/>
+			</skillatk>
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
@@ -95526,7 +95556,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="77" e="1" hoptype="DAMAGE"/>
+			<skillatk value="77" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8632"/>
+			</skillatk>
 		</effects>
 		<motion name="chainatk2"/>
 	</skill_template>
@@ -95728,7 +95760,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="50" e="1" hoptype="DAMAGE"/>
+			<skillatk value="50" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8635"/>
+			</skillatk>
 			<statdown duration2="5000" duration1="100" effectid="10187712" e="2" noresist="true" element="EARTH" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="60" hopa="60">
 				<change stat="PHYSICAL_DEFENSE" func="PERCENT" value="-60"/>
 			</statdown>
@@ -95917,7 +95951,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="70" e="1" hoptype="DAMAGE"/>
+			<skillatk value="70" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8632"/>
+			</skillatk>
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
@@ -95945,7 +95981,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="70" e="1" hoptype="DAMAGE"/>
+			<skillatk value="70" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8632"/>
+			</skillatk>
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
@@ -100585,7 +100623,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="13" e="1" hoptype="DAMAGE"/>
+			<skillatk value="13" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8676"/>
+			</skillatk>
 		</effects>
 		<motion name="areaatk"/>
 	</skill_template>
@@ -100821,7 +100861,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="125" e="1" hoptype="DAMAGE"/>
+			<skillatk value="125" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8632" chance="50"/>
+			</skillatk>
 		</effects>
 		<motion name="buff"/>
 	</skill_template>
@@ -100834,7 +100876,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="120" e="1" hoptype="DAMAGE"/>
+			<skillatk value="120" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8632" chance="50"/>
+			</skillatk>
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
@@ -101070,7 +101114,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="11" delta="1" e="1" hoptype="DAMAGE"/>
+			<skillatk value="11" delta="1" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8676"/>
+			</skillatk>
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
@@ -102423,7 +102469,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="221" e="1" noresist="true" hoptype="DAMAGE"/>
+			<skillatk value="221" e="1" noresist="true" hoptype="DAMAGE">
+				<subeffect skill_id="8637"/>
+			</skillatk>
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
@@ -103217,7 +103265,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="3" delta="1" e="1" noresist="true" hoptype="DAMAGE"/>
+			<skillatk value="3" delta="1" e="1" noresist="true" hoptype="DAMAGE">
+				<subeffect skill_id="8637"/>
+			</skillatk>
 		</effects>
 		<motion name="Handbind"/>
 	</skill_template>
@@ -104419,7 +104469,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="25" e="1" hoptype="DAMAGE"/>
+			<skillatk value="25" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8679"/>
+			</skillatk>
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
@@ -105264,7 +105316,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant value="1025" delta="15" e="1" element="LIGHT" critprobmod2="120" hoptype="DAMAGE"/>
+			<spellatkinstant value="1025" delta="15" e="1" element="LIGHT" critprobmod2="120" hoptype="DAMAGE">
+				<subeffect skill_id="8634"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="NormalFire"/>
 	</skill_template>
@@ -105277,7 +105331,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="5" e="1" hoptype="DAMAGE"/>
+			<skillatk value="5" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8634"/>
+			</skillatk>
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
@@ -105290,7 +105346,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="5" e="1" hoptype="DAMAGE"/>
+			<skillatk value="5" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8634"/>
+			</skillatk>
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
@@ -106978,7 +107036,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant value="50" delta="10" e="1" element="DARK" hoptype="DAMAGE"/>
+			<spellatkinstant value="50" delta="10" e="1" element="DARK" hoptype="DAMAGE">
+				<subeffect skill_id="8634"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="pointfire"/>
 	</skill_template>
@@ -107699,7 +107759,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="127" delta="10" e="1" hoptype="DAMAGE"/>
+			<skillatk value="127" delta="10" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8634"/>
+			</skillatk>
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
@@ -107894,7 +107956,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant value="200" delta="10" e="1" element="DARK" hoptype="DAMAGE"/>
+			<spellatkinstant value="200" delta="10" e="1" element="DARK" hoptype="DAMAGE">
+				<subeffect skill_id="8634"/>
+			</spellatkinstant>
 			<slow duration2="12000" effectid="20008" e="2" noresist="true" element="DARK" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="60" hopa="60">
 				<change stat="ATTACK_SPEED" func="PERCENT" value="30"/>
 			</slow>
@@ -108149,7 +108213,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="21" delta="15" e="1" hoptype="DAMAGE"/>
+			<skillatk value="21" delta="15" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8679"/>
+			</skillatk>
 			<snare duration2="10000" effectid="20007" e="2" element="DARK" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="1">
 				<change stat="SPEED" func="PERCENT" value="-90"/>
 				<change stat="FLY_SPEED" func="PERCENT" value="-90"/>
@@ -108956,7 +109022,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant value="50" e="1" element="DARK" hoptype="DAMAGE"/>
+			<spellatkinstant value="50" e="1" element="DARK" hoptype="DAMAGE">
+				<subeffect skill_id="8632"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="pointfire"/>
 	</skill_template>
@@ -109311,7 +109379,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="127" delta="10" e="1" hoptype="DAMAGE"/>
+			<skillatk value="127" delta="10" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8634"/>
+			</skillatk>
 		</effects>
 		<motion name="pointfire"/>
 	</skill_template>
@@ -110067,7 +110137,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" noresist="true" element="EARTH" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" noresist="true" element="EARTH" hoptype="DAMAGE">
+				<subeffect skill_id="8679"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
@@ -110155,7 +110227,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" hoptype="DAMAGE"/>
+			<skillatk e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8633"/>
+			</skillatk>
 		</effects>
 		<motion name="pointfire"/>
 	</skill_template>
@@ -110169,7 +110243,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" hoptype="DAMAGE"/>
+			<skillatk e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8632"/>
+			</skillatk>
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>
@@ -110427,7 +110503,9 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="2" delta="15" e="1" hoptype="DAMAGE"/>
+			<skillatk value="2" delta="15" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8633"/>
+			</skillatk>
 		</effects>
 		<motion name="areaatk"/>
 	</skill_template>
@@ -111985,7 +112063,9 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="100" delta="10" e="1" critprobmod2="80" hoptype="DAMAGE"/>
+			<skillatk value="100" delta="10" e="1" critprobmod2="80" hoptype="DAMAGE">
+				<subeffect skill_id="8635"/>
+			</skillatk>
 			<deboostheal e="2" preeffect="1" preeffect_prob="100">
 				<change stat="HEAL_SKILL_DEBOOST" func="PERCENT" value="-10"/>
 			</deboostheal>
@@ -112015,7 +112095,9 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="15" delta="1" e="1" critprobmod2="0" hoptype="DAMAGE"/>
+			<skillatk value="15" delta="1" e="1" critprobmod2="0" hoptype="DAMAGE">
+				<subeffect skill_id="8679"/>
+			</skillatk>
 		</effects>
 		<motion name="Normalfire"/>
 	</skill_template>
@@ -112251,7 +112333,9 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="10" delta="15" e="1" hoptype="DAMAGE"/>
+			<skillatk value="10" delta="15" e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8633"/>
+			</skillatk>
 		</effects>
 		<motion name="BackATK"/>
 	</skill_template>
@@ -112264,7 +112348,9 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="20" delta="10" e="1" critprobmod2="0" hoptype="DAMAGE"/>
+			<skillatk value="20" delta="10" e="1" critprobmod2="0" hoptype="DAMAGE">
+				<subeffect skill_id="8676"/>
+			</skillatk>
 		</effects>
 		<motion name="HandBind"/>
 	</skill_template>
@@ -114599,7 +114685,9 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 			<chain category="A_CHAING_2TH_2" precategory="ALL_CHAINA_1TH" time="3000" />
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="760" delta="45" element="WIND" hoptype="DAMAGE" />
+			<spellatkinstant e="1" value="760" delta="45" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="137" delta="0" />
@@ -114613,7 +114701,9 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 			<chain category="A_CHAING_2TH_2" precategory="ALL_CHAINA_1TH" time="3000" />
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="821" delta="49" element="WIND" hoptype="DAMAGE" />
+			<spellatkinstant e="1" value="821" delta="49" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="155" delta="0" />
@@ -114627,7 +114717,9 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 			<chain category="A_CHAING_2TH_2" precategory="ALL_CHAINA_1TH" time="3000" />
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="883" delta="52" element="WIND" hoptype="DAMAGE" />
+			<spellatkinstant e="1" value="883" delta="52" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="175" delta="0" />
@@ -114641,7 +114733,9 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 			<chain category="A_CHAING_2TH_2" precategory="ALL_CHAINA_1TH" time="3000" />
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="943" delta="57" element="WIND" hoptype="DAMAGE" />
+			<spellatkinstant e="1" value="943" delta="57" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="196" delta="0" />
@@ -116000,7 +116094,9 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="963" delta="58" element="WIND" hoptype="DAMAGE" />
+			<spellatkinstant e="1" value="963" delta="58" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="254" delta="0" />
@@ -116016,7 +116112,9 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="1031" delta="61" element="WIND" hoptype="DAMAGE" />
+			<spellatkinstant e="1" value="1031" delta="61" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="254" delta="0" />
@@ -117523,7 +117621,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="394" delta="5" hoptype="DAMAGE"/>
+			<skillatk e="1" value="394" delta="5" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="252" delta="0"/>
@@ -117873,7 +117973,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="1223" delta="8" accmod2="1000" element="WIND" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1223" delta="8" accmod2="1000" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8221"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<spuse value="20"/>
@@ -117924,7 +118026,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<weapon weapon="GREATSWORD DAGGER MACE POLEARM STAFF SWORD"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" cannotmiss="true" value="762" delta="22" hoptype="DAMAGE"/>
+			<skillatk e="1" cannotmiss="true" value="762" delta="22" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<dpuse value="2000"/>
@@ -117938,7 +118042,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<weapon weapon="GREATSWORD DAGGER MACE POLEARM STAFF SWORD"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" cannotmiss="true" value="762" delta="22" hoptype="DAMAGE"/>
+			<skillatk e="1" cannotmiss="true" value="762" delta="22" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<dpuse value="2000"/>
@@ -118645,7 +118751,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<chain category="MWE_CHAINE_2TH" precategory="MWE_CHAINE_1TH" time="3000"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="314" delta="4" element="EARTH" hoptype="SKILLLV" hopb="3480"/>
+			<spellatkinstant e="1" value="314" delta="4" element="EARTH" hoptype="SKILLLV" hopb="3480">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="257" delta="4"/>
@@ -119031,7 +119139,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<chain alter="true" category="TH_CHAINA_3TH_2" precategory="TH_CHAINA_2TH" time="5000"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" value="959" delta="4" hoptype="DAMAGE"/>
+			<skillatk e="1" value="959" delta="4" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<motion name="ElecStag1"/>
 	</skill_template>
@@ -119137,7 +119247,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="8" delta="0"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" hoptype="SKILLLV" hopb="16793" hopa="410"/>
+			<skillatk e="1" hoptype="SKILLLV" hopb="16793" hopa="410">
+				<subeffect skill_id="8441"/>
+			</skillatk>
 			<snare duration2="10000" effectid="20007" e="2" accmod2="3000" element="EARTH" preeffect="1">
 				<change stat="SPEED" func="PERCENT" value="-50"/>
 				<change stat="FLY_SPEED" func="PERCENT" value="-50"/>
@@ -119280,7 +119392,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="1353" delta="17" accmod2="3000" element="WIND" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1353" delta="17" accmod2="3000" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8221"/>
+			</spellatkinstant>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2668" name_en="Teleport" name_pt="Espírito de fortalecimento: relíquia de Siel" nameId="2281447" delayId="755" stack="WI_DIMENSIONDOOR_PVP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="100" duration="0" cancel_rate="30" penalty_skill_id="8860">
@@ -119313,7 +119427,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			</useconditions>
 		<effects>
 			<movelocation distance="25" e="1" noresist="true"/>
-			<skillatk value="325" delta="2" e="2"/>
+			<skillatk value="325" delta="2" e="2">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 			</effects>
 		</skill_template>
 	
@@ -119418,7 +119534,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			</useconditions>
 		<effects>
 			<movelocation distance="25" e="1" noresist="true"/>
-			<skillatk value="325" delta="2" e="2"/>
+			<skillatk value="325" delta="2" e="2">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 			</effects>
 		</skill_template>
 	
@@ -119466,7 +119584,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<weapon weapon="GREATSWORD DAGGER MACE POLEARM STAFF SWORD"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" hoptype="SKILLLV" hopb="16793" hopa="410"/>
+			<skillatk e="1" hoptype="SKILLLV" hopb="16793" hopa="410">
+				<subeffect skill_id="8441"/>
+			</skillatk>
 			<snare duration2="10000" effectid="20007" e="2" element="EARTH" preeffect="1">
 				<change stat="SPEED" func="PERCENT" value="-50"/>
 				<change stat="FLY_SPEED" func="PERCENT" value="-50"/>
@@ -121203,7 +121323,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="430" delta="1" hoptype="DAMAGE"/>
+			<skillatk e="1" value="430" delta="1" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2862" name_en="Sweep II" name_pt="Som de posto aguda II" nameId="2282514" delayId="773" stack="ST_LOWLEG_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="10">
@@ -121212,7 +121334,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="473" delta="1" hoptype="DAMAGE"/>
+			<skillatk e="1" value="473" delta="1" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2863" name_en="Sweep III" name_pt="Varredura III" nameId="2282515" delayId="773" stack="ST_LOWLEG_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="10">
@@ -121221,7 +121345,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="567" delta="1" hoptype="DAMAGE"/>
+			<skillatk e="1" value="567" delta="1" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2864" name_en="Sweep IV" name_pt="Varredura IV" nameId="2282516" delayId="773" stack="ST_LOWLEG_G4" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="10">
@@ -121230,7 +121356,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="738" delta="1" hoptype="DAMAGE"/>
+			<skillatk e="1" value="738" delta="1" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2865" name_en="Hellfall I" name_pt="Queda Infernal I" nameId="2282519" delayId="774" stack="ST_LOWLEG_HIGH_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="10" penalty_skill_id="8822">
@@ -121242,7 +121370,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="426" delta="2" hoptype="DAMAGE"/>
+			<skillatk e="1" value="426" delta="2" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2866" name_en="Hellfall II" name_pt="Queda Infernal II" nameId="2282520" delayId="774" stack="ST_LOWLEG_HIGH_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="10" penalty_skill_id="8822">
@@ -121254,7 +121384,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="542" delta="2" hoptype="DAMAGE"/>
+			<skillatk e="1" value="542" delta="2" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2867" name_en="Hellfall III" name_pt="Queda do Inferno III" nameId="2282521" delayId="774" stack="ST_LOWLEG_HIGH_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="10" penalty_skill_id="8822">
@@ -121266,7 +121398,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="714" delta="2" hoptype="DAMAGE"/>
+			<skillatk e="1" value="714" delta="2" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2868" name_en="Hellfall IV" name_pt="Queda Infernal IV" nameId="2282522" delayId="774" stack="ST_LOWLEG_HIGH_G4" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="10" penalty_skill_id="8822">
@@ -121278,7 +121412,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="930" delta="2" hoptype="DAMAGE"/>
+			<skillatk e="1" value="930" delta="2" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2869" name_en="Binding Fists I" name_pt="Punhos Aprisionadores I" nameId="2282525" delayId="776" stack="ST_BIND_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="100" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10">
@@ -122258,7 +122394,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</useconditions>
 		<effects>
 			<skilllauncher e="1" skill_id="8837" value="1"/>
-			<skillatk e="2" value="876" delta="4" hoptype="DAMAGE"/>
+			<skillatk e="2" value="876" delta="4" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2975" name_en="One Hundred Fists II" name_pt="Cem Punhos II" nameId="2282674" delayId="801" stack="ST_SIGPUNCH2_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="10" chain_skill_prob="100">
@@ -122271,7 +122409,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</useconditions>
 		<effects>
 			<skilllauncher e="1" skill_id="8837" value="1"/>
-			<skillatk e="2" value="963" delta="5" hoptype="DAMAGE"/>
+			<skillatk e="2" value="963" delta="5" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2976" name_en="One Hundred Fists III" name_pt="Cem Punhos III" nameId="2282675" delayId="801" stack="ST_SIGPUNCH2_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="10" chain_skill_prob="100">
@@ -122284,7 +122424,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</useconditions>
 		<effects>
 			<skilllauncher e="1" skill_id="8837" value="1"/>
-			<skillatk e="2" value="1059" delta="6" hoptype="DAMAGE"/>
+			<skillatk e="2" value="1059" delta="6" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2977" name_en="One Hundred Fists IV" name_pt="Cem Punhos IV" nameId="2282676" delayId="801" stack="ST_SIGPUNCH2_G4" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="10" chain_skill_prob="100">
@@ -122297,7 +122439,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</useconditions>
 		<effects>
 			<skilllauncher e="1" skill_id="8837" value="1"/>
-			<skillatk e="2" value="1165" delta="7" hoptype="DAMAGE"/>
+			<skillatk e="2" value="1165" delta="7" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2978" name_en="Divine Master Strike I" name_pt="Golpe do Mestre Divino I" nameId="2282678" delayId="802" stack="ST_SIGKICK1_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="900" duration="0" cancel_rate="10" chain_skill_prob="100">
@@ -122358,7 +122502,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</useconditions>
 		<effects>
 			<skilllauncher e="1" skill_id="8837" value="1"/>
-			<skillatk e="2" value="888" delta="3" hoptype="DAMAGE"/>
+			<skillatk e="2" value="888" delta="3" hoptype="DAMAGE">
+				<subeffect skill_id="8224"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2983" name_en="Ascension Kick II" name_pt="Chute de Ascensão II" nameId="2282684" delayId="803" stack="ST_SIGKICK2_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="900" duration="0" cancel_rate="10" chain_skill_prob="100">
@@ -122371,7 +122517,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</useconditions>
 		<effects>
 			<skilllauncher e="1" skill_id="8837" value="1"/>
-			<skillatk e="2" value="976" delta="4" hoptype="DAMAGE"/>
+			<skillatk e="2" value="976" delta="4" hoptype="DAMAGE">
+				<subeffect skill_id="8224"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2984" name_en="Ascension Kick III" name_pt="Chute de Ascensão III" nameId="2282685" delayId="803" stack="ST_SIGKICK2_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="900" duration="0" cancel_rate="10" chain_skill_prob="100">
@@ -122384,7 +122532,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</useconditions>
 		<effects>
 			<skilllauncher e="1" skill_id="8837" value="1"/>
-			<skillatk e="2" value="1074" delta="5" hoptype="DAMAGE"/>
+			<skillatk e="2" value="1074" delta="5" hoptype="DAMAGE">
+				<subeffect skill_id="8224"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2985" name_en="Ascension Kick IV" name_pt="Chute de Ascensão IV" nameId="2282686" delayId="803" stack="ST_SIGKICK2_G4" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="900" duration="0" cancel_rate="10" chain_skill_prob="100">
@@ -122397,7 +122547,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</useconditions>
 		<effects>
 			<skilllauncher e="1" skill_id="8837" value="1"/>
-			<skillatk e="2" value="1180" delta="6" hoptype="DAMAGE"/>
+			<skillatk e="2" value="1180" delta="6" hoptype="DAMAGE">
+				<subeffect skill_id="8224"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2986" name_en="Eclipse Strike I" name_pt="Ataque Eclipse I" nameId="2282688" delayId="804" stack="ST_BUKDU_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="10" penalty_skill_id="8804">
@@ -122442,7 +122594,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<chain category="ST_CHAINE_2TH_1" precategory="ALL_CHAINA_1TH" time="1500"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" value="900" delta="12" hoptype="DAMAGE"/>
+			<skillatk e="1" value="900" delta="12" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="2991" name_en="Dash and Slash III" name_pt="Traço e corte III" nameId="2282099" delayId="342" stack="AS_ASSAULTSLASH_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
@@ -122792,7 +122946,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="655" delta="14" hoptype="DAMAGE"/>
+			<skillatk e="1" value="655" delta="14" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="212" delta="0"/>
@@ -122844,7 +123000,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<weapon weapon="GREATSWORD DAGGER MACE POLEARM STAFF SWORD"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" value="477" delta="15" hoptype="DAMAGE"/>
+			<skillatk e="1" value="477" delta="15" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="309" delta="0"/>
@@ -122877,7 +123035,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="425" delta="8" hoptype="DAMAGE"/>
+			<skillatk e="1" value="425" delta="8" hoptype="DAMAGE">
+				<subeffect skill_id="8218" chance="70"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="86" delta="0"/>
@@ -122966,7 +123126,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" cannotmiss="true" value="1096" delta="20" hoptype="DAMAGE"/>
+			<skillatk e="1" cannotmiss="true" value="1096" delta="20" hoptype="DAMAGE">
+				<subeffect skill_id="8218" chance="20"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="406" delta="0"/>
@@ -123128,7 +123290,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="795" delta="6" hoptype="DAMAGE"/>
+			<skillatk e="1" value="795" delta="6" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="327" delta="0"/>
@@ -123295,7 +123459,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" rnddmg="1" value="610" delta="12" hoptype="DAMAGE"/>
+			<skillatk e="1" rnddmg="1" value="610" delta="12" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="109" delta="0"/>
@@ -123573,7 +123739,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" cannotmiss="true" value="1090" delta="18" hoptype="DAMAGE"/>
+			<skillatk e="1" cannotmiss="true" value="1090" delta="18" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="264" delta="0"/>
@@ -123606,7 +123774,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="762" delta="7" hoptype="DAMAGE"/>
+			<skillatk e="1" value="762" delta="7" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="327" delta="0"/>
@@ -123635,7 +123805,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<weapon weapon="GREATSWORD DAGGER MACE POLEARM STAFF SWORD"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" value="503" delta="4" hoptype="DAMAGE"/>
+			<skillatk e="1" value="503" delta="4" hoptype="DAMAGE">
+				<subeffect skill_id="8441"/>
+			</skillatk>
 			<snare duration2="10000" effectid="20007" e="2" element="FIRE" preeffect="1" hoptype="SKILLLV">
 				<change stat="SPEED" func="PERCENT" value="-50"/>
 				<change stat="FLY_SPEED" func="PERCENT" value="-50"/>
@@ -123970,7 +124142,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="503" delta="12" hoptype="DAMAGE"/>
+			<skillatk e="1" value="503" delta="12" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="152" delta="0"/>
@@ -124193,7 +124367,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<weapon weapon="MACE STAFF"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" rnddmg="1" value="733" delta="26" hoptype="DAMAGE"/>
+			<skillatk e="1" rnddmg="1" value="733" delta="26" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="199" delta="0"/>
@@ -124470,7 +124646,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="694" delta="9" element="EARTH" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="694" delta="9" element="EARTH" hoptype="DAMAGE">
+				<subeffect skill_id="8217" chance="30"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="326" delta="10"/>
@@ -124743,7 +124921,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="1332" delta="18" hoptype="DAMAGE"/>
+			<skillatk e="1" value="1332" delta="18" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<dpuse value="2000"/>
@@ -124893,7 +125073,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="1058" delta="5" hoptype="DAMAGE"/>
+			<skillatk e="1" value="1058" delta="5" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<spuse value="10"/>
@@ -124937,7 +125119,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="1321" delta="5" hoptype="DAMAGE"/>
+			<skillatk e="1" value="1321" delta="5" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<motion name="XAreaATK"/>
 	</skill_template>
@@ -125425,7 +125609,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="2407" delta="26" accmod2="1000" element="FIRE" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="2407" delta="26" accmod2="1000" element="FIRE" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="228" delta="3"/>
@@ -127330,7 +127516,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="169" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="677" delta="16" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="484" hopa="50"/>
+			<spellatkinstant e="1" value="677" delta="16" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="484" hopa="50">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="169" delta="1"/>
@@ -127342,7 +127530,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="187" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="778" delta="18" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="484" hopa="50"/>
+			<spellatkinstant e="1" value="778" delta="18" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="484" hopa="50">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="187" delta="1"/>
@@ -127354,7 +127544,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="204" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="855" delta="20" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="484" hopa="50"/>
+			<spellatkinstant e="1" value="855" delta="20" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="484" hopa="50">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="204" delta="1"/>
@@ -127366,7 +127558,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="222" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="941" delta="22" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="484" hopa="50"/>
+			<spellatkinstant e="1" value="941" delta="22" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="484" hopa="50">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="222" delta="1"/>
@@ -127378,7 +127572,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="240" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="1035" delta="24" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="484" hopa="50"/>
+			<spellatkinstant e="1" value="1035" delta="24" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="484" hopa="50">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="240" delta="1"/>
@@ -127390,7 +127586,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="257" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="1138" delta="26" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="484" hopa="50"/>
+			<spellatkinstant e="1" value="1138" delta="26" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="484" hopa="50">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="257" delta="1"/>
@@ -127405,7 +127603,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="259" delta="10" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50"/>
+			<spellatkinstant e="1" value="259" delta="10" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="628" delta="1"/>
@@ -127420,7 +127620,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="284" delta="12" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50"/>
+			<spellatkinstant e="1" value="284" delta="12" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="676" delta="1"/>
@@ -127435,7 +127637,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="312" delta="15" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50"/>
+			<spellatkinstant e="1" value="312" delta="15" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="724" delta="1"/>
@@ -127450,7 +127654,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="343" delta="17" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50"/>
+			<spellatkinstant e="1" value="343" delta="17" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="772" delta="1"/>
@@ -127465,7 +127671,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="377" delta="20" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50"/>
+			<spellatkinstant e="1" value="377" delta="20" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="820" delta="1"/>
@@ -127480,7 +127688,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="415" delta="24" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50"/>
+			<spellatkinstant e="1" value="415" delta="24" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="868" delta="1"/>
@@ -127495,7 +127705,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="336" delta="10" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50"/>
+			<spellatkinstant e="1" value="336" delta="10" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="628" delta="1"/>
@@ -127510,7 +127722,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="369" delta="12" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50"/>
+			<spellatkinstant e="1" value="369" delta="12" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="676" delta="1"/>
@@ -127525,7 +127739,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="405" delta="15" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50"/>
+			<spellatkinstant e="1" value="405" delta="15" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="724" delta="1"/>
@@ -127540,7 +127756,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="445" delta="17" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50"/>
+			<spellatkinstant e="1" value="445" delta="17" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="772" delta="1"/>
@@ -127555,7 +127773,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="490" delta="20" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50"/>
+			<spellatkinstant e="1" value="490" delta="20" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="820" delta="1"/>
@@ -127570,7 +127790,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="539" delta="24" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50"/>
+			<spellatkinstant e="1" value="539" delta="24" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="868" delta="1"/>
@@ -128291,7 +128513,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="215" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="919" delta="12" critprobmod2="80" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="919" delta="12" critprobmod2="80" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="215" delta="1"/>
@@ -128303,7 +128527,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="226" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="973" delta="15" critprobmod2="80" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="973" delta="15" critprobmod2="80" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="226" delta="1"/>
@@ -128315,7 +128541,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="236" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="1033" delta="17" critprobmod2="80" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1033" delta="17" critprobmod2="80" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="236" delta="1"/>
@@ -128327,7 +128555,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="247" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="1094" delta="19" critprobmod2="80" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1094" delta="19" critprobmod2="80" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="247" delta="1"/>
@@ -128339,7 +128569,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="258" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="1160" delta="22" critprobmod2="80" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1160" delta="22" critprobmod2="80" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="258" delta="1"/>
@@ -128351,7 +128583,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="268" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="1229" delta="25" critprobmod2="80" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1229" delta="25" critprobmod2="80" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="268" delta="1"/>
@@ -128363,7 +128597,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="215" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="964" delta="12" critprobmod2="80" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="964" delta="12" critprobmod2="80" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="215" delta="1"/>
@@ -128375,7 +128611,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="226" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="1021" delta="15" critprobmod2="80" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1021" delta="15" critprobmod2="80" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="226" delta="1"/>
@@ -128387,7 +128625,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="236" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="1084" delta="17" critprobmod2="80" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1084" delta="17" critprobmod2="80" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="236" delta="1"/>
@@ -128399,7 +128639,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="247" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="1148" delta="19" critprobmod2="80" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1148" delta="19" critprobmod2="80" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="247" delta="1"/>
@@ -128411,7 +128653,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="258" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="1218" delta="22" critprobmod2="80" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1218" delta="22" critprobmod2="80" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="258" delta="1"/>
@@ -128423,7 +128667,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="268" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="1290" delta="25" critprobmod2="80" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1290" delta="25" critprobmod2="80" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="268" delta="1"/>
@@ -128549,7 +128795,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<chain category="LU_CHAIND_2TH_1" precategory="ALL_CHAINA_1TH" time="1500"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="918" delta="15" critprobmod2="80" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="918" delta="15" critprobmod2="80" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="132" delta="1"/>
@@ -128562,7 +128810,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<chain category="LU_CHAIND_2TH_1" precategory="ALL_CHAINA_1TH" time="1500"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="973" delta="18" critprobmod2="80" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="973" delta="18" critprobmod2="80" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="155" delta="1"/>
@@ -129376,7 +129626,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="568" delta="19" hoptype="DAMAGE"/>
+			<skillatk e="1" value="568" delta="19" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="105" delta="0"/>
@@ -129434,7 +129686,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<weapon weapon="GREATSWORD DAGGER MACE POLEARM STAFF SWORD"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" value="621" delta="17" hoptype="DAMAGE"/>
+			<skillatk e="1" value="621" delta="17" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="312" delta="0"/>
@@ -129500,7 +129754,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="1265" delta="21" hoptype="DAMAGE"/>
+			<skillatk e="1" value="1265" delta="21" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<dpuse value="4000"/>
@@ -129739,7 +129995,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" cannotmiss="true" value="1425" delta="22" hoptype="DAMAGE"/>
+			<skillatk e="1" cannotmiss="true" value="1425" delta="22" hoptype="DAMAGE">
+				<subeffect skill_id="8218" chance="20"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="412" delta="0"/>
@@ -129855,7 +130113,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="292" hoptype="SKILLLV" hopb="40415"/>
+			<skillatk e="1" value="292" hoptype="SKILLLV" hopb="40415">
+				<subeffect skill_id="8441"/>
+			</skillatk>
 			<snare duration2="10000" effectid="20007" e="2" element="EARTH" preeffect="1">
 				<change stat="SPEED" func="PERCENT" value="-50"/>
 				<change stat="FLY_SPEED" func="PERCENT" value="-50"/>
@@ -130137,7 +130397,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" cannotmiss="true" value="1220" delta="19" hoptype="DAMAGE"/>
+			<skillatk e="1" cannotmiss="true" value="1220" delta="19" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="271" delta="0"/>
@@ -130171,7 +130433,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="477" delta="7" hoptype="DAMAGE"/>
+			<skillatk e="1" value="477" delta="7" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="198" delta="0"/>
@@ -130764,7 +131028,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<chain category="SRA_CHAINH_2TH_2" precategory="ALL_CHAINA_1TH" time="1500"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" value="888" delta="22" hoptype="DAMAGE"/>
+			<skillatk e="1" value="888" delta="22" hoptype="DAMAGE">
+				<subeffect skill_id="8223"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="157" delta="0"/>
@@ -130778,7 +131044,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<weapon weapon="DAGGER SWORD"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" value="943" delta="22" hoptype="DAMAGE"/>
+			<skillatk e="1" value="943" delta="22" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="168" delta="0"/>
@@ -131296,7 +131564,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="587" delta="40" element="FIRE" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="587" delta="40" element="FIRE" hoptype="DAMAGE">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="249" delta="6"/>
@@ -131354,7 +131624,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<chain category="MWE_CHAINB_2TH" precategory="MWE_CHAINB_1TH" time="3000"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="491" delta="35" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="491" delta="35" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="252" delta="6"/>
@@ -132205,7 +132477,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<dp value="4000"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" value="785" delta="9" hoptype="SKILLLV" hopb="3140"/>
+			<skillatk e="1" value="785" delta="9" hoptype="SKILLLV" hopb="3140">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<dpuse value="4000"/>
@@ -132302,7 +132576,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="543" delta="15" hoptype="DAMAGE"/>
+			<skillatk e="1" value="543" delta="15" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="167" delta="0"/>
@@ -132338,7 +132614,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="578" delta="25" hoptype="DAMAGE"/>
+			<skillatk e="1" value="578" delta="25" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="128" delta="0"/>
@@ -132437,7 +132715,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="1598" delta="20" hoptype="DAMAGE"/>
+			<skillatk e="1" value="1598" delta="20" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<dpuse value="2000"/>
@@ -132625,7 +132905,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<chain alter="true" category="TH_CHAINA_3TH_2" precategory="TH_CHAINA_2TH" time="5000"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" value="1054" delta="7" hoptype="DAMAGE"/>
+			<skillatk e="1" value="1054" delta="7" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<motion name="ElecStag1"/>
 	</skill_template>
@@ -132737,7 +133019,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<weapon weapon="CHAINBLADE"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="4442" delta="28" accmod2="1000" element="WIND" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="4442" delta="28" accmod2="1000" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<spuse value="20"/>
@@ -132783,7 +133067,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="800" delta="1" hoptype="DAMAGE"/>
+			<skillatk e="1" value="800" delta="1" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="3725" name_en="Hellfall V" name_pt="Queda Infernal V" nameId="2285424" delayId="774" stack="ST_LOWLEG_HIGH_G5" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="10" penalty_skill_id="8822">
@@ -132795,7 +133081,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="1209" delta="2" hoptype="DAMAGE"/>
+			<skillatk e="1" value="1209" delta="2" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="3726" name_en="Into Black VII" name_pt="Nas Trevas VII" nameId="2285425" delayId="778" stack="ST_MYUNG_G7" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="300" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10">
@@ -132841,7 +133129,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</useconditions>
 		<effects>
 			<skilllauncher e="1" skill_id="8837" value="1"/>
-			<skillatk e="2" value="1298" delta="9" hoptype="DAMAGE"/>
+			<skillatk e="2" value="1298" delta="9" hoptype="DAMAGE">
+				<subeffect skill_id="8224"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="3730" name_en="Fists of Fire V" name_pt="Punhos de Fogo V" nameId="2285429" delayId="800" stack="ST_SIGPUNCH1_G5" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="10" chain_skill_prob="100">
@@ -132863,7 +133153,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</useconditions>
 		<effects>
 			<skilllauncher e="1" skill_id="8837" value="1"/>
-			<skillatk e="2" value="1281" delta="9" hoptype="DAMAGE"/>
+			<skillatk e="2" value="1281" delta="9" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="3732" name_en="Solar Plexus VII" name_pt="Plexo Solar VII" nameId="2285431" delayId="758" stack="ST_JAB_G7" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="100" duration="0" cancel_rate="10" chain_skill_prob="100" penalty_skill_id="8800">
@@ -133344,7 +133636,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="287" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="1265" delta="75" critprobmod2="80" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1265" delta="75" critprobmod2="80" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="287" delta="1"/>
@@ -133356,7 +133650,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="287" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="1328" delta="75" critprobmod2="80" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1328" delta="75" critprobmod2="80" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="287" delta="1"/>
@@ -133596,7 +133892,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 	<skill_template skill_id="3787" name_en="Five-Star Kick I" name_pt="Chute das Cinco Estrelas I" nameId="2285479" delayId="912" stack="ST_UPPERHIT_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="400" duration="0" cancel_rate="10" penalty_skill_id="9119">
 		<properties first_target="TARGET" awr="true" first_target_range="1" target_relation="ENEMY" target_type="ONLYONE"/>
 		<effects>
-			<skillatk e="1" value="1244" delta="8" hoptype="DAMAGE"/>
+			<skillatk e="1" value="1244" delta="8" hoptype="DAMAGE">
+				<subeffect skill_id="8224"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="3788" name_en="Blade of Incitement I" name_pt="Lâmina de Incitamento I" nameId="2285481" delayId="913" stack="FI_SLASHIGFORCE_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="10" ammospeed="45" chain_skill_prob="100">
@@ -133840,7 +134138,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="2840" delta="62" accmod2="-60" critprobmod2="50" element="FIRE" hoptype="SKILLLV" hopb="30480" hopa="740"/>
+			<spellatkinstant e="1" value="2840" delta="62" accmod2="-60" critprobmod2="50" element="FIRE" hoptype="SKILLLV" hopb="30480" hopa="740">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="1133" delta="33"/>
@@ -134001,7 +134301,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="673" delta="12" hoptype="DAMAGE"/>
+			<skillatk e="1" value="673" delta="12" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="3816" name_en="Chaos Wave" name_pt="Onda do Caos" nameId="2286091" delayId="938" stack="TH_ACCHAOSWAVE_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="6000" duration="0" cancel_rate="10">
@@ -134013,7 +134315,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="673" delta="12" hoptype="DAMAGE"/>
+			<skillatk e="1" value="673" delta="12" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="3817" name_en="Sage’s Wisdom I" name_pt="Sabedoria do sábio I" stack="PR_SAGESWISDOM_NEW_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" duration="0" cooldown="1800" req_dispel_level="1" cancel_rate="20" delayId="433">
@@ -134399,7 +134703,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 			</useconditions>
 		<effects>
-			<skillatk value="1348" delta="0" e="1"/>
+			<skillatk value="1348" delta="0" e="1">
+				<subeffect skill_id="8441"/>
+			</skillatk>
 			<deboostheal duration2="12000" effectid="129012" e="2">
 				<change stat="HEAL_SKILL_DEBOOST" func="PERCENT" value="-40"/>
 				</deboostheal>
@@ -134666,7 +134972,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="710" delta="9" hoptype="DAMAGE"/>
+			<skillatk e="1" value="710" delta="9" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 			<statdown duration2="12000" effectid="101512" e="2" basiclvl="90" accmod2="1000" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="1814">
 				<change stat="PHYSICAL_DEFENSE" func="ADD" value="-500"/>
 			</statdown>
@@ -134764,7 +135072,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="1431" delta="11" hoptype="DAMAGE"/>
+			<skillatk e="1" value="1431" delta="11" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 			<skilllauncher e="3" skill_id="9244" value="1" preeffect="1"/>
 		</effects>
 		<actions>
@@ -137990,7 +138300,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="262" delta="0"/>
 		<weapon weapon="GUN_1H"/></startconditions>
 		<effects>
-			<spellatkinstant e="1" value="402" element="EARTH" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="402" element="EARTH" hoptype="DAMAGE">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 			<skilllauncher e="2" skill_id="9185" value="1" preeffect="1"/>
 		</effects>
 		<actions>
@@ -138004,7 +138316,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="292" delta="0"/>
 		<weapon weapon="GUN_1H"/></startconditions>
 		<effects>
-			<spellatkinstant e="1" value="427" element="EARTH" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="427" element="EARTH" hoptype="DAMAGE">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 			<skilllauncher e="2" skill_id="9185" value="1" preeffect="1"/>
 		</effects>
 		<actions>
@@ -138018,7 +138332,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="300" delta="0"/>
 		<weapon weapon="GUN_1H"/></startconditions>
 		<effects>
-			<spellatkinstant e="1" value="452" element="EARTH" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="452" element="EARTH" hoptype="DAMAGE">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 			<skilllauncher e="2" skill_id="9185" value="1" preeffect="1"/>
 		</effects>
 		<actions>
@@ -138032,7 +138348,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="329" delta="0"/>
 		<weapon weapon="GUN_1H"/></startconditions>
 		<effects>
-			<spellatkinstant e="1" value="477" element="EARTH" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="477" element="EARTH" hoptype="DAMAGE">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 			<skilllauncher e="2" skill_id="9185" value="1" preeffect="1"/>
 		</effects>
 		<actions>
@@ -139368,7 +139686,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="1426" delta="21" element="FIRE" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1426" delta="21" element="FIRE" hoptype="DAMAGE">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 			<skilllauncher e="2" skill_id="9185" value="1" preeffect="1"/>
 		</effects>
 		<actions>
@@ -139711,7 +140031,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="1023" delta="22" hoptype="DAMAGE"/>
+			<skillatk e="1" value="1023" delta="22" hoptype="DAMAGE">
+				<subeffect skill_id="8218" chance="50"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="168" delta="0"/>
@@ -140196,7 +140518,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="3160" delta="68" accmod2="-60" critprobmod2="50" element="FIRE" hoptype="SKILLLV" hopb="30480" hopa="740"/>
+			<spellatkinstant e="1" value="3160" delta="68" accmod2="-60" critprobmod2="50" element="FIRE" hoptype="SKILLLV" hopb="30480" hopa="740">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="1133" delta="33"/>
@@ -140317,7 +140641,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="1736" delta="25" element="FIRE" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1736" delta="25" element="FIRE" hoptype="DAMAGE">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 			<skilllauncher e="2" skill_id="9185" value="1" preeffect="1"/>
 		</effects>
 		<actions>
@@ -140529,7 +140855,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<weapon weapon="GREATSWORD DAGGER MACE POLEARM STAFF SWORD"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" hoptype="SKILLLV" hopb="16793" hopa="410"/>
+			<skillatk e="1" hoptype="SKILLLV" hopb="16793" hopa="410">
+				<subeffect skill_id="8441"/>
+			</skillatk>
 			<snare duration2="600000" effectid="20007" e="2" element="EARTH" preeffect="1">
 				<change stat="SPEED" func="PERCENT" value="-50"/>
 				<change stat="FLY_SPEED" func="PERCENT" value="-50"/>
@@ -140819,7 +141147,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" rnddmg="1" value="280" delta="7" hoptype="DAMAGE"/>
+			<skillatk e="1" rnddmg="1" value="280" delta="7" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="82" delta="0"/>
@@ -141583,7 +141913,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</useconditions>
 		<effects>
 			<skilllauncher e="1" skill_id="8837" value="1"/>
-			<skillatk e="2" value="876" delta="4" hoptype="DAMAGE"/>
+			<skillatk e="2" value="876" delta="4" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4357" name_en="Divine Master Strike I" name_pt="Golpe do Mestre Divino I" nameId="2282678" delayId="1998" stack="ST_SIGKICK1_START_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="900" duration="0" cancel_rate="10" chain_skill_prob="100">
@@ -141608,7 +141940,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 		</useconditions>
 		<effects>
 			<skilllauncher e="1" skill_id="8837" value="1"/>
-			<skillatk e="2" value="888" delta="3" hoptype="DAMAGE"/>
+			<skillatk e="2" value="888" delta="3" hoptype="DAMAGE">
+				<subeffect skill_id="8224"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4359" name_en="Whirling Blow I" name_pt="Golpe Rodopiante I" nameId="2282572" delayId="2000" stack="ST_BSPIN_START_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="300" duration="0">
@@ -141668,7 +142002,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="215" delta="1"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="919" delta="12" critprobmod2="80" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="919" delta="12" critprobmod2="80" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="215" delta="1"/>
@@ -141918,7 +142254,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="121" delta="0"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" value="117" delta="4" hoptype="DAMAGE"/>
+			<skillatk e="1" value="117" delta="4" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="121" delta="0"/>
@@ -142332,7 +142670,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="121" delta="0"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" value="117" delta="4" hoptype="DAMAGE"/>
+			<skillatk e="1" value="117" delta="4" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="121" delta="0"/>
@@ -142344,7 +142684,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="152" delta="0"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" value="260" delta="7" hoptype="DAMAGE"/>
+			<skillatk e="1" value="260" delta="7" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="152" delta="0"/>
@@ -142356,7 +142698,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<mp value="200" delta="0"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" value="310" delta="11" hoptype="DAMAGE"/>
+			<skillatk e="1" value="310" delta="11" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="200" delta="0"/>
@@ -143233,7 +143577,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 			</useconditions>
 		<effects>
-			<skillatk value="1348" delta="0" e="1"/>
+			<skillatk value="1348" delta="0" e="1">
+				<subeffect skill_id="8441"/>
+			</skillatk>
 			<deboostheal duration2="12000" effectid="129012" e="2">
 				<change stat="HEAL_SKILL_DEBOOST" func="PERCENT" value="-40"/>
 				</deboostheal>
@@ -143373,7 +143719,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="1023" delta="22" hoptype="DAMAGE"/>
+			<skillatk e="1" value="1023" delta="22" hoptype="DAMAGE">
+				<subeffect skill_id="8218" chance="50"/>
+			</skillatk>
 		</effects>
 		<actions>
 			<mpuse value="168" delta="0"/>
@@ -144577,7 +144925,9 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="1500" delta="500" noresist="true" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1500" delta="500" noresist="true" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8634"/>
+			</spellatkinstant>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="8787" name_en="Rolling Storm Effect" name_pt="Nós folhamos" nameId="2281457" delayId="8787" stack="ALL_GLIDEATK_WI_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
@@ -146127,7 +146477,9 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="223" delta="30" accmod2="200" element="EARTH"/>
+			<spellatkinstant e="1" value="223" delta="30" accmod2="200" element="EARTH">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 			<root duration2="5000" effectid="20003" e="2" accmod2="200" basiclvl="30" element="EARTH" preeffect="1"/>
 		</effects>
 	</skill_template>
@@ -151385,7 +151737,9 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 	<skill_template skill_id="10835" name_en="Asterite: Fissure" name_pt="Asterita: Fissura" nameId="2285204" delayId="1" stack="LDF4B_ASTERITE_GREEN" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="6000" duration="2000" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_distance="20" target_relation="ENEMY" target_type="AREA" target_maxcount="6" effective_range="20" effective_altitude="4"/>
 		<effects>
-			<skillatk e="1" value="113" noresist="true" hoptype="DAMAGE"/>
+			<skillatk e="1" value="113" noresist="true" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<motion name="Pointfire3"/>
 	</skill_template>
@@ -158941,7 +159295,9 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" rnddmg="3" value="11" delta="10"/>
+			<skillatk e="1" rnddmg="3" value="11" delta="10">
+				<subeffect skill_id="8217" chance="20"/>
+			</skillatk>
 			<bleed e="2" checktime="6000" value="950" duration2="18000" effectid="20006" element="WIND" preeffect="1"/>
 		</effects>
 		<motion name="AreaAtk" speed="70"/>
@@ -159012,7 +159368,9 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" rnddmg="3" value="2" delta="1" critprobmod2="80"/>
+			<skillatk e="1" rnddmg="3" value="2" delta="1" critprobmod2="80">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<motion name="AreaAtk"/>
 	</skill_template>
@@ -159025,7 +159383,9 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="28" noresist="true" hoptype="DAMAGE"/>
+			<skillatk e="1" value="28" noresist="true" hoptype="DAMAGE">
+				<subeffect skill_id="8441"/>
+			</skillatk>
 		</effects>
 		<motion name="Normalfire"/>
 	</skill_template>
@@ -159065,7 +159425,9 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="200" noresist="true" hoptype="SKILLLV"/>
+			<skillatk e="1" value="200" noresist="true" hoptype="SKILLLV">
+				<subeffect skill_id="8635"/>
+			</skillatk>
 		</effects>
 		<motion name="HandBind"/>
 	</skill_template>
@@ -159104,7 +159466,9 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="300" noresist="true" hoptype="DAMAGE"/>
+			<skillatk e="1" value="300" noresist="true" hoptype="DAMAGE">
+				<subeffect skill_id="8636"/>
+			</skillatk>
 		</effects>
 		<motion name="BackAtk"/>
 	</skill_template>
@@ -159182,7 +159546,9 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" rnddmg="1" value="30" delta="10" hoptype="DAMAGE"/>
+			<skillatk e="1" rnddmg="1" value="30" delta="10" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<motion name="PowerATK"/>
 	</skill_template>
@@ -159295,7 +159661,9 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="23" hoptype="DAMAGE"/>
+			<skillatk e="1" value="23" hoptype="DAMAGE">
+				<subeffect skill_id="8441"/>
+			</skillatk>
 		</effects>
 		<motion name="PowerATK"/>
 	</skill_template>
@@ -159331,7 +159699,9 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="29" delta="1" hoptype="DAMAGE"/>
+			<skillatk e="1" value="29" delta="1" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<motion name="PowerATK" speed="70"/>
 	</skill_template>
@@ -159570,7 +159940,9 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="3" hoptype="DAMAGE"/>
+			<skillatk e="1" value="3" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -159767,7 +160139,9 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="240" hoptype="DAMAGE"/>
+			<skillatk e="1" value="240" hoptype="DAMAGE">
+				<subeffect skill_id="8441"/>
+			</skillatk>
 			<snare duration2="3000" effectid="20007" e="2" accmod2="3000" element="EARTH" preeffect="1">
 				<change stat="SPEED" func="PERCENT" value="-50"/>
 				<change stat="FLY_SPEED" func="PERCENT" value="-50"/>
@@ -159941,7 +160315,9 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="23" delta="10" noresist="true" hoptype="DAMAGE"/>
+			<skillatk e="1" value="23" delta="10" noresist="true" hoptype="DAMAGE">
+				<subeffect skill_id="8441"/>
+			</skillatk>
 		</effects>
 		<motion name="ChainATK1"/>
 	</skill_template>
@@ -160100,7 +160476,9 @@ Mate o mensageiro da tempestade para parar os ataques." nameId="2280362" delayId
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="1700" delta="1" noresist="true" element="WIND" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1700" delta="1" noresist="true" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8785"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="AreaFire"/>
 	</skill_template>
@@ -160909,7 +161287,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" rnddmg="3" value="1000" delta="100" hoptype="DAMAGE"/>
+			<skillatk e="1" rnddmg="3" value="1000" delta="100" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<motion name="HandBind"/>
 	</skill_template>
@@ -161449,7 +161829,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="1353" delta="17" accmod2="1000" element="WIND" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1353" delta="17" accmod2="1000" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8221"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="OpenElectric"/>
 	</skill_template>
@@ -161536,7 +161918,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="40" delta="15" hoptype="DAMAGE"/>
+			<skillatk e="1" value="40" delta="15" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<motion name="PowerATK"/>
 	</skill_template>
@@ -161645,7 +162029,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="5" delta="1" noresist="true" hoptype="DAMAGE"/>
+			<skillatk e="1" value="5" delta="1" noresist="true" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 			<fpatkinstant e="2" value="20" noresist="true" element="WIND" preeffect="1"/>
 		</effects>
 		<motion name="PowerATK"/>
@@ -161656,7 +162042,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" rnddmg="1" value="10" delta="1" noresist="true" hoptype="DAMAGE"/>
+			<skillatk e="1" rnddmg="1" value="10" delta="1" noresist="true" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 			<fpatkinstant e="2" value="20" noresist="true" element="WIND" preeffect="1"/>
 		</effects>
 		<motion name="AreaATK"/>
@@ -161742,7 +162130,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="32" delta="15" hoptype="DAMAGE"/>
+			<skillatk e="1" value="32" delta="15" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<motion name="AreaATK"/>
 	</skill_template>
@@ -161813,7 +162203,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="120" delta="15" noresist="true" hoptype="DAMAGE"/>
+			<skillatk e="1" value="120" delta="15" noresist="true" hoptype="DAMAGE">
+				<subeffect skill_id="8224"/>
+			</skillatk>
 		</effects>
 		<motion name="ChainATK1"/>
 	</skill_template>
@@ -161923,7 +162315,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="7000" delta="500" accmod2="9999" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="7000" delta="500" accmod2="9999" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8634"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -161978,7 +162372,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="3000" delta="3" noresist="true" accmod2="9999" element="WIND" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="3000" delta="3" noresist="true" accmod2="9999" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8634"/>
+			</spellatkinstant>
 			<snare duration2="10000" effectid="20007" e="2" accmod2="9999" element="WIND" preeffect="1">
 				<change stat="SPEED" func="PERCENT" value="-50"/>
 				<change stat="FLY_SPEED" func="PERCENT" value="-50"/>
@@ -161992,7 +162388,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="2000" delta="2" noresist="true" accmod2="9999" element="WIND" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="2000" delta="2" noresist="true" accmod2="9999" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8634"/>
+			</spellatkinstant>
 			<snare duration2="10000" effectid="20007" e="2" accmod2="9999" element="WIND" preeffect="1">
 				<change stat="SPEED" func="PERCENT" value="-50"/>
 				<change stat="FLY_SPEED" func="PERCENT" value="-50"/>
@@ -162096,7 +162494,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="500" delta="50" noresist="true" element="FIRE" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="500" delta="50" noresist="true" element="FIRE" hoptype="DAMAGE">
+				<subeffect skill_id="8441"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="Normalfire"/>
 	</skill_template>
@@ -162249,7 +162649,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="2300" delta="10" element="WIND" hoptype="SKILLLV" hopb="60" hopa="60"/>
+			<spellatkinstant e="1" value="2300" delta="10" element="WIND" hoptype="SKILLLV" hopb="60" hopa="60">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -162361,7 +162763,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="3500" delta="10" element="EARTH"/>
+			<spellatkinstant e="1" value="3500" delta="10" element="EARTH">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="AreaATK"/>
 	</skill_template>
@@ -162485,7 +162889,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="1800" delta="10" noresist="true" element="EARTH" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1800" delta="10" noresist="true" element="EARTH" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 			<fpatkinstant e="2" element="EARTH" preeffect="1"/>
 		</effects>
 		<motion name="PowerATK"/>
@@ -162496,7 +162902,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="25" delta="10" hoptype="DAMAGE"/>
+			<skillatk e="1" value="25" delta="10" hoptype="DAMAGE">
+				<subeffect skill_id="8441"/>
+			</skillatk>
 			<paralyze duration2="2000" effectid="20002" e="2" element="EARTH" preeffect="1" hoptype="SKILLLV" hopb="60" hopa="60"/>
 		</effects>
 		<motion name="AreaFire"/>
@@ -162523,7 +162931,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="70" delta="15" hoptype="DAMAGE"/>
+			<skillatk e="1" value="70" delta="15" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 			<statdown duration2="5000" duration1="100" effectid="10199731" e="2" noresist="true" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="60" hopa="60">
 				<change stat="MAXHP" func="PERCENT" value="-50"/>
 			</statdown>
@@ -162728,7 +163138,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="20" delta="15" hoptype="DAMAGE"/>
+			<skillatk e="1" value="20" delta="15" hoptype="DAMAGE">
+				<subeffect skill_id="8224"/>
+			</skillatk>
 		</effects>
 		<motion name="NormalFire"/>
 	</skill_template>
@@ -162837,7 +163249,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="300" delta="10" element="DARK"/>
+			<spellatkinstant e="1" value="300" delta="10" element="DARK">
+				<subeffect skill_id="8441"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PowerATK"/>
 	</skill_template>
@@ -163123,7 +163537,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="200" delta="3" noresist="true" hoptype="DAMAGE"/>
+			<skillatk e="1" value="200" delta="3" noresist="true" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<motion name="PointShock"/>
 	</skill_template>
@@ -163180,7 +163596,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="259" delta="4" hoptype="DAMAGE"/>
+			<skillatk e="1" value="259" delta="4" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<motion name="ElecStag1"/>
 	</skill_template>
@@ -163203,7 +163621,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<weapon weapon="CHAINBLADE GAUNTLET"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" value="236" delta="10" hoptype="DAMAGE"/>
+			<skillatk e="1" value="236" delta="10" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<motion name="ElecStag1"/>
 	</skill_template>
@@ -163252,7 +163672,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="221" delta="5" hoptype="DAMAGE"/>
+			<skillatk e="1" value="221" delta="5" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<motion name="XAreaATK"/>
 	</skill_template>
@@ -163467,7 +163889,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="965" delta="18" accmod2="1000" element="EARTH" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="965" delta="18" accmod2="1000" element="EARTH" hoptype="DAMAGE">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PowerATK"/>
 	</skill_template>
@@ -163517,7 +163941,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="200" noresist="true" hoptype="SKILLLV" hopb="60" hopa="60"/>
+			<skillatk e="1" value="200" noresist="true" hoptype="SKILLLV" hopb="60" hopa="60">
+				<subeffect skill_id="8441"/>
+			</skillatk>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -163612,7 +164038,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="200" noresist="true" hoptype="SKILLLV" hopb="60" hopa="60"/>
+			<skillatk e="1" value="200" noresist="true" hoptype="SKILLLV" hopb="60" hopa="60">
+				<subeffect skill_id="8441"/>
+			</skillatk>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -163681,7 +164109,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="23" delta="10" noresist="true" hoptype="DAMAGE"/>
+			<skillatk e="1" value="23" delta="10" noresist="true" hoptype="DAMAGE">
+				<subeffect skill_id="8441"/>
+			</skillatk>
 		</effects>
 		<motion name="Chainatk3"/>
 	</skill_template>
@@ -163939,7 +164369,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="21" delta="15" hoptype="DAMAGE"/>
+			<skillatk e="1" value="21" delta="15" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<motion name="PowerATK"/>
 	</skill_template>
@@ -164066,7 +164498,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" hoptype="DAMAGE"/>
+			<skillatk e="1" hoptype="DAMAGE">
+				<subeffect skill_id="8223"/>
+			</skillatk>
 		</effects>
 		<motion name="PowerAtk"/>
 	</skill_template>
@@ -164109,7 +164543,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="1000" delta="100" noresist="true" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1000" delta="100" noresist="true" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8441"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire4"/>
 	</skill_template>
@@ -164695,7 +165131,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="27" delta="10" hoptype="DAMAGE"/>
+			<skillatk e="1" value="27" delta="10" hoptype="DAMAGE">
+				<subeffect skill_id="8224"/>
+			</skillatk>
 			<spellatk e="2" checktime="1000" value="100" delta="15" duration2="3000" effectid="10208752" noresist="true" element="WIND" preeffect="1" hoptype="DAMAGE"/>
 		</effects>
 		<motion name="OpenAerial"/>
@@ -164986,7 +165424,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="23" delta="10" noresist="true" hoptype="DAMAGE"/>
+			<skillatk e="1" value="23" delta="10" noresist="true" hoptype="DAMAGE">
+				<subeffect skill_id="8441"/>
+			</skillatk>
 		</effects>
 		<motion name="ChainATK1"/>
 	</skill_template>
@@ -165516,7 +165956,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="200" delta="100" noresist="true" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="200" delta="100" noresist="true" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8441"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="Pointfire"/>
 	</skill_template>
@@ -166065,7 +166507,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="17" hoptype="DAMAGE"/>
+			<skillatk e="1" value="17" hoptype="DAMAGE">
+				<subeffect skill_id="8441"/>
+			</skillatk>
 		</effects>
 		<motion name="AreaFire"/>
 	</skill_template>
@@ -166733,7 +167177,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="1173" delta="29" element="WIND" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1173" delta="29" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PowerATK"/>
 	</skill_template>
@@ -167209,7 +167655,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="287" delta="14" element="WIND" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="287" delta="14" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167219,7 +167667,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="283" delta="13" element="EARTH" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="283" delta="13" element="EARTH" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167229,7 +167679,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="275" delta="13" element="FIRE" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="275" delta="13" element="FIRE" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167239,7 +167691,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="1120" delta="18" element="FIRE" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1120" delta="18" element="FIRE" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167249,7 +167703,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="1071" delta="18" element="WIND" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1071" delta="18" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167259,7 +167715,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="321" delta="16" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="321" delta="16" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167269,7 +167727,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="493" delta="15" element="WIND" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="493" delta="15" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167279,7 +167739,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="483" delta="13" element="EARTH" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="483" delta="13" element="EARTH" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167289,7 +167751,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="387" delta="17" element="FIRE" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="387" delta="17" element="FIRE" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167299,7 +167763,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="1446" delta="24" element="FIRE" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1446" delta="24" element="FIRE" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167309,7 +167775,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="1390" delta="24" element="WIND" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1390" delta="24" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167319,7 +167787,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="507" delta="13" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="507" delta="13" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167329,7 +167799,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="667" delta="19" element="WIND" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="667" delta="19" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167339,7 +167811,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="676" delta="14" element="EARTH" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="676" delta="14" element="EARTH" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167349,7 +167823,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="585" delta="18" element="FIRE" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="585" delta="18" element="FIRE" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167359,7 +167835,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="673" delta="13" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="673" delta="13" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167369,7 +167847,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="871" delta="20" element="WIND" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="871" delta="20" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167379,7 +167859,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="867" delta="25" element="EARTH" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="867" delta="25" element="EARTH" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167389,7 +167871,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="763" delta="18" element="FIRE" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="763" delta="18" element="FIRE" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167399,7 +167883,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="896" delta="22" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="896" delta="22" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167409,7 +167895,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="1226" delta="21" element="WIND" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1226" delta="21" element="WIND" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167419,7 +167907,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="1105" delta="18" element="EARTH" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1105" delta="18" element="EARTH" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167429,7 +167919,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="1050" delta="22" element="FIRE" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1050" delta="22" element="FIRE" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -167439,7 +167931,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="1135" delta="15" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1135" delta="15" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -168906,7 +169400,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="2163" element="FIRE" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="2163" element="FIRE" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="PointFire"/>
 	</skill_template>
@@ -169254,7 +169750,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" rnddmg="2" value="1" delta="1" hoptype="DAMAGE" critprobmod2="200"/>
+			<skillatk e="1" rnddmg="2" value="1" delta="1" hoptype="DAMAGE" critprobmod2="200">
+				<subeffect skill_id="8441" chance="90"/>
+			</skillatk>
 		</effects>
 		<motion name="PowerATK"/>
 	</skill_template>
@@ -169501,7 +169999,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" rnddmg="1" value="500" delta="100" noresist="true"/>
+			<skillatk e="1" rnddmg="1" value="500" delta="100" noresist="true">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<motion name="HandBind"/>
 	</skill_template>
@@ -169514,7 +170014,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" rnddmg="1" value="500" delta="100"/>
+			<skillatk e="1" rnddmg="1" value="500" delta="100">
+				<subeffect skill_id="8218" chance="50"/>
+			</skillatk>
 		</effects>
 		<motion name="BackAtk"/>
 	</skill_template>
@@ -169553,7 +170055,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" rnddmg="1" value="15" delta="10" hoptype="DAMAGE"/>
+			<skillatk e="1" rnddmg="1" value="15" delta="10" hoptype="DAMAGE">
+				<subeffect skill_id="8218" chance="35"/>
+			</skillatk>
 		</effects>
 		<motion name="PowerAtk"/>
 	</skill_template>
@@ -169797,7 +170301,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="10" noresist="true" element="WATER" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="10" noresist="true" element="WATER" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</spellatkinstant>
 			<hostileup e="2" value="2000" noresist="true" element="WATER" preeffect="1" hoptype="SKILLLV" hopb="400" hopa="10"/>
 		</effects>
 		<motion name="AreaATK"/>
@@ -170077,7 +170583,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="7000" noresist="true" element="FIRE"/>
+			<spellatkinstant e="1" value="7000" noresist="true" element="FIRE">
+				<subeffect skill_id="8218"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="normalfire"/>
 	</skill_template>
@@ -170090,7 +170598,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" rnddmg="1" value="7" delta="5" hoptype="DAMAGE" critprobmod2="150"/>
+			<skillatk e="1" rnddmg="1" value="7" delta="5" hoptype="DAMAGE" critprobmod2="150">
+				<subeffect skill_id="8635" chance="90"/>
+			</skillatk>
 		</effects>
 		<motion name="PowerATK"/>
 	</skill_template>
@@ -170282,7 +170792,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="2" hoptype="DAMAGE"/>
+			<skillatk e="1" value="2" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<motion name="QuickShot"/>
 	</skill_template>
@@ -170295,7 +170807,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="6" hoptype="DAMAGE"/>
+			<skillatk e="1" value="6" hoptype="DAMAGE">
+				<subeffect skill_id="8218" chance="50"/>
+			</skillatk>
 		</effects>
 		<motion name="AreaATK"/>
 	</skill_template>
@@ -170348,7 +170862,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="3" hoptype="DAMAGE"/>
+			<skillatk e="1" value="3" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<motion name="PowerATK"/>
 	</skill_template>
@@ -170533,7 +171049,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE DIMENSIONSWORD GUN_1H RUNESWORD"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="1000" delta="10" element="EARTH" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="1000" delta="10" element="EARTH" hoptype="DAMAGE">
+				<subeffect skill_id="8224"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="NormalFire"/>
 	</skill_template>
@@ -170562,7 +171080,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" rnddmg="1" value="10" delta="10" hoptype="DAMAGE" critprobmod2="300"/>
+			<skillatk e="1" rnddmg="1" value="10" delta="10" hoptype="DAMAGE" critprobmod2="300">
+				<subeffect skill_id="8218" chance="5"/>
+			</skillatk>
 		</effects>
 		<motion name="PowerAtk"/>
 	</skill_template>
@@ -170832,7 +171352,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" value="15" delta="1" hoptype="DAMAGE"/>
+			<skillatk e="1" value="15" delta="1" hoptype="DAMAGE">
+				<subeffect skill_id="8679"/>
+			</skillatk>
 		</effects>
 		<motion name="PowerATK"/>
 	</skill_template>
@@ -170842,7 +171364,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
 		</startconditions>
 		<effects>
-			<skillatk e="1" value="15" delta="1" hoptype="DAMAGE"/>
+			<skillatk e="1" value="15" delta="1" hoptype="DAMAGE">
+				<subeffect skill_id="8679"/>
+			</skillatk>
 		</effects>
 		<motion name="PowerATK"/>
 	</skill_template>
@@ -170853,7 +171377,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<weapon weapon="SWORD MACE DAGGER ORB SPELLBOOK GREATSWORD POLEARM STAFF BOW CHAINBLADE GAUNTLET DIMENSIONSWORD GUN_1H RUNESWORD"/>
 		</startconditions>
 		<effects>
-			<spellatkinstant e="1" value="15000" delta="2000" noresist="true" critprobmod2="200" element="FIRE" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="15000" delta="2000" noresist="true" critprobmod2="200" element="FIRE" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</spellatkinstant>
 		</effects>
 		<actions>
 			<mpuse value="50" delta="0"/>
@@ -170946,7 +171472,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="2000" delta="50" critprobmod2="120" element="LIGHT" hoptype="DAMAGE"/>
+			<spellatkinstant e="1" value="2000" delta="50" critprobmod2="120" element="LIGHT" hoptype="DAMAGE">
+				<subeffect skill_id="8218" chance="50"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="AreaAtk"/>
 	</skill_template>
@@ -171020,7 +171548,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="10" delta="1" noresist="true" hoptype="DAMAGE"/>
+			<skillatk e="1" value="10" delta="1" noresist="true" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<motion name="AreaAtk"/>
 	</skill_template>
@@ -171101,7 +171631,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="1625" delta="20" hoptype="DAMAGE"/>
+			<skillatk e="1" value="1625" delta="20" hoptype="DAMAGE">
+				<subeffect skill_id="8633"/>
+			</skillatk>
 		</effects>
 		<motion name="AreaATK"/>
 	</skill_template>
@@ -171114,7 +171646,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="41" hoptype="DAMAGE"/>
+			<skillatk e="1" value="41" hoptype="DAMAGE">
+				<subeffect skill_id="8633"/>
+			</skillatk>
 		</effects>
 		<motion name="PowerATK"/>
 	</skill_template>
@@ -171296,7 +171830,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" rnddmg="3" value="12" delta="10"/>
+			<skillatk e="1" rnddmg="3" value="12" delta="10">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<motion name="normalfire" speed="70"/>
 	</skill_template>
@@ -171359,7 +171895,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" rnddmg="4" value="221" delta="15" hoptype="DAMAGE"/>
+			<skillatk e="1" rnddmg="4" value="221" delta="15" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<motion name="NormalFire"/>
 	</skill_template>
@@ -171420,7 +171958,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" rnddmg="3" value="1000" delta="100" hoptype="DAMAGE"/>
+			<skillatk e="1" rnddmg="3" value="1000" delta="100" hoptype="DAMAGE">
+				<subeffect skill_id="8217"/>
+			</skillatk>
 		</effects>
 		<motion name="AreaATK2"/>
 	</skill_template>
@@ -171430,7 +171970,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" rnddmg="3" value="1000" delta="100" hoptype="DAMAGE"/>
+			<skillatk e="1" rnddmg="3" value="1000" delta="100" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 		<motion name="HandBind"/>
 	</skill_template>
@@ -171598,7 +172140,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 	<skill_template skill_id="21485" name_en="Perception Explosion" name_pt="Explosão de percepção" nameId="2286364" delayId="21485" stack="IDTIAMAT_TIAMATGUARDIAN_SINK_DOWNDMG" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" penalty_skill_id="20852">
 		<properties first_target="ME" first_target_range="2" target_distance="4" target_relation="ENEMY" target_type="AREA" target_maxcount="12" effective_range="4" effective_altitude="30"/>
 		<effects>
-			<spellatkinstant e="1" value="3500" delta="10" noresist="true" element="EARTH"/>
+			<spellatkinstant e="1" value="3500" delta="10" noresist="true" element="EARTH">
+				<subeffect skill_id="8218"/>
+			</spellatkinstant>
 		</effects>
 		<motion name="AreaAtk"/>
 	</skill_template>
@@ -171608,7 +172152,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<spellatkinstant e="1" value="1700" delta="10" noresist="true" element="EARTH"/>
+			<spellatkinstant e="1" value="1700" delta="10" noresist="true" element="EARTH">
+				<subeffect skill_id="8218" chance="30"/>
+			</spellatkinstant>
 			<spellatk e="2" checktime="2000" value="350" delta="4" duration2="10000" effectid="10207292" noresist="true" element="EARTH" preeffect="1"/>
 		</effects>
 		<motion name="Phburst2"/>
@@ -171719,7 +172265,9 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk e="1" value="11" delta="1" noresist="true" hoptype="DAMAGE"/>
+			<skillatk e="1" value="11" delta="1" noresist="true" hoptype="DAMAGE">
+				<subeffect skill_id="8218"/>
+			</skillatk>
 		</effects>
 	</skill_template>
 	<skill_template skill_id="21500" name_en="Stun" name_pt="Atordoar" nameId="2286394" delayId="2" stack="BLDF4B_BOSSHEXAD_SP_STUN" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="STUN">
