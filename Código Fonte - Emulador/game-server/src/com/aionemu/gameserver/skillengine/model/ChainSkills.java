@@ -30,14 +30,19 @@ public class ChainSkills {
 		return chainSkill.getCategory().equalsIgnoreCase(category) ? chainSkill.getUseCount() : 0;
 	}
 
-	public void updateChain(String category, int duration) {
+	/**
+	 * @param preCategory categoria que a skill exige antes dela (null na que abre a cadeia)
+	 */
+	public void updateChain(String category, String preCategory, int duration, boolean alter) {
 		if (chainSkill.getCategory().isEmpty())
 			chainSkill.setCategory(category);
 		else if (!chainSkill.getCategory().equals(category)) {
-			previousChainSkill = chainSkill;
+			// 5.0 oficial: skill de cadeia que não continua a cadeia atual abre outra e cancela a anterior
+			previousChainSkill = preCategory != null && preCategory.equalsIgnoreCase(chainSkill.getCategory()) ? chainSkill : new ChainSkill("");
 			chainSkill = new ChainSkill(category);
 		}
 
+		chainSkill.setAlter(alter);
 		chainSkill.increaseUseCount();
 		expireTime = duration == 0 ? 0 : System.currentTimeMillis() + duration;
 	}

@@ -91,6 +91,8 @@ public class Skill {
 	private long castStartTime;
 	private String chainCategory = null;
 	private int chainUsageDuration = 0;
+	private boolean chainAlter;
+	private String chainPreCategory;
 	private int hate;
 	private volatile DeathObserver firstTargetDieObserver;
 
@@ -157,7 +159,8 @@ public class Skill {
 
 		// check for counter skill
 		if (effector instanceof Player player) {
-			if (skillMethod == SkillMethod.CAST && chainCategory == null) // category gets set in preCastCheck()
+			// category gets set in preCastCheck(); 5.0: cadeia alterchain sobrevive a uma skill sem cadeia no meio
+			if (skillMethod == SkillMethod.CAST && chainCategory == null && !player.getChainSkills().getCurrentChainSkill().isAlter())
 				player.getChainSkills().resetChain();
 
 			if (skillTemplate.getCounterSkill() != null) {
@@ -649,7 +652,7 @@ public class Skill {
 					chainSuccess = Rnd.chance() < skillTemplate.getChainSkillProb() || CustomConfig.SKILL_CHAIN_DISABLE_TRIGGERRATE;
 
 				if (chainSuccess)
-					playerEffector.getChainSkills().updateChain(chainCategory, chainUsageDuration);
+					playerEffector.getChainSkills().updateChain(chainCategory, chainPreCategory, chainUsageDuration, chainAlter);
 				else
 					playerEffector.getChainSkills().resetChain();
 			}
@@ -1074,6 +1077,14 @@ public class Skill {
 
 	public void setChainCategory(String chainCategory) {
 		this.chainCategory = chainCategory;
+	}
+
+	public void setChainPreCategory(String chainPreCategory) {
+		this.chainPreCategory = chainPreCategory;
+	}
+
+	public void setChainAlter(boolean chainAlter) {
+		this.chainAlter = chainAlter;
 	}
 
 	public void setChainUsageDuration(int duration) {
