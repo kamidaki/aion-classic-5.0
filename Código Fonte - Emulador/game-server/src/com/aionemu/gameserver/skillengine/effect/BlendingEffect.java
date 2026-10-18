@@ -163,8 +163,15 @@ public class BlendingEffect extends EffectTemplate {
 		return note;
 	}
 
-	private boolean isStackBlending() {
+	public boolean isStackBlending() {
 		return stackLevel > 0 && skillId > 0 && sourceSkills != null;
+	}
+
+	/**
+	 * Skill que o acúmulo vira ao chegar em stack_level (ex.: 9185 → 9186).
+	 */
+	public int getBlendedSkillId() {
+		return skillId;
 	}
 
 	private boolean isSourceSkill(int activeSkillId) {

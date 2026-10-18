@@ -347,6 +347,7 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(427, SM_SIEL_ANVIL_POINTS_INFO.class); // [S_SIEL_ANVIL_POINTS_INFO] (0x01AB)
 		addPacketOpcode(428, SM_MAP_ZONE_BOUNDS.class); // [S_MAP_ZONE_BOUNDS] (0x01AC)
 		addPacketOpcode(431, SM_BIND_POINT_TELEPORT.class); // [S_HOTSPOT] (0x1AF, tabela do Game.dll; o oficial manda [C 0][D 0] na entrada, 5 b)
+		addPacketOpcode(434, SM_CLASS_SKILL_STACK_INFO.class); // [S_CLASS_SKILL_STACK_INFO] (0x01B2, 8 b) marcadores da pistola do Phoenix
 		addPacketOpcode(435, SM_MAILBOX_INITIAL_STATUS.class); // [S_MAILBOX_INITIAL_STATUS] (0x01B3)
 		addPacketOpcode(442, SM_REGION_CHAT_CHANNEL_INFO.class); // [S_REGION_CHAT_CHANNEL_INFO] (0x01BA)
 		addPacketOpcode(445, SM_HUNT_OBJECTIVE_PROGRESS.class); // [S_HUNT_OBJECTIVE_PROGRESS] (0x01BD)
