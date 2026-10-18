@@ -54,6 +54,12 @@ public class ManaStoneInfoBlobEntry extends ItemBlobEntry {
 
 	private void writeTail50(ByteBuffer buf) {
 		byte[] tail = new byte[TOTAL_SIZE - BODY_SIZE];
+		// offset 60: skill de equipamento (Assign Skill on Loot / Reassign); 130 de 130 itens das capturas com uma skill do próprio conjunto
+		int skillId = ownerItem.getBuffSkill();
+		tail[0] = (byte) skillId;
+		tail[1] = (byte) (skillId >> 8);
+		tail[2] = (byte) (skillId >> 16);
+		tail[3] = (byte) (skillId >> 24);
 		tail[196 - BODY_SIZE] = (byte) 0xB7;
 		tail[197 - BODY_SIZE] = (byte) 0xD6;
 		tail[268 - BODY_SIZE] = 0x02;

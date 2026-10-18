@@ -241,6 +241,8 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_GLOBAL_TRADE_BUY.class, 0x1EC, State.IN_GAME); // 0x0116 C_GLOBAL_TRADE_BUY [Q anúncio]
 		addPacket(CM_GLOBAL_TRADE_COMMIT.class, 0x1ED, State.IN_GAME); // 0x0117 C_GLOBAL_TRADE_COMMIT [D objeto][Q preço][Q qtd][D moeda]
 		addPacket(CM_ITEM_COMPOSE.class, 0x22E, State.IN_GAME); // 0x0154 Altar of Transcendence [D receita][H n][n x (D item, D qtd)][D 0][C fusões]
+		addPacket(CM_ITEM_SKILL_REASSIGN.class, 0x1FD, State.IN_GAME); // 0x0107 Reassign da skill de equipamento [D item]
+		addPacket(CM_ITEM_SKILL_REASSIGN_SELECT.class, 0x1C2, State.IN_GAME); // 0x0130 escolha do Reassign [D item][D skill, 0 mantém]
 		addPacket(CM_ITEM_UPGRADE.class, 0x1FC, State.IN_GAME); // 0x0106 Ascend [D receita][D objeto][D opção]
 		addPacket(CM_ITEM_UPGRADE_CANCEL.class, 0x230, State.IN_GAME); // 0x0142 C_CANCEL_ITEM_UPGRADE [D itemId]
 		addPacket(CM_MOROS_RECORD.class, 0x1E3, State.IN_GAME); // 0x0111 Moreth [H n][n x (D objeto, Q qtd)]

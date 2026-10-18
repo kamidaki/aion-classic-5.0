@@ -28,6 +28,10 @@ public class SkillLearnService {
 	private static final ThreadLocal<Boolean> syncingBlendedSkills = ThreadLocal.withInitial(() -> false);
 
 	public static void onLearnSkill(Player player, int skillId, int skillLevel, boolean isNew) {
+		onLearnSkill(player, skillId, skillLevel, isNew, true);
+	}
+
+	public static void onLearnSkill(Player player, int skillId, int skillLevel, boolean isNew, boolean notify) {
 		PlayerSkillEntry skill = player.getSkillList().getSkillEntry(skillId);
 		if (skill.isProfessionSkill())
 			switch (skillLevel) {
@@ -37,7 +41,7 @@ public class SkillLearnService {
 				}
 			}
 		if (player.getEffectController() != null) { // null on character creation
-			if (player.isSpawned())
+			if (notify && player.isSpawned())
 				sendPacket(player, skill, isNew);
 			SkillTemplate skillTemplate = DataManager.SKILL_DATA.getSkillTemplate(skillId);
 			if (skillTemplate.isPassive()) {

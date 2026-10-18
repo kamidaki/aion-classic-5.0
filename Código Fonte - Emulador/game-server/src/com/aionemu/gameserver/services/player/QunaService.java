@@ -26,6 +26,8 @@ public final class QunaService {
 	public static final int FREE_QUNA_ITEM_ID = 182499001;
 	/** H do S 0x11B nos contextos sem captura (login, ganho, expansão do Wardrobe). */
 	public static final int CODE_NONE = 0;
+	/** H do S 0x11B no Reassign da skill de equipamento (C 0x107), 4 de 4 nas capturas. */
+	public static final int CODE_ITEM_SKILL_REASSIGN = 0x15C;
 	// client_strings_msg 5.0; o parâmetro é o valor em texto ("20" na troca de cabelo)
 	private static final int MSG_GET_QUNA = 1401412; // STR_MSG_GET_QUNA
 	private static final int MSG_USED_QUNA = 1401574; // STR_MSG_USED_QUNA
@@ -71,6 +73,13 @@ public final class QunaService {
 	 * @return false se o saldo não cobre (nada é enviado; quem chama manda a mensagem de recusa do sistema)
 	 */
 	public static boolean spend(Player player, long amount, int code) {
+		return spend(player, amount, code, true);
+	}
+
+	/**
+	 * @param usedMessage false no Reassign: depois do C 0x107 o oficial manda só o S 0x11B, sem a 1401574 (4 de 4 nas capturas)
+	 */
+	public static boolean spend(Player player, long amount, int code, boolean usedMessage) {
 		int accountId = accountId(player);
 		if (accountId == 0 || amount <= 0)
 			return false;
@@ -79,7 +88,8 @@ public final class QunaService {
 				return false;
 			long balance = AccountQunaDAO.load(accountId);
 			PacketSendUtility.sendPacket(player, new SM_QUNA(code, balance));
-			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_USED_QUNA, String.valueOf(amount)));
+			if (usedMessage)
+				PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_USED_QUNA, String.valueOf(amount)));
 			log.info("Quna: {} (conta {}) gastou {}, saldo {}", player.getName(), accountId, amount, balance);
 			return true;
 		} catch (Exception e) {

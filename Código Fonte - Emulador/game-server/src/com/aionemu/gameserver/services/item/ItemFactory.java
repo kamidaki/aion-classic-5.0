@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.Item;
+import com.aionemu.gameserver.model.templates.item.ItemSkillSet;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.utils.idfactory.IDFactory;
 
@@ -21,7 +22,12 @@ public class ItemFactory {
 			log.error("Item was not populated correctly. Item template is missing for item id: " + itemId);
 			return null;
 		}
-		return new Item(IDFactory.getInstance().nextId(), itemTemplate);
+		Item item = new Item(IDFactory.getInstance().nextId(), itemTemplate);
+		// 5.0 "Assign Skill on Loot": o item do conjunto já nasce com uma skill sorteada (D no offset 60 do bloco 0x0B)
+		ItemSkillSet skillSet = DataManager.ITEM_SKILL_SET_DATA.getSkillSet(itemId);
+		if (skillSet != null)
+			item.setBuffSkill(skillSet.roll());
+		return item;
 	}
 
 	public static Item newItem(int itemId, long count) {
