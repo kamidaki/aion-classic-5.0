@@ -226,7 +226,14 @@ public enum StatEnum {
 	BOOST_DURATION_BUFF,
 	GATHER_SUCCESS,
 	GATHER_DOUBLE,
-	GATHER_SPEED;
+	GATHER_SPEED,
+	// 5.0, sinergia de encantamento (client_accumulated_enchant_effect): PvE contra chefe por mil; dano e duração de Godstone em %
+	PVE_ATTACK_RATIO_BOSS,
+	PROC_DAMAGE_REDUCE,
+	PROC_STUN_DURATION,
+	PROC_SILENCE_DURATION,
+	PROC_PARALYZE_DURATION,
+	PROC_BLIND_DURATION;
 
 	// If STAT id = 135 - Shrewd Cloth Set oOo
 	// Checked up to 160 in 3.5

@@ -353,6 +353,8 @@ public class AttackUtil {
 		}
 		damage = StatFunctions.adjustDamageByPvpOrPveModifiers(effector, effected, damage, effect.getPvpDamage(), useTemplateDmg, element);
 		damage = TargetLockEffect.modifyDamage(effector, effected, damage);
+		if (effect.getItemTemplate() != null && effect.getItemTemplate().getItemGroup() == ItemGroup.GODSTONE) // ProcDamageReduce, em %
+			damage *= Math.max(0, 100 - effected.getGameStats().getStat(StatEnum.PROC_DAMAGE_REDUCE, 0).getCurrent()) / 100f;
 
 		if (damage < 0)
 			damage = 0;

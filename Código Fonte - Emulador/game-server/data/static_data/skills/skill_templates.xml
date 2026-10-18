@@ -136902,12 +136902,30 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 	</skill_template>
 	<skill_template skill_id="3989" name_en="Drop Rate: +10%" name_pt="Taxa de queda: +10%" nameId="2286894" delayId="3989" stack="ENCHANT_EFFECT_DRBOOST_10" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
+		<effects>
+			<drboost e="1" noresist="true">
+				<change stat="DR_BOOST" func="PERCENT" value="10"/>
+			</drboost>
+		</effects>
 	</skill_template>
 	<skill_template skill_id="3990" name_en="Drop Rate: +20%" name_pt="escudo de barreira" nameId="2286895" delayId="3990" stack="ENCHANT_EFFECT_DRBOOST_20" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
+		<effects>
+			<drboost e="1" noresist="true">
+				<change stat="DR_BOOST" func="PERCENT" value="20"/>
+			</drboost>
+		</effects>
 	</skill_template>
 	<skill_template skill_id="3991" name_en="Increases drop chance by 50%, increases AP gain by 5%" name_pt="Aumenta a taxa de espólio em 50% e o ganho de AP em 5%." nameId="2286896" delayId="3991" stack="ENCHANT_EFFECT_DRBOOST_50_APBOOST_5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
+		<effects>
+			<drboost e="1" noresist="true">
+				<change stat="DR_BOOST" func="PERCENT" value="50"/>
+			</drboost>
+			<apboost e="2" noresist="true">
+				<change stat="AP_BOOST" func="PERCENT" value="5"/>
+			</apboost>
+		</effects>
 	</skill_template>
 	<skill_template skill_id="3992" name_en="Blessed Light" name_pt="Luz Abençoada" nameId="2286899" delayId="3992" stack="PR_RAPIDREGENERATION_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME"/>
@@ -139943,15 +139961,47 @@ O XP que você recebe é triplicado enquanto estiver nesse status." nameId="2281
 	</skill_template>
 	<skill_template skill_id="4218" name_en="Drop Rate: +20%, AP Gain: +1%" name_pt="Explosão mágica" nameId="2287448" delayId="4218" stack="ENCHANT_EFFECT_DRBOOST_20_APBOOST_1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
+		<effects>
+			<drboost e="1" noresist="true">
+				<change stat="DR_BOOST" func="PERCENT" value="20"/>
+			</drboost>
+			<apboost e="2" noresist="true">
+				<change stat="AP_BOOST" func="PERCENT" value="1"/>
+			</apboost>
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4219" name_en="Drop Rate: +20%, AP Gain: +2%" name_pt="Taxa de queda: +20%, ganho de AP: +2%" nameId="2287449" delayId="4219" stack="ENCHANT_EFFECT_DRBOOST_20_APBOOST_2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
+		<effects>
+			<drboost e="1" noresist="true">
+				<change stat="DR_BOOST" func="PERCENT" value="20"/>
+			</drboost>
+			<apboost e="2" noresist="true">
+				<change stat="AP_BOOST" func="PERCENT" value="2"/>
+			</apboost>
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4220" name_en="Drop Rate: +20%, AP Gain: +3%" name_pt="Taxa de queda: +20%, ganho de AP: +3%" nameId="2287450" delayId="4220" stack="ENCHANT_EFFECT_DRBOOST_20_APBOOST_3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
+		<effects>
+			<drboost e="1" noresist="true">
+				<change stat="DR_BOOST" func="PERCENT" value="20"/>
+			</drboost>
+			<apboost e="2" noresist="true">
+				<change stat="AP_BOOST" func="PERCENT" value="3"/>
+			</apboost>
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4221" name_en="Drop Rate: +20%, AP Gain: +4%" name_pt="Areia" nameId="2287451" delayId="4221" stack="ENCHANT_EFFECT_DRBOOST_20_APBOOST_4" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" target_type="ONLYONE"/>
+		<effects>
+			<drboost e="1" noresist="true">
+				<change stat="DR_BOOST" func="PERCENT" value="20"/>
+			</drboost>
+			<apboost e="2" noresist="true">
+				<change stat="AP_BOOST" func="PERCENT" value="4"/>
+			</apboost>
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4222" name_en="Eye of the Phoenix" name_pt="Restrição de pesadelos" nameId="2287470" delayId="4222" stack="GU_BULLSEYE_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME"/>

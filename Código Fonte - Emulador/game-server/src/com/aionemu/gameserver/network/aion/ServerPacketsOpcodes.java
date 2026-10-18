@@ -327,7 +327,7 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(359, SM_LEGION_CRAFT_BOOKMARK.class); // favorito de produção da Legion (0x0167)
 		addPacketOpcode(0x169, SM_MOROS_INFO.class); // Moreth, Chronicle of Time: [H nível][D pontos][D 0][H registros] (40 de 40 capturas)
 		addPacketOpcode(368, SM_ZONE_HAZARD_LIST.class); // [S_ZONE_HAZARD_LIST] (0x0170)
-		addPacketOpcode(371, SM_EQUIP_SLOT_UPDATE.class); // [S_EQUIP_SLOT_UPDATE] (0x0173)
+		addPacketOpcode(371, SM_ENCHANT_SYNERGY.class); // 0x0173 nível da sinergia de encantamento [D soma dos encantamentos]
 		addPacketOpcode(373, SM_EP_UPDATE.class); // EP (Ki) do próprio Brawler (0x0175, 2 b)
 		addPacketOpcode(374, SM_EP_UPDATE_OTHER.class); // EP de um jogador para quem o vê (0x0176, 6 b)
 		addPacketOpcode(375, SM_EQUIPMENT_VIEW_STATE.class); // [S_EQUIPMENT_VIEW_STATE] (0x0177)

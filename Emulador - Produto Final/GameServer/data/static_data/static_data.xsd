@@ -49,6 +49,7 @@
 	<xs:include schemaLocation="items/global_trade.xsd" />
 	<xs:include schemaLocation="items/item_compose.xsd" />
 	<xs:include schemaLocation="items/item_skill_sets.xsd" />
+	<xs:include schemaLocation="items/enchant_synergy.xsd" />
 	<xs:include schemaLocation="items/item_upgrade.xsd" />
 	<xs:include schemaLocation="legion/legion_settings.xsd" />
 	<xs:include schemaLocation="legion/legion_donation.xsd" />
@@ -182,6 +183,7 @@
 					<xs:element ref="global_trade" minOccurs="0" />
 					<xs:element ref="item_composes" minOccurs="0" />
 					<xs:element ref="item_skill_sets" minOccurs="0" />
+					<xs:element ref="enchant_synergy" minOccurs="0" />
 					<xs:element ref="item_upgrades" minOccurs="0" />
 					<xs:element ref="legion_settings" minOccurs="0" />
 					<xs:element ref="legion_donation" minOccurs="0" />

@@ -303,6 +303,8 @@ public class StaticData {
 	public ItemComposeData itemComposeData;
 	@XmlElement(name = "item_skill_sets")
 	public ItemSkillSetData itemSkillSetData;
+	@XmlElement(name = "enchant_synergy")
+	public EnchantSynergyData enchantSynergyData;
 	@XmlElement(name = "item_upgrades")
 	public ItemUpgradeData itemUpgradeData;
 	@XmlElement(name = "legion_mission")

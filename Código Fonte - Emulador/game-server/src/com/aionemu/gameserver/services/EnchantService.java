@@ -25,6 +25,7 @@ import com.aionemu.gameserver.model.templates.item.ItemQuality;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.model.templates.item.actions.EnchantItemAction;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
+import com.aionemu.gameserver.services.item.EnchantSynergyService;
 import com.aionemu.gameserver.services.item.ItemPacketService;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
 import com.aionemu.gameserver.services.item.ItemService;
@@ -266,6 +267,7 @@ public class EnchantService {
 			item.setEnchantEffect(null);
 		}
 		if (item.isEquipped()) {
+			EnchantSynergyService.recalculate(player);
 			player.getGameStats().updateStatsVisually();
 			if (enchantLevel > 0)
 				applyEnchantEffect(item, player, enchantLevel);

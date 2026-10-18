@@ -26,6 +26,7 @@ import com.aionemu.gameserver.model.templates.itemset.PartBonus;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SKILL_COOLDOWN;
 import com.aionemu.gameserver.services.EnchantService;
 import com.aionemu.gameserver.services.SkillLearnService;
+import com.aionemu.gameserver.services.item.EnchantSynergyService;
 import com.aionemu.gameserver.services.item.ItemSkillService;
 import com.aionemu.gameserver.skillengine.model.SkillTemplate;
 import com.aionemu.gameserver.utils.PacketSendUtility;
@@ -76,6 +77,7 @@ public class ItemEquipmentListener {
 		if (item.getEnchantLevel() > 0)
 			EnchantService.applyEnchantEffect(item, owner, item.getEnchantLevel());
 		owner.getGameStats().updateArmorMasteryStats(owner.getEquipment().getEquippedItems());
+		EnchantSynergyService.recalculate(owner);
 	}
 
 	private static void forEachBonusStats(Consumer<RandomBonusEffect> action, RandomBonusEffect... bonusStatsEffects) {
@@ -117,6 +119,7 @@ public class ItemEquipmentListener {
 		else if (item.getBuffSkill() != 0)
 			SkillLearnService.removeSkill(owner, item.getBuffSkill());
 		owner.getGameStats().updateArmorMasteryStats(owner.getEquipment().getEquippedItems());
+		EnchantSynergyService.recalculate(owner);
 	}
 
 	private static void addWeaponStats(Item item, CreatureGameStats<?> cgs) {
