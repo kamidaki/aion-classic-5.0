@@ -161,55 +161,53 @@ class AnimationProvider(IAnimationProvider):
         rig_obj.animation_data.action = action
 
         bpy.context.view_layer.objects.active = rig_obj
-        bpy.ops.object.mode_set(mode="POSE")
 
-        for bn in eval_order:
-            if bn in rig_obj.pose.bones:
-                rig_obj.pose.bones[bn].rotation_mode = "QUATERNION"
-
-        orig_frame = bpy.context.scene.frame_current
-
-        # Pre-calculate rest matrices for all bones
-        rest_matrices = {}
-        for b_data in rig_obj.data.bones:
-            rest_matrices[b_data.name] = b_data.matrix_local
-
-        for f in range(frame_start, frame_end + 1):
-            bpy.context.scene.frame_set(f)
-            bpy.context.view_layer.update()  # CRITICAL: sync depsgraph
+        # [E2] Garantir retorno ao modo OBJECT mesmo em caso de exceção
+        try:
+            bpy.ops.object.mode_set(mode="POSE")
 
             for bn in eval_order:
-                if bn not in rig_obj.pose.bones:
-                    continue
-                pbone = rig_obj.pose.bones[bn]
-                pbone.rotation_mode = "QUATERNION"
-                bone_data = rig_obj.data.bones[bn]
+                if bn in rig_obj.pose.bones:
+                    rig_obj.pose.bones[bn].rotation_mode = "QUATERNION"
 
-                if bn in bone_tracks:
+            # Pre-calculate rest matrices for all bones
+            rest_local_cache: Dict[str, Matrix] = {}
+            for b_data in rig_obj.data.bones:
+                if b_data.parent:
+                    rest_local_cache[b_data.name] = b_data.parent.matrix_local.inverted_safe() @ b_data.matrix_local
+                else:
+                    rest_local_cache[b_data.name] = b_data.matrix_local
+
+            # [E1] Coletar todos os instantes de tempo únicos dos controladores
+            # Em vez de iterar frame a frame (O(frames * bones)), inserir keyframes
+            # diretamente nos instantes dos controladores originais do CAF (O(keys)).
+            all_key_frames: set[int] = set()
+            all_key_frames.add(frame_start)
+            all_key_frames.add(frame_end)
+            for keys in bone_tracks.values():
+                for k in keys:
+                    all_key_frames.add(int(round(k["frame"])))
+
+            for bn in eval_order:
+                if bn in rig_obj.pose.bones:
+                    rig_obj.pose.bones[bn].matrix_basis = Matrix.Identity(4)
+
+            animated_bones = [bn for bn in eval_order if bn in bone_tracks and bn in rig_obj.pose.bones]
+
+            for f in sorted(all_key_frames):
+                if f < frame_start or f > frame_end:
+                    continue
+                for bn in animated_bones:
+                    pbone = rig_obj.pose.bones[bn]
                     pos_v, quat_v = sample_controller(bone_tracks[bn], float(f))
                     quat_v = quat_v.conjugated()
                     local_mat = Matrix.Translation(pos_v) @ quat_v.to_matrix().to_4x4()
-                else:
-                    # Use rest pose local matrix relative to parent
-                    if bone_data.parent:
-                        local_mat = bone_data.parent.matrix_local.inverted_safe() @ bone_data.matrix_local
-                    else:
-                        local_mat = bone_data.matrix_local
-
-                if bone_data.parent:
-                    rest_local = bone_data.parent.matrix_local.inverted_safe() @ bone_data.matrix_local
-                else:
-                    rest_local = bone_data.matrix_local
-
-                # Compute local pose basis in bone rest space
-                basis_mat = rest_local.inverted_safe() @ local_mat
-                pbone.matrix_basis = basis_mat
-                pbone.keyframe_insert("location", frame=f)
-                pbone.keyframe_insert("rotation_quaternion", frame=f)
-                pbone.keyframe_insert("scale", frame=f)
-
-        bpy.ops.object.mode_set(mode="OBJECT")
-        bpy.context.scene.frame_set(orig_frame)
+                    rest_local = rest_local_cache.get(bn, Matrix.Identity(4))
+                    pbone.matrix_basis = rest_local.inverted_safe() @ local_mat
+                    pbone.keyframe_insert("location", frame=f)
+                    pbone.keyframe_insert("rotation_quaternion", frame=f)
+        finally:
+            bpy.ops.object.mode_set(mode="OBJECT")
 
         # Setup cyclic playback
         for fc in get_action_fcurves(action):

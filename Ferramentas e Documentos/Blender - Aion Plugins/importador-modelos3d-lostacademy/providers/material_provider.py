@@ -136,23 +136,25 @@ class MaterialProvider(IMaterialProvider):
 
                 # Apply authentic color tinting if hair or skin
                 if is_hair:
-                    mix_node = nodes.new(type="ShaderNodeMixRGB")
+                    mix_node = nodes.new(type="ShaderNodeMix")
+                    mix_node.data_type = "RGBA"
                     mix_node.location = (-200, 100)
                     mix_node.blend_type = "MULTIPLY"
-                    mix_node.inputs["Fac"].default_value = 0.95
-                    mix_node.inputs["Color2"].default_value = race_tints["hair"]
-                    links.new(tex_node.outputs["Color"], mix_node.inputs["Color1"])
-                    links.new(mix_node.outputs["Color"], bsdf.inputs["Base Color"])
+                    mix_node.inputs["Factor"].default_value = 0.95
+                    mix_node.inputs["B"].default_value = race_tints["hair"]
+                    links.new(tex_node.outputs["Color"], mix_node.inputs["A"])
+                    links.new(mix_node.outputs["Result"], bsdf.inputs["Base Color"])
                     if "Roughness" in bsdf.inputs:
                         bsdf.inputs["Roughness"].default_value = 0.65
                 elif is_skin:
-                    mix_node = nodes.new(type="ShaderNodeMixRGB")
+                    mix_node = nodes.new(type="ShaderNodeMix")
+                    mix_node.data_type = "RGBA"
                     mix_node.location = (-200, 100)
                     mix_node.blend_type = "MULTIPLY"
-                    mix_node.inputs["Fac"].default_value = 0.88
-                    mix_node.inputs["Color2"].default_value = race_tints["skin"]
-                    links.new(tex_node.outputs["Color"], mix_node.inputs["Color1"])
-                    links.new(mix_node.outputs["Color"], bsdf.inputs["Base Color"])
+                    mix_node.inputs["Factor"].default_value = 0.88
+                    mix_node.inputs["B"].default_value = race_tints["skin"]
+                    links.new(tex_node.outputs["Color"], mix_node.inputs["A"])
+                    links.new(mix_node.outputs["Result"], bsdf.inputs["Base Color"])
 
                     # Subsurface scattering for realistic character skin
                     sub_weight = race_tints.get("subsurface", 0.15)
@@ -167,14 +169,26 @@ class MaterialProvider(IMaterialProvider):
                 else:
                     links.new(tex_node.outputs["Color"], bsdf.inputs["Base Color"])
 
-                # Connect alpha if present
-                if opac_path or diff_img.channels == 4:
+                # Connect alpha only for meshes that actually need transparency (hair, wings, decals).
+                # In Aion CryEngine 1, diffuse texture alpha on body/head/armor/weapons is specular/glossiness mask, NOT opacity.
+                is_solid_body_or_gear = not is_hair and not any(k in combined_hint for k in ("wing", "feather", "cloth_alpha", "fringe", "effect", "decal", "transp"))
+                needs_alpha = is_hair or (bool(opac_path) and not is_solid_body_or_gear)
+
+                if needs_alpha:
                     links.new(tex_node.outputs["Alpha"], bsdf.inputs["Alpha"])
-                    # Alpha blend / clip mode in Eevee / Cycles
                     if hasattr(mat, "blend_method"):
                         mat.blend_method = "CLIP"
+                    if hasattr(mat, "alpha_threshold"):
+                        mat.alpha_threshold = 0.5
                     if hasattr(mat, "shadow_method"):
                         mat.shadow_method = "CLIP"
+                else:
+                    if hasattr(mat, "blend_method"):
+                        mat.blend_method = "OPAQUE"
+                    if hasattr(mat, "shadow_method"):
+                        mat.shadow_method = "OPAQUE"
+                    if "Alpha" in bsdf.inputs:
+                        bsdf.inputs["Alpha"].default_value = 1.0
 
         # 2. Normal / Bump Map
         if bump_path:

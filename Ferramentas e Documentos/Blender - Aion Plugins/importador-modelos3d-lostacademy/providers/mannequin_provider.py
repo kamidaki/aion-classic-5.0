@@ -335,10 +335,7 @@ class MannequinProvider:
             anims = MannequinProvider.get_class_animations(rg, class_name)
             if anims:
                 def_name, def_caf = anims[0]
-                client_provider.ensure_category_paks_indexed(def_caf)
-                caf_bytes = client_provider.catalog.extract_file(def_caf)
-                if not caf_bytes:
-                    caf_bytes = client_provider.catalog.extract_file(Path(def_caf).name)
+                caf_bytes = client_provider.find_caf_bytes(def_caf)
 
                 if caf_bytes:
                     b_names, b_pos, b_anim = model_provider.skel_prov.extract_armature(master_rig)
