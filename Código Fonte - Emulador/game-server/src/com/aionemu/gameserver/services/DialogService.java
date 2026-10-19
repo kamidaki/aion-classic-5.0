@@ -115,6 +115,9 @@ public class DialogService {
 				case HOUSING_PERSONAL_AUCTION: // housing auction
 				case CHARGE_ITEM_SINGLE: // condition an individual item
 				case CHARGE_ITEM_SINGLE2: // augmenting an individual item
+					ItemChargeService.sendChargePoints(player, dialogActionId == CHARGE_ITEM_SINGLE ? 1 : 2);
+					sendDialogWindow(dialogActionId, player, npc);
+					break;
 				case TOWN_CHALLENGE: // town improvement
 					sendDialogWindow(dialogActionId, player, npc);
 					break;

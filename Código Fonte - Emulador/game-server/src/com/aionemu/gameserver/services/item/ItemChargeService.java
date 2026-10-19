@@ -1,5 +1,7 @@
 package com.aionemu.gameserver.services.item;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -22,6 +24,29 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
  * @author Lost Academy Team & Durak
  */
 public class ItemChargeService {
+
+	/**
+	 * Antes de abrir a janela de um item (ação 75/94), o oficial manda os pontos atuais de cada item carregável, inventário e equipados
+	 * (S 0x1D de 11 b com o bloco 0x10): os pontos gastos em combate só chegam ao cliente aqui.
+	 */
+	public static void sendChargePoints(Player player, int chargeWay) {
+		sendChargePoints(player, chargeWay, false);
+	}
+
+	/**
+	 * Login: os pontos de todos os itens carregáveis, depois do inventário.
+	 */
+	public static void sendChargePoints(Player player) {
+		sendChargePoints(player, 0, true);
+	}
+
+	private static void sendChargePoints(Player player, int chargeWay, boolean anyWay) {
+		List<Item> items = new ArrayList<>(player.getEquipment().getEquippedItems());
+		items.addAll(player.getInventory().getItems());
+		for (Item item : items)
+			if (item.getImprovement() != null && (anyWay || item.getImprovement().getChargeWay() == chargeWay) && item.getConditioningInfo() != null)
+				PacketSendUtility.sendPacket(player, new SM_INVENTORY_UPDATE_ITEM(player, item, ItemUpdateType.CHARGE));
+	}
 
 	public static Collection<Item> filterItemsToCondition(Player player, Item selectedItem, int chargeWay) {
 		if (selectedItem != null)
@@ -102,9 +127,9 @@ public class ItemChargeService {
 		if (item.getConditioningInfo().updateChargePoints(chargePointsToAdd))
 			PacketSendUtility.sendPacket(player, new SM_INVENTORY_UPDATE_ITEM(player, item, ItemUpdateType.CHARGE));
 
-		if (improvement.getChargeWay() == 1) {
-			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_ITEM_CHARGE_SUCCESS(item.getL10n(), level));
-		} else {
+		// 5.0 oficial (captura 2026-10-18 17:22): a Sanctification com Kinah não manda mensagem por item, nem no avulso nem no "todos"
+		// (só a 1400892 ALL_COMPLETE no fim); a com AP não tem captura e fica como estava
+		if (improvement.getChargeWay() != 1) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_ITEM_CHARGE2_SUCCESS(item.getL10n(), level));
 		}
 		player.getGameStats().updateStatsVisually();

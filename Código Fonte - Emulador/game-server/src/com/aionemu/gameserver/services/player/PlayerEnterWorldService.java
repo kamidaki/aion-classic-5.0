@@ -47,6 +47,7 @@ import com.aionemu.gameserver.model.vortex.VortexLocation;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ENTER_WORLD_CHECK.Msg;
+import com.aionemu.gameserver.services.item.ItemChargeService;
 import com.aionemu.gameserver.services.item.EnchantSynergyService;
 import com.aionemu.gameserver.services.*;
 import com.aionemu.gameserver.services.globaltrade.GlobalTradeService;
@@ -418,6 +419,8 @@ public final class PlayerEnterWorldService {
 		}
 
 		client.sendPacket(new SM_INVENTORY_INFO());
+		// pontos de Sanctification de cada item carregável, logo depois do inventário (oficial: S 0x1D de 11 b, também com 0 pontos)
+		ItemChargeService.sendChargePoints(player);
 		client.sendPacket(SM_CUBE_UPDATE.stigmaSlots(player.getCommonData().getAdvencedStigmaSlotSize()));
 	}
 

@@ -211,7 +211,9 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_MACRO_CREATE.class, 0x145, State.IN_GAME); // MACRO_CREATE
 		addPacket(CM_ABYSS_RANKING_PLAYERS.class, 0x177, State.IN_GAME); // ABYSS_RANKING_PLAYERS
 		addPacket(CM_WINDSTREAM.class, 0x13C, State.IN_GAME); // 0x0046 WIND_PATH / WINDSTREAM
-		addPacket(CM_CHARGE_ITEM.class, 0x124, State.IN_GAME); // CHARGE_ITEM
+		// 0x0226 Sanctification de um item pelo NPC (ação 75) [D npc][C nível][H n][n x D item]: 2 de 2 na captura de 2026-10-18 17:22. O cru 0x124
+		// (0x4E) da 4.x é outro pacote no 5.0 (33 nas capturas, 12 b, sem carga)
+		addPacket(CM_CHARGE_ITEM.class, 0x2DC, State.IN_GAME);
 		// busca de Legion e candidatura (Nova Pasta 2026-09-29 16:49); os stubs GUILD_JOIN_REQUEST/CANCEL estavam trocados com a busca
 		addPacket(CM_LEGION_SEARCH.class, 0x1EA, State.IN_GAME); // dec 0x118 [C modo][H 0 | S nome] -> S 0x150
 		addPacket(CM_LEGION_APPLY.class, 0x1EB, State.IN_GAME); // dec 0x119 [D Legion][S nome][C 0][S apresentação] -> S 0x151

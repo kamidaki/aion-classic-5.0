@@ -43,6 +43,8 @@ public class CM_CHARGE_ITEM extends AionClientPacket {
 		List<Item> itemsToCharge = new ArrayList<>();
 		for (int itemObjId : itemObjectIds) {
 			Item item = player.getInventory().getItemByObjId(itemObjId);
+			if (item == null)
+				item = player.getEquipment().getEquippedItemByObjId(itemObjId);
 			if (item != null)
 				itemsToCharge.add(item);
 		}
