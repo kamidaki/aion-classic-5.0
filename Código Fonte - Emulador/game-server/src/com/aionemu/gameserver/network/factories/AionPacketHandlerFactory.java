@@ -278,10 +278,10 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_CLIENT_PERF_METRICS.class, 0x0326, State.IN_GAME, State.AUTHED);
 		addPacket(CM_CLIENT_PERF_METRICS.class, 0x03DF, State.IN_GAME, State.AUTHED); // 0x0325 client perf/window state ack
 		addPacket(CM_CLIENT_PERF_METRICS.class, 0x0325, State.IN_GAME, State.AUTHED);
+		// sem alias no cru 0x0122: esse é o CM_DELETE_QUEST (dec 0x50), e o alias o sobrescrevia
 		addPacket(CM_PROTOCOL_PING_ACK.class, 0x01D0, State.IN_GAME, State.AUTHED); // 0x0122 PROTOCOL_PING_ACK
-		addPacket(CM_PROTOCOL_PING_ACK.class, 0x0122, State.IN_GAME, State.AUTHED);
+		// sem alias no cru 0x0112: esse é o C_PARTY (dec 0x60, CM_PLAYER_STATUS_INFO), e o alias o sobrescrevia (sair do grupo não fazia nada)
 		addPacket(CM_CLIENT_TELEMETRY_SYNC.class, 0x01E0, State.IN_GAME, State.AUTHED); // 0x0112 CLIENT_TELEMETRY_SYNC (5.0 Classic)
-		addPacket(CM_CLIENT_TELEMETRY_SYNC.class, 0x0112, State.IN_GAME, State.AUTHED);
 
 		// ==========================================
 		// RANKING 5.0 (Combat Power Ranking 1000..1003)

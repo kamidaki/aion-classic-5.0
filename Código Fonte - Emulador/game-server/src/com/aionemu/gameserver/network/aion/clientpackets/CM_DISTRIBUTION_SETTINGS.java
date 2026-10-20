@@ -29,6 +29,7 @@ public class CM_DISTRIBUTION_SETTINGS extends AionClientPacket {
 	private int fabledItemAbove;
 	private int ethernalItemAbove;
 	private int mythicItemAbove;
+	private int divinityItemAbove;
 	@SuppressWarnings("unused")
 	private int unk;
 
@@ -53,6 +54,7 @@ public class CM_DISTRIBUTION_SETTINGS extends AionClientPacket {
 		fabledItemAbove = readD();
 		ethernalItemAbove = readD();
 		mythicItemAbove = readD();
+		divinityItemAbove = readD(); // 5.0: 7 graus (44 b na captura 06_Sistemas_Novos 2026-10-19 22:54)
 		unk = readD();
 	}
 
@@ -63,16 +65,16 @@ public class CM_DISTRIBUTION_SETTINGS extends AionClientPacket {
 		PlayerGroup group = leader.getPlayerGroup();
 		if (group != null) {
 			PlayerGroupService.changeGroupRules(group, new LootGroupRules(lootRules, misc, commonItemAbove, superiorItemAbove, heroicItemAbove,
-				fabledItemAbove, ethernalItemAbove, mythicItemAbove));
+				fabledItemAbove, ethernalItemAbove, mythicItemAbove, divinityItemAbove));
 		}
 		PlayerAlliance alliance = leader.getPlayerAlliance();
 		if (alliance != null) {
 			if (alliance.isInLeague())
 				LeagueService.changeGroupRules(alliance.getLeague(), new LootGroupRules(lootRules, misc, commonItemAbove, superiorItemAbove, heroicItemAbove,
-					fabledItemAbove, ethernalItemAbove, mythicItemAbove));
+					fabledItemAbove, ethernalItemAbove, mythicItemAbove, divinityItemAbove));
 			else
 				PlayerAllianceService.changeGroupRules(alliance, new LootGroupRules(lootRules, misc, commonItemAbove, superiorItemAbove, heroicItemAbove,
-					fabledItemAbove, ethernalItemAbove, mythicItemAbove));
+					fabledItemAbove, ethernalItemAbove, mythicItemAbove, divinityItemAbove));
 		}
 	}
 

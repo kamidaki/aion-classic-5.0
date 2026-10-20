@@ -29,8 +29,8 @@ public class PlayerGroupEnteredEvent extends PlayerEnteredEvent<PlayerGroup> {
 		team.sendBrands(player);
 		team.forEach(member -> {
 			if (!member.equals(player)) {
-				// TODO probably here JOIN event
-				PacketSendUtility.sendPacket(member, new SM_GROUP_MEMBER_INFO(team, player, GroupEvent.ENTER));
+				// 5.0: quem já está no grupo recebe o novo membro com JOIN (5); o novo recebe os outros com ENTER (13, com efeitos)
+				PacketSendUtility.sendPacket(member, new SM_GROUP_MEMBER_INFO(team, player, GroupEvent.JOIN));
 				PacketSendUtility.sendPacket(member, SM_SYSTEM_MESSAGE.STR_PARTY_HE_ENTERED_PARTY(player.getName()));
 				PacketSendUtility.sendPacket(player, new SM_GROUP_MEMBER_INFO(team, member, GroupEvent.ENTER));
 			}

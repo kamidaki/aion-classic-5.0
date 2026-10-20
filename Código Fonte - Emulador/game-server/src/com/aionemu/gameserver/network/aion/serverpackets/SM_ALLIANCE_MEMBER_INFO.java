@@ -64,7 +64,7 @@ public class SM_ALLIANCE_MEMBER_INFO extends AionServerPacket {
 		if (event == PlayerAllianceEvent.ENTER && !player.isOnline())
 			event = PlayerAllianceEvent.ENTER_OFFLINE;
 
-		writeD(allianceId);
+		writeD(event == PlayerAllianceEvent.LEAVE || event == PlayerAllianceEvent.BANNED ? 0 : allianceId); // 5.0: saída vai com grupo 0
 		writeD(objectId);
 		if (player.isOnline()) {
 			PlayerLifeStats pls = player.getLifeStats();
@@ -96,6 +96,10 @@ public class SM_ALLIANCE_MEMBER_INFO extends AionServerPacket {
 		writeC(1); // unk, always 0x01 since removal of Sarpan & Tiamaranta
 		writeC(player.getFlyState()); // isFly
 		writeC(0x0);
+		// 5.0: os mesmos 9 bytes do SM_GROUP_MEMBER_INFO antes do nome, em todo evento
+		writeC(0x00);
+		writeD(0x00);
+		writeD(0x00);
 		switch (event) {
 			case LEAVE:
 			case BANNED:
@@ -105,24 +109,7 @@ public class SM_ALLIANCE_MEMBER_INFO extends AionServerPacket {
 			case UPDATE_EFFECTS:
 				writeD(0x00); // unk
 				writeD(0x00); // unk
-				writeC(slot);
-				writeH(abnormalEffects.size()); // Abnormal effects
-				for (Effect effect : abnormalEffects) {
-					writeD(effect.getEffectorId()); // casterid
-					writeH(effect.getSkillId()); // spellid
-					writeC(effect.getSkillLevel()); // spell level
-					writeC(effect.getTargetSlot().ordinal()); // unk ?
-					writeD(effect.getRemainingTimeToDisplay()); // estimatedtime
-				}
-
-				writeD(0x00);
-				writeD(0x00);
-				writeD(0x00);
-				writeD(0x00);
-				writeD(0x00);
-				writeD(0x00);
-				writeD(0x00);
-				writeD(0x00);
+				writeEffects(slot);
 				break;
 			case JOIN:
 			case ENTER:
@@ -136,23 +123,7 @@ public class SM_ALLIANCE_MEMBER_INFO extends AionServerPacket {
 				writeD(0x00); // unk
 				writeD(0x00); // unk
 				if (player.isOnline()) {
-					writeC(SkillTargetSlot.FULLSLOTS);
-					writeH(abnormalEffects.size()); // Abnormal effects
-					for (Effect effect : abnormalEffects) {
-						writeD(effect.getEffectorId()); // casterid
-						writeH(effect.getSkillId()); // spellid
-						writeC(effect.getSkillLevel()); // spell level
-						writeC(effect.getTargetSlot().ordinal()); // unk ?
-						writeD(effect.getRemainingTimeToDisplay()); // estimatedtime
-					}
-					writeD(0x00);
-					writeD(0x00);
-					writeD(0x00);
-					writeD(0x00);
-					writeD(0x00);
-					writeD(0x00);
-					writeD(0x00);
-					writeD(0x00);
+					writeEffects(SkillTargetSlot.FULLSLOTS);
 				} else {
 					writeH(0);
 				}
@@ -161,6 +132,27 @@ public class SM_ALLIANCE_MEMBER_INFO extends AionServerPacket {
 				writeS(pcd.getName());
 				break;
 		}
+	}
+
+	/**
+	 * Mesmo formato do SM_GROUP_MEMBER_INFO: efeitos de 23 b (S_ABNORMAL_STATUS do 5.0) e um D por slot.
+	 */
+	private void writeEffects(int slots) {
+		writeC(slots);
+		writeH(abnormalEffects.size());
+		for (Effect effect : abnormalEffects) {
+			writeD(effect.getEffectorId());
+			writeD(SM_ABNORMAL_EFFECT.effectorTemplateId(effect.getEffector()));
+			writeH(effect.getSkillId());
+			writeC(effect.getSkillLevel());
+			writeC(effect.getTargetSlot().ordinal());
+			writeD(effect.getRemainingTimeToDisplay());
+			writeD(effect.getCarvedSignet());
+			writeH(0);
+			writeC(0);
+		}
+		for (int i = 0; i < SkillTargetSlot.values().length; i++)
+			writeD(0x00);
 	}
 
 }

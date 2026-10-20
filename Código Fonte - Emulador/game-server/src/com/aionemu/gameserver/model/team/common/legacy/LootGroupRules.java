@@ -25,6 +25,8 @@ public class LootGroupRules {
 	private final int fabledItemAbove;
 	private final int eternalItemAbove;
 	private final int mythicItemAbove;
+	/** 7º grau do 5.0 (ItemQuality.DIVINITY): o C_GROUP_DISTRIBUTION e o S_PARTY_INFO levam 7 valores */
+	private final int divinityItemAbove;
 	private int nrMisc;
 	private int nrRoundRobin;
 	private final Deque<DropItem> itemsToBeDistributed = new ConcurrentLinkedDeque<>();
@@ -37,11 +39,17 @@ public class LootGroupRules {
 		fabledItemAbove = 2;
 		eternalItemAbove = 2;
 		mythicItemAbove = 2;
+		divinityItemAbove = 2;
 	}
 
 	public LootGroupRules(LootRuleType lootRule, int misc, int commonItemAbove, int superiorItemAbove, int heroicItemAbove, int fabledItemAbove,
 		int eternalItemAbove, int mythicItemAbove) {
-		super();
+		this(lootRule, misc, commonItemAbove, superiorItemAbove, heroicItemAbove, fabledItemAbove, eternalItemAbove, mythicItemAbove, 2);
+	}
+
+	public LootGroupRules(LootRuleType lootRule, int misc, int commonItemAbove, int superiorItemAbove, int heroicItemAbove, int fabledItemAbove,
+		int eternalItemAbove, int mythicItemAbove, int divinityItemAbove) {
+		this.divinityItemAbove = divinityItemAbove;
 		this.lootRule = lootRule;
 		this.misc = misc;
 		this.commonItemAbove = commonItemAbove;
@@ -60,6 +68,7 @@ public class LootGroupRules {
 			case UNIQUE -> fabledItemAbove != 0; // Yellow
 			case EPIC -> eternalItemAbove != 0; // Orange
 			case MYTHIC -> mythicItemAbove != 0; // Purple
+			case DIVINITY -> divinityItemAbove != 0;
 			default -> false;
 		};
 	}
@@ -100,6 +109,10 @@ public class LootGroupRules {
 
 	public int getMythicItemAbove() {
 		return mythicItemAbove;
+	}
+
+	public int getDivinityItemAbove() {
+		return divinityItemAbove;
 	}
 
 	public int getNrMisc() {

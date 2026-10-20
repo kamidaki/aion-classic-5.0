@@ -20,7 +20,7 @@ public class SM_SHOW_BRAND extends AionServerPacket {
 
 	public SM_SHOW_BRAND(Map<Integer, Integer> targetIdsByIconId) {
 		if (targetIdsByIconId.isEmpty()) {
-			IntStream.range(0, 16).forEach(brandId -> this.targetIdsByIconId.put(brandId, 0)); // reset all brands
+			IntStream.range(0, 26).forEach(brandId -> this.targetIdsByIconId.put(brandId, 0)); // reset all brands (5.0: 26 ícones, 314 b na captura)
 		} else {
 			this.targetIdsByIconId.putAll(targetIdsByIconId);
 		}
