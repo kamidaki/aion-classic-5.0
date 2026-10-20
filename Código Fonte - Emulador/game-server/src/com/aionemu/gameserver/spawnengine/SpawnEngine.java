@@ -18,7 +18,6 @@ import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
 import com.aionemu.gameserver.model.templates.spawns.riftspawns.RiftSpawnTemplate;
 import com.aionemu.gameserver.model.templates.spawns.siegespawns.SiegeSpawnTemplate;
 import com.aionemu.gameserver.model.templates.spawns.vortexspawns.VortexSpawnTemplate;
-import com.aionemu.gameserver.services.HousingService;
 import com.aionemu.gameserver.services.rift.RiftManager;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.WorldMap;
@@ -242,8 +241,9 @@ public class SpawnEngine {
 			else
 				log.info('[' + eventTemplate.getName() + "] Spawned " + spawnedCounter + " event objects in " + instance);
 		}
-		if (eventTemplate == null)
-			HousingService.getInstance().spawnHouses(instance, ownerId);
+		// Sem casas no mundo: o Classic 5.0 não tem housing. O Game.dll não tem nenhum pacote S de casa (só os de warehouse) e o
+		// client_housing_land.xml só traz 4 terrenos de teste; os endereços do HOUSE_DATA são da 4.8. Com eles a casa (e o mordomo) entrava
+		// no knownlist em Heiron e o SM_HOUSE_RENDER/SM_DELETE_HOUSE/SM_HOUSE_SCRIPTS estourava "There is no opcode" (20/10).
 	}
 
 	public static boolean checkPool(SpawnGroup spawn) {

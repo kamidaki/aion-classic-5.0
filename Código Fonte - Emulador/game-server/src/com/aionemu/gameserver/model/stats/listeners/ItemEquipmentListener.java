@@ -26,6 +26,8 @@ import com.aionemu.gameserver.model.templates.itemset.PartBonus;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SKILL_COOLDOWN;
 import com.aionemu.gameserver.services.EnchantService;
 import com.aionemu.gameserver.services.SkillLearnService;
+import com.aionemu.gameserver.services.item.EnchantSynergyService;
+import com.aionemu.gameserver.services.item.ItemSkillService;
 import com.aionemu.gameserver.skillengine.model.SkillTemplate;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
@@ -51,7 +53,10 @@ public class ItemEquipmentListener {
 		if (idianStone != null)
 			idianStone.onEquip(owner, item.getEquipmentSlot());
 
-		if (item.getBuffSkill() != 0) {
+		if (item.getBuffSkill() != 0 && ItemSkillService.isEquipmentSkillItem(item)) {
+			// 5.0: skill de equipamento, sem recarga ao equipar (S 0x2C com a msg 1403638, nenhum S_SKILL_COOLTIME nas capturas)
+			ItemSkillService.onEquip(owner, item);
+		} else if (item.getBuffSkill() != 0) {
 			SkillTemplate buffSkill = DataManager.SKILL_DATA.getSkillTemplate(item.getBuffSkill());
 			SkillLearnService.learnTemporarySkill(owner, item.getBuffSkill(), 1);
 			long currTime = System.currentTimeMillis();
@@ -72,6 +77,7 @@ public class ItemEquipmentListener {
 		if (item.getEnchantLevel() > 0)
 			EnchantService.applyEnchantEffect(item, owner, item.getEnchantLevel());
 		owner.getGameStats().updateArmorMasteryStats(owner.getEquipment().getEquippedItems());
+		EnchantSynergyService.recalculate(owner);
 	}
 
 	private static void forEachBonusStats(Consumer<RandomBonusEffect> action, RandomBonusEffect... bonusStatsEffects) {
@@ -108,9 +114,12 @@ public class ItemEquipmentListener {
 			item.getEnchantEffect().endEffect(owner);
 			item.setEnchantEffect(null);
 		}
-		if (item.getBuffSkill() != 0)
+		if (item.getBuffSkill() != 0 && ItemSkillService.isEquipmentSkillItem(item))
+			ItemSkillService.onUnequip(owner, item);
+		else if (item.getBuffSkill() != 0)
 			SkillLearnService.removeSkill(owner, item.getBuffSkill());
 		owner.getGameStats().updateArmorMasteryStats(owner.getEquipment().getEquippedItems());
+		EnchantSynergyService.recalculate(owner);
 	}
 
 	private static void addWeaponStats(Item item, CreatureGameStats<?> cgs) {

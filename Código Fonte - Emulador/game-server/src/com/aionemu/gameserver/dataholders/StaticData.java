@@ -301,6 +301,13 @@ public class StaticData {
 	public GlobalTradeData globalTradeData;
 	@XmlElement(name = "item_composes")
 	public ItemComposeData itemComposeData;
+	@XmlElement(name = "item_skill_sets")
+	public ItemSkillSetData itemSkillSetData;
+	@XmlElement(name = "enchant_synergy")
+	public EnchantSynergyData enchantSynergyData;
+
+	@XmlElement(name = "combat_power_rank_buffs")
+	public CombatPowerRankBuffData combatPowerRankBuffData;
 	@XmlElement(name = "item_upgrades")
 	public ItemUpgradeData itemUpgradeData;
 	@XmlElement(name = "legion_mission")

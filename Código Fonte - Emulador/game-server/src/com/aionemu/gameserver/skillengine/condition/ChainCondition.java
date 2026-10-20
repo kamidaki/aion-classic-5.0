@@ -27,6 +27,9 @@ public class ChainCondition extends Condition {
 	private String preCategory;
 	@XmlAttribute(name = "time")
 	private int time;
+	/** alterchain_use do cliente: uma skill sem cadeia usada no meio não quebra esta cadeia */
+	@XmlAttribute(name = "alter")
+	private boolean alter;
 
 	@Override
 	public boolean validate(Skill env) {
@@ -49,6 +52,8 @@ public class ChainCondition extends Condition {
 
 		env.setChainCategory(category);
 		env.setChainUsageDuration(time);
+		env.setChainAlter(alter);
+		env.setChainPreCategory(preCategory);
 		return true;
 	}
 

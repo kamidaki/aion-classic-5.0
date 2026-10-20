@@ -72,6 +72,9 @@ public final class DataManager {
 	public static SielHammerData SIEL_HAMMER_DATA;
 	public static GlobalTradeData GLOBAL_TRADE_DATA;
 	public static ItemComposeData ITEM_COMPOSE_DATA;
+	public static ItemSkillSetData ITEM_SKILL_SET_DATA;
+	public static EnchantSynergyData ENCHANT_SYNERGY_DATA;
+	public static CombatPowerRankBuffData COMBAT_POWER_RANK_BUFF_DATA;
 	public static ItemUpgradeData ITEM_UPGRADE_DATA;
 	public static LegionSettingsData LEGION_SETTINGS_DATA;
 	public static LegionDonationData LEGION_DONATION_DATA;
@@ -236,6 +239,9 @@ public final class DataManager {
 		SIEL_HAMMER_DATA = data.sielHammerData;
 		GLOBAL_TRADE_DATA = data.globalTradeData;
 		ITEM_COMPOSE_DATA = data.itemComposeData;
+		ITEM_SKILL_SET_DATA = data.itemSkillSetData != null ? data.itemSkillSetData : new ItemSkillSetData();
+		ENCHANT_SYNERGY_DATA = data.enchantSynergyData != null ? data.enchantSynergyData : new EnchantSynergyData();
+		COMBAT_POWER_RANK_BUFF_DATA = data.combatPowerRankBuffData != null ? data.combatPowerRankBuffData : new CombatPowerRankBuffData();
 		ITEM_UPGRADE_DATA = data.itemUpgradeData;
 		LEGION_SETTINGS_DATA = data.legionSettingsData;
 		LEGION_DONATION_DATA = data.legionDonationData;

@@ -271,6 +271,11 @@ public class SM_QUESTION_WINDOW extends AionServerPacket {
 	 * %0 wants to list you as a friend. Do you want to accept it?
 	 */
 	public static final int STR_BUDDYLIST_ADD_BUDDY_REQUEST = 1401498;
+	/**
+	 * Pedido de amizade do 5.0: o S 0x34 oficial usa este id com o nome de quem pede (captura 06_Sistemas_Novos 2026-10-20 00:30), e o
+	 * C 0x32 da resposta volta com ele.
+	 */
+	public static final int STR_BUDDY_REQUEST_TO_ADD = 1300911;
 
 	private static final int MAX_PARAM_COUNT = 3;
 

@@ -1,6 +1,5 @@
 package com.aionemu.gameserver.network.aion.serverpackets;
 
-import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.team.TeamType;
 import com.aionemu.gameserver.model.team.common.legacy.LootGroupRules;
 import com.aionemu.gameserver.model.team.group.PlayerGroup;
@@ -26,10 +25,9 @@ public class SM_GROUP_INFO extends AionServerPacket {
 
 	@Override
 	protected void writeImpl(AionConnection con) {
-		Player player = con.getActivePlayer();
+		// 5.0 (captura 06_Sistemas_Novos 2026-10-19 22:54, 59 b): sem o mapa depois do líder, 7 graus de item e sem o id de mensagem
 		writeD(groupId);
 		writeD(leaderId);
-		writeD(player == null || player.getPosition() == null ? 0 : player.getWorldId());// mapId
 		writeD(lootRules.getLootRule().getId());
 		writeD(lootRules.getMisc());
 		writeD(lootRules.getCommonItemAbove());
@@ -38,11 +36,11 @@ public class SM_GROUP_INFO extends AionServerPacket {
 		writeD(lootRules.getFabledItemAbove());
 		writeD(lootRules.getEternalItemAbove());
 		writeD(lootRules.getMythicItemAbove());
+		writeD(lootRules.getDivinityItemAbove());
 		writeD(0x02);
 		writeC(0x00);
 		writeD(type.getType());
 		writeD(type.getSubType());
-		writeD(0x00); // message id
 		writeS(""); // name
 	}
 

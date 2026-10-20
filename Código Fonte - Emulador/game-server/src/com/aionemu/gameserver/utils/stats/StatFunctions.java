@@ -1,5 +1,6 @@
 package com.aionemu.gameserver.utils.stats;
 
+import com.aionemu.gameserver.model.gameobjects.Npc;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -494,6 +495,8 @@ public class StatFunctions {
 			}
 			attackBonus = attacker.getGameStats().getStat(StatEnum.PVE_ATTACK_RATIO, 0).getCurrent();
 			defenseBonus = target.getGameStats().getStat(StatEnum.PVE_DEFEND_RATIO, 0).getCurrent();
+			if (target instanceof Npc npcTarget && npcTarget.isBoss()) // PvEAttackRatio_BossTarget da sinergia de encantamento
+				attackBonus += attacker.getGameStats().getStat(StatEnum.PVE_ATTACK_RATIO_BOSS, 0).getCurrent();
 			switch (element) {
 				case NONE:
 					attackBonus += attacker.getGameStats().getStat(StatEnum.PVE_ATTACK_RATIO_PHYSICAL, 0).getCurrent();

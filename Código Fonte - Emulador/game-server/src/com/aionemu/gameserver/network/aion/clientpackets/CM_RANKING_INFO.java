@@ -11,7 +11,7 @@ import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_RANK_INFO;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_RANK_LIST;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_RANKING_BADGE;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_RANKING_READY;
 import com.aionemu.gameserver.services.ranking.RankingService;
 
 /**
@@ -56,7 +56,7 @@ public class CM_RANKING_INFO extends AionClientPacket {
 		SM_RANK_INFO info = RankingService.getInstance().getRankInfoPacket(player, rankingType);
 		sendPacket(info);
 
-		// Send badge info (SM_RANKING_BADGE)
-		sendPacket(new SM_RANKING_BADGE());
+		// 5.0: depois do S 0x131 vem o S 0x1B5 (06_Sistemas_Novos 2026-10-20 02:17); o S 0x138 é a opção do badge e não vai aqui
+		sendPacket(new SM_RANKING_READY());
 	}
 }

@@ -58,8 +58,7 @@ public class SM_CREATE_CHARACTER extends AbstractPlayerInfoPacket {
 
 		if (responseCode == RESPONSE_OK) {
 			writePlayerInfo(playerAccData, con);
-			writeB(new byte[32]);
-			writeB(new byte[88]);
+			writeB(new byte[136]); // entrada de 752 b como no S 0xC8 oficial (02_Character_Creation, 756 b com o código)
 		}
 		else {
 			writeB(new byte[448 + 88]);

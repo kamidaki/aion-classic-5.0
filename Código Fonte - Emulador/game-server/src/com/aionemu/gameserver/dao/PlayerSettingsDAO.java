@@ -23,7 +23,7 @@ public class PlayerSettingsDAO {
 	private static final Logger log = LoggerFactory.getLogger(PlayerSettingsDAO.class);
 
 	/**
-	 * TODO 1) analyze possibility to zip settings 2) insert/update instead of replace 0 - uisettings 1 - shortcuts 2 - display 3 - deny
+	 * TODO 1) analyze possibility to zip settings 2) insert/update instead of replace 0 - uisettings 1 - shortcuts 2 - house buddies, -1 - display -2 - deny -3 - ranking badge
 	 */
 	public static PlayerSettings loadSettings(int playerId) {
 		PlayerSettings playerSettings = new PlayerSettings();
@@ -39,6 +39,7 @@ public class PlayerSettingsDAO {
 						case 2 -> playerSettings.setHouseBuddies(resultSet.getBytes("settings"));
 						case -1 -> playerSettings.setDisplay(resultSet.getInt("settings"));
 						case -2 -> playerSettings.setDeny(resultSet.getInt("settings"));
+						case -3 -> playerSettings.setRankingBadgeShown(resultSet.getInt("settings") != 0);
 					}
 				}
 			}
@@ -61,6 +62,7 @@ public class PlayerSettingsDAO {
 		byte[] houseBuddies = playerSettings.getHouseBuddies();
 		int display = playerSettings.getDisplay();
 		int deny = playerSettings.getDeny();
+		int rankingBadge = playerSettings.isRankingBadgeShown() ? 1 : 0;
 
 		if (uiSettings != null) {
 			DB.insertUpdate("REPLACE INTO player_settings values (?, ?, ?)", new IUStH() {
@@ -123,6 +125,16 @@ public class PlayerSettingsDAO {
 			}
 		});
 
+		DB.insertUpdate("REPLACE INTO player_settings values (?, ?, ?)", new IUStH() {
+
+			@Override
+			public void handleInsertUpdate(PreparedStatement stmt) throws SQLException {
+				stmt.setInt(1, playerId);
+				stmt.setInt(2, -3);
+				stmt.setInt(3, rankingBadge);
+				stmt.execute();
+			}
+		});
 	}
 
 }

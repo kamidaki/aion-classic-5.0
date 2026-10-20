@@ -12,7 +12,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.S_BATTLEPASS_UPDATED;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_CREATURE_STATE_UPDATE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_RECOMMENDED_PLAYERS_LIST;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_PLAYER_OBJECT_ID_ECHO;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_EQUIP_SLOT_UPDATE;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_ENCHANT_SYNERGY;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_COMBAT_BURST_REMOVE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_HUNT_OBJECTIVE_PROGRESS;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_TUTORIAL_GUIDE_STATE;
@@ -73,7 +73,7 @@ public class ServerPacketsOpcodesTest {
 		assertEquals(197, ServerPacketsOpcodes.getOpcode(SM_CREATURE_STATE_UPDATE.class));
 		assertEquals(297, ServerPacketsOpcodes.getOpcode(SM_RECOMMENDED_PLAYERS_LIST.class));
 		assertEquals(326, ServerPacketsOpcodes.getOpcode(SM_PLAYER_OBJECT_ID_ECHO.class));
-		assertEquals(371, ServerPacketsOpcodes.getOpcode(SM_EQUIP_SLOT_UPDATE.class));
+		assertEquals(371, ServerPacketsOpcodes.getOpcode(SM_ENCHANT_SYNERGY.class));
 		assertEquals(386, ServerPacketsOpcodes.getOpcode(SM_COMBAT_BURST_REMOVE.class));
 		assertEquals(445, ServerPacketsOpcodes.getOpcode(SM_HUNT_OBJECTIVE_PROGRESS.class));
 	}

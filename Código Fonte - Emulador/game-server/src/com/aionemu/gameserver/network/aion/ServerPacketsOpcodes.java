@@ -15,7 +15,7 @@ public class ServerPacketsOpcodes {
 	static {
 		addPacketOpcode(0, SM_VERSION_CHECK.class); // [S_VERSION_CHECK]
 		addPacketOpcode(1, SM_STATS_INFO.class); // [S_STATUS]
-		addPacketOpcode(2, SM_GM_SHOW_PLAYER_STATUS.class); // [S_STATUS_OTHER]
+		addPacketOpcode(2, SM_STATUS_OTHER.class); // [S_STATUS_OTHER]
 		addPacketOpcode(3, SM_STATUPDATE_HP.class); // [S_HIT_POINT]
 		addPacketOpcode(4, SM_STATUPDATE_MP.class); // [S_MANA_POINT]
 		addPacketOpcode(5, SM_ATTACK_STATUS.class); // [S_HIT_POINT_OTHER]
@@ -277,6 +277,7 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(305, SM_RANK_INFO.class); // [S_RANK_INFO] (0x0131)
 		addPacketOpcode(309, SM_AUTO_GROUP_STATUS.class); // [S_AUTO_GROUP_STATUS] (0x0135)
 		addPacketOpcode(312, SM_RANKING_BADGE.class); // [S_RANKING_BADGE] (0x0138)
+		addPacketOpcode(313, SM_RANKING_BADGE_OTHER.class); // [S_RANKING_BADGE_OTHER] (0x0139)
 		addPacketOpcode(314, SM_LEGION_HOUSING_NOTICE.class); // [S_LEGION_HOUSING_NOTICE] (0x013A)
 		// Global Auction House 5.0 (capturas de 2026-09-11 a 13). A ordem dos nomes é a do enum S_GLOBAL_TRADE_* (LIST, MYLIST, BUY, COMMIT,
 		// CANCEL, SALESLOG, COLLECT, AVG_PRICE, STATE, HISTORY), que casa com a função de todos os capturados a partir de 0x13C.
@@ -327,7 +328,7 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(359, SM_LEGION_CRAFT_BOOKMARK.class); // favorito de produção da Legion (0x0167)
 		addPacketOpcode(0x169, SM_MOROS_INFO.class); // Moreth, Chronicle of Time: [H nível][D pontos][D 0][H registros] (40 de 40 capturas)
 		addPacketOpcode(368, SM_ZONE_HAZARD_LIST.class); // [S_ZONE_HAZARD_LIST] (0x0170)
-		addPacketOpcode(371, SM_EQUIP_SLOT_UPDATE.class); // [S_EQUIP_SLOT_UPDATE] (0x0173)
+		addPacketOpcode(371, SM_ENCHANT_SYNERGY.class); // 0x0173 nível da sinergia de encantamento [D soma dos encantamentos]
 		addPacketOpcode(373, SM_EP_UPDATE.class); // EP (Ki) do próprio Brawler (0x0175, 2 b)
 		addPacketOpcode(374, SM_EP_UPDATE_OTHER.class); // EP de um jogador para quem o vê (0x0176, 6 b)
 		addPacketOpcode(375, SM_EQUIPMENT_VIEW_STATE.class); // [S_EQUIPMENT_VIEW_STATE] (0x0177)
@@ -339,6 +340,8 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(391, SM_CAMP_PVP_ZONE.class); // [S_ZONE_PVP] (0x0187) — zona PvP das torres de Tiamaranta
 		addPacketOpcode(396, SM_TERRAIN_SECTOR_INFO.class); // [S_TERRAIN_SECTOR_INFO] (0x018C)
 		addPacketOpcode(401, SM_RENDER_GRAPHIC_INIT.class); // [S_RENDER_GRAPHIC_INIT] (0x0191)
+		addPacketOpcode(403, SM_ITEM_SKILL_REASSIGN.class); // 0x0193 Reassign: skill sorteada [D item][D atual][D sorteada][D 0]
+		addPacketOpcode(404, SM_ITEM_SKILL_REASSIGN_RESULT.class); // 0x0194 Reassign: resultado [D item][D antiga][D final][D 0]
 		addPacketOpcode(407, SM_AVATAR_PRESENCE_INIT.class); // [S_AVATAR_PRESENCE_INIT] (0x0197)
 		addPacketOpcode(413, SM_ZONE_STATE_LIST.class); // [S_ZONE_STATE_LIST] (0x019D) — lista de zonas do mapa na entrada
 		// SM_UNK_019D saiu: era um blob fixo com zonas DF4_* de outro mapa e nunca era enviado
@@ -347,6 +350,7 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(427, SM_SIEL_ANVIL_POINTS_INFO.class); // [S_SIEL_ANVIL_POINTS_INFO] (0x01AB)
 		addPacketOpcode(428, SM_MAP_ZONE_BOUNDS.class); // [S_MAP_ZONE_BOUNDS] (0x01AC)
 		addPacketOpcode(431, SM_BIND_POINT_TELEPORT.class); // [S_HOTSPOT] (0x1AF, tabela do Game.dll; o oficial manda [C 0][D 0] na entrada, 5 b)
+		addPacketOpcode(434, SM_CLASS_SKILL_STACK_INFO.class); // [S_CLASS_SKILL_STACK_INFO] (0x01B2, 8 b) marcadores da pistola do Phoenix
 		addPacketOpcode(435, SM_MAILBOX_INITIAL_STATUS.class); // [S_MAILBOX_INITIAL_STATUS] (0x01B3)
 		addPacketOpcode(442, SM_REGION_CHAT_CHANNEL_INFO.class); // [S_REGION_CHAT_CHANNEL_INFO] (0x01BA)
 		addPacketOpcode(445, SM_HUNT_OBJECTIVE_PROGRESS.class); // [S_HUNT_OBJECTIVE_PROGRESS] (0x01BD)

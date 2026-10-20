@@ -80,11 +80,12 @@ public class CM_FRIEND_ADD extends AionClientPacket {
 
 				@Override
 				public void denyRequest(Player requester, Player responder) {
+					PacketSendUtility.sendPacket(responder, SM_FRIEND_RESPONSE.REQUEST_DECLINED(requester.getName()));
 					sendPacket(SM_FRIEND_RESPONSE.TARGET_DENIED(responder.getName()));
 				}
 			};
 
-			boolean requested = targetPlayer.getResponseRequester().putRequest(SM_QUESTION_WINDOW.STR_BUDDYLIST_ADD_BUDDY_REQUEST, responseHandler);
+			boolean requested = targetPlayer.getResponseRequester().putRequest(SM_QUESTION_WINDOW.STR_BUDDY_REQUEST_TO_ADD, responseHandler);
 			// If the player is busy and could not be asked
 			if (!requested) {
 				sendPacket(SM_SYSTEM_MESSAGE.STR_BUDDYLIST_BUSY());
@@ -93,7 +94,7 @@ public class CM_FRIEND_ADD extends AionClientPacket {
 
 			// Send question packet to buddy
 			PacketSendUtility.sendPacket(targetPlayer,
-				new SM_QUESTION_WINDOW(SM_QUESTION_WINDOW.STR_BUDDYLIST_ADD_BUDDY_REQUEST, activePlayer.getObjectId(), 0, activePlayer.getName(), message));
+				new SM_QUESTION_WINDOW(SM_QUESTION_WINDOW.STR_BUDDY_REQUEST_TO_ADD, activePlayer.getObjectId(), 0, activePlayer.getName(), message));
 		}
 	}
 

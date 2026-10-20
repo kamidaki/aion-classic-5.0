@@ -115,7 +115,8 @@ public class AionPacketHandlerFactory {
 		// troca: o CM_EXCHANGE_REQUEST respondia "no one to trade with" a cada um. O pedido de troca da 5.0 não aparece em nenhuma captura.
 		addPacket(CM_LEGION_HISTORY.class, 0xF5, State.IN_GAME); // 0xFFFF C_REQUEST_GUILD_HISTORY
 		addPacket(CM_INIT_LEVEL.class, 0x12C, State.IN_GAME); // 0x0056 INIT_LEVEL (5.0 Classic)
-		addPacket(CM_PRIVATE_STORE.class, 0x13D, State.IN_GAME); // 0x0047 PRIVATE_STORE
+		// 5.0: o dec 0x0047 é o pedido de amizade [S nome] (captura 06_Sistemas_Novos 2026-10-20 00:30; 3/3 nas capturas), não a loja pessoal
+		addPacket(CM_FRIEND_ADD.class, 0x13D, State.IN_GAME); // 0x0047 ADD_BUDDY
 		addPacket(CM_PRIVATE_STORE_NAME.class, 0x13A, State.IN_GAME); // 0x0048 PRIVATE_STORE_NAME
 		addPacket(CM_SUMMON_COMMAND.class, 0x13B, State.IN_GAME); // 0x0049 SUMMON_COMMAND
 		addPacket(CM_BROKER_LIST.class, 0x139, State.IN_GAME); // 0x004B BROKER_LIST
@@ -125,12 +126,12 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_INVITE_TO_GROUP.class, 0x113, State.IN_GAME); // 0x0061 PARTY_BY_NAME
 		addPacket(CM_START_LOOT.class, 0x118, State.IN_GAME); // 0x006A LOOT
 		addPacket(CM_LOOT_ITEM.class, 0x119, State.IN_GAME); // 0x006B LOOT_ITEM
-		addPacket(CM_GROUP_DISTRIBUTION.class, 0x106, State.IN_GAME); // 0x006C GROUP_DISTRIBUTION
-		addPacket(CM_SHOW_FRIENDLIST.class, 0x104, State.IN_GAME); // 0x006E QUERY_BUDDY
-		addPacket(CM_FRIEND_ADD.class, 0x105, State.IN_GAME); // 0x006F ADD_BUDDY
+		// 5.0: o dec 0x006C é o View Detail (C [D objeto] -> S 0x40, captura outros2 2026-09-22 09:41), não o GROUP_DISTRIBUTION da 4.x;
+		// o CM_GROUP_DISTRIBUTION (dividir Kinah) fica sem registro: o 5.0 não tem divisão de Kinah em grupo/aliança
+		addPacket(CM_VIEW_PLAYER_DETAILS.class, 0x106, State.IN_GAME); // 0x006C VIEW_PLAYER_DETAILS
+		// 5.0: o 0x006E/0x006F da 4.x não são amizade (o 0x006F é um pacote vazio que aparece em combate)
 		addPacket(CM_FRIEND_DEL.class, 0x102, State.IN_GAME); // 0x0070 FRIEND_DEL
 		addPacket(CM_DUEL_REQUEST.class, 0x100, State.IN_GAME); // 0x0072 DUEL_REQUEST
-		addPacket(CM_VIEW_PLAYER_DETAILS.class, 0x10E, State.IN_GAME); // 0x0074 VIEW_PLAYER_DETAILS
 		addPacket(CM_GAMEGUARD.class, 0x10A, State.IN_GAME); // 0x0078 GG
 		addPacket(CM_CLIENT_COMMAND_ROLL.class, 0x109, State.IN_GAME); // 0x007B ROLL
 		addPacket(CM_BROKER_CANCEL_REGISTERED.class, 0x172, State.IN_GAME); // 0x0080 BROKER_CANCEL
@@ -161,7 +162,9 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_REPLACE_ITEM.class, 0x140, State.IN_GAME); // 0x00B2 REPLACE_ITEM
 		addPacket(CM_BLOCK_SET_REASON.class, 0x141, State.IN_GAME); // 0x00B3 BLOCK_SET_REASON
 		addPacket(CM_MOVE_ITEM.class, 0x14E, State.IN_GAME); // 0x00B4 MOVE_ITEM (5.0 Classic: [D obj][C origem][C destino][H slot], 366 pacotes de 8 b nas capturas)
-		addPacket(CM_BLOCK_DEL.class, 0x14D, State.IN_GAME); // 0x00B7 BLOCK_DEL
+		// 5.0: bloquear = dec 0x00AE [S nome][S motivo] e desbloquear = 0x00AF [S nome] (captura 06_Sistemas_Novos 2026-10-20 00:30), não o 0x00B7
+		addPacket(CM_BLOCK_ADD.class, 0x144, State.IN_GAME); // 0x00AE BLOCK_ADD
+		addPacket(CM_BLOCK_DEL.class, 0x145, State.IN_GAME); // 0x00AF BLOCK_DEL
 		addPacket(CM_FRIEND_STATUS.class, 0x148, State.IN_GAME); // 0x00BA FRIEND_STATUS
 		addPacket(CM_INSTANCE_INFO.class, 0x1B3, State.IN_GAME); // 0x00C1 INSTANCE_DUNGEON_COOLTIMES
 		addPacket(CM_BOARD_BUSINESS.class, 0x1BE, State.IN_GAME); // 0x00C4 BOARD_BUSINESS
@@ -174,7 +177,9 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_AUTO_GROUP.class, 0x1AB, State.IN_GAME); // 0x00D9 AUTO_GROUP
 		addPacket(CM_SUMMON_MOVE.class, 0x1A8, State.IN_GAME); // 0x00DA SUMMON_MOVE
 		addPacket(CM_SUMMON_EMOTION.class, 0x1A9, State.IN_GAME); // 0x00DB SUMMON_EMOTION
-		addPacket(CM_CUSTOM_SETTINGS.class, 0xE6, State.IN_GAME); // 0x000C CUSTOM_SETTINGS
+		// sem CM_CUSTOM_SETTINGS no cru 0xE6: no 5.0 o dec 0x000C vem sempre vazio, antes dos dois C 0x1A que salvam a interface ao sair ou trocar
+		// de personagem (23 de 23 nas capturas, sem resposta); lido como [H display][H deny] zerava o esconder capacete/capa e as recusas.
+		addPacket(CM_UI_SETTINGS_BEGIN.class, 0xE6, State.IN_GAME); // 0x000C, vazio, antes do UI_SETTINGS
 		addPacket(CM_CAPTCHA.class, 0xE4, State.IN_GAME); // 0x000E CAPTCHA
 		addPacket(CM_SET_NOTE.class, 0xF8, State.IN_GAME); // 0x000A SAVE_CLIENT_SETTINGS
 		addPacket(CM_DIALOG_SELECT.class, 0xF4, State.IN_GAME); // 0xFFFE DIALOG_SELECT
@@ -200,7 +205,8 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_FUSION_WEAPONS.class, 0x1A5, State.IN_GAME); // FUSION_WEAPONS
 		addPacket(CM_BREAK_WEAPONS.class, 0x1A2, State.IN_GAME); // BREAK_WEAPONS
 		addPacket(CM_PET.class, 0x9C, State.IN_GAME); // PET
-		addPacket(CM_PET_EMOTE.class, 0x9E, State.IN_GAME); // PET_EMOTE
+		// 5.0: o dec 0xFFE4 é o [H display][H deny] de esconder capacete/capa (2/2 nas capturas, S 0xB7 de volta), não o PET_EMOTE
+		addPacket(CM_CUSTOM_SETTINGS.class, 0x9E, State.IN_GAME); // 0xFFE4 CUSTOM_SETTINGS
 		addPacket(CM_CUBE_EXPAND.class, 0x1B8, State.IN_GAME); // decoded 0x00CA CUBE_EXPAND (Classic 5.0: [C type], no NPC id)
 		addPacket(CM_COMBAT_TALENT_REWARD.class, 0x1E5, State.IN_GAME); // decoded 0x010F [H rewardId]
 		addPacket(CM_MANASTONE.class, 0x128, State.IN_GAME); // MANASTONE / ENCHANMENT_STONES
@@ -208,10 +214,13 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_GODSTONE_CLEAR.class, 0x1F9, State.IN_GAME); // 0x010B GIVE_ITEM_PROC_CLEAR
 		addPacket(CM_GATHER.class, 0xE1, State.IN_GAME); // GATHER
 		addPacket(CM_MACRO_DELETE.class, 0x142, State.IN_GAME); // MACRO_DELETE
-		addPacket(CM_MACRO_CREATE.class, 0x145, State.IN_GAME); // MACRO_CREATE
+		// sem o CM_MACRO_CREATE no cru 0x145: no 5.0 é o desbloquear (0x00AF); a macro fica no 0x017D
 		addPacket(CM_ABYSS_RANKING_PLAYERS.class, 0x177, State.IN_GAME); // ABYSS_RANKING_PLAYERS
-		addPacket(CM_WINDSTREAM.class, 0x13C, State.IN_GAME); // 0x0046 WIND_PATH / WINDSTREAM
-		addPacket(CM_CHARGE_ITEM.class, 0x124, State.IN_GAME); // CHARGE_ITEM
+		// 5.0: o dec 0x0046 é o pedido da lista de amigos, sempre vazio (36/36 nas capturas; responde S 0x83), não o WINDSTREAM
+		addPacket(CM_SHOW_FRIENDLIST.class, 0x13C, State.IN_GAME); // 0x0046 QUERY_BUDDY
+		// 0x0226 Sanctification de um item pelo NPC (ação 75) [D npc][C nível][H n][n x D item]: 2 de 2 na captura de 2026-10-18 17:22. O cru 0x124
+		// (0x4E) da 4.x é outro pacote no 5.0 (33 nas capturas, 12 b, sem carga)
+		addPacket(CM_CHARGE_ITEM.class, 0x2DC, State.IN_GAME);
 		// busca de Legion e candidatura (Nova Pasta 2026-09-29 16:49); os stubs GUILD_JOIN_REQUEST/CANCEL estavam trocados com a busca
 		addPacket(CM_LEGION_SEARCH.class, 0x1EA, State.IN_GAME); // dec 0x118 [C modo][H 0 | S nome] -> S 0x150
 		addPacket(CM_LEGION_APPLY.class, 0x1EB, State.IN_GAME); // dec 0x119 [D Legion][S nome][C 0][S apresentação] -> S 0x151
@@ -241,6 +250,8 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_GLOBAL_TRADE_BUY.class, 0x1EC, State.IN_GAME); // 0x0116 C_GLOBAL_TRADE_BUY [Q anúncio]
 		addPacket(CM_GLOBAL_TRADE_COMMIT.class, 0x1ED, State.IN_GAME); // 0x0117 C_GLOBAL_TRADE_COMMIT [D objeto][Q preço][Q qtd][D moeda]
 		addPacket(CM_ITEM_COMPOSE.class, 0x22E, State.IN_GAME); // 0x0154 Altar of Transcendence [D receita][H n][n x (D item, D qtd)][D 0][C fusões]
+		addPacket(CM_ITEM_SKILL_REASSIGN.class, 0x1FD, State.IN_GAME); // 0x0107 Reassign da skill de equipamento [D item]
+		addPacket(CM_ITEM_SKILL_REASSIGN_SELECT.class, 0x1C2, State.IN_GAME); // 0x0130 escolha do Reassign [D item][D skill, 0 mantém]
 		addPacket(CM_ITEM_UPGRADE.class, 0x1FC, State.IN_GAME); // 0x0106 Ascend [D receita][D objeto][D opção]
 		addPacket(CM_ITEM_UPGRADE_CANCEL.class, 0x230, State.IN_GAME); // 0x0142 C_CANCEL_ITEM_UPGRADE [D itemId]
 		addPacket(CM_MOROS_RECORD.class, 0x1E3, State.IN_GAME); // 0x0111 Moreth [H n][n x (D objeto, Q qtd)]
@@ -274,10 +285,10 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_CLIENT_PERF_METRICS.class, 0x0326, State.IN_GAME, State.AUTHED);
 		addPacket(CM_CLIENT_PERF_METRICS.class, 0x03DF, State.IN_GAME, State.AUTHED); // 0x0325 client perf/window state ack
 		addPacket(CM_CLIENT_PERF_METRICS.class, 0x0325, State.IN_GAME, State.AUTHED);
+		// sem alias no cru 0x0122: esse é o CM_DELETE_QUEST (dec 0x50), e o alias o sobrescrevia
 		addPacket(CM_PROTOCOL_PING_ACK.class, 0x01D0, State.IN_GAME, State.AUTHED); // 0x0122 PROTOCOL_PING_ACK
-		addPacket(CM_PROTOCOL_PING_ACK.class, 0x0122, State.IN_GAME, State.AUTHED);
+		// sem alias no cru 0x0112: esse é o C_PARTY (dec 0x60, CM_PLAYER_STATUS_INFO), e o alias o sobrescrevia (sair do grupo não fazia nada)
 		addPacket(CM_CLIENT_TELEMETRY_SYNC.class, 0x01E0, State.IN_GAME, State.AUTHED); // 0x0112 CLIENT_TELEMETRY_SYNC (5.0 Classic)
-		addPacket(CM_CLIENT_TELEMETRY_SYNC.class, 0x0112, State.IN_GAME, State.AUTHED);
 
 		// ==========================================
 		// RANKING 5.0 (Combat Power Ranking 1000..1003)
@@ -294,7 +305,10 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_MACRO_DELETE.class, 0x0142, State.IN_GAME); // 0x00B0 DELETE_MACRO
 		addPacket(CM_LOCATE_PLAYER.class, 0x01A4, State.IN_GAME); // 0x00CE LOCATE / FIND PLAYER
 		addPacket(CM_AIONLOOK_EDIT_CHARACTER.class, 0x01E1, State.IN_GAME); // 0x0113 Aion Look: alterar aparencia/genero (captura oficial aionlook)
-		addPacket(CM_GLOBAL_TRADE_LIST.class, 0x01F6, State.IN_GAME); // 0x00FC GLOBAL_TRADE_LIST
+		// 5.0: o dec 0x00FC é a compra do buff do ranking (4/4 nas capturas, 16 b); a lista da Auction House é o 0x0114 (cru 0x1EE)
+		addPacket(CM_COMBAT_POWER_RANK_BUFF.class, 0x01F6, State.IN_GAME); // 0x00FC buff do 1º lugar do ranking
+		addPacket(CM_RANKING_PLAYER_DETAIL.class, 0x01C1, State.IN_GAME); // 0x0133 lupa do ranking (S 0x02 + S 0x40)
+		addPacket(CM_RANKING_BADGE_DISPLAY.class, 0x01BA, State.IN_GAME); // 0x00C8 opção "mostrar ranking badge" (S 0x138 + S 0x139)
 	}
 
 	public AionPacketHandler getPacketHandler() {

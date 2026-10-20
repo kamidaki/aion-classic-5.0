@@ -1,5 +1,7 @@
 package com.aionemu.gameserver.skillengine.model;
 
+import com.aionemu.gameserver.model.stats.container.StatEnum;
+import com.aionemu.gameserver.model.templates.item.enums.ItemGroup;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Future;
@@ -855,7 +857,32 @@ public class Effect implements StatOwner {
 				duration = duration * skillTemplate.getPvpDuration() / 100;
 			}
 		}
+		duration = applyGodstoneDurationReduction(duration);
 		return (int) Math.min(Integer.MAX_VALUE, duration);
+	}
+
+	/**
+	 * Stun/Silence/Paralyze/BlindDuration da sinergia de encantamento: valem só para o efeito de Godstone ("Reduces the duration of Godstone
+	 * stuns", skills Enchant_Effect_PvP_*Duration), em % (-60 no nível 105).
+	 */
+	private long applyGodstoneDurationReduction(long duration) {
+		ItemTemplate itemTemplate = getItemTemplate();
+		if (duration <= 0 || itemTemplate == null || itemTemplate.getItemGroup() != ItemGroup.GODSTONE)
+			return duration;
+		for (EffectTemplate et : successEffects.values()) {
+			StatEnum stat = switch (et) {
+				case StunEffect _ -> StatEnum.PROC_STUN_DURATION;
+				case SilenceEffect _ -> StatEnum.PROC_SILENCE_DURATION;
+				case ParalyzeEffect _ -> StatEnum.PROC_PARALYZE_DURATION;
+				case BlindEffect _ -> StatEnum.PROC_BLIND_DURATION;
+				default -> null;
+			};
+			if (stat != null) {
+				int percent = effected.getGameStats().getStat(stat, 0).getCurrent();
+				return Math.max(0, duration * (100 + percent) / 100);
+			}
+		}
+		return duration;
 	}
 
 	private long calculateTemplateDuration() {

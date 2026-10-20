@@ -179,6 +179,7 @@ na classe avancada.
 | tabela de Skins `v4_class_*` (dado) | icone pequeno | `v4_class_artist` / `v4_class_bard` |
 | tabela `icon_emblem_<nome>` (dado, preenchida na inicializacao) | emblema grande (alvo, selecao) | `artist` / `bard` (era `battlemaster` / `lumines`) |
 | switch do sufixo de animacao `0x931F44` (dado + 2 casos novos) | `Nidle_<classe>_lobby_001` etc. | `_artist` / `_bard`, num trecho alocado logo depois do `Game.dll` |
+| indice por classe de `0x66E220` (dado, `0x66E268`) | energia da classe: 2 MP, 5 EP (12/13), 6 SP (15/16), 0 nenhuma (14/17/20/23/24). O quadro de grupo/alianca (`0xAAEE70`) so desenha barra para MP/EP/SP; o HUD proprio cai em MP para qualquer outro valor | `bard` = indice da Luminess (MP); `artist` fica sem |
 
 O trecho dos casos novos do sufixo (`_artist`/`_bard`) tem de ficar ate 2 GB acima da base do
 `Game.dll` (a tabela de saltos guarda deslocamentos de 32 bits). O `Game.dll` carrega baixo (`0x4C...`),
@@ -381,8 +382,10 @@ Do lado do servidor:
   `AionClientPacketFactory` nao e usada;
 - o handler escolhe o estagio pelo tempo carregado.
 
-A tabela de skills Charge do hook e o `bin64\charge_skills.txt` (`skill_id total_ms`), gravado
-pelo `bard_skills_58.py`.
+A tabela de skills Charge do hook e o `bin64\charge_skills.txt`, gravado pelo `bard_skills_58.py`:
+uma linha `skill_id motion animacoes ms:skill_estagio1 ms:skill_estagio2 ...` por skill (as 28 do
+Bard). `animacoes` tem um digito por entrada `ccast_harp_<motion>_00N` do `lm.cal` do 5.8, o mesmo
+digito para o mesmo `.caf` (ver "Animacao por estagio").
 
 Testado em jogo com a Fiery Descant G1:
 - disparo com 1,5 s sai o estagio 1;
@@ -449,6 +452,37 @@ estagio novo a DLL refaz o `SetAction`, com o estagio em `+0xB5D` e a skill do e
 do `SM_CASTSPELL_RESULT` (o mesmo do passo de multicast), e o cliente toca o `cfire_..._00N`.
 Atencao: `0x956230` carrega o modelo e nao toca animacao (chamar deixou o personagem invisivel).
 
+- **Qual animacao.** Quem diz e o `.cal`, nao os arquivos: o estagio N usa a entrada
+  `ccast_harp_<motion>_00N`. O `SongBattle02` (Blazing Requiem) nao tem `.caf` de carga e aponta para
+  os tres do `SongBattle01`. No `SongGravity01`, no `SongEmergentHeal01` e no `SongPowerShock01`
+  (Fiery Requiem), o `_003` repete o `_002_loop`, e o Fiery Requiem passa para o
+  `SongGravity01_002_loop` no estagio 2. As quatro racas seguem o mesmo padrao. Contar os arquivos
+  dava 0 para o `SongBattle02`: sem variante forcada o cliente sorteava e o estagio ficava parado.
+- **Mesma animacao.** Quando o estagio novo usa o mesmo `.caf` do anterior, refazer o `SetAction`
+  reinicia a animacao do primeiro quadro. O `cast_fx` nao sai do `SetAction`: um evento da animacao
+  chama `0x948790` (personagem, evento), que le a skill em `+0xBB8` e o nivel em `+0xBBE`, pega o
+  `cast_fx` (`0xA13B40`, tipo 0 = skill `+0x330`) e o toca no slot `0x38` (`0x948C80`); o evento so e
+  testado contra nulo. Nesse caso a DLL so grava a skill do estagio em `+0xBB8` e chama `0x948790`.
+- **Todos os personagens.** No 5.8 os estagios aparecem tambem nas barras de cast do alvo, do alvo do
+  alvo e do grupo assistido (`target_delay_dialog`, `target_assist_delay_dialog`,
+  `spectator_group_delay_dialog` tem `charge_step1-4`), e o protocolo nao tem pacote de estagio: cada
+  cliente acompanha a carga dos outros pelo tempo. A DLL faz isso na atualizacao por quadro do
+  personagem (`0x939020`, chamada pela cena para todos). O `StartAnimation` nao serve: a atualizacao
+  so o chama fora de uma acao (`+0x2F4 == 0xA`), e um hook nele nunca viu um cast (provado por log). O
+  estagio sai do inicio (`+0xBC4`) e da duracao (`+0xBC0`) que o cliente guardou no cast; o estagio
+  atual e o da skill em `+0xBB8`.
+- **Relogio.** O `+0xBC4` esta em milissegundos desde o boot. O cliente le esse relogio por um stub do
+  WinLicense (`0x1CEEAE5`) que da excecao quando chamado pela DLL (provado por log; isolado, derrubou
+  o jogo). A DLL usa `GetTickCount`: no log, ele e o `timeGetTime` ficaram a menos de 16 ms do
+  `+0xBC4`, e os estagios duram 1,5 s ou mais.
+
+**Modelos dos efeitos.** Os modelos que as particulas citam (o sapo do Blazing Requiem, o golfinho do
+Dragon Song, o sino do Fiery Descant, o unicornio do Fiery Requiem, abelhas, borboletas, corvo, clave,
+fada) precisam das animacoes: o `CryAnimation.dll` (5.0 e 5.8) le o `<modelo>.cal` da pasta e, sem
+ele, procura `<modelo>_*.caf` ali (string `_*.caf`) e toca a `nidle_001`. O `--efeito` do
+`teste_harpa_58.py` traz `.cal` e `.caf` dos modelos de `objects\` (`animacoes_de_modelos`); sem eles
+o modelo aparece parado.
+
 **Nome "Fiery Descant 1Stage".** No 5.8 e o nome + estagio + `STR_CHARGE_STEP` (904606, "Stage").
 O 5.0 nao tem a string; o `teste_harpa_58.py` poe `STR_CHARGE_STEP` com o id 1990006. A DLL:
 - intercepta `UIStatic::SetText` (vtable `+0x288`, `0xB1E380`) no widget do nome (`+0x518`): guarda o
@@ -484,16 +518,21 @@ de uma carga, a barra de carga e as bolinhas sao escondidas em todo quadro e no 
 (quando o dialogo escreve o nome), e nao so depois de uma carga. A carga tambem expira com o tempo
 total dela mais uma margem.
 
-Testado em jogo: cores, nome, clarao, brilho da ponta, animacoes por estagio, cooldown depois de
-Dodge e a barra depois de cancelar.
+Testado em jogo: cores, nome, clarao, brilho da ponta, animacoes por estagio (no proprio
+personagem e visto de outro cliente, nas 28 skills), cooldown depois de Dodge e a barra depois de
+cancelar.
 
 ## Pendências conhecidas
 
 - **Requisito de arma das skills** (`required_harp`, `0xB2FF50`): as skills do Bard (niveis 1-65,
   `bard_skills_58.py`) ja estao no cliente e no servidor, sem exigir a harpa.
-- **Skills Charge do Bard**: so a Fiery Descant G1 entrou (`CARGA` no `bard_skills_58.py`).
-  Faltam as outras 27 familias (Fiery Descant G2-G12, Soothing Hymn, Dragon Song, Blazing/Fiery
-  Requiem, Ba_SongofGravity).
+- **Skills Charge do Bard**: as 28 entraram (`CARGA` no `bard_skills_58.py`). Faltam:
+  - o tooltip por estagio do 5.8 ("Charging Time", "Hold Time", "Stage %0": strings 904758, 904759 e
+    905881 do 5.8, que o 5.0 nao tem; o 5.0 tambem nao monta essas secoes);
+  - o fim do estagio 3: os recursos dele no 5.8 (`casting_delay` 5000, `ccast_harp_FX_003` de 5,00 s)
+    acabam uns 2 s antes dos 7 s do estagio. Sem referencia do oficial, fica como esta;
+  - o tempo total: 1,5 + 1,5 + 7 s = 10 s, como o servidor soma o `skill_charge.xml` e como o tooltip
+    do 5.8 descreve ("Hold Time 7.0 sec" so no estagio 3). Medido em video: 6,99 s no estagio 3.
 - **Dedos.** O esqueleto do 5.8 tem cinco dedos de três falanges e o do 5.0 três de duas, com
   outra pose de referência. As animações de harpa precisam de conversão nas trilhas de dedo;
   há duas variantes em avaliação, nenhuma fixada.

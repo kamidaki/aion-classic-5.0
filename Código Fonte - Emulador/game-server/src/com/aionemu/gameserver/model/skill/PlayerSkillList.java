@@ -63,10 +63,21 @@ public final class PlayerSkillList implements SkillList<Player> {
 	}
 
 	public boolean addTemporarySkill(Player player, int skillId, int skillLevel) {
-		return addSkill(player, skillId, skillLevel, true);
+		return addSkill(player, skillId, skillLevel, true, true);
 	}
 
-	private synchronized boolean addSkill(Player player, int skillId, int skillLevel, boolean isTemporary) {
+	/**
+	 * Skill temporária sem o S_ADD_SKILL genérico: quem chama manda o pacote com a mensagem própria (skill de equipamento, 1403638).
+	 */
+	public boolean addTemporarySkillSilently(Player player, int skillId, int skillLevel) {
+		return addSkill(player, skillId, skillLevel, true, false);
+	}
+
+	private boolean addSkill(Player player, int skillId, int skillLevel, boolean isTemporary) {
+		return addSkill(player, skillId, skillLevel, isTemporary, true);
+	}
+
+	private synchronized boolean addSkill(Player player, int skillId, int skillLevel, boolean isTemporary, boolean notify) {
 		PlayerSkillEntry existingSkill = skills.get(skillId);
 		boolean isNew = true;
 		if (existingSkill != null) {
@@ -85,7 +96,7 @@ public final class PlayerSkillList implements SkillList<Player> {
 				}
 			}
 		}
-		SkillLearnService.onLearnSkill(player, skillId, skillLevel, isNew);
+		SkillLearnService.onLearnSkill(player, skillId, skillLevel, isNew, notify);
 		markSkillListDirtyIfNeeded(player);
 		return true;
 	}

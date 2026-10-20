@@ -78,6 +78,7 @@ public class InstanceBuff implements StatOwner {
 				p -> PacketSendUtility.sendPacket(p, new SM_INSTANCE_SCORE(wmi.getMapId(), new ArenaScoreWriter(arenaScore, p.getObjectId(), false))));
 		}
 		PacketSendUtility.sendPacket(player, new SM_ABNORMAL_STATE(Collections.emptyList(), player.getEffectController().getAbnormals(), 0));
+		player.getEffectController().sendClassSkillStackInfo();
 	}
 
 	public int getRemainingTime() {

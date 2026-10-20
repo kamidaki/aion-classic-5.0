@@ -47,6 +47,8 @@ import com.aionemu.gameserver.model.vortex.VortexLocation;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ENTER_WORLD_CHECK.Msg;
+import com.aionemu.gameserver.services.item.ItemChargeService;
+import com.aionemu.gameserver.services.item.EnchantSynergyService;
 import com.aionemu.gameserver.services.*;
 import com.aionemu.gameserver.services.globaltrade.GlobalTradeService;
 import com.aionemu.gameserver.services.instance.InstanceService;
@@ -181,6 +183,7 @@ public final class PlayerEnterWorldService {
 
 			// 2. Skills: pacote unico com todas as skills aprendidas
 			client.sendPacket(new SM_SKILL_LIST(player.getSkillList().getAllSkills()));
+			EnchantSynergyService.onEnterWorld(player); // S 0x173, nível da sinergia de encantamento (oficial: logo depois das skills)
 			// conquistas e passe: S_CLEAR_ACHIEVEMENT_EVENT, S_CREATE_ACHIEVEMENT_EVENT e S_BATTLEPASS_LIST, logo depois das skills como na entrada
 			// oficial (aionlook.pcapng: 0x116, 0x112 ... 0x117). O servico existia mas nunca era chamado; sem esse estado o cliente manda o C 0x112
 			// no mapa pronto e so troca de cena 12 s depois (suspeita da tela preta do Aion Look, em teste em 01/10)
@@ -208,7 +211,7 @@ public final class PlayerEnterWorldService {
 			// 5.1 Classic 5.0 Warmup Sequence (from official Wireshark PCAP)
 			client.sendPacket(new SM_CHALLENGE_GUIDE_TABS());
 			PlayerWardrobeService.getInstance().onEnterWorld(player); // S 0x122, logo antes do 0x138 como na captura
-			client.sendPacket(new SM_RANKING_BADGE());
+			client.sendPacket(new SM_RANKING_BADGE(player.getPlayerSettings().isRankingBadgeShown()));
 			StorybookService.onEnterWorld(player); // S 0x14C e 0x14D
 			MorosService.onEnterWorld(player); // S 0x169, logo depois do 0x14D como na captura
 			com.lostacademy.lostsocket.secure.SecureAreaService.getInstance().onEnterWorld(player); // S 0x16B (SM_ALTER_INFO)
@@ -416,6 +419,8 @@ public final class PlayerEnterWorldService {
 		}
 
 		client.sendPacket(new SM_INVENTORY_INFO());
+		// pontos de Sanctification de cada item carregável, logo depois do inventário (oficial: S 0x1D de 11 b, também com 0 pontos)
+		ItemChargeService.sendChargePoints(player);
 		client.sendPacket(SM_CUBE_UPDATE.stigmaSlots(player.getCommonData().getAdvencedStigmaSlotSize()));
 	}
 

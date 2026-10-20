@@ -59,9 +59,8 @@ public class ItemInfoBlob extends PacketWriteHelper {
 		ItemInfoBlob blob = new ItemInfoBlob(player, item);
 		ItemTemplate itemTemplate = item.getItemTemplate();
 
-		if (item.getConditioningInfo() != null) {
-			blob.addBlobEntry(ItemBlobType.CONDITIONING_INFO);
-		}
+		// 5.0: o blob completo nunca leva o conditioning (0x10), nem em item com pontos; os pontos vão só no S 0x1D de 11 b (login, janela
+		// da Sanctification e carga). Com o bloco aqui o cliente lia o blob deslocado e mostrava o item como embrulhado.
 		if (item.hasFusionedItem() || itemTemplate.isTwoHandWeapon()) {
 			blob.addBlobEntry(ItemBlobType.COMPOSITE_ITEM);
 		}
@@ -194,7 +193,7 @@ public class ItemInfoBlob extends PacketWriteHelper {
 				return new CompositeItemBlobEntry();
 			}
 		},
-		CONDITIONING_INFO(0x0F) {
+		CONDITIONING_INFO(0x10) { // 5.0: [obj][H 5][C 0x10][D pontos] no S 0x1D de 11 b (10 de 10 na captura de 2026-10-18 17:22)
 			@Override
 			ItemBlobEntry newBlobEntry() {
 				return new ConditioningInfoBlobEntry();

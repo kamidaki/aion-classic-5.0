@@ -111,6 +111,13 @@ public class SM_FRIEND_RESPONSE extends AionServerPacket {
 		return new SM_FRIEND_RESPONSE(targetName, 0x13);
 	}
 
+	/**
+	 * Para quem recusou o pedido de amizade, com o nome de quem pediu (5.0, captura 06_Sistemas_Novos 2026-10-20 00:30).
+	 */
+	public static final SM_FRIEND_RESPONSE REQUEST_DECLINED(String requesterName) {
+		return new SM_FRIEND_RESPONSE(requesterName, 0x14);
+	}
+
 	private final String playerName;
 	private final int code;
 

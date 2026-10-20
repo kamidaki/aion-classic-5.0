@@ -809,4 +809,139 @@
 		<skill time="1500" id="22096"/>
 		<skill time="7000" id="22097"/>
 	</charge>
+	<charge min_time="400" id="1013">
+		<skill time="1500" id="22098"/>
+		<skill time="1500" id="22099"/>
+		<skill time="7000" id="22100"/>
+	</charge>
+	<charge min_time="400" id="1014">
+		<skill time="1500" id="22101"/>
+		<skill time="1500" id="22102"/>
+		<skill time="7000" id="22103"/>
+	</charge>
+	<charge min_time="400" id="1015">
+		<skill time="1500" id="22104"/>
+		<skill time="1500" id="22105"/>
+		<skill time="7000" id="22106"/>
+	</charge>
+	<charge min_time="400" id="1016">
+		<skill time="1500" id="22107"/>
+		<skill time="1500" id="22108"/>
+		<skill time="7000" id="22109"/>
+	</charge>
+	<charge min_time="400" id="1017">
+		<skill time="1500" id="22110"/>
+		<skill time="1500" id="22111"/>
+		<skill time="7000" id="22112"/>
+	</charge>
+	<charge min_time="400" id="1018">
+		<skill time="1500" id="22113"/>
+		<skill time="1500" id="22114"/>
+		<skill time="7000" id="22115"/>
+	</charge>
+	<charge min_time="400" id="1019">
+		<skill time="1500" id="22116"/>
+		<skill time="1500" id="22117"/>
+		<skill time="7000" id="22118"/>
+	</charge>
+	<charge min_time="400" id="1020">
+		<skill time="1500" id="22119"/>
+		<skill time="1500" id="22120"/>
+		<skill time="7000" id="22121"/>
+	</charge>
+	<charge min_time="400" id="1021">
+		<skill time="1500" id="22122"/>
+		<skill time="1500" id="22123"/>
+		<skill time="7000" id="22124"/>
+	</charge>
+	<charge min_time="400" id="1022">
+		<skill time="1500" id="22125"/>
+		<skill time="1500" id="22126"/>
+		<skill time="7000" id="22127"/>
+	</charge>
+	<charge min_time="400" id="1023">
+		<skill time="1500" id="22128"/>
+		<skill time="1500" id="22129"/>
+		<skill time="7000" id="22130"/>
+	</charge>
+	<charge min_time="400" id="1024">
+		<skill time="1500" id="22220"/>
+		<skill time="1500" id="22221"/>
+		<skill time="7000" id="22222"/>
+	</charge>
+	<charge min_time="400" id="1025">
+		<skill time="1500" id="22223"/>
+		<skill time="1500" id="22224"/>
+		<skill time="7000" id="22225"/>
+	</charge>
+	<charge min_time="400" id="1026">
+		<skill time="1500" id="22266"/>
+		<skill time="1500" id="22267"/>
+		<skill time="7000" id="22268"/>
+	</charge>
+	<charge min_time="400" id="1027">
+		<skill time="1500" id="22269"/>
+		<skill time="1500" id="22270"/>
+		<skill time="7000" id="22271"/>
+	</charge>
+	<charge min_time="400" id="1028">
+		<skill time="1500" id="22272"/>
+		<skill time="1500" id="22273"/>
+		<skill time="7000" id="22274"/>
+	</charge>
+	<charge min_time="400" id="1029">
+		<skill time="1500" id="22275"/>
+		<skill time="1500" id="22276"/>
+		<skill time="7000" id="22277"/>
+	</charge>
+	<charge min_time="400" id="1030">
+		<skill time="1600" id="22298"/>
+		<skill time="1600" id="22299"/>
+		<skill time="7000" id="22300"/>
+	</charge>
+	<charge min_time="400" id="1031">
+		<skill time="1600" id="22301"/>
+		<skill time="1600" id="22302"/>
+		<skill time="7000" id="22303"/>
+	</charge>
+	<charge min_time="400" id="1032">
+		<skill time="1600" id="22304"/>
+		<skill time="1600" id="22305"/>
+		<skill time="7000" id="22306"/>
+	</charge>
+	<charge min_time="400" id="1033">
+		<skill time="1600" id="22307"/>
+		<skill time="1600" id="22308"/>
+		<skill time="7000" id="22309"/>
+	</charge>
+	<charge min_time="400" id="1034">
+		<skill time="1600" id="22310"/>
+		<skill time="1600" id="22311"/>
+		<skill time="7000" id="22312"/>
+	</charge>
+	<charge min_time="400" id="1035">
+		<skill time="1600" id="22313"/>
+		<skill time="1600" id="22314"/>
+		<skill time="7000" id="22315"/>
+	</charge>
+	<charge min_time="400" id="1036">
+		<skill time="1500" id="22347"/>
+		<skill time="1500" id="22348"/>
+		<skill time="7000" id="22349"/>
+	</charge>
+	<charge min_time="400" id="1037">
+		<skill time="1500" id="22350"/>
+		<skill time="1500" id="22351"/>
+		<skill time="7000" id="22352"/>
+	</charge>
+	<charge min_time="400" id="1038">
+		<skill time="1500" id="22353"/>
+		<skill time="1500" id="22354"/>
+		<skill time="7000" id="22355"/>
+	</charge>
+	<charge min_time="400" id="1039">
+		<skill time="1500" id="22356"/>
+		<skill time="1500" id="22357"/>
+		<skill time="7000" id="22358"/>
+	</charge>
 </skill_charge>

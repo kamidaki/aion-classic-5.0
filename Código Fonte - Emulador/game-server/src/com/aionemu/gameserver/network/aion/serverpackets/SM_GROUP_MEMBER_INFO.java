@@ -54,7 +54,7 @@ public class SM_GROUP_MEMBER_INFO extends AionServerPacket {
 			event = GroupEvent.ENTER_OFFLINE;
 		}
 
-		writeD(groupId);
+		writeD(event == GroupEvent.LEAVE ? 0 : groupId); // 5.0: saída vai com grupo 0
 		writeD(player.getObjectId());
 		if (player.isOnline()) {
 			writeD(pls.getMaxHp());
@@ -86,6 +86,11 @@ public class SM_GROUP_MEMBER_INFO extends AionServerPacket {
 		writeC(1); // unk, always 0x01 since removal of Sarpan & Tiamarana
 		writeC(player.getFlyState()); // isFly
 		writeC(player.isMentor() ? 0x01 : 0x00);
+		// 5.0 (captura 06_Sistemas_Novos 2026-10-19 22:54): 9 bytes antes do nome em todo evento, inclusive saída e movimento.
+		// O C vale 100 para um personagem nível 63 e 0 para um nível 3; o significado não está provado.
+		writeC(0x00);
+		writeD(0x00);
+		writeD(0x00);
 
 		switch (event) {
 			case MOVEMENT:
@@ -99,45 +104,38 @@ public class SM_GROUP_MEMBER_INFO extends AionServerPacket {
 			case UPDATE_EFFECTS:
 				writeD(0x00); // unk
 				writeD(0x00); // unk
-				writeC(slot);
-				writeH(abnormalEffects.size()); // Abnormal effects of slot type
-				for (Effect effect : abnormalEffects) {
-					writeD(effect.getEffectorId()); // casterid
-					writeH(effect.getSkillId()); // spellid
-					writeC(effect.getSkillLevel()); // spell level
-					writeC(effect.getTargetSlot().ordinal()); // unk ?
-					writeD(effect.getRemainingTimeToDisplay()); // estimatedtime
-				}
-
-				for (SkillTargetSlot targetSlot : SkillTargetSlot.values()) {
-					if ((slot & targetSlot.getId()) == 1)
-						writeD(0x00); // TODO: remaining time ?
-					else
-						writeD(0x00);
-				}
+				writeEffects(slot);
 				break;
 			case ENTER:
 			case UPDATE:
 				writeS(pcd.getName()); // name
 				writeD(0x00); // unk
 				writeD(0x00); // unk
-				writeC(SkillTargetSlot.FULLSLOTS);
-				writeH(abnormalEffects.size()); // Abnormal effects
-				for (Effect effect : abnormalEffects) {
-					writeD(effect.getEffectorId()); // casterid
-					writeH(effect.getSkillId()); // spellid
-					writeC(effect.getSkillLevel()); // spell level
-					writeC(effect.getTargetSlot().ordinal()); // unk ?
-					writeD(effect.getRemainingTimeToDisplay()); // estimatedtime
-				}
-				for (SkillTargetSlot targetSlot : SkillTargetSlot.values()) {
-					if ((SkillTargetSlot.FULLSLOTS & targetSlot.getId()) == 1)
-						writeD(0x00); // TODO: remaining time ?
-					else
-						writeD(0x00);
-				}
+				writeEffects(SkillTargetSlot.FULLSLOTS);
 				break;
 		}
+	}
+
+	/**
+	 * Efeitos no formato do S_ABNORMAL_STATUS do 5.0 (23 b cada), seguidos de um D por slot (8). Na captura os 8 valores são iguais e crescem
+	 * com o tempo (ms); sem prova do que medem, vão 0.
+	 */
+	private void writeEffects(int slots) {
+		writeC(slots);
+		writeH(abnormalEffects.size());
+		for (Effect effect : abnormalEffects) {
+			writeD(effect.getEffectorId());
+			writeD(SM_ABNORMAL_EFFECT.effectorTemplateId(effect.getEffector()));
+			writeH(effect.getSkillId());
+			writeC(effect.getSkillLevel());
+			writeC(effect.getTargetSlot().ordinal());
+			writeD(effect.getRemainingTimeToDisplay());
+			writeD(effect.getCarvedSignet());
+			writeH(0);
+			writeC(0);
+		}
+		for (int i = 0; i < SkillTargetSlot.values().length; i++)
+			writeD(0x00);
 	}
 
 }

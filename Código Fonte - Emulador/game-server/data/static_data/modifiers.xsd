@@ -184,6 +184,12 @@
 			<xs:enumeration value="GATHER_SUCCESS"/>
 			<xs:enumeration value="GATHER_DOUBLE"/>
 			<xs:enumeration value="GATHER_SPEED"/>
+			<xs:enumeration value="PVE_ATTACK_RATIO_BOSS"/>
+			<xs:enumeration value="PROC_DAMAGE_REDUCE"/>
+			<xs:enumeration value="PROC_STUN_DURATION"/>
+			<xs:enumeration value="PROC_SILENCE_DURATION"/>
+			<xs:enumeration value="PROC_PARALYZE_DURATION"/>
+			<xs:enumeration value="PROC_BLIND_DURATION"/>
 			<!-- 3.0 -->
 			<xs:enumeration value="MAGICAL_DEFEND"/>
 			<xs:enumeration value="MAGIC_SKILL_BOOST_RESIST"/>
@@ -446,6 +452,7 @@
 				<xs:attribute name="time" type="xs:int" default="5000"/>
 				<xs:attribute name="precategory" type="xs:string"/>
 				<xs:attribute name="category" type="xs:string" use="required"/>
+				<xs:attribute name="alter" type="xs:boolean" default="false"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>

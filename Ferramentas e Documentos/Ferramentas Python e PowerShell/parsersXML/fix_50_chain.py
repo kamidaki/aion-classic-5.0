@@ -35,7 +35,10 @@ def chain_do_cliente(c):
     cat = c.get("chain_category_name", "")
     if not cat:
         return None
-    a = collections.OrderedDict(category=cat.upper())
+    a = collections.OrderedDict()
+    if c.get("alterchain_use") == "1":  # ver fix_50_alterchain.py
+        a["alter"] = "true"
+    a["category"] = cat.upper()
     if c.get("prechain_category_name"):
         a["precategory"] = c["prechain_category_name"].upper()
     if c.get("chain_time") and c["chain_time"] != "0":
@@ -50,7 +53,7 @@ def chain_do_cliente(c):
 def normaliza(attrs):
     """Atributos com os defaults do ChainCondition (time 0, selfcount 1, precount 1) removidos, para comparar."""
     d = {k: v for k, v in attrs.items()}
-    for k, padrao in (("time", "0"), ("selfcount", "1"), ("precount", "1")):
+    for k, padrao in (("time", "0"), ("selfcount", "1"), ("precount", "1"), ("alter", "false")):
         if d.get(k) == padrao:
             del d[k]
     if "category" in d:

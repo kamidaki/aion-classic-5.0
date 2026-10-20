@@ -558,7 +558,9 @@ public class LegionService {
 		if (legionRestrictions.canOpenWarehouse(player, npc)) {
 			LegionWhUpdate(player);
 			PacketSendUtility.sendPacket(player, new SM_LEGION_EDIT(0x04, player.getLegion()));// kinah
-			int whLvl = player.getLegion().getWarehouseExpansions();
+			// 5.0: o byte do S 0xA7 é o nível da Legion, e o cliente tira os espaços do warehouse_slots do client_guild_setting (Lost Academy
+			// nível 1 manda 1, Nova Pasta 2026-09-29 16:02). Com as expansões (nível - 1) o nível 1 ia 0, o cliente mostrava "(n/0)" e escondia os itens.
+			int whLvl = player.getLegion().getLegionLevel();
 			List<Item> items = player.getLegion().getLegionWarehouse().getItems();
 			int storageId = StorageType.LEGION_WAREHOUSE.getId();
 

@@ -130,11 +130,10 @@ public class SM_ALLIANCE_INFO extends AionServerPacket {
 
 	@Override
 	protected void writeImpl(AionConnection con) {
-		Player player = con.getActivePlayer();
+		// 5.0 (captura 06_Sistemas_Novos 2026-10-19 22:54, 113 b): sem o mapa depois do líder, 7 graus de item e sem o id da liga antes dos grupos
 		writeH(alliance.groupSize());
 		writeD(groupid);
 		writeD(leaderid);
-		writeD(player == null || player.getPosition() == null ? 0 : player.getWorldId());// mapId
 		Collection<Integer> ids = alliance.getViceCaptainIds();
 		for (Integer id : ids) {
 			writeD(id);
@@ -150,11 +149,11 @@ public class SM_ALLIANCE_INFO extends AionServerPacket {
 		writeD(lootRules.getFabledItemAbove());
 		writeD(lootRules.getEternalItemAbove());
 		writeD(lootRules.getMythicItemAbove());
+		writeD(lootRules.getDivinityItemAbove());
 		writeD(0x02);
 		writeC(0x00);
 		writeD(type);
 		writeD(subType); // 3.5
-		writeD(leagueId);
 		for (int a = 0; a < 4; a++) {
 			writeD(a); // group num
 			writeD(1000 + a); // group id

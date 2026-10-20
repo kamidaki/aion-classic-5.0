@@ -13,6 +13,8 @@ public class PlayerSettings implements Persistable {
 	private byte[] shortcuts;
 	private byte[] houseBuddies;
 	private int deny = 0;
+	/** opção "mostrar ranking badge" das configurações do jogo (C 0xC8); o oficial manda 1 no login de quem nunca mexeu */
+	private boolean rankingBadgeShown = true;
 	private int display = 0;
 
 	public PlayerSettings() {
@@ -120,6 +122,15 @@ public class PlayerSettings implements Persistable {
 	 */
 	public void setDeny(int deny) {
 		this.deny = deny;
+		persistentState = PersistentState.UPDATE_REQUIRED;
+	}
+
+	public boolean isRankingBadgeShown() {
+		return rankingBadgeShown;
+	}
+
+	public void setRankingBadgeShown(boolean rankingBadgeShown) {
+		this.rankingBadgeShown = rankingBadgeShown;
 		persistentState = PersistentState.UPDATE_REQUIRED;
 	}
 

@@ -70,6 +70,9 @@
 	<import file="items/siel_hammer.xml" />
 	<import file="items/global_trade.xml" />
 	<import file="items/item_compose.xml" />
+	<import file="items/item_skill_sets.xml" />
+	<import file="items/enchant_synergy.xml" />
+	<import file="ranking/combat_power_rank_buff.xml" />
 	<import file="items/item_upgrade.xml" />
 	<import file="legion/legion_settings.xml" />
 	<import file="legion/legion_donation.xml" />

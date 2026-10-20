@@ -54,6 +54,7 @@ public class ItemPacketService {
 		DEC_KINAH_ITEM_COMPOSE(0x120, true, true), // 2: taxa do Altar of Transcendence (C 0x154)
 		DEC_STORYBOOK_REGISTER(0xED, true, true), // 3: fragmento registrado no Book of Legends (C 0xE4); o 0x1C da pilha inteira usa 0xEC
 		DEC_KINAH_WARDROBE(0xDF, true, true), // 5: taxa do Wardrobe (C 0xFA), 3 aplicações de visual e 2 remoções
+		DEC_KINAH_RANKING_BUFF(0x10E, true, true), // 3: buff do 1º lugar do ranking de Combat Talent (C 0xFC), capturas de 20/10
 
 		DEC_KINAH(0, true, false), // gasto de kinah sem motivo capturado; o oficial usa um por serviço, e 0x1D só na compra
 		DEC_ITEM_SPLIT_MOVE(0x0A, true, false), // move to other storage with split
@@ -239,6 +240,16 @@ public class ItemPacketService {
 	}
 
 	/**
+	 * S_EVENT (0x81) com o tamanho do armazém depois de pôr ou tirar um item. O armazém da Legion não leva: no oficial o depósito e a retirada
+	 * (S 0xA8/0xA9, Nova Pasta 2026-09-29 16:02) não vêm com 0x81, e o emulador mandava as expansões (nível - 1), que zeravam a janela até
+	 * reabrir (o S 0xA7 manda o nível).
+	 */
+	public static void sendCubeSize(Player player, StorageType storageType) {
+		if (storageType != StorageType.LEGION_WAREHOUSE)
+			PacketSendUtility.sendPacket(player, SM_CUBE_UPDATE.cubeSize(storageType, player));
+	}
+
+	/**
 	 * Item will be deleted from UI slot
 	 */
 	public static void sendItemDeletePacket(Player player, StorageType storageType, Item item, ItemDeleteType deleteType) {
@@ -250,7 +261,7 @@ public class ItemPacketService {
 		// Hammer refreshes the cube after the result and rewards, as in the official capture.
 		// Refreshing while its selected input disappears makes the client treat the dialog as interrupted.
 		if (deleteType != ItemDeleteType.CRUSH)
-			PacketSendUtility.sendPacket(player, SM_CUBE_UPDATE.cubeSize(storageType, player));
+			sendCubeSize(player, storageType);
 	}
 
 	/**
@@ -294,7 +305,7 @@ public class ItemPacketService {
 				PacketSendUtility.sendPacket(player, new SM_WAREHOUSE_ADD_ITEM(item, storageType.getId(), player, addType));
 		}
 		if (addType != ItemAddType.CRUSH_RESULT)
-			PacketSendUtility.sendPacket(player, SM_CUBE_UPDATE.cubeSize(storageType, player));
+			sendCubeSize(player, storageType);
 	}
 
 	public static void sendItemUnlockPacket(Player player, Item item) {

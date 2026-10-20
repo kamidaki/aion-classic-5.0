@@ -25,7 +25,9 @@ import com.aionemu.gameserver.model.templates.item.ItemQuality;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.model.templates.item.actions.EnchantItemAction;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
+import com.aionemu.gameserver.services.item.EnchantSynergyService;
 import com.aionemu.gameserver.services.item.ItemPacketService;
+import com.aionemu.gameserver.services.item.ItemSkillService;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
 import com.aionemu.gameserver.services.item.ItemService;
 import com.aionemu.gameserver.services.item.ItemSocketService;
@@ -245,9 +247,12 @@ public class EnchantService {
 
 	public static void setEnchantLevel(Player player, Item item, int enchantLevel) {
 		item.setEnchantLevel(enchantLevel);
+		// buffSkill guarda também a skill de equipamento (Reassign), que o encantamento não muda; nenhum dos 415 itens de conjunto tem o
+		// buff de exceed (+20), então o recálculo abaixo só vale para os outros itens
+		boolean equipmentSkillItem = ItemSkillService.isEquipmentSkillItem(item);
 		int oldBuffId = item.getBuffSkill();
-		int newBuffId = 0;
-		if (enchantLevel >= 20)
+		int newBuffId = equipmentSkillItem ? oldBuffId : 0;
+		if (enchantLevel >= 20 && !equipmentSkillItem)
 			newBuffId = getEquipBuff(item);
 		if (newBuffId != oldBuffId) {
 			item.setBuffSkill(newBuffId);
@@ -258,7 +263,7 @@ public class EnchantService {
 					SkillLearnService.learnTemporarySkill(player, newBuffId, 1);
 			}
 		}
-		if (newBuffId != 0)
+		if (newBuffId != 0 && !equipmentSkillItem)
 			PacketSendUtility.sendPacket(player,
 				SM_SYSTEM_MESSAGE.STR_MSG_EXCEED_SKILL_ENCHANT(item.getL10n(), enchantLevel, DataManager.SKILL_DATA.getSkillTemplate(newBuffId).getL10n()));
 		if (item.getEnchantEffect() != null) {
@@ -266,6 +271,7 @@ public class EnchantService {
 			item.setEnchantEffect(null);
 		}
 		if (item.isEquipped()) {
+			EnchantSynergyService.recalculate(player);
 			player.getGameStats().updateStatsVisually();
 			if (enchantLevel > 0)
 				applyEnchantEffect(item, player, enchantLevel);

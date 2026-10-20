@@ -24,6 +24,8 @@ import com.aionemu.gameserver.network.aion.clientpackets.CM_QUIT;
 import com.aionemu.gameserver.network.chatserver.ChatServer;
 import com.aionemu.gameserver.questEngine.QuestEngine;
 import com.aionemu.gameserver.questEngine.model.QuestEnv;
+import com.aionemu.gameserver.services.item.EnchantSynergyService;
+import com.aionemu.gameserver.services.item.ItemSkillService;
 import com.aionemu.gameserver.services.*;
 import com.aionemu.gameserver.services.RecallService.CancelReason;
 import com.aionemu.gameserver.services.findgroup.FindGroupService;
@@ -102,6 +104,8 @@ public class PlayerLeaveWorldService {
 			InstanceService.onLogout(player);
 			GMService.getInstance().onPlayerLogout(player);
 			KiskService.getInstance().onLogout(player);
+			ItemSkillService.onLogout(player);
+			EnchantSynergyService.onLogout(player);
 			SielEnergyService.getInstance().onLogout(player);
 			MorosService.onLogout(player);
 			DecomposeAction.selectionClosed(player);

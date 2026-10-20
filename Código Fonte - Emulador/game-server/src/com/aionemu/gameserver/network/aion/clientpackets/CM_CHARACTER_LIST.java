@@ -34,8 +34,8 @@ public class CM_CHARACTER_LIST extends AionClientPacket {
 		log.info("[CHARACTER_LIST] Pedido da conta {}", getConnection().getAccount() != null ? getConnection().getAccount().getId() : "null");
 		boolean isGM = getConnection().getAccount() != null && getConnection().getAccount().getAccessLevel() >= AdminConfig.GM_PANEL;
 		sendPacket(new SM_ACCOUNT_PROPERTIES(isGM));
-		sendPacket(new SM_CHARACTER_LIST(0, playOk2));
-		sendPacket(new SM_CHARACTER_LIST(2, playOk2));
+		if (getConnection().getAccount() != null)
+			SM_CHARACTER_LIST.of(getConnection().getAccount(), playOk2).forEach(this::sendPacket);
 		if (getConnection().getAccount() != null) {
 			for (PlayerAccountData pad : getConnection().getAccount()) {
 				if (pad.getDeletionDate() != null && pad.getDeletionDate().getTime() > System.currentTimeMillis()) {

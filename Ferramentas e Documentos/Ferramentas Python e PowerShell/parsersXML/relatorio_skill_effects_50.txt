@@ -1,220 +1,712 @@
 Corpo gerado para skill_templates vazios a partir do client_skills 5.0, medido no gabarito (metade de teste).
 
-Estrutura: properties 67.7% | startconditions 87.8% | useconditions 97.7% | actions 98.2% | motion (nome) 99.0%
-11 de 744 stubs ganham corpo (jogaveis 2/179 | ALL 0/27 | fora da arvore 9/538).
+Estrutura: properties 55.9% | startconditions 51.2% | useconditions 97.4% | actions 98.1% | motion (nome) 98.8%
+610 de 1085 stubs ganham corpo (jogaveis 0/0 | ALL 610/625 | fora da arvore 0/460).
 Limiares por tipo de efeito: enums+stats >= 85%, presenca >= 70%, numeros >= 70%.
 
 tipo de efeito (cliente)           elemento                teste  enums+stats  presenca  numeros  usado
-statup                             statup                   1319       93.9%    97.4%   98.7%  sim (stubs com esse tipo: 275)
-shapechange                        polymorph                 180       99.4%    95.0%   94.4%  sim (stubs com esse tipo: 85)
-boostskillcastingtime              boostskillcastingtime      17       70.6%    82.4%   89.1%  nao (stubs com esse tipo: 78)
-summontrap                         summontrap                 35      100.0%     5.7%  100.0%  nao (stubs com esse tipo: 59)
-spellatk_instant                   spellatkinstant           912       99.7%    97.8%   96.4%  sim (stubs com esse tipo: 50)
-procheal_instant                   prochealinstant            11      100.0%    45.5%   28.6%  nao (stubs com esse tipo: 46)
+statup                             statup                   1160       88.9%    95.1%   98.2%  sim (stubs com esse tipo: 718)
+provoker                           provoker                  122      100.0%    80.3%   99.5%  sim (stubs com esse tipo: 121)
+summontrap                         summontrap                 36      100.0%     5.6%   99.0%  nao (stubs com esse tipo: 57)
+procheal_instant                   prochealinstant            13      100.0%    46.2%   44.4%  nao (stubs com esse tipo: 44)
 procmpheal_instant                 procmphealinstant           7      100.0%     0.0%  100.0%  nao (stubs com esse tipo: 37)
-statdown                           statdown                  387       97.2%    97.9%   99.1%  sim (stubs com esse tipo: 36)
-deboosthealamount                  deboostheal                13        0.0%    38.5%  100.0%  nao (stubs com esse tipo: 34)
-provoker                           provoker                  139      100.0%    92.1%   98.8%  sim (stubs com esse tipo: 34)
-noreducespellatk_instant           noreducespellatk           10       80.0%    50.0%   87.5%  nao (stubs com esse tipo: 33)
-skillatk_instant                   skillatk                  991      100.0%    95.6%   94.9%  sim (stubs com esse tipo: 32)
-weaponstatboost                    weaponstatboost             4       75.0%    50.0%  100.0%  nao (stubs com esse tipo: 24)
+shapechange                        polymorph                 197       94.9%    91.4%   97.7%  sim (stubs com esse tipo: 33)
+noreducespellatk_instant           noreducespellatk            9       77.8%    44.4%   85.7%  nao (stubs com esse tipo: 30)
+statdown                           statdown                  393       95.2%    97.5%   99.0%  sim (stubs com esse tipo: 27)
+boostskillcastingtime              boostskillcastingtime      44       86.4%    47.7%   95.3%  nao (stubs com esse tipo: 26)
+spellatk_instant                   spellatkinstant          1045       99.9%    96.4%   96.7%  sim (stubs com esse tipo: 21)
 sanctuary                          sanctuary                  13       69.2%    61.5%   40.0%  nao (stubs com esse tipo: 20)
-drboost                            drboost                     2        0.0%     0.0%  100.0%  nao (stubs com esse tipo: 19)
-mpattack_instant                   mpattackinstant            31      100.0%    71.0%  100.0%  sim (stubs com esse tipo: 17)
-deform                             deform                     67       97.0%    91.0%   97.8%  sim (stubs com esse tipo: 16)
-spellatk                           spellatk                  164      100.0%    95.7%   98.6%  sim (stubs com esse tipo: 16)
-xpboost                            xpboost                     7        0.0%   100.0%  100.0%  nao (stubs com esse tipo: 16)
-statboost                          statboost                 183       96.2%    99.5%   99.8%  sim (stubs com esse tipo: 15)
-hide                               hide                       19       26.3%    73.7%   94.9%  nao (stubs com esse tipo: 15)
-movelocation                       movelocation                0        0.0%     0.0%  100.0%  nao (stubs com esse tipo: 15)
-onetimeboostskillattack            onetimeboostskillattack      3      100.0%    33.3%   78.6%  nao (stubs com esse tipo: 15)
-blending                           blending                   38      100.0%    94.7%  100.0%  sim (stubs com esse tipo: 15)
-fear                               fear                       29       48.3%    37.9%   94.9%  nao (stubs com esse tipo: 14)
-snare                              snare                     163      100.0%    96.9%   99.1%  sim (stubs com esse tipo: 13)
-shield                             shield                    112       93.8%    69.6%   91.1%  nao (stubs com esse tipo: 13)
-polymorph                          polymorph                   7       85.7%    42.9%  100.0%  nao (stubs com esse tipo: 13)
-delayedskill                       delayedskill                0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 12)
+xpboost                            xpboost                     8        0.0%   100.0%  100.0%  nao (stubs com esse tipo: 14)
+deboosthealamount                  deboostheal                28        0.0%    14.3%  100.0%  nao (stubs com esse tipo: 13)
+polymorph                          polymorph                   7       85.7%    85.7%  100.0%  sim (stubs com esse tipo: 13)
+drboost                            drboost                     5        0.0%    60.0%  100.0%  nao (stubs com esse tipo: 12)
+delayedskill                       delayedskill               11       81.8%    63.6%  100.0%  nao (stubs com esse tipo: 12)
 1                                  -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 12)
-backdashatk                        backdash                    3      100.0%    66.7%  100.0%  nao (stubs com esse tipo: 11)
-skilllauncher                      skilllauncher              79      100.0%    97.5%  100.0%  sim (stubs com esse tipo: 11)
-search                             search                      5      100.0%    80.0%   94.1%  sim (stubs com esse tipo: 11)
-openaerial                         openaerial                  0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 11)
-absolutesnare                      -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 10)
-apboost                            -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 10)
-convertheal                        -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 10)
-summontotem                        summontotem                 2      100.0%     0.0%  100.0%  nao (stubs com esse tipo: 10)
-mpheal                             mpheal                     24      100.0%    95.8%   90.5%  sim (stubs com esse tipo: 10)
-summonservant                      summonservant              20      100.0%     0.0%  100.0%  nao (stubs com esse tipo: 10)
-statsynergy                        -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 10)
-boosthate                          hostileup                   6       83.3%     0.0%  100.0%  nao (stubs com esse tipo: 9)
-control                            -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 9)
-summonskillarea                    summonskillarea             6       83.3%    83.3%   77.3%  nao (stubs com esse tipo: 9)
-silence                            silence                    37      100.0%    94.6%   97.7%  sim (stubs com esse tipo: 8)
-bind                               bind                       25      100.0%    96.0%   98.3%  sim (stubs com esse tipo: 8)
+onetimeboostskillattack            onetimeboostskillattack      6      100.0%     0.0%   82.6%  nao (stubs com esse tipo: 11)
+openaerial                         openaerial                  3        0.0%     0.0%  100.0%  nao (stubs com esse tipo: 11)
+spellatk                           spellatk                  180      100.0%    95.6%   98.4%  sim (stubs com esse tipo: 11)
+mpattack_instant                   mpattackinstant            43      100.0%    90.7%  100.0%  sim (stubs com esse tipo: 10)
+blending                           blending                   35       88.6%    80.0%  100.0%  sim (stubs com esse tipo: 10)
+hide                               hide                       24       33.3%    58.3%   95.5%  nao (stubs com esse tipo: 9)
+shield                             shield                    119       94.1%    72.3%   91.7%  sim (stubs com esse tipo: 9)
 extractgatherpointboost            -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 8)
-stun                               stun                      208      100.0%    97.1%   98.6%  sim (stubs com esse tipo: 7)
-onetimeboostskillcritical          onetimeboostskillcritical      4      100.0%    50.0%  100.0%  nao (stubs com esse tipo: 7)
-mpatkdrain_instant                 -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 7)
-heal                               heal                       68       97.1%    80.9%   97.1%  sim (stubs com esse tipo: 7)
+fear                               fear                       33       54.5%    33.3%   95.3%  nao (stubs com esse tipo: 8)
+deform                             deform                     71       98.6%    80.3%   98.1%  sim (stubs com esse tipo: 7)
+backdashatk                        backdash                    6      100.0%    83.3%  100.0%  sim (stubs com esse tipo: 7)
+skillatk_instant                   skillatk                 1001      100.0%    94.4%   95.7%  sim (stubs com esse tipo: 7)
+heal                               heal                       72       97.2%    79.2%   98.5%  sim (stubs com esse tipo: 7)
 gatherpointboost                   -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 7)
+snare                              snare                     174       97.7%    94.8%   99.0%  sim (stubs com esse tipo: 7)
 boostdroprate                      boostdroprate               9        0.0%    88.9%  100.0%  nao (stubs com esse tipo: 7)
-blinkatk                           -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 6)
-boostcontextskill                  boostcontextskill           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 6)
-evade                              evade                       0        0.0%     0.0%  100.0%  nao (stubs com esse tipo: 5)
-boostskillcost                     boostskillcost              1      100.0%   100.0%  100.0%  nao (stubs com esse tipo: 5)
-boostspellattackeffect             boostspellattack            4        0.0%    25.0%  100.0%  nao (stubs com esse tipo: 5)
-wpn_mastery                        wpnmastery                 44       95.5%    90.9%  100.0%  sim (stubs com esse tipo: 4)
-dispel                             dispel                     70      100.0%    91.4%  100.0%  sim (stubs com esse tipo: 4)
-dispelbuffcounteratk               dispelbuffcounteratk        8       37.5%    75.0%  100.0%  nao (stubs com esse tipo: 4)
-curse                              curse                       7        0.0%    71.4%   97.1%  nao (stubs com esse tipo: 4)
-radarangle                         -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 4)
-deathtrialstate                    -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 4)
+statboost                          statboost                 192       95.3%    97.4%   99.0%  sim (stubs com esse tipo: 6)
+control                            deform                      1      100.0%     0.0%  100.0%  nao (stubs com esse tipo: 6)
+summontotem                        summontotem                 4      100.0%     0.0%   75.0%  nao (stubs com esse tipo: 6)
+apboost                            apboost                     2        0.0%   100.0%  100.0%  nao (stubs com esse tipo: 5)
+convertheal                        convertheal                 4      100.0%     0.0%  100.0%  nao (stubs com esse tipo: 5)
+absolutesnare                      absolutesnare               3        0.0%    66.7%   83.3%  nao (stubs com esse tipo: 4)
 combinepointboost                  -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 4)
 summonfunctionalnpc                summonfunctionalnpc         2        0.0%   100.0%  100.0%  nao (stubs com esse tipo: 4)
 questexpboost                      -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 4)
-alwaysresist                       alwaysresist               12      100.0%   100.0%   91.5%  sim (stubs com esse tipo: 3)
-flyboost                           -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 3)
 recall_instant                     recallinstant               0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 3)
-mpheal_instant                     mphealinstant              65       98.5%    98.5%   92.0%  sim (stubs com esse tipo: 3)
-onetimeboosthealeffect             -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 3)
-slow                               slow                       49      100.0%    95.9%   99.6%  sim (stubs com esse tipo: 3)
-movebehindatk                      movebehind                  4      100.0%   100.0%  100.0%  sim (stubs com esse tipo: 3)
-procatk_instant                    procatk_instant            49      100.0%   100.0%   96.5%  sim (stubs com esse tipo: 3)
+statsynergy                        statup                      0        0.0%     0.0%  100.0%  nao (stubs com esse tipo: 3)
+procatk_instant                    procatk_instant            54      100.0%   100.0%   97.1%  sim (stubs com esse tipo: 3)
+mpheal                             mpheal                     37       97.3%    83.8%   92.1%  sim (stubs com esse tipo: 3)
+curse                              curse                       7        0.0%    85.7%   97.1%  nao (stubs com esse tipo: 3)
 dispelnpcbuff                      dispelnpcbuff               4      100.0%    25.0%  100.0%  nao (stubs com esse tipo: 3)
-targetteleport                     targetteleport              3       33.3%    66.7%  100.0%  nao (stubs com esse tipo: 3)
+targetteleport                     targetteleport              2       50.0%    50.0%  100.0%  nao (stubs com esse tipo: 3)
 intervalskill                      -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 2)
 dummy                              -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 2)
-root                               root                       72      100.0%    65.3%  100.0%  sim (stubs com esse tipo: 2)
 caseheal                           -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 2)
-resurrectbase                      resurrectbase               0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 2)
-paralyze                           paralyze                   44      100.0%    88.6%   97.4%  sim (stubs com esse tipo: 2)
-weaponstatup                       weaponstatup               14      100.0%    78.6%   90.2%  sim (stubs com esse tipo: 2)
-deathtriggerbuff                   -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 2)
-heal_instant                       healinstant               150      100.0%    98.0%   90.3%  sim (stubs com esse tipo: 2)
-spellatkdrain                      spellatkdrain               0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 2)
-noresurrectpenalty                 noresurrectpenalty          0        0.0%     0.0%  100.0%  nao (stubs com esse tipo: 2)
-nodeathpenalty                     nodeathpenalty              0        0.0%     0.0%  100.0%  nao (stubs com esse tipo: 2)
+evade                              evade                       1      100.0%     0.0%  100.0%  nao (stubs com esse tipo: 2)
+deathtrialstate                    deathtrialstate             0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 2)
+heal_instant                       healinstant               175      100.0%    98.9%   91.8%  sim (stubs com esse tipo: 2)
+mpheal_instant                     mphealinstant              77       98.7%    89.6%   93.7%  sim (stubs com esse tipo: 2)
+boosthate                          boosthate                   8        0.0%    50.0%  100.0%  nao (stubs com esse tipo: 2)
+slow                               slow                       48       97.9%    93.8%   99.6%  sim (stubs com esse tipo: 2)
+stun                               stun                      205      100.0%    95.6%   98.6%  sim (stubs com esse tipo: 2)
+summonservant                      summonservant              24      100.0%     0.0%   95.5%  nao (stubs com esse tipo: 2)
 stumble                            -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 2)
-mpattack                           mpattack                   19       63.2%    78.9%   95.8%  nao (stubs com esse tipo: 2)
+mpattack                           mpattack                   18       61.1%    83.3%   95.7%  nao (stubs com esse tipo: 2)
+alwaysresist                       alwaysresist               11      100.0%    90.9%   90.0%  sim (stubs com esse tipo: 2)
 dptransfer                         -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
 cannon                             -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
 activate_enslave                   -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
 petrification                      -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
 absoluteslow                       -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
-blind                              blind                      35      100.0%    88.6%   96.4%  sim (stubs com esse tipo: 1)
-dispelbuff                         dispelbuff                 12      100.0%    83.3%  100.0%  sim (stubs com esse tipo: 1)
-shadowmove                         shadowmove                  0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
-buffbind                           buffbind                    0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
-buffsilence                        buffsilence                 0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
-condskilllauncher                  condskilllauncher           1      100.0%   100.0%  100.0%  nao (stubs com esse tipo: 1)
-hostileup                          hostileup                  58      100.0%   100.0%   95.2%  sim (stubs com esse tipo: 1)
+onetimeboostskillcritical          onetimeboostskillcritical      6      100.0%     0.0%   90.5%  nao (stubs com esse tipo: 1)
 classpointheal_instant             classpointhealinstant       3      100.0%   100.0%  100.0%  sim (stubs com esse tipo: 1)
-targetlock                         -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
+weaponstatboost                    weaponstatboost            14      100.0%    57.1%   96.2%  nao (stubs com esse tipo: 1)
+skilllauncher                      skilllauncher              81      100.0%    93.8%   99.5%  sim (stubs com esse tipo: 1)
+mpatkdrain_instant                 spellatkdraininstant        4      100.0%   100.0%  100.0%  sim (stubs com esse tipo: 1)
+silence                            silence                    42      100.0%    83.3%   97.8%  sim (stubs com esse tipo: 1)
+bind                               bind                       33      100.0%    81.8%   98.6%  sim (stubs com esse tipo: 1)
 stagger                            -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
+boostskillcost                     boostskillcost              4      100.0%    25.0%   71.4%  nao (stubs com esse tipo: 1)
 procdpheal_instant                 -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
 procmpatkdrain_instant             -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
-dashatk                            dash                       38      100.0%    97.4%  100.0%  sim (stubs com esse tipo: 1)
-dispeldebuff                       dispeldebuff               19      100.0%    94.7%  100.0%  sim (stubs com esse tipo: 1)
-fpheal_instant                     fphealinstant               4       50.0%    75.0%  100.0%  nao (stubs com esse tipo: 1)
+summonskillarea                    summonskillarea            10       90.0%    60.0%   68.8%  nao (stubs com esse tipo: 1)
+flyboost                           -                           0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
+dashatk                            dash                       31      100.0%    96.8%  100.0%  sim (stubs com esse tipo: 1)
+dispeldebuff                       dispeldebuff               22      100.0%    72.7%  100.0%  sim (stubs com esse tipo: 1)
+dispel                             dispel                     73      100.0%    94.5%  100.0%  sim (stubs com esse tipo: 1)
+paralyze                           paralyze                   48      100.0%    87.5%   97.6%  sim (stubs com esse tipo: 1)
+fpheal_instant                     fphealinstant               9      100.0%    77.8%  100.0%  sim (stubs com esse tipo: 1)
 fpheal                             fpheal                      0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
 dpheal_instant                     dphealinstant               2      100.0%    50.0%   66.7%  nao (stubs com esse tipo: 1)
 dpheal                             dpheal                      0        0.0%     0.0%    0.0%  nao (stubs com esse tipo: 1)
+boostspellattackeffect             boostspellattack            5        0.0%     0.0%  100.0%  nao (stubs com esse tipo: 1)
 
 Stubs que continuam vazios, por tipo que faltou:
-     77  boostskillcastingtime
-     63  statup (stat ou valor que o gabarito nao tem)
-     59  summontrap
-     46  procheal_instant
-     37  procmpheal_instant
-     34  deboosthealamount
-     33  noreducespellatk_instant
-     24  weaponstatboost
-     20  sanctuary
-     19  drboost
-     16  xpboost
-     15  hide
-     15  movelocation
-     15  onetimeboostskillattack
-     14  fear
-     13  shield
-     13  polymorph
-     12  delayedskill
-     12  1
-     11  backdashatk
-     11  openaerial
-     10  apboost
-     10  convertheal
-     10  summontotem
-     10  summonservant
-     10  absolutesnare
-     10  statsynergy
-      9  boosthate
-      9  control
-      9  summonskillarea
-      9  shapechange (sem model obrigatorio: nome sem id no cliente)
-      8  statdown (stat ou valor que o gabarito nao tem)
-      8  extractgatherpointboost
-      7  onetimeboostskillcritical
-      7  mpatkdrain_instant
-      7  gatherpointboost
-      7  boostdroprate
-      6  statboost (stat ou valor que o gabarito nao tem)
-      6  blinkatk
-      6  boostcontextskill
-      5  evade
-      5  boostskillcost
-      5  boostspellattackeffect
-      4  dispelbuffcounteratk
-      4  curse
-      4  radarangle
-      4  deathtrialstate
-      4  combinepointboost
-      4  summonfunctionalnpc
-      4  questexpboost
-      3  flyboost
-      3  recall_instant
-      3  onetimeboosthealeffect
-      3  dispelnpcbuff
-      3  targetteleport
-      2  intervalskill
-      2  caseheal
-      2  resurrectbase
-      2  deathtriggerbuff
-      2  spellatkdrain
-      2  dummy
-      2  nodeathpenalty
-      2  noresurrectpenalty
-      2  mpattack
-      2  stumble
-      1  dptransfer
-      1  cannon
-      1  shadowmove
-      1  buffbind
-      1  buffsilence
-      1  condskilllauncher
-      1  targetlock
-      1  activate_enslave
-      1  stagger
-      1  procdpheal_instant
-      1  procmpatkdrain_instant
-      1  deform (sem model obrigatorio: nome sem id no cliente)
-      1  petrification
-      1  absoluteslow
-      1  snare (stat ou valor que o gabarito nao tem)
-      1  fpheal
-      1  fpheal_instant
-      1  dpheal
-      1  dpheal_instant
+     19  statup (stat ou valor que o gabarito nao tem)
 
 Skills que ganharam corpo:
-    3949  AS_Re_SixSense_G1                    jogavel         search
-    4004  Gu_MagicalSearchEye_G1               jogavel         search
-   10661  item_seed_of_search2                 fora da arvore  search
-   10663  potion_of_search_01                  fora da arvore  search
-   10664  potion_of_search_02                  fora da arvore  search
-   10774  item_iddokkaebi_dokkaebigamtu_01     fora da arvore  search
-   19829  Pallow_Zaif_Plant_Search             fora da arvore  search
-   19831  Pallow_Kuillus_Dyn_Mini_Search       fora da arvore  search
-   19833  Pallow_Kuillus_Dyn_PD_Search         fora da arvore  search
-   21258  LDF4b_D2_Search_WakeUp               fora da arvore  search
-   21267  LDF4b_GoldenTatar_Search             fora da arvore  spellatk_instant spellatk provoker search
+   10784  General_torso_Plate_g1               ALL             provoker
+   10785  General_pants_Plate_g1               ALL             provoker
+   10786  General_shoulder_Plate_g1            ALL             provoker
+   10787  General_glove_Plate_g1               ALL             provoker
+   10788  General_shoes_Plate_g1               ALL             provoker
+   10789  General_torso_Chain1_g1              ALL             provoker
+   10790  General_pants_Chain1_g1              ALL             provoker
+   10791  General_shoulder_Chain1_g1           ALL             provoker
+   10792  General_glove_Chain1_g1              ALL             provoker
+   10793  General_shoes_Chain1_g1              ALL             provoker
+   10794  General_torso_Chain2_g1              ALL             provoker
+   10795  General_pants_Chain2_g1              ALL             provoker
+   10796  General_shoulder_Chain2_g1           ALL             provoker
+   10797  General_glove_Chain2_g1              ALL             provoker
+   10798  General_shoes_Chain2_g1              ALL             provoker
+   10799  General_torso_Leather_g1             ALL             provoker
+   10800  General_pants_Leather_g1             ALL             provoker
+   10801  General_shoulder_Leather_g1          ALL             provoker
+   10802  General_glove_Leather_g1             ALL             provoker
+   10803  General_shoes_Leather_g1             ALL             provoker
+   10804  General_torso_Robe_g1                ALL             provoker
+   10805  General_pants_Robe_g1                ALL             provoker
+   10806  General_shoulder_Robe_g1             ALL             provoker
+   10807  General_glove_Robe_g1                ALL             provoker
+   10808  General_shoes_Robe_g1                ALL             provoker
+   10824  Wing_Skill_60_g1                     ALL             provoker
+   10841  Classic_Wind_ShoulderFlySpeed_high_G ALL             statup
+   10842  Classic_Wind_ShoulderFlySpeed_high_G ALL             statup
+   10843  Classic_Wind_ShoulderFlySpeed_high_G ALL             statup
+   10844  Classic_Wind_ShoulderFlySpeed_Mag_G1 ALL             statup statup
+   10845  Classic_Wind_ShoulderFlySpeed_Mag_G2 ALL             statup statup
+   10846  Classic_Wind_ShoulderFlySpeed_Mag_G3 ALL             statup statup
+   10847  Classic_Wind_ShoulderFlySpeed_Phy_G1 ALL             statup statup
+   10848  Classic_Wind_ShoulderFlySpeed_Phy_G2 ALL             statup statup
+   10849  Classic_Wind_ShoulderFlySpeed_Phy_G3 ALL             statup statup
+   10850  Classic_Wind_ShoulderFlySpeed_Hyb_G1 ALL             statup statup
+   10851  Classic_Wind_ShoulderFlySpeed_Hyb_G2 ALL             statup statup
+   10852  Classic_Wind_ShoulderFlySpeed_Hyb_G3 ALL             statup statup
+   10873  General_torso_Plate_G2               ALL             provoker
+   10874  General_pants_Plate_G2               ALL             provoker
+   10875  General_shoulder_Plate_G2            ALL             provoker
+   10876  General_glove_Plate_G2               ALL             provoker
+   10877  General_shoes_Plate_G2               ALL             provoker
+   10878  General_torso_Chain1_G2              ALL             provoker
+   10879  General_pants_Chain1_G2              ALL             provoker
+   10880  General_shoulder_Chain1_G2           ALL             provoker
+   10881  General_glove_Chain1_G2              ALL             provoker
+   10882  General_shoes_Chain1_G2              ALL             provoker
+   10883  General_torso_Chain2_G2              ALL             provoker
+   10884  General_pants_Chain2_G2              ALL             provoker
+   10885  General_shoulder_Chain2_G2           ALL             provoker
+   10886  General_glove_Chain2_G2              ALL             provoker
+   10887  General_shoes_Chain2_G2              ALL             provoker
+   10888  General_torso_Leather_G2             ALL             provoker
+   10889  General_pants_Leather_G2             ALL             provoker
+   10890  General_shoulder_Leather_G2          ALL             provoker
+   10891  General_glove_Leather_G2             ALL             provoker
+   10892  General_shoes_Leather_G2             ALL             provoker
+   10893  General_torso_Robe_G2                ALL             provoker
+   10894  General_pants_Robe_G2                ALL             provoker
+   10895  General_shoulder_Robe_G2             ALL             provoker
+   10896  General_glove_Robe_G2                ALL             provoker
+   10897  General_shoes_Robe_G2                ALL             provoker
+   10898  General_torso_Plate_G3               ALL             provoker
+   10899  General_pants_Plate_G3               ALL             provoker
+   10900  General_shoulder_Plate_G3            ALL             provoker
+   10901  General_glove_Plate_G3               ALL             provoker
+   10902  General_shoes_Plate_G3               ALL             provoker
+   10903  General_torso_Chain1_G3              ALL             provoker
+   10904  General_pants_Chain1_G3              ALL             provoker
+   10905  General_shoulder_Chain1_G3           ALL             provoker
+   10906  General_glove_Chain1_G3              ALL             provoker
+   10907  General_shoes_Chain1_G3              ALL             provoker
+   10908  General_torso_Chain2_G3              ALL             provoker
+   10909  General_pants_Chain2_G3              ALL             provoker
+   10910  General_shoulder_Chain2_G3           ALL             provoker
+   10911  General_glove_Chain2_G3              ALL             provoker
+   10912  General_shoes_Chain2_G3              ALL             provoker
+   10913  General_torso_Leather_G3             ALL             provoker
+   10914  General_pants_Leather_G3             ALL             provoker
+   10915  General_shoulder_Leather_G3          ALL             provoker
+   10916  General_glove_Leather_G3             ALL             provoker
+   10917  General_shoes_Leather_G3             ALL             provoker
+   10918  General_torso_Robe_G3                ALL             provoker
+   10919  General_pants_Robe_G3                ALL             provoker
+   10920  General_shoulder_Robe_G3             ALL             provoker
+   10921  General_glove_Robe_G3                ALL             provoker
+   10922  General_shoes_Robe_G3                ALL             provoker
+   10923  Classic_S_PhyCriAcc                  ALL             statup
+   10924  Classic_S_PhyCriHP                   ALL             statup
+   10925  Classic_S_PhyCriMagAcc               ALL             statup
+   10926  Classic_S_MagBoostMagCriMagAcc       ALL             statup
+   10927  Classic_S_MagBoostMagCriMagDef       ALL             statup
+   10928  Classic_S_MagBoostMagCriMagRes       ALL             statup
+   10929  Classic_S_HPBlkHealBoost             ALL             statup
+   10930  Classic_S_HPMagResHealBoost          ALL             statup
+   10931  Classic_S_HPMagDefMagAcc             ALL             statup
+   10932  Classic_A_PhyCri                     ALL             statup
+   10933  Classic_A_PhyAcc                     ALL             statup
+   10934  Classic_A_CriAcc                     ALL             statup
+   10935  Classic_A_MagBoostMagCri             ALL             statup
+   10936  Classic_A_MagBoostMagAcc             ALL             statup
+   10937  Classic_A_MagBoostHP                 ALL             statup
+   10938  Classic_A_MagAccHP                   ALL             statup
+   10939  Classic_A_HPHealBoost                ALL             statup
+   10940  Classic_A_HPBlk                      ALL             statup
+   10941  Classic_A_HPMagReg                   ALL             statup
+   10942  Classic_A_HPDodge                    ALL             statup
+   10943  Classic_A_HPMagDef                   ALL             statup
+   10945  Wing_Skill_60_torso_G1               ALL             provoker
+   10946  Wing_Skill_60_glove_G1               ALL             provoker
+   10947  Wing_Skill_60_pants_G1               ALL             provoker
+   10948  Wing_Skill_60_shoes_G1               ALL             provoker
+   10949  Classic_Wind_ATKDelay_torso_G1       ALL             statup
+   10950  Classic_Wind_ATKDelay_glove_G1       ALL             statup
+   10951  Classic_Wind_ATKDelay_shoulder_G1    ALL             statup
+   10952  Classic_Wind_ATKDelay_pants_G1       ALL             statup
+   10953  Classic_Wind_ATKDelay_shoes_G1       ALL             statup
+   10954  Classic_Wind_ATKDelay_torso_G2       ALL             statup
+   10955  Classic_Wind_ATKDelay_glove_G2       ALL             statup
+   10956  Classic_Wind_ATKDelay_shoulder_G2    ALL             statup
+   10957  Classic_Wind_ATKDelay_pants_G2       ALL             statup
+   10958  Classic_Wind_ATKDelay_shoes_G2       ALL             statup
+   10959  Classic_Wind_ATKDelay_torso_G3       ALL             statup
+   10960  Classic_Wind_ATKDelay_glove_G3       ALL             statup
+   10961  Classic_Wind_ATKDelay_shoulder_G3    ALL             statup
+   10962  Classic_Wind_ATKDelay_pants_G3       ALL             statup
+   10963  Classic_Wind_ATKDelay_shoes_G3       ALL             statup
+   10964  Classic_Wind_Casting_torso_G1        ALL             statup
+   10965  Classic_Wind_Casting_glove_G1        ALL             statup
+   10966  Classic_Wind_Casting_shoulder_G1     ALL             statup
+   10967  Classic_Wind_Casting_pants_G1        ALL             statup
+   10968  Classic_Wind_Casting_shoes_G1        ALL             statup
+   10969  Classic_Wind_Casting_torso_G2        ALL             statup
+   10970  Classic_Wind_Casting_glove_G2        ALL             statup
+   10971  Classic_Wind_Casting_shoulder_G2     ALL             statup
+   10972  Classic_Wind_Casting_pants_G2        ALL             statup
+   10973  Classic_Wind_Casting_shoes_G2        ALL             statup
+   10974  Classic_Wind_Casting_torso_G3        ALL             statup
+   10975  Classic_Wind_Casting_glove_G3        ALL             statup
+   10976  Classic_Wind_Casting_shoulder_G3     ALL             statup
+   10977  Classic_Wind_Casting_pants_G3        ALL             statup
+   10978  Classic_Wind_Casting_shoes_G3        ALL             statup
+   10991  Classic_Wind_ShoulderFlySpeed_high_g ALL             statup
+   10992  Classic_Wind_ShoulderFlySpeed_high_t ALL             statup
+   10993  Classic_Wind_ShoulderFlySpeed_high_p ALL             statup
+   10994  Classic_Wind_ShoulderFlySpeed_high_s ALL             statup
+   10995  Classic_Wind_ShoulderFlySpeed_high_g ALL             statup
+   10996  Classic_Wind_ShoulderFlySpeed_high_t ALL             statup
+   10997  Classic_Wind_ShoulderFlySpeed_high_p ALL             statup
+   10998  Classic_Wind_ShoulderFlySpeed_high_s ALL             statup
+   10999  Classic_Wind_ShoulderFlySpeed_high_g ALL             statup
+   11000  Classic_Wind_ShoulderFlySpeed_high_t ALL             statup
+   11001  Classic_Wind_ShoulderFlySpeed_high_p ALL             statup
+   11002  Classic_Wind_ShoulderFlySpeed_high_s ALL             statup
+   11003  Classic_Wind_ShoulderFlySpeed_Mag_gl ALL             statup statup
+   11004  Classic_Wind_ShoulderFlySpeed_Mag_to ALL             statup statup
+   11005  Classic_Wind_ShoulderFlySpeed_Mag_pa ALL             statup statup
+   11006  Classic_Wind_ShoulderFlySpeed_Mag_sh ALL             statup statup
+   11007  Classic_Wind_ShoulderFlySpeed_Mag_gl ALL             statup statup
+   11008  Classic_Wind_ShoulderFlySpeed_Mag_to ALL             statup statup
+   11009  Classic_Wind_ShoulderFlySpeed_Mag_pa ALL             statup statup
+   11010  Classic_Wind_ShoulderFlySpeed_Mag_sh ALL             statup statup
+   11011  Classic_Wind_ShoulderFlySpeed_Mag_gl ALL             statup statup
+   11012  Classic_Wind_ShoulderFlySpeed_Mag_to ALL             statup statup
+   11013  Classic_Wind_ShoulderFlySpeed_Mag_pa ALL             statup statup
+   11014  Classic_Wind_ShoulderFlySpeed_Mag_sh ALL             statup statup
+   11015  Classic_Wind_ShoulderFlySpeed_Phy_gl ALL             statup statup
+   11016  Classic_Wind_ShoulderFlySpeed_Phy_to ALL             statup statup
+   11017  Classic_Wind_ShoulderFlySpeed_Phy_pa ALL             statup statup
+   11018  Classic_Wind_ShoulderFlySpeed_Phy_sh ALL             statup statup
+   11019  Classic_Wind_ShoulderFlySpeed_Phy_gl ALL             statup statup
+   11020  Classic_Wind_ShoulderFlySpeed_Phy_to ALL             statup statup
+   11021  Classic_Wind_ShoulderFlySpeed_Phy_pa ALL             statup statup
+   11022  Classic_Wind_ShoulderFlySpeed_Phy_sh ALL             statup statup
+   11023  Classic_Wind_ShoulderFlySpeed_Phy_gl ALL             statup statup
+   11024  Classic_Wind_ShoulderFlySpeed_Phy_to ALL             statup statup
+   11025  Classic_Wind_ShoulderFlySpeed_Phy_pa ALL             statup statup
+   11026  Classic_Wind_ShoulderFlySpeed_Phy_sh ALL             statup statup
+   11027  Classic_Wind_ShoulderFlySpeed_Hyb_gl ALL             statup statup
+   11028  Classic_Wind_ShoulderFlySpeed_Hyb_to ALL             statup statup
+   11029  Classic_Wind_ShoulderFlySpeed_Hyb_pa ALL             statup statup
+   11030  Classic_Wind_ShoulderFlySpeed_Hyb_sh ALL             statup statup
+   11031  Classic_Wind_ShoulderFlySpeed_Hyb_gl ALL             statup statup
+   11032  Classic_Wind_ShoulderFlySpeed_Hyb_to ALL             statup statup
+   11033  Classic_Wind_ShoulderFlySpeed_Hyb_pa ALL             statup statup
+   11034  Classic_Wind_ShoulderFlySpeed_Hyb_sh ALL             statup statup
+   11035  Classic_Wind_ShoulderFlySpeed_Hyb_gl ALL             statup statup
+   11036  Classic_Wind_ShoulderFlySpeed_Hyb_to ALL             statup statup
+   11037  Classic_Wind_ShoulderFlySpeed_Hyb_pa ALL             statup statup
+   11038  Classic_Wind_ShoulderFlySpeed_Hyb_sh ALL             statup statup
+   11039  Classic_Wind_S_PhyCriAcc_glove       ALL             statup
+   11040  Classic_Wind_S_PhyCriAcc_shoulder    ALL             statup
+   11041  Classic_Wind_S_PhyCriAcc_pants       ALL             statup
+   11042  Classic_Wind_S_PhyCriAcc_shoes       ALL             statup
+   11043  Classic_Wind_S_PhyCriHP_glove        ALL             statup
+   11044  Classic_Wind_S_PhyCriHP_shoulder     ALL             statup
+   11045  Classic_Wind_S_PhyCriHP_pants        ALL             statup
+   11046  Classic_Wind_S_PhyCriHP_shoes        ALL             statup
+   11047  Classic_Wind_S_PhyCriMagAcc_glove    ALL             statup
+   11048  Classic_Wind_S_PhyCriMagAcc_shoulder ALL             statup
+   11049  Classic_Wind_S_PhyCriMagAcc_pants    ALL             statup
+   11050  Classic_Wind_S_PhyCriMagAcc_shoes    ALL             statup
+   11051  Classic_Wind_S_MagBoostMagAccHP_glov ALL             statup
+   11052  Classic_Wind_S_MagBoostMagAccHP_shou ALL             statup
+   11053  Classic_Wind_S_MagBoostMagAccHP_pant ALL             statup
+   11054  Classic_Wind_S_MagBoostMagAccHP_shoe ALL             statup
+   11055  Classic_Wind_S_MagBoostMagAccMagDef_ ALL             statup
+   11056  Classic_Wind_S_MagBoostMagAccMagDef_ ALL             statup
+   11057  Classic_Wind_S_MagBoostMagAccMagDef_ ALL             statup
+   11058  Classic_Wind_S_MagBoostMagAccMagDef_ ALL             statup
+   11059  Classic_Wind_S_MagBoostMagAccMagRes_ ALL             statup
+   11060  Classic_Wind_S_MagBoostMagAccMagRes_ ALL             statup
+   11061  Classic_Wind_S_MagBoostMagAccMagRes_ ALL             statup
+   11062  Classic_Wind_S_MagBoostMagAccMagRes_ ALL             statup
+   11063  Classic_Wind_S_HPBlkHealBoost_glove  ALL             statup
+   11064  Classic_Wind_S_HPBlkHealBoost_should ALL             statup
+   11065  Classic_Wind_S_HPBlkHealBoost_pants  ALL             statup
+   11066  Classic_Wind_S_HPBlkHealBoost_shoes  ALL             statup
+   11067  Classic_Wind_S_HPMagResHealBoost_glo ALL             statup
+   11068  Classic_Wind_S_HPMagResHealBoost_sho ALL             statup
+   11069  Classic_Wind_S_HPMagResHealBoost_pan ALL             statup
+   11070  Classic_Wind_S_HPMagResHealBoost_sho ALL             statup
+   11071  Classic_Wind_S_HPMagDefMagAcc_glove  ALL             statup
+   11072  Classic_Wind_S_HPMagDefMagAcc_should ALL             statup
+   11073  Classic_Wind_S_HPMagDefMagAcc_pants  ALL             statup
+   11074  Classic_Wind_S_HPMagDefMagAcc_shoes  ALL             statup
+   11119  Classic_S_PhyCriAcc_glove            ALL             statup
+   11120  Classic_S_PhyCriAcc_shoulder         ALL             statup
+   11121  Classic_S_PhyCriAcc_pants            ALL             statup
+   11122  Classic_S_PhyCriAcc_shoes            ALL             statup
+   11123  Classic_S_PhyCriHP_glove             ALL             statup
+   11124  Classic_S_PhyCriHP_shoulder          ALL             statup
+   11125  Classic_S_PhyCriHP_pants             ALL             statup
+   11126  Classic_S_PhyCriHP_shoes             ALL             statup
+   11127  Classic_S_PhyCriMagAcc_glove         ALL             statup
+   11128  Classic_S_PhyCriMagAcc_shoulder      ALL             statup
+   11129  Classic_S_PhyCriMagAcc_pants         ALL             statup
+   11130  Classic_S_PhyCriMagAcc_shoes         ALL             statup
+   11131  Classic_S_MagBoostMagCriMagAcc_glove ALL             statup
+   11132  Classic_S_MagBoostMagCriMagAcc_shoul ALL             statup
+   11133  Classic_S_MagBoostMagCriMagAcc_pants ALL             statup
+   11134  Classic_S_MagBoostMagCriMagAcc_shoes ALL             statup
+   11135  Classic_S_MagBoostMagCriMagDef_glove ALL             statup
+   11136  Classic_S_MagBoostMagCriMagDef_shoul ALL             statup
+   11137  Classic_S_MagBoostMagCriMagDef_pants ALL             statup
+   11138  Classic_S_MagBoostMagCriMagDef_shoes ALL             statup
+   11139  Classic_S_MagBoostMagCriMagRes_glove ALL             statup
+   11140  Classic_S_MagBoostMagCriMagRes_shoul ALL             statup
+   11141  Classic_S_MagBoostMagCriMagRes_pants ALL             statup
+   11142  Classic_S_MagBoostMagCriMagRes_shoes ALL             statup
+   11143  Classic_S_HPBlkHealBoost_glove       ALL             statup
+   11144  Classic_S_HPBlkHealBoost_shoulder    ALL             statup
+   11145  Classic_S_HPBlkHealBoost_pants       ALL             statup
+   11146  Classic_S_HPBlkHealBoost_shoes       ALL             statup
+   11147  Classic_S_HPMagResHealBoost_glove    ALL             statup
+   11148  Classic_S_HPMagResHealBoost_shoulder ALL             statup
+   11149  Classic_S_HPMagResHealBoost_pants    ALL             statup
+   11150  Classic_S_HPMagResHealBoost_shoes    ALL             statup
+   11151  Classic_S_HPMagDefMagAcc_glove       ALL             statup
+   11152  Classic_S_HPMagDefMagAcc_shoulder    ALL             statup
+   11153  Classic_S_HPMagDefMagAcc_pants       ALL             statup
+   11154  Classic_S_HPMagDefMagAcc_shoes       ALL             statup
+   11155  Classic_A_PhyCri_glove               ALL             statup
+   11156  Classic_A_PhyCri_shoulder            ALL             statup
+   11157  Classic_A_PhyCri_pants               ALL             statup
+   11158  Classic_A_PhyCri_shoes               ALL             statup
+   11159  Classic_A_PhyAcc_glove               ALL             statup
+   11160  Classic_A_PhyAcc_shoulder            ALL             statup
+   11161  Classic_A_PhyAcc_pants               ALL             statup
+   11162  Classic_A_PhyAcc_shoes               ALL             statup
+   11163  Classic_A_CriAcc_glove               ALL             statup
+   11164  Classic_A_CriAcc_shoulder            ALL             statup
+   11165  Classic_A_CriAcc_pants               ALL             statup
+   11166  Classic_A_CriAcc_shoes               ALL             statup
+   11167  Classic_A_MagBoostMagCri_glove       ALL             statup
+   11168  Classic_A_MagBoostMagCri_shoulder    ALL             statup
+   11169  Classic_A_MagBoostMagCri_pants       ALL             statup
+   11170  Classic_A_MagBoostMagCri_shoes       ALL             statup
+   11171  Classic_A_MagBoostMagAcc_glove       ALL             statup
+   11172  Classic_A_MagBoostMagAcc_shoulder    ALL             statup
+   11173  Classic_A_MagBoostMagAcc_pants       ALL             statup
+   11174  Classic_A_MagBoostMagAcc_shoes       ALL             statup
+   11175  Classic_A_MagBoostHP_glove           ALL             statup
+   11176  Classic_A_MagBoostHP_shoulder        ALL             statup
+   11177  Classic_A_MagBoostHP_pants           ALL             statup
+   11178  Classic_A_MagBoostHP_shoes           ALL             statup
+   11179  Classic_A_MagAccHP_glove             ALL             statup
+   11180  Classic_A_MagAccHP_shoulder          ALL             statup
+   11181  Classic_A_MagAccHP_pants             ALL             statup
+   11182  Classic_A_MagAccHP_shoes             ALL             statup
+   11183  Classic_A_HPHealBoost_glove          ALL             statup
+   11184  Classic_A_HPHealBoost_shoulder       ALL             statup
+   11185  Classic_A_HPHealBoost_pants          ALL             statup
+   11186  Classic_A_HPHealBoost_shoes          ALL             statup
+   11187  Classic_A_HPBlk_glove                ALL             statup
+   11188  Classic_A_HPBlk_shoulder             ALL             statup
+   11189  Classic_A_HPBlk_pants                ALL             statup
+   11190  Classic_A_HPBlk_shoes                ALL             statup
+   11191  Classic_A_HPMagReg_glove             ALL             statup
+   11192  Classic_A_HPMagReg_shoulder          ALL             statup
+   11193  Classic_A_HPMagReg_pants             ALL             statup
+   11194  Classic_A_HPMagReg_shoes             ALL             statup
+   11195  Classic_A_HPDodge_glove              ALL             statup
+   11196  Classic_A_HPDodge_shoulder           ALL             statup
+   11197  Classic_A_HPDodge_pants              ALL             statup
+   11198  Classic_A_HPDodge_shoes              ALL             statup
+   11199  Classic_A_HPMagDef_glove             ALL             statup
+   11200  Classic_A_HPMagDef_shoulder          ALL             statup
+   11201  Classic_A_HPMagDef_pants             ALL             statup
+   11202  Classic_A_HPMagDef_shoes             ALL             statup
+   11228  Classic_Wind_StunResist_torso_G1     ALL             statup
+   11229  Classic_Wind_StunResist_glove_G1     ALL             statup
+   11230  Classic_Wind_StunResist_shoulder_G1  ALL             statup
+   11231  Classic_Wind_StunResist_pants_G1     ALL             statup
+   11232  Classic_Wind_StunResist_shoes_G1     ALL             statup
+   11233  Classic_Wind_StunResist_torso_G2     ALL             statup
+   11234  Classic_Wind_StunResist_glove_G2     ALL             statup
+   11235  Classic_Wind_StunResist_shoulder_G2  ALL             statup
+   11236  Classic_Wind_StunResist_pants_G2     ALL             statup
+   11237  Classic_Wind_StunResist_shoes_G2     ALL             statup
+   11238  Classic_Wind_StunResist_torso_G3     ALL             statup
+   11239  Classic_Wind_StunResist_glove_G3     ALL             statup
+   11240  Classic_Wind_StunResist_shoulder_G3  ALL             statup
+   11241  Classic_Wind_StunResist_pants_G3     ALL             statup
+   11242  Classic_Wind_StunResist_shoes_G3     ALL             statup
+   11243  Classic_Wind_S_PhyCriAcc_torso       ALL             statup
+   11244  Classic_Wind_S_PhyCriHP_torso        ALL             statup
+   11245  Classic_Wind_S_PhyCriMagAcc_torso    ALL             statup
+   11246  Classic_Wind_S_MagBoostMagAccHP_tors ALL             statup
+   11247  Classic_Wind_S_MagBoostMagAccMagDef_ ALL             statup
+   11248  Classic_Wind_S_MagBoostMagAccMagRes_ ALL             statup
+   11249  Classic_Wind_S_HPBlkHealBoost_torso  ALL             statup
+   11250  Classic_Wind_S_HPMagResHealBoost_tor ALL             statup
+   11251  Classic_Wind_S_HPMagDefMagAcc_torso  ALL             statup
+   11274  All_PvEATK_torso_G1                  ALL             statup
+   11275  All_PvEATK_pants_G1                  ALL             statup
+   11276  All_PvEATK_shoulder_G1               ALL             statup
+   11277  All_PvEATK_glove_G1                  ALL             statup
+   11278  All_PvEATK_shoes_G1                  ALL             statup
+   11279  All_PvEATK_torso_G2                  ALL             statup
+   11280  All_PvEATK_pants_G2                  ALL             statup
+   11281  All_PvEATK_shoulder_G2               ALL             statup
+   11282  All_PvEATK_glove_G2                  ALL             statup
+   11283  All_PvEATK_shoes_G2                  ALL             statup
+   11284  All_PvEATK_torso_G3                  ALL             statup
+   11285  All_PvEATK_pants_G3                  ALL             statup
+   11286  All_PvEATK_shoulder_G3               ALL             statup
+   11287  All_PvEATK_glove_G3                  ALL             statup
+   11288  All_PvEATK_shoes_G3                  ALL             statup
+   11289  All_PhyCriPvEATK_torso_G1            ALL             statup
+   11290  All_PhyCriPvEATK_pants_G1            ALL             statup
+   11291  All_PhyCriPvEATK_shoulder_G1         ALL             statup
+   11292  All_PhyCriPvEATK_glove_G1            ALL             statup
+   11293  All_PhyCriPvEATK_shoes_G1            ALL             statup
+   11294  All_PhyCriPvEATK_torso_G2            ALL             statup
+   11295  All_PhyCriPvEATK_pants_G2            ALL             statup
+   11296  All_PhyCriPvEATK_shoulder_G2         ALL             statup
+   11297  All_PhyCriPvEATK_glove_G2            ALL             statup
+   11298  All_PhyCriPvEATK_shoes_G2            ALL             statup
+   11299  All_PhyCriPvEATK_torso_G3            ALL             statup
+   11300  All_PhyCriPvEATK_pants_G3            ALL             statup
+   11301  All_PhyCriPvEATK_shoulder_G3         ALL             statup
+   11302  All_PhyCriPvEATK_glove_G3            ALL             statup
+   11303  All_PhyCriPvEATK_shoes_G3            ALL             statup
+   11304  All_MagBoostMagCriPvEATK_torso_G1    ALL             statup
+   11305  All_MagBoostMagCriPvEATK_pants_G1    ALL             statup
+   11306  All_MagBoostMagCriPvEATK_shoulder_G1 ALL             statup
+   11307  All_MagBoostMagCriPvEATK_glove_G1    ALL             statup
+   11308  All_MagBoostMagCriPvEATK_shoes_G1    ALL             statup
+   11309  All_MagBoostMagCriPvEATK_torso_G2    ALL             statup
+   11310  All_MagBoostMagCriPvEATK_pants_G2    ALL             statup
+   11311  All_MagBoostMagCriPvEATK_shoulder_G2 ALL             statup
+   11312  All_MagBoostMagCriPvEATK_glove_G2    ALL             statup
+   11313  All_MagBoostMagCriPvEATK_shoes_G2    ALL             statup
+   11314  All_MagBoostMagCriPvEATK_torso_G3    ALL             statup
+   11315  All_MagBoostMagCriPvEATK_pants_G3    ALL             statup
+   11316  All_MagBoostMagCriPvEATK_shoulder_G3 ALL             statup
+   11317  All_MagBoostMagCriPvEATK_glove_G3    ALL             statup
+   11318  All_MagBoostMagCriPvEATK_shoes_G3    ALL             statup
+   11320  Classic_Wind_ATKDelayMagBoost_torso_ ALL             statup
+   11321  Classic_Wind_ATKDelayMagBoost_glove_ ALL             statup
+   11322  Classic_Wind_ATKDelayMagBoost_should ALL             statup
+   11323  Classic_Wind_ATKDelayMagBoost_pants_ ALL             statup
+   11324  Classic_Wind_ATKDelayMagBoost_shoes_ ALL             statup
+   11325  Classic_Wind_ATKDelayMagBoost_torso_ ALL             statup
+   11326  Classic_Wind_ATKDelayMagBoost_glove_ ALL             statup
+   11327  Classic_Wind_ATKDelayMagBoost_should ALL             statup
+   11328  Classic_Wind_ATKDelayMagBoost_pants_ ALL             statup
+   11329  Classic_Wind_ATKDelayMagBoost_shoes_ ALL             statup
+   11330  Classic_Wind_ATKDelayMagBoost_torso_ ALL             statup
+   11331  Classic_Wind_ATKDelayMagBoost_glove_ ALL             statup
+   11332  Classic_Wind_ATKDelayMagBoost_should ALL             statup
+   11333  Classic_Wind_ATKDelayMagBoost_pants_ ALL             statup
+   11334  Classic_Wind_ATKDelayMagBoost_shoes_ ALL             statup
+   11428  Classic_Wind_ShoulderFlySpeed_Mag_to ALL             statup statup
+   11429  Classic_Wind_ShoulderFlySpeed_Mag_pa ALL             statup statup
+   11430  Classic_Wind_ShoulderFlySpeed_Mag_sh ALL             statup statup
+   11431  Classic_Wind_ShoulderFlySpeed_Mag_gl ALL             statup statup
+   11432  Classic_Wind_ShoulderFlySpeed_Mag_sh ALL             statup statup
+   11433  Classic_Wind_ShoulderFlySpeed_Mag_to ALL             statup statup
+   11434  Classic_Wind_ShoulderFlySpeed_Mag_pa ALL             statup statup
+   11435  Classic_Wind_ShoulderFlySpeed_Mag_sh ALL             statup statup
+   11436  Classic_Wind_ShoulderFlySpeed_Mag_gl ALL             statup statup
+   11437  Classic_Wind_ShoulderFlySpeed_Mag_sh ALL             statup statup
+   11438  Classic_Wind_ShoulderFlySpeed_Phy_to ALL             statup statup
+   11439  Classic_Wind_ShoulderFlySpeed_Phy_pa ALL             statup statup
+   11440  Classic_Wind_ShoulderFlySpeed_Phy_sh ALL             statup statup
+   11441  Classic_Wind_ShoulderFlySpeed_Phy_gl ALL             statup statup
+   11442  Classic_Wind_ShoulderFlySpeed_Phy_sh ALL             statup statup
+   11443  Classic_Wind_ShoulderFlySpeed_Phy_to ALL             statup statup
+   11444  Classic_Wind_ShoulderFlySpeed_Phy_pa ALL             statup statup
+   11445  Classic_Wind_ShoulderFlySpeed_Phy_sh ALL             statup statup
+   11446  Classic_Wind_ShoulderFlySpeed_Phy_gl ALL             statup statup
+   11447  Classic_Wind_ShoulderFlySpeed_Phy_sh ALL             statup statup
+   11448  Classic_Wind_ShoulderFlySpeed_Hyb_to ALL             statup statup
+   11449  Classic_Wind_ShoulderFlySpeed_Hyb_pa ALL             statup statup
+   11450  Classic_Wind_ShoulderFlySpeed_Hyb_sh ALL             statup statup
+   11451  Classic_Wind_ShoulderFlySpeed_Hyb_gl ALL             statup statup
+   11452  Classic_Wind_ShoulderFlySpeed_Hyb_sh ALL             statup statup
+   11453  Classic_Wind_ShoulderFlySpeed_Hyb_to ALL             statup statup
+   11454  Classic_Wind_ShoulderFlySpeed_Hyb_pa ALL             statup statup
+   11455  Classic_Wind_ShoulderFlySpeed_Hyb_sh ALL             statup statup
+   11456  Classic_Wind_ShoulderFlySpeed_Hyb_gl ALL             statup statup
+   11457  Classic_Wind_ShoulderFlySpeed_Hyb_sh ALL             statup statup
+   11458  Classic_Wind_StunResist_torso_G4     ALL             statup
+   11459  Classic_Wind_StunResist_pants_G4     ALL             statup
+   11460  Classic_Wind_StunResist_shoulder_G4  ALL             statup
+   11461  Classic_Wind_StunResist_glove_G4     ALL             statup
+   11462  Classic_Wind_StunResist_shoes_G4     ALL             statup
+   11463  Classic_Wind_StunResist_torso_G5     ALL             statup
+   11464  Classic_Wind_StunResist_pants_G5     ALL             statup
+   11465  Classic_Wind_StunResist_shoulder_G5  ALL             statup
+   11466  Classic_Wind_StunResist_glove_G5     ALL             statup
+   11467  Classic_Wind_StunResist_shoes_G5     ALL             statup
+   11468  Classic_Wind_ATKDelay_torso_G4       ALL             statup
+   11469  Classic_Wind_ATKDelay_pants_G4       ALL             statup
+   11470  Classic_Wind_ATKDelay_shoulder_G4    ALL             statup
+   11471  Classic_Wind_ATKDelay_glove_G4       ALL             statup
+   11472  Classic_Wind_ATKDelay_shoes_G4       ALL             statup
+   11473  Classic_Wind_ATKDelay_torso_G5       ALL             statup
+   11474  Classic_Wind_ATKDelay_pants_G5       ALL             statup
+   11475  Classic_Wind_ATKDelay_shoulder_G5    ALL             statup
+   11476  Classic_Wind_ATKDelay_glove_G5       ALL             statup
+   11477  Classic_Wind_ATKDelay_shoes_G5       ALL             statup
+   11478  Classic_Wind_Casting_torso_G4        ALL             statup
+   11479  Classic_Wind_Casting_pants_G4        ALL             statup
+   11480  Classic_Wind_Casting_shoulder_G4     ALL             statup
+   11481  Classic_Wind_Casting_glove_G4        ALL             statup
+   11482  Classic_Wind_Casting_shoes_G4        ALL             statup
+   11483  Classic_Wind_Casting_torso_G5        ALL             statup
+   11484  Classic_Wind_Casting_pants_G5        ALL             statup
+   11485  Classic_Wind_Casting_shoulder_G5     ALL             statup
+   11486  Classic_Wind_Casting_glove_G5        ALL             statup
+   11487  Classic_Wind_Casting_shoes_G5        ALL             statup
+   11488  Classic_Wind_ATKDelayMagBoost_torso_ ALL             statup
+   11489  Classic_Wind_ATKDelayMagBoost_pants_ ALL             statup
+   11490  Classic_Wind_ATKDelayMagBoost_should ALL             statup
+   11491  Classic_Wind_ATKDelayMagBoost_glove_ ALL             statup
+   11492  Classic_Wind_ATKDelayMagBoost_shoes_ ALL             statup
+   11493  Classic_Wind_ATKDelayMagBoost_torso_ ALL             statup
+   11494  Classic_Wind_ATKDelayMagBoost_pants_ ALL             statup
+   11495  Classic_Wind_ATKDelayMagBoost_should ALL             statup
+   11496  Classic_Wind_ATKDelayMagBoost_glove_ ALL             statup
+   11497  Classic_Wind_ATKDelayMagBoost_shoes_ ALL             statup
+   11498  General_torso_Plate_G4               ALL             provoker
+   11499  General_pants_Plate_G4               ALL             provoker
+   11500  General_shoulder_Plate_G4            ALL             provoker
+   11501  General_glove_Plate_G4               ALL             provoker
+   11502  General_shoes_Plate_G4               ALL             provoker
+   11503  General_torso_Plate_G5               ALL             provoker
+   11504  General_pants_Plate_G5               ALL             provoker
+   11505  General_shoulder_Plate_G5            ALL             provoker
+   11506  General_glove_Plate_G5               ALL             provoker
+   11507  General_shoes_Plate_G5               ALL             provoker
+   11508  General_torso_Chain1_G4              ALL             provoker
+   11509  General_pants_Chain1_G4              ALL             provoker
+   11510  General_shoulder_Chain1_G4           ALL             provoker
+   11511  General_glove_Chain1_G4              ALL             provoker
+   11512  General_shoes_Chain1_G4              ALL             provoker
+   11513  General_torso_Chain1_G5              ALL             provoker
+   11514  General_pants_Chain1_G5              ALL             provoker
+   11515  General_shoulder_Chain1_G5           ALL             provoker
+   11516  General_glove_Chain1_G5              ALL             provoker
+   11517  General_shoes_Chain1_G5              ALL             provoker
+   11518  General_torso_Chain2_G4              ALL             provoker
+   11519  General_pants_Chain2_G4              ALL             provoker
+   11520  General_shoulder_Chain2_G4           ALL             provoker
+   11521  General_glove_Chain2_G4              ALL             provoker
+   11522  General_shoes_Chain2_G4              ALL             provoker
+   11523  General_torso_Chain2_G5              ALL             provoker
+   11524  General_pants_Chain2_G5              ALL             provoker
+   11525  General_shoulder_Chain2_G5           ALL             provoker
+   11526  General_glove_Chain2_G5              ALL             provoker
+   11527  General_shoes_Chain2_G5              ALL             provoker
+   11528  General_torso_Robe_G4                ALL             provoker
+   11529  General_pants_Robe_G4                ALL             provoker
+   11530  General_shoulder_Robe_G4             ALL             provoker
+   11531  General_glove_Robe_G4                ALL             provoker
+   11532  General_shoes_Robe_G4                ALL             provoker
+   11533  General_torso_Robe_G5                ALL             provoker
+   11534  General_pants_Robe_G5                ALL             provoker
+   11535  General_shoulder_Robe_G5             ALL             provoker
+   11536  General_glove_Robe_G5                ALL             provoker
+   11537  General_shoes_Robe_G5                ALL             provoker
+   11538  Classic_S_PhyCriAcc_torso_G2         ALL             statup
+   11539  Classic_S_PhyCriAcc_pants_G2         ALL             statup
+   11540  Classic_S_PhyCriAcc_shoulder_G2      ALL             statup
+   11541  Classic_S_PhyCriAcc_glove_G2         ALL             statup
+   11542  Classic_S_PhyCriAcc_shoes_G2         ALL             statup
+   11543  Classic_S_PhyCriHP_torso_G2          ALL             statup
+   11544  Classic_S_PhyCriHP_pants_G2          ALL             statup
+   11545  Classic_S_PhyCriHP_shoulder_G2       ALL             statup
+   11546  Classic_S_PhyCriHP_glove_G2          ALL             statup
+   11547  Classic_S_PhyCriHP_shoes_G2          ALL             statup
+   11548  Classic_S_PhyCriMagAcc_torso_G2      ALL             statup
+   11549  Classic_S_PhyCriMagAcc_pants_G2      ALL             statup
+   11550  Classic_S_PhyCriMagAcc_shoulder_G2   ALL             statup
+   11551  Classic_S_PhyCriMagAcc_glove_G2      ALL             statup
+   11552  Classic_S_PhyCriMagAcc_shoes_G2      ALL             statup
+   11553  Classic_S_MagBoostMagCriMagAcc_torso ALL             statup
+   11554  Classic_S_MagBoostMagCriMagAcc_pants ALL             statup
+   11555  Classic_S_MagBoostMagCriMagAcc_shoul ALL             statup
+   11556  Classic_S_MagBoostMagCriMagAcc_glove ALL             statup
+   11557  Classic_S_MagBoostMagCriMagAcc_shoes ALL             statup
+   11558  Classic_S_MagBoostMagCriMagDef_torso ALL             statup
+   11559  Classic_S_MagBoostMagCriMagDef_pants ALL             statup
+   11560  Classic_S_MagBoostMagCriMagDef_shoul ALL             statup
+   11561  Classic_S_MagBoostMagCriMagDef_glove ALL             statup
+   11562  Classic_S_MagBoostMagCriMagDef_shoes ALL             statup
+   11563  Classic_S_MagBoostMagCriMagRes_torso ALL             statup
+   11564  Classic_S_MagBoostMagCriMagRes_pants ALL             statup
+   11565  Classic_S_MagBoostMagCriMagRes_shoul ALL             statup
+   11566  Classic_S_MagBoostMagCriMagRes_glove ALL             statup
+   11567  Classic_S_MagBoostMagCriMagRes_shoes ALL             statup
+   11568  Classic_S_HPBlkHealBoost_torso_G2    ALL             statup
+   11569  Classic_S_HPBlkHealBoost_pants_G2    ALL             statup
+   11570  Classic_S_HPBlkHealBoost_shoulder_G2 ALL             statup
+   11571  Classic_S_HPBlkHealBoost_glove_G2    ALL             statup
+   11572  Classic_S_HPBlkHealBoost_shoes_G2    ALL             statup
+   11573  Classic_S_HPMagResHealBoost_torso_G2 ALL             statup
+   11574  Classic_S_HPMagResHealBoost_pants_G2 ALL             statup
+   11575  Classic_S_HPMagResHealBoost_shoulder ALL             statup
+   11576  Classic_S_HPMagResHealBoost_glove_G2 ALL             statup
+   11577  Classic_S_HPMagResHealBoost_shoes_G2 ALL             statup
+   11578  Classic_S_HPMagDefMagAcc_torso_G2    ALL             statup
+   11579  Classic_S_HPMagDefMagAcc_pants_G2    ALL             statup
+   11580  Classic_S_HPMagDefMagAcc_shoulder_G2 ALL             statup
+   11581  Classic_S_HPMagDefMagAcc_glove_G2    ALL             statup
+   11582  Classic_S_HPMagDefMagAcc_shoes_G2    ALL             statup
+   11583  Classic_A_PhyCri_torso_G2            ALL             statup
+   11584  Classic_A_PhyCri_pants_G2            ALL             statup
+   11585  Classic_A_PhyCri_shoulder_G2         ALL             statup
+   11586  Classic_A_PhyCri_glove_G2            ALL             statup
+   11587  Classic_A_PhyCri_shoes_G2            ALL             statup
+   11588  Classic_A_PhyAcc_torso_G2            ALL             statup
+   11589  Classic_A_PhyAcc_pants_G2            ALL             statup
+   11590  Classic_A_PhyAcc_shoulder_G2         ALL             statup
+   11591  Classic_A_PhyAcc_glove_G2            ALL             statup
+   11592  Classic_A_PhyAcc_shoes_G2            ALL             statup
+   11593  Classic_A_CriAcc_torso_G2            ALL             statup
+   11594  Classic_A_CriAcc_pants_G2            ALL             statup
+   11595  Classic_A_CriAcc_shoulder_G2         ALL             statup
+   11596  Classic_A_CriAcc_glove_G2            ALL             statup
+   11597  Classic_A_CriAcc_shoes_G2            ALL             statup
+   11598  Classic_A_MagBoostMagCri_torso_G2    ALL             statup
+   11599  Classic_A_MagBoostMagCri_pants_G2    ALL             statup
+   11600  Classic_A_MagBoostMagCri_shoulder_G2 ALL             statup
+   11601  Classic_A_MagBoostMagCri_glove_G2    ALL             statup
+   11602  Classic_A_MagBoostMagCri_shoes_G2    ALL             statup
+   11603  Classic_A_MagBoostMagAcc_torso_G2    ALL             statup
+   11604  Classic_A_MagBoostMagAcc_pants_G2    ALL             statup
+   11605  Classic_A_MagBoostMagAcc_shoulder_G2 ALL             statup
+   11606  Classic_A_MagBoostMagAcc_glove_G2    ALL             statup
+   11607  Classic_A_MagBoostMagAcc_shoes_G2    ALL             statup
+   11608  Classic_A_MagBoostHP_torso_G2        ALL             statup
+   11609  Classic_A_MagBoostHP_pants_G2        ALL             statup
+   11610  Classic_A_MagBoostHP_shoulder_G2     ALL             statup
+   11611  Classic_A_MagBoostHP_glove_G2        ALL             statup
+   11612  Classic_A_MagBoostHP_shoes_G2        ALL             statup
+   11613  Classic_A_MagAccHP_torso_G2          ALL             statup
+   11614  Classic_A_MagAccHP_pants_G2          ALL             statup
+   11615  Classic_A_MagAccHP_shoulder_G2       ALL             statup
+   11616  Classic_A_MagAccHP_glove_G2          ALL             statup
+   11617  Classic_A_MagAccHP_shoes_G2          ALL             statup
+   11618  Classic_A_HPHealBoost_torso_G2       ALL             statup
+   11619  Classic_A_HPHealBoost_pants_G2       ALL             statup
+   11620  Classic_A_HPHealBoost_shoulder_G2    ALL             statup
+   11621  Classic_A_HPHealBoost_glove_G2       ALL             statup
+   11622  Classic_A_HPHealBoost_shoes_G2       ALL             statup
+   11623  Classic_A_HPBlk_torso_G2             ALL             statup
+   11624  Classic_A_HPBlk_pants_G2             ALL             statup
+   11625  Classic_A_HPBlk_shoulder_G2          ALL             statup
+   11626  Classic_A_HPBlk_glove_G2             ALL             statup
+   11627  Classic_A_HPBlk_shoes_G2             ALL             statup
+   11628  Classic_A_HPMagReg_torso_G2          ALL             statup
+   11629  Classic_A_HPMagReg_pants_G2          ALL             statup
+   11630  Classic_A_HPMagReg_shoulder_G2       ALL             statup
+   11631  Classic_A_HPMagReg_glove_G2          ALL             statup
+   11632  Classic_A_HPMagReg_shoes_G2          ALL             statup
+   11633  Classic_A_HPDodge_torso_G2           ALL             statup
+   11634  Classic_A_HPDodge_pants_G2           ALL             statup
+   11635  Classic_A_HPDodge_glove_G2           ALL             statup
+   11636  Classic_A_HPDodge_shoulder_G2        ALL             statup
+   11637  Classic_A_HPDodge_shoes_G2           ALL             statup
+   11638  Classic_A_HPMagDef_torso_G2          ALL             statup
+   11639  Classic_A_HPMagDef_pants_G2          ALL             statup
+   11640  Classic_A_HPMagDef_glove_G2          ALL             statup
+   11641  Classic_A_HPMagDef_shoulder_G2       ALL             statup
+   11642  Classic_A_HPMagDef_shoes_G2          ALL             statup
