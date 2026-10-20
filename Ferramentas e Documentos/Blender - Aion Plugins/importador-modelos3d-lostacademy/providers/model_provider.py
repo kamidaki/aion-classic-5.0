@@ -365,12 +365,12 @@ class ModelProvider(IModelProvider):
                                 equip_bone = candidate
                                 break
                     elif "shield" in entry_name_lower or "sh_" in entry_name_lower or slot == "weapon_sub":
-                        for candidate in ("Bip01 L Hand", "Shield", "Dummy_Shield"):
+                        for candidate in ("Lhand_bone", "Bip01 L Hand", "Shield", "Dummy_Shield"):
                             if candidate in rig_obj.data.bones:
                                 equip_bone = candidate
                                 break
                     elif entry_cat == "WEAPON" or slot == "weapon_main" or any(k in entry_name_lower for k in ("sword", "dagger", "spear", "mace", "staff", "bow", "gun", "harp", "wp_", "sw_", "da_", "ts_", "pa_", "st_", "ma_")):
-                        for candidate in ("Bip01 R Hand", "Weapon_R", "Dummy_Weapon_R"):
+                        for candidate in ("Rhand_bone", "Bip01 R Hand", "Weapon_R", "Dummy_Weapon_R"):
                             if candidate in rig_obj.data.bones:
                                 equip_bone = candidate
                                 break
@@ -386,8 +386,12 @@ class ModelProvider(IModelProvider):
                     mesh_obj.parent = rig_obj
                     mesh_obj.parent_type = "BONE"
                     mesh_obj.parent_bone = equip_bone
-                    bone_mat_world = rig_obj.matrix_world @ rig_obj.pose.bones[equip_bone].matrix
-                    mesh_obj.matrix_parent_inverse = bone_mat_world.inverted()
+                    if equip_bone in ("Rhand_bone", "Lhand_bone"):
+                        # Osso de encaixe: a origem do item fica no referencial do osso (o Blender soma o comprimento do osso ao filho)
+                        mesh_obj.matrix_parent_inverse = Matrix.Translation((0.0, -rig_obj.data.bones[equip_bone].length, 0.0))
+                    else:
+                        bone_mat_world = rig_obj.matrix_world @ rig_obj.pose.bones[equip_bone].matrix
+                        mesh_obj.matrix_parent_inverse = bone_mat_world.inverted()
                 else:
                     mesh_obj.parent = rig_obj
                     mesh_obj.matrix_parent_inverse = rig_obj.matrix_world.inverted()

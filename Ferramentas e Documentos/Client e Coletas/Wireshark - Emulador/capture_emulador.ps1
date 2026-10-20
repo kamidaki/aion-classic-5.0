@@ -6,8 +6,8 @@
 # As capturas ficam nesta pasta, separadas das oficiais, para nunca serem confundidas com prova do oficial.
 param(
     [string]$Assunto = "",
-    # portas do cliente: login 2106, jogo 7777, chat 10241 (9014/9021 sao internas entre os servidores do emulador)
-    [string]$Filter = "tcp and (port 2106 or port 7777 or port 10241)",
+    # portas do cliente: login 2106, jogo 7777, chat 10241, NP 13001 e STS 6600 (9014/9021 sao internas entre os servidores do emulador)
+    [string]$Filter = "tcp and (port 2106 or port 7777 or port 10241 or port 13001 or port 6600)",
     [int]$MaxFileMB = 100
 )
 
@@ -44,6 +44,13 @@ if (-not ($loopback -and ($loopback -match "^(\d+)\."))) {
 }
 $interfaceIndex = $matches[1]
 Write-Host "[*] Interface: $loopback" -ForegroundColor Green
+# tambem a placa de rede: o cliente pode tentar falar com o NP/STS da Gameforge pela internet
+$extraArgs = @()
+$ethernet = & $dumpcapExe -D 2>&1 | Where-Object { $_ -match "Ethernet" -or $_ -match "Intel" -or $_ -match "Realtek" } | Select-Object -First 1
+if ($ethernet -and ($ethernet -match "^(\d+)\.")) {
+    $extraArgs = @("-i", $matches[1], "-f", $Filter)
+    Write-Host "[*] Interface: $ethernet" -ForegroundColor Green
+}
 
 # 3. Nome da captura
 if ([string]::IsNullOrWhiteSpace($Assunto)) {
@@ -71,7 +78,7 @@ Write-Host ""
 
 # 4. Captura
 try {
-    & $dumpcapExe -i $interfaceIndex -f $Filter -b filesize:$filesizeKB -w $pcapFullPath
+    & $dumpcapExe -i $interfaceIndex -f $Filter @extraArgs -b filesize:$filesizeKB -w $pcapFullPath
 } catch {
     Write-Host "`n[!] Finalizando dumpcap..." -ForegroundColor Yellow
 }
