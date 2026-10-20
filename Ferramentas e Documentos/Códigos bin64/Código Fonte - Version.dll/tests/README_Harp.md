@@ -179,6 +179,7 @@ na classe avancada.
 | tabela de Skins `v4_class_*` (dado) | icone pequeno | `v4_class_artist` / `v4_class_bard` |
 | tabela `icon_emblem_<nome>` (dado, preenchida na inicializacao) | emblema grande (alvo, selecao) | `artist` / `bard` (era `battlemaster` / `lumines`) |
 | switch do sufixo de animacao `0x931F44` (dado + 2 casos novos) | `Nidle_<classe>_lobby_001` etc. | `_artist` / `_bard`, num trecho alocado logo depois do `Game.dll` |
+| indice por classe de `0x66E220` (dado, `0x66E268`) | energia da classe: 2 MP, 5 EP (12/13), 6 SP (15/16), 0 nenhuma (14/17/20/23/24). O quadro de grupo/alianca (`0xAAEE70`) so desenha barra para MP/EP/SP; o HUD proprio cai em MP para qualquer outro valor | `bard` = indice da Luminess (MP); `artist` fica sem |
 
 O trecho dos casos novos do sufixo (`_artist`/`_bard`) tem de ficar ate 2 GB acima da base do
 `Game.dll` (a tabela de saltos guarda deslocamentos de 32 bits). O `Game.dll` carrega baixo (`0x4C...`),

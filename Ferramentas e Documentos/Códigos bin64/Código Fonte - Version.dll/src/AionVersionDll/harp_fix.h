@@ -21,6 +21,7 @@ static void HarpPatchClassIconsOnce();
 static void HarpPatchAnimationSuffixOnce();
 static void HarpPatchItemClassesOnce();
 static void HarpPatchDefaultKeysOnce();
+static void HarpPatchEnergyGaugeOnce();
 
 using HarpParseWeaponType = int (__fastcall*)(const wchar_t*);
 using HarpWeaponSuffix = void* (__fastcall*)(int, int, char*, size_t);
@@ -638,6 +639,37 @@ static void HarpPatchDefaultKeysOnce() {
     }
 }
 
+// ---- Energy gauge -------------------------------------------------------------------------------
+// 0x66E220 (class) gives the class's energy: 2 MP, 5 EP, 6 SP, 0 none. It is a jump table over 0..25
+// through a byte index per class (0 -> MP, 1 -> EP for 12/13, 2 -> SP for 15/16, 3 -> none), and the
+// vacant ids 14, 17, 20, 23 and 24 have index 3. The group/alliance member frame (0xAAEE70) shows its
+// gauge only for MP/EP/SP, so the Bard had no MP bar there; the own HUD (0x485A80) falls back to MP
+// for any other answer and showed it. The Bard (20) gets the index of the Lumines (19): MP.
+// cmp ecx,19h; ja none; movsxd rax,ecx; lea rdx,[image]; movzx eax,byte [rdx+rax+index];
+// mov ecx,[rdx+rax*4+cases]; add rcx,rdx; jmp rcx; mov eax,2; ret; mov eax,5; ret; mov eax,6; ret;
+// xor eax,eax; ret
+static constexpr BYTE kHarpEnergyIndexNone = 3;
+static constexpr int kHarpLuminesClass = 19;
+static BYTE* s_harpEnergyIndex = nullptr;  // byte index per class of 0x66E220
+static volatile LONG s_harpEnergyGaugeDone = 0;
+
+static void HarpPatchEnergyGaugeOnce() {
+    if (s_harpEnergyGaugeDone || !s_harpEnergyIndex) return;
+    if (InterlockedExchange(&s_harpEnergyGaugeDone, 1)) return;
+    __try {
+        if (s_harpEnergyIndex[kBardClass] != kHarpEnergyIndexNone) return;  // already given
+        const BYTE mp = s_harpEnergyIndex[kHarpLuminesClass];
+        if (mp == kHarpEnergyIndexNone) {
+            OutputDebugStringA("[Harp] Energy gauge: Lumines without MP, not patched.\n");
+            return;
+        }
+        HarpWriteCode(&s_harpEnergyIndex[kBardClass], &mp, 1);
+        OutputDebugStringA("[Harp] Energy gauge: Bard uses MP.\n");
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+}
+
 // ---- Creation screen ---------------------------------------------------------------------------
 // The class buttons class_1..class_13 (UI_Create.xml) are kept in a fixed array of 13 in the window
 // (+578h); a click finds the button's position (0..12) and selects it, and the position becomes the
@@ -945,6 +977,7 @@ static void* __fastcall HarpCharacterSlotHook(void* self, void* a2, void* a3, vo
     HarpPatchAnimationSuffixOnce();
     HarpPatchItemClassesOnce();
     HarpPatchDefaultKeysOnce();
+    HarpPatchEnergyGaugeOnce();
     return s_harpCharacterSlot(self, a2, a3, a4);
 }
 
@@ -958,6 +991,7 @@ static void HarpOnModuleLoaded(HMODULE module) {
     HarpPatchAnimationSuffixOnce();
     HarpPatchItemClassesOnce();
     HarpPatchDefaultKeysOnce();
+    HarpPatchEnergyGaugeOnce();
 }
 
 static SRWLOCK s_harpLock = SRWLOCK_INIT;
@@ -1408,6 +1442,19 @@ static void InstallHarpFix(HMODULE module) {
         static_assert(sizeof(keyClassMask) - 1 == sizeof(keyClass), "Default key class mask length");
         s_harpDefaultKeyField = (HarpDefaultKeyField)QunaFindUnique(base, nt, keyField, keyFieldMask, sizeof(keyField));
         if (BYTE* k = QunaFindUnique(base, nt, keyClass, keyClassMask, sizeof(keyClass))) s_harpDefaultKeyClassCall = k + 6;
+        // Energy of a class (HarpPatchEnergyGaugeOnce): the index table is image + rel32 of the lea + disp32.
+        static const BYTE energy[] = {
+            0x83,0xf9,0x19,0x77,0x30,0x48,0x63,0xc1,0x48,0x8d,0x15,0,0,0,0,0x0f,0xb6,0x84,0x02,0,0,0,0,
+            0x8b,0x8c,0x82,0,0,0,0,0x48,0x03,0xca,0xff,0xe1,0xb8,0x02,0x00,0x00,0x00,0xc3,0xb8,0x05,0x00,
+            0x00,0x00,0xc3,0xb8,0x06,0x00,0x00,0x00,0xc3,0x33,0xc0,0xc3
+        };
+        static const char energyMask[] = "xxxxxxxxxxx????xxxx????xxx????xxxxxxxxxxxxxxxxxxxxxxxxxx";
+        static_assert(sizeof(energyMask) - 1 == sizeof(energy), "Energy mask length");
+        if (BYTE* e = QunaFindUnique(base, nt, energy, energyMask, sizeof(energy))) {
+            BYTE* index = e + 0x0f + *(int32_t*)(e + 0x0b) + *(int32_t*)(e + 0x13);
+            if (index >= base && index + 26 <= base + image) s_harpEnergyIndex = index;
+        }
+        if (!s_harpEnergyIndex) OutputDebugStringA("[Harp] Energy gauge table not found.\n");
         if (!s_harpSuffixSwitch) OutputDebugStringA("[Harp] Animation suffix switch not found.\n");
         // The icon table is only located here; it is written on first use (HarpPatchClassIconsOnce).
         BYTE* iconReader = QunaFindUnique(base, nt, classIcon, classIconMask, sizeof(classIcon));
