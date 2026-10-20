@@ -34,7 +34,7 @@ public class CM_VIEW_PLAYER_DETAILS extends AionClientPacket {
 			return;
 
 		if (!target.getPlayerSettings().isInDeniedStatus(DeniedStatus.VIEW_DETAILS) || player.hasAccess(AdminConfig.VIEW_PLAYER_DETAILS))
-			sendPacket(new SM_VIEW_PLAYER_DETAILS(target.getEquipment().getEquippedItemsWithoutStigma(), target));
+			SM_VIEW_PLAYER_DETAILS.of(target).forEach(this::sendPacket);
 		else
 			sendPacket(SM_SYSTEM_MESSAGE.STR_MSG_REJECTED_WATCH(target.getName()));
 	}

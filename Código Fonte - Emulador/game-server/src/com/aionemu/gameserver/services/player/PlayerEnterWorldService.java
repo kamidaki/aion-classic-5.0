@@ -211,7 +211,7 @@ public final class PlayerEnterWorldService {
 			// 5.1 Classic 5.0 Warmup Sequence (from official Wireshark PCAP)
 			client.sendPacket(new SM_CHALLENGE_GUIDE_TABS());
 			PlayerWardrobeService.getInstance().onEnterWorld(player); // S 0x122, logo antes do 0x138 como na captura
-			client.sendPacket(new SM_RANKING_BADGE());
+			client.sendPacket(new SM_RANKING_BADGE(player.getPlayerSettings().isRankingBadgeShown()));
 			StorybookService.onEnterWorld(player); // S 0x14C e 0x14D
 			MorosService.onEnterWorld(player); // S 0x169, logo depois do 0x14D como na captura
 			com.lostacademy.lostsocket.secure.SecureAreaService.getInstance().onEnterWorld(player); // S 0x16B (SM_ALTER_INFO)

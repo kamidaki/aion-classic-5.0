@@ -305,6 +305,9 @@ public class StaticData {
 	public ItemSkillSetData itemSkillSetData;
 	@XmlElement(name = "enchant_synergy")
 	public EnchantSynergyData enchantSynergyData;
+
+	@XmlElement(name = "combat_power_rank_buffs")
+	public CombatPowerRankBuffData combatPowerRankBuffData;
 	@XmlElement(name = "item_upgrades")
 	public ItemUpgradeData itemUpgradeData;
 	@XmlElement(name = "legion_mission")

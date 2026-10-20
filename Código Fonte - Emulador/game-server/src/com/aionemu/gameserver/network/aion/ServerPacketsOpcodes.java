@@ -15,7 +15,7 @@ public class ServerPacketsOpcodes {
 	static {
 		addPacketOpcode(0, SM_VERSION_CHECK.class); // [S_VERSION_CHECK]
 		addPacketOpcode(1, SM_STATS_INFO.class); // [S_STATUS]
-		addPacketOpcode(2, SM_GM_SHOW_PLAYER_STATUS.class); // [S_STATUS_OTHER]
+		addPacketOpcode(2, SM_STATUS_OTHER.class); // [S_STATUS_OTHER]
 		addPacketOpcode(3, SM_STATUPDATE_HP.class); // [S_HIT_POINT]
 		addPacketOpcode(4, SM_STATUPDATE_MP.class); // [S_MANA_POINT]
 		addPacketOpcode(5, SM_ATTACK_STATUS.class); // [S_HIT_POINT_OTHER]
@@ -277,6 +277,7 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(305, SM_RANK_INFO.class); // [S_RANK_INFO] (0x0131)
 		addPacketOpcode(309, SM_AUTO_GROUP_STATUS.class); // [S_AUTO_GROUP_STATUS] (0x0135)
 		addPacketOpcode(312, SM_RANKING_BADGE.class); // [S_RANKING_BADGE] (0x0138)
+		addPacketOpcode(313, SM_RANKING_BADGE_OTHER.class); // [S_RANKING_BADGE_OTHER] (0x0139)
 		addPacketOpcode(314, SM_LEGION_HOUSING_NOTICE.class); // [S_LEGION_HOUSING_NOTICE] (0x013A)
 		// Global Auction House 5.0 (capturas de 2026-09-11 a 13). A ordem dos nomes é a do enum S_GLOBAL_TRADE_* (LIST, MYLIST, BUY, COMMIT,
 		// CANCEL, SALESLOG, COLLECT, AVG_PRICE, STATE, HISTORY), que casa com a função de todos os capturados a partir de 0x13C.

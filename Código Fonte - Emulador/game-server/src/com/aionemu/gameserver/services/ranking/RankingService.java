@@ -187,6 +187,18 @@ public class RankingService {
 		return new SM_RANK_INFO(rankingType, currentRank, cp, bestRank, bestScore);
 	}
 
+	/**
+	 * @return a entrada do jogador na aba (a mesma lista que o cliente recebeu no S 0x130), ou null se ele não está nela
+	 */
+	public RankingEntry getEntry(int rankingType, int playerId) {
+		List<RankingEntry> list = cachedRankings.get(rankingType);
+		if (list != null)
+			for (RankingEntry entry : list)
+				if (entry.playerId() == playerId)
+					return entry;
+		return null;
+	}
+
 	public int getLastUpdateTimestamp() {
 		return lastUpdateTimestamp;
 	}

@@ -3,6 +3,7 @@ package com.aionemu.gameserver.network.aion;
 import java.nio.ByteBuffer;
 
 import com.aionemu.commons.network.packet.BaseServerPacket;
+import com.aionemu.gameserver.model.gameobjects.player.PlayerAppearance;
 import com.aionemu.gameserver.network.Crypt;
 
 /**
@@ -115,6 +116,68 @@ public abstract class AionServerPacket extends BaseServerPacket {
 	@Override
 	protected int getOpCodeZeroPadding() {
 		return 3;
+	}
+
+	/**
+	 * Aparência como no S_PUT_USER: as 4 cores e os 51 bytes de rosto e corpo, sem a voz. O S_STATUS_OTHER do 5.0 (S 0x02) leva os
+	 * mesmos 67 bytes (Kodra, captura outros 2026-09-21 06:10, igual byte a byte ao S_PUT_USER dele).
+	 */
+	protected void writeAppearance(PlayerAppearance appearance) {
+		writeD(appearance.getSkinRGB());
+		writeD(appearance.getHairRGB());
+		writeD(appearance.getEyeRGB());
+		writeD(appearance.getLipRGB());
+		writeC(appearance.getFace());
+		writeC(appearance.getHair());
+		writeC(appearance.getDeco());
+		writeC(appearance.getTattoo());
+		writeC(appearance.getFaceContour());
+		writeC(appearance.getExpression());
+		writeC(appearance.getFaceExpression());
+		writeC(appearance.getJawLine());
+		writeC(appearance.getForehead());
+		writeC(appearance.getEyeHeight());
+		writeC(appearance.getEyeSpace());
+		writeC(appearance.getEyeWidth());
+		writeC(appearance.getEyeSize());
+		writeC(appearance.getEyeShape());
+		writeC(appearance.getEyeAngle());
+		writeC(appearance.getBrowHeight());
+		writeC(appearance.getBrowAngle());
+		writeC(appearance.getBrowShape());
+		writeC(appearance.getNose());
+		writeC(appearance.getNoseBridge());
+		writeC(appearance.getNoseWidth());
+		writeC(appearance.getNoseTip());
+		writeC(appearance.getCheek());
+		writeC(appearance.getLipHeight());
+		writeC(appearance.getMouthSize());
+		writeC(appearance.getLipSize());
+		writeC(appearance.getSmile());
+		writeC(appearance.getLipShape());
+		writeC(appearance.getJawHeigh());
+		writeC(appearance.getChinJut());
+		writeC(appearance.getEarShape());
+		writeC(appearance.getHeadSize());
+		writeC(appearance.getNeck());
+		writeC(appearance.getNeckLength());
+		writeC(appearance.getShoulderSize());
+		writeC(appearance.getTorso());
+		writeC(appearance.getChest());
+		writeC(appearance.getWaist());
+		writeC(appearance.getHips());
+		writeC(appearance.getArmThickness());
+		writeC(appearance.getHandSize());
+		writeC(appearance.getLegThickness());
+		writeC(appearance.getFootSize());
+		writeC(appearance.getFacialRate());
+		writeC(0x00);
+		writeC(appearance.getArmLength());
+		writeC(appearance.getLegLength());
+		writeC(appearance.getShoulders());
+		writeC(appearance.getFaceShape());
+		writeC(0x00);
+		writeC(0x00);
 	}
 
 	protected void writeNameId(int nameId) {

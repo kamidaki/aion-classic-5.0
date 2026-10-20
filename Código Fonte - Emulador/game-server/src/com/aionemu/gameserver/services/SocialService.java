@@ -84,11 +84,12 @@ public class SocialService {
 			friend1.getFriendList().addFriend(new Friend(friend2.getCommonData(), ""));
 			friend2.getFriendList().addFriend(new Friend(friend1.getCommonData(), ""));
 
-			PacketSendUtility.sendPacket(friend1, new SM_FRIEND_LIST());
-			PacketSendUtility.sendPacket(friend2, new SM_FRIEND_LIST());
-
+			// 5.0: o resultado (S 0xDE) vem antes da lista (S 0x83)
 			PacketSendUtility.sendPacket(friend1, SM_FRIEND_RESPONSE.TARGET_ADDED(friend2.getName()));
 			PacketSendUtility.sendPacket(friend2, SM_FRIEND_RESPONSE.TARGET_ADDED(friend1.getName()));
+
+			PacketSendUtility.sendPacket(friend1, new SM_FRIEND_LIST());
+			PacketSendUtility.sendPacket(friend2, new SM_FRIEND_LIST());
 			return true;
 		}
 		return false;

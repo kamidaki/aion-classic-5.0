@@ -26,9 +26,12 @@ class RankingPacketsTest {
 
 	@Test
 	void rankBadgePacketMatchesOfficialCapture() throws Exception {
-		// Todas as capturas oficiais 5.0 transmitem 5 bytes no SM_RANKING_BADGE (0x0138): writeD(0) + writeC(1)
-		assertEquals("0000000001", HEX.formatHex(body(new SM_RANKING_BADGE())));
-		assertEquals("0000000001", HEX.formatHex(body(new SM_UNK_0138())));
+		// SM_RANKING_BADGE (0x0138) = opção "mostrar ranking badge": 1 no login de quem nunca mexeu; 0 e 1 no C 0xC8 (06_Sistemas_Novos 2026-10-20 02:17)
+		assertEquals("0000000001", HEX.formatHex(body(new SM_RANKING_BADGE(true))));
+		assertEquals("0000000000", HEX.formatHex(body(new SM_RANKING_BADGE(false))));
+		// SM_RANKING_BADGE_OTHER (0x0139), mesma captura
+		assertEquals("d95b0f2e0000000000", HEX.formatHex(body(new SM_RANKING_BADGE_OTHER(0x2E0F5BD9, false))));
+		assertEquals("d95b0f2e0000000001", HEX.formatHex(body(new SM_RANKING_BADGE_OTHER(0x2E0F5BD9, true))));
 	}
 
 	@Test

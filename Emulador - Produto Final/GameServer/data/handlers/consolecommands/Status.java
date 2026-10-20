@@ -1,7 +1,7 @@
 package consolecommands;
 
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_GM_SHOW_PLAYER_STATUS;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_STATUS_OTHER;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.ConsoleCommand;
 import com.aionemu.gameserver.world.World;
@@ -25,7 +25,7 @@ public class Status extends ConsoleCommand {
 			target = (Player) admin.getTarget();
 		}
 		if (target != null) {
-			PacketSendUtility.sendPacket(admin, new SM_GM_SHOW_PLAYER_STATUS(target));
+			PacketSendUtility.sendPacket(admin, new SM_STATUS_OTHER(target));
 		}
 	}
 }

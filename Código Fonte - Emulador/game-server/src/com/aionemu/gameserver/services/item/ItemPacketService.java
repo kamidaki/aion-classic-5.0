@@ -54,6 +54,7 @@ public class ItemPacketService {
 		DEC_KINAH_ITEM_COMPOSE(0x120, true, true), // 2: taxa do Altar of Transcendence (C 0x154)
 		DEC_STORYBOOK_REGISTER(0xED, true, true), // 3: fragmento registrado no Book of Legends (C 0xE4); o 0x1C da pilha inteira usa 0xEC
 		DEC_KINAH_WARDROBE(0xDF, true, true), // 5: taxa do Wardrobe (C 0xFA), 3 aplicações de visual e 2 remoções
+		DEC_KINAH_RANKING_BUFF(0x10E, true, true), // 3: buff do 1º lugar do ranking de Combat Talent (C 0xFC), capturas de 20/10
 
 		DEC_KINAH(0, true, false), // gasto de kinah sem motivo capturado; o oficial usa um por serviço, e 0x1D só na compra
 		DEC_ITEM_SPLIT_MOVE(0x0A, true, false), // move to other storage with split
