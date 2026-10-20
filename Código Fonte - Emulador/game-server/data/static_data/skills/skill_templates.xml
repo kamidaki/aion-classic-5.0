@@ -113851,6 +113851,578 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="SongBattle01" />
 	</skill_template>
+	<skill_template skill_id="22098" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991165" delayId="1267" stack="AR_SONGOFBATTLE_1_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="CHARGE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="30" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+			<skillcharge value="1013"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="159" delta="7" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="30" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22099" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991167" delayId="1267" stack="AR_SONGOFBATTLE_2_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="51" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="309" delta="14" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="51" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22100" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991169" delayId="1267" stack="AR_SONGOFBATTLE_3_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="5000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="82" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="672" delta="32" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="82" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22101" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991165" delayId="1267" stack="AR_SONGOFBATTLE_1_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="CHARGE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="35" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+			<skillcharge value="1014"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="189" delta="8" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="35" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22102" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991167" delayId="1267" stack="AR_SONGOFBATTLE_2_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="59" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="367" delta="16" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="59" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22103" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991169" delayId="1267" stack="AR_SONGOFBATTLE_3_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="5000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="95" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="797" delta="37" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="95" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22104" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991165" delayId="1267" stack="AR_SONGOFBATTLE_1_G4" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="CHARGE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="42" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+			<skillcharge value="1015"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="219" delta="9" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="42" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22105" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991167" delayId="1267" stack="AR_SONGOFBATTLE_2_G4" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="70" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="424" delta="19" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="70" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22106" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991169" delayId="1267" stack="AR_SONGOFBATTLE_3_G4" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="5000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="112" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="921" delta="44" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="112" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22107" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991165" delayId="1267" stack="AR_SONGOFBATTLE_1_G5" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="CHARGE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="48" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+			<skillcharge value="1016"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="249" delta="10" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="48" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22108" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991167" delayId="1267" stack="AR_SONGOFBATTLE_2_G5" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="81" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="481" delta="22" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="81" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22109" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991169" delayId="1267" stack="AR_SONGOFBATTLE_3_G5" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="5000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="130" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1046" delta="50" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="130" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22110" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991165" delayId="1267" stack="AR_SONGOFBATTLE_1_G6" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="CHARGE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="55" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+			<skillcharge value="1017"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="277" delta="13" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="55" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22111" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991167" delayId="1267" stack="AR_SONGOFBATTLE_2_G6" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="92" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="538" delta="25" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="92" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22112" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991169" delayId="1267" stack="AR_SONGOFBATTLE_3_G6" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="5000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="147" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1171" delta="56" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="147" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22113" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991165" delayId="1267" stack="AR_SONGOFBATTLE_1_G7" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="CHARGE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="61" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+			<skillcharge value="1018"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="307" delta="14" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="61" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22114" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991167" delayId="1267" stack="AR_SONGOFBATTLE_2_G7" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="102" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="596" delta="27" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="102" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22115" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991169" delayId="1267" stack="AR_SONGOFBATTLE_3_G7" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="5000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="164" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1296" delta="62" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="164" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22116" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991165" delayId="1267" stack="AR_SONGOFBATTLE_1_G8" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="CHARGE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="67" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+			<skillcharge value="1019"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="337" delta="15" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="67" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22117" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991167" delayId="1267" stack="AR_SONGOFBATTLE_2_G8" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="113" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="652" delta="31" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="113" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22118" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991169" delayId="1267" stack="AR_SONGOFBATTLE_3_G8" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="5000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="181" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1420" delta="68" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="181" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22119" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991165" delayId="1267" stack="AR_SONGOFBATTLE_1_G9" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="CHARGE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="76" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+			<skillcharge value="1020"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="367" delta="16" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="76" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22120" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991167" delayId="1267" stack="AR_SONGOFBATTLE_2_G9" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="128" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="710" delta="33" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="128" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22121" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991169" delayId="1267" stack="AR_SONGOFBATTLE_3_G9" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="5000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="205" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1545" delta="74" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="205" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22122" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991165" delayId="1267" stack="AR_SONGOFBATTLE_1_G10" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="CHARGE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="87" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+			<skillcharge value="1021"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="396" delta="18" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="87" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22123" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991167" delayId="1267" stack="AR_SONGOFBATTLE_2_G10" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="146" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="767" delta="36" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="146" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22124" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991169" delayId="1267" stack="AR_SONGOFBATTLE_3_G10" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="5000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="233" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1670" delta="80" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="233" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22125" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991165" delayId="1267" stack="AR_SONGOFBATTLE_1_G11" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="CHARGE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="98" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+			<skillcharge value="1022"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="425" delta="20" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="98" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22126" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991167" delayId="1267" stack="AR_SONGOFBATTLE_2_G11" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="164" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="824" delta="39" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="164" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22127" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991169" delayId="1267" stack="AR_SONGOFBATTLE_3_G11" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="5000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="262" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1795" delta="86" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="262" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22128" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991165" delayId="1267" stack="AR_SONGOFBATTLE_1_G12" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="CHARGE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="110" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+			<skillcharge value="1023"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="455" delta="21" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="110" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22129" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991167" delayId="1267" stack="AR_SONGOFBATTLE_2_G12" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="184" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="881" delta="42" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="184" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22130" name_en="Fiery Descant" name_pt="Fiery Descant" nameId="1991169" delayId="1267" stack="AR_SONGOFBATTLE_3_G12" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="5000" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="294" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1920" delta="92" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="294" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
 	<skill_template skill_id="22131" name_en="Sonic Splash" name_pt="Sonic Splash" nameId="1991127" delayId="1268" stack="BA_SONGOFTIDALWAVE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20" ammospeed="30" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<startconditions>
@@ -115137,6 +115709,140 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="Shockattack04" />
 	</skill_template>
+	<skill_template skill_id="22220" name_en="Harpist's Pod" name_pt="Harpist's Pod" nameId="1991187" delayId="1285" stack="BA_SONGOFGRAVITY_1_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="CHARGE" cooldown="300" duration="1000" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="213" delta="0" />
+			<skillcharge value="1024"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="425" delta="20" element="WATER" hoptype="DAMAGE" />
+			<slow duration2="10000" effectid="20008" e="2" element="WATER" preeffect="1">
+				<change stat="ATTACK_SPEED" func="PERCENT" value="10" />
+			</slow>
+			<statdown duration2="10000" effectid="943573" e="3" element="WATER" preeffect="1" hoptype="SKILLLV">
+				<change stat="MAGIC_SKILL_BOOST_RESIST" func="ADD" value="195" delta="5" />
+			</statdown>
+		</effects>
+		<actions>
+			<mpuse value="213" delta="0" />
+		</actions>
+		<motion name="SongGravity01" />
+	</skill_template>
+	<skill_template skill_id="22221" name_en="Harpist's Pod" name_pt="Harpist's Pod" nameId="1991190" delayId="1285" stack="BA_SONGOFGRAVITY_2_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="300" duration="1000" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="395" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="824" delta="39" element="WATER" hoptype="DAMAGE" />
+			<slow duration2="10000" effectid="20008" e="2" element="WATER" preeffect="1">
+				<change stat="ATTACK_SPEED" func="PERCENT" value="20" />
+			</slow>
+			<statdown duration2="10000" effectid="943573" e="3" element="WATER" preeffect="1" hoptype="SKILLLV">
+				<change stat="MAGIC_SKILL_BOOST_RESIST" func="ADD" value="195" delta="5" />
+			</statdown>
+		</effects>
+		<actions>
+			<mpuse value="395" delta="0" />
+		</actions>
+		<motion name="SongGravity01" />
+	</skill_template>
+	<skill_template skill_id="22222" name_en="Harpist's Pod" name_pt="Harpist's Pod" nameId="1991193" delayId="1285" stack="BA_SONGOFGRAVITY_3_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="300" duration="5000" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="567" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1795" delta="86" element="WATER" hoptype="DAMAGE" />
+			<slow duration2="10000" effectid="20008" e="2" element="WATER" preeffect="1">
+				<change stat="ATTACK_SPEED" func="PERCENT" value="50" />
+			</slow>
+			<statdown duration2="10000" effectid="943573" e="3" element="WATER" preeffect="1" hoptype="SKILLLV">
+				<change stat="MAGIC_SKILL_BOOST_RESIST" func="ADD" value="195" delta="5" />
+			</statdown>
+		</effects>
+		<actions>
+			<mpuse value="567" delta="0" />
+		</actions>
+		<motion name="SongGravity01" />
+	</skill_template>
+	<skill_template skill_id="22223" name_en="Harpist's Pod" name_pt="Harpist's Pod" nameId="1991187" delayId="1285" stack="BA_SONGOFGRAVITY_1_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="CHARGE" cooldown="300" duration="1000" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="239" delta="0" />
+			<skillcharge value="1025"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="455" delta="21" element="WATER" hoptype="DAMAGE" />
+			<slow duration2="10000" effectid="20008" e="2" element="WATER" preeffect="1">
+				<change stat="ATTACK_SPEED" func="PERCENT" value="10" />
+			</slow>
+			<statdown duration2="10000" effectid="943573" e="3" element="WATER" preeffect="1" hoptype="SKILLLV">
+				<change stat="MAGIC_SKILL_BOOST_RESIST" func="ADD" value="195" delta="5" />
+			</statdown>
+		</effects>
+		<actions>
+			<mpuse value="239" delta="0" />
+		</actions>
+		<motion name="SongGravity01" />
+	</skill_template>
+	<skill_template skill_id="22224" name_en="Harpist's Pod" name_pt="Harpist's Pod" nameId="1991190" delayId="1285" stack="BA_SONGOFGRAVITY_2_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="300" duration="1000" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="442" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="881" delta="42" element="WATER" hoptype="DAMAGE" />
+			<slow duration2="10000" effectid="20008" e="2" element="WATER" preeffect="1">
+				<change stat="ATTACK_SPEED" func="PERCENT" value="20" />
+			</slow>
+			<statdown duration2="10000" effectid="943573" e="3" element="WATER" preeffect="1" hoptype="SKILLLV">
+				<change stat="MAGIC_SKILL_BOOST_RESIST" func="ADD" value="195" delta="5" />
+			</statdown>
+		</effects>
+		<actions>
+			<mpuse value="442" delta="0" />
+		</actions>
+		<motion name="SongGravity01" />
+	</skill_template>
+	<skill_template skill_id="22225" name_en="Harpist's Pod" name_pt="Harpist's Pod" nameId="1991193" delayId="1285" stack="BA_SONGOFGRAVITY_3_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="300" duration="5000" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="635" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1920" delta="92" element="WATER" hoptype="DAMAGE" />
+			<slow duration2="10000" effectid="20008" e="2" element="WATER" preeffect="1">
+				<change stat="ATTACK_SPEED" func="PERCENT" value="50" />
+			</slow>
+			<statdown duration2="10000" effectid="943573" e="3" element="WATER" preeffect="1" hoptype="SKILLLV">
+				<change stat="MAGIC_SKILL_BOOST_RESIST" func="ADD" value="195" delta="5" />
+			</statdown>
+		</effects>
+		<actions>
+			<mpuse value="635" delta="0" />
+		</actions>
+		<motion name="SongGravity01" />
+	</skill_template>
 	<skill_template skill_id="22226" name_en="Protective Ode" name_pt="Protective Ode" nameId="1991018" delayId="1286" stack="AR_SONGOFSHIELD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="1200" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
 		<properties first_target="ME" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE"/>
 		<startconditions>
@@ -115751,6 +116457,205 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 		</actions>
 		<motion name="SongHeal01"/>
 	</skill_template>
+	<skill_template skill_id="22266" name_en="Fiery Requiem" name_pt="Fiery Requiem" nameId="1991196" delayId="1294" stack="BA_REQUIEM_1_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="CHARGE" cooldown="1200" duration="1000" cancel_rate="20" ammospeed="30" pvp_damage="70" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="463" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+			<skillcharge value="1026"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="568" delta="26" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="463" delta="0" />
+		</actions>
+		<motion name="SongPowerShock01" />
+	</skill_template>
+	<skill_template skill_id="22267" name_en="Fiery Requiem" name_pt="Fiery Requiem" nameId="1991198" delayId="1294" stack="BA_REQUIEM_2_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="1200" duration="1000" cancel_rate="20" ammospeed="30" pvp_damage="70" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="713" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1213" delta="57" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="713" delta="0" />
+		</actions>
+		<motion name="SongPowerShock01" />
+	</skill_template>
+	<skill_template skill_id="22268" name_en="Fiery Requiem" name_pt="Fiery Requiem" nameId="1991200" delayId="1294" stack="BA_REQUIEM_3_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="1200" duration="5000" cancel_rate="20" ammospeed="30" pvp_damage="70" chain_skill_prob="100">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="1000" delta="0" />
+			<chain category="A_CHAINE_1TH" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="3666" delta="176" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="1000" delta="0" />
+		</actions>
+		<motion name="SongPowerShock01" />
+	</skill_template>
+	<skill_template skill_id="22269" name_en="Blazing Requiem" name_pt="Blazing Requiem" nameId="1991181" delayId="1220" stack="BA_ILLUSIONREQUIEM_1_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="CHARGE" cooldown="606" duration="1000" cancel_rate="20">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="559" delta="0" />
+			<skillcharge value="1027"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="960" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="559" delta="0" />
+		</actions>
+		<motion name="songbattle02" />
+	</skill_template>
+	<skill_template skill_id="22270" name_en="Blazing Requiem" name_pt="Blazing Requiem" nameId="1991183" delayId="1220" stack="BA_ILLUSIONREQUIEM_2_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="606" duration="1000" cancel_rate="20">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="857" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="2271" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="857" delta="0" />
+		</actions>
+		<motion name="songbattle02" />
+	</skill_template>
+	<skill_template skill_id="22271" name_en="Blazing Requiem" name_pt="Blazing Requiem" nameId="1991185" delayId="1220" stack="BA_ILLUSIONREQUIEM_3_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="606" duration="5000" cancel_rate="20">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="1208" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="4216" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="1208" delta="0" />
+		</actions>
+		<motion name="songbattle02" />
+	</skill_template>
+	<skill_template skill_id="22272" name_en="Blazing Requiem" name_pt="Blazing Requiem" nameId="1991181" delayId="1220" stack="BA_ILLUSIONREQUIEM_1_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="CHARGE" cooldown="606" duration="1000" cancel_rate="20">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="559" delta="0" />
+			<skillcharge value="1028"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1016" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="559" delta="0" />
+		</actions>
+		<motion name="songbattle02" />
+	</skill_template>
+	<skill_template skill_id="22273" name_en="Blazing Requiem" name_pt="Blazing Requiem" nameId="1991183" delayId="1220" stack="BA_ILLUSIONREQUIEM_2_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="606" duration="1000" cancel_rate="20">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="857" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="2403" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="857" delta="0" />
+		</actions>
+		<motion name="songbattle02" />
+	</skill_template>
+	<skill_template skill_id="22274" name_en="Blazing Requiem" name_pt="Blazing Requiem" nameId="1991185" delayId="1220" stack="BA_ILLUSIONREQUIEM_3_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="606" duration="5000" cancel_rate="20">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="1208" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="4461" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="1208" delta="0" />
+		</actions>
+		<motion name="songbattle02" />
+	</skill_template>
+	<skill_template skill_id="22275" name_en="Blazing Requiem" name_pt="Blazing Requiem" nameId="1991181" delayId="1220" stack="BA_ILLUSIONREQUIEM_1_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="CHARGE" cooldown="606" duration="1000" cancel_rate="20">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="559" delta="0" />
+			<skillcharge value="1029"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1072" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="559" delta="0" />
+		</actions>
+		<motion name="songbattle02" />
+	</skill_template>
+	<skill_template skill_id="22276" name_en="Blazing Requiem" name_pt="Blazing Requiem" nameId="1991183" delayId="1220" stack="BA_ILLUSIONREQUIEM_2_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="606" duration="1000" cancel_rate="20">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="857" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="2535" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="857" delta="0" />
+		</actions>
+		<motion name="songbattle02" />
+	</skill_template>
+	<skill_template skill_id="22277" name_en="Blazing Requiem" name_pt="Blazing Requiem" nameId="1991185" delayId="1220" stack="BA_ILLUSIONREQUIEM_3_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="606" duration="5000" cancel_rate="20">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="1208" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="4706" element="FIRE" hoptype="DAMAGE" />
+		</effects>
+		<actions>
+			<mpuse value="1208" delta="0" />
+		</actions>
+		<motion name="songbattle02" />
+	</skill_template>
 	<skill_template skill_id="22278" name_en="Purging Paean" name_pt="Purging Paean" nameId="1991129" delayId="1295" stack="BA_MASSDISPEL_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_distance="25" target_relation="MYPARTY" target_maxcount="6" target_type="PARTY" />
 		<startconditions>
@@ -116064,6 +116969,300 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 			<mpuse value="180" delta="0" />
 		</actions>
 		<motion name="buff01" />
+	</skill_template>
+	<skill_template skill_id="22298" name_en="Soothing Hymn" name_pt="Soothing Hymn" nameId="1991171" delayId="1350" stack="BA_SONGOFMASSHEAL_1_G1" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="CHARGE" cooldown="30" duration="1000" cancel_rate="20">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="156" delta="-5" />
+			<skillcharge value="1030"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<healinstant e="1" value="826" noresist="true" element="WATER" hoptype="SKILLLV" hopb="14703" />
+		</effects>
+		<actions>
+			<mpuse value="156" delta="-5" />
+		</actions>
+		<motion name="SongEmergentHeal01" />
+	</skill_template>
+	<skill_template skill_id="22299" name_en="Soothing Hymn" name_pt="Soothing Hymn" nameId="1991173" delayId="1350" stack="BA_SONGOFMASSHEAL_2_G1" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="30" duration="1000" cancel_rate="20">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="231" delta="-7" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<healinstant e="1" value="1239" noresist="true" element="WATER" hoptype="SKILLLV" hopb="22054" />
+		</effects>
+		<actions>
+			<mpuse value="231" delta="-7" />
+		</actions>
+		<motion name="SongEmergentHeal01" />
+	</skill_template>
+	<skill_template skill_id="22300" name_en="Soothing Hymn" name_pt="Soothing Hymn" nameId="1991175" delayId="1350" stack="BA_SONGOFMASSHEAL_3_G1" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="30" duration="5000" cancel_rate="20">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="312" delta="-9" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<healinstant e="1" value="2842" noresist="true" element="WATER" hoptype="SKILLLV" hopb="50541" />
+		</effects>
+		<actions>
+			<mpuse value="312" delta="-9" />
+		</actions>
+		<motion name="SongEmergentHeal01" />
+	</skill_template>
+	<skill_template skill_id="22301" name_en="Soothing Hymn" name_pt="Soothing Hymn" nameId="1991171" delayId="1350" stack="BA_SONGOFMASSHEAL_1_G2" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="CHARGE" cooldown="30" duration="1000" cancel_rate="20">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="172" delta="-5" />
+			<skillcharge value="1031"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<healinstant e="1" value="906" noresist="true" element="WATER" hoptype="SKILLLV" hopb="14703" />
+		</effects>
+		<actions>
+			<mpuse value="172" delta="-5" />
+		</actions>
+		<motion name="SongEmergentHeal01" />
+	</skill_template>
+	<skill_template skill_id="22302" name_en="Soothing Hymn" name_pt="Soothing Hymn" nameId="1991173" delayId="1350" stack="BA_SONGOFMASSHEAL_2_G2" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="30" duration="1000" cancel_rate="20">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="254" delta="-7" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<healinstant e="1" value="1359" noresist="true" element="WATER" hoptype="SKILLLV" hopb="22054" />
+		</effects>
+		<actions>
+			<mpuse value="254" delta="-7" />
+		</actions>
+		<motion name="SongEmergentHeal01" />
+	</skill_template>
+	<skill_template skill_id="22303" name_en="Soothing Hymn" name_pt="Soothing Hymn" nameId="1991175" delayId="1350" stack="BA_SONGOFMASSHEAL_3_G2" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="30" duration="5000" cancel_rate="20">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="345" delta="-10" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<healinstant e="1" value="3116" noresist="true" element="WATER" hoptype="SKILLLV" hopb="50541" />
+		</effects>
+		<actions>
+			<mpuse value="345" delta="-10" />
+		</actions>
+		<motion name="SongEmergentHeal01" />
+	</skill_template>
+	<skill_template skill_id="22304" name_en="Soothing Hymn" name_pt="Soothing Hymn" nameId="1991171" delayId="1350" stack="BA_SONGOFMASSHEAL_1_G3" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="CHARGE" cooldown="30" duration="1000" cancel_rate="20">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="195" delta="-6" />
+			<skillcharge value="1032"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<healinstant e="1" value="986" noresist="true" element="WATER" hoptype="SKILLLV" hopb="14703" />
+		</effects>
+		<actions>
+			<mpuse value="195" delta="-6" />
+		</actions>
+		<motion name="SongEmergentHeal01" />
+	</skill_template>
+	<skill_template skill_id="22305" name_en="Soothing Hymn" name_pt="Soothing Hymn" nameId="1991173" delayId="1350" stack="BA_SONGOFMASSHEAL_2_G3" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="30" duration="1000" cancel_rate="20">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="288" delta="-8" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<healinstant e="1" value="1478" noresist="true" element="WATER" hoptype="SKILLLV" hopb="22054" />
+		</effects>
+		<actions>
+			<mpuse value="288" delta="-8" />
+		</actions>
+		<motion name="SongEmergentHeal01" />
+	</skill_template>
+	<skill_template skill_id="22306" name_en="Soothing Hymn" name_pt="Soothing Hymn" nameId="1991175" delayId="1350" stack="BA_SONGOFMASSHEAL_3_G3" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="30" duration="5000" cancel_rate="20">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="390" delta="-11" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<healinstant e="1" value="3389" noresist="true" element="WATER" hoptype="SKILLLV" hopb="50541" />
+		</effects>
+		<actions>
+			<mpuse value="390" delta="-11" />
+		</actions>
+		<motion name="SongEmergentHeal01" />
+	</skill_template>
+	<skill_template skill_id="22307" name_en="Soothing Hymn" name_pt="Soothing Hymn" nameId="1991171" delayId="1350" stack="BA_SONGOFMASSHEAL_1_G4" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="CHARGE" cooldown="30" duration="1000" cancel_rate="20">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="221" delta="-6" />
+			<skillcharge value="1033"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<healinstant e="1" value="1065" noresist="true" element="WATER" hoptype="SKILLLV" hopb="14703" />
+		</effects>
+		<actions>
+			<mpuse value="221" delta="-6" />
+		</actions>
+		<motion name="SongEmergentHeal01" />
+	</skill_template>
+	<skill_template skill_id="22308" name_en="Soothing Hymn" name_pt="Soothing Hymn" nameId="1991173" delayId="1350" stack="BA_SONGOFMASSHEAL_2_G4" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="30" duration="1000" cancel_rate="20">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="328" delta="-10" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<healinstant e="1" value="1598" noresist="true" element="WATER" hoptype="SKILLLV" hopb="22054" />
+		</effects>
+		<actions>
+			<mpuse value="328" delta="-10" />
+		</actions>
+		<motion name="SongEmergentHeal01" />
+	</skill_template>
+	<skill_template skill_id="22309" name_en="Soothing Hymn" name_pt="Soothing Hymn" nameId="1991175" delayId="1350" stack="BA_SONGOFMASSHEAL_3_G4" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="30" duration="5000" cancel_rate="20">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="444" delta="-13" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<healinstant e="1" value="3663" noresist="true" element="WATER" hoptype="SKILLLV" hopb="50541" />
+		</effects>
+		<actions>
+			<mpuse value="444" delta="-13" />
+		</actions>
+		<motion name="SongEmergentHeal01" />
+	</skill_template>
+	<skill_template skill_id="22310" name_en="Soothing Hymn" name_pt="Soothing Hymn" nameId="1991171" delayId="1350" stack="BA_SONGOFMASSHEAL_1_G5" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="CHARGE" cooldown="30" duration="1000" cancel_rate="20">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="249" delta="-7" />
+			<skillcharge value="1034"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<healinstant e="1" value="1145" noresist="true" element="WATER" hoptype="SKILLLV" hopb="14703" />
+		</effects>
+		<actions>
+			<mpuse value="249" delta="-7" />
+		</actions>
+		<motion name="SongEmergentHeal01" />
+	</skill_template>
+	<skill_template skill_id="22311" name_en="Soothing Hymn" name_pt="Soothing Hymn" nameId="1991173" delayId="1350" stack="BA_SONGOFMASSHEAL_2_G5" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="30" duration="1000" cancel_rate="20">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="369" delta="-11" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<healinstant e="1" value="1717" noresist="true" element="WATER" hoptype="SKILLLV" hopb="22054" />
+		</effects>
+		<actions>
+			<mpuse value="369" delta="-11" />
+		</actions>
+		<motion name="SongEmergentHeal01" />
+	</skill_template>
+	<skill_template skill_id="22312" name_en="Soothing Hymn" name_pt="Soothing Hymn" nameId="1991175" delayId="1350" stack="BA_SONGOFMASSHEAL_3_G5" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="30" duration="5000" cancel_rate="20">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="500" delta="-15" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<healinstant e="1" value="3937" noresist="true" element="WATER" hoptype="SKILLLV" hopb="50541" />
+		</effects>
+		<actions>
+			<mpuse value="500" delta="-15" />
+		</actions>
+		<motion name="SongEmergentHeal01" />
+	</skill_template>
+	<skill_template skill_id="22313" name_en="Soothing Hymn" name_pt="Soothing Hymn" nameId="1991171" delayId="1350" stack="BA_SONGOFMASSHEAL_1_G6" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="CHARGE" cooldown="30" duration="1000" cancel_rate="20">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="279" delta="-8" />
+			<skillcharge value="1035"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<healinstant e="1" value="1225" noresist="true" element="WATER" hoptype="SKILLLV" hopb="14703" />
+		</effects>
+		<actions>
+			<mpuse value="279" delta="-8" />
+		</actions>
+		<motion name="SongEmergentHeal01" />
+	</skill_template>
+	<skill_template skill_id="22314" name_en="Soothing Hymn" name_pt="Soothing Hymn" nameId="1991173" delayId="1350" stack="BA_SONGOFMASSHEAL_2_G6" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="30" duration="1000" cancel_rate="20">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="413" delta="-12" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<healinstant e="1" value="1837" noresist="true" element="WATER" hoptype="SKILLLV" hopb="22054" />
+		</effects>
+		<actions>
+			<mpuse value="413" delta="-12" />
+		</actions>
+		<motion name="SongEmergentHeal01" />
+	</skill_template>
+	<skill_template skill_id="22315" name_en="Soothing Hymn" name_pt="Soothing Hymn" nameId="1991175" delayId="1350" stack="BA_SONGOFMASSHEAL_3_G6" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="30" duration="5000" cancel_rate="20">
+		<properties first_target="TARGETORME" revision_distance="12" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="559" delta="-16" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<healinstant e="1" value="4211" noresist="true" element="WATER" hoptype="SKILLLV" hopb="50541" />
+		</effects>
+		<actions>
+			<mpuse value="559" delta="-16" />
+		</actions>
+		<motion name="SongEmergentHeal01" />
 	</skill_template>
 	<skill_template skill_id="22316" name_en="Freestyle" name_pt="Freestyle" nameId="1991159" delayId="1351" stack="BA_LULLABY_G1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="300" duration="1700" dispel_category="DEBUFF_MENTAL" req_dispel_level="1" cancel_rate="30" ammospeed="50">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE"/>
@@ -116564,6 +117763,214 @@ Deixe a área onde a corrente está descarregando!" nameId="2280347" delayId="10
 			<mpuse value="236" delta="0" />
 		</actions>
 		<motion name="SongBless01" />
+	</skill_template>
+	<skill_template skill_id="22347" name_en="Dragon Song" name_pt="Dragon Song" nameId="1991177" delayId="1360" stack="BA_SONGOFMENTALICBLASTER_1_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="CHARGE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="569" delta="0" />
+			<skillcharge value="1036"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="537" delta="25" element="FIRE" hoptype="DAMAGE" />
+			<mpattackinstant e="2" value="241" element="FIRE" preeffect="1" />
+		</effects>
+		<actions>
+			<mpuse value="569" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22348" name_en="Dragon Song" name_pt="Dragon Song" nameId="1991179" delayId="1360" stack="BA_SONGOFMENTALICBLASTER_2_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="620" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="916" delta="43" element="FIRE" hoptype="DAMAGE" />
+			<mpattackinstant e="2" value="722" element="FIRE" preeffect="1" />
+		</effects>
+		<actions>
+			<mpuse value="620" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22349" name_en="Dragon Song" name_pt="Dragon Song" nameId="1991180" delayId="1360" stack="BA_SONGOFMENTALICBLASTER_3_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="5000" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="736" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1830" delta="87" element="FIRE" hoptype="DAMAGE" />
+			<mpattackinstant e="2" value="2164" element="FIRE" preeffect="1" />
+		</effects>
+		<actions>
+			<mpuse value="736" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22350" name_en="Dragon Song" name_pt="Dragon Song" nameId="1991177" delayId="1360" stack="BA_SONGOFMENTALICBLASTER_1_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="CHARGE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="646" delta="0" />
+			<skillcharge value="1037"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="581" delta="27" element="FIRE" hoptype="DAMAGE" />
+			<mpattackinstant e="2" value="481" element="FIRE" preeffect="1" />
+		</effects>
+		<actions>
+			<mpuse value="646" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22351" name_en="Dragon Song" name_pt="Dragon Song" nameId="1991179" delayId="1360" stack="BA_SONGOFMENTALICBLASTER_2_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="705" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="995" delta="48" element="FIRE" hoptype="DAMAGE" />
+			<mpattackinstant e="2" value="962" element="FIRE" preeffect="1" />
+		</effects>
+		<actions>
+			<mpuse value="705" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22352" name_en="Dragon Song" name_pt="Dragon Song" nameId="1991180" delayId="1360" stack="BA_SONGOFMENTALICBLASTER_3_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="5000" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="836" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1978" delta="94" element="FIRE" hoptype="DAMAGE" />
+			<mpattackinstant e="2" value="2405" element="FIRE" preeffect="1" />
+		</effects>
+		<actions>
+			<mpuse value="836" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22353" name_en="Dragon Song" name_pt="Dragon Song" nameId="1991177" delayId="1360" stack="BA_SONGOFMENTALICBLASTER_1_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="CHARGE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="727" delta="0" />
+			<skillcharge value="1038"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="623" delta="30" element="FIRE" hoptype="DAMAGE" />
+			<mpattackinstant e="2" value="962" element="FIRE" preeffect="1" />
+		</effects>
+		<actions>
+			<mpuse value="727" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22354" name_en="Dragon Song" name_pt="Dragon Song" nameId="1991179" delayId="1360" stack="BA_SONGOFMENTALICBLASTER_2_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="794" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1076" delta="51" element="FIRE" hoptype="DAMAGE" />
+			<mpattackinstant e="2" value="1443" element="FIRE" preeffect="1" />
+		</effects>
+		<actions>
+			<mpuse value="794" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22355" name_en="Dragon Song" name_pt="Dragon Song" nameId="1991180" delayId="1360" stack="BA_SONGOFMENTALICBLASTER_3_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="5000" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="942" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="2125" delta="102" element="FIRE" hoptype="DAMAGE" />
+			<mpattackinstant e="2" value="2885" element="FIRE" preeffect="1" />
+		</effects>
+		<actions>
+			<mpuse value="942" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22356" name_en="Dragon Song" name_pt="Dragon Song" nameId="1991177" delayId="1360" stack="BA_SONGOFMENTALICBLASTER_1_G4" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="CHARGE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="814" delta="0" />
+			<skillcharge value="1039"/>
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="668" delta="31" element="FIRE" hoptype="DAMAGE" />
+			<mpattackinstant e="2" value="1443" element="FIRE" preeffect="1" />
+		</effects>
+		<actions>
+			<mpuse value="814" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22357" name_en="Dragon Song" name_pt="Dragon Song" nameId="1991179" delayId="1360" stack="BA_SONGOFMENTALICBLASTER_2_G4" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="1000" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="888" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1156" delta="55" element="FIRE" hoptype="DAMAGE" />
+			<mpattackinstant e="2" value="1924" element="FIRE" preeffect="1" />
+		</effects>
+		<actions>
+			<mpuse value="888" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
+	</skill_template>
+	<skill_template skill_id="22358" name_en="Dragon Song" name_pt="Dragon Song" nameId="1991180" delayId="1360" stack="BA_SONGOFMENTALICBLASTER_3_G4" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="5000" cancel_rate="20" ammospeed="30">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="1054" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="2273" delta="109" element="FIRE" hoptype="DAMAGE" />
+			<mpattackinstant e="2" value="3366" element="FIRE" preeffect="1" />
+		</effects>
+		<actions>
+			<mpuse value="1054" delta="0" />
+		</actions>
+		<motion name="SongBattle01" />
 	</skill_template>
 	<skill_template skill_id="22359" name_en="Delusional Dirge" name_pt="Delusional Dirge" nameId="1991136" delayId="1361" stack="BA_SONGOFILLUSION_G1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="300" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="20" ammospeed="30">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />

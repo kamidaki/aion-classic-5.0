@@ -28114,6 +28114,7 @@
 	<skill name="p_healmastery_g1" skillId="108" skillLevel="1" minLevel="10" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="p_statboostmagicloffense_g1" skillId="117" skillLevel="1" minLevel="10" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofair_g3" skillId="22205" skillLevel="1" minLevel="11" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ar_songofbattle_1_g2" skillId="22098" skillLevel="1" minLevel="12" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofcold_g3" skillId="22018" skillLevel="1" minLevel="13" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofrest_g1" skillId="22201" skillLevel="1" minLevel="13" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songoffire_g2" skillId="22030" skillLevel="1" minLevel="15" race="PC_ALL" classId="BARD" autoLearn="true" />
@@ -28128,6 +28129,7 @@
 	<skill name="mending_g3" skillId="1805" skillLevel="1" minLevel="15" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofair_g4" skillId="22206" skillLevel="1" minLevel="16" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="p_statboostmaxmp_g1" skillId="119" skillLevel="1" minLevel="16" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ar_songofbattle_1_g3" skillId="22101" skillLevel="1" minLevel="17" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofemergentheal_g1" skillId="22147" skillLevel="1" minLevel="17" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofcold_g4" skillId="22019" skillLevel="1" minLevel="18" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofpurify_g1" skillId="22238" skillLevel="1" minLevel="19" race="PC_ALL" classId="BARD" autoLearn="true" />
@@ -28151,6 +28153,7 @@
 	<skill name="ba_songofbrave_g1" skillId="22286" skillLevel="1" minLevel="20" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="mending_g4" skillId="1825" skillLevel="1" minLevel="20" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofair_g5" skillId="22207" skillLevel="1" minLevel="21" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ar_songofbattle_1_g4" skillId="22104" skillLevel="1" minLevel="22" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofemergentheal_g2" skillId="22148" skillLevel="1" minLevel="22" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofstamina_g1" skillId="22239" skillLevel="1" minLevel="22" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofcold_g5" skillId="22020" skillLevel="1" minLevel="23" race="PC_ALL" classId="BARD" autoLearn="true" />
@@ -28177,6 +28180,7 @@
 	<skill name="ba_songofregeneration_g2" skillId="22326" skillLevel="1" minLevel="26" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofserenity_1_g2" skillId="22180" skillLevel="1" minLevel="26" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofbrave_g2" skillId="22287" skillLevel="1" minLevel="26" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ar_songofbattle_1_g5" skillId="22107" skillLevel="1" minLevel="27" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofemergentheal_g3" skillId="22149" skillLevel="1" minLevel="27" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofstamina_g2" skillId="22240" skillLevel="1" minLevel="27" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofcold_g6" skillId="22021" skillLevel="1" minLevel="28" race="PC_ALL" classId="BARD" autoLearn="true" />
@@ -28196,6 +28200,7 @@
 	<skill name="p_statboostmcreducerate_g1" skillId="141" skillLevel="1" minLevel="30" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofair_g7" skillId="22209" skillLevel="1" minLevel="31" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofdestroy_g1" skillId="22264" skillLevel="1" minLevel="31" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ar_songofbattle_1_g6" skillId="22110" skillLevel="1" minLevel="32" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_magicaldestruction_g3" skillId="22369" skillLevel="1" minLevel="32" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofearth_g3" skillId="22340" skillLevel="1" minLevel="32" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofemergentheal_g4" skillId="22150" skillLevel="1" minLevel="32" race="PC_ALL" classId="BARD" autoLearn="true" />
@@ -28217,6 +28222,7 @@
 	<skill name="ba_songofminddamage_g2" skillId="22069" skillLevel="1" minLevel="35" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofwind_g1" skillId="22041" skillLevel="1" minLevel="35" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofair_g8" skillId="22210" skillLevel="1" minLevel="36" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ar_songofbattle_1_g7" skillId="22113" skillLevel="1" minLevel="37" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofemergentheal_g5" skillId="22151" skillLevel="1" minLevel="37" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofstamina_g4" skillId="22242" skillLevel="1" minLevel="37" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofcold_g8" skillId="22023" skillLevel="1" minLevel="38" race="PC_ALL" classId="BARD" autoLearn="true" />
@@ -28245,6 +28251,7 @@
 	<skill name="p_healmastery_g3" skillId="137" skillLevel="1" minLevel="40" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofair_g9" skillId="22211" skillLevel="1" minLevel="41" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="p_statboostmagicloffense_g2" skillId="1578" skillLevel="1" minLevel="41" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ar_songofbattle_1_g8" skillId="22116" skillLevel="1" minLevel="42" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofemergentheal_g6" skillId="22152" skillLevel="1" minLevel="42" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofrefreshmind_g1" skillId="22362" skillLevel="1" minLevel="42" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofstamina_g5" skillId="22243" skillLevel="1" minLevel="42" race="PC_ALL" classId="BARD" autoLearn="true" />
@@ -28268,6 +28275,7 @@
 	<skill name="ba_songofdelaydamage_g8" skillId="22087" skillLevel="1" minLevel="45" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofeagle_g5" skillId="22379" skillLevel="1" minLevel="45" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofland_g7" skillId="22054" skillLevel="1" minLevel="45" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ba_songofmassheal_1_g1" skillId="22298" skillLevel="1" minLevel="45" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofminddamage_g4" skillId="22071" skillLevel="1" minLevel="45" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofpain_g1" skillId="22319" skillLevel="1" minLevel="45" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofwarmth_g1" skillId="22157" skillLevel="1" minLevel="45" race="PC_ALL" classId="BARD" autoLearn="true" />
@@ -28276,6 +28284,7 @@
 	<skill name="p_statboostmaxmp_g2" skillId="1579" skillLevel="1" minLevel="45" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofair_g10" skillId="22212" skillLevel="1" minLevel="46" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofmentalic_g1" skillId="22076" skillLevel="1" minLevel="46" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ar_songofbattle_1_g9" skillId="22119" skillLevel="1" minLevel="47" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofappreciation_g1" skillId="22187" skillLevel="1" minLevel="47" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofemergentheal_g7" skillId="22153" skillLevel="1" minLevel="47" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofrefreshmind_g2" skillId="22363" skillLevel="1" minLevel="47" race="PC_ALL" classId="BARD" autoLearn="true" />
@@ -28284,6 +28293,7 @@
 	<skill name="ba_songofgreatheal_g1" skillId="22163" skillLevel="1" minLevel="48" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofsoulextinction_g1" skillId="22216" skillLevel="1" minLevel="48" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songogpeace_g3" skillId="22247" skillLevel="1" minLevel="48" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ba_songofmassheal_1_g2" skillId="22301" skillLevel="1" minLevel="49" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofpain_g2" skillId="22320" skillLevel="1" minLevel="49" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofresistance_g1" skillId="22191" skillLevel="1" minLevel="49" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofshock_g6" skillId="22064" skillLevel="1" minLevel="49" race="PC_ALL" classId="BARD" autoLearn="true" />
@@ -28300,6 +28310,7 @@
 	<skill name="ba_songofearth_g6" skillId="22343" skillLevel="1" minLevel="50" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songoffirm_g6" skillId="22297" skillLevel="1" minLevel="50" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofland_g8" skillId="22055" skillLevel="1" minLevel="50" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ba_songofmentalicblaster_1_g1" skillId="22347" skillLevel="1" minLevel="50" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofminddamage_g5" skillId="22072" skillLevel="1" minLevel="50" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofregeneration_g6" skillId="22330" skillLevel="1" minLevel="50" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofserenity_1_g6" skillId="22184" skillLevel="1" minLevel="50" race="PC_ALL" classId="BARD" autoLearn="true" />
@@ -28311,12 +28322,14 @@
 	<skill name="ba_songofmentalic_g2" skillId="22077" skillLevel="1" minLevel="51" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofweight_g1" skillId="22198" skillLevel="1" minLevel="51" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="p_statboostmcreducerate_g2" skillId="142" skillLevel="1" minLevel="51" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ar_songofbattle_1_g10" skillId="22122" skillLevel="1" minLevel="52" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofappreciation_g2" skillId="22188" skillLevel="1" minLevel="52" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofemergentheal_g8" skillId="22154" skillLevel="1" minLevel="52" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofinjury_g1" skillId="22092" skillLevel="1" minLevel="52" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofrefreshmind_g3" skillId="22364" skillLevel="1" minLevel="52" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofcold_g11" skillId="22026" skillLevel="1" minLevel="53" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofgreatheal_g2" skillId="22164" skillLevel="1" minLevel="53" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ba_songofmassheal_1_g3" skillId="22304" skillLevel="1" minLevel="53" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofpain_g3" skillId="22321" skillLevel="1" minLevel="53" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofsoulextinction_g2" skillId="22217" skillLevel="1" minLevel="53" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofwarmth_g3" skillId="22159" skillLevel="1" minLevel="53" race="PC_ALL" classId="BARD" autoLearn="true" />
@@ -28328,6 +28341,7 @@
 	<skill name="ar_songofheal_g11" skillId="22144" skillLevel="1" minLevel="55" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofrelax_g10" skillId="22176" skillLevel="1" minLevel="55" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofshield_g10" skillId="22235" skillLevel="1" minLevel="55" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ba_illusionrequiem_1_g1" skillId="22269" skillLevel="1" minLevel="55" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_massdispel_g1" skillId="22278" skillLevel="1" minLevel="55" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofanger_g10" skillId="22261" skillLevel="1" minLevel="55" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofbless_g1" skillId="22279" skillLevel="1" minLevel="55" race="PC_ALL" classId="BARD" autoLearn="true" />
@@ -28336,6 +28350,7 @@
 	<skill name="ba_songofgale_g1" skillId="22282" skillLevel="1" minLevel="55" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofillusion_g1" skillId="22359" skillLevel="1" minLevel="55" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofland_g9" skillId="22056" skillLevel="1" minLevel="55" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ba_songofmentalicblaster_1_g2" skillId="22350" skillLevel="1" minLevel="55" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofminddamage_g6" skillId="22073" skillLevel="1" minLevel="55" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofwind_g5" skillId="22045" skillLevel="1" minLevel="55" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofair_g12" skillId="22214" skillLevel="1" minLevel="56" race="PC_ALL" classId="BARD" autoLearn="true" />
@@ -28347,10 +28362,12 @@
 	<skill name="ba_songofserenity_1_g7" skillId="22185" skillLevel="1" minLevel="56" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofweight_g2" skillId="22199" skillLevel="1" minLevel="56" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="p_statboostmaxmp_g3" skillId="2610" skillLevel="1" minLevel="56" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ar_songofbattle_1_g11" skillId="22125" skillLevel="1" minLevel="57" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_focusdefence_g1" skillId="22334" skillLevel="1" minLevel="57" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofappreciation_g3" skillId="22189" skillLevel="1" minLevel="57" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofemergentheal_g9" skillId="22155" skillLevel="1" minLevel="57" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofinjury_g2" skillId="22093" skillLevel="1" minLevel="57" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ba_songofmassheal_1_g4" skillId="22307" skillLevel="1" minLevel="57" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofpain_g4" skillId="22322" skillLevel="1" minLevel="57" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofrefreshmind_g4" skillId="22365" skillLevel="1" minLevel="57" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofwarmth_g4" skillId="22160" skillLevel="1" minLevel="57" race="PC_ALL" classId="BARD" autoLearn="true" />
@@ -28358,6 +28375,7 @@
 	<skill name="ba_songofgreatheal_g3" skillId="22165" skillLevel="1" minLevel="58" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofsoulextinction_g3" skillId="22218" skillLevel="1" minLevel="58" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songogpeace_g5" skillId="22249" skillLevel="1" minLevel="58" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ba_illusionrequiem_1_g2" skillId="22272" skillLevel="1" minLevel="59" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofbless_g2" skillId="22280" skillLevel="1" minLevel="59" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofgale_g2" skillId="22283" skillLevel="1" minLevel="59" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofillusion_g2" skillId="22360" skillLevel="1" minLevel="59" race="PC_ALL" classId="BARD" autoLearn="true" />
@@ -28371,17 +28389,22 @@
 	<skill name="ba_songofanger_g11" skillId="22262" skillLevel="1" minLevel="60" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofdelaydamage_g11" skillId="22090" skillLevel="1" minLevel="60" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofeagle_g8" skillId="22382" skillLevel="1" minLevel="60" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ba_songofgravity_1_g1" skillId="22220" skillLevel="1" minLevel="60" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofland_g10" skillId="22057" skillLevel="1" minLevel="60" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ba_songofmentalicblaster_1_g3" skillId="22353" skillLevel="1" minLevel="60" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofminddamage_g7" skillId="22074" skillLevel="1" minLevel="60" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofwind_g6" skillId="22046" skillLevel="1" minLevel="60" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofair_g13" skillId="22215" skillLevel="1" minLevel="61" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofgust_g2" skillId="22318" skillLevel="1" minLevel="61" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ba_songofmassheal_1_g5" skillId="22310" skillLevel="1" minLevel="61" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofmentalic_g4" skillId="22079" skillLevel="1" minLevel="61" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofpain_g5" skillId="22323" skillLevel="1" minLevel="61" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofwarmth_g5" skillId="22161" skillLevel="1" minLevel="61" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofweight_g3" skillId="22200" skillLevel="1" minLevel="61" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ar_songofbattle_1_g12" skillId="22128" skillLevel="1" minLevel="62" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_focusdefence_g2" skillId="22335" skillLevel="1" minLevel="62" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_magicaldestruction_g8" skillId="22374" skillLevel="1" minLevel="62" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ba_requiem_1_g1" skillId="22266" skillLevel="1" minLevel="62" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofappreciation_g4" skillId="22190" skillLevel="1" minLevel="62" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofearth_g8" skillId="22345" skillLevel="1" minLevel="62" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofemergentheal_g10" skillId="22156" skillLevel="1" minLevel="62" race="PC_ALL" classId="BARD" autoLearn="true" />
@@ -28390,6 +28413,7 @@
 	<skill name="ba_songofregeneration_g8" skillId="22332" skillLevel="1" minLevel="62" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofserenity_1_g8" skillId="22186" skillLevel="1" minLevel="62" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ar_songofcold_g13" skillId="22028" skillLevel="1" minLevel="63" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ba_illusionrequiem_1_g3" skillId="22275" skillLevel="1" minLevel="63" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofbless_g3" skillId="22281" skillLevel="1" minLevel="63" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofgale_g3" skillId="22284" skillLevel="1" minLevel="63" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofgreatheal_g4" skillId="22166" skillLevel="1" minLevel="63" race="PC_ALL" classId="BARD" autoLearn="true" />
@@ -28408,7 +28432,10 @@
 	<skill name="ba_songofanger_g12" skillId="22263" skillLevel="1" minLevel="65" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofdelaydamage_g12" skillId="22091" skillLevel="1" minLevel="65" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofeagle_g9" skillId="22383" skillLevel="1" minLevel="65" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ba_songofgravity_1_g2" skillId="22223" skillLevel="1" minLevel="65" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofland_g11" skillId="22058" skillLevel="1" minLevel="65" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ba_songofmassheal_1_g6" skillId="22313" skillLevel="1" minLevel="65" race="PC_ALL" classId="BARD" autoLearn="true" />
+	<skill name="ba_songofmentalicblaster_1_g4" skillId="22356" skillLevel="1" minLevel="65" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofminddamage_g8" skillId="22075" skillLevel="1" minLevel="65" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofpain_g6" skillId="22324" skillLevel="1" minLevel="65" race="PC_ALL" classId="BARD" autoLearn="true" />
 	<skill name="ba_songofwarmth_g6" skillId="22162" skillLevel="1" minLevel="65" race="PC_ALL" classId="BARD" autoLearn="true" />

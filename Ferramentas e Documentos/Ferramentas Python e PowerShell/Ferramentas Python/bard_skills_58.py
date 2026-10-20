@@ -182,7 +182,15 @@ DEPENDENCIAS = _dependencias()
 #: servidor faz a carga (activation CHARGE + <skillcharge> + skill_charge.xml, passo --carga). O
 #: segundo aperto vira o pacote 234 (C_FIRE_CHARGE_SKILL) pelo version.dll.
 #: Ficam depois de LOTE + DEPENDENCIAS: a ordem da os ids das strings, e assim nada ja gravado muda.
-CARGA = ("Ar_SongofBattle_1_G1",)
+#: A Fiery Descant G1 primeiro (a primeira trazida); as outras pelo nivel do 5.8.
+CARGA = ("Ar_SongofBattle_1_G1",
+         "Ar_SongofBattle_1_G2", "Ar_SongofBattle_1_G3", "Ar_SongofBattle_1_G4", "Ar_SongofBattle_1_G5",
+         "Ar_SongofBattle_1_G6", "Ar_SongofBattle_1_G7", "Ar_SongofBattle_1_G8", "Ba_SongofMassheal_1_G1",
+         "Ar_SongofBattle_1_G9", "Ba_SongofMassheal_1_G2", "Ba_SongofMentalicBlaster_1_G1", "Ar_SongofBattle_1_G10",
+         "Ba_SongofMassheal_1_G3", "Ba_IllusionRequiem_1_G1", "Ba_SongofMentalicBlaster_1_G2", "Ar_SongofBattle_1_G11",
+         "Ba_SongofMassheal_1_G4", "Ba_IllusionRequiem_1_G2", "Ba_SongofGravity_1_G1", "Ba_SongofMentalicBlaster_1_G3",
+         "Ba_SongofMassheal_1_G5", "Ar_SongofBattle_1_G12", "Ba_Requiem_1_G1", "Ba_IllusionRequiem_1_G3",
+         "Ba_SongofGravity_1_G2", "Ba_SongofMassheal_1_G6", "Ba_SongofMentalicBlaster_1_G4")
 PAK_CARGA_58 = "client_skill_charge.xml"  # no skills.pak do 5.8
 #: Id da entrada no skill_charge.xml do servidor: 1000 + id do 5.8 (o servidor ja tem 1-163, de
 #: outra versao).
@@ -222,8 +230,19 @@ def _estagios():
 
 
 ESTAGIOS = _estagios()
+
+
+def _ordem_da_carga():
+    """Cada skill de CARGA seguida dos estagios dela: com so a G1 era CARGA + ESTAGIOS, e assim as
+    skills Charge acrescentadas depois ficam no fim (os ids das strings ja gravados nao mudam)."""
+    saida = []
+    for nome in CARGA:
+        saida += [s for s, _t in _carga_de(nome)[2] if s not in saida]
+    return tuple(saida)
+
+
 #: Todas as skills do Bard trazidas, na ordem que da os ids das strings.
-TODAS = LOTE + DEPENDENCIAS + CARGA + ESTAGIOS
+TODAS = LOTE + DEPENDENCIAS + _ordem_da_carga()
 
 
 def _skills_58():
@@ -973,21 +992,56 @@ def aplica_npcs_servidor():
 
 
 CARGA_REL = os.path.join("skills", "skill_charge.xml")
-#: Tabela do hook de carga do version.dll (charge_fix.h): "skill_id motion ms:skill_estagio1 ms:skill_estagio2 ..."
+#: Tabela do hook de carga do version.dll (charge_fix.h): "skill_id motion animacoes ms:skill_estagio1 ..."
 #: por linha, ao lado do version.dll. O 5.0 nao tem tabela de carga; o hook precisa saber quais skills
-#: carregam (o segundo aperto vira o pacote 234), os tempos dos estagios (bolinhas da barra) e a
-#: motion (animacao ccast_harp_<motion>_00N de cada estagio).
+#: carregam (o segundo aperto vira o pacote 234), os tempos dos estagios (bolinhas da barra), a
+#: motion e as animacoes de carga dela: um digito por entrada ccast_harp_<motion>_00N do lm.cal do 5.8,
+#: o mesmo digito para o mesmo .caf ("123" no SongBattle01 e no SongBattle02, que usa os .caf dele;
+#: "122" no SongGravity01, no SongEmergentHeal01 e no SongPowerShock01, cujo _003 repete o _002_loop).
 TABELA_DO_HOOK = r"bin64\charge_skills.txt"
+
+
+_CAL_58 = {}
+
+
+def _animacoes_de_carga(motion):
+    """As animacoes de carga da motion no 5.8, pelo lm.cal: "123", "122"...
+
+    E o .cal que diz o .caf de cada ccast_harp_<motion>_00N (o estagio N usa a _00N), nao os arquivos:
+    o SongBattle02 nao tem .caf de carga e aponta para os do SongBattle01, e o SongPowerShock01 passa
+    para o SongGravity01_002_loop no estagio 2. As quatro racas seguem o mesmo padrao (conferido).
+    """
+    import glob
+    padroes = set()
+    for raca in ("LM", "LF", "DM", "DF"):
+        if raca not in _CAL_58:
+            for p in sorted(glob.glob(os.path.join(T.LIVE_CLIENTE, "Objects", "PC2", raca, "mesh", "*.pak"))):
+                d, idx = aion_pak.abre(p)
+                e = next((x for x in idx if x.nome.lower() == f"{raca.lower()}.cal"), None)
+                if e:
+                    _CAL_58[raca] = aion_pak.le(d, e).decode("latin-1")
+                    break
+        entradas = {}
+        for linha in _CAL_58[raca].splitlines():
+            m = re.match(r"\s*ccast_harp_%s_(\d{3})\s*=\s*(\S+)" % re.escape(motion), linha, re.I)
+            if m:
+                entradas[int(m.group(1))] = m.group(2).lower().replace("/", "\\").rsplit("\\", 1)[-1]
+        arquivos = [entradas[k] for k in sorted(entradas)]
+        assert sorted(entradas) == list(range(1, len(entradas) + 1)), (raca, motion, sorted(entradas))
+        padroes.add("".join(str(arquivos.index(a) + 1) for a in arquivos))
+    assert len(padroes) == 1 and len(next(iter(padroes))) <= 4, (motion, padroes)
+    return padroes.pop() or "0"
 
 
 def aplica_carga_cliente():
     skills = _skills_58()
     ids = ids_novos(skills)
-    linhas = ["# skill_id motion ms:skill_estagio1 ms:skill_estagio2 ... (bard_skills_58.py, client_skill_charge do 5.8)"]
+    linhas = ["# skill_id motion animacoes ms:skill_estagio1 ms:skill_estagio2 ... (bard_skills_58.py, client_skill_charge do 5.8)"]
     for nome in CARGA:
         _i, _m, estagios = _carga_de(nome)
         motion = dict(skills[nome][1])["motion_name"]
-        linhas.append(f"{ids[nome]} {motion} " + " ".join(f"{t}:{ids[s]}" for s, t in estagios))
+        linhas.append(f"{ids[nome]} {motion} {_animacoes_de_carga(motion)} " +
+                      " ".join(f"{t}:{ids[s]}" for s, t in estagios))
     caminho = os.path.join(T.CLIENTE, TABELA_DO_HOOK)
     with open(caminho, "w", encoding="ascii", newline="\r\n") as f:
         f.write("\n".join(linhas) + "\n")
@@ -1038,6 +1092,24 @@ def aplica_carga_servidor():
             tempo = dict(skills[nome][1]).get("chain_time") or "0"
             ini, fim = blocos[ids[nome]]
             bloco = re.sub(r'(<chain [^>]*?) time="\d+"', r"\1", texto[ini:fim])
+            # O gerador so cria a <chain> com skill_category CHAIN_SKILL; o Requiem tem chain_category_name com
+            # SKILLCTG_NONE (o fix_50_chain da a do estagio 1, que e aprendido). Mesma regra do fix_50_chain.
+            cliente = dict(skills[nome][1])
+            if "<chain " not in bloco and cliente.get("chain_category_name"):
+                atributos = [("category", cliente["chain_category_name"].upper())]
+                if cliente.get("prechain_category_name"):
+                    atributos.append(("precategory", cliente["prechain_category_name"].upper()))
+                for campo, attr in (("self_chain_count", "selfcount"), ("prechain_count", "precount")):
+                    if cliente.get(campo) not in (None, "", "1"):
+                        atributos.append((attr, cliente[campo]))
+                linha = "<chain %s />" % " ".join(f'{k}="{v}"' for k, v in atributos)
+                quebra = "\r\n" if "\r\n" in bloco else "\n"
+                if "</startconditions>" in bloco:
+                    bloco = bloco.replace("\t\t</startconditions>", f"\t\t\t{linha}{quebra}\t\t</startconditions>", 1)
+                else:
+                    fim_props = bloco.index("/>", bloco.index("<properties ")) + 2 + len(quebra)
+                    bloco = (bloco[:fim_props] + f"\t\t<startconditions>{quebra}\t\t\t{linha}{quebra}"
+                             f"\t\t</startconditions>{quebra}" + bloco[fim_props:])
             if tempo != "0":
                 bloco = re.sub(r"(<chain [^>]*?) ?/>", rf'\1 time="{tempo}" />', bloco, count=1)
             texto = texto[:ini] + bloco + texto[fim:]

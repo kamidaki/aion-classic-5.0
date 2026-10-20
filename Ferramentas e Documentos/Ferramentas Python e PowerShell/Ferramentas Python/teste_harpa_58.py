@@ -1951,6 +1951,57 @@ def aplica_animacoes_de_classe():
 EFEITOS_DA_CARGA = ("sys_UIfx.Charge.basic",)
 
 
+def animacoes_de_modelos(cgfs):
+    """As animacoes do 5.8 que os modelos `cgfs` (caminhos objects\\...\\x.cgf) usam e o 5.0 nao tem.
+
+    O CryAnimation.dll (5.0 e 5.8) le o `<modelo>.cal` da pasta do modelo; sem ele, procura
+    `<modelo>_*.caf` ali mesmo (string "_*.caf") e toca a `nidle_001`. Sem os arquivos o modelo
+    aparece parado: o sapo do Blazing Requiem (frog\\Ba_Frog_nidle_001.caf), o golfinho do Dragon Song
+    (dolphin_fx.cal), as abelhas, borboletas, o corvo... Os .caf de um .cal sao relativos a Objects\\.
+    Devolve `{pak relativo do 5.8: {entrada: dados}}`, no formato do `procura_58` do `aplica_efeito`.
+    """
+    import glob
+    em58 = {}  # caminho completo (minusculo) -> (pak relativo, dados, entrada)
+    for p in glob.glob(os.path.join(LIVE_CLIENTE, "Objects", "**", "*.pak"), recursive=True):
+        try:
+            d, idx = aion_pak.abre(p)
+        except aion_pak.PakInvalido:
+            continue
+        rel = os.path.relpath(p, LIVE_CLIENTE)
+        for e in idx:
+            if e.nome.lower().endswith((".cal", ".caf")):
+                caminho = os.path.join(os.path.dirname(rel), e.nome.replace("/", "\\")).lower()
+                em58.setdefault(caminho, (rel, d, e))
+    em50 = set()  # os originais (o backup, se ha), para o passo poder ser refeito
+    for p in glob.glob(os.path.join(CLIENTE, "objects", "**", "*.pak"), recursive=True):
+        q = p + SUFIXO_BACKUP if os.path.exists(p + SUFIXO_BACKUP) else p
+        try:
+            idx = aion_pak.abre(q)[1]
+        except aion_pak.PakInvalido:
+            continue
+        pasta = os.path.relpath(os.path.dirname(p), CLIENTE)
+        em50.update(os.path.join(pasta, e.nome.replace("/", "\\")).lower() for e in idx)
+    pedidos = set()
+    for cgf in cgfs:
+        pasta, nome = os.path.dirname(cgf.lower()), os.path.basename(cgf.lower())[:-4]
+        cal = os.path.join(pasta, nome + ".cal")
+        if cal in em58:
+            pedidos.add(cal)
+            _rel, d, e = em58[cal]
+            for caf in re.findall(r"=\s*(\S+\.caf)", aion_pak.le(d, e).decode("latin-1"), re.I):
+                pedidos.add(os.path.join("objects", caf.replace("/", "\\")).lower())
+        else:
+            pedidos.update(k for k in em58 if os.path.dirname(k) == pasta and k.endswith(".caf")
+                           and os.path.basename(k).startswith(nome + "_"))
+    achados = {}
+    for k in sorted(pedidos - em50):
+        if k not in em58:
+            continue  # o .cal do 5.8 cita animacoes que nem o 5.8 tem (FairyAngelPET_nwalk_001_loop)
+        rel, d, e = em58[k]
+        achados.setdefault(rel, {})[e.nome] = aion_pak.le(d, e)
+    return achados
+
+
 def aplica_efeito():
     """Traz do 5.8 o efeito do projetil da harpa (a nota musical) e o que ele usa."""
     import glob
@@ -2265,6 +2316,15 @@ def aplica_efeito():
         for rel58, arquivos in procura_58(sorted(texturas_de_modelo)).items():
             por_pak.setdefault(rel58, {}).update(arquivos)
         print(f"    texturas citadas pelos modelos trazidos: {sorted(texturas_de_modelo)}")
+    # Animacoes dos modelos citados (os que o 5.0 ja tinha e os trazidos), menos os de objects\items,
+    # que tem passo proprio: sem elas o modelo aparece parado.
+    animacoes = animacoes_de_modelos(sorted(
+        c for c in citados if c.lower().endswith(".cgf") and c.lower().startswith("objects\\")
+        and not c.lower().startswith("objects\\items\\")))
+    for rel58, arquivos in animacoes.items():
+        por_pak.setdefault(rel58, {}).update(arquivos)
+    if animacoes:
+        print(f"    animacoes dos modelos citados: {sorted(n for a in animacoes.values() for n in a)}")
     # O 5.0 nem sempre tem o pak de mesmo caminho: objects\misc\boids\x.dds esta no 5.8 em
     # Objects\misc\Mesh_Textures_003.pak (entrada "boids/x.dds") e no 5.0 em
     # objects\misc\boids\boids_Textures.pak (entrada "x.dds"). Ai vai para o pak de texturas da
@@ -2279,7 +2339,8 @@ def aplica_efeito():
             # Textura no pak de texturas da pasta; modelo (.cgf) no de meshes (Roseleaf.cgf do 5.8
             # Objects\misc\Mesh_Meshes_002 -> objects\misc\misc_Meshes.pak do 5.0).
             tipo = "textures" if nome_58.lower().endswith(".dds") else \
-                "meshes" if nome_58.lower().endswith(".cgf") else None
+                "meshes" if nome_58.lower().endswith((".cgf", ".cal")) else \
+                "animations" if nome_58.lower().endswith(".caf") else None
             alvo = [p for p in glob.glob(os.path.join(CLIENTE, pasta, "*.pak"))
                     if tipo and os.path.basename(p).lower().endswith(f"_{tipo}.pak")]
             if len(alvo) != 1:

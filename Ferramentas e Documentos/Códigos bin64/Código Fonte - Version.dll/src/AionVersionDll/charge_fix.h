@@ -18,8 +18,9 @@
 // Plain body: [H length][H wire opcode][C 0x6F][H ~wire opcode][payload]; wire = (op + 0xC4) ^ 0x36.
 // C_USE_SKILL (0x21, wire 0xD3) payload starts with [H skill id] (builder at 0x198180).
 // The charge skills come from charge_skills.txt next to version.dll (bard_skills_58.py writes it):
-// one "skill_id motion ms:skill ms:skill ..." per line (motion_name, charge_timeN and skill_nameN of the
-// 5.8 data, the stage skills with their 5.0 ids; the motion is informative).
+// one "skill_id motion n ms:skill ms:skill ..." per line (motion_name, charge_timeN and skill_nameN of the
+// 5.8 data, the stage skills with their 5.0 ids; the motion is informative, n is how many charge
+// animations it has: ccast_<weapon>_<motion>_001.._00n).
 //
 // Charge bar: the 5.8 skill_delay_dialog has a charge bar coloured by stage (preset
 // v5_gauge_charge) and one light per stage (v5_gauge_charge_step, state 0 = off, 1-4 = colours).
@@ -45,6 +46,9 @@ static WORD s_chargeSkillIds[kChargeMaxSkills] = {};
 static DWORD s_chargeStageMs[kChargeMaxSkills][kChargeMaxStages] = {};
 static WORD s_chargeStageSkill[kChargeMaxSkills][kChargeMaxStages] = {};
 static int s_chargeStageCount[kChargeMaxSkills] = {};
+// Charge animations of the motion, one digit per ccast_<weapon>_<motion>_00N of the 5.8 .cal, the
+// same digit for the same .caf ("123", "122": the _003 repeats the _002_loop).
+static char s_chargeAnimations[kChargeMaxSkills][kChargeMaxStages + 1] = {};
 static DWORD s_chargeTotalMs[kChargeMaxSkills] = {};
 static int s_chargeSkillCount = 0;
 static bool s_chargeTableRead = false;
@@ -80,12 +84,15 @@ static void ChargeReadTable() {
         unsigned skill = 0, ms[kChargeMaxStages] = {}, ids[kChargeMaxStages] = {};
         if (line[0] == '#') continue;
         char motion[48] = {};
-        const int read = sscanf_s(line, "%u %47s %u:%u %u:%u %u:%u %u:%u", &skill, motion, (unsigned)sizeof(motion),
-                                  &ms[0], &ids[0], &ms[1], &ids[1], &ms[2], &ids[2], &ms[3], &ids[3]);
-        if (read < 4 || (read - 2) % 2 != 0 || skill == 0 || skill > 0xFFFF) continue;
+        char animations[kChargeMaxStages + 1] = {};
+        const int read = sscanf_s(line, "%u %47s %4s %u:%u %u:%u %u:%u %u:%u", &skill, motion, (unsigned)sizeof(motion),
+                                  animations, (unsigned)sizeof(animations), &ms[0], &ids[0], &ms[1], &ids[1],
+                                  &ms[2], &ids[2], &ms[3], &ids[3]);
+        if (read < 5 || (read - 3) % 2 != 0 || skill == 0 || skill > 0xFFFF) continue;
         const int index = s_chargeSkillCount++;
         s_chargeSkillIds[index] = (WORD)skill;
-        s_chargeStageCount[index] = (read - 2) / 2;
+        if (strspn(animations, "123456789") == strlen(animations)) strcpy_s(s_chargeAnimations[index], animations);
+        s_chargeStageCount[index] = (read - 3) / 2;
         for (int i = 0; i < s_chargeStageCount[index]; ++i) {
             s_chargeStageMs[index][i] = ms[i];
             s_chargeStageSkill[index][i] = (WORD)ids[i];
@@ -141,13 +148,9 @@ using ChargeRequestAction = void (__fastcall*)(void*, int, int, WORD, INT_PTR, I
 static ChargeRequestAction s_chargeRequest = nullptr;
 static constexpr int kChargeActionUseSkill = 2;
 
-// The local player, taken from the action requests (the first press of a charge skill comes here too).
-static void* s_chargePlayer = nullptr;
-
 static void __fastcall ChargeRequestActionHook(void* player, int action, int id, WORD extra, INT_PTR a5,
                                                 INT_PTR a6, INT_PTR a7, INT_PTR a8) {
     __try {
-        if (action == kChargeActionUseSkill) s_chargePlayer = player;
         if (action == kChargeActionUseSkill && id > 0 && s_chargeActiveSkill == id && s_chargeCaster &&
             GetTickCount64() < s_chargeActiveUntil && s_chargeConnection) {
             // Second press while charging: fire the reached stage.
@@ -253,8 +256,14 @@ static int ChargeColour(int stage, int stages) {
 // The 5.0 has no stages: the _001 (1.6 s) ended and the character stood still for the rest of
 // the charge. On each new stage the cast action is set again, as the cast start does, with the
 // stage in +0xB5D and the skill of the stage in the parameters (+0x08, kept at +0xBB8): its
-// cast_fx (FC_Ba_SongofBattle.G1.cast_lv2/lv3) is played as on 5.8, with the same motion. The
-// character is the player of the action requests.
+// cast_fx (FC_Ba_SongofBattle.G1.cast_lv2/lv3) is played as on 5.8, with the same motion. This is
+// done for every character casting a charge (ChargeUpdateCharacter).
+// The cast_fx is not played by SetAction: an event of the body animation reaches 0x948790
+// (character, event), which reads the skill at +0xBB8 and its level at +0xBBE, takes the cast_fx
+// (0xA13B40, kind 0 = skill+0x330) and plays it in slot 0x38 (0x948C80); the event is only tested
+// for null. A stage whose animation is the one already playing (SongPowerShock01 has only _001, the
+// last stage of a loop) must not set the action again, which restarts the animation from its first
+// frame: the stage skill goes to +0xBB8 and its cast_fx is played directly.
 static constexpr size_t kChargeVariant = 0xB5D;
 static constexpr size_t kChargeActionType = 0xBA0;
 static constexpr size_t kChargeActionId = 0xBA4;
@@ -264,19 +273,84 @@ static constexpr int kChargeActionCast = 0x1C;
 
 using ChargeSetAction = void (__fastcall*)(BYTE*, int, int, void*);
 static ChargeSetAction s_chargeSetAction = nullptr;
+using ChargePlayCastFx = void (__fastcall*)(BYTE*, void*);
+static ChargePlayCastFx s_chargePlayCastFx = nullptr;
 
-static void ChargePlayStageAnimation(int index, int stage) {
-    BYTE* character = (BYTE*)s_chargePlayer;
-    if (!character || !s_chargeSetAction) return;
-    const int type = *(const int*)(character + kChargeActionType);
-    const int id = *(const int*)(character + kChargeActionId);
-    if (type != kChargeActionCastType || id != kChargeActionCast) return;  // not casting any more
+static void ChargePlayStageAnimation(BYTE* character, int index, int stage) {
+    if (!s_chargeSetAction) return;
+    // Stage N plays ccast_<weapon>_<motion>_00N (the last one for later stages); the .cal may point two
+    // of them to the same .caf (SongGravity01 _002 and _003 = _002_loop, SongPowerShock01 too), and then
+    // the animation already playing goes on. Without the column the variant is not forced (0).
+    const char* animations = s_chargeAnimations[index];
+    const int count = (int)strlen(animations);
+    const int variant = count <= 0 ? 0 : stage < count ? stage : count;
+    const int previous = count <= 0 ? 0 : stage - 1 < count ? stage - 1 : count;
+    const WORD stageSkill = s_chargeStageSkill[index][stage - 1];
+    if (count > 0 && animations[variant - 1] == animations[previous - 1] && stageSkill && s_chargePlayCastFx) {
+        *(DWORD*)(character + kChargeActionParameters + 0x08) = stageSkill;
+        s_chargePlayCastFx(character, character);
+        return;
+    }
     // The parameters as SetAction keeps them: 0x20 bytes, a double and an int (0x2C).
     alignas(16) BYTE parameters[0x30] = {};
     memcpy(parameters, character + kChargeActionParameters, 0x2C);
-    if (const WORD stageSkill = s_chargeStageSkill[index][stage - 1]) *(DWORD*)(parameters + 0x08) = stageSkill;
-    character[kChargeVariant] = (BYTE)stage;
+    if (stageSkill) *(DWORD*)(parameters + 0x08) = stageSkill;
+    character[kChargeVariant] = (BYTE)variant;
     s_chargeSetAction(character, kChargeActionCastType, kChargeActionCast, parameters);
+}
+
+// Stages of every character, not only the local player: on 5.8 the cast bars of the target, of the
+// target's target and of the spectated group (target_delay_dialog, target_assist_delay_dialog,
+// spectator_group_delay_dialog) have the charge widgets too, and the protocol has no stage packet
+// (only the cast start and the fire), so each client follows a charge by the time since its start.
+// CharacterObject's frame (0x939020, called by the scene for every character) runs during the cast
+// too (it calls StartAnimation, 0x9373A0, only out of it: a hook there never saw a cast). The cast
+// start keeps the duration the server sent at +0xBC0 and the start at +0xBC4, in milliseconds since
+// boot. The client reads that clock through a WinLicense stub (0x1CEEAE5) that faults when called from
+// this DLL; GetTickCount and timeGetTime, logged at a cast start, were within 16 ms of +0xBC4 (stages
+// are 1.5 s or more). The stage the character is in is the one of
+// the skill at +0xBB8 (stage 1 is the charge skill itself; every new stage puts its skill there).
+static constexpr size_t kChargeActionDuration = 0xBC0;
+static constexpr size_t kChargeActionStart = 0xBC4;
+using ChargeCharacterFrame = INT_PTR (__fastcall*)(BYTE*, INT_PTR);
+static ChargeCharacterFrame s_chargeCharacterFrame = nullptr;
+
+static void ChargeUpdateCharacter(BYTE* character) {
+    if (*(const int*)(character + kChargeActionType) != kChargeActionCastType ||
+        *(const int*)(character + kChargeActionId) != kChargeActionCast) return;
+    const DWORD skill = *(const DWORD*)(character + kChargeActionParameters + 0x08);
+    int index = -1, current = 0;
+    for (int i = 0; i < s_chargeSkillCount && index < 0; ++i)
+        for (int k = 0; k < s_chargeStageCount[i]; ++k)
+            if (s_chargeStageSkill[i][k] == skill) {
+                index = i;
+                current = k + 1;
+                break;
+            }
+    if (index < 0 || !s_chargeTotalMs[index]) return;
+    const DWORD duration = *(const DWORD*)(character + kChargeActionDuration);
+    if (!duration) return;
+    const double scale = (double)duration / s_chargeTotalMs[index];
+    // GetTickCount moves in ~16 ms steps and may still be behind the start.
+    const LONG since = (LONG)(GetTickCount() - *(const DWORD*)(character + kChargeActionStart));
+    const double elapsed = since > 0 ? (double)since : 0.0;
+    int stage = 1;
+    double next = 0;
+    for (int i = 0; i + 1 < s_chargeStageCount[index]; ++i) {
+        next += s_chargeStageMs[index][i] * scale;
+        if (elapsed <= next) break;
+        stage = i + 2;
+    }
+    if (stage > current) ChargePlayStageAnimation(character, index, stage);
+}
+
+static INT_PTR __fastcall ChargeCharacterFrameHook(BYTE* character, INT_PTR a2) {
+    __try {
+        if (character) ChargeUpdateCharacter(character);
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+    return s_chargeCharacterFrame(character, a2);
 }
 
 // The cast bar the dialog selected (DlgSkillDelay keeps two at +0x508/+0x510, the index at +0x520).
@@ -508,7 +582,6 @@ static void ChargeUpdateDialog(BYTE* dialog) {
     s_chargeGaugeValue(s_chargeGauge, inStage < stageLength ? inStage : stageLength, 1);
     if (stage != s_chargeBarStage) {
         s_chargeBarStage = stage;
-        if (stage > 1) ChargePlayStageAnimation(index, stage); // stage 1 is the cast start itself
         ChargeShowStageName(stage);
         ChargeSetWidgetState(s_chargeGauge, ChargeColour(stage, stages));
         for (int i = 0; i < stages; ++i)
@@ -584,6 +657,26 @@ static void InstallChargeFix(HMODULE module) {
         static const char setActionMask[] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
         static_assert(sizeof(setActionMask) - 1 == sizeof(setAction), "Charge SetAction signature mask length");
         s_chargeSetAction = (ChargeSetAction)QunaFindUnique(base, nt, setAction, setActionMask, sizeof(setAction));
+        // Cast_fx of the action (0x948790): push rbp; push r14; lea rbp,[rsp-3C8h]; sub rsp,4C8h;
+        // cmp qword [rcx+8],0; mov r14,rcx; je; test rdx,rdx; je; cmp qword [rcx+12C8h],0
+        static const BYTE castFx[] = {
+            0x40,0x55,0x41,0x56,0x48,0x8d,0xac,0x24,0x38,0xfc,0xff,0xff,0x48,0x81,0xec,0xc8,0x04,0x00,0x00,
+            0x48,0x83,0x79,0x08,0x00,0x4c,0x8b,0xf1,0x0f,0x84,0,0,0,0,0x48,0x85,0xd2,0x0f,0x84,0,0,0,0,
+            0x48,0x83,0xb9,0xc8,0x12,0x00,0x00,0x00
+        };
+        static const char castFxMask[] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx????xxxxx????xxxxxxxx";
+        static_assert(sizeof(castFxMask) - 1 == sizeof(castFx), "Charge cast_fx signature mask length");
+        s_chargePlayCastFx = (ChargePlayCastFx)QunaFindUnique(base, nt, castFx, castFxMask, sizeof(castFx));
+        // CharacterObject's frame (0x939020): mov rax,rsp; sub rsp,0D8h; mov r8d,[rip+x]; mov [rax+8],rbx;
+        // mov rbx,rdx; mov [rax+10h],rsi; lea rsi,[rip+x]
+        static const BYTE characterFrame[] = {
+            0x48,0x8b,0xc4,0x48,0x81,0xec,0xd8,0x00,0x00,0x00,0x44,0x8b,0x05,0,0,0,0,0x48,0x89,0x58,0x08,
+            0x48,0x8b,0xda,0x48,0x89,0x70,0x10,0x48,0x8d,0x35
+        };
+        static const char characterFrameMask[] = "xxxxxxxxxxxxx????xxxxxxxxxxxxxx";
+        static_assert(sizeof(characterFrameMask) - 1 == sizeof(characterFrame), "Charge character frame mask length");
+        s_chargeCharacterFrame = (ChargeCharacterFrame)QunaFindUnique(base, nt, characterFrame, characterFrameMask,
+                                                                      sizeof(characterFrame));
         // Text of the dialog by id (0x65F9D7): mov [rsp+70h],r12d; call manager; lea rdx,[rsp+70h];
         // lea rcx,[rax+10h]; call find; mov edx,902803; mov rcx,[rax]; mov rax,[rdi+518h];
         // mov rbx,[rax]; call string; mov rcx,[rdi+518h]; mov rdx,rax; call [rbx+288h]
@@ -646,6 +739,8 @@ static void InstallChargeFix(HMODULE module) {
         s_chargeDialogFrame = (ChargeDialogFrame)dialogFrame;
         s_chargeGaugeMaximum = (ChargeGaugeMaximum)(dialogFrame + 0x5f + *(int32_t*)(dialogFrame + 0x5b));
         s_chargeGaugeValue = (ChargeGaugeValue)(dialogFrame + 0x96 + *(int32_t*)(dialogFrame + 0x92));
+        // Every client follows the charges it sees, also one that never cast a charge itself.
+        if (!s_chargeTableRead) ChargeReadTable();
         s_qunaServerPacketObserver = ChargeOnServerPacket;
         LONG error = DetourTransactionBegin();
         if (error != NO_ERROR) {
@@ -656,6 +751,8 @@ static void InstallChargeFix(HMODULE module) {
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_chargeSend, ChargeSendPacketHook);
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_chargeRequest, ChargeRequestActionHook);
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_chargeDialogFrame, ChargeDialogFrameHook);
+        if (error == NO_ERROR && s_chargeCharacterFrame && s_chargeSetAction)
+            error = DetourAttach(&(PVOID&)s_chargeCharacterFrame, ChargeCharacterFrameHook);
         if (error == NO_ERROR && s_chargeSetText) error = DetourAttach(&(PVOID&)s_chargeSetText, ChargeSetTextHook);
         if (error == NO_ERROR && s_chargeSetText && s_chargeDialogConstructor)
             error = DetourAttach(&(PVOID&)s_chargeDialogConstructor, ChargeDialogConstructorHook);
