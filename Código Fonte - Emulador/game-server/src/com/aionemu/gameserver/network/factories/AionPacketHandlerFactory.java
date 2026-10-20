@@ -177,7 +177,9 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_AUTO_GROUP.class, 0x1AB, State.IN_GAME); // 0x00D9 AUTO_GROUP
 		addPacket(CM_SUMMON_MOVE.class, 0x1A8, State.IN_GAME); // 0x00DA SUMMON_MOVE
 		addPacket(CM_SUMMON_EMOTION.class, 0x1A9, State.IN_GAME); // 0x00DB SUMMON_EMOTION
-		addPacket(CM_CUSTOM_SETTINGS.class, 0xE6, State.IN_GAME); // 0x000C CUSTOM_SETTINGS
+		// sem CM_CUSTOM_SETTINGS no cru 0xE6: no 5.0 o dec 0x000C vem sempre vazio, antes dos dois C 0x1A que salvam a interface ao sair ou trocar
+		// de personagem (23 de 23 nas capturas, sem resposta); lido como [H display][H deny] zerava o esconder capacete/capa e as recusas.
+		addPacket(CM_UI_SETTINGS_BEGIN.class, 0xE6, State.IN_GAME); // 0x000C, vazio, antes do UI_SETTINGS
 		addPacket(CM_CAPTCHA.class, 0xE4, State.IN_GAME); // 0x000E CAPTCHA
 		addPacket(CM_SET_NOTE.class, 0xF8, State.IN_GAME); // 0x000A SAVE_CLIENT_SETTINGS
 		addPacket(CM_DIALOG_SELECT.class, 0xF4, State.IN_GAME); // 0xFFFE DIALOG_SELECT

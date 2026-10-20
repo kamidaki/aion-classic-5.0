@@ -37,7 +37,7 @@ public class GSConfig {
 	@Property(key = "gameserver.character.creation.mode", defaultValue = "1")
 	public static int CHARACTER_CREATION_MODE;
 
-	@Property(key = "gameserver.character.limit.count", defaultValue = "8")
+	@Property(key = "gameserver.character.limit.count", defaultValue = "12")
 	public static int CHARACTER_LIMIT_COUNT;
 
 	@Property(key = "gameserver.character.faction.limitation.mode", defaultValue = "0")

@@ -240,6 +240,16 @@ public class ItemPacketService {
 	}
 
 	/**
+	 * S_EVENT (0x81) com o tamanho do armazém depois de pôr ou tirar um item. O armazém da Legion não leva: no oficial o depósito e a retirada
+	 * (S 0xA8/0xA9, Nova Pasta 2026-09-29 16:02) não vêm com 0x81, e o emulador mandava as expansões (nível - 1), que zeravam a janela até
+	 * reabrir (o S 0xA7 manda o nível).
+	 */
+	public static void sendCubeSize(Player player, StorageType storageType) {
+		if (storageType != StorageType.LEGION_WAREHOUSE)
+			PacketSendUtility.sendPacket(player, SM_CUBE_UPDATE.cubeSize(storageType, player));
+	}
+
+	/**
 	 * Item will be deleted from UI slot
 	 */
 	public static void sendItemDeletePacket(Player player, StorageType storageType, Item item, ItemDeleteType deleteType) {
@@ -251,7 +261,7 @@ public class ItemPacketService {
 		// Hammer refreshes the cube after the result and rewards, as in the official capture.
 		// Refreshing while its selected input disappears makes the client treat the dialog as interrupted.
 		if (deleteType != ItemDeleteType.CRUSH)
-			PacketSendUtility.sendPacket(player, SM_CUBE_UPDATE.cubeSize(storageType, player));
+			sendCubeSize(player, storageType);
 	}
 
 	/**
@@ -295,7 +305,7 @@ public class ItemPacketService {
 				PacketSendUtility.sendPacket(player, new SM_WAREHOUSE_ADD_ITEM(item, storageType.getId(), player, addType));
 		}
 		if (addType != ItemAddType.CRUSH_RESULT)
-			PacketSendUtility.sendPacket(player, SM_CUBE_UPDATE.cubeSize(storageType, player));
+			sendCubeSize(player, storageType);
 	}
 
 	public static void sendItemUnlockPacket(Player player, Item item) {

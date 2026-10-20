@@ -127,6 +127,10 @@ public abstract class AbstractPlayerInfoPacket extends AionServerPacket {
 		}
 		byte[] stupidNc = new byte[AREA_EQUIPAMENTO - itemsDataSize];
 		writeB(stupidNc);
+		// 5.0: data de criação antes do tempo de exclusão (S 0xC7 e S 0xC8 oficiais: offset 608 da entrada, crescente na ordem de criação). Sem
+		// ela tudo depois ficava 4 b adiantado, e o cliente lia o display/deny como tempo de exclusão e escondia quem tinha capacete/capa
+		// escondido (20/10).
+		writeD(pcd.getCreationDate() == null ? 0 : (int) (pcd.getCreationDate().getTime() / 1000));
 		writeD(accPlData.getDeletionTimeInSeconds());
 	}
 

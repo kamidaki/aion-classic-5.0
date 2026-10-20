@@ -9,7 +9,6 @@ import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.items.storage.IStorage;
 import com.aionemu.gameserver.model.items.storage.StorageType;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_CUBE_UPDATE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.services.LegionService;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
@@ -90,7 +89,7 @@ public class ItemSplitService {
 				newItem.setEquipmentSlot(slotNum);
 			sourceStorage.decreaseItemCount(sourceItem, splitAmount, sourceStorageType == destinationStorageType ? ItemUpdateType.DEC_ITEM_SPLIT
 				: ItemUpdateType.DEC_ITEM_SPLIT_MOVE);
-			PacketSendUtility.sendPacket(player, SM_CUBE_UPDATE.cubeSize(sourceStorage.getStorageType(), player));
+			ItemPacketService.sendCubeSize(player, sourceStorage.getStorageType());
 			if (destStorage.add(newItem) == null) {
 				// if item was not added - refund to source storage and release id
 				sourceStorage.increaseItemCount(sourceItem, splitAmount);
