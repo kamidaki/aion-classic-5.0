@@ -122,8 +122,13 @@ def generate_skill_tree():
         stigma_display = l.findtext("stigma_display", "0")
         learntype = l.findtext("learntype", "0")
 
+        # learntype=1: skill de equipamento (Reassign), dada pelo item ao equipar; não é estigma nem fica na árvore
+        # (fix_50_skill_tree_skill_item.py)
+        if learntype == '1':
+            continue
+
         is_blended = stigma_display == '5'
-        is_stigma = stigma_display in ('1', '2') or learntype == '1'
+        is_stigma = stigma_display in ('1', '2')
         is_autolearn = auto_learn_val == "TRUE"
         is_skillbook = (not is_autolearn) and (not is_stigma) and (not is_blended)
 

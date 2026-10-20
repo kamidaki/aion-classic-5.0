@@ -29,7 +29,8 @@ Fontes (achadas no gabarito, nao supostas):
     skilllauncher    skill_id = id da skill cujo nome esta em reserved1
     <change>         cada token de reserved13..15 vira os stats dele (tabela do gabarito; token que o gabarito nao
                      tem sozinho sai do nome do StatEnum -- regra que acerta 30 de 31 tokens conhecidos); o valor e
-                     por token: reserved2 no 1o, reserved4 no 2o (496 de 506), com o sinal que o stat usa
+                     por token: reserved2 no 1o, reserved4 no 2o (496 de 506), com o sinal que o stat usa; 3o stat
+                     com token em reserved18, valor em reserved16 e reserved17 = 1 -> PERCENT (92/108, 98/108)
     armas            required_2hsword/book/bow/dagger/mace/orb/polearm/staff/sword/chainblade -> <weapon>
     custo            cost_parameter MP/HP/HP_RATIO + cost_end/cost_end_lv, cost_dp, cost_sp -> condicao e *use
     corrente         chain_category_name em skill de corrente -> <chain>, time = chain_time ou 1000
@@ -40,6 +41,9 @@ Uso (a pasta do cliente e a que contem data/ e Strings/):
     python rebuild_50_skill_effects.py --cliente "<pasta dos XMLs do cliente 5.0>"            (mede, gera e valida)
     python rebuild_50_skill_effects.py --cliente "<pasta dos XMLs do cliente 5.0>" --aplicar  (grava com backup)
     --ids 22016,22017  limita a geracao a esses skill_id (ex.: so as skills novas de uma classe)
+    --refazer          com --ids, refaz pelo cliente tambem os que ja tem corpo (corpo de outra skill perde o cabecalho)
+    ADD/PERCENT de <change>: o marcador %% da descricao oficial ([%eN.Tipo.Value]%%) vale sobre a tabela do gabarito
+                     (concorda com o gabarito em 1262 de 1322; nos 60 restantes o gabarito herdou erro da 4.8)
 A pasta tambem pode vir da variavel de ambiente AION_CLIENT_XML_DIR.
 """
 
@@ -198,6 +202,9 @@ CHAVES_TEMPLATE = {"skillsubtype": "sub_type", "tslot": "target_slot", "dispel_c
                    "tslot_level": "target_slot_level", "conflict_id": "conflict_id",
                    "pvp_duration": "pvp_remain_time_ratio", "pvp_damage": "pvp_damage_ratio",
                    "chain_skill_prob": "chain_skill_prob2"}
+# atributos do <skill_template> que o --refazer mantem: nome, id e os que o rebuild_50_skill_templates confere no cliente
+CABECALHO_PROPRIO = ("skill_id", "name_en", "name_pt", "nameId", "delayId", "stack", "lvl", "skilltype", "activation",
+                     "cooldown", "duration")
 CHAVES_PROPS = {
     "first_target": lambda c: norm(c.get("first_target")),
     "first_target_range": lambda c: (norm(c.get("first_target")), norm(c.get("first_target_valid_distance")), norm(c.get("sub_type"))),
@@ -318,6 +325,12 @@ class Estrutura:
 def campos_efeito(c, n):
     d = {k.replace("effect%d_" % n, "effect_"): v for k, v in c.items() if k.startswith("effect%d_" % n)}
     d["_skill_name"] = c.get("name", "")
+    # na descricao oficial, [%eN.<Tipo>.Value]%% e porcentagem e [%eN.<Tipo>.Value] sem %% e valor fixo (por grupo)
+    texto = c.get("_desc_long_texto", "")
+    for i, suf in enumerate(("", "2", "3")):
+        m = re.search(r"\[%%e%d\.\w+\.Value%s\](%%%%)?" % (n, suf), texto)
+        if m:
+            d["_func_desc%d" % i] = "PERCENT" if m.group(1) else "ADD"
     return d
 
 
@@ -329,7 +342,7 @@ def fontes_numericas(g, lookups):
     """todas as leituras numericas possiveis de um efeito do cliente: nome da fonte -> valor."""
     out = {}
     for k, v in g.items():
-        if v in (None, ""):
+        if v in (None, "") or k.startswith("_func_desc"):
             continue
         i = inteiro(v)
         if i is not None:
@@ -464,7 +477,8 @@ class ModeloEfeito:
         campos = collections.defaultdict(set)
         for g, _ in reais:
             for f, v in g.items():
-                campos[f].add(norm(v))
+                if not f.startswith("_func_desc"):
+                    campos[f].add(norm(v))
         candidatos = [f for f, vs in campos.items() if len(vs) <= 40] + ["<nenhum>"]
         A, B = reais[0::2], reais[1::2]
         melhor = None
@@ -540,8 +554,24 @@ class ModeloEfeito:
                         continue
                     vistos.add(s)
                     valor = base if self.sinal.get(s, "+") == "+" else str(-int(base))
-                    func = self.func.get((r6, s, origem), self.func_stat.get((r6, s), self.func_r6.get(r6, "ADD")))
+                    func = g.get("_func_desc%d" % i) or self.func.get((r6, s, origem), self.func_stat.get((r6, s), self.func_r6.get(r6, "ADD")))
                     filhos.append([("stat", s), ("func", func), ("value", valor), ("delta", nz(g.get("effect_reserved1")))])
+            # 3o grupo: token em reserved18, valor em reserved16, reserved17 = 1 e PERCENT. Medido nos templates
+            # completos que tem o 3o stat: valor 92 de 108, PERCENT 51 de 58 e ADD 47 de 50.
+            t3, base3 = g.get("effect_reserved18"), nz(g.get("effect_reserved16"))
+            if t3 and base3 and not re.fullmatch(r"-?\d+(\.\d+)?", t3.strip()):
+                stats = self._stats_do_token(norm(t3))
+                if not stats:
+                    return None
+                func = g.get("_func_desc2") or ("PERCENT" if norm(g.get("effect_reserved17")) == "1" else "ADD")
+                for s in stats:
+                    if s is None:
+                        return None
+                    if s in vistos:
+                        continue
+                    vistos.add(s)
+                    valor = base3 if self.sinal.get(s, "+") == "+" else str(-int(base3))
+                    filhos.append([("stat", s), ("func", func), ("value", valor), ("delta", None)])
         return attrs, filhos
 
     def xml(self, g, n, c=None):
@@ -628,6 +658,8 @@ def main():
     ap.add_argument("--cliente", default=os.environ.get("AION_CLIENT_XML_DIR", DEFAULT_CLIENT_DIR))
     ap.add_argument("--aplicar", action="store_true")
     ap.add_argument("--ids", default="", help="so estes skill_id (lista separada por virgula); os outros stubs ficam como estao")
+    ap.add_argument("--refazer", action="store_true",
+                    help="com --ids: refaz pelo cliente tambem os que ja tem corpo (o de outra skill perde o cabecalho herdado)")
     ap.add_argument("--limiar", type=float, default=0.85, help="enums+stats")
     ap.add_argument("--limiar-presenca", type=float, default=0.70)
     ap.add_argument("--limiar-numeros", type=float, default=0.70)
@@ -645,6 +677,13 @@ def main():
         d = {k: v.strip() for k, v in re.findall(r"<([a-z_0-9]+)>([^<]*)</\1>", m.group(1))}
         if d.get("id"):
             cli[d["id"]] = d
+    textos = {}
+    strings_xml = os.path.join(args.cliente, "data", "Strings", "client_strings_skill.xml")
+    if os.path.isfile(strings_xml):
+        for m in re.finditer(r"<name>([^<]+)</name>\s*<body>([^<]*)</body>", open(strings_xml, encoding="utf-8", errors="replace").read()):
+            textos[m.group(1).lower()] = m.group(2)
+    for c in cli.values():
+        c["_desc_long_texto"] = textos.get(c.get("desc_long", "").lower(), "")
     lookups = {"skill": {c["name"].lower(): sid for sid, c in cli.items() if c.get("name")}, "npc": {}}
     for m in re.finditer(r"<npc_client>\s*<id>(\d+)</id>\s*<name>([^<]*)</name>", open(npcs_xml, encoding="utf-8", errors="replace").read()):
         lookups["npc"].setdefault(m.group(2).lower(), m.group(1))
@@ -661,12 +700,22 @@ def main():
         a = dict(re.findall(r'(\w+)="([^"]*)"', m.group(1)))
         classes[a.get("skillId")].add(a.get("classId"))
 
-    gabarito, stubs = [], []
+    so_ids = {x.strip() for x in args.ids.split(",") if x.strip()}
+    if args.refazer and not so_ids:
+        sys.exit("--refazer exige --ids.")
+    gabarito, stubs, trocados = [], [], set()
     for sid, (_span, a, inner) in blocos.items():
         c = cli.get(sid)
         if not c:
             continue
-        if "<effects>" in inner and a.get("stack", "").upper() == c.get("name", "").upper():
+        do_cliente = a.get("stack", "").upper() == c.get("name", "").upper()
+        if args.refazer and sid in so_ids and tipos_do_cliente(c):
+            # refeito pelo cliente mesmo com corpo; corpo de outra skill com o mesmo id (ex.: 11469-11618, estigmas
+            # antigos no lugar das skills de equipamento da 5.0) tambem perde o cabecalho herdado
+            stubs.append(sid)
+            if not do_cliente:
+                trocados.add(sid)
+        elif "<effects>" in inner and do_cliente:
             try:
                 gabarito.append((sid, ET.fromstring("<r>" + inner + "</r>"), a))
             except ET.ParseError:
@@ -774,7 +823,6 @@ def main():
 
     obrigatorios = obrigatorios_xsd(os.path.join(backup_manager.SERVER_DATA_DIR, REL_XSD))
     edits, gerados, pulados = [], [], collections.Counter()
-    so_ids = {x.strip() for x in args.ids.split(",") if x.strip()}
     for sid in sorted(stubs, key=int):
         if so_ids and sid not in so_ids:
             continue
@@ -801,7 +849,13 @@ def main():
         if efeitos is None:
             continue
         (ini, fim), atual, _inner = blocos[sid]
-        linhas = ["\t<skill_template" + xml_attrs(E.template(c, atual).items()) + ">\n",
+        if sid in trocados:
+            # do cabecalho antigo so fica o que nao depende do corpo (counter_skill etc. eram da outra skill)
+            atual = {k: v for k, v in atual.items() if k in CABECALHO_PROPRIO}
+        cabecalho = E.template(c, atual)
+        if sid in trocados:
+            cabecalho["stack"] = c["name"].upper()
+        linhas = ["\t<skill_template" + xml_attrs(cabecalho.items()) + ">\n",
                   "\t\t<properties" + xml_attrs(E.properties(c)) + " />\n"]
         sc, uc, ac = E.condicoes(c)
         for nome, lista in (("startconditions", sc), ("useconditions", uc)):
