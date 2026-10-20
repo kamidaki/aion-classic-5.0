@@ -1,5 +1,6 @@
 package com.aionemu.gameserver.network.aion.serverpackets;
 
+import java.lang.management.ManagementFactory;
 import java.util.Calendar;
 
 import com.aionemu.gameserver.configs.main.GSConfig;
@@ -8,6 +9,7 @@ import com.aionemu.gameserver.configs.network.NetworkConfig;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 import com.aionemu.gameserver.network.chatserver.ChatServer;
+import com.aionemu.gameserver.utils.time.ServerTime;
 
 public class SM_VERSION_CHECK extends AionServerPacket {
 
@@ -51,15 +53,22 @@ public class SM_VERSION_CHECK extends AionServerPacket {
 		writeD(240726);
 		writeD(0);
 		writeD(240726);
-		writeD((int) (Calendar.getInstance().getTimeInMillis() / 1000));
+		// início do servidor: o cliente soma o tempo no ar do S_SYNC_TIME (1º D) e tira daí a hora do chat. No oficial, 07:14:40 + 5,9 h de
+		// uptime = 13:08:56 UTC da captura (Login_World 27/08). Com a hora atual aqui, o chat adiantava o tempo em que o servidor estava no ar.
+		writeD((int) (ManagementFactory.getRuntimeMXBean().getStartTime() / 1000));
 		writeC(0);
 		writeC(GSConfig.SERVER_COUNTRY_CODE);
 		writeC(0);
-		int s = (characterLimitCount * 0x10) | characterFactionsMode;
-		writeC(s | characterCreateMode);
+		// Cliente de setembro em diante (58 b, todas as capturas desde 11/09): modo e limite em bytes separados, oficial 01 0C. O layout de agosto
+		// juntava os dois num byte (0xC1) e tinha 57 b; com ele o cliente atual lia a hora, o fuso e o endereço do chat deslocados em 1 byte.
+		writeC(characterFactionsMode | characterCreateMode);
+		writeC(characterLimitCount);
 		writeD((int) (Calendar.getInstance().getTimeInMillis() / 1000));
-		writeD(-28800);
-		writeD(0);
+		// fuso em segundos com o sinal invertido (UTC - valor = hora local), duas vezes como no oficial EU (-3600, -3600). Vem do
+		// gameserver.timezone (vazio = fuso do sistema).
+		int timezone = -ServerTime.now().getOffset().getTotalSeconds();
+		writeD(timezone);
+		writeD(timezone);
 		writeH(1); // loop size
 		{
 			writeC(0x00); // spacer

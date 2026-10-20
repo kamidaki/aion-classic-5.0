@@ -46,6 +46,10 @@ public class FlyController {
 		if (skillId == 0)
 			return false;
 		flySprintSkillId = skillId;
+		// O Quick Glide zera a recarga do planar: o cliente libera um planar novo na hora, e no oficial o personagem voltou a planar 7,9 s depois do
+		// anterior (recarga de 10 s) por ter usado o boost (Quick_Glider 2026-09-14 08:47, 30,65 s e 38,53 s). Sem isso o switchToGliding recusava o
+		// planar seguinte, o servidor não ficava em GLIDING e o próximo Quick Glide era ignorado até a recarga acabar.
+		player.setFlyReuseTime(0);
 		player.getGameStats().updateStatsAndSpeedVisually();
 		PacketSendUtility.broadcastToSightedPlayers(player, new SM_EMOTION(player, EmotionType.FLY_SPRINT, skillId, 0), true);
 		return true;
