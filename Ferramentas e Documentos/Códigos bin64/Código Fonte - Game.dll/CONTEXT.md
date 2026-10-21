@@ -22,26 +22,26 @@ Se houver qualquer divergência estrutural, semântica ou de layout entre uma cl
 
 ## 3. Metodologia de Reconstrução & Ferramental
 
-### 3.1. Extração de Símbolos RTTI
+### 3.1. Extração de Símbolos RTTI & VTables
 O binário de produção do Aion Classic foi compilado com a opção de Run-Time Type Information (`/GR`) ativa, necessária para os operadores `dynamic_cast` e `typeid` utilizados internamente pelo subsistema de diálogos e árvores de IA.
 
-Utilizando o analisador de RTTI sobre as seções `.rdata` e executáveis, foram extraídos os 1.127 descritores canônicos (`.?AV...@@` e `.?AU...@@`), revelando:
-- A hierarquia completa de classes base e derivadas.
-- Todas as 525 classes de interface com usuário (`Dlg*`, `Addon*`, `Cef*`).
-- Todas as 255 tabelas de dados binárias (`*Table*`).
-- As 40 classes de inteligência artificial (`AIObject`, `AIToyPet`, `AIEngine`, etc.).
+Utilizando o analisador de RTTI sobre as seções `.rdata` e executáveis, foram extraídos os 1.977 descritores canônicos (`.?AV...@@` e `.?AU...@@`) e 1.833 VTables completas, revelando:
+- A hierarquia completa de classes base e derivadas com 1.833 tabelas virtuais.
+- Todas as 538 classes de interface com usuário (`Dlg*`, `Addon*`, `Cef*`).
+- Todas as 453 tabelas de dados binárias e motor de templates `TableLib` (`*Table*`, `TableIndex`, `Array`, `Node`).
+- As 43 classes de inteligência artificial canônicas (`AIObject`, `AIToyPet`, `AiCharState*`, bandos de criaturas).
 - Os setores de navegação 3D (`CPathFileReader`, `SimplePathSector`, `ComplexPathSector`).
 
-### 3.2. Análise de Descompilação com Ghidra
-A descompilação no Ghidra 12.1.4 permitiu identificar:
+### 3.2. Análise de Descompilação com Ghidra 12.1.4 & REA MCP
+A auditoria e descompilação combinada permitiu identificar:
 1. **O Ponto de Criação da Instância (`CreateGameInstance`)**:
    - RVA canônica: `0x00757E30`.
    - Assinatura: `extern "C" __declspec(dllexport) IGame* CreateGameInstance();`
-   - Função: Aloca a classe concreta `CGame` derivada de `IGame` e registra os ponteiros de subsistemas (`ISystem`, `ILog`, `IConsole`, `IRenderer`).
+   - Função: Aloca e retorna a interface canônica `IGame` e registra os ponteiros de subsistemas (`ISystem`, `ILog`, `IConsole`, `IRenderer`, `IEntitySystem`).
 2. **O Inspetor de Memória (`CryModuleGetMemoryInfo`)**:
    - RVA canônica: `0x0085BC60`.
    - Assinatura: `extern "C" __declspec(dllexport) void CryModuleGetMemoryInfo(CryModuleMemoryInfo* pMemInfo);`
-   - Função: Retorna o consumo acumulado de memória de heap e buffers do módulo.
+   - Função: Retorna o consumo acumulado de memória de heap e buffers do módulo para o CryEngine.
 
 ---
 
