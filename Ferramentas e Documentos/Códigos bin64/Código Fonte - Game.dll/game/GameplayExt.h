@@ -8,6 +8,8 @@
 #include <exception>
 #include "CombatMath.h"
 #include "SkillGraph.h"
+#include "../path/PathSector.h"
+#include "../path/SimplePathSector.h"
 
 struct ISystem;
 struct IGame;
@@ -1413,29 +1415,6 @@ public:
     virtual const char* GetClassName() const { return "ServerGridItemData"; }
 };
 
-// RTTI .?AVSimplePathSector4BitIndexZ@@
-class SimplePathSector4BitIndexZ {
-public:
-    SimplePathSector4BitIndexZ();
-    virtual ~SimplePathSector4BitIndexZ();
-    virtual const char* GetClassName() const { return "SimplePathSector4BitIndexZ"; }
-};
-
-// RTTI .?AVSimplePathSector4BitIndexZWithLink@@
-class SimplePathSector4BitIndexZWithLink {
-public:
-    SimplePathSector4BitIndexZWithLink();
-    virtual ~SimplePathSector4BitIndexZWithLink();
-    virtual const char* GetClassName() const { return "SimplePathSector4BitIndexZWithLink"; }
-};
-
-// RTTI .?AVSimplePathSectorWithLink@@
-class SimplePathSectorWithLink {
-public:
-    SimplePathSectorWithLink();
-    virtual ~SimplePathSectorWithLink();
-    virtual const char* GetClassName() const { return "SimplePathSectorWithLink"; }
-};
 
 
 
@@ -1627,21 +1606,6 @@ public:
     virtual const char* GetClassName() const { return "TcpNodeHandler"; }
 };
 
-// RTTI .?AVTerrainPathSector@@
-class TerrainPathSector {
-public:
-    TerrainPathSector();
-    virtual ~TerrainPathSector();
-    virtual const char* GetClassName() const { return "TerrainPathSector"; }
-};
-
-// RTTI .?AVTerrainPathSectorWithLink@@
-class TerrainPathSectorWithLink {
-public:
-    TerrainPathSectorWithLink();
-    virtual ~TerrainPathSectorWithLink();
-    virtual const char* GetClassName() const { return "TerrainPathSectorWithLink"; }
-};
 
 // RTTI .?AVToyPetListItem@@
 class ToyPetListItem {

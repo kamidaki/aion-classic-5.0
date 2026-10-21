@@ -76,3 +76,18 @@ SimplePathSector2ByteDeltaZ::~SimplePathSector2ByteDeltaZ() {}
 SimplePathSector2ByteDeltaZWithLink::SimplePathSector2ByteDeltaZWithLink(int32_t sectorX, int32_t sectorY, float baseZ)
     : SimplePathSector2ByteDeltaZ(sectorX, sectorY, baseZ) {}
 SimplePathSector2ByteDeltaZWithLink::~SimplePathSector2ByteDeltaZWithLink() {}
+
+// SimplePathSectorWithLink
+SimplePathSectorWithLink::SimplePathSectorWithLink(int32_t sectorX, int32_t sectorY, float baseZ)
+    : SimplePathSector(sectorX, sectorY, baseZ) {}
+SimplePathSectorWithLink::~SimplePathSectorWithLink() {}
+
+// 4BitIndexZ
+SimplePathSector4BitIndexZ::SimplePathSector4BitIndexZ(int32_t sectorX, int32_t sectorY, float baseZ)
+    : SimplePathSector(sectorX, sectorY, baseZ) {}
+SimplePathSector4BitIndexZ::~SimplePathSector4BitIndexZ() {}
+
+// 4BitIndexZWithLink
+SimplePathSector4BitIndexZWithLink::SimplePathSector4BitIndexZWithLink(int32_t sectorX, int32_t sectorY, float baseZ)
+    : SimplePathSector4BitIndexZ(sectorX, sectorY, baseZ) {}
+SimplePathSector4BitIndexZWithLink::~SimplePathSector4BitIndexZWithLink() {}

@@ -83,3 +83,27 @@ public:
     virtual ~SimplePathSector2ByteDeltaZWithLink();
     virtual const char* GetSectorType() const override { return "SimplePathSector2ByteDeltaZWithLink"; }
 };
+
+// Variação simples com link (.?AVSimplePathSectorWithLink@@)
+class SimplePathSectorWithLink : public SimplePathSector {
+public:
+    SimplePathSectorWithLink(int32_t sectorX = 0, int32_t sectorY = 0, float baseZ = 0.0f);
+    virtual ~SimplePathSectorWithLink();
+    virtual const char* GetSectorType() const override { return "SimplePathSectorWithLink"; }
+};
+
+// Variação de 4 bits (.?AVSimplePathSector4BitIndexZ@@)
+class SimplePathSector4BitIndexZ : public SimplePathSector {
+public:
+    SimplePathSector4BitIndexZ(int32_t sectorX = 0, int32_t sectorY = 0, float baseZ = 0.0f);
+    virtual ~SimplePathSector4BitIndexZ();
+    virtual const char* GetSectorType() const override { return "SimplePathSector4BitIndexZ"; }
+};
+
+// Variação de 4 bits com link (.?AVSimplePathSector4BitIndexZWithLink@@)
+class SimplePathSector4BitIndexZWithLink : public SimplePathSector4BitIndexZ {
+public:
+    SimplePathSector4BitIndexZWithLink(int32_t sectorX = 0, int32_t sectorY = 0, float baseZ = 0.0f);
+    virtual ~SimplePathSector4BitIndexZWithLink();
+    virtual const char* GetSectorType() const override { return "SimplePathSector4BitIndexZWithLink"; }
+};

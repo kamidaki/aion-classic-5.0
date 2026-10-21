@@ -69,3 +69,23 @@ public:
 
     virtual const char* GetSectorType() const override { return "FlatPathSectorWithLink"; }
 };
+
+// Setor de terreno contínuo (.?AVTerrainPathSector@@)
+class TerrainPathSector : public PathSector {
+public:
+    TerrainPathSector(int32_t sectorX = 0, int32_t sectorY = 0);
+    virtual ~TerrainPathSector();
+
+    virtual float GetHeight(float localX, float localY) const override;
+    virtual bool IsWalkable(float localX, float localY) const override;
+    virtual const char* GetSectorType() const override { return "TerrainPathSector"; }
+};
+
+// Setor de terreno contínuo com ligação (.?AVTerrainPathSectorWithLink@@)
+class TerrainPathSectorWithLink : public TerrainPathSector {
+public:
+    TerrainPathSectorWithLink(int32_t sectorX = 0, int32_t sectorY = 0);
+    virtual ~TerrainPathSectorWithLink();
+
+    virtual const char* GetSectorType() const override { return "TerrainPathSectorWithLink"; }
+};

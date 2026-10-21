@@ -497,14 +497,6 @@ SearchChannelResult::~SearchChannelResult() {}
 ServerGridItemData::ServerGridItemData() {}
 ServerGridItemData::~ServerGridItemData() {}
 
-SimplePathSector4BitIndexZ::SimplePathSector4BitIndexZ() {}
-SimplePathSector4BitIndexZ::~SimplePathSector4BitIndexZ() {}
-
-SimplePathSector4BitIndexZWithLink::SimplePathSector4BitIndexZWithLink() {}
-SimplePathSector4BitIndexZWithLink::~SimplePathSector4BitIndexZWithLink() {}
-
-SimplePathSectorWithLink::SimplePathSectorWithLink() {}
-SimplePathSectorWithLink::~SimplePathSectorWithLink() {}
 
 
 SlotFuncDefaultHandler::SlotFuncDefaultHandler() {}
@@ -577,11 +569,6 @@ TagPointManager::~TagPointManager() {}
 TcpNodeHandler::TcpNodeHandler() {}
 TcpNodeHandler::~TcpNodeHandler() {}
 
-TerrainPathSector::TerrainPathSector() {}
-TerrainPathSector::~TerrainPathSector() {}
-
-TerrainPathSectorWithLink::TerrainPathSectorWithLink() {}
-TerrainPathSectorWithLink::~TerrainPathSectorWithLink() {}
 
 ToyPetListItem::ToyPetListItem() {}
 ToyPetListItem::~ToyPetListItem() {}

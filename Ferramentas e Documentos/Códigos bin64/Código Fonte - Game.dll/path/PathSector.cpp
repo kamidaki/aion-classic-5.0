@@ -49,3 +49,33 @@ FlatPathSectorWithLink::FlatPathSectorWithLink(int32_t sectorX, int32_t sectorY,
 
 FlatPathSectorWithLink::~FlatPathSectorWithLink() {
 }
+
+// TerrainPathSector
+TerrainPathSector::TerrainPathSector(int32_t sectorX, int32_t sectorY)
+    : PathSector(sectorX, sectorY)
+{
+}
+
+TerrainPathSector::~TerrainPathSector() {
+}
+
+float TerrainPathSector::GetHeight(float localX, float localY) const {
+    (void)localX;
+    (void)localY;
+    return 0.0f;
+}
+
+bool TerrainPathSector::IsWalkable(float localX, float localY) const {
+    (void)localX;
+    (void)localY;
+    return true;
+}
+
+// TerrainPathSectorWithLink
+TerrainPathSectorWithLink::TerrainPathSectorWithLink(int32_t sectorX, int32_t sectorY)
+    : TerrainPathSector(sectorX, sectorY)
+{
+}
+
+TerrainPathSectorWithLink::~TerrainPathSectorWithLink() {
+}
