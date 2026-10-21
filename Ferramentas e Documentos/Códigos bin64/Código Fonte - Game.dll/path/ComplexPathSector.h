@@ -2,16 +2,6 @@
 #include "PathSector.h"
 #include <vector>
 
-struct ComplexPathLayer {
-    float minZ;
-    float maxZ;
-    bool walkable;
-};
-
-struct ComplexPathCell {
-    std::vector<ComplexPathLayer> layers;
-};
-
 // Setor complexo com múltiplas camadas verticais (pontes, túneis) extraído do RTTI (.?AVComplexPathSector@@)
 class ComplexPathSector : public PathSector {
 public:
@@ -26,5 +16,6 @@ public:
     void AddLayer(int gridX, int gridY, float minZ, float maxZ, bool walkable);
 
 private:
-    ComplexPathCell m_cells[64][64];
+    float m_heights[64][64];
+    bool m_walkable[64][64];
 };

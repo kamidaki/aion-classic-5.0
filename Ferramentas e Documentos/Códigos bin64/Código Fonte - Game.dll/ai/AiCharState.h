@@ -78,15 +78,7 @@ public:
     virtual void OnExit(AiCharContext* pContext) override;
 };
 
-// --- Estados Especializados de Função de Combate (Dealer / Healer / Tank) ---
-class AiCharStateAttack_Dealer : public AiCharState {
-public:
-    virtual const char* GetStateName() const override { return "AiCharStateAttack_Dealer"; }
-    virtual void OnEnter(AiCharContext* pContext) override;
-    virtual void OnUpdate(AiCharContext* pContext) override;
-    virtual void OnExit(AiCharContext* pContext) override;
-};
-
+// --- Estados Especializados de Função de Combate (Healer / Tank) ---
 class AiCharStateAttack_Healer : public AiCharState {
 public:
     virtual const char* GetStateName() const override { return "AiCharStateAttack_Healer"; }
@@ -98,14 +90,6 @@ public:
 class AiCharStateAttack_Tank : public AiCharState {
 public:
     virtual const char* GetStateName() const override { return "AiCharStateAttack_Tank"; }
-    virtual void OnEnter(AiCharContext* pContext) override;
-    virtual void OnUpdate(AiCharContext* pContext) override;
-    virtual void OnExit(AiCharContext* pContext) override;
-};
-
-class AiCharStateFollow_Dealer : public AiCharState {
-public:
-    virtual const char* GetStateName() const override { return "AiCharStateFollow_Dealer"; }
     virtual void OnEnter(AiCharContext* pContext) override;
     virtual void OnUpdate(AiCharContext* pContext) override;
     virtual void OnExit(AiCharContext* pContext) override;

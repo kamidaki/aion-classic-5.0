@@ -61,10 +61,6 @@ void AiCharStateEmotion::OnUpdate(AiCharContext* pContext) {}
 void AiCharStateEmotion::OnExit(AiCharContext* pContext) {}
 
 // Implementação dos métodos dos estados especializados de combate
-void AiCharStateAttack_Dealer::OnEnter(AiCharContext* pContext) { GameLog_Info("AiCharState [%s] ENTER Obj=%u", GetStateName(), pContext->GetOwner()->GetObjectId()); }
-void AiCharStateAttack_Dealer::OnUpdate(AiCharContext* pContext) {}
-void AiCharStateAttack_Dealer::OnExit(AiCharContext* pContext) {}
-
 void AiCharStateAttack_Healer::OnEnter(AiCharContext* pContext) { GameLog_Info("AiCharState [%s] ENTER Obj=%u", GetStateName(), pContext->GetOwner()->GetObjectId()); }
 void AiCharStateAttack_Healer::OnUpdate(AiCharContext* pContext) {}
 void AiCharStateAttack_Healer::OnExit(AiCharContext* pContext) {}
@@ -72,10 +68,6 @@ void AiCharStateAttack_Healer::OnExit(AiCharContext* pContext) {}
 void AiCharStateAttack_Tank::OnEnter(AiCharContext* pContext) { GameLog_Info("AiCharState [%s] ENTER Obj=%u", GetStateName(), pContext->GetOwner()->GetObjectId()); }
 void AiCharStateAttack_Tank::OnUpdate(AiCharContext* pContext) {}
 void AiCharStateAttack_Tank::OnExit(AiCharContext* pContext) {}
-
-void AiCharStateFollow_Dealer::OnEnter(AiCharContext* pContext) { GameLog_Info("AiCharState [%s] ENTER Obj=%u", GetStateName(), pContext->GetOwner()->GetObjectId()); }
-void AiCharStateFollow_Dealer::OnUpdate(AiCharContext* pContext) {}
-void AiCharStateFollow_Dealer::OnExit(AiCharContext* pContext) {}
 
 void AiCharStateFollow_Healer::OnEnter(AiCharContext* pContext) { GameLog_Info("AiCharState [%s] ENTER Obj=%u", GetStateName(), pContext->GetOwner()->GetObjectId()); }
 void AiCharStateFollow_Healer::OnUpdate(AiCharContext* pContext) {}

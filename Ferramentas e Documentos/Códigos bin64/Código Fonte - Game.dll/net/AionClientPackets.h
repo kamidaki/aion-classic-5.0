@@ -6,9 +6,9 @@
 #include "AionPacketOpcodes.h"
 
 // Buffer utilitário para serialização binária de pacotes do cliente
-class ByteBufferWriter {
+class PacketParser {
 public:
-    ByteBufferWriter(uint16_t opcode) {
+    PacketParser(uint16_t opcode) {
         WriteUInt16(opcode);
     }
 
@@ -97,67 +97,67 @@ enum class EChatType : uint8_t {
 namespace AionPackets {
 
 // --- 1. Autenticação, Ciclo de Vida e Sessão ---
-ByteBufferWriter BuildVersionPacket(uint32_t version = 207, uint32_t subVersion = 207);
-ByteBufferWriter BuildLogoutPacket();
-ByteBufferWriter BuildAskQuitPacket();
-ByteBufferWriter BuildReadyToQuitPacket();
-ByteBufferWriter BuildDeadRestartPacket();
-ByteBufferWriter BuildL2AuthLoginPacket(const std::string& account, const std::string& token);
-ByteBufferWriter BuildAlivePacket(uint32_t clientTime);
-ByteBufferWriter BuildSyncTimePacket(uint32_t clientTime);
-ByteBufferWriter BuildReconnectAuthPacket(uint32_t accountId, const std::string& token);
+PacketParser BuildVersionPacket(uint32_t version = 207, uint32_t subVersion = 207);
+PacketParser BuildLogoutPacket();
+PacketParser BuildAskQuitPacket();
+PacketParser BuildReadyToQuitPacket();
+PacketParser BuildDeadRestartPacket();
+PacketParser BuildL2AuthLoginPacket(const std::string& account, const std::string& token);
+PacketParser BuildAlivePacket(uint32_t clientTime);
+PacketParser BuildSyncTimePacket(uint32_t clientTime);
+PacketParser BuildReconnectAuthPacket(uint32_t accountId, const std::string& token);
 
 // --- 2. Seleção e Criação de Personagem ---
-ByteBufferWriter BuildCharacterListPacket();
-ByteBufferWriter BuildCheckNicknamePacket(const std::string& name);
-ByteBufferWriter BuildCreateCharacterPacket(const std::string& name, uint8_t race, uint8_t gender, uint8_t playerClass, uint8_t voice, const std::vector<uint8_t>& appearanceData);
-ByteBufferWriter BuildDeleteCharacterPacket(uint32_t characterId);
-ByteBufferWriter BuildRestoreCharacterPacket(uint32_t characterId);
-ByteBufferWriter BuildEnterWorldPacket(uint32_t characterId);
-ByteBufferWriter BuildLevelReadyPacket();
+PacketParser BuildCharacterListPacket();
+PacketParser BuildCheckNicknamePacket(const std::string& name);
+PacketParser BuildCreateCharacterPacket(const std::string& name, uint8_t race, uint8_t gender, uint8_t playerClass, uint8_t voice, const std::vector<uint8_t>& appearanceData);
+PacketParser BuildDeleteCharacterPacket(uint32_t characterId);
+PacketParser BuildRestoreCharacterPacket(uint32_t characterId);
+PacketParser BuildEnterWorldPacket(uint32_t characterId);
+PacketParser BuildLevelReadyPacket();
 
 // --- 3. Movimentação, Posição e Voo ---
 // Movimentação WASD vetorial e parada
-ByteBufferWriter BuildMoveNewPacket(float x, float y, float z, uint8_t heading, uint8_t moveMask = MovementMask::IMMEDIATE, float vectorX = 0.0f, float vectorY = 0.0f, float vectorZ = 0.0f);
+PacketParser BuildMoveNewPacket(float x, float y, float z, uint8_t heading, uint8_t moveMask = MovementMask::IMMEDIATE, float vectorX = 0.0f, float vectorY = 0.0f, float vectorZ = 0.0f);
 // Movimentação click-to-move absoluta
-ByteBufferWriter BuildMoveNewAbsolutePacket(float x, float y, float z, uint8_t heading, float targetX, float targetY, float targetZ);
+PacketParser BuildMoveNewAbsolutePacket(float x, float y, float z, uint8_t heading, float targetX, float targetY, float targetZ);
 // Voo e planeio (Glide)
-ByteBufferWriter BuildMoveNewGlidePacket(float x, float y, float z, uint8_t heading, float vectorX, float vectorY, float vectorZ, uint8_t glideFlag, uint8_t geyserLocationId = 0);
+PacketParser BuildMoveNewGlidePacket(float x, float y, float z, uint8_t heading, float vectorX, float vectorY, float vectorZ, uint8_t glideFlag, uint8_t geyserLocationId = 0);
 // Elevadores e veículos
-ByteBufferWriter BuildMoveNewVehiclePacket(float x, float y, float z, uint8_t heading, float vehicleX, float vehicleY, float vehicleZ, uint32_t unk1 = 0, uint32_t unk2 = 0);
+PacketParser BuildMoveNewVehiclePacket(float x, float y, float z, uint8_t heading, float vehicleX, float vehicleY, float vehicleZ, uint32_t unk1 = 0, uint32_t unk2 = 0);
 
-ByteBufferWriter BuildPathFlyPacket(float x, float y, float z, uint8_t flyState);
-ByteBufferWriter BuildWindPathPacket(uint32_t windStreamId, uint32_t distance, uint8_t state = 1);
-ByteBufferWriter BuildBlinkPacket(float x, float y, float z, uint8_t heading);
-ByteBufferWriter BuildChangeDirectionPacket(uint8_t heading);
+PacketParser BuildPathFlyPacket(float x, float y, float z, uint8_t flyState);
+PacketParser BuildWindPathPacket(uint32_t windStreamId, uint32_t distance, uint8_t state = 1);
+PacketParser BuildBlinkPacket(float x, float y, float z, uint8_t heading);
+PacketParser BuildChangeDirectionPacket(uint8_t heading);
 
 // --- 4. Combate, Habilidades e Alvos ---
-ByteBufferWriter BuildChangeTargetPacket(uint32_t targetObjectId);
-ByteBufferWriter BuildAttackPacket(uint32_t targetObjectId, uint8_t attackType, uint32_t time);
-ByteBufferWriter BuildUseSkillPacket(uint32_t skillId, uint32_t skillLevel, uint32_t targetObjectId);
-ByteBufferWriter BuildTurnOffToggleSkillPacket(uint32_t skillId);
-ByteBufferWriter BuildTurnOffAbnormalStatusPacket(uint32_t effectId);
+PacketParser BuildChangeTargetPacket(uint32_t targetObjectId);
+PacketParser BuildAttackPacket(uint32_t targetObjectId, uint8_t attackType, uint32_t time);
+PacketParser BuildUseSkillPacket(uint32_t skillId, uint32_t skillLevel, uint32_t targetObjectId);
+PacketParser BuildTurnOffToggleSkillPacket(uint32_t skillId);
+PacketParser BuildTurnOffAbnormalStatusPacket(uint32_t effectId);
 
 // --- 5. Inventário, Itens e Equipamento ---
-ByteBufferWriter BuildUseItemPacket(uint32_t itemUniqueId);
-ByteBufferWriter BuildUseEquipmentItemPacket(uint32_t itemUniqueId);
-ByteBufferWriter BuildMoveItemSlotPacket(uint32_t itemUniqueId, uint8_t destSlot);
-ByteBufferWriter BuildMoveStackableItemPacket(uint32_t itemUniqueId, uint32_t count, uint8_t destSlot);
-ByteBufferWriter BuildSwapItemSlotPacket(uint8_t slot1, uint8_t slot2);
-ByteBufferWriter BuildDestroyItemPacket(uint32_t itemUniqueId, uint32_t count);
-ByteBufferWriter BuildEnchantItemPacket(uint32_t targetItemUniqueId, uint32_t stoneItemUniqueId, uint32_t supplementUniqueId);
+PacketParser BuildUseItemPacket(uint32_t itemUniqueId);
+PacketParser BuildUseEquipmentItemPacket(uint32_t itemUniqueId);
+PacketParser BuildMoveItemSlotPacket(uint32_t itemUniqueId, uint8_t destSlot);
+PacketParser BuildMoveStackableItemPacket(uint32_t itemUniqueId, uint32_t count, uint8_t destSlot);
+PacketParser BuildSwapItemSlotPacket(uint8_t slot1, uint8_t slot2);
+PacketParser BuildDestroyItemPacket(uint32_t itemUniqueId, uint32_t count);
+PacketParser BuildEnchantItemPacket(uint32_t targetItemUniqueId, uint32_t stoneItemUniqueId, uint32_t supplementUniqueId);
 
 // --- 6. Diálogos com NPCs e Missões ---
-ByteBufferWriter BuildStartDialogPacket(uint32_t targetObjectId);
-ByteBufferWriter BuildEndDialogPacket(uint32_t targetObjectId);
-ByteBufferWriter BuildHActionPacket(uint32_t targetObjectId, uint32_t dialogId, uint32_t questId);
-ByteBufferWriter BuildGiveUpQuestPacket(uint32_t questId);
-ByteBufferWriter BuildShareQuestPacket(uint32_t questId);
+PacketParser BuildStartDialogPacket(uint32_t targetObjectId);
+PacketParser BuildEndDialogPacket(uint32_t targetObjectId);
+PacketParser BuildHActionPacket(uint32_t targetObjectId, uint32_t dialogId, uint32_t questId);
+PacketParser BuildGiveUpQuestPacket(uint32_t questId);
+PacketParser BuildShareQuestPacket(uint32_t questId);
 
 // --- 7. Comunicação, Chat e Emoções ---
-ByteBufferWriter BuildSayPacket(uint8_t chatType, const std::string& message);
-ByteBufferWriter BuildWhisperPacket(const std::string& recipient, const std::string& message);
-ByteBufferWriter BuildActionPacket(uint32_t emotionId, uint32_t targetObjectId);
+PacketParser BuildSayPacket(uint8_t chatType, const std::string& message);
+PacketParser BuildWhisperPacket(const std::string& recipient, const std::string& message);
+PacketParser BuildActionPacket(uint32_t emotionId, uint32_t targetObjectId);
 
 // Formatadores canônicos de hiperlinks no chat
 std::string FormatItemLink(uint32_t itemId, const std::string& itemName);
@@ -165,26 +165,26 @@ std::string FormatPosLink(uint32_t mapId, float x, float y, float z);
 std::string FormatQuestLink(uint32_t questId, const std::string& questTitle);
 
 // --- 8. Grupos, Alianças e Marcação Tática ---
-ByteBufferWriter BuildInviteToGroupPacket(const std::string& targetPlayerName, uint8_t inviteType = 0);
-ByteBufferWriter BuildGroupLootPacket(uint32_t groupId, uint32_t itemId, uint32_t npcObjId, uint8_t distMode, uint32_t roll, uint64_t bid);
-ByteBufferWriter BuildShowBrandPacket(uint32_t brandId, uint32_t targetObjectId, uint32_t action = 0);
+PacketParser BuildInviteToGroupPacket(const std::string& targetPlayerName, uint8_t inviteType = 0);
+PacketParser BuildGroupLootPacket(uint32_t groupId, uint32_t itemId, uint32_t npcObjId, uint8_t distMode, uint32_t roll, uint64_t bid);
+PacketParser BuildShowBrandPacket(uint32_t brandId, uint32_t targetObjectId, uint32_t action = 0);
 
 // --- 9. Coleta e Crafting ---
-ByteBufferWriter BuildGatherPacket(uint32_t targetObjectId);
-ByteBufferWriter BuildCombinePacket(uint32_t recipeId, uint32_t targetObjectId);
+PacketParser BuildGatherPacket(uint32_t targetObjectId);
+PacketParser BuildCombinePacket(uint32_t recipeId, uint32_t targetObjectId);
 
 // --- 10. Saque (Loot) ---
-ByteBufferWriter BuildLootPacket(uint32_t targetObjectId);
-ByteBufferWriter BuildLootItemPacket(uint32_t targetObjectId, uint32_t itemIndex);
+PacketParser BuildLootPacket(uint32_t targetObjectId);
+PacketParser BuildLootItemPacket(uint32_t targetObjectId, uint32_t itemIndex);
 
 // --- 11. Trocas e Comércio ---
-ByteBufferWriter BuildAskExchangePacket(uint32_t targetObjectId);
-ByteBufferWriter BuildAddExchangeItemPacket(uint32_t itemUniqueId, uint32_t count);
-ByteBufferWriter BuildExchangeGoldPacket(uint64_t kinahAmount);
-ByteBufferWriter BuildCheckExchangePacket();
-ByteBufferWriter BuildAcceptExchangePacket();
-ByteBufferWriter BuildCancelExchangePacket();
-ByteBufferWriter BuildBuySellPacket(uint32_t npcObjectId, const std::vector<std::pair<uint32_t, uint32_t>>& itemsToBuy);
+PacketParser BuildAskExchangePacket(uint32_t targetObjectId);
+PacketParser BuildAddExchangeItemPacket(uint32_t itemUniqueId, uint32_t count);
+PacketParser BuildExchangeGoldPacket(uint64_t kinahAmount);
+PacketParser BuildCheckExchangePacket();
+PacketParser BuildAcceptExchangePacket();
+PacketParser BuildCancelExchangePacket();
+PacketParser BuildBuySellPacket(uint32_t npcObjectId, const std::vector<std::pair<uint32_t, uint32_t>>& itemsToBuy);
 
 }
 

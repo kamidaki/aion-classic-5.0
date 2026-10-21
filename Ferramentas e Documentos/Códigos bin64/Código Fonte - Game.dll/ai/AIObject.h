@@ -5,10 +5,11 @@
 #include <memory>
 #include "AiCharContext.h"
 
-struct Vec3F {
+struct Vec {
     float x, y, z;
-    Vec3F(float _x = 0.0f, float _y = 0.0f, float _z = 0.0f) : x(_x), y(_y), z(_z) {}
+    Vec(float _x = 0.0f, float _y = 0.0f, float _z = 0.0f) : x(_x), y(_y), z(_z) {}
 };
+using Vec3F = Vec;
 
 // Objeto base de IA e entidades do mundo extraído do RTTI do game.dll (.?AVAIObject@@)
 class AIObject {

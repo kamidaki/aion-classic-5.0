@@ -18,7 +18,7 @@ public:
     void Shutdown();
 
     // Envio de pacotes do cliente para o servidor
-    bool Send(const ByteBufferWriter& writer);
+    bool Send(const PacketParser& writer);
     bool SendRaw(uint16_t opcode, const uint8_t* pData, size_t size);
 
     // Despacho de pacotes recebidos do servidor

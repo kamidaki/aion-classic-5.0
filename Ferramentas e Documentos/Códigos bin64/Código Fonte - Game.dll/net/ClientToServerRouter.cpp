@@ -22,7 +22,7 @@ bool ClientToServerRouter::Initialize() {
     return true;
 }
 
-bool ClientToServerRouter::Send(const ByteBufferWriter& writer) {
+bool ClientToServerRouter::Send(const PacketParser& writer) {
     if (writer.GetSize() < 2) return false;
     uint16_t opcode = *reinterpret_cast<const uint16_t*>(writer.GetData());
     return SendRaw(opcode, writer.GetData() + 2, writer.GetSize() - 2);

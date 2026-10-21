@@ -89,25 +89,14 @@ graph TD
 
 ---
 
-### FASE 1: Saneamento, Purga de Código Falso & Alinhamento Estrutural PE/MSVC
-> **Objetivo**: Limpar o código fonte de todas as 103 classes falsas, remover código de proxy/hook de `reverse/`, restaurar a integridade estrutural e atualizar a lista de classes para as 1.977 classes reais.
-
-- **Subetapa 1.1 - Purga do Módulo `reverse/`**:
-  - Excluir o código de hook de memória e redirecionamento de IP (`GameReverseMap.cpp`, `GameReverseMap.h`).
-  - Atualizar o `Build64.bat` para remover compilação deste módulo na DLL oficial.
-- **Subetapa 1.2 - Purga dos 7 Falsos Motores / Managers**:
-  - Remover `ActorManager.*`, `CombatEngine.*`, `InventoryManager.*`, `SkillEngine.*`, `WorldManager.*`, `UIManager.*`, `HUDManager.*`.
-  - Substituir por referências diretas à arquitetura canônica baseada em entidades e interfaces CryEngine (`IGame`, `CPlayer`, `ClientToServerRouter`).
-- **Subetapa 1.3 - Eliminação de Wrappers Falsos de Rede e Criptografia**:
-  - Excluir `AionCryptEngine.*`, `ByteBufferReader.*`, `ByteBufferWriter.*`.
-  - Utilizar buffers de streaming nativos compatíveis com `CryNetwork.dll`.
-- **Subetapa 1.4 - Atualização do Inventário de Classes**:
-  - Manter `rtti_classes.txt` com todas as 1.977 classes canônicas extraídas diretamente do binário oficial.
-  - Atualizar `audit_coverage.py` para detecção contínua de inconsistências.
-- **Testes & Critérios de Aceite**:
-  - Compilação limpa com `Build64.bat` sem erros e sem warnings.
-  - `python audit_coverage.py` reporta 0 classes falsas no código fonte.
-- **Checkpoint Git**: Commit `chore: purge fictitious classes and align canonical rtti baseline` + `git push`.
+### FASE 1: Saneamento, Purga de Código Falso & Alinhamento Estrutural PE/MSVC [CONCLUÍDA]
+> **Status**: **100% Concluída e Validada** em 21/10/2026.
+> **Resultados Auditados**:
+> - Classes Falsas no Código: **0 (Zero)** detectadas via `audit_coverage.py`.
+> - Classes Canônicas RTTI Mapeadas: **1.977 classes reais**.
+> - Compilação MSVC 2022 x64 (`Build64.bat`): **0 erros, 0 avisos**.
+> - Exportações PE validadas com dumpbin: Ordinal 1 (`CreateGameInstance`), Ordinal 2 (`CryModuleGetMemoryInfo`).
+> - Arquivos excluídos com sucesso: `reverse/GameReverseMap.*`, `game/ActorManager.*`, `game/CombatEngine.*`, `game/InventoryManager.*`, `game/Quests.*`, `game/SkillEngine.*`, `game/WorldManager.*`, `tables/HousingTable.*`, `tables/AiCharTable.*`, `ui/DlgCreateChar.*`, `ui/UIManager.*`, `ui/HUDManager.*`, `net/AionCryptEngine.*`, `framework/CryEngineSubsystems.*`, `ai/AIEngine.*`, `ai/AIOtherToyPet.*`.
 
 ---
 

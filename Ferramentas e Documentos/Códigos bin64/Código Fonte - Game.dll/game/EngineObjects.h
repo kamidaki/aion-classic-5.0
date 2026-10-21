@@ -5,16 +5,7 @@
 #include <memory>
 #include "../ai/AIObject.h" // Vec3F
 
-// Objeto de jogo do CryEngine (.?AVCXGame@@)
-class CXGame {
-public:
-    CXGame();
-    virtual ~CXGame();
-
-    virtual bool Init();
-    virtual void Reset();
-    virtual void Update();
-};
+#include "../core/Game.h"
 
 // Processamento de comando de entidade (.?AVCXEntityProcessingCmd@@)
 class CXEntityProcessingCmd {
@@ -56,19 +47,6 @@ private:
     std::vector<std::shared_ptr<CXArea>> m_areas;
 };
 
-// Encapsulamento de arquivos da CryEngine (.?AVCCryFile@@)
-class CCryFile {
-public:
-    CCryFile();
-    ~CCryFile();
-
-    bool Open(const char* szFilename, const char* szMode);
-    void Close();
-    size_t Read(void* lpBuf, size_t nSize);
-
-private:
-    FILE* m_file;
-};
 
 // Pré-carregamento assíncrono (.?AVCFilePrefetchLinker@@)
 class CFilePrefetchLinker {
@@ -169,16 +147,4 @@ public:
     virtual ~ChannelChattingClient();
 
     void SendChannelMessage(uint32_t channelId, const std::string& message);
-};
-
-class BannedStringWrapper {
-public:
-    BannedStringWrapper();
-    ~BannedStringWrapper();
-
-    bool IsBanned(const std::string& text) const;
-    std::string FilterText(const std::string& text) const;
-
-private:
-    std::vector<std::string> m_bannedWords;
 };

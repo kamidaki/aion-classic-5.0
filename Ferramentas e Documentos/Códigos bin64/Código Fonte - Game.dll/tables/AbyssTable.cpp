@@ -29,7 +29,7 @@ bool AbyssTable::LoadTable() {
     return true;
 }
 
-const AbyssRankEntry* AbyssTable::GetRank(uint32_t rankId) const {
+const AbyssRankData* AbyssTable::GetRank(uint32_t rankId) const {
     auto it = m_ranks.find(rankId);
     if (it != m_ranks.end()) {
         return &it->second;

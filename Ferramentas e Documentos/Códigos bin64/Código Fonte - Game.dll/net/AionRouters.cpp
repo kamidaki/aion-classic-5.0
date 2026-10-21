@@ -50,27 +50,6 @@ void ServerToClientRouter::OnReceive(const uint8_t* pData, size_t size) {
     }
 }
 
-// IOSocket
-IOSocket::IOSocket() : m_socket(INVALID_SOCKET), m_bConnected(false) {}
-IOSocket::~IOSocket() { Disconnect(); }
-bool IOSocket::Connect(const char* host, uint16_t port) {
-    m_bConnected = true;
-    GameLog_Info("IOSocket conectado a %s:%u", host, port);
-    return true;
-}
-void IOSocket::Disconnect() {
-    if (m_bConnected) {
-        m_bConnected = false;
-        GameLog_Info("IOSocket desconectado.");
-    }
-}
-bool IOSocket::Send(const uint8_t* pData, size_t size) {
-    return m_bConnected && pData && size > 0;
-}
-int IOSocket::Receive(uint8_t* pBuffer, size_t maxLen) {
-    return 0;
-}
-
 // SocketHandler
 SocketHandler::SocketHandler() {}
 SocketHandler::~SocketHandler() {}
@@ -79,8 +58,8 @@ void SocketHandler::OnDisconnect() { GameLog_Info("SocketHandler: OnDisconnect")
 void SocketHandler::OnData(const uint8_t* pData, size_t size) {}
 
 // GameSocketHandler
-GameSocketHandler::GameSocketHandler() {}
-GameSocketHandler::~GameSocketHandler() {}
+GameSocketHandler::GameSocketHandler() : m_socket(INVALID_SOCKET), m_bConnected(false) {}
+GameSocketHandler::~GameSocketHandler() { Disconnect(); }
 void GameSocketHandler::OnConnect() {
     SocketHandler::OnConnect();
     GameLog_Info("GameSocketHandler: Conexão de jogo estabelecida.");
@@ -92,9 +71,24 @@ void GameSocketHandler::OnDisconnect() {
 void GameSocketHandler::OnData(const uint8_t* pData, size_t size) {
     SocketHandler::OnData(pData, size);
 }
+bool GameSocketHandler::Connect(const char* host, uint16_t port) {
+    m_bConnected = true;
+    GameLog_Info("GameSocketHandler conectado a %s:%u", host, port);
+    return true;
+}
+void GameSocketHandler::Disconnect() {
+    if (m_bConnected) {
+        m_bConnected = false;
+        GameLog_Info("GameSocketHandler desconectado.");
+    }
+}
+bool GameSocketHandler::Send(const uint8_t* pData, size_t size) {
+    return m_bConnected && pData && size > 0;
+}
 
 // PacketParserHandler
-PacketParserHandler::PacketParserHandler() {}
+PacketParserHandler::PacketParserHandler() : m_pData(nullptr), m_size(0), m_offset(0) {}
+PacketParserHandler::PacketParserHandler(const uint8_t* pData, size_t size) : m_pData(pData), m_size(size), m_offset(0) {}
 PacketParserHandler::~PacketParserHandler() {}
 bool PacketParserHandler::ParsePacket(const uint8_t* pData, size_t size, uint16_t& outOpcode, const uint8_t*& outPayload, size_t& outPayloadSize) {
     if (!pData || size < 4) return false;

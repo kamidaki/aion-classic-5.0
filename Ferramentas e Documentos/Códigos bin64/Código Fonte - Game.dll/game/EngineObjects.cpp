@@ -1,12 +1,6 @@
 #include "EngineObjects.h"
 #include "../core/GameLog.h"
 
-// CXGame
-CXGame::CXGame() {}
-CXGame::~CXGame() {}
-bool CXGame::Init() { GameLog_Info("CXGame::Init"); return true; }
-void CXGame::Reset() { GameLog_Info("CXGame::Reset"); }
-void CXGame::Update() {}
 
 // CXEntityProcessingCmd
 CXEntityProcessingCmd::CXEntityProcessingCmd() : m_actionFlags(0) {}
@@ -35,23 +29,6 @@ CXArea* CXAreaMgr::GetAreaAt(const Vec3F& pos) const {
     return nullptr;
 }
 
-// CCryFile
-CCryFile::CCryFile() : m_file(nullptr) {}
-CCryFile::~CCryFile() { Close(); }
-bool CCryFile::Open(const char* szFilename, const char* szMode) {
-    fopen_s(&m_file, szFilename, szMode);
-    return m_file != nullptr;
-}
-void CCryFile::Close() {
-    if (m_file) {
-        fclose(m_file);
-        m_file = nullptr;
-    }
-}
-size_t CCryFile::Read(void* lpBuf, size_t nSize) {
-    if (!m_file || !lpBuf) return 0;
-    return fread(lpBuf, 1, nSize, m_file);
-}
 
 // CFilePrefetchLinker
 CFilePrefetchLinker::CFilePrefetchLinker() {}
@@ -121,27 +98,4 @@ void ChannelChattingClient::SendChannelMessage(uint32_t channelId, const std::st
     GameLog_Info("ChannelChattingClient: Mensagem enviada para Canal=%u: %s", channelId, message.c_str());
 }
 
-// BannedStringWrapper
-BannedStringWrapper::BannedStringWrapper() {
-    m_bannedWords = { "gm_hack", "speedhack", "cheat" };
-}
-BannedStringWrapper::~BannedStringWrapper() {
-    m_bannedWords.clear();
-}
-bool BannedStringWrapper::IsBanned(const std::string& text) const {
-    for (const auto& w : m_bannedWords) {
-        if (text.find(w) != std::string::npos) return true;
-    }
-    return false;
-}
-std::string BannedStringWrapper::FilterText(const std::string& text) const {
-    std::string result = text;
-    for (const auto& w : m_bannedWords) {
-        size_t pos = 0;
-        while ((pos = result.find(w, pos)) != std::string::npos) {
-            result.replace(pos, w.length(), std::string(w.length(), '*'));
-            pos += w.length();
-        }
-    }
-    return result;
-}
+

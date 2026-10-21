@@ -13,7 +13,7 @@ bool ArtiTable::LoadTable() {
     m_artifacts.clear();
 
     // Artefatos canônicos do Reshanta (Core, Sul, Norte)
-    ArtiTemplate coreArti{};
+    ArtiData coreArti{};
     coreArti.id = 1;
     coreArti.name = "Hellfire Artifact";
     coreArti.skillId = 18001;
@@ -23,7 +23,7 @@ bool ArtiTable::LoadTable() {
     coreArti.targetFaction = 0;
     m_artifacts[coreArti.id] = coreArti;
 
-    ArtiTemplate shieldArti{};
+    ArtiData shieldArti{};
     shieldArti.id = 2;
     shieldArti.name = "Aegis Artifact";
     shieldArti.skillId = 18002;
@@ -37,7 +37,7 @@ bool ArtiTable::LoadTable() {
     return true;
 }
 
-const ArtiTemplate* ArtiTable::GetArtiTemplate(uint32_t id) const {
+const ArtiData* ArtiTable::GetArtiTemplate(uint32_t id) const {
     auto it = m_artifacts.find(id);
     if (it != m_artifacts.end()) {
         return &it->second;

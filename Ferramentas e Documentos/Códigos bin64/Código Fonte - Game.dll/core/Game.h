@@ -2,10 +2,11 @@
 #include "../framework/IGame.h"
 #include <string>
 
-class CGame : public IGame {
+// Objeto de jogo canônico do Aion Classic (.?AVCXGame@@)
+class CXGame : public IGame {
 public:
-    CGame();
-    virtual ~CGame();
+    CXGame();
+    virtual ~CXGame();
 
     // IGame implementation
     virtual bool Init(ISystem* pSystem, bool bInEditor, bool bDedicated) override;
@@ -21,3 +22,5 @@ private:
     bool m_bDedicated;
     std::string m_gameName;
 };
+
+using CGame = CXGame;

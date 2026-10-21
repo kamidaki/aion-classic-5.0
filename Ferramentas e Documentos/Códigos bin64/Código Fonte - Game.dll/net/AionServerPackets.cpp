@@ -1,9 +1,7 @@
 #include "AionServerPackets.h"
 #include "AionPacketOpcodes.h"
 #include "ClientToServerRouter.h"
-#include "AionCryptEngine.h"
 #include "AionClientPackets.h"
-#include "../game/ActorManager.h"
 #include "../core/GameLog.h"
 #include <cmath>
 
@@ -33,7 +31,7 @@ void RegisterAllHandlers() {
 }
 
 void HandleVersionCheck(const uint8_t* pData, size_t size) {
-    ByteBufferReader reader(pData, size);
+    PacketParserHandler reader(pData, size);
     uint8_t result = reader.ReadByte();
     uint8_t serverId = reader.ReadByte();
     uint32_t buildDate = reader.ReadUInt32();
@@ -41,19 +39,19 @@ void HandleVersionCheck(const uint8_t* pData, size_t size) {
 }
 
 void HandleKey(const uint8_t* pData, size_t size) {
-    ByteBufferReader reader(pData, size);
+    PacketParserHandler reader(pData, size);
     uint32_t encipheredKey = reader.ReadUInt32();
     GameLog_Info("[S_KEY] Recebida chave enciphered do GameServer: 0x%08X", encipheredKey);
 }
 
 void HandleEnterWorldCheck(const uint8_t* pData, size_t size) {
-    ByteBufferReader reader(pData, size);
+    PacketParserHandler reader(pData, size);
     uint32_t worldId = reader.ReadUInt32();
     GameLog_Info("[S_ENTER_WORLD_CHECK] Aprovada entrada no mundo ID=%u", worldId);
 }
 
 void HandlePlayerSpawn(const uint8_t* pData, size_t size) {
-    ByteBufferReader reader(pData, size);
+    PacketParserHandler reader(pData, size);
     uint32_t objectId = reader.ReadUInt32();
     float x = reader.ReadFloat();
     float y = reader.ReadFloat();
@@ -63,7 +61,7 @@ void HandlePlayerSpawn(const uint8_t* pData, size_t size) {
 }
 
 void HandleNpcInfo(const uint8_t* pData, size_t size) {
-    ByteBufferReader reader(pData, size);
+    PacketParserHandler reader(pData, size);
     uint32_t npcObjectId = reader.ReadUInt32();
     uint32_t npcTemplateId = reader.ReadUInt32();
     float x = reader.ReadFloat();
@@ -73,7 +71,7 @@ void HandleNpcInfo(const uint8_t* pData, size_t size) {
 }
 
 void HandlePlayerInfo(const uint8_t* pData, size_t size) {
-    ByteBufferReader reader(pData, size);
+    PacketParserHandler reader(pData, size);
     uint32_t playerObjectId = reader.ReadUInt32();
     float x = reader.ReadFloat();
     float y = reader.ReadFloat();
@@ -82,7 +80,7 @@ void HandlePlayerInfo(const uint8_t* pData, size_t size) {
 }
 
 void HandleMoveNew(const uint8_t* pData, size_t size) {
-    ByteBufferReader reader(pData, size);
+    PacketParserHandler reader(pData, size);
     uint32_t objectId = reader.ReadUInt32();
     float startX = reader.ReadFloat();
     float startY = reader.ReadFloat();
@@ -114,18 +112,13 @@ void HandleMoveNew(const uint8_t* pData, size_t size) {
         }
     }
 
-    // Atualização de posição da entidade no ActorManager
-    AIObject* pActor = ActorManager::GetInstance().GetActor(objectId);
-    if (pActor) {
-        pActor->SetPosition(Vec3F(smoothX, smoothY, smoothZ));
-    }
 
     GameLog_Info("[S_MOVE_NEW] Movimento Entidade ID=%u Mask=0x%02X Pos=(%.1f, %.1f, %.1f) Heading=%u",
         objectId, movementMask, smoothX, smoothY, smoothZ, heading);
 }
 
 void HandleAttack(const uint8_t* pData, size_t size) {
-    ByteBufferReader reader(pData, size);
+    PacketParserHandler reader(pData, size);
     uint32_t attackerId = reader.ReadUInt32();
     uint32_t targetId = reader.ReadUInt32();
     uint32_t damage = reader.ReadUInt32();
@@ -134,7 +127,7 @@ void HandleAttack(const uint8_t* pData, size_t size) {
 }
 
 void HandleUseSkill(const uint8_t* pData, size_t size) {
-    ByteBufferReader reader(pData, size);
+    PacketParserHandler reader(pData, size);
     uint32_t casterId = reader.ReadUInt32();
     uint32_t targetId = reader.ReadUInt32();
     uint32_t skillId = reader.ReadUInt32();
@@ -143,32 +136,32 @@ void HandleUseSkill(const uint8_t* pData, size_t size) {
 }
 
 void HandleStatus(const uint8_t* pData, size_t size) {
-    ByteBufferReader reader(pData, size);
+    PacketParserHandler reader(pData, size);
     GameLog_Info("[S_STATUS] Atualizacao de status do jogador recebida (%zu bytes)", size);
 }
 
 void HandleHitPoint(const uint8_t* pData, size_t size) {
-    ByteBufferReader reader(pData, size);
+    PacketParserHandler reader(pData, size);
     uint32_t curHp = reader.ReadUInt32();
     uint32_t maxHp = reader.ReadUInt32();
     GameLog_Info("[S_HIT_POINT] Vida atualizada: %u / %u", curHp, maxHp);
 }
 
 void HandleManaPoint(const uint8_t* pData, size_t size) {
-    ByteBufferReader reader(pData, size);
+    PacketParserHandler reader(pData, size);
     uint32_t curMp = reader.ReadUInt32();
     uint32_t maxMp = reader.ReadUInt32();
     GameLog_Info("[S_MANA_POINT] Mana atualizada: %u / %u", curMp, maxMp);
 }
 
 void HandleInventoryInfo(const uint8_t* pData, size_t size) {
-    ByteBufferReader reader(pData, size);
+    PacketParserHandler reader(pData, size);
     uint16_t itemCount = reader.ReadUInt16();
     GameLog_Info("[S_LOAD_INVENTORY] Inventario carregado (%u itens)", itemCount);
 }
 
 void HandleMessage(const uint8_t* pData, size_t size) {
-    ByteBufferReader reader(pData, size);
+    PacketParserHandler reader(pData, size);
     uint8_t chatType = reader.ReadByte();
     uint8_t senderRace = reader.ReadByte();
     uint32_t senderObjId = reader.ReadUInt32();
@@ -195,14 +188,14 @@ void HandleMessage(const uint8_t* pData, size_t size) {
 }
 
 void HandleNpcHtmlMessage(const uint8_t* pData, size_t size) {
-    ByteBufferReader reader(pData, size);
+    PacketParserHandler reader(pData, size);
     uint32_t npcObjectId = reader.ReadUInt32();
     uint32_t dialogId = reader.ReadUInt32();
     GameLog_Info("[S_NPC_HTML_MESSAGE] Dialogo com NPC ObjId=%u (DialogId=%u)", npcObjectId, dialogId);
 }
 
 void HandleTacticsSign(const uint8_t* pData, size_t size) {
-    ByteBufferReader reader(pData, size);
+    PacketParserHandler reader(pData, size);
     uint32_t action = reader.ReadUInt32();
     uint32_t brandId = reader.ReadUInt32();
     uint32_t targetObjectId = reader.ReadUInt32();

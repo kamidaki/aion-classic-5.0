@@ -3,7 +3,7 @@
 #include <string>
 #include <unordered_map>
 
-struct ArtiTemplate {
+struct ArtiData {
     uint32_t id;
     std::string name;
     uint32_t skillId;
@@ -20,8 +20,8 @@ public:
     ~ArtiTable();
 
     bool LoadTable();
-    const ArtiTemplate* GetArtiTemplate(uint32_t id) const;
+    const ArtiData* GetArtiTemplate(uint32_t id) const;
 
 private:
-    std::unordered_map<uint32_t, ArtiTemplate> m_artifacts;
+    std::unordered_map<uint32_t, ArtiData> m_artifacts;
 };

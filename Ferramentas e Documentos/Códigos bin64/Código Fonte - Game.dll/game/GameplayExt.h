@@ -1,9 +1,14 @@
 #pragma once
+#include <windows.h>
+#include <atomic>
 #include <cstdint>
 #include <string>
 #include <vector>
 #include <typeinfo>
 #include <exception>
+
+struct ISystem;
+struct IGame;
 
 // RTTI .?AVCEFClientHandler@@ e Delegate
 class CEFClientHandler {
@@ -589,6 +594,13 @@ public:
     GameSystem();
     virtual ~GameSystem();
     virtual const char* GetClassName() const { return "GameSystem"; }
+
+    static HMODULE s_hModule;
+    static ISystem* s_pSystem;
+    static IGame*   s_pGameInstance;
+    static std::atomic<bool> s_bInitialized;
+    static std::atomic<bool> s_bRunning;
+    static char s_szRootPath[MAX_PATH];
 };
 
 // RTTI .?AVGameUtils@@

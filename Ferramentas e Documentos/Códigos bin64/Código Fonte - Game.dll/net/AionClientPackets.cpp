@@ -3,8 +3,8 @@
 namespace AionPackets {
 
 // --- 1. Autenticação, Ciclo de Vida e Sessão ---
-ByteBufferWriter BuildVersionPacket(uint32_t version, uint32_t subVersion) {
-    ByteBufferWriter writer(C_VERSION);
+PacketParser BuildVersionPacket(uint32_t version, uint32_t subVersion) {
+    PacketParser writer(C_VERSION);
     writer.WriteUInt16(static_cast<uint16_t>(version));
     writer.WriteUInt16(static_cast<uint16_t>(subVersion));
     writer.WriteUInt32(0);     // windowsEncoding
@@ -14,66 +14,66 @@ ByteBufferWriter BuildVersionPacket(uint32_t version, uint32_t subVersion) {
     return writer;
 }
 
-ByteBufferWriter BuildLogoutPacket() {
-    ByteBufferWriter writer(C_LOGOUT);
+PacketParser BuildLogoutPacket() {
+    PacketParser writer(C_LOGOUT);
     return writer;
 }
 
-ByteBufferWriter BuildAskQuitPacket() {
-    ByteBufferWriter writer(C_ASK_QUIT);
+PacketParser BuildAskQuitPacket() {
+    PacketParser writer(C_ASK_QUIT);
     return writer;
 }
 
-ByteBufferWriter BuildReadyToQuitPacket() {
-    ByteBufferWriter writer(C_READY_TO_QUIT);
+PacketParser BuildReadyToQuitPacket() {
+    PacketParser writer(C_READY_TO_QUIT);
     return writer;
 }
 
-ByteBufferWriter BuildDeadRestartPacket() {
-    ByteBufferWriter writer(C_DEAD_RESTART);
+PacketParser BuildDeadRestartPacket() {
+    PacketParser writer(C_DEAD_RESTART);
     return writer;
 }
 
-ByteBufferWriter BuildL2AuthLoginPacket(const std::string& account, const std::string& token) {
-    ByteBufferWriter writer(C_L2AUTH_LOGIN);
+PacketParser BuildL2AuthLoginPacket(const std::string& account, const std::string& token) {
+    PacketParser writer(C_L2AUTH_LOGIN);
     writer.WriteString(account);
     writer.WriteString(token);
     return writer;
 }
 
-ByteBufferWriter BuildAlivePacket(uint32_t clientTime) {
-    ByteBufferWriter writer(C_ALIVE);
+PacketParser BuildAlivePacket(uint32_t clientTime) {
+    PacketParser writer(C_ALIVE);
     writer.WriteUInt32(clientTime);
     return writer;
 }
 
-ByteBufferWriter BuildSyncTimePacket(uint32_t clientTime) {
-    ByteBufferWriter writer(C_SYNC_TIME);
+PacketParser BuildSyncTimePacket(uint32_t clientTime) {
+    PacketParser writer(C_SYNC_TIME);
     writer.WriteUInt32(clientTime);
     return writer;
 }
 
-ByteBufferWriter BuildReconnectAuthPacket(uint32_t accountId, const std::string& token) {
-    ByteBufferWriter writer(C_RECONNECT_AUTH);
+PacketParser BuildReconnectAuthPacket(uint32_t accountId, const std::string& token) {
+    PacketParser writer(C_RECONNECT_AUTH);
     writer.WriteUInt32(accountId);
     writer.WriteString(token);
     return writer;
 }
 
 // --- 2. Seleção e Criação de Personagem ---
-ByteBufferWriter BuildCharacterListPacket() {
-    ByteBufferWriter writer(C_CHARACTER_LIST);
+PacketParser BuildCharacterListPacket() {
+    PacketParser writer(C_CHARACTER_LIST);
     return writer;
 }
 
-ByteBufferWriter BuildCheckNicknamePacket(const std::string& name) {
-    ByteBufferWriter writer(C_CHECK_EXIST);
+PacketParser BuildCheckNicknamePacket(const std::string& name) {
+    PacketParser writer(C_CHECK_EXIST);
     writer.WriteString(name);
     return writer;
 }
 
-ByteBufferWriter BuildCreateCharacterPacket(const std::string& name, uint8_t race, uint8_t gender, uint8_t playerClass, uint8_t voice, const std::vector<uint8_t>& appearanceData) {
-    ByteBufferWriter writer(C_CREATE_CHARACTER);
+PacketParser BuildCreateCharacterPacket(const std::string& name, uint8_t race, uint8_t gender, uint8_t playerClass, uint8_t voice, const std::vector<uint8_t>& appearanceData) {
+    PacketParser writer(C_CREATE_CHARACTER);
     writer.WriteString(name);
     writer.WriteByte(race);
     writer.WriteByte(gender);
@@ -83,32 +83,32 @@ ByteBufferWriter BuildCreateCharacterPacket(const std::string& name, uint8_t rac
     return writer;
 }
 
-ByteBufferWriter BuildDeleteCharacterPacket(uint32_t characterId) {
-    ByteBufferWriter writer(C_DELETE_CHARACTER);
+PacketParser BuildDeleteCharacterPacket(uint32_t characterId) {
+    PacketParser writer(C_DELETE_CHARACTER);
     writer.WriteUInt32(characterId);
     return writer;
 }
 
-ByteBufferWriter BuildRestoreCharacterPacket(uint32_t characterId) {
-    ByteBufferWriter writer(C_RESTORE_CHARACTER);
+PacketParser BuildRestoreCharacterPacket(uint32_t characterId) {
+    PacketParser writer(C_RESTORE_CHARACTER);
     writer.WriteUInt32(characterId);
     return writer;
 }
 
-ByteBufferWriter BuildEnterWorldPacket(uint32_t characterId) {
-    ByteBufferWriter writer(C_ENTER_WORLD);
+PacketParser BuildEnterWorldPacket(uint32_t characterId) {
+    PacketParser writer(C_ENTER_WORLD);
     writer.WriteUInt32(characterId);
     return writer;
 }
 
-ByteBufferWriter BuildLevelReadyPacket() {
-    ByteBufferWriter writer(C_LEVEL_READY);
+PacketParser BuildLevelReadyPacket() {
+    PacketParser writer(C_LEVEL_READY);
     return writer;
 }
 
 // --- 3. Movimentação, Posição e Voo ---
-ByteBufferWriter BuildMoveNewPacket(float x, float y, float z, uint8_t heading, uint8_t moveMask, float vectorX, float vectorY, float vectorZ) {
-    ByteBufferWriter writer(C_MOVE_NEW);
+PacketParser BuildMoveNewPacket(float x, float y, float z, uint8_t heading, uint8_t moveMask, float vectorX, float vectorY, float vectorZ) {
+    PacketParser writer(C_MOVE_NEW);
     writer.WriteFloat(x);
     writer.WriteFloat(y);
     writer.WriteFloat(z);
@@ -123,8 +123,8 @@ ByteBufferWriter BuildMoveNewPacket(float x, float y, float z, uint8_t heading, 
     return writer;
 }
 
-ByteBufferWriter BuildMoveNewAbsolutePacket(float x, float y, float z, uint8_t heading, float targetX, float targetY, float targetZ) {
-    ByteBufferWriter writer(C_MOVE_NEW);
+PacketParser BuildMoveNewAbsolutePacket(float x, float y, float z, uint8_t heading, float targetX, float targetY, float targetZ) {
+    PacketParser writer(C_MOVE_NEW);
     writer.WriteFloat(x);
     writer.WriteFloat(y);
     writer.WriteFloat(z);
@@ -137,8 +137,8 @@ ByteBufferWriter BuildMoveNewAbsolutePacket(float x, float y, float z, uint8_t h
     return writer;
 }
 
-ByteBufferWriter BuildMoveNewGlidePacket(float x, float y, float z, uint8_t heading, float vectorX, float vectorY, float vectorZ, uint8_t glideFlag, uint8_t geyserLocationId) {
-    ByteBufferWriter writer(C_MOVE_NEW);
+PacketParser BuildMoveNewGlidePacket(float x, float y, float z, uint8_t heading, float vectorX, float vectorY, float vectorZ, uint8_t glideFlag, uint8_t geyserLocationId) {
+    PacketParser writer(C_MOVE_NEW);
     writer.WriteFloat(x);
     writer.WriteFloat(y);
     writer.WriteFloat(z);
@@ -155,8 +155,8 @@ ByteBufferWriter BuildMoveNewGlidePacket(float x, float y, float z, uint8_t head
     return writer;
 }
 
-ByteBufferWriter BuildMoveNewVehiclePacket(float x, float y, float z, uint8_t heading, float vehicleX, float vehicleY, float vehicleZ, uint32_t unk1, uint32_t unk2) {
-    ByteBufferWriter writer(C_MOVE_NEW);
+PacketParser BuildMoveNewVehiclePacket(float x, float y, float z, uint8_t heading, float vehicleX, float vehicleY, float vehicleZ, uint32_t unk1, uint32_t unk2) {
+    PacketParser writer(C_MOVE_NEW);
     writer.WriteFloat(x);
     writer.WriteFloat(y);
     writer.WriteFloat(z);
@@ -171,8 +171,8 @@ ByteBufferWriter BuildMoveNewVehiclePacket(float x, float y, float z, uint8_t he
     return writer;
 }
 
-ByteBufferWriter BuildPathFlyPacket(float x, float y, float z, uint8_t flyState) {
-    ByteBufferWriter writer(C_PATH_FLY);
+PacketParser BuildPathFlyPacket(float x, float y, float z, uint8_t flyState) {
+    PacketParser writer(C_PATH_FLY);
     writer.WriteFloat(x);
     writer.WriteFloat(y);
     writer.WriteFloat(z);
@@ -180,16 +180,16 @@ ByteBufferWriter BuildPathFlyPacket(float x, float y, float z, uint8_t flyState)
     return writer;
 }
 
-ByteBufferWriter BuildWindPathPacket(uint32_t windStreamId, uint32_t distance, uint8_t state) {
-    ByteBufferWriter writer(C_WIND_PATH);
+PacketParser BuildWindPathPacket(uint32_t windStreamId, uint32_t distance, uint8_t state) {
+    PacketParser writer(C_WIND_PATH);
     writer.WriteUInt32(windStreamId);
     writer.WriteUInt32(distance);
     writer.WriteByte(state);
     return writer;
 }
 
-ByteBufferWriter BuildBlinkPacket(float x, float y, float z, uint8_t heading) {
-    ByteBufferWriter writer(C_BLINK);
+PacketParser BuildBlinkPacket(float x, float y, float z, uint8_t heading) {
+    PacketParser writer(C_BLINK);
     writer.WriteFloat(x);
     writer.WriteFloat(y);
     writer.WriteFloat(z);
@@ -197,91 +197,91 @@ ByteBufferWriter BuildBlinkPacket(float x, float y, float z, uint8_t heading) {
     return writer;
 }
 
-ByteBufferWriter BuildChangeDirectionPacket(uint8_t heading) {
-    ByteBufferWriter writer(C_CHANGE_DIRECTION);
+PacketParser BuildChangeDirectionPacket(uint8_t heading) {
+    PacketParser writer(C_CHANGE_DIRECTION);
     writer.WriteByte(heading);
     return writer;
 }
 
 // --- 4. Combate, Habilidades e Alvos ---
-ByteBufferWriter BuildChangeTargetPacket(uint32_t targetObjectId) {
-    ByteBufferWriter writer(C_CHANGE_TARGET);
+PacketParser BuildChangeTargetPacket(uint32_t targetObjectId) {
+    PacketParser writer(C_CHANGE_TARGET);
     writer.WriteUInt32(targetObjectId);
     return writer;
 }
 
-ByteBufferWriter BuildAttackPacket(uint32_t targetObjectId, uint8_t attackType, uint32_t time) {
-    ByteBufferWriter writer(C_ATTACK);
+PacketParser BuildAttackPacket(uint32_t targetObjectId, uint8_t attackType, uint32_t time) {
+    PacketParser writer(C_ATTACK);
     writer.WriteUInt32(targetObjectId);
     writer.WriteByte(attackType);
     writer.WriteUInt32(time);
     return writer;
 }
 
-ByteBufferWriter BuildUseSkillPacket(uint32_t skillId, uint32_t skillLevel, uint32_t targetObjectId) {
-    ByteBufferWriter writer(C_USE_SKILL);
+PacketParser BuildUseSkillPacket(uint32_t skillId, uint32_t skillLevel, uint32_t targetObjectId) {
+    PacketParser writer(C_USE_SKILL);
     writer.WriteUInt32(skillId);
     writer.WriteUInt32(skillLevel);
     writer.WriteUInt32(targetObjectId);
     return writer;
 }
 
-ByteBufferWriter BuildTurnOffToggleSkillPacket(uint32_t skillId) {
-    ByteBufferWriter writer(C_TURN_OFF_TOGGLE_SKILL);
+PacketParser BuildTurnOffToggleSkillPacket(uint32_t skillId) {
+    PacketParser writer(C_TURN_OFF_TOGGLE_SKILL);
     writer.WriteUInt32(skillId);
     return writer;
 }
 
-ByteBufferWriter BuildTurnOffAbnormalStatusPacket(uint32_t effectId) {
-    ByteBufferWriter writer(C_TURN_OFF_ABNORMAL_STATUS);
+PacketParser BuildTurnOffAbnormalStatusPacket(uint32_t effectId) {
+    PacketParser writer(C_TURN_OFF_ABNORMAL_STATUS);
     writer.WriteUInt32(effectId);
     return writer;
 }
 
 // --- 5. Inventário, Itens e Equipamento ---
-ByteBufferWriter BuildUseItemPacket(uint32_t itemUniqueId) {
-    ByteBufferWriter writer(C_USE_ITEM);
+PacketParser BuildUseItemPacket(uint32_t itemUniqueId) {
+    PacketParser writer(C_USE_ITEM);
     writer.WriteUInt32(itemUniqueId);
     return writer;
 }
 
-ByteBufferWriter BuildUseEquipmentItemPacket(uint32_t itemUniqueId) {
-    ByteBufferWriter writer(C_USE_EQUIPMENT_ITEM);
+PacketParser BuildUseEquipmentItemPacket(uint32_t itemUniqueId) {
+    PacketParser writer(C_USE_EQUIPMENT_ITEM);
     writer.WriteUInt32(itemUniqueId);
     return writer;
 }
 
-ByteBufferWriter BuildMoveItemSlotPacket(uint32_t itemUniqueId, uint8_t destSlot) {
-    ByteBufferWriter writer(C_MOVE_ITEM_TO_ANOTHER_SLOT);
+PacketParser BuildMoveItemSlotPacket(uint32_t itemUniqueId, uint8_t destSlot) {
+    PacketParser writer(C_MOVE_ITEM_TO_ANOTHER_SLOT);
     writer.WriteUInt32(itemUniqueId);
     writer.WriteByte(destSlot);
     return writer;
 }
 
-ByteBufferWriter BuildMoveStackableItemPacket(uint32_t itemUniqueId, uint32_t count, uint8_t destSlot) {
-    ByteBufferWriter writer(C_MOVE_STACKABLE_ITEM);
+PacketParser BuildMoveStackableItemPacket(uint32_t itemUniqueId, uint32_t count, uint8_t destSlot) {
+    PacketParser writer(C_MOVE_STACKABLE_ITEM);
     writer.WriteUInt32(itemUniqueId);
     writer.WriteUInt32(count);
     writer.WriteByte(destSlot);
     return writer;
 }
 
-ByteBufferWriter BuildSwapItemSlotPacket(uint8_t slot1, uint8_t slot2) {
-    ByteBufferWriter writer(C_SWAP_ITEM_SLOT);
+PacketParser BuildSwapItemSlotPacket(uint8_t slot1, uint8_t slot2) {
+    PacketParser writer(C_SWAP_ITEM_SLOT);
     writer.WriteByte(slot1);
     writer.WriteByte(slot2);
     return writer;
 }
 
-ByteBufferWriter BuildDestroyItemPacket(uint32_t itemUniqueId, uint32_t count) {
-    ByteBufferWriter writer(C_DESTROY_ITEM);
+PacketParser BuildDestroyItemPacket(uint32_t itemUniqueId, uint32_t count) {
+    PacketParser writer(C_DESTROY_ITEM);
     writer.WriteUInt32(itemUniqueId);
     writer.WriteUInt32(count);
     return writer;
 }
 
-ByteBufferWriter BuildEnchantItemPacket(uint32_t targetItemUniqueId, uint32_t stoneItemUniqueId, uint32_t supplementUniqueId) {
-    ByteBufferWriter writer(C_ENCHANT_ITEM);
+PacketParser BuildEnchantItemPacket(uint32_t targetItemUniqueId, uint32_t stoneItemUniqueId, uint32_t supplementUniqueId) {
+    PacketParser writer(C_ENCHANT_ITEM);
     writer.WriteUInt32(targetItemUniqueId);
     writer.WriteUInt32(stoneItemUniqueId);
     writer.WriteUInt32(supplementUniqueId);
@@ -289,125 +289,125 @@ ByteBufferWriter BuildEnchantItemPacket(uint32_t targetItemUniqueId, uint32_t st
 }
 
 // --- 6. Diálogos com NPCs e Missões ---
-ByteBufferWriter BuildStartDialogPacket(uint32_t targetObjectId) {
-    ByteBufferWriter writer(C_START_DIALOG);
+PacketParser BuildStartDialogPacket(uint32_t targetObjectId) {
+    PacketParser writer(C_START_DIALOG);
     writer.WriteUInt32(targetObjectId);
     return writer;
 }
 
-ByteBufferWriter BuildEndDialogPacket(uint32_t targetObjectId) {
-    ByteBufferWriter writer(C_END_DIALOG);
+PacketParser BuildEndDialogPacket(uint32_t targetObjectId) {
+    PacketParser writer(C_END_DIALOG);
     writer.WriteUInt32(targetObjectId);
     return writer;
 }
 
-ByteBufferWriter BuildHActionPacket(uint32_t targetObjectId, uint32_t dialogId, uint32_t questId) {
-    ByteBufferWriter writer(C_HACTION);
+PacketParser BuildHActionPacket(uint32_t targetObjectId, uint32_t dialogId, uint32_t questId) {
+    PacketParser writer(C_HACTION);
     writer.WriteUInt32(targetObjectId);
     writer.WriteUInt32(dialogId);
     writer.WriteUInt32(questId);
     return writer;
 }
 
-ByteBufferWriter BuildGiveUpQuestPacket(uint32_t questId) {
-    ByteBufferWriter writer(C_GIVE_UP_QUEST);
+PacketParser BuildGiveUpQuestPacket(uint32_t questId) {
+    PacketParser writer(C_GIVE_UP_QUEST);
     writer.WriteUInt32(questId);
     return writer;
 }
 
-ByteBufferWriter BuildShareQuestPacket(uint32_t questId) {
-    ByteBufferWriter writer(C_SHARE_QUEST);
+PacketParser BuildShareQuestPacket(uint32_t questId) {
+    PacketParser writer(C_SHARE_QUEST);
     writer.WriteUInt32(questId);
     return writer;
 }
 
 // --- 7. Comunicação, Chat e Emoções ---
-ByteBufferWriter BuildSayPacket(uint8_t chatType, const std::string& message) {
-    ByteBufferWriter writer(C_SAY);
+PacketParser BuildSayPacket(uint8_t chatType, const std::string& message) {
+    PacketParser writer(C_SAY);
     writer.WriteByte(chatType);
     writer.WriteString(message);
     return writer;
 }
 
-ByteBufferWriter BuildWhisperPacket(const std::string& recipient, const std::string& message) {
-    ByteBufferWriter writer(C_WHISPER);
+PacketParser BuildWhisperPacket(const std::string& recipient, const std::string& message) {
+    PacketParser writer(C_WHISPER);
     writer.WriteString(recipient);
     writer.WriteString(message);
     return writer;
 }
 
-ByteBufferWriter BuildActionPacket(uint32_t emotionId, uint32_t targetObjectId) {
-    ByteBufferWriter writer(C_ACTION);
+PacketParser BuildActionPacket(uint32_t emotionId, uint32_t targetObjectId) {
+    PacketParser writer(C_ACTION);
     writer.WriteUInt32(emotionId);
     writer.WriteUInt32(targetObjectId);
     return writer;
 }
 
 // --- 8. Coleta e Crafting ---
-ByteBufferWriter BuildGatherPacket(uint32_t targetObjectId) {
-    ByteBufferWriter writer(C_GATHER);
+PacketParser BuildGatherPacket(uint32_t targetObjectId) {
+    PacketParser writer(C_GATHER);
     writer.WriteUInt32(targetObjectId);
     return writer;
 }
 
-ByteBufferWriter BuildCombinePacket(uint32_t recipeId, uint32_t targetObjectId) {
-    ByteBufferWriter writer(C_COMBINE);
+PacketParser BuildCombinePacket(uint32_t recipeId, uint32_t targetObjectId) {
+    PacketParser writer(C_COMBINE);
     writer.WriteUInt32(recipeId);
     writer.WriteUInt32(targetObjectId);
     return writer;
 }
 
 // --- 9. Saque (Loot) ---
-ByteBufferWriter BuildLootPacket(uint32_t targetObjectId) {
-    ByteBufferWriter writer(C_LOOT);
+PacketParser BuildLootPacket(uint32_t targetObjectId) {
+    PacketParser writer(C_LOOT);
     writer.WriteUInt32(targetObjectId);
     return writer;
 }
 
-ByteBufferWriter BuildLootItemPacket(uint32_t targetObjectId, uint32_t itemIndex) {
-    ByteBufferWriter writer(C_LOOT_ITEM);
+PacketParser BuildLootItemPacket(uint32_t targetObjectId, uint32_t itemIndex) {
+    PacketParser writer(C_LOOT_ITEM);
     writer.WriteUInt32(targetObjectId);
     writer.WriteUInt32(itemIndex);
     return writer;
 }
 
 // --- 10. Trocas e Comércio ---
-ByteBufferWriter BuildAskExchangePacket(uint32_t targetObjectId) {
-    ByteBufferWriter writer(C_ASK_XCHG);
+PacketParser BuildAskExchangePacket(uint32_t targetObjectId) {
+    PacketParser writer(C_ASK_XCHG);
     writer.WriteUInt32(targetObjectId);
     return writer;
 }
 
-ByteBufferWriter BuildAddExchangeItemPacket(uint32_t itemUniqueId, uint32_t count) {
-    ByteBufferWriter writer(C_ADD_XCHG);
+PacketParser BuildAddExchangeItemPacket(uint32_t itemUniqueId, uint32_t count) {
+    PacketParser writer(C_ADD_XCHG);
     writer.WriteUInt32(itemUniqueId);
     writer.WriteUInt32(count);
     return writer;
 }
 
-ByteBufferWriter BuildExchangeGoldPacket(uint64_t kinahAmount) {
-    ByteBufferWriter writer(C_XCHG_GOLD);
+PacketParser BuildExchangeGoldPacket(uint64_t kinahAmount) {
+    PacketParser writer(C_XCHG_GOLD);
     writer.WriteUInt64(kinahAmount);
     return writer;
 }
 
-ByteBufferWriter BuildCheckExchangePacket() {
-    ByteBufferWriter writer(C_CHECK_XCHG);
+PacketParser BuildCheckExchangePacket() {
+    PacketParser writer(C_CHECK_XCHG);
     return writer;
 }
 
-ByteBufferWriter BuildAcceptExchangePacket() {
-    ByteBufferWriter writer(C_ACCEPT_XCHG);
+PacketParser BuildAcceptExchangePacket() {
+    PacketParser writer(C_ACCEPT_XCHG);
     return writer;
 }
 
-ByteBufferWriter BuildCancelExchangePacket() {
-    ByteBufferWriter writer(C_CANCEL_XCHG);
+PacketParser BuildCancelExchangePacket() {
+    PacketParser writer(C_CANCEL_XCHG);
     return writer;
 }
 
-ByteBufferWriter BuildBuySellPacket(uint32_t npcObjectId, const std::vector<std::pair<uint32_t, uint32_t>>& itemsToBuy) {
-    ByteBufferWriter writer(C_BUY_SELL);
+PacketParser BuildBuySellPacket(uint32_t npcObjectId, const std::vector<std::pair<uint32_t, uint32_t>>& itemsToBuy) {
+    PacketParser writer(C_BUY_SELL);
     writer.WriteUInt32(npcObjectId);
     writer.WriteUInt16(static_cast<uint16_t>(itemsToBuy.size()));
     for (const auto& item : itemsToBuy) {
@@ -432,15 +432,15 @@ std::string FormatQuestLink(uint32_t questId, const std::string& questTitle) {
 }
 
 // --- 8. Grupos, Alianças e Marcação Tática ---
-ByteBufferWriter BuildInviteToGroupPacket(const std::string& targetPlayerName, uint8_t inviteType) {
-    ByteBufferWriter writer(C_PARTY_BY_NAME);
+PacketParser BuildInviteToGroupPacket(const std::string& targetPlayerName, uint8_t inviteType) {
+    PacketParser writer(C_PARTY_BY_NAME);
     writer.WriteByte(inviteType);
     writer.WriteString(targetPlayerName);
     return writer;
 }
 
-ByteBufferWriter BuildGroupLootPacket(uint32_t groupId, uint32_t itemId, uint32_t npcObjId, uint8_t distMode, uint32_t roll, uint64_t bid) {
-    ByteBufferWriter writer(C_GROUP_ITEM_DIST);
+PacketParser BuildGroupLootPacket(uint32_t groupId, uint32_t itemId, uint32_t npcObjId, uint8_t distMode, uint32_t roll, uint64_t bid) {
+    PacketParser writer(C_GROUP_ITEM_DIST);
     writer.WriteUInt32(groupId);
     writer.WriteUInt32(0); // index
     writer.WriteUInt32(0); // unk1
@@ -455,8 +455,8 @@ ByteBufferWriter BuildGroupLootPacket(uint32_t groupId, uint32_t itemId, uint32_
     return writer;
 }
 
-ByteBufferWriter BuildShowBrandPacket(uint32_t brandId, uint32_t targetObjectId, uint32_t action) {
-    ByteBufferWriter writer(C_TACTICS_SIGN);
+PacketParser BuildShowBrandPacket(uint32_t brandId, uint32_t targetObjectId, uint32_t action) {
+    PacketParser writer(C_TACTICS_SIGN);
     writer.WriteUInt32(action);
     writer.WriteUInt32(brandId);
     writer.WriteUInt32(targetObjectId);

@@ -15,7 +15,7 @@ bool ActionPresetTable::LoadTable() {
     return true;
 }
 
-const ActionPresetEntry* ActionPresetTable::GetPreset(uint32_t presetId) const {
+const ActionPreset* ActionPresetTable::GetPreset(uint32_t presetId) const {
     auto it = m_presets.find(presetId);
     if (it != m_presets.end()) {
         return &it->second;

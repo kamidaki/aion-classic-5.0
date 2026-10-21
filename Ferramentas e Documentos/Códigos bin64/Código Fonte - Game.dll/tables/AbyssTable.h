@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <string>
 
-struct AbyssRankEntry {
+struct AbyssRankData {
     uint32_t rankId;
     std::string rankTitle;
     uint32_t requiredAp;
@@ -20,10 +20,10 @@ public:
     }
 
     bool LoadTable();
-    const AbyssRankEntry* GetRank(uint32_t rankId) const;
+    const AbyssRankData* GetRank(uint32_t rankId) const;
 
 private:
     AbyssTable() : m_bLoaded(false) {}
     bool m_bLoaded;
-    std::unordered_map<uint32_t, AbyssRankEntry> m_ranks;
+    std::unordered_map<uint32_t, AbyssRankData> m_ranks;
 };

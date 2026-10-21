@@ -9,7 +9,7 @@ __declspec(dllexport) IGame* CreateGameInstance(ISystem* pSystem) {
     GameLog_Info("CreateGameInstance chamado pela CrySystem Classic 5.0 (pSystem: %p)", pSystem);
 
     if (!GameGlobals::s_pGameInstance) {
-        GameGlobals::s_pGameInstance = new CGame();
+        GameGlobals::s_pGameInstance = new CXGame();
     }
 
     if (pSystem && !GameGlobals::s_bInitialized) {
@@ -21,7 +21,7 @@ __declspec(dllexport) IGame* CreateGameInstance(ISystem* pSystem) {
 
 __declspec(dllexport) void CryModuleGetMemoryInfo(CryModuleMemoryInfo* pMemInfo) {
     if (!pMemInfo) return;
-    pMemInfo->AllocatedMemory = sizeof(CGame);
+    pMemInfo->AllocatedMemory = sizeof(CXGame);
     pMemInfo->StringAllocation = 0;
     pMemInfo->CryStringAllocation = 0;
 }

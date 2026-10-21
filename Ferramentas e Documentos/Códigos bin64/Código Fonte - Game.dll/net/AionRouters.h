@@ -71,24 +71,6 @@ private:
     std::unordered_map<uint16_t, std::function<void(const uint8_t*, size_t)>> m_handlers;
 };
 
-// .?AVIOSocket@@
-class IOSocket {
-public:
-    IOSocket();
-    virtual ~IOSocket();
-
-    virtual bool Connect(const char* host, uint16_t port);
-    virtual void Disconnect();
-    virtual bool Send(const uint8_t* pData, size_t size);
-    virtual int Receive(uint8_t* pBuffer, size_t maxLen);
-
-    bool IsConnected() const { return m_bConnected; }
-
-protected:
-    SOCKET m_socket;
-    bool m_bConnected;
-};
-
 // .?AVSocketHandler@@
 class SocketHandler {
 public:
@@ -110,17 +92,64 @@ public:
     virtual void OnDisconnect() override;
     virtual void OnData(const uint8_t* pData, size_t size) override;
 
-    IOSocket* GetSocket() { return &m_socket; }
+    bool Connect(const char* host, uint16_t port);
+    void Disconnect();
+    bool Send(const uint8_t* pData, size_t size);
+    bool IsConnected() const { return m_bConnected; }
 
 private:
-    IOSocket m_socket;
+    SOCKET m_socket;
+    bool m_bConnected;
 };
 
 // .?AVPacketParserHandler@@
 class PacketParserHandler {
 public:
     PacketParserHandler();
+    PacketParserHandler(const uint8_t* pData, size_t size);
     virtual ~PacketParserHandler();
 
     bool ParsePacket(const uint8_t* pData, size_t size, uint16_t& outOpcode, const uint8_t*& outPayload, size_t& outPayloadSize);
+
+    bool HasBytes(size_t count) const { return (m_offset + count) <= m_size; }
+    uint8_t ReadByte() { return HasBytes(1) ? m_pData[m_offset++] : 0; }
+    uint16_t ReadUInt16() {
+        if (!HasBytes(2)) return 0;
+        uint16_t val = (uint16_t)m_pData[m_offset] | ((uint16_t)m_pData[m_offset + 1] << 8);
+        m_offset += 2;
+        return val;
+    }
+    uint32_t ReadUInt32() {
+        if (!HasBytes(4)) return 0;
+        uint32_t val = (uint32_t)m_pData[m_offset] | ((uint32_t)m_pData[m_offset + 1] << 8) |
+                       ((uint32_t)m_pData[m_offset + 2] << 16) | ((uint32_t)m_pData[m_offset + 3] << 24);
+        m_offset += 4;
+        return val;
+    }
+    uint64_t ReadUInt64() {
+        if (!HasBytes(8)) return 0;
+        uint64_t val = 0;
+        for (int i = 0; i < 8; ++i) val |= ((uint64_t)m_pData[m_offset + i] << (i * 8));
+        m_offset += 8;
+        return val;
+    }
+    float ReadFloat() {
+        union { float f; uint32_t u; } c;
+        c.u = ReadUInt32();
+        return c.f;
+    }
+    std::string ReadString() {
+        std::string s;
+        while (HasBytes(1)) {
+            char ch = (char)ReadByte();
+            if (ch == 0) break;
+            s.push_back(ch);
+        }
+        return s;
+    }
+
+private:
+    const uint8_t* m_pData;
+    size_t m_size;
+    size_t m_offset;
 };

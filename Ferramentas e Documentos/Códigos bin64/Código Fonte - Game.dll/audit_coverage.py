@@ -54,13 +54,12 @@ for root, dirs, files in os.walk(src_root):
         if f.endswith((".h", ".cpp")):
             p = os.path.join(root, f)
             with open(p, "r", encoding="utf-8", errors="ignore") as fp:
-                for line in fp:
-                    m = re.match(r'^\s*(?:class|struct)\s+([A-Za-z0-9_]+)', line)
-                    if m:
-                        cls_name = m.group(1)
-                        classes_in_code.add(cls_name)
-                        if bin_data and cls_name.encode("latin1") not in bin_data:
-                            fictitious_classes.add(cls_name)
+                content = fp.read()
+                for m in re.finditer(r'(?<!enum\s)\b(?:class|struct)\s+([A-Za-z0-9_]+)(?:\s*:[^{;]+)?\s*\{', content):
+                    cls_name = m.group(1)
+                    classes_in_code.add(cls_name)
+                    if bin_data and cls_name.encode("latin1") not in bin_data:
+                        fictitious_classes.add(cls_name)
 
 # Cobertura de Classes Canônicas
 found_classes = set()

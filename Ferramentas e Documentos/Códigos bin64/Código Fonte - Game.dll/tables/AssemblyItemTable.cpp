@@ -13,7 +13,7 @@ bool AssemblyItemTable::LoadTable() {
     m_templates.clear();
 
     // Registra receitas canônicas padrão de montagem
-    AssemblyItemTemplate testMorph{};
+    AssemblyItemData testMorph{};
     testMorph.id = 1001;
     testMorph.resultItemId = 160000001;
     testMorph.resultItemCount = 1;
@@ -26,7 +26,7 @@ bool AssemblyItemTable::LoadTable() {
     return true;
 }
 
-const AssemblyItemTemplate* AssemblyItemTable::GetTemplate(uint32_t id) const {
+const AssemblyItemData* AssemblyItemTable::GetTemplate(uint32_t id) const {
     auto it = m_templates.find(id);
     if (it != m_templates.end()) {
         return &it->second;

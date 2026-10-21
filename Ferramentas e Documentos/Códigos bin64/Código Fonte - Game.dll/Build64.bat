@@ -40,19 +40,14 @@ cl.exe /nologo /O2 /W3 /std:c++17 /EHsc /MD /LD /GR ^
     net\AionServerPackets.cpp ^
     net\ClientToServerRouter.cpp ^
     net\AionRouters.cpp ^
-    net\AionCryptEngine.cpp ^
     ai\AIObject.cpp ^
     ai\AIToyPet.cpp ^
-    ai\AIOtherToyPet.cpp ^
-    ai\AIEngine.cpp ^
     ai\AiStatesExt.cpp ^
     tables\AbyssTable.cpp ^
     tables\ActionPresetTable.cpp ^
-    tables\AiCharTable.cpp ^
     tables\AssemblyItemTable.cpp ^
     tables\ArtiTable.cpp ^
     tables\FlyPathTable.cpp ^
-    tables\HousingTable.cpp ^
     tables\GameTablesExt.cpp ^
     path\CPathFileReader.cpp ^
     path\PathSector.cpp ^
@@ -64,23 +59,12 @@ cl.exe /nologo /O2 /W3 /std:c++17 /EHsc /MD /LD /GR ^
     ui\AddonContainer.cpp ^
     ui\AddonGauge.cpp ^
     ui\AddonWidgets.cpp ^
-    ui\DlgCreateChar.cpp ^
-    ui\UIManager.cpp ^
-    ui\HUDManager.cpp ^
     ui\AddonExt.cpp ^
     ui\GameDialogsExt.cpp ^
     game\Player.cpp ^
     game\Items.cpp ^
-    game\Quests.cpp ^
     game\EngineObjects.cpp ^
-    game\ActorManager.cpp ^
-    game\CombatEngine.cpp ^
-    game\SkillEngine.cpp ^
-    game\InventoryManager.cpp ^
-    game\WorldManager.cpp ^
     game\GameplayExt.cpp ^
-    reverse\GameReverseMap.cpp ^
-    framework\CryEngineSubsystems.cpp ^
     /Fo"%OUT_DIR%\\" ^
     /link ^
     /DEF:Game.def ^
