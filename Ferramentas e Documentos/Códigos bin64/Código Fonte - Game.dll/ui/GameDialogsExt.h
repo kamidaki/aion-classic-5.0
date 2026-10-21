@@ -392,10 +392,42 @@ public:
 // RTTI .?AVDlgChat@@
 class DlgChat : public AddonFrame {
 public:
+    enum EChatChannel {
+        CHAT_NORMAL = 0,
+        CHAT_SHOUT,
+        CHAT_REGION,
+        CHAT_GROUP,
+        CHAT_ALLIANCE,
+        CHAT_LEGION,
+        CHAT_WHISPER,
+        CHAT_SYSTEM,
+        CHAT_COMBAT
+    };
+
+    typedef struct {
+        EChatChannel channel;
+        std::string sender;
+        std::string text;
+        uint32_t timestamp;
+    } ChatMessageEntry;
+
     DlgChat(const std::string& name = "DlgChat");
     virtual ~DlgChat();
     virtual void Show(bool bShow) override;
     virtual void Update() override;
+
+    void AddMessage(EChatChannel channel, const std::string& sender, const std::string& text);
+    void SendChat(EChatChannel channel, const std::string& text);
+    void ClearChat();
+    void SetActiveTab(int tabIndex) { m_activeTab = tabIndex; }
+    int GetActiveTab() const { return m_activeTab; }
+    size_t GetMessageCount() const { return m_messages.size(); }
+    std::string FormatHyperlink(int linkType, uint32_t id, const std::string& displayText);
+
+private:
+    std::vector<ChatMessageEntry> m_messages;
+    int m_activeTab;
+    size_t m_maxHistory;
 };
 
 // RTTI .?AVDlgChatInput@@
@@ -1094,10 +1126,37 @@ public:
 // RTTI .?AVDlgGuildInfo@@
 class DlgGuildInfo : public AddonFrame {
 public:
+    struct LegionMember {
+        uint32_t charId;
+        std::string charName;
+        int level;
+        int classId;
+        int rank; // 0=BrigadeGeneral, 1=Centurion, 2=Legionary, 3=Volunteer
+        bool isOnline;
+        std::string selfIntro;
+    };
+
     DlgGuildInfo(const std::string& name = "DlgGuildInfo");
     virtual ~DlgGuildInfo();
     virtual void Show(bool bShow) override;
     virtual void Update() override;
+
+    void SetLegionProfile(uint32_t legionId, const std::string& name, int level, const std::string& bgName, int64_t cp);
+    void AddMember(uint32_t charId, const std::string& name, int level, int classId, int rank, bool online);
+    void RemoveMember(uint32_t charId);
+    void UpdateMemberRank(uint32_t charId, int rank);
+    void SetMemberOnline(uint32_t charId, bool online);
+    size_t GetMemberCount() const { return m_members.size(); }
+    size_t GetOnlineCount() const;
+    const LegionMember* GetMember(uint32_t charId) const;
+
+private:
+    uint32_t m_legionId;
+    std::string m_legionName;
+    int m_legionLevel;
+    std::string m_brigadeGeneral;
+    int64_t m_contributionPoints;
+    std::vector<LegionMember> m_members;
 };
 
 // RTTI .?AVDlgGuildJoin@@
@@ -1463,10 +1522,55 @@ public:
 // RTTI .?AVDlgInventory@@
 class DlgInventory : public AddonFrame {
 public:
+    struct InventoryItemSlot {
+        uint32_t slotId;
+        uint32_t itemId;
+        int64_t count;
+        int enchantLevel;
+        int itemGrade;
+        bool bLocked;
+        uint32_t expireTime;
+    };
+
     DlgInventory(const std::string& name = "DlgInventory");
     virtual ~DlgInventory();
     virtual void Show(bool bShow) override;
     virtual void Update() override;
+    virtual void OnUpdate(float deltaTime) override;
+
+    bool AddItem(uint32_t slotId, uint32_t itemId, int64_t count, int enchantLevel = 0, int itemGrade = 0);
+    bool RemoveItem(uint32_t slotId, int64_t count);
+    bool MoveItem(uint32_t fromSlot, uint32_t toSlot);
+    bool SplitItem(uint32_t fromSlot, uint32_t toSlot, int64_t splitCount);
+    bool EquipItem(uint32_t invSlot, uint32_t equipSlot);
+    bool UnequipItem(uint32_t equipSlot, uint32_t invSlot);
+    void SortInventory(int sortOrder = 0);
+    void LockSlot(uint32_t slotId, bool bLock);
+    const InventoryItemSlot* GetItemAt(uint32_t slotId) const;
+
+    int64_t GetKinah() const { return m_kinah; }
+    void SetKinah(int64_t kinah) { m_kinah = kinah; }
+    int64_t GetQuna() const { return m_quna; }
+    void SetQuna(int64_t quna) { m_quna = quna; }
+
+    int GetActiveTab() const { return m_activeTab; }
+    void FilterByTab(int tabIndex) { m_activeTab = tabIndex; }
+    size_t GetOccupiedSlotCount() const;
+
+    virtual bool OnLButtonDown(int x, int y, uint32_t flags) override;
+    virtual bool OnRButtonDown(int x, int y, uint32_t flags) override;
+    virtual bool OnDragBegin(int startX, int startY) override;
+    virtual bool OnDrop(AddonFrame* pSource, void* pPayload) override;
+
+private:
+    std::vector<InventoryItemSlot> m_cubeSlots;
+    std::vector<InventoryItemSlot> m_specialCubeSlots;
+    std::vector<InventoryItemSlot> m_accountCubeSlots;
+    std::vector<InventoryItemSlot> m_equipSlots;
+    int64_t m_kinah;
+    int64_t m_quna;
+    int m_activeTab;
+    int m_maxNormalSlots;
 };
 
 // RTTI .?AVDlgInventoryCoin@@
@@ -2142,6 +2246,37 @@ public:
     virtual ~DlgPlayerInfo();
     virtual void Show(bool bShow) override;
     virtual void Update() override;
+    virtual void OnUpdate(float deltaTime) override;
+
+    void SetCharacterProfile(const std::string& name, int level, int classId, const std::string& title);
+    void UpdateHealth(int hp, int maxHp);
+    void UpdateMana(int mp, int maxMp);
+    void UpdateDivinePower(int dp, int maxDp);
+    void UpdateExperience(int64_t curExp, int64_t maxExp);
+    void UpdateAbyssPoints(int64_t ap, int64_t gp, int rank);
+    void UpdateCombatStats(int pAtk, int pAcc, int pCrit, int pDef, int mBoost, int mAcc, int mRes);
+    void UpdateFlight(int curFlight, int maxFlight, float flightSpeed);
+
+    int GetHp() const { return m_hp; }
+    int GetMaxHp() const { return m_maxHp; }
+    float GetHpPercentage() const { return m_maxHp > 0 ? (float)m_hp / (float)m_maxHp : 0.0f; }
+
+private:
+    std::string m_characterName;
+    std::string m_titleName;
+    int m_level;
+    int m_classId;
+    int m_raceId;
+    int m_hp, m_maxHp;
+    int m_mp, m_maxMp;
+    int m_dp, m_maxDp;
+    int64_t m_currentExp, m_maxExp;
+    int64_t m_abyssPoints, m_gloryPoints;
+    int m_abyssRank;
+    int m_physAttack, m_physAccuracy, m_physCrit, m_physDef;
+    int m_magicBoost, m_magicAcc, m_magicResist;
+    int m_flightTime, m_maxFlightTime;
+    float m_flightSpeed;
 };
 
 // RTTI .?AVDlgPlayerInfoOther@@
@@ -2228,10 +2363,32 @@ public:
 // RTTI .?AVDlgQuest@@
 class DlgQuest : public AddonFrame {
 public:
+    struct QuestInfo {
+        uint32_t questId;
+        std::string title;
+        int currentStep;
+        int maxSteps;
+        int status; // 0=NotStarted, 1=InProgress, 2=RewardReady, 3=Completed
+        bool bTracked;
+        std::string objectiveDesc;
+        int64_t rewardExp;
+        int64_t rewardKinah;
+    };
+
     DlgQuest(const std::string& name = "DlgQuest");
     virtual ~DlgQuest();
     virtual void Show(bool bShow) override;
     virtual void Update() override;
+
+    void AddQuest(uint32_t questId, const std::string& title, int maxSteps, int64_t exp, int64_t kinah);
+    void UpdateQuestStep(uint32_t questId, int step, const std::string& objectiveDesc);
+    void SetQuestStatus(uint32_t questId, int status);
+    void ToggleTrackQuest(uint32_t questId);
+    const QuestInfo* GetQuest(uint32_t questId) const;
+    size_t GetActiveQuestCount() const;
+
+private:
+    std::vector<QuestInfo> m_quests;
 };
 
 // RTTI .?AVDlgQuestIndicator@@
@@ -2264,10 +2421,32 @@ public:
 // RTTI .?AVDlgRadar@@
 class DlgRadar : public AddonFrame {
 public:
+    typedef struct {
+        uint32_t id;
+        float x, y, z;
+        int markerType; // 0=Player, 1=Friendly, 2=Hostile, 3=NPC, 4=Gatherable
+        std::string label;
+    } RadarMarker;
+
     DlgRadar(const std::string& name = "DlgRadar");
     virtual ~DlgRadar();
     virtual void Show(bool bShow) override;
     virtual void Update() override;
+    virtual void OnUpdate(float deltaTime) override;
+
+    void UpdatePlayerPosition(float x, float y, float z, float yaw);
+    void SetZoom(float zoom);
+    float GetZoom() const { return m_zoomLevel; }
+
+    void AddMarker(uint32_t id, float x, float y, float z, int markerType, const std::string& label);
+    void RemoveMarker(uint32_t id);
+    void ClearMarkers();
+    size_t GetMarkerCount() const { return m_markers.size(); }
+
+private:
+    float m_playerX, m_playerY, m_playerZ, m_playerYaw;
+    float m_zoomLevel;
+    std::vector<RadarMarker> m_markers;
 };
 
 // RTTI .?AVDlgRadarMini@@
@@ -2507,10 +2686,37 @@ public:
 // RTTI .?AVDlgSkill@@
 class DlgSkill : public AddonFrame {
 public:
+    typedef struct {
+        uint32_t skillId;
+        int skillLevel;
+        std::string skillName;
+        int skillType; // 0=Active, 1=Passive, 2=Stigma, 3=DP
+        float cooldownTime;
+        float remainingCooldown;
+        int mpCost;
+        int dpCost;
+        int castTimeMs;
+        int range;
+    } SkillEntry;
+
     DlgSkill(const std::string& name = "DlgSkill");
     virtual ~DlgSkill();
     virtual void Show(bool bShow) override;
     virtual void Update() override;
+    virtual void OnUpdate(float deltaTime) override;
+
+    void AddSkill(uint32_t skillId, int level, const std::string& name, int type, float cd, int mp, int dp, int castMs, int range);
+    void RemoveSkill(uint32_t skillId);
+    void TriggerCooldown(uint32_t skillId);
+    const SkillEntry* GetSkill(uint32_t skillId) const;
+    size_t GetSkillCount() const { return m_skills.size(); }
+
+    virtual bool OnLButtonDown(int x, int y, uint32_t flags) override;
+    virtual bool OnDragBegin(int startX, int startY) override;
+
+private:
+    std::vector<SkillEntry> m_skills;
+    int m_activeTab;
 };
 
 // RTTI .?AVDlgSkillDelay@@
@@ -2813,10 +3019,40 @@ public:
 // RTTI .?AVDlgTarget@@
 class DlgTarget : public AddonFrame {
 public:
+    typedef struct {
+        uint32_t buffId;
+        float duration;
+        float remaining;
+        bool bDebuff;
+    } TargetBuffInfo;
+
     DlgTarget(const std::string& name = "DlgTarget");
     virtual ~DlgTarget();
     virtual void Show(bool bShow) override;
     virtual void Update() override;
+    virtual void OnUpdate(float deltaTime) override;
+
+    void SetTarget(uint32_t id, const std::string& name, int level, int type, int curHp, int maxHp, int dist = 0);
+    void ClearTarget();
+    void UpdateTargetHp(int curHp, int maxHp);
+    void AddTargetBuff(uint32_t buffId, float duration, bool bDebuff);
+    void RemoveTargetBuff(uint32_t buffId);
+
+    uint32_t GetTargetId() const { return m_targetId; }
+    bool HasTarget() const { return m_targetId != 0; }
+    float GetHpPercentage() const { return m_targetHpPct; }
+    int GetTargetType() const { return m_targetType; }
+    const std::string& GetTargetName() const { return m_targetName; }
+
+private:
+    uint32_t m_targetId;
+    std::string m_targetName;
+    int m_targetLevel;
+    int m_targetType;
+    int m_targetHp, m_targetMaxHp;
+    float m_targetHpPct;
+    int m_targetDistance;
+    std::vector<TargetBuffInfo> m_activeBuffs;
 };
 
 // RTTI .?AVDlgTargetAssist@@
@@ -3155,10 +3391,36 @@ public:
 // RTTI .?AVDlgTooltipObj@@
 class DlgTooltipObj : public AddonFrame {
 public:
+    typedef struct {
+        uint32_t itemId;
+        std::string itemName;
+        int itemGrade;
+        int levelReq;
+        int itemType;
+        int physAtk, magicAtk;
+        int physDef, magicRes;
+        int manastoneSlots;
+        std::vector<uint32_t> manastones;
+        uint32_t godstoneId;
+        bool bSoulbound;
+        bool bCanTrade;
+        std::string description;
+    } TooltipItemData;
+
     DlgTooltipObj(const std::string& name = "DlgTooltipObj");
     virtual ~DlgTooltipObj();
     virtual void Show(bool bShow) override;
     virtual void Update() override;
+
+    void SetItemTooltip(const TooltipItemData& data);
+    void SetSkillTooltip(uint32_t skillId, const std::string& name, int level, const std::string& desc, int mpCost, float cd);
+    void ClearTooltip();
+    bool HasTooltip() const { return m_hasData; }
+
+private:
+    TooltipItemData m_itemData;
+    bool m_hasData;
+    std::string m_formattedText;
 };
 
 // RTTI .?AVDlgTooltipParty@@
@@ -3416,10 +3678,40 @@ public:
 // RTTI .?AVDlgTrade@@
 class DlgTrade : public AddonFrame {
 public:
+    typedef struct {
+        uint32_t itemId;
+        int64_t count;
+        int enchantLevel;
+        int itemGrade;
+    } TradeSlot;
+
     DlgTrade(const std::string& name = "DlgTrade");
     virtual ~DlgTrade();
     virtual void Show(bool bShow) override;
     virtual void Update() override;
+
+    void StartTrade(uint32_t partnerId, const std::string& partnerName);
+    void CancelTrade();
+    bool AddMyItem(uint32_t slotIdx, uint32_t itemId, int64_t count, int enchant = 0, int grade = 0);
+    bool RemoveMyItem(uint32_t slotIdx);
+    void SetPartnerItem(uint32_t slotIdx, uint32_t itemId, int64_t count, int enchant = 0, int grade = 0);
+    void SetMyKinah(int64_t kinah) { m_myKinah = kinah; }
+    void SetPartnerKinah(int64_t kinah) { m_partnerKinah = kinah; }
+    void LockTrade(bool bMine, bool bLocked);
+    void ConfirmTrade(bool bMine, bool bConfirmed);
+    bool IsCompleted() const { return m_myConfirmed && m_partnerConfirmed; }
+
+private:
+    uint32_t m_partnerId;
+    std::string m_partnerName;
+    std::vector<TradeSlot> m_mySlots;
+    std::vector<TradeSlot> m_partnerSlots;
+    int64_t m_myKinah;
+    int64_t m_partnerKinah;
+    bool m_myLocked;
+    bool m_partnerLocked;
+    bool m_myConfirmed;
+    bool m_partnerConfirmed;
 };
 
 // RTTI .?AVDlgTransparentMap@@

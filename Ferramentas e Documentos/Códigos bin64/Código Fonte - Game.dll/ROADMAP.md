@@ -287,3 +287,69 @@ graph TD
    - `git add -A`
    - `git commit -m "feat/fix: [detalhamento da fase]"`
    - `git push origin main`
+
+---
+
+## 7. Novo Plano Diretor de Paridade Profunda de Volume (47.658 Funções / 31.8 MB)
+
+Com 100% da arquitetura canônica (1.977 classes) estabelecida, este plano diretor orienta a transição de **stubs estruturais** para a **implementação profunda de todos os 47.658 métodos e funções nativas**, fechando a lacuna de 31,2 MB de código executável.
+
+### EIXO 1: Subsistema de Interface Gráfica, Widgets e 525 Diálogos Canônicos (`Dlg*`) [EM EXECUÇÃO]
+> **Alvo**: Implementação de ~18.000 métodos de interface gráfica, eventos de janela e widgets.
+- **1.1 - Núcleo do Framework de UI (`AddonFrame`, `AddonContainer`, `AddonWidgets`)**:
+  - Ciclo de vida completo: `OnCreate`, `OnDestroy`, `OnShow`, `OnHide`, `OnUpdate(deltaTime)`, `OnRender`.
+  - Despachante polimórfico de eventos de entrada:
+    - Mouse: `OnMouseMove`, `OnLButtonDown`, `OnLButtonUp`, `OnRButtonDown`, `OnRButtonUp`, `OnMouseWheel`.
+    - Teclado e Foco: `OnKeyDown`, `OnKeyUp`, `OnSetFocus`, `OnKillFocus`.
+    - Drag & Drop: `OnDragBegin`, `OnDragMove`, `OnDragEnd`, `OnDrop(pSource, pPayload)`.
+  - Hierarquia de janelas: Árvore de nós gráficos, clipping 2D, coordenadas relativas/absolutas, transparência alfa e redimensionamento.
+- **1.2 - Diálogos Centrais de Gameplay**:
+  - `DlgInventory`: Gestão de cubos normal, especial e de conta, slots de equipamentos (19 slots), drag & drop de itens, divisão de pilhas (stack split), bloqueio de itens e ordenação.
+  - `DlgPlayerInfo` & `DlgTargetInfo`: Cálculo de atributos em tempo de execução, atualização contínua de barras HP/MP/DP, insígnias, asas, títulos e status anormais.
+  - `DlgSkillList` & `DlgStigma`: Árvores de habilidades por classe, cooldowns ativos, encadeamento de combos (combo chains), encaixe de pedras de estigma e custo de kinah/shards.
+  - `DlgChat` & `DlgRadar`: Canais múltiplos de conversação, renderização de hiperlinks formatados (itens, quests, locais), minimapa dinâmico com bússola, elevação Z e nós de coleta.
+  - `DlgQuest`: Painel mestre de missões, rastreador no HUD (*quest tracker*), recompensas, etapas dinâmicas e janelas de diálogo de NPC (`DlgDialog`).
+  - `DlgTrade` & `DlgGuild`: Janelas de negociação segura entre jogadores, banco da legião, histórico de contribuição de AP/GP, níveis e permissões.
+  - `DlgIngameShopBuy` & `DlgBattlePass`: Integração com vitrine web CEF, compra com moedas/Quna, histórico e trilhas de progressão sazonal.
+- **1.3 - Sistema de Tooltips Dinâmicos (`DlgTooltip*`)**:
+  - Formatação rica com renderização de tags de cores, estatísticas de itens, bônus de encantamento, pedras de mana (manastones), pedras divinas (godstones) e comparação lado a lado com itens equipados.
+- **1.4 - Renderizador Web CEF Off-Screen (Chromium Embedded Framework)**:
+  - Buffer de textura D3D9/D3D11, despacho de eventos virtuais de clique e digitação para o runtime web off-screen.
+
+---
+
+### EIXO 2: Subsistema de Rede Profundo, Desserialização Bit-a-Bit e Despacho de Mundo
+> **Alvo**: Implementação de ~12.000 métodos de desempacotamento e despacho dos 557 pacotes oficiais.
+- **2.1 - Manipuladores de Pacotes de Cliente (248 Opcodes)**:
+  - Serialização exata de ações do jogador: movimentação, salto, planar, conjuração de habilidades, uso de itens, interação com NPCs, comandos de grupo/legião.
+- **2.2 - Manipuladores de Pacotes de Servidor (309 Opcodes)**:
+  - Desserialização bit-a-bit com validação de payload: `S_PUT_PLAYER`, `S_PUT_NPC`, `S_MOVE_NEW`, `S_ATTACK`, `S_USE_SKILL`, `S_LOAD_INVENTORY`, `S_STATUS`, etc.
+- **2.3 - Despachantes de Estado do Mundo 3D**:
+  - Atualização contínua de entidades no CryEngine, interpolação de posições e rotações, disparos de animação e emissão de partículas FX.
+
+---
+
+### EIXO 3: Motores de Dados TableLib e Decodificação Binária
+> **Alvo**: Implementação de ~8.000 métodos de decodificação e indexação para as 453 tabelas.
+- **3.1 - Decodificadores de Formatos Binários Proprietários**:
+  - Leitores dos arquivos compilados em `Data/` (`.pak` e `.bin`) com descompressão de cabeçalhos e registros de dados.
+- **3.2 - Estruturas de Indexação e Cache**:
+  - Árvores rubro-negras balanceadas (`RBTreeNode`), tabelas hash com tratamento de colisões e gerenciamento de nós de heap (`TableCHeapCache`).
+
+---
+
+### EIXO 4: Criptografia, Compressão e Runtimes Estáticos
+> **Alvo**: Implementação de ~5.000 funções de compressão, criptografia e utilitários de sistema.
+- **4.1 - Algoritmos de Compressão Nativos**:
+  - Descompressão de fluxos Zlib, LZO e LZSS proprietário da NCSoft utilizados na leitura de malhas `.path` e pacotes `.pak`.
+- **4.2 - Criptografia de Rede e Autenticação**:
+  - Cifras Blowfish com tabela de chave dinâmica, chaveamento XOR por pacote, geradores de hash SHA-1 e MD5.
+
+---
+
+### EIXO 5: Simulação de Física, Colisão e Renderização de Gameplay CryEngine
+> **Alvo**: Implementação de ~4.600 funções de integração com o motor gráfico e sonoro.
+- **5.1 - Interface com o Motor Gráfico (`IRenderer`, `ISystem`)**:
+  - Registro de shaders, constantes de iluminação, texturas dinâmicas e matrizes de visão/projeção.
+- **5.2 - Áudio e Ambientes de Som (`ISoundEventListener`, `IXAreaMgr`)**:
+  - Propagação de som posicional 3D, transição entre zonas internas e externas (*vis areas*) e trilhas dinâmicas de combate.

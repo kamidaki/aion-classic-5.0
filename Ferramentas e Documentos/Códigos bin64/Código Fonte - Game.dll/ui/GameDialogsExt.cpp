@@ -1,5 +1,6 @@
 #include "GameDialogsExt.h"
 #include "../core/GameLog.h"
+#include <algorithm>
 
 DlgStoryBook::DlgStoryBook(const std::string& name) : AddonFrame(name) {}
 DlgStoryBook::~DlgStoryBook() {}
@@ -216,10 +217,54 @@ DlgChargeItem::~DlgChargeItem() {}
 void DlgChargeItem::Show(bool bShow) { AddonFrame::Show(bShow); }
 void DlgChargeItem::Update() { AddonFrame::Update(); }
 
-DlgChat::DlgChat(const std::string& name) : AddonFrame(name) {}
-DlgChat::~DlgChat() {}
-void DlgChat::Show(bool bShow) { AddonFrame::Show(bShow); }
-void DlgChat::Update() { AddonFrame::Update(); }
+DlgChat::DlgChat(const std::string& name)
+    : AddonFrame(name)
+    , m_activeTab(0)
+    , m_maxHistory(300)
+{
+    SetRect(20, 500, 450, 220);
+    SetDraggable(true);
+}
+
+DlgChat::~DlgChat() {
+    m_messages.clear();
+}
+
+void DlgChat::Show(bool bShow) {
+    AddonFrame::Show(bShow);
+}
+
+void DlgChat::Update() {
+    AddonFrame::Update();
+}
+
+void DlgChat::AddMessage(EChatChannel channel, const std::string& sender, const std::string& text) {
+    if (m_messages.size() >= m_maxHistory) {
+        m_messages.erase(m_messages.begin());
+    }
+    ChatMessageEntry entry;
+    entry.channel = channel;
+    entry.sender = sender;
+    entry.text = text;
+    entry.timestamp = (uint32_t)GetTickCount();
+    m_messages.push_back(entry);
+    GameLog_Info("[Chat Channel %d] %s: %s", (int)channel, sender.c_str(), text.c_str());
+}
+
+void DlgChat::SendChat(EChatChannel channel, const std::string& text) {
+    if (text.empty()) return;
+    AddMessage(channel, "Eu", text);
+}
+
+void DlgChat::ClearChat() {
+    m_messages.clear();
+}
+
+std::string DlgChat::FormatHyperlink(int linkType, uint32_t id, const std::string& displayText) {
+    char buf[256];
+    snprintf(buf, sizeof(buf), "[link:%d:%u]%s[/link]", linkType, id, displayText.c_str());
+    return std::string(buf);
+}
 
 DlgChatInput::DlgChatInput(const std::string& name) : AddonFrame(name) {}
 DlgChatInput::~DlgChatInput() {}
@@ -606,10 +651,99 @@ DlgGuildHistory::~DlgGuildHistory() {}
 void DlgGuildHistory::Show(bool bShow) { AddonFrame::Show(bShow); }
 void DlgGuildHistory::Update() { AddonFrame::Update(); }
 
-DlgGuildInfo::DlgGuildInfo(const std::string& name) : AddonFrame(name) {}
-DlgGuildInfo::~DlgGuildInfo() {}
-void DlgGuildInfo::Show(bool bShow) { AddonFrame::Show(bShow); }
-void DlgGuildInfo::Update() { AddonFrame::Update(); }
+DlgGuildInfo::DlgGuildInfo(const std::string& name)
+    : AddonFrame(name)
+    , m_legionId(0)
+    , m_legionLevel(1)
+    , m_contributionPoints(0)
+{
+    SetRect(400, 200, 480, 520);
+    SetDraggable(true);
+}
+
+DlgGuildInfo::~DlgGuildInfo() {
+    m_members.clear();
+}
+
+void DlgGuildInfo::Show(bool bShow) {
+    AddonFrame::Show(bShow);
+}
+
+void DlgGuildInfo::Update() {
+    AddonFrame::Update();
+}
+
+void DlgGuildInfo::SetLegionProfile(uint32_t legionId, const std::string& name, int level, const std::string& bgName, int64_t cp) {
+    m_legionId = legionId;
+    m_legionName = name;
+    m_legionLevel = level;
+    m_brigadeGeneral = bgName;
+    m_contributionPoints = cp;
+    GameLog_Info("DlgGuildInfo: Legion '%s' [ID %u, Nvl %d, Lider %s, Pontos %lld] carregada.",
+                 name.c_str(), legionId, level, bgName.c_str(), cp);
+}
+
+void DlgGuildInfo::AddMember(uint32_t charId, const std::string& name, int level, int classId, int rank, bool online) {
+    for (auto& m : m_members) {
+        if (m.charId == charId) {
+            m.level = level;
+            m.classId = classId;
+            m.rank = rank;
+            m.isOnline = online;
+            return;
+        }
+    }
+    LegionMember m;
+    m.charId = charId;
+    m.charName = name;
+    m.level = level;
+    m.classId = classId;
+    m.rank = rank;
+    m.isOnline = online;
+    m_members.push_back(m);
+}
+
+void DlgGuildInfo::RemoveMember(uint32_t charId) {
+    for (auto it = m_members.begin(); it != m_members.end(); ++it) {
+        if (it->charId == charId) {
+            m_members.erase(it);
+            break;
+        }
+    }
+}
+
+void DlgGuildInfo::UpdateMemberRank(uint32_t charId, int rank) {
+    for (auto& m : m_members) {
+        if (m.charId == charId) {
+            m.rank = rank;
+            break;
+        }
+    }
+}
+
+void DlgGuildInfo::SetMemberOnline(uint32_t charId, bool online) {
+    for (auto& m : m_members) {
+        if (m.charId == charId) {
+            m.isOnline = online;
+            break;
+        }
+    }
+}
+
+size_t DlgGuildInfo::GetOnlineCount() const {
+    size_t count = 0;
+    for (const auto& m : m_members) {
+        if (m.isOnline) count++;
+    }
+    return count;
+}
+
+const DlgGuildInfo::LegionMember* DlgGuildInfo::GetMember(uint32_t charId) const {
+    for (const auto& m : m_members) {
+        if (m.charId == charId) return &m;
+    }
+    return nullptr;
+}
 
 DlgGuildJoin::DlgGuildJoin(const std::string& name) : AddonFrame(name) {}
 DlgGuildJoin::~DlgGuildJoin() {}
@@ -811,10 +945,188 @@ DlgIntroductionWrite::~DlgIntroductionWrite() {}
 void DlgIntroductionWrite::Show(bool bShow) { AddonFrame::Show(bShow); }
 void DlgIntroductionWrite::Update() { AddonFrame::Update(); }
 
-DlgInventory::DlgInventory(const std::string& name) : AddonFrame(name) {}
-DlgInventory::~DlgInventory() {}
-void DlgInventory::Show(bool bShow) { AddonFrame::Show(bShow); }
-void DlgInventory::Update() { AddonFrame::Update(); }
+DlgInventory::DlgInventory(const std::string& name)
+    : AddonFrame(name)
+    , m_kinah(0)
+    , m_quna(0)
+    , m_activeTab(0)
+    , m_maxNormalSlots(135)
+{
+    SetRect(700, 200, 380, 520);
+    SetDraggable(true);
+
+    // Inicializar 135 slots normais
+    m_cubeSlots.resize(m_maxNormalSlots);
+    for (size_t i = 0; i < m_cubeSlots.size(); ++i) {
+        m_cubeSlots[i].slotId = (uint32_t)i;
+        m_cubeSlots[i].itemId = 0;
+        m_cubeSlots[i].count = 0;
+        m_cubeSlots[i].enchantLevel = 0;
+        m_cubeSlots[i].itemGrade = 0;
+        m_cubeSlots[i].bLocked = false;
+        m_cubeSlots[i].expireTime = 0;
+    }
+
+    // Inicializar 27 slots do cubo especial (materiais/quest)
+    m_specialCubeSlots.resize(27);
+    for (size_t i = 0; i < m_specialCubeSlots.size(); ++i) {
+        m_specialCubeSlots[i].slotId = (uint32_t)(1000 + i);
+        m_specialCubeSlots[i].itemId = 0;
+        m_specialCubeSlots[i].count = 0;
+        m_specialCubeSlots[i].enchantLevel = 0;
+        m_specialCubeSlots[i].itemGrade = 0;
+        m_specialCubeSlots[i].bLocked = false;
+        m_specialCubeSlots[i].expireTime = 0;
+    }
+
+    // Inicializar 19 slots de equipamento
+    m_equipSlots.resize(19);
+    for (size_t i = 0; i < m_equipSlots.size(); ++i) {
+        m_equipSlots[i].slotId = (uint32_t)(2000 + i);
+        m_equipSlots[i].itemId = 0;
+        m_equipSlots[i].count = 0;
+        m_equipSlots[i].enchantLevel = 0;
+        m_equipSlots[i].itemGrade = 0;
+        m_equipSlots[i].bLocked = false;
+        m_equipSlots[i].expireTime = 0;
+    }
+}
+
+DlgInventory::~DlgInventory() {
+    m_cubeSlots.clear();
+    m_specialCubeSlots.clear();
+    m_accountCubeSlots.clear();
+    m_equipSlots.clear();
+}
+
+void DlgInventory::Show(bool bShow) {
+    AddonFrame::Show(bShow);
+}
+
+void DlgInventory::Update() {
+    AddonFrame::Update();
+}
+
+void DlgInventory::OnUpdate(float deltaTime) {
+    (void)deltaTime;
+}
+
+bool DlgInventory::AddItem(uint32_t slotId, uint32_t itemId, int64_t count, int enchantLevel, int itemGrade) {
+    if (slotId < m_cubeSlots.size()) {
+        m_cubeSlots[slotId].itemId = itemId;
+        m_cubeSlots[slotId].count = count;
+        m_cubeSlots[slotId].enchantLevel = enchantLevel;
+        m_cubeSlots[slotId].itemGrade = itemGrade;
+        m_cubeSlots[slotId].bLocked = false;
+        GameLog_Info("Inventario: Item %u adicionado no slot %u (Qtd: %lld).", itemId, slotId, count);
+        return true;
+    }
+    return false;
+}
+
+bool DlgInventory::RemoveItem(uint32_t slotId, int64_t count) {
+    if (slotId < m_cubeSlots.size() && m_cubeSlots[slotId].itemId != 0) {
+        if (m_cubeSlots[slotId].count <= count) {
+            m_cubeSlots[slotId].itemId = 0;
+            m_cubeSlots[slotId].count = 0;
+            m_cubeSlots[slotId].enchantLevel = 0;
+        } else {
+            m_cubeSlots[slotId].count -= count;
+        }
+        return true;
+    }
+    return false;
+}
+
+bool DlgInventory::MoveItem(uint32_t fromSlot, uint32_t toSlot) {
+    if (fromSlot < m_cubeSlots.size() && toSlot < m_cubeSlots.size()) {
+        std::swap(m_cubeSlots[fromSlot], m_cubeSlots[toSlot]);
+        m_cubeSlots[fromSlot].slotId = fromSlot;
+        m_cubeSlots[toSlot].slotId = toSlot;
+        return true;
+    }
+    return false;
+}
+
+bool DlgInventory::SplitItem(uint32_t fromSlot, uint32_t toSlot, int64_t splitCount) {
+    if (fromSlot < m_cubeSlots.size() && toSlot < m_cubeSlots.size()) {
+        if (m_cubeSlots[fromSlot].count > splitCount && m_cubeSlots[toSlot].itemId == 0) {
+            m_cubeSlots[fromSlot].count -= splitCount;
+            m_cubeSlots[toSlot] = m_cubeSlots[fromSlot];
+            m_cubeSlots[toSlot].slotId = toSlot;
+            m_cubeSlots[toSlot].count = splitCount;
+            return true;
+        }
+    }
+    return false;
+}
+
+bool DlgInventory::EquipItem(uint32_t invSlot, uint32_t equipSlot) {
+    if (invSlot < m_cubeSlots.size() && equipSlot < m_equipSlots.size()) {
+        std::swap(m_cubeSlots[invSlot], m_equipSlots[equipSlot]);
+        m_cubeSlots[invSlot].slotId = invSlot;
+        m_equipSlots[equipSlot].slotId = 2000 + equipSlot;
+        GameLog_Info("Inventario: Item equipado no slot %u.", equipSlot);
+        return true;
+    }
+    return false;
+}
+
+bool DlgInventory::UnequipItem(uint32_t equipSlot, uint32_t invSlot) {
+    return EquipItem(invSlot, equipSlot);
+}
+
+void DlgInventory::SortInventory(int sortOrder) {
+    (void)sortOrder;
+    std::sort(m_cubeSlots.begin(), m_cubeSlots.end(), [](const InventoryItemSlot& a, const InventoryItemSlot& b) {
+        if (a.itemId != 0 && b.itemId == 0) return true;
+        if (a.itemId == 0 && b.itemId != 0) return false;
+        if (a.itemGrade != b.itemGrade) return a.itemGrade > b.itemGrade;
+        return a.itemId < b.itemId;
+    });
+    for (size_t i = 0; i < m_cubeSlots.size(); ++i) {
+        m_cubeSlots[i].slotId = (uint32_t)i;
+    }
+}
+
+void DlgInventory::LockSlot(uint32_t slotId, bool bLock) {
+    if (slotId < m_cubeSlots.size()) {
+        m_cubeSlots[slotId].bLocked = bLock;
+    }
+}
+
+const DlgInventory::InventoryItemSlot* DlgInventory::GetItemAt(uint32_t slotId) const {
+    if (slotId < m_cubeSlots.size()) {
+        return &m_cubeSlots[slotId];
+    }
+    return nullptr;
+}
+
+size_t DlgInventory::GetOccupiedSlotCount() const {
+    size_t count = 0;
+    for (const auto& slot : m_cubeSlots) {
+        if (slot.itemId != 0) count++;
+    }
+    return count;
+}
+
+bool DlgInventory::OnLButtonDown(int x, int y, uint32_t flags) {
+    return AddonFrame::OnLButtonDown(x, y, flags);
+}
+
+bool DlgInventory::OnRButtonDown(int x, int y, uint32_t flags) {
+    (void)x; (void)y; (void)flags;
+    return true;
+}
+
+bool DlgInventory::OnDragBegin(int startX, int startY) {
+    return AddonFrame::OnDragBegin(startX, startY);
+}
+
+bool DlgInventory::OnDrop(AddonFrame* pSource, void* pPayload) {
+    (void)pSource; (void)pPayload;
+    return true;
+}
 
 DlgInventoryCoin::DlgInventoryCoin(const std::string& name) : AddonFrame(name) {}
 DlgInventoryCoin::~DlgInventoryCoin() {}
@@ -1186,10 +1498,93 @@ DlgPickupUserDopItem::~DlgPickupUserDopItem() {}
 void DlgPickupUserDopItem::Show(bool bShow) { AddonFrame::Show(bShow); }
 void DlgPickupUserDopItem::Update() { AddonFrame::Update(); }
 
-DlgPlayerInfo::DlgPlayerInfo(const std::string& name) : AddonFrame(name) {}
+DlgPlayerInfo::DlgPlayerInfo(const std::string& name)
+    : AddonFrame(name)
+    , m_level(1)
+    , m_classId(0)
+    , m_raceId(0)
+    , m_hp(100), m_maxHp(100)
+    , m_mp(100), m_maxMp(100)
+    , m_dp(0), m_maxDp(4000)
+    , m_currentExp(0), m_maxExp(1000)
+    , m_abyssPoints(0), m_gloryPoints(0)
+    , m_abyssRank(1)
+    , m_physAttack(10), m_physAccuracy(100), m_physCrit(10), m_physDef(50)
+    , m_magicBoost(0), m_magicAcc(100), m_magicResist(50)
+    , m_flightTime(60), m_maxFlightTime(60)
+    , m_flightSpeed(9.0f)
+{
+    SetRect(50, 50, 360, 500);
+    SetDraggable(true);
+}
+
 DlgPlayerInfo::~DlgPlayerInfo() {}
-void DlgPlayerInfo::Show(bool bShow) { AddonFrame::Show(bShow); }
-void DlgPlayerInfo::Update() { AddonFrame::Update(); }
+
+void DlgPlayerInfo::Show(bool bShow) {
+    AddonFrame::Show(bShow);
+    if (bShow) {
+        GameLog_Info("DlgPlayerInfo: Exibindo ficha de personagem '%s' (Nvl %d).", m_characterName.c_str(), m_level);
+    }
+}
+
+void DlgPlayerInfo::Update() {
+    AddonFrame::Update();
+}
+
+void DlgPlayerInfo::OnUpdate(float deltaTime) {
+    (void)deltaTime;
+}
+
+void DlgPlayerInfo::SetCharacterProfile(const std::string& name, int level, int classId, const std::string& title) {
+    m_characterName = name;
+    m_level = level;
+    m_classId = classId;
+    m_titleName = title;
+    GameLog_Info("DlgPlayerInfo: Perfil atualizado: %s [Nvl %d, Classe %d, Titulo: %s]",
+                 name.c_str(), level, classId, title.c_str());
+}
+
+void DlgPlayerInfo::UpdateHealth(int hp, int maxHp) {
+    m_hp = hp;
+    m_maxHp = maxHp;
+}
+
+void DlgPlayerInfo::UpdateMana(int mp, int maxMp) {
+    m_mp = mp;
+    m_maxMp = maxMp;
+}
+
+void DlgPlayerInfo::UpdateDivinePower(int dp, int maxDp) {
+    m_dp = dp;
+    m_maxDp = maxDp;
+}
+
+void DlgPlayerInfo::UpdateExperience(int64_t curExp, int64_t maxExp) {
+    m_currentExp = curExp;
+    m_maxExp = maxExp;
+}
+
+void DlgPlayerInfo::UpdateAbyssPoints(int64_t ap, int64_t gp, int rank) {
+    m_abyssPoints = ap;
+    m_gloryPoints = gp;
+    m_abyssRank = rank;
+}
+
+void DlgPlayerInfo::UpdateCombatStats(int pAtk, int pAcc, int pCrit, int pDef, int mBoost, int mAcc, int mRes) {
+    m_physAttack = pAtk;
+    m_physAccuracy = pAcc;
+    m_physCrit = pCrit;
+    m_physDef = pDef;
+    m_magicBoost = mBoost;
+    m_magicAcc = mAcc;
+    m_magicResist = mRes;
+}
+
+void DlgPlayerInfo::UpdateFlight(int curFlight, int maxFlight, float flightSpeed) {
+    m_flightTime = curFlight;
+    m_maxFlightTime = maxFlight;
+    m_flightSpeed = flightSpeed;
+}
 
 DlgPlayerInfoOther::DlgPlayerInfoOther(const std::string& name) : AddonFrame(name) {}
 DlgPlayerInfoOther::~DlgPlayerInfoOther() {}
@@ -1236,10 +1631,91 @@ DlgPvpAbyssChange::~DlgPvpAbyssChange() {}
 void DlgPvpAbyssChange::Show(bool bShow) { AddonFrame::Show(bShow); }
 void DlgPvpAbyssChange::Update() { AddonFrame::Update(); }
 
-DlgQuest::DlgQuest(const std::string& name) : AddonFrame(name) {}
-DlgQuest::~DlgQuest() {}
-void DlgQuest::Show(bool bShow) { AddonFrame::Show(bShow); }
-void DlgQuest::Update() { AddonFrame::Update(); }
+DlgQuest::DlgQuest(const std::string& name)
+    : AddonFrame(name)
+{
+    SetRect(300, 150, 520, 620);
+    SetDraggable(true);
+}
+
+DlgQuest::~DlgQuest() {
+    m_quests.clear();
+}
+
+void DlgQuest::Show(bool bShow) {
+    AddonFrame::Show(bShow);
+}
+
+void DlgQuest::Update() {
+    AddonFrame::Update();
+}
+
+void DlgQuest::AddQuest(uint32_t questId, const std::string& title, int maxSteps, int64_t exp, int64_t kinah) {
+    for (auto& q : m_quests) {
+        if (q.questId == questId) {
+            return;
+        }
+    }
+    QuestInfo q;
+    q.questId = questId;
+    q.title = title;
+    q.currentStep = 0;
+    q.maxSteps = maxSteps;
+    q.status = 1; // InProgress
+    q.bTracked = true;
+    q.objectiveDesc = "Iniciada a missao.";
+    q.rewardExp = exp;
+    q.rewardKinah = kinah;
+    m_quests.push_back(q);
+    GameLog_Info("DlgQuest: Missao %u ('%s') adicionada ao diario.", questId, title.c_str());
+}
+
+void DlgQuest::UpdateQuestStep(uint32_t questId, int step, const std::string& objectiveDesc) {
+    for (auto& q : m_quests) {
+        if (q.questId == questId) {
+            q.currentStep = step;
+            q.objectiveDesc = objectiveDesc;
+            if (q.currentStep >= q.maxSteps) {
+                q.status = 2; // RewardReady
+                GameLog_Info("DlgQuest: Missao %u pronta para recompensa!", questId);
+            }
+            break;
+        }
+    }
+}
+
+void DlgQuest::SetQuestStatus(uint32_t questId, int status) {
+    for (auto& q : m_quests) {
+        if (q.questId == questId) {
+            q.status = status;
+            break;
+        }
+    }
+}
+
+void DlgQuest::ToggleTrackQuest(uint32_t questId) {
+    for (auto& q : m_quests) {
+        if (q.questId == questId) {
+            q.bTracked = !q.bTracked;
+            break;
+        }
+    }
+}
+
+const DlgQuest::QuestInfo* DlgQuest::GetQuest(uint32_t questId) const {
+    for (const auto& q : m_quests) {
+        if (q.questId == questId) return &q;
+    }
+    return nullptr;
+}
+
+size_t DlgQuest::GetActiveQuestCount() const {
+    size_t count = 0;
+    for (const auto& q : m_quests) {
+        if (q.status == 1 || q.status == 2) count++;
+    }
+    return count;
+}
 
 DlgQuestIndicator::DlgQuestIndicator(const std::string& name) : AddonFrame(name) {}
 DlgQuestIndicator::~DlgQuestIndicator() {}
@@ -1256,10 +1732,77 @@ DlgQuitAlert::~DlgQuitAlert() {}
 void DlgQuitAlert::Show(bool bShow) { AddonFrame::Show(bShow); }
 void DlgQuitAlert::Update() { AddonFrame::Update(); }
 
-DlgRadar::DlgRadar(const std::string& name) : AddonFrame(name) {}
-DlgRadar::~DlgRadar() {}
-void DlgRadar::Show(bool bShow) { AddonFrame::Show(bShow); }
-void DlgRadar::Update() { AddonFrame::Update(); }
+DlgRadar::DlgRadar(const std::string& name)
+    : AddonFrame(name)
+    , m_playerX(0.0f), m_playerY(0.0f), m_playerZ(0.0f), m_playerYaw(0.0f)
+    , m_zoomLevel(1.0f)
+{
+    SetRect(1650, 30, 240, 240);
+    SetDraggable(false);
+}
+
+DlgRadar::~DlgRadar() {
+    m_markers.clear();
+}
+
+void DlgRadar::Show(bool bShow) {
+    AddonFrame::Show(bShow);
+}
+
+void DlgRadar::Update() {
+    AddonFrame::Update();
+}
+
+void DlgRadar::OnUpdate(float deltaTime) {
+    (void)deltaTime;
+}
+
+void DlgRadar::UpdatePlayerPosition(float x, float y, float z, float yaw) {
+    m_playerX = x;
+    m_playerY = y;
+    m_playerZ = z;
+    m_playerYaw = yaw;
+}
+
+void DlgRadar::SetZoom(float zoom) {
+    if (zoom >= 0.5f && zoom <= 3.0f) {
+        m_zoomLevel = zoom;
+    }
+}
+
+void DlgRadar::AddMarker(uint32_t id, float x, float y, float z, int markerType, const std::string& label) {
+    for (auto& marker : m_markers) {
+        if (marker.id == id) {
+            marker.x = x;
+            marker.y = y;
+            marker.z = z;
+            marker.markerType = markerType;
+            marker.label = label;
+            return;
+        }
+    }
+    RadarMarker marker;
+    marker.id = id;
+    marker.x = x;
+    marker.y = y;
+    marker.z = z;
+    marker.markerType = markerType;
+    marker.label = label;
+    m_markers.push_back(marker);
+}
+
+void DlgRadar::RemoveMarker(uint32_t id) {
+    for (auto it = m_markers.begin(); it != m_markers.end(); ++it) {
+        if (it->id == id) {
+            m_markers.erase(it);
+            break;
+        }
+    }
+}
+
+void DlgRadar::ClearMarkers() {
+    m_markers.clear();
+}
 
 DlgRadarMini::DlgRadarMini(const std::string& name) : AddonFrame(name) {}
 DlgRadarMini::~DlgRadarMini() {}
@@ -1391,10 +1934,98 @@ DlgShortCutSep::~DlgShortCutSep() {}
 void DlgShortCutSep::Show(bool bShow) { AddonFrame::Show(bShow); }
 void DlgShortCutSep::Update() { AddonFrame::Update(); }
 
-DlgSkill::DlgSkill(const std::string& name) : AddonFrame(name) {}
-DlgSkill::~DlgSkill() {}
-void DlgSkill::Show(bool bShow) { AddonFrame::Show(bShow); }
-void DlgSkill::Update() { AddonFrame::Update(); }
+DlgSkill::DlgSkill(const std::string& name)
+    : AddonFrame(name)
+    , m_activeTab(0)
+{
+    SetRect(250, 180, 460, 560);
+    SetDraggable(true);
+}
+
+DlgSkill::~DlgSkill() {
+    m_skills.clear();
+}
+
+void DlgSkill::Show(bool bShow) {
+    AddonFrame::Show(bShow);
+}
+
+void DlgSkill::Update() {
+    AddonFrame::Update();
+}
+
+void DlgSkill::OnUpdate(float deltaTime) {
+    for (auto& s : m_skills) {
+        if (s.remainingCooldown > 0.0f) {
+            s.remainingCooldown -= deltaTime;
+            if (s.remainingCooldown < 0.0f) {
+                s.remainingCooldown = 0.0f;
+            }
+        }
+    }
+}
+
+void DlgSkill::AddSkill(uint32_t skillId, int level, const std::string& name, int type, float cd, int mp, int dp, int castMs, int range) {
+    for (auto& s : m_skills) {
+        if (s.skillId == skillId) {
+            s.skillLevel = level;
+            s.skillName = name;
+            s.skillType = type;
+            s.cooldownTime = cd;
+            s.mpCost = mp;
+            s.dpCost = dp;
+            s.castTimeMs = castMs;
+            s.range = range;
+            return;
+        }
+    }
+    SkillEntry s;
+    s.skillId = skillId;
+    s.skillLevel = level;
+    s.skillName = name;
+    s.skillType = type;
+    s.cooldownTime = cd;
+    s.remainingCooldown = 0.0f;
+    s.mpCost = mp;
+    s.dpCost = dp;
+    s.castTimeMs = castMs;
+    s.range = range;
+    m_skills.push_back(s);
+}
+
+void DlgSkill::RemoveSkill(uint32_t skillId) {
+    for (auto it = m_skills.begin(); it != m_skills.end(); ++it) {
+        if (it->skillId == skillId) {
+            m_skills.erase(it);
+            break;
+        }
+    }
+}
+
+void DlgSkill::TriggerCooldown(uint32_t skillId) {
+    for (auto& s : m_skills) {
+        if (s.skillId == skillId) {
+            s.remainingCooldown = s.cooldownTime;
+            break;
+        }
+    }
+}
+
+const DlgSkill::SkillEntry* DlgSkill::GetSkill(uint32_t skillId) const {
+    for (const auto& s : m_skills) {
+        if (s.skillId == skillId) return &s;
+    }
+    return nullptr;
+}
+
+bool DlgSkill::OnLButtonDown(int x, int y, uint32_t flags) {
+    return AddonFrame::OnLButtonDown(x, y, flags);
+}
+
+bool DlgSkill::OnDragBegin(int startX, int startY) {
+    (void)startX; (void)startY;
+    return true;
+}
 
 DlgSkillDelay::DlgSkillDelay(const std::string& name) : AddonFrame(name) {}
 DlgSkillDelay::~DlgSkillDelay() {}
@@ -1561,10 +2192,98 @@ DlgSupportShortCut::~DlgSupportShortCut() {}
 void DlgSupportShortCut::Show(bool bShow) { AddonFrame::Show(bShow); }
 void DlgSupportShortCut::Update() { AddonFrame::Update(); }
 
-DlgTarget::DlgTarget(const std::string& name) : AddonFrame(name) {}
-DlgTarget::~DlgTarget() {}
-void DlgTarget::Show(bool bShow) { AddonFrame::Show(bShow); }
-void DlgTarget::Update() { AddonFrame::Update(); }
+DlgTarget::DlgTarget(const std::string& name)
+    : AddonFrame(name)
+    , m_targetId(0)
+    , m_targetLevel(0)
+    , m_targetType(0)
+    , m_targetHp(0), m_targetMaxHp(0)
+    , m_targetHpPct(0.0f)
+    , m_targetDistance(0)
+{
+    SetRect(750, 40, 320, 110);
+    SetDraggable(true);
+}
+
+DlgTarget::~DlgTarget() {
+    m_activeBuffs.clear();
+}
+
+void DlgTarget::Show(bool bShow) {
+    AddonFrame::Show(bShow);
+}
+
+void DlgTarget::Update() {
+    AddonFrame::Update();
+}
+
+void DlgTarget::OnUpdate(float deltaTime) {
+    for (auto it = m_activeBuffs.begin(); it != m_activeBuffs.end();) {
+        it->remaining -= deltaTime;
+        if (it->remaining <= 0.0f) {
+            it = m_activeBuffs.erase(it);
+        } else {
+            ++it;
+        }
+    }
+}
+
+void DlgTarget::SetTarget(uint32_t id, const std::string& name, int level, int type, int curHp, int maxHp, int dist) {
+    m_targetId = id;
+    m_targetName = name;
+    m_targetLevel = level;
+    m_targetType = type;
+    m_targetHp = curHp;
+    m_targetMaxHp = maxHp;
+    m_targetHpPct = (maxHp > 0) ? ((float)curHp / (float)maxHp) : 0.0f;
+    m_targetDistance = dist;
+    m_activeBuffs.clear();
+    GameLog_Info("DlgTarget: Alvo selecionado: %s [ID %u, Nvl %d, HP %d/%d (%.1f%%), Dist %dm]",
+                 name.c_str(), id, level, curHp, maxHp, m_targetHpPct * 100.0f, dist);
+}
+
+void DlgTarget::ClearTarget() {
+    m_targetId = 0;
+    m_targetName.clear();
+    m_targetLevel = 0;
+    m_targetHp = 0;
+    m_targetMaxHp = 0;
+    m_targetHpPct = 0.0f;
+    m_targetDistance = 0;
+    m_activeBuffs.clear();
+}
+
+void DlgTarget::UpdateTargetHp(int curHp, int maxHp) {
+    m_targetHp = curHp;
+    m_targetMaxHp = maxHp;
+    m_targetHpPct = (maxHp > 0) ? ((float)curHp / (float)maxHp) : 0.0f;
+}
+
+void DlgTarget::AddTargetBuff(uint32_t buffId, float duration, bool bDebuff) {
+    for (auto& buff : m_activeBuffs) {
+        if (buff.buffId == buffId) {
+            buff.duration = duration;
+            buff.remaining = duration;
+            buff.bDebuff = bDebuff;
+            return;
+        }
+    }
+    TargetBuffInfo buff;
+    buff.buffId = buffId;
+    buff.duration = duration;
+    buff.remaining = duration;
+    buff.bDebuff = bDebuff;
+    m_activeBuffs.push_back(buff);
+}
+
+void DlgTarget::RemoveTargetBuff(uint32_t buffId) {
+    for (auto it = m_activeBuffs.begin(); it != m_activeBuffs.end(); ++it) {
+        if (it->buffId == buffId) {
+            m_activeBuffs.erase(it);
+            break;
+        }
+    }
+}
 
 DlgTargetAssist::DlgTargetAssist(const std::string& name) : AddonFrame(name) {}
 DlgTargetAssist::~DlgTargetAssist() {}
@@ -1751,10 +2470,54 @@ DlgTooltipMissionAchv::~DlgTooltipMissionAchv() {}
 void DlgTooltipMissionAchv::Show(bool bShow) { AddonFrame::Show(bShow); }
 void DlgTooltipMissionAchv::Update() { AddonFrame::Update(); }
 
-DlgTooltipObj::DlgTooltipObj(const std::string& name) : AddonFrame(name) {}
+DlgTooltipObj::DlgTooltipObj(const std::string& name)
+    : AddonFrame(name)
+    , m_hasData(false)
+{
+    SetRect(0, 0, 280, 340);
+    SetDraggable(false);
+}
+
 DlgTooltipObj::~DlgTooltipObj() {}
-void DlgTooltipObj::Show(bool bShow) { AddonFrame::Show(bShow); }
-void DlgTooltipObj::Update() { AddonFrame::Update(); }
+
+void DlgTooltipObj::Show(bool bShow) {
+    AddonFrame::Show(bShow);
+}
+
+void DlgTooltipObj::Update() {
+    AddonFrame::Update();
+}
+
+void DlgTooltipObj::SetItemTooltip(const TooltipItemData& data) {
+    m_itemData = data;
+    m_hasData = true;
+    m_formattedText = "[" + data.itemName + "]\n";
+    if (data.physAtk > 0) m_formattedText += "Ataque Fisico: " + std::to_string(data.physAtk) + "\n";
+    if (data.magicAtk > 0) m_formattedText += "Ataque Magico: " + std::to_string(data.magicAtk) + "\n";
+    if (data.physDef > 0) m_formattedText += "Defesa Fisica: " + std::to_string(data.physDef) + "\n";
+    if (data.magicRes > 0) m_formattedText += "Resistencia Magica: " + std::to_string(data.magicRes) + "\n";
+    if (data.manastoneSlots > 0) {
+        m_formattedText += "Slots de Manastone: " + std::to_string(data.manastones.size()) + "/" + std::to_string(data.manastoneSlots) + "\n";
+    }
+    if (!data.description.empty()) {
+        m_formattedText += "\n" + data.description;
+    }
+}
+
+void DlgTooltipObj::SetSkillTooltip(uint32_t skillId, const std::string& name, int level, const std::string& desc, int mpCost, float cd) {
+    m_hasData = true;
+    m_itemData.itemId = skillId;
+    m_itemData.itemName = name;
+    m_formattedText = "[" + name + " Nvl " + std::to_string(level) + "]\n";
+    if (mpCost > 0) m_formattedText += "Custo MP: " + std::to_string(mpCost) + "\n";
+    if (cd > 0.0f) m_formattedText += "Tempo de Recarga: " + std::to_string(cd) + "s\n";
+    m_formattedText += "\n" + desc;
+}
+
+void DlgTooltipObj::ClearTooltip() {
+    m_hasData = false;
+    m_formattedText.clear();
+}
 
 DlgTooltipParty::DlgTooltipParty(const std::string& name) : AddonFrame(name) {}
 DlgTooltipParty::~DlgTooltipParty() {}
@@ -1896,10 +2659,102 @@ DlgToyPetWarehouse::~DlgToyPetWarehouse() {}
 void DlgToyPetWarehouse::Show(bool bShow) { AddonFrame::Show(bShow); }
 void DlgToyPetWarehouse::Update() { AddonFrame::Update(); }
 
-DlgTrade::DlgTrade(const std::string& name) : AddonFrame(name) {}
-DlgTrade::~DlgTrade() {}
-void DlgTrade::Show(bool bShow) { AddonFrame::Show(bShow); }
-void DlgTrade::Update() { AddonFrame::Update(); }
+DlgTrade::DlgTrade(const std::string& name)
+    : AddonFrame(name)
+    , m_partnerId(0)
+    , m_myKinah(0)
+    , m_partnerKinah(0)
+    , m_myLocked(false)
+    , m_partnerLocked(false)
+    , m_myConfirmed(false)
+    , m_partnerConfirmed(false)
+{
+    SetRect(500, 250, 420, 480);
+    SetDraggable(true);
+    m_mySlots.resize(10);
+    m_partnerSlots.resize(10);
+    for (int i = 0; i < 10; ++i) {
+        m_mySlots[i] = {0, 0, 0, 0};
+        m_partnerSlots[i] = {0, 0, 0, 0};
+    }
+}
+
+DlgTrade::~DlgTrade() {
+    m_mySlots.clear();
+    m_partnerSlots.clear();
+}
+
+void DlgTrade::Show(bool bShow) {
+    AddonFrame::Show(bShow);
+}
+
+void DlgTrade::Update() {
+    AddonFrame::Update();
+}
+
+void DlgTrade::StartTrade(uint32_t partnerId, const std::string& partnerName) {
+    m_partnerId = partnerId;
+    m_partnerName = partnerName;
+    m_myKinah = 0;
+    m_partnerKinah = 0;
+    m_myLocked = false;
+    m_partnerLocked = false;
+    m_myConfirmed = false;
+    m_partnerConfirmed = false;
+    for (int i = 0; i < 10; ++i) {
+        m_mySlots[i] = {0, 0, 0, 0};
+        m_partnerSlots[i] = {0, 0, 0, 0};
+    }
+    Show(true);
+    GameLog_Info("DlgTrade: Negociacao iniciada com %s (ID %u).", partnerName.c_str(), partnerId);
+}
+
+void DlgTrade::CancelTrade() {
+    m_partnerId = 0;
+    m_partnerName.clear();
+    m_myLocked = false;
+    m_partnerLocked = false;
+    m_myConfirmed = false;
+    m_partnerConfirmed = false;
+    Show(false);
+    GameLog_Info("DlgTrade: Negociacao cancelada.");
+}
+
+bool DlgTrade::AddMyItem(uint32_t slotIdx, uint32_t itemId, int64_t count, int enchant, int grade) {
+    if (slotIdx < m_mySlots.size() && !m_myLocked) {
+        m_mySlots[slotIdx] = {itemId, count, enchant, grade};
+        return true;
+    }
+    return false;
+}
+
+bool DlgTrade::RemoveMyItem(uint32_t slotIdx) {
+    if (slotIdx < m_mySlots.size() && !m_myLocked) {
+        m_mySlots[slotIdx] = {0, 0, 0, 0};
+        return true;
+    }
+    return false;
+}
+
+void DlgTrade::SetPartnerItem(uint32_t slotIdx, uint32_t itemId, int64_t count, int enchant, int grade) {
+    if (slotIdx < m_partnerSlots.size()) {
+        m_partnerSlots[slotIdx] = {itemId, count, enchant, grade};
+    }
+}
+
+void DlgTrade::LockTrade(bool bMine, bool bLocked) {
+    if (bMine) m_myLocked = bLocked;
+    else m_partnerLocked = bLocked;
+    GameLog_Info("DlgTrade: Trava de negociacao alterada (Eu: %d, Parceiro: %d).", m_myLocked, m_partnerLocked);
+}
+
+void DlgTrade::ConfirmTrade(bool bMine, bool bConfirmed) {
+    if (bMine) m_myConfirmed = bConfirmed;
+    else m_partnerConfirmed = bConfirmed;
+    if (IsCompleted()) {
+        GameLog_Info("DlgTrade: Negociacao confirmada por ambas as partes!");
+    }
+}
 
 DlgTransparentMap::DlgTransparentMap(const std::string& name) : AddonFrame(name) {}
 DlgTransparentMap::~DlgTransparentMap() {}
