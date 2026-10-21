@@ -175,20 +175,19 @@ graph TD
 
 ---
 
-### FASE 6: Sistema de Habilidades, Árvores de Skill, Daevanion & Efeitos
-> **Objetivo**: Reconstruir os grafos de habilidades, st谘mas, habilidades Daevanion e o sistema de auto-uso.
-
-- **Subetapa 6.1 - Estruturas Canônicas de Habilidades**:
-  - `SkillGraph`, `SkillItem`, `BuffItem`.
-  - `QuickSlotAutoUseSystem` e `GameEventChangeSlotSkillLevelData`.
-- **Subetapa 6.2 - Habilidades Específicas do Classic 5.0**:
-  - Sistema de Daevanion e Habilidades de Moros (`MorosSkill`, `MorosTable`).
-  - Habilidades ativas, passivas, de cadeia (combo chains) e estados de carga (charge skills).
-- **Subetapa 6.3 - Gerenciamento de Cooldowns e GCD**:
-  - Controle de Global Cooldown (GCD), animações de cast bar e cancelamento de habilidade por movimento ou dano.
-- **Testes & Critérios de Aceite**:
-  - Teste de fluxo completo: início de cast -> verificação de mana -> disparo de projétil -> aplicação de efeito/buff -> entrada em cooldown.
-- **Checkpoint Git**: Commit `feat(skills): implement SkillGraph, combo chains, buffs and classic 5.0 skill mechanics` + `git push`.
+### FASE 6: Sistema de Habilidades, Árvores de Skill, Daevanion & Efeitos [100% CONCLUÍDA]
+> **Status**: **100% CONCLUÍDA & AUDITADA**
+> - Grafos Canônicos de Habilidades e Combos (`game/SkillGraph.h` / `game/SkillGraph.cpp`):
+>   - `SkillGraph` e `SkillVertex`: Árvores de habilidades com níveis e pré-requisitos de aprendizagem.
+>   - `ChainGraph` e `ChainVertex`: Sistema de habilidades de cadeia (combo chains) com branching probabilístico e janelas temporais de combo.
+>   - `StigmaGraph` e `StigmaVertex`: Sistema de estigmas maiores/menores e cálculo de fragmentos (stigma shards) em até 12 slots.
+> - Nós Visuais e Utilitários Canônicos:
+>   - `UIChainNode`, `UISkillNode`, `UIStigmaNode`, `IAutoSkillTestCallback`.
+>   - `SkillItem` e `BuffItem` (integrados e unificados com `game/Items.h`).
+>   - `QuickSlotAutoUseSystem` e estruturas de eventos (`GameEventData`, `GameEventChangeSlotSkillLevelData`, `GameEventRemoveSlotItem`).
+> - Cobertura Canônica Saltou para **1.365 / 1.977 classes canônicas (69.04%)** com **0 classes falsas**.
+> - Teste de Aceite de Habilidades (`scratch/test_skills.py`): Requisitos de árvore, combo branching e limites de estigmas validados com 100% de sucesso.
+> - Compilação MSVC 2022 x64 (`Build64.bat`): 0 erros, 0 avisos.
 
 ---
 

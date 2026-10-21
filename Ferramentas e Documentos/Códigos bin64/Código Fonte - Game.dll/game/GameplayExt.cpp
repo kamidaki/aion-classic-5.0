@@ -114,8 +114,6 @@ CefResourceRequestHandler::~CefResourceRequestHandler() {}
 CefSchemeHandlerFactory::CefSchemeHandlerFactory() {}
 CefSchemeHandlerFactory::~CefSchemeHandlerFactory() {}
 
-ChainGraph::ChainGraph() {}
-ChainGraph::~ChainGraph() {}
 
 ChangeChannelOperatorResult::ChangeChannelOperatorResult() {}
 ChangeChannelOperatorResult::~ChangeChannelOperatorResult() {}
@@ -508,8 +506,6 @@ SimplePathSector4BitIndexZWithLink::~SimplePathSector4BitIndexZWithLink() {}
 SimplePathSectorWithLink::SimplePathSectorWithLink() {}
 SimplePathSectorWithLink::~SimplePathSectorWithLink() {}
 
-SkillGraph::SkillGraph() {}
-SkillGraph::~SkillGraph() {}
 
 SlotFuncDefaultHandler::SlotFuncDefaultHandler() {}
 SlotFuncDefaultHandler::~SlotFuncDefaultHandler() {}
@@ -571,8 +567,6 @@ SpecialCraftSpecialItemPage::~SpecialCraftSpecialItemPage() {}
 MixerLib::SrcLine::SrcLine() {}
 MixerLib::SrcLine::~SrcLine() {}
 
-StigmaGraph::StigmaGraph() {}
-StigmaGraph::~StigmaGraph() {}
 
 TabBase::TabBase() {}
 TabBase::~TabBase() {}

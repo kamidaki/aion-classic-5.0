@@ -7,6 +7,7 @@
 #include <typeinfo>
 #include <exception>
 #include "CombatMath.h"
+#include "SkillGraph.h"
 
 struct ISystem;
 struct IGame;
@@ -325,13 +326,7 @@ public:
     virtual const char* GetClassName() const { return "CefSchemeHandlerFactory"; }
 };
 
-// RTTI .?AVChainGraph@@
-class ChainGraph {
-public:
-    ChainGraph();
-    virtual ~ChainGraph();
-    virtual const char* GetClassName() const { return "ChainGraph"; }
-};
+
 
 // RTTI .?AVChangeChannelOperatorResult@@
 class ChangeChannelOperatorResult {
@@ -1442,13 +1437,7 @@ public:
     virtual const char* GetClassName() const { return "SimplePathSectorWithLink"; }
 };
 
-// RTTI .?AVSkillGraph@@
-class SkillGraph {
-public:
-    SkillGraph();
-    virtual ~SkillGraph();
-    virtual const char* GetClassName() const { return "SkillGraph"; }
-};
+
 
 // RTTI .?AVSlotFuncDefaultHandler@@
 class SlotFuncDefaultHandler {
@@ -1612,13 +1601,7 @@ namespace MixerLib {
     };
 }
 
-// RTTI .?AVStigmaGraph@@
-class StigmaGraph {
-public:
-    StigmaGraph();
-    virtual ~StigmaGraph();
-    virtual const char* GetClassName() const { return "StigmaGraph"; }
-};
+
 
 // RTTI .?AVTabBase@@
 class TabBase {
