@@ -11,8 +11,6 @@ UnicodeInput::~UnicodeInput() {}
 UnicodeInput::TsfInput::CUIElementSink::CUIElementSink() {}
 UnicodeInput::TsfInput::CUIElementSink::~CUIElementSink() {}
 
-AbnormalStatusGroup::AbnormalStatusGroup() {}
-AbnormalStatusGroup::~AbnormalStatusGroup() {}
 
 AccumulatedEnchantManager::AccumulatedEnchantManager() {}
 AccumulatedEnchantManager::~AccumulatedEnchantManager() {}
@@ -155,8 +153,6 @@ ConfirmedEnchant::~ConfirmedEnchant() {}
 CpathFileMapping::CpathFileMapping() {}
 CpathFileMapping::~CpathFileMapping() {}
 
-DamageNumberGroup::DamageNumberGroup() {}
-DamageNumberGroup::~DamageNumberGroup() {}
 
 Json::DefaultValueAllocator::DefaultValueAllocator() {}
 Json::DefaultValueAllocator::~DefaultValueAllocator() {}

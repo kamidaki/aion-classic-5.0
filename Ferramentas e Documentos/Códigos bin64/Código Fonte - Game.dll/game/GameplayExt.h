@@ -6,6 +6,7 @@
 #include <vector>
 #include <typeinfo>
 #include <exception>
+#include "CombatMath.h"
 
 struct ISystem;
 struct IGame;
@@ -40,13 +41,7 @@ public:
     };
 };
 
-// RTTI .?AVAbnormalStatusGroup@@
-class AbnormalStatusGroup {
-public:
-    AbnormalStatusGroup();
-    virtual ~AbnormalStatusGroup();
-    virtual const char* GetClassName() const { return "AbnormalStatusGroup"; }
-};
+
 
 // RTTI .?AVAccumulatedEnchantManager@@
 class AccumulatedEnchantManager {
@@ -434,13 +429,7 @@ public:
     virtual const char* GetClassName() const { return "CpathFileMapping"; }
 };
 
-// RTTI .?AVDamageNumberGroup@@
-class DamageNumberGroup {
-public:
-    DamageNumberGroup();
-    virtual ~DamageNumberGroup();
-    virtual const char* GetClassName() const { return "DamageNumberGroup"; }
-};
+
 
 namespace Json {
     // RTTI .?AVDefaultValueAllocator@Json@@

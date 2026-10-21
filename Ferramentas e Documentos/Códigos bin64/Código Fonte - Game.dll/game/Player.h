@@ -4,6 +4,7 @@
 #include <vector>
 #include <memory>
 #include "../ai/AIObject.h"
+#include "GameplayExt.h"
 
 // Objeto base genérico (.?AVBasicObject@@)
 class BasicObject {
@@ -29,10 +30,11 @@ public:
 };
 
 // Classe canônica do jogador (Player) extraída do RTTI (.?AVPlayer@@)
-class Player : public AIObject {
+class Player : public AIObject, public CharacterObject {
 public:
     Player(uint32_t objectId, const std::string& name, uint8_t playerClass, uint8_t race, uint8_t gender);
     virtual ~Player();
+
 
     virtual void Update() override;
 

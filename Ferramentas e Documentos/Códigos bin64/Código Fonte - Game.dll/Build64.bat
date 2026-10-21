@@ -65,6 +65,7 @@ cl.exe /nologo /O2 /W3 /std:c++17 /EHsc /MD /LD /GR ^
     game\Items.cpp ^
     game\EngineObjects.cpp ^
     game\GameplayExt.cpp ^
+    game\CombatMath.cpp ^
     /Fo"%OUT_DIR%\\" ^
     /link ^
     /DEF:Game.def ^

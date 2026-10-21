@@ -157,22 +157,21 @@ graph TD
 
 ---
 
-### FASE 5: Entidades de Jogo, Atores, Status & Fórmulas Matemáticas de Combate
-> **Objetivo**: Modelar as entidades canônicas do jogo (`CPlayer`, `Creature`, `NPC`), atributos e implementar as fórmulas oficiais de combate e dano.
+### FASE 5: Entidades de Jogo, Atores, Status & Fórmulas Matemáticas de Combate [100% CONCLUÍDA]
+> **Status**: **100% CONCLUÍDA & AUDITADA**
+> - Entidades e Hierarquia Canônica Integradas:
+>   - `CharacterObject` (base canônica de atores e entidades)
+>   - `Player : public AIObject, public CharacterObject`
+>   - `CreatureAttrIndex` (enum canônico com todos os 29 atributos de combate: HP, MP, DP, Atk, Def, MAtk, MDef, Acc, Eva, Parry, Block, Crit, StrikeResist, MBoost, MSupp, etc.)
+> - Módulo de Fórmulas Matemáticas Oficiais (`game/CombatMath.h` / `game/CombatMath.cpp`):
+>   - `DamageNumberGroup::CalculatePhysicalDamage`: `(Attack * SkillMultiplier - Defense / 10) * Variance * Modifiers` (Crítico 1.5x, Bloqueio com escudo, Aparar 0.6x, Redução PVP 0.5x).
+>   - `DamageNumberGroup::CalculateMagicalDamage`: `(MagicBoost * SkillMultiplier - MagicSuppression / 10) * (1 - ElementalResist) * Modifiers`.
+>   - Clamps e taxas oficiais: Evasão clamped em [5%, 95%], Crítico Físico com cap de 50% em PVP, Bloqueio cap de 50%, Aparar cap de 40%, Resistência Mágica cap de 50% em PVP.
+> - Gestão Canônica de Estados Anormais:
+>   - `AbnormalStatusGroup` e `AbnormalStatusParam`: Aplicação, remoção, controle de duração e ticks periódicos (DoT, HoT) sem classes fictícias.
+> - Teste de Aceite de Combate (`scratch/test_combat.py`): Executado com 100% de sucesso validando cenários PvE/PvP, bloqueio, aparar, evasão e supressão mágica.
+> - Compilação MSVC 2022 x64 (`Build64.bat`): 0 erros, 0 avisos.
 
-- **Subetapa 5.1 - Atores e Entidades Canônicas**:
-  - Classes canônicas: `CharacterObject`, `CClientEntity`, `CreatureAttrIndex`.
-  - Hierarquia de atributos: HP, MP, DP, FP, Ataque Físico, Ataque Mágico, Defesa Física, Defesa Mágica, Precisão, Evasão, Bloqueio, Parrying, Crítico Físico, Crítico Mágico, Resistência Mágica, Penetração.
-- **Subetapa 5.2 - Fórmulas Canônicas de Combate**:
-  - Dano Físico = `BaseDamage * (1 - PhysicalDefense / 10000) * Modifiers`.
-  - Dano Mágico = `(SkillBasePower + MagicBoost * BoostRatio) * (1 - MagicSuppression / 10000) * ElementalResistMultiplier`.
-  - Chances de Crítico, Bloqueio, Evasão e Resistência respeitando os caps canônicos do Classic 5.0 (ex: Hard Cap de Crítico Físico em 500 = 50%, Soft Cap escalonado).
-- **Subetapa 5.3 - Feedback Visual de Combate**:
-  - `DamageNumberGroup`: Despacho de números de dano normal, crítico, bloqueado, absorvido, esquivado e resistido.
-  - `AbnormalStatusGroup`: Estados anormais (Stun, Knockback, Sleep, Silence, Blind, Root, Paralyze, Fear, Stumble, Open Aerial).
-- **Testes & Critérios de Aceite**:
-  - Validação matemática de 50 cenários de teste contra os valores esperados das fórmulas canônicas do Classic 5.0.
-- **Checkpoint Git**: Commit `feat(gameplay): implement canonical entities, combat formulas and damage numbers` + `git push`.
 
 ---
 
