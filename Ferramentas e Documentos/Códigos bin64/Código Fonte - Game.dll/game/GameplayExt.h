@@ -745,13 +745,7 @@ namespace nsDlgGuild {
     };
 }
 
-// RTTI .?AVHQRouter@@
-class HQRouter {
-public:
-    HQRouter();
-    virtual ~HQRouter();
-    virtual const char* GetClassName() const { return "HQRouter"; }
-};
+#include "../net/AionRouters.h"
 
 // RTTI .?AVHomePageGridItemData@@
 class HomePageGridItemData {

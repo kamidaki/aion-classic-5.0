@@ -260,9 +260,6 @@ nsDlgGuild::GuildMissionGridItemData::~GuildMissionGridItemData() {}
 nsDlgGuild::GuildRewardGridItemData::GuildRewardGridItemData() {}
 nsDlgGuild::GuildRewardGridItemData::~GuildRewardGridItemData() {}
 
-HQRouter::HQRouter() {}
-HQRouter::~HQRouter() {}
-
 HomePageGridItemData::HomePageGridItemData() {}
 HomePageGridItemData::~HomePageGridItemData() {}
 

@@ -25,14 +25,21 @@ bool ClientToServerRouter::Initialize() {
 bool ClientToServerRouter::Send(const PacketParser& writer) {
     if (writer.GetSize() < 2) return false;
     uint16_t opcode = *reinterpret_cast<const uint16_t*>(writer.GetData());
-    return SendRaw(opcode, writer.GetData() + 2, writer.GetSize() - 2);
+    return SendOpcode(opcode, writer.GetData() + 2, writer.GetSize() - 2);
 }
 
-bool ClientToServerRouter::SendRaw(uint16_t opcode, const uint8_t* pData, size_t size) {
+bool ClientToServerRouter::SendRaw(const uint8_t* pData, size_t size) {
+    if (!pData || size < 2) return false;
+    uint16_t opcode = *reinterpret_cast<const uint16_t*>(pData);
+    return SendOpcode(opcode, pData + 2, size - 2);
+}
+
+bool ClientToServerRouter::SendOpcode(uint16_t opcode, const uint8_t* pData, size_t size) {
+    BaseSendRouter::SendRaw(pData, size);
     if (s_pfnSendNative) {
         return s_pfnSendNative(opcode, pData, size);
     }
-    GameLog_Info("ClientToServerRouter::SendRaw [Opcode: 0x%04X, Size: %zu]", opcode, size);
+    GameLog_Info("ClientToServerRouter::SendOpcode [Opcode: 0x%04X, Size: %zu]", opcode, size);
     return true;
 }
 

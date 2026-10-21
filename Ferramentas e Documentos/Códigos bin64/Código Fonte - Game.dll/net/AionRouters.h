@@ -45,10 +45,15 @@ protected:
 };
 
 // .?AVAuthRouter@@
-class AuthRouter : public BaseRouter {
+class AuthRouter : public BaseReceiveRouter, public BaseSendRouter {
 public:
     AuthRouter();
     virtual ~AuthRouter();
+
+    virtual bool Initialize() override;
+    virtual void Shutdown() override;
+    virtual void OnReceive(const uint8_t* pData, size_t size) override;
+    virtual bool SendRaw(const uint8_t* pData, size_t size) override;
 
     bool Authenticate(const std::string& account, const std::string& token);
     bool IsAuthenticated() const { return m_bAuthenticated; }
@@ -56,6 +61,24 @@ public:
 private:
     bool m_bAuthenticated;
     std::string m_account;
+};
+
+// .?AVHQRouter@@
+class HQRouter : public BaseReceiveRouter, public BaseSendRouter {
+public:
+    HQRouter();
+    virtual ~HQRouter();
+
+    virtual bool Initialize() override;
+    virtual void Shutdown() override;
+    virtual void OnReceive(const uint8_t* pData, size_t size) override;
+    virtual bool SendRaw(const uint8_t* pData, size_t size) override;
+
+    bool SendHQMessage(uint32_t guildId, uint16_t opcode, const uint8_t* pData, size_t size);
+    void RegisterHQHandler(uint16_t opcode, std::function<void(uint32_t, const uint8_t*, size_t)> handler);
+
+private:
+    std::unordered_map<uint16_t, std::function<void(uint32_t, const uint8_t*, size_t)>> m_hqHandlers;
 };
 
 // .?AVServerToClientRouter@@

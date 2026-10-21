@@ -5,21 +5,23 @@
 #include <functional>
 #include "AionPacketOpcodes.h"
 #include "AionClientPackets.h"
+#include "AionRouters.h"
 
 // Classe canônica de roteamento de pacotes do cliente para o servidor extraída do RTTI do game.dll (.?AVClientToServerRouter@@)
-class ClientToServerRouter {
+class ClientToServerRouter : public BaseSendRouter {
 public:
     static ClientToServerRouter& GetInstance() {
         static ClientToServerRouter instance;
         return instance;
     }
 
-    bool Initialize();
-    void Shutdown();
+    virtual bool Initialize() override;
+    virtual void Shutdown() override;
 
     // Envio de pacotes do cliente para o servidor
     bool Send(const PacketParser& writer);
-    bool SendRaw(uint16_t opcode, const uint8_t* pData, size_t size);
+    virtual bool SendRaw(const uint8_t* pData, size_t size) override;
+    bool SendOpcode(uint16_t opcode, const uint8_t* pData, size_t size);
 
     // Despacho de pacotes recebidos do servidor
     void RouteIncomingPacket(uint16_t opcode, const uint8_t* pData, size_t size);
@@ -32,3 +34,4 @@ private:
     bool m_bConnected;
     std::unordered_map<uint16_t, std::function<void(const uint8_t*, size_t)>> m_serverPacketHandlers;
 };
+

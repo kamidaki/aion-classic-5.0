@@ -27,12 +27,68 @@ void BaseReceiveRouter::OnReceive(const uint8_t* pData, size_t size) {
 // AuthRouter
 AuthRouter::AuthRouter() : m_bAuthenticated(false) {}
 AuthRouter::~AuthRouter() {}
+bool AuthRouter::Initialize() {
+    BaseReceiveRouter::Initialize();
+    BaseSendRouter::Initialize();
+    return true;
+}
+void AuthRouter::Shutdown() {
+    BaseReceiveRouter::Shutdown();
+    BaseSendRouter::Shutdown();
+    m_bAuthenticated = false;
+}
+void AuthRouter::OnReceive(const uint8_t* pData, size_t size) {
+    BaseReceiveRouter::OnReceive(pData, size);
+}
+bool AuthRouter::SendRaw(const uint8_t* pData, size_t size) {
+    return BaseSendRouter::SendRaw(pData, size);
+}
 bool AuthRouter::Authenticate(const std::string& account, const std::string& token) {
     m_account = account;
     m_bAuthenticated = true;
     GameLog_Info("AuthRouter: Conta [%s] autenticada via token de sessao.", account.c_str());
     return true;
 }
+
+// HQRouter
+HQRouter::HQRouter() {}
+HQRouter::~HQRouter() { m_hqHandlers.clear(); }
+bool HQRouter::Initialize() {
+    BaseReceiveRouter::Initialize();
+    BaseSendRouter::Initialize();
+    return true;
+}
+void HQRouter::Shutdown() {
+    BaseReceiveRouter::Shutdown();
+    BaseSendRouter::Shutdown();
+    m_hqHandlers.clear();
+}
+void HQRouter::OnReceive(const uint8_t* pData, size_t size) {
+    BaseReceiveRouter::OnReceive(pData, size);
+    if (!pData || size < 6) return;
+    uint32_t guildId = *reinterpret_cast<const uint32_t*>(pData);
+    uint16_t opcode = *reinterpret_cast<const uint16_t*>(pData + 4);
+    auto it = m_hqHandlers.find(opcode);
+    if (it != m_hqHandlers.end() && it->second) {
+        it->second(guildId, pData + 6, size - 6);
+    }
+}
+bool HQRouter::SendRaw(const uint8_t* pData, size_t size) {
+    return BaseSendRouter::SendRaw(pData, size);
+}
+bool HQRouter::SendHQMessage(uint32_t guildId, uint16_t opcode, const uint8_t* pData, size_t size) {
+    std::vector<uint8_t> buffer(6 + size);
+    *reinterpret_cast<uint32_t*>(buffer.data()) = guildId;
+    *reinterpret_cast<uint16_t*>(buffer.data() + 4) = opcode;
+    if (pData && size > 0) {
+        memcpy(buffer.data() + 6, pData, size);
+    }
+    return SendRaw(buffer.data(), buffer.size());
+}
+void HQRouter::RegisterHQHandler(uint16_t opcode, std::function<void(uint32_t, const uint8_t*, size_t)> handler) {
+    m_hqHandlers[opcode] = handler;
+}
+
 
 // ServerToClientRouter
 ServerToClientRouter::ServerToClientRouter() {}
