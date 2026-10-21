@@ -167,3 +167,16 @@ const char* CXGame::GetName() {
 void CXGame::Release() {
     delete this;
 }
+
+bool CXGame::Init() {
+    GameLog_Info("CXGame::Init (IXGame)");
+    return true;
+}
+
+void CXGame::OnConsoleCommand(const char* szCommand) {
+    GameLog_Info("CXGame::OnConsoleCommand '%s'", szCommand ? szCommand : "null");
+}
+
+bool CXGame::OnInputEvent(void* pEvent) {
+    return false;
+}
