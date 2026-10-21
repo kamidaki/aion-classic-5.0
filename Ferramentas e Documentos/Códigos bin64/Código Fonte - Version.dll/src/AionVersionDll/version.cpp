@@ -14,6 +14,7 @@
 #include "quna_fix.h"
 #include "harp_fix.h"
 #include "charge_fix.h"
+#include "inventory_fix.h"
 
 // =========================================================================
 //  Version.dll - Mod & Compatibility Hook for Aion Classic 5.0
@@ -248,6 +249,7 @@ static void PatchAllLoadedLanguageModules() {
                 InstallQunaFix(h);
                 InstallHarpFix(h);
                 InstallChargeFix(h);
+                InstallInventoryFix(h);
             }
             PatchLanguageTableInModule(h);
             BypassCountryCheckInCryEngineModule(h);

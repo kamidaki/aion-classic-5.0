@@ -35,6 +35,7 @@ Uso:
     python teste_harpa_58.py --racas      harpa no LF, DM e DF (animacoes do LF, listas e marcadores)
     python teste_harpa_58.py --strings    nome do tipo de arma (STR_TOOLTIP_HARP) nas linguas do cliente
     python teste_harpa_58.py --barra-inicial   barra de atalhos inicial do Bard (client_default_key.xml)
+    python teste_harpa_58.py --inventario   inventario numa lista so, estilo Reforg (com o inventory_fix.h)
     python teste_harpa_58.py --desfaz   restaura os paks e tira o template do servidor
 """
 import math
@@ -2733,6 +2734,88 @@ def barra_de_carga_texto(xml):
     return xml[:inicio_da_linha] + "".join(widgets) + xml[inicio_da_linha:]
 
 
+#: Inventario numa lista so, como no Reforg (inventory_fix.h no version.dll tira os limites de 27).
+#: Fica a list0 com os 135 slots (27 + 12 expansoes de 9), 15 linhas de 42 px; a janela mostra 8
+#: linhas e rola o resto. As abas 1-4, o cabecalho da aba 0 e o botao "expand" do topo saem. O
+#: botao "extend" (barra roxa) o codigo nativo poe na primeira linha bloqueada.
+PAKS_DO_INVENTARIO = (
+    (r"data\ui\game\game.pak", "inventory_dialog.xml"),
+    (r"l10n\ENG\Data\Data.pak", "ui/game/inventory_dialog.xml"),
+    (r"l10n\DEU\Data\Data.pak", "ui/game/inventory_dialog.xml"),
+    (r"l10n\FRA\data\data.pak", "ui/game/inventory_dialog.xml"),
+    (r"l10n\BRA\Data\Data.pak", "ui/game/inventory_dialog.xml"),
+)
+SLOTS_DO_INVENTARIO = 135
+LINHAS_DO_INVENTARIO = SLOTS_DO_INVENTARIO // 9
+LINHAS_VISIVEIS_DO_INVENTARIO = 8
+ALTURA_DA_LINHA_DO_INVENTARIO = 42  # item 40 + espaco 2
+
+
+def _inventario_lista_unica(raiz, filhos, remove):
+    """Edita o inventory_dialog (ET ou NoBxml): `filhos(e)` lista os filhos, `remove(pai, filho)`."""
+    def acha(pai, nome):
+        for f in filhos(pai):
+            if f.get("name") == nome:
+                return f
+            achado = acha(f, nome)
+            if achado is not None:
+                return achado
+        return None
+
+    if acha(raiz, "list1") is None:
+        raise ValueError("inventory_dialog ja esta com a lista unica")
+    grade = LINHAS_DO_INVENTARIO * ALTURA_DA_LINHA_DO_INVENTARIO + 4
+    janela = LINHAS_VISIVEIS_DO_INVENTARIO * ALTURA_DA_LINHA_DO_INVENTARIO + 8
+    x, y, w, _h = raiz.get("frame").split(",")
+    raiz.set("frame", f"{x},{y},{w},{janela + 104}")
+    remove(raiz, acha(raiz, "expand"))
+    acha(raiz, "inv_container").set("frame", f"0,3,402,{janela}")
+    rolagem = acha(raiz, "inv_scrollable")
+    rolagem.set("frame", f"0,0,402,{janela}")
+    for f in list(filhos(rolagem)):
+        if f.get("name") in ("button1", "button2", "button3", "button4", "inv1", "inv2", "inv3", "inv4"):
+            remove(rolagem, f)
+    # Cabecalho de altura zero: o codigo nativo continua achando o button0/lock0.
+    cabecalho = acha(rolagem, "button0")
+    cabecalho.set("frame", "0,0,0,0")
+    cabecalho.set("flag", "not_active")
+    cabecalho.set("preset", "")
+    cabecalho.set("tooltip", "")
+    acha(cabecalho, "lock0").set("frame", "0,0,0,0")
+    acha(rolagem, "inv0").set("frame", f"0,0,400,{grade + 8}")
+    lista = acha(rolagem, "list0")
+    lista.set("frame", f"5,2,389,{grade}")
+    lista.set("slot_num", str(SLOTS_DO_INVENTARIO))
+    acha(raiz, "inv_scroll").set("frame", f"401,0,14,{janela}")
+    acha(raiz, "plus").set("frame", f"0,{janela - 12},14,12")
+    acha(raiz, "bottom").set("frame", f"5,{janela + 6},408,60")
+
+
+def inventario_bxml(bxml):
+    def editor(raiz):
+        _inventario_lista_unica(raiz, lambda e: e.filhos, lambda pai, f: pai.filhos.remove(f))
+    return edita_bxml(bxml, editor)
+
+
+def inventario_texto(xml):
+    """O mesmo de `inventario_bxml` num XML de texto (o zip do BRA)."""
+    import xml.etree.ElementTree as ET
+    raiz = ET.fromstring(xml)
+    _inventario_lista_unica(raiz, list, lambda pai, f: pai.remove(f))
+    return '<?xml version="1.0" encoding="utf-16"?>\r\n' + ET.tostring(raiz, encoding="unicode")
+
+
+def _confere_inventario(rel, lido):
+    import xml.etree.ElementTree as ET
+    raiz = ET.fromstring(lido)
+    nomes = [w.get("name") for w in raiz.iter("Widget")]
+    assert all(n in nomes for n in ("list0", "inv0", "button0", "lock0", "extend")), rel
+    assert not any(n in nomes for n in ("list1", "inv4", "button2", "expand")), rel
+    lista = next(w for w in raiz.iter("Widget") if w.get("name") == "list0")
+    assert lista.get("slot_num") == str(SLOTS_DO_INVENTARIO), rel
+    print(f"OK  {rel}: inventory_dialog com a lista unica ({SLOTS_DO_INVENTARIO} slots)")
+
+
 #: Ordem dos botoes da esquerda para a direita, e onde o do Bard entra.
 ORDEM_DOS_BOTOES = ("Class13", "Class12", "Class01", "Class02", "Class03", "Class04", "Class05",
                     "Class06", "Class07", "Class08", "Class09", "Class10", "Class11", "Class14")
@@ -3208,6 +3291,8 @@ def _alteracoes_de_interface():
         alteracoes.setdefault(rel, {}).setdefault(arquivo.lower(), []).append(("criacao", None))
     for rel, arquivo in PAKS_DA_BARRA_DE_CAST:
         alteracoes.setdefault(rel, {}).setdefault(arquivo.lower(), []).append(("carga", None))
+    for rel, arquivo in PAKS_DO_INVENTARIO:
+        alteracoes.setdefault(rel, {}).setdefault(arquivo.lower(), []).append(("inventario", None))
     return alteracoes
 
 
@@ -3246,6 +3331,8 @@ def _confere_interface(rel, arquivo, lido, pedidos):
                 tag, n = re.match(r'<(\w+) name="([^"]+)"', s).groups()
                 assert len(re.findall(r'<%s name="%s"' % (tag, n), lido)) == 1, (rel, tag, n)
             print(f"OK  {rel}: {arquivo} com os presets da barra de carga ({len(itens)})")
+        elif tipo == "inventario":
+            _confere_inventario(rel, lido)
         elif tipo == "carga":
             for nome in ("charge_gauge",) + tuple(n for n, _x in BOLINHAS_DA_CARGA):
                 assert lido.count(f'name="{nome}"') == 1, (rel, nome)
@@ -3289,6 +3376,8 @@ def aplica_interface():
                         xml = botao_na_criacao_texto(xml)
                     elif tipo == "carga":
                         xml = barra_de_carga_texto(xml)
+                    elif tipo == "inventario":
+                        xml = inventario_texto(xml)
                     elif tipo == "presets_carga":
                         fim = xml.rindex("</Preload>")
                         xml = xml[:fim] + "".join(f"  {s}\n" for s in itens) + xml[fim:]
@@ -3320,7 +3409,7 @@ def aplica_interface():
             entrada = next(e for e in idx if e.nome.lower() == arquivo)
             bxml = aion_pak.le(d, entrada)
             texto_xml = aion_bxml.decodifica(bxml)
-            novos, presets, criacao, carga = [], False, False, False
+            novos, presets, criacao, carga, inventario = [], False, False, False, False
             for tipo, itens in pedidos:
                 if tipo == "lobby":
                     novos += [ET.fromstring(x) for x in SKINS_DO_BOTAO + (PRESET_DO_BOTAO,)]
@@ -3328,6 +3417,8 @@ def aplica_interface():
                     criacao = True
                 elif tipo == "carga":
                     carga = True
+                elif tipo == "inventario":
+                    inventario = True
                 elif tipo == "presets_carga":
                     novos += [ET.fromstring(s) for s in itens]
                 elif tipo == "strings":
@@ -3345,6 +3436,8 @@ def aplica_interface():
                 troca[entrada.nome] = botao_na_criacao_bxml(troca[entrada.nome])
             if carga:
                 troca[entrada.nome] = barra_de_carga_bxml(troca[entrada.nome])
+            if inventario:
+                troca[entrada.nome] = inventario_bxml(troca[entrada.nome])
         _backup(caminho)
         if origem != caminho:
             shutil.copy2(origem, caminho)
@@ -3453,6 +3546,8 @@ if __name__ == "__main__":
         aplica_marcadores()
     elif "--strings" in sys.argv:
         aplica_strings()
+    elif "--inventario" in sys.argv:
+        aplica_interface()
     elif "--icone-classe" in sys.argv:
         aplica_icone_classe()
     elif "--botao-criacao" in sys.argv:
