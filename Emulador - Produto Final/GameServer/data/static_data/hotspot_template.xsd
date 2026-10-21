@@ -17,6 +17,9 @@
       <xs:attribute name="x" use="required" type="xs:decimal"/>
       <xs:attribute name="y" use="required" type="xs:decimal"/>
       <xs:attribute name="z" use="required" type="xs:decimal"/>
+      <xs:attribute name="h" type="xs:byte"/>
+      <xs:attribute name="min_level" type="xs:int"/>
+      <xs:attribute name="distance_price" type="xs:float"/>
     </xs:complexType>
   </xs:element>
 </xs:schema>

@@ -1,149 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <hotspot_template xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="hotspot_template.xsd">
-	<!-- Akarios Village -->
-	<hotspot_location id="13" worldId="210010000" x="807.0" y="1242.0" z="119.0" race="ELYOS" price="44"/>
-	<!-- Daminu Forest -->
-	<hotspot_location id="14" worldId="210010000" x="560.0" y="1382.0" z="119.0" race="ELYOS" price="44"/>
-	<!-- Melponeh's Campsite -->
-	<hotspot_location id="15" worldId="210010000" x="427.0" y="1741.0" z="120.0" race="ELYOS" price="44"/>
-	<!-- Aldelle Village -->
-	<hotspot_location id="16" worldId="220010000" x="528.0" y="2449.0" z="282.0" race="ASMODIANS" price="44"/>
-	<!-- Munihele Forest -->
-	<hotspot_location id="17" worldId="220010000" x="859.0" y="2217.0" z="266.0" race="ASMODIANS" price="44"/>
-	<!-- Anturoon Crossing -->
-	<hotspot_location id="18" worldId="220010000" x="941.0" y="1707.0" z="260.0" race="ASMODIANS" price="44"/>
-	<!-- Verteron Citadel -->
-	<hotspot_location id="19" worldId="210030000" x="1643.0" y="1500.0" z="120.0" race="ELYOS" price="387"/>
-	<!-- Tolbas Village -->
-	<hotspot_location id="20" worldId="210030000" x="1291.0" y="2208.0" z="142.0" race="ELYOS" price="387"/>
-	<!-- Pilgrim's Respite -->
-	<hotspot_location id="21" worldId="210030000" x="2061.0" y="2413.0" z="274.0" race="ELYOS" price="387"/>
-	<!-- Ardus Shrine -->
-	<hotspot_location id="22" worldId="210030000" x="2333.0" y="1817.0" z="193.0" race="ELYOS" price="387"/>
-	<!-- Cantas Coast -->
-	<hotspot_location id="23" worldId="210030000" x="2383.0" y="789.0" z="103.0" race="ELYOS" price="387"/>
-	<!-- Altgard Fortress -->
-	<hotspot_location id="24" worldId="220030000" x="1751.0" y="1807.0" z="255.0" race="ASMODIANS" price="387"/>
-	<!-- Basfelt Village -->
-	<hotspot_location id="25" worldId="220030000" x="1902.0" y="698.0" z="261.0" race="ASMODIANS" price="387"/>
-	<!-- Trader's Berth -->
-	<hotspot_location id="26" worldId="220030000" x="2679.0" y="1025.0" z="312.0" race="ASMODIANS" price="387"/>
-	<!-- Heart of Impetusium -->
-	<hotspot_location id="27" worldId="220030000" x="2643.0" y="1658.0" z="325.0" race="ASMODIANS" price="387"/>
-	<!-- Altgard Observatory -->
-	<hotspot_location id="28" worldId="220030000" x="1467.0" y="2560.0" z="299.0" race="ASMODIANS" price="387"/>
-	<!-- Eltnen Fortress -->
-	<hotspot_location id="29" worldId="210020000" x="343.0" y="2724.0" z="264.0" race="ELYOS" price="1934"/>
-	<!-- Novan's Crossing -->
-	<hotspot_location id="30" worldId="210020000" x="948.0" y="2216.0" z="253.0" race="ELYOS" price="1934"/>
-	<!-- Golden Bough Garrison -->
-	<hotspot_location id="31" worldId="210020000" x="686.0" y="432.0" z="332.0" race="ELYOS" price="1934"/>
-	<!-- Eltnen Observatory -->
-	<hotspot_location id="32" worldId="210020000" x="1781.0" y="885.0" z="422.0" race="ELYOS" price="1934"/>
-	<!-- Agairon Village -->
-	<hotspot_location id="33" worldId="210020000" x="1924.0" y="2044.0" z="362.0" race="ELYOS" price="1934"/>
-	<!-- Kuriullu Outpost -->
-	<hotspot_location id="34" worldId="210020000" x="2412.0" y="2725.0" z="362.0" race="ELYOS" price="1934"/>
-	<!-- Morheim Ice Fortress -->
-	<hotspot_location id="35" worldId="220020000" x="310.0" y="2271.0" z="449.0" race="ASMODIANS" price="1934"/>
-	<!-- Kellan's Cabin -->
-	<hotspot_location id="36" worldId="220020000" x="1072.0" y="2485.0" z="239.0" race="ASMODIANS" price="1934"/>
-	<!-- Desert Garrison -->
-	<hotspot_location id="37" worldId="220020000" x="634.0" y="901.0" z="361.0" race="ASMODIANS" price="1934"/>
-	<!-- Slag Bulwark -->
-	<hotspot_location id="38" worldId="220020000" x="1772.0" y="1663.0" z="198.0" race="ASMODIANS" price="1934"/>
-	<!-- Alsig Village -->
-	<hotspot_location id="39" worldId="220020000" x="2388.0" y="1743.0" z="102.0" race="ASMODIANS" price="1934"/>
-	<!-- Halabana Outpost -->
-	<hotspot_location id="40" worldId="220020000" x="2345.0" y="2219.0" z="127.0" race="ASMODIANS" price="1934"/>
-	<!-- Morheim Observatory -->
-	<hotspot_location id="41" worldId="220020000" x="2795.0" y="1122.0" z="172.0" race="ASMODIANS" price="1934"/>
-	<!-- Mist Mane Teleport Statue -->
-	<hotspot_location id="42" worldId="220020000" x="2795.0" y="1086.0" z="172.0" race="ASMODIANS" price="1934"/>
-	<!-- Chaikata's Hideout -->
-	<hotspot_location id="43" worldId="220020000" x="2297.0" y="1514.0" z="121.0" race="ASMODIANS" price="1934"/>
-	<!-- New Heiron Gate -->
-	<hotspot_location id="44" worldId="210040000" x="2543.0" y="341.0" z="412.0" race="ELYOS" price="3504"/>
-	<!-- Heiron Observatory -->
-	<hotspot_location id="45" worldId="210040000" x="1425.0" y="1335.0" z="175.0" race="ELYOS" price="3504"/>
-	<!-- Senea's Campsite -->
-	<hotspot_location id="46" worldId="210040000" x="970.0" y="687.0" z="135.0" race="ELYOS" price="3504"/>
-	<!-- Arbolu's Haven -->
-	<hotspot_location id="47" worldId="210040000" x="170.0" y="1662.0" z="121.0" race="ELYOS" price="3504"/>
-	<!-- Changarnerk's Campsite -->
-	<hotspot_location id="48" worldId="210040000" x="917.0" y="2255.0" z="158.0" race="ELYOS" price="3504"/>
-	<!-- Coast Watchers Post -->
-	<hotspot_location id="49" worldId="210040000" x="760.0" y="2883.0" z="107.0" race="ELYOS" price="3504"/>
-	<!-- Jeiaparan Village -->
-	<hotspot_location id="50" worldId="210040000" x="1634.0" y="2695.0" z="116.0" race="ELYOS" price="3504"/>
-	<!-- Kishar Observation Post -->
-	<hotspot_location id="51" worldId="210040000" x="1998.0" y="1392.0" z="118.0" race="ELYOS" price="3504"/>
-	<!-- Reaper Outpost -->
-	<hotspot_location id="52" worldId="210040000" x="2765.0" y="1886.0" z="154.0" race="ELYOS" price="3504"/>
-	<!-- Beluslan Fortress -->
-	<hotspot_location id="53" worldId="220040000" x="399.0" y="402.0" z="223.0" race="ASMODIANS" price="3504"/>
-	<!-- Kidorun's Campsite -->
-	<hotspot_location id="54" worldId="220040000" x="1245.0" y="821.0" z="260.0" race="ASMODIANS" price="3504"/>
-	<!-- Red Mane Cavern -->
-	<hotspot_location id="55" worldId="220040000" x="2358.0" y="1240.0" z="470.0" race="ASMODIANS" price="3504"/>
-	<!-- Camp Kistenian -->
-	<hotspot_location id="56" worldId="220040000" x="1942.0" y="510.0" z="413.0" race="ASMODIANS" price="3504"/>
-	<!-- Besfer Refugee Camp -->
-	<hotspot_location id="57" worldId="220040000" x="534.0" y="1867.0" z="263.0" race="ASMODIANS" price="3504"/>
-	<!-- Hoarfrost Shelter -->
-	<hotspot_location id="58" worldId="220040000" x="2430.0" y="2062.0" z="580.0" race="ASMODIANS" price="3504"/>
-	<!-- Meniherk Excavation Camp -->
-	<hotspot_location id="59" worldId="210060000" x="1398.0" y="1560.0" z="31.0" race="ELYOS" price="6264"/>
-	<!-- Jamanok Inn -->
-	<hotspot_location id="60" worldId="210060000" x="458.0" y="1256.0" z="127.0" race="ELYOS" price="6264"/>
-	<!-- Hongras Campsite -->
-	<hotspot_location id="61" worldId="210060000" x="1215.0" y="382.0" z="218.0" race="ELYOS" price="6264"/>
-	<!-- Anangke Excavation Camp -->
-	<hotspot_location id="62" worldId="210060000" x="2683.0" y="845.0" z="139.0" race="ELYOS" price="6264"/>
-	<!-- Observatory Village -->
-	<hotspot_location id="63" worldId="210060000" x="2235.0" y="2283.0" z="50.0" race="ELYOS" price="6264"/>
-	<!-- Latheron Coast Base Camp -->
-	<hotspot_location id="64" worldId="210060000" x="2779.0" y="2156.0" z="74.0" race="ELYOS" price="6264"/>
-	<!-- Josnack's Vigil -->
-	<hotspot_location id="65" worldId="210060000" x="900.0" y="2776.0" z="62.0" race="ELYOS" price="6264"/>
-	<!-- Settlers Campsite -->
-	<hotspot_location id="66" worldId="220050000" x="2916.0" y="2415.0" z="15.0" race="ASMODIANS" price="6264"/>
-	<!-- Baltasar Hill Village -->
-	<hotspot_location id="67" worldId="220050000" x="1411.0" y="2013.0" z="52.0" race="ASMODIANS" price="6264"/>
-	<!-- Edge of Torment -->
-	<hotspot_location id="68" worldId="220050000" x="1525.0" y="374.0" z="231.0" race="ASMODIANS" price="6264"/>
-	<!-- BuBu Village -->
-	<hotspot_location id="69" worldId="220050000" x="525.0" y="848.0" z="76.0" race="ASMODIANS" price="6264"/>
-	<!-- Kamstow's Barracks -->
-	<hotspot_location id="70" worldId="220050000" x="243.0" y="2523.0" z="268.0" race="ASMODIANS" price="6264"/>
-	<!-- Iollu Overlook -->
-	<hotspot_location id="71" worldId="220050000" x="839.0" y="2015.0" z="307.0" race="ASMODIANS" price="6264"/>
-	<!-- Inggison Illusion Fortress -->
-	<hotspot_location id="72" worldId="210050000" x="1335.0" y="275.0" z="590.0" race="ELYOS" price="9321"/>
-	<!-- Undirborg Observation Post -->
-	<hotspot_location id="73" worldId="210050000" x="400.0" y="947.0" z="461.0" race="ELYOS" price="9321"/>
-	<!-- Soteria Sanctuary -->
-	<hotspot_location id="74" worldId="210050000" x="2722.0" y="1428.0" z="385.0" race="ELYOS" price="9321"/>
-	<!-- Gelkmaros Fortress -->
-	<hotspot_location id="75" worldId="220070000" x="1889.0" y="2864.0" z="557.0" race="ASMODIANS" price="9321"/>
-	<!-- Subterranea Observation Post -->
-	<hotspot_location id="76" worldId="220070000" x="2497.0" y="2138.0" z="465.0" race="ASMODIANS" price="9321"/>
-	<!-- Rhonnam Refugee Village -->
-	<hotspot_location id="77" worldId="220070000" x="796.0" y="1686.0" z="362.0" race="ASMODIANS" price="9321"/>
-	<!-- Elyos Square Teleport Statue -->
-	<hotspot_location id="78" worldId="110010000" x="1460.0" y="1448.0" z="573.0" race="ELYOS" price="1934"/>
-	<!-- Divine Road Teleport Statue -->
-	<hotspot_location id="79" worldId="110010000" x="1930.0" y="1517.0" z="590.0" race="ELYOS" price="1934"/>
-	<!-- Sanctum Outer Port Teleport Statue -->
-	<hotspot_location id="80" worldId="110010000" x="1815.0" y="2157.0" z="528.0" race="ELYOS" price="1934"/>
-	<!-- Cloister of Kaisinel Teleport Statue -->
-	<hotspot_location id="81" worldId="110010000" x="1367.0" y="1542.0" z="569.0" race="ELYOS" price="1934"/>
-	<!-- Vifrost Bridge Teleport Statue -->
-	<hotspot_location id="82" worldId="120010000" x="1602.0" y="1413.0" z="193.0" race="ASMODIANS" price="1934"/>
-	<!-- Prosperity Road Teleport Statue -->
-	<hotspot_location id="83" worldId="120010000" x="1035.0" y="1473.0" z="214.0" race="ASMODIANS" price="1934"/>
-	<!-- Crandale District Teleport Statue -->
-	<hotspot_location id="84" worldId="120010000" x="1178.0" y="1170.0" z="208.0" race="ASMODIANS" price="1934"/>
-	<!-- Convent of Marchutan Teleport Statue -->
-	<hotspot_location id="85" worldId="120010000" x="1602.0" y="1389.0" z="193.0" race="ASMODIANS" price="1934"/>
+	<!-- gerado por fix_50_hotspot_somnium.py a partir do client_zonemap_hotspot.xml (5.0) -->
+	<!-- HOTSPOT_LC1_01 -->
+	<hotspot_location id="1" worldId="110010000" x="1397" y="1511" z="575" h="0" race="ELYOS" price="0"/>
+	<!-- HOTSPOT_LC1_02 -->
+	<hotspot_location id="2" worldId="110010000" x="1524" y="1580" z="575" h="110" race="ELYOS" price="0"/>
+	<!-- HOTSPOT_LC1_03 -->
+	<hotspot_location id="3" worldId="110010000" x="1524" y="1445" z="575" h="10" race="ELYOS" price="0"/>
+	<!-- HOTSPOT_LC1_04 -->
+	<hotspot_location id="4" worldId="110010000" x="1475" y="1604" z="574" h="45" race="ELYOS" price="0"/>
+	<!-- HOTSPOT_LC1_05 -->
+	<hotspot_location id="5" worldId="110010000" x="1476" y="1356" z="565" h="83" race="ELYOS" price="0"/>
+	<!-- HOTSPOT_LC1_06 -->
+	<hotspot_location id="6" worldId="110010000" x="1457" y="1437" z="574" h="75" race="ELYOS" price="0"/>
+	<!-- HOTSPOT_LC1_07 -->
+	<hotspot_location id="7" worldId="110010000" x="1599" y="1512" z="575" h="0" race="ELYOS" price="0"/>
+	<!-- HOTSPOT_DC1_01 -->
+	<hotspot_location id="8" worldId="120010000" x="1274" y="1448" z="215" h="90" race="ASMODIANS" price="0"/>
+	<!-- HOTSPOT_DC1_02 -->
+	<hotspot_location id="9" worldId="120010000" x="1344" y="1373" z="215" h="83" race="ASMODIANS" price="0"/>
+	<!-- HOTSPOT_DC1_03 -->
+	<hotspot_location id="10" worldId="120010000" x="1201" y="1373" z="210" h="97" race="ASMODIANS" price="0"/>
+	<!-- HOTSPOT_DC1_04 -->
+	<hotspot_location id="11" worldId="120010000" x="1466" y="1405" z="178" h="30" race="ASMODIANS" price="0"/>
+	<!-- HOTSPOT_DC1_05 -->
+	<hotspot_location id="12" worldId="120010000" x="1327" y="1488" z="210" h="23" race="ASMODIANS" price="0"/>
+	<!-- HOTSPOT_DC1_06 -->
+	<hotspot_location id="13" worldId="120010000" x="1220" y="1490" z="214" h="33" race="ASMODIANS" price="0"/>
+	<!-- HOTSPOT_DC1_07 -->
+	<hotspot_location id="14" worldId="120010000" x="1403" y="1419" z="210" h="30" race="ASMODIANS" price="0"/>
+	<!-- HOTSPOT_LF4_01 -->
+	<hotspot_location id="15" worldId="210050000" x="1335" y="278" z="590" h="15" race="ELYOS" price="100"/>
+	<!-- HOTSPOT_LF4_02 -->
+	<hotspot_location id="16" worldId="210050000" x="1779" y="260" z="525" h="0" race="ELYOS" price="150" min_level="5"/>
+	<!-- HOTSPOT_LF4_03 -->
+	<hotspot_location id="17" worldId="210050000" x="2272" y="277" z="472" h="110" race="ELYOS" price="150" min_level="10"/>
+	<!-- HOTSPOT_LF4_04 -->
+	<hotspot_location id="18" worldId="210050000" x="2728" y="929" z="392" h="115" race="ELYOS" price="200" min_level="15"/>
+	<!-- HOTSPOT_LF4_05 -->
+	<hotspot_location id="19" worldId="210050000" x="2712" y="1478" z="383" h="97" race="ELYOS" price="200" min_level="20"/>
+	<!-- HOTSPOT_LF4_06 -->
+	<hotspot_location id="20" worldId="210050000" x="1870" y="1055" z="395" h="87" race="ELYOS" price="200" min_level="20"/>
+	<!-- HOTSPOT_LF4_07 -->
+	<hotspot_location id="21" worldId="210050000" x="574" y="463" z="460" h="113" race="ELYOS" price="300" min_level="25"/>
+	<!-- HOTSPOT_LF4_08 -->
+	<hotspot_location id="22" worldId="210050000" x="383" y="943" z="461" h="23" race="ELYOS" price="300" min_level="30"/>
+	<!-- HOTSPOT_LF4_09 -->
+	<hotspot_location id="23" worldId="210050000" x="1080" y="1582" z="408" h="30" race="ELYOS" price="300" min_level="35"/>
+	<!-- HOTSPOT_LF4_10 -->
+	<hotspot_location id="24" worldId="210050000" x="708" y="1509" z="362" h="30" race="ELYOS" price="400" min_level="40"/>
+	<!-- HOTSPOT_LF4_11 -->
+	<hotspot_location id="25" worldId="210050000" x="594" y="1578" z="300" h="90" race="ELYOS" price="400" min_level="45"/>
+	<!-- HOTSPOT_LF4_12 -->
+	<hotspot_location id="26" worldId="210050000" x="1667" y="1607" z="174" h="90" race="ELYOS" price="400" min_level="50"/>
+	<!-- HOTSPOT_LF4_13 -->
+	<hotspot_location id="27" worldId="210050000" x="1901" y="1744" z="330" h="0" race="ELYOS" price="500" min_level="50"/>
+	<!-- HOTSPOT_DF4_01 -->
+	<hotspot_location id="28" worldId="220070000" x="1774" y="2915" z="555" h="110" race="ASMODIANS" price="100"/>
+	<!-- HOTSPOT_DF4_02 -->
+	<hotspot_location id="29" worldId="220070000" x="1624" y="2600" z="482" h="60" race="ASMODIANS" price="150" min_level="5"/>
+	<!-- HOTSPOT_DF4_03 -->
+	<hotspot_location id="30" worldId="220070000" x="1038" y="2788" z="388" h="67" race="ASMODIANS" price="150" min_level="10"/>
+	<!-- HOTSPOT_DF4_04 -->
+	<hotspot_location id="31" worldId="220070000" x="709" y="2046" z="345" h="100" race="ASMODIANS" price="200" min_level="15"/>
+	<!-- HOTSPOT_DF4_05 -->
+	<hotspot_location id="32" worldId="220070000" x="848" y="1733" z="356" h="57" race="ASMODIANS" price="200" min_level="20"/>
+	<!-- HOTSPOT_DF4_06 -->
+	<hotspot_location id="33" worldId="220070000" x="1420" y="1976" z="355" h="90" race="ASMODIANS" price="200" min_level="20"/>
+	<!-- HOTSPOT_DF4_07 -->
+	<hotspot_location id="34" worldId="220070000" x="2041" y="2753" z="500" h="90" race="ASMODIANS" price="300" min_level="25"/>
+	<!-- HOTSPOT_DF4_08 -->
+	<hotspot_location id="35" worldId="220070000" x="2534" y="2614" z="370" h="100" race="ASMODIANS" price="300" min_level="30"/>
+	<!-- HOTSPOT_DF4_09 -->
+	<hotspot_location id="36" worldId="220070000" x="2512" y="2139" z="465" h="90" race="ASMODIANS" price="300" min_level="35"/>
+	<!-- HOTSPOT_DF4_10 -->
+	<hotspot_location id="37" worldId="220070000" x="1777" y="1798" z="406" h="90" race="ASMODIANS" price="400" min_level="35"/>
+	<!-- HOTSPOT_DF4_11 -->
+	<hotspot_location id="38" worldId="220070000" x="2448" y="1291" z="333" h="53" race="ASMODIANS" price="400" min_level="40"/>
+	<!-- HOTSPOT_DF4_12 -->
+	<hotspot_location id="39" worldId="220070000" x="2184" y="686" z="154" h="10" race="ASMODIANS" price="400" min_level="45"/>
+	<!-- HOTSPOT_DF4_13 -->
+	<hotspot_location id="40" worldId="220070000" x="2426" y="1504" z="237" h="100" race="ASMODIANS" price="500" min_level="50"/>
+	<!-- HOTSPOT_DF4_14 -->
+	<hotspot_location id="41" worldId="220070000" x="1292" y="1554" z="305" h="90" race="ASMODIANS" price="500" min_level="50"/>
+	<!-- HOTSPOT_DF4_15 -->
+	<hotspot_location id="42" worldId="220070000" x="574" y="1221" z="296" h="53" race="ASMODIANS" price="500" min_level="50"/>
+	<!-- HOTSPOT_LDF4_Teva_01 -->
+	<hotspot_location id="43" worldId="800060000" x="2274" y="1565" z="351" h="60" race="PC_ALL" price="3000" distance_price="1"/>
+	<!-- HOTSPOT_LDF4_Teva_02 -->
+	<hotspot_location id="44" worldId="800060000" x="1571" y="1000" z="334" h="30" race="PC_ALL" price="6000" distance_price="1"/>
+	<!-- HOTSPOT_LDF4_Teva_03 -->
+	<hotspot_location id="45" worldId="800060000" x="1636" y="2094" z="304" h="90" race="PC_ALL" price="6000" distance_price="1"/>
+	<!-- HOTSPOT_LDF4_Teva_04 -->
+	<hotspot_location id="46" worldId="800060000" x="1087" y="1545" z="398" h="60" race="PC_ALL" price="15000" distance_price="1"/>
+	<!-- HOTSPOT_LF4_16 -->
+	<hotspot_location id="47" worldId="210050000" x="2652" y="340" z="511" h="0" race="ELYOS" price="180" min_level="15"/>
+	<!-- HOTSPOT_LF4_17 -->
+	<hotspot_location id="48" worldId="210050000" x="1563" y="1160" z="420" h="67" race="ELYOS" price="250" min_level="25"/>
+	<!-- HOTSPOT_LF4_18 -->
+	<hotspot_location id="49" worldId="210050000" x="147" y="119" z="552" h="30" race="ELYOS" price="300" min_level="35"/>
+	<!-- HOTSPOT_LF4_19 -->
+	<hotspot_location id="50" worldId="210050000" x="284" y="1852" z="316" h="60" race="ELYOS" price="450" min_level="45"/>
+	<!-- HOTSPOT_LF4_20 -->
+	<hotspot_location id="51" worldId="210050000" x="2176" y="1948" z="286" h="117" race="ELYOS" price="500" min_level="50"/>
+	<!-- HOTSPOT_DF4_16 -->
+	<hotspot_location id="52" worldId="220070000" x="989" y="2567" z="240" h="117" race="ASMODIANS" price="180" min_level="15"/>
+	<!-- HOTSPOT_DF4_17 -->
+	<hotspot_location id="53" worldId="220070000" x="460" y="1814" z="360" h="45" race="ASMODIANS" price="250" min_level="25"/>
+	<!-- HOTSPOT_DF4_18 -->
+	<hotspot_location id="54" worldId="220070000" x="440" y="2573" z="430" h="60" race="ASMODIANS" price="300" min_level="35"/>
+	<!-- HOTSPOT_DF4_19 -->
+	<hotspot_location id="55" worldId="220070000" x="2774" y="790" z="158" h="60" race="ASMODIANS" price="450" min_level="45"/>
+	<!-- HOTSPOT_DF4_20 -->
+	<hotspot_location id="56" worldId="220070000" x="889" y="1050" z="313" h="90" race="ASMODIANS" price="500" min_level="50"/>
 </hotspot_template>

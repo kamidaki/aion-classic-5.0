@@ -10274,7 +10274,7 @@
 		</spawn>
 		
 		<spawn npc_id="801994" respawn_time="295">
-			<spot x="1356" y="358.1" z="589.5781" h="101" />
+			<spot x="1356" y="358.1" z="589.5781" h="86" />
 		</spawn>
 		
 		<spawn npc_id="802005" respawn_time="295">

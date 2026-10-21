@@ -358783,14 +358783,14 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801994" level="1" name_en="Somnium Portal" name_pt="Obelisco asmodiano" name_id="464428" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3" race="ELYOS" srange="20">
+	<npc_template npc_id="801994" level="1" name_en="Somnium Portal" name_pt="Obelisco asmodiano" name_id="464428" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="portal_dialog" sangle="0" attack_speed="2000" hpgauge="3" race="ELYOS" srange="20">
 		<stats maxHp="172" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="801995" level="1" name_en="Abyss Rift" name_pt="Linha aérea" name_id="464429" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="general" sangle="0" attack_speed="2000" hpgauge="3" race="ELYOS" srange="20">
+	<npc_template npc_id="801995" level="1" name_en="Abyss Rift" name_pt="Linha aérea" name_id="464429" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="portal_bind_point" sangle="0" attack_speed="2000" hpgauge="3" race="ELYOS" srange="20">
 		<stats maxHp="172" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>

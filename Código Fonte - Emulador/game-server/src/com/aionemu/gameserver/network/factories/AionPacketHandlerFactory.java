@@ -196,6 +196,7 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_LEGION.class, 0x00FF, State.IN_GAME); // 0x0005 C_GUILD
 		addPacket(CM_REVIVE.class, 0x0005, State.IN_GAME); // Raw alias
 		addPacket(CM_REVIVE.class, 0xEF, State.IN_GAME); // Legacy fallback
+		addPacket(CM_BIND_POINT_TELEPORT.class, 0x231, State.IN_GAME); // 0x0143 C_HOTSPOT: [C 1][D hotspot][Q kinah] (captura oficial 21/10, teleporte pelo mapa)
 		addPacket(CM_TELEPORT_SELECT.class, 0x116, State.IN_GAME); // 0x005C TELEPORT_SELECT (5.0 Classic wire)
 		addPacket(CM_TELEPORT_SELECT.class, 0x005C, State.IN_GAME); // Raw alias dec 0x005C
 		addPacket(CM_TELEPORT_SELECT.class, 0x16E, State.IN_GAME); // 0x0094 TELEPORT_SELECT (Flight & Teleport NPCs)

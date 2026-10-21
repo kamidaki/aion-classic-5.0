@@ -5,7 +5,7 @@
 	<portal_loc world_id="110010000" loc_id="1100100" x="1476.3" y="1595.5" z="572.9"/> <!-- Bind Teleport (Before Obelisk) -->
 	<portal_loc world_id="110010000" loc_id="1100101" x="2006.8076" y="1478.2644" z="592.2286" h="53"/> <!-- Exit Secret Library -->
 	<portal_loc world_id="110010000" loc_id="1100102" x="1366.8" y="1539.5" z="569.0382"/> <!-- Before Statue Cloister Of Kaisinel Entrance -->
-	<portal_loc world_id="110010000" loc_id="1100103" x="1739.5557" y="2063.362" z="517.9073" h="68"/> <!-- Aerolink Exit -->
+	<portal_loc world_id="110010000" loc_id="1100103" x="1398.0" y="1511.0" z="572.9943" h="0"/> <!-- Doca de Inggison -> Sanctum (730220, ação 104), captura oficial de 2026-10-21 -->
 	<portal_loc world_id="110010000" loc_id="1100104" x="1867" y="2068" z="517"/> <!-- Exit Steel Rake -->
 	<portal_loc world_id="110010000" loc_id="1100105" x="1448.5103" y="1503.075" z="573.0719"/> <!-- Eternal Bastion / Shugo Tomb / Nightmare Circus exit -->
 	<portal_loc world_id="110010000" loc_id="1100106" x="1366.35" y="1487.45" z="569.039" h="90"/><!-- Custom Instance Exit -->
@@ -519,4 +519,5 @@
 	<!-- Tiamaranta Mesa (captura oficial de 2026-09-21) -->
 	<portal_loc world_id="800040000" loc_id="8000400" x="1483.98" y="2759.69" z="458.94" h="83"/> <!-- Base asmodiana (navio), pelo NPC 730660 de Pandaemonium -->
 	<portal_loc world_id="800040000" loc_id="8000401" x="1482.95" y="2756.25" z="458.90" h="83"/> <!-- Base asmodiana (navio), pelo objeto 802001 embaixo dela -->
+	<portal_loc world_id="800040000" loc_id="8000402" x="1567.7424" y="318.5808" z="436.8534" h="36"/> <!-- Somnium (801994 de Inggison), captura oficial de 2026-10-21 -->
 </portal_locs>

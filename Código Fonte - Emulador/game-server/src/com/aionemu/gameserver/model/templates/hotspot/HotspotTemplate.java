@@ -35,6 +35,16 @@ public class HotspotTemplate {
 	@XmlAttribute(name = "price")
 	protected long price;
 
+	/** custo extra por metro até o destino (required_distance_gold do client_zonemap_hotspot) */
+	@XmlAttribute(name = "distance_price")
+	protected float distancePrice;
+
+	@XmlAttribute(name = "min_level")
+	protected int minLevel;
+
+	@XmlAttribute(name = "h")
+	protected byte heading;
+
 	public int getId() {
 		return id;
 	}
@@ -61,5 +71,17 @@ public class HotspotTemplate {
 
 	public long getPrice() {
 		return price;
+	}
+
+	public float getDistancePrice() {
+		return distancePrice;
+	}
+
+	public int getMinLevel() {
+		return minLevel;
+	}
+
+	public byte getHeading() {
+		return heading;
 	}
 }

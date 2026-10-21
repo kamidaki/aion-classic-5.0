@@ -1115,9 +1115,8 @@
 		<portal_path dialog="10002" loc_id="7100101" race="ASMODIANS" min_level="10" kinah="9800" />
 	</portal_dialog>
 	<!-- Inggison to Sanctum & Oriel -->
-	<portal_dialog npc_id="730220">
-		<portal_path dialog="10000" loc_id="1100103" race="ELYOS" min_level="10" kinah="9300" />
-		<portal_path dialog="10002" loc_id="7000100" race="ELYOS" min_level="10" kinah="9800" />
+	<portal_dialog npc_id="730220" teleport_dialog_id="10">
+		<portal_path dialog="104" loc_id="1100103" race="ELYOS" min_level="10" kinah="9300" />
 	</portal_dialog>
 	<!-- Kaisinel Academy to Inggison -->
 	<portal_dialog npc_id="730425">
@@ -1302,6 +1301,10 @@
 	<!-- Pandaemonium -> Tiamaranta Mesa, base asmodiana (captura oficial de 2026-09-21: página 1011, ação 10000) -->
 	<portal_dialog npc_id="730660" teleport_dialog_id="1011">
 		<portal_path dialog="10000" loc_id="8000400" race="ASMODIANS" />
+	</portal_dialog>
+	<!-- Inggison -> Tiamaranta Mesa pelo Somnium (captura oficial de 2026-10-21: página 1011, ação 10000, 5.000 kinah) -->
+	<portal_dialog npc_id="801994" teleport_dialog_id="1011">
+		<portal_path dialog="10000" loc_id="8000402" race="ELYOS" kinah="5000" />
 	</portal_dialog>
 	<!-- ############### PORTAL DIALOG END ############### -->
 	<!-- ############### PORTAL SCROLL ############### -->
