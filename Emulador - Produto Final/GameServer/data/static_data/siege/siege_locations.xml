@@ -89,6 +89,13 @@
 	     (tomada as 2150,5 s, vulneravel as 2750,5 s) e o de 900 confere com os 804 s que faltavam na 4401.
 	     reset_time: o camp_war_reset_time do client_abyss.xml; 0 onde o cliente traz 40000000, ou seja torre desligada.
 	     default_race: o dono que o S_ABYSS_INFO oficial mostrava, usado so na primeira carga (depois vale o banco). -->
+	<!-- Bases de raça de Tiamaranta (Somnium/Nornir): dono fixo no S_ABYSS_INFO oficial -->
+	<siege_location id="4201" type="CAMP" world="800040000" name_id="403842" camp_protect_time="0" camp_reset_time="0" camp_default_race="ELYOS" />
+	<siege_location id="4202" type="CAMP" world="800040000" name_id="403949" camp_protect_time="0" camp_reset_time="0" camp_default_race="ELYOS" />
+	<siege_location id="4203" type="CAMP" world="800040000" name_id="404001" camp_protect_time="0" camp_reset_time="0" camp_default_race="ELYOS" />
+	<siege_location id="4301" type="CAMP" world="800040000" name_id="403843" camp_protect_time="0" camp_reset_time="0" camp_default_race="ASMODIANS" />
+	<siege_location id="4302" type="CAMP" world="800040000" name_id="403950" camp_protect_time="0" camp_reset_time="0" camp_default_race="ASMODIANS" />
+	<siege_location id="4303" type="CAMP" world="800040000" name_id="404002" camp_protect_time="0" camp_reset_time="0" camp_default_race="ASMODIANS" />
 	<siege_location id="4401" type="CAMP" world="800040000" name_id="403847" camp_protect_time="900" camp_reset_time="300" camp_pvp_zone="LDF4b_TowerWar_PvPArea_4401" camp_default_race="BALAUR" />
 	<siege_location id="4402" type="CAMP" world="800040000" name_id="403848" camp_protect_time="900" camp_reset_time="0" camp_pvp_zone="LDF4b_TowerWar_PvPArea_4402" camp_default_race="ASMODIANS" />
 	<siege_location id="4403" type="CAMP" world="800040000" name_id="403849" camp_protect_time="900" camp_reset_time="0" camp_pvp_zone="LDF4b_TowerWar_PvPArea_4403" camp_default_race="ELYOS" />
