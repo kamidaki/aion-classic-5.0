@@ -100,11 +100,42 @@ public:
     void StopMovie();
 };
 
+// Templates Canônicos CryEngine / Aion Classic
+// .?AV?$_i_reference_target@...@@
+template<typename T>
+class _i_reference_target {
+public:
+    _i_reference_target() {}
+    virtual ~_i_reference_target() {}
+};
+
+// .?AV?$_reference_target@...@@
+template<typename T>
+class _reference_target : public _i_reference_target<T> {
+public:
+    _reference_target() : m_refCount(0) {}
+    virtual ~_reference_target() {}
+
+    void AddRef() { m_refCount++; }
+    void Release() { if (--m_refCount == 0) delete this; }
+
+private:
+    int m_refCount;
+};
+
+// .?AV?$_ScriptableEx@...@@
+template<typename T>
+class _ScriptableEx {
+public:
+    _ScriptableEx() {}
+    virtual ~_ScriptableEx() {}
+};
+
 // Script de boids / vida selvagem (.?AVCScriptObjectBoids@@)
-class CScriptObjectBoids {
+class CScriptObjectBoids : public _ScriptableEx<CScriptObjectBoids> {
 public:
     CScriptObjectBoids();
-    ~CScriptObjectBoids();
+    virtual ~CScriptObjectBoids();
 };
 
 // Ponto de marcação / TagPoint (.?AVCTagPoint@@)
