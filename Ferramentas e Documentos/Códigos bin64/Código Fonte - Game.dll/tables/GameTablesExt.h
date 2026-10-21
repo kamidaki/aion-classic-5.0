@@ -2,6 +2,32 @@
 #include <cstdint>
 #include <string>
 #include <unordered_map>
+#include "TableLib.h"
+
+// RTTI .?AVCombatPowerRankRewardItemData@?A0xcc352bb6@@
+class CombatPowerRankRewardItemData {
+public:
+    CombatPowerRankRewardItemData() : m_itemId(0), m_count(0), m_rank(0) {}
+    virtual ~CombatPowerRankRewardItemData() {}
+    virtual const char* GetClassName() const { return "CombatPowerRankRewardItemData"; }
+
+    uint32_t m_itemId;
+    uint32_t m_count;
+    uint32_t m_rank;
+};
+
+// RTTI .?AVRewardItemGridData@?A0x7682df8f@@
+class RewardItemGridData {
+public:
+    RewardItemGridData() : m_slot(0), m_itemId(0), m_count(0) {}
+    virtual ~RewardItemGridData() {}
+    virtual const char* GetClassName() const { return "RewardItemGridData"; }
+
+    uint32_t m_slot;
+    uint32_t m_itemId;
+    uint32_t m_count;
+};
+
 
 // RTTI .?AVAbyssRaceBonusTable@@
 class AbyssRaceBonusTable {
@@ -897,6 +923,13 @@ private:
 // RTTI .?AVMorosTable@@
 class MorosTable {
 public:
+    struct MorosSkill {
+        uint32_t skillId;
+        uint32_t level;
+        uint32_t point;
+        MorosSkill() : skillId(0), level(0), point(0) {}
+    };
+
     MorosTable();
     virtual ~MorosTable();
     virtual bool LoadTable();

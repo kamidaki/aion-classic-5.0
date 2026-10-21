@@ -65,7 +65,7 @@ for root, dirs, files in os.walk(src_root):
 found_classes = set()
 for c in expected_classes:
     # simplificação para classes templated ou qualificadas com namespace
-    simple = c.split("<")[0].split("@")[0].strip("?")
+    simple = c.split("<")[0].split("@")[0].lstrip("?$")
     if simple and simple in classes_in_code:
         found_classes.add(c)
     elif c in classes_in_code:

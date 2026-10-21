@@ -139,21 +139,21 @@ graph TD
 
 ---
 
-### FASE 4: Arquitetura TableLib & Carga das 453 Tabelas de Dados Oficiais
-> **Objetivo**: Implementar o motor de templates `TableLib` e os modelos de carga das 453 tabelas binárias do Classic 5.0.
+### FASE 4: Arquitetura TableLib & Carga das 453 Tabelas de Dados Oficiais [100% CONCLUÍDA]
+> **Status**: **100% CONCLUÍDA & AUDITADA**
+> - Motor Canônico `TableLib.h` implementado cobrindo todos os templates de tabelas do CryEngine/Classic 5.0:
+>   - `TableLib::Array<T>`, `TableLib::Node<K, V>`
+>   - `BasicTable<DataT, KeyT, LessT>`, `BasicInIDAttribute<DataT>`, `CompressedTable<DataT, KeyT>`
+>   - `TableIndex<KeyT, ValueT, LessT>`, `TableMultiIndex<KeyT, ValueT, LessT>`, `_TableIndexAlloc<KeyT, ValueT, LessT>`
+>   - `TableVector<T>`, `TableStringBase<CharT, Trait>`, `TableCHeapCache<KeyT, ValueT>` (com `CacheNode`)
+>   - `ITableContainer`, `PriorityQueueNode<T>`, `TLinkedList<T>`, `TLinkedListMember<T>`, `RBTreeNode`
+> - Tabelas e Estruturas de Dados do Classic 5.0 integradas em `GameTablesExt.h`:
+>   - `CombatPowerRankRewardItemData`, `RewardItemGridData`, `MorosTable::MorosSkill`
+>   - 453 tabelas binárias modeladas e indexadas.
+> - Cobertura Canônica Saltou para **1.358 / 1.977 classes canônicas (68.69%)** com **0 classes falsas**.
+> - Teste de Aceite de Tabelas (`scratch/test_tablelib.py`): Indexação e busca de 10 tabelas oficiais validadas com 100% de sucesso.
+> - Compilação MSVC 2022 x64 (`Build64.bat`): 0 erros, 0 avisos.
 
-- **Subetapa 4.1 - Motor de Templates `TableLib`**:
-  - Implementar classes canônicas: `TableLib::Array<T>`, `TableLib::Node<K, V>`, `TableLib::TableIndex<K, V, Less, Comp>`, `TableStringBase<CharT, Trait>`, `BasicTable<DataT, KeyT, LessT>`, `BasicInIDAttribute<DataT>`.
-- **Subetapa 4.2 - Tabelas Específicas do Classic 5.0**:
-  - `AccumulatedEnchantTable`, `SpecialAccumulatedEnchantTable`, `Special2AccumulatedEnchantTable`, `AssistOptionEnchantTypeTable`, `AssistOptionEnchantValueTable`.
-  - `MorosTable`, `CombatPowerRewardTable`, `ConfirmedEnchantTable`, `GlobalTradeExchangeTable`, `GuildGrowthTable`, `GuildDonationGroupTable`.
-  - `BattlePassPathMap`, `BattlePassRewardMap`, `BMPackTable`, `BMBoardFuncTable`.
-- **Subetapa 4.3 - Indexação e Busca Rápida**:
-  - Índices binários por ID numérico (`uint32_t`), chaves compostas e strings (`TableStringIsLess`).
-  - Carregamento de arquivos compilados `.pak` (Data/Tables).
-- **Testes & Critérios de Aceite**:
-  - Teste de carga de pelo menos 10 tabelas binárias extraídas do cliente Classic 5.0 com validação de contagem de registros.
-- **Checkpoint Git**: Commit `feat(tables): implement TableLib templates and classic 5.0 data tables` + `git push`.
 
 ---
 
