@@ -1,0 +1,4 @@
+LIBRARY "Game"
+EXPORTS
+    CreateGameInstance @1
+    CryModuleGetMemoryInfo @2
