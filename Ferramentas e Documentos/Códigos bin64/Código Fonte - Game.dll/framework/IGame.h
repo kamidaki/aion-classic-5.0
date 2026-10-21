@@ -2,11 +2,14 @@
 #include "CryModuleDefs.h"
 #include "ISystem.h"
 
-#ifndef CRY_INTERFACE
-#define CRY_INTERFACE struct
-#endif
+// Interface CryEngine de processo (.?AUIProcess@@)
+struct IProcess {
+    virtual ~IProcess() {}
+    virtual void Process() = 0;
+};
 
-CRY_INTERFACE IGame {
+// Interface CryEngine de motor de jogo (.?AUIGame@@)
+struct IGame : public IProcess {
     virtual ~IGame() {}
     virtual bool Init(ISystem* pSystem, bool bInEditor, bool bDedicated) = 0;
     virtual bool Update() = 0;
@@ -15,4 +18,5 @@ CRY_INTERFACE IGame {
     virtual bool LoadLevel(const char* szLevel, const char* szMission) = 0;
     virtual const char* GetName() = 0;
     virtual void Release() = 0;
+    virtual void Process() override {}
 };

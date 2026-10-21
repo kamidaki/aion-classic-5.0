@@ -28,6 +28,12 @@
 #include "../game/Player.h"
 #include "../game/Items.h"
 #include "../game/EngineObjects.h"
+#include "../framework/CryEngineInterfaces.h"
+#include "../framework/ATLInterfaces.h"
+#include "../framework/StdTemplates.h"
+#include "../ui/AionCEF.h"
+#include "../ui/AionUIWidgets.h"
+#include "../net/AionNetSystem.h"
 
 // Instâncias globais ativas dos subsistemas do motor
 static std::unique_ptr<Player> s_pLocalPlayer;

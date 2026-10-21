@@ -61,6 +61,7 @@ cl.exe /nologo /O2 /W3 /std:c++17 /EHsc /MD /LD /GR ^
     ui\AddonWidgets.cpp ^
     ui\AddonExt.cpp ^
     ui\GameDialogsExt.cpp ^
+    ui\AionUIWidgets.cpp ^
     game\Player.cpp ^
     game\Items.cpp ^
     game\EngineObjects.cpp ^

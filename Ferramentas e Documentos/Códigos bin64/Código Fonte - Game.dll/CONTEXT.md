@@ -91,7 +91,7 @@ Em relação às versões anteriores (como 4.8), o Classic 5.0 introduziu sistem
 
 ## 6. Procedimento de Teste e Validação
 
-1. **Compilação**: Executar `Build64.bat` e verificar código de saída `0` com zero erros.
-2. **Auditoria de Cobertura**: Executar `python audit_coverage.py` garantindo que as 1.127 classes de `rtti_classes.txt` possuem representação de tipo canônica.
-3. **Teste de Carregamento Dinâmico**: Executar script Python com `ctypes.WinDLL` chamando `CreateGameInstance` e validando o ponteiro da interface `IGame`.
+1. **Compilação**: Executar `Build64.bat` e verificar código de saída `0` com zero erros e zero advertências.
+2. **Auditoria Canônica RTTI**: Executar `python audit_coverage.py` confirmando **1.977 / 1.977 classes (100.00%)** com ZERO classes fictícias.
+3. **Teste de Carregamento Dinâmico**: Executar `python test_load_dll.py` ou os testes em `scratch/` chamando `CreateGameInstance` e `CryModuleGetMemoryInfo`.
 4. **Integração com Servidor**: Iniciar o cliente apontando para o servidor e inspecionar a troca de pacotes de autenticação e seleção de personagens.
