@@ -15,7 +15,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
         GameLog_Info("Game.dll DLL_PROCESS_DETACH disparado");
         if (GameGlobals::s_pGameInstance) {
             GameGlobals::s_pGameInstance->Shutdown();
-            GameGlobals::s_pGameInstance->Release();
+            delete GameGlobals::s_pGameInstance;
             GameGlobals::s_pGameInstance = nullptr;
         }
         break;

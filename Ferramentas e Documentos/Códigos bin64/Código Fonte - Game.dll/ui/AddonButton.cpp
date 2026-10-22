@@ -5,6 +5,8 @@
 AddonButton::AddonButton(const std::string& name)
     : AddonFrame(name)
     , m_bEnabled(true)
+    , m_bHovered(false)
+    , m_bPressed(false)
 {
 }
 
@@ -17,6 +19,35 @@ void AddonButton::OnClick() {
     if (m_clickHandler) {
         m_clickHandler();
     }
+}
+
+bool AddonButton::OnLButtonDown(int x, int y, uint32_t flags) {
+    (void)flags;
+    if (!m_bEnabled || !IsVisible()) return false;
+    if (HitTest(x, y)) {
+        m_bPressed = true;
+        return true;
+    }
+    return false;
+}
+
+bool AddonButton::OnLButtonUp(int x, int y, uint32_t flags) {
+    (void)flags;
+    if (!m_bEnabled || !IsVisible()) return false;
+    if (m_bPressed && HitTest(x, y)) {
+        m_bPressed = false;
+        OnClick();
+        return true;
+    }
+    m_bPressed = false;
+    return false;
+}
+
+bool AddonButton::OnMouseMove(int x, int y, uint32_t flags) {
+    (void)flags;
+    if (!IsVisible()) return false;
+    m_bHovered = HitTest(x, y);
+    return m_bHovered;
 }
 
 // AddonCheckButton

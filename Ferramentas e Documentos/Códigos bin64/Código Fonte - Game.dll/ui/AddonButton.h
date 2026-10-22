@@ -13,13 +13,21 @@ public:
 
     void SetEnabled(bool enabled) { m_bEnabled = enabled; }
     bool IsEnabled() const { return m_bEnabled; }
+    bool IsHovered() const { return m_bHovered; }
+    bool IsPressed() const { return m_bPressed; }
 
     virtual void OnClick();
     void SetClickHandler(std::function<void()> handler) { m_clickHandler = handler; }
 
+    virtual bool OnLButtonDown(int x, int y, uint32_t flags) override;
+    virtual bool OnLButtonUp(int x, int y, uint32_t flags) override;
+    virtual bool OnMouseMove(int x, int y, uint32_t flags) override;
+
 protected:
     std::string m_text;
     bool m_bEnabled;
+    bool m_bHovered;
+    bool m_bPressed;
     std::function<void()> m_clickHandler;
 };
 

@@ -2,9 +2,7 @@
 #include "IGame.h"
 
 // Interface canônica de extensão de jogo CryEngine / NCSoft (.?AUIXGame@@)
-struct IXGame {
-    virtual ~IXGame() {}
-    virtual bool Init() = 0;
-    virtual void Reset() = 0;
-    virtual bool Update() = 0;
+// Herança canônica validada via RTTI: IXGame -> IGame (mdisp=0)
+struct IXGame : public IGame {
+    virtual ~IXGame() override {}
 };

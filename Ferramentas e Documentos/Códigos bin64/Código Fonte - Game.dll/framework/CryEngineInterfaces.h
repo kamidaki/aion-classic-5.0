@@ -1,6 +1,11 @@
 #pragma once
 #include <cstdint>
 #include <vector>
+// Interface canônica CryEngine de processo (.?AUIProcess@@)
+struct IProcess {
+    virtual ~IProcess() {}
+    virtual void Process() = 0;
+};
 
 // Interface canônica CryEngine para usuários de movie/cutscene (.?AUIMovieUser@@)
 struct IMovieUser {
