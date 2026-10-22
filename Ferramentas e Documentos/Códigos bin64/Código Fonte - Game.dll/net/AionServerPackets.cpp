@@ -3,6 +3,7 @@
 #include "ClientToServerRouter.h"
 #include "AionClientPackets.h"
 #include "../core/GameLog.h"
+#include "../game/Player.h"
 #include <cmath>
 #include <vector>
 
@@ -18,6 +19,8 @@ void RegisterAllHandlers() {
     router.RegisterServerPacketHandler(S_ENTER_WORLD_NOTIFY, HandleEnterWorldCheck);
     router.RegisterServerPacketHandler(S_WORLD, HandlePlayerSpawn);
     router.RegisterServerPacketHandler(S_WAIT_LIST, HandleWaitList);
+    router.RegisterServerPacketHandler(S_CHARACTER_LIST, HandleCharacterList);
+    router.RegisterServerPacketHandler(S_GAUGE, HandleGauge);
 
     // 2. Entidades do Mundo (Spawn e Despawn)
     router.RegisterServerPacketHandler(S_PUT_NPC, HandleNpcInfo);
@@ -128,31 +131,97 @@ void HandleWaitList(const uint8_t* pData, size_t size) {
         queuePosition, estimatedMinutes);
 }
 
+static std::string WStringToNarrow(const std::wstring& ws) {
+    std::string s;
+    s.reserve(ws.size());
+    for (wchar_t wc : ws) {
+        s.push_back(static_cast<char>(wc & 0xFF));
+    }
+    return s;
+}
+
+void HandleCharacterList(const uint8_t* pData, size_t size) {
+    PacketParserHandler reader(pData, size);
+    if (!reader.HasBytes(11)) return;
+    uint8_t listType = reader.ReadByte();
+    uint32_t playOk2 = reader.ReadUInt32();
+    reader.SkipBytes(5);
+    uint8_t charCount = reader.ReadByte();
+    GameLog_Info("[S_CHARACTER_LIST] Pagina de Personagens Tipo=%u (PlayOk2=%u): %u personagens listados",
+        listType, playOk2, charCount);
+    for (uint8_t i = 0; i < charCount; ++i) {
+        if (!reader.HasBytes(32)) break;
+        uint32_t charId = reader.ReadUInt32();
+        std::wstring wsName = reader.ReadWStringFixed(25);
+        std::string name = WStringToNarrow(wsName);
+        uint32_t gender = reader.ReadUInt32();
+        uint32_t race = reader.ReadUInt32();
+        uint32_t playerClass = reader.ReadUInt32();
+        GameLog_Info("  -> Personagem #%u: ID=%u Nome='%s' Classe=%u (%s) Raca=%u Genero=%u",
+            i + 1, charId, name.c_str(), playerClass, GetPlayerClassName(static_cast<PlayerClass>(playerClass)), race, gender);
+        // O restante do registro de 766 bytes do personagem e aparencia:
+        const size_t consumed = 4 + 50 + 12;
+        if (reader.HasBytes(766 - consumed)) {
+            reader.SkipBytes(766 - consumed);
+        }
+    }
+}
+
+void HandleGauge(const uint8_t* pData, size_t size) {
+    PacketParserHandler reader(pData, size);
+    if (!reader.HasBytes(13)) return;
+    uint32_t playerObjId = reader.ReadUInt32();
+    uint32_t targetObjId = reader.ReadUInt32();
+    uint32_t durationMs = reader.ReadUInt32();
+    uint8_t actionType = reader.ReadByte(); // 1 = inicio, 2 = fim
+    GameLog_Info("[S_GAUGE] Barra de Acao/Interacao: Player=%u Target=%u Duracao=%ums ActionType=%u",
+        playerObjId, targetObjId, durationMs, actionType);
+}
+
 // 2. Entidades do Mundo
 void HandleNpcInfo(const uint8_t* pData, size_t size) {
     PacketParserHandler reader(pData, size);
-    if (!reader.HasBytes(20)) return;
-    uint32_t npcObjectId = reader.ReadUInt32();
-    uint32_t npcTemplateId = reader.ReadUInt32();
+    if (!reader.HasBytes(25)) return;
     float x = reader.ReadFloat();
     float y = reader.ReadFloat();
     float z = reader.ReadFloat();
-    GameLog_Info("[S_PUT_NPC] NPC Spawnado ObjId=%u (TplId=%u) Pos=(%.2f, %.2f, %.2f)",
-        npcObjectId, npcTemplateId, x, y, z);
+    uint32_t npcObjectId = reader.ReadUInt32();
+    uint32_t npcTemplateId = reader.ReadUInt32();
+    uint32_t visualTemplateId = reader.ReadUInt32();
+    uint8_t creatureType = reader.ReadByte();
+    uint16_t state = reader.ReadUInt16();
+    uint8_t heading = reader.ReadByte();
+    uint32_t l10nId = reader.HasBytes(4) ? reader.ReadUInt32() : 0;
+    uint32_t titleId = reader.HasBytes(4) ? reader.ReadUInt32() : 0;
+    GameLog_Info("[S_PUT_NPC] NPC Spawnado ObjId=%u (Tpl=%u, VisTpl=%u, Type=%u, State=0x%04X, Heading=%u) Pos=(%.2f, %.2f, %.2f)",
+        npcObjectId, npcTemplateId, visualTemplateId, creatureType, state, heading, x, y, z);
 }
 
 void HandlePlayerInfo(const uint8_t* pData, size_t size) {
     PacketParserHandler reader(pData, size);
-    if (!reader.HasBytes(20)) return;
-    uint32_t playerObjectId = reader.ReadUInt32();
+    if (!reader.HasBytes(60)) return;
     float x = reader.ReadFloat();
     float y = reader.ReadFloat();
     float z = reader.ReadFloat();
-    uint8_t heading = reader.ReadByte();
-    uint8_t playerClass = reader.ReadByte();
+    uint32_t playerObjectId = reader.ReadUInt32();
+    uint32_t templateId = reader.ReadUInt32();
+    uint32_t modelId = reader.ReadUInt32();
+    reader.SkipBytes(13); // offsets 24..37
+    reader.SkipBytes(8);  // offsets 37..45 (3 b pad, 0x01, 3 b pad, marker)
     uint8_t race = reader.ReadByte();
-    GameLog_Info("[S_PUT_USER] Outro Jogador Visivel ObjId=%u Classe=%u Raca=%u Pos=(%.2f, %.2f, %.2f)",
-        playerObjectId, playerClass, race, x, y, z);
+    uint8_t playerClass = reader.ReadByte();
+    uint8_t gender = reader.ReadByte();
+    uint8_t state = reader.ReadByte();
+    reader.SkipBytes(9);
+    uint8_t heading = reader.ReadByte();
+    std::wstring charName = reader.ReadWString();
+    std::string sCharName = WStringToNarrow(charName);
+    uint16_t titleId = reader.HasBytes(2) ? reader.ReadUInt16() : 0;
+    uint16_t mentorFlag = reader.HasBytes(2) ? reader.ReadUInt16() : 0;
+    uint16_t castingSkillId = reader.HasBytes(2) ? reader.ReadUInt16() : 0;
+
+    GameLog_Info("[S_PUT_USER] Jogador Remoto Visivel ObjId=%u Nome='%s' Classe=%u (%s) Raca=%u Genero=%u Heading=%u Pos=(%.2f, %.2f, %.2f) Title=%u",
+        playerObjectId, sCharName.c_str(), playerClass, GetPlayerClassName(static_cast<PlayerClass>(playerClass)), race, gender, heading, x, y, z, titleId);
 }
 
 void HandleGatherableInfo(const uint8_t* pData, size_t size) {
@@ -249,13 +318,29 @@ void HandleAttack(const uint8_t* pData, size_t size) {
 
 void HandleUseSkill(const uint8_t* pData, size_t size) {
     PacketParserHandler reader(pData, size);
-    if (!reader.HasBytes(13)) return;
+    if (!reader.HasBytes(8)) return;
     uint32_t casterId = reader.ReadUInt32();
-    uint32_t targetId = reader.ReadUInt32();
-    uint32_t skillId = reader.ReadUInt32();
+    uint16_t skillId = reader.ReadUInt16();
     uint8_t skillLevel = reader.ReadByte();
-    GameLog_Info("[S_USE_SKILL] Conjurando SkillId=%u (Nivel %u): Caster=%u -> Target=%u",
-        skillId, skillLevel, casterId, targetId);
+    uint8_t targetType = reader.ReadByte();
+    uint32_t targetId = 0;
+    float targetX = 0.0f, targetY = 0.0f, targetZ = 0.0f;
+    if (targetType == 0 || targetType == 3 || targetType == 4) {
+        if (reader.HasBytes(4)) targetId = reader.ReadUInt32();
+    } else {
+        if (reader.HasBytes(12)) {
+            targetX = reader.ReadFloat();
+            targetY = reader.ReadFloat();
+            targetZ = reader.ReadFloat();
+        }
+    }
+    uint16_t castDuration = reader.HasBytes(2) ? reader.ReadUInt16() : 0;
+    reader.SkipBytes(1); // unk
+    float castSpeed = reader.HasBytes(4) ? reader.ReadFloat() : 1.0f;
+    uint8_t animBoost = reader.HasBytes(1) ? reader.ReadByte() : 0;
+
+    GameLog_Info("[S_USE_SKILL] Conjurando SkillId=%u (Nivel %u): Caster=%u Target=%u Dur=%ums Speed=%.2f",
+        skillId, skillLevel, casterId, targetId, castDuration, castSpeed);
 }
 
 void HandleSkillSucceeded(const uint8_t* pData, size_t size) {
@@ -355,8 +440,8 @@ void HandleManaPoint(const uint8_t* pData, size_t size) {
 
 void HandleDp(const uint8_t* pData, size_t size) {
     PacketParserHandler reader(pData, size);
-    if (!reader.HasBytes(4)) return;
-    uint32_t curDp = reader.ReadUInt32();
+    if (!reader.HasBytes(2)) return;
+    uint16_t curDp = reader.ReadUInt16();
     GameLog_Info("[S_DP] Pontos Divinos: %u / 4000", curDp);
 }
 

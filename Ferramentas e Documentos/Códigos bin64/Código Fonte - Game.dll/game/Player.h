@@ -89,6 +89,68 @@ enum PlayerFlightState : uint8_t {
     FLIGHT_WINDSTREAM  = 3
 };
 
+// Estrutura canônica de aparência do personagem no Aion Classic 5.0 (AbstractCharacterEditPacket)
+#pragma pack(push, 1)
+typedef struct {
+    uint32_t voice;
+    uint32_t skinRGB;
+    uint32_t hairRGB;
+    uint32_t eyeRGB;
+    uint32_t lipRGB;
+    uint8_t  face;
+    uint8_t  hair;
+    uint8_t  deco;
+    uint8_t  tattoo;
+    uint8_t  faceContour;
+    uint8_t  expression;
+    uint8_t  faceExpression;
+    uint8_t  jawLine;
+    uint8_t  forehead;
+    uint8_t  eyeHeight;
+    uint8_t  eyeSpace;
+    uint8_t  eyeWidth;
+    uint8_t  eyeSize;
+    uint8_t  eyeShape;
+    uint8_t  eyeAngle;
+    uint8_t  browHeight;
+    uint8_t  browAngle;
+    uint8_t  browShape;
+    uint8_t  nose;
+    uint8_t  noseBridge;
+    uint8_t  noseWidth;
+    uint8_t  noseTip;
+    uint8_t  cheek;
+    uint8_t  lipHeight;
+    uint8_t  mouthSize;
+    uint8_t  lipSize;
+    uint8_t  smile;
+    uint8_t  lipShape;
+    uint8_t  jawHeight;
+    uint8_t  chinJut;
+    uint8_t  earShape;
+    uint8_t  headSize;
+    uint8_t  neck;
+    uint8_t  neckLength;
+    uint8_t  shoulderSize;
+    uint8_t  torso;
+    uint8_t  chest;
+    uint8_t  waist;
+    uint8_t  hips;
+    uint8_t  armThickness;
+    uint8_t  handSize;
+    uint8_t  legThickness;
+    uint8_t  footSize;
+    uint8_t  facialRate;
+    uint8_t  pad0;
+    uint8_t  armLength;
+    uint8_t  legLength;
+    uint8_t  shoulders;
+    uint8_t  faceShape;
+    uint8_t  pad1[3];
+    float    height;
+} PlayerAppearance;
+#pragma pack(pop)
+
 // Postos do Abyss do Aion Classic (100% Abyss Points / AP e Quotas de Posição de Corrida da Raça)
 enum AbyssRankType : uint8_t {
     ABYSS_RANK_SOLDIER_9 = 1,
@@ -337,6 +399,9 @@ public:
     void SetRuneGauge(int32_t val) { m_runeGauge = (std::max)(0, (std::min)(val, 100)); }
     void ModifyRuneGauge(int32_t delta) { SetRuneGauge(m_runeGauge + delta); }
 
+    const PlayerAppearance& GetAppearance() const { return m_appearance; }
+    void SetAppearance(const PlayerAppearance& app) { m_appearance = app; }
+
 private:
     uint8_t           m_playerClass;
     uint8_t           m_race;
@@ -376,6 +441,7 @@ private:
     float             m_combatTimer;
     uint32_t          m_targetObjectId;
 
+    PlayerAppearance  m_appearance;
     PlayerAttributes  m_attributes;
     EquippedItemData  m_equippedItems[EQUIP_SLOT_COUNT];
 };

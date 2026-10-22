@@ -171,6 +171,38 @@ public:
         return s;
     }
 
+    void SkipBytes(size_t count) {
+        if (m_offset + count <= m_size) {
+            m_offset += count;
+        } else {
+            m_offset = m_size;
+        }
+    }
+
+    std::wstring ReadWString() {
+        std::wstring s;
+        while (HasBytes(2)) {
+            wchar_t wch = (wchar_t)ReadUInt16();
+            if (wch == 0) break;
+            s.push_back(wch);
+        }
+        return s;
+    }
+
+    std::wstring ReadWStringFixed(size_t maxChars) {
+        std::wstring s;
+        bool nullFound = false;
+        for (size_t i = 0; i < maxChars && HasBytes(2); ++i) {
+            wchar_t wch = (wchar_t)ReadUInt16();
+            if (wch == 0) nullFound = true;
+            if (!nullFound) s.push_back(wch);
+        }
+        return s;
+    }
+
+    size_t GetOffset() const { return m_offset; }
+    size_t GetRemainingBytes() const { return (m_offset < m_size) ? (m_size - m_offset) : 0; }
+
 private:
     const uint8_t* m_pData;
     size_t m_size;

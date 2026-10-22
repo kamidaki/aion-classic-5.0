@@ -16,6 +16,8 @@ void HandleLoginCheck(const uint8_t* pData, size_t size);
 void HandleEnterWorldCheck(const uint8_t* pData, size_t size);
 void HandlePlayerSpawn(const uint8_t* pData, size_t size);
 void HandleWaitList(const uint8_t* pData, size_t size);
+void HandleCharacterList(const uint8_t* pData, size_t size);
+void HandleGauge(const uint8_t* pData, size_t size);
 
 // Entidades do Mundo (Spawn e Despawn)
 void HandleNpcInfo(const uint8_t* pData, size_t size);

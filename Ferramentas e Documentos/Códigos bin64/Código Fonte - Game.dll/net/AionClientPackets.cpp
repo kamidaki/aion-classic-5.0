@@ -72,15 +72,56 @@ PacketParser BuildCheckNicknamePacket(const std::string& name) {
     return writer;
 }
 
-PacketParser BuildCreateCharacterPacket(const std::string& name, uint8_t race, uint8_t gender, uint8_t playerClass, uint8_t voice, const std::vector<uint8_t>& appearanceData) {
+PacketParser BuildEnterCharCreationScreenPacket(uint32_t accountId, const std::string& accountName) {
     PacketParser writer(C_CREATE_CHARACTER);
-    writer.WriteString(name);
-    writer.WriteByte(race);
-    writer.WriteByte(gender);
-    writer.WriteByte(playerClass);
-    writer.WriteByte(voice);
-    writer.WriteBytes(appearanceData.data(), appearanceData.size());
+    writer.WriteUInt32(accountId);
+    writer.WriteString(accountName);
+    // basicInfo em branco (50 bytes nome, gender=0, race=0, class=0)
+    writer.WriteWStringFixed(L"", 25);
+    writer.WriteUInt32(0);
+    writer.WriteUInt32(0);
+    writer.WriteUInt32(0);
+    // appearance zerada
+    PlayerAppearance emptyApp;
+    memset(&emptyApp, 0, sizeof(emptyApp));
+    emptyApp.height = 1.0f;
+    writer.WriteBytes(reinterpret_cast<const uint8_t*>(&emptyApp), sizeof(emptyApp));
+    // type = 1 para abrir a tela de criacao
+    writer.WriteByte(1);
     return writer;
+}
+
+PacketParser BuildCreateCharacterPacket(uint32_t accountId, const std::string& accountName, const std::string& charName, uint32_t race, uint32_t gender, uint32_t playerClass, const PlayerAppearance& appearance, uint8_t createType) {
+    PacketParser writer(C_CREATE_CHARACTER);
+    writer.WriteUInt32(accountId);
+    writer.WriteString(accountName);
+    // Nome do personagem em UTF-16 com max 25 caracteres (50 bytes)
+    std::wstring wsCharName;
+    wsCharName.reserve(charName.size());
+    for (char c : charName) {
+        wsCharName.push_back(static_cast<wchar_t>(static_cast<uint8_t>(c)));
+    }
+    writer.WriteWStringFixed(wsCharName, 25);
+    writer.WriteUInt32(gender);
+    writer.WriteUInt32(race);
+    writer.WriteUInt32(playerClass);
+    // Bloco binario oficial de aparencia (PlayerAppearance)
+    writer.WriteBytes(reinterpret_cast<const uint8_t*>(&appearance), sizeof(appearance));
+    // Flag de criacao (0 = submissao de criacao final)
+    writer.WriteByte(createType);
+    return writer;
+}
+
+PacketParser BuildCreateCharacterPacket(const std::string& name, uint8_t race, uint8_t gender, uint8_t playerClass, uint8_t voice, const std::vector<uint8_t>& appearanceData) {
+    PlayerAppearance app;
+    memset(&app, 0, sizeof(app));
+    app.voice = voice;
+    app.height = 1.0f;
+    if (!appearanceData.empty()) {
+        size_t copyLen = (std::min)(sizeof(app), appearanceData.size());
+        memcpy(&app, appearanceData.data(), copyLen);
+    }
+    return BuildCreateCharacterPacket(0, "", name, race, gender, playerClass, app, 0);
 }
 
 PacketParser BuildDeleteCharacterPacket(uint32_t characterId) {

@@ -4,10 +4,91 @@
 DamageNumberGroup::DamageNumberGroup() {}
 DamageNumberGroup::~DamageNumberGroup() {}
 
+float DamageNumberGroup::GetWeaponCritMultiplier(WeaponType weaponType) {
+    switch (weaponType) {
+    case WEAPON_DAGGER:          return 2.3f;
+    case WEAPON_1HAND_SWORD:     return 2.2f;
+    case WEAPON_MACE:            return 2.0f;
+    case WEAPON_ORB:             return 2.0f;
+    case WEAPON_STAFF:           return 1.7f;
+    case WEAPON_HARP:            return 1.7f;
+    case WEAPON_GREATSWORD:      return 1.5f;
+    case WEAPON_POLEARM:         return 1.5f;
+    case WEAPON_GAUNTLET:        return 1.5f;
+    case WEAPON_2BLADE:          return 1.5f;
+    case WEAPON_BOOK:            return 1.5f;
+    case WEAPON_DIMENSIONSWORD:  return 1.5f;
+    case WEAPON_1GUN:            return 1.5f;
+    case WEAPON_2GUN:            return 1.5f;
+    case WEAPON_AETHERCANNON:    return 1.5f;
+    case WEAPON_RUNESWORD:       return 1.5f;
+    case WEAPON_BOW:             return 1.4f;
+    default:                     return 1.5f;
+    }
+}
+
+void DamageNumberGroup::GetWeaponDamageVariance(WeaponType weaponType, float& outMin, float& outMax) {
+    switch (weaponType) {
+    case WEAPON_POLEARM:
+        outMin = 0.70f; outMax = 1.30f; // Assinatura de glaive/polearm
+        break;
+    case WEAPON_AETHERCANNON:
+        outMin = 0.75f; outMax = 1.25f; // Canhão de artilharia pesada
+        break;
+    case WEAPON_STAFF:
+    case WEAPON_DIMENSIONSWORD:
+        outMin = 0.80f; outMax = 1.20f;
+        break;
+    case WEAPON_BOW:
+    case WEAPON_ORB:
+    case WEAPON_RUNESWORD:
+        outMin = 0.85f; outMax = 1.15f;
+        break;
+    case WEAPON_1HAND_SWORD:
+        outMin = 0.95f; outMax = 1.05f; // Consistência de espada
+        break;
+    case WEAPON_DAGGER:
+    case WEAPON_MACE:
+    case WEAPON_GREATSWORD:
+    case WEAPON_BOOK:
+    case WEAPON_GAUNTLET:
+    case WEAPON_2BLADE:
+    case WEAPON_1GUN:
+    case WEAPON_2GUN:
+    case WEAPON_HARP:
+    default:
+        outMin = 0.90f; outMax = 1.10f;
+        break;
+    }
+}
+
+float DamageNumberGroup::GetWeaponBaseAttackSpeed(WeaponType weaponType) {
+    switch (weaponType) {
+    case WEAPON_DAGGER:          return 1.2f;
+    case WEAPON_1HAND_SWORD:     return 1.4f;
+    case WEAPON_1GUN:            return 1.4f;
+    case WEAPON_MACE:            return 1.5f;
+    case WEAPON_GAUNTLET:        return 1.5f;
+    case WEAPON_2BLADE:          return 1.5f;
+    case WEAPON_DIMENSIONSWORD:  return 1.6f;
+    case WEAPON_2GUN:            return 1.6f;
+    case WEAPON_RUNESWORD:       return 1.6f;
+    case WEAPON_STAFF:           return 2.0f;
+    case WEAPON_HARP:            return 2.0f;
+    case WEAPON_BOOK:            return 2.2f;
+    case WEAPON_ORB:             return 2.2f;
+    case WEAPON_BOW:             return 2.4f;
+    case WEAPON_GREATSWORD:      return 2.4f;
+    case WEAPON_POLEARM:         return 2.8f;
+    case WEAPON_AETHERCANNON:    return 3.0f;
+    default:                     return 1.5f;
+    }
+}
+
 uint32_t DamageNumberGroup::CalculatePhysicalDamage(
     float attack, float skillMultiplier, float targetDefense,
     bool isCritical, bool isBlocked, bool isParried, bool isPvp,
-    float blockReduceRatio, float randomVariance) 
+    float blockReduceRatio, float randomVariance, float customCritMultiplier) 
 {
     // Fórmula oficial Aion Classic 5.0 (AttackUtil & StatFunctions):
     // Dano Base = (Ataque * Multiplicador - Defesa / 10) * Variação
@@ -17,7 +98,8 @@ uint32_t DamageNumberGroup::CalculatePhysicalDamage(
 
     // Modificadores de status de combate
     if (isCritical) {
-        baseDmg *= 1.5f; // Multiplicador padrão de crítico físico
+        float critMul = (customCritMultiplier > 0.0f) ? customCritMultiplier : 1.5f;
+        baseDmg *= critMul;
     }
     if (isParried) {
         baseDmg *= 0.6f; // Aparar reduz dano em 40% (resta 60%)
@@ -43,7 +125,7 @@ uint32_t DamageNumberGroup::CalculateMagicalDamage(
     if (baseDmg < 1.0f) baseDmg = 1.0f;
 
     // Resistência Elemental: cada 10 pontos = 1% de redução (max 80%)
-    float resistRatio = std::min(0.8f, std::max(0.0f, elementalResist / 1000.0f));
+    float resistRatio = (std::min)(0.8f, (std::max)(0.0f, elementalResist / 1000.0f));
     baseDmg *= (1.0f - resistRatio);
 
     if (isCritical) {
