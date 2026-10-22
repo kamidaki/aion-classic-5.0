@@ -85,11 +85,122 @@ static bool GlobalTradeSendFilter(void* connection, BYTE* body, int length, INT_
     return true;
 }
 
+// Unit price in the sale entry of a stack (vendor_sell_stack_dialog, DlgVendorSellStack, the old
+// broker dialog that both tabs reuse). Officially the price typed there is the price of the whole
+// listing; here it is the price of one unit, as in the broker of the earlier versions:
+// - 0x6F7630, the OK, hands &price (+0x580) and &count (+0x578) to the callback of the tab
+//   (0x2A2710 Kinah, 0x300530/0x300650 Quna), which keeps them, shows the fee and sends
+//   C_GLOBAL_TRADE_COMMIT: while it runs the price field holds price x count;
+// - the minimum (+0x588, world_kina_vendor_min_sell_price = 200000 read by the Open 0x6F61E0) is a
+//   minimum of the listing, so the unit minimum becomes ceil(minimum / count): set after the Open
+//   and on every refresh (0x6F6830, which also enables OK only for price >= +0x588), and written
+//   to min_unit_price_view (+0x510) with the money format of the Open (call at Open +0x139).
+using GlobalTradeSellOpen = INT_PTR (__fastcall*)(BYTE*, void*, void*, void*, void*, void*, void*, void*,
+                                                 void*, void*, void*, void*);
+using GlobalTradeSellRefresh = INT_PTR (__fastcall*)(BYTE*, const int*);
+using GlobalTradeSellOk = INT_PTR (__fastcall*)(BYTE*, void*);
+using GlobalTradeFormatMoney = void (__fastcall*)(wchar_t*, int, LONG64);
+static GlobalTradeSellOpen s_globalTradeSellOpen = nullptr;
+static GlobalTradeSellRefresh s_globalTradeSellRefresh = nullptr;
+static GlobalTradeSellOk s_globalTradeSellOk = nullptr;
+static GlobalTradeFormatMoney s_globalTradeFormatMoney = nullptr;
+
+static constexpr size_t kGlobalTradeSellMinWidget = 0x510;
+static constexpr size_t kGlobalTradeSellCount = 0x578;
+static constexpr size_t kGlobalTradeSellPrice = 0x580;
+static constexpr size_t kGlobalTradeSellMinimum = 0x588;
+static constexpr size_t kGlobalTradeWidgetSetText = 0x288;
+// The dialog of the last Open and the listing minimum it read (UI thread only).
+static BYTE* s_globalTradeSellDialog = nullptr;
+static LONG64 s_globalTradeSellListingMinimum = 0;
+
+static LONG64 GlobalTradeUnitMinimum(LONG64 listingMinimum, LONG64 count) {
+    if (listingMinimum <= 0) return listingMinimum;
+    if (count < 1) count = 1;
+    return (listingMinimum + count - 1) / count;
+}
+
+static void GlobalTradeApplyUnitMinimum(BYTE* dialog) {
+    if (dialog != s_globalTradeSellDialog || s_globalTradeSellListingMinimum <= 0) return;
+    const LONG64 minimum = GlobalTradeUnitMinimum(s_globalTradeSellListingMinimum,
+                                                  *(const LONG64*)(dialog + kGlobalTradeSellCount));
+    if (*(const LONG64*)(dialog + kGlobalTradeSellMinimum) == minimum) return;
+    *(LONG64*)(dialog + kGlobalTradeSellMinimum) = minimum;
+    BYTE* widget = *(BYTE**)(dialog + kGlobalTradeSellMinWidget);
+    if (widget && s_globalTradeFormatMoney) {
+        wchar_t text[0x100] = {};
+        s_globalTradeFormatMoney(text, 0x100, minimum);
+        using SetText = void (__fastcall*)(BYTE*, const wchar_t*);
+        (*(SetText*)(*(BYTE**)widget + kGlobalTradeWidgetSetText))(widget, text);
+    }
+}
+
+static INT_PTR __fastcall GlobalTradeSellOpenHook(BYTE* dialog, void* a2, void* a3, void* a4, void* a5,
+                                                  void* a6, void* a7, void* a8, void* a9, void* a10,
+                                                  void* a11, void* a12) {
+    // The Open reads the listing minimum into +0x588 and refreshes: no unit minimum until it returns.
+    s_globalTradeSellDialog = nullptr;
+    const INT_PTR result = s_globalTradeSellOpen(dialog, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
+    __try {
+        const LONG64 listingMinimum = *(const LONG64*)(dialog + kGlobalTradeSellMinimum);
+        s_globalTradeSellDialog = dialog;
+        s_globalTradeSellListingMinimum = listingMinimum;
+        GlobalTradeApplyUnitMinimum(dialog);
+        // The Open raised the price to the listing minimum: start at the unit minimum instead.
+        if (*(const LONG64*)(dialog + kGlobalTradeSellPrice) == listingMinimum) {
+            *(LONG64*)(dialog + kGlobalTradeSellPrice) = *(const LONG64*)(dialog + kGlobalTradeSellMinimum);
+            const int priceBox = 1;
+            s_globalTradeSellRefresh(dialog, &priceBox);
+        }
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+    return result;
+}
+
+static INT_PTR __fastcall GlobalTradeSellRefreshHook(BYTE* dialog, const int* box) {
+    __try {
+        GlobalTradeApplyUnitMinimum(dialog);
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+    return s_globalTradeSellRefresh(dialog, box);
+}
+
+static INT_PTR __fastcall GlobalTradeSellOkHook(BYTE* closure, void* argument) {
+    BYTE* dialog = nullptr;
+    LONG64 unitPrice = 0;
+    __try {
+        dialog = closure ? *(BYTE**)(closure + 8) : nullptr;
+        if (dialog) {
+            unitPrice = *(const LONG64*)(dialog + kGlobalTradeSellPrice);
+            const LONG64 count = *(const LONG64*)(dialog + kGlobalTradeSellCount);
+            if (unitPrice > 0 && count > 1 && unitPrice <= MAXLONGLONG / count)
+                *(LONG64*)(dialog + kGlobalTradeSellPrice) = unitPrice * count;
+            else
+                dialog = nullptr;
+        }
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+        dialog = nullptr;
+    }
+    const INT_PTR result = s_globalTradeSellOk(closure, argument);
+    if (dialog) {
+        __try {
+            *(LONG64*)(dialog + kGlobalTradeSellPrice) = unitPrice;
+        }
+        __except (EXCEPTION_EXECUTE_HANDLER) {
+        }
+    }
+    return result;
+}
+
 #ifndef GLOBAL_TRADE_FIX_TEST
 // Where the installation stopped, readable in the client's memory next to the "GTDIAG1" marker:
 // 1 started, 2 no send hook, 31/32 entry/OK signature not found yet, 33 unexpected fields,
-// 4 Detours, 5 installed; tries = installation attempts.
-static volatile struct { char marker[8]; LONG step; LONG tries; } s_globalTradeDiag = { "GTDIAG1", 0, 0 };
+// 4 Detours, 5 installed; tries = installation attempts; sellStep (unit price of the sale entry):
+// 1 found, 2 not found, 3 installed.
+static volatile struct { char marker[8]; LONG step; LONG tries; LONG sellStep; } s_globalTradeDiag = { "GTDIAG1", 0, 0, 0 };
 static SRWLOCK s_globalTradeLock = SRWLOCK_INIT;
 static bool s_globalTradeChecked = false;
 // Game.dll is unpacked by WinLicense while it loads: the first attempts can run before these two
@@ -183,6 +294,61 @@ static void InstallGlobalTradeFix(HMODULE module) {
             __leave;
         }
 
+        // Sale entry (DlgVendorSellStack). Open: mov rax,rsp; push rbp; push r12; sub rsp,228h; ...;
+        // mov eax,[r8]; mov [rcx+670h],eax; mov rax,[rcx]; call [rax+5B0h]
+        static const BYTE sellOpen[] = {
+            0x48,0x8b,0xc4,0x55,0x41,0x54,0x48,0x81,0xec,0x28,0x02,0x00,0x00,0x48,0x89,0x58,
+            0x08,0x49,0x8b,0xd8,0x48,0x89,0x78,0x18,0x48,0x8b,0xf9,0x4c,0x89,0x70,0x20,0x4c,
+            0x89,0x78,0xe8,0x4d,0x8b,0xf9,0x41,0x8b,0x00,0x89,0x81,0x70,0x06,0x00,0x00,0x48,
+            0x8b,0x01,0xff,0x90,0xb0,0x05,0x00,0x00
+        };
+        static const char sellOpenMask[] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+        // Refresh: mov [rsp+10h],rbx; push rdi; sub rsp,30h; mov rbx,rcx; movsxd rcx,[rdx];
+        // mov rdi,[rbx+rcx*8+500h]; test rdi,rdi; je; mov [rsp+40h],rsi; test ecx,ecx; jne; xor eax,eax
+        static const BYTE sellRefresh[] = {
+            0x48,0x89,0x5c,0x24,0x10,0x57,0x48,0x83,0xec,0x30,0x48,0x8b,0xd9,0x48,0x63,0x0a,
+            0x48,0x8b,0xbc,0xcb,0x00,0x05,0x00,0x00,0x48,0x85,0xff,0x0f,0x84,0,0,0,0,0x48,
+            0x89,0x74,0x24,0x40,0x85,0xc9,0x75,0,0x33,0xc0,0x48,0x8d,0x8b,0x28
+        };
+        static const char sellRefreshMask[] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx????xxxxxxxx?xxxxxx";
+        // OK: mov [rsp+18h],rbx; mov [rsp+10h],rdx; push rdi; sub rsp,30h; mov rbx,[rcx+8];
+        // cmp qword [rbx+5E0h],0; je; lea rdi,[rbx+5E8h]
+        static const BYTE sellOk[] = {
+            0x48,0x89,0x5c,0x24,0x18,0x48,0x89,0x54,0x24,0x10,0x57,0x48,0x83,0xec,0x30,0x48,
+            0x8b,0x59,0x08,0x48,0x83,0xbb,0xe0,0x05,0x00,0x00,0x00,0x0f,0x84,0,0,0,0,0x48,
+            0x8d,0xbb,0xe8,0x05,0x00,0x00
+        };
+        static const char sellOkMask[] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx????xxxxxxx";
+        static_assert(sizeof(sellOpenMask) - 1 == sizeof(sellOpen), "Global trade sale open signature mask length");
+        static_assert(sizeof(sellRefreshMask) - 1 == sizeof(sellRefresh), "Global trade sale refresh signature mask length");
+        static_assert(sizeof(sellOkMask) - 1 == sizeof(sellOk), "Global trade sale OK signature mask length");
+        BYTE* sellOpenAt = QunaFindUnique(base, nt, sellOpen, sellOpenMask, sizeof(sellOpen));
+        BYTE* sellRefreshAt = QunaFindUnique(base, nt, sellRefresh, sellRefreshMask, sizeof(sellRefresh));
+        BYTE* sellOkAt = QunaFindUnique(base, nt, sellOk, sellOkMask, sizeof(sellOk));
+        // Fields: Open stores the minimum at +588h (+10Ah) and formats it for +510h (+13Eh) with the
+        // money format it calls at +139h; the refresh compares +588h with the price (+188h) after
+        // reading the count (+13Bh); the OK passes &count (+82h) and &price (+93h).
+        static const BYTE openStoresMinimum[] = { 0x48,0x89,0x9f,0x88,0x05,0x00,0x00 };   // mov [rdi+588h],rbx
+        static const BYTE openMinimumWidget[] = { 0x48,0x8b,0x8f,0x10,0x05,0x00,0x00 };   // mov rcx,[rdi+510h]
+        static const BYTE refreshCount[] = { 0x48,0x83,0xbb,0x78,0x05,0x00,0x00,0x00 };   // cmp qword [rbx+578h],0
+        static const BYTE refreshMinimum[] = { 0x48,0x39,0x83,0x88,0x05,0x00,0x00 };      // cmp [rbx+588h],rax
+        static const BYTE okCount[] = { 0x48,0x8d,0x83,0x78,0x05,0x00,0x00 };             // lea rax,[rbx+578h]
+        static const BYTE okPrice[] = { 0x4c,0x8d,0x8b,0x80,0x05,0x00,0x00 };             // lea r9,[rbx+580h]
+        const bool sellFound = sellOpenAt && sellRefreshAt && sellOkAt && sellOpenAt[0x139] == 0xe8 &&
+            memcmp(sellOpenAt + 0x10a, openStoresMinimum, sizeof(openStoresMinimum)) == 0 &&
+            memcmp(sellOpenAt + 0x13e, openMinimumWidget, sizeof(openMinimumWidget)) == 0 &&
+            memcmp(sellRefreshAt + 0x13b, refreshCount, sizeof(refreshCount)) == 0 &&
+            memcmp(sellRefreshAt + 0x188, refreshMinimum, sizeof(refreshMinimum)) == 0 &&
+            memcmp(sellOkAt + 0x82, okCount, sizeof(okCount)) == 0 &&
+            memcmp(sellOkAt + 0x93, okPrice, sizeof(okPrice)) == 0;
+        if (sellFound) {
+            s_globalTradeSellOpen = (GlobalTradeSellOpen)sellOpenAt;
+            s_globalTradeSellRefresh = (GlobalTradeSellRefresh)sellRefreshAt;
+            s_globalTradeSellOk = (GlobalTradeSellOk)sellOkAt;
+            s_globalTradeFormatMoney = (GlobalTradeFormatMoney)(sellOpenAt + 0x139 + 5 + *(const int32_t*)(sellOpenAt + 0x13a));
+        }
+        s_globalTradeDiag.sellStep = sellFound ? 1 : 2;
+
         s_globalTradeAddEntry = (GlobalTradeAddEntry)entry;
         s_globalTradeBuyEachOk = (GlobalTradeBuyEachOk)ok;
         LONG error = DetourTransactionBegin();
@@ -193,9 +359,13 @@ static void InstallGlobalTradeFix(HMODULE module) {
         error = DetourUpdateThread(GetCurrentThread());
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_globalTradeAddEntry, GlobalTradeAddEntryHook);
         if (error == NO_ERROR) error = DetourAttach(&(PVOID&)s_globalTradeBuyEachOk, GlobalTradeBuyEachOkHook);
+        if (error == NO_ERROR && sellFound) error = DetourAttach(&(PVOID&)s_globalTradeSellOpen, GlobalTradeSellOpenHook);
+        if (error == NO_ERROR && sellFound) error = DetourAttach(&(PVOID&)s_globalTradeSellRefresh, GlobalTradeSellRefreshHook);
+        if (error == NO_ERROR && sellFound) error = DetourAttach(&(PVOID&)s_globalTradeSellOk, GlobalTradeSellOkHook);
         if (error == NO_ERROR) error = DetourTransactionCommit();
         else DetourTransactionAbort();
         if (error == NO_ERROR) s_chargeSendFilter = GlobalTradeSendFilter;
+        if (error == NO_ERROR && sellFound) s_globalTradeDiag.sellStep = 3;
         s_globalTradeDiag.step = error == NO_ERROR ? 5 : 4;
         OutputDebugStringA(error == NO_ERROR ? "[GlobalTrade] Split purchase hooks installed.\n" :
             "[GlobalTrade] Split purchase hook installation failed.\n");

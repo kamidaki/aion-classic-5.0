@@ -70,6 +70,12 @@ int main() {
     s_globalTradeBuyEachCount = 0;
     Check(Filter(body, sizeof(body), &result) && result == 0 && sent == 1);
 
+    // Unit minimum of the sale entry: the 200000 of the listing spread over the stack, rounded up.
+    Check(GlobalTradeUnitMinimum(200000, 84) == 2381 && 2381LL * 84 >= 200000 && 2380LL * 84 < 200000);
+    Check(GlobalTradeUnitMinimum(200000, 1) == 200000 && GlobalTradeUnitMinimum(200000, 0) == 200000);
+    Check(GlobalTradeUnitMinimum(200000, 200000) == 1 && GlobalTradeUnitMinimum(200000, 300000) == 1);
+    Check(GlobalTradeUnitMinimum(0, 5) == 0);
+
     printf("globaltrade_fix_checks: %u checks passed\n", checks);
     return 0;
 }

@@ -2805,6 +2805,66 @@ def inventario_texto(xml):
     return '<?xml version="1.0" encoding="utf-16"?>\r\n' + ET.tostring(raiz, encoding="unicode")
 
 
+#: Janela de venda de pilha da Auction House (vendor_sell_stack_dialog, DlgVendorSellStack). Com o
+#: globaltrade_fix.h o preco digitado e o da unidade: o rotulo "Set price" vira "Unit Price"
+#: (STR_VENDOR_BUY_EACH_DIALOG__UNIT_PRICE, a do DlgVendorBuyEach). A lista do item tem 461 px, mas a
+#: coluna do nome so 258 e o nome saia cortado: a coluna ocupa a lista toda menos o icone (42), o
+#: espaco entre celulas (3) e as bordas (3 + 3).
+PAKS_DA_VENDA = (
+    (r"data\ui\game\game.pak", "vendor_sell_stack_dialog.xml"),
+    (r"l10n\ENG\Data\Data.pak", "ui/game/vendor_sell_stack_dialog.xml"),
+    (r"l10n\DEU\Data\Data.pak", "ui/game/vendor_sell_stack_dialog.xml"),
+    (r"l10n\FRA\data\data.pak", "ui/game/vendor_sell_stack_dialog.xml"),
+    (r"l10n\BRA\Data\Data.pak", "ui/game/vendor_sell_stack_dialog.xml"),
+)
+ROTULO_DO_PRECO_TOTAL = "STR_VENDOR_SELL_DIALOG__PRICE_ENTERED"
+ROTULO_DO_PRECO_UNITARIO = "STR_VENDOR_BUY_EACH_DIALOG__UNIT_PRICE"
+
+
+def _venda_por_unidade(raiz, filhos, tag):
+    """Edita o vendor_sell_stack_dialog (ET ou NoBxml): `filhos(e)` lista os filhos, `tag(e)` o nome."""
+    def todos(e):
+        yield e
+        for f in filhos(e):
+            yield from todos(f)
+
+    rotulos = [w for w in todos(raiz) if tag(w) == "Widget" and w.get("text") == ROTULO_DO_PRECO_TOTAL]
+    if len(rotulos) != 1:
+        raise ValueError(f"vendor_sell_stack_dialog com {len(rotulos)} rotulos de preco (ja aplicado?)")
+    rotulos[0].set("text", ROTULO_DO_PRECO_UNITARIO)
+    lista = next(w for w in todos(raiz) if tag(w) == "Widget" and w.get("name") == "item")
+    largura = int(lista.get("frame").split(",")[2])
+    colunas = [c for c in filhos(lista) if tag(c) == "Column"]
+    if len(colunas) != 1:
+        raise ValueError("lista do item sem a coluna unica")
+    colunas[0].set("width", str(largura - 42 - 3 - 6))
+
+
+def venda_bxml(bxml):
+    def editor(raiz):
+        _venda_por_unidade(raiz, lambda e: e.filhos, lambda e: e.nome)
+    return edita_bxml(bxml, editor)
+
+
+def venda_texto(xml):
+    """O mesmo de `venda_bxml` num XML de texto (o zip do BRA)."""
+    import xml.etree.ElementTree as ET
+    raiz = ET.fromstring(xml)
+    _venda_por_unidade(raiz, list, lambda e: e.tag)
+    return '<?xml version="1.0" encoding="utf-16"?>\r\n' + ET.tostring(raiz, encoding="unicode")
+
+
+def _confere_venda(rel, lido):
+    import xml.etree.ElementTree as ET
+    raiz = ET.fromstring(lido)
+    textos = [w.get("text") for w in raiz.iter("Widget")]
+    assert ROTULO_DO_PRECO_UNITARIO in textos and ROTULO_DO_PRECO_TOTAL not in textos, rel
+    lista = next(w for w in raiz.iter("Widget") if w.get("name") == "item")
+    largura = int(lista.get("frame").split(",")[2])
+    assert int(next(lista.iter("Column")).get("width")) == largura - 51, rel
+    print(f"OK  {rel}: vendor_sell_stack_dialog com preco por unidade e coluna de {largura - 51}")
+
+
 def _confere_inventario(rel, lido):
     import xml.etree.ElementTree as ET
     raiz = ET.fromstring(lido)
@@ -3293,6 +3353,8 @@ def _alteracoes_de_interface():
         alteracoes.setdefault(rel, {}).setdefault(arquivo.lower(), []).append(("carga", None))
     for rel, arquivo in PAKS_DO_INVENTARIO:
         alteracoes.setdefault(rel, {}).setdefault(arquivo.lower(), []).append(("inventario", None))
+    for rel, arquivo in PAKS_DA_VENDA:
+        alteracoes.setdefault(rel, {}).setdefault(arquivo.lower(), []).append(("venda", None))
     return alteracoes
 
 
@@ -3333,6 +3395,8 @@ def _confere_interface(rel, arquivo, lido, pedidos):
             print(f"OK  {rel}: {arquivo} com os presets da barra de carga ({len(itens)})")
         elif tipo == "inventario":
             _confere_inventario(rel, lido)
+        elif tipo == "venda":
+            _confere_venda(rel, lido)
         elif tipo == "carga":
             for nome in ("charge_gauge",) + tuple(n for n, _x in BOLINHAS_DA_CARGA):
                 assert lido.count(f'name="{nome}"') == 1, (rel, nome)
@@ -3378,6 +3442,8 @@ def aplica_interface():
                         xml = barra_de_carga_texto(xml)
                     elif tipo == "inventario":
                         xml = inventario_texto(xml)
+                    elif tipo == "venda":
+                        xml = venda_texto(xml)
                     elif tipo == "presets_carga":
                         fim = xml.rindex("</Preload>")
                         xml = xml[:fim] + "".join(f"  {s}\n" for s in itens) + xml[fim:]
@@ -3409,7 +3475,7 @@ def aplica_interface():
             entrada = next(e for e in idx if e.nome.lower() == arquivo)
             bxml = aion_pak.le(d, entrada)
             texto_xml = aion_bxml.decodifica(bxml)
-            novos, presets, criacao, carga, inventario = [], False, False, False, False
+            novos, presets, criacao, carga, inventario, venda = [], False, False, False, False, False
             for tipo, itens in pedidos:
                 if tipo == "lobby":
                     novos += [ET.fromstring(x) for x in SKINS_DO_BOTAO + (PRESET_DO_BOTAO,)]
@@ -3419,6 +3485,8 @@ def aplica_interface():
                     carga = True
                 elif tipo == "inventario":
                     inventario = True
+                elif tipo == "venda":
+                    venda = True
                 elif tipo == "presets_carga":
                     novos += [ET.fromstring(s) for s in itens]
                 elif tipo == "strings":
@@ -3438,6 +3506,8 @@ def aplica_interface():
                 troca[entrada.nome] = barra_de_carga_bxml(troca[entrada.nome])
             if inventario:
                 troca[entrada.nome] = inventario_bxml(troca[entrada.nome])
+            if venda:
+                troca[entrada.nome] = venda_bxml(troca[entrada.nome])
         _backup(caminho)
         if origem != caminho:
             shutil.copy2(origem, caminho)
