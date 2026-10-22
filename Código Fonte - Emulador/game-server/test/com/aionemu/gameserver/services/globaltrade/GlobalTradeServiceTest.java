@@ -53,6 +53,14 @@ class GlobalTradeServiceTest {
 	}
 
 	@Test
+	void splitCostUsesTheUnitPriceTheClientShows() {
+		// 17 poções por 200.000: unidade 11.764 (o cliente arredonda para baixo), 5 custam 58.820
+		assertEquals(58_820, GlobalTradeService.splitCost(200_000, 17, 5));
+		assertEquals(0, GlobalTradeService.splitCost(10, 17, 5)); // unidade abaixo de 1: recusada
+		assertEquals(0, GlobalTradeService.splitCost(Long.MAX_VALUE, 2, 3)); // estouro: recusada
+	}
+
+	@Test
 	void unitPriceKeepsTwoDecimals() {
 		assertEquals(79_999_999, GlobalTradeService.unitPriceX100(79_999_999, 100));
 		assertEquals(80_000_000, GlobalTradeService.unitPriceX100(8_000_000, 10));

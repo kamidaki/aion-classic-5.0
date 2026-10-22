@@ -69,6 +69,17 @@ class GlobalTradeClientPacketsTest {
 		assertTrue(((Set<?>) field(search, "itemIds")).contains(167000558));
 	}
 
+	@Test
+	void buyRequestWithAndWithoutCount() throws Exception {
+		// oficial: só o anúncio (captura de 2026-09-21); com o version.dll, compra dividida com [D quantidade] no fim
+		CM_GLOBAL_TRADE_BUY whole = read(new CM_GLOBAL_TRADE_BUY(0x1EC, EnumSet.of(State.IN_GAME)), "f87d120000000000");
+		assertEquals(0x127df8L, field(whole, "listingId"));
+		assertEquals(0L, field(whole, "count"));
+		CM_GLOBAL_TRADE_BUY part = read(new CM_GLOBAL_TRADE_BUY(0x1EC, EnumSet.of(State.IN_GAME)), "f87d12000000000005000000");
+		assertEquals(0x127df8L, field(part, "listingId"));
+		assertEquals(5L, field(part, "count"));
+	}
+
 	private static <T extends AionClientPacket> T read(T packet, String hex) {
 		packet.setBuffer(ByteBuffer.wrap(HexFormat.of().parseHex(hex)).order(ByteOrder.LITTLE_ENDIAN));
 		assertTrue(packet.read());

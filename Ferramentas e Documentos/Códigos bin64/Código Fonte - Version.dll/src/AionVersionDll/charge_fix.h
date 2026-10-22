@@ -33,6 +33,9 @@
 #if defined(_M_AMD64)
 using ChargeSendPacket = INT_PTR (__fastcall*)(void*, BYTE*, int);
 static ChargeSendPacket s_chargeSend = nullptr;
+// Other fixes that rewrite outgoing packets (globaltrade_fix.h) set this filter: it returns true when it
+// handled the packet itself, with the result of the send in *result.
+static bool (*s_chargeSendFilter)(void*, BYTE*, int, INT_PTR*) = nullptr;
 
 static constexpr WORD kChargeUseSkillWire = (0x21 + 0xC4) ^ 0x36;
 static constexpr WORD kChargeFireWire = (234 + 0xC4) ^ 0x36;
@@ -181,6 +184,10 @@ static INT_PTR __fastcall ChargeSendPacketHook(void* connection, BYTE* body, int
         }
     }
     __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+    if (s_chargeSendFilter) {
+        INT_PTR result = 0;
+        if (s_chargeSendFilter(connection, body, length, &result)) return result;
     }
     return s_chargeSend(connection, body, length);
 }

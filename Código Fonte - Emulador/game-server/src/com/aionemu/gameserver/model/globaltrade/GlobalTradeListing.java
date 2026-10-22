@@ -25,8 +25,8 @@ public final class GlobalTradeListing {
 	private final int sellerId;
 	private final int itemUniqueId;
 	private final int itemId;
-	private final long count;
-	private final long price;
+	private long count;
+	private long price;
 	private final GlobalTradeCurrency currency;
 	private final int category;
 	private final long registerFee;
@@ -82,7 +82,7 @@ public final class GlobalTradeListing {
 	}
 
 	/**
-	 * @return preço total do anúncio (a quantidade inteira vai junto na compra)
+	 * @return preço total do anúncio (do que ainda está à venda, depois de compras divididas)
 	 */
 	public long getPrice() {
 		return price;
@@ -171,6 +171,22 @@ public final class GlobalTradeListing {
 	public void unmarkCollected() {
 		this.state = State.SOLD;
 		this.collectedTime = 0;
+	}
+
+	/**
+	 * Compra dividida: tira do anúncio à venda a parte vendida (a venda vira um anúncio próprio).
+	 */
+	public void reduce(long soldCount, long soldPrice) {
+		this.count -= soldCount;
+		this.price -= soldPrice;
+	}
+
+	/**
+	 * Desfaz o {@link #reduce} quando a venda não foi gravada.
+	 */
+	public void restore(long soldCount, long soldPrice) {
+		this.count += soldCount;
+		this.price += soldPrice;
 	}
 
 	public void setState(State state) {

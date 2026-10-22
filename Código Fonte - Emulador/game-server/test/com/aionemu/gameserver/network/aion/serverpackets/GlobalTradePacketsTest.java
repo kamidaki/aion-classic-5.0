@@ -50,7 +50,8 @@ class GlobalTradePacketsTest {
 	void smallPacketsMatchOfficialCapture() throws Exception {
 		assertEquals("0000000000ca9a3b00000000", HEX.formatHex(body(new SM_GLOBAL_TRADE_STATE(1_000_000_000))));
 		assertEquals("00b4391200000000000500000000000000", HEX.formatHex(body(new SM_GLOBAL_TRADE_BUY(0x1239B4, 5))));
-		assertEquals("0001000000", HEX.formatHex(body(new SM_GLOBAL_TRADE_COLLECT(1))));
+		assertEquals("0001000000", HEX.formatHex(body(new SM_GLOBAL_TRADE_COLLECT(GlobalTradeCurrency.KINAH))));
+		assertEquals("0000000000", HEX.formatHex(body(new SM_GLOBAL_TRADE_COLLECT(GlobalTradeCurrency.LUNA))));
 		assertEquals("0101010000000000", HEX.formatHex(body(new SM_GLOBAL_TRADE_MYLIST(GlobalTradeCurrency.KINAH, List.of()))));
 		assertEquals("0101000000000000", HEX.formatHex(body(new SM_GLOBAL_TRADE_MYLIST(GlobalTradeCurrency.LUNA, List.of()))));
 		assertEquals("ae0140c00000000000000000400d03000000000000c2eb0b0000000001000000",

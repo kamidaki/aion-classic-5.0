@@ -294,8 +294,11 @@ public final class GlobalTradeService {
 		}
 	}
 
-	/** C_GLOBAL_TRADE_BUY: a compra leva o anúncio inteiro. */
-	public void buy(Player player, long listingId) {
+	/**
+	 * C_GLOBAL_TRADE_BUY. Sem quantidade (pacote oficial) ou com a quantidade inteira, a compra leva o anúncio. Com menos (compra dividida,
+	 * {@link GlobalTradeConfig#SPLIT_BUY}), a parte comprada vira uma venda própria e o resto continua anunciado.
+	 */
+	public void buy(Player player, long listingId, long requestedCount) {
 		if (!canTrade(player))
 			return;
 		synchronized (this) {
@@ -308,49 +311,55 @@ public final class GlobalTradeService {
 				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_VENDOR_CAN_NOT_BUY_MY_REGISTER_ITEM());
 				return;
 			}
+			boolean split = requestedCount > 0 && requestedCount < listing.getCount();
+			long count = split ? requestedCount : listing.getCount();
+			long cost = split ? splitCost(listing.getPrice(), listing.getCount(), count) : listing.getPrice();
+			if (split && (!GlobalTradeConfig.SPLIT_BUY || cost <= 0 || !listing.getItem().getItemTemplate().isStackable())) {
+				log.warn("[GLOBAL_TRADE] {} pediu {} de {}: compra dividida recusada", player.getName(), count, listing);
+				PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_ERROR));
+				return;
+			}
 			Storage inventory = player.getInventory();
-			Item item = listing.getItem();
-			if (inventory.isFull(item.getItemTemplate().getExtraInventoryId())) {
+			if (inventory.isFull(listing.getItem().getItemTemplate().getExtraInventoryId())) {
 				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_FULL_INVENTORY());
 				return;
 			}
 			boolean quna = listing.getCurrency() == GlobalTradeCurrency.LUNA;
-			if (quna ? QunaService.getBalance(player) < listing.getPrice() : inventory.getKinah() < listing.getPrice()) {
+			if (quna ? QunaService.getBalance(player) < cost : inventory.getKinah() < cost) {
 				PacketSendUtility.sendPacket(player, quna ? new SM_SYSTEM_MESSAGE(MSG_NOT_ENOUGH_QUNA) : SM_SYSTEM_MESSAGE.STR_NOT_ENOUGH_MONEY());
 				return;
 			}
 			// o saldo de Quna é da conta e pode mudar por outro personagem: o débito vem antes de marcar a venda
-			if (quna && !QunaService.spend(player, listing.getPrice(), QUNA_CODE_BUY, false)) {
+			if (quna && !QunaService.spend(player, cost, QUNA_CODE_BUY, false)) {
 				PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_NOT_ENOUGH_QUNA));
 				return;
 			}
-			listing.markSold(player.getObjectId(), System.currentTimeMillis(), listing.getPrice() * GlobalTradeConfig.SALE_FEE_PERMYRIAD / 10000);
-			if (!GlobalTradeDAO.update(listing)) {
-				listing.unmarkSold();
-				if (quna && !QunaService.addToAccount(player.getAccount().getId(), listing.getPrice()))
-					log.error("[GLOBAL_TRADE] {} pagou {} Quna por {} e o estorno falhou", player.getName(), listing.getPrice(), listing);
+			long now = System.currentTimeMillis();
+			Item item = split ? sellPart(listing, player.getObjectId(), count, cost, now) : sellWhole(listing, player.getObjectId(), now);
+			if (item == null) {
+				if (quna && !QunaService.addToAccount(player.getAccount().getId(), cost))
+					log.error("[GLOBAL_TRADE] {} pagou {} Quna por {} e o estorno falhou", player.getName(), cost, listing);
 				PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_ERROR));
 				return;
 			}
-			listing.setItem(null);
 
 			// ordem das capturas: kinah: 0x1D (motivo 0x13C), mensagem, S_GLOBAL_TRADE_BUY, S_ADD_INVENTORY (cabeçalho 0x98);
 			// Quna: S 0x11B (H 0x12F, já mandado pelo spend), mensagem, 1401791 com os Quna pagos, S_GLOBAL_TRADE_BUY, S_ADD_INVENTORY
 			if (!quna)
-				inventory.decreaseKinah(listing.getPrice(), ItemUpdateType.DEC_KINAH_GLOBAL_TRADE_BUY);
-			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_BUY, nameOf(listing.getItemId()), String.valueOf(listing.getCount())));
+				inventory.decreaseKinah(cost, ItemUpdateType.DEC_KINAH_GLOBAL_TRADE_BUY);
+			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_BUY, nameOf(listing.getItemId()), String.valueOf(count)));
 			if (quna)
-				PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_USED_QUNA, String.valueOf(listing.getPrice())));
-			PacketSendUtility.sendPacket(player, new SM_GLOBAL_TRADE_BUY(listing.getId(), listing.getCount()));
+				PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_USED_QUNA, String.valueOf(cost)));
+			PacketSendUtility.sendPacket(player, new SM_GLOBAL_TRADE_BUY(listing.getId(), count));
 			inventory.add(item, ItemAddType.GLOBAL_TRADE_BUY);
 			InventoryDAO.store(quna ? List.of(item) : List.of(item, inventory.getKinahItem()), player.getObjectId());
-			log.info("[GLOBAL_TRADE] {} comprou {}", player.getName(), listing);
+			log.info("[GLOBAL_TRADE] {} comprou {} x{} por {} de {}", player.getName(), listing.getItemId(), count, cost, listing);
 
 			Player seller = World.getInstance().getPlayer(listing.getSellerId());
 			if (seller != null) {
 				// captura de 2026-10-22 com o vendedor online: mensagem, S_GLOBAL_TRADE_MYLIST da moeda (o 1º byte 1 limpa o mapa de anúncios do
-				// cliente e o pacote traz os que sobraram) e o aviso 2 do S_GLOBAL_TRADE_SALESLOG com o valor bruto a receber. Sem o MYLIST o
-				// anúncio vendido voltava na aba de registro no próximo S_GLOBAL_TRADE_COMMIT.
+				// cliente e o pacote traz os que sobraram, aqui com a quantidade que restou) e o aviso 2 do S_GLOBAL_TRADE_SALESLOG com o valor
+				// bruto a receber. Sem o MYLIST o anúncio vendido voltava na aba de registro no próximo S_GLOBAL_TRADE_COMMIT.
 				GlobalTradeCurrency currency = listing.getCurrency();
 				List<GlobalTradeListing> sold = mine(seller.getObjectId(), State.SOLD, currency, Comparator.comparingLong(GlobalTradeListing::getSoldTime));
 				PacketSendUtility.sendPacket(seller, new SM_SYSTEM_MESSAGE(MSG_SOLD, nameOf(listing.getItemId())));
@@ -360,6 +369,58 @@ public final class GlobalTradeService {
 					new SM_GLOBAL_TRADE_SALESLOG(currency, SM_GLOBAL_TRADE_SALESLOG.NOTICE_SOLD, sum(sold, GlobalTradeListing::getPrice), 0, List.of()));
 			}
 		}
+	}
+
+	/**
+	 * Preço de parte de um anúncio: o preço unitário que o cliente mostra na janela de quantidade (total / quantidade, arredondado para
+	 * baixo, Game.dll 0x822A00) vezes a quantidade.
+	 */
+	static long splitCost(long price, long listingCount, long count) {
+		long unit = price / listingCount;
+		return unit > Long.MAX_VALUE / count ? 0 : unit * count;
+	}
+
+	/** O anúncio inteiro vira a venda; devolve o item para o comprador, ou null se a venda não foi gravada. */
+	private Item sellWhole(GlobalTradeListing listing, int buyerId, long now) {
+		listing.markSold(buyerId, now, listing.getPrice() * GlobalTradeConfig.SALE_FEE_PERMYRIAD / 10000);
+		if (!GlobalTradeDAO.update(listing)) {
+			listing.unmarkSold();
+			return null;
+		}
+		Item item = listing.getItem();
+		listing.setItem(null);
+		return item;
+	}
+
+	/**
+	 * Compra dividida: a parte comprada vira um anúncio novo já vendido (é ele que aparece nas receitas do vendedor), e o anúncio original
+	 * fica com o resto da pilha e do preço. Devolve o item novo do comprador, ou null se nada foi gravado.
+	 */
+	private Item sellPart(GlobalTradeListing listing, int buyerId, long count, long cost, long now) {
+		Item bought = ItemFactory.newItem(listing.getItemId(), count);
+		long saleId = GlobalTradeDAO.insert(listing.getSellerId(), bought.getObjectId(), listing.getItemId(), count, cost, listing.getCurrency(),
+			listing.getCategory(), 0, listing.getRegisterTime(), listing.getExpireTime());
+		if (saleId == 0) {
+			IDFactory.getInstance().releaseObjectIds(List.of(bought));
+			return null;
+		}
+		GlobalTradeListing sale = new GlobalTradeListing(saleId, listing.getSellerId(), bought.getObjectId(), listing.getItemId(), count, cost,
+			listing.getCurrency(), listing.getCategory(), 0, listing.getRegisterTime(), listing.getExpireTime(), State.LISTED, 0, 0, 0, 0);
+		sale.markSold(buyerId, now, cost * GlobalTradeConfig.SALE_FEE_PERMYRIAD / 10000);
+		listing.reduce(count, cost);
+		if (!GlobalTradeDAO.update(sale) || !GlobalTradeDAO.update(listing)) {
+			listing.restore(count, cost);
+			sale.setState(State.CANCELED);
+			GlobalTradeDAO.update(sale);
+			GlobalTradeDAO.update(listing);
+			IDFactory.getInstance().releaseObjectIds(List.of(bought));
+			return null;
+		}
+		Item stack = listing.getItem();
+		stack.setItemCount(stack.getItemCount() - count);
+		InventoryDAO.store(stack, listing.getSellerId());
+		listings.put(saleId, sale);
+		return bought;
 	}
 
 	/** C_GLOBAL_TRADE_COLLECT [D moeda]: recebe todas as vendas daquela moeda. */
@@ -403,7 +464,7 @@ public final class GlobalTradeService {
 			}
 			log.info("[GLOBAL_TRADE] {} recebeu {} de {} vendas", player.getName(), revenue, collected);
 			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_COLLECTED, String.valueOf(collected)));
-			PacketSendUtility.sendPacket(player, new SM_GLOBAL_TRADE_COLLECT(collected));
+			PacketSendUtility.sendPacket(player, new SM_GLOBAL_TRADE_COLLECT(currency));
 			sendHistory(player, currency);
 		}
 	}

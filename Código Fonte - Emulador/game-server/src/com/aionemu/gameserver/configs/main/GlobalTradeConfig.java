@@ -42,6 +42,14 @@ public class GlobalTradeConfig {
 	public static int SALE_FEE_PERMYRIAD;
 
 	/**
+	 * Compra dividida (분할 구매) de anúncios em kinah com mais de uma unidade: o cliente mostra a janela de quantidade e o version.dll manda
+	 * a quantidade no C_GLOBAL_TRADE_BUY. Preço = preço unitário (total / quantidade, arredondado para baixo) x quantidade; quem leva o
+	 * resto do anúncio paga o que sobrou do preço.
+	 */
+	@Property(key = "gameserver.globaltrade.split.buy", defaultValue = "true")
+	public static boolean SPLIT_BUY;
+
+	/**
 	 * Duração do anúncio. Não medido: o S_GLOBAL_TRADE_COMMIT traz um byte 8 antes do item, lido como dias.
 	 */
 	@Property(key = "gameserver.globaltrade.listing.days", defaultValue = "8")

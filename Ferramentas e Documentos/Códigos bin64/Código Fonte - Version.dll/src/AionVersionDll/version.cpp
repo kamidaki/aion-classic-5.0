@@ -15,6 +15,7 @@
 #include "harp_fix.h"
 #include "charge_fix.h"
 #include "inventory_fix.h"
+#include "globaltrade_fix.h"
 
 // =========================================================================
 //  Version.dll - Mod & Compatibility Hook for Aion Classic 5.0
@@ -250,6 +251,7 @@ static void PatchAllLoadedLanguageModules() {
                 InstallHarpFix(h);
                 InstallChargeFix(h);
                 InstallInventoryFix(h);
+                InstallGlobalTradeFix(h);
             }
             PatchLanguageTableInModule(h);
             BypassCountryCheckInCryEngineModule(h);

@@ -28,7 +28,7 @@ public final class GlobalTradeDAO {
 	private static final String LOAD = "SELECT * FROM global_trade_listings WHERE state IN ('LISTED','SOLD') OR (state='COLLECTED' AND collected_time >= ?)";
 	private static final String INSERT = "INSERT INTO global_trade_listings (seller_id, item_unique_id, item_id, item_count, price, currency, category,"
 		+ " register_fee, register_time, expire_time, state) VALUES (?,?,?,?,?,?,?,?,?,?,'LISTED')";
-	private static final String UPDATE = "UPDATE global_trade_listings SET state=?, buyer_id=?, sold_time=?, sale_fee=?, collected_time=? WHERE id=?";
+	private static final String UPDATE = "UPDATE global_trade_listings SET state=?, buyer_id=?, sold_time=?, sale_fee=?, collected_time=?, item_count=?, price=? WHERE id=?";
 
 	private GlobalTradeDAO() {
 	}
@@ -95,7 +95,9 @@ public final class GlobalTradeDAO {
 			setTime(stmt, 3, listing.getSoldTime());
 			stmt.setLong(4, listing.getSaleFee());
 			setTime(stmt, 5, listing.getCollectedTime());
-			stmt.setLong(6, listing.getId());
+			stmt.setLong(6, listing.getCount());
+			stmt.setLong(7, listing.getPrice());
+			stmt.setLong(8, listing.getId());
 			return stmt.executeUpdate() == 1;
 		} catch (Exception e) {
 			log.error("Could not update " + listing, e);
