@@ -4,14 +4,14 @@
 #include <unordered_map>
 #include <string>
 
-struct AbyssRankData {
+typedef struct {
     uint32_t rankId;
     std::string rankTitle;
     uint32_t requiredAp;
-    uint32_t requiredGp;
-};
+    uint32_t quotaRankLimit;
+} AbyssRankData;
 
-// Tabela canônica de rankings do Abyss extraída do RTTI (.?AVAbyssTable@@ / .?AVAbyssRankTable@@)
+// Tabela canônica de rankings do Abyss do Aion Classic (100% AP e Quotas de Posição da Raça, Zero GP)
 class AbyssTable {
 public:
     static AbyssTable& GetInstance() {

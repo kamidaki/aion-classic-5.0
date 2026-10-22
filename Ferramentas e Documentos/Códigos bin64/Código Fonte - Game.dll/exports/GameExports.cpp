@@ -12,10 +12,6 @@ __declspec(dllexport) IGame* CreateGameInstance(ISystem* pSystem) {
         GameGlobals::s_pGameInstance = new CXGame();
     }
 
-    if (pSystem && !GameGlobals::s_bInitialized) {
-        GameGlobals::s_pGameInstance->Init(pSystem, false, false);
-    }
-
     return GameGlobals::s_pGameInstance;
 }
 

@@ -1,0 +1,29 @@
+LIBRARY "CrySystem.dll"
+EXPORTS
+    ?CheckMemory@@YAHH@Z @1
+    ?CryMemoryGetAlloc16kCacheCounter@@YAHH@Z @2
+    ?CryMemoryGetAlloc16kCacheSize@@YAHXZ @3
+    ?CryMemoryGetAlloc16kFreeCounter@@YAHH@Z @4
+    ?CryMemoryGetAllocCount@@YAHH@Z @5
+    ?CryMemoryGetAllocatedCRTSize@@YAHXZ @6
+    ?CryMemoryGetAllocatedCacheSize@@YAHXZ @7
+    ?CryMemoryGetAllocatedInScriptSize@@YAHXZ @8
+    ?CryMemoryGetAllocatedPagesSize@@YAHXZ @9
+    ?CryMemoryGetAllocatedSize@@YAHXZ @10
+    ?CryMemoryGetFreePagesCount@@YAHXZ @11
+    ?CryMemoryGetPoolCRTCount32@@YAHH@Z @12
+    ?CryMemoryGetPoolCRTCount32Big@@YAHH@Z @13
+    ?CryMemoryGetPoolCRTCountBig@@YAHXZ @14
+    ?CryMemoryGetPoolCRTSize32@@YAHH@Z @15
+    ?CryMemoryGetPoolSize@@YAHXZ @16
+    ?CryMemoryGetReuseCount@@YAHH@Z @17
+    CreateSystemInterface @18
+    CryCalloc @19
+    CryFlushAll @20
+    CryFree @21
+    CryFreeSize @22
+    CryMalloc @23
+    CryModuleGetMemoryInfo @24
+    CryRealloc @25
+    CryReallocSize @26
+    CryStats @27
