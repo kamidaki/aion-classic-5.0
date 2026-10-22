@@ -770,6 +770,26 @@ public:
     virtual ~DlgEquippedItemChargePoint();
     virtual void Show(bool bShow) override;
     virtual void Update() override;
+
+    virtual uint32_t GetDialogType() const { return 0x200a; }
+    virtual uint32_t GetDialogId() const { return 0x165; }
+    virtual bool OnCreate() override;
+
+    void SetChargePoints(uint32_t current, uint32_t maxPoints);
+    uint32_t GetCurrentCharge() const { return m_currentCharge; }
+    uint32_t GetMaxCharge() const { return m_maxCharge; }
+    void SetBlinkState(bool bBlink) { m_bBlink = bBlink; }
+    bool IsBlinking() const { return m_bBlink; }
+
+    AddonFrame* GetChargeContainer() const { return m_pChargeContainer; }
+    AddonFrame* GetChargeGauge() const { return m_pChargeGauge; }
+
+protected:
+    AddonFrame* m_pChargeContainer;
+    AddonFrame* m_pChargeGauge;
+    uint32_t m_currentCharge;
+    uint32_t m_maxCharge;
+    bool m_bBlink;
 };
 
 // RTTI .?AVDlgEventShortCut@@
@@ -1193,6 +1213,31 @@ public:
     virtual ~DlgGunnerSkill();
     virtual void Show(bool bShow) override;
     virtual void Update() override;
+
+    virtual uint32_t GetDialogType() const { return 0x200a; }
+    virtual uint32_t GetDialogId() const { return 0x1ac; }
+    virtual bool OnCreate() override;
+
+    void SetTotalPrice(uint64_t price);
+    uint64_t GetTotalPrice() const { return m_totalPrice; }
+    void SetMyMoney(uint64_t money);
+    uint64_t GetMyMoney() const { return m_myMoney; }
+    void SetTenMillionPrice(uint64_t price);
+    uint64_t GetTenMillionPrice() const { return m_tenMillionPrice; }
+
+    AddonFrame* GetItemWidget() const { return m_pItemWidget; }
+    AddonFrame* GetTotalPriceWidget() const { return m_pTotalPriceWidget; }
+    AddonFrame* GetMyMoneyWidget() const { return m_pMyMoneyWidget; }
+    AddonFrame* GetTenMillionPriceWidget() const { return m_pTenMillionPriceWidget; }
+
+protected:
+    AddonFrame* m_pItemWidget;
+    AddonFrame* m_pTotalPriceWidget;
+    AddonFrame* m_pMyMoneyWidget;
+    AddonFrame* m_pTenMillionPriceWidget;
+    uint64_t m_totalPrice;
+    uint64_t m_myMoney;
+    uint64_t m_tenMillionPrice;
 };
 
 // RTTI .?AVDlgHelpIndicator@@

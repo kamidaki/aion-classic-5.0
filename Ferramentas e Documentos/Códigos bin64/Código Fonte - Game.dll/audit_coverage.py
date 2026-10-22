@@ -23,13 +23,16 @@ total_expected = len(expected_classes)
 print(f"[INFO] Total de classes canônicas RTTI esperadas: {total_expected}")
 
 # Validação do Binário Oficial Canônico
-if os.path.exists(game_dll_path):
-    bin_size = os.path.getsize(game_dll_path)
-    with open(game_dll_path, "rb") as f:
+backup_game_dll_path = r"D:\GameForge\aionclassic\bin64\Game.dll.original.bak"
+ref_bin_path = backup_game_dll_path if os.path.exists(backup_game_dll_path) else game_dll_path
+
+if os.path.exists(ref_bin_path):
+    bin_size = os.path.getsize(ref_bin_path)
+    with open(ref_bin_path, "rb") as f:
         bin_data = f.read()
-    print(f"[INFO] Binário Oficial Canônico: {game_dll_path} ({bin_size:,} bytes | {bin_size/(1024*1024):.2f} MB)")
+    print(f"[INFO] Binário Oficial Canônico: {ref_bin_path} ({bin_size:,} bytes | {bin_size/(1024*1024):.2f} MB)")
 else:
-    print(f"[AVISO] Binário oficial em {game_dll_path} não acessível!")
+    print(f"[AVISO] Binário oficial em {ref_bin_path} não acessível!")
     bin_data = b""
 
 # Validação da DLL Compilada

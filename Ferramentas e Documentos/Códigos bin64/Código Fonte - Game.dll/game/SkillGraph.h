@@ -12,7 +12,6 @@
 
 // Motor Canônico de Habilidades, Árvores de Skill, Estigmas e Combos (Classic 5.0)
 
-
 // .?AVSkillVertex@@
 class SkillVertex {
 public:
@@ -46,9 +45,9 @@ public:
     const SkillVertex* GetVertex(uint32_t skillId) const;
     bool CanLearnSkill(uint32_t skillId, uint32_t playerLevel, const std::unordered_map<uint32_t, uint32_t>& learnedSkills) const;
     size_t GetVertexCount() const { return m_vertices.size(); }
-    void Clear() { m_vertices.clear(); }
+    virtual void Clear() { m_vertices.clear(); }
 
-private:
+protected:
     std::unordered_map<uint32_t, SkillVertex> m_vertices;
 };
 
@@ -73,18 +72,21 @@ private:
 };
 
 // .?AVChainGraph@@
-class ChainGraph {
+class ChainGraph : public SkillGraph {
 public:
     ChainGraph();
     virtual ~ChainGraph();
-    virtual const char* GetClassName() const { return "ChainGraph"; }
+    virtual const char* GetClassName() const override { return "ChainGraph"; }
 
     void AddChain(const ChainVertex& chain);
     std::vector<ChainVertex> GetNextChains(uint32_t skillId) const;
     bool HasChain(uint32_t skillId) const;
-    void Clear() { m_chains.clear(); }
+    virtual void Clear() override { SkillGraph::Clear(); m_chains.clear(); }
 
-private:
+    // Resolvers canônicos de combos condicionais para as classes do Classic 5.0
+    bool CanTriggerChain(uint32_t currentSkillId, uint32_t nextSkillId, uint8_t playerClass, uint8_t weaponType, uint32_t currentGauge = 0) const;
+
+protected:
     std::unordered_map<uint32_t, std::vector<ChainVertex>> m_chains;
 };
 
@@ -109,19 +111,19 @@ private:
 };
 
 // .?AVStigmaGraph@@
-class StigmaGraph {
+class StigmaGraph : public SkillGraph {
 public:
     StigmaGraph();
     virtual ~StigmaGraph();
-    virtual const char* GetClassName() const { return "StigmaGraph"; }
+    virtual const char* GetClassName() const override { return "StigmaGraph"; }
 
     bool EquipStigma(uint32_t slot, const StigmaVertex& stigma);
     bool UnequipStigma(uint32_t slot);
     const StigmaVertex* GetStigma(uint32_t slot) const;
     size_t GetEquippedCount() const { return m_slots.size(); }
-    void Clear() { m_slots.clear(); }
+    virtual void Clear() override { SkillGraph::Clear(); m_slots.clear(); }
 
-private:
+protected:
     std::unordered_map<uint32_t, StigmaVertex> m_slots;
 };
 

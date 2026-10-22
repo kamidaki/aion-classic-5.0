@@ -1,4 +1,5 @@
 #include "SkillGraph.h"
+#include "Player.h"
 
 // SkillGraph
 SkillGraph::SkillGraph() {}
@@ -27,7 +28,7 @@ bool SkillGraph::CanLearnSkill(uint32_t skillId, uint32_t playerLevel, const std
 }
 
 // ChainGraph
-ChainGraph::ChainGraph() {}
+ChainGraph::ChainGraph() : SkillGraph() {}
 ChainGraph::~ChainGraph() { Clear(); }
 
 void ChainGraph::AddChain(const ChainVertex& chain) {
@@ -43,8 +44,70 @@ bool ChainGraph::HasChain(uint32_t skillId) const {
     return m_chains.find(skillId) != m_chains.end();
 }
 
+bool ChainGraph::CanTriggerChain(uint32_t currentSkillId, uint32_t nextSkillId, uint8_t playerClass, uint8_t weaponType, uint32_t currentGauge) const {
+    auto it = m_chains.find(currentSkillId);
+    if (it == m_chains.end()) {
+        return false;
+    }
+
+    bool chainExists = false;
+    for (const auto& cv : it->second) {
+        if (cv.GetNextSkillId() == nextSkillId) {
+            chainExists = true;
+            break;
+        }
+    }
+    if (!chainExists) {
+        return false;
+    }
+
+    // Validação de requisitos de combate por classe (Aion Classic 5.0)
+    switch (playerClass) {
+    case CLASS_THUNDERER:
+        // Thunderer / Soul Reaper / Revenant: combos encadeados exigem Chainsword (DimensionSword)
+        if (weaponType != WEAPON_DIMENSIONSWORD && weaponType != WEAPON_NONE) {
+            return false;
+        }
+        break;
+
+    case CLASS_BATTLEMASTER:
+    case CLASS_STRIKER:
+        // Striker / BattleMaster: combos de artes marciais exigem Gauntlet
+        if (weaponType != WEAPON_GAUNTLET && weaponType != WEAPON_NONE) {
+            return false;
+        }
+        break;
+
+    case CLASS_LUMINES:
+    case CLASS_ORCHESTRATOR:
+        // Lumines / Trovador: acordes e correntes melódicas exigem Harpa
+        if (weaponType != WEAPON_HARP && weaponType != WEAPON_NONE) {
+            return false;
+        }
+        break;
+
+    case CLASS_GUNNER:
+    case CLASS_ENGINEER:
+        // Gunner: Pistolas duplas ou Canhão de Éter
+        if (weaponType != WEAPON_1GUN && weaponType != WEAPON_2GUN &&
+            weaponType != WEAPON_AETHERCANNON && weaponType != WEAPON_NONE) {
+            return false;
+        }
+        // Canhão não pode disparar combos se o medidor de calor estiver superaquecido (>= 100)
+        if (weaponType == WEAPON_AETHERCANNON && currentGauge >= 100) {
+            return false;
+        }
+        break;
+
+    default:
+        break;
+    }
+
+    return true;
+}
+
 // StigmaGraph
-StigmaGraph::StigmaGraph() {}
+StigmaGraph::StigmaGraph() : SkillGraph() {}
 StigmaGraph::~StigmaGraph() { Clear(); }
 
 bool StigmaGraph::EquipStigma(uint32_t slot, const StigmaVertex& stigma) {
