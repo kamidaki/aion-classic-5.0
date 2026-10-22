@@ -1,0 +1,4 @@
+LIBRARY "Cry3DEngine"
+EXPORTS
+    CreateCry3DEngine
+    CryModuleGetMemoryInfo
