@@ -38,11 +38,14 @@ bool InventoryItem::IsTwoHandedWeapon() const {
     switch (m_weaponType) {
     case WEAPON_GREATSWORD:
     case WEAPON_POLEARM:
-    case WEAPON_BOW:
     case WEAPON_STAFF:
-    case WEAPON_SPELLBOOK:
+    case WEAPON_BOW:
     case WEAPON_ORB:
-    case WEAPON_CHAINBLADE:
+    case WEAPON_BOOK:
+    case WEAPON_DIMENSIONSWORD:
+    case WEAPON_RUNESWORD:
+    case WEAPON_AETHERCANNON:
+    case WEAPON_HARP:
         return true;
     default:
         return false;
@@ -322,3 +325,34 @@ void SkillItem::Update(uint32_t deltaMs) {
         }
     }
 }
+
+// Implementação canônica de sufixos de armas (Extraída de Game.dll 0x1803B9330)
+const char* GetWeaponTypeSuffix(WeaponType weaponType, bool isDualWield) {
+    if (isDualWield) {
+        if (weaponType == WEAPON_1GUN) return "_2gun";
+        return "_2weapon";
+    }
+    switch (weaponType) {
+    case WEAPON_NONE:            return "_noweapon";
+    case WEAPON_1HAND_SWORD:     return "_1hand";
+    case WEAPON_DAGGER:          return "_dagger";
+    case WEAPON_MACE:            return "_mace";
+    case WEAPON_GAUNTLET:        return "_gauntlet";
+    case WEAPON_GREATSWORD:      return "_2hand";
+    case WEAPON_POLEARM:         return "_polearm";
+    case WEAPON_STAFF:           return "_staff";
+    case WEAPON_2BLADE:          return "_2blade";
+    case WEAPON_ORB:            return "_orb";
+    case WEAPON_BOOK:            return "_book";
+    case WEAPON_DIMENSIONSWORD:  return "_dimensionsword";
+    case WEAPON_1GUN:            return "_1gun";
+    case WEAPON_BOW:             return "_bow";
+    case WEAPON_RUNESWORD:       return "_runesword";
+    case WEAPON_SHIELD:          return "_1hand";
+    case WEAPON_2GUN:            return "_2gun";
+    case WEAPON_AETHERCANNON:    return "_2hand";
+    case WEAPON_HARP:            return "_noweapon";
+    default:                     return "_noweapon";
+    }
+}
+

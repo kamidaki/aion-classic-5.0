@@ -106,6 +106,11 @@ Player::Player(uint32_t objectId, const std::string& name, uint8_t playerClass, 
     , m_mp(100)
     , m_maxMp(100)
     , m_dp(0)
+    , m_chargeGauge(0)
+    , m_melodyGauge(0)
+    , m_chiGauge(0)
+    , m_heatGauge(0)
+    , m_runeGauge(0)
     , m_flightState(FLIGHT_NONE)
     , m_flightTime(60)
     , m_maxFlightTime(60)
@@ -446,7 +451,7 @@ void Player::RecalculateStats() {
     attr.attackSpeed = 1.0f;
     attr.castSpeed = 1.0f;
 
-    // 1. Atributos Base por Classe Canônica do Aion Classic
+    // 1. Atributos Base por Classe Canônica do Aion Classic 5.0
     switch (m_playerClass) {
     case CLASS_WARRIOR:
     case CLASS_GLADIATOR:
@@ -469,15 +474,32 @@ void Player::RecalculateStats() {
     case CLASS_SPIRITMASTER:
         attr.power = 90; attr.health = 90; attr.agility = 90; attr.accuracy = 95; attr.knowledge = 115; attr.will = 120;
         break;
-    case CLASS_PRIEST:
     case CLASS_CLERIC:
+    case CLASS_PRIEST:
         attr.power = 105; attr.health = 105; attr.agility = 90; attr.accuracy = 90; attr.knowledge = 105; attr.will = 115;
         break;
     case CLASS_CHANTER:
         attr.power = 110; attr.health = 105; attr.agility = 95; attr.accuracy = 100; attr.knowledge = 95; attr.will = 105;
         break;
-    case CLASS_THUNDERER: // Revenant / Executor
+    case CLASS_MONK:
+    case CLASS_THUNDERER: // Revenant / Executor / Soul Reaper
         attr.power = 110; attr.health = 100; attr.agility = 110; attr.accuracy = 105; attr.knowledge = 95; attr.will = 90;
+        break;
+    case CLASS_STRIKER:
+    case CLASS_BATTLEMASTER: // Brawler
+        attr.power = 115; attr.health = 110; attr.agility = 105; attr.accuracy = 110; attr.knowledge = 85; attr.will = 90;
+        break;
+    case CLASS_ORCHESTRATOR:
+    case CLASS_LUMINES: // Lumines / Luminary / Trovador Classic
+        attr.power = 90; attr.health = 90; attr.agility = 95; attr.accuracy = 100; attr.knowledge = 120; attr.will = 120;
+        break;
+    case CLASS_ENGINEER:
+    case CLASS_GUNNER: // Atirador / Gunslinger
+        attr.power = 95; attr.health = 95; attr.agility = 115; attr.accuracy = 120; attr.knowledge = 110; attr.will = 95;
+        break;
+    case CLASS_RUNEWARRIOR:
+    case CLASS_RUNEBLADE: // Pintor / Runeblade
+        attr.power = 110; attr.health = 105; attr.agility = 105; attr.accuracy = 110; attr.knowledge = 105; attr.will = 95;
         break;
     default:
         attr.power = 100; attr.health = 100; attr.agility = 100; attr.accuracy = 100; attr.knowledge = 100; attr.will = 100;
@@ -567,3 +589,91 @@ void Player::Update() {
         }
     }
 }
+
+// ============================================================================
+// Funções Canônicas de Consulta de Classe (Extraídas diretamente de Game.dll)
+// ============================================================================
+
+// Fiel à tabela de strings e stack layout em Game.dll 0x180366360
+const char* GetPlayerClassName(PlayerClass playerClass) {
+    static const char* const s_ClassNames[CLASS_MAX] = {
+        "warrior",      // 0
+        "fighter",      // 1 (Gladiator)
+        "knight",       // 2 (Templar)
+        "scout",        // 3
+        "assassin",     // 4
+        "ranger",       // 5
+        "mage",         // 6
+        "wizard",       // 7 (Sorcerer)
+        "elementalist", // 8 (Spiritmaster)
+        "cleric",       // 9
+        "priest",       // 10
+        "chanter",      // 11
+        "monk",         // 12 (Base de Thunderer / Soul Reaper)
+        "thunderer",    // 13 (Revenant / Executor / Soul Reaper)
+        "none",         // 14
+        "striker",      // 15 (Base de Brawler)
+        "battlemaster", // 16 (Brawler / BattleMaster)
+        "none",         // 17
+        "orchestrator", // 18 (Base de Lumines)
+        "lumines",      // 19 (Lumines / Luminary / Trovador)
+        "none",         // 20
+        "engineer",     // 21 (Base de Atirador)
+        "gunner",       // 22 (Atirador / Gunslinger)
+        "none",         // 23
+        "runewarrior",  // 24 (Base de Runeblade)
+        "runeblade",    // 25 (Runeblade / Painter)
+        "none"          // 26
+    };
+    if (static_cast<uint8_t>(playerClass) < CLASS_MAX) {
+        return s_ClassNames[static_cast<uint8_t>(playerClass)];
+    }
+    return "none";
+}
+
+bool IsBaseClass(PlayerClass playerClass) {
+    switch (playerClass) {
+    case CLASS_WARRIOR:
+    case CLASS_SCOUT:
+    case CLASS_MAGE:
+    case CLASS_CLERIC:
+    case CLASS_MONK:
+    case CLASS_STRIKER:
+    case CLASS_ORCHESTRATOR:
+    case CLASS_ENGINEER:
+    case CLASS_RUNEWARRIOR:
+        return true;
+    default:
+        return false;
+    }
+}
+
+// Fiel à fórmula matemática em Game.dll 0x1801E153A: (class_id / 3) * 3
+PlayerClass GetBaseClass(PlayerClass playerClass) {
+    uint8_t id = static_cast<uint8_t>(playerClass);
+    if (id >= CLASS_MAX) return CLASS_WARRIOR;
+    uint8_t baseId = (id / 3) * 3;
+    return static_cast<PlayerClass>(baseId);
+}
+
+// Fiel à máscara de bits em Game.dll 0x180E33250 (g_createClassDefaultFlag)
+uint32_t GetCharacterCreationBitmask(PlayerClass playerClass) {
+    switch (playerClass) {
+    case CLASS_GLADIATOR:    return 0x0001; // fighter
+    case CLASS_TEMPLAR:      return 0x0002; // knight
+    case CLASS_ASSASSIN:     return 0x0004; // assassin
+    case CLASS_RANGER:       return 0x0008; // ranger
+    case CLASS_SORCERER:     return 0x0010; // wizard
+    case CLASS_SPIRITMASTER: return 0x0020; // elementalist
+    case CLASS_CLERIC:
+    case CLASS_PRIEST:       return 0x0040; // priest
+    case CLASS_CHANTER:      return 0x0080; // chanter
+    case CLASS_THUNDERER:    return 0x0100; // thunderer
+    case CLASS_BATTLEMASTER: return 0x0200; // battleMaster
+    case CLASS_LUMINES:      return 0x0400; // lumines
+    case CLASS_GUNNER:       return 0x0800; // gunner
+    case CLASS_RUNEBLADE:    return 0x1000; // runeblade
+    default:                 return 0x0000;
+    }
+}
+

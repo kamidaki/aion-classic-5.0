@@ -62,42 +62,13 @@ enum ESystemConfigSpec
 
 #ifndef __ixml_h__
 struct IXmlNode;
-class XmlNodeRef
-{
-public:
-    IXmlNode* p;
-    XmlNodeRef() : p(nullptr) {}
-    XmlNodeRef(IXmlNode* _p) : p(_p) {}
-    operator bool() const { return p != nullptr; }
-    IXmlNode* operator->() const { return p; }
-};
+typedef struct IXmlNode* XmlNodeRef;
 #endif
 
+struct SGameInitParams;
+struct SSystemInitParams;
+
 #pragma pack(push, 8)
-
-struct SGameInitParams
-{
-    const char* sGameDLL;
-    IGame*      pGame;
-    bool        bDedicatedServer;
-};
-
-struct SSystemInitParams
-{
-    void* hInstance;                // +0x00
-    void* hWnd;                     // +0x08
-    char  szSystemCmdLine[2048];    // +0x10 .. +0x810
-    void* pUserCallback;            // +0x810
-    void* pLog;                     // +0x818
-    void* pValidator;               // +0x820
-    const char* sLogFileName;       // +0x828
-    bool  bEditor;                  // +0x830
-    bool  bPreview;                 // +0x831
-    bool  bTestMode;                // +0x832
-    bool  bDedicatedServer;         // +0x833
-    uint32_t pad0;                  // +0x834
-    void* pSystem;                  // +0x838: Pointer to pre-existing ISystem if any
-};
 
 // ============================================================================
 // Official 151 virtual functions of CryEngine ISystem in Aion Classic 5.0

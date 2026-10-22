@@ -31,20 +31,31 @@ enum ItemCategory : uint8_t {
     ITEM_CAT_MANASTONE      = 10
 };
 
+// Enums Canônicos de Armas do Aion Classic 5.0 (Extraídos e verificados em Game.dll 0x1803B94B8 e 0x1803B9330)
 enum WeaponType : uint8_t {
-    WEAPON_NONE         = 0,
-    WEAPON_DAGGER       = 1,
-    WEAPON_SWORD        = 2,
-    WEAPON_GREATSWORD   = 3,
-    WEAPON_POLEARM      = 4,
-    WEAPON_BOW          = 5,
-    WEAPON_MACE         = 6,
-    WEAPON_STAFF        = 7,
-    WEAPON_SPELLBOOK    = 8,
-    WEAPON_ORB          = 9,
-    WEAPON_SHIELD       = 10,
-    WEAPON_CHAINBLADE   = 11
+    WEAPON_NONE            = 0,  // _noweapon
+    WEAPON_1HAND_SWORD     = 1,  // _1hand (Espada 1H)
+    WEAPON_DAGGER          = 2,  // _dagger (Adaga)
+    WEAPON_MACE            = 3,  // _mace (Maça)
+    WEAPON_GAUNTLET        = 4,  // _gauntlet (Manopla de Striker / BattleMaster)
+    WEAPON_GREATSWORD      = 5,  // _2hand (Espada de 2 Mãos)
+    WEAPON_POLEARM         = 6,  // _polearm (Lança de 2 Mãos)
+    WEAPON_STAFF           = 7,  // _staff (Cajado)
+    WEAPON_2BLADE          = 8,  // _2blade (Lâminas Duplas de Runeblade)
+    WEAPON_ORB            = 9,  // _orb (Orbe)
+    WEAPON_BOOK            = 10, // _book (Livro Mágico / Spellbook)
+    WEAPON_DIMENSIONSWORD  = 11, // _dimensionsword (Espada Dimensional / Chainsword de Thunderer / Soul Reaper)
+    WEAPON_1GUN            = 12, // _1gun (Pistola de Gunner)
+    WEAPON_BOW             = 13, // _bow (Arco)
+    WEAPON_RUNESWORD       = 14, // _runesword (Espada Rúnica)
+    WEAPON_SHIELD          = 15, // _1hand (Escudo)
+    WEAPON_2GUN            = 16, // _2gun (Pistolas Duplas de Gunner)
+    WEAPON_AETHERCANNON    = 17, // _2hand (Canhão de Éter)
+    WEAPON_HARP            = 18  // Harpa / Cordas de Lumines
 };
+
+const char* GetWeaponTypeSuffix(WeaponType weaponType, bool isDualWield = false);
+
 
 enum ArmorType : uint8_t {
     ARMOR_NONE    = 0,

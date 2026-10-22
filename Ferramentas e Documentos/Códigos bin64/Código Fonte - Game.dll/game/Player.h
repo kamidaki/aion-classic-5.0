@@ -33,22 +33,44 @@ public:
     bool ExecuteScript(uint32_t npcId, const std::string& eventName);
 };
 
-// Enums Canônicos do Jogador no Aion Classic (Fiel ao Classic: SEM Bard, SEM Gunner, SEM Rider)
+// Enums Canônicos do Jogador no Aion Classic 5.0 (Extraídos e verificados em Game.dll 0x180366360, 0x1801E5400 e 0x180C48190)
 enum PlayerClass : uint8_t {
-    CLASS_WARRIOR        = 0,
-    CLASS_GLADIATOR      = 1,
-    CLASS_TEMPLAR        = 2,
-    CLASS_SCOUT          = 3,
-    CLASS_ASSASSIN       = 4,
-    CLASS_RANGER         = 5,
-    CLASS_MAGE           = 6,
-    CLASS_SORCERER       = 7,
-    CLASS_SPIRITMASTER   = 8,
-    CLASS_PRIEST         = 9,
-    CLASS_CLERIC         = 10,
-    CLASS_CHANTER        = 11,
-    CLASS_THUNDERER      = 12 // Revenant / Executor (Adição exclusiva do Classic)
+    CLASS_WARRIOR        = 0,  // Base Guerreiro
+    CLASS_GLADIATOR      = 1,  // Gladiator (Fighter)
+    CLASS_TEMPLAR        = 2,  // Templar (Knight)
+    CLASS_SCOUT          = 3,  // Base Explorador
+    CLASS_ASSASSIN       = 4,  // Assassin
+    CLASS_RANGER         = 5,  // Ranger
+    CLASS_MAGE           = 6,  // Base Mago
+    CLASS_SORCERER       = 7,  // Sorcerer (Wizard)
+    CLASS_SPIRITMASTER   = 8,  // Spiritmaster (Elementalist)
+    CLASS_CLERIC         = 9,  // Cleric
+    CLASS_PRIEST         = 10, // Priest
+    CLASS_CHANTER        = 11, // Chanter
+    CLASS_MONK           = 12, // Monk (Base de Thunderer / Soul Reaper)
+    CLASS_THUNDERER      = 13, // Thunderer / Soul Reaper / Revenant / Executor
+    CLASS_RESERVED_14    = 14,
+    CLASS_STRIKER        = 15, // Striker (Base de Brawler)
+    CLASS_BATTLEMASTER   = 16, // Battlemaster / Brawler
+    CLASS_RESERVED_17    = 17,
+    CLASS_ORCHESTRATOR   = 18, // Orchestrator (Base de Lumines)
+    CLASS_LUMINES        = 19, // Lumines / Luminary / Trovador Classic
+    CLASS_RESERVED_20    = 20,
+    CLASS_ENGINEER       = 21, // Engineer (Base de Atirador)
+    CLASS_GUNNER         = 22, // Gunner / Gunslinger
+    CLASS_RESERVED_23    = 23,
+    CLASS_RUNEWARRIOR    = 24, // Runewarrior (Base de Runeblade)
+    CLASS_RUNEBLADE      = 25, // Runeblade / Painter
+    CLASS_RESERVED_26    = 26,
+    CLASS_MAX            = 27
 };
+
+// Funções Canônicas de Consulta de Classe (Extraídas de Game.dll 0x180366360 e 0x1801E153A)
+const char* GetPlayerClassName(PlayerClass playerClass);
+bool IsBaseClass(PlayerClass playerClass);
+PlayerClass GetBaseClass(PlayerClass playerClass);
+uint32_t GetCharacterCreationBitmask(PlayerClass playerClass);
+
 
 enum PlayerRace : uint8_t {
     RACE_ELYOS    = 0,
@@ -294,6 +316,27 @@ public:
     uint32_t GetTargetObjectId() const { return m_targetObjectId; }
     void SetTargetObjectId(uint32_t targetId) { m_targetObjectId = targetId; }
 
+    // Recursos Especiais das Novas Classes (Classic 5.0)
+    int32_t GetChargeGauge() const { return m_chargeGauge; }
+    void SetChargeGauge(int32_t val) { m_chargeGauge = (std::max)(0, (std::min)(val, 100)); }
+    void ModifyChargeGauge(int32_t delta) { SetChargeGauge(m_chargeGauge + delta); }
+
+    int32_t GetMelodyGauge() const { return m_melodyGauge; }
+    void SetMelodyGauge(int32_t val) { m_melodyGauge = (std::max)(0, (std::min)(val, 3)); }
+    void ModifyMelodyGauge(int32_t delta) { SetMelodyGauge(m_melodyGauge + delta); }
+
+    int32_t GetChiGauge() const { return m_chiGauge; }
+    void SetChiGauge(int32_t val) { m_chiGauge = (std::max)(0, (std::min)(val, 100)); }
+    void ModifyChiGauge(int32_t delta) { SetChiGauge(m_chiGauge + delta); }
+
+    int32_t GetHeatGauge() const { return m_heatGauge; }
+    void SetHeatGauge(int32_t val) { m_heatGauge = (std::max)(0, (std::min)(val, 100)); }
+    void ModifyHeatGauge(int32_t delta) { SetHeatGauge(m_heatGauge + delta); }
+
+    int32_t GetRuneGauge() const { return m_runeGauge; }
+    void SetRuneGauge(int32_t val) { m_runeGauge = (std::max)(0, (std::min)(val, 100)); }
+    void ModifyRuneGauge(int32_t delta) { SetRuneGauge(m_runeGauge + delta); }
+
 private:
     uint8_t           m_playerClass;
     uint8_t           m_race;
@@ -311,6 +354,12 @@ private:
     int32_t           m_mp;
     int32_t           m_maxMp;
     int32_t           m_dp;
+
+    int32_t           m_chargeGauge;
+    int32_t           m_melodyGauge;
+    int32_t           m_chiGauge;
+    int32_t           m_heatGauge;
+    int32_t           m_runeGauge;
 
     PlayerFlightState m_flightState;
     int32_t           m_flightTime;
@@ -330,3 +379,4 @@ private:
     PlayerAttributes  m_attributes;
     EquippedItemData  m_equippedItems[EQUIP_SLOT_COUNT];
 };
+
