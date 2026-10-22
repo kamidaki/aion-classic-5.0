@@ -70,6 +70,7 @@ const char* GetPlayerClassName(PlayerClass playerClass);
 bool IsBaseClass(PlayerClass playerClass);
 PlayerClass GetBaseClass(PlayerClass playerClass);
 uint32_t GetCharacterCreationBitmask(PlayerClass playerClass);
+PlayerClass ResolvePlayerClassFromName(const char* className);
 
 
 enum PlayerRace : uint8_t {

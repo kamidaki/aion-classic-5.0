@@ -677,3 +677,37 @@ uint32_t GetCharacterCreationBitmask(PlayerClass playerClass) {
     }
 }
 
+PlayerClass ResolvePlayerClassFromName(const char* className) {
+    if (!className) return CLASS_MAX;
+
+    std::string s(className);
+    for (char& c : s) {
+        c = static_cast<char>(tolower(static_cast<unsigned char>(c)));
+    }
+
+    if (s == "warrior") return CLASS_WARRIOR;
+    if (s == "fighter" || s == "gladiator") return CLASS_GLADIATOR;
+    if (s == "knight" || s == "templar") return CLASS_TEMPLAR;
+    if (s == "scout") return CLASS_SCOUT;
+    if (s == "assassin") return CLASS_ASSASSIN;
+    if (s == "ranger") return CLASS_RANGER;
+    if (s == "mage") return CLASS_MAGE;
+    if (s == "wizard" || s == "sorcerer") return CLASS_SORCERER;
+    if (s == "elementalist" || s == "spiritmaster") return CLASS_SPIRITMASTER;
+    if (s == "cleric") return CLASS_CLERIC;
+    if (s == "priest") return CLASS_PRIEST;
+    if (s == "chanter") return CLASS_CHANTER;
+    if (s == "monk") return CLASS_MONK;
+    if (s == "thunderer" || s == "revenant" || s == "executor" || s == "soul_reaper" || s == "soulreaper" || s == "reaper") return CLASS_THUNDERER;
+    if (s == "striker") return CLASS_STRIKER;
+    if (s == "battlemaster" || s == "brawler" || s == "fist") return CLASS_BATTLEMASTER;
+    if (s == "orchestrator") return CLASS_ORCHESTRATOR;
+    if (s == "lumines" || s == "luminess" || s == "luminary" || s == "bard" || s == "songweaver") return CLASS_LUMINES;
+    if (s == "engineer") return CLASS_ENGINEER;
+    if (s == "gunner" || s == "gunslinger" || s == "phoenix") return CLASS_GUNNER;
+    if (s == "runewarrior") return CLASS_RUNEWARRIOR;
+    if (s == "runeblade" || s == "painter") return CLASS_RUNEBLADE;
+
+    return CLASS_MAX;
+}
+
