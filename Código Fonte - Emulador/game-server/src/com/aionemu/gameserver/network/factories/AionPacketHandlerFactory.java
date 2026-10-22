@@ -109,7 +109,9 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_EXCHANGE_ADD_ITEM.class, 0x132, State.IN_GAME); // 0x0040 EXCHANGE_ADD_ITEM
 		addPacket(CM_EXCHANGE_ADD_KINAH.class, 0x130, State.IN_GAME); // 0x0042 EXCHANGE_ADD_KINAH
 		addPacket(CM_EXCHANGE_LOCK.class, 0x131, State.IN_GAME); // 0x0043 EXCHANGE_LOCK
-		addPacket(CM_EXCHANGE_CANCEL.class, 0x12F, State.IN_GAME); // 0x0055 EXCHANGE_CANCEL
+		// 0x0055 = C_ASK_INFO [S nome][D 0] (link "Recruit Group" do chat) -> S_ASK_INFO_RESULT 0x62 (captura oficial de 22/10 06:09).
+		// Estava como CM_EXCHANGE_CANCEL, que não lê nada; o 0x55 oficial sempre traz nome (16/24/26 b). O cancelar troca ainda não tem número provado.
+		addPacket(CM_CHAT_GROUP_INFO.class, 0x12F, State.IN_GAME);
 		addPacket(CM_EXCHANGE_OK.class, 0x12E, State.IN_GAME); // 0x0054 EXCHANGE_OK
 		// O cru 0xF5 (dec 0xFFFF) na 5.0 é [D página][C aba 0..3], o pedido de histórico da Legion (respondido com o S 0x0C da aba), e não pedido de
 		// troca: o CM_EXCHANGE_REQUEST respondia "no one to trade with" a cada um. O pedido de troca da 5.0 não aparece em nenhuma captura.
@@ -270,7 +272,9 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_SPLIT_ITEM.class, 0x014F, State.IN_GAME); // 0x00B5 SPLIT_ITEM (5.0 Classic: [D origem][Q qtd][C armazem][D destino][C armazem][H slot], 20 b)
 		addPacket(CM_CLIENT_SCENE_ACK.class, 0x01A7, State.IN_GAME); // 0x00CD CLIENT_SCENE_ACK (5.0 Classic)
 		addPacket(CM_CLIENT_WORLD_EVENT_ACK.class, 0x01E4, State.IN_GAME); // 0x010E CLIENT_WORLD_EVENT_ACK (5.0 Classic)
-		addPacket(CM_CLIENT_STATUS_HEARTBEAT.class, 0x02DF, State.IN_GAME, State.AUTHED); // 0x0225 CLIENT_STATUS_HEARTBEAT (5.0 Classic)
+		// 0x0225 = C_PARTY_MATCH (Find Group) [C ação]..., resposta S_PARTY_MATCH 0xA5 com a mesma ação (capturas oficiais de 22/09).
+		// Estava como CM_CLIENT_STATUS_HEARTBEAT (stub que lia 1 byte e descartava): a ação 0 que o cliente manda no login tem 1 byte.
+		addPacket(CM_FIND_GROUP.class, 0x02DF, State.IN_GAME);
 
 		// Session telemetry & aliases
 		addPacket(CM_UI_SETTINGS.class, 0x00E8, State.IN_GAME); // 0x001A SAVE_UI_SETTINGS
