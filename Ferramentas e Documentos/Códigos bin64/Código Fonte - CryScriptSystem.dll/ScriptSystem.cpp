@@ -904,7 +904,9 @@ bool CScriptSystem::_ExecuteFile(const char *sFileName, bool bRaiseError)
 		if (memcmp(pBuffer,CRY_ENCRYPT_FILE_HEADER.c_str(),CRY_ENCRYPT_FILE_HEADER.size()) == 0)
 		{
 			// Decrypt this buffer.
-			GetISystem()->GetIDataProbe()->AESDecryptBuffer( pBuffer,nSize,pBuffer,nSize,script_decr_key );
+			IDataProbe* pProbe = GetISystem()->GetIDataProbe();
+			if (pProbe)
+				pProbe->AESDecryptBuffer( pBuffer,nSize,pBuffer,nSize,script_decr_key );
 		}
 	}
 	//////////////////////////////////////////////////////////////////////////

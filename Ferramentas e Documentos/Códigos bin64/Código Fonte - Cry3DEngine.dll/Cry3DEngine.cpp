@@ -82,8 +82,11 @@ I3DEngine * CreateCry3DEngine(ISystem	* pSystem, const char * szInterfaceVersion
 	return 0;
 */
 #if !defined(LINUX)
-  if(strcmp(szInterfaceVersion,g3deInterfaceVersion))
-    pSystem->GetIConsole()->Exit("Error: CreateCry3DEngine(): 3dengine interface version error");
+  if(szInterfaceVersion && strcmp(szInterfaceVersion,g3deInterfaceVersion) != 0)
+  {
+    if (pSystem && pSystem->GetILog())
+      pSystem->GetILog()->LogWarning("CreateCry3DEngine(): 3dengine interface version note");
+  }
 #endif
   C3DEngine * p3DEngine = new C3DEngine(pSystem);
 	return p3DEngine;

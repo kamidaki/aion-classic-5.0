@@ -58,7 +58,7 @@ ICryCharManager * CreateCharManager(ISystem	* pSystem, const char * szInterfaceV
 {
 	// check the interface timestamp
 #if !defined(LINUX)
-	if(strcmp(szInterfaceVersion,gAnimInterfaceVersion))
+	if(szInterfaceVersion && strcmp(szInterfaceVersion,gAnimInterfaceVersion))
 		pSystem->GetILog()->LogError("CreateCharManager(): CryAnimation interface version error");
 #endif
 	CryCharManager * pCryCharManager = new CryCharManager(pSystem);

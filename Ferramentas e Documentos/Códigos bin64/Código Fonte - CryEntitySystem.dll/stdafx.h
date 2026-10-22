@@ -126,6 +126,8 @@ typedef unsigned short		ushort;
 
 #include "EntityDesc.h"
 #include <IEntitySystem.h>
+#include <IValidator.h>
+#include <FrameProfiler.h>
 
 #ifndef ____TRACE
 #define ____TRACE

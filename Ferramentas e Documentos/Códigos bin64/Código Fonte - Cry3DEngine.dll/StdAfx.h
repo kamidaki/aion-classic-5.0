@@ -138,6 +138,8 @@ inline int __cdecl strnicmp (const char * first, const char * last, size_t count
 #include <Cry_Camera.h>
 #include <ILog.h>
 #include <ISystem.h>
+#include <IValidator.h>
+#include <FrameProfiler.h>
 #include <IConsole.h>
 #include <IPhysics.h>
 #include <IRenderer.h>

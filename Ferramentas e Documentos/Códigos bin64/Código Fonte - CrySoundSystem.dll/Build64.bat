@@ -38,6 +38,7 @@ cl.exe /nologo /c /O2 /W3 /std:c++17 /EHsc /MD /GR ^
     SoundBuffer.cpp ^
     SoundSystem.cpp ^
     SoundSystemCommon.cpp ^
+    FmodExBridge.cpp ^
     /Fo"%OUT_DIR%\\"
 
 if %errorlevel% neq 0 (
@@ -52,7 +53,7 @@ link.exe /nologo /DLL ^
     /IMPLIB:"%OUT_DIR%\CrySoundSystem.lib" ^
     /PDB:"%OUT_DIR%\CrySoundSystem.pdb" ^
     "%OUT_DIR%\*.obj" ^
-    crysound64.lib ogg_static_r64.lib vorbis_static_r64.lib vorbisfile_static_r64.lib ^
+    fmodex64.lib ogg_static_r64.lib vorbis_static_r64.lib vorbisfile_static_r64.lib ^
     legacy_stdio_definitions.lib User32.lib Kernel32.lib Advapi32.lib
 
 if %errorlevel% neq 0 (

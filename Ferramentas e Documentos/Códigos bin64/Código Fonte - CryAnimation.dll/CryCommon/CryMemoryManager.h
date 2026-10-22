@@ -143,11 +143,19 @@ struct _CryMemoryManagerPoolHelper
 		allocatedMemory = 0;
 		freedMemory = 0;
 		numAllocations = 0;
-#if defined(WIN32)
+#if defined(WIN32) || defined(WIN64) || defined(_WIN64)
+		bool bLoaded = false;
 		if (pHandle)
 			hSystem = (HMODULE)pHandle;
 		else
-			hSystem = LoadLibrary("CrySystem.dll"); 
+		{
+			hSystem = GetModuleHandleA("CrySystem.dll");
+			if (!hSystem)
+			{
+				hSystem = LoadLibraryA("CrySystem.dll");
+				if (hSystem) bLoaded = true;
+			}
+		}
 #endif
 #if defined(LINUX)
 		if (pHandle)
@@ -208,14 +216,7 @@ struct _CryMemoryManagerPoolHelper
 			if(!_CryMalloc || !_CryRealloc || !_CryReallocSize || !_CryFree || !_CryFreeSize)
 				exit(1);
 #else
-		if(!hSystem || !_CryMalloc || !_CryRealloc || !_CryReallocSize || !_CryFree || !_CryFreeSize)
-		{
-			MessageBox(NULL, "Could not access CrySystem.dll (check working directory)", "Memory Manager", MB_OK);
-			if (hSystem)
-				::FreeLibrary( hSystem );
-			exit(1);
-		};
-		if (hSystem)
+		if (bLoaded && hSystem)
 			::FreeLibrary( hSystem );
 #endif
 	}

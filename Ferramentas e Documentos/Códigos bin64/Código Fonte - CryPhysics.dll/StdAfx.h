@@ -103,6 +103,7 @@ public:
 #include "primitives.h"
 #include "utils.h"
 #include "physinterface.h"
+#include "FrameProfiler.h"
 
 #ifdef _DEBUG
 #ifdef WIN32

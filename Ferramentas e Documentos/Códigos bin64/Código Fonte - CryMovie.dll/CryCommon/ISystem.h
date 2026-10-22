@@ -1,471 +1,367 @@
-#ifndef _CRY_SYSTEM_H_
-#define _CRY_SYSTEM_H_
+#pragma once
 
-#ifdef WIN32
-	#ifdef CRYSYSTEM_EXPORTS
-		#define CRYSYSTEM_API __declspec(dllexport)
-	#else
-		#define CRYSYSTEM_API __declspec(dllimport)
-	#endif
-#else
-	#define CRYSYSTEM_API
-#endif
+#ifndef _ISYSTEM_AION_CLASSIC_H_
+#define _ISYSTEM_AION_CLASSIC_H_
 
-#include "platform.h" // Needed for LARGE_INTEGER (for consoles).
+#include <cstdint>
+#include <cstdio>
+#include <cstdarg>
+#include <windows.h>
 
-////////////////////////////////////////////////////////////////////////////////////////////////
 // Forward declarations
-////////////////////////////////////////////////////////////////////////////////////////////////
-#include <IXMLDOM.h>
-#include <IXml.h>
-#include <IValidator.h>
-#include <ILog.h>
-
-struct ISystem;
-struct ILog;
-struct IEntitySystem;
-struct IEntity;
-struct ICryPak;
-struct IKeyboard;
-struct IMouse;
-struct IConsole;
-struct IInput;
-struct IRenderer;
-struct IConsole;
-struct IProcess;
-struct I3DEngine;
-struct ITimer;
 struct IGame;
-struct IScriptSystem;
-struct IAISystem;
-struct IFlash;
 struct INetwork;
-struct ICryFont;
-struct IMovieSystem;
-class IPhysicalWorld;
-struct IMemoryManager;
+struct IRenderer;
+struct IInput;
+struct ITimer;
+struct ICryPak;
+struct IConsole;
+struct IScriptSystem;
+struct I3DEngine;
+struct ICryCharManager;
 struct ISoundSystem;
 struct IMusicSystem;
-struct XDOM::IXMLDOMDocument;
-struct IFrameProfileSystem;
-struct FrameProfiler;
+class  IPhysicalWorld;
+struct IMovieSystem;
+struct IAISystem;
+struct IMemoryManager;
+struct IEntitySystem;
+struct ICryFont;
+struct ILog;
 struct IStreamEngine;
-struct ICryCharManager;
+class  CLUADbg;
+struct IValidator;
+struct IFrameProfileSystem;
+struct ICVar;
+class  CCamera;
 struct SFileVersion;
-struct IDataProbe;
 
-class CFrameProfilerSection;
+#if defined(__has_include)
+#if __has_include("CryVersion.h")
+#include "CryVersion.h"
+#endif
+#if __has_include("IXml.h")
+#include "IXml.h"
+#endif
+#if __has_include("IXMLDOM.h")
+#include "IXMLDOM.h"
+#endif
+#endif
 
-#define DEFAULT_GAME_PATH	"FarCry"
-#define DATA_FOLDER "FCData"
-
-#define PROC_MENU		1
-#define PROC_3DENGINE	2
-
-//ID for script userdata typing (maybe they should be moved into the game.dll)
-#define USER_DATA_SOUND			1
-#define USER_DATA_TEXTURE		2
-#define USER_DATA_OBJECT		3
-#define USER_DATA_LIGHT			4
-#define USER_DATA_BONEHANDLER	5
-#define USER_DATA_POINTER		6
-
-enum ESystemUpdateFlags
-{
-	ESYSUPDATE_IGNORE_AI			= 0x0001,
-	ESYSUPDATE_IGNORE_PHYSICS = 0x0002,
-	// Special update mode for editor.
-	ESYSUPDATE_EDITOR					=	0x0004,
-	ESYSUPDATE_MULTIPLAYER		= 0x0008
-};
+namespace XDOM {
+    struct IXMLDOMDocument;
+}
 
 enum ESystemConfigSpec
 {
-	CONFIG_LOW_SPEC = 0,
-	CONFIG_MEDIUM_SPEC = 1,
-	CONFIG_HIGH_SPEC = 2,
-	CONFIG_VERYHIGH_SPEC = 3,
+    CONFIG_LOW_SPEC = 0,
+    CONFIG_MEDIUM_SPEC = 1,
+    CONFIG_HIGH_SPEC = 2,
+    CONFIG_VERYHIGH_SPEC = 3
 };
 
-// User defined callback, which can be passed to ISystem.
-struct ISystemUserCallback
+#ifndef __ixml_h__
+struct IXmlNode;
+class XmlNodeRef
 {
-	/** Signals to User that engine error occured.
-			@return true to Halt execution or false to ignore this error.
-	*/
-	virtual bool OnError( const char *szErrorString ) = 0;
-	/** If working in Editor environment notify user that engine want to Save current document.
-			This happens if critical error have occured and engine gives a user way to save data and not lose it
-			due to crash.
-	*/
-	virtual void OnSaveDocument() = 0;
-	
-	/** Notify user that system wants to switch out of current process.
-			(For ex. Called when pressing ESC in game mode to go to Menu).
-	*/
-	virtual void OnProcessSwitch() = 0;
+public:
+    IXmlNode* p;
+    XmlNodeRef() : p(nullptr) {}
+    XmlNodeRef(IXmlNode* _p) : p(_p) {}
+    operator bool() const { return p != nullptr; }
+    IXmlNode* operator->() const { return p; }
 };
-
-
-// Structure passed to Init method of ISystem interface.
-struct SSystemInitParams
-{
-	void *hInstance;											//
-	void *hWnd;														//
-	char szSystemCmdLine[512];						// command line, used to execute the early commands e.g. -DEVMODE "g_gametype ASSAULT"
-	ISystemUserCallback *pUserCallback;		//
-	ILog *pLog;														// You can specify your own ILog to be used by System.
-	IValidator *pValidator;								// You can specify different validator object to use by System.
-	const char* sLogFileName;							// File name to use for log.
-	bool bEditor;													// When runing in Editor mode.
-	bool bPreview;												// When runing in Preview mode (Minimal initialization).
-	bool bTestMode;												// When runing in Automated testing mode.
-	bool bDedicatedServer;								// When runing a dedicated server.
-	ISystem *pSystem;											// Pointer to existing ISystem interface, it will be reused if not NULL.
-//	char szLocalIP[256];									// local IP address (needed if we have several servers on one machine)
-#if defined(LINUX)
-	void (*pCheckFunc)(void*);							// authentication function (must be set).
-#else
-	void *pCheckFunc;											// authentication function (must be set).
 #endif
 
-	// Initialization defaults.
-	SSystemInitParams()
-	{
-		hInstance = 0;
-		hWnd = 0;
-		memset(szSystemCmdLine,0,sizeof(szSystemCmdLine));
-		pLog = 0;
-		pValidator = 0;
-		pUserCallback = 0;
-		sLogFileName = 0;
-		bEditor = false;
-		bPreview = false;
-		bTestMode = false;
-		bDedicatedServer = false;
-		pSystem = 0;
-		pCheckFunc = 0;
-//		memset(szLocalIP,0,256);
-	}
-};
+#pragma pack(push, 8)
 
-
-// Structure passed to CreateGame method of ISystem interface.
 struct SGameInitParams
 {
-	const char *	sGameDLL;							// Name of Game DLL. (Win32 Only)
-	IGame *				pGame;								// Pointer to already created game interface.
-	bool					bDedicatedServer;			// When runing a dedicated server.
-	char					szGameCmdLine[256];		// command line, used to execute the console commands after game creation e.g. -DEVMODE "g_gametype ASSAULT"
-	
-	SGameInitParams()
-	{
-		sGameDLL = NULL;
-		pGame = NULL;		
-		bDedicatedServer = false;
-		memset(szGameCmdLine,0,256);
-	}
+    const char* sGameDLL;
+    IGame*      pGame;
+    bool        bDedicatedServer;
 };
 
+struct SSystemInitParams
+{
+    void* hInstance;                // +0x00
+    void* hWnd;                     // +0x08
+    char  szSystemCmdLine[2048];    // +0x10 .. +0x810
+    void* pUserCallback;            // +0x810
+    void* pLog;                     // +0x818
+    void* pValidator;               // +0x820
+    const char* sLogFileName;       // +0x828
+    bool  bEditor;                  // +0x830
+    bool  bPreview;                 // +0x831
+    bool  bTestMode;                // +0x832
+    bool  bDedicatedServer;         // +0x833
+    uint32_t pad0;                  // +0x834
+    void* pSystem;                  // +0x838: Pointer to pre-existing ISystem if any
+};
 
-////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////
-// Main Engine Interface
-// initialize and dispatch all engine's subsystems 
+// ============================================================================
+// Official 151 virtual functions of CryEngine ISystem in Aion Classic 5.0
+// Bit-for-bit verified against CrySystem.dll primary VTable at 0x1801E8558
+// ============================================================================
 struct ISystem
-{ 
-	// Loads GameDLL and creates game instance.
-	virtual bool CreateGame( const SGameInitParams &params ) = 0;
-	
-	// Release ISystem.
-	virtual void Release() = 0;
+{
+    // Slot 0 (0x000): CreateGame
+    virtual bool CreateGame(const SGameInitParams& params) = 0;
+    // Slot 1 (0x008): IsLoadingScreenEnabled
+    virtual bool IsLoadingScreenEnabled() = 0;
+    // Slot 2 (0x010): IsPreloadDone
+    virtual bool IsPreloadDone() = 0;
+    // Slot 3 (0x018): SetLoadingProgress
+    virtual void SetLoadingProgress(float progress) = 0;
+    // Slot 4 (0x020): Release
+    virtual void Release() = 0;
+    // Slot 5 (0x028): ShutDown
+    virtual void ShutDown(bool bRelaunch = false) = 0;
+    // Slot 6 (0x030): WasInDevMode
+    virtual bool WasInDevMode() = 0;
+    // Slot 7 (0x038): Relaunch
+    virtual void Relaunch(bool bRelaunch) = 0;
+    // Slot 8 (0x040): UpdateLoadingScreen
+    virtual void UpdateLoadingScreen() = 0;
+    // Slot 9 (0x048): RenderBegin
+    virtual void RenderBegin() = 0;
+    // Slot 10 (0x050): Render
+    virtual void Render() = 0;
+    // Slot 11 (0x058): RenderEnd
+    virtual void RenderEnd() = 0;
+    // Slot 12 (0x060): RenderStatistics
+    virtual void RenderStatistics() = 0;
+    // Slot 13 (0x068): DumpMemoryUsageStatistics
+    virtual void DumpMemoryUsageStatistics() = 0;
+    // Slot 14 (0x070): Quit
+    virtual void Quit() = 0;
+    // Slot 15 (0x078): IsQuitting
+    virtual bool IsQuitting() = 0;
+    // Slot 16 (0x080): Slot16
+    virtual float Slot16() = 0;
+    // Slot 17 (0x088): Slot17
+    virtual bool Slot17() = 0;
+    // Slot 18 (0x090): Slot18
+    virtual void Slot18() = 0;
+    // Slot 19 (0x098): Slot19
+    virtual bool Slot19() = 0;
+    // Slot 20 (0x0A0): Error
+    virtual void Error(const char* sFormat, ...) = 0;
+    // Slot 21 (0x0A8): SetForceNonDevMode
+    virtual void SetForceNonDevMode(const bool bValue) = 0;
+    // Slot 22 (0x0B0): Warning
+    virtual void Warning(int module, int severity, int flags, const char* file, const char* format, ...) = 0;
+    // Slot 23 (0x0B8): GetForceNonDevMode
+    virtual bool GetForceNonDevMode() const = 0;
+    // Slot 24 (0x0C0): CheckLogVerbosity
+    virtual bool CheckLogVerbosity(int verbosity) = 0;
+    // Slot 25 (0x0C8): IsDedicated
+    virtual bool IsDedicated() = 0;
+    // Slot 26 (0x0D0): Update
+    virtual bool Update(int updateFlags = 0, int nPauseMode = 0) = 0;
+    // Slot 27 (0x0D8): UpdateScriptSink
+    virtual void UpdateScriptSink() = 0;
+    // Slot 28 (0x0E0): IsDevMode
+    virtual bool IsDevMode() const = 0;
+    // Slot 29 (0x0E8): Slot29
+    virtual void* Slot29() = 0;
+    // Slot 30 (0x0F0): GetViewCamera
+    virtual class CCamera& GetViewCamera() = 0;
+    // Slot 31 (0x0F8): Slot31
+    virtual void Slot31() = 0;
+    // Slot 32 (0x100): Slot32
+    virtual void Slot32() = 0;
+    // Slot 33 (0x108): CreateEntityScriptBinding
+    virtual void CreateEntityScriptBinding(void* pEntity) = 0;
+    // Slot 34 (0x110): IgnoreUpdates
+    virtual void IgnoreUpdates(bool bIgnore) = 0;
+    // Slot 35 (0x118): Slot35
+    virtual bool Slot35() = 0;
+    // Slot 36 (0x120): GetIGame
+    virtual IGame* GetIGame() = 0;
+    // Slot 37 (0x128): GetINetwork
+    virtual INetwork* GetINetwork() = 0;
+    // Slot 38 (0x130): Slot38
+    virtual void Slot38() = 0;
+    // Slot 39 (0x138): Slot39
+    virtual void Slot39() = 0;
+    // Slot 40 (0x140): GetIRenderer
+    virtual IRenderer* GetIRenderer() = 0;
+    // Slot 41 (0x148): GetIInput
+    virtual IInput* GetIInput() = 0;
+    // Slot 42 (0x150): GetITimer
+    virtual ITimer* GetITimer() = 0;
+    // Slot 43 (0x158): GetIPak
+    virtual ICryPak* GetIPak() = 0;
+    // Slot 44 (0x160): GetIConsole
+    virtual IConsole* GetIConsole() = 0;
+    // Slot 45 (0x168): GetIScriptSystem
+    virtual IScriptSystem* GetIScriptSystem() = 0;
+    // Slot 46 (0x170): GetI3DEngine
+    virtual I3DEngine* GetI3DEngine() = 0;
+    // Slot 47 (0x178): GetIAnimationSystem
+    virtual ICryCharManager* GetIAnimationSystem() = 0;
+    // Slot 48 (0x180): GetISoundSystem
+    virtual ISoundSystem* GetISoundSystem() = 0;
+    // Slot 49 (0x188): GetIMusicSystem
+    virtual IMusicSystem* GetIMusicSystem() = 0;
+    // Slot 50 (0x190): GetIPhysicalWorld
+    virtual IPhysicalWorld* GetIPhysicalWorld() = 0;
+    // Slot 51 (0x198): GetIMovieSystem
+    virtual IMovieSystem* GetIMovieSystem() = 0;
+    // Slot 52 (0x1A0): GetAISystem
+    virtual IAISystem* GetAISystem() = 0;
+    // Slot 53 (0x1A8): GetIMemoryManager
+    virtual IMemoryManager* GetIMemoryManager() = 0;
+    // Slot 54 (0x1B0): GetIEntitySystem
+    virtual IEntitySystem* GetIEntitySystem() = 0;
+    // Slot 55 (0x1B8): GetICryFont
+    virtual ICryFont* GetICryFont() = 0;
+    // Slot 56 (0x1C0): GetILog
+    virtual ILog* GetILog() = 0;
+    // Slot 57 (0x1C8): GetStreamEngine
+    virtual IStreamEngine* GetStreamEngine() = 0;
+    // Slot 58 (0x1D0): GetLuaDebugger
+    virtual CLUADbg* GetLuaDebugger() = 0;
+    // Slot 59 (0x1D8): GetIValidator
+    virtual IValidator* GetIValidator() = 0;
+    // Slot 60 (0x1E0): GetIProfileSystem
+    virtual IFrameProfileSystem* GetIProfileSystem() = 0;
+    // Slot 61 (0x1E8): GetUserName
+    virtual const char* GetUserName() = 0;
+    // Slot 62 (0x1F0): GetCPUFlags
+    virtual int GetCPUFlags() = 0;
+    // Slot 63 (0x1F8): GetSecondsPerCycle
+    virtual double GetSecondsPerCycle() = 0;
+    // Slot 64 (0x200): GetGCFrequency
+    virtual float GetGCFrequency() = 0;
+    // Slot 65 (0x208): SetGCFrequency
+    virtual void SetGCFrequency(float fRate) = 0;
+    // Slot 66 (0x210): DebugStats
+    virtual void DebugStats(bool checkpoint, bool leaks) = 0;
+    // Slot 67 (0x218): DumpWinHeaps
+    virtual void DumpWinHeaps() = 0;
+    // Slot 68 (0x220): DumpMMStats
+    virtual int DumpMMStats(bool log) = 0;
+    // Slot 69 (0x228): Slot69
+    virtual void* Slot69() = 0;
+    // Slot 70 (0x230): Slot70
+    virtual void* Slot70() = 0;
+    // Slot 71 (0x238): Slot71
+    virtual void* Slot71() = 0;
+    // Slot 72 (0x240): Slot72
+    virtual void* Slot72() = 0;
+    // Slot 73 (0x248): Slot73
+    virtual void* Slot73() = 0;
+    // Slot 74 (0x250): GetFileVersion
+    virtual const struct SFileVersion& GetFileVersion() = 0;
+    // Slot 75 (0x258): Slot75
+    virtual void* Slot75() = 0;
+    // Slot 76 (0x260): Slot76
+    virtual void* Slot76() = 0;
+    // Slot 77 (0x268): Slot77
+    virtual void* Slot77() = 0;
+    // Slot 78 (0x270): GetProductVersion
+    virtual const struct SFileVersion& GetProductVersion() = 0;
+    // Slot 79 (0x278): CreateXMLDocument
+    virtual XDOM::IXMLDOMDocument* CreateXMLDocument() = 0;
+    // Slot 80 (0x280): CreateXmlNode
+    virtual XmlNodeRef CreateXmlNode(const char* sNodeName = "") = 0;
+    // Slot 81 (0x288): LoadXmlFile
+    virtual XmlNodeRef LoadXmlFile(const char* sFilename) = 0;
+    // Slot 82 (0x290): LoadXmlFromString
+    virtual XmlNodeRef LoadXmlFromString(const char* sXmlString) = 0;
+    // Slot 83 (0x298): SetIProcess
+    virtual void SetIProcess(void* pProcess) = 0;
+    // Slot 84 (0x2A0): GetIProcess
+    virtual void* GetIProcess() = 0;
+    // Slot 85 (0x2A8): CreateRenderer
+    virtual IRenderer* CreateRenderer(bool fullscreen, void* hinst, void* hWndAttach) = 0;
+    // Slot 86 (0x2B0): IsTestMode
+    virtual bool IsTestMode() const = 0;
+    // Slot 87 (0x2B8): ShowDebugger
+    virtual void ShowDebugger(const char* pszSourceFile, int iLine, const char* pszReason) = 0;
+    // Slot 88 (0x2C0): SetFrameProfiler
+    virtual void SetFrameProfiler(bool on, bool display, char* prefix) = 0;
+    // Slot 89 (0x2C8): OnEnvironmentUpdate
+    virtual void OnEnvironmentUpdate() = 0;
 
-	// Update all subsystems (including the ScriptSink() )
-	// @param flags one or more flags from ESystemUpdateFlags sructure.
-	// @param boolean to set when in pause or cutscene mode in order to avoid
-	// certain subsystem updates 0=menu/pause, 1=cutscene mode
-	virtual bool Update( int updateFlags=0,int nPauseMode=0) = 0;
+    // Slots 90 to 148: Internal CryEngine / NCSoft extensions (59 slots)
+    virtual void Slot90() = 0;  virtual void Slot91() = 0;  virtual void Slot92() = 0;  virtual void Slot93() = 0;
+    virtual void Slot94() = 0;  virtual void Slot95() = 0;  virtual void Slot96() = 0;  virtual void Slot97() = 0;
+    virtual void Slot98() = 0;  virtual void Slot99() = 0;  virtual void Slot100() = 0; virtual void Slot101() = 0;
+    virtual void Slot102() = 0; virtual void Slot103() = 0; virtual void Slot104() = 0; virtual void Slot105() = 0;
+    virtual void Slot106() = 0; virtual void Slot107() = 0; virtual void Slot108() = 0; virtual void Slot109() = 0;
+    virtual void Slot110() = 0; virtual void Slot111() = 0; virtual void Slot112() = 0; virtual void Slot113() = 0;
+    virtual void Slot114() = 0; virtual void Slot115() = 0; virtual void Slot116() = 0; virtual void Slot117() = 0;
+    virtual void Slot118() = 0; virtual void Slot119() = 0; virtual void Slot120() = 0; virtual void Slot121() = 0;
+    virtual void Slot122() = 0; virtual void Slot123() = 0; virtual void Slot124() = 0; virtual void Slot125() = 0;
+    virtual void Slot126() = 0; virtual void Slot127() = 0; virtual void Slot128() = 0; virtual void Slot129() = 0;
+    virtual void Slot130() = 0; virtual void Slot131() = 0; virtual void Slot132() = 0; virtual void Slot133() = 0;
+    virtual void Slot134() = 0; virtual void Slot135() = 0; virtual void Slot136() = 0; virtual void Slot137() = 0;
+    virtual void Slot138() = 0; virtual void Slot139() = 0; virtual void Slot140() = 0; virtual void Slot141() = 0;
+    virtual void Slot142() = 0; virtual void Slot143() = 0; virtual void Slot144() = 0; virtual void Slot145() = 0;
+    virtual void Slot146() = 0; virtual void Slot147() = 0; virtual void Slot148() = 0;
 
-	// update _time, _frametime (useful after loading level to apply the time value)
-	virtual void UpdateScriptSink()=0;
+    // Slot 149 (0x4A8): Init
+    virtual bool Init(const SSystemInitParams& params) = 0;
 
-	// Begin rendering frame.
-	virtual void	RenderBegin() = 0;
-	// Render subsystems.
-	virtual void	Render() = 0;
-	// End rendering frame and swap back buffer.
-	virtual void	RenderEnd() = 0;
+    // Slot 150 (0x4B0): Virtual Destructor
+    virtual ~ISystem() {}
 
-	// Renders the statistics; this is called from RenderEnd, but if the 
-	// Host application (Editor) doesn't employ the Render cycle in ISystem,
-	// it may call this method to render the essencial statistics
-	virtual void RenderStatistics () = 0;
-
-	// Retrieve the name of the user currently logged in to the computer
-	virtual const char *GetUserName() = 0;
-
-  // Gets current supported CPU features flags. (CPUF_SSE, CPUF_SSE2, CPUF_3DNOW, CPUF_MMX)
-  virtual int GetCPUFlags() = 0;
-
-  // Get seconds per processor tick
-  virtual double GetSecondsPerCycle() = 0;
-
-  // dumps the memory usage statistics to the log
-	virtual void DumpMemoryUsageStatistics() = 0;
-
-	// Quit the appliacation
-	virtual void	Quit() = 0;
-	// Tells the system if it is relaunching or not
-	virtual void	Relaunch(bool bRelaunch) = 0;
-	// return true if the application is in the shutdown phase
-	virtual bool	IsQuitting() = 0;
-
-	// Display error message.
-	// Logs it to console and file and error message box.
-	// Then terminates execution.
-	virtual void Error( const char *sFormat,... ) = 0;
-	
-	//DOC-IGNORE-BEGIN
-	//[Timur] DEPRECATED! Use Validator Warning instead.
-	// Display warning message.
-	// Logs it to console and file and display a warning message box.
-	// Not terminates execution.
-	//__declspec(deprecated) virtual void Warning( const char *sFormat,... ) = 0;
-	//DOC-IGNORE-END
-
-	// Report warning to current Validator object.
-	// Not terminates execution.
-	virtual void Warning( EValidatorModule module,EValidatorSeverity severity,int flags,const char *file,const char *format,... ) = 0;
-	// Compare specified verbosity level to the one currently set.
-	virtual bool CheckLogVerbosity( int verbosity ) = 0;
-
-	// returns true if this is dedicated server application
-	virtual bool IsDedicated() {return false;}
-
-	// return the related subsystem interface
-	virtual IGame						*GetIGame() = 0;
-	virtual INetwork				*GetINetwork() = 0;
-	virtual IRenderer				*GetIRenderer() = 0;
-	virtual IInput					*GetIInput() = 0;
-	virtual ITimer					*GetITimer() = 0;
-	virtual IConsole				*GetIConsole() = 0;
-	virtual IScriptSystem		*GetIScriptSystem() = 0;
-	virtual I3DEngine				*GetI3DEngine() = 0;
-	virtual ISoundSystem		*GetISoundSystem() = 0;
-	virtual IMusicSystem		*GetIMusicSystem() = 0;
-  virtual IPhysicalWorld	*GetIPhysicalWorld() = 0;
-	virtual IMovieSystem		*GetIMovieSystem() = 0;
-	virtual IAISystem				*GetAISystem() = 0;
-	virtual IMemoryManager	*GetIMemoryManager() = 0;
-	virtual IEntitySystem		*GetIEntitySystem() = 0;
-	virtual ICryFont				*GetICryFont()	= 0;
-	virtual ICryPak				  *GetIPak()	= 0;
-	virtual ILog						*GetILog() = 0;
-	virtual IStreamEngine   *GetStreamEngine() = 0;
-	virtual ICryCharManager *GetIAnimationSystem() = 0;
-	virtual IValidator			*GetIValidator() = 0;
-	virtual IFrameProfileSystem* GetIProfileSystem() = 0;	
-
-	//virtual	const char			*GetGamePath()=0;
-
-	virtual void DebugStats(bool checkpoint, bool leaks) = 0;
-	virtual void DumpWinHeaps() = 0;
-	virtual int DumpMMStats(bool log) = 0;
-
-	//////////////////////////////////////////////////////////////////////////
-	// @param bValue set to true when running on a cheat protected server or a client that is connected to it (not used in singlplayer)
-	virtual void SetForceNonDevMode( const bool bValue )=0;
-	// @return is true when running on a cheat protected server or a client that is connected to it (not used in singlplayer)
-	virtual bool GetForceNonDevMode() const=0;
-	virtual bool WasInDevMode() const=0;
-	virtual bool IsDevMode() const=0;
-	//////////////////////////////////////////////////////////////////////////
-
-	virtual XDOM::IXMLDOMDocument *CreateXMLDocument() = 0;
-
-	//////////////////////////////////////////////////////////////////////////
-	// IXmlNode interface.
-	//////////////////////////////////////////////////////////////////////////
-	
-	// Creates new xml node.
-	virtual XmlNodeRef CreateXmlNode( const char *sNodeName="" ) = 0;
-	// Load xml file, return 0 if load failed.
-	virtual XmlNodeRef LoadXmlFile( const char *sFilename ) = 0;
-	// Load xml from string, return 0 if load failed.
-	virtual XmlNodeRef LoadXmlFromString( const char *sXmlString ) = 0;
-
-	virtual void SetViewCamera(class CCamera &Camera) = 0;
-	virtual CCamera& GetViewCamera() = 0;
-
-	virtual void CreateEntityScriptBinding(IEntity *pEntity)=0;
-	// When ignore update sets to true, system will ignore and updates and render calls.
-	virtual void IgnoreUpdates( bool bIgnore ) = 0;
-
-	// Set rate of Garbage Collection for script system.
-	// @param fRate in seconds
-	virtual void SetGCFrequency( const float fRate ) = 0;
-
-	/* Set the active process
-		@param process a pointer to a class that implement the IProcess interface
-	*/
-	virtual void SetIProcess(IProcess *process) = 0;
-	/* Get the active process
-		@return a pointer to the current active process
-	*/
-	virtual IProcess* GetIProcess() = 0;
-
-#if defined (WIN32) || defined (PS2)
-	virtual IRenderer* CreateRenderer(bool fullscreen, void* hinst, void* hWndAttach = 0) = 0;
-#endif	
-
-	// Returns true if system running in Test mode.
-	virtual bool IsTestMode() const = 0;
- 
-	virtual void ShowDebugger(const char *pszSourceFile, int iLine, const char *pszReason) = 0;
-	
-	//////////////////////////////////////////////////////////////////////////
-	// Frame profiler functions
-	virtual void SetFrameProfiler(bool on, bool display, char *prefix) = 0;
-
-	// Starts section profiling.
-	virtual void StartProfilerSection( CFrameProfilerSection *pProfileSection ) = 0;
-	// Stops section profiling.
-	virtual void EndProfilerSection( CFrameProfilerSection *pProfileSection ) = 0;
-
-	//////////////////////////////////////////////////////////////////////////
-	// VTune Profiling interface.
-	// Resume vtune data collection.
-	virtual void VTuneResume() = 0;
-	// Pauses vtune data collection.
-	virtual void VTunePause() = 0;
-	//////////////////////////////////////////////////////////////////////////
-
-	virtual void Deltree(const char *szFolder, bool bRecurse) = 0;
-
-	//////////////////////////////////////////////////////////////////////////
-	// File version.
-	//////////////////////////////////////////////////////////////////////////
-	
-	virtual const SFileVersion& GetFileVersion() = 0;
-	virtual const SFileVersion& GetProductVersion() = 0;
-	
-	// Compressed file read & write
-	virtual bool WriteCompressedFile(char *filename, void *data, unsigned int bitlen) = 0;
-	virtual unsigned int ReadCompressedFile(char *filename, void *data, unsigned int maxbitlen) = 0;
-	virtual unsigned int GetCompressedFileSize(char *filename)=0;
-
-	// Sample:  char str[256];	bool bRet=GetSSFileInfo("C:\\mastercd\\materials\\compound_indoor.xml",str,256);
-	// get info about the last SourceSafe action for a specifed file (Name,Comment,Date)
-	// @param inszFileName inszFileName!=0, e.g. "c:\\mastercd\\AssMan\\AssManShellExt\\AssManMenu.cpp"
-	// @param outszInfo outszInfo!=0, [0..indwBufferSize-1]
-	// @param indwBufferSize >0
-	// @return true=success, false otherwise (output parameter is set to empty strings)
-	virtual bool GetSSFileInfo( const char *inszFileName, char *outszInfo, const DWORD indwBufferSize )=0;
-
-	// Retrieve IDataProbe interface.
-	virtual IDataProbe* GetIDataProbe() = 0;
-	//////////////////////////////////////////////////////////////////////////
-	// Configuration.
-	//////////////////////////////////////////////////////////////////////////
-	// Saves system configuration.
-	virtual void SaveConfiguration() = 0;
-	// Loads system configuration
-	virtual void LoadConfiguration(const string &sFilename)=0;
-
-	// Get current configuration specification.
-	virtual ESystemConfigSpec GetConfigSpec() = 0;
+    // Non-virtual inline helpers (preserving exact 151-slot canonical VTable)
+    inline void StartProfilerSection(class CFrameProfilerSection* pProfileSection) { (void)pProfileSection; }
+    inline void EndProfilerSection(class CFrameProfilerSection* pProfileSection) { (void)pProfileSection; }
+    inline struct IDataProbe* GetIDataProbe() { return nullptr; }
+    inline bool GetSSFileInfo(const char* inszFileName, char* outszInfo, const unsigned long indwBufferSize) { (void)inszFileName; (void)outszInfo; (void)indwBufferSize; return false; }
+    inline ESystemConfigSpec GetConfigSpec() { return CONFIG_VERYHIGH_SPEC; }
 };
 
-//////////////////////////////////////////////////////////////////////////
-// CrySystem DLL Exports.
-//////////////////////////////////////////////////////////////////////////
-typedef ISystem* (*PFNCREATESYSTEMINTERFACE)( SSystemInitParams &initParams );
+#ifdef __cplusplus
+extern ISystem* GetISystem();
+#endif
 
-// Get the system interface (must be defined locally in each module)
-extern ISystem *GetISystem();
+#ifndef MAX_WARNING_LENGTH
+#define MAX_WARNING_LENGTH 4096
+#endif
 
-// interface of the DLL
-extern "C" 
+inline void CryError(const char *format, ...)
 {
-	CRYSYSTEM_API ISystem* CreateSystemInterface( SSystemInitParams &initParams );
+    if (!GetISystem()) return;
+    va_list args;
+    char szBuffer[MAX_WARNING_LENGTH];
+    va_start(args, format);
+    vsnprintf(szBuffer, sizeof(szBuffer), format, args);
+    va_end(args);
+    GetISystem()->Error("%s", szBuffer);
 }
 
-//////////////////////////////////////////////////////////////////////////
-// Display error message.
-// Logs it to console and file and error message box.
-// Then terminates execution.
-inline void CryError( const char *format,... )
-{ 
-	if (!GetISystem())
-		return;
-
-	va_list	ArgList;
-	char szBuffer[MAX_WARNING_LENGTH];
-	va_start(ArgList, format);
-	vsprintf(szBuffer, format, ArgList);
-	va_end(ArgList);
-
-	GetISystem()->Error( "%s",szBuffer );
-}
-//////////////////////////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////////////////////////
-// Display warning message.
-// Logs it to console and file and display a warning message box.
-// Not terminates execution.
-inline void CryWarning( EValidatorModule module,EValidatorSeverity severity,const char *format,... )
+inline void CryWarning(int module, int severity, const char *format, ...)
 {
-	if (!GetISystem() || !format)
-		return;
-	va_list	ArgList;
-	char		szBuffer[MAX_WARNING_LENGTH];
-	va_start(ArgList, format);
-	vsprintf(szBuffer, format, ArgList);
-	va_end(ArgList);
-	GetISystem()->Warning( module,severity,0,0,szBuffer );
+    if (!GetISystem() || !format) return;
+    va_list args;
+    char szBuffer[MAX_WARNING_LENGTH];
+    va_start(args, format);
+    vsnprintf(szBuffer, sizeof(szBuffer), format, args);
+    va_end(args);
+    GetISystem()->Warning(module, severity, 0, nullptr, "%s", szBuffer);
 }
-//////////////////////////////////////////////////////////////////////////
-// Simple log of data with low verbosity.
-inline void CryLog( const char *format,... )
+
+inline void CryLog(const char *format, ...)
 {
-	if (GetISystem() && GetISystem()->CheckLogVerbosity(8))
-	{
-		va_list args;
-		va_start(args,format);
-		GetISystem()->GetILog()->LogV( ILog::eMessage,format,args );
-		va_end(args);
-	}
+    (void)format;
 }
 
-//////////////////////////////////////////////////////////////////////////
-// Very rarely used log comment.
-inline void CryLogComment( const char *format,... )
+inline void CryLogAlways(const char *format, ...)
 {
-	if (GetISystem() && GetISystem()->CheckLogVerbosity(9))
-	{
-		va_list args;
-		va_start(args,format);
-		GetISystem()->GetILog()->LogV( ILog::eMessage,format,args );
-		va_end(args);
-	}
+    (void)format;
 }
 
-//////////////////////////////////////////////////////////////////////////
-// Logs important data that must be printed regardless verbosity.
-inline void CryLogAlways( const char *format,... )
+inline void CryLogComment(const char *format, ...)
 {
-	if (GetISystem())
-	{
-		va_list args;
-		va_start(args,format);
-		GetISystem()->GetILog()->LogV( ILog::eAlways,format,args );
-		va_end(args);
-	}
+    (void)format;
 }
 
-//////////////////////////////////////////////////////////////////////////
-// Additional headers.
-//////////////////////////////////////////////////////////////////////////
-#include <FrameProfiler.h>
+#pragma pack(pop)
 
-#endif //_CRY_SYSTEM_H_
+#endif // _ISYSTEM_AION_CLASSIC_H_

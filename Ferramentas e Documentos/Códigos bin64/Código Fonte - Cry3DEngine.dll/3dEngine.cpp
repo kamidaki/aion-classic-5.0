@@ -94,32 +94,41 @@ C3DEngine::C3DEngine(ISystem	* pSystem)
 
   memset(m_SunObject, 0, sizeof(m_SunObject));  
   m_pBlurObj=0;
-  m_pBlurObj=GetRenderer()->EF_GetObject(false, -1);
   m_pScreenObj=0;
-  m_pScreenObj=GetRenderer()->EF_GetObject(false, -1);
-	m_szLevelFolder[0]=0;
+  m_szLevelFolder[0]=0;
 
-	m_nFlags=0;
+  m_nFlags=0;
   m_pRE2DQuad=0;
   m_pSHFullScreenQuad = NULL;
-  m_pSHSky = NULL;//GetRenderer()->EF_LoadShader("InfRedGal", eSH_World, EF_SYSTEM);
+  m_pSHSky = NULL;
   m_pTerrainWaterShader = m_pSunRoadShader = 0;
-	m_nWaterBottomTexId=0;
-  m_pSHLensFlares = GetRenderer()->EF_LoadShader("CryLight", eSH_World, EF_SYSTEM);
+  m_nWaterBottomTexId=0;
+  m_pSHLensFlares = NULL;
   m_vSunPosition = Vec3d(0, -10000.0f, 10000.0f);
-  m_pSHDefault = GetRenderer()->EF_LoadShader("Default", eSH_World, EF_SYSTEM);
+  m_pSHDefault = NULL;
+  m_nStreamingIconTexID = 0;
+  m_nBlackTexID = 0;
+  m_nShadowSpotTexId = 0;
+
+  if (GetRenderer())
+  {
+    m_pBlurObj=GetRenderer()->EF_GetObject(false, -1);
+    m_pScreenObj=GetRenderer()->EF_GetObject(false, -1);
+    m_pSHLensFlares = GetRenderer()->EF_LoadShader("CryLight", eSH_World, EF_SYSTEM);
+    m_pSHDefault = GetRenderer()->EF_LoadShader("Default", eSH_World, EF_SYSTEM);
+
+    ITexPic * pPic = GetRenderer()->EF_LoadTexture("diskette.tga",0,0,eTT_Base);
+    if (pPic) m_nStreamingIconTexID = pPic->GetTextureID();
+
+    pPic = GetRenderer()->EF_LoadTexture("black.tga",0,0,eTT_Base);
+    if (pPic) m_nBlackTexID = pPic->GetTextureID();
+
+    ITexPic * pPicSpot = GetRenderer()->EF_LoadTexture("spot_shadow.tga",0,0,eTT_Base);
+    if (pPicSpot) m_nShadowSpotTexId = pPicSpot->GetTextureID();
+  }
 
   m_pTerrain=0;	
-	m_bEnabled=1;
-
-	ITexPic * pPic = GetRenderer()->EF_LoadTexture("diskette.tga",0,0,eTT_Base);
-  m_nStreamingIconTexID = pPic->GetTextureID();
-
-	pPic = GetRenderer()->EF_LoadTexture("black.tga",0,0,eTT_Base);
-  m_nBlackTexID = pPic->GetTextureID();
-
-	ITexPic * pPicSpot = GetRenderer()->EF_LoadTexture("spot_shadow.tga",0,0,eTT_Base);
-	m_nShadowSpotTexId = pPicSpot->GetTextureID();
+  m_bEnabled=1;
 
   // create components
   m_pObjManager   = 0;//new CObjManager (m_pSystem);
@@ -133,30 +142,54 @@ C3DEngine::C3DEngine(ISystem	* pSystem)
   m_pCVars            = new CVars();
   Cry3DEngineBase::m_pCVars = m_pCVars;
 
-  // create REs
-  m_pRESky              = (CRESky*)             GetRenderer()->EF_CreateRE(eDATA_Sky); m_pRESky->m_fAlpha = 1.f;
-  //m_pREOutSpace         = (CREOutSpace * )      GetRenderer()->EF_CreateRE(eDATA_OutSpace);
-  m_pREDummy            = (CREDummy*)           GetRenderer()->EF_CreateRE(eDATA_Dummy);
-  m_pRETerrainParticles = (CRETerrainParticles*)GetRenderer()->EF_CreateRE(eDATA_TerrainParticles);
-  m_pRE2DQuad           = (CRE2DQuad*)          GetRenderer()->EF_CreateRE(eDATA_2DQuad);
-  m_pREScreenProcess    = (CREScreenProcess*)   GetRenderer()->EF_CreateRE(eDATA_ScreenProcess);
+  m_pRESky              = 0;
+  m_pREDummy            = 0;
+  m_pRETerrainParticles = 0;
+  m_pRE2DQuad           = 0;
+  m_pREScreenProcess    = 0;
+  m_pSHScreenTexMap     = 0;
+  m_pSHScreenProcess    = 0;
+  m_pSHOutSpace         = 0;
+  m_pSHFarTreeSprites   = 0;
+  m_pSHClearStencil     = 0;
+  m_pSHShadowMapGen     = 0;
+  m_pSHBinocularDistortMask = 0;
+  m_pSHScreenDistort    = 0;
+  m_pSHSniperDistortMask = 0;
+  m_pSHRainMap          = 0;
+  m_pSHStencil          = 0;
+  m_pSHStencilState     = 0;
+  m_pSHStencilStateInv  = 0;
+  m_pSHTerrainParticles = 0;
 
-  m_pSHScreenTexMap     = GetRenderer()->EF_LoadShader("ScreenTexMap", eSH_World, EF_SYSTEM);
-  m_pSHScreenProcess    = GetRenderer()->EF_LoadShader("ScreenProcess", eSH_World, EF_SYSTEM);
-  m_pSHOutSpace         = GetRenderer()->EF_LoadShader("OutSpace", eSH_World, EF_SYSTEM);
-  m_pSHFarTreeSprites   = GetRenderer()->EF_LoadShader("FarTreeSprites", eSH_World, EF_SYSTEM);
-  m_pSHClearStencil     = GetRenderer()->EF_LoadShader("ClearStencil", eSH_World, EF_SYSTEM);
-  m_pSHShadowMapGen     = GetRenderer()->EF_LoadShader("ShadowMapGen", eSH_World, EF_SYSTEM);
-  m_pSHBinocularDistortMask = GetRenderer()->EF_LoadShader("BinocularDistortMask", eSH_World, EF_SYSTEM);
-  m_pSHScreenDistort = GetRenderer()->EF_LoadShader("ScreenDistort", eSH_World, EF_SYSTEM);
-  m_pSHSniperDistortMask = GetRenderer()->EF_LoadShader("SniperDistortMask", eSH_World, EF_SYSTEM);
-  m_pSHRainMap          = GetRenderer()->EF_LoadShader("RainMap", eSH_World, EF_SYSTEM);
+  if (GetRenderer())
+  {
+    // create REs
+    m_pRESky              = (CRESky*)             GetRenderer()->EF_CreateRE(eDATA_Sky); 
+    if (m_pRESky) m_pRESky->m_fAlpha = 1.f;
+    //m_pREOutSpace         = (CREOutSpace * )      GetRenderer()->EF_CreateRE(eDATA_OutSpace);
+    m_pREDummy            = (CREDummy*)           GetRenderer()->EF_CreateRE(eDATA_Dummy);
+    m_pRETerrainParticles = (CRETerrainParticles*)GetRenderer()->EF_CreateRE(eDATA_TerrainParticles);
+    m_pRE2DQuad           = (CRE2DQuad*)          GetRenderer()->EF_CreateRE(eDATA_2DQuad);
+    m_pREScreenProcess    = (CREScreenProcess*)   GetRenderer()->EF_CreateRE(eDATA_ScreenProcess);
 
-  m_pSHStencil          = GetRenderer()->EF_LoadShader("<Stencil>", eSH_World, EF_SYSTEM);
-  m_pSHStencilState     = GetRenderer()->EF_LoadShader("StencilState", eSH_World, EF_SYSTEM);
-  m_pSHStencilStateInv  = GetRenderer()->EF_LoadShader("StencilStateInv", eSH_World, EF_SYSTEM);
+    m_pSHScreenTexMap     = GetRenderer()->EF_LoadShader("ScreenTexMap", eSH_World, EF_SYSTEM);
+    m_pSHScreenProcess    = GetRenderer()->EF_LoadShader("ScreenProcess", eSH_World, EF_SYSTEM);
+    m_pSHOutSpace         = GetRenderer()->EF_LoadShader("OutSpace", eSH_World, EF_SYSTEM);
+    m_pSHFarTreeSprites   = GetRenderer()->EF_LoadShader("FarTreeSprites", eSH_World, EF_SYSTEM);
+    m_pSHClearStencil     = GetRenderer()->EF_LoadShader("ClearStencil", eSH_World, EF_SYSTEM);
+    m_pSHShadowMapGen     = GetRenderer()->EF_LoadShader("ShadowMapGen", eSH_World, EF_SYSTEM);
+    m_pSHBinocularDistortMask = GetRenderer()->EF_LoadShader("BinocularDistortMask", eSH_World, EF_SYSTEM);
+    m_pSHScreenDistort    = GetRenderer()->EF_LoadShader("ScreenDistort", eSH_World, EF_SYSTEM);
+    m_pSHSniperDistortMask = GetRenderer()->EF_LoadShader("SniperDistortMask", eSH_World, EF_SYSTEM);
+    m_pSHRainMap          = GetRenderer()->EF_LoadShader("RainMap", eSH_World, EF_SYSTEM);
 
-	m_pSHTerrainParticles = GetRenderer()->EF_LoadShader("TerrainParticles", eSH_World, EF_SYSTEM);
+    m_pSHStencil          = GetRenderer()->EF_LoadShader("<Stencil>", eSH_World, EF_SYSTEM);
+    m_pSHStencilState     = GetRenderer()->EF_LoadShader("StencilState", eSH_World, EF_SYSTEM);
+    m_pSHStencilStateInv  = GetRenderer()->EF_LoadShader("StencilStateInv", eSH_World, EF_SYSTEM);
+
+    m_pSHTerrainParticles = GetRenderer()->EF_LoadShader("TerrainParticles", eSH_World, EF_SYSTEM);
+  }
 
   m_pPhysMaterialEnumerator=0;
 
@@ -179,7 +212,11 @@ C3DEngine::C3DEngine(ISystem	* pSystem)
 	m_pMatMan = new CMatMan();
 
 	m_bShore = m_bOcean = true;
-	m_pREShadowMapGenerator = (CREShadowMapGen*)GetRenderer()->EF_CreateRE(eDATA_ShadowMapGen);
+	m_pREShadowMapGenerator = NULL;
+	if (GetRenderer())
+	{
+		m_pREShadowMapGenerator = (CREShadowMapGen*)GetRenderer()->EF_CreateRE(eDATA_ShadowMapGen);
+	}
   m_bTerrainLightMapGenError = false;
 
   m_vUnderWaterFogColor.Set(0.2f,0.35f,0.4f);
@@ -190,8 +227,8 @@ C3DEngine::C3DEngine(ISystem	* pSystem)
 
 	m_nRealLightsNum=0;
 
-	m_pSysSpec = GetConsole()->GetCVar( "sys_spec" );
-  m_pLightQuality = GetConsole()->GetCVar("r_Quality_BumpMapping");
+	m_pSysSpec = GetConsole() ? GetConsole()->GetCVar( "sys_spec" ) : NULL;
+  m_pLightQuality = GetConsole() ? GetConsole()->GetCVar("r_Quality_BumpMapping") : NULL;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -254,12 +291,12 @@ C3DEngine::~C3DEngine()
   if (m_pSHTerrainParticles)
     m_pSHTerrainParticles->Release(true);
 
-  if (m_nStreamingIconTexID)
+  if (m_nStreamingIconTexID && GetRenderer())
   {
     GetRenderer()->RemoveTexture(m_nStreamingIconTexID);
     m_nStreamingIconTexID = 0;
   }
-  if (m_nShadowSpotTexId)
+  if (m_nShadowSpotTexId && GetRenderer())
   {
     GetRenderer()->RemoveTexture(m_nShadowSpotTexId);
     m_nShadowSpotTexId = 0;

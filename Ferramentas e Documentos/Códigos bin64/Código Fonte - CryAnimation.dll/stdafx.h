@@ -133,6 +133,8 @@ typedef const char*			cstr;
 #include <Cry_Math.h>
 #include <CryEngineDecalInfo.h>
 #include <ISystem.h>
+#include <IValidator.h>
+#include <FrameProfiler.h>
 #include <ICryAnimation.h>
 #include <IProcess.h>
 #include <ITimer.h>

@@ -54,6 +54,8 @@
 #include <CrySound.h>
 #endif
 #include <Cry_Math.h>
+#include <IValidator.h>
+#include <FrameProfiler.h>
 //#include <vector.h>
 #include <set>
 #include <algorithm>

@@ -187,7 +187,7 @@ void CVars::Init()
 	if(e_water_ocean_tesselation<0)
 	{
 		ICVar * pVar = GetConsole()->GetCVar("e_water_ocean_tesselation");
-		if(GetRenderer()->GetFeatures()&RFT_HW_ENVBUMPPROJECTED)
+		if(GetRenderer() && (GetRenderer()->GetFeatures()&RFT_HW_ENVBUMPPROJECTED))
 			pVar->Set(0);
 		else
 			pVar->Set(1);
@@ -203,16 +203,19 @@ void CVars::Init()
 			pVar1->Set(0);
 	}
 
-  int nGPU = GetRenderer()->GetFeatures() & RFT_HW_MASK;
-	if(nGPU == RFT_HW_GF2)
-	{
-		if(ICVar * pVar1 = GetConsole()->GetCVar("e_detail_texture_quality"))
-			pVar1->Set(0);
-	}
+  if (GetRenderer())
+  {
+    int nGPU = GetRenderer()->GetFeatures() & RFT_HW_MASK;
+	  if(nGPU == RFT_HW_GF2)
+	  {
+		  if(ICVar * pVar1 = GetConsole()->GetCVar("e_detail_texture_quality"))
+			  pVar1->Set(0);
+	  }
 
-	if(!(GetRenderer()->GetFeatures() & (RFT_DEPTHMAPS|RFT_SHADOWMAP_SELFSHADOW)))
-	{
-		if(ICVar * pVar1 = GetConsole()->GetCVar("e_shadow_maps_receiving"))
-			pVar1->Set(0);
-	}
+	  if(!(GetRenderer()->GetFeatures() & (RFT_DEPTHMAPS|RFT_SHADOWMAP_SELFSHADOW)))
+	  {
+		  if(ICVar * pVar1 = GetConsole()->GetCVar("e_shadow_maps_receiving"))
+			  pVar1->Set(0);
+	  }
+  }
 }

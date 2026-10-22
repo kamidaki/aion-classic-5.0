@@ -31,6 +31,8 @@
 
 #include "Cry_Math.h"
 #include <IXml.h>
+#include <IValidator.h>
+#include <FrameProfiler.h>
 #include <IEntitySystem.h>
 #include <IMovieSystem.h>
 #include "smartptr.h"

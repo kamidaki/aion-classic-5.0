@@ -21,6 +21,7 @@
 #endif
 
 #include "platform.h"
+#include "Cry_Math.h"
 #include <vector>
 #include <set>
 

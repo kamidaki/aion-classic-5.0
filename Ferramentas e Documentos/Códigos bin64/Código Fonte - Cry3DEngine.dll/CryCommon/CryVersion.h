@@ -16,11 +16,9 @@
 #ifndef __cryversion_h__
 #define __cryversion_h__
 
-#if defined(LINUX)
-#	include "string.h"
-#	include "stdlib.h"
-#	include "stdio.h"
-#endif
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 //////////////////////////////////////////////////////////////////////////
 /** This class keeps file version information.

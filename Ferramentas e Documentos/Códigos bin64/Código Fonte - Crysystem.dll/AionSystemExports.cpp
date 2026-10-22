@@ -237,4 +237,11 @@ __declspec(dllexport) void __cdecl CryStats(char* buffer)
     }
 }
 
+// CryModule internal memory functions
+void* CryModuleMalloc(size_t size) throw() { return CryMalloc(size); }
+void* CryModuleRealloc(void* ptr, size_t size) throw() { return CryRealloc(ptr, size); }
+void  CryModuleFree(void* ptr) throw() { CryFree(ptr); }
+void* CryModuleReallocSize(void* ptr, size_t oldsize, size_t size) { return CryReallocSize(ptr, oldsize, size); }
+void  CryModuleFreeSize(void* ptr, size_t size) { CryFreeSize(ptr, size); }
+
 } // extern "C"
