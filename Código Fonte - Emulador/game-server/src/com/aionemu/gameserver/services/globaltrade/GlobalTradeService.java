@@ -44,6 +44,7 @@ import com.aionemu.gameserver.services.item.ItemPacketService.ItemAddType;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemDeleteType;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
 import com.aionemu.gameserver.services.mail.SystemMailService;
+import com.aionemu.gameserver.services.player.QunaService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.utils.idfactory.IDFactory;
@@ -53,8 +54,8 @@ import com.aionemu.gameserver.world.World;
  * Global Auction House do Classic 5.0: anúncios do servidor inteiro, sem separação de raça. O protocolo está nas classes SM_GLOBAL_TRADE_*
  * e CM_GLOBAL_TRADE_*; os padrões de taxa, limite e nível no GlobalTradeConfig.
  * <p>
- * Só a moeda kinah funciona. O anúncio em Luna (moeda 0, inclusive a aba de venda de kinah) é recusado, porque o emulador não tem a Luna
- * da loja.
+ * Moeda 1 = kinah; moeda 0 = Quna (Luna no fio), paga e recebida no saldo de Quna da conta ({@link QunaService}). A taxa de registro é
+ * sempre em kinah. A venda de pacotes de kinah por Quna (client_global_trade_exchange) não está implementada.
  * <p>
  * Toda mudança de anúncio passa pelo lock deste serviço. O item anunciado fica no inventory com o local GLOBAL_TRADE e o vendedor como dono;
  * as operações gravam a linha do anúncio antes de mexer em item e kinah, e gravam o item logo depois, para uma queda do servidor não
@@ -72,6 +73,9 @@ public final class GlobalTradeService {
 	private static final int MSG_REVENUE_WAITING = 1401783; // STR_MSG_WORLD_VENDOR_CONNECT_SALES_SUCCESS
 	private static final int MSG_BELOW_STANDARD = 1401784; // STR_MSG_WORLD_VENDOR_BELOW_STANDARD
 	private static final int MSG_NOT_ENOUGH_QUNA = 1401788; // STR_MSG_WORLD_VENDOR_NOT_ENOUGH_QUNA
+	private static final int MSG_USED_QUNA = 1401791; // STR_MSG_WORLD_VENDOR_USED_QUNA (%0 Quna)
+	/** H do S 0x11B na compra em Quna (captura de 2026-09-21). */
+	private static final int QUNA_CODE_BUY = 0x12F;
 	private static final int MSG_REGISTERED = 1401789; // STR_MSG_WORLD_VENDOR_REGISTRATION_STACK: %1x %0
 	private static final int MSG_CANCELED = 1401790; // STR_MSG_WORLD_VENDOR_REGISTRATION_CANCLE
 	private static final int MSG_COLLECTED = 1401793; // STR_MSG_WORLD_VENDOR_ACCOUNT_END: %0 itens
@@ -188,7 +192,7 @@ public final class GlobalTradeService {
 		if (!GlobalTradeConfig.ENABLE || currency == null)
 			return;
 		List<GlobalTradeListing> sold = mine(player.getObjectId(), State.SOLD, currency, Comparator.comparingLong(GlobalTradeListing::getSoldTime));
-		PacketSendUtility.sendPacket(player, new SM_GLOBAL_TRADE_SALESLOG(currency, false, sum(sold, GlobalTradeListing::getRevenue), sold.size(), sold));
+		PacketSendUtility.sendPacket(player, new SM_GLOBAL_TRADE_SALESLOG(currency, SM_GLOBAL_TRADE_SALESLOG.REPLY, sum(sold, GlobalTradeListing::getRevenue), sold.size(), sold));
 	}
 
 	/** C_GLOBAL_TRADE_HISTORY e depois do COLLECT: vendas recebidas nos últimos 28 dias naquela moeda, mais recente primeiro. */
@@ -211,7 +215,7 @@ public final class GlobalTradeService {
 		boolean waiting = false;
 		for (GlobalTradeCurrency currency : List.of(GlobalTradeCurrency.LUNA, GlobalTradeCurrency.KINAH)) {
 			List<GlobalTradeListing> sold = mine(player.getObjectId(), State.SOLD, currency, Comparator.comparingLong(GlobalTradeListing::getSoldTime));
-			PacketSendUtility.sendPacket(player, new SM_GLOBAL_TRADE_SALESLOG(currency, true, sum(sold, GlobalTradeListing::getPrice), 0, List.of()));
+			PacketSendUtility.sendPacket(player, new SM_GLOBAL_TRADE_SALESLOG(currency, SM_GLOBAL_TRADE_SALESLOG.NOTICE_LOGIN, sum(sold, GlobalTradeListing::getPrice), 0, List.of()));
 			waiting |= !sold.isEmpty();
 		}
 		if (waiting)
@@ -229,7 +233,7 @@ public final class GlobalTradeService {
 		synchronized (this) {
 			Storage inventory = player.getInventory();
 			Item item = inventory.getItemByObjId(itemObjId);
-			if (currency != GlobalTradeCurrency.KINAH || item == null || item.isEquipped() || item.isSoulBound() || item.getExpireTime() > 0
+			if (currency == null || item == null || item.isEquipped() || item.isSoulBound() || item.getExpireTime() > 0
 				|| item.getTemporaryExchangeTime() > 0 || !DataManager.GLOBAL_TRADE_DATA.canRegister(item.getItemId(), currency)) {
 				log.info("[GLOBAL_TRADE] {} não pode anunciar o objeto {} em {}", player.getName(), itemObjId, currency);
 				PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_CANNOT_REGISTER));
@@ -244,7 +248,7 @@ public final class GlobalTradeService {
 				PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_FULL_BASKET));
 				return;
 			}
-			long fee = price * GlobalTradeConfig.REGISTER_FEE_PERMYRIAD / 10000;
+			long fee = registerFee(price, currency);
 			if (inventory.getKinah() < fee) {
 				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_NOT_ENOUGH_MONEY());
 				return;
@@ -300,10 +304,6 @@ public final class GlobalTradeService {
 				PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_ALREADY_SOLD));
 				return;
 			}
-			if (listing.getCurrency() != GlobalTradeCurrency.KINAH) {
-				PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_NOT_ENOUGH_QUNA));
-				return;
-			}
 			if (listing.getSellerId() == player.getObjectId()) {
 				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_VENDOR_CAN_NOT_BUY_MY_REGISTER_ITEM());
 				return;
@@ -314,35 +314,57 @@ public final class GlobalTradeService {
 				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_FULL_INVENTORY());
 				return;
 			}
-			if (inventory.getKinah() < listing.getPrice()) {
-				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_NOT_ENOUGH_MONEY());
+			boolean quna = listing.getCurrency() == GlobalTradeCurrency.LUNA;
+			if (quna ? QunaService.getBalance(player) < listing.getPrice() : inventory.getKinah() < listing.getPrice()) {
+				PacketSendUtility.sendPacket(player, quna ? new SM_SYSTEM_MESSAGE(MSG_NOT_ENOUGH_QUNA) : SM_SYSTEM_MESSAGE.STR_NOT_ENOUGH_MONEY());
+				return;
+			}
+			// o saldo de Quna é da conta e pode mudar por outro personagem: o débito vem antes de marcar a venda
+			if (quna && !QunaService.spend(player, listing.getPrice(), QUNA_CODE_BUY, false)) {
+				PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_NOT_ENOUGH_QUNA));
 				return;
 			}
 			listing.markSold(player.getObjectId(), System.currentTimeMillis(), listing.getPrice() * GlobalTradeConfig.SALE_FEE_PERMYRIAD / 10000);
 			if (!GlobalTradeDAO.update(listing)) {
 				listing.unmarkSold();
+				if (quna && !QunaService.addToAccount(player.getAccount().getId(), listing.getPrice()))
+					log.error("[GLOBAL_TRADE] {} pagou {} Quna por {} e o estorno falhou", player.getName(), listing.getPrice(), listing);
 				PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_ERROR));
 				return;
 			}
 			listing.setItem(null);
 
-			// ordem da captura: kinah (0x1D motivo 0x13C), mensagem, S_GLOBAL_TRADE_BUY, S_ADD_INVENTORY (cabeçalho 0x98)
-			inventory.decreaseKinah(listing.getPrice(), ItemUpdateType.DEC_KINAH_GLOBAL_TRADE_BUY);
+			// ordem das capturas: kinah: 0x1D (motivo 0x13C), mensagem, S_GLOBAL_TRADE_BUY, S_ADD_INVENTORY (cabeçalho 0x98);
+			// Quna: S 0x11B (H 0x12F, já mandado pelo spend), mensagem, 1401791 com os Quna pagos, S_GLOBAL_TRADE_BUY, S_ADD_INVENTORY
+			if (!quna)
+				inventory.decreaseKinah(listing.getPrice(), ItemUpdateType.DEC_KINAH_GLOBAL_TRADE_BUY);
 			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_BUY, nameOf(listing.getItemId()), String.valueOf(listing.getCount())));
+			if (quna)
+				PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_USED_QUNA, String.valueOf(listing.getPrice())));
 			PacketSendUtility.sendPacket(player, new SM_GLOBAL_TRADE_BUY(listing.getId(), listing.getCount()));
 			inventory.add(item, ItemAddType.GLOBAL_TRADE_BUY);
-			InventoryDAO.store(List.of(item, inventory.getKinahItem()), player.getObjectId());
+			InventoryDAO.store(quna ? List.of(item) : List.of(item, inventory.getKinahItem()), player.getObjectId());
 			log.info("[GLOBAL_TRADE] {} comprou {}", player.getName(), listing);
 
 			Player seller = World.getInstance().getPlayer(listing.getSellerId());
-			if (seller != null)
+			if (seller != null) {
+				// captura de 2026-10-22 com o vendedor online: mensagem, S_GLOBAL_TRADE_MYLIST da moeda (o 1º byte 1 limpa o mapa de anúncios do
+				// cliente e o pacote traz os que sobraram) e o aviso 2 do S_GLOBAL_TRADE_SALESLOG com o valor bruto a receber. Sem o MYLIST o
+				// anúncio vendido voltava na aba de registro no próximo S_GLOBAL_TRADE_COMMIT.
+				GlobalTradeCurrency currency = listing.getCurrency();
+				List<GlobalTradeListing> sold = mine(seller.getObjectId(), State.SOLD, currency, Comparator.comparingLong(GlobalTradeListing::getSoldTime));
 				PacketSendUtility.sendPacket(seller, new SM_SYSTEM_MESSAGE(MSG_SOLD, nameOf(listing.getItemId())));
+				PacketSendUtility.sendPacket(seller,
+					new SM_GLOBAL_TRADE_MYLIST(currency, mine(seller.getObjectId(), State.LISTED, currency, Comparator.comparingLong(GlobalTradeListing::getId))));
+				PacketSendUtility.sendPacket(seller,
+					new SM_GLOBAL_TRADE_SALESLOG(currency, SM_GLOBAL_TRADE_SALESLOG.NOTICE_SOLD, sum(sold, GlobalTradeListing::getPrice), 0, List.of()));
+			}
 		}
 	}
 
 	/** C_GLOBAL_TRADE_COLLECT [D moeda]: recebe todas as vendas daquela moeda. */
 	public void collect(Player player, GlobalTradeCurrency currency) {
-		if (!canTrade(player) || currency != GlobalTradeCurrency.KINAH)
+		if (!canTrade(player) || currency == null)
 			return;
 		synchronized (this) {
 			List<GlobalTradeListing> sold = mine(player.getObjectId(), State.SOLD, currency, Comparator.comparingLong(GlobalTradeListing::getSoldTime));
@@ -363,9 +385,22 @@ public final class GlobalTradeService {
 				PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_ERROR));
 				return;
 			}
-			// ordem da captura: kinah (0x1D motivo 0x13D), mensagem, S_GLOBAL_TRADE_COLLECT, histórico (0x145)
-			player.getInventory().increaseKinah(revenue, ItemUpdateType.INC_KINAH_GLOBAL_TRADE_COLLECT);
-			InventoryDAO.store(player.getInventory().getKinahItem(), player.getObjectId());
+			// ordem da captura: kinah (0x1D motivo 0x13D), mensagem, S_GLOBAL_TRADE_COLLECT, histórico (0x145). Em Quna (sem captura) o saldo
+			// sobe na conta, com o S 0x11B do QunaService no lugar do 0x1D.
+			if (currency == GlobalTradeCurrency.LUNA) {
+				if (revenue > 0 && !QunaService.addToAccount(player.getAccount().getId(), revenue)) {
+					for (GlobalTradeListing listing : sold)
+						if (listing.getState() == State.COLLECTED && listing.getCollectedTime() == now) {
+							listing.unmarkCollected();
+							GlobalTradeDAO.update(listing);
+						}
+					PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_ERROR));
+					return;
+				}
+			} else {
+				player.getInventory().increaseKinah(revenue, ItemUpdateType.INC_KINAH_GLOBAL_TRADE_COLLECT);
+				InventoryDAO.store(player.getInventory().getKinahItem(), player.getObjectId());
+			}
 			log.info("[GLOBAL_TRADE] {} recebeu {} de {} vendas", player.getName(), revenue, collected);
 			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(MSG_COLLECTED, String.valueOf(collected)));
 			PacketSendUtility.sendPacket(player, new SM_GLOBAL_TRADE_COLLECT(collected));
@@ -453,6 +488,13 @@ public final class GlobalTradeService {
 	}
 
 	// ------------------------------------------------------------------ utilidades
+
+	/** Taxa de registro, sempre em kinah: porcentagem do preço em kinah, valor fixo por Quna em Quna. */
+	static long registerFee(long price, GlobalTradeCurrency currency) {
+		if (currency == GlobalTradeCurrency.LUNA)
+			return price > Long.MAX_VALUE / GlobalTradeConfig.QUNA_REGISTER_FEE ? Long.MAX_VALUE : price * GlobalTradeConfig.QUNA_REGISTER_FEE;
+		return price * GlobalTradeConfig.REGISTER_FEE_PERMYRIAD / 10000;
+	}
 
 	private boolean isEnabled(Player player) {
 		if (!GlobalTradeConfig.ENABLE) {

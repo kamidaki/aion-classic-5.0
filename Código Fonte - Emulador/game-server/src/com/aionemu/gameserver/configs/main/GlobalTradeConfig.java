@@ -29,6 +29,13 @@ public class GlobalTradeConfig {
 	public static int REGISTER_FEE_PERMYRIAD;
 
 	/**
+	 * Taxa de registro de anúncio em Quna, cobrada em kinah por Quna do preço. Captura (2 de 2): 6.050 kinah para 10 Quna. Só esse preço foi
+	 * amostrado; a fórmula do oficial pode não ser linear.
+	 */
+	@Property(key = "gameserver.globaltrade.quna.register.fee", defaultValue = "605")
+	public static long QUNA_REGISTER_FEE;
+
+	/**
 	 * Taxa descontada da venda, em 1/10000 do preço. Captura: venda de 200.000 rendeu 184.000.
 	 */
 	@Property(key = "gameserver.globaltrade.sale.fee.permyriad", defaultValue = "800")

@@ -61,13 +61,17 @@ class GlobalTradePacketsTest {
 	void salesLogNoticesAndEmptyAnswersMatchOfficialCapture() throws Exception {
 		// login da captura do Altar: aviso da Luna vazio, aviso do kinah com a venda de 200.000 (bruto)
 		assertEquals("0000000000000000000000000000010101000000000000",
-			HEX.formatHex(body(new SM_GLOBAL_TRADE_SALESLOG(GlobalTradeCurrency.LUNA, true, 0, 0, List.of()))));
+			HEX.formatHex(body(new SM_GLOBAL_TRADE_SALESLOG(GlobalTradeCurrency.LUNA, SM_GLOBAL_TRADE_SALESLOG.NOTICE_LOGIN, 0, 0, List.of()))));
 		assertEquals("400d030000000000000000000000010101010000000000",
-			HEX.formatHex(body(new SM_GLOBAL_TRADE_SALESLOG(GlobalTradeCurrency.KINAH, true, 200_000, 0, List.of()))));
+			HEX.formatHex(body(new SM_GLOBAL_TRADE_SALESLOG(GlobalTradeCurrency.KINAH, SM_GLOBAL_TRADE_SALESLOG.NOTICE_LOGIN, 200_000, 0, List.of()))));
 		assertEquals("0000000000000000000000000000000101000000000000",
-			HEX.formatHex(body(new SM_GLOBAL_TRADE_SALESLOG(GlobalTradeCurrency.LUNA, false, 0, 0, List.of()))));
+			HEX.formatHex(body(new SM_GLOBAL_TRADE_SALESLOG(GlobalTradeCurrency.LUNA, SM_GLOBAL_TRADE_SALESLOG.REPLY, 0, 0, List.of()))));
 		assertEquals("0000000000000000000000000000000101010000000000",
-			HEX.formatHex(body(new SM_GLOBAL_TRADE_SALESLOG(GlobalTradeCurrency.KINAH, false, 0, 0, List.of()))));
+			HEX.formatHex(body(new SM_GLOBAL_TRADE_SALESLOG(GlobalTradeCurrency.KINAH, SM_GLOBAL_TRADE_SALESLOG.REPLY, 0, 0, List.of()))));
+		// captura de 2026-10-22: venda de 200.000 com o vendedor online, aviso 2 logo depois do MYLIST vazio
+		assertEquals("400d030000000000000000000000020101010000000000",
+			HEX.formatHex(body(new SM_GLOBAL_TRADE_SALESLOG(GlobalTradeCurrency.KINAH, SM_GLOBAL_TRADE_SALESLOG.NOTICE_SOLD, 200_000, 0, List.of()))));
+		assertEquals("0101010000000000", HEX.formatHex(body(new SM_GLOBAL_TRADE_MYLIST(GlobalTradeCurrency.KINAH, List.of()))));
 	}
 
 	@Test
@@ -76,7 +80,7 @@ class GlobalTradePacketsTest {
 		GlobalTradeListing sold = new GlobalTradeListing(0x123D1A, 1, 2, 164000010, 1, 200_000, GlobalTradeCurrency.KINAH, 6020000, 2420, 0, 0,
 			State.SOLD, 3, 0x01C701E9L * 60_000, 16_000, 0);
 		String official = "c0ce0200000000000100000000000001010100000001000a71c609400d0300000000000100000000000000e901c701803e000000000000";
-		for (AionServerPacket packet : List.of(new SM_GLOBAL_TRADE_SALESLOG(GlobalTradeCurrency.KINAH, false, 184_000, 1, List.of(sold)),
+		for (AionServerPacket packet : List.of(new SM_GLOBAL_TRADE_SALESLOG(GlobalTradeCurrency.KINAH, SM_GLOBAL_TRADE_SALESLOG.REPLY, 184_000, 1, List.of(sold)),
 			new SM_GLOBAL_TRADE_HISTORY(GlobalTradeCurrency.KINAH, 184_000, 1, List.of(sold)))) {
 			byte[] body = body(packet);
 			assertEquals(499, body.length);

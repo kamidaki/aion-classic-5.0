@@ -12,6 +12,6 @@ import com.aionemu.gameserver.model.globaltrade.GlobalTradeListing;
 public class SM_GLOBAL_TRADE_HISTORY extends SM_GLOBAL_TRADE_SALESLOG {
 
 	public SM_GLOBAL_TRADE_HISTORY(GlobalTradeCurrency currency, long amount, int count, List<GlobalTradeListing> entries) {
-		super(currency, false, amount, count, entries);
+		super(currency, REPLY, amount, count, entries);
 	}
 }
