@@ -2253,7 +2253,7 @@ public:
     void UpdateMana(int mp, int maxMp);
     void UpdateDivinePower(int dp, int maxDp);
     void UpdateExperience(int64_t curExp, int64_t maxExp);
-    void UpdateAbyssPoints(int64_t ap, int64_t gp, int rank);
+    void UpdateAbyssPoints(int64_t ap, int rank);
     void UpdateCombatStats(int pAtk, int pAcc, int pCrit, int pDef, int mBoost, int mAcc, int mRes);
     void UpdateFlight(int curFlight, int maxFlight, float flightSpeed);
 
@@ -2271,7 +2271,7 @@ private:
     int m_mp, m_maxMp;
     int m_dp, m_maxDp;
     int64_t m_currentExp, m_maxExp;
-    int64_t m_abyssPoints, m_gloryPoints;
+    int64_t m_abyssPoints;
     int m_abyssRank;
     int m_physAttack, m_physAccuracy, m_physCrit, m_physDef;
     int m_magicBoost, m_magicAcc, m_magicResist;

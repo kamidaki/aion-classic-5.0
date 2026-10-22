@@ -35,6 +35,14 @@ public:
         m_hasAlarm = hasAlarm;
     }
 
+    void SetAutoBuffSlot(int slot, uint32_t itemId);
+    uint32_t GetAutoBuffSlot(int slot) const;
+
+    bool CheckAndTriggerAutoBuff();
+    bool CheckAndTriggerAutoLoot(const Vec3F& corpsePos, uint32_t corpseId);
+    bool CheckAndTriggerAlarm(const Vec3F& enemyPos, bool isStealthed);
+    void CheerMaster();
+
 private:
     uint32_t m_petTemplateId;
     uint32_t m_masterId;
@@ -44,4 +52,7 @@ private:
     bool     m_hasBuff;
     bool     m_hasLoot;
     bool     m_hasAlarm;
+    uint32_t m_autoBuffSlots[3]; // 0: Comida, 1: Bebida, 2: Pergaminho de Corrida/Ataque
+    float    m_autoLootCooldown;
+    float    m_alarmCooldown;
 };

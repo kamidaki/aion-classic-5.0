@@ -1507,7 +1507,7 @@ DlgPlayerInfo::DlgPlayerInfo(const std::string& name)
     , m_mp(100), m_maxMp(100)
     , m_dp(0), m_maxDp(4000)
     , m_currentExp(0), m_maxExp(1000)
-    , m_abyssPoints(0), m_gloryPoints(0)
+    , m_abyssPoints(0)
     , m_abyssRank(1)
     , m_physAttack(10), m_physAccuracy(100), m_physCrit(10), m_physDef(50)
     , m_magicBoost(0), m_magicAcc(100), m_magicResist(50)
@@ -1564,9 +1564,8 @@ void DlgPlayerInfo::UpdateExperience(int64_t curExp, int64_t maxExp) {
     m_maxExp = maxExp;
 }
 
-void DlgPlayerInfo::UpdateAbyssPoints(int64_t ap, int64_t gp, int rank) {
+void DlgPlayerInfo::UpdateAbyssPoints(int64_t ap, int rank) {
     m_abyssPoints = ap;
-    m_gloryPoints = gp;
     m_abyssRank = rank;
 }
 

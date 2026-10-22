@@ -232,7 +232,10 @@ RecipeItem::RecipeItem(uint32_t recipeId, const std::string& name, uint32_t craf
 RecipeItem::~RecipeItem() {}
 
 void RecipeItem::AddIngredient(uint32_t itemId, uint32_t count) {
-    m_ingredients.push_back(RecipeIngredient(itemId, count));
+    RecipeIngredient ing;
+    ing.itemId = itemId;
+    ing.count = count;
+    m_ingredients.push_back(ing);
 }
 
 bool RecipeItem::CanCraft(uint32_t playerSkillId, uint32_t playerSkillLevel) const {

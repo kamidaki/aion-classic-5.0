@@ -439,7 +439,12 @@ bool Player::ExpandCube() {
 }
 
 void Player::RecalculateStats() {
-    PlayerAttributes attr;
+    PlayerAttributes attr = {};
+    attr.moveSpeed = 6.0f;
+    attr.flySpeed = 9.0f;
+    attr.glideSpeed = 12.0f;
+    attr.attackSpeed = 1.0f;
+    attr.castSpeed = 1.0f;
 
     // 1. Atributos Base por Classe Canônica do Aion Classic
     switch (m_playerClass) {
