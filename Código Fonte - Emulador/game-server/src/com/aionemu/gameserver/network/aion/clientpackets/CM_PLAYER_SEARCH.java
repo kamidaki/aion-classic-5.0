@@ -37,10 +37,13 @@ public class CM_PLAYER_SEARCH extends AionClientPacket {
 
 	@Override
 	protected void readImpl() {
-		name = readS(52);
-		if (name != null) {
-			name = Util.convertName(name);
-		}
+		// 5.0 (dec 0xB7, 64 b): nome num campo fixo de 52 bytes (26 caracteres UTF-16), depois região, classe e níveis.
+		// A busca vazia oficial vem com 60 bytes 0 e "ff ff 00 00" (min/max 0xFF = sem filtro de nível).
+		byte[] nomeFixo = readB(52);
+		int fim = 0;
+		while (fim + 1 < nomeFixo.length && (nomeFixo[fim] != 0 || nomeFixo[fim + 1] != 0))
+			fim += 2;
+		name = Util.convertName(new String(nomeFixo, 0, fim, java.nio.charset.StandardCharsets.UTF_16LE));
 		region = readD();
 		classMask = readD();
 		minLevel = readUC();

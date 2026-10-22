@@ -82,7 +82,7 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_UI_SETTINGS.class, 0xE8, State.IN_GAME); // 0x001A UI_SETTINGS
 		addPacket(CM_CHAT_MESSAGE_PUBLIC.class, 0xE9, State.IN_GAME); // 0x001B CHAT_MESSAGE_PUBLIC
 		addPacket(CM_CHAT_MESSAGE_PUBLIC.class, 0x99, State.IN_GAME); // Legacy fallback
-		addPacket(CM_CHAT_MESSAGE_WHISPER.class, 0xD6, State.IN_GAME); // 0x001C CHAT_MESSAGE_WHISPER
+		addPacket(CM_CHAT_MESSAGE_WHISPER.class, 0xCE, State.IN_GAME); // 0x0034 [S nome][S mensagem] (capturas oficiais: "Magicarp-Tia" + "ty"); o 0x001C nunca aparece no 5.0
 		addPacket(CM_CHAT_MESSAGE_WHISPER.class, 0x96, State.IN_GAME); // Legacy fallback
 		addPacket(CM_ATTACK.class, 0xD2, State.IN_GAME); // 0x0020 ATTACK
 		addPacket(CM_CASTSPELL.class, 0xD3, State.IN_GAME); // 0x0021 USE_SKILL
@@ -201,7 +201,8 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_TELEPORT_SELECT.class, 0x005C, State.IN_GAME); // Raw alias dec 0x005C
 		addPacket(CM_TELEPORT_SELECT.class, 0x16E, State.IN_GAME); // 0x0094 TELEPORT_SELECT (Flight & Teleport NPCs)
 		addPacket(CM_TELEPORT_SELECT.class, 0x0094, State.IN_GAME); // Raw alias
-		addPacket(CM_PLAYER_SEARCH.class, 0x155, State.IN_GAME); // PLAYER_SEARCH (0x155 Who Key 'V')
+		addPacket(CM_PLAYER_SEARCH.class, 0x14D, State.IN_GAME); // 0x00B7 busca de jogadores, 64 b -> S_SEARCH_USER_RESULT 0xD2 (capturas oficiais); o 0x009F é um pacote de 4 b do login
+		addPacket(CM_PING_REQUEST.class, 0x105, State.IN_GAME); // 0x006F vazio -> S_PING 0x7F [C 4], um por pedido (captura de combate de 14/09)
 		addPacket(CM_MOTION.class, 0x125, State.IN_GAME); // 0x004F MOTION (motion.pcapng; o 0x12D = dec 0x0057 nunca chega)
 		addPacket(CM_FUSION_WEAPONS.class, 0x1A5, State.IN_GAME); // FUSION_WEAPONS
 		addPacket(CM_BREAK_WEAPONS.class, 0x1A2, State.IN_GAME); // BREAK_WEAPONS

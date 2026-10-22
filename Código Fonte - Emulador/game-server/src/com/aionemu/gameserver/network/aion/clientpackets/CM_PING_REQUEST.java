@@ -27,6 +27,7 @@ public class CM_PING_REQUEST extends AionClientPacket {
 
 	@Override
 	protected void runImpl() {
-		// Retail Classic 5.0 server does NOT send SM_PING_RESPONSE (opcode 127)
+		// O oficial responde cada C 0x6F com S_PING (0x7F) [C 4] (captura 05_Combate_Skills_Asmodians de 2026-09-14)
+		sendPacket(new SM_PING_RESPONSE());
 	}
 }

@@ -12,7 +12,8 @@ public enum ChannelType {
 	TRADE("trade"),
 	LFG("partyFind"),
 	JOB("job"),
-	LANG("User");
+	LANG("User"),
+	GOTCHA("gotcha"); // 5.0: canal do sorteio, o cliente entra ao logar
 
 	private static final Map<String, ChannelType> channelByIdentifier = new HashMap<>();
 

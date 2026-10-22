@@ -26,6 +26,7 @@ public class ChatChannels {
 			case LFG -> new LfgChannel(gameServerId, race);
 			case JOB -> new JobChannel(gameServerId, race, channelMeta);
 			case LANG -> new LangChannel(gameServerId, race, channelMeta);
+			case GOTCHA -> new GotchaChannel(gameServerId, race);
 		};
 		channels.put(channel.getChannelId(), channel);
 		return channel;
