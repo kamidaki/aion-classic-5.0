@@ -2,7 +2,7 @@ use tao::dpi::LogicalSize;
 use tao::event::{Event, WindowEvent};
 use tao::event_loop::{ControlFlow, EventLoop, EventLoopBuilder, EventLoopProxy};
 use tao::window::WindowBuilder;
-use wry::WebViewBuilder;
+use wry::{WebContext, WebViewBuilder};
 
 pub enum UserEvent {
     ShowDashboard,
@@ -16,6 +16,24 @@ pub enum UserEvent {
 pub struct WebViewApp {
     event_loop: EventLoop<UserEvent>,
     proxy: EventLoopProxy<UserEvent>,
+}
+
+fn prepare_clean_appdata_webview_dir() -> std::path::PathBuf {
+    // Remove legacy local WebView2 directory next to the executable if present
+    let _ = std::fs::remove_dir_all("Aion Classic - EMULADOR.exe.WebView2");
+
+    let appdata_base = std::env::var_os("LOCALAPPDATA")
+        .or_else(|| std::env::var_os("APPDATA"))
+        .map(std::path::PathBuf::from)
+        .unwrap_or_else(std::env::temp_dir);
+
+    let webview_data_dir = appdata_base.join("AionClassicEmulador").join("WebView2");
+    if webview_data_dir.exists() {
+        let _ = std::fs::remove_dir_all(&webview_data_dir);
+    }
+    let _ = std::fs::create_dir_all(&webview_data_dir);
+    std::env::set_var("WEBVIEW2_USER_DATA_FOLDER", &webview_data_dir);
+    webview_data_dir
 }
 
 impl WebViewApp {
@@ -34,6 +52,9 @@ impl WebViewApp {
         url: String,
         cleanup_on_exit: impl Fn() + Send + Sync + 'static,
     ) {
+        let webview_data_dir = prepare_clean_appdata_webview_dir();
+        let mut web_context = WebContext::new(Some(webview_data_dir));
+
         let window = WindowBuilder::new()
             .with_title("Aion Classic - EMULADOR")
             .with_inner_size(LogicalSize::new(1440.0, 900.0))
@@ -41,7 +62,10 @@ impl WebViewApp {
             .build(&self.event_loop)
             .expect("Failed to build window");
 
-        let webview = match WebViewBuilder::new().with_url(&url).build(&window) {
+        let webview = match WebViewBuilder::with_web_context(&mut web_context)
+            .with_url(&url)
+            .build(&window)
+        {
             Ok(wv) => Some(wv),
             Err(e) => {
                 let _ = std::fs::write("logs/webview_error.log", format!("WebView Error: {:?}", e));
@@ -53,7 +77,7 @@ impl WebViewApp {
         window.set_focus();
 
         self.event_loop.run(move |event, _, control_flow| {
-            let _keep_alive = &webview;
+            let _keep_alive = (&webview, &web_context);
             *control_flow = ControlFlow::Wait;
 
             match event {

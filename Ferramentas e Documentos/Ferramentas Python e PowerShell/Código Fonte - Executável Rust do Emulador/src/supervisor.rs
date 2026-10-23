@@ -153,49 +153,34 @@ pub fn get_local_lan_ip() -> String {
     "127.0.0.1".to_string()
 }
 
-fn resolve_java_binary(candidate: &str) -> String {
+fn resolve_java_binary(candidate: &str, java_dir: &str) -> String {
+    if let Ok(cwd) = std::env::current_dir() {
+        if candidate != "java" && !candidate.trim().is_empty() {
+            let rel_cand = cwd.join(candidate);
+            if rel_cand.exists() {
+                return rel_cand.to_string_lossy().to_string();
+            }
+        }
+        if !java_dir.trim().is_empty() {
+            let bundled = cwd.join(java_dir).join("bin").join("java.exe");
+            if bundled.exists() {
+                return bundled.to_string_lossy().to_string();
+            }
+        }
+        let default_bundled = cwd.join("java-deployment").join("bin").join("java.exe");
+        if default_bundled.exists() {
+            return default_bundled.to_string_lossy().to_string();
+        }
+    }
+
     if candidate != "java" && std::path::Path::new(candidate).exists() {
         return candidate.to_string();
     }
 
-    // 1. Check JAVA_HOME environment variable first
     if let Ok(java_home) = std::env::var("JAVA_HOME") {
         let p = PathBuf::from(java_home).join("bin").join("java.exe");
         if p.exists() {
             return p.to_string_lossy().to_string();
-        }
-    }
-
-    // 2. Prioritize modern JDK paths (JDK 25 LTS required by this Aion build)
-    let modern_defaults = [
-        r"C:\Program Files\Java\jdk-25.0.2\bin\java.exe",
-        r"C:\Program Files\Java\jdk-25\bin\java.exe",
-        r"C:\Program Files\Java\jdk-24\bin\java.exe",
-        r"C:\Program Files\Java\jdk-23\bin\java.exe",
-        r"C:\Program Files\Java\jdk-22\bin\java.exe",
-        r"C:\Program Files\Java\jdk-21\bin\java.exe",
-        r"C:\Program Files\Java\jdk-17\bin\java.exe",
-    ];
-
-    for d in &modern_defaults {
-        if std::path::Path::new(d).exists() {
-            return d.to_string();
-        }
-    }
-
-    // 3. Look for any other JDK installed in common directories (Oracle/OpenJDK, Eclipse Adoptium, etc.)
-    for base in [r"C:\Program Files\Eclipse Adoptium", r"C:\Program Files\Java", r"C:\Program Files\Semeru"] {
-        if let Ok(entries) = std::fs::read_dir(base) {
-            let mut candidates: Vec<PathBuf> = entries
-                .filter_map(|e| e.ok())
-                .filter(|e| e.file_type().map(|t| t.is_dir()).unwrap_or(false))
-                .map(|e| e.path().join("bin").join("java.exe"))
-                .filter(|p| p.exists())
-                .collect();
-            candidates.sort_by(|a, b| b.cmp(a));
-            if let Some(best) = candidates.first() {
-                return best.to_string_lossy().to_string();
-            }
         }
     }
 
@@ -314,7 +299,7 @@ impl Supervisor {
                     tag: sc.tag.clone(),
                     color: sc.color.clone(),
                     working_dir,
-                    java_exe: resolve_java_binary(&sc.java_exe),
+                    java_exe: resolve_java_binary(&sc.java_exe, &config.paths.java_dir),
                     jvm_args: sc.jvm_args.clone(),
                     classpath: sc.classpath.clone(),
                     main_class: sc.main_class.clone(),

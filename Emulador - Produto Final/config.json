@@ -7,6 +7,7 @@
   },
   "paths": {
     "base_dir": ".",
+    "java_dir": "java-deployment",
     "chat_server_dir": "ChatServer",
     "login_server_dir": "LoginServer",
     "game_server_dir": "GameServer",
@@ -65,7 +66,7 @@
   },
   "servers": {
     "chat": {
-      "java_exe": "java",
+      "java_exe": "java-deployment/bin/java.exe",
       "jvm_args": ["-Xms72m","-Xmx72m","-XX:+UseNUMA","-XX:+UseCompactObjectHeaders","-Dfile.encoding=UTF-8","-DconsoleEncoding=UTF-8"],
       "main_class": "com.aionemu.chatserver.ChatServer",
       "classpath": "./libs/*",
@@ -78,7 +79,7 @@
       "shutdown_delay_seconds": 10
     },
     "login": {
-      "java_exe": "java",
+      "java_exe": "java-deployment/bin/java.exe",
       "jvm_args": ["-Xms48m","-Xmx48m","-XX:+UseNUMA","-XX:+UseCompactObjectHeaders","-Dfile.encoding=UTF-8","-DconsoleEncoding=UTF-8"],
       "main_class": "com.aionemu.loginserver.LoginServer",
       "classpath": "./libs/*",
@@ -91,7 +92,7 @@
       "shutdown_delay_seconds": 10
     },
     "game": {
-      "java_exe": "java",
+      "java_exe": "java-deployment/bin/java.exe",
       "jvm_args": ["-Xms5G","-Xmx8G","-XX:+UseNUMA","-XX:+UseCompactObjectHeaders","-Dfile.encoding=UTF-8","-DconsoleEncoding=UTF-8"],
       "main_class": "com.aionemu.gameserver.GameServer",
       "classpath": "./libs/*",

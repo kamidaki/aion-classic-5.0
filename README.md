@@ -108,7 +108,15 @@ A soluÃ§Ã£o adota arquitetura distribuÃ­da com microsserviÃ§os especializados co
 A estrutura de diretÃ³rios do repositÃ³rio foi totalmente reorganizada, estabelecendo caminhos limpos, sem numeraÃ§Ãµes legadas e com portabilidade absoluta:
 
 ```text
-D:\AION CLASSIC 5.0 - EMULADOR\
+aion-classic-5.0/
+¦
++-- CODE_OF_CONDUCT.md                        # Código de Conduta da Comunidade Técnica
++-- CONTRIBUTING.md                           # Guia de Contribuição e 10 Regras de Pull Request
++-- CONTEXT.md                                # Diretrizes Mandatórias de Engenharia e Arquitetura
++-- LICENSE                                   # Licença de Pesquisa Educacional e Não Comercial
++-- README.md                                 # Documentação Principal do Projeto
++-- SECURITY.md                               # Política de Segurança e Arquitetura de Proteção
++-- SUPPORT.md                                # Política Estrita de Zero Suporte (AS-IS)
 â”‚
 â”œâ”€â”€ CÃ³digo Fonte - Emulador\                  # Backend Java 25 multimodular
 â”‚   â”œâ”€â”€ commons\                              # NÃºcleo de rede NIO, Blowfish/RSA, GeoIP e threads
