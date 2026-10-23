@@ -39,6 +39,13 @@ class WardrobeClientPacketsTest {
 	}
 
 	@Test
+	void hairstyleExtendReadsThePayment() throws Exception {
+		// serializador 0x11A da aba de cabelo: [H 1][C 1 Quna, 2 item], fio 0x198
+		assertEquals(1, field(read(new CM_USER_CLASSIC_HAIRSTYLE_EXTEND(0x198, EnumSet.of(State.IN_GAME)), "010001"), "payment"));
+		assertEquals(2, field(read(new CM_USER_CLASSIC_HAIRSTYLE_EXTEND(0x198, EnumSet.of(State.IN_GAME)), "010002"), "payment"));
+	}
+
+	@Test
 	void extendKeepsTheWholeBody() throws Exception {
 		// cliente real em 21/09, pagando com Quna; a fonte 2.4 anota "use key in official = 01 00 02" para o item
 		CM_USER_CLASSIC_WARDROBE_EXTEND quna = read(new CM_USER_CLASSIC_WARDROBE_EXTEND(0x189, EnumSet.of(State.IN_GAME)), "010001");

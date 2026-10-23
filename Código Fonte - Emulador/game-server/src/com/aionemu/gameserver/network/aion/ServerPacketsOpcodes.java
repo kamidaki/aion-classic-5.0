@@ -331,7 +331,9 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(371, SM_ENCHANT_SYNERGY.class); // 0x0173 nível da sinergia de encantamento [D soma dos encantamentos]
 		addPacketOpcode(373, SM_EP_UPDATE.class); // EP (Ki) do próprio Brawler (0x0175, 2 b)
 		addPacketOpcode(374, SM_EP_UPDATE_OTHER.class); // EP de um jogador para quem o vê (0x0176, 6 b)
-		addPacketOpcode(375, SM_EQUIPMENT_VIEW_STATE.class); // [S_EQUIPMENT_VIEW_STATE] (0x0177)
+		addPacketOpcode(375, SM_USER_CLASSIC_HAIRSTYLE_LOAD.class); // lista de cabelo do Wardrobe (0x0177; Game.dll 0x8CC560)
+		addPacketOpcode(376, SM_USER_CLASSIC_HAIRSTYLE_DATA_UPDATED.class); // ação na lista de cabelo (0x0178; Game.dll 0x8CC860)
+		addPacketOpcode(377, SM_USER_CLASSIC_HAIRSTYLE_SLOTS.class); // slots da lista de cabelo (0x0179; Game.dll 0x8CCCD0)
 		addPacketOpcode(383, SM_PROTOCOL_VERSION.class); // [S_PROTOCOL_VERSION] (0x017F)
 		addPacketOpcode(384, SM_WORLD_VARIABLE.class); // [S_WORLD_VARIABLE] (0x0180) — variaveis de mundo do mapa
 		addPacketOpcode(385, SM_COMBAT_BURST_EFFECT.class); // [S_COMBAT_BURST_EFFECT] (0x0181)

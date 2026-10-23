@@ -121,6 +121,8 @@ public class CM_FIND_GROUP extends AionClientPacket {
 	@Override
 	protected void runImpl() {
 		Player player = getConnection().getActivePlayer();
+		if (player == null) // pedido da lista vindo da seleção de personagem (estado AUTHED)
+			return;
 		switch (action) {
 			case 0 -> FindGroupService.getInstance().showRecruitments(player);
 			case 1 -> FindGroupService.getInstance().removeRecruitment(player, serverId, unk1, unk2, unk3);

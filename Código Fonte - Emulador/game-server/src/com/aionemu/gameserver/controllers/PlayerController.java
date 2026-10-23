@@ -625,6 +625,26 @@ public class PlayerController extends CreatureController<Player> {
 			LegionService.getInstance().updateMemberInfo(player);
 	}
 
+	/**
+	 * Remonta o modelo do próprio personagem depois de mudar a aparência (penteado, tintura e outros cosméticos). Captura de 2026-09-21 (troca
+	 * de penteado): logo depois do S 0x11B e da msg, o oficial manda ao jogador o S_PUT_USER dele mesmo e os pacotes que acompanham uma aparição
+	 * (S_INVINCIBLE_TIME 0, S_INVISIBLE_LEVEL, S_BUILDER_LEVEL, S_ABNORMAL_STATUS, S_SKILL_PENALTY_STATUS, S_CUSTOM_ANIM, S_WORLD_SCENE_STATUS 3),
+	 * e depois o S_PUT_USER dos outros à volta. Sem o S_PUT_USER próprio a aparência nova só aparecia depois de relogar.
+	 */
+	public void refreshOwnAppearance() {
+		Player player = getOwner();
+		boolean gm = player.getAccount() != null && player.getAccount().getAccessLevel() >= AdminConfig.GM_PANEL;
+		PacketSendUtility.sendPacket(player, new SM_PLAYER_INFO(player));
+		PacketSendUtility.sendPacket(player, new SM_INVINCIBLE_TIME(0));
+		PacketSendUtility.sendPacket(player, new SM_PLAYER_STATE(player));
+		PacketSendUtility.sendPacket(player, new SM_ACCOUNT_PROPERTIES(gm));
+		player.getEffectController().updatePlayerEffectIcons(null);
+		PacketSendUtility.sendPacket(player, new SM_MOTION(player.getObjectId(), player.getMotions().getActiveMotions()));
+		PacketSendUtility.sendPacket(player, new SM_WORLD_SCENE_STATUS(3, 0, 0));
+		player.clearKnownlist(); // os outros recebem o S_PUT_USER novo ao rever o personagem
+		player.updateKnownlist();
+	}
+
 	public void onChangedPlayerAttributes() {
 		Player player = getOwner();
 		player.clearKnownlist();

@@ -41,8 +41,7 @@ public abstract class AbstractCharacterEditPacket extends AionClientPacket {
 		playerAppearance.setEyeRGB(readD());
 		playerAppearance.setLipRGB(readD());
 		playerAppearance.setFace(readUC());
-		playerAppearance.setHair(readUC());
-		playerAppearance.setDeco(readUC());
+		playerAppearance.setHair(readUH()); // H, como no S_PUT_USER (AionServerPacket.writeAppearance)
 		playerAppearance.setTattoo(readUC());
 		playerAppearance.setFaceContour(readUC());
 		playerAppearance.setExpression(readUC());

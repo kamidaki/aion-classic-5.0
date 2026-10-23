@@ -18,6 +18,7 @@ import com.aionemu.gameserver.model.team.legion.LegionHistoryAction;
 import com.aionemu.gameserver.dao.PlayerMorosDAO;
 import com.aionemu.gameserver.dao.PlayerStorybookDAO;
 import com.aionemu.gameserver.dao.PlayerWardrobeDAO;
+import com.aionemu.gameserver.dao.PlayerHairstyleDAO;
 
 /**
  * Serviço responsável por validar e inicializar automaticamente tabelas e colunas
@@ -112,6 +113,7 @@ public class DatabaseSchemaService {
 
 		// 7. player_wardrobe (Classic 5.0 Wardrobe: C 0xEE-0xFB / S 0x122-0x124)
 		executeSql(con, PlayerWardrobeDAO.CREATE_TABLE);
+		executeSql(con, PlayerHairstyleDAO.CREATE_TABLE); // lista de cabelo do Wardrobe (C 0xDE/0xDF/0xEB, S 0x177/0x178)
 
 		// 8. account_quna (Classic 5.0 Quna: saldo por conta, S 0x11B)
 		executeSql(con, AccountQunaDAO.CREATE_TABLE);
@@ -183,6 +185,11 @@ public class DatabaseSchemaService {
 		if (!hasColumn(con, "player_life_stats", "ep")) {
 			log.info("Adicionando coluna 'ep' na tabela player_life_stats...");
 			executeSql(con, "ALTER TABLE `player_life_stats` ADD COLUMN `ep` int NOT NULL DEFAULT '0' AFTER `sp`;");
+		}
+		// players: total de slots da lista de cabelo do Wardrobe 5.0 (S 0x177/0x179, expansão C 0xEA)
+		if (!hasColumn(con, "players", "hairstyle_size")) {
+			log.info("Adicionando coluna 'hairstyle_size' na tabela players...");
+			executeSql(con, "ALTER TABLE `players` ADD COLUMN `hairstyle_size` int NOT NULL DEFAULT '1' AFTER `wardrobe_size`;");
 		}
 		// inventory: visual aplicado pelo Wardrobe 5.0 (C 0xFA), que o blob 0x0B marca e o Wardrobe remove
 		if (!hasColumn(con, "inventory", "wardrobe_skin")) {

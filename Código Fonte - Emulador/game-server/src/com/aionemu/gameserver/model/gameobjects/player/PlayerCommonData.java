@@ -625,6 +625,17 @@ public class PlayerCommonData extends CreatureTemplate {
 		this.wardrobeSlot = wardrobeSlot;
 	}
 
+	/** Total de slots da lista de cabelo do Wardrobe (gratuito + comprados). */
+	private int hairstyleSlot = 1;
+
+	public int getHairstyleSlot() {
+		return hairstyleSlot;
+	}
+
+	public void setHairstyleSlot(int hairstyleSlot) {
+		this.hairstyleSlot = hairstyleSlot;
+	}
+
 	private int advencedStigmaSlotSize = 6;
 
 	public int getAdvencedStigmaSlotSize() {

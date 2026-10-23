@@ -206,6 +206,7 @@ public class Player extends Creature {
 	private boolean isInFfaTeamMode;
 	private int customStates;
 	private Map<Integer, WardrobeEntry> playerWardrobe;
+	private Map<Integer, WardrobeEntry> playerHairstyles;
 	private Map<Integer, EquipmentSetting> playerEquipSettingList = new ConcurrentHashMap<>();
 	private long lastEquipTime;
 	private PlayerBattlePass playerBattlePass;
@@ -351,6 +352,17 @@ public class Player extends Creature {
 
 	public void setPlayerWardrobe(Map<Integer, WardrobeEntry> playerWardrobe) {
 		this.playerWardrobe = playerWardrobe;
+	}
+
+	/**
+	 * Lista de cabelo do Wardrobe por objeto; null até carregar ou se a carga falhou. Mexer só com o lock do jogador (PlayerWardrobeService).
+	 */
+	public Map<Integer, WardrobeEntry> getPlayerHairstyles() {
+		return playerHairstyles;
+	}
+
+	public void setPlayerHairstyles(Map<Integer, WardrobeEntry> playerHairstyles) {
+		this.playerHairstyles = playerHairstyles;
 	}
 
 	public void putPlayerEquipSettingList(EquipmentSetting macross) {

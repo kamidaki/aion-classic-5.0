@@ -128,8 +128,9 @@ public abstract class AionServerPacket extends BaseServerPacket {
 		writeD(appearance.getEyeRGB());
 		writeD(appearance.getLipRGB());
 		writeC(appearance.getFace());
-		writeC(appearance.getHair());
-		writeC(appearance.getDeco());
+		// cabelo = H no offset 0x11 da aparência: o Game.dll lê word ptr [+0x11] e soma 1 para o %s%03d_Hair.cgf (0x3907fe); os penteados de
+		// tintura especial vão de 20000 a 20027 (df20001_hair...). O byte que vinha depois, como "deco", é o byte alto deste H.
+		writeH(appearance.getHair());
 		writeC(appearance.getTattoo());
 		writeC(appearance.getFaceContour());
 		writeC(appearance.getExpression());

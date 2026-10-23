@@ -169,6 +169,7 @@ public class PlayerDAO {
 					cd.setMentorFlagTime(resultSet.getInt("mentor_flag_time"));
 					cd.setLastTransferTime(resultSet.getLong("last_transfer_time"));
 					cd.setWardrobeSlot(Math.max(1, resultSet.getInt("wardrobe_size")));
+					cd.setHairstyleSlot(Math.max(1, resultSet.getInt("hairstyle_size")));
 					cd.setCreationDate(resultSet.getTimestamp("creation_date"));
 					cd.setDeletionDate(resultSet.getTimestamp("deletion_date"));
 					return cd;

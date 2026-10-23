@@ -136,6 +136,7 @@ public class IDFactory {
 		lockIds(HousesDAO.getUsedIDs());
 		lockIds(PlayerPetsDAO.getUsedIDs());
 		lockIds(PlayerWardrobeDAO.getUsedIDs());
+		lockIds(PlayerHairstyleDAO.getUsedIDs());
 		lockIds(PlayerBattlePassDAO.getUsedIDs());
 	}
 

@@ -107,7 +107,7 @@ public class CM_APPEARANCE extends AionClientPacket {
 
 	private void tryUseCosmeticItem(Player player, int itemObjId) {
 		Item item = player.getInventory().getItemByObjId(itemObjId);
-		if (item != null) {
+		if (item != null && item.getItemTemplate().getActions() != null) {
 			for (AbstractItemAction action : item.getItemTemplate().getActions().getItemActions()) {
 				if (action instanceof CosmeticItemAction && action.canAct(player, null, null)) {
 					action.act(player, null, item);

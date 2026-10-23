@@ -26,6 +26,10 @@ public class CosmeticItemAction extends AbstractItemAction {
 	@XmlAttribute(name = "name")
 	private String cosmeticName;
 
+	public String getCosmeticName() {
+		return cosmeticName;
+	}
+
 	@Override
 	public boolean canAct(Player player, Item parentItem, Item targetItem, Object... params) {
 		CosmeticItemTemplate template = DataManager.COSMETIC_ITEMS_DATA.getCosmeticItemsTemplate(cosmeticName);
@@ -79,6 +83,6 @@ public class CosmeticItemAction extends AbstractItemAction {
 		}
 		PlayerAppearanceDAO.store(player);
 		player.getInventory().delete(targetItem);
-		player.getController().onChangedPlayerAttributes();
+		player.getController().refreshOwnAppearance();
 	}
 }

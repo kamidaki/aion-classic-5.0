@@ -22,7 +22,8 @@ import com.aionemu.gameserver.network.aion.serverpackets.S_REWARD_ACHIEVEMENT_EV
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SPECIAL_SHOP_ITEM_LIST;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_AUTO_GROUP_STATUS;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ZONE_HAZARD_LIST;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_EQUIPMENT_VIEW_STATE;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_USER_CLASSIC_HAIRSTYLE_LOAD;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_USER_CLASSIC_HAIRSTYLE_SLOTS;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_COMBAT_BURST_EFFECT;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SPECIAL_CURRENCY_SLOTS;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_DEFAULT_EMOTION_LIST;
@@ -89,7 +90,8 @@ public class ServerPacketsOpcodesTest {
 		assertEquals(275, ServerPacketsOpcodes.getOpcode(SM_SPECIAL_SHOP_ITEM_LIST.class));
 		assertEquals(309, ServerPacketsOpcodes.getOpcode(SM_AUTO_GROUP_STATUS.class));
 		assertEquals(368, ServerPacketsOpcodes.getOpcode(SM_ZONE_HAZARD_LIST.class));
-		assertEquals(375, ServerPacketsOpcodes.getOpcode(SM_EQUIPMENT_VIEW_STATE.class));
+		assertEquals(375, ServerPacketsOpcodes.getOpcode(SM_USER_CLASSIC_HAIRSTYLE_LOAD.class));
+		assertEquals(377, ServerPacketsOpcodes.getOpcode(SM_USER_CLASSIC_HAIRSTYLE_SLOTS.class));
 		assertEquals(385, ServerPacketsOpcodes.getOpcode(SM_COMBAT_BURST_EFFECT.class));
 	}
 

@@ -110,8 +110,7 @@ public class SM_PTRANSFER_CONTROL extends LsServerPacket {
 				writeD(playerAppearance.getEyeRGB());
 				writeD(playerAppearance.getLipRGB());
 				writeC(playerAppearance.getFace());
-				writeC(playerAppearance.getHair());
-				writeC(playerAppearance.getDeco());
+				writeH(playerAppearance.getHair()); // penteados de 20000+ não cabem num byte
 				writeC(playerAppearance.getTattoo());
 				writeC(playerAppearance.getFaceContour());
 				writeC(playerAppearance.getExpression());

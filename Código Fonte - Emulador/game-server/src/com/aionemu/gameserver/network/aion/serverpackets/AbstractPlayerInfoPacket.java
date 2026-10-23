@@ -39,8 +39,7 @@ public abstract class AbstractPlayerInfoPacket extends AionServerPacket {
 		writeD(playerAppearance.getEyeRGB());
 		writeD(playerAppearance.getLipRGB());
 		writeC(playerAppearance.getFace());
-		writeC(playerAppearance.getHair());
-		writeC(playerAppearance.getDeco());
+		writeH(playerAppearance.getHair()); // H, como no S_PUT_USER (AionServerPacket.writeAppearance)
 		writeC(playerAppearance.getTattoo());
 		writeC(playerAppearance.getFaceContour());
 		writeC(playerAppearance.getExpression());

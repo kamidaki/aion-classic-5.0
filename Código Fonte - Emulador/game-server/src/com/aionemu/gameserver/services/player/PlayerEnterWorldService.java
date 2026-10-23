@@ -215,7 +215,7 @@ public final class PlayerEnterWorldService {
 			StorybookService.onEnterWorld(player); // S 0x14C e 0x14D
 			MorosService.onEnterWorld(player); // S 0x169, logo depois do 0x14D como na captura
 			com.lostacademy.lostsocket.secure.SecureAreaService.getInstance().onEnterWorld(player); // S 0x16B (SM_ALTER_INFO)
-			client.sendPacket(new SM_EQUIPMENT_VIEW_STATE());
+			PlayerWardrobeService.getInstance().onEnterWorldHairstyle(player); // S 0x177, lista de cabelo do Wardrobe
 			client.sendPacket(new SM_AVATAR_PRESENCE_INIT(player.getObjectId()));
 			client.sendPacket(new SM_AVATAR_PRESENCE_SYNC(player.getObjectId()));
 			client.sendPacket(new SM_REGION_CHAT_CHANNEL_INFO());

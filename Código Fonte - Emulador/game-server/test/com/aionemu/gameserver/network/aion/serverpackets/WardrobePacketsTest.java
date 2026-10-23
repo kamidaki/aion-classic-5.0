@@ -49,8 +49,46 @@ class WardrobePacketsTest {
 	}
 
 	@Test
-	void infoUpdatedRepeatsTheLoadHeader() throws Exception {
-		assertEquals("01000300030001", HEX.formatHex(body(new SM_USER_CLASSIC_WARDROBE_INFO_UPDATED(3, 3))));
+	void hairstyleListAndSlots() throws Exception {
+		assertEquals("000001000000", HEX.formatHex(body(new SM_USER_CLASSIC_HAIRSTYLE_LOAD(0x2E0F5BD9, List.of(), 1, 0))));
+		// S 0x177 da captura de 2026-09-21 14:56, menos o Q (842 no oficial, não lido pelo cliente)
+		WardrobeEntry hair = new WardrobeEntry(0xC081B22E, 169800480, null, false);
+		assertEquals("01002eb281c0" + "0000000000000000" + "d95b0f2e20f31e0a000100000000000001000000",
+			HEX.formatHex(body(new SM_USER_CLASSIC_HAIRSTYLE_LOAD(0x2E0F5BD9, List.of(hair), 1, 0))));
+		// S 0x178 (Game.dll 0x8CC860): [C ação] + o mesmo registro
+		assertEquals("01" + "2eb281c0" + "0000000000000000" + "d95b0f2e20f31e0a0001000000000000",
+			HEX.formatHex(body(new SM_USER_CLASSIC_HAIRSTYLE_DATA_UPDATED(SM_USER_CLASSIC_HAIRSTYLE_DATA_UPDATED.REGISTERED, 0x2E0F5BD9, hair))));
+		// S 0x179 (Game.dll 0x8CCCD0): [H gratuitos][H comprados]
+		assertEquals("01000200", HEX.formatHex(body(new SM_USER_CLASSIC_HAIRSTYLE_SLOTS(1, 2))));
+	}
+
+	@Test
+	void appearanceCarriesTheHairAsWord() throws Exception {
+		// Game.dll 0x3907fe: word ptr [aparência + 0x11] + 1 = malha %s%03d_Hair.cgf; 20011 (tintura especial) vira df20012_hair
+		com.aionemu.gameserver.model.gameobjects.player.PlayerAppearance look = new com.aionemu.gameserver.model.gameobjects.player.PlayerAppearance();
+		look.setFace(25);
+		look.setHair(20011);
+		byte[] out = body(new AionServerPacket(0x20) {
+			@Override
+			protected void writeImpl(AionConnection con) {
+				writeAppearance(look);
+			}
+		});
+		assertEquals(67, out.length);
+		assertEquals("192b4e", HEX.formatHex(out, 16, 19));
+		look.setHair(210); // S_PUT_USER oficial de 2026-09-21 14:56: 19 d2 00
+		assertEquals("19d200", HEX.formatHex(body(new AionServerPacket(0x20) {
+			@Override
+			protected void writeImpl(AionConnection con) {
+				writeAppearance(look);
+			}
+		}), 16, 19));
+	}
+
+	@Test
+	void infoUpdatedCarriesOnlyThePurchasedSlots() throws Exception {
+		// Game.dll 0x8C9300 lê só [H slots comprados] (o mesmo global do 2º H do LOAD)
+		assertEquals("0300", HEX.formatHex(body(new SM_USER_CLASSIC_WARDROBE_INFO_UPDATED(3))));
 	}
 
 	@Test

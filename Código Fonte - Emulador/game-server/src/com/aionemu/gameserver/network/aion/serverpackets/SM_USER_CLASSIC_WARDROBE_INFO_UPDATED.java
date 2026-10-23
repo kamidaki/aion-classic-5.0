@@ -1,27 +1,26 @@
 package com.aionemu.gameserver.network.aion.serverpackets;
 
 import com.aionemu.gameserver.network.aion.AionConnection;
+import com.aionemu.gameserver.network.aion.AionServerPacket;
 
 /**
- * S_USER_CLASSIC_WARDROBE_INFO_UPDATED (0x123, nome e número da tabela de pacotes do Game.dll), a resposta da expansão de slot. Sem captura
- * oficial.
+ * S_USER_CLASSIC_WARDROBE_INFO_UPDATED (0x123, nome e número da tabela de pacotes do Game.dll), a resposta da expansão de slot: [H slots
+ * comprados]. Sem captura oficial.
  * <p>
- * O layout é dedução: o 0x122 (LOAD) é cabeçalho + entradas e o 0x124 (DATA_UPDATED) é ação + uma entrada no formato do LOAD, então o INFO
- * repete o cabeçalho do LOAD, com os slots comprados já somados. O cliente real aceitou em 21/09: depois de expandir para 2 slots, registrou o
- * segundo item.
+ * O tratador do Game.dll (0x8C9300) lê só esse H e o grava no mesmo global que o 2º H do S_USER_CLASSIC_WARDROBE_LOAD (0x16BB850, slots
+ * comprados), depois marca a janela para redesenhar. O emulador mandava o cabeçalho do LOAD ([H 1][H slots][H n][C 1]): o cliente lia o 1
+ * fixo e passava a mostrar só os gratuitos + 1 até o próximo login.
  */
-public class SM_USER_CLASSIC_WARDROBE_INFO_UPDATED extends AbstractWardrobePacket {
+public class SM_USER_CLASSIC_WARDROBE_INFO_UPDATED extends AionServerPacket {
 
 	private final int extendedSlots;
-	private final int count;
 
-	public SM_USER_CLASSIC_WARDROBE_INFO_UPDATED(int extendedSlots, int count) {
+	public SM_USER_CLASSIC_WARDROBE_INFO_UPDATED(int extendedSlots) {
 		this.extendedSlots = extendedSlots;
-		this.count = count;
 	}
 
 	@Override
 	protected void writeImpl(AionConnection con) {
-		writeHeader(extendedSlots, count);
+		writeH(extendedSlots);
 	}
 }

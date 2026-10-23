@@ -36,6 +36,7 @@ public class PlayerWardrobeDAO {
 	public static final String UPDATE_QUERY = "UPDATE player_wardrobe SET `color`=?, `like`=? WHERE `object_id`=?";
 	public static final String DELETE_QUERY = "DELETE FROM player_wardrobe WHERE object_id = ?";
 	public static final String UPDATE_SIZE_QUERY = "UPDATE players SET wardrobe_size=? WHERE id=?";
+	public static final String UPDATE_HAIRSTYLE_SIZE_QUERY = "UPDATE players SET hairstyle_size=? WHERE id=?";
 
 	/**
 	 * @return objeto -> entrada, na ordem dos objetos
@@ -107,6 +108,18 @@ public class PlayerWardrobeDAO {
 			return true;
 		} catch (SQLException e) {
 			log.error("Could not store wardrobe size {} of player {}", size, playerId, e);
+			return false;
+		}
+	}
+
+	public static boolean storeHairstyleSize(int playerId, int size) {
+		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement stmt = con.prepareStatement(UPDATE_HAIRSTYLE_SIZE_QUERY)) {
+			stmt.setInt(1, size);
+			stmt.setInt(2, playerId);
+			stmt.execute();
+			return true;
+		} catch (SQLException e) {
+			log.error("Could not store hairstyle list size {} of player {}", size, playerId, e);
 			return false;
 		}
 	}

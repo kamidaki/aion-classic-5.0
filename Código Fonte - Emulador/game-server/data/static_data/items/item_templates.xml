@@ -540323,66 +540323,366 @@ Este item desaparecerá ao término do evento." level="1" cName="classic_event_s
 	<item_template id="169700100" name_en="[Event] Class Change Ticket" name_pt="[Evento] Classe mudar Bilhete" level="1" cName="classic_event_classchange_ticket" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="798811" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
 	<item_template id="169700101" name_en="[Event] Class Change Ticket" name_pt="[Evento] Classe mudar Bilhete" level="1" cName="classic_event_classchange_ticket_01" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="811505" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
 	<item_template id="169700300" name_en="[Event] Faction Change Ticket" name_pt="[Evento] Facção mudar Bilhete" level="1" cName="classic_race_swap_ticket" mask="16456" item_group="PACK_SCROLL" quality="LEGEND" price="5" desc="813758" race="PC_ALL" max_stack_count="1" item_type="NORMAL" client_mask="16680"/>
-	<item_template id="169800053" name_en="[Hairstyle] My Cutie Style" name_pt="[Penteado] Estilo Gracinha" level="1" cName="cash_item_hair_type_li_m_203a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="788292" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800054" name_en="[Hairstyle] Fashion Fatale" name_pt="[Penteado] Moda Fatal" level="1" cName="cash_item_hair_type_li_m_202a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="788583" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800055" name_en="[Hairstyle] Down to Business" name_pt="[Penteado] abaixo para Negócio" level="1" cName="cash_item_hair_type_li_m_204a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="791155" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800056" name_en="[헤어] 켄시로 스타일" name_pt="[헤어] 켄시로 스타일" level="1" cName="cash_item_hair_type_li_m_205a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="795992" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800057" name_en="[Hairstyle] Fashionable Bowl Cut" name_pt="[Penteado] Na moda Tigela corte" level="1" cName="cash_item_hair_type_li_m_206a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="798921" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800058" name_en="[Hairstyle] Long Silky" name_pt="[Penteado] longo Sedoso" level="1" cName="cash_item_hair_type_li_m_207a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="800754" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800059" name_en="[Hairstyle] Dandy Cut" name_pt="[Penteado] Dândi corte" level="1" cName="cash_hair_type_li_m_209a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="801531" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800060" name_en="[Hairstyle] Urban Bowl Cut" name_pt="[Penteado] Urbano Tigela corte" level="1" cName="cash_hair_type_li_m_208a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="802513" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800061" name_en="[Hairstyle] Elegance of Fashion" name_pt="[Penteado] Elegância de Moda" level="1" cName="cash_item_hair_type_li_m_202a_02" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="819958" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800171" name_en="[Hairstyle] Long, Curly Two-coloured Hair (Female)" name_pt="[Penteado] longo, Curley dois-colorido cabelo (Feminino)" level="1" cName="world_cn_cash_hair_type_li_w_201a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782124" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800172" name_en="[Hairstyle] Curly Ponytails (Female)" name_pt="[Penteado] Curley Ponytails (Feminino)" level="1" cName="world_cn_cash_hair_type_li_w_203a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782126" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800173" name_en="[Hairstyle] Long, Smooth Hair (Female)" name_pt="[Penteado] longo, Suave cabelo (Feminino)" level="1" cName="world_cn_cash_hair_type_li_w_204a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782128" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800174" name_en="[Hairstyle] Crowned Long &amp; Smooth Hair (Female)" name_pt="[Penteado] Cabelo Longo e Sedoso com Coroa (Feminino)" level="1" cName="world_cn_cash_hair_type_li_w_205a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782130" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800175" name_en="[Hairstyle] Lady Curly Curls" name_pt="[Penteado] Lady Curley Cachos" level="1" cName="cash_item_hair_type_li_w_208a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="788293" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800176" name_en="[Hairstyle] Fabulous Fascinator" name_pt="[Penteado] Fabuloso Fascinator" level="1" cName="cash_item_hair_type_li_w_207a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="788584" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800177" name_en="[Hairstyle] Charming Ponytail" name_pt="[Penteado] Encantador Rabo de Cavalo" level="1" cName="cash_item_hair_type_li_w_209a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="791156" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800178" name_en="[헤어] 유리아 스타일" name_pt="[헤어] 유리아 스타일" level="1" cName="cash_item_hair_type_li_w_210a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="795993" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800179" name_en="[Hairstyle] Loose Curls" name_pt="[Penteado] Solta Cachos" level="1" cName="cash_item_hair_type_li_w_211a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="798922" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800180" name_en="[Hairstyle] Natural Flowing" name_pt="[Penteado] Natural Fluindo" level="1" cName="cash_item_hair_type_li_w_212a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="800756" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800181" name_en="[Hairstyle] Flowing Locks" name_pt="[Penteado] Fluindo Locks" level="1" cName="cash_hair_type_li_w_214a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="801532" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800182" name_en="[Hairstyle] Urban Bob" name_pt="[Penteado] Urbano Bobo" level="1" cName="cash_hair_type_li_w_213a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="802514" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800183" name_en="[Hairstyle] Ponytail with a Bow" name_pt="[Penteado] Rabo de Cavalo com a Arco" level="1" cName="cash_hair_type_li_w_215a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807156" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800184" name_en="[Hairstyle] Ponytail with a Big Bow" name_pt="[Penteado] Rabo de Cavalo com a Grande Arco" level="1" cName="world_cash_hair_type_li_w_216a" mask="26" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808228" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16666" casting_delay="5000"/>
-	<item_template id="169800185" name_en="[Hairstyle] Pretty Braid Style" name_pt="[Penteado] Lindo Nó de trança Estilo" level="1" cName="cash_hair_type_li_w_216a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="814792" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800186" name_en="[Hairstyle] Pretty Long-Bob Style" name_pt="[Penteado] Lindo longo-Bobo Estilo" level="1" cName="cash_hair_type_li_w_217a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="814793" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800187" name_en="[Hairstyle] Pretty Pop" name_pt="[Penteado] Lindo estouro" level="1" cName="cash_item_hair_type_li_w_208a_02" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="819956" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800354" name_en="[Hairstyle] My Cutie Style" name_pt="[Penteado] Estilo Gracinha" level="1" cName="cash_item_hair_type_da_m_203a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="788292" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800355" name_en="[Hairstyle] Fashion Fatale" name_pt="[Penteado] Moda Fatal" level="1" cName="cash_item_hair_type_da_m_202a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="788583" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800356" name_en="[Hairstyle] Down to Business" name_pt="[Penteado] abaixo para Negócio" level="1" cName="cash_item_hair_type_da_m_204a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="791155" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800358" name_en="[Hairstyle] Fashionable Bowl Cut" name_pt="[Penteado] Na moda Tigela corte" level="1" cName="cash_item_hair_type_da_m_206a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="798921" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800359" name_en="[Hairstyle] Long Silky" name_pt="[Penteado] longo Sedoso" level="1" cName="cash_item_hair_type_da_m_207a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="800754" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800360" name_en="[Hairstyle] Dandy Cut" name_pt="[Penteado] Dândi corte" level="1" cName="cash_hair_type_da_m_209a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="801531" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800361" name_en="[Hairstyle] Urban Bowl Cut" name_pt="[Penteado] Urbano Tigela corte" level="1" cName="cash_hair_type_da_m_208a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="802513" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800362" name_en="[Hairstyle] Elegance of Fashion" name_pt="[Penteado] Elegância de Moda" level="1" cName="cash_item_hair_type_da_m_202a_02" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="819958" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800472" name_en="[Hairstyle] Long, Curly Two-coloured Hair (Female)" name_pt="[Penteado] longo, Curley dois-colorido cabelo (Feminino)" level="1" cName="world_cn_cash_hair_type_da_w_201a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782132" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800473" name_en="[Hairstyle] Curly Ponytails (Female)" name_pt="[Penteado] Curley Ponytails (Feminino)" level="1" cName="world_cn_cash_hair_type_da_w_203a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782134" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800474" name_en="[Hairstyle] Long, Smooth Hair (Female)" name_pt="[Penteado] longo, Suave cabelo (Feminino)" level="1" cName="world_cn_cash_hair_type_da_w_204a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782136" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800475" name_en="[Hairstyle] Crowned Long &amp; Smooth Hair (Female)" name_pt="[Penteado] Cabelo Longo e Sedoso com Coroa (Feminino)" level="1" cName="world_cn_cash_hair_type_da_w_205a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782138" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800476" name_en="[Hairstyle] Lady Curly Curls" name_pt="[Penteado] Lady Curley Cachos" level="1" cName="cash_item_hair_type_da_w_208a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="788293" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800477" name_en="[Hairstyle] Fabulous Fascinator" name_pt="[Penteado] Fabuloso Fascinator" level="1" cName="cash_item_hair_type_da_w_207a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="788584" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800478" name_en="[Hairstyle] Charming Ponytail" name_pt="[Penteado] Encantador Rabo de Cavalo" level="1" cName="cash_item_hair_type_da_w_209a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="791156" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800480" name_en="[Hairstyle] Loose Curls" name_pt="[Penteado] Solta Cachos" level="1" cName="cash_item_hair_type_da_w_211a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="798922" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800481" name_en="[Hairstyle] Natural Flowing" name_pt="[Penteado] Natural Fluindo" level="1" cName="cash_item_hair_type_da_w_212a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="800756" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800482" name_en="[Hairstyle] Flowing Locks" name_pt="[Penteado] Fluindo Locks" level="1" cName="cash_hair_type_da_w_214a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="801532" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800483" name_en="[Hairstyle] Urban Bob" name_pt="[Penteado] Urbano Bobo" level="1" cName="cash_hair_type_da_w_213a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="802514" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800484" name_en="[Hairstyle] Ponytail with a Bow" name_pt="[Penteado] Rabo de Cavalo com a Arco" level="1" cName="cash_hair_type_da_w_215a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807156" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800485" name_en="[Hairstyle] Ponytail with a Big Bow" name_pt="[Penteado] Rabo de Cavalo com a Grande Arco" level="1" cName="world_cash_hair_type_da_w_216a" mask="26" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808226" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16666" casting_delay="5000"/>
-	<item_template id="169800486" name_en="[Hairstyle] Pretty Braid Style" name_pt="[Penteado] Lindo Nó de trança Estilo" level="1" cName="cash_hair_type_da_w_216a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="814792" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169800487" name_en="[Hairstyle] Pretty Long-Bob Style" name_pt="[Penteado] Lindo longo-Bobo Estilo" level="1" cName="cash_hair_type_da_w_217a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="814793" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169802201" name_en="[Hairstyle] Luminess Premium Hairstyle" name_pt="[Penteado] Luminess Premium penteado" level="1" cName="cash_item_dye_hair_type_li_w_20001" mask="49242" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="804490" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169802202" name_en="[Hairstyle] Spring Premium Hairstyle" name_pt="[Penteado] Primavera Premium penteado" level="1" cName="cash_item_dye_hair_type_li_w_20008" mask="49242" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807488" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169802203" name_en="[Hairstyle] Premium Wavy Hair" name_pt="[Penteado] Premium Ondulado cabelo" level="1" cName="cash_item_dye_hair_type_li_w_20012" mask="49242" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807760" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169802204" name_en="[Hairstyle] Phoenix’s Premium Hairstyle" name_pt="[Penteado] Fênix’s Premium penteado" level="1" cName="cash_item_dye_hair_type_li_w_20018" mask="49242" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="814014" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169802205" name_en="[Hairstyle] Glow Premium Haircut" name_pt="[Penteado] Brilho Premium Corte de cabelo" level="1" cName="cash_item_dye_hair_type_li_w_20023" mask="49242" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="817353" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169802301" name_en="[Hairstyle] Luminess Premium Hairstyle" name_pt="[Penteado] Luminess Premium penteado" level="1" cName="cash_item_dye_hair_type_da_w_20001" mask="49242" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="804490" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169802302" name_en="[Hairstyle] Spring Premium Hairstyle" name_pt="[Penteado] Primavera Premium penteado" level="1" cName="cash_item_dye_hair_type_da_w_20008" mask="49242" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807488" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169802303" name_en="[Hairstyle] Premium Wavy Hair" name_pt="[Penteado] Premium Ondulado cabelo" level="1" cName="cash_item_dye_hair_type_da_w_20012" mask="49242" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807760" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169802304" name_en="[Hairstyle] Phoenix’s Premium Hairstyle" name_pt="[Penteado] Fênix’s Premium penteado" level="1" cName="cash_item_dye_hair_type_da_w_20018" mask="49242" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="814014" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169802305" name_en="[Hairstyle] Glow Premium Haircut" name_pt="[Penteado] Brilho Premium Corte de cabelo" level="1" cName="cash_item_dye_hair_type_da_w_20023" mask="49242" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="817353" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
-	<item_template id="169802306" name_en="[Hairstyle] Pretty Pop" name_pt="[Penteado] Lindo estouro" level="1" cName="cash_item_hair_type_da_w_208a_02" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="819956" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000"/>
+	<item_template id="169800053" name_en="[Hairstyle] My Cutie Style" name_pt="[Penteado] Estilo Gracinha" level="1" cName="cash_item_hair_type_li_m_203a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="788292" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_m_203a"/>
+		</actions>
+		<uselimits gender="MALE"/>
+	</item_template>
+	<item_template id="169800054" name_en="[Hairstyle] Fashion Fatale" name_pt="[Penteado] Moda Fatal" level="1" cName="cash_item_hair_type_li_m_202a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="788583" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_m_202a"/>
+		</actions>
+		<uselimits gender="MALE"/>
+	</item_template>
+	<item_template id="169800055" name_en="[Hairstyle] Down to Business" name_pt="[Penteado] abaixo para Negócio" level="1" cName="cash_item_hair_type_li_m_204a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="791155" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_m_204a"/>
+		</actions>
+		<uselimits gender="MALE"/>
+	</item_template>
+	<item_template id="169800056" name_en="[헤어] 켄시로 스타일" name_pt="[헤어] 켄시로 스타일" level="1" cName="cash_item_hair_type_li_m_205a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="795992" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_m_205a"/>
+		</actions>
+		<uselimits gender="MALE"/>
+	</item_template>
+	<item_template id="169800057" name_en="[Hairstyle] Fashionable Bowl Cut" name_pt="[Penteado] Na moda Tigela corte" level="1" cName="cash_item_hair_type_li_m_206a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="798921" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_m_206a"/>
+		</actions>
+		<uselimits gender="MALE"/>
+	</item_template>
+	<item_template id="169800058" name_en="[Hairstyle] Long Silky" name_pt="[Penteado] longo Sedoso" level="1" cName="cash_item_hair_type_li_m_207a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="800754" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_m_207a"/>
+		</actions>
+		<uselimits gender="MALE"/>
+	</item_template>
+	<item_template id="169800059" name_en="[Hairstyle] Dandy Cut" name_pt="[Penteado] Dândi corte" level="1" cName="cash_hair_type_li_m_209a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="801531" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_m_209a"/>
+		</actions>
+		<uselimits gender="MALE"/>
+	</item_template>
+	<item_template id="169800060" name_en="[Hairstyle] Urban Bowl Cut" name_pt="[Penteado] Urbano Tigela corte" level="1" cName="cash_hair_type_li_m_208a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="802513" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_m_208a"/>
+		</actions>
+		<uselimits gender="MALE"/>
+	</item_template>
+	<item_template id="169800061" name_en="[Hairstyle] Elegance of Fashion" name_pt="[Penteado] Elegância de Moda" level="1" cName="cash_item_hair_type_li_m_202a_02" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="819958" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_m_202a"/>
+		</actions>
+		<uselimits gender="MALE"/>
+	</item_template>
+	<item_template id="169800171" name_en="[Hairstyle] Long, Curly Two-coloured Hair (Female)" name_pt="[Penteado] longo, Curley dois-colorido cabelo (Feminino)" level="1" cName="world_cn_cash_hair_type_li_w_201a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782124" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="world_cash_hair_type_li_w_201a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800172" name_en="[Hairstyle] Curly Ponytails (Female)" name_pt="[Penteado] Curley Ponytails (Feminino)" level="1" cName="world_cn_cash_hair_type_li_w_203a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782126" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="world_cash_hair_type_li_w_203a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800173" name_en="[Hairstyle] Long, Smooth Hair (Female)" name_pt="[Penteado] longo, Suave cabelo (Feminino)" level="1" cName="world_cn_cash_hair_type_li_w_204a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782128" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="world_cash_hair_type_li_w_204a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800174" name_en="[Hairstyle] Crowned Long &amp; Smooth Hair (Female)" name_pt="[Penteado] Cabelo Longo e Sedoso com Coroa (Feminino)" level="1" cName="world_cn_cash_hair_type_li_w_205a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782130" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="world_cash_hair_type_li_w_205a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800175" name_en="[Hairstyle] Lady Curly Curls" name_pt="[Penteado] Lady Curley Cachos" level="1" cName="cash_item_hair_type_li_w_208a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="788293" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_w_208a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800176" name_en="[Hairstyle] Fabulous Fascinator" name_pt="[Penteado] Fabuloso Fascinator" level="1" cName="cash_item_hair_type_li_w_207a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="788584" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_w_207a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800177" name_en="[Hairstyle] Charming Ponytail" name_pt="[Penteado] Encantador Rabo de Cavalo" level="1" cName="cash_item_hair_type_li_w_209a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="791156" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_w_209a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800178" name_en="[헤어] 유리아 스타일" name_pt="[헤어] 유리아 스타일" level="1" cName="cash_item_hair_type_li_w_210a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="795993" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_w_210a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800179" name_en="[Hairstyle] Loose Curls" name_pt="[Penteado] Solta Cachos" level="1" cName="cash_item_hair_type_li_w_211a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="798922" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_w_211a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800180" name_en="[Hairstyle] Natural Flowing" name_pt="[Penteado] Natural Fluindo" level="1" cName="cash_item_hair_type_li_w_212a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="800756" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_w_212a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800181" name_en="[Hairstyle] Flowing Locks" name_pt="[Penteado] Fluindo Locks" level="1" cName="cash_hair_type_li_w_214a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="801532" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_w_214a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800182" name_en="[Hairstyle] Urban Bob" name_pt="[Penteado] Urbano Bobo" level="1" cName="cash_hair_type_li_w_213a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="802514" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_w_213a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800183" name_en="[Hairstyle] Ponytail with a Bow" name_pt="[Penteado] Rabo de Cavalo com a Arco" level="1" cName="cash_hair_type_li_w_215a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807156" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_w_215a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800184" name_en="[Hairstyle] Ponytail with a Big Bow" name_pt="[Penteado] Rabo de Cavalo com a Grande Arco" level="1" cName="world_cash_hair_type_li_w_216a" mask="26" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808228" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16666" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_w_215a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800185" name_en="[Hairstyle] Pretty Braid Style" name_pt="[Penteado] Lindo Nó de trança Estilo" level="1" cName="cash_hair_type_li_w_216a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="814792" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_w_216a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800186" name_en="[Hairstyle] Pretty Long-Bob Style" name_pt="[Penteado] Lindo longo-Bobo Estilo" level="1" cName="cash_hair_type_li_w_217a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="814793" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_w_217a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800187" name_en="[Hairstyle] Pretty Pop" name_pt="[Penteado] Lindo estouro" level="1" cName="cash_item_hair_type_li_w_208a_02" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="819956" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_li_w_208a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800354" name_en="[Hairstyle] My Cutie Style" name_pt="[Penteado] Estilo Gracinha" level="1" cName="cash_item_hair_type_da_m_203a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="788292" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_da_m_203a"/>
+		</actions>
+		<uselimits gender="MALE"/>
+	</item_template>
+	<item_template id="169800355" name_en="[Hairstyle] Fashion Fatale" name_pt="[Penteado] Moda Fatal" level="1" cName="cash_item_hair_type_da_m_202a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="788583" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_da_m_202a"/>
+		</actions>
+		<uselimits gender="MALE"/>
+	</item_template>
+	<item_template id="169800356" name_en="[Hairstyle] Down to Business" name_pt="[Penteado] abaixo para Negócio" level="1" cName="cash_item_hair_type_da_m_204a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="791155" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_da_m_204a"/>
+		</actions>
+		<uselimits gender="MALE"/>
+	</item_template>
+	<item_template id="169800358" name_en="[Hairstyle] Fashionable Bowl Cut" name_pt="[Penteado] Na moda Tigela corte" level="1" cName="cash_item_hair_type_da_m_206a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="798921" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_da_m_206a"/>
+		</actions>
+		<uselimits gender="MALE"/>
+	</item_template>
+	<item_template id="169800359" name_en="[Hairstyle] Long Silky" name_pt="[Penteado] longo Sedoso" level="1" cName="cash_item_hair_type_da_m_207a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="800754" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_da_m_207a"/>
+		</actions>
+		<uselimits gender="MALE"/>
+	</item_template>
+	<item_template id="169800360" name_en="[Hairstyle] Dandy Cut" name_pt="[Penteado] Dândi corte" level="1" cName="cash_hair_type_da_m_209a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="801531" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_da_m_209a"/>
+		</actions>
+		<uselimits gender="MALE"/>
+	</item_template>
+	<item_template id="169800361" name_en="[Hairstyle] Urban Bowl Cut" name_pt="[Penteado] Urbano Tigela corte" level="1" cName="cash_hair_type_da_m_208a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="802513" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_da_m_208a"/>
+		</actions>
+		<uselimits gender="MALE"/>
+	</item_template>
+	<item_template id="169800362" name_en="[Hairstyle] Elegance of Fashion" name_pt="[Penteado] Elegância de Moda" level="1" cName="cash_item_hair_type_da_m_202a_02" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="819958" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_da_m_202a"/>
+		</actions>
+		<uselimits gender="MALE"/>
+	</item_template>
+	<item_template id="169800472" name_en="[Hairstyle] Long, Curly Two-coloured Hair (Female)" name_pt="[Penteado] longo, Curley dois-colorido cabelo (Feminino)" level="1" cName="world_cn_cash_hair_type_da_w_201a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782132" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="world_cash_hair_type_da_w_201a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800473" name_en="[Hairstyle] Curly Ponytails (Female)" name_pt="[Penteado] Curley Ponytails (Feminino)" level="1" cName="world_cn_cash_hair_type_da_w_203a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782134" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="world_cash_hair_type_da_w_203a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800474" name_en="[Hairstyle] Long, Smooth Hair (Female)" name_pt="[Penteado] longo, Suave cabelo (Feminino)" level="1" cName="world_cn_cash_hair_type_da_w_204a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782136" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="world_cash_hair_type_da_w_204a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800475" name_en="[Hairstyle] Crowned Long &amp; Smooth Hair (Female)" name_pt="[Penteado] Cabelo Longo e Sedoso com Coroa (Feminino)" level="1" cName="world_cn_cash_hair_type_da_w_205a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="782138" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="world_cash_hair_type_da_w_205a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800476" name_en="[Hairstyle] Lady Curly Curls" name_pt="[Penteado] Lady Curley Cachos" level="1" cName="cash_item_hair_type_da_w_208a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="788293" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_da_w_208a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800477" name_en="[Hairstyle] Fabulous Fascinator" name_pt="[Penteado] Fabuloso Fascinator" level="1" cName="cash_item_hair_type_da_w_207a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="788584" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_da_w_207a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800478" name_en="[Hairstyle] Charming Ponytail" name_pt="[Penteado] Encantador Rabo de Cavalo" level="1" cName="cash_item_hair_type_da_w_209a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="791156" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_da_w_209a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800480" name_en="[Hairstyle] Loose Curls" name_pt="[Penteado] Solta Cachos" level="1" cName="cash_item_hair_type_da_w_211a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="798922" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_da_w_211a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800481" name_en="[Hairstyle] Natural Flowing" name_pt="[Penteado] Natural Fluindo" level="1" cName="cash_item_hair_type_da_w_212a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="800756" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_da_w_212a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800482" name_en="[Hairstyle] Flowing Locks" name_pt="[Penteado] Fluindo Locks" level="1" cName="cash_hair_type_da_w_214a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="801532" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_da_w_214a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800483" name_en="[Hairstyle] Urban Bob" name_pt="[Penteado] Urbano Bobo" level="1" cName="cash_hair_type_da_w_213a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="802514" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_da_w_213a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800484" name_en="[Hairstyle] Ponytail with a Bow" name_pt="[Penteado] Rabo de Cavalo com a Arco" level="1" cName="cash_hair_type_da_w_215a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807156" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_da_w_215a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800485" name_en="[Hairstyle] Ponytail with a Big Bow" name_pt="[Penteado] Rabo de Cavalo com a Grande Arco" level="1" cName="world_cash_hair_type_da_w_216a" mask="26" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="808226" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16666" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_da_w_215a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800486" name_en="[Hairstyle] Pretty Braid Style" name_pt="[Penteado] Lindo Nó de trança Estilo" level="1" cName="cash_hair_type_da_w_216a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="814792" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_da_w_216a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169800487" name_en="[Hairstyle] Pretty Long-Bob Style" name_pt="[Penteado] Lindo longo-Bobo Estilo" level="1" cName="cash_hair_type_da_w_217a" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="814793" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_da_w_217a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169802201" name_en="[Hairstyle] Luminess Premium Hairstyle" name_pt="[Penteado] Luminess Premium penteado" level="1" cName="cash_item_dye_hair_type_li_w_20001" mask="49242" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="804490" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_special_dye_hair_type_li_w_20001"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169802202" name_en="[Hairstyle] Spring Premium Hairstyle" name_pt="[Penteado] Primavera Premium penteado" level="1" cName="cash_item_dye_hair_type_li_w_20008" mask="49242" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807488" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_special_dye_hair_type_li_w_20008"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169802203" name_en="[Hairstyle] Premium Wavy Hair" name_pt="[Penteado] Premium Ondulado cabelo" level="1" cName="cash_item_dye_hair_type_li_w_20012" mask="49242" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807760" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_special_dye_hair_type_li_w_20012"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169802204" name_en="[Hairstyle] Phoenix’s Premium Hairstyle" name_pt="[Penteado] Fênix’s Premium penteado" level="1" cName="cash_item_dye_hair_type_li_w_20018" mask="49242" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="814014" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_special_dye_hair_type_li_w_20018"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169802205" name_en="[Hairstyle] Glow Premium Haircut" name_pt="[Penteado] Brilho Premium Corte de cabelo" level="1" cName="cash_item_dye_hair_type_li_w_20023" mask="49242" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="817353" race="ELYOS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_special_dye_hair_type_li_w_20023"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169802301" name_en="[Hairstyle] Luminess Premium Hairstyle" name_pt="[Penteado] Luminess Premium penteado" level="1" cName="cash_item_dye_hair_type_da_w_20001" mask="49242" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="804490" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_special_dye_hair_type_da_w_20001"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169802302" name_en="[Hairstyle] Spring Premium Hairstyle" name_pt="[Penteado] Primavera Premium penteado" level="1" cName="cash_item_dye_hair_type_da_w_20008" mask="49242" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807488" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_special_dye_hair_type_da_w_20008"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169802303" name_en="[Hairstyle] Premium Wavy Hair" name_pt="[Penteado] Premium Ondulado cabelo" level="1" cName="cash_item_dye_hair_type_da_w_20012" mask="49242" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="807760" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_special_dye_hair_type_da_w_20012"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169802304" name_en="[Hairstyle] Phoenix’s Premium Hairstyle" name_pt="[Penteado] Fênix’s Premium penteado" level="1" cName="cash_item_dye_hair_type_da_w_20018" mask="49242" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="814014" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_special_dye_hair_type_da_w_20018"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169802305" name_en="[Hairstyle] Glow Premium Haircut" name_pt="[Penteado] Brilho Premium Corte de cabelo" level="1" cName="cash_item_dye_hair_type_da_w_20023" mask="49242" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="817353" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_special_dye_hair_type_da_w_20023"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
+	<item_template id="169802306" name_en="[Hairstyle] Pretty Pop" name_pt="[Penteado] Lindo estouro" level="1" cName="cash_item_hair_type_da_w_208a_02" mask="16474" item_group="PACK_SCROLL" quality="COMMON" price="5" desc="819956" race="ASMODIANS" max_stack_count="1" item_type="NORMAL" client_mask="16698" casting_delay="5000">
+		<actions>
+			<cosmetic name="cash_hair_type_da_w_208a"/>
+		</actions>
+		<uselimits gender="FEMALE"/>
+	</item_template>
 	<item_template id="174000001" name_en="Flux" name_pt="Fluxo" level="1" cName="gem_matter_enchant_01" mask="24666" item_group="ENCHANTMENT" quality="EPIC" price="5" desc="815803" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24890" activate_count="1"/>
 	<item_template id="174000002" name_en="Noble Flux" name_pt="Nobre Fluxo" level="1" cName="gem_matter_enchant_02" mask="24698" item_group="ENCHANTMENT" quality="RARE" price="5" desc="815804" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="25402" activate_count="1"/>
 	<item_template id="174000003" name_en="Prismatic Flux" name_pt="Prismático Fluxo" level="1" cName="gem_matter_enchant_03" mask="24648" item_group="ENCHANTMENT" quality="EPIC" price="5" desc="816196" race="PC_ALL" max_stack_count="100" item_type="NORMAL" client_mask="24872" activate_count="1"/>

@@ -87,7 +87,13 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_ATTACK.class, 0xD2, State.IN_GAME); // 0x0020 ATTACK
 		addPacket(CM_CASTSPELL.class, 0xD3, State.IN_GAME); // 0x0021 USE_SKILL
 		addPacket(CM_TOGGLE_SKILL_DEACTIVATE.class, 0xD0, State.IN_GAME); // 0x0022 TOGGLE_SKILL
-		addPacket(CM_USE_CHARGE_SKILL.class, 0x198, State.IN_GAME); // 0x00EA FIRE_CHARGE_SKILL (Live 5.8; o 5.0 so manda pelo version.dll, charge_fix.h)
+		// Disparo das skills Charge do Bard: o opcode do Live 5.8 (dec 0xEA, cru 0x198) e, no 5.0, a expansao da lista de cabelo do Wardrobe.
+		// O charge_fix.h manda dec 0x3E0 (cru 0x492), fora da faixa de todo pacote do cliente 5.0.
+		addPacket(CM_USE_CHARGE_SKILL.class, 0x492, State.IN_GAME);
+		addPacket(CM_USER_CLASSIC_HAIRSTYLE_EXTEND.class, 0x198, State.IN_GAME); // dec 0xEA [H 1][C 1 Quna, 2 item] (serializador 0x11A)
+		addPacket(CM_USER_CLASSIC_HAIRSTYLE.class, CM_USER_CLASSIC_HAIRSTYLE.REGISTER, State.IN_GAME); // dec 0xDE [D item] (serializador 0x116)
+		addPacket(CM_USER_CLASSIC_HAIRSTYLE.class, CM_USER_CLASSIC_HAIRSTYLE.DELETE, State.IN_GAME); // dec 0xDF [D entrada] (serializador 0x117)
+		addPacket(CM_USER_CLASSIC_HAIRSTYLE.class, CM_USER_CLASSIC_HAIRSTYLE.CHANGE, State.IN_GAME); // dec 0xEB [D entrada] (serializador 0x11B)
 		addPacket(CM_REMOVE_ALTERED_STATE.class, 0xD1, State.IN_GAME); // 0x0027 REMOVE_BUFF
 		addPacket(CM_USE_ITEM.class, 0xC7, State.IN_GAME); // 0x002D USE_ITEM
 		addPacket(CM_USE_ITEM.class, 0xCF, State.IN_GAME); // Legacy fallback
@@ -100,7 +106,11 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_TARGET_SELECT.class, 0xCD, State.IN_GAME); // 0x0037 CHANGE_TARGET
 		addPacket(CM_TARGET_SELECT.class, 0x95, State.IN_GAME); // Legacy fallback
 		addPacket(CM_PLAYER_LISTENER.class, 0xCA, State.IN_GAME); // 0x0038 MOVE_OBJECT
-		addPacket(CM_BUILDER_COMMAND.class, 0xC8, State.IN_GAME); // 0x003A GM_COMMAND
+		// Console de GM (Game.dll 0x76F460): o modo escolhe o pacote, todos com [S comando]. Modo 0 = fio 0xCB (dec 0x39), o "//" do chat
+		// (//wishid veio assim no log de 23/10); modo 1 = 0xC8 (dec 0x3A); modo 2 = 0x176 (dec 0xA8).
+		addPacket(CM_BUILDER_COMMAND.class, 0xCB, State.IN_GAME);
+		addPacket(CM_BUILDER_CONTROL.class, 0xC8, State.IN_GAME);
+		addPacket(CM_DEBUG_COMMAND.class, 0x176, State.IN_GAME);
 		addPacket(CM_EMOTION.class, 0xC9, State.IN_GAME); // 0x003B EMOTION
 		addPacket(CM_REMOVE_STIGMA.class, 0x136, State.IN_GAME); // 0x003C REMOVE_STIGMA / DESTROY_ITEM ([D itemObjId], distinguished by equipped state)
 		addPacket(CM_BROKER_REGISTERED.class, 0x137, State.IN_GAME); // 0x003D BROKER_REGISTERED
@@ -274,7 +284,9 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_CLIENT_WORLD_EVENT_ACK.class, 0x01E4, State.IN_GAME); // 0x010E CLIENT_WORLD_EVENT_ACK (5.0 Classic)
 		// 0x0225 = C_PARTY_MATCH (Find Group) [C ação]..., resposta S_PARTY_MATCH 0xA5 com a mesma ação (capturas oficiais de 22/09).
 		// Estava como CM_CLIENT_STATUS_HEARTBEAT (stub que lia 1 byte e descartava): a ação 0 que o cliente manda no login tem 1 byte.
-		addPacket(CM_FIND_GROUP.class, 0x02DF, State.IN_GAME);
+		// dec 0x225 (mural de grupo). Ao voltar para a seleção de personagem o cliente ainda manda o pedido da lista ([C 0], Game.dll 0x7888E0,
+		// limitado por tempo): sem AUTHED caía como desconhecido no log. Sem personagem no mundo não há resposta.
+		addPacket(CM_FIND_GROUP.class, 0x02DF, State.AUTHED, State.IN_GAME);
 
 		// Session telemetry & aliases
 		addPacket(CM_UI_SETTINGS.class, 0x00E8, State.IN_GAME); // 0x001A SAVE_UI_SETTINGS
@@ -309,7 +321,10 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_MEMO_TOKEN_ACK.class, 0x01D3, State.IN_GAME); // 0x0121 MEMOPAD TOKEN ACK
 		addPacket(CM_MACRO_CREATE.class, 0x017D, State.IN_GAME); // 0x0087 SAVE_MACRO / MEMO
 		addPacket(CM_MACRO_DELETE.class, 0x0142, State.IN_GAME); // 0x00B0 DELETE_MACRO
-		addPacket(CM_LOCATE_PLAYER.class, 0x01A4, State.IN_GAME); // 0x00CE LOCATE / FIND PLAYER
+		// dec 0xCE: uso de item de aparência [D tipo][D item] (+ [S nome] nos tipos 0 e 1): 0 renomear personagem, 1 renomear Legion, 2 cosmético
+		// (tintura de cabelo etc.). Game.dll 0x718440 (msgs EDIT_CHAR_NAME/EDIT_GUILD_NAME). Estava como CM_LOCATE_PLAYER, que respondia
+		// "alvo offline" à tintura.
+		addPacket(CM_APPEARANCE.class, 0x01A4, State.IN_GAME);
 		addPacket(CM_AIONLOOK_EDIT_CHARACTER.class, 0x01E1, State.IN_GAME); // 0x0113 Aion Look: alterar aparencia/genero (captura oficial aionlook)
 		// 5.0: o dec 0x00FC é a compra do buff do ranking (4/4 nas capturas, 16 b); a lista da Auction House é o 0x0114 (cru 0x1EE)
 		addPacket(CM_COMBAT_POWER_RANK_BUFF.class, 0x01F6, State.IN_GAME); // 0x00FC buff do 1º lugar do ranking
