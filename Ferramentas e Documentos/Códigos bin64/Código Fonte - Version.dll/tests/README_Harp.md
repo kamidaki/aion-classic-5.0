@@ -359,7 +359,7 @@ O `Game.dll` 5.0 nao tem nada disso:
 - sem `ChargeSkillTable`;
 - sem os campos `charge_set_name`/`min_charge_time`;
 - o leitor de `activation_attribute` (`0xA0E8A1`) so conhece toggle/active/maintain/passive/provoked;
-- o 234 esta livre na tabela nome -> opcode dos C_.
+- o 234 esta livre na tabela nome -> opcode dos C_, mas **nao no fio**: o serializador generico do 5.0 grava `((((op + 0xC4) ^ 0xE5) + 0xC) ^ 0xDF)`, e o pacote 0x11A (expansao da lista de cabelo do Wardrobe) sai no mesmo fio 0x198. Desde 22/10 o disparo vai como 0x3E0 (fio 0x492), acima de todo opcode do cliente 5.0.
 
 Por isso no cliente o estagio 1 e `Active`, e quem carrega e o servidor (`activation="CHARGE"`,
 `<skillcharge>` e `skill_charge.xml`). Tres pontos dao o segundo aperto:
@@ -378,7 +378,7 @@ Formato do pacote em claro: `[H tamanho][H op no fio][C 0x6F][H ~op][dados]`, co
 `(op + 0xC4) ^ 0x36` (conferido nos 6 opcodes C da captura). O 234 vai como `07 00 98 01 6F 67 FE`.
 
 Do lado do servidor:
-- o `CM_USE_CHARGE_SKILL` tem de estar no `AionPacketHandlerFactory` (fio 0x198); a tabela
+- o `CM_USE_CHARGE_SKILL` tem de estar no `AionPacketHandlerFactory` (fio 0x492 desde 22/10; era 0x198); a tabela
   `AionClientPacketFactory` nao e usada;
 - o handler escolhe o estagio pelo tempo carregado.
 

@@ -13,7 +13,8 @@
 //   the charge time).
 // - 0x9A0E30 (player, action, id, ...) takes every action request. While a cast runs the client
 //   queues a new request and sends its C_USE_SKILL only after the cast ends, so the second press
-//   never left during the charge; it is answered here instead, with opcode 234.
+//   never left during the charge; it is answered here instead, with the fire packet (kChargeFireWire:
+//   0x3E0, not the 234 of the Live client, which the 5.0 client uses for the hair slot expansion).
 //
 // Plain body: [H length][H wire opcode][C 0x6F][H ~wire opcode][payload]; wire = (op + 0xC4) ^ 0x36.
 // C_USE_SKILL (0x21, wire 0xD3) payload starts with [H skill id] (builder at 0x198180).
@@ -38,7 +39,10 @@ static ChargeSendPacket s_chargeSend = nullptr;
 static bool (*s_chargeSendFilter)(void*, BYTE*, int, INT_PTR*) = nullptr;
 
 static constexpr WORD kChargeUseSkillWire = (0x21 + 0xC4) ^ 0x36;
-static constexpr WORD kChargeFireWire = (234 + 0xC4) ^ 0x36;
+// The Live 5.8 opcode of C_FIRE_CHARGE_SKILL (234, wire 0x198) is, in the 5.0 client, the hair slot
+// expansion of the Wardrobe (serializer packet 0x11A). The fire goes out as 0x3E0 (wire 0x492), above
+// every opcode the 5.0 client sends; CM_USE_CHARGE_SKILL is registered there.
+static constexpr WORD kChargeFireWire = (0x3E0 + 0xC4) ^ 0x36;
 static constexpr BYTE kChargeStaticByte = 0x6F;
 static constexpr int kChargeMaxSkills = 64;
 // The server may end the charge a little after the sum of the stages (cast speed only shortens it).

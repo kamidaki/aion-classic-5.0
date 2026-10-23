@@ -16,6 +16,7 @@
 #include "charge_fix.h"
 #include "inventory_fix.h"
 #include "globaltrade_fix.h"
+#include "hair_color_fix.h"
 
 // =========================================================================
 //  Version.dll - Mod & Compatibility Hook for Aion Classic 5.0
@@ -252,6 +253,7 @@ static void PatchAllLoadedLanguageModules() {
                 InstallChargeFix(h);
                 InstallInventoryFix(h);
                 InstallGlobalTradeFix(h);
+                InstallHairColorFix(h);
             }
             PatchLanguageTableInModule(h);
             BypassCountryCheckInCryEngineModule(h);
