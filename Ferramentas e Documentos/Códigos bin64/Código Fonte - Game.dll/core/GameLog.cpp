@@ -1,5 +1,6 @@
 #include "GameLog.h"
 #include "GameGlobals.h"
+#include "../framework/ILog.h"
 #include <cstdarg>
 
 static CRITICAL_SECTION s_logCs;

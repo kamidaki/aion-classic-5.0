@@ -97,8 +97,23 @@ public:
     virtual ~AddonTopLevelFrame();
 
     void BringToFront();
+    void BringToFront(AddonFrame* pFrame);
+    void SendToBack(AddonFrame* pFrame);
     bool IsActive() const { return m_bActive; }
+
+    void RegisterWindow(AddonFrame* pFrame);
+    void UnregisterWindow(AddonFrame* pFrame);
+    AddonFrame* FindTopWindowAt(int screenX, int screenY) const;
+    AddonFrame* GetFocusedWindow() const { return m_pFocusedFrame; }
+    void SetFocusedWindow(AddonFrame* pFrame);
+
+    bool DispatchKeyEvent(uint32_t vKey, bool bDown);
+    bool DispatchMouseEvent(int screenX, int screenY, uint32_t eventFlags);
+
+    void RenderAllVisibleWindows();
 
 private:
     bool m_bActive;
+    AddonFrame* m_pFocusedFrame;
+    std::vector<AddonFrame*> m_windowStack;
 };

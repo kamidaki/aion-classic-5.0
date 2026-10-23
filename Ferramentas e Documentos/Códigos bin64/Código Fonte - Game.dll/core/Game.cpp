@@ -78,10 +78,10 @@ bool CXGame::Init(ISystem* pSystem, bool bInEditor, bool bDedicated) {
     GameLog_Info("Iniciando CXGame::Init (CryEngine IGame Interface)...");
 
     if (pSystem) {
-        const char* root = pSystem->GetRootFolder();
-        if (root) {
-            strncpy_s(GameGlobals::s_szRootPath, root, sizeof(GameGlobals::s_szRootPath) - 1);
-            GameLog_Info("CryEngine Root Folder: %s", GameGlobals::s_szRootPath);
+        const char* user = pSystem->GetUserName();
+        if (user) {
+            strncpy_s(GameGlobals::s_szRootPath, user, sizeof(GameGlobals::s_szRootPath) - 1);
+            GameLog_Info("CryEngine System User: %s", GameGlobals::s_szRootPath);
         }
     }
 

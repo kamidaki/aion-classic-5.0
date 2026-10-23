@@ -52,6 +52,11 @@ public:
     AccumulatedEnchantManager();
     virtual ~AccumulatedEnchantManager();
     virtual const char* GetClassName() const { return "AccumulatedEnchantManager"; }
+
+    bool CanEnchant(int currentEnchant) const { return currentEnchant < 15; } // Classic é travado em +15
+    float CalculateEnchantProbability(int itemLevel, int currentEnchant, int stoneLevel, int supplementBonusPercent) const;
+    bool AttemptEnchant(int itemLevel, int& inOutEnchant, int stoneLevel, int supplementBonusPercent, float rnd0to1);
+    void GetEnchantStatBonus(int itemType, int enchantLevel, int& outPAtk, int& outMBoost, int& outHP, int& outPDef) const;
 };
 
 // RTTI .?AVAchvItemData@@
@@ -148,12 +153,38 @@ namespace nsDlgBattlePass {
     };
 }
 
+typedef struct {
+    int      level;
+    uint32_t freeItemId;
+    int      freeCount;
+    uint32_t premiumItemId;
+    int      premiumCount;
+} BattlePassRewardEntry;
+
+typedef struct {
+    int         missionId;
+    std::string name;
+    int         expReward;
+    int         targetCount;
+    int         currentCount;
+    bool        isCompleted;
+} BattlePassMissionEntry;
+
 // RTTI .?AVBattlePassPathMap@@
 class BattlePassPathMap {
 public:
     BattlePassPathMap();
     virtual ~BattlePassPathMap();
     virtual const char* GetClassName() const { return "BattlePassPathMap"; }
+
+    void AddMission(int missionId, const std::string& name, int expReward, int targetCount);
+    bool UpdateProgress(int missionId, int delta, int& outGainedExp);
+    int GetTotalExp() const { return m_totalExp; }
+    int GetLevel() const { return (m_totalExp / 1000) + 1; } // Cada 1000 EXP sobe 1 nível
+
+private:
+    std::vector<BattlePassMissionEntry> m_missions;
+    int m_totalExp;
 };
 
 // RTTI .?AVBattlePassRewardMap@@
@@ -162,6 +193,13 @@ public:
     BattlePassRewardMap();
     virtual ~BattlePassRewardMap();
     virtual const char* GetClassName() const { return "BattlePassRewardMap"; }
+
+    void SetReward(int level, uint32_t freeItemId, int freeCount, uint32_t premItemId, int premCount);
+    bool GetReward(int level, uint32_t& outFreeId, int& outFreeCount, uint32_t& outPremId, int& outPremCount) const;
+    size_t GetRewardCount() const { return m_rewards.size(); }
+
+private:
+    std::vector<BattlePassRewardEntry> m_rewards;
 };
 
 namespace ATL {

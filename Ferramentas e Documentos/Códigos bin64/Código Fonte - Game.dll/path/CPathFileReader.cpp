@@ -93,14 +93,45 @@ bool CPathFileReader::LoadPathFile(const std::string& filePath) {
 
 bool CPathFileReader::FindPath(float startX, float startY, float startZ, float endX, float endY, float endZ, std::vector<PathFindNode>& outPath) {
     outPath.clear();
-    outPath.emplace_back(1, Vec3F(startX, startY, startZ));
+    Vec3F start(startX, startY, startZ);
+    Vec3F end(endX, endY, endZ);
 
-    float midX = (startX + endX) * 0.5f;
-    float midY = (startY + endY) * 0.5f;
-    float midZ = (startZ + endZ) * 0.5f;
-    outPath.emplace_back(2, Vec3F(midX, midY, midZ));
+    outPath.emplace_back(1, start);
 
-    outPath.emplace_back(3, Vec3F(endX, endY, endZ));
+    // Se houver linha de visão direta desobstruída, conecta em linha reta
+    if (CheckLineOfSight(start, end, 1.0f)) {
+        outPath.emplace_back(2, end);
+        return true;
+    }
+
+    // Se houver obstáculos bloqueando, gera waypoints de contorno de AABB
+    Vec3F current = start;
+    uint32_t nodeIndex = 2;
+
+    for (const auto& obs : m_obstacles) {
+        if (!CheckLineOfSight(current, end, 1.0f)) {
+            float obsCenterX = (obs.first.x + obs.second.x) * 0.5f;
+            float obsCenterY = (obs.first.y + obs.second.y) * 0.5f;
+            float obsMaxZ = obs.second.z;
+
+            Vec3F detour1(obs.first.x - 2.0f, obsCenterY, obsMaxZ);
+            Vec3F detour2(obs.second.x + 2.0f, obsCenterY, obsMaxZ);
+
+            float dx1 = detour1.x - current.x;
+            float dy1 = detour1.y - current.y;
+            float d1 = std::sqrt(dx1 * dx1 + dy1 * dy1);
+
+            float dx2 = detour2.x - current.x;
+            float dy2 = detour2.y - current.y;
+            float d2 = std::sqrt(dx2 * dx2 + dy2 * dy2);
+
+            Vec3F bestDetour = (d1 <= d2) ? detour1 : detour2;
+            outPath.emplace_back(nodeIndex++, bestDetour);
+            current = bestDetour;
+        }
+    }
+
+    outPath.emplace_back(nodeIndex, end);
     return true;
 }
 

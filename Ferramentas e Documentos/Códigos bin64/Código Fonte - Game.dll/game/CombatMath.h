@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <functional>
+#include "Items.h"
 
 // Enum canônico de índices de atributos de criaturas extraído do RTTI (.?AW4CreatureAttrIndex@@)
 enum CreatureAttrIndex : uint32_t {
@@ -57,11 +58,17 @@ public:
         DAMAGE_MP_HEAL
     };
 
+    // Multiplicadores e taxas canônicas de armas oficiais (19 tipos)
+    static float GetWeaponCritMultiplier(WeaponType weaponType);
+    static void  GetWeaponDamageVariance(WeaponType weaponType, float& outMin, float& outMax);
+    static float GetWeaponBaseAttackSpeed(WeaponType weaponType);
+
     // Fórmulas Oficiais Aion Classic 5.0 (AttackUtil & StatFunctions)
     static uint32_t CalculatePhysicalDamage(
         float attack, float skillMultiplier, float targetDefense,
         bool isCritical, bool isBlocked, bool isParried, bool isPvp,
-        float blockReduceRatio = 0.5f, float randomVariance = 1.0f);
+        float blockReduceRatio = 0.5f, float randomVariance = 1.0f,
+        float customCritMultiplier = 0.0f);
 
     static uint32_t CalculateMagicalDamage(
         float magicBoost, float skillMultiplier, float magicSuppression,

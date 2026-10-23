@@ -15,6 +15,74 @@ UnicodeInput::TsfInput::CUIElementSink::~CUIElementSink() {}
 AccumulatedEnchantManager::AccumulatedEnchantManager() {}
 AccumulatedEnchantManager::~AccumulatedEnchantManager() {}
 
+float AccumulatedEnchantManager::CalculateEnchantProbability(int itemLevel, int currentEnchant, int stoneLevel, int supplementBonusPercent) const {
+    if (currentEnchant >= 15) return 0.0f;
+
+    int delta = stoneLevel - itemLevel;
+    float baseProb = 0.50f;
+
+    baseProb += (delta * 0.05f);
+
+    if (currentEnchant > 10) {
+        baseProb -= (currentEnchant - 10) * 0.06f + 0.15f;
+    } else if (currentEnchant > 5) {
+        baseProb -= (currentEnchant - 5) * 0.03f;
+    }
+
+    if (supplementBonusPercent > 0) {
+        baseProb += (supplementBonusPercent / 100.0f);
+    }
+
+    if (baseProb < 0.05f) baseProb = 0.05f;
+    if (baseProb > 0.85f) baseProb = 0.85f;
+
+    return baseProb;
+}
+
+bool AccumulatedEnchantManager::AttemptEnchant(int itemLevel, int& inOutEnchant, int stoneLevel, int supplementBonusPercent, float rnd0to1) {
+    if (inOutEnchant >= 15) {
+        GameLog_Info("AccumulatedEnchantManager: Item ja atingiu o encantamento maximo de +15 no Classic.");
+        return false;
+    }
+
+    float prob = CalculateEnchantProbability(itemLevel, inOutEnchant, stoneLevel, supplementBonusPercent);
+    bool bSuccess = (rnd0to1 <= prob);
+
+    if (bSuccess) {
+        inOutEnchant++;
+        GameLog_Info("AccumulatedEnchantManager: SUCESSO! Encantamento avancou para +%d (Prob: %0.1f%%, Rnd: %0.2f)",
+                     inOutEnchant, prob * 100.0f, rnd0to1);
+    } else {
+        if (inOutEnchant > 0) {
+            inOutEnchant--;
+        }
+        GameLog_Info("AccumulatedEnchantManager: FALHA! Encantamento regrediu para +%d (Prob: %0.1f%%, Rnd: %0.2f)",
+                     inOutEnchant, prob * 100.0f, rnd0to1);
+    }
+
+    return bSuccess;
+}
+
+void AccumulatedEnchantManager::GetEnchantStatBonus(int itemType, int enchantLevel, int& outPAtk, int& outMBoost, int& outHP, int& outPDef) const {
+    outPAtk = 0;
+    outMBoost = 0;
+    outHP = 0;
+    outPDef = 0;
+
+    if (enchantLevel <= 0) return;
+
+    if (itemType == 1) { // Arma
+        outPAtk = enchantLevel * 4;
+        outMBoost = enchantLevel * 20;
+    } else if (itemType == 2) { // Armadura
+        outHP = enchantLevel * 14;
+        outPDef = enchantLevel * 3;
+    } else if (itemType == 3) { // Escudo
+        outHP = enchantLevel * 10;
+        outPDef = enchantLevel * 5;
+    }
+}
+
 AchvItemData::AchvItemData() {}
 AchvItemData::~AchvItemData() {}
 
@@ -48,11 +116,61 @@ nsDlgBattlePass::BattlePassGridItemData::~BattlePassGridItemData() {}
 nsDlgBattlePass::BattlePassMapScrollItemData::BattlePassMapScrollItemData() {}
 nsDlgBattlePass::BattlePassMapScrollItemData::~BattlePassMapScrollItemData() {}
 
-BattlePassPathMap::BattlePassPathMap() {}
-BattlePassPathMap::~BattlePassPathMap() {}
+// BattlePassPathMap
+BattlePassPathMap::BattlePassPathMap() : m_totalExp(0) {}
+BattlePassPathMap::~BattlePassPathMap() { m_missions.clear(); }
 
+void BattlePassPathMap::AddMission(int missionId, const std::string& name, int expReward, int targetCount) {
+    BattlePassMissionEntry entry = { missionId, name, expReward, targetCount, 0, false };
+    m_missions.push_back(entry);
+}
+
+bool BattlePassPathMap::UpdateProgress(int missionId, int delta, int& outGainedExp) {
+    outGainedExp = 0;
+    for (auto& m : m_missions) {
+        if (m.missionId == missionId && !m.isCompleted) {
+            m.currentCount += delta;
+            if (m.currentCount >= m.targetCount) {
+                m.currentCount = m.targetCount;
+                m.isCompleted = true;
+                outGainedExp = m.expReward;
+                m_totalExp += outGainedExp;
+                GameLog_Info("BattlePassPathMap: Missao [%s] CONCLUIDA! EXP concedida: +%d (Total: %d, Nivel Pass: %d)",
+                             m.name.c_str(), outGainedExp, m_totalExp, GetLevel());
+                return true;
+            }
+            return false;
+        }
+    }
+    return false;
+}
+
+// BattlePassRewardMap
 BattlePassRewardMap::BattlePassRewardMap() {}
-BattlePassRewardMap::~BattlePassRewardMap() {}
+BattlePassRewardMap::~BattlePassRewardMap() { m_rewards.clear(); }
+
+void BattlePassRewardMap::SetReward(int level, uint32_t freeItemId, int freeCount, uint32_t premItemId, int premCount) {
+    BattlePassRewardEntry entry = { level, freeItemId, freeCount, premItemId, premCount };
+    m_rewards.push_back(entry);
+}
+
+bool BattlePassRewardMap::GetReward(int level, uint32_t& outFreeId, int& outFreeCount, uint32_t& outPremId, int& outPremCount) const {
+    outFreeId = 0;
+    outFreeCount = 0;
+    outPremId = 0;
+    outPremCount = 0;
+
+    for (const auto& r : m_rewards) {
+        if (r.level == level) {
+            outFreeId = r.freeItemId;
+            outFreeCount = r.freeCount;
+            outPremId = r.premiumItemId;
+            outPremCount = r.premiumCount;
+            return true;
+        }
+    }
+    return false;
+}
 
 ATL::CComObjectRootBase::CComObjectRootBase() {}
 ATL::CComObjectRootBase::~CComObjectRootBase() {}

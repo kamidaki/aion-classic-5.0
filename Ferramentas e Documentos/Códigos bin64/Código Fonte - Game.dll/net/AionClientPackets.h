@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "AionPacketOpcodes.h"
+#include "../game/Player.h"
 
 // Buffer utilitário para serialização binária de pacotes do cliente
 class PacketParser {
@@ -52,6 +53,19 @@ public:
             WriteUInt16(static_cast<uint16_t>(wc));
         }
         WriteUInt16(0);
+    }
+
+    void WriteWStringFixed(const std::wstring& str, size_t maxChars) {
+        size_t count = 0;
+        for (wchar_t wc : str) {
+            if (count >= maxChars) break;
+            WriteUInt16(static_cast<uint16_t>(wc));
+            count++;
+        }
+        while (count < maxChars) {
+            WriteUInt16(0);
+            count++;
+        }
     }
 
     void WriteBytes(const uint8_t* pData, size_t len) {
@@ -110,6 +124,8 @@ PacketParser BuildReconnectAuthPacket(uint32_t accountId, const std::string& tok
 // --- 2. Seleção e Criação de Personagem ---
 PacketParser BuildCharacterListPacket();
 PacketParser BuildCheckNicknamePacket(const std::string& name);
+PacketParser BuildEnterCharCreationScreenPacket(uint32_t accountId, const std::string& accountName);
+PacketParser BuildCreateCharacterPacket(uint32_t accountId, const std::string& accountName, const std::string& charName, uint32_t race, uint32_t gender, uint32_t playerClass, const PlayerAppearance& appearance, uint8_t createType = 0);
 PacketParser BuildCreateCharacterPacket(const std::string& name, uint8_t race, uint8_t gender, uint8_t playerClass, uint8_t voice, const std::vector<uint8_t>& appearanceData);
 PacketParser BuildDeleteCharacterPacket(uint32_t characterId);
 PacketParser BuildRestoreCharacterPacket(uint32_t characterId);

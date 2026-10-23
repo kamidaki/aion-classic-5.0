@@ -451,10 +451,22 @@ DlgEquipmentChange::~DlgEquipmentChange() {}
 void DlgEquipmentChange::Show(bool bShow) { AddonFrame::Show(bShow); }
 void DlgEquipmentChange::Update() { AddonFrame::Update(); }
 
-DlgEquippedItemChargePoint::DlgEquippedItemChargePoint(const std::string& name) : AddonFrame(name) {}
+DlgEquippedItemChargePoint::DlgEquippedItemChargePoint(const std::string& name)
+    : AddonFrame(name), m_pChargeContainer(nullptr), m_pChargeGauge(nullptr),
+      m_currentCharge(0), m_maxCharge(0), m_bBlink(false) {}
 DlgEquippedItemChargePoint::~DlgEquippedItemChargePoint() {}
+bool DlgEquippedItemChargePoint::OnCreate() {
+    AddonFrame::OnCreate();
+    m_pChargeContainer = FindChild("charge_container");
+    m_pChargeGauge = FindChild("charge_gauge");
+    return true;
+}
 void DlgEquippedItemChargePoint::Show(bool bShow) { AddonFrame::Show(bShow); }
 void DlgEquippedItemChargePoint::Update() { AddonFrame::Update(); }
+void DlgEquippedItemChargePoint::SetChargePoints(uint32_t current, uint32_t maxPoints) {
+    m_currentCharge = current;
+    m_maxCharge = maxPoints;
+}
 
 DlgEventShortCut::DlgEventShortCut(const std::string& name) : AddonFrame(name) {}
 DlgEventShortCut::~DlgEventShortCut() {}
@@ -760,10 +772,24 @@ DlgGuildOtherInfo::~DlgGuildOtherInfo() {}
 void DlgGuildOtherInfo::Show(bool bShow) { AddonFrame::Show(bShow); }
 void DlgGuildOtherInfo::Update() { AddonFrame::Update(); }
 
-DlgGunnerSkill::DlgGunnerSkill(const std::string& name) : AddonFrame(name) {}
+DlgGunnerSkill::DlgGunnerSkill(const std::string& name)
+    : AddonFrame(name), m_pItemWidget(nullptr), m_pTotalPriceWidget(nullptr),
+      m_pMyMoneyWidget(nullptr), m_pTenMillionPriceWidget(nullptr),
+      m_totalPrice(0), m_myMoney(0), m_tenMillionPrice(0) {}
 DlgGunnerSkill::~DlgGunnerSkill() {}
+bool DlgGunnerSkill::OnCreate() {
+    AddonFrame::OnCreate();
+    m_pItemWidget = FindChild("item");
+    m_pTotalPriceWidget = FindChild("total_price");
+    m_pMyMoneyWidget = FindChild("my_money");
+    m_pTenMillionPriceWidget = FindChild("ten_million_price");
+    return true;
+}
 void DlgGunnerSkill::Show(bool bShow) { AddonFrame::Show(bShow); }
 void DlgGunnerSkill::Update() { AddonFrame::Update(); }
+void DlgGunnerSkill::SetTotalPrice(uint64_t price) { m_totalPrice = price; }
+void DlgGunnerSkill::SetMyMoney(uint64_t money) { m_myMoney = money; }
+void DlgGunnerSkill::SetTenMillionPrice(uint64_t price) { m_tenMillionPrice = price; }
 
 DlgHelpIndicator::DlgHelpIndicator(const std::string& name) : AddonFrame(name) {}
 DlgHelpIndicator::~DlgHelpIndicator() {}
@@ -1507,7 +1533,7 @@ DlgPlayerInfo::DlgPlayerInfo(const std::string& name)
     , m_mp(100), m_maxMp(100)
     , m_dp(0), m_maxDp(4000)
     , m_currentExp(0), m_maxExp(1000)
-    , m_abyssPoints(0), m_gloryPoints(0)
+    , m_abyssPoints(0)
     , m_abyssRank(1)
     , m_physAttack(10), m_physAccuracy(100), m_physCrit(10), m_physDef(50)
     , m_magicBoost(0), m_magicAcc(100), m_magicResist(50)
@@ -1564,9 +1590,8 @@ void DlgPlayerInfo::UpdateExperience(int64_t curExp, int64_t maxExp) {
     m_maxExp = maxExp;
 }
 
-void DlgPlayerInfo::UpdateAbyssPoints(int64_t ap, int64_t gp, int rank) {
+void DlgPlayerInfo::UpdateAbyssPoints(int64_t ap, int rank) {
     m_abyssPoints = ap;
-    m_gloryPoints = gp;
     m_abyssRank = rank;
 }
 
