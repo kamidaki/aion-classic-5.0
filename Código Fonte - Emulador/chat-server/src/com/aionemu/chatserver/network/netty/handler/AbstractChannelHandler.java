@@ -25,7 +25,7 @@ public abstract class AbstractChannelHandler extends SimpleChannelUpstreamHandle
 	 */
 	@Override
 	public void channelDisconnected(ChannelHandlerContext ctx, ChannelStateEvent e) throws Exception {
-		log.info("Channel disconnected IP: {}", inetAddress.getHostAddress());
+		log.info("Channel disconnected IP: {}", inetAddress != null ? inetAddress.getHostAddress() : "UNKNOWN");
 	}
 
 	@Override
@@ -50,6 +50,6 @@ public abstract class AbstractChannelHandler extends SimpleChannelUpstreamHandle
 	}
 
 	public String getIP() {
-		return inetAddress.getHostAddress();
+		return inetAddress != null ? inetAddress.getHostAddress() : "UNKNOWN";
 	}
 }

@@ -266,6 +266,8 @@ public class LoginServer {
 		if (client != null) {
 			log.info("Kicking account ID " + accountId + " by LS request.");
 			client.close(notifyDoubleLogin ? SM_SYSTEM_MESSAGE.STR_KICK_ANOTHER_USER_TRY_LOGIN() : null);
+		} else {
+			sendPacket(new SM_ACCOUNT_DISCONNECTED(accountId));
 		}
 	}
 

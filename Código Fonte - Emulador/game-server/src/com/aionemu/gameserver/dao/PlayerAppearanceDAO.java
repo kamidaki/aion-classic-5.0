@@ -34,7 +34,11 @@ public class PlayerAppearanceDAO {
 					pa.setTattoo(resultSet.getInt("tattoo"));
 					pa.setFaceContour(resultSet.getInt("face_contour"));
 					pa.setExpression(resultSet.getInt("expression"));
-					pa.setFaceExpression(resultSet.getInt("face_expression"));
+					try {
+						pa.setFaceExpression(resultSet.getInt("face_expression"));
+					} catch (Exception ignored) {
+						pa.setFaceExpression(pa.getExpression());
+					}
 					pa.setJawLine(resultSet.getInt("jaw_line"));
 					pa.setSkinRGB(resultSet.getInt("skin_rgb"));
 					pa.setHairRGB(resultSet.getInt("hair_rgb"));

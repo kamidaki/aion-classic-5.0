@@ -37,7 +37,7 @@ public class LocalWebServer {
 
 	private HttpServer server;
 	private HttpServer controlServer;
-	private final int port = 8080;
+	private final int port = 7778;
 	private final int controlPort = 7778;
 
 	private final AtomicBoolean restartCountdownRunning = new AtomicBoolean(false);
@@ -50,26 +50,19 @@ public class LocalWebServer {
 	}
 
 	public synchronized void start(int portToUse) {
-		int targetPort = (portToUse > 0) ? portToUse : port;
-		if (server == null) {
-			try {
-				server = HttpServer.create(new InetSocketAddress(targetPort), 0);
-				server.setExecutor(Executors.newFixedThreadPool(4));
-				registerContexts(server);
-				server.start();
-				log.info("LocalWebServer iniciado com sucesso na porta http://127.0.0.1:{}", targetPort);
-			} catch (IOException e) {
-				log.info("Porta {} em uso (ex: Cloud Gateway ativo). Ativando canal de controle dedicado na porta {}.", targetPort, controlPort);
-			}
+		int targetPort = (portToUse > 0) ? portToUse : controlPort;
+		if (targetPort == 8080) {
+			// Port 8080 is reserved strictly for Aion Cloud Port Gateway; defer to dedicated port 7778
+			targetPort = controlPort;
 		}
 
-		if (controlServer == null && targetPort != controlPort) {
+		if (controlServer == null) {
 			try {
 				controlServer = HttpServer.create(new InetSocketAddress("127.0.0.1", controlPort), 0);
-				controlServer.setExecutor(Executors.newFixedThreadPool(2));
+				controlServer.setExecutor(Executors.newFixedThreadPool(4));
 				registerContexts(controlServer);
 				controlServer.start();
-				log.info("GameServer Cloud Control API escutando em http://127.0.0.1:{}", controlPort);
+				log.info("GameServer Cloud Control API e LocalWebServer escutando em http://127.0.0.1:{}", controlPort);
 			} catch (IOException e) {
 				log.warn("Nao foi possivel iniciar GameServer Cloud Control API na porta {}: {}", controlPort, e.getMessage());
 			}
@@ -224,13 +217,17 @@ public class LocalWebServer {
 			long uptimeSeconds = Math.max(0L, (System.currentTimeMillis() / 1000L) - GameServer.START_TIME_SECONDS);
 			boolean countdownActive = restartCountdownRunning.get();
 			int remaining = Math.max(0, restartRemainingSeconds.get());
+			boolean loginServerUp = com.aionemu.gameserver.network.loginserver.LoginServer.getInstance().isUp();
+			boolean chatServerUp = com.aionemu.gameserver.network.chatserver.ChatServer.getInstance().isUp();
 			String json = String.format(
-				"{\"status\":\"ONLINE\",\"version\":\"5.0 Classic\",\"onlinePlayers\":%d,\"uptimeSeconds\":%d,\"restartCountdownActive\":%s,\"restartRemainingSeconds\":%d,\"allDisconnected\":%s,\"rates\":{\"exp\":1.0,\"drop\":1.0,\"kinah\":1.0}}",
+				"{\"status\":\"ONLINE\",\"version\":\"5.0 Classic\",\"onlinePlayers\":%d,\"uptimeSeconds\":%d,\"restartCountdownActive\":%s,\"restartRemainingSeconds\":%d,\"allDisconnected\":%s,\"loginServerOnline\":%s,\"chatServerOnline\":%s,\"rates\":{\"exp\":1.0,\"drop\":1.0,\"kinah\":1.0}}",
 				onlinePlayers,
 				uptimeSeconds,
 				countdownActive ? "true" : "false",
 				remaining,
-				onlinePlayers == 0 ? "true" : "false"
+				onlinePlayers == 0 ? "true" : "false",
+				loginServerUp ? "true" : "false",
+				chatServerUp ? "true" : "false"
 			);
 			sendResponse(exchange, 200, "application/json", json.getBytes(StandardCharsets.UTF_8));
 		}

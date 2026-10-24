@@ -113,7 +113,10 @@ public class PlayerAccountData {
 	}
 
 	public void updateBoundingRadius() {
-		playerCommonData.setBoundingRadius(new BoundRadius(0.25f, 0.25f, appearance.getBoundHeight()));
+		if (playerCommonData != null) {
+			float h = appearance != null ? appearance.getBoundHeight() : 1.75f;
+			playerCommonData.setBoundingRadius(new BoundRadius(0.25f, 0.25f, h));
+		}
 	}
 
 	public void setCreationDate(Timestamp creationDate) {
