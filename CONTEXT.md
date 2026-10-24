@@ -84,9 +84,21 @@ Para manter o histórico do repositório organizado, rastreável e padronizado e
     |   |       \-- Banner/               # Imagem splash_banner.png para documentação
     |   +-- Tradução - Português Brasil/  # Textos e traduções oficiais PT-BR
     |   \-- Wireshark - Oficial Classic 5.0/ # Capturas reais de tráfego de rede do cliente 5.0
-    +-- Códigos bin64/                    # Código-fonte C/C++ dos módulos nativos do cliente
-    |   +-- Código Fonte - BrService.dll/ # [DESATIVADA/EXPERIMENTAL] DLL experimental desativada (NUNCA usar ou considerar)
-    |   \-- Código Fonte - Version.dll/   # Hook standalone (No-IP, auth bypass, stack/VEH fix, PT-BR, 4K)
+    +-- Códigos bin64/                    # Suíte de módulos nativos reconstruídos (Ghidra & REA MCP)
+    |   +-- README.md                     # Documentação e regras mandatórias de paridade da pasta bin64
+    |   +-- Código Fonte - Version.dll/   # Conector Client-Emulador oficial, bypass oficial e hub de customs
+    |   +-- Código Fonte - Game.dll/      # [INCOMPLETO - NUNCA USAR NO JOGO ATÉ 100% IDÊNTICA AOS 31 MB]
+    |   +-- Código Fonte - Crysystem.dll/ # Reconstrução CryEngine 5.0 via Ghidra/REA [SÓ USAR SE 100% IDÊNTICA]
+    |   +-- Código Fonte - Cry3DEngine.dll/ # Reconstrução CryEngine 5.0 via Ghidra/REA [SÓ USAR SE 100% IDÊNTICA]
+    |   +-- Código Fonte - CryAnimation.dll/ # Reconstrução CryEngine 5.0 via Ghidra/REA [SÓ USAR SE 100% IDÊNTICA]
+    |   +-- Código Fonte - CryEntitySystem.dll/ # Reconstrução CryEngine 5.0 via Ghidra/REA [SÓ USAR SE 100% IDÊNTICA]
+    |   +-- Código Fonte - CryFont.dll/   # Reconstrução CryEngine 5.0 via Ghidra/REA [SÓ USAR SE 100% IDÊNTICA]
+    |   +-- Código Fonte - CryInput.dll/  # Reconstrução CryEngine 5.0 via Ghidra/REA [SÓ USAR SE 100% IDÊNTICA]
+    |   +-- Código Fonte - CryMovie.dll/  # Reconstrução CryEngine 5.0 via Ghidra/REA [SÓ USAR SE 100% IDÊNTICA]
+    |   +-- Código Fonte - CryPhysics.dll/ # Reconstrução CryEngine 5.0 via Ghidra/REA [SÓ USAR SE 100% IDÊNTICA]
+    |   +-- Código Fonte - CryScriptSystem.dll/ # Reconstrução CryEngine 5.0 via Ghidra/REA [SÓ USAR SE 100% IDÊNTICA]
+    |   +-- Código Fonte - CrySoundSystem.dll/ # Reconstrução CryEngine 5.0 via Ghidra/REA [SÓ USAR SE 100% IDÊNTICA]
+    |   \-- Código Fonte - BrService.dll/ # [DESATIVADA/EXPERIMENTAL] DLL experimental desativada (NUNCA usar ou considerar)
     +-- Ferramentas Python e PowerShell/  # Utilitários, scripts de dados, reduções de ping e inicializadores
     |   +-- Código Fonte - Academy NoLag/ # Sistema de roteamento inteligente e tunelamento de latência (.NET 9)
     |   +-- Código Fonte - Executável Rust do Emulador/ # Código-fonte Rust do supervisor e launcher nativo
@@ -149,18 +161,23 @@ O emulador opera com separação estrita de persistência em **3 schemas indepen
 
 ---
 
-## Arquitetura de Módulos Nativos do Cliente (C/C++)
+## Arquitetura de Módulos Nativos do Cliente (C/C++ — Códigos bin64)
 
-### 1. `version.dll` (Proxy Hook Standalone de Produção)
-- **Mecanismo de Injeção**: Carregada automaticamente pelo binário do cliente `Aion.bin` via técnicas de proxy DLL de sistema (`version.dll`).
-- **Independência Completa**: Opera de forma 100% autônoma, sem chamadas, carregamento ou acoplamento a `BrService.dll` e sem exigência de tokens proprietários.
-- **Zero WebSocket**: Comunicação de rede limitada estritamente aos hooks WinSock para conexão do jogo; sem sockets WebSocket ou conexões secundárias de telemetria.
-- **Hook No-IP**: Intercepta a API de sockets do Windows (`connect`, `inet_ntoa`, `lstrcpynA`, `gethostbyname`), redirecionando silenciosamente chamadas para IPs externos oficiais para o endereço de loopback (`127.0.0.1`) e tráfego HTTP/Shop para `127.0.0.1:8080`.
-- **Injeção de Idioma PT-BR & Bypass de País**: Patch dinâmico de tabelas de idioma em módulos CryEngine para habilitar `BRA` e neutralizar restrições regionais.
-- **Compatibilidade e Estabilidade Gráfica**: Desbloqueio de resolução até 4096×4096 no `crysystem`, correção de flickering de shaders, correção de afinidade de CPU para processadores com 32+ cores e correção de stack x64/VEH no Windows 11 (24H2+).
-- **Gameplay Fixes 5.0**: Interceptor de exibição de saldo de Quna (`quna_fix`) e correção do diálogo de resultado de desmonte de itens (`siel_hammer_fix`).
+### 1. Reconstrução da Suíte CryEngine (Crytek) via Ghidra & REA MCP
+A pasta `Ferramentas e Documentos/Códigos bin64` abriga os códigos-fonte da CryEngine e da lógica de jogo referente ao Aion Classic 5.0 obtidos por engenharia reversa via **Ghidra 12.1.4** e **REA MCP**:
+- **Regra Estrita para Módulos Crytek**: O desenvolvedor ou agente de automação **SÓ DEVE USAR qualquer DLL reconstruída da Crytek quando garantir que 100% de seu conteúdo é IDÊNTICO ao original, sem divergências**. No cliente de jogo operacional (`D:\GameForge\aionclassic`), **devem ser mantidas as DLLs originais** da pasta `bin64`.
+- **Regra Inviolável para a `Game.dll`**: A `Game.dll` **NÃO ESTÁ COMPLETA**. Apesar da catalogação de suas 1.977 classes RTTI e 1.833 VTables, as rotinas de seus **~31.8 MB** não estão finalizadas. Ela **NUNCA DEVE SER USADA** ou colocada no cliente operacional até paridade 100% comprovada com o binário original de 31.8 MB.
 
-### 2. `BrService.dll` (DLL Experimental Desativada — NÃO UTILIZADA)
+### 2. `version.dll` (Conector Client-Emulador & Hub Homologado de Customs)
+- **Mecanismo e Conexão**: Carregada automaticamente pelo binário do cliente `Aion.bin` via técnicas de proxy DLL de sistema (`version.dll`). É a **responsável exclusiva por conectar o cliente oficial ao emulador**, realizando o bypass de validações e servidores oficiais (NCSoft / Gameforge) e direcionando as conexões WinSock para `127.0.0.1:2106` e `127.0.0.1:7777`.
+- **Hub Homologado de Customizações ("Customs")**: É o ponto arquitetural correto para implementar melhorias e customizações sem violar os binários originais:
+  - **Hook No-IP**: Intercepta a API WinSock (`connect`, `inet_ntoa`, `lstrcpynA`, `gethostbyname`), redirecionando silenciosamente chamadas para IPs externos para o emulador local (`127.0.0.1`) e tráfego HTTP/Shop para `127.0.0.1:8080`.
+  - **Injeção de Idioma PT-BR & Bypass de País**: Patch dinâmico de tabelas de idioma em módulos CryEngine para habilitar `BRA` e neutralizar restrições regionais.
+  - **Compatibilidade e Estabilidade Gráfica**: Desbloqueio de resolução até 4096×4096 no `crysystem`, correção de flickering de shaders, correção de afinidade de CPU para processadores com 32+ cores e correção de stack x64/VEH no Windows 11 (24H2+).
+  - **Gameplay Fixes 5.0**: Interceptor de exibição de saldo de Quna (`quna_fix`) e correção do diálogo de resultado de desmonte de itens (`siel_hammer_fix`).
+- **Independência Completa**: Opera de forma 100% autônoma, sem chamadas, carregamento ou acoplamento a `BrService.dll` e sem exigência de tokens proprietários ou sockets WebSocket secundários.
+
+### 3. `BrService.dll` (DLL Experimental Desativada — NÃO UTILIZADA)
 > [!CAUTION]
 > **AVISO IMPORTANTE:** A `BrService.dll` **NÃO É USADA** no projeto.
 > Trata-se de uma DLL experimental que foi completamente **desativada** e **NUNCA DEVE SER USADA OU CONSIDERADA**.

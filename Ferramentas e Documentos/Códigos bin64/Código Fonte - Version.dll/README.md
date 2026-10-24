@@ -1,6 +1,12 @@
-# Aion-Version-Dll — Módulo Standalone de Compatibilidade e Conexão (x64 & x86)
+# Aion-Version-Dll — Módulo Standalone de Conexão com Emulador & Hub de Customs (x64 & x86)
 
-DLL nativa (`version.dll`) desenvolvida como proxy DLL de sistema para o cliente **Aion Classic 5.0 (Gameforge / Oficial)**. Opera de maneira 100% autônoma e independente, sem qualquer dependência de bibliotecas externas de serviço (como `BrService.dll`) e sem necessidade de infraestrutura WebSocket.
+DLL nativa (`version.dll`) desenvolvida como proxy DLL de sistema para o cliente **Aion Classic 5.0 (Gameforge / Oficial)**.
+
+> [!IMPORTANT]
+> ### PAPEL ARQUITETURAL FUNDAMENTAL:
+> 1. **Responsável pela Conexão Client-Emulador**: A `version.dll` é a responsável exclusiva por conectar o cliente oficial ao emulador. Ela faz o **bypass dos sistemas oficiais de validação e autenticação** (NCSoft / Gameforge) e direciona todas as conexões de rede do cliente para o emulador local/privado (`127.0.0.1:2106`, `127.0.0.1:7777`).
+> 2. **Hub Homologado de Customizações ("Customs")**: A `version.dll` é o componente arquitetural correto, modular e seguro para implementação de funcionalidades personalizadas e ajustes no cliente sem alterar os binários originais da CryEngine.
+> 3. **Independência Completa**: Opera de maneira 100% autônoma e independente, sem qualquer dependência de bibliotecas externas de serviço (a `BrService.dll` é experimental, foi completamente desativada, não é usada e nunca deve ser considerada) e sem necessidade de infraestrutura WebSocket.
 
 ---
 
@@ -27,7 +33,7 @@ DLL nativa (`version.dll`) desenvolvida como proxy DLL de sistema para o cliente
 * Suprime caixas de diálogo de bloqueio de país (`"unavailable in your country"`).
 * Normaliza argumentos de linha de comando (`-lang:BRA`, `-cc:2`, `-classic`, `-probability`, etc.).
 
-### 5. Correções de Gameplay no Cliente 5.0
+### 5. Correções de Gameplay no Cliente 5.0 (Customs Homologadas)
 * **Quna Balance Fix (`quna_fix.h`)**: Intercepta pacotes de saldo de Quna recebidos do emulador e atualiza os ponteiros em memória do `game.dll` para exibição correta no inventário, armazém e Quna Market.
 * **Siel Hammer Fix (`siel_hammer_fix.h`)**: Evita o travamento do diálogo de desmonte e cancelamento de progresso de quebra de itens (`DlgItemCrushResult`).
 
@@ -35,7 +41,7 @@ DLL nativa (`version.dll`) desenvolvida como proxy DLL de sistema para o cliente
 
 ## Arquitetura e Independência Modular
 
-* **100% Standalone**: Não carrega nem depende de `BrService.dll` ou de qualquer outro módulo externo complementar.
+* **100% Standalone**: Não carrega nem depende da `BrService.dll` (que é uma DLL experimental desativada que nunca deve ser considerada) nem de qualquer outro módulo externo complementar.
 * **Zero WebSocket**: Não contém sockets WebSocket nem código de telemetria externa; utiliza apenas chamadas nativas WinSock para hooks de conexão de jogo.
 * **Sem Exigência de Token**: Inicializa imediatamente sem travas artificiais de token de linha de comando.
 

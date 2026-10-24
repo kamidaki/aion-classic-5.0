@@ -144,9 +144,21 @@ aion-classic-5.0/
     |   +-- Tradução - Português Brasil\      # Strings e textos traduzidos para PT-BR
     |   \-- Wireshark - Oficial Classic 5.0\  # Capturas reais PCAPNG do tráfego oficial
     |
-    +-- Códigos bin64\                        # Código-fonte C/C++ dos módulos do cliente
-    |   +-- Código Fonte - BrService.dll\     # [DESATIVADO/EXPERIMENTAL] DLL experimental desativada (NUNCA USAR)
-    |   \-- Código Fonte - Version.dll\       # Hook IAT, No-IP, bypass GameGuard e DXVK
+    +-- Códigos bin64\                        # Códigos-fonte dos módulos nativos (Ghidra & REA MCP)
+    |   +-- README.md                         # Documentação técnica e diretrizes de uso da pasta Códigos bin64
+    |   +-- Código Fonte - Version.dll\       # Conector oficial Client-Emulador, bypass oficial e customs
+    |   +-- Código Fonte - Game.dll\          # [INCOMPLETO - NUNCA USAR NO JOGO ATÉ 100% IDÊNTICA AOS 31 MB]
+    |   +-- Código Fonte - Crysystem.dll\     # Reconstrução CryEngine 5.0 via Ghidra/REA [SÓ USAR SE 100% IDÊNTICA]
+    |   +-- Código Fonte - Cry3DEngine.dll\   # Reconstrução CryEngine 5.0 via Ghidra/REA [SÓ USAR SE 100% IDÊNTICA]
+    |   +-- Código Fonte - CryAnimation.dll\  # Reconstrução CryEngine 5.0 via Ghidra/REA [SÓ USAR SE 100% IDÊNTICA]
+    |   +-- Código Fonte - CryEntitySystem.dll\ # Reconstrução CryEngine 5.0 via Ghidra/REA [SÓ USAR SE 100% IDÊNTICA]
+    |   +-- Código Fonte - CryFont.dll\       # Reconstrução CryEngine 5.0 via Ghidra/REA [SÓ USAR SE 100% IDÊNTICA]
+    |   +-- Código Fonte - CryInput.dll\      # Reconstrução CryEngine 5.0 via Ghidra/REA [SÓ USAR SE 100% IDÊNTICA]
+    |   +-- Código Fonte - CryMovie.dll\      # Reconstrução CryEngine 5.0 via Ghidra/REA [SÓ USAR SE 100% IDÊNTICA]
+    |   +-- Código Fonte - CryPhysics.dll\    # Reconstrução CryEngine 5.0 via Ghidra/REA [SÓ USAR SE 100% IDÊNTICA]
+    |   +-- Código Fonte - CryScriptSystem.dll\ # Reconstrução CryEngine 5.0 via Ghidra/REA [SÓ USAR SE 100% IDÊNTICA]
+    |   +-- Código Fonte - CrySoundSystem.dll\ # Reconstrução CryEngine 5.0 via Ghidra/REA [SÓ USAR SE 100% IDÊNTICA]
+    |   \-- Código Fonte - BrService.dll\     # [DESATIVADO/EXPERIMENTAL] DLL experimental desativada (NUNCA USAR)
     |
     +-- Ferramentas Python e PowerShell\      # Suíte de desenvolvimento e otimização
     |   +-- Código Fonte - Academy NoLag\     # Otimizador de latência e roteamento (.NET 9)
@@ -268,23 +280,37 @@ O emulador dispõe do motor primário e **autoritativo exclusivo** de navegaçã
 
 ---
 
-## 11. Módulo Injetado no Cliente (Version.dll Standalone)
+## 11. Módulos Nativos do Cliente (C/C++ — Códigos bin64)
 
-### 11.1 `version.dll` (Proxy Hook Standalone de Produção)
-- **Operação 100% Standalone**: Totalmente desvinculada de dependências externas, eliminando travas de inicialização e tokens proprietários de linha de comando.
-- **Zero WebSocket**: Não requer infraestrutura WebSocket; toda a interceptação de tráfego de jogo é realizada via hooks WinSock nativos.
-- **No-IP Hook & Redirecionamento**: Intercepta chamadas de socket do binário `Aion.bin`, redirecionando conexões oficiais para o emulador local (`127.0.0.1`) e tráfego HTTP/Shop para `127.0.0.1:8080`, dispensando modificações no arquivo `hosts`.
-- **Injeção de Idioma PT-BR**: Localização dinâmica em memória para o idioma `BRA` e bypass automático da checagem de país (`"unavailable in your country"`).
-- **Desbloqueio Gráfico 4K**: Remove restrições de resolução no `crysystem`, suportando até 4096×4096, e corrige flickering de shaders (`shader_fix`).
-- **Compatibilidade Windows 10/11 x64**: Tratamento de exceções vetorizadas (VEH) e alinhamento de stack para execução estável de 64 bits sob Themida.
-- **Gameplay Fixes 5.0**: Inclui interceptor em memória para exibição correta de saldo de Quna (`quna_fix`) e correção do diálogo de desmonte de itens (`siel_hammer_fix`).
+### 11.1 Reconstrução da Suíte CryEngine (Crytek) via Ghidra & REA MCP
+A pasta `Ferramentas e Documentos/Códigos bin64` contém o código-fonte C/C++ da suíte completa da CryEngine e da lógica de jogo referente ao **Aion Classic 5.0**, reconstruído e catalogado através de engenharia reversa avançada utilizando **Ghidra 12.1.4** e **REA MCP**:
 
-### 11.2 `BrService.dll` (DLL Experimental Desativada — NÃO UTILIZADA)
+> [!CAUTION]
+> ### REGRA CRÍTICA PARA AS DLLS DA CRYTEK:
+> 1. As DLLs da Crytek (`CrySystem.dll`, `Cry3DEngine.dll`, `CryAnimation.dll`, `CryEntitySystem.dll`, `CryFont.dll`, `CryInput.dll`, `CryMovie.dll`, `CryPhysics.dll`, `CryScriptSystem.dll`, `CrySoundSystem.dll`) **SÓ DEVEM SER USADAS quando for garantido que todo o seu conteúdo é 100% IDÊNTICO ao original, sem nenhum problema ou divergência**.
+> 2. No cliente operacional (`D:\GameForge\aionclassic`), **DEVEM SER MANTIDAS AS DLLs ORIGINAIS** da pasta `bin64` oficial.
+
+> [!WARNING]
+> ### REGRA INVIOLÁVEL PARA A `Game.dll`:
+> 1. A **`Game.dll` NÃO ESTÁ COMPLETA**: Embora possua o mapeamento das 1.977 classes RTTI e 1.833 VTables via Ghidra/REA MCP, a implementação interna e a lógica de baixo nível de seus **~31.8 MB** ainda não estão concluídas.
+> 2. **NUNCA DEVE SER USADA NO CLIENTE OPERACIONAL**: Ela **NUNCA DEVE SER USADA** ou substituída na pasta de jogo até que esteja comprovadamente **100% IDÊNTICA À ORIGINAL** em todo o seu conteúdo compilado de ~31.8 MB. O cliente operacional deve continuar usando exclusivamente a `Game.dll` original intacta.
+
+### 11.2 `version.dll` (Conector Client-Emulador & Hub Homologado de Customs)
+A `version.dll` é o componente nativo ativo encarregado de viabilizar a comunicação do cliente com o emulador:
+- **Ponte de Conexão com o Emulador**: Responsável exclusiva por conectar o cliente com o emulador. Realiza o **bypass de todos os sistemas de validação oficiais da NCSoft/Gameforge** (erros de servidor de autorização, No-IP) e redireciona as chamadas WinSock (`connect`, `inet_ntoa`, `lstrcpynA`, `gethostbyname`) para os serviços locais (`127.0.0.1:2106`, `127.0.0.1:7777`).
+- **Hub Oficial para Implementação de Customs**: Por ser modular e manter os binários originais intactos, é o local correto e homologado para inserir customizações e patches de compatibilidade:
+  - **Desbloqueio Gráfico 4K / Ultrawide**: Remove o bloqueio de resolução no `crysystem`, suportando até 4096×4096, e corrige flickering de shaders (`shader_fix`).
+  - **Injeção de Idioma PT-BR**: Patch em memória para suporte à localização `BRA` e supressão de bloqueios regionais de país.
+  - **Compatibilidade Windows 11 24H2+ (x64)**: Tratamento de exceções vetorizadas (VEH), alinhamento de stack e controle de afinidade para CPUs com 32+ threads.
+  - **Gameplay Fixes 5.0**: Ajuste do saldo de Quna em tempo real (`quna_fix`) e correção do travamento do diálogo de desmonte com Martelo de Siel (`siel_hammer_fix`).
+- **Operação 100% Standalone & Zero WebSocket**: Totalmente autônoma, sem exigir tokens proprietários de linha de comando ou dependência de servidores WebSocket secundários.
+
+### 11.3 `BrService.dll` (DLL Experimental Desativada — NÃO UTILIZADA)
 > [!CAUTION]
 > **ESTA DLL ESTÁ DESATIVADA E NUNCA DEVE SER USADA OU CONSIDERADA.**
 > A `BrService.dll` foi um módulo experimental que foi inteiramente **desativado e descontinuado**.
 > O emulador e o cliente oficial `Aion.bin` **NÃO USAM, NÃO CARREGAM E NÃO DEPENDEM** da `BrService.dll`.
-> O único módulo nativo suportado e homologado para execução do cliente é a `version.dll` em arquitetura 100% autônoma.
+> O único módulo nativo suportado e homologado para conexão e customizações do cliente é a `version.dll`.
 
 ---
 
@@ -337,7 +363,8 @@ O script realiza a compilação limpa (x64 e x86) e instala os binários diretam
 - `Ferramentas e Documentos\Patch final - Client 5.0\bin64\` (e `bin32\`)
 - `D:\GameForge\aionclassic\bin64\` (e `bin32\`)
 
-*(Nota: A `BrService.dll` é uma DLL experimental desativada que NÃO é usada e nunca deve ser considerada).*
+*(Nota 1: Apenas a `version.dll` é aplicada ao cliente de jogo. A `Game.dll` reconstruída e os módulos da Crytek pertencem à suíte de engenharia reversa/laboratório e NUNCA devem ser implantados no cliente de jogo operacional até atingirem 100% de paridade idêntica comprovada com os binários originais).*  
+*(Nota 2: A `BrService.dll` é uma DLL experimental desativada que NÃO é usada e nunca deve ser considerada).*
 
 ---
 
