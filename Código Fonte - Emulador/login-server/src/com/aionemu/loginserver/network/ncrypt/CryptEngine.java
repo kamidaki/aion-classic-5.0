@@ -120,8 +120,12 @@ public class CryptEngine {
 		check |= data[i + 1] << 8 & 0xff00;
 		check |= data[i + 2] << 0x10 & 0xff0000;
 		check |= data[i + 3] << 0x18 & 0xff000000;
+		check = data[i] & 0xff;
+		check |= data[i + 1] << 8 & 0xff00;
+		check |= data[i + 2] << 0x10 & 0xff0000;
+		check |= data[i + 3] << 0x18 & 0xff000000;
 
-		return check == chksum;
+		return 0 == chksum;
 	}
 
 	/**
