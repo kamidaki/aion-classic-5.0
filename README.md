@@ -24,7 +24,7 @@
 8. [Mapeamento de Portas e Serviços](#8-mapeamento-de-portas-e-serviços)
 9. [Sistema de Proteção e Firewall GeoIP](#9-sistema-de-proteção-e-firewall-geoip)
 10. [Subsistema de Navegação e Pathfinding (CryEngine Native-Path)](#10-subsistema-de-navegação-e-pathfinding-cryengine-native-path)
-11. [Módulos Injetados no Cliente (BrService.dll e Version.dll)](#11-módulos-injetados-no-cliente-brservicedll-e-versiondll)
+11. [Módulo Injetado no Cliente (Version.dll Standalone)](#11-módulo-injetado-no-cliente-versiondll-standalone)
 12. [Otimizador de Latência (Academy NoLag - .NET 9)](#12-otimizador-de-latência-academy-nolag---net-9)
 13. [Suíte de Ferramentas e Parsers XML](#13-suíte-de-ferramentas-e-parsers-xml)
 14. [Compilação e Deploy](#14-compilação-e-deploy)
@@ -42,7 +42,7 @@ O ecossistema divide-se em componentes perfeitamente orquestrados:
 
 - **Camada de Backend (Java 25 LTS):** Composta por quatro módulos Maven (`commons`, `login-server`, `game-server`, `chat-server`), operando com Java Virtual Threads e Non-blocking I/O (NIO) de alto throughput, sem qualquer dependência legada do Javolution.
 - **Camada de Supervisão e Launcher (Rust):** Executável nativo único compilado em código de máquina de 64 bits (`Aion Classic - EMULADOR.exe`), responsável pelo gerenciamento de ciclo de vida dos processos Java via Windows Job Objects, interface visual moderna em WebView2 (Edge Chromium), monitoramento de telemetria em tempo real e Database Studio embutido.
-- **Módulos de Injeção e Extensão no Cliente (C/C++):** `version.dll` (proxy hook standalone de 64 e 32 bits para bypass de autenticação, No-IP, fixes de stack Windows 10/11, injeção de idioma PT-BR e correções de gameplay 5.0, operando de forma 100% independente e sem dependência de WebSocket) e `BrService.dll` (código-fonte do módulo modular de telemetria, HUD de latência e DPS meter).
+- **Módulos de Injeção e Extensão no Cliente (C/C++):** `version.dll` (proxy hook standalone de 64 e 32 bits para bypass de autenticação, No-IP, fixes de stack Windows 10/11, injeção de idioma PT-BR e correções de gameplay 5.0, operando de forma 100% independente e sem dependência de WebSocket) *(Nota: A DLL `BrService.dll` é experimental, foi completamente desativada, não é usada e nunca deve ser considerada).*
 - **Otimizador de Rota e Latência (C# / .NET 9):** `Academy NoLag`, subsistema de roteamento inteligente e tunelamento TCP/UDP para conexões competitivas de baixíssimo ping e eliminação de jitter.
 
 ---
@@ -56,7 +56,7 @@ O ecossistema divide-se em componentes perfeitamente orquestrados:
 | **Linguagem Backend** | Java 25 LTS (`jdk-25.0.2`+) | Núcleo do servidor, Virtual Threads e Pattern Matching |
 | **Gerenciador de Build Java** | Apache Maven 3.9+ | Compilação multimodular com `maven-compiler-plugin 3.14.1` |
 | **Linguagem do Supervisor** | Rust 1.80+ (MSVC 64-bit) | Launcher nativo, supervisor de processos e Database Studio |
-| **Compilador C/C++** | MSVC v143 (Visual Studio 2022) | Compilação nativa de `version.dll` e `BrService.dll` |
+| **Compilador C/C++** | MSVC v143 (Visual Studio 2022) | Compilação nativa de `version.dll` (proxy hook standalone) |
 | **Plataforma .NET** | .NET 9.0 SDK | Compilação da suíte de tunelamento `Academy NoLag` |
 | **Banco de Dados Relacional** | MySQL 8.x / MariaDB 10.x | Persistência segregada (`aion_ls`, `aion_cs`, `aion_gs`) |
 | **Pool de Conexões** | HikariCP 7.0.2 | Gerenciamento de alta performance e resiliência de conexões |
@@ -71,35 +71,38 @@ O ecossistema divide-se em componentes perfeitamente orquestrados:
 
 A solução adota arquitetura distribuída com microsserviços especializados comunicando-se em tempo real:
 
-```
+```text
 [ Cliente Aion Classic 5.0 (Gameforge) ]
-         │
-         ├─── (version.dll: Hook IAT + Redirecionamento 127.0.0.1)
-         │
-         ├───> Login Server (Porta 2106 TCP)
-         │        ├── Handshake Criptográfico (RSA 1024-bit + Blowfish)
-         │        ├── Autenticação de contas, GameGuard e Daeva Pass
-         │        ├── Seleção de servidores e concessão de tokens de sessão
-         │        └── Banco dedicado: aion_ls (8 tabelas)
-         │
-         ├───> Game Server (Porta 7777 TCP)
-         │        ├── Particionamento Espacial e Instâncias 5.0 (Land of Shadows, etc.)
-         │        ├── Movimento 3D e Pathfinding CryEngine (0.5m por célula)
-         │        ├── Combate fluido, skills, status anormais e talentos de combate
-         │        ├── Inventário, Wardrobe, Siel's Anvil/Hammer, Quna e Global Trade
-         │        └── Banco dedicado: aion_gs (71+ tabelas)
-         │
-         ├───> Chat Server (Porta 10241 TCP)
-         │        ├── Canais de chat global, região, sussurros, grupo e legião
-         │        ├── Comandos administrativos de Game Master
-         │        └── Banco dedicado: aion_cs (chatlog e auditoria)
-         │
-         └───> BrService.dll (Porta 10001 WebSocket)
-                  ├── Overlay ImGui / DirectX (FPS, Latência, Radar 4-Eixos)
-                  ├── Shugo Console administrativo in-game (Shift+F3 / Ctrl+X)
-                  ├── DPS Meter em tempo real e Combo UI com partículas
-                  └── Telemetria contínua com o GameServer
+         |
+         +---> (version.dll: Hook IAT + Redirecionamento 127.0.0.1)
+         |
+         +---> Login Server (Porta 2106 TCP)
+         |        +-- Handshake Criptografico (RSA 1024-bit + Blowfish)
+         |        +-- Autenticacao de contas, GameGuard e Daeva Pass
+         |        +-- Selecao de servidores e concessao de tokens de sessao
+         |        \-- Banco dedicado: aion_ls (8 tabelas)
+         |
+         +---> Game Server (Porta 7777 TCP)
+         |        +-- Particionamento Espacial e Instancias 5.0 (Land of Shadows, etc.)
+         |        +-- Movimento 3D e Pathfinding CryEngine (0.5m por celula)
+         |        +-- Combate fluido, skills, status anormais e talentos de combate
+         |        +-- Inventario, Wardrobe, Siel's Anvil/Hammer, Quna e Global Trade
+         |        \-- Banco dedicado: aion_gs (71+ tabelas)
+         |
+         +---> Chat Server (Porta 10241 TCP)
+         |        +-- Canais de chat global, regiao, sussurros, grupo e legiao
+         |        +-- Comandos administrativos de Game Master
+         |        \-- Banco dedicado: aion_cs (chatlog e auditoria)
+         |
+         \---> Web Engine / Cloud Port (Porta 8080 HTTP/WS)
+                  +-- Renderizador WebGL2 / WebAssembly do Aion Classic
+                  +-- Gateway de conexao authoritative com LoginServer e GameServer
+                  \-- Multi-Version Instance Manager e Dashboard Web
 ```
+
+> [!WARNING]
+> **AVISO IMPORTANTE SOBRE A BrService.dll:**  
+> A `BrService.dll` **NÃO É USADA** no ecossistema e **NÃO FAZ PARTE** da arquitetura em operação. Trata-se de uma DLL experimental que foi completamente **desativada** e **NUNCA DEVE SER USADA OU CONSIDERADA**. O único módulo nativo de injeção suportado e utilizado pelo cliente oficial é a `version.dll` operando em modo 100% standalone e sem qualquer dependência externa.
 
 ---
 
@@ -109,54 +112,54 @@ A estrutura de diretórios do repositório foi totalmente reorganizada, estabele
 
 ```text
 aion-classic-5.0/
-�
-+-- CODE_OF_CONDUCT.md                        # C�digo de Conduta da Comunidade T�cnica
-+-- CONTRIBUTING.md                           # Guia de Contribui��o e 10 Regras de Pull Request
-+-- CONTEXT.md                                # Diretrizes Mandat�rias de Engenharia e Arquitetura
-+-- LICENSE                                   # Licen�a de Pesquisa Educacional e N�o Comercial
-+-- README.md                                 # Documenta��o Principal do Projeto
-+-- SECURITY.md                               # Pol�tica de Seguran�a e Arquitetura de Prote��o
-+-- SUPPORT.md                                # Pol�tica Estrita de Zero Suporte (AS-IS)
-│
-├── Código Fonte - Emulador\                  # Backend Java 25 multimodular
-│   ├── commons\                              # Núcleo de rede NIO, Blowfish/RSA, GeoIP e threads
-│   ├── chat-server\                          # Servidor de chat, canais e moderação
-│   ├── game-server\                          # Servidor de mundo, combate, IA, instâncias e itens
-│   ├── login-server\                         # Servidor de autenticação e seleção de reinos
-│   └── pom.xml                               # POM Maven agregador (release 25)
-│
-├── Emulador - Produto Final\                 # Distribuição de produção executável
-│   ├── Aion Classic - EMULADOR.exe           # Supervisor e Launcher gráfico nativo (Rust)
-│   ├── config.json                           # Parâmetros unificados de boot e JVM
-│   ├── ChatServer\                           # Binários, libs, logs e sql do ChatServer
-│   ├── GameServer\                           # Binários, libs, static_data e sql do GameServer
-│   ├── LoginServer\                          # Binários, libs, logs e sql do LoginServer
-│   └── WORLD IP RANGE\                       # Bases de prefixos IP para o Firewall GeoIP
-│
-└── Ferramentas e Documentos\                 # Hub consolidado de ferramentas e referências
-    ├── Client e Coletas\                     # Coletas oficiais de rede e dados extraídos
-    │   ├── Client 5.0 - Dados Extraidos\     # Dados canônicos do cliente (Levels, Data, etc.)
-    │   ├── Outros\                           # Ícones oficiais e referências visuais
-    │   │   └── Icones\                       # Ícones de bandeja e Banner oficial do Aion
-    │   ├── Tradução - Português Brasil\      # Strings e textos traduzidos para PT-BR
-    │   └── Wireshark - Oficial Classic 5.0\  # Capturas reais PCAPNG do tráfego oficial
-    │
-    ├── Códigos bin64\                        # Código-fonte C/C++ dos módulos do cliente
-    │   ├── Código Fonte - BrService.dll\     # Overlay DirectX, ImGui, DPS Meter e Shugo Console
-    │   └── Código Fonte - Version.dll\       # Hook IAT, No-IP, bypass GameGuard e DXVK
-    │
-    ├── Ferramentas Python e PowerShell\      # Suíte de desenvolvimento e otimização
-    │   ├── Código Fonte - Academy NoLag\     # Otimizador de latência e roteamento (.NET 9)
-    │   ├── Código Fonte - Executável Rust do Emulador\ # Código-fonte do supervisor Rust
-    │   ├── Ferramentas Python\               # Decodificadores BXML, extratores PAK e utilitários
-    │   └── parsersXML\                       # Suíte de geração e validação de static_data
-    │
-    └── Patch final - Client 5.0\             # Patch consolidado para aplicação no cliente
-        ├── bin32\                            # DLLs compiladas de 32 bits (version.dll)
-        ├── bin64\                            # DLLs compiladas de 64 bits (version.dll standalone)
-        ├── l10n\                             # Localização e assets (BRA, ENG)
-        ├── Start x64 - INGLÊS.bat            # Inicializador do cliente em inglês com flags
-        └── Start x64 - PORTUGUÊS BRASIL.bat  # Inicializador do cliente em português com flags
+|
++-- CODE_OF_CONDUCT.md                        # Código de Conduta da Comunidade Técnica
++-- CONTRIBUTING.md                           # Guia de Contribuição e 10 Regras de Pull Request
++-- CONTEXT.md                                # Diretrizes Mandatórias de Engenharia e Arquitetura
++-- LICENSE                                   # Licença de Pesquisa Educacional e Não Comercial
++-- README.md                                 # Documentação Principal do Projeto
++-- SECURITY.md                               # Política de Segurança e Arquitetura de Proteção
++-- SUPPORT.md                                # Política Estrita de Zero Suporte (AS-IS)
+|
++-- Código Fonte - Emulador\                  # Backend Java 25 multimodular
+|   +-- commons\                              # Núcleo de rede NIO, Blowfish/RSA, GeoIP e threads
+|   +-- chat-server\                          # Servidor de chat, canais e moderação
+|   +-- game-server\                          # Servidor de mundo, combate, IA, instâncias e itens
+|   +-- login-server\                         # Servidor de autenticação e seleção de reinos
+|   \-- pom.xml                               # POM Maven agregador (release 25)
+|
++-- Emulador - Produto Final\                 # Distribuição de produção executável
+|   +-- Aion Classic - EMULADOR.exe           # Supervisor e Launcher gráfico nativo (Rust)
+|   +-- config.json                           # Parâmetros unificados de boot e JVM
+|   +-- ChatServer\                           # Binários, libs, logs e sql do ChatServer
+|   +-- GameServer\                           # Binários, libs, static_data e sql do GameServer
+|   +-- LoginServer\                          # Binários, libs, logs e sql do LoginServer
+|   \-- WORLD IP RANGE\                       # Bases de prefixos IP para o Firewall GeoIP
+|
+\-- Ferramentas e Documentos\                 # Hub consolidado de ferramentas e referências
+    +-- Client e Coletas\                     # Coletas oficiais de rede e dados extraídos
+    |   +-- Client 5.0 - Dados Extraidos\     # Dados canônicos do cliente (Levels, Data, etc.)
+    |   +-- Outros\                           # Ícones oficiais e referências visuais
+    |   |   \-- Icones\                       # Ícones de bandeja e Banner oficial do Aion
+    |   +-- Tradução - Português Brasil\      # Strings e textos traduzidos para PT-BR
+    |   \-- Wireshark - Oficial Classic 5.0\  # Capturas reais PCAPNG do tráfego oficial
+    |
+    +-- Códigos bin64\                        # Código-fonte C/C++ dos módulos do cliente
+    |   +-- Código Fonte - BrService.dll\     # [DESATIVADO/EXPERIMENTAL] DLL experimental desativada (NUNCA USAR)
+    |   \-- Código Fonte - Version.dll\       # Hook IAT, No-IP, bypass GameGuard e DXVK
+    |
+    +-- Ferramentas Python e PowerShell\      # Suíte de desenvolvimento e otimização
+    |   +-- Código Fonte - Academy NoLag\     # Otimizador de latência e roteamento (.NET 9)
+    |   +-- Código Fonte - Executável Rust do Emulador\ # Código-fonte do supervisor Rust
+    |   +-- Ferramentas Python\               # Decodificadores BXML, extratores PAK e utilitários
+    |   \-- parsersXML\                       # Suíte de geração e validação de static_data
+    |
+    \-- Patch final - Client 5.0\             # Patch consolidado para aplicação no cliente
+        +-- bin32\                            # DLLs compiladas de 32 bits (version.dll)
+        +-- bin64\                            # DLLs compiladas de 64 bits (version.dll standalone)
+        +-- l10n\                             # Localização e assets (BRA, ENG)
+        +-- Start x64 - INGLÊS.bat            # Inicializador do cliente em inglês com flags
+        \-- Start x64 - PORTUGUÊS BRASIL.bat  # Inicializador do cliente em português com flags
 ```
 
 ---
@@ -228,7 +231,7 @@ A persistência do Aion Classic 5.0 opera com segregação relacional estrita em
 | **Login Server** | `2106` | Aion TCP | Porta padrão de autenticação, GameGuard e seleção de reinos. |
 | **Game Server** | `7777` | Aion TCP | Porta principal do mundo, física, combate e instâncias. |
 | **Chat Server** | `10241` | Aion TCP | Serviço de mensagens em tempo real, canais e comandos GM. |
-| **BrService WebSocket** | `10001` | WS (RFC 6455) | Telemetria in-game, Shugo Console, Radar e DPS meter. |
+| **Cloud Web Engine** | `8080` | HTTP / WS | Gateway Aion Cloud Port, runtime WebGL2 e WebSockets. |
 | **Web Dashboard (Supervisor)**| `18080` | HTTP / WS | Painel web administrativo do inicializador Rust. |
 
 ---
@@ -265,20 +268,23 @@ O emulador dispõe do motor primário e **autoritativo exclusivo** de navegaçã
 
 ---
 
-## 11. Módulos Injetados no Cliente (Version.dll Standalone & BrService.dll)
+## 11. Módulo Injetado no Cliente (Version.dll Standalone)
 
 ### 11.1 `version.dll` (Proxy Hook Standalone de Produção)
-- **Operação 100% Standalone**: Totalmente desvinculada de dependências externas (como `BrService.dll`), eliminando travas de inicialização e tokens proprietários de linha de comando.
+- **Operação 100% Standalone**: Totalmente desvinculada de dependências externas, eliminando travas de inicialização e tokens proprietários de linha de comando.
 - **Zero WebSocket**: Não requer infraestrutura WebSocket; toda a interceptação de tráfego de jogo é realizada via hooks WinSock nativos.
 - **No-IP Hook & Redirecionamento**: Intercepta chamadas de socket do binário `Aion.bin`, redirecionando conexões oficiais para o emulador local (`127.0.0.1`) e tráfego HTTP/Shop para `127.0.0.1:8080`, dispensando modificações no arquivo `hosts`.
 - **Injeção de Idioma PT-BR**: Localização dinâmica em memória para o idioma `BRA` e bypass automático da checagem de país (`"unavailable in your country"`).
 - **Desbloqueio Gráfico 4K**: Remove restrições de resolução no `crysystem`, suportando até 4096×4096, e corrige flickering de shaders (`shader_fix`).
-- **Fix de Stack x64 e VEH**: Estabiliza o cliente sob Themida em Windows 10 e Windows 11 (24H2+), prevenindo exceções de inicialização.
+- **Compatibilidade Windows 10/11 x64**: Tratamento de exceções vetorizadas (VEH) e alinhamento de stack para execução estável de 64 bits sob Themida.
 - **Gameplay Fixes 5.0**: Inclui interceptor em memória para exibição correta de saldo de Quna (`quna_fix`) e correção do diálogo de desmonte de itens (`siel_hammer_fix`).
 
-### 11.2 `BrService.dll` (Módulo Opcional de Telemetria e Overlay)
-- Código-fonte modular preservado na árvore `Ferramentas e Documentos\Códigos bin64\Código Fonte - BrService.dll`, sem vínculo ou acoplamento com o carregador de inicialização do cliente `version.dll`.
-- Fornece funcionalidades opcionais de overlay DirectX, Shugo Console, DPS Meter, Combo UI e integração WebSocket com a porta 10001 do emulador.
+### 11.2 `BrService.dll` (DLL Experimental Desativada — NÃO UTILIZADA)
+> [!CAUTION]
+> **ESTA DLL ESTÁ DESATIVADA E NUNCA DEVE SER USADA OU CONSIDERADA.**
+> A `BrService.dll` foi um módulo experimental que foi inteiramente **desativado e descontinuado**.
+> O emulador e o cliente oficial `Aion.bin` **NÃO USAM, NÃO CARREGAM E NÃO DEPENDEM** da `BrService.dll`.
+> O único módulo nativo suportado e homologado para execução do cliente é a `version.dll` em arquitetura 100% autônoma.
 
 ---
 
@@ -331,7 +337,7 @@ O script realiza a compilação limpa (x64 e x86) e instala os binários diretam
 - `Ferramentas e Documentos\Patch final - Client 5.0\bin64\` (e `bin32\`)
 - `D:\GameForge\aionclassic\bin64\` (e `bin32\`)
 
-*(Nota: O código-fonte de `BrService.dll` permanece preservado de forma independente em `Ferramentas e Documentos\Códigos bin64\Código Fonte - BrService.dll` para desenvolvimento modular de telemetria e overlay).*
+*(Nota: A `BrService.dll` é uma DLL experimental desativada que NÃO é usada e nunca deve ser considerada).*
 
 ---
 

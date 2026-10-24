@@ -1,4 +1,14 @@
-# BrService.dll — Módulo Nativo do Cliente Aion Classic 5.0
+# [DESATIVADO / EXPERIMENTAL] BrService.dll — NÃO UTILIZADA
+
+> [!CAUTION]
+> **ESTA DLL NÃO É USADA E NUNCA DEVE SER USADA OU CONSIDERADA.**
+> A BrService.dll é uma biblioteca experimental que foi **completamente desativada e descontinuada**.
+> O emulador Aion Classic 5.0 e o cliente de jogo oficial Aion.bin **NÃO dependem, NÃO carregam e NÃO utilizam** esta DLL.
+> O único módulo nativo suportado e homologado para conexão e patches em memória é a ersion.dll operando de forma 100% standalone.
+> O código-fonte deste diretório é mantido estritamente para fins de arquivo histórico de protótipos e **NUNCA DEVE SER INCLUÍDO EM BUILDS DE PRODUÇÃO OU CONSIDERADO NA ARQUITETURA**.
+
+---
+
 
 A **`BrService.dll`** é uma biblioteca nativa C++ (x64 / MSVC / MT estático) injetada no cliente Aion Classic 5.0 (`bin64/Aion.bin`), responsável por fornecer:
 - HUD de latência em tempo real com gráfico Fibonacci de 60 minutos;
