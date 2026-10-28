@@ -11198,7 +11198,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="203845" level="10" name_en="Lityerses" name_pt="Litierses" name_id="351336" height="2.2" title_id="350475" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="10" sangle="300" arange="2" attack_speed="2000" hpgauge="3" state="6">
+	<npc_template npc_id="203845" level="10" name_en="Lityerses" name_pt="Litierses" name_id="351336" height="2.2" title_id="350475" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="GENERAL" type="GENERAL" ai="general" srange="10" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="1392">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -14997,7 +14997,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2 3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="204112" level="40" name_en="Ulut" name_pt="Ulut" name_id="352494" height="2" title_id="350592" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3" state="6">
+	<npc_template npc_id="204112" level="40" name_en="Ulut" name_pt="Ulut" name_id="352494" height="2" title_id="350592" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="9426">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -15024,7 +15024,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="204114" level="40" name_en="Limpaksi" name_pt="Limpaksi" name_id="352355" height="2" title_id="350593" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3" state="6">
+	<npc_template npc_id="204114" level="40" name_en="Limpaksi" name_pt="Limpaksi" name_id="352355" height="2" title_id="350593" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="9426">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -15205,7 +15205,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2 3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="204127" level="40" name_en="Selesti" name_pt="Selesti" name_id="352368" height="2" title_id="350396" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3" state="6">
+	<npc_template npc_id="204127" level="40" name_en="Selesti" name_pt="Selesti" name_id="352368" height="2" title_id="350396" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="9426">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -15342,7 +15342,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="204136" level="47" name_en="Namiya" name_pt="Namiya" name_id="352377" height="2" title_id="350312" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="7" sangle="300" arange="2" attack_speed="2000" hpgauge="3" state="6">
+	<npc_template npc_id="204136" level="47" name_en="Namiya" name_pt="Namiya" name_id="352377" height="2" title_id="350312" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="7" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="12868">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -16808,7 +16808,7 @@
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="204236" level="40" name_en="Frana" name_pt="Frana" name_id="352474" height="1.8" title_id="350442" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3" state="6">
+	<npc_template npc_id="204236" level="40" name_en="Frana" name_pt="Frana" name_id="352474" height="1.8" title_id="350442" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="9426">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -16821,7 +16821,7 @@
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="204237" level="10" name_en="Tonorea" name_pt="Tonorea" name_id="352475" height="2" title_id="350567" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3" state="6">
+	<npc_template npc_id="204237" level="10" name_en="Tonorea" name_pt="Tonorea" name_id="352475" height="2" title_id="350567" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="1392">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -17186,7 +17186,7 @@
 		<bound_radius front="0.615" side="0.4" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="204261" level="40" name_en="Daskair" name_pt="Daskair" name_id="352518" height="2" title_id="350652" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3" state="6">
+	<npc_template npc_id="204261" level="40" name_en="Daskair" name_pt="Daskair" name_id="352518" height="2" title_id="350652" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="9426">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -43333,7 +43333,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="209409" level="60" name_en="Havochaser Soldier" name_pt="Relíquia abençoada (Nível 2)" name_id="464180" height="2.3" title_id="464361" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ASMODIANS" tribe="PROTECTGUARD_DARK" type="GUARD" ai="aggressive" srange="20" arange="25" attack_speed="2260" hpgauge="14" state="5" cancel_level="30">
+	<npc_template npc_id="209409" level="60" name_en="Havochaser Soldier" name_pt="Relíquia abençoada (Nível 2)" name_id="464180" height="2.3" title_id="464361" group_drop="LIGHT" rank="SEASONED" rating="ELITE" race="ASMODIANS" tribe="PROTECTGUARD_DARK" type="GUARD" ai="aggressive" srange="20" arange="25" attack_speed="2260" hpgauge="14" cancel_level="30">
 		<stats maxHp="6004">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
@@ -43348,7 +43348,7 @@
 		</equipment>
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 	</npc_template>
-	<npc_template npc_id="209410" level="60" name_en="Havochaser Centurion" name_pt="Relíquia abençoada (Nível 4)" name_id="464182" height="2.3" title_id="464361" group_drop="DARK" rank="SEASONED" rating="ELITE" race="ASMODIANS" tribe="PROTECTGUARD_DARK" type="GUARD" ai="aggressive" srange="15" arange="2" attack_speed="2100" hpgauge="22" state="5" cancel_level="30">
+	<npc_template npc_id="209410" level="60" name_en="Havochaser Centurion" name_pt="Relíquia abençoada (Nível 4)" name_id="464182" height="2.3" title_id="464361" group_drop="DARK" rank="SEASONED" rating="ELITE" race="ASMODIANS" tribe="PROTECTGUARD_DARK" type="GUARD" ai="aggressive" srange="15" arange="2" attack_speed="2100" hpgauge="22" cancel_level="30">
 		<stats maxHp="107415">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="8" group_run_fight="6" />
 		</stats>
@@ -313636,7 +313636,7 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="3" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730040" level="1" name_en="Secret Passage of Indratu Legion" name_pt="Passagem secreta da Legião Indratu" name_id="350862" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="portal" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730040" level="1" name_en="Secret Passage of Indratu Legion" name_pt="Passagem secreta da Legião Indratu" name_id="350862" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="6" delay="3" is_dialog="true" can_talk_invisible="false" />
@@ -313713,7 +313713,7 @@
 		<bound_radius front="0.375" side="0.525" upper="8" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730055" level="1" name_en="Teleport Stone Statue" name_pt="Estátua de Pedra Teleporte" name_id="350918" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="portal" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730055" level="1" name_en="Teleport Stone Statue" name_pt="Estátua de Pedra Teleporte" name_id="350918" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="portal" srange="20" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="6" delay="3" is_dialog="true" can_talk_invisible="false" />
@@ -313821,122 +313821,122 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="6" delay="3" is_dialog="true" func_dialogs="44" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730079" level="1" name_en="History of Ancient Atreia" name_pt="História da Atreia antiga" name_id="350932" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730079" level="1" name_en="History of Ancient Atreia" name_pt="História da Atreia antiga" name_id="350932" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730080" level="1" name_en="Journal of an Explorer" name_pt="Jornal de um explorador" name_id="350933" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730080" level="1" name_en="Journal of an Explorer" name_pt="Jornal de um explorador" name_id="350933" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730081" level="1" name_en="Impetusium of Glory" name_pt="Impetússio da glória" name_id="350934" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730081" level="1" name_en="Impetusium of Glory" name_pt="Impetússio da glória" name_id="350934" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730082" level="1" name_en="Zemurru" name_pt="Azia" name_id="350935" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730082" level="1" name_en="Zemurru" name_pt="Azia" name_id="350935" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730083" level="1" name_en="Balaur, Who Are They!" name_pt="Balaur, quem são eles!" name_id="350936" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730083" level="1" name_en="Balaur, Who Are They!" name_pt="Balaur, quem são eles!" name_id="350936" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730084" level="1" name_en="Asmo and Ellie" name_pt="Asmo e Ellie" name_id="350937" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730084" level="1" name_en="Asmo and Ellie" name_pt="Asmo e Ellie" name_id="350937" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730085" level="1" name_en="Interesting Asmodae" name_pt="Asmodae interessante" name_id="350938" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730085" level="1" name_en="Interesting Asmodae" name_pt="Asmodae interessante" name_id="350938" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730086" level="1" name_en="Femme Fatale of History 9" name_pt="Mulher Fatal da História 9" name_id="350939" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730086" level="1" name_en="Femme Fatale of History 9" name_pt="Mulher Fatal da História 9" name_id="350939" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730087" level="1" name_en="In Defence of Humanity" name_pt="Em defesa da humanidade" name_id="350940" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730087" level="1" name_en="In Defence of Humanity" name_pt="Em defesa da humanidade" name_id="350940" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730088" level="1" name_en="The Mysteries of Shugos" name_pt="Os mistérios dos shugos" name_id="350941" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730088" level="1" name_en="The Mysteries of Shugos" name_pt="Os mistérios dos shugos" name_id="350941" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730089" level="1" name_en="Frozen in Time" name_pt="Congelado no Tempo" name_id="350942" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730089" level="1" name_en="Frozen in Time" name_pt="Congelado no Tempo" name_id="350942" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730090" level="1" name_en="Botanical Museum 7" name_pt="Museu Botânico 7" name_id="350943" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730090" level="1" name_en="Botanical Museum 7" name_pt="Museu Botânico 7" name_id="350943" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730091" level="1" name_en="Guide To Rare Poisons" name_pt="Guia de veneno raro" name_id="350944" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730091" level="1" name_en="Guide To Rare Poisons" name_pt="Guia de veneno raro" name_id="350944" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730092" level="1" name_en="Guide to the Abyss" name_pt="Guia para o abismo" name_id="350945" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730092" level="1" name_en="Guide to the Abyss" name_pt="Guia para o abismo" name_id="350945" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730093" level="1" name_en="Book of Prophecy" name_pt="Livro de Profecia" name_id="350946" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730093" level="1" name_en="Book of Prophecy" name_pt="Livro de Profecia" name_id="350946" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730094" level="1" name_en="Wind Breeze" name_pt="Brisa do vento" name_id="350947" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730094" level="1" name_en="Wind Breeze" name_pt="Brisa do vento" name_id="350947" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730095" level="1" name_en="Eltnen's Fall" name_pt="Queda de Eltnen" name_id="350948" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730095" level="1" name_en="Eltnen's Fall" name_pt="Queda de Eltnen" name_id="350948" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730096" level="1" name_en="Studies on Balaur Ruins" name_pt="Estudos sobre ruínas de Balaur" name_id="350949" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730096" level="1" name_en="Studies on Balaur Ruins" name_pt="Estudos sobre ruínas de Balaur" name_id="350949" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730097" level="1" name_en="Fall of the Zumion Ruins" name_pt="Queda das ruínas de Zumion" name_id="350950" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730097" level="1" name_en="Fall of the Zumion Ruins" name_pt="Queda das ruínas de Zumion" name_id="350950" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730098" level="1" name_en="Deltras and Storm Legion" name_pt="Deltras e Tempestade Guilda" name_id="350951" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730098" level="1" name_en="Deltras and Storm Legion" name_pt="Deltras e Tempestade Guilda" name_id="350951" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730099" level="1" name_en="Introduction to Alchemy" name_pt="Introdução à alquimia" name_id="350952" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730099" level="1" name_en="Introduction to Alchemy" name_pt="Introdução à alquimia" name_id="350952" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730100" level="1" name_en="A History of Legions" name_pt="Uma história de legiões" name_id="350953" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730100" level="1" name_en="A History of Legions" name_pt="Uma história de legiões" name_id="350953" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730101" level="1" name_en="Flora of Elysea" name_pt="Flora de Elysea" name_id="350954" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730101" level="1" name_en="Flora of Elysea" name_pt="Flora de Elysea" name_id="350954" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730102" level="1" name_en="A Treatise on Aether" name_pt="Um tratado sobre aeth" name_id="350955" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730102" level="1" name_en="A Treatise on Aether" name_pt="Um tratado sobre aeth" name_id="350955" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
@@ -314005,77 +314005,77 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730115" level="1" name_en="The Death of Deltras the Prideful" name_pt="A morte de Deltras, o orgulhoso" name_id="353190" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730115" level="1" name_en="The Death of Deltras the Prideful" name_pt="A morte de Deltras, o orgulhoso" name_id="353190" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730116" level="1" name_en="Kentari Folktales of Morheim" name_pt="Folktales de Kentari de Morheim" name_id="353191" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730116" level="1" name_en="Kentari Folktales of Morheim" name_pt="Folktales de Kentari de Morheim" name_id="353191" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730117" level="1" name_en="Wonderful Tripeeds!" name_pt="Maravilhoso Tripeds!" name_id="353192" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730117" level="1" name_en="Wonderful Tripeeds!" name_pt="Maravilhoso Tripeds!" name_id="353192" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730118" level="1" name_en="History of Eltnen Fortress" name_pt="História da Fortaleza de Eltnen" name_id="351881" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730118" level="1" name_en="History of Eltnen Fortress" name_pt="História da Fortaleza de Eltnen" name_id="351881" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730119" level="1" name_en="Legend of Eltnen 3" name_pt="Lenda de Eltnen 3" name_id="351882" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730119" level="1" name_en="Legend of Eltnen 3" name_pt="Lenda de Eltnen 3" name_id="351882" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730120" level="1" name_en="Historical Criminals of Atreia" name_pt="Criminosos históricos de Atreia" name_id="351883" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730120" level="1" name_en="Historical Criminals of Atreia" name_pt="Criminosos históricos de Atreia" name_id="351883" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730121" level="1" name_en="History of Pandaemonium" name_pt="História do Pandaemonium" name_id="352532" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730121" level="1" name_en="History of Pandaemonium" name_pt="História do Pandaemonium" name_id="352532" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730122" level="1" name_en="The Shadow Court" name_pt="O tribunal das sombras" name_id="352533" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730122" level="1" name_en="The Shadow Court" name_pt="O tribunal das sombras" name_id="352533" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730123" level="1" name_en="Dedication to Asmodians" name_pt="Dedicação aos asmodianos" name_id="352534" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730123" level="1" name_en="Dedication to Asmodians" name_pt="Dedicação aos asmodianos" name_id="352534" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730124" level="1" name_en="Interesting Daevas of Asmodae" name_pt="Daevasas interessantes de Asmodae" name_id="352535" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730124" level="1" name_en="Interesting Daevas of Asmodae" name_pt="Daevasas interessantes de Asmodae" name_id="352535" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730125" level="1" name_en="Glories of Sanctum" name_pt="Glórias de santuário" name_id="351416" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730125" level="1" name_en="Glories of Sanctum" name_pt="Glórias de santuário" name_id="351416" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730126" level="1" name_en="Memorable Daevas" name_pt="DAEVAS memoráveis" name_id="351417" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730126" level="1" name_en="Memorable Daevas" name_pt="DAEVAS memoráveis" name_id="351417" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730127" level="1" name_en="The Right of Daeva" name_pt="O direito de Daeva" name_id="351418" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730127" level="1" name_en="The Right of Daeva" name_pt="O direito de Daeva" name_id="351418" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730128" level="1" name_en="Expedition to Reshanta" name_pt="Expedição a Reshanta" name_id="371042" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730128" level="1" name_en="Expedition to Reshanta" name_pt="Expedição a Reshanta" name_id="371042" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730129" level="1" name_en="The Struggle for Primum" name_pt="A luta pelo primum" name_id="371043" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730129" level="1" name_en="The Struggle for Primum" name_pt="A luta pelo primum" name_id="371043" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
@@ -314090,27 +314090,27 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730132" level="1" name_en="Rediscovery of Superus Civilization" name_pt="Redescoberta da civilização Superus" name_id="371046" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730132" level="1" name_en="Rediscovery of Superus Civilization" name_pt="Redescoberta da civilização Superus" name_id="371046" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730133" level="1" name_en="Arbolu, the Ancestor of Elim" name_pt="Arbolu, o ancestral de elim" name_id="371047" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730133" level="1" name_en="Arbolu, the Ancestor of Elim" name_pt="Arbolu, o ancestral de elim" name_id="371047" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730134" level="1" name_en="The Tragedy of Heiron" name_pt="A tragédia de HION" name_id="371048" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730134" level="1" name_en="The Tragedy of Heiron" name_pt="A tragédia de HION" name_id="371048" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730135" level="1" name_en="The Golden Trumpet Temple" name_pt="O templo de trompete dourado" name_id="371049" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730135" level="1" name_en="The Golden Trumpet Temple" name_pt="O templo de trompete dourado" name_id="371049" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730136" level="1" name_en="Namokata and the Dragon" name_pt="Namokata e o dragão" name_id="371050" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730136" level="1" name_en="Namokata and the Dragon" name_pt="Namokata e o dragão" name_id="371050" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
@@ -314325,32 +314325,32 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="6" delay="10" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730179" level="1" name_en="Journal of Melleas" name_pt="Jornal de Melleas" name_id="371169" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730179" level="1" name_en="Journal of Melleas" name_pt="Jornal de Melleas" name_id="371169" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730180" level="1" name_en="The Burning of Theobomos" name_pt="A queima de Theobomos" name_id="371170" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730180" level="1" name_en="The Burning of Theobomos" name_pt="A queima de Theobomos" name_id="371170" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730181" level="1" name_en="The Mau Tribes" name_pt="As tribos Maunath bhanjan" name_id="371171" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730181" level="1" name_en="The Mau Tribes" name_pt="As tribos Maunath bhanjan" name_id="371171" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730182" level="1" name_en="The Brohums" name_pt="Os Brohums" name_id="371172" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730182" level="1" name_en="The Brohums" name_pt="Os Brohums" name_id="371172" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730183" level="1" name_en="Terrible Dredgion" name_pt="Draga terrível" name_id="371199" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730183" level="1" name_en="Terrible Dredgion" name_pt="Draga terrível" name_id="371199" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730184" level="1" name_en="Ereshkigal Legend" name_pt="Lenda erreshkigal" name_id="371200" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730184" level="1" name_en="Ereshkigal Legend" name_pt="Lenda erreshkigal" name_id="371200" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
@@ -317008,92 +317008,92 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748000" level="1" name_en="Joining the Miragent Ranks" name_pt="Juntando-se às fileiras Miragent" name_id="371458" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748000" level="1" name_en="Joining the Miragent Ranks" name_pt="Juntando-se às fileiras Miragent" name_id="371458" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748001" level="1" name_en="Fenris Fangs Test Past Papers" name_pt="Presas de Fenris teste Papéis anteriores" name_id="371459" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748001" level="1" name_en="Fenris Fangs Test Past Papers" name_pt="Presas de Fenris teste Papéis anteriores" name_id="371459" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748002" level="1" name_en="Femme Fatale of History 2" name_pt="Mulher Fatal da História 2" name_id="371460" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748002" level="1" name_en="Femme Fatale of History 2" name_pt="Mulher Fatal da História 2" name_id="371460" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748003" level="1" name_en="Femme Fatale of History 10" name_pt="Mulher Fatal da História 10" name_id="371461" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748003" level="1" name_en="Femme Fatale of History 10" name_pt="Mulher Fatal da História 10" name_id="371461" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748004" level="1" name_en="Creatures of the Dawning Era" name_pt="Criaturas da era do amanhecer" name_id="371462" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748004" level="1" name_en="Creatures of the Dawning Era" name_pt="Criaturas da era do amanhecer" name_id="371462" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748005" level="1" name_en="A Guardian's Life--The Early Years" name_pt="A vida de um guardião-os primeiros anos" name_id="371463" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748005" level="1" name_en="A Guardian's Life--The Early Years" name_pt="A vida de um guardião-os primeiros anos" name_id="371463" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748006" level="1" name_en="Steel Beard" name_pt="Barba de aço" name_id="371464" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748006" level="1" name_en="Steel Beard" name_pt="Barba de aço" name_id="371464" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748007" level="1" name_en="Legendary Weapons, Volume 1" name_pt="Armas lendárias, Volume 1" name_id="371465" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748007" level="1" name_en="Legendary Weapons, Volume 1" name_pt="Armas lendárias, Volume 1" name_id="371465" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748008" level="1" name_en="Agrif's Magic Sword" name_pt="Espada mágica de Agrif" name_id="371466" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748008" level="1" name_en="Agrif's Magic Sword" name_pt="Espada mágica de Agrif" name_id="371466" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748009" level="1" name_en="Song of Three Sages" name_pt="Canção de três sábios" name_id="371467" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748009" level="1" name_en="Song of Three Sages" name_pt="Canção de três sábios" name_id="371467" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748010" level="1" name_en="Who's Who of Fashion" name_pt="Quem é quem da moda" name_id="371468" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748010" level="1" name_en="Who's Who of Fashion" name_pt="Quem é quem da moda" name_id="371468" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748011" level="1" name_en="Dancing Children" name_pt="Crianças dançando" name_id="371469" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748011" level="1" name_en="Dancing Children" name_pt="Crianças dançando" name_id="371469" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748012" level="1" name_en="Acetlar and Heimdal the Fool" name_pt="Acetlar e heimdal o tolo" name_id="371470" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748012" level="1" name_en="Acetlar and Heimdal the Fool" name_pt="Acetlar e heimdal o tolo" name_id="371470" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748013" level="1" name_en="Traditional Fairy Tales of Atreia, Vol. 6" name_pt="Contos de fadas tradicionais de Atreia, volume. 6" name_id="371471" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748013" level="1" name_en="Traditional Fairy Tales of Atreia, Vol. 6" name_pt="Contos de fadas tradicionais de Atreia, volume. 6" name_id="371471" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748014" level="1" name_en="Traditional Fairy Tales of Atreia, Vol. 2" name_pt="Contos de fadas tradicionais de Atreia, volume. 2" name_id="371472" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748014" level="1" name_en="Traditional Fairy Tales of Atreia, Vol. 2" name_pt="Contos de fadas tradicionais de Atreia, volume. 2" name_id="371472" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748015" level="1" name_en="Lionelo's Journal" name_pt="Jornal de Lionelo" name_id="371473" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748015" level="1" name_en="Lionelo's Journal" name_pt="Jornal de Lionelo" name_id="371473" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748016" level="1" name_en="Legends and Nymphs Book 5" name_pt="Lendas e Ninfas Livro 5" name_id="371766" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748016" level="1" name_en="Legends and Nymphs Book 5" name_pt="Lendas e Ninfas Livro 5" name_id="371766" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="748017" level="1" name_en="Atreian Folk Tales Vol. 9" name_pt="Folk ousou contos volume. 9" name_id="371767" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="748017" level="1" name_en="Atreian Folk Tales Vol. 9" name_pt="Folk ousou contos volume. 9" name_id="371767" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="book" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" is_dialog="true" can_talk_invisible="false" />
@@ -318621,8 +318621,8 @@
 		<bound_radius front="0.3125" side="0.4375" upper="2.5" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="78" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="780099" level="60" name_en="Godstoninerk" name_pt="Campo de escavação de Meniherk" name_id="465564" height="1.8" tribe="USEALL" type="GENERAL" ai="general" srange="20" attack_speed="2000" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" group_drop="NONE">
-		<stats maxHp="20000">
+	<npc_template npc_id="780099" level="65" name_en="Godstoninerk" name_pt="Campo de escavação de Meniherk" name_id="465564" height="1.8" tribe="USEALL" type="GENERAL" ai="general" srange="20" attack_speed="2000" hpgauge="3" rank="DISCIPLINED" rating="NORMAL" group_drop="NONE">
+		<stats maxHp="21107">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="1.8" />
@@ -326512,7 +326512,7 @@
 		<bound_radius front="0.325" side="0.455" upper="2.34" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="799235" level="55" name_en="Gunloeth" name_pt="Gunloeth" name_id="354735" height="2.4" title_id="370233" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3" state="5">
+	<npc_template npc_id="799235" level="55" name_en="Gunloeth" name_pt="Gunloeth" name_id="354735" height="2.4" title_id="370233" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GUARD_DARK" type="ABYSS_GUARD" ai="simple_abyssguard" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
 		<stats maxHp="18756">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -344651,16 +344651,16 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2 3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="800781" level="60" name_en="Hemming" name_pt="Reklov" name_id="462797" height="2" title_id="462798" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
-		<stats maxHp="23691">
+	<npc_template npc_id="800781" level="10" name_en="Hemming" name_pt="Reklov" name_id="462797" height="2" title_id="462798" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" race="ASMODIANS" tribe="GENERAL_DARK" type="GENERAL" ai="general" srange="20" sangle="300" arange="2" attack_speed="2000" hpgauge="3">
+		<stats maxHp="1392">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
 		<equipment>
-			<item>113500306</item>
-			<item>110500323</item>
-			<item>112500298</item>
-			<item>111500314</item>
-			<item>114500318</item>
+			<item>110100319</item>
+			<item>111100272</item>
+			<item>114100289</item>
+			<item>112100251</item>
+			<item>113100271</item>
 		</equipment>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" is_dialog="true" func_dialogs="2 3" can_talk_invisible="false" />

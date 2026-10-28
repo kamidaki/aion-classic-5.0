@@ -16,7 +16,7 @@
 		<!-- Tanato -->
 		<spawn npc_id="205312" respawn_time="295">
 			<spot x="550.9684" y="340.1774" z="126.0967" h="90"/>
-			<spot x="560.4108" y="335.1774" z="126.9689" h="75"/>
+			<spot x="560.4108" y="335.1774" z="126.09" h="75"/>
 		</spawn>
 		<!-- Monilou -->
 		<spawn npc_id="205313" respawn_time="295">
@@ -33,12 +33,12 @@
 		<!-- Helbe -->
 		<spawn npc_id="205317" respawn_time="295">
 			<spot x="524.1465" y="227.7649" z="126.9759" h="96"/>
-			<spot x="522.2515" y="220.8994" z="128.3658" h="40"/>
+			<spot x="522.2515" y="220.8994" z="126.97" h="40"/>
 		</spawn>
 		<!-- Rakwis -->
 		<spawn npc_id="205318" respawn_time="295">
 			<spot x="522.2515" y="220.8994" z="126.9759" h="40"/>
-			<spot x="484.6465" y="222.2649" z="128.4316" h="15"/>
+			<spot x="484.6465" y="222.2649" z="126.97" h="15"/>
 		</spawn>
 		<!-- Adel -->
 		<spawn npc_id="205319" respawn_time="295">
@@ -59,11 +59,11 @@
 		<!-- Barius -->
 		<spawn npc_id="205456" respawn_time="295">
 			<spot x="476.9819" y="271.4279" z="126.9759" h="90"/>
-			<spot x="517.891" y="278.6062" z="128.1456" h="75"/>
+			<spot x="517.891" y="278.6062" z="126.97" h="75"/>
 		</spawn>
 		<!-- Quilven -->
 		<spawn npc_id="205471" respawn_time="295">
-			<spot x="481.1411" y="271.1062" z="128.1456" h="0"/>
+			<spot x="481.1411" y="271.1062" z="126.97" h="0"/>
 		</spawn>
 		<!-- Jailos -->
 		<spawn npc_id="205488" respawn_time="295">
@@ -108,12 +108,12 @@
 		<!-- Poria -->
 		<spawn npc_id="207092" respawn_time="295">
 			<spot x="604.7415" y="252.9782" z="126.9815" h="60"/>
-			<spot x="604.73" y="248.17" z="130.6" h="60"/>
+			<spot x="604.73" y="248.17" z="126.98" h="60"/>
 		</spawn>
 		<!-- Comerciante de mercadorias mistas -->
 		<spawn npc_id="207121" respawn_time="295">
 			<spot x="604.7266" y="251.5166" z="126.9815" h="60"/>
-			<spot x="604.6158" y="257.5798" z="128.6783" h="60"/>
+			<spot x="604.6158" y="257.5798" z="126.98" h="60"/>
 		</spawn>
 		<!-- Estátua do Teleport Santuário Elyos -->
 		<spawn npc_id="730424" respawn_time="295">
@@ -141,11 +141,11 @@
 		</spawn>
 		<!-- Letra -->
 		<spawn npc_id="730487" respawn_time="295">
-			<spot x="569.2908" y="236.6141" z="127.811" h="0"/>
+			<spot x="569.2908" y="236.6141" z="127.44" h="0"/>
 		</spawn>
 		<!-- <Daeva do caos> -->
 		<spawn npc_id="730543" respawn_time="295">
-			<spot x="570.3943" y="268.3941" z="129.9347" h="0"/>
+			<spot x="570.3943" y="268.3941" z="127.44" h="0"/>
 		</spawn>
 		<!-- Avina -->
 		<spawn npc_id="730576" respawn_time="295">
@@ -159,10 +159,10 @@
 		<spawn npc_id="799632" respawn_time="295">
 			<spot x="506.9673" y="217.3922" z="127.2953" h="30"/>
 			<spot x="488.8033" y="217.3897" z="127.2954" h="30"/>
-			<spot x="601.2604" y="239.9617" z="127.3243" h="0"/>
-			<spot x="573.7741" y="269.4246" z="127.3243" h="0"/>
-			<spot x="595.7068" y="269.3834" z="127.3243" h="0"/>
-			<spot x="568.6637" y="240.399" z="127.3243" h="0"/>
+			<spot x="601.2604" y="239.9617" z="127.24" h="0"/>
+			<spot x="573.7741" y="269.4246" z="127.24" h="0"/>
+			<spot x="595.7068" y="269.3834" z="127.24" h="0"/>
+			<spot x="568.6637" y="240.399" z="127.24" h="0"/>
 		</spawn>
 		<!-- Guarda cadinho -->
 		<spawn npc_id="799633" respawn_time="295">
@@ -179,28 +179,28 @@
 		</spawn>
 		<!-- <MARMER> -->
 		<spawn npc_id="800175" respawn_time="295">
-			<spot x="542.118" y="332.5155" z="126.9689" h="0"/>
+			<spot x="542.118" y="332.5155" z="126.09" h="0"/>
 		</spawn>
 		<!-- <Farmer's Child> -->
 		<spawn npc_id="800176" respawn_time="295">
-			<spot x="544.7776" y="334.9861" z="126.9689" h="0"/>
+			<spot x="544.7776" y="334.9861" z="126.09" h="0"/>
 		</spawn>
 		<!-- Jamatis -->
 		<spawn npc_id="800178" respawn_time="295">
-			<spot x="551.0643" y="309.6287" z="126.9689" h="0"/>
+			<spot x="551.0643" y="309.6287" z="126.09" h="0"/>
 		</spawn>
 		<!-- Gardor -->
 		<spawn npc_id="800255" respawn_time="295">
-			<spot x="553.1893" y="309.6287" z="126.9689" h="0"/>
+			<spot x="553.1893" y="309.6287" z="126.09" h="0"/>
 		</spawn>
 		<!-- Pavern -->
 		<spawn npc_id="800498" respawn_time="295">
-			<spot x="550.6608" y="340.1774" z="126.9689" h="0"/>
+			<spot x="550.6608" y="340.1774" z="126.09" h="0"/>
 		</spawn>
 		<!-- Kamiya -->
 		<spawn npc_id="800500" respawn_time="295">
 			<spot x="448.2374" y="234.6875" z="126.9716" h="30"/>
-			<spot x="552.1608" y="340.1774" z="126.9689" h="90"/>
+			<spot x="552.1608" y="340.1774" z="126.09" h="90"/>
 		</spawn>
 		<!-- Mendia -->
 		<spawn npc_id="800501" respawn_time="295">
@@ -208,7 +208,7 @@
 		</spawn>
 		<!-- Chloyl -->
 		<spawn npc_id="800502" respawn_time="295">
-			<spot x="553.6608" y="340.1774" z="126.9689" h="0"/>
+			<spot x="553.6608" y="340.1774" z="126.09" h="0"/>
 		</spawn>
 		<!-- Função de teste -->
 		<spawn npc_id="802213" respawn_time="295">

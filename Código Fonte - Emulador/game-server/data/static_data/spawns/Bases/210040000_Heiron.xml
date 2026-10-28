@@ -10,15 +10,15 @@
 				<!-- Heiron Sentinel -->
 				<!-- Marina -->
 				<spawn handler="MERCHANT" npc_id="801180" respawn_time="295">
-					<spot h="45" x="2125.8938" y="1475.2031" z="136.32527" />
+					<spot h="45" x="2125.8938" y="1475.2031" z="140.1914" />
 				</spawn>
 				<!-- Ludion -->
 				<spawn handler="MERCHANT" npc_id="801181" respawn_time="295">
-					<spot h="30" x="2113.5986" y="1466.5072" z="136.22552" />
+					<spot h="30" x="2113.5986" y="1466.5072" z="138.7179" />
 				</spawn>
 				<!-- Eos Crewman -->
 				<spawn handler="MERCHANT" npc_id="801182" respawn_time="295">
-					<spot h="45" x="2122.8694" y="1471.4498" z="137.00826" />
+					<spot h="45" x="2122.8694" y="1471.4498" z="139.7662" />
 				</spawn>
 			</occupier_template>
 			<occupier_template occupier="ASMODIANS">
@@ -29,15 +29,15 @@
 				<!-- Heiron Scout -->
 				<!-- Eos Crewman -->
 				<spawn handler="MERCHANT" npc_id="801183" respawn_time="295">
-					<spot h="45" x="2125.8938" y="1475.2031" z="136.32527" />
+					<spot h="45" x="2125.8938" y="1475.2031" z="140.1914" />
 				</spawn>
 				<!-- Doroto -->
 				<spawn handler="MERCHANT" npc_id="801184" respawn_time="295">
-					<spot h="30" x="2113.5986" y="1466.5072" z="136.22552" />
+					<spot h="30" x="2113.5986" y="1466.5072" z="138.7179" />
 				</spawn>
 				<!-- Kiana -->
 				<spawn handler="MERCHANT" npc_id="801185" respawn_time="295">
-					<spot h="45" x="2122.8694" y="1471.4498" z="137.00826" />
+					<spot h="45" x="2122.8694" y="1471.4498" z="139.7662" />
 				</spawn>
 			</occupier_template>
 			<occupier_template occupier="BALAUR">

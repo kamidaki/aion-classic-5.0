@@ -16,7 +16,7 @@
 		<!-- Seknard -->
 		<spawn npc_id="205324" respawn_time="295">
 			<spot x="488.5542" y="314.5737" z="93.45" h="90"/>
-			<spot x="484.6065" y="314.7433" z="94.2999" h="90"/>
+			<spot x="484.6065" y="314.7433" z="93.45" h="90"/>
 		</spawn>
 		<!-- Verthen -->
 		<spawn npc_id="205325" respawn_time="295">
@@ -25,7 +25,7 @@
 		<!-- Ravenna -->
 		<spawn npc_id="205326" respawn_time="295">
 			<spot x="469.5556" y="296.4665" z="93.43999" h="0"/>
-			<spot x="477.5556" y="286.4739" z="94.2999" h="30"/>
+			<spot x="477.5556" y="286.4739" z="93.51" h="30"/>
 		</spawn>
 		<!-- Felder -->
 		<spawn npc_id="205327" respawn_time="295">
@@ -61,7 +61,7 @@
 		</spawn>
 		<!-- A rena -->
 		<spawn npc_id="205472" respawn_time="295">
-			<spot x="534.5516" y="272.3399" z="94.2999" h="0"/>
+			<spot x="534.5516" y="272.3399" z="93.48" h="0"/>
 		</spawn>
 		<!-- Monzun -->
 		<spawn npc_id="205490" respawn_time="295">
@@ -106,12 +106,12 @@
 		<!-- Merca -->
 		<spawn npc_id="207093" respawn_time="295">
 			<spot x="548.5716" y="346.471" z="93.4828" h="90"/>
-			<spot x="553.71" y="345.0" z="94.77" h="90"/>
+			<spot x="553.71" y="345.0" z="93.48" h="90"/>
 		</spawn>
 		<!-- Comerciante de mercadorias mistas -->
 		<spawn npc_id="207122" respawn_time="295">
 			<spot x="549.9138" y="346.5175" z="93.4828" h="90"/>
-			<spot x="544.5252" y="345.0046" z="94.7662" h="90"/>
+			<spot x="544.5252" y="345.0046" z="93.48" h="90"/>
 		</spawn>
 		<!-- Estátua do Teleport de Pandaemonium -->
 		<spawn npc_id="730427" respawn_time="295">
@@ -139,11 +139,11 @@
 		</spawn>
 		<!-- Letra -->
 		<spawn npc_id="730488" respawn_time="295">
-			<spot x="564.0755" y="313.2925" z="94.2999" h="0"/>
+			<spot x="564.0755" y="313.2925" z="93.48" h="0"/>
 		</spawn>
 		<!-- <Rabbiterk> -->
 		<spawn npc_id="730544" respawn_time="295">
-			<spot x="534.6518" y="313.1476" z="96.1064" h="0"/>
+			<spot x="534.6518" y="313.1476" z="93.48" h="0"/>
 		</spawn>
 		<!-- Faerie do outro mundo -->
 		<spawn npc_id="730577" respawn_time="295">
@@ -160,7 +160,7 @@
 			<spot x="560.5562" y="343.4236" z="93.4328" h="0"/>
 			<spot x="534.0871" y="315.823" z="93.4328" h="0"/>
 			<spot x="537.2908" y="342.7779" z="93.4328" h="0"/>
-			<spot x="561.0738" y="313.1879" z="94.2999" h="0"/>
+			<spot x="561.0738" y="313.1879" z="93.48" h="0"/>
 		</spawn>
 		<!-- Guarda cadinho -->
 		<spawn npc_id="799635" respawn_time="295">
@@ -177,27 +177,27 @@
 		</spawn>
 		<!-- Tereisa -->
 		<spawn npc_id="800179" respawn_time="295">
-			<spot x="503.576" y="300.612" z="94.4357" h="0"/>
+			<spot x="503.576" y="300.612" z="93.43" h="0"/>
 		</spawn>
 		<!-- Printigel -->
 		<spawn npc_id="800180" respawn_time="295">
-			<spot x="503.5901" y="302.4701" z="94.4249" h="0"/>
+			<spot x="503.5901" y="302.4701" z="93.44" h="0"/>
 		</spawn>
 		<!-- <Oficial Aumentador> -->
 		<spawn npc_id="800182" respawn_time="295">
-			<spot x="490.4967" y="314.7528" z="94.2999" h="0"/>
+			<spot x="490.4967" y="314.7528" z="93.45" h="0"/>
 		</spawn>
 		<!-- Badelran -->
 		<spawn npc_id="800257" respawn_time="295">
-			<spot x="488.4967" y="314.7528" z="94.2999" h="0"/>
+			<spot x="488.4967" y="314.7528" z="93.45" h="0"/>
 		</spawn>
 		<!-- Gallam -->
 		<spawn npc_id="800499" respawn_time="295">
-			<spot x="469.5556" y="296.2238" z="94.2999" h="0"/>
+			<spot x="469.5556" y="296.2238" z="93.43" h="0"/>
 		</spawn>
 		<!-- Mendia -->
 		<spawn npc_id="800501" respawn_time="295">
-			<spot x="469.5556" y="298.7238" z="94.2999" h="0"/>
+			<spot x="469.5556" y="298.7238" z="93.43" h="0"/>
 		</spawn>
 		<!-- Chloyl -->
 		<spawn npc_id="800502" respawn_time="295">
@@ -206,7 +206,7 @@
 		<!-- Lamandi -->
 		<spawn npc_id="800503" respawn_time="295">
 			<spot x="562.5295" y="211.6532" z="93.47958" h="60"/>
-			<spot x="469.5556" y="301.2239" z="94.2999" h="0"/>
+			<spot x="469.5556" y="301.2239" z="93.43" h="0"/>
 		</spawn>
 		<!-- Função de teste -->
 		<spawn npc_id="802214" respawn_time="295">

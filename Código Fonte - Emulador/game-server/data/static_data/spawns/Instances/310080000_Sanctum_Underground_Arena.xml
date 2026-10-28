@@ -24,7 +24,7 @@
 		</spawn>
 		<!-- Saída de arena subterrânea -->
 		<spawn npc_id="730065">
-			<spot x="275.897" y="295.6943" z="163.9151" h="0"/>
+			<spot x="275.897" y="295.6943" z="163.56" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>
