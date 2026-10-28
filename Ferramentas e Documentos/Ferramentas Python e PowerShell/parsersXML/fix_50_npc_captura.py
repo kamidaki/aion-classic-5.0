@@ -40,7 +40,7 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8")
 AQUI = os.path.dirname(os.path.abspath(__file__))
-RAIZ = os.path.abspath(os.path.join(AQUI, "..", ".."))
+RAIZ = os.path.abspath(os.path.join(AQUI, "..", "..", ".."))   # parsersXML fica em Ferramentas e Documentos/Ferramentas Python e PowerShell (24/09)
 sys.path.insert(0, os.path.join(RAIZ, "Ferramentas e Documentos", "Ferramentas Python e PowerShell", "Ferramentas Python"))
 sys.path.insert(0, AQUI)
 import aion_pcap  # noqa: E402
@@ -261,7 +261,9 @@ def _igual(a, b):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--aplicar", action="store_true", help="grava as duas arvores (com backup)")
+    ap.add_argument("--ids", help="so estes npcIds (separados por virgula), p.ex. os de um mapa conferido com verifica_template_captura.py")
     args = ap.parse_args()
+    filtro = {int(v) for v in args.ids.split(",")} if args.ids else None
 
     print("[1/4] Lendo S_PUT_NPC de todas as capturas oficiais...")
     medidas, resumo = colhe()
@@ -291,7 +293,7 @@ def main():
         pedacos, ultimo, vistos = [], 0, set()
         for m in re.finditer(r'\t?<npc_template npc_id="(\d+)"[ >].*?</npc_template>', texto, re.S):
             n = int(m.group(1))
-            if n not in medidas:
+            if n not in medidas or (filtro is not None and n not in filtro):
                 continue
             vistos.add(n)
             bloco = m.group(0)
@@ -314,7 +316,7 @@ def main():
                 contagem["campo " + campo] += 1
                 detalhes.append("  %d %-45s [%s] %s: %s -> %s" % (n, cli.get(n, {}).get("name", "")[:45], categoria(n), campo, antes, depois))
         novo = "".join(pedacos) + texto[ultimo:]
-        for n in sorted(set(medidas) - vistos):
+        for n in sorted((set(medidas) if filtro is None else set(medidas) & filtro) - vistos):
             sem_template[categoria(n)].append(n)
 
         antes, depois = texto.count("<npc_template "), novo.count("<npc_template ")
