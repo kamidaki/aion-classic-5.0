@@ -15,3 +15,7 @@ java -Xmx2g -cp $S TesteVoltas "../../../Código Fonte - Emulador/game-server/da
 
 Resultado em 27/10/2026: 43 de 44 voltas com afastamento <= 1,5 m (40 <= 1,0 m), busca média 6,2 ms, carga do mapa 80-210 ms.
 Opção "seguir o piso" (`new PathDatGrid(mapa, true)`): 211 trechos contra 157 do comportamento oficial.
+
+## GeoZ (superfície do geo do servidor)
+`GeoZ <mapa> <entrada> <saida>`: para cada linha "x y z", grava "x y z abaixo acima" (colisão de z+1 para baixo e de z+30 até z+1).
+Rodar na pasta do Produto Final/GameServer: `javac -cp "libs/*" -d <cls> GeoZ.java` e `java -Xmx6g -cp "libs/*;<cls>" GeoZ 800040000 pts.txt geo.txt`.

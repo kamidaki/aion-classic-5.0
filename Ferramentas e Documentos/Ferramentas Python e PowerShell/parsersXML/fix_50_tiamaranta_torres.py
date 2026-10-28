@@ -50,7 +50,7 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8")
 AQUI = os.path.dirname(os.path.abspath(__file__))
-RAIZ = os.path.abspath(os.path.join(AQUI, "..", ".."))
+RAIZ = os.path.abspath(os.path.join(AQUI, "..", "..", ".."))
 sys.path.insert(0, os.path.join(RAIZ, "Ferramentas e Documentos", "Ferramentas Python e PowerShell", "Ferramentas Python"))
 import aion_pcap  # noqa: E402
 

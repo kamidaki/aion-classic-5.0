@@ -39,6 +39,16 @@ Decodificado em 27/10/2026 a partir das capturas oficiais. O formato completo es
 - Atenção ao aplicar: 119 tipos sem template no servidor; 15.700 pontos de 4.389 tipos existem só no servidor (quest, instância,
   evento, cerco, 4.x) e 11 mapas não têm mission no cliente -> mesclar por tipo, não trocar o arquivo.
 
+## Spawns por mapa: captura + geo + grade (28/10)
+- `corrige_spawns_mapa.py <mapa> <geo.txt> <capturas.pkl> <arquivos> [--exclui-npc ids.txt] [--aplica]`: captura oficial primeiro
+  (ponto fixo -> x/y/z/h; spot com rota -> z), tipo que voa no oficial fica, chão pelo geo do servidor logo abaixo
+  (encaixado na grade; queda máxima 60 m). `<geo.txt>` sai do `Ferramentas Java/pathdat/GeoZ.java`.
+- Calibração em 3.414 pontos oficiais de Tiamaranta Mesa: no chão, geo e grade batem em 2.953; o geo acerta mais 41 em
+  convés/estrutura que a grade não tem (a grade só tem chão andável).
+- Tiamaranta Mesa (800040000): 1.393 spots corrigidos, torres (838 ids: nome LDF4b_ de torre, Bases e 802222) intactas;
+  z certo contra o oficial de 1.380 para 1.466 (os 38 restantes são Aethers/energias que sobem e descem pela rota).
+  57 spots ficaram sem mudança por não ter chão a até 60 m (Black Market Shugo, Treasure Box, Jabarunerk, Satra Drakan).
+
 ## Pendente
 - Os 512 bytes extras das camadas ímpares (4 bits por célula) ainda não têm significado conhecido.
 - Respawn oficial por tipo (medir nas capturas: morte -> S_PUT_NPC com flag de nascimento no mesmo ponto).
