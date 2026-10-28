@@ -430,4 +430,20 @@
 	<chest npc_id="804175">
 		<key_item item_ids="0" count="1" />
 	</chest>
+	<!-- Tiamaranta Mesa: abre sem chave (captura 16/09 05:22) -->
+	<chest npc_id="802182">
+		<key_item item_ids="0" count="1" />
+	</chest>
+	<!-- Tiamaranta Mesa: abre sem chave (captura 16/09 05:22) -->
+	<chest npc_id="802183">
+		<key_item item_ids="0" count="1" />
+	</chest>
+	<!-- Tiamaranta Mesa: abre sem chave (cliente + usuario, sem captura) -->
+	<chest npc_id="802184">
+		<key_item item_ids="0" count="1" />
+	</chest>
+	<!-- Tiamaranta Mesa: abre sem chave (cliente + usuario, sem captura) -->
+	<chest npc_id="802536">
+		<key_item item_ids="0" count="1" />
+	</chest>
 </chest_templates>

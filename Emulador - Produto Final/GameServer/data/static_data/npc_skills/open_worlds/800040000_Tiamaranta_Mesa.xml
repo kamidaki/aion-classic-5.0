@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc_skill_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="npc_skills.xsd">
+	<!-- Tiamaranta Mesa: skill e nível pelas capturas oficiais (S_USE_SKILL), usados pelas AIs ldf4b_mine e ldf4b_getitem_npc -->
+	<npc_skills npc_ids="220977">
+		<npc_skill id="21420" lv="4" /><!-- Mutated Fallen Aether: dano + atordoamento + queda -->
+	</npc_skills>
+	<npc_skills npc_ids="220978">
+		<npc_skill id="21421" lv="2" /><!-- Mutated Poison Aether: dano + veneno -->
+	</npc_skills>
+	<npc_skills npc_ids="802438">
+		<npc_skill id="21381" lv="1" /><!-- LDF4b_GetItem_Hide_Skill_NPC (Stealth Ring): Hide -->
+	</npc_skills>
+	<npc_skills npc_ids="802439">
+		<npc_skill id="21382" lv="1" /><!-- LDF4b_GetItem_Buff_Skill_NPC (Flight Ring): velocidade e voo -->
+	</npc_skills>
+</npc_skill_templates>

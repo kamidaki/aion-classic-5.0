@@ -172081,11 +172081,26 @@ Disponível em batalha" nameId="2287918" delayId="19955" stack="IDDRAGONLORD_TIA
 		</effects>
 		<motion name="AreaATK"/>
 	</skill_template>
-	<skill_template skill_id="21381" name_en="Hide" name_pt="Cativeiro marcado com sombras" nameId="2285716" delayId="21381" stack="GETITEM_HIDE_NPC_SKILL" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" target_type="AREA" first_target_range="6" target_distance="6" effective_range="6" effective_altitude="6"/>
+	<skill_template skill_id="21381" name_en="Hide" name_pt="Cativeiro marcado com sombras" nameId="2285716" delayId="21381" stack="GETITEM_HIDE_NPC_SKILL" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
+		<properties first_target="TARGET" target_type="AREA" target_species="PC" target_maxcount="24" first_target_range="6" target_distance="6" effective_range="6" effective_altitude="6"/>
+		<effects>
+			<hide state="HIDE1" buffcount="3" duration2="300000" effectid="165" e="1" basiclvl="21" noresist="true" hoptype="SKILLLV">
+				<change stat="SPEED" func="PERCENT" value="-20"/>
+			</hide>
+		</effects>
+		<motion name="NormalFire" instant_skill="true"/>
 	</skill_template>
-	<skill_template skill_id="21382" name_en="Movement/Flight Speed Boost" name_pt="Não mude o alvo" nameId="2285719" delayId="21382" stack="GETITEM_BUFF_NPC_SKILL" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" target_type="AREA" first_target_range="6" target_distance="6" effective_range="6" effective_altitude="6"/>
+	<skill_template skill_id="21382" name_en="Movement/Flight Speed Boost" name_pt="Não mude o alvo" nameId="2285719" delayId="21382" stack="GETITEM_BUFF_NPC_SKILL" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
+		<properties first_target="TARGET" target_type="AREA" target_species="PC" target_maxcount="24" first_target_range="6" target_distance="6" effective_range="6" effective_altitude="6"/>
+		<effects>
+			<statup duration2="300000" effectid="1219221" e="1" basiclvl="100" noresist="true" hoptype="SKILLLV" hopb="1">
+				<change stat="SPEED" func="PERCENT" value="80"/>
+			</statup>
+			<statup duration2="300000" effectid="10181453" e="2" noresist="true" preeffect="1" preeffect_prob="100" hoptype="DAMAGE">
+				<change stat="FLY_SPEED" func="PERCENT" value="160"/>
+			</statup>
+		</effects>
+		<motion name="NormalFire" instant_skill="true"/>
 	</skill_template>
 	<skill_template skill_id="21383" name_en="Flight Serum" name_pt="Transformação do cavaleiro" nameId="2285722" delayId="21383" stack="GETITEM_FP_NPC_SKILL" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" target_type="AREA" first_target_range="6" target_distance="6" effective_range="6" effective_altitude="6"/>
