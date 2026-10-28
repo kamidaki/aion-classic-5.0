@@ -14,7 +14,7 @@ import com.aionemu.gameserver.world.knownlist.PlayerAwareKnownList;
 public class Gatherable extends VisibleObject {
 
 	public Gatherable(SpawnTemplate spawnTemplate, GatherableController controller) {
-		super(IDFactory.getInstance().nextId(), controller, spawnTemplate, DataManager.GATHERABLE_DATA.getGatherableTemplate(spawnTemplate.getNpcId()), new WorldPosition(spawnTemplate.getWorldId()), true);
+		super(IDFactory.getInstance().nextWorldObjectId(), controller, spawnTemplate, DataManager.GATHERABLE_DATA.getGatherableTemplate(spawnTemplate.getNpcId()), new WorldPosition(spawnTemplate.getWorldId()), true);
 		controller.setOwner(this);
 		setKnownlist(new PlayerAwareKnownList(this));
 	}

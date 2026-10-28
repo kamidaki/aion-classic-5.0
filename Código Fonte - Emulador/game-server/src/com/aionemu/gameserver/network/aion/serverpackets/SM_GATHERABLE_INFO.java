@@ -40,5 +40,6 @@ public class SM_GATHERABLE_INFO extends AionServerPacket {
 		writeH(0);
 		writeH(0);
 		writeC(100); // unk
+		writeH(0); // 5.0 oficial: 40 b em 457 de 457, terminando em [C 100][H 0]
 	}
 }
