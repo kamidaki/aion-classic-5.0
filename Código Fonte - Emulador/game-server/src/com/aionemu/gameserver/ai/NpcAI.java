@@ -14,6 +14,7 @@ import com.aionemu.gameserver.controllers.movement.NpcMoveController;
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.TribeClass;
 import com.aionemu.gameserver.model.gameobjects.Creature;
+import com.aionemu.gameserver.world.geo.GeoService;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.siege.SiegeNpc;
@@ -164,7 +165,10 @@ public abstract class NpcAI extends AITemplate<Npc> {
 		return switch (getState()) {
 			case CONFUSE, FEAR -> PositionUtil.isInRange(getOwner(), getOwner().getMoveController().getTargetX2(),
 				getOwner().getMoveController().getTargetY2(), getOwner().getMoveController().getTargetZ2(), 1);
-			case FIGHT -> SimpleAttackManager.isTargetInAttackRange(getOwner());
+			// no alcance E à vista: do outro lado de uma parede ou guarda-corpo o NPC tem de contornar (o ataque falharia por obstáculo e
+			// ele ficava parado a 1-2 m do alvo, num ciclo chegar/parar/perseguir a cada tick)
+			case FIGHT -> SimpleAttackManager.isTargetInAttackRange(getOwner()) && getOwner().getTarget() != null
+				&& GeoService.getInstance().canSee(getOwner(), getOwner().getTarget());
 			case RETURNING -> {
 				SpawnTemplate spawn = getOwner().getSpawn();
 				yield PositionUtil.isInRange(getOwner(), spawn.getX(), spawn.getY(), spawn.getZ(), 1);

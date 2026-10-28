@@ -2,7 +2,6 @@ package com.aionemu.gameserver.model.stats.container;
 
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.gameserver.ai.AILogger;
-import com.aionemu.gameserver.ai.AISubState;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
@@ -59,20 +58,14 @@ public class NpcGameStats extends CreatureGameStats<Npc> {
 	@Override
 	public Stat2 getMovementSpeed() {
 		Stat2 newSpeedStat;
+		// Em grupo o NPC anda na mesma velocidade de sozinho. Os group_walk/group_run_fight do template vieram do
+		// art_org_move_speed_* do client_npcs, que é a velocidade original da animação, não de movimento: com eles o trio
+		// Kenikin (2,7)/Lasesbini (2,4)/Sehamm (1,5) se ultrapassava e esperava a cada passo; nas capturas oficiais os três
+		// andam a 2,0 m/s, o move_speed_normal_walk.
 		if (owner.isInState(CreatureState.WEAPON_EQUIPPED)) {
-			float speed;
-			if (owner.getWalkerGroup() != null)
-				speed = getStatsTemplate().getGroupRunSpeedFight();
-			else
-				speed = getStatsTemplate().getRunSpeedFight();
-			newSpeedStat = getStat(StatEnum.SPEED, Math.round(speed * 1000));
+			newSpeedStat = getStat(StatEnum.SPEED, Math.round(getStatsTemplate().getRunSpeedFight() * 1000));
 		} else if (owner.isInState(CreatureState.WALK_MODE)) {
-			float speed;
-			if (owner.getWalkerGroup() != null && owner.getAi().getSubState() == AISubState.WALK_PATH)
-				speed = getStatsTemplate().getGroupWalkSpeed();
-			else
-				speed = getStatsTemplate().getWalkSpeed();
-			newSpeedStat = getStat(StatEnum.SPEED, Math.round(speed * 1000));
+			newSpeedStat = getStat(StatEnum.SPEED, Math.round(getStatsTemplate().getWalkSpeed() * 1000));
 		} else {
 			float multiplier = owner.isFlying() ? 1.3f : 1.0f;
 			newSpeedStat = getStat(StatEnum.SPEED, Math.round(getStatsTemplate().getRunSpeed() * multiplier * 1000));
@@ -166,6 +159,13 @@ public class NpcGameStats extends CreatureGameStats<Npc> {
 
 	public int getLastSkillTimeDelta() {
 		return Math.round((System.currentTimeMillis() - lastSkillTime) / 1000f);
+	}
+
+	/**
+	 * @return ms desde a última ação de combate do NPC (ataque, skill ou troca de alvo/aggro)
+	 */
+	public long getMillisSemAtacar() {
+		return System.currentTimeMillis() - Math.max(lastAttackTime, Math.max(lastSkillTime, lastChangeTarget));
 	}
 
 	public int getLastChangeTargetTimeDelta() {

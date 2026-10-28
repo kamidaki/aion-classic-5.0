@@ -52,7 +52,7 @@ public class Npc extends Creature {
 
 	public Npc(NpcController controller, SpawnTemplate spawnTemplate, NpcTemplate objectTemplate) {
 		Objects.requireNonNull(objectTemplate);
-		super(IDFactory.getInstance().nextId(), controller, spawnTemplate, objectTemplate, new WorldPosition(spawnTemplate.getWorldId()), true);
+		super(IDFactory.getInstance().nextNpcId(), controller, spawnTemplate, objectTemplate, new WorldPosition(spawnTemplate.getWorldId()), true);
 		controller.setOwner(this);
 		moveController = new NpcMoveController(this);
 		skillList = new NpcSkillList(this);
@@ -262,7 +262,7 @@ public class Npc extends Creature {
 		else if (TribeRelationService.isFriend(this, creature) || TribeRelationService.isNeutral(this, creature))
 			return CreatureType.FRIEND;
 		else if (TribeRelationService.isSupport(this, creature))
-			return CreatureType.SUPPORT;
+			return CreatureType.FRIEND; // o 5.0 não exibe SUPPORT (54): 0 de 47 mil S_PUT_NPC oficiais; guarda do próprio povo vem 38
 		return CreatureType.ATTACKABLE;
 	}
 

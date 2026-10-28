@@ -151,6 +151,21 @@ public class Terrain {
 		return heightmap[index] == -1 ? Float.NaN : Short.toUnsignedInt(heightmap[index]) * HEIGHTMAP_MAX_Z_EXCLUSIVE / (0xFFFF + 1f);
 	}
 
+	/**
+	 * @return z of the rendered terrain surface at x/y (faces p1,p2,p3 and p2,p3,p4, see {@link #collideNearXY}), NaN where the heightmap has
+	 *         a hole
+	 */
+	public float getHeight(float x, float y) {
+		if (heightmap == null)
+			return Float.NaN;
+		int i = (int) (x / HEIGHTMAP_UNIT_SIZE), j = (int) (y / HEIGHTMAP_UNIT_SIZE);
+		float fx = x / HEIGHTMAP_UNIT_SIZE - i, fy = y / HEIGHTMAP_UNIT_SIZE - j;
+		float z1 = getZ(i, j), z2 = getZ(i, j + 1), z3 = getZ(i + 1, j), z4 = getZ(i + 1, j + 1);
+		if (fx + fy <= 1)
+			return z1 + (z3 - z1) * fx + (z2 - z1) * fy;
+		return z4 + (z2 - z4) * (1 - fx) + (z3 - z4) * (1 - fy);
+	}
+
 	public int getTerrainMaterialAt(float x, float y) {
 		if (materials == null)
 			return 0;

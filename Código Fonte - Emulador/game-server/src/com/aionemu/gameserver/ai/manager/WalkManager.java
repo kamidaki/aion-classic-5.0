@@ -197,7 +197,9 @@ public class WalkManager {
 	 * @param npcAI
 	 */
 	protected static void chooseNextRouteStep(NpcAI npcAI) {
-		int walkPause = npcAI.getOwner().getMoveController().getCurrentStep().getRestTime();
+		RouteStep chegada = npcAI.getOwner().getMoveController().getCurrentStep();
+		int walkPause = npcAI.getOwner().getWalkerGroup() != null ? npcAI.getOwner().getWalkerGroup().getRestTime(npcAI.getOwner(), chegada)
+			: chegada.getRestTime();
 		if (walkPause == 0) {
 			npcAI.getOwner().getMoveController().resetMove();
 			if (npcAI.getOwner().getMoveController().isNextRouteStepChosen())

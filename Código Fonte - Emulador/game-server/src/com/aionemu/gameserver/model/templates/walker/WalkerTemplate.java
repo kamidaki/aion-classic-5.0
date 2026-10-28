@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import com.aionemu.gameserver.dataholders.DataManager;
+import com.aionemu.gameserver.spawnengine.WalkerGroupShift;
 import com.aionemu.gameserver.spawnengine.WalkerGroupType;
 
 /**
@@ -48,8 +49,24 @@ public class WalkerTemplate {
 	@XmlAttribute(name = "loop_type")
 	private LoopType loopType = LoopType.NORMAL;
 
+	@XmlAttribute(name = "offsets")
+	private String offsetValues;
+
+	/**
+	 * Formação OFFSET: rota própria de cada membro por walker_index, separadas por ";" (vazio = usa o deslocamento de offsets). O
+	 * membro anda para o ponto de mesmo índice da sua rota; o grupo continua sincronizado por índice de passo.
+	 */
+	@XmlAttribute(name = "member_routes")
+	private String memberRouteValues;
+
+	@XmlTransient
+	private String[] memberRoutes;
+
 	@XmlTransient
 	private int[] rows;
+
+	@XmlTransient
+	private WalkerGroupShift[] offsets;
 
 	public WalkerTemplate() {
 	}
@@ -90,8 +107,44 @@ public class WalkerTemplate {
 			} else {
 				formation = WalkerGroupType.POINT;
 			}
+		} else if (formation == WalkerGroupType.OFFSET) {
+			if (memberRouteValues != null)
+				memberRoutes = memberRouteValues.split(";", -1);
+			if (offsetValues == null && memberRoutes != null)
+				offsetValues = "0:0";
+			if (offsetValues != null) {
+				String[] membros = offsetValues.split(";");
+				offsets = new WalkerGroupShift[membros.length];
+				for (int i = 0; i < membros.length; i++) {
+					String[] v = membros[i].split(":");
+					offsets[i] = new WalkerGroupShift(Float.parseFloat(v[0].trim()), Float.parseFloat(v[1].trim()));
+				}
+			} else {
+				formation = WalkerGroupType.POINT;
+			}
 		}
 		rowValues = null;
+		offsetValues = null;
+		memberRouteValues = null;
+	}
+
+	/**
+	 * @return route_id da rota própria do membro com esse walker_index na formação OFFSET, ou null se ele usa o deslocamento
+	 */
+	public String getMemberRouteId(Integer walkerIndex) {
+		int i = walkerIndex == null ? 0 : walkerIndex;
+		if (memberRoutes == null || i < 0 || i >= memberRoutes.length)
+			return null;
+		String r = memberRoutes[i].trim();
+		return r.isEmpty() ? null : r;
+	}
+
+	/**
+	 * @return deslocamento (lado, frente) do membro com esse walker_index na formação OFFSET; (0, 0) se não houver
+	 */
+	public WalkerGroupShift getOffset(Integer walkerIndex) {
+		int i = walkerIndex == null ? 0 : walkerIndex;
+		return offsets != null && i >= 0 && i < offsets.length ? offsets[i] : new WalkerGroupShift(0, 0);
 	}
 
 	public List<RouteStep> getRouteSteps() {
