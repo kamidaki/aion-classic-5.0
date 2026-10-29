@@ -1,6 +1,9 @@
 """Acerta os spots fixos de um arquivo de spawn pela posição oficial (S_PUT_NPC) de uma captura do mapa.
 
-Uso: atualiza_spawns_captura.py <captura .pkl> <mapa> <arquivo de spawn> [<mais arquivos com o mesmo conteúdo>] [--aplica]
+Uso: atualiza_spawns_captura.py <captura .pkl> <mapa> <arquivo de spawn> [<mais arquivos com o mesmo conteúdo>] [--mover-ate R] [--aplica]
+
+--mover-ate R: o objeto oficial que não tem spot do mesmo NPC a 1 m move o spot livre mais perto dele até R m (padrão: só 1 m,
+o resto vira spot novo). Usado no Balic Treasury (29/10) com R=6, onde o spot antigo ficava a 1-6 m do oficial.
 
 Objeto oficial "fixo": todas as aparições no mesmo x/y (0,3 m) e com o mesmo heading; NPC invocado por jogador fica de fora,
 assim como tipos criados dinamicamente (muitos objetos no mesmo ponto, ex.: 209359 Soul Catcher).
@@ -58,11 +61,31 @@ def processa(texto, fixos, rel):
             spots[n].append((ini, ini + len(tag), g("x"), g("y"), "walker_id" in tag or "random_walk" in tag, int(si.group(1)) if si else 0))
     edits, novos, usados = [], collections.defaultdict(list), set()
     statics_oficiais = {(n, st) for n, x, y, z, h, st in fixos if st}
-    for n, x, y, z, h, st in fixos:
+
+    def perto(n, x, y, raio):
         c = [s for s in spots.get(n, []) if s[0] not in usados]
         b = min(c, key=lambda s: math.hypot(s[2] - x, s[3] - y)) if c else None
-        if b and math.hypot(b[2] - x, b[3] - y) <= 1.0:
+        return b if b and math.hypot(b[2] - x, b[3] - y) <= raio else None
+
+    # 1ª passada até 1 m; com --mover-ate, o que sobrou casa com o spot livre mais perto do mesmo NPC até esse raio
+    # (é o mesmo spawn fora do lugar: acrescentar um spot novo ao lado dele dobraria o NPC)
+    par = {}
+    for i, (n, x, y, z, h, st) in enumerate(fixos):
+        b = perto(n, x, y, 1.0)
+        if b:
             usados.add(b[0])
+            par[i] = b
+    if MOVER_ATE > 1.0:
+        for i, (n, x, y, z, h, st) in enumerate(fixos):
+            if i not in par:
+                b = perto(n, x, y, MOVER_ATE)
+                if b and not b[4]:
+                    usados.add(b[0])
+                    par[i] = b
+                    rel["movido (spot do mesmo NPC a 1-%g m)" % MOVER_ATE] += 1
+    for i, (n, x, y, z, h, st) in enumerate(fixos):
+        b = par.get(i)
+        if b:
             if b[4]:
                 rel["mantido: spot com rota ou andar aleatório"] += 1
                 continue
@@ -114,8 +137,17 @@ def processa(texto, fixos, rel):
     return texto
 
 
+MOVER_ATE = 1.0
+
+
 def main():
-    a = [v for v in sys.argv[1:] if v != "--aplica"]
+    global MOVER_ATE
+    argv = sys.argv[1:]
+    if "--mover-ate" in argv:
+        i = argv.index("--mover-ate")
+        MOVER_ATE = float(argv[i + 1])
+        del argv[i:i + 2]
+    a = [v for v in argv if v != "--aplica"]
     pkl, mapa, arqs = a[0], int(a[1]), a[2:]
     fixos = oficiais(pkl, mapa)
     print(f"objetos oficiais fixos: {len(fixos)}")

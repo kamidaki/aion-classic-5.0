@@ -207,7 +207,7 @@ def ajusta(bloco, medida, cli, com_aggro):
         atr("ai", AI_GUARDA_ABISMO)
 
     if maxhp is not None:
-        m = re.search(r'<stats maxHp="(\d+)"', bloco)
+        m = re.search(r'<stats\b[^>]*?\bmaxHp="(\d+)"', bloco)  # attack pode vir antes (fix_50_npc_ataque*.py, 29/10)
         if m and int(m.group(1)) != maxhp:
             bloco = bloco[:m.start(1)] + str(maxhp) + bloco[m.end(1):]
             mudancas.append(("maxHp", m.group(1), str(maxhp)))

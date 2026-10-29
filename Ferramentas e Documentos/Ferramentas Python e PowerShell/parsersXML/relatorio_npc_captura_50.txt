@@ -1,4 +1,4 @@
-fix_50_npc_captura.py -- APLICADO
+fix_50_npc_captura.py -- simulacao
 
 CAPTURAS
   01_Login_World_Asmodians_2026-08-27_10-08-12_00001_20260827100812.pcapng                             sessoes 1 (sem S_KEY 0)  S_PUT_NPC 50
@@ -46,6 +46,9 @@ CAPTURAS
   06_Sistemas_Novos_5.0_2026-10-22_06-09-16_00001_20261022060916.pcapng                                sessoes 2 (sem S_KEY 0)  S_PUT_NPC 1129
   06_Sistemas_Novos_5.0_2026-10-27_01-27-43_00001_20261027012743.pcapng                                sessoes 1 (sem S_KEY 0)  S_PUT_NPC 1048
   06_Sistemas_Novos_5.0_2026-10-27_03-01-42_00001_20261027030142.pcapng                                sessoes 1 (sem S_KEY 0)  S_PUT_NPC 1308
+  06_Sistemas_Novos_5.0_2026-10-27_23-12-28_00001_20261027231228.pcapng                                sessoes 1 (sem S_KEY 0)  S_PUT_NPC 148
+  06_Sistemas_Novos_5.0_2026-10-28_05-28-03_00001_20261028052803.pcapng                                sessoes 2 (sem S_KEY 0)  S_PUT_NPC 3406
+  06_Sistemas_Novos_5.0_2026-10-28_06-49-56_00001_20261028064956.pcapng                                sessoes 1 (sem S_KEY 1)  S_PUT_NPC 951
   06_Sistemas_Novos_Aplicando_Godstone5.0_2026-09-11_19-50-37_00001_20260911195037.pcapng              sessoes 1 (sem S_KEY 0)  S_PUT_NPC 96
   06_Sistemas_Novos_Black_Cloud_Mail_5.0_2026-09-14_08-44-22_00001_20260914084422.pcapng               sessoes 1 (sem S_KEY 0)  S_PUT_NPC 72
   06_Sistemas_Novos_Book_of_Legends5.0_2026-09-11_18-54-27_00001_20260911185427.pcapng                 sessoes 1 (sem S_KEY 0)  S_PUT_NPC 114
@@ -62,10 +65,14 @@ CAPTURAS
   06_Sistemas_Novos_Stigma2_5.0_2026-09-14_22-13-22_00001_20260914221322.pcapng                        sessoes 1 (sem S_KEY 0)  S_PUT_NPC 451
   06_Sistemas_Novos_Stigma_5.0_2026-09-11_17-35-47_00001_20260911173548.pcapng                         sessoes 1 (sem S_KEY 0)  S_PUT_NPC 103
   06_Sistemas_Novos_Tiamaranta_ZonaNeutra_Asmo_5.0_2026-09-13_01-26-03_00001_20260913012603.pcapng     sessoes 1 (sem S_KEY 1)  S_PUT_NPC 1963
+  Balic Treasury.pcapng                                                                                sessoes 3 (sem S_KEY 2)  S_PUT_NPC 2961
+  Whirling Augusta.pcapng                                                                              sessoes 1 (sem S_KEY 1)  S_PUT_NPC 3
   abriritemetc.pcapng                                                                                  sessoes 1 (sem S_KEY 0)  S_PUT_NPC 523
   aionlook.pcapng                                                                                      sessoes 1 (sem S_KEY 0)  S_PUT_NPC 265
   helmt.pcapng                                                                                         sessoes 1 (sem S_KEY 1)  S_PUT_NPC 4
   motion.pcapng                                                                                        sessoes 1 (sem S_KEY 0)  S_PUT_NPC 299
+  pvp.pcapng                                                                                           sessoes 4 (sem S_KEY 0)  S_PUT_NPC 1815
+  torre mobs.pcapng                                                                                    sessoes 2 (sem S_KEY 2)  S_PUT_NPC 2534
   07_Deletar_Personagem_Voltar_Servidores_Elyos_2026-08-27_12-22-45_00001_20260827122245.pcapng        sessoes 2 (sem S_KEY 1)  S_PUT_NPC 0
   08_Spawns_Mapas_Gelkmaros_2026-09-12_21-06-08_00001_20260912210609.pcapng                            sessoes 1 (sem S_KEY 1)  S_PUT_NPC 2722
   08_Spawns_Mapas_Tiamaranta_Mesa_2026-09-15_05-09-38_00001_20260915050938.pcapng                      sessoes 2 (sem S_KEY 0)  S_PUT_NPC 648
@@ -75,7 +82,9 @@ CAPTURAS
   oficial_fusao_detalhada_00001_20260906022117.pcapng                                                  sessoes 1 (sem S_KEY 0)  S_PUT_NPC 187
   oficial_login_com_fusao_00001_20260906024513.pcapng                                                  sessoes 1 (sem S_KEY 0)  S_PUT_NPC 115
   oficial_troca_de_arma_00001_20260906014754.pcapng                                                    sessoes 2 (sem S_KEY 1)  S_PUT_NPC 22
+  Ishalgen.pcapng                                                                                      sessoes 1 (sem S_KEY 0)  S_PUT_NPC 2916
   Pandaemonium_5.0_2026-10-27_16-35-45_00001_20261027163545.pcapng                                     sessoes 1 (sem S_KEY 0)  S_PUT_NPC 1332
+  Tiamaranta.pcapng                                                                                    sessoes 4 (sem S_KEY 0)  S_PUT_NPC 1678
   Nova Pasta_2026-09-29_15-50-41_00001_20260929155041.pcapng                                           sessoes 1 (sem S_KEY 0)  S_PUT_NPC 51
   Nova Pasta_2026-09-29_16-02-44_00001_20260929160244.pcapng                                           sessoes 1 (sem S_KEY 1)  S_PUT_NPC 225
   Nova Pasta_2026-09-29_16-14-00_00001_20260929161400.pcapng                                           sessoes 1 (sem S_KEY 1)  S_PUT_NPC 0
@@ -103,39 +112,29 @@ CAPTURAS
   outros_2026-09-27_16-39-33_00001_20260927163933.pcapng                                               sessoes 3 (sem S_KEY 0)  S_PUT_NPC 2448
 
 NPCIDS COM CAMPO VARIANDO ENTRE CAPTURAS (esses campos nao mudam)
-  204073 Grer: {'maxhp': {1392: 37, 1600: 3}}
-  209048 BF4_Lguard_Li_Priest_Ah2_lv57: {'maxhp': {1306550: 35, 1633187: 1}}
-  209375 LDF4b_Guard_Da_Fighter_Ae_lv60_M: {'maxhp': {21107: 96, 13720: 6}}
-  209376 LDF4b_Guard_Da_Fighter_Ae_lv60_F: {'maxhp': {21107: 111, 13720: 6}}
-  209377 LDF4b_Guard_Da_Ranger_Ae_lv60_M: {'maxhp': {21107: 1490, 13720: 16}}
-  209378 LDF4b_Guard_Da_Ranger_Ae_lv60_F: {'maxhp': {21107: 278, 13720: 2}}
+  204073 Grer: {'maxhp': {1392: 43, 1600: 3}}
+  209048 BF4_Lguard_Li_Priest_Ah2_lv57: {'maxhp': {1306550: 48, 1633187: 1}}
+  209375 LDF4b_Guard_Da_Fighter_Ae_lv60_M: {'maxhp': {21107: 141, 13720: 6}}
+  209376 LDF4b_Guard_Da_Fighter_Ae_lv60_F: {'maxhp': {21107: 161, 13720: 6}}
+  209377 LDF4b_Guard_Da_Ranger_Ae_lv60_M: {'maxhp': {21107: 1984, 13720: 16}}
+  209378 LDF4b_Guard_Da_Ranger_Ae_lv60_F: {'maxhp': {21107: 366, 13720: 2}}
 
 ====================================================================================================
 ARVORE FONTE: G:\Projetos AION\Classic\Código Fonte - Emulador\game-server\data\static_data\npcs\npc_templates.xml
-  corrigidos: mob 0, guarda 0, npc 2
-  por campo: equipment 1, level 2, maxHp 2
-  sem template (mob, 0): 
+  corrigidos: mob 0, guarda 0, npc 0
+  por campo: 
+  sem template (mob, 7): 220810(DrakanWeapon_Invisible) 220857(TiamatDrakan_AntiMagicalArea) 220858(TiamatDrakan_AntiMagicalArea_invisible) 220859(TiamatDrakan_MistArea) 220860(TiamatDrakan_MistArea_invisible) 221330(Tdown_Black_Drana_Worker_68_An) 221331(Tdown_Black_Drana_DrakanFi_68_An)
   sem template (guarda, 0): 
   sem template (npc, 0): 
 
   MUDANCAS
-  780099 Event_NPC_Shugo_Proc_Hotdeal_Seller_01        [npc] level: 60 -> 65
-  780099 Event_NPC_Shugo_Proc_Hotdeal_Seller_01        [npc] maxHp: 20000 -> 21107
-  800781 Hemming                                       [npc] level: 60 -> 10
-  800781 Hemming                                       [npc] maxHp: 23691 -> 1392
-  800781 Hemming                                       [npc] equipment: 113500306 110500323 112500298 111500314 114500318 -> 110100319 111100272 114100289 112100251 113100271
 
 ====================================================================================================
 ARVORE PRODUTO: G:\Projetos AION\Classic\Emulador - Produto Final\GameServer\data\static_data\npcs\npc_templates.xml
-  corrigidos: mob 0, guarda 0, npc 2
-  por campo: equipment 1, level 2, maxHp 2
-  sem template (mob, 0): 
+  corrigidos: mob 0, guarda 0, npc 0
+  por campo: 
+  sem template (mob, 7): 220810(DrakanWeapon_Invisible) 220857(TiamatDrakan_AntiMagicalArea) 220858(TiamatDrakan_AntiMagicalArea_invisible) 220859(TiamatDrakan_MistArea) 220860(TiamatDrakan_MistArea_invisible) 221330(Tdown_Black_Drana_Worker_68_An) 221331(Tdown_Black_Drana_DrakanFi_68_An)
   sem template (guarda, 0): 
   sem template (npc, 0): 
 
   MUDANCAS
-  780099 Event_NPC_Shugo_Proc_Hotdeal_Seller_01        [npc] level: 60 -> 65
-  780099 Event_NPC_Shugo_Proc_Hotdeal_Seller_01        [npc] maxHp: 20000 -> 21107
-  800781 Hemming                                       [npc] level: 60 -> 10
-  800781 Hemming                                       [npc] maxHp: 23691 -> 1392
-  800781 Hemming                                       [npc] equipment: 113500306 110500323 112500298 111500314 114500318 -> 110100319 111100272 114100289 112100251 113100271

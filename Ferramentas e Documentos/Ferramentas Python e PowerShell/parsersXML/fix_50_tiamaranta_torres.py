@@ -42,6 +42,7 @@ Uso:
 """
 
 import collections
+import json
 import math
 import os
 import re
@@ -398,9 +399,24 @@ def num(v):
     return s if s else "0"
 
 
-def spot(p):
+_ROTAS = None
+
+
+def rota_do_spot(npc, p):
+    """route_id medido pelo gera_50_torres_movimento.py para este npc e x/y (torres_rotas_50.json), ou None."""
+    global _ROTAS
+    if _ROTAS is None:
+        f = os.path.join(os.path.dirname(os.path.abspath(__file__)), "torres_rotas_50.json")
+        _ROTAS = json.load(open(f, encoding="utf-8")) if os.path.exists(f) else {}
+    return _ROTAS.get("%d:%.2f:%.2f" % (npc, p["x"], p["y"]))
+
+
+def spot(p, npc=None):
     extra = ' static_id="%d"' % p["static"] if p["static"] else ""
-    if p["papel"] in PATRULHAM and p["raio"] > 5:   # guerreiro deslocado e combate, nao patrulha
+    rota = rota_do_spot(npc, p) if npc is not None else None
+    if rota:                                        # rota oficial da captura (S_MOVE 0xE8/0xEA) no lugar do raio
+        extra += ' walker_id="%s"' % rota
+    elif p["papel"] in PATRULHAM and p["raio"] > 5:   # guerreiro deslocado e combate, nao patrulha
         extra += ' random_walk="%d"' % max(1, round(p["raio"] / math.sqrt(2)))
     return '\t\t\t\t\t<spot x="%s" y="%s" z="%s" h="%d"%s />' % (num(p["x"]), num(p["y"]), num(p["z"]), p["h"], extra)
 
@@ -408,7 +424,7 @@ def spot(p):
 def grupo(handler, npc, pts, respawn=None):
     r = ' respawn_time="%d"' % respawn if respawn else ""
     pts = sorted(pts, key=lambda p: (-p["z"], p["x"], p["y"]))
-    return "\n".join(['\t\t\t\t<spawn handler="%s" npc_id="%d"%s>' % (handler, npc, r)] + [spot(p) for p in pts]
+    return "\n".join(['\t\t\t\t<spawn handler="%s" npc_id="%d"%s>' % (handler, npc, r)] + [spot(p, npc) for p in pts]
                      + ["\t\t\t\t</spawn>"])
 
 
@@ -740,6 +756,9 @@ def main():
         final, aplicados = reaplica(xml, ajustes)
         if not seco:
             open(caminho, "w", encoding="utf-8", newline="\n").write(final)
+        elif os.environ.get("TORRES_DRY_DIR"):   # --dry com TORRES_DRY_DIR: grava o resultado lá, para comparar com o arquivo atual
+            open(os.path.join(os.environ["TORRES_DRY_DIR"], "%s_Tiamaranta.xml" % os.path.basename(os.path.dirname(os.path.dirname(arvore)))),
+                 "w", encoding="utf-8", newline="\n").write(final)
         print("   %s\n      z/h do arquivo mantido (//fixspawn): %d spot(s)" % (caminho, aplicados))
 
     print("4. base_locations...")

@@ -1,0 +1,507 @@
+{
+ "medidos": {
+  "213566": {
+   "attack": 418,
+   "faixa": [
+    400,
+    436
+   ],
+   "golpes": 11,
+   "espalhamento": 1.47
+  },
+  "220503": {
+   "attack": 544,
+   "faixa": [
+    510,
+    578
+   ],
+   "golpes": 9,
+   "espalhamento": 1.55
+  },
+  "220535": {
+   "attack": 1104,
+   "faixa": [
+    1035,
+    1172
+   ],
+   "golpes": 11,
+   "espalhamento": 1.32
+  },
+  "220537": {
+   "attack": 1697,
+   "faixa": [
+    1574,
+    1820
+   ],
+   "golpes": 11,
+   "espalhamento": 1.26
+  },
+  "220558": {
+   "attack": 543,
+   "faixa": [
+    528,
+    558
+   ],
+   "golpes": 13,
+   "espalhamento": 1.6
+  },
+  "220617": {
+   "attack": 531,
+   "faixa": [
+    511,
+    550
+   ],
+   "golpes": 18,
+   "espalhamento": 1.53
+  },
+  "220620": {
+   "attack": 525,
+   "faixa": [
+    508,
+    542
+   ],
+   "golpes": 28,
+   "espalhamento": 1.54
+  },
+  "220622": {
+   "attack": 527,
+   "faixa": [
+    516,
+    538
+   ],
+   "golpes": 23,
+   "espalhamento": 1.41
+  },
+  "220627": {
+   "attack": 925,
+   "faixa": [
+    886,
+    964
+   ],
+   "golpes": 91,
+   "espalhamento": 1.35
+  },
+  "220633": {
+   "attack": 557,
+   "faixa": [
+    545,
+    569
+   ],
+   "golpes": 29,
+   "espalhamento": 1.51
+  },
+  "220635": {
+   "attack": 727,
+   "faixa": [
+    703,
+    751
+   ],
+   "golpes": 18,
+   "espalhamento": 1.43
+  },
+  "220638": {
+   "attack": 532,
+   "faixa": [
+    520,
+    543
+   ],
+   "golpes": 19,
+   "espalhamento": 1.48
+  },
+  "220655": {
+   "attack": 1419,
+   "faixa": [
+    1402,
+    1435
+   ],
+   "golpes": 81,
+   "espalhamento": 1.39
+  },
+  "220660": {
+   "attack": 1888,
+   "faixa": [
+    1811,
+    1964
+   ],
+   "golpes": 43,
+   "espalhamento": 1.29
+  },
+  "220663": {
+   "attack": 1469,
+   "faixa": [
+    1435,
+    1503
+   ],
+   "golpes": 11,
+   "espalhamento": 1.44
+  },
+  "220664": {
+   "attack": 2022,
+   "faixa": [
+    1905,
+    2139
+   ],
+   "golpes": 31,
+   "espalhamento": 1.31
+  },
+  "220733": {
+   "attack": 1296,
+   "faixa": [
+    1238,
+    1354
+   ],
+   "golpes": 28,
+   "espalhamento": 1.4
+  },
+  "220735": {
+   "attack": 1287,
+   "faixa": [
+    1253,
+    1320
+   ],
+   "golpes": 28,
+   "espalhamento": 1.45
+  },
+  "220739": {
+   "attack": 1421,
+   "faixa": [
+    1381,
+    1460
+   ],
+   "golpes": 49,
+   "espalhamento": 1.45
+  },
+  "220744": {
+   "attack": 931,
+   "faixa": [
+    882,
+    979
+   ],
+   "golpes": 16,
+   "espalhamento": 1.43
+  },
+  "220770": {
+   "attack": 1859,
+   "faixa": [
+    1704,
+    2013
+   ],
+   "golpes": 8,
+   "espalhamento": 1.29
+  },
+  "220988": {
+   "attack": 529,
+   "faixa": [
+    518,
+    540
+   ],
+   "golpes": 37,
+   "espalhamento": 1.57
+  },
+  "220990": {
+   "attack": 702,
+   "faixa": [
+    665,
+    739
+   ],
+   "golpes": 41,
+   "espalhamento": 1.38
+  },
+  "221047": {
+   "attack": 684,
+   "faixa": [
+    682,
+    685
+   ],
+   "golpes": 41,
+   "espalhamento": 1.55
+  },
+  "221048": {
+   "attack": 607,
+   "faixa": [
+    592,
+    622
+   ],
+   "golpes": 23,
+   "espalhamento": 1.5
+  },
+  "221049": {
+   "attack": 810,
+   "faixa": [
+    803,
+    818
+   ],
+   "golpes": 28,
+   "espalhamento": 1.48
+  },
+  "221050": {
+   "attack": 1065,
+   "faixa": [
+    1040,
+    1090
+   ],
+   "golpes": 32,
+   "espalhamento": 1.37
+  },
+  "221103": {
+   "attack": 670,
+   "faixa": [
+    631,
+    710
+   ],
+   "golpes": 8,
+   "espalhamento": 1.52
+  },
+  "224308": {
+   "attack": 111,
+   "faixa": [
+    109,
+    113
+   ],
+   "golpes": 13,
+   "espalhamento": 1.44
+  },
+  "274027": {
+   "attack": 2103,
+   "faixa": [
+    2001,
+    2204
+   ],
+   "golpes": 18,
+   "espalhamento": 1.42
+  },
+  "274028": {
+   "attack": 1591,
+   "faixa": [
+    1484,
+    1698
+   ],
+   "golpes": 17,
+   "espalhamento": 1.23
+  },
+  "274029": {
+   "attack": 1431,
+   "faixa": [
+    1365,
+    1497
+   ],
+   "golpes": 41,
+   "espalhamento": 1.38
+  },
+  "274035": {
+   "attack": 1149,
+   "faixa": [
+    1097,
+    1201
+   ],
+   "golpes": 37,
+   "espalhamento": 1.43
+  },
+  "274036": {
+   "attack": 1750,
+   "faixa": [
+    1685,
+    1815
+   ],
+   "golpes": 38,
+   "espalhamento": 1.39
+  },
+  "274037": {
+   "attack": 1581,
+   "faixa": [
+    1503,
+    1658
+   ],
+   "golpes": 20,
+   "espalhamento": 1.34
+  },
+  "274038": {
+   "attack": 2331,
+   "faixa": [
+    2270,
+    2392
+   ],
+   "golpes": 39,
+   "espalhamento": 1.41
+  },
+  "274191": {
+   "attack": 937,
+   "faixa": [
+    901,
+    972
+   ],
+   "golpes": 28,
+   "espalhamento": 1.42
+  },
+  "274332": {
+   "attack": 1245,
+   "faixa": [
+    1141,
+    1348
+   ],
+   "golpes": 12,
+   "espalhamento": 1.32
+  },
+  "274361": {
+   "attack": 721,
+   "faixa": [
+    680,
+    762
+   ],
+   "golpes": 8,
+   "espalhamento": 1.52
+  },
+  "283228": {
+   "attack": 863,
+   "faixa": [
+    846,
+    880
+   ],
+   "golpes": 20,
+   "espalhamento": 1.35
+  }
+ },
+ "descartes": {
+  "210092": "1 golpes",
+  "210096": "2 golpes",
+  "210097": "1 golpes",
+  "210101": "1 golpes",
+  "210143": "2 golpes",
+  "210149": "1 golpes",
+  "210154": "1 golpes",
+  "210182": "2 golpes",
+  "210191": "2 golpes",
+  "210367": "3 golpes",
+  "210645": "1 golpes",
+  "210649": "1 golpes",
+  "210686": "1 golpes",
+  "213259": "4 golpes",
+  "213266": "4 golpes",
+  "215955": "golpe de 1 (roteirizado)",
+  "220421": "3 golpes",
+  "220429": "1 golpes",
+  "220441": "3 golpes",
+  "220445": "1 golpes",
+  "220446": "2 golpes",
+  "220459": "1 golpes",
+  "220462": "1 golpes",
+  "220467": "2 golpes",
+  "220470": "1 golpes",
+  "220472": "1 golpes",
+  "220473": "2 golpes",
+  "220474": "3 golpes",
+  "220479": "2 golpes",
+  "220490": "5 golpes",
+  "220491": "2 golpes",
+  "220496": "3 golpes",
+  "220504": "1 golpes",
+  "220510": "1 golpes",
+  "220514": "1 golpes",
+  "220516": "4 golpes",
+  "220523": "7 golpes",
+  "220529": "1 golpes",
+  "220530": "espalhamento 1.70",
+  "220531": "3 golpes",
+  "220550": "7 golpes",
+  "220557": "espalhamento 1.77",
+  "220559": "espalhamento 1.82",
+  "220561": "6 golpes",
+  "220568": "2 golpes",
+  "220573": "3 golpes",
+  "220574": "3 golpes",
+  "220601": "2 golpes",
+  "220604": "faixa vazia (523 > 517)",
+  "220606": "5 golpes",
+  "220615": "espalhamento 1.76",
+  "220626": "espalhamento 3.31",
+  "220628": "espalhamento 3.94",
+  "220629": "espalhamento 1.74",
+  "220630": "golpe de 1 (roteirizado)",
+  "220631": "7 golpes",
+  "220632": "1 golpes",
+  "220639": "espalhamento 1.62",
+  "220642": "espalhamento 1.75",
+  "220644": "2 golpes",
+  "220645": "1 golpes",
+  "220657": "6 golpes",
+  "220668": "5 golpes",
+  "220671": "1 golpes",
+  "220672": "1 golpes",
+  "220673": "1 golpes",
+  "220674": "1 golpes",
+  "220675": "espalhamento 1.87",
+  "220676": "1 golpes",
+  "220684": "2 golpes",
+  "220685": "1 golpes",
+  "220690": "3 golpes",
+  "220691": "7 golpes",
+  "220693": "2 golpes",
+  "220698": "4 golpes",
+  "220705": "2 golpes",
+  "220707": "espalhamento 1.77",
+  "220709": "espalhamento 1.99",
+  "220719": "espalhamento 1.89",
+  "220720": "espalhamento 1.79",
+  "220722": "faixa vazia (539 > 522)",
+  "220725": "espalhamento 1.92",
+  "220728": "4 golpes",
+  "220729": "6 golpes",
+  "220742": "4 golpes",
+  "220746": "3 golpes",
+  "220752": "1 golpes",
+  "220754": "1 golpes",
+  "220755": "6 golpes",
+  "220760": "3 golpes",
+  "220764": "2 golpes",
+  "220766": "4 golpes",
+  "220767": "6 golpes",
+  "220771": "2 golpes",
+  "220773": "5 golpes",
+  "220986": "3 golpes",
+  "220987": "3 golpes",
+  "220989": "espalhamento 1.82",
+  "221030": "2 golpes",
+  "221046": "espalhamento 2.98",
+  "221100": "4 golpes",
+  "221101": "2 golpes",
+  "221106": "1 golpes",
+  "221520": "1 golpes",
+  "221521": "3 golpes",
+  "221522": "2 golpes",
+  "224300": "golpe de 1 (roteirizado)",
+  "224301": "golpe de 1 (roteirizado)",
+  "224302": "golpe de 1 (roteirizado)",
+  "224303": "1 golpes",
+  "224304": "golpe de 1 (roteirizado)",
+  "224305": "golpe de 1 (roteirizado)",
+  "224306": "golpe de 1 (roteirizado)",
+  "224307": "6 golpes",
+  "224309": "4 golpes",
+  "224310": "6 golpes",
+  "224311": "4 golpes",
+  "224312": "1 golpes",
+  "224314": "1 golpes",
+  "224315": "5 golpes",
+  "224317": "2 golpes",
+  "224318": "4 golpes",
+  "224319": "1 golpes",
+  "224320": "7 golpes",
+  "224333": "espalhamento 5.17",
+  "224334": "espalhamento 5.47",
+  "224335": "espalhamento 4.24",
+  "274030": "6 golpes",
+  "274192": "2 golpes",
+  "274194": "2 golpes",
+  "274227": "3 golpes",
+  "274228": "6 golpes",
+  "274229": "2 golpes",
+  "274230": "faixa vazia (1970 > 1902)",
+  "274233": "7 golpes",
+  "274330": "espalhamento 2.11",
+  "274331": "1 golpes",
+  "274362": "4 golpes",
+  "274599": "2 golpes",
+  "274661": "1 golpes",
+  "780119": "3 golpes"
+ }
+}
