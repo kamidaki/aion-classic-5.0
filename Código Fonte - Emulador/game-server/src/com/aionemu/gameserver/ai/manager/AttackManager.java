@@ -2,6 +2,7 @@ package com.aionemu.gameserver.ai.manager;
 
 import com.lostacademy.nativepath.PathDatService;
 import com.aionemu.gameserver.ai.AILogger;
+import com.aionemu.gameserver.ai.AIState;
 import com.aionemu.gameserver.ai.AISubState;
 import com.aionemu.gameserver.ai.AttackIntention;
 import com.aionemu.gameserver.ai.NpcAI;
@@ -71,6 +72,12 @@ public class AttackManager {
 				break;
 			case FINISH_ATTACK:
 				npcAI.think();
+				break;
+			case HOLD_AGGRO: // confere o alvo de novo no próximo intervalo de ataque, sem atacar
+				ThreadPoolManager.getInstance().schedule(() -> {
+					if (npcAI.isInState(AIState.FIGHT) && npcAI.canThink())
+						scheduleNextAttack(npcAI);
+				}, Math.max(delay, 1000));
 				break;
 		}
 	}

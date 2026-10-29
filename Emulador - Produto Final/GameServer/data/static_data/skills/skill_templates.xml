@@ -61784,7 +61784,7 @@ Esse efeito dura até você sair da faixa do escudo protetor." nameId="2280096" 
 			<playermove allow="false"/>
 		</useconditions>
 		<effects>
-			<skillatk value="50" e="1" hoptype="DAMAGE"/>
+			<skillatk value="85" e="1" hoptype="DAMAGE"/>
 		</effects>
 		<motion name="poweratk"/>
 	</skill_template>

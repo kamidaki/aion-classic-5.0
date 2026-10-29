@@ -214,6 +214,8 @@ public class SpawnEngine {
 						case RIFT -> RiftManager.addRiftSpawnTemplate(spawn);
 						case STATIC -> StaticObjectSpawnManager.spawnTemplate(spawn, instance.getInstanceId());
 					}
+				} else if (spawn.getRotationTime() > 0) {
+					RotatingSpawnEngine.start(spawn, instance);
 				} else if (spawn.hasPool() && checkPool(spawn)) {
 					spawn.resetPoolSpots(instance.getInstanceId());
 					for (int i = 0; i < spawn.getPool(); i++) {

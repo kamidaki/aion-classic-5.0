@@ -162340,4 +162340,713 @@
 		<routestep x="1351.48" y="1405.56" z="208.076" />
 		<routestep x="1348.54" y="1405.57" z="208.000" />
 	</walker_template>
+	<!-- gera_50_torres_movimento: inicio -->
+	<!-- Torres de Tiamaranta Mesa: rotas das capturas oficiais 5.0 (gera_50_torres_movimento.py) -->
+	<!-- 800040000_Tiamaranta.xml npc 274027 (1079,1527) -->
+	<walker_template route_id="EE52495974D71CC03C55FCF43CB1DA7323EE3B12">
+		<routestep x="1079.47" y="1527.61" z="267.745" />
+		<routestep x="1084.11" y="1529.29" z="267.926" />
+		<routestep x="1079.44" y="1527.73" z="267.740" />
+		<routestep x="1075.91" y="1524.65" z="269.315" />
+		<routestep x="1072.81" y="1519.39" z="271.154" />
+		<routestep x="1072.79" y="1512.22" z="273.530" />
+		<routestep x="1074.16" y="1507.81" z="275.461" />
+		<routestep x="1075.56" y="1504.79" z="277.530" />
+		<routestep x="1074.13" y="1507.85" z="275.435" />
+		<routestep x="1072.83" y="1512.15" z="273.564" />
+		<routestep x="1072.79" y="1519.41" z="271.151" />
+		<routestep x="1075.94" y="1524.65" z="269.312" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274027 (1080,1519) -->
+	<walker_template route_id="0520816AAF5F8B1B486732E5131CA6F558DC0790">
+		<routestep x="1080.00" y="1518.75" z="280.332" />
+		<routestep x="1081.25" y="1520.25" z="280.260" />
+		<routestep x="1081.25" y="1520.50" z="280.263" />
+		<routestep x="1083.00" y="1521.75" z="280.263" />
+		<routestep x="1085.00" y="1522.50" z="280.263" />
+		<routestep x="1087.00" y="1522.75" z="280.263" />
+		<routestep x="1089.00" y="1522.50" z="280.263" />
+		<routestep x="1091.00" y="1521.75" z="280.263" />
+		<routestep x="1092.25" y="1520.75" z="280.260" />
+		<routestep x="1092.50" y="1520.50" z="280.263" />
+		<routestep x="1094.00" y="1518.75" z="280.263" />
+		<routestep x="1094.75" y="1516.75" z="280.263" />
+		<routestep x="1095.00" y="1514.75" z="280.274" />
+		<routestep x="1094.75" y="1512.75" z="280.281" />
+		<routestep x="1094.00" y="1510.75" z="280.332" />
+		<routestep x="1092.50" y="1509.00" z="280.263" />
+		<routestep x="1091.00" y="1507.75" z="280.263" />
+		<routestep x="1089.00" y="1507.00" z="280.263" />
+		<routestep x="1087.00" y="1506.75" z="280.263" />
+		<routestep x="1085.00" y="1507.00" z="280.263" />
+		<routestep x="1083.00" y="1507.75" z="280.263" />
+		<routestep x="1082.25" y="1508.75" z="280.260" />
+		<routestep x="1081.25" y="1509.00" z="280.263" />
+		<routestep x="1080.00" y="1510.75" z="280.263" />
+		<routestep x="1079.25" y="1512.50" z="280.263" />
+		<routestep x="1079.00" y="1514.75" z="280.263" />
+		<routestep x="1079.25" y="1517.00" z="280.281" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274027 (1097,1504) -->
+	<walker_template route_id="8681B5642826C6B0CA72A1A1543C17ED23E34D07">
+		<routestep x="1098.40" y="1505.17" z="269.338" />
+		<routestep x="1094.87" y="1502.21" z="267.783" />
+		<routestep x="1090.23" y="1500.53" z="266.386" />
+		<routestep x="1094.90" y="1502.09" z="267.778" />
+		<routestep x="1098.42" y="1505.17" z="269.341" />
+		<routestep x="1101.53" y="1510.43" z="271.181" />
+		<routestep x="1101.54" y="1517.61" z="273.544" />
+		<routestep x="1100.18" y="1522.01" z="275.455" />
+		<routestep x="1098.78" y="1525.03" z="277.510" />
+		<routestep x="1100.20" y="1521.97" z="275.429" />
+		<routestep x="1101.51" y="1517.67" z="273.577" />
+		<routestep x="1101.55" y="1510.41" z="271.178" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274028 (1084,1491) -->
+	<walker_template route_id="2857ADA5AAFF6F64914A4F2637B588C32A797927">
+		<routestep x="1074.77" y="1490.23" z="261.146" />
+		<routestep x="1069.00" y="1486.37" z="260.984" />
+		<routestep x="1059.91" y="1479.23" z="260.523" />
+		<routestep x="1048.78" y="1471.82" z="258.895" />
+		<routestep x="1036.03" y="1460.04" z="255.886" />
+		<routestep x="1048.66" y="1471.82" z="258.887" />
+		<routestep x="1059.94" y="1479.28" z="260.531" />
+		<routestep x="1069.10" y="1486.24" z="260.961" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274029 (1080,1499) -->
+	<walker_template route_id="F1DDD4562224FEEB5BF4DBC818AB7894018F16EB">
+		<routestep x="1048.22" y="1491.94" z="262.861" />
+		<routestep x="1053.29" y="1480.39" z="260.766" />
+		<routestep x="1061.68" y="1469.57" z="260.974" />
+		<routestep x="1065.84" y="1465.89" z="262.366" />
+		<routestep x="1061.68" y="1469.68" z="260.960" />
+		<routestep x="1053.26" y="1480.39" z="260.768" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274029 (1087,1539) -->
+	<walker_template route_id="F11F381FB0E40E98237011273DCCCFA55D0C428B">
+		<routestep x="1085.76" y="1539.01" z="358.884" />
+		<routestep x="1077.99" y="1537.88" z="358.885" />
+		<routestep x="1072.33" y="1534.68" z="358.884" />
+		<routestep x="1077.96" y="1537.75" z="358.885" />
+		<routestep x="1085.72" y="1539.18" z="358.884" />
+		<routestep x="1093.54" y="1537.72" z="359.084" />
+		<routestep x="1100.65" y="1534.10" z="358.884" />
+		<routestep x="1105.77" y="1528.68" z="358.885" />
+		<routestep x="1109.11" y="1521.57" z="358.884" />
+		<routestep x="1105.79" y="1528.72" z="358.885" />
+		<routestep x="1100.68" y="1534.26" z="358.884" />
+		<routestep x="1093.34" y="1537.84" z="359.088" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274035 (1079,1527) -->
+	<walker_template route_id="7B24FAC0656880D61F85CCF1BDCF87713FA957D7">
+		<routestep x="1079.47" y="1527.61" z="267.745" />
+		<routestep x="1084.11" y="1529.29" z="267.926" />
+		<routestep x="1079.44" y="1527.73" z="267.740" />
+		<routestep x="1075.91" y="1524.65" z="269.315" />
+		<routestep x="1072.81" y="1519.39" z="271.154" />
+		<routestep x="1072.79" y="1512.22" z="273.530" />
+		<routestep x="1074.16" y="1507.81" z="275.461" />
+		<routestep x="1075.56" y="1504.79" z="277.530" />
+		<routestep x="1074.13" y="1507.85" z="275.435" />
+		<routestep x="1072.83" y="1512.15" z="273.564" />
+		<routestep x="1072.79" y="1519.41" z="271.151" />
+		<routestep x="1075.94" y="1524.65" z="269.312" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274035 (1080,1519) -->
+	<walker_template route_id="7590802230B038D236F5C0E2E141016C589DD575">
+		<routestep x="1080.00" y="1518.75" z="280.332" />
+		<routestep x="1081.25" y="1520.25" z="280.260" />
+		<routestep x="1081.25" y="1520.50" z="280.263" />
+		<routestep x="1083.00" y="1521.75" z="280.263" />
+		<routestep x="1085.00" y="1522.50" z="280.263" />
+		<routestep x="1087.00" y="1522.75" z="280.263" />
+		<routestep x="1089.00" y="1522.50" z="280.263" />
+		<routestep x="1091.00" y="1521.75" z="280.263" />
+		<routestep x="1092.25" y="1520.75" z="280.260" />
+		<routestep x="1092.50" y="1520.50" z="280.263" />
+		<routestep x="1094.00" y="1518.75" z="280.263" />
+		<routestep x="1094.75" y="1516.75" z="280.263" />
+		<routestep x="1095.00" y="1514.75" z="280.274" />
+		<routestep x="1094.75" y="1512.75" z="280.281" />
+		<routestep x="1094.00" y="1510.75" z="280.332" />
+		<routestep x="1092.50" y="1509.00" z="280.263" />
+		<routestep x="1091.00" y="1507.75" z="280.263" />
+		<routestep x="1089.00" y="1507.00" z="280.263" />
+		<routestep x="1087.00" y="1506.75" z="280.263" />
+		<routestep x="1085.00" y="1507.00" z="280.263" />
+		<routestep x="1083.00" y="1507.75" z="280.263" />
+		<routestep x="1082.25" y="1508.75" z="280.260" />
+		<routestep x="1081.25" y="1509.00" z="280.263" />
+		<routestep x="1080.00" y="1510.75" z="280.263" />
+		<routestep x="1079.25" y="1512.50" z="280.263" />
+		<routestep x="1079.00" y="1514.75" z="280.263" />
+		<routestep x="1079.25" y="1517.00" z="280.281" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274035 (1097,1504) -->
+	<walker_template route_id="8FD1C2EC17367FC5755FBFB479D5555F1A7A9C28" loop_type="WALK_BACK">
+		<routestep x="1075.75" y="1519.25" z="280.400" />
+		<routestep x="1076.25" y="1518.75" z="280.330" />
+		<routestep x="1079.75" y="1514.25" z="280.330" />
+		<routestep x="1082.75" y="1508.75" z="280.260" />
+		<routestep x="1083.25" y="1508.25" z="280.260" />
+		<routestep x="1085.75" y="1501.75" z="280.020" />
+		<routestep x="1094.90" y="1502.09" z="267.778" />
+		<routestep x="1098.42" y="1505.17" z="269.341" />
+		<routestep x="1101.53" y="1510.43" z="271.181" />
+		<routestep x="1101.54" y="1517.61" z="273.544" />
+		<routestep x="1100.18" y="1522.01" z="275.455" />
+		<routestep x="1098.78" y="1525.03" z="277.510" />
+		<routestep x="1100.20" y="1521.97" z="275.429" />
+		<routestep x="1101.51" y="1517.67" z="273.577" />
+		<routestep x="1101.55" y="1510.41" z="271.178" />
+		<routestep x="1098.40" y="1505.17" z="269.338" />
+		<routestep x="1094.87" y="1502.21" z="267.783" />
+		<routestep x="1090.23" y="1500.53" z="266.386" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274036 (1084,1491) -->
+	<walker_template route_id="83C457EA38221CBE8FF3C06E5060831A95590349" loop_type="WALK_BACK">
+		<routestep x="1098.80" y="1494.81" z="358.884" />
+		<routestep x="1092.28" y="1492.04" z="358.885" />
+		<routestep x="1082.92" y="1490.87" z="358.884" />
+		<routestep x="1074.28" y="1493.29" z="358.884" />
+		<routestep x="1068.24" y="1497.90" z="358.885" />
+		<routestep x="1064.30" y="1503.31" z="358.885" />
+		<routestep x="1061.95" y="1508.29" z="358.884" />
+		<routestep x="1064.22" y="1503.25" z="358.885" />
+		<routestep x="1068.29" y="1498.03" z="358.885" />
+		<routestep x="1074.29" y="1493.38" z="358.884" />
+		<routestep x="1083.04" y="1490.86" z="358.884" />
+		<routestep x="1074.77" y="1490.23" z="261.146" />
+		<routestep x="1069.00" y="1486.37" z="260.984" />
+		<routestep x="1059.91" y="1479.23" z="260.523" />
+		<routestep x="1048.78" y="1471.82" z="258.895" />
+		<routestep x="1036.03" y="1460.04" z="255.886" />
+		<routestep x="1048.66" y="1471.82" z="258.887" />
+		<routestep x="1059.94" y="1479.28" z="260.531" />
+		<routestep x="1069.10" y="1486.24" z="260.961" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274037 (1080,1499) -->
+	<walker_template route_id="2C4825BED64542EF97A8E4414E3FE1AACCF427BC">
+		<routestep x="1048.22" y="1491.94" z="262.861" />
+		<routestep x="1053.29" y="1480.39" z="260.766" />
+		<routestep x="1061.68" y="1469.57" z="260.974" />
+		<routestep x="1065.84" y="1465.89" z="262.366" />
+		<routestep x="1061.68" y="1469.68" z="260.960" />
+		<routestep x="1053.26" y="1480.39" z="260.768" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274037 (1087,1539) -->
+	<walker_template route_id="2239F5995BACA71C4FD4F02BAAF3990E84745BA7">
+		<routestep x="1085.76" y="1539.01" z="358.884" />
+		<routestep x="1077.99" y="1537.88" z="358.885" />
+		<routestep x="1072.33" y="1534.68" z="358.884" />
+		<routestep x="1077.96" y="1537.75" z="358.885" />
+		<routestep x="1085.72" y="1539.18" z="358.884" />
+		<routestep x="1093.54" y="1537.72" z="359.084" />
+		<routestep x="1100.65" y="1534.10" z="358.884" />
+		<routestep x="1105.77" y="1528.68" z="358.885" />
+		<routestep x="1109.11" y="1521.57" z="358.884" />
+		<routestep x="1105.79" y="1528.72" z="358.885" />
+		<routestep x="1100.68" y="1534.26" z="358.884" />
+		<routestep x="1093.34" y="1537.84" z="359.088" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274038 (1093,1527) -->
+	<walker_template route_id="0DE65307A8FF1C97E959BB8BA865BFD86800E226">
+		<routestep x="1108.13" y="1544.32" z="267.984" />
+		<routestep x="1117.96" y="1533.36" z="266.794" />
+		<routestep x="1108.19" y="1544.42" z="267.977" />
+		<routestep x="1096.42" y="1550.05" z="268.000" />
+		<routestep x="1081.84" y="1551.15" z="266.451" />
+		<routestep x="1069.16" y="1546.03" z="264.841" />
+		<routestep x="1082.00" y="1551.16" z="266.480" />
+		<routestep x="1096.39" y="1550.10" z="268.000" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274039 (1081,1522) -->
+	<walker_template route_id="51FE19894D21AB85A6911B2EE43F7A0508981F40">
+		<routestep x="1077.25" y="1515.00" z="359.135" />
+		<routestep x="1077.75" y="1518.00" z="359.130" />
+		<routestep x="1079.00" y="1520.00" z="359.139" />
+		<routestep x="1080.50" y="1521.75" z="359.127" />
+		<routestep x="1082.00" y="1522.75" z="359.121" />
+		<routestep x="1084.00" y="1523.25" z="359.133" />
+		<routestep x="1086.00" y="1523.50" z="359.127" />
+		<routestep x="1087.75" y="1523.25" z="359.189" />
+		<routestep x="1089.50" y="1522.50" z="359.212" />
+		<routestep x="1091.50" y="1521.25" z="359.125" />
+		<routestep x="1093.00" y="1519.50" z="359.122" />
+		<routestep x="1093.75" y="1517.50" z="359.133" />
+		<routestep x="1094.25" y="1515.00" z="359.125" />
+		<routestep x="1094.00" y="1512.75" z="359.123" />
+		<routestep x="1093.25" y="1511.00" z="359.128" />
+		<routestep x="1092.00" y="1509.00" z="359.117" />
+		<routestep x="1090.25" y="1507.75" z="359.128" />
+		<routestep x="1088.00" y="1506.75" z="359.129" />
+		<routestep x="1085.75" y="1506.50" z="359.134" />
+		<routestep x="1083.25" y="1506.75" z="359.181" />
+		<routestep x="1081.25" y="1507.75" z="359.197" />
+		<routestep x="1079.50" y="1509.00" z="359.124" />
+		<routestep x="1078.25" y="1510.50" z="359.118" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274041 (1081,1522) -->
+	<walker_template route_id="6891680C29147325ABA5B3584429108E2107FCF9">
+		<routestep x="1080.50" y="1521.75" z="359.127" />
+		<routestep x="1082.00" y="1522.75" z="359.121" />
+		<routestep x="1084.00" y="1523.25" z="359.133" />
+		<routestep x="1086.00" y="1523.50" z="359.127" />
+		<routestep x="1087.75" y="1523.25" z="359.189" />
+		<routestep x="1089.50" y="1522.50" z="359.212" />
+		<routestep x="1091.50" y="1521.25" z="359.125" />
+		<routestep x="1093.00" y="1519.50" z="359.122" />
+		<routestep x="1093.75" y="1517.50" z="359.133" />
+		<routestep x="1094.25" y="1515.00" z="359.125" />
+		<routestep x="1094.00" y="1512.75" z="359.123" />
+		<routestep x="1093.25" y="1511.00" z="359.128" />
+		<routestep x="1092.00" y="1509.00" z="359.117" />
+		<routestep x="1090.25" y="1507.75" z="359.128" />
+		<routestep x="1088.00" y="1506.75" z="359.129" />
+		<routestep x="1085.75" y="1506.50" z="359.134" />
+		<routestep x="1083.25" y="1506.75" z="359.181" />
+		<routestep x="1081.25" y="1507.75" z="359.197" />
+		<routestep x="1079.50" y="1509.00" z="359.124" />
+		<routestep x="1078.25" y="1510.50" z="359.118" />
+		<routestep x="1077.50" y="1512.75" z="359.132" />
+		<routestep x="1077.25" y="1515.00" z="359.135" />
+		<routestep x="1077.75" y="1518.00" z="359.130" />
+		<routestep x="1079.00" y="1520.00" z="359.139" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274073 (2105,969) -->
+	<walker_template route_id="AAE412DEFF7C848D98DEFE24CDB0C50C3466A59E">
+		<routestep x="2108.16" y="971.31" z="295.593" />
+		<routestep x="2100.85" y="966.33" z="297.999" />
+		<routestep x="2096.77" y="961.39" z="299.760" />
+		<routestep x="2095.29" y="954.59" z="301.684" />
+		<routestep x="2096.53" y="948.73" z="303.798" />
+		<routestep x="2099.26" y="945.01" z="306.089" />
+		<routestep x="2101.56" y="942.61" z="308.371" />
+		<routestep x="2099.22" y="945.04" z="306.062" />
+		<routestep x="2096.59" y="948.69" z="303.822" />
+		<routestep x="2095.26" y="954.60" z="301.682" />
+		<routestep x="2096.79" y="961.40" z="299.753" />
+		<routestep x="2100.79" y="966.28" z="298.011" />
+		<routestep x="2108.29" y="971.36" z="295.546" />
+		<routestep x="2114.98" y="971.20" z="293.804" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274073 (2112,947) -->
+	<walker_template route_id="C43106B31D2E30BA342D26736814F0D34657ED38">
+		<routestep x="2111.75" y="946.50" z="309.408" />
+		<routestep x="2109.75" y="946.75" z="309.408" />
+		<routestep x="2107.75" y="947.50" z="309.408" />
+		<routestep x="2106.00" y="948.75" z="309.408" />
+		<routestep x="2104.75" y="950.50" z="309.408" />
+		<routestep x="2104.00" y="952.25" z="309.408" />
+		<routestep x="2103.75" y="954.50" z="309.408" />
+		<routestep x="2104.00" y="956.75" z="309.425" />
+		<routestep x="2104.75" y="958.50" z="309.476" />
+		<routestep x="2106.00" y="960.25" z="309.408" />
+		<routestep x="2107.75" y="961.50" z="309.408" />
+		<routestep x="2109.75" y="962.25" z="309.408" />
+		<routestep x="2111.75" y="962.50" z="309.408" />
+		<routestep x="2113.75" y="962.25" z="309.408" />
+		<routestep x="2115.75" y="961.50" z="309.408" />
+		<routestep x="2117.25" y="960.25" z="309.408" />
+		<routestep x="2118.75" y="958.50" z="309.408" />
+		<routestep x="2119.50" y="956.50" z="309.408" />
+		<routestep x="2119.75" y="954.50" z="309.408" />
+		<routestep x="2119.50" y="952.50" z="309.425" />
+		<routestep x="2118.75" y="950.50" z="309.476" />
+		<routestep x="2117.25" y="948.75" z="309.408" />
+		<routestep x="2115.75" y="947.50" z="309.408" />
+		<routestep x="2113.75" y="946.75" z="309.408" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274073 (2126,948) -->
+	<walker_template route_id="76E97A6DD6D7A3B1D48BD4DCC5167EFE3E945050">
+		<routestep x="2127.38" y="954.87" z="301.796" />
+		<routestep x="2124.94" y="961.62" z="304.575" />
+		<routestep x="2123.05" y="964.92" z="306.972" />
+		<routestep x="2119.81" y="967.65" z="309.071" />
+		<routestep x="2123.09" y="964.89" z="306.929" />
+		<routestep x="2124.88" y="961.66" z="304.609" />
+		<routestep x="2127.41" y="954.86" z="301.790" />
+		<routestep x="2126.89" y="949.07" z="300.222" />
+		<routestep x="2122.81" y="943.44" z="298.131" />
+		<routestep x="2113.35" y="939.07" z="294.968" />
+		<routestep x="2106.81" y="939.51" z="293.082" />
+		<routestep x="2122.87" y="943.46" z="298.156" />
+		<routestep x="2126.84" y="949.03" z="300.215" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274074 (2119,932) -->
+	<walker_template route_id="7F0EC80E841CA5CD4A3FEC2C10C9989A8D2EEFFA">
+		<routestep x="2118.28" y="931.82" z="387.973" />
+		<routestep x="2123.52" y="935.07" z="387.973" />
+		<routestep x="2118.00" y="931.59" z="387.973" />
+		<routestep x="2108.30" y="930.44" z="387.973" />
+		<routestep x="2100.56" y="931.96" z="388.128" />
+		<routestep x="2095.10" y="935.59" z="387.973" />
+		<routestep x="2090.99" y="940.80" z="387.973" />
+		<routestep x="2087.54" y="946.81" z="387.973" />
+		<routestep x="2090.90" y="940.94" z="387.973" />
+		<routestep x="2095.03" y="935.65" z="387.973" />
+		<routestep x="2100.74" y="932.15" z="388.046" />
+		<routestep x="2107.96" y="930.34" z="387.973" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274075 (2116,971) -->
+	<walker_template route_id="E205E245934DE84FF19D9A281CD8D1788D32E839">
+		<routestep x="2116.35" y="977.60" z="388.179" />
+		<routestep x="2124.12" y="974.40" z="387.973" />
+		<routestep x="2129.35" y="969.11" z="387.973" />
+		<routestep x="2132.91" y="962.39" z="387.973" />
+		<routestep x="2129.62" y="969.24" z="387.973" />
+		<routestep x="2124.14" y="974.51" z="387.973" />
+		<routestep x="2116.43" y="977.62" z="388.203" />
+		<routestep x="2109.41" y="978.75" z="387.973" />
+		<routestep x="2102.28" y="977.09" z="387.973" />
+		<routestep x="2096.34" y="974.05" z="387.973" />
+		<routestep x="2102.72" y="977.27" z="387.973" />
+		<routestep x="2109.25" y="978.42" z="387.973" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274076 (2108,942) -->
+	<walker_template route_id="067411A9D8EA5CF37A7E0239E909B1CFE8C3F8AF" loop_type="WALK_BACK">
+		<routestep x="2107.25" y="919.75" z="296.130" />
+		<routestep x="2105.76" y="925.67" z="294.921" />
+		<routestep x="2100.51" y="926.50" z="294.111" />
+		<routestep x="2093.26" y="928.76" z="292.941" />
+		<routestep x="2089.03" y="930.90" z="292.087" />
+		<routestep x="2093.29" y="928.76" z="292.944" />
+		<routestep x="2100.51" y="926.47" z="294.117" />
+		<routestep x="2105.76" y="925.63" z="294.928" />
+		<routestep x="2110.75" y="920.75" z="296.450" />
+		<routestep x="2113.15" y="924.79" z="296.150" />
+		<routestep x="2110.25" y="920.25" z="296.470" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274082 (2102,952) -->
+	<walker_template route_id="9EECDC01A3166C938BD7880A6EFF93901A6BA8BB">
+		<routestep x="2102.00" y="952.50" z="388.213" />
+		<routestep x="2101.75" y="954.75" z="388.216" />
+		<routestep x="2102.25" y="957.75" z="388.212" />
+		<routestep x="2103.50" y="959.75" z="388.223" />
+		<routestep x="2105.00" y="961.50" z="388.211" />
+		<routestep x="2106.50" y="962.50" z="388.207" />
+		<routestep x="2108.50" y="963.00" z="388.220" />
+		<routestep x="2110.50" y="963.25" z="388.216" />
+		<routestep x="2112.25" y="963.00" z="388.222" />
+		<routestep x="2114.00" y="962.25" z="388.226" />
+		<routestep x="2116.00" y="961.00" z="388.219" />
+		<routestep x="2117.50" y="959.25" z="388.217" />
+		<routestep x="2118.25" y="957.25" z="388.229" />
+		<routestep x="2118.75" y="954.75" z="388.221" />
+		<routestep x="2118.50" y="952.50" z="388.218" />
+		<routestep x="2117.75" y="950.75" z="388.222" />
+		<routestep x="2116.50" y="948.75" z="388.210" />
+		<routestep x="2114.75" y="947.50" z="388.220" />
+		<routestep x="2112.50" y="946.50" z="388.218" />
+		<routestep x="2110.25" y="946.25" z="388.221" />
+		<routestep x="2107.75" y="946.50" z="388.211" />
+		<routestep x="2105.75" y="947.50" z="388.217" />
+		<routestep x="2104.00" y="948.75" z="388.207" />
+		<routestep x="2102.75" y="950.25" z="388.200" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274111 (2116,2145) -->
+	<walker_template route_id="FBDD93436CC4AC7FD74D0130B9D1C7DDABF2C65B">
+		<routestep x="2115.75" y="2145.25" z="312.740" />
+		<routestep x="2114.50" y="2146.00" z="312.744" />
+		<routestep x="2113.75" y="2147.75" z="312.744" />
+		<routestep x="2113.50" y="2150.00" z="312.744" />
+		<routestep x="2113.75" y="2152.25" z="312.744" />
+		<routestep x="2114.50" y="2154.00" z="312.762" />
+		<routestep x="2115.75" y="2155.75" z="312.813" />
+		<routestep x="2117.50" y="2157.00" z="312.744" />
+		<routestep x="2119.50" y="2157.75" z="312.744" />
+		<routestep x="2121.50" y="2158.00" z="312.744" />
+		<routestep x="2123.50" y="2157.75" z="312.744" />
+		<routestep x="2125.50" y="2157.00" z="312.744" />
+		<routestep x="2127.00" y="2155.75" z="312.744" />
+		<routestep x="2128.50" y="2154.00" z="312.744" />
+		<routestep x="2129.25" y="2152.00" z="312.744" />
+		<routestep x="2129.50" y="2150.00" z="312.744" />
+		<routestep x="2129.25" y="2148.00" z="312.813" />
+		<routestep x="2128.50" y="2146.00" z="312.762" />
+		<routestep x="2127.00" y="2144.25" z="312.744" />
+		<routestep x="2126.25" y="2143.75" z="312.740" />
+		<routestep x="2125.50" y="2143.00" z="312.744" />
+		<routestep x="2123.50" y="2142.25" z="312.744" />
+		<routestep x="2121.50" y="2142.00" z="312.744" />
+		<routestep x="2119.50" y="2142.25" z="312.744" />
+		<routestep x="2117.50" y="2143.00" z="312.744" />
+		<routestep x="2115.75" y="2144.25" z="312.744" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274111 (2134,2159) -->
+	<walker_template route_id="C5B5BA222760BD43333B8A533CFE3635C35B74A1">
+		<routestep x="2136.60" y="2152.48" z="307.015" />
+		<routestep x="2136.67" y="2146.42" z="304.796" />
+		<routestep x="2133.77" y="2140.08" z="302.740" />
+		<routestep x="2128.83" y="2136.14" z="301.030" />
+		<routestep x="2120.35" y="2133.84" z="298.488" />
+		<routestep x="2114.44" y="2135.63" z="296.844" />
+		<routestep x="2120.48" y="2133.86" z="298.533" />
+		<routestep x="2128.77" y="2136.11" z="301.005" />
+		<routestep x="2133.79" y="2140.09" z="302.745" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274123 (2125,2142) -->
+	<walker_template route_id="33DE5E2A913510D0C5191819F23FABF7DF834CFA">
+		<routestep x="2122.88" y="2141.38" z="391.634" />
+		<routestep x="2120.38" y="2141.62" z="391.624" />
+		<routestep x="2118.38" y="2142.62" z="391.629" />
+		<routestep x="2116.62" y="2143.88" z="391.617" />
+		<routestep x="2115.38" y="2145.38" z="391.610" />
+		<routestep x="2114.62" y="2147.62" z="391.622" />
+		<routestep x="2114.38" y="2149.88" z="391.624" />
+		<routestep x="2114.88" y="2152.88" z="391.620" />
+		<routestep x="2116.12" y="2154.88" z="391.629" />
+		<routestep x="2117.62" y="2156.62" z="391.619" />
+		<routestep x="2119.12" y="2157.62" z="391.615" />
+		<routestep x="2121.12" y="2158.12" z="391.628" />
+		<routestep x="2123.12" y="2158.38" z="391.624" />
+		<routestep x="2124.88" y="2158.12" z="391.626" />
+		<routestep x="2126.62" y="2157.38" z="391.636" />
+		<routestep x="2128.62" y="2156.12" z="391.630" />
+		<routestep x="2130.12" y="2154.38" z="391.629" />
+		<routestep x="2130.88" y="2152.38" z="391.641" />
+		<routestep x="2131.38" y="2149.88" z="391.635" />
+		<routestep x="2131.12" y="2147.62" z="391.632" />
+		<routestep x="2130.38" y="2145.88" z="391.637" />
+		<routestep x="2129.12" y="2143.88" z="391.625" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274147 (262,714) -->
+	<walker_template route_id="0B2E8AE07EBE7E693CAAC4028CA37A9BA9DBC7EF">
+		<routestep x="261.91" y="711.00" z="339.343" />
+		<routestep x="263.11" y="717.66" z="338.675" />
+		<routestep x="261.94" y="710.95" z="339.335" />
+		<routestep x="262.02" y="705.49" z="339.890" />
+		<routestep x="262.79" y="701.93" z="339.079" />
+		<routestep x="262.03" y="705.56" z="339.884" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274159 (288,698) -->
+	<walker_template route_id="BD30AE8A653BC3D402079EF50B2658880D63A5E8">
+		<routestep x="289.26" y="699.45" z="413.857" />
+		<routestep x="289.76" y="700.58" z="413.857" />
+		<routestep x="290.01" y="702.58" z="413.862" />
+		<routestep x="289.76" y="704.33" z="413.860" />
+		<routestep x="289.14" y="705.70" z="413.862" />
+		<routestep x="288.26" y="706.83" z="413.862" />
+		<routestep x="287.14" y="707.83" z="413.856" />
+		<routestep x="285.39" y="708.58" z="413.856" />
+		<routestep x="283.76" y="708.70" z="413.863" />
+		<routestep x="282.26" y="708.58" z="413.857" />
+		<routestep x="280.51" y="707.83" z="413.857" />
+		<routestep x="279.39" y="706.83" z="413.864" />
+		<routestep x="278.39" y="705.58" z="413.859" />
+		<routestep x="277.76" y="704.20" z="413.855" />
+		<routestep x="277.64" y="702.58" z="413.864" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274191 (2462,150) -->
+	<walker_template route_id="7BCFC3CADFF3E0E2D3DFA4CEA68D0B80A1454C51">
+		<routestep x="2462.62" y="149.79" z="319.952" />
+		<routestep x="2469.05" y="159.53" z="321.072" />
+		<routestep x="2471.21" y="171.69" z="321.504" />
+		<routestep x="2468.81" y="182.28" z="322.155" />
+		<routestep x="2459.25" y="188.34" z="321.046" />
+		<routestep x="2450.84" y="190.24" z="320.268" />
+		<routestep x="2459.34" y="188.34" z="321.057" />
+		<routestep x="2468.75" y="182.17" z="322.152" />
+		<routestep x="2471.27" y="171.60" z="321.496" />
+		<routestep x="2469.19" y="159.44" z="321.061" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274195 (2445,169) -->
+	<walker_template route_id="6A726BF6DBB1D6320B6EA227D5C5C98DDE79DF14">
+		<routestep x="2445.12" y="169.12" z="398.257" />
+		<routestep x="2445.25" y="167.38" z="398.249" />
+		<routestep x="2445.88" y="165.88" z="398.249" />
+		<routestep x="2446.88" y="164.75" z="398.261" />
+		<routestep x="2447.25" y="163.75" z="398.190" />
+		<routestep x="2448.00" y="163.75" z="398.256" />
+		<routestep x="2449.50" y="163.12" z="398.261" />
+		<routestep x="2451.25" y="162.75" z="398.252" />
+		<routestep x="2453.12" y="163.00" z="398.250" />
+		<routestep x="2454.50" y="163.75" z="398.262" />
+		<routestep x="2455.88" y="164.88" z="398.261" />
+		<routestep x="2456.75" y="166.00" z="398.255" />
+		<routestep x="2457.25" y="167.12" z="398.254" />
+		<routestep x="2457.50" y="169.12" z="398.257" />
+		<routestep x="2457.25" y="170.88" z="398.253" />
+		<routestep x="2456.62" y="172.25" z="398.253" />
+		<routestep x="2455.75" y="173.38" z="398.253" />
+		<routestep x="2455.25" y="174.25" z="398.190" />
+		<routestep x="2454.62" y="174.38" z="398.227" />
+		<routestep x="2452.88" y="175.12" z="398.223" />
+		<routestep x="2451.25" y="175.25" z="398.251" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274197 (2445,169) -->
+	<walker_template route_id="D5A800834801C90A7261E1FC3E91C6D02EA67CD0">
+		<routestep x="2454.50" y="163.75" z="398.262" />
+		<routestep x="2455.88" y="164.88" z="398.261" />
+		<routestep x="2456.75" y="166.00" z="398.255" />
+		<routestep x="2457.25" y="167.12" z="398.254" />
+		<routestep x="2457.50" y="169.12" z="398.257" />
+		<routestep x="2456.62" y="172.25" z="398.253" />
+		<routestep x="2455.75" y="173.38" z="398.253" />
+		<routestep x="2455.25" y="174.25" z="398.190" />
+		<routestep x="2454.62" y="174.38" z="398.227" />
+		<routestep x="2452.88" y="175.12" z="398.223" />
+		<routestep x="2451.25" y="175.25" z="398.251" />
+		<routestep x="2449.75" y="175.12" z="398.220" />
+		<routestep x="2448.00" y="174.38" z="398.226" />
+		<routestep x="2446.88" y="173.38" z="398.252" />
+		<routestep x="2445.88" y="172.12" z="398.249" />
+		<routestep x="2445.25" y="170.75" z="398.229" />
+		<routestep x="2445.12" y="169.12" z="398.257" />
+		<routestep x="2445.25" y="167.38" z="398.249" />
+		<routestep x="2445.88" y="165.88" z="398.249" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274223 (791,2765) -->
+	<walker_template route_id="D6FAFE0B17E4B9D3C695231DE999F5F62013521F">
+		<routestep x="791.37" y="2765.46" z="265.738" />
+		<routestep x="789.91" y="2772.45" z="266.574" />
+		<routestep x="788.98" y="2780.36" z="267.472" />
+		<routestep x="788.79" y="2787.54" z="268.064" />
+		<routestep x="789.19" y="2794.77" z="268.724" />
+		<routestep x="792.68" y="2802.06" z="268.396" />
+		<routestep x="789.23" y="2794.97" z="268.733" />
+		<routestep x="788.89" y="2787.49" z="268.055" />
+		<routestep x="788.94" y="2780.36" z="267.476" />
+		<routestep x="790.06" y="2772.36" z="266.537" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274223 (830,2782) -->
+	<walker_template route_id="C285975A9241DB98950C1499FEF0C1D7F70F4B52">
+		<routestep x="830.68" y="2782.42" z="260.812" />
+		<routestep x="837.90" y="2781.68" z="259.289" />
+		<routestep x="849.62" y="2774.61" z="257.866" />
+		<routestep x="863.17" y="2771.40" z="253.445" />
+		<routestep x="849.63" y="2774.67" z="257.872" />
+		<routestep x="837.90" y="2781.63" z="259.292" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274227 (791,2765) -->
+	<walker_template route_id="9E733500600151E19155B1809885F668BC3A74DC">
+		<routestep x="791.37" y="2765.46" z="265.738" />
+		<routestep x="789.91" y="2772.45" z="266.574" />
+		<routestep x="788.98" y="2780.36" z="267.472" />
+		<routestep x="788.79" y="2787.54" z="268.064" />
+		<routestep x="789.19" y="2794.77" z="268.724" />
+		<routestep x="792.68" y="2802.06" z="268.396" />
+		<routestep x="789.23" y="2794.97" z="268.733" />
+		<routestep x="788.89" y="2787.49" z="268.055" />
+		<routestep x="788.94" y="2780.36" z="267.476" />
+		<routestep x="790.06" y="2772.36" z="266.537" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274227 (830,2782) -->
+	<walker_template route_id="E9446079D13D13EED7F432A7FE8E657554A2B36B" loop_type="WALK_BACK">
+		<routestep x="893.75" y="2781.25" z="250.810" />
+		<routestep x="881.75" y="2774.75" z="251.230" />
+		<routestep x="879.75" y="2772.75" z="251.130" />
+		<routestep x="863.17" y="2771.40" z="253.445" />
+		<routestep x="849.63" y="2774.67" z="257.872" />
+		<routestep x="837.90" y="2781.63" z="259.292" />
+		<routestep x="830.68" y="2782.42" z="260.812" />
+		<routestep x="837.90" y="2781.68" z="259.289" />
+		<routestep x="849.62" y="2774.61" z="257.866" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274232 (803,2783) -->
+	<walker_template route_id="A3A21225F377D68B9D6E087DE6FEF67705045785">
+		<routestep x="802.88" y="2782.88" z="338.976" />
+		<routestep x="803.00" y="2781.12" z="338.958" />
+		<routestep x="803.62" y="2779.62" z="338.944" />
+		<routestep x="804.62" y="2778.50" z="338.973" />
+		<routestep x="805.75" y="2777.50" z="338.959" />
+		<routestep x="807.25" y="2776.88" z="338.969" />
+		<routestep x="809.00" y="2776.50" z="338.916" />
+		<routestep x="810.88" y="2776.75" z="338.916" />
+		<routestep x="812.25" y="2777.50" z="338.970" />
+		<routestep x="813.62" y="2778.62" z="338.970" />
+		<routestep x="814.50" y="2779.75" z="338.967" />
+		<routestep x="815.00" y="2780.88" z="338.967" />
+		<routestep x="815.25" y="2782.88" z="338.974" />
+		<routestep x="815.00" y="2784.62" z="338.973" />
+		<routestep x="814.38" y="2786.00" z="338.976" />
+		<routestep x="813.50" y="2787.12" z="338.977" />
+		<routestep x="812.38" y="2788.12" z="338.972" />
+		<routestep x="810.62" y="2788.88" z="338.972" />
+		<routestep x="809.00" y="2789.00" z="338.980" />
+		<routestep x="807.50" y="2788.88" z="338.973" />
+		<routestep x="805.75" y="2788.12" z="338.973" />
+		<routestep x="804.62" y="2787.12" z="338.979" />
+		<routestep x="803.62" y="2785.88" z="338.973" />
+		<routestep x="803.00" y="2784.50" z="338.967" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274233 (803,2783) -->
+	<walker_template route_id="273725FA5680D156E7525E68135248A9E543D760" loop_type="WALK_BACK">
+		<routestep x="820.75" y="2789.75" z="338.820" />
+		<routestep x="820.25" y="2789.25" z="338.820" />
+		<routestep x="819.75" y="2789.25" z="338.820" />
+		<routestep x="815.25" y="2787.75" z="338.960" />
+		<routestep x="814.75" y="2787.75" z="338.990" />
+		<routestep x="812.38" y="2788.12" z="338.972" />
+		<routestep x="810.62" y="2788.88" z="338.972" />
+		<routestep x="809.00" y="2789.00" z="338.980" />
+		<routestep x="807.50" y="2788.88" z="338.973" />
+		<routestep x="805.75" y="2788.12" z="338.973" />
+		<routestep x="804.62" y="2787.12" z="338.979" />
+		<routestep x="803.62" y="2785.88" z="338.973" />
+		<routestep x="803.00" y="2784.50" z="338.967" />
+		<routestep x="802.88" y="2782.88" z="338.976" />
+		<routestep x="803.00" y="2781.12" z="338.958" />
+		<routestep x="803.62" y="2779.62" z="338.944" />
+		<routestep x="804.62" y="2778.50" z="338.973" />
+		<routestep x="805.75" y="2777.50" z="338.959" />
+		<routestep x="807.25" y="2776.88" z="338.969" />
+		<routestep x="809.00" y="2776.50" z="338.916" />
+		<routestep x="810.88" y="2776.75" z="338.916" />
+		<routestep x="812.25" y="2777.50" z="338.970" />
+		<routestep x="813.62" y="2778.62" z="338.970" />
+		<routestep x="814.50" y="2779.75" z="338.967" />
+		<routestep x="815.00" y="2780.88" z="338.967" />
+		<routestep x="815.25" y="2782.88" z="338.974" />
+		<routestep x="815.00" y="2784.62" z="338.973" />
+		<routestep x="814.38" y="2786.00" z="338.976" />
+		<routestep x="813.50" y="2787.12" z="338.977" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274259 (2639,2430) -->
+	<walker_template route_id="25B16748E44B70B49F2067A3914BF07A74883E05">
+		<routestep x="2641.23" y="2428.14" z="310.611" />
+		<routestep x="2647.27" y="2420.91" z="309.205" />
+		<routestep x="2641.20" y="2428.02" z="310.603" />
+		<routestep x="2633.83" y="2437.36" z="311.503" />
+		<routestep x="2627.14" y="2445.12" z="311.931" />
+		<routestep x="2633.84" y="2437.48" z="311.503" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274259 (2683,2388) -->
+	<walker_template route_id="216005B90A1A57E148621E468A9F0D93560D26EE">
+		<routestep x="2685.12" y="2387.65" z="310.135" />
+		<routestep x="2693.25" y="2386.11" z="309.882" />
+		<routestep x="2699.63" y="2381.74" z="310.033" />
+		<routestep x="2693.19" y="2386.11" z="309.882" />
+		<routestep x="2685.13" y="2387.67" z="310.134" />
+		<routestep x="2678.40" y="2389.05" z="310.171" />
+	</walker_template>
+	<!-- 800040000_Tiamaranta.xml npc 274268 (2665,2409) -->
+	<walker_template route_id="1CF3DE61639973A265089AACD30595BAB92149DB">
+		<routestep x="2665.08" y="2408.82" z="387.674" />
+		<routestep x="2663.25" y="2409.38" z="387.712" />
+		<routestep x="2661.62" y="2409.50" z="387.729" />
+		<routestep x="2660.12" y="2409.38" z="387.715" />
+		<routestep x="2658.38" y="2408.62" z="387.718" />
+		<routestep x="2657.25" y="2407.62" z="387.731" />
+		<routestep x="2656.25" y="2406.38" z="387.727" />
+		<routestep x="2655.62" y="2405.00" z="387.714" />
+		<routestep x="2655.50" y="2403.38" z="387.733" />
+		<routestep x="2655.62" y="2401.62" z="387.725" />
+		<routestep x="2656.09" y="2400.12" z="387.674" />
+		<routestep x="2656.97" y="2398.92" z="387.674" />
+		<routestep x="2658.38" y="2397.84" z="387.674" />
+		<routestep x="2659.88" y="2397.18" z="387.677" />
+		<routestep x="2661.62" y="2397.00" z="387.725" />
+		<routestep x="2663.50" y="2397.25" z="387.719" />
+		<routestep x="2664.88" y="2398.00" z="387.735" />
+		<routestep x="2666.25" y="2399.12" z="387.735" />
+		<routestep x="2667.12" y="2400.25" z="387.730" />
+		<routestep x="2667.62" y="2401.38" z="387.729" />
+		<routestep x="2667.88" y="2403.38" z="387.733" />
+		<routestep x="2667.62" y="2405.12" z="387.730" />
+		<routestep x="2667.20" y="2406.62" z="387.674" />
+		<routestep x="2666.75" y="2407.75" z="387.670" />
+		<routestep x="2666.44" y="2407.74" z="387.674" />
+	</walker_template>
+	<!-- gera_50_torres_movimento: fim -->
 </npc_walker>

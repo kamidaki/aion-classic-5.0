@@ -25,6 +25,13 @@ public class Spawn {
 	@XmlAttribute(name = "pool")
 	private Integer pool = 0;
 
+	@XmlAttribute(name = "rotation_time")
+	private Integer rotationTime;
+
+	public int getRotationTime() {
+		return rotationTime == null ? 0 : rotationTime;
+	}
+
 	@XmlAttribute(name = "difficult_id")
 	private byte difficultId;
 

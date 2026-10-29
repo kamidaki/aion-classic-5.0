@@ -56,6 +56,11 @@ public class AttackUtil {
 		return attackResultList;
 	}
 
+	/** Defesa tira 1/10 do seu valor do dano; conferido nas capturas 5.0 (inclinação −0,09 em 21 mobs, 28/10). */
+	public static float subtractDefense(float damage, float defense) {
+		return damage - defense / 10;
+	}
+
 	public static void adjustDamageByStatModifiers(Creature attacker, Creature attacked, AttackStatus status, List<AttackResult> attackResultList, SkillElement element) {
 		float mainMultiplier = 1;
 		float offMultiplier = 1;
@@ -73,7 +78,7 @@ public class AttackUtil {
 						reduceRatio = attacked.getGameStats().getReverseStat(StatEnum.DAMAGE_REDUCE, 100).getCurrent() / 100f;
 					}
 				} else {
-					reduceRatio = 10; // NPCs reduce damage by min. 10%. TODO: Implement blocking for npcs without shield + check ratio for different npcs
+					reduceRatio = 0.9f; // fração que passa: NPC bloqueia 10%. TODO: conferir o valor por NPC nas capturas
 				}
 				break;
 			case PARRY:
@@ -104,8 +109,8 @@ public class AttackUtil {
 				} else {
 					fortitude = attacked.getGameStats().getStat(StatEnum.MAGICAL_CRITICAL_DAMAGE_REDUCE, 0).getCurrent();
 				}
-				mainMultiplier = (mainMultiplier - fortitude / 1000f);
-				offMultiplier = (offMultiplier + fortitude / 1000f);
+				mainMultiplier -= fortitude / 1000f;
+				offMultiplier -= fortitude / 1000f;
 			}
 		}
 
@@ -119,7 +124,7 @@ public class AttackUtil {
 			StatEnum defenseStat = isPhysical ? StatEnum.PHYSICAL_DEFENSE : StatEnum.MAGICAL_DEFEND;
 			float defenseStatValue = isPhysical ? attacked.getGameStats().getPDef().getCurrent() : attacked.getGameStats().getMDef().getCurrent();
 			float defense = StatFunctions.adjustStatByMovementModifier(attacked, defenseStat, defenseStatValue);
-			float damage = attackResultList.get(i).getDamage() - (defense / 10);
+			float damage = subtractDefense(attackResultList.get(i).getDamage(), defense);
 			damage *= damageMultiplier;
 			damage = StatFunctions.adjustStatByMovementModifier(attacker, attackStat, damage);
 			if (reduceRatio > 0) {
@@ -207,7 +212,7 @@ public class AttackUtil {
 			switch (stat) {
 				case PHYSICAL_CRITICAL_DAMAGE_REDUCE, MAGICAL_CRITICAL_DAMAGE_REDUCE -> {
 					int fortitude = attacked.getGameStats().getStat(stat, 0).getCurrent();
-					coeficient = isMain ? (coeficient - fortitude / 1000f) : (coeficient + fortitude / 1000f);
+					coeficient -= fortitude / 1000f;
 				}
 			}
 		}
@@ -336,7 +341,7 @@ public class AttackUtil {
 
 		if (isPhysical) {
 			float def = StatFunctions.adjustStatByMovementModifier(effected, StatEnum.PHYSICAL_DEFENSE, effected.getGameStats().getPDef().getCurrent());
-			damage -= def / 10;
+			damage = subtractDefense(damage, def);
 		}
 
 		switch (AttackStatus.getBaseStatus(status)) {

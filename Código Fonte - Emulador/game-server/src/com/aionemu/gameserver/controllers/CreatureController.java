@@ -54,6 +54,7 @@ import com.aionemu.gameserver.skillengine.model.Skill.SkillMethod;
 import com.aionemu.gameserver.skillengine.properties.Properties.CastState;
 import com.aionemu.gameserver.taskmanager.tasks.MovementNotifyTask;
 import com.aionemu.gameserver.utils.PacketSendUtility;
+import com.aionemu.gameserver.utils.PositionUtil;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.utils.audit.AuditLogger;
 import com.aionemu.gameserver.utils.stats.CalculationType;
@@ -339,9 +340,21 @@ public abstract class CreatureController<T extends Creature> extends VisibleObje
 			attackResult = AttackUtil.calculateMagAttackResult(getOwner(), target, getOwner().getAttackType().getMagicalElement(), calculationTypes);
 			attackHandAnimation = AttackHandAnimation.OFF_HAND;
 		}
-		if (getOwner() instanceof Npc) {
+		if (getOwner() instanceof Npc npc) {
+			// S_ATTACK oficial: o campo de mão escolhe a animação (0 = cattack_*_001, 1 = _002, 2 = _003), sorteada só entre as que o
+			// modelo tem, e o tempo é o hitpoint dela (+ distância / ammo_speed nos de longe). Com mão 1 num modelo sem _002 o cliente
+			// não acha a animação e o ataque não aparece; com tempo 0 o golpe não sincroniza.
+			int[] anims = npc.getObjectTemplate().getAttackAnims();
+			if (anims.length > 0)
+				attackHandAnimation = AttackHandAnimation.values()[Math.min(Rnd.nextInt(anims.length), AttackHandAnimation.values().length - 1)];
 			attackHandAnimation = getOwner().getAi().modifyAttackHandAnimation(attackHandAnimation);
 			attackTypeAnimation = getOwner().getAi().getAttackTypeAnimation(target);
+			if (time == 0 && anims.length > 0) {
+				time = anims[Math.min(attackHandAnimation.ordinal(), anims.length - 1)];
+				int ammoSpeed = npc.getObjectTemplate().getAmmoSpeed();
+				if (ammoSpeed > 0)
+					time += (int) (PositionUtil.getDistance(npc, target) / ammoSpeed * 1000);
+			}
 		}
 		// Harpa: o cliente escolhe a animacao do ataque basico pelo campo de mao do S_ATTACK -- 1 toca
 		// cattack_harp_001 e 2 toca cattack_harp_002 (provado em jogo em 14/10/2026). Sorteado a cada ataque.

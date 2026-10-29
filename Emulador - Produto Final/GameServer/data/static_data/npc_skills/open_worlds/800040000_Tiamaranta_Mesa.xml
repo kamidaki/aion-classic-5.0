@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <npc_skill_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="npc_skills.xsd">
 	<!-- Tiamaranta Mesa: skill e nível pelas capturas oficiais (S_USE_SKILL), usados pelas AIs ldf4b_mine e ldf4b_getitem_npc -->
-	<npc_skills npc_ids="220977">
-		<npc_skill id="21420" lv="4" /><!-- Mutated Fallen Aether: dano + atordoamento + queda -->
+	<npc_skills npc_ids="220977 220979">
+		<npc_skill id="21420" lv="4" /><!-- Mutated Fallen Aether e Fallen Mine das torres (LDF4b_Air_Mine_Dr_A, mesma ai LDF4b_Mine e a única skill de mina A do cliente): dano + atordoamento + queda -->
 	</npc_skills>
-	<npc_skills npc_ids="220978">
-		<npc_skill id="21421" lv="2" /><!-- Mutated Poison Aether: dano + veneno -->
+	<npc_skills npc_ids="220978 220980">
+		<npc_skill id="21421" lv="2" /><!-- Mutated Poison Aether e Poison Mine das torres (LDF4b_Air_Mine_Dr_B): dano + veneno -->
 	</npc_skills>
 	<npc_skills npc_ids="802438">
 		<npc_skill id="21381" lv="1" /><!-- LDF4b_GetItem_Hide_Skill_NPC (Stealth Ring): Hide -->
@@ -13,4 +13,96 @@
 	<npc_skills npc_ids="802439">
 		<npc_skill id="21382" lv="1" /><!-- LDF4b_GetItem_Buff_Skill_NPC (Flight Ring): velocidade e voo -->
 	</npc_skills>
+	<!-- Tiamaranta Mutant (title_id 345836): Strike lv 50 observado na captura oficial
+	     2026-10-28 06-49-56 em 220468, 220494 e 220755; associação por título solicitada.
+	     prob 25 segue o padrão existente de Strike; não inferido da captura. -->
+	<npc_skills npc_ids="220452 220468 220494 220499 220505 220508 220540 220547 220551 220598 220623 220669 220682 220705 220716 220727 220730 220755 220757 220759 220794">
+		<npc_skill id="16516" lv="50" prob="25" />
+	</npc_skills>
+	<!-- Island of: 18166 lv 1 observado na captura oficial 2026-10-28 06-49-56.
+	     Associação por nome e condição de voo solicitadas; alcance 16 do template.
+	     prob 100 habilita a tentativa quando elegível; frequência oficial não inferida. -->
+	<npc_skills npc_ids="221092 221093 221094 221095 221096 221097 221098 221099 221100 221101 221102 221103 221104 221105 221106 221107">
+		<npc_skill id="18166" lv="1" prob="100">
+			<cond cond_type="TARGET_IS_FLYING" range="16" />
+		</npc_skill>
+	</npc_skills>
+	<!-- fix_50_torre_skills: inicio -->
+	<!-- Guardas de torre: rotação medida no S_USE_SKILL de "torre mobs.pcapng" (29/10), gerada por fix_50_torre_skills.py.
+	     Balaur: igual nas torres 4401, 4412 e 4413. Elyos: MistOn da 4401, aplicada a todo guarda Li e Da da classe
+	     (skills G* sem raça no cliente). Seeker sem lista (amostra pequena). -->
+	<!-- Guarda Balaur As (24) -->
+	<npc_skills npc_ids="274023 274035 274065 274077 274107 274119 274155 274191 274227 274263 274299 274329 274359 274389 274419 274449 274479 274509 274539 274569 274599 274629 274659 274689">
+		<npc_skill id="18166" lv="46" prob="100" next_chain_id="1" next_skill_time="11300" max_chain_time="22000" /><!-- Powerful Ankle Snare -->
+		<npc_skill id="17332" lv="46" prob="100" chain_id="1" next_chain_id="2" next_skill_time="7700" max_chain_time="18400" /><!-- Swift Edge -->
+		<npc_skill id="17326" lv="46" prob="100" chain_id="2" next_chain_id="3" next_skill_time="7700" max_chain_time="21300" /><!-- Fall -->
+		<npc_skill id="17689" lv="46" prob="100" chain_id="3" next_chain_id="1" next_skill_time="10600" max_chain_time="21300" /><!-- Ranged Ferocious Strike I -->
+	</npc_skills>
+	<!-- Guarda Balaur Fi (24) -->
+	<npc_skills npc_ids="274024 274036 274066 274078 274108 274120 274156 274192 274228 274264 274300 274330 274360 274390 274420 274450 274480 274510 274540 274570 274600 274630 274660 274690">
+		<npc_skill id="18166" lv="46" prob="100" next_chain_id="1" next_skill_time="11200" max_chain_time="22300" /><!-- Powerful Ankle Snare -->
+		<npc_skill id="17305" lv="46" prob="100" chain_id="1" next_chain_id="2" next_skill_time="8100" max_chain_time="18800" /><!-- Wide Area Wrathful Strike -->
+		<npc_skill id="17307" lv="46" prob="100" chain_id="2" next_chain_id="3" next_skill_time="7700" max_chain_time="20800" /><!-- Wide Area Crippling Cut -->
+		<npc_skill id="17577" lv="46" prob="100" chain_id="3" next_chain_id="1" next_skill_time="10100" max_chain_time="21200" /><!-- Fire Burst -->
+	</npc_skills>
+	<!-- Guarda Balaur Pr (24) -->
+	<npc_skills npc_ids="274025 274037 274067 274079 274109 274121 274157 274193 274229 274265 274301 274331 274361 274391 274421 274451 274481 274511 274541 274571 274601 274631 274661 274691">
+		<npc_skill id="18166" lv="46" prob="100" next_chain_id="1" next_skill_time="10500" max_chain_time="22000" /><!-- Powerful Ankle Snare -->
+		<npc_skill id="17367" lv="46" prob="100" chain_id="1" next_chain_id="2" next_skill_time="8500" max_chain_time="21600" /><!-- Wide Area Stun -->
+		<npc_skill id="17365" lv="46" prob="100" chain_id="2" next_chain_id="1" next_skill_time="10100" max_chain_time="21600" target="FRIEND" /><!-- Healing Wind II -->
+	</npc_skills>
+	<!-- Guarda Balaur Wi (24) -->
+	<npc_skills npc_ids="274026 274038 274068 274080 274110 274122 274158 274194 274230 274266 274302 274332 274362 274392 274422 274452 274482 274512 274542 274572 274602 274632 274662 274692">
+		<npc_skill id="18166" lv="46" prob="100" next_chain_id="1" next_skill_time="9300" max_chain_time="20900" /><!-- Powerful Ankle Snare -->
+		<npc_skill id="17340" lv="46" prob="100" chain_id="1" next_chain_id="2" next_skill_time="8600" max_chain_time="19700" /><!-- Winter Binding -->
+		<npc_skill id="17336" lv="46" prob="100" chain_id="2" next_chain_id="3" next_skill_time="8100" max_chain_time="21200" /><!-- Fire Burst -->
+		<npc_skill id="17719" lv="46" prob="100" chain_id="3" next_chain_id="1" next_skill_time="10100" max_chain_time="21700" /><!-- Summon Holy Servant -->
+	</npc_skills>
+	<!-- Guarda Elyos As (24) -->
+	<npc_skills npc_ids="274015 274027 274057 274069 274099 274111 274147 274183 274219 274255 274291 274321 274351 274381 274411 274441 274471 274501 274531 274561 274591 274621 274651 274681">
+		<npc_skill id="17059" lv="46" prob="100" next_chain_id="1" next_skill_time="15000" max_chain_time="33100" /><!-- Cleave -->
+		<npc_skill id="17191" lv="46" prob="100" chain_id="1" next_chain_id="1" next_skill_time="15100" max_chain_time="33200" /><!-- Soul Slash -->
+	</npc_skills>
+	<!-- Guarda Elyos Fi (24) -->
+	<npc_skills npc_ids="274016 274028 274058 274070 274100 274112 274148 274184 274220 274256 274292 274322 274352 274382 274412 274442 274472 274502 274532 274562 274592 274622 274652 274682">
+		<npc_skill id="17081" lv="46" prob="100" next_chain_id="1" next_skill_time="5200" max_chain_time="11400" /><!-- Wide Area Wrathful Strike -->
+		<npc_skill id="17082" lv="46" prob="100" chain_id="1" next_chain_id="2" next_skill_time="3200" max_chain_time="11400" /><!-- Crippling Cut -->
+		<npc_skill id="17081" lv="46" prob="100" chain_id="2" next_chain_id="1" next_skill_time="5200" max_chain_time="11400" /><!-- Wide Area Wrathful Strike -->
+	</npc_skills>
+	<!-- Guarda Elyos Pr (24) -->
+	<npc_skills npc_ids="274017 274029 274059 274071 274101 274113 274149 274185 274221 274257 274293 274323 274353 274383 274413 274443 274473 274503 274533 274563 274593 274623 274653 274683">
+		<npc_skill id="17133" lv="46" prob="100" next_chain_id="1" next_skill_time="4800" max_chain_time="13300" /><!-- Wide Area Stun -->
+		<npc_skill id="17126" lv="46" prob="100" chain_id="1" next_chain_id="2" next_skill_time="5500" max_chain_time="13300" target="ME" /><!-- Radiant Cure I -->
+		<npc_skill id="17133" lv="46" prob="100" chain_id="2" next_chain_id="1" next_skill_time="4800" max_chain_time="13300" /><!-- Wide Area Stun -->
+	</npc_skills>
+	<!-- Guarda Elyos Wi (24) -->
+	<npc_skills npc_ids="274018 274030 274060 274072 274102 274114 274150 274186 274222 274258 274294 274324 274354 274384 274414 274444 274474 274504 274534 274564 274594 274624 274654 274684">
+		<npc_skill id="17108" lv="46" prob="100" next_chain_id="1" next_skill_time="5300" max_chain_time="14300" /><!-- Winter Binding -->
+		<npc_skill id="17115" lv="46" prob="100" chain_id="1" next_chain_id="2" next_skill_time="6000" max_chain_time="14300" /><!-- Fire Burst -->
+		<npc_skill id="17108" lv="46" prob="100" chain_id="2" next_chain_id="1" next_skill_time="5300" max_chain_time="14300" /><!-- Winter Binding -->
+	</npc_skills>
+	<!-- Guarda Asmodiano As (24) -->
+	<npc_skills npc_ids="274019 274031 274061 274073 274103 274115 274151 274187 274223 274259 274295 274325 274355 274385 274415 274445 274475 274505 274535 274565 274595 274625 274655 274685">
+		<npc_skill id="17059" lv="46" prob="100" next_chain_id="1" next_skill_time="15000" max_chain_time="33100" /><!-- Cleave -->
+		<npc_skill id="17191" lv="46" prob="100" chain_id="1" next_chain_id="1" next_skill_time="15100" max_chain_time="33200" /><!-- Soul Slash -->
+	</npc_skills>
+	<!-- Guarda Asmodiano Fi (24) -->
+	<npc_skills npc_ids="274020 274032 274062 274074 274104 274116 274152 274188 274224 274260 274296 274326 274356 274386 274416 274446 274476 274506 274536 274566 274596 274626 274656 274686">
+		<npc_skill id="17081" lv="46" prob="100" next_chain_id="1" next_skill_time="5200" max_chain_time="11400" /><!-- Wide Area Wrathful Strike -->
+		<npc_skill id="17082" lv="46" prob="100" chain_id="1" next_chain_id="2" next_skill_time="3200" max_chain_time="11400" /><!-- Crippling Cut -->
+		<npc_skill id="17081" lv="46" prob="100" chain_id="2" next_chain_id="1" next_skill_time="5200" max_chain_time="11400" /><!-- Wide Area Wrathful Strike -->
+	</npc_skills>
+	<!-- Guarda Asmodiano Pr (24) -->
+	<npc_skills npc_ids="274021 274033 274063 274075 274105 274117 274153 274189 274225 274261 274297 274327 274357 274387 274417 274447 274477 274507 274537 274567 274597 274627 274657 274687">
+		<npc_skill id="17133" lv="46" prob="100" next_chain_id="1" next_skill_time="4800" max_chain_time="13300" /><!-- Wide Area Stun -->
+		<npc_skill id="17126" lv="46" prob="100" chain_id="1" next_chain_id="2" next_skill_time="5500" max_chain_time="13300" target="ME" /><!-- Radiant Cure I -->
+		<npc_skill id="17133" lv="46" prob="100" chain_id="2" next_chain_id="1" next_skill_time="4800" max_chain_time="13300" /><!-- Wide Area Stun -->
+	</npc_skills>
+	<!-- Guarda Asmodiano Wi (24) -->
+	<npc_skills npc_ids="274022 274034 274064 274076 274106 274118 274154 274190 274226 274262 274298 274328 274358 274388 274418 274448 274478 274508 274538 274568 274598 274628 274658 274688">
+		<npc_skill id="17108" lv="46" prob="100" next_chain_id="1" next_skill_time="5300" max_chain_time="14300" /><!-- Winter Binding -->
+		<npc_skill id="17115" lv="46" prob="100" chain_id="1" next_chain_id="2" next_skill_time="6000" max_chain_time="14300" /><!-- Fire Burst -->
+		<npc_skill id="17108" lv="46" prob="100" chain_id="2" next_chain_id="1" next_skill_time="5300" max_chain_time="14300" /><!-- Winter Binding -->
+	</npc_skills>
+	<!-- fix_50_torre_skills: fim -->
 </npc_skill_templates>

@@ -446,4 +446,14 @@
 	<chest npc_id="802536">
 		<key_item item_ids="0" count="1" />
 	</chest>
+	<!-- Balic Treasury: caixas do Protetorado, cada uma com a chave do mesmo nome no cliente (captura 29/10: sem chave, msg 1111300) -->
+	<chest npc_id="801964">
+		<key_item item_ids="185000141" count="1" />
+	</chest>
+	<chest npc_id="801965">
+		<key_item item_ids="185000142" count="1" />
+	</chest>
+	<chest npc_id="801966">
+		<key_item item_ids="185000143" count="1" />
+	</chest>
 </chest_templates>

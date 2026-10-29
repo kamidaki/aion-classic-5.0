@@ -56,8 +56,19 @@ public class NpcTemplate extends CreatureTemplate {
 	@XmlElement(name = "kisk_stats")
 	private KiskStatsTemplate kiskStatsTemplate;
 
-	@XmlElement(name = "ammo_speed")
+	/** Velocidade do projétil do ataque básico (m/s), do <ammo_speed> do cliente; 0 = corpo a corpo. */
+	@XmlAttribute(name = "ammo_speed")
 	private int ammoSpeed = 0;
+
+	/**
+	 * Hitpoint (ms) das animações de ataque básico do modelo (cattack_<arma>_001/_002/_003 do AnimationMarkers do cliente), separados por
+	 * vírgula. O S_ATTACK oficial manda a animação no campo de mão (0, 1, 2) e o hitpoint dela no campo de tempo.
+	 */
+	@XmlAttribute(name = "attack_anims")
+	private String attackAnimsRaw;
+
+	@XmlTransient
+	private int[] attackAnims = new int[0];
 
 	@XmlAttribute(name = "rank")
 	private NpcRank rank;
@@ -131,6 +142,22 @@ public class NpcTemplate extends CreatureTemplate {
 			ai = "siege_teleporter";
 		if (ai != null)
 			ai = ai.intern();
+		if (attackAnimsRaw != null && !attackAnimsRaw.isBlank()) {
+			String[] v = attackAnimsRaw.split(",");
+			attackAnims = new int[v.length];
+			for (int i = 0; i < v.length; i++)
+				attackAnims[i] = Integer.parseInt(v[i].trim());
+			attackAnimsRaw = null;
+		}
+	}
+
+	/** Hitpoints (ms) das animações de ataque básico; vazio quando o modelo não tem marcadores. */
+	public int[] getAttackAnims() {
+		return attackAnims;
+	}
+
+	public int getAmmoSpeed() {
+		return ammoSpeed;
 	}
 
 	@Override

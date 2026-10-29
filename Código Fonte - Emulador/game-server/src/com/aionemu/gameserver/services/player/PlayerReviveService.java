@@ -16,6 +16,7 @@ import com.aionemu.gameserver.model.team.common.legacy.PlayerAllianceEvent;
 import com.aionemu.gameserver.model.team.group.PlayerGroupService;
 import com.aionemu.gameserver.model.templates.item.ItemUseLimits;
 import com.aionemu.gameserver.model.templates.item.actions.SkillUseAction;
+import com.aionemu.gameserver.model.templates.world.WorldResurrectPoint;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.services.VortexService;
 import com.aionemu.gameserver.services.teleport.TeleportService;
@@ -126,8 +127,13 @@ public class PlayerReviveService {
 				}
 			}
 
+			WorldResurrectPoint mapPoint = resPos != null ? null
+				: DataManager.WORLD_MAPS_DATA.getTemplate(player.getWorldId()).getResurrectPoint(player.getRace());
 			if (resPos != null)
 				TeleportService.teleportTo(player, resPos);
+			else if (mapPoint != null) // ponto fixo do mapa (oficial 5.0: Balic Treasury revive no próprio mapa, sem ir ao bind)
+				TeleportService.teleportTo(player, player.getWorldId(), player.getInstanceId(), mapPoint.getX(), mapPoint.getY(), mapPoint.getZ(),
+					mapPoint.getHeading());
 			else
 				TeleportService.moveToBindLocation(player);
 		}

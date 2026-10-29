@@ -24,6 +24,11 @@ public class SpawnGroup {
 	private final int worldId;
 	private final int npcId;
 	private final int pool;
+	private int rotationTime;
+
+	public int getRotationTime() {
+		return rotationTime;
+	}
 	private final int respawnTime;
 	private final byte difficultId;
 	private final SpawnHandlerType handlerType;
@@ -83,6 +88,7 @@ public class SpawnGroup {
 
 	private SpawnGroup(int worldId, Spawn spawn, List<SpawnTemplate> spots) {
 		this(worldId, spawn.getNpcId(), spawn.getPool(), spawn.getRespawnTime(), spawn.getDifficultId(), spawn.getSpawnHandlerType(), spawn.getTemporarySpawn(), spots, spawn.getEventTemplate());
+		rotationTime = spawn.getRotationTime();
 	}
 
 	private SpawnGroup(int worldId, int npcId, int pool, int respawnTime, byte difficultId, SpawnHandlerType handlerType, TemporarySpawn temporarySpawn,
