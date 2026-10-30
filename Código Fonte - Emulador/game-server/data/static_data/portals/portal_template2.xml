@@ -849,6 +849,16 @@
 	<portal_use npc_id="802953">
 		<portal_path loc_id="8000701" race="ASMODIANS" />
 	</portal_use>
+	<!-- Balic Treasury, lado elyos (captura oficial de 2026-10-30) -->
+	<portal_use npc_id="802791">
+		<portal_path loc_id="8000702" race="ELYOS" />
+	</portal_use>
+	<portal_use npc_id="802948">
+		<portal_path loc_id="8000703" race="ELYOS" />
+	</portal_use>
+	<portal_use npc_id="802946">
+		<portal_path loc_id="8000704" race="ELYOS" />
+	</portal_use>
 	<!-- ############### PORTAL DIALOG ############### -->
 	<!-- ***************** INSTANCES ***************** -->
 	<!-- STEEL RAKE -->
@@ -1305,6 +1315,13 @@
 	<!-- Inggison -> Tiamaranta Mesa pelo Somnium (captura oficial de 2026-10-21: página 1011, ação 10000, 5.000 kinah) -->
 	<portal_dialog npc_id="801994" teleport_dialog_id="1011">
 		<portal_path dialog="10000" loc_id="8000402" race="ELYOS" kinah="5000" />
+	</portal_dialog>
+	<!-- Tiamaranta Mesa -> Balic Treasury pela nave (capturas oficiais de 2026-10-29/30: página 1011, ação 104) -->
+	<portal_dialog npc_id="802945" teleport_dialog_id="1011">
+		<portal_path dialog="104" loc_id="8000704" race="ELYOS" />
+	</portal_dialog>
+	<portal_dialog npc_id="802950" teleport_dialog_id="1011">
+		<portal_path dialog="104" loc_id="8000705" race="ASMODIANS" />
 	</portal_dialog>
 	<!-- ############### PORTAL DIALOG END ############### -->
 	<!-- ############### PORTAL SCROLL ############### -->

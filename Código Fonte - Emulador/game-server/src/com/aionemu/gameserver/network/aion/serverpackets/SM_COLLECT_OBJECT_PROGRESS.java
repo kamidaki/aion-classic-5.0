@@ -11,7 +11,7 @@ import com.aionemu.gameserver.network.aion.AionServerPacket;
  */
 public class SM_COLLECT_OBJECT_PROGRESS extends AionServerPacket {
 
-	public static final int START = 0, PROGRESS = 1, SUCCESS = 3;
+	public static final int START = 0, PROGRESS = 1, SUCCESS = 3, CANCELED = 4; // 4: jogador andou (Balic Elyos.pcapng, 30/10)
 	public static final int MAX_PROGRESS = 10000;
 
 	private final int state;

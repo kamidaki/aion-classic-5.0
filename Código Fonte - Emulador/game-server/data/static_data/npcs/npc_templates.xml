@@ -367031,11 +367031,12 @@
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802791" level="1" name_en="Elyos Entrance Teleporter" name_pt="&lt;Soldado da fortaleza da eternidade&gt;" name_id="464933" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="7" srange="20">
+	<npc_template npc_id="802791" level="1" name_en="Elyos Entrance Teleporter" name_pt="&lt;Soldado da fortaleza da eternidade&gt;" name_id="464933" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="portal" attack_speed="2000" hpgauge="3" flag_type="7" srange="20">
 		<stats maxHp="172" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
+		<talk_info distance="7" delay="3" can_talk_invisible="false" />
 	</npc_template>
 	<npc_template npc_id="802792" level="1" name_en="Asmodian Entrance Teleporter" name_pt="&lt;Soldado da fortaleza em ruínas&gt;" name_id="464934" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="ELYOS" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="portal" attack_speed="2000" hpgauge="3" flag_type="7" srange="20">
 		<stats maxHp="172" >
@@ -368142,17 +368143,19 @@ Status: Ativo" name_id="465110" height="2" group_drop="NONE" rank="DISCIPLINED" 
 		</stats>
 		<bound_radius front="0.275" side="0.385" upper="1.98" />
 	</npc_template>
-	<npc_template npc_id="802945" level="1" name_en="Secret Access to the Balic Treasury" name_pt="&lt;Para o 3º Deylon Refuge&gt;" name_id="465004" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="8">
+	<npc_template npc_id="802945" level="1" name_en="Secret Access to the Balic Treasury" name_pt="&lt;Para o 3º Deylon Refuge&gt;" name_id="465004" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="portal_dialog" attack_speed="2000" hpgauge="3" flag_type="8">
 		<stats maxHp="172" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
+		<talk_info distance="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="802946" level="1" name_en="Balic Treasury Entrance" name_pt="&lt;Para o 4º Deylon Refuge&gt;" name_id="465005" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="8">
+	<npc_template npc_id="802946" level="1" name_en="Balic Treasury Entrance" name_pt="&lt;Para o 4º Deylon Refuge&gt;" name_id="465005" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="portal" attack_speed="2000" hpgauge="3" flag_type="8">
 		<stats maxHp="172" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
+		<talk_info distance="10" delay="5" can_talk_invisible="false" />
 	</npc_template>
 	<npc_template npc_id="802947" level="65" name_en="Somnium Portal" name_pt="&lt;Para o 4º Deylon Refuge&gt;" name_id="465006" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="8">
 		<stats maxHp="28386" >
@@ -368160,11 +368163,12 @@ Status: Ativo" name_id="465110" height="2" group_drop="NONE" rank="DISCIPLINED" 
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802948" level="65" name_en="Tiamaranta Garrison Entrance" name_pt="&lt;Tropa da Expedição do 1º Belus Refuge&gt;" name_id="465007" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="8">
+	<npc_template npc_id="802948" level="65" name_en="Tiamaranta Garrison Entrance" name_pt="&lt;Tropa da Expedição do 1º Belus Refuge&gt;" name_id="465007" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="portal" attack_speed="2000" hpgauge="3" flag_type="8">
 		<stats maxHp="28386" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
+		<talk_info distance="10" delay="5" can_talk_invisible="false" />
 	</npc_template>
 	<npc_template npc_id="802949" level="65" name_en="Abyss Rift" name_pt="&lt;Tropa da Expedição do 1º Belus Refuge&gt;" name_id="465008" height="1" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="8">
 		<stats maxHp="28386" >
@@ -368172,11 +368176,12 @@ Status: Ativo" name_id="465110" height="2" group_drop="NONE" rank="DISCIPLINED" 
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
 	</npc_template>
-	<npc_template npc_id="802950" level="1" name_en="Secret Access to the Balic Treasury" name_pt="&lt;Tropa da Expedição do 2º Belus Refuge&gt;" name_id="465009" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="8">
+	<npc_template npc_id="802950" level="1" name_en="Secret Access to the Balic Treasury" name_pt="&lt;Tropa da Expedição do 2º Belus Refuge&gt;" name_id="465009" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="portal_dialog" attack_speed="2000" hpgauge="3" flag_type="8">
 		<stats maxHp="172" >
 			<speeds walk="0" group_walk="0" run="0" run_fight="0" group_run_fight="0" />
 		</stats>
 		<bound_radius front="0.25" side="0.35" upper="2" />
+		<talk_info distance="3" can_talk_invisible="false" />
 	</npc_template>
 	<npc_template npc_id="802951" level="1" name_en="Balic Treasury Entrance" name_pt="&lt;Tropa da Expedição do 2º Belus Refuge&gt;" name_id="465010" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="CONSTRUCT" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="flag" attack_speed="2000" hpgauge="3" flag_type="8">
 		<stats maxHp="172" >

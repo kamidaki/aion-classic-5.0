@@ -21,6 +21,20 @@ Objetos do Balic Treasury (800070000) pela captura oficial "06_Sistemas_Novos_5.
          Recebe a ai tdown_drana_tin (TDownDranaTinAI) e os spawns da captura: não tinha nenhum no arquivo.
   802966 Tdown_Pile_Of_Black_Drana_Tins_Step1 (pilha decorativa, NoAction): spawns da captura, também ausentes.
 
+Lado elyos, pela captura "06_Sistemas_Novos_5.0/Balic Elyos.pcapng" (30/10):
+
+  revive (C_DEAD_RESTART 9): S_PUT_USER em (753.0, 77.0, 1197.0), h 90 pelo 1º C_MOVE -> resurrect_point ELYOS no world_maps.xml.
+  802791 TDown_FOBJ_Teleporter_L: S 0xC4 3000 ms -> plataforma elyosa. Os dois usos caíram em pontos diferentes (748.296, 203.1707) e
+         (750.1088, 196.7236), z 1201.518, h 90: o oficial espalha a chegada, sem prova de como; fica o 1º ponto.
+  802948 TDown_to_LDF4b_Center_Local_L: S 0xC4 5000 ms -> (800040000, 1524.5, 1246.5, 245.499, h 90).
+  802946 LDF4b_Center_to_Tdown_Teleport_Local_L (em Tiamaranta Mesa): S 0xC4 5000 ms -> (800070000, 754.0, 40.0, 1196.8103, h 30).
+  802945 LDF4b_Ship_to_Tdown_Teleport_Local_L (em Tiamaranta Mesa, sem talk_delay_time no cliente): clique -> S 0x3C página 1011 ->
+         C_DIALOG_SELECT ação 104 (TELEPORT_SIMPLE) -> o mesmo ponto do 802946, sem barra.
+  802950 LDF4b_Ship_to_Tdown_Teleport_Local_D: o mesmo do 802945 do lado asmodiano, na captura de 29/10 (página 1011, ação 104) ->
+         (800070000, 754.5, 1497.0, 1196.8643, h 90). O 802951 (Center asmodiano) não foi usado em nenhuma captura.
+  Todos estavam com ai flag. A distância e a espera são as do client_npcs (talking_distance/talk_delay_time).
+  Spawns do lado elyos: atualiza_spawns_captura.py com o .pkl desta captura e --mover-ate 6.
+
 Também tira os portal_dialog 801965/801966 da 4.x (Sauro Supply Base, mapa que não existe na 5.0), que colidem com os ids
 das caixas.
 
@@ -89,6 +103,38 @@ CHESTS = (
 )
 
 
+LOCS_ELYOS = (
+    '\t<!-- Balic Treasury, lado elyos e entradas pela nave (capturas oficiais de 2026-10-29 e 2026-10-30) -->\n'
+    '\t<portal_loc world_id="800070000" loc_id="8000702" x="748.296" y="203.1707" z="1201.5184" h="90"/> <!-- Plataforma elyosa, pelo 802791 -->\n'
+    '\t<portal_loc world_id="800040000" loc_id="8000703" x="1524.5" y="1246.5" z="245.499" h="90"/> <!-- Tiamaranta Mesa, pelo 802948 do Balic Treasury -->\n'
+    '\t<portal_loc world_id="800070000" loc_id="8000704" x="754" y="40" z="1196.8103" h="30"/> <!-- Entrada elyosa do Balic, pelo 802945/802946 -->\n'
+    '\t<portal_loc world_id="800070000" loc_id="8000705" x="754.5" y="1497" z="1196.8643" h="90"/> <!-- Entrada asmodiana do Balic, pelo 802950 -->\n'
+)
+PORTAL_USE_ELYOS = (
+    '\t<!-- Balic Treasury, lado elyos (captura oficial de 2026-10-30) -->\n'
+    '\t<portal_use npc_id="802791">\n'
+    '\t\t<portal_path loc_id="8000702" race="ELYOS" />\n'
+    '\t</portal_use>\n'
+    '\t<portal_use npc_id="802948">\n'
+    '\t\t<portal_path loc_id="8000703" race="ELYOS" />\n'
+    '\t</portal_use>\n'
+    '\t<portal_use npc_id="802946">\n'
+    '\t\t<portal_path loc_id="8000704" race="ELYOS" />\n'
+    '\t</portal_use>\n'
+)
+PORTAL_DIALOG = (
+    '\t<!-- Tiamaranta Mesa -> Balic Treasury pela nave (capturas oficiais de 2026-10-29/30: página 1011, ação 104) -->\n'
+    '\t<portal_dialog npc_id="802945" teleport_dialog_id="1011">\n'
+    '\t\t<portal_path dialog="104" loc_id="8000704" race="ELYOS" />\n'
+    '\t</portal_dialog>\n'
+    '\t<portal_dialog npc_id="802950" teleport_dialog_id="1011">\n'
+    '\t\t<portal_path dialog="104" loc_id="8000705" race="ASMODIANS" />\n'
+    '\t</portal_dialog>\n'
+)
+REL_WORLD = "world_maps.xml"
+REVIVE_ELYOS = '<resurrect_point race="ELYOS" x="753.0" y="77.0" z="1197.0" h="90"/>'
+
+
 def edita_npcs(texto):
     def bloco(npc_id, funcao):
         nonlocal texto
@@ -107,21 +153,45 @@ def edita_npcs(texto):
         if m:
             return b.replace(m.group(0), novo, 1)
         br = re.search(r"(\n\t*)(<bound_radius\b[^>]*/>)", b)
-        return b.replace(br.group(0), br.group(0) + br.group(1) + novo, 1)
+        if br:
+            return b.replace(br.group(0), br.group(0) + br.group(1) + novo, 1)
+        return b.replace("\t</npc_template>", "\t\t" + novo + "\n\t</npc_template>", 1)  # template sem filhos
+
+    def talk_sem_espera(b, dist):
+        novo = f'<talk_info distance="{dist}" can_talk_invisible="false" />'
+        m = re.search(r"<talk_info\b[^>]*/>", b)
+        if m:
+            return b.replace(m.group(0), novo, 1)
+        return b.replace("\t</npc_template>", "\t\t" + novo + "\n\t</npc_template>", 1)
 
     bloco(802792, lambda b: talk(ai(b, "portal"), 7, 3))
     bloco(802953, lambda b: talk(ai(b, "portal"), 10, 5))
     for n in (801964, 801965, 801966):
         bloco(n, lambda b: talk(ai(b, "chest"), 3, 10))
     bloco(802959, lambda b: talk(ai(b, "tdown_drana_tin"), 3, 5))
+    bloco(802791, lambda b: talk(ai(b, "portal"), 7, 3))
+    bloco(802948, lambda b: talk(ai(b, "portal"), 10, 5))
+    bloco(802946, lambda b: talk(ai(b, "portal"), 10, 5))
+    for n in (802945, 802950):
+        bloco(n, lambda b: talk_sem_espera(ai(b, "portal_dialog"), 3))
     return texto
 
 
 def edita_loc(texto):
-    if 'loc_id="8000700"' in texto:
-        return texto
     assert texto.count("</portal_locs>") == 1
-    return texto.replace("</portal_locs>", LOCS + "</portal_locs>")
+    if 'loc_id="8000700"' not in texto:
+        texto = texto.replace("</portal_locs>", LOCS + "</portal_locs>")
+    if 'loc_id="8000702"' not in texto:
+        texto = texto.replace("</portal_locs>", LOCS_ELYOS + "</portal_locs>")
+    return texto
+
+
+def edita_world(texto):
+    if 'resurrect_point race="ELYOS" x="753.0"' in texto:
+        return texto
+    asmo = re.search(r'(\n[ \t]*)<resurrect_point race="ASMODIANS" x="753.0" y="1460.0"[^>]*/>', texto)
+    assert asmo, "resurrect_point asmodiano do 800070000 ausente"
+    return texto[:asmo.start()] + asmo.group(1) + REVIVE_ELYOS + texto[asmo.start():]
 
 
 def edita_portais(texto):
@@ -131,6 +201,13 @@ def edita_portais(texto):
         ancora = "\t<!-- ############### PORTAL DIALOG ############### -->\n"
         assert texto.count(ancora) == 1
         texto = texto.replace(ancora, PORTAL_USE + ancora)
+    if 'portal_use npc_id="802791"' not in texto:
+        ancora = "\t<!-- ############### PORTAL DIALOG ############### -->\n"
+        texto = texto.replace(ancora, PORTAL_USE_ELYOS + ancora)
+    if 'portal_dialog npc_id="802945"' not in texto:
+        ancora = "\t<!-- ############### PORTAL DIALOG END ############### -->\n"
+        assert texto.count(ancora) == 1
+        texto = texto.replace(ancora, PORTAL_DIALOG + ancora)
     return texto
 
 
@@ -197,7 +274,7 @@ def main():
     from lxml import etree
     schema = etree.XMLSchema(etree.parse(os.path.join(backup_manager.SERVER_DATA_DIR, "static_data.xsd")))
     gravar = []
-    for rel, funcao in ((REL_NPCS, edita_npcs), (REL_LOC, edita_loc), (REL_PORTALS, edita_portais), (REL_CHESTS, edita_chests),
+    for rel, funcao in ((REL_NPCS, edita_npcs), (REL_LOC, edita_loc), (REL_PORTALS, edita_portais), (REL_CHESTS, edita_chests), (REL_WORLD, edita_world),
                         (REL_SPAWN, lambda t: edita_spawn(t, pos))):
         for base in (backup_manager.SERVER_DATA_DIR, backup_manager.PRODUTO_FINAL_DATA_DIR):
             caminho = os.path.join(base, rel)
