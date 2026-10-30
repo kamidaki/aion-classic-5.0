@@ -36,7 +36,7 @@
 				<spawn handler="SENTINEL" npc_id="274028" respawn_time="60">
 					<spot x="1083.2852" y="1508.2812" z="359.0995" h="80" />
 					<spot x="1087.4646" y="1521.9712" z="359.0922" h="20" />
-					<spot x="1083.8665" y="1490.9904" z="358.8845" h="63" walker_id="2857ADA5AAFF6F64914A4F2637B588C32A797927" />
+					<spot x="1083.8665" y="1490.9904" z="358.8845" h="63" />
 					<spot x="1078.536" y="1501.8368" z="279.9279" h="50" />
 					<spot x="1094.9833" y="1527.9497" z="279.9262" h="0" />
 				</spawn>
@@ -44,7 +44,7 @@
 					<spot x="1088.7183" y="1508.6295" z="359.1062" h="80" />
 					<spot x="1081.4567" y="1520.9746" z="359.0317" h="20" />
 					<spot x="1086.6814" y="1539.0013" z="358.8846" h="117" walker_id="F11F381FB0E40E98237011273DCCCFA55D0C428B" />
-					<spot x="1080.0319" y="1499.4897" z="279.9177" h="50" walker_id="F1DDD4562224FEEB5BF4DBC818AB7894018F16EB" />
+					<spot x="1080.0319" y="1499.4897" z="279.9177" h="50" />
 					<spot x="1094.0693" y="1530.2715" z="279.9175" h="0" />
 				</spawn>
 				<spawn handler="SENTINEL" npc_id="274030" respawn_time="60">
@@ -98,14 +98,14 @@
 				<spawn handler="SENTINEL" npc_id="274032" respawn_time="60">
 					<spot x="1083.2852" y="1508.2812" z="359.0995" h="80" />
 					<spot x="1087.4646" y="1521.9712" z="359.0922" h="20" />
-					<spot x="1083.8665" y="1490.9904" z="358.8845" h="63" />
+					<spot x="1083.8665" y="1490.9904" z="358.8845" h="63" walker_id="3C10AC74C3672ABEC3B54E2F7C2471FEC4DD00A1" walker_index="1" />
 					<spot x="1078.536" y="1501.8368" z="279.9279" h="50" />
 					<spot x="1094.9833" y="1527.9497" z="279.9262" h="0" />
 				</spawn>
 				<spawn handler="SENTINEL" npc_id="274033" respawn_time="60">
 					<spot x="1088.7183" y="1508.6295" z="359.1062" h="80" />
 					<spot x="1081.4567" y="1520.9746" z="359.0317" h="20" />
-					<spot x="1086.6814" y="1539.0013" z="358.8846" h="117" />
+					<spot x="1086.6814" y="1539.0013" z="358.8846" h="117" walker_id="4A14408DD097C187B37870B8AFB9AA8545A9244B" walker_index="1" />
 					<spot x="1080.0319" y="1499.4897" z="279.9177" h="50" />
 					<spot x="1094.0693" y="1530.2715" z="279.9175" h="0" />
 				</spawn>
@@ -120,12 +120,12 @@
 					<spot x="1092.6711" y="1526.7374" z="279.9238" h="0" />
 				</spawn>
 				<spawn handler="SENTINEL" npc_id="274031" respawn_time="60">
-					<spot x="1080.3716" y="1519.1958" z="280.2896" h="17" />
-					<spot x="1096.9249" y="1503.8605" z="268.67" h="14" />
-					<spot x="1078.6603" y="1527.0511" z="267.96" h="75" />
+					<spot x="1080.3716" y="1519.1958" z="280.2896" h="17" walker_id="0B1518DD2EE14B792EA87BBC5E4E8FB5158A3CE4" walker_index="1" />
+					<spot x="1096.9249" y="1503.8605" z="268.67" h="14" walker_id="746BD535C3BC503807F3B6C7C2CFAD3B9DEC4B62" walker_index="1" />
+					<spot x="1078.6603" y="1527.0511" z="267.96" h="75" walker_id="CE9B426CA8DAA317C990DB5ECCE423875D8A97BE" walker_index="1" />
 				</spawn>
 				<spawn handler="SENTINEL" npc_id="274040" respawn_time="60">
-					<spot x="1081.1931" y="1522.212" z="359.127" h="11" />
+					<spot x="1081.1931" y="1522.212" z="359.127" h="11" walker_id="252F1FCA4983436B5B5AFEE38261E2C0974F6654" walker_index="1" />
 				</spawn>
 			</occupier_template>
 			<occupier_template occupier="BALAUR">
@@ -158,7 +158,7 @@
 					<spot x="1088.7183" y="1508.6295" z="359.1062" h="80" />
 					<spot x="1081.4567" y="1520.9746" z="359.0317" h="20" />
 					<spot x="1086.6814" y="1539.0013" z="358.8846" h="117" walker_id="2239F5995BACA71C4FD4F02BAAF3990E84745BA7" />
-					<spot x="1080.0319" y="1499.4897" z="279.9177" h="50" walker_id="2C4825BED64542EF97A8E4414E3FE1AACCF427BC" />
+					<spot x="1080.0319" y="1499.4897" z="279.9177" h="50" />
 					<spot x="1094.0693" y="1530.2715" z="279.9175" h="0" />
 				</spawn>
 				<spawn handler="SENTINEL" npc_id="274038" respawn_time="60">
@@ -169,7 +169,7 @@
 					<spot x="1070.2556" y="1520.4202" z="280.11" h="50" />
 					<spot x="1103.7924" y="1509.0752" z="280.11" h="110" />
 					<spot x="1080.8978" y="1502.7531" z="279.9247" h="50" />
-					<spot x="1092.6711" y="1526.7374" z="279.9238" h="0" walker_id="0DE65307A8FF1C97E959BB8BA865BFD86800E226" />
+					<spot x="1092.6711" y="1526.7374" z="279.9238" h="0" />
 				</spawn>
 				<spawn handler="SENTINEL" npc_id="274035" respawn_time="60">
 					<spot x="1080.3716" y="1519.1958" z="280.2896" h="17" walker_id="7590802230B038D236F5C0E2E141016C589DD575" />
@@ -217,11 +217,11 @@
 					<spot x="2117.5" y="968.5" z="309.0614" h="110" />
 				</spawn>
 				<spawn handler="SENTINEL" npc_id="274075" respawn_time="60">
-					<spot x="2107.1831" y="960.9019" z="388.1973" h="20" />
+					<spot x="2107.1831" y="960.9019" z="388.1973" h="20" walker_id="CC3F82BBF99A26139CB391242172F658471F52B5" />
 					<spot x="2104.2175" y="951.4388" z="388.1947" h="80" />
-					<spot x="2115.7185" y="970.6281" z="309.0903" h="110" walker_id="E205E245934DE84FF19D9A281CD8D1788D32E839" />
+					<spot x="2115.7185" y="970.6281" z="309.0903" h="110" />
 					<spot x="2106.75" y="938.75" z="309.0726" h="50" />
-					<spot x="2147.4041" y="966.6353" z="297.4298" h="39" />
+					<spot x="2147.4041" y="966.6353" z="297.4298" h="39" walker_id="D49F7C3C855B04AD7E10850BE0D8C8F444FF2D57" walker_index="1" />
 				</spawn>
 				<spawn handler="SENTINEL" npc_id="274076" respawn_time="60">
 					<spot x="2113.2649" y="948.4254" z="388.1988" h="80" />
@@ -231,7 +231,7 @@
 					<spot x="2095.1624" y="960.2955" z="309.37" h="50" />
 					<spot x="2128.4082" y="948.8337" z="309.37" h="110" />
 					<spot x="2115" y="967.5" z="309.0822" h="110" />
-					<spot x="2108.25" y="942.25" z="309.0711" h="50" walker_id="067411A9D8EA5CF37A7E0239E909B1CFE8C3F8AF" />
+					<spot x="2108.25" y="942.25" z="309.0711" h="50" />
 				</spawn>
 				<spawn handler="SENTINEL" npc_id="274073" respawn_time="60">
 					<spot x="2111.793" y="946.5054" z="309.4076" h="63" walker_id="C43106B31D2E30BA342D26736814F0D34657ED38" />
@@ -268,14 +268,14 @@
 				<spawn handler="SENTINEL" npc_id="274112" respawn_time="60">
 					<spot x="2119.478" y="2143.5681" z="391.5943" h="76" />
 					<spot x="2126.4573" y="2156.0242" z="391.5939" h="16" />
-					<spot x="2131.385" y="2127.4915" z="391.3837" h="67" />
+					<spot x="2131.385" y="2127.4915" z="391.3837" h="67" walker_id="80BD1DA6C771B6CA757D7E64A4E2632BB6B8524B" walker_index="1" />
 					<spot x="2112.5" y="2138.5" z="312.4028" h="45" />
 					<spot x="2130.5" y="2162.5" z="312.4014" h="105" />
 				</spawn>
 				<spawn handler="SENTINEL" npc_id="274113" respawn_time="60">
 					<spot x="2121.3022" y="2156.5637" z="391.6103" h="16" />
 					<spot x="2124.7197" y="2143.1096" z="391.6094" h="76" />
-					<spot x="2126.7097" y="2173.6072" z="391.3837" h="0" />
+					<spot x="2126.7097" y="2173.6072" z="391.3837" h="0" walker_id="07EFC11C2E7CF7948BAB68A7034C9D9CFA6FA70D" walker_index="1" />
 					<spot x="2130" y="2164.75" z="312.4066" h="105" />
 					<spot x="2113" y="2136" z="312.4033" h="45" />
 				</spawn>
@@ -400,7 +400,7 @@
 				</spawn>
 				<spawn handler="SENTINEL" npc_id="274183" respawn_time="60">
 					<spot x="2462.4653" y="149.73" z="319.85" h="15" />
-					<spot x="2432.7732" y="182.7045" z="318.8608" h="48" />
+					<spot x="2432.7732" y="182.7045" z="318.8608" h="48" walker_id="4E30B8FB3503BAC6996EC17F38FE35B36558308B" walker_index="3" />
 				</spawn>
 				<spawn handler="SENTINEL" npc_id="274195" respawn_time="60">
 					<spot x="2445.0796" y="169.2188" z="398.2523" h="90" walker_id="6A726BF6DBB1D6320B6EA227D5C5C98DDE79DF14" />
@@ -455,10 +455,10 @@
 				</spawn>
 				<spawn handler="SENTINEL" npc_id="274187" respawn_time="60">
 					<spot x="2462.4653" y="149.73" z="319.85" h="15" />
-					<spot x="2432.7732" y="182.7045" z="318.8608" h="48" />
+					<spot x="2432.7732" y="182.7045" z="318.8608" h="48" walker_id="4E30B8FB3503BAC6996EC17F38FE35B36558308B" walker_index="1" />
 				</spawn>
 				<spawn handler="SENTINEL" npc_id="274196" respawn_time="60">
-					<spot x="2445.0796" y="169.2188" z="398.2523" h="90" />
+					<spot x="2445.0796" y="169.2188" z="398.2523" h="90" walker_id="F886B9E63BAB6A35E4141244A2D1070C2D00144C" walker_index="1" />
 				</spawn>
 			</occupier_template>
 			<occupier_template occupier="BALAUR">
@@ -504,7 +504,7 @@
 				</spawn>
 				<spawn handler="SENTINEL" npc_id="274191" respawn_time="60">
 					<spot x="2462.4653" y="149.73" z="319.85" h="15" walker_id="7BCFC3CADFF3E0E2D3DFA4CEA68D0B80A1454C51" />
-					<spot x="2432.7732" y="182.7045" z="318.8608" h="48" />
+					<spot x="2432.7732" y="182.7045" z="318.8608" h="48" walker_id="4E30B8FB3503BAC6996EC17F38FE35B36558308B" walker_index="2" />
 				</spawn>
 				<spawn handler="SENTINEL" npc_id="274197" respawn_time="60">
 					<spot x="2445.0796" y="169.2188" z="398.2523" h="90" walker_id="D5A800834801C90A7261E1FC3E91C6D02EA67CD0" />

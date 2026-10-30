@@ -483,7 +483,7 @@
 		</spawn>
 		
 		<spawn npc_id="219123" respawn_time="295">
-			<spot x="548.1814" y="392.2775" z="1007.1" h="0" />
+			<spot x="548.1814" y="392.2775" z="1007.1" h="0" walker_id="6E32F606F4501D6C8B53A129A3B2A3DE198FAF7D" walker_index="1" />
 		</spawn>
 		
 		<spawn npc_id="700361" respawn_time="295">

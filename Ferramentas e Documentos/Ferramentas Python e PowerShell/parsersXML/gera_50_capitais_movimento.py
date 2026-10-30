@@ -216,6 +216,9 @@ def monta_rota(obs, d, spot):
     return {"passos": passos, "fechou": fechou, "pontos": len(pontos), "lacuna": lacuna, "ligacoes": ligacoes}
 
 
+ANDAR_Z = 5.0  # m: diferença máxima de altura entre o spot e o objeto da captura para serem o mesmo NPC
+
+
 def analisa(d, mapa, txt, rotas):
     srv = spots(txt)
     grupos = collections.defaultdict(list)
@@ -224,7 +227,10 @@ def analisa(d, mapa, txt, rotas):
         if m != mapa:
             continue
         npc = int(npc)
-        cand = [i for i, s in enumerate(srv) if s["npc"] == npc]
+        # só spot no mesmo andar do objeto: torre de Tiamaranta tem o mesmo npc a 80 m de altura no mesmo x/y (30/10: guarda do
+        # térreo z 309 levou a rota do andar z 388 e andava no ar)
+        zs = [e[4] for e in v] + [e[7] for e in v]
+        cand = [i for i, s in enumerate(srv) if s["npc"] == npc and min(abs(s["z"] - z) for z in zs) <= ANDAR_Z]
         if not cand:
             continue
         pts = [(e[5], e[6]) for e in v] + [(e[2], e[3]) for e in v]
