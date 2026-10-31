@@ -3,11 +3,11 @@
 	<spawn_map map_id="300580000">
 		<!-- Amaldiçoado Lago Seiren -->
 		<spawn npc_id="219820" respawn_time="295">
-			<spot x="899.5927" y="1071.6425" z="146.2867" h="90"/>
+			<spot x="899.5927" y="1071.6425" z="145.52" h="90"/>
 		</spawn>
 		<!-- Wild Drake -->
 		<spawn npc_id="219831" respawn_time="295">
-			<spot x="899.9903" y="996.324" z="162.6764" h="90"/>
+			<spot x="899.9903" y="996.324" z="158.86" h="90"/>
 		</spawn>
 		<!-- Mossback Troll -->
 		<spawn npc_id="219832" respawn_time="295">
@@ -20,11 +20,11 @@
 		<!-- Canhão de defesa operacional -->
 		<spawn npc_id="800968" respawn_time="295">
 			<spot x="900.1685" y="1097.2101" z="166.6506" h="0"/>
-			<spot x="900.251" y="835.9857" z="166.6506" h="0"/>
+			<spot x="900.251" y="835.9857" z="163.22" h="0"/>
 		</spawn>
 		<!-- NPC_803076 -->
 		<spawn npc_id="803076" respawn_time="295">
-			<spot x="903.4717" y="1073.8909" z="150.9963" h="0"/>
+			<spot x="903.4717" y="1073.8909" z="145.52" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

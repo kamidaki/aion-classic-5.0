@@ -99,6 +99,13 @@ public class SkillAttackManager {
 				if (newTarget != null)
 					owner.setTarget(newTarget);
 			}
+			// O jogador pode pousar ou sair do alcance durante o atraso anterior ao cast.
+			var condition = skill.getConditionTemplate();
+			if (condition != null && condition.getCondType() == com.aionemu.gameserver.model.templates.npcskill.NpcSkillCondition.TARGET_IS_FLYING
+				&& !skill.conditionReady(owner)) {
+				afterUseSkill(npcAI);
+				return;
+			}
 			boolean success = owner.getController().useSkill(skill.getSkillId(), skill.getSkillLevel());
 			if (!success) {
 				afterUseSkill(npcAI);

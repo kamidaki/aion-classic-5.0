@@ -17,6 +17,10 @@
 		<xs:attribute name="formation" type="formationType" use="optional" default="POINT" />
 		<xs:attribute name="rows" type="xs:string" use="optional" />
 		<xs:attribute name="loop_type" type="LoopType" use="optional" default="NORMAL"/>
+		<!-- formation OFFSET: "lado:frente" de cada membro, por walker_index, separados por ";" -->
+		<xs:attribute name="offsets" type="xs:string" use="optional" />
+		<!-- formation OFFSET: rota própria de cada membro por walker_index, separadas por ";" (vazio = usa offsets) -->
+		<xs:attribute name="member_routes" type="xs:string" use="optional" />
 	</xs:complexType>
 	<xs:complexType name="RouteStep">
 		<xs:attribute name="x" type="xs:float" use="required" />
@@ -28,6 +32,7 @@
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="POINT" />
 			<xs:enumeration value="SQUARE" />
+			<xs:enumeration value="OFFSET" />
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="LoopType">

@@ -81,6 +81,7 @@ public class NpcController extends CreatureController<Npc> {
 		super.onTargetChanged(oldTarget, newTarget);
 		getOwner().clearAttackedCount();
 		getOwner().getGameStats().renewLastChangeTargetTime();
+		com.lostacademy.nativepath.PathDatService.getInstance().esquece(getOwner()); // perseguição nova: alcance medido de novo
 		if (!getOwner().isDead()) {
 			if (newTarget == null && getOwner().getObjectTemplate().getTalkInfo() != null) {
 				ThreadPoolManager.getInstance().schedule(() -> {

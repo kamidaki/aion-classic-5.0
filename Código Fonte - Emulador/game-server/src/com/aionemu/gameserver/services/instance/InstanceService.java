@@ -96,6 +96,7 @@ public class InstanceService {
 		log.info("Destroying " + instance);
 
 		TemporarySpawnEngine.onInstanceDestroy(instance); // first unregister all temporary spawns, then despawn mobs
+		com.aionemu.gameserver.spawnengine.RotatingSpawnEngine.onInstanceDestroy(instance);
 		for (VisibleObject obj : instance) {
 			if (obj instanceof Player player) {
 				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_LEAVE_INSTANCE_FORCE(0));

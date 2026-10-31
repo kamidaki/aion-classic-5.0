@@ -70,7 +70,7 @@ public class FirstTargetRangeProperty {
 		return true;
 	}
 
-	static float calculateRange(int baseRange, boolean addWeaponRange, int attackRange) {
+	public static float calculateRange(int baseRange, boolean addWeaponRange, int attackRange) {
 		return baseRange + (addWeaponRange ? attackRange / 1000f : 0);
 	}
 

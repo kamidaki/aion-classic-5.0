@@ -74,6 +74,15 @@ public class GeoService implements GameEngine {
 	}
 
 	/**
+	 * @return z of the terrain heightmap only (no meshes) at x/y, NaN without terrain. Used by the path.dat grid for cells that inherit the
+	 *         terrain height.
+	 */
+	public float getTerrainHeight(int worldId, float x, float y) {
+		GeoMap map = geoMaps.get(worldId);
+		return map == null ? Float.NaN : map.getTerrainHeight(x, y);
+	}
+
+	/**
 	 * Resolves valid ground height near currentZ using expanding vertical search windows.
 	 * Avoids shooting from sky (4000) which hits ceilings/roofs, while tolerating spawn elevation errors.
 	 */

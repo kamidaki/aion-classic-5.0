@@ -16,6 +16,7 @@ import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.model.skill.NpcSkillEntry;
+import com.aionemu.gameserver.model.templates.npcskill.NpcSkillCondition;
 import com.aionemu.gameserver.skillengine.effect.AbnormalState;
 import com.aionemu.gameserver.skillengine.model.SkillTemplate;
 import com.aionemu.gameserver.utils.PositionUtil;
@@ -138,7 +139,30 @@ public class AttackEventHandler {
 		if (npc == null || target == null)
 			return false;
 		float range = getEffectiveAttackRange(npc);
-		return PositionUtil.isInAttackRange(npc, target, range);
+		if (PositionUtil.isInAttackRange(npc, target, range))
+			return true;
+		// O alvo aéreo pode estar fora do alcance físico e ainda ser alcançado por uma skill.
+		if (target.isInFlyingState() && npc.getSkillList() != null) {
+			for (NpcSkillEntry entry : npc.getSkillList().getNpcSkills()) {
+				var condition = entry.getConditionTemplate();
+				SkillTemplate skill = DataManager.SKILL_DATA.getSkillTemplate(entry.getSkillId());
+				if (skill == null || skill.isPassive() || skill.getProperties() == null
+					|| skill.getProperties().getFirstTarget() != com.aionemu.gameserver.skillengine.properties.FirstTargetAttribute.TARGET
+					|| skill.getProperties().getTargetRelation() != com.aionemu.gameserver.skillengine.properties.TargetRelationAttribute.ENEMY)
+					continue;
+				if (condition != null && condition.getCondType() != NpcSkillCondition.NONE
+					&& condition.getCondType() != NpcSkillCondition.TARGET_IS_FLYING)
+					continue;
+				float skillRange = com.aionemu.gameserver.skillengine.properties.FirstTargetRangeProperty.calculateRange(
+					skill.getProperties().getFirstTargetRange(), skill.getProperties().isAddWeaponRange(),
+					npc.getGameStats().getAttackRange().getCurrent());
+				if (condition != null && condition.getCondType() == NpcSkillCondition.TARGET_IS_FLYING)
+					skillRange = Math.min(skillRange, condition.getRange());
+				if (PositionUtil.isInRange(npc, target, skillRange, false))
+					return true;
+			}
+		}
+		return false;
 	}
 
 	private static final float[] FLEE_ANGLE_OFFSETS_DEG = { 0f, 35f, -35f, 70f, -70f, 110f, -110f, 145f, -145f };

@@ -3058,4 +3058,28 @@
 			<drop item_id="169230008" />
 		</drop_group>
 	</npc_drop>
+	<!-- Tiamaranta Mesa: 1 item por abertura (S 0xCD, captura 16/09 05:22) -->
+	<npc_drop npc_id="802182">
+		<drop_group max_items="1">
+			<drop item_id="188055450" />
+		</drop_group>
+	</npc_drop>
+	<!-- Tiamaranta Mesa: 1 item por abertura (S 0xCD, captura 16/09 05:22) -->
+	<npc_drop npc_id="802183">
+		<drop_group max_items="1">
+			<drop item_id="188055451" />
+		</drop_group>
+	</npc_drop>
+	<!-- Tiamaranta Mesa: 1 item por abertura (cliente + usuario, sem captura) -->
+	<npc_drop npc_id="802184">
+		<drop_group max_items="1">
+			<drop item_id="188055452" />
+		</drop_group>
+	</npc_drop>
+	<!-- Tiamaranta Mesa: 1 item por abertura (cliente + usuario, sem captura) -->
+	<npc_drop npc_id="802536">
+		<drop_group max_items="1">
+			<drop item_id="188055452" />
+		</drop_group>
+	</npc_drop>
 </custom_drop>

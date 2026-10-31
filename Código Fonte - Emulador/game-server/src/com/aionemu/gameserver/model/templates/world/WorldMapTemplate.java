@@ -72,6 +72,9 @@ public class WorldMapTemplate {
 	@XmlElement(name = "ai_info")
 	private AiInfo aiInfo = AiInfo.DEFAULT;
 
+	@XmlElement(name = "resurrect_point")
+	private List<WorldResurrectPoint> resurrectPoints;
+
 	@XmlAttribute(name = "except_buff")
 	private boolean exceptBuff = false;
 
@@ -229,6 +232,17 @@ public class WorldMapTemplate {
 
 	public AiInfo getAiInfo() {
 		return aiInfo;
+	}
+
+	/**
+	 * @return ponto fixo de ressurreição deste mapa para a raça, ou null quando o mapa não tem (revive vai para o bind do jogador)
+	 */
+	public WorldResurrectPoint getResurrectPoint(com.aionemu.gameserver.model.Race race) {
+		if (resurrectPoints != null)
+			for (WorldResurrectPoint point : resurrectPoints)
+				if (point.getRace() == race)
+					return point;
+		return null;
 	}
 
 }

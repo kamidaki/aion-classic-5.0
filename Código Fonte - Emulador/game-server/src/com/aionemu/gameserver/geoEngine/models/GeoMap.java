@@ -98,6 +98,13 @@ public class GeoMap extends Node {
 		return terrain != null && terrain.hasMaterials();
 	}
 
+	/**
+	 * @return z of the terrain heightmap at x/y (no meshes), NaN without terrain
+	 */
+	public float getTerrainHeight(float x, float y) {
+		return terrain == null ? Float.NaN : terrain.getHeight(x, y);
+	}
+
 	public void setTerrain(Terrain terrain) {
 		this.terrain = terrain;
 	}

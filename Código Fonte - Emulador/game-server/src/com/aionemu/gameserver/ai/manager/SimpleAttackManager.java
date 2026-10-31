@@ -74,6 +74,11 @@ public class SimpleAttackManager {
 			npcAI.onGeneralEvent(AIEventType.TARGET_TOOFAR);
 		} else if (!isTargetInAttackRange(npc)) {
 			if (target instanceof Player player && player.isFlying() && AttackEventHandler.isGroundNpc(npc)) {
+				if (AttackEventHandler.isWithinAttackRange(npc, target)) {
+					// Aguarda a próxima seleção de skill em vez de fugir durante seu intervalo/cooldown.
+					npcAI.onGeneralEvent(AIEventType.ATTACK_COMPLETE);
+					return;
+				}
 				AttackEventHandler.fleeFromAirborneAttacker(npcAI, player);
 				return;
 			}

@@ -113,7 +113,8 @@ public class NpcSkillTemplateEntry extends NpcSkillEntry {
 			case TARGET_IS_IN_ANY_STUN -> curTarget instanceof Creature t && t.getEffectController().isInAnyAbnormalState(AbnormalState.ANY_STUN);
 			case TARGET_IS_IN_STUMBLE -> curTarget instanceof Creature t && t.getEffectController().isInAnyAbnormalState(AbnormalState.STUMBLE);
 			case TARGET_IS_SLEEPING -> curTarget instanceof Creature t && t.getEffectController().isInAnyAbnormalState(AbnormalState.SLEEP);
-			case TARGET_IS_FLYING -> curTarget instanceof Creature t && t.isInFlyingState();
+			case TARGET_IS_FLYING -> curTarget instanceof Creature t && t.isInFlyingState()
+				&& PositionUtil.isInRange(creature, t, condTemp.getRange(), false);
 			case TARGET_IS_POISONED -> curTarget instanceof Creature t && t.getEffectController().isInAnyAbnormalState(AbnormalState.POISON);
 			case TARGET_IS_BLEEDING -> curTarget instanceof Creature t && t.getEffectController().isInAnyAbnormalState(AbnormalState.BLEED);
 			case TARGET_IS_GATE -> curTarget.getObjectTemplate() instanceof NpcTemplate npcTemplate && npcTemplate.getAbyssNpcType() == AbyssNpcType.DOOR;

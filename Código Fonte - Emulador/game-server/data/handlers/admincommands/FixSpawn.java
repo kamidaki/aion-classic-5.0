@@ -33,6 +33,8 @@ public class FixSpawn extends AdminCommand {
 
 	private static final Logger log = LoggerFactory.getLogger(FixSpawn.class);
 	private static final ReentrantLock XML_LOCK = new ReentrantLock();
+	/** Diferenca maxima de altura entre o ponto de spawn e o jogador no modo padrao. */
+	private static final float ALTURA_MAX = 20.0f;
 
 	public FixSpawn() {
 		super("fixspawn", "Corrige altura (Z) e direcao (Heading) de NPCs flutuando.");
@@ -96,24 +98,25 @@ public class FixSpawn extends AdminCommand {
 				return;
 			}
 		} else {
-			// Sem target ou target no proprio admin: buscar NPCs em um raio horizontal 2D de 10 metros
+			// Sem target: NPCs cujo ponto de spawn esta a ate 10 m em x/y e a ate ALTURA_MAX do jogador em z.
+			// Sem o limite de altura, um NPC de uma ilha centenas de metros acima (mesmo x/y) entrava e era puxado para baixo.
 			float adminX = admin.getX();
 			float adminY = admin.getY();
+			float adminZ = admin.getZ();
 			float maxRadius2D = 10.0f;
 
 			admin.getPosition().getWorldMapInstance().forEachNpc(npc -> {
 				if (npc != null && npc.isSpawned() && npc.getSpawn() != null) {
-					float dx = npc.getX() - adminX;
-					float dy = npc.getY() - adminY;
-					float dist2D = (float) Math.hypot(dx, dy);
-					if (dist2D <= maxRadius2D) {
+					SpawnTemplate s = npc.getSpawn();
+					float dist2D = (float) Math.hypot(s.getX() - adminX, s.getY() - adminY);
+					if (dist2D <= maxRadius2D && Math.abs(s.getZ() - adminZ) <= ALTURA_MAX) {
 						npcsToFix.add(npc);
 					}
 				}
 			});
 
 			if (npcsToFix.isEmpty()) {
-				PacketSendUtility.sendMessage(admin, "\u00a74[FixSpawn] Nenhum NPC encontrado no raio horizontal de 10 metros.\n"
+				PacketSendUtility.sendMessage(admin, "\u00a74[FixSpawn] Nenhum NPC encontrado a ate 10 m (e ate " + (int) ALTURA_MAX + " m de altura).\n"
 					+ "Posicione-se abaixo dos NPCs ou selecione um NPC como alvo.");
 				return;
 			}
@@ -141,6 +144,11 @@ public class FixSpawn extends AdminCommand {
 				newZ = admin.getZ();
 			} else if (forceGeoZ) {
 				newZ = SpawnEngine.resolveSpawnGroundZ(worldId, origX, origY, origZ, admin.getInstanceId());
+			} else if (Math.abs(origZ - admin.getZ()) > ALTURA_MAX) {
+				// alvo muito acima/abaixo do jogador: o chao "no nivel do jogador" seria outro andar ou outra ilha
+				PacketSendUtility.sendMessage(admin, "§4[FixSpawn] NPC " + npc.getName() + " [ID: " + npcId + "] esta a "
+					+ (int) Math.abs(origZ - admin.getZ()) + " m de altura do jogador; chegue mais perto ou use //fixspawn geo.");
+				continue;
 			} else {
 				float groundZ = SpawnEngine.resolveSpawnGroundZ(worldId, origX, origY, admin.getZ(), admin.getInstanceId());
 				if (!Float.isNaN(groundZ) && Math.abs(groundZ - admin.getZ()) <= 4.0f) {

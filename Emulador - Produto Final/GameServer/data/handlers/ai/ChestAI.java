@@ -70,7 +70,8 @@ public class ChestAI extends ActionItemNpcAI {
 			DropService.getInstance().requestDropList(player, getObjectId());
 			super.handleUseItemFinish(player);
 		} else {
-			PacketSendUtility.sendMonologue(player, 1111301); // I'll need a key to open this.
+			// STR_COMMON_SAY_01 "preciso de uma chave para abrir a caixa" (oficial 5.0, Balic Treasury 29/10); o 1111301 é o da porta
+			PacketSendUtility.sendMonologue(player, 1111300);
 		}
 	}
 

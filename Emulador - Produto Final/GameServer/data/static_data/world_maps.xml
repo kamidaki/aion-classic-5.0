@@ -144,7 +144,11 @@
 	<map id="800040000" name_en="Tiamaranta Mesa" name_pt="Platô de Tiamaranta" cName="LDF4b" water_level="5" death_level="0" world_type="BALAUREA" world_size="3072" drop_type="BALAUREA_HIGH" flags="BIND RECALL GLIDE FLY PVP DUEL_SAME_RACE"/>
 	<map id="800050000" name_en="Sunshara_Isle_Lobby" name_pt="Sunshara_Isle_Lobby" cName="Sunshara_Isle_Lobby" instance="true" water_level="16" death_level="0" world_size="1024" drop_type="BATTLEFIELD_INSTANCE" flags="GLIDE PVP DUEL_SAME_RACE NO_RETURN_BATTLE FLY"/>
 	<map id="800060000" name_en="Teva" name_pt="Templo Runa ocupado" cName="LDF4_Teva" water_level="5" death_level="0" world_type="BALAUREA" world_size="3072" drop_type="BALAUREA_HIGH" flags="BIND RECALL GLIDE FLY PVP DUEL_SAME_RACE"/>
-	<map id="800070000" name_en="Balic Treasury" name_pt="Tesouro Balaur" cName="Tiamat_Down" water_level="16" death_level="0" world_type="BALAUREA" world_size="1536" drop_type="BALAUREA_HIGH" flags="BIND RECALL GLIDE FLY PVP DUEL_SAME_RACE"/>
+	<map id="800070000" name_en="Balic Treasury" name_pt="Tesouro Balaur" cName="Tiamat_Down" water_level="16" death_level="0" world_type="BALAUREA" world_size="1536" drop_type="BALAUREA_HIGH" flags="BIND RECALL GLIDE FLY PVP DUEL_SAME_RACE">
+		<!-- revive no ponto registrado (tipo 9): captura oficial Balic Treasury 29/10; Elyos sem captura -->
+		<resurrect_point race="ELYOS" x="753.0" y="77.0" z="1197.0" h="90"/>
+		<resurrect_point race="ASMODIANS" x="753.0" y="1460.0" z="1197.0" h="14"/>
+	</map>
 	<map id="800080000" name_en="Dragon Lord’s Library" name_pt="1ª postagem de guarda" cName="Tiamat_Reward" water_level="16" death_level="0" world_type="BALAUREA" world_size="1024" drop_type="BALAUREA_HIGH" flags="BIND RECALL GLIDE FLY PVP DUEL_SAME_RACE"/>
 	<map id="800090000" name_en="Balic Treasury of Torment" name_pt="Tesouro Balaur do Tormento" cName="Tiamat_Down_R" water_level="16" death_level="0" world_type="BALAUREA" world_size="1536" drop_type="BALAUREA_HIGH" flags="BIND RECALL GLIDE FLY PVP DUEL_SAME_RACE"/>
 	<map id="900020000" name_en="TestBasic" name_pt="1 Contra 1 - Liga Classificada" cName="Test_Basic" twin_count="10" beginner_twin_count="10" water_level="16" death_level="0" world_size="256" drop_type="NONE" flags="BIND RECALL GLIDE FLY RIDE DUEL_SAME_RACE" pve_attack_ratio="100" pve_defend_ratio="100"/>

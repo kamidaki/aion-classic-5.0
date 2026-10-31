@@ -842,6 +842,23 @@
 	<portal_use npc_id="802001">
 		<portal_path loc_id="8000401" race="ASMODIANS" />
 	</portal_use>
+	<!-- Balic Treasury: teleporte da entrada asmodiana para a plataforma e saída para Tiamaranta Mesa (captura oficial de 2026-10-29) -->
+	<portal_use npc_id="802792">
+		<portal_path loc_id="8000700" race="ASMODIANS" />
+	</portal_use>
+	<portal_use npc_id="802953">
+		<portal_path loc_id="8000701" race="ASMODIANS" />
+	</portal_use>
+	<!-- Balic Treasury, lado elyos (captura oficial de 2026-10-30) -->
+	<portal_use npc_id="802791">
+		<portal_path loc_id="8000702" race="ELYOS" />
+	</portal_use>
+	<portal_use npc_id="802948">
+		<portal_path loc_id="8000703" race="ELYOS" />
+	</portal_use>
+	<portal_use npc_id="802946">
+		<portal_path loc_id="8000704" race="ELYOS" />
+	</portal_use>
 	<!-- ############### PORTAL DIALOG ############### -->
 	<!-- ***************** INSTANCES ***************** -->
 	<!-- STEEL RAKE -->
@@ -1025,12 +1042,6 @@
 	<!-- Sealed Danuar Mysticarium Entrance Asmo -->
 	<!-- Danuar Mysticarium Legion -->
 	<!-- Sauro Supply Base -->
-	<portal_dialog npc_id="801965">
-		<portal_path dialog="10000" loc_id="3011300" race="ELYOS" />
-	</portal_dialog>
-	<portal_dialog npc_id="801966">
-		<portal_path dialog="10000" loc_id="3011300" race="ASMODIANS" />
-	</portal_dialog>
 	<!-- Eternal Bastion -->
 	<!-- (SEIZED) DANUAR SANCTUARY -->
 	<!-- (Seized) Danuar Sanctuary Entrance -->
@@ -1304,6 +1315,13 @@
 	<!-- Inggison -> Tiamaranta Mesa pelo Somnium (captura oficial de 2026-10-21: página 1011, ação 10000, 5.000 kinah) -->
 	<portal_dialog npc_id="801994" teleport_dialog_id="1011">
 		<portal_path dialog="10000" loc_id="8000402" race="ELYOS" kinah="5000" />
+	</portal_dialog>
+	<!-- Tiamaranta Mesa -> Balic Treasury pela nave (capturas oficiais de 2026-10-29/30: página 1011, ação 104) -->
+	<portal_dialog npc_id="802945" teleport_dialog_id="1011">
+		<portal_path dialog="104" loc_id="8000704" race="ELYOS" />
+	</portal_dialog>
+	<portal_dialog npc_id="802950" teleport_dialog_id="1011">
+		<portal_path dialog="104" loc_id="8000705" race="ASMODIANS" />
 	</portal_dialog>
 	<!-- ############### PORTAL DIALOG END ############### -->
 	<!-- ############### PORTAL SCROLL ############### -->

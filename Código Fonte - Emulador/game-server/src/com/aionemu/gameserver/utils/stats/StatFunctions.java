@@ -268,6 +268,19 @@ public class StatFunctions {
 		return (int) ((long) value * (1000 + boostHate) / 1000);
 	}
 
+	/** Sorteio do golpe de NPC em % do ataque; 80–120 conferido nas capturas 5.0 (maior/menor golpe ≈ 1,5). */
+	public static final int NPC_ROLL_MIN = 80, NPC_ROLL_MAX = 120;
+
+	/**
+	 * Fração do dano que passa no PvP, antes do PvP Attack/Defense dos itens. 0,51 medido no 5.0 (pvp.pcapng, Gladiador x Chanter,
+	 * 52 golpes normais e de skill, 29/10); o 0,42 antigo era do NA 4.9.
+	 */
+	public static final float PVP_DAMAGE_RATIO = 0.51f;
+
+	public static float npcAttackRoll(int attack, int rollPercent) {
+		return attack * rollPercent / 100f;
+	}
+
 	public static List<AttackResult> calculateAttackDamage(Creature attacker,
 														   SkillElement element, AttackStatus status, CalculationType... calculationTypes) {
 		List<AttackResult> attackResultList = new ArrayList<>();
@@ -325,8 +338,8 @@ public class StatFunctions {
 				attackResultList.add(new AttackResult(damage, status, hitType));
 			}
 		} else {
-			int val = attacker instanceof Homing ? 100 : Rnd.get(80, 120);
-			attackResultList.add(new AttackResult(mainHandAttack.getCurrent() * val / 100f, status, hitType));
+			int val = attacker instanceof Homing ? 100 : Rnd.get(NPC_ROLL_MIN, NPC_ROLL_MAX);
+			attackResultList.add(new AttackResult(npcAttackRoll(mainHandAttack.getCurrent(), val), status, hitType));
 		}
 		return attackResultList;
 	}
@@ -473,7 +486,7 @@ public class StatFunctions {
 		if (pvpTarget) {
 			if (pvpDamage > 0)
 				damage *= pvpDamage * 0.01f;
-			damage *= 0.42f; // PVP modifier 42%, last checked on NA (4.9) 19.03.2016
+			damage *= PVP_DAMAGE_RATIO;
 			if (!useTemplateDmg) {
 				attackBonus = attacker.getGameStats().getStat(StatEnum.PVP_ATTACK_RATIO, 0).getCurrent();
 				defenseBonus = target.getGameStats().getStat(StatEnum.PVP_DEFEND_RATIO, 0).getCurrent();

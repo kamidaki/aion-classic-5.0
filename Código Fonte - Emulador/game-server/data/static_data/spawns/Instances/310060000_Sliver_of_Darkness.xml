@@ -3,7 +3,7 @@
 	<spawn_map map_id="310060000">
 		<!-- Icaronix -->
 		<spawn npc_id="205110">
-			<spot x="1875.3131" y="634.126" z="1192"/>
+			<spot x="1875.3131" y="634.126" z="1190.02"/>
 		</spawn>
 		<!-- Caixa de Icaronix -->
 		<spawn npc_id="700240">

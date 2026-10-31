@@ -70,4 +70,39 @@ public class GeoDataConfig {
 	@Property(key = "gameserver.geodata.forced_move.nav_fallback", defaultValue = "true")
 	public static boolean FORCED_MOVE_NAV_FALLBACK;
 
+	/**
+	 * Official navigation grid (client levels/X-path.dat in data/native-path/) for NPC chase and return to spawn. The navmesh stays as
+	 * fallback where the grid finds no path.
+	 */
+	@Property(key = "gameserver.geodata.pathdat.enable", defaultValue = "true")
+	public static boolean PATHDAT_ENABLE;
+
+	@Property(key = "gameserver.geodata.pathdat.dir", defaultValue = "data/native-path/")
+	public static String PATHDAT_DIR;
+
+	/**
+	 * Split straight path segments where the interpolated height leaves the floor by more than 0.5 m (the official server sends one straight
+	 * segment and the NPC visibly cuts through ramps and stairs). false = exactly as official.
+	 */
+	@Property(key = "gameserver.geodata.pathdat.follow_floor", defaultValue = "true")
+	public static boolean PATHDAT_FOLLOW_FLOOR;
+
+	/**
+	 * Max A* nodes per search on the path.dat grid.
+	 */
+	@Property(key = "gameserver.geodata.pathdat.max_nodes", defaultValue = "100000")
+	public static int PATHDAT_MAX_NODES;
+
+	/**
+	 * Chase: a walking route longer than this (meters) makes the target unreachable (the NPC gives up).
+	 */
+	@Property(key = "gameserver.geodata.pathdat.max_path_length", defaultValue = "100")
+	public static float PATHDAT_MAX_PATH_LENGTH;
+
+	/**
+	 * Allow NPCs to drop from ledges (path.dat drop links). The official server does it; false = always walk (ramp/stairs).
+	 */
+	@Property(key = "gameserver.geodata.pathdat.allow_drop", defaultValue = "false")
+	public static boolean PATHDAT_ALLOW_DROP;
+
 }

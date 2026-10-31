@@ -67,8 +67,11 @@ def main():
     ap.add_argument("--npc", nargs="+", required=True, help="npcIds ou faixas (220582-220585)")
     ap.add_argument("--cliente", default=os.environ.get("AION_CLIENT_XML_DIR", DEFAULT_CLIENT_DIR))
     ap.add_argument("--aplicar", action="store_true", help="grava as duas arvores (com backup)")
+    ap.add_argument("--irmao", nargs="+", default=[], metavar="NPC=IRMAO",
+                    help="irmao escolhido a mao (quando a regra automatica nao acha ou acha um errado, ex.: canhao para soldado)")
     args = ap.parse_args()
     alvos = sorted(str(i) for i in _ids(args.npc))
+    irmao_manual = dict(a.split("=") for a in args.irmao)
 
     print("[1/3] Level e maxHp nas capturas oficiais...")
     medidas, _ = captura.colhe()
@@ -95,13 +98,19 @@ def main():
             if npc not in cli or not m or len(m["lvl"]) != 1 or len(m["maxhp"]) != 1:
                 print("      %s FORA: %s" % (npc, "nao esta no cliente" if npc not in cli else "sem level/maxHp unico na captura"))
                 continue
-            irmao = irmao_de(npc, cli, srv)
+            irmao = irmao_manual.get(npc) or irmao_de(npc, cli, srv)
+            if irmao and irmao not in srv:
+                sys.exit("irmao %s de %s nao tem template na arvore %s" % (irmao, npc, nome_arv))
             if not irmao:
                 print("      %s FORA: sem irmao (npc_type/tribo/grau) na arvore" % npc)
                 continue
             level, hp = next(iter(m["lvl"])), next(iter(m["maxhp"]))
             attrs_irmao = srv[irmao]["attrs"]
             bloco = importador.render(npc, cli[npc], attrs_irmao, level, hp, attrs_irmao.get("ai", "general"), {}, tabs, base, n2id, n2b)
+            # as arvores usam name_en/name_pt desde o merge com o kamidaki; o render ainda escreve name= com o texto coreano do
+            # cliente. Sem nome ingles no cliente extraido, os dois recebem o nome interno (o jogo mostra o do name_id).
+            interno = cli[npc].get("name", "")
+            bloco = re.sub(r' name="[^"]*"', ' name_en="%s" name_pt="%s"' % (interno, interno), bloco, count=1)
             novos[int(npc)] = bloco.rstrip("\n")
             print("      %s %-36s level %d maxHp %d  irmao %s (%s)" % (npc, cli[npc].get("name", "")[:36], level, hp, irmao,
                                                                      cli[irmao].get("name")))

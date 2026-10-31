@@ -31,6 +31,8 @@
 		<xs:attribute name="group_drop" type="GroupDropType" default="NONE"/>
 		<xs:attribute name="height" type="xs:float" default="0"/>
 		<xs:attribute name="ammo_speed" type="xs:int"/>
+		<!-- hitpoint (ms) das animacoes cattack_<arma>_001/_002/_003 do modelo, pelo AnimationMarkers do cliente -->
+		<xs:attribute name="attack_anims" type="xs:string"/>
 		<xs:attribute name="rating" type="NpcRating"/>
 		<xs:attribute name="rank" type="NpcRank"/>
 		<xs:attribute name="srange" type="xs:int" default="0"/>

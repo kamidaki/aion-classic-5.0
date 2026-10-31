@@ -171,8 +171,8 @@ public class DialogService {
 					break;
 				case ENTER_PVP: // (2.5)
 					switch (npc.getNpcId()) {
-						case 204089: // pvp arena in pandaemonium.
-							TeleportService.teleportTo(player, 120010000, 1, 984f, 1543f, 222.1f);
+						case 204089: // pvp arena in pandaemonium: arena 5.0 ao lado da escada (captura oficial 27/10/2026; 984/1543 era a 4.x)
+							TeleportService.teleportTo(player, 120010000, 1, 1204.901f, 1518.883f, 213.621f);
 							break;
 						case 203764: // pvp arena in sanctum.
 							TeleportService.teleportTo(player, 110010000, 1, 1462.5f, 1326.1f, 564.1f);
@@ -184,8 +184,8 @@ public class DialogService {
 					break;
 				case LEAVE_PVP: // (2.5)
 					switch (npc.getNpcId()) {
-						case 204087:
-							TeleportService.teleportTo(player, 120010000, 1, 1005.1f, 1528.9f, 222.1f);
+						case 204087: // saída da arena de pandaemonium (captura oficial 27/10/2026; 1005,1/1528,9 era a 4.x)
+							TeleportService.teleportTo(player, 120010000, 1, 1216.366f, 1495.764f, 213.892f);
 							break;
 						case 203875:
 							TeleportService.teleportTo(player, 110010000, 1, 1470.3f, 1343.5f, 563.7f);

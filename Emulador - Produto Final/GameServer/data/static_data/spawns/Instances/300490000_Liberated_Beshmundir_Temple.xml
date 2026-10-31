@@ -3,19 +3,19 @@
 	<spawn_map map_id="300490000">
 		<!-- O, Sheek! -->
 		<spawn npc_id="219038" respawn_time="295">
-			<spot x="389.4348" y="529.2866" z="225.1093" h="75"/>
+			<spot x="389.4348" y="529.2866" z="223.55" h="75"/>
 		</spawn>
 		<!-- Prisão de portão de gelo -->
 		<spawn npc_id="730527" respawn_time="295">
-			<spot x="653.9366" y="497.2061" z="203.6136" h="0"/>
+			<spot x="653.9366" y="497.2061" z="201.54" h="0"/>
 		</spawn>
 		<!-- Beshmundir Saída do Templo -->
 		<spawn npc_id="730528" respawn_time="295">
-			<spot x="726.558" y="536.4696" z="199.5639" h="0"/>
+			<spot x="726.558" y="536.4696" z="198.79" h="0"/>
 		</spawn>
 		<!-- Andrei -->
 		<spawn npc_id="800487" respawn_time="295">
-			<spot x="658.7437" y="510.7497" z="203.6136" h="0"/>
+			<spot x="658.7437" y="510.7497" z="201.71" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

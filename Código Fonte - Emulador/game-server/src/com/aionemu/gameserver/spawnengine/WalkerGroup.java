@@ -14,7 +14,9 @@ import com.aionemu.gameserver.ai.NpcAI;
 import com.aionemu.gameserver.ai.manager.WalkManager;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
+import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.templates.walker.RouteStep;
+import com.aionemu.gameserver.model.templates.walker.WalkerTemplate;
 import com.aionemu.gameserver.model.templates.zone.Point2D;
 
 /**
@@ -99,6 +101,19 @@ public class WalkerGroup {
 						coronalDist += rowDistances[i];
 				}
 			}
+		} else if (getWalkType() == WalkerGroupType.OFFSET) {
+			Point2D origin = new Point2D(walkerXpos, walkerYpos);
+			RouteStep primeiro = members.get(0).getWalkTemplate().getRouteStep(1);
+			Point2D destination = new Point2D(primeiro.getX(), primeiro.getY());
+			for (ClusteredNpc cnpc : members) {
+				WalkerGroupShift shift = cnpc.getWalkTemplate().getOffset(cnpc.getWalkerIndex());
+				RouteStep propria = getMemberRouteStep(cnpc, 0);
+				Point2D loc = propria != null ? new Point2D(propria.getX(), propria.getY()) : getOffsetPoint(origin, destination, shift);
+				cnpc.set(shift);
+				cnpc.setX(loc.getX());
+				cnpc.setY(loc.getY());
+				cnpc.getNpc().setWalkerGroup(this);
+			}
 		} else if (getWalkType() == WalkerGroupType.POINT) {
 			log.warn("No formation specified for walk cluster " + members.get(0).getWalkTemplate().getRouteId());
 		}
@@ -120,6 +135,58 @@ public class WalkerGroup {
 	 *          - distance from origin located in lines perpendicular to destination; for SagittalShift if negative then located to the left from
 	 *          origin, otherwise, to the right for CoronalShift if negative then located to back, otherwise to the front
 	 */
+	/**
+	 * Formação OFFSET: passo de índice stepIndex da rota própria do membro (member_routes), ou null se ele anda pelo deslocamento.
+	 */
+	private static RouteStep getMemberRouteStep(ClusteredNpc cnpc, int stepIndex) {
+		String routeId = cnpc.getWalkTemplate().getMemberRouteId(cnpc.getWalkerIndex());
+		if (routeId == null)
+			return null;
+		WalkerTemplate propria = DataManager.WALKER_DATA.getWalkerTemplate(routeId);
+		if (propria == null || stepIndex >= propria.getRouteSteps().size()) {
+			log.warn("Member route " + routeId + " missing or shorter than group route " + cnpc.getWalkTemplate().getRouteId());
+			return null;
+		}
+		return propria.getRouteStep(stepIndex);
+	}
+
+	/**
+	 * Pausa do membro ao chegar no passo step do grupo: a da rota própria dele (member_routes), se houver; senão a do grupo.
+	 */
+	public int getRestTime(Npc member, RouteStep step) {
+		ClusteredNpc cnpc = getClusterData(member);
+		RouteStep propria = cnpc == null || type != WalkerGroupType.OFFSET ? null : getMemberRouteStep(cnpc, step.getStepIndex());
+		return propria != null ? propria.getRestTime() : step.getRestTime();
+	}
+
+	/**
+	 * Formação OFFSET: destino (x, y, z) do membro no passo step do grupo. Com rota própria, o ponto oficial de mesmo índice;
+	 * senão, o passo deslocado pelo offset do membro na direção step -> next.
+	 */
+	public float[] getOffsetTarget(Npc member, RouteStep step, RouteStep next) {
+		ClusteredNpc cnpc = getClusterData(member);
+		RouteStep propria = cnpc == null ? null : getMemberRouteStep(cnpc, step.getStepIndex());
+		if (propria != null)
+			return new float[] { propria.getX(), propria.getY(), propria.getZ() };
+		WalkerGroupShift shift = cnpc == null ? new WalkerGroupShift(0, 0) : cnpc;
+		Point2D p = getOffsetPoint(new Point2D(step.getX(), step.getY()), new Point2D(next.getX(), next.getY()), shift);
+		return new float[] { p.getX(), p.getY(), step.getZ() };
+	}
+
+	/**
+	 * Formação OFFSET: ponto a partir de origin, deslocado shift.getSagittalShift() para a esquerda (negativo = direita) e
+	 * shift.getCoronalShift() para a frente, na direção origin -> destination.
+	 */
+	public static Point2D getOffsetPoint(Point2D origin, Point2D destination, WalkerGroupShift shift) {
+		float dx = destination.getX() - origin.getX(), dy = destination.getY() - origin.getY();
+		float len = (float) Math.sqrt(dx * dx + dy * dy);
+		if (len < 1e-3f)
+			return new Point2D(origin.getX(), origin.getY());
+		float ux = dx / len, uy = dy / len;
+		float lado = shift.getSagittalShift(), frente = shift.getCoronalShift();
+		return new Point2D(origin.getX() + ux * frente - uy * lado, origin.getY() + uy * frente + ux * lado);
+	}
+
 	public static Point2D getLinePoint(Point2D origin, Point2D destination, WalkerGroupShift shift) {
 		// TODO: implement angle shift
 		WalkerGroupShift dir = getShiftSigns(origin, destination);

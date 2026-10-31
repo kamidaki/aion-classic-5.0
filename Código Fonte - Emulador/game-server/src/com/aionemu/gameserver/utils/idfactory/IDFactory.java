@@ -49,6 +49,22 @@ public class IDFactory {
 	private final BitSet idList = new BitSet();
 
 	/**
+	 * 5.0 oficial: o objectId diz o tipo do objeto nos 2 bits altos. NPC (S_PUT_NPC, também pet e invocação) vem de 0x80000000 (40.872 de 40.872
+	 * nas capturas), objeto do mundo (S_PUT_OBJECT) de 0xC0000000 (457 de 457); jogador e item ficam abaixo de 0x80000000. Com NPC na faixa baixa o
+	 * cliente o confunde com outro tipo de entidade e desenha efeitos de skill em NPCs que não receberam nenhum.
+	 */
+	public static final int NPC_ID_BASE = 0x80000000;
+	public static final int WORLD_OBJECT_ID_BASE = 0xC0000000;
+	private static final int TYPED_ID_INDEX_MASK = 0x3FFFFFFF;
+	// 0xFFFFFFFF (-1) nunca é entregue: o RiftInformer e outros usam -1 como marca
+	private static final int TYPED_ID_MAX_INDEX = TYPED_ID_INDEX_MASK - 1;
+
+	private final BitSet npcIds = new BitSet();
+	private final BitSet worldObjectIds = new BitSet();
+	private int nextNpcIndex = 1;
+	private int nextWorldObjectIndex = 1;
+
+	/**
 	 * Synchronization of bitset
 	 */
 	private final ReentrantLock lock = new ReentrantLock();
@@ -87,6 +103,45 @@ public class IDFactory {
 		}
 	}
 
+	/**
+	 * @return próximo id livre da faixa de NPC (0x80000000+): npc, invocação, kisk, armadilha etc.
+	 */
+	public int nextNpcId() {
+		lock.lock();
+		try {
+			int index = nextTypedIndex(npcIds, nextNpcIndex, NPC_ID_BASE);
+			npcIds.set(index);
+			nextNpcIndex = index + 1;
+			return NPC_ID_BASE | index;
+		} finally {
+			lock.unlock();
+		}
+	}
+
+	/**
+	 * @return próximo id livre da faixa de objeto do mundo (0xC0000000+): coleta e objeto estático
+	 */
+	public int nextWorldObjectId() {
+		lock.lock();
+		try {
+			int index = nextTypedIndex(worldObjectIds, nextWorldObjectIndex, WORLD_OBJECT_ID_BASE);
+			worldObjectIds.set(index);
+			nextWorldObjectIndex = index + 1;
+			return WORLD_OBJECT_ID_BASE | index;
+		} finally {
+			lock.unlock();
+		}
+	}
+
+	private int nextTypedIndex(BitSet ids, int searchIndex, int base) {
+		int index = ids.nextClearBit(searchIndex);
+		while (index <= TYPED_ID_MAX_INDEX && isInvalidId(base | index))
+			index = ids.nextClearBit(index + 1);
+		if (index > TYPED_ID_MAX_INDEX)
+			throw new IDFactoryError("All IDs of range 0x" + Integer.toHexString(base) + " are used");
+		return index;
+	}
+
 	public void releaseId(int id) {
 		lock.lock();
 		try {
@@ -120,7 +175,7 @@ public class IDFactory {
 	public int getUsedCount() {
 		lock.lock();
 		try {
-			return idList.cardinality();
+			return idList.cardinality() + npcIds.cardinality() + worldObjectIds.cardinality();
 		} finally {
 			lock.unlock();
 		}
@@ -175,11 +230,33 @@ public class IDFactory {
 	 * @return True if the ID could be released, false if it was not taken
 	 */
 	private boolean release(int id) {
+		switch (id >>> 30) {
+			case 2 -> {
+				return releaseTyped(npcIds, id, true);
+			}
+			case 3 -> {
+				return releaseTyped(worldObjectIds, id, false);
+			}
+		}
 		if (!idList.get(id))
 			return false;
 		idList.clear(id);
 		if (id < nextMinId || nextMinId == Integer.MIN_VALUE)
 			nextMinId = id;
+		return true;
+	}
+
+	private boolean releaseTyped(BitSet ids, int id, boolean npc) {
+		int index = id & TYPED_ID_INDEX_MASK;
+		if (!ids.get(index))
+			return false;
+		ids.clear(index);
+		if (npc) {
+			if (index < nextNpcIndex)
+				nextNpcIndex = index;
+		} else if (index < nextWorldObjectIndex) {
+			nextWorldObjectIndex = index;
+		}
 		return true;
 	}
 

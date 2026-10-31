@@ -344,6 +344,7 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(401, SM_RENDER_GRAPHIC_INIT.class); // [S_RENDER_GRAPHIC_INIT] (0x0191)
 		addPacketOpcode(403, SM_ITEM_SKILL_REASSIGN.class); // 0x0193 Reassign: skill sorteada [D item][D atual][D sorteada][D 0]
 		addPacketOpcode(404, SM_ITEM_SKILL_REASSIGN_RESULT.class); // 0x0194 Reassign: resultado [D item][D antiga][D final][D 0]
+		addPacketOpcode(405, SM_COLLECT_OBJECT_PROGRESS.class); // 0x0195 barra da coleta craft_ui_always [D estado][D progresso][D 700][D 1200] (Balic Treasury 29/10)
 		addPacketOpcode(407, SM_AVATAR_PRESENCE_INIT.class); // [S_AVATAR_PRESENCE_INIT] (0x0197)
 		addPacketOpcode(413, SM_ZONE_STATE_LIST.class); // [S_ZONE_STATE_LIST] (0x019D) — lista de zonas do mapa na entrada
 		// SM_UNK_019D saiu: era um blob fixo com zonas DF4_* de outro mapa e nunca era enviado

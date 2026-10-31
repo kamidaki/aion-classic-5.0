@@ -1,6 +1,8 @@
 package com.aionemu.gameserver.ai.manager;
 
+import com.lostacademy.nativepath.PathDatService;
 import com.aionemu.gameserver.ai.AILogger;
+import com.aionemu.gameserver.ai.AIState;
 import com.aionemu.gameserver.ai.AISubState;
 import com.aionemu.gameserver.ai.AttackIntention;
 import com.aionemu.gameserver.ai.NpcAI;
@@ -71,6 +73,12 @@ public class AttackManager {
 			case FINISH_ATTACK:
 				npcAI.think();
 				break;
+			case HOLD_AGGRO: // confere o alvo de novo no próximo intervalo de ataque, sem atacar
+				ThreadPoolManager.getInstance().schedule(() -> {
+					if (npcAI.isInState(AIState.FIGHT) && npcAI.canThink())
+						scheduleNextAttack(npcAI);
+				}, Math.max(delay, 1000));
+				break;
 		}
 	}
 
@@ -119,6 +127,9 @@ public class AttackManager {
 		npcAI.onGeneralEvent(AIEventType.TARGET_GIVEUP);
 	}
 
+	private static final long GIVEUP_SEM_ATACAR_MS = 8000;
+	private static final long GIVEUP_INALCANCAVEL_MS = 2000;
+
 	private static boolean checkGiveupDistance(NpcAI npcAI) {
 		Npc npc = npcAI.getOwner();
 		VisibleObject target = npc.getTarget();
@@ -127,6 +138,17 @@ public class AttackManager {
 				AILogger.info(npcAI, "AttackManager: distanceToTarget " + PositionUtil.getDistance(npc, target, false));
 			// Regra rigorosa: monstro só desiste da perseguição se o alvo se afastar a mais de 60 metros
 			if (!PositionUtil.isInRange(npc, target, 60.0f, false)) {
+				return true;
+			}
+			if (PathDatService.getInstance().usaGrade(npc)) {
+				// Mapa com grade: desiste só quando não há rota andando de até 100 m até o alvo, por 2 s seguidos (decisão de 27/10/2026:
+				// enquanto houver caminho, ele persegue, mesmo que a volta pela rampa leve mais que os 8 s do oficial)
+				if (PathDatService.getInstance().millisInalcancavel(npc) >= GIVEUP_INALCANCAVEL_MS) {
+					return true;
+				}
+			} else if (!npc.isInInstance() && npc.getGameStats().getMillisSemAtacar() > GIVEUP_SEM_ATACAR_MS) {
+				// Sem grade (oficial, capturas de 27/10/2026, 21 desistências): o mob que não consegue atacar desiste ~8 s depois do aggro
+				// (6,9-8,8 s) ou do último ataque dele (9,4-10,7 s, contando a animação), a 3-35 m do alvo
 				return true;
 			}
 		} else {

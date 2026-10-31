@@ -1,5 +1,6 @@
 package com.lostacademy.nav;
 
+import com.lostacademy.nativepath.PathDatService;
 import java.util.ArrayList;
 
 import org.slf4j.Logger;
@@ -70,9 +71,13 @@ public final class NavService {
 		totalQueries.incrementAndGet();
 		queriesInLastSecond.incrementAndGet();
 		try {
-			if (!GeoDataConfig.GEO_NAV_ENABLE) return true;
 			if (creature == null || target == null) return true;
 			if (target.isFlying()) return true;
+			// mapa com grade oficial (path.dat): reta andável pela grade + visão; a navmesh antiga não decide
+			if (PathDatService.getInstance().temGrade(creature.getWorldId()))
+				return PathDatService.getInstance().retaAndavel(target, creature)
+					&& (!GeoDataConfig.GEO_ENABLE || GeoService.getInstance().canSee(creature, target));
+			if (!GeoDataConfig.GEO_NAV_ENABLE) return true;
 			float x1 = creature.getX(), y1 = creature.getY(), z1 = creature.getZ();
 			int worldId = creature.getWorldId();
 			NavGeometry tile1 = getNavTile(worldId, x1, y1, z1);
@@ -177,11 +182,13 @@ public final class NavService {
 		totalQueries.incrementAndGet();
 		queriesInLastSecond.incrementAndGet();
 		try {
-			if (!GeoDataConfig.GEO_NAV_ENABLE) return null;
 			if (pathOwner == null) return null;
 			if (pathOwner.getLifeStats().isDead()) return null;
 			if (target == null) return null;
 			if (pathOwner.getWorldId() != target.getWorldId()) return null;
+			if (!pathOwner.isFlying() && PathDatService.getInstance().temGrade(pathOwner.getWorldId()))
+				return PathDatService.getInstance().caminhoAteAlvo(pathOwner, target.getX(), target.getY(), target.getZ());
+			if (!GeoDataConfig.GEO_NAV_ENABLE) return null;
 
 			int worldId = pathOwner.getWorldId();
 			float x1 = pathOwner.getX(), y1 = pathOwner.getY(), z1 = pathOwner.getZ();
@@ -199,9 +206,11 @@ public final class NavService {
 		totalQueries.incrementAndGet();
 		queriesInLastSecond.incrementAndGet();
 		try {
-			if (!GeoDataConfig.GEO_NAV_ENABLE) return null;
 			if (pathOwner == null) return null;
 			if (pathOwner.getLifeStats().isDead()) return null;
+			if (!pathOwner.isFlying() && PathDatService.getInstance().temGrade(pathOwner.getWorldId()))
+				return PathDatService.getInstance().caminho(pathOwner, x, y, z);
+			if (!GeoDataConfig.GEO_NAV_ENABLE) return null;
 			int worldId = pathOwner.getWorldId();
 			float x1 = pathOwner.getX(), y1 = pathOwner.getY(), z1 = pathOwner.getZ();
 
@@ -217,6 +226,13 @@ public final class NavService {
 		totalQueries.incrementAndGet();
 		queriesInLastSecond.incrementAndGet();
 		try {
+			// mapa com grade oficial (path.dat): piso livre da célula; célula sem piso (parede) cai no geo, sem passar pela navmesh antiga
+			if (PathDatService.getInstance().temGrade(worldId)) {
+				float g = PathDatService.getInstance().pisoZ(worldId, x, y, z);
+				if (!Float.isNaN(g))
+					return g;
+				return GeoDataConfig.GEO_ENABLE ? GeoService.getInstance().getValidGroundZ(worldId, x, y, z, 0) : Float.NaN;
+			}
 			if (!GeoDataConfig.GEO_NAV_ENABLE) {
 				// Fallback auxiliar para GeoService caso NavMesh esteja desativado
 				if (GeoDataConfig.GEO_ENABLE) {

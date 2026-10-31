@@ -520,4 +520,12 @@
 	<portal_loc world_id="800040000" loc_id="8000400" x="1483.98" y="2759.69" z="458.94" h="83"/> <!-- Base asmodiana (navio), pelo NPC 730660 de Pandaemonium -->
 	<portal_loc world_id="800040000" loc_id="8000401" x="1482.95" y="2756.25" z="458.90" h="83"/> <!-- Base asmodiana (navio), pelo objeto 802001 embaixo dela -->
 	<portal_loc world_id="800040000" loc_id="8000402" x="1567.7424" y="318.5808" z="436.8534" h="36"/> <!-- Somnium (801994 de Inggison), captura oficial de 2026-10-21 -->
+	<!-- Balic Treasury (captura oficial de 2026-10-29) -->
+	<portal_loc world_id="800070000" loc_id="8000700" x="756.6952" y="1344.8342" z="1201.5183" h="30"/> <!-- Plataforma asmodiana, pelo 802792 -->
+	<portal_loc world_id="800040000" loc_id="8000701" x="1526.5" y="1789.5" z="249.2256" h="30"/> <!-- Tiamaranta Mesa, pelo 802953 do Balic Treasury -->
+	<!-- Balic Treasury, lado elyos e entradas pela nave (capturas oficiais de 2026-10-29 e 2026-10-30) -->
+	<portal_loc world_id="800070000" loc_id="8000702" x="748.296" y="203.1707" z="1201.5184" h="90"/> <!-- Plataforma elyosa, pelo 802791 -->
+	<portal_loc world_id="800040000" loc_id="8000703" x="1524.5" y="1246.5" z="245.499" h="90"/> <!-- Tiamaranta Mesa, pelo 802948 do Balic Treasury -->
+	<portal_loc world_id="800070000" loc_id="8000704" x="754" y="40" z="1196.8103" h="30"/> <!-- Entrada elyosa do Balic, pelo 802945/802946 -->
+	<portal_loc world_id="800070000" loc_id="8000705" x="754.5" y="1497" z="1196.8643" h="90"/> <!-- Entrada asmodiana do Balic, pelo 802950 -->
 </portal_locs>

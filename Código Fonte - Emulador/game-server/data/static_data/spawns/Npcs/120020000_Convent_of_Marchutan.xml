@@ -7,7 +7,7 @@
 		</spawn>
 		<!-- Angulof -->
 		<spawn npc_id="798700" respawn_time="295">
-			<spot x="1516.7" y="1402.1" z="271.8239" h="10"/>
+			<spot x="1516.7" y="1402.1" z="271.74" h="10"/>
 		</spawn>
 		<!-- Garvan -->
 		<spawn npc_id="798701" respawn_time="295">
@@ -44,7 +44,7 @@
 		<!-- Rodrigo -->
 		<spawn npc_id="798709" respawn_time="295">
 			<spot x="1506.9711" y="1449.3676" z="271.4236" h="100"/>
-			<spot x="1513.9135" y="1453.0848" z="272.0" h="100"/>
+			<spot x="1513.9135" y="1453.0848" z="271.42" h="100"/>
 		</spawn>
 		<!-- Imever -->
 		<spawn npc_id="798710" respawn_time="295">

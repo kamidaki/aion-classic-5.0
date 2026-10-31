@@ -3,19 +3,19 @@
 	<spawn_map map_id="300161000">
 		<!-- Randolf o grande -->
 		<spawn npc_id="281761" respawn_time="295">
-			<spot x="744.9698" y="889.726" z="154" h="0"/>
+			<spot x="744.9698" y="889.726" z="152.78" h="0"/>
 		</spawn>
 		<!-- Exit de biblioteca oculta -->
 		<spawn npc_id="700603" respawn_time="295">
-			<spot x="750.2999" y="947.5026" z="149.5616" h="0"/>
+			<spot x="750.2999" y="947.5026" z="149.28" h="0"/>
 		</spawn>
 		<!-- Interruptor oculto -->
 		<spawn npc_id="700604" respawn_time="295">
-			<spot x="806.2119" y="886.7307" z="152" h="0"/>
+			<spot x="806.2119" y="886.7307" z="149.53" h="0"/>
 		</spawn>
 		<!-- Polia pendurada -->
 		<spawn npc_id="700638" respawn_time="295">
-			<spot x="744.5856" y="885.8412" z="155.9224" h="0"/>
+			<spot x="744.5856" y="885.8412" z="152.78" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

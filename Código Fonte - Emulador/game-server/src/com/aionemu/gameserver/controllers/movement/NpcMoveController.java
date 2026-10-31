@@ -30,11 +30,13 @@ import com.aionemu.gameserver.model.templates.zone.Point2D;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_MOVE;
 import com.aionemu.gameserver.spawnengine.WalkerFormator;
 import com.aionemu.gameserver.spawnengine.WalkerGroup;
+import com.aionemu.gameserver.spawnengine.WalkerGroupType;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.PositionUtil;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.geo.GeoService;
 import com.lostacademy.nav.NavService;
+import com.lostacademy.nativepath.PathDatService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -43,6 +45,9 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 	private static final Logger log = LoggerFactory.getLogger(NpcMoveController.class);
 	private static final float MOVE_OFFSET = 0.05f;
+	private static final float ARRIVAL_MAX_Z_DIFF = 1.5f;
+	// destino de moveToLocation já ajustado ao piso do geo (consulta uma vez por destino)
+	private float pisoOrigemX = Float.NaN, pisoOrigemY = Float.NaN, pisoOrigemZ = Float.NaN, pisoZ;
 	private static final int MAX_GEO_POINT_DISTANCE = 5;
 
 	private Destination destination = Destination.TARGET_OBJECT;
@@ -69,15 +74,33 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 	private static final class PathState {
 		final float[][] path;
 		final int index;
+		/** caminho da grade oficial (path.dat): os pontos são seguidos um a um, sem cortar quina */
+		final boolean grade;
 
 		PathState(float[][] path, int index) {
+			this(path, index, false);
+		}
+
+		PathState(float[][] path, int index, boolean grade) {
 			this.path = path;
 			this.index = index;
+			this.grade = grade;
 		}
 
 		/** Retorna novo PathState com índice incrementado (imutável). */
 		PathState advance() {
-			return index < path.length - 1 ? new PathState(path, index + 1) : this;
+			return index < path.length - 1 ? new PathState(path, index + 1, grade) : this;
+		}
+
+		/**
+		 * O NPC já passou do ponto corrente. Na grade só quando chegou nele (pontos a 0,5 m numa quina ou numa queda não podem ser
+		 * pulados, senão o NPC corta a quina e entra na parede); na navmesh, dentro da tolerância antiga.
+		 */
+		boolean chegou(Creature owner, float tolerance) {
+			float[] c = current();
+			if (grade)
+				return PositionUtil.getDistance(owner.getX(), owner.getY(), c[0], c[1]) <= 0.3f && Math.abs(owner.getZ() - c[2]) < 1.5f;
+			return PositionUtil.isInRange(owner, c[0], c[1], c[2], tolerance);
 		}
 
 		/** Retorna o waypoint corrente ou null se path vazio. */
@@ -242,25 +265,28 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 					if (needRepath) {
 						lastPathCalcTime = now;
-						float[][] newPath = NavService.getInstance().navigateToTarget(owner, creature);
+						// grade oficial (path.dat); a navmesh só onde o mapa não tem grade
+						boolean grade = PathDatService.getInstance().usaGrade(owner);
+						float[][] newPath = grade ? PathDatService.getInstance().caminhoAteAlvo(owner, targetX, targetY, targetZ)
+							: NavService.getInstance().navigateToTarget(owner, creature);
 						if (newPath != null && newPath.length > 0) {
 							lastTargetX = targetX;
 							lastTargetY = targetY;
 							lastTargetZ = targetZ;
 
 							int startIdx = 0;
-							if (newPath.length > 1 && PositionUtil.isInRange(owner, newPath[0][0], newPath[0][1], newPath[0][2], 1.2f)) {
+							if (!grade && newPath.length > 1 && PositionUtil.isInRange(owner, newPath[0][0], newPath[0][1], newPath[0][2], 1.2f)) {
 								startIdx = 1;
 							}
-							ps = new PathState(newPath, startIdx);
+							ps = new PathState(newPath, startIdx, grade);
 							pathRef.set(ps);
 						} else {
 							// Se o mob já possui rota em andamento contornando o obstáculo, preserva-a
 							if (ps != null && ps.hasNext()) {
 								lastPathCalcTime = now + 400;
 							} else {
-								// NavMesh falhou ou sem malha -> Fallback para GeoService
-								if (canWalkDirectly(owner, targetX, targetY, targetZ)) {
+								// sem caminho na grade o alvo é inalcançável: fica parado e desiste pelo tempo (AttackManager)
+								if (!grade && canWalkDirectly(owner, targetX, targetY, targetZ)) {
 									moveToLocation(targetX, targetY, targetZ);
 									break;
 								}
@@ -276,7 +302,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 						while (ps.hasNext()
 								&& ps.index < ps.path.length - 1
-								&& PositionUtil.isInRange(owner, ps.current()[0], ps.current()[1], ps.current()[2], tolerance)) {
+								&& ps.chegou(owner, tolerance)) {
 							ps = ps.advance();
 							pathRef.set(ps);
 						}
@@ -300,18 +326,29 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 						break;
 					}
 				}
+				// Rota fixa (npc_walker): o oficial anda em linha reta de um passo ao outro, sem pathfind (a rota já é andável; em
+				// Pandaemonium uma rota oficial cruza uma faixa que o path.dat marca como bloqueada). Só a altura vem do chão.
+				if (destination == Destination.POINT && owner.isPathWalker()
+					&& (owner.getAi().getState() == AIState.WALKING || owner.getAi().getState() == AIState.FORCED_WALKING)) {
+					moveToLocation(pointX, pointY, pointZ);
+					break;
+				}
 				if (GeoDataConfig.GEO_NAV_ENABLE && destination == Destination.POINT) {
 					PathState ps = pathRef.get();
 					if (ps == null || !ps.hasNext()) {
-						float[][] newPath = NavService.getInstance().navigateToLocation(owner, pointX, pointY, pointZ);
+						// grade oficial (path.dat) para ir a um ponto (volta, rota, andar aleatório); a navmesh só onde o mapa não tem grade
+						boolean grade = PathDatService.getInstance().usaGrade(owner);
+						float[][] newPath = grade ? PathDatService.getInstance().caminho(owner, pointX, pointY, pointZ)
+							: NavService.getInstance().navigateToLocation(owner, pointX, pointY, pointZ);
 						int startIdx = 0;
-						if (newPath != null && newPath.length > 1 && PositionUtil.isInRange(owner, newPath[0][0], newPath[0][1], newPath[0][2], 1.2f)) {
+						if (!grade && newPath != null && newPath.length > 1
+							&& PositionUtil.isInRange(owner, newPath[0][0], newPath[0][1], newPath[0][2], 1.2f)) {
 							startIdx = 1;
 						}
-						ps = (newPath != null && newPath.length > 0) ? new PathState(newPath, startIdx) : null;
+						ps = (newPath != null && newPath.length > 0) ? new PathState(newPath, startIdx, grade) : null;
 						pathRef.set(ps);
 						if (ps == null) {
-							if (canWalkDirectly(owner, pointX, pointY, pointZ)) {
+							if (!grade && canWalkDirectly(owner, pointX, pointY, pointZ)) {
 								moveToLocation(pointX, pointY, pointZ);
 							} else if (owner.getAi().getState() == AIState.RETURNING) {
 								recoverReturningMovement();
@@ -326,7 +363,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 						float tolerance = Math.max(1.2f, speed * 0.35f);
 
 						while (ps.index < ps.path.length - 1
-								&& PositionUtil.isInRange(owner, ps.current()[0], ps.current()[1], ps.current()[2], tolerance)) {
+								&& ps.chegou(owner, tolerance)) {
 							ps = ps.advance();
 							pathRef.set(ps);
 						}
@@ -441,6 +478,25 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 			tryStoreStep(ownerX, ownerY, ownerZ);
 		}
 
+		// Ponto de um caminho da grade oficial (path.dat): o z já é o piso oficial (erro de 1e-5 m nas capturas) e a reta até ele
+		// acompanha o chão a 0,5 m; o geo aqui escolheria o piso de cima numa queda de borda e o NPC nunca descia.
+		PathState psMov = pathRef.get();
+		boolean pelaGrade = psMov != null && psMov.grade && !owner.isFlying();
+
+		// O destino vai ao cliente com o mesmo piso (geo) em que o NPC é colado a cada tick. Com o z cru do passo (o das capturas
+		// oficiais fica ~0,2 m acima do piso) ou o da navmesh, o cliente subia o NPC até o destino e o pacote seguinte o
+		// baixava de volta: um degrau a cada passo.
+		if (!owner.isFlying() && GeoDataConfig.GEO_ENABLE && !pelaGrade) {
+			if (targetX != pisoOrigemX || targetY != pisoOrigemY || targetZ != pisoOrigemZ) {
+				pisoOrigemX = targetX;
+				pisoOrigemY = targetY;
+				pisoOrigemZ = targetZ;
+				float piso = GeoService.getInstance().getZ(owner.getWorldId(), targetX, targetY, targetZ + 1.0f, targetZ - 2.0f, owner.getInstanceId());
+				pisoZ = Float.isNaN(piso) ? targetZ : piso;
+			}
+			targetZ = pisoZ;
+		}
+
 		boolean destinationChanged = targetX != targetDestX || targetY != targetDestY || targetZ != targetDestZ;
 		if (targetX != targetDestX || targetY != targetDestY)
 			heading = PositionUtil.getHeadingTowards(ownerX, ownerY, targetX, targetY);
@@ -496,9 +552,18 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 		float newY = (targetDestY - ownerY) * distFraction + ownerY;
 		float newZ = (targetDestZ - ownerZ) * distFraction + ownerZ;
 
-		// Clamping de Z contínuo a cada tick para impedir flutuação ou afundamento sob o relevo/pontes
-		if (!owner.isFlying()) {
-			float surfaceZ = NavService.getInstance().getNavSurfaceZ(owner.getWorldId(), newX, newY, newZ);
+		// Clamping de Z contínuo a cada tick para impedir flutuação ou afundamento sob o relevo/pontes.
+		// Primeiro o chão exato do geo (até um degrau de 0,6 m acima): a navmesh é uma aproximação com erro de até meio metro e,
+		// usada aqui, fazia o NPC subir e descer "degraus invisíveis" a cada tick. A navmesh fica para onde o geo não acha chão.
+		if (pelaGrade) {
+			// na grade o z segue a reta até o ponto (como o cliente desenha); numa queda o NPC desce da borda até o pé
+		} else if (!owner.isFlying()) {
+			float surfaceZ = Float.NaN;
+			if (GeoDataConfig.GEO_ENABLE)
+				surfaceZ = GeoService.getInstance().getZ(owner.getWorldId(), newX, newY, Math.max(ownerZ, newZ) + 0.6f, Math.min(ownerZ, newZ) - 2.0f,
+					owner.getInstanceId());
+			if (Float.isNaN(surfaceZ))
+				surfaceZ = NavService.getInstance().getNavSurfaceZ(owner.getWorldId(), newX, newY, newZ);
 			if (Float.isNaN(surfaceZ)) {
 				float highZ = Math.max(ownerZ, newZ) + 5.0f;
 				float lowZ = Math.min(ownerZ, newZ) - 10.0f;
@@ -542,11 +607,16 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 			movementMask = newMask;
 		} else if (lastSentDestX == 0 && lastSentDestY == 0) {
 			sendPacket = true;
-		} else if (destDeltaSq > 1.44f) { // Destino alterou mais de 1.2 metros (mudança de waypoint ou fuga do alvo)
+		} else if (destination != Destination.TARGET_OBJECT) {
+			// Andando até um ponto (rota, andar aleatório, retorno): como o oficial, um SM_MOVE por destino e o cliente anda sozinho
+			// até ele (o SM_NPC_INFO também leva destino e mask para quem chega depois). O reenvio periódico da posição fazia o
+			// cliente reposicionar o NPC a cada ~1 s: trancos que pareciam aceleração.
+			sendPacket = targetX != lastSentDestX || targetY != lastSentDestY || targetZ != lastSentDestZ;
+		} else if (destDeltaSq > 1.44f) { // Destino alterou mais de 1.2 metros (fuga do alvo)
 			sendPacket = true;
 		} else if (headingDiff > 20) { // Mudança de direção significativa (> ~28 graus)
 			sendPacket = true;
-		} else if ((now - lastMovePacketTime) >= 800) { // Heartbeat de sincronia (reduzido de 1500ms → 800ms para minimizar drift visual)
+		} else if ((now - lastMovePacketTime) >= 800) { // Heartbeat de sincronia ao perseguir um alvo que se move
 			sendPacket = true;
 		}
 
@@ -624,7 +694,15 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
 	public void setRouteStep(RouteStep step) {
 		Point2D dest = null;
-		if (owner.getWalkerGroup() != null) {
+		if (owner.getWalkerGroup() != null && owner.getWalkerGroup().getWalkType() == WalkerGroupType.OFFSET) {
+			// como no oficial: o membro vai ao seu ponto do passo (rota própria ou passo + deslocamento); o grupo sincroniza por índice
+			List<RouteStep> passos = walkerTemplate.getRouteSteps();
+			RouteStep seguinte = step.isLastStep() ? passos.get(0) : passos.get(step.getStepIndex() + 1);
+			float[] alvo = owner.getWalkerGroup().getOffsetTarget(owner, step, seguinte);
+			dest = new Point2D(alvo[0], alvo[1]);
+			this.pointZ = alvo[2];
+			owner.getWalkerGroup().setStep(owner, step.getStepIndex());
+		} else if (owner.getWalkerGroup() != null) {
 			dest = WalkerGroup.getLinePoint(new Point2D(currentStep.getX(), currentStep.getY()), new Point2D(step.getX(), step.getY()),
 				owner.getWalkerGroup().getClusterData(owner));
 			this.pointZ = currentStep.getZ();
@@ -644,7 +722,13 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 	}
 
 	public boolean isReachedPoint() {
-		return PositionUtil.isInRange(owner, pointX, pointY, pointZ, MOVE_OFFSET);
+		if (owner.isFlying())
+			return PositionUtil.isInRange(owner, pointX, pointY, pointZ, MOVE_OFFSET);
+		// No chão o z do NPC é sempre o da superfície (navmesh/geo) e o z do passo da rota é o oficial; os dois diferem alguns
+		// centímetros. Comparar em 3D com 5 cm deixava o NPC parado em cima do passo recebendo SM_MOVE para o mesmo ponto.
+		// Chegou = x/y do passo, no mesmo andar.
+		return PositionUtil.getDistance(owner.getX(), owner.getY(), pointX, pointY) < MOVE_OFFSET
+			&& Math.abs(owner.getZ() - pointZ) < ARRIVAL_MAX_Z_DIFF;
 	}
 
 	public boolean isNextRouteStepChosen() {
@@ -727,10 +811,12 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 		// CAMADA 1: NAVMESH (Obedece o pathfinding 3D NavMesh até o ponto de spawn)
 		if (GeoDataConfig.GEO_NAV_ENABLE) {
 			clearCachedPath();
-			float[][] newPath = NavService.getInstance().navigateToLocation(owner, spawnX, spawnY, spawnZ);
+			boolean grade = PathDatService.getInstance().usaGrade(owner);
+			float[][] newPath = grade ? PathDatService.getInstance().caminho(owner, spawnX, spawnY, spawnZ)
+				: NavService.getInstance().navigateToLocation(owner, spawnX, spawnY, spawnZ);
 			if (newPath != null && newPath.length > 0) {
 				boolean startedMoving = started.compareAndSet(false, true);
-				pathRef.set(new PathState(newPath, 0));
+				pathRef.set(new PathState(newPath, 0, grade));
 				destination = Destination.POINT;
 				pointX = spawnX;
 				pointY = spawnY;

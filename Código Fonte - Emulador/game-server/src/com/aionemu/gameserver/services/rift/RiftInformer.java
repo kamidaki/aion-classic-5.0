@@ -57,7 +57,7 @@ public class RiftInformer {
 
 				packets.add(new SM_RIFT_ANNOUNCE(controller, false));
 			}
-		} else if (objId > 0) {
+		} else if (objId != 0) {
 			packets.add(new SM_RIFT_ANNOUNCE(objId));
 		} else {
 			packets.add(new SM_RIFT_ANNOUNCE(getAnnounceData(worldId)));
