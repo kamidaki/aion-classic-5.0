@@ -3,7 +3,10 @@ package com.aionemu.chatserver.network.netty.handler;
 import java.io.IOException;
 import java.net.InetAddress;
 
-import org.jboss.netty.channel.*;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelFutureListener;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,41 +15,36 @@ import com.aionemu.chatserver.common.netty.BaseServerPacket;
 /**
  * @author Lost Academy Team & Durak
  */
-public abstract class AbstractChannelHandler extends SimpleChannelUpstreamHandler {
+public abstract class AbstractChannelHandler extends ChannelInboundHandlerAdapter {
 
 	private static final Logger log = LoggerFactory.getLogger(AbstractChannelHandler.class);
 
 	protected InetAddress inetAddress;
-
 	protected Channel associatedChannel;
 
-	/**
-	 * Invoked when a Channel was disconnected from its remote peer
-	 */
 	@Override
-	public void channelDisconnected(ChannelHandlerContext ctx, ChannelStateEvent e) throws Exception {
+	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
 		log.info("Channel disconnected IP: {}", inetAddress != null ? inetAddress.getHostAddress() : "UNKNOWN");
+		super.channelInactive(ctx);
 	}
 
 	@Override
-	public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e) throws Exception {
-		if (e.getCause() instanceof IOException)
+	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+		if (cause instanceof IOException)
 			return;
-		log.error("Caught exception from netty", e.getCause());
+		log.error("Caught exception from netty", cause);
 	}
 
-	/**
-	 * Closes the channel but ensures that packet is send before close
-	 * 
-	 * @param packet
-	 *          Packet to be send before the channel is closed
-	 */
 	public void close(BaseServerPacket packet) {
-		associatedChannel.write(packet).addListener(ChannelFutureListener.CLOSE);
+		if (associatedChannel != null) {
+			associatedChannel.writeAndFlush(packet).addListener(ChannelFutureListener.CLOSE);
+		}
 	}
 
 	public void close() {
-		associatedChannel.close();
+		if (associatedChannel != null) {
+			associatedChannel.close();
+		}
 	}
 
 	public String getIP() {

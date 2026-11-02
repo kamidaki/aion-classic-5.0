@@ -1,16 +1,17 @@
 package com.aionemu.chatserver.network.netty.coder;
 
-import org.jboss.netty.channel.Channel;
-import org.jboss.netty.channel.ChannelHandlerContext;
-import org.jboss.netty.handler.codec.oneone.OneToOneDecoder;
+import java.util.List;
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.handler.codec.MessageToMessageDecoder;
 
 /**
  * @author Lost Academy Team & Durak
  */
-public class LoginPacketDecoder extends OneToOneDecoder {
+public class LoginPacketDecoder extends MessageToMessageDecoder<ByteBuf> {
 
 	@Override
-	protected Object decode(ChannelHandlerContext ctx, Channel channel, Object msg) throws Exception {
-		return msg;
+	protected void decode(ChannelHandlerContext ctx, ByteBuf msg, List<Object> out) throws Exception {
+		out.add(msg.retain());
 	}
 }

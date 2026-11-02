@@ -1,6 +1,6 @@
 package com.aionemu.chatserver.network.aion;
 
-import org.jboss.netty.buffer.ChannelBuffer;
+import io.netty.buffer.ByteBuf;
 
 import com.aionemu.chatserver.common.netty.AbstractPacketHandler;
 import com.aionemu.chatserver.network.aion.clientpackets.*;
@@ -12,7 +12,7 @@ import com.aionemu.chatserver.network.netty.handler.ClientChannelHandler.ClientC
  */
 public class ClientPacketHandler extends AbstractPacketHandler {
 
-	public AbstractClientPacket handle(ChannelBuffer buf, ClientChannelHandler channelHandler) {
+	public AbstractClientPacket handle(ByteBuf buf, ClientChannelHandler channelHandler) {
 		/*
 			retail (KOR 8.2.22) client packet names for opcodes:
 			0x0012  (Leave channel)

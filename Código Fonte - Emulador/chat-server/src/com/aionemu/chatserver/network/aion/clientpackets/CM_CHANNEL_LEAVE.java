@@ -1,6 +1,6 @@
 package com.aionemu.chatserver.network.aion.clientpackets;
 
-import org.jboss.netty.buffer.ChannelBuffer;
+import io.netty.buffer.ByteBuf;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +17,7 @@ public class CM_CHANNEL_LEAVE extends AbstractClientPacket {
 	private static final Logger log = LoggerFactory.getLogger(CM_CHANNEL_LEAVE.class);
 	private int channelId;
 
-	public CM_CHANNEL_LEAVE(ChannelBuffer channelBuffer, ClientChannelHandler clientChannelHandler, byte opCode) {
+	public CM_CHANNEL_LEAVE(ByteBuf channelBuffer, ClientChannelHandler clientChannelHandler, byte opCode) {
 		super(channelBuffer, clientChannelHandler, opCode);
 	}
 

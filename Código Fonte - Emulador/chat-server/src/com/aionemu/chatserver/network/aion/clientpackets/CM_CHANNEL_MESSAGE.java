@@ -2,7 +2,7 @@ package com.aionemu.chatserver.network.aion.clientpackets;
 
 import java.util.Arrays;
 
-import org.jboss.netty.buffer.ChannelBuffer;
+import io.netty.buffer.ByteBuf;
 import org.slf4j.LoggerFactory;
 
 import com.aionemu.chatserver.configs.main.LoggingConfig;
@@ -24,7 +24,7 @@ public class CM_CHANNEL_MESSAGE extends AbstractClientPacket {
 	private int channelId;
 	private byte[] content;
 
-	public CM_CHANNEL_MESSAGE(ChannelBuffer channelBuffer, ClientChannelHandler clientChannelHandler, byte opCode) {
+	public CM_CHANNEL_MESSAGE(ByteBuf channelBuffer, ClientChannelHandler clientChannelHandler, byte opCode) {
 		super(channelBuffer, clientChannelHandler, opCode);
 	}
 

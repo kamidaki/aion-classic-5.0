@@ -2,7 +2,7 @@ package com.aionemu.chatserver.network.aion.clientpackets;
 
 import java.nio.charset.StandardCharsets;
 
-import org.jboss.netty.buffer.ChannelBuffer;
+import io.netty.buffer.ByteBuf;
 
 import com.aionemu.chatserver.network.aion.AbstractClientPacket;
 import com.aionemu.chatserver.network.netty.handler.ClientChannelHandler;
@@ -16,7 +16,7 @@ public class CM_CHANNEL_REQUEST extends AbstractClientPacket {
 	private int channelRequestId;
 	private byte[] channelIdentifier;
 
-	public CM_CHANNEL_REQUEST(ChannelBuffer channelBuffer, ClientChannelHandler clientChannelHandler, byte opCode) {
+	public CM_CHANNEL_REQUEST(ByteBuf channelBuffer, ClientChannelHandler clientChannelHandler, byte opCode) {
 		super(channelBuffer, clientChannelHandler, opCode);
 	}
 

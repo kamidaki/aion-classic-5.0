@@ -1,6 +1,6 @@
 package com.aionemu.chatserver.network.aion.clientpackets;
 
-import org.jboss.netty.buffer.ChannelBuffer;
+import io.netty.buffer.ByteBuf;
 
 import com.aionemu.chatserver.network.aion.AbstractClientPacket;
 import com.aionemu.chatserver.network.netty.handler.ClientChannelHandler;
@@ -15,7 +15,7 @@ public class CM_CHANNEL_JOIN extends AbstractClientPacket {
 	@SuppressWarnings("unused")
 	private byte[] channelIdentifier, password;
 
-	public CM_CHANNEL_JOIN(ChannelBuffer channelBuffer, ClientChannelHandler clientChannelHandler, byte opCode) {
+	public CM_CHANNEL_JOIN(ByteBuf channelBuffer, ClientChannelHandler clientChannelHandler, byte opCode) {
 		super(channelBuffer, clientChannelHandler, opCode);
 	}
 

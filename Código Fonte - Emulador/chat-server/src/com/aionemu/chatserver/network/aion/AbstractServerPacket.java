@@ -1,6 +1,6 @@
 package com.aionemu.chatserver.network.aion;
 
-import org.jboss.netty.buffer.ChannelBuffer;
+import io.netty.buffer.ByteBuf;
 
 import com.aionemu.chatserver.common.netty.BaseServerPacket;
 import com.aionemu.chatserver.network.netty.handler.ClientChannelHandler;
@@ -14,10 +14,10 @@ public abstract class AbstractServerPacket extends BaseServerPacket {
 		super(opCode);
 	}
 
-	public void write(ClientChannelHandler clientChannelHandler, ChannelBuffer buf) {
+	public void write(ClientChannelHandler clientChannelHandler, ByteBuf buf) {
 		buf.writeShort((short) 0);
 		writeImpl(clientChannelHandler, buf);
 	}
 
-	protected abstract void writeImpl(ClientChannelHandler cHandler, ChannelBuffer buf);
+	protected abstract void writeImpl(ClientChannelHandler cHandler, ByteBuf buf);
 }

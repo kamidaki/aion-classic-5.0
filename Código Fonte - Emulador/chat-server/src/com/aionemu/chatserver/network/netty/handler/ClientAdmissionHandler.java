@@ -5,11 +5,9 @@ import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import org.jboss.netty.channel.ChannelHandlerContext;
-import org.jboss.netty.channel.ChannelStateEvent;
-import org.jboss.netty.channel.MessageEvent;
-import org.jboss.netty.channel.SimpleChannelUpstreamHandler;
-import org.jboss.netty.channel.group.ChannelGroup;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.group.ChannelGroup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +19,7 @@ import com.aionemu.commons.network.GeoIPFilterService;
 /**
  * Performs GeoIP, connection, and packet-rate checks before events enter the worker executor.
  */
-public final class ClientAdmissionHandler extends SimpleChannelUpstreamHandler {
+public final class ClientAdmissionHandler extends ChannelInboundHandlerAdapter {
 
 	private static final Logger log = LoggerFactory.getLogger(ClientAdmissionHandler.class);
 	private final ChannelGroup channelGroup;
@@ -33,56 +31,45 @@ public final class ClientAdmissionHandler extends SimpleChannelUpstreamHandler {
 	}
 
 	@Override
-	public void channelOpen(ChannelHandlerContext ctx, ChannelStateEvent e) throws Exception {
-		channelGroup.add(e.getChannel());
-		super.channelOpen(ctx, e);
-	}
-
-	@Override
-	public void channelConnected(ChannelHandlerContext ctx, ChannelStateEvent e) throws Exception {
-		InetAddress address = remoteAddress(e.getChannel().getRemoteAddress());
+	public void channelActive(ChannelHandlerContext ctx) throws Exception {
+		channelGroup.add(ctx.channel());
+		InetAddress address = remoteAddress(ctx.channel().remoteAddress());
 		ip = address == null ? null : address.getHostAddress();
 		if (address == null || !GeoIPFilterService.isAllowed(address)) {
-			SecurityEventLogger.warn(log, "geoip_rejection", e.getChannel().getId(), ip, "remote address is outside the allow-list");
-			e.getChannel().close();
+			SecurityEventLogger.warn(log, "geoip_rejection", ctx.channel().id().hashCode(), ip, "remote address is outside the allow-list");
+			ctx.channel().close();
 			return;
 		}
 
 		Decision decision = ClientSecurityManager.getInstance().acquire(ip);
 		if (!decision.allowed()) {
-			SecurityEventLogger.warn(log, "connection_rejection", e.getChannel().getId(), ip, decision.reason());
-			e.getChannel().close();
+			SecurityEventLogger.warn(log, "connection_rejection", ctx.channel().id().hashCode(), ip, decision.reason());
+			ctx.channel().close();
 			return;
 		}
 		acquired.set(true);
-		super.channelConnected(ctx, e);
+		super.channelActive(ctx);
 	}
 
 	@Override
-	public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
+	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 		if (!acquired.get()) {
-			e.getChannel().close();
+			ctx.channel().close();
 			return;
 		}
 		Decision decision = ClientSecurityManager.getInstance().checkPacketRate(ip);
 		if (!decision.allowed()) {
-			SecurityEventLogger.warn(log, "flood_detection", e.getChannel().getId(), ip, decision.reason());
-			e.getChannel().close();
+			SecurityEventLogger.warn(log, "flood_detection", ctx.channel().id().hashCode(), ip, decision.reason());
+			ctx.channel().close();
 			return;
 		}
-		super.messageReceived(ctx, e);
+		ctx.fireChannelRead(msg);
 	}
 
 	@Override
-	public void channelDisconnected(ChannelHandlerContext ctx, ChannelStateEvent e) throws Exception {
+	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
 		release();
-		super.channelDisconnected(ctx, e);
-	}
-
-	@Override
-	public void channelClosed(ChannelHandlerContext ctx, ChannelStateEvent e) throws Exception {
-		release();
-		super.channelClosed(ctx, e);
+		super.channelInactive(ctx);
 	}
 
 	private void release() {

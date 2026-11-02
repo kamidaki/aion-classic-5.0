@@ -1,6 +1,6 @@
 package com.aionemu.chatserver.network.aion.serverpackets;
 
-import org.jboss.netty.buffer.ChannelBuffer;
+import io.netty.buffer.ByteBuf;
 
 import com.aionemu.chatserver.network.aion.AbstractServerPacket;
 import com.aionemu.chatserver.network.netty.handler.ClientChannelHandler;
@@ -15,7 +15,7 @@ public class SM_PLAYER_AUTH_RESPONSE extends AbstractServerPacket {
 	}
 
 	@Override
-	protected void writeImpl(ClientChannelHandler clientChannelHandler, ChannelBuffer buf) {
+	protected void writeImpl(ClientChannelHandler clientChannelHandler, ByteBuf buf) {
 		writeC(buf, getOpCode());
 		writeC(buf, 0x40); // ?
 		writeH(buf, 0x01); // ?

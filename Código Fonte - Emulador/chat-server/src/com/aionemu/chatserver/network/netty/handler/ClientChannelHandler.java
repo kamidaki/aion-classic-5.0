@@ -3,11 +3,9 @@ package com.aionemu.chatserver.network.netty.handler;
 import java.net.InetSocketAddress;
 import java.nio.ByteOrder;
 
-import org.jboss.netty.buffer.ChannelBuffer;
-import org.jboss.netty.buffer.ChannelBuffers;
-import org.jboss.netty.channel.ChannelHandlerContext;
-import org.jboss.netty.channel.ChannelStateEvent;
-import org.jboss.netty.channel.MessageEvent;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,28 +29,32 @@ public class ClientChannelHandler extends AbstractChannelHandler {
 	}
 
 	@Override
-	public void channelConnected(ChannelHandlerContext ctx, ChannelStateEvent e) throws Exception {
-		super.channelConnected(ctx, e);
+	public void channelActive(ChannelHandlerContext ctx) throws Exception {
+		super.channelActive(ctx);
 		state = ClientChannelHandlerState.CONNECTED;
-		inetAddress = ((InetSocketAddress) e.getChannel().getRemoteAddress()).getAddress();
-		associatedChannel = ctx.getChannel();
+		inetAddress = ((InetSocketAddress) ctx.channel().remoteAddress()).getAddress();
+		associatedChannel = ctx.channel();
 		log.info("Channel connected Ip: {}", inetAddress.getHostAddress());
 	}
 
 	@Override
-	public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
-		super.messageReceived(ctx, e);
-		AbstractClientPacket clientPacket = clientPacketHandler.handle((ChannelBuffer) e.getMessage(), this);
-		if (clientPacket != null && clientPacket.read())
-			clientPacket.run();
-		if (clientPacket != null)
-			log.debug("Received packet: {}", clientPacket);
+	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+		ByteBuf buf = (ByteBuf) msg;
+		try {
+			AbstractClientPacket clientPacket = clientPacketHandler.handle(buf, this);
+			if (clientPacket != null && clientPacket.read())
+				clientPacket.run();
+			if (clientPacket != null)
+				log.debug("Received packet: {}", clientPacket);
+		} finally {
+			buf.release();
+		}
 	}
 
 	public void sendPacket(AbstractServerPacket packet) {
-		ChannelBuffer cb = ChannelBuffers.buffer(ByteOrder.LITTLE_ENDIAN, 2 * 8192);
+		ByteBuf cb = Unpooled.buffer(2 * 8192).order(ByteOrder.LITTLE_ENDIAN);
 		packet.write(this, cb);
-		associatedChannel.write(cb);
+		associatedChannel.writeAndFlush(cb);
 		log.debug("Sent packet: {}", packet);
 	}
 
@@ -73,9 +75,7 @@ public class ClientChannelHandler extends AbstractChannelHandler {
 	}
 
 	public enum ClientChannelHandlerState {
-
 		CONNECTED,
 		AUTHED
-
 	}
 }

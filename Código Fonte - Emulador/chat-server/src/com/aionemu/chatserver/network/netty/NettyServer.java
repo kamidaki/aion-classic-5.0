@@ -1,15 +1,16 @@
 package com.aionemu.chatserver.network.netty;
 
-import java.nio.ByteOrder;
 import java.util.concurrent.Executors;
 
-import org.jboss.netty.bootstrap.ServerBootstrap;
-import org.jboss.netty.buffer.HeapChannelBufferFactory;
-import org.jboss.netty.channel.Channel;
-import org.jboss.netty.channel.ChannelFactory;
-import org.jboss.netty.channel.group.ChannelGroup;
-import org.jboss.netty.channel.group.DefaultChannelGroup;
-import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
+import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.group.ChannelGroup;
+import io.netty.channel.group.DefaultChannelGroup;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.util.concurrent.GlobalEventExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,8 +28,10 @@ public class NettyServer {
 
 	private static final Logger log = LoggerFactory.getLogger(NettyServer.class);
 	private static final NettyServer instance = new NettyServer();
-	private final ChannelFactory aionClientChannelFactory;
+	private final EventLoopGroup bossGroup;
+	private final EventLoopGroup workerGroup;
 	private final ChannelGroup aionClientChannelGroup;
+	private final LoginToClientPipeLineFactory pipelineFactory;
 	private final NioServer nioServer;
 
 	public static NettyServer getInstance() {
@@ -36,33 +39,43 @@ public class NettyServer {
 	}
 
 	private NettyServer() {
-		aionClientChannelFactory = new NioServerSocketChannelFactory(Executors.newCachedThreadPool(), Executors.newCachedThreadPool(),
-			NetworkConfig.NIO_READ_WRITE_THREADS + 1);
-		aionClientChannelGroup = new DefaultChannelGroup(NettyServer.class.getName());
-		aionClientChannelGroup.add(initChannel(new ServerCfg(NetworkConfig.CLIENT_SOCKET_ADDRESS, "Aion game clients", null)));
+		bossGroup = new NioEventLoopGroup(1);
+		workerGroup = new NioEventLoopGroup(NetworkConfig.NIO_READ_WRITE_THREADS + 1);
+		aionClientChannelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
+		pipelineFactory = new LoginToClientPipeLineFactory(new ClientPacketHandler(), aionClientChannelGroup);
+
+		initChannel(new ServerCfg(NetworkConfig.CLIENT_SOCKET_ADDRESS, "Aion game clients", null));
 
 		nioServer = new NioServer(NetworkConfig.NIO_READ_WRITE_THREADS,
 			new ServerCfg(NetworkConfig.GAMESERVER_SOCKET_ADDRESS, "game servers", new GsConnectionFactoryImpl()));
 		nioServer.connect(Executors.newSingleThreadExecutor());
 	}
 
-	private Channel initChannel(ServerCfg gameClientConfig) {
-		ServerBootstrap bootstrap = new ServerBootstrap(aionClientChannelFactory);
-		bootstrap.setPipelineFactory(new LoginToClientPipeLineFactory(new ClientPacketHandler()));
-		bootstrap.setOption("child.bufferFactory", HeapChannelBufferFactory.getInstance(ByteOrder.LITTLE_ENDIAN));
-		bootstrap.setOption("child.tcpNoDelay", true);
-		bootstrap.setOption("child.keepAlive", true);
-		bootstrap.setOption("child.reuseAddress", true);
-		bootstrap.setOption("child.connectTimeoutMillis", 100);
-		bootstrap.setOption("readWriteFair", true);
-		Channel channel = bootstrap.bind(gameClientConfig.address());
-		log.info("Listening on " + gameClientConfig.getAddressInfo() + " for " + gameClientConfig.clientDescription());
-		return channel;
+	private void initChannel(ServerCfg gameClientConfig) {
+		ServerBootstrap bootstrap = new ServerBootstrap();
+		bootstrap.group(bossGroup, workerGroup)
+			.channel(NioServerSocketChannel.class)
+			.childHandler(pipelineFactory)
+			.childOption(ChannelOption.TCP_NODELAY, true)
+			.childOption(ChannelOption.SO_KEEPALIVE, true)
+			.childOption(ChannelOption.SO_REUSEADDR, true)
+			.childOption(ChannelOption.CONNECT_TIMEOUT_MILLIS, 100);
+
+		try {
+			Channel channel = bootstrap.bind(gameClientConfig.address()).sync().channel();
+			aionClientChannelGroup.add(channel);
+			log.info("Listening on " + gameClientConfig.getAddressInfo() + " for " + gameClientConfig.clientDescription());
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			log.error("Failed to bind Netty channel", e);
+		}
 	}
 
 	public void shutdownAll() {
 		aionClientChannelGroup.close().awaitUninterruptibly();
-		aionClientChannelFactory.releaseExternalResources();
+		bossGroup.shutdownGracefully();
+		workerGroup.shutdownGracefully();
+		pipelineFactory.shutdown();
 		nioServer.shutdown();
 	}
 }

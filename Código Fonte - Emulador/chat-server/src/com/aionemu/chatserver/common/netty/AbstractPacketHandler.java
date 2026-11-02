@@ -1,6 +1,6 @@
 package com.aionemu.chatserver.common.netty;
 
-import org.jboss.netty.buffer.ChannelBuffer;
+import io.netty.buffer.ByteBuf;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,10 +13,10 @@ public abstract class AbstractPacketHandler {
 
 	private static final Logger log = LoggerFactory.getLogger(AbstractPacketHandler.class);
 
-	protected void logUnknownPacket(byte opCode, ClientChannelHandlerState state, ChannelBuffer buf) {
+	protected void logUnknownPacket(byte opCode, ClientChannelHandlerState state, ByteBuf buf) {
 		int length = buf.readableBytes();
 		StringBuilder sb = new StringBuilder(length * 3);
-		while (buf.readable())
+		while (buf.isReadable())
 			sb.append("%02X".formatted(buf.readByte()));
 		log.warn("Unknown packet received from client: opCode={} state={} length={} data=[{}]", "0x%02X".formatted(opCode), state, length, sb);
 	}
