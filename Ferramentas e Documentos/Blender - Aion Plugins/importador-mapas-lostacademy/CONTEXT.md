@@ -192,3 +192,24 @@ Ao dar manutenção ou estender este projeto:
    ```
    Certifique-se de que todos os 10 testes passem antes de entregar alterações.
 
+
+
+---
+
+## 10. Atualizações de Arquitetura (Versão 2.0.0 - AAA+ Engineering)
+
+- **Eliminação de Congelamentos do Blender:**
+  - `importers/level_instances.py`: Substituição de 500+ subcoleções `_inst` por vínculo direto à coleção mestra da categoria.
+  - `operators/import_level.py`: Refatoração para operador modal orientado a gerador (`import_level_generator`) com fatiamento de 15ms por tick e `PASS_THROUGH`, mantendo o Blender 100% responsivo.
+  - `materials/texture_loader.py`: Prefixo de hash MD5 nos arquivos temporários de textura DDS para garantia de unicidade estrita.
+- **Compatibilidade Multi-Client:**
+  - `core/client_provider.py`: Detecção heurística de clientes `Classic 5.0`, `Retail 4.8`, `Retail 4.6 (OriginAion)` e `Retail 7.7`.
+  - Tabelas de strings `client_strings_*.xml` lidas diretamente de `Strings.pak` e `data.pak` (79k a 189k entradas).
+  - Tratamento resiliente da criptografia proprietária `OADTENC1` do OriginAion.
+- **Sistema de LOD Companion:**
+  - `core/pak_engine.py` e `core/resource_resolver.py`: Resolução dinâmica de arquivos companheiros `_lod1.cgf`, `_lod2.cgf` e `_lod3.cgf` com suporte a fallback gracioso.
+- **Nameplates 3D para NPCs:**
+  - `importers/npc_importer.py`: Criação de objetos de texto de curva 3D (`FONT`) com nome localizado e ID parentados aos NPCs na coleção `NPC_NAMES`.
+- **Edição Bidirecional Completa (Round-Trip):**
+  - `editing/level_serializer.py` e `editing/roundtrip_tracker.py`: Suporte a modificação, adição (duplicação) e deleção de brushes e vegetação, além de atualização de coordenadas de NPCs em `client_world_<map>.xml`.
+  - Repacotamento com salvamento direto no `Level.pak` e backup `.pak.bak`.

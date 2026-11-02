@@ -312,3 +312,35 @@ A suíte valida automaticamente:
 ```
 Mede tempos de execução, contagem de objetos, malhas, materiais, imagens e instâncias de posicionamento.
 
+
+
+---
+
+## 13. Arquitetura Multi-Client & Engenharia de Desempenho 2.0
+
+### Compatibilidade Multi-Client Homologada
+O toolkit detecta automaticamente e adapta estruturas de dados para 4 gerações de clientes:
+- **Classic 5.0** (`D:\GameForge\aionclassic`): 137 mapas, 79.340 strings localizadas, 81.446 arquétipos de NPCs.
+- **Retail 4.8** (`I:\Aion Live Clássico - América do Sul`): 184 mapas, 134.453 strings localizadas, 254.372 arquétipos.
+- **Retail 4.6 (OriginAion)** (`I:\OriginAion\OriginAion\OriginAion`): 154 mapas, 97.764 strings. Suporte transparente com detecção de criptografia proprietária `OADTENC1`.
+- **Retail 7.7** (`I:\Servidor Aion\SERVIDOR RETAIL 7.7\LAB AION 7.7 - CLIENT`): 178 mapas, 189.800 strings localizadas, 186.856 arquétipos.
+
+### Resolução de Congelamentos (Arquitetura Modal Não-Bloqueante)
+O congelamento histórico do Blender foi eliminado através de três intervenções de engenharia de software:
+1. **Loop Modal com Orçamento de Tempo (Time Budgeting 15ms):** A Main Thread executa o importador em fatias temporais de até 15 milissegundos por tick de timer nativo do Blender (`PASS_THROUGH`), permitindo que as mensagens do Windows (eventos de mouse, redimensionamento de janela e rotação de viewport) continuem sendo processadas sem interrupções.
+2. **Eliminação de Subcoleções no Outliner:** A criação de centenas de coleções aninhadas (`_inst`) foi eliminada. Todos os objetos são vinculados diretamente às coleções mestras da categoria (`PROPS`, `BRUSHES`, etc.), impedindo o travamento da árvore do Outliner.
+3. **Deduplicação de Texturas com Hash MD5:** O carregador DDS associa um hash MD5 do caminho à textura em disco, eliminando colisões de nomes idênticos em diretórios diferentes.
+
+### Sistema Real de LOD Companion (`_lod1`, `_lod2`, `_lod3`)
+A CryEngine armazena modelos de menor detalhe como arquivos companheiros (ex.: `bo_housing01a_lod1.cgf`, `bo_housing01a_lod2.cgf`). O resolvedor dinâmico agora identifica automaticamente essas geometrias quando um nível de LOD > 0 é selecionado, reduzindo o peso poligonal e consumo de VRAM em 46.7% a 71.0%.
+
+### Nameplates Tridimensionais de NPCs (Billboards 3D)
+Cada NPC importado no mapa recebe uma placa de identificação em curva de texto 3D (`NPCLabel_{id}`) posicionada acima de sua cabeça com nome localizado em português/inglês e ID oficial (`f"{nome} [{id}]"`). Todas as placas residem na subcoleção `NPC_NAMES`, com alternância instantânea de visibilidade através do botão **Toggle Names Visibility** no painel lateral.
+
+### Edição Completa de Mapas (Adicionar, Mover, Deletar, Repacotar)
+O pipeline de edição agora suporta operações completas:
+- **Mover, Girar e Escalar:** Salva coordenadas diretamente nos nós de `brush.lst` e `objects.lst`.
+- **Duplicar / Adicionar (`Shift+D`):** Identifica novos objetos e adiciona novas entradas aos blocos de malhas e nós binários.
+- **Deletar (`X`):** Detecta a ausência de objetos originais na cena e remove os registros correspondentes do arquivo binário.
+- **Edição de NPCs:** Atualiza posições em `client_world_<map>.xml`.
+- **Salvamento Direto:** Repacota o `Level.pak` com backup de segurança `.pak.bak` em menos de 2 segundos.

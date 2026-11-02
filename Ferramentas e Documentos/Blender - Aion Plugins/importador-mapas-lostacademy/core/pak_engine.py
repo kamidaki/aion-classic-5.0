@@ -727,15 +727,29 @@ class AionClientPakResolver:
         if self.catalog:
             self.catalog.close()
 
-    def resolve_resource(self, reference: str) -> Optional[Path]:
+    def resolve_resource(self, reference: str, target_lod: int = 0) -> Optional[Path]:
         """
         Resolves a resource reference (CGF, DDS, CSL, XML) to an absolute Path on disk.
         If packed in a .pak, extracts it into the cache directory on demand.
+        Supports LOD companion files (<stem>_lod<N>.cgf) when target_lod > 0.
         """
         clean = reference.replace("\\", "/").strip().lstrip("/").lower()
         if not clean:
             return None
 
+        # LOD Resolution: if target_lod > 0 and reference is a .cgf
+        if target_lod > 0 and clean.endswith(".cgf"):
+            stem = clean[:-4]
+            # Try from target_lod down to 1
+            for lvl in range(target_lod, 0, -1):
+                lod_ref = f"{stem}_lod{lvl}.cgf"
+                res = self._resolve_single_resource(lod_ref)
+                if res and res.is_file():
+                    return res
+
+        return self._resolve_single_resource(clean)
+
+    def _resolve_single_resource(self, clean: str) -> Optional[Path]:
         if clean in self._resolved_cache:
             return self._resolved_cache[clean]
 
@@ -758,12 +772,24 @@ class AionClientPakResolver:
             self._resolved_cache[clean] = loose
             return loose
 
+        # Also check without levels/common/ prefix if loose
+        if clean.startswith("levels/common/"):
+            short_clean = clean[len("levels/common/"):]
+            loose_short = self._resolve_loose(short_clean)
+            if loose_short is not None:
+                self._resolved_cache[clean] = loose_short
+                return loose_short
+
         # 3. Ensure catalog index is loaded and query it
         self.ensure_catalog()
         match = self.catalog.find_entry(clean)
+        if not match and clean.startswith("levels/common/"):
+            match = self.catalog.find_entry(clean[len("levels/common/"):])
         if not match:
             self._index_candidates_for_ref(clean)
             match = self.catalog.find_entry(clean)
+        if not match and clean.startswith("levels/common/"):
+            match = self.catalog.find_entry(clean[len("levels/common/"):])
 
         if match:
             pak_path, entry = match
@@ -783,10 +809,12 @@ class AionClientPakResolver:
         self,
         references: Iterable[str],
         max_workers: int = 8,
+        target_lod: int = 0,
     ) -> Dict[str, Optional[Path]]:
         """
         Extracts and resolves multiple resources concurrently across worker threads.
         Bypasses main thread disk/decompression bottlenecks.
+        Supports target_lod (0..3) for automatic companion LOD mesh resolution.
         """
         import concurrent.futures
 
@@ -796,7 +824,7 @@ class AionClientPakResolver:
 
         for ref in refs:
             clean = ref.replace("\\", "/").strip().lstrip("/").lower()
-            if clean in self._resolved_cache:
+            if target_lod == 0 and clean in self._resolved_cache:
                 results[ref] = self._resolved_cache[clean]
             else:
                 pending.append(ref)
@@ -807,7 +835,7 @@ class AionClientPakResolver:
         self.ensure_catalog()
 
         def _worker(r: str) -> Tuple[str, Optional[Path]]:
-            return r, self.resolve_resource(r)
+            return r, self.resolve_resource(r, target_lod=target_lod)
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
             futures = [executor.submit(_worker, r) for r in pending]

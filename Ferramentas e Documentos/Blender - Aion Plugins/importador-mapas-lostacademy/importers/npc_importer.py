@@ -219,6 +219,33 @@ def _snap_z_to_terrain(
     return default_z
 
 
+
+def _create_npc_nameplate(
+    target_col: bpy.types.Collection,
+    parent_obj: bpy.types.Object,
+    npc_id: str,
+    localized_name: str,
+    title: str = "",
+    scale: float = 1.0,
+) -> bpy.types.Object:
+    """Creates a 3D Font Curve Billboard Nameplate above an NPC's head."""
+    curve_data = bpy.data.curves.new(type="FONT", name=f"NPCLabel_{npc_id}")
+    label_text = f"{localized_name} [{npc_id}]"
+    if title:
+        label_text = f"{localized_name}\n<{title}> [{npc_id}]"
+    curve_data.body = label_text
+    curve_data.align_x = "CENTER"
+    curve_data.align_y = "BOTTOM"
+    curve_data.size = 0.35 * max(0.5, min(scale, 2.5))
+
+    label_obj = bpy.data.objects.new(f"NPCLabel_{npc_id}", curve_data)
+    label_obj.location = (0.0, 0.0, 2.2 * scale)
+    label_obj.parent = parent_obj
+    label_obj["aion_source_type"] = "npc_nameplate"
+    label_obj["aion_npc_id"] = npc_id
+    label_obj["aion_npc_name"] = localized_name
+    target_col.objects.link(label_obj)
+    return label_obj
 def create_world_npcs(
     context: bpy.types.Context,
     level_dir: Path | str,
@@ -233,6 +260,7 @@ def create_world_npcs(
     import_monsters: bool = True,
     import_friendly: bool = True,
     import_ambient: bool = True,
+    import_nameplates: bool = True,
     max_npcs: int = 0,
 ) -> NpcImportResult:
     """
@@ -278,6 +306,8 @@ def create_world_npcs(
     templates = get_cached_npc_templates(client_path)
 
     # 3. Create Hierarchical Collections
+    provider.load_string_tables()
+
     if target_parent.name == "NPCS":
         npcs_root_col = target_parent
     else:
@@ -286,6 +316,7 @@ def create_world_npcs(
     friendly_col = _get_or_create_collection(npcs_root_col, "NPCs - Friendly")
     monsters_col = _get_or_create_collection(npcs_root_col, "Monsters & Hostiles")
     ambient_col = _get_or_create_collection(npcs_root_col, "NPCs - Ambient Fauna")
+    nameplates_col = _get_or_create_collection(npcs_root_col, "NPC_NAMES")
 
     # 4. Cache template datablocks (shared in bpy.data, no dummy scene objects!)
     static_meshes: Dict[str, bpy.types.Mesh] = {}
@@ -391,6 +422,7 @@ def create_world_npcs(
     for spawn in spawns_to_process:
         npc_id = spawn.npc_id
         template = templates.get(npc_id)
+        loc_name = ""
         if template:
             resolved_templates_count += 1
             name = template.name
@@ -398,12 +430,15 @@ def create_world_npcs(
             cgf_ref = template.cgf_reference
             scale = template.scale
             category = template.category
+            loc_name = provider.resolve_localized_string(name)
         else:
             name = f"NPC_{npc_id}"
             title = ""
             cgf_ref = "objects/npc/human/cam/cam.cgf"
             scale = 1.0
             category = "npc"
+
+        display_name = loc_name if loc_name and not loc_name.startswith("STR_") else name
 
         # Apply category filters
         if category == "monster" and not import_monsters:
@@ -472,9 +507,14 @@ def create_world_npcs(
             rig_inst["aion_source_type"] = "npc_rig"
             rig_inst["aion_npc_id"] = npc_id
             rig_inst["aion_npc_name"] = name
+            rig_inst["aion_orig_pos"] = [x, y, z]
             mesh_inst["aion_source_type"] = "npc"
             mesh_inst["aion_npc_id"] = npc_id
-            mesh_inst["aion_npc_name"] = name
+            mesh_inst["aion_npc_name"] = display_name
+            mesh_inst["aion_orig_pos"] = [x, y, z]
+
+            if import_nameplates:
+                _create_npc_nameplate(nameplates_col, rig_inst, npc_id, display_name, title, scale)
 
             placed_count += 1
             instances_created += 1
@@ -490,12 +530,15 @@ def create_world_npcs(
             obj["aion_source_type"] = "npc"
             obj["aion_npc_id"] = npc_id
             obj["aion_npc_name"] = name
+            obj["aion_orig_pos"] = [x, y, z]
             if title:
                 obj["aion_npc_title"] = title
             if cgf_ref:
                 obj["aion_cgf_reference"] = cgf_ref
 
             target_col.objects.link(obj)
+            if import_nameplates:
+                _create_npc_nameplate(nameplates_col, obj, npc_id, display_name, title, scale)
             placed_count += 1
             instances_created += 1
 
@@ -510,18 +553,21 @@ def create_world_npcs(
             obj["aion_source_type"] = "npc_marker"
             obj["aion_npc_id"] = npc_id
             obj["aion_npc_name"] = name
+            obj["aion_orig_pos"] = [x, y, z]
             if title:
                 obj["aion_npc_title"] = title
             if cgf_ref:
                 obj["aion_cgf_reference"] = cgf_ref
 
             target_col.objects.link(obj)
+            if import_nameplates:
+                _create_npc_nameplate(nameplates_col, obj, npc_id, display_name, title, scale)
             placed_count += 1
             instances_created += 1
             missing_models += 1
 
     # Prune empty subcollections in NPCS
-    for sub in (friendly_col, monsters_col, ambient_col):
+    for sub in (friendly_col, monsters_col, ambient_col, nameplates_col):
         if len(sub.objects) == 0 and len(sub.children) == 0:
             if sub.name in npcs_root_col.children.keys():
                 npcs_root_col.children.unlink(sub)

@@ -355,3 +355,65 @@ def parse_npc_templates(
 
 # Backward compatibility alias
 parse_client_npc_templates = parse_npc_templates
+
+
+def update_world_npc_spawns_xml(
+    xml_path: Path | str,
+    modified_npcs: Dict[str, Tuple[float, float, float]],
+) -> int:
+    """Updates or creates client_world_<map>.xml with modified NPC spawn coordinates."""
+    target = Path(xml_path)
+    if not modified_npcs:
+        return 0
+
+    if target.is_file():
+        try:
+            raw = target.read_bytes()
+            text, is_xml = _decode_xml_bytes(raw)
+            if is_xml and "<npc_info>" in text:
+                root = ET.fromstring(text)
+                updated = 0
+                for info in root.iter("npc_info"):
+                    nid = str(info.findtext("nameid", "")).strip()
+                    if nid in modified_npcs:
+                        pos_elem = info.find("pos")
+                        if pos_elem is None:
+                            pos_elem = ET.SubElement(info, "pos")
+                        new_pos = modified_npcs[nid]
+                        x_elem = pos_elem.find("x")
+                        if x_elem is None:
+                            x_elem = ET.SubElement(pos_elem, "x")
+                        x_elem.text = f"{new_pos[0]:.4f}"
+                        y_elem = pos_elem.find("y")
+                        if y_elem is None:
+                            y_elem = ET.SubElement(pos_elem, "y")
+                        y_elem.text = f"{new_pos[1]:.4f}"
+                        z_elem = pos_elem.find("z")
+                        if z_elem is None:
+                            z_elem = ET.SubElement(pos_elem, "z")
+                        z_elem.text = f"{new_pos[2]:.4f}"
+                        updated += 1
+                if updated > 0:
+                    target.write_bytes(ET.tostring(root, encoding="utf-8", xml_declaration=True))
+                    return updated
+        except Exception:
+            pass
+
+    # If file did not exist or was BXML, generate standard clean XML
+    root = ET.Element("client_world")
+    infos_elem = ET.SubElement(root, "npc_infos")
+    for nid, pos in modified_npcs.items():
+        info = ET.SubElement(infos_elem, "npc_info")
+        nid_elem = ET.SubElement(info, "nameid")
+        nid_elem.text = str(nid)
+        pos_elem = ET.SubElement(info, "pos")
+        x_elem = ET.SubElement(pos_elem, "x")
+        x_elem.text = f"{pos[0]:.4f}"
+        y_elem = ET.SubElement(pos_elem, "y")
+        y_elem.text = f"{pos[1]:.4f}"
+        z_elem = ET.SubElement(pos_elem, "z")
+        z_elem.text = f"{pos[2]:.4f}"
+
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_bytes(ET.tostring(root, encoding="utf-8", xml_declaration=True))
+    return len(modified_npcs)

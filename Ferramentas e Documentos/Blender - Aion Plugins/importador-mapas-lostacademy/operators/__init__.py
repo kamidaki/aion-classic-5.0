@@ -15,6 +15,7 @@ from .editing_operators import (
     AION_OT_snap_to_terrain,
     AION_OT_sync_terrain,
     AION_OT_toggle_animation,
+    AION_OT_toggle_npc_names,
 )
 from .export_level import (
     AION_OT_direct_save,
@@ -34,6 +35,7 @@ CLASSES = (
     AION_OT_randomize_transforms,
     AION_OT_sync_terrain,
     AION_OT_toggle_animation,
+    AION_OT_toggle_npc_names,
     AION_OT_clean_wind_drivers,
     AION_OT_purge_unused_data,
 )

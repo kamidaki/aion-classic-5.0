@@ -134,10 +134,12 @@ def load_texture_from_pak_bytes(
             _PAK_IMAGE_CACHE.pop(norm_key, None)
 
     try:
+        import hashlib
         import tempfile
         ext = Path(cache_key).suffix or ".dds"
         safe_stem = Path(cache_key).stem[:40].replace("/", "_").replace("\\", "_")
-        fname = f"aion_tex_{safe_stem}{ext}"
+        key_hash = hashlib.md5(norm_key.encode("utf-8")).hexdigest()[:10]
+        fname = f"aion_tex_{key_hash}_{safe_stem}{ext}"
         tmp_dir = Path(tempfile.gettempdir()) / "aion_blender_textures"
         tmp_dir.mkdir(parents=True, exist_ok=True)
         tmp_path = tmp_dir / fname

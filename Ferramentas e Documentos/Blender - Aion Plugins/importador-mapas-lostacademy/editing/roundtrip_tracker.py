@@ -15,6 +15,7 @@ from mathutils import Matrix, Vector
 SOURCE_BRUSH = "brush"
 SOURCE_OBJECT = "object"
 SOURCE_MISSION = "mission"
+SOURCE_NPC = "npc"
 
 
 @dataclass
@@ -79,9 +80,10 @@ def matrix_has_changed(current: Matrix, original_values: list[float], tolerance:
 def collect_scene_changes(scene: bpy.types.Scene) -> dict[str, list[ObjectChangeRecord]]:
     """
     Scans the scene for all Aion objects and classifies them into:
-    - brush changes
-    - object (vegetation) changes
+    - brush changes (modifications, new additions, deletions)
+    - object (vegetation) changes (modifications, new additions, deletions)
     - mission placeable changes
+    - NPC spawn changes
     """
     try:
         if bpy.context and hasattr(bpy.context, "view_layer") and bpy.context.view_layer:
@@ -93,9 +95,43 @@ def collect_scene_changes(scene: bpy.types.Scene) -> dict[str, list[ObjectChange
         SOURCE_BRUSH: [],
         SOURCE_OBJECT: [],
         SOURCE_MISSION: [],
+        SOURCE_NPC: [],
+    }
+
+    seen_indices: dict[str, set[int]] = {
+        SOURCE_BRUSH: set(),
+        SOURCE_OBJECT: set(),
+        SOURCE_MISSION: set(),
+        SOURCE_NPC: set(),
     }
 
     for obj in scene.objects:
+        # Check NPC objects
+        stype_raw = str(obj.get("aion_source_type", "")).strip().lower()
+        if stype_raw in ("npc", "npc_rig", "npc_marker") and "aion_npc_id" in obj:
+            npc_id = str(obj.get("aion_npc_id", ""))
+            npc_name = str(obj.get("aion_npc_name", obj.name))
+            orig_pos = obj.get("aion_orig_pos")
+            curr_pos = (obj.location.x, obj.location.y, obj.location.z)
+            is_mod = False
+            if orig_pos and len(orig_pos) == 3:
+                is_mod = any(abs(c - o) > 0.05 for c, o in zip(curr_pos, orig_pos))
+            else:
+                is_mod = False  # Not moved if no baseline
+
+            record = ObjectChangeRecord(
+                obj=obj,
+                source_type=SOURCE_NPC,
+                source_index=int(npc_id) if npc_id.isdigit() else -1,
+                cgf_reference=npc_name,
+                is_modified=is_mod,
+                current_matrix=obj.matrix_world.copy(),
+                original_matrix=None,
+                is_new=orig_pos is None and int(npc_id if npc_id.isdigit() else -1) < 0,
+            )
+            results[SOURCE_NPC].append(record)
+            continue
+
         meta = get_object_metadata(obj)
         if not meta:
             continue
@@ -108,6 +144,15 @@ def collect_scene_changes(scene: bpy.types.Scene) -> dict[str, list[ObjectChange
         ref = meta["reference"]
         orig_vals = meta.get("orig_matrix")
         mesh_offset_vals = meta.get("mesh_offset")
+
+        # Duplicate detection (Shift+D in Blender copies custom properties)
+        is_duplicate = False
+        if sidx >= 0:
+            if sidx in seen_indices[stype]:
+                is_duplicate = True
+                sidx = -1
+            else:
+                seen_indices[stype].add(sidx)
 
         # If the template submesh had a local transform offset, inverse-multiply it
         # to recover the exact authoritative placement transform:
@@ -128,14 +173,14 @@ def collect_scene_changes(scene: bpy.types.Scene) -> dict[str, list[ObjectChange
             curr_mat = obj.matrix_world.copy()
 
         is_mod = matrix_has_changed(curr_mat, orig_vals) if orig_vals else True
-        is_new = sidx < 0
+        is_new = (sidx < 0) or is_duplicate
 
         record = ObjectChangeRecord(
             obj=obj,
             source_type=stype,
             source_index=sidx,
             cgf_reference=ref,
-            is_modified=is_mod,
+            is_modified=is_mod or is_new,
             current_matrix=curr_mat,
             original_matrix=Matrix(
                 (orig_vals[0:4], orig_vals[4:8], orig_vals[8:12], orig_vals[12:16])

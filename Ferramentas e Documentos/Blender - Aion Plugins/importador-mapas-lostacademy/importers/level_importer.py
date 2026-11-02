@@ -181,7 +181,7 @@ def select_level_cgf_templates(
     return tuple(selected)
 
 
-def import_level(
+def import_level_generator(
     context,
     level_dir: str | Path,
     client_root: str | Path,
@@ -319,6 +319,7 @@ def import_level(
         completed=0,
         total=1,
     )
+    yield (0.05, "Parsing level sources (brush.lst, objects.lst, leveldata.xml)...")
     level_data, objects, brush = _parse_level_cgf_sources(level_path)
     jobs = collect_level_cgf_jobs(
         objects,
@@ -340,7 +341,14 @@ def import_level(
         import_lod2=import_lod2,
         import_lod3=import_lod3,
     )
-    resolution = resolve_level_cgf_jobs(jobs.jobs, client_root_path)
+    target_lod = 0
+    if import_lod3 and not import_lod0:
+        target_lod = 3
+    elif import_lod2 and not import_lod0:
+        target_lod = 2
+    elif import_lod1 and not import_lod0:
+        target_lod = 1
+    resolution = resolve_level_cgf_jobs(jobs.jobs, client_root_path, target_lod=target_lod)
     template_collection = group_level_cgf_templates(resolution.resolved)
     selected_templates = (
         select_level_cgf_templates(
@@ -454,6 +462,7 @@ def import_level(
     shader_uv_scroll_applied = 0
     shader_uv_scroll_skipped = 0
     terrain_mesh_result = None
+    yield (0.86, "Building water and liquid surfaces...")
     water_result = None
     liquid_surface_result = None
     static_lights_result = None
@@ -461,7 +470,11 @@ def import_level(
     particle_effects_result = None
     cga_entities_result = None
 
+    yield (0.25, f"Resolved {len(selected_templates)} CGF templates...")
     for template_index, template in enumerate(selected_templates, start=1):
+        if template_index % 5 == 0 or template_index == len(selected_templates):
+            frac = 0.25 + 0.50 * (template_index / max(1, len(selected_templates)))
+            yield (frac, f"Importing CGF {template_index}/{len(selected_templates)}: {template.resolved_path.name}")
         _emit_progress(
             progress_callback,
             stage="cgf_templates",
@@ -798,6 +811,7 @@ def import_level(
         )
         advance_progress("environment_lighting", "Environment lighting preview processed")
 
+    yield (0.94, "Spawning authoritative NPCs from client_world XML...")
     npc_result = None
     if visual_mode and import_npcs:
         advance_progress("npcs", "Spawning authoritative NPCs from client_world XML")
@@ -814,6 +828,7 @@ def import_level(
                 import_monsters=import_monsters,
                 import_friendly=import_friendly_npcs,
                 import_ambient=import_ambient_creatures,
+                import_nameplates=True,
             )
         except Exception as exc:
             print(f"[Aion] NPC Spawning warning: {exc}")
@@ -1208,3 +1223,33 @@ def _find_imported_template_collection(new_collections, preview_collection):
     if len(imported) != 1:
         raise RuntimeError(f"CGF import created {len(imported)} collections; expected exactly one")
     return imported[0]
+
+
+
+def import_level(
+    context,
+    level_dir: Path | str,
+    client_root: Path | str,
+    **kwargs,
+) -> LevelImportResult:
+    """
+    Synchronous wrapper for import_level_generator.
+    Drives the generator to completion and calls progress_callback if provided.
+    Guarantees backwards compatibility for CLI and automated testing.
+    """
+    progress_callback = kwargs.get("progress_callback")
+    gen = import_level_generator(context, level_dir, client_root, **kwargs)
+    try:
+        while True:
+            frac, msg = next(gen)
+            if progress_callback:
+                progress_callback(
+                    LevelImportProgress(
+                        stage="import",
+                        message=msg,
+                        completed=int(frac * 100),
+                        total=100,
+                    )
+                )
+    except StopIteration as exc:
+        return exc.value

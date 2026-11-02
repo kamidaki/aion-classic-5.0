@@ -238,6 +238,24 @@ class AionSceneSettings(bpy.types.PropertyGroup):
     )
 
     # LOD Levels (Section 8)
+    target_model_lod: EnumProperty(
+        name="Model LOD",
+        description="Target Level-of-Detail for 3D models (resolves _lod1, _lod2, _lod3 companion assets)",
+        items=(
+            ("0", "LOD 0 (High Detail)", "Base full mesh detail"),
+            ("1", "LOD 1 (Medium Detail)", "Companion _lod1.cgf geometry"),
+            ("2", "LOD 2 (Low Detail)", "Companion _lod2.cgf geometry"),
+            ("3", "LOD 3 (Distant Detail)", "Companion _lod3.cgf geometry"),
+        ),
+        default="0",
+    )
+
+    import_nameplates: BoolProperty(
+        name="NPC 3D Nameplates",
+        description="Create 3D floating billboard nameplates with localized name and NPC ID above heads",
+        default=True,
+    )
+
     import_lod0: BoolProperty(
         name="LOD 0 (Full High Detail)",
         description="Import base full-detail models",

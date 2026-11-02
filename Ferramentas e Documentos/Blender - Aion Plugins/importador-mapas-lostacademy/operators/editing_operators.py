@@ -145,3 +145,29 @@ class AION_OT_toggle_animation(bpy.types.Operator):
             bpy.ops.screen.animation_play()
             self.report({"INFO"}, "Animation playing (Space to pause).")
         return {"FINISHED"}
+
+
+class AION_OT_toggle_npc_names(bpy.types.Operator):
+    """Toggle visibility of 3D floating NPC Nameplates in the 3D Viewport."""
+
+    bl_idname = "aion.toggle_npc_names"
+    bl_label = "Toggle NPC Nameplates"
+    bl_description = "Show or hide 3D billboard nameplates for all world NPCs"
+    bl_options = {"REGISTER", "UNDO"}
+
+    def execute(self, context):
+        names_col = bpy.data.collections.get("NPC_NAMES")
+        if not names_col:
+            npcs_col = bpy.data.collections.get("NPCS")
+            if npcs_col:
+                names_col = npcs_col.children.get("NPC_NAMES")
+
+        if not names_col:
+            self.report({"WARNING"}, "No NPC_NAMES collection found in scene.")
+            return {"CANCELLED"}
+
+        new_state = not names_col.hide_viewport
+        names_col.hide_viewport = new_state
+        state_str = "Hidden" if new_state else "Visible"
+        self.report({"INFO"}, f"NPC Nameplates: {state_str}")
+        return {"FINISHED"}

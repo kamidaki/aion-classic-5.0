@@ -67,6 +67,7 @@ class AION_PT_level_io(AION_PT_base, bpy.types.Panel):
         # Import options & Granular Category Controls
         box_opt = layout.box()
         box_opt.label(text="LOD & Engine Performance:", icon="PREFERENCES")
+        box_opt.prop(settings, "target_model_lod", text="Model LOD")
         row = box_opt.row(align=True)
         row.prop(settings, "import_lod0", text="LOD 0")
         row.prop(settings, "import_lod1", text="LOD 1")
@@ -93,6 +94,8 @@ class AION_PT_level_io(AION_PT_base, bpy.types.Panel):
         col.prop(settings, "import_npcs")
         if settings.import_npcs:
             sub = col.box().column(align=True)
+            sub.prop(settings, "import_nameplates", text="3D Billboard Names")
+            sub.operator("aion.toggle_npc_names", text="Toggle Names Visibility", icon="HIDE_OFF")
             sub.prop(settings, "import_npc_models")
             sub.prop(settings, "animate_npcs")
             sub.prop(settings, "import_monsters")
@@ -229,13 +232,49 @@ class AION_PT_inspector(AION_PT_base, bpy.types.Panel):
                 row.label(text=blend)
 
 
+
+
+class AION_PT_performance_monitor(AION_PT_base, bpy.types.Panel):
+    """Real-time Scene & Performance Monitor."""
+
+    bl_idname = "AION_PT_performance_monitor"
+    bl_label = "Performance & Client Monitor"
+    bl_parent_id = "AION_PT_main_panel"
+
+    def draw(self, context):
+        layout = self.layout
+        settings = getattr(context.scene, "aion_settings", None)
+
+        box = layout.box()
+        box.label(text="Scene Resources:", icon="INFO")
+        col = box.column(align=True)
+        col.label(text=f"Total Objects: {len(bpy.data.objects)}")
+        col.label(text=f"Unique Meshes: {len(bpy.data.meshes)}")
+        col.label(text=f"Materials: {len(bpy.data.materials)}")
+        col.label(text=f"Textures / Images: {len(bpy.data.images)}")
+
+        if settings and settings.client_root:
+            from core.client_provider import AionClientProvider
+            client_path = Path(settings.client_root)
+            if client_path.is_dir():
+                box_client = layout.box()
+                box_client.label(text="Client Diagnostics:", icon="GHOST_ENABLED")
+                try:
+                    prov = AionClientProvider(client_path)
+                    box_client.label(text=f"Version: {prov.flavor.name}")
+                    box_client.label(text=f"Levels Available: {len(prov.get_available_maps())}")
+                except Exception as exc:
+                    box_client.label(text=f"Audit: {exc}")
+
+
 PANEL_CLASSES = (
     AION_PT_main_panel,
     AION_PT_level_io,
     AION_PT_direct_save,
-    AION_PT_live_environment,
     AION_PT_map_editing,
+    AION_PT_live_environment,
     AION_PT_inspector,
+    AION_PT_performance_monitor,
 )
 
 

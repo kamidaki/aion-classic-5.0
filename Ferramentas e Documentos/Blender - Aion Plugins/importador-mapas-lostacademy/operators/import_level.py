@@ -15,7 +15,8 @@ from aion_formats.level import (
     LIQUID_PRESET_TRANSPARENT,
 )
 
-from importers.level_importer import import_level
+import time
+from importers.level_importer import import_level, import_level_generator
 from importers.level_summary import format_level_import_report
 from importers.static_lights_importer import (
     DEFAULT_STATIC_LIGHT_POWER,
@@ -500,82 +501,136 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
             self.report({"ERROR"}, f"Arquivo de terreno não encontrado: {terrain_path}")
             return {"CANCELLED"}
 
-        window_manager = context.window_manager
-        workspace = context.workspace
+        import_kwargs = dict(
+            terrain_lod=int(self.terrain_lod),
+            import_mode=self.import_mode,
+            import_skybox=visual_mode and self.import_skybox,
+            skybox_time_option=self.skybox_time_option,
+            import_environment_lighting=visual_mode and self.import_environment_lighting,
+            environment_sun_energy=self.environment_sun_energy,
+            environment_ambient_strength=self.environment_ambient_strength,
+            limited_preview=self.limited_preview,
+            max_unique_cgfs=self.max_unique_cgfs,
+            max_placements_per_template=self.max_placements_per_template,
+            import_terrain=effective_import_terrain,
+            import_terrain_textures=effective_import_terrain_textures,
+            import_terrain_blend_attributes=effective_import_terrain_blend_attributes,
+            import_terrain_blend_shader=effective_import_terrain_blend_shader,
+            import_terrain_shadows=effective_import_terrain_shadows,
+            import_buildings=visual_mode and self.import_buildings,
+            import_structures=visual_mode and self.import_structures,
+            import_doors_portals=visual_mode and self.import_doors_portals,
+            import_props=visual_mode and self.import_props,
+            import_rocks=visual_mode and self.import_rocks,
+            import_interactive_objects=visual_mode and self.import_interactive_objects,
+            import_vegetation=visual_mode and self.import_vegetation,
+            import_trees=visual_mode and self.import_trees,
+            import_grass=visual_mode and self.import_grass,
+            import_bushes_flowers=visual_mode and self.import_bushes_flowers,
+            import_water=effective_import_water,
+            import_textured_liquid_surface=effective_import_textured_liquid_surface,
+            liquid_kind=self.liquid_kind,
+            liquid_preset=self.liquid_preset,
+            import_static_lights=effective_import_static_lights,
+            static_lights_mode=self.static_lights_mode,
+            static_lights_power=self.static_lights_power,
+            import_mission_placeables=effective_import_mission_placeables,
+            apply_mission_angles=self.apply_mission_angles,
+            import_particle_effects=effective_import_particle_effects,
+            import_cga_entities=effective_import_cga_entities,
+            animate_cga_controllers=effective_animate_cga_controllers,
+            apply_smoothing_groups=self.apply_smoothing_groups,
+            animate_texture_sequences=effective_animate_texture_sequences,
+            animate_shader_uv_scroll=effective_animate_shader_uv_scroll,
+            texture_animation_fps=self.texture_animation_fps,
+            import_collision=self.import_collision if visual_mode else True,
+            import_npcs=visual_mode and self.import_npcs,
+            import_npc_models=visual_mode and self.import_npc_models,
+            animate_npcs=visual_mode and self.animate_npcs,
+            import_monsters=visual_mode and self.import_monsters,
+            import_friendly_npcs=visual_mode and self.import_friendly_npcs,
+            import_ambient_creatures=visual_mode and self.import_ambient_creatures,
+            import_lod0=self.import_lod0,
+            import_lod1=self.import_lod1,
+            import_lod2=self.import_lod2,
+            import_lod3=self.import_lod3,
+            use_mesh_instancing=self.use_mesh_instancing,
+            optimize_material_preview=self.optimize_material_preview,
+            multithreaded_io=self.multithreaded_io,
+        )
 
-        def update_progress(progress):
-            window_manager.progress_update(round(progress.fraction * 100))
-            workspace.status_text_set(
-                f"Aion level import: {progress.message} "
-                f"({progress.completed}/{progress.total})"
-            )
+        self._target_level_dir = target_level_dir
+        self._client_root = client_root
+        self._effective_import_water = effective_import_water
+        self._effective_import_textured_liquid_surface = effective_import_textured_liquid_surface
+        self._effective_import_static_lights = effective_import_static_lights
+        self._effective_import_mission_placeables = effective_import_mission_placeables
+        self._effective_import_cga_entities = effective_import_cga_entities
 
-        window_manager.progress_begin(0, 100)
+        # Headless mode (CLI testing, benchmarks): run synchronously
+        if bpy.app.background:
+            result = import_level(context, target_level_dir, client_root, **import_kwargs)
+            return self._finish_import(context, result)
+
+        # Interactive GUI mode: run non-blocking modal timer loop
+        self._generator = import_level_generator(context, target_level_dir, client_root, **import_kwargs)
+        self._start_time = time.perf_counter()
+        wm = context.window_manager
+        self._timer = wm.event_timer_add(0.016, window=context.window)
+        wm.modal_handler_add(self)
+        wm.progress_begin(0, 100)
+        return {"RUNNING_MODAL"}
+
+    def modal(self, context, event):
+        if event.type == "ESC":
+            self._cleanup(context)
+            self.report({"WARNING"}, "Aion level import cancelled by user.")
+            return {"CANCELLED"}
+
+        if event.type == "TIMER":
+            t0 = time.perf_counter()
+            # Process steps within a 15ms frame budget to keep Blender 100% responsive
+            while time.perf_counter() - t0 < 0.015:
+                try:
+                    frac, msg = next(self._generator)
+                    context.window_manager.progress_update(round(frac * 100))
+                    context.workspace.status_text_set(f"Aion Import: {msg} ({round(frac * 100)}%)")
+                except StopIteration as exc:
+                    self._cleanup(context)
+                    elapsed = time.perf_counter() - self._start_time
+                    res = self._finish_import(context, exc.value)
+                    context.workspace.status_text_set(f"Aion: Imported in {elapsed:.2f}s")
+                    return res
+                except Exception as exc:
+                    self._cleanup(context)
+                    self.report({"ERROR"}, f"Aion level import failed: {exc}")
+                    return {"CANCELLED"}
+
+            return {"PASS_THROUGH"}
+
+        return {"PASS_THROUGH"}
+
+    def _cleanup(self, context):
+        if getattr(self, "_timer", None) is not None:
+            try:
+                context.window_manager.event_timer_remove(self._timer)
+            except Exception:
+                pass
+            self._timer = None
         try:
-            result = import_level(
-                context,
-                target_level_dir,
-                client_root,
-                terrain_lod=int(self.terrain_lod),
-                import_mode=self.import_mode,
-                import_skybox=visual_mode and self.import_skybox,
-                skybox_time_option=self.skybox_time_option,
-                import_environment_lighting=visual_mode and self.import_environment_lighting,
-                environment_sun_energy=self.environment_sun_energy,
-                environment_ambient_strength=self.environment_ambient_strength,
-                limited_preview=self.limited_preview,
-                max_unique_cgfs=self.max_unique_cgfs,
-                max_placements_per_template=self.max_placements_per_template,
-                import_terrain=effective_import_terrain,
-                import_terrain_textures=effective_import_terrain_textures,
-                import_terrain_blend_attributes=effective_import_terrain_blend_attributes,
-                import_terrain_blend_shader=effective_import_terrain_blend_shader,
-                import_terrain_shadows=effective_import_terrain_shadows,
-                import_buildings=visual_mode and self.import_buildings,
-                import_structures=visual_mode and self.import_structures,
-                import_doors_portals=visual_mode and self.import_doors_portals,
-                import_props=visual_mode and self.import_props,
-                import_rocks=visual_mode and self.import_rocks,
-                import_interactive_objects=visual_mode and self.import_interactive_objects,
-                import_vegetation=visual_mode and self.import_vegetation,
-                import_trees=visual_mode and self.import_trees,
-                import_grass=visual_mode and self.import_grass,
-                import_bushes_flowers=visual_mode and self.import_bushes_flowers,
-                import_water=effective_import_water,
-                import_textured_liquid_surface=effective_import_textured_liquid_surface,
-                liquid_kind=self.liquid_kind,
-                liquid_preset=self.liquid_preset,
-                import_static_lights=effective_import_static_lights,
-                static_lights_mode=self.static_lights_mode,
-                static_lights_power=self.static_lights_power,
-                import_mission_placeables=effective_import_mission_placeables,
-                apply_mission_angles=self.apply_mission_angles,
-                import_particle_effects=effective_import_particle_effects,
-                import_cga_entities=effective_import_cga_entities,
-                animate_cga_controllers=effective_animate_cga_controllers,
-                apply_smoothing_groups=self.apply_smoothing_groups,
-                animate_texture_sequences=effective_animate_texture_sequences,
-                animate_shader_uv_scroll=effective_animate_shader_uv_scroll,
-                texture_animation_fps=self.texture_animation_fps,
-                import_collision=self.import_collision if visual_mode else True,
-                import_npcs=visual_mode and self.import_npcs,
-                import_npc_models=visual_mode and self.import_npc_models,
-                animate_npcs=visual_mode and self.animate_npcs,
-                import_monsters=visual_mode and self.import_monsters,
-                import_friendly_npcs=visual_mode and self.import_friendly_npcs,
-                import_ambient_creatures=visual_mode and self.import_ambient_creatures,
-                import_lod0=self.import_lod0,
-                import_lod1=self.import_lod1,
-                import_lod2=self.import_lod2,
-                import_lod3=self.import_lod3,
-                use_mesh_instancing=self.use_mesh_instancing,
-                optimize_material_preview=self.optimize_material_preview,
-                multithreaded_io=self.multithreaded_io,
-                progress_callback=update_progress,
-            )
-        finally:
-            workspace.status_text_set(None)
-            window_manager.progress_end()
+            context.window_manager.progress_end()
+            context.workspace.status_text_set(None)
+        except Exception:
+            pass
+
+    def _finish_import(self, context, result):
+        target_level_dir = self._target_level_dir
+        client_root = self._client_root
+        effective_import_water = self._effective_import_water
+        effective_import_textured_liquid_surface = self._effective_import_textured_liquid_surface
+        effective_import_static_lights = self._effective_import_static_lights
+        effective_import_mission_placeables = self._effective_import_mission_placeables
+        effective_import_cga_entities = self._effective_import_cga_entities
 
         failure_samples = _format_cgf_issues(result.failures)
         skip_samples = _format_cgf_issues(result.skipped_templates)

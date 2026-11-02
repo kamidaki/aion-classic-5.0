@@ -134,7 +134,8 @@ def should_import_cgf_ref(
         if not import_lod1:
             return False
     else:
-        if not import_lod0:
+        # Base asset is kept if any LOD level is requested (will resolve to companion LOD)
+        if not (import_lod0 or import_lod1 or import_lod2 or import_lod3):
             return False
 
     # 2. Collision Filter

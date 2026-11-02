@@ -75,16 +75,8 @@ def create_level_cgf_placement_instances(
     category = getattr(placements[0], "category", "PROPS") if placements else "PROPS"
     if isinstance(target_collection, dict):
         dest_col = target_collection.get(category) or target_collection.get("PROPS") or target_collection.get("ROOT")
-        # Partition placements into sub-collections per template when multiple placements exist to prevent Outliner lockup
-        if template_collection and len(placements) > 1 and hasattr(dest_col, "children"):
-            sub_name = f"{template_collection.name}_inst"
-            sub_col = dest_col.children.get(sub_name)
-            if sub_col is None:
-                sub_col = bpy.data.collections.new(sub_name)
-                dest_col.children.link(sub_col)
-            link_target = sub_col
-        else:
-            link_target = dest_col
+        # Link directly to category collection without creating hundreds of nested Outliner sub-collections
+        link_target = dest_col
     else:
         link_target = target_collection
 

@@ -27,10 +27,12 @@ class LevelCgfResolutionResult:
 def resolve_level_cgf_jobs(
     jobs: Iterable[object],
     client_root: Path,
+    target_lod: int = 0,
 ) -> LevelCgfResolutionResult:
     """
     Resolves each CGF job's file reference using the AionClientPakResolver.
     Deduplicates unique CGF paths and batches extraction to avoid UI/thread freezes.
+    Supports target_lod (0..3) to resolve companion LOD meshes (<stem>_lod<N>.cgf).
     """
     resolver = get_pak_resolver(client_root)
     jobs_list = list(jobs)
@@ -53,18 +55,18 @@ def resolve_level_cgf_jobs(
     # 2. Batch resolve unique references using multi-threaded extraction
     resolved_paths: Dict[str, Optional[Path]] = {}
     if resolver and unique_refs:
-        batch_results = resolver.resolve_resources_batch(unique_refs.values(), max_workers=8)
-        for orig_ref, p in batch_results.items():
+        batch_results = resolver.resolve_resources_batch(unique_refs.values(), max_workers=8, target_lod=target_lod)
+        for orig_ref, p_res in batch_results.items():
             norm = orig_ref.replace("\\", "/").strip().lstrip("/")
-            if p and p.is_file():
-                resolved_paths[norm] = p
+            if p_res and p_res.is_file():
+                resolved_paths[norm] = p_res
 
         # Fallback query for any unreturned reference
         for norm, orig in unique_refs.items():
             if norm not in resolved_paths:
-                p = resolver.resolve_resource(orig)
-                if p and p.is_file():
-                    resolved_paths[norm] = p
+                p_res = resolver.resolve_resource(orig, target_lod=target_lod)
+                if p_res and p_res.is_file():
+                    resolved_paths[norm] = p_res
 
     # 3. Fast O(1) in-memory mapping to original jobs
     resolved = []
