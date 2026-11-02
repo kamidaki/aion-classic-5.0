@@ -1,0 +1,28 @@
+name: ✨ Sugestão de Funcionalidade
+description: Sugira uma nova mecânica, melhoria de ferramenta ou otimização.
+title: "[FEAT]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Sugestões são bem-vindas! Certifique-se de que a mecânica sugerida seja compatível com as regras e dados canônicos do Aion Classic 5.0.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Motivação / Problema
+      description: Qual problema ou lacuna essa funcionalidade busca resolver?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposta de Solução
+      description: Descreva detalhadamente como a funcionalidade deve operar.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas Consideradas
+      description: Descreva quaisquer alternativas que você considerou.

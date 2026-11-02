@@ -1,0 +1,15 @@
+# =========================================================================
+#  AION CLASSIC 5.0 EU - GITHUB CODEOWNERS
+# =========================================================================
+
+# Global maintainer and project owner
+* @kamidaki
+
+# Core Backend Java
+Código\ Fonte\ -\ Emulador/ @kamidaki
+
+# Native Supervisor (Rust)
+Ferramentas\ e\ Documentos/Ferramentas\ Python\ e\ PowerShell/Código\ Fonte\ -\ Executável\ Rust\ do\ Emulador/ @kamidaki
+
+# Low Latency Engine (C# / .NET 9)
+Ferramentas\ e\ Documentos/Ferramentas\ Python\ e\ PowerShell/Código\ Fonte\ -\ Academy\ NoLag/ @kamidaki

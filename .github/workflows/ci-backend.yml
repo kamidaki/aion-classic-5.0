@@ -1,0 +1,50 @@
+name: 🚀 Backend Java 25 CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'Código Fonte - Emulador/**'
+      - '.github/workflows/ci-backend.yml'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'Código Fonte - Emulador/**'
+      - '.github/workflows/ci-backend.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build & Package (Java 25 LTS)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout do Repositório
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: ☕ Configurar Java 25 Early-Access / GA
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'oracle'
+          java-version: '25'
+          cache: 'maven'
+
+      - name: 📦 Compilar Módulos do Emulador (Maven)
+        run: |
+          mvn clean package --file "Código Fonte - Emulador/pom.xml" -DskipTests=false -Dmaven.javadoc.skip=true
+
+      - name: 💾 Armazenar Artefatos JAR Compilados
+        uses: actions/upload-artifact@v4
+        with:
+          name: aion-emulator-jars
+          path: |
+            Código Fonte - Emulador/commons/target/*.jar
+            Código Fonte - Emulador/login-server/target/*.jar
+            Código Fonte - Emulador/game-server/target/*.jar
+            Código Fonte - Emulador/chat-server/target/*.jar
+          retention-days: 7

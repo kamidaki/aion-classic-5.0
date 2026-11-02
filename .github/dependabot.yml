@@ -1,0 +1,41 @@
+version: 2
+updates:
+  # Dependências Java Maven
+  - package-ecosystem: "maven"
+    directory: "/Código Fonte - Emulador"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "backend-java"
+
+  # GitHub Actions Workflows
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "ci/cd"
+
+  # Rust Supervisor
+  - package-ecosystem: "cargo"
+    directory: "/Ferramentas e Documentos/Ferramentas Python e PowerShell/Código Fonte - Executável Rust do Emulador"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "rust-supervisor"
+
+  # .NET 9 Academy NoLag
+  - package-ecosystem: "nuget"
+    directory: "/Ferramentas e Documentos/Ferramentas Python e PowerShell/Código Fonte - Academy NoLag"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "dotnet-nolag"

@@ -1,0 +1,43 @@
+name: ⚡ .NET 9 Academy NoLag CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'Ferramentas e Documentos/Ferramentas Python e PowerShell/Código Fonte - Academy NoLag/**'
+      - '.github/workflows/ci-dotnet.yml'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'Ferramentas e Documentos/Ferramentas Python e PowerShell/Código Fonte - Academy NoLag/**'
+      - '.github/workflows/ci-dotnet.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dotnet-build:
+    name: Build & Test (.NET 9 SDK)
+    runs-on: windows-latest
+
+    steps:
+      - name: 📥 Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: 🔧 Configurar .NET 9 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: 📦 Restaurar Dependências NuGet
+        run: |
+          dotnet restore "Ferramentas e Documentos/Ferramentas Python e PowerShell/Código Fonte - Academy NoLag/AcademyNoLag.sln"
+
+      - name: 🔨 Compilar Solução
+        run: |
+          dotnet build "Ferramentas e Documentos/Ferramentas Python e PowerShell/Código Fonte - Academy NoLag/AcademyNoLag.sln" --configuration Release --no-restore
+
+      - name: 🧪 Executar Testes Unitários
+        run: |
+          dotnet test "Ferramentas e Documentos/Ferramentas Python e PowerShell/Código Fonte - Academy NoLag/AcademyNoLag.sln" --configuration Release --no-build --verbosity normal

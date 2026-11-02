@@ -1,0 +1,55 @@
+name: 🐛 Relato de Bug
+description: Crie um relatório de falha para ajudar a melhorar o emulador.
+title: "[BUG]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por ajudar a identificar um problema no **Aion Classic 5.0**. Preencha o formulário abaixo com o máximo de detalhes possível.
+  - type: dropdown
+    id: component
+    attributes:
+      label: Componente Afetado
+      description: Em qual parte do sistema o erro ocorre?
+      options:
+        - "GameServer (Java 25)"
+        - "LoginServer (Java 25)"
+        - "ChatServer (Java 25)"
+        - "Supervisor Launcher (Rust)"
+        - "Academy NoLag (.NET 9)"
+        - "Client Hook (version.dll)"
+        - "Outro / Ferramentas"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrição do Bug
+      description: Uma explicação concisa do comportamento anômalo.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Passos para Reproduzir
+      description: Etapas exatas para reproduzir o erro.
+      placeholder: |
+        1. Iniciar o GameServer com...
+        2. Conectar com o cliente 5.0...
+        3. Realizar a ação X...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportamento Esperado
+      description: O que deveria ter acontecido segundo o comportamento oficial do Aion Classic 5.0.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / Stacktrace
+      description: Cole aqui logs relevantes de `logs/console.log` ou `logs/errors.log`.
+      render: shell

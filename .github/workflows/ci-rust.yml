@@ -1,0 +1,46 @@
+name: 🦀 Rust Supervisor CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'Ferramentas e Documentos/Ferramentas Python e PowerShell/Código Fonte - Executável Rust do Emulador/**'
+      - '.github/workflows/ci-rust.yml'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'Ferramentas e Documentos/Ferramentas Python e PowerShell/Código Fonte - Executável Rust do Emulador/**'
+      - '.github/workflows/ci-rust.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rust-check:
+    name: Check & Lint (Windows x64 MSVC)
+    runs-on: windows-latest
+
+    steps:
+      - name: 📥 Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: 🦀 Instalar Rust Toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+
+      - name: ⚡ Cache de Dependências Cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: 'Ferramentas e Documentos/Ferramentas Python e PowerShell/Código Fonte - Executável Rust do Emulador'
+
+      - name: 🔍 Cargo Check
+        run: |
+          cd "Ferramentas e Documentos/Ferramentas Python e PowerShell/Código Fonte - Executável Rust do Emulador"
+          cargo check --verbose
+
+      - name: 🧪 Cargo Clippy
+        run: |
+          cd "Ferramentas e Documentos/Ferramentas Python e PowerShell/Código Fonte - Executável Rust do Emulador"
+          cargo clippy -- -D warnings
