@@ -10,7 +10,7 @@
 
 ## 1. Objetivo e Escopo do Projeto
 
-O **Aion Blender Toolkit (Lost Academy Importer)** é um addon modular em Python de nível profissional para o Blender, fornecendo ferramentas completas de ponta a ponta para recursos 3D e mapas mundiais da CryEngine 1 / Aion Classic:
+O **Aion Blender Toolkit (Map Editor & Importer)** é um addon modular em Python de nível profissional para o Blender, fornecendo ferramentas completas de ponta a ponta para recursos 3D e mapas mundiais da CryEngine 1 / Aion Classic:
 1. **Importador de Recursos (Assets):** Importa malhas estáticas `.cgf` e entidades animadas `.cga` com fidelidade total de materiais e texturas.
 2. **Importador de Mapas (Levels):** Carrega mapas de múltiplos quilômetros quadrados diretamente de arquivos oficiais `Level.pak` ou de estruturas de pastas já extraídas.
 3. **Interpretador de Shaders e Materiais PBR:** Converte técnicas de shaders fixos e programáveis da CryEngine em árvores de nós modernas `Principled BSDF` do Blender 4.0 - 5.2, incluindo mapas de relevo normal, brilho especular, emissão de brilho e recorte de transparência alfa bifacial.
@@ -203,9 +203,9 @@ Ao dar manutenção ou estender este projeto:
   - `operators/import_level.py`: Refatoração para operador modal orientado a gerador (`import_level_generator`) com fatiamento de 15ms por tick e `PASS_THROUGH`, mantendo o Blender 100% responsivo.
   - `materials/texture_loader.py`: Prefixo de hash MD5 nos arquivos temporários de textura DDS para garantia de unicidade estrita.
 - **Compatibilidade Multi-Client:**
-  - `core/client_provider.py`: Detecção heurística de clientes `Classic 5.0`, `Retail 4.8`, `Retail 4.6 (OriginAion)` e `Retail 7.7`.
+  - `core/client_provider.py`: Detecção heurística de clientes `Classic 5.0`, `Retail 4.8`, `Retail 4.6` e `Retail 7.7`.
   - Tabelas de strings `client_strings_*.xml` lidas diretamente de `Strings.pak` e `data.pak` (79k a 189k entradas).
-  - Tratamento resiliente da criptografia proprietária `OADTENC1` do OriginAion.
+  - Tratamento resiliente da criptografia proprietária `OADTENC1` do Retail 4.6.
 - **Sistema de LOD Companion:**
   - `core/pak_engine.py` e `core/resource_resolver.py`: Resolução dinâmica de arquivos companheiros `_lod1.cgf`, `_lod2.cgf` e `_lod3.cgf` com suporte a fallback gracioso.
 - **Nameplates 3D para NPCs:**

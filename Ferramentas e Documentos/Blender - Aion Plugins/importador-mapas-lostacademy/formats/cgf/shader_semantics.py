@@ -108,7 +108,6 @@ def resolve_client_shader_semantics(
                 Path(s_arg1).is_dir()
                 or "/" in s_arg1
                 or "\\" in s_arg1
-                or "gameforge" in s_arg1.lower()
                 or "aion" in s_arg1.lower()
                 and (":" in s_arg1 or "/" in s_arg1)
             )

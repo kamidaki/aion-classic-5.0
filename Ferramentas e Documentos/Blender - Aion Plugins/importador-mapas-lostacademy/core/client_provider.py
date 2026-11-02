@@ -1,10 +1,10 @@
 """
 Aion Multi-Client Dynamic Provider & Detection Layer.
 Supports:
-- Client 1: Classic 5.0 (GameForge EU / Classic)
-- Client 2: Retail 4.8 (Aion Live Clássico América do Sul / LostAcademy)
-- Client 3: Retail 4.6 (OriginAion)
-- Client 4: Retail 7.7 (Lab Aion 7.7)
+- Classic 5.0
+- Retail 4.8
+- Retail 4.6
+- Retail 7.7
 - Generic CryEngine / Aion clients
 """
 
@@ -16,20 +16,21 @@ import re
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-from .pak_engine import AionCatalogIndex, AionPakArchive
+from .pak_engine import AionCatalogIndex, AionPakArchive, cryengine_pak_sort_key
 
 
 class ClientFlavor(enum.Enum):
-    CLASSIC_50 = "Classic 5.0 (GameForge)"
-    RETAIL_48 = "Retail 4.8 (Live Clássico América do Sul)"
-    RETAIL_46 = "Retail 4.6 (OriginAion)"
-    RETAIL_77 = "Retail 7.7 (Lab Aion)"
-    GENERIC = "Generic Aion Client"
+    CLASSIC_50 = "Classic 5.0"
+    RETAIL_48 = "Retail 4.8"
+    RETAIL_46 = "Retail 4.6"
+    RETAIL_77 = "Retail 7.7"
+    RETAIL_39 = "Retail 3.9"
+    GENERIC = "Generic Client"
 
     # Backward compatibility aliases
-    GAMEFORGE_CLASSIC = "Classic 5.0 (GameForge)"
-    LIVE_CLASSICO_SA = "Retail 4.8 (Live Clássico América do Sul)"
-    AION_39_LEGACY = "Retail 4.6 (OriginAion)"
+    CLASSIC_CLIENT = "Classic 5.0"
+    RETAIL_CLIENT = "Retail 4.8"
+    LEGACY_CLIENT = "Retail 4.6"
 
 
 class AionClientProvider:
@@ -85,42 +86,21 @@ class AionClientProvider:
         """
         Detects client flavor using robust evidence from internal files,
         binary headers, system configs, and directory structures.
+        Strictly classifies into CLASSIC and RETAIL versions.
         """
         b64 = self.root / "bin64" / "aion.bin"
         b32 = self.root / "bin32" / "aion.bin"
 
-        has_lostacademy = (
-            (self.root / "LostAcademy").is_dir()
-            or (self.root / "Data" / "NPCs" / "Npcs_LostAcademy.pak").is_file()
-            or (self.root / "data" / "npcs" / "Npcs_LostAcademy.pak").is_file()
-        )
-
-        # 1. Retail 7.7: Only 64-bit client (~5.8MB aion.bin), server.bat, or 200+ maps with 7.x event maps
+        # 1. Retail 7.7: Only 64-bit client (~5.8MB aion.bin) or 7.x server bat
         if (self.root / "server.bat").is_file() or (
             b64.is_file() and not b32.is_file() and b64.stat().st_size > 5_000_000
         ):
             return ClientFlavor.RETAIL_77
 
-        # 2. Retail 4.8: LostAcademy distribution or custom NPC tables
-        if has_lostacademy:
-            return ClientFlavor.RETAIL_48
-
-        # 3. Retail 4.6 (OriginAion): 32-bit (~3.0MB) and 64-bit (~615KB) with heavy Objects PAKs
+        # 2. Classic 5.0: 32-bit (~4.2MB) and 64-bit (~6.2MB), cc.ini, aiongraopdeck.dat
         if (
-            b32.is_file()
-            and b32.stat().st_size < 3_500_000
-            and (
-                (self.root / "Objects").is_dir()
-                and len(list((self.root / "Objects").glob("*.pak"))) > 20
-                or (self.root / "SystemOptionGraphics.cfg").is_file()
-            )
-        ):
-            return ClientFlavor.RETAIL_46
-
-        # 4. Classic 5.0 (GameForge): 32-bit (~4.2MB) and 64-bit (~6.2MB), gficon.ico, cc.ini
-        if (
-            (self.root / "gficon.ico").is_file()
-            or (self.root / "aiongraopdeck.dat").is_file()
+            (self.root / "aiongraopdeck.dat").is_file()
+            or (self.root / "cc.ini").is_file()
             or (
                 b64.is_file()
                 and b64.stat().st_size > 6_000_000
@@ -130,59 +110,89 @@ class AionClientProvider:
         ):
             return ClientFlavor.CLASSIC_50
 
-        # Secondary fallback heuristics based on path string if files were moved
+        # 3. Retail 4.6: 32-bit (~3.0MB) and 64-bit (~615KB)
+        if b32.is_file() and b32.stat().st_size < 3_500_000:
+            return ClientFlavor.RETAIL_46
+
+        # 4. Retail 4.8: Client with ZONA DE CUSTOM, dxvk.conf, or 4.8 / live markers
+        if (
+            (self.root / "ZONA DE CUSTOM").is_dir()
+            or (self.root / "dxvk.conf").is_file()
+            or "4.8" in str(self.root).lower()
+            or "live cl" in str(self.root).lower()
+        ):
+            return ClientFlavor.RETAIL_48
+
+        # Secondary fallback heuristics based on path
         root_str = str(self.root).lower()
         if "7.7" in root_str or "retail 7" in root_str:
             return ClientFlavor.RETAIL_77
-        if "live cl" in root_str or "am" in root_str or "lostacademy" in root_str:
-            return ClientFlavor.RETAIL_48
-        if "originaion" in root_str or "4.6" in root_str:
-            return ClientFlavor.RETAIL_46
-        if "gameforge" in root_str or "aionclassic" in root_str:
+        if "classic" in root_str:
             return ClientFlavor.CLASSIC_50
+        if "4.8" in root_str or "live" in root_str:
+            return ClientFlavor.RETAIL_48
+        if "4.6" in root_str:
+            return ClientFlavor.RETAIL_46
 
         return ClientFlavor.GENERIC
 
     def _init_catalog(self) -> None:
-        """Indexes common PAKs across the detected client structure."""
+        """
+        Indexes common PAKs across the detected client structure using official CryEngine precedence:
+        Base PAKs are indexed first, and patch/override PAKs (z_*, Z_*, *patch*) are indexed last,
+        allowing patch textures, meshes, and shaders to override base assets.
+        """
         # 1. Shaders
         if self.shaders_dir and self.shaders_dir.is_dir():
-            for p in self.shaders_dir.glob("*.pak"):
+            for p in sorted(self.shaders_dir.glob("*.pak"), key=cryengine_pak_sort_key):
                 self.catalog.index_pak(p)
 
         # 2. Levels common
         if self.levels_dir and self.levels_dir.is_dir():
             common_p = self.levels_dir / "common"
             if common_p.is_dir():
-                for p in common_p.glob("*.pak"):
+                for p in sorted(common_p.glob("*.pak"), key=cryengine_pak_sort_key):
                     self.catalog.index_pak(p)
 
-        # 3. Textures
+        # 3. Textures (sorting ensures z_Textures.pak overrides base Textures.pak)
         if self.textures_dir and self.textures_dir.is_dir():
-            for p in self.textures_dir.glob("*.pak"):
+            for p in sorted(self.textures_dir.glob("*.pak"), key=cryengine_pak_sort_key):
                 self.catalog.index_pak(p)
 
         # 4. L10N Textures and common data
         if self.l10n_dir and self.l10n_dir.is_dir():
-            for lang_dir in self.l10n_dir.iterdir():
+            for lang_dir in sorted(self.l10n_dir.iterdir(), key=cryengine_pak_sort_key):
                 if lang_dir.is_dir():
-                    for pak in lang_dir.glob("*.pak"):
+                    for pak in sorted(lang_dir.glob("*.pak"), key=cryengine_pak_sort_key):
                         self.catalog.index_pak(pak)
 
-    def get_world_pak_path(self) -> Optional[Path]:
-        """Resolves the authoritative world.pak file path."""
+    def get_world_pak_paths(self) -> List[Path]:
+        """
+        Discovers all PAK files in the World directory, sorted by CryEngine patch precedence.
+        Base PAKs are first; z_* / patch PAKs (e.g. z_Patch001_World.pak) are last.
+        """
         if not self.data_dir:
-            return None
+            return []
         world_dirs = [self.data_dir / "world", self.data_dir / "World"]
+        paks: List[Path] = []
         for wd in world_dirs:
             if wd.is_dir():
                 for p in wd.glob("*.pak"):
-                    if "world" in p.name.lower():
-                        return p
-        return None
+                    if p not in paks:
+                        paks.append(p)
+        return sorted(paks, key=cryengine_pak_sort_key)
+
+    def get_world_pak_path(self) -> Optional[Path]:
+        """Returns the primary or highest-priority patch world PAK."""
+        paks = self.get_world_pak_paths()
+        return paks[-1] if paks else None
 
     def get_npcs_pak_paths(self) -> List[Path]:
-        """Resolves all authoritative NPC PAK file paths."""
+        """
+        Discovers ALL PAK files in the NPCs directory, sorted by CryEngine patch precedence.
+        Never assumes hardcoded PAK names: any PAK in Data/npcs is valid (e.g. Npcs.pak,
+        Npcs_Custom.pak, z_*.pak).
+        """
         if not self.data_dir:
             return []
         npc_dirs = [
@@ -195,12 +205,13 @@ class AionClientProvider:
         for nd in npc_dirs:
             if nd.is_dir():
                 for p in nd.glob("*.pak"):
-                    paks.append(p)
-        return paks
+                    if p not in paks:
+                        paks.append(p)
+        return sorted(paks, key=cryengine_pak_sort_key)
 
     @property
     def is_encrypted(self) -> bool:
-        """True if the client or its World.pak is protected with proprietary encryption (e.g. OriginAion OADTENC1)."""
+        """True if the client or its World.pak is protected with proprietary encryption (e.g. Retail 4.6 OADTENC1)."""
         wp = self.get_world_pak_path()
         if wp and wp.is_file():
             try:
@@ -235,15 +246,16 @@ class AionClientProvider:
         self._ensure_catalog_initialized()
         clean_map = map_name.strip().lower()
 
-        # 1. Check world.pak
-        wp = self.get_world_pak_path()
-        if wp and wp.is_file():
-            # Check for OriginAion OADTENC1 signature
+        # 1. Check World PAKs (highest patch priority first)
+        for wp in reversed(self.get_world_pak_paths()):
+            if not wp.is_file():
+                continue
+            # Check for OADTENC1 encryption signature
             try:
                 head = wp.read_bytes()[:8]
                 if head == b"OADTENC1":
                     print(
-                        f"[AionClientProvider] Warning: {wp.name} is protected with OriginAion OADTENC1 encryption."
+                        f"[AionClientProvider] Warning: {wp.name} has OADTENC1 signature (encrypted)."
                     )
                     return None
             except Exception:
@@ -275,12 +287,12 @@ class AionClientProvider:
         results: List[Tuple[str, bytes]] = []
 
         for pak_path in paks:
-            # Check for OriginAion OADTENC1 signature
+            # Check for OADTENC1 encryption signature
             try:
                 head = pak_path.read_bytes()[:8]
                 if head == b"OADTENC1":
                     print(
-                        f"[AionClientProvider] Skipping {pak_path.name}: OriginAion OADTENC1 encrypted."
+                        f"[AionClientProvider] Skipping {pak_path.name}: OADTENC1 encrypted."
                     )
                     continue
             except Exception:

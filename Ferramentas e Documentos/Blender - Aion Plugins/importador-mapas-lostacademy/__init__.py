@@ -1,6 +1,6 @@
 bl_info = {
-    "name": "Lost Academy - Importador de Mapas (Aion Toolkit)",
-    "author": "Lost Academy",
+    "name": "Aion Map Toolkit - Editor & Importer",
+    "author": "Aion Classic & Retail Tools",
     "version": (1, 0, 0),
     "blender": (4, 0, 0),
     "location": "3D Viewport > Sidebar > Aion Map, File > Import/Export",

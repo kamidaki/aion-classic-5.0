@@ -403,6 +403,24 @@ class AionLevelUnpacker:
     unpack_level = prepare_level_directory
 
 
+
+def cryengine_pak_sort_key(pak_path: Path | str) -> Tuple[int, str]:
+    """
+    Official CryEngine PAK loading precedence:
+    1. Base PAKs are loaded in alphabetical order (priority 0).
+    2. Files starting with 'z_' or 'Z_', or containing 'patch' or 'override'
+       are patch/override PAKs loaded later (priority 1), overriding base assets.
+    """
+    p = Path(pak_path)
+    name = p.name.lower()
+    is_patch = (
+        name.startswith("z_")
+        or name.startswith("z")
+        or "patch" in name
+        or "override" in name
+    )
+    return (1 if is_patch else 0, name)
+
 class AionCatalogIndex:
     """
     In-memory fast inverted index across client PAK files.
@@ -432,13 +450,15 @@ class AionCatalogIndex:
         for lower_name, entry in arc.entries.items():
             self._path_to_pak_entry[lower_name] = (pak_path, entry)
             base = lower_name.split("/")[-1]
-            if base not in self._basename_to_pak_entry:
-                self._basename_to_pak_entry[base] = (pak_path, entry)
+            # CryEngine: Later patch PAKs (z_*) override earlier base assets
+            self._basename_to_pak_entry[base] = (pak_path, entry)
 
     def index_directory_paks(self, dir_path: Path, pattern: str = "*.pak") -> None:
         if not dir_path.is_dir():
             return
-        for pak_file in dir_path.glob(pattern):
+        # Official CryEngine order: sort base files first, patch files (z_*) last
+        paks = sorted(dir_path.glob(pattern), key=cryengine_pak_sort_key)
+        for pak_file in paks:
             self.index_pak(pak_file)
 
     def find_entry(self, clean_path: str) -> Optional[Tuple[Path, AionPakEntry]]:

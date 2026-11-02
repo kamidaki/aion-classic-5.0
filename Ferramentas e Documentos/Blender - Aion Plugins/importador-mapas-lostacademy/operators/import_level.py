@@ -62,7 +62,7 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
 
     client_root: StringProperty(
         name="Client Root",
-        description="Aion client root folder (defaults to D:\\GameForge\\aionclassic or auto-detected)",
+        description="Aion client root folder (auto-detected or configured)",
         subtype="DIR_PATH",
         default="D:\\GameForge\\aionclassic",
     )

@@ -11,8 +11,13 @@ from .cleanup_operators import (
     AION_OT_purge_unused_data,
 )
 from .editing_operators import (
+    AION_OT_catalog_assets,
+    AION_OT_open_asset_browser,
     AION_OT_randomize_transforms,
+    AION_OT_select_asset_in_scene,
     AION_OT_snap_to_terrain,
+    AION_OT_spawn_asset,
+    AION_OT_spawn_client_model,
     AION_OT_sync_terrain,
     AION_OT_toggle_animation,
     AION_OT_toggle_npc_names,
@@ -38,6 +43,11 @@ CLASSES = (
     AION_OT_toggle_npc_names,
     AION_OT_clean_wind_drivers,
     AION_OT_purge_unused_data,
+    AION_OT_open_asset_browser,
+    AION_OT_catalog_assets,
+    AION_OT_spawn_asset,
+    AION_OT_spawn_client_model,
+    AION_OT_select_asset_in_scene,
 )
 
 

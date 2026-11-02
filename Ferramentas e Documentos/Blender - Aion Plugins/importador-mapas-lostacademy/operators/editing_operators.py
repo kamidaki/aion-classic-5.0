@@ -171,3 +171,168 @@ class AION_OT_toggle_npc_names(bpy.types.Operator):
         state_str = "Hidden" if new_state else "Visible"
         self.report({"INFO"}, f"NPC Nameplates: {state_str}")
         return {"FINISHED"}
+
+
+class AION_OT_open_asset_browser(bpy.types.Operator):
+    """Open Blender's 3D Asset Browser inventory grid displaying model thumbnails."""
+
+    bl_idname = "aion.open_asset_browser"
+    bl_label = "Open 3D Asset Browser (Grid)"
+    bl_description = "Switch or split bottom viewport to Blender's native 3D Asset Browser grid to view model previews"
+    bl_options = {"REGISTER"}
+
+    def execute(self, context):
+        from importers.asset_catalog import catalog_scene_assets
+
+        catalog_scene_assets(context, generate_previews=True)
+
+        for area in context.screen.areas:
+            if area.ui_type == "ASSETS":
+                self.report({"INFO"}, "3D Asset Browser is already open.")
+                return {"FINISHED"}
+
+        candidate_area = None
+        for area in context.screen.areas:
+            if area.type not in ("VIEW_3D", "PROPERTIES", "OUTLINER"):
+                candidate_area = area
+                break
+
+        if candidate_area:
+            candidate_area.ui_type = "ASSETS"
+            self.report({"INFO"}, f"Switched {candidate_area.type} area to 3D Asset Browser grid.")
+            return {"FINISHED"}
+
+        self.report({"INFO"}, "All models cataloged! Switch any editor area to Asset Browser to view 3D grid.")
+        return {"FINISHED"}
+
+
+class AION_OT_catalog_assets(bpy.types.Operator):
+    """Catalog all models in scene and generate 3D thumbnail previews."""
+
+    bl_idname = "aion.catalog_assets"
+    bl_label = "Catalog Scene & Render 3D Previews"
+    bl_description = "Mark all scene models and templates as Blender assets, assign category catalogs, and render 3D previews"
+    bl_options = {"REGISTER", "UNDO"}
+
+    def execute(self, context):
+        from importers.asset_catalog import catalog_scene_assets
+
+        count = catalog_scene_assets(context, generate_previews=True)
+        self.report({"INFO"}, f"Cataloged {count} 3D assets with categories and preview generation!")
+        return {"FINISHED"}
+
+
+class AION_OT_spawn_asset(bpy.types.Operator):
+    """Spawn an instance of the selected map asset into the active scene."""
+
+    bl_idname = "aion.spawn_asset"
+    bl_label = "Spawn Asset"
+    bl_description = "Spawn a new instance of this model at the 3D cursor"
+    bl_options = {"REGISTER", "UNDO"}
+
+    reference: bpy.props.StringProperty(name="Reference", default="")
+
+    def execute(self, context):
+        from importers.asset_catalog import spawn_asset_at_location
+
+        settings = getattr(context.scene, "aion_settings", None)
+        snap = getattr(settings, "asset_snap_terrain", True) if settings else True
+
+        target = None
+        ref_norm = self.reference.replace("\\", "/").strip().lower()
+
+        templates_col = bpy.data.collections.get(".TEMPLATES")
+        if templates_col:
+            for child in templates_col.children:
+                for o in child.objects:
+                    cand_ref = str(o.get("aion_reference") or o.name).replace("\\", "/").strip().lower()
+                    if cand_ref == ref_norm or o.name.lower() == ref_norm:
+                        target = o
+                        break
+                if target:
+                    break
+
+        if not target:
+            for o in context.scene.objects:
+                cand_ref = str(o.get("aion_reference") or o.name).replace("\\", "/").strip().lower()
+                if cand_ref == ref_norm or o.name.lower() == ref_norm:
+                    target = o
+                    break
+
+        if not target:
+            self.report({"ERROR"}, f"Could not find model template for: {self.reference}")
+            return {"CANCELLED"}
+
+        loc = context.scene.cursor.location
+        new_inst = spawn_asset_at_location(context, target, loc, snap_terrain=snap)
+        if new_inst:
+            self.report({"INFO"}, f"Spawned '{new_inst.name}' at {loc.x:.1f}, {loc.y:.1f}, {loc.z:.1f}")
+            return {"FINISHED"}
+        return {"CANCELLED"}
+
+
+class AION_OT_spawn_client_model(bpy.types.Operator):
+    """Import and spawn a 3D model from the client library."""
+
+    bl_idname = "aion.spawn_client_model"
+    bl_label = "Import & Spawn Model"
+    bl_description = "Extract and import this 3D model from client PAKs, create template asset, and place at 3D cursor"
+    bl_options = {"REGISTER", "UNDO"}
+
+    model_path: bpy.props.StringProperty(name="Model Path", default="")
+
+    def execute(self, context):
+        from importers.asset_catalog import import_and_spawn_client_model
+
+        settings = getattr(context.scene, "aion_settings", None)
+        client_root = getattr(settings, "client_root", "") if settings else ""
+        if not client_root:
+            self.report({"ERROR"}, "Client Root is not set in Aion settings.")
+            return {"CANCELLED"}
+
+        snap = getattr(settings, "asset_snap_terrain", True) if settings else True
+        loc = context.scene.cursor.location
+
+        inst = import_and_spawn_client_model(
+            context,
+            client_root,
+            self.model_path,
+            location=loc,
+            snap_terrain=snap,
+        )
+        if inst:
+            self.report({"INFO"}, f"Imported & spawned '{inst.name}' into scene.")
+            return {"FINISHED"}
+        else:
+            self.report({"ERROR"}, f"Failed to import client model: {self.model_path}")
+            return {"CANCELLED"}
+
+
+class AION_OT_select_asset_in_scene(bpy.types.Operator):
+    """Select this asset template or instance in the 3D viewport."""
+
+    bl_idname = "aion.select_asset_in_scene"
+    bl_label = "Select in Scene"
+    bl_description = "Select and focus on this model in the 3D viewport"
+    bl_options = {"REGISTER", "UNDO"}
+
+    reference: bpy.props.StringProperty(name="Reference", default="")
+
+    def execute(self, context):
+        ref_norm = self.reference.replace("\\", "/").strip().lower()
+        target = None
+        for o in context.scene.objects:
+            cand_ref = str(o.get("aion_reference") or o.name).replace("\\", "/").strip().lower()
+            if cand_ref == ref_norm or o.name.lower() == ref_norm:
+                target = o
+                break
+
+        if target:
+            for o in context.selected_objects:
+                o.select_set(False)
+            target.select_set(True)
+            context.view_layer.objects.active = target
+            self.report({"INFO"}, f"Selected '{target.name}'")
+            return {"FINISHED"}
+        self.report({"WARNING"}, f"No instance found in scene for: {self.reference}")
+        return {"CANCELLED"}

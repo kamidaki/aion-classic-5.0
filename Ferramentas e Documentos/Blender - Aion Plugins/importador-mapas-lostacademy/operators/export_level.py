@@ -74,7 +74,7 @@ class AION_OT_export_level(bpy.types.Operator):
 
     directory: StringProperty(
         name="Level Directory",
-        description="Select the level folder (e.g. D:\\GameForge\\aionclassic\\levels\\dc1)",
+        description="Select the level folder (e.g. levels/dc1 or Level.pak)",
         subtype="DIR_PATH",
     )
 

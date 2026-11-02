@@ -28,7 +28,7 @@ Suporta importação abrangente de mapas de larga escala, reconstrução de shad
 ### Ambientes Suportados
 - **Versões do Blender:** Blender 4.0 LTS, 4.1, 4.2 LTS, 5.0, 5.1 e **Blender 5.2 LTS** (Compatibilidade total com o novo pipeline de renderização Eevee Next).
 - **Sistema Operacional:** Windows 10 / Windows 11 (64 bits).
-- **Cliente Aion:** Aion Classic (clientes GameForge EU, NA ou KR) ou dados de clientes Aion 2.x - 4.x.
+- **Cliente Aion:** Aion Classic (Classic 5.0) ou clientes Retail (4.8, 4.6, 7.7, etc.).
 - **Dependências Python:** Nenhuma. 100% Python puro sem DLLs externas, extensões em C ou pacotes pip. Utiliza módulos nativos do Blender (`mathutils`, `bpy`) e da biblioteca padrão (`struct`, `zlib`, `pathlib`).
 
 ### Requisitos de Sistema
@@ -49,8 +49,8 @@ O addon suporta **duas formas de instalação equivalentes no Blender**: via arq
 3. No canto superior direito, clique no menu de opções (ícone de seta/três pontos) e selecione **Instalar a partir do disco... (Install from Disk...)** ou **Instalar de Arquivo... (Install from File...)**.
 4. Navegue até a pasta de plugins e selecione o arquivo `importador-mapas-lostacademy.zip`.
 5. O Blender descompacta e registra o plugin automaticamente em sua pasta de extensões.
-6. Na barra de busca de add-ons, digite `Lost Academy` ou `Aion Map Toolkit`.
-7. Marque a caixa de seleção ao lado de **Import-Export: Lost Academy - Aion Map Toolkit** para ativá-lo.
+6. Na barra de busca de add-ons, digite `Aion Map Toolkit`.
+7. Marque a caixa de seleção ao lado de **Import-Export: Aion Map Toolkit - Editor & Importer** para ativá-lo.
 
 #### Método B: Instalação Selecionando a Pasta ou Cópia Direta
 1. **Pela Interface do Blender (Blender 4.2+ / 5.x LTS)**:
@@ -322,7 +322,7 @@ Mede tempos de execução, contagem de objetos, malhas, materiais, imagens e ins
 O toolkit detecta automaticamente e adapta estruturas de dados para 4 gerações de clientes:
 - **Classic 5.0** (`D:\GameForge\aionclassic`): 137 mapas, 79.340 strings localizadas, 81.446 arquétipos de NPCs.
 - **Retail 4.8** (`I:\Aion Live Clássico - América do Sul`): 184 mapas, 134.453 strings localizadas, 254.372 arquétipos.
-- **Retail 4.6 (OriginAion)** (`I:\OriginAion\OriginAion\OriginAion`): 154 mapas, 97.764 strings. Suporte transparente com detecção de criptografia proprietária `OADTENC1`.
+- **Retail 4.6** (`I:\OriginAion\OriginAion\OriginAion`): 154 mapas, 97.764 strings. Suporte transparente com detecção de criptografia proprietária `OADTENC1`.
 - **Retail 7.7** (`I:\Servidor Aion\SERVIDOR RETAIL 7.7\LAB AION 7.7 - CLIENT`): 178 mapas, 189.800 strings localizadas, 186.856 arquétipos.
 
 ### Resolução de Congelamentos (Arquitetura Modal Não-Bloqueante)

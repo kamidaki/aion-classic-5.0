@@ -917,6 +917,11 @@ def import_level_generator(
 
     advance_progress("complete", "Level import complete")
     try:
+        from importers.asset_catalog import catalog_scene_assets
+        catalog_scene_assets(context, generate_previews=True)
+    except Exception as exc:
+        print(f"[AION] Asset catalog auto-mark notice: {exc}")
+    try:
         bpy.context.view_layer.update()
     except Exception:
         pass

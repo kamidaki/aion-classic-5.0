@@ -681,7 +681,7 @@ def run_tests():
         test_clients = [
             ("Classic 5.0", Path("D:/GameForge/aionclassic"), ClientFlavor.CLASSIC_50),
             ("Retail 4.8", Path("I:/Aion Live Clássico - América do Sul"), ClientFlavor.RETAIL_48),
-            ("Retail 4.6 (OriginAion)", Path("I:/OriginAion/OriginAion/OriginAion"), ClientFlavor.RETAIL_46),
+            ("Retail 4.6", Path("I:/OriginAion/OriginAion/OriginAion"), ClientFlavor.RETAIL_46),
             ("Retail 7.7", Path("I:/Servidor Aion/SERVIDOR RETAIL 7.7/LAB AION 7.7 - CLIENT"), ClientFlavor.RETAIL_77),
         ]
 

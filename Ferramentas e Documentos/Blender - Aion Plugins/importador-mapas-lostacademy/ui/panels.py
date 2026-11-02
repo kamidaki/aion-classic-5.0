@@ -267,10 +267,116 @@ class AION_PT_performance_monitor(AION_PT_base, bpy.types.Panel):
                     box_client.label(text=f"Audit: {exc}")
 
 
+
+
+class AION_PT_asset_inventory(AION_PT_base, bpy.types.Panel):
+    """3D Asset Inventory & Model Browser matching native Blender Asset Browser."""
+
+    bl_idname = "AION_PT_asset_inventory"
+    bl_label = "3D Asset Inventory & Model Browser"
+    bl_parent_id = "AION_PT_main_panel"
+
+    def draw(self, context):
+        layout = self.layout
+        settings = getattr(context.scene, "aion_settings", None)
+        if not settings:
+            return
+
+        # Top row: Open Asset Browser & Catalog Actions
+        top_box = layout.box()
+        col = top_box.column(align=True)
+        col.operator("aion.open_asset_browser", text="Open 3D Asset Browser (Grid)", icon="ASSET_MANAGER")
+        col.operator("aion.catalog_assets", text="Catalog Scene & Render 3D Previews", icon="FILE_REFRESH")
+
+        # Source Selector
+        box_filter = layout.box()
+        box_filter.label(text="Model Source & Filters:", icon="FILTER")
+        box_filter.row().prop(settings, "asset_source", expand=True)
+
+        # Category Filter Row
+        box_filter.prop(settings, "asset_category", text="Category")
+
+        # Search Query
+        row_search = box_filter.row(align=True)
+        row_search.prop(settings, "asset_search", text="", icon="VIEWZOOM")
+
+        box_filter.prop(settings, "asset_snap_terrain", text="Snap Spawned to Terrain")
+
+        # Inventory Items Section
+        box_items = layout.box()
+        src = settings.asset_source
+        cat = settings.asset_category
+        query = settings.asset_search
+
+        if src == "MAP":
+            from importers.asset_catalog import get_scene_model_items
+
+            items = get_scene_model_items(context, category_filter=cat, search_query=query)
+            box_items.label(text=f"Active Map Models: ({len(items)} found)", icon="SCENE_DATA")
+            if not items:
+                box_items.label(text="No models in active map matching filter.", icon="INFO")
+            else:
+                col_list = box_items.column(align=True)
+                for rel_ref, disp_name, category, obj in items[:30]:
+                    row = col_list.row(align=True)
+                    cat_icon = "OBJECT_DATAMODE"
+                    if category == "Architecture":
+                        cat_icon = "HOME"
+                    elif category == "Vegetation":
+                        cat_icon = "OUTLINER_OB_CURVE"
+                    elif category == "Rocks":
+                        cat_icon = "MOD_TRIANGULATE"
+                    elif category == "NPCs":
+                        cat_icon = "ARMATURE_DATA"
+                    elif category == "Effects":
+                        cat_icon = "PARTICLES"
+
+                    row.label(text=disp_name, icon=cat_icon)
+                    op_spawn = row.operator("aion.spawn_asset", text="Spawn", icon="ADD")
+                    op_spawn.reference = rel_ref
+                    op_sel = row.operator("aion.select_asset_in_scene", text="", icon="RESTRICT_SELECT_OFF")
+                    op_sel.reference = rel_ref
+
+                if len(items) > 30:
+                    box_items.label(text=f"...and {len(items)-30} more (use 3D Asset Browser for all)", icon="THREE_DOTS")
+
+        else:
+            from importers.asset_catalog import get_client_model_items
+
+            client_root = settings.client_root
+            if not client_root or not Path(client_root).is_dir():
+                box_items.label(text="Valid Client Root is required.", icon="ERROR")
+            else:
+                items = get_client_model_items(client_root, category_filter=cat, search_query=query, limit=30)
+                box_items.label(text=f"Client Library: ({len(items)} shown)", icon="FILE_FOLDER")
+                if not items:
+                    box_items.label(text="No client models matching filter.", icon="INFO")
+                else:
+                    col_list = box_items.column(align=True)
+                    for rel_path, disp_name, category in items:
+                        row = col_list.row(align=True)
+                        cat_icon = "OBJECT_DATAMODE"
+                        if category == "Architecture":
+                            cat_icon = "HOME"
+                        elif category == "Vegetation":
+                            cat_icon = "OUTLINER_OB_CURVE"
+                        elif category == "Rocks":
+                            cat_icon = "MOD_TRIANGULATE"
+                        elif category == "NPCs":
+                            cat_icon = "ARMATURE_DATA"
+                        elif category == "Effects":
+                            cat_icon = "PARTICLES"
+
+                        row.label(text=disp_name, icon=cat_icon)
+                        op_spawn = row.operator("aion.spawn_client_model", text="Import & Spawn", icon="IMPORT")
+                        op_spawn.model_path = rel_path
+
+
 PANEL_CLASSES = (
     AION_PT_main_panel,
     AION_PT_level_io,
     AION_PT_direct_save,
+    AION_PT_asset_inventory,
     AION_PT_map_editing,
     AION_PT_live_environment,
     AION_PT_inspector,

@@ -332,6 +332,50 @@ class AionSceneSettings(bpy.types.PropertyGroup):
         default=True,
     )
 
+    # 3D Asset Browser & Model Inventory Grid
+    asset_source: EnumProperty(
+        name="Asset Source",
+        description="Choose whether to browse models in current map or explore client archives",
+        items=(
+            ("MAP", "Active Map Models", "Models and assets currently loaded in the active scene", "SCENE_DATA", 0),
+            ("CLIENT", "Client Library Explorer", "Explore all 3D CGF models across client PAK archives", "FILE_FOLDER", 1),
+        ),
+        default="MAP",
+    )
+
+    asset_category: EnumProperty(
+        name="Category Filter",
+        description="Filter models by asset category",
+        items=(
+            ("ALL", "All Categories", "Show all models", "VIEW3D", 0),
+            ("ARCHITECTURE", "Architecture", "Buildings, structures, walls, bridges", "HOME", 1),
+            ("PROPS", "Props", "Furniture, camp items, barrels, lamps, decorations", "OBJECT_DATAMODE", 2),
+            ("VEGETATION", "Vegetation", "Trees, plants, bushes, grass", "OUTLINER_OB_CURVE", 3),
+            ("ROCKS", "Rocks", "Cliffs, boulders, stalagmites, crystals", "MOD_TRIANGULATE", 4),
+            ("NPCS", "NPCs", "Monsters, creatures, NPCs", "ARMATURE_DATA", 5),
+            ("EFFECTS", "Effects", "Particles, placeables, dynamic entities", "PARTICLES", 6),
+        ),
+        default="ALL",
+    )
+
+    asset_search: StringProperty(
+        name="Search",
+        description="Filter models by name or path query",
+        default="",
+    )
+
+    asset_snap_terrain: BoolProperty(
+        name="Snap to Terrain",
+        description="Automatically align spawned assets to terrain height and surface normal",
+        default=True,
+    )
+
+    asset_auto_catalog: BoolProperty(
+        name="Auto-Catalog on Import",
+        description="Automatically mark imported models as Blender assets with 3D preview generation",
+        default=True,
+    )
+
 
 def register():
     bpy.utils.register_class(AionSceneSettings)
