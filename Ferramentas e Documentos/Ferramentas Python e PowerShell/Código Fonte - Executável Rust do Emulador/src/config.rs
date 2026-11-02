@@ -117,7 +117,7 @@ fn default_false() -> bool { false }
 fn default_seq_delay() -> u64 { 5 }
 fn default_clean_days() -> u32 { 7 }
 fn default_base_dir() -> String { ".".to_string() }
-fn default_java_dir() -> String { "java-deployment".to_string() }
+fn default_java_dir() -> String { "Config/java-deployment".to_string() }
 fn default_chat_dir() -> String { "ChatServer".to_string() }
 fn default_login_dir() -> String { "LoginServer".to_string() }
 fn default_game_dir() -> String { "GameServer".to_string() }
@@ -134,7 +134,7 @@ fn default_db_name() -> String { "aionclassic_gs".to_string() }
 fn default_db_port() -> u16 { 3306 }
 fn default_db_user() -> String { "".to_string() }
 fn default_db_pass() -> String { "".to_string() }
-fn default_java() -> String { "java-deployment/bin/java.exe".to_string() }
+fn default_java() -> String { "Config/Config/java-deployment/bin/java.exe".to_string() }
 fn default_shutdown_delay() -> u64 { 5 }
 
 impl Default for LauncherSettings {
@@ -235,7 +235,7 @@ impl Default for RootConfig {
         servers.insert(
             "chat".to_string(),
             ServerConfig {
-                java_exe: "java-deployment/bin/java.exe".to_string(),
+                java_exe: "Config/java-deployment/bin/java.exe".to_string(),
                 jvm_args: vec![
                     "-Xms128m".to_string(),
                     "-Xmx256m".to_string(),
@@ -257,7 +257,7 @@ impl Default for RootConfig {
         servers.insert(
             "login".to_string(),
             ServerConfig {
-                java_exe: "java-deployment/bin/java.exe".to_string(),
+                java_exe: "Config/java-deployment/bin/java.exe".to_string(),
                 jvm_args: vec![
                     "-Xms64m".to_string(),
                     "-Xmx128m".to_string(),
@@ -280,7 +280,7 @@ impl Default for RootConfig {
         servers.insert(
             "game".to_string(),
             ServerConfig {
-                java_exe: "java-deployment/bin/java.exe".to_string(),
+                java_exe: "Config/java-deployment/bin/java.exe".to_string(),
                 jvm_args: vec![
                     "-Xms1280m".to_string(),
                     "-Xmx3192m".to_string(),

@@ -35,7 +35,7 @@ flowchart LR
 ## 2. O Que NÃO Recebe Suporte (Sem Exceções)
 
 Não abra *Issues*, *Pull Requests* ou mensagens solicitando ajuda sobre:
-1. **Instalação e Configuração de Banco de Dados ou Ambiente:** Dúvidas sobre como instalar ou configurar MySQL 8.x / MariaDB, como editar `config.json` / `database.properties`, ou como inicializar o supervisor `Aion Classic - EMULADOR.exe`.
+1. **Instalação e Configuração de Banco de Dados ou Ambiente:** Dúvidas sobre como instalar ou configurar MySQL 8.x / MariaDB, como editar `Config/config.json` / `database.properties`, ou como inicializar o supervisor `Aion Classic - EMULADOR.exe`.
 2. **Obtenção ou Configuração do Cliente de Jogo:** Não fornecemos download do cliente completo do Aion Classic 5.0 nem prestamos suporte para aplicar o patch (`Patch final - Client 5.0`) ou solucionar erros de sistema operacional/drivers.
 3. **Configuração de Rede, Firewall ou Hospedagem:** Problemas com redirecionamento de portas (`2106`, `7777`, `10241`), regras do `geo_firewall.properties` ou configuração de máquinas virtuais.
 4. **Pedidos de Novos Recursos ou Prazo de Atualizações (*Roadmap*):** O projeto não possui SLA nem compromisso de atendimento a demandas externas.

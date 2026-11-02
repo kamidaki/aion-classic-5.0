@@ -51,7 +51,7 @@ flowchart TD
 | **Firewall Geográfico no Socket NIO** | Bloqueio pré-handshake por país (IPv4/IPv6 em memória) com política *fail-safe* estrita | `Código Fonte - Emulador/commons` (`GeoIPFilterService`) |
 | **Isolamento do Painel Supervisor e DB Studio** | Bind estrito em `127.0.0.1:18080` e controle de ciclo de vida via Windows Job Objects | `Ferramentas e Documentos/Ferramentas Python e PowerShell/Código Fonte - Executável Rust do Emulador` |
 | **Higienização Automática de Cache WebView2** | Diretório de dados isolado em `%LOCALAPPDATA%\AionClassicEmulador\WebView2`, limpo e recriado a cada inicialização | `Código Fonte - Executável Rust do Emulador/src/webview.rs` |
-| **Runtime Java 25 Determinístico Embarcado** | Distribuição isolada em `Emulador - Produto Final/java-deployment` evitando execução acidental em JVMs vulneráveis do sistema | `Emulador - Produto Final/config.json` |
+| **Runtime Java 25 Determinístico Embarcado** | Distribuição isolada em `Emulador - Produto Final/Config/java-deployment` evitando execução acidental em JVMs vulneráveis do sistema | `Emulador - Produto Final/Config/config.json` |
 | **Prevenção de Atravessamento de Paredes (No-Clip)** | Validação física tridimensional autoritativa via `com.lostacademy.nativepath` (`*-path.dat` 0.5m) | `Código Fonte - Emulador/game-server` |
 | **Proteção de Credenciais de Banco de Dados** | Exclusão de `database.properties` no `.gitignore` e geração segura com validação contra injeção de quebras de linha | `.gitignore` / `src/config.rs` |
 

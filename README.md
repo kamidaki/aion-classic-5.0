@@ -130,11 +130,13 @@ aion-classic-5.0/
 |
 +-- Emulador - Produto Final\                 # Distribuição de produção executável
 |   +-- Aion Classic - EMULADOR.exe           # Supervisor e Launcher gráfico nativo (Rust)
-|   +-- config.json                           # Parâmetros unificados de boot e JVM
+|   +-- Config\                               # Diretório unificado de configurações, GeoIP e runtime
+|   |   +-- config.json                       # Parâmetros unificados de boot e JVM
+|   |   +-- GeoIP\                            # Bases de prefixos IP para o Firewall GeoIP
+|   |   \-- java-deployment\                  # Runtime Java 25 LTS compilado/embutido
 |   +-- ChatServer\                           # Binários, libs, logs e sql do ChatServer
 |   +-- GameServer\                           # Binários, libs, static_data e sql do GameServer
-|   +-- LoginServer\                          # Binários, libs, logs e sql do LoginServer
-|   \-- WORLD IP RANGE\                       # Bases de prefixos IP para o Firewall GeoIP
+|   \-- LoginServer\                          # Binários, libs, logs e sql do LoginServer
 |
 \-- Ferramentas e Documentos\                 # Hub consolidado de ferramentas e referências
     +-- Client e Coletas\                     # Coletas oficiais de rede e dados extraídos
@@ -253,7 +255,7 @@ A persistência do Aion Classic 5.0 opera com segregação relacional estrita em
 O emulador integra nativamente no pacote `com.aionemu.commons.network.GeoIPFilterService` uma camada de proteção geográfica operando diretamente no socket NIO:
 
 - **Bloqueio Prévio no Socket**: Rejeita imediatamente conexões de faixas IP fora dos países autorizados antes de alocar memória, decodificar pacotes ou iniciar handshakes.
-- **Indexação em Memória**: Bases de dados de prefixos IPv4 e IPv6 (`WORLD IP RANGE/`) carregadas em memória para busca logarítmica instantânea.
+- **Indexação em Memória**: Bases de dados de prefixos IPv4 e IPv6 (`Config/GeoIP/`) carregadas em memória para busca logarítmica instantânea.
 - **Configuração Simples (`geo_firewall.properties`)**:
   - `geo.firewall.enable`: Ativa/desativa a filtragem geográfica (`true` / `false`).
   - `geo.firewall.allowed_countries`: Países liberados (ex: `BR,PT,US` ou `all`).

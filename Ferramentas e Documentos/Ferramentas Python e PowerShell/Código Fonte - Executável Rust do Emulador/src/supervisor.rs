@@ -167,6 +167,10 @@ fn resolve_java_binary(candidate: &str, java_dir: &str) -> String {
                 return bundled.to_string_lossy().to_string();
             }
         }
+        let config_bundled = cwd.join("Config").join("java-deployment").join("bin").join("java.exe");
+        if config_bundled.exists() {
+            return config_bundled.to_string_lossy().to_string();
+        }
         let default_bundled = cwd.join("java-deployment").join("bin").join("java.exe");
         if default_bundled.exists() {
             return default_bundled.to_string_lossy().to_string();

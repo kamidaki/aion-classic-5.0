@@ -83,5 +83,5 @@ Adiciona documentacao padrao de governanca e seguranca na raiz do repositorio
 | :--- | :--- |
 | Código Java 25 / Rust / C++ compilado e sincronizado com `Emulador - Produto Final`. | Alterar apenas o código-fonte sem atualizar os binários correspondentes ou enviar código que não compila. |
 | Correção de dados estáticos diretamente nos XMLs via `parsersXML` a partir das extrações oficiais 5.0. | Criar `if (template == null)` com valores fictícios hardcoded no código Java. |
-| Caminhos 100% relativos (`java-deployment/bin/java.exe`, `./libs/*`) e uso de `AppData` para cache temporário. | Inserir caminhos fixos como `C:\Program Files\Java\...` ou `D:\AION CLASSIC...` no código ou em arquivos `.json`. |
+| Caminhos 100% relativos (`Config/java-deployment/bin/java.exe`, `./libs/*`) e uso de `AppData` para cache temporário. | Inserir caminhos fixos como `C:\Program Files\Java\...` ou `D:\AION CLASSIC...` no código ou em arquivos `.json`. |
 | Commits em Português Brasil no formato de uma linha técnica por alteração. | Commits em inglês, mensagens genéricas (`fix`, `update`) ou uso de emojis. |

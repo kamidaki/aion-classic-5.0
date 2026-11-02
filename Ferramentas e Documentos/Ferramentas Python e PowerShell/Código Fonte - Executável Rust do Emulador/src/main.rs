@@ -89,7 +89,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     };
 
-    let cfg_path = "config.json";
+    let cfg_path = if std::path::Path::new("Config/config.json").exists() {
+        "Config/config.json"
+    } else {
+        "config.json"
+    };
     let mut cfg = load_config(cfg_path);
     for path in ensure_database_properties(&cfg)? {
         println!("[OK] Configuração JDBC gerada: {}", path);

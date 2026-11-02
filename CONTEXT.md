@@ -71,11 +71,13 @@ Para manter o histórico do repositório organizado, rastreável e padronizado e
 |   \-- pom.xml                           # POM Maven agregador (compilador Java 25)
 +-- Emulador - Produto Final/             # Distribuição de produção executável e pronta para uso
 |   +-- Aion Classic - EMULADOR.exe       # Executável compilado do Supervisor e Inicializador nativo (Rust)
-|   +-- config.json                       # Configurações do supervisor, JVM e parâmetros de inicialização
+|   +-- Config/                           # Diretório unificado de configurações, GeoIP e runtime
+|   |   +-- config.json                   # Configurações do supervisor, JVM e parâmetros de inicialização
+|   |   +-- GeoIP/                        # Tabelas de prefixos IP por país do Firewall GeoIP
+|   |   \-- java-deployment/              # Runtime Java 25 LTS compilado/embutido para execução determinística
 |   +-- ChatServer/                       # Servidor de chat em produção (libs, logs, sql)
 |   +-- GameServer/                       # Servidor de jogo em produção (libs, static_data, logs, sql)
-|   +-- LoginServer/                      # Servidor de autenticação em produção (libs, logs, sql)
-|   \-- WORLD IP RANGE/                   # Tabelas de prefixos IP por país do Firewall GeoIP
+|   \-- LoginServer/                      # Servidor de autenticação em produção (libs, logs, sql)
 \-- Ferramentas e Documentos/             # Hub consolidado de ferramentas, DLLs, patch e documentação
     +-- Client e Coletas/                 # PCAPs oficiais, dados extraídos e referências canônicas
     |   +-- Client 5.0 - Dados Extraidos/ # Dados oficiais extraídos do cliente (levels, data, etc.)

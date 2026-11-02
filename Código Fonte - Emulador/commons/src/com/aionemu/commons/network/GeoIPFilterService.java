@@ -53,6 +53,7 @@ public final class GeoIPFilterService {
 	private static final Logger log = LoggerFactory.getLogger(GeoIPFilterService.class);
 
 	// ── Directory / file names ────────────────────────────────────────────────
+	private static final String GEOIP_DIR_NAME              = "GeoIP";
 	private static final String WORLD_IP_RANGE_DIR_NAME     = "WORLD IP RANGE";
 	private static final String DIR_ALL_ZONES               = "all-zones";
 	private static final String DIR_IPV6_ALL_ZONES          = "ipv6-all-zones";
@@ -273,8 +274,17 @@ public final class GeoIPFilterService {
 			if (Files.isDirectory(p)) return p;
 		}
 
-		// 4 - Search candidates relative to cwd
+		// 4 - Search candidates relative to cwd (Config/GeoIP, GeoIP, and legacy WORLD IP RANGE)
 		Path[] candidates = {
+			// New standard layout: Config/GeoIP
+			Path.of("Config", GEOIP_DIR_NAME).toAbsolutePath().normalize(),
+			Path.of("..", "Config", GEOIP_DIR_NAME).toAbsolutePath().normalize(),
+			Path.of("..", "..", "Config", GEOIP_DIR_NAME).toAbsolutePath().normalize(),
+			// Direct GeoIP layout
+			Path.of(GEOIP_DIR_NAME).toAbsolutePath().normalize(),
+			Path.of("..", GEOIP_DIR_NAME).toAbsolutePath().normalize(),
+			Path.of("..", "..", GEOIP_DIR_NAME).toAbsolutePath().normalize(),
+			// Legacy fallback layout
 			Path.of(WORLD_IP_RANGE_DIR_NAME).toAbsolutePath().normalize(),
 			Path.of("..", WORLD_IP_RANGE_DIR_NAME).toAbsolutePath().normalize(),
 			Path.of("..", "..", WORLD_IP_RANGE_DIR_NAME).toAbsolutePath().normalize()
