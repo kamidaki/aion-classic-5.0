@@ -1,6 +1,9 @@
 package com.aionemu.loginserver.network.aion.serverpackets;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 
 import com.aionemu.loginserver.GameServerInfo;
@@ -20,12 +23,25 @@ public class SM_SERVER_LIST extends AionServerPacket {
 
 	@Override
 	protected void writeImpl(LoginConnection con) {
-		Collection<GameServerInfo> servers = GameServerTable.getGameServers();
+		List<GameServerInfo> servers = new ArrayList<>(GameServerTable.getGameServers());
+		servers.sort(Comparator.comparingInt(GameServerInfo::getId));
 		Map<Byte, Integer> charCountOnServer = AccountController.getGSCharacterCountsFor(con.getAccount().getId());
 		int maxId = 0;
 
+		int lastServer = con.getAccount().getLastServer();
+		GameServerInfo lastGsi = GameServerTable.getGameServerInfo((byte) lastServer);
+		if (lastGsi == null || !lastGsi.isOnline()) {
+			lastServer = 0;
+			for (GameServerInfo gsi : servers) {
+				if (gsi.isOnline()) {
+					lastServer = gsi.getId();
+					break;
+				}
+			}
+		}
+
 		writeC(servers.size()); // servers count
-		writeC(con.getAccount().getLastServer());
+		writeC(lastServer);
 		for (GameServerInfo gsi : servers) {
 			if (gsi.getId() > maxId) {
 				maxId = gsi.getId();
