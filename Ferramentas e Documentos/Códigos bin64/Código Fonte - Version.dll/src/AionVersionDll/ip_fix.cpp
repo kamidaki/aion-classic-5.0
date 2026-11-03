@@ -87,21 +87,38 @@ static bool isOfficialIp(const char* ip) {
     return false;
 }
 
-/// Checks if an IP is a candidate server, loopback, or private network game server address.
-/// Fully compatible with multi-gameserver architectures (PR #15 style: 127.0.0.1, 127.0.0.2, etc.).
-static bool IsCandidateOrLocalServerIp(const char* ip) {
+/// Checks if an IP is a candidate server address from SM_SERVER_LIST.
+/// Compatible with multi-gameserver architectures (GS1, GS2, GS3... e.g. 127.0.0.1, 127.0.0.2, etc.).
+/// Crucial: We must NEVER match loopback/private IPs when s_candidateIpCount == 0,
+/// because Aion.bin copies the command-line LoginServer argument (-ip:127.0.0.1) via lstrcpynA at boot time.
+/// Spoofing at boot time would cause the client to attempt connecting to NCSoft (70.5.0.18) instead of LoginServer,
+/// causing the fatal "não tem servidor de autenticação disponível" error.
+static bool IsCandidateGameServerIp(const char* ip) {
     if (!ip || !ip[0]) return false;
-    // Loopback block (127.0.0.1, 127.0.0.2, 127.0.0.3, etc.) - covers all sub servers
-    if (strncmp(ip, "127.", 4) == 0) return true;
-    if (_stricmp(ip, "localhost") == 0) return true;
-    // Private IPv4 ranges often used for multi-server clusters
-    if (strncmp(ip, "192.168.", 8) == 0 || strncmp(ip, "10.", 3) == 0) return true;
-    if (strncmp(ip, "172.", 4) == 0) {
-        int secondOctet = atoi(ip + 4);
-        if (secondOctet >= 16 && secondOctet <= 31) return true;
+
+    // Fast path: direct match against candidate IPs collected from SM_SERVER_LIST via zzinet_ntoa
+    if (HasCandidateIp(ip)) {
+        return true;
     }
-    // Any candidate IP collected from inet_ntoa
-    return HasCandidateIp(ip);
+
+    // Secondary path: only active AFTER SM_SERVER_LIST has begun processing (s_candidateIpCount > 0).
+    // This safely covers sub-servers (127.0.0.1, 127.0.0.2, 127.0.0.3, localhost) while guaranteeing
+    // that the boot-time command-line -ip: argument is NEVER hijacked when s_candidateIpCount == 0.
+    AcquireSRWLockShared(&s_candidateIpLock);
+    bool hasCandidates = (s_candidateIpCount > 0);
+    ReleaseSRWLockShared(&s_candidateIpLock);
+
+    if (hasCandidates) {
+        if (strncmp(ip, "127.", 4) == 0) return true;
+        if (_stricmp(ip, "localhost") == 0) return true;
+        if (strncmp(ip, "192.168.", 8) == 0 || strncmp(ip, "10.", 3) == 0) return true;
+        if (strncmp(ip, "172.", 4) == 0) {
+            int secondOctet = atoi(ip + 4);
+            if (secondOctet >= 16 && secondOctet <= 31) return true;
+        }
+    }
+
+    return false;
 }
 
 static decltype(inet_ntoa)* real_inet_ntoa = inet_ntoa;
@@ -119,7 +136,7 @@ static decltype(lstrcpynA)* real_lstrcpynA = lstrcpynA;
 /// Supports multiple game servers without prematurely clearing the candidate pool.
 static LPSTR WINAPI zzlstrcpynA(_Out_writes_(iMaxLength) LPSTR lpString1, _In_ LPCSTR lpString2, _In_ int iMaxLength) {
     if (iMaxLength == 256 && lpString2) {
-        if (IsCandidateOrLocalServerIp(lpString2)) {
+        if (IsCandidateGameServerIp(lpString2)) {
             // Note: DO NOT call ClearCandidateIps() here!
             // Multiple game servers are read sequentially in the server list packet loop.
             // Clearing here would prevent sub-servers (GS2, GS3) from being patched.
